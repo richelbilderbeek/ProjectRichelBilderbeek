@@ -3,6 +3,8 @@
 
 #include <QGraphicsPixmapItem>
 
+namespace ribi {
+
 struct QtKnokfighterPlayer : public QGraphicsPixmapItem
 {
   enum class Name { richel, joost };
@@ -23,5 +25,7 @@ struct QtKnokfighterPlayer : public QGraphicsPixmapItem
 
   void DrawPixmap();
 };
+
+} //~namespace ribi
 
 #endif // QTKNOKFIGHTERPLAYER_H

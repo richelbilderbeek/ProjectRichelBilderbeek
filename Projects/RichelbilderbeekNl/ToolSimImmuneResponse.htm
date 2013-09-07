@@ -70,24 +70,24 @@ WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, <b><a href="CppInt.htm">int</a></b>)
 {<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppTry.htm">try</a></b><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppApplication.htm">Application</a>-&gt;Initialize();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppApplication.htm">Application</a>-&gt;<a href="CppInitialize.htm">Initialize</a>();<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppApplication.htm">Application</a>-&gt;Title <a href="CppOperatorAssign.htm">=</a> "SimImmuneResponse";<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppApplication.htm">Application</a>-&gt;CreateForm(__classid(TFormSimImmuneResponseMain), &amp;FormSimImmuneResponseMain);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppApplication.htm">Application</a>-&gt;Run();<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCatch.htm">catch</a></b> (Exception &amp;exception)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCatch.htm">catch</a></b> (<a href="CppException.htm">Exception</a> &amp;<a href="CppException.htm">exception</a>)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppApplication.htm">Application</a>-&gt;ShowException(&amp;exception);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppApplication.htm">Application</a>-&gt;Show<a href="CppException.htm">Exception</a>(&amp;<a href="CppException.htm">exception</a>);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCatch.htm">catch</a></b> (...)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b><a href="CppTry.htm">try</a></b><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b><a href="CppThrow.htm">throw</a></b> Exception("");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b><a href="CppThrow.htm">throw</a></b> <a href="CppException.htm">Exception</a>("");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b><a href="CppCatch.htm">catch</a></b> (Exception &amp;exception)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b><a href="CppCatch.htm">catch</a></b> (<a href="CppException.htm">Exception</a> &amp;<a href="CppException.htm">exception</a>)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppApplication.htm">Application</a>-&gt;ShowException(&amp;exception);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppApplication.htm">Application</a>-&gt;Show<a href="CppException.htm">Exception</a>(&amp;<a href="CppException.htm">exception</a>);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> 0;<br/>
@@ -1986,7 +1986,7 @@ __fastcall TFormSimImmuneResponseOptions::TFormSimImmuneResponseOptions(T<a href
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Sprite&gt;&amp; Location::GetSprite(<b><a href="CppConst.htm">const</a></b> <a href="CppSize_t.htm">std::size_t</a> i)<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>Avoid duplication in <b><a href="CppConst.htm">const</a></b> and non-<b><a href="CppConst.htm">const</a></b> <a href="CppMemberFunction.htm">member functions</a><br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Avoid duplication in <b><a href="CppConst.htm">const</a></b> and non-<a href="CppConstMemberFunction.htm">const member function</a>s<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/CppAvoidDuplicationInConstAndNonConstMember<a href="CppFunction.htm">Function</a>s.htm<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <b><a href="CppConst_cast.htm">const_cast</a></b>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Sprite&gt;&amp; &gt;(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst_cast.htm">const_cast</a></b>&lt;<b><a href="CppConst.htm">const</a></b> Location&amp;&gt;(*<b><a href="CppThis.htm">this</a></b>).GetSprite(i)<br/>
@@ -2761,7 +2761,7 @@ Location::SpriteNear::SpriteNear(<b><a href="CppConst.htm">const</a></b> <a href
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Sprite&gt;&amp; Location::GetSprite(<b><a href="CppConst.htm">const</a></b> <a href="CppSize_t.htm">std::size_t</a> i)<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>Avoid duplication in <b><a href="CppConst.htm">const</a></b> and non-<b><a href="CppConst.htm">const</a></b> <a href="CppMemberFunction.htm">member functions</a><br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Avoid duplication in <b><a href="CppConst.htm">const</a></b> and non-<a href="CppConstMemberFunction.htm">const member function</a>s<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/CppAvoidDuplicationInConstAndNonConstMember<a href="CppFunction.htm">Function</a>s.htm<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <b><a href="CppConst_cast.htm">const_cast</a></b>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Sprite&gt;&amp; &gt;(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst_cast.htm">const_cast</a></b>&lt;<b><a href="CppConst.htm">const</a></b> Location&amp;&gt;(*<b><a href="CppThis.htm">this</a></b>).GetSprite(i)<br/>
@@ -3288,7 +3288,7 @@ Location::SpriteNear::SpriteNear(<b><a href="CppConst.htm">const</a></b> <a href
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppAlgorithmH.htm">algorithm</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppStd.htm">std</a>exception&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppStd.htm">std</a><a href="CppException.htm">exception</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppShared_ptr.htm">shared_ptr</a>.hpp&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppLexical_cast.htm">lexical_cast</a>.hpp&gt;<br/>
 <a href="CppInclude.htm">#include</a> "UnitSprite.h"<br/>

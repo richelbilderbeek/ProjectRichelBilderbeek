@@ -1,13 +1,8 @@
-#-------------------------------------------------
-#
-# Project created by QtCreator 2010-08-19T15:10:48
-#
-#-------------------------------------------------
 QT       += core gui
 CONFIG   += console
 CONFIG   -= app_bundle
-#Use C++0x standard
-#QMAKE_CXXFLAGS += -std=c++0x
+
+QMAKE_CXXFLAGS += -std=c++11 -Wall -Wextra
 #Use 64 bit
 #QMAKE_CXXFLAGS += -m64
 
@@ -20,7 +15,7 @@ INCLUDEPATH += \
   ../../Classes/CppTwoDigitNewick \
   ../../Libraries/bigint-2010.04.30
 
-win32:INCLUDEPATH+=C:/QtSDK/Libraries/boost/boost_1_47_0
+win32:INCLUDEPATH+=../Libraries/boost_1_53_0
 
 
 #Libraries

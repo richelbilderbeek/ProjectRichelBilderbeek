@@ -78,6 +78,8 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppSignals2.htm">signals2</a>.hpp&gt;<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
 <br/>
+<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a> {<br/>
+<br/>
 <a href="CppComment.htm">///</a><a href="CppDial.htm">Dial</a> is a <b><a href="CppClass.htm">class</a></b> <b><a href="CppFor.htm">for</a></b> a <a href="CppDial.htm">dial</a><br/>
 <b><a href="CppStruct.htm">struct</a></b> <a href="CppDial.htm">Dial</a><br/>
 {<br/>
@@ -165,6 +167,8 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <br/>
 <a href="CppOstream.htm">std::ostream</a>&amp; <b><a href="CppOperatorStreamOut.htm">operator&lt;&lt;</a></b>(<a href="CppOstream.htm">std::ostream</a>&amp; os, <b><a href="CppConst.htm">const</a></b> <a href="CppDial.htm">Dial</a>&amp; <a href="CppDial.htm">dial</a>);<br/>
 <br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a><br/>
+<br/>
 <a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> DIAL_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
@@ -197,16 +201,6 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="CppDial.htm">CppDial</a>.htm<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppIfdef.htm">#ifdef</a> _WIN32<br/>
-<a href="CppComment.htm">//</a>See http://www.richelbilderbeek.nl/Cpp<a href="CppCompile.htm">Compile</a>ErrorUnableToFindNumericLiteralOperatorOperatorQ.htm<br/>
-<a href="CppPreIf.htm">#if</a> !(__GNUC__ <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 4 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> __GNUC_MINOR__ <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 8)<br/>
-<a href="CppComment.htm">//</a>See http://www.richelbilderbeek.nl/Cpp<a href="CppCompile.htm">Compile</a>ErrorSwprintfHasNotBeenDeclared.htm<br/>
-<a href="CppUndef.htm">#undef</a> __STRICT_ANSI__<br/>
-<a href="CppEndif.htm">#endif</a><br/>
-<a href="CppEndif.htm">#endif</a><br/>
-<br/>
-<a href="CppComment.htm">//</a><a href="CppInclude.htm">#include</a> own <a href="CppHeaderFile.htm">header file</a> as first substantive line of code, from:<br/>
-<a href="CppComment.htm">//</a> * John Lakos. Large-Scale <a href="Cpp.htm">C++</a> Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-<b><a href="CppTypedef.htm">typedef</a></b>s"<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppDial.htm">dial</a>.h"<br/>
@@ -220,7 +214,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
 <br/>
-<a href="CppDial.htm">Dial</a>::<a href="CppDial.htm">Dial</a>(<br/>
+<a href="CppRibi.htm\">ribi</a>::<a href="CppDial.htm">Dial</a>::<a href="CppDial.htm">Dial</a>(<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> position,<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> red,<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> green,<br/>
@@ -235,24 +229,24 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;SetPosition(position);<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppDial.htm">Dial</a>::Get<a href="CppVersion.htm">Version</a>()<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppRibi.htm\">ribi</a>::<a href="CppDial.htm">Dial</a>::Get<a href="CppVersion.htm">Version</a>()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> "3.3";<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppDial.htm">Dial</a>::Get<a href="CppVersion.htm">Version</a>History()<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm\">ribi</a>::<a href="CppDial.htm">Dial</a>::Get<a href="CppVersion.htm">Version</a>History()<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v;<br/>
-&nbsp;&nbsp;v.push_back("2011-04-11: <a href="CppVersion.htm">Version</a> 1.0: initial <a href="CppVersion.htm">version</a>");<br/>
-&nbsp;&nbsp;v.push_back("2011-06-03: <a href="CppVersion.htm">Version</a> 2.0: moved <a href="CppWidget.htm">widget</a> logic to <a href="CppDialWidget.htm">DialWidget</a> <b><a href="CppClass.htm">class</a></b>");<br/>
-&nbsp;&nbsp;v.push_back("2011-08-07: <a href="CppVersion.htm">Version</a> 3.0: conformized architure <b><a href="CppFor.htm">for</a></b> <a href="CppMysteryMachine.htm">MysteryMachine</a>");<br/>
-&nbsp;&nbsp;v.push_back("2011-08-20: <a href="CppVersion.htm">Version</a> 3.1: added <b><a href="CppOperatorStreamOut.htm">operator&lt;&lt;</a></b>");<br/>
-&nbsp;&nbsp;v.push_back("2011-08-31: <a href="CppVersion.htm">Version</a> 3.2: allow changing the <a href="CppDial.htm">dial</a> its color");<br/>
-&nbsp;&nbsp;v.push_back("2013-04-30: <a href="CppVersion.htm">Version</a> 3.3: added testing, fixed <a href="CppBug.htm">bug</a> in <a href="CppGetAngle.htm">GetAngle</a>");<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"2011-04-11: <a href="CppVersion.htm">Version</a> 1.0: initial <a href="CppVersion.htm">version</a>",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"2011-06-03: <a href="CppVersion.htm">Version</a> 2.0: moved <a href="CppWidget.htm">widget</a> logic to <a href="CppDialWidget.htm">DialWidget</a> <b><a href="CppClass.htm">class</a></b>",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"2011-08-07: <a href="CppVersion.htm">Version</a> 3.0: conformized architure <b><a href="CppFor.htm">for</a></b> <a href="CppMysteryMachine.htm">MysteryMachine</a>",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"2011-08-20: <a href="CppVersion.htm">Version</a> 3.1: added <b><a href="CppOperatorStreamOut.htm">operator&lt;&lt;</a></b>",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"2011-08-31: <a href="CppVersion.htm">Version</a> 3.2: allow changing the <a href="CppDial.htm">dial</a> its color",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"2013-04-30: <a href="CppVersion.htm">Version</a> 3.3: added testing, fixed <a href="CppBug.htm">bug</a> in <a href="CppGetAngle.htm">GetAngle</a>"<br/>
+&nbsp;&nbsp;};<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppDial.htm">Dial</a>::SetBlue(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> b)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppDial.htm">Dial</a>::SetBlue(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> b)<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(b <a href="CppOperatorGreaterEqual.htm">&gt;=</a>&nbsp;&nbsp; 0);<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(b&nbsp;&nbsp;&lt; 256);<br/>
@@ -264,14 +258,14 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;}<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppDial.htm">Dial</a>::SetColor(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> r,<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> g,<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> b)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppDial.htm">Dial</a>::SetColor(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> r,<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> g,<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> b)<br/>
 {<br/>
 &nbsp;&nbsp;SetRed(r);<br/>
 &nbsp;&nbsp;SetGreen(g);<br/>
 &nbsp;&nbsp;SetBlue(b);<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppDial.htm">Dial</a>::SetGreen(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> g)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppDial.htm">Dial</a>::SetGreen(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> g)<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(g <a href="CppOperatorGreaterEqual.htm">&gt;=</a>&nbsp;&nbsp; 0);<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(g&nbsp;&nbsp;&lt; 256);<br/>
@@ -283,7 +277,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;}<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppDial.htm">Dial</a>::SetRed(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> r)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppDial.htm">Dial</a>::SetRed(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> r)<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(r <a href="CppOperatorGreaterEqual.htm">&gt;=</a>&nbsp;&nbsp; 0);<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(r&nbsp;&nbsp;&lt; 256);<br/>
@@ -295,7 +289,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;}<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppDial.htm">Dial</a>::SetPosition(<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> position)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppDial.htm">Dial</a>::SetPosition(<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> position)<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(position <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 0.0);<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(position <a href="CppOperatorLessEqual.htm">&lt;=</a> 1.0);<br/>
@@ -306,19 +300,19 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;}<br/>
 }<br/>
 <br/>
-<b><a href="CppDouble.htm">double</a></b> <a href="CppDial.htm">Dial</a>::<a href="CppGetAngle.htm">GetAngle</a>(<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> dx, <b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> dy)<br/>
+<b><a href="CppDouble.htm">double</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppDial.htm">Dial</a>::<a href="CppGetAngle.htm">GetAngle</a>(<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> dx, <b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> dy)<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> pi <a href="CppOperatorAssign.htm">=</a> <a href="CppBoost.htm">boost</a>::math::constants::pi&lt;<b><a href="CppDouble.htm">double</a></b>&gt;();<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> pi <a href="CppOperatorMinus.htm">-</a> (<a href="CppAtan.htm">std::atan</a>2(dx,dy));<br/>
 }<br/>
 <br/>
-<b><a href="CppDouble.htm">double</a></b> <a href="CppDial.htm">Dial</a>::<a href="CppGetDistance.htm">GetDistance</a>(<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> dX, <b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> dY)<br/>
+<b><a href="CppDouble.htm">double</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppDial.htm">Dial</a>::<a href="CppGetDistance.htm">GetDistance</a>(<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> dX, <b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> dY)<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <a href="CppSqrt.htm">std::sqrt</a>( (dX * dX) <a href="CppOperatorPlus.htm">+</a> (dY * dY) );<br/>
 }<br/>
 <br/>
 <a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppDial.htm">Dial</a>::Test()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppDial.htm">Dial</a>::Test()<br/>
 {<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppBool.htm">bool</a></b> is_tested <a href="CppOperatorAssign.htm">=</a> <b><a href="CppFalse.htm">false</a></b>;<br/>
@@ -391,7 +385,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 }<br/>
 <a href="CppEndif.htm">#endif</a><br/>
 <br/>
-<a href="CppOstream.htm">std::ostream</a>&amp; <b><a href="CppOperatorStreamOut.htm">operator&lt;&lt;</a></b>(<a href="CppOstream.htm">std::ostream</a>&amp; os, <b><a href="CppConst.htm">const</a></b> <a href="CppDial.htm">Dial</a>&amp; <a href="CppDial.htm">dial</a>)<br/>
+<a href="CppOstream.htm">std::ostream</a>&amp; <a href="CppRibi.htm\">ribi</a>::<b><a href="CppOperatorStreamOut.htm">operator&lt;&lt;</a></b>(<a href="CppOstream.htm">std::ostream</a>&amp; os, <b><a href="CppConst.htm">const</a></b> <a href="CppDial.htm">Dial</a>&amp; <a href="CppDial.htm">dial</a>)<br/>
 {<br/>
 &nbsp;&nbsp;os<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "&lt;<a href="CppDial.htm">Dial</a>&gt;"<br/>

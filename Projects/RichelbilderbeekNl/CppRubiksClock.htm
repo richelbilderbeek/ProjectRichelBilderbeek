@@ -40,7 +40,7 @@
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="rubiksclock.h" border = "1"><tr><td><code>
-<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">/*</a><br/>
 <a href="CppRubiksClock.htm">RubiksClock</a>, <b><a href="CppClass.htm">class</a></b> <b><a href="CppFor.htm">for</a></b> Rubik's clock<br/>
 Copyright (C) 2011 Richel Bilderbeek<br/>
@@ -57,9 +57,9 @@ GNU General Public License for more details.<br/>
 You should have received a copy of the GNU General Public License<br/>
 along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">*/</a><br/>
-<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="CppRubiksClock.htm">CppRubiksClock</a>.htm<br/>
-<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppIfndef.htm">#ifndef</a> RUBIKSCLOCK_H<br/>
 <a href="CppDefine.htm">#define</a> RUBIKSCLOCK_H<br/>
 <br/>
@@ -71,6 +71,8 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppShared_ptr.htm">shared_ptr</a>.hpp&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppSignals2.htm">signals2</a>.hpp&gt;<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
+<br/>
+<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a> {<br/>
 <br/>
 <b><a href="CppStruct.htm">struct</a></b> Rect;<br/>
 <b><a href="CppStruct.htm">struct</a></b> <a href="CppRubiksClock.htm">RubiksClock</a><a href="CppDialWidget.htm">DialWidget</a>;<br/>
@@ -161,12 +163,16 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <br/>
 };<br/>
 <br/>
+<a href="CppRubiksClock.htm">RubiksClock</a>::Pegs CreatePegsFromIndex(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> index);<br/>
+<br/>
 <a href="CppOstream.htm">std::ostream</a>&amp; <b><a href="CppOperatorStreamOut.htm">operator&lt;&lt;</a></b>(<a href="CppOstream.htm">std::ostream</a>&amp; os, <b><a href="CppConst.htm">const</a></b> <a href="CppRubiksClock.htm">RubiksClock</a>&amp; r);<br/>
 <a href="CppOstream.htm">std::ostream</a>&amp; <b><a href="CppOperatorStreamOut.htm">operator&lt;&lt;</a></b>(<a href="CppOstream.htm">std::ostream</a>&amp; os, <b><a href="CppConst.htm">const</a></b> <a href="CppRubiksClock.htm">RubiksClock</a>::<a href="CppTime.htm">Time</a>s&amp; t);<br/>
 <a href="CppOstream.htm">std::ostream</a>&amp; <b><a href="CppOperatorStreamOut.htm">operator&lt;&lt;</a></b>(<a href="CppOstream.htm">std::ostream</a>&amp; os, <b><a href="CppConst.htm">const</a></b> <a href="CppRubiksClock.htm">RubiksClock</a>::Pegs&amp; p);<br/>
 <br/>
 <b><a href="CppBool.htm">bool</a></b> <b><a href="CppOperatorEqual.htm">operator==</a></b>(<b><a href="CppConst.htm">const</a></b> <a href="CppRubiksClock.htm">RubiksClock</a>::<a href="CppTime.htm">Time</a>s&amp; lhs, <b><a href="CppConst.htm">const</a></b> <a href="CppRubiksClock.htm">RubiksClock</a>::<a href="CppTime.htm">Time</a>s&amp; rhs);<br/>
 <b><a href="CppBool.htm">bool</a></b> <b><a href="CppOperatorEqual.htm">operator==</a></b>(<b><a href="CppConst.htm">const</a></b> <a href="CppRubiksClock.htm">RubiksClock</a>::Pegs&amp; lhs, <b><a href="CppConst.htm">const</a></b> <a href="CppRubiksClock.htm">RubiksClock</a>::Pegs&amp; rhs);<br/>
+<br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a><br/>
 <br/>
 <a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> RUBIKSCLOCK_H<br/>
 </code></td></tr></table>
@@ -180,7 +186,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="rubiksclock.cpp" border = "1"><tr><td><code>
-<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">/*</a><br/>
 <a href="CppRubiksClock.htm">RubiksClock</a>, <b><a href="CppClass.htm">class</a></b> <b><a href="CppFor.htm">for</a></b> Rubik's clock<br/>
 Copyright (C) 2011 Richel Bilderbeek<br/>
@@ -197,19 +203,9 @@ GNU General Public License for more details.<br/>
 You should have received a copy of the GNU General Public License<br/>
 along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">*/</a><br/>
-<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="CppRubiksClock.htm">CppRubiksClock</a>.htm<br/>
-<br/>
-<a href="CppIfdef.htm">#ifdef</a> _WIN32<br/>
-<a href="CppComment.htm">//</a>See http://www.richelbilderbeek.nl/Cpp<a href="CppCompile.htm">Compile</a>ErrorUnableToFindNumericLiteralOperatorOperatorQ.htm<br/>
-<a href="CppPreIf.htm">#if</a> !(__GNUC__ <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 4 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> __GNUC_MINOR__ <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 8)<br/>
-<a href="CppComment.htm">//</a>See http://www.richelbilderbeek.nl/Cpp<a href="CppCompile.htm">Compile</a>ErrorSwprintfHasNotBeenDeclared.htm<br/>
-<a href="CppUndef.htm">#undef</a> __STRICT_ANSI__<br/>
-<a href="CppEndif.htm">#endif</a><br/>
-<a href="CppEndif.htm">#endif</a><br/>
-<br/>
-<a href="CppComment.htm">//</a><a href="CppInclude.htm">#include</a> own <a href="CppHeaderFile.htm">header file</a> as first substantive line of code, from:<br/>
-<a href="CppComment.htm">//</a> * John Lakos. Large-Scale <a href="Cpp.htm">C++</a> Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-<b><a href="CppTypedef.htm">typedef</a></b>s"<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-but-set-parameter"<br/>
@@ -230,7 +226,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
 <br/>
-<a href="CppRubiksClock.htm">RubiksClock</a>::<a href="CppTime.htm">Time</a>s::<a href="CppTime.htm">Time</a>s(<b><a href="CppConst.htm">const</a></b> <b><a href="CppBool.htm">bool</a></b> is_front)<br/>
+<a href="CppRibi.htm\">ribi</a>::<a href="CppRubiksClock.htm">RubiksClock</a>::<a href="CppTime.htm">Time</a>s::<a href="CppTime.htm">Time</a>s(<b><a href="CppConst.htm">const</a></b> <b><a href="CppBool.htm">bool</a></b> is_front)<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> y=0; y<a href="CppOperatorNotEqual.htm">!=</a>3; <a href="CppOperatorPlus.htm">+</a>+y)<br/>
 &nbsp;&nbsp;{<br/>
@@ -244,7 +240,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;}<br/>
 }<br/>
 <br/>
-<b><a href="CppBool.htm">bool</a></b> <b><a href="CppOperatorEqual.htm">operator==</a></b>(<b><a href="CppConst.htm">const</a></b> <a href="CppRubiksClock.htm">RubiksClock</a>::<a href="CppTime.htm">Time</a>s&amp; lhs, <b><a href="CppConst.htm">const</a></b> <a href="CppRubiksClock.htm">RubiksClock</a>::<a href="CppTime.htm">Time</a>s&amp; rhs)<br/>
+<b><a href="CppBool.htm">bool</a></b> <a href="CppRibi.htm\">ribi</a>::<b><a href="CppOperatorEqual.htm">operator==</a></b>(<b><a href="CppConst.htm">const</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppRubiksClock.htm">RubiksClock</a>::<a href="CppTime.htm">Time</a>s&amp; lhs, <b><a href="CppConst.htm">const</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppRubiksClock.htm">RubiksClock</a>::<a href="CppTime.htm">Time</a>s&amp; rhs)<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> y=0; y<a href="CppOperatorNotEqual.htm">!=</a>3; <a href="CppOperatorPlus.htm">+</a>+y)<br/>
 &nbsp;&nbsp;{<br/>
@@ -257,7 +253,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <b><a href="CppTrue.htm">true</a></b>;<br/>
 }<br/>
 <br/>
-<a href="CppRubiksClock.htm">RubiksClock</a>::Pegs::Pegs()<br/>
+<a href="CppRibi.htm\">ribi</a>::<a href="CppRubiksClock.htm">RubiksClock</a>::Pegs::Pegs()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> y=0; y<a href="CppOperatorNotEqual.htm">!=</a>2; <a href="CppOperatorPlus.htm">+</a>+y)<br/>
 &nbsp;&nbsp;{<br/>
@@ -268,7 +264,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;}<br/>
 }<br/>
 <br/>
-<b><a href="CppBool.htm">bool</a></b> <b><a href="CppOperatorEqual.htm">operator==</a></b>(<b><a href="CppConst.htm">const</a></b> <a href="CppRubiksClock.htm">RubiksClock</a>::Pegs&amp; lhs, <b><a href="CppConst.htm">const</a></b> <a href="CppRubiksClock.htm">RubiksClock</a>::Pegs&amp; rhs)<br/>
+<b><a href="CppBool.htm">bool</a></b> <b><a href="CppOperatorEqual.htm">operator==</a></b>(<b><a href="CppConst.htm">const</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppRubiksClock.htm">RubiksClock</a>::Pegs&amp; lhs, <b><a href="CppConst.htm">const</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppRubiksClock.htm">RubiksClock</a>::Pegs&amp; rhs)<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> y=0; y<a href="CppOperatorNotEqual.htm">!=</a>2; <a href="CppOperatorPlus.htm">+</a>+y)<br/>
 &nbsp;&nbsp;{<br/>
@@ -280,7 +276,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <b><a href="CppTrue.htm">true</a></b>;<br/>
 }<br/>
 <br/>
-<a href="CppRubiksClock.htm">RubiksClock</a>::Pegs CreatePegsFromIndex(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> index)<br/>
+<a href="CppRibi.htm\">ribi</a>::<a href="CppRubiksClock.htm">RubiksClock</a>::Pegs <a href="CppRibi.htm\">ribi</a>::CreatePegsFromIndex(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> index)<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Index 0: (p <a href="CppOperatorAssign.htm">=</a> pressed, u <a href="CppOperatorAssign.htm">=</a> unpressed)<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a> u u<br/>
@@ -331,7 +327,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a> p p<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a> p p<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppRubiksClock.htm">RubiksClock</a>::Pegs pegs;<br/>
+&nbsp;&nbsp;<a href="CppRibi.htm\">ribi</a>::<a href="CppRubiksClock.htm">RubiksClock</a>::Pegs pegs;<br/>
 &nbsp;&nbsp;pegs.pegs[0][0].reset(<b><a href="CppNew.htm">new</a></b> <a href="CppToggleButton.htm">ToggleButton</a><a href="CppWidget.htm">Widget</a>(((index &amp; 1) <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 1),255,255,0));<br/>
 &nbsp;&nbsp;pegs.pegs[1][0].reset(<b><a href="CppNew.htm">new</a></b> <a href="CppToggleButton.htm">ToggleButton</a><a href="CppWidget.htm">Widget</a>(((index &amp; 2) <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 2),255,255,0));<br/>
 &nbsp;&nbsp;pegs.pegs[0][1].reset(<b><a href="CppNew.htm">new</a></b> <a href="CppToggleButton.htm">ToggleButton</a><a href="CppWidget.htm">Widget</a>(((index &amp; 4) <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 4),255,255,0));<br/>
@@ -341,14 +337,14 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <br/>
 }<br/>
 <br/>
-<a href="CppRubiksClock.htm">RubiksClock</a>::<a href="CppRubiksClock.htm">RubiksClock</a>()<br/>
+<a href="CppRibi.htm\">ribi</a>::<a href="CppRubiksClock.htm">RubiksClock</a>::<a href="CppRubiksClock.htm">RubiksClock</a>()<br/>
 &nbsp;&nbsp;: mFront(<a href="CppTime.htm">Time</a>s(<b><a href="CppTrue.htm">true</a></b>)),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;mBack(<a href="CppTime.htm">Time</a>s(<b><a href="CppFalse.htm">false</a></b>))<br/>
 {<br/>
 &nbsp;&nbsp;Check();<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRubiksClock.htm">RubiksClock</a>::SetGeometry(<b><a href="CppConst.htm">const</a></b> Rect&amp; r)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppRubiksClock.htm">RubiksClock</a>::SetGeometry(<b><a href="CppConst.htm">const</a></b> Rect&amp; r)<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> left <a href="CppOperatorAssign.htm">=</a> r.GetX();<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> top <a href="CppOperatorAssign.htm">=</a> r.GetY();<br/>
@@ -394,7 +390,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRubiksClock.htm">RubiksClock</a>::TogglePeg(<b><a href="CppConst.htm">const</a></b> Side side)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppRubiksClock.htm">RubiksClock</a>::TogglePeg(<b><a href="CppConst.htm">const</a></b> Side side)<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x <a href="CppOperatorAssign.htm">=</a> (side <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> topLeft <a href="CppOperatorLogicalOr.htm">||</a> side <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> bottomLeft ? 0 : 1);<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> y <a href="CppOperatorAssign.htm">=</a> (side <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> topLeft <a href="CppOperatorLogicalOr.htm">||</a> side <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> topRight ? 0 : 1);<br/>
@@ -402,7 +398,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;m_signal_clock_changed();<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRubiksClock.htm">RubiksClock</a>::TurnWheel(<b><a href="CppConst.htm">const</a></b> Side side, <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> nSteps)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppRubiksClock.htm">RubiksClock</a>::TurnWheel(<b><a href="CppConst.htm">const</a></b> Side side, <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> nSteps)<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppSwitch.htm">switch</a></b> (side)<br/>
 &nbsp;&nbsp;{<br/>
@@ -417,7 +413,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;}<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRubiksClock.htm">RubiksClock</a>::TurnWheelTopLeft(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> nSteps)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppRubiksClock.htm">RubiksClock</a>::TurnWheelTopLeft(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> nSteps)<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppBool.htm">bool</a></b> turnFront[3][3];<br/>
 &nbsp;&nbsp;<b><a href="CppBool.htm">bool</a></b> turnBack[3][3];<br/>
@@ -467,7 +463,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRubiksClock.htm">RubiksClock</a>::TurnWheelTopRight(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> nSteps)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppRubiksClock.htm">RubiksClock</a>::TurnWheelTopRight(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> nSteps)<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppBool.htm">bool</a></b> turnFront[3][3];<br/>
 &nbsp;&nbsp;<b><a href="CppBool.htm">bool</a></b> turnBack[3][3];<br/>
@@ -516,7 +512,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;}<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRubiksClock.htm">RubiksClock</a>::TurnWheelBottomLeft(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> nSteps)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppRubiksClock.htm">RubiksClock</a>::TurnWheelBottomLeft(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> nSteps)<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppBool.htm">bool</a></b> turnFront[3][3];<br/>
 &nbsp;&nbsp;<b><a href="CppBool.htm">bool</a></b> turnBack[3][3];<br/>
@@ -565,7 +561,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;}<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRubiksClock.htm">RubiksClock</a>::TurnWheelBottomRight(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> nSteps)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppRubiksClock.htm">RubiksClock</a>::TurnWheelBottomRight(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> nSteps)<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppBool.htm">bool</a></b> turnFront[3][3];<br/>
 &nbsp;&nbsp;<b><a href="CppBool.htm">bool</a></b> turnBack[3][3];<br/>
@@ -614,37 +610,37 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;}<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppRubiksClock.htm">RubiksClock</a>::<a href="CppTime.htm">Time</a>s&amp; <a href="CppRubiksClock.htm">RubiksClock</a>::GetFront<a href="CppTime.htm">Time</a>s() <b><a href="CppConst.htm">const</a></b><br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppRubiksClock.htm">RubiksClock</a>::<a href="CppTime.htm">Time</a>s&amp; <a href="CppRibi.htm\">ribi</a>::<a href="CppRubiksClock.htm">RubiksClock</a>::GetFront<a href="CppTime.htm">Time</a>s() <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> mFront;<br/>
 }<br/>
 <br/>
-<a href="CppRubiksClock.htm">RubiksClock</a>::<a href="CppTime.htm">Time</a>s&amp; <a href="CppRubiksClock.htm">RubiksClock</a>::GetFront<a href="CppTime.htm">Time</a>s()<br/>
+<a href="CppRibi.htm\">ribi</a>::<a href="CppRubiksClock.htm">RubiksClock</a>::<a href="CppTime.htm">Time</a>s&amp; <a href="CppRibi.htm\">ribi</a>::<a href="CppRubiksClock.htm">RubiksClock</a>::GetFront<a href="CppTime.htm">Time</a>s()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> mFront;<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppRubiksClock.htm">RubiksClock</a>::<a href="CppTime.htm">Time</a>s&amp; <a href="CppRubiksClock.htm">RubiksClock</a>::GetBack<a href="CppTime.htm">Time</a>s() <b><a href="CppConst.htm">const</a></b><br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppRubiksClock.htm">RubiksClock</a>::<a href="CppTime.htm">Time</a>s&amp; <a href="CppRibi.htm\">ribi</a>::<a href="CppRubiksClock.htm">RubiksClock</a>::GetBack<a href="CppTime.htm">Time</a>s() <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> mBack;<br/>
 }<br/>
 <br/>
-<a href="CppRubiksClock.htm">RubiksClock</a>::<a href="CppTime.htm">Time</a>s&amp; <a href="CppRubiksClock.htm">RubiksClock</a>::GetBack<a href="CppTime.htm">Time</a>s()<br/>
+<a href="CppRibi.htm\">ribi</a>::<a href="CppRubiksClock.htm">RubiksClock</a>::<a href="CppTime.htm">Time</a>s&amp; <a href="CppRibi.htm\">ribi</a>::<a href="CppRubiksClock.htm">RubiksClock</a>::GetBack<a href="CppTime.htm">Time</a>s()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> mBack;<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppRubiksClock.htm">RubiksClock</a>::Pegs&amp; <a href="CppRubiksClock.htm">RubiksClock</a>::GetFrontPegs() <b><a href="CppConst.htm">const</a></b><br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppRubiksClock.htm">RubiksClock</a>::Pegs&amp; <a href="CppRibi.htm\">ribi</a>::<a href="CppRubiksClock.htm">RubiksClock</a>::GetFrontPegs() <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> mPegs;<br/>
 }<br/>
 <br/>
-<a href="CppRubiksClock.htm">RubiksClock</a>::Pegs&amp; <a href="CppRubiksClock.htm">RubiksClock</a>::GetFrontPegs()<br/>
+<a href="CppRibi.htm\">ribi</a>::<a href="CppRubiksClock.htm">RubiksClock</a>::Pegs&amp; <a href="CppRibi.htm\">ribi</a>::<a href="CppRubiksClock.htm">RubiksClock</a>::GetFrontPegs()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> mPegs;<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppRubiksClock.htm">RubiksClock</a>::Pegs <a href="CppRubiksClock.htm">RubiksClock</a>::GetBackPegs() <b><a href="CppConst.htm">const</a></b><br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppRubiksClock.htm">RubiksClock</a>::Pegs <a href="CppRibi.htm\">ribi</a>::<a href="CppRubiksClock.htm">RubiksClock</a>::GetBackPegs() <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;Pegs back;<br/>
 &nbsp;&nbsp;back.pegs[0][0].reset(<b><a href="CppNew.htm">new</a></b> <a href="CppToggleButton.htm">ToggleButton</a><a href="CppWidget.htm">Widget</a>(!mPegs.pegs[1][0]-&gt;Get<a href="CppToggleButton.htm">ToggleButton</a>()-&gt;IsPressed(),255,255,0));<br/>
@@ -663,7 +659,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> back;<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRubiksClock.htm">RubiksClock</a>::Check()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppRubiksClock.htm">RubiksClock</a>::Check()<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppTime.htm">Time</a>s originalFront <a href="CppOperatorAssign.htm">=</a> mFront;<br/>
@@ -704,19 +700,19 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppRubiksClock.htm">RubiksClock</a>::Get<a href="CppVersion.htm">Version</a>()<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppRibi.htm\">ribi</a>::<a href="CppRubiksClock.htm">RubiksClock</a>::Get<a href="CppVersion.htm">Version</a>()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> "1.0";<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRubiksClock.htm">RubiksClock</a>::Get<a href="CppVersion.htm">Version</a>History()<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm\">ribi</a>::<a href="CppRubiksClock.htm">RubiksClock</a>::Get<a href="CppVersion.htm">Version</a>History()<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v;<br/>
 &nbsp;&nbsp;v.push_back("2011-09-08: <a href="CppVersion.htm">Version</a> 1.0: initial <a href="CppVersion.htm">version</a>");<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
 }<br/>
 <br/>
-<a href="CppOstream.htm">std::ostream</a>&amp; <b><a href="CppOperatorStreamOut.htm">operator&lt;&lt;</a></b>(<a href="CppOstream.htm">std::ostream</a>&amp; os, <b><a href="CppConst.htm">const</a></b> <a href="CppRubiksClock.htm">RubiksClock</a>&amp; r)<br/>
+<a href="CppOstream.htm">std::ostream</a>&amp; <a href="CppRibi.htm\">ribi</a>::<b><a href="CppOperatorStreamOut.htm">operator&lt;&lt;</a></b>(<a href="CppOstream.htm">std::ostream</a>&amp; os, <b><a href="CppConst.htm">const</a></b> <a href="CppRubiksClock.htm">RubiksClock</a>&amp; r)<br/>
 {<br/>
 &nbsp;&nbsp;os<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "&lt;rubiks_clock&gt;"<br/>
@@ -733,7 +729,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> os;<br/>
 }<br/>
 <br/>
-<a href="CppOstream.htm">std::ostream</a>&amp; <b><a href="CppOperatorStreamOut.htm">operator&lt;&lt;</a></b>(<a href="CppOstream.htm">std::ostream</a>&amp; os, <b><a href="CppConst.htm">const</a></b> <a href="CppRubiksClock.htm">RubiksClock</a>::<a href="CppTime.htm">Time</a>s&amp; t)<br/>
+<a href="CppOstream.htm">std::ostream</a>&amp; <a href="CppRibi.htm\">ribi</a>::<b><a href="CppOperatorStreamOut.htm">operator&lt;&lt;</a></b>(<a href="CppOstream.htm">std::ostream</a>&amp; os, <b><a href="CppConst.htm">const</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppRubiksClock.htm">RubiksClock</a>::<a href="CppTime.htm">Time</a>s&amp; t)<br/>
 {<br/>
 &nbsp;&nbsp;os<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "&lt;rubiks_clock_<a href="CppTime.htm">time</a>s&gt;";<br/>
@@ -758,7 +754,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> os;<br/>
 }<br/>
 <br/>
-<a href="CppOstream.htm">std::ostream</a>&amp; <b><a href="CppOperatorStreamOut.htm">operator&lt;&lt;</a></b>(<a href="CppOstream.htm">std::ostream</a>&amp; os, <b><a href="CppConst.htm">const</a></b> <a href="CppRubiksClock.htm">RubiksClock</a>::Pegs&amp; p)<br/>
+<a href="CppOstream.htm">std::ostream</a>&amp; <a href="CppRibi.htm\">ribi</a>::<b><a href="CppOperatorStreamOut.htm">operator&lt;&lt;</a></b>(<a href="CppOstream.htm">std::ostream</a>&amp; os, <b><a href="CppConst.htm">const</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppRubiksClock.htm">RubiksClock</a>::Pegs&amp; p)<br/>
 {<br/>
 &nbsp;&nbsp;os<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "&lt;rubiks_clock_pegs&gt;";<br/>

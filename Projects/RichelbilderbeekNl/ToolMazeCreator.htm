@@ -26,7 +26,6 @@
 <ul>
   <li><img src="PicUbuntu.png" alt="Ubuntu"/> <a href="ToolMazeCreator_2_0.png">View a screenshot of 'Maze Creator' (v. 2.0)</a></li>
   <li><img src="PicQtCreator.png" alt="Qt Creator"/> <a href="ToolMazeCreatorSource_2_0.zip">Download the 'Maze Creator' source code (v. 2.0)(zip)</a></li>
-  <li><img src="PicQtCreator.png" alt="Qt Creator"/> <a href="ToolMazeCreatorSource_2_0.htm">View the 'Maze Creator' source code as a web page (v. 2.0)(htm)</a></li>
   <li><img src="PicWindows.png" alt="Windows"/> <a href="ToolMazeCreator_1_0.png">View a screenshot of 'Maze Creator' (v. 1.0)</a></li>
   <li><img src="PicWindows.png" alt="Windows"/> <a href="ToolMazeCreatorExe_1_0.zip">Download the 'Maze Creator' Windows executable (v. 1.0)(zip)</a></li>
   <li><img src="PicCppBuilder.png" alt="C++ Builder"/> <a href="ToolMazeCreatorSource_1_0.zip">Download the C++ Builder 'Maze Creator' source code (v. 1.0)(zip)</a></li>
@@ -153,6 +152,8 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppAbout.htm">about</a>.h"<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a> {<br/>
+<br/>
 <a href="CppComment.htm">///</a>MazeCreatorMenuDialog contains the MazeCreator menu dialog<br/>
 <b><a href="CppStruct.htm">struct</a></b> MazeCreatorMenuDialog<br/>
 {<br/>
@@ -163,7 +164,9 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">///</a>From http://www.richelbilderbeek.nl/Cpp<a href="CppIntToStr.htm">IntToStr</a>.htm<br/>
 <b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppIntToStr.htm">IntToStr</a>(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x);<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a><br/>
+<br/>
 <a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> MAZECREATORMENUDIALOG_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
@@ -197,8 +200,8 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">//</a>From hhtp:<a href="CppComment.htm">//</a>www.richelbilderbeek.nl/<a href="ToolMazeCreator.htm">ToolMazeCreator</a>.htm<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">//</a><a href="CppInclude.htm">#include</a> own <a href="CppHeaderFile.htm">header file</a> as first substantive line of code, from:<br/>
-<a href="CppComment.htm">//</a> * John Lakos. Large-Scale <a href="Cpp.htm">C++</a> Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110<br/>
+<br/>
+<br/>
 <a href="CppInclude.htm">#include</a> "<a href="ToolMazeCreator.htm">mazecreator</a>menudialog.h"<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppCstdlibH.htm">cstdlib</a>&gt;<br/>
@@ -207,7 +210,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppStdexceptH.htm">stdexcept</a>&gt;<br/>
 <br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppAbout.htm">About</a> MazeCreatorMenuDialog::GetAbout()<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppAbout.htm">About</a> <a href="CppRibi.htm\">ribi</a>::MazeCreatorMenuDialog::GetAbout()<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppAbout.htm">About</a> a(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;"Richel Bilderbeek",<br/>
@@ -222,12 +225,12 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> a;<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> MazeCreatorMenuDialog::Get<a href="CppVersion.htm">Version</a>()<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppRibi.htm\">ribi</a>::MazeCreatorMenuDialog::Get<a href="CppVersion.htm">Version</a>()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> "1.1";<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; MazeCreatorMenuDialog::Get<a href="CppVersion.htm">Version</a>History()<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm\">ribi</a>::MazeCreatorMenuDialog::Get<a href="CppVersion.htm">Version</a>History()<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v;<br/>
 &nbsp;&nbsp;v.push_back("2007-xx-xx: <a href="CppVersion.htm">version</a> 1.0: initial <a href="CppVersion.htm">version</a>.");<br/>
@@ -333,10 +336,6 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/Cpp<a href="CppCreateMaze.htm">CreateMaze</a>.htm<br/>
 &nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt; &gt; <a href="CppCreateMaze.htm">CreateMaze</a>(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> size);<br/>
 <br/>
-<br/>
-<b><a href="CppProtected.htm">protected</a></b>:<br/>
-&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> changeEvent(<a href="CppQEvent.htm">QEvent</a> *e);<br/>
-<br/>
 <b><a href="CppPrivate.htm">private</a></b>:<br/>
 &nbsp;&nbsp;<a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a>MazeCreatorMainDialog *ui;<br/>
 &nbsp;&nbsp;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppQGraphicsScene.htm">QGraphicsScene</a>&gt; m_scene;<br/>
@@ -390,8 +389,8 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">//</a>From hhtp:<a href="CppComment.htm">//</a>www.richelbilderbeek.nl/<a href="ToolMazeCreator.htm">ToolMazeCreator</a>.htm<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">//</a><a href="CppInclude.htm">#include</a> own <a href="CppHeaderFile.htm">header file</a> as first substantive line of code, from:<br/>
-<a href="CppComment.htm">//</a> * John Lakos. Large-Scale <a href="Cpp.htm">C++</a> Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110<br/>
+<br/>
+<br/>
 <a href="CppInclude.htm">#include</a> "qt<a href="ToolMazeCreator.htm">mazecreator</a>maindialog.h"<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
@@ -440,18 +439,6 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppQt.htm">Qt</a>MazeCreatorMainDialog::~<a href="CppQt.htm">Qt</a>MazeCreatorMainDialog()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppDelete.htm">delete</a></b> ui;<br/>
-}<br/>
-<br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a>MazeCreatorMainDialog::changeEvent(<a href="CppQEvent.htm">QEvent</a> *e)<br/>
-{<br/>
-&nbsp;&nbsp;<a href="CppQDialog.htm">QDialog</a>::changeEvent(e);<br/>
-&nbsp;&nbsp;<b><a href="CppSwitch.htm">switch</a></b> (e-&gt;type()) {<br/>
-&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> <a href="CppQEvent.htm">QEvent</a>::LanguageChange:<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;ui-&gt;retranslateUi(<b><a href="CppThis.htm">this</a></b>);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppBreak.htm">break</a></b>;<br/>
-&nbsp;&nbsp;<b><a href="CppDefault.htm">default</a></b>:<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppBreak.htm">break</a></b>;<br/>
-&nbsp;&nbsp;}<br/>
 }<br/>
 <br/>
 <a href="CppComment.htm">//</a>Sets the scale of the maze<br/>
@@ -643,8 +630,10 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppQDialog.htm">QDialog</a>&gt;<br/>
 <br/>
 <b><a href="CppNamespace.htm">namespace</a></b> Ui {<br/>
-<b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a>MazeCreatorMenuDialog;<br/>
+&nbsp;&nbsp;<b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a>MazeCreatorMenuDialog;<br/>
 }<br/>
+<br/>
+<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a> {<br/>
 <br/>
 <b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a>MazeCreatorMenuDialog : <b><a href="CppPublic.htm">public</a></b> <a href="CppQDialog.htm">QDialog</a><br/>
 {<br/>
@@ -665,6 +654,8 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <b><a href="CppPrivate.htm">private</a></b>:<br/>
 &nbsp;&nbsp;<a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a>MazeCreatorMenuDialog *ui;<br/>
 };<br/>
+<br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a><br/>
 <br/>
 <a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> QTMAZECREATORMENUDIALOG_H<br/>
 </code></td></tr></table>
@@ -699,8 +690,8 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">//</a>From hhtp:<a href="CppComment.htm">//</a>www.richelbilderbeek.nl/<a href="ToolMazeCreator.htm">ToolMazeCreator</a>.htm<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">//</a><a href="CppInclude.htm">#include</a> own <a href="CppHeaderFile.htm">header file</a> as first substantive line of code, from:<br/>
-<a href="CppComment.htm">//</a> * John Lakos. Large-Scale <a href="Cpp.htm">C++</a> Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110<br/>
+<br/>
+<br/>
 <a href="CppInclude.htm">#include</a> "qt<a href="ToolMazeCreator.htm">mazecreator</a>menudialog.h"<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> "<a href="ToolMazeCreator.htm">mazecreator</a>menudialog.h"<br/>
@@ -708,19 +699,19 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppInclude.htm">#include</a> "qt<a href="ToolMazeCreator.htm">mazecreator</a>maindialog.h"<br/>
 <a href="CppInclude.htm">#include</a> "ui_qt<a href="ToolMazeCreator.htm">mazecreator</a>menudialog.h"<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppQt.htm">Qt</a>MazeCreatorMenuDialog::<a href="CppQt.htm">Qt</a>MazeCreatorMenuDialog(<a href="CppQWidget.htm">QWidget</a> *parent) :<br/>
+<a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a>MazeCreatorMenuDialog::<a href="CppQt.htm">Qt</a>MazeCreatorMenuDialog(<a href="CppQWidget.htm">QWidget</a> *parent) :<br/>
 &nbsp;&nbsp;<a href="CppQDialog.htm">QDialog</a>(parent),<br/>
 &nbsp;&nbsp;ui(<b><a href="CppNew.htm">new</a></b> <a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a>MazeCreatorMenuDialog)<br/>
 {<br/>
 &nbsp;&nbsp;ui-&gt;setupUi(<b><a href="CppThis.htm">this</a></b>);<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppQt.htm">Qt</a>MazeCreatorMenuDialog::~<a href="CppQt.htm">Qt</a>MazeCreatorMenuDialog()<br/>
+<a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a>MazeCreatorMenuDialog::~<a href="CppQt.htm">Qt</a>MazeCreatorMenuDialog()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppDelete.htm">delete</a></b> ui;<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a>MazeCreatorMenuDialog::on_button_start_clicked()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a>MazeCreatorMenuDialog::on_button_start_clicked()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;hide();<br/>
 &nbsp;&nbsp;<a href="CppQt.htm">Qt</a>MazeCreatorMainDialog d;<br/>
@@ -728,7 +719,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;show();<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a>MazeCreatorMenuDialog::on_button_about_clicked()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a>MazeCreatorMenuDialog::on_button_about_clicked()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;hide();<br/>
 &nbsp;&nbsp;<a href="CppAbout.htm">About</a> a <a href="CppOperatorAssign.htm">=</a> MazeCreatorMenuDialog::GetAbout();<br/>
@@ -738,7 +729,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;show();<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a>MazeCreatorMenuDialog::on_button_quit_clicked()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a>MazeCreatorMenuDialog::on_button_quit_clicked()<br/>
 {<br/>
 &nbsp;&nbsp;close();<br/>
 }<br/>

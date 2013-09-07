@@ -66,10 +66,12 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppIfndef.htm">#ifndef</a> RAINBOW_H<br/>
 <a href="CppDefine.htm">#define</a> RAINBOW_H<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppStringH.htm">string</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<br/>
+<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a> {<br/>
+<br/>
 <b><a href="CppStruct.htm">struct</a></b> <a href="CppRainbow.htm">Rainbow</a><br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/Obtain the RGB values from a relative position<br/>
@@ -85,7 +87,9 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/Obtain <b><a href="CppThis.htm">this</a></b> <b><a href="CppClass.htm">class</a></b> its <a href="CppVersion.htm">version</a> history<br/>
 &nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; Get<a href="CppVersion.htm">Version</a>History();<br/>
 };<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a><br/>
+<br/>
 <a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> RAINBOW_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
@@ -98,7 +102,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="rainbow.cpp" border = "1"><tr><td><code>
-<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">/*</a><br/>
 <a href="CppRainbow.htm">Rainbow</a>, <b><a href="CppClass.htm">class</a></b> <b><a href="CppFor.htm">for</a></b> a <a href="CppRainbow.htm">rainbow</a> color gradient<br/>
 Copyright (C) 2011 Richel Bilderbeek<br/>
@@ -115,37 +119,28 @@ GNU General Public License for more details.<br/>
 You should have received a copy of the GNU General Public License<br/>
 along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">*/</a><br/>
-<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="CppRainbow.htm">CppRainbow</a>.htm<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <br/>
-<a href="CppIfdef.htm">#ifdef</a> _WIN32<br/>
-<a href="CppComment.htm">//</a>See http://www.richelbilderbeek.nl/Cpp<a href="CppCompile.htm">Compile</a>ErrorUnableToFindNumericLiteralOperatorOperatorQ.htm<br/>
-<a href="CppPreIf.htm">#if</a> !(__GNUC__ <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 4 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> __GNUC_MINOR__ <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 8)<br/>
-<a href="CppComment.htm">//</a>See http://www.richelbilderbeek.nl/Cpp<a href="CppCompile.htm">Compile</a>ErrorSwprintfHasNotBeenDeclared.htm<br/>
-<a href="CppUndef.htm">#undef</a> __STRICT_ANSI__<br/>
-<a href="CppEndif.htm">#endif</a><br/>
-<a href="CppEndif.htm">#endif</a><br/>
 <br/>
-<a href="CppComment.htm">//</a><a href="CppInclude.htm">#include</a> own <a href="CppHeaderFile.htm">header file</a> as first substantive line of code, from:<br/>
-<a href="CppComment.htm">//</a> * John Lakos. Large-Scale <a href="Cpp.htm">C++</a> Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppRainbow.htm">rainbow</a>.h"<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppCmathH.htm">cmath</a>&gt;<br/>
 <br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-<b><a href="CppTypedef.htm">typedef</a></b>s"<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/math/constants/constants.hpp&gt;<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRainbow.htm">Rainbow</a>::GetRgb(<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppRainbow.htm">Rainbow</a>::GetRgb(<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> x,<br/>
 &nbsp;&nbsp;<b><a href="CppDouble.htm">double</a></b>&amp; r,<br/>
 &nbsp;&nbsp;<b><a href="CppDouble.htm">double</a></b>&amp; g,<br/>
 &nbsp;&nbsp;<b><a href="CppDouble.htm">double</a></b>&amp; b)<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppIfdef.htm">#ifdef</a> __STRICT_ANSI__<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> pi <a href="CppOperatorAssign.htm">=</a> <a href="CppBoost.htm">boost</a>::math::constants::pi&lt;<b><a href="CppDouble.htm">double</a></b>&gt;();<br/>
-&nbsp;&nbsp;<a href="CppPreElse.htm">#else</a><br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> pi <a href="CppOperatorAssign.htm">=</a> <a href="CppM_PI.htm">M_PI</a>;<br/>
-&nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
 <br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (x <a href="CppOperatorLessEqual.htm">&lt;=</a> 0.0 <a href="CppOperatorLogicalOr.htm">||</a> x <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 1.0) { r <a href="CppOperatorAssign.htm">=</a> g <a href="CppOperatorAssign.htm">=</a> b <a href="CppOperatorAssign.htm">=</a> 0.0; <b><a href="CppReturn.htm">return</a></b>; }<br/>
 <br/>
@@ -164,12 +159,12 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;b <a href="CppOperatorAssign.htm">=</a> f_b <a href="CppOperatorDivide.htm">/</a> max;<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppRainbow.htm">Rainbow</a>::Get<a href="CppVersion.htm">Version</a>()<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppRibi.htm\">ribi</a>::<a href="CppRainbow.htm">Rainbow</a>::Get<a href="CppVersion.htm">Version</a>()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> "1.1";<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRainbow.htm">Rainbow</a>::Get<a href="CppVersion.htm">Version</a>History()<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm\">ribi</a>::<a href="CppRainbow.htm">Rainbow</a>::Get<a href="CppVersion.htm">Version</a>History()<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v;<br/>
 &nbsp;&nbsp;v.push_back("2011-08-31: <a href="CppVersion.htm">Version</a> 1.0: initial <a href="CppVersion.htm">version</a>");<br/>

@@ -191,7 +191,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a><a href="ToolTestQtRoundededitRectItem.htm">TestQtRoundedEditRectItem</a>MainDialog;<br/>
 }<br/>
 <br/>
-<b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a><a href="ToolTestQtRoundededitRectItem.htm">TestQtRoundedEditRectItem</a>MainDialog : <b><a href="CppPublic.htm">public</a></b> <a href="CppQtHideAndShowDialog.htm">QtHideAndShowDialog</a><br/>
+<b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a><a href="ToolTestQtRoundededitRectItem.htm">TestQtRoundedEditRectItem</a>MainDialog : <b><a href="CppPublic.htm">public</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQtHideAndShowDialog.htm">QtHideAndShowDialog</a><br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppQ_OBJECT.htm">Q_OBJECT</a><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<br/>
@@ -238,8 +238,8 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="ToolTestQtRoundedEditRectItem.htm">ToolTestQtRoundedEditRectItem</a>.htm<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">//</a><a href="CppInclude.htm">#include</a> own <a href="CppHeaderFile.htm">header file</a> as first substantive line of code, from:<br/>
-<a href="CppComment.htm">//</a> * John Lakos. Large-Scale <a href="Cpp.htm">C++</a> Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110<br/>
+<br/>
+<br/>
 <a href="CppInclude.htm">#include</a> "qt<a href="ToolTestQtRoundedEditRectItem.htm">testqtroundededitrectitem</a>maindialog.h"<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppQKeyEvent.htm">QKeyEvent</a>&gt;<br/>
@@ -301,7 +301,9 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a><a href="ToolTestQtRoundededitRectItem.htm">TestQtRoundedEditRectItem</a>MenuDialog;<br/>
 }<br/>
 <br/>
-<b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a><a href="ToolTestQtRoundededitRectItem.htm">TestQtRoundedEditRectItem</a>MenuDialog : <b><a href="CppPublic.htm">public</a></b> <a href="CppQtHideAndShowDialog.htm">QtHideAndShowDialog</a><br/>
+<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a> {<br/>
+<br/>
+<b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a><a href="ToolTestQtRoundededitRectItem.htm">TestQtRoundedEditRectItem</a>MenuDialog : <b><a href="CppPublic.htm">public</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQtHideAndShowDialog.htm">QtHideAndShowDialog</a><br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppQ_OBJECT.htm">Q_OBJECT</a><br/>
 <br/>
@@ -310,7 +312,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;~<a href="CppQt.htm">Qt</a><a href="ToolTestQtRoundededitRectItem.htm">TestQtRoundedEditRectItem</a>MenuDialog();<br/>
 <br/>
 <b><a href="CppProtected.htm">protected</a></b>:<br/>
-&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> changeEvent(<a href="CppQEvent.htm">QEvent</a> *e);<br/>
+&nbsp;&nbsp;<br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> keyPressEvent(<a href="CppQKeyEvent.htm">QKeyEvent</a> * event);<br/>
 <br/>
 <b><a href="CppPrivate.htm">private</a></b>:<br/>
@@ -321,6 +323,8 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> on_button_quit_clicked();<br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> on_button_start_clicked();<br/>
 };<br/>
+<br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a><br/>
 <br/>
 <a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> QTTESTQTROUNDEDEDITRECTITEMMENUDIALOG_H<br/>
 </code></td></tr></table>
@@ -354,8 +358,8 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="ToolTestQtRoundedEditRectItem.htm">ToolTestQtRoundedEditRectItem</a>.htm<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">//</a><a href="CppInclude.htm">#include</a> own <a href="CppHeaderFile.htm">header file</a> as first substantive line of code, from:<br/>
-<a href="CppComment.htm">//</a> * John Lakos. Large-Scale <a href="Cpp.htm">C++</a> Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110<br/>
+<br/>
+<br/>
 <a href="CppInclude.htm">#include</a> "qt<a href="ToolTestQtRoundedEditRectItem.htm">testqtroundededitrectitem</a>menudialog.h"<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppQDesktopWidget.htm">QDesktopWidget</a>&gt;<br/>
@@ -369,36 +373,24 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppInclude.htm">#include</a> "qt<a href="ToolTestQtRoundedEditRectItem.htm">testqtroundededitrectitem</a>maindialog.h"<br/>
 <a href="CppInclude.htm">#include</a> "ui_qt<a href="ToolTestQtRoundedEditRectItem.htm">testqtroundededitrectitem</a>menudialog.h"<br/>
 <br/>
-<a href="CppQt.htm">Qt</a><a href="ToolTestQtRoundededitRectItem.htm">TestQtRoundedEditRectItem</a>MenuDialog::<a href="CppQt.htm">Qt</a><a href="ToolTestQtRoundededitRectItem.htm">TestQtRoundedEditRectItem</a>MenuDialog(<a href="CppQWidget.htm">QWidget</a> *parent) :<br/>
+<a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="ToolTestQtRoundededitRectItem.htm">TestQtRoundedEditRectItem</a>MenuDialog::<a href="CppQt.htm">Qt</a><a href="ToolTestQtRoundededitRectItem.htm">TestQtRoundedEditRectItem</a>MenuDialog(<a href="CppQWidget.htm">QWidget</a> *parent) :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQtHideAndShowDialog.htm">QtHideAndShowDialog</a>(parent),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;ui(<b><a href="CppNew.htm">new</a></b> <a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a><a href="ToolTestQtRoundededitRectItem.htm">TestQtRoundedEditRectItem</a>MenuDialog)<br/>
 {<br/>
 &nbsp;&nbsp;ui-&gt;setupUi(<b><a href="CppThis.htm">this</a></b>);<br/>
 }<br/>
 <br/>
-<a href="CppQt.htm">Qt</a><a href="ToolTestQtRoundededitRectItem.htm">TestQtRoundedEditRectItem</a>MenuDialog::~<a href="CppQt.htm">Qt</a><a href="ToolTestQtRoundededitRectItem.htm">TestQtRoundedEditRectItem</a>MenuDialog()<br/>
+<a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="ToolTestQtRoundededitRectItem.htm">TestQtRoundedEditRectItem</a>MenuDialog::~<a href="CppQt.htm">Qt</a><a href="ToolTestQtRoundededitRectItem.htm">TestQtRoundedEditRectItem</a>MenuDialog()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppDelete.htm">delete</a></b> ui;<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a><a href="ToolTestQtRoundededitRectItem.htm">TestQtRoundedEditRectItem</a>MenuDialog::changeEvent(<a href="CppQEvent.htm">QEvent</a> *e)<br/>
-{<br/>
-&nbsp;&nbsp;<a href="CppQDialog.htm">QDialog</a>::changeEvent(e);<br/>
-&nbsp;&nbsp;<b><a href="CppSwitch.htm">switch</a></b> (e-&gt;type()) {<br/>
-&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> <a href="CppQEvent.htm">QEvent</a>::LanguageChange:<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;ui-&gt;retranslateUi(<b><a href="CppThis.htm">this</a></b>);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppBreak.htm">break</a></b>;<br/>
-&nbsp;&nbsp;<b><a href="CppDefault.htm">default</a></b>:<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppBreak.htm">break</a></b>;<br/>
-&nbsp;&nbsp;}<br/>
-}<br/>
-<br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a><a href="ToolTestQtRoundededitRectItem.htm">TestQtRoundedEditRectItem</a>MenuDialog::keyPressEvent(<a href="CppQKeyEvent.htm">QKeyEvent</a> * event)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="ToolTestQtRoundededitRectItem.htm">TestQtRoundedEditRectItem</a>MenuDialog::keyPressEvent(<a href="CppQKeyEvent.htm">QKeyEvent</a> * event)<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (event-&gt;key() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <a href="CppQt.htm">Qt</a>::Key_Escape) { close(); <b><a href="CppReturn.htm">return</a></b>; }<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a><a href="ToolTestQtRoundededitRectItem.htm">TestQtRoundedEditRectItem</a>MenuDialog::on_button_about_clicked()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="ToolTestQtRoundededitRectItem.htm">TestQtRoundedEditRectItem</a>MenuDialog::on_button_about_clicked()<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppAbout.htm">About</a> a <a href="CppOperatorAssign.htm">=</a> <a href="ToolTestQtRoundededitRectItem.htm">TestQtRoundedEditRectItem</a>MenuDialog::GetAbout();<br/>
 &nbsp;&nbsp;a.<a href="CppAdd.htm">Add</a><a href="CppLibrary.htm">Library</a>("<a href="CppQtHideAndShowDialog.htm">QtHideAndShowDialog</a> <a href="CppVersion.htm">version</a>: " <a href="CppOperatorPlus.htm">+</a> <a href="CppQtHideAndShowDialog.htm">QtHideAndShowDialog</a>::Get<a href="CppVersion.htm">Version</a>());<br/>
@@ -413,12 +405,12 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;show();<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a><a href="ToolTestQtRoundededitRectItem.htm">TestQtRoundedEditRectItem</a>MenuDialog::on_button_quit_clicked()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="ToolTestQtRoundededitRectItem.htm">TestQtRoundedEditRectItem</a>MenuDialog::on_button_quit_clicked()<br/>
 {<br/>
 &nbsp;&nbsp;close();<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a><a href="ToolTestQtRoundededitRectItem.htm">TestQtRoundedEditRectItem</a>MenuDialog::on_button_start_clicked()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="ToolTestQtRoundededitRectItem.htm">TestQtRoundedEditRectItem</a>MenuDialog::on_button_start_clicked()<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppQt.htm">Qt</a><a href="ToolTestQtRoundededitRectItem.htm">TestQtRoundedEditRectItem</a>MainDialog d;<br/>
 &nbsp;&nbsp;ShowChild(&amp;d);<br/>
@@ -441,6 +433,8 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <br/>
 <b><a href="CppStruct.htm">struct</a></b> <a href="CppQFont.htm">QFont</a>;<br/>
 <br/>
+<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a> {<br/>
+<br/>
 <a href="CppComment.htm">///</a>The <a href="CppWidget.htm">widget</a> holding the items<br/>
 <b><a href="CppStruct.htm">struct</a></b> <a href="CppQt.htm">Qt</a><a href="ToolTestQtRoundededitRectItem.htm">TestQtRoundedEditRectItem</a><a href="CppWidget.htm">Widget</a> : <b><a href="CppPublic.htm">public</a></b> <a href="CppQtKeyboardFriendlyGraphicsView.htm">QtKeyboardFriendlyGraphicsView</a><br/>
 {<br/>
@@ -452,6 +446,8 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/Display a font<br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> Display(<b><a href="CppConst.htm">const</a></b> <a href="CppQFont.htm">QFont</a>&amp; font);<br/>
 };<br/>
+<br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a><br/>
 <br/>
 <a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> QTTESTQTROUNDEDEDITRECTITEMWIDGETWIDGET_H<br/>
 </code></td></tr></table>
@@ -465,8 +461,8 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="qttestqtroundededitrectitemwidget.cpp" border = "1"><tr><td><code>
-<a href="CppComment.htm">//</a><a href="CppInclude.htm">#include</a> own <a href="CppHeaderFile.htm">header file</a> as first substantive line of code, from:<br/>
-<a href="CppComment.htm">//</a> * John Lakos. Large-Scale <a href="Cpp.htm">C++</a> Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110<br/>
+<br/>
+<br/>
 <a href="CppInclude.htm">#include</a> "qt<a href="ToolTestQtRoundedEditRectItem.htm">testqtroundededitrectitem</a><a href="CppWidget.htm">widget</a>.h"<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
@@ -494,14 +490,14 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppQtRoundedTextRectItem.htm">qtroundedtextrectitem</a>.h"<br/>
 <a href="CppEndif.htm">#endif</a><br/>
 <br/>
-<a href="CppQt.htm">Qt</a><a href="ToolTestQtRoundededitRectItem.htm">TestQtRoundedEditRectItem</a><a href="CppWidget.htm">Widget</a>::<a href="CppQt.htm">Qt</a><a href="ToolTestQtRoundededitRectItem.htm">TestQtRoundedEditRectItem</a><a href="CppWidget.htm">Widget</a>(<a href="CppQWidget.htm">QWidget</a> *parent)<br/>
+<a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="ToolTestQtRoundededitRectItem.htm">TestQtRoundedEditRectItem</a><a href="CppWidget.htm">Widget</a>::<a href="CppQt.htm">Qt</a><a href="ToolTestQtRoundededitRectItem.htm">TestQtRoundedEditRectItem</a><a href="CppWidget.htm">Widget</a>(<a href="CppQWidget.htm">QWidget</a> *parent)<br/>
 &nbsp;&nbsp;: <a href="CppQtKeyboardFriendlyGraphicsView.htm">QtKeyboardFriendlyGraphicsView</a>(parent)<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Display with <b><a href="CppDefault.htm">default</a></b> font<br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;Display(<a href="CppQt.htm">Qt</a>RoundedEditRectItem().GetFont());<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a><a href="ToolTestQtRoundededitRectItem.htm">TestQtRoundedEditRectItem</a><a href="CppWidget.htm">Widget</a>::Display(<b><a href="CppConst.htm">const</a></b> <a href="CppQFont.htm">QFont</a>&amp; font)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="ToolTestQtRoundededitRectItem.htm">TestQtRoundedEditRectItem</a><a href="CppWidget.htm">Widget</a>::Display(<b><a href="CppConst.htm">const</a></b> <a href="CppQFont.htm">QFont</a>&amp; font)<br/>
 {<br/>
 &nbsp;&nbsp;scene()-&gt;clear();<br/>
 <br/>
@@ -558,7 +554,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a><a href="ToolTestQtRoundededitRectItem.htm">TestQtRoundedEditRectItem</a><a href="CppWidget.htm">Widget</a>::keyPressEvent(<a href="CppQKeyEvent.htm">QKeyEvent</a> *event)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="ToolTestQtRoundededitRectItem.htm">TestQtRoundedEditRectItem</a><a href="CppWidget.htm">Widget</a>::keyPressEvent(<a href="CppQKeyEvent.htm">QKeyEvent</a> *event)<br/>
 {<br/>
 <br/>
 &nbsp;&nbsp;<b><a href="CppSwitch.htm">switch</a></b> (event-&gt;key())<br/>
@@ -593,6 +589,8 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppAbout.htm">about</a>.h"<br/>
 <br/>
+<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a> {<br/>
+<br/>
 <a href="CppComment.htm">///</a>GUI independent <a href="ToolTestQtRoundededitRectItem.htm">TestQtRoundedEditRectItem</a><a href="CppWidget.htm">Widget</a> menu dialog<br/>
 <b><a href="CppStruct.htm">struct</a></b> <a href="ToolTestQtRoundededitRectItem.htm">TestQtRoundedEditRectItem</a>MenuDialog<br/>
 {<br/>
@@ -600,6 +598,8 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> Get<a href="CppVersion.htm">Version</a>();<br/>
 &nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; Get<a href="CppVersion.htm">Version</a>History();<br/>
 };<br/>
+<br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a><br/>
 <br/>
 <a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> TESTQTROUNDEDEDITRECTITEMWIDGETMENUDIALOG_H<br/>
 </code></td></tr></table>
@@ -613,13 +613,13 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="testqtroundededitrectitemmenudialog.cpp" border = "1"><tr><td><code>
-<a href="CppComment.htm">//</a><a href="CppInclude.htm">#include</a> own <a href="CppHeaderFile.htm">header file</a> as first substantive line of code, from:<br/>
-<a href="CppComment.htm">//</a> * John Lakos. Large-Scale <a href="Cpp.htm">C++</a> Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110<br/>
+<br/>
+<br/>
 <a href="CppInclude.htm">#include</a> "<a href="ToolTestQtRoundedEditRectItem.htm">testqtroundededitrectitem</a>menudialog.h"<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppTrace.htm">trace</a>.h"<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppAbout.htm">About</a> <a href="ToolTestQtRoundededitRectItem.htm">TestQtRoundedEditRectItem</a>MenuDialog::GetAbout()<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppAbout.htm">About</a> <a href="CppRibi.htm\">ribi</a>::<a href="ToolTestQtRoundededitRectItem.htm">TestQtRoundedEditRectItem</a>MenuDialog::GetAbout()<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppAbout.htm">About</a> a(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;"Richel Bilderbeek",<br/>
@@ -635,12 +635,12 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> a;<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="ToolTestQtRoundededitRectItem.htm">TestQtRoundedEditRectItem</a>MenuDialog::Get<a href="CppVersion.htm">Version</a>()<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppRibi.htm\">ribi</a>::<a href="ToolTestQtRoundededitRectItem.htm">TestQtRoundedEditRectItem</a>MenuDialog::Get<a href="CppVersion.htm">Version</a>()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> "1.1";<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="ToolTestQtRoundededitRectItem.htm">TestQtRoundedEditRectItem</a>MenuDialog::Get<a href="CppVersion.htm">Version</a>History()<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm\">ribi</a>::<a href="ToolTestQtRoundededitRectItem.htm">TestQtRoundedEditRectItem</a>MenuDialog::Get<a href="CppVersion.htm">Version</a>History()<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v;<br/>
 &nbsp;&nbsp;v.push_back("2012-12-21: <a href="CppVersion.htm">version</a> 1.0: initial <a href="CppVersion.htm">version</a>");<br/>

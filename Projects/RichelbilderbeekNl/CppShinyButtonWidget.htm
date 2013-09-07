@@ -40,7 +40,7 @@
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="shinybuttonwidget.h" border = "1"><tr><td><code>
-<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">/*</a><br/>
 <a href="CppShinyButtonWidget.htm">ShinyButtonWidget</a>, <a href="CppWidget.htm">widget</a> <b><a href="CppFor.htm">for</a></b> the <a href="CppShinyButton.htm">ShinyButton</a> <b><a href="CppClass.htm">class</a></b><br/>
 Copyright (C) 2011 Richel Bilderbeek<br/>
@@ -57,9 +57,9 @@ GNU General Public License for more details.<br/>
 You should have received a copy of the GNU General Public License<br/>
 along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">*/</a><br/>
-<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="CppShinyButtonWidget.htm">CppShinyButtonWidget</a>.htm<br/>
-<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppIfndef.htm">#ifndef</a> SHINYBUTTONWIDGET_H<br/>
 <a href="CppDefine.htm">#define</a> SHINYBUTTONWIDGET_H<br/>
 <br/>
@@ -70,6 +70,8 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppWidget.htm">widget</a>.h"<br/>
+<br/>
+<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a> {<br/>
 <br/>
 <b><a href="CppStruct.htm">struct</a></b> <a href="CppShinyButton.htm">ShinyButton</a>;<br/>
 <br/>
@@ -110,6 +112,8 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <br/>
 <a href="CppOstream.htm">std::ostream</a>&amp; <b><a href="CppOperatorStreamOut.htm">operator&lt;&lt;</a></b>(<a href="CppOstream.htm">std::ostream</a>&amp; os, <b><a href="CppConst.htm">const</a></b> <a href="CppShinyButtonWidget.htm">ShinyButtonWidget</a>&amp; button);<br/>
 <br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a><br/>
+<br/>
 <a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> SHINYBUTTONWIDGET_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
@@ -122,7 +126,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="shinybuttonwidget.cpp" border = "1"><tr><td><code>
-<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">/*</a><br/>
 <a href="CppShinyButtonWidget.htm">ShinyButtonWidget</a>, <a href="CppWidget.htm">widget</a> <b><a href="CppFor.htm">for</a></b> the <a href="CppShinyButton.htm">ShinyButton</a> <b><a href="CppClass.htm">class</a></b><br/>
 Copyright (C) 2011 Richel Bilderbeek<br/>
@@ -139,19 +143,11 @@ GNU General Public License for more details.<br/>
 You should have received a copy of the GNU General Public License<br/>
 along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">*/</a><br/>
-<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="CppShinyButtonWidget.htm">CppShinyButtonWidget</a>.htm<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <br/>
-<a href="CppIfdef.htm">#ifdef</a> _WIN32<br/>
-<a href="CppComment.htm">//</a>See http://www.richelbilderbeek.nl/Cpp<a href="CppCompile.htm">Compile</a>ErrorUnableToFindNumericLiteralOperatorOperatorQ.htm<br/>
-<a href="CppPreIf.htm">#if</a> !(__GNUC__ <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 4 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> __GNUC_MINOR__ <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 8)<br/>
-<a href="CppComment.htm">//</a>See http://www.richelbilderbeek.nl/Cpp<a href="CppCompile.htm">Compile</a>ErrorSwprintfHasNotBeenDeclared.htm<br/>
-<a href="CppUndef.htm">#undef</a> __STRICT_ANSI__<br/>
-<a href="CppEndif.htm">#endif</a><br/>
-<a href="CppEndif.htm">#endif</a><br/>
 <br/>
-<a href="CppComment.htm">//</a><a href="CppInclude.htm">#include</a> own <a href="CppHeaderFile.htm">header file</a> as first substantive line of code, from:<br/>
-<a href="CppComment.htm">//</a> * John Lakos. Large-Scale <a href="Cpp.htm">C++</a> Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-<b><a href="CppTypedef.htm">typedef</a></b>s"<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppShinyButtonWidget.htm">shinybuttonwidget</a>.h"<br/>
@@ -164,7 +160,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
 <br/>
-<a href="CppShinyButtonWidget.htm">ShinyButtonWidget</a>::<a href="CppShinyButtonWidget.htm">ShinyButtonWidget</a>(<br/>
+<a href="CppRibi.htm\">ribi</a>::<a href="CppShinyButtonWidget.htm">ShinyButtonWidget</a>::<a href="CppShinyButtonWidget.htm">ShinyButtonWidget</a>(<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> color,<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> gradient,<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; text,<br/>
@@ -174,25 +170,25 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;SetGeometry(rect);<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppShinyButtonWidget.htm">ShinyButtonWidget</a>::Click()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppShinyButtonWidget.htm">ShinyButtonWidget</a>::Click()<br/>
 {<br/>
 &nbsp;&nbsp;m_signal_clicked(<b><a href="CppThis.htm">this</a></b>);<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppShinyButtonWidget.htm">ShinyButtonWidget</a>::Get<a href="CppVersion.htm">Version</a>()<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppRibi.htm\">ribi</a>::<a href="CppShinyButtonWidget.htm">ShinyButtonWidget</a>::Get<a href="CppVersion.htm">Version</a>()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> "1.1";<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppShinyButtonWidget.htm">ShinyButtonWidget</a>::Get<a href="CppVersion.htm">Version</a>History()<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm\">ribi</a>::<a href="CppShinyButtonWidget.htm">ShinyButtonWidget</a>::Get<a href="CppVersion.htm">Version</a>History()<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v;<br/>
-&nbsp;&nbsp;v.push_back("2011-09-21: <a href="CppVersion.htm">version</a> 1.0: initial <a href="CppVersion.htm">version</a>");<br/>
-&nbsp;&nbsp;v.push_back("2011-10-29: <a href="CppVersion.htm">version</a> 1.1: added Click method and m_signal_clicked");<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"2011-09-21: <a href="CppVersion.htm">version</a> 1.0: initial <a href="CppVersion.htm">version</a>",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"2011-10-29: <a href="CppVersion.htm">version</a> 1.1: added Click <a href="CppMemberFunction.htm">member function</a> and m_signal_clicked"<br/>
+&nbsp;&nbsp;};<br/>
 }<br/>
 <br/>
-<a href="CppOstream.htm">std::ostream</a>&amp; <b><a href="CppOperatorStreamOut.htm">operator&lt;&lt;</a></b>(<a href="CppOstream.htm">std::ostream</a>&amp; os, <b><a href="CppConst.htm">const</a></b> <a href="CppShinyButtonWidget.htm">ShinyButtonWidget</a>&amp; button)<br/>
+<a href="CppOstream.htm">std::ostream</a>&amp; <a href="CppRibi.htm\">ribi</a>::<b><a href="CppOperatorStreamOut.htm">operator&lt;&lt;</a></b>(<a href="CppOstream.htm">std::ostream</a>&amp; os, <b><a href="CppConst.htm">const</a></b> <a href="CppShinyButtonWidget.htm">ShinyButtonWidget</a>&amp; button)<br/>
 {<br/>
 &nbsp;&nbsp;os<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "&lt;<a href="CppShinyButtonWidget.htm">ShinyButtonWidget</a>&gt;"<br/>

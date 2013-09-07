@@ -280,11 +280,6 @@ TEMPLATE = app<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppQtCreatorProFile.htm">CppQtCreatorProFile</a>/qtcreator<a href="CppProFile.htm">profile</a>zipscript.h \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppQrcFile.htm">CppQrcFile</a>/<a href="CppQrcFile.htm">qrcfile</a>.h<br/>
 <br/>
-<a href="CppLIBS.htm">LIBS</a> += \<br/>
-&nbsp;&nbsp;<a href="CppFilesystem.htm">-lboost_filesystem</a> \<br/>
-&nbsp;&nbsp;<a href="CppProgram_options.htm">-lboost_program_options</a> \<br/>
-&nbsp;&nbsp;<a href="CppSystem.htm">-lboost_system</a><br/>
-<br/>
 OTHER_FILES += \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppQtCreatorProFile.htm">CppQtCreatorProFile</a>/Licence.txt \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppQrcFile.htm">CppQrcFile</a>/Licence.txt<br/>
@@ -319,10 +314,7 @@ CONFIG(release, debug|release) {<br/>
 #<br/>
 <a href="CppQMAKE_CXXFLAGS.htm">QMAKE_CXXFLAGS</a> += -std=<a href="Cpp11.htm">c++11</a> <a href="CppWall.htm">-Wall</a> <a href="CppWextra.htm">-Wextra</a><br/>
 <br/>
-<br/>
 unix {<br/>
-&nbsp;&nbsp;message(Unix)<br/>
-&nbsp;&nbsp;#Strict error handling<br/>
 &nbsp;&nbsp;<a href="CppQMAKE_CXXFLAGS.htm">QMAKE_CXXFLAGS</a> += <a href="CppWerror.htm">-Werror</a><br/>
 }<br/>
 <br/>
@@ -333,17 +325,12 @@ unix {<br/>
 #<br/>
 <br/>
 unix {<br/>
-&nbsp;&nbsp;message(Unix: Boost already in <a href="CppINCLUDEPATH.htm">INCLUDEPATH</a>)<br/>
-&nbsp;&nbsp;#Don't link to Boost when crosscompiling is desired<br/>
+&nbsp;&nbsp;<a href="CppLIBS.htm">LIBS</a> += <a href="CppProgram_options.htm">-lboost_program_options</a><br/>
 }<br/>
 <br/>
 win32 {<br/>
-&nbsp;&nbsp;message(Windows: add Boost to <a href="CppINCLUDEPATH.htm">INCLUDEPATH</a>)<br/>
-<br/>
 &nbsp;&nbsp;<a href="CppINCLUDEPATH.htm">INCLUDEPATH</a> += \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/boost_1_54_0<br/>
-<br/>
-&nbsp;&nbsp;#Don't link to Boost when crosscompiling is desired<br/>
 }<br/>
 </code></td></tr></table>
 <!-- end of the code -->
@@ -466,31 +453,12 @@ CONFIG(release, debug|release) {<br/>
 <br/>
 unix {<br/>
 &nbsp;&nbsp;message(Unix)<br/>
-&nbsp;&nbsp;#Strict error handling<br/>
 &nbsp;&nbsp;<a href="CppQMAKE_CXXFLAGS.htm">QMAKE_CXXFLAGS</a> += <a href="CppWerror.htm">-Werror</a><br/>
 }<br/>
 <br/>
 win32 {<br/>
-&nbsp;&nbsp;!static {<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;message(Native Windows)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;#Allow native Windows to emit warnings without terminating<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQMAKE_CXXFLAGS.htm">QMAKE_CXXFLAGS</a> += <a href="CppWerror.htm">-Werror</a><br/>
-<br/>
-&nbsp;&nbsp;}<br/>
-<br/>
-&nbsp;&nbsp;static {<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;message(Crosscompiling from Lubuntu to Windows)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;#Allow the crosscompiler to emit warnings without terminating<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQMAKE_CXXFLAGS.htm">QMAKE_CXXFLAGS</a> += -std=<a href="Cpp0x.htm">c++11</a> #<a href="CppWerror.htm">-Werror</a><br/>
-<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;#See http://www.richelbilderbeek.nl/CppCompileErrorParseErrorAtBOOST_JOIN.htm<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;#Prevents error:<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;#/my_boost_folder/boost/type_traits/detail/has_binary_operator.hp:50: Parse error at "BOOST_JOIN"<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;DEFINES += BOOST_TT_HAS_OPERATOR_HPP_INCLUDED<br/>
-<br/>
-&nbsp;&nbsp;}<br/>
-<br/>
-<br/>
+&nbsp;&nbsp;message(Native Windows)<br/>
+&nbsp;&nbsp;<a href="CppQMAKE_CXXFLAGS.htm">QMAKE_CXXFLAGS</a> += <a href="CppWerror.htm">-Werror</a><br/>
 }<br/>
 <br/>
 #<br/>
@@ -696,13 +664,17 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppAbout.htm">about</a>.h"<br/>
 <br/>
+<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a> {<br/>
+<br/>
 <a href="CppComment.htm">///</a>GUI independent <a href="ToolCodeToHtml.htm">CodeToHtml</a> menu dialog<br/>
 <b><a href="CppStruct.htm">struct</a></b> <a href="ToolCodeToHtml.htm">CodeToHtml</a>MenuDialog<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppAbout.htm">About</a> GetAbout();<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppAbout.htm">About</a> GetAbout();<br/>
 &nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> Get<a href="CppVersion.htm">Version</a>();<br/>
 &nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; Get<a href="CppVersion.htm">Version</a>History();<br/>
 };<br/>
+<br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a><br/>
 <br/>
 <a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> CODETOHTMLMENUDIALOG_H<br/>
 </code></td></tr></table>
@@ -736,17 +708,15 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="ToolCodeToHtml.htm">ToolCodeToHtml</a>.htm<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">//</a><a href="CppInclude.htm">#include</a> own <a href="CppHeaderFile.htm">header file</a> as first substantive line of code, from:<br/>
-<a href="CppComment.htm">//</a> * John Lakos. Large-Scale <a href="Cpp.htm">C++</a> Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110<br/>
 <a href="CppInclude.htm">#include</a> "<a href="ToolCodeToHtml.htm">codetohtml</a>menudialog.h"<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppQrcFile.htm">qrcfile</a>.h"<br/>
 <a href="CppInclude.htm">#include</a> "qtcreator<a href="CppProFile.htm">profile</a>.h"<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppTrace.htm">trace</a>.h"<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppAbout.htm">About</a> <a href="ToolCodeToHtml.htm">CodeToHtml</a>MenuDialog::GetAbout()<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppAbout.htm">About</a> <a href="CppRibi.htm\">ribi</a>::<a href="ToolCodeToHtml.htm">CodeToHtml</a>MenuDialog::GetAbout()<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppAbout.htm">About</a> a {<br/>
+&nbsp;&nbsp;<a href="CppRibi.htm\">ribi</a>::<a href="CppAbout.htm">About</a> a {<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;"Richel Bilderbeek",<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;"<a href="ToolCodeToHtml.htm">CodeToHtml</a>",<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;"<a href="Tools.htm">tool</a> to <a href="CppConvert.htm">convert</a> code to heavily-<a href="CppLink.htm">link</a>ed HTML",<br/>
@@ -762,12 +732,12 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> a;<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="ToolCodeToHtml.htm">CodeToHtml</a>MenuDialog::Get<a href="CppVersion.htm">Version</a>()<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppRibi.htm\">ribi</a>::<a href="ToolCodeToHtml.htm">CodeToHtml</a>MenuDialog::Get<a href="CppVersion.htm">Version</a>()<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> "2.6";<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> "2.7";<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="ToolCodeToHtml.htm">CodeToHtml</a>MenuDialog::Get<a href="CppVersion.htm">Version</a>History()<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm\">ribi</a>::<a href="ToolCodeToHtml.htm">CodeToHtml</a>MenuDialog::Get<a href="CppVersion.htm">Version</a>History()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v {<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;"2010-03-14: <a href="CppVersion.htm">version</a> 1.0: programmed initial console <a href="CppVersion.htm">version</a> of <a href="ToolCodeToHtml.htm">CodeToHtml</a>. Due to my <b><a href="CppSwitch.htm">switch</a></b> from <a href="CppWindows.htm">Windows</a> to <a href="CppUbuntu.htm">Ubuntu</a>, I had to abandon MS Word as my favorite HTML editor. Then I had to write my webpages in plain HTML, but adding <a href="CppLink.htm">link</a>s to all my <a href="CppCodeSnippets.htm">code snippet</a>s was tiresome. <a href="ToolCodeToHtml.htm">CodeToHtml</a> <b><a href="CppAuto.htm">auto</a></b>mated <b><a href="CppThis.htm">this</a></b> <b><a href="CppFor.htm">for</a></b> me",<br/>
@@ -801,7 +771,9 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;"2012-10-30: <a href="CppVersion.htm">version</a> 2.3: replaced <a href="Cpp0x.htm">C++0x</a> by <a href="Cpp11.htm">C++11</a>, obtain the <a href="CppQtCreator.htm">Qt Creator</a> <a href="CppVersion.htm">version</a> automatically",<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;"2012-12-22: <a href="CppVersion.htm">version</a> 2.4: HTML produced is checked by 'tidy', m<a href="CppAny.htm">any</a> minor improvements",<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;"2013-05-19: <a href="CppVersion.htm">version</a> 2.5: <a href="CppOperatorPlus.htm">+</a>3400 replacements, following architectural changes in <a href="CppQtCreator.htm">QtCreator</a>ProFile and <a href="CppQtCreator.htm">QtCreator</a>ProFileZipScript",<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;"2013-08-19: <a href="CppVersion.htm">version</a> 2.6: replaced <a href="CppBoost.htm">Boost</a>.Filesystem and <a href="CppBoostRegex.htm">Boost.Regex</a> by <a href="CppQt.htm">Qt</a> and <a href="CppBoostXpressive.htm">Boost.Xpressive</a>, added tests, added <a href="CppOperatorPlus.htm">+</a>5000 lines of <a href="ToolCodeToHtml.htm">CodeToHtml</a> info"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"2013-08-19: <a href="CppVersion.htm">version</a> 2.6: replaced <a href="CppBoost.htm">Boost</a>.Filesystem and <a href="CppBoostRegex.htm">Boost.Regex</a> by <a href="CppQt.htm">Qt</a> and <a href="CppBoostXpressive.htm">Boost.Xpressive</a>, added tests, added <a href="CppOperatorPlus.htm">+</a>5000 lines of <a href="ToolCodeToHtml.htm">CodeToHtml</a> info",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"2013-09-05: <a href="CppVersion.htm">version</a> 2.7: transition to <b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a>"<br/>
+<br/>
 &nbsp;&nbsp;};<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
 }<br/>
@@ -836,18 +808,16 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="ToolCodeToHtml.htm">ToolCodeToHtml</a>.htm<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppIfdef.htm">#ifdef</a> _WIN32<br/>
-<a href="CppComment.htm">//</a>See http://www.richelbilderbeek.nl/Cpp<a href="CppCompile.htm">Compile</a>ErrorSwprintfHasNotBeenDeclared.htm<br/>
-<a href="CppUndef.htm">#undef</a> __STRICT_ANSI__<br/>
-<a href="CppEndif.htm">#endif</a><br/>
-<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppFstreamH.htm">fstream</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppIostreamH.htm">iostream</a>&gt;<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/filesystem.hpp&gt;<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-<b><a href="CppTypedef.htm">typedef</a></b>s"<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppProgram_options.htm">boost/program_options.hpp</a>&gt;<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppQDir.htm">QDir</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppQFile.htm">QFile</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppQFile.htm">QFile</a>InfoList&gt;<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> "<a href="ToolCodeToHtml.htm">codetohtml</a>dialog.h"<br/>
@@ -856,16 +826,10 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppInclude.htm">#include</a> "<a href="ToolCodeToHtml.htm">codetohtml</a>.h"<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppTrace.htm">trace</a>.h"<br/>
 <br/>
-<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/Cpp<a href="CppGetPath.htm">GetPath</a>.htm<br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppGetPath.htm">GetPath</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; filename)<br/>
-{<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <a href="CppFilesystem.htm">boost::filesystem</a>::path(filename).parent_path().string();<br/>
-}<br/>
-<br/>
 <a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/Cpp<a href="CppGetCurrentFolder.htm">GetCurrentFolder</a>.htm<br/>
 <b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppGetCurrentFolder.htm">GetCurrentFolder</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; s)<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <a href="CppGetPath.htm">GetPath</a>(s);<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> c2h::<a href="CppGetPath.htm">GetPath</a>(s);<br/>
 }<br/>
 <br/>
 <a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/Cpp<a href="CppGetFoldersInFolder.htm">GetFoldersInFolder</a>.htm<br/>
@@ -937,13 +901,13 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (m.count("<a href="CppAbout.htm">about</a>"))<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="ToolCodeToHtml.htm">CodeToHtml</a>MenuDialog::GetAbout() <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "\n";<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppRibi.htm\">ribi</a>::<a href="ToolCodeToHtml.htm">CodeToHtml</a>MenuDialog::GetAbout() <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "\n";<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> 0;<br/>
 &nbsp;&nbsp;}<br/>
 <br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (m.count("<a href="CppVersion.htm">version</a>"))<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="ToolCodeToHtml.htm">CodeToHtml</a>MenuDialog::Get<a href="CppVersion.htm">Version</a>() <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "\n";<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppRibi.htm\">ribi</a>::<a href="ToolCodeToHtml.htm">CodeToHtml</a>MenuDialog::Get<a href="CppVersion.htm">Version</a>() <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "\n";<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> 0;<br/>
 &nbsp;&nbsp;}<br/>
 <br/>
@@ -1007,7 +971,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;}<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (!<a href="CppFilesystem.htm">boost::filesystem</a>::exists(source))<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (!<a href="CppQFile.htm">QFile</a>::exists(source.c_str()))<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "Source: " <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> source <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "\n";<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "Source exists: no\n";<br/>
@@ -1042,7 +1006,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;c2h::Dialog c(page_type,source,content_type,tech_info);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v <a href="CppOperatorAssign.htm">=</a> c.ToHtml();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> output_filename <a href="CppOperatorAssign.htm">=</a> <a href="CppFilesystem.htm">boost::filesystem</a>::basename(source) <a href="CppOperatorPlus.htm">+</a> ".htm";<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> output_filename <a href="CppOperatorAssign.htm">=</a> c2h::GetFileBasename(source) <a href="CppOperatorPlus.htm">+</a> ".htm";<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOfstream.htm">std::ofstream</a> f(output_filename.c_str());<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCopy.htm">std::copy</a>(v.begin(),v.end(),<a href="CppOstream_iterator.htm">std::ostream_iterator</a>&lt;<a href="CppString.htm">std::string</a>&gt;(f,"\n"));<br/>
 &nbsp;&nbsp;}<br/>
@@ -1061,7 +1025,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>(folder_full_path);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;c2h::Dialog c(page_type,folder_full_path,content_type,tech_info);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v <a href="CppOperatorAssign.htm">=</a> c.ToHtml();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> output_filename <a href="CppOperatorAssign.htm">=</a> <a href="CppFilesystem.htm">boost::filesystem</a>::basename(folder_full_path) <a href="CppOperatorPlus.htm">+</a> ".htm";<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> output_filename <a href="CppOperatorAssign.htm">=</a> c2h::GetFileBasename(folder_full_path) <a href="CppOperatorPlus.htm">+</a> ".htm";<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOfstream.htm">std::ofstream</a> f(output_filename.c_str());<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCopy.htm">std::copy</a>(v.begin(),v.end(),<a href="CppOstream_iterator.htm">std::ostream_iterator</a>&lt;<a href="CppString.htm">std::string</a>&gt;(f,"\n"));<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
@@ -1119,6 +1083,8 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a><a href="ToolCodeToHtml.htm">CodeToHtml</a>MainDialog;<br/>
 }<br/>
 <br/>
+<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a> {<br/>
+<br/>
 <b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a><a href="ToolCodeToHtml.htm">CodeToHtml</a>MainDialog : <b><a href="CppPublic.htm">public</a></b> <a href="CppQtHideAndShowDialog.htm">QtHideAndShowDialog</a><br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppQ_OBJECT.htm">Q_OBJECT</a><br/>
@@ -1128,7 +1094,6 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;~<a href="CppQt.htm">Qt</a><a href="ToolCodeToHtml.htm">CodeToHtml</a>MainDialog();<br/>
 <br/>
 <b><a href="CppProtected.htm">protected</a></b>:<br/>
-&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> changeEvent(<a href="CppQEvent.htm">QEvent</a> *e);<br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> keyPressEvent(<a href="CppQKeyEvent.htm">QKeyEvent</a> *);<br/>
 <br/>
 <b><a href="CppPrivate.htm">private</a></b>:<br/>
@@ -1154,7 +1119,6 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/Respond to click on <a href="CppConvert.htm">Convert</a> button<br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> on_button_<a href="CppConvert.htm">convert</a>_clicked();<br/>
 <br/>
-<br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> on_tab_source_currentChanged(<b><a href="CppInt.htm">int</a></b> index);<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/Respond to a change in the edit containing the source file or source folder<br/>
@@ -1165,6 +1129,8 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
 <br/>
 };<br/>
+<br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a><br/>
 <br/>
 <a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> QTCODETOHTMLMAINDIALOG_H<br/>
 </code></td></tr></table>
@@ -1198,8 +1164,8 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">//</a> ---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="ToolCodeToHtml.htm">ToolCodeToHtml</a>.htm<br/>
 <a href="CppComment.htm">//</a> ---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">//</a><a href="CppInclude.htm">#include</a> own <a href="CppHeaderFile.htm">header file</a> as first substantive line of code, from:<br/>
-<a href="CppComment.htm">//</a> * John Lakos. Large-Scale <a href="Cpp.htm">C++</a> Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110<br/>
+<br/>
+<br/>
 <a href="CppInclude.htm">#include</a> "<a href="ToolCodeToHtml.htm">qtcodetohtml</a>maindialog.h"<br/>
 <br/>
 <a href="CppDefine.htm">#define</a> QTCODETOHTMLMAINDIALOG_TEMPORARILY_REMOVE_QWEBVIEW_253489729387428907<br/>
@@ -1231,7 +1197,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppTrace.htm">trace</a>.h"<br/>
 <a href="CppInclude.htm">#include</a> "ui_<a href="ToolCodeToHtml.htm">qtcodetohtml</a>maindialog.h"<br/>
 <br/>
-<a href="CppQt.htm">Qt</a><a href="ToolCodeToHtml.htm">CodeToHtml</a>MainDialog::<a href="CppQt.htm">Qt</a><a href="ToolCodeToHtml.htm">CodeToHtml</a>MainDialog(<a href="CppQWidget.htm">QWidget</a> *parent) :<br/>
+<a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="ToolCodeToHtml.htm">CodeToHtml</a>MainDialog::<a href="CppQt.htm">Qt</a><a href="ToolCodeToHtml.htm">CodeToHtml</a>MainDialog(<a href="CppQWidget.htm">QWidget</a> *parent) :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQtHideAndShowDialog.htm">QtHideAndShowDialog</a>(parent),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;ui(<b><a href="CppNew.htm">new</a></b> <a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a><a href="ToolCodeToHtml.htm">CodeToHtml</a>MainDialog)<br/>
 {<br/>
@@ -1247,24 +1213,12 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;on_tab_source_currentChanged(0);<br/>
 }<br/>
 <br/>
-<a href="CppQt.htm">Qt</a><a href="ToolCodeToHtml.htm">CodeToHtml</a>MainDialog::~<a href="CppQt.htm">Qt</a><a href="ToolCodeToHtml.htm">CodeToHtml</a>MainDialog()<br/>
+<a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="ToolCodeToHtml.htm">CodeToHtml</a>MainDialog::~<a href="CppQt.htm">Qt</a><a href="ToolCodeToHtml.htm">CodeToHtml</a>MainDialog()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppDelete.htm">delete</a></b> ui;<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a><a href="ToolCodeToHtml.htm">CodeToHtml</a>MainDialog::changeEvent(<a href="CppQEvent.htm">QEvent</a> *e)<br/>
-{<br/>
-&nbsp;&nbsp;<a href="CppQDialog.htm">QDialog</a>::changeEvent(e);<br/>
-&nbsp;&nbsp;<b><a href="CppSwitch.htm">switch</a></b> (e-&gt;type()) {<br/>
-&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> <a href="CppQEvent.htm">QEvent</a>::LanguageChange:<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;ui-&gt;retranslateUi(<b><a href="CppThis.htm">this</a></b>);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppBreak.htm">break</a></b>;<br/>
-&nbsp;&nbsp;<b><a href="CppDefault.htm">default</a></b>:<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppBreak.htm">break</a></b>;<br/>
-&nbsp;&nbsp;}<br/>
-}<br/>
-<br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppQt.htm">Qt</a><a href="ToolCodeToHtml.htm">CodeToHtml</a>MainDialog::EditToVector(<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="ToolCodeToHtml.htm">CodeToHtml</a>MainDialog::EditToVector(<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppQPlainTextEdit.htm">QPlainTextEdit</a> * <b><a href="CppConst.htm">const</a></b> edit)<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v;<br/>
@@ -1292,7 +1246,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
 }<br/>
 <br/>
-c2h::PageType <a href="CppQt.htm">Qt</a><a href="ToolCodeToHtml.htm">CodeToHtml</a>MainDialog::GetPageType() <b><a href="CppConst.htm">const</a></b><br/>
+c2h::PageType <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="ToolCodeToHtml.htm">CodeToHtml</a>MainDialog::GetPageType() <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> s <a href="CppOperatorAssign.htm">=</a> ui-&gt;box_header-&gt;currentText().toStdString();<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (s <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> "<a href="Cpp.htm">C++</a>") <b><a href="CppReturn.htm">return</a></b> c2h::PageType::cpp;<br/>
@@ -1303,7 +1257,7 @@ c2h::PageType <a href="CppQt.htm">Qt</a><a href="ToolCodeToHtml.htm">CodeToHtml<
 &nbsp;&nbsp;<b><a href="CppThrow.htm">throw</a></b> <a href="CppLogic_error.htm">std::logic_error</a>("<a href="CppQt.htm">Qt</a><a href="ToolCodeToHtml.htm">CodeToHtml</a>MainDialog::GetPageType");<br/>
 }<br/>
 <br/>
-c2h::ContentType <a href="CppQt.htm">Qt</a><a href="ToolCodeToHtml.htm">CodeToHtml</a>MainDialog::GetContentType() <b><a href="CppConst.htm">const</a></b><br/>
+c2h::ContentType <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="ToolCodeToHtml.htm">CodeToHtml</a>MainDialog::GetContentType() <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> s <a href="CppOperatorAssign.htm">=</a> ui-&gt;box_source-&gt;currentText().toStdString();<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (s <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> "<a href="Cpp.htm">C++</a>") <b><a href="CppReturn.htm">return</a></b> c2h::ContentType::cpp;<br/>
@@ -1313,7 +1267,7 @@ c2h::ContentType <a href="CppQt.htm">Qt</a><a href="ToolCodeToHtml.htm">CodeToHt
 &nbsp;&nbsp;<b><a href="CppThrow.htm">throw</a></b> <a href="CppLogic_error.htm">std::logic_error</a>("<a href="CppQt.htm">Qt</a><a href="ToolCodeToHtml.htm">CodeToHtml</a>MainDialog::GetContentType");<br/>
 }<br/>
 <br/>
-c2h::TechInfoType <a href="CppQt.htm">Qt</a><a href="ToolCodeToHtml.htm">CodeToHtml</a>MainDialog::GetTechInfo() <b><a href="CppConst.htm">const</a></b><br/>
+c2h::TechInfoType <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="ToolCodeToHtml.htm">CodeToHtml</a>MainDialog::GetTechInfo() <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> s <a href="CppOperatorAssign.htm">=</a> ui-&gt;box_tech_info-&gt;currentText().toStdString();<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (s <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> "Auto") <b><a href="CppReturn.htm">return</a></b> c2h::TechInfoType::automatic;<br/>
@@ -1323,12 +1277,12 @@ c2h::TechInfoType <a href="CppQt.htm">Qt</a><a href="ToolCodeToHtml.htm">CodeToH
 &nbsp;&nbsp;<b><a href="CppThrow.htm">throw</a></b> <a href="CppLogic_error.htm">std::logic_error</a>("<a href="CppQt.htm">Qt</a><a href="ToolCodeToHtml.htm">CodeToHtml</a>MainDialog::GetTechInfo");<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a><a href="ToolCodeToHtml.htm">CodeToHtml</a>MainDialog::keyPressEvent(<a href="CppQKeyEvent.htm">QKeyEvent</a> * event)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="ToolCodeToHtml.htm">CodeToHtml</a>MainDialog::keyPressEvent(<a href="CppQKeyEvent.htm">QKeyEvent</a> * event)<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (event-&gt;key() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <a href="CppQt.htm">Qt</a>::Key_Escape) { close(); <b><a href="CppReturn.htm">return</a></b>; }<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a><a href="ToolCodeToHtml.htm">CodeToHtml</a>MainDialog::on_button_<a href="CppConvert.htm">convert</a>_clicked()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="ToolCodeToHtml.htm">CodeToHtml</a>MainDialog::on_button_<a href="CppConvert.htm">convert</a>_clicked()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (ui-&gt;tab_source-&gt;currentIndex() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 0)<br/>
 &nbsp;&nbsp;{<br/>
@@ -1370,7 +1324,7 @@ c2h::TechInfoType <a href="CppQt.htm">Qt</a><a href="ToolCodeToHtml.htm">CodeToH
 &nbsp;&nbsp;}<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a><a href="ToolCodeToHtml.htm">CodeToHtml</a>MainDialog::Display(<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt;&amp; v)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="ToolCodeToHtml.htm">CodeToHtml</a>MainDialog::Display(<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt;&amp; v)<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppQString.htm">QString</a> text;<br/>
 &nbsp;&nbsp;<a href="CppFor_each.htm">std::for_each</a>(v.begin(),v.end(),<br/>
@@ -1386,7 +1340,7 @@ c2h::TechInfoType <a href="CppQt.htm">Qt</a><a href="ToolCodeToHtml.htm">CodeToH
 &nbsp;&nbsp;ui-&gt;edit_html-&gt;setPlainText(text);<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a><a href="ToolCodeToHtml.htm">CodeToHtml</a>MainDialog::on_tab_source_currentChanged(<b><a href="CppInt.htm">int</a></b> index)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="ToolCodeToHtml.htm">CodeToHtml</a>MainDialog::on_tab_source_currentChanged(<b><a href="CppInt.htm">int</a></b> index)<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (index <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 0)<br/>
 &nbsp;&nbsp;{<br/>
@@ -1409,7 +1363,7 @@ c2h::TechInfoType <a href="CppQt.htm">Qt</a><a href="ToolCodeToHtml.htm">CodeToH
 &nbsp;&nbsp;}<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a><a href="ToolCodeToHtml.htm">CodeToHtml</a>MainDialog::on_edit_source_textChanged(<a href="CppQString.htm">QString</a> )<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="ToolCodeToHtml.htm">CodeToHtml</a>MainDialog::on_edit_source_textChanged(<a href="CppQString.htm">QString</a> )<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> source <a href="CppOperatorAssign.htm">=</a> ui-&gt;edit_source-&gt;text().toStdString();<br/>
 <br/>
@@ -1444,7 +1398,7 @@ c2h::TechInfoType <a href="CppQt.htm">Qt</a><a href="ToolCodeToHtml.htm">CodeToH
 }<br/>
 <br/>
 <a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a><a href="ToolCodeToHtml.htm">CodeToHtml</a>MainDialog::Test()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="ToolCodeToHtml.htm">CodeToHtml</a>MainDialog::Test()<br/>
 {<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppBool.htm">bool</a></b> is_tested <a href="CppOperatorAssign.htm">=</a> <b><a href="CppFalse.htm">false</a></b>;<br/>
@@ -1520,6 +1474,8 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a><a href="ToolCodeToHtml.htm">CodeToHtml</a>MenuDialog;<br/>
 }<br/>
 <br/>
+<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a> {<br/>
+<br/>
 <b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a><a href="ToolCodeToHtml.htm">CodeToHtml</a>MenuDialog : <b><a href="CppPublic.htm">public</a></b> <a href="CppQtHideAndShowDialog.htm">QtHideAndShowDialog</a><br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppQ_OBJECT.htm">Q_OBJECT</a><br/>
@@ -1543,6 +1499,8 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppVoid.htm">void</a></b> Test();<br/>
 &nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
 };<br/>
+<br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a><br/>
 <br/>
 <a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> QTCODETOHTMLMENUDIALOG_H<br/>
 </code></td></tr></table>
@@ -1576,8 +1534,8 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="ToolCodeToHtml.htm">ToolCodeToHtml</a>.htm<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">//</a><a href="CppInclude.htm">#include</a> own <a href="CppHeaderFile.htm">header file</a> as first substantive line of code, from:<br/>
-<a href="CppComment.htm">//</a> * John Lakos. Large-Scale <a href="Cpp.htm">C++</a> Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110<br/>
+<br/>
+<br/>
 <a href="CppInclude.htm">#include</a> "<a href="ToolCodeToHtml.htm">qtcodetohtml</a>menudialog.h"<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppQDesktopWidget.htm">QDesktopWidget</a>&gt;<br/>
@@ -1590,7 +1548,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppTrace.htm">trace</a>.h"<br/>
 <a href="CppInclude.htm">#include</a> "ui_<a href="ToolCodeToHtml.htm">qtcodetohtml</a>menudialog.h"<br/>
 <br/>
-<a href="CppQt.htm">Qt</a><a href="ToolCodeToHtml.htm">CodeToHtml</a>MenuDialog::<a href="CppQt.htm">Qt</a><a href="ToolCodeToHtml.htm">CodeToHtml</a>MenuDialog(<a href="CppQWidget.htm">QWidget</a> *parent) :<br/>
+<a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="ToolCodeToHtml.htm">CodeToHtml</a>MenuDialog::<a href="CppQt.htm">Qt</a><a href="ToolCodeToHtml.htm">CodeToHtml</a>MenuDialog(<a href="CppQWidget.htm">QWidget</a> *parent) :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQtHideAndShowDialog.htm">QtHideAndShowDialog</a>(parent),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;ui(<b><a href="CppNew.htm">new</a></b> <a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a><a href="ToolCodeToHtml.htm">CodeToHtml</a>MenuDialog)<br/>
 {<br/>
@@ -1600,21 +1558,21 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;ui-&gt;setupUi(<b><a href="CppThis.htm">this</a></b>);<br/>
 }<br/>
 <br/>
-<a href="CppQt.htm">Qt</a><a href="ToolCodeToHtml.htm">CodeToHtml</a>MenuDialog::~<a href="CppQt.htm">Qt</a><a href="ToolCodeToHtml.htm">CodeToHtml</a>MenuDialog()<br/>
+<a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="ToolCodeToHtml.htm">CodeToHtml</a>MenuDialog::~<a href="CppQt.htm">Qt</a><a href="ToolCodeToHtml.htm">CodeToHtml</a>MenuDialog()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppDelete.htm">delete</a></b> ui;<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a><a href="ToolCodeToHtml.htm">CodeToHtml</a>MenuDialog::keyPressEvent(<a href="CppQKeyEvent.htm">QKeyEvent</a> * event)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="ToolCodeToHtml.htm">CodeToHtml</a>MenuDialog::keyPressEvent(<a href="CppQKeyEvent.htm">QKeyEvent</a> * event)<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (event-&gt;key() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <a href="CppQt.htm">Qt</a>::Key_Escape) { close(); <b><a href="CppReturn.htm">return</a></b>; }<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a><a href="ToolCodeToHtml.htm">CodeToHtml</a>MenuDialog::on_button_about_clicked()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="ToolCodeToHtml.htm">CodeToHtml</a>MenuDialog::on_button_about_clicked()<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppAbout.htm">About</a> a <a href="CppOperatorAssign.htm">=</a> <a href="ToolCodeToHtml.htm">CodeToHtml</a>MenuDialog::GetAbout();<br/>
+&nbsp;&nbsp;<a href="CppRibi.htm\">ribi</a>::<a href="CppAbout.htm">About</a> a <a href="CppOperatorAssign.htm">=</a> <a href="CppRibi.htm\">ribi</a>::<a href="ToolCodeToHtml.htm">CodeToHtml</a>MenuDialog::GetAbout();<br/>
 &nbsp;&nbsp;a.<a href="CppAdd.htm">Add</a><a href="CppLibrary.htm">Library</a>("<a href="CppQtHideAndShowDialog.htm">QtHideAndShowDialog</a> <a href="CppVersion.htm">version</a>: " <a href="CppOperatorPlus.htm">+</a> <a href="CppQtHideAndShowDialog.htm">QtHideAndShowDialog</a>::Get<a href="CppVersion.htm">Version</a>());<br/>
-&nbsp;&nbsp;<a href="CppQtAboutDialog.htm">QtAboutDialog</a> d(a);<br/>
+&nbsp;&nbsp;<a href="CppRibi.htm\">ribi</a>::<a href="CppQtAboutDialog.htm">QtAboutDialog</a> d(a);<br/>
 &nbsp;&nbsp;d.setWindowIcon(<b><a href="CppThis.htm">this</a></b>-&gt;windowIcon());<br/>
 &nbsp;&nbsp;d.setStyleSheet(<b><a href="CppThis.htm">this</a></b>-&gt;styleSheet());<br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;hide();<br/>
@@ -1622,19 +1580,19 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;show();<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a><a href="ToolCodeToHtml.htm">CodeToHtml</a>MenuDialog::on_button_quit_clicked()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="ToolCodeToHtml.htm">CodeToHtml</a>MenuDialog::on_button_quit_clicked()<br/>
 {<br/>
 &nbsp;&nbsp;close();<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a><a href="ToolCodeToHtml.htm">CodeToHtml</a>MenuDialog::on_button_start_clicked()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="ToolCodeToHtml.htm">CodeToHtml</a>MenuDialog::on_button_start_clicked()<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppQt.htm">Qt</a><a href="ToolCodeToHtml.htm">CodeToHtml</a>MainDialog d;<br/>
 &nbsp;&nbsp;ShowChild(&amp;d);<br/>
 }<br/>
 <br/>
 <a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a><a href="ToolCodeToHtml.htm">CodeToHtml</a>MenuDialog::Test()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="ToolCodeToHtml.htm">CodeToHtml</a>MenuDialog::Test()<br/>
 {<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppBool.htm">bool</a></b> is_tested <a href="CppOperatorAssign.htm">=</a> <b><a href="CppFalse.htm">false</a></b>;<br/>
@@ -1677,11 +1635,6 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="ToolCodeToHtml.htm">ToolCodeToHtml</a>.htm<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppIfdef.htm">#ifdef</a> _WIN32<br/>
-<a href="CppComment.htm">//</a>See http://www.richelbilderbeek.nl/Cpp<a href="CppCompile.htm">Compile</a>ErrorSwprintfHasNotBeenDeclared.htm<br/>
-<a href="CppUndef.htm">#undef</a> __STRICT_ANSI__<br/>
-<a href="CppEndif.htm">#endif</a><br/>
-<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppCsignalH.htm">csignal</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppIostreamH.htm">iostream</a>&gt;<br/>
 <br/>
@@ -1719,13 +1672,13 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;c2h::Test();<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
 <br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQt.htm">Qt</a><a href="ToolCodeToHtml.htm">CodeToHtml</a>MenuDialog w;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="ToolCodeToHtml.htm">CodeToHtml</a>MenuDialog w;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;w.show();<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> a.exec();<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<b><a href="CppCatch.htm">catch</a></b> (<a href="CppException.htm">std::exception</a>&amp; e)<br/>
+&nbsp;&nbsp;<b><a href="CppCatch.htm">catch</a></b> (<a href="CppStdException.htm">std::exception</a>&amp; e)<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCerr.htm">std::cerr</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "Exception <b><a href="CppThrow.htm">throw</a></b>n: " <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> e.what() <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppEndl.htm">std::endl</a>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCerr.htm">std::cerr</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "<a href="CppException.htm">Exception</a> <b><a href="CppThrow.htm">throw</a></b>n: " <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> e.what() <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppEndl.htm">std::endl</a>;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> 1;<br/>
 &nbsp;&nbsp;}<br/>
 }<br/>
@@ -1793,7 +1746,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppWComboBox.htm">Wt::WComboBox</a> * <b><a href="CppConst.htm">const</a></b> m_box_content_type;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppWPushButton.htm">Wt::WPushButton</a> * <b><a href="CppConst.htm">const</a></b> m_button_<a href="CppConvert.htm">convert</a>;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppWLineEdit.htm">Wt::WLineEdit</a> * <b><a href="CppConst.htm">const</a></b> m_edit_source;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppWMenu.htm">Wt::WMenu</a> * m_menu; <a href="CppComment.htm">//</a>Needs to be initialized with m_stack<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppWMenu.htm">Wt::WMenu</a> * m_menu; <a href="CppComment.htm">//</a>Needs to be <a href="CppInitialize.htm">initialize</a>d with m_stack<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppWStackedWidget.htm">Wt::WStackedWidget</a> * <b><a href="CppConst.htm">const</a></b> m_stack;<br/>
 &nbsp;&nbsp;} ui;<br/>
 <br/>
@@ -2182,6 +2135,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWContainerWidget.htm">WContainerWidget</a>&gt;<br/>
 <br/>
+<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a> {<br/>
 <b><a href="CppNamespace.htm">namespace</a></b> <a href="ToolCodeToHtml.htm">CodeToHtml</a> {<br/>
 <br/>
 <b><a href="CppStruct.htm">struct</a></b> WtMenuDialog : <b><a href="CppPublic.htm">public</a></b> <a href="CppWContainerWidget.htm">Wt::WContainerWidget</a><br/>
@@ -2194,6 +2148,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 };<br/>
 <br/>
 } <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="ToolCodeToHtml.htm">CodeToHtml</a><br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a><br/>
 <br/>
 <a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> WTCODETOHTMLMENUDIALOG_H<br/>
 </code></td></tr></table>
@@ -2249,9 +2204,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppQFile.htm">QFile</a>&gt;<br/>
 <br/>
-<b><a href="CppNamespace.htm">namespace</a></b> <a href="ToolCodeToHtml.htm">CodeToHtml</a> {<br/>
-<br/>
-WtMenuDialog::WtMenuDialog()<br/>
+<a href="CppRibi.htm\">ribi</a>::<a href="ToolCodeToHtml.htm">CodeToHtml</a>::WtMenuDialog::WtMenuDialog()<br/>
 {<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; image_names;<br/>
@@ -2309,7 +2262,7 @@ WtMenuDialog::WtMenuDialog()<br/>
 &nbsp;&nbsp;}<br/>
 }<br/>
 <br/>
-<a href="CppWWidget.htm">Wt::WWidget</a> * WtMenuDialog::CreateNew<a href="CppAbout.htm">About</a>Dialog() <b><a href="CppConst.htm">const</a></b><br/>
+<a href="CppWWidget.htm">Wt::WWidget</a> * <a href="CppRibi.htm\">ribi</a>::<a href="ToolCodeToHtml.htm">CodeToHtml</a>::WtMenuDialog::CreateNew<a href="CppAbout.htm">About</a>Dialog() <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppAbout.htm">About</a> a <a href="CppOperatorAssign.htm">=</a> <a href="ToolCodeToHtml.htm">CodeToHtml</a>MenuDialog::GetAbout();<br/>
 &nbsp;&nbsp;a.<a href="CppAdd.htm">Add</a><a href="CppLibrary.htm">Library</a>("<a href="CppWtAutoConfig.htm">WtAutoConfig</a> <a href="CppVersion.htm">version</a>: " <a href="CppOperatorPlus.htm">+</a> <a href="CppWtAutoConfig.htm">WtAutoConfig</a>::Get<a href="CppVersion.htm">Version</a>());<br/>
@@ -2318,14 +2271,14 @@ WtMenuDialog::WtMenuDialog()<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> d;<br/>
 }<br/>
 <br/>
-<a href="CppWWidget.htm">Wt::WWidget</a> * WtMenuDialog::CreateNewMainDialog() <b><a href="CppConst.htm">const</a></b><br/>
+<a href="CppWWidget.htm">Wt::WWidget</a> * <a href="CppRibi.htm\">ribi</a>::<a href="ToolCodeToHtml.htm">CodeToHtml</a>::WtMenuDialog::CreateNewMainDialog() <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;c2h::WtDialog * <b><a href="CppConst.htm">const</a></b> d <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> c2h::WtDialog;<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(d);<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> d;<br/>
 }<br/>
 <br/>
-<a href="CppWWidget.htm">Wt::WWidget</a> * WtMenuDialog::CreateNewWelcomeDialog() <b><a href="CppConst.htm">const</a></b><br/>
+<a href="CppWWidget.htm">Wt::WWidget</a> * <a href="CppRibi.htm\">ribi</a>::<a href="ToolCodeToHtml.htm">CodeToHtml</a>::WtMenuDialog::CreateNewWelcomeDialog() <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppWContainerWidget.htm">Wt::WContainerWidget</a> * dialog <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppWContainerWidget.htm">Wt::WContainerWidget</a>;<br/>
 &nbsp;&nbsp;dialog-&gt;setContentAlignment(<a href="CppWt.htm">Wt</a>::AlignCenter);<br/>
@@ -2337,8 +2290,6 @@ WtMenuDialog::WtMenuDialog()<br/>
 &nbsp;&nbsp;box-&gt;addWidget(<b><a href="CppNew.htm">new</a></b> <a href="CppWImage.htm">Wt::WImage</a>("<a href="ToolCodeToHtml.htm">ToolCodeToHtml</a>Welcome.png"));<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> dialog;<br/>
 }<br/>
-<br/>
-} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="ToolCodeToHtml.htm">CodeToHtml</a><br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>

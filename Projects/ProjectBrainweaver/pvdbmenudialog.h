@@ -9,14 +9,11 @@
 #include "about.h"
 
 namespace ribi {
-
 namespace pvdb {
 
 ///The GUI independent version of Project Van Den Bogaart its menu dialog
 struct MenuDialog
 {
-  MenuDialog();
-
   ///Obtain the version of this class
   static const std::string GetVersion();
 
@@ -25,18 +22,9 @@ struct MenuDialog
 
   ///Obtain the About information of this class
   static const About GetAbout();
-
-  private:
-  ///Block destructor, except for the friend boost::checked_delete
-  ~MenuDialog() {}
-
-  ///Correct befriending, from http://richelbilderbeek.nl/CppChecked_delete.htm
-  friend void boost::checked_delete<>(MenuDialog* x);
-
 };
 
 } //~namespace pvdb
-
 } //~namespace ribi
 
 #endif // PVDBMENUDIALOG_H

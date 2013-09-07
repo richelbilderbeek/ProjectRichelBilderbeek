@@ -161,13 +161,13 @@ Dialog::Dialog(<a href="CppQWidget.htm">QWidget</a> *parent) :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(v[i]<a href="CppOperatorEqual.htm">==</a>i);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCatch.htm">catch</a></b> (<a href="CppException.htm">std::exception</a>&amp; e)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCatch.htm">catch</a></b> (<a href="CppStdException.htm">std::exception</a>&amp; e)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCerr.htm">std::cerr</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> e.what() <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n';<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCatch.htm">catch</a></b> (...)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCerr.htm">std::cerr</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "Unknown exception!" <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n';<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCerr.htm">std::cerr</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "Unknown <a href="CppException.htm">exception</a>!" <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n';<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 <br/>
 &nbsp;&nbsp;}<br/>
@@ -245,7 +245,7 @@ Dialog::~Dialog()<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(i &lt; m_max_index * m_max_index);<br/>
 <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppCl_I_to_int.htm">cln::cl_I_to_int</a> will <b><a href="CppThrow.htm">throw</a></b> <b><a href="CppIf.htm">if</a></b> <a href="CppCl_I.htm">cln::cl_I</a> is bigger then the maximum<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppInt.htm">integer</a> value. This method should not <b><a href="CppThrow.htm">throw</a></b>, however.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppInt.htm">integer</a> value. This <a href="CppMemberFunction.htm">member function</a> should not <b><a href="CppThrow.htm">throw</a></b>, however.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>x <a href="CppOperatorAssign.htm">=</a> i <a href="CppOperatorDivide.htm">/</a> m_max_index<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x <a href="CppOperatorAssign.htm">=</a> <a href="CppCl_I_to_int.htm">cln::cl_I_to_int</a>(<a href="CppCln.htm">cln</a>::floor1(i,m_max_index));<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>y <a href="CppOperatorAssign.htm">=</a> i <a href="CppOperatorModulus.htm">%</a> m_max_index<br/>
@@ -260,7 +260,7 @@ Dialog::~Dialog()<br/>
 &nbsp;&nbsp;T&amp; <b><a href="CppOperator.htm">operator</a></b>[](<b><a href="CppConst.htm">const</a></b> <a href="CppCl_I.htm">cln::cl_I</a>&amp; i)<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Calls the <b><a href="CppConst.htm">const</a></b> <a href="CppVersion.htm">version</a> of <b><a href="CppOperator.htm">operator</a></b>[]<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>To avoid duplication in <b><a href="CppConst.htm">const</a></b> and non-<b><a href="CppConst.htm">const</a></b> <a href="CppMemberFunction.htm">member functions</a> [1]<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>To avoid duplication in <b><a href="CppConst.htm">const</a></b> and non-<a href="CppConstMemberFunction.htm">const member function</a>s [1]<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <b><a href="CppConst_cast.htm">const_cast</a></b>&lt;T&amp;&gt;(<b><a href="CppConst_cast.htm">const_cast</a></b>&lt;<b><a href="CppConst.htm">const</a></b> HugeVector&lt;T&gt;&amp; &gt;(*<b><a href="CppThis.htm">this</a></b>)[i]);<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> push_back(<b><a href="CppConst.htm">const</a></b> T&amp; t)<br/>

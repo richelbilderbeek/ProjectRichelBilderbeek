@@ -4,7 +4,7 @@
 #include "qtknokfighterbackground.h"
 #include "rainbow.h"
 
-QtKnokfighterBackground::QtKnokfighterBackground(
+ribi::QtKnokfighterBackground::QtKnokfighterBackground(
   const int width, const int height,
   QGraphicsItem *parent)
   : QGraphicsPixmapItem(parent),
@@ -14,13 +14,13 @@ QtKnokfighterBackground::QtKnokfighterBackground(
   DrawPixmap();
 }
 
-void QtKnokfighterBackground::advance(int)
+void ribi::QtKnokfighterBackground::advance(int)
 {
   //++z;
   //DrawPixmap();
 }
 
-void QtKnokfighterBackground::DrawPixmap()
+void ribi::QtKnokfighterBackground::DrawPixmap()
 {
   QImage i = this->pixmap().toImage();
   const int width = i.width();

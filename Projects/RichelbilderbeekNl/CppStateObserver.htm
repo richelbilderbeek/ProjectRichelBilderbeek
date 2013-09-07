@@ -48,6 +48,8 @@
 <br/>
 <a href="CppInclude.htm">#include</a> "floating<a href="CppPointer.htm">point</a>stateobserver.h"<br/>
 <br/>
+<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a> {<br/>
+<br/>
 <a href="CppComment.htm">///</a>An alpha beta filter<br/>
 <b><a href="CppStruct.htm">struct</a></b> AlphaBetaFilter : <b><a href="CppPublic.htm">public</a></b> Floating<a href="CppPoint.htm">Point</a><a href="CppStateObserver.htm">StateObserver</a><br/>
 {<br/>
@@ -78,6 +80,8 @@
 &nbsp;&nbsp;<b><a href="CppDouble.htm">double</a></b> m_output;<br/>
 };<br/>
 <br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a><br/>
+<br/>
 <a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> ALPHABETAFILTER_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
@@ -90,21 +94,11 @@
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="alphabetafilter.cpp" border = "1"><tr><td><code>
-<a href="CppIfdef.htm">#ifdef</a> _WIN32<br/>
-<a href="CppComment.htm">//</a>See http://www.richelbilderbeek.nl/Cpp<a href="CppCompile.htm">Compile</a>ErrorUnableToFindNumericLiteralOperatorOperatorQ.htm<br/>
-<a href="CppPreIf.htm">#if</a> !(__GNUC__ <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 4 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> __GNUC_MINOR__ <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 8)<br/>
-<a href="CppComment.htm">//</a>See http://www.richelbilderbeek.nl/Cpp<a href="CppCompile.htm">Compile</a>ErrorSwprintfHasNotBeenDeclared.htm<br/>
-<a href="CppUndef.htm">#undef</a> __STRICT_ANSI__<br/>
-<a href="CppEndif.htm">#endif</a><br/>
-<a href="CppEndif.htm">#endif</a><br/>
-<br/>
-<a href="CppComment.htm">//</a><a href="CppInclude.htm">#include</a> own <a href="CppHeaderFile.htm">header file</a> as first substantive line of code, from:<br/>
-<a href="CppComment.htm">//</a> * John Lakos. Large-Scale <a href="Cpp.htm">C++</a> Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110<br/>
 <a href="CppInclude.htm">#include</a> "alphabetafilter.h"<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
 <br/>
-AlphaBetaFilter::AlphaBetaFilter(<br/>
+<a href="CppRibi.htm\">ribi</a>::AlphaBetaFilter::AlphaBetaFilter(<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> alpha,<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> beta,<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> dt)<br/>
@@ -121,7 +115,7 @@ AlphaBetaFilter::AlphaBetaFilter(<br/>
 }<br/>
 <br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> AlphaBetaFilter::Update(<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> measurement)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::AlphaBetaFilter::Update(<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> measurement)<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> output_predicted <a href="CppOperatorAssign.htm">=</a> m_output <a href="CppOperatorPlus.htm">+</a> ( m_slope * m_dt );<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> prediction_error <a href="CppOperatorAssign.htm">=</a> measurement <a href="CppOperatorMinus.htm">-</a> output_predicted;<br/>
@@ -130,12 +124,12 @@ AlphaBetaFilter::AlphaBetaFilter(<br/>
 &nbsp;&nbsp;m_slope <a href="CppOperatorPlus.htm">+</a><a href="CppOperatorAssign.htm">=</a> (m_beta * prediction_error <a href="CppOperatorDivide.htm">/</a> m_dt);<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> AlphaBetaFilter::Get<a href="CppVersion.htm">Version</a>()<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppRibi.htm\">ribi</a>::AlphaBetaFilter::Get<a href="CppVersion.htm">Version</a>()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> "1.1";<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; AlphaBetaFilter::Get<a href="CppVersion.htm">Version</a>History()<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm\">ribi</a>::AlphaBetaFilter::Get<a href="CppVersion.htm">Version</a>History()<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v;<br/>
 &nbsp;&nbsp;v.push_back("2013-05-25: <a href="CppVersion.htm">version</a> 1.0: initial <a href="CppVersion.htm">version</a>");<br/>
@@ -161,6 +155,9 @@ AlphaBetaFilter::AlphaBetaFilter(<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> "floating<a href="CppPointer.htm">point</a>stateobserver.h"<br/>
 <br/>
+<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a> {<br/>
+<br/>
+<a href="CppComment.htm">///</a>An alpha beta gamma filter<br/>
 <b><a href="CppStruct.htm">struct</a></b> AlphaBetaGammaFilter : <b><a href="CppPublic.htm">public</a></b> Floating<a href="CppPoint.htm">Point</a><a href="CppStateObserver.htm">StateObserver</a><br/>
 {<br/>
 &nbsp;&nbsp;AlphaBetaGammaFilter(<br/>
@@ -192,6 +189,8 @@ AlphaBetaFilter::AlphaBetaFilter(<br/>
 &nbsp;&nbsp;<b><a href="CppDouble.htm">double</a></b> m_velocity;<br/>
 };<br/>
 <br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a><br/>
+<br/>
 <a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> ALPHABETAGAMMAFILTER_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
@@ -204,21 +203,11 @@ AlphaBetaFilter::AlphaBetaFilter(<br/>
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="alphabetagammafilter.cpp" border = "1"><tr><td><code>
-<a href="CppIfdef.htm">#ifdef</a> _WIN32<br/>
-<a href="CppComment.htm">//</a>See http://www.richelbilderbeek.nl/Cpp<a href="CppCompile.htm">Compile</a>ErrorUnableToFindNumericLiteralOperatorOperatorQ.htm<br/>
-<a href="CppPreIf.htm">#if</a> !(__GNUC__ <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 4 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> __GNUC_MINOR__ <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 8)<br/>
-<a href="CppComment.htm">//</a>See http://www.richelbilderbeek.nl/Cpp<a href="CppCompile.htm">Compile</a>ErrorSwprintfHasNotBeenDeclared.htm<br/>
-<a href="CppUndef.htm">#undef</a> __STRICT_ANSI__<br/>
-<a href="CppEndif.htm">#endif</a><br/>
-<a href="CppEndif.htm">#endif</a><br/>
-<br/>
-<a href="CppComment.htm">//</a><a href="CppInclude.htm">#include</a> own <a href="CppHeaderFile.htm">header file</a> as first substantive line of code, from:<br/>
-<a href="CppComment.htm">//</a> * John Lakos. Large-Scale <a href="Cpp.htm">C++</a> Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110<br/>
 <a href="CppInclude.htm">#include</a> "alphabetagammafilter.h"<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
 <br/>
-AlphaBetaGammaFilter::AlphaBetaGammaFilter(<br/>
+<a href="CppRibi.htm\">ribi</a>::AlphaBetaGammaFilter::AlphaBetaGammaFilter(<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> alpha,<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> beta,<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> gamma,<br/>
@@ -238,7 +227,7 @@ AlphaBetaGammaFilter::AlphaBetaGammaFilter(<br/>
 }<br/>
 <br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> AlphaBetaGammaFilter::Update(<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> measurement)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::AlphaBetaGammaFilter::Update(<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> measurement)<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> output_predicted <a href="CppOperatorAssign.htm">=</a> m_position <a href="CppOperatorPlus.htm">+</a> ( m_velocity * m_dt );<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> prediction_error <a href="CppOperatorAssign.htm">=</a> measurement <a href="CppOperatorMinus.htm">-</a> output_predicted;<br/>
@@ -247,12 +236,12 @@ AlphaBetaGammaFilter::AlphaBetaGammaFilter(<br/>
 &nbsp;&nbsp;m_acceleration <a href="CppOperatorPlus.htm">+</a><a href="CppOperatorAssign.htm">=</a> (m_gamma * 2.0 * prediction_error <a href="CppOperatorDivide.htm">/</a> (m_dt * m_dt) );<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> AlphaBetaGammaFilter::Get<a href="CppVersion.htm">Version</a>()<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppRibi.htm\">ribi</a>::AlphaBetaGammaFilter::Get<a href="CppVersion.htm">Version</a>()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> "1.1";<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; AlphaBetaGammaFilter::Get<a href="CppVersion.htm">Version</a>History()<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm\">ribi</a>::AlphaBetaGammaFilter::Get<a href="CppVersion.htm">Version</a>History()<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v;<br/>
 &nbsp;&nbsp;v.push_back("2013-05-25: <a href="CppVersion.htm">version</a> 1.0: initial <a href="CppVersion.htm">version</a>");<br/>
@@ -277,6 +266,8 @@ AlphaBetaGammaFilter::AlphaBetaGammaFilter(<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> "floating<a href="CppPointer.htm">point</a>stateobserver.h"<br/>
+<br/>
+<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a> {<br/>
 <br/>
 <a href="CppComment.htm">///</a>An alpha filter as described on [1]<br/>
 <a href="CppComment.htm">///</a>An alpha filter is equivalant to a low-pass filter (also called high-cut filter, or treble cut filter) [2]<br/>
@@ -339,6 +330,8 @@ AlphaBetaGammaFilter::AlphaBetaGammaFilter(<br/>
 <a href="CppComment.htm">///</a><br/>
 <a href="CppComment.htm">///</a>The alpha filter is supplied as an example in the <a href="Tools.htm">tool</a> <a href="ToolKalmanFilterer.htm">KalmanFilterer</a><br/>
 <br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a><br/>
+<br/>
 <a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> ALPHAFILTER_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
@@ -351,21 +344,11 @@ AlphaBetaGammaFilter::AlphaBetaGammaFilter(<br/>
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="alphafilter.cpp" border = "1"><tr><td><code>
-<a href="CppIfdef.htm">#ifdef</a> _WIN32<br/>
-<a href="CppComment.htm">//</a>See http://www.richelbilderbeek.nl/Cpp<a href="CppCompile.htm">Compile</a>ErrorUnableToFindNumericLiteralOperatorOperatorQ.htm<br/>
-<a href="CppPreIf.htm">#if</a> !(__GNUC__ <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 4 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> __GNUC_MINOR__ <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 8)<br/>
-<a href="CppComment.htm">//</a>See http://www.richelbilderbeek.nl/Cpp<a href="CppCompile.htm">Compile</a>ErrorSwprintfHasNotBeenDeclared.htm<br/>
-<a href="CppUndef.htm">#undef</a> __STRICT_ANSI__<br/>
-<a href="CppEndif.htm">#endif</a><br/>
-<a href="CppEndif.htm">#endif</a><br/>
-<br/>
-<a href="CppComment.htm">//</a><a href="CppInclude.htm">#include</a> own <a href="CppHeaderFile.htm">header file</a> as first substantive line of code, from:<br/>
-<a href="CppComment.htm">//</a> * John Lakos. Large-Scale <a href="Cpp.htm">C++</a> Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110<br/>
 <a href="CppInclude.htm">#include</a> "alphafilter.h"<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
 <br/>
-AlphaFilter::AlphaFilter(<br/>
+<a href="CppRibi.htm\">ribi</a>::AlphaFilter::AlphaFilter(<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> alpha,<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> dt)<br/>
 &nbsp;&nbsp;: m_alpha(alpha),<br/>
@@ -379,18 +362,18 @@ AlphaFilter::AlphaFilter(<br/>
 }<br/>
 <br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> AlphaFilter::Update(<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> measurement)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::AlphaFilter::Update(<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> measurement)<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> difference <a href="CppOperatorAssign.htm">=</a> measurement <a href="CppOperatorMinus.htm">-</a> m_output;<br/>
 &nbsp;&nbsp;m_output <a href="CppOperatorPlus.htm">+</a><a href="CppOperatorAssign.htm">=</a> m_alpha * difference;<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> AlphaFilter::Get<a href="CppVersion.htm">Version</a>()<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppRibi.htm\">ribi</a>::AlphaFilter::Get<a href="CppVersion.htm">Version</a>()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> "1.1";<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; AlphaFilter::Get<a href="CppVersion.htm">Version</a>History()<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm\">ribi</a>::AlphaFilter::Get<a href="CppVersion.htm">Version</a>History()<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v;<br/>
 &nbsp;&nbsp;v.push_back("2013-05-25: <a href="CppVersion.htm">version</a> 1.0: initial <a href="CppVersion.htm">version</a>");<br/>
@@ -413,6 +396,8 @@ AlphaFilter::AlphaFilter(<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppStringH.htm">string</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
+<br/>
+<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a> {<br/>
 <br/>
 <a href="CppComment.htm">///</a>An observer <b><a href="CppFor.htm">for</a></b> floating <a href="CppPointer.htm">point</a> values:<br/>
 <a href="CppComment.htm">///</a>The measurements it works must be floating <a href="CppPointer.htm">point</a>,<br/>
@@ -437,6 +422,8 @@ AlphaFilter::AlphaFilter(<br/>
 &nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; Get<a href="CppVersion.htm">Version</a>History();<br/>
 };<br/>
 <br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a><br/>
+<br/>
 <a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> FLOATINGPOINTSTATEOBSERVER_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
@@ -449,24 +436,16 @@ AlphaFilter::AlphaFilter(<br/>
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="floatingpointstateobserver.cpp" border = "1"><tr><td><code>
-<a href="CppIfdef.htm">#ifdef</a> _WIN32<br/>
-<a href="CppComment.htm">//</a>See http://www.richelbilderbeek.nl/Cpp<a href="CppCompile.htm">Compile</a>ErrorUnableToFindNumericLiteralOperatorOperatorQ.htm<br/>
-<a href="CppPreIf.htm">#if</a> !(__GNUC__ <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 4 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> __GNUC_MINOR__ <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 8)<br/>
-<a href="CppComment.htm">//</a>See http://www.richelbilderbeek.nl/Cpp<a href="CppCompile.htm">Compile</a>ErrorSwprintfHasNotBeenDeclared.htm<br/>
-<a href="CppUndef.htm">#undef</a> __STRICT_ANSI__<br/>
-<a href="CppEndif.htm">#endif</a><br/>
-<a href="CppEndif.htm">#endif</a><br/>
 <br/>
-<a href="CppComment.htm">//</a><a href="CppInclude.htm">#include</a> own <a href="CppHeaderFile.htm">header file</a> as first substantive line of code, from:<br/>
-<a href="CppComment.htm">//</a> * John Lakos. Large-Scale <a href="Cpp.htm">C++</a> Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110<br/>
+<br/>
 <a href="CppInclude.htm">#include</a> "floating<a href="CppPointer.htm">point</a>stateobserver.h"<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> Floating<a href="CppPoint.htm">Point</a><a href="CppStateObserver.htm">StateObserver</a>::Get<a href="CppVersion.htm">Version</a>()<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppRibi.htm\">ribi</a>::Floating<a href="CppPoint.htm">Point</a><a href="CppStateObserver.htm">StateObserver</a>::Get<a href="CppVersion.htm">Version</a>()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> "1.0";<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; Floating<a href="CppPoint.htm">Point</a><a href="CppStateObserver.htm">StateObserver</a>::Get<a href="CppVersion.htm">Version</a>History()<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm\">ribi</a>::Floating<a href="CppPoint.htm">Point</a><a href="CppStateObserver.htm">StateObserver</a>::Get<a href="CppVersion.htm">Version</a>History()<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v;<br/>
 &nbsp;&nbsp;v.push_back("2013-06-18: <a href="CppVersion.htm">version</a> 1.0: initial <a href="CppVersion.htm">version</a>");<br/>
@@ -489,6 +468,8 @@ AlphaFilter::AlphaFilter(<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppStringH.htm">string</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppInt.htm">integer</a>stateobserver.h"<br/>
+<br/>
+<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a> {<br/>
 <br/>
 <b><a href="CppStruct.htm">struct</a></b> <a href="CppInt.htm">Integer</a>AlphaFilter : <b><a href="CppPublic.htm">public</a></b> <a href="CppInt.htm">Integer</a><a href="CppStateObserver.htm">StateObserver</a><br/>
 {<br/>
@@ -516,6 +497,8 @@ AlphaFilter::AlphaFilter(<br/>
 &nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b>64_t m_value_active;<br/>
 };<br/>
 <br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a><br/>
+<br/>
 <a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> INTEGERALPHAFILTER_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
@@ -528,22 +511,12 @@ AlphaFilter::AlphaFilter(<br/>
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="integeralphafilter.cpp" border = "1"><tr><td><code>
-<a href="CppIfdef.htm">#ifdef</a> _WIN32<br/>
-<a href="CppComment.htm">//</a>See http://www.richelbilderbeek.nl/Cpp<a href="CppCompile.htm">Compile</a>ErrorUnableToFindNumericLiteralOperatorOperatorQ.htm<br/>
-<a href="CppPreIf.htm">#if</a> !(__GNUC__ <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 4 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> __GNUC_MINOR__ <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 8)<br/>
-<a href="CppComment.htm">//</a>See http://www.richelbilderbeek.nl/Cpp<a href="CppCompile.htm">Compile</a>ErrorSwprintfHasNotBeenDeclared.htm<br/>
-<a href="CppUndef.htm">#undef</a> __STRICT_ANSI__<br/>
-<a href="CppEndif.htm">#endif</a><br/>
-<a href="CppEndif.htm">#endif</a><br/>
-<br/>
-<a href="CppComment.htm">//</a><a href="CppInclude.htm">#include</a> own <a href="CppHeaderFile.htm">header file</a> as first substantive line of code, from:<br/>
-<a href="CppComment.htm">//</a> * John Lakos. Large-Scale <a href="Cpp.htm">C++</a> Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppInt.htm">integer</a>alphafilter.h"<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppCstdlibH.htm">cstdlib</a>&gt;<br/>
 <br/>
-<a href="CppInt.htm">Integer</a>AlphaFilter::<a href="CppInt.htm">Integer</a>AlphaFilter(<br/>
+<a href="CppRibi.htm\">ribi</a>::<a href="CppInt.htm">Integer</a>AlphaFilter::<a href="CppInt.htm">Integer</a>AlphaFilter(<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> alpha,<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b>64_t value_active)<br/>
 &nbsp;&nbsp;: m_alpha(alpha),<br/>
@@ -553,17 +526,17 @@ AlphaFilter::AlphaFilter(<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(m_alpha <a href="CppOperatorLessEqual.htm">&lt;=</a> 63 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "An <b><a href="CppInt.htm">int</a></b>64_t can maximally be shifted 63 bits to the right");<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppInt.htm">Integer</a>AlphaFilter::Update(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b>64_t measurement)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppInt.htm">Integer</a>AlphaFilter::Update(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b>64_t measurement)<br/>
 {<br/>
 &nbsp;&nbsp;m_value_active <a href="CppOperatorPlus.htm">+</a><a href="CppOperatorAssign.htm">=</a> ((measurement <a href="CppOperatorMinus.htm">-</a> m_value_active) <a href="CppOperatorStreamIn.htm">&gt;&gt;</a> m_alpha);<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppInt.htm">Integer</a>AlphaFilter::Get<a href="CppVersion.htm">Version</a>()<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppRibi.htm\">ribi</a>::<a href="CppInt.htm">Integer</a>AlphaFilter::Get<a href="CppVersion.htm">Version</a>()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> "1.1";<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppInt.htm">Integer</a>AlphaFilter::Get<a href="CppVersion.htm">Version</a>History()<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm\">ribi</a>::<a href="CppInt.htm">Integer</a>AlphaFilter::Get<a href="CppVersion.htm">Version</a>History()<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v;<br/>
 &nbsp;&nbsp;v.push_back("2013-06-04: <a href="CppVersion.htm">version</a> 1.0: initial <a href="CppVersion.htm">version</a>");<br/>
@@ -588,6 +561,8 @@ AlphaFilter::AlphaFilter(<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppStringH.htm">string</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
 <br/>
+<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a> {<br/>
+<br/>
 <a href="CppComment.htm">///</a>An observer <b><a href="CppFor.htm">for</a></b> <a href="CppInt.htm">integer</a> values:<br/>
 <a href="CppComment.htm">///</a>The measurements it works must be <b><a href="CppInt.htm">int</a></b>,<br/>
 <a href="CppComment.htm">///</a>The estimates it gives will be <b><a href="CppInt.htm">int</a></b><br/>
@@ -611,7 +586,7 @@ AlphaFilter::AlphaFilter(<br/>
 &nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; Get<a href="CppVersion.htm">Version</a>History();<br/>
 };<br/>
 <br/>
-<br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a><br/>
 <br/>
 <a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> INTEGERSTATEOBSERVER_H<br/>
 </code></td></tr></table>
@@ -625,26 +600,16 @@ AlphaFilter::AlphaFilter(<br/>
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="integerstateobserver.cpp" border = "1"><tr><td><code>
-<a href="CppIfdef.htm">#ifdef</a> _WIN32<br/>
-<a href="CppComment.htm">//</a>See http://www.richelbilderbeek.nl/Cpp<a href="CppCompile.htm">Compile</a>ErrorUnableToFindNumericLiteralOperatorOperatorQ.htm<br/>
-<a href="CppPreIf.htm">#if</a> !(__GNUC__ <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 4 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> __GNUC_MINOR__ <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 8)<br/>
-<a href="CppComment.htm">//</a>See http://www.richelbilderbeek.nl/Cpp<a href="CppCompile.htm">Compile</a>ErrorSwprintfHasNotBeenDeclared.htm<br/>
-<a href="CppUndef.htm">#undef</a> __STRICT_ANSI__<br/>
-<a href="CppEndif.htm">#endif</a><br/>
-<a href="CppEndif.htm">#endif</a><br/>
-<br/>
-<a href="CppComment.htm">//</a><a href="CppInclude.htm">#include</a> own <a href="CppHeaderFile.htm">header file</a> as first substantive line of code, from:<br/>
-<a href="CppComment.htm">//</a> * John Lakos. Large-Scale <a href="Cpp.htm">C++</a> Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppInt.htm">integer</a>stateobserver.h"<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/numeric/con<a href="CppVersion.htm">version</a>/cast.hpp&gt;<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppInt.htm">Integer</a><a href="CppStateObserver.htm">StateObserver</a>::Get<a href="CppVersion.htm">Version</a>()<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppRibi.htm\">ribi</a>::<a href="CppInt.htm">Integer</a><a href="CppStateObserver.htm">StateObserver</a>::Get<a href="CppVersion.htm">Version</a>()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> "1.0";<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppInt.htm">Integer</a><a href="CppStateObserver.htm">StateObserver</a>::Get<a href="CppVersion.htm">Version</a>History()<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm\">ribi</a>::<a href="CppInt.htm">Integer</a><a href="CppStateObserver.htm">StateObserver</a>::Get<a href="CppVersion.htm">Version</a>History()<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v;<br/>
 &nbsp;&nbsp;v.push_back("2013-06-04: <a href="CppVersion.htm">version</a> 1.0: initial <a href="CppVersion.htm">version</a>");<br/>
@@ -668,6 +633,8 @@ AlphaFilter::AlphaFilter(<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppInt.htm">integer</a>stateobserver.h"<br/>
+<br/>
+<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a> {<br/>
 <br/>
 <b><a href="CppStruct.htm">struct</a></b> <a href="CppInt.htm">Integer</a>SymmetricalAlphaFilter : <b><a href="CppPublic.htm">public</a></b> <a href="CppInt.htm">Integer</a><a href="CppStateObserver.htm">StateObserver</a><br/>
 {<br/>
@@ -693,6 +660,8 @@ AlphaFilter::AlphaFilter(<br/>
 &nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b>64_t m_value_active;<br/>
 };<br/>
 <br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a><br/>
+<br/>
 <a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> INTEGERSYMMETRICALPHAFILTER_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
@@ -705,22 +674,12 @@ AlphaFilter::AlphaFilter(<br/>
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="integersymmetricalphafilter.cpp" border = "1"><tr><td><code>
-<a href="CppIfdef.htm">#ifdef</a> _WIN32<br/>
-<a href="CppComment.htm">//</a>See http://www.richelbilderbeek.nl/Cpp<a href="CppCompile.htm">Compile</a>ErrorUnableToFindNumericLiteralOperatorOperatorQ.htm<br/>
-<a href="CppPreIf.htm">#if</a> !(__GNUC__ <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 4 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> __GNUC_MINOR__ <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 8)<br/>
-<a href="CppComment.htm">//</a>See http://www.richelbilderbeek.nl/Cpp<a href="CppCompile.htm">Compile</a>ErrorSwprintfHasNotBeenDeclared.htm<br/>
-<a href="CppUndef.htm">#undef</a> __STRICT_ANSI__<br/>
-<a href="CppEndif.htm">#endif</a><br/>
-<a href="CppEndif.htm">#endif</a><br/>
-<br/>
-<a href="CppComment.htm">//</a><a href="CppInclude.htm">#include</a> own <a href="CppHeaderFile.htm">header file</a> as first substantive line of code, from:<br/>
-<a href="CppComment.htm">//</a> * John Lakos. Large-Scale <a href="Cpp.htm">C++</a> Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppInt.htm">integer</a>symmetricalphafilter.h"<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppCstdlibH.htm">cstdlib</a>&gt;<br/>
 <br/>
-<a href="CppInt.htm">Integer</a>SymmetricalAlphaFilter::<a href="CppInt.htm">Integer</a>SymmetricalAlphaFilter(<br/>
+<a href="CppRibi.htm\">ribi</a>::<a href="CppInt.htm">Integer</a>SymmetricalAlphaFilter::<a href="CppInt.htm">Integer</a>SymmetricalAlphaFilter(<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> alpha,<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b>64_t value_active)<br/>
 &nbsp;&nbsp;: m_alpha(alpha),<br/>
@@ -730,18 +689,18 @@ AlphaFilter::AlphaFilter(<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(m_alpha <a href="CppOperatorLessEqual.htm">&lt;=</a> 63 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "An <b><a href="CppInt.htm">int</a></b>64_t can maximally be shifted 63 bits to the right");<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppInt.htm">Integer</a>SymmetricalAlphaFilter::Update(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b>64_t measurement)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppInt.htm">Integer</a>SymmetricalAlphaFilter::Update(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b>64_t measurement)<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b>64_t delta <a href="CppOperatorAssign.htm">=</a> ((measurement&nbsp;&nbsp;<a href="CppOperatorMinus.htm">-</a> m_value_active) <a href="CppOperatorStreamIn.htm">&gt;&gt;</a> m_alpha);<br/>
 &nbsp;&nbsp;m_value_active <a href="CppOperatorPlus.htm">+</a><a href="CppOperatorAssign.htm">=</a> delta <a href="CppOperatorPlus.htm">+</a> (delta <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 0 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> measurement <a href="CppOperatorMinus.htm">-</a> m_value_active &gt; 0 ? 1 : 0);<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppInt.htm">Integer</a>SymmetricalAlphaFilter::Get<a href="CppVersion.htm">Version</a>()<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppRibi.htm\">ribi</a>::<a href="CppInt.htm">Integer</a>SymmetricalAlphaFilter::Get<a href="CppVersion.htm">Version</a>()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> "1.1";<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppInt.htm">Integer</a>SymmetricalAlphaFilter::Get<a href="CppVersion.htm">Version</a>History()<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm\">ribi</a>::<a href="CppInt.htm">Integer</a>SymmetricalAlphaFilter::Get<a href="CppVersion.htm">Version</a>History()<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v;<br/>
 &nbsp;&nbsp;v.push_back("2013-06-04: <a href="CppVersion.htm">version</a> 1.0: initial <a href="CppVersion.htm">version</a>");<br/>
@@ -766,6 +725,8 @@ AlphaFilter::AlphaFilter(<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppShared_ptr.htm">shared_ptr</a>.hpp&gt;<br/>
 <a href="CppInclude.htm">#include</a> "alphafilter.h"<br/>
 <a href="CppInclude.htm">#include</a> "floating<a href="CppPointer.htm">point</a>stateobserver.h"<br/>
+<br/>
+<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a> {<br/>
 <br/>
 <b><a href="CppStruct.htm">struct</a></b> MultiAlphaFilter : <b><a href="CppPublic.htm">public</a></b> Floating<a href="CppPoint.htm">Point</a><a href="CppStateObserver.htm">StateObserver</a><br/>
 {<br/>
@@ -794,6 +755,8 @@ AlphaFilter::AlphaFilter(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> dt);<br/>
 };<br/>
 <br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a><br/>
+<br/>
 <a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> MULTIALPHAFILTER_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
@@ -806,21 +769,11 @@ AlphaFilter::AlphaFilter(<br/>
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="multialphafilter.cpp" border = "1"><tr><td><code>
-<a href="CppIfdef.htm">#ifdef</a> _WIN32<br/>
-<a href="CppComment.htm">//</a>See http://www.richelbilderbeek.nl/Cpp<a href="CppCompile.htm">Compile</a>ErrorUnableToFindNumericLiteralOperatorOperatorQ.htm<br/>
-<a href="CppPreIf.htm">#if</a> !(__GNUC__ <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 4 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> __GNUC_MINOR__ <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 8)<br/>
-<a href="CppComment.htm">//</a>See http://www.richelbilderbeek.nl/Cpp<a href="CppCompile.htm">Compile</a>ErrorSwprintfHasNotBeenDeclared.htm<br/>
-<a href="CppUndef.htm">#undef</a> __STRICT_ANSI__<br/>
-<a href="CppEndif.htm">#endif</a><br/>
-<a href="CppEndif.htm">#endif</a><br/>
-<br/>
-<a href="CppComment.htm">//</a><a href="CppInclude.htm">#include</a> own <a href="CppHeaderFile.htm">header file</a> as first substantive line of code, from:<br/>
-<a href="CppComment.htm">//</a> * John Lakos. Large-Scale <a href="Cpp.htm">C++</a> Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110<br/>
 <a href="CppInclude.htm">#include</a> "multialphafilter.h"<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppBOOST_FOREACH.htm">foreach</a>.hpp&gt;<br/>
-MultiAlphaFilter::MultiAlphaFilter(<br/>
+<a href="CppRibi.htm\">ribi</a>::MultiAlphaFilter::MultiAlphaFilter(<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; alphas,<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> dt)<br/>
 &nbsp;&nbsp;: m_filters(CreateFilters(alphas,dt))<br/>
@@ -828,7 +781,7 @@ MultiAlphaFilter::MultiAlphaFilter(<br/>
 <br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;AlphaFilter&gt; &gt; MultiAlphaFilter::CreateFilters(<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRibi.htm\">ribi</a>::AlphaFilter&gt; &gt; <a href="CppRibi.htm\">ribi</a>::MultiAlphaFilter::CreateFilters(<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; alphas,<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> dt)<br/>
 {<br/>
@@ -843,12 +796,12 @@ MultiAlphaFilter::MultiAlphaFilter(<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
 }<br/>
 <br/>
-<b><a href="CppDouble.htm">double</a></b> MultiAlphaFilter::GetEstimate() <b><a href="CppConst.htm">const</a></b><br/>
+<b><a href="CppDouble.htm">double</a></b> <a href="CppRibi.htm\">ribi</a>::MultiAlphaFilter::GetEstimate() <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> m_filters.back()-&gt;GetEstimate();<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> MultiAlphaFilter::Update(<b><a href="CppDouble.htm">double</a></b> measurement)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::MultiAlphaFilter::Update(<b><a href="CppDouble.htm">double</a></b> measurement)<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppSize_t.htm">std::size_t</a> sz <a href="CppOperatorAssign.htm">=</a> m_filters.size();<br/>
 &nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<a href="CppSize_t.htm">std::size_t</a> i <a href="CppOperatorAssign.htm">=</a> 0; i<a href="CppOperatorNotEqual.htm">!=</a>sz; <a href="CppOperatorPlus.htm">+</a>+i)<br/>
@@ -860,12 +813,12 @@ MultiAlphaFilter::MultiAlphaFilter(<br/>
 &nbsp;&nbsp;}<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> MultiAlphaFilter::Get<a href="CppVersion.htm">Version</a>()<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppRibi.htm\">ribi</a>::MultiAlphaFilter::Get<a href="CppVersion.htm">Version</a>()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> "1.1";<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; MultiAlphaFilter::Get<a href="CppVersion.htm">Version</a>History()<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm\">ribi</a>::MultiAlphaFilter::Get<a href="CppVersion.htm">Version</a>History()<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v;<br/>
 &nbsp;&nbsp;v.push_back("2013-05-25: <a href="CppVersion.htm">version</a> 1.0: initial <a href="CppVersion.htm">version</a>");<br/>
@@ -891,6 +844,8 @@ MultiAlphaFilter::MultiAlphaFilter(<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppInt.htm">integer</a>alphafilter.h"<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppInt.htm">integer</a>stateobserver.h"<br/>
 <br/>
+<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a> {<br/>
+<br/>
 <b><a href="CppStruct.htm">struct</a></b> Multi<a href="CppInt.htm">Integer</a><a href="CppStateObserver.htm">StateObserver</a> : <b><a href="CppPublic.htm">public</a></b> <a href="CppInt.htm">Integer</a><a href="CppStateObserver.htm">StateObserver</a><br/>
 {<br/>
 &nbsp;&nbsp;Multi<a href="CppInt.htm">Integer</a><a href="CppStateObserver.htm">StateObserver</a>(<br/>
@@ -913,6 +868,8 @@ MultiAlphaFilter::MultiAlphaFilter(<br/>
 &nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppInt.htm">Integer</a><a href="CppStateObserver.htm">StateObserver</a>&gt; &gt; m_filters;<br/>
 };<br/>
 <br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a><br/>
+<br/>
 <a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> MULTIINTEGERSTATEOBSERVER_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
@@ -925,33 +882,23 @@ MultiAlphaFilter::MultiAlphaFilter(<br/>
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="multiintegerstateobserver.cpp" border = "1"><tr><td><code>
-<a href="CppIfdef.htm">#ifdef</a> _WIN32<br/>
-<a href="CppComment.htm">//</a>See http://www.richelbilderbeek.nl/Cpp<a href="CppCompile.htm">Compile</a>ErrorUnableToFindNumericLiteralOperatorOperatorQ.htm<br/>
-<a href="CppPreIf.htm">#if</a> !(__GNUC__ <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 4 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> __GNUC_MINOR__ <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 8)<br/>
-<a href="CppComment.htm">//</a>See http://www.richelbilderbeek.nl/Cpp<a href="CppCompile.htm">Compile</a>ErrorSwprintfHasNotBeenDeclared.htm<br/>
-<a href="CppUndef.htm">#undef</a> __STRICT_ANSI__<br/>
-<a href="CppEndif.htm">#endif</a><br/>
-<a href="CppEndif.htm">#endif</a><br/>
-<br/>
-<a href="CppComment.htm">//</a><a href="CppInclude.htm">#include</a> own <a href="CppHeaderFile.htm">header file</a> as first substantive line of code, from:<br/>
-<a href="CppComment.htm">//</a> * John Lakos. Large-Scale <a href="Cpp.htm">C++</a> Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110<br/>
 <a href="CppInclude.htm">#include</a> "multi<a href="CppInt.htm">integer</a>stateobserver.h"<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppBOOST_FOREACH.htm">foreach</a>.hpp&gt;<br/>
-Multi<a href="CppInt.htm">Integer</a><a href="CppStateObserver.htm">StateObserver</a>::Multi<a href="CppInt.htm">Integer</a><a href="CppStateObserver.htm">StateObserver</a>(<br/>
+<a href="CppRibi.htm\">ribi</a>::Multi<a href="CppInt.htm">Integer</a><a href="CppStateObserver.htm">StateObserver</a>::Multi<a href="CppInt.htm">Integer</a><a href="CppStateObserver.htm">StateObserver</a>(<br/>
 &nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppInt.htm">Integer</a><a href="CppStateObserver.htm">StateObserver</a>&gt; &gt;&amp; filters)<br/>
 &nbsp;&nbsp;: m_filters(filters)<br/>
 {<br/>
 <br/>
 }<br/>
 <br/>
-<b><a href="CppInt.htm">int</a></b>64_t Multi<a href="CppInt.htm">Integer</a><a href="CppStateObserver.htm">StateObserver</a>::GetEstimate() <b><a href="CppConst.htm">const</a></b><br/>
+<b><a href="CppInt.htm">int</a></b>64_t <a href="CppRibi.htm\">ribi</a>::Multi<a href="CppInt.htm">Integer</a><a href="CppStateObserver.htm">StateObserver</a>::GetEstimate() <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> m_filters.back()-&gt;GetEstimate();<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> Multi<a href="CppInt.htm">Integer</a><a href="CppStateObserver.htm">StateObserver</a>::Update(<b><a href="CppInt.htm">int</a></b>64_t measurement)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::Multi<a href="CppInt.htm">Integer</a><a href="CppStateObserver.htm">StateObserver</a>::Update(<b><a href="CppInt.htm">int</a></b>64_t measurement)<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppSize_t.htm">std::size_t</a> sz <a href="CppOperatorAssign.htm">=</a> m_filters.size();<br/>
 &nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<a href="CppSize_t.htm">std::size_t</a> i <a href="CppOperatorAssign.htm">=</a> 0; i<a href="CppOperatorNotEqual.htm">!=</a>sz; <a href="CppOperatorPlus.htm">+</a>+i)<br/>
@@ -963,12 +910,12 @@ Multi<a href="CppInt.htm">Integer</a><a href="CppStateObserver.htm">StateObserve
 &nbsp;&nbsp;}<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> Multi<a href="CppInt.htm">Integer</a><a href="CppStateObserver.htm">StateObserver</a>::Get<a href="CppVersion.htm">Version</a>()<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppRibi.htm\">ribi</a>::Multi<a href="CppInt.htm">Integer</a><a href="CppStateObserver.htm">StateObserver</a>::Get<a href="CppVersion.htm">Version</a>()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> "1.1";<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; Multi<a href="CppInt.htm">Integer</a><a href="CppStateObserver.htm">StateObserver</a>::Get<a href="CppVersion.htm">Version</a>History()<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm\">ribi</a>::Multi<a href="CppInt.htm">Integer</a><a href="CppStateObserver.htm">StateObserver</a>::Get<a href="CppVersion.htm">Version</a>History()<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v;<br/>
 &nbsp;&nbsp;v.push_back("2013-06-04: <a href="CppVersion.htm">version</a> 1.0: initial <a href="CppVersion.htm">version</a>");<br/>
@@ -989,6 +936,8 @@ Multi<a href="CppInt.htm">Integer</a><a href="CppStateObserver.htm">StateObserve
 <a href="CppIfndef.htm">#ifndef</a> STATEOBSERVERFWD_H<br/>
 <a href="CppDefine.htm">#define</a> STATEOBSERVERFWD_H<br/>
 <br/>
+<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a> {<br/>
+<br/>
 <b><a href="CppStruct.htm">struct</a></b> AlphaFilter;<br/>
 <b><a href="CppStruct.htm">struct</a></b> AlphaBetaFilter;<br/>
 <b><a href="CppStruct.htm">struct</a></b> AlphaBetaGammaFilter;<br/>
@@ -999,6 +948,8 @@ Multi<a href="CppInt.htm">Integer</a><a href="CppStateObserver.htm">StateObserve
 <b><a href="CppStruct.htm">struct</a></b> <a href="CppInt.htm">Integer</a>SymmetricalAlphaFilter;<br/>
 <b><a href="CppStruct.htm">struct</a></b> Multi<a href="CppInt.htm">Integer</a><a href="CppStateObserver.htm">StateObserver</a>;<br/>
 <b><a href="CppStruct.htm">struct</a></b> MultiAlphaFilter;<br/>
+<br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a><br/>
 <br/>
 <a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> STATEOBSERVERFWD_H<br/>
 </code></td></tr></table>

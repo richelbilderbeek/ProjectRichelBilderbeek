@@ -6,7 +6,7 @@
 #include "qtknokfighterplayer.h"
 #include "trace.h"
 
-QtKnokfighterMainDialog::QtKnokfighterMainDialog(QWidget *parent) :
+ribi::QtKnokfighterMainDialog::QtKnokfighterMainDialog(QWidget *parent) :
   QGraphicsView(parent),
   m_background(new QtKnokfighterBackground(800,600)),
   m_players(
@@ -42,7 +42,7 @@ QtKnokfighterMainDialog::QtKnokfighterMainDialog(QWidget *parent) :
   }
 }
 
-void QtKnokfighterMainDialog::do_main_timer()
+void ribi::QtKnokfighterMainDialog::do_main_timer()
 {
   //v is the background moving speed. Setting this to e.g. 0.1
   //causes the background to keep the player centered more gradually
@@ -81,7 +81,7 @@ void QtKnokfighterMainDialog::do_main_timer()
   }
 }
 
-void QtKnokfighterMainDialog::keyPressEvent(QKeyEvent *event)
+void ribi::QtKnokfighterMainDialog::keyPressEvent(QKeyEvent *event)
 {
   switch(event->key())
   {

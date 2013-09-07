@@ -46,9 +46,18 @@
 <br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppStringH.htm">string</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
+<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-<b><a href="CppTypedef.htm">typedef</a></b>s"<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-but-set-parameter"<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppSignals2.htm">signals2</a>.hpp&gt;<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
+<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppQFont.htm">QFont</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppQtRoundedRectItem.htm">qtroundedrectitem</a>.h"<br/>
+<br/>
+<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a> {<br/>
+<br/>
 <br/>
 <a href="CppComment.htm">///</a>A <a href="CppQt.htm">Qt</a>RoundedRectTextItem displaying multiple lines of text<br/>
 <b><a href="CppStruct.htm">struct</a></b> <a href="CppQt.htm">Qt</a>RoundedEditRectItem : <b><a href="CppPublic.htm">public</a></b> <a href="CppQtRoundedRectItem.htm">QtRoundedRectItem</a><br/>
@@ -122,6 +131,8 @@
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppQRect.htm">QRect</a>F GetPaddedTextRect(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; s) <b><a href="CppConst.htm">const</a></b>;<br/>
 };<br/>
 <br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a><br/>
+<br/>
 <a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> QTROUNDEDEDITRECTITEM_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
@@ -134,16 +145,11 @@
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="qtroundededitrectitem.cpp" border = "1"><tr><td><code>
-<a href="CppIfdef.htm">#ifdef</a> _WIN32<br/>
-<a href="CppComment.htm">//</a>See http://www.richelbilderbeek.nl/Cpp<a href="CppCompile.htm">Compile</a>ErrorUnableToFindNumericLiteralOperatorOperatorQ.htm<br/>
-<a href="CppPreIf.htm">#if</a> !(__GNUC__ <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 4 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> __GNUC_MINOR__ <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 8)<br/>
-<a href="CppComment.htm">//</a>See http://www.richelbilderbeek.nl/Cpp<a href="CppCompile.htm">Compile</a>ErrorSwprintfHasNotBeenDeclared.htm<br/>
-<a href="CppUndef.htm">#undef</a> __STRICT_ANSI__<br/>
-<a href="CppEndif.htm">#endif</a><br/>
-<a href="CppEndif.htm">#endif</a><br/>
 <br/>
-<a href="CppComment.htm">//</a><a href="CppInclude.htm">#include</a> own <a href="CppHeaderFile.htm">header file</a> as first substantive line of code, from:<br/>
-<a href="CppComment.htm">//</a> * John Lakos. Large-Scale <a href="Cpp.htm">C++</a> Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110<br/>
+<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-<b><a href="CppTypedef.htm">typedef</a></b>s"<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-but-set-parameter"<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppQtRoundedEditRectItem.htm">qtroundededitrectitem</a>.h"<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
@@ -158,9 +164,11 @@
 <br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppTrace.htm">trace</a>.h"<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppQt.htm">Qt</a>RoundedEditRectItem::Padding <a href="CppQt.htm">Qt</a>RoundedEditRectItem::m_text_padding(3.0,0.0,0.0,3.0);<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
 <br/>
-<a href="CppQt.htm">Qt</a>RoundedEditRectItem::<a href="CppQt.htm">Qt</a>RoundedEditRectItem(<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a>RoundedEditRectItem::Padding <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a>RoundedEditRectItem::m_text_padding(3.0,0.0,0.0,3.0);<br/>
+<br/>
+<a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a>RoundedEditRectItem::<a href="CppQt.htm">Qt</a>RoundedEditRectItem(<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt;&amp; text,<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Padding&amp; padding,<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppQFont.htm">QFont</a>&amp; font,<br/>
@@ -185,7 +193,7 @@
 <br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppQRect.htm">QRect</a>F <a href="CppQt.htm">Qt</a>RoundedEditRectItem::GetPaddedTextRect(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; s) <b><a href="CppConst.htm">const</a></b><br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppQRect.htm">QRect</a>F <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a>RoundedEditRectItem::GetPaddedTextRect(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; s) <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> GetTextRect(s).adjusted(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorMinus.htm">-</a>m_text_padding.left,<br/>
@@ -194,7 +202,7 @@
 &nbsp;&nbsp;&nbsp;&nbsp; m_text_padding.bottom);<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppQRect.htm">QRect</a>F <a href="CppQt.htm">Qt</a>RoundedEditRectItem::GetTextRect(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; s) <b><a href="CppConst.htm">const</a></b><br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppQRect.htm">QRect</a>F <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a>RoundedEditRectItem::GetTextRect(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; s) <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> h <a href="CppOperatorAssign.htm">=</a> <a href="CppQFont.htm">QFont</a>MetricsF(m_font).height();<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> w <a href="CppOperatorAssign.htm">=</a> <a href="CppQFont.htm">QFont</a>MetricsF(m_font).width(s.c_str());<br/>
@@ -213,7 +221,7 @@
 <br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppQRect.htm">QRect</a>F <a href="CppQt.htm">Qt</a>RoundedEditRectItem::GetTextRect(<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt;&amp; text) <b><a href="CppConst.htm">const</a></b><br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppQRect.htm">QRect</a>F <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a>RoundedEditRectItem::GetTextRect(<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt;&amp; text) <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppQRect.htm">QRect</a>F&gt; v;<br/>
 &nbsp;&nbsp;<a href="CppTransform.htm">std::transform</a>(text.begin(),text.end(),<a href="CppBack_inserter.htm">std::back_inserter</a>(v),<br/>
@@ -239,19 +247,19 @@
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <a href="CppQRect.htm">QRect</a>F(-0.5 * width,-0.5 * height, width, height).adjusted(-0.0,-0.0,0.0,0.0);<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppQt.htm">Qt</a>RoundedEditRectItem::Get<a href="CppVersion.htm">Version</a>()<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a>RoundedEditRectItem::Get<a href="CppVersion.htm">Version</a>()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> "1.0";<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppQt.htm">Qt</a>RoundedEditRectItem::Get<a href="CppVersion.htm">Version</a>History()<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a>RoundedEditRectItem::Get<a href="CppVersion.htm">Version</a>History()<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v;<br/>
 &nbsp;&nbsp;v.push_back("2012-12-19: <a href="CppVersion.htm">version</a> 1.0: initial <a href="CppVersion.htm">version</a>");<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a>RoundedEditRectItem::keyPressEvent(<a href="CppQKeyEvent.htm">QKeyEvent</a>* event)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a>RoundedEditRectItem::keyPressEvent(<a href="CppQKeyEvent.htm">QKeyEvent</a>* event)<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppSwitch.htm">switch</a></b> (event-&gt;key())<br/>
 &nbsp;&nbsp;{<br/>
@@ -262,7 +270,7 @@
 &nbsp;&nbsp;<a href="CppQtRoundedRectItem.htm">QtRoundedRectItem</a>::keyPressEvent(event);<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a>RoundedEditRectItem::paint(<a href="CppQPainter.htm">QPainter</a>* painter, <b><a href="CppConst.htm">const</a></b> <a href="CppQStyleOptionGraphicsItem.htm">QStyleOptionGraphicsItem</a>* option, <a href="CppQWidget.htm">QWidget</a>* <a href="CppWidget.htm">widget</a>)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a>RoundedEditRectItem::paint(<a href="CppQPainter.htm">QPainter</a>* painter, <b><a href="CppConst.htm">const</a></b> <a href="CppQStyleOptionGraphicsItem.htm">QStyleOptionGraphicsItem</a>* option, <a href="CppQWidget.htm">QWidget</a>* <a href="CppWidget.htm">widget</a>)<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppOperatorDivide.htm">/</a>*<br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;SetRoundedRect(<br/>
@@ -315,7 +323,9 @@
 &nbsp;&nbsp;}<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a>RoundedEditRectItem::SetFont(<b><a href="CppConst.htm">const</a></b> <a href="CppQFont.htm">QFont</a>&amp; font)<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-but-set-parameter"<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a>RoundedEditRectItem::SetFont(<b><a href="CppConst.htm">const</a></b> <a href="CppQFont.htm">QFont</a>&amp; font)<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (m_font <a href="CppOperatorNotEqual.htm">!=</a> font)<br/>
 &nbsp;&nbsp;{<br/>
@@ -324,8 +334,9 @@
 &nbsp;&nbsp;&nbsp;&nbsp;m_signal_request_scene_update();<br/>
 &nbsp;&nbsp;}<br/>
 }<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a>RoundedEditRectItem::SetPadding(<b><a href="CppConst.htm">const</a></b> Padding&amp; padding)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a>RoundedEditRectItem::SetPadding(<b><a href="CppConst.htm">const</a></b> Padding&amp; padding)<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> ( padding.bottom <a href="CppOperatorNotEqual.htm">!=</a> m_padding.bottom<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorLogicalOr.htm">||</a> padding.left&nbsp;&nbsp; <a href="CppOperatorNotEqual.htm">!=</a> m_padding.left<br/>
@@ -349,7 +360,7 @@
 &nbsp;&nbsp;}<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a>RoundedEditRectItem::SetText(<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt;&amp; text)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a>RoundedEditRectItem::SetText(<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt;&amp; text)<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (text <a href="CppOperatorNotEqual.htm">!=</a> m_text)<br/>
 &nbsp;&nbsp;{<br/>

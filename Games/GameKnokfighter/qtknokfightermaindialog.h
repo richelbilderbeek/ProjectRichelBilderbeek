@@ -4,10 +4,13 @@
 #include <boost/shared_ptr.hpp>
 #include <QGraphicsView>
 
-struct QtKnokfighterBackground;
 struct QGraphicsScene;
-struct QtKnokfighterPlayer;
 struct QKeyEvent;
+
+namespace ribi {
+
+struct QtKnokfighterBackground;
+struct QtKnokfighterPlayer;
 
 class QtKnokfighterMainDialog : public QGraphicsView
 {
@@ -30,5 +33,7 @@ class QtKnokfighterMainDialog : public QGraphicsView
   std::vector<boost::shared_ptr<QtKnokfighterPlayer> > m_players;
   QGraphicsScene * const m_scene;
 };
+
+} //~namespace ribi
 
 #endif // QTKNOKFIGHTERMAINDIALOG_H

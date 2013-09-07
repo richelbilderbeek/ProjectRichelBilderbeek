@@ -470,7 +470,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(p);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> p;<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<b><a href="CppCatch.htm">catch</a></b>(<a href="CppException.htm">std::exception</a>&amp;)<br/>
+&nbsp;&nbsp;<b><a href="CppCatch.htm">catch</a></b>(<a href="CppStdException.htm">std::exception</a>&amp;)<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>No problem<br/>
 &nbsp;&nbsp;}<br/>
@@ -905,7 +905,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/Obtain the <a href="CppAbout.htm">about</a> information<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/\note<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>/This is a non-<b><a href="CppStatic.htm">static</a></b> method, to ensure users of <b><a href="CppThis.htm">this</a></b> <b><a href="CppClass.htm">class</a></b><br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/This is a non-<b><a href="CppStatic.htm">static</a></b> <a href="CppMemberFunction.htm">member function</a>, to ensure users of <b><a href="CppThis.htm">this</a></b> <b><a href="CppClass.htm">class</a></b><br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/call Test<a href="CppOpenQuestion.htm">OpenQuestion</a>MenuDialog its <a href="CppConstructor.htm">constructor</a>: <b><a href="CppThis.htm">this</a></b> is where<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/the resources needed are created<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppAbout.htm">About</a> GetAbout() <b><a href="CppConst.htm">const</a></b>;<br/>
@@ -1239,7 +1239,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;ui.m_label-&gt;setText("Successfully parsed an open <a href="CppQuestion.htm">question</a>");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b>;<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<b><a href="CppCatch.htm">catch</a></b>(<a href="CppException.htm">std::exception</a>&amp;)<br/>
+&nbsp;&nbsp;<b><a href="CppCatch.htm">catch</a></b>(<a href="CppStdException.htm">std::exception</a>&amp;)<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>No problem<br/>
 &nbsp;&nbsp;}<br/>
@@ -1256,7 +1256,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;ui.m_label-&gt;setText("Successfully parsed a multiple choice <a href="CppQuestion.htm">question</a>");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b>;<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<b><a href="CppCatch.htm">catch</a></b>(<a href="CppException.htm">std::exception</a>&amp;)<br/>
+&nbsp;&nbsp;<b><a href="CppCatch.htm">catch</a></b>(<a href="CppStdException.htm">std::exception</a>&amp;)<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>No problem<br/>
 &nbsp;&nbsp;}<br/>

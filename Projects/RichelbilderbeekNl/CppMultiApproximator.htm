@@ -54,8 +54,10 @@
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> "approximator.h"<br/>
-<a href="CppInclude.htm">#include</a> "exceptionnoextrapolation.h"<br/>
+<a href="CppInclude.htm">#include</a> "<a href="CppException.htm">exception</a>noextrapolation.h"<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppTrace.htm">trace</a>.h"<br/>
+<br/>
+<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a> {<br/>
 <br/>
 <a href="CppComment.htm">///</a>MultiApproximator can estimate a value between (non-unique) keys.<br/>
 <a href="CppComment.htm">///</a>For example, supply Approximator&lt;X,Y&gt; with (1.0,10) and (2.0,20)<br/>
@@ -80,7 +82,7 @@
 &nbsp;&nbsp;<b><a href="CppTypedef.htm">typedef</a></b> <b><a href="CppTypename.htm">typename</a></b> <a href="CppContainer.htm">Container</a>::const_iterator <a href="CppIterator.htm">Iterator</a>;<br/>
 &nbsp;&nbsp;<b><a href="CppTypedef.htm">typedef</a></b> <b><a href="CppTypename.htm">typename</a></b> <a href="CppPair.htm">std::pair</a>&lt;<a href="CppIterator.htm">Iterator</a>,<a href="CppIterator.htm">Iterator</a>&gt; Range;<br/>
 <br/>
-&nbsp;&nbsp;MultiApproximator(<b><a href="CppConst.htm">const</a></b> <a href="CppContainer.htm">Container</a>&amp; <a href="CppContainer.htm">container</a> <a href="CppOperatorAssign.htm">=</a> <a href="CppContainer.htm">Container</a>());<br/>
+&nbsp;&nbsp;<b><a href="CppExplicit.htm">explicit</a></b> MultiApproximator(<b><a href="CppConst.htm">const</a></b> <a href="CppContainer.htm">Container</a>&amp; <a href="CppContainer.htm">container</a> <a href="CppOperatorAssign.htm">=</a> <a href="CppContainer.htm">Container</a>());<br/>
 <br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> <a href="CppAdd.htm">Add</a>(<b><a href="CppConst.htm">const</a></b> Key&amp; key, <b><a href="CppConst.htm">const</a></b> Value&amp; value);<br/>
 <br/>
@@ -95,6 +97,9 @@
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/Get the lowest key value<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Key GetMin() <b><a href="CppConst.htm">const</a></b>;<br/>
 <br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Obtain the <b><a href="CppTrue.htm">true</a></b> or averaged value at the key when the key is present<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Value GetValue(<b><a href="CppConst.htm">const</a></b> Key&amp; key) <b><a href="CppConst.htm">const</a></b>;<br/>
+<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/Obtain the <a href="CppVersion.htm">version</a> of <b><a href="CppThis.htm">this</a></b> <b><a href="CppClass.htm">class</a></b><br/>
 &nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> Get<a href="CppVersion.htm">Version</a>();<br/>
 <br/>
@@ -105,16 +110,15 @@
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/The <a href="CppContainer.htm">container</a> to store the <a href="CppPair.htm">std::pair</a>&lt;Key,Value&gt; in<br/>
 &nbsp;&nbsp;<a href="CppContainer.htm">Container</a> m_m;<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Obtain the <b><a href="CppTrue.htm">true</a></b> or averaged value at the key when the key is present<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Value GetValue(<b><a href="CppConst.htm">const</a></b> Key&amp; key) <b><a href="CppConst.htm">const</a></b>;<br/>
-<br/>
 &nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/Test <b><a href="CppThis.htm">this</a></b> <b><a href="CppClass.htm">class</a></b><br/>
 &nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppVoid.htm">void</a></b> Test();<br/>
 &nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppTemplate.htm">template</a></b> &lt;<b><a href="CppClass.htm">class</a></b> AnyKey, <b><a href="CppClass.htm">class</a></b> AnyValue, <b><a href="CppClass.htm">class</a></b> Any<a href="CppContainer.htm">Container</a>&gt;<br/>
-&nbsp;&nbsp;<b><a href="CppFriend.htm">friend</a></b> <b><a href="CppVoid.htm">void</a></b> MultiApproximator&lt;AnyKey,AnyValue,Any<a href="CppContainer.htm">Container</a>&gt;::Test();<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppTemplate.htm">template</a></b> &lt;<b><a href="CppClass.htm">class</a></b> AnyKey, <b><a href="CppClass.htm">class</a></b> AnyValue, <b><a href="CppClass.htm">class</a></b> Any<a href="CppContainer.htm">Container</a>&gt;<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppFriend.htm">friend</a></b> <b><a href="CppVoid.htm">void</a></b> MultiApproximator&lt;AnyKey,AnyValue,Any<a href="CppContainer.htm">Container</a>&gt;::Test();<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppFriend.htm">friend</a></b> <b><a href="CppVoid.htm">void</a></b> MultiApproximator&lt;Key,Value,<a href="CppContainer.htm">Container</a>&gt;::Test();<br/>
+<br/>
 <br/>
 };<br/>
 <br/>
@@ -136,7 +140,7 @@
 <br/>
 <b><a href="CppTemplate.htm">template</a></b> &lt;<b><a href="CppClass.htm">class</a></b> Key, <b><a href="CppClass.htm">class</a></b> Value, <b><a href="CppClass.htm">class</a></b> <a href="CppContainer.htm">Container</a>&gt;<br/>
 MultiApproximator&lt;Key,Value,<a href="CppContainer.htm">Container</a>&gt;::MultiApproximator(<b><a href="CppConst.htm">const</a></b> <a href="CppContainer.htm">Container</a>&amp; <a href="CppContainer.htm">container</a>)<br/>
-&nbsp;&nbsp;: m_m(<a href="CppContainer.htm">container</a>)<br/>
+&nbsp;&nbsp;: m_m { <a href="CppContainer.htm">container</a> }<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppStatic_assert.htm">static_assert</a></b>(!<a href="CppStd.htm">std</a>::is_integral&lt;Key&gt;(),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;"MultiApproximator will not work on <a href="CppInt.htm">integer</a> keys");<br/>
@@ -159,31 +163,29 @@ MultiApproximator&lt;Key,Value,<a href="CppContainer.htm">Container</a>&gt;::Mul
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Must the average be calculated?<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (m_m.find(key) <a href="CppOperatorNotEqual.htm">!=</a> m_m.end()) <b><a href="CppReturn.htm">return</a></b> GetValue(key);<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppIterator.htm">Iterator</a> high <a href="CppOperatorAssign.htm">=</a> m_m.lower_bound(key);<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppIterator.htm">Iterator</a> high { m_m.lower_bound(key) };<br/>
 <br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (high <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> m_m.begin() <a href="CppOperatorLogicalOr.htm">||</a> high <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> m_m.end())<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!m_m.empty());<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Key lowest&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> (*m_m.begin()).first;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Key highest <a href="CppOperatorAssign.htm">=</a> (*m_m.rbegin()).first;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThrow.htm">throw</a></b> ExceptionNoExtrapolation&lt;Key&gt;(key, lowest, highest);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Key lowest&nbsp;&nbsp;{ (*m_m.begin()).first&nbsp;&nbsp;};<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Key highest { (*m_m.rbegin()).first };<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThrow.htm">throw</a></b> <a href="CppException.htm">Exception</a>NoExtrapolation&lt;Key&gt;(key, lowest, highest);<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppIterator.htm">Iterator</a> low <a href="CppOperatorAssign.htm">=</a> <a href="CppOperatorMinus.htm">-</a>-<a href="CppIterator.htm">Iterator</a>(high);<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppIterator.htm">Iterator</a> low { <a href="CppOperatorMinus.htm">-</a>-<a href="CppIterator.htm">Iterator</a>(high) };<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(low <a href="CppOperatorNotEqual.htm">!=</a> m_m.end());<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(high <a href="CppOperatorNotEqual.htm">!=</a> m_m.end());<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Key d_low <a href="CppOperatorAssign.htm">=</a> (*low).first;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Key d_high <a href="CppOperatorAssign.htm">=</a> (*high).first;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Key d_low&nbsp;&nbsp;{ (*low).first&nbsp;&nbsp;};<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Key d_high { (*high).first };<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(d_low &lt; key);<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(d_high &gt; key);<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> fraction<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> (key <a href="CppOperatorMinus.htm">-</a> d_low)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorDivide.htm">/</a> (d_high <a href="CppOperatorMinus.htm">-</a> d_low);<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> fraction { (key <a href="CppOperatorMinus.htm">-</a> d_low) <a href="CppOperatorDivide.htm">/</a> (d_high <a href="CppOperatorMinus.htm">-</a> d_low) };<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(fraction <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 0.0);<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(fraction <a href="CppOperatorLessEqual.htm">&lt;=</a> 1.0);<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(m_m.find(d_low)&nbsp;&nbsp;<a href="CppOperatorNotEqual.htm">!=</a> m_m.end());<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(m_m.find(d_high) <a href="CppOperatorNotEqual.htm">!=</a> m_m.end());<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Value h_low&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> GetValue(d_low);<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Value h_high <a href="CppOperatorAssign.htm">=</a> GetValue(d_high);<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Value h_low&nbsp;&nbsp;{ GetValue(d_low)&nbsp;&nbsp;};<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Value h_high { GetValue(d_high) };<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> ((1.0 <a href="CppOperatorMinus.htm">-</a> fraction)) * h_low <a href="CppOperatorPlus.htm">+</a> ((0.0 <a href="CppOperatorPlus.htm">+</a> fraction) * h_high);<br/>
 }<br/>
 <br/>
@@ -207,7 +209,7 @@ MultiApproximator&lt;Key,Value,<a href="CppContainer.htm">Container</a>&gt;::Mul
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(m_m.find(key) <a href="CppOperatorNotEqual.htm">!=</a> m_m.end());<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Must the average be calculated?<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Range r <a href="CppOperatorAssign.htm">=</a> m_m.equal_range(key);<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Range r { m_m.equal_range(key) };<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(r.first <a href="CppOperatorNotEqual.htm">!=</a> m_m.end());<br/>
 <br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (r.first <a href="CppOperatorNotEqual.htm">!=</a> r.second )<br/>
@@ -215,19 +217,19 @@ MultiApproximator&lt;Key,Value,<a href="CppContainer.htm">Container</a>&gt;::Mul
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppConst.htm">const</a></b> Value result <a href="CppOperatorAssign.htm">=</a> <a href="CppAccumulate.htm">std::accumulate</a>(r.first,r.second,Value(0.0), [] )<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>&nbsp;&nbsp;<a href="CppOperatorDivide.htm">/</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;( <a href="CppDistance.htm">std::distance</a>(r.first,r.second) );<br/>
 <br/>
-&nbsp;&nbsp;&nbsp;&nbsp;Value sum(0.0);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> cnt <a href="CppOperatorAssign.htm">=</a> 0;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<a href="CppIterator.htm">Iterator</a> i <a href="CppOperatorAssign.htm">=</a> r.first; i<a href="CppOperatorNotEqual.htm">!=</a>r.second; <a href="CppOperatorPlus.htm">+</a>+i)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Value sum { 0.0 };<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> cnt { 0 };<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<a href="CppIterator.htm">Iterator</a> i { r.first }; i<a href="CppOperatorNotEqual.htm">!=</a>r.second; <a href="CppOperatorPlus.htm">+</a>+i)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sum <a href="CppOperatorPlus.htm">+</a><a href="CppOperatorAssign.htm">=</a> (*i).second;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a>+cnt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Value result( sum <a href="CppOperatorDivide.htm">/</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(cnt));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Value result { sum <a href="CppOperatorDivide.htm">/</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(cnt) };<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> result;<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;<b><a href="CppElse.htm">else</a></b><br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Value result((*r.first).second);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Value result { (*r.first).second };<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> result;<br/>
 &nbsp;&nbsp;}<br/>
 }<br/>
@@ -242,9 +244,10 @@ MultiApproximator&lt;Key,Value,<a href="CppContainer.htm">Container</a>&gt;::Mul
 <b><a href="CppTemplate.htm">template</a></b> &lt;<b><a href="CppClass.htm">class</a></b> Key, <b><a href="CppClass.htm">class</a></b> Value, <b><a href="CppClass.htm">class</a></b> <a href="CppContainer.htm">Container</a>&gt;<br/>
 <b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; MultiApproximator&lt;Key,Value,<a href="CppContainer.htm">Container</a>&gt;::Get<a href="CppVersion.htm">Version</a>History()<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v;<br/>
-&nbsp;&nbsp;v.push_back("2013-08-23: <a href="CppVersion.htm">version</a> 1.0: initial <a href="CppVersion.htm">version</a>");<br/>
-&nbsp;&nbsp;v.push_back("2013-08-23: <a href="CppVersion.htm">version</a> 1.0: add con<a href="CppVersion.htm">version</a> to an Approximator");<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"2013-08-23: <a href="CppVersion.htm">version</a> 1.0: initial <a href="CppVersion.htm">version</a>",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"2013-08-23: <a href="CppVersion.htm">version</a> 1.1: add con<a href="CppVersion.htm">version</a> to an Approximator"<br/>
+&nbsp;&nbsp;};<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
 }<br/>
 <br/>
@@ -395,6 +398,7 @@ MultiApproximator&lt;Key,Value,<a href="CppContainer.htm">Container</a>&gt;::Mul
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> a;<br/>
 }<br/>
 <br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a><br/>
 <br/>
 <a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> MULTIAPPROXIMATOR_H<br/>
 </code></td></tr></table>
@@ -408,6 +412,7 @@ MultiApproximator&lt;Key,Value,<a href="CppContainer.htm">Container</a>&gt;::Mul
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="multiapproximator.cpp" border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> "multiapproximator.h"<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>

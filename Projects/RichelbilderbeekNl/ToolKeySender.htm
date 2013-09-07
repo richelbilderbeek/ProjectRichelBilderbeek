@@ -70,24 +70,24 @@ WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, <b><a href="CppInt.htm">int</a></b>)
 {<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppTry.htm">try</a></b><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppApplication.htm">Application</a>-&gt;Initialize();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppApplication.htm">Application</a>-&gt;<a href="CppInitialize.htm">Initialize</a>();<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppApplication.htm">Application</a>-&gt;Title <a href="CppOperatorAssign.htm">=</a> "KeySender";<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppApplication.htm">Application</a>-&gt;CreateForm(__classid(TFormKeySender), &amp;FormKeySender);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppApplication.htm">Application</a>-&gt;Run();<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCatch.htm">catch</a></b> (Exception &amp;exception)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCatch.htm">catch</a></b> (<a href="CppException.htm">Exception</a> &amp;<a href="CppException.htm">exception</a>)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppApplication.htm">Application</a>-&gt;ShowException(&amp;exception);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppApplication.htm">Application</a>-&gt;Show<a href="CppException.htm">Exception</a>(&amp;<a href="CppException.htm">exception</a>);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCatch.htm">catch</a></b> (...)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b><a href="CppTry.htm">try</a></b><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b><a href="CppThrow.htm">throw</a></b> Exception("");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b><a href="CppThrow.htm">throw</a></b> <a href="CppException.htm">Exception</a>("");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b><a href="CppCatch.htm">catch</a></b> (Exception &amp;exception)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b><a href="CppCatch.htm">catch</a></b> (<a href="CppException.htm">Exception</a> &amp;<a href="CppException.htm">exception</a>)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppApplication.htm">Application</a>-&gt;ShowException(&amp;exception);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppApplication.htm">Application</a>-&gt;Show<a href="CppException.htm">Exception</a>(&amp;<a href="CppException.htm">exception</a>);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> 0;<br/>
@@ -523,7 +523,7 @@ History<br/>
 &nbsp;&nbsp;* <a href="CppAdd.htm">Add</a>ed {BEEP X Y}<br/>
 &nbsp;&nbsp;* <a href="CppAdd.htm">Add</a>ed {APPACTIVATE WindowTitle}<br/>
 &nbsp;&nbsp;* <a href="CppAdd.htm">Add</a>ed CarryDelay() and now delay works properly with all keys<br/>
-&nbsp;&nbsp;* <a href="CppAdd.htm">Add</a>ed SetDelay() method<br/>
+&nbsp;&nbsp;* <a href="CppAdd.htm">Add</a>ed SetDelay() <a href="CppMemberFunction.htm">member function</a><br/>
 &nbsp;&nbsp;* Fixed code in AppActivate that allowed to pass both <a href="CppNULL.htm">NULL</a> windowTitle/windowClass<br/>
 <br/>
 05/21/2004<br/>
@@ -1061,7 +1061,7 @@ BOOL CALLBACK CSendKeys::<b><a href="CppEnum.htm">enum</a></b>windowsProc()<br/
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (w<b><a href="CppClass.htm">class</a></b>)<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;TCHAR szClass[300];<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>RJCB: Remove method argument<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>RJCB: Remove <a href="CppMemberFunction.htm">member function</a> argument<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppIf.htm">if</a></b> (::GetClassName(hwnd, szClass, <b><a href="CppSizeof.htm">sizeof</a></b>(szClass)))<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>RJCB: Use member variable instead<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (::GetClassName(<b><a href="CppEnum.htm">enum</a></b>windowsProc_hwnd, szClass, <b><a href="CppSizeof.htm">sizeof</a></b>(szClass)))<br/>
@@ -1071,7 +1071,7 @@ BOOL CALLBACK CSendKeys::<b><a href="CppEnum.htm">enum</a></b>windowsProc()<br/
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (wtitle)<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;TCHAR szTitle[300];<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>RJCB: Remove method argument<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>RJCB: Remove <a href="CppMemberFunction.htm">member function</a> argument<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppIf.htm">if</a></b> (::GetWindowText(hwnd, szTitle, <b><a href="CppSizeof.htm">sizeof</a></b>(szTitle)))<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>RJCB: Use member variable instead<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (::GetWindowText(<b><a href="CppEnum.htm">enum</a></b>windowsProc_hwnd, szTitle, <b><a href="CppSizeof.htm">sizeof</a></b>(szTitle)))<br/>
@@ -1080,7 +1080,7 @@ BOOL CALLBACK CSendKeys::<b><a href="CppEnum.htm">enum</a></b>windowsProc()<br/
 <br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (bMatch)<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>RJCB: Removed method argument hwnd<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>RJCB: Removed <a href="CppMemberFunction.htm">member function</a> argument hwnd<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>t-&gt;hwnd <a href="CppOperatorAssign.htm">=</a> hwnd;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>RJCB: Now use member variable instead<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;t-&gt;hwnd <a href="CppOperatorAssign.htm">=</a> <b><a href="CppEnum.htm">enum</a></b>windowsProc_hwnd;<br/>
@@ -1129,7 +1129,7 @@ BOOL CALLBACK CSendKeys::<b><a href="CppEnum.htm">enum</a></b>windowsProc()<br/
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>RJCB: [<a href="Cpp.htm">C++</a> Error] SendKeys.cpp(626): E2034 Cannot <a href="CppConvert.htm">convert</a> '<b><a href="CppInt.htm">int</a></b> (__<a href="CppStd.htm">std</a>call *)(<b><a href="CppVoid.htm">void</a></b> *,<b><a href="CppLong.htm">long</a></b>)' to '<b><a href="CppInt.htm">int</a></b> (__<a href="CppStd.htm">std</a>call *)()'<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>RJCB: Removed the arguments<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>::Enum<a href="CppWindows.htm">Windows</a>(<b><a href="CppEnum.htm">enum</a></b>windowsProc, (LPARAM) &amp; t);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>RJCB: Initializes <b><a href="CppStatic.htm">static</a></b> member variables<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>RJCB: <a href="CppInitialize.htm">Initialize</a>s <b><a href="CppStatic.htm">static</a></b> member variables<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;CSendKeys::<b><a href="CppEnum.htm">enum</a></b>windowsProc_lParam <a href="CppOperatorAssign.htm">=</a> (LPARAM) &amp; t;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;CSendKeys::<b><a href="CppEnum.htm">enum</a></b>windowsProc_hwnd <a href="CppOperatorAssign.htm">=</a> 0; <a href="CppComment.htm">//</a>?<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>RJCB: Use <b><a href="CppStatic.htm">static</a></b> member variables instead<br/>

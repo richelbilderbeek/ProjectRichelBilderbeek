@@ -232,6 +232,8 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppUtilityH.htm">utility</a>&gt;<br/>
 <br/>
+<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a> {<br/>
+<br/>
 <b><a href="CppNamespace.htm">namespace</a></b> <a href="GameBoenken.htm">Boenken</a> {<br/>
 <br/>
 <b><a href="CppEnum.htm">enum</a></b> Formation<br/>
@@ -254,6 +256,8 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 };<br/>
 <br/>
 } <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="GameBoenken.htm">Boenken</a><br/>
+<br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a><br/>
 <br/>
 <a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> BOENKENARENASETTINGS_H<br/>
 </code></td></tr></table>
@@ -294,6 +298,8 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppStringH.htm">string</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
 <br/>
+<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a> {<br/>
+<br/>
 <b><a href="CppNamespace.htm">namespace</a></b> <a href="GameBoenken.htm">Boenken</a> {<br/>
 <br/>
 <a href="CppComment.htm">///</a>Controls contains the control keys<br/>
@@ -307,6 +313,8 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 };<br/>
 <br/>
 } <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="GameBoenken.htm">Boenken</a><br/>
+<br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a><br/>
 <br/>
 <a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> BOENKENCONTROLS_H<br/>
 </code></td></tr></table>
@@ -352,6 +360,8 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppInclude.htm">#include</a> "<a href="GameBoenken.htm">boenken</a>sprite.h"<br/>
 <br/>
 <b><a href="CppStruct.htm">struct</a></b> <a href="CppQPainter.htm">QPainter</a>;<br/>
+<br/>
+<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a> {<br/>
 <br/>
 <b><a href="CppNamespace.htm">namespace</a></b> <a href="GameBoenken.htm">Boenken</a> {<br/>
 <br/>
@@ -407,10 +417,9 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <br/>
 };<br/>
 <br/>
-<br/>
-<br/>
-<br/>
 } <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="GameBoenken.htm">Boenken</a><br/>
+<br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a><br/>
 <br/>
 <a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> BOENKENGAME_H<br/>
 </code></td></tr></table>
@@ -445,8 +454,8 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="GameBoenken.htm">GameBoenken</a>.htm<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">//</a><a href="CppInclude.htm">#include</a> own <a href="CppHeaderFile.htm">header file</a> as first substantive line of code, from:<br/>
-<a href="CppComment.htm">//</a> * John Lakos. Large-Scale <a href="Cpp.htm">C++</a> Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110<br/>
+<br/>
+<br/>
 <a href="CppInclude.htm">#include</a> "<a href="GameBoenken.htm">boenken</a>game.h"<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppBOOST_FOREACH.htm">foreach</a>.hpp&gt;<br/>
@@ -461,9 +470,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppInclude.htm">#include</a> "<a href="GameBoenken.htm">boenken</a>spriteplayer.h"<br/>
 <br/>
 <br/>
-<b><a href="CppNamespace.htm">namespace</a></b> <a href="GameBoenken.htm">Boenken</a> {<br/>
-<br/>
-Game::Game(<br/>
+<a href="CppRibi.htm\">ribi</a>::<a href="GameBoenken.htm">Boenken</a>::Game::Game(<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> ArenaSettings&amp; arena_settings,<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Controls&amp; controls,<br/>
 &nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;SpritePlayer&nbsp;&nbsp; &gt; &gt; players,<br/>
@@ -505,7 +512,7 @@ Game::Game(<br/>
 &nbsp;&nbsp;SpriteBall::SetGoalPoles(goal_y_top,goal_y_bottom);<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;SpriteMoving*&gt; Game::CollectMovingSprites(<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppRibi.htm\">ribi</a>::<a href="GameBoenken.htm">Boenken</a>::SpriteMoving*&gt; <a href="CppRibi.htm\">ribi</a>::<a href="GameBoenken.htm">Boenken</a>::Game::CollectMovingSprites(<br/>
 &nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;SpritePlayer&gt; &gt; players,<br/>
 &nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;SpriteBall&nbsp;&nbsp;&gt; &gt; balls)<br/>
 {<br/>
@@ -527,7 +534,7 @@ Game::Game(<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;Sprite*&gt; Game::CollectSprites(<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppRibi.htm\">ribi</a>::<a href="GameBoenken.htm">Boenken</a>::Sprite*&gt; <a href="CppRibi.htm\">ribi</a>::<a href="GameBoenken.htm">Boenken</a>::Game::CollectSprites(<br/>
 &nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;SpritePlayer&nbsp;&nbsp; &gt; &gt; players,<br/>
 &nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;SpriteBall&nbsp;&nbsp;&nbsp;&nbsp; &gt; &gt; balls,<br/>
 &nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;SpriteNonMoving&gt; &gt; obstacles)<br/>
@@ -557,7 +564,7 @@ Game::Game(<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> Game::drawPlayers(<a href="CppQPainter.htm">QPainter</a>&amp; painter) <b><a href="CppConst.htm">const</a></b><br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="GameBoenken.htm">Boenken</a>::Game::drawPlayers(<a href="CppQPainter.htm">QPainter</a>&amp; painter) <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppBOOST_FOREACH.htm">BOOST_FOREACH</a>(<b><a href="CppConst.htm">const</a></b> Sprite * <b><a href="CppConst.htm">const</a></b> s,m_sprites)<br/>
 &nbsp;&nbsp;{<br/>
@@ -565,23 +572,23 @@ Game::Game(<br/>
 &nbsp;&nbsp;}<br/>
 }<br/>
 <br/>
-<b><a href="CppInt.htm">int</a></b> Game::getHeight() <b><a href="CppConst.htm">const</a></b><br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="GameBoenken.htm">Boenken</a>::Game::getHeight() <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> m_arena_settings.height();<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppPair.htm">std::pair</a>&lt;<b><a href="CppInt.htm">int</a></b>,<b><a href="CppInt.htm">int</a></b>&gt; Game::GetScore() <b><a href="CppConst.htm">const</a></b><br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppPair.htm">std::pair</a>&lt;<b><a href="CppInt.htm">int</a></b>,<b><a href="CppInt.htm">int</a></b>&gt; <a href="CppRibi.htm\">ribi</a>::<a href="GameBoenken.htm">Boenken</a>::Game::GetScore() <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> SpriteBall::GetScore();<br/>
 }<br/>
 <br/>
-<b><a href="CppInt.htm">int</a></b> Game::getWidth() <b><a href="CppConst.htm">const</a></b><br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="GameBoenken.htm">Boenken</a>::Game::getWidth() <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> m_arena_settings.width();<br/>
 }<br/>
 <br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> Game::pressKey(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> key)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="GameBoenken.htm">Boenken</a>::Game::pressKey(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> key)<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppSize_t.htm">std::size_t</a> n_players <a href="CppOperatorAssign.htm">=</a> m_controls.m_names.size();<br/>
 &nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<a href="CppSize_t.htm">std::size_t</a> i=0; i<a href="CppOperatorNotEqual.htm">!=</a>n_players; <a href="CppOperatorPlus.htm">+</a>+i)<br/>
@@ -616,7 +623,7 @@ Game::Game(<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (key <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <a href="CppQt.htm">Qt</a>::Key_F2) <a href="CppExit.htm">std::exit</a>(1);<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> Game::Test()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="GameBoenken.htm">Boenken</a>::Game::Test()<br/>
 {<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppBool.htm">bool</a></b> is_tested <a href="CppOperatorAssign.htm">=</a> <b><a href="CppFalse.htm">false</a></b>;<br/>
@@ -643,7 +650,7 @@ Game::Game(<br/>
 }<br/>
 <br/>
 <a href="CppComment.htm">///</a>Moves all sprites<br/>
-<b><a href="CppVoid.htm">void</a></b> Game::tick()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="GameBoenken.htm">Boenken</a>::Game::tick()<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/Move all moving sprites<br/>
 &nbsp;&nbsp;<a href="CppBOOST_FOREACH.htm">BOOST_FOREACH</a>(SpriteMoving* <b><a href="CppConst.htm">const</a></b> s,m_moving_sprites)<br/>
@@ -677,8 +684,6 @@ Game::Game(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;}<br/>
 }<br/>
-<br/>
-} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="GameBoenken.htm">Boenken</a> {<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -719,6 +724,8 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppAbout.htm">about</a>.h"<br/>
 <br/>
+<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a> {<br/>
+<br/>
 <b><a href="CppNamespace.htm">namespace</a></b> <a href="GameBoenken.htm">Boenken</a> {<br/>
 <br/>
 <b><a href="CppStruct.htm">struct</a></b> MenuDialog<br/>
@@ -734,6 +741,8 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 };<br/>
 <br/>
 } <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="GameBoenken.htm">Boenken</a><br/>
+<br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a><br/>
 <br/>
 <a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> BOENKENMENUDIALOG_H<br/>
 </code></td></tr></table>
@@ -768,13 +777,11 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="GameBoenken.htm">GameBoenken</a>.htm<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">//</a><a href="CppInclude.htm">#include</a> own <a href="CppHeaderFile.htm">header file</a> as first substantive line of code, from:<br/>
-<a href="CppComment.htm">//</a> * John Lakos. Large-Scale <a href="Cpp.htm">C++</a> Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110<br/>
+<br/>
+<br/>
 <a href="CppInclude.htm">#include</a> "<a href="GameBoenken.htm">boenken</a>menudialog.h"<br/>
 <br/>
-<b><a href="CppNamespace.htm">namespace</a></b> <a href="GameBoenken.htm">Boenken</a> {<br/>
-<br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppAbout.htm">About</a> MenuDialog::GetAbout()<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppAbout.htm">About</a> <a href="CppRibi.htm\">ribi</a>::<a href="GameBoenken.htm">Boenken</a>::MenuDialog::GetAbout()<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppAbout.htm">About</a> a(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;"Richel Bilderbeek",<br/>
@@ -788,16 +795,14 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> a;<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> MenuDialog::Get<a href="CppVersion.htm">Version</a>()<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppRibi.htm\">ribi</a>::<a href="GameBoenken.htm">Boenken</a>::MenuDialog::Get<a href="CppVersion.htm">Version</a>()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> "4.1";<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; MenuDialog::Get<a href="CppVersion.htm">Version</a>History()<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm\">ribi</a>::<a href="GameBoenken.htm">Boenken</a>::MenuDialog::Get<a href="CppVersion.htm">Version</a>History()<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b><br/>
-&nbsp;&nbsp;{<br/>
-<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> {<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;"2000-xx-xx: <a href="CppVersion.htm">version</a> 0.0: wrote QBASIC <a href="CppVersion.htm">version</a> of <a href="GameBoenken.htm">Boenken</a>",<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;"2007-10-18: <a href="CppVersion.htm">version</a> 1.0: port from QBASIC to <a href="CppBuilder.htm">C++ Builder</a>",<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;"2007-12-30: <a href="CppVersion.htm">version</a> 2.0: added old-school-graphics mode, two-button control and option to set the friction of the players",<br/>
@@ -807,8 +812,6 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;"2012-11-17: <a href="CppVersion.htm">version</a> 4.1: added a fancy color gradient to the <a href="CppMain.htm">main</a> menu"<br/>
 &nbsp;&nbsp;};<br/>
 }<br/>
-<br/>
-} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="GameBoenken.htm">Boenken</a> {<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -848,6 +851,8 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppNoncopyable.htm">noncopyable</a>.hpp&gt;<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppQPixmap.htm">QPixmap</a>&gt;<br/>
+<br/>
+<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a> {<br/>
 <br/>
 <b><a href="CppNamespace.htm">namespace</a></b> <a href="GameBoenken.htm">Boenken</a> {<br/>
 <br/>
@@ -944,9 +949,9 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <br/>
 };<br/>
 <br/>
-<br/>
-<br/>
 } <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="GameBoenken.htm">Boenken</a><br/>
+<br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a><br/>
 <br/>
 <a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> SPRITE_H<br/>
 </code></td></tr></table>
@@ -981,8 +986,8 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="GameBoenken.htm">GameBoenken</a>.htm<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">//</a><a href="CppInclude.htm">#include</a> own <a href="CppHeaderFile.htm">header file</a> as first substantive line of code, from:<br/>
-<a href="CppComment.htm">//</a> * John Lakos. Large-Scale <a href="Cpp.htm">C++</a> Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110<br/>
+<br/>
+<br/>
 <a href="CppInclude.htm">#include</a> "<a href="GameBoenken.htm">boenken</a>sprite.h"<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
@@ -999,15 +1004,13 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppQPainter.htm">QPainter</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppQPixmap.htm">QPixmap</a>&gt;<br/>
 <br/>
-<b><a href="CppNamespace.htm">namespace</a></b> <a href="GameBoenken.htm">Boenken</a> {<br/>
-<br/>
 <a href="CppComment.htm">///</a>The maximum x coordinat a Sprite can have<br/>
-<b><a href="CppInt.htm">int</a></b> Sprite::m_maxx <a href="CppOperatorAssign.htm">=</a> 320;<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="GameBoenken.htm">Boenken</a>::Sprite::m_maxx <a href="CppOperatorAssign.htm">=</a> 320;<br/>
 <br/>
 <a href="CppComment.htm">///</a>The maximum y coordinat a Sprite can have<br/>
-<b><a href="CppInt.htm">int</a></b> Sprite::m_maxy <a href="CppOperatorAssign.htm">=</a> 200;<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="GameBoenken.htm">Boenken</a>::Sprite::m_maxy <a href="CppOperatorAssign.htm">=</a> 200;<br/>
 <br/>
-Sprite::Sprite(<br/>
+<a href="CppRibi.htm\">ribi</a>::<a href="GameBoenken.htm">Boenken</a>::Sprite::Sprite(<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> x,<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> y,<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> size,<br/>
@@ -1024,28 +1027,28 @@ Sprite::Sprite(<br/>
 &nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
 }<br/>
 <br/>
-<a href="CppQRect.htm">QRect</a> Sprite::rect() <b><a href="CppConst.htm">const</a></b><br/>
+<a href="CppQRect.htm">QRect</a> <a href="CppRibi.htm\">ribi</a>::<a href="GameBoenken.htm">Boenken</a>::Sprite::rect() <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <a href="CppQRect.htm">QRect</a>(m_x,m_y,m_size,m_size);<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppQPixmap.htm">QPixmap</a>&amp; Sprite::pixmap() <b><a href="CppConst.htm">const</a></b><br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppQPixmap.htm">QPixmap</a>&amp; <a href="CppRibi.htm\">ribi</a>::<a href="GameBoenken.htm">Boenken</a>::Sprite::pixmap() <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> m_pixmap;<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> Sprite::Draw(<a href="CppQPainter.htm">QPainter</a>&amp; painter) <b><a href="CppConst.htm">const</a></b><br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="GameBoenken.htm">Boenken</a>::Sprite::Draw(<a href="CppQPainter.htm">QPainter</a>&amp; painter) <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Draw the globe<br/>
 &nbsp;&nbsp;painter.drawPixmap(<b><a href="CppThis.htm">this</a></b>-&gt;rect(),<b><a href="CppThis.htm">this</a></b>-&gt;pixmap());<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> Sprite::Get<a href="CppVersion.htm">Version</a>()<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppRibi.htm\">ribi</a>::<a href="GameBoenken.htm">Boenken</a>::Sprite::Get<a href="CppVersion.htm">Version</a>()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> "1.1";<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; Sprite::Get<a href="CppVersion.htm">Version</a>History()<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm\">ribi</a>::<a href="GameBoenken.htm">Boenken</a>::Sprite::Get<a href="CppVersion.htm">Version</a>History()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b><br/>
 &nbsp;&nbsp;{<br/>
@@ -1055,14 +1058,14 @@ Sprite::Sprite(<br/>
 }<br/>
 <br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> Sprite::setArenaSize(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> width, <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> height)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="GameBoenken.htm">Boenken</a>::Sprite::setArenaSize(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> width, <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> height)<br/>
 {<br/>
 &nbsp;&nbsp;m_maxx <a href="CppOperatorAssign.htm">=</a> width;<br/>
 &nbsp;&nbsp;m_maxy <a href="CppOperatorAssign.htm">=</a> height;<br/>
 }<br/>
 <br/>
 <a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
-<b><a href="CppVoid.htm">void</a></b> Sprite::Test()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="GameBoenken.htm">Boenken</a>::Sprite::Test()<br/>
 {<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppBool.htm">bool</a></b> is_tested <a href="CppOperatorAssign.htm">=</a> <b><a href="CppFalse.htm">false</a></b>;<br/>
@@ -1115,7 +1118,7 @@ Sprite::Sprite(<br/>
 <a href="CppEndif.htm">#endif</a><br/>
 <br/>
 <a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/Cpp<a href="CppDrawGlobe.htm">DrawGlobe</a>.htm<br/>
-<a href="CppQPixmap.htm">QPixmap</a> Sprite::<a href="CppDrawGlobe.htm">DrawGlobe</a>(<br/>
+<a href="CppQPixmap.htm">QPixmap</a> <a href="CppRibi.htm\">ribi</a>::<a href="GameBoenken.htm">Boenken</a>::Sprite::<a href="CppDrawGlobe.htm">DrawGlobe</a>(<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> width,<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> height,<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> r,<br/>
@@ -1183,14 +1186,14 @@ Sprite::Sprite(<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> pixmap;<br/>
 }<br/>
 <br/>
-<b><a href="CppDouble.htm">double</a></b> Sprite::<a href="CppGetAngle.htm">GetAngle</a>(<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> dx, <b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> dy)<br/>
+<b><a href="CppDouble.htm">double</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="GameBoenken.htm">Boenken</a>::Sprite::<a href="CppGetAngle.htm">GetAngle</a>(<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> dx, <b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> dy)<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> pi <a href="CppOperatorAssign.htm">=</a> <a href="CppBoost.htm">boost</a>::math::constants::pi&lt;<b><a href="CppDouble.htm">double</a></b>&gt;();<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> pi <a href="CppOperatorMinus.htm">-</a> <a href="CppAtan.htm">std::atan</a>2(dx,dy);<br/>
 }<br/>
 <br/>
 <a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/Cpp<a href="CppDoPerfectElasticCollision.htm">DoPerfectElasticCollision</a>.htm<br/>
-<b><a href="CppVoid.htm">void</a></b> Sprite::<a href="CppDoPerfectElasticCollision.htm">DoPerfectElasticCollision</a>(<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="GameBoenken.htm">Boenken</a>::Sprite::<a href="CppDoPerfectElasticCollision.htm">DoPerfectElasticCollision</a>(<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> angleCollision,<br/>
 &nbsp;&nbsp;<b><a href="CppDouble.htm">double</a></b>&amp; angle1,<br/>
 &nbsp;&nbsp;<b><a href="CppDouble.htm">double</a></b>&amp; speed1,<br/>
@@ -1245,9 +1248,6 @@ Sprite::Sprite(<br/>
 &nbsp;&nbsp;speed1 <a href="CppOperatorAssign.htm">=</a> <a href="CppSqrt.htm">std::sqrt</a>( (DdX * DdX) <a href="CppOperatorPlus.htm">+</a> (DdY * DdY) ); <a href="CppComment.htm">//</a>Pythagoras<br/>
 &nbsp;&nbsp;speed2 <a href="CppOperatorAssign.htm">=</a> <a href="CppSqrt.htm">std::sqrt</a>( (HdX * HdX) <a href="CppOperatorPlus.htm">+</a> (HdY * HdY) ); <a href="CppComment.htm">//</a>Pythagoras<br/>
 }<br/>
-<br/>
-<br/>
-} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="GameBoenken.htm">Boenken</a><br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -1285,6 +1285,8 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/checked_delete.hpp&gt;<br/>
 <a href="CppInclude.htm">#include</a> "<a href="GameBoenken.htm">boenken</a>spritemoving.h"<br/>
+<br/>
+<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a> {<br/>
 <br/>
 <b><a href="CppNamespace.htm">namespace</a></b> <a href="GameBoenken.htm">Boenken</a> {<br/>
 <br/>
@@ -1327,6 +1329,8 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <br/>
 } <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="GameBoenken.htm">Boenken</a> {<br/>
 <br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a><br/>
+<br/>
 <a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> BOENKENSPRITEBALL_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
@@ -1360,30 +1364,28 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="GameBoenken.htm">GameBoenken</a>.htm<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">//</a><a href="CppInclude.htm">#include</a> own <a href="CppHeaderFile.htm">header file</a> as first substantive line of code, from:<br/>
-<a href="CppComment.htm">//</a> * John Lakos. Large-Scale <a href="Cpp.htm">C++</a> Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110<br/>
+<br/>
+<br/>
 <a href="CppInclude.htm">#include</a> "<a href="GameBoenken.htm">boenken</a>spriteball.h"<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
 <br/>
-<b><a href="CppNamespace.htm">namespace</a></b> <a href="GameBoenken.htm">Boenken</a> {<br/>
-<br/>
 <a href="CppComment.htm">///</a>The y-coordinat of the top goal post<br/>
-<b><a href="CppDouble.htm">double</a></b> SpriteBall::m_goal_y_top <a href="CppOperatorAssign.htm">=</a> 100.0;<br/>
+<b><a href="CppDouble.htm">double</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="GameBoenken.htm">Boenken</a>::SpriteBall::m_goal_y_top <a href="CppOperatorAssign.htm">=</a> 100.0;<br/>
 <br/>
 <a href="CppComment.htm">///</a>The y-coordinat of the bottom goal post<br/>
-<b><a href="CppDouble.htm">double</a></b> SpriteBall::m_goal_y_bottom <a href="CppOperatorAssign.htm">=</a> 300.0;<br/>
+<b><a href="CppDouble.htm">double</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="GameBoenken.htm">Boenken</a>::SpriteBall::m_goal_y_bottom <a href="CppOperatorAssign.htm">=</a> 300.0;<br/>
 <br/>
 <a href="CppComment.htm">///</a>The current score <b><a href="CppFor.htm">for</a></b> the left team<br/>
-<b><a href="CppInt.htm">int</a></b> SpriteBall::m_score_left <a href="CppOperatorAssign.htm">=</a> 0;<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="GameBoenken.htm">Boenken</a>::SpriteBall::m_score_left <a href="CppOperatorAssign.htm">=</a> 0;<br/>
 <br/>
 <a href="CppComment.htm">///</a>The current score <b><a href="CppFor.htm">for</a></b> the right team<br/>
-<b><a href="CppInt.htm">int</a></b> SpriteBall::m_score_right <a href="CppOperatorAssign.htm">=</a> 0;<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="GameBoenken.htm">Boenken</a>::SpriteBall::m_score_right <a href="CppOperatorAssign.htm">=</a> 0;<br/>
 <br/>
 <a href="CppComment.htm">//</a>The number of balls, <b><a href="CppFor.htm">for</a></b> <a href="CppDebug.htm">debugging</a> purposes<br/>
-<b><a href="CppInt.htm">int</a></b> SpriteBall::sm_n_balls <a href="CppOperatorAssign.htm">=</a> 0;<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="GameBoenken.htm">Boenken</a>::SpriteBall::sm_n_balls <a href="CppOperatorAssign.htm">=</a> 0;<br/>
 <br/>
-SpriteBall::SpriteBall(<br/>
+<a href="CppRibi.htm\">ribi</a>::<a href="GameBoenken.htm">Boenken</a>::SpriteBall::SpriteBall(<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> x,<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> y,<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> size,<br/>
@@ -1398,14 +1400,14 @@ SpriteBall::SpriteBall(<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <b><a href="CppThis.htm">this</a></b>-&gt;getY() <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> ")\n";<br/>
 }<br/>
 <br/>
-SpriteBall::~SpriteBall()<br/>
+<a href="CppRibi.htm\">ribi</a>::<a href="GameBoenken.htm">Boenken</a>::SpriteBall::~SpriteBall()<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppOperatorMinus.htm">-</a>-sm_n_balls;<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(sm_n_balls <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 0);<br/>
 }<br/>
 <br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> SpriteBall::SetGoalPoles(<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="GameBoenken.htm">Boenken</a>::SpriteBall::SetGoalPoles(<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> goal_y_top,<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> goal_y_bottom)<br/>
 {<br/>
@@ -1415,7 +1417,7 @@ SpriteBall::~SpriteBall()<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "Assume the top pole is on top");<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> SpriteBall::Move()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="GameBoenken.htm">Boenken</a>::SpriteBall::Move()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> maxx <a href="CppOperatorAssign.htm">=</a> <b><a href="CppThis.htm">this</a></b>-&gt;m_maxx <a href="CppOperatorMinus.htm">-</a> <b><a href="CppThis.htm">this</a></b>-&gt;m_size;<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> maxy <a href="CppOperatorAssign.htm">=</a> <b><a href="CppThis.htm">this</a></b>-&gt;m_maxy <a href="CppOperatorMinus.htm">-</a> <b><a href="CppThis.htm">this</a></b>-&gt;m_size;<br/>
@@ -1474,12 +1476,10 @@ SpriteBall::~SpriteBall()<br/>
 &nbsp;&nbsp;m_dy <a href="CppOperatorMultiplyAssign.htm">*=</a> m_friction;<br/>
 }<br/>
 <br/>
-<a href="CppPair.htm">std::pair</a>&lt;<b><a href="CppInt.htm">int</a></b>,<b><a href="CppInt.htm">int</a></b>&gt; SpriteBall::GetScore()<br/>
+<a href="CppPair.htm">std::pair</a>&lt;<b><a href="CppInt.htm">int</a></b>,<b><a href="CppInt.htm">int</a></b>&gt; <a href="CppRibi.htm\">ribi</a>::<a href="GameBoenken.htm">Boenken</a>::SpriteBall::GetScore()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <a href="CppMake_pair.htm">std::make_pair</a>(m_score_left,m_score_right);<br/>
 }<br/>
-<br/>
-} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="GameBoenken.htm">Boenken</a><br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -1516,6 +1516,8 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppDefine.htm">#define</a> BOENKENSPRITEMOVING_H<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> "<a href="GameBoenken.htm">boenken</a>sprite.h"<br/>
+<br/>
+<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a> {<br/>
 <br/>
 <b><a href="CppNamespace.htm">namespace</a></b> <a href="GameBoenken.htm">Boenken</a> {<br/>
 <br/>
@@ -1562,6 +1564,8 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <br/>
 } <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="GameBoenken.htm">Boenken</a><br/>
 <br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a><br/>
+<br/>
 <a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> BOENKENSPRITEMOVING_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
@@ -1595,8 +1599,6 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="GameBoenken.htm">GameBoenken</a>.htm<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">//</a><a href="CppInclude.htm">#include</a> own <a href="CppHeaderFile.htm">header file</a> as first substantive line of code, from:<br/>
-<a href="CppComment.htm">//</a> * John Lakos. Large-Scale <a href="Cpp.htm">C++</a> Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110<br/>
 <a href="CppInclude.htm">#include</a> "<a href="GameBoenken.htm">boenken</a>spritemoving.h"<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
@@ -1607,17 +1609,15 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/math/constants/constants.hpp&gt;<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
 <br/>
-<b><a href="CppNamespace.htm">namespace</a></b> <a href="GameBoenken.htm">Boenken</a> {<br/>
-<br/>
-<b><a href="CppInt.htm">int</a></b> SpriteMoving::sm_n_moving_sprites <a href="CppOperatorAssign.htm">=</a> 0;<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="GameBoenken.htm">Boenken</a>::SpriteMoving::sm_n_moving_sprites <a href="CppOperatorAssign.htm">=</a> 0;<br/>
 <br/>
 <a href="CppComment.htm">///</a>The fraction of impulse that is conserved \n<br/>
 <a href="CppComment.htm">///</a>1.0: no friction<br/>
 <a href="CppComment.htm">///</a>0.9: some friction<br/>
 <a href="CppComment.htm">///</a>0.1: much friction<br/>
-<b><a href="CppDouble.htm">double</a></b> SpriteMoving::m_friction <a href="CppOperatorAssign.htm">=</a> 0.995;<br/>
+<b><a href="CppDouble.htm">double</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="GameBoenken.htm">Boenken</a>::SpriteMoving::m_friction <a href="CppOperatorAssign.htm">=</a> 0.995;<br/>
 <br/>
-SpriteMoving::SpriteMoving(<br/>
+<a href="CppRibi.htm\">ribi</a>::<a href="GameBoenken.htm">Boenken</a>::SpriteMoving::SpriteMoving(<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> x,<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> y,<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> size,<br/>
@@ -1629,24 +1629,24 @@ SpriteMoving::SpriteMoving(<br/>
 &nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a>+sm_n_moving_sprites;<br/>
 }<br/>
 <br/>
-<b><a href="CppDouble.htm">double</a></b> SpriteMoving::CalcImpulseAngle() <b><a href="CppConst.htm">const</a></b><br/>
+<b><a href="CppDouble.htm">double</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="GameBoenken.htm">Boenken</a>::SpriteMoving::CalcImpulseAngle() <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <a href="CppGetAngle.htm">GetAngle</a>(m_dx,m_dy);<br/>
 }<br/>
 <br/>
-<b><a href="CppDouble.htm">double</a></b> SpriteMoving::CalcImpulseSpeed() <b><a href="CppConst.htm">const</a></b><br/>
+<b><a href="CppDouble.htm">double</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="GameBoenken.htm">Boenken</a>::SpriteMoving::CalcImpulseSpeed() <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <a href="CppSqrt.htm">std::sqrt</a>( (m_dx * m_dx) <a href="CppOperatorPlus.htm">+</a> (m_dy * m_dy) );<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> SpriteMoving::SetFriction(<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> friction)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="GameBoenken.htm">Boenken</a>::SpriteMoving::SetFriction(<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> friction)<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(friction&nbsp;&nbsp;&gt; 0.0);<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(friction <a href="CppOperatorLessEqual.htm">&lt;=</a> 1.0);<br/>
 &nbsp;&nbsp;m_friction <a href="CppOperatorAssign.htm">=</a> friction;<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> SpriteMoving::Collision(SpriteMoving * <b><a href="CppConst.htm">const</a></b> p1, SpriteMoving * <b><a href="CppConst.htm">const</a></b> p2)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="GameBoenken.htm">Boenken</a>::SpriteMoving::Collision(SpriteMoving * <b><a href="CppConst.htm">const</a></b> p1, SpriteMoving * <b><a href="CppConst.htm">const</a></b> p2)<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(p1<a href="CppOperatorNotEqual.htm">!=</a>p2);<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(p1 &gt; p2);<br/>
@@ -1706,7 +1706,7 @@ SpriteMoving::SpriteMoving(<br/>
 &nbsp;&nbsp;}<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> SpriteMoving::Draw(<a href="CppQPainter.htm">QPainter</a>&amp; painter) <b><a href="CppConst.htm">const</a></b><br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="GameBoenken.htm">Boenken</a>::SpriteMoving::Draw(<a href="CppQPainter.htm">QPainter</a>&amp; painter) <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Draw the globe<br/>
 &nbsp;&nbsp;Sprite::Draw(painter);<br/>
@@ -1721,8 +1721,6 @@ SpriteMoving::SpriteMoving(<br/>
 &nbsp;&nbsp;painter.drawLine(x_mid,y_mid,x3,y3);<br/>
 &nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
 }<br/>
-<br/>
-} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="GameBoenken.htm">Boenken</a><br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -1762,6 +1760,8 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> "<a href="GameBoenken.htm">boenken</a>sprite.h"<br/>
 <br/>
+<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a> {<br/>
+<br/>
 <b><a href="CppNamespace.htm">namespace</a></b> <a href="GameBoenken.htm">Boenken</a> {<br/>
 <br/>
 <b><a href="CppStruct.htm">struct</a></b> SpriteMoving;<br/>
@@ -1799,6 +1799,8 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <br/>
 } <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="GameBoenken.htm">Boenken</a><br/>
 <br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a><br/>
+<br/>
 <a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> BOENKENSPRITENONMOVING_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
@@ -1832,8 +1834,6 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="GameBoenken.htm">GameBoenken</a>.htm<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">//</a><a href="CppInclude.htm">#include</a> own <a href="CppHeaderFile.htm">header file</a> as first substantive line of code, from:<br/>
-<a href="CppComment.htm">//</a> * John Lakos. Large-Scale <a href="Cpp.htm">C++</a> Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110<br/>
 <a href="CppInclude.htm">#include</a> "<a href="GameBoenken.htm">boenken</a>spritenonmoving.h"<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
@@ -1845,9 +1845,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppInclude.htm">#include</a> "<a href="GameBoenken.htm">boenken</a>spritemoving.h"<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
 <br/>
-<b><a href="CppNamespace.htm">namespace</a></b> <a href="GameBoenken.htm">Boenken</a> {<br/>
-<br/>
-<b><a href="CppVoid.htm">void</a></b> SpriteNonMoving::Collision(SpriteNonMoving * <b><a href="CppConst.htm">const</a></b> p1, SpriteMoving * <b><a href="CppConst.htm">const</a></b> p2)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="GameBoenken.htm">Boenken</a>::SpriteNonMoving::Collision(SpriteNonMoving * <b><a href="CppConst.htm">const</a></b> p1, SpriteMoving * <b><a href="CppConst.htm">const</a></b> p2)<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> dx <a href="CppOperatorAssign.htm">=</a> p2-&gt;getX() <a href="CppOperatorMinus.htm">-</a> p1-&gt;getX();<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> dy <a href="CppOperatorAssign.htm">=</a> p2-&gt;getY() <a href="CppOperatorMinus.htm">-</a> p1-&gt;getY();<br/>
@@ -1896,8 +1894,6 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
 &nbsp;&nbsp;}<br/>
 }<br/>
-<br/>
-} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="GameBoenken.htm">Boenken</a><br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -1935,6 +1931,8 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/checked_delete.hpp&gt;<br/>
 <a href="CppInclude.htm">#include</a> "<a href="GameBoenken.htm">boenken</a>spritemoving.h"<br/>
+<br/>
+<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a> {<br/>
 <br/>
 <b><a href="CppNamespace.htm">namespace</a></b> <a href="GameBoenken.htm">Boenken</a> {<br/>
 <br/>
@@ -1975,6 +1973,8 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <br/>
 } <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="GameBoenken.htm">Boenken</a><br/>
 <br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a><br/>
+<br/>
 <a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> BOENKENSPRITEPLAYER_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
@@ -2008,8 +2008,6 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="GameBoenken.htm">GameBoenken</a>.htm<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">//</a><a href="CppInclude.htm">#include</a> own <a href="CppHeaderFile.htm">header file</a> as first substantive line of code, from:<br/>
-<a href="CppComment.htm">//</a> * John Lakos. Large-Scale <a href="Cpp.htm">C++</a> Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110<br/>
 <a href="CppInclude.htm">#include</a> "<a href="GameBoenken.htm">boenken</a>spriteplayer.h"<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
@@ -2022,24 +2020,21 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppQPainter.htm">QPainter</a>&gt;<br/>
 <br/>
-<br/>
-<b><a href="CppNamespace.htm">namespace</a></b> <a href="GameBoenken.htm">Boenken</a> {<br/>
-<br/>
 <a href="CppComment.htm">///</a>The acceleration (i.e. change of impulse)<br/>
 <a href="CppComment.htm">///</a><b><a href="CppIf.htm">if</a></b> a player presses accelerate<br/>
-<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> SpritePlayer::m_acceleration <a href="CppOperatorAssign.htm">=</a> 1.0;<br/>
+<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="GameBoenken.htm">Boenken</a>::SpritePlayer::m_acceleration <a href="CppOperatorAssign.htm">=</a> 1.0;<br/>
 <br/>
 <a href="CppComment.htm">///</a>The speed of turning around<br/>
 <a href="CppComment.htm">///</a><b><a href="CppIf.htm">if</a></b> a player presses turn<br/>
-<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> SpritePlayer::m_turnspeed<br/>
+<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="GameBoenken.htm">Boenken</a>::SpritePlayer::m_turnspeed<br/>
 &nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <a href="CppBoost.htm">boost</a>::math::constants::pi&lt;<b><a href="CppDouble.htm">double</a></b>&gt;() <a href="CppOperatorDivide.htm">/</a> 10.0;<br/>
 <br/>
 <br/>
 <a href="CppComment.htm">///</a>The number of SpritePlayers.<br/>
 <a href="CppComment.htm">///</a><b><a href="CppFor.htm">for</a></b> <a href="CppDebug.htm">debugging</a> purposes<br/>
-<b><a href="CppInt.htm">int</a></b> SpritePlayer::ms_n_players <a href="CppOperatorAssign.htm">=</a> 0;<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="GameBoenken.htm">Boenken</a>::SpritePlayer::ms_n_players <a href="CppOperatorAssign.htm">=</a> 0;<br/>
 <br/>
-SpritePlayer::SpritePlayer(<br/>
+<a href="CppRibi.htm\">ribi</a>::<a href="GameBoenken.htm">Boenken</a>::SpritePlayer::SpritePlayer(<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> x,<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> y,<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> angle,<br/>
@@ -2059,7 +2054,7 @@ SpritePlayer::SpritePlayer(<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <b><a href="CppThis.htm">this</a></b>-&gt;getY() <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> ")\n";<br/>
 }<br/>
 <br/>
-SpritePlayer::~SpritePlayer()<br/>
+<a href="CppRibi.htm\">ribi</a>::<a href="GameBoenken.htm">Boenken</a>::SpritePlayer::~SpritePlayer()<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppClog.htm">std::clog</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "The " <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> ms_n_players<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "th player is destroyed\n";<br/>
@@ -2067,7 +2062,7 @@ SpritePlayer::~SpritePlayer()<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(ms_n_players <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 0);<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> SpritePlayer::Move()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="GameBoenken.htm">Boenken</a>::SpritePlayer::Move()<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/Move the sprite<br/>
 &nbsp;&nbsp;m_x <a href="CppOperatorPlus.htm">+</a><a href="CppOperatorAssign.htm">=</a> m_dx;<br/>
@@ -2111,18 +2106,18 @@ SpritePlayer::~SpritePlayer()<br/>
 }<br/>
 <br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> SpritePlayer::Accelerate()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="GameBoenken.htm">Boenken</a>::SpritePlayer::Accelerate()<br/>
 {<br/>
 &nbsp;&nbsp;m_dx <a href="CppOperatorPlus.htm">+</a><a href="CppOperatorAssign.htm">=</a> (<a href="CppSin.htm">std::sin</a>(m_angle) * m_acceleration);<br/>
 &nbsp;&nbsp;m_dy <a href="CppOperatorMinus.htm">-</a><a href="CppOperatorAssign.htm">=</a> (<a href="CppCos.htm">std::cos</a>(m_angle) * m_acceleration);<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> SpritePlayer::TurnRight()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="GameBoenken.htm">Boenken</a>::SpritePlayer::TurnRight()<br/>
 {<br/>
 &nbsp;&nbsp;m_angle<a href="CppOperatorPlusAssign.htm">+=</a>m_turnspeed;<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> SpritePlayer::Draw(<a href="CppQPainter.htm">QPainter</a>&amp; painter) <b><a href="CppConst.htm">const</a></b><br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="GameBoenken.htm">Boenken</a>::SpritePlayer::Draw(<a href="CppQPainter.htm">QPainter</a>&amp; painter) <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Draw the globe and possibly impulse<br/>
 &nbsp;&nbsp;SpriteMoving::Draw(painter);<br/>
@@ -2135,8 +2130,6 @@ SpritePlayer::~SpritePlayer()<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> y2 <a href="CppOperatorAssign.htm">=</a> y_mid <a href="CppOperatorMinus.htm">-</a> (<a href="CppCos.htm">std::cos</a>(m_angle) * half_size);<br/>
 &nbsp;&nbsp;painter.drawLine(x_mid,y_mid,x2,y2);<br/>
 }<br/>
-<br/>
-} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="GameBoenken.htm">Boenken</a><br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -2179,6 +2172,8 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a><a href="GameBoenken.htm">Boenken</a>ArenaDialog;<br/>
 }<br/>
 <br/>
+<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a> {<br/>
+<br/>
 <a href="CppComment.htm">///</a><a href="CppQt.htm">Qt</a><a href="GameBoenken.htm">Boenken</a>ArenaDialog<br/>
 <a href="CppComment.htm">///</a><br/>
 <a href="CppComment.htm">///</a>Dialog to setup up the arena<br/>
@@ -2196,12 +2191,11 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppDouble.htm">double</a></b> GetFriction() <b><a href="CppConst.htm">const</a></b>;<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="GameBoenken.htm">Boenken</a>::ArenaSettings GetSettings() <b><a href="CppConst.htm">const</a></b>;<br/>
 <br/>
-<b><a href="CppProtected.htm">protected</a></b>:<br/>
-&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> changeEvent(<a href="CppQEvent.htm">QEvent</a> *e);<br/>
-<br/>
 <b><a href="CppPrivate.htm">private</a></b>:<br/>
 &nbsp;&nbsp;<a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a><a href="GameBoenken.htm">Boenken</a>ArenaDialog *ui;<br/>
 };<br/>
+<br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a><br/>
 <br/>
 <a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> QTBOENKENARENADIALOG_H<br/>
 </code></td></tr></table>
@@ -2236,8 +2230,6 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="GameBoenken.htm">GameBoenken</a>.htm<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">//</a><a href="CppInclude.htm">#include</a> own <a href="CppHeaderFile.htm">header file</a> as first substantive line of code, from:<br/>
-<a href="CppComment.htm">//</a> * John Lakos. Large-Scale <a href="Cpp.htm">C++</a> Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110<br/>
 <a href="CppInclude.htm">#include</a> "qt<a href="GameBoenken.htm">boenken</a>arenadialog.h"<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
@@ -2247,7 +2239,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> "ui_qt<a href="GameBoenken.htm">boenken</a>arenadialog.h"<br/>
 <br/>
-<a href="CppQt.htm">Qt</a><a href="GameBoenken.htm">Boenken</a>ArenaDialog::<a href="CppQt.htm">Qt</a><a href="GameBoenken.htm">Boenken</a>ArenaDialog(<a href="CppQWidget.htm">QWidget</a> *parent) :<br/>
+<a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="GameBoenken.htm">Boenken</a>ArenaDialog::<a href="CppQt.htm">Qt</a><a href="GameBoenken.htm">Boenken</a>ArenaDialog(<a href="CppQWidget.htm">QWidget</a> *parent) :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQDialog.htm">QDialog</a>(parent),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;ui(<b><a href="CppNew.htm">new</a></b> <a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a><a href="GameBoenken.htm">Boenken</a>ArenaDialog)<br/>
 {<br/>
@@ -2255,26 +2247,14 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<a href="CppQObject.htm">QObject</a>::connect(ui-&gt;button_done,<a href="CppSignalMacro.htm">SIGNAL</a>(clicked()),<b><a href="CppThis.htm">this</a></b>,<a href="CppSLOT.htm">SLOT</a>(close()));<br/>
 }<br/>
 <br/>
-<a href="CppQt.htm">Qt</a><a href="GameBoenken.htm">Boenken</a>ArenaDialog::~<a href="CppQt.htm">Qt</a><a href="GameBoenken.htm">Boenken</a>ArenaDialog()<br/>
+<a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="GameBoenken.htm">Boenken</a>ArenaDialog::~<a href="CppQt.htm">Qt</a><a href="GameBoenken.htm">Boenken</a>ArenaDialog()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppDelete.htm">delete</a></b> ui;<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a><a href="GameBoenken.htm">Boenken</a>ArenaDialog::changeEvent(<a href="CppQEvent.htm">QEvent</a> *e)<br/>
-{<br/>
-&nbsp;&nbsp;<a href="CppQDialog.htm">QDialog</a>::changeEvent(e);<br/>
-&nbsp;&nbsp;<b><a href="CppSwitch.htm">switch</a></b> (e-&gt;type()) {<br/>
-&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> <a href="CppQEvent.htm">QEvent</a>::LanguageChange:<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;ui-&gt;retranslateUi(<b><a href="CppThis.htm">this</a></b>);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppBreak.htm">break</a></b>;<br/>
-&nbsp;&nbsp;<b><a href="CppDefault.htm">default</a></b>:<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppBreak.htm">break</a></b>;<br/>
-&nbsp;&nbsp;}<br/>
-}<br/>
-<br/>
 <a href="CppComment.htm">///</a>The purpose of <a href="CppQt.htm">Qt</a><a href="GameBoenken.htm">Boenken</a>ArenaDialog is to create<br/>
 <a href="CppComment.htm">///</a>an ArenaSettings<br/>
-<b><a href="CppConst.htm">const</a></b> <a href="GameBoenken.htm">Boenken</a>::ArenaSettings <a href="CppQt.htm">Qt</a><a href="GameBoenken.htm">Boenken</a>ArenaDialog::GetSettings() <b><a href="CppConst.htm">const</a></b><br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="GameBoenken.htm">Boenken</a>::ArenaSettings <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="GameBoenken.htm">Boenken</a>ArenaDialog::GetSettings() <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<a href="GameBoenken.htm">Boenken</a>::ArenaSettings s;<br/>
 &nbsp;&nbsp;s.formation <a href="CppOperatorAssign.htm">=</a> <b><a href="CppThis.htm">this</a></b>-&gt;GetFormation();<br/>
@@ -2285,7 +2265,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> s;<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppPair.htm">std::pair</a>&lt;<b><a href="CppInt.htm">int</a></b>,<b><a href="CppInt.htm">int</a></b>&gt; <a href="CppQt.htm">Qt</a><a href="GameBoenken.htm">Boenken</a>ArenaDialog::GetScreenSize() <b><a href="CppConst.htm">const</a></b><br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppPair.htm">std::pair</a>&lt;<b><a href="CppInt.htm">int</a></b>,<b><a href="CppInt.htm">int</a></b>&gt; <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="GameBoenken.htm">Boenken</a>ArenaDialog::GetScreenSize() <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Makes the code shorter and copy-pastable<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> QComboBox * <b><a href="CppConst.htm">const</a></b> b <a href="CppOperatorAssign.htm">=</a> ui-&gt;box_screen_size;<br/>
@@ -2309,11 +2289,11 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <a href="CppMake_pair.htm">std::make_pair</a>(640,400);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppDefault.htm">default</a></b>:<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!"Should not get here");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThrow.htm">throw</a></b> <a href="CppLogic_error.htm">std::logic_error</a>("<a href="CppQt.htm">Qt</a><a href="GameBoenken.htm">Boenken</a>ArenaDialog::GetScreenSize");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThrow.htm">throw</a></b> <a href="CppLogic_error.htm">std::logic_error</a>("<a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="GameBoenken.htm">Boenken</a>ArenaDialog::GetScreenSize");<br/>
 &nbsp;&nbsp;}<br/>
 }<br/>
 <br/>
-<b><a href="CppInt.htm">int</a></b> <a href="CppQt.htm">Qt</a><a href="GameBoenken.htm">Boenken</a>ArenaDialog::GetNballs() <b><a href="CppConst.htm">const</a></b><br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="GameBoenken.htm">Boenken</a>ArenaDialog::GetNballs() <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Makes the code shorter and copy-pastable<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> QComboBox * <b><a href="CppConst.htm">const</a></b> b <a href="CppOperatorAssign.htm">=</a> ui-&gt;box_nballs;<br/>
@@ -2328,11 +2308,11 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> 2;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppDefault.htm">default</a></b>:<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!"Should not get here");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThrow.htm">throw</a></b> <a href="CppLogic_error.htm">std::logic_error</a>("<a href="CppQt.htm">Qt</a><a href="GameBoenken.htm">Boenken</a>ArenaDialog::GetNballs");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThrow.htm">throw</a></b> <a href="CppLogic_error.htm">std::logic_error</a>("<a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="GameBoenken.htm">Boenken</a>ArenaDialog::GetNballs");<br/>
 &nbsp;&nbsp;}<br/>
 }<br/>
 <br/>
-<b><a href="CppInt.htm">int</a></b> <a href="CppQt.htm">Qt</a><a href="GameBoenken.htm">Boenken</a>ArenaDialog::GetNobstacles() <b><a href="CppConst.htm">const</a></b><br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="GameBoenken.htm">Boenken</a>ArenaDialog::GetNobstacles() <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Makes the code shorter and copy-pastable<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> QComboBox * <b><a href="CppConst.htm">const</a></b> b <a href="CppOperatorAssign.htm">=</a> ui-&gt;box_obstacles;<br/>
@@ -2347,10 +2327,10 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> 2;<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!"Should not get here");<br/>
-&nbsp;&nbsp;<b><a href="CppThrow.htm">throw</a></b> <a href="CppLogic_error.htm">std::logic_error</a>("<a href="CppQt.htm">Qt</a><a href="GameBoenken.htm">Boenken</a>ArenaDialog::GetNobstacles");<br/>
+&nbsp;&nbsp;<b><a href="CppThrow.htm">throw</a></b> <a href="CppLogic_error.htm">std::logic_error</a>("<a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="GameBoenken.htm">Boenken</a>ArenaDialog::GetNobstacles");<br/>
 }<br/>
 <br/>
-<a href="GameBoenken.htm">Boenken</a>::Formation <a href="CppQt.htm">Qt</a><a href="GameBoenken.htm">Boenken</a>ArenaDialog::GetFormation() <b><a href="CppConst.htm">const</a></b><br/>
+<a href="CppRibi.htm\">ribi</a>::<a href="GameBoenken.htm">Boenken</a>::Formation <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="GameBoenken.htm">Boenken</a>ArenaDialog::GetFormation() <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Makes the code shorter and copy-pastable<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> QComboBox * <b><a href="CppConst.htm">const</a></b> b <a href="CppOperatorAssign.htm">=</a> ui-&gt;box_formation;<br/>
@@ -2368,12 +2348,11 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <a href="GameBoenken.htm">Boenken</a>::circle_outward;<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!"Should not get here");<br/>
-&nbsp;&nbsp;<b><a href="CppThrow.htm">throw</a></b> <a href="CppLogic_error.htm">std::logic_error</a>("<a href="CppQt.htm">Qt</a><a href="GameBoenken.htm">Boenken</a>ArenaDialog::GetFormation");<br/>
+&nbsp;&nbsp;<b><a href="CppThrow.htm">throw</a></b> <a href="CppLogic_error.htm">std::logic_error</a>("<a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="GameBoenken.htm">Boenken</a>ArenaDialog::GetFormation");<br/>
 }<br/>
 <br/>
-<b><a href="CppDouble.htm">double</a></b> <a href="CppQt.htm">Qt</a><a href="GameBoenken.htm">Boenken</a>ArenaDialog::GetFriction() <b><a href="CppConst.htm">const</a></b><br/>
+<b><a href="CppDouble.htm">double</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="GameBoenken.htm">Boenken</a>ArenaDialog::GetFriction() <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>Makes the code shorter and copy-pastable<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> QComboBox * <b><a href="CppConst.htm">const</a></b> b <a href="CppOperatorAssign.htm">=</a> ui-&gt;box_friction;<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(b-&gt;count()<a href="CppOperatorEqual.htm">==</a>2);<br/>
 &nbsp;&nbsp;<b><a href="CppSwitch.htm">switch</a></b>(b-&gt;currentIndex())<br/>
@@ -2386,7 +2365,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> 0.999;<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!"Should not get here");<br/>
-&nbsp;&nbsp;<b><a href="CppThrow.htm">throw</a></b> <a href="CppLogic_error.htm">std::logic_error</a>("<a href="CppQt.htm">Qt</a><a href="GameBoenken.htm">Boenken</a>ArenaDialog::GetFriction");<br/>
+&nbsp;&nbsp;<b><a href="CppThrow.htm">throw</a></b> <a href="CppLogic_error.htm">std::logic_error</a>("<a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="GameBoenken.htm">Boenken</a>ArenaDialog::GetFriction");<br/>
 }<br/>
 </code></td></tr></table>
 <!-- end of the code -->
@@ -2434,6 +2413,8 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a><a href="GameBoenken.htm">Boenken</a>ControlsDialog;<br/>
 }<br/>
 <br/>
+<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a> {<br/>
+<br/>
 <a href="CppComment.htm">///</a><a href="CppQt.htm">Qt</a><a href="GameBoenken.htm">Boenken</a>ControlsDialog<br/>
 <a href="CppComment.htm">///</a><br/>
 <a href="CppComment.htm">///</a>This dialog connects player names to their controls<br/>
@@ -2447,9 +2428,6 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppExplicit.htm">explicit</a></b> <a href="CppQt.htm">Qt</a><a href="GameBoenken.htm">Boenken</a>ControlsDialog(<a href="CppQWidget.htm">QWidget</a> *parent <a href="CppOperatorAssign.htm">=</a> 0);<br/>
 &nbsp;&nbsp;~<a href="CppQt.htm">Qt</a><a href="GameBoenken.htm">Boenken</a>ControlsDialog();<br/>
 &nbsp;&nbsp;<a href="GameBoenken.htm">Boenken</a>::Controls GetControls() <b><a href="CppConst.htm">const</a></b>;<br/>
-<br/>
-<b><a href="CppProtected.htm">protected</a></b>:<br/>
-&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> changeEvent(<a href="CppQEvent.htm">QEvent</a> *e);<br/>
 <br/>
 <b><a href="CppPrivate.htm">private</a></b>:<br/>
 &nbsp;&nbsp;<a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a><a href="GameBoenken.htm">Boenken</a>ControlsDialog *ui;<br/>
@@ -2467,6 +2445,8 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt; getKeysTurn() <b><a href="CppConst.htm">const</a></b>;<br/>
 &nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; getNames() <b><a href="CppConst.htm">const</a></b>;<br/>
 };<br/>
+<br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a><br/>
 <br/>
 <a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> QTBOENKENCONTROLSDIALOG_H<br/>
 </code></td></tr></table>
@@ -2501,8 +2481,6 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="GameBoenken.htm">GameBoenken</a>.htm<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">//</a><a href="CppInclude.htm">#include</a> own <a href="CppHeaderFile.htm">header file</a> as first substantive line of code, from:<br/>
-<a href="CppComment.htm">//</a> * John Lakos. Large-Scale <a href="Cpp.htm">C++</a> Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110<br/>
 <a href="CppInclude.htm">#include</a> "qt<a href="GameBoenken.htm">boenken</a>controlsdialog.h"<br/>
 <br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
@@ -2513,7 +2491,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppInclude.htm">#include</a> "qt<a href="GameBoenken.htm">boenken</a>presskeydialog.h"<br/>
 <a href="CppInclude.htm">#include</a> "ui_qt<a href="GameBoenken.htm">boenken</a>controlsdialog.h"<br/>
 <br/>
-<a href="CppQt.htm">Qt</a><a href="GameBoenken.htm">Boenken</a>ControlsDialog::<a href="CppQt.htm">Qt</a><a href="GameBoenken.htm">Boenken</a>ControlsDialog(<a href="CppQWidget.htm">QWidget</a> *parent) :<br/>
+<a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="GameBoenken.htm">Boenken</a>ControlsDialog::<a href="CppQt.htm">Qt</a><a href="GameBoenken.htm">Boenken</a>ControlsDialog(<a href="CppQWidget.htm">QWidget</a> *parent) :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQDialog.htm">QDialog</a>(parent),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;ui(<b><a href="CppNew.htm">new</a></b> <a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a><a href="GameBoenken.htm">Boenken</a>ControlsDialog)<br/>
 {<br/>
@@ -2532,24 +2510,12 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;showKeys();<br/>
 }<br/>
 <br/>
-<a href="CppQt.htm">Qt</a><a href="GameBoenken.htm">Boenken</a>ControlsDialog::~<a href="CppQt.htm">Qt</a><a href="GameBoenken.htm">Boenken</a>ControlsDialog()<br/>
+<a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="GameBoenken.htm">Boenken</a>ControlsDialog::~<a href="CppQt.htm">Qt</a><a href="GameBoenken.htm">Boenken</a>ControlsDialog()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppDelete.htm">delete</a></b> ui;<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a><a href="GameBoenken.htm">Boenken</a>ControlsDialog::changeEvent(<a href="CppQEvent.htm">QEvent</a> *e)<br/>
-{<br/>
-&nbsp;&nbsp;<a href="CppQDialog.htm">QDialog</a>::changeEvent(e);<br/>
-&nbsp;&nbsp;<b><a href="CppSwitch.htm">switch</a></b> (e-&gt;type()) {<br/>
-&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> <a href="CppQEvent.htm">QEvent</a>::LanguageChange:<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;ui-&gt;retranslateUi(<b><a href="CppThis.htm">this</a></b>);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppBreak.htm">break</a></b>;<br/>
-&nbsp;&nbsp;<b><a href="CppDefault.htm">default</a></b>:<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppBreak.htm">break</a></b>;<br/>
-&nbsp;&nbsp;}<br/>
-}<br/>
-<br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a><a href="GameBoenken.htm">Boenken</a>ControlsDialog::showKeys()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="GameBoenken.htm">Boenken</a>ControlsDialog::showKeys()<br/>
 {<br/>
 &nbsp;&nbsp;ui-&gt;button_accelerate_1-&gt;setText(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppLexical_cast.htm">boost::lexical_cast</a>&lt;<a href="CppString.htm">std::string</a>&gt;(m_keys_accel[0]).c_str() );<br/>
@@ -2562,7 +2528,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a><a href="GameBoenken.htm">Boenken</a>ControlsDialog::onAccelerate1()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="GameBoenken.htm">Boenken</a>ControlsDialog::onAccelerate1()<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppQt.htm">Qt</a><a href="GameBoenken.htm">Boenken</a>PressKeyDialog d;<br/>
 &nbsp;&nbsp;d.exec();<br/>
@@ -2571,7 +2537,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;showKeys();<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a><a href="GameBoenken.htm">Boenken</a>ControlsDialog::onAccelerate2()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="GameBoenken.htm">Boenken</a>ControlsDialog::onAccelerate2()<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppQt.htm">Qt</a><a href="GameBoenken.htm">Boenken</a>PressKeyDialog d;<br/>
 &nbsp;&nbsp;d.exec();<br/>
@@ -2580,7 +2546,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;showKeys();<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a><a href="GameBoenken.htm">Boenken</a>ControlsDialog::onTurn1()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="GameBoenken.htm">Boenken</a>ControlsDialog::onTurn1()<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppQt.htm">Qt</a><a href="GameBoenken.htm">Boenken</a>PressKeyDialog d;<br/>
 &nbsp;&nbsp;d.exec();<br/>
@@ -2589,7 +2555,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;showKeys();<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a><a href="GameBoenken.htm">Boenken</a>ControlsDialog::onTurn2()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="GameBoenken.htm">Boenken</a>ControlsDialog::onTurn2()<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppQt.htm">Qt</a><a href="GameBoenken.htm">Boenken</a>PressKeyDialog d;<br/>
 &nbsp;&nbsp;d.exec();<br/>
@@ -2598,17 +2564,17 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;showKeys();<br/>
 }<br/>
 <br/>
-<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt; <a href="CppQt.htm">Qt</a><a href="GameBoenken.htm">Boenken</a>ControlsDialog::getKeysAccel() <b><a href="CppConst.htm">const</a></b><br/>
+<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt; <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="GameBoenken.htm">Boenken</a>ControlsDialog::getKeysAccel() <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> m_keys_accel;<br/>
 }<br/>
 <br/>
-<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt; <a href="CppQt.htm">Qt</a><a href="GameBoenken.htm">Boenken</a>ControlsDialog::getKeysTurn() <b><a href="CppConst.htm">const</a></b><br/>
+<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt; <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="GameBoenken.htm">Boenken</a>ControlsDialog::getKeysTurn() <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> m_keys_turn;<br/>
 }<br/>
 <br/>
-<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppQt.htm">Qt</a><a href="GameBoenken.htm">Boenken</a>ControlsDialog::getNames() <b><a href="CppConst.htm">const</a></b><br/>
+<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="GameBoenken.htm">Boenken</a>ControlsDialog::getNames() <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v;<br/>
 &nbsp;&nbsp;v.push_back(ui-&gt;edit_name1-&gt;text().toStdString());<br/>
@@ -2616,7 +2582,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
 }<br/>
 <br/>
-<a href="GameBoenken.htm">Boenken</a>::Controls <a href="CppQt.htm">Qt</a><a href="GameBoenken.htm">Boenken</a>ControlsDialog::GetControls() <b><a href="CppConst.htm">const</a></b><br/>
+<a href="CppRibi.htm\">ribi</a>::<a href="GameBoenken.htm">Boenken</a>::Controls <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="GameBoenken.htm">Boenken</a>ControlsDialog::GetControls() <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<a href="GameBoenken.htm">Boenken</a>::Controls c;<br/>
 &nbsp;&nbsp;c.m_keys_accel <a href="CppOperatorAssign.htm">=</a> <b><a href="CppThis.htm">this</a></b>-&gt;getKeysAccel();<br/>
@@ -2667,12 +2633,16 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppQPixmap.htm">QPixmap</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppQTimer.htm">QTimer</a>&gt;<br/>
 <br/>
-<b><a href="CppNamespace.htm">namespace</a></b> <a href="GameBoenken.htm">Boenken</a> { <b><a href="CppStruct.htm">struct</a></b> Game; }<br/>
-<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="GameBoenken.htm">Boenken</a>::Game&gt; CreateNo<a href="GameBoenken.htm">Boenken</a>();<br/>
+<br/>
 <br/>
 <b><a href="CppNamespace.htm">namespace</a></b> Ui {<br/>
 &nbsp;&nbsp;<b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a><a href="GameBoenken.htm">Boenken</a>MainDialog;<br/>
 }<br/>
+<br/>
+<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a> {<br/>
+<br/>
+<b><a href="CppNamespace.htm">namespace</a></b> <a href="GameBoenken.htm">Boenken</a> { <b><a href="CppStruct.htm">struct</a></b> Game; }<br/>
+<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="GameBoenken.htm">Boenken</a>::Game&gt; CreateNo<a href="GameBoenken.htm">Boenken</a>();<br/>
 <br/>
 <a href="CppComment.htm">///</a><a href="CppQt.htm">Qt</a><a href="GameBoenken.htm">Boenken</a>MainDialog displays <a href="GameBoenken.htm">Boenken</a> and handles user events<br/>
 <b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a><a href="GameBoenken.htm">Boenken</a>MainDialog : <b><a href="CppPublic.htm">public</a></b> <a href="CppQDialog.htm">QDialog</a><br/>
@@ -2688,7 +2658,6 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;~<a href="CppQt.htm">Qt</a><a href="GameBoenken.htm">Boenken</a>MainDialog();<br/>
 <br/>
 <b><a href="CppProtected.htm">protected</a></b>:<br/>
-&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> changeEvent(<a href="CppQEvent.htm">QEvent</a> *e);<br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> paintEvent(<a href="CppQPaintEvent.htm">QPaintEvent</a>*);<br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> keyPressEvent(<a href="CppQKeyEvent.htm">QKeyEvent</a>*);<br/>
 <br/>
@@ -2722,6 +2691,9 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> on<a href="CppTime.htm">Time</a>r();<br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> onCountdown<a href="CppTime.htm">Time</a>r();<br/>
 };<br/>
+<br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a><br/>
+<br/>
 <a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> QTBOENKENMAINDIALOG_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
@@ -2755,8 +2727,6 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="GameBoenken.htm">GameBoenken</a>.htm<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">//</a><a href="CppInclude.htm">#include</a> own <a href="CppHeaderFile.htm">header file</a> as first substantive line of code, from:<br/>
-<a href="CppComment.htm">//</a> * John Lakos. Large-Scale <a href="Cpp.htm">C++</a> Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110<br/>
 <a href="CppInclude.htm">#include</a> "qt<a href="GameBoenken.htm">boenken</a>maindialog.h"<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
@@ -2777,7 +2747,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppInclude.htm">#include</a> "ui_qt<a href="GameBoenken.htm">boenken</a>maindialog.h"<br/>
 <br/>
 <a href="CppComment.htm">///</a>All parameters are fed into the contructor<br/>
-<a href="CppQt.htm">Qt</a><a href="GameBoenken.htm">Boenken</a>MainDialog::<a href="CppQt.htm">Qt</a><a href="GameBoenken.htm">Boenken</a>MainDialog(<br/>
+<a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="GameBoenken.htm">Boenken</a>MainDialog::<a href="CppQt.htm">Qt</a><a href="GameBoenken.htm">Boenken</a>MainDialog(<br/>
 &nbsp;&nbsp;<a href="CppQWidget.htm">QWidget</a> *parent,<br/>
 &nbsp;&nbsp;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="GameBoenken.htm">Boenken</a>::Game&gt; <a href="GameBoenken.htm">boenken</a>,<br/>
 &nbsp;&nbsp;<b><a href="CppBool.htm">bool</a></b> is_training)<br/>
@@ -2813,27 +2783,14 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;}<br/>
 }<br/>
 <br/>
-<a href="CppQt.htm">Qt</a><a href="GameBoenken.htm">Boenken</a>MainDialog::~<a href="CppQt.htm">Qt</a><a href="GameBoenken.htm">Boenken</a>MainDialog()<br/>
+<a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="GameBoenken.htm">Boenken</a>MainDialog::~<a href="CppQt.htm">Qt</a><a href="GameBoenken.htm">Boenken</a>MainDialog()<br/>
 {<br/>
 &nbsp;&nbsp;m_<a href="CppTime.htm">time</a>r-&gt;stop();<br/>
 &nbsp;&nbsp;m_<a href="CppTime.htm">time</a>r_countdown-&gt;stop();<br/>
 &nbsp;&nbsp;<b><a href="CppDelete.htm">delete</a></b> ui;<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a><a href="GameBoenken.htm">Boenken</a>MainDialog::changeEvent(<a href="CppQEvent.htm">QEvent</a> *e)<br/>
-{<br/>
-&nbsp;&nbsp;<a href="CppQDialog.htm">QDialog</a>::changeEvent(e);<br/>
-&nbsp;&nbsp;<b><a href="CppSwitch.htm">switch</a></b> (e-&gt;type()) {<br/>
-&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> <a href="CppQEvent.htm">QEvent</a>::LanguageChange:<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;ui-&gt;retranslateUi(<b><a href="CppThis.htm">this</a></b>);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppBreak.htm">break</a></b>;<br/>
-&nbsp;&nbsp;<b><a href="CppDefault.htm">default</a></b>:<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppBreak.htm">break</a></b>;<br/>
-&nbsp;&nbsp;}<br/>
-}<br/>
-<br/>
-<br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a><a href="GameBoenken.htm">Boenken</a>MainDialog::paintEvent(<a href="CppQPaintEvent.htm">QPaintEvent</a>*)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="GameBoenken.htm">Boenken</a>MainDialog::paintEvent(<a href="CppQPaintEvent.htm">QPaintEvent</a>*)<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppQPainter.htm">QPainter</a> painter(<b><a href="CppThis.htm">this</a></b>);<br/>
 <br/>
@@ -2867,7 +2824,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <br/>
 <a href="CppComment.htm">///</a>Handles key presses.<br/>
 <a href="CppComment.htm">///</a>These are ignored when the computer is training<br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a><a href="GameBoenken.htm">Boenken</a>MainDialog::keyPressEvent(<a href="CppQKeyEvent.htm">QKeyEvent</a> * e)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="GameBoenken.htm">Boenken</a>MainDialog::keyPressEvent(<a href="CppQKeyEvent.htm">QKeyEvent</a> * e)<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (m_is_training) <b><a href="CppReturn.htm">return</a></b>;<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Assume that a key is pressed<br/>
@@ -2876,19 +2833,19 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;m_<a href="GameBoenken.htm">boenken</a>-&gt;pressKey(e-&gt;key());<br/>
 }<br/>
 <br/>
-<a href="CppComment.htm">///</a>This method gives the game 1000 msecs <a href="CppTime.htm">time</a><br/>
+<a href="CppComment.htm">///</a>This <a href="CppMemberFunction.htm">member function</a> gives the game 1000 msecs <a href="CppTime.htm">time</a><br/>
 <a href="CppComment.htm">///</a>to <b><a href="CppDo.htm">do</a></b> those magical start-up things...<br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a><a href="GameBoenken.htm">Boenken</a>MainDialog::onCountdown<a href="CppTime.htm">Time</a>r()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="GameBoenken.htm">Boenken</a>MainDialog::onCountdown<a href="CppTime.htm">Time</a>r()<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!m_is_training);<br/>
 &nbsp;&nbsp;m_<a href="CppTime.htm">time</a>r_countdown-&gt;stop();<br/>
 &nbsp;&nbsp;m_<a href="CppTime.htm">time</a>r-&gt;start(20);<br/>
 }<br/>
 <br/>
-<a href="CppComment.htm">///</a>The <a href="CppMain.htm">main</a> method when not training:<br/>
+<a href="CppComment.htm">///</a>The <a href="CppMain.htm">main</a> <a href="CppMemberFunction.htm">member function</a> when not training:<br/>
 <a href="CppComment.htm">///</a>every 50msec the Sprites<br/>
 <a href="CppComment.htm">///</a>move and are drawn to the screen<br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a><a href="GameBoenken.htm">Boenken</a>MainDialog::on<a href="CppTime.htm">Time</a>r()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="GameBoenken.htm">Boenken</a>MainDialog::on<a href="CppTime.htm">Time</a>r()<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!m_is_training);<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/<a href="GameBoenken.htm">Boenken</a> moves all sprites<br/>
@@ -2897,7 +2854,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;repaint();<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a><a href="GameBoenken.htm">Boenken</a>MainDialog::<a href="CppPaint.htm">Paint</a>(<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="GameBoenken.htm">Boenken</a>MainDialog::<a href="CppPaint.htm">Paint</a>(<br/>
 &nbsp;&nbsp;<a href="CppQPixmap.htm">QPixmap</a>&amp; pixmap,<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> r,<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> g,<br/>
@@ -2927,7 +2884,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;pixmap <a href="CppOperatorAssign.htm">=</a> pixmap.fromImage(image);<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a><a href="GameBoenken.htm">Boenken</a>MainDialog::Test()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="GameBoenken.htm">Boenken</a>MainDialog::Test()<br/>
 {<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppBool.htm">bool</a></b> is_tested <a href="CppOperatorAssign.htm">=</a> <b><a href="CppFalse.htm">false</a></b>;<br/>
@@ -2989,6 +2946,8 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a><a href="GameBoenken.htm">Boenken</a>MenuDialog;<br/>
 }<br/>
 <br/>
+<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a> {<br/>
+<br/>
 <b><a href="CppStruct.htm">struct</a></b> <a href="CppQt.htm">Qt</a><a href="GameBoenken.htm">Boenken</a>PlayersDialog;<br/>
 <b><a href="CppStruct.htm">struct</a></b> <a href="CppQt.htm">Qt</a><a href="GameBoenken.htm">Boenken</a>ArenaDialog;<br/>
 <b><a href="CppStruct.htm">struct</a></b> <a href="CppQt.htm">Qt</a><a href="GameBoenken.htm">Boenken</a>ControlsDialog;<br/>
@@ -3011,9 +2970,6 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <b><a href="CppPublic.htm">public</a></b>:<br/>
 &nbsp;&nbsp;<b><a href="CppExplicit.htm">explicit</a></b> <a href="CppQt.htm">Qt</a><a href="GameBoenken.htm">Boenken</a>MenuDialog(<a href="CppQWidget.htm">QWidget</a> *parent <a href="CppOperatorAssign.htm">=</a> 0);<br/>
 &nbsp;&nbsp;~<a href="CppQt.htm">Qt</a><a href="GameBoenken.htm">Boenken</a>MenuDialog();<br/>
-<br/>
-<b><a href="CppProtected.htm">protected</a></b>:<br/>
-&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> changeEvent(<a href="CppQEvent.htm">QEvent</a> *e);<br/>
 <br/>
 <b><a href="CppPrivate.htm">private</a></b>:<br/>
 &nbsp;&nbsp;<a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a><a href="GameBoenken.htm">Boenken</a>MenuDialog *ui;<br/>
@@ -3041,6 +2997,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> on<a href="CppAbout.htm">About</a>Click();<br/>
 };<br/>
 <br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a><br/>
 <br/>
 <a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> QTBOENKENMENUDIALOG_H<br/>
 </code></td></tr></table>
@@ -3075,8 +3032,8 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="GameBoenken.htm">GameBoenken</a>.htm<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">//</a><a href="CppInclude.htm">#include</a> own <a href="CppHeaderFile.htm">header file</a> as first substantive line of code, from:<br/>
-<a href="CppComment.htm">//</a> * John Lakos. Large-Scale <a href="Cpp.htm">C++</a> Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110<br/>
+<br/>
+<br/>
 <a href="CppInclude.htm">#include</a> "qt<a href="GameBoenken.htm">boenken</a>menudialog.h"<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
@@ -3103,7 +3060,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppInclude.htm">#include</a> "<a href="GameBoenken.htm">boenken</a>spriteplayer.h"<br/>
 <a href="CppInclude.htm">#include</a> "ui_qt<a href="GameBoenken.htm">boenken</a>menudialog.h"<br/>
 <br/>
-<a href="CppQt.htm">Qt</a><a href="GameBoenken.htm">Boenken</a>MenuDialog::<a href="CppQt.htm">Qt</a><a href="GameBoenken.htm">Boenken</a>MenuDialog(<a href="CppQWidget.htm">QWidget</a> *parent) :<br/>
+<a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="GameBoenken.htm">Boenken</a>MenuDialog::<a href="CppQt.htm">Qt</a><a href="GameBoenken.htm">Boenken</a>MenuDialog(<a href="CppQWidget.htm">QWidget</a> *parent) :<br/>
 &nbsp;&nbsp;<a href="CppQDialog.htm">QDialog</a>(parent),<br/>
 &nbsp;&nbsp;ui(<b><a href="CppNew.htm">new</a></b> <a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a><a href="GameBoenken.htm">Boenken</a>MenuDialog),<br/>
 &nbsp;&nbsp;m_controls(<b><a href="CppNew.htm">new</a></b> <a href="CppQt.htm">Qt</a><a href="GameBoenken.htm">Boenken</a>ControlsDialog),<br/>
@@ -3124,25 +3081,12 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<a href="CppQObject.htm">QObject</a>::connect(ui-&gt;button_quit,<a href="CppSignalMacro.htm">SIGNAL</a>(clicked()),<b><a href="CppThis.htm">this</a></b>,<a href="CppSLOT.htm">SLOT</a>(close()));<br/>
 }<br/>
 <br/>
-<a href="CppQt.htm">Qt</a><a href="GameBoenken.htm">Boenken</a>MenuDialog::~<a href="CppQt.htm">Qt</a><a href="GameBoenken.htm">Boenken</a>MenuDialog()<br/>
+<a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="GameBoenken.htm">Boenken</a>MenuDialog::~<a href="CppQt.htm">Qt</a><a href="GameBoenken.htm">Boenken</a>MenuDialog()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppDelete.htm">delete</a></b> ui;<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppClog.htm">std::clog</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "~<a href="CppQt.htm">Qt</a><a href="GameBoenken.htm">Boenken</a>MenuDialog (should only be called at the end of the program)\n";<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a><a href="GameBoenken.htm">Boenken</a>MenuDialog::changeEvent(<a href="CppQEvent.htm">QEvent</a> *e)<br/>
-{<br/>
-&nbsp;&nbsp;<a href="CppQDialog.htm">QDialog</a>::changeEvent(e);<br/>
-&nbsp;&nbsp;<b><a href="CppSwitch.htm">switch</a></b> (e-&gt;type()) {<br/>
-&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> <a href="CppQEvent.htm">QEvent</a>::LanguageChange:<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;ui-&gt;retranslateUi(<b><a href="CppThis.htm">this</a></b>);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppBreak.htm">break</a></b>;<br/>
-&nbsp;&nbsp;<b><a href="CppDefault.htm">default</a></b>:<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppBreak.htm">break</a></b>;<br/>
-&nbsp;&nbsp;}<br/>
-}<br/>
-<br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="GameBoenken.htm">Boenken</a>::SpritePlayer&gt; &gt; <a href="CppQt.htm">Qt</a><a href="GameBoenken.htm">Boenken</a>MenuDialog::CreatePlayers(<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRibi.htm\">ribi</a>::<a href="GameBoenken.htm">Boenken</a>::SpritePlayer&gt; &gt; <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="GameBoenken.htm">Boenken</a>MenuDialog::CreatePlayers(<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="GameBoenken.htm">Boenken</a>::ArenaSettings&amp; a)<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Create two<br/>
@@ -3209,7 +3153,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="GameBoenken.htm">Boenken</a>::SpriteBall&gt; &gt; <a href="CppQt.htm">Qt</a><a href="GameBoenken.htm">Boenken</a>MenuDialog::CreateBalls(<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRibi.htm\">ribi</a>::<a href="GameBoenken.htm">Boenken</a>::SpriteBall&gt; &gt; <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="GameBoenken.htm">Boenken</a>MenuDialog::CreateBalls(<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="GameBoenken.htm">Boenken</a>::ArenaSettings&amp; a)<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> size <a href="CppOperatorAssign.htm">=</a> 32;<br/>
@@ -3258,7 +3202,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 }<br/>
 <br/>
 <a href="CppComment.htm">///</a>Always creates the four goalposts<br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="GameBoenken.htm">Boenken</a>::SpriteNonMoving&gt; &gt; <a href="CppQt.htm">Qt</a><a href="GameBoenken.htm">Boenken</a>MenuDialog::CreateObstacles(<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRibi.htm\">ribi</a>::<a href="GameBoenken.htm">Boenken</a>::SpriteNonMoving&gt; &gt; <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="GameBoenken.htm">Boenken</a>MenuDialog::CreateObstacles(<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="GameBoenken.htm">Boenken</a>::ArenaSettings&amp; a)<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> size <a href="CppOperatorAssign.htm">=</a> 32;<br/>
@@ -3328,28 +3272,28 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a><a href="GameBoenken.htm">Boenken</a>MenuDialog::onControlsClick()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="GameBoenken.htm">Boenken</a>MenuDialog::onControlsClick()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;hide();<br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;m_controls-&gt;exec();<br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;show();<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a><a href="GameBoenken.htm">Boenken</a>MenuDialog::onPlayersClick()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="GameBoenken.htm">Boenken</a>MenuDialog::onPlayersClick()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;hide();<br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;m_players-&gt;exec();<br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;show();<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a><a href="GameBoenken.htm">Boenken</a>MenuDialog::onArenaClick()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="GameBoenken.htm">Boenken</a>MenuDialog::onArenaClick()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;hide();<br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;m_arena-&gt;exec();<br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;show();<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a><a href="GameBoenken.htm">Boenken</a>MenuDialog::onStartClick()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="GameBoenken.htm">Boenken</a>MenuDialog::onStartClick()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="GameBoenken.htm">Boenken</a>::ArenaSettings a <a href="CppOperatorAssign.htm">=</a> <b><a href="CppThis.htm">this</a></b>-&gt;m_arena-&gt;GetSettings();<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="GameBoenken.htm">Boenken</a>::Controls c <a href="CppOperatorAssign.htm">=</a> <b><a href="CppThis.htm">this</a></b>-&gt;m_controls-&gt;GetControls();<br/>
@@ -3365,7 +3309,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;show();<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a><a href="GameBoenken.htm">Boenken</a>MenuDialog::onTrainClick()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="GameBoenken.htm">Boenken</a>MenuDialog::onTrainClick()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="GameBoenken.htm">Boenken</a>::ArenaSettings a <a href="CppOperatorAssign.htm">=</a> <b><a href="CppThis.htm">this</a></b>-&gt;m_arena-&gt;GetSettings();<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="GameBoenken.htm">Boenken</a>::Controls c <a href="CppOperatorAssign.htm">=</a> <b><a href="CppThis.htm">this</a></b>-&gt;m_controls-&gt;GetControls();<br/>
@@ -3392,7 +3336,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;show();<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a><a href="GameBoenken.htm">Boenken</a>MenuDialog::on<a href="CppAbout.htm">About</a>Click()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="GameBoenken.htm">Boenken</a>MenuDialog::on<a href="CppAbout.htm">About</a>Click()<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppAbout.htm">About</a> a <a href="CppOperatorAssign.htm">=</a> <a href="GameBoenken.htm">Boenken</a>::MenuDialog::GetAbout();<br/>
 &nbsp;&nbsp;<a href="CppQtAboutDialog.htm">QtAboutDialog</a> d(a);<br/>
@@ -3401,7 +3345,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;show();<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a><a href="GameBoenken.htm">Boenken</a>MenuDialog::Test()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="GameBoenken.htm">Boenken</a>MenuDialog::Test()<br/>
 {<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppBool.htm">bool</a></b> is_tested <a href="CppOperatorAssign.htm">=</a> <b><a href="CppFalse.htm">false</a></b>;<br/>
@@ -3466,6 +3410,8 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a><a href="GameBoenken.htm">Boenken</a>PlayersDialog;<br/>
 }<br/>
 <br/>
+<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a> {<br/>
+<br/>
 <a href="CppComment.htm">///</a>Dialog to connect sprites to their controllers\n<br/>
 <a href="CppComment.htm">///</a>A controller can be\n<br/>
 <a href="CppComment.htm">///</a><a href="CppOperatorMinus.htm">-</a> a human\n<br/>
@@ -3478,12 +3424,11 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppExplicit.htm">explicit</a></b> <a href="CppQt.htm">Qt</a><a href="GameBoenken.htm">Boenken</a>PlayersDialog(<a href="CppQWidget.htm">QWidget</a> *parent <a href="CppOperatorAssign.htm">=</a> 0);<br/>
 &nbsp;&nbsp;~<a href="CppQt.htm">Qt</a><a href="GameBoenken.htm">Boenken</a>PlayersDialog();<br/>
 <br/>
-<b><a href="CppProtected.htm">protected</a></b>:<br/>
-&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> changeEvent(<a href="CppQEvent.htm">QEvent</a> *e);<br/>
-<br/>
 <b><a href="CppPrivate.htm">private</a></b>:<br/>
 &nbsp;&nbsp;<a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a><a href="GameBoenken.htm">Boenken</a>PlayersDialog *ui;<br/>
 };<br/>
+<br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a><br/>
 <br/>
 <a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> QTBOENKENPLAYERSDIALOG_H<br/>
 </code></td></tr></table>
@@ -3518,12 +3463,12 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="GameBoenken.htm">GameBoenken</a>.htm<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">//</a><a href="CppInclude.htm">#include</a> own <a href="CppHeaderFile.htm">header file</a> as first substantive line of code, from:<br/>
-<a href="CppComment.htm">//</a> * John Lakos. Large-Scale <a href="Cpp.htm">C++</a> Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110<br/>
+<br/>
+<br/>
 <a href="CppInclude.htm">#include</a> "qt<a href="GameBoenken.htm">boenken</a>playersdialog.h"<br/>
 <a href="CppInclude.htm">#include</a> "ui_qt<a href="GameBoenken.htm">boenken</a>playersdialog.h"<br/>
 <br/>
-<a href="CppQt.htm">Qt</a><a href="GameBoenken.htm">Boenken</a>PlayersDialog::<a href="CppQt.htm">Qt</a><a href="GameBoenken.htm">Boenken</a>PlayersDialog(<a href="CppQWidget.htm">QWidget</a> *parent) :<br/>
+<a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="GameBoenken.htm">Boenken</a>PlayersDialog::<a href="CppQt.htm">Qt</a><a href="GameBoenken.htm">Boenken</a>PlayersDialog(<a href="CppQWidget.htm">QWidget</a> *parent) :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQDialog.htm">QDialog</a>(parent),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;ui(<b><a href="CppNew.htm">new</a></b> <a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a><a href="GameBoenken.htm">Boenken</a>PlayersDialog)<br/>
 {<br/>
@@ -3531,21 +3476,9 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<a href="CppQObject.htm">QObject</a>::connect(ui-&gt;button_done,<a href="CppSignalMacro.htm">SIGNAL</a>(clicked()),<b><a href="CppThis.htm">this</a></b>,<a href="CppSLOT.htm">SLOT</a>(close()));<br/>
 }<br/>
 <br/>
-<a href="CppQt.htm">Qt</a><a href="GameBoenken.htm">Boenken</a>PlayersDialog::~<a href="CppQt.htm">Qt</a><a href="GameBoenken.htm">Boenken</a>PlayersDialog()<br/>
+<a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="GameBoenken.htm">Boenken</a>PlayersDialog::~<a href="CppQt.htm">Qt</a><a href="GameBoenken.htm">Boenken</a>PlayersDialog()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppDelete.htm">delete</a></b> ui;<br/>
-}<br/>
-<br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a><a href="GameBoenken.htm">Boenken</a>PlayersDialog::changeEvent(<a href="CppQEvent.htm">QEvent</a> *e)<br/>
-{<br/>
-&nbsp;&nbsp;<a href="CppQDialog.htm">QDialog</a>::changeEvent(e);<br/>
-&nbsp;&nbsp;<b><a href="CppSwitch.htm">switch</a></b> (e-&gt;type()) {<br/>
-&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> <a href="CppQEvent.htm">QEvent</a>::LanguageChange:<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;ui-&gt;retranslateUi(<b><a href="CppThis.htm">this</a></b>);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppBreak.htm">break</a></b>;<br/>
-&nbsp;&nbsp;<b><a href="CppDefault.htm">default</a></b>:<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppBreak.htm">break</a></b>;<br/>
-&nbsp;&nbsp;}<br/>
 }<br/>
 </code></td></tr></table>
 <!-- end of the code -->
@@ -3588,6 +3521,8 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a><a href="GameBoenken.htm">Boenken</a>PressKeyDialog;<br/>
 }<br/>
 <br/>
+<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a> {<br/>
+<br/>
 <a href="CppComment.htm">///</a><a href="CppQt.htm">Qt</a><a href="GameBoenken.htm">Boenken</a>PressKeyDialog asks the user to press<br/>
 <a href="CppComment.htm">///</a><a href="CppAny.htm">any</a> key. The key pressed can be requested<br/>
 <a href="CppComment.htm">///</a>later, by DialogControls.<br/>
@@ -3601,13 +3536,14 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> GetKey() <b><a href="CppConst.htm">const</a></b> { <b><a href="CppReturn.htm">return</a></b> m_key; }<br/>
 <br/>
 <b><a href="CppProtected.htm">protected</a></b>:<br/>
-&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> changeEvent(<a href="CppQEvent.htm">QEvent</a> *e);<br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> keyPressEvent(<a href="CppQKeyEvent.htm">QKeyEvent</a> * e);<br/>
 <br/>
 <b><a href="CppPrivate.htm">private</a></b>:<br/>
 &nbsp;&nbsp;<a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a><a href="GameBoenken.htm">Boenken</a>PressKeyDialog *ui;<br/>
 &nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> m_key;<br/>
 };<br/>
+<br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a><br/>
 <br/>
 <a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> QTBOENKENPRESSKEYDIALOG_H<br/>
 </code></td></tr></table>
@@ -3642,8 +3578,6 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="GameBoenken.htm">GameBoenken</a>.htm<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">//</a><a href="CppInclude.htm">#include</a> own <a href="CppHeaderFile.htm">header file</a> as first substantive line of code, from:<br/>
-<a href="CppComment.htm">//</a> * John Lakos. Large-Scale <a href="Cpp.htm">C++</a> Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110<br/>
 <a href="CppInclude.htm">#include</a> "qt<a href="GameBoenken.htm">boenken</a>presskeydialog.h"<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
@@ -3652,7 +3586,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> "ui_qt<a href="GameBoenken.htm">boenken</a>presskeydialog.h"<br/>
 <br/>
-<a href="CppQt.htm">Qt</a><a href="GameBoenken.htm">Boenken</a>PressKeyDialog::<a href="CppQt.htm">Qt</a><a href="GameBoenken.htm">Boenken</a>PressKeyDialog(<a href="CppQWidget.htm">QWidget</a> *parent) :<br/>
+<a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="GameBoenken.htm">Boenken</a>PressKeyDialog::<a href="CppQt.htm">Qt</a><a href="GameBoenken.htm">Boenken</a>PressKeyDialog(<a href="CppQWidget.htm">QWidget</a> *parent) :<br/>
 &nbsp;&nbsp;<a href="CppQDialog.htm">QDialog</a>(parent),<br/>
 &nbsp;&nbsp;ui(<b><a href="CppNew.htm">new</a></b> <a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a><a href="GameBoenken.htm">Boenken</a>PressKeyDialog),<br/>
 &nbsp;&nbsp;m_key(0)<br/>
@@ -3660,24 +3594,12 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;ui-&gt;setupUi(<b><a href="CppThis.htm">this</a></b>);<br/>
 }<br/>
 <br/>
-<a href="CppQt.htm">Qt</a><a href="GameBoenken.htm">Boenken</a>PressKeyDialog::~<a href="CppQt.htm">Qt</a><a href="GameBoenken.htm">Boenken</a>PressKeyDialog()<br/>
+<a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="GameBoenken.htm">Boenken</a>PressKeyDialog::~<a href="CppQt.htm">Qt</a><a href="GameBoenken.htm">Boenken</a>PressKeyDialog()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppDelete.htm">delete</a></b> ui;<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a><a href="GameBoenken.htm">Boenken</a>PressKeyDialog::changeEvent(<a href="CppQEvent.htm">QEvent</a> *e)<br/>
-{<br/>
-&nbsp;&nbsp;<a href="CppQDialog.htm">QDialog</a>::changeEvent(e);<br/>
-&nbsp;&nbsp;<b><a href="CppSwitch.htm">switch</a></b> (e-&gt;type()) {<br/>
-&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> <a href="CppQEvent.htm">QEvent</a>::LanguageChange:<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;ui-&gt;retranslateUi(<b><a href="CppThis.htm">this</a></b>);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppBreak.htm">break</a></b>;<br/>
-&nbsp;&nbsp;<b><a href="CppDefault.htm">default</a></b>:<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppBreak.htm">break</a></b>;<br/>
-&nbsp;&nbsp;}<br/>
-}<br/>
-<br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a><a href="GameBoenken.htm">Boenken</a>PressKeyDialog::keyPressEvent(<a href="CppQKeyEvent.htm">QKeyEvent</a> * e)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="GameBoenken.htm">Boenken</a>PressKeyDialog::keyPressEvent(<a href="CppQKeyEvent.htm">QKeyEvent</a> * e)<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>According to the <a href="CppQt.htm">Qt</a> doc, the <a href="CppAssert.htm">assert</a> below is always <b><a href="CppTrue.htm">true</a></b><br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(e-&gt;type() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <a href="CppQEvent.htm">QEvent</a>::KeyPress);<br/>
@@ -3726,6 +3648,8 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a><a href="GameBoenken.htm">Boenken</a>TrainDialog;<br/>
 }<br/>
 <br/>
+<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a> {<br/>
+<br/>
 <b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a><a href="GameBoenken.htm">Boenken</a>TrainDialog : <b><a href="CppPublic.htm">public</a></b> <a href="CppQDialog.htm">QDialog</a><br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppQ_OBJECT.htm">Q_OBJECT</a><br/>
@@ -3734,12 +3658,11 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppExplicit.htm">explicit</a></b> <a href="CppQt.htm">Qt</a><a href="GameBoenken.htm">Boenken</a>TrainDialog(<a href="CppQWidget.htm">QWidget</a> *parent <a href="CppOperatorAssign.htm">=</a> 0);<br/>
 &nbsp;&nbsp;~<a href="CppQt.htm">Qt</a><a href="GameBoenken.htm">Boenken</a>TrainDialog();<br/>
 <br/>
-<b><a href="CppProtected.htm">protected</a></b>:<br/>
-&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> changeEvent(<a href="CppQEvent.htm">QEvent</a> *e);<br/>
-<br/>
 <b><a href="CppPrivate.htm">private</a></b>:<br/>
 &nbsp;&nbsp;<a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a><a href="GameBoenken.htm">Boenken</a>TrainDialog *ui;<br/>
 };<br/>
+<br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a><br/>
 <br/>
 <a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> QTBOENKENTRAINDIALOG_H<br/>
 </code></td></tr></table>
@@ -3774,33 +3697,21 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="GameBoenken.htm">GameBoenken</a>.htm<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">//</a><a href="CppInclude.htm">#include</a> own <a href="CppHeaderFile.htm">header file</a> as first substantive line of code, from:<br/>
-<a href="CppComment.htm">//</a> * John Lakos. Large-Scale <a href="Cpp.htm">C++</a> Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110<br/>
+<br/>
+<br/>
 <a href="CppInclude.htm">#include</a> "qt<a href="GameBoenken.htm">boenken</a>traindialog.h"<br/>
 <a href="CppInclude.htm">#include</a> "ui_qt<a href="GameBoenken.htm">boenken</a>traindialog.h"<br/>
 <br/>
-<a href="CppQt.htm">Qt</a><a href="GameBoenken.htm">Boenken</a>TrainDialog::<a href="CppQt.htm">Qt</a><a href="GameBoenken.htm">Boenken</a>TrainDialog(<a href="CppQWidget.htm">QWidget</a> *parent) :<br/>
+<a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="GameBoenken.htm">Boenken</a>TrainDialog::<a href="CppQt.htm">Qt</a><a href="GameBoenken.htm">Boenken</a>TrainDialog(<a href="CppQWidget.htm">QWidget</a> *parent) :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQDialog.htm">QDialog</a>(parent),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;ui(<b><a href="CppNew.htm">new</a></b> <a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a><a href="GameBoenken.htm">Boenken</a>TrainDialog)<br/>
 {<br/>
 &nbsp;&nbsp;ui-&gt;setupUi(<b><a href="CppThis.htm">this</a></b>);<br/>
 }<br/>
 <br/>
-<a href="CppQt.htm">Qt</a><a href="GameBoenken.htm">Boenken</a>TrainDialog::~<a href="CppQt.htm">Qt</a><a href="GameBoenken.htm">Boenken</a>TrainDialog()<br/>
+<a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="GameBoenken.htm">Boenken</a>TrainDialog::~<a href="CppQt.htm">Qt</a><a href="GameBoenken.htm">Boenken</a>TrainDialog()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppDelete.htm">delete</a></b> ui;<br/>
-}<br/>
-<br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a><a href="GameBoenken.htm">Boenken</a>TrainDialog::changeEvent(<a href="CppQEvent.htm">QEvent</a> *e)<br/>
-{<br/>
-&nbsp;&nbsp;<a href="CppQDialog.htm">QDialog</a>::changeEvent(e);<br/>
-&nbsp;&nbsp;<b><a href="CppSwitch.htm">switch</a></b> (e-&gt;type()) {<br/>
-&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> <a href="CppQEvent.htm">QEvent</a>::LanguageChange:<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;ui-&gt;retranslateUi(<b><a href="CppThis.htm">this</a></b>);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppBreak.htm">break</a></b>;<br/>
-&nbsp;&nbsp;<b><a href="CppDefault.htm">default</a></b>:<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppBreak.htm">break</a></b>;<br/>
-&nbsp;&nbsp;}<br/>
 }<br/>
 </code></td></tr></table>
 <!-- end of the code -->
@@ -3834,12 +3745,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="GameBoenken.htm">GameBoenken</a>.htm<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppInclude.htm">#include</a> &lt;qglobal.h&gt;<br/>
-<a href="CppPreIf.htm">#if</a> (QT_VERSION <a href="CppOperatorGreaterEqual.htm">&gt;=</a> QT_VERSION_CHECK(5,0,0))<br/>
-&nbsp;&nbsp;<a href="CppInclude.htm">#include</a> &lt;<a href="CppQApplication.htm">QApplication</a>&gt;<br/>
-<a href="CppPreElse.htm">#else</a><br/>
-&nbsp;&nbsp;<a href="CppInclude.htm">#include</a> &lt;<a href="CppQApplication.htm">QApplication</a>&gt;<br/>
-<a href="CppEndif.htm">#endif</a><br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppQApplication.htm">QApplication</a>&gt;<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> "qt<a href="GameBoenken.htm">boenken</a>menudialog.h"<br/>
 <br/>
@@ -3853,7 +3759,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;"}"<br/>
 &nbsp;&nbsp;);<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppQt.htm">Qt</a><a href="GameBoenken.htm">Boenken</a>MenuDialog w;<br/>
+&nbsp;&nbsp;<a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="GameBoenken.htm">Boenken</a>MenuDialog w;<br/>
 &nbsp;&nbsp;w.show();<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> a.exec();<br/>
 }<br/>

@@ -36,7 +36,6 @@ to generate an <a href="CppNds.htm">NDS</a> <a href="CppMakefile.htm">Makefile</
   <li><a href="ToolTestNdsmake_1_0.png">View a screenshot of 'TestNdsmake' (version 1.0)(png)</a></li>
   <li><a href="ToolTestNdsmakeUse_1_0.png">View how TestNdsmake uses ndsmake (version 1.0)(png)</a></li>
   <li><a href="ToolTestNdsmakeSource_1_0.zip">Download the source code of 'TestNdsmake' (version 1.0)(zip)</a></li>
-  <li><a href="ToolTestNdsmakeSource_1_0.htm">View the 'TestNdsmake' source code as a web page (version 1.0)(zip)</a></li>
 </ul>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
@@ -4427,7 +4426,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <br/>
 <b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>Initialization, thanks to http://dev-scene.com/<a href="CppNds.htm">NDS</a>/Tutorials_Day_3<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppInitialize.htm">Initialization</a>, thanks to http://dev-scene.com/<a href="CppNds.htm">NDS</a>/Tutorials_Day_3<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppPointer.htm">point</a> our video buffer to the start of bitmap background video<br/>
 &nbsp;&nbsp;u16 * <b><a href="CppConst.htm">const</a></b> video_buffer_main <a href="CppOperatorAssign.htm">=</a> BG_BMP_RAM(0);<br/>
 &nbsp;&nbsp;u16 * <b><a href="CppConst.htm">const</a></b> video_buffer_sub&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> BG_BMP_RAM_SUB(0);<br/>
@@ -4439,14 +4438,14 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;vramSetBankA(VRAM_A_MAIN_BG_0x06000000);<br/>
 &nbsp;&nbsp;vramSetBankC(VRAM_C_SUB_BG_0x06200000);<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>initialize the background<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppInitialize.htm">initialize</a> the background<br/>
 &nbsp;&nbsp;BACKGROUND.control[3] <a href="CppOperatorAssign.htm">=</a> BG_BMP16_256x256 | BG_BMP_BASE(0);<br/>
 &nbsp;&nbsp;BACKGROUND.bg3_rotation.hdy <a href="CppOperatorAssign.htm">=</a> 0;<br/>
 &nbsp;&nbsp;BACKGROUND.bg3_rotation.hdx <a href="CppOperatorAssign.htm">=</a> 1 <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> 8;<br/>
 &nbsp;&nbsp;BACKGROUND.bg3_rotation.vdx <a href="CppOperatorAssign.htm">=</a> 0;<br/>
 &nbsp;&nbsp;BACKGROUND.bg3_rotation.vdy <a href="CppOperatorAssign.htm">=</a> 1 <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> 8;<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>initialize the sub background<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppInitialize.htm">initialize</a> the sub background<br/>
 &nbsp;&nbsp;BACKGROUND_SUB.control[3] <a href="CppOperatorAssign.htm">=</a> BG_BMP16_256x256 | BG_BMP_BASE(0);<br/>
 &nbsp;&nbsp;BACKGROUND_SUB.bg3_rotation.hdy <a href="CppOperatorAssign.htm">=</a> 0;<br/>
 &nbsp;&nbsp;BACKGROUND_SUB.bg3_rotation.hdx <a href="CppOperatorAssign.htm">=</a> 1 <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> 8;<br/>

@@ -207,8 +207,8 @@
 <table summary="GameBeerWanterDesktop.pro" border = "1"><tr><td><code>
 QT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; += core gui<br/>
 greaterThan(QT_MAJOR_VERSION, 4): QT += <a href="CppWidget.htm">widget</a>s<br/>
+<br/>
 TEMPLATE = app<br/>
-<a href="CppQMAKE_CXXFLAGS.htm">QMAKE_CXXFLAGS</a> += -std=<a href="Cpp11.htm">c++11</a> <a href="CppWall.htm">-Wall</a> <a href="CppWextra.htm">-Wextra</a> <a href="CppWerror.htm">-Werror</a><br/>
 <br/>
 <a href="CppINCLUDEPATH.htm">INCLUDEPATH</a> += \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppAbout.htm">CppAbout</a> \<br/>
@@ -216,22 +216,22 @@ TEMPLATE = app<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppQtAboutDialog.htm">CppQtAboutDialog</a><br/>
 <br/>
 <a href="CppSOURCES.htm">SOURCES</a> +=&nbsp;&nbsp;\<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="GameBeerWanter.htm">beerwanter</a><a href="CppMain.htm">main</a>dialog.cpp \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="GameBeerWanter.htm">beerwanter</a>menudialog.cpp \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppAbout.htm">CppAbout</a>/<a href="CppAbout.htm">about</a>.cpp \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppQtAboutDialog.htm">CppQtAboutDialog</a>/<a href="CppQtAboutDialog.htm">qtaboutdialog</a>.cpp \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppQtHideAndShowDialog.htm">CppQtHideAndShowDialog</a>/<a href="CppQtHideAndShowDialog.htm">qthideandshowdialog</a>.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="GameBeerWanter.htm">beerwanter</a><a href="CppMain.htm">main</a>dialog.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="GameBeerWanter.htm">beerwanter</a>menudialog.cpp \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;qt<a href="GameBeerWanter.htm">beerwanter</a><a href="CppMain.htm">main</a>dialog.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;qt<a href="GameBeerWanter.htm">beerwanter</a>menudialog.cpp \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;qt<a href="GameBeerWanter.htm">beerwanter</a><a href="CppWidget.htm">widget</a>.cpp \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;qt<a href="CppMain.htm">main</a>.cpp \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;qt<a href="GameBeerWanter.htm">beerwanter</a>menudialog.cpp<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;qt<a href="CppMain.htm">main</a>.cpp<br/>
 <br/>
 <a href="CppHEADERS.htm">HEADERS</a> += \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="GameBeerWanter.htm">beerwanter</a><a href="CppMain.htm">main</a>dialog.h \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="GameBeerWanter.htm">beerwanter</a>menudialog.h \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppAbout.htm">CppAbout</a>/<a href="CppAbout.htm">about</a>.h \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppQtAboutDialog.htm">CppQtAboutDialog</a>/<a href="CppQtAboutDialog.htm">qtaboutdialog</a>.h \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppQtHideAndShowDialog.htm">CppQtHideAndShowDialog</a>/<a href="CppQtHideAndShowDialog.htm">qthideandshowdialog</a>.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="GameBeerWanter.htm">beerwanter</a><a href="CppMain.htm">main</a>dialog.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="GameBeerWanter.htm">beerwanter</a>menudialog.h \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;qt<a href="GameBeerWanter.htm">beerwanter</a><a href="CppMain.htm">main</a>dialog.h \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;qt<a href="GameBeerWanter.htm">beerwanter</a>menudialog.h \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;qt<a href="GameBeerWanter.htm">beerwanter</a><a href="CppWidget.htm">widget</a>.h<br/>
@@ -250,6 +250,33 @@ OTHER_FILES += \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppQtAboutDialog.htm">CppQtAboutDialog</a>/Licence.txt \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppQtHideAndShowDialog.htm">CppQtHideAndShowDialog</a>/Licence.txt \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="GameBeerWanter.htm">GameBeerWanter</a>Test.sh<br/>
+<br/>
+#<br/>
+#<br/>
+# Platform specific<br/>
+#<br/>
+#<br/>
+<br/>
+#<br/>
+#<br/>
+# Compiler flags<br/>
+#<br/>
+#<br/>
+<a href="CppQMAKE_CXXFLAGS.htm">QMAKE_CXXFLAGS</a> += -std=<a href="Cpp11.htm">c++11</a> <a href="CppWall.htm">-Wall</a> <a href="CppWextra.htm">-Wextra</a><br/>
+<br/>
+unix {<br/>
+&nbsp;&nbsp;<a href="CppQMAKE_CXXFLAGS.htm">QMAKE_CXXFLAGS</a> += <a href="CppWerror.htm">-Werror</a><br/>
+}<br/>
+<br/>
+#<br/>
+#<br/>
+# Boost<br/>
+#<br/>
+#<br/>
+<br/>
+win32 {<br/>
+&nbsp;&nbsp;<a href="CppINCLUDEPATH.htm">INCLUDEPATH</a> += ../../<a href="CppLibrary.htm">Libraries</a>/boost_1_54_0<br/>
+}<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -357,6 +384,8 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppStringH.htm">string</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
 <br/>
+<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a> {<br/>
+<br/>
 <a href="CppComment.htm">///</a><a href="GameBeerWanter.htm">BeerWanter</a>MainDialog contains the logic behind the game <a href="GameBeerWanter.htm">BeerWanter</a><br/>
 <b><a href="CppStruct.htm">struct</a></b> <a href="GameBeerWanter.htm">BeerWanter</a>MainDialog<br/>
 {<br/>
@@ -415,6 +444,8 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> GetRandomWindowShake() <b><a href="CppConst.htm">const</a></b>;<br/>
 };<br/>
 <br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a><br/>
+<br/>
 <a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> BEERWANTERMAINDIALOG_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
@@ -448,8 +479,6 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="GameBeerWanter.htm">GameBeerWanter</a>.htm<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">//</a><a href="CppInclude.htm">#include</a> own <a href="CppHeaderFile.htm">header file</a> as first substantive line of code, from:<br/>
-<a href="CppComment.htm">//</a> * John Lakos. Large-Scale <a href="Cpp.htm">C++</a> Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110<br/>
 <a href="CppInclude.htm">#include</a> "<a href="GameBeerWanter.htm">beerwanter</a>maindialog.h"<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppCstdlibH.htm">cstdlib</a>&gt;<br/>
@@ -462,7 +491,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppLexical_cast.htm">lexical_cast</a>.hpp&gt;<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
 <br/>
-<a href="GameBeerWanter.htm">BeerWanter</a>MainDialog::<a href="GameBeerWanter.htm">BeerWanter</a>MainDialog(<br/>
+<a href="CppRibi.htm\">ribi</a>::<a href="GameBeerWanter.htm">BeerWanter</a>MainDialog::<a href="GameBeerWanter.htm">BeerWanter</a>MainDialog(<br/>
 &nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> screen_width,<br/>
 &nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> screen_height,<br/>
 &nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> sprite_width,<br/>
@@ -485,7 +514,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;m_window_y <a href="CppOperatorAssign.htm">=</a> (m_screen_height <a href="CppOperatorDivide.htm">/</a> 2) <a href="CppOperatorMinus.htm">-</a> (m_window_height <a href="CppOperatorDivide.htm">/</a> 2);<br/>
 }<br/>
 <br/>
-<b><a href="CppBool.htm">bool</a></b> <a href="GameBeerWanter.htm">BeerWanter</a>MainDialog::ClickWilBeSuccess() <b><a href="CppConst.htm">const</a></b><br/>
+<b><a href="CppBool.htm">bool</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="GameBeerWanter.htm">BeerWanter</a>MainDialog::ClickWilBeSuccess() <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> (<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (m_cursor_x <a href="CppOperatorGreaterEqual.htm">&gt;=</a> m_sprite_x)<br/>
@@ -494,7 +523,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> (m_cursor_y <a href="CppOperatorLessEqual.htm">&lt;=</a> m_sprite_y <a href="CppOperatorPlus.htm">+</a> m_sprite_height));<br/>
 }<br/>
 <br/>
-<b><a href="CppBool.htm">bool</a></b> <a href="GameBeerWanter.htm">BeerWanter</a>MainDialog::Click()<br/>
+<b><a href="CppBool.htm">bool</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="GameBeerWanter.htm">BeerWanter</a>MainDialog::Click()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (ClickWilBeSuccess())<br/>
 &nbsp;&nbsp;{<br/>
@@ -510,31 +539,31 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <b><a href="CppFalse.htm">false</a></b>;<br/>
 }<br/>
 <br/>
-<b><a href="CppInt.htm">int</a></b> <a href="GameBeerWanter.htm">BeerWanter</a>MainDialog::GetRandomCursorShake() <b><a href="CppConst.htm">const</a></b><br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="GameBeerWanter.htm">BeerWanter</a>MainDialog::GetRandomCursorShake() <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> (<a href="CppRand.htm">std::rand</a>() <a href="CppOperatorModulus.htm">%</a> (2*((m_level-1)/2)+1))<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorMinus.htm">-</a> ((m_level-1)/2);<br/>
 }<br/>
 <br/>
-<b><a href="CppInt.htm">int</a></b> <a href="GameBeerWanter.htm">BeerWanter</a>MainDialog::GetRandomWindowShake() <b><a href="CppConst.htm">const</a></b><br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="GameBeerWanter.htm">BeerWanter</a>MainDialog::GetRandomWindowShake() <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> (<a href="CppRand.htm">std::rand</a>() <a href="CppOperatorModulus.htm">%</a> (2*((m_level-1)/4)+1))<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorMinus.htm">-</a> ((m_level-1)/4);<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="GameBeerWanter.htm">BeerWanter</a>MainDialog::GetWindowTitle() <b><a href="CppConst.htm">const</a></b><br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppRibi.htm\">ribi</a>::<a href="GameBeerWanter.htm">BeerWanter</a>MainDialog::GetWindowTitle() <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <a href="CppString.htm">std::string</a>("<a href="GameBeerWanter.htm">BeerWanter</a> (C) 2005-2013 Richel Bilderbeek. Beer already got: ")<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> <a href="CppLexical_cast.htm">boost::lexical_cast</a>&lt;<a href="CppString.htm">std::string</a>&gt;(m_level <a href="CppOperatorMinus.htm">-</a> 1);<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="GameBeerWanter.htm">BeerWanter</a>MainDialog::SetCursorPos(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x, <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> y)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="GameBeerWanter.htm">BeerWanter</a>MainDialog::SetCursorPos(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x, <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> y)<br/>
 {<br/>
 &nbsp;&nbsp;m_cursor_x <a href="CppOperatorAssign.htm">=</a> x;<br/>
 &nbsp;&nbsp;m_cursor_y <a href="CppOperatorAssign.htm">=</a> y;<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="GameBeerWanter.htm">BeerWanter</a>MainDialog::ShakeCursor()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="GameBeerWanter.htm">BeerWanter</a>MainDialog::ShakeCursor()<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppClog.htm">std::clog</a><br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "ShakeCursor: ("<br/>
@@ -554,7 +583,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> ")\n";<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="GameBeerWanter.htm">BeerWanter</a>MainDialog::ShakeWindow()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="GameBeerWanter.htm">BeerWanter</a>MainDialog::ShakeWindow()<br/>
 {<br/>
 &nbsp;&nbsp;m_window_x <a href="CppOperatorPlus.htm">+</a><a href="CppOperatorAssign.htm">=</a> GetRandomWindowShake();<br/>
 &nbsp;&nbsp;m_window_y <a href="CppOperatorPlus.htm">+</a><a href="CppOperatorAssign.htm">=</a> GetRandomWindowShake();<br/>
@@ -599,6 +628,8 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppAbout.htm">about</a>.h"<br/>
 <br/>
+<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a> {<br/>
+<br/>
 <a href="CppComment.htm">///</a><a href="GameBeerWanter.htm">BeerWanter</a>MenuDialog contains the <a href="GameBeerWanter.htm">BeerWanter</a> menu dialog<br/>
 <b><a href="CppStruct.htm">struct</a></b> <a href="GameBeerWanter.htm">BeerWanter</a>MenuDialog<br/>
 {<br/>
@@ -606,6 +637,8 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> Get<a href="CppVersion.htm">Version</a>();<br/>
 &nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; Get<a href="CppVersion.htm">Version</a>History();<br/>
 };<br/>
+<br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a><br/>
 <br/>
 <a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> BEERWANTERMENUDIALOG_H<br/>
 </code></td></tr></table>
@@ -640,8 +673,6 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="GameBeerWanter.htm">GameBeerWanter</a>.htm<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">//</a><a href="CppInclude.htm">#include</a> own <a href="CppHeaderFile.htm">header file</a> as first substantive line of code, from:<br/>
-<a href="CppComment.htm">//</a> * John Lakos. Large-Scale <a href="Cpp.htm">C++</a> Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110<br/>
 <a href="CppInclude.htm">#include</a> "<a href="GameBeerWanter.htm">beerwanter</a>menudialog.h"<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppCstdlibH.htm">cstdlib</a>&gt;<br/>
@@ -649,7 +680,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppSstreamH.htm">sstream</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppStdexceptH.htm">stdexcept</a>&gt;<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppAbout.htm">About</a> <a href="GameBeerWanter.htm">BeerWanter</a>MenuDialog::GetAbout()<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppAbout.htm">About</a> <a href="CppRibi.htm\">ribi</a>::<a href="GameBeerWanter.htm">BeerWanter</a>MenuDialog::GetAbout()<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppAbout.htm">About</a> a(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;"Richel Bilderbeek",<br/>
@@ -664,12 +695,12 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> a;<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="GameBeerWanter.htm">BeerWanter</a>MenuDialog::Get<a href="CppVersion.htm">Version</a>()<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppRibi.htm\">ribi</a>::<a href="GameBeerWanter.htm">BeerWanter</a>MenuDialog::Get<a href="CppVersion.htm">Version</a>()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> "7.1";<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="GameBeerWanter.htm">BeerWanter</a>MenuDialog::Get<a href="CppVersion.htm">Version</a>History()<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm\">ribi</a>::<a href="GameBeerWanter.htm">BeerWanter</a>MenuDialog::Get<a href="CppVersion.htm">Version</a>History()<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v;<br/>
 &nbsp;&nbsp;v.push_back("2005-11-16: <a href="CppVersion.htm">version</a> 1.0: (at that <a href="CppTime.htm">time</a> called) 'Beerwanter 1' was programmed in <a href="Cpp.htm">C++</a> <b><a href="CppUsing.htm">using</a></b> the <a href="CppBuilder.htm">C++ Builder</a> IDE during a 'Spass programmieren' session, which made <a href="GameBeerWanter.htm">BeerWanter</a> a game <b><a href="CppFor.htm">for</a></b> <a href="CppWindows.htm">Windows</a> users only.");<br/>
@@ -680,7 +711,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;v.push_back("2010-10-10: <a href="CppVersion.htm">version</a> 5.1: (temporary <a href="CppNds.htm">NDS</a>-only <a href="CppFork.htm">fork</a>) start of port to <a href="CppNds.htm">NDS</a>.");<br/>
 &nbsp;&nbsp;v.push_back("2010-10-11: <a href="CppVersion.htm">version</a> 5.2: <a href="GameBeerWanter.htm">BeerWanter</a> is one project again and build <b><a href="CppFor.htm">for</a></b> <a href="CppNds.htm">NDS</a>, <a href="CppUbuntu.htm">Ubuntu</a> and <a href="CppWindows.htm">Windows</a>.");<br/>
 &nbsp;&nbsp;v.push_back("2010-12-19: <a href="CppVersion.htm">version</a> 6.0: seperated project files <b><a href="CppFor.htm">for</a></b> <a href="CppNds.htm">NDS</a>, <a href="CppUbuntu.htm">Ubuntu</a> and <a href="CppWindows.htm">Windows</a> development. Preparation <b><a href="CppFor.htm">for</a></b> seperating game logic from GUI.");<br/>
-&nbsp;&nbsp;v.push_back("2010-12-23: <a href="CppVersion.htm">version</a> 6.1: added ClickWilBeSuccess method, fixed <a href="CppBug.htm">bug</a> in <a href="GameBeerWanter.htm">BeerWanter</a>MainDialog::ShakeWindow");<br/>
+&nbsp;&nbsp;v.push_back("2010-12-23: <a href="CppVersion.htm">version</a> 6.1: added ClickWilBeSuccess <a href="CppMemberFunction.htm">member function</a>, fixed <a href="CppBug.htm">bug</a> in <a href="GameBeerWanter.htm">BeerWanter</a>MainDialog::ShakeWindow");<br/>
 &nbsp;&nbsp;v.push_back("2012-03-06: <a href="CppVersion.htm">version</a> 7.0: added menu, conformized project architecture <b><a href="CppFor.htm">for</a></b> <a href="ProjectRichelBilderbeek.htm">ProjectRichelBilderbeek</a>");<br/>
 &nbsp;&nbsp;v.push_back("2013-07-13: <a href="CppVersion.htm">version</a> 7.1: added <a href="CppLibcvautomation.htm">libcvautomation</a> script to beat the game, improved desktop menu and <a href="CppAbout.htm">about</a> screen");<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
@@ -763,7 +794,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <br/>
 <b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>Initialization, thanks to http://dev-scene.com/<a href="CppNds.htm">NDS</a>/Tutorials_Day_3<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppInitialize.htm">Initialization</a>, thanks to http://dev-scene.com/<a href="CppNds.htm">NDS</a>/Tutorials_Day_3<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppPointer.htm">point</a> our video buffer to the start of bitmap background video<br/>
 &nbsp;&nbsp;u16 * <b><a href="CppConst.htm">const</a></b> video_buffer_main <a href="CppOperatorAssign.htm">=</a> BG_BMP_RAM(0);<br/>
 &nbsp;&nbsp;u16 * <b><a href="CppConst.htm">const</a></b> video_buffer_sub&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> BG_BMP_RAM_SUB(0);<br/>
@@ -775,14 +806,14 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;vramSetBankA(VRAM_A_MAIN_BG_0x06000000);<br/>
 &nbsp;&nbsp;vramSetBankC(VRAM_C_SUB_BG_0x06200000);<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>initialize the background<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppInitialize.htm">initialize</a> the background<br/>
 &nbsp;&nbsp;BACKGROUND.control[3] <a href="CppOperatorAssign.htm">=</a> BG_BMP16_256x256 | BG_BMP_BASE(0);<br/>
 &nbsp;&nbsp;BACKGROUND.bg3_rotation.hdy <a href="CppOperatorAssign.htm">=</a> 0;<br/>
 &nbsp;&nbsp;BACKGROUND.bg3_rotation.hdx <a href="CppOperatorAssign.htm">=</a> 1 <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> 8;<br/>
 &nbsp;&nbsp;BACKGROUND.bg3_rotation.vdx <a href="CppOperatorAssign.htm">=</a> 0;<br/>
 &nbsp;&nbsp;BACKGROUND.bg3_rotation.vdy <a href="CppOperatorAssign.htm">=</a> 1 <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> 8;<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>initialize the sub background<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppInitialize.htm">initialize</a> the sub background<br/>
 &nbsp;&nbsp;BACKGROUND_SUB.control[3] <a href="CppOperatorAssign.htm">=</a> BG_BMP16_256x256 | BG_BMP_BASE(0);<br/>
 &nbsp;&nbsp;BACKGROUND_SUB.bg3_rotation.hdy <a href="CppOperatorAssign.htm">=</a> 0;<br/>
 &nbsp;&nbsp;BACKGROUND_SUB.bg3_rotation.hdx <a href="CppOperatorAssign.htm">=</a> 1 <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> 8;<br/>
@@ -5151,11 +5182,14 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppQtHideAndShowDialog.htm">qthideandshowdialog</a>.h"<br/>
 <br/>
-<b><a href="CppStruct.htm">struct</a></b> <a href="CppQt.htm">Qt</a><a href="GameBeerWanter.htm">BeerWanter</a><a href="CppWidget.htm">Widget</a>;<br/>
 <br/>
 <b><a href="CppNamespace.htm">namespace</a></b> Ui {<br/>
 &nbsp;&nbsp;<b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a><a href="GameBeerWanter.htm">BeerWanter</a>MainDialog;<br/>
 }<br/>
+<br/>
+<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a> {<br/>
+<br/>
+<b><a href="CppStruct.htm">struct</a></b> <a href="CppQt.htm">Qt</a><a href="GameBeerWanter.htm">BeerWanter</a><a href="CppWidget.htm">Widget</a>;<br/>
 <br/>
 <b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a><a href="GameBeerWanter.htm">BeerWanter</a>MainDialog : <b><a href="CppPublic.htm">public</a></b> <a href="CppQtHideAndShowDialog.htm">QtHideAndShowDialog</a><br/>
 {<br/>
@@ -5172,6 +5206,8 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> ChangeTitle(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; title);<br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> OnShake(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x, <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> y);<br/>
 };<br/>
+<br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a><br/>
 <br/>
 <a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> QTBEERWANTERMAINDIALOG_H<br/>
 </code></td></tr></table>
@@ -5206,8 +5242,6 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="GameBeerWanter.htm">GameBeerWanter</a>.htm<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">//</a><a href="CppInclude.htm">#include</a> own <a href="CppHeaderFile.htm">header file</a> as first substantive line of code, from:<br/>
-<a href="CppComment.htm">//</a> * John Lakos. Large-Scale <a href="Cpp.htm">C++</a> Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110<br/>
 <a href="CppInclude.htm">#include</a> "qt<a href="GameBeerWanter.htm">beerwanter</a>maindialog.h"<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppIostreamH.htm">iostream</a>&gt;<br/>
@@ -5216,7 +5250,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppInclude.htm">#include</a> "qt<a href="GameBeerWanter.htm">beerwanter</a><a href="CppWidget.htm">widget</a>.h"<br/>
 <a href="CppInclude.htm">#include</a> "ui_qt<a href="GameBeerWanter.htm">beerwanter</a>maindialog.h"<br/>
 <br/>
-<a href="CppQt.htm">Qt</a><a href="GameBeerWanter.htm">BeerWanter</a>MainDialog::<a href="CppQt.htm">Qt</a><a href="GameBeerWanter.htm">BeerWanter</a>MainDialog(<a href="CppQWidget.htm">QWidget</a> *parent) :<br/>
+<a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="GameBeerWanter.htm">BeerWanter</a>MainDialog::<a href="CppQt.htm">Qt</a><a href="GameBeerWanter.htm">BeerWanter</a>MainDialog(<a href="CppQWidget.htm">QWidget</a> *parent) :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQtHideAndShowDialog.htm">QtHideAndShowDialog</a>(parent),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;ui(<b><a href="CppNew.htm">new</a></b> <a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a><a href="GameBeerWanter.htm">BeerWanter</a>MainDialog),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;m_<a href="CppWidget.htm">widget</a>(<b><a href="CppNew.htm">new</a></b> <a href="CppQt.htm">Qt</a><a href="GameBeerWanter.htm">BeerWanter</a><a href="CppWidget.htm">Widget</a>)<br/>
@@ -5235,17 +5269,17 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>,<a href="CppSLOT.htm">SLOT</a>(OnShake(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b>,<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b>)));<br/>
 }<br/>
 <br/>
-<a href="CppQt.htm">Qt</a><a href="GameBeerWanter.htm">BeerWanter</a>MainDialog::~<a href="CppQt.htm">Qt</a><a href="GameBeerWanter.htm">BeerWanter</a>MainDialog()<br/>
+<a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="GameBeerWanter.htm">BeerWanter</a>MainDialog::~<a href="CppQt.htm">Qt</a><a href="GameBeerWanter.htm">BeerWanter</a>MainDialog()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppDelete.htm">delete</a></b> ui;<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a><a href="GameBeerWanter.htm">BeerWanter</a>MainDialog::ChangeTitle(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; title)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="GameBeerWanter.htm">BeerWanter</a>MainDialog::ChangeTitle(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; title)<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;setWindowTitle(title.c_str());<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a><a href="GameBeerWanter.htm">BeerWanter</a>MainDialog::OnShake(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x, <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> y)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="GameBeerWanter.htm">BeerWanter</a>MainDialog::OnShake(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x, <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> y)<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;setGeometry(x,y,<b><a href="CppThis.htm">this</a></b>-&gt;width(),<b><a href="CppThis.htm">this</a></b>-&gt;height());<br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;repaint();<br/>
@@ -5291,6 +5325,8 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a><a href="GameBeerWanter.htm">BeerWanter</a>MenuDialog;<br/>
 }<br/>
 <br/>
+<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a> {<br/>
+<br/>
 <b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a><a href="GameBeerWanter.htm">BeerWanter</a>MenuDialog : <b><a href="CppPublic.htm">public</a></b> <a href="CppQtHideAndShowDialog.htm">QtHideAndShowDialog</a><br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppQ_OBJECT.htm">Q_OBJECT</a><br/>
@@ -5310,6 +5346,8 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <b><a href="CppPrivate.htm">private</a></b>:<br/>
 &nbsp;&nbsp;<a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a><a href="GameBeerWanter.htm">BeerWanter</a>MenuDialog *ui;<br/>
 };<br/>
+<br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a><br/>
 <br/>
 <a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> QTBEERWANTERMENUDIALOG_H<br/>
 </code></td></tr></table>
@@ -5344,8 +5382,6 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="GameBeerWanter.htm">GameBeerWanter</a>.htm<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">//</a><a href="CppInclude.htm">#include</a> own <a href="CppHeaderFile.htm">header file</a> as first substantive line of code, from:<br/>
-<a href="CppComment.htm">//</a> * John Lakos. Large-Scale <a href="Cpp.htm">C++</a> Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110<br/>
 <a href="CppInclude.htm">#include</a> "qt<a href="GameBeerWanter.htm">beerwanter</a>menudialog.h"<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> "<a href="GameBeerWanter.htm">beerwanter</a>menudialog.h"<br/>
@@ -5353,25 +5389,25 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppInclude.htm">#include</a> "qt<a href="GameBeerWanter.htm">beerwanter</a>maindialog.h"<br/>
 <a href="CppInclude.htm">#include</a> "ui_qt<a href="GameBeerWanter.htm">beerwanter</a>menudialog.h"<br/>
 <br/>
-<a href="CppQt.htm">Qt</a><a href="GameBeerWanter.htm">BeerWanter</a>MenuDialog::<a href="CppQt.htm">Qt</a><a href="GameBeerWanter.htm">BeerWanter</a>MenuDialog(<a href="CppQWidget.htm">QWidget</a> *parent) :<br/>
+<a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="GameBeerWanter.htm">BeerWanter</a>MenuDialog::<a href="CppQt.htm">Qt</a><a href="GameBeerWanter.htm">BeerWanter</a>MenuDialog(<a href="CppQWidget.htm">QWidget</a> *parent) :<br/>
 &nbsp;&nbsp;<a href="CppQtHideAndShowDialog.htm">QtHideAndShowDialog</a>(parent),<br/>
 &nbsp;&nbsp;ui(<b><a href="CppNew.htm">new</a></b> <a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a><a href="GameBeerWanter.htm">BeerWanter</a>MenuDialog)<br/>
 {<br/>
 &nbsp;&nbsp;ui-&gt;setupUi(<b><a href="CppThis.htm">this</a></b>);<br/>
 }<br/>
 <br/>
-<a href="CppQt.htm">Qt</a><a href="GameBeerWanter.htm">BeerWanter</a>MenuDialog::~<a href="CppQt.htm">Qt</a><a href="GameBeerWanter.htm">BeerWanter</a>MenuDialog()<br/>
+<a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="GameBeerWanter.htm">BeerWanter</a>MenuDialog::~<a href="CppQt.htm">Qt</a><a href="GameBeerWanter.htm">BeerWanter</a>MenuDialog()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppDelete.htm">delete</a></b> ui;<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a><a href="GameBeerWanter.htm">BeerWanter</a>MenuDialog::on_button_start_clicked()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="GameBeerWanter.htm">BeerWanter</a>MenuDialog::on_button_start_clicked()<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppQt.htm">Qt</a><a href="GameBeerWanter.htm">BeerWanter</a>MainDialog d;<br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;ShowChild(&amp;d);<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a><a href="GameBeerWanter.htm">BeerWanter</a>MenuDialog::on_button_about_clicked()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="GameBeerWanter.htm">BeerWanter</a>MenuDialog::on_button_about_clicked()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;hide();<br/>
 &nbsp;&nbsp;<a href="CppAbout.htm">About</a> a <a href="CppOperatorAssign.htm">=</a> <a href="GameBeerWanter.htm">BeerWanter</a>MenuDialog::GetAbout();<br/>
@@ -5383,7 +5419,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;show();<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a><a href="GameBeerWanter.htm">BeerWanter</a>MenuDialog::on_button_quit_clicked()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="GameBeerWanter.htm">BeerWanter</a>MenuDialog::on_button_quit_clicked()<br/>
 {<br/>
 &nbsp;&nbsp;close();<br/>
 }<br/>
@@ -5428,10 +5464,13 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppQWidget.htm">QWidget</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> "<a href="GameBeerWanter.htm">beerwanter</a>maindialog.h"<br/>
 <br/>
-<b><a href="CppStruct.htm">struct</a></b> <a href="GameBeerWanter.htm">BeerWanter</a>MainDialog;<br/>
 <b><a href="CppStruct.htm">struct</a></b> <a href="CppQMouseEvent.htm">QMouseEvent</a>;<br/>
 <b><a href="CppStruct.htm">struct</a></b> <a href="CppQPixmap.htm">QPixmap</a>;<br/>
 <b><a href="CppStruct.htm">struct</a></b> <a href="CppQTimer.htm">QTimer</a>;<br/>
+<br/>
+<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a> {<br/>
+<br/>
+<b><a href="CppStruct.htm">struct</a></b> <a href="GameBeerWanter.htm">BeerWanter</a>MainDialog;<br/>
 <br/>
 <b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a><a href="GameBeerWanter.htm">BeerWanter</a><a href="CppWidget.htm">Widget</a> : <b><a href="CppPublic.htm">public</a></b> <a href="CppQWidget.htm">QWidget</a><br/>
 {<br/>
@@ -5474,6 +5513,8 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> a <a href="CppOperatorAssign.htm">=</a> 255); <a href="CppComment.htm">//</a>Opaque<br/>
 };<br/>
 <br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a><br/>
+<br/>
 <a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> QTBEERWANTERWIDGET_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
@@ -5507,8 +5548,6 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="GameBeerWanter.htm">GameBeerWanter</a>.htm<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">//</a><a href="CppInclude.htm">#include</a> own <a href="CppHeaderFile.htm">header file</a> as first substantive line of code, from:<br/>
-<a href="CppComment.htm">//</a> * John Lakos. Large-Scale <a href="Cpp.htm">C++</a> Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110<br/>
 <a href="CppInclude.htm">#include</a> "qt<a href="GameBeerWanter.htm">beerwanter</a><a href="CppWidget.htm">widget</a>.h"<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppIostreamH.htm">iostream</a>&gt;<br/>
@@ -5530,7 +5569,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> "<a href="GameBeerWanter.htm">beerwanter</a>maindialog.h"<br/>
 <br/>
-<a href="CppQt.htm">Qt</a><a href="GameBeerWanter.htm">BeerWanter</a><a href="CppWidget.htm">Widget</a>::<a href="CppQt.htm">Qt</a><a href="GameBeerWanter.htm">BeerWanter</a><a href="CppWidget.htm">Widget</a>(<a href="CppQWidget.htm">QWidget</a> *parent)<br/>
+<a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="GameBeerWanter.htm">BeerWanter</a><a href="CppWidget.htm">Widget</a>::<a href="CppQt.htm">Qt</a><a href="GameBeerWanter.htm">BeerWanter</a><a href="CppWidget.htm">Widget</a>(<a href="CppQWidget.htm">QWidget</a> *parent)<br/>
 &nbsp;&nbsp;: <a href="CppQWidget.htm">QWidget</a>(parent),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;m_background_rgb(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStd.htm">std</a>::<a href="CppMake.htm">make</a>_<a href="CppTuple.htm">tuple</a>(<br/>
@@ -5563,12 +5602,12 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;m_<a href="CppTime.htm">time</a>r-&gt;start(20); <a href="CppComment.htm">//</a>Framerate <a href="CppAbout.htm">about</a> (1000/20=) 50 fps<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="GameBeerWanter.htm">BeerWanter</a>MainDialog * <a href="CppQt.htm">Qt</a><a href="GameBeerWanter.htm">BeerWanter</a><a href="CppWidget.htm">Widget</a>::Get<a href="GameBeerWanter.htm">BeerWanter</a>() <b><a href="CppConst.htm">const</a></b><br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="GameBeerWanter.htm">BeerWanter</a>MainDialog * <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="GameBeerWanter.htm">BeerWanter</a><a href="CppWidget.htm">Widget</a>::Get<a href="GameBeerWanter.htm">BeerWanter</a>() <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> m_dialog.get();<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a><a href="GameBeerWanter.htm">BeerWanter</a><a href="CppWidget.htm">Widget</a>::mouseMoveEvent(<a href="CppQMouseEvent.htm">QMouseEvent</a> * event)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="GameBeerWanter.htm">BeerWanter</a><a href="CppWidget.htm">Widget</a>::mouseMoveEvent(<a href="CppQMouseEvent.htm">QMouseEvent</a> * event)<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> mouse_x <a href="CppOperatorAssign.htm">=</a> event-&gt;x();<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> mouse_y <a href="CppOperatorAssign.htm">=</a> event-&gt;y();<br/>
@@ -5604,7 +5643,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;repaint();<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a><a href="GameBeerWanter.htm">BeerWanter</a><a href="CppWidget.htm">Widget</a>::mousePressEvent(<a href="CppQMouseEvent.htm">QMouseEvent</a> *)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="GameBeerWanter.htm">BeerWanter</a><a href="CppWidget.htm">Widget</a>::mousePressEvent(<a href="CppQMouseEvent.htm">QMouseEvent</a> *)<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppDefine.htm">#define</a> DEBUG_SHOW_MOUSE_CLICK_POSITION<br/>
 &nbsp;&nbsp;<a href="CppIfdef.htm">#ifdef</a> DEBUG_SHOW_MOUSE_CLICK_POSITION<br/>
@@ -5625,7 +5664,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;repaint();<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a><a href="GameBeerWanter.htm">BeerWanter</a><a href="CppWidget.htm">Widget</a>::on<a href="CppTime.htm">Time</a>r()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="GameBeerWanter.htm">BeerWanter</a><a href="CppWidget.htm">Widget</a>::on<a href="CppTime.htm">Time</a>r()<br/>
 {<br/>
 &nbsp;&nbsp;m_dialog-&gt;ShakeCursor();<br/>
 <br/>
@@ -5661,7 +5700,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;repaint();<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a><a href="GameBeerWanter.htm">BeerWanter</a><a href="CppWidget.htm">Widget</a>::paintEvent(<a href="CppQPaintEvent.htm">QPaintEvent</a> *)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="GameBeerWanter.htm">BeerWanter</a><a href="CppWidget.htm">Widget</a>::paintEvent(<a href="CppQPaintEvent.htm">QPaintEvent</a> *)<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppQPainter.htm">QPainter</a> painter(<b><a href="CppThis.htm">this</a></b>);<br/>
 <br/>
@@ -5690,7 +5729,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;*m_sprite.get());<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a><a href="GameBeerWanter.htm">BeerWanter</a><a href="CppWidget.htm">Widget</a>::Modify(<b><a href="CppInt.htm">int</a></b>&amp; color)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="GameBeerWanter.htm">BeerWanter</a><a href="CppWidget.htm">Widget</a>::Modify(<b><a href="CppInt.htm">int</a></b>&amp; color)<br/>
 {<br/>
 &nbsp;&nbsp;color <a href="CppOperatorPlus.htm">+</a><a href="CppOperatorAssign.htm">=</a> ((<a href="CppRand.htm">std::rand</a>() <a href="CppOperatorStreamIn.htm">&gt;&gt;</a> 4) <a href="CppOperatorModulus.htm">%</a> 3) <a href="CppOperatorMinus.htm">-</a> 1;<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (color &gt; 255) color <a href="CppOperatorAssign.htm">=</a> 255;<br/>
@@ -5698,7 +5737,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 }<br/>
 <br/>
 <a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/Cpp<a href="CppPaint.htm">Paint</a>.htm<br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a><a href="GameBeerWanter.htm">BeerWanter</a><a href="CppWidget.htm">Widget</a>::My<a href="CppPaint.htm">Paint</a>(<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="GameBeerWanter.htm">BeerWanter</a><a href="CppWidget.htm">Widget</a>::My<a href="CppPaint.htm">Paint</a>(<br/>
 &nbsp;&nbsp;<a href="CppQPixmap.htm">QPixmap</a>&amp; pixmap,<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> r,<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> g,<br/>
@@ -5765,7 +5804,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>(<b><a href="CppInt.htm">int</a></b> <a href="CppArgc.htm">argc</a>, <b><a href="CppChar.htm">char</a></b> *<a href="CppArgc.htm">argv</a>[])<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppQApplication.htm">QApplication</a> a(<a href="CppArgc.htm">argc</a>, <a href="CppArgc.htm">argv</a>);<br/>
-&nbsp;&nbsp;<a href="CppQt.htm">Qt</a><a href="GameBeerWanter.htm">BeerWanter</a>MenuDialog w;<br/>
+&nbsp;&nbsp;<a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="GameBeerWanter.htm">BeerWanter</a>MenuDialog w;<br/>
 &nbsp;&nbsp;w.show();<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> a.exec();<br/>
 }<br/>

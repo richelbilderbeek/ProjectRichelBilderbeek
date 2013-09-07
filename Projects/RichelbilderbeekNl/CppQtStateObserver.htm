@@ -44,11 +44,6 @@
 <a href="CppIfndef.htm">#ifndef</a> QTALPHAFILTERDIALOG_H<br/>
 <a href="CppDefine.htm">#define</a> QTALPHAFILTERDIALOG_H<br/>
 <br/>
-<a href="CppIfdef.htm">#ifdef</a> _WIN32<br/>
-<a href="CppComment.htm">//</a>See http://www.richelbilderbeek.nl/Cpp<a href="CppCompile.htm">Compile</a>ErrorSwprintfHasNotBeenDeclared.htm<br/>
-<a href="CppUndef.htm">#undef</a> __STRICT_ANSI__<br/>
-<a href="CppEndif.htm">#endif</a><br/>
-<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppShared_ptr.htm">shared_ptr</a>.hpp&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppQDialog.htm">QDialog</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> "stateobserverfwd.h"<br/>
@@ -56,6 +51,8 @@
 <b><a href="CppNamespace.htm">namespace</a></b> Ui {<br/>
 &nbsp;&nbsp;<b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a>AlphaFilterDialog;<br/>
 }<br/>
+<br/>
+<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a> {<br/>
 <br/>
 <a href="CppComment.htm">///</a>Dialog to create an alpha filter<br/>
 <b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a>AlphaFilterDialog : <b><a href="CppPublic.htm">public</a></b> <a href="CppQDialog.htm">QDialog</a><br/>
@@ -73,6 +70,8 @@
 &nbsp;&nbsp;<a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a>AlphaFilterDialog *ui;<br/>
 };<br/>
 <br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a><br/>
+<br/>
 <a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> QTALPHAFILTERDIALOG_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
@@ -85,32 +84,25 @@
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="qtalphafilterdialog.cpp" border = "1"><tr><td><code>
-<a href="CppIfdef.htm">#ifdef</a> _WIN32<br/>
-<a href="CppComment.htm">//</a>See http://www.richelbilderbeek.nl/Cpp<a href="CppCompile.htm">Compile</a>ErrorSwprintfHasNotBeenDeclared.htm<br/>
-<a href="CppUndef.htm">#undef</a> __STRICT_ANSI__<br/>
-<a href="CppEndif.htm">#endif</a><br/>
-<br/>
-<a href="CppComment.htm">//</a><a href="CppInclude.htm">#include</a> own <a href="CppHeaderFile.htm">header file</a> as first substantive line of code, from:<br/>
-<a href="CppComment.htm">//</a> * John Lakos. Large-Scale <a href="Cpp.htm">C++</a> Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110<br/>
 <a href="CppInclude.htm">#include</a> "qtalphafilterdialog.h"<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> "alphafilter.h"<br/>
 <a href="CppInclude.htm">#include</a> "ui_qtalphafilterdialog.h"<br/>
 <br/>
-<a href="CppQt.htm">Qt</a>AlphaFilterDialog::<a href="CppQt.htm">Qt</a>AlphaFilterDialog(<a href="CppQWidget.htm">QWidget</a> *parent) :<br/>
+<a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a>AlphaFilterDialog::<a href="CppQt.htm">Qt</a>AlphaFilterDialog(<a href="CppQWidget.htm">QWidget</a> *parent) :<br/>
 &nbsp;&nbsp;<a href="CppQDialog.htm">QDialog</a>(parent),<br/>
 &nbsp;&nbsp;ui(<b><a href="CppNew.htm">new</a></b> <a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a>AlphaFilterDialog)<br/>
 {<br/>
 &nbsp;&nbsp;ui-&gt;setupUi(<b><a href="CppThis.htm">this</a></b>);<br/>
 }<br/>
 <br/>
-<a href="CppQt.htm">Qt</a>AlphaFilterDialog::~<a href="CppQt.htm">Qt</a>AlphaFilterDialog()<br/>
+<a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a>AlphaFilterDialog::~<a href="CppQt.htm">Qt</a>AlphaFilterDialog()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppDelete.htm">delete</a></b> ui;<br/>
 }<br/>
 <br/>
-<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;AlphaFilter&gt; <a href="CppQt.htm">Qt</a>AlphaFilterDialog::Create() <b><a href="CppConst.htm">const</a></b><br/>
+<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRibi.htm\">ribi</a>::AlphaFilter&gt; <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a>AlphaFilterDialog::Create() <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> alpha&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> ui-&gt;box_alpha-&gt;value();<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> dt <a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;ui-&gt;box_dt-&gt;value();<br/>

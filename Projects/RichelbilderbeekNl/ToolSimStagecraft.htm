@@ -46,15 +46,6 @@ href="CppBuilder.htm">C++ Builder</a> 6.0. It uses the <a href="CppStl.htm">STL<
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
-<h2>Post your feedback</h2>
-<p>&nbsp;</p>
-<p>Feedback can be posted at 
-<a href="http://www.programmersheaven.com/download/55977/download.aspx">SimStagecraft's Programmer's Heaven page</a>.</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
 <h2>Version history</h2>
 <p>&nbsp;</p>
 <ul>
@@ -483,25 +474,25 @@ WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, <b><a href="CppInt.htm">int</a></b>)
 {<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppTry.htm">try</a></b><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppApplication.htm">Application</a>-&gt;Initialize();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppApplication.htm">Application</a>-&gt;<a href="CppInitialize.htm">Initialize</a>();<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppApplication.htm">Application</a>-&gt;Title <a href="CppOperatorAssign.htm">=</a> "SimStagecraft";<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppApplication.htm">Application</a>-&gt;CreateForm(__classid(TFormSimStagecraftMenu), &amp;FormSimStagecraftMenu);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppApplication.htm">Application</a>-&gt;CreateForm(__classid(TFormSprites), &amp;FormSprites);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppApplication.htm">Application</a>-&gt;Run();<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCatch.htm">catch</a></b> (Exception &amp;exception)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCatch.htm">catch</a></b> (<a href="CppException.htm">Exception</a> &amp;<a href="CppException.htm">exception</a>)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppApplication.htm">Application</a>-&gt;ShowException(&amp;exception);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppApplication.htm">Application</a>-&gt;Show<a href="CppException.htm">Exception</a>(&amp;<a href="CppException.htm">exception</a>);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCatch.htm">catch</a></b> (...)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b><a href="CppTry.htm">try</a></b><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b><a href="CppThrow.htm">throw</a></b> Exception("");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b><a href="CppThrow.htm">throw</a></b> <a href="CppException.htm">Exception</a>("");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b><a href="CppCatch.htm">catch</a></b> (Exception &amp;exception)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b><a href="CppCatch.htm">catch</a></b> (<a href="CppException.htm">Exception</a> &amp;<a href="CppException.htm">exception</a>)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppApplication.htm">Application</a>-&gt;ShowException(&amp;exception);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppApplication.htm">Application</a>-&gt;Show<a href="CppException.htm">Exception</a>(&amp;<a href="CppException.htm">exception</a>);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> 0;<br/>
@@ -7376,7 +7367,7 @@ __published:	<a href="CppComment.htm">//</a> IDE-managed <a href="CppComponent.h
 &nbsp;&nbsp;TFormMachine * mDragMachine;<br/>
 &nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> mDragX;<br/>
 &nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> mDragY;<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>Methods<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppMemberFunction.htm">Member function</a>s<br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> <a href="CppPaint.htm">Paint</a>Background();<br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> TickBackground();<br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> SetDisplayModes(<b><a href="CppConst.htm">const</a></b> EnumDisplayMode mode);<br/>
@@ -7450,7 +7441,7 @@ __fastcall TFormSimStagecraftMain::TFormSimStagecraftMain(T<a href="CppComponent
 &nbsp;&nbsp;&nbsp;&nbsp;mDragY(0)<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Set the Tag of the three TSpeedButtons<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>These are used in the OnButtonClick method<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>These are used in the OnButtonClick <a href="CppMemberFunction.htm">member function</a><br/>
 &nbsp;&nbsp;ButtonView-&gt;Tag&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> 1;<br/>
 &nbsp;&nbsp;ButtonConnect-&gt;Tag <a href="CppOperatorAssign.htm">=</a> 2;<br/>
 &nbsp;&nbsp;ButtonUse-&gt;Tag&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppOperatorAssign.htm">=</a> 3;<br/>
@@ -7599,7 +7590,7 @@ __fastcall TFormSimStagecraftMain::TFormSimStagecraftMain(T<a href="CppComponent
 <br/>
 <b><a href="CppVoid.htm">void</a></b> __fastcall TFormSimStagecraftMain::OnButtonClick(TObject *Sender)<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>Only SpeedButtons are allowed to call <b><a href="CppThis.htm">this</a></b> method<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Only SpeedButtons are allowed to call <b><a href="CppThis.htm">this</a></b> <a href="CppMemberFunction.htm">member function</a><br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>button is not <b><a href="CppConst.htm">const</a></b>,<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>because the VCL is not <b><a href="CppConst.htm">const</a></b>-correct. Grumble, grumble...<br/>
 &nbsp;&nbsp;TSpeedButton * <b><a href="CppConst.htm">const</a></b> button <a href="CppOperatorAssign.htm">=</a> <b><a href="CppDynamic_cast.htm">dynamic_cast</a></b>&lt;TSpeedButton*&gt;(Sender);<br/>
@@ -7643,8 +7634,8 @@ __fastcall TFormSimStagecraftMain::TFormSimStagecraftMain(T<a href="CppComponent
 &nbsp;&nbsp;}<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">//</a>Children forms will call <b><a href="CppThis.htm">this</a></b> method <b><a href="CppIf.htm">if</a></b> a connector is clicked.<br/>
-<a href="CppComment.htm">//</a>This method <b><a href="CppReturn.htm">return</a></b> <b><a href="CppIf.htm">if</a></b> the connector is selected or not<br/>
+<a href="CppComment.htm">//</a>Children forms will call <b><a href="CppThis.htm">this</a></b> <a href="CppMemberFunction.htm">member function</a> <b><a href="CppIf.htm">if</a></b> a connector is clicked.<br/>
+<a href="CppComment.htm">//</a>This <a href="CppMemberFunction.htm">member function</a> <b><a href="CppReturn.htm">return</a></b> <b><a href="CppIf.htm">if</a></b> the connector is selected or not<br/>
 <a href="CppComment.htm">//</a>The child forms know <b><a href="CppIf.htm">if</a></b> the connector is connected or not<br/>
 <b><a href="CppVoid.htm">void</a></b> TFormSimStagecraftMain::OnConnectorClick(<br/>
 &nbsp;&nbsp;ConnectorControl * <b><a href="CppConst.htm">const</a></b> connector)<br/>
@@ -11072,7 +11063,7 @@ __fastcall TFormSimpleSound4::TFormSimpleSound4(T<a href="CppComponent.htm">Comp
 &nbsp;&nbsp;: TFormMachine(Owner,formParent),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;mSoundTable(<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;SimpleSound4&gt;(<b><a href="CppNew.htm">new</a></b> SimpleSound4))<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>Put the initialization here, to be sure the mSoundTable is initialized<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Put the <a href="CppInitialize.htm">initialization</a> here, to be sure the mSoundTable is <a href="CppInitialize.htm">initialize</a>d<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Control<br/>
 &nbsp;&nbsp;mFaderControl1 <a href="CppOperatorAssign.htm">=</a> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;FaderControl&gt;(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppNew.htm">new</a></b> FaderControl(<b><a href="CppThis.htm">this</a></b>,mSoundTable-&gt;mFader1,ImageFader1));<br/>
@@ -13668,7 +13659,7 @@ ShureSm58::ShureSm58()<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <b><a href="CppConst.htm">const</a></b> <b><a href="CppBool.htm">bool</a></b> ShureSm58::HasPower() <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>("This is not a very important method");<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>("This is not a very important <a href="CppMemberFunction.htm">member function</a>");<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <b><a href="CppTrue.htm">true</a></b>;<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>

@@ -35,7 +35,6 @@
   <li><a href="GameMaziakInstructions_2_0.png">View a screenshot of the 'Maziak' instructions screen (v.2.0)(png)</a></li>
   <li><a href="GameMaziakExe_1_4.zip">Download the 'Maziak' Windows executable (v.1.4)(zip)</a></li>
   <li><a href="GameMaziakSource_2_0.zip">Download the 'Maziak' source code (v.2.0)(zip)</a></li>
-  <li><a href="GameMaziakSource_2_0.htm">View the Qt Creator source code of 'Maziak' as a web page (v.2.0)(htm)</a></li>
   <li><a href="GameMaziakSource_1_4.htm">View the C++ Builder source code of 'Maziak' as a web page (v.1.4)(htm)</a></li>
   <li><a href="GameMaziakSprites_2_0.zip">Download the 'Maziak' (png) sprites (v.2.0)(zip)</a></li>
 </ol>
@@ -104,7 +103,6 @@
 <p>&nbsp;</p>
 <ol>
   <li><a href="GameMaziakSource_1_4.htm">View the C++ Builder source code of Maziak version 1.4 as a web page</a></li>
-  <li><a href="GameMaziakSource_2_0.htm">View the Qt Creator source code of Maziak version 2.0 as a web page</a></li>
 </ol>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
@@ -166,7 +164,6 @@
 QT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; += core gui<br/>
 greaterThan(QT_MAJOR_VERSION, 4): QT += <a href="CppWidget.htm">widget</a>s<br/>
 TEMPLATE = app<br/>
-<a href="CppQMAKE_CXXFLAGS.htm">QMAKE_CXXFLAGS</a> += -std=<a href="Cpp11.htm">c++11</a> <a href="CppWall.htm">-Wall</a> <a href="CppWextra.htm">-Wextra</a> <a href="CppWerror.htm">-Werror</a><br/>
 <br/>
 <a href="CppINCLUDEPATH.htm">INCLUDEPATH</a> += \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppAbout.htm">CppAbout</a> \<br/>
@@ -244,25 +241,6 @@ unix {<br/>
 &nbsp;&nbsp;<a href="CppQMAKE_CXXFLAGS.htm">QMAKE_CXXFLAGS</a> += <a href="CppWerror.htm">-Werror</a><br/>
 }<br/>
 <br/>
-win32 {<br/>
-&nbsp;&nbsp;!static {<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;message(Native Windows)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQMAKE_CXXFLAGS.htm">QMAKE_CXXFLAGS</a> += <a href="CppWerror.htm">-Werror</a><br/>
-<br/>
-&nbsp;&nbsp;}<br/>
-<br/>
-&nbsp;&nbsp;static {<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;message(Crosscompiling from Lubuntu to Windows)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;#Allow the crosscompiler to emit warnings without terminating<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQMAKE_CXXFLAGS.htm">QMAKE_CXXFLAGS</a> += #<a href="CppWerror.htm">-Werror</a><br/>
-&nbsp;&nbsp;}<br/>
-<br/>
-<br/>
-&nbsp;&nbsp;#Prevents error:<br/>
-&nbsp;&nbsp;#/my_boost_folder/boost/type_traits/detail/has_binary_operator.hp:50: Parse error at "BOOST_JOIN"<br/>
-&nbsp;&nbsp;#DEFINES += BOOST_TT_HAS_OPERATOR_HPP_INCLUDED<br/>
-}<br/>
-<br/>
 #<br/>
 #<br/>
 # Boost<br/>
@@ -311,6 +289,8 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppAbout.htm">about</a>.h"<br/>
 <br/>
+<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a> {<br/>
+<br/>
 <a href="CppComment.htm">///</a>MaziakMenuDialog contains the Maziak menu dialog<br/>
 <b><a href="CppStruct.htm">struct</a></b> MaziakMenuDialog<br/>
 {<br/>
@@ -318,6 +298,8 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> Get<a href="CppVersion.htm">Version</a>();<br/>
 &nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; Get<a href="CppVersion.htm">Version</a>History();<br/>
 };<br/>
+<br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a><br/>
 <br/>
 <a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> MAZIAKMENUDIALOG_H<br/>
 </code></td></tr></table>
@@ -351,8 +333,8 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="GameMaziak.htm">GameMaziak</a>.htm<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">//</a><a href="CppInclude.htm">#include</a> own <a href="CppHeaderFile.htm">header file</a> as first substantive line of code, from:<br/>
-<a href="CppComment.htm">//</a> * John Lakos. Large-Scale <a href="Cpp.htm">C++</a> Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110<br/>
+<br/>
+<br/>
 <a href="CppInclude.htm">#include</a> "<a href="GameMaziak.htm">maziak</a>menudialog.h"<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppCstdlibH.htm">cstdlib</a>&gt;<br/>
@@ -361,7 +343,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppStdexceptH.htm">stdexcept</a>&gt;<br/>
 <br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppAbout.htm">About</a> MaziakMenuDialog::GetAbout()<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppAbout.htm">About</a> <a href="CppRibi.htm\">ribi</a>::MaziakMenuDialog::GetAbout()<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppAbout.htm">About</a> a(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;"Richel Bilderbeek",<br/>
@@ -376,12 +358,12 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> a;<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> MaziakMenuDialog::Get<a href="CppVersion.htm">Version</a>()<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppRibi.htm\">ribi</a>::MaziakMenuDialog::Get<a href="CppVersion.htm">Version</a>()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> "2.1";<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; MaziakMenuDialog::Get<a href="CppVersion.htm">Version</a>History()<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm\">ribi</a>::MaziakMenuDialog::Get<a href="CppVersion.htm">Version</a>History()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b><br/>
 &nbsp;&nbsp;{<br/>
@@ -425,19 +407,14 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="GameMaziak.htm">GameMaziak</a>.htm<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppInclude.htm">#include</a> &lt;qglobal.h&gt;<br/>
-<a href="CppPreIf.htm">#if</a> (QT_VERSION <a href="CppOperatorGreaterEqual.htm">&gt;=</a> QT_VERSION_CHECK(5,0,0))<br/>
-&nbsp;&nbsp;<a href="CppInclude.htm">#include</a> &lt;<a href="CppQApplication.htm">QApplication</a>&gt;<br/>
-<a href="CppPreElse.htm">#else</a><br/>
-&nbsp;&nbsp;<a href="CppInclude.htm">#include</a> &lt;<a href="CppQApplication.htm">QApplication</a>&gt;<br/>
-<a href="CppEndif.htm">#endif</a><br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppQApplication.htm">QApplication</a>&gt;<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> "qt<a href="GameMaziak.htm">maziak</a>menudialog.h"<br/>
 <br/>
 <b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>(<b><a href="CppInt.htm">int</a></b> <a href="CppArgc.htm">argc</a>, <b><a href="CppChar.htm">char</a></b> *<a href="CppArgc.htm">argv</a>[])<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppQApplication.htm">QApplication</a> a(<a href="CppArgc.htm">argc</a>, <a href="CppArgc.htm">argv</a>);<br/>
-&nbsp;&nbsp;<a href="CppQt.htm">Qt</a>MaziakMenuDialog w;<br/>
+&nbsp;&nbsp;<a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a>MaziakMenuDialog w;<br/>
 &nbsp;&nbsp;w.show();<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> a.exec();<br/>
 }<br/>
@@ -484,6 +461,8 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a>MaziakGameOverDialog;<br/>
 }<br/>
 <br/>
+<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a> {<br/>
+<br/>
 <b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a>MaziakGameOverDialog : <b><a href="CppPublic.htm">public</a></b> <a href="CppQDialog.htm">QDialog</a><br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppQ_OBJECT.htm">Q_OBJECT</a><br/>
@@ -493,7 +472,6 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;~<a href="CppQt.htm">Qt</a>MaziakGameOverDialog();<br/>
 <br/>
 <b><a href="CppProtected.htm">protected</a></b>:<br/>
-&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> changeEvent(<a href="CppQEvent.htm">QEvent</a> *e);<br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> paintEvent(<a href="CppQPaintEvent.htm">QPaintEvent</a>*);<br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> mousePressEvent(<a href="CppQMouseEvent.htm">QMouseEvent</a>*);<br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> keyPressEvent(<a href="CppQKeyEvent.htm">QKeyEvent</a>*);<br/>
@@ -507,6 +485,8 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> on<a href="CppTime.htm">Time</a>r();<br/>
 <br/>
 };<br/>
+<br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a><br/>
 <br/>
 <a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> QTMAZIAKGAMEOVERDIALOG_H<br/>
 </code></td></tr></table>
@@ -540,8 +520,8 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="GameMaziak.htm">GameMaziak</a>.htm<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">//</a><a href="CppInclude.htm">#include</a> own <a href="CppHeaderFile.htm">header file</a> as first substantive line of code, from:<br/>
-<a href="CppComment.htm">//</a> * John Lakos. Large-Scale <a href="Cpp.htm">C++</a> Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110<br/>
+<br/>
+<br/>
 <a href="CppInclude.htm">#include</a> "qt<a href="GameMaziak.htm">maziak</a>gameoverdialog.h"<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
@@ -554,7 +534,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> "ui_qt<a href="GameMaziak.htm">maziak</a>gameoverdialog.h"<br/>
 <br/>
-<a href="CppQt.htm">Qt</a>MaziakGameOverDialog::<a href="CppQt.htm">Qt</a>MaziakGameOverDialog(<a href="CppQWidget.htm">QWidget</a> *parent) :<br/>
+<a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a>MaziakGameOverDialog::<a href="CppQt.htm">Qt</a>MaziakGameOverDialog(<a href="CppQWidget.htm">QWidget</a> *parent) :<br/>
 &nbsp;&nbsp;<a href="CppQDialog.htm">QDialog</a>(parent),<br/>
 &nbsp;&nbsp;ui(<b><a href="CppNew.htm">new</a></b> <a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a>MaziakGameOverDialog),<br/>
 &nbsp;&nbsp;m_<a href="CppTime.htm">time</a>r(<b><a href="CppNew.htm">new</a></b> <a href="CppQTimer.htm">QTimer</a>),<br/>
@@ -566,30 +546,18 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;m_<a href="CppTime.htm">time</a>r-&gt;start();<br/>
 }<br/>
 <br/>
-<a href="CppQt.htm">Qt</a>MaziakGameOverDialog::~<a href="CppQt.htm">Qt</a>MaziakGameOverDialog()<br/>
+<a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a>MaziakGameOverDialog::~<a href="CppQt.htm">Qt</a>MaziakGameOverDialog()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppDelete.htm">delete</a></b> ui;<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a>MaziakGameOverDialog::changeEvent(<a href="CppQEvent.htm">QEvent</a> *e)<br/>
-{<br/>
-&nbsp;&nbsp;<a href="CppQWidget.htm">QWidget</a>::changeEvent(e);<br/>
-&nbsp;&nbsp;<b><a href="CppSwitch.htm">switch</a></b> (e-&gt;type()) {<br/>
-&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> <a href="CppQEvent.htm">QEvent</a>::LanguageChange:<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;ui-&gt;retranslateUi(<b><a href="CppThis.htm">this</a></b>);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppBreak.htm">break</a></b>;<br/>
-&nbsp;&nbsp;<b><a href="CppDefault.htm">default</a></b>:<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppBreak.htm">break</a></b>;<br/>
-&nbsp;&nbsp;}<br/>
-}<br/>
-<br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a>MaziakGameOverDialog::on<a href="CppTime.htm">Time</a>r()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a>MaziakGameOverDialog::on<a href="CppTime.htm">Time</a>r()<br/>
 {<br/>
 &nbsp;&nbsp;m_allow_close <a href="CppOperatorAssign.htm">=</a> <b><a href="CppTrue.htm">true</a></b>;<br/>
 &nbsp;&nbsp;m_<a href="CppTime.htm">time</a>r-&gt;stop();<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a>MaziakGameOverDialog::paintEvent(<a href="CppQPaintEvent.htm">QPaintEvent</a>*)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a>MaziakGameOverDialog::paintEvent(<a href="CppQPaintEvent.htm">QPaintEvent</a>*)<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppQPainter.htm">QPainter</a> painter(<b><a href="CppThis.htm">this</a></b>);<br/>
 &nbsp;&nbsp;{<br/>
@@ -612,12 +580,12 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;}<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a>MaziakGameOverDialog::mousePressEvent(<a href="CppQMouseEvent.htm">QMouseEvent</a>*)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a>MaziakGameOverDialog::mousePressEvent(<a href="CppQMouseEvent.htm">QMouseEvent</a>*)<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (m_allow_close) close();<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a>MaziakGameOverDialog::keyPressEvent(<a href="CppQKeyEvent.htm">QKeyEvent</a>*)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a>MaziakGameOverDialog::keyPressEvent(<a href="CppQKeyEvent.htm">QKeyEvent</a>*)<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (m_allow_close) close();<br/>
 }<br/>
@@ -664,6 +632,8 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a>MaziakGameWonDialog;<br/>
 }<br/>
 <br/>
+<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a> {<br/>
+<br/>
 <b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a>MaziakGameWonDialog : <b><a href="CppPublic.htm">public</a></b> <a href="CppQDialog.htm">QDialog</a><br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppQ_OBJECT.htm">Q_OBJECT</a><br/>
@@ -673,7 +643,6 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;~<a href="CppQt.htm">Qt</a>MaziakGameWonDialog();<br/>
 <br/>
 <b><a href="CppProtected.htm">protected</a></b>:<br/>
-&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> changeEvent(<a href="CppQEvent.htm">QEvent</a> *e);<br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> paintEvent(<a href="CppQPaintEvent.htm">QPaintEvent</a>*);<br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> mousePressEvent(<a href="CppQMouseEvent.htm">QMouseEvent</a>*);<br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> keyPressEvent(<a href="CppQKeyEvent.htm">QKeyEvent</a>*);<br/>
@@ -686,6 +655,8 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppPrivate.htm">private</a></b> <b><a href="CppSlots.htm">slots</a></b>:<br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> on<a href="CppTime.htm">Time</a>r();<br/>
 };<br/>
+<br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a><br/>
 <br/>
 <a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> QTMAZIAKGAMEWONDIALOG_H<br/>
 </code></td></tr></table>
@@ -719,8 +690,8 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="GameMaziak.htm">GameMaziak</a>.htm<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">//</a><a href="CppInclude.htm">#include</a> own <a href="CppHeaderFile.htm">header file</a> as first substantive line of code, from:<br/>
-<a href="CppComment.htm">//</a> * John Lakos. Large-Scale <a href="Cpp.htm">C++</a> Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110<br/>
+<br/>
+<br/>
 <a href="CppInclude.htm">#include</a> "qt<a href="GameMaziak.htm">maziak</a>gamewondialog.h"<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
@@ -734,7 +705,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> "ui_qt<a href="GameMaziak.htm">maziak</a>gamewondialog.h"<br/>
 <br/>
-<a href="CppQt.htm">Qt</a>MaziakGameWonDialog::<a href="CppQt.htm">Qt</a>MaziakGameWonDialog(<a href="CppQWidget.htm">QWidget</a> *parent) :<br/>
+<a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a>MaziakGameWonDialog::<a href="CppQt.htm">Qt</a>MaziakGameWonDialog(<a href="CppQWidget.htm">QWidget</a> *parent) :<br/>
 &nbsp;&nbsp;<a href="CppQDialog.htm">QDialog</a>(parent),<br/>
 &nbsp;&nbsp;ui(<b><a href="CppNew.htm">new</a></b> <a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a>MaziakGameWonDialog),<br/>
 &nbsp;&nbsp;m_<a href="CppTime.htm">time</a>r(<b><a href="CppNew.htm">new</a></b> <a href="CppQTimer.htm">QTimer</a>),<br/>
@@ -747,30 +718,18 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;m_<a href="CppTime.htm">time</a>r-&gt;start();<br/>
 }<br/>
 <br/>
-<a href="CppQt.htm">Qt</a>MaziakGameWonDialog::~<a href="CppQt.htm">Qt</a>MaziakGameWonDialog()<br/>
+<a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a>MaziakGameWonDialog::~<a href="CppQt.htm">Qt</a>MaziakGameWonDialog()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppDelete.htm">delete</a></b> ui;<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a>MaziakGameWonDialog::changeEvent(<a href="CppQEvent.htm">QEvent</a> *e)<br/>
-{<br/>
-&nbsp;&nbsp;<a href="CppQWidget.htm">QWidget</a>::changeEvent(e);<br/>
-&nbsp;&nbsp;<b><a href="CppSwitch.htm">switch</a></b> (e-&gt;type()) {<br/>
-&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> <a href="CppQEvent.htm">QEvent</a>::LanguageChange:<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;ui-&gt;retranslateUi(<b><a href="CppThis.htm">this</a></b>);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppBreak.htm">break</a></b>;<br/>
-&nbsp;&nbsp;<b><a href="CppDefault.htm">default</a></b>:<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppBreak.htm">break</a></b>;<br/>
-&nbsp;&nbsp;}<br/>
-}<br/>
-<br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a>MaziakGameWonDialog::on<a href="CppTime.htm">Time</a>r()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a>MaziakGameWonDialog::on<a href="CppTime.htm">Time</a>r()<br/>
 {<br/>
 &nbsp;&nbsp;m_allow_close <a href="CppOperatorAssign.htm">=</a> <b><a href="CppTrue.htm">true</a></b>;<br/>
 &nbsp;&nbsp;m_<a href="CppTime.htm">time</a>r-&gt;stop();<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a>MaziakGameWonDialog::paintEvent(<a href="CppQPaintEvent.htm">QPaintEvent</a>*)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a>MaziakGameWonDialog::paintEvent(<a href="CppQPaintEvent.htm">QPaintEvent</a>*)<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppQPainter.htm">QPainter</a> painter(<b><a href="CppThis.htm">this</a></b>);<br/>
 &nbsp;&nbsp;{<br/>
@@ -793,12 +752,12 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;}<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a>MaziakGameWonDialog::mousePressEvent(<a href="CppQMouseEvent.htm">QMouseEvent</a>*)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a>MaziakGameWonDialog::mousePressEvent(<a href="CppQMouseEvent.htm">QMouseEvent</a>*)<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (m_allow_close) close();<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a>MaziakGameWonDialog::keyPressEvent(<a href="CppQKeyEvent.htm">QKeyEvent</a>*)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a>MaziakGameWonDialog::keyPressEvent(<a href="CppQKeyEvent.htm">QKeyEvent</a>*)<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (m_allow_close) close();<br/>
 }<br/>
@@ -842,6 +801,8 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a>MaziakInstructionsDialog;<br/>
 }<br/>
 <br/>
+<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a> {<br/>
+<br/>
 <b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a>MaziakInstructionsDialog : <b><a href="CppPublic.htm">public</a></b> <a href="CppQDialog.htm">QDialog</a><br/>
 {<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQ_OBJECT.htm">Q_OBJECT</a><br/>
@@ -850,12 +811,11 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppExplicit.htm">explicit</a></b> <a href="CppQt.htm">Qt</a>MaziakInstructionsDialog(<a href="CppQWidget.htm">QWidget</a> *parent <a href="CppOperatorAssign.htm">=</a> 0);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;~<a href="CppQt.htm">Qt</a>MaziakInstructionsDialog();<br/>
 <br/>
-<b><a href="CppProtected.htm">protected</a></b>:<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> changeEvent(<a href="CppQEvent.htm">QEvent</a> *e);<br/>
-<br/>
 <b><a href="CppPrivate.htm">private</a></b>:<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a>MaziakInstructionsDialog *ui;<br/>
 };<br/>
+<br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a><br/>
 <br/>
 <a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> QTMAZIAKINSTRUCTIONSDIALOG_H<br/>
 </code></td></tr></table>
@@ -889,33 +849,21 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="GameMaziak.htm">GameMaziak</a>.htm<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">//</a><a href="CppInclude.htm">#include</a> own <a href="CppHeaderFile.htm">header file</a> as first substantive line of code, from:<br/>
-<a href="CppComment.htm">//</a> * John Lakos. Large-Scale <a href="Cpp.htm">C++</a> Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110<br/>
+<br/>
+<br/>
 <a href="CppInclude.htm">#include</a> "qt<a href="GameMaziak.htm">maziak</a>instructionsdialog.h"<br/>
 <a href="CppInclude.htm">#include</a> "ui_qt<a href="GameMaziak.htm">maziak</a>instructionsdialog.h"<br/>
 <br/>
-<a href="CppQt.htm">Qt</a>MaziakInstructionsDialog::<a href="CppQt.htm">Qt</a>MaziakInstructionsDialog(<a href="CppQWidget.htm">QWidget</a> *parent) :<br/>
+<a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a>MaziakInstructionsDialog::<a href="CppQt.htm">Qt</a>MaziakInstructionsDialog(<a href="CppQWidget.htm">QWidget</a> *parent) :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQDialog.htm">QDialog</a>(parent),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;ui(<b><a href="CppNew.htm">new</a></b> <a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a>MaziakInstructionsDialog)<br/>
 {<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;ui-&gt;setupUi(<b><a href="CppThis.htm">this</a></b>);<br/>
 }<br/>
 <br/>
-<a href="CppQt.htm">Qt</a>MaziakInstructionsDialog::~<a href="CppQt.htm">Qt</a>MaziakInstructionsDialog()<br/>
+<a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a>MaziakInstructionsDialog::~<a href="CppQt.htm">Qt</a>MaziakInstructionsDialog()<br/>
 {<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppDelete.htm">delete</a></b> ui;<br/>
-}<br/>
-<br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a>MaziakInstructionsDialog::changeEvent(<a href="CppQEvent.htm">QEvent</a> *e)<br/>
-{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQDialog.htm">QDialog</a>::changeEvent(e);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppSwitch.htm">switch</a></b> (e-&gt;type()) {<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> <a href="CppQEvent.htm">QEvent</a>::LanguageChange:<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ui-&gt;retranslateUi(<b><a href="CppThis.htm">this</a></b>);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppBreak.htm">break</a></b>;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppDefault.htm">default</a></b>:<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppBreak.htm">break</a></b>;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 }<br/>
 </code></td></tr></table>
 <!-- end of the code -->
@@ -968,6 +916,8 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a>MaziakMainDialog;<br/>
 }<br/>
 <br/>
+<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a> {<br/>
+<br/>
 <b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a>MaziakMainDialog : <b><a href="CppPublic.htm">public</a></b> <a href="CppQDialog.htm">QDialog</a><br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppQ_OBJECT.htm">Q_OBJECT</a><br/>
@@ -981,9 +931,6 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppExplicit.htm">explicit</a></b> <a href="CppQt.htm">Qt</a>MaziakMainDialog(<a href="CppQWidget.htm">QWidget</a> *parent <a href="CppOperatorAssign.htm">=</a> 0, <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> maze_size <a href="CppOperatorAssign.htm">=</a> 0);<br/>
 <br/>
 &nbsp;&nbsp;~<a href="CppQt.htm">Qt</a>MaziakMainDialog();<br/>
-<br/>
-<b><a href="CppProtected.htm">protected</a></b>:<br/>
-&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> changeEvent(<a href="CppQEvent.htm">QEvent</a> *e);<br/>
 <br/>
 <b><a href="CppPrivate.htm">private</a></b>:<br/>
 &nbsp;&nbsp;<a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a>MaziakMainDialog *ui;<br/>
@@ -1111,6 +1058,9 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppBool.htm">bool</a></b> showSolution);<br/>
 <br/>
 <br/>
+<a href="CppComment.htm">//</a>Creates a maze<br/>
+<a href="CppComment.htm">//</a> 0 : path<br/>
+<a href="CppComment.htm">//</a> 1 : wall<br/>
 <a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/Cpp<a href="CppCreateMaze.htm">CreateMaze</a>.htm<br/>
 <a href="CppVector.htm">std::vector</a>&lt;<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt; &gt; <a href="CppCreateMaze.htm">CreateMaze</a>(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> sz);<br/>
 <br/>
@@ -1135,6 +1085,8 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <br/>
 <b><a href="CppBool.htm">bool</a></b> <a href="CppIsSquare.htm">IsSquare</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppQt.htm">Qt</a>MaziakMainDialog::MazeSquare&gt; &gt;&amp; v);<br/>
 <b><a href="CppBool.htm">bool</a></b> <a href="CppIsSquare.htm">IsSquare</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt; &gt;&amp; v);<br/>
+<br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a><br/>
 <br/>
 <a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> QTMAZIAKMAINDIALOG_H<br/>
 </code></td></tr></table>
@@ -1168,8 +1120,8 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="GameMaziak.htm">GameMaziak</a>.htm<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">//</a><a href="CppInclude.htm">#include</a> own <a href="CppHeaderFile.htm">header file</a> as first substantive line of code, from:<br/>
-<a href="CppComment.htm">//</a> * John Lakos. Large-Scale <a href="Cpp.htm">C++</a> Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110<br/>
+<br/>
+<br/>
 <a href="CppInclude.htm">#include</a> "qt<a href="GameMaziak.htm">maziak</a>maindialog.h"<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppAlgorithmH.htm">algorithm</a>&gt;<br/>
@@ -1190,7 +1142,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppInclude.htm">#include</a> "qt<a href="GameMaziak.htm">maziak</a>gamewondialog.h"<br/>
 <a href="CppInclude.htm">#include</a> "ui_qt<a href="GameMaziak.htm">maziak</a>maindialog.h"<br/>
 <br/>
-<a href="CppQt.htm">Qt</a>MaziakMainDialog::<a href="CppQt.htm">Qt</a>MaziakMainDialog(<a href="CppQWidget.htm">QWidget</a> *parent, <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> maze_size) :<br/>
+<a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a>MaziakMainDialog::<a href="CppQt.htm">Qt</a>MaziakMainDialog(<a href="CppQWidget.htm">QWidget</a> *parent, <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> maze_size) :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQDialog.htm">QDialog</a>(parent,<a href="CppQt.htm">Qt</a>::Window),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;ui(<b><a href="CppNew.htm">new</a></b> <a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a>MaziakMainDialog),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Floor<br/>
@@ -1318,29 +1270,17 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;move( screen.center() <a href="CppOperatorMinus.htm">-</a> <b><a href="CppThis.htm">this</a></b>-&gt;rect().center() );<br/>
 }<br/>
 <br/>
-<a href="CppQt.htm">Qt</a>MaziakMainDialog::~<a href="CppQt.htm">Qt</a>MaziakMainDialog()<br/>
+<a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a>MaziakMainDialog::~<a href="CppQt.htm">Qt</a>MaziakMainDialog()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppDelete.htm">delete</a></b> ui;<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a>MaziakMainDialog::changeEvent(<a href="CppQEvent.htm">QEvent</a> *e)<br/>
-{<br/>
-&nbsp;&nbsp;<a href="CppQWidget.htm">QWidget</a>::changeEvent(e);<br/>
-&nbsp;&nbsp;<b><a href="CppSwitch.htm">switch</a></b> (e-&gt;type()) {<br/>
-&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> <a href="CppQEvent.htm">QEvent</a>::LanguageChange:<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;ui-&gt;retranslateUi(<b><a href="CppThis.htm">this</a></b>);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppBreak.htm">break</a></b>;<br/>
-&nbsp;&nbsp;<b><a href="CppDefault.htm">default</a></b>:<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppBreak.htm">break</a></b>;<br/>
-&nbsp;&nbsp;}<br/>
-}<br/>
-<br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a>MaziakMainDialog::resizeEvent(<a href="CppQResizeEvent.htm">QResizeEvent</a>*)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a>MaziakMainDialog::resizeEvent(<a href="CppQResizeEvent.htm">QResizeEvent</a>*)<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;repaint();<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a>MaziakMainDialog::keyPressEvent(<a href="CppQKeyEvent.htm">QKeyEvent</a>* e)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a>MaziakMainDialog::keyPressEvent(<a href="CppQKeyEvent.htm">QKeyEvent</a>* e)<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (mFighting &gt; 0) repaint();<br/>
 <br/>
@@ -1358,12 +1298,12 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;}<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a>MaziakMainDialog::keyReleaseEvent(<a href="CppQKeyEvent.htm">QKeyEvent</a> * e)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a>MaziakMainDialog::keyReleaseEvent(<a href="CppQKeyEvent.htm">QKeyEvent</a> * e)<br/>
 {<br/>
 &nbsp;&nbsp;mKeys.erase(e-&gt;key());<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a>MaziakMainDialog::on<a href="CppTime.htm">Time</a>rPressKey()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a>MaziakMainDialog::on<a href="CppTime.htm">Time</a>rPressKey()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (mFighting &gt; 0) <b><a href="CppReturn.htm">return</a></b>;<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (mKeys.empty()) { mMoveNow <a href="CppOperatorAssign.htm">=</a> none; }<br/>
@@ -1422,7 +1362,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;}<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a>MaziakMainDialog::on<a href="CppTime.htm">Time</a>rEnemy()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a>MaziakMainDialog::on<a href="CppTime.htm">Time</a>rEnemy()<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Move them<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> minx <a href="CppOperatorAssign.htm">=</a> <a href="CppMax.htm">std::max</a>(0,mX <a href="CppOperatorMinus.htm">-</a> mViewWidth );<br/>
@@ -1494,13 +1434,13 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;repaint();<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a>MaziakMainDialog::on<a href="CppTime.htm">Time</a>rShowSolution()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a>MaziakMainDialog::on<a href="CppTime.htm">Time</a>rShowSolution()<br/>
 {<br/>
 &nbsp;&nbsp;mShowSolution <a href="CppOperatorAssign.htm">=</a> <b><a href="CppFalse.htm">false</a></b>;<br/>
 &nbsp;&nbsp;m_<a href="CppTime.htm">time</a>r_show_solution-&gt;stop();<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a>MaziakMainDialog::paintEvent(<a href="CppQPaintEvent.htm">QPaintEvent</a> *)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a>MaziakMainDialog::paintEvent(<a href="CppQPaintEvent.htm">QPaintEvent</a> *)<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> block_width&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> 1 <a href="CppOperatorPlus.htm">+</a> ((ui-&gt;<a href="CppWidget.htm">widget</a>-&gt;width()&nbsp;&nbsp;<a href="CppOperatorMinus.htm">-</a> 4) <a href="CppOperatorDivide.htm">/</a> mViewWidth);<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> block_height <a href="CppOperatorAssign.htm">=</a> 1 <a href="CppOperatorPlus.htm">+</a> ((ui-&gt;<a href="CppWidget.htm">widget</a>-&gt;height() <a href="CppOperatorMinus.htm">-</a> 4) <a href="CppOperatorDivide.htm">/</a> mViewHeight);<br/>
@@ -1614,7 +1554,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;}<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a>MaziakMainDialog::gameOver()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a>MaziakMainDialog::gameOver()<br/>
 {<br/>
 &nbsp;&nbsp;m_<a href="CppTime.htm">time</a>r_press_key-&gt;stop();<br/>
 &nbsp;&nbsp;m_<a href="CppTime.htm">time</a>r_enemy-&gt;stop();<br/>
@@ -1624,7 +1564,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;f-&gt;exec();<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a>MaziakMainDialog::gameWon()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a>MaziakMainDialog::gameWon()<br/>
 {<br/>
 &nbsp;&nbsp;m_<a href="CppTime.htm">time</a>r_press_key-&gt;stop();<br/>
 &nbsp;&nbsp;m_<a href="CppTime.htm">time</a>r_enemy-&gt;stop();<br/>
@@ -1636,7 +1576,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 }<br/>
 <br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppQPixmap.htm">QPixmap</a>&amp; <a href="CppQt.htm">Qt</a>MaziakMainDialog::GetPixmapFloor(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x, <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> y) <b><a href="CppConst.htm">const</a></b><br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppQPixmap.htm">QPixmap</a>&amp; <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a>MaziakMainDialog::GetPixmapFloor(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x, <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> y) <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> sz <a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(mMaze.size());<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(sz &gt; 0);<br/>
@@ -1663,7 +1603,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> *(m_pixmap_empty.get());<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppQPixmap.htm">QPixmap</a>&amp; <a href="CppQt.htm">Qt</a>MaziakMainDialog::GetPixmapAboveFloor(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x, <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> y) <b><a href="CppConst.htm">const</a></b><br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppQPixmap.htm">QPixmap</a>&amp; <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a>MaziakMainDialog::GetPixmapAboveFloor(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x, <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> y) <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> sz <a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(mMaze.size());<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> ( x &lt; 0<br/>
@@ -1690,7 +1630,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;}<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppQPixmap.htm">QPixmap</a>&amp; <a href="CppQt.htm">Qt</a>MaziakMainDialog::GetPixmapPlayer(<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppQPixmap.htm">QPixmap</a>&amp; <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a>MaziakMainDialog::GetPixmapPlayer(<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> PlayerDirection direction,<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> PlayerMove moveNow) <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
@@ -1772,9 +1712,9 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Unreachable<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a>MaziakMainDialog::createMaze(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> sz)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a>MaziakMainDialog::createMaze(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> sz)<br/>
 {<br/>
-&nbsp;&nbsp;mIntMaze <a href="CppOperatorAssign.htm">=</a> ::<a href="CppCreateMaze.htm">CreateMaze</a>(sz);<br/>
+&nbsp;&nbsp;mIntMaze <a href="CppOperatorAssign.htm">=</a> <a href="CppRibi.htm\">ribi</a>::<a href="CppCreateMaze.htm">CreateMaze</a>(sz);<br/>
 &nbsp;&nbsp;mMaze <a href="CppOperatorAssign.htm">=</a> <a href="CppConvert.htm">Convert</a><a href="CppMatrix.htm">Matrix</a>&lt;<b><a href="CppInt.htm">int</a></b>,MazeSquare&gt;(mIntMaze);<br/>
 <br/>
 &nbsp;&nbsp;{<br/>
@@ -1855,10 +1795,10 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 }<br/>
 <br/>
 <a href="CppComment.htm">//</a>Adapted from http://www.richelbilderbeek.nl/Cpp<a href="CppIsSquare.htm">IsSquare</a>.htm<br/>
-<b><a href="CppBool.htm">bool</a></b> <a href="CppIsSquare.htm">IsSquare</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppQt.htm">Qt</a>MaziakMainDialog::MazeSquare&gt; &gt;&amp; v)<br/>
+<b><a href="CppBool.htm">bool</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppIsSquare.htm">IsSquare</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a>MaziakMainDialog::MazeSquare&gt; &gt;&amp; v)<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!v.empty());<br/>
-&nbsp;&nbsp;<a href="CppBOOST_FOREACH.htm">BOOST_FOREACH</a>(<a href="CppVector.htm">std::vector</a>&lt;<a href="CppQt.htm">Qt</a>MaziakMainDialog::MazeSquare&gt; row, v)<br/>
+&nbsp;&nbsp;<a href="CppBOOST_FOREACH.htm">BOOST_FOREACH</a>(<a href="CppVector.htm">std::vector</a>&lt;<a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a>MaziakMainDialog::MazeSquare&gt; row, v)<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (row.size()<a href="CppOperatorNotEqual.htm">!=</a>v.size()) <b><a href="CppReturn.htm">return</a></b> <b><a href="CppFalse.htm">false</a></b>;<br/>
 &nbsp;&nbsp;}<br/>
@@ -1866,7 +1806,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 }<br/>
 <br/>
 <a href="CppComment.htm">//</a>Adapted from http://www.richelbilderbeek.nl/Cpp<a href="CppIsSquare.htm">IsSquare</a>.htm<br/>
-<b><a href="CppBool.htm">bool</a></b> <a href="CppIsSquare.htm">IsSquare</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt; &gt;&amp; v)<br/>
+<b><a href="CppBool.htm">bool</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppIsSquare.htm">IsSquare</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt; &gt;&amp; v)<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!v.empty());<br/>
 &nbsp;&nbsp;<a href="CppBOOST_FOREACH.htm">BOOST_FOREACH</a>(<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt; row, v)<br/>
@@ -1876,11 +1816,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <b><a href="CppTrue.htm">true</a></b>;<br/>
 }<br/>
 <br/>
-<a href="CppComment.htm">//</a>Creates a maze<br/>
-<a href="CppComment.htm">//</a> 0 : path<br/>
-<a href="CppComment.htm">//</a> 1 : wall<br/>
-<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/Cpp<a href="CppCreateMaze.htm">CreateMaze</a>.htm<br/>
-<a href="CppVector.htm">std::vector</a>&lt;<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt; &gt; <a href="CppCreateMaze.htm">CreateMaze</a>(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> sz)<br/>
+<a href="CppVector.htm">std::vector</a>&lt;<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt; &gt; <a href="CppRibi.htm\">ribi</a>::<a href="CppCreateMaze.htm">CreateMaze</a>(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> sz)<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Assume correct size dimensions<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>( sz &gt; 4 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> sz <a href="CppOperatorModulus.htm">%</a> 4 <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 3<br/>
@@ -1945,8 +1881,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> maze;<br/>
 }<br/>
 <br/>
-<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="CppGetMazeDistances.htm">GetMazeDistances</a>.htm<br/>
-<a href="CppVector.htm">std::vector</a>&lt;<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt; &gt; <a href="CppGetMazeDistances.htm">GetMazeDistances</a>(<br/>
+<a href="CppVector.htm">std::vector</a>&lt;<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt; &gt; <a href="CppRibi.htm\">ribi</a>::<a href="CppGetMazeDistances.htm">GetMazeDistances</a>(<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt; &gt;&amp; maze,<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x,<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> y)<br/>
@@ -2011,7 +1946,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> distances;<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppPair.htm">std::pair</a>&lt;<b><a href="CppInt.htm">int</a></b>,<b><a href="CppInt.htm">int</a></b>&gt; &gt; GetShuffledDeadEnds(<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppPair.htm">std::pair</a>&lt;<b><a href="CppInt.htm">int</a></b>,<b><a href="CppInt.htm">int</a></b>&gt; &gt; <a href="CppRibi.htm\">ribi</a>::GetShuffledDeadEnds(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt; &gt;&amp; <b><a href="CppInt.htm">int</a></b>Maze)<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppPair.htm">std::pair</a>&lt;<b><a href="CppInt.htm">int</a></b>,<b><a href="CppInt.htm">int</a></b>&gt; &gt; deadEnds <a href="CppOperatorAssign.htm">=</a> <a href="CppGetDeadEnds.htm">GetDeadEnds</a>(<b><a href="CppInt.htm">int</a></b>Maze);<br/>
@@ -2022,7 +1957,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
 <br/>
 <a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/Cpp<a href="CppGetDeadEnds.htm">GetDeadEnds</a>.htm<br/>
-<a href="CppVector.htm">std::vector</a>&lt;<a href="CppPair.htm">std::pair</a>&lt;<b><a href="CppInt.htm">int</a></b>,<b><a href="CppInt.htm">int</a></b>&gt; &gt; <a href="CppGetDeadEnds.htm">GetDeadEnds</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt; &gt;&amp; maze)<br/>
+<a href="CppVector.htm">std::vector</a>&lt;<a href="CppPair.htm">std::pair</a>&lt;<b><a href="CppInt.htm">int</a></b>,<b><a href="CppInt.htm">int</a></b>&gt; &gt; <a href="CppRibi.htm\">ribi</a>::<a href="CppGetDeadEnds.htm">GetDeadEnds</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt; &gt;&amp; maze)<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> size <a href="CppOperatorAssign.htm">=</a> maze.size();<br/>
 <br/>
@@ -2046,7 +1981,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 }<br/>
 <br/>
 <a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="CppGetDistancesPath.htm">GetDistancesPath</a>.htm<br/>
-<a href="CppVector.htm">std::vector</a>&lt;<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt; &gt; <a href="CppGetDistancesPath.htm">GetDistancesPath</a>(<br/>
+<a href="CppVector.htm">std::vector</a>&lt;<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt; &gt; <a href="CppRibi.htm\">ribi</a>::<a href="CppGetDistancesPath.htm">GetDistancesPath</a>(<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt; &gt;&amp; distances,<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> playerX,<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> playerY)<br/>
@@ -2071,8 +2006,8 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> solution;<br/>
 }<br/>
 <br/>
-<b><a href="CppBool.htm">bool</a></b> CanMoveTo(<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppQt.htm">Qt</a>MaziakMainDialog::MazeSquare&gt; &gt;&amp; maze,<br/>
+<b><a href="CppBool.htm">bool</a></b> <a href="CppRibi.htm\">ribi</a>::CanMoveTo(<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a>MaziakMainDialog::MazeSquare&gt; &gt;&amp; maze,<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x, <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> y,<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppBool.htm">bool</a></b> hasSword,<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppBool.htm">bool</a></b> showSolution)<br/>
@@ -2083,15 +2018,15 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> maxy <a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(maze.size());<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (y <a href="CppOperatorGreaterEqual.htm">&gt;=</a> maxy) <b><a href="CppReturn.htm">return</a></b> <b><a href="CppFalse.htm">false</a></b>;<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (x <a href="CppOperatorGreaterEqual.htm">&gt;=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(maze[y].size())) <b><a href="CppReturn.htm">return</a></b> <b><a href="CppFalse.htm">false</a></b>;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppQt.htm">Qt</a>MaziakMainDialog::MazeSquare s <a href="CppOperatorAssign.htm">=</a> maze[y][x];<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a>MaziakMainDialog::MazeSquare s <a href="CppOperatorAssign.htm">=</a> maze[y][x];<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Bump into wall<br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (s <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <a href="CppQt.htm">Qt</a>MaziakMainDialog::msWall) <b><a href="CppReturn.htm">return</a></b> <b><a href="CppFalse.htm">false</a></b>;<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (s <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a>MaziakMainDialog::msWall) <b><a href="CppReturn.htm">return</a></b> <b><a href="CppFalse.htm">false</a></b>;<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Bump into sword<br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (s <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <a href="CppQt.htm">Qt</a>MaziakMainDialog::msSword <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> hasSword) <b><a href="CppReturn.htm">return</a></b> <b><a href="CppFalse.htm">false</a></b>;<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (s <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a>MaziakMainDialog::msSword <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> hasSword) <b><a href="CppReturn.htm">return</a></b> <b><a href="CppFalse.htm">false</a></b>;<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Bump into prisoner<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (showSolution<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> (s <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <a href="CppQt.htm">Qt</a>MaziakMainDialog::msPrisoner1<br/>
-&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppOperatorLogicalOr.htm">||</a> s <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <a href="CppQt.htm">Qt</a>MaziakMainDialog::msPrisoner2) ) <b><a href="CppReturn.htm">return</a></b> <b><a href="CppFalse.htm">false</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> (s <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a>MaziakMainDialog::msPrisoner1<br/>
+&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppOperatorLogicalOr.htm">||</a> s <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a>MaziakMainDialog::msPrisoner2) ) <b><a href="CppReturn.htm">return</a></b> <b><a href="CppFalse.htm">false</a></b>;<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Bump into empty/enemy/exit, so player can move there<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <b><a href="CppTrue.htm">true</a></b>;<br/>
 }<br/>
@@ -2139,6 +2074,8 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a>MaziakMenuDialog;<br/>
 }<br/>
 <br/>
+<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a> {<br/>
+<br/>
 <b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a>MaziakMenuDialog : <b><a href="CppPublic.htm">public</a></b> <a href="CppQDialog.htm">QDialog</a><br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppQ_OBJECT.htm">Q_OBJECT</a><br/>
@@ -2146,9 +2083,6 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <b><a href="CppPublic.htm">public</a></b>:<br/>
 &nbsp;&nbsp;<b><a href="CppExplicit.htm">explicit</a></b> <a href="CppQt.htm">Qt</a>MaziakMenuDialog(<a href="CppQWidget.htm">QWidget</a> *parent <a href="CppOperatorAssign.htm">=</a> 0);<br/>
 &nbsp;&nbsp;~<a href="CppQt.htm">Qt</a>MaziakMenuDialog();<br/>
-<br/>
-<b><a href="CppProtected.htm">protected</a></b>:<br/>
-&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> changeEvent(<a href="CppQEvent.htm">QEvent</a> *e);<br/>
 <br/>
 <b><a href="CppPrivate.htm">private</a></b>:<br/>
 &nbsp;&nbsp;<a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a>MaziakMenuDialog *ui;<br/>
@@ -2161,10 +2095,9 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> onStart();<br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> onInstructions();<br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> on<a href="CppAbout.htm">About</a>();<br/>
-<br/>
-<b><a href="CppPrivate.htm">private</a></b> <b><a href="CppSlots.htm">slots</a></b>:<br/>
-<br/>
 };<br/>
+<br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a><br/>
 <br/>
 <a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> QTMAZIAKMENUDIALOG_H<br/>
 </code></td></tr></table>
@@ -2178,7 +2111,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="qtmaziakmenudialog.cpp" border = "1"><tr><td><code>
-<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">/*</a><br/>
 Maziak, a simple maze game<br/>
 Copyright (C) 2007-2012 Richel Bilderbeek<br/>
@@ -2195,11 +2128,9 @@ GNU General Public License for more details.<br/>
 You should have received a copy of the GNU General Public License<br/>
 along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">*/</a><br/>
-<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="GameMaziak.htm">GameMaziak</a>.htm<br/>
-<br/>
-<a href="CppComment.htm">//</a><a href="CppInclude.htm">#include</a> own <a href="CppHeaderFile.htm">header file</a> as first substantive line of code, from:<br/>
-<a href="CppComment.htm">//</a> * John Lakos. Large-Scale <a href="Cpp.htm">C++</a> Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppInclude.htm">#include</a> "qt<a href="GameMaziak.htm">maziak</a>menudialog.h"<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
@@ -2221,7 +2152,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppInclude.htm">#include</a> "qt<a href="GameMaziak.htm">maziak</a>maindialog.h"<br/>
 <a href="CppInclude.htm">#include</a> "ui_qt<a href="GameMaziak.htm">maziak</a>menudialog.h"<br/>
 <br/>
-<a href="CppQt.htm">Qt</a>MaziakMenuDialog::<a href="CppQt.htm">Qt</a>MaziakMenuDialog(<a href="CppQWidget.htm">QWidget</a> *parent) :<br/>
+<a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a>MaziakMenuDialog::<a href="CppQt.htm">Qt</a>MaziakMenuDialog(<a href="CppQWidget.htm">QWidget</a> *parent) :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQDialog.htm">QDialog</a>(parent),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;ui(<b><a href="CppNew.htm">new</a></b> <a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a>MaziakMenuDialog),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;m_difficulty(easy)<br/>
@@ -2233,24 +2164,12 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;move( screen.center() <a href="CppOperatorMinus.htm">-</a> <b><a href="CppThis.htm">this</a></b>-&gt;rect().center() );<br/>
 }<br/>
 <br/>
-<a href="CppQt.htm">Qt</a>MaziakMenuDialog::~<a href="CppQt.htm">Qt</a>MaziakMenuDialog()<br/>
+<a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a>MaziakMenuDialog::~<a href="CppQt.htm">Qt</a>MaziakMenuDialog()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppDelete.htm">delete</a></b> ui;<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a>MaziakMenuDialog::changeEvent(<a href="CppQEvent.htm">QEvent</a> *e)<br/>
-{<br/>
-&nbsp;&nbsp;<a href="CppQWidget.htm">QWidget</a>::changeEvent(e);<br/>
-&nbsp;&nbsp;<b><a href="CppSwitch.htm">switch</a></b> (e-&gt;type()) {<br/>
-&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> <a href="CppQEvent.htm">QEvent</a>::LanguageChange:<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;ui-&gt;retranslateUi(<b><a href="CppThis.htm">this</a></b>);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppBreak.htm">break</a></b>;<br/>
-&nbsp;&nbsp;<b><a href="CppDefault.htm">default</a></b>:<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppBreak.htm">break</a></b>;<br/>
-&nbsp;&nbsp;}<br/>
-}<br/>
-<br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a>MaziakMenuDialog::mousePressEvent(<a href="CppQMouseEvent.htm">QMouseEvent</a> * event)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a>MaziakMenuDialog::mousePressEvent(<a href="CppQMouseEvent.htm">QMouseEvent</a> * event)<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (ui-&gt;<a href="CppWidget.htm">widget</a>_easy-&gt;<a href="CppGeometry.htm">geometry</a>().contains(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;event-&gt;x(), event-&gt;y()))<br/>
@@ -2297,7 +2216,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;}<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a>MaziakMenuDialog::keyPressEvent(<a href="CppQKeyEvent.htm">QKeyEvent</a> * event)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a>MaziakMenuDialog::keyPressEvent(<a href="CppQKeyEvent.htm">QKeyEvent</a> * event)<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppSwitch.htm">switch</a></b> (event-&gt;key())<br/>
 &nbsp;&nbsp;{<br/>
@@ -2330,7 +2249,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;}<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a>MaziakMenuDialog::paintEvent(<a href="CppQPaintEvent.htm">QPaintEvent</a>*)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a>MaziakMenuDialog::paintEvent(<a href="CppQPaintEvent.htm">QPaintEvent</a>*)<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppQPainter.htm">QPainter</a> painter(<b><a href="CppThis.htm">this</a></b>);<br/>
 &nbsp;&nbsp;{<br/>
@@ -2426,7 +2345,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a>MaziakMenuDialog::onStart()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a>MaziakMenuDialog::onStart()<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppScoped_ptr.htm">boost::scoped_ptr</a>&lt;<a href="CppQt.htm">Qt</a>MaziakMainDialog&gt; d(<b><a href="CppNew.htm">new</a></b> <a href="CppQt.htm">Qt</a>MaziakMainDialog(0,getMazeSize()));<br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;hide();<br/>
@@ -2434,7 +2353,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;show();<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a>MaziakMenuDialog::onInstructions()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a>MaziakMenuDialog::onInstructions()<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppScoped_ptr.htm">boost::scoped_ptr</a>&lt;<a href="CppQt.htm">Qt</a>MaziakInstructionsDialog&gt; d(<b><a href="CppNew.htm">new</a></b> <a href="CppQt.htm">Qt</a>MaziakInstructionsDialog);<br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;hide();<br/>
@@ -2442,7 +2361,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;show();<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a>MaziakMenuDialog::on<a href="CppAbout.htm">About</a>()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a>MaziakMenuDialog::on<a href="CppAbout.htm">About</a>()<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppAbout.htm">About</a> a <a href="CppOperatorAssign.htm">=</a> MaziakMenuDialog::GetAbout();<br/>
 &nbsp;&nbsp;<a href="CppScoped_ptr.htm">boost::scoped_ptr</a>&lt;<a href="CppQtAboutDialog.htm">QtAboutDialog</a>&gt; d(<b><a href="CppNew.htm">new</a></b> <a href="CppQtAboutDialog.htm">QtAboutDialog</a>(a));<br/>
@@ -2451,7 +2370,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;show();<br/>
 }<br/>
 <br/>
-<b><a href="CppInt.htm">int</a></b> <a href="CppQt.htm">Qt</a>MaziakMenuDialog::getMazeSize() <b><a href="CppConst.htm">const</a></b><br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a>MaziakMenuDialog::getMazeSize() <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppSwitch.htm">switch</a></b> (m_difficulty)<br/>
 &nbsp;&nbsp;{<br/>

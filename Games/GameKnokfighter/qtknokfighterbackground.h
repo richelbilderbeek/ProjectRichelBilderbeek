@@ -3,6 +3,8 @@
 
 #include <QGraphicsPixmapItem>
 
+namespace ribi {
+
 struct QtKnokfighterBackground : public QGraphicsPixmapItem
 {
 
@@ -18,5 +20,7 @@ struct QtKnokfighterBackground : public QGraphicsPixmapItem
 
   void DrawPixmap();
 };
+
+} //~namespace ribi
 
 #endif // QTKNOKFIGHTERBACKGROUND_H

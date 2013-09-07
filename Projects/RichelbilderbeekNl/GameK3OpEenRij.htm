@@ -48,7 +48,6 @@ It can be played by one, two or three players. The <a href="Games.htm">game</a> 
   <li><img src="PicWindows.png" alt="Windows"/><img src="PicDesktop.png" alt="Desktop"/> <a href="GameK3OpEenRijDesktopExe_6_0.zip">Download the 'K3-Op-Een-Rij' Windows executable (version 6.0)(zip)</a></li>
   <li><img src="PicQtCreator.png" alt="Qt Creator"/><img src="PicUbuntu.png" alt="Ubuntu"/><img src="PicWeb.png" alt="Web"/> <a href="GameK3OpEenRijSource_6_0.zip">Download the 'K3-Op-Een-Rij' source code (version 6.0)(zip)</a></li>
   <li><img src="PicCppBuilder.png" alt="C++ Builder"/><img src="PicWindows.png" alt="Windows"/><img src="PicDesktop.png" alt="Desktop"/> <a href="GameK3OpEenRijSource_4_0.zip">Download the 'K3-Op-Een-Rij' source code (version 4.0)(zip)</a></li> 
-  <li><img src="PicQtCreator.png" alt="Qt Creator"/><img src="PicUbuntu.png" alt="Ubuntu"/><img src="PicWeb.png" alt="Web"/> <a href="GameK3OpEenRijSource_5_0.htm">View the 'K3-Op-Een-Rij' source code as a web page (version 5.0)(htm)</a></li>
   <li><img src="PicCppBuilder.png" alt="C++ Builder"/><img src="PicWindows.png" alt="Windows"/><img src="PicDesktop.png" alt="Desktop"/> <a href="GameK3OpEenRijSource_4_0.htm">View the 'K3-Op-Een-Rij' source code as a web page (desktop application)(version 4.0)(htm)</a></li> 
 </ol>
 <p>&nbsp;</p>
@@ -139,17 +138,16 @@ TEMPLATE = app<br/>
 <br/>
 <a href="CppQMAKE_CXXFLAGS.htm">QMAKE_CXXFLAGS</a> += -std=<a href="Cpp11.htm">c++11</a> <a href="CppWall.htm">-Wall</a> <a href="CppWextra.htm">-Wextra</a><br/>
 <br/>
-unix {<br/>
+#unix {<br/>
 &nbsp;&nbsp;<a href="CppQMAKE_CXXFLAGS.htm">QMAKE_CXXFLAGS</a> += <a href="CppWerror.htm">-Werror</a><br/>
-}<br/>
+#}<br/>
 <br/>
 win32 {<br/>
-&nbsp;&nbsp;<a href="CppLIBS.htm">LIBS</a> += -L../../<a href="CppLibrary.htm">Libraries</a>/mxe/usr/i686-pc-mingw32/lib<br/>
+&nbsp;&nbsp;#<a href="CppLIBS.htm">LIBS</a> += -L../../<a href="CppLibrary.htm">Libraries</a>/mxe/usr/i686-pc-mingw32/lib<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppINCLUDEPATH.htm">INCLUDEPATH</a> += \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;e:/<a href="Projects.htm">Projects</a>/<a href="CppLibrary.htm">Libraries</a>/boost_1_54_0<br/>
 }<br/>
-<br/>
-#Don't link to these for cross-compiler<br/>
-#<a href="CppLIBS.htm">LIBS</a> += <a href="CppSystem.htm">-lboost_system</a> <a href="CppFilesystem.htm">-lboost_filesystem</a><br/>
-<br/>
 <br/>
 <a href="CppINCLUDEPATH.htm">INCLUDEPATH</a> += \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppAbout.htm">CppAbout</a> \<br/>
@@ -347,6 +345,8 @@ OTHER_FILES += \<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppAbout.htm">about</a>.h"<br/>
 <br/>
+<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a> {<br/>
+<br/>
 <a href="CppComment.htm">///</a><br/>
 <b><a href="CppStruct.htm">struct</a></b> K3OpEenRijMenuDialog<br/>
 {<br/>
@@ -354,6 +354,8 @@ OTHER_FILES += \<br/>
 &nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> Get<a href="CppVersion.htm">Version</a>();<br/>
 &nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; Get<a href="CppVersion.htm">Version</a>History();<br/>
 };<br/>
+<br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a><br/>
 <br/>
 <a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> K3OPEENRIJMENUDIALOG_H<br/>
 </code></td></tr></table>
@@ -367,25 +369,14 @@ OTHER_FILES += \<br/>
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="k3opeenrijmenudialog.cpp" border = "1"><tr><td><code>
-<a href="CppIfdef.htm">#ifdef</a> _WIN32<br/>
-<a href="CppComment.htm">//</a>See http://www.richelbilderbeek.nl/Cpp<a href="CppCompile.htm">Compile</a>ErrorUnableToFindNumericLiteralOperatorOperatorQ.htm<br/>
-<a href="CppPreIf.htm">#if</a> !(__GNUC__ <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 4 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> __GNUC_MINOR__ <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 8)<br/>
-<a href="CppComment.htm">//</a>See http://www.richelbilderbeek.nl/Cpp<a href="CppCompile.htm">Compile</a>ErrorSwprintfHasNotBeenDeclared.htm<br/>
-<a href="CppUndef.htm">#undef</a> __STRICT_ANSI__<br/>
-<a href="CppEndif.htm">#endif</a><br/>
-<a href="CppEndif.htm">#endif</a><br/>
-<br/>
-<a href="CppComment.htm">//</a><a href="CppInclude.htm">#include</a> own <a href="CppHeaderFile.htm">header file</a> as first substantive line of code, from:<br/>
-<a href="CppComment.htm">//</a> * John Lakos. Large-Scale <a href="Cpp.htm">C++</a> Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110<br/>
 <a href="CppInclude.htm">#include</a> "k3opeenrijmenudialog.h"<br/>
 <br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppConnectThree.htm">connectthree</a>.h"<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppConnectThree.htm">connectthree</a><a href="CppWidget.htm">widget</a>.h"<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
-<br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppAbout.htm">About</a> K3OpEenRijMenuDialog::GetAbout()<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppAbout.htm">About</a> <a href="CppRibi.htm\">ribi</a>::K3OpEenRijMenuDialog::GetAbout()<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppAbout.htm">About</a> a(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;"Richel Bilderbeek",<br/>
@@ -402,20 +393,20 @@ OTHER_FILES += \<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> a;<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> K3OpEenRijMenuDialog::Get<a href="CppVersion.htm">Version</a>()<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppRibi.htm\">ribi</a>::K3OpEenRijMenuDialog::Get<a href="CppVersion.htm">Version</a>()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> "6.0";<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; K3OpEenRijMenuDialog::Get<a href="CppVersion.htm">Version</a>History()<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm\">ribi</a>::K3OpEenRijMenuDialog::Get<a href="CppVersion.htm">Version</a>History()<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v;<br/>
-<br/>
-&nbsp;&nbsp;v.push_back("2007-01-03: <a href="CppVersion.htm">version</a> 3.0: initial <a href="CppBuilder.htm">C++ Builder</a> verion, ");<br/>
-&nbsp;&nbsp;v.push_back("2009-12-31: <a href="CppVersion.htm">version</a> 4.0: replaced Kathleen by Josje, game arena always visible, made screens smaller, removed useless JPEGs");<br/>
-&nbsp;&nbsp;v.push_back("2013-08-06: <a href="CppVersion.htm">version</a> 5.0: port to <a href="CppQtCreator.htm">Qt Creator</a>");<br/>
-&nbsp;&nbsp;v.push_back("2013-08-06: <a href="CppVersion.htm">version</a> 5.1: allow selection of both Kathleen and Josje");<br/>
-&nbsp;&nbsp;v.push_back("2013-08-09: <a href="CppVersion.htm">version</a> 6.0: implemented suggestions and <a href="CppBug.htm">bug</a>fixes from Mark Wiering's report");<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"2007-01-03: <a href="CppVersion.htm">version</a> 3.0: initial <a href="CppBuilder.htm">C++ Builder</a> verion",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"2009-12-31: <a href="CppVersion.htm">version</a> 4.0: replaced Kathleen by Josje, game arena always visible, made screens smaller, removed useless JPEGs",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"2013-08-06: <a href="CppVersion.htm">version</a> 5.0: port to <a href="CppQtCreator.htm">Qt Creator</a>",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"2013-08-06: <a href="CppVersion.htm">version</a> 5.1: allow selection of both Kathleen and Josje",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"2013-08-09: <a href="CppVersion.htm">version</a> 6.0: implemented suggestions and <a href="CppBug.htm">bug</a>fixes from Mark Wiering's report"<br/>
+&nbsp;&nbsp;};<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
 }<br/>
 </code></td></tr></table>
@@ -429,106 +420,6 @@ OTHER_FILES += \<br/>
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="mainwt.cpp" border = "1"><tr><td><code>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">/*</a><br/>
-K3-Op-Een-Rij. A simple game.<br/>
-Copyright (C) 2007-2011 Richel Bilderbeek<br/>
-<br/>
-This program is free software: you can redistribute it and/or modify<br/>
-it under the terms of the GNU General Public License as published by<br/>
-the Free Software Foundation, either version 3 of the License, or<br/>
-(at your option) any later version.<br/>
-<br/>
-This program is distributed in the hope that it will be useful,<br/>
-but WITHOUT ANY WARRANTY; without even the implied warranty of<br/>
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the<br/>
-GNU General Public License for more details.<br/>
-<br/>
-You should have received a copy of the GNU General Public License<br/>
-along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
-<a href="CppComment.htm">*/</a><br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/GameK3OpEenRij.htm<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppExceptionH.htm">exception</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppIostreamH.htm">iostream</a>&gt;<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWApplication.htm">WApplication</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWEnvironment.htm">WEnvironment</a>&gt;<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppInclude.htm">#include</a> "../../<a href="Games.htm">Games</a>/<a href="GameConnectThree.htm">GameConnectThree</a>/<a href="CppConnectThree.htm">connectthree</a>filenames.h"<br/>
-<a href="CppInclude.htm">#include</a> "../../<a href="Games.htm">Games</a>/<a href="GameConnectThree.htm">GameConnectThree</a>/wt<a href="CppConnectThree.htm">connectthree</a>dialog.h"<br/>
-<a href="CppInclude.htm">#include</a> "../../<a href="CppClass.htm">Classes</a>/<a href="CppAbout.htm">CppAbout</a>/<a href="CppAbout.htm">about</a>.h"<br/>
-<a href="CppInclude.htm">#include</a> "../../<a href="CppClass.htm">Classes</a>/<a href="CppConnectThree.htm">CppConnectThree</a>/<a href="CppConnectThree.htm">connectthree</a>.h"<br/>
-<a href="CppInclude.htm">#include</a> "../../<a href="CppClass.htm">Classes</a>/<a href="CppWtAboutDialog.htm">CppWtAboutDialog</a>/<a href="CppWtAboutDialog.htm">wtaboutdialog</a>.h"<br/>
-<a href="CppInclude.htm">#include</a> "../../<a href="CppClass.htm">Classes</a>/<a href="CppWtConnectThreeWidget.htm">CppWtConnectThreeWidget</a>/<a href="CppWtConnectThreeWidget.htm">wtconnectthreewidget</a>.h"<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppStruct.htm">struct</a></b> K3OpEenRij<a href="CppApplication.htm">Application</a> : <b><a href="CppPublic.htm">public</a></b> <a href="CppWApplication.htm">Wt::WApplication</a><br/>
-{<br/>
-&nbsp;&nbsp;K3OpEenRij<a href="CppApplication.htm">Application</a>(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppWEnvironment.htm">Wt::WEnvironment</a>&amp; env,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppAbout.htm">About</a>&amp; <a href="CppAbout.htm">about</a>,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppConnectThree.htm">ConnectThree</a>Filenames&amp; filenames)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;: <a href="CppWApplication.htm">Wt::WApplication</a>(env)<br/>
-&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;setTitle("K3OpEenRij (C) 2007-2011 Richel Bilderbeek");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;useStyleSheet(filenames.m_css);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;root()-&gt;addWidget(<b><a href="CppNew.htm">new</a></b> <a href="CppWt.htm">Wt</a><a href="CppConnectThree.htm">ConnectThree</a>Dialog(<a href="CppAbout.htm">about</a>,filenames,"K3OpEenRij"));<br/>
-&nbsp;&nbsp;}<br/>
-};<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppAbout.htm">About</a> Create<a href="CppAbout.htm">About</a>()<br/>
-{<br/>
-&nbsp;&nbsp;<a href="CppAbout.htm">About</a> <a href="CppAbout.htm">about</a>(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;"Richel Bilderbeek",<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;"K3-Op-Een-Rij",<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;"Connect-three game with a K3 theme",<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;"the 10th of January 2011",<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;"2007-2011",<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;"http://www.richelbilderbeek.nl/GameK3OpEenRij.htm",<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppWt.htm">Wt</a><a href="CppConnectThree.htm">ConnectThree</a>Dialog::Get<a href="CppVersion.htm">Version</a>(),<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppWt.htm">Wt</a><a href="CppConnectThree.htm">ConnectThree</a>Dialog::Get<a href="CppVersion.htm">Version</a>History());<br/>
-&nbsp;&nbsp;<a href="CppAbout.htm">about</a>.<a href="CppAdd.htm">Add</a><a href="CppLibrary.htm">Library</a>("<a href="CppWt.htm">Wt</a> <a href="CppVersion.htm">version</a>: " <a href="CppOperatorPlus.htm">+</a> <a href="CppString.htm">std::string</a>(WT_VERSION_STR));<br/>
-&nbsp;&nbsp;<a href="CppAbout.htm">about</a>.<a href="CppAdd.htm">Add</a><a href="CppLibrary.htm">Library</a>("<a href="CppConnectThree.htm">ConnectThree</a> <a href="CppVersion.htm">version</a>: " <a href="CppOperatorPlus.htm">+</a> <a href="CppConnectThree.htm">ConnectThree</a>::Get<a href="CppVersion.htm">Version</a>());<br/>
-&nbsp;&nbsp;<a href="CppAbout.htm">about</a>.<a href="CppAdd.htm">Add</a><a href="CppLibrary.htm">Library</a>("<a href="CppWtConnectThreeWidget.htm">WtConnectThreeWidget</a> <a href="CppVersion.htm">version</a>: " <a href="CppOperatorPlus.htm">+</a> <a href="CppWtConnectThreeWidget.htm">WtConnectThreeWidget</a>::Get<a href="CppVersion.htm">Version</a>());<br/>
-&nbsp;&nbsp;<a href="CppAbout.htm">about</a>.<a href="CppAdd.htm">Add</a><a href="CppLibrary.htm">Library</a>("<a href="CppWtAboutDialog.htm">WtAboutDialog</a> <a href="CppVersion.htm">version</a>: " <a href="CppOperatorPlus.htm">+</a> <a href="CppWtAboutDialog.htm">WtAboutDialog</a>::Get<a href="CppVersion.htm">Version</a>());<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <a href="CppAbout.htm">about</a>;<br/>
-}<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppWApplication.htm">Wt::WApplication</a> * create<a href="CppApplication.htm">Application</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppWEnvironment.htm">Wt::WEnvironment</a>&amp; env)<br/>
-{<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppConnectThree.htm">ConnectThree</a>Filenames filenames(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;"K3OpEenRijBackground.png",<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;"K3OpEenRijComputer1.png",<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;"K3OpEenRijComputer2.png",<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;"K3OpEenRijComputer3.png",<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;"K3OpEenRijComputerGrey.png",<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;"K3OpEenRij.css",<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;"K3OpEenRijEmpty.png",<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;"K3OpEenRijPlayer1.png",<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;"K3OpEenRijPlayer1Grey.png",<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;"K3OpEenRijPlayer2.png",<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;"K3OpEenRijPlayer2Grey.png",<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;"K3OpEenRijPlayer3.png",<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;"K3OpEenRijPlayer3Grey.png");<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <b><a href="CppNew.htm">new</a></b> K3OpEenRij<a href="CppApplication.htm">Application</a>(env,Create<a href="CppAbout.htm">About</a>(),filenames);<br/>
-}<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>(<b><a href="CppInt.htm">int</a></b> <a href="CppArgc.htm">argc</a>, <b><a href="CppChar.htm">char</a></b> **<a href="CppArgc.htm">argv</a>)<br/>
-{<br/>
-&nbsp;&nbsp;<b><a href="CppTry.htm">try</a></b><br/>
-&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <a href="CppWt.htm">Wt</a>::WRun(<a href="CppArgc.htm">argc</a>, <a href="CppArgc.htm">argv</a>, &amp;create<a href="CppApplication.htm">Application</a>);<br/>
-&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<b><a href="CppCatch.htm">catch</a></b> (<a href="CppException.htm">std::exception</a>&amp; e)<br/>
-&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCerr.htm">std::cerr</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> e.what() <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n';<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppClog.htm">std::clog</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> e.what() <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n';<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> e.what() <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n';<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> 1;<br/>
-&nbsp;&nbsp;}<br/>
-}<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -549,6 +440,8 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a>K3OpEenRijInstructionsDialog;<br/>
 }<br/>
 <br/>
+<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a> {<br/>
+<br/>
 <b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a>K3OpEenRijInstructionsDialog : <b><a href="CppPublic.htm">public</a></b> <a href="CppQtHideAndShowDialog.htm">QtHideAndShowDialog</a><br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppQ_OBJECT.htm">Q_OBJECT</a><br/>
@@ -560,6 +453,8 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <b><a href="CppPrivate.htm">private</a></b>:<br/>
 &nbsp;&nbsp;<a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a>K3OpEenRijInstructionsDialog *ui;<br/>
 };<br/>
+<br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a><br/>
 <br/>
 <a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> QTK3OPEENRIJINSTRUCTIONSDIALOG_H<br/>
 </code></td></tr></table>
@@ -576,14 +471,14 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppInclude.htm">#include</a> "qtk3opeenrijinstructionsdialog.h"<br/>
 <a href="CppInclude.htm">#include</a> "ui_qtk3opeenrijinstructionsdialog.h"<br/>
 <br/>
-<a href="CppQt.htm">Qt</a>K3OpEenRijInstructionsDialog::<a href="CppQt.htm">Qt</a>K3OpEenRijInstructionsDialog(<a href="CppQWidget.htm">QWidget</a> *parent) :<br/>
+<a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a>K3OpEenRijInstructionsDialog::<a href="CppQt.htm">Qt</a>K3OpEenRijInstructionsDialog(<a href="CppQWidget.htm">QWidget</a> *parent) :<br/>
 &nbsp;&nbsp;<a href="CppQtHideAndShowDialog.htm">QtHideAndShowDialog</a>(parent),<br/>
 &nbsp;&nbsp;ui(<b><a href="CppNew.htm">new</a></b> <a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a>K3OpEenRijInstructionsDialog)<br/>
 {<br/>
 &nbsp;&nbsp;ui-&gt;setupUi(<b><a href="CppThis.htm">this</a></b>);<br/>
 }<br/>
 <br/>
-<a href="CppQt.htm">Qt</a>K3OpEenRijInstructionsDialog::~<a href="CppQt.htm">Qt</a>K3OpEenRijInstructionsDialog()<br/>
+<a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a>K3OpEenRijInstructionsDialog::~<a href="CppQt.htm">Qt</a>K3OpEenRijInstructionsDialog()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppDelete.htm">delete</a></b> ui;<br/>
 }<br/>
@@ -611,10 +506,13 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <b><a href="CppNamespace.htm">namespace</a></b> Ui {<br/>
 &nbsp;&nbsp;<b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a>K3OpEenRijMenuDialog;<br/>
 }<br/>
+<br/>
+<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a> {<br/>
+<br/>
 <b><a href="CppStruct.htm">struct</a></b> <a href="CppQt.htm">Qt</a>K3OpEenRijSelectPlayer<a href="CppWidget.htm">Widget</a>;<br/>
 <b><a href="CppStruct.htm">struct</a></b> <a href="CppQt.htm">Qt</a>K3OpEenRijResources;<br/>
 <br/>
-<b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a>K3OpEenRijMenuDialog : <b><a href="CppPublic.htm">public</a></b> <a href="CppQtHideAndShowDialog.htm">QtHideAndShowDialog</a><br/>
+<b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a>K3OpEenRijMenuDialog : <b><a href="CppPublic.htm">public</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQtHideAndShowDialog.htm">QtHideAndShowDialog</a><br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppQ_OBJECT.htm">Q_OBJECT</a><br/>
 <br/>
@@ -642,6 +540,8 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> on_button_instructions_clicked();<br/>
 };<br/>
 <br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a><br/>
+<br/>
 <a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> QTK3OPEENRIJMENUDIALOG_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
@@ -654,16 +554,6 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="qtk3opeenrijmenudialog.cpp" border = "1"><tr><td><code>
-<a href="CppIfdef.htm">#ifdef</a> _WIN32<br/>
-<a href="CppComment.htm">//</a>See http://www.richelbilderbeek.nl/Cpp<a href="CppCompile.htm">Compile</a>ErrorUnableToFindNumericLiteralOperatorPperatorQ.htm<br/>
-<a href="CppPreIf.htm">#if</a> !(__GNUC__ <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 4 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> __GNUC_MINOR__ <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 8)<br/>
-<a href="CppComment.htm">//</a>See http://www.richelbilderbeek.nl/Cpp<a href="CppCompile.htm">Compile</a>ErrorSwprintfHasNotBeenDeclared.htm<br/>
-<a href="CppUndef.htm">#undef</a> __STRICT_ANSI__<br/>
-<a href="CppEndif.htm">#endif</a><br/>
-<a href="CppEndif.htm">#endif</a><br/>
-<br/>
-<a href="CppComment.htm">//</a><a href="CppInclude.htm">#include</a> own <a href="CppHeaderFile.htm">header file</a> as first substantive line of code, from:<br/>
-<a href="CppComment.htm">//</a> * John Lakos. Large-Scale <a href="Cpp.htm">C++</a> Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110<br/>
 <a href="CppInclude.htm">#include</a> "qtk3opeenrijmenudialog.h"<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> "k3opeenrijmenudialog.h"<br/>
@@ -675,7 +565,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppInclude.htm">#include</a> "qtk3opeenrijselectplayer<a href="CppWidget.htm">widget</a>.h"<br/>
 <a href="CppInclude.htm">#include</a> "ui_qtk3opeenrijmenudialog.h"<br/>
 <br/>
-<a href="CppQt.htm">Qt</a>K3OpEenRijMenuDialog::<a href="CppQt.htm">Qt</a>K3OpEenRijMenuDialog(<br/>
+<a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a>K3OpEenRijMenuDialog::<a href="CppQt.htm">Qt</a>K3OpEenRijMenuDialog(<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> <a href="CppQt.htm">Qt</a>K3OpEenRijResources&gt; resources,<br/>
 &nbsp;&nbsp;<a href="CppQWidget.htm">QWidget</a> *parent) :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQtHideAndShowDialog.htm">QtHideAndShowDialog</a>(parent),<br/>
@@ -690,13 +580,13 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;ui-&gt;layout_horizontal-&gt;addWidget(m_select.get());<br/>
 }<br/>
 <br/>
-<a href="CppQt.htm">Qt</a>K3OpEenRijMenuDialog::~<a href="CppQt.htm">Qt</a>K3OpEenRijMenuDialog()<br/>
+<a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a>K3OpEenRijMenuDialog::~<a href="CppQt.htm">Qt</a>K3OpEenRijMenuDialog()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppDelete.htm">delete</a></b> ui;<br/>
 }<br/>
 <br/>
 <a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a>K3OpEenRijMenuDialog::Test()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a>K3OpEenRijMenuDialog::Test()<br/>
 {<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppBool.htm">bool</a></b> is_tested <a href="CppOperatorAssign.htm">=</a> <b><a href="CppFalse.htm">false</a></b>;<br/>
@@ -708,7 +598,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 }<br/>
 <a href="CppEndif.htm">#endif</a><br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a>K3OpEenRijMenuDialog::on_button_start_clicked()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a>K3OpEenRijMenuDialog::on_button_start_clicked()<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Supply the correct resources, depending on <b><a href="CppIf.htm">if</a></b> player 3 chose Kathleen or Josje<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppQt.htm">Qt</a>K3OpEenRijResources&gt; resources(<br/>
@@ -726,7 +616,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;show();<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a>K3OpEenRijMenuDialog::on_button_about_clicked()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a>K3OpEenRijMenuDialog::on_button_about_clicked()<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppAbout.htm">About</a> <a href="CppAbout.htm">about</a> <a href="CppOperatorAssign.htm">=</a> K3OpEenRijMenuDialog::GetAbout();<br/>
 &nbsp;&nbsp;<a href="CppAbout.htm">about</a>.<a href="CppAdd.htm">Add</a><a href="CppLibrary.htm">Library</a>("<a href="CppQtConnectThreeWidget.htm">QtConnectThreeWidget</a> <a href="CppVersion.htm">version</a>: " <a href="CppOperatorPlus.htm">+</a> <a href="CppQtConnectThreeWidget.htm">QtConnectThreeWidget</a>::Get<a href="CppVersion.htm">Version</a>());<br/>
@@ -738,12 +628,12 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;show();<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a>K3OpEenRijMenuDialog::on_button_quit_clicked()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a>K3OpEenRijMenuDialog::on_button_quit_clicked()<br/>
 {<br/>
 &nbsp;&nbsp;close();<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a>K3OpEenRijMenuDialog::on_button_instructions_clicked()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a>K3OpEenRijMenuDialog::on_button_instructions_clicked()<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppQt.htm">Qt</a>K3OpEenRijInstructionsDialog d;<br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;ShowChild(&amp;d);<br/>
@@ -766,6 +656,8 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppConnectThree.htm">connectthree</a>resources.h"<br/>
 <br/>
+<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a> {<br/>
+<br/>
 <a href="CppComment.htm">///</a><a href="CppQt.htm">Qt</a>K3OpEenRijResources is a <b><a href="CppClass.htm">class</a></b> containing<br/>
 <a href="CppComment.htm">///</a>all filenames to be used by the program<br/>
 <a href="CppComment.htm">///</a>Its <a href="CppBaseClass.htm">base class</a>, <a href="CppConnectThree.htm">ConnectThree</a>Resources,<br/>
@@ -782,6 +674,8 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; CreatePlayerGreyNames(<b><a href="CppConst.htm">const</a></b> <a href="CppTribool.htm">boost::logic::tribool</a> is_player3_kathleen);<br/>
 };<br/>
 <br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a><br/>
+<br/>
 <a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> QTK3OPEENRIJ<a href="CppRESOURCES.htm">RESOURCES</a>_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
@@ -794,21 +688,11 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="qtk3opeenrijresources.cpp" border = "1"><tr><td><code>
-<a href="CppIfdef.htm">#ifdef</a> _WIN32<br/>
-<a href="CppComment.htm">//</a>See http://www.richelbilderbeek.nl/Cpp<a href="CppCompile.htm">Compile</a>ErrorUnableToFindNumericLiteralOperatorPperatorQ.htm<br/>
-<a href="CppPreIf.htm">#if</a> !(__GNUC__ <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 4 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> __GNUC_MINOR__ <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 8)<br/>
-<a href="CppComment.htm">//</a>See http://www.richelbilderbeek.nl/Cpp<a href="CppCompile.htm">Compile</a>ErrorSwprintfHasNotBeenDeclared.htm<br/>
-<a href="CppUndef.htm">#undef</a> __STRICT_ANSI__<br/>
-<a href="CppEndif.htm">#endif</a><br/>
-<a href="CppEndif.htm">#endif</a><br/>
-<br/>
-<a href="CppComment.htm">//</a><a href="CppInclude.htm">#include</a> own <a href="CppHeaderFile.htm">header file</a> as first substantive line of code, from:<br/>
-<a href="CppComment.htm">//</a> * John Lakos. Large-Scale <a href="Cpp.htm">C++</a> Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110<br/>
 <a href="CppInclude.htm">#include</a> "qtk3opeenrijresources.h"<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
 <br/>
-<a href="CppQt.htm">Qt</a>K3OpEenRijResources::<a href="CppQt.htm">Qt</a>K3OpEenRijResources(<br/>
+<a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a>K3OpEenRijResources::<a href="CppQt.htm">Qt</a>K3OpEenRijResources(<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppTribool.htm">boost::logic::tribool</a> is_player3_kathleen)<br/>
 &nbsp;&nbsp;: <a href="CppConnectThree.htm">ConnectThree</a>Resources(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
@@ -834,7 +718,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppQt.htm">Qt</a>K3OpEenRijResources::CreatePlayerNames(<b><a href="CppConst.htm">const</a></b> <a href="CppTribool.htm">boost::logic::tribool</a> is_player3_kathleen)<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a>K3OpEenRijResources::CreatePlayerNames(<b><a href="CppConst.htm">const</a></b> <a href="CppTribool.htm">boost::logic::tribool</a> is_player3_kathleen)<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (is_player3_kathleen)<br/>
 &nbsp;&nbsp;{<br/>
@@ -867,7 +751,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;}<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppQt.htm">Qt</a>K3OpEenRijResources::CreatePlayerGreyNames(<b><a href="CppConst.htm">const</a></b> <a href="CppTribool.htm">boost::logic::tribool</a> is_player3_kathleen)<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a>K3OpEenRijResources::CreatePlayerGreyNames(<b><a href="CppConst.htm">const</a></b> <a href="CppTribool.htm">boost::logic::tribool</a> is_player3_kathleen)<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (is_player3_kathleen)<br/>
 &nbsp;&nbsp;{<br/>
@@ -920,6 +804,8 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppQImage.htm">QImage</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppQWidget.htm">QWidget</a>&gt;<br/>
 <br/>
+<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a> {<br/>
+<br/>
 <b><a href="CppStruct.htm">struct</a></b> <a href="CppQt.htm">Qt</a>K3OpEenRijResources;<br/>
 <br/>
 <b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a>K3OpEenRijSelectPlayer<a href="CppWidget.htm">Widget</a> : <b><a href="CppPublic.htm">public</a></b> <a href="CppQWidget.htm">QWidget</a><br/>
@@ -956,6 +842,8 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> m_sprite_width;<br/>
 };<br/>
 <br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a><br/>
+<br/>
 <a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> QTK3OPEENRIJSELECTPLAYERWIDGET_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
@@ -968,16 +856,6 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="qtk3opeenrijselectplayerwidget.cpp" border = "1"><tr><td><code>
-<a href="CppIfdef.htm">#ifdef</a> _WIN32<br/>
-<a href="CppComment.htm">//</a>See http://www.richelbilderbeek.nl/Cpp<a href="CppCompile.htm">Compile</a>ErrorUnableToFindNumericLiteralOperatorPperatorQ.htm<br/>
-<a href="CppPreIf.htm">#if</a> !(__GNUC__ <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 4 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> __GNUC_MINOR__ <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 8)<br/>
-<a href="CppComment.htm">//</a>See http://www.richelbilderbeek.nl/Cpp<a href="CppCompile.htm">Compile</a>ErrorSwprintfHasNotBeenDeclared.htm<br/>
-<a href="CppUndef.htm">#undef</a> __STRICT_ANSI__<br/>
-<a href="CppEndif.htm">#endif</a><br/>
-<a href="CppEndif.htm">#endif</a><br/>
-<br/>
-<a href="CppComment.htm">//</a><a href="CppInclude.htm">#include</a> own <a href="CppHeaderFile.htm">header file</a> as first substantive line of code, from:<br/>
-<a href="CppComment.htm">//</a> * John Lakos. Large-Scale <a href="Cpp.htm">C++</a> Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110<br/>
 <a href="CppInclude.htm">#include</a> "qtk3opeenrijselectplayer<a href="CppWidget.htm">widget</a>.h"<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppQMouseEvent.htm">QMouseEvent</a>&gt;<br/>
@@ -985,10 +863,10 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> "qtk3opeenrijresources.h"<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> <a href="CppQt.htm">Qt</a>K3OpEenRijSelectPlayer<a href="CppWidget.htm">Widget</a>::m_sprite_height <a href="CppOperatorAssign.htm">=</a> 50;<br/>
-<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> <a href="CppQt.htm">Qt</a>K3OpEenRijSelectPlayer<a href="CppWidget.htm">Widget</a>::m_sprite_width&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> 50;<br/>
+<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a>K3OpEenRijSelectPlayer<a href="CppWidget.htm">Widget</a>::m_sprite_height <a href="CppOperatorAssign.htm">=</a> 50;<br/>
+<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a>K3OpEenRijSelectPlayer<a href="CppWidget.htm">Widget</a>::m_sprite_width&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> 50;<br/>
 <br/>
-<a href="CppQt.htm">Qt</a>K3OpEenRijSelectPlayer<a href="CppWidget.htm">Widget</a>::<a href="CppQt.htm">Qt</a>K3OpEenRijSelectPlayer<a href="CppWidget.htm">Widget</a>(<br/>
+<a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a>K3OpEenRijSelectPlayer<a href="CppWidget.htm">Widget</a>::<a href="CppQt.htm">Qt</a>K3OpEenRijSelectPlayer<a href="CppWidget.htm">Widget</a>(<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> <a href="CppQt.htm">Qt</a>K3OpEenRijResources&gt; resources,<br/>
 &nbsp;&nbsp;<a href="CppQWidget.htm">QWidget</a> *parent)<br/>
 &nbsp;&nbsp;: <a href="CppQWidget.htm">QWidget</a>(parent),<br/>
@@ -1017,7 +895,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;setMaximumHeight(3 * m_sprite_height);<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a>K3OpEenRijSelectPlayer<a href="CppWidget.htm">Widget</a>::mousePressEvent(<a href="CppQMouseEvent.htm">QMouseEvent</a> * e)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a>K3OpEenRijSelectPlayer<a href="CppWidget.htm">Widget</a>::mousePressEvent(<a href="CppQMouseEvent.htm">QMouseEvent</a> * e)<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> mouse_x <a href="CppOperatorAssign.htm">=</a> e-&gt;x();<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> mouse_y <a href="CppOperatorAssign.htm">=</a> e-&gt;y();<br/>
@@ -1030,7 +908,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;repaint();<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a>K3OpEenRijSelectPlayer<a href="CppWidget.htm">Widget</a>::paintEvent(<a href="CppQPaintEvent.htm">QPaintEvent</a> *)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a>K3OpEenRijSelectPlayer<a href="CppWidget.htm">Widget</a>::paintEvent(<a href="CppQPaintEvent.htm">QPaintEvent</a> *)<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppQPainter.htm">QPainter</a> painter(<b><a href="CppThis.htm">this</a></b>);<br/>
 &nbsp;&nbsp;painter.drawImage(0 * m_sprite_width,0 * m_sprite_height,m_is_player_human[0] ? m_karen : m_karen_grey);<br/>
@@ -1075,12 +953,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="GameConnectThree.htm">GameConnectThree</a>.htm<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppInclude.htm">#include</a> &lt;qglobal.h&gt;<br/>
-<a href="CppPreIf.htm">#if</a> (QT_VERSION <a href="CppOperatorGreaterEqual.htm">&gt;=</a> QT_VERSION_CHECK(5,0,0))<br/>
-&nbsp;&nbsp;<a href="CppInclude.htm">#include</a> &lt;<a href="CppQApplication.htm">QApplication</a>&gt;<br/>
-<a href="CppPreElse.htm">#else</a><br/>
-&nbsp;&nbsp;<a href="CppInclude.htm">#include</a> &lt;<a href="CppQApplication.htm">QApplication</a>&gt;<br/>
-<a href="CppEndif.htm">#endif</a><br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppQApplication.htm">QApplication</a>&gt;<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppShared_ptr.htm">shared_ptr</a>.hpp&gt;<br/>
 <br/>
@@ -1136,11 +1009,11 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<a href="CppQApplication.htm">QApplication</a> a(<a href="CppArgc.htm">argc</a>, <a href="CppArgc.htm">argv</a>);<br/>
 <br/>
 &nbsp;&nbsp;START_<a href="CppTRACE.htm">TRACE</a>();<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> <a href="CppQt.htm">Qt</a>K3OpEenRijResources&gt; resources(<b><a href="CppNew.htm">new</a></b> <a href="CppQt.htm">Qt</a>K3OpEenRijResources);<br/>
-&nbsp;&nbsp;<a href="CppQt.htm">Qt</a>K3OpEenRijMenuDialog w(resources);<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a>K3OpEenRijResources&gt; resources(<b><a href="CppNew.htm">new</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a>K3OpEenRijResources);<br/>
+&nbsp;&nbsp;<a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a>K3OpEenRijMenuDialog w(resources);<br/>
 <br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppQt.htm">Qt</a>K3OpEenRijResources resources2;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a>K3OpEenRijResources resources2;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> icon_filename <a href="CppOperatorAssign.htm">=</a> resources2.GetIconFilename();<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppQFile.htm">QFile</a>::exists(icon_filename.c_str()));<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;qApp-&gt;setWindowIcon(<a href="CppQIcon.htm">QIcon</a>(<a href="CppQPixmap.htm">QPixmap</a>(icon_filename.c_str())));<br/>
@@ -1184,53 +1057,53 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppExceptionH.htm">exception</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppIostreamH.htm">iostream</a>&gt;<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWApplication.htm">WApplication</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWEnvironment.htm">WEnvironment</a>&gt;<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppConnectThree.htm">connectthree</a>resources.h"<br/>
 <a href="CppInclude.htm">#include</a> "wt<a href="CppConnectThree.htm">connectthree</a>menudialog.h"<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppAbout.htm">about</a>.h"<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppConnectThree.htm">connectthree</a>.h"<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppWtAboutDialog.htm">wtaboutdialog</a>.h"<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppWtConnectThreeWidget.htm">wtconnectthreewidget</a>.h"<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<br/>
 <b><a href="CppStruct.htm">struct</a></b> K3OpEenRij<a href="CppApplication.htm">Application</a> : <b><a href="CppPublic.htm">public</a></b> <a href="CppWApplication.htm">Wt::WApplication</a><br/>
 {<br/>
 &nbsp;&nbsp;K3OpEenRij<a href="CppApplication.htm">Application</a>(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppWEnvironment.htm">Wt::WEnvironment</a>&amp; env,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppAbout.htm">About</a>&amp; <a href="CppAbout.htm">about</a>,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppConnectThree.htm">ConnectThree</a>Resources&amp; resources)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppAbout.htm">About</a>&amp; <a href="CppAbout.htm">about</a>,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppConnectThree.htm">ConnectThree</a>Resources&amp; resources)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;: <a href="CppWApplication.htm">Wt::WApplication</a>(env)<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;setTitle("K3OpEenRij (C) 2007-2013 Richel Bilderbeek");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;useStyleSheet(resources.GetCss());<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;root()-&gt;addWidget(<b><a href="CppNew.htm">new</a></b> <a href="CppWt.htm">Wt</a><a href="CppConnectThree.htm">ConnectThree</a>MenuDialog(<a href="CppAbout.htm">about</a>,resources,"K3OpEenRij"));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;root()-&gt;addWidget(<b><a href="CppNew.htm">new</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppWt.htm">Wt</a><a href="CppConnectThree.htm">ConnectThree</a>MenuDialog(<a href="CppAbout.htm">about</a>,resources,"K3OpEenRij"));<br/>
 &nbsp;&nbsp;}<br/>
 };<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppAbout.htm">About</a> Create<a href="CppAbout.htm">About</a>()<br/>
+<br/>
+<a href="CppRibi.htm\">ribi</a>::<a href="CppAbout.htm">About</a> Create<a href="CppAbout.htm">About</a>()<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppAbout.htm">About</a> <a href="CppAbout.htm">about</a>(<br/>
+&nbsp;&nbsp;<a href="CppRibi.htm\">ribi</a>::<a href="CppAbout.htm">About</a> <a href="CppAbout.htm">about</a>(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;"Richel Bilderbeek",<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;"K3-Op-Een-Rij",<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;"Connect-three game with a K3 theme",<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;"the 10th of January 2011",<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;"2007-2013",<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;"http://www.richelbilderbeek.nl/GameK3OpEenRij.htm",<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppWt.htm">Wt</a><a href="CppConnectThree.htm">ConnectThree</a>MenuDialog::Get<a href="CppVersion.htm">Version</a>(),<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppWt.htm">Wt</a><a href="CppConnectThree.htm">ConnectThree</a>MenuDialog::Get<a href="CppVersion.htm">Version</a>History());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppRibi.htm\">ribi</a>::<a href="CppWt.htm">Wt</a><a href="CppConnectThree.htm">ConnectThree</a>MenuDialog::Get<a href="CppVersion.htm">Version</a>(),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppRibi.htm\">ribi</a>::<a href="CppWt.htm">Wt</a><a href="CppConnectThree.htm">ConnectThree</a>MenuDialog::Get<a href="CppVersion.htm">Version</a>History());<br/>
 &nbsp;&nbsp;<a href="CppAbout.htm">about</a>.<a href="CppAdd.htm">Add</a><a href="CppLibrary.htm">Library</a>("<a href="CppWt.htm">Wt</a> <a href="CppVersion.htm">version</a>: " <a href="CppOperatorPlus.htm">+</a> <a href="CppString.htm">std::string</a>(WT_VERSION_STR));<br/>
-&nbsp;&nbsp;<a href="CppAbout.htm">about</a>.<a href="CppAdd.htm">Add</a><a href="CppLibrary.htm">Library</a>("<a href="CppConnectThree.htm">ConnectThree</a> <a href="CppVersion.htm">version</a>: " <a href="CppOperatorPlus.htm">+</a> <a href="CppConnectThree.htm">ConnectThree</a>::Get<a href="CppVersion.htm">Version</a>());<br/>
-&nbsp;&nbsp;<a href="CppAbout.htm">about</a>.<a href="CppAdd.htm">Add</a><a href="CppLibrary.htm">Library</a>("<a href="CppWtConnectThreeWidget.htm">WtConnectThreeWidget</a> <a href="CppVersion.htm">version</a>: " <a href="CppOperatorPlus.htm">+</a> <a href="CppWtConnectThreeWidget.htm">WtConnectThreeWidget</a>::Get<a href="CppVersion.htm">Version</a>());<br/>
-&nbsp;&nbsp;<a href="CppAbout.htm">about</a>.<a href="CppAdd.htm">Add</a><a href="CppLibrary.htm">Library</a>("<a href="CppWtAboutDialog.htm">WtAboutDialog</a> <a href="CppVersion.htm">version</a>: " <a href="CppOperatorPlus.htm">+</a> <a href="CppWtAboutDialog.htm">WtAboutDialog</a>::Get<a href="CppVersion.htm">Version</a>());<br/>
+&nbsp;&nbsp;<a href="CppAbout.htm">about</a>.<a href="CppAdd.htm">Add</a><a href="CppLibrary.htm">Library</a>("<a href="CppConnectThree.htm">ConnectThree</a> <a href="CppVersion.htm">version</a>: " <a href="CppOperatorPlus.htm">+</a> <a href="CppRibi.htm\">ribi</a>::<a href="CppConnectThree.htm">ConnectThree</a>::Get<a href="CppVersion.htm">Version</a>());<br/>
+&nbsp;&nbsp;<a href="CppAbout.htm">about</a>.<a href="CppAdd.htm">Add</a><a href="CppLibrary.htm">Library</a>("<a href="CppWtConnectThreeWidget.htm">WtConnectThreeWidget</a> <a href="CppVersion.htm">version</a>: " <a href="CppOperatorPlus.htm">+</a> <a href="CppRibi.htm\">ribi</a>::<a href="CppWtConnectThreeWidget.htm">WtConnectThreeWidget</a>::Get<a href="CppVersion.htm">Version</a>());<br/>
+&nbsp;&nbsp;<a href="CppAbout.htm">about</a>.<a href="CppAdd.htm">Add</a><a href="CppLibrary.htm">Library</a>("<a href="CppWtAboutDialog.htm">WtAboutDialog</a> <a href="CppVersion.htm">version</a>: " <a href="CppOperatorPlus.htm">+</a> <a href="CppRibi.htm\">ribi</a>::<a href="CppWtAboutDialog.htm">WtAboutDialog</a>::Get<a href="CppVersion.htm">Version</a>());<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <a href="CppAbout.htm">about</a>;<br/>
 }<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<br/>
 <a href="CppWApplication.htm">Wt::WApplication</a> * create<a href="CppApplication.htm">Application</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppWEnvironment.htm">Wt::WEnvironment</a>&amp; env)<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppConnectThree.htm">ConnectThree</a>Resources();<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppConnectThree.htm">ConnectThree</a>Filenames filenames(<br/>
+&nbsp;&nbsp;<a href="CppRibi.htm\">ribi</a>::<a href="CppConnectThree.htm">ConnectThree</a>Resources();<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppConnectThree.htm">ConnectThree</a>Filenames filenames(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;"K3OpEenRijBackground.png",<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;"K3OpEenRijComputer1.png",<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;"K3OpEenRijComputer2.png",<br/>
@@ -1244,16 +1117,16 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;"K3OpEenRijPlayer2Grey.png",<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;"K3OpEenRijPlayer3.png",<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;"K3OpEenRijPlayer3Grey.png");<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <b><a href="CppNew.htm">new</a></b> K3OpEenRij<a href="CppApplication.htm">Application</a>(env,Create<a href="CppAbout.htm">About</a>(),filenames);<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <b><a href="CppNew.htm">new</a></b> <a href="CppRibi.htm\">ribi</a>::K3OpEenRij<a href="CppApplication.htm">Application</a>(env,Create<a href="CppAbout.htm">About</a>(),filenames);<br/>
 }<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<br/>
 <b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>(<b><a href="CppInt.htm">int</a></b> <a href="CppArgc.htm">argc</a>, <b><a href="CppChar.htm">char</a></b> **<a href="CppArgc.htm">argv</a>)<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppTry.htm">try</a></b><br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <a href="CppWt.htm">Wt</a>::WRun(<a href="CppArgc.htm">argc</a>, <a href="CppArgc.htm">argv</a>, &amp;create<a href="CppApplication.htm">Application</a>);<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<b><a href="CppCatch.htm">catch</a></b> (<a href="CppException.htm">std::exception</a>&amp; e)<br/>
+&nbsp;&nbsp;<b><a href="CppCatch.htm">catch</a></b> (<a href="CppStdException.htm">std::exception</a>&amp; e)<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCerr.htm">std::cerr</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> e.what() <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n';<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppClog.htm">std::clog</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> e.what() <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n';<br/>
@@ -1261,7 +1134,6 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> 1;<br/>
 &nbsp;&nbsp;}<br/>
 }<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>

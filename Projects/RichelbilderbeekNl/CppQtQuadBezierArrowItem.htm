@@ -67,10 +67,17 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppStringH.htm">string</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
+<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-<b><a href="CppTypedef.htm">typedef</a></b>s"<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppShared_ptr.htm">shared_ptr</a>.hpp&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppSignals2.htm">signals2</a>.hpp&gt;<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
+<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppQGraphicsPathItem.htm">QGraphicsPathItem</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;QPen&gt;<br/>
+<br/>
+<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a> {<br/>
 <br/>
 <a href="CppComment.htm">///</a>The <a href="CppQt.htm">Qt</a>QuadBezierArrowItem is a <a href="CppQGraphicsItem.htm">QGraphicsItem</a> that<br/>
 <a href="CppComment.htm">///</a>follows the three <a href="CppQGraphicsItem.htm">QGraphicsItem</a> positions<br/>
@@ -200,6 +207,8 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<a href="CppQPointF.htm">QPointF</a> pos() <b><a href="CppConst.htm">const</a></b> <a href="CppOperatorAssign.htm">=</a> <b><a href="CppDelete.htm">delete</a></b>;<br/>
 };<br/>
 <br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a><br/>
+<br/>
 <a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> QTQUADBEZIERARROWITEM_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
@@ -232,16 +241,10 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="CppQtQuadBezierArrowItem.htm">CppQtQuadBezierArrowItem</a>.htm<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppIfdef.htm">#ifdef</a> _WIN32<br/>
-<a href="CppComment.htm">//</a>See http://www.richelbilderbeek.nl/Cpp<a href="CppCompile.htm">Compile</a>ErrorUnableToFindNumericLiteralOperatorOperatorQ.htm<br/>
-<a href="CppPreIf.htm">#if</a> !(__GNUC__ <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 4 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> __GNUC_MINOR__ <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 8)<br/>
-<a href="CppComment.htm">//</a>See http://www.richelbilderbeek.nl/Cpp<a href="CppCompile.htm">Compile</a>ErrorSwprintfHasNotBeenDeclared.htm<br/>
-<a href="CppUndef.htm">#undef</a> __STRICT_ANSI__<br/>
-<a href="CppEndif.htm">#endif</a><br/>
-<a href="CppEndif.htm">#endif</a><br/>
 <br/>
-<a href="CppComment.htm">//</a><a href="CppInclude.htm">#include</a> own <a href="CppHeaderFile.htm">header file</a> as first substantive line of code, from:<br/>
-<a href="CppComment.htm">//</a> * John Lakos. Large-Scale <a href="Cpp.htm">C++</a> Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110<br/>
+<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-<b><a href="CppTypedef.htm">typedef</a></b>s"<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppQtQuadBezierArrowItem.htm">qtquadbezierarrowitem</a>.h"<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
@@ -251,6 +254,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppGeometry.htm">geometry</a>/geometries/<a href="CppPointer.htm">point</a>_xy.hpp&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppGeometry.htm">geometry</a>.hpp&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/math/constants/constants.hpp&gt;<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppQCursor.htm">QCursor</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppQGraphicsScene.htm">QGraphicsScene</a>&gt;<br/>
@@ -308,7 +312,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;&gt; line2)<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppTypedef.htm">typedef</a></b> <a href="CppBoost.htm">boost</a>::<a href="CppGeometry.htm">geometry</a>::model::d2::<a href="CppPointer.htm">point</a>_xy&lt;T&gt; <a href="CppPoint.htm">Point</a>;<br/>
-&nbsp;&nbsp;<b><a href="CppTypedef.htm">typedef</a></b> <a href="CppBoost.htm">boost</a>::<a href="CppGeometry.htm">geometry</a>::model::linestring&lt;<a href="CppPoint.htm">Point</a>&gt; Line;<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppTypedef.htm">typedef</a></b> <a href="CppBoost.htm">boost</a>::<a href="CppGeometry.htm">geometry</a>::model::linestring&lt;<a href="CppPoint.htm">Point</a>&gt; Line;<br/>
 &nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppPoint.htm">Point</a>&gt; <a href="CppPointer.htm">point</a>s;<br/>
 &nbsp;&nbsp;<a href="CppBoost.htm">boost</a>::<a href="CppGeometry.htm">geometry</a>::intersection(line1,line2,<a href="CppPointer.htm">point</a>s);<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppPointer.htm">point</a>s.empty() <a href="CppOperatorLogicalOr.htm">||</a> <a href="CppPointer.htm">point</a>s.size() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 1);<br/>
@@ -356,7 +360,7 @@ CreateLine(<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::
 {<br/>
 &nbsp;&nbsp;<b><a href="CppTypedef.htm">typedef</a></b> <a href="CppBoost.htm">boost</a>::<a href="CppGeometry.htm">geometry</a>::model::d2::<a href="CppPointer.htm">point</a>_xy&lt;T&gt; <a href="CppPoint.htm">Point</a>;<br/>
 &nbsp;&nbsp;<b><a href="CppTypedef.htm">typedef</a></b> <a href="CppBoost.htm">boost</a>::<a href="CppGeometry.htm">geometry</a>::model::linestring&lt;<a href="CppPoint.htm">Point</a>&gt; Line;<br/>
-&nbsp;&nbsp;<b><a href="CppTypedef.htm">typedef</a></b> <a href="CppBoost.htm">boost</a>::<a href="CppGeometry.htm">geometry</a>::model::box&lt;<a href="CppPoint.htm">Point</a>&gt; Rect;<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppTypedef.htm">typedef</a></b> <a href="CppBoost.htm">boost</a>::<a href="CppGeometry.htm">geometry</a>::model::box&lt;<a href="CppPoint.htm">Point</a>&gt; Rect;<br/>
 <br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppPoint.htm">Point</a> p0 <a href="CppOperatorAssign.htm">=</a> <a href="CppPoint.htm">Point</a>(rect.min_corner().x(), rect.min_corner().y());<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppPoint.htm">Point</a> p1 <a href="CppOperatorAssign.htm">=</a> <a href="CppPoint.htm">Point</a>(rect.max_corner().x(), rect.min_corner().y());<br/>
@@ -400,9 +404,9 @@ CreateLine(<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <a href="CppPointer.htm">point</a>s;<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> <a href="CppQt.htm">Qt</a>QuadBezierArrowItem::m_click_easy_width <a href="CppOperatorAssign.htm">=</a> 10.0;<br/>
+<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a>QuadBezierArrowItem::m_click_easy_width <a href="CppOperatorAssign.htm">=</a> 10.0;<br/>
 <br/>
-<a href="CppQt.htm">Qt</a>QuadBezierArrowItem::<a href="CppQt.htm">Qt</a>QuadBezierArrowItem(<br/>
+<a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a>QuadBezierArrowItem::<a href="CppQt.htm">Qt</a>QuadBezierArrowItem(<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppQGraphicsItem.htm">QGraphicsItem</a>* <b><a href="CppConst.htm">const</a></b> from,<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppBool.htm">bool</a></b> tail,<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppQGraphicsItem.htm">QGraphicsItem</a>* <b><a href="CppConst.htm">const</a></b> mid,<br/>
@@ -434,18 +438,18 @@ CreateLine(<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;setZValue(mid-&gt;zValue() <a href="CppOperatorMinus.htm">-</a> 1.0);<br/>
 }<br/>
 <br/>
-<a href="CppQRect.htm">QRect</a>F <a href="CppQt.htm">Qt</a>QuadBezierArrowItem::boundingRect() <b><a href="CppConst.htm">const</a></b><br/>
+<a href="CppQRect.htm">QRect</a>F <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a>QuadBezierArrowItem::boundingRect() <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <a href="CppShape.htm">shape</a>().boundingRect();<br/>
 }<br/>
 <br/>
-<b><a href="CppDouble.htm">double</a></b> <a href="CppQt.htm">Qt</a>QuadBezierArrowItem::<a href="CppGetAngle.htm">GetAngle</a>(<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> dx, <b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> dy)<br/>
+<b><a href="CppDouble.htm">double</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a>QuadBezierArrowItem::<a href="CppGetAngle.htm">GetAngle</a>(<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> dx, <b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> dy)<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> pi <a href="CppOperatorAssign.htm">=</a> <a href="CppBoost.htm">boost</a>::math::constants::pi&lt;<b><a href="CppDouble.htm">double</a></b>&gt;();<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> pi <a href="CppOperatorMinus.htm">-</a> (<a href="CppAtan.htm">std::atan</a>(dx/dy));<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppQPointF.htm">QPointF</a> <a href="CppQt.htm">Qt</a>QuadBezierArrowItem::GetBeyond() <b><a href="CppConst.htm">const</a></b><br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppQPointF.htm">QPointF</a> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a>QuadBezierArrowItem::GetBeyond() <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppQPointF.htm">QPointF</a> center <a href="CppOperatorAssign.htm">=</a> GetCenter();<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> dx_mid_center <a href="CppOperatorAssign.htm">=</a> m_mid-&gt;pos().x() <a href="CppOperatorMinus.htm">-</a> center.x();<br/>
@@ -454,13 +458,13 @@ CreateLine(<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> beyond;<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppQPointF.htm">QPointF</a> <a href="CppQt.htm">Qt</a>QuadBezierArrowItem::GetCenter() <b><a href="CppConst.htm">const</a></b><br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppQPointF.htm">QPointF</a> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a>QuadBezierArrowItem::GetCenter() <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppQPointF.htm">QPointF</a> center((m_from-&gt;pos() <a href="CppOperatorPlus.htm">+</a> m_to-&gt;pos()) <a href="CppOperatorDivide.htm">/</a> 2.0);<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> center;<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppQPointF.htm">QPointF</a> <a href="CppQt.htm">Qt</a>QuadBezierArrowItem::GetHead() <b><a href="CppConst.htm">const</a></b><br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppQPointF.htm">QPointF</a> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a>QuadBezierArrowItem::GetHead() <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppTypedef.htm">typedef</a></b> <a href="CppBoost.htm">boost</a>::<a href="CppGeometry.htm">geometry</a>::model::d2::<a href="CppPointer.htm">point</a>_xy&lt;<b><a href="CppDouble.htm">double</a></b>&gt; <a href="CppPoint.htm">Point</a>;<br/>
 &nbsp;&nbsp;<b><a href="CppTypedef.htm">typedef</a></b> <a href="CppBoost.htm">boost</a>::<a href="CppGeometry.htm">geometry</a>::model::linestring&lt;<a href="CppPoint.htm">Point</a>&gt; Line;<br/>
@@ -516,7 +520,7 @@ CreateLine(<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::
 &nbsp;&nbsp;}<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppQPointF.htm">QPointF</a> <a href="CppQt.htm">Qt</a>QuadBezierArrowItem::GetTail() <b><a href="CppConst.htm">const</a></b><br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppQPointF.htm">QPointF</a> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a>QuadBezierArrowItem::GetTail() <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 <br/>
 &nbsp;&nbsp;<b><a href="CppTypedef.htm">typedef</a></b> <a href="CppBoost.htm">boost</a>::<a href="CppGeometry.htm">geometry</a>::model::d2::<a href="CppPointer.htm">point</a>_xy&lt;<b><a href="CppDouble.htm">double</a></b>&gt; <a href="CppPoint.htm">Point</a>;<br/>
@@ -572,12 +576,12 @@ CreateLine(<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::
 &nbsp;&nbsp;}<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppQt.htm">Qt</a>QuadBezierArrowItem::Get<a href="CppVersion.htm">Version</a>()<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a>QuadBezierArrowItem::Get<a href="CppVersion.htm">Version</a>()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> "1.4";<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppQt.htm">Qt</a>QuadBezierArrowItem::Get<a href="CppVersion.htm">Version</a>History()<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a>QuadBezierArrowItem::Get<a href="CppVersion.htm">Version</a>History()<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v;<br/>
 &nbsp;&nbsp;v.push_back("2012-12-07: <a href="CppVersion.htm">version</a> 1.0: initial <a href="CppVersion.htm">version</a>");<br/>
@@ -588,12 +592,12 @@ CreateLine(<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a>QuadBezierArrowItem::hoverEnterEvent(<a href="CppQGraphicsSceneHoverEvent.htm">QGraphicsSceneHoverEvent</a> *)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a>QuadBezierArrowItem::hoverEnterEvent(<a href="CppQGraphicsSceneHoverEvent.htm">QGraphicsSceneHoverEvent</a> *)<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;setCursor(<a href="CppQCursor.htm">QCursor</a>(<a href="CppQt.htm">Qt</a>::<a href="CppPoint.htm">Point</a>ingHandCursor));<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a>QuadBezierArrowItem::keyPressEvent(<a href="CppQKeyEvent.htm">QKeyEvent</a> *event)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a>QuadBezierArrowItem::keyPressEvent(<a href="CppQKeyEvent.htm">QKeyEvent</a> *event)<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppSwitch.htm">switch</a></b> (event-&gt;key())<br/>
 &nbsp;&nbsp;{<br/>
@@ -619,7 +623,7 @@ CreateLine(<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::
 &nbsp;&nbsp;<a href="CppQGraphicsItem.htm">QGraphicsItem</a>::keyPressEvent(event);<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a>QuadBezierArrowItem::mousePressEvent(<a href="CppQGraphicsSceneMouseEvent.htm">QGraphicsSceneMouseEvent</a> *event)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a>QuadBezierArrowItem::mousePressEvent(<a href="CppQGraphicsSceneMouseEvent.htm">QGraphicsSceneMouseEvent</a> *event)<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (event-&gt;modifiers() &amp; <a href="CppQt.htm">Qt</a>::ShiftModifier)<br/>
 &nbsp;&nbsp;{<br/>
@@ -640,7 +644,7 @@ CreateLine(<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::
 }<br/>
 <br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a>QuadBezierArrowItem::paint(<a href="CppQPainter.htm">QPainter</a>* painter, <b><a href="CppConst.htm">const</a></b> <a href="CppQStyleOptionGraphicsItem.htm">QStyleOptionGraphicsItem</a> *, <a href="CppQWidget.htm">QWidget</a> *)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a>QuadBezierArrowItem::paint(<a href="CppQPainter.htm">QPainter</a>* painter, <b><a href="CppConst.htm">const</a></b> <a href="CppQStyleOptionGraphicsItem.htm">QStyleOptionGraphicsItem</a> *, <a href="CppQWidget.htm">QWidget</a> *)<br/>
 {<br/>
 &nbsp;&nbsp;painter-&gt;setRenderH<b><a href="CppInt.htm">int</a></b>(<a href="CppQPainter.htm">QPainter</a>::Antialiasing);<br/>
 &nbsp;&nbsp;painter-&gt;drawEllipse(<b><a href="CppThis.htm">this</a></b>-&gt;GetMidItem()-&gt;pos(),1,1);<br/>
@@ -713,7 +717,7 @@ CreateLine(<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::
 &nbsp;&nbsp;}<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a>QuadBezierArrowItem::SetHasHead(<b><a href="CppConst.htm">const</a></b> <b><a href="CppBool.htm">bool</a></b> has_head)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a>QuadBezierArrowItem::SetHasHead(<b><a href="CppConst.htm">const</a></b> <b><a href="CppBool.htm">bool</a></b> has_head)<br/>
 {<br/>
 <br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (m_head <a href="CppOperatorNotEqual.htm">!=</a> has_head)<br/>
@@ -724,7 +728,7 @@ CreateLine(<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::
 &nbsp;&nbsp;}<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a>QuadBezierArrowItem::SetHasTail(<b><a href="CppConst.htm">const</a></b> <b><a href="CppBool.htm">bool</a></b> has_tail)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a>QuadBezierArrowItem::SetHasTail(<b><a href="CppConst.htm">const</a></b> <b><a href="CppBool.htm">bool</a></b> has_tail)<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (m_tail <a href="CppOperatorNotEqual.htm">!=</a> has_tail)<br/>
 &nbsp;&nbsp;{<br/>
@@ -735,7 +739,7 @@ CreateLine(<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::
 }<br/>
 <br/>
 <br/>
-<a href="CppQPainterPath.htm">QPainterPath</a> <a href="CppQt.htm">Qt</a>QuadBezierArrowItem::<a href="CppShape.htm">shape</a>() <b><a href="CppConst.htm">const</a></b><br/>
+<a href="CppQPainterPath.htm">QPainterPath</a> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a>QuadBezierArrowItem::<a href="CppShape.htm">shape</a>() <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppQPointF.htm">QPointF</a> beyond <a href="CppOperatorAssign.htm">=</a> GetBeyond();<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppQPointF.htm">QPointF</a> p_tail_end <a href="CppOperatorAssign.htm">=</a> GetTail();<br/>

@@ -7,6 +7,8 @@ namespace Ui {
   class QtMidiLessonCreatorMainDialog;
 }
 
+namespace ribi {
+
 class QtMidiLessonCreatorMainDialog : public QDialog
 {
   Q_OBJECT
@@ -18,5 +20,7 @@ public:
 private:
   Ui::QtMidiLessonCreatorMainDialog *ui;
 };
+
+} //~namespace ribi
 
 #endif // QTMIDILESSONCREATORMAINDIALOG_H

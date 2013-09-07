@@ -1,6 +1,6 @@
 QT       += core
 QT       -= gui
-QMAKE_CXXFLAGS += -std=c++0x
+QMAKE_CXXFLAGS += -std=c++11 -Wall -Wextra
 CONFIG   += console
 CONFIG   -= app_bundle
 TEMPLATE = app

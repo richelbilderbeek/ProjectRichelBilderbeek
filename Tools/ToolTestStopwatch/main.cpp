@@ -20,14 +20,14 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #include <cstdlib>
 #include <iostream>
-//---------------------------------------------------------------------------
+
 #include <boost/timer.hpp>
-//---------------------------------------------------------------------------
+
 #include "stopwatch.h"
-//---------------------------------------------------------------------------
+
 int main()
 {
-  Stopwatch s;
+  ribi::Stopwatch s;
   boost::timer t;
   std::system("./../ToolPause-build-desktop/Pause 5");
   std::cout
@@ -35,4 +35,3 @@ int main()
     << "Stopwatch: " << s.elapsed() << " seconds\n"
     << "boost::timer: " << t.elapsed() << " milliseconds\n";
 }
-//---------------------------------------------------------------------------

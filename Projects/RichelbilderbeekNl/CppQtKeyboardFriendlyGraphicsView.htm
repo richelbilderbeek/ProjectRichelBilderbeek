@@ -64,10 +64,16 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppIfndef.htm">#ifndef</a> QTKEYBOARDFRIENDLYGRAPHICSVIEW_H<br/>
 <a href="CppDefine.htm">#define</a> QTKEYBOARDFRIENDLYGRAPHICSVIEW_H<br/>
 <br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-<b><a href="CppTypedef.htm">typedef</a></b>s"<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppSignals2.htm">signals2</a>.hpp&gt;<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
+<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppQGraphicsView.htm">QGraphicsView</a>&gt;<br/>
 <br/>
 <b><a href="CppStruct.htm">struct</a></b> <a href="CppQGraphicsItem.htm">QGraphicsItem</a>;<br/>
+<br/>
+<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a> {<br/>
 <br/>
 <a href="CppComment.htm">///</a>The <a href="CppWidget.htm">widget</a> holding the items<br/>
 <b><a href="CppStruct.htm">struct</a></b> <a href="CppQtKeyboardFriendlyGraphicsView.htm">QtKeyboardFriendlyGraphicsView</a> : <b><a href="CppPublic.htm">public</a></b> <a href="CppQGraphicsView.htm">QGraphicsView</a><br/>
@@ -118,6 +124,8 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> SetRandomFocus();<br/>
 };<br/>
 <br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a><br/>
+<br/>
 <a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> QTKEYBOARDFRIENDLYGRAPHICSVIEW_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
@@ -150,16 +158,8 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="CppQtKeyboardFriendlyGraphicsView.htm">CppQtKeyboardFriendlyGraphicsView</a>.htm<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppIfdef.htm">#ifdef</a> _WIN32<br/>
-<a href="CppComment.htm">//</a>See http://www.richelbilderbeek.nl/Cpp<a href="CppCompile.htm">Compile</a>ErrorUnableToFindNumericLiteralOperatorOperatorQ.htm<br/>
-<a href="CppPreIf.htm">#if</a> !(__GNUC__ <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 4 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> __GNUC_MINOR__ <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 8)<br/>
-<a href="CppComment.htm">//</a>See http://www.richelbilderbeek.nl/Cpp<a href="CppCompile.htm">Compile</a>ErrorSwprintfHasNotBeenDeclared.htm<br/>
-<a href="CppUndef.htm">#undef</a> __STRICT_ANSI__<br/>
-<a href="CppEndif.htm">#endif</a><br/>
-<a href="CppEndif.htm">#endif</a><br/>
 <br/>
-<a href="CppComment.htm">//</a><a href="CppInclude.htm">#include</a> own <a href="CppHeaderFile.htm">header file</a> as first substantive line of code, from:<br/>
-<a href="CppComment.htm">//</a> * John Lakos. Large-Scale <a href="Cpp.htm">C++</a> Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110<br/>
+<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppQtKeyboardFriendlyGraphicsView.htm">qtkeyboardfriendlygraphicsview</a>.h"<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
@@ -169,13 +169,13 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppQKeyEvent.htm">QKeyEvent</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppQGraphicsSimpleTextItem.htm">QGraphicsSimpleTextItem</a>&gt;<br/>
 <br/>
-<a href="CppQtKeyboardFriendlyGraphicsView.htm">QtKeyboardFriendlyGraphicsView</a>::<a href="CppQtKeyboardFriendlyGraphicsView.htm">QtKeyboardFriendlyGraphicsView</a>(<a href="CppQWidget.htm">QWidget</a>* parent)<br/>
+<a href="CppRibi.htm\">ribi</a>::<a href="CppQtKeyboardFriendlyGraphicsView.htm">QtKeyboardFriendlyGraphicsView</a>::<a href="CppQtKeyboardFriendlyGraphicsView.htm">QtKeyboardFriendlyGraphicsView</a>(<a href="CppQWidget.htm">QWidget</a>* parent)<br/>
 &nbsp;&nbsp;: <a href="CppQGraphicsView.htm">QGraphicsView</a>(<b><a href="CppNew.htm">new</a></b> <a href="CppQGraphicsScene.htm">QGraphicsScene</a>,parent)<br/>
 {<br/>
 <br/>
 }<br/>
 <br/>
-<a href="CppQGraphicsItem.htm">QGraphicsItem</a>* <a href="CppQtKeyboardFriendlyGraphicsView.htm">QtKeyboardFriendlyGraphicsView</a>::GetClosest(<br/>
+<a href="CppQGraphicsItem.htm">QGraphicsItem</a>* <a href="CppRibi.htm\">ribi</a>::<a href="CppQtKeyboardFriendlyGraphicsView.htm">QtKeyboardFriendlyGraphicsView</a>::GetClosest(<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppQGraphicsItem.htm">QGraphicsItem</a>* <b><a href="CppConst.htm">const</a></b> focus_item,<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppQGraphicsItem.htm">QGraphicsItem</a> *&gt;&amp; items) <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
@@ -200,14 +200,14 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> best; <a href="CppComment.htm">//</a>best can be <b><a href="CppNullptr.htm">nullptr</a></b><br/>
 }<br/>
 <br/>
-<b><a href="CppDouble.htm">double</a></b> <a href="CppQtKeyboardFriendlyGraphicsView.htm">QtKeyboardFriendlyGraphicsView</a>::<a href="CppGetDistance.htm">GetDistance</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppQPointF.htm">QPointF</a>&amp; a, <b><a href="CppConst.htm">const</a></b> <a href="CppQPointF.htm">QPointF</a>&amp; b)<br/>
+<b><a href="CppDouble.htm">double</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQtKeyboardFriendlyGraphicsView.htm">QtKeyboardFriendlyGraphicsView</a>::<a href="CppGetDistance.htm">GetDistance</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppQPointF.htm">QPointF</a>&amp; a, <b><a href="CppConst.htm">const</a></b> <a href="CppQPointF.htm">QPointF</a>&amp; b)<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> dx <a href="CppOperatorAssign.htm">=</a> a.x() <a href="CppOperatorMinus.htm">-</a> b.x();<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> dy <a href="CppOperatorAssign.htm">=</a> a.y() <a href="CppOperatorMinus.htm">-</a> b.y();<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <a href="CppSqrt.htm">std::sqrt</a>((dx * dx) <a href="CppOperatorPlus.htm">+</a> (dy * dy));<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppQGraphicsItem.htm">QGraphicsItem</a> *&gt; <a href="CppQtKeyboardFriendlyGraphicsView.htm">QtKeyboardFriendlyGraphicsView</a>::GetItemsAbove(<b><a href="CppConst.htm">const</a></b> <a href="CppQGraphicsItem.htm">QGraphicsItem</a>* <b><a href="CppConst.htm">const</a></b> focus_item) <b><a href="CppConst.htm">const</a></b><br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppQGraphicsItem.htm">QGraphicsItem</a> *&gt; <a href="CppRibi.htm\">ribi</a>::<a href="CppQtKeyboardFriendlyGraphicsView.htm">QtKeyboardFriendlyGraphicsView</a>::GetItemsAbove(<b><a href="CppConst.htm">const</a></b> <a href="CppQGraphicsItem.htm">QGraphicsItem</a>* <b><a href="CppConst.htm">const</a></b> focus_item) <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppQGraphicsItem.htm">QGraphicsItem</a> *&gt; v;<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppQList.htm">QList</a>&lt;<a href="CppQGraphicsItem.htm">QGraphicsItem</a> *&gt; items <a href="CppOperatorAssign.htm">=</a> <b><a href="CppThis.htm">this</a></b>-&gt;items();<br/>
@@ -239,7 +239,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppQGraphicsItem.htm">QGraphicsItem</a> *&gt; <a href="CppQtKeyboardFriendlyGraphicsView.htm">QtKeyboardFriendlyGraphicsView</a>::GetItemsBelow(<b><a href="CppConst.htm">const</a></b> <a href="CppQGraphicsItem.htm">QGraphicsItem</a>* <b><a href="CppConst.htm">const</a></b> focus_item) <b><a href="CppConst.htm">const</a></b><br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppQGraphicsItem.htm">QGraphicsItem</a> *&gt; <a href="CppRibi.htm\">ribi</a>::<a href="CppQtKeyboardFriendlyGraphicsView.htm">QtKeyboardFriendlyGraphicsView</a>::GetItemsBelow(<b><a href="CppConst.htm">const</a></b> <a href="CppQGraphicsItem.htm">QGraphicsItem</a>* <b><a href="CppConst.htm">const</a></b> focus_item) <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppQGraphicsItem.htm">QGraphicsItem</a> *&gt; v;<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppQList.htm">QList</a>&lt;<a href="CppQGraphicsItem.htm">QGraphicsItem</a> *&gt; items <a href="CppOperatorAssign.htm">=</a> <b><a href="CppThis.htm">this</a></b>-&gt;items();<br/>
@@ -271,7 +271,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppQGraphicsItem.htm">QGraphicsItem</a> *&gt; <a href="CppQtKeyboardFriendlyGraphicsView.htm">QtKeyboardFriendlyGraphicsView</a>::GetItemsLeft(<b><a href="CppConst.htm">const</a></b> <a href="CppQGraphicsItem.htm">QGraphicsItem</a>* <b><a href="CppConst.htm">const</a></b> focus_item) <b><a href="CppConst.htm">const</a></b><br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppQGraphicsItem.htm">QGraphicsItem</a> *&gt; <a href="CppRibi.htm\">ribi</a>::<a href="CppQtKeyboardFriendlyGraphicsView.htm">QtKeyboardFriendlyGraphicsView</a>::GetItemsLeft(<b><a href="CppConst.htm">const</a></b> <a href="CppQGraphicsItem.htm">QGraphicsItem</a>* <b><a href="CppConst.htm">const</a></b> focus_item) <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppQGraphicsItem.htm">QGraphicsItem</a> *&gt; v;<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppQList.htm">QList</a>&lt;<a href="CppQGraphicsItem.htm">QGraphicsItem</a> *&gt; items <a href="CppOperatorAssign.htm">=</a> <b><a href="CppThis.htm">this</a></b>-&gt;items();<br/>
@@ -302,7 +302,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppQGraphicsItem.htm">QGraphicsItem</a> *&gt; <a href="CppQtKeyboardFriendlyGraphicsView.htm">QtKeyboardFriendlyGraphicsView</a>::GetItemsRight(<b><a href="CppConst.htm">const</a></b> <a href="CppQGraphicsItem.htm">QGraphicsItem</a>* <b><a href="CppConst.htm">const</a></b> focus_item) <b><a href="CppConst.htm">const</a></b><br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppQGraphicsItem.htm">QGraphicsItem</a> *&gt; <a href="CppRibi.htm\">ribi</a>::<a href="CppQtKeyboardFriendlyGraphicsView.htm">QtKeyboardFriendlyGraphicsView</a>::GetItemsRight(<b><a href="CppConst.htm">const</a></b> <a href="CppQGraphicsItem.htm">QGraphicsItem</a>* <b><a href="CppConst.htm">const</a></b> focus_item) <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppQGraphicsItem.htm">QGraphicsItem</a> *&gt; v;<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppQList.htm">QList</a>&lt;<a href="CppQGraphicsItem.htm">QGraphicsItem</a> *&gt; items <a href="CppOperatorAssign.htm">=</a> <b><a href="CppThis.htm">this</a></b>-&gt;items();<br/>
@@ -333,12 +333,12 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppQtKeyboardFriendlyGraphicsView.htm">QtKeyboardFriendlyGraphicsView</a>::Get<a href="CppVersion.htm">Version</a>()<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppRibi.htm\">ribi</a>::<a href="CppQtKeyboardFriendlyGraphicsView.htm">QtKeyboardFriendlyGraphicsView</a>::Get<a href="CppVersion.htm">Version</a>()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> "1.1";<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppQtKeyboardFriendlyGraphicsView.htm">QtKeyboardFriendlyGraphicsView</a>::Get<a href="CppVersion.htm">Version</a>History()<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm\">ribi</a>::<a href="CppQtKeyboardFriendlyGraphicsView.htm">QtKeyboardFriendlyGraphicsView</a>::Get<a href="CppVersion.htm">Version</a>History()<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v;<br/>
 &nbsp;&nbsp;v.push_back("2012-12-13: <a href="CppVersion.htm">version</a> 1.0: initial <a href="CppVersion.htm">version</a>");<br/>
@@ -346,7 +346,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppQtKeyboardFriendlyGraphicsView.htm">QtKeyboardFriendlyGraphicsView</a>::keyPressEvent(<a href="CppQKeyEvent.htm">QKeyEvent</a> *event)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQtKeyboardFriendlyGraphicsView.htm">QtKeyboardFriendlyGraphicsView</a>::keyPressEvent(<a href="CppQKeyEvent.htm">QKeyEvent</a> *event)<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (event-&gt;modifiers() &amp; <a href="CppQt.htm">Qt</a>::ShiftModifier)<br/>
 &nbsp;&nbsp;{<br/>
@@ -482,7 +482,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;update();<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppQtKeyboardFriendlyGraphicsView.htm">QtKeyboardFriendlyGraphicsView</a>::SetRandomFocus()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQtKeyboardFriendlyGraphicsView.htm">QtKeyboardFriendlyGraphicsView</a>::SetRandomFocus()<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Let existing item lose focus<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (<a href="CppQGraphicsItem.htm">QGraphicsItem</a>* <b><a href="CppConst.htm">const</a></b> item <a href="CppOperatorAssign.htm">=</a> scene()-&gt;focusItem())<br/>

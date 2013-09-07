@@ -70,6 +70,8 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppWidget.htm">widget</a>.h"<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
 <br/>
+<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a> {<br/>
+<br/>
 <b><a href="CppStruct.htm">struct</a></b> <a href="CppToggleButton.htm">ToggleButton</a>;<br/>
 <br/>
 <b><a href="CppStruct.htm">struct</a></b> <a href="CppToggleButton.htm">ToggleButton</a><a href="CppWidget.htm">Widget</a> : <b><a href="CppPublic.htm">public</a></b> <a href="CppWidget.htm">Widget</a><br/>
@@ -104,6 +106,8 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <br/>
 <a href="CppOstream.htm">std::ostream</a>&amp; <b><a href="CppOperatorStreamOut.htm">operator&lt;&lt;</a></b>(<a href="CppOstream.htm">std::ostream</a>&amp; os, <b><a href="CppConst.htm">const</a></b> <a href="CppToggleButton.htm">ToggleButton</a><a href="CppWidget.htm">Widget</a>&amp; button);<br/>
 <br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a><br/>
+<br/>
 <a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> TOGGLEBUTTONWIDGET_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
@@ -136,31 +140,21 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="CppToggleButtonWidget.htm">CppToggleButtonWidget</a>.htm<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppIfdef.htm">#ifdef</a> _WIN32<br/>
-<a href="CppComment.htm">//</a>See http://www.richelbilderbeek.nl/Cpp<a href="CppCompile.htm">Compile</a>ErrorUnableToFindNumericLiteralOperatorOperatorQ.htm<br/>
-<a href="CppPreIf.htm">#if</a> !(__GNUC__ <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 4 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> __GNUC_MINOR__ <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 8)<br/>
-<a href="CppComment.htm">//</a>See http://www.richelbilderbeek.nl/Cpp<a href="CppCompile.htm">Compile</a>ErrorSwprintfHasNotBeenDeclared.htm<br/>
-<a href="CppUndef.htm">#undef</a> __STRICT_ANSI__<br/>
-<a href="CppEndif.htm">#endif</a><br/>
-<a href="CppEndif.htm">#endif</a><br/>
-<br/>
-<a href="CppComment.htm">//</a><a href="CppInclude.htm">#include</a> own <a href="CppHeaderFile.htm">header file</a> as first substantive line of code, from:<br/>
-<a href="CppComment.htm">//</a> * John Lakos. Large-Scale <a href="Cpp.htm">C++</a> Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-<b><a href="CppTypedef.htm">typedef</a></b>s"<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppToggleButtonWidget.htm">togglebuttonwidget</a>.h"<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppCmathH.htm">cmath</a>&gt;<br/>
+<a href="CppComment.htm">//</a><a href="CppInclude.htm">#include</a> &lt;<a href="CppCmathH.htm">cmath</a>&gt;<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/math/constants/constants.hpp&gt;<br/>
+<a href="CppComment.htm">//</a><a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/math/constants/constants.hpp&gt;<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppToggleButton.htm">togglebutton</a>.h"<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppTrace.htm">trace</a>.h"<br/>
 <br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
 <br/>
-<a href="CppToggleButton.htm">ToggleButton</a><a href="CppWidget.htm">Widget</a>::<a href="CppToggleButton.htm">ToggleButton</a><a href="CppWidget.htm">Widget</a>(<br/>
+<a href="CppRibi.htm\">ribi</a>::<a href="CppToggleButton.htm">ToggleButton</a><a href="CppWidget.htm">Widget</a>::<a href="CppToggleButton.htm">ToggleButton</a><a href="CppWidget.htm">Widget</a>(<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppBool.htm">bool</a></b> pressed,<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> red,<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> green,<br/>
@@ -170,27 +164,27 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppToggleButton.htm">ToggleButton</a><a href="CppWidget.htm">Widget</a>::Click(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b>, <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b>)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppToggleButton.htm">ToggleButton</a><a href="CppWidget.htm">Widget</a>::Click(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b>, <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b>)<br/>
 {<br/>
 &nbsp;&nbsp;m_button-&gt;Toggle();<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppToggleButton.htm">ToggleButton</a><a href="CppWidget.htm">Widget</a>::Get<a href="CppVersion.htm">Version</a>()<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppRibi.htm\">ribi</a>::<a href="CppToggleButton.htm">ToggleButton</a><a href="CppWidget.htm">Widget</a>::Get<a href="CppVersion.htm">Version</a>()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> "1.2";<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppToggleButton.htm">ToggleButton</a><a href="CppWidget.htm">Widget</a>::Get<a href="CppVersion.htm">Version</a>History()<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm\">ribi</a>::<a href="CppToggleButton.htm">ToggleButton</a><a href="CppWidget.htm">Widget</a>::Get<a href="CppVersion.htm">Version</a>History()<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v;<br/>
-&nbsp;&nbsp;v.push_back("YYYY-MM-DD: <a href="CppVersion.htm">version</a> X.Y: [description]");<br/>
-&nbsp;&nbsp;v.push_back("2011-07-03: <a href="CppVersion.htm">version</a> 1.0: initial <a href="CppVersion.htm">version</a>");<br/>
-&nbsp;&nbsp;v.push_back("2011-08-20: <a href="CppVersion.htm">Version</a> 1.1: added <b><a href="CppOperatorStreamOut.htm">operator&lt;&lt;</a></b>");<br/>
-&nbsp;&nbsp;v.push_back("2011-08-31: <a href="CppVersion.htm">Version</a> 1.2: added setting the color of a <a href="CppToggleButton.htm">ToggleButton</a>");<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"YYYY-MM-DD: <a href="CppVersion.htm">version</a> X.Y: [description]",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"2011-07-03: <a href="CppVersion.htm">version</a> 1.0: initial <a href="CppVersion.htm">version</a>",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"2011-08-20: <a href="CppVersion.htm">Version</a> 1.1: added <b><a href="CppOperatorStreamOut.htm">operator&lt;&lt;</a></b>",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"2011-08-31: <a href="CppVersion.htm">Version</a> 1.2: added setting the color of a <a href="CppToggleButton.htm">ToggleButton</a>"<br/>
+&nbsp;&nbsp;};<br/>
 }<br/>
 <br/>
-<a href="CppOstream.htm">std::ostream</a>&amp; <b><a href="CppOperatorStreamOut.htm">operator&lt;&lt;</a></b>(<a href="CppOstream.htm">std::ostream</a>&amp; os, <b><a href="CppConst.htm">const</a></b> <a href="CppToggleButton.htm">ToggleButton</a><a href="CppWidget.htm">Widget</a>&amp; button)<br/>
+<a href="CppOstream.htm">std::ostream</a>&amp; <a href="CppRibi.htm\">ribi</a>::<b><a href="CppOperatorStreamOut.htm">operator&lt;&lt;</a></b>(<a href="CppOstream.htm">std::ostream</a>&amp; os, <b><a href="CppConst.htm">const</a></b> <a href="CppToggleButton.htm">ToggleButton</a><a href="CppWidget.htm">Widget</a>&amp; button)<br/>
 {<br/>
 &nbsp;&nbsp;os<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "&lt;<a href="CppToggleButton.htm">ToggleButton</a><a href="CppWidget.htm">Widget</a>&gt;"<br/>

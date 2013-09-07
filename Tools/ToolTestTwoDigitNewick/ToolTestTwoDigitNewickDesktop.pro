@@ -4,6 +4,7 @@ CONFIG   -= app_bundle
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 QMAKE_CXXFLAGS += -std=c++11 -Wall -Wextra
+
 #Use 64 bit
 #QMAKE_CXXFLAGS += -m64
 

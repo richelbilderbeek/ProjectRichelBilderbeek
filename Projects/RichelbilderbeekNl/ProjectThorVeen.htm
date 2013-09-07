@@ -77,7 +77,7 @@ WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, <b><a href="CppInt.htm">int</a></b>)
 {<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppTry.htm">try</a></b><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppApplication.htm">Application</a>-&gt;Initialize();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppApplication.htm">Application</a>-&gt;<a href="CppInitialize.htm">Initialize</a>();<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppApplication.htm">Application</a>-&gt;Title <a href="CppOperatorAssign.htm">=</a> "The Thor Veen Project";<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppApplication.htm">Application</a>-&gt;HelpFile <a href="CppOperatorAssign.htm">=</a> "C:\\Program Files\\Borland\\CBuilder6\\<a href="Projects.htm">Projects</a>\\Simulations\\ThorVeen\\7\\PROJECTHELP.HLP";<br/>
 &nbsp;&nbsp;&nbsp;&nbsp; <a href="CppApplication.htm">Application</a>-&gt;CreateForm(__classid(TFormThorVeenProject), &amp;FormThorVeenProject);<br/>
@@ -86,19 +86,19 @@ WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, <b><a href="CppInt.htm">int</a></b>)
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppApplication.htm">Application</a>-&gt;CreateForm(__classid(TFormTest), &amp;FormTest);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppApplication.htm">Application</a>-&gt;Run();<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCatch.htm">catch</a></b> (Exception &amp;exception)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCatch.htm">catch</a></b> (<a href="CppException.htm">Exception</a> &amp;<a href="CppException.htm">exception</a>)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppApplication.htm">Application</a>-&gt;ShowException(&amp;exception);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppApplication.htm">Application</a>-&gt;Show<a href="CppException.htm">Exception</a>(&amp;<a href="CppException.htm">exception</a>);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCatch.htm">catch</a></b> (...)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b><a href="CppTry.htm">try</a></b><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b><a href="CppThrow.htm">throw</a></b> Exception("");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b><a href="CppThrow.htm">throw</a></b> <a href="CppException.htm">Exception</a>("");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b><a href="CppCatch.htm">catch</a></b> (Exception &amp;exception)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b><a href="CppCatch.htm">catch</a></b> (<a href="CppException.htm">Exception</a> &amp;<a href="CppException.htm">exception</a>)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppApplication.htm">Application</a>-&gt;ShowException(&amp;exception);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppApplication.htm">Application</a>-&gt;Show<a href="CppException.htm">Exception</a>(&amp;<a href="CppException.htm">exception</a>);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> 0;<br/>
@@ -284,7 +284,7 @@ BirdWatcher * BirdBase::mBirdWatcher <a href="CppOperatorAssign.htm">=</a> 0;<b
 <b><a href="CppDouble.htm">double</a></b> BirdHawkDove::mMutationPlayHawkBeta&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> 0.0;<br/>
 <b><a href="CppDouble.htm">double</a></b> BirdHawkDove::mPdieHawkHawkLoser&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppOperatorAssign.htm">=</a> 0.0;<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">//</a>Before a first bird is created, the mBirdWatcher must be initialized<br/>
+<a href="CppComment.htm">//</a>Before a first bird is created, the mBirdWatcher must be <a href="CppInitialize.htm">initialize</a>d<br/>
 BirdBase::BirdBase()<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>The BirdWatcher watches <b><a href="CppThis.htm">this</a></b><br/>
@@ -1382,7 +1382,7 @@ BirdWatcher* BirdWatcher::<a href="CppInstance.htm">instance</a>()<br/>
 <a href="CppInclude.htm">#include</a> "UnitDeadPool.h"<br/>
 <a href="CppInclude.htm">#include</a> "UnitCouple.h"<br/>
 <a href="CppInclude.htm">#include</a> "UnitResults.h"<br/>
-<a href="CppInclude.htm">#include</a> "UnitExceptions.h"<br/>
+<a href="CppInclude.htm">#include</a> "Unit<a href="CppException.htm">Exception</a>s.h"<br/>
 <a href="CppInclude.htm">#include</a> "UnitHelper<a href="CppFunction.htm">Function</a>s.h"<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <b><a href="CppVoid.htm">void</a></b> BreedingSingleGeneration::breed(<br/>
@@ -1404,11 +1404,11 @@ BirdWatcher* BirdWatcher::<a href="CppInstance.htm">instance</a>()<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;migrationPool-&gt;addFemale( female);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<b><a href="CppCatch.htm">catch</a></b> (NoCouplesException&amp; e)<br/>
+&nbsp;&nbsp;<b><a href="CppCatch.htm">catch</a></b> (NoCouples<a href="CppException.htm">Exception</a>&amp; e)<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;Results * r <a href="CppOperatorAssign.htm">=</a> Results::<a href="CppInstance.htm">instance</a>();<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;r-&gt;log("No couples left");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThrow.htm">throw</a></b> NoCouplesException();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThrow.htm">throw</a></b> NoCouples<a href="CppException.htm">Exception</a>();<br/>
 &nbsp;&nbsp;}<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Create males<br/>
@@ -1626,7 +1626,7 @@ BirdWatcher* BirdWatcher::<a href="CppInstance.htm">instance</a>()<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppInclude.htm">#include</a> "UnitBird.h"<br/>
 <a href="CppInclude.htm">#include</a> "UnitCouple.h"<br/>
-<a href="CppInclude.htm">#include</a> "UnitExceptions.h"<br/>
+<a href="CppInclude.htm">#include</a> "Unit<a href="CppException.htm">Exception</a>s.h"<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppAssert.htm">Assert</a>.h"<br/>
 <a href="CppInclude.htm">#include</a> "UnitBirdWatcher.h"<br/>
@@ -1665,7 +1665,7 @@ Couple::~Couple()<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> kid;<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">Assert</a>(!"Unknown bird type");<br/>
-&nbsp;&nbsp;<b><a href="CppThrow.htm">throw</a></b> UnknownBirdTypeException();<br/>
+&nbsp;&nbsp;<b><a href="CppThrow.htm">throw</a></b> UnknownBirdType<a href="CppException.htm">Exception</a>();<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <br/>
@@ -1800,7 +1800,7 @@ Couple::~Couple()<br/>
 <a href="CppInclude.htm">#include</a> "UnitBird.h"<br/>
 <a href="CppInclude.htm">#include</a> "UnitCouple.h"<br/>
 <a href="CppInclude.htm">#include</a> "UnitDeadPool.h"<br/>
-<a href="CppInclude.htm">#include</a> "UnitExceptions.h"<br/>
+<a href="CppInclude.htm">#include</a> "Unit<a href="CppException.htm">Exception</a>s.h"<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <b><a href="CppVoid.htm">void</a></b> CouplePool::addCouple(<br/>
 &nbsp;&nbsp;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;BirdBase&gt;&amp; female,<br/>
@@ -1841,7 +1841,7 @@ Couple::~Couple()<br/>
 &nbsp;&nbsp;<b><a href="CppCatch.htm">catch</a></b>(...)<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">Assert</a>(mCouples.size()<a href="CppOperatorEqual.htm">==</a>0);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThrow.htm">throw</a></b> NoCouplesException();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThrow.htm">throw</a></b> NoCouples<a href="CppException.htm">Exception</a>();<br/>
 &nbsp;&nbsp;}<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
@@ -3003,34 +3003,34 @@ EnumSimulationType EnumSimulationType<a href="CppConvert.htm">Convert</a>er::toE
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">//</a> From http://www.richelbilderbeek.nl<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppIfndef.htm">#ifndef</a> UnitExceptionsH<br/>
-<a href="CppDefine.htm">#define</a> UnitExceptionsH<br/>
+<a href="CppIfndef.htm">#ifndef</a> Unit<a href="CppException.htm">Exception</a>sH<br/>
+<a href="CppDefine.htm">#define</a> Unit<a href="CppException.htm">Exception</a>sH<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppExceptionH.htm">exception</a>&gt;<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppClass.htm">class</a></b> NoFemaleException : <b><a href="CppPublic.htm">public</a></b> <a href="CppException.htm">std::exception</a><br/>
+<b><a href="CppClass.htm">class</a></b> NoFemale<a href="CppException.htm">Exception</a> : <b><a href="CppPublic.htm">public</a></b> <a href="CppStdException.htm">std::exception</a><br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppPublic.htm">public</a></b>:<br/>
-&nbsp;&nbsp;NoFemaleException() {} <a href="CppComment.htm">//</a>: mWhat("There was no female left") {}<br/>
+&nbsp;&nbsp;NoFemale<a href="CppException.htm">Exception</a>() {} <a href="CppComment.htm">//</a>: mWhat("There was no female left") {}<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> mWhat;<br/>
 };<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppClass.htm">class</a></b> NoMaleException : <b><a href="CppPublic.htm">public</a></b> <a href="CppException.htm">std::exception</a><br/>
+<b><a href="CppClass.htm">class</a></b> NoMale<a href="CppException.htm">Exception</a> : <b><a href="CppPublic.htm">public</a></b> <a href="CppStdException.htm">std::exception</a><br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppPublic.htm">public</a></b>:<br/>
-&nbsp;&nbsp;NoMaleException() {} <a href="CppComment.htm">//</a>: mWhat("There was no male left") {}<br/>
+&nbsp;&nbsp;NoMale<a href="CppException.htm">Exception</a>() {} <a href="CppComment.htm">//</a>: mWhat("There was no male left") {}<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> mWhat;<br/>
 };<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppClass.htm">class</a></b> NoCouplesException : <b><a href="CppPublic.htm">public</a></b> <a href="CppException.htm">std::exception</a><br/>
+<b><a href="CppClass.htm">class</a></b> NoCouples<a href="CppException.htm">Exception</a> : <b><a href="CppPublic.htm">public</a></b> <a href="CppStdException.htm">std::exception</a><br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppPublic.htm">public</a></b>: NoCouplesException() {}<br/>
+&nbsp;&nbsp;<b><a href="CppPublic.htm">public</a></b>: NoCouples<a href="CppException.htm">Exception</a>() {}<br/>
 };<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppClass.htm">class</a></b> UnknownBirdTypeException : <b><a href="CppPublic.htm">public</a></b> <a href="CppException.htm">std::exception</a><br/>
+<b><a href="CppClass.htm">class</a></b> UnknownBirdType<a href="CppException.htm">Exception</a> : <b><a href="CppPublic.htm">public</a></b> <a href="CppStdException.htm">std::exception</a><br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppPublic.htm">public</a></b>:<br/>
-&nbsp;&nbsp;UnknownBirdTypeException() {} <a href="CppComment.htm">//</a>: mWhat("Unknown bird type") {}<br/>
+&nbsp;&nbsp;UnknownBirdType<a href="CppException.htm">Exception</a>() {} <a href="CppComment.htm">//</a>: mWhat("Unknown bird type") {}<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> mWhat;<br/>
 };<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
@@ -3069,7 +3069,7 @@ EnumSimulationType EnumSimulationType<a href="CppConvert.htm">Convert</a>er::toE
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppPragma.htm">#pragma</a> hdrstop<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> "UnitExceptions.h"<br/>
+<a href="CppInclude.htm">#include</a> "Unit<a href="CppException.htm">Exception</a>s.h"<br/>
 <br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <br/>
@@ -3193,7 +3193,7 @@ EnumSimulationType EnumSimulationType<a href="CppConvert.htm">Convert</a>er::toE
 <a href="CppInclude.htm">#include</a> "UnitCouplePool.h"<br/>
 <a href="CppInclude.htm">#include</a> "UnitDeadPool.h"<br/>
 <a href="CppInclude.htm">#include</a> "UnitMatingSystem.h"<br/>
-<a href="CppInclude.htm">#include</a> "UnitExceptions.h"<br/>
+<a href="CppInclude.htm">#include</a> "Unit<a href="CppException.htm">Exception</a>s.h"<br/>
 <a href="CppInclude.htm">#include</a> "UnitRandom.h"<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppAssert.htm">Assert</a>.h"<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
@@ -3233,7 +3233,7 @@ FemaleChoiceWinnerFight2males::FemaleChoiceWinnerFight2males(<b><a href="CppCons
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>All males die in solitude<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;singleMalePool-&gt;<b><a href="CppDo.htm">do</a></b>Empty(deadPool);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThrow.htm">throw</a></b> NoFemaleException();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThrow.htm">throw</a></b> NoFemale<a href="CppException.htm">Exception</a>();<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppReturn.htm">return</a></b>;<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;BirdBase&gt; female <a href="CppOperatorAssign.htm">=</a> singleFemalePool-&gt;getFemale();<br/>
@@ -3242,7 +3242,7 @@ FemaleChoiceWinnerFight2males::FemaleChoiceWinnerFight2males(<b><a href="CppCons
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Single female dies in solitude<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;singleFemalePool-&gt;<b><a href="CppDo.htm">do</a></b>Empty(deadPool);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">Assert</a>(singleFemalePool-&gt;isEmpty()<a href="CppOperatorEqual.htm">==</a><b><a href="CppTrue.htm">true</a></b>);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThrow.htm">throw</a></b> NoMaleException();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThrow.htm">throw</a></b> NoMale<a href="CppException.htm">Exception</a>();<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppReturn.htm">return</a></b>;<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;BirdBase&gt; male1 <a href="CppOperatorAssign.htm">=</a> singleMalePool-&gt;getMale();<br/>
@@ -3258,7 +3258,7 @@ FemaleChoiceWinnerFight2males::FemaleChoiceWinnerFight2males(<b><a href="CppCons
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">Assert</a>(male1.get()<a href="CppOperatorEqual.htm">==</a>0);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">Assert</a>(singleFemalePool-&gt;isEmpty()<a href="CppOperatorEqual.htm">==</a><b><a href="CppTrue.htm">true</a></b>);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">Assert</a>(singleMalePool-&gt;isEmpty()<a href="CppOperatorEqual.htm">==</a><b><a href="CppTrue.htm">true</a></b>);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThrow.htm">throw</a></b> NoMaleException();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThrow.htm">throw</a></b> NoMale<a href="CppException.htm">Exception</a>();<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppReturn.htm">return</a></b>;<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;BirdBase&gt; male2 <a href="CppOperatorAssign.htm">=</a> singleMalePool-&gt;getMale();<br/>
@@ -4640,7 +4640,7 @@ __fastcall TFormTest::TFormTest(T<a href="CppComponent.htm">Component</a>* Owner
 <a href="CppInclude.htm">#include</a> "UnitSimulation<a href="CppFunction.htm">Function</a>s.h"<br/>
 <a href="CppInclude.htm">#include</a> "UnitResults.h"<br/>
 <a href="CppInclude.htm">#include</a> "UnitBirdWatcher.h"<br/>
-<a href="CppInclude.htm">#include</a> "UnitExceptions.h"<br/>
+<a href="CppInclude.htm">#include</a> "Unit<a href="CppException.htm">Exception</a>s.h"<br/>
 <a href="CppInclude.htm">#include</a> "UnitFormTest.h"<br/>
 <a href="CppComment.htm">//</a>TEST<br/>
 <a href="CppComment.htm">//</a><a href="CppInclude.htm">#include</a> "UnitBird.h"<br/>
@@ -4652,7 +4652,7 @@ TFormThorVeenProject *FormThorVeenProject;<br/>
 __fastcall TFormThorVeenProject::TFormThorVeenProject(T<a href="CppComponent.htm">Component</a>* Owner)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: TForm(Owner)<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>Static initializations<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Static <a href="CppInitialize.htm">initialization</a>s<br/>
 &nbsp;&nbsp;BirdBase::InitBirdWatcher();<br/>
 &nbsp;&nbsp;BirdFactoryBase::InitBirdWatcher();<br/>
 <br/>
@@ -5913,7 +5913,7 @@ Results* Results::<a href="CppInstance.htm">instance</a>()<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppAssert.htm">assert</a>.h"<br/>
 <a href="CppInclude.htm">#include</a> "UnitSimulationParameters.h"<br/>
 <a href="CppInclude.htm">#include</a> "UnitSimulationType.h"<br/>
-<a href="CppInclude.htm">#include</a> "UnitExceptions.h"<br/>
+<a href="CppInclude.htm">#include</a> "Unit<a href="CppException.htm">Exception</a>s.h"<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppInclude.htm">#include</a> "UnitSimulation.h"<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
@@ -5929,7 +5929,7 @@ Simulation::Simulation(<b><a href="CppConst.htm">const</a></b> <a href="CppBoost
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;mSimulationType-&gt;execute();<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<b><a href="CppCatch.htm">catch</a></b>(NoCouplesException&amp; e)<br/>
+&nbsp;&nbsp;<b><a href="CppCatch.htm">catch</a></b>(NoCouples<a href="CppException.htm">Exception</a>&amp; e)<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>No problem<br/>
 &nbsp;&nbsp;}<br/>
@@ -6122,7 +6122,7 @@ Simulation::Simulation(<b><a href="CppConst.htm">const</a></b> <a href="CppBoost
 &nbsp;&nbsp;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;InitialBirdNumbers&gt; mInitialBirdNumbers;<br/>
 &nbsp;&nbsp;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;BreedingParameters&gt; mBreedingParameters;<br/>
 &nbsp;&nbsp;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;DisplayOptions&gt; mDisplayOptions;<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>Methods<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppMemberFunction.htm">Member function</a>s<br/>
 &nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; getText() <b><a href="CppConst.htm">const</a></b>;<br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> saveToFile(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; fileName) <b><a href="CppConst.htm">const</a></b>;<br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> loadFromFile(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; fileName);<br/>
@@ -6286,7 +6286,7 @@ SimulationParameters::SimulationParameters() :<br/>
 &nbsp;&nbsp;SimulationTypeBase();<br/>
 &nbsp;&nbsp;<b><a href="CppVirtual.htm">virtual</a></b> ~SimulationTypeBase() {}<br/>
 &nbsp;&nbsp;<b><a href="CppVirtual.htm">virtual</a></b> <b><a href="CppVoid.htm">void</a></b> execute() <a href="CppOperatorAssign.htm">=</a> 0;<br/>
-&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> initializePools();<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> <a href="CppInitialize.htm">initialize</a>Pools();<br/>
 <br/>
 &nbsp;&nbsp;<b><a href="CppProtected.htm">protected</a></b>:<br/>
 &nbsp;&nbsp;<a href="CppAuto_ptr.htm">std::auto_ptr</a>&lt;SingleMalePool&nbsp;&nbsp;&gt; mSingleMalePool;<br/>
@@ -6374,7 +6374,7 @@ SimulationParameters::SimulationParameters() :<br/>
 <a href="CppInclude.htm">#include</a> "UnitMigration.h"<br/>
 <a href="CppInclude.htm">#include</a> "UnitResults.h"<br/>
 <a href="CppInclude.htm">#include</a> "UnitBirdFactory.h"<br/>
-<a href="CppInclude.htm">#include</a> "UnitExceptions.h"<br/>
+<a href="CppInclude.htm">#include</a> "Unit<a href="CppException.htm">Exception</a>s.h"<br/>
 <a href="CppInclude.htm">#include</a> "UnitHelper<a href="CppFunction.htm">Function</a>s.h"<br/>
 <a href="CppInclude.htm">#include</a> "UnitWeather.h"<br/>
 <a href="CppInclude.htm">#include</a> "UnitBirdWatcher.h"<br/>
@@ -6445,7 +6445,7 @@ SimulationTypeBase::SimulationTypeBase()<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">Assert</a>(mBirdFactory-&gt;getClassName()<a href="CppOperatorEqual.htm">==</a>"BirdFactoryHawkDove");<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppVoid.htm">void</a></b> SimulationTypeBase::initializePools()<br/>
+<b><a href="CppVoid.htm">void</a></b> SimulationTypeBase::<a href="CppInitialize.htm">initialize</a>Pools()<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">Assert</a>(mSimulationParameters.get()<a href="CppOperatorNotEqual.htm">!=</a>0);<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">Assert</a>(mSimulationParameters-&gt;mInitialBirdNumbers.get()<a href="CppOperatorNotEqual.htm">!=</a>0);<br/>
@@ -6501,7 +6501,7 @@ SimulationTypeCartoonModel::SimulationTypeCartoonModel(<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Reset birdwatcher<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Must be reset BEFORE <a href="CppAny.htm">any</a> bird <a href="CppConstructor.htm">constructor</a> is called<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>i.e. before initializePools();<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>i.e. before <a href="CppInitialize.htm">initialize</a>Pools();<br/>
 &nbsp;&nbsp;BirdWatcher * birdWatcher <a href="CppOperatorAssign.htm">=</a> BirdWatcher::<a href="CppInstance.htm">instance</a>();<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">Assert</a>(birdWatcher<a href="CppOperatorNotEqual.htm">!=</a>0);<br/>
 &nbsp;&nbsp;birdWatcher-&gt;reset();<br/>
@@ -6515,8 +6515,8 @@ SimulationTypeCartoonModel::SimulationTypeCartoonModel(<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">Assert</a>(weather<a href="CppOperatorNotEqual.htm">!=</a>0);<br/>
 &nbsp;&nbsp;weather-&gt;reset();<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>Initialize the pools with birds<br/>
-&nbsp;&nbsp;initializePools();<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppInitialize.htm">Initialize</a> the pools with birds<br/>
+&nbsp;&nbsp;<a href="CppInitialize.htm">initialize</a>Pools();<br/>
 <br/>
 <br/>
 &nbsp;&nbsp;Results * results <a href="CppOperatorAssign.htm">=</a> Results::<a href="CppInstance.htm">instance</a>();<br/>
@@ -6549,12 +6549,12 @@ SimulationTypeCartoonModel::SimulationTypeCartoonModel(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mFemaleChoice-&gt;choose(mSingleFemalePool,mSingleMalePool,mCouplePool,mDeadPool);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCatch.htm">catch</a></b>(NoFemaleException&amp; e)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCatch.htm">catch</a></b>(NoFemale<a href="CppException.htm">Exception</a>&amp; e)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;noError <a href="CppOperatorAssign.htm">=</a> <b><a href="CppFalse.htm">false</a></b>;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>helper::dot("Female choice ended because no females were left");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCatch.htm">catch</a></b>(NoMaleException&amp; e)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCatch.htm">catch</a></b>(NoMale<a href="CppException.htm">Exception</a>&amp; e)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;noError <a href="CppOperatorAssign.htm">=</a> <b><a href="CppFalse.htm">false</a></b>;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>helper::dot("Female choice ended because no males were left");<br/>

@@ -43,7 +43,6 @@ correct or not.</p>
   <li><a href="ToolSimMysteryMachineArchitecture_1_0.dia">View the architecture of 'SimMysteryMachine' (version 1.0)(dia)</a></li>
   <li><img src="PicWindows.png" alt="Windows"/><img src="PicDesktop.png" alt="Desktop"/> <a href="ToolSimMysteryMachineDesktopExeWindows_1_0.zip">Download the Windows executable of 'SimMysteryMachine' (version 1.0)(zip)</a></li>
   <li><img src="PicLubuntu.png" alt="Lubuntu"/><img src="PicDesktop.png" alt="Desktop"/><img src="PicWeb.png" alt="Web"/> <a href="ToolSimMysteryMachineSource_1_2.zip">Download the 'SimMysteryMachine' source code (version 1.2)(zip)</a></li>
-  <li><img src="PicLubuntu.png" alt="Lubuntu"/><img src="PicDesktop.png" alt="Desktop"/><img src="PicWeb.png" alt="Web"/> <a href="ToolSimMysteryMachineSource_1_1.htm">View the Qt Creator source code of 'SimMysteryMachine' as a web page (version 1.1)(htm)</a></li>
 </ul>
 <p>&nbsp;</p>
 <p>The <a href="CppWindows.htm">Windows</a> executable of version 1.0 is created following 
@@ -59,7 +58,6 @@ correct or not.</p>
   <li><img src="PicDesktop.png" alt="Desktop"/> <a href="ToolSimMysteryMachine_1_1_desktop.png">View a screenshot of 'SimMysteryMachine' (version 1.1)(png)</a></li>
   <li><img src="PicUbuntu.png" alt="Ubuntu"/><img src="PicDesktop.png" alt="Desktop"/> <a href="ToolSimMysteryMachine_1_0.png">View a screenshot of 'SimMysteryMachine' (version 1.0)(png)</a></li>
   <li><img src="PicUbuntu.png" alt="Ubuntu"/><img src="PicDesktop.png" alt="Desktop"/> <a href="ToolSimMysteryMachineSource_1_0.zip">Download the 'SimMysteryMachine' source code (version 1.0)(zip)</a></li>
-  <li><img src="PicUbuntu.png" alt="Ubuntu"/><img src="PicDesktop.png" alt="Desktop"/> <a href="ToolSimMysteryMachineSource_1_0.htm">View the Qt Creator source code of 'SimMysteryMachine' as a web page (version 1.0)(htm)</a></li>
 </ul>
 <p>&nbsp;</p>
 <p>The <a href="CppWindows.htm">Windows</a> executable of version 1.0 is created following 
@@ -339,21 +337,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="ToolSimMysteryMachine.htm">ToolSimMysteryMachine</a>.htm<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppIfdef.htm">#ifdef</a> _WIN32<br/>
-<a href="CppComment.htm">//</a>See http://www.richelbilderbeek.nl/Cpp<a href="CppCompile.htm">Compile</a>ErrorUnableToFindNumericLiteralOperatorOperatorQ.htm<br/>
-<a href="CppPreIf.htm">#if</a> !(__GNUC__ <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 4 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> __GNUC_MINOR__ <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 8)<br/>
-<a href="CppComment.htm">//</a>See http://www.richelbilderbeek.nl/Cpp<a href="CppCompile.htm">Compile</a>ErrorSwprintfHasNotBeenDeclared.htm<br/>
-<a href="CppUndef.htm">#undef</a> __STRICT_ANSI__<br/>
-<a href="CppEndif.htm">#endif</a><br/>
-<a href="CppEndif.htm">#endif</a><br/>
-<br/>
-<a href="CppInclude.htm">#include</a> &lt;qglobal.h&gt;<br/>
-<a href="CppPreIf.htm">#if</a> (QT_VERSION <a href="CppOperatorGreaterEqual.htm">&gt;=</a> QT_VERSION_CHECK(5,0,0))<br/>
-&nbsp;&nbsp;<a href="CppInclude.htm">#include</a> &lt;<a href="CppQApplication.htm">QApplication</a>&gt;<br/>
-<a href="CppPreElse.htm">#else</a><br/>
-&nbsp;&nbsp;<a href="CppInclude.htm">#include</a> &lt;<a href="CppQApplication.htm">QApplication</a>&gt;<br/>
-<a href="CppEndif.htm">#endif</a><br/>
-<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppQApplication.htm">QApplication</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> "qt<a href="ToolSimMysteryMachine.htm">simmysterymachine</a>menudialog.h"<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppTrace.htm">trace</a>.h"<br/>
 <br/>
@@ -361,7 +345,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppQApplication.htm">QApplication</a> a(<a href="CppArgc.htm">argc</a>, <a href="CppArgc.htm">argv</a>);<br/>
 &nbsp;&nbsp;START_<a href="CppTRACE.htm">TRACE</a>();<br/>
-&nbsp;&nbsp;<a href="CppQt.htm">Qt</a>Sim<a href="CppMysteryMachine.htm">MysteryMachine</a>MenuDialog w;<br/>
+&nbsp;&nbsp;<a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a>Sim<a href="CppMysteryMachine.htm">MysteryMachine</a>MenuDialog w;<br/>
 &nbsp;&nbsp;w.show();<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> a.exec();<br/>
 }<br/>
@@ -405,6 +389,8 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a>Sim<a href="CppMysteryMachine.htm">MysteryMachine</a>InstructionsDialog;<br/>
 }<br/>
 <br/>
+<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a> {<br/>
+<br/>
 <b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a>Sim<a href="CppMysteryMachine.htm">MysteryMachine</a>InstructionsDialog : <b><a href="CppPublic.htm">public</a></b> <a href="CppQDialog.htm">QDialog</a><br/>
 {<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQ_OBJECT.htm">Q_OBJECT</a><br/>
@@ -416,6 +402,8 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <b><a href="CppPrivate.htm">private</a></b>:<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a>Sim<a href="CppMysteryMachine.htm">MysteryMachine</a>InstructionsDialog *ui;<br/>
 };<br/>
+<br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a><br/>
 <br/>
 <a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> QTSIMMYSTERYMACHINEINSTRUCTIONSDIALOG_H<br/>
 </code></td></tr></table>
@@ -449,19 +437,19 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="ToolSimMysteryMachine.htm">ToolSimMysteryMachine</a>.htm<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">//</a><a href="CppInclude.htm">#include</a> own <a href="CppHeaderFile.htm">header file</a> as first substantive line of code, from:<br/>
-<a href="CppComment.htm">//</a> * John Lakos. Large-Scale <a href="Cpp.htm">C++</a> Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110<br/>
+<br/>
+<br/>
 <a href="CppInclude.htm">#include</a> "qt<a href="ToolSimMysteryMachine.htm">simmysterymachine</a>instructionsdialog.h"<br/>
 <a href="CppInclude.htm">#include</a> "ui_qt<a href="ToolSimMysteryMachine.htm">simmysterymachine</a>instructionsdialog.h"<br/>
 <br/>
-<a href="CppQt.htm">Qt</a>Sim<a href="CppMysteryMachine.htm">MysteryMachine</a>InstructionsDialog::<a href="CppQt.htm">Qt</a>Sim<a href="CppMysteryMachine.htm">MysteryMachine</a>InstructionsDialog(<a href="CppQWidget.htm">QWidget</a> *parent) :<br/>
+<a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a>Sim<a href="CppMysteryMachine.htm">MysteryMachine</a>InstructionsDialog::<a href="CppQt.htm">Qt</a>Sim<a href="CppMysteryMachine.htm">MysteryMachine</a>InstructionsDialog(<a href="CppQWidget.htm">QWidget</a> *parent) :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQDialog.htm">QDialog</a>(parent),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;ui(<b><a href="CppNew.htm">new</a></b> <a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a>Sim<a href="CppMysteryMachine.htm">MysteryMachine</a>InstructionsDialog)<br/>
 {<br/>
 &nbsp;&nbsp;ui-&gt;setupUi(<b><a href="CppThis.htm">this</a></b>);<br/>
 }<br/>
 <br/>
-<a href="CppQt.htm">Qt</a>Sim<a href="CppMysteryMachine.htm">MysteryMachine</a>InstructionsDialog::~<a href="CppQt.htm">Qt</a>Sim<a href="CppMysteryMachine.htm">MysteryMachine</a>InstructionsDialog()<br/>
+<a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a>Sim<a href="CppMysteryMachine.htm">MysteryMachine</a>InstructionsDialog::~<a href="CppQt.htm">Qt</a>Sim<a href="CppMysteryMachine.htm">MysteryMachine</a>InstructionsDialog()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppDelete.htm">delete</a></b> ui;<br/>
 }<br/>
@@ -507,6 +495,8 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a>Sim<a href="CppMysteryMachine.htm">MysteryMachine</a>MainDialog;<br/>
 }<br/>
 <br/>
+<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a> {<br/>
+<br/>
 <b><a href="CppStruct.htm">struct</a></b> <a href="CppQt.htm">Qt</a><a href="CppMysteryMachineWidget.htm">MysteryMachineWidget</a>;<br/>
 <br/>
 <b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a>Sim<a href="CppMysteryMachine.htm">MysteryMachine</a>MainDialog : <b><a href="CppPublic.htm">public</a></b> <a href="CppQDialog.htm">QDialog</a><br/>
@@ -517,15 +507,14 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppExplicit.htm">explicit</a></b> <a href="CppQt.htm">Qt</a>Sim<a href="CppMysteryMachine.htm">MysteryMachine</a>MainDialog(<a href="CppQWidget.htm">QWidget</a> *parent <a href="CppOperatorAssign.htm">=</a> 0);<br/>
 &nbsp;&nbsp;~<a href="CppQt.htm">Qt</a>Sim<a href="CppMysteryMachine.htm">MysteryMachine</a>MainDialog();<br/>
 <br/>
-<b><a href="CppProtected.htm">protected</a></b>:<br/>
-&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> changeEvent(<a href="CppQEvent.htm">QEvent</a> *e);<br/>
-<br/>
 <b><a href="CppPrivate.htm">private</a></b>:<br/>
 &nbsp;&nbsp;<a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a>Sim<a href="CppMysteryMachine.htm">MysteryMachine</a>MainDialog *ui;<br/>
 &nbsp;&nbsp;<a href="CppScoped_ptr.htm">boost::scoped_ptr</a>&lt;<a href="CppQt.htm">Qt</a><a href="CppMysteryMachineWidget.htm">MysteryMachineWidget</a>&gt; m_machine;<br/>
 <br/>
 <b><a href="CppPrivate.htm">private</a></b> <b><a href="CppSlots.htm">slots</a></b>:<br/>
 };<br/>
+<br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a><br/>
 <br/>
 <a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> QTMYSTERYMACHINEDIALOG_H<br/>
 </code></td></tr></table>
@@ -559,8 +548,8 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="ToolSimMysteryMachine.htm">ToolSimMysteryMachine</a>.htm<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">//</a><a href="CppInclude.htm">#include</a> own <a href="CppHeaderFile.htm">header file</a> as first substantive line of code, from:<br/>
-<a href="CppComment.htm">//</a> * John Lakos. Large-Scale <a href="Cpp.htm">C++</a> Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110<br/>
+<br/>
+<br/>
 <a href="CppInclude.htm">#include</a> "qt<a href="ToolSimMysteryMachine.htm">simmysterymachine</a>maindialog.h"<br/>
 <br/>
 <br/>
@@ -582,7 +571,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppToggleButtonWidget.htm">togglebuttonwidget</a>.h"<br/>
 <a href="CppInclude.htm">#include</a> "ui_qt<a href="ToolSimMysteryMachine.htm">simmysterymachine</a>maindialog.h"<br/>
 <br/>
-<a href="CppQt.htm">Qt</a>Sim<a href="CppMysteryMachine.htm">MysteryMachine</a>MainDialog::<a href="CppQt.htm">Qt</a>Sim<a href="CppMysteryMachine.htm">MysteryMachine</a>MainDialog(<a href="CppQWidget.htm">QWidget</a> *parent)<br/>
+<a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a>Sim<a href="CppMysteryMachine.htm">MysteryMachine</a>MainDialog::<a href="CppQt.htm">Qt</a>Sim<a href="CppMysteryMachine.htm">MysteryMachine</a>MainDialog(<a href="CppQWidget.htm">QWidget</a> *parent)<br/>
  : <a href="CppQDialog.htm">QDialog</a>(parent),<br/>
 &nbsp;&nbsp; ui(<b><a href="CppNew.htm">new</a></b> <a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a>Sim<a href="CppMysteryMachine.htm">MysteryMachine</a>MainDialog),<br/>
 &nbsp;&nbsp; m_machine(<b><a href="CppNew.htm">new</a></b> <a href="CppQt.htm">Qt</a><a href="CppMysteryMachineWidget.htm">MysteryMachineWidget</a>)<br/>
@@ -592,21 +581,9 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;ui-&gt;my_layout-&gt;addWidget(m_machine.get());<br/>
 }<br/>
 <br/>
-<a href="CppQt.htm">Qt</a>Sim<a href="CppMysteryMachine.htm">MysteryMachine</a>MainDialog::~<a href="CppQt.htm">Qt</a>Sim<a href="CppMysteryMachine.htm">MysteryMachine</a>MainDialog()<br/>
+<a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a>Sim<a href="CppMysteryMachine.htm">MysteryMachine</a>MainDialog::~<a href="CppQt.htm">Qt</a>Sim<a href="CppMysteryMachine.htm">MysteryMachine</a>MainDialog()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppDelete.htm">delete</a></b> ui;<br/>
-}<br/>
-<br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a>Sim<a href="CppMysteryMachine.htm">MysteryMachine</a>MainDialog::changeEvent(<a href="CppQEvent.htm">QEvent</a> *e)<br/>
-{<br/>
-&nbsp;&nbsp;<a href="CppQDialog.htm">QDialog</a>::changeEvent(e);<br/>
-&nbsp;&nbsp;<b><a href="CppSwitch.htm">switch</a></b> (e-&gt;type()) {<br/>
-&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> <a href="CppQEvent.htm">QEvent</a>::LanguageChange:<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;ui-&gt;retranslateUi(<b><a href="CppThis.htm">this</a></b>);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppBreak.htm">break</a></b>;<br/>
-&nbsp;&nbsp;<b><a href="CppDefault.htm">default</a></b>:<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppBreak.htm">break</a></b>;<br/>
-&nbsp;&nbsp;}<br/>
 }<br/>
 </code></td></tr></table>
 <!-- end of the code -->
@@ -648,6 +625,8 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a>Sim<a href="CppMysteryMachine.htm">MysteryMachine</a>MenuDialog;<br/>
 }<br/>
 <br/>
+<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a> {<br/>
+<br/>
 <b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a>Sim<a href="CppMysteryMachine.htm">MysteryMachine</a>MenuDialog : <b><a href="CppPublic.htm">public</a></b> <a href="CppQDialog.htm">QDialog</a><br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppQ_OBJECT.htm">Q_OBJECT</a><br/>
@@ -655,9 +634,6 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <b><a href="CppPublic.htm">public</a></b>:<br/>
 &nbsp;&nbsp;<b><a href="CppExplicit.htm">explicit</a></b> <a href="CppQt.htm">Qt</a>Sim<a href="CppMysteryMachine.htm">MysteryMachine</a>MenuDialog(<a href="CppQWidget.htm">QWidget</a> *parent <a href="CppOperatorAssign.htm">=</a> 0);<br/>
 &nbsp;&nbsp;~<a href="CppQt.htm">Qt</a>Sim<a href="CppMysteryMachine.htm">MysteryMachine</a>MenuDialog();<br/>
-<br/>
-<b><a href="CppProtected.htm">protected</a></b>:<br/>
-&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> changeEvent(<a href="CppQEvent.htm">QEvent</a> *e);<br/>
 <br/>
 <b><a href="CppPrivate.htm">private</a></b>:<br/>
 &nbsp;&nbsp;<a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a>Sim<a href="CppMysteryMachine.htm">MysteryMachine</a>MenuDialog *ui;<br/>
@@ -669,6 +645,8 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> on_button_instructions_clicked();<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> on_button_real_clicked();<br/>
 };<br/>
+<br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a><br/>
 <br/>
 <a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> QTSIMMYSTERYMACHINEMENUDIALOG_H<br/>
 </code></td></tr></table>
@@ -702,8 +680,8 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="ToolSimMysteryMachine.htm">ToolSimMysteryMachine</a>.htm<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">//</a><a href="CppInclude.htm">#include</a> own <a href="CppHeaderFile.htm">header file</a> as first substantive line of code, from:<br/>
-<a href="CppComment.htm">//</a> * John Lakos. Large-Scale <a href="Cpp.htm">C++</a> Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110<br/>
+<br/>
+<br/>
 <a href="CppInclude.htm">#include</a> "qt<a href="ToolSimMysteryMachine.htm">simmysterymachine</a>menudialog.h"<br/>
 <br/>
 <br/>
@@ -723,7 +701,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppInclude.htm">#include</a> "<a href="ToolSimMysteryMachine.htm">simmysterymachine</a>menudialog.h"<br/>
 <a href="CppInclude.htm">#include</a> "ui_qt<a href="ToolSimMysteryMachine.htm">simmysterymachine</a>menudialog.h"<br/>
 <br/>
-<a href="CppQt.htm">Qt</a>Sim<a href="CppMysteryMachine.htm">MysteryMachine</a>MenuDialog::<a href="CppQt.htm">Qt</a>Sim<a href="CppMysteryMachine.htm">MysteryMachine</a>MenuDialog(<a href="CppQWidget.htm">QWidget</a> *parent) :<br/>
+<a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a>Sim<a href="CppMysteryMachine.htm">MysteryMachine</a>MenuDialog::<a href="CppQt.htm">Qt</a>Sim<a href="CppMysteryMachine.htm">MysteryMachine</a>MenuDialog(<a href="CppQWidget.htm">QWidget</a> *parent) :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQDialog.htm">QDialog</a>(parent),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;ui(<b><a href="CppNew.htm">new</a></b> <a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a>Sim<a href="CppMysteryMachine.htm">MysteryMachine</a>MenuDialog)<br/>
 {<br/>
@@ -744,24 +722,12 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">*/</a><br/>
 }<br/>
 <br/>
-<a href="CppQt.htm">Qt</a>Sim<a href="CppMysteryMachine.htm">MysteryMachine</a>MenuDialog::~<a href="CppQt.htm">Qt</a>Sim<a href="CppMysteryMachine.htm">MysteryMachine</a>MenuDialog()<br/>
+<a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a>Sim<a href="CppMysteryMachine.htm">MysteryMachine</a>MenuDialog::~<a href="CppQt.htm">Qt</a>Sim<a href="CppMysteryMachine.htm">MysteryMachine</a>MenuDialog()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppDelete.htm">delete</a></b> ui;<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a>Sim<a href="CppMysteryMachine.htm">MysteryMachine</a>MenuDialog::changeEvent(<a href="CppQEvent.htm">QEvent</a> *e)<br/>
-{<br/>
-&nbsp;&nbsp;<a href="CppQDialog.htm">QDialog</a>::changeEvent(e);<br/>
-&nbsp;&nbsp;<b><a href="CppSwitch.htm">switch</a></b> (e-&gt;type()) {<br/>
-&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> <a href="CppQEvent.htm">QEvent</a>::LanguageChange:<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;ui-&gt;retranslateUi(<b><a href="CppThis.htm">this</a></b>);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppBreak.htm">break</a></b>;<br/>
-&nbsp;&nbsp;<b><a href="CppDefault.htm">default</a></b>:<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppBreak.htm">break</a></b>;<br/>
-&nbsp;&nbsp;}<br/>
-}<br/>
-<br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a>Sim<a href="CppMysteryMachine.htm">MysteryMachine</a>MenuDialog::on_button_start_clicked()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a>Sim<a href="CppMysteryMachine.htm">MysteryMachine</a>MenuDialog::on_button_start_clicked()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;hide();<br/>
 &nbsp;&nbsp;<a href="CppQt.htm">Qt</a>Sim<a href="CppMysteryMachine.htm">MysteryMachine</a>MainDialog d;<br/>
@@ -769,7 +735,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;show();<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a>Sim<a href="CppMysteryMachine.htm">MysteryMachine</a>MenuDialog::on_button_about_clicked()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a>Sim<a href="CppMysteryMachine.htm">MysteryMachine</a>MenuDialog::on_button_about_clicked()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;hide();<br/>
 &nbsp;&nbsp;<a href="CppAbout.htm">About</a> a <a href="CppOperatorAssign.htm">=</a> Sim<a href="CppMysteryMachine.htm">MysteryMachine</a>MenuDialog::GetAbout();<br/>
@@ -784,12 +750,12 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;show();<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a>Sim<a href="CppMysteryMachine.htm">MysteryMachine</a>MenuDialog::on_button_quit_clicked()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a>Sim<a href="CppMysteryMachine.htm">MysteryMachine</a>MenuDialog::on_button_quit_clicked()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;close();<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a>Sim<a href="CppMysteryMachine.htm">MysteryMachine</a>MenuDialog::on_button_instructions_clicked()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a>Sim<a href="CppMysteryMachine.htm">MysteryMachine</a>MenuDialog::on_button_instructions_clicked()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;hide();<br/>
 &nbsp;&nbsp;<a href="CppQt.htm">Qt</a>Sim<a href="CppMysteryMachine.htm">MysteryMachine</a>InstructionsDialog d;<br/>
@@ -797,7 +763,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;show();<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a>Sim<a href="CppMysteryMachine.htm">MysteryMachine</a>MenuDialog::on_button_real_clicked()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a>Sim<a href="CppMysteryMachine.htm">MysteryMachine</a>MenuDialog::on_button_real_clicked()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;hide();<br/>
 &nbsp;&nbsp;<a href="CppQt.htm">Qt</a>Sim<a href="CppMysteryMachine.htm">MysteryMachine</a>RealMachineDialog d;<br/>
@@ -844,6 +810,8 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a>Sim<a href="CppMysteryMachine.htm">MysteryMachine</a>RealMachineDialog;<br/>
 }<br/>
 <br/>
+<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a> {<br/>
+<br/>
 <b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a>Sim<a href="CppMysteryMachine.htm">MysteryMachine</a>RealMachineDialog : <b><a href="CppPublic.htm">public</a></b> <a href="CppQDialog.htm">QDialog</a><br/>
 {<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQ_OBJECT.htm">Q_OBJECT</a><br/>
@@ -855,6 +823,8 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <b><a href="CppPrivate.htm">private</a></b>:<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a>Sim<a href="CppMysteryMachine.htm">MysteryMachine</a>RealMachineDialog *ui;<br/>
 };<br/>
+<br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a><br/>
 <br/>
 <a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> QTSIMMYSTERYMACHINEREALMACHINEDIALOG_H<br/>
 </code></td></tr></table>
@@ -888,19 +858,19 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="ToolSimMysteryMachine.htm">ToolSimMysteryMachine</a>.htm<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">//</a><a href="CppInclude.htm">#include</a> own <a href="CppHeaderFile.htm">header file</a> as first substantive line of code, from:<br/>
-<a href="CppComment.htm">//</a> * John Lakos. Large-Scale <a href="Cpp.htm">C++</a> Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110<br/>
+<br/>
+<br/>
 <a href="CppInclude.htm">#include</a> "qt<a href="ToolSimMysteryMachine.htm">simmysterymachine</a>realmachinedialog.h"<br/>
 <a href="CppInclude.htm">#include</a> "ui_qt<a href="ToolSimMysteryMachine.htm">simmysterymachine</a>realmachinedialog.h"<br/>
 <br/>
-<a href="CppQt.htm">Qt</a>Sim<a href="CppMysteryMachine.htm">MysteryMachine</a>RealMachineDialog::<a href="CppQt.htm">Qt</a>Sim<a href="CppMysteryMachine.htm">MysteryMachine</a>RealMachineDialog(<a href="CppQWidget.htm">QWidget</a> *parent) :<br/>
+<a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a>Sim<a href="CppMysteryMachine.htm">MysteryMachine</a>RealMachineDialog::<a href="CppQt.htm">Qt</a>Sim<a href="CppMysteryMachine.htm">MysteryMachine</a>RealMachineDialog(<a href="CppQWidget.htm">QWidget</a> *parent) :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQDialog.htm">QDialog</a>(parent),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;ui(<b><a href="CppNew.htm">new</a></b> <a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a>Sim<a href="CppMysteryMachine.htm">MysteryMachine</a>RealMachineDialog)<br/>
 {<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;ui-&gt;setupUi(<b><a href="CppThis.htm">this</a></b>);<br/>
 }<br/>
 <br/>
-<a href="CppQt.htm">Qt</a>Sim<a href="CppMysteryMachine.htm">MysteryMachine</a>RealMachineDialog::~<a href="CppQt.htm">Qt</a>Sim<a href="CppMysteryMachine.htm">MysteryMachine</a>RealMachineDialog()<br/>
+<a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a>Sim<a href="CppMysteryMachine.htm">MysteryMachine</a>RealMachineDialog::~<a href="CppQt.htm">Qt</a>Sim<a href="CppMysteryMachine.htm">MysteryMachine</a>RealMachineDialog()<br/>
 {<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppDelete.htm">delete</a></b> ui;<br/>
 }<br/>
@@ -940,6 +910,8 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppAbout.htm">about</a>.h"<br/>
 <br/>
+<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a> {<br/>
+<br/>
 <b><a href="CppStruct.htm">struct</a></b> Sim<a href="CppMysteryMachine.htm">MysteryMachine</a>MenuDialog<br/>
 {<br/>
 &nbsp;&nbsp;Sim<a href="CppMysteryMachine.htm">MysteryMachine</a>MenuDialog();<br/>
@@ -947,6 +919,8 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> Get<a href="CppVersion.htm">Version</a>();<br/>
 &nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; Get<a href="CppVersion.htm">Version</a>History();<br/>
 };<br/>
+<br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a><br/>
 <br/>
 <a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> SIMMYSTERYMACHINEMENUDIALOG_H<br/>
 </code></td></tr></table>
@@ -980,8 +954,8 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="ToolSimMysteryMachine.htm">ToolSimMysteryMachine</a>.htm<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">//</a><a href="CppInclude.htm">#include</a> own <a href="CppHeaderFile.htm">header file</a> as first substantive line of code, from:<br/>
-<a href="CppComment.htm">//</a> * John Lakos. Large-Scale <a href="Cpp.htm">C++</a> Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110<br/>
+<br/>
+<br/>
 <a href="CppInclude.htm">#include</a> "<a href="ToolSimMysteryMachine.htm">simmysterymachine</a>menudialog.h"<br/>
 <br/>
 <br/>
@@ -995,7 +969,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppToggleButtonWidget.htm">togglebuttonwidget</a>.h"<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppWidget.htm">widget</a>.h"<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppAbout.htm">About</a> Sim<a href="CppMysteryMachine.htm">MysteryMachine</a>MenuDialog::GetAbout()<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppAbout.htm">About</a> <a href="CppRibi.htm\">ribi</a>::Sim<a href="CppMysteryMachine.htm">MysteryMachine</a>MenuDialog::GetAbout()<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppAbout.htm">About</a> a(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;"Richel Bilderbeek",<br/>
@@ -1019,18 +993,18 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> a;<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> Sim<a href="CppMysteryMachine.htm">MysteryMachine</a>MenuDialog::Get<a href="CppVersion.htm">Version</a>()<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppRibi.htm\">ribi</a>::Sim<a href="CppMysteryMachine.htm">MysteryMachine</a>MenuDialog::Get<a href="CppVersion.htm">Version</a>()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> "1.2";<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; Sim<a href="CppMysteryMachine.htm">MysteryMachine</a>MenuDialog::Get<a href="CppVersion.htm">Version</a>History()<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm\">ribi</a>::Sim<a href="CppMysteryMachine.htm">MysteryMachine</a>MenuDialog::Get<a href="CppVersion.htm">Version</a>History()<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v;<br/>
-&nbsp;&nbsp;v.push_back("2011-04-10: <a href="CppVersion.htm">Version</a> 1.0: initial <a href="CppVersion.htm">version</a> (<a href="CppWebApplication.htm">web application</a> <a href="CppVersion.htm">version</a> not working yet)");<br/>
-&nbsp;&nbsp;v.push_back("2011-09-15: <a href="CppVersion.htm">Version</a> 1.1: working <a href="CppWebApplication.htm">web application</a>, added picture of a physical prototype of a <a href="CppMysteryMachine.htm">MysteryMachine</a>");<br/>
-&nbsp;&nbsp;v.push_back("2012-08-26: <a href="CppVersion.htm">Version</a> 1.2: added picture of a physical <a href="CppMysteryMachine.htm">MysteryMachine</a>, improved aesthetics");<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"2011-04-10: <a href="CppVersion.htm">Version</a> 1.0: initial <a href="CppVersion.htm">version</a> (<a href="CppWebApplication.htm">web application</a> <a href="CppVersion.htm">version</a> not working yet)",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"2011-09-15: <a href="CppVersion.htm">Version</a> 1.1: working <a href="CppWebApplication.htm">web application</a>, added picture of a physical prototype of a <a href="CppMysteryMachine.htm">MysteryMachine</a>",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"2012-08-26: <a href="CppVersion.htm">Version</a> 1.2: added picture of a physical <a href="CppMysteryMachine.htm">MysteryMachine</a>, improved aesthetics"<br/>
+&nbsp;&nbsp;};<br/>
 }<br/>
 </code></td></tr></table>
 <!-- end of the code -->
@@ -1116,6 +1090,9 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWContainerWidget.htm">WContainerWidget</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWLineEdit.htm">WLineEdit</a>&gt;<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<br/>
+<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a> {<br/>
+<br/>
 <b><a href="CppStruct.htm">struct</a></b> <a href="CppWtMysteryMachineWidget.htm">WtMysteryMachineWidget</a>;<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">///</a>WtSim<a href="CppMysteryMachine.htm">MysteryMachine</a>MainDialog displays a<br/>
@@ -1133,7 +1110,9 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppWtMysteryMachineWidget.htm">WtMysteryMachineWidget</a> * <b><a href="CppConst.htm">const</a></b> m_machine;<br/>
 &nbsp;&nbsp;} ui;<br/>
 };<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a><br/>
+<br/>
 <a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> WTMYSTERYMACHINEDIALOG_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
@@ -1197,13 +1176,13 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppInclude.htm">#include</a> "wt<a href="ToolSimMysteryMachine.htm">simmysterymachine</a>maindialog.h"<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppWtMysteryMachineWidget.htm">wtmysterymachinewidget</a>.h"<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-WtSim<a href="CppMysteryMachine.htm">MysteryMachine</a>MainDialog::<a href="CppUi.htm">Ui</a>::Ui()<br/>
+<a href="CppRibi.htm\">ribi</a>::WtSim<a href="CppMysteryMachine.htm">MysteryMachine</a>MainDialog::<a href="CppUi.htm">Ui</a>::Ui()<br/>
  : m_machine(<b><a href="CppNew.htm">new</a></b> <a href="CppWtMysteryMachineWidget.htm">WtMysteryMachineWidget</a>(300,600))<br/>
 {<br/>
 <br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-WtSim<a href="CppMysteryMachine.htm">MysteryMachine</a>MainDialog::WtSim<a href="CppMysteryMachine.htm">MysteryMachine</a>MainDialog()<br/>
+<a href="CppRibi.htm\">ribi</a>::WtSim<a href="CppMysteryMachine.htm">MysteryMachine</a>MainDialog::WtSim<a href="CppMysteryMachine.htm">MysteryMachine</a>MainDialog()<br/>
 {<br/>
 &nbsp;&nbsp;setContentAlignment(<a href="CppWt.htm">Wt</a>::AlignCenter);<br/>
 &nbsp;&nbsp;addWidget(ui.m_machine);<br/>
@@ -1227,6 +1206,8 @@ WtSim<a href="CppMysteryMachine.htm">MysteryMachine</a>MainDialog::WtSim<a href=
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWContainerWidget.htm">WContainerWidget</a>&gt;<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a> {<br/>
+<br/>
 <b><a href="CppStruct.htm">struct</a></b> WtSim<a href="CppMysteryMachine.htm">MysteryMachine</a>MenuDialog : <b><a href="CppPublic.htm">public</a></b> <a href="CppWContainerWidget.htm">Wt::WContainerWidget</a><br/>
 {<br/>
 &nbsp;&nbsp;WtSim<a href="CppMysteryMachine.htm">MysteryMachine</a>MenuDialog();<br/>
@@ -1237,6 +1218,9 @@ WtSim<a href="CppMysteryMachine.htm">MysteryMachine</a>MainDialog::WtSim<a href=
 &nbsp;&nbsp;<a href="CppWWidget.htm">Wt::WWidget</a> * CreateNewWelcomeDialog() <b><a href="CppConst.htm">const</a></b>;<br/>
 };<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a><br/>
+<br/>
 <a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> WTSIMMYSTERYMACHINEMENUDIALOG_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
@@ -1296,7 +1280,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppQFile.htm">QFile</a>&gt;<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-WtSim<a href="CppMysteryMachine.htm">MysteryMachine</a>MenuDialog::WtSim<a href="CppMysteryMachine.htm">MysteryMachine</a>MenuDialog()<br/>
+<a href="CppRibi.htm\">ribi</a>::WtSim<a href="CppMysteryMachine.htm">MysteryMachine</a>MenuDialog::WtSim<a href="CppMysteryMachine.htm">MysteryMachine</a>MenuDialog()<br/>
 {<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; image_names;<br/>
@@ -1355,7 +1339,7 @@ WtSim<a href="CppMysteryMachine.htm">MysteryMachine</a>MenuDialog::WtSim<a href=
 &nbsp;&nbsp;}<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppWWidget.htm">Wt::WWidget</a> * WtSim<a href="CppMysteryMachine.htm">MysteryMachine</a>MenuDialog::CreateNew<a href="CppAbout.htm">About</a>Dialog() <b><a href="CppConst.htm">const</a></b><br/>
+<a href="CppWWidget.htm">Wt::WWidget</a> * <a href="CppRibi.htm\">ribi</a>::WtSim<a href="CppMysteryMachine.htm">MysteryMachine</a>MenuDialog::CreateNew<a href="CppAbout.htm">About</a>Dialog() <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppAbout.htm">About</a> a <a href="CppOperatorAssign.htm">=</a> Sim<a href="CppMysteryMachine.htm">MysteryMachine</a>MenuDialog::GetAbout();<br/>
 &nbsp;&nbsp;a.<a href="CppAdd.htm">Add</a><a href="CppLibrary.htm">Library</a>("<a href="CppWtAutoConfig.htm">WtAutoConfig</a> <a href="CppVersion.htm">version</a>: " <a href="CppOperatorPlus.htm">+</a> <a href="CppWtAutoConfig.htm">WtAutoConfig</a>::Get<a href="CppVersion.htm">Version</a>());<br/>
@@ -1368,14 +1352,14 @@ WtSim<a href="CppMysteryMachine.htm">MysteryMachine</a>MenuDialog::WtSim<a href=
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> d;<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppWWidget.htm">Wt::WWidget</a> * WtSim<a href="CppMysteryMachine.htm">MysteryMachine</a>MenuDialog::CreateNewMainDialog() <b><a href="CppConst.htm">const</a></b><br/>
+<a href="CppWWidget.htm">Wt::WWidget</a> * <a href="CppRibi.htm\">ribi</a>::WtSim<a href="CppMysteryMachine.htm">MysteryMachine</a>MenuDialog::CreateNewMainDialog() <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;WtSim<a href="CppMysteryMachine.htm">MysteryMachine</a>MainDialog * <b><a href="CppConst.htm">const</a></b> d <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> WtSim<a href="CppMysteryMachine.htm">MysteryMachine</a>MainDialog;<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(d);<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> d;<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppWWidget.htm">Wt::WWidget</a> * WtSim<a href="CppMysteryMachine.htm">MysteryMachine</a>MenuDialog::CreateNewWelcomeDialog() <b><a href="CppConst.htm">const</a></b><br/>
+<a href="CppWWidget.htm">Wt::WWidget</a> * <a href="CppRibi.htm\">ribi</a>::WtSim<a href="CppMysteryMachine.htm">MysteryMachine</a>MenuDialog::CreateNewWelcomeDialog() <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppWContainerWidget.htm">Wt::WContainerWidget</a> * dialog <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppWContainerWidget.htm">Wt::WContainerWidget</a>;<br/>
 &nbsp;&nbsp;dialog-&gt;setContentAlignment(<a href="CppWt.htm">Wt</a>::AlignCenter);<br/>

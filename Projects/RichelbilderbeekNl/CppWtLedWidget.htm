@@ -75,6 +75,9 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWPaintDevice.htm">WPaintDevice</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWPaintedWidget.htm">WPaintedWidget</a>&gt;<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<br/>
+<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a> {<br/>
+<br/>
 <b><a href="CppStruct.htm">struct</a></b> <a href="CppLed.htm">Led</a>;<br/>
 <b><a href="CppStruct.htm">struct</a></b> <a href="CppLedWidget.htm">LedWidget</a>;<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
@@ -121,7 +124,9 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/<a href="CppWt.htm">Wt</a> resize: hide it from sight<br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> resize(<b><a href="CppConst.htm">const</a></b> <a href="CppWLength.htm">Wt::WLength</a>&amp; width, <b><a href="CppConst.htm">const</a></b> <a href="CppWLength.htm">Wt::WLength</a>&amp; height);<br/>
 };<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a><br/>
+<br/>
 <a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> WT<a href="CppLed.htm">LED</a>WIDGET_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
@@ -166,7 +171,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppLedWidget.htm">ledwidget</a>.h"<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppWtLedWidget.htm">wtledwidget</a>.h"<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppWtLedWidget.htm">WtLedWidget</a>::<a href="CppWtLedWidget.htm">WtLedWidget</a>(<br/>
+<a href="CppRibi.htm\">ribi</a>::<a href="CppWtLedWidget.htm">WtLedWidget</a>::<a href="CppWtLedWidget.htm">WtLedWidget</a>(<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> intensity,<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> red,<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> green,<br/>
@@ -176,17 +181,17 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(m_<a href="CppWidget.htm">widget</a>);<br/>
 &nbsp;&nbsp;m_<a href="CppWidget.htm">widget</a>-&gt;Get<a href="CppLed.htm">Led</a>()-&gt;m_signal_color_changed.connect(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBind.htm">boost::bind</a>(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;<a href="CppWtLedWidget.htm">WtLedWidget</a>::DoRepaint,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;<a href="CppRibi.htm\">ribi</a>::<a href="CppWtLedWidget.htm">WtLedWidget</a>::DoRepaint,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>));<br/>
 <br/>
 &nbsp;&nbsp;m_<a href="CppWidget.htm">widget</a>-&gt;Get<a href="CppLed.htm">Led</a>()-&gt;m_signal_intensity_changed.connect(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBind.htm">boost::bind</a>(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;<a href="CppWtLedWidget.htm">WtLedWidget</a>::DoRepaint,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;<a href="CppRibi.htm\">ribi</a>::<a href="CppWtLedWidget.htm">WtLedWidget</a>::DoRepaint,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>));<br/>
 <br/>
 &nbsp;&nbsp;m_<a href="CppWidget.htm">widget</a>-&gt;m_signal_<a href="CppGeometry.htm">geometry</a>_changed.connect(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBind.htm">boost::bind</a>(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;<a href="CppWtLedWidget.htm">WtLedWidget</a>::OnResize,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;<a href="CppRibi.htm\">ribi</a>::<a href="CppWtLedWidget.htm">WtLedWidget</a>::OnResize,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>));<br/>
 <br/>
 &nbsp;&nbsp;m_<a href="CppWidget.htm">widget</a>-&gt;SetGeometry(Rect(0,0,100,100));<br/>
@@ -194,12 +199,12 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;m_<a href="CppWidget.htm">widget</a>-&gt;Get<a href="CppLed.htm">Led</a>()-&gt;SetIntensity(0.98);<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppWtLedWidget.htm">WtLedWidget</a>::DoRepaint()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppWtLedWidget.htm">WtLedWidget</a>::DoRepaint()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;update();<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppWtLedWidget.htm">WtLedWidget</a>::Draw<a href="CppLed.htm">Led</a>(<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppWtLedWidget.htm">WtLedWidget</a>::Draw<a href="CppLed.htm">Led</a>(<br/>
 &nbsp;&nbsp;<a href="CppWPainter.htm">Wt::WPainter</a>&amp; painter,<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> left, <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> top,<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> width, <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> height,<br/>
@@ -297,7 +302,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppWtLedWidget.htm">WtLedWidget</a>::Draw<a href="CppLed.htm">Led</a>(<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppWtLedWidget.htm">WtLedWidget</a>::Draw<a href="CppLed.htm">Led</a>(<br/>
 &nbsp;&nbsp;<a href="CppWPainter.htm">Wt::WPainter</a>&amp; painter,<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppLedWidget.htm">LedWidget</a> * <b><a href="CppConst.htm">const</a></b> <a href="CppWidget.htm">widget</a>)<br/>
 {<br/>
@@ -310,12 +315,12 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppWidget.htm">widget</a>-&gt;Get<a href="CppLed.htm">Led</a>());<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppWtLedWidget.htm">WtLedWidget</a>::Get<a href="CppVersion.htm">Version</a>()<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppRibi.htm\">ribi</a>::<a href="CppWtLedWidget.htm">WtLedWidget</a>::Get<a href="CppVersion.htm">Version</a>()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> "1.0";<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppWtLedWidget.htm">WtLedWidget</a>::Get<a href="CppVersion.htm">Version</a>History()<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm\">ribi</a>::<a href="CppWtLedWidget.htm">WtLedWidget</a>::Get<a href="CppVersion.htm">Version</a>History()<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v;<br/>
 &nbsp;&nbsp;v.push_back("YYYY-MM-DD: <a href="CppVersion.htm">version</a> X.Y: [description]");<br/>
@@ -323,18 +328,18 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppWtLedWidget.htm">WtLedWidget</a>::OnResize()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppWtLedWidget.htm">WtLedWidget</a>::OnResize()<br/>
 {<br/>
 &nbsp;&nbsp;resize(m_<a href="CppWidget.htm">widget</a>-&gt;GetGeometry().GetWidth(),m_<a href="CppWidget.htm">widget</a>-&gt;GetGeometry().GetHeight());<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppWtLedWidget.htm">WtLedWidget</a>::paintEvent(<a href="CppWPaintDevice.htm">Wt::WPaintDevice</a> *paintDevice)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppWtLedWidget.htm">WtLedWidget</a>::paintEvent(<a href="CppWPaintDevice.htm">Wt::WPaintDevice</a> *paintDevice)<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppWPainter.htm">Wt::WPainter</a> painter(paintDevice);<br/>
 &nbsp;&nbsp;Draw<a href="CppLed.htm">Led</a>(painter,m_<a href="CppWidget.htm">widget</a>.get());<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppWtLedWidget.htm">WtLedWidget</a>::resize(<b><a href="CppConst.htm">const</a></b> <a href="CppWLength.htm">Wt::WLength</a>&amp; width, <b><a href="CppConst.htm">const</a></b> <a href="CppWLength.htm">Wt::WLength</a>&amp; height)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppWtLedWidget.htm">WtLedWidget</a>::resize(<b><a href="CppConst.htm">const</a></b> <a href="CppWLength.htm">Wt::WLength</a>&amp; width, <b><a href="CppConst.htm">const</a></b> <a href="CppWLength.htm">Wt::WLength</a>&amp; height)<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppWPaintedWidget.htm">Wt::WPaintedWidget</a>::resize(width,height);<br/>
 }<br/>

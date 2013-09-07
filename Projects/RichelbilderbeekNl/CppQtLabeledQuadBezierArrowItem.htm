@@ -45,11 +45,17 @@
 <a href="CppDefine.htm">#define</a> QTLABE<a href="CppLed.htm">LED</a>QUADBEZIERARROWITEM_H<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppStringH.htm">string</a>&gt;<br/>
+<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-<b><a href="CppTypedef.htm">typedef</a></b>s"<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppSignals2.htm">signals2</a>.hpp&gt;<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
+<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppQFont.htm">QFont</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppQtRoundedTextRectItem.htm">qtroundedtextrectitem</a>.h"<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppQtQuadBezierArrowItem.htm">qtquadbezierarrowitem</a>.h"<br/>
 <br/>
+<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a> {<br/>
 <br/>
 <a href="CppComment.htm">///</a>The <a href="CppQtLabeledQuadBezierArrowItem.htm">QtLabeledQuadBezierArrowItem</a> is a <a href="CppQt.htm">Qt</a>RoundedTextRectItem that<br/>
 <a href="CppComment.htm">///</a>draws a bezier curve underneath itself, between head and tail arrowhead<br/>
@@ -83,6 +89,8 @@
 <br/>
 };<br/>
 <br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a><br/>
+<br/>
 <a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> QTLABE<a href="CppLed.htm">LED</a>QUADBEZIERARROWITEM_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
@@ -95,16 +103,10 @@
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="qtlabeledquadbezierarrowitem.cpp" border = "1"><tr><td><code>
-<a href="CppIfdef.htm">#ifdef</a> _WIN32<br/>
-<a href="CppComment.htm">//</a>See http://www.richelbilderbeek.nl/Cpp<a href="CppCompile.htm">Compile</a>ErrorUnableToFindNumericLiteralOperatorOperatorQ.htm<br/>
-<a href="CppPreIf.htm">#if</a> !(__GNUC__ <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 4 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> __GNUC_MINOR__ <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 8)<br/>
-<a href="CppComment.htm">//</a>See http://www.richelbilderbeek.nl/Cpp<a href="CppCompile.htm">Compile</a>ErrorSwprintfHasNotBeenDeclared.htm<br/>
-<a href="CppUndef.htm">#undef</a> __STRICT_ANSI__<br/>
-<a href="CppEndif.htm">#endif</a><br/>
-<a href="CppEndif.htm">#endif</a><br/>
 <br/>
-<a href="CppComment.htm">//</a><a href="CppInclude.htm">#include</a> own <a href="CppHeaderFile.htm">header file</a> as first substantive line of code, from:<br/>
-<a href="CppComment.htm">//</a> * John Lakos. Large-Scale <a href="Cpp.htm">C++</a> Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110<br/>
+<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-<b><a href="CppTypedef.htm">typedef</a></b>s"<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppQtLabeledQuadBezierArrowItem.htm">qtlabeledquadbezierarrowitem</a>.h"<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
@@ -119,7 +121,9 @@
 <br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppTrace.htm">trace</a>.h"<br/>
 <br/>
-<a href="CppQtLabeledQuadBezierArrowItem.htm">QtLabeledQuadBezierArrowItem</a>::<a href="CppQtLabeledQuadBezierArrowItem.htm">QtLabeledQuadBezierArrowItem</a>(<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
+<br/>
+<a href="CppRibi.htm\">ribi</a>::<a href="CppQtLabeledQuadBezierArrowItem.htm">QtLabeledQuadBezierArrowItem</a>::<a href="CppQtLabeledQuadBezierArrowItem.htm">QtLabeledQuadBezierArrowItem</a>(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppQGraphicsItem.htm">QGraphicsItem</a> *<b><a href="CppConst.htm">const</a></b> from,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppBool.htm">bool</a></b> tail,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; text,<br/>
@@ -145,31 +149,31 @@
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(m_arrow-&gt;GetToItem()-&gt;pos() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> to-&gt;pos());<br/>
 }<br/>
 <br/>
-<a href="CppQRect.htm">QRect</a>F <a href="CppQtLabeledQuadBezierArrowItem.htm">QtLabeledQuadBezierArrowItem</a>::boundingRect() <b><a href="CppConst.htm">const</a></b><br/>
+<a href="CppQRect.htm">QRect</a>F <a href="CppRibi.htm\">ribi</a>::<a href="CppQtLabeledQuadBezierArrowItem.htm">QtLabeledQuadBezierArrowItem</a>::boundingRect() <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <a href="CppQt.htm">Qt</a>RoundedTextRectItem::boundingRect()<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;.united(m_arrow-&gt;boundingRect().translated(-<b><a href="CppThis.htm">this</a></b>-&gt;pos()));<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppQtLabeledQuadBezierArrowItem.htm">QtLabeledQuadBezierArrowItem</a>::Get<a href="CppVersion.htm">Version</a>()<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppRibi.htm\">ribi</a>::<a href="CppQtLabeledQuadBezierArrowItem.htm">QtLabeledQuadBezierArrowItem</a>::Get<a href="CppVersion.htm">Version</a>()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> "1.0";<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppQtLabeledQuadBezierArrowItem.htm">QtLabeledQuadBezierArrowItem</a>::Get<a href="CppVersion.htm">Version</a>History()<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm\">ribi</a>::<a href="CppQtLabeledQuadBezierArrowItem.htm">QtLabeledQuadBezierArrowItem</a>::Get<a href="CppVersion.htm">Version</a>History()<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v;<br/>
 &nbsp;&nbsp;v.push_back("2013-01-01: <a href="CppVersion.htm">version</a> 1.0: initial <a href="CppVersion.htm">version</a>");<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppQtLabeledQuadBezierArrowItem.htm">QtLabeledQuadBezierArrowItem</a>::keyPressEvent(<a href="CppQKeyEvent.htm">QKeyEvent</a> *event)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQtLabeledQuadBezierArrowItem.htm">QtLabeledQuadBezierArrowItem</a>::keyPressEvent(<a href="CppQKeyEvent.htm">QKeyEvent</a> *event)<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppQt.htm">Qt</a>RoundedTextRectItem::keyPressEvent(event);<br/>
 &nbsp;&nbsp;m_arrow-&gt;keyPressEvent(event);<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppQtLabeledQuadBezierArrowItem.htm">QtLabeledQuadBezierArrowItem</a>::paint(<a href="CppQPainter.htm">QPainter</a>* painter, <b><a href="CppConst.htm">const</a></b> <a href="CppQStyleOptionGraphicsItem.htm">QStyleOptionGraphicsItem</a>* option, <a href="CppQWidget.htm">QWidget</a>* <a href="CppWidget.htm">widget</a>)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQtLabeledQuadBezierArrowItem.htm">QtLabeledQuadBezierArrowItem</a>::paint(<a href="CppQPainter.htm">QPainter</a>* painter, <b><a href="CppConst.htm">const</a></b> <a href="CppQStyleOptionGraphicsItem.htm">QStyleOptionGraphicsItem</a>* option, <a href="CppQWidget.htm">QWidget</a>* <a href="CppWidget.htm">widget</a>)<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<b><a href="CppThis.htm">this</a></b>-&gt;pos() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> m_arrow-&gt;GetMidItem()-&gt;pos());<br/>
 &nbsp;&nbsp;painter-&gt;translate(-<b><a href="CppThis.htm">this</a></b>-&gt;pos());<br/>

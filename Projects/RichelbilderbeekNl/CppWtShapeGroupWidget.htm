@@ -70,6 +70,8 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWPaintDevice.htm">WPaintDevice</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWPaintedWidget.htm">WPaintedWidget</a>&gt;<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a> {<br/>
+<br/>
 <b><a href="CppStruct.htm">struct</a></b> <a href="CppShape.htm">Shape</a>;<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">///</a><a href="CppWtShapeGroupWidget.htm">WtShapeGroupWidget</a> displays a collection of <a href="CppShape.htm">Shape</a> <a href="CppInstance.htm">instances</a><br/>
@@ -91,7 +93,9 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <br/>
 &nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppVoid.htm">void</a></b> <a href="CppRainbow.htm">Rainbow</a>(<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> x,<b><a href="CppDouble.htm">double</a></b>&amp; r,<b><a href="CppDouble.htm">double</a></b>&amp; g,<b><a href="CppDouble.htm">double</a></b>&amp; b);<br/>
 };<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a><br/>
+<br/>
 <a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> WTGROUPWIDGET_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
@@ -145,22 +149,22 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppWtShapeGroupWidget.htm">wtshapegroupwidget</a>.h"<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppWtShapeWidget.htm">wtshapewidget</a>.h"<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppWtShapeGroupWidget.htm">WtShapeGroupWidget</a>::<a href="CppWtShapeGroupWidget.htm">WtShapeGroupWidget</a>()<br/>
+<a href="CppRibi.htm\">ribi</a>::<a href="CppWtShapeGroupWidget.htm">WtShapeGroupWidget</a>::<a href="CppWtShapeGroupWidget.htm">WtShapeGroupWidget</a>()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;resize(100,100);<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppWtShapeGroupWidget.htm">WtShapeGroupWidget</a>::DoRepaint()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppWtShapeGroupWidget.htm">WtShapeGroupWidget</a>::DoRepaint()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;update();<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppWtShapeGroupWidget.htm">WtShapeGroupWidget</a>::Get<a href="CppVersion.htm">Version</a>()<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppRibi.htm\">ribi</a>::<a href="CppWtShapeGroupWidget.htm">WtShapeGroupWidget</a>::Get<a href="CppVersion.htm">Version</a>()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> "1.0";<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppWtShapeGroupWidget.htm">WtShapeGroupWidget</a>::Get<a href="CppVersion.htm">Version</a>History()<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm\">ribi</a>::<a href="CppWtShapeGroupWidget.htm">WtShapeGroupWidget</a>::Get<a href="CppVersion.htm">Version</a>History()<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v;<br/>
 &nbsp;&nbsp;v.push_back("YYYY-MM-DD: <a href="CppVersion.htm">version</a> X.Y: [description]");<br/>
@@ -168,7 +172,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppWtShapeGroupWidget.htm">WtShapeGroupWidget</a>::paintEvent(<a href="CppWPaintDevice.htm">Wt::WPaintDevice</a> *paintDevice)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppWtShapeGroupWidget.htm">WtShapeGroupWidget</a>::paintEvent(<a href="CppWPaintDevice.htm">Wt::WPaintDevice</a> *paintDevice)<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppWPainter.htm">Wt::WPainter</a> painter(paintDevice);<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> width&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <b><a href="CppThis.htm">this</a></b>-&gt;width().toPixels();<br/>
@@ -243,7 +247,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="CppRainbow.htm">CppRainbow</a>.htm<br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppWtShapeGroupWidget.htm">WtShapeGroupWidget</a>::<a href="CppRainbow.htm">Rainbow</a>(<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppWtShapeGroupWidget.htm">WtShapeGroupWidget</a>::<a href="CppRainbow.htm">Rainbow</a>(<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> x,<br/>
 &nbsp;&nbsp;<b><a href="CppDouble.htm">double</a></b>&amp; r,<br/>
 &nbsp;&nbsp;<b><a href="CppDouble.htm">double</a></b>&amp; g,<br/>
@@ -264,7 +268,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;b <a href="CppOperatorAssign.htm">=</a> f_b <a href="CppOperatorDivide.htm">/</a> max;<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppWtShapeGroupWidget.htm">WtShapeGroupWidget</a>::Set<a href="CppShape.htm">Shape</a>s(<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppConst.htm">const</a></b> <a href="CppShape.htm">Shape</a>*&gt; &gt;&amp; v)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppWtShapeGroupWidget.htm">WtShapeGroupWidget</a>::Set<a href="CppShape.htm">Shape</a>s(<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppConst.htm">const</a></b> <a href="CppShape.htm">Shape</a>*&gt; &gt;&amp; v)<br/>
 {<br/>
 &nbsp;&nbsp;m_v <a href="CppOperatorAssign.htm">=</a> v;<br/>
 &nbsp;&nbsp;update();<br/>

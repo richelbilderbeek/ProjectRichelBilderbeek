@@ -61,10 +61,12 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppIfndef.htm">#ifndef</a> HTMLPAGE_H<br/>
 <a href="CppDefine.htm">#define</a> HTMLPAGE_H<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppStringH.htm">string</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<br/>
+<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a> {<br/>
+<br/>
 <b><a href="CppStruct.htm">struct</a></b> <a href="CppHtmlPage.htm">HtmlPage</a><br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppExplicit.htm">explicit</a></b> <a href="CppHtmlPage.htm">HtmlPage</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; filename);<br/>
@@ -102,11 +104,12 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; replaceWithWhat);<br/>
 <br/>
 };<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<br/>
 <b><a href="CppBool.htm">bool</a></b> <b><a href="CppOperatorLess.htm">operator&lt;</a></b>(<b><a href="CppConst.htm">const</a></b> <a href="CppHtmlPage.htm">HtmlPage</a>&amp; lhs, <b><a href="CppConst.htm">const</a></b> <a href="CppHtmlPage.htm">HtmlPage</a>&amp; rhs);<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a><br/>
+<br/>
 <a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> HTMLPAGE_H<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -118,7 +121,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="htmlpage.cpp" border = "1"><tr><td><code>
-<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">/*</a><br/>
 <a href="CppHtmlPage.htm">HtmlPage</a>, HTML page <b><a href="CppClass.htm">class</a></b><br/>
 Copyright (C) 2011 Richel Bilderbeek<br/>
@@ -135,19 +138,11 @@ GNU General Public License for more details.<br/>
 You should have received a copy of the GNU General Public License<br/>
 along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">*/</a><br/>
-<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="CppHtmlPage.htm">CppHtmlPage</a>.htm<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <br/>
-<a href="CppIfdef.htm">#ifdef</a> _WIN32<br/>
-<a href="CppComment.htm">//</a>See http://www.richelbilderbeek.nl/Cpp<a href="CppCompile.htm">Compile</a>ErrorUnableToFindNumericLiteralOperatorOperatorQ.htm<br/>
-<a href="CppPreIf.htm">#if</a> !(__GNUC__ <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 4 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> __GNUC_MINOR__ <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 8)<br/>
-<a href="CppComment.htm">//</a>See http://www.richelbilderbeek.nl/Cpp<a href="CppCompile.htm">Compile</a>ErrorSwprintfHasNotBeenDeclared.htm<br/>
-<a href="CppUndef.htm">#undef</a> __STRICT_ANSI__<br/>
-<a href="CppEndif.htm">#endif</a><br/>
-<a href="CppEndif.htm">#endif</a><br/>
 <br/>
-<a href="CppComment.htm">//</a><a href="CppInclude.htm">#include</a> own <a href="CppHeaderFile.htm">header file</a> as first substantive line of code, from:<br/>
-<a href="CppComment.htm">//</a> * John Lakos. Large-Scale <a href="Cpp.htm">C++</a> Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppHtmlPage.htm">htmlpage</a>.h"<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppFstreamH.htm">fstream</a>&gt;<br/>
@@ -155,24 +150,26 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-<b><a href="CppTypedef.htm">typedef</a></b>s"<br/>
-&nbsp;&nbsp;<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/filesystem.hpp&gt;<br/>
-&nbsp;&nbsp;<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppRegex.htm">regex</a>.hpp&gt;<br/>
-&nbsp;&nbsp;<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppAlgorithm.htm">algorithm</a>/string.hpp&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppAlgorithm.htm">algorithm</a>/string.hpp&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppBoostXpressive.htm">xpressive</a>/<a href="CppBoostXpressive.htm">xpressive</a>.hpp&gt;<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
 <br/>
-<a href="CppHtmlPage.htm">HtmlPage</a>::<a href="CppHtmlPage.htm">HtmlPage</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; filename)<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppQFile.htm">QFile</a>&gt;<br/>
+<br/>
+<a href="CppRibi.htm\">ribi</a>::<a href="CppHtmlPage.htm">HtmlPage</a>::<a href="CppHtmlPage.htm">HtmlPage</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; filename)<br/>
 &nbsp;&nbsp;: m_filename(filename)<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppFilesystem.htm">boost::filesystem</a>::exists(filename));<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppQFile.htm">QFile</a>::exists(filename.c_str()));<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostRegex.htm">boost::regex</a> title_<a href="CppRegex.htm">regex</a>("&lt;title&gt;.*&lt;/title&gt;");<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostXpressive.htm">boost::xpressive</a>::s<a href="CppRegex.htm">regex</a> title_<a href="CppRegex.htm">regex</a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <a href="CppBoostXpressive.htm">boost::xpressive</a>::s<a href="CppRegex.htm">regex</a>::<a href="CppCompile.htm">compile</a>("&lt;title&gt;.*&lt;/title&gt;");<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Copy all filenames matching the <a href="CppRegex.htm">regex</a> in the resulting <a href="CppVector.htm">std::vector</a><br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v <a href="CppOperatorAssign.htm">=</a> <a href="CppFileToVector.htm">FileToVector</a>(filename);<br/>
 &nbsp;&nbsp;<a href="CppFor_each.htm">std::for_each</a>(v.begin(),v.end(),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;[<b><a href="CppThis.htm">this</a></b>,title_<a href="CppRegex.htm">regex</a>](<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; s)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (boost::regex_search(s,title_<a href="CppRegex.htm">regex</a>))<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (<a href="CppBoostXpressive.htm">boost::xpressive</a>::<a href="CppRegex.htm">regex</a>_search(s,title_<a href="CppRegex.htm">regex</a>))<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppString.htm">std::string</a> t <a href="CppOperatorAssign.htm">=</a> s;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppTrim.htm">Trim</a> leading whitespace<br/>
@@ -190,9 +187,9 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;);<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppHtmlPage.htm">HtmlPage</a>::<a href="CppFileToVector.htm">FileToVector</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; filename)<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm\">ribi</a>::<a href="CppHtmlPage.htm">HtmlPage</a>::<a href="CppFileToVector.htm">FileToVector</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; filename)<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppFilesystem.htm">boost::filesystem</a>::exists(filename));<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppQFile.htm">QFile</a>::exists(filename.c_str()));<br/>
 &nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v;<br/>
 &nbsp;&nbsp;<a href="CppIfstream.htm">std::ifstream</a> in(filename.c_str());<br/>
 &nbsp;&nbsp;<a href="CppString.htm">std::string</a> s;<br/>
@@ -204,20 +201,21 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppHtmlPage.htm">HtmlPage</a>::Get<a href="CppVersion.htm">Version</a>()<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppRibi.htm\">ribi</a>::<a href="CppHtmlPage.htm">HtmlPage</a>::Get<a href="CppVersion.htm">Version</a>()<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> "1.1";<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> "1.2";<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppHtmlPage.htm">HtmlPage</a>::Get<a href="CppVersion.htm">Version</a>History()<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm\">ribi</a>::<a href="CppHtmlPage.htm">HtmlPage</a>::Get<a href="CppVersion.htm">Version</a>History()<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v;<br/>
-&nbsp;&nbsp;v.push_back("2011-xx-xx: <a href="CppVersion.htm">version</a> 1.0: initial <a href="CppVersion.htm">version</a>");<br/>
-&nbsp;&nbsp;v.push_back("2012-08-12: <a href="CppVersion.htm">version</a> 1.1: started <a href="CppVersion.htm">version</a>ing <b><a href="CppThis.htm">this</a></b> <b><a href="CppClass.htm">class</a></b>");<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"2011-xx-xx: <a href="CppVersion.htm">version</a> 1.0: initial <a href="CppVersion.htm">version</a>",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"2012-08-12: <a href="CppVersion.htm">version</a> 1.1: started <a href="CppVersion.htm">version</a>ing <b><a href="CppThis.htm">this</a></b> <b><a href="CppClass.htm">class</a></b>",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"2013-09-02: <a href="CppVersion.htm">version</a> 1.2: replaced <a href="CppBoostRegex.htm">Boost.Regex</a> by <a href="CppBoostXpressive.htm">Boost.Xpressive</a>"<br/>
+&nbsp;&nbsp;};<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppHtmlPage.htm">HtmlPage</a>::<a href="CppReplaceAll.htm">ReplaceAll</a>(<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppRibi.htm\">ribi</a>::<a href="CppHtmlPage.htm">HtmlPage</a>::<a href="CppReplaceAll.htm">ReplaceAll</a>(<br/>
 &nbsp;&nbsp;<a href="CppString.htm">std::string</a> s,<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; replaceWhat,<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; replaceWithWhat)<br/>
@@ -231,7 +229,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> s;<br/>
 }<br/>
 <br/>
-<b><a href="CppBool.htm">bool</a></b> <b><a href="CppOperatorLess.htm">operator&lt;</a></b>(<b><a href="CppConst.htm">const</a></b> <a href="CppHtmlPage.htm">HtmlPage</a>&amp; lhs, <b><a href="CppConst.htm">const</a></b> <a href="CppHtmlPage.htm">HtmlPage</a>&amp; rhs)<br/>
+<b><a href="CppBool.htm">bool</a></b> <a href="CppRibi.htm\">ribi</a>::<b><a href="CppOperatorLess.htm">operator&lt;</a></b>(<b><a href="CppConst.htm">const</a></b> <a href="CppHtmlPage.htm">HtmlPage</a>&amp; lhs, <b><a href="CppConst.htm">const</a></b> <a href="CppHtmlPage.htm">HtmlPage</a>&amp; rhs)<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Case insensitive compare<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <a href="CppBoost.htm">boost</a>::<a href="CppAlgorithm.htm">algorithm</a>::to_lower_copy(lhs.GetTitle())<br/>

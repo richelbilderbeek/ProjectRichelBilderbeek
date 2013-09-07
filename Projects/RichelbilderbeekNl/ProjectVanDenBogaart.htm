@@ -2132,7 +2132,7 @@ pvdb::Cluster::Cluster(<b><a href="CppConst.htm">const</a></b> <a href="CppVecto
 <br/>
 <b><a href="CppEnumClass.htm">enum class</a></b> Competency<br/>
 {<br/>
-&nbsp;&nbsp;uninitialized <a href="CppOperatorAssign.htm">=</a> 0,&nbsp;&nbsp; <a href="CppComment.htm">//</a>Not yet set<br/>
+&nbsp;&nbsp;un<a href="CppInitialize.htm">initialize</a>d <a href="CppOperatorAssign.htm">=</a> 0,&nbsp;&nbsp; <a href="CppComment.htm">//</a>Not yet set<br/>
 &nbsp;&nbsp;profession,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>NL: 'Beroepsdomein'<br/>
 &nbsp;&nbsp;organisations,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppComment.htm">//</a>NL: 'Organisaties'<br/>
 &nbsp;&nbsp;social_surroundings, <a href="CppComment.htm">//</a>NL: 'Sociale omgeving'<br/>
@@ -2180,7 +2180,7 @@ pvdb::Cluster::Cluster(<b><a href="CppConst.htm">const</a></b> <a href="CppVecto
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b><br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;pvdb::Competency::uninitialized,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;pvdb::Competency::un<a href="CppInitialize.htm">initialize</a>d,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;pvdb::Competency::profession,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;pvdb::Competency::organisations,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;pvdb::Competency::social_surroundings,<br/>
@@ -2196,7 +2196,7 @@ pvdb::Cluster::Cluster(<b><a href="CppConst.htm">const</a></b> <a href="CppVecto
 {<br/>
 &nbsp;&nbsp;<b><a href="CppSwitch.htm">switch</a></b> (type)<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> pvdb::Competency::uninitialized: <b><a href="CppReturn.htm">return</a></b> "[Ongeinitialiseerd]";<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> pvdb::Competency::un<a href="CppInitialize.htm">initialize</a>d: <b><a href="CppReturn.htm">return</a></b> "[Ongeinitialiseerd]";<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> pvdb::Competency::profession: <b><a href="CppReturn.htm">return</a></b> "Kennis van het beroepsdomein";<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> pvdb::Competency::organisations: <b><a href="CppReturn.htm">return</a></b> "Kennis van de organisatie";<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> pvdb::Competency::social_surroundings: <b><a href="CppReturn.htm">return</a></b> "Kennis van de sociale omgeving";<br/>
@@ -2733,7 +2733,7 @@ pvdb::Concept::Concept(<br/>
 <br/>
 <b><a href="CppStruct.htm">struct</a></b> ConceptFactory<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>Default and complete Create method<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Default and complete Create <a href="CppMemberFunction.htm">member function</a><br/>
 &nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;pvdb::Concept&gt; Create(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; name,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;pvdb::Examples&gt;&amp; examples,<br/>
@@ -2917,7 +2917,7 @@ pvdb::Concept::Concept(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;v[3] <a href="CppOperatorAssign.htm">=</a> p;<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;pvdb::Concept&gt; p <a href="CppOperatorAssign.htm">=</a> Create("Concept with four Roman examples", { { "Example I/IV", pvdb::Competency::misc }, { "Example II/IV", pvdb::Competency::uninitialized }, { "Example III/IV", pvdb::Competency::profession }, { "Example III/IV", pvdb::Competency::social_surroundings } }, 1, 2, 0);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;pvdb::Concept&gt; p <a href="CppOperatorAssign.htm">=</a> Create("Concept with four Roman examples", { { "Example I/IV", pvdb::Competency::misc }, { "Example II/IV", pvdb::Competency::un<a href="CppInitialize.htm">initialize</a>d }, { "Example III/IV", pvdb::Competency::profession }, { "Example III/IV", pvdb::Competency::social_surroundings } }, 1, 2, 0);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(p);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(p-&gt;GetRatingComplexity() <a href="CppOperatorGreaterEqual.htm">&gt;=</a> <a href="CppOperatorMinus.htm">-</a>1);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(p-&gt;GetRatingComplexity() <a href="CppOperatorLessEqual.htm">&lt;=</a>&nbsp;&nbsp;2);<br/>
@@ -2937,7 +2937,7 @@ pvdb::Concept::Concept(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Create("Concept with one example", { { "Only example", pvdb::Competency::profession } }, 1, 2, 0),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Create("Concept with two examples", { { "First example", pvdb::Competency::organisations }, { "Second example", pvdb::Competency::social_surroundings } }, 2, 0, 1),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Create("Concept with three examples", { { "Example 1 of 3", pvdb::Competency::target_audience }, { "Example 2 of 3", pvdb::Competency::ti_knowledge }, { "Example 3 of 3", pvdb::Competency::prof_growth } }, 0, 1, 2),<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Create("Concept with four Roman examples", { { "Example I/IV", pvdb::Competency::misc }, { "Example II/IV", pvdb::Competency::uninitialized }, { "Example III/IV", pvdb::Competency::profession }, { "Example III/IV", pvdb::Competency::social_surroundings } }, 1, 2, 0)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Create("Concept with four Roman examples", { { "Example I/IV", pvdb::Competency::misc }, { "Example II/IV", pvdb::Competency::un<a href="CppInitialize.htm">initialize</a>d }, { "Example III/IV", pvdb::Competency::profession }, { "Example III/IV", pvdb::Competency::social_surroundings } }, 1, 2, 0)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}; <a href="CppComment.htm">//</a><a href="CppDouble.htm">Double</a> braces not needed in future GCC <a href="CppVersion.htm">version</a><br/>
 &nbsp;&nbsp;<a href="CppComment.htm">*/</a><br/>
@@ -4224,8 +4224,8 @@ pvdb::ConceptMap::ConceptMap(<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>[15]<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;pvdb::Concept&gt; concept_c(pvdb::ConceptFactory::Create("B", { {"B-1",pvdb::Competency::uninitialized} },0,1,2));<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;pvdb::Concept&gt; concept_d(pvdb::ConceptFactory::Create("C", { {"C-1",pvdb::Competency::uninitialized},{"C-2",pvdb::Competency::misc}},-1,1,2));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;pvdb::Concept&gt; concept_c(pvdb::ConceptFactory::Create("B", { {"B-1",pvdb::Competency::un<a href="CppInitialize.htm">initialize</a>d} },0,1,2));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;pvdb::Concept&gt; concept_d(pvdb::ConceptFactory::Create("C", { {"C-1",pvdb::Competency::un<a href="CppInitialize.htm">initialize</a>d},{"C-2",pvdb::Competency::misc}},-1,1,2));<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;pvdb::Concept&gt; concept_e(pvdb::ConceptFactory::Create("D", { {"D-1",pvdb::Competency::misc},{"D-2",pvdb::Competency::misc},{"D-3",pvdb::Competency::misc}},-1,-1,-1));<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;pvdb::Node&gt; node_c(pvdb::NodeFactory::Create(concept_c));<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;pvdb::Node&gt; node_d(pvdb::NodeFactory::Create(concept_d));<br/>
@@ -5402,7 +5402,7 @@ pvdb::Edge::Edge(<br/>
 &nbsp;&nbsp;<b><a href="CppFriend.htm">friend</a></b> <b><a href="CppVoid.htm">void</a></b> <a href="CppChecked_delete.htm">boost::checked_delete</a>&lt;&gt;(Example* x);<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/Only let ExampleFactory create Example <a href="CppInstance.htm">instances</a><br/>
-&nbsp;&nbsp;Example(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; text, <b><a href="CppConst.htm">const</a></b> pvdb::Competency competency <a href="CppOperatorAssign.htm">=</a> pvdb::Competency::uninitialized);<br/>
+&nbsp;&nbsp;Example(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; text, <b><a href="CppConst.htm">const</a></b> pvdb::Competency competency <a href="CppOperatorAssign.htm">=</a> pvdb::Competency::un<a href="CppInitialize.htm">initialize</a>d);<br/>
 &nbsp;&nbsp;<b><a href="CppFriend.htm">friend</a></b> <b><a href="CppClass.htm">class</a></b> ExampleFactory;<br/>
 };<br/>
 <br/>
@@ -5481,7 +5481,7 @@ pvdb::Example::Example(<b><a href="CppConst.htm">const</a></b> <a href="CppStrin
 {<br/>
 &nbsp;&nbsp;<b><a href="CppSwitch.htm">switch</a></b> (competency)<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> pvdb::Competency::uninitialized: <b><a href="CppReturn.htm">return</a></b> "uninitialized";<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> pvdb::Competency::un<a href="CppInitialize.htm">initialize</a>d: <b><a href="CppReturn.htm">return</a></b> "un<a href="CppInitialize.htm">initialize</a>d";<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> pvdb::Competency::profession: <b><a href="CppReturn.htm">return</a></b> "profession";<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> pvdb::Competency::organisations: <b><a href="CppReturn.htm">return</a></b> "organisations";<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> pvdb::Competency::social_surroundings: <b><a href="CppReturn.htm">return</a></b> "social_surroundings";<br/>
@@ -5501,7 +5501,7 @@ pvdb::Example::Example(<b><a href="CppConst.htm">const</a></b> <a href="CppStrin
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(s.substr(s.size() <a href="CppOperatorMinus.htm">-</a> 10,10) <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <a href="CppString.htm">std::string</a>("&lt;/example&gt;"));<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppString.htm">std::string</a> text;<br/>
-&nbsp;&nbsp;pvdb::Competency competency <a href="CppOperatorAssign.htm">=</a> pvdb::Competency::uninitialized;<br/>
+&nbsp;&nbsp;pvdb::Competency competency <a href="CppOperatorAssign.htm">=</a> pvdb::Competency::un<a href="CppInitialize.htm">initialize</a>d;<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>text<br/>
 &nbsp;&nbsp;{<br/>
@@ -5539,7 +5539,7 @@ pvdb::Example::Example(<b><a href="CppConst.htm">const</a></b> <a href="CppStrin
 <br/>
 pvdb::Competency pvdb::Example::StrToCompetency(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; s)<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (s <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> "uninitialized") <b><a href="CppReturn.htm">return</a></b> pvdb::Competency::uninitialized;<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (s <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> "un<a href="CppInitialize.htm">initialize</a>d") <b><a href="CppReturn.htm">return</a></b> pvdb::Competency::un<a href="CppInitialize.htm">initialize</a>d;<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (s <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> "profession") <b><a href="CppReturn.htm">return</a></b> pvdb::Competency::profession;<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (s <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> "organisations") <b><a href="CppReturn.htm">return</a></b> pvdb::Competency::organisations;<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (s <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> "social_surroundings") <b><a href="CppReturn.htm">return</a></b> pvdb::Competency::social_surroundings;<br/>
@@ -5594,7 +5594,7 @@ pvdb::Competency pvdb::Example::StrToCompetency(<b><a href="CppConst.htm">const<
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;pvdb::Example&gt; a <a href="CppOperatorAssign.htm">=</a> ExampleFactory::Create("1",Competency::misc);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;pvdb::Example&gt; b <a href="CppOperatorAssign.htm">=</a> ExampleFactory::Create("1",Competency::misc);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;pvdb::Example&gt; c <a href="CppOperatorAssign.htm">=</a> ExampleFactory::Create("1",Competency::uninitialized);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;pvdb::Example&gt; c <a href="CppOperatorAssign.htm">=</a> ExampleFactory::Create("1",Competency::un<a href="CppInitialize.htm">initialize</a>d);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(a <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> a); <a href="CppAssert.htm">assert</a>(a <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> b); <a href="CppAssert.htm">assert</a>(a <a href="CppOperatorNotEqual.htm">!=</a> c);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(b <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> a); <a href="CppAssert.htm">assert</a>(b <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> b); <a href="CppAssert.htm">assert</a>(b <a href="CppOperatorNotEqual.htm">!=</a> c);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(c <a href="CppOperatorNotEqual.htm">!=</a> a); <a href="CppAssert.htm">assert</a>(c <a href="CppOperatorNotEqual.htm">!=</a> b); <a href="CppAssert.htm">assert</a>(c <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> c);<br/>
@@ -5604,7 +5604,7 @@ pvdb::Competency pvdb::Example::StrToCompetency(<b><a href="CppConst.htm">const<
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;Competency&gt; v<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pvdb::Competency::uninitialized,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pvdb::Competency::un<a href="CppInitialize.htm">initialize</a>d,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pvdb::Competency::profession,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pvdb::Competency::organisations,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pvdb::Competency::social_surroundings,<br/>
@@ -5781,7 +5781,7 @@ pvdb::Competency pvdb::Example::StrToCompetency(<b><a href="CppConst.htm">const<
 &nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;pvdb::Example&gt; Create(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; text, <b><a href="CppConst.htm">const</a></b> pvdb::Competency&amp; competency);<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/Create examples <b><a href="CppFor.htm">for</a></b> strings<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Note that all pvdb::Competency values are set to uninitialized<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Note that all pvdb::Competency values are set to un<a href="CppInitialize.htm">initialize</a>d<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;pvdb::Example&gt; &gt; CreateExamples(<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt;&amp; v);<br/>
 <br/>
 &nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;pvdb::Example&gt; &gt; GetTests();<br/>
@@ -5835,7 +5835,7 @@ pvdb::Competency pvdb::Example::StrToCompetency(<b><a href="CppConst.htm">const<
 &nbsp;&nbsp;&nbsp;&nbsp;Create("Test example 4",Competency::ti_knowledge),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;Create("Test example 5",Competency::prof_growth),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;Create("Test example 6",Competency::misc),<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;Create("",Competency::uninitialized),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Create("",Competency::un<a href="CppInitialize.htm">initialize</a>d),<br/>
 &nbsp;&nbsp;};<br/>
 }<br/>
 <br/>
@@ -6000,7 +6000,7 @@ pvdb::Examples::Examples(<b><a href="CppConst.htm">const</a></b> <a href="CppVec
 <br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppCount_if.htm">std::count_if</a>(m_v.begin(),m_v.end(),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;[](<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;pvdb::Example&gt;&amp; e) { <b><a href="CppReturn.htm">return</a></b> !e; }<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;) <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 0 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "All Example <a href="CppInstance.htm">instances</a> must be initialized");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;) <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 0 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "All Example <a href="CppInstance.htm">instances</a> must be <a href="CppInitialize.htm">initialize</a>d");<br/>
 }<br/>
 <br/>
 <b><a href="CppVoid.htm">void</a></b> pvdb::Examples::<a href="CppAdd.htm">Add</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;pvdb::Example&gt;&amp; example)<br/>
@@ -6133,7 +6133,7 @@ pvdb::Examples::Examples(<b><a href="CppConst.htm">const</a></b> <a href="CppVec
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;pvdb::Example&gt; a <a href="CppOperatorAssign.htm">=</a> ExampleFactory::Create("1",Competency::misc);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;pvdb::Example&gt; b <a href="CppOperatorAssign.htm">=</a> ExampleFactory::Create("1",Competency::misc);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;pvdb::Example&gt; c <a href="CppOperatorAssign.htm">=</a> ExampleFactory::Create("1",Competency::uninitialized);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;pvdb::Example&gt; c <a href="CppOperatorAssign.htm">=</a> ExampleFactory::Create("1",Competency::un<a href="CppInitialize.htm">initialize</a>d);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(a <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> a); <a href="CppAssert.htm">assert</a>(a <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> b); <a href="CppAssert.htm">assert</a>(a <a href="CppOperatorNotEqual.htm">!=</a> c);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(b <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> a); <a href="CppAssert.htm">assert</a>(b <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> b); <a href="CppAssert.htm">assert</a>(b <a href="CppOperatorNotEqual.htm">!=</a> c);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(c <a href="CppOperatorNotEqual.htm">!=</a> a); <a href="CppAssert.htm">assert</a>(c <a href="CppOperatorNotEqual.htm">!=</a> b); <a href="CppAssert.htm">assert</a>(c <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> c);<br/>
@@ -6695,7 +6695,7 @@ pvdb::File::File(<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> a <a href="CppOperatorAssign.htm">=</a> <a href="CppBoost.htm">boost</a>::<a href="CppAlgorithm.htm">algorithm</a>::replace_all_copy(s,"&lt;/name&gt;&lt;example&gt;","&lt;/name&gt;&lt;examples&gt;&lt;example&gt;");<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> b <a href="CppOperatorAssign.htm">=</a> <a href="CppBoost.htm">boost</a>::<a href="CppAlgorithm.htm">algorithm</a>::replace_all_copy(a,"&lt;/example&gt;&lt;/concept&gt;","&lt;/example&gt;&lt;/examples&gt;&lt;/concept&gt;");<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> c <a href="CppOperatorAssign.htm">=</a> <a href="CppBoost.htm">boost</a>::<a href="CppAlgorithm.htm">algorithm</a>::replace_all_copy(b,"&lt;example&gt;","&lt;e$xample&gt;&lt;text&gt;");<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> d <a href="CppOperatorAssign.htm">=</a> <a href="CppBoost.htm">boost</a>::<a href="CppAlgorithm.htm">algorithm</a>::replace_all_copy(c,"&lt;/example&gt;","&lt;/text&gt;&lt;competency&gt;uninitialized&lt;/competency&gt;&lt;/e$xample&gt;");<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> d <a href="CppOperatorAssign.htm">=</a> <a href="CppBoost.htm">boost</a>::<a href="CppAlgorithm.htm">algorithm</a>::replace_all_copy(c,"&lt;/example&gt;","&lt;/text&gt;&lt;competency&gt;un<a href="CppInitialize.htm">initialize</a>d&lt;/competency&gt;&lt;/e$xample&gt;");<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> e <a href="CppOperatorAssign.htm">=</a> <a href="CppBoost.htm">boost</a>::<a href="CppAlgorithm.htm">algorithm</a>::replace_all_copy(d,"&lt;/examples&gt;&lt;/concept&gt;","&lt;/examples&gt;&lt;complexity&gt;-1&lt;/complexity&gt;&lt;concreteness&gt;-1&lt;/concreteness&gt;&lt;specificity&gt;-1&lt;/specificity&gt;&lt;/concept&gt;");<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppAdd.htm">Add</a> &lt;examples&gt; when no &lt;example&gt; tags are present<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> f <a href="CppOperatorAssign.htm">=</a> <a href="CppBoost.htm">boost</a>::<a href="CppAlgorithm.htm">algorithm</a>::replace_all_copy(e,"&lt;/name&gt;&lt;/concept&gt;","&lt;/name&gt;&lt;examples&gt;&lt;/examples&gt;&lt;complexity&gt;-1&lt;/complexity&gt;&lt;concreteness&gt;-1&lt;/concreteness&gt;&lt;specificity&gt;-1&lt;/specificity&gt;&lt;/concept&gt;");<br/>
@@ -8406,8 +8406,8 @@ pvdb::Node::Node(<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> sz <a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(ConceptFactory::GetTests().size());<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> i=0; i<a href="CppOperatorNotEqual.htm">!=</a>sz; <a href="CppOperatorPlus.htm">+</a>+i)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;pvdb::Concept&gt; c <a href="CppOperatorAssign.htm">=</a> ConceptFactory::Create("1", { {"2", pvdb::Competency::uninitialized} } );<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;pvdb::Concept&gt; d <a href="CppOperatorAssign.htm">=</a> ConceptFactory::Create("1", { {"2", pvdb::Competency::uninitialized} } );<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;pvdb::Concept&gt; c <a href="CppOperatorAssign.htm">=</a> ConceptFactory::Create("1", { {"2", pvdb::Competency::un<a href="CppInitialize.htm">initialize</a>d} } );<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;pvdb::Concept&gt; d <a href="CppOperatorAssign.htm">=</a> ConceptFactory::Create("1", { {"2", pvdb::Competency::un<a href="CppInitialize.htm">initialize</a>d} } );<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(&amp;c <a href="CppOperatorNotEqual.htm">!=</a> &amp;d);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(c <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> d);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;pvdb::Node&gt; a(<b><a href="CppNew.htm">new</a></b> Node(c));<br/>
@@ -8417,8 +8417,8 @@ pvdb::Node::Node(<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared
 <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Cannot shuffle Concept its examples. No need to as well: the order is important<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;pvdb::Concept&gt; c <a href="CppOperatorAssign.htm">=</a> ConceptFactory::Create("1", { {"2", pvdb::Competency::uninitialized},{"3", pvdb::Competency::uninitialized} } );<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;pvdb::Concept&gt; d <a href="CppOperatorAssign.htm">=</a> ConceptFactory::Create("1", { {"2", pvdb::Competency::uninitialized},{"3", pvdb::Competency::uninitialized} } );<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;pvdb::Concept&gt; c <a href="CppOperatorAssign.htm">=</a> ConceptFactory::Create("1", { {"2", pvdb::Competency::un<a href="CppInitialize.htm">initialize</a>d},{"3", pvdb::Competency::un<a href="CppInitialize.htm">initialize</a>d} } );<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;pvdb::Concept&gt; d <a href="CppOperatorAssign.htm">=</a> ConceptFactory::Create("1", { {"2", pvdb::Competency::un<a href="CppInitialize.htm">initialize</a>d},{"3", pvdb::Competency::un<a href="CppInitialize.htm">initialize</a>d} } );<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(c <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> d);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;pvdb::Node&gt; a(<b><a href="CppNew.htm">new</a></b> Node(c));<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;pvdb::Node&gt; b(<b><a href="CppNew.htm">new</a></b> Node(d));<br/>
@@ -8427,8 +8427,8 @@ pvdb::Node::Node(<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Cannot shuffle Concept its examples. No need to as well: the order is important<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;pvdb::Concept&gt; c <a href="CppOperatorAssign.htm">=</a> ConceptFactory::Create("1", { {"2", pvdb::Competency::uninitialized},{"3", pvdb::Competency::uninitialized} } );<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;pvdb::Concept&gt; d <a href="CppOperatorAssign.htm">=</a> ConceptFactory::Create("1", { {"3", pvdb::Competency::uninitialized},{"2", pvdb::Competency::uninitialized} } );<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;pvdb::Concept&gt; c <a href="CppOperatorAssign.htm">=</a> ConceptFactory::Create("1", { {"2", pvdb::Competency::un<a href="CppInitialize.htm">initialize</a>d},{"3", pvdb::Competency::un<a href="CppInitialize.htm">initialize</a>d} } );<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;pvdb::Concept&gt; d <a href="CppOperatorAssign.htm">=</a> ConceptFactory::Create("1", { {"3", pvdb::Competency::un<a href="CppInitialize.htm">initialize</a>d},{"2", pvdb::Competency::un<a href="CppInitialize.htm">initialize</a>d} } );<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(c <a href="CppOperatorNotEqual.htm">!=</a> d);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;pvdb::Node&gt; a(<b><a href="CppNew.htm">new</a></b> Node(c));<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;pvdb::Node&gt; b(<b><a href="CppNew.htm">new</a></b> Node(d));<br/>
@@ -8437,8 +8437,8 @@ pvdb::Node::Node(<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Cannot shuffle Concept its examples. No need to as well: the order is important<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;pvdb::Concept&gt; c <a href="CppOperatorAssign.htm">=</a> ConceptFactory::Create("1", { {"2", pvdb::Competency::uninitialized},{"3", pvdb::Competency::uninitialized} } );<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;pvdb::Concept&gt; d <a href="CppOperatorAssign.htm">=</a> ConceptFactory::Create("1", { {"2", pvdb::Competency::uninitialized} } );<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;pvdb::Concept&gt; c <a href="CppOperatorAssign.htm">=</a> ConceptFactory::Create("1", { {"2", pvdb::Competency::un<a href="CppInitialize.htm">initialize</a>d},{"3", pvdb::Competency::un<a href="CppInitialize.htm">initialize</a>d} } );<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;pvdb::Concept&gt; d <a href="CppOperatorAssign.htm">=</a> ConceptFactory::Create("1", { {"2", pvdb::Competency::un<a href="CppInitialize.htm">initialize</a>d} } );<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(c <a href="CppOperatorNotEqual.htm">!=</a> d);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;pvdb::Node&gt; a(<b><a href="CppNew.htm">new</a></b> Node(c));<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;pvdb::Node&gt; b(<b><a href="CppNew.htm">new</a></b> Node(d));<br/>
@@ -9548,7 +9548,7 @@ pvdb::Node::Node(<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared
 <a href="CppQt.htm">Qt</a>PvdbCluster<a href="CppWidget.htm">Widget</a> * <a href="CppQt.htm">Qt</a>PvdbClusterDialog::Get<a href="CppWidget.htm">Widget</a>()<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Calls the <b><a href="CppConst.htm">const</a></b> <a href="CppVersion.htm">version</a> of <b><a href="CppOperator.htm">operator</a></b>[]<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>To avoid duplication in <b><a href="CppConst.htm">const</a></b> and non-<b><a href="CppConst.htm">const</a></b> <a href="CppMemberFunction.htm">member functions</a> [1]<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>To avoid duplication in <b><a href="CppConst.htm">const</a></b> and non-<a href="CppConstMemberFunction.htm">const member function</a>s [1]<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <b><a href="CppConst_cast.htm">const_cast</a></b>&lt;<a href="CppQt.htm">Qt</a>PvdbCluster<a href="CppWidget.htm">Widget</a>*&gt;(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst_cast.htm">const_cast</a></b>&lt;<b><a href="CppConst.htm">const</a></b> <a href="CppQt.htm">Qt</a>PvdbClusterDialog*&gt;(<b><a href="CppThis.htm">this</a></b>)-&gt;Get<a href="CppWidget.htm">Widget</a>());<br/>
 }<br/>
@@ -9817,7 +9817,7 @@ pvdb::Node::Node(<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/Do something random<br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> DoRandomStuff();<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Initialize the <a href="CppWidget.htm">widget</a> with a cluster<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/<a href="CppInitialize.htm">Initialize</a> the <a href="CppWidget.htm">widget</a> with a cluster<br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> ReadFromCluster(<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;pvdb::Cluster&gt;&amp; cluster);<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/Write the <a href="CppWidget.htm">widget</a> its data to a cluster<br/>
@@ -9928,7 +9928,7 @@ pvdb::Node::Node(<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared
 <b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a>PvdbCluster<a href="CppWidget.htm">Widget</a>::<a href="CppAdd.htm">Add</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; text)<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppQt.htm">Qt</a>PvdbTree<a href="CppWidget.htm">Widget</a>Item * <b><a href="CppConst.htm">const</a></b> item <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppQt.htm">Qt</a>PvdbTree<a href="CppWidget.htm">Widget</a>Item(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;pvdb::Competency::uninitialized,-1,-1,-1);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;pvdb::Competency::un<a href="CppInitialize.htm">initialize</a>d,-1,-1,-1);<br/>
 &nbsp;&nbsp;item-&gt;setText(0,text.c_str());<br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;addTopLevelItem(item);<br/>
 }<br/>
@@ -9939,7 +9939,7 @@ pvdb::Node::Node(<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared
 &nbsp;&nbsp;&nbsp;&nbsp;pvdb::Competency::misc,0,1,2);<br/>
 &nbsp;&nbsp;top-&gt;setText(0,"SOMETEXT");<br/>
 &nbsp;&nbsp;<a href="CppQt.htm">Qt</a>PvdbTree<a href="CppWidget.htm">Widget</a>Item * <b><a href="CppConst.htm">const</a></b> child_item <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppQt.htm">Qt</a>PvdbTree<a href="CppWidget.htm">Widget</a>Item(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;pvdb::Competency::uninitialized,-1,0,2);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;pvdb::Competency::un<a href="CppInitialize.htm">initialize</a>d,-1,0,2);<br/>
 &nbsp;&nbsp;child_item-&gt;setText(0,"SOMETEXT");<br/>
 &nbsp;&nbsp;top-&gt;addChild(child_item);<br/>
 &nbsp;&nbsp;child_item-&gt;setFlags(<br/>
@@ -10087,7 +10087,7 @@ pvdb::Node::Node(<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(concept-&gt;GetRatingComplexity() <a href="CppOperatorLessEqual.htm">&lt;=</a>&nbsp;&nbsp;2);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQt.htm">Qt</a>PvdbTree<a href="CppWidget.htm">Widget</a>Item * <b><a href="CppConst.htm">const</a></b> top<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppQt.htm">Qt</a>PvdbTree<a href="CppWidget.htm">Widget</a>Item(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pvdb::Competency::uninitialized, <a href="CppComment.htm">//</a>A concept is not classified in competencies<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pvdb::Competency::un<a href="CppInitialize.htm">initialize</a>d, <a href="CppComment.htm">//</a>A concept is not classified in competencies<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;concept-&gt;GetRatingComplexity(),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;concept-&gt;GetRatingConcreteness(),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;concept-&gt;GetRatingSpecificity()<br/>
@@ -10186,7 +10186,7 @@ pvdb::Node::Node(<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppQt.htm">Qt</a>PvdbTree<a href="CppWidget.htm">Widget</a>Item * <b><a href="CppConst.htm">const</a></b> pvdb_item<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <b><a href="CppDynamic_cast.htm">dynamic_cast</a></b>&lt;<a href="CppQt.htm">Qt</a>PvdbTree<a href="CppWidget.htm">Widget</a>Item *&gt;(top-&gt;child(j));<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> pvdb::Competency competency <a href="CppOperatorAssign.htm">=</a> pvdb_item ? pvdb_item-&gt;m_competency : pvdb::Competency::uninitialized;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> pvdb::Competency competency <a href="CppOperatorAssign.htm">=</a> pvdb_item ? pvdb_item-&gt;m_competency : pvdb::Competency::un<a href="CppInitialize.htm">initialize</a>d;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(GetDepth(top-&gt;child(j))<a href="CppOperatorEqual.htm">==</a>1);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;pvdb::Example&gt; p(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pvdb::ExampleFactory::Create(<br/>
@@ -10360,7 +10360,7 @@ pvdb::Competency <a href="CppQt.htm">Qt</a>Competency::ColorToCompetency(<b><a h
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b><br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;{ pvdb::Competency::uninitialized&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;, <a href="CppQt.htm">Qt</a>::white },<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{ pvdb::Competency::un<a href="CppInitialize.htm">initialize</a>d&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;, <a href="CppQt.htm">Qt</a>::white },<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{ pvdb::Competency::profession&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; , <a href="CppQt.htm">Qt</a>::red },<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{ pvdb::Competency::organisations&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;, <a href="CppQColor.htm">QColor</a>(255,127,0) }, <a href="CppComment.htm">//</a>Orange<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{ pvdb::Competency::social_surroundings, <a href="CppQt.htm">Qt</a>::yellow },<br/>
@@ -10376,7 +10376,7 @@ pvdb::Competency <a href="CppQt.htm">Qt</a>Competency::ColorToCompetency(<b><a h
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b><br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorDivide.htm">/</a>*<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;{ pvdb::Competency::uninitialized&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;, <a href="CppQIcon.htm">QIcon</a>(":/images/PicWhite14x14.png") },<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{ pvdb::Competency::un<a href="CppInitialize.htm">initialize</a>d&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;, <a href="CppQIcon.htm">QIcon</a>(":/images/PicWhite14x14.png") },<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{ pvdb::Competency::profession&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; , <a href="CppQIcon.htm">QIcon</a>(":/images/PicPurple14x14.png") },<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{ pvdb::Competency::organisations&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;, <a href="CppQIcon.htm">QIcon</a>(":/images/PicBlue14x14.png") },<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{ pvdb::Competency::social_surroundings, <a href="CppQIcon.htm">QIcon</a>(":/images/PicCyan14x14.png") },<br/>
@@ -10385,7 +10385,7 @@ pvdb::Competency <a href="CppQt.htm">Qt</a>Competency::ColorToCompetency(<b><a h
 &nbsp;&nbsp;&nbsp;&nbsp;{ pvdb::Competency::prof_growth&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;, <a href="CppQIcon.htm">QIcon</a>(":/images/PicOrange14x14.png") },<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{ pvdb::Competency::misc&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; , <a href="CppQIcon.htm">QIcon</a>(":/images/PicRed14x14.png") }<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">*/</a><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;{ pvdb::Competency::uninitialized&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;, <a href="CppQIcon.htm">QIcon</a>(":/images/PicWhite14x14.png") },<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{ pvdb::Competency::un<a href="CppInitialize.htm">initialize</a>d&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;, <a href="CppQIcon.htm">QIcon</a>(":/images/PicWhite14x14.png") },<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{ pvdb::Competency::profession&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; , <a href="CppQIcon.htm">QIcon</a>(":/images/PicRed14x14.png") },<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{ pvdb::Competency::organisations&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;, <a href="CppQIcon.htm">QIcon</a>(":/images/PicOrange14x14.png") },<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{ pvdb::Competency::social_surroundings, <a href="CppQIcon.htm">QIcon</a>(":/images/PicYellow14x14.png") },<br/>
@@ -10797,7 +10797,7 @@ pvdb::Competency <a href="CppQt.htm">Qt</a>Competency::IconToCompetency(<b><a hr
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppQList.htm">QList</a><a href="CppWidget.htm">Widget</a>Item * <b><a href="CppConst.htm">const</a></b> item <a href="CppOperatorAssign.htm">=</a> ui-&gt;list_examples-&gt;item(i);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppQt.htm">Qt</a>PvdbList<a href="CppWidget.htm">Widget</a>Item * <b><a href="CppConst.htm">const</a></b> pvdb_item <a href="CppOperatorAssign.htm">=</a> <b><a href="CppDynamic_cast.htm">dynamic_cast</a></b>&lt;<b><a href="CppConst.htm">const</a></b> <a href="CppQt.htm">Qt</a>PvdbList<a href="CppWidget.htm">Widget</a>Item *&gt;(item);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> pvdb::Competency competency <a href="CppOperatorAssign.htm">=</a> pvdb_item ? pvdb_item-&gt;m_competency : pvdb::Competency::uninitialized;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> pvdb::Competency competency <a href="CppOperatorAssign.htm">=</a> pvdb_item ? pvdb_item-&gt;m_competency : pvdb::Competency::un<a href="CppInitialize.htm">initialize</a>d;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;pvdb::Example&gt; p(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pvdb::ExampleFactory::Create(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;item-&gt;text().toStdString(),<br/>
@@ -10832,7 +10832,7 @@ pvdb::Competency <a href="CppQt.htm">Qt</a>Competency::IconToCompetency(<b><a hr
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppQList.htm">QList</a><a href="CppWidget.htm">Widget</a>Item * <b><a href="CppConst.htm">const</a></b> item <a href="CppOperatorAssign.htm">=</a> ui-&gt;list_examples-&gt;item(i);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppQt.htm">Qt</a>PvdbList<a href="CppWidget.htm">Widget</a>Item * <b><a href="CppConst.htm">const</a></b> pvdb_item <a href="CppOperatorAssign.htm">=</a> <b><a href="CppDynamic_cast.htm">dynamic_cast</a></b>&lt;<b><a href="CppConst.htm">const</a></b> <a href="CppQt.htm">Qt</a>PvdbList<a href="CppWidget.htm">Widget</a>Item *&gt;(item);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> pvdb::Competency competency <a href="CppOperatorAssign.htm">=</a> pvdb_item ? pvdb_item-&gt;m_competency : pvdb::Competency::uninitialized;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> pvdb::Competency competency <a href="CppOperatorAssign.htm">=</a> pvdb_item ? pvdb_item-&gt;m_competency : pvdb::Competency::un<a href="CppInitialize.htm">initialize</a>d;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;pvdb::Example&gt; p(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pvdb::ExampleFactory::Create(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;item-&gt;text().toStdString(),<br/>
@@ -11364,7 +11364,7 @@ pvdb::Competency <a href="CppQt.htm">Qt</a>Competency::IconToCompetency(<b><a hr
 <a href="CppQt.htm">Qt</a>PvdbConceptMap<a href="CppWidget.htm">Widget</a> * <a href="CppQt.htm">Qt</a>PvdbConceptMapDialog::Get<a href="CppWidget.htm">Widget</a>()<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Calls the <b><a href="CppConst.htm">const</a></b> <a href="CppVersion.htm">version</a> of <b><a href="CppOperator.htm">operator</a></b>[]<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>To avoid duplication in <b><a href="CppConst.htm">const</a></b> and non-<b><a href="CppConst.htm">const</a></b> <a href="CppMemberFunction.htm">member functions</a> [1]<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>To avoid duplication in <b><a href="CppConst.htm">const</a></b> and non-<a href="CppConstMemberFunction.htm">const member function</a>s [1]<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <b><a href="CppConst_cast.htm">const_cast</a></b>&lt;<a href="CppQt.htm">Qt</a>PvdbConceptMap<a href="CppWidget.htm">Widget</a>*&gt;(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst_cast.htm">const_cast</a></b>&lt;<b><a href="CppConst.htm">const</a></b> <a href="CppQt.htm">Qt</a>PvdbConceptMapDialog*&gt;(<b><a href="CppThis.htm">this</a></b>)-&gt;Get<a href="CppWidget.htm">Widget</a>());<br/>
 }<br/>
@@ -11533,7 +11533,7 @@ pvdb::Competency <a href="CppQt.htm">Qt</a>Competency::IconToCompetency(<b><a hr
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/Do something random<br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> DoRandomStuff() {}<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Initialize the <a href="CppWidget.htm">widget</a> with a concept map<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/<a href="CppInitialize.htm">Initialize</a> the <a href="CppWidget.htm">widget</a> with a concept map<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/Note that ReadFromConceptMap changes the copy of the map entered, by changing some GUI<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/elements (coordinats of the nodes, <b><a href="CppFor.htm">for</a></b> example). Therefore, the following test will fail:<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppOperatorDivide.htm">/</a>&nbsp;&nbsp;conceptmap<a href="CppWidget.htm">widget</a>-&gt;ReadFromConceptMap(m);<br/>
@@ -11758,7 +11758,7 @@ pvdb::Competency <a href="CppQt.htm">Qt</a>Competency::IconToCompetency(<b><a hr
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/Do something random<br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> DoRandomStuff();<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Initialize the <a href="CppWidget.htm">widget</a> with a concept map<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/<a href="CppInitialize.htm">Initialize</a> the <a href="CppWidget.htm">widget</a> with a concept map<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/Note that ReadFromConceptMap changes the copy of the map entered, by changing some GUI<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/elements (coordinats of the nodes, <b><a href="CppFor.htm">for</a></b> example). Therefore, the following test will fail:<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppOperatorDivide.htm">/</a>&nbsp;&nbsp;conceptmap<a href="CppWidget.htm">widget</a>-&gt;ReadFromConceptMap(m);<br/>
@@ -12484,7 +12484,7 @@ pvdb::Competency <a href="CppQt.htm">Qt</a>Competency::IconToCompetency(<b><a hr
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/Do something random<br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> DoRandomStuff();<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Initialize the <a href="CppWidget.htm">widget</a> with a concept map<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/<a href="CppInitialize.htm">Initialize</a> the <a href="CppWidget.htm">widget</a> with a concept map<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/Note that ReadFromConceptMap changes the copy of the map entered, by changing some GUI<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/elements (coordinats of the nodes, <b><a href="CppFor.htm">for</a></b> example). Therefore, the following test will fail:<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppOperatorDivide.htm">/</a>&nbsp;&nbsp;conceptmap<a href="CppWidget.htm">widget</a>-&gt;ReadFromConceptMap(m);<br/>
@@ -12919,7 +12919,7 @@ pvdb::Competency <a href="CppQt.htm">Qt</a>Competency::IconToCompetency(<b><a hr
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/Obtain the <a href="CppQGraphicsScene.htm">QGraphicsScene</a><br/>
 &nbsp;&nbsp;<a href="CppQGraphicsScene.htm">QGraphicsScene</a>* GetScene() <b><a href="CppConst.htm">const</a></b>;<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Initialize the <a href="CppWidget.htm">widget</a> with a concept map<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/<a href="CppInitialize.htm">Initialize</a> the <a href="CppWidget.htm">widget</a> with a concept map<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/map cannot be <b><a href="CppConst.htm">const</a></b>, as the user might want to edit it<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/Note that ReadFromConceptMap changes the copy of the map entered, by changing some GUI<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/elements (coordinats of the nodes, <b><a href="CppFor.htm">for</a></b> example). Therefore, the following test will fail:<br/>
@@ -14198,7 +14198,7 @@ pvdb::Competency <a href="CppQt.htm">Qt</a>Competency::IconToCompetency(<b><a hr
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(p);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> pvdb::Competency <b><a href="CppThis.htm">this</a></b>_competency <a href="CppOperatorAssign.htm">=</a> p-&gt;GetCompetency();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <b><a href="CppThis.htm">this</a></b>_competency <a href="CppOperatorNotEqual.htm">!=</a> pvdb::Competency::uninitialized;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <b><a href="CppThis.htm">this</a></b>_competency <a href="CppOperatorNotEqual.htm">!=</a> pvdb::Competency::un<a href="CppInitialize.htm">initialize</a>d;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (n_judged <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 0)<br/>
@@ -17251,7 +17251,7 @@ QBrush <a href="CppQt.htm">Qt</a>PvdbNodeItem::brush() <b><a href="CppConst.htm"
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(p);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> pvdb::Competency <b><a href="CppThis.htm">this</a></b>_competency <a href="CppOperatorAssign.htm">=</a> p-&gt;GetCompetency();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <b><a href="CppThis.htm">this</a></b>_competency <a href="CppOperatorNotEqual.htm">!=</a> pvdb::Competency::uninitialized;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <b><a href="CppThis.htm">this</a></b>_competency <a href="CppOperatorNotEqual.htm">!=</a> pvdb::Competency::un<a href="CppInitialize.htm">initialize</a>d;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (n_judged <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 0)<br/>
@@ -17994,7 +17994,7 @@ QBrush <a href="CppQt.htm">Qt</a>PvdbNodeItem::brush() <b><a href="CppConst.htm"
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> n_rows <a href="CppOperatorAssign.htm">=</a> table-&gt;rowCount();<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b>(<b><a href="CppInt.htm">int</a></b> i=0; i<a href="CppOperatorNotEqual.htm">!=</a>n_rows; <a href="CppOperatorPlus.htm">+</a>+i)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> pvdb::Competency competency <a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;pvdb::Competency&gt;(i <a href="CppOperatorPlus.htm">+</a> 1); <a href="CppComment.htm">//</a>Skip 0 <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> uninitialized<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> pvdb::Competency competency <a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;pvdb::Competency&gt;(i <a href="CppOperatorPlus.htm">+</a> 1); <a href="CppComment.htm">//</a>Skip 0 <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> un<a href="CppInitialize.htm">initialize</a>d<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> text <a href="CppOperatorAssign.htm">=</a> pvdb::CompetencyToDutchStr(competency);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppQIcon.htm">QIcon</a> icon <a href="CppOperatorAssign.htm">=</a> pvdb::<a href="CppQt.htm">Qt</a>Competency::CompetencyToIcon(competency);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQTableWidget.htm">QTableWidget</a>Item * <b><a href="CppConst.htm">const</a></b> item <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppQTableWidget.htm">QTableWidget</a>Item;<br/>
@@ -18036,7 +18036,7 @@ QBrush <a href="CppQt.htm">Qt</a>PvdbNodeItem::brush() <b><a href="CppConst.htm"
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> col <a href="CppOperatorAssign.htm">=</a> 0;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> row <a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(p.first) <a href="CppOperatorMinus.htm">-</a> 1;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (row <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <a href="CppOperatorMinus.htm">-</a>1) <b><a href="CppContinue.htm">continue</a></b>; <a href="CppComment.htm">//</a>0 <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> uninitialized<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (row <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <a href="CppOperatorMinus.htm">-</a>1) <b><a href="CppContinue.htm">continue</a></b>; <a href="CppComment.htm">//</a>0 <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> un<a href="CppInitialize.htm">initialize</a>d<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(row <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 0);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(row &lt; table-&gt;rowCount());<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQTableWidget.htm">QTableWidget</a>Item * <b><a href="CppConst.htm">const</a></b> item&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppQTableWidget.htm">QTableWidget</a>Item;<br/>
@@ -19471,7 +19471,7 @@ QBrush <a href="CppQt.htm">Qt</a>PvdbNodeItem::brush() <b><a href="CppConst.htm"
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppElse.htm">else</a></b><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;example-&gt;SetCompetency(pvdb::Competency::uninitialized);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;example-&gt;SetCompetency(pvdb::Competency::un<a href="CppInitialize.htm">initialize</a>d);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;);<br/>

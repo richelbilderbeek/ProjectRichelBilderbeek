@@ -3,6 +3,7 @@
 
 #include "musicnote.h"
 
+namespace ribi {
 namespace Music {
 
 ///A Bar is a collection of Note instances ensuring that
@@ -20,5 +21,6 @@ struct Bar
 };
 
 } //~namespace Music
+} //~namespace ribi
 
 #endif // MUSICBAR_H

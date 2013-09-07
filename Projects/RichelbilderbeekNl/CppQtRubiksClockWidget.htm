@@ -64,15 +64,13 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppIfndef.htm">#ifndef</a> QTRUBIKSCLOCKWIDGET_H<br/>
 <a href="CppDefine.htm">#define</a> QTRUBIKSCLOCKWIDGET_H<br/>
 <br/>
-<a href="CppIfdef.htm">#ifdef</a> _WIN32<br/>
-<a href="CppComment.htm">//</a>See http://www.richelbilderbeek.nl/Cpp<a href="CppCompile.htm">Compile</a>ErrorSwprintfHasNotBeenDeclared.htm<br/>
-<a href="CppUndef.htm">#undef</a> __STRICT_ANSI__<br/>
-<a href="CppEndif.htm">#endif</a><br/>
-<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppStringH.htm">string</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
 <br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-<b><a href="CppTypedef.htm">typedef</a></b>s"<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppSignals2.htm">signals2</a>.hpp&gt;<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppQWidget.htm">QWidget</a>&gt;<br/>
 <br/>
@@ -81,6 +79,9 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <br/>
 <b><a href="CppNamespace.htm">namespace</a></b> <a href="CppWt.htm">Wt</a> { <b><a href="CppStruct.htm">struct</a></b> <a href="CppWMouseEvent.htm">WMouseEvent</a>Event; }<br/>
 <b><a href="CppStruct.htm">struct</a></b> <a href="CppQPainter.htm">QPainter</a>;<br/>
+<br/>
+<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a> {<br/>
+<br/>
 <b><a href="CppStruct.htm">struct</a></b> <a href="CppRubiksClock.htm">RubiksClock</a>;<br/>
 <br/>
 <a href="CppComment.htm">///</a><a href="CppQtRubiksClockWidget.htm">QtRubiksClockWidget</a> displays a <a href="CppRubiksClock.htm">RubiksClock</a><br/>
@@ -195,6 +196,8 @@ __published:	<a href="CppComment.htm">//</a> IDE-managed <a href="CppComponent.h
 <br/>
 <a href="CppComment.htm">*/</a><br/>
 <br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a><br/>
+<br/>
 <a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> QTRUBIKSCLOCKWIDGET_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
@@ -227,16 +230,10 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="CppQtRubiksClockWidget.htm">CppQtRubiksClockWidget</a>.htm<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppIfdef.htm">#ifdef</a> _WIN32<br/>
-<a href="CppComment.htm">//</a>See http://www.richelbilderbeek.nl/Cpp<a href="CppCompile.htm">Compile</a>ErrorUnableToFindNumericLiteralOperatorOperatorQ.htm<br/>
-<a href="CppPreIf.htm">#if</a> !(__GNUC__ <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 4 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> __GNUC_MINOR__ <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 8)<br/>
-<a href="CppComment.htm">//</a>See http://www.richelbilderbeek.nl/Cpp<a href="CppCompile.htm">Compile</a>ErrorSwprintfHasNotBeenDeclared.htm<br/>
-<a href="CppUndef.htm">#undef</a> __STRICT_ANSI__<br/>
-<a href="CppEndif.htm">#endif</a><br/>
-<a href="CppEndif.htm">#endif</a><br/>
 <br/>
-<a href="CppComment.htm">//</a><a href="CppInclude.htm">#include</a> own <a href="CppHeaderFile.htm">header file</a> as first substantive line of code, from:<br/>
-<a href="CppComment.htm">//</a> * John Lakos. Large-Scale <a href="Cpp.htm">C++</a> Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110<br/>
+<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-<b><a href="CppTypedef.htm">typedef</a></b>s"<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppQtRubiksClockWidget.htm">qtrubiksclockwidget</a>.h"<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppIostreamH.htm">iostream</a>&gt;<br/>
@@ -257,7 +254,9 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppQtDialWidget.htm">qtdialwidget</a>.h"<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppQtToggleButtonWidget.htm">qttogglebuttonwidget</a>.h"<br/>
 <br/>
-<a href="CppQtRubiksClockWidget.htm">QtRubiksClockWidget</a>::<a href="CppQtRubiksClockWidget.htm">QtRubiksClockWidget</a>(<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
+<br/>
+<a href="CppRibi.htm\">ribi</a>::<a href="CppQtRubiksClockWidget.htm">QtRubiksClockWidget</a>::<a href="CppQtRubiksClockWidget.htm">QtRubiksClockWidget</a>(<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppBool.htm">bool</a></b> toggled,<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> red,<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> green,<br/>
@@ -268,28 +267,28 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <br/>
 &nbsp;&nbsp;m_<a href="CppWidget.htm">widget</a>-&gt;m_signal_<a href="CppWidget.htm">widget</a>_flipped.connect(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBind.htm">boost::bind</a>(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;<a href="CppQtRubiksClockWidget.htm">QtRubiksClockWidget</a>::DoRepaint,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;<a href="CppRibi.htm\">ribi</a>::<a href="CppQtRubiksClockWidget.htm">QtRubiksClockWidget</a>::DoRepaint,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>));<br/>
 <br/>
 &nbsp;&nbsp;m_<a href="CppWidget.htm">widget</a>-&gt;Get<a href="CppRubiksClock.htm">RubiksClock</a>()-&gt;m_signal_clock_changed.connect(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBind.htm">boost::bind</a>(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;<a href="CppQtRubiksClockWidget.htm">QtRubiksClockWidget</a>::DoRepaint,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;<a href="CppRibi.htm\">ribi</a>::<a href="CppQtRubiksClockWidget.htm">QtRubiksClockWidget</a>::DoRepaint,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>));<br/>
 <br/>
 &nbsp;&nbsp;m_<a href="CppWidget.htm">widget</a>-&gt;m_signal_<a href="CppGeometry.htm">geometry</a>_changed.connect(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBind.htm">boost::bind</a>(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;<a href="CppQtRubiksClockWidget.htm">QtRubiksClockWidget</a>::OnResize,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;<a href="CppRibi.htm\">ribi</a>::<a href="CppQtRubiksClockWidget.htm">QtRubiksClockWidget</a>::OnResize,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>));<br/>
 <br/>
 &nbsp;&nbsp;m_<a href="CppWidget.htm">widget</a>-&gt;SetGeometry(Rect(0,0,200,200));<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppQtRubiksClockWidget.htm">QtRubiksClockWidget</a>::DoRepaint()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQtRubiksClockWidget.htm">QtRubiksClockWidget</a>::DoRepaint()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;update();<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppQtRubiksClockWidget.htm">QtRubiksClockWidget</a>::Draw<a href="CppRubiksClock.htm">RubiksClock</a>(<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQtRubiksClockWidget.htm">QtRubiksClockWidget</a>::Draw<a href="CppRubiksClock.htm">RubiksClock</a>(<br/>
 &nbsp;&nbsp;<a href="CppQPainter.htm">QPainter</a>&amp; painter,<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> left, <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> top,<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> width, <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> height,<br/>
@@ -350,7 +349,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;}<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppQtRubiksClockWidget.htm">QtRubiksClockWidget</a>::Draw<a href="CppRubiksClock.htm">RubiksClock</a>(<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQtRubiksClockWidget.htm">QtRubiksClockWidget</a>::Draw<a href="CppRubiksClock.htm">RubiksClock</a>(<br/>
 &nbsp;&nbsp;<a href="CppQPainter.htm">QPainter</a>&amp; painter,<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppRubiksClockWidget.htm">RubiksClockWidget</a> * <b><a href="CppConst.htm">const</a></b> <a href="CppWidget.htm">widget</a>)<br/>
 {<br/>
@@ -364,12 +363,12 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppWidget.htm">widget</a>-&gt;GetDisplayFront());<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppQtRubiksClockWidget.htm">QtRubiksClockWidget</a>::Get<a href="CppVersion.htm">Version</a>()<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppRibi.htm\">ribi</a>::<a href="CppQtRubiksClockWidget.htm">QtRubiksClockWidget</a>::Get<a href="CppVersion.htm">Version</a>()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> "1.0";<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppQtRubiksClockWidget.htm">QtRubiksClockWidget</a>::Get<a href="CppVersion.htm">Version</a>History()<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm\">ribi</a>::<a href="CppQtRubiksClockWidget.htm">QtRubiksClockWidget</a>::Get<a href="CppVersion.htm">Version</a>History()<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v;<br/>
 &nbsp;&nbsp;v.push_back("YYYY-MM-DD: <a href="CppVersion.htm">version</a> X.Y: [description]");<br/>
@@ -377,7 +376,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppQtRubiksClockWidget.htm">QtRubiksClockWidget</a>::mousePressEvent(<a href="CppQMouseEvent.htm">QMouseEvent</a> * e)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQtRubiksClockWidget.htm">QtRubiksClockWidget</a>::mousePressEvent(<a href="CppQMouseEvent.htm">QMouseEvent</a> * e)<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x <a href="CppOperatorAssign.htm">=</a> e-&gt;x();<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> y <a href="CppOperatorAssign.htm">=</a> e-&gt;y();<br/>
@@ -386,18 +385,18 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;m_<a href="CppWidget.htm">widget</a>-&gt;Click(x,y,is_left_button);<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppQtRubiksClockWidget.htm">QtRubiksClockWidget</a>::OnResize()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQtRubiksClockWidget.htm">QtRubiksClockWidget</a>::OnResize()<br/>
 {<br/>
 &nbsp;&nbsp;resize(m_<a href="CppWidget.htm">widget</a>-&gt;GetGeometry().GetWidth(),m_<a href="CppWidget.htm">widget</a>-&gt;GetGeometry().GetHeight());<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppQtRubiksClockWidget.htm">QtRubiksClockWidget</a>::paintEvent(<a href="CppQPaintEvent.htm">QPaintEvent</a> *)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQtRubiksClockWidget.htm">QtRubiksClockWidget</a>::paintEvent(<a href="CppQPaintEvent.htm">QPaintEvent</a> *)<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppQPainter.htm">QPainter</a> painter(<b><a href="CppThis.htm">this</a></b>);<br/>
 &nbsp;&nbsp;Draw<a href="CppRubiksClock.htm">RubiksClock</a>(painter,m_<a href="CppWidget.htm">widget</a>.get());<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppQtRubiksClockWidget.htm">QtRubiksClockWidget</a>::resize(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> width, <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> height)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQtRubiksClockWidget.htm">QtRubiksClockWidget</a>::resize(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> width, <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> height)<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppQWidget.htm">QWidget</a>::resize(width,height);<br/>
 }<br/>

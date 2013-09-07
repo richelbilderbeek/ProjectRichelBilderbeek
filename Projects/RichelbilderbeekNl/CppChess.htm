@@ -2063,7 +2063,7 @@ Board::Board(<b><a href="CppConst.htm">const</a></b> Board&amp; other)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (b-&gt;CanDoMove(*Chess::MoveFactory::Create(s),Player::white)) { <a href="CppTRACE.htm">TRACE</a>(s); }<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!b-&gt;CanDoMove(*Chess::MoveFactory::Create(s),Player::white));<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCatch.htm">catch</a></b> (<a href="CppException.htm">std::exception</a>&amp; e)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCatch.htm">catch</a></b> (<a href="CppStdException.htm">std::exception</a>&amp; e)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>OK<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
@@ -2305,7 +2305,7 @@ BoardWidget::BoardWidget(<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Move maybe_move(s);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (<b><a href="CppThis.htm">this</a></b>-&gt;CanDoMove(maybe_move)) move.reset(<b><a href="CppNew.htm">new</a></b> Move(maybe_move));<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCatch.htm">catch</a></b> (<a href="CppException.htm">std::exception</a>&amp; e)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCatch.htm">catch</a></b> (<a href="CppStdException.htm">std::exception</a>&amp; e)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>No problem<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
@@ -2840,7 +2840,7 @@ File::File(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>(s);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!"Should not get here");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCatch.htm">catch</a></b> (<a href="CppException.htm">std::exception</a>&amp; e)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCatch.htm">catch</a></b> (<a href="CppStdException.htm">std::exception</a>&amp; e)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>OK!<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
@@ -2859,7 +2859,7 @@ File::File(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>(i);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!"Should not get here");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCatch.htm">catch</a></b> (<a href="CppException.htm">std::exception</a>&amp; e)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCatch.htm">catch</a></b> (<a href="CppStdException.htm">std::exception</a>&amp; e)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>OK!<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
@@ -3831,20 +3831,20 @@ Move::Move(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (s.empty()) <b><a href="CppThrow.htm">throw</a></b> <a href="CppLogic_error.htm">std::logic_error</a>("<a href="CppString.htm">std::string</a> to parse is empty");<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (!m_to <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> !m_is_castling <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> (!m_score))<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> error <a href="CppOperatorAssign.htm">=</a> "Chess::Move::Move exception: m_to not initialized <b><a href="CppFor.htm">for</a></b> non-castling non-score move " <a href="CppOperatorPlus.htm">+</a> s;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> error <a href="CppOperatorAssign.htm">=</a> "Chess::Move::Move <a href="CppException.htm">exception</a>: m_to not <a href="CppInitialize.htm">initialize</a>d <b><a href="CppFor.htm">for</a></b> non-castling non-score move " <a href="CppOperatorPlus.htm">+</a> s;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThrow.htm">throw</a></b> <a href="CppLogic_error.htm">std::logic_error</a>(error.c_str());<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (!m_piece <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> !m_is_castling <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> !m_score)<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> error <a href="CppOperatorAssign.htm">=</a> "Chess::Move::Move exception: m_piece not initialized <b><a href="CppFor.htm">for</a></b> non-castling non-score move " <a href="CppOperatorPlus.htm">+</a> s;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> error <a href="CppOperatorAssign.htm">=</a> "Chess::Move::Move <a href="CppException.htm">exception</a>: m_piece not <a href="CppInitialize.htm">initialize</a>d <b><a href="CppFor.htm">for</a></b> non-castling non-score move " <a href="CppOperatorPlus.htm">+</a> s;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThrow.htm">throw</a></b> <a href="CppLogic_error.htm">std::logic_error</a>(error.c_str());<br/>
 &nbsp;&nbsp;}<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (m_is_en_passant <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> !m_is_capture) <b><a href="CppThrow.htm">throw</a></b> <a href="CppLogic_error.htm">std::logic_error</a>("Chess::Move::Move exception: every en passant capture is a capture");<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (m_is_en_passant <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> !m_is_capture) <b><a href="CppThrow.htm">throw</a></b> <a href="CppLogic_error.htm">std::logic_error</a>("Chess::Move::Move <a href="CppException.htm">exception</a>: every en passant capture is a capture");<br/>
 <br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (boost::regex_search(s,<a href="CppBoostRegex.htm">boost::regex</a>("e.p.")) <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> !m_is_en_passant)<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> error <a href="CppOperatorAssign.htm">=</a> "Chess::Move::Move exception: move is an invalid en passant move: " <a href="CppOperatorPlus.htm">+</a> s;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> error <a href="CppOperatorAssign.htm">=</a> "Chess::Move::Move <a href="CppException.htm">exception</a>: move is an invalid en passant move: " <a href="CppOperatorPlus.htm">+</a> s;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThrow.htm">throw</a></b> <a href="CppLogic_error.htm">std::logic_error</a>(error.c_str());<br/>
 &nbsp;&nbsp;}<br/>
 <br/>
@@ -3852,9 +3852,9 @@ Move::Move(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (m_is_castling)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThrow.htm">throw</a></b> <a href="CppLogic_error.htm">std::logic_error</a>("Chess::Move::Move exception: m_piece cannot be initialized in a castling move");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThrow.htm">throw</a></b> <a href="CppLogic_error.htm">std::logic_error</a>("Chess::Move::Move <a href="CppException.htm">exception</a>: m_piece cannot be <a href="CppInitialize.htm">initialize</a>d in a castling move");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (m_score) <b><a href="CppThrow.htm">throw</a></b> <a href="CppLogic_error.htm">std::logic_error</a>("Chess::Move::Move exception: m_piece cannot be initialized in a score move");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (m_score) <b><a href="CppThrow.htm">throw</a></b> <a href="CppLogic_error.htm">std::logic_error</a>("Chess::Move::Move <a href="CppException.htm">exception</a>: m_piece cannot be <a href="CppInitialize.htm">initialize</a>d in a score move");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppBool.htm">bool</a></b> valid <a href="CppOperatorAssign.htm">=</a> m_piece-&gt;CanDoMove(*<b><a href="CppThis.htm">this</a></b>);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (!valid)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
@@ -3922,7 +3922,7 @@ Move::Move(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::
 <br/>
 <b><a href="CppBool.htm">bool</a></b> Move::ParseIsCapture(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; s)<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppIf.htm">if</a></b> (s.empty()) <b><a href="CppThrow.htm">throw</a></b> <a href="CppLogic_error.htm">std::logic_error</a>("Move::ParseIsCapture exception: move must not be empty");<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppIf.htm">if</a></b> (s.empty()) <b><a href="CppThrow.htm">throw</a></b> <a href="CppLogic_error.htm">std::logic_error</a>("Move::ParseIsCapture <a href="CppException.htm">exception</a>: move must not be empty");<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppReturn.htm">return</a></b> <a href="CppRegex_match.htm">boost::regex_match</a>(s,<a href="CppBoostRegex.htm">boost::regex</a>("[a-h]\\d?x.*"));<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <a href="CppRegex_match.htm">boost::regex_match</a>(s,<a href="CppBoostRegex.htm">boost::regex</a>("(B|K|N|Q|R)?([a-h])?([1-8])?x[a-h][1-8](e.p.)?(\\+|\\#)?"));<br/>
 }<br/>
@@ -3936,13 +3936,13 @@ Move::Move(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::
 <br/>
 <b><a href="CppBool.htm">bool</a></b> Move::ParseIsCheck(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; s)<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (s.empty()) <b><a href="CppThrow.htm">throw</a></b> <a href="CppLogic_error.htm">std::logic_error</a>("Move::IsCheck(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; s) exception: move must not be empty");<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (s.empty()) <b><a href="CppThrow.htm">throw</a></b> <a href="CppLogic_error.htm">std::logic_error</a>("Move::IsCheck(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; s) <a href="CppException.htm">exception</a>: move must not be empty");<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> s[s.size() <a href="CppOperatorMinus.htm">-</a> 1] <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> '+';<br/>
 }<br/>
 <br/>
 <b><a href="CppBool.htm">bool</a></b> Move::ParseIsCheckmate(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; s)<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (s.empty()) <b><a href="CppThrow.htm">throw</a></b> <a href="CppLogic_error.htm">std::logic_error</a>("Move::IsCheckmate(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; s) exception: move must not be empty");<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (s.empty()) <b><a href="CppThrow.htm">throw</a></b> <a href="CppLogic_error.htm">std::logic_error</a>("Move::IsCheckmate(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; s) <a href="CppException.htm">exception</a>: move must not be empty");<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> s[s.size() <a href="CppOperatorMinus.htm">-</a> 1] <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> '#';<br/>
 }<br/>
 <br/>
@@ -3967,7 +3967,7 @@ Move::Move(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::
 <br/>
 <b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Chess::Piece&gt; Move::ParsePiece(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; s)<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (s.empty()) <b><a href="CppThrow.htm">throw</a></b> <a href="CppLogic_error.htm">std::logic_error</a>("Move::ParsePiece exception: move must not be empty");<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (s.empty()) <b><a href="CppThrow.htm">throw</a></b> <a href="CppLogic_error.htm">std::logic_error</a>("Move::ParsePiece <a href="CppException.htm">exception</a>: move must not be empty");<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Chess::Piece&gt; p <a href="CppOperatorAssign.htm">=</a> PieceFactory::CreateFromMove(s);<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(p);<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> p;<br/>
@@ -3975,7 +3975,7 @@ Move::Move(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::
 <br/>
 <b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Chess::Piece&gt; Move::ParsePiecePromotion(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; s)<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (s.empty()) <b><a href="CppThrow.htm">throw</a></b> <a href="CppLogic_error.htm">std::logic_error</a>("Move::ParsePiece exception: move must not be empty");<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (s.empty()) <b><a href="CppThrow.htm">throw</a></b> <a href="CppLogic_error.htm">std::logic_error</a>("Move::ParsePiece <a href="CppException.htm">exception</a>: move must not be empty");<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Chess::Piece&gt; p <a href="CppOperatorAssign.htm">=</a> PieceFactory::CreateFromPromotion(s);<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(p);<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> p;<br/>
@@ -3989,7 +3989,7 @@ Move::Move(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::
 &nbsp;&nbsp;&nbsp;&nbsp;Chess::Score * <b><a href="CppConst.htm">const</a></b> ptr <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> Chess::Score(s);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;p.reset(ptr);<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<b><a href="CppCatch.htm">catch</a></b> (<a href="CppException.htm">std::exception</a>&amp; e)<br/>
+&nbsp;&nbsp;<b><a href="CppCatch.htm">catch</a></b> (<a href="CppStdException.htm">std::exception</a>&amp; e)<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Move is not a Score, no problem<br/>
 &nbsp;&nbsp;}<br/>
@@ -4971,7 +4971,7 @@ Move::Move(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Chess::Move m(s);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCatch.htm">catch</a></b> (<a href="CppException.htm">std::exception</a>&amp; e)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCatch.htm">catch</a></b> (<a href="CppStdException.htm">std::exception</a>&amp; e)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>(s);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>(e.what());<br/>
@@ -5000,7 +5000,7 @@ Move::Move(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>(m.ToStr());<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!"Should not get here");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCatch.htm">catch</a></b> (<a href="CppException.htm">std::exception</a>&amp; e)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCatch.htm">catch</a></b> (<a href="CppStdException.htm">std::exception</a>&amp; e)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>OK<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
@@ -5035,7 +5035,7 @@ Move::Move(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppTRACE.htm">TRACE</a>(s);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Chess::Move m(s);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCatch.htm">catch</a></b> (<a href="CppException.htm">std::exception</a>&amp; e)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCatch.htm">catch</a></b> (<a href="CppStdException.htm">std::exception</a>&amp; e)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>(s);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>(e.what());<br/>
@@ -5602,7 +5602,7 @@ PieceBishop::PieceBishop(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;v.push_back(m);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCatch.htm">catch</a></b> (<a href="CppException.htm">std::exception</a>&amp; e)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCatch.htm">catch</a></b> (<a href="CppStdException.htm">std::exception</a>&amp; e)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>No problem<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
@@ -5617,7 +5617,7 @@ PieceBishop::PieceBishop(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(m);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;v.push_back(m);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCatch.htm">catch</a></b> (<a href="CppException.htm">std::exception</a>&amp; e)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCatch.htm">catch</a></b> (<a href="CppStdException.htm">std::exception</a>&amp; e)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>No problem<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
@@ -5630,7 +5630,7 @@ PieceBishop::PieceBishop(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Move&gt; m <a href="CppOperatorAssign.htm">=</a> MoveFactory::Create(<a href="CppLexical_cast.htm">boost::lexical_cast</a>&lt;<a href="CppString.htm">std::string</a>&gt;(<b><a href="CppThis.htm">this</a></b>-&gt;GetNameChar()) <a href="CppOperatorPlus.htm">+</a> <b><a href="CppThis.htm">this</a></b>-&gt;GetSquare()-&gt;ToStr() <a href="CppOperatorPlus.htm">+</a> " " <a href="CppOperatorPlus.htm">+</a> s-&gt;ToStr());<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;v.push_back(m);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCatch.htm">catch</a></b> (<a href="CppException.htm">std::exception</a>&amp; e)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCatch.htm">catch</a></b> (<a href="CppStdException.htm">std::exception</a>&amp; e)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>No problem<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
@@ -5644,7 +5644,7 @@ PieceBishop::PieceBishop(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Move&gt; m <a href="CppOperatorAssign.htm">=</a> MoveFactory::Create(<a href="CppLexical_cast.htm">boost::lexical_cast</a>&lt;<a href="CppString.htm">std::string</a>&gt;(<b><a href="CppThis.htm">this</a></b>-&gt;GetNameChar()) <a href="CppOperatorPlus.htm">+</a> <b><a href="CppThis.htm">this</a></b>-&gt;GetSquare()-&gt;ToStr() <a href="CppOperatorPlus.htm">+</a> " " <a href="CppOperatorPlus.htm">+</a> s-&gt;ToStr());<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;v.push_back(m);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCatch.htm">catch</a></b> (<a href="CppException.htm">std::exception</a>&amp; e)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCatch.htm">catch</a></b> (<a href="CppStdException.htm">std::exception</a>&amp; e)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>No problem<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
@@ -5745,7 +5745,7 @@ PieceKing::PieceKing(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> s-&gt;ToStr());<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;v.push_back(m);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCatch.htm">catch</a></b> (<a href="CppException.htm">std::exception</a>&amp; e)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCatch.htm">catch</a></b> (<a href="CppStdException.htm">std::exception</a>&amp; e)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>No problem<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
@@ -5828,7 +5828,7 @@ PieceKnight::PieceKnight(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> s-&gt;ToStr());<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;v.push_back(m);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCatch.htm">catch</a></b> (<a href="CppException.htm">std::exception</a>&amp; e)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCatch.htm">catch</a></b> (<a href="CppStdException.htm">std::exception</a>&amp; e)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>No problem<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
@@ -5988,7 +5988,7 @@ PiecePawn::PiecePawn(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppTRACE.htm">TRACE</a>(m);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;v.push_back(m);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCatch.htm">catch</a></b> (<a href="CppException.htm">std::exception</a>&amp; e)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCatch.htm">catch</a></b> (<a href="CppStdException.htm">std::exception</a>&amp; e)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppTRACE.htm">TRACE</a>(e.what());<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>No problem<br/>
@@ -6063,7 +6063,7 @@ PieceQueen::PieceQueen(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Move&gt; m <a href="CppOperatorAssign.htm">=</a> MoveFactory::Create(<a href="CppLexical_cast.htm">boost::lexical_cast</a>&lt;<a href="CppString.htm">std::string</a>&gt;(<b><a href="CppThis.htm">this</a></b>-&gt;GetNameChar()) <a href="CppOperatorPlus.htm">+</a> <b><a href="CppThis.htm">this</a></b>-&gt;GetSquare()-&gt;ToStr() <a href="CppOperatorPlus.htm">+</a> " " <a href="CppOperatorPlus.htm">+</a> s-&gt;ToStr());<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;v.push_back(m);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCatch.htm">catch</a></b> (<a href="CppException.htm">std::exception</a>&amp; e)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCatch.htm">catch</a></b> (<a href="CppStdException.htm">std::exception</a>&amp; e)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>No problem<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
@@ -6076,7 +6076,7 @@ PieceQueen::PieceQueen(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Move&gt; m <a href="CppOperatorAssign.htm">=</a> MoveFactory::Create(<a href="CppLexical_cast.htm">boost::lexical_cast</a>&lt;<a href="CppString.htm">std::string</a>&gt;(<b><a href="CppThis.htm">this</a></b>-&gt;GetNameChar()) <a href="CppOperatorPlus.htm">+</a> <b><a href="CppThis.htm">this</a></b>-&gt;GetSquare()-&gt;ToStr() <a href="CppOperatorPlus.htm">+</a> " " <a href="CppOperatorPlus.htm">+</a> s-&gt;ToStr());<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;v.push_back(m);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCatch.htm">catch</a></b> (<a href="CppException.htm">std::exception</a>&amp; e)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCatch.htm">catch</a></b> (<a href="CppStdException.htm">std::exception</a>&amp; e)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>No problem<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
@@ -6089,7 +6089,7 @@ PieceQueen::PieceQueen(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Move&gt; m <a href="CppOperatorAssign.htm">=</a> MoveFactory::Create(<a href="CppLexical_cast.htm">boost::lexical_cast</a>&lt;<a href="CppString.htm">std::string</a>&gt;(<b><a href="CppThis.htm">this</a></b>-&gt;GetNameChar()) <a href="CppOperatorPlus.htm">+</a> <b><a href="CppThis.htm">this</a></b>-&gt;GetSquare()-&gt;ToStr() <a href="CppOperatorPlus.htm">+</a> " " <a href="CppOperatorPlus.htm">+</a> s-&gt;ToStr());<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;v.push_back(m);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCatch.htm">catch</a></b> (<a href="CppException.htm">std::exception</a>&amp; e)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCatch.htm">catch</a></b> (<a href="CppStdException.htm">std::exception</a>&amp; e)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>No problem<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
@@ -6103,7 +6103,7 @@ PieceQueen::PieceQueen(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Move&gt; m <a href="CppOperatorAssign.htm">=</a> MoveFactory::Create(<a href="CppLexical_cast.htm">boost::lexical_cast</a>&lt;<a href="CppString.htm">std::string</a>&gt;(<b><a href="CppThis.htm">this</a></b>-&gt;GetNameChar()) <a href="CppOperatorPlus.htm">+</a> <b><a href="CppThis.htm">this</a></b>-&gt;GetSquare()-&gt;ToStr() <a href="CppOperatorPlus.htm">+</a> " " <a href="CppOperatorPlus.htm">+</a> s-&gt;ToStr());<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;v.push_back(m);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCatch.htm">catch</a></b> (<a href="CppException.htm">std::exception</a>&amp; e)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCatch.htm">catch</a></b> (<a href="CppStdException.htm">std::exception</a>&amp; e)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>No problem<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
@@ -6117,7 +6117,7 @@ PieceQueen::PieceQueen(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Move&gt; m <a href="CppOperatorAssign.htm">=</a> MoveFactory::Create(<a href="CppLexical_cast.htm">boost::lexical_cast</a>&lt;<a href="CppString.htm">std::string</a>&gt;(<b><a href="CppThis.htm">this</a></b>-&gt;GetNameChar()) <a href="CppOperatorPlus.htm">+</a> <b><a href="CppThis.htm">this</a></b>-&gt;GetSquare()-&gt;ToStr() <a href="CppOperatorPlus.htm">+</a> " " <a href="CppOperatorPlus.htm">+</a> s-&gt;ToStr());<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;v.push_back(m);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCatch.htm">catch</a></b> (<a href="CppException.htm">std::exception</a>&amp; e)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCatch.htm">catch</a></b> (<a href="CppStdException.htm">std::exception</a>&amp; e)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>No problem<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
@@ -6131,7 +6131,7 @@ PieceQueen::PieceQueen(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Move&gt; m <a href="CppOperatorAssign.htm">=</a> MoveFactory::Create(<a href="CppLexical_cast.htm">boost::lexical_cast</a>&lt;<a href="CppString.htm">std::string</a>&gt;(<b><a href="CppThis.htm">this</a></b>-&gt;GetNameChar()) <a href="CppOperatorPlus.htm">+</a> <b><a href="CppThis.htm">this</a></b>-&gt;GetSquare()-&gt;ToStr() <a href="CppOperatorPlus.htm">+</a> " " <a href="CppOperatorPlus.htm">+</a> s-&gt;ToStr());<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;v.push_back(m);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCatch.htm">catch</a></b> (<a href="CppException.htm">std::exception</a>&amp; e)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCatch.htm">catch</a></b> (<a href="CppStdException.htm">std::exception</a>&amp; e)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>No problem<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
@@ -6145,7 +6145,7 @@ PieceQueen::PieceQueen(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Move&gt; m <a href="CppOperatorAssign.htm">=</a> MoveFactory::Create(<a href="CppLexical_cast.htm">boost::lexical_cast</a>&lt;<a href="CppString.htm">std::string</a>&gt;(<b><a href="CppThis.htm">this</a></b>-&gt;GetNameChar()) <a href="CppOperatorPlus.htm">+</a> <b><a href="CppThis.htm">this</a></b>-&gt;GetSquare()-&gt;ToStr() <a href="CppOperatorPlus.htm">+</a> " " <a href="CppOperatorPlus.htm">+</a> s-&gt;ToStr());<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;v.push_back(m);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCatch.htm">catch</a></b> (<a href="CppException.htm">std::exception</a>&amp; e)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCatch.htm">catch</a></b> (<a href="CppStdException.htm">std::exception</a>&amp; e)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>No problem<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
@@ -6158,7 +6158,7 @@ PieceQueen::PieceQueen(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Move&gt; m <a href="CppOperatorAssign.htm">=</a> MoveFactory::Create(<a href="CppLexical_cast.htm">boost::lexical_cast</a>&lt;<a href="CppString.htm">std::string</a>&gt;(<b><a href="CppThis.htm">this</a></b>-&gt;GetNameChar()) <a href="CppOperatorPlus.htm">+</a> <b><a href="CppThis.htm">this</a></b>-&gt;GetSquare()-&gt;ToStr() <a href="CppOperatorPlus.htm">+</a> " " <a href="CppOperatorPlus.htm">+</a> s-&gt;ToStr());<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;v.push_back(m);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCatch.htm">catch</a></b> (<a href="CppException.htm">std::exception</a>&amp; e)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCatch.htm">catch</a></b> (<a href="CppStdException.htm">std::exception</a>&amp; e)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>No problem<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
@@ -6233,7 +6233,7 @@ PieceRook::PieceRook(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Move&gt; m <a href="CppOperatorAssign.htm">=</a> MoveFactory::Create(<a href="CppLexical_cast.htm">boost::lexical_cast</a>&lt;<a href="CppString.htm">std::string</a>&gt;(<b><a href="CppThis.htm">this</a></b>-&gt;GetNameChar()) <a href="CppOperatorPlus.htm">+</a> <b><a href="CppThis.htm">this</a></b>-&gt;GetSquare()-&gt;ToStr() <a href="CppOperatorPlus.htm">+</a> " " <a href="CppOperatorPlus.htm">+</a> s-&gt;ToStr());<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;v.push_back(m);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCatch.htm">catch</a></b> (<a href="CppException.htm">std::exception</a>&amp; e)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCatch.htm">catch</a></b> (<a href="CppStdException.htm">std::exception</a>&amp; e)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>No problem<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
@@ -6246,7 +6246,7 @@ PieceRook::PieceRook(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Move&gt; m <a href="CppOperatorAssign.htm">=</a> MoveFactory::Create(<a href="CppLexical_cast.htm">boost::lexical_cast</a>&lt;<a href="CppString.htm">std::string</a>&gt;(<b><a href="CppThis.htm">this</a></b>-&gt;GetNameChar()) <a href="CppOperatorPlus.htm">+</a> <b><a href="CppThis.htm">this</a></b>-&gt;GetSquare()-&gt;ToStr() <a href="CppOperatorPlus.htm">+</a> " " <a href="CppOperatorPlus.htm">+</a> s-&gt;ToStr());<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;v.push_back(m);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCatch.htm">catch</a></b> (<a href="CppException.htm">std::exception</a>&amp; e)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCatch.htm">catch</a></b> (<a href="CppStdException.htm">std::exception</a>&amp; e)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>No problem<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
@@ -6259,7 +6259,7 @@ PieceRook::PieceRook(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Move&gt; m <a href="CppOperatorAssign.htm">=</a> MoveFactory::Create(<a href="CppLexical_cast.htm">boost::lexical_cast</a>&lt;<a href="CppString.htm">std::string</a>&gt;(<b><a href="CppThis.htm">this</a></b>-&gt;GetNameChar()) <a href="CppOperatorPlus.htm">+</a> <b><a href="CppThis.htm">this</a></b>-&gt;GetSquare()-&gt;ToStr() <a href="CppOperatorPlus.htm">+</a> " " <a href="CppOperatorPlus.htm">+</a> s-&gt;ToStr());<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;v.push_back(m);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCatch.htm">catch</a></b> (<a href="CppException.htm">std::exception</a>&amp; e)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCatch.htm">catch</a></b> (<a href="CppStdException.htm">std::exception</a>&amp; e)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>No problem<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
@@ -6273,7 +6273,7 @@ PieceRook::PieceRook(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Move&gt; m <a href="CppOperatorAssign.htm">=</a> MoveFactory::Create(<a href="CppLexical_cast.htm">boost::lexical_cast</a>&lt;<a href="CppString.htm">std::string</a>&gt;(<b><a href="CppThis.htm">this</a></b>-&gt;GetNameChar()) <a href="CppOperatorPlus.htm">+</a> <b><a href="CppThis.htm">this</a></b>-&gt;GetSquare()-&gt;ToStr() <a href="CppOperatorPlus.htm">+</a> " " <a href="CppOperatorPlus.htm">+</a> s-&gt;ToStr());<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;v.push_back(m);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCatch.htm">catch</a></b> (<a href="CppException.htm">std::exception</a>&amp; e)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCatch.htm">catch</a></b> (<a href="CppStdException.htm">std::exception</a>&amp; e)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>No problem<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
@@ -6392,7 +6392,7 @@ PieceRook::PieceRook(<br/>
 <br/>
 <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Piece&gt; PieceFactory::CreateFromMove(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; s)<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (s.empty()) <b><a href="CppThrow.htm">throw</a></b> <a href="CppLogic_error.htm">std::logic_error</a>("PieceFactory::CreateFromMove exception: move must not be empty");<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (s.empty()) <b><a href="CppThrow.htm">throw</a></b> <a href="CppLogic_error.htm">std::logic_error</a>("PieceFactory::CreateFromMove <a href="CppException.htm">exception</a>: move must not be empty");<br/>
 <br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppChar.htm">char</a></b> c <a href="CppOperatorAssign.htm">=</a> s[0];<br/>
 &nbsp;&nbsp;<b><a href="CppSwitch.htm">switch</a></b>(c)<br/>
@@ -6416,7 +6416,7 @@ PieceRook::PieceRook(<br/>
 <br/>
 <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Piece&gt; PieceFactory::CreateFromPromotion(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; s)<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (s.empty()) <b><a href="CppThrow.htm">throw</a></b> <a href="CppLogic_error.htm">std::logic_error</a>("PieceFactory::CreateFromPromotion exception: move must not be empty");<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (s.empty()) <b><a href="CppThrow.htm">throw</a></b> <a href="CppLogic_error.htm">std::logic_error</a>("PieceFactory::CreateFromPromotion <a href="CppException.htm">exception</a>: move must not be empty");<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Chess::Piece&gt; p;<br/>
 <br/>
@@ -6597,7 +6597,7 @@ PieceRook::PieceRook(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!p-&gt;CanDoMove(*move));<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCatch.htm">catch</a></b> (<a href="CppException.htm">std::exception</a>&amp; e)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCatch.htm">catch</a></b> (<a href="CppStdException.htm">std::exception</a>&amp; e)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Move is correctly determined to be invalid<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
@@ -6681,7 +6681,7 @@ PieceRook::PieceRook(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!p-&gt;CanDoMove(*move));<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCatch.htm">catch</a></b> (<a href="CppException.htm">std::exception</a>&amp; e)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCatch.htm">catch</a></b> (<a href="CppStdException.htm">std::exception</a>&amp; e)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>OK!<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
@@ -6765,7 +6765,7 @@ PieceRook::PieceRook(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!p-&gt;CanDoMove(*move));<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCatch.htm">catch</a></b> (<a href="CppException.htm">std::exception</a>&amp; e)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCatch.htm">catch</a></b> (<a href="CppStdException.htm">std::exception</a>&amp; e)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>OK!<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
@@ -6874,7 +6874,7 @@ PieceRook::PieceRook(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!p-&gt;CanDoMove(*move));<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCatch.htm">catch</a></b> (<a href="CppException.htm">std::exception</a>&amp; e)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCatch.htm">catch</a></b> (<a href="CppStdException.htm">std::exception</a>&amp; e)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>OK!<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
@@ -7195,7 +7195,7 @@ PieceRook::PieceRook(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!p-&gt;CanDoMove(*move));<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCatch.htm">catch</a></b> (<a href="CppException.htm">std::exception</a>&amp; e)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCatch.htm">catch</a></b> (<a href="CppStdException.htm">std::exception</a>&amp; e)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>OK!<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
@@ -7313,7 +7313,7 @@ PieceRook::PieceRook(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!p-&gt;CanDoMove(*move));<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCatch.htm">catch</a></b> (<a href="CppException.htm">std::exception</a>&amp; e)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCatch.htm">catch</a></b> (<a href="CppStdException.htm">std::exception</a>&amp; e)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>OK!<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
@@ -7563,7 +7563,7 @@ Rank::Rank(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>(s);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!"Should not get here");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCatch.htm">catch</a></b> (<a href="CppException.htm">std::exception</a>&amp; e)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCatch.htm">catch</a></b> (<a href="CppStdException.htm">std::exception</a>&amp; e)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>OK!<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
@@ -7582,7 +7582,7 @@ Rank::Rank(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>(i);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!"Should not get here");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCatch.htm">catch</a></b> (<a href="CppException.htm">std::exception</a>&amp; e)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCatch.htm">catch</a></b> (<a href="CppStdException.htm">std::exception</a>&amp; e)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>OK!<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
@@ -7751,7 +7751,7 @@ Score::Score(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> !m_is_draw<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> !m_is_white_winner)<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThrow.htm">throw</a></b> <a href="CppLogic_error.htm">std::logic_error</a>("Chess::Score::Score exception: invalid score");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThrow.htm">throw</a></b> <a href="CppLogic_error.htm">std::logic_error</a>("Chess::Score::Score <a href="CppException.htm">exception</a>: invalid score");<br/>
 &nbsp;&nbsp;}<br/>
 }<br/>
 <br/>
@@ -7792,7 +7792,7 @@ Score::Score(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Chess::Score tmp(s);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCatch.htm">catch</a></b> (<a href="CppException.htm">std::exception</a>&amp; e)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCatch.htm">catch</a></b> (<a href="CppStdException.htm">std::exception</a>&amp; e)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>(s);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>("Should not get here");<br/>
@@ -7812,7 +7812,7 @@ Score::Score(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>(s)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>("Should not get here");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCatch.htm">catch</a></b> (<a href="CppException.htm">std::exception</a>&amp; e)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCatch.htm">catch</a></b> (<a href="CppStdException.htm">std::exception</a>&amp; e)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Okay: invalid Score is determined being invalid<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
@@ -8096,7 +8096,7 @@ Chess::Color Square::GetColor() <b><a href="CppConst.htm">const</a></b><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Chess::Square x(s);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCatch.htm">catch</a></b> (<a href="CppException.htm">std::exception</a>&amp; e)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCatch.htm">catch</a></b> (<a href="CppStdException.htm">std::exception</a>&amp; e)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>(s);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>(e.what());<br/>
@@ -8120,7 +8120,7 @@ Chess::Color Square::GetColor() <b><a href="CppConst.htm">const</a></b><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Chess::Square x(s);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCatch.htm">catch</a></b> (<a href="CppException.htm">std::exception</a>&amp; e)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCatch.htm">catch</a></b> (<a href="CppStdException.htm">std::exception</a>&amp; e)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Ok!<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ok <a href="CppOperatorAssign.htm">=</a> <b><a href="CppTrue.htm">true</a></b>;<br/>
@@ -8533,7 +8533,7 @@ SquareSelector::SquareSelector()<br/>
 &nbsp;&nbsp;<b><a href="CppVirtual.htm">virtual</a></b> <b><a href="CppBool.htm">bool</a></b> CanDoMove(<b><a href="CppConst.htm">const</a></b> Chess::Square&amp; from, <b><a href="CppConst.htm">const</a></b> Chess::Square&amp; to) <b><a href="CppConst.htm">const</a></b> <a href="CppOperatorAssign.htm">=</a> 0;<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/Respond to a click<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Note: originally, <b><a href="CppThis.htm">this</a></b> method was called Click, but it conflicted with Click(<b><a href="CppConst.htm">const</a></b> Square&amp;) :-(<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Note: originally, <b><a href="CppThis.htm">this</a></b> <a href="CppMemberFunction.htm">member function</a> was called Click, but it conflicted with Click(<b><a href="CppConst.htm">const</a></b> Square&amp;) :-(<br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> ClickPixel(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x, <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> y);<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/Do a move<br/>
@@ -8625,7 +8625,7 @@ Chess<a href="CppWidget.htm">Widget</a>::~Chess<a href="CppWidget.htm">Widget</a
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Square square(8 * x <a href="CppOperatorDivide.htm">/</a> <b><a href="CppThis.htm">this</a></b>-&gt;GetGeometry().GetWidth(), 8 * y <a href="CppOperatorDivide.htm">/</a> <b><a href="CppThis.htm">this</a></b>-&gt;GetGeometry().GetHeight());<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;Click(square);<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<b><a href="CppCatch.htm">catch</a></b> (<a href="CppException.htm">std::exception</a>&amp; e)<br/>
+&nbsp;&nbsp;<b><a href="CppCatch.htm">catch</a></b> (<a href="CppStdException.htm">std::exception</a>&amp; e)<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>No problem<br/>
 &nbsp;&nbsp;}<br/>

@@ -76,6 +76,9 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWPaintedWidget.htm">WPaintedWidget</a>&gt;<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <b><a href="CppNamespace.htm">namespace</a></b> <a href="CppWt.htm">Wt</a> { <b><a href="CppStruct.htm">struct</a></b> <a href="CppWMouseEvent.htm">WMouseEvent</a>Event; }<br/>
+<br/>
+<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a> {<br/>
+<br/>
 <b><a href="CppStruct.htm">struct</a></b> <a href="CppDial.htm">Dial</a>;<br/>
 <b><a href="CppStruct.htm">struct</a></b> <a href="CppDialWidget.htm">DialWidget</a>;<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
@@ -122,7 +125,9 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/<a href="CppWt.htm">Wt</a> resize: hide it from sight<br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> resize(<b><a href="CppConst.htm">const</a></b> <a href="CppWLength.htm">Wt::WLength</a>&amp; width, <b><a href="CppConst.htm">const</a></b> <a href="CppWLength.htm">Wt::WLength</a>&amp; height);<br/>
 };<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a><br/>
+<br/>
 <a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> WT<a href="CppLed.htm">LED</a>WIDGET_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
@@ -160,8 +165,8 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppUndef.htm">#undef</a> __STRICT_ANSI__<br/>
 <a href="CppEndif.htm">#endif</a><br/>
 <br/>
-<a href="CppComment.htm">//</a><a href="CppInclude.htm">#include</a> own <a href="CppHeaderFile.htm">header file</a> as first substantive line of code, from:<br/>
-<a href="CppComment.htm">//</a> * John Lakos. Large-Scale <a href="Cpp.htm">C++</a> Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110<br/>
+<br/>
+<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppWtDialWidget.htm">wtdialwidget</a>.h"<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/bind.hpp&gt;<br/>
@@ -175,7 +180,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppDial.htm">dial</a>.h"<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppDialWidget.htm">dialwidget</a>.h"<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppWtDialWidget.htm">WtDialWidget</a>::<a href="CppWtDialWidget.htm">WtDialWidget</a>(<br/>
+<a href="CppRibi.htm\">ribi</a>::<a href="CppWtDialWidget.htm">WtDialWidget</a>::<a href="CppWtDialWidget.htm">WtDialWidget</a>(<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> intensity,<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> red,<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> green,<br/>
@@ -186,30 +191,30 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <br/>
 &nbsp;&nbsp;m_<a href="CppWidget.htm">widget</a>-&gt;GetDial()-&gt;m_signal_color_changed.connect(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBind.htm">boost::bind</a>(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;<a href="CppWtDialWidget.htm">WtDialWidget</a>::DoRepaint,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;<a href="CppRibi.htm\">ribi</a>::<a href="CppWtDialWidget.htm">WtDialWidget</a>::DoRepaint,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>));<br/>
 <br/>
 &nbsp;&nbsp;m_<a href="CppWidget.htm">widget</a>-&gt;GetDial()-&gt;m_signal_position_changed.connect(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBind.htm">boost::bind</a>(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;<a href="CppWtDialWidget.htm">WtDialWidget</a>::DoRepaint,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;<a href="CppRibi.htm\">ribi</a>::<a href="CppWtDialWidget.htm">WtDialWidget</a>::DoRepaint,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>));<br/>
 <br/>
 &nbsp;&nbsp;m_<a href="CppWidget.htm">widget</a>-&gt;m_signal_<a href="CppGeometry.htm">geometry</a>_changed.connect(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBind.htm">boost::bind</a>(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;<a href="CppWtDialWidget.htm">WtDialWidget</a>::OnResize,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;<a href="CppRibi.htm\">ribi</a>::<a href="CppWtDialWidget.htm">WtDialWidget</a>::OnResize,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>));<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;clicked().connect(<b><a href="CppThis.htm">this</a></b>,&amp;<a href="CppWtDialWidget.htm">WtDialWidget</a>::OnClicked);<br/>
+&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;clicked().connect(<b><a href="CppThis.htm">this</a></b>,&amp;<a href="CppRibi.htm\">ribi</a>::<a href="CppWtDialWidget.htm">WtDialWidget</a>::OnClicked);<br/>
 <br/>
 &nbsp;&nbsp;m_<a href="CppWidget.htm">widget</a>-&gt;SetGeometry(Rect(0,0,32,32));<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppWtDialWidget.htm">WtDialWidget</a>::DoRepaint()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppWtDialWidget.htm">WtDialWidget</a>::DoRepaint()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;update();<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppWtDialWidget.htm">WtDialWidget</a>::DrawDial(<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppWtDialWidget.htm">WtDialWidget</a>::DrawDial(<br/>
 &nbsp;&nbsp;<a href="CppWPainter.htm">Wt::WPainter</a>&amp; painter,<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> left, <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> top,<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> width, <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> height,<br/>
@@ -250,7 +255,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;painter.drawLine(left+midx,top+midy,left+<a href="CppPointer.htm">pointer</a>X,top+<a href="CppPointer.htm">pointer</a>Y);<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppWtDialWidget.htm">WtDialWidget</a>::DrawDial(<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppWtDialWidget.htm">WtDialWidget</a>::DrawDial(<br/>
 &nbsp;&nbsp;<a href="CppWPainter.htm">Wt::WPainter</a>&amp; painter,<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppDialWidget.htm">DialWidget</a> * <b><a href="CppConst.htm">const</a></b> <a href="CppWidget.htm">widget</a>)<br/>
 {<br/>
@@ -263,12 +268,12 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppWidget.htm">widget</a>-&gt;GetDial());<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppWtDialWidget.htm">WtDialWidget</a>::Get<a href="CppVersion.htm">Version</a>()<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppRibi.htm\">ribi</a>::<a href="CppWtDialWidget.htm">WtDialWidget</a>::Get<a href="CppVersion.htm">Version</a>()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> "3.1";<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppWtDialWidget.htm">WtDialWidget</a>::Get<a href="CppVersion.htm">Version</a>History()<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm\">ribi</a>::<a href="CppWtDialWidget.htm">WtDialWidget</a>::Get<a href="CppVersion.htm">Version</a>History()<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v;<br/>
 &nbsp;&nbsp;v.push_back("YYYY-MM-DD: <a href="CppVersion.htm">version</a> X.Y: [description]");<br/>
@@ -280,23 +285,23 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppWtDialWidget.htm">WtDialWidget</a>::OnClicked(<b><a href="CppConst.htm">const</a></b> <a href="CppWMouseEvent.htm">Wt::WMouseEvent</a>&amp; e)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppWtDialWidget.htm">WtDialWidget</a>::OnClicked(<b><a href="CppConst.htm">const</a></b> <a href="CppWMouseEvent.htm">Wt::WMouseEvent</a>&amp; e)<br/>
 {<br/>
 &nbsp;&nbsp;m_<a href="CppWidget.htm">widget</a>-&gt;Click(e.<a href="CppWidget.htm">widget</a>().x,e.<a href="CppWidget.htm">widget</a>().y);<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppWtDialWidget.htm">WtDialWidget</a>::OnResize()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppWtDialWidget.htm">WtDialWidget</a>::OnResize()<br/>
 {<br/>
 &nbsp;&nbsp;resize(m_<a href="CppWidget.htm">widget</a>-&gt;GetGeometry().GetWidth(),m_<a href="CppWidget.htm">widget</a>-&gt;GetGeometry().GetHeight());<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppWtDialWidget.htm">WtDialWidget</a>::paintEvent(<a href="CppWPaintDevice.htm">Wt::WPaintDevice</a> *paintDevice)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppWtDialWidget.htm">WtDialWidget</a>::paintEvent(<a href="CppWPaintDevice.htm">Wt::WPaintDevice</a> *paintDevice)<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppWPainter.htm">Wt::WPainter</a> painter(paintDevice);<br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;DrawDial(painter,m_<a href="CppWidget.htm">widget</a>.get());<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppWtDialWidget.htm">WtDialWidget</a>::resize(<b><a href="CppConst.htm">const</a></b> <a href="CppWLength.htm">Wt::WLength</a>&amp; width, <b><a href="CppConst.htm">const</a></b> <a href="CppWLength.htm">Wt::WLength</a>&amp; height)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppWtDialWidget.htm">WtDialWidget</a>::resize(<b><a href="CppConst.htm">const</a></b> <a href="CppWLength.htm">Wt::WLength</a>&amp; width, <b><a href="CppConst.htm">const</a></b> <a href="CppWLength.htm">Wt::WLength</a>&amp; height)<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppWPaintedWidget.htm">Wt::WPaintedWidget</a>::resize(width,height);<br/>
 }<br/>

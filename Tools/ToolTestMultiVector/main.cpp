@@ -20,12 +20,12 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #include <cassert>
 #include "multivector.h"
-//---------------------------------------------------------------------------
+
 int main()
 {
-  MultiVector<int> x;
+  ribi::MultiVector<int> x;
   //1 dimensional
-  //C++0x initialization
+  //C++11 initialization
   x.Store( { 0 }, 0);
   x.Store( { 1 }, 1);
   x.Store( { 2 }, 2);

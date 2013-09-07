@@ -132,7 +132,7 @@ WtPaperRockScissors<a href="CppApplication.htm">Application</a>::WtPaperRockScis
 {<br/>
 &nbsp;&nbsp;setTitle("PaperRockScissors");<br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;useStyleSheet("wt.css");<br/>
-&nbsp;&nbsp;root()-&gt;addWidget(<b><a href="CppNew.htm">new</a></b> WtPaperRockScissorsDialog);<br/>
+&nbsp;&nbsp;root()-&gt;addWidget(<b><a href="CppNew.htm">new</a></b> <a href="CppRibi.htm\">ribi</a>::WtPaperRockScissorsDialog);<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppWApplication.htm">Wt::WApplication</a> *create<a href="CppApplication.htm">Application</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppWEnvironment.htm">Wt::WEnvironment</a>&amp; env)<br/>
@@ -362,7 +362,7 @@ WtPaperRockScissorsDialog::WtPaperRockScissorsDialog(<a href="CppWContainerWidge
 &nbsp;&nbsp;Show();<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a> <b><a href="CppThis.htm">this</a></b> <a href="CppWidget.htm">widget</a> supports server-side updates its PollChangedEvent()<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a> method is connected to a slot that is triggered from outside <b><a href="CppThis.htm">this</a></b><br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a> <a href="CppMemberFunction.htm">member function</a> is connected to a slot that is triggered from outside <b><a href="CppThis.htm">this</a></b><br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a> session's event loop when another user selects another option.<br/>
 &nbsp;&nbsp;m_<a href="CppApplication.htm">application</a>-&gt;enableUpdates();<br/>
 }<br/>
@@ -492,7 +492,7 @@ WtPaperRockScissorsDialog<a href="CppState.htm">State</a> * WtPaperRockScissorsD
 &nbsp;&nbsp;<b><a href="CppProtected.htm">protected</a></b>:<br/>
 &nbsp;&nbsp;<b><a href="CppVirtual.htm">virtual</a></b> ~WtPaperRockScissorsDialog<a href="CppState.htm">State</a>();<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Do not forget the <b><a href="CppTemplate.htm">template</a></b> brackets, as stated in<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppHerbSutter.htm">Herb Sutter</a>. Exceptional <a href="Cpp.htm">C++</a> style. 2005. ISBN: 0-201-76042-8. Item 8: '<a href="CppFriend.htm">Befriending</a> <a href="CppTemplate.htm">templates</a>'.<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppHerbSutter.htm">Herb Sutter</a>. <a href="CppException.htm">Exception</a>al <a href="Cpp.htm">C++</a> style. 2005. ISBN: 0-201-76042-8. Item 8: '<a href="CppFriend.htm">Befriending</a> <a href="CppTemplate.htm">templates</a>'.<br/>
 &nbsp;&nbsp;<b><a href="CppFriend.htm">friend</a></b> <b><a href="CppVoid.htm">void</a></b> <a href="CppChecked_delete.htm">boost::checked_delete</a>&lt;&gt;(WtPaperRockScissorsDialog<a href="CppState.htm">State</a>* x);<br/>
 <br/>
 &nbsp;&nbsp;<b><a href="CppProtected.htm">protected</a></b>:<br/>
@@ -515,7 +515,7 @@ WtPaperRockScissorsDialog<a href="CppState.htm">State</a> * WtPaperRockScissorsD
 &nbsp;&nbsp;<b><a href="CppPrivate.htm">private</a></b>:<br/>
 &nbsp;&nbsp;<b><a href="CppVirtual.htm">virtual</a></b> ~WtPaperRockScissorsDialog<a href="CppState.htm">State</a><a href="CppAbout.htm">About</a>() {}<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Do not forget the <b><a href="CppTemplate.htm">template</a></b> brackets, as stated in<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppHerbSutter.htm">Herb Sutter</a>. Exceptional <a href="Cpp.htm">C++</a> style. 2005. ISBN: 0-201-76042-8. Item 8: '<a href="CppFriend.htm">Befriending</a> <a href="CppTemplate.htm">templates</a>'.<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppHerbSutter.htm">Herb Sutter</a>. <a href="CppException.htm">Exception</a>al <a href="Cpp.htm">C++</a> style. 2005. ISBN: 0-201-76042-8. Item 8: '<a href="CppFriend.htm">Befriending</a> <a href="CppTemplate.htm">templates</a>'.<br/>
 &nbsp;&nbsp;<b><a href="CppFriend.htm">friend</a></b> <b><a href="CppVoid.htm">void</a></b> <a href="CppChecked_delete.htm">boost::checked_delete</a>&lt;&gt;(WtPaperRockScissorsDialog<a href="CppState.htm">State</a><a href="CppAbout.htm">About</a>* x);<br/>
 <br/>
 &nbsp;&nbsp;WtPaperRockScissorsDialog<a href="CppState.htm">State</a> * m_prev_state;<br/>
@@ -536,7 +536,7 @@ WtPaperRockScissorsDialog<a href="CppState.htm">State</a> * WtPaperRockScissorsD
 &nbsp;&nbsp;<b><a href="CppPrivate.htm">private</a></b>:<br/>
 &nbsp;&nbsp;<b><a href="CppVirtual.htm">virtual</a></b> ~WtPaperRockScissorsDialog<a href="CppState.htm">State</a>Connect() {}<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Do not forget the <b><a href="CppTemplate.htm">template</a></b> brackets, as stated in<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppHerbSutter.htm">Herb Sutter</a>. Exceptional <a href="Cpp.htm">C++</a> style. 2005. ISBN: 0-201-76042-8. Item 8: '<a href="CppFriend.htm">Befriending</a> <a href="CppTemplate.htm">templates</a>'.<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppHerbSutter.htm">Herb Sutter</a>. <a href="CppException.htm">Exception</a>al <a href="Cpp.htm">C++</a> style. 2005. ISBN: 0-201-76042-8. Item 8: '<a href="CppFriend.htm">Befriending</a> <a href="CppTemplate.htm">templates</a>'.<br/>
 &nbsp;&nbsp;<b><a href="CppFriend.htm">friend</a></b> <b><a href="CppVoid.htm">void</a></b> <a href="CppChecked_delete.htm">boost::checked_delete</a>&lt;&gt;(WtPaperRockScissorsDialog<a href="CppState.htm">State</a>Connect* x);<br/>
 };<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
@@ -554,7 +554,7 @@ WtPaperRockScissorsDialog<a href="CppState.htm">State</a> * WtPaperRockScissorsD
 &nbsp;&nbsp;<b><a href="CppPrivate.htm">private</a></b>:<br/>
 &nbsp;&nbsp;<b><a href="CppVirtual.htm">virtual</a></b> ~WtPaperRockScissorsDialog<a href="CppState.htm">State</a>Game() {}<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Do not forget the <b><a href="CppTemplate.htm">template</a></b> brackets, as stated in<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppHerbSutter.htm">Herb Sutter</a>. Exceptional <a href="Cpp.htm">C++</a> style. 2005. ISBN: 0-201-76042-8. Item 8: '<a href="CppFriend.htm">Befriending</a> <a href="CppTemplate.htm">templates</a>'.<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppHerbSutter.htm">Herb Sutter</a>. <a href="CppException.htm">Exception</a>al <a href="Cpp.htm">C++</a> style. 2005. ISBN: 0-201-76042-8. Item 8: '<a href="CppFriend.htm">Befriending</a> <a href="CppTemplate.htm">templates</a>'.<br/>
 &nbsp;&nbsp;<b><a href="CppFriend.htm">friend</a></b> <b><a href="CppVoid.htm">void</a></b> <a href="CppChecked_delete.htm">boost::checked_delete</a>&lt;&gt;(WtPaperRockScissorsDialog<a href="CppState.htm">State</a>Game* x);<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppWButtonGroup.htm">Wt::WButtonGroup</a> * m_group;<br/>
@@ -573,7 +573,7 @@ WtPaperRockScissorsDialog<a href="CppState.htm">State</a> * WtPaperRockScissorsD
 &nbsp;&nbsp;<b><a href="CppPrivate.htm">private</a></b>:<br/>
 &nbsp;&nbsp;<b><a href="CppVirtual.htm">virtual</a></b> ~WtPaperRockScissorsDialog<a href="CppState.htm">State</a>Login() {}<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Do not forget the <b><a href="CppTemplate.htm">template</a></b> brackets, as stated in<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppHerbSutter.htm">Herb Sutter</a>. Exceptional <a href="Cpp.htm">C++</a> style. 2005. ISBN: 0-201-76042-8. Item 8: '<a href="CppFriend.htm">Befriending</a> <a href="CppTemplate.htm">templates</a>'.<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppHerbSutter.htm">Herb Sutter</a>. <a href="CppException.htm">Exception</a>al <a href="Cpp.htm">C++</a> style. 2005. ISBN: 0-201-76042-8. Item 8: '<a href="CppFriend.htm">Befriending</a> <a href="CppTemplate.htm">templates</a>'.<br/>
 &nbsp;&nbsp;<b><a href="CppFriend.htm">friend</a></b> <b><a href="CppVoid.htm">void</a></b> <a href="CppChecked_delete.htm">boost::checked_delete</a>&lt;&gt;(WtPaperRockScissorsDialog<a href="CppState.htm">State</a>Login* x);<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppWLineEdit.htm">Wt::WLineEdit</a> * m_edit_username;<br/>

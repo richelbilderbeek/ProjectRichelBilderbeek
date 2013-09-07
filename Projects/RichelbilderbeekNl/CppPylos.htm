@@ -74,6 +74,8 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppPylos.htm">pylos</a>player.h"<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppPylos.htm">pylos</a>positionstate.h"<br/>
 <br/>
+<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a> {<br/>
+<br/>
 <b><a href="CppNamespace.htm">namespace</a></b> <a href="CppPylos.htm">Pylos</a> {<br/>
 <br/>
 <b><a href="CppStruct.htm">struct</a></b> Board<br/>
@@ -292,6 +294,8 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <br/>
 } <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppPylos.htm">Pylos</a><br/>
 <br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a><br/>
+<br/>
 <a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> PYLOSBOARD_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
@@ -324,16 +328,8 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="CppPylos.htm">CppPylos</a>.htm<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppIfdef.htm">#ifdef</a> _WIN32<br/>
-<a href="CppComment.htm">//</a>See http://www.richelbilderbeek.nl/Cpp<a href="CppCompile.htm">Compile</a>ErrorUnableToFindNumericLiteralOperatorOperatorQ.htm<br/>
-<a href="CppPreIf.htm">#if</a> !(__GNUC__ <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 4 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> __GNUC_MINOR__ <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 8)<br/>
-<a href="CppComment.htm">//</a>See http://www.richelbilderbeek.nl/Cpp<a href="CppCompile.htm">Compile</a>ErrorSwprintfHasNotBeenDeclared.htm<br/>
-<a href="CppUndef.htm">#undef</a> __STRICT_ANSI__<br/>
-<a href="CppEndif.htm">#endif</a><br/>
-<a href="CppEndif.htm">#endif</a><br/>
 <br/>
-<a href="CppComment.htm">//</a><a href="CppInclude.htm">#include</a> own <a href="CppHeaderFile.htm">header file</a> as first substantive line of code, from:<br/>
-<a href="CppComment.htm">//</a> * John Lakos. Large-Scale <a href="Cpp.htm">C++</a> Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110<br/>
+<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppPylos.htm">pylos</a>board.h"<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppPylos.htm">pylos</a>coordinat.h"<br/>
@@ -350,9 +346,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 #error <a href="CppPylos.htm">Pylos</a>::Game must not be defined <b><a href="CppFor.htm">for</a></b> a <a href="CppPylos.htm">Pylos</a>::Board<br/>
 <a href="CppEndif.htm">#endif</a><br/>
 <br/>
-<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppPylos.htm">Pylos</a> {<br/>
-<br/>
-Board::Board()<br/>
+<a href="CppRibi.htm\">ribi</a>::<a href="CppPylos.htm">Pylos</a>::Board::Board()<br/>
 &nbsp;&nbsp;: m_board(CreateEmptyBoard())<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
@@ -377,7 +371,7 @@ Board::Board()<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(m_board[3][0].size() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 1);<br/>
 }<br/>
 <br/>
-<b><a href="CppBool.htm">bool</a></b> Board::CanDo(<b><a href="CppConst.htm">const</a></b> <a href="CppPylos.htm">Pylos</a>::Move&amp; m, <b><a href="CppConst.htm">const</a></b> Player player) <b><a href="CppConst.htm">const</a></b><br/>
+<b><a href="CppBool.htm">bool</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppPylos.htm">Pylos</a>::Board::CanDo(<b><a href="CppConst.htm">const</a></b> <a href="CppPylos.htm">Pylos</a>::Move&amp; m, <b><a href="CppConst.htm">const</a></b> Player player) <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(m.IsValid());<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (m.m_move.size()<a href="CppOperatorEqual.htm">==</a>1)<br/>
@@ -429,24 +423,24 @@ Board::Board()<br/>
 &nbsp;&nbsp;}<br/>
 }<br/>
 <br/>
-<b><a href="CppBool.htm">bool</a></b> Board::CanDo(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; s, <b><a href="CppConst.htm">const</a></b> Player player) <b><a href="CppConst.htm">const</a></b><br/>
+<b><a href="CppBool.htm">bool</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppPylos.htm">Pylos</a>::Board::CanDo(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; s, <b><a href="CppConst.htm">const</a></b> Player player) <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppTry.htm">try</a></b><br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> CanDo(<a href="CppPylos.htm">Pylos</a>::Move(s),player);<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<b><a href="CppCatch.htm">catch</a></b> (<a href="CppException.htm">std::exception</a>&amp; e)<br/>
+&nbsp;&nbsp;<b><a href="CppCatch.htm">catch</a></b> (<a href="CppStdException.htm">std::exception</a>&amp; e)<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <b><a href="CppFalse.htm">false</a></b>;<br/>
 &nbsp;&nbsp;}<br/>
 }<br/>
 <br/>
-<b><a href="CppBool.htm">bool</a></b> Board::CanDoSomething(<b><a href="CppConst.htm">const</a></b> Player&amp; player) <b><a href="CppConst.htm">const</a></b><br/>
+<b><a href="CppBool.htm">bool</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppPylos.htm">Pylos</a>::Board::CanDoSomething(<b><a href="CppConst.htm">const</a></b> Player&amp; player) <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> !GetAllPossibleMoves(player).empty();<br/>
 }<br/>
 <br/>
-<b><a href="CppBool.htm">bool</a></b> Board::CanRemove(<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;Coordinat&gt;&amp; v, <b><a href="CppConst.htm">const</a></b> Player player) <b><a href="CppConst.htm">const</a></b><br/>
+<b><a href="CppBool.htm">bool</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppPylos.htm">Pylos</a>::Board::CanRemove(<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;Coordinat&gt;&amp; v, <b><a href="CppConst.htm">const</a></b> Player player) <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(v.size() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 1 <a href="CppOperatorLogicalOr.htm">||</a> v.size() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 2);<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (v.size() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 1) <b><a href="CppReturn.htm">return</a></b> CanRemove(v[0],player);<br/>
@@ -482,7 +476,7 @@ Board::Board()<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> b-&gt;CanRemove(v[0],player);<br/>
 }<br/>
 <br/>
-<b><a href="CppBool.htm">bool</a></b> Board::CanRemove(<b><a href="CppConst.htm">const</a></b> Coordinat&amp; c, <b><a href="CppConst.htm">const</a></b> Player player) <b><a href="CppConst.htm">const</a></b><br/>
+<b><a href="CppBool.htm">bool</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppPylos.htm">Pylos</a>::Board::CanRemove(<b><a href="CppConst.htm">const</a></b> Coordinat&amp; c, <b><a href="CppConst.htm">const</a></b> Player player) <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Cannot remove an empty spot<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (Get(c)<a href="CppOperatorEqual.htm">==</a>Position<a href="CppState.htm">State</a>::empty) <b><a href="CppReturn.htm">return</a></b> <b><a href="CppFalse.htm">false</a></b>;<br/>
@@ -498,7 +492,7 @@ Board::Board()<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> Count(v,Position<a href="CppState.htm">State</a>::empty) <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(v.size());<br/>
 }<br/>
 <br/>
-<b><a href="CppBool.htm">bool</a></b> Board::CanTransfer(<b><a href="CppConst.htm">const</a></b> Coordinat&amp; c, <b><a href="CppConst.htm">const</a></b> Player player) <b><a href="CppConst.htm">const</a></b><br/>
+<b><a href="CppBool.htm">bool</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppPylos.htm">Pylos</a>::Board::CanTransfer(<b><a href="CppConst.htm">const</a></b> Coordinat&amp; c, <b><a href="CppConst.htm">const</a></b> Player player) <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Cannot transfer an empty spot<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (Get(c)<a href="CppOperatorEqual.htm">==</a>Position<a href="CppState.htm">State</a>::empty) <b><a href="CppReturn.htm">return</a></b> <b><a href="CppFalse.htm">false</a></b>;<br/>
@@ -514,7 +508,7 @@ Board::Board()<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> Count(v,Position<a href="CppState.htm">State</a>::empty) <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(v.size());<br/>
 }<br/>
 <br/>
-<b><a href="CppBool.htm">bool</a></b> Board::CanTransfer(<b><a href="CppConst.htm">const</a></b> Coordinat&amp; from,<br/>
+<b><a href="CppBool.htm">bool</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppPylos.htm">Pylos</a>::Board::CanTransfer(<b><a href="CppConst.htm">const</a></b> Coordinat&amp; from,<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Coordinat&amp; to,<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Player player) <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
@@ -542,9 +536,9 @@ Board::Board()<br/>
 }<br/>
 <br/>
 <a href="CppIfdef.htm">#ifdef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
-<b><a href="CppBool.htm">bool</a></b> Board::CanSet(<b><a href="CppConst.htm">const</a></b> Coordinat&amp; c, <b><a href="CppConst.htm">const</a></b> Player) <b><a href="CppConst.htm">const</a></b><br/>
+<b><a href="CppBool.htm">bool</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppPylos.htm">Pylos</a>::Board::CanSet(<b><a href="CppConst.htm">const</a></b> Coordinat&amp; c, <b><a href="CppConst.htm">const</a></b> Player) <b><a href="CppConst.htm">const</a></b><br/>
 <a href="CppPreElse.htm">#else</a><br/>
-<b><a href="CppBool.htm">bool</a></b> Board::CanSet(<b><a href="CppConst.htm">const</a></b> Coordinat&amp; c, <b><a href="CppConst.htm">const</a></b> Player player) <b><a href="CppConst.htm">const</a></b><br/>
+<b><a href="CppBool.htm">bool</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppPylos.htm">Pylos</a>::Board::CanSet(<b><a href="CppConst.htm">const</a></b> Coordinat&amp; c, <b><a href="CppConst.htm">const</a></b> Player player) <b><a href="CppConst.htm">const</a></b><br/>
 <a href="CppEndif.htm">#endif</a><br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(player <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> Player::player1 <a href="CppOperatorLogicalOr.htm">||</a> player <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> Player::player2); <a href="CppComment.htm">//</a>Prevent <a href="CppCompiler.htm">compiler</a> from complaining<br/>
@@ -558,7 +552,7 @@ Board::Board()<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> Count(v,Position<a href="CppState.htm">State</a>::empty) <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 0;<br/>
 }<br/>
 <br/>
-<b><a href="CppInt.htm">int</a></b> Board::Count(<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;Coordinat&gt;&amp; coordinats, <b><a href="CppConst.htm">const</a></b> Position<a href="CppState.htm">State</a> state) <b><a href="CppConst.htm">const</a></b><br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppPylos.htm">Pylos</a>::Board::Count(<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;Coordinat&gt;&amp; coordinats, <b><a href="CppConst.htm">const</a></b> Position<a href="CppState.htm">State</a> state) <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <a href="CppCount_if.htm">std::count_if</a>(coordinats.begin(),coordinats.end(),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;[<b><a href="CppThis.htm">this</a></b>,state](<b><a href="CppConst.htm">const</a></b> Coordinat&amp; c)<br/>
@@ -568,23 +562,23 @@ Board::Board()<br/>
 &nbsp;&nbsp;);<br/>
 }<br/>
 <br/>
-<b><a href="CppInt.htm">int</a></b> Board::Count(<b><a href="CppConst.htm">const</a></b> Position<a href="CppState.htm">State</a> state) <b><a href="CppConst.htm">const</a></b><br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppPylos.htm">Pylos</a>::Board::Count(<b><a href="CppConst.htm">const</a></b> Position<a href="CppState.htm">State</a> state) <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;Coordinat&gt; v <a href="CppOperatorAssign.htm">=</a> <a href="CppPylos.htm">Pylos</a>::GetAllCoordinats();<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> Count(v,state);<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Board&gt; Board::CreateAdvancedBoard()<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRibi.htm\">ribi</a>::<a href="CppPylos.htm">Pylos</a>::Board&gt; <a href="CppRibi.htm\">ribi</a>::<a href="CppPylos.htm">Pylos</a>::Board::CreateAdvancedBoard()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Board&gt;(<b><a href="CppNew.htm">new</a></b> BoardAdvanced);<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Board&gt; Board::CreateBasicBoard()<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRibi.htm\">ribi</a>::<a href="CppPylos.htm">Pylos</a>::Board&gt; <a href="CppRibi.htm\">ribi</a>::<a href="CppPylos.htm">Pylos</a>::Board::CreateBasicBoard()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Board&gt;(<b><a href="CppNew.htm">new</a></b> BoardBasic);<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;Board::Layer&gt; Board::CreateEmptyBoard() <b><a href="CppConst.htm">const</a></b><br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppRibi.htm\">ribi</a>::<a href="CppPylos.htm">Pylos</a>::Board::Layer&gt; <a href="CppRibi.htm\">ribi</a>::<a href="CppPylos.htm">Pylos</a>::Board::CreateEmptyBoard() <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;Layer&gt; v;<br/>
 &nbsp;&nbsp;v.push_back(CreateLayer(4));<br/>
@@ -594,18 +588,18 @@ Board::Board()<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> Board::Layer Board::CreateLayer(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> sz) <b><a href="CppConst.htm">const</a></b><br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppPylos.htm">Pylos</a>::Board::Layer <a href="CppRibi.htm\">ribi</a>::<a href="CppPylos.htm">Pylos</a>::Board::CreateLayer(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> sz) <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppVector.htm">std::vector</a>&lt;Position<a href="CppState.htm">State</a>&gt; &gt; (<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;sz,<a href="CppVector.htm">std::vector</a>&lt;Position<a href="CppState.htm">State</a>&gt;(sz,Position<a href="CppState.htm">State</a>::empty));<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> Board::Do(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; s, <b><a href="CppConst.htm">const</a></b> Player player)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppPylos.htm">Pylos</a>::Board::Do(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; s, <b><a href="CppConst.htm">const</a></b> Player player)<br/>
 {<br/>
 &nbsp;&nbsp;Do(<a href="CppPylos.htm">Pylos</a>::Move(s),player);<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> Board::Do(<b><a href="CppConst.htm">const</a></b> <a href="CppPylos.htm">Pylos</a>::Move&amp; m, <b><a href="CppConst.htm">const</a></b> Player player)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppPylos.htm">Pylos</a>::Board::Do(<b><a href="CppConst.htm">const</a></b> <a href="CppPylos.htm">Pylos</a>::Move&amp; m, <b><a href="CppConst.htm">const</a></b> Player player)<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(CanDo(m,player));<br/>
 &nbsp;&nbsp;MustRemove<a href="CppState.htm">State</a> must_remove <a href="CppOperatorAssign.htm">=</a> MustRemove<a href="CppState.htm">State</a>::no;<br/>
@@ -633,7 +627,7 @@ Board::Board()<br/>
 &nbsp;&nbsp;}<br/>
 }<br/>
 <br/>
-Position<a href="CppState.htm">State</a> Board::Get(<b><a href="CppConst.htm">const</a></b> Coordinat&amp; c) <b><a href="CppConst.htm">const</a></b><br/>
+<a href="CppRibi.htm\">ribi</a>::<a href="CppPylos.htm">Pylos</a>::Position<a href="CppState.htm">State</a> <a href="CppRibi.htm\">ribi</a>::<a href="CppPylos.htm">Pylos</a>::Board::Get(<b><a href="CppConst.htm">const</a></b> Coordinat&amp; c) <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (!c.IsValid()) <a href="CppTRACE.htm">TRACE</a>(c);<br/>
@@ -642,7 +636,7 @@ Position<a href="CppState.htm">State</a> Board::Get(<b><a href="CppConst.htm">co
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> m_board[c.GetLayer()][c.GetX()][c.GetY()];<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;Move&gt; Board::GetAllPossibleMoves(<b><a href="CppConst.htm">const</a></b> Player&amp; player) <b><a href="CppConst.htm">const</a></b><br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppRibi.htm\">ribi</a>::<a href="CppPylos.htm">Pylos</a>::Move&gt; <a href="CppRibi.htm\">ribi</a>::<a href="CppPylos.htm">Pylos</a>::Board::GetAllPossibleMoves(<b><a href="CppConst.htm">const</a></b> Player&amp; player) <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;Coordinat&gt; v <a href="CppOperatorAssign.htm">=</a> <a href="CppPylos.htm">Pylos</a>::GetAllCoordinats();<br/>
 &nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;Move&gt; w;<br/>
@@ -712,26 +706,26 @@ Position<a href="CppState.htm">State</a> Board::Get(<b><a href="CppConst.htm">co
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> w;<br/>
 }<br/>
 <br/>
-<b><a href="CppInt.htm">int</a></b> Board::GetLayerSize(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> layer) <b><a href="CppConst.htm">const</a></b><br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppPylos.htm">Pylos</a>::Board::GetLayerSize(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> layer) <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(layer <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 0);<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(layer &lt; <a href="CppNumeric_cast.htm">boost::numeric_cast</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(m_board.size()));<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <a href="CppNumeric_cast.htm">boost::numeric_cast</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(m_board[layer].size());<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> Board::Get<a href="CppVersion.htm">Version</a>()<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppRibi.htm\">ribi</a>::<a href="CppPylos.htm">Pylos</a>::Board::Get<a href="CppVersion.htm">Version</a>()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> "2.0";<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; Board::Get<a href="CppVersion.htm">Version</a>History()<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm\">ribi</a>::<a href="CppPylos.htm">Pylos</a>::Board::Get<a href="CppVersion.htm">Version</a>History()<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v;<br/>
 &nbsp;&nbsp;v.push_back("2012-05-05: <a href="CppVersion.htm">version</a> 2.0: initial release <a href="CppVersion.htm">version</a>");<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
 }<br/>
 <br/>
-Winner Board::GetWinner() <b><a href="CppConst.htm">const</a></b><br/>
+<a href="CppRibi.htm\">ribi</a>::<a href="CppPylos.htm">Pylos</a>::Winner <a href="CppRibi.htm\">ribi</a>::<a href="CppPylos.htm">Pylos</a>::Board::GetWinner() <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (Get(Coordinat(3,0,0)) <a href="CppOperatorNotEqual.htm">!=</a> Position<a href="CppState.htm">State</a>::empty)<br/>
 &nbsp;&nbsp;{<br/>
@@ -747,7 +741,7 @@ Winner Board::GetWinner() <b><a href="CppConst.htm">const</a></b><br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> Winner::none;<br/>
 }<br/>
 <br/>
-Winner Board::PlayRandom<a href="CppPylos.htm">Pylos</a>Game(<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Board&gt;&amp; board_original)<br/>
+<a href="CppRibi.htm\">ribi</a>::<a href="CppPylos.htm">Pylos</a>::Winner <a href="CppRibi.htm\">ribi</a>::<a href="CppPylos.htm">Pylos</a>::Board::PlayRandom<a href="CppPylos.htm">Pylos</a>Game(<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Board&gt;&amp; board_original)<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Board&gt; board;<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (board_original)<br/>
@@ -757,9 +751,9 @@ Winner Board::PlayRandom<a href="CppPylos.htm">Pylos</a>Game(<b><a href="CppCons
 &nbsp;&nbsp;<b><a href="CppElse.htm">else</a></b><br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> ((<a href="CppRand.htm">std::rand</a>() <a href="CppOperatorStreamIn.htm">&gt;&gt;</a> 4) <a href="CppOperatorModulus.htm">%</a> 2)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;board <a href="CppOperatorAssign.htm">=</a> Board::CreateAdvancedBoard();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;board <a href="CppOperatorAssign.htm">=</a> <a href="CppRibi.htm\">ribi</a>::<a href="CppPylos.htm">Pylos</a>::Board::CreateAdvancedBoard();<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppElse.htm">else</a></b><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;board <a href="CppOperatorAssign.htm">=</a> Board::CreateBasicBoard();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;board <a href="CppOperatorAssign.htm">=</a> <a href="CppRibi.htm\">ribi</a>::<a href="CppPylos.htm">Pylos</a>::Board::CreateBasicBoard();<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;Player player <a href="CppOperatorAssign.htm">=</a> Player::player1;<br/>
 <br/>
@@ -779,16 +773,16 @@ Winner Board::PlayRandom<a href="CppPylos.htm">Pylos</a>Game(<b><a href="CppCons
 }<br/>
 <br/>
 <a href="CppIfdef.htm">#ifdef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
-<b><a href="CppVoid.htm">void</a></b> Board::Remove(<b><a href="CppConst.htm">const</a></b> Coordinat&amp; c, <b><a href="CppConst.htm">const</a></b> Player)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppPylos.htm">Pylos</a>::Board::Remove(<b><a href="CppConst.htm">const</a></b> Coordinat&amp; c, <b><a href="CppConst.htm">const</a></b> Player)<br/>
 <a href="CppPreElse.htm">#else</a><br/>
-<b><a href="CppVoid.htm">void</a></b> Board::Remove(<b><a href="CppConst.htm">const</a></b> Coordinat&amp; c, <b><a href="CppConst.htm">const</a></b> Player player)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppPylos.htm">Pylos</a>::Board::Remove(<b><a href="CppConst.htm">const</a></b> Coordinat&amp; c, <b><a href="CppConst.htm">const</a></b> Player player)<br/>
 <a href="CppEndif.htm">#endif</a><br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(CanRemove(c,player));<br/>
 &nbsp;&nbsp;m_board[c.GetLayer()][c.GetX()][c.GetY()] <a href="CppOperatorAssign.htm">=</a> Position<a href="CppState.htm">State</a>::empty;<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> Board::Remove(<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;Coordinat&gt;&amp; v, <b><a href="CppConst.htm">const</a></b> Player player)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppPylos.htm">Pylos</a>::Board::Remove(<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;Coordinat&gt;&amp; v, <b><a href="CppConst.htm">const</a></b> Player player)<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(CanRemove(v,player));<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Proper ordering: v[0] must be marble above<br/>
@@ -810,7 +804,7 @@ Winner Board::PlayRandom<a href="CppPylos.htm">Pylos</a>Game(<b><a href="CppCons
 }<br/>
 <br/>
 <a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
-<b><a href="CppVoid.htm">void</a></b> Board::Test()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppPylos.htm">Pylos</a>::Board::Test()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppBool.htm">bool</a></b> tested <a href="CppOperatorAssign.htm">=</a> <b><a href="CppFalse.htm">false</a></b>;<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (tested) <b><a href="CppReturn.htm">return</a></b>;<br/>
@@ -1175,7 +1169,7 @@ Winner Board::PlayRandom<a href="CppPylos.htm">Pylos</a>Game(<b><a href="CppCons
 &nbsp;&nbsp;}<br/>
 <br/>
 <br/>
-&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("Test Board::GetAllPossibleMoves simple transfer");<br/>
+&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("Test <a href="CppRibi.htm\">ribi</a>::<a href="CppPylos.htm">Pylos</a>::Board::GetAllPossibleMoves simple transfer");<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Board&gt; a <a href="CppOperatorAssign.htm">=</a> CreateAdvancedBoard();<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Board&gt; b <a href="CppOperatorAssign.htm">=</a> CreateBasicBoard();<br/>
@@ -1214,7 +1208,7 @@ Winner Board::PlayRandom<a href="CppPylos.htm">Pylos</a>Game(<b><a href="CppCons
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(a-&gt;GetAllPossibleMoves(Player::player2).size() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 14); <a href="CppComment.htm">//</a>2 on one-but-buttom layer<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(b-&gt;GetAllPossibleMoves(Player::player2).size() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 14); <a href="CppComment.htm">//</a>2 transfers<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("Test Board::GetAllPossibleMoves simple remove");<br/>
+&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("Test <a href="CppRibi.htm\">ribi</a>::<a href="CppPylos.htm">Pylos</a>::Board::GetAllPossibleMoves simple remove");<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Board&gt; a <a href="CppOperatorAssign.htm">=</a> CreateAdvancedBoard();<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Board&gt; b <a href="CppOperatorAssign.htm">=</a> CreateBasicBoard();<br/>
@@ -1234,22 +1228,22 @@ Winner Board::PlayRandom<a href="CppPylos.htm">Pylos</a>Game(<b><a href="CppCons
 &nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("Filling up 5 basic <a href="CppPylos.htm">Pylos</a> boards randomly");<br/>
 &nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> i=0; i<a href="CppOperatorNotEqual.htm">!=</a>5; <a href="CppOperatorPlus.htm">+</a>+i)<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppPylos.htm">Pylos</a>::Board::PlayRandom<a href="CppPylos.htm">Pylos</a>Game(<a href="CppPylos.htm">Pylos</a>::Board::CreateBasicBoard());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppRibi.htm\">ribi</a>::<a href="CppPylos.htm">Pylos</a>::Board::PlayRandom<a href="CppPylos.htm">Pylos</a>Game(<a href="CppPylos.htm">Pylos</a>::Board::CreateBasicBoard());<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("Filling up 5 advanced <a href="CppPylos.htm">Pylos</a> boards randomly");<br/>
 &nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> i=0; i<a href="CppOperatorNotEqual.htm">!=</a>5; <a href="CppOperatorPlus.htm">+</a>+i)<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppPylos.htm">Pylos</a>::Board::PlayRandom<a href="CppPylos.htm">Pylos</a>Game(<a href="CppPylos.htm">Pylos</a>::Board::CreateAdvancedBoard());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppRibi.htm\">ribi</a>::<a href="CppPylos.htm">Pylos</a>::Board::PlayRandom<a href="CppPylos.htm">Pylos</a>Game(<a href="CppRibi.htm\">ribi</a>::<a href="CppPylos.htm">Pylos</a>::Board::CreateAdvancedBoard());<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("Filling up 5 <a href="CppPylos.htm">Pylos</a> boards randomly");<br/>
 &nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> i=0; i<a href="CppOperatorNotEqual.htm">!=</a>5; <a href="CppOperatorPlus.htm">+</a>+i)<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppPylos.htm">Pylos</a>::Board::PlayRandom<a href="CppPylos.htm">Pylos</a>Game();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppRibi.htm\">ribi</a>::<a href="CppPylos.htm">Pylos</a>::Board::PlayRandom<a href="CppPylos.htm">Pylos</a>Game();<br/>
 &nbsp;&nbsp;}<br/>
 }<br/>
 <a href="CppEndif.htm">#endif</a><br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> Board::ToStr() <b><a href="CppConst.htm">const</a></b><br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppRibi.htm\">ribi</a>::<a href="CppPylos.htm">Pylos</a>::Board::ToStr() <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v <a href="CppOperatorAssign.htm">=</a> <b><a href="CppThis.htm">this</a></b>-&gt;ToText();<br/>
 &nbsp;&nbsp;<a href="CppString.htm">std::string</a> s;<br/>
@@ -1258,7 +1252,7 @@ Winner Board::PlayRandom<a href="CppPylos.htm">Pylos</a>Game(<b><a href="CppCons
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> s;<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; Board::ToText() <b><a href="CppConst.htm">const</a></b><br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm\">ribi</a>::<a href="CppPylos.htm">Pylos</a>::Board::ToText() <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v(7,<a href="CppString.htm">std::string</a>(7,' '));<br/>
 &nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> layer <a href="CppOperatorAssign.htm">=</a> 0; layer<a href="CppOperatorNotEqual.htm">!=</a>4; <a href="CppOperatorPlus.htm">+</a>+layer)<br/>
@@ -1289,7 +1283,7 @@ Winner Board::PlayRandom<a href="CppPylos.htm">Pylos</a>Game(<b><a href="CppCons
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> Board::Transfer(<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppPylos.htm">Pylos</a>::Board::Transfer(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Coordinat&amp; from,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Coordinat&amp; to,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;MustRemove<a href="CppState.htm">State</a>&amp; must_remove)<br/>
@@ -1304,7 +1298,7 @@ Winner Board::PlayRandom<a href="CppPylos.htm">Pylos</a>Game(<b><a href="CppCons
 &nbsp;&nbsp;Set(to,player,must_remove);<br/>
 }<br/>
 <br/>
-<b><a href="CppBool.htm">bool</a></b> <b><a href="CppOperatorEqual.htm">operator==</a></b>(<b><a href="CppConst.htm">const</a></b> Board&amp; lhs, <b><a href="CppConst.htm">const</a></b> Board&amp; rhs)<br/>
+<b><a href="CppBool.htm">bool</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppPylos.htm">Pylos</a>::<b><a href="CppOperatorEqual.htm">operator==</a></b>(<b><a href="CppConst.htm">const</a></b> Board&amp; lhs, <b><a href="CppConst.htm">const</a></b> Board&amp; rhs)<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Determine <b><a href="CppIf.htm">if</a></b> types are equal<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (<b><a href="CppTypeid.htm">typeid</a></b>(lhs)<a href="CppOperatorNotEqual.htm">!=</a><b><a href="CppTypeid.htm">typeid</a></b>(rhs)) <b><a href="CppReturn.htm">return</a></b> <b><a href="CppFalse.htm">false</a></b>;<br/>
@@ -1312,24 +1306,24 @@ Winner Board::PlayRandom<a href="CppPylos.htm">Pylos</a>Game(<b><a href="CppCons
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> lhs.m_board <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> rhs.m_board;<br/>
 }<br/>
 <br/>
-<b><a href="CppBool.htm">bool</a></b> <b><a href="CppOperatorNotEqual.htm">operator!=</a></b>(<b><a href="CppConst.htm">const</a></b> Board&amp; lhs, <b><a href="CppConst.htm">const</a></b> Board&amp; rhs)<br/>
+<b><a href="CppBool.htm">bool</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppPylos.htm">Pylos</a>::<b><a href="CppOperatorNotEqual.htm">operator!=</a></b>(<b><a href="CppConst.htm">const</a></b> Board&amp; lhs, <b><a href="CppConst.htm">const</a></b> Board&amp; rhs)<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> !(lhs<a href="CppOperatorEqual.htm">==</a>rhs);<br/>
 }<br/>
 <br/>
-<a href="CppOstream.htm">std::ostream</a>&amp; <b><a href="CppOperatorStreamOut.htm">operator&lt;&lt;</a></b>(<a href="CppOstream.htm">std::ostream</a>&amp; os,<b><a href="CppConst.htm">const</a></b> Board&amp; p)<br/>
+<a href="CppOstream.htm">std::ostream</a>&amp; <a href="CppRibi.htm\">ribi</a>::<a href="CppPylos.htm">Pylos</a>::<b><a href="CppOperatorStreamOut.htm">operator&lt;&lt;</a></b>(<a href="CppOstream.htm">std::ostream</a>&amp; os,<b><a href="CppConst.htm">const</a></b> Board&amp; p)<br/>
 {<br/>
 &nbsp;&nbsp;os <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> p.ToStr();<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> os;<br/>
 }<br/>
 <br/>
-BoardAdvanced::BoardAdvanced()<br/>
+<a href="CppRibi.htm\">ribi</a>::<a href="CppPylos.htm">Pylos</a>::BoardAdvanced::BoardAdvanced()<br/>
 &nbsp;&nbsp;: Board()<br/>
 {<br/>
 <br/>
 }<br/>
 <br/>
-<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Board&gt; BoardAdvanced::Clone() <b><a href="CppConst.htm">const</a></b><br/>
+<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRibi.htm\">ribi</a>::<a href="CppPylos.htm">Pylos</a>::Board&gt; <a href="CppRibi.htm\">ribi</a>::<a href="CppPylos.htm">Pylos</a>::BoardAdvanced::Clone() <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;BoardAdvanced * <b><a href="CppConst.htm">const</a></b> p <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> BoardAdvanced;<br/>
 &nbsp;&nbsp;p-&gt;m_board <a href="CppOperatorAssign.htm">=</a> m_board;<br/>
@@ -1338,7 +1332,7 @@ BoardAdvanced::BoardAdvanced()<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> sp;<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> BoardAdvanced::Set(<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppPylos.htm">Pylos</a>::BoardAdvanced::Set(<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Coordinat&amp; c,<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Player player,<br/>
 &nbsp;&nbsp;MustRemove<a href="CppState.htm">State</a>&amp; must_remove)<br/>
@@ -1398,13 +1392,13 @@ BoardAdvanced::BoardAdvanced()<br/>
 <br/>
 }<br/>
 <br/>
-BoardBasic::BoardBasic()<br/>
+<a href="CppRibi.htm\">ribi</a>::<a href="CppPylos.htm">Pylos</a>::BoardBasic::BoardBasic()<br/>
 &nbsp;&nbsp;: Board()<br/>
 {<br/>
 <br/>
 }<br/>
 <br/>
-<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Board&gt; BoardBasic::Clone() <b><a href="CppConst.htm">const</a></b><br/>
+<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRibi.htm\">ribi</a>::<a href="CppPylos.htm">Pylos</a>::Board&gt; <a href="CppRibi.htm\">ribi</a>::<a href="CppPylos.htm">Pylos</a>::BoardBasic::Clone() <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;BoardBasic * <b><a href="CppConst.htm">const</a></b> p <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> BoardBasic;<br/>
 &nbsp;&nbsp;p-&gt;m_board <a href="CppOperatorAssign.htm">=</a> m_board;<br/>
@@ -1413,7 +1407,7 @@ BoardBasic::BoardBasic()<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> sp;<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> BoardBasic::Set(<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppPylos.htm">Pylos</a>::BoardBasic::Set(<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Coordinat&amp; c,<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Player player,<br/>
 &nbsp;&nbsp;MustRemove<a href="CppState.htm">State</a>&amp; must_remove)<br/>
@@ -1449,8 +1443,6 @@ BoardBasic::BoardBasic()<br/>
 &nbsp;&nbsp;must_remove <a href="CppOperatorAssign.htm">=</a> MustRemove<a href="CppState.htm">State</a>::no;<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b>;<br/>
 }<br/>
-<br/>
-} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppPylos.htm">Pylos</a><br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -1488,6 +1480,8 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppIosfwdH.htm">iosfwd</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppStringH.htm">string</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
+<br/>
+<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a> {<br/>
 <br/>
 <b><a href="CppNamespace.htm">namespace</a></b> <a href="CppPylos.htm">Pylos</a> {<br/>
 <br/>
@@ -1569,6 +1563,8 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <br/>
 } <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppPylos.htm">Pylos</a><br/>
 <br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a><br/>
+<br/>
 <a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> PYLOSCOORDINAT_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
@@ -1601,16 +1597,8 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="CppPylos.htm">CppPylos</a>.htm<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppIfdef.htm">#ifdef</a> _WIN32<br/>
-<a href="CppComment.htm">//</a>See http://www.richelbilderbeek.nl/Cpp<a href="CppCompile.htm">Compile</a>ErrorUnableToFindNumericLiteralOperatorOperatorQ.htm<br/>
-<a href="CppPreIf.htm">#if</a> !(__GNUC__ <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 4 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> __GNUC_MINOR__ <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 8)<br/>
-<a href="CppComment.htm">//</a>See http://www.richelbilderbeek.nl/Cpp<a href="CppCompile.htm">Compile</a>ErrorSwprintfHasNotBeenDeclared.htm<br/>
-<a href="CppUndef.htm">#undef</a> __STRICT_ANSI__<br/>
-<a href="CppEndif.htm">#endif</a><br/>
-<a href="CppEndif.htm">#endif</a><br/>
 <br/>
-<a href="CppComment.htm">//</a><a href="CppInclude.htm">#include</a> own <a href="CppHeaderFile.htm">header file</a> as first substantive line of code, from:<br/>
-<a href="CppComment.htm">//</a> * John Lakos. Large-Scale <a href="Cpp.htm">C++</a> Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110<br/>
+<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppPylos.htm">pylos</a>coordinat.h"<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppAlgorithmH.htm">algorithm</a>&gt;<br/>
@@ -1624,9 +1612,8 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppTrace.htm">trace</a>.h"<br/>
 <br/>
-<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppPylos.htm">Pylos</a> {<br/>
 <br/>
-Coordinat::Coordinat(<br/>
+<a href="CppRibi.htm\">ribi</a>::<a href="CppPylos.htm">Pylos</a>::Coordinat::Coordinat(<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> layer,<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x,<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> y)<br/>
@@ -1640,7 +1627,7 @@ Coordinat::Coordinat(<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(IsValid(layer,x,y));<br/>
 }<br/>
 <br/>
-Coordinat::Coordinat(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; s)<br/>
+<a href="CppRibi.htm\">ribi</a>::<a href="CppPylos.htm">Pylos</a>::Coordinat::Coordinat(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; s)<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
 &nbsp;&nbsp;Test();<br/>
@@ -1656,7 +1643,7 @@ Coordinat::Coordinat(<b><a href="CppConst.htm">const</a></b> <a href="CppString.
 }<br/>
 <br/>
 <a href="CppComment.htm">///</a>IsValid <a href="CppReturn.htm">returns</a> <b><a href="CppIf.htm">if</a></b> the proposed coordinat is a valid <a href="CppPylos.htm">Pylos</a> coordinat<br/>
-<b><a href="CppBool.htm">bool</a></b> Coordinat::IsValid(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> layer, <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x, <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> y)<br/>
+<b><a href="CppBool.htm">bool</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppPylos.htm">Pylos</a>::Coordinat::IsValid(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> layer, <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x, <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> y)<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> layer <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 0 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> layer &lt; 4<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> x <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 0 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> x &lt; 4-layer<br/>
@@ -1664,7 +1651,7 @@ Coordinat::Coordinat(<b><a href="CppConst.htm">const</a></b> <a href="CppString.
 }<br/>
 <br/>
 <a href="CppComment.htm">///</a>GetAllCoordinats <a href="CppReturn.htm">returns</a> all possible Coordinats<br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;Coordinat&gt; GetAllCoordinats()<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppRibi.htm\">ribi</a>::<a href="CppPylos.htm">Pylos</a>::Coordinat&gt; <a href="CppRibi.htm\">ribi</a>::<a href="CppPylos.htm">Pylos</a>::GetAllCoordinats()<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;Coordinat&gt; v;<br/>
 &nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> z=0; z<a href="CppOperatorNotEqual.htm">!=</a>4; <a href="CppOperatorPlus.htm">+</a>+z)<br/>
@@ -1681,26 +1668,26 @@ Coordinat::Coordinat(<b><a href="CppConst.htm">const</a></b> <a href="CppString.
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> Coordinat::Get<a href="CppVersion.htm">Version</a>()<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppRibi.htm\">ribi</a>::<a href="CppPylos.htm">Pylos</a>::Coordinat::Get<a href="CppVersion.htm">Version</a>()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> "2.0";<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; Coordinat::Get<a href="CppVersion.htm">Version</a>History()<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm\">ribi</a>::<a href="CppPylos.htm">Pylos</a>::Coordinat::Get<a href="CppVersion.htm">Version</a>History()<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v;<br/>
 &nbsp;&nbsp;v.push_back("2012-05-05: <a href="CppVersion.htm">version</a> 2.0: initial release <a href="CppVersion.htm">version</a>");<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
 }<br/>
 <br/>
-<b><a href="CppBool.htm">bool</a></b> Coordinat::IsValid() <b><a href="CppConst.htm">const</a></b><br/>
+<b><a href="CppBool.htm">bool</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppPylos.htm">Pylos</a>::Coordinat::IsValid() <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> IsValid(m_layer,m_x,m_y);<br/>
 }<br/>
 <br/>
 <a href="CppComment.htm">///</a>ToStr() <a href="CppConvert.htm">converts</a> the coordinat to a <a href="CppString.htm">std::string</a><br/>
 <a href="CppComment.htm">///</a>of the form '(layer,x,y)'.<br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> Coordinat::ToStr() <b><a href="CppConst.htm">const</a></b><br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppRibi.htm\">ribi</a>::<a href="CppPylos.htm">Pylos</a>::Coordinat::ToStr() <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <a href="CppString.htm">std::string</a>("(")<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> <a href="CppLexical_cast.htm">boost::lexical_cast</a>&lt;<a href="CppString.htm">std::string</a>&gt;(m_layer)<br/>
@@ -1714,7 +1701,7 @@ Coordinat::Coordinat(<b><a href="CppConst.htm">const</a></b> <a href="CppString.
 <br/>
 <a href="CppComment.htm">///</a>GetAbove <a href="CppReturn.htm">returns</a> the coordinats physically<br/>
 <a href="CppComment.htm">///</a>above the entered coordinat<br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;Coordinat&gt; GetAbove(<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppRibi.htm\">ribi</a>::<a href="CppPylos.htm">Pylos</a>::Coordinat&gt; <a href="CppRibi.htm\">ribi</a>::<a href="CppPylos.htm">Pylos</a>::GetAbove(<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Coordinat&amp; c)<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> layer <a href="CppOperatorAssign.htm">=</a> c.GetLayer() <a href="CppOperatorPlus.htm">+</a> 1;<br/>
@@ -1722,16 +1709,16 @@ Coordinat::Coordinat(<b><a href="CppConst.htm">const</a></b> <a href="CppString.
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> y <a href="CppOperatorAssign.htm">=</a> c.GetY();<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Just get all coordinats<br/>
 &nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;Coordinat&gt; v;<br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (Coordinat::IsValid(layer,x-0,y-0)) v.push_back(Coordinat(layer,x-0,y-0));<br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (Coordinat::IsValid(layer,x-0,y-1)) v.push_back(Coordinat(layer,x-0,y-1));<br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (Coordinat::IsValid(layer,x-1,y-0)) v.push_back(Coordinat(layer,x-1,y-0));<br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (Coordinat::IsValid(layer,x-1,y-1)) v.push_back(Coordinat(layer,x-1,y-1));<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (<a href="CppRibi.htm\">ribi</a>::<a href="CppPylos.htm">Pylos</a>::Coordinat::IsValid(layer,x-0,y-0)) v.push_back(Coordinat(layer,x-0,y-0));<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (<a href="CppRibi.htm\">ribi</a>::<a href="CppPylos.htm">Pylos</a>::Coordinat::IsValid(layer,x-0,y-1)) v.push_back(Coordinat(layer,x-0,y-1));<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (<a href="CppRibi.htm\">ribi</a>::<a href="CppPylos.htm">Pylos</a>::Coordinat::IsValid(layer,x-1,y-0)) v.push_back(Coordinat(layer,x-1,y-0));<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (<a href="CppRibi.htm\">ribi</a>::<a href="CppPylos.htm">Pylos</a>::Coordinat::IsValid(layer,x-1,y-1)) v.push_back(Coordinat(layer,x-1,y-1));<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
 }<br/>
 <br/>
 <a href="CppComment.htm">///</a>GetBelow <a href="CppReturn.htm">returns</a> the four coordinats physically<br/>
 <a href="CppComment.htm">///</a>below the entered coordinat<br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;Coordinat&gt; GetBelow(<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppRibi.htm\">ribi</a>::<a href="CppPylos.htm">Pylos</a>::Coordinat&gt; <a href="CppRibi.htm\">ribi</a>::<a href="CppPylos.htm">Pylos</a>::GetBelow(<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Coordinat&amp; c)<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(c.IsValid());<br/>
@@ -1748,7 +1735,7 @@ Coordinat::Coordinat(<b><a href="CppConst.htm">const</a></b> <a href="CppString.
 }<br/>
 <br/>
 <a href="CppComment.htm">///</a>GetLines <a href="CppReturn.htm">returns</a> the possible 2x2 squares around the coordinat<br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppVector.htm">std::vector</a>&lt;Coordinat&gt; &gt; GetLines(<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppRibi.htm\">ribi</a>::<a href="CppPylos.htm">Pylos</a>::Coordinat&gt; &gt; <a href="CppRibi.htm\">ribi</a>::<a href="CppPylos.htm">Pylos</a>::GetLines(<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Coordinat&amp; c)<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppTypedef.htm">typedef</a></b> <a href="CppVector.htm">std::vector</a>&lt;Coordinat&gt; Line;<br/>
@@ -1775,17 +1762,17 @@ Coordinat::Coordinat(<b><a href="CppConst.htm">const</a></b> <a href="CppString.
 }<br/>
 <br/>
 <a href="CppComment.htm">///</a>GetRandomCoordinat <a href="CppReturn.htm">returns</a> a random valid Coordinat<br/>
-<b><a href="CppConst.htm">const</a></b> Coordinat GetRandomCoordinat()<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppPylos.htm">Pylos</a>::Coordinat <a href="CppRibi.htm\">ribi</a>::<a href="CppPylos.htm">Pylos</a>::GetRandomCoordinat()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> layer <a href="CppOperatorAssign.htm">=</a> ( <a href="CppRand.htm">std::rand</a>() <a href="CppOperatorStreamIn.htm">&gt;&gt;</a> 4) <a href="CppOperatorModulus.htm">%</a> 4;<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x <a href="CppOperatorAssign.htm">=</a> ( <a href="CppRand.htm">std::rand</a>() <a href="CppOperatorStreamIn.htm">&gt;&gt;</a> 4) <a href="CppOperatorModulus.htm">%</a> (4 <a href="CppOperatorMinus.htm">-</a> layer);<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> y <a href="CppOperatorAssign.htm">=</a> ( <a href="CppRand.htm">std::rand</a>() <a href="CppOperatorStreamIn.htm">&gt;&gt;</a> 4) <a href="CppOperatorModulus.htm">%</a> (4 <a href="CppOperatorMinus.htm">-</a> layer);<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(Coordinat::IsValid(layer,x,y));<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppRibi.htm\">ribi</a>::<a href="CppPylos.htm">Pylos</a>::Coordinat::IsValid(layer,x,y));<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> Coordinat(layer,x,y);<br/>
 }<br/>
 <br/>
 <a href="CppComment.htm">///</a>GetSquares <a href="CppReturn.htm">returns</a> the possible 2x2 squares around the coordinat<br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppVector.htm">std::vector</a>&lt;Coordinat&gt; &gt; GetSquares(<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppRibi.htm\">ribi</a>::<a href="CppPylos.htm">Pylos</a>::Coordinat&gt; &gt; <a href="CppRibi.htm\">ribi</a>::<a href="CppPylos.htm">Pylos</a>::GetSquares(<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Coordinat&amp; c)<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppTypedef.htm">typedef</a></b> <a href="CppVector.htm">std::vector</a>&lt;Coordinat&gt; Square;<br/>
@@ -1835,7 +1822,7 @@ Coordinat::Coordinat(<b><a href="CppConst.htm">const</a></b> <a href="CppString.
 }<br/>
 <br/>
 <a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
-<b><a href="CppVoid.htm">void</a></b> Coordinat::Test()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppPylos.htm">Pylos</a>::Coordinat::Test()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppBool.htm">bool</a></b> tested <a href="CppOperatorAssign.htm">=</a> <b><a href="CppFalse.htm">false</a></b>;<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (tested) <b><a href="CppReturn.htm">return</a></b>;<br/>
@@ -1923,25 +1910,23 @@ Coordinat::Coordinat(<b><a href="CppConst.htm">const</a></b> <a href="CppString.
 }<br/>
 <a href="CppEndif.htm">#endif</a><br/>
 <br/>
-<b><a href="CppBool.htm">bool</a></b> <b><a href="CppOperatorEqual.htm">operator==</a></b>(<b><a href="CppConst.htm">const</a></b> Coordinat&amp; lhs, <b><a href="CppConst.htm">const</a></b> Coordinat&amp; rhs)<br/>
+<b><a href="CppBool.htm">bool</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppPylos.htm">Pylos</a>::<b><a href="CppOperatorEqual.htm">operator==</a></b>(<b><a href="CppConst.htm">const</a></b> Coordinat&amp; lhs, <b><a href="CppConst.htm">const</a></b> Coordinat&amp; rhs)<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> lhs.GetLayer() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> rhs.GetLayer()<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> lhs.GetX() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> rhs.GetX()<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> lhs.GetY() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> rhs.GetY();<br/>
 }<br/>
 <br/>
-<b><a href="CppBool.htm">bool</a></b> <b><a href="CppOperatorNotEqual.htm">operator!=</a></b>(<b><a href="CppConst.htm">const</a></b> Coordinat&amp; lhs, <b><a href="CppConst.htm">const</a></b> Coordinat&amp; rhs)<br/>
+<b><a href="CppBool.htm">bool</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppPylos.htm">Pylos</a>::<b><a href="CppOperatorNotEqual.htm">operator!=</a></b>(<b><a href="CppConst.htm">const</a></b> Coordinat&amp; lhs, <b><a href="CppConst.htm">const</a></b> Coordinat&amp; rhs)<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> !(lhs <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> rhs);<br/>
 }<br/>
 <br/>
-<a href="CppOstream.htm">std::ostream</a>&amp; <b><a href="CppOperatorStreamOut.htm">operator&lt;&lt;</a></b>(<a href="CppOstream.htm">std::ostream</a>&amp; os,<b><a href="CppConst.htm">const</a></b> Coordinat&amp; c)<br/>
+<a href="CppOstream.htm">std::ostream</a>&amp; <a href="CppRibi.htm\">ribi</a>::<a href="CppPylos.htm">Pylos</a>::<b><a href="CppOperatorStreamOut.htm">operator&lt;&lt;</a></b>(<a href="CppOstream.htm">std::ostream</a>&amp; os,<b><a href="CppConst.htm">const</a></b> Coordinat&amp; c)<br/>
 {<br/>
 &nbsp;&nbsp;os <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> c.ToStr();<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> os;<br/>
 }<br/>
-<br/>
-} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppPylos.htm">Pylos</a> {<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -1981,6 +1966,8 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppPylos.htm">pylos</a>coordinat.h"<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppPylos.htm">pylos</a>move.h"<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppPylos.htm">pylos</a>mustremovestate.h"<br/>
+<br/>
+<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a> {<br/>
 <br/>
 <b><a href="CppNamespace.htm">namespace</a></b> <a href="CppPylos.htm">Pylos</a> {<br/>
 <br/>
@@ -2039,6 +2026,8 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <br/>
 } <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppPylos.htm">Pylos</a><br/>
 <br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a><br/>
+<br/>
 <a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> PYLOSCURRENTMOVESTATE_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
@@ -2071,25 +2060,15 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="CppPylos.htm">CppPylos</a>.htm<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppIfdef.htm">#ifdef</a> _WIN32<br/>
-<a href="CppComment.htm">//</a>See http://www.richelbilderbeek.nl/Cpp<a href="CppCompile.htm">Compile</a>ErrorUnableToFindNumericLiteralOperatorOperatorQ.htm<br/>
-<a href="CppPreIf.htm">#if</a> !(__GNUC__ <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 4 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> __GNUC_MINOR__ <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 8)<br/>
-<a href="CppComment.htm">//</a>See http://www.richelbilderbeek.nl/Cpp<a href="CppCompile.htm">Compile</a>ErrorSwprintfHasNotBeenDeclared.htm<br/>
-<a href="CppUndef.htm">#undef</a> __STRICT_ANSI__<br/>
-<a href="CppEndif.htm">#endif</a><br/>
-<a href="CppEndif.htm">#endif</a><br/>
 <br/>
-<a href="CppComment.htm">//</a><a href="CppInclude.htm">#include</a> own <a href="CppHeaderFile.htm">header file</a> as first substantive line of code, from:<br/>
-<a href="CppComment.htm">//</a> * John Lakos. Large-Scale <a href="Cpp.htm">C++</a> Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110<br/>
+<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppPylos.htm">pylos</a>currentmovestate.h"<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppTrace.htm">trace</a>.h"<br/>
 <br/>
-<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppPylos.htm">Pylos</a> {<br/>
-<br/>
-CurrentMove<a href="CppState.htm">State</a>::CurrentMove<a href="CppState.htm">State</a>()<br/>
+<a href="CppRibi.htm\">ribi</a>::<a href="CppPylos.htm">Pylos</a>::CurrentMove<a href="CppState.htm">State</a>::CurrentMove<a href="CppState.htm">State</a>()<br/>
 &nbsp;&nbsp;: m_must_remove(MustRemove<a href="CppState.htm">State</a>::no)<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
@@ -2100,49 +2079,49 @@ CurrentMove<a href="CppState.htm">State</a>::CurrentMove<a href="CppState.htm">S
 &nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppAssert.htm">assert</a>(IsRemoveUnknown());<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> CurrentMove<a href="CppState.htm">State</a>::Get<a href="CppVersion.htm">Version</a>()<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppRibi.htm\">ribi</a>::<a href="CppPylos.htm">Pylos</a>::CurrentMove<a href="CppState.htm">State</a>::Get<a href="CppVersion.htm">Version</a>()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> "2.0";<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; CurrentMove<a href="CppState.htm">State</a>::Get<a href="CppVersion.htm">Version</a>History()<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm\">ribi</a>::<a href="CppPylos.htm">Pylos</a>::CurrentMove<a href="CppState.htm">State</a>::Get<a href="CppVersion.htm">Version</a>History()<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v;<br/>
 &nbsp;&nbsp;v.push_back("2012-05-05: <a href="CppVersion.htm">version</a> 2.0: initial release <a href="CppVersion.htm">version</a>");<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
 }<br/>
 <br/>
-<b><a href="CppBool.htm">bool</a></b> CurrentMove<a href="CppState.htm">State</a>::IsMoveMove() <b><a href="CppConst.htm">const</a></b><br/>
+<b><a href="CppBool.htm">bool</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppPylos.htm">Pylos</a>::CurrentMove<a href="CppState.htm">State</a>::IsMoveMove() <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(m_current_move.m_move.size() &lt; 3);<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> m_current_move.m_move.size() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 2;<br/>
 }<br/>
 <br/>
-<b><a href="CppBool.htm">bool</a></b> CurrentMove<a href="CppState.htm">State</a>::IsMovePlace() <b><a href="CppConst.htm">const</a></b><br/>
+<b><a href="CppBool.htm">bool</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppPylos.htm">Pylos</a>::CurrentMove<a href="CppState.htm">State</a>::IsMovePlace() <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(m_current_move.m_move.size() &lt; 3);<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> m_current_move.m_move.size() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 1;<br/>
 }<br/>
 <br/>
-<b><a href="CppBool.htm">bool</a></b> CurrentMove<a href="CppState.htm">State</a>::IsMoveUnknown() <b><a href="CppConst.htm">const</a></b><br/>
+<b><a href="CppBool.htm">bool</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppPylos.htm">Pylos</a>::CurrentMove<a href="CppState.htm">State</a>::IsMoveUnknown() <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(m_current_move.m_move.size() &lt; 3);<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> m_current_move.m_move.size() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 0;<br/>
 }<br/>
 <br/>
-MustRemove<a href="CppState.htm">State</a> CurrentMove<a href="CppState.htm">State</a>::GetMustRemove() <b><a href="CppConst.htm">const</a></b><br/>
+<a href="CppRibi.htm\">ribi</a>::<a href="CppPylos.htm">Pylos</a>::MustRemove<a href="CppState.htm">State</a> <a href="CppRibi.htm\">ribi</a>::<a href="CppPylos.htm">Pylos</a>::CurrentMove<a href="CppState.htm">State</a>::GetMustRemove() <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> m_must_remove;<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> CurrentMove<a href="CppState.htm">State</a>::Restart()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppPylos.htm">Pylos</a>::CurrentMove<a href="CppState.htm">State</a>::Restart()<br/>
 {<br/>
 &nbsp;&nbsp;m_must_remove <a href="CppOperatorAssign.htm">=</a> MustRemove<a href="CppState.htm">State</a>::no;<br/>
 &nbsp;&nbsp;m_current_move <a href="CppOperatorAssign.htm">=</a> Move();<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(IsMoveUnknown());<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> CurrentMove<a href="CppState.htm">State</a>::SetMove(<b><a href="CppConst.htm">const</a></b> Move&amp; move)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppPylos.htm">Pylos</a>::CurrentMove<a href="CppState.htm">State</a>::SetMove(<b><a href="CppConst.htm">const</a></b> Move&amp; move)<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(m_current_move.m_move.empty());<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(m_current_move.m_remove.empty());<br/>
@@ -2150,7 +2129,7 @@ MustRemove<a href="CppState.htm">State</a> CurrentMove<a href="CppState.htm">Sta
 &nbsp;&nbsp;m_must_remove <a href="CppOperatorAssign.htm">=</a> MustRemove<a href="CppState.htm">State</a>::no;<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> CurrentMove<a href="CppState.htm">State</a>::SetMoveTransfer(<b><a href="CppConst.htm">const</a></b> Coordinat&amp; from, <b><a href="CppConst.htm">const</a></b> Coordinat&amp; to)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppPylos.htm">Pylos</a>::CurrentMove<a href="CppState.htm">State</a>::SetMoveTransfer(<b><a href="CppConst.htm">const</a></b> Coordinat&amp; from, <b><a href="CppConst.htm">const</a></b> Coordinat&amp; to)<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(IsMoveUnknown());<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(m_current_move.m_move.empty());<br/>
@@ -2158,14 +2137,14 @@ MustRemove<a href="CppState.htm">State</a> CurrentMove<a href="CppState.htm">Sta
 &nbsp;&nbsp;m_current_move.m_move.push_back(to);<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> CurrentMove<a href="CppState.htm">State</a>::SetMoveSet(<b><a href="CppConst.htm">const</a></b> Coordinat&amp; c)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppPylos.htm">Pylos</a>::CurrentMove<a href="CppState.htm">State</a>::SetMoveSet(<b><a href="CppConst.htm">const</a></b> Coordinat&amp; c)<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(IsMoveUnknown());<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(m_current_move.m_move.empty());<br/>
 &nbsp;&nbsp;m_current_move.m_move.push_back(c);<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> CurrentMove<a href="CppState.htm">State</a>::SetMustRemove(<b><a href="CppConst.htm">const</a></b> MustRemove<a href="CppState.htm">State</a> must_remove)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppPylos.htm">Pylos</a>::CurrentMove<a href="CppState.htm">State</a>::SetMustRemove(<b><a href="CppConst.htm">const</a></b> MustRemove<a href="CppState.htm">State</a> must_remove)<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!(must_remove <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> MustRemove<a href="CppState.htm">State</a>::player2<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a>&nbsp;&nbsp; m_must_remove <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> MustRemove<a href="CppState.htm">State</a>::player1)<br/>
@@ -2176,14 +2155,14 @@ MustRemove<a href="CppState.htm">State</a> CurrentMove<a href="CppState.htm">Sta
 &nbsp;&nbsp;m_must_remove <a href="CppOperatorAssign.htm">=</a> must_remove;<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> CurrentMove<a href="CppState.htm">State</a>::SetRemove(<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;Coordinat&gt;&amp; v)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppPylos.htm">Pylos</a>::CurrentMove<a href="CppState.htm">State</a>::SetRemove(<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;Coordinat&gt;&amp; v)<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(m_must_remove <a href="CppOperatorNotEqual.htm">!=</a> MustRemove<a href="CppState.htm">State</a>::no);<br/>
 &nbsp;&nbsp;m_current_move.m_remove <a href="CppOperatorAssign.htm">=</a> v;<br/>
 }<br/>
 <br/>
 <a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
-<b><a href="CppVoid.htm">void</a></b> CurrentMove<a href="CppState.htm">State</a>::Test()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppPylos.htm">Pylos</a>::CurrentMove<a href="CppState.htm">State</a>::Test()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppBool.htm">bool</a></b> tested <a href="CppOperatorAssign.htm">=</a> <b><a href="CppFalse.htm">false</a></b>;<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (tested) <b><a href="CppReturn.htm">return</a></b>;<br/>
@@ -2208,13 +2187,11 @@ MustRemove<a href="CppState.htm">State</a> CurrentMove<a href="CppState.htm">Sta
 }<br/>
 <a href="CppEndif.htm">#endif</a><br/>
 <br/>
-<b><a href="CppBool.htm">bool</a></b> <b><a href="CppOperatorEqual.htm">operator==</a></b>(<b><a href="CppConst.htm">const</a></b> CurrentMove<a href="CppState.htm">State</a>&amp; lhs, <b><a href="CppConst.htm">const</a></b> CurrentMove<a href="CppState.htm">State</a>&amp; rhs)<br/>
+<b><a href="CppBool.htm">bool</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppPylos.htm">Pylos</a>::<b><a href="CppOperatorEqual.htm">operator==</a></b>(<b><a href="CppConst.htm">const</a></b> CurrentMove<a href="CppState.htm">State</a>&amp; lhs, <b><a href="CppConst.htm">const</a></b> CurrentMove<a href="CppState.htm">State</a>&amp; rhs)<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> lhs.GetMustRemove() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> rhs.GetMustRemove()<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> lhs.GetMove() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> rhs.GetMove();<br/>
 }<br/>
-<br/>
-} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppPylos.htm">Pylos</a><br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -2249,6 +2226,8 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppIfndef.htm">#ifndef</a> PYLOSFWD_H<br/>
 <a href="CppDefine.htm">#define</a> PYLOSFWD_H<br/>
 <br/>
+<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a> {<br/>
+<br/>
 <b><a href="CppNamespace.htm">namespace</a></b> <a href="CppPylos.htm">Pylos</a> {<br/>
 <br/>
 <a href="CppComment.htm">/*</a><br/>
@@ -2263,6 +2242,8 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <b><a href="CppEnumClass.htm">enum class</a></b> MustRemove<a href="CppState.htm">State</a>;<br/>
 <br/>
 } <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppPylos.htm">Pylos</a><br/>
+<br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a><br/>
 <br/>
 <a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> PYLOSFWD_H<br/>
 </code></td></tr></table>
@@ -2310,6 +2291,8 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppPylos.htm">pylos</a>player.h"<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppPylos.htm">pylos</a>positionstate.h"<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppPylos.htm">pylos</a>winner.h"<br/>
+<br/>
+<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a> {<br/>
 <br/>
 <b><a href="CppNamespace.htm">namespace</a></b> <a href="CppPylos.htm">Pylos</a> {<br/>
 <br/>
@@ -2472,6 +2455,8 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <br/>
 } <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppPylos.htm">Pylos</a><br/>
 <br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a><br/>
+<br/>
 <a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> PYLOSGAME_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
@@ -2504,16 +2489,8 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="CppPylos.htm">CppPylos</a>.htm<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppIfdef.htm">#ifdef</a> _WIN32<br/>
-<a href="CppComment.htm">//</a>See http://www.richelbilderbeek.nl/Cpp<a href="CppCompile.htm">Compile</a>ErrorUnableToFindNumericLiteralOperatorOperatorQ.htm<br/>
-<a href="CppPreIf.htm">#if</a> !(__GNUC__ <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 4 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> __GNUC_MINOR__ <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 8)<br/>
-<a href="CppComment.htm">//</a>See http://www.richelbilderbeek.nl/Cpp<a href="CppCompile.htm">Compile</a>ErrorSwprintfHasNotBeenDeclared.htm<br/>
-<a href="CppUndef.htm">#undef</a> __STRICT_ANSI__<br/>
-<a href="CppEndif.htm">#endif</a><br/>
-<a href="CppEndif.htm">#endif</a><br/>
 <br/>
-<a href="CppComment.htm">//</a><a href="CppInclude.htm">#include</a> own <a href="CppHeaderFile.htm">header file</a> as first substantive line of code, from:<br/>
-<a href="CppComment.htm">//</a> * John Lakos. Large-Scale <a href="Cpp.htm">C++</a> Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110<br/>
+<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppPylos.htm">pylos</a>game.h"<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppAlgorithmH.htm">algorithm</a>&gt;<br/>
@@ -2528,9 +2505,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppPylos.htm">pylos</a>move.h"<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppTrace.htm">trace</a>.h"<br/>
 <br/>
-<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppPylos.htm">Pylos</a> {<br/>
-<br/>
-Game::Game(<b><a href="CppConst.htm">const</a></b> Game&amp; rhs)<br/>
+<a href="CppRibi.htm\">ribi</a>::<a href="CppPylos.htm">Pylos</a>::Game::Game(<b><a href="CppConst.htm">const</a></b> Game&amp; rhs)<br/>
 &nbsp;&nbsp;: m_board(rhs.m_board-&gt;Clone()),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;m_current_move(<b><a href="CppNew.htm">new</a></b> CurrentMove<a href="CppState.htm">State</a>(*rhs.m_current_move)),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;m_current_player(rhs.m_current_player),<br/>
@@ -2543,7 +2518,7 @@ Game::Game(<b><a href="CppConst.htm">const</a></b> Game&amp; rhs)<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(m_current_move <a href="CppOperatorNotEqual.htm">!=</a> rhs.m_current_move);<br/>
 }<br/>
 <br/>
-Game::Game(<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Board&gt; &amp;board)<br/>
+<a href="CppRibi.htm\">ribi</a>::<a href="CppPylos.htm">Pylos</a>::Game::Game(<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Board&gt; &amp;board)<br/>
 &nbsp;&nbsp;: m_board(board),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;m_current_move(<b><a href="CppNew.htm">new</a></b> CurrentMove<a href="CppState.htm">State</a>),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;m_current_player(Player::player1)<br/>
@@ -2554,24 +2529,24 @@ Game::Game(<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.h
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(m_board);<br/>
 }<br/>
 <br/>
-<b><a href="CppBool.htm">bool</a></b> Game::CanDo(<b><a href="CppConst.htm">const</a></b> <a href="CppPylos.htm">Pylos</a>::Move&amp; m) <b><a href="CppConst.htm">const</a></b><br/>
+<b><a href="CppBool.htm">bool</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppPylos.htm">Pylos</a>::Game::CanDo(<b><a href="CppConst.htm">const</a></b> <a href="CppPylos.htm">Pylos</a>::Move&amp; m) <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> m_board-&gt;CanDo(m,m_current_player);<br/>
 }<br/>
 <br/>
-<b><a href="CppBool.htm">bool</a></b> Game::CanDo(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; s) <b><a href="CppConst.htm">const</a></b><br/>
+<b><a href="CppBool.htm">bool</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppPylos.htm">Pylos</a>::Game::CanDo(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; s) <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> m_board-&gt;CanDo(s,m_current_player);<br/>
 }<br/>
 <br/>
-<b><a href="CppBool.htm">bool</a></b> Game::CanRemove(<b><a href="CppConst.htm">const</a></b> Coordinat&amp; c) <b><a href="CppConst.htm">const</a></b><br/>
+<b><a href="CppBool.htm">bool</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppPylos.htm">Pylos</a>::Game::CanRemove(<b><a href="CppConst.htm">const</a></b> Coordinat&amp; c) <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (m_board-&gt;Get(c) <a href="CppOperatorNotEqual.htm">!=</a> m_current_player) <b><a href="CppReturn.htm">return</a></b> <b><a href="CppFalse.htm">false</a></b>;<br/>
 <br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> m_board-&gt;CanRemove( <a href="CppVector.htm">std::vector</a>&lt;Coordinat&gt;(1,c), m_current_player);<br/>
 }<br/>
 <br/>
-<b><a href="CppBool.htm">bool</a></b> Game::CanRemove(<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;Coordinat&gt;&amp; v) <b><a href="CppConst.htm">const</a></b><br/>
+<b><a href="CppBool.htm">bool</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppPylos.htm">Pylos</a>::Game::CanRemove(<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;Coordinat&gt;&amp; v) <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!v.empty());<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (<a href="CppCount_if.htm">std::count_if</a>(v.begin(),v.end(),<br/>
@@ -2584,19 +2559,19 @@ Game::Game(<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.h
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> m_board-&gt;CanRemove(v, m_current_player);<br/>
 }<br/>
 <br/>
-<b><a href="CppBool.htm">bool</a></b> Game::CanSet(<b><a href="CppConst.htm">const</a></b> Coordinat&amp; c) <b><a href="CppConst.htm">const</a></b><br/>
+<b><a href="CppBool.htm">bool</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppPylos.htm">Pylos</a>::Game::CanSet(<b><a href="CppConst.htm">const</a></b> Coordinat&amp; c) <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> m_board-&gt;CanSet(c,m_current_player);<br/>
 }<br/>
 <br/>
-<b><a href="CppBool.htm">bool</a></b> Game::CanTransfer(<b><a href="CppConst.htm">const</a></b> Coordinat&amp; c) <b><a href="CppConst.htm">const</a></b><br/>
+<b><a href="CppBool.htm">bool</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppPylos.htm">Pylos</a>::Game::CanTransfer(<b><a href="CppConst.htm">const</a></b> Coordinat&amp; c) <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (m_board-&gt;Get(c) <a href="CppOperatorNotEqual.htm">!=</a> GetCurrentTurn()) <b><a href="CppReturn.htm">return</a></b> <b><a href="CppFalse.htm">false</a></b>;<br/>
 <br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> m_board-&gt;CanTransfer(c,m_current_player);<br/>
 }<br/>
 <br/>
-<b><a href="CppBool.htm">bool</a></b> Game::CanTransfer(<b><a href="CppConst.htm">const</a></b> Coordinat&amp; from,<br/>
+<b><a href="CppBool.htm">bool</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppPylos.htm">Pylos</a>::Game::CanTransfer(<b><a href="CppConst.htm">const</a></b> Coordinat&amp; from,<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Coordinat&amp; to) <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (m_board-&gt;Get(from) <a href="CppOperatorNotEqual.htm">!=</a> GetCurrentTurn()) <b><a href="CppReturn.htm">return</a></b> <b><a href="CppFalse.htm">false</a></b>;<br/>
@@ -2604,7 +2579,7 @@ Game::Game(<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.h
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> m_board-&gt;CanTransfer(from,to,m_current_player);<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> Game::Do(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; s)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppPylos.htm">Pylos</a>::Game::Do(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; s)<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (!CanDo(s)) <a href="CppTRACE.htm">TRACE</a>(s);<br/>
@@ -2613,7 +2588,7 @@ Game::Game(<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.h
 &nbsp;&nbsp;Do(<a href="CppPylos.htm">Pylos</a>::Move(s));<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> Game::Do(<b><a href="CppConst.htm">const</a></b> <a href="CppPylos.htm">Pylos</a>::Move&amp; m)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppPylos.htm">Pylos</a>::Game::Do(<b><a href="CppConst.htm">const</a></b> <a href="CppPylos.htm">Pylos</a>::Move&amp; m)<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(CanDo(m));<br/>
 &nbsp;&nbsp;m_board-&gt;Do(m,m_current_player);<br/>
@@ -2621,34 +2596,34 @@ Game::Game(<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.h
 &nbsp;&nbsp;TogglePlayer();<br/>
 }<br/>
 <br/>
-<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Game&gt; Game::CreateAdvancedGame()<br/>
+<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRibi.htm\">ribi</a>::<a href="CppPylos.htm">Pylos</a>::Game&gt; <a href="CppRibi.htm\">ribi</a>::<a href="CppPylos.htm">Pylos</a>::Game::CreateAdvancedGame()<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Board&gt; board(Board::CreateAdvancedBoard());<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Game&gt;(<b><a href="CppNew.htm">new</a></b> Game(board));<br/>
 }<br/>
 <br/>
-<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Game&gt; Game::CreateBasicGame()<br/>
+<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRibi.htm\">ribi</a>::<a href="CppPylos.htm">Pylos</a>::Game&gt; <a href="CppRibi.htm\">ribi</a>::<a href="CppPylos.htm">Pylos</a>::Game::CreateBasicGame()<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Board&gt; board(Board::CreateBasicBoard());<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Game&gt;(<b><a href="CppNew.htm">new</a></b> Game(board));<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;Move&gt; Game::GetAllPossibleMoves() <b><a href="CppConst.htm">const</a></b><br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppRibi.htm\">ribi</a>::<a href="CppPylos.htm">Pylos</a>::Move&gt; <a href="CppRibi.htm\">ribi</a>::<a href="CppPylos.htm">Pylos</a>::Game::GetAllPossibleMoves() <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> m_board-&gt;GetAllPossibleMoves(m_current_player);<br/>
 }<br/>
 <br/>
-Player Game::GetCurrentTurn() <b><a href="CppConst.htm">const</a></b><br/>
+<a href="CppRibi.htm\">ribi</a>::<a href="CppPylos.htm">Pylos</a>::Player <a href="CppRibi.htm\">ribi</a>::<a href="CppPylos.htm">Pylos</a>::Game::GetCurrentTurn() <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> m_current_player;<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> Game::Get<a href="CppVersion.htm">Version</a>()<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppRibi.htm\">ribi</a>::<a href="CppPylos.htm">Pylos</a>::Game::Get<a href="CppVersion.htm">Version</a>()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> "2.0";<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; Game::Get<a href="CppVersion.htm">Version</a>History()<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm\">ribi</a>::<a href="CppPylos.htm">Pylos</a>::Game::Get<a href="CppVersion.htm">Version</a>History()<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v;<br/>
 &nbsp;&nbsp;v.push_back("2010-09-19: <a href="CppVersion.htm">version</a> 0.1: initial <a href="CppVersion.htm">version</a>");<br/>
@@ -2659,17 +2634,17 @@ Player Game::GetCurrentTurn() <b><a href="CppConst.htm">const</a></b><br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
 }<br/>
 <br/>
-Winner Game::GetWinner() <b><a href="CppConst.htm">const</a></b><br/>
+<a href="CppRibi.htm\">ribi</a>::<a href="CppPylos.htm">Pylos</a>::Winner <a href="CppRibi.htm\">ribi</a>::<a href="CppPylos.htm">Pylos</a>::Game::GetWinner() <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> m_board-&gt;GetWinner();<br/>
 }<br/>
 <br/>
-MustRemove<a href="CppState.htm">State</a> Game::GetMustRemove() <b><a href="CppConst.htm">const</a></b><br/>
+<a href="CppRibi.htm\">ribi</a>::<a href="CppPylos.htm">Pylos</a>::MustRemove<a href="CppState.htm">State</a> <a href="CppRibi.htm\">ribi</a>::<a href="CppPylos.htm">Pylos</a>::Game::GetMustRemove() <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> m_current_move-&gt;GetMustRemove();<br/>
 }<br/>
 <br/>
-Winner Game::PlayRandomGame(<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Board&gt;&amp; board)<br/>
+<a href="CppRibi.htm\">ribi</a>::<a href="CppPylos.htm">Pylos</a>::Winner <a href="CppRibi.htm\">ribi</a>::<a href="CppPylos.htm">Pylos</a>::Game::PlayRandomGame(<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Board&gt;&amp; board)<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Game&gt; p;<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (board)<br/>
@@ -2731,21 +2706,21 @@ Winner Game::PlayRandomGame(<b><a href="CppConst.htm">const</a></b> <a href="Cpp
 &nbsp;&nbsp;}<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> Game::Remove(<b><a href="CppConst.htm">const</a></b> Coordinat&amp; c)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppPylos.htm">Pylos</a>::Game::Remove(<b><a href="CppConst.htm">const</a></b> Coordinat&amp; c)<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(GetMustRemove() <a href="CppOperatorNotEqual.htm">!=</a> MustRemove<a href="CppState.htm">State</a>::no);<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(m_board-&gt;Get(c)<a href="CppOperatorEqual.htm">==</a>m_current_player);<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(m_board-&gt;CanRemove(<a href="CppVector.htm">std::vector</a>&lt;Coordinat&gt;(1,c),m_current_player));<br/>
 &nbsp;&nbsp;m_board-&gt;Remove(<a href="CppVector.htm">std::vector</a>&lt;Coordinat&gt;(1,c),m_current_player);<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>/\warning: <b><a href="CppDo.htm">do</a></b> not allow these lines: <b><a href="CppThis.htm">this</a></b> method<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/\warning: <b><a href="CppDo.htm">do</a></b> not allow these lines: <b><a href="CppThis.htm">this</a></b> <a href="CppMemberFunction.htm">member function</a><br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/is an internal <a href="CppFunction.htm">function</a> used by<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>/<b><a href="CppVoid.htm">void</a></b> Game::Remove(<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;Coordinat&gt;&amp; v).<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppPylos.htm">Pylos</a>::Game::Remove(<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;Coordinat&gt;&amp; v).<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>m_must_remove <a href="CppOperatorAssign.htm">=</a> <b><a href="CppFalse.htm">false</a></b>;<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>TogglePlayer();<br/>
 <br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> Game::Remove(<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;Coordinat&gt;&amp; v)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppPylos.htm">Pylos</a>::Game::Remove(<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;Coordinat&gt;&amp; v)<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Cannot call RemoveMarbles(c), because <b><a href="CppThis.htm">this</a></b><br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>also toggles the player<br/>
@@ -2760,7 +2735,7 @@ Winner Game::PlayRandomGame(<b><a href="CppConst.htm">const</a></b> <a href="Cpp
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;Coordinat&gt; w(v);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppSwap.htm">std::swap</a>(w[0],w[1]);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;Remove(w); <a href="CppComment.htm">//</a>Call the same method with different order<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Remove(w); <a href="CppComment.htm">//</a>Call the same <a href="CppMemberFunction.htm">member function</a> with different order<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b>;<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppAssert.htm">Assert</a> proper ordering<br/>
@@ -2779,7 +2754,7 @@ Winner Game::PlayRandomGame(<b><a href="CppConst.htm">const</a></b> <a href="Cpp
 &nbsp;&nbsp;TogglePlayer();<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> Game::Set(<b><a href="CppConst.htm">const</a></b> Coordinat&amp; c)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppPylos.htm">Pylos</a>::Game::Set(<b><a href="CppConst.htm">const</a></b> Coordinat&amp; c)<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (!CanSet(c)) <a href="CppTRACE.htm">TRACE</a>(c);<br/>
@@ -2809,13 +2784,13 @@ Winner Game::PlayRandomGame(<b><a href="CppConst.htm">const</a></b> <a href="Cpp
 }<br/>
 <br/>
 <a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
-<b><a href="CppVoid.htm">void</a></b> Game::Test()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppPylos.htm">Pylos</a>::Game::Test()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppBool.htm">bool</a></b> tested <a href="CppOperatorAssign.htm">=</a> <b><a href="CppFalse.htm">false</a></b>;<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (tested) <b><a href="CppReturn.htm">return</a></b>;<br/>
 &nbsp;&nbsp;tested <a href="CppOperatorAssign.htm">=</a> <b><a href="CppTrue.htm">true</a></b>;<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("Test Game::<b><a href="CppOperatorEqual.htm">operator==</a></b> <b><a href="CppFor.htm">for</a></b> different game types");<br/>
+&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("Test <a href="CppRibi.htm\">ribi</a>::<a href="CppPylos.htm">Pylos</a>::Game::<b><a href="CppOperatorEqual.htm">operator==</a></b> <b><a href="CppFor.htm">for</a></b> different game types");<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Game&gt; a <a href="CppOperatorAssign.htm">=</a> CreateAdvancedGame();<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Game&gt; b <a href="CppOperatorAssign.htm">=</a> CreateBasicGame();<br/>
@@ -2825,7 +2800,7 @@ Winner Game::PlayRandomGame(<b><a href="CppConst.htm">const</a></b> <a href="Cpp
 &nbsp;&nbsp;&nbsp;&nbsp;b-&gt;Do("(0,0,0)");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(*a <a href="CppOperatorNotEqual.htm">!=</a> *b);<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("Test Game::<b><a href="CppOperatorEqual.htm">operator==</a></b> <b><a href="CppFor.htm">for</a></b> same game types");<br/>
+&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("Test <a href="CppRibi.htm\">ribi</a>::<a href="CppPylos.htm">Pylos</a>::Game::<b><a href="CppOperatorEqual.htm">operator==</a></b> <b><a href="CppFor.htm">for</a></b> same game types");<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Game&gt; a <a href="CppOperatorAssign.htm">=</a> CreateAdvancedGame();<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Game&gt; b <a href="CppOperatorAssign.htm">=</a> CreateAdvancedGame();<br/>
@@ -2921,7 +2896,7 @@ Winner Game::PlayRandomGame(<b><a href="CppConst.htm">const</a></b> <a href="Cpp
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(a-&gt;GetCurrentTurn() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> Player::player1);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(b-&gt;GetCurrentTurn() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> Player::player1);<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("Test Game::Clone of GameBasic");<br/>
+&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("Test <a href="CppRibi.htm\">ribi</a>::<a href="CppPylos.htm">Pylos</a>::Game::Clone of GameBasic");<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Game&gt; a <a href="CppOperatorAssign.htm">=</a> CreateBasicGame();<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Game&gt; b(<b><a href="CppNew.htm">new</a></b> Game(*a));<br/>
@@ -2938,7 +2913,7 @@ Winner Game::PlayRandomGame(<b><a href="CppConst.htm">const</a></b> <a href="Cpp
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(*a <a href="CppOperatorNotEqual.htm">!=</a> *c);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(*b <a href="CppOperatorNotEqual.htm">!=</a> *c);<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("Test Game::Clone of GameAdvanced");<br/>
+&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("Test <a href="CppRibi.htm\">ribi</a>::<a href="CppPylos.htm">Pylos</a>::Game::Clone of GameAdvanced");<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Game&gt; a <a href="CppOperatorAssign.htm">=</a> CreateAdvancedGame();<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Game&gt; b(<b><a href="CppNew.htm">new</a></b> Game(*a));<br/>
@@ -3198,22 +3173,22 @@ Winner Game::PlayRandomGame(<b><a href="CppConst.htm">const</a></b> <a href="Cpp
 &nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("Playing 5 random basic <a href="CppPylos.htm">Pylos</a> games");<br/>
 &nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> i=0; i<a href="CppOperatorNotEqual.htm">!=</a>5; <a href="CppOperatorPlus.htm">+</a>+i)<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppPylos.htm">Pylos</a>::Game::PlayRandomGame(<a href="CppPylos.htm">Pylos</a>::Board::CreateBasicBoard());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppRibi.htm\">ribi</a>::<a href="CppPylos.htm">Pylos</a>::Game::PlayRandomGame(<a href="CppPylos.htm">Pylos</a>::Board::CreateBasicBoard());<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("Playing 5 random advanced <a href="CppPylos.htm">Pylos</a> games");<br/>
 &nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> i=0; i<a href="CppOperatorNotEqual.htm">!=</a>5; <a href="CppOperatorPlus.htm">+</a>+i)<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppPylos.htm">Pylos</a>::Game::PlayRandomGame(<a href="CppPylos.htm">Pylos</a>::Board::CreateAdvancedBoard());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppRibi.htm\">ribi</a>::<a href="CppPylos.htm">Pylos</a>::Game::PlayRandomGame(<a href="CppPylos.htm">Pylos</a>::Board::CreateAdvancedBoard());<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("Playing 5 random <a href="CppPylos.htm">Pylos</a> games");<br/>
 &nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> i=0; i<a href="CppOperatorNotEqual.htm">!=</a>5; <a href="CppOperatorPlus.htm">+</a>+i)<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppPylos.htm">Pylos</a>::Game::PlayRandomGame();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppRibi.htm\">ribi</a>::<a href="CppPylos.htm">Pylos</a>::Game::PlayRandomGame();<br/>
 &nbsp;&nbsp;}<br/>
 }<br/>
 <a href="CppEndif.htm">#endif</a><br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> Game::TogglePlayer()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppPylos.htm">Pylos</a>::Game::TogglePlayer()<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!m_current_move-&gt;GetMustRemove()<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "First the current player must remove one or two marbles");<br/>
@@ -3222,7 +3197,7 @@ Winner Game::PlayRandomGame(<b><a href="CppConst.htm">const</a></b> <a href="Cpp
 &nbsp;&nbsp;m_current_player <a href="CppOperatorAssign.htm">=</a> (m_current_player <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> Player::player1 ? Player::player2 : Player::player1);<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> Game::Transfer(<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppPylos.htm">Pylos</a>::Game::Transfer(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Coordinat&amp; from,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Coordinat&amp; to)<br/>
 {<br/>
@@ -3247,7 +3222,7 @@ Winner Game::PlayRandomGame(<b><a href="CppConst.htm">const</a></b> <a href="Cpp
 &nbsp;&nbsp;}<br/>
 }<br/>
 <br/>
-<b><a href="CppBool.htm">bool</a></b> <b><a href="CppOperatorEqual.htm">operator==</a></b>(<b><a href="CppConst.htm">const</a></b> Game&amp; lhs, <b><a href="CppConst.htm">const</a></b> Game&amp; rhs)<br/>
+<b><a href="CppBool.htm">bool</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppPylos.htm">Pylos</a>::<b><a href="CppOperatorEqual.htm">operator==</a></b>(<b><a href="CppConst.htm">const</a></b> Game&amp; lhs, <b><a href="CppConst.htm">const</a></b> Game&amp; rhs)<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> *lhs.m_board&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> *rhs.m_board<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a>&nbsp;&nbsp; *lhs.m_current_move&nbsp;&nbsp; <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> *rhs.m_current_move<br/>
@@ -3255,12 +3230,10 @@ Winner Game::PlayRandomGame(<b><a href="CppConst.htm">const</a></b> <a href="Cpp
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a>&nbsp;&nbsp;&nbsp;&nbsp;lhs.m_move_history&nbsp;&nbsp; <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;rhs.m_move_history;<br/>
 }<br/>
 <br/>
-<b><a href="CppBool.htm">bool</a></b> <b><a href="CppOperatorNotEqual.htm">operator!=</a></b>(<b><a href="CppConst.htm">const</a></b> Game&amp; lhs, <b><a href="CppConst.htm">const</a></b> Game&amp; rhs)<br/>
+<b><a href="CppBool.htm">bool</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppPylos.htm">Pylos</a>::<b><a href="CppOperatorNotEqual.htm">operator!=</a></b>(<b><a href="CppConst.htm">const</a></b> Game&amp; lhs, <b><a href="CppConst.htm">const</a></b> Game&amp; rhs)<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> !(lhs <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> rhs);<br/>
 }<br/>
-<br/>
-} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppPylos.htm">Pylos</a><br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -3300,6 +3273,8 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppPylos.htm">pylos</a>coordinat.h"<br/>
+<br/>
+<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a> {<br/>
 <br/>
 <b><a href="CppNamespace.htm">namespace</a></b> <a href="CppPylos.htm">Pylos</a> {<br/>
 <br/>
@@ -3351,6 +3326,8 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <br/>
 } <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppPylos.htm">Pylos</a><br/>
 <br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a><br/>
+<br/>
 <a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> PYLOSMOVE_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
@@ -3383,16 +3360,8 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="CppPylos.htm">CppPylos</a>.htm<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppIfdef.htm">#ifdef</a> _WIN32<br/>
-<a href="CppComment.htm">//</a>See http://www.richelbilderbeek.nl/Cpp<a href="CppCompile.htm">Compile</a>ErrorUnableToFindNumericLiteralOperatorOperatorQ.htm<br/>
-<a href="CppPreIf.htm">#if</a> !(__GNUC__ <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 4 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> __GNUC_MINOR__ <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 8)<br/>
-<a href="CppComment.htm">//</a>See http://www.richelbilderbeek.nl/Cpp<a href="CppCompile.htm">Compile</a>ErrorSwprintfHasNotBeenDeclared.htm<br/>
-<a href="CppUndef.htm">#undef</a> __STRICT_ANSI__<br/>
-<a href="CppEndif.htm">#endif</a><br/>
-<a href="CppEndif.htm">#endif</a><br/>
 <br/>
-<a href="CppComment.htm">//</a><a href="CppInclude.htm">#include</a> own <a href="CppHeaderFile.htm">header file</a> as first substantive line of code, from:<br/>
-<a href="CppComment.htm">//</a> * John Lakos. Large-Scale <a href="Cpp.htm">C++</a> Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110<br/>
+<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppPylos.htm">pylos</a>move.h"<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
@@ -3401,16 +3370,15 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppPylos.htm">pylos</a>coordinat.h"<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppTrace.htm">trace</a>.h"<br/>
 <br/>
-<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppPylos.htm">Pylos</a> {<br/>
 <br/>
-Move::Move()<br/>
+<a href="CppRibi.htm\">ribi</a>::<a href="CppPylos.htm">Pylos</a>::Move::Move()<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
 &nbsp;&nbsp;Test();<br/>
 &nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
 }<br/>
 <br/>
-Move::Move(<br/>
+<a href="CppRibi.htm\">ribi</a>::<a href="CppPylos.htm">Pylos</a>::Move::Move(<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;Coordinat&gt;&amp; moving,<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;Coordinat&gt;&amp; removing)<br/>
 {<br/>
@@ -3428,7 +3396,7 @@ Move::Move(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "At most two marbles are removed in a move");<br/>
 }<br/>
 <br/>
-Move::Move(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; s)<br/>
+<a href="CppRibi.htm\">ribi</a>::<a href="CppPylos.htm">Pylos</a>::Move::Move(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; s)<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
 &nbsp;&nbsp;Test();<br/>
@@ -3483,19 +3451,19 @@ Move::Move(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(s.size() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 34);<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> Move::Get<a href="CppVersion.htm">Version</a>()<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppRibi.htm\">ribi</a>::<a href="CppPylos.htm">Pylos</a>::Move::Get<a href="CppVersion.htm">Version</a>()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> "2.0";<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; Move::Get<a href="CppVersion.htm">Version</a>History()<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm\">ribi</a>::<a href="CppPylos.htm">Pylos</a>::Move::Get<a href="CppVersion.htm">Version</a>History()<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v;<br/>
 &nbsp;&nbsp;v.push_back("2012-05-05: <a href="CppVersion.htm">version</a> 2.0: initial release <a href="CppVersion.htm">version</a>");<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
 }<br/>
 <br/>
-<b><a href="CppBool.htm">bool</a></b> Move::IsValid() <b><a href="CppConst.htm">const</a></b><br/>
+<b><a href="CppBool.htm">bool</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppPylos.htm">Pylos</a>::Move::IsValid() <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; m_move.size() <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 1<br/>
@@ -3504,7 +3472,7 @@ Move::Move(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::
 }<br/>
 <br/>
 <a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
-<b><a href="CppVoid.htm">void</a></b> Move::Test()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppPylos.htm">Pylos</a>::Move::Test()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppBool.htm">bool</a></b> tested <a href="CppOperatorAssign.htm">=</a> <b><a href="CppFalse.htm">false</a></b>;<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (tested) <b><a href="CppReturn.htm">return</a></b>;<br/>
@@ -3540,7 +3508,7 @@ Move::Move(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Move m(s);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>OK<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCatch.htm">catch</a></b> (<a href="CppException.htm">std::exception</a>&amp; e)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCatch.htm">catch</a></b> (<a href="CppStdException.htm">std::exception</a>&amp; e)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>(s);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!"Should not get here");<br/>
@@ -3551,7 +3519,7 @@ Move::Move(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::
 }<br/>
 <a href="CppEndif.htm">#endif</a><br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> Move::ToStr() <b><a href="CppConst.htm">const</a></b><br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppRibi.htm\">ribi</a>::<a href="CppPylos.htm">Pylos</a>::Move::ToStr() <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (!(m_move.size() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 1 <a href="CppOperatorLogicalOr.htm">||</a> m_move.size() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 2)) <a href="CppTRACE.htm">TRACE</a>(m_move.size());<br/>
@@ -3577,19 +3545,17 @@ Move::Move(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> s;<br/>
 }<br/>
 <br/>
-<b><a href="CppBool.htm">bool</a></b> <b><a href="CppOperatorEqual.htm">operator==</a></b>(<b><a href="CppConst.htm">const</a></b> Move&amp; lhs, <b><a href="CppConst.htm">const</a></b> Move&amp; rhs)<br/>
+<b><a href="CppBool.htm">bool</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppPylos.htm">Pylos</a>::<b><a href="CppOperatorEqual.htm">operator==</a></b>(<b><a href="CppConst.htm">const</a></b> Move&amp; lhs, <b><a href="CppConst.htm">const</a></b> Move&amp; rhs)<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> lhs.m_move <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> rhs.m_move<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> lhs.m_remove <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> rhs.m_remove;<br/>
 }<br/>
 <br/>
-<a href="CppOstream.htm">std::ostream</a>&amp; <b><a href="CppOperatorStreamOut.htm">operator&lt;&lt;</a></b>(<a href="CppOstream.htm">std::ostream</a>&amp; os, <b><a href="CppConst.htm">const</a></b> Move&amp; m)<br/>
+<a href="CppOstream.htm">std::ostream</a>&amp; <a href="CppRibi.htm\">ribi</a>::<a href="CppPylos.htm">Pylos</a>::<b><a href="CppOperatorStreamOut.htm">operator&lt;&lt;</a></b>(<a href="CppOstream.htm">std::ostream</a>&amp; os, <b><a href="CppConst.htm">const</a></b> Move&amp; m)<br/>
 {<br/>
 &nbsp;&nbsp;os <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> m.ToStr();<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> os;<br/>
 }<br/>
-<br/>
-} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppPylos.htm">Pylos</a><br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -3628,6 +3594,8 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppPylos.htm">pylos</a>fwd.h"<br/>
 <br/>
+<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a> {<br/>
+<br/>
 <b><a href="CppNamespace.htm">namespace</a></b> <a href="CppPylos.htm">Pylos</a> {<br/>
 <br/>
 <a href="CppComment.htm">///</a>After placing (Set) or moving (Transfer) a marble, the MustRemove<a href="CppState.htm">State</a><br/>
@@ -3646,6 +3614,8 @@ MustRemove<a href="CppState.htm">State</a> ToMustRemove<a href="CppState.htm">St
 <b><a href="CppBool.htm">bool</a></b> <b><a href="CppOperator.htm">operator</a></b>!(<b><a href="CppConst.htm">const</a></b> MustRemove<a href="CppState.htm">State</a>&amp; state);<br/>
 <br/>
 } <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppPylos.htm">Pylos</a><br/>
+<br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a><br/>
 <br/>
 <a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> PYLOSMUSTREMOVESTATE_H<br/>
 </code></td></tr></table>
@@ -3679,16 +3649,8 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="CppPylos.htm">CppPylos</a>.htm<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppIfdef.htm">#ifdef</a> _WIN32<br/>
-<a href="CppComment.htm">//</a>See http://www.richelbilderbeek.nl/Cpp<a href="CppCompile.htm">Compile</a>ErrorUnableToFindNumericLiteralOperatorOperatorQ.htm<br/>
-<a href="CppPreIf.htm">#if</a> !(__GNUC__ <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 4 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> __GNUC_MINOR__ <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 8)<br/>
-<a href="CppComment.htm">//</a>See http://www.richelbilderbeek.nl/Cpp<a href="CppCompile.htm">Compile</a>ErrorSwprintfHasNotBeenDeclared.htm<br/>
-<a href="CppUndef.htm">#undef</a> __STRICT_ANSI__<br/>
-<a href="CppEndif.htm">#endif</a><br/>
-<a href="CppEndif.htm">#endif</a><br/>
 <br/>
-<a href="CppComment.htm">//</a><a href="CppInclude.htm">#include</a> own <a href="CppHeaderFile.htm">header file</a> as first substantive line of code, from:<br/>
-<a href="CppComment.htm">//</a> * John Lakos. Large-Scale <a href="Cpp.htm">C++</a> Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110<br/>
+<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppPylos.htm">pylos</a>mustremovestate.h"<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
@@ -3696,9 +3658,9 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppPylos.htm">pylos</a>player.h"<br/>
 <br/>
-<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppPylos.htm">Pylos</a> {<br/>
 <br/>
-MustRemove<a href="CppState.htm">State</a> ToMustRemove<a href="CppState.htm">State</a>(<b><a href="CppConst.htm">const</a></b> Player&amp; player)<br/>
+<br/>
+<a href="CppRibi.htm\">ribi</a>::<a href="CppPylos.htm">Pylos</a>::MustRemove<a href="CppState.htm">State</a> <a href="CppRibi.htm\">ribi</a>::<a href="CppPylos.htm">Pylos</a>::ToMustRemove<a href="CppState.htm">State</a>(<b><a href="CppConst.htm">const</a></b> Player&amp; player)<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppSwitch.htm">switch</a></b> (player)<br/>
 &nbsp;&nbsp;{<br/>
@@ -3709,7 +3671,7 @@ MustRemove<a href="CppState.htm">State</a> ToMustRemove<a href="CppState.htm">St
 &nbsp;&nbsp;<b><a href="CppThrow.htm">throw</a></b> <a href="CppLogic_error.htm">std::logic_error</a>("Unknown value <b><a href="CppFor.htm">for</a></b> Player");<br/>
 }<br/>
 <br/>
-<a href="CppString.htm">std::string</a> ToStr(<b><a href="CppConst.htm">const</a></b> MustRemove<a href="CppState.htm">State</a> state)<br/>
+<a href="CppString.htm">std::string</a> <a href="CppRibi.htm\">ribi</a>::<a href="CppPylos.htm">Pylos</a>::ToStr(<b><a href="CppConst.htm">const</a></b> MustRemove<a href="CppState.htm">State</a> state)<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppSwitch.htm">switch</a></b> (state)<br/>
 &nbsp;&nbsp;{<br/>
@@ -3721,12 +3683,10 @@ MustRemove<a href="CppState.htm">State</a> ToMustRemove<a href="CppState.htm">St
 &nbsp;&nbsp;<b><a href="CppThrow.htm">throw</a></b> <a href="CppLogic_error.htm">std::logic_error</a>("Unknown value <b><a href="CppFor.htm">for</a></b> MustRemove<a href="CppState.htm">State</a>");<br/>
 }<br/>
 <br/>
-<b><a href="CppBool.htm">bool</a></b> <b><a href="CppOperator.htm">operator</a></b>!(<b><a href="CppConst.htm">const</a></b> MustRemove<a href="CppState.htm">State</a>&amp; state)<br/>
+<b><a href="CppBool.htm">bool</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppPylos.htm">Pylos</a>::<b><a href="CppOperator.htm">operator</a></b>!(<b><a href="CppConst.htm">const</a></b> MustRemove<a href="CppState.htm">State</a>&amp; state)<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> state <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> MustRemove<a href="CppState.htm">State</a>::no;<br/>
 }<br/>
-<br/>
-} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppPylos.htm">Pylos</a><br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -3764,6 +3724,8 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppPylos.htm">pylos</a>fwd.h"<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppPylos.htm">pylos</a>positionstate.h"<br/>
 <br/>
+<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a> {<br/>
+<br/>
 <b><a href="CppNamespace.htm">namespace</a></b> <a href="CppPylos.htm">Pylos</a> {<br/>
 <br/>
 <b><a href="CppEnumClass.htm">enum class</a></b> Player { player1, player2 };<br/>
@@ -3776,6 +3738,8 @@ Player ToPlayer(<b><a href="CppConst.htm">const</a></b> Position<a href="CppStat
 <b><a href="CppBool.htm">bool</a></b> <b><a href="CppOperatorNotEqual.htm">operator!=</a></b>(<b><a href="CppConst.htm">const</a></b> Player&amp; player, <b><a href="CppConst.htm">const</a></b> Position<a href="CppState.htm">State</a>&amp; state);<br/>
 <br/>
 } <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppPylos.htm">Pylos</a><br/>
+<br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a><br/>
 <br/>
 <a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> PYLOSPLAYER_H<br/>
 </code></td></tr></table>
@@ -3809,16 +3773,8 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="CppPylos.htm">CppPylos</a>.htm<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppIfdef.htm">#ifdef</a> _WIN32<br/>
-<a href="CppComment.htm">//</a>See http://www.richelbilderbeek.nl/Cpp<a href="CppCompile.htm">Compile</a>ErrorUnableToFindNumericLiteralOperatorOperatorQ.htm<br/>
-<a href="CppPreIf.htm">#if</a> !(__GNUC__ <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 4 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> __GNUC_MINOR__ <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 8)<br/>
-<a href="CppComment.htm">//</a>See http://www.richelbilderbeek.nl/Cpp<a href="CppCompile.htm">Compile</a>ErrorSwprintfHasNotBeenDeclared.htm<br/>
-<a href="CppUndef.htm">#undef</a> __STRICT_ANSI__<br/>
-<a href="CppEndif.htm">#endif</a><br/>
-<a href="CppEndif.htm">#endif</a><br/>
 <br/>
-<a href="CppComment.htm">//</a><a href="CppInclude.htm">#include</a> own <a href="CppHeaderFile.htm">header file</a> as first substantive line of code, from:<br/>
-<a href="CppComment.htm">//</a> * John Lakos. Large-Scale <a href="Cpp.htm">C++</a> Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110<br/>
+<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppPylos.htm">pylos</a>player.h"<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
@@ -3826,14 +3782,14 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppPylos.htm">pylos</a>positionstate.h"<br/>
 <br/>
-<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppPylos.htm">Pylos</a> {<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> Toggle(Player&amp; player)<br/>
+<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppPylos.htm">Pylos</a>::Toggle(Player&amp; player)<br/>
 {<br/>
 &nbsp;&nbsp;player <a href="CppOperatorAssign.htm">=</a> (player <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> Player::player1 ? Player::player2 : Player::player1);<br/>
 }<br/>
 <br/>
-Player ToPlayer(<b><a href="CppConst.htm">const</a></b> Position<a href="CppState.htm">State</a>&amp; state)<br/>
+<a href="CppRibi.htm\">ribi</a>::<a href="CppPylos.htm">Pylos</a>::Player <a href="CppRibi.htm\">ribi</a>::<a href="CppPylos.htm">Pylos</a>::ToPlayer(<b><a href="CppConst.htm">const</a></b> Position<a href="CppState.htm">State</a>&amp; state)<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppSwitch.htm">switch</a></b> (state)<br/>
 &nbsp;&nbsp;{<br/>
@@ -3845,7 +3801,7 @@ Player ToPlayer(<b><a href="CppConst.htm">const</a></b> Position<a href="CppStat
 &nbsp;&nbsp;<b><a href="CppThrow.htm">throw</a></b> <a href="CppLogic_error.htm">std::logic_error</a>("Cannot <a href="CppConvert.htm">convert</a> <b><a href="CppThis.htm">this</a></b> Position<a href="CppState.htm">State</a> to a Player");<br/>
 }<br/>
 <br/>
-<b><a href="CppBool.htm">bool</a></b> <b><a href="CppOperatorEqual.htm">operator==</a></b>(<b><a href="CppConst.htm">const</a></b> Player&amp; player, <b><a href="CppConst.htm">const</a></b> Position<a href="CppState.htm">State</a>&amp; state)<br/>
+<b><a href="CppBool.htm">bool</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppPylos.htm">Pylos</a>::<b><a href="CppOperatorEqual.htm">operator==</a></b>(<b><a href="CppConst.htm">const</a></b> Player&amp; player, <b><a href="CppConst.htm">const</a></b> Position<a href="CppState.htm">State</a>&amp; state)<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppSwitch.htm">switch</a></b> (player)<br/>
 &nbsp;&nbsp;{<br/>
@@ -3855,12 +3811,10 @@ Player ToPlayer(<b><a href="CppConst.htm">const</a></b> Position<a href="CppStat
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <b><a href="CppFalse.htm">false</a></b>;<br/>
 }<br/>
 <br/>
-<b><a href="CppBool.htm">bool</a></b> <b><a href="CppOperatorNotEqual.htm">operator!=</a></b>(<b><a href="CppConst.htm">const</a></b> Player&amp; player, <b><a href="CppConst.htm">const</a></b> Position<a href="CppState.htm">State</a>&amp; state)<br/>
+<b><a href="CppBool.htm">bool</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppPylos.htm">Pylos</a>::<b><a href="CppOperatorNotEqual.htm">operator!=</a></b>(<b><a href="CppConst.htm">const</a></b> Player&amp; player, <b><a href="CppConst.htm">const</a></b> Position<a href="CppState.htm">State</a>&amp; state)<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> !(player<a href="CppOperatorEqual.htm">==</a>state);<br/>
 }<br/>
-<br/>
-} <a href="CppComment.htm">//</a><b><a href="CppNamespace.htm">namespace</a></b> <a href="CppPylos.htm">Pylos</a><br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -3898,6 +3852,8 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppPylos.htm">pylos</a>fwd.h"<br/>
 <a href="CppComment.htm">//</a><a href="CppInclude.htm">#include</a> "<a href="CppPylos.htm">pylos</a>player.h"<br/>
 <br/>
+<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a> {<br/>
+<br/>
 <b><a href="CppNamespace.htm">namespace</a></b> <a href="CppPylos.htm">Pylos</a> {<br/>
 <br/>
 <b><a href="CppEnumClass.htm">enum class</a></b> Position<a href="CppState.htm">State</a> { player1, player2, empty };<br/>
@@ -3909,6 +3865,8 @@ Position<a href="CppState.htm">State</a> ToPosition<a href="CppState.htm">State<
 <a href="CppComment.htm">//</a><b><a href="CppBool.htm">bool</a></b> <b><a href="CppOperator.htm">operator</a></b>!(<b><a href="CppConst.htm">const</a></b> Position<a href="CppState.htm">State</a>&amp; state);<br/>
 <br/>
 } <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppPylos.htm">Pylos</a><br/>
+<br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a><br/>
 <br/>
 <a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> PYLOSPOSITIONSTATE_H<br/>
 </code></td></tr></table>
@@ -3942,16 +3900,8 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="CppPylos.htm">CppPylos</a>.htm<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppIfdef.htm">#ifdef</a> _WIN32<br/>
-<a href="CppComment.htm">//</a>See http://www.richelbilderbeek.nl/Cpp<a href="CppCompile.htm">Compile</a>ErrorUnableToFindNumericLiteralOperatorOperatorQ.htm<br/>
-<a href="CppPreIf.htm">#if</a> !(__GNUC__ <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 4 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> __GNUC_MINOR__ <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 8)<br/>
-<a href="CppComment.htm">//</a>See http://www.richelbilderbeek.nl/Cpp<a href="CppCompile.htm">Compile</a>ErrorSwprintfHasNotBeenDeclared.htm<br/>
-<a href="CppUndef.htm">#undef</a> __STRICT_ANSI__<br/>
-<a href="CppEndif.htm">#endif</a><br/>
-<a href="CppEndif.htm">#endif</a><br/>
 <br/>
-<a href="CppComment.htm">//</a><a href="CppInclude.htm">#include</a> own <a href="CppHeaderFile.htm">header file</a> as first substantive line of code, from:<br/>
-<a href="CppComment.htm">//</a> * John Lakos. Large-Scale <a href="Cpp.htm">C++</a> Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110<br/>
+<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppPylos.htm">pylos</a>positionstate.h"<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
@@ -3959,9 +3909,8 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppPylos.htm">pylos</a>player.h"<br/>
 <br/>
-<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppPylos.htm">Pylos</a> {<br/>
 <br/>
-<b><a href="CppChar.htm">char</a></b> ToChar(<b><a href="CppConst.htm">const</a></b> Position<a href="CppState.htm">State</a> state)<br/>
+<b><a href="CppChar.htm">char</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppPylos.htm">Pylos</a>::ToChar(<b><a href="CppConst.htm">const</a></b> Position<a href="CppState.htm">State</a> state)<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppSwitch.htm">switch</a></b> (state)<br/>
 &nbsp;&nbsp;{<br/>
@@ -3973,7 +3922,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppThrow.htm">throw</a></b> <a href="CppLogic_error.htm">std::logic_error</a>("Unknown Position<a href="CppState.htm">State</a> in ToChar");<br/>
 }<br/>
 <br/>
-Position<a href="CppState.htm">State</a> ToPosition<a href="CppState.htm">State</a>(<b><a href="CppConst.htm">const</a></b> Player&amp; player)<br/>
+<a href="CppRibi.htm\">ribi</a>::<a href="CppPylos.htm">Pylos</a>::Position<a href="CppState.htm">State</a> <a href="CppRibi.htm\">ribi</a>::<a href="CppPylos.htm">Pylos</a>::ToPosition<a href="CppState.htm">State</a>(<b><a href="CppConst.htm">const</a></b> Player&amp; player)<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppSwitch.htm">switch</a></b> (player)<br/>
 &nbsp;&nbsp;{<br/>
@@ -3985,17 +3934,15 @@ Position<a href="CppState.htm">State</a> ToPosition<a href="CppState.htm">State<
 &nbsp;&nbsp;<b><a href="CppThrow.htm">throw</a></b> <a href="CppLogic_error.htm">std::logic_error</a>("Cannot <a href="CppConvert.htm">convert</a> <b><a href="CppThis.htm">this</a></b> Player to a Position<a href="CppState.htm">State</a>");<br/>
 }<br/>
 <br/>
-<b><a href="CppBool.htm">bool</a></b> <b><a href="CppOperatorEqual.htm">operator==</a></b>(<b><a href="CppConst.htm">const</a></b> Position<a href="CppState.htm">State</a> state, <b><a href="CppConst.htm">const</a></b> Player&amp; player)<br/>
+<b><a href="CppBool.htm">bool</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppPylos.htm">Pylos</a>::<b><a href="CppOperatorEqual.htm">operator==</a></b>(<b><a href="CppConst.htm">const</a></b> Position<a href="CppState.htm">State</a> state, <b><a href="CppConst.htm">const</a></b> Player&amp; player)<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> player <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> state;<br/>
 }<br/>
 <br/>
-<b><a href="CppBool.htm">bool</a></b> <b><a href="CppOperatorNotEqual.htm">operator!=</a></b>(<b><a href="CppConst.htm">const</a></b> Position<a href="CppState.htm">State</a> state, <b><a href="CppConst.htm">const</a></b> Player&amp; player)<br/>
+<b><a href="CppBool.htm">bool</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppPylos.htm">Pylos</a>::<b><a href="CppOperatorNotEqual.htm">operator!=</a></b>(<b><a href="CppConst.htm">const</a></b> Position<a href="CppState.htm">State</a> state, <b><a href="CppConst.htm">const</a></b> Player&amp; player)<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> player <a href="CppOperatorNotEqual.htm">!=</a> state;<br/>
 }<br/>
-<br/>
-} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppPylos.htm">Pylos</a><br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -4032,12 +3979,16 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppStringH.htm">string</a>&gt;<br/>
 <br/>
+<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a> {<br/>
+<br/>
 <b><a href="CppNamespace.htm">namespace</a></b> <a href="CppPylos.htm">Pylos</a> {<br/>
 <br/>
 <b><a href="CppEnumClass.htm">enum class</a></b> Winner { player1, player2, none };<br/>
 <a href="CppString.htm">std::string</a> ToStr(<b><a href="CppConst.htm">const</a></b> Winner winner);<br/>
 <br/>
 } <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppPylos.htm">Pylos</a><br/>
+<br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a><br/>
 <br/>
 <a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> PYLOSWINNER_H<br/>
 </code></td></tr></table>
@@ -4071,24 +4022,14 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="CppPylos.htm">CppPylos</a>.htm<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppIfdef.htm">#ifdef</a> _WIN32<br/>
-<a href="CppComment.htm">//</a>See http://www.richelbilderbeek.nl/Cpp<a href="CppCompile.htm">Compile</a>ErrorUnableToFindNumericLiteralOperatorOperatorQ.htm<br/>
-<a href="CppPreIf.htm">#if</a> !(__GNUC__ <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 4 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> __GNUC_MINOR__ <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 8)<br/>
-<a href="CppComment.htm">//</a>See http://www.richelbilderbeek.nl/Cpp<a href="CppCompile.htm">Compile</a>ErrorSwprintfHasNotBeenDeclared.htm<br/>
-<a href="CppUndef.htm">#undef</a> __STRICT_ANSI__<br/>
-<a href="CppEndif.htm">#endif</a><br/>
-<a href="CppEndif.htm">#endif</a><br/>
 <br/>
-<a href="CppComment.htm">//</a><a href="CppInclude.htm">#include</a> own <a href="CppHeaderFile.htm">header file</a> as first substantive line of code, from:<br/>
-<a href="CppComment.htm">//</a> * John Lakos. Large-Scale <a href="Cpp.htm">C++</a> Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110<br/>
+<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppPylos.htm">pylos</a>winner.h"<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppStdexceptH.htm">stdexcept</a>&gt;<br/>
 <br/>
-<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppPylos.htm">Pylos</a> {<br/>
-<br/>
-<a href="CppString.htm">std::string</a> ToStr(<b><a href="CppConst.htm">const</a></b> Winner winner)<br/>
+<a href="CppString.htm">std::string</a> <a href="CppRibi.htm\">ribi</a>::<a href="CppPylos.htm">Pylos</a>::ToStr(<b><a href="CppConst.htm">const</a></b> Winner winner)<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppSwitch.htm">switch</a></b> (winner)<br/>
 &nbsp;&nbsp;{<br/>
@@ -4099,8 +4040,6 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!"Cannot <a href="CppConvert.htm">convert</a> <b><a href="CppThis.htm">this</a></b> Winner to a <a href="CppString.htm">std::string</a>");<br/>
 &nbsp;&nbsp;<b><a href="CppThrow.htm">throw</a></b> <a href="CppLogic_error.htm">std::logic_error</a>("Cannot <a href="CppConvert.htm">convert</a> <b><a href="CppThis.htm">this</a></b> Winner to a <a href="CppString.htm">std::string</a>");<br/>
 }<br/>
-<br/>
-} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppPylos.htm">Pylos</a><br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>

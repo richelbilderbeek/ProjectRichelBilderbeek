@@ -1,0 +1,137 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>EuclideanVector</title>
+  <meta name="description" content="C++ EuclideanVector"/>
+  <meta name="keywords" content="C++ EuclideanVector code snippet"/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a>) <a href="CppEuclideanVector.htm">EuclideanVector</a></h1>
+<p>&nbsp;</p>
+<!-- No CodeToHtmlInfo about this class with page name CppEuclideanVector-->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Technical facts</h2>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>euclideanvector.h</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="euclideanvector.h" border = "1"><tr><td><code>
+<a href="CppIfndef.htm">#ifndef</a> EUCLIDEANVECTOR_H<br/>
+<a href="CppDefine.htm">#define</a> EUCLIDEANVECTOR_H<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppUtilityH.htm">utility</a>&gt;<br/>
+<br/>
+<a href="CppComment.htm">//</a>A Euclidean vector<br/>
+<b><a href="CppTemplate.htm">template</a></b> &lt;<b><a href="CppClass.htm">class</a></b> T&gt;<br/>
+<b><a href="CppStruct.htm">struct</a></b> EuclideanVector<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppExplicit.htm">explicit</a></b> EuclideanVector(<b><a href="CppConst.htm">const</a></b> T&amp; <a href="CppAny.htm">any</a>_x, <b><a href="CppConst.htm">const</a></b> T&amp; <a href="CppAny.htm">any</a>_y)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;: x { <a href="CppAny.htm">any</a>_x }, y { <a href="CppAny.htm">any</a>_y }<br/>
+&nbsp;&nbsp;{<br/>
+<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<b><a href="CppExplicit.htm">explicit</a></b> EuclideanVector(<b><a href="CppConst.htm">const</a></b> <a href="CppPair.htm">std::pair</a>&lt;T,T&gt;&amp; p)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;: x { p.first }, y { p.second }<br/>
+&nbsp;&nbsp;{<br/>
+<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<b><a href="CppExplicit.htm">explicit</a></b> EuclideanVector(<b><a href="CppConst.htm">const</a></b> EuclideanVector&lt;T&gt;&amp; rhs)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;: x { rhs.x }, y { rhs.y }<br/>
+&nbsp;&nbsp;{<br/>
+<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;EuclideanVector&amp; <b><a href="CppOperatorPlus.htm">operator+</a></b>=(<b><a href="CppConst.htm">const</a></b> EuclideanVector&amp; rhs)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;x <a href="CppOperatorPlus.htm">+</a><a href="CppOperatorAssign.htm">=</a> rhs.x;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;y <a href="CppOperatorPlus.htm">+</a><a href="CppOperatorAssign.htm">=</a> rhs.y;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> *<b><a href="CppThis.htm">this</a></b>;<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;EuclideanVector&amp; <b><a href="CppOperatorMultiply.htm">operator*</a></b>=(<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> f)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;x<a href="CppOperatorMultiplyAssign.htm">*=</a>f;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;y<a href="CppOperatorMultiplyAssign.htm">*=</a>f;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> *<b><a href="CppThis.htm">this</a></b>;<br/>
+&nbsp;&nbsp;}<br/>
+<br/>
+&nbsp;&nbsp;T x;<br/>
+&nbsp;&nbsp;T y;<br/>
+};<br/>
+<br/>
+<b><a href="CppTemplate.htm">template</a></b> &lt;<b><a href="CppClass.htm">class</a></b> T&gt;<br/>
+<b><a href="CppBool.htm">bool</a></b> <b><a href="CppOperatorEqual.htm">operator==</a></b>(<b><a href="CppConst.htm">const</a></b> EuclideanVector&lt;T&gt;&amp; lhs, <b><a href="CppConst.htm">const</a></b> EuclideanVector&lt;T&gt;&amp; rhs)<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> lhs.x <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> rhs.x <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> lhs.y <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> rhs.y;<br/>
+}<br/>
+<br/>
+<b><a href="CppTemplate.htm">template</a></b> &lt;<b><a href="CppClass.htm">class</a></b> T&gt;<br/>
+<b><a href="CppBool.htm">bool</a></b> <b><a href="CppOperatorNotEqual.htm">operator!=</a></b>(<b><a href="CppConst.htm">const</a></b> EuclideanVector&lt;T&gt;&amp; lhs, <b><a href="CppConst.htm">const</a></b> EuclideanVector&lt;T&gt;&amp; rhs)<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> !(lhs <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> rhs);<br/>
+}<br/>
+<br/>
+<b><a href="CppTemplate.htm">template</a></b> &lt;<b><a href="CppClass.htm">class</a></b> T&gt;<br/>
+<b><a href="CppConst.htm">const</a></b> EuclideanVector&lt;T&gt; <b><a href="CppOperatorPlus.htm">operator+</a></b>(<b><a href="CppConst.htm">const</a></b> EuclideanVector&lt;T&gt;&amp; lhs, <b><a href="CppConst.htm">const</a></b> EuclideanVector&lt;T&gt;&amp; rhs)<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> EuclideanVector&lt;T&gt;(lhs.x <a href="CppOperatorPlus.htm">+</a> rhs.x, lhs.y <a href="CppOperatorPlus.htm">+</a> rhs.y);<br/>
+}<br/>
+<br/>
+<b><a href="CppTemplate.htm">template</a></b> &lt;<b><a href="CppClass.htm">class</a></b> T, <b><a href="CppClass.htm">class</a></b> U, <b><a href="CppClass.htm">class</a></b> V&gt;<br/>
+<b><a href="CppConst.htm">const</a></b> EuclideanVector&lt;T&gt; <b><a href="CppOperatorDivide.htm">operator/</a></b>(<b><a href="CppConst.htm">const</a></b> EuclideanVector&lt;U&gt;&amp; lhs, <b><a href="CppConst.htm">const</a></b> V&amp; rhs)<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
+&nbsp;&nbsp;{ <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x <a href="CppOperatorAssign.htm">=</a> <b><a href="CppInt.htm">int</a></b> {}; <a href="CppAssert.htm">assert</a>(x <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 0); }<br/>
+&nbsp;&nbsp;{ <b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> x <a href="CppOperatorAssign.htm">=</a> <b><a href="CppDouble.htm">double</a></b> {}; <a href="CppAssert.htm">assert</a>(x <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 0.0); }<br/>
+&nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> EuclideanVector&lt;T&gt;(lhs.x <a href="CppOperatorDivide.htm">/</a> rhs, lhs.y <a href="CppOperatorDivide.htm">/</a> rhs);<br/>
+}<br/>
+<br/>
+<br/>
+<br/>
+<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> EUCLIDEANVECTOR_H<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>euclideanvector.cpp</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="euclideanvector.cpp" border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> "euclideanvector.h"<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+<p>This page has been created by the <a href="Tools.htm">tool</a> <a href="ToolCodeToHtml.htm">CodeToHtml</a></p>
+</body>
+</html>

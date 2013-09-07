@@ -190,11 +190,11 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppAbout.htm">about</a>.h"<br/>
 <br/>
+<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a> {<br/>
+<br/>
 <a href="CppComment.htm">///</a>GUI independent <a href="CppMusic.htm">Music</a>Theory menu dialog<br/>
 <b><a href="CppStruct.htm">struct</a></b> <a href="CppMusic.htm">Music</a>TheoryMenuDialog<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppMusic.htm">Music</a>TheoryMenuDialog();<br/>
-<br/>
 &nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppAbout.htm">About</a> GetAbout();<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/Obtain <b><a href="CppThis.htm">this</a></b> <b><a href="CppClass.htm">class</a></b> its <a href="CppVersion.htm">version</a> number<br/>
@@ -203,6 +203,8 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/Obtain <b><a href="CppThis.htm">this</a></b> <b><a href="CppClass.htm">class</a></b> its <a href="CppVersion.htm">version</a> history<br/>
 &nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; Get<a href="CppVersion.htm">Version</a>History();<br/>
 };<br/>
+<br/>
+} <a href="CppComment.htm">//</a><b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a><br/>
 <br/>
 <a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> MUSICTHEORYMENUDIALOG_H<br/>
 </code></td></tr></table>
@@ -236,8 +238,8 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="ToolMusicTheory.htm">ToolMusicTheory</a>.htm<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">//</a><a href="CppInclude.htm">#include</a> own <a href="CppHeaderFile.htm">header file</a> as first substantive line of code, from:<br/>
-<a href="CppComment.htm">//</a> * John Lakos. Large-Scale <a href="Cpp.htm">C++</a> Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110<br/>
+<br/>
+<br/>
 <a href="CppInclude.htm">#include</a> "<a href="ToolMusicTheory.htm">musictheory</a>menudialog.h"<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppMusic.htm">music</a>chord.h"<br/>
@@ -245,11 +247,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppMusic.htm">music</a>scale.h"<br/>
 <a href="CppComment.htm">//</a><a href="CppInclude.htm">#include</a> "qtcreator<a href="CppProFile.htm">profile</a>.h"<br/>
 <br/>
-<a href="CppMusic.htm">Music</a>TheoryMenuDialog::<a href="CppMusic.htm">Music</a>TheoryMenuDialog()<br/>
-{<br/>
-}<br/>
-<br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppAbout.htm">About</a> <a href="CppMusic.htm">Music</a>TheoryMenuDialog::GetAbout()<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppAbout.htm">About</a> <a href="CppRibi.htm\">ribi</a>::<a href="CppMusic.htm">Music</a>TheoryMenuDialog::GetAbout()<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppAbout.htm">About</a> a(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;"Richel Bilderbeek",<br/>
@@ -266,12 +264,12 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> a;<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppMusic.htm">Music</a>TheoryMenuDialog::Get<a href="CppVersion.htm">Version</a>()<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppRibi.htm\">ribi</a>::<a href="CppMusic.htm">Music</a>TheoryMenuDialog::Get<a href="CppVersion.htm">Version</a>()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> "1.2";<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppMusic.htm">Music</a>TheoryMenuDialog::Get<a href="CppVersion.htm">Version</a>History()<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm\">ribi</a>::<a href="CppMusic.htm">Music</a>TheoryMenuDialog::Get<a href="CppVersion.htm">Version</a>History()<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v;<br/>
 &nbsp;&nbsp;v.push_back("2012-08-10: <a href="CppVersion.htm">version</a> 1.0: initial <a href="CppVersion.htm">version</a>");<br/>
@@ -358,8 +356,8 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="ToolMusicTheory.htm">ToolMusicTheory</a>.htm<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">//</a><a href="CppInclude.htm">#include</a> own <a href="CppHeaderFile.htm">header file</a> as first substantive line of code, from:<br/>
-<a href="CppComment.htm">//</a> * John Lakos. Large-Scale <a href="Cpp.htm">C++</a> Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110<br/>
+<br/>
+<br/>
 <a href="CppInclude.htm">#include</a> "qtchordedge.h"<br/>
 <br/>
 <a href="CppQt.htm">Qt</a>ChordEdge::<a href="CppQt.htm">Qt</a>ChordEdge(<a href="CppQGraphicsItem.htm">QGraphicsItem</a> *parent)<br/>
@@ -418,6 +416,9 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppShared_ptr.htm">shared_ptr</a>.hpp&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppQGraphicsView.htm">QGraphicsView</a>&gt;<br/>
 <b><a href="CppStruct.htm">struct</a></b> <a href="CppQGraphicsScene.htm">QGraphicsScene</a>;<br/>
+<br/>
+<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a> {<br/>
+<br/>
 <b><a href="CppNamespace.htm">namespace</a></b> <a href="CppMusic.htm">Music</a> { <b><a href="CppStruct.htm">struct</a></b> ChordVertex; <b><a href="CppStruct.htm">struct</a></b> Chord; }<br/>
 <br/>
 <b><a href="CppStruct.htm">struct</a></b> <a href="CppQt.htm">Qt</a>ChordRelations<a href="CppWidget.htm">Widget</a> : <b><a href="CppPublic.htm">public</a></b> <a href="CppQGraphicsView.htm">QGraphicsView</a><br/>
@@ -438,6 +439,8 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppPrivate.htm">private</a></b>:<br/>
 &nbsp;&nbsp;<a href="CppQGraphicsScene.htm">QGraphicsScene</a> * <b><a href="CppConst.htm">const</a></b> m_scene;<br/>
 };<br/>
+<br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a><br/>
 <br/>
 <a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> QTCHORDRELATIONSWIDGET_H<br/>
 </code></td></tr></table>
@@ -471,18 +474,14 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="ToolMusicTheory.htm">ToolMusicTheory</a>.htm<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">//</a><a href="CppInclude.htm">#include</a> own <a href="CppHeaderFile.htm">header file</a> as first substantive line of code, from:<br/>
-<a href="CppComment.htm">//</a> * John Lakos. Large-Scale <a href="Cpp.htm">C++</a> Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110<br/>
+<br/>
+<br/>
 <a href="CppInclude.htm">#include</a> "qtchordrelations<a href="CppWidget.htm">widget</a>.h"<br/>
 <br/>
-<a href="CppIfdef.htm">#ifdef</a> __STRICT_ANSI__<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-<b><a href="CppTypedef.htm">typedef</a></b>s"<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/math/constants/constants.hpp&gt;<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
-<a href="CppPreElse.htm">#else</a><br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppCmathH.htm">cmath</a>&gt;<br/>
-<a href="CppEndif.htm">#endif</a><br/>
 <br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppQGraphicsScene.htm">QGraphicsScene</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppQPainterPath.htm">QPainterPath</a>&gt;<br/>
@@ -491,7 +490,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppInclude.htm">#include</a> "qtchordedge.h"<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppMusic.htm">music</a>chord.h"<br/>
 <br/>
-<a href="CppQt.htm">Qt</a>ChordRelations<a href="CppWidget.htm">Widget</a>::<a href="CppQt.htm">Qt</a>ChordRelations<a href="CppWidget.htm">Widget</a>(<a href="CppQWidget.htm">QWidget</a> *parent)<br/>
+<a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a>ChordRelations<a href="CppWidget.htm">Widget</a>::<a href="CppQt.htm">Qt</a>ChordRelations<a href="CppWidget.htm">Widget</a>(<a href="CppQWidget.htm">QWidget</a> *parent)<br/>
  : <a href="CppQGraphicsView.htm">QGraphicsView</a>(parent),<br/>
 &nbsp;&nbsp; m_scene(<b><a href="CppNew.htm">new</a></b> <a href="CppQGraphicsScene.htm">QGraphicsScene</a>(<b><a href="CppThis.htm">this</a></b>))<br/>
 {<br/>
@@ -502,12 +501,12 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;setHorizontalScrollBarPolicy(<a href="CppQt.htm">Qt</a>::ScrollBarAlwaysOff);<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppQt.htm">Qt</a>ChordRelations<a href="CppWidget.htm">Widget</a>::Get<a href="CppVersion.htm">Version</a>()<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a>ChordRelations<a href="CppWidget.htm">Widget</a>::Get<a href="CppVersion.htm">Version</a>()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> "1.1";<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppQt.htm">Qt</a>ChordRelations<a href="CppWidget.htm">Widget</a>::Get<a href="CppVersion.htm">Version</a>History()<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a>ChordRelations<a href="CppWidget.htm">Widget</a>::Get<a href="CppVersion.htm">Version</a>History()<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v;<br/>
 &nbsp;&nbsp;v.push_back("2012-08-10: <a href="CppVersion.htm">version</a> 1.0: initial <a href="CppVersion.htm">version</a>");<br/>
@@ -515,12 +514,12 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a>ChordRelations<a href="CppWidget.htm">Widget</a>::resizeEvent(<a href="CppQResizeEvent.htm">QResizeEvent</a> *)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a>ChordRelations<a href="CppWidget.htm">Widget</a>::resizeEvent(<a href="CppQResizeEvent.htm">QResizeEvent</a> *)<br/>
 {<br/>
 &nbsp;&nbsp;m_scene-&gt;setSceneRect(<b><a href="CppThis.htm">this</a></b>-&gt;rect());<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a>ChordRelations<a href="CppWidget.htm">Widget</a>::SetChords(<a href="CppVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppMusic.htm">Music</a>::Chord&gt; &gt;&amp; chords)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a>ChordRelations<a href="CppWidget.htm">Widget</a>::SetChords(<a href="CppVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppMusic.htm">Music</a>::Chord&gt; &gt;&amp; chords)<br/>
 {<br/>
 &nbsp;&nbsp;m_scene-&gt;clear();<br/>
 <br/>
@@ -545,11 +544,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppSize_t.htm">std::size_t</a> sz <a href="CppOperatorAssign.htm">=</a> qt_chords.size();<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> ray <a href="CppOperatorAssign.htm">=</a> 2.0 * 64.0 * <a href="CppSqrt.htm">std::sqrt</a>(2.0) * <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(sz) <a href="CppOperatorDivide.htm">/</a> (2.0 * <a href="CppM_PI.htm">M_PI</a>);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> ray <a href="CppOperatorAssign.htm">=</a> 0.4 * <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(<a href="CppMin.htm">std::min</a>(<b><a href="CppThis.htm">this</a></b>-&gt;width(),<b><a href="CppThis.htm">this</a></b>-&gt;height()));<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppIfdef.htm">#ifdef</a> __STRICT_ANSI__<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> pi <a href="CppOperatorAssign.htm">=</a> <a href="CppBoost.htm">boost</a>::math::constants::pi&lt;<b><a href="CppDouble.htm">double</a></b>&gt;();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppPreElse.htm">#else</a><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> pi <a href="CppOperatorAssign.htm">=</a> <a href="CppM_PI.htm">M_PI</a>;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> d_angle <a href="CppOperatorAssign.htm">=</a> 2.0 * pi <a href="CppOperatorDivide.htm">/</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(sz);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<a href="CppSize_t.htm">std::size_t</a> i <a href="CppOperatorAssign.htm">=</a> 0; i<a href="CppOperatorNotEqual.htm">!=</a>sz; <a href="CppOperatorPlus.htm">+</a>+i)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
@@ -629,6 +624,8 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppMusic.htm">music</a>chord.h"<br/>
 <br/>
+<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a> {<br/>
+<br/>
 <a href="CppComment.htm">///</a><a href="CppQt.htm">Qt</a>Chord displays a <a href="CppMusic.htm">Music</a>::Chord<br/>
 <b><a href="CppStruct.htm">struct</a></b> <a href="CppQt.htm">Qt</a>ChordVertex : <b><a href="CppPublic.htm">public</a></b> <a href="CppQGraphicsItem.htm">QGraphicsItem</a><br/>
 {<br/>
@@ -658,6 +655,8 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/The color used to draw <b><a href="CppThis.htm">this</a></b> vertex<br/>
 &nbsp;&nbsp;<a href="CppQColor.htm">QColor</a> m_color;<br/>
 };<br/>
+<br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a><br/>
 <br/>
 <a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> QTCHORDVERTEX_H<br/>
 </code></td></tr></table>
@@ -691,15 +690,15 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="ToolMusicTheory.htm">ToolMusicTheory</a>.htm<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">//</a><a href="CppInclude.htm">#include</a> own <a href="CppHeaderFile.htm">header file</a> as first substantive line of code, from:<br/>
-<a href="CppComment.htm">//</a> * John Lakos. Large-Scale <a href="Cpp.htm">C++</a> Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110<br/>
+<br/>
+<br/>
 <a href="CppInclude.htm">#include</a> "qtchordvertex.h"<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> &lt;QBrush&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppQPainter.htm">QPainter</a>&gt;<br/>
 <br/>
 <br/>
-<a href="CppQt.htm">Qt</a>ChordVertex::<a href="CppQt.htm">Qt</a>ChordVertex(<br/>
+<a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a>ChordVertex::<a href="CppQt.htm">Qt</a>ChordVertex(<br/>
 &nbsp;&nbsp;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppMusic.htm">Music</a>::Chord&gt;&amp; chord,<br/>
 &nbsp;&nbsp;<a href="CppQGraphicsItem.htm">QGraphicsItem</a> *parent)<br/>
 &nbsp;&nbsp;: <a href="CppQGraphicsItem.htm">QGraphicsItem</a>(parent), m_chord(chord), m_color(200,200,200)<br/>
@@ -717,13 +716,13 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 }<br/>
 <br/>
 <br/>
-<a href="CppQRect.htm">QRect</a>F <a href="CppQt.htm">Qt</a>ChordVertex::boundingRect() <b><a href="CppConst.htm">const</a></b><br/>
+<a href="CppQRect.htm">QRect</a>F <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a>ChordVertex::boundingRect() <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <a href="CppQRect.htm">QRect</a>F(-32.0,-32.0,64.0,64.0);<br/>
 }<br/>
 <br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a>ChordVertex::paint(<a href="CppQPainter.htm">QPainter</a> *painter, <b><a href="CppConst.htm">const</a></b> <a href="CppQStyleOptionGraphicsItem.htm">QStyleOptionGraphicsItem</a> *, <a href="CppQWidget.htm">QWidget</a> *)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a>ChordVertex::paint(<a href="CppQPainter.htm">QPainter</a> *painter, <b><a href="CppConst.htm">const</a></b> <a href="CppQStyleOptionGraphicsItem.htm">QStyleOptionGraphicsItem</a> *, <a href="CppQWidget.htm">QWidget</a> *)<br/>
 {<br/>
 &nbsp;&nbsp;painter-&gt;setBrush(QBrush(m_color));<br/>
 &nbsp;&nbsp;painter-&gt;drawEllipse(<b><a href="CppThis.htm">this</a></b>-&gt;boundingRect());<br/>
@@ -733,16 +732,16 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;m_chord-&gt;ToStr().c_str());<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppQt.htm">Qt</a>ChordVertex::Get<a href="CppVersion.htm">Version</a>()<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a>ChordVertex::Get<a href="CppVersion.htm">Version</a>()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> "1.2";<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppQt.htm">Qt</a>ChordVertex::Get<a href="CppVersion.htm">Version</a>History()<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a>ChordVertex::Get<a href="CppVersion.htm">Version</a>History()<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v;<br/>
 &nbsp;&nbsp;v.push_back("2012-08-10: <a href="CppVersion.htm">version</a> 1.0: initial <a href="CppVersion.htm">version</a>");<br/>
-&nbsp;&nbsp;v.push_back("2012-08-17: <a href="CppVersion.htm">version</a> 1.1: added SetColor method");<br/>
+&nbsp;&nbsp;v.push_back("2012-08-17: <a href="CppVersion.htm">version</a> 1.1: added SetColor <a href="CppMemberFunction.htm">member function</a>");<br/>
 &nbsp;&nbsp;v.push_back("2013-07-25: <a href="CppVersion.htm">version</a> 1.2: transition to <a href="CppQt.htm">Qt</a>5");<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
 }<br/>
@@ -831,6 +830,9 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppShared_ptr.htm">shared_ptr</a>.hpp&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppQGraphicsView.htm">QGraphicsView</a>&gt;<br/>
 <b><a href="CppStruct.htm">struct</a></b> <a href="CppQGraphicsScene.htm">QGraphicsScene</a>;<br/>
+<br/>
+<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a> {<br/>
+<br/>
 <b><a href="CppNamespace.htm">namespace</a></b> <a href="CppMusic.htm">Music</a> { <b><a href="CppStruct.htm">struct</a></b> ChordVertex; <b><a href="CppStruct.htm">struct</a></b> Chord; }<br/>
 <br/>
 <b><a href="CppStruct.htm">struct</a></b> <a href="CppQt.htm">Qt</a>MultiScaleChordRelations<a href="CppWidget.htm">Widget</a> : <b><a href="CppPublic.htm">public</a></b> <a href="CppQGraphicsView.htm">QGraphicsView</a><br/>
@@ -853,6 +855,8 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppPrivate.htm">private</a></b>:<br/>
 &nbsp;&nbsp;<a href="CppQGraphicsScene.htm">QGraphicsScene</a> * <b><a href="CppConst.htm">const</a></b> m_scene;<br/>
 };<br/>
+<br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a><br/>
 <br/>
 <a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> QTMULTISCALECHORDRELATIONSWIDGET_H<br/>
 </code></td></tr></table>
@@ -886,18 +890,14 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="ToolMusicTheory.htm">ToolMusicTheory</a>.htm<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">//</a><a href="CppInclude.htm">#include</a> own <a href="CppHeaderFile.htm">header file</a> as first substantive line of code, from:<br/>
-<a href="CppComment.htm">//</a> * John Lakos. Large-Scale <a href="Cpp.htm">C++</a> Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110<br/>
+<br/>
+<br/>
 <a href="CppInclude.htm">#include</a> "qtmultiscalechordrelations<a href="CppWidget.htm">widget</a>.h"<br/>
 <br/>
-<a href="CppIfdef.htm">#ifdef</a> __STRICT_ANSI__<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-<b><a href="CppTypedef.htm">typedef</a></b>s"<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/math/constants/constants.hpp&gt;<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
-<a href="CppPreElse.htm">#else</a><br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppCmathH.htm">cmath</a>&gt;<br/>
-<a href="CppEndif.htm">#endif</a><br/>
 <br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppQGraphicsScene.htm">QGraphicsScene</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppQPainterPath.htm">QPainterPath</a>&gt;<br/>
@@ -906,7 +906,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppInclude.htm">#include</a> "qtchordedge.h"<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppMusic.htm">music</a>chord.h"<br/>
 <br/>
-<a href="CppQt.htm">Qt</a>MultiScaleChordRelations<a href="CppWidget.htm">Widget</a>::<a href="CppQt.htm">Qt</a>MultiScaleChordRelations<a href="CppWidget.htm">Widget</a>(<a href="CppQWidget.htm">QWidget</a> *parent)<br/>
+<a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a>MultiScaleChordRelations<a href="CppWidget.htm">Widget</a>::<a href="CppQt.htm">Qt</a>MultiScaleChordRelations<a href="CppWidget.htm">Widget</a>(<a href="CppQWidget.htm">QWidget</a> *parent)<br/>
  : <a href="CppQGraphicsView.htm">QGraphicsView</a>(parent),<br/>
 &nbsp;&nbsp; m_scene(<b><a href="CppNew.htm">new</a></b> <a href="CppQGraphicsScene.htm">QGraphicsScene</a>(<b><a href="CppThis.htm">this</a></b>))<br/>
 {<br/>
@@ -917,12 +917,12 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;setHorizontalScrollBarPolicy(<a href="CppQt.htm">Qt</a>::ScrollBarAlwaysOff);<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppQt.htm">Qt</a>MultiScaleChordRelations<a href="CppWidget.htm">Widget</a>::Get<a href="CppVersion.htm">Version</a>()<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a>MultiScaleChordRelations<a href="CppWidget.htm">Widget</a>::Get<a href="CppVersion.htm">Version</a>()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> "1.1";<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppQt.htm">Qt</a>MultiScaleChordRelations<a href="CppWidget.htm">Widget</a>::Get<a href="CppVersion.htm">Version</a>History()<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a>MultiScaleChordRelations<a href="CppWidget.htm">Widget</a>::Get<a href="CppVersion.htm">Version</a>History()<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v;<br/>
 &nbsp;&nbsp;v.push_back("2012-08-17: <a href="CppVersion.htm">version</a> 1.0: initial <a href="CppVersion.htm">version</a>");<br/>
@@ -931,12 +931,12 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 }<br/>
 <br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a>MultiScaleChordRelations<a href="CppWidget.htm">Widget</a>::resizeEvent(<a href="CppQResizeEvent.htm">QResizeEvent</a> *)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a>MultiScaleChordRelations<a href="CppWidget.htm">Widget</a>::resizeEvent(<a href="CppQResizeEvent.htm">QResizeEvent</a> *)<br/>
 {<br/>
 &nbsp;&nbsp;m_scene-&gt;setSceneRect(<b><a href="CppThis.htm">this</a></b>-&gt;rect());<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a>MultiScaleChordRelations<a href="CppWidget.htm">Widget</a>::SetChords(<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a>MultiScaleChordRelations<a href="CppWidget.htm">Widget</a>::SetChords(<br/>
 &nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppMusic.htm">Music</a>::Chord&gt; &gt;&amp; chords1,<br/>
 &nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppMusic.htm">Music</a>::Chord&gt; &gt;&amp; chords2)<br/>
 {<br/>
@@ -995,11 +995,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppSize_t.htm">std::size_t</a> sz <a href="CppOperatorAssign.htm">=</a> qt_chords.size();<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> ray <a href="CppOperatorAssign.htm">=</a> 2.0 * 64.0 * <a href="CppSqrt.htm">std::sqrt</a>(2.0) * <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(sz) <a href="CppOperatorDivide.htm">/</a> (2.0 * <a href="CppM_PI.htm">M_PI</a>);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> ray <a href="CppOperatorAssign.htm">=</a> 0.4 * <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(<a href="CppMin.htm">std::min</a>(<b><a href="CppThis.htm">this</a></b>-&gt;width(),<b><a href="CppThis.htm">this</a></b>-&gt;height()));<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppIfdef.htm">#ifdef</a> __STRICT_ANSI__<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> pi <a href="CppOperatorAssign.htm">=</a> <a href="CppBoost.htm">boost</a>::math::constants::pi&lt;<b><a href="CppDouble.htm">double</a></b>&gt;();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppPreElse.htm">#else</a><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> pi <a href="CppOperatorAssign.htm">=</a> <a href="CppM_PI.htm">M_PI</a>;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> d_angle <a href="CppOperatorAssign.htm">=</a> 2.0 * pi <a href="CppOperatorDivide.htm">/</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(sz);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<a href="CppSize_t.htm">std::size_t</a> i <a href="CppOperatorAssign.htm">=</a> 0; i<a href="CppOperatorNotEqual.htm">!=</a>sz; <a href="CppOperatorPlus.htm">+</a>+i)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
@@ -1079,6 +1075,8 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a><a href="CppMusic.htm">Music</a>TheoryMenuDialog;<br/>
 }<br/>
 <br/>
+<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a> {<br/>
+<br/>
 <b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a><a href="CppMusic.htm">Music</a>TheoryMenuDialog : <b><a href="CppPublic.htm">public</a></b> <a href="CppQDialog.htm">QDialog</a><br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppQ_OBJECT.htm">Q_OBJECT</a><br/>
@@ -1086,9 +1084,6 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <b><a href="CppPublic.htm">public</a></b>:<br/>
 &nbsp;&nbsp;<b><a href="CppExplicit.htm">explicit</a></b> <a href="CppQt.htm">Qt</a><a href="CppMusic.htm">Music</a>TheoryMenuDialog(<a href="CppQWidget.htm">QWidget</a> *parent <a href="CppOperatorAssign.htm">=</a> 0);<br/>
 &nbsp;&nbsp;~<a href="CppQt.htm">Qt</a><a href="CppMusic.htm">Music</a>TheoryMenuDialog();<br/>
-<br/>
-<b><a href="CppProtected.htm">protected</a></b>:<br/>
-&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> changeEvent(<a href="CppQEvent.htm">QEvent</a> *e);<br/>
 <br/>
 <b><a href="CppPrivate.htm">private</a></b>:<br/>
 &nbsp;&nbsp;<a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a><a href="CppMusic.htm">Music</a>TheoryMenuDialog *ui;<br/>
@@ -1099,6 +1094,8 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> on_button_start_singlescale_clicked();<br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> on_button_start_multiscale_clicked();<br/>
 };<br/>
+<br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a><br/>
 <br/>
 <a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> QTMUSICTHEORYMENUDIALOG_H<br/>
 </code></td></tr></table>
@@ -1132,8 +1129,8 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="ToolMusicTheory.htm">ToolMusicTheory</a>.htm<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">//</a><a href="CppInclude.htm">#include</a> own <a href="CppHeaderFile.htm">header file</a> as first substantive line of code, from:<br/>
-<a href="CppComment.htm">//</a> * John Lakos. Large-Scale <a href="Cpp.htm">C++</a> Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110<br/>
+<br/>
+<br/>
 <a href="CppInclude.htm">#include</a> "qt<a href="ToolMusicTheory.htm">musictheory</a>menudialog.h"<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppQDesktopWidget.htm">QDesktopWidget</a>&gt;<br/>
@@ -1148,31 +1145,19 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppInclude.htm">#include</a> "qt<a href="ToolMusicTheory.htm">musictheory</a>multiscaledialog.h"<br/>
 <a href="CppInclude.htm">#include</a> "ui_qt<a href="ToolMusicTheory.htm">musictheory</a>menudialog.h"<br/>
 <br/>
-<a href="CppQt.htm">Qt</a><a href="CppMusic.htm">Music</a>TheoryMenuDialog::<a href="CppQt.htm">Qt</a><a href="CppMusic.htm">Music</a>TheoryMenuDialog(<a href="CppQWidget.htm">QWidget</a> *parent) :<br/>
+<a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppMusic.htm">Music</a>TheoryMenuDialog::<a href="CppQt.htm">Qt</a><a href="CppMusic.htm">Music</a>TheoryMenuDialog(<a href="CppQWidget.htm">QWidget</a> *parent) :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQDialog.htm">QDialog</a>(parent),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;ui(<b><a href="CppNew.htm">new</a></b> <a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a><a href="CppMusic.htm">Music</a>TheoryMenuDialog)<br/>
 {<br/>
 &nbsp;&nbsp;ui-&gt;setupUi(<b><a href="CppThis.htm">this</a></b>);<br/>
 }<br/>
 <br/>
-<a href="CppQt.htm">Qt</a><a href="CppMusic.htm">Music</a>TheoryMenuDialog::~<a href="CppQt.htm">Qt</a><a href="CppMusic.htm">Music</a>TheoryMenuDialog()<br/>
+<a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppMusic.htm">Music</a>TheoryMenuDialog::~<a href="CppQt.htm">Qt</a><a href="CppMusic.htm">Music</a>TheoryMenuDialog()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppDelete.htm">delete</a></b> ui;<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a><a href="CppMusic.htm">Music</a>TheoryMenuDialog::changeEvent(<a href="CppQEvent.htm">QEvent</a> *e)<br/>
-{<br/>
-&nbsp;&nbsp;<a href="CppQDialog.htm">QDialog</a>::changeEvent(e);<br/>
-&nbsp;&nbsp;<b><a href="CppSwitch.htm">switch</a></b> (e-&gt;type()) {<br/>
-&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> <a href="CppQEvent.htm">QEvent</a>::LanguageChange:<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;ui-&gt;retranslateUi(<b><a href="CppThis.htm">this</a></b>);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppBreak.htm">break</a></b>;<br/>
-&nbsp;&nbsp;<b><a href="CppDefault.htm">default</a></b>:<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppBreak.htm">break</a></b>;<br/>
-&nbsp;&nbsp;}<br/>
-}<br/>
-<br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a><a href="CppMusic.htm">Music</a>TheoryMenuDialog::on_button_about_clicked()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppMusic.htm">Music</a>TheoryMenuDialog::on_button_about_clicked()<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppAbout.htm">About</a> a <a href="CppOperatorAssign.htm">=</a> <a href="CppMusic.htm">Music</a>TheoryMenuDialog::GetAbout();<br/>
 &nbsp;&nbsp;a.<a href="CppAdd.htm">Add</a><a href="CppLibrary.htm">Library</a>("<a href="CppQt.htm">Qt</a>ChordEdge <a href="CppVersion.htm">version</a>: " <a href="CppOperatorPlus.htm">+</a> <a href="CppQt.htm">Qt</a>ChordEdge::Get<a href="CppVersion.htm">Version</a>());<br/>
@@ -1188,12 +1173,12 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;show();<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a><a href="CppMusic.htm">Music</a>TheoryMenuDialog::on_button_quit_clicked()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppMusic.htm">Music</a>TheoryMenuDialog::on_button_quit_clicked()<br/>
 {<br/>
 &nbsp;&nbsp;close();<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a><a href="CppMusic.htm">Music</a>TheoryMenuDialog::on_button_start_singlescale_clicked()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppMusic.htm">Music</a>TheoryMenuDialog::on_button_start_singlescale_clicked()<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Make a screenshot<br/>
 &nbsp;&nbsp;<a href="CppQPixmap.htm">QPixmap</a>::grab<a href="CppWidget.htm">Widget</a>(<b><a href="CppThis.htm">this</a></b>,<b><a href="CppThis.htm">this</a></b>-&gt;window()-&gt;rect()).save("<a href="ToolMusicTheory.htm">ToolMusicTheory</a>MenuDialog.png");<br/>
@@ -1205,7 +1190,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 }<br/>
 <br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a><a href="CppMusic.htm">Music</a>TheoryMenuDialog::on_button_start_multiscale_clicked()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppMusic.htm">Music</a>TheoryMenuDialog::on_button_start_multiscale_clicked()<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppQt.htm">Qt</a><a href="CppMusic.htm">Music</a>TheoryMultiScaleDialog d;<br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;hide();<br/>
@@ -1252,6 +1237,8 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a><a href="CppMusic.htm">Music</a>TheoryMultiScaleDialog;<br/>
 }<br/>
 <br/>
+<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a> {<br/>
+<br/>
 <b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a><a href="CppMusic.htm">Music</a>TheoryMultiScaleDialog : <b><a href="CppPublic.htm">public</a></b> <a href="CppQDialog.htm">QDialog</a><br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppQ_OBJECT.htm">Q_OBJECT</a><br/>
@@ -1271,6 +1258,8 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <b><a href="CppPrivate.htm">private</a></b>:<br/>
 &nbsp;&nbsp;<a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a><a href="CppMusic.htm">Music</a>TheoryMultiScaleDialog *ui;<br/>
 };<br/>
+<br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a><br/>
 <br/>
 <a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> QTMUSICTHEORYMULTISCA<a href="CppLed.htm">LED</a>IALOG_H<br/>
 </code></td></tr></table>
@@ -1304,8 +1293,8 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="ToolMusicTheory.htm">ToolMusicTheory</a>.htm<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">//</a><a href="CppInclude.htm">#include</a> own <a href="CppHeaderFile.htm">header file</a> as first substantive line of code, from:<br/>
-<a href="CppComment.htm">//</a> * John Lakos. Large-Scale <a href="Cpp.htm">C++</a> Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110<br/>
+<br/>
+<br/>
 <a href="CppInclude.htm">#include</a> "qt<a href="ToolMusicTheory.htm">musictheory</a>multiscaledialog.h"<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
@@ -1324,7 +1313,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppTrace.htm">trace</a>.h"<br/>
 <a href="CppInclude.htm">#include</a> "ui_qt<a href="ToolMusicTheory.htm">musictheory</a>multiscaledialog.h"<br/>
 <br/>
-<a href="CppQt.htm">Qt</a><a href="CppMusic.htm">Music</a>TheoryMultiScaleDialog::<a href="CppQt.htm">Qt</a><a href="CppMusic.htm">Music</a>TheoryMultiScaleDialog(<a href="CppQWidget.htm">QWidget</a> *parent) :<br/>
+<a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppMusic.htm">Music</a>TheoryMultiScaleDialog::<a href="CppQt.htm">Qt</a><a href="CppMusic.htm">Music</a>TheoryMultiScaleDialog(<a href="CppQWidget.htm">QWidget</a> *parent) :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQDialog.htm">QDialog</a>(parent),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;ui(<b><a href="CppNew.htm">new</a></b> <a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a><a href="CppMusic.htm">Music</a>TheoryMultiScaleDialog)<br/>
 {<br/>
@@ -1361,12 +1350,12 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppAny.htm">any</a>_change();<br/>
 }<br/>
 <br/>
-<a href="CppQt.htm">Qt</a><a href="CppMusic.htm">Music</a>TheoryMultiScaleDialog::~<a href="CppQt.htm">Qt</a><a href="CppMusic.htm">Music</a>TheoryMultiScaleDialog()<br/>
+<a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppMusic.htm">Music</a>TheoryMultiScaleDialog::~<a href="CppQt.htm">Qt</a><a href="CppMusic.htm">Music</a>TheoryMultiScaleDialog()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppDelete.htm">delete</a></b> ui;<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a><a href="CppMusic.htm">Music</a>TheoryMultiScaleDialog::<a href="CppAny.htm">any</a>_change()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppMusic.htm">Music</a>TheoryMultiScaleDialog::<a href="CppAny.htm">any</a>_change()<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppMusic.htm">Music</a>::Chord&gt; &gt; chords_1 <a href="CppOperatorAssign.htm">=</a> <a href="CppMusic.htm">Music</a>::Chord::CreateAllChords();<br/>
 &nbsp;&nbsp;{<br/>
@@ -1482,7 +1471,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;ui-&gt;<a href="CppWidget.htm">widget</a>-&gt;SetChords(chords_1,chords_2);<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a><a href="CppMusic.htm">Music</a>TheoryMultiScaleDialog::resizeEvent(<a href="CppQResizeEvent.htm">QResizeEvent</a> *)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppMusic.htm">Music</a>TheoryMultiScaleDialog::resizeEvent(<a href="CppQResizeEvent.htm">QResizeEvent</a> *)<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppAny.htm">any</a>_change();<br/>
 }<br/>
@@ -1523,8 +1512,10 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppQDialog.htm">QDialog</a>&gt;<br/>
 <br/>
 <b><a href="CppNamespace.htm">namespace</a></b> Ui {<br/>
-<b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a><a href="CppMusic.htm">Music</a>TheorySingleScaleDialog;<br/>
+&nbsp;&nbsp;<b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a><a href="CppMusic.htm">Music</a>TheorySingleScaleDialog;<br/>
 }<br/>
+<br/>
+<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a> {<br/>
 <br/>
 <b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a><a href="CppMusic.htm">Music</a>TheorySingleScaleDialog : <b><a href="CppPublic.htm">public</a></b> <a href="CppQDialog.htm">QDialog</a><br/>
 {<br/>
@@ -1545,6 +1536,8 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <b><a href="CppPrivate.htm">private</a></b>:<br/>
 &nbsp;&nbsp;<a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a><a href="CppMusic.htm">Music</a>TheorySingleScaleDialog *ui;<br/>
 };<br/>
+<br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a><br/>
 <br/>
 <a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> QTMUSICTHEORYSINGLESCA<a href="CppLed.htm">LED</a>IALOG_H<br/>
 </code></td></tr></table>
@@ -1578,8 +1571,8 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="ToolMusicTheory.htm">ToolMusicTheory</a>.htm<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">//</a><a href="CppInclude.htm">#include</a> own <a href="CppHeaderFile.htm">header file</a> as first substantive line of code, from:<br/>
-<a href="CppComment.htm">//</a> * John Lakos. Large-Scale <a href="Cpp.htm">C++</a> Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110<br/>
+<br/>
+<br/>
 <a href="CppInclude.htm">#include</a> "qt<a href="ToolMusicTheory.htm">musictheory</a>singlescaledialog.h"<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
@@ -1598,7 +1591,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppTrace.htm">trace</a>.h"<br/>
 <a href="CppInclude.htm">#include</a> "ui_qt<a href="ToolMusicTheory.htm">musictheory</a>singlescaledialog.h"<br/>
 <br/>
-<a href="CppQt.htm">Qt</a><a href="CppMusic.htm">Music</a>TheorySingleScaleDialog::<a href="CppQt.htm">Qt</a><a href="CppMusic.htm">Music</a>TheorySingleScaleDialog(<a href="CppQWidget.htm">QWidget</a> *parent) :<br/>
+<a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppMusic.htm">Music</a>TheorySingleScaleDialog::<a href="CppQt.htm">Qt</a><a href="CppMusic.htm">Music</a>TheorySingleScaleDialog(<a href="CppQWidget.htm">QWidget</a> *parent) :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQDialog.htm">QDialog</a>(parent),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;ui(<b><a href="CppNew.htm">new</a></b> <a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a><a href="CppMusic.htm">Music</a>TheorySingleScaleDialog)<br/>
 {<br/>
@@ -1631,12 +1624,12 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppAny.htm">any</a>_change();<br/>
 }<br/>
 <br/>
-<a href="CppQt.htm">Qt</a><a href="CppMusic.htm">Music</a>TheorySingleScaleDialog::~<a href="CppQt.htm">Qt</a><a href="CppMusic.htm">Music</a>TheorySingleScaleDialog()<br/>
+<a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppMusic.htm">Music</a>TheorySingleScaleDialog::~<a href="CppQt.htm">Qt</a><a href="CppMusic.htm">Music</a>TheorySingleScaleDialog()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppDelete.htm">delete</a></b> ui;<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a><a href="CppMusic.htm">Music</a>TheorySingleScaleDialog::<a href="CppAny.htm">any</a>_change()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppMusic.htm">Music</a>TheorySingleScaleDialog::<a href="CppAny.htm">any</a>_change()<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppThis.htm">this</a></b>-&gt;setWindowTitle( <a href="CppQString.htm">QString</a>::number( <a href="CppRand.htm">std::rand</a>() ));&nbsp;&nbsp;<a href="CppComment.htm">//</a>Display the notes<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Obtain the root<br/>
@@ -1697,7 +1690,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;ui-&gt;<a href="CppWidget.htm">widget</a>-&gt;SetChords(chords);<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a><a href="CppMusic.htm">Music</a>TheorySingleScaleDialog::resizeEvent(<a href="CppQResizeEvent.htm">QResizeEvent</a> *)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppMusic.htm">Music</a>TheorySingleScaleDialog::resizeEvent(<a href="CppQResizeEvent.htm">QResizeEvent</a> *)<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppAny.htm">any</a>_change();<br/>
 }<br/>

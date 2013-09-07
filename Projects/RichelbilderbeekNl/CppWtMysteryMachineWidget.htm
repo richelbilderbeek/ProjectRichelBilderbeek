@@ -74,6 +74,9 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWPaintedWidget.htm">WPaintedWidget</a>&gt;<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <b><a href="CppNamespace.htm">namespace</a></b> <a href="CppWt.htm">Wt</a> { <b><a href="CppStruct.htm">struct</a></b> <a href="CppWMouseEvent.htm">WMouseEvent</a>Event; }<br/>
+<br/>
+<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a> {<br/>
+<br/>
 <b><a href="CppStruct.htm">struct</a></b> <a href="CppMysteryMachineWidget.htm">MysteryMachineWidget</a>;<br/>
 <b><a href="CppStruct.htm">struct</a></b> <a href="CppWtToggleButton.htm">WtToggleButton</a><a href="CppWidget.htm">Widget</a>;<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
@@ -123,7 +126,9 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 };<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppOstream.htm">std::ostream</a>&amp; <b><a href="CppOperatorStreamOut.htm">operator&lt;&lt;</a></b>(<a href="CppOstream.htm">std::ostream</a>&amp; os, <b><a href="CppConst.htm">const</a></b> <a href="CppWtMysteryMachineWidget.htm">WtMysteryMachineWidget</a>&amp; <a href="CppWidget.htm">widget</a>);<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a><br/>
+<br/>
 <a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> WTMYSTERYMACHINEWIDGET_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
@@ -179,7 +184,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppWtMysteryMachineWidget.htm">wtmysterymachinewidget</a>.h"<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppWtToggleButtonWidget.htm">wttogglebuttonwidget</a>.h"<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppWtMysteryMachineWidget.htm">WtMysteryMachineWidget</a>::<a href="CppWtMysteryMachineWidget.htm">WtMysteryMachineWidget</a>(<br/>
+<a href="CppRibi.htm\">ribi</a>::<a href="CppWtMysteryMachineWidget.htm">WtMysteryMachineWidget</a>::<a href="CppWtMysteryMachineWidget.htm">WtMysteryMachineWidget</a>(<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> width, <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> height)<br/>
 &nbsp;&nbsp;: m_<a href="CppWidget.htm">widget</a>(<b><a href="CppNew.htm">new</a></b> <a href="CppMysteryMachineWidget.htm">MysteryMachineWidget</a>(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;Rect(0,0,width-1,height-1)))<br/>
@@ -187,38 +192,38 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(m_<a href="CppWidget.htm">widget</a>);<br/>
 <br/>
 &nbsp;&nbsp;m_<a href="CppWidget.htm">widget</a>-&gt;GetMachine()-&gt;GetDialBack()-&gt;GetDial()-&gt;m_signal_position_changed.connect(<a href="CppBind.htm">boost::bind</a>(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&amp;<a href="CppWtMysteryMachineWidget.htm">WtMysteryMachineWidget</a>::DoRepaint,<b><a href="CppThis.htm">this</a></b>));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&amp;<a href="CppRibi.htm\">ribi</a>::<a href="CppWtMysteryMachineWidget.htm">WtMysteryMachineWidget</a>::DoRepaint,<b><a href="CppThis.htm">this</a></b>));<br/>
 &nbsp;&nbsp;m_<a href="CppWidget.htm">widget</a>-&gt;GetMachine()-&gt;GetDialFront()-&gt;GetDial()-&gt;m_signal_position_changed.connect(<a href="CppBind.htm">boost::bind</a>(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&amp;<a href="CppWtMysteryMachineWidget.htm">WtMysteryMachineWidget</a>::DoRepaint,<b><a href="CppThis.htm">this</a></b>));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&amp;<a href="CppRibi.htm\">ribi</a>::<a href="CppWtMysteryMachineWidget.htm">WtMysteryMachineWidget</a>::DoRepaint,<b><a href="CppThis.htm">this</a></b>));<br/>
 &nbsp;&nbsp;m_<a href="CppWidget.htm">widget</a>-&gt;GetMachine()-&gt;Get<a href="CppToggleButton.htm">ToggleButton</a>()-&gt;Get<a href="CppToggleButton.htm">ToggleButton</a>()-&gt;m_signal_toggled.connect(<a href="CppBind.htm">boost::bind</a>(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&amp;<a href="CppWtMysteryMachineWidget.htm">WtMysteryMachineWidget</a>::DoRepaint,<b><a href="CppThis.htm">this</a></b>));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&amp;<a href="CppRibi.htm\">ribi</a>::<a href="CppWtMysteryMachineWidget.htm">WtMysteryMachineWidget</a>::DoRepaint,<b><a href="CppThis.htm">this</a></b>));<br/>
 <br/>
 &nbsp;&nbsp;m_<a href="CppWidget.htm">widget</a>-&gt;m_signal_<a href="CppGeometry.htm">geometry</a>_changed.connect(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBind.htm">boost::bind</a>(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;<a href="CppWtMysteryMachineWidget.htm">WtMysteryMachineWidget</a>::OnResize,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;<a href="CppRibi.htm\">ribi</a>::<a href="CppWtMysteryMachineWidget.htm">WtMysteryMachineWidget</a>::OnResize,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>));<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;clicked().connect(<b><a href="CppThis.htm">this</a></b>,&amp;<a href="CppWtMysteryMachineWidget.htm">WtMysteryMachineWidget</a>::OnClicked);<br/>
+&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;clicked().connect(<b><a href="CppThis.htm">this</a></b>,&amp;<a href="CppRibi.htm\">ribi</a>::<a href="CppWtMysteryMachineWidget.htm">WtMysteryMachineWidget</a>::OnClicked);<br/>
 <br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;m_<a href="CppWidget.htm">widget</a>-&gt;SetGeometry(Rect(0,0,width,height));<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppWtMysteryMachineWidget.htm">WtMysteryMachineWidget</a>::DoRepaint()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppWtMysteryMachineWidget.htm">WtMysteryMachineWidget</a>::DoRepaint()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;update();<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppWtMysteryMachineWidget.htm">WtMysteryMachineWidget</a>::OnResize()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppWtMysteryMachineWidget.htm">WtMysteryMachineWidget</a>::OnResize()<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppWtMysteryMachineWidget.htm">WtMysteryMachineWidget</a>::resize(m_<a href="CppWidget.htm">widget</a>-&gt;GetGeometry().GetWidth(),m_<a href="CppWidget.htm">widget</a>-&gt;GetGeometry().GetHeight());<br/>
+&nbsp;&nbsp;<a href="CppRibi.htm\">ribi</a>::<a href="CppWtMysteryMachineWidget.htm">WtMysteryMachineWidget</a>::resize(m_<a href="CppWidget.htm">widget</a>-&gt;GetGeometry().GetWidth(),m_<a href="CppWidget.htm">widget</a>-&gt;GetGeometry().GetHeight());<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppWtMysteryMachineWidget.htm">WtMysteryMachineWidget</a>::Get<a href="CppVersion.htm">Version</a>()<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppRibi.htm\">ribi</a>::<a href="CppWtMysteryMachineWidget.htm">WtMysteryMachineWidget</a>::Get<a href="CppVersion.htm">Version</a>()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> "1.1";<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppWtMysteryMachineWidget.htm">WtMysteryMachineWidget</a>::Get<a href="CppVersion.htm">Version</a>History()<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm\">ribi</a>::<a href="CppWtMysteryMachineWidget.htm">WtMysteryMachineWidget</a>::Get<a href="CppVersion.htm">Version</a>History()<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v;<br/>
 &nbsp;&nbsp;v.push_back("YYYY-MM-DD: <a href="CppVersion.htm">version</a> X.Y: [description]");<br/>
@@ -227,14 +232,14 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppWtMysteryMachineWidget.htm">WtMysteryMachineWidget</a>::OnClicked(<b><a href="CppConst.htm">const</a></b> <a href="CppWMouseEvent.htm">Wt::WMouseEvent</a>&amp; e)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppWtMysteryMachineWidget.htm">WtMysteryMachineWidget</a>::OnClicked(<b><a href="CppConst.htm">const</a></b> <a href="CppWMouseEvent.htm">Wt::WMouseEvent</a>&amp; e)<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x <a href="CppOperatorAssign.htm">=</a> e.<a href="CppWidget.htm">widget</a>().x;<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> y <a href="CppOperatorAssign.htm">=</a> e.<a href="CppWidget.htm">widget</a>().y;<br/>
 &nbsp;&nbsp;m_<a href="CppWidget.htm">widget</a>-&gt;Click(x,y);<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppWtMysteryMachineWidget.htm">WtMysteryMachineWidget</a>::paintEvent(<a href="CppWPaintDevice.htm">Wt::WPaintDevice</a> *paintDevice)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppWtMysteryMachineWidget.htm">WtMysteryMachineWidget</a>::paintEvent(<a href="CppWPaintDevice.htm">Wt::WPaintDevice</a> *paintDevice)<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppWPainter.htm">Wt::WPainter</a> painter(paintDevice);<br/>
 &nbsp;&nbsp;painter.drawRect(0,0,width().toPixels(),height().toPixels());<br/>
@@ -252,12 +257,12 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<a href="CppWtToggleButton.htm">WtToggleButton</a><a href="CppWidget.htm">Widget</a>::Draw<a href="CppToggleButton.htm">ToggleButton</a>(painter,Get<a href="CppWidget.htm">Widget</a>()-&gt;GetMachine()-&gt;Get<a href="CppToggleButton.htm">ToggleButton</a>());<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppWtMysteryMachineWidget.htm">WtMysteryMachineWidget</a>::resize(<b><a href="CppConst.htm">const</a></b> <a href="CppWLength.htm">Wt::WLength</a>&amp; width, <b><a href="CppConst.htm">const</a></b> <a href="CppWLength.htm">Wt::WLength</a>&amp; height)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppWtMysteryMachineWidget.htm">WtMysteryMachineWidget</a>::resize(<b><a href="CppConst.htm">const</a></b> <a href="CppWLength.htm">Wt::WLength</a>&amp; width, <b><a href="CppConst.htm">const</a></b> <a href="CppWLength.htm">Wt::WLength</a>&amp; height)<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppWPaintedWidget.htm">Wt::WPaintedWidget</a>::resize(width,height);<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppOstream.htm">std::ostream</a>&amp; <b><a href="CppOperatorStreamOut.htm">operator&lt;&lt;</a></b>(<a href="CppOstream.htm">std::ostream</a>&amp; os, <b><a href="CppConst.htm">const</a></b> <a href="CppWtMysteryMachineWidget.htm">WtMysteryMachineWidget</a>&amp; <a href="CppWidget.htm">widget</a>)<br/>
+<a href="CppOstream.htm">std::ostream</a>&amp; <a href="CppRibi.htm\">ribi</a>::<b><a href="CppOperatorStreamOut.htm">operator&lt;&lt;</a></b>(<a href="CppOstream.htm">std::ostream</a>&amp; os, <b><a href="CppConst.htm">const</a></b> <a href="CppWtMysteryMachineWidget.htm">WtMysteryMachineWidget</a>&amp; <a href="CppWidget.htm">widget</a>)<br/>
 {<br/>
 &nbsp;&nbsp;os<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "&lt;<a href="CppWtMysteryMachineWidget.htm">WtMysteryMachineWidget</a>&gt;"<br/>

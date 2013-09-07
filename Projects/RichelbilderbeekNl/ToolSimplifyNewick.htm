@@ -36,8 +36,6 @@ and <a href="CppStl.htm">STL</a> <a href="CppLibrary.htm">libraries</a>.</p>
 <ul>
   <li><a href="ToolSimplifyNewick_1_2.png">View a screenshot of 'SimplifyNewick' (version 1.2)(png)</a></li>
   <li><a href="ToolSimplifyNewickSource_2_0.zip">Download the 'SimplifyNewick' source code (version 2.0)(zip)</a></li>
-  <li><a href="ToolSimplifyNewickSource_2_0.htm">View the Qt Creator 'SimplifyNewick' source code as a web page (version 2.0)(htm)</a></li>
-  <li><a href="ToolSimplifyNewickScript_1_0.htm">View a shell script for 'SimplifyNewick' as a web page (version 1.0)(htm)</a></li>
 </ul>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
@@ -48,13 +46,8 @@ and <a href="CppStl.htm">STL</a> <a href="CppLibrary.htm">libraries</a>.</p>
 <p>&nbsp;</p>
 <ul>
   <li><a href="ToolSimplifyNewickSource_1_2.zip">Download the 'SimplifyNewick' source code (version 1.2)(zip)</a></li>
-  <li><a href="ToolSimplifyNewickSource_1_2.htm">View the Qt Creator 'SimplifyNewick' source code as a web page (version 1.2)(htm)</a></li>
   <li><a href="ToolSimplifyNewick_1_1.png">View a screenshot of 'SimplifyNewick' (version 1.1)(png)</a></li>
-  <li><a href="ToolSimplifyNewickSource_1_1.zip">Download the 'SimplifyNewick' source code (version 1.1)(zip)</a></li>
-  <li><a href="ToolSimplifyNewickSource_1_1.htm">View the Qt Creator 'SimplifyNewick' source code as a web page (version 1.1)(htm)</a></li>
   <li><a href="ToolSimplifyNewick_1_0.png">View a screenshot of 'SimplifyNewick' (version 1.0)(png)</a></li>
-  <li><a href="ToolSimplifyNewickSource_1_0.zip">Download the 'SimplifyNewick' source code (version 1.0)(zip)</a></li>
-  <li><a href="ToolSimplifyNewickSource_1_0.htm">View the Qt Creator 'SimplifyNewick' source code as a web page (version 1.0)(htm)</a></li>
 </ul>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
@@ -400,7 +393,7 @@ DialogSimplify<a href="CppNewick.htm">Newick</a>::~DialogSimplify<a href="CppNew
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQString.htm">QString</a>("Current <a href="CppNewick.htm">Newick</a>: ")<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> <a href="CppQString.htm">QString</a>(s.c_str()));<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<b><a href="CppCatch.htm">catch</a></b> (<a href="CppException.htm">std::exception</a>&amp; e)<br/>
+&nbsp;&nbsp;<b><a href="CppCatch.htm">catch</a></b> (<a href="CppStdException.htm">std::exception</a>&amp; e)<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;ui-&gt;text_output-&gt;appendPlainText(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQString.htm">QString</a>("Invalid <a href="CppNewick.htm">Newick</a>: ")<br/>
@@ -433,7 +426,7 @@ DialogSimplify<a href="CppNewick.htm">Newick</a>::~DialogSimplify<a href="CppNew
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b>;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<b><a href="CppCatch.htm">catch</a></b> (<a href="CppException.htm">std::exception</a>&amp;)<br/>
+&nbsp;&nbsp;<b><a href="CppCatch.htm">catch</a></b> (<a href="CppStdException.htm">std::exception</a>&amp;)<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;ui-&gt;text_output-&gt;appendPlainText(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Invalid input of maximum complexity: "<br/>
@@ -902,7 +895,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppNewickVector.htm">NewickVector</a> n(<a href="CppArgc.htm">argv</a>[1]);<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<b><a href="CppCatch.htm">catch</a></b> (<a href="CppException.htm">std::exception</a>&amp; e)<br/>
+&nbsp;&nbsp;<b><a href="CppCatch.htm">catch</a></b> (<a href="CppStdException.htm">std::exception</a>&amp; e)<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCerr.htm">std::cerr</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "Invalid <a href="CppNewick.htm">Newick</a>: " <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> e.what() <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n';<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> 1;<br/>
@@ -918,7 +911,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> 1;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCatch.htm">catch</a></b>(<a href="CppException.htm">std::exception</a>&amp;)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCatch.htm">catch</a></b>(<a href="CppStdException.htm">std::exception</a>&amp;)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCerr.htm">std::cerr</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "The value of complexity must be an <a href="CppInt.htm">integer</a>\n";<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> 1;<br/>

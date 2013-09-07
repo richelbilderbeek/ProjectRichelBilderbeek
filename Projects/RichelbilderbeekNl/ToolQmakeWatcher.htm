@@ -106,7 +106,7 @@ You should have received a copy of the GNU General Public License<br/>
 along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">*/</a><br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="Tools.htm">Tool</a>Q<a href="CppMake.htm">make</a>Watcher.htm<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="ToolQ<a href="CppMake.htm">make</a>Watcher.htm">ToolQ<a href="CppMake.htm">make</a>Watcher</a>.htm<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppQApplication.htm">QApplication</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> "qtq<a href="CppMake.htm">make</a>watchermaindialog.h"<br/>
@@ -147,7 +147,7 @@ You should have received a copy of the GNU General Public License<br/>
 along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">*/</a><br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="Tools.htm">Tool</a>Q<a href="CppMake.htm">make</a>Watcher.htm<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="ToolQ<a href="CppMake.htm">make</a>Watcher.htm">ToolQ<a href="CppMake.htm">make</a>Watcher</a>.htm<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppIfndef.htm">#ifndef</a> QTQMAKEWATCHERMAINDIALOG_H<br/>
 <a href="CppDefine.htm">#define</a> QTQMAKEWATCHERMAINDIALOG_H<br/>
@@ -170,7 +170,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;~<a href="CppQt.htm">Qt</a>Q<a href="CppMake.htm">make</a>WatcherMainDialog();<br/>
 <br/>
 <b><a href="CppProtected.htm">protected</a></b>:<br/>
-&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> changeEvent(<a href="CppQEvent.htm">QEvent</a> *e);<br/>
+&nbsp;&nbsp;<br/>
 <br/>
 <b><a href="CppPrivate.htm">private</a></b>:<br/>
 &nbsp;&nbsp;<a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a>Q<a href="CppMake.htm">make</a>WatcherMainDialog *ui;<br/>
@@ -213,10 +213,10 @@ You should have received a copy of the GNU General Public License<br/>
 along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">*/</a><br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="Tools.htm">Tool</a>Q<a href="CppMake.htm">make</a>Watcher.htm<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="ToolQ<a href="CppMake.htm">make</a>Watcher.htm">ToolQ<a href="CppMake.htm">make</a>Watcher</a>.htm<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">//</a><a href="CppInclude.htm">#include</a> own <a href="CppHeaderFile.htm">header file</a> as first substantive line of code, from:<br/>
-<a href="CppComment.htm">//</a> * John Lakos. Large-Scale <a href="Cpp.htm">C++</a> Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110<br/>
+<br/>
+<br/>
 <a href="CppInclude.htm">#include</a> "qtq<a href="CppMake.htm">make</a>watchermaindialog.h"<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
@@ -259,18 +259,6 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppQt.htm">Qt</a>Q<a href="CppMake.htm">make</a>WatcherMainDialog::~<a href="CppQt.htm">Qt</a>Q<a href="CppMake.htm">make</a>WatcherMainDialog()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppDelete.htm">delete</a></b> ui;<br/>
-}<br/>
-<br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a>Q<a href="CppMake.htm">make</a>WatcherMainDialog::changeEvent(<a href="CppQEvent.htm">QEvent</a> *e)<br/>
-{<br/>
-&nbsp;&nbsp;<a href="CppQDialog.htm">QDialog</a>::changeEvent(e);<br/>
-&nbsp;&nbsp;<b><a href="CppSwitch.htm">switch</a></b> (e-&gt;type()) {<br/>
-&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> <a href="CppQEvent.htm">QEvent</a>::LanguageChange:<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;ui-&gt;retranslateUi(<b><a href="CppThis.htm">this</a></b>);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppBreak.htm">break</a></b>;<br/>
-&nbsp;&nbsp;<b><a href="CppDefault.htm">default</a></b>:<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppBreak.htm">break</a></b>;<br/>
-&nbsp;&nbsp;}<br/>
 }<br/>
 <br/>
 <b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppQt.htm">Qt</a>Q<a href="CppMake.htm">make</a>WatcherMainDialog::<a href="CppFileToVector.htm">FileToVector</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; fileName)<br/>

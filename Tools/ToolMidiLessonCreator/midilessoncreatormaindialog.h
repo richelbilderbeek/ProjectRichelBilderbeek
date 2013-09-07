@@ -3,6 +3,8 @@
 
 #include <string>
 
+namespace ribi {
+
 ///Creates the Midi files as if from command line
 struct MidiLessonCreatorMainDialog
 {
@@ -11,5 +13,7 @@ struct MidiLessonCreatorMainDialog
 
   private:
 };
+
+} //~namespace ribi
 
 #endif // MIDILESSONCREATORMAINDIALOG_H

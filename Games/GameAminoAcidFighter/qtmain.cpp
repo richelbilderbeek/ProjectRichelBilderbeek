@@ -1,10 +1,10 @@
 #include <QApplication>
-#include "dialogmain.h"
+#include "qtaminoacidfightermaindialog.h"
 
 int main(int argc, char *argv[])
 {
   QApplication a(argc, argv);
-  ribi::DialogMain w;
+  ribi::aaf::QtAminoAcidFighterMainDialog w;
   w.show();
   return a.exec();
 }

@@ -65,17 +65,11 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppIfndef.htm">#ifndef</a> ABOUT_H<br/>
 <a href="CppDefine.htm">#define</a> ABOUT_H<br/>
 <br/>
-<a href="CppIfdef.htm">#ifdef</a> _WIN32<br/>
-<a href="CppComment.htm">//</a>See http://www.richelbilderbeek.nl/Cpp<a href="CppCompile.htm">Compile</a>ErrorUnableToFindNumericLiteralOperatorOperatorQ.htm<br/>
-<a href="CppPreIf.htm">#if</a> !(__GNUC__ <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 4 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> __GNUC_MINOR__ <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 8)<br/>
-<a href="CppComment.htm">//</a>See http://www.richelbilderbeek.nl/Cpp<a href="CppCompile.htm">Compile</a>ErrorSwprintfHasNotBeenDeclared.htm<br/>
-<a href="CppUndef.htm">#undef</a> __STRICT_ANSI__<br/>
-<a href="CppEndif.htm">#endif</a><br/>
-<a href="CppEndif.htm">#endif</a><br/>
-<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppIosfwdH.htm">iosfwd</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppStringH.htm">string</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
+<br/>
+<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a> {<br/>
 <br/>
 <a href="CppComment.htm">///</a><a href="CppAbout.htm">About</a> is a <b><a href="CppClass.htm">class</a></b> to contain '<a href="CppAbout.htm">about</a>' information<br/>
 <b><a href="CppStruct.htm">struct</a></b> <a href="CppAbout.htm">About</a><br/>
@@ -174,6 +168,8 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <br/>
 <a href="CppOstream.htm">std::ostream</a>&amp; <b><a href="CppOperatorStreamOut.htm">operator&lt;&lt;</a></b>(<a href="CppOstream.htm">std::ostream</a>&amp; os,<b><a href="CppConst.htm">const</a></b> <a href="CppAbout.htm">About</a>&amp; a);<br/>
 <br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a><br/>
+<br/>
 <a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> ABOUT_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
@@ -206,16 +202,6 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="CppAbout.htm">CppAbout</a>.htm<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppIfdef.htm">#ifdef</a> _WIN32<br/>
-<a href="CppComment.htm">//</a>See http://www.richelbilderbeek.nl/Cpp<a href="CppCompile.htm">Compile</a>ErrorUnableToFindNumericLiteralOperatorOperatorQ.htm<br/>
-<a href="CppPreIf.htm">#if</a> !(__GNUC__ <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 4 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> __GNUC_MINOR__ <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 8)<br/>
-<a href="CppComment.htm">//</a>See http://www.richelbilderbeek.nl/Cpp<a href="CppCompile.htm">Compile</a>ErrorSwprintfHasNotBeenDeclared.htm<br/>
-<a href="CppUndef.htm">#undef</a> __STRICT_ANSI__<br/>
-<a href="CppEndif.htm">#endif</a><br/>
-<a href="CppEndif.htm">#endif</a><br/>
-<br/>
-<a href="CppComment.htm">//</a><a href="CppInclude.htm">#include</a> own <a href="CppHeaderFile.htm">header file</a> as first substantive line of code, from:<br/>
-<a href="CppComment.htm">//</a> * John Lakos. Large-Scale <a href="Cpp.htm">C++</a> Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppAbout.htm">about</a>.h"<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppAlgorithmH.htm">algorithm</a>&gt;<br/>
@@ -238,7 +224,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <br/>
 <a href="CppComment.htm">//</a><a href="CppInclude.htm">#include</a> "<a href="CppTrace.htm">trace</a>.h"<br/>
 <br/>
-<a href="CppAbout.htm">About</a>::<a href="CppAbout.htm">About</a>(<br/>
+<a href="CppRibi.htm\">ribi</a>::<a href="CppAbout.htm">About</a>::<a href="CppAbout.htm">About</a>(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> author,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> file_title,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> file_description,<br/>
@@ -247,7 +233,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> url,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppVersion.htm">version</a>,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt;&amp; <a href="CppVersion.htm">version</a>_history)<br/>
-&nbsp;&nbsp;: m_author(author),<br/>
+&nbsp;&nbsp;: m_author { author },<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;m_file_title(file_title),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;m_file_description(file_description),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;m_libraries( {} ),<br/>
@@ -269,40 +255,28 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> <a href="CppString.htm">std::string</a>(" (GNU ISO <a href="Cpp.htm">C++</a> <a href="CppLibrary.htm">library</a>)"));<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppAbout.htm">About</a>::<a href="CppAdd.htm">Add</a><a href="CppLibrary.htm">Library</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; s)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppAbout.htm">About</a>::<a href="CppAdd.htm">Add</a><a href="CppLibrary.htm">Library</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; s)<br/>
 {<br/>
 &nbsp;&nbsp;m_libraries.push_back(s);<br/>
 &nbsp;&nbsp;<a href="CppSort.htm">std::sort</a>(m_libraries.begin(),m_libraries.end());<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppAbout.htm">About</a>::Create<a href="CppAbout.htm">About</a>Text() <b><a href="CppConst.htm">const</a></b><br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm\">ribi</a>::<a href="CppAbout.htm">About</a>::Create<a href="CppAbout.htm">About</a>Text() <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v;<br/>
-&nbsp;&nbsp;v.push_back(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;m_file_title<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> <a href="CppString.htm">std::string</a>(", <a href="CppVersion.htm">version</a> ")<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> m_<a href="CppVersion.htm">version</a>);<br/>
-&nbsp;&nbsp;v.push_back(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppString.htm">std::string</a>("Copyright (C) ")<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> m_years<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> <a href="CppString.htm">std::string</a>(" ")<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> m_author);<br/>
-&nbsp;&nbsp;v.push_back(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppString.htm">std::string</a>("Programmed on ")<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> m_programmed_on);<br/>
-&nbsp;&nbsp;v.push_back(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppString.htm">std::string</a>("by ")<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> m_author);<br/>
-&nbsp;&nbsp;v.push_back("");<br/>
-&nbsp;&nbsp;v.push_back(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;m_file_title<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> <a href="CppString.htm">std::string</a>(" can be downloaded from ")<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> m_url);<br/>
-&nbsp;&nbsp;v.push_back("Licenced under GPL 3.0");<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_file_title <a href="CppOperatorPlus.htm">+</a> <a href="CppString.htm">std::string</a>(", <a href="CppVersion.htm">version</a> ") <a href="CppOperatorPlus.htm">+</a> m_<a href="CppVersion.htm">version</a>,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppString.htm">std::string</a>("Copyright (C) ") <a href="CppOperatorPlus.htm">+</a> m_years <a href="CppOperatorPlus.htm">+</a> <a href="CppString.htm">std::string</a>(" ") <a href="CppOperatorPlus.htm">+</a> m_author,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppString.htm">std::string</a>("Programmed on ") <a href="CppOperatorPlus.htm">+</a> m_programmed_on,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppString.htm">std::string</a>("by ") <a href="CppOperatorPlus.htm">+</a> m_author,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_file_title <a href="CppOperatorPlus.htm">+</a> <a href="CppString.htm">std::string</a>(" can be downloaded from ") <a href="CppOperatorPlus.htm">+</a> m_url,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"Licenced under GPL 3.0"<br/>
+&nbsp;&nbsp;};<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppAbout.htm">About</a>::Create<a href="CppLibrary.htm">Libraries</a>UsedText() <b><a href="CppConst.htm">const</a></b><br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm\">ribi</a>::<a href="CppAbout.htm">About</a>::Create<a href="CppLibrary.htm">Libraries</a>UsedText() <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v;<br/>
 &nbsp;&nbsp;v.push_back("<a href="CppLibrary.htm">Libraries</a> and <b><a href="CppClass.htm">classes</a></b> used: ");<br/>
@@ -323,34 +297,28 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppAbout.htm">About</a>::CreateLicenceText() <b><a href="CppConst.htm">const</a></b><br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm\">ribi</a>::<a href="CppAbout.htm">About</a>::CreateLicenceText() <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v;<br/>
-&nbsp;&nbsp;v.push_back(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;m_file_title<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> <a href="CppString.htm">std::string</a>(", ")<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> m_file_description);<br/>
-&nbsp;&nbsp;v.push_back(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppString.htm">std::string</a>("Copyright (C) ")<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> m_years<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> <a href="CppString.htm">std::string</a>(" ")<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> m_author);<br/>
-&nbsp;&nbsp;v.push_back("");<br/>
-&nbsp;&nbsp;v.push_back("This program is free software: you can redistribute it and/or modify");<br/>
-&nbsp;&nbsp;v.push_back("it under the terms of the GNU General Public License as published by");<br/>
-&nbsp;&nbsp;v.push_back("the Free Software Foundation, either version 3 of the License, or");<br/>
-&nbsp;&nbsp;v.push_back("(at your option) any later version.");<br/>
-&nbsp;&nbsp;v.push_back("");<br/>
-&nbsp;&nbsp;v.push_back("This program is distributed in the hope that it will be useful,");<br/>
-&nbsp;&nbsp;v.push_back("but WITHOUT ANY WARRANTY; without even the implied warranty of");<br/>
-&nbsp;&nbsp;v.push_back("MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the");<br/>
-&nbsp;&nbsp;v.push_back("GNU General Public License for more details.");<br/>
-&nbsp;&nbsp;v.push_back("You should have received a copy of the GNU General Public License");<br/>
-&nbsp;&nbsp;v.push_back("along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.");<br/>
+&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_file_title <a href="CppOperatorPlus.htm">+</a> <a href="CppString.htm">std::string</a>(", ") <a href="CppOperatorPlus.htm">+</a> m_file_description,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppString.htm">std::string</a>("Copyright (C) ") <a href="CppOperatorPlus.htm">+</a> m_years <a href="CppOperatorPlus.htm">+</a> <a href="CppString.htm">std::string</a>(" ") <a href="CppOperatorPlus.htm">+</a> m_author,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"This program is free software: you can redistribute it and/or modify",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"it under the terms of the GNU General Public License as published by",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"the Free Software Foundation, either version 3 of the License, or",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"(at your option) any later version.",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"This program is distributed in the hope that it will be useful,",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"but WITHOUT ANY WARRANTY; without even the implied warranty of",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"GNU General Public License for more details.",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"You should have received a copy of the GNU General Public License",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;."<br/>
+&nbsp;&nbsp;};<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppAbout.htm">About</a>::Create<a href="CppVersion.htm">Version</a>History() <b><a href="CppConst.htm">const</a></b><br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm\">ribi</a>::<a href="CppAbout.htm">About</a>::Create<a href="CppVersion.htm">Version</a>History() <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v;<br/>
 &nbsp;&nbsp;v.push_back("<a href="CppVersion.htm">Version</a> history:");<br/>
@@ -371,36 +339,37 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppAbout.htm">About</a>::GetAbout<a href="CppVersion.htm">Version</a>()<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppRibi.htm\">ribi</a>::<a href="CppAbout.htm">About</a>::GetAbout<a href="CppVersion.htm">Version</a>()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> "1.5";<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppAbout.htm">About</a>::GetAbout<a href="CppVersion.htm">Version</a>History()<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm\">ribi</a>::<a href="CppAbout.htm">About</a>::GetAbout<a href="CppVersion.htm">Version</a>History()<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v;<br/>
-&nbsp;&nbsp;v.push_back("2011-01-07: <a href="CppVersion.htm">version</a> 1.0: initial <a href="CppVersion.htm">version</a>");<br/>
-&nbsp;&nbsp;v.push_back("2011-01-11: <a href="CppVersion.htm">version</a> 1.1: added simple getters");<br/>
-&nbsp;&nbsp;v.push_back("2011-09-12: <a href="CppVersion.htm">version</a> 1.2: added <b><a href="CppOperatorStreamOut.htm">operator&lt;&lt;</a></b>");<br/>
-&nbsp;&nbsp;v.push_back("2012-01-08: <a href="CppVersion.htm">version</a> 1.3: fixed grammatical error");<br/>
-&nbsp;&nbsp;v.push_back("2012-01-26: <a href="CppVersion.htm">version</a> 1.4: removed <a href="CppBOOST_FOREACH.htm">BOOST_FOREACH</a>");<br/>
-&nbsp;&nbsp;v.push_back("2013-04-29: <a href="CppVersion.htm">version</a> 1.5: added <a href="CppIfdef.htm">#ifdef</a>s <b><a href="CppFor.htm">for</a></b> GCC 4.4.0");<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"2011-01-07: <a href="CppVersion.htm">version</a> 1.0: initial <a href="CppVersion.htm">version</a>",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"2011-01-11: <a href="CppVersion.htm">version</a> 1.1: added simple getters",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"2011-09-12: <a href="CppVersion.htm">version</a> 1.2: added <b><a href="CppOperatorStreamOut.htm">operator&lt;&lt;</a></b>",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"2012-01-08: <a href="CppVersion.htm">version</a> 1.3: fixed grammatical error",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"2012-01-26: <a href="CppVersion.htm">version</a> 1.4: removed <a href="CppBOOST_FOREACH.htm">BOOST_FOREACH</a>",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"2013-04-29: <a href="CppVersion.htm">version</a> 1.5: added <a href="CppIfdef.htm">#ifdef</a>s <b><a href="CppFor.htm">for</a></b> GCC 4.4.0"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"2013-09-05: <a href="CppVersion.htm">version</a> 1.6: transition to <b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a>"<br/>
+&nbsp;&nbsp;};<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppAbout.htm">About</a>::<a href="CppGetBoostVersion.htm">GetBoostVersion</a>()<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppRibi.htm\">ribi</a>::<a href="CppAbout.htm">About</a>::<a href="CppGetBoostVersion.htm">GetBoostVersion</a>()<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppString.htm">std::string</a> s <a href="CppOperatorAssign.htm">=</a> BOOST_LIB_VERSION;<br/>
 &nbsp;&nbsp;<a href="CppReplace.htm">std::replace</a>(s.begin(),s.end(),'_','.');<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> s;<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppAbout.htm">About</a>::<a href="CppGetStlVersion.htm">GetStlVersion</a>()<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppRibi.htm\">ribi</a>::<a href="CppAbout.htm">About</a>::<a href="CppGetStlVersion.htm">GetStlVersion</a>()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <a href="CppLexical_cast.htm">boost::lexical_cast</a>&lt;<a href="CppString.htm">std::string</a>&gt;(__VERSION__);<br/>
 }<br/>
 <br/>
-<a href="CppOstream.htm">std::ostream</a>&amp; <b><a href="CppOperatorStreamOut.htm">operator&lt;&lt;</a></b>(<a href="CppOstream.htm">std::ostream</a>&amp; os,<b><a href="CppConst.htm">const</a></b> <a href="CppAbout.htm">About</a>&amp; a)<br/>
+<a href="CppOstream.htm">std::ostream</a>&amp; <a href="CppRibi.htm\">ribi</a>::<b><a href="CppOperatorStreamOut.htm">operator&lt;&lt;</a></b>(<a href="CppOstream.htm">std::ostream</a>&amp; os,<b><a href="CppConst.htm">const</a></b> <a href="CppAbout.htm">About</a>&amp; a)<br/>
 {<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v <a href="CppOperatorAssign.htm">=</a> a.Create<a href="CppAbout.htm">About</a>Text();<br/>

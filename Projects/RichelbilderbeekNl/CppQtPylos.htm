@@ -64,11 +64,6 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppIfndef.htm">#ifndef</a> QTPYLOSBOARDWIDGET_H<br/>
 <a href="CppDefine.htm">#define</a> QTPYLOSBOARDWIDGET_H<br/>
 <br/>
-<a href="CppIfdef.htm">#ifdef</a> _WIN32<br/>
-<a href="CppComment.htm">//</a>See http://www.richelbilderbeek.nl/Cpp<a href="CppCompile.htm">Compile</a>ErrorSwprintfHasNotBeenDeclared.htm<br/>
-<a href="CppUndef.htm">#undef</a> __STRICT_ANSI__<br/>
-<a href="CppEndif.htm">#endif</a><br/>
-<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
 <br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
@@ -83,6 +78,8 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppPylos.htm">pylos</a>board.h"<br/>
 <br/>
 <b><a href="CppStruct.htm">struct</a></b> <a href="CppQPaintEvent.htm">QPaintEvent</a>;<br/>
+<br/>
+<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a> {<br/>
 <br/>
 <a href="CppComment.htm">///</a><a href="CppPylosWidget.htm">PylosWidget</a> manages a <a href="CppPylos.htm">Pylos</a>::Board and facilitates its user <a href="CppInterface.htm">interface</a><br/>
 <b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a><a href="CppPylos.htm">Pylos</a>BoardWidget : <b><a href="CppPublic.htm">public</a></b> <a href="CppQt.htm">Qt</a><a href="CppPylosWidget.htm">PylosWidget</a><br/>
@@ -185,6 +182,8 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <br/>
 };<br/>
 <br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a><br/>
+<br/>
 <a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> QTPYLOSBOARDWIDGET_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
@@ -217,16 +216,8 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="ToolTestPylos.htm">ToolTestPylos</a>.htm<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppIfdef.htm">#ifdef</a> _WIN32<br/>
-<a href="CppComment.htm">//</a>See http://www.richelbilderbeek.nl/Cpp<a href="CppCompile.htm">Compile</a>ErrorUnableToFindNumericLiteralOperatorOperatorQ.htm<br/>
-<a href="CppPreIf.htm">#if</a> !(__GNUC__ <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 4 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> __GNUC_MINOR__ <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 8)<br/>
-<a href="CppComment.htm">//</a>See http://www.richelbilderbeek.nl/Cpp<a href="CppCompile.htm">Compile</a>ErrorSwprintfHasNotBeenDeclared.htm<br/>
-<a href="CppUndef.htm">#undef</a> __STRICT_ANSI__<br/>
-<a href="CppEndif.htm">#endif</a><br/>
-<a href="CppEndif.htm">#endif</a><br/>
 <br/>
-<a href="CppComment.htm">//</a><a href="CppInclude.htm">#include</a> own <a href="CppHeaderFile.htm">header file</a> as first substantive line of code, from:<br/>
-<a href="CppComment.htm">//</a> * John Lakos. Large-Scale <a href="Cpp.htm">C++</a> Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110<br/>
+<br/>
 <a href="CppInclude.htm">#include</a> "qt<a href="CppPylos.htm">pylos</a>board<a href="CppWidget.htm">widget</a>.h"<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
@@ -244,7 +235,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppPylos.htm">pylos</a>player.h"<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppTrace.htm">trace</a>.h"<br/>
 <br/>
-<a href="CppQt.htm">Qt</a><a href="CppPylos.htm">Pylos</a>BoardWidget::<a href="CppQt.htm">Qt</a><a href="CppPylos.htm">Pylos</a>BoardWidget() :<br/>
+<a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppPylos.htm">Pylos</a>BoardWidget::<a href="CppQt.htm">Qt</a><a href="CppPylos.htm">Pylos</a>BoardWidget() :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;m_board(<b><a href="CppNew.htm">new</a></b> <a href="CppPylos.htm">Pylos</a>::BoardBasic),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;m_must_remove(<a href="CppPylos.htm">Pylos</a>::MustRemove<a href="CppState.htm">State</a>::no),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;m_player(<a href="CppPylos.htm">Pylos</a>::Player::player1)<br/>
@@ -252,54 +243,54 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <br/>
 }<br/>
 <br/>
-<b><a href="CppBool.htm">bool</a></b> <a href="CppQt.htm">Qt</a><a href="CppPylos.htm">Pylos</a>BoardWidget::CanRemove(<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppPylos.htm">Pylos</a>::Coordinat&gt;&amp; v) <b><a href="CppConst.htm">const</a></b><br/>
+<b><a href="CppBool.htm">bool</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppPylos.htm">Pylos</a>BoardWidget::CanRemove(<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppPylos.htm">Pylos</a>::Coordinat&gt;&amp; v) <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> m_board-&gt;CanRemove(v,m_player);<br/>
 }<br/>
 <br/>
-<b><a href="CppBool.htm">bool</a></b> <a href="CppQt.htm">Qt</a><a href="CppPylos.htm">Pylos</a>BoardWidget::CanSet(<b><a href="CppConst.htm">const</a></b> <a href="CppPylos.htm">Pylos</a>::Coordinat&amp; c) <b><a href="CppConst.htm">const</a></b><br/>
+<b><a href="CppBool.htm">bool</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppPylos.htm">Pylos</a>BoardWidget::CanSet(<b><a href="CppConst.htm">const</a></b> <a href="CppPylos.htm">Pylos</a>::Coordinat&amp; c) <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> m_board-&gt;CanSet(c,m_player);<br/>
 }<br/>
 <br/>
-<b><a href="CppBool.htm">bool</a></b> <a href="CppQt.htm">Qt</a><a href="CppPylos.htm">Pylos</a>BoardWidget::CanSetPlayer(<b><a href="CppConst.htm">const</a></b> <a href="CppPylos.htm">Pylos</a>::Player) <b><a href="CppConst.htm">const</a></b><br/>
+<b><a href="CppBool.htm">bool</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppPylos.htm">Pylos</a>BoardWidget::CanSetPlayer(<b><a href="CppConst.htm">const</a></b> <a href="CppPylos.htm">Pylos</a>::Player) <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> m_must_remove <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <a href="CppPylos.htm">Pylos</a>::MustRemove<a href="CppState.htm">State</a>::no;<br/>
 }<br/>
 <br/>
-<b><a href="CppBool.htm">bool</a></b> <a href="CppQt.htm">Qt</a><a href="CppPylos.htm">Pylos</a>BoardWidget::CanTransfer(<b><a href="CppConst.htm">const</a></b> <a href="CppPylos.htm">Pylos</a>::Coordinat&amp; c) <b><a href="CppConst.htm">const</a></b><br/>
+<b><a href="CppBool.htm">bool</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppPylos.htm">Pylos</a>BoardWidget::CanTransfer(<b><a href="CppConst.htm">const</a></b> <a href="CppPylos.htm">Pylos</a>::Coordinat&amp; c) <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> m_board-&gt;CanTransfer(c,m_player);<br/>
 }<br/>
 <br/>
-<b><a href="CppBool.htm">bool</a></b> <a href="CppQt.htm">Qt</a><a href="CppPylos.htm">Pylos</a>BoardWidget::CanTransfer(<br/>
+<b><a href="CppBool.htm">bool</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppPylos.htm">Pylos</a>BoardWidget::CanTransfer(<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppPylos.htm">Pylos</a>::Coordinat&amp; from,<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppPylos.htm">Pylos</a>::Coordinat&amp; to) <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> m_board-&gt;CanTransfer(from,to,m_player);<br/>
 }<br/>
 <br/>
-<a href="CppPylos.htm">Pylos</a>::Position<a href="CppState.htm">State</a> <a href="CppQt.htm">Qt</a><a href="CppPylos.htm">Pylos</a>BoardWidget::Get(<b><a href="CppConst.htm">const</a></b> <a href="CppPylos.htm">Pylos</a>::Coordinat&amp; c) <b><a href="CppConst.htm">const</a></b><br/>
+<a href="CppRibi.htm\">ribi</a>::<a href="CppPylos.htm">Pylos</a>::Position<a href="CppState.htm">State</a> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppPylos.htm">Pylos</a>BoardWidget::Get(<b><a href="CppConst.htm">const</a></b> <a href="CppPylos.htm">Pylos</a>::Coordinat&amp; c) <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> m_board-&gt;Get(c);<br/>
 }<br/>
 <br/>
-<a href="CppPylos.htm">Pylos</a>::Player <a href="CppQt.htm">Qt</a><a href="CppPylos.htm">Pylos</a>BoardWidget::GetCurrentTurn() <b><a href="CppConst.htm">const</a></b><br/>
+<a href="CppRibi.htm\">ribi</a>::<a href="CppPylos.htm">Pylos</a>::Player <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppPylos.htm">Pylos</a>BoardWidget::GetCurrentTurn() <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> m_player;<br/>
 }<br/>
 <br/>
-<b><a href="CppInt.htm">int</a></b> <a href="CppQt.htm">Qt</a><a href="CppPylos.htm">Pylos</a>BoardWidget::GetLayerSize(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> layer) <b><a href="CppConst.htm">const</a></b><br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppPylos.htm">Pylos</a>BoardWidget::GetLayerSize(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> layer) <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> m_board-&gt;GetLayerSize(layer);<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppQt.htm">Qt</a><a href="CppPylos.htm">Pylos</a>BoardWidget::Get<a href="CppVersion.htm">Version</a>()<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppPylos.htm">Pylos</a>BoardWidget::Get<a href="CppVersion.htm">Version</a>()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> "2.0";<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppQt.htm">Qt</a><a href="CppPylos.htm">Pylos</a>BoardWidget::Get<a href="CppVersion.htm">Version</a>History()<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppPylos.htm">Pylos</a>BoardWidget::Get<a href="CppVersion.htm">Version</a>History()<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v;<br/>
 &nbsp;&nbsp;v.push_back("2010-09-22: <a href="CppVersion.htm">version</a> 1.2: initial release <a href="CppVersion.htm">version</a>");<br/>
@@ -308,23 +299,23 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
 }<br/>
 <br/>
-<a href="CppPylos.htm">Pylos</a>::Winner <a href="CppQt.htm">Qt</a><a href="CppPylos.htm">Pylos</a>BoardWidget::GetWinner() <b><a href="CppConst.htm">const</a></b><br/>
+<a href="CppRibi.htm\">ribi</a>::<a href="CppPylos.htm">Pylos</a>::Winner <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppPylos.htm">Pylos</a>BoardWidget::GetWinner() <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> m_board-&gt;GetWinner();<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a><a href="CppPylos.htm">Pylos</a>BoardWidget::Remove(<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppPylos.htm">Pylos</a>::Coordinat&gt;&amp; v)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppPylos.htm">Pylos</a>BoardWidget::Remove(<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppPylos.htm">Pylos</a>::Coordinat&gt;&amp; v)<br/>
 {<br/>
 &nbsp;&nbsp;m_board-&gt;Remove(v,m_player);<br/>
 &nbsp;&nbsp;m_must_remove <a href="CppOperatorAssign.htm">=</a> <a href="CppPylos.htm">Pylos</a>::MustRemove<a href="CppState.htm">State</a>::no;<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a><a href="CppPylos.htm">Pylos</a>BoardWidget::Set(<b><a href="CppConst.htm">const</a></b> <a href="CppPylos.htm">Pylos</a>::Coordinat&amp; c)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppPylos.htm">Pylos</a>BoardWidget::Set(<b><a href="CppConst.htm">const</a></b> <a href="CppPylos.htm">Pylos</a>::Coordinat&amp; c)<br/>
 {<br/>
 &nbsp;&nbsp;m_board-&gt;Set(c,m_player,m_must_remove);<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a><a href="CppPylos.htm">Pylos</a>BoardWidget::SetPlayer(<b><a href="CppConst.htm">const</a></b> <a href="CppPylos.htm">Pylos</a>::Player player)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppPylos.htm">Pylos</a>BoardWidget::SetPlayer(<b><a href="CppConst.htm">const</a></b> <a href="CppPylos.htm">Pylos</a>::Player player)<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(CanSetPlayer(player));<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (m_player <a href="CppOperatorNotEqual.htm">!=</a> player)<br/>
@@ -335,7 +326,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;}<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a><a href="CppPylos.htm">Pylos</a>BoardWidget::StartAdvanced()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppPylos.htm">Pylos</a>BoardWidget::StartAdvanced()<br/>
 {<br/>
 &nbsp;&nbsp;m_board <a href="CppOperatorAssign.htm">=</a> <a href="CppPylos.htm">Pylos</a>::Board::CreateAdvancedBoard();<br/>
 &nbsp;&nbsp;m_select <a href="CppOperatorAssign.htm">=</a> <a href="CppPylos.htm">Pylos</a>::Coordinat(0,0,0);<br/>
@@ -343,7 +334,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;repaint();<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a><a href="CppPylos.htm">Pylos</a>BoardWidget::StartBasic()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppPylos.htm">Pylos</a>BoardWidget::StartBasic()<br/>
 {<br/>
 &nbsp;&nbsp;m_board <a href="CppOperatorAssign.htm">=</a> <a href="CppPylos.htm">Pylos</a>::Board::CreateBasicBoard();<br/>
 &nbsp;&nbsp;m_select <a href="CppOperatorAssign.htm">=</a> <a href="CppPylos.htm">Pylos</a>::Coordinat(0,0,0);<br/>
@@ -351,7 +342,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;repaint();<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a><a href="CppPylos.htm">Pylos</a>BoardWidget::Transfer(<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppPylos.htm">Pylos</a>BoardWidget::Transfer(<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppPylos.htm">Pylos</a>::Coordinat&amp; from,<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppPylos.htm">Pylos</a>::Coordinat&amp; to)<br/>
 {<br/>
@@ -391,11 +382,6 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppIfndef.htm">#ifndef</a> QTPYLOSGAMEWIDGET_H<br/>
 <a href="CppDefine.htm">#define</a> QTPYLOSGAMEWIDGET_H<br/>
 <br/>
-<a href="CppIfdef.htm">#ifdef</a> _WIN32<br/>
-<a href="CppComment.htm">//</a>See http://www.richelbilderbeek.nl/Cpp<a href="CppCompile.htm">Compile</a>ErrorSwprintfHasNotBeenDeclared.htm<br/>
-<a href="CppUndef.htm">#undef</a> __STRICT_ANSI__<br/>
-<a href="CppEndif.htm">#endif</a><br/>
-<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
 <br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
@@ -409,6 +395,9 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppInclude.htm">#include</a> "qt<a href="CppPylos.htm">pylos</a><a href="CppWidget.htm">widget</a>.h"<br/>
 <br/>
 <b><a href="CppStruct.htm">struct</a></b> <a href="CppQPaintEvent.htm">QPaintEvent</a>;<br/>
+<br/>
+<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a> {<br/>
+<br/>
 <b><a href="CppNamespace.htm">namespace</a></b> <a href="CppPylos.htm">Pylos</a> { <b><a href="CppStruct.htm">struct</a></b> Game; }<br/>
 <br/>
 <a href="CppComment.htm">///</a><a href="CppPylosWidget.htm">PylosWidget</a> manages a <a href="CppPylos.htm">Pylos</a>::Game and facilitates its user <a href="CppInterface.htm">interface</a><br/>
@@ -491,6 +480,8 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <br/>
 };<br/>
 <br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a><br/>
+<br/>
 <a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> QTPYLOSGAMEWIDGET_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
@@ -523,16 +514,8 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="ToolTestPylos.htm">ToolTestPylos</a>.htm<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppIfdef.htm">#ifdef</a> _WIN32<br/>
-<a href="CppComment.htm">//</a>See http://www.richelbilderbeek.nl/Cpp<a href="CppCompile.htm">Compile</a>ErrorUnableToFindNumericLiteralOperatorOperatorQ.htm<br/>
-<a href="CppPreIf.htm">#if</a> !(__GNUC__ <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 4 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> __GNUC_MINOR__ <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 8)<br/>
-<a href="CppComment.htm">//</a>See http://www.richelbilderbeek.nl/Cpp<a href="CppCompile.htm">Compile</a>ErrorSwprintfHasNotBeenDeclared.htm<br/>
-<a href="CppUndef.htm">#undef</a> __STRICT_ANSI__<br/>
-<a href="CppEndif.htm">#endif</a><br/>
-<a href="CppEndif.htm">#endif</a><br/>
 <br/>
-<a href="CppComment.htm">//</a><a href="CppInclude.htm">#include</a> own <a href="CppHeaderFile.htm">header file</a> as first substantive line of code, from:<br/>
-<a href="CppComment.htm">//</a> * John Lakos. Large-Scale <a href="Cpp.htm">C++</a> Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110<br/>
+<br/>
 <a href="CppInclude.htm">#include</a> "qt<a href="CppPylos.htm">pylos</a>game<a href="CppWidget.htm">widget</a>.h"<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
@@ -551,60 +534,60 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppPylos.htm">pylos</a>player.h"<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppTrace.htm">trace</a>.h"<br/>
 <br/>
-<a href="CppQt.htm">Qt</a><a href="CppPylos.htm">Pylos</a>Game<a href="CppWidget.htm">Widget</a>::<a href="CppQt.htm">Qt</a><a href="CppPylos.htm">Pylos</a>Game<a href="CppWidget.htm">Widget</a>() :<br/>
+<a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppPylos.htm">Pylos</a>Game<a href="CppWidget.htm">Widget</a>::<a href="CppQt.htm">Qt</a><a href="CppPylos.htm">Pylos</a>Game<a href="CppWidget.htm">Widget</a>() :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;m_<a href="CppPylos.htm">pylos</a>(<a href="CppPylos.htm">Pylos</a>::Game::CreateBasicGame())<br/>
 {<br/>
 <br/>
 }<br/>
 <br/>
-<b><a href="CppBool.htm">bool</a></b> <a href="CppQt.htm">Qt</a><a href="CppPylos.htm">Pylos</a>Game<a href="CppWidget.htm">Widget</a>::CanRemove(<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppPylos.htm">Pylos</a>::Coordinat&gt;&amp; v) <b><a href="CppConst.htm">const</a></b><br/>
+<b><a href="CppBool.htm">bool</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppPylos.htm">Pylos</a>Game<a href="CppWidget.htm">Widget</a>::CanRemove(<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppPylos.htm">Pylos</a>::Coordinat&gt;&amp; v) <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> m_<a href="CppPylos.htm">pylos</a>-&gt;CanRemove(v);<br/>
 }<br/>
 <br/>
-<b><a href="CppBool.htm">bool</a></b> <a href="CppQt.htm">Qt</a><a href="CppPylos.htm">Pylos</a>Game<a href="CppWidget.htm">Widget</a>::CanSet(<b><a href="CppConst.htm">const</a></b> <a href="CppPylos.htm">Pylos</a>::Coordinat&amp; c) <b><a href="CppConst.htm">const</a></b><br/>
+<b><a href="CppBool.htm">bool</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppPylos.htm">Pylos</a>Game<a href="CppWidget.htm">Widget</a>::CanSet(<b><a href="CppConst.htm">const</a></b> <a href="CppPylos.htm">Pylos</a>::Coordinat&amp; c) <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> m_<a href="CppPylos.htm">pylos</a>-&gt;CanSet(c);<br/>
 }<br/>
 <br/>
-<b><a href="CppBool.htm">bool</a></b> <a href="CppQt.htm">Qt</a><a href="CppPylos.htm">Pylos</a>Game<a href="CppWidget.htm">Widget</a>::CanTransfer(<b><a href="CppConst.htm">const</a></b> <a href="CppPylos.htm">Pylos</a>::Coordinat&amp; c) <b><a href="CppConst.htm">const</a></b><br/>
+<b><a href="CppBool.htm">bool</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppPylos.htm">Pylos</a>Game<a href="CppWidget.htm">Widget</a>::CanTransfer(<b><a href="CppConst.htm">const</a></b> <a href="CppPylos.htm">Pylos</a>::Coordinat&amp; c) <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> m_<a href="CppPylos.htm">pylos</a>-&gt;CanTransfer(c);<br/>
 }<br/>
 <br/>
-<b><a href="CppBool.htm">bool</a></b> <a href="CppQt.htm">Qt</a><a href="CppPylos.htm">Pylos</a>Game<a href="CppWidget.htm">Widget</a>::CanTransfer(<br/>
+<b><a href="CppBool.htm">bool</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppPylos.htm">Pylos</a>Game<a href="CppWidget.htm">Widget</a>::CanTransfer(<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppPylos.htm">Pylos</a>::Coordinat&amp; from,<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppPylos.htm">Pylos</a>::Coordinat&amp; to) <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> m_<a href="CppPylos.htm">pylos</a>-&gt;CanTransfer(from,to);<br/>
 }<br/>
 <br/>
-<a href="CppPylos.htm">Pylos</a>::Position<a href="CppState.htm">State</a> <a href="CppQt.htm">Qt</a><a href="CppPylos.htm">Pylos</a>Game<a href="CppWidget.htm">Widget</a>::Get(<b><a href="CppConst.htm">const</a></b> <a href="CppPylos.htm">Pylos</a>::Coordinat&amp; c) <b><a href="CppConst.htm">const</a></b><br/>
+<a href="CppRibi.htm\">ribi</a>::<a href="CppPylos.htm">Pylos</a>::Position<a href="CppState.htm">State</a> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppPylos.htm">Pylos</a>Game<a href="CppWidget.htm">Widget</a>::Get(<b><a href="CppConst.htm">const</a></b> <a href="CppPylos.htm">Pylos</a>::Coordinat&amp; c) <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> m_<a href="CppPylos.htm">pylos</a>-&gt;GetBoard()-&gt;Get(c);<br/>
 }<br/>
 <br/>
-<a href="CppPylos.htm">Pylos</a>::Player <a href="CppQt.htm">Qt</a><a href="CppPylos.htm">Pylos</a>Game<a href="CppWidget.htm">Widget</a>::GetCurrentTurn() <b><a href="CppConst.htm">const</a></b><br/>
+<a href="CppRibi.htm\">ribi</a>::<a href="CppPylos.htm">Pylos</a>::Player <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppPylos.htm">Pylos</a>Game<a href="CppWidget.htm">Widget</a>::GetCurrentTurn() <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> m_<a href="CppPylos.htm">pylos</a>-&gt;GetCurrentTurn();<br/>
 }<br/>
 <br/>
-<b><a href="CppInt.htm">int</a></b> <a href="CppQt.htm">Qt</a><a href="CppPylos.htm">Pylos</a>Game<a href="CppWidget.htm">Widget</a>::GetLayerSize(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> layer) <b><a href="CppConst.htm">const</a></b><br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppPylos.htm">Pylos</a>Game<a href="CppWidget.htm">Widget</a>::GetLayerSize(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> layer) <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> m_<a href="CppPylos.htm">pylos</a>-&gt;GetBoard()-&gt;GetLayerSize(layer);<br/>
 }<br/>
 <br/>
-<a href="CppPylos.htm">Pylos</a>::MustRemove<a href="CppState.htm">State</a> <a href="CppQt.htm">Qt</a><a href="CppPylos.htm">Pylos</a>Game<a href="CppWidget.htm">Widget</a>::GetMustRemove() <b><a href="CppConst.htm">const</a></b><br/>
+<a href="CppRibi.htm\">ribi</a>::<a href="CppPylos.htm">Pylos</a>::MustRemove<a href="CppState.htm">State</a> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppPylos.htm">Pylos</a>Game<a href="CppWidget.htm">Widget</a>::GetMustRemove() <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> m_<a href="CppPylos.htm">pylos</a>-&gt;GetMustRemove();<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppQt.htm">Qt</a><a href="CppPylos.htm">Pylos</a>Game<a href="CppWidget.htm">Widget</a>::Get<a href="CppVersion.htm">Version</a>()<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppPylos.htm">Pylos</a>Game<a href="CppWidget.htm">Widget</a>::Get<a href="CppVersion.htm">Version</a>()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> "2.0";<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppQt.htm">Qt</a><a href="CppPylos.htm">Pylos</a>Game<a href="CppWidget.htm">Widget</a>::Get<a href="CppVersion.htm">Version</a>History()<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppPylos.htm">Pylos</a>Game<a href="CppWidget.htm">Widget</a>::Get<a href="CppVersion.htm">Version</a>History()<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v;<br/>
 &nbsp;&nbsp;v.push_back("2010-09-22: <a href="CppVersion.htm">version</a> 1.2: initial release <a href="CppVersion.htm">version</a>");<br/>
@@ -613,22 +596,22 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
 }<br/>
 <br/>
-<a href="CppPylos.htm">Pylos</a>::Winner <a href="CppQt.htm">Qt</a><a href="CppPylos.htm">Pylos</a>Game<a href="CppWidget.htm">Widget</a>::GetWinner() <b><a href="CppConst.htm">const</a></b><br/>
+<a href="CppRibi.htm\">ribi</a>::<a href="CppPylos.htm">Pylos</a>::Winner <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppPylos.htm">Pylos</a>Game<a href="CppWidget.htm">Widget</a>::GetWinner() <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> m_<a href="CppPylos.htm">pylos</a>-&gt;GetWinner();<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a><a href="CppPylos.htm">Pylos</a>Game<a href="CppWidget.htm">Widget</a>::Remove(<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppPylos.htm">Pylos</a>::Coordinat&gt;&amp; v)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppPylos.htm">Pylos</a>Game<a href="CppWidget.htm">Widget</a>::Remove(<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppPylos.htm">Pylos</a>::Coordinat&gt;&amp; v)<br/>
 {<br/>
 &nbsp;&nbsp;m_<a href="CppPylos.htm">pylos</a>-&gt;Remove(v);<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a><a href="CppPylos.htm">Pylos</a>Game<a href="CppWidget.htm">Widget</a>::Set(<b><a href="CppConst.htm">const</a></b> <a href="CppPylos.htm">Pylos</a>::Coordinat&amp; c)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppPylos.htm">Pylos</a>Game<a href="CppWidget.htm">Widget</a>::Set(<b><a href="CppConst.htm">const</a></b> <a href="CppPylos.htm">Pylos</a>::Coordinat&amp; c)<br/>
 {<br/>
 &nbsp;&nbsp;m_<a href="CppPylos.htm">pylos</a>-&gt;Set(c);<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a><a href="CppPylos.htm">Pylos</a>Game<a href="CppWidget.htm">Widget</a>::StartAdvanced()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppPylos.htm">Pylos</a>Game<a href="CppWidget.htm">Widget</a>::StartAdvanced()<br/>
 {<br/>
 &nbsp;&nbsp;m_<a href="CppPylos.htm">pylos</a> <a href="CppOperatorAssign.htm">=</a> <a href="CppPylos.htm">Pylos</a>::Game::CreateAdvancedGame();<br/>
 &nbsp;&nbsp;m_select <a href="CppOperatorAssign.htm">=</a> <a href="CppPylos.htm">Pylos</a>::Coordinat(0,0,0);<br/>
@@ -636,7 +619,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;repaint();<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a><a href="CppPylos.htm">Pylos</a>Game<a href="CppWidget.htm">Widget</a>::StartBasic()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppPylos.htm">Pylos</a>Game<a href="CppWidget.htm">Widget</a>::StartBasic()<br/>
 {<br/>
 &nbsp;&nbsp;m_<a href="CppPylos.htm">pylos</a> <a href="CppOperatorAssign.htm">=</a> <a href="CppPylos.htm">Pylos</a>::Game::CreateBasicGame();<br/>
 &nbsp;&nbsp;m_select <a href="CppOperatorAssign.htm">=</a> <a href="CppPylos.htm">Pylos</a>::Coordinat(0,0,0);<br/>
@@ -644,7 +627,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;repaint();<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a><a href="CppPylos.htm">Pylos</a>Game<a href="CppWidget.htm">Widget</a>::Transfer(<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppPylos.htm">Pylos</a>Game<a href="CppWidget.htm">Widget</a>::Transfer(<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppPylos.htm">Pylos</a>::Coordinat&amp; from,<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppPylos.htm">Pylos</a>::Coordinat&amp; to)<br/>
 {<br/>
@@ -684,15 +667,12 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppIfndef.htm">#ifndef</a> QTPYLOSSPRITES_H<br/>
 <a href="CppDefine.htm">#define</a> QTPYLOSSPRITES_H<br/>
 <br/>
-<a href="CppIfdef.htm">#ifdef</a> _WIN32<br/>
-<a href="CppComment.htm">//</a>See http://www.richelbilderbeek.nl/Cpp<a href="CppCompile.htm">Compile</a>ErrorSwprintfHasNotBeenDeclared.htm<br/>
-<a href="CppUndef.htm">#undef</a> __STRICT_ANSI__<br/>
-<a href="CppEndif.htm">#endif</a><br/>
-<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppArray.htm">array</a>.hpp&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppQPixmap.htm">QPixmap</a>&gt;<br/>
 <br/>
 <a href="CppComment.htm">//</a><a href="CppInclude.htm">#include</a> "<a href="CppPylos.htm">pylos</a>game.h"<br/>
+<br/>
+<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a> {<br/>
 <br/>
 <b><a href="CppNamespace.htm">namespace</a></b> <a href="CppPylos.htm">Pylos</a> {<br/>
 <br/>
@@ -794,6 +774,8 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <br/>
 } <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppPylos.htm">Pylos</a><br/>
 <br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a><br/>
+<br/>
 <a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> QTPYLOSSPRITES_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
@@ -826,16 +808,8 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="ToolTestPylos.htm">ToolTestPylos</a>.htm<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppIfdef.htm">#ifdef</a> _WIN32<br/>
-<a href="CppComment.htm">//</a>See http://www.richelbilderbeek.nl/Cpp<a href="CppCompile.htm">Compile</a>ErrorUnableToFindNumericLiteralOperatorOperatorQ.htm<br/>
-<a href="CppPreIf.htm">#if</a> !(__GNUC__ <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 4 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> __GNUC_MINOR__ <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 8)<br/>
-<a href="CppComment.htm">//</a>See http://www.richelbilderbeek.nl/Cpp<a href="CppCompile.htm">Compile</a>ErrorSwprintfHasNotBeenDeclared.htm<br/>
-<a href="CppUndef.htm">#undef</a> __STRICT_ANSI__<br/>
-<a href="CppEndif.htm">#endif</a><br/>
-<a href="CppEndif.htm">#endif</a><br/>
 <br/>
-<a href="CppComment.htm">//</a><a href="CppInclude.htm">#include</a> own <a href="CppHeaderFile.htm">header file</a> as first substantive line of code, from:<br/>
-<a href="CppComment.htm">//</a> * John Lakos. Large-Scale <a href="Cpp.htm">C++</a> Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110<br/>
+<br/>
 <a href="CppInclude.htm">#include</a> "qt<a href="CppPylos.htm">pylos</a>sprites.h"<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
@@ -846,9 +820,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppPylos.htm">pylos</a>move.h"<br/>
 <br/>
-<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppPylos.htm">Pylos</a> {<br/>
-<br/>
-<a href="CppQt.htm">Qt</a>Sprites::<a href="CppQt.htm">Qt</a>Sprites(<br/>
+<a href="CppRibi.htm\">ribi</a>::<a href="CppPylos.htm">Pylos</a>::<a href="CppQt.htm">Qt</a>Sprites::<a href="CppQt.htm">Qt</a>Sprites(<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> board_width,<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> board_height,<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostArray.htm">boost::array</a>&lt;<b><a href="CppInt.htm">int</a></b>,6&gt; &amp;colors)<br/>
@@ -859,7 +831,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;GenerateSprites();<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a>Sprites::GenerateSprites()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppPylos.htm">Pylos</a>::<a href="CppQt.htm">Qt</a>Sprites::GenerateSprites()<br/>
 {<br/>
 &nbsp;&nbsp;m_sprite_board_bottom<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> DrawBoardBottom(m_board_width,m_board_height,64,64,64);<br/>
@@ -882,7 +854,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> DrawRemover(width,height,m_colors[3],m_colors[4],m_colors[5]);<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppQPixmap.htm">QPixmap</a>&amp; <a href="CppQt.htm">Qt</a>Sprites::Get(<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppQPixmap.htm">QPixmap</a>&amp; <a href="CppRibi.htm\">ribi</a>::<a href="CppPylos.htm">Pylos</a>::<a href="CppQt.htm">Qt</a>Sprites::Get(<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Type sprite) <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppSwitch.htm">switch</a></b> (sprite)<br/>
@@ -897,22 +869,22 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> Type::board_hole&nbsp;&nbsp;&nbsp;&nbsp; : <b><a href="CppReturn.htm">return</a></b> m_sprite_board_hole;<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!"Should not get here");<br/>
-&nbsp;&nbsp;<b><a href="CppThrow.htm">throw</a></b> <a href="CppLogic_error.htm">std::logic_error</a>("<a href="CppQt.htm">Qt</a>Sprites::Get");<br/>
+&nbsp;&nbsp;<b><a href="CppThrow.htm">throw</a></b> <a href="CppLogic_error.htm">std::logic_error</a>("<a href="CppRibi.htm\">ribi</a>::<a href="CppPylos.htm">Pylos</a>::<a href="CppQt.htm">Qt</a>Sprites::Get");<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppQt.htm">Qt</a>Sprites::Get<a href="CppVersion.htm">Version</a>()<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppRibi.htm\">ribi</a>::<a href="CppPylos.htm">Pylos</a>::<a href="CppQt.htm">Qt</a>Sprites::Get<a href="CppVersion.htm">Version</a>()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> "2.0";<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppQt.htm">Qt</a>Sprites::Get<a href="CppVersion.htm">Version</a>History()<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm\">ribi</a>::<a href="CppPylos.htm">Pylos</a>::<a href="CppQt.htm">Qt</a>Sprites::Get<a href="CppVersion.htm">Version</a>History()<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v;<br/>
 &nbsp;&nbsp;v.push_back("2012-05-28: <a href="CppVersion.htm">version</a> 2.0: initial release <a href="CppVersion.htm">version</a>");<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a>Sprites::SetBoardSize(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> board_width, <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> board_height)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppPylos.htm">Pylos</a>::<a href="CppQt.htm">Qt</a>Sprites::SetBoardSize(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> board_width, <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> board_height)<br/>
 {<br/>
 &nbsp;&nbsp;m_board_width&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> board_width;<br/>
 &nbsp;&nbsp;m_board_height <a href="CppOperatorAssign.htm">=</a> board_height;<br/>
@@ -921,13 +893,13 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <br/>
 <a href="CppComment.htm">///</a>SetColorScheme sets the color scheme of the Sprites.<br/>
 <a href="CppComment.htm">///</a>This redraws all the sprites.<br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a>Sprites::SetColorScheme(<b><a href="CppConst.htm">const</a></b> <a href="CppBoostArray.htm">boost::array</a>&lt;<b><a href="CppInt.htm">int</a></b>,6&gt; colors)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppPylos.htm">Pylos</a>::<a href="CppQt.htm">Qt</a>Sprites::SetColorScheme(<b><a href="CppConst.htm">const</a></b> <a href="CppBoostArray.htm">boost::array</a>&lt;<b><a href="CppInt.htm">int</a></b>,6&gt; colors)<br/>
 {<br/>
 &nbsp;&nbsp;m_colors <a href="CppOperatorAssign.htm">=</a> colors;<br/>
 &nbsp;&nbsp;GenerateSprites();<br/>
 }<br/>
 <br/>
-<a href="CppQPixmap.htm">QPixmap</a> DrawBoardBottom(<br/>
+<a href="CppQPixmap.htm">QPixmap</a> <a href="CppRibi.htm\">ribi</a>::<a href="CppPylos.htm">Pylos</a>::DrawBoardBottom(<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> width,<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> height,<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> r,<br/>
@@ -940,7 +912,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 }<br/>
 <br/>
 <a href="CppComment.htm">///</a>From http://www.richelbilderbeek.nl/Cpp<a href="CppDrawGlobe.htm">DrawGlobe</a>.htm<br/>
-<a href="CppQPixmap.htm">QPixmap</a> <a href="CppDrawGlobe.htm">DrawGlobe</a>(<br/>
+<a href="CppQPixmap.htm">QPixmap</a> <a href="CppRibi.htm\">ribi</a>::<a href="CppPylos.htm">Pylos</a>::<a href="CppDrawGlobe.htm">DrawGlobe</a>(<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> width,<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> height,<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> r,<br/>
@@ -1008,7 +980,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 }<br/>
 <br/>
 <a href="CppComment.htm">///</a>From http://www.richelbilderbeek.nl/CppDrawInvertedGlobe.htm<br/>
-<a href="CppQPixmap.htm">QPixmap</a> DrawInvertedGlobe(<br/>
+<a href="CppQPixmap.htm">QPixmap</a> <a href="CppRibi.htm\">ribi</a>::<a href="CppPylos.htm">Pylos</a>::DrawInvertedGlobe(<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> width,<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> height,<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> r,<br/>
@@ -1075,7 +1047,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> pixmap;<br/>
 }<br/>
 <br/>
-<a href="CppQPixmap.htm">QPixmap</a> DrawRemover(<br/>
+<a href="CppQPixmap.htm">QPixmap</a> <a href="CppRibi.htm\">ribi</a>::<a href="CppPylos.htm">Pylos</a>::DrawRemover(<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> width,<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> height,<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> r,<br/>
@@ -1143,7 +1115,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> pixmap;<br/>
 }<br/>
 <br/>
-<a href="CppQPixmap.htm">QPixmap</a> DrawSelector(<br/>
+<a href="CppQPixmap.htm">QPixmap</a> <a href="CppRibi.htm\">ribi</a>::<a href="CppPylos.htm">Pylos</a>::DrawSelector(<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> width,<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> height,<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> r,<br/>
@@ -1211,7 +1183,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> pixmap;<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppBoostArray.htm">boost::array</a>&lt;<b><a href="CppInt.htm">int</a></b>,6&gt; GetBlackWhiteColors()<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppBoostArray.htm">boost::array</a>&lt;<b><a href="CppInt.htm">int</a></b>,6&gt; <a href="CppRibi.htm\">ribi</a>::<a href="CppPylos.htm">Pylos</a>::GetBlackWhiteColors()<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppBoostArray.htm">boost::array</a>&lt;<b><a href="CppInt.htm">int</a></b>,6&gt; v;<br/>
 &nbsp;&nbsp;v[0] <a href="CppOperatorAssign.htm">=</a> 255; v[1] <a href="CppOperatorAssign.htm">=</a> 255; v[2] <a href="CppOperatorAssign.htm">=</a> 255;<br/>
@@ -1219,12 +1191,12 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppBoostArray.htm">boost::array</a>&lt;<b><a href="CppInt.htm">int</a></b>,6&gt; GetDefaultColors()<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppBoostArray.htm">boost::array</a>&lt;<b><a href="CppInt.htm">int</a></b>,6&gt; <a href="CppRibi.htm\">ribi</a>::<a href="CppPylos.htm">Pylos</a>::GetDefaultColors()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> GetRedBlueColors();<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppBoostArray.htm">boost::array</a>&lt;<b><a href="CppInt.htm">int</a></b>,6&gt; GetRedBlueColors()<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppBoostArray.htm">boost::array</a>&lt;<b><a href="CppInt.htm">int</a></b>,6&gt; <a href="CppRibi.htm\">ribi</a>::<a href="CppPylos.htm">Pylos</a>::GetRedBlueColors()<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppBoostArray.htm">boost::array</a>&lt;<b><a href="CppInt.htm">int</a></b>,6&gt; v;<br/>
 &nbsp;&nbsp;v[0] <a href="CppOperatorAssign.htm">=</a> 255; v[1] <a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp; 0; v[2] <a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp; 0;<br/>
@@ -1233,7 +1205,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 }<br/>
 <br/>
 <a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/Cpp<a href="CppPaint.htm">Paint</a>.htm<br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppPaint.htm">Paint</a>(<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppPylos.htm">Pylos</a>::<a href="CppPaint.htm">Paint</a>(<br/>
 &nbsp;&nbsp;<a href="CppQPixmap.htm">QPixmap</a>&amp; pixmap,<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> r,<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> g,<br/>
@@ -1262,8 +1234,6 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;pixmap <a href="CppOperatorAssign.htm">=</a> pixmap.fromImage(image);<br/>
 }<br/>
-<br/>
-} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppPylos.htm">Pylos</a><br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -1298,11 +1268,6 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppIfndef.htm">#ifndef</a> QTPYLOSWIDGET_H<br/>
 <a href="CppDefine.htm">#define</a> QTPYLOSWIDGET_H<br/>
 <br/>
-<a href="CppIfdef.htm">#ifdef</a> _WIN32<br/>
-<a href="CppComment.htm">//</a>See http://www.richelbilderbeek.nl/Cpp<a href="CppCompile.htm">Compile</a>ErrorSwprintfHasNotBeenDeclared.htm<br/>
-<a href="CppUndef.htm">#undef</a> __STRICT_ANSI__<br/>
-<a href="CppEndif.htm">#endif</a><br/>
-<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
 <br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
@@ -1321,6 +1286,8 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <br/>
 <b><a href="CppStruct.htm">struct</a></b> <a href="CppQPaintEvent.htm">QPaintEvent</a>;<br/>
 <a href="CppComment.htm">//</a><b><a href="CppNamespace.htm">namespace</a></b> <a href="CppPylos.htm">Pylos</a> { <b><a href="CppStruct.htm">struct</a></b> Game; }<br/>
+<br/>
+<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a> {<br/>
 <br/>
 <a href="CppComment.htm">///</a><a href="CppPylosWidget.htm">PylosWidget</a> is the <a href="CppBaseClass.htm">base class</a> of <a href="CppQt.htm">Qt</a><a href="CppPylos.htm">Pylos</a>BoardWidget and <a href="CppQt.htm">Qt</a><a href="CppPylosWidget.htm">PylosWidget</a><br/>
 <b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a><a href="CppPylosWidget.htm">PylosWidget</a> : <b><a href="CppPublic.htm">public</a></b> <a href="CppQWidget.htm">QWidget</a><br/>
@@ -1484,7 +1451,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/MouseRightClick handles mouse right-clicking.<br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> MouseRightClick();<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>/MouseMove is the first method called after a<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/MouseMove is the first <a href="CppMemberFunction.htm">member function</a> called after a<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/mouse move<br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> MouseMove(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x, <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> y);<br/>
 <br/>
@@ -1507,6 +1474,8 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/Note: the (x,y) position denotes the center of the marble<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppPair.htm">std::pair</a>&lt;<b><a href="CppInt.htm">int</a></b>,<b><a href="CppInt.htm">int</a></b>&gt; Transform(<b><a href="CppConst.htm">const</a></b> <a href="CppPylos.htm">Pylos</a>::Coordinat&amp; c) <b><a href="CppConst.htm">const</a></b>;<br/>
 };<br/>
+<br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a><br/>
 <br/>
 <a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> QTPYLOSWIDGET_H<br/>
 </code></td></tr></table>
@@ -1540,16 +1509,10 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="ToolTestPylos.htm">ToolTestPylos</a>.htm<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppIfdef.htm">#ifdef</a> _WIN32<br/>
-<a href="CppComment.htm">//</a>See http://www.richelbilderbeek.nl/Cpp<a href="CppCompile.htm">Compile</a>ErrorUnableToFindNumericLiteralOperatorOperatorQ.htm<br/>
-<a href="CppPreIf.htm">#if</a> !(__GNUC__ <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 4 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> __GNUC_MINOR__ <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 8)<br/>
-<a href="CppComment.htm">//</a>See http://www.richelbilderbeek.nl/Cpp<a href="CppCompile.htm">Compile</a>ErrorSwprintfHasNotBeenDeclared.htm<br/>
-<a href="CppUndef.htm">#undef</a> __STRICT_ANSI__<br/>
-<a href="CppEndif.htm">#endif</a><br/>
-<a href="CppEndif.htm">#endif</a><br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-<b><a href="CppTypedef.htm">typedef</a></b>s"<br/>
 <br/>
-<a href="CppComment.htm">//</a><a href="CppInclude.htm">#include</a> own <a href="CppHeaderFile.htm">header file</a> as first substantive line of code, from:<br/>
-<a href="CppComment.htm">//</a> * John Lakos. Large-Scale <a href="Cpp.htm">C++</a> Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110<br/>
+<br/>
 <a href="CppInclude.htm">#include</a> "qt<a href="CppPylos.htm">pylos</a><a href="CppWidget.htm">widget</a>.h"<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
@@ -1557,6 +1520,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppIostreamH.htm">iostream</a>&gt;<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/math/constants/constants.hpp&gt;<br/>
+<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/numeric/con<a href="CppVersion.htm">version</a>/cast.hpp&gt;<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppQMouseEvent.htm">QMouseEvent</a>&gt;<br/>
@@ -1568,12 +1532,15 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppPylos.htm">pylos</a>mustremovestate.h"<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppPylos.htm">pylos</a>player.h"<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppTrace.htm">trace</a>.h"<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
 <br/>
-<a href="CppQt.htm">Qt</a><a href="CppPylosWidget.htm">PylosWidget</a>::<a href="CppQt.htm">Qt</a><a href="CppPylosWidget.htm">PylosWidget</a>() :<br/>
+<a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppPylosWidget.htm">PylosWidget</a>::<a href="CppQt.htm">Qt</a><a href="CppPylosWidget.htm">PylosWidget</a>() :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQWidget.htm">QWidget</a>(0),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;m_select(0,0,0),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;m_sprites(<b><a href="CppThis.htm">this</a></b>-&gt;width(),<b><a href="CppThis.htm">this</a></b>-&gt;height(),<a href="CppPylos.htm">Pylos</a>::GetRedBlueColors()),<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;m_tilt(30.0 * 2.0 * <a href="CppBoost.htm">boost</a>::math::constants::pi&lt;<b><a href="CppDouble.htm">double</a></b>&gt;() <a href="CppOperatorDivide.htm">/</a> 360.0)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_tilt(30.0 * 2.0<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;* <a href="CppBoost.htm">boost</a>::math::constants::pi&lt;<b><a href="CppDouble.htm">double</a></b>&gt;()<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorDivide.htm">/</a> 360.0)<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Allows <b><a href="CppThis.htm">this</a></b> <a href="CppWidget.htm">widget</a> to respond to mouse moving over it<br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;setMouseTracking(<b><a href="CppTrue.htm">true</a></b>);<br/>
@@ -1585,7 +1552,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;setMinimumHeight(64);<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a><a href="CppPylosWidget.htm">PylosWidget</a>::DeselectRemove(<b><a href="CppConst.htm">const</a></b> <a href="CppPylos.htm">Pylos</a>::Coordinat&amp; c)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppPylosWidget.htm">PylosWidget</a>::DeselectRemove(<b><a href="CppConst.htm">const</a></b> <a href="CppPylos.htm">Pylos</a>::Coordinat&amp; c)<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!m_other_selectors.empty());<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> sz <a href="CppOperatorAssign.htm">=</a> <a href="CppNumeric_cast.htm">boost::numeric_cast</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(m_other_selectors.size());<br/>
@@ -1611,7 +1578,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;}<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a><a href="CppPylosWidget.htm">PylosWidget</a>::DrawRemove(<a href="CppQPainter.htm">QPainter</a>&amp; painter, <b><a href="CppConst.htm">const</a></b> <a href="CppPylos.htm">Pylos</a>::Coordinat&amp; c)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppPylosWidget.htm">PylosWidget</a>::DrawRemove(<a href="CppQPainter.htm">QPainter</a>&amp; painter, <b><a href="CppConst.htm">const</a></b> <a href="CppPylos.htm">Pylos</a>::Coordinat&amp; c)<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppPylos.htm">Pylos</a>::<a href="CppQt.htm">Qt</a>Sprites::Type sprite <a href="CppOperatorAssign.htm">=</a><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;( Get(c) <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <a href="CppPylos.htm">Pylos</a>::Position<a href="CppState.htm">State</a>::player1<br/>
@@ -1631,7 +1598,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">*/</a><br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a><a href="CppPylosWidget.htm">PylosWidget</a>::DrawSelect(<a href="CppQPainter.htm">QPainter</a>&amp; painter)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppPylosWidget.htm">PylosWidget</a>::DrawSelect(<a href="CppQPainter.htm">QPainter</a>&amp; painter)<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (GetWinner() <a href="CppOperatorNotEqual.htm">!=</a> <a href="CppPylos.htm">Pylos</a>::Winner::none) <b><a href="CppReturn.htm">return</a></b>;<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppPylos.htm">Pylos</a>::<a href="CppQt.htm">Qt</a>Sprites::Type sprite<br/>
@@ -1652,7 +1619,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">*/</a><br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppPylos.htm">Pylos</a>::Coordinat&gt; <a href="CppQt.htm">Qt</a><a href="CppPylosWidget.htm">PylosWidget</a>::GetCoordinats(<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppRibi.htm\">ribi</a>::<a href="CppPylos.htm">Pylos</a>::Coordinat&gt; <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppPylosWidget.htm">PylosWidget</a>::GetCoordinats(<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> mouse_x, <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> mouse_y)<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppPylos.htm">Pylos</a>::Coordinat&gt; v <a href="CppOperatorAssign.htm">=</a> <a href="CppPylos.htm">Pylos</a>::GetAllCoordinats();<br/>
@@ -1685,34 +1652,34 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> c;<br/>
 }<br/>
 <br/>
-<b><a href="CppDouble.htm">double</a></b> <a href="CppQt.htm">Qt</a><a href="CppPylosWidget.htm">PylosWidget</a>::<a href="CppGetDistance.htm">GetDistance</a>(<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> dx, <b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> dy)<br/>
+<b><a href="CppDouble.htm">double</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppPylosWidget.htm">PylosWidget</a>::<a href="CppGetDistance.htm">GetDistance</a>(<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> dx, <b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> dy)<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <a href="CppSqrt.htm">std::sqrt</a>( (dx * dx) <a href="CppOperatorPlus.htm">+</a> (dy * dy) );<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppPylos.htm">Pylos</a>::Coordinat&gt;&amp; <a href="CppQt.htm">Qt</a><a href="CppPylosWidget.htm">PylosWidget</a>::GetOtherSelectors() <b><a href="CppConst.htm">const</a></b><br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppRibi.htm\">ribi</a>::<a href="CppPylos.htm">Pylos</a>::Coordinat&gt;&amp; <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppPylosWidget.htm">PylosWidget</a>::GetOtherSelectors() <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> m_other_selectors;<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppQt.htm">Qt</a><a href="CppPylosWidget.htm">PylosWidget</a>::Get<a href="CppVersion.htm">Version</a>()<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppPylosWidget.htm">PylosWidget</a>::Get<a href="CppVersion.htm">Version</a>()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> "1.0";<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppQt.htm">Qt</a><a href="CppPylosWidget.htm">PylosWidget</a>::Get<a href="CppVersion.htm">Version</a>History()<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppPylosWidget.htm">PylosWidget</a>::Get<a href="CppVersion.htm">Version</a>History()<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v;<br/>
 &nbsp;&nbsp;v.push_back("2012-05-28: <a href="CppVersion.htm">version</a> 1.0: initial <a href="CppVersion.htm">version</a>. <a href="CppAdd.htm">Add</a>ed tilt.");<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
 }<br/>
 <br/>
-<b><a href="CppBool.htm">bool</a></b> <a href="CppQt.htm">Qt</a><a href="CppPylosWidget.htm">PylosWidget</a>::IsOtherSelector(<b><a href="CppConst.htm">const</a></b> <a href="CppPylos.htm">Pylos</a>::Coordinat&amp; c) <b><a href="CppConst.htm">const</a></b><br/>
+<b><a href="CppBool.htm">bool</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppPylosWidget.htm">PylosWidget</a>::IsOtherSelector(<b><a href="CppConst.htm">const</a></b> <a href="CppPylos.htm">Pylos</a>::Coordinat&amp; c) <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <a href="CppFind.htm">std::find</a>(m_other_selectors.begin(),m_other_selectors.end(),c) <a href="CppOperatorNotEqual.htm">!=</a> m_other_selectors.end();<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a><a href="CppPylosWidget.htm">PylosWidget</a>::MouseLeftClick()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppPylosWidget.htm">PylosWidget</a>::MouseLeftClick()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (!GetMustRemove())<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;MouseLeftClickSelect();<br/>
@@ -1720,7 +1687,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;MouseLeftClickRemove();<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a><a href="CppPylosWidget.htm">PylosWidget</a>::MouseLeftClickRemove()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppPylosWidget.htm">PylosWidget</a>::MouseLeftClickRemove()<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Player tries to select a third marble<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (m_other_selectors.size() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 2)<br/>
@@ -1771,7 +1738,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <br/>
 <a href="CppComment.htm">///</a>MouseLeftClickSelect handles mouse left-clicking<br/>
 <a href="CppComment.htm">///</a>during select state.<br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a><a href="CppPylosWidget.htm">PylosWidget</a>::MouseLeftClickSelect()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppPylosWidget.htm">PylosWidget</a>::MouseLeftClickSelect()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (GetWinner() <a href="CppOperatorNotEqual.htm">!=</a> <a href="CppPylos.htm">Pylos</a>::Winner::none) <b><a href="CppReturn.htm">return</a></b>;<br/>
 <br/>
@@ -1818,7 +1785,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;}<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a><a href="CppPylosWidget.htm">PylosWidget</a>::MouseMove(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> mouse_x, <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> mouse_y)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppPylosWidget.htm">PylosWidget</a>::MouseMove(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> mouse_x, <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> mouse_y)<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (!GetMustRemove())<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;MouseMoveSelect(mouse_x,mouse_y);<br/>
@@ -1826,7 +1793,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;MouseMoveRemoval(mouse_x,mouse_y);<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a><a href="CppPylosWidget.htm">PylosWidget</a>::mouseMoveEvent(<a href="CppQMouseEvent.htm">QMouseEvent</a> * e)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppPylosWidget.htm">PylosWidget</a>::mouseMoveEvent(<a href="CppQMouseEvent.htm">QMouseEvent</a> * e)<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(e-&gt;type() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <a href="CppQMouseEvent.htm">QMouseEvent</a>::MouseMove);<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> mouse_x <a href="CppOperatorAssign.htm">=</a> e-&gt;x();<br/>
@@ -1834,9 +1801,9 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;MouseMove(mouse_x,mouse_y);<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a><a href="CppPylosWidget.htm">PylosWidget</a>::mousePressEvent(<a href="CppQMouseEvent.htm">QMouseEvent</a>* e)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppPylosWidget.htm">PylosWidget</a>::mousePressEvent(<a href="CppQMouseEvent.htm">QMouseEvent</a>* e)<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppClog.htm">std::clog</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a><a href="CppPylosWidget.htm">PylosWidget</a>::mousePressEvent(<a href="CppQMouseEvent.htm">QMouseEvent</a>* e)\n";<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppClog.htm">std::clog</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppPylosWidget.htm">PylosWidget</a>::mousePressEvent(<a href="CppQMouseEvent.htm">QMouseEvent</a>* e)\n";<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> mouse_x <a href="CppOperatorAssign.htm">=</a> e-&gt;x();<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> mouse_y <a href="CppOperatorAssign.htm">=</a> e-&gt;y();<br/>
 &nbsp;&nbsp;MouseMove(mouse_x,mouse_y); <a href="CppComment.htm">//</a>Always first perform a mouse move to set the selector right<br/>
@@ -1848,7 +1815,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;}<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a><a href="CppPylosWidget.htm">PylosWidget</a>::MouseMoveRemoval(<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppPylosWidget.htm">PylosWidget</a>::MouseMoveRemoval(<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> mouse_x,<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> mouse_y)<br/>
 {<br/>
@@ -1891,7 +1858,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">///</a>MouseMoveSelect handles mouse movement<br/>
 <a href="CppComment.htm">///</a>when player must select either a location to<br/>
 <a href="CppComment.htm">///</a>place a <b><a href="CppNew.htm">new</a></b> marble or to select a marble to move<br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a><a href="CppPylosWidget.htm">PylosWidget</a>::MouseMoveSelect(<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppPylosWidget.htm">PylosWidget</a>::MouseMoveSelect(<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> mouse_x, <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> mouse_y)<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Selector must show to either<br/>
@@ -1930,7 +1897,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;);<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a><a href="CppPylosWidget.htm">PylosWidget</a>::MouseRightClick()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppPylosWidget.htm">PylosWidget</a>::MouseRightClick()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (!GetMustRemove()) <b><a href="CppReturn.htm">return</a></b>;<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Right mouse button is only used to remove the<br/>
@@ -1947,7 +1914,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;}<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a><a href="CppPylosWidget.htm">PylosWidget</a>::paintEvent(<a href="CppQPaintEvent.htm">QPaintEvent</a> *)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppPylosWidget.htm">PylosWidget</a>::paintEvent(<a href="CppQPaintEvent.htm">QPaintEvent</a> *)<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppAssert.htm">assert</a>(m_<a href="CppPylos.htm">pylos</a>);<br/>
 &nbsp;&nbsp;<a href="CppQPainter.htm">QPainter</a> painter(<b><a href="CppThis.htm">this</a></b>);<br/>
@@ -2016,13 +1983,13 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;}<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a><a href="CppPylosWidget.htm">PylosWidget</a>::resizeEvent(<a href="CppQResizeEvent.htm">QResizeEvent</a> *)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppPylosWidget.htm">PylosWidget</a>::resizeEvent(<a href="CppQResizeEvent.htm">QResizeEvent</a> *)<br/>
 {<br/>
 &nbsp;&nbsp;m_sprites.SetBoardSize(<b><a href="CppThis.htm">this</a></b>-&gt;width(),<b><a href="CppThis.htm">this</a></b>-&gt;height());<br/>
 &nbsp;&nbsp;repaint();<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a><a href="CppPylosWidget.htm">PylosWidget</a>::SaveAllSprites() <b><a href="CppConst.htm">const</a></b><br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppPylosWidget.htm">PylosWidget</a>::SaveAllSprites() <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;m_sprites.Get(<a href="CppPylos.htm">Pylos</a>::<a href="CppQt.htm">Qt</a>Sprites::Type::player1).save("sprite_player1.png");<br/>
 &nbsp;&nbsp;m_sprites.Get(<a href="CppPylos.htm">Pylos</a>::<a href="CppQt.htm">Qt</a>Sprites::Type::player2).save("sprite_player2.png");<br/>
@@ -2034,31 +2001,31 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;m_sprites.Get(<a href="CppPylos.htm">Pylos</a>::<a href="CppQt.htm">Qt</a>Sprites::Type::board_hole).save("sprite_board_hole.png");<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a><a href="CppPylosWidget.htm">PylosWidget</a>::SetColorSchemeBlackWhite()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppPylosWidget.htm">PylosWidget</a>::SetColorSchemeBlackWhite()<br/>
 {<br/>
 &nbsp;&nbsp;m_sprites.SetColorScheme(<a href="CppPylos.htm">Pylos</a>::GetBlackWhiteColors());<br/>
 &nbsp;&nbsp;repaint();<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a><a href="CppPylosWidget.htm">PylosWidget</a>::SetColorSchemeRedBlue()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppPylosWidget.htm">PylosWidget</a>::SetColorSchemeRedBlue()<br/>
 {<br/>
 &nbsp;&nbsp;m_sprites.SetColorScheme(<a href="CppPylos.htm">Pylos</a>::GetRedBlueColors());<br/>
 &nbsp;&nbsp;repaint();<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a><a href="CppPylosWidget.htm">PylosWidget</a>::SetSelector(<b><a href="CppConst.htm">const</a></b> <a href="CppPylos.htm">Pylos</a>::Coordinat&amp; c)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppPylosWidget.htm">PylosWidget</a>::SetSelector(<b><a href="CppConst.htm">const</a></b> <a href="CppPylos.htm">Pylos</a>::Coordinat&amp; c)<br/>
 {<br/>
 &nbsp;&nbsp;m_select <a href="CppOperatorAssign.htm">=</a> c;<br/>
 &nbsp;&nbsp;<b><a href="CppEmit.htm">emit</a></b> SelectorChanged();<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a><a href="CppPylosWidget.htm">PylosWidget</a>::SetTilt(<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> tilt)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppPylosWidget.htm">PylosWidget</a>::SetTilt(<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> tilt)<br/>
 {<br/>
 &nbsp;&nbsp;m_tilt <a href="CppOperatorAssign.htm">=</a> tilt;<br/>
 &nbsp;&nbsp;repaint();<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppPair.htm">std::pair</a>&lt;<b><a href="CppInt.htm">int</a></b>,<b><a href="CppInt.htm">int</a></b>&gt; <a href="CppQt.htm">Qt</a><a href="CppPylosWidget.htm">PylosWidget</a>::Transform(<b><a href="CppConst.htm">const</a></b> <a href="CppPylos.htm">Pylos</a>::Coordinat&amp; c) <b><a href="CppConst.htm">const</a></b><br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppPair.htm">std::pair</a>&lt;<b><a href="CppInt.htm">int</a></b>,<b><a href="CppInt.htm">int</a></b>&gt; <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppPylosWidget.htm">PylosWidget</a>::Transform(<b><a href="CppConst.htm">const</a></b> <a href="CppPylos.htm">Pylos</a>::Coordinat&amp; c) <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x_co<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> (m_sprites.GetMarbleWidth() <a href="CppOperatorDivide.htm">/</a> 2)<br/>

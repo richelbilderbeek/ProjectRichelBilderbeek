@@ -71,6 +71,8 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppRichelBilderbeekProgram.htm">richelbilderbeekprogram</a>status.h"<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppRichelBilderbeekProgram.htm">richelbilderbeekprogram</a>type.h"<br/>
 <br/>
+<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a> {<br/>
+<br/>
 <b><a href="CppNamespace.htm">namespace</a></b> RichelBilderbeek {<br/>
 <br/>
 <a href="CppComment.htm">///</a>RichelBilderbeek::Program is the <a href="CppBaseClass.htm">base class</a> <b><a href="CppFor.htm">for</a></b> program information<br/>
@@ -167,8 +169,8 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <b><a href="CppStruct.htm">struct</a></b> ProgramAminoAcidFighter : <b><a href="CppPublic.htm">public</a></b> RichelBilderbeek::ProgramGame<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> GetFilenameConsole() <b><a href="CppConst.htm">const</a></b> { <b><a href="CppReturn.htm">return</a></b> ""; }<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> GetFilenameDesktop() <b><a href="CppConst.htm">const</a></b> { <b><a href="CppReturn.htm">return</a></b> "GameAminoAcidFighter_0_9.png"; }<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> GetFilenameDesktop<a href="CppWindows.htm">Windows</a>Only() <b><a href="CppConst.htm">const</a></b> { <b><a href="CppReturn.htm">return</a></b> "GameAminoAcidFighter_0_9.png"; }<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> GetFilenameDesktop() <b><a href="CppConst.htm">const</a></b> { <b><a href="CppReturn.htm">return</a></b> "<a href="GameAminoAcidFighter.htm">GameAminoAcidFighter</a>_0_9.png"; }<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> GetFilenameDesktop<a href="CppWindows.htm">Windows</a>Only() <b><a href="CppConst.htm">const</a></b> { <b><a href="CppReturn.htm">return</a></b> "<a href="GameAminoAcidFighter.htm">GameAminoAcidFighter</a>_0_9.png"; }<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> GetFilenameWeb() <b><a href="CppConst.htm">const</a></b> { <b><a href="CppReturn.htm">return</a></b> ""; }<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> GetName() <b><a href="CppConst.htm">const</a></b> { <b><a href="CppReturn.htm">return</a></b> "AminoAcidFighter"; }<br/>
 &nbsp;&nbsp;ProgramStatus GetStatusConsole() <b><a href="CppConst.htm">const</a></b> { <b><a href="CppReturn.htm">return</a></b> ProgramStatus::nvr; }<br/>
@@ -1061,7 +1063,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;ProgramStatus GetStatusDesktop() <b><a href="CppConst.htm">const</a></b> { <b><a href="CppReturn.htm">return</a></b> ProgramStatus::yes; }<br/>
 &nbsp;&nbsp;ProgramStatus GetStatusWeb<a href="CppApplication.htm">Application</a>() <b><a href="CppConst.htm">const</a></b> { <b><a href="CppReturn.htm">return</a></b> ProgramStatus::no; }<br/>
 &nbsp;&nbsp;ProgramType GetType() <b><a href="CppConst.htm">const</a></b> { <b><a href="CppReturn.htm">return</a></b> ProgramType::q<a href="CppMake.htm">make</a>Watcher; }<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> GetUrl() <b><a href="CppConst.htm">const</a></b> { <b><a href="CppReturn.htm">return</a></b> "<a href="Tools.htm">Tool</a>Q<a href="CppMake.htm">make</a>Watcher.htm"; }<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> GetUrl() <b><a href="CppConst.htm">const</a></b> { <b><a href="CppReturn.htm">return</a></b> "<a href="ToolQ<a href="CppMake.htm">make</a>Watcher.htm">ToolQ<a href="CppMake.htm">make</a>Watcher</a>.htm"; }<br/>
 };<br/>
 <br/>
 <b><a href="CppStruct.htm">struct</a></b> ProgramQuadraticSolver : <b><a href="CppPublic.htm">public</a></b> RichelBilderbeek::Program<a href="Tools.htm">Tool</a><br/>
@@ -2564,13 +2566,12 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <br/>
 <a href="CppComment.htm">*/</a><br/>
 <br/>
-<br/>
-<br/>
-<br/>
 <a href="CppOstream.htm">std::ostream</a>&amp; <b><a href="CppOperatorStreamOut.htm">operator&lt;&lt;</a></b>(<a href="CppOstream.htm">std::ostream</a>&amp; os, <b><a href="CppConst.htm">const</a></b> Program * <b><a href="CppConst.htm">const</a></b> p);<br/>
 <b><a href="CppBool.htm">bool</a></b> <b><a href="CppOperatorLess.htm">operator&lt;</a></b>(<b><a href="CppConst.htm">const</a></b> Program&amp; lhs, <b><a href="CppConst.htm">const</a></b> Program&amp; rhs);<br/>
 <br/>
 } <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> RichelBilderbeek<br/>
+<br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a><br/>
 <br/>
 <a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> RICHELBILDERBEEKPROGRAM_H<br/>
 </code></td></tr></table>
@@ -2604,16 +2605,6 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="ProjectRichelBilderbeek.htm">ProjectRichelBilderbeek</a>Program.htm<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppIfdef.htm">#ifdef</a> _WIN32<br/>
-<a href="CppComment.htm">//</a>See http://www.richelbilderbeek.nl/Cpp<a href="CppCompile.htm">Compile</a>ErrorUnableToFindNumericLiteralOperatorOperatorQ.htm<br/>
-<a href="CppPreIf.htm">#if</a> !(__GNUC__ <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 4 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> __GNUC_MINOR__ <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 8)<br/>
-<a href="CppComment.htm">//</a>See http://www.richelbilderbeek.nl/Cpp<a href="CppCompile.htm">Compile</a>ErrorSwprintfHasNotBeenDeclared.htm<br/>
-<a href="CppUndef.htm">#undef</a> __STRICT_ANSI__<br/>
-<a href="CppEndif.htm">#endif</a><br/>
-<a href="CppEndif.htm">#endif</a><br/>
-<br/>
-<a href="CppComment.htm">//</a><a href="CppInclude.htm">#include</a> own <a href="CppHeaderFile.htm">header file</a> as first substantive line of code, from:<br/>
-<a href="CppComment.htm">//</a> * John Lakos. Large-Scale <a href="Cpp.htm">C++</a> Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppRichelBilderbeekProgram.htm">richelbilderbeekprogram</a>.h"<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppIostreamH.htm">iostream</a>&gt;<br/>
@@ -2621,9 +2612,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppRichelBilderbeekProgram.htm">richelbilderbeekprogram</a>status.h"<br/>
 <br/>
-<b><a href="CppNamespace.htm">namespace</a></b> RichelBilderbeek {<br/>
-<br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Program&gt; Program::CreateProgram(<b><a href="CppConst.htm">const</a></b> ProgramType type)<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRibi.htm\">ribi</a>::RichelBilderbeek::Program&gt; <a href="CppRibi.htm\">ribi</a>::RichelBilderbeek::Program::CreateProgram(<b><a href="CppConst.htm">const</a></b> ProgramType type)<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Program&gt; p;<br/>
 &nbsp;&nbsp;<b><a href="CppSwitch.htm">switch</a></b> (type)<br/>
@@ -2790,7 +2779,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> p;<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Program&gt; &gt; Program::GetAllPrograms()<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRibi.htm\">ribi</a>::RichelBilderbeek::Program&gt; &gt; <a href="CppRibi.htm\">ribi</a>::RichelBilderbeek::Program::GetAllPrograms()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;ProgramType&gt; types <a href="CppOperatorAssign.htm">=</a> GetAllProgramTypes();<br/>
 &nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Program&gt; &gt; v;<br/>
@@ -2808,46 +2797,46 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> Program::GetFilenameBase() <b><a href="CppConst.htm">const</a></b><br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppRibi.htm\">ribi</a>::RichelBilderbeek::Program::GetFilenameBase() <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppString.htm">std::string</a> s <a href="CppOperatorAssign.htm">=</a> <b><a href="CppThis.htm">this</a></b>-&gt;GetTypeName();<br/>
 &nbsp;&nbsp;s[0] <a href="CppOperatorAssign.htm">=</a> <a href="CppToupper.htm">std::toupper</a>(s[0]);<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> s <a href="CppOperatorPlus.htm">+</a> GetName();<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> Program::GetFilenameConsole() <b><a href="CppConst.htm">const</a></b><br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppRibi.htm\">ribi</a>::RichelBilderbeek::Program::GetFilenameConsole() <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> GetFilenameBase() <a href="CppOperatorPlus.htm">+</a> "Console.png";<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> Program::GetFilenameDesktop() <b><a href="CppConst.htm">const</a></b><br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppRibi.htm\">ribi</a>::RichelBilderbeek::Program::GetFilenameDesktop() <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> GetFilenameBase() <a href="CppOperatorPlus.htm">+</a> "Desktop.png";<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> Program::GetFilenameDesktop<a href="CppWindows.htm">Windows</a>Only() <b><a href="CppConst.htm">const</a></b><br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppRibi.htm\">ribi</a>::RichelBilderbeek::Program::GetFilenameDesktop<a href="CppWindows.htm">Windows</a>Only() <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> GetFilenameBase() <a href="CppOperatorPlus.htm">+</a> "Desktop<a href="CppWindows.htm">Windows</a>Only.png";<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> Program::GetFilenameWeb() <b><a href="CppConst.htm">const</a></b><br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppRibi.htm\">ribi</a>::RichelBilderbeek::Program::GetFilenameWeb() <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> GetFilenameBase() <a href="CppOperatorPlus.htm">+</a> "Web.png";<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> Program::Get<a href="CppVersion.htm">Version</a>()<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppRibi.htm\">ribi</a>::RichelBilderbeek::Program::Get<a href="CppVersion.htm">Version</a>()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> "1.0";<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; Program::Get<a href="CppVersion.htm">Version</a>History()<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm\">ribi</a>::RichelBilderbeek::Program::Get<a href="CppVersion.htm">Version</a>History()<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v;<br/>
-&nbsp;&nbsp;v.push_back("2012-02-19: <a href="CppVersion.htm">Version</a> 1.0: initial <a href="CppVersion.htm">version</a>");<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"2012-02-19: <a href="CppVersion.htm">Version</a> 1.0: initial <a href="CppVersion.htm">version</a>"<br/>
+&nbsp;&nbsp;};<br/>
 }<br/>
 <br/>
-<a href="CppOstream.htm">std::ostream</a>&amp; <b><a href="CppOperatorStreamOut.htm">operator&lt;&lt;</a></b>(<a href="CppOstream.htm">std::ostream</a>&amp; os, <b><a href="CppConst.htm">const</a></b> Program * <b><a href="CppConst.htm">const</a></b> p)<br/>
+<a href="CppOstream.htm">std::ostream</a>&amp; <a href="CppRibi.htm\">ribi</a>::RichelBilderbeek::<b><a href="CppOperatorStreamOut.htm">operator&lt;&lt;</a></b>(<a href="CppOstream.htm">std::ostream</a>&amp; os, <b><a href="CppConst.htm">const</a></b> Program * <b><a href="CppConst.htm">const</a></b> p)<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> name <a href="CppOperatorAssign.htm">=</a> p-&gt;GetName();<br/>
 <br/>
@@ -2864,14 +2853,12 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp; <b><a href="CppReturn.htm">return</a></b> os;<br/>
 }<br/>
 <br/>
-<b><a href="CppBool.htm">bool</a></b> <b><a href="CppOperatorLess.htm">operator&lt;</a></b>(<b><a href="CppConst.htm">const</a></b> Program&amp; lhs, <b><a href="CppConst.htm">const</a></b> Program&amp; rhs)<br/>
+<b><a href="CppBool.htm">bool</a></b> <a href="CppRibi.htm\">ribi</a>::RichelBilderbeek::<b><a href="CppOperatorLess.htm">operator&lt;</a></b>(<b><a href="CppConst.htm">const</a></b> Program&amp; lhs, <b><a href="CppConst.htm">const</a></b> Program&amp; rhs)<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (lhs.GetTypeName() &lt; rhs.GetTypeName()) <b><a href="CppReturn.htm">return</a></b> <b><a href="CppTrue.htm">true</a></b>;<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (lhs.GetTypeName() &gt; rhs.GetTypeName()) <b><a href="CppReturn.htm">return</a></b> <b><a href="CppFalse.htm">false</a></b>;<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> lhs.GetName() &lt; rhs.GetName();<br/>
 }<br/>
-<br/>
-} <a href="CppComment.htm">//</a><b><a href="CppNamespace.htm">namespace</a></b> RichelBilderbeek<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -2909,6 +2896,8 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppStringH.htm">string</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
 <br/>
+<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a> {<br/>
+<br/>
 <b><a href="CppNamespace.htm">namespace</a></b> RichelBilderbeek {<br/>
 <br/>
 <a href="CppComment.htm">///</a>Status: yes, no, never, not applicable, work in progress, to be done and unknown<br/>
@@ -2927,6 +2916,8 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppOstream.htm">std::ostream</a>&amp; <b><a href="CppOperatorStreamOut.htm">operator&lt;&lt;</a></b>(<a href="CppOstream.htm">std::ostream</a>&amp; os, <b><a href="CppConst.htm">const</a></b> ProgramStatus c);<br/>
 <br/>
 } <a href="CppComment.htm">//</a><b><a href="CppNamespace.htm">namespace</a></b> RichelBilderbeek<br/>
+<br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a><br/>
 <br/>
 <a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> RICHELBILDERBEEKPROGRAMSTATUS_H<br/>
 </code></td></tr></table>
@@ -2960,25 +2951,13 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="ProjectRichelBilderbeek.htm">ProjectRichelBilderbeek</a>ProgramStatus.htm<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppIfdef.htm">#ifdef</a> _WIN32<br/>
-<a href="CppComment.htm">//</a>See http://www.richelbilderbeek.nl/Cpp<a href="CppCompile.htm">Compile</a>ErrorUnableToFindNumericLiteralOperatorOperatorQ.htm<br/>
-<a href="CppPreIf.htm">#if</a> !(__GNUC__ <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 4 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> __GNUC_MINOR__ <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 8)<br/>
-<a href="CppComment.htm">//</a>See http://www.richelbilderbeek.nl/Cpp<a href="CppCompile.htm">Compile</a>ErrorSwprintfHasNotBeenDeclared.htm<br/>
-<a href="CppUndef.htm">#undef</a> __STRICT_ANSI__<br/>
-<a href="CppEndif.htm">#endif</a><br/>
-<a href="CppEndif.htm">#endif</a><br/>
-<br/>
-<a href="CppComment.htm">//</a><a href="CppInclude.htm">#include</a> own <a href="CppHeaderFile.htm">header file</a> as first substantive line of code, from:<br/>
-<a href="CppComment.htm">//</a> * John Lakos. Large-Scale <a href="Cpp.htm">C++</a> Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppRichelBilderbeekProgram.htm">richelbilderbeekprogram</a>status.h"<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppIostreamH.htm">iostream</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppStdexceptH.htm">stdexcept</a>&gt;<br/>
 <br/>
-<b><a href="CppNamespace.htm">namespace</a></b> RichelBilderbeek {<br/>
-<br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> ProgramStatusToStr(<b><a href="CppConst.htm">const</a></b> ProgramStatus c)<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppRibi.htm\">ribi</a>::RichelBilderbeek::ProgramStatusToStr(<b><a href="CppConst.htm">const</a></b> ProgramStatus c)<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppSwitch.htm">switch</a></b> (c)<br/>
 &nbsp;&nbsp;{<br/>
@@ -2994,25 +2973,23 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppThrow.htm">throw</a></b> <a href="CppLogic_error.htm">std::logic_error</a>("RichelBilderbeek::ProgramStatusToStr");<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> ProgramStatus<a href="CppVersion.htm">Version</a>::Get<a href="CppVersion.htm">Version</a>()<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppRibi.htm\">ribi</a>::RichelBilderbeek::ProgramStatus<a href="CppVersion.htm">Version</a>::Get<a href="CppVersion.htm">Version</a>()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> "1.0";<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; ProgramStatus<a href="CppVersion.htm">Version</a>::Get<a href="CppVersion.htm">Version</a>History()<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm\">ribi</a>::RichelBilderbeek::ProgramStatus<a href="CppVersion.htm">Version</a>::Get<a href="CppVersion.htm">Version</a>History()<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v;<br/>
-&nbsp;&nbsp;v.push_back("2012-02-19: <a href="CppVersion.htm">Version</a> 1.0: initial <a href="CppVersion.htm">version</a>");<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"2012-02-19: <a href="CppVersion.htm">Version</a> 1.0: initial <a href="CppVersion.htm">version</a>"<br/>
+&nbsp;&nbsp;};<br/>
 }<br/>
 <br/>
-<a href="CppOstream.htm">std::ostream</a>&amp; <b><a href="CppOperatorStreamOut.htm">operator&lt;&lt;</a></b>(<a href="CppOstream.htm">std::ostream</a>&amp; os, <b><a href="CppConst.htm">const</a></b> ProgramStatus c)<br/>
+<a href="CppOstream.htm">std::ostream</a>&amp; <a href="CppRibi.htm\">ribi</a>::RichelBilderbeek::<b><a href="CppOperatorStreamOut.htm">operator&lt;&lt;</a></b>(<a href="CppOstream.htm">std::ostream</a>&amp; os, <b><a href="CppConst.htm">const</a></b> ProgramStatus c)<br/>
 {<br/>
 &nbsp;&nbsp;os <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> ProgramStatusToStr(c);<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> os;<br/>
 }<br/>
-<br/>
-} <a href="CppComment.htm">//</a><b><a href="CppNamespace.htm">namespace</a></b> RichelBilderbeek<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -3048,6 +3025,8 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppDefine.htm">#define</a> RICHELBILDERBEEKPROGRAMTYPE_H<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
+<br/>
+<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a> {<br/>
 <br/>
 <b><a href="CppNamespace.htm">namespace</a></b> RichelBilderbeek {<br/>
 <br/>
@@ -3215,6 +3194,8 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <br/>
 } <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> RichelBilderbeek {<br/>
 <br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a><br/>
+<br/>
 <a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> RICHELBILDERBEEKPROGRAMTYPE_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
@@ -3247,23 +3228,12 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="ProjectRichelBilderbeek.htm">ProjectRichelBilderbeek</a>.htm<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppIfdef.htm">#ifdef</a> _WIN32<br/>
-<a href="CppComment.htm">//</a>See http://www.richelbilderbeek.nl/Cpp<a href="CppCompile.htm">Compile</a>ErrorUnableToFindNumericLiteralOperatorOperatorQ.htm<br/>
-<a href="CppPreIf.htm">#if</a> !(__GNUC__ <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 4 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> __GNUC_MINOR__ <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 8)<br/>
-<a href="CppComment.htm">//</a>See http://www.richelbilderbeek.nl/Cpp<a href="CppCompile.htm">Compile</a>ErrorSwprintfHasNotBeenDeclared.htm<br/>
-<a href="CppUndef.htm">#undef</a> __STRICT_ANSI__<br/>
-<a href="CppEndif.htm">#endif</a><br/>
-<a href="CppEndif.htm">#endif</a><br/>
-<br/>
-<a href="CppComment.htm">//</a><a href="CppInclude.htm">#include</a> own <a href="CppHeaderFile.htm">header file</a> as first substantive line of code, from:<br/>
-<a href="CppComment.htm">//</a> * John Lakos. Large-Scale <a href="Cpp.htm">C++</a> Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppRichelBilderbeekProgram.htm">richelbilderbeekprogram</a>type.h"<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppTrace.htm">trace</a>.h"<br/>
-<b><a href="CppNamespace.htm">namespace</a></b> RichelBilderbeek {<br/>
 <br/>
-<a href="CppVector.htm">std::vector</a>&lt;ProgramType&gt; GetAllProgramTypes()<br/>
+<a href="CppVector.htm">std::vector</a>&lt;<a href="CppRibi.htm\">ribi</a>::RichelBilderbeek::ProgramType&gt; <a href="CppRibi.htm\">ribi</a>::RichelBilderbeek::GetAllProgramTypes()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;ProgramType&gt; v <a href="CppOperatorAssign.htm">=</a><br/>
 &nbsp;&nbsp;{<br/>
@@ -3433,8 +3403,6 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(v.size()) <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(ProgramType::n_types));<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
 }<br/>
-<br/>
-} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> RichelBilderbeek<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>

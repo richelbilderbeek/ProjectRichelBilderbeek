@@ -20,29 +20,29 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //From http://www.richelbilderbeek.nl/ToolTestLazy_init.htm
 //---------------------------------------------------------------------------
 #include <iostream>
-//---------------------------------------------------------------------------
+
 #include "lazy_init.h"
-//---------------------------------------------------------------------------
+
 struct W
 {
   W() { std::cout << "W contructor\n"; }
   void f() const { std::cout << "I am W" << '\n'; }
 };
-//---------------------------------------------------------------------------
+
 struct X
 {
   X(const int x) : m_x(x) { std::cout << "X contructor\n"; }
   void f() const { std::cout << m_x << '\n'; }
   const int m_x;
 };
-//---------------------------------------------------------------------------
+
 struct Y
 {
   Y(const std::string& s) : m_s(s) { std::cout << "Y contructor\n"; }
   void f() const { std::cout << m_s << '\n'; }
   const std::string m_s;
 };
-//---------------------------------------------------------------------------
+
 struct Z
 {
   Z(const std::string& s, const int i) : m_s(s), m_i(i) { std::cout << "Z contructor\n"; }
@@ -50,17 +50,17 @@ struct Z
   const std::string m_s;
   const int m_i;
 };
-//---------------------------------------------------------------------------
+
 int main()
 {
-  LazyInit0<W> w;
-  LazyInit1<X,int> x(314);
-  LazyInit1<Y,std::string> y("Hello World");
-  LazyInit2<Z,std::string,int> z("Hell",0);
+  ribi::LazyInit0<W> w;
+  ribi::LazyInit1<X,int> x(314);
+  ribi::LazyInit1<Y,std::string> y("Hello World");
+  ribi::LazyInit2<Z,std::string,int> z("Hell",0);
 
   z.Get().f();
   y.Get().f();
   x.Get().f();
   w.Get().f();
 }
-//---------------------------------------------------------------------------
+

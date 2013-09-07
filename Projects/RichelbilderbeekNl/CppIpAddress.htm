@@ -68,10 +68,12 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/checked_delete.hpp&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppNoncopyable.htm">noncopyable</a>.hpp&gt;<br/>
 <br/>
+<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a> {<br/>
+<br/>
 <a href="CppComment.htm">///</a><a href="CppIpAddress.htm">IpAddress</a> guarantees to contain a valid <a href="CppIpAddress.htm">IP address</a><br/>
 <b><a href="CppStruct.htm">struct</a></b> <a href="CppIpAddress.htm">IpAddress</a><br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>/<a href="CppIpAddress.htm">IpAddress</a> <a href="CppConstructor.htm">constructor</a> <b><a href="CppThrow.htm">throw</a></b>s an exception when<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/<a href="CppIpAddress.htm">IpAddress</a> <a href="CppConstructor.htm">constructor</a> <b><a href="CppThrow.htm">throw</a></b>s an <a href="CppException.htm">exception</a> when<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/ip_address is not a valid <a href="CppIpAddress.htm">IP address</a><br/>
 &nbsp;&nbsp;<b><a href="CppExplicit.htm">explicit</a></b> <a href="CppIpAddress.htm">IpAddress</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; ip_address);<br/>
 <br/>
@@ -79,7 +81,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppVirtual.htm">virtual</a></b> ~<a href="CppIpAddress.htm">IpAddress</a>()&nbsp;&nbsp;{}<br/>
 <br/>
 <br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Set the <a href="CppIpAddress.htm">IP address</a>. Will <b><a href="CppThrow.htm">throw</a></b>s an exception when<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Set the <a href="CppIpAddress.htm">IP address</a>. Will <b><a href="CppThrow.htm">throw</a></b>s an <a href="CppException.htm">exception</a> when<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/the ip_address is not a valid <a href="CppIpAddress.htm">IP address</a><br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> Set(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; ip_address);<br/>
 <br/>
@@ -101,7 +103,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">///</a>and only be of a complete type<br/>
 <b><a href="CppStruct.htm">struct</a></b> Safe<a href="CppIpAddress.htm">IpAddress</a> : <b><a href="CppPublic.htm">public</a></b> <a href="CppIpAddress.htm">IpAddress</a>, <a href="CppNoncopyable.htm">boost::noncopyable</a><br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Safe<a href="CppIpAddress.htm">IpAddress</a> <a href="CppConstructor.htm">constructor</a> <b><a href="CppThrow.htm">throw</a></b>s an exception when<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Safe<a href="CppIpAddress.htm">IpAddress</a> <a href="CppConstructor.htm">constructor</a> <b><a href="CppThrow.htm">throw</a></b>s an <a href="CppException.htm">exception</a> when<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/ip_address is not a valid <a href="CppIpAddress.htm">IP address</a><br/>
 &nbsp;&nbsp;Safe<a href="CppIpAddress.htm">IpAddress</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; ip_address);<br/>
 <br/>
@@ -115,7 +117,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/incomplete type is deleted, but unfortunately, not all <b><a href="CppDo.htm">do</a></b>, and programmers<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/some<a href="CppTime.htm">time</a>s ignore or disable warnings.<br/>
 &nbsp;&nbsp;~Safe<a href="CppIpAddress.htm">IpAddress</a>()&nbsp;&nbsp;{}<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Template syntax from <a href="CppHerbSutter.htm">Herb Sutter</a>. Exceptional <a href="Cpp.htm">C++</a> style. 2005.<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Template syntax from <a href="CppHerbSutter.htm">Herb Sutter</a>. <a href="CppException.htm">Exception</a>al <a href="Cpp.htm">C++</a> style. 2005.<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/ISBN: 0-201-76042-8. Item 8: '<a href="CppFriend.htm">Befriending</a> <a href="CppTemplate.htm">templates</a>'.<br/>
 &nbsp;&nbsp;<b><a href="CppFriend.htm">friend</a></b> <b><a href="CppVoid.htm">void</a></b> <a href="CppChecked_delete.htm">boost::checked_delete</a>&lt;&gt;(Safe<a href="CppIpAddress.htm">IpAddress</a>*);<br/>
 };<br/>
@@ -124,6 +126,8 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <b><a href="CppBool.htm">bool</a></b> <b><a href="CppOperatorEqual.htm">operator==</a></b>(<b><a href="CppConst.htm">const</a></b> <a href="CppIpAddress.htm">IpAddress</a>&amp; lhs,<b><a href="CppConst.htm">const</a></b> <a href="CppIpAddress.htm">IpAddress</a>&amp; rhs);<br/>
 <a href="CppComment.htm">///</a>Test <b><a href="CppFor.htm">for</a></b> equal <a href="CppIpAddress.htm">IP address</a>es<br/>
 <b><a href="CppBool.htm">bool</a></b> <b><a href="CppOperatorEqual.htm">operator==</a></b>(<b><a href="CppConst.htm">const</a></b> Safe<a href="CppIpAddress.htm">IpAddress</a>&amp; lhs,<b><a href="CppConst.htm">const</a></b> Safe<a href="CppIpAddress.htm">IpAddress</a>&amp; rhs);<br/>
+<br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a><br/>
 <br/>
 <a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> IPADDRESS_H<br/>
 </code></td></tr></table>
@@ -157,60 +161,58 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="CppIpAddress.htm">CppIpAddress</a>.htm<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppIfdef.htm">#ifdef</a> _WIN32<br/>
-<a href="CppComment.htm">//</a>See http://www.richelbilderbeek.nl/Cpp<a href="CppCompile.htm">Compile</a>ErrorUnableToFindNumericLiteralOperatorOperatorQ.htm<br/>
-<a href="CppPreIf.htm">#if</a> !(__GNUC__ <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 4 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> __GNUC_MINOR__ <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 8)<br/>
-<a href="CppComment.htm">//</a>See http://www.richelbilderbeek.nl/Cpp<a href="CppCompile.htm">Compile</a>ErrorSwprintfHasNotBeenDeclared.htm<br/>
-<a href="CppUndef.htm">#undef</a> __STRICT_ANSI__<br/>
-<a href="CppEndif.htm">#endif</a><br/>
-<a href="CppEndif.htm">#endif</a><br/>
 <br/>
-<a href="CppComment.htm">//</a><a href="CppInclude.htm">#include</a> own <a href="CppHeaderFile.htm">header file</a> as first substantive line of code, from:<br/>
-<a href="CppComment.htm">//</a> * John Lakos. Large-Scale <a href="Cpp.htm">C++</a> Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110<br/>
+<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppIpaddress.htm">ipaddress</a>.h"<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppStdexceptH.htm">stdexcept</a>&gt;<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppRegex.htm">regex</a>.hpp&gt;<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-<b><a href="CppTypedef.htm">typedef</a></b>s"<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppBoostXpressive.htm">xpressive</a>/<a href="CppBoostXpressive.htm">xpressive</a>.hpp&gt;<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
 <br/>
-<a href="CppIpAddress.htm">IpAddress</a>::<a href="CppIpAddress.htm">IpAddress</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; ip_address)<br/>
+<a href="CppRibi.htm\">ribi</a>::<a href="CppIpAddress.htm">IpAddress</a>::<a href="CppIpAddress.htm">IpAddress</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; ip_address)<br/>
 {<br/>
 &nbsp;&nbsp;Set(ip_address);<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppIpAddress.htm">IpAddress</a>::Get<a href="CppVersion.htm">Version</a>()<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppRibi.htm\">ribi</a>::<a href="CppIpAddress.htm">IpAddress</a>::Get<a href="CppVersion.htm">Version</a>()<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> "1.0";<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> "1.1";<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppIpAddress.htm">IpAddress</a>::Get<a href="CppVersion.htm">Version</a>History()<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm\">ribi</a>::<a href="CppIpAddress.htm">IpAddress</a>::Get<a href="CppVersion.htm">Version</a>History()<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v;<br/>
-&nbsp;&nbsp;v.push_back("2011-06-08: <a href="CppVersion.htm">version</a> 1.0: initial <a href="CppVersion.htm">version</a>");<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"2011-06-08: <a href="CppVersion.htm">version</a> 1.0: initial <a href="CppVersion.htm">version</a>",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"2013-09-02: <a href="CppVersion.htm">version</a> 1.1: replaced <a href="CppBoostRegex.htm">Boost.Regex</a> by <a href="CppBoostXpressive.htm">Boost.Xpressive</a>"<br/>
+&nbsp;&nbsp;};<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppIpAddress.htm">IpAddress</a>::Set(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; ip_address)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppIpAddress.htm">IpAddress</a>::Set(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; ip_address)<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostRegex.htm">boost::regex</a> <a href="CppRegex.htm">regex</a>_ip_address("\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}");<br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b>(!<a href="CppRegex_match.htm">boost::regex_match</a>(ip_address,<a href="CppRegex.htm">regex</a>_ip_address))<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostXpressive.htm">boost::xpressive</a>::s<a href="CppRegex.htm">regex</a> <a href="CppRegex.htm">regex</a>_ip_address<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <a href="CppBoostXpressive.htm">boost::xpressive</a>::s<a href="CppRegex.htm">regex</a>::<a href="CppCompile.htm">compile</a>("\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}");<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b>(!<a href="CppBoostXpressive.htm">boost::xpressive</a>::<a href="CppRegex.htm">regex</a>_match(ip_address,<a href="CppRegex.htm">regex</a>_ip_address))<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThrow.htm">throw</a></b> <a href="CppLogic_error.htm">std::logic_error</a>("Invalid <a href="CppIpAddress.htm">IP address</a>");<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;m_ip_address <a href="CppOperatorAssign.htm">=</a> ip_address;<br/>
 }<br/>
 <br/>
-Safe<a href="CppIpAddress.htm">IpAddress</a>::Safe<a href="CppIpAddress.htm">IpAddress</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; ip_address)<br/>
+<a href="CppRibi.htm\">ribi</a>::Safe<a href="CppIpAddress.htm">IpAddress</a>::Safe<a href="CppIpAddress.htm">IpAddress</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; ip_address)<br/>
 &nbsp;&nbsp;: <a href="CppIpAddress.htm">IpAddress</a>(ip_address)<br/>
 {<br/>
+<br/>
 }<br/>
 <br/>
-<b><a href="CppBool.htm">bool</a></b> <b><a href="CppOperatorEqual.htm">operator==</a></b>(<b><a href="CppConst.htm">const</a></b> <a href="CppIpAddress.htm">IpAddress</a>&amp; lhs,<b><a href="CppConst.htm">const</a></b> <a href="CppIpAddress.htm">IpAddress</a>&amp; rhs)<br/>
+<b><a href="CppBool.htm">bool</a></b> <a href="CppRibi.htm\">ribi</a>::<b><a href="CppOperatorEqual.htm">operator==</a></b>(<b><a href="CppConst.htm">const</a></b> <a href="CppIpAddress.htm">IpAddress</a>&amp; lhs,<b><a href="CppConst.htm">const</a></b> <a href="CppIpAddress.htm">IpAddress</a>&amp; rhs)<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> lhs.Get() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> rhs.Get();<br/>
 }<br/>
 <br/>
-<b><a href="CppBool.htm">bool</a></b> <b><a href="CppOperatorEqual.htm">operator==</a></b>(<b><a href="CppConst.htm">const</a></b> Safe<a href="CppIpAddress.htm">IpAddress</a>&amp; lhs,<b><a href="CppConst.htm">const</a></b> Safe<a href="CppIpAddress.htm">IpAddress</a>&amp; rhs)<br/>
+<b><a href="CppBool.htm">bool</a></b> <a href="CppRibi.htm\">ribi</a>::<b><a href="CppOperatorEqual.htm">operator==</a></b>(<b><a href="CppConst.htm">const</a></b> Safe<a href="CppIpAddress.htm">IpAddress</a>&amp; lhs,<b><a href="CppConst.htm">const</a></b> Safe<a href="CppIpAddress.htm">IpAddress</a>&amp; rhs)<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> lhs.Get() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> rhs.Get();<br/>
 }<br/>

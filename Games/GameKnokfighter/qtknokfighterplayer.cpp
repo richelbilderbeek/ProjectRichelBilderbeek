@@ -6,7 +6,7 @@
 #include <QGraphicsScene>
 #include "qtknokfighterbackground.h"
 
-QtKnokfighterPlayer::QtKnokfighterPlayer(
+ribi::QtKnokfighterPlayer::QtKnokfighterPlayer(
   const Name name,
   QGraphicsItem *parent)
   : QGraphicsPixmapItem(parent),
@@ -16,7 +16,7 @@ QtKnokfighterPlayer::QtKnokfighterPlayer(
   DrawPixmap();
 }
 
-void QtKnokfighterPlayer::advance(int i)
+void ribi::QtKnokfighterPlayer::advance(int i)
 {
   if (i)
   {
@@ -26,7 +26,7 @@ void QtKnokfighterPlayer::advance(int i)
   }
 }
 
-void QtKnokfighterPlayer::DrawPixmap()
+void ribi::QtKnokfighterPlayer::DrawPixmap()
 {
   std::string s;
   switch ((m_z / 50) % 2)

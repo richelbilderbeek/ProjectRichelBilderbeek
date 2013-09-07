@@ -62,17 +62,14 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppIfndef.htm">#ifndef</a> TWODIGITNEWICK_H<br/>
 <a href="CppDefine.htm">#define</a> TWODIGITNEWICK_H<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppIfdef.htm">#ifdef</a> _WIN32<br/>
-<a href="CppComment.htm">//</a>See http://www.richelbilderbeek.nl/Cpp<a href="CppCompile.htm">Compile</a>ErrorSwprintfHasNotBeenDeclared.htm<br/>
-<a href="CppUndef.htm">#undef</a> __STRICT_ANSI__<br/>
-<a href="CppEndif.htm">#endif</a><br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppStringH.htm">string</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppTwoDigitNewick.htm">twodigitnewick</a>derivative.h"<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<br/>
+<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a> {<br/>
+<br/>
 <a href="CppComment.htm">///</a><a href="CppTwoDigitNewick.htm">TwoDigitNewick</a> contains all<br/>
 <a href="CppComment.htm">///</a><a href="CppTwoDigitNewick.htm">TwoDigitNewick</a>Derivative that can be<br/>
 <a href="CppComment.htm">///</a><a href="CppConstructor.htm">construct</a>ed from a phylogeny. For example,<br/>
@@ -99,7 +96,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppTwoDigitNewick.htm">TwoDigitNewick</a>Derivative&gt;&amp; GetDerivatives() <b><a href="CppConst.htm">const</a></b>;<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/IsComplete determines <b><a href="CppIf.htm">if</a></b> the <a href="CppTwoDigitNewick.htm">TwoDigitNewick</a> is<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>/initialized completely<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/<a href="CppInitialize.htm">initialize</a>d completely<br/>
 &nbsp;&nbsp;<b><a href="CppBool.htm">bool</a></b> IsComplete() <b><a href="CppConst.htm">const</a></b>;<br/>
 &nbsp;&nbsp;<b><a href="CppBool.htm">bool</a></b> IsProbabilityKnown() <b><a href="CppConst.htm">const</a></b>;<br/>
 &nbsp;&nbsp;<b><a href="CppDouble.htm">double</a></b> GetDenominator() <b><a href="CppConst.htm">const</a></b>;<br/>
@@ -144,7 +141,9 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppVoid.htm">void</a></b> Test();<br/>
 <br/>
 };<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a><br/>
+<br/>
 <a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> TWODIGITNEWICK_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
@@ -177,32 +176,21 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="ToolTestTwoDigitNewick.htm">ToolTestTwoDigitNewick</a>.htm<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppIfdef.htm">#ifdef</a> _WIN32<br/>
-<a href="CppComment.htm">//</a>See http://www.richelbilderbeek.nl/Cpp<a href="CppCompile.htm">Compile</a>ErrorUnableToFindNumericLiteralOperatorOperatorQ.htm<br/>
-<a href="CppPreIf.htm">#if</a> !(__GNUC__ <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 4 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> __GNUC_MINOR__ <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 8)<br/>
-<a href="CppComment.htm">//</a>See http://www.richelbilderbeek.nl/Cpp<a href="CppCompile.htm">Compile</a>ErrorSwprintfHasNotBeenDeclared.htm<br/>
-<a href="CppUndef.htm">#undef</a> __STRICT_ANSI__<br/>
-<a href="CppEndif.htm">#endif</a><br/>
-<a href="CppEndif.htm">#endif</a><br/>
-<br/>
-<a href="CppComment.htm">//</a><a href="CppInclude.htm">#include</a> own <a href="CppHeaderFile.htm">header file</a> as first substantive line of code, from:<br/>
-<a href="CppComment.htm">//</a> * John Lakos. Large-Scale <a href="Cpp.htm">C++</a> Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppTwoDigitNewick.htm">twodigitnewick</a>.h"<br/>
 <br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppIostreamH.htm">iostream</a>&gt;<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppBOOST_FOREACH.htm">foreach</a>.hpp&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/numeric/con<a href="CppVersion.htm">version</a>/cast.hpp&gt;<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppBinaryNewickVector.htm">binarynewickvector</a>.h"<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppNewick.htm">newick</a>.h"<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppTwoDigitNewick.htm">twodigitnewick</a>indexer.h"<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppDouble.htm">double</a></b> <a href="CppTwoDigitNewick.htm">TwoDigitNewick</a>::sm_theta <a href="CppOperatorAssign.htm">=</a> <a href="CppOperatorMinus.htm">-</a>1.0;<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppTwoDigitNewick.htm">TwoDigitNewick</a>::<a href="CppTwoDigitNewick.htm">TwoDigitNewick</a>()<br/>
+<br/>
+<b><a href="CppDouble.htm">double</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppTwoDigitNewick.htm">TwoDigitNewick</a>::sm_theta <a href="CppOperatorAssign.htm">=</a> <a href="CppOperatorMinus.htm">-</a>1.0;<br/>
+<br/>
+<a href="CppRibi.htm\">ribi</a>::<a href="CppTwoDigitNewick.htm">TwoDigitNewick</a>::<a href="CppTwoDigitNewick.htm">TwoDigitNewick</a>()<br/>
 &nbsp;&nbsp;: m_probability(-1.0),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;m_denominator(-1.0),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;m_sum_terms_above_zero(-1),<br/>
@@ -210,8 +198,8 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<b><a href="CppThis.htm">this</a></b>-&gt;Empty());<br/>
 }<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppTwoDigitNewick.htm">TwoDigitNewick</a>::<a href="CppTwoDigitNewick.htm">TwoDigitNewick</a>(<br/>
+<br/>
+<a href="CppRibi.htm\">ribi</a>::<a href="CppTwoDigitNewick.htm">TwoDigitNewick</a>::<a href="CppTwoDigitNewick.htm">TwoDigitNewick</a>(<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppTwoDigitNewick.htm">TwoDigitNewick</a>Derivative&gt;&amp; derivatives,<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> sum_above_zero,<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> sum_above_one)<br/>
@@ -224,8 +212,8 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 {<br/>
 <br/>
 }<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppDouble.htm">double</a></b> <a href="CppTwoDigitNewick.htm">TwoDigitNewick</a>::CalculateDenominator(<br/>
+<br/>
+<b><a href="CppDouble.htm">double</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppTwoDigitNewick.htm">TwoDigitNewick</a>::CalculateDenominator(<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> sum_above_zero,<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> sum_above_one) <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
@@ -246,80 +234,80 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> d;<br/>
 }<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppDouble.htm">double</a></b> <a href="CppTwoDigitNewick.htm">TwoDigitNewick</a>::CalculateProbability(<br/>
+<br/>
+<b><a href="CppDouble.htm">double</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppTwoDigitNewick.htm">TwoDigitNewick</a>::CalculateProbability(<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; <a href="CppNewick.htm">newick</a>_str,<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> theta)<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppNewick.htm">Newick</a>::IsUnary<a href="CppNewick.htm">Newick</a>(<a href="CppNewick.htm">Newick</a>::<a href="CppStringToNewick.htm">StringToNewick</a>(<a href="CppNewick.htm">newick</a>_str))<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorLogicalOr.htm">||</a> <a href="CppNewick.htm">Newick</a>::<a href="CppIsBinaryNewick.htm">IsBinaryNewick</a>(<a href="CppNewick.htm">Newick</a>::<a href="CppStringToNewick.htm">StringToNewick</a>(<a href="CppNewick.htm">newick</a>_str)));<br/>
-&nbsp;&nbsp;<a href="CppTwoDigitNewick.htm">TwoDigitNewick</a>::SetTheta(theta);<br/>
+&nbsp;&nbsp;<a href="CppRibi.htm\">ribi</a>::<a href="CppTwoDigitNewick.htm">TwoDigitNewick</a>::SetTheta(theta);<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBinaryNewickVector.htm">BinaryNewickVector</a> n(<a href="CppNewick.htm">newick</a>_str);<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppTwoDigitNewick.htm">TwoDigitNewick</a>Indexer i(n,theta);<br/>
 <br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> i.GetProbability();<br/>
 }<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppBool.htm">bool</a></b> <a href="CppTwoDigitNewick.htm">TwoDigitNewick</a>::Empty() <b><a href="CppConst.htm">const</a></b><br/>
+<br/>
+<b><a href="CppBool.htm">bool</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppTwoDigitNewick.htm">TwoDigitNewick</a>::Empty() <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> m_derivatives.empty();<br/>
 }<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppDouble.htm">double</a></b> <a href="CppTwoDigitNewick.htm">TwoDigitNewick</a>::GetDenominator() <b><a href="CppConst.htm">const</a></b><br/>
+<br/>
+<b><a href="CppDouble.htm">double</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppTwoDigitNewick.htm">TwoDigitNewick</a>::GetDenominator() <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(IsComplete());<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> m_denominator;<br/>
 }<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppTwoDigitNewick.htm">TwoDigitNewick</a>Derivative&gt;&amp; <a href="CppTwoDigitNewick.htm">TwoDigitNewick</a>::GetDerivatives() <b><a href="CppConst.htm">const</a></b><br/>
+<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppRibi.htm\">ribi</a>::<a href="CppTwoDigitNewick.htm">TwoDigitNewick</a>Derivative&gt;&amp; <a href="CppRibi.htm\">ribi</a>::<a href="CppTwoDigitNewick.htm">TwoDigitNewick</a>::GetDerivatives() <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> m_derivatives;<br/>
 }<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppDouble.htm">double</a></b> <a href="CppTwoDigitNewick.htm">TwoDigitNewick</a>::GetProbability() <b><a href="CppConst.htm">const</a></b><br/>
+<br/>
+<b><a href="CppDouble.htm">double</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppTwoDigitNewick.htm">TwoDigitNewick</a>::GetProbability() <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(IsProbabilityKnown());<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> m_probability;<br/>
 }<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppInt.htm">int</a></b> <a href="CppTwoDigitNewick.htm">TwoDigitNewick</a>::<a href="CppGetSum.htm">GetSum</a>TermsAboveOne() <b><a href="CppConst.htm">const</a></b><br/>
+<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppTwoDigitNewick.htm">TwoDigitNewick</a>::<a href="CppGetSum.htm">GetSum</a>TermsAboveOne() <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(m_sum_terms_above_one <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 0);<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> m_sum_terms_above_one;<br/>
 }<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppInt.htm">int</a></b> <a href="CppTwoDigitNewick.htm">TwoDigitNewick</a>::<a href="CppGetSum.htm">GetSum</a>TermsAboveZero() <b><a href="CppConst.htm">const</a></b><br/>
+<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppTwoDigitNewick.htm">TwoDigitNewick</a>::<a href="CppGetSum.htm">GetSum</a>TermsAboveZero() <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(m_sum_terms_above_zero <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 0);<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> m_sum_terms_above_zero;<br/>
 }<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppTwoDigitNewick.htm">TwoDigitNewick</a>::Get<a href="CppVersion.htm">Version</a>()<br/>
+<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppRibi.htm\">ribi</a>::<a href="CppTwoDigitNewick.htm">TwoDigitNewick</a>::Get<a href="CppVersion.htm">Version</a>()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> "1.1";<br/>
 }<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppTwoDigitNewick.htm">TwoDigitNewick</a>::Get<a href="CppVersion.htm">Version</a>History()<br/>
+<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm\">ribi</a>::<a href="CppTwoDigitNewick.htm">TwoDigitNewick</a>::Get<a href="CppVersion.htm">Version</a>History()<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v;<br/>
 &nbsp;&nbsp;v.push_back("2010-08-22: <a href="CppVersion.htm">version</a> 1.0: initial <a href="CppVersion.htm">version</a>");<br/>
 &nbsp;&nbsp;v.push_back("2011-02-20: <a href="CppVersion.htm">version</a> 1.1: added <a href="CppVersion.htm">version</a> history");<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
 }<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppBool.htm">bool</a></b> <a href="CppTwoDigitNewick.htm">TwoDigitNewick</a>::IsComplete() <b><a href="CppConst.htm">const</a></b><br/>
+<br/>
+<b><a href="CppBool.htm">bool</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppTwoDigitNewick.htm">TwoDigitNewick</a>::IsComplete() <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> (!m_derivatives.empty()<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> m_sum_terms_above_zero <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 0<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> m_sum_terms_above_one&nbsp;&nbsp;<a href="CppOperatorGreaterEqual.htm">&gt;=</a> 0);<br/>
 }<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppBool.htm">bool</a></b> <a href="CppTwoDigitNewick.htm">TwoDigitNewick</a>::IsProbabilityKnown() <b><a href="CppConst.htm">const</a></b><br/>
+<br/>
+<b><a href="CppBool.htm">bool</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppTwoDigitNewick.htm">TwoDigitNewick</a>::IsProbabilityKnown() <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> m_probability <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 0.0;<br/>
 }<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppTwoDigitNewick.htm">TwoDigitNewick</a>::SetProbability(<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> p)<br/>
+<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppTwoDigitNewick.htm">TwoDigitNewick</a>::SetProbability(<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> p)<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppIf.htm">if</a></b> (p &lt; 0.0 <a href="CppOperatorLogicalOr.htm">||</a> p &gt; 1.0)<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>{<br/>
@@ -329,16 +317,16 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(p <a href="CppOperatorLessEqual.htm">&lt;=</a> 1.00001);<br/>
 &nbsp;&nbsp;m_probability <a href="CppOperatorAssign.htm">=</a> p;<br/>
 }<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppTwoDigitNewick.htm">TwoDigitNewick</a>::SetTheta(<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> theta)<br/>
+<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppTwoDigitNewick.htm">TwoDigitNewick</a>::SetTheta(<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> theta)<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(theta <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 0.0);<br/>
 &nbsp;&nbsp;sm_theta <a href="CppOperatorAssign.htm">=</a> theta;<br/>
 }<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppTwoDigitNewick.htm">TwoDigitNewick</a>::Test()<br/>
+<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppTwoDigitNewick.htm">TwoDigitNewick</a>::Test()<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppTwoDigitNewick.htm">TwoDigitNewick</a>::SetTheta(10.0);<br/>
+&nbsp;&nbsp;<a href="CppRibi.htm\">ribi</a>::<a href="CppTwoDigitNewick.htm">TwoDigitNewick</a>::SetTheta(10.0);<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v <a href="CppOperatorAssign.htm">=</a> <a href="CppNewick.htm">Newick</a>::<a href="CppCreateValidNewicks.htm">CreateValidNewicks</a>();<br/>
 &nbsp;&nbsp;<a href="CppBOOST_FOREACH.htm">BOOST_FOREACH</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; s,v)<br/>
 &nbsp;&nbsp;{<br/>
@@ -354,7 +342,6 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;}<br/>
 }<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -388,7 +375,9 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppIfndef.htm">#ifndef</a> TWODIGITDERIVATIVE_H<br/>
 <a href="CppDefine.htm">#define</a> TWODIGITDERIVATIVE_H<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<br/>
+<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a> {<br/>
+<br/>
 <a href="CppComment.htm">///</a><a href="CppTwoDigitNewick.htm">TwoDigitNewick</a>Derivative contains<br/>
 <a href="CppComment.htm">///</a>the index of the derived phylogeny<br/>
 <a href="CppComment.htm">///</a>and the value that must be changed<br/>
@@ -425,7 +414,9 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> m_value_changed;<br/>
 &nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> m_other_value_changed;<br/>
 };<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a><br/>
+<br/>
 <a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> TWODIGITDERIVATIVE_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
@@ -458,20 +449,11 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="ToolTestTwoDigitNewick.htm">ToolTestTwoDigitNewick</a>.htm<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppIfdef.htm">#ifdef</a> _WIN32<br/>
-<a href="CppComment.htm">//</a>See http://www.richelbilderbeek.nl/Cpp<a href="CppCompile.htm">Compile</a>ErrorUnableToFindNumericLiteralOperatorOperatorQ.htm<br/>
-<a href="CppPreIf.htm">#if</a> !(__GNUC__ <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 4 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> __GNUC_MINOR__ <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 8)<br/>
-<a href="CppComment.htm">//</a>See http://www.richelbilderbeek.nl/Cpp<a href="CppCompile.htm">Compile</a>ErrorSwprintfHasNotBeenDeclared.htm<br/>
-<a href="CppUndef.htm">#undef</a> __STRICT_ANSI__<br/>
-<a href="CppEndif.htm">#endif</a><br/>
-<a href="CppEndif.htm">#endif</a><br/>
-<br/>
-<a href="CppComment.htm">//</a><a href="CppInclude.htm">#include</a> own <a href="CppHeaderFile.htm">header file</a> as first substantive line of code, from:<br/>
-<a href="CppComment.htm">//</a> * John Lakos. Large-Scale <a href="Cpp.htm">C++</a> Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppTwoDigitNewick.htm">twodigitnewick</a>derivative.h"<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
-<a href="CppTwoDigitNewick.htm">TwoDigitNewick</a>Derivative::<a href="CppTwoDigitNewick.htm">TwoDigitNewick</a>Derivative(<br/>
+<br/>
+<a href="CppRibi.htm\">ribi</a>::<a href="CppTwoDigitNewick.htm">TwoDigitNewick</a>Derivative::<a href="CppTwoDigitNewick.htm">TwoDigitNewick</a>Derivative(<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> derived_index,<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> value_changed,<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> other_value_changed)<br/>
@@ -517,15 +499,17 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppIfndef.htm">#ifndef</a> TWODIGITNEWICKINDEXER_H<br/>
 <a href="CppDefine.htm">#define</a> TWODIGITNEWICKINDEXER_H<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppTwoDigitNewick.htm">twodigitnewick</a>indextable.h"<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppTwoDigitNewick.htm">twodigitnewick</a>s.h"<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppTwoDigitNewick.htm">twodigitnewick</a>.h"<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppBinaryNewickVector.htm">binarynewickvector</a>.h"<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<br/>
+<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a> {<br/>
+<br/>
 <a href="CppComment.htm">///</a><a href="CppNewick.htm">Newick</a>Index <a href="CppConvert.htm">converts</a> <a href="CppAny.htm">any</a> <a href="CppNewick.htm">newick</a> to (X,Y)<br/>
 <b><a href="CppStruct.htm">struct</a></b> <a href="CppTwoDigitNewick.htm">TwoDigitNewick</a>Indexer<br/>
 {<br/>
@@ -646,11 +630,13 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> TryToCalculateNew<a href="CppNewick.htm">Newick</a>(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> i);<br/>
 <br/>
 };<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<br/>
 <a href="CppComment.htm">///</a>IsSimple determines <b><a href="CppIf.htm">if</a></b> a binary <a href="CppNewick.htm">Newick</a> is simple,<br/>
 <a href="CppComment.htm">//</a>that is in the form '(X,Y)', where both X and Y are values<br/>
 <a href="CppComment.htm">//</a><b><a href="CppBool.htm">bool</a></b> IsSimple(<b><a href="CppConst.htm">const</a></b> <a href="CppBinaryNewickVector.htm">BinaryNewickVector</a>&amp; n);<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<br/>
+} <a href="CppComment.htm">//</a><b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a><br/>
+<br/>
 <a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> TWODIGITNEWICKINDEXER_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
@@ -663,7 +649,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="twodigitnewickindexer.cpp" border = "1"><tr><td><code>
-<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">/*</a><br/>
 <a href="ToolTestTwoDigitNewick.htm">TestTwoDigitNewick</a>, <a href="Tools.htm">tool</a> to test the two-digit-<a href="CppNewick.htm">Newick</a> architecture<br/>
 Copyright (C) 2010 Richel Bilderbeek<br/>
@@ -680,21 +666,10 @@ GNU General Public License for more details.<br/>
 You should have received a copy of the GNU General Public License<br/>
 along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">*/</a><br/>
-<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="ToolTestTwoDigitNewick.htm">ToolTestTwoDigitNewick</a>.htm<br/>
-<br/>
-<a href="CppIfdef.htm">#ifdef</a> _WIN32<br/>
-<a href="CppComment.htm">//</a>See http://www.richelbilderbeek.nl/Cpp<a href="CppCompile.htm">Compile</a>ErrorUnableToFindNumericLiteralOperatorOperatorQ.htm<br/>
-<a href="CppPreIf.htm">#if</a> !(__GNUC__ <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 4 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> __GNUC_MINOR__ <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 8)<br/>
-<a href="CppComment.htm">//</a>See http://www.richelbilderbeek.nl/Cpp<a href="CppCompile.htm">Compile</a>ErrorSwprintfHasNotBeenDeclared.htm<br/>
-<a href="CppUndef.htm">#undef</a> __STRICT_ANSI__<br/>
-<a href="CppEndif.htm">#endif</a><br/>
-<a href="CppEndif.htm">#endif</a><br/>
-<br/>
-<a href="CppComment.htm">//</a><a href="CppInclude.htm">#include</a> own <a href="CppHeaderFile.htm">header file</a> as first substantive line of code, from:<br/>
-<a href="CppComment.htm">//</a> * John Lakos. Large-Scale <a href="Cpp.htm">C++</a> Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppTwoDigitNewick.htm">twodigitnewick</a>indexer.h"<br/>
-<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppAlgorithmH.htm">algorithm</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
@@ -708,7 +683,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppBinaryNewickVector.htm">binarynewickvector</a>.h"<br/>
 <br/>
 <a href="CppComment.htm">//</a><a href="CppTwoDigitNewick.htm">TwoDigitNewick</a>Indexer <a href="CppConstructor.htm">constructor</a> does all the work<br/>
-<a href="CppTwoDigitNewick.htm">TwoDigitNewick</a>Indexer::<a href="CppTwoDigitNewick.htm">TwoDigitNewick</a>Indexer(<br/>
+<a href="CppRibi.htm\">ribi</a>::<a href="CppTwoDigitNewick.htm">TwoDigitNewick</a>Indexer::<a href="CppTwoDigitNewick.htm">TwoDigitNewick</a>Indexer(<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBinaryNewickVector.htm">BinaryNewickVector</a>&amp; n,<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> theta)<br/>
 &nbsp;&nbsp;: m_<a href="CppNewick.htm">newick</a>s(CalculateReserved(n),theta),<br/>
@@ -805,7 +780,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;}<br/>
 }<br/>
 <br/>
-<b><a href="CppInt.htm">int</a></b> <a href="CppTwoDigitNewick.htm">TwoDigitNewick</a>Indexer::CalculateReserved(<b><a href="CppConst.htm">const</a></b> <a href="CppBinaryNewickVector.htm">BinaryNewickVector</a>&amp; n) <b><a href="CppConst.htm">const</a></b><br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppTwoDigitNewick.htm">TwoDigitNewick</a>Indexer::CalculateReserved(<b><a href="CppConst.htm">const</a></b> <a href="CppBinaryNewickVector.htm">BinaryNewickVector</a>&amp; n) <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;&amp; v <a href="CppOperatorAssign.htm">=</a> n.Peek();<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Count the number of elements<br/>
@@ -822,7 +797,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">///</a><a href="CppConstructor.htm">Construct</a><a href="CppNewick.htm">Newick</a> is <b><a href="CppFor.htm">for</a></b> <a href="CppDebug.htm">debugging</a> purposes only,<br/>
 <a href="CppComment.htm">///</a>as it's the idea to work with non-full determined<br/>
 <a href="CppComment.htm">///</a>(that is: two-digit) <a href="CppNewick.htm">Newick</a>s<br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppBinaryNewickVector.htm">BinaryNewickVector</a> <a href="CppTwoDigitNewick.htm">TwoDigitNewick</a>Indexer::<a href="CppConstructor.htm">Construct</a><a href="CppNewick.htm">Newick</a>(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> i) <b><a href="CppConst.htm">const</a></b><br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppBinaryNewickVector.htm">BinaryNewickVector</a> <a href="CppRibi.htm\">ribi</a>::<a href="CppTwoDigitNewick.htm">TwoDigitNewick</a>Indexer::<a href="CppConstructor.htm">Construct</a><a href="CppNewick.htm">Newick</a>(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> i) <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt; v;<br/>
 <br/>
@@ -871,7 +846,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> n;<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppTwoDigitNewick.htm">TwoDigitNewick</a> <a href="CppTwoDigitNewick.htm">TwoDigitNewick</a>Indexer::Create<a href="CppTwoDigitNewick.htm">TwoDigitNewick</a>Derivatives(<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppTwoDigitNewick.htm">TwoDigitNewick</a> <a href="CppRibi.htm\">ribi</a>::<a href="CppTwoDigitNewick.htm">TwoDigitNewick</a>Indexer::Create<a href="CppTwoDigitNewick.htm">TwoDigitNewick</a>Derivatives(<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x, <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> y,<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> sum_above_zero,<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> sum_above_one)<br/>
@@ -901,8 +876,8 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;x,y,sum_above_zero,sum_above_one);<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppTwoDigitNewick.htm">TwoDigitNewick</a><br/>
-&nbsp;&nbsp;<a href="CppTwoDigitNewick.htm">TwoDigitNewick</a>Indexer::Create<a href="CppTwoDigitNewick.htm">TwoDigitNewick</a>DerivativesSimpleSimple(<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppTwoDigitNewick.htm">TwoDigitNewick</a><br/>
+&nbsp;&nbsp;<a href="CppRibi.htm\">ribi</a>::<a href="CppTwoDigitNewick.htm">TwoDigitNewick</a>Indexer::Create<a href="CppTwoDigitNewick.htm">TwoDigitNewick</a>DerivativesSimpleSimple(<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x, <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> y)<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(x <a href="CppOperatorLessEqual.htm">&lt;=</a> y);<br/>
@@ -1005,7 +980,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;}<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppTwoDigitNewick.htm">TwoDigitNewick</a> <a href="CppTwoDigitNewick.htm">TwoDigitNewick</a>Indexer::Create<a href="CppTwoDigitNewick.htm">TwoDigitNewick</a>DerivativesSimpleComplex(<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppTwoDigitNewick.htm">TwoDigitNewick</a> <a href="CppRibi.htm\">ribi</a>::<a href="CppTwoDigitNewick.htm">TwoDigitNewick</a>Indexer::Create<a href="CppTwoDigitNewick.htm">TwoDigitNewick</a>DerivativesSimpleComplex(<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x, <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> y,<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> sum_above_zero,<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> sum_above_one)<br/>
@@ -1067,8 +1042,8 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> n;<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppTwoDigitNewick.htm">TwoDigitNewick</a><br/>
-&nbsp;&nbsp;<a href="CppTwoDigitNewick.htm">TwoDigitNewick</a>Indexer::Create<a href="CppTwoDigitNewick.htm">TwoDigitNewick</a>DerivativesComplexComplex(<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppTwoDigitNewick.htm">TwoDigitNewick</a><br/>
+&nbsp;&nbsp;<a href="CppRibi.htm\">ribi</a>::<a href="CppTwoDigitNewick.htm">TwoDigitNewick</a>Indexer::Create<a href="CppTwoDigitNewick.htm">TwoDigitNewick</a>DerivativesComplexComplex(<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x, <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> y,<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> sum_above_zero,<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> sum_above_one)<br/>
@@ -1142,7 +1117,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">///</a>GetDeltaSumAboveZero calculates the delta in the<br/>
 <a href="CppComment.htm">///</a><a href="CppTwoDigitNewick.htm">TwoDigitNewick</a>::m_sum_above_zero of a <b><a href="CppNew.htm">new</a></b> <a href="CppNewick.htm">Newick</a><br/>
 <a href="CppComment.htm">///</a>when an old_value is changed.<br/>
-<b><a href="CppInt.htm">int</a></b> <a href="CppTwoDigitNewick.htm">TwoDigitNewick</a>Indexer::GetDeltaSumAboveZero(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> old_value) <b><a href="CppConst.htm">const</a></b><br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppTwoDigitNewick.htm">TwoDigitNewick</a>Indexer::GetDeltaSumAboveZero(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> old_value) <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(old_value &gt; 0);<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> (old_value <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 1 ? 0 : <a href="CppOperatorMinus.htm">-</a>1);<br/>
@@ -1151,7 +1126,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">///</a>GetDeltaSumAboveOne calculates the delta in the<br/>
 <a href="CppComment.htm">///</a><a href="CppTwoDigitNewick.htm">TwoDigitNewick</a>::m_sum_above_one of a <b><a href="CppNew.htm">new</a></b> <a href="CppNewick.htm">Newick</a><br/>
 <a href="CppComment.htm">///</a>when an old_value is changed.<br/>
-<b><a href="CppInt.htm">int</a></b> <a href="CppTwoDigitNewick.htm">TwoDigitNewick</a>Indexer::GetDeltaSumAboveOne(<b><a href="CppConst.htm">const</a></b> <a href="CppTwoDigitNewick.htm">TwoDigitNewick</a>Derivative&amp; d) <b><a href="CppConst.htm">const</a></b><br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppTwoDigitNewick.htm">TwoDigitNewick</a>Indexer::GetDeltaSumAboveOne(<b><a href="CppConst.htm">const</a></b> <a href="CppTwoDigitNewick.htm">TwoDigitNewick</a>Derivative&amp; d) <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x <a href="CppOperatorAssign.htm">=</a> d.m_value_changed;<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppClog.htm">std::clog</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "GetDeltaSumAboveOne <b><a href="CppFor.htm">for</a></b> x " <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> x <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n';<br/>
@@ -1164,7 +1139,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <br/>
 <a href="CppComment.htm">///</a>GetProbability <a href="CppReturn.htm">returns</a> the probability of the <a href="CppBinaryNewickVector.htm">BinaryNewickVector</a><br/>
 <a href="CppComment.htm">///</a>given at the <a href="CppConstructor.htm">constructor</a><br/>
-<b><a href="CppDouble.htm">double</a></b> <a href="CppTwoDigitNewick.htm">TwoDigitNewick</a>Indexer::GetProbability() <b><a href="CppConst.htm">const</a></b><br/>
+<b><a href="CppDouble.htm">double</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppTwoDigitNewick.htm">TwoDigitNewick</a>Indexer::GetProbability() <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(m_probability <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 0.0);<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(m_probability <a href="CppOperatorLessEqual.htm">&lt;=</a> 1.00001);<br/>
@@ -1176,13 +1151,13 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <br/>
 <a href="CppComment.htm">///</a>IsSimple determines <b><a href="CppIf.htm">if</a></b> an index is the index of<br/>
 <a href="CppComment.htm">///</a>a simple <a href="CppNewick.htm">Newick</a><br/>
-<b><a href="CppBool.htm">bool</a></b> <a href="CppTwoDigitNewick.htm">TwoDigitNewick</a>Indexer::IsSimple(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> i) <b><a href="CppConst.htm">const</a></b><br/>
+<b><a href="CppBool.htm">bool</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppTwoDigitNewick.htm">TwoDigitNewick</a>Indexer::IsSimple(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> i) <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> i &lt; m_reserved;<br/>
 }<br/>
 <br/>
 <a href="CppComment.htm">///</a>Allow <b><a href="CppFor.htm">for</a></b> recursion<br/>
-<b><a href="CppInt.htm">int</a></b> <a href="CppTwoDigitNewick.htm">TwoDigitNewick</a>Indexer::Summarize<a href="CppNewick.htm">Newick</a>(<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppTwoDigitNewick.htm">TwoDigitNewick</a>Indexer::Summarize<a href="CppNewick.htm">Newick</a>(<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x, <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> y,<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> sum_above_zero,<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> sum_above_one)<br/>
@@ -1240,7 +1215,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <br/>
 <a href="CppComment.htm">///</a>TryToCalculateNew<a href="CppNewick.htm">Newick</a> tries to calculate the probability<br/>
 <a href="CppComment.htm">///</a>of <a href="CppNewick.htm">Newick</a> with index i<br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppTwoDigitNewick.htm">TwoDigitNewick</a>Indexer::TryToCalculateNew<a href="CppNewick.htm">Newick</a>(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> i)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppTwoDigitNewick.htm">TwoDigitNewick</a>Indexer::TryToCalculateNew<a href="CppNewick.htm">Newick</a>(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> i)<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(i <a href="CppOperatorGreaterEqual.htm">&gt;=</a> m_calculated_to_index);<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(i&nbsp;&nbsp;&lt; m_<a href="CppNewick.htm">newick</a>s.Size());<br/>
@@ -1290,7 +1265,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <br/>
 <a href="CppComment.htm">///</a>TryToCalculateNew<a href="CppNewick.htm">Newick</a>s tries to calculate <b><a href="CppNew.htm">new</a></b> <a href="CppNewick.htm">Newick</a> probabilities<br/>
 <a href="CppComment.htm">///</a>\warning: m_calculated_to_index is not increased<br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppTwoDigitNewick.htm">TwoDigitNewick</a>Indexer::TryToCalculateNew<a href="CppNewick.htm">Newick</a>s()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppTwoDigitNewick.htm">TwoDigitNewick</a>Indexer::TryToCalculateNew<a href="CppNewick.htm">Newick</a>s()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> sz <a href="CppOperatorAssign.htm">=</a> m_<a href="CppNewick.htm">newick</a>s.Size();<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>m_calculated_to_index <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> sz denotes that all <a href="CppNewick.htm">Newick</a>s'<br/>
@@ -1302,7 +1277,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;}<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppTwoDigitNewick.htm">TwoDigitNewick</a>Indexer::UpdateCalculatedFromIndex()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppTwoDigitNewick.htm">TwoDigitNewick</a>Indexer::UpdateCalculatedFromIndex()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> sz <a href="CppOperatorAssign.htm">=</a> m_<a href="CppNewick.htm">newick</a>s.Size();<br/>
 &nbsp;&nbsp;<b><a href="CppWhile.htm">while</a></b> (m_calculated_to_index &lt; sz)<br/>
@@ -1356,9 +1331,11 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppIfndef.htm">#ifndef</a> TWODIGITNEWICKINDEXERTABLE_H<br/>
 <a href="CppDefine.htm">#define</a> TWODIGITNEWICKINDEXERTABLE_H<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<br/>
+<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a> {<br/>
+<br/>
 <a href="CppComment.htm">///</a><a href="CppTwoDigitNewick.htm">TwoDigitNewick</a>IndexTable manages (X,Y) <a href="CppOperatorMinus.htm">-</a>&gt; index<br/>
 <b><a href="CppStruct.htm">struct</a></b> <a href="CppTwoDigitNewick.htm">TwoDigitNewick</a>IndexTable<br/>
 {<br/>
@@ -1381,7 +1358,9 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/so that m_index_table[x][y] equals that value<br/>
 &nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt; &gt; m_v;<br/>
 };<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a><br/>
+<br/>
 <a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> TWODIGITNEWICKINDEXERTABLE_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
@@ -1414,37 +1393,29 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="ToolTestTwoDigitNewick.htm">ToolTestTwoDigitNewick</a>.htm<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppIfdef.htm">#ifdef</a> _WIN32<br/>
-<a href="CppComment.htm">//</a>See http://www.richelbilderbeek.nl/Cpp<a href="CppCompile.htm">Compile</a>ErrorUnableToFindNumericLiteralOperatorOperatorQ.htm<br/>
-<a href="CppPreIf.htm">#if</a> !(__GNUC__ <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 4 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> __GNUC_MINOR__ <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 8)<br/>
-<a href="CppComment.htm">//</a>See http://www.richelbilderbeek.nl/Cpp<a href="CppCompile.htm">Compile</a>ErrorSwprintfHasNotBeenDeclared.htm<br/>
-<a href="CppUndef.htm">#undef</a> __STRICT_ANSI__<br/>
-<a href="CppEndif.htm">#endif</a><br/>
-<a href="CppEndif.htm">#endif</a><br/>
 <br/>
-<a href="CppComment.htm">//</a><a href="CppInclude.htm">#include</a> own <a href="CppHeaderFile.htm">header file</a> as first substantive line of code, from:<br/>
-<a href="CppComment.htm">//</a> * John Lakos. Large-Scale <a href="Cpp.htm">C++</a> Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110<br/>
+<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppTwoDigitNewick.htm">twodigitnewick</a>indextable.h"<br/>
 <br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppAlgorithmH.htm">algorithm</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppStdexceptH.htm">stdexcept</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppIostreamH.htm">iostream</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppSstreamH.htm">sstream</a>&gt;<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppBOOST_FOREACH.htm">foreach</a>.hpp&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/numeric/con<a href="CppVersion.htm">version</a>/cast.hpp&gt;<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<br/>
 <a href="CppComment.htm">///</a>CanGetData <a href="CppReturn.htm">returns</a> is GetData can be called with success<br/>
-<b><a href="CppBool.htm">bool</a></b> <a href="CppTwoDigitNewick.htm">TwoDigitNewick</a>IndexTable::CanGetIndex(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x, <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> y) <b><a href="CppConst.htm">const</a></b><br/>
+<b><a href="CppBool.htm">bool</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppTwoDigitNewick.htm">TwoDigitNewick</a>IndexTable::CanGetIndex(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x, <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> y) <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> x &lt; <a href="CppNumeric_cast.htm">boost::numeric_cast</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(m_v.size())<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> y &lt; <a href="CppNumeric_cast.htm">boost::numeric_cast</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(m_v[x].size());<br/>
 }<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<br/>
 <a href="CppComment.htm">///</a>Find <a href="CppReturn.htm">returns</a> the x-y-coordinats of the <a href="CppNewick.htm">Newick</a> with index i<br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppPair.htm">std::pair</a>&lt;<b><a href="CppInt.htm">int</a></b>,<b><a href="CppInt.htm">int</a></b>&gt; <a href="CppTwoDigitNewick.htm">TwoDigitNewick</a>IndexTable::Find(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> i) <b><a href="CppConst.htm">const</a></b><br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppPair.htm">std::pair</a>&lt;<b><a href="CppInt.htm">int</a></b>,<b><a href="CppInt.htm">int</a></b>&gt; <a href="CppRibi.htm\">ribi</a>::<a href="CppTwoDigitNewick.htm">TwoDigitNewick</a>IndexTable::Find(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> i) <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> maxx <a href="CppOperatorAssign.htm">=</a> <a href="CppNumeric_cast.htm">boost::numeric_cast</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(m_v.size());<br/>
 &nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> x=0; x<a href="CppOperatorNotEqual.htm">!=</a>maxx; <a href="CppOperatorPlus.htm">+</a>+x)<br/>
@@ -1455,22 +1426,22 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (m_v[x][y]<a href="CppOperatorEqual.htm">==</a>i) <b><a href="CppReturn.htm">return</a></b> <a href="CppMake_pair.htm">std::make_pair</a>(x,y);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<a href="CppCerr.htm">std::cerr</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "Index " <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> i <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> " not found in <a href="CppTwoDigitNewick.htm">TwoDigitNewick</a>IndexTable::Find\n";<br/>
+&nbsp;&nbsp;<a href="CppCerr.htm">std::cerr</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "Index " <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> i <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> " not found in <a href="CppRibi.htm\">ribi</a>::<a href="CppTwoDigitNewick.htm">TwoDigitNewick</a>IndexTable::Find\n";<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!"Should not get here");<br/>
 &nbsp;&nbsp;<a href="CppStringstream.htm">std::stringstream</a> s;<br/>
-&nbsp;&nbsp;s <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "Index " <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> i <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> " not found in <a href="CppTwoDigitNewick.htm">TwoDigitNewick</a>IndexTable::Find";<br/>
+&nbsp;&nbsp;s <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "Index " <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> i <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> " not found in <a href="CppRibi.htm\">ribi</a>::<a href="CppTwoDigitNewick.htm">TwoDigitNewick</a>IndexTable::Find";<br/>
 &nbsp;&nbsp;<b><a href="CppThrow.htm">throw</a></b> <a href="CppLogic_error.htm">std::logic_error</a>(s.str());<br/>
 }<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<br/>
 <a href="CppComment.htm">///</a>GetIndex <a href="CppReturn.htm">returns</a> m_index_table[x][y]<br/>
-<b><a href="CppInt.htm">int</a></b> <a href="CppTwoDigitNewick.htm">TwoDigitNewick</a>IndexTable::GetIndex(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x, <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> y) <b><a href="CppConst.htm">const</a></b><br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppTwoDigitNewick.htm">TwoDigitNewick</a>IndexTable::GetIndex(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x, <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> y) <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(CanGetIndex(x,y));<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> m_v[x][y];<br/>
 }<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<br/>
 <a href="CppComment.htm">///</a>GetNumAllocated calculates the number of indices allocated<br/>
-<b><a href="CppInt.htm">int</a></b> <a href="CppTwoDigitNewick.htm">TwoDigitNewick</a>IndexTable::GetNumAllocated() <b><a href="CppConst.htm">const</a></b><br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppTwoDigitNewick.htm">TwoDigitNewick</a>IndexTable::GetNumAllocated() <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> n_allocated <a href="CppOperatorAssign.htm">=</a> 0;<br/>
 &nbsp;&nbsp;<a href="CppBOOST_FOREACH.htm">BOOST_FOREACH</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;&amp; v,m_v)<br/>
@@ -1479,9 +1450,9 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> n_allocated;<br/>
 }<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<br/>
 <a href="CppComment.htm">///</a>GetNumUsed calculates the number of indices used<br/>
-<b><a href="CppInt.htm">int</a></b> <a href="CppTwoDigitNewick.htm">TwoDigitNewick</a>IndexTable::GetNumUsed() <b><a href="CppConst.htm">const</a></b><br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppTwoDigitNewick.htm">TwoDigitNewick</a>IndexTable::GetNumUsed() <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> n_non_zero <a href="CppOperatorAssign.htm">=</a> 0;<br/>
 &nbsp;&nbsp;<a href="CppBOOST_FOREACH.htm">BOOST_FOREACH</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;&amp; v,m_v)<br/>
@@ -1491,10 +1462,10 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> n_non_zero;<br/>
 }<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<br/>
 <a href="CppComment.htm">///</a>SetIndex sets m_index_table[x][y] <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> z<br/>
 <a href="CppComment.htm">///</a>and resized the m_index_table is necessary<br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppTwoDigitNewick.htm">TwoDigitNewick</a>IndexTable::SetIndex(<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppTwoDigitNewick.htm">TwoDigitNewick</a>IndexTable::SetIndex(<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x,<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> y,<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> z)<br/>
@@ -1513,7 +1484,6 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;m_v[x][y] <a href="CppOperatorAssign.htm">=</a> z;<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(m_v[x][y] &gt; 0);<br/>
 }<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -1547,11 +1517,13 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppIfndef.htm">#ifndef</a> TWODIGITNEWICKS_H<br/>
 <a href="CppDefine.htm">#define</a> TWODIGITNEWICKS_H<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppTwoDigitNewick.htm">twodigitnewick</a>.h"<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<br/>
+<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a> {<br/>
+<br/>
 <a href="CppComment.htm">///</a><a href="CppTwoDigitNewick.htm">TwoDigitNewick</a>s manages TwoDigit<a href="CppTwoDigitNewick.htm">TwoDigitNewick</a>s.<br/>
 <a href="CppComment.htm">///</a>TwoDigit<a href="CppTwoDigitNewick.htm">TwoDigitNewick</a>s manage F'(index) <a href="CppOperatorMinus.htm">-</a>&gt; { indices }<br/>
 <b><a href="CppStruct.htm">struct</a></b> <a href="CppTwoDigitNewick.htm">TwoDigitNewick</a>s<br/>
@@ -1583,7 +1555,9 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/its derived indexed <a href="CppTwoDigitNewick.htm">TwoDigitNewick</a>s<br/>
 &nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppTwoDigitNewick.htm">TwoDigitNewick</a>&gt; m_v;<br/>
 };<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a><br/>
+<br/>
 <a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> TWODIGITNEWICKS_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
@@ -1616,28 +1590,17 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="ToolTestTwoDigitNewick.htm">ToolTestTwoDigitNewick</a>.htm<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppIfdef.htm">#ifdef</a> _WIN32<br/>
-<a href="CppComment.htm">//</a>See http://www.richelbilderbeek.nl/Cpp<a href="CppCompile.htm">Compile</a>ErrorUnableToFindNumericLiteralOperatorOperatorQ.htm<br/>
-<a href="CppPreIf.htm">#if</a> !(__GNUC__ <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 4 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> __GNUC_MINOR__ <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 8)<br/>
-<a href="CppComment.htm">//</a>See http://www.richelbilderbeek.nl/Cpp<a href="CppCompile.htm">Compile</a>ErrorSwprintfHasNotBeenDeclared.htm<br/>
-<a href="CppUndef.htm">#undef</a> __STRICT_ANSI__<br/>
-<a href="CppEndif.htm">#endif</a><br/>
-<a href="CppEndif.htm">#endif</a><br/>
-<br/>
-<a href="CppComment.htm">//</a><a href="CppInclude.htm">#include</a> own <a href="CppHeaderFile.htm">header file</a> as first substantive line of code, from:<br/>
-<a href="CppComment.htm">//</a> * John Lakos. Large-Scale <a href="Cpp.htm">C++</a> Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppTwoDigitNewick.htm">twodigitnewick</a>s.h"<br/>
 <br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppBOOST_FOREACH.htm">foreach</a>.hpp&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/numeric/con<a href="CppVersion.htm">version</a>/cast.hpp&gt;<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppNewick.htm">newick</a>.h"<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppBinaryNewickVector.htm">binarynewickvector</a>.h"<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppTwoDigitNewick.htm">TwoDigitNewick</a>s::<a href="CppTwoDigitNewick.htm">TwoDigitNewick</a>s(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> n_reserved, <b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> theta)<br/>
+<br/>
+<a href="CppRibi.htm\">ribi</a>::<a href="CppTwoDigitNewick.htm">TwoDigitNewick</a>s::<a href="CppTwoDigitNewick.htm">TwoDigitNewick</a>s(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> n_reserved, <b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> theta)<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Create derivatives of simplest and reserved <a href="CppTwoDigitNewick.htm">TwoDigitNewick</a>s<br/>
 <br/>
@@ -1675,17 +1638,17 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp; <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "All <a href="CppNewick.htm">newick</a> with index <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 2 must be complete");<br/>
 &nbsp;&nbsp;}<br/>
 }<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<br/>
 <a href="CppComment.htm">///</a>Empty <a href="CppReturn.htm">returns</a> <b><a href="CppIf.htm">if</a></b> an index is empty<br/>
-<b><a href="CppBool.htm">bool</a></b> <a href="CppTwoDigitNewick.htm">TwoDigitNewick</a>s::Empty(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> i) <b><a href="CppConst.htm">const</a></b><br/>
+<b><a href="CppBool.htm">bool</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppTwoDigitNewick.htm">TwoDigitNewick</a>s::Empty(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> i) <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(i <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 0);<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(i &lt; <b><a href="CppThis.htm">this</a></b>-&gt;Size());<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> m_v[i].Empty();<br/>
 }<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppTwoDigitNewick.htm">TwoDigitNewick</a>&amp; <a href="CppTwoDigitNewick.htm">TwoDigitNewick</a>s::Get<a href="CppNewick.htm">Newick</a>(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> i) <b><a href="CppConst.htm">const</a></b><br/>
+<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppTwoDigitNewick.htm">TwoDigitNewick</a>&amp; <a href="CppRibi.htm\">ribi</a>::<a href="CppTwoDigitNewick.htm">TwoDigitNewick</a>s::Get<a href="CppNewick.htm">Newick</a>(<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> i) <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Check <b><a href="CppIf.htm">if</a></b> i is in range<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(i<a href="CppOperatorGreaterEqual.htm">&gt;=</a>0);<br/>
@@ -1701,8 +1664,8 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> m_v[i];<br/>
 }<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppTwoDigitNewick.htm">TwoDigitNewick</a>s::Set<a href="CppNewick.htm">Newick</a>(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> i, <b><a href="CppConst.htm">const</a></b> <a href="CppTwoDigitNewick.htm">TwoDigitNewick</a>&amp; v)<br/>
+<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppTwoDigitNewick.htm">TwoDigitNewick</a>s::Set<a href="CppNewick.htm">Newick</a>(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> i, <b><a href="CppConst.htm">const</a></b> <a href="CppTwoDigitNewick.htm">TwoDigitNewick</a>&amp; v)<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppClog.htm">std::clog</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> __LINE__ <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> " <a href="CppOperatorMinus.htm">-</a> " <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> i <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n';<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Allocate storage<br/>
@@ -1728,8 +1691,8 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <br/>
 &nbsp;&nbsp;m_v[i] <a href="CppOperatorAssign.htm">=</a> v;<br/>
 }<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppTwoDigitNewick.htm">TwoDigitNewick</a>s::Set<a href="CppNewick.htm">Newick</a>Probability(<br/>
+<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppTwoDigitNewick.htm">TwoDigitNewick</a>s::Set<a href="CppNewick.htm">Newick</a>Probability(<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> i,<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> p)<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(i <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 0);<br/>
@@ -1738,12 +1701,11 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(p <a href="CppOperatorLessEqual.htm">&lt;=</a> 1.0);<br/>
 &nbsp;&nbsp;m_v[i].SetProbability(p);<br/>
 }<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppInt.htm">int</a></b> <a href="CppTwoDigitNewick.htm">TwoDigitNewick</a>s::Size() <b><a href="CppConst.htm">const</a></b><br/>
+<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppTwoDigitNewick.htm">TwoDigitNewick</a>s::Size() <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <a href="CppNumeric_cast.htm">boost::numeric_cast</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(m_v.size());<br/>
 }<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>

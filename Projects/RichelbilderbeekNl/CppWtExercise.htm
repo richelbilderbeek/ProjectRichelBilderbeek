@@ -71,6 +71,8 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWContainerWidget.htm">WContainerWidget</a>&gt;<br/>
 <br/>
+<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a> {<br/>
+<br/>
 <b><a href="CppStruct.htm">struct</a></b> <a href="CppExercise.htm">Exercise</a>;<br/>
 <br/>
 <a href="CppComment.htm">///</a>A <a href="CppWtExercise.htm">WtExercise</a> is the <a href="CppWt.htm">Wt</a> dialog of <a href="CppExercise.htm">Exercise</a><br/>
@@ -134,6 +136,8 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> OnViewedAnswer();<br/>
 };<br/>
 <br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a><br/>
+<br/>
 <a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> WTEXERCISE_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
@@ -184,14 +188,14 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppWtQuestionDialog.htm">wtquestiondialog</a>.h"<br/>
 <br/>
 <br/>
-<a href="CppWtExercise.htm">WtExercise</a>::<a href="CppUi.htm">Ui</a>::Ui()<br/>
+<a href="CppRibi.htm\">ribi</a>::<a href="CppWtExercise.htm">WtExercise</a>::<a href="CppUi.htm">Ui</a>::Ui()<br/>
 &nbsp;&nbsp;: m_box(<b><a href="CppNew.htm">new</a></b> <a href="CppWGroupBox.htm">Wt::WGroupBox</a>),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;m_label_score(<b><a href="CppNew.htm">new</a></b> <a href="CppWLabel.htm">Wt::WLabel</a>)<br/>
 {<br/>
 <br/>
 }<br/>
 <br/>
-<a href="CppWtExercise.htm">WtExercise</a>::<a href="CppWtExercise.htm">WtExercise</a>()<br/>
+<a href="CppRibi.htm\">ribi</a>::<a href="CppWtExercise.htm">WtExercise</a>::<a href="CppWtExercise.htm">WtExercise</a>()<br/>
 &nbsp;&nbsp;: m_n_answered(0),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;m_n_correct(0),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;m_waiting_<a href="CppTime.htm">time</a>_correct(1000),<br/>
@@ -206,14 +210,14 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;addWidget(<b><a href="CppNew.htm">new</a></b> <a href="CppWBreak.htm">Wt::WBreak</a>);<br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;addWidget(ui.m_label_score);<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("<a href="CppWtExercise.htm">WtExercise</a>::<a href="CppWtExercise.htm">WtExercise</a> #1");<br/>
+&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("<a href="CppRibi.htm\">ribi</a>::<a href="CppWtExercise.htm">WtExercise</a>::<a href="CppWtExercise.htm">WtExercise</a> #1");<br/>
 <br/>
 &nbsp;&nbsp;ui.m_label_score-&gt;setText("Score: 0/0");<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("<a href="CppWtExercise.htm">WtExercise</a>::<a href="CppWtExercise.htm">WtExercise</a> end");<br/>
+&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("<a href="CppRibi.htm\">ribi</a>::<a href="CppWtExercise.htm">WtExercise</a>::<a href="CppWtExercise.htm">WtExercise</a> end");<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppWtExercise.htm">WtExercise</a>::DisplayCurrent<a href="CppQuestion.htm">Question</a>()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppWtExercise.htm">WtExercise</a>::DisplayCurrent<a href="CppQuestion.htm">Question</a>()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> s <a href="CppOperatorAssign.htm">=</a> m_exercise-&gt;GetCurrent<a href="CppQuestion.htm">Question</a>();<br/>
 <br/>
@@ -222,14 +226,14 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQuestion.htm">question</a> <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppWtOpenQuestionDialog.htm">WtOpenQuestionDialog</a>(s);<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<b><a href="CppCatch.htm">catch</a></b>(<a href="CppException.htm">std::exception</a>&amp;) {}<br/>
+&nbsp;&nbsp;<b><a href="CppCatch.htm">catch</a></b>(<a href="CppStdException.htm">std::exception</a>&amp;) {}<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (!<a href="CppQuestion.htm">question</a>)<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppTry.htm">try</a></b><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQuestion.htm">question</a> <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppWtMultipleChoiceQuestionDialog.htm">WtMultipleChoiceQuestionDialog</a>(s);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCatch.htm">catch</a></b>(<a href="CppException.htm">std::exception</a>&amp;) {}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCatch.htm">catch</a></b>(<a href="CppStdException.htm">std::exception</a>&amp;) {}<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppQuestion.htm">question</a> <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "<a href="CppExercise.htm">Exercise</a> only contains valid <a href="CppQuestion.htm">question</a>");<br/>
 <br/>
@@ -240,31 +244,31 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;ui.m_box-&gt;addWidget(<b><a href="CppNew.htm">new</a></b> <a href="CppWBreak.htm">Wt::WBreak</a>);<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppQuestion.htm">question</a>-&gt;m_signal_submitted.connect(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBind.htm">boost::bind</a>(&amp;<a href="CppWtExercise.htm">WtExercise</a>::OnSubmittedAnswer,<b><a href="CppThis.htm">this</a></b>,<a href="CppBoostLambda.htm">boost::lambda</a>::_1));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBind.htm">boost::bind</a>(&amp;<a href="CppRibi.htm\">ribi</a>::<a href="CppWtExercise.htm">WtExercise</a>::OnSubmittedAnswer,<b><a href="CppThis.htm">this</a></b>,<a href="CppBoostLambda.htm">boost::lambda</a>::_1));<br/>
 &nbsp;&nbsp;ui.m_box-&gt;addWidget(<a href="CppQuestion.htm">question</a>);<br/>
 &nbsp;&nbsp;ui.m_box-&gt;addWidget(<b><a href="CppNew.htm">new</a></b> <a href="CppWBreak.htm">Wt::WBreak</a>);<br/>
 <br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppExercise.htm">Exercise</a> * <a href="CppWtExercise.htm">WtExercise</a>::Get<a href="CppExercise.htm">Exercise</a>() <b><a href="CppConst.htm">const</a></b><br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppExercise.htm">Exercise</a> * <a href="CppRibi.htm\">ribi</a>::<a href="CppWtExercise.htm">WtExercise</a>::Get<a href="CppExercise.htm">Exercise</a>() <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(m_exercise);<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> m_exercise.get();<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppWtExercise.htm">WtExercise</a>::Get<a href="CppVersion.htm">Version</a>()<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppRibi.htm\">ribi</a>::<a href="CppWtExercise.htm">WtExercise</a>::Get<a href="CppVersion.htm">Version</a>()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> "1.0";<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppWtExercise.htm">WtExercise</a>::Get<a href="CppVersion.htm">Version</a>History()<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm\">ribi</a>::<a href="CppWtExercise.htm">WtExercise</a>::Get<a href="CppVersion.htm">Version</a>History()<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v;<br/>
 &nbsp;&nbsp;v.push_back("2011-09-26: <a href="CppVersion.htm">Version</a> 1.0: initial <a href="CppVersion.htm">version</a>");<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppWtExercise.htm">WtExercise</a>::OnSubmittedAnswer(<b><a href="CppConst.htm">const</a></b> <b><a href="CppBool.htm">bool</a></b> answered_correct)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppWtExercise.htm">WtExercise</a>::OnSubmittedAnswer(<b><a href="CppConst.htm">const</a></b> <b><a href="CppBool.htm">bool</a></b> answered_correct)<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (answered_correct) <a href="CppOperatorPlus.htm">+</a>+m_n_correct;<br/>
 &nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a>+m_n_answered;<br/>
@@ -272,28 +276,28 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppWString.htm">Wt::WString</a>("Score: {1}/{2}").arg(m_n_correct).arg(m_n_answered));<br/>
 &nbsp;&nbsp;<a href="CppWTimer.htm">Wt::WTimer</a>::singleShot(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;answered_correct ? m_waiting_<a href="CppTime.htm">time</a>_correct : m_waiting_<a href="CppTime.htm">time</a>_incorrect,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBind.htm">boost::bind</a>(&amp;<a href="CppWtExercise.htm">WtExercise</a>::OnViewedAnswer,<b><a href="CppThis.htm">this</a></b>));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBind.htm">boost::bind</a>(&amp;<a href="CppRibi.htm\">ribi</a>::<a href="CppWtExercise.htm">WtExercise</a>::OnViewedAnswer,<b><a href="CppThis.htm">this</a></b>));<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppWtExercise.htm">WtExercise</a>::OnViewedAnswer()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppWtExercise.htm">WtExercise</a>::OnViewedAnswer()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;m_exercise-&gt;Next();<br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;DisplayCurrent<a href="CppQuestion.htm">Question</a>();<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppWtExercise.htm">WtExercise</a>::Set<a href="CppQuestion.htm">Question</a>s(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; filename)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppWtExercise.htm">WtExercise</a>::Set<a href="CppQuestion.htm">Question</a>s(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; filename)<br/>
 {<br/>
 &nbsp;&nbsp;m_exercise.reset(<b><a href="CppNew.htm">new</a></b> <a href="CppExercise.htm">Exercise</a>(filename));<br/>
 &nbsp;&nbsp;DisplayCurrent<a href="CppQuestion.htm">Question</a>();<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppWtExercise.htm">WtExercise</a>::SetWaiting<a href="CppTime.htm">Time</a>Correct(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> msecs)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppWtExercise.htm">WtExercise</a>::SetWaiting<a href="CppTime.htm">Time</a>Correct(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> msecs)<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(msecs <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 0);<br/>
 &nbsp;&nbsp;m_waiting_<a href="CppTime.htm">time</a>_correct <a href="CppOperatorAssign.htm">=</a> msecs;<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppWtExercise.htm">WtExercise</a>::SetWaiting<a href="CppTime.htm">Time</a>Incorrect(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> msecs)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppWtExercise.htm">WtExercise</a>::SetWaiting<a href="CppTime.htm">Time</a>Incorrect(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> msecs)<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(msecs <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 0);<br/>
 &nbsp;&nbsp;m_waiting_<a href="CppTime.htm">time</a>_incorrect <a href="CppOperatorAssign.htm">=</a> msecs;<br/>

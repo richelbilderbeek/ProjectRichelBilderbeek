@@ -20,10 +20,10 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #include <iomanip>
 #include <iostream>
-//---------------------------------------------------------------------------
+
 #include "newick.h"
 #include "twodigitnewick.h"
-//---------------------------------------------------------------------------
+
 int main(int argc, char* argv[])
 {
   if (argc != 3)
@@ -40,7 +40,7 @@ int main(int argc, char* argv[])
     return 1;
   }
   const std::string newick = argv[1];
-  if (!Newick::IsNewick(newick))
+  if (!ribi::Newick::IsNewick(newick))
   {
     std::cout
       << "Invalid Newick format. Use for example:\n"
@@ -60,7 +60,6 @@ int main(int argc, char* argv[])
 
   }
   const double theta = boost::lexical_cast<double>(argv[2]);
-  const double p = TwoDigitNewick::CalculateProbability(newick,theta);
+  const double p = ribi::TwoDigitNewick::CalculateProbability(newick,theta);
   std::cout << std::setprecision(99) << p << '\n';
 }
-//---------------------------------------------------------------------------

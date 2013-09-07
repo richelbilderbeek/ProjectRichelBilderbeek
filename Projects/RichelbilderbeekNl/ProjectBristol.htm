@@ -3121,14 +3121,14 @@ EnumN stringToEnumN(<b><a href="CppConst.htm">const</a></b> <a href="CppString.h
 	<b><a href="CppEnum.htm">enum</a></b>ReproductionModeAmount<br/>
 };<br/>
 <br/>
-<b><a href="CppEnum.htm">enum</a></b> EnumInitializationMode<br/>
+<b><a href="CppEnum.htm">enum</a></b> Enum<a href="CppInitialize.htm">Initialization</a>Mode<br/>
 {<br/>
-	<b><a href="CppEnum.htm">enum</a></b>InitializationModeSame,<br/>
-	<b><a href="CppEnum.htm">enum</a></b>InitializationModeUniform<br/>
+	<b><a href="CppEnum.htm">enum</a></b><a href="CppInitialize.htm">Initialization</a>ModeSame,<br/>
+	<b><a href="CppEnum.htm">enum</a></b><a href="CppInitialize.htm">Initialization</a>ModeUniform<br/>
 };<br/>
 <br/>
-<a href="CppString.htm">std::string</a> <b><a href="CppEnum.htm">enum</a></b>InitializationModetoString(<b><a href="CppConst.htm">const</a></b> EnumInitializationMode&amp;);<br/>
-EnumInitializationMode stringToEnumInitializationMode(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp;);<br/>
+<a href="CppString.htm">std::string</a> <b><a href="CppEnum.htm">enum</a></b><a href="CppInitialize.htm">Initialization</a>ModetoString(<b><a href="CppConst.htm">const</a></b> Enum<a href="CppInitialize.htm">Initialization</a>Mode&amp;);<br/>
+Enum<a href="CppInitialize.htm">Initialization</a>Mode stringToEnum<a href="CppInitialize.htm">Initialization</a>Mode(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp;);<br/>
 <br/>
 <br/>
 <br/>
@@ -3570,24 +3570,24 @@ EnumReproductionMode userInputToEnumReproductionMode(<b><a href="CppConst.htm">c
 	exit(1);<br/>
 }<br/>
 <a href="CppComment.htm">//</a>----------------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">//</a>&nbsp;&nbsp;EnumInitializationMode<br/>
+<a href="CppComment.htm">//</a>&nbsp;&nbsp;Enum<a href="CppInitialize.htm">Initialization</a>Mode<br/>
 <a href="CppComment.htm">//</a>----------------------------------------------------------------------------------<br/>
-<a href="CppString.htm">std::string</a> <b><a href="CppEnum.htm">enum</a></b>InitializationModetoString(<b><a href="CppConst.htm">const</a></b> EnumInitializationMode&amp; <b><a href="CppEnum.htm">enum</a></b>InitializationMode)<br/>
+<a href="CppString.htm">std::string</a> <b><a href="CppEnum.htm">enum</a></b><a href="CppInitialize.htm">Initialization</a>ModetoString(<b><a href="CppConst.htm">const</a></b> Enum<a href="CppInitialize.htm">Initialization</a>Mode&amp; <b><a href="CppEnum.htm">enum</a></b><a href="CppInitialize.htm">Initialization</a>Mode)<br/>
 {<br/>
-	<b><a href="CppSwitch.htm">switch</a></b>(<b><a href="CppEnum.htm">enum</a></b>InitializationMode)<br/>
+	<b><a href="CppSwitch.htm">switch</a></b>(<b><a href="CppEnum.htm">enum</a></b><a href="CppInitialize.htm">Initialization</a>Mode)<br/>
 	{<br/>
-		<b><a href="CppCase.htm">case</a></b> <b><a href="CppEnum.htm">enum</a></b>InitializationModeSame: <b><a href="CppReturn.htm">return</a></b> "<b><a href="CppEnum.htm">enum</a></b>InitializationModeSame";<br/>
-		<b><a href="CppCase.htm">case</a></b> <b><a href="CppEnum.htm">enum</a></b>InitializationModeUniform: <b><a href="CppReturn.htm">return</a></b> "<b><a href="CppEnum.htm">enum</a></b>InitializationModeUniform";<br/>
+		<b><a href="CppCase.htm">case</a></b> <b><a href="CppEnum.htm">enum</a></b><a href="CppInitialize.htm">Initialization</a>ModeSame: <b><a href="CppReturn.htm">return</a></b> "<b><a href="CppEnum.htm">enum</a></b><a href="CppInitialize.htm">Initialization</a>ModeSame";<br/>
+		<b><a href="CppCase.htm">case</a></b> <b><a href="CppEnum.htm">enum</a></b><a href="CppInitialize.htm">Initialization</a>ModeUniform: <b><a href="CppReturn.htm">return</a></b> "<b><a href="CppEnum.htm">enum</a></b><a href="CppInitialize.htm">Initialization</a>ModeUniform";<br/>
 	}<br/>
-	<a href="CppAssert.htm">assert</a>(!"ERROR in '<a href="CppString.htm">std::string</a> <b><a href="CppEnum.htm">enum</a></b>InitializationModeToString(<b><a href="CppConst.htm">const</a></b> EnumInitializationMode&amp; <b><a href="CppEnum.htm">enum</a></b>InitializationMode)'");<br/>
+	<a href="CppAssert.htm">assert</a>(!"ERROR in '<a href="CppString.htm">std::string</a> <b><a href="CppEnum.htm">enum</a></b><a href="CppInitialize.htm">Initialization</a>ModeToString(<b><a href="CppConst.htm">const</a></b> Enum<a href="CppInitialize.htm">Initialization</a>Mode&amp; <b><a href="CppEnum.htm">enum</a></b><a href="CppInitialize.htm">Initialization</a>Mode)'");<br/>
 	exit(1);<br/>
 }<br/>
 <a href="CppComment.htm">//</a>----------------------------------------------------------------------------------<br/>
-EnumInitializationMode stringToEnumInitializationMode(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; myString)<br/>
+Enum<a href="CppInitialize.htm">Initialization</a>Mode stringToEnum<a href="CppInitialize.htm">Initialization</a>Mode(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; myString)<br/>
 {<br/>
-	<b><a href="CppIf.htm">if</a></b> (myString<a href="CppOperatorEqual.htm">==</a>"<b><a href="CppEnum.htm">enum</a></b>InitializationModeSame") <b><a href="CppReturn.htm">return</a></b> <b><a href="CppEnum.htm">enum</a></b>InitializationModeSame;<br/>
-	<b><a href="CppIf.htm">if</a></b> (myString<a href="CppOperatorEqual.htm">==</a>"<b><a href="CppEnum.htm">enum</a></b>InitializationModeUniform") <b><a href="CppReturn.htm">return</a></b> <b><a href="CppEnum.htm">enum</a></b>InitializationModeUniform;<br/>
-	<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "ERROR in 'EnumInitializationMode StringToEnumInitializationMode(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; myString)'" <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppEndl.htm">std::endl</a>;<br/>
+	<b><a href="CppIf.htm">if</a></b> (myString<a href="CppOperatorEqual.htm">==</a>"<b><a href="CppEnum.htm">enum</a></b><a href="CppInitialize.htm">Initialization</a>ModeSame") <b><a href="CppReturn.htm">return</a></b> <b><a href="CppEnum.htm">enum</a></b><a href="CppInitialize.htm">Initialization</a>ModeSame;<br/>
+	<b><a href="CppIf.htm">if</a></b> (myString<a href="CppOperatorEqual.htm">==</a>"<b><a href="CppEnum.htm">enum</a></b><a href="CppInitialize.htm">Initialization</a>ModeUniform") <b><a href="CppReturn.htm">return</a></b> <b><a href="CppEnum.htm">enum</a></b><a href="CppInitialize.htm">Initialization</a>ModeUniform;<br/>
+	<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "ERROR in 'Enum<a href="CppInitialize.htm">Initialization</a>Mode StringToEnum<a href="CppInitialize.htm">Initialization</a>Mode(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; myString)'" <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppEndl.htm">std::endl</a>;<br/>
 	exit(1);<br/>
 }<br/>
 <a href="CppComment.htm">//</a>----------------------------------------------------------------------------------<br/>
@@ -3800,14 +3800,14 @@ Experiment::Experiment(<b><a href="CppConst.htm">const</a></b> OptionsFile&amp; 
 <a href="CppComment.htm">///</a>The Strategy pattern uses polymorphism, therefore a <a href="CppPointer.htm">pointer</a> to the derived Strategy <b><a href="CppClass.htm">class</a></b>.<br/>
 <a href="CppComment.htm">///</a>Instead of the standard 'evil' <a href="CppPointer.htm">pointer</a>, I used the <a href="CppAuto_ptr.htm">std::auto_ptr</a> (ref. 2)<br/>
 <a href="CppComment.htm">///</a><br/>
-<a href="CppComment.htm">///</a>The <a href="CppFunction.htm">Function</a>s<a href="CppDesignPatternSingleton.htm">Singleton</a> is <b><a href="CppDefault.htm">default</a></b> initialized and later it is set with an SimulationFile.<br/>
+<a href="CppComment.htm">///</a>The <a href="CppFunction.htm">Function</a>s<a href="CppDesignPatternSingleton.htm">Singleton</a> is <b><a href="CppDefault.htm">default</a></b> <a href="CppInitialize.htm">initialize</a>d and later it is set with an SimulationFile.<br/>
 <a href="CppComment.htm">///</a>The SoilMite <b><a href="CppClass.htm">class</a></b> has a <b><a href="CppStatic.htm">static</a></b> <a href="CppPointer.htm">pointer</a> to <a href="CppFunction.htm">Function</a>s<a href="CppDesignPatternSingleton.htm">Singleton</a>, so all individuals always have the same mathematical behaviour<br/>
 <a href="CppComment.htm">///</a>Before the <b><a href="CppClass.htm">class</a></b> Experiment executes a Simulation, it changes the <a href="CppFunction.htm">Function</a>s<a href="CppDesignPatternSingleton.htm">Singleton</a> with a SimulationFile.<br/>
 <a href="CppComment.htm">///</a><br/>
 <a href="CppComment.htm">///</a><br/>
 <a href="CppComment.htm">///</a>References:<br/>
 <a href="CppComment.htm">///</a>1) <a href="CppDesignPattern.htm">Design Pattern</a>s. By Erich Gamma, Ri<b><a href="CppChar.htm">char</a></b>d Helm, Ralph Johnson, John Vlissides. ISBN: 0-201-63361-2<br/>
-<a href="CppComment.htm">///</a>2) Exceptional <a href="Cpp.htm">C++</a>: 47 Engineering Puzzles, Programming Problems, and Solutions. By <a href="CppHerbSutter.htm">Herb Sutter</a>. ISBN: 0-201-61562-2<br/>
+<a href="CppComment.htm">///</a>2) <a href="CppException.htm">Exception</a>al <a href="Cpp.htm">C++</a>: 47 Engineering Puzzles, Programming Problems, and Solutions. By <a href="CppHerbSutter.htm">Herb Sutter</a>. ISBN: 0-201-61562-2<br/>
 <br/>
 <a href="CppIfndef.htm">#ifndef</a> __FUNCTIONS_SINGLETON_H<br/>
 <a href="CppDefine.htm">#define</a> __FUNCTIONS_SINGLETON_H<br/>
@@ -8621,7 +8621,7 @@ Sim4Interpreter::Sim4Interpreter(<b><a href="CppConst.htm">const</a></b> <b><a h
 <br/>
 <a href="CppComment.htm">///</a>The <a href="CppFunction.htm">function</a> of <b><a href="CppClass.htm">class</a></b> Simulation is to run a simulation<br/>
 <a href="CppComment.htm">///</a><br/>
-<a href="CppComment.htm">///</a>It is initialized with an OptionsFile and a SimulationFile<br/>
+<a href="CppComment.htm">///</a>It is <a href="CppInitialize.htm">initialize</a>d with an OptionsFile and a SimulationFile<br/>
 <a href="CppComment.htm">///</a>The OptionFiles is used <b><a href="CppFor.htm">for</a></b> e.g. display options during the simulation<br/>
 <a href="CppComment.htm">///</a>The SimulationFile embodies the parameters and <a href="CppFunction.htm">function</a>s Simulation uses<br/>
 <a href="CppComment.htm">///</a><br/>
@@ -8630,7 +8630,7 @@ Sim4Interpreter::Sim4Interpreter(<b><a href="CppConst.htm">const</a></b> <b><a h
 <a href="CppComment.htm">///</a>-Do NOT use <a href="CppAuto_ptr.htm">std::auto_ptr</a> <b><a href="CppFor.htm">for</a></b> <a href="CppPointer.htm">point</a>ing to <a href="CppFunction.htm">Function</a>s<a href="CppDesignPatternSingleton.htm">Singleton</a>, as Simulation will NOT have the responsability to <b><a href="CppDelete.htm">delete</a></b> it.<br/>
 <a href="CppComment.htm">///</a><br/>
 <a href="CppComment.htm">///</a>Reference:<br/>
-<a href="CppComment.htm">///</a>1) Exceptional <a href="Cpp.htm">C++</a>: 47 Engineering Puzzles, Programming Problems, and Solutions. By <a href="CppHerbSutter.htm">Herb Sutter</a>. ISBN: 0-201-61562-2<br/>
+<a href="CppComment.htm">///</a>1) <a href="CppException.htm">Exception</a>al <a href="Cpp.htm">C++</a>: 47 Engineering Puzzles, Programming Problems, and Solutions. By <a href="CppHerbSutter.htm">Herb Sutter</a>. ISBN: 0-201-61562-2<br/>
 <br/>
 <a href="CppIfndef.htm">#ifndef</a> __SIMULATION_H<br/>
 <a href="CppDefine.htm">#define</a> __SIMULATION_H<br/>
@@ -8665,7 +8665,7 @@ Sim4Interpreter::Sim4Interpreter(<b><a href="CppConst.htm">const</a></b> <b><a h
 	<b><a href="CppVoid.htm">void</a></b> mortality();<br/>
 <br/>
 	<a href="CppComment.htm">//</a>Helpers<br/>
-	<b><a href="CppVoid.htm">void</a></b> initialize(); <br/>
+	<b><a href="CppVoid.htm">void</a></b> <a href="CppInitialize.htm">initialize</a>(); <br/>
 	<b><a href="CppVoid.htm">void</a></b> measurePopulation(MeasurementsTable&amp;);<br/>
 	<b><a href="CppDouble.htm">double</a></b> getSumFeedRate() <b><a href="CppConst.htm">const</a></b>;<br/>
 <br/>
@@ -9338,7 +9338,7 @@ SimulationFile::SimulationFile(<b><a href="CppConst.htm">const</a></b> <a href="
 	mCurrent<a href="CppVersion.htm">Version</a>Name(m<a href="CppVersion.htm">Version</a>Name2) <a href="CppComment.htm">//</a>Change every <b><a href="CppNew.htm">new</a></b> <a href="CppVersion.htm">version</a><br/>
 {		<br/>
 	<a href="CppComment.htm">//</a>mp<a href="CppVersion.htm">Version</a>Names.reset(<b><a href="CppNew.htm">new</a></b> <a href="CppVersion.htm">Version</a>Names);<br/>
-	<a href="CppComment.htm">//</a>A proper initialization<br/>
+	<a href="CppComment.htm">//</a>A proper <a href="CppInitialize.htm">initialization</a><br/>
 	<a href="CppComment.htm">/*</a>mParameters.reproductionMode <a href="CppOperatorAssign.htm">=</a> <b><a href="CppEnum.htm">enum</a></b>ReproductionModeAmount;<br/>
 	mParameters.seed <a href="CppOperatorAssign.htm">=</a> 0;<br/>
 	mParameters.outputFileName <a href="CppOperatorAssign.htm">=</a> "<b><a href="CppDefault.htm">default</a></b>OutputFile.txt";<br/>
@@ -10062,7 +10062,7 @@ SimulationFile::SimulationFile(<b><a href="CppConst.htm">const</a></b> <a href="
 <b><a href="CppClass.htm">class</a></b> SoilMiteFraction : <b><a href="CppPublic.htm">public</a></b> SoilMiteBase<br/>
 {<br/>
 	<b><a href="CppPublic.htm">public</a></b>:<br/>
-	<a href="CppComment.htm">//</a><a href="CppConstructor.htm">Constructor</a> <b><a href="CppFor.htm">for</a></b> first initialization<br/>
+	<a href="CppComment.htm">//</a><a href="CppConstructor.htm">Constructor</a> <b><a href="CppFor.htm">for</a></b> first <a href="CppInitialize.htm">initialization</a><br/>
 	SoilMiteFraction(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; initString) <br/>
 	{<br/>
 		<a href="CppAssert.htm">assert</a>(initString<a href="CppOperatorEqual.htm">==</a>"INIT");<br/>
@@ -10378,7 +10378,7 @@ EnumErrorCode SoilMiteAmount::reproduce(<a href="CppVector.htm">std::vector</a>&
 <a href="CppComment.htm">///</a><br/>
 <a href="CppComment.htm">///</a><br/>
 <a href="CppComment.htm">///</a>1) <a href="CppDesignPattern.htm">Design Pattern</a>s. By Erich Gamma, Ri<b><a href="CppChar.htm">char</a></b>d Helm, Ralph Johnson, John Vlissides. ISBN: 0-201-63361-2<br/>
-<a href="CppComment.htm">///</a>2) Exceptional <a href="Cpp.htm">C++</a>: 47 Engineering Puzzles, Programming Problems, and Solutions. By <a href="CppHerbSutter.htm">Herb Sutter</a>. ISBN: 0-201-61562-2<br/>
+<a href="CppComment.htm">///</a>2) <a href="CppException.htm">Exception</a>al <a href="Cpp.htm">C++</a>: 47 Engineering Puzzles, Programming Problems, and Solutions. By <a href="CppHerbSutter.htm">Herb Sutter</a>. ISBN: 0-201-61562-2<br/>
 <br/>
 <a href="CppIfndef.htm">#ifndef</a> __STRATEGY_D_H<br/>
 <a href="CppDefine.htm">#define</a> __STRATEGY_D_H<br/>

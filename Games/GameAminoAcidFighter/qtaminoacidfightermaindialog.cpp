@@ -8,16 +8,16 @@
 #include <QKeyEvent>
 #include <QTimer>
 
-#include "dialogmain.h"
-#include "ui_dialogmain.h"
+#include "qtaminoacidfightermaindialog.h"
+#include "ui_qtaminoacidfightermaindialog.h"
 
-DialogMain::DialogMain(QWidget *parent) :
-  QDialog(parent),
-  ui(new Ui::DialogMain),
-  m_timer(new QTimer(this)),
-  m_scene(new QGraphicsScene(this)),
-  m_sprite(new QGraphicsPixmapItem),
-  m_angle(0.0)
+ribi::aaf::QtAminoAcidFighterMainDialog::QtAminoAcidFighterMainDialog(QWidget *parent)
+  : QDialog(parent),
+    ui(new Ui::QtAminoAcidFighterMainDialog),
+    m_timer(new QTimer(this)),
+    m_scene(new QGraphicsScene(this)),
+    m_sprite(new QGraphicsPixmapItem),
+    m_angle(0.0)
 {
   ui->setupUi(this);
 
@@ -53,26 +53,14 @@ DialogMain::DialogMain(QWidget *parent) :
   this->move( screen.center() - this->rect().center() );
 }
 
-DialogMain::~DialogMain()
+ribi::aaf::QtAminoAcidFighterMainDialog::~QtAminoAcidFighterMainDialog()
 {
   delete ui;
   delete m_sprite;
 }
 
-void DialogMain::changeEvent(QEvent *e)
-{
-  QDialog::changeEvent(e);
-  switch (e->type()) {
-  case QEvent::LanguageChange:
-    ui->retranslateUi(this);
-    break;
-  default:
-    break;
-  }
-}
-
 //Sets the scale of the maze
-void DialogMain::resizeEvent(QResizeEvent*)
+void ribi::aaf::QtAminoAcidFighterMainDialog::resizeEvent(QResizeEvent*)
 {
   const int size = std::max(
     m_sprite->pixmap().width(),
@@ -85,7 +73,7 @@ void DialogMain::resizeEvent(QResizeEvent*)
   m_sprite->setScale(scale);
 }
 
-void DialogMain::keyPressEvent(QKeyEvent* e)
+void ribi::aaf::QtAminoAcidFighterMainDialog::keyPressEvent(QKeyEvent* e)
 {
   switch (e->key())
   {
@@ -100,13 +88,13 @@ void DialogMain::keyPressEvent(QKeyEvent* e)
   }
 }
 
-void DialogMain::onTick()
+void ribi::aaf::QtAminoAcidFighterMainDialog::onTick()
 {
   m_angle+=1.0;
   m_sprite->setRotation(m_angle);
 }
 
-void DialogMain::onCheck()
+void ribi::aaf::QtAminoAcidFighterMainDialog::onCheck()
 {
   if (ui->check_auto_rotate->isChecked())
     m_timer->start();
@@ -114,13 +102,13 @@ void DialogMain::onCheck()
     m_timer->stop();
 }
 
-void DialogMain::onButtonLeft()
+void ribi::aaf::QtAminoAcidFighterMainDialog::onButtonLeft()
 {
   m_angle-=1.0;
   m_sprite->setRotation(m_angle);
 }
 
-void DialogMain::onButtonRight()
+void ribi::aaf::QtAminoAcidFighterMainDialog::onButtonRight()
 {
   m_angle+=1.0;
   m_sprite->setRotation(m_angle);

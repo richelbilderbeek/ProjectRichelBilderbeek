@@ -72,8 +72,11 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppFunction.htm">function</a>.hpp&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppScoped_ptr.htm">scoped_ptr</a>.hpp&gt;<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<br/>
+<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a> {<br/>
+<br/>
 <b><a href="CppStruct.htm">struct</a></b> <a href="CppWtTimedServerPusherClient.htm">WtTimedServerPusherClient</a>;<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<br/>
 <a href="CppComment.htm">///</a>A Server that broadcasts its messages<br/>
 <b><a href="CppStruct.htm">struct</a></b> <a href="CppWtTimedServerPusher.htm">WtTimedServerPusher</a><br/>
 {<br/>
@@ -148,10 +151,12 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/The number of milliseconds before Run triggers Post<br/>
 &nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> m_<a href="CppTime.htm">time</a>;<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>/The method that is called every 100 msecs<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/The <a href="CppMemberFunction.htm">member function</a> that is called every 100 msecs<br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> Run();<br/>
 };<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a><br/>
+<br/>
 <a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> WTTIMEDSERVERPUSHER_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
@@ -195,23 +200,23 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppWtTimedServerPusher.htm">wttimedserverpusher</a>.h"<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppScoped_ptr.htm">boost::scoped_ptr</a>&lt;<a href="CppWtTimedServerPusher.htm">WtTimedServerPusher</a>&gt; <a href="CppWtTimedServerPusher.htm">WtTimedServerPusher</a>::<a href="CppInstance.htm">m_instance</a>;<br/>
+<a href="CppScoped_ptr.htm">boost::scoped_ptr</a>&lt;<a href="CppRibi.htm\">ribi</a>::<a href="CppWtTimedServerPusher.htm">WtTimedServerPusher</a>&gt; <a href="CppRibi.htm\">ribi</a>::<a href="CppWtTimedServerPusher.htm">WtTimedServerPusher</a>::<a href="CppInstance.htm">m_instance</a>;<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppWtTimedServerPusher.htm">WtTimedServerPusher</a>::<a href="CppWtTimedServerPusher.htm">WtTimedServerPusher</a>()<br/>
+<a href="CppRibi.htm\">ribi</a>::<a href="CppWtTimedServerPusher.htm">WtTimedServerPusher</a>::<a href="CppWtTimedServerPusher.htm">WtTimedServerPusher</a>()<br/>
 &nbsp;&nbsp;: m_running(<b><a href="CppTrue.htm">true</a></b>),<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;m_<a href="CppThread.htm">thread</a>(<a href="CppBind.htm">boost::bind</a>(&amp;<a href="CppWtTimedServerPusher.htm">WtTimedServerPusher</a>::Run, <b><a href="CppThis.htm">this</a></b>)),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_<a href="CppThread.htm">thread</a>(<a href="CppBind.htm">boost::bind</a>(&amp;<a href="CppRibi.htm\">ribi</a>::<a href="CppWtTimedServerPusher.htm">WtTimedServerPusher</a>::Run, <b><a href="CppThis.htm">this</a></b>)),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;m_<a href="CppTime.htm">time</a>(1000)<br/>
 {<br/>
 <br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppWtTimedServerPusher.htm">WtTimedServerPusher</a>::~<a href="CppWtTimedServerPusher.htm">WtTimedServerPusher</a>()<br/>
+<a href="CppRibi.htm\">ribi</a>::<a href="CppWtTimedServerPusher.htm">WtTimedServerPusher</a>::~<a href="CppWtTimedServerPusher.htm">WtTimedServerPusher</a>()<br/>
 {<br/>
 &nbsp;&nbsp;m_running <a href="CppOperatorAssign.htm">=</a> <b><a href="CppFalse.htm">false</a></b>;<br/>
 &nbsp;&nbsp;m_<a href="CppThread.htm">thread</a>.join();<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
- <b><a href="CppVoid.htm">void</a></b> <a href="CppWtTimedServerPusher.htm">WtTimedServerPusher</a>::Connect(<br/>
+ <b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppWtTimedServerPusher.htm">WtTimedServerPusher</a>::Connect(<br/>
 &nbsp;&nbsp; <a href="CppWtTimedServerPusherClient.htm">WtTimedServerPusherClient</a> * <b><a href="CppConst.htm">const</a></b> client,<br/>
 &nbsp;&nbsp; <b><a href="CppConst.htm">const</a></b> <a href="CppBoostFunction.htm">boost::function</a>&lt;<b><a href="CppVoid.htm">void</a></b>()&gt;&amp; <a href="CppFunction.htm">function</a>)<br/>
 {<br/>
@@ -224,7 +229,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppFunction.htm">function</a>));<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppWtTimedServerPusher.htm">WtTimedServerPusher</a>::Disconnect(<b><a href="CppConst.htm">const</a></b> <a href="CppWtTimedServerPusherClient.htm">WtTimedServerPusherClient</a>* <b><a href="CppConst.htm">const</a></b> client)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppWtTimedServerPusher.htm">WtTimedServerPusher</a>::Disconnect(<b><a href="CppConst.htm">const</a></b> <a href="CppWtTimedServerPusherClient.htm">WtTimedServerPusherClient</a>* <b><a href="CppConst.htm">const</a></b> client)<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppLock_guard.htm">std::lock_guard</a>&lt;<a href="CppMutex.htm">std::mutex</a>&gt; lock(m_mutex);<br/>
 &nbsp;&nbsp;m_connections.erase(<br/>
@@ -232,25 +237,25 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[client](<b><a href="CppConst.htm">const</a></b> Connection&amp; c) { <b><a href="CppReturn.htm">return</a></b> c.m_client <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> client; } ));<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppWtTimedServerPusher.htm">WtTimedServerPusher</a> * <a href="CppWtTimedServerPusher.htm">WtTimedServerPusher</a>::GetInstance()<br/>
+<a href="CppRibi.htm\">ribi</a>::<a href="CppWtTimedServerPusher.htm">WtTimedServerPusher</a> * <a href="CppRibi.htm\">ribi</a>::<a href="CppWtTimedServerPusher.htm">WtTimedServerPusher</a>::GetInstance()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (!<a href="CppInstance.htm">m_instance</a>) <a href="CppInstance.htm">m_instance</a>.reset(<b><a href="CppNew.htm">new</a></b> <a href="CppWtTimedServerPusher.htm">WtTimedServerPusher</a>);<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <a href="CppInstance.htm">m_instance</a>.get();<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppWtTimedServerPusher.htm">WtTimedServerPusher</a>::Get<a href="CppVersion.htm">Version</a>()<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppRibi.htm\">ribi</a>::<a href="CppWtTimedServerPusher.htm">WtTimedServerPusher</a>::Get<a href="CppVersion.htm">Version</a>()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> "1.0";<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppWtTimedServerPusher.htm">WtTimedServerPusher</a>::Get<a href="CppVersion.htm">Version</a>History()<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm\">ribi</a>::<a href="CppWtTimedServerPusher.htm">WtTimedServerPusher</a>::Get<a href="CppVersion.htm">Version</a>History()<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v;<br/>
 &nbsp;&nbsp;v.push_back("2011-08-05: <a href="CppVersion.htm">version</a> 1.0: initial <a href="CppVersion.htm">version</a>");<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppWtTimedServerPusher.htm">WtTimedServerPusher</a>::Run()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppWtTimedServerPusher.htm">WtTimedServerPusher</a>::Run()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppWhile.htm">while</a></b> (m_running)<br/>
 &nbsp;&nbsp;{<br/>
@@ -263,7 +268,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;}<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppWtTimedServerPusher.htm">WtTimedServerPusher</a>::Set<a href="CppTime.htm">Time</a>(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> <a href="CppTime.htm">time</a>)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppWtTimedServerPusher.htm">WtTimedServerPusher</a>::Set<a href="CppTime.htm">Time</a>(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> <a href="CppTime.htm">time</a>)<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppLock_guard.htm">std::lock_guard</a>&lt;<a href="CppMutex.htm">std::mutex</a>&gt; lock(m_mutex);<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (m_running)<br/>
@@ -292,7 +297,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Start stopped <a href="CppWtTimedServerPusher.htm">WtTimedServerPusher</a><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;m_running <a href="CppOperatorAssign.htm">=</a> <b><a href="CppTrue.htm">true</a></b>;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;m_<a href="CppTime.htm">time</a> <a href="CppOperatorAssign.htm">=</a> <a href="CppTime.htm">time</a>;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;m_<a href="CppThread.htm">thread</a> <a href="CppOperatorAssign.htm">=</a> <a href="CppThread.htm">std::thread</a>(<a href="CppBind.htm">boost::bind</a>(&amp;<a href="CppWtTimedServerPusher.htm">WtTimedServerPusher</a>::Run, <b><a href="CppThis.htm">this</a></b>));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;m_<a href="CppThread.htm">thread</a> <a href="CppOperatorAssign.htm">=</a> <a href="CppThread.htm">std::thread</a>(<a href="CppBind.htm">boost::bind</a>(&amp;<a href="CppRibi.htm\">ribi</a>::<a href="CppWtTimedServerPusher.htm">WtTimedServerPusher</a>::Run, <b><a href="CppThis.htm">this</a></b>));<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;}<br/>
 }<br/>
@@ -314,7 +319,9 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppStringH.htm">string</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<br/>
+<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a> {<br/>
+<br/>
 <a href="CppComment.htm">///</a><a href="CppWtTimedServerPusherClient.htm">WtTimedServerPusherClient</a> is a client responding to <a href="CppWtTimedServerPusher.htm">WtTimedServerPusher</a><br/>
 <a href="CppComment.htm">///</a>and to be used as a <a href="CppBaseClass.htm">base class</a><br/>
 <b><a href="CppStruct.htm">struct</a></b> <a href="CppWtTimedServerPusherClient.htm">WtTimedServerPusherClient</a><br/>
@@ -339,7 +346,9 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/Respond to the server<br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> OnServer();<br/>
 };<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a><br/>
+<br/>
 <a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> WTTIMEDSERVERPUSHERCLIENT_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
@@ -379,36 +388,36 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppWtTimedServerPusher.htm">wttimedserverpusher</a>.h"<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppWtTimedServerPusherClient.htm">wttimedserverpusherclient</a>.h"<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppWtTimedServerPusherClient.htm">WtTimedServerPusherClient</a>::<a href="CppWtTimedServerPusherClient.htm">WtTimedServerPusherClient</a>()<br/>
+<a href="CppRibi.htm\">ribi</a>::<a href="CppWtTimedServerPusherClient.htm">WtTimedServerPusherClient</a>::<a href="CppWtTimedServerPusherClient.htm">WtTimedServerPusherClient</a>()<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppWApplication.htm">Wt::WApplication</a>::<a href="CppInstance.htm">instance</a>()-&gt;enableUpdates(<b><a href="CppTrue.htm">true</a></b>);<br/>
-&nbsp;&nbsp;<a href="CppWtTimedServerPusher.htm">WtTimedServerPusher</a>::GetInstance()-&gt;Connect(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>,<a href="CppBind.htm">boost::bind</a>(&amp;<a href="CppWtTimedServerPusherClient.htm">WtTimedServerPusherClient</a>::OnServer,<b><a href="CppThis.htm">this</a></b>));<br/>
+&nbsp;&nbsp;<a href="CppRibi.htm\">ribi</a>::<a href="CppWtTimedServerPusher.htm">WtTimedServerPusher</a>::GetInstance()-&gt;Connect(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>,<a href="CppBind.htm">boost::bind</a>(&amp;<a href="CppRibi.htm\">ribi</a>::<a href="CppWtTimedServerPusherClient.htm">WtTimedServerPusherClient</a>::OnServer,<b><a href="CppThis.htm">this</a></b>));<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Never call <b><a href="CppVirtual.htm">virtual</a></b> <a href="CppFunction.htm">function</a>s during <a href="CppConstructor.htm">construct</a>ion or <a href="CppDestructor.htm">destruct</a>ion<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppScottMeyers.htm">Scott Meyers</a>, Effective <a href="Cpp.htm">C++</a>, item 9<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>OnServer();<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppWtTimedServerPusherClient.htm">WtTimedServerPusherClient</a>::~<a href="CppWtTimedServerPusherClient.htm">WtTimedServerPusherClient</a>()<br/>
+<a href="CppRibi.htm\">ribi</a>::<a href="CppWtTimedServerPusherClient.htm">WtTimedServerPusherClient</a>::~<a href="CppWtTimedServerPusherClient.htm">WtTimedServerPusherClient</a>()<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppWApplication.htm">Wt::WApplication</a>::<a href="CppInstance.htm">instance</a>()-&gt;enableUpdates(<b><a href="CppFalse.htm">false</a></b>);<br/>
-&nbsp;&nbsp;<a href="CppWtTimedServerPusher.htm">WtTimedServerPusher</a>::GetInstance()-&gt;Disconnect(<b><a href="CppThis.htm">this</a></b>);<br/>
+&nbsp;&nbsp;<a href="CppRibi.htm\">ribi</a>::<a href="CppWtTimedServerPusher.htm">WtTimedServerPusher</a>::GetInstance()-&gt;Disconnect(<b><a href="CppThis.htm">this</a></b>);<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppWtTimedServerPusherClient.htm">WtTimedServerPusherClient</a>::Get<a href="CppVersion.htm">Version</a>()<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppRibi.htm\">ribi</a>::<a href="CppWtTimedServerPusherClient.htm">WtTimedServerPusherClient</a>::Get<a href="CppVersion.htm">Version</a>()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> "1.0";<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppWtTimedServerPusherClient.htm">WtTimedServerPusherClient</a>::Get<a href="CppVersion.htm">Version</a>History()<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm\">ribi</a>::<a href="CppWtTimedServerPusherClient.htm">WtTimedServerPusherClient</a>::Get<a href="CppVersion.htm">Version</a>History()<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v;<br/>
 &nbsp;&nbsp;v.push_back("2011-08-05: <a href="CppVersion.htm">version</a> 1.0: initial <a href="CppVersion.htm">version</a>");<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppWtTimedServerPusherClient.htm">WtTimedServerPusherClient</a>::OnServer()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppWtTimedServerPusherClient.htm">WtTimedServerPusherClient</a>::OnServer()<br/>
 {<br/>
 &nbsp;&nbsp;On<a href="CppTime.htm">Time</a>dServerPush();<br/>
 &nbsp;&nbsp;<a href="CppWApplication.htm">Wt::WApplication</a>::<a href="CppInstance.htm">instance</a>()-&gt;triggerUpdate();<br/>
