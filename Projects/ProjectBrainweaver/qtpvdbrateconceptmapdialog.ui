@@ -37,7 +37,7 @@
    <item>
     <widget class="QLabel" name="label">
      <property name="text">
-      <string>F1: beoordeeld concept, F2: classificeer voorbeelden</string>
+      <string>F1: beoordeel concept, F2: classificeer voorbeelden</string>
      </property>
     </widget>
    </item>
