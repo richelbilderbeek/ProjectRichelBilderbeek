@@ -193,6 +193,3 @@ void GameWidget::Test()
     }
   );
 }
-
-} //~ namespace Chess
-

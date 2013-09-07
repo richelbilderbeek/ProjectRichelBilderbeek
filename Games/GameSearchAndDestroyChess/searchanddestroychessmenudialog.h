@@ -3,6 +3,7 @@
 
 #include "about.h"
 
+namespace ribi {
 namespace SearchAndDestroyChess {
 
 ///The logic behind the menu dialog
@@ -28,6 +29,7 @@ struct MenuDialog
   static void Test();
 };
 
-} //! namespace SearchAndDestroyChess
+} //~namespace SearchAndDestroyChess
+} //~namespace ribi
 
 #endif // SEARCHANDDESTROYCHESSMENUDIALOG_H

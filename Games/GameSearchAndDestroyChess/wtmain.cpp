@@ -6,16 +6,16 @@
 #include "chessboard.h"
 #include "chesssquare.h"
 #include "wtautoconfig.h"
-#include "wtchessboardwidget.h"
+//#include "wtchessboardwidget.h"
 #include "trace.h"
 //---------------------------------------------------------------------------
 struct WtChessBoardDialog : public Wt::WContainerWidget
 {
   WtChessBoardDialog()
   {
-    this->addWidget(new ribi::Chess::WtBoardWidget);
+    //this->addWidget(new ribi::Chess::WtBoardWidget);
     this->addWidget(new Wt::WBreak);
-    this->addWidget(new ribi::Chess::WtKriegspielWidget);
+    //this->addWidget(new ribi::Chess::WtKriegspielWidget);
   }
 };
 //---------------------------------------------------------------------------
@@ -28,21 +28,21 @@ struct WtApplication : public Wt::WApplication
     root()->addWidget(new WtChessBoardDialog);
   }
 };
-//---------------------------------------------------------------------------
+
 Wt::WApplication *createApplication(
   const Wt::WEnvironment& env)
 {
   return new WtApplication(env);
 }
-//---------------------------------------------------------------------------
+
 int main(int argc, char **argv)
 {
   START_TRACE();
-  WtAutoConfig a(argc,argv,createApplication);
-  WtAutoConfig::SaveDefaultStylesheet();
+  ribi::WtAutoConfig a(argc,argv,createApplication);
+  ribi::WtAutoConfig::SaveDefaultStylesheet();
   return a.Run();
 }
-//---------------------------------------------------------------------------
+
 /*
   a.AddLibrary("WtServerPusher version: " + WtServerPusher::GetVersion());
   a.AddLibrary("WtServerPusherClient version: " + WtServerPusherClient::GetVersion());

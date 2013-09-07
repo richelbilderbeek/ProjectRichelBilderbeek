@@ -5,10 +5,6 @@
 #include <iostream>
 #include <stdexcept>
 
-#ifdef SADC_USE_THREADS
-#include <thread>
-#endif
-
 //#include <boost/bind.hpp>
 #include <boost/foreach.hpp>
 //#include <boost/lambda/lambda.hpp>
@@ -18,6 +14,7 @@
 #include "chessboardfactory.h"
 #include "chessfile.h"
 #include "chessmove.h"
+#include "chessmovefactory.h"
 #include "chesspiece.h"
 #include "chessplayer.h"
 #include "chessrank.h"
@@ -25,9 +22,7 @@
 #include "chesssquare.h"
 #include "trace.h"
 
-namespace Chess {
-
-Game::Game()
+ribi::Chess::Game::Game()
   : m_board(BoardFactory::Create())
 {
   #ifndef NDEBUG
@@ -36,7 +31,7 @@ Game::Game()
 }
 
 /*
-Game::Game(const Game& other)
+ribi::Chess::Game::Game(const Game& other)
   : m_moves(other.m_moves)
 {
   TRACE_FUNC();
@@ -57,31 +52,31 @@ Game::Game(const Game& other)
 }
 */
 
-bool Game::CanDoGame(const std::vector<std::string>& moves)
+bool ribi::Chess::Game::CanDoGame(const std::vector<std::string>& moves)
 {
   const int n_moves = static_cast<int>(moves.size());
   return CanDoGameUntil(moves) == n_moves;
 }
 
-int Game::CanDoGameUntil(const std::vector<std::string>& moves)
+int ribi::Chess::Game::CanDoGameUntil(const std::vector<std::string>& moves)
 {
   Chess::Game game;
   const int n_moves = static_cast<int>(moves.size());
   for (int i=0; i!=n_moves; ++i)
   {
     const std::string s = moves[i];
-    if (!game.CanDoMove(Chess::Move(s))) return i;
-    game.DoMove(Chess::Move(s));
+    if (!game.CanDoMove(*MoveFactory::Create(s))) return i;
+    game.DoMove(*Chess::MoveFactory::Create(s));
   }
   return n_moves;
 }
 
-bool Game::CanDoMove(const Move& move) const
+bool ribi::Chess::Game::CanDoMove(const Move& move) const
 {
   return m_board->CanDoMove(move,GetActivePlayer());
 }
 
-void Game::DoMove(const Move& move)
+void ribi::Chess::Game::DoMove(const Move& move)
 {
   //assert(CanDoMove(move));
   assert(!m_score);
@@ -99,32 +94,32 @@ void Game::DoMove(const Move& move)
   }
 }
 
-const Game::PiecePtr Game::GetPiece(const Square& square) const
+const ribi::Chess::Game::PiecePtr ribi::Chess::Game::GetPiece(const Square& square) const
 {
   return m_board->GetPiece(square);
 }
 
-Player Game::GetActivePlayer() const
+ribi::Chess::Player ribi::Chess::Game::GetActivePlayer() const
 {
   return m_moves.size() % 2 ? Player::black : Player::white;
 }
 
-const std::vector<boost::shared_ptr<Move> > Game::GetMoves() const
+const std::vector<boost::shared_ptr<ribi::Chess::Move> > ribi::Chess::Game::GetMoves() const
 {
   return m_board->GetMoves(GetActivePlayer());
 }
 
-const std::vector<boost::shared_ptr<Move> > Game::GetMoves(const Square& square) const
+const std::vector<boost::shared_ptr<ribi::Chess::Move> > ribi::Chess::Game::GetMoves(const Square& square) const
 {
   return m_board->GetMoves(square);
 }
 
-const std::string Game::GetVersion()
+const std::string ribi::Chess::Game::GetVersion()
 {
   return "0.1";
 }
 
-const std::vector<std::string> Game::GetVersionHistory()
+const std::vector<std::string> ribi::Chess::Game::GetVersionHistory()
 {
   std::vector<std::string> v;
   v.push_back("YYYY-MM-DD: version X.Y: [description]");
@@ -132,28 +127,28 @@ const std::vector<std::string> Game::GetVersionHistory()
   return v;
 }
 
-const BitBoard Game::GetVisibleSquares() const
+const ribi::Chess::BitBoard ribi::Chess::Game::GetVisibleSquares() const
 {
   return m_board->GetVisibleSquares(GetActivePlayer());
 }
 
-bool Game::IsCheck() const
+bool ribi::Chess::Game::IsCheck() const
 {
   return m_board->IsCheck(GetActivePlayer());
 }
 
-bool Game::IsCheckmate() const
+bool ribi::Chess::Game::IsCheckmate() const
 {
   ///TODO
   return IsCheck();
 }
 
-const boost::shared_ptr<Chess::Score>& Game::Score() const
+const boost::shared_ptr<ribi::Chess::Score>& ribi::Chess::Game::Score() const
 {
   return m_score;
 }
 
-void Game::Test()
+void ribi::Chess::Game::Test()
 {
   {
     static bool is_tested = false;
@@ -174,7 +169,7 @@ void Game::Test()
   #endif
 }
 
-bool operator==(const Game& lhs, const Game& rhs)
+bool ribi::Chess::operator==(const Game& lhs, const Game& rhs)
 {
   if (!lhs.Score() &&  rhs.Score()) return false;
   if ( lhs.Score() && !rhs.Score()) return false;
@@ -186,10 +181,7 @@ bool operator==(const Game& lhs, const Game& rhs)
   return true;
 }
 
-bool operator!=(const Game& lhs, const Game& rhs)
+bool ribi::Chess::operator!=(const Game& lhs, const Game& rhs)
 {
   return !(lhs == rhs);
 }
-
-} //~ namespace Chess
-

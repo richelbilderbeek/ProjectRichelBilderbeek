@@ -37,7 +37,8 @@ HEADERS += \
     ../../Classes/CppChess/chessboardwidget.h \
     ../../Classes/CppChess/chessboard2d.h \
     ../../Classes/CppWidget/widget.h \
-    ../../Classes/CppRectangle/rectangle.h
+    ../../Classes/CppRectangle/rectangle.h \
+    ../../Classes/CppChess/chesssquarefactory.h
 SOURCES += wtmain.cpp \
     ../../Classes/CppChess/chessboard.cpp \
     ../../Classes/CppChess/chessmove.cpp \
@@ -54,7 +55,8 @@ SOURCES += wtmain.cpp \
     ../../Classes/CppChess/chessboardwidget.cpp \
     ../../Classes/CppChess/chessboard2d.cpp \
     ../../Classes/CppWidget/widget.cpp \
-    ../../Classes/CppRectangle/rectangle.cpp
+    ../../Classes/CppRectangle/rectangle.cpp \
+    ../../Classes/CppChess/chesssquarefactory.cpp
 
 OTHER_FILES += \
     GameSearchAndDestroyChessArchitecture.txt

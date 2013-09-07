@@ -8,6 +8,7 @@
 #include "chessfile.h"
 #include "chessrank.h"
 
+namespace ribi {
 namespace Chess {
 
 ///Square is the square on a Board, for example 'a1'
@@ -63,6 +64,7 @@ bool operator==(const Chess::Square& lhs, const Chess::Square& rhs); //FORBID
 bool operator!=(const Chess::Square& lhs, const Chess::Square& rhs); //FORBID
 bool IsEqual(const Chess::Square& lhs, const Chess::Square& rhs);
 
-} //~ namespace Chess
+} //~namespace Chess
+} //~namespace ribi
 
 #endif // CHESSSQUARE_H

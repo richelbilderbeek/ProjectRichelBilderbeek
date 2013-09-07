@@ -7,9 +7,7 @@
 #include "chessplayer.h"
 #include "trace.h"
 
-namespace Chess {
-
-const std::string ColorToStr(const Color c)
+const std::string ribi::Chess::ColorToStr(const Color c)
 {
   switch (c)
   {
@@ -23,7 +21,7 @@ const std::string ColorToStr(const Color c)
   assert(!"Should not get here");
 }
 
-Player ColorToPlayer(const Color c)
+ribi::Chess::Player ribi::Chess::ColorToPlayer(const Color c)
 {
   switch (c)
   {
@@ -38,12 +36,12 @@ Player ColorToPlayer(const Color c)
   throw std::logic_error("Cannot convert color to player");
 }
 
-const std::string ColorVersion::GetVersion()
+const std::string ribi::Chess::ColorVersion::GetVersion()
 {
   return "1.1";
 }
 
-const std::vector<std::string> ColorVersion::GetVersionHistory()
+const std::vector<std::string> ribi::Chess::ColorVersion::GetVersionHistory()
 {
   std::vector<std::string> v;
   v.push_back("2012-01-25: version 1.0: initial version");
@@ -51,13 +49,13 @@ const std::vector<std::string> ColorVersion::GetVersionHistory()
   return v;
 }
 
-std::ostream& operator<<(std::ostream& os, const Color c)
+std::ostream& ribi::Chess::operator<<(std::ostream& os, const Color c)
 {
   os << ColorToStr(c);
   return os;
 }
 
-bool operator==(const Color color, const Player player)
+bool ribi::Chess::operator==(const Color color, const Player player)
 {
   switch (player)
   {
@@ -67,20 +65,17 @@ bool operator==(const Color color, const Player player)
   return false;
 }
 
-bool operator==(const Player player, const Color color)
+bool ribi::Chess::operator==(const Player player, const Color color)
 {
   return color == player;
 }
 
-bool operator!=(const Color color, const Player player)
+bool ribi::Chess::operator!=(const Color color, const Player player)
 {
   return !(color == player);
 }
 
-bool operator!=(const Player player, const Color color)
+bool ribi::Chess::operator!=(const Player player, const Color color)
 {
   return !(color == player);
 }
-
-} //~namespace Chess
-

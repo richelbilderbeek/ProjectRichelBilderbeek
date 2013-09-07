@@ -96,6 +96,3 @@ void ChessWidget::Test()
   );
   t.join();
 }
-
-} //~ namespace Chess
-

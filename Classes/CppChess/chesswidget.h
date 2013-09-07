@@ -6,6 +6,9 @@
 //#include "chessboard.h"
 #include "chessfwd.h"
 #include "widget.h"
+
+namespace ribi {
+
 struct Rect;
 
 namespace Chess {
@@ -14,7 +17,7 @@ namespace Chess {
 ///Where the Chess::Board is very picky about valid moves,
 ///the Chess::ChessWidget enables simple interaction with it
 ///Note the name, which is to prevent conflict with the Widget class
-struct ChessWidget : public ::Widget
+struct ChessWidget : public ribi::Widget
 {
   enum class Key { up, down, left, right, select };
 
@@ -71,6 +74,7 @@ struct ChessWidget : public ::Widget
   friend void boost::checked_delete<>(ChessWidget* x);
 };
 
-} //~ namespace Chess
+} //~namespace Chess
+} //~namespace ribi
 
 #endif // CHESSWIDGET_H

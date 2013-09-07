@@ -4,6 +4,7 @@
 #include <string>
 #include <vector>
 
+namespace ribi {
 namespace Chess {
 
 ///A File is the x-coordinat on a Board
@@ -48,6 +49,7 @@ struct File
 
 bool operator==(const File& lhs, const File& rhs);
 
-};
+} //~namespace Chess
+} //~namespace ribi
 
 #endif // CHESSFILE_H

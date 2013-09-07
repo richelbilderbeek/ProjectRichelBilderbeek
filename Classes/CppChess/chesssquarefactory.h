@@ -5,6 +5,7 @@
 
 #include "chessfwd.h"
 
+namespace ribi {
 namespace Chess {
 
 struct SquareFactory
@@ -14,7 +15,8 @@ struct SquareFactory
     const Chess::Rank& y);
 
   ///Obtain a Square from its notational form
-  static boost::shared_ptr<Square> Create(
+  template <class T = Square, template <typename> class Cont = boost::shared_ptr>
+  static Cont<T> Create(
     const std::string& s);
 
 
@@ -22,5 +24,6 @@ struct SquareFactory
 };
 
 } //~namespace Chess
+} //~namespace ribi
 
 #endif // CHESSSQUAREFACTORY_H

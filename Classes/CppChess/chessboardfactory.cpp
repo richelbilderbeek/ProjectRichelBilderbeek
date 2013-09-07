@@ -7,8 +7,6 @@
 #include "chessboard.h"
 #include "chesspiecefactory.h"
 
-namespace Chess {
-
 boost::shared_ptr<Chess::Board> BoardFactory::Create(const Chess::Board::Pieces& pieces)
 {
   boost::shared_ptr<Chess::Board> p(new Chess::Board(pieces));
@@ -34,6 +32,3 @@ boost::shared_ptr<Chess::Board> BoardFactory::DeepCopy(const Board& board)
   assert(b);
   return b;
 }
-
-
-} //~namespace Chess

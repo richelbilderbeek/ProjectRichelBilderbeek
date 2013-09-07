@@ -7,6 +7,7 @@
 
 #include "chessfwd.h"
 
+namespace ribi {
 namespace Chess {
 
 //C++0x enum class
@@ -34,5 +35,6 @@ bool operator!=(const Color color, const Player player);
 bool operator!=(const Player player, const Color color);
 
 } //~namespace Chess
+} //~namespace ribi
 
 #endif // CHESSCOLOR_H

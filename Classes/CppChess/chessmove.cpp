@@ -14,9 +14,7 @@
 #include "chessscore.h"
 #include "trace.h"
 
-namespace Chess {
-
-Move::Move(const std::string& s)
+ribi::Chess::Move::Move(const std::string& s)
   : m_from(ParseFrom(s)),
     m_is_capture(ParseIsCapture(s)),
     m_is_castling(ParseIsCastling(s)),
@@ -37,20 +35,20 @@ Move::Move(const std::string& s)
   if (s.empty()) throw std::logic_error("std::string to parse is empty");
   if (!m_to && !m_is_castling && (!m_score))
   {
-    const std::string error = "Chess::Move::Move exception: m_to not initialized for non-castling non-score move " + s;
+    const std::string error = "Chess::ribi::Chess::Move::Move exception: m_to not initialized for non-castling non-score move " + s;
     throw std::logic_error(error.c_str());
   }
   if (!m_piece && !m_is_castling && !m_score)
   {
-    const std::string error = "Chess::Move::Move exception: m_piece not initialized for non-castling non-score move " + s;
+    const std::string error = "Chess::ribi::Chess::Move::Move exception: m_piece not initialized for non-castling non-score move " + s;
     throw std::logic_error(error.c_str());
   }
 
-  if (m_is_en_passant && !m_is_capture) throw std::logic_error("Chess::Move::Move exception: every en passant capture is a capture");
+  if (m_is_en_passant && !m_is_capture) throw std::logic_error("Chess::ribi::Chess::Move::Move exception: every en passant capture is a capture");
 
   if (boost::regex_search(s,boost::regex("e.p.")) && !m_is_en_passant)
   {
-    const std::string error = "Chess::Move::Move exception: move is an invalid en passant move: " + s;
+    const std::string error = "Chess::ribi::Chess::Move::Move exception: move is an invalid en passant move: " + s;
     throw std::logic_error(error.c_str());
   }
 
@@ -58,9 +56,9 @@ Move::Move(const std::string& s)
   {
     if (m_is_castling)
     {
-      throw std::logic_error("Chess::Move::Move exception: m_piece cannot be initialized in a castling move");
+      throw std::logic_error("Chess::ribi::Chess::Move::Move exception: m_piece cannot be initialized in a castling move");
     }
-    if (m_score) throw std::logic_error("Chess::Move::Move exception: m_piece cannot be initialized in a score move");
+    if (m_score) throw std::logic_error("Chess::ribi::Chess::Move::Move exception: m_piece cannot be initialized in a score move");
     const bool valid = m_piece->CanDoMove(*this);
     if (!valid)
     {
@@ -70,7 +68,7 @@ Move::Move(const std::string& s)
   }
 }
 
-const std::vector<std::string> Move::GetRegexMatches(
+const std::vector<std::string> ribi::Chess::Move::GetRegexMatches(
   const std::string& s,
   const boost::regex& r)
 {
@@ -91,26 +89,25 @@ const std::vector<std::string> Move::GetRegexMatches(
   return v;
 }
 
-const std::string Move::GetVersion()
+const std::string ribi::Chess::Move::GetVersion()
 {
   return "1.0";
 }
 
-const std::vector<std::string> Move::GetVersionHistory()
+const std::vector<std::string> ribi::Chess::Move::GetVersionHistory()
 {
   std::vector<std::string> v;
-  v.push_back("YYYY-MM-DD: version X.Y: [description]");
   v.push_back("2012-01-25: version 1.0: initial version");
   return v;
 }
 
-bool Move::IsCastling() const
+bool ribi::Chess::Move::IsCastling() const
 {
   assert(!m_is_castling || CanStrToCastling(m_str));
   return m_is_castling;
 }
 
-const boost::shared_ptr<Chess::Square> Move::ParseFrom(const std::string& s)
+const boost::shared_ptr<ribi::Chess::Square> ribi::Chess::Move::ParseFrom(const std::string& s)
 {
   boost::shared_ptr<Chess::Square> square;
   const std::vector<std::string> v = GetRegexMatches(s,boost::regex("[a-h][1-8]"));
@@ -126,33 +123,33 @@ const boost::shared_ptr<Chess::Square> Move::ParseFrom(const std::string& s)
   return square;
 }
 
-bool Move::ParseIsCapture(const std::string& s)
+bool ribi::Chess::Move::ParseIsCapture(const std::string& s)
 {
-  //if (s.empty()) throw std::logic_error("Move::ParseIsCapture exception: move must not be empty");
+  //if (s.empty()) throw std::logic_error("ribi::Chess::Move::ParseIsCapture exception: move must not be empty");
   //return boost::regex_match(s,boost::regex("[a-h]\\d?x.*"));
   return boost::regex_match(s,boost::regex("(B|K|N|Q|R)?([a-h])?([1-8])?x[a-h][1-8](e.p.)?(\\+|\\#)?"));
 }
 
-bool Move::ParseIsCastling(const std::string& s)
+bool ribi::Chess::Move::ParseIsCastling(const std::string& s)
 {
   return CanStrToCastling(s);
 
   //return s == "0-0" || s == "O-O" || s == "O-O+" || s == "0-0-0" || s == "O-O-O"|| s == "O-O-O+";
 }
 
-bool Move::ParseIsCheck(const std::string& s)
+bool ribi::Chess::Move::ParseIsCheck(const std::string& s)
 {
-  if (s.empty()) throw std::logic_error("Move::IsCheck(const std::string& s) exception: move must not be empty");
+  if (s.empty()) throw std::logic_error("ribi::Chess::Move::IsCheck(const std::string& s) exception: move must not be empty");
   return s[s.size() - 1] == '+';
 }
 
-bool Move::ParseIsCheckmate(const std::string& s)
+bool ribi::Chess::Move::ParseIsCheckmate(const std::string& s)
 {
-  if (s.empty()) throw std::logic_error("Move::IsCheckmate(const std::string& s) exception: move must not be empty");
+  if (s.empty()) throw std::logic_error("ribi::Chess::Move::IsCheckmate(const std::string& s) exception: move must not be empty");
   return s[s.size() - 1] == '#';
 }
 
-bool Move::ParseIsEnPassant(const std::string& s)
+bool ribi::Chess::Move::ParseIsEnPassant(const std::string& s)
 {
   if (!boost::regex_match(s,boost::regex("([a-h][4-5])x[a-h][3-6]e.p.(\\+|\\#)?"))) return false;
   const boost::shared_ptr<Chess::Square> from = ParseFrom(s);
@@ -166,28 +163,28 @@ bool Move::ParseIsEnPassant(const std::string& s)
   return false;
 }
 
-bool Move::ParseIsPromotion(const std::string& s)
+bool ribi::Chess::Move::ParseIsPromotion(const std::string& s)
 {
   return boost::regex_match(s,boost::regex("([a-h][1-8](x|\\s)?)?[a-h][1|8][B|N|Q|R](\\+|\\#)?"));
 }
 
-const boost::shared_ptr<Chess::Piece> Move::ParsePiece(const std::string& s)
+const boost::shared_ptr<ribi::Chess::Piece> ribi::Chess::Move::ParsePiece(const std::string& s)
 {
-  if (s.empty()) throw std::logic_error("Move::ParsePiece exception: move must not be empty");
+  if (s.empty()) throw std::logic_error("ribi::Chess::Move::ParsePiece exception: move must not be empty");
   const boost::shared_ptr<Chess::Piece> p = PieceFactory::CreateFromMove(s);
   assert(p);
   return p;
 }
 
-const boost::shared_ptr<Chess::Piece> Move::ParsePiecePromotion(const std::string& s)
+const boost::shared_ptr<ribi::Chess::Piece> ribi::Chess::Move::ParsePiecePromotion(const std::string& s)
 {
-  if (s.empty()) throw std::logic_error("Move::ParsePiece exception: move must not be empty");
+  if (s.empty()) throw std::logic_error("ribi::Chess::Move::ParsePiece exception: move must not be empty");
   const boost::shared_ptr<Chess::Piece> p = PieceFactory::CreateFromPromotion(s);
   assert(p);
   return p;
 }
 
-const boost::shared_ptr<Chess::Score> Move::ParseScore(const std::string& s)
+const boost::shared_ptr<ribi::Chess::Score> ribi::Chess::Move::ParseScore(const std::string& s)
 {
   boost::shared_ptr<Chess::Score> p;
   try
@@ -202,7 +199,7 @@ const boost::shared_ptr<Chess::Score> Move::ParseScore(const std::string& s)
   return p;
 }
 
-const boost::shared_ptr<Chess::Square> Move::ParseTo(const std::string& s)
+const boost::shared_ptr<ribi::Chess::Square> ribi::Chess::Move::ParseTo(const std::string& s)
 {
   boost::shared_ptr<Chess::Square> square;
   const std::vector<std::string> v = GetRegexMatches(s,boost::regex("[a-h][1-8]"));
@@ -216,7 +213,7 @@ const boost::shared_ptr<Chess::Square> Move::ParseTo(const std::string& s)
   return square;
 }
 
-const std::string Move::ToStr() const
+const std::string ribi::Chess::Move::ToStr() const
 {
   std::string s;
   if (m_piece)
@@ -260,7 +257,7 @@ const std::string Move::ToStr() const
   return s;
 }
 
-bool operator==(const Move& lhs, const Move& rhs)
+bool ribi::Chess::operator==(const Move& lhs, const Move& rhs)
 {
   if (static_cast<bool>(lhs.m_from) != static_cast<bool>(rhs.m_from)) return false;
   if (lhs.m_from)
@@ -298,16 +295,13 @@ bool operator==(const Move& lhs, const Move& rhs)
   return true;
 }
 
-bool operator!=(const Move& lhs, const Move& rhs)
+bool ribi::Chess::operator!=(const Move& lhs, const Move& rhs)
 {
   return !(lhs == rhs);
 }
 
-std::ostream& operator<<(std::ostream& os,const Move& m)
+std::ostream& ribi::Chess::operator<<(std::ostream& os,const Move& m)
 {
   os << m.GetStr();
   return os;
 }
-
-} //~ namespace Chess
-

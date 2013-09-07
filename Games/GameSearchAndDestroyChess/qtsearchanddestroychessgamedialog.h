@@ -7,6 +7,8 @@ namespace Ui {
   class QtSearchAndDestroyChessGameDialog;
 }
 
+namespace ribi {
+
 class QtSearchAndDestroyChessGameDialog : public QtHideAndShowDialog
 {
   Q_OBJECT
@@ -20,5 +22,7 @@ private:
 
   static void Test();
 };
+
+} //~namespace ribi
 
 #endif // QTSEARCHANDDESTROYCHESSGAMEDIALOG_H

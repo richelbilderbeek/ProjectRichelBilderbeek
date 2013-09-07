@@ -7,6 +7,8 @@ namespace Ui {
   class QtSearchAndDestroyChessMenuDialog;
 }
 
+namespace ribi {
+
 class QtSearchAndDestroyChessMenuDialog : public QtHideAndShowDialog
 {
   Q_OBJECT
@@ -26,5 +28,7 @@ private slots:
     void on_button_quit_clicked();
 
 };
+
+} //~namespace ribi
 
 #endif // QTSEARCHANDDESTROYCHESSMENUDIALOG_H

@@ -5,6 +5,7 @@
 #include <vector>
 #include "chesscolor.h"
 
+namespace ribi {
 namespace Chess {
 
 ///Moves is a stateless struct containing collections of moves
@@ -98,6 +99,7 @@ struct Moves
   static const std::vector<std::string> GetVersionHistory();
 };
 
-}; //~namespace Chess
+} //~namespace Chess
+} //~namespace ribi
 
 #endif // CHESSMOVES_H

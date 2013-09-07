@@ -24,9 +24,7 @@
 #include "chesssquare.h"
 #include "trace.h"
 
-namespace Chess {
-
-Board::Board(const Pieces& pieces)
+ribi::Chess::Board::Board(const Pieces& pieces)
   : m_pieces(pieces)
 {
   #ifndef NDEBUG
@@ -35,7 +33,7 @@ Board::Board(const Pieces& pieces)
 }
 
 /*
-Board::Board(const Board& other)
+ribi::Chess::Board::Board(const Board& other)
   //: m_move_history(other.m_move_history)
 {
   #ifndef NDEBUG
@@ -60,13 +58,13 @@ Board::Board(const Board& other)
 }
 */
 
-bool Board::CanDoCastling(const Castling castling, const Player player) const
+bool ribi::Chess::Board::CanDoCastling(const Castling castling, const Player player) const
 {
   //Cannot castle when in check
   if (IsCheck(player)) return false;
   //Check King
   {
-    const boost::shared_ptr<const Square> king_square = SquareFactory::Create(player == Player::white ? std::string("e1") : std::string("e8"));
+    const boost::shared_ptr<const Square> king_square { SquareFactory::Create(player == Player::white ? std::string("e1") : std::string("e8")) } ;
     assert(king_square);
     const ConstPiecePtr king = GetPiece(*king_square);
     //Is there a King at the king's square?
@@ -76,9 +74,13 @@ bool Board::CanDoCastling(const Castling castling, const Player player) const
   }
   //Check Rook
   {
-    const boost::shared_ptr<Square> rook_square = SquareFactory::Create(player == Player::white
-      ? (castling == Castling::kingside ? std::string("h1") : std::string("a1"))
-      : (castling == Castling::kingside ? std::string("h8") : std::string("a8")) );
+    const boost::shared_ptr<Square> rook_square {
+      SquareFactory::Create(
+        player == Player::white
+          ? (castling == Castling::kingside ? std::string("h1") : std::string("a1"))
+          : (castling == Castling::kingside ? std::string("h8") : std::string("a8"))
+      )
+    };
     assert(rook_square);
     const ConstPiecePtr rook = GetPiece(*rook_square);
     //Is there a Rook at the rook's square?
@@ -117,7 +119,7 @@ bool Board::CanDoCastling(const Castling castling, const Player player) const
   return true;
 }
 
-bool Board::CanDoMove(const Move& move, const Player player) const
+bool ribi::Chess::Board::CanDoMove(const Move& move, const Player player) const
 {
   if (move.Score())
   {
@@ -389,7 +391,7 @@ bool Board::CanDoMove(const Move& move, const Player player) const
   return true;
 }
 
-const std::vector<boost::shared_ptr<Move> > Board::CompleteMove(const Move& move, const Player player) const
+const std::vector<boost::shared_ptr<ribi::Chess::Move> > ribi::Chess::Board::CompleteMove(const Move& move, const Player player) const
 {
   assert(!move.From());
   assert(move.To());
@@ -429,7 +431,7 @@ const std::vector<boost::shared_ptr<Move> > Board::CompleteMove(const Move& move
 }
 
 
-const std::vector<boost::shared_ptr<Square > > Board::CreateSquaresBetweenKingAndRook(
+const std::vector<boost::shared_ptr<ribi::Chess::Square > > ribi::Chess::Board::CreateSquaresBetweenKingAndRook(
   const Player player,const Castling castling)
 {
   std::vector<boost::shared_ptr<Square > > v;
@@ -507,7 +509,7 @@ const std::vector<boost::shared_ptr<Square > > Board::CreateSquaresBetweenKingAn
   return v;
 }
 
-void Board::DoCastling(const Castling castling, const Player player)
+void ribi::Chess::Board::DoCastling(const Castling castling, const Player player)
 {
   assert(CanDoCastling(castling,player));
   //Get King
@@ -541,7 +543,7 @@ void Board::DoCastling(const Castling castling, const Player player)
   }
 }
 
-void Board::DoMove(const Move& move,const Player player)
+void ribi::Chess::Board::DoMove(const Move& move,const Player player)
 {
   assert(CanDoMove(move,player));
   if (!move.From() && move.To())
@@ -579,7 +581,7 @@ void Board::DoMove(const Move& move,const Player player)
   }
 }
 
-bool Board::EmptyBetween(const Square& a, const Square& b) const
+bool ribi::Chess::Board::EmptyBetween(const Square& a, const Square& b) const
 {
   const int dx = a.GetFile().ToInt() - b.GetFile().ToInt();
   const int dy = a.GetRank().ToInt() - b.GetRank().ToInt();
@@ -608,12 +610,12 @@ bool Board::EmptyBetween(const Square& a, const Square& b) const
   return true;
 }
 
-//Color Board::GetActivePlayer() const
+//Color ribi::Chess::Board::GetActivePlayer() const
 //{
 //  return (m_moves.size() % 2 ? Color::black : Color::white);
 //}
 
-const Board::PiecePtr Board::GetPiece(const Square& square)
+const ribi::Chess::Board::PiecePtr ribi::Chess::Board::GetPiece(const Square& square)
 {
   const auto i = std::find_if(m_pieces.begin(),m_pieces.end(),
     [&square](const PiecePtr& p)
@@ -622,11 +624,11 @@ const Board::PiecePtr Board::GetPiece(const Square& square)
     }
   );
 
-  if (i == m_pieces.end()) { Board::PiecePtr p; assert(!p); return p; }
+  if (i == m_pieces.end()) { ribi::Chess::Board::PiecePtr p; assert(!p); return p; }
   else { assert(*i); return *i; }
 }
 
-const Board::ConstPiecePtr Board::GetPiece(const Square& square) const
+const ribi::Chess::Board::ConstPiecePtr ribi::Chess::Board::GetPiece(const Square& square) const
 {
   const auto i = std::find_if(m_pieces.begin(),m_pieces.end(),
     [&square](const PiecePtr& p)
@@ -635,10 +637,10 @@ const Board::ConstPiecePtr Board::GetPiece(const Square& square) const
     }
   );
 
-  if (i == m_pieces.end()) { Board::ConstPiecePtr p; assert(!p); return p; }
+  if (i == m_pieces.end()) { ribi::Chess::Board::ConstPiecePtr p; assert(!p); return p; }
   else
   {
-    Board::ConstPiecePtr p(*i);
+    ribi::Chess::Board::ConstPiecePtr p(*i);
     assert(p);
     assert(IsEqual(*p->GetSquare(),square));
     assert(IsEqual(*p, *(*i)));
@@ -647,13 +649,13 @@ const Board::ConstPiecePtr Board::GetPiece(const Square& square) const
   }
 }
 
-const Board::ConstPieces Board::GetPieces() const
+const ribi::Chess::Board::ConstPieces ribi::Chess::Board::GetPieces() const
 {
   return AddConst(this->GetPieces());
   /*
   ConstPieces v;
   std::transform(m_pieces.begin(),m_pieces.end(),std::inserter(v,v.begin()),
-    [](const Board::PiecePtr& piece)
+    [](const ribi::Chess::Board::PiecePtr& piece)
     {
       ConstPiecePtr p = piece->Clone();
       assert(IsEqual(*p,*piece));
@@ -665,10 +667,9 @@ const Board::ConstPieces Board::GetPieces() const
   */
 }
 
-const Board::Pieces Board::GetInitialSetup()
+const ribi::Chess::Board::Pieces ribi::Chess::Board::GetInitialSetup()
 {
-  //C++0x initializer list
-  Board::Pieces v;
+  ribi::Chess::Board::Pieces v;
   const auto colors { Color::black, Color::white };
   std::for_each(colors.begin(),colors.end(),
     [&v](const Color color)
@@ -750,7 +751,7 @@ const Board::Pieces Board::GetInitialSetup()
   return v;
 }
 
-const std::vector<boost::shared_ptr<Move> > Board::GetMoves(const Player player) const
+const std::vector<boost::shared_ptr<ribi::Chess::Move> > ribi::Chess::Board::GetMoves(const Player player) const
 {
   std::vector<boost::shared_ptr<Move> > v;
 
@@ -772,7 +773,7 @@ const std::vector<boost::shared_ptr<Move> > Board::GetMoves(const Player player)
   return v;
 }
 
-const std::vector<boost::shared_ptr<Move> > Board::GetMoves(const Square& square) const
+const std::vector<boost::shared_ptr<ribi::Chess::Move> > ribi::Chess::Board::GetMoves(const Square& square) const
 {
   const ConstPiecePtr piece = GetPiece(square);
   ///TODO: In Traitor's Chess you can move Pieces of the opponent
@@ -793,12 +794,12 @@ const std::vector<boost::shared_ptr<Move> > Board::GetMoves(const Square& square
   return moves;
 }
 
-const std::string Board::GetVersion()
+const std::string ribi::Chess::Board::GetVersion()
 {
   return "1.0";
 }
 
-const std::vector<std::string> Board::GetVersionHistory()
+const std::vector<std::string> ribi::Chess::Board::GetVersionHistory()
 {
   std::vector<std::string> v;
   v.push_back("YYYY-MM-DD: version X.Y: [description]");
@@ -806,7 +807,7 @@ const std::vector<std::string> Board::GetVersionHistory()
   return v;
 }
 
-const BitBoard Board::GetVisibleSquares(const Player player) const
+const ribi::Chess::BitBoard ribi::Chess::Board::GetVisibleSquares(const Player player) const
 {
   //Collect the Pieces we want to know their sights of
   std::vector<PiecePtr> pieces;
@@ -839,12 +840,12 @@ const BitBoard Board::GetVisibleSquares(const Player player) const
   return b;
 }
 
-bool Board::IsCheck(const Player player) const
+bool ribi::Chess::Board::IsCheck(const Player player) const
 {
   //Find the king of the player
   const auto king_ptr = std::find_if(
     m_pieces.begin(),m_pieces.end(),
-    [player,this](const Chess::Board::PiecePtr& p)
+    [player,this](const ribi::Chess::Board::PiecePtr& p)
     {
       return p->GetColor() == player
         && dynamic_cast<PieceKing*>(p.get());
@@ -865,7 +866,7 @@ bool Board::IsCheck(const Player player) const
 
   //Check if an opponent's piece looks at the current player's King
   const int cnt = std::count_if(m_pieces.begin(),m_pieces.end(),
-    [king,this](const Chess::Board::PiecePtr& p)
+    [king,this](const ribi::Chess::Board::PiecePtr& p)
     {
       assert(p);
       //Must not be of same color
@@ -892,7 +893,7 @@ bool Board::IsCheck(const Player player) const
   return cnt > 0;
 }
 
-bool Board::IsCheckmate(const Player player) const
+bool ribi::Chess::Board::IsCheckmate(const Player player) const
 {
   if (!IsCheck(player))
   {
@@ -903,7 +904,7 @@ bool Board::IsCheckmate(const Player player) const
   //Find the king of the player
   const auto king_ptr = std::find_if(
     m_pieces.begin(),m_pieces.end(),
-    [player,this](const Chess::Board::PiecePtr& p)
+    [player,this](const ribi::Chess::Board::PiecePtr& p)
     {
       return p->GetColor() == player
         && dynamic_cast<PieceKing*>(p.get());
@@ -942,7 +943,7 @@ bool Board::IsCheckmate(const Player player) const
 }
 
 /*
-bool Board::IsValid(const boost::shared_ptr<Move> move) const
+bool ribi::Chess::Board::IsValid(const boost::shared_ptr<Move> move) const
 {
   assert(move.To());
   //Check if non-Knight Piece does not go through occupied squares
@@ -982,7 +983,7 @@ bool Board::IsValid(const boost::shared_ptr<Move> move) const
 }
 */
 
-bool IsEqual(const Board& lhs, const Board& rhs)
+bool ribi::Chess::IsEqual(const Board& lhs, const Board& rhs)
 {
   //if (lhs.GetMoveHistory() != rhs.GetMoveHistory())
   //{
@@ -992,22 +993,22 @@ bool IsEqual(const Board& lhs, const Board& rhs)
 }
 
 
-bool IsEqual(const Board::ConstPieces& lhs,const Board::ConstPieces& rhs)
+bool ribi::Chess::IsEqual(const ribi::Chess::Board::ConstPieces& lhs,const ribi::Chess::Board::ConstPieces& rhs)
 {
   if (lhs.size() != rhs.size()) return false;
   //Count unfound pieces
   return std::count_if(lhs.begin(),lhs.end(),
-    [rhs](const Board::ConstPiecePtr& p)
+    [rhs](const ribi::Chess::Board::ConstPiecePtr& p)
     {
       assert(std::count_if(rhs.begin(),rhs.end(),
-        [p](const Board::ConstPiecePtr& q)
+        [p](const ribi::Chess::Board::ConstPiecePtr& q)
         {
           return IsEqual(*p,*q);
         }
       ) < 2);
 
       return std::count_if(rhs.begin(),rhs.end(),
-        [p](const Board::ConstPiecePtr& q)
+        [p](const ribi::Chess::Board::ConstPiecePtr& q)
         {
           return IsEqual(*p,*q);
         }
@@ -1017,7 +1018,7 @@ bool IsEqual(const Board::ConstPieces& lhs,const Board::ConstPieces& rhs)
 }
 
 
-std::ostream& operator<<(std::ostream& os, const Board& board)
+std::ostream& ribi::Chess::operator<<(std::ostream& os, const Board& board)
 {
   const int maxx = 8;
   const int maxy = 8;
@@ -1038,7 +1039,7 @@ std::ostream& operator<<(std::ostream& os, const Board& board)
     }
   }
   std::for_each(board.m_pieces.begin(),board.m_pieces.end(),
-    [&v](const Board::PiecePtr& piece)
+    [&v](const ribi::Chess::Board::PiecePtr& piece)
     {
       assert(piece);
       assert(piece->GetSquare());
@@ -1062,6 +1063,3 @@ std::ostream& operator<<(std::ostream& os, const Board& board)
 
   return os;
 }
-
-} //~ namespace Chess
-

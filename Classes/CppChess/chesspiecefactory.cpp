@@ -1,9 +1,8 @@
 #include "chesspiecefactory.h"
 
 #include "chesspiece.h"
-namespace Chess {
 
-boost::shared_ptr<Piece> Create(const char namechar,const Color color,const Square& square)
+boost::shared_ptr<Piece> ribi::Chess::PieceFactory::Create(const char namechar,const Color color,const Square& square)
 {
   boost::shared_ptr<Piece> p;
   switch(c)
@@ -20,9 +19,9 @@ boost::shared_ptr<Piece> Create(const char namechar,const Color color,const Squa
   return p;
 }
 
-boost::shared_ptr<Piece> PieceFactory::CreateFromMove(const std::string& s)
+boost::shared_ptr<Piece> ribi::Chess::PieceFactory::CreateFromMove(const std::string& s)
 {
-  if (s.empty()) throw std::logic_error("PieceFactory::CreateFromMove exception: move must not be empty");
+  if (s.empty()) throw std::logic_error("ribi::Chess::PieceFactory::CreateFromMove exception: move must not be empty");
 
   const char c = s[0];
   switch(c)
@@ -44,9 +43,9 @@ boost::shared_ptr<Piece> PieceFactory::CreateFromMove(const std::string& s)
   }
 }
 
-boost::shared_ptr<Piece> PieceFactory::CreateFromPromotion(const std::string& s)
+boost::shared_ptr<Piece> ribi::Chess::PieceFactory::CreateFromPromotion(const std::string& s)
 {
-  if (s.empty()) throw std::logic_error("PieceFactory::CreateFromPromotion exception: move must not be empty");
+  if (s.empty()) throw std::logic_error("ribi::Chess::PieceFactory::CreateFromPromotion exception: move must not be empty");
 
   boost::shared_ptr<Chess::Piece> p;
 
@@ -62,5 +61,3 @@ boost::shared_ptr<Piece> PieceFactory::CreateFromPromotion(const std::string& s)
   assert(p);
   return p;
 }
-
-} //~namespace Chess

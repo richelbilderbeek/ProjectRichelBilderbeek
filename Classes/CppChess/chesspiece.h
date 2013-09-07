@@ -11,6 +11,7 @@
 #include "chessfwd.h"
 //#include "chesssquare.h"
 
+namespace ribi {
 namespace Chess {
 
 //A Piece has
@@ -313,6 +314,7 @@ bool operator!=(const Piece& lhs, const Piece& rhs); //FORBID
 bool IsEqual(const Piece& lhs, const Piece& rhs);
 std::ostream& operator<<(std::ostream& os, const Piece& piece);
 
-} //~ namespace Chess
+} //~namespace Chess
+} //~namespace ribi
 
 #endif // CHESSPIECE_H

@@ -3,9 +3,7 @@
 
 #include "chessmoves.h"
 
-namespace Chess {
-
-const std::vector<std::string> Moves::GetGameKasparovVersusTheWorld()
+const std::vector<std::string> ribi::Chess::Moves::GetGameKasparovVersusTheWorld()
 {
   return
   {
@@ -74,7 +72,7 @@ const std::vector<std::string> Moves::GetGameKasparovVersusTheWorld()
   };
 }
 
-const std::vector<std::string> Moves::GetGameShephardsMate()
+const std::vector<std::string> ribi::Chess::Moves::GetGameShephardsMate()
 {
   return
   {
@@ -85,7 +83,7 @@ const std::vector<std::string> Moves::GetGameShephardsMate()
   };
 }
 
-const std::vector<std::string> Moves::GetInvalidBishopMoves()
+const std::vector<std::string> ribi::Chess::Moves::GetInvalidBishopMoves()
 {
   return
   {
@@ -98,7 +96,7 @@ const std::vector<std::string> Moves::GetInvalidBishopMoves()
   };
 }
 
-const std::vector<std::string> Moves::GetInvalidCaptureMoves()
+const std::vector<std::string> ribi::Chess::Moves::GetInvalidCaptureMoves()
 {
   return
   {
@@ -106,7 +104,7 @@ const std::vector<std::string> Moves::GetInvalidCaptureMoves()
   };
 }
 
-const std::vector<std::string> Moves::GetInvalidCastlingMoves()
+const std::vector<std::string> ribi::Chess::Moves::GetInvalidCastlingMoves()
 {
   return
   {
@@ -114,7 +112,7 @@ const std::vector<std::string> Moves::GetInvalidCastlingMoves()
   };
 }
 
-const std::vector<std::string> Moves::GetInvalidEnPassantMoves()
+const std::vector<std::string> ribi::Chess::Moves::GetInvalidEnPassantMoves()
 {
   return
   {
@@ -132,7 +130,7 @@ const std::vector<std::string> Moves::GetInvalidEnPassantMoves()
   };
 }
 
-const std::vector<std::string> Moves::GetInvalidKingMoves()
+const std::vector<std::string> ribi::Chess::Moves::GetInvalidKingMoves()
 {
   return
   {
@@ -149,7 +147,7 @@ const std::vector<std::string> Moves::GetInvalidKingMoves()
   };
 }
 
-const std::vector<std::string> Moves::GetInvalidKnightMoves()
+const std::vector<std::string> ribi::Chess::Moves::GetInvalidKnightMoves()
 {
   return
   {
@@ -164,7 +162,7 @@ const std::vector<std::string> Moves::GetInvalidKnightMoves()
   };
 }
 
-const std::vector<std::string> Moves::GetInvalidPawnMoves(const Chess::Color& color)
+const std::vector<std::string> ribi::Chess::Moves::GetInvalidPawnMoves(const Chess::Color& color)
 {
   if (color == Color::indeterminate)
   return
@@ -192,7 +190,7 @@ const std::vector<std::string> Moves::GetInvalidPawnMoves(const Chess::Color& co
   assert(!"Should not get here");
 }
 
-const std::vector<std::string> Moves::GetInvalidPromotionMoves()
+const std::vector<std::string> ribi::Chess::Moves::GetInvalidPromotionMoves()
 {
   return
   {
@@ -200,7 +198,7 @@ const std::vector<std::string> Moves::GetInvalidPromotionMoves()
   };
 }
 
-const std::vector<std::string> Moves::GetInvalidQueenMoves()
+const std::vector<std::string> ribi::Chess::Moves::GetInvalidQueenMoves()
 {
   return
   {
@@ -216,7 +214,7 @@ const std::vector<std::string> Moves::GetInvalidQueenMoves()
   };
 }
 
-const std::vector<std::string> Moves::GetInvalidRookMoves()
+const std::vector<std::string> ribi::Chess::Moves::GetInvalidRookMoves()
 {
   return
   {
@@ -224,7 +222,7 @@ const std::vector<std::string> Moves::GetInvalidRookMoves()
   };
 }
 
-const std::vector<std::string> Moves::GetValidBishopMoves()
+const std::vector<std::string> ribi::Chess::Moves::GetValidBishopMoves()
 {
   return
   {
@@ -237,7 +235,7 @@ const std::vector<std::string> Moves::GetValidBishopMoves()
   };
 }
 
-const std::vector<std::string> Moves::GetValidCaptureMoves()
+const std::vector<std::string> ribi::Chess::Moves::GetValidCaptureMoves()
 {
   return
   {
@@ -249,7 +247,7 @@ const std::vector<std::string> Moves::GetValidCaptureMoves()
   };
 }
 
-const std::vector<std::string> Moves::GetValidCastlingMoves()
+const std::vector<std::string> ribi::Chess::Moves::GetValidCastlingMoves()
 {
   return
   {
@@ -258,7 +256,7 @@ const std::vector<std::string> Moves::GetValidCastlingMoves()
   };
 }
 
-const std::vector<std::string> Moves::GetValidCheckMoves()
+const std::vector<std::string> ribi::Chess::Moves::GetValidCheckMoves()
 {
   return
   {
@@ -268,7 +266,7 @@ const std::vector<std::string> Moves::GetValidCheckMoves()
   };
 }
 
-const std::vector<std::string> Moves::GetValidCheckmateMoves()
+const std::vector<std::string> ribi::Chess::Moves::GetValidCheckmateMoves()
 {
   return
   {
@@ -276,7 +274,7 @@ const std::vector<std::string> Moves::GetValidCheckmateMoves()
   };
 }
 
-const std::vector<std::string> Moves::GetValidEnPassantMoves()
+const std::vector<std::string> ribi::Chess::Moves::GetValidEnPassantMoves()
 {
   return
   {
@@ -286,7 +284,7 @@ const std::vector<std::string> Moves::GetValidEnPassantMoves()
   };
 }
 
-const std::vector<std::string> Moves::GetValidKingMoves()
+const std::vector<std::string> ribi::Chess::Moves::GetValidKingMoves()
 {
   return
   {
@@ -300,7 +298,7 @@ const std::vector<std::string> Moves::GetValidKingMoves()
    };
 }
 
-const std::vector<std::string> Moves::GetValidKnightMoves()
+const std::vector<std::string> ribi::Chess::Moves::GetValidKnightMoves()
 {
   return
   {
@@ -316,7 +314,7 @@ const std::vector<std::string> Moves::GetValidKnightMoves()
   };
 }
 
-const std::vector<std::string> Moves::GetValidPawnMoves(const Chess::Color& color)
+const std::vector<std::string> ribi::Chess::Moves::GetValidPawnMoves(const Chess::Color& color)
 {
   if (color == Color::indeterminate)
   return
@@ -345,7 +343,7 @@ const std::vector<std::string> Moves::GetValidPawnMoves(const Chess::Color& colo
   assert(!"Should not get here");
 }
 
-const std::vector<std::string> Moves::GetValidPromotionMoves()
+const std::vector<std::string> ribi::Chess::Moves::GetValidPromotionMoves()
 {
   return
   {
@@ -356,7 +354,7 @@ const std::vector<std::string> Moves::GetValidPromotionMoves()
   };
 }
 
-const std::vector<std::string> Moves::GetValidQueenMoves()
+const std::vector<std::string> ribi::Chess::Moves::GetValidQueenMoves()
 {
   return
   {
@@ -387,7 +385,7 @@ const std::vector<std::string> Moves::GetValidQueenMoves()
   };
 }
 
-const std::vector<std::string> Moves::GetValidRookMoves()
+const std::vector<std::string> ribi::Chess::Moves::GetValidRookMoves()
 {
   return
   {
@@ -412,18 +410,14 @@ const std::vector<std::string> Moves::GetValidRookMoves()
   };
 }
 
-const std::string Moves::GetVersion()
+const std::string ribi::Chess::Moves::GetVersion()
 {
   return "1.0";
 }
 
-const std::vector<std::string> Moves::GetVersionHistory()
+const std::vector<std::string> ribi::Chess::Moves::GetVersionHistory()
 {
   std::vector<std::string> v;
-  v.push_back("YYYY-MM-DD: version X.Y: [description]");
   v.push_back("2012-01-25: version 1.0: initial version");
   return v;
 }
-
-}; //~namespace Chess
-

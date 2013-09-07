@@ -19,14 +19,12 @@ bool IsPresent(boost::shared_ptr<T> p,const std::vector<boost::shared_ptr<U> > v
     [p](const boost::shared_ptr<T> q)
     {
       assert(q);
-      return IsEqual(*p,*q);
+      return *p == *q;
     }
   ) > 0;
 }
 
-namespace Chess {
-
-void Piece::Test()
+void ribi::Chess::Piece::Test()
 {
   //Testing Chess::Piece exactly once
   {
@@ -52,12 +50,12 @@ void Piece::Test()
         assert(IsEqual(*p,*q));
 
       }
-      PieceBishop::Test();
-      PieceKing::Test();
-      PieceKnight::Test();
-      PiecePawn::Test();
-      PieceQueen::Test();
-      PieceRook::Test();
+      ribi::Chess::PieceBishop::Test();
+      ribi::Chess::PieceKing::Test();
+      ribi::Chess::PieceKnight::Test();
+      ribi::Chess::PiecePawn::Test();
+      ribi::Chess::PieceQueen::Test();
+      ribi::Chess::PieceRook::Test();
     }
   #ifdef SADC_USE_THREADS
   );
@@ -65,7 +63,7 @@ void Piece::Test()
   #endif
 }
 
-void PieceBishop::Test()
+void ribi::Chess::PieceBishop::Test()
 {
   {
     static bool is_tested = false;
@@ -164,7 +162,7 @@ void PieceBishop::Test()
   #endif
 }
 
-void PieceKing::Test()
+void ribi::Chess::PieceKing::Test()
 {
   {
     static bool is_tested = false;
@@ -248,7 +246,7 @@ void PieceKing::Test()
   #endif
 }
 
-void PieceKnight::Test()
+void ribi::Chess::PieceKnight::Test()
 {
   {
     static bool is_tested = false;
@@ -348,7 +346,7 @@ void PieceKnight::Test()
         const boost::shared_ptr<const Move> move = MoveFactory::Create("Na1 b3");
         assert(move);
         assert(IsPresent(move,moves));
-        //assert(std::find(moves.begin(),moves.end(),Move("Na1 b3")) != moves.end());
+        //assert(std::find(moves.begin(),moves.end(),MoveFactory::Create("Na1 b3")) != moves.end());
       }
       {
         const boost::shared_ptr<Square> square = SquareFactory::Create("b1");
@@ -360,7 +358,7 @@ void PieceKnight::Test()
         const boost::shared_ptr<const Move> move = MoveFactory::Create("Nb1 c3");
         assert(move);
         assert(IsPresent(move,moves));
-        //assert(std::find(moves.begin(),moves.end(),Move("Nb1 c3")) != moves.end());
+        //assert(std::find(moves.begin(),moves.end(),MoveFactory::Create("Nb1 c3")) != moves.end());
       }
     }
   #ifdef SADC_USE_THREADS
@@ -369,7 +367,7 @@ void PieceKnight::Test()
   #endif
 }
 
-void PiecePawn::Test()
+void ribi::Chess::PiecePawn::Test()
 {
   {
     static bool is_tested = false;
@@ -644,12 +642,13 @@ void PiecePawn::Test()
         assert(p);
         //const PiecePawn p(Color::indeterminate,boost::shared_ptr<Square>(new Square("e4")));
         const std::vector<boost::shared_ptr<Move> > moves = p->GetMoves();
-        assert(std::find(moves.begin(),moves.end(),Move("e4 e5")) != moves.end());
-        assert(std::find(moves.begin(),moves.end(),Move("e4xd5")) != moves.end());
-        assert(std::find(moves.begin(),moves.end(),Move("e4xf5")) != moves.end());
-        assert(std::find(moves.begin(),moves.end(),Move("e4 e3")) != moves.end());
-        assert(std::find(moves.begin(),moves.end(),Move("e4xd3")) != moves.end());
-        assert(std::find(moves.begin(),moves.end(),Move("e4xf3")) != moves.end());
+
+        assert(std::find(moves.begin(),moves.end(),MoveFactory::Create("e4 e5")) != moves.end());
+        assert(std::find(moves.begin(),moves.end(),MoveFactory::Create("e4xd5")) != moves.end());
+        assert(std::find(moves.begin(),moves.end(),MoveFactory::Create("e4xf5")) != moves.end());
+        assert(std::find(moves.begin(),moves.end(),MoveFactory::Create("e4 e3")) != moves.end());
+        assert(std::find(moves.begin(),moves.end(),MoveFactory::Create("e4xd3")) != moves.end());
+        assert(std::find(moves.begin(),moves.end(),MoveFactory::Create("e4xf3")) != moves.end());
         assert(moves.size() == 6 * 3); //*3 due to non-check, check and checkmate moves
       }
       {
@@ -657,9 +656,9 @@ void PiecePawn::Test()
         assert(p);
         //PiecePawn p(Color::white,boost::shared_ptr<Square>(new Square("e4")));
         const std::vector<boost::shared_ptr<Move> > moves = p->GetMoves();
-        assert(std::find(moves.begin(),moves.end(),Move("e4 e5")) != moves.end());
-        assert(std::find(moves.begin(),moves.end(),Move("e4xd5")) != moves.end());
-        assert(std::find(moves.begin(),moves.end(),Move("e4xf5")) != moves.end());
+        assert(std::find(moves.begin(),moves.end(),MoveFactory::Create("e4 e5")) != moves.end());
+        assert(std::find(moves.begin(),moves.end(),MoveFactory::Create("e4xd5")) != moves.end());
+        assert(std::find(moves.begin(),moves.end(),MoveFactory::Create("e4xf5")) != moves.end());
         assert(moves.size() == 3 * 3); //*3 due to non-check, check and checkmate moves
       }
       {
@@ -667,9 +666,9 @@ void PiecePawn::Test()
         assert(p);
         //PiecePawn p(Color::black,boost::shared_ptr<Square>(new Square("e4")));
         const std::vector<boost::shared_ptr<Move> > moves = p->GetMoves();
-        assert(std::find(moves.begin(),moves.end(),Move("e4 e3")) != moves.end());
-        assert(std::find(moves.begin(),moves.end(),Move("e4xd3")) != moves.end());
-        assert(std::find(moves.begin(),moves.end(),Move("e4xf3")) != moves.end());
+        assert(std::find(moves.begin(),moves.end(),MoveFactory::Create("e4 e3")) != moves.end());
+        assert(std::find(moves.begin(),moves.end(),MoveFactory::Create("e4xd3")) != moves.end());
+        assert(std::find(moves.begin(),moves.end(),MoveFactory::Create("e4xf3")) != moves.end());
         assert(moves.size() == 3 * 3); //*3 due to non-check, check and checkmate moves
       }
     }
@@ -679,7 +678,7 @@ void PiecePawn::Test()
   #endif
 }
 
-void PieceQueen::Test()
+void ribi::Chess::PieceQueen::Test()
 {
   {
     static bool is_tested = false;
@@ -766,7 +765,7 @@ void PieceQueen::Test()
         const boost::shared_ptr<const Move> move = MoveFactory::Create("Qd4 h8");
         assert(move);
         assert(IsPresent(move,moves));
-        //assert(std::find(moves.begin(),moves.end(),Move("Qd4 h8")) != moves.end());
+        //assert(std::find(moves.begin(),moves.end(),MoveFactory::Create("Qd4 h8")) != moves.end());
       }
       {
         const boost::shared_ptr<const Piece> p = PieceFactory::Create('Q',Chess::Color::white,"a1");
@@ -777,7 +776,7 @@ void PieceQueen::Test()
         const boost::shared_ptr<const Move> move = MoveFactory::Create("Qa1 h1");
         assert(move);
         assert(IsPresent(move,moves));
-        //assert(std::find(moves.begin(),moves.end(),Move("Qa1 h1")) != moves.end());
+        //assert(std::find(moves.begin(),moves.end(),MoveFactory::Create("Qa1 h1")) != moves.end());
       }
       {
         const boost::shared_ptr<const Piece> p = PieceFactory::Create('Q',Chess::Color::black,"b1");
@@ -788,7 +787,7 @@ void PieceQueen::Test()
         const boost::shared_ptr<const Move> move = MoveFactory::Create("Qb1 b8");
         assert(move);
         assert(IsPresent(move,moves));
-        //assert(std::find(moves.begin(),moves.end(),Move("Qb1 b8")) != moves.end());
+        //assert(std::find(moves.begin(),moves.end(),MoveFactory::Create("Qb1 b8")) != moves.end());
       }
     }
   #ifdef SADC_USE_THREADS
@@ -797,7 +796,7 @@ void PieceQueen::Test()
   #endif
 }
 
-void PieceRook::Test()
+void ribi::Chess::PieceRook::Test()
 {
   {
     static bool is_tested = false;
@@ -879,6 +878,3 @@ void PieceRook::Test()
   t.detach();
   #endif
 }
-
-} //~namespace Chess
-

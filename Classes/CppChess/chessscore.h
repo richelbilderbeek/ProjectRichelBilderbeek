@@ -1,10 +1,12 @@
 #ifndef CHESSSCORE_H
 #define CHESSSCORE_H
 
-namespace Chess {
-
 #include <iosfwd>
 #include <string>
+#include <vector>
+
+namespace ribi {
+namespace Chess {
 
 ///Score contains the score that ends a chess match
 struct Score
@@ -41,5 +43,6 @@ bool operator==(const Score& lhs, const Score& rhs);
 bool operator!=(const Score& lhs, const Score& rhs);
 
 } //~namespace Chess
+} //~namespace ribi
 
 #endif // CHESSSCORE_H

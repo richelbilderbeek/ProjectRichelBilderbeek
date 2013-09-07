@@ -2,18 +2,14 @@
 
 #include <cassert>
 
-#ifdef SADC_USE_THREADS
-#include <thread>
-#endif
-
 #include "chessmoves.h"
 #include "chesspiece.h"
+#include "chesssquarefactory.h"
 #include "trace.h"
 
-namespace Chess {
 
 #ifndef NDEBUG
-void Move::Test()
+void ribi::Chess::Move::Test()
 {
   {
     static bool tested = false;
@@ -45,25 +41,26 @@ void Move::Test()
       }
 
       FTRACE("Test Chess::Move parsing of the square the piece is moving from");
-      assert(IsEqual(*Chess::Move::ParseFrom("a2 a3"),Chess::Square(Chess::File("a"),Chess::Rank("2"))));
-      assert(IsEqual(*Chess::Move::ParseFrom("Bb3 c5"),Chess::Square(Chess::File("b"),Chess::Rank("3"))));
-      assert(IsEqual(*Chess::Move::ParseFrom("Kc4 d4"),Chess::Square(Chess::File("c"),Chess::Rank("4"))));
-      assert(IsEqual(*Chess::Move::ParseFrom("Nd5 e6"),Chess::Square(Chess::File("d"),Chess::Rank("5"))));
-      assert(IsEqual(*Chess::Move::ParseFrom("Qe6 f7"),Chess::Square(Chess::File("e"),Chess::Rank("6"))));
-      assert(IsEqual(*Chess::Move::ParseFrom("Rf7 h7"),Chess::Square(Chess::File("f"),Chess::Rank("7"))));
-      assert(!Chess::Move::ParseFrom("a3"));
-      assert(!Chess::Move::ParseFrom("0-0"));
-      assert(!Chess::Move::ParseFrom("0-0+"));
-      assert(!Chess::Move::ParseFrom("0-0#"));
-      assert(!Chess::Move::ParseFrom("O-O"));
-      assert(!Chess::Move::ParseFrom("O-O+"));
-      assert(!Chess::Move::ParseFrom("O-O#"));
-      assert(!Chess::Move::ParseFrom("0-0-0"));
-      assert(!Chess::Move::ParseFrom("0-0-0+"));
-      assert(!Chess::Move::ParseFrom("0-0-0#"));
-      assert(!Chess::Move::ParseFrom("O-O-O"));
-      assert(!Chess::Move::ParseFrom("O-O-O+"));
-      assert(!Chess::Move::ParseFrom("O-O-O#"));
+
+      assert(IsEqual(*Move::ParseFrom( "a2 a3"),*SquareFactory::Create(Chess::File("a"),Chess::Rank("2"))));
+      assert(IsEqual(*Move::ParseFrom("Bb3 c5"),*SquareFactory::Create(Chess::File("b"),Chess::Rank("3"))));
+      assert(IsEqual(*Move::ParseFrom("Kc4 d4"),*SquareFactory::Create(Chess::File("c"),Chess::Rank("4"))));
+      assert(IsEqual(*Move::ParseFrom("Nd5 e6"),*SquareFactory::Create(Chess::File("d"),Chess::Rank("5"))));
+      assert(IsEqual(*Move::ParseFrom("Qe6 f7"),*SquareFactory::Create(Chess::File("e"),Chess::Rank("6"))));
+      assert(IsEqual(*Move::ParseFrom("Rf7 h7"),*SquareFactory::Create(Chess::File("f"),Chess::Rank("7"))));
+      assert(!ribi::Chess::Move::ParseFrom("a3"));
+      assert(!ribi::Chess::Move::ParseFrom("0-0"));
+      assert(!ribi::Chess::Move::ParseFrom("0-0+"));
+      assert(!ribi::Chess::Move::ParseFrom("0-0#"));
+      assert(!ribi::Chess::Move::ParseFrom("O-O"));
+      assert(!ribi::Chess::Move::ParseFrom("O-O+"));
+      assert(!ribi::Chess::Move::ParseFrom("O-O#"));
+      assert(!ribi::Chess::Move::ParseFrom("0-0-0"));
+      assert(!ribi::Chess::Move::ParseFrom("0-0-0+"));
+      assert(!ribi::Chess::Move::ParseFrom("0-0-0#"));
+      assert(!ribi::Chess::Move::ParseFrom("O-O-O"));
+      assert(!ribi::Chess::Move::ParseFrom("O-O-O+"));
+      assert(!ribi::Chess::Move::ParseFrom("O-O-O#"));
 
       FTRACE("Testing valid capture moves");
       {
@@ -71,8 +68,8 @@ void Move::Test()
         std::for_each(v.begin(),v.end(),
           [](const std::string& s)
           {
-            if (!Chess::Move::ParseIsCapture(s)) { TRACE(s); }
-            assert(Chess::Move::ParseIsCapture(s));
+            if (!ribi::Chess::Move::ParseIsCapture(s)) { TRACE(s); }
+            assert(ribi::Chess::Move::ParseIsCapture(s));
           }
         );
       }
@@ -82,13 +79,13 @@ void Move::Test()
         std::for_each(v.begin(),v.end(),
           [](const std::string& s)
           {
-            if (!Chess::Move::ParseIsCastling(s)) { TRACE(s); }
-            assert(Chess::Move::ParseIsCastling(s));
+            if (!ribi::Chess::Move::ParseIsCastling(s)) { TRACE(s); }
+            assert(ribi::Chess::Move::ParseIsCastling(s));
           }
         );
       }
 
-      assert(!Chess::Move::ParseIsCastling("a3"));
+      assert(!ribi::Chess::Move::ParseIsCastling("a3"));
 
       FTRACE("Testing valid moves that result in check");
       {
@@ -96,59 +93,59 @@ void Move::Test()
         std::for_each(v.begin(),v.end(),
           [](const std::string& s)
           {
-            if (!Chess::Move::ParseIsCheck(s)) { TRACE(s); }
-            assert(Chess::Move::ParseIsCheck(s));
+            if (!ribi::Chess::Move::ParseIsCheck(s)) { TRACE(s); }
+            assert(ribi::Chess::Move::ParseIsCheck(s));
           }
         );
       }
-      assert(!Chess::Move::ParseIsCheck("a2 a3"));
-      assert(!Chess::Move::ParseIsCheck("a2xb3"));
-      assert(!Chess::Move::ParseIsCheck("Ba3"));
-      assert(!Chess::Move::ParseIsCheck("Ba2 b3"));
-      assert(!Chess::Move::ParseIsCheck("Ba2xb3"));
-      assert(!Chess::Move::ParseIsCheck("a2 a3#"));
-      assert(!Chess::Move::ParseIsCheck("a2xb3#"));
-      assert(!Chess::Move::ParseIsCheck("Ba3#"));
-      assert(!Chess::Move::ParseIsCheck("Ba2 b3#"));
-      assert(!Chess::Move::ParseIsCheck("Ba2xb3#"));
-      assert(!Chess::Move::ParseIsCheck("O-O"));
-      assert(!Chess::Move::ParseIsCheck("O-O-O"));
-      assert(!Chess::Move::ParseIsCheck("0-0"));
-      assert(!Chess::Move::ParseIsCheck("0-0-0"));
-      assert(!Chess::Move::ParseIsCheck("O-O#"));
-      assert(!Chess::Move::ParseIsCheck("O-O-O#"));
-      assert(!Chess::Move::ParseIsCheck("0-0#"));
-      assert(!Chess::Move::ParseIsCheck("0-0-0#"));
+      assert(!ribi::Chess::Move::ParseIsCheck("a2 a3"));
+      assert(!ribi::Chess::Move::ParseIsCheck("a2xb3"));
+      assert(!ribi::Chess::Move::ParseIsCheck("Ba3"));
+      assert(!ribi::Chess::Move::ParseIsCheck("Ba2 b3"));
+      assert(!ribi::Chess::Move::ParseIsCheck("Ba2xb3"));
+      assert(!ribi::Chess::Move::ParseIsCheck("a2 a3#"));
+      assert(!ribi::Chess::Move::ParseIsCheck("a2xb3#"));
+      assert(!ribi::Chess::Move::ParseIsCheck("Ba3#"));
+      assert(!ribi::Chess::Move::ParseIsCheck("Ba2 b3#"));
+      assert(!ribi::Chess::Move::ParseIsCheck("Ba2xb3#"));
+      assert(!ribi::Chess::Move::ParseIsCheck("O-O"));
+      assert(!ribi::Chess::Move::ParseIsCheck("O-O-O"));
+      assert(!ribi::Chess::Move::ParseIsCheck("0-0"));
+      assert(!ribi::Chess::Move::ParseIsCheck("0-0-0"));
+      assert(!ribi::Chess::Move::ParseIsCheck("O-O#"));
+      assert(!ribi::Chess::Move::ParseIsCheck("O-O-O#"));
+      assert(!ribi::Chess::Move::ParseIsCheck("0-0#"));
+      assert(!ribi::Chess::Move::ParseIsCheck("0-0-0#"));
 
       FTRACE("Testing valid moves that result in checkmate");
-      assert(Chess::Move::ParseIsCheckmate("a3#"));
-      assert(Chess::Move::ParseIsCheckmate("a2 a3#"));
-      assert(Chess::Move::ParseIsCheckmate("a2xb3#"));
-      assert(Chess::Move::ParseIsCheckmate("Ba3#"));
-      assert(Chess::Move::ParseIsCheckmate("Ba2 b3#"));
-      assert(Chess::Move::ParseIsCheckmate("Ba2xb3#"));
-      assert(Chess::Move::ParseIsCheckmate("O-O#"));
-      assert(Chess::Move::ParseIsCheckmate("O-O-O#"));
-      assert(Chess::Move::ParseIsCheckmate("0-0#"));
-      assert(Chess::Move::ParseIsCheckmate("0-0-0#"));
-      assert(!Chess::Move::ParseIsCheckmate("a2 a3"));
-      assert(!Chess::Move::ParseIsCheckmate("a2xb3"));
-      assert(!Chess::Move::ParseIsCheckmate("Ba3"));
-      assert(!Chess::Move::ParseIsCheckmate("Ba2 b3"));
-      assert(!Chess::Move::ParseIsCheckmate("Ba2xb3"));
-      assert(!Chess::Move::ParseIsCheckmate("a2 a3+"));
-      assert(!Chess::Move::ParseIsCheckmate("a2xb3+"));
-      assert(!Chess::Move::ParseIsCheckmate("Ba3+"));
-      assert(!Chess::Move::ParseIsCheckmate("Ba2 b3+"));
-      assert(!Chess::Move::ParseIsCheckmate("Ba2xb3+"));
-      assert(!Chess::Move::ParseIsCheckmate("O-O"));
-      assert(!Chess::Move::ParseIsCheckmate("O-O-O"));
-      assert(!Chess::Move::ParseIsCheckmate("0-0"));
-      assert(!Chess::Move::ParseIsCheckmate("0-0-0"));
-      assert(!Chess::Move::ParseIsCheckmate("O-O+"));
-      assert(!Chess::Move::ParseIsCheckmate("O-O-O+"));
-      assert(!Chess::Move::ParseIsCheckmate("0-0+"));
-      assert(!Chess::Move::ParseIsCheckmate("0-0-0+"));
+      assert(ribi::Chess::Move::ParseIsCheckmate("a3#"));
+      assert(ribi::Chess::Move::ParseIsCheckmate("a2 a3#"));
+      assert(ribi::Chess::Move::ParseIsCheckmate("a2xb3#"));
+      assert(ribi::Chess::Move::ParseIsCheckmate("Ba3#"));
+      assert(ribi::Chess::Move::ParseIsCheckmate("Ba2 b3#"));
+      assert(ribi::Chess::Move::ParseIsCheckmate("Ba2xb3#"));
+      assert(ribi::Chess::Move::ParseIsCheckmate("O-O#"));
+      assert(ribi::Chess::Move::ParseIsCheckmate("O-O-O#"));
+      assert(ribi::Chess::Move::ParseIsCheckmate("0-0#"));
+      assert(ribi::Chess::Move::ParseIsCheckmate("0-0-0#"));
+      assert(!ribi::Chess::Move::ParseIsCheckmate("a2 a3"));
+      assert(!ribi::Chess::Move::ParseIsCheckmate("a2xb3"));
+      assert(!ribi::Chess::Move::ParseIsCheckmate("Ba3"));
+      assert(!ribi::Chess::Move::ParseIsCheckmate("Ba2 b3"));
+      assert(!ribi::Chess::Move::ParseIsCheckmate("Ba2xb3"));
+      assert(!ribi::Chess::Move::ParseIsCheckmate("a2 a3+"));
+      assert(!ribi::Chess::Move::ParseIsCheckmate("a2xb3+"));
+      assert(!ribi::Chess::Move::ParseIsCheckmate("Ba3+"));
+      assert(!ribi::Chess::Move::ParseIsCheckmate("Ba2 b3+"));
+      assert(!ribi::Chess::Move::ParseIsCheckmate("Ba2xb3+"));
+      assert(!ribi::Chess::Move::ParseIsCheckmate("O-O"));
+      assert(!ribi::Chess::Move::ParseIsCheckmate("O-O-O"));
+      assert(!ribi::Chess::Move::ParseIsCheckmate("0-0"));
+      assert(!ribi::Chess::Move::ParseIsCheckmate("0-0-0"));
+      assert(!ribi::Chess::Move::ParseIsCheckmate("O-O+"));
+      assert(!ribi::Chess::Move::ParseIsCheckmate("O-O-O+"));
+      assert(!ribi::Chess::Move::ParseIsCheckmate("0-0+"));
+      assert(!ribi::Chess::Move::ParseIsCheckmate("0-0-0+"));
 
       FTRACE("Testing valid en passant moves");
       {
@@ -156,7 +153,7 @@ void Move::Test()
         std::for_each(v.begin(),v.end(),
           [](const std::string& s)
           {
-            assert(Chess::Move::ParseIsEnPassant(s));
+            assert(ribi::Chess::Move::ParseIsEnPassant(s));
           }
         );
       }
@@ -167,8 +164,8 @@ void Move::Test()
         std::for_each(v.begin(),v.end(),
           [](const std::string& s)
           {
-            if (Chess::Move::ParseIsEnPassant(s)) TRACE(s);
-            assert(!Chess::Move::ParseIsEnPassant(s));
+            if (ribi::Chess::Move::ParseIsEnPassant(s)) TRACE(s);
+            assert(!ribi::Chess::Move::ParseIsEnPassant(s));
           }
         );
       }
@@ -180,41 +177,41 @@ void Move::Test()
         std::for_each(v.begin(),v.end(),
           [](const std::string& s)
           {
-            assert(Chess::Move::ParseIsPromotion(s));
+            assert(ribi::Chess::Move::ParseIsPromotion(s));
           }
         );
       }
       FTRACE("Testing ParseTo");
 
       ///Test parsing of the square the piece is moving to
-      assert(IsEqual(*Chess::Move::ParseTo("a2 a3"),Chess::Square(Chess::File("a"),Chess::Rank("3"))));
-      assert(IsEqual(*Chess::Move::ParseTo(   "a3"),Chess::Square(Chess::File("a"),Chess::Rank("3"))));
-      assert(IsEqual(*Chess::Move::ParseTo("Bb3 c5"),Chess::Square(Chess::File("c"),Chess::Rank("5"))));
-      assert(IsEqual(*Chess::Move::ParseTo("Kc4 d4"),Chess::Square(Chess::File("d"),Chess::Rank("4"))));
-      assert(IsEqual(*Chess::Move::ParseTo("Nd5 e6"),Chess::Square(Chess::File("e"),Chess::Rank("6"))));
-      assert(IsEqual(*Chess::Move::ParseTo("Qe6 f7"),Chess::Square(Chess::File("f"),Chess::Rank("7"))));
-      assert(IsEqual(*Chess::Move::ParseTo("Rf7 h7"),Chess::Square(Chess::File("h"),Chess::Rank("7"))));
-      assert(!Chess::Move::ParseTo("0-0"));
-      assert(!Chess::Move::ParseTo("0-0+"));
-      assert(!Chess::Move::ParseTo("0-0#"));
-      assert(!Chess::Move::ParseTo("O-O"));
+      assert(IsEqual(*Move::ParseTo("a2 a3"),*SquareFactory::Create(Chess::File("a"),Chess::Rank("3"))));
+      assert(IsEqual(*Move::ParseTo(   "a3"),*SquareFactory::Create(Chess::File("a"),Chess::Rank("3"))));
+      assert(IsEqual(*Move::ParseTo("Bb3 c5"),*SquareFactory::Create(Chess::File("c"),Chess::Rank("5"))));
+      assert(IsEqual(*Move::ParseTo("Kc4 d4"),*SquareFactory::Create(Chess::File("d"),Chess::Rank("4"))));
+      assert(IsEqual(*Move::ParseTo("Nd5 e6"),*SquareFactory::Create(Chess::File("e"),Chess::Rank("6"))));
+      assert(IsEqual(*Move::ParseTo("Qe6 f7"),*SquareFactory::Create(Chess::File("f"),Chess::Rank("7"))));
+      assert(IsEqual(*Move::ParseTo("Rf7 h7"),*SquareFactory::Create(Chess::File("h"),Chess::Rank("7"))));
+      assert(!ribi::Chess::Move::ParseTo("0-0"));
+      assert(!ribi::Chess::Move::ParseTo("0-0+"));
+      assert(!ribi::Chess::Move::ParseTo("0-0#"));
+      assert(!ribi::Chess::Move::ParseTo("O-O"));
 
-      assert(!Chess::Move::ParseTo("O-O+"));
-      assert(!Chess::Move::ParseTo("O-O#"));
-      assert(!Chess::Move::ParseTo("0-0-0"));
-      assert(!Chess::Move::ParseTo("0-0-0+"));
-      assert(!Chess::Move::ParseTo("0-0-0#"));
-      assert(!Chess::Move::ParseTo("O-O-O"));
-      assert(!Chess::Move::ParseTo("O-O-O+"));
-      assert(!Chess::Move::ParseTo("O-O-O#"));
+      assert(!ribi::Chess::Move::ParseTo("O-O+"));
+      assert(!ribi::Chess::Move::ParseTo("O-O#"));
+      assert(!ribi::Chess::Move::ParseTo("0-0-0"));
+      assert(!ribi::Chess::Move::ParseTo("0-0-0+"));
+      assert(!ribi::Chess::Move::ParseTo("0-0-0#"));
+      assert(!ribi::Chess::Move::ParseTo("O-O-O"));
+      assert(!ribi::Chess::Move::ParseTo("O-O-O+"));
+      assert(!ribi::Chess::Move::ParseTo("O-O-O#"));
 
       FTRACE("Testing ParsePiece");
-      assert(Chess::Move::ParsePiece("Ba1 b2")->GetNameChar() == 'B');
-      assert(Chess::Move::ParsePiece("Ka1 b1")->GetNameChar() == 'K');
-      assert(Chess::Move::ParsePiece("Na1 b3")->GetNameChar() == 'N');
-      assert(Chess::Move::ParsePiece("Qa1 b1")->GetNameChar() == 'Q');
-      assert(Chess::Move::ParsePiece("Ra1 b1")->GetNameChar() == 'R');
-      assert(Chess::Move::ParsePiece("a2 a4")->GetNameChar() == '.');
+      assert(ribi::Chess::Move::ParsePiece("Ba1 b2")->GetNameChar() == 'B');
+      assert(ribi::Chess::Move::ParsePiece("Ka1 b1")->GetNameChar() == 'K');
+      assert(ribi::Chess::Move::ParsePiece("Na1 b3")->GetNameChar() == 'N');
+      assert(ribi::Chess::Move::ParsePiece("Qa1 b1")->GetNameChar() == 'Q');
+      assert(ribi::Chess::Move::ParsePiece("Ra1 b1")->GetNameChar() == 'R');
+      assert(ribi::Chess::Move::ParsePiece("a2 a4")->GetNameChar() == '.');
 
       assert(!dynamic_cast<PieceBishop*>(Chess::Move("0-0").Piece().get()));
       assert(!dynamic_cast<PieceBishop*>(Chess::Move("O-O-O").Piece().get()));
@@ -299,7 +296,7 @@ void Move::Test()
         assert(m.Piece());
         assert(dynamic_cast<Chess::PiecePawn*>(m.Piece().get()));
         assert(!m.PiecePromotion());
-        assert(IsEqual(*m.To().get(),Chess::Square("a3")));
+        assert(IsEqual(*m.To().get(),*SquareFactory::Create("a3")));
       }
 
 
@@ -330,6 +327,3 @@ void Move::Test()
   #endif
 }
 #endif
-
-} //~namespace Chess
-

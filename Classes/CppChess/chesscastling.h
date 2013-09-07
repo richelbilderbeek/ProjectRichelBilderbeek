@@ -8,6 +8,7 @@
 
 #include "chessfwd.h"
 
+namespace ribi {
 namespace Chess {
 
 enum class Castling { kingside, queenside };
@@ -20,5 +21,6 @@ const boost::regex GetCastlingRegex();
 Castling StrToCastling(const std::string& s);
 
 } //~namespace Chess
+} //~namespace ribi
 
 #endif // CHESSCASTLING_H

@@ -5,6 +5,7 @@
 
 #include "chessfwd.h"
 
+namespace ribi {
 namespace Chess {
 
 struct MoveFactory
@@ -16,5 +17,6 @@ struct MoveFactory
 };
 
 } //~namespace Chess
+} //~namespace ribi
 
 #endif // CHESSMOVEFACTORY_H

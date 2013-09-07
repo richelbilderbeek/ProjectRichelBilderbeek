@@ -4,17 +4,11 @@
 #include <cassert>
 #include <stdexcept>
 
-#ifdef SADC_USE_THREADS
-#include <thread>
-#endif
-
 #include <boost/lexical_cast.hpp>
 
 #include "trace.h"
 
-namespace Chess {
-
-Rank::Rank(const std::string& y)
+ribi::Chess::Rank::Rank(const std::string& y)
   : m_rank(y)
 {
   #ifndef NDEBUG
@@ -42,7 +36,7 @@ Rank::Rank(const std::string& y)
   assert(boost::lexical_cast<int>(m_rank) <= 8);
 }
 
-Rank::Rank(const int y)
+ribi::Chess::Rank::Rank(const int y)
   : m_rank(boost::lexical_cast<std::string>(y + 1))
 {
   #ifndef NDEBUG
@@ -54,12 +48,12 @@ Rank::Rank(const int y)
   }
 }
 
-const std::string Rank::GetVersion()
+const std::string ribi::Chess::Rank::GetVersion()
 {
   return "1.0";
 }
 
-const std::vector<std::string> Rank::GetVersionHistory()
+const std::vector<std::string> ribi::Chess::Rank::GetVersionHistory()
 {
   std::vector<std::string> v;
   v.push_back("YYYY-MM-DD: version X.Y: [description]");
@@ -67,7 +61,7 @@ const std::vector<std::string> Rank::GetVersionHistory()
   return v;
 }
 
-void Rank::Test()
+void ribi::Chess::Rank::Test()
 {
   {
     static bool is_tested = false;
@@ -157,27 +151,27 @@ void Rank::Test()
   #endif
 }
 
-int Rank::ToInt() const
+int ribi::Chess::Rank::ToInt() const
 {
   assert(boost::lexical_cast<int>(m_rank) >= 1);
   assert(boost::lexical_cast<int>(m_rank) <= 8);
   return boost::lexical_cast<int>(m_rank) - 1;
 }
 
-const std::string& Rank::ToStr() const
+const std::string& ribi::Chess::Rank::ToStr() const
 {
   return m_rank;
 }
 
 /*
-Rank& Rank::operator++()
+Rank& ribi::Chess::Rank::operator++()
 {
   assert(m_rank != std::string("8"));
   m_rank = boost::lexical_cast<std::string>(++boost::lexical_cast<int>(m_rank));
   return *this;
 }
 
-Rank& Rank::operator--()
+Rank& ribi::Chess::Rank::operator--()
 {
   assert(m_rank != std::string("1"));
   m_rank = boost::lexical_cast<std::string>(--boost::lexical_cast<int>(m_rank));
@@ -185,10 +179,7 @@ Rank& Rank::operator--()
 }
 */
 
-bool operator==(const Chess::Rank& lhs, const Chess::Rank& rhs)
+bool ribi::Chess::operator==(const Chess::Rank& lhs, const Chess::Rank& rhs)
 {
   return lhs.ToStr() == rhs.ToStr();
 }
-
-};
-

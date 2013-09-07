@@ -13,6 +13,7 @@
 #include "chessmove.h"
 //#include "chesspiece.h"
 
+namespace ribi {
 namespace Chess {
 
 struct Piece;
@@ -149,6 +150,7 @@ bool operator==(const Board::ConstPieces& lhs,const Board::ConstPieces& rhs); //
 
 std::ostream& operator<<(std::ostream& os, const Board& board);
 
-} //~ namespace Chess
+} //~namespace Chess
+} //~namespace ribi
 
 #endif // CHESSBOARD_H

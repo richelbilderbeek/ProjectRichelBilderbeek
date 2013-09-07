@@ -6,6 +6,7 @@
 #include "chessfwd.h"
 #include "chessboard.h"
 
+namespace ribi {
 namespace Chess {
 
 ///Factory for creating a Chess::Board
@@ -19,5 +20,6 @@ struct BoardFactory
 };
 
 } //~namespace Chess
+} //~namespace ribi
 
 #endif // CHESSBOARDFACTORY_H

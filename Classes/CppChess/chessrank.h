@@ -5,6 +5,7 @@
 #include <string>
 #include <vector>
 
+namespace ribi {
 namespace Chess {
 
 ///Rank is the y coordinat on the Board
@@ -46,6 +47,7 @@ struct Rank
 
 bool operator==(const Rank& lhs, const Rank& rhs);
 
-};
+} //~namespace Chess
+} //~namespace ribi
 
 #endif // CHESSRANK_H

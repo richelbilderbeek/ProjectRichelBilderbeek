@@ -109,6 +109,8 @@ unix {
 #
 #
 
+LIBS += -lwt -lwthttp -lboost_filesystem -lboost_signals -lboost_system -lboost_program_options
+
 win32 {
   INCLUDEPATH += \
     ../../Libraries/boost_1_54_0

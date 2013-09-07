@@ -4,6 +4,7 @@
 #include <boost/shared_ptr.hpp>
 #include "chessfwd.h"
 
+namespace ribi {
 namespace Chess {
 
 struct PieceFactory
@@ -25,5 +26,6 @@ struct PieceFactory
 };
 
 } //~namespace Chess
+} //~namespace ribi
 
 #endif // CHESSPIECEFACTORY_H

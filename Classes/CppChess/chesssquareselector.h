@@ -8,6 +8,8 @@
 #include "chessfwd.h"
 //#include "chesssquare.h"
 
+
+namespace ribi {
 namespace Chess {
 
 ///SquareSelector is the selector of a Chess::BoardWidget
@@ -25,7 +27,7 @@ struct SquareSelector
   void DoSelect();
 
   ///The initially selected Square
-  static std::unique_ptr<const Square> GetInitialSquare();
+  static boost::shared_ptr<Square> GetInitialSquare();
 
   ///Obtain the version of this class
   static const std::string GetVersion();
@@ -34,7 +36,7 @@ struct SquareSelector
   static const std::vector<std::string> GetVersionHistory();
 
   ///Obtain the location of the cursor
-  const boost::scoped_ptr<const Square>& GetCursor() const { return m_cursor; }
+  const boost::shared_ptr<const Square> GetCursor() const { return m_cursor; }
 
   ///Obtain the location of the cursor
   const boost::scoped_ptr<Square>& GetSelected() const { return m_selected; }
@@ -66,7 +68,7 @@ struct SquareSelector
 
   ///The Square the cursor is.
   ///There will always be a cursor somewhere
-  boost::scoped_ptr<const Square> m_cursor;
+  const boost::shared_ptr<Square> m_cursor;
 
   ///The selected Square, if any
   boost::scoped_ptr<Square> m_selected;
@@ -75,5 +77,6 @@ struct SquareSelector
 };
 
 } //~namespace Chess
+} //~namespace ribi
 
 #endif // CHESSSQUARESELECTOR_H

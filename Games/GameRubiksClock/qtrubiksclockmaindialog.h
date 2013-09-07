@@ -4,7 +4,7 @@
 #include "qthideandshowdialog.h"
 
 namespace Ui {
-class QtRubiksClockMainDialog;
+  class QtRubiksClockMainDialog;
 }
 
 namespace ribi {

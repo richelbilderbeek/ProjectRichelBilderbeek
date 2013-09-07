@@ -4,6 +4,7 @@
 #include <string>
 #include <vector>
 
+namespace ribi {
 namespace SearchAndDestroyChess {
 
 struct GameDialog
@@ -12,5 +13,6 @@ struct GameDialog
 };
 
 } //~namespace SearchAndDestroyChess
+} //~namespace ribi
 
 #endif // SEARCHANDDESTROYCHESSGAMEDIALOG_H

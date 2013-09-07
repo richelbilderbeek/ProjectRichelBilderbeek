@@ -2,10 +2,6 @@
 #include <cassert>
 #include <iostream>
 
-#ifdef SADC_USE_THREADS
-#include <thread>
-#endif
-
 #ifndef NDEBUG
 #include <algorithm>
 #include <vector>
@@ -16,9 +12,7 @@
 #include "chesssquare.h"
 #include "trace.h"
 
-namespace Chess {
-
-Square::Square(const Chess::File& x, const Chess::Rank& y)
+ribi::Chess::Square::Square(const Chess::File& x, const Chess::Rank& y)
   : m_file(x), m_rank(y)
 {
   #ifndef NDEBUG
@@ -26,7 +20,7 @@ Square::Square(const Chess::File& x, const Chess::Rank& y)
   #endif
 }
 
-Square::Square(const std::string &s)
+ribi::Chess::Square::Square(const std::string &s)
   : m_file(Chess::File(boost::lexical_cast<std::string>(s.at(0)))),
     m_rank(Chess::Rank(boost::lexical_cast<std::string>(s.at(1))))
 {
@@ -37,7 +31,7 @@ Square::Square(const std::string &s)
   if (s.size() != 2) throw std::logic_error("An string to be converted to a chess square must consist of exactly two characters");
 }
 
-//Square::Square(const char * const s)
+//ribi::Chess::Square::Square(const char * const s)
 //  : m_x(Chess::File(s[0]),
 //    m_y(Chess::Rank(boost::lexical_cast<int>(s[1])))
 //{
@@ -45,26 +39,25 @@ Square::Square(const std::string &s)
 //  assert(std::strlen(s) == 2);
 //}
 
-Chess::Color Square::GetColor() const
+ribi::Chess::Color ribi::Chess::Square::GetColor() const
 {
   return ((this->GetFile().ToInt() + this->GetRank().ToInt()) % 2 == 1 ? Color::white : Color::black);
 }
 
-const std::string Square::GetVersion()
+const std::string ribi::Chess::Square::GetVersion()
 {
   return "1.0";
 }
 
-const std::vector<std::string> Square::GetVersionHistory()
+const std::vector<std::string> ribi::Chess::Square::GetVersionHistory()
 {
   std::vector<std::string> v;
-  v.push_back("YYYY-MM-DD: version X.Y: [description]");
   v.push_back("2012-01-25: version 1.0: initial version");
   return v;
 }
 
 #ifndef NDEBUG
-void Square::Test()
+void ribi::Chess::Square::Test()
 {
   {
     static bool is_tested = false;
@@ -195,7 +188,7 @@ void Square::Test()
 }
 #endif
 
-const std::string Square::ToStr() const
+const std::string ribi::Chess::Square::ToStr() const
 {
   std::string s
     = boost::lexical_cast<std::string>(GetFile().ToStr())
@@ -203,17 +196,14 @@ const std::string Square::ToStr() const
   return s;
 }
 
-std::ostream& operator<<(std::ostream& os, const Square& s)
+std::ostream& ribi::Chess::operator<<(std::ostream& os, const Square& s)
 {
   os << s.ToStr();
   return os;
 }
 
-bool IsEqual(const Square& lhs, const Square& rhs)
+bool ribi::Chess::IsEqual(const Square& lhs, const Square& rhs)
 {
   return lhs.GetFile() == rhs.GetFile()
     && lhs.GetRank() == rhs.GetRank();
 }
-
-} //~ namespace Chess
-

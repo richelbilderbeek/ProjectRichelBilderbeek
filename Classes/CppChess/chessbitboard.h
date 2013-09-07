@@ -6,6 +6,7 @@
 
 #include "chessfwd.h"
 
+namespace ribi {
 namespace Chess {
 
 ///BitBoard is an 8x8 square of bools
@@ -38,6 +39,7 @@ struct BitBoard
 
 std::ostream& operator<<(std::ostream& os, const BitBoard& b);
 
-} //~ namespace Chess
+} //~namespace Chess
+} //~namespace ribi
 
 #endif // CHESSBITBOARD_H

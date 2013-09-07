@@ -4,9 +4,7 @@
 
 #include "chessplayer.h"
 
-namespace Chess {
-
-const std::string PlayerToStr(const Player player)
+const std::string ribi::Chess::PlayerToStr(const Player player)
 {
   switch (player)
   {
@@ -16,6 +14,3 @@ const std::string PlayerToStr(const Player player)
   assert(!"Unknown Player in PlayerToStr");
   throw std::logic_error("Unknown Player in PlayerToStr");
 }
-
-} //~ namespace Chess
-

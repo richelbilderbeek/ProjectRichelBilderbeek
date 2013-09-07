@@ -6,8 +6,6 @@
 #include "chesscastling.h"
 #include "trace.h"
 
-namespace Chess {
-
 bool CanStrToCastling(const std::string& s)
 {
   return boost::regex_match(s,GetCastlingRegex());
@@ -40,6 +38,3 @@ Castling StrToCastling(const std::string& s)
   assert(!"Cannot convert std::string to Castling");
   throw std::logic_error("Cannot convert std::string to Castling");
 }
-
-} //~namespace Chess
-

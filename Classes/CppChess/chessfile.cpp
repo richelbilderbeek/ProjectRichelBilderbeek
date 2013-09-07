@@ -12,8 +12,6 @@
 
 #include "trace.h"
 
-namespace Chess {
-
 File::File(const std::string& s)
   : m_s(s)
 {
@@ -182,6 +180,3 @@ bool operator==(const Chess::File& lhs, const Chess::File& rhs)
 {
   return lhs.ToStr() == rhs.ToStr();
 }
-
-};
-

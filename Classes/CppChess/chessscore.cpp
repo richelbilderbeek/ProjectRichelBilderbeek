@@ -1,25 +1,16 @@
+#include "chessscore.h"
 
 #include <iosfwd>
 #include <stdexcept>
 
-#ifndef NDEBUG
 #include <algorithm>
 #include <cassert>
 #include <string>
-
-#ifdef SADC_USE_THREADS
-#include <thread>
-#endif
-
 #include <vector>
 #include "trace.h"
-#endif
 
-#include "chessscore.h"
 
-namespace Chess {
-
-Score::Score(const std::string& s)
+ribi::Chess::Score::Score(const std::string& s)
   : m_is_black_winner(s == std::string("0-1")),
     m_is_draw(s == std::string("1/2-1/2")),
     m_is_white_winner(s == std::string("1-0"))
@@ -31,16 +22,16 @@ Score::Score(const std::string& s)
     && !m_is_draw
     && !m_is_white_winner)
   {
-    throw std::logic_error("Chess::Score::Score exception: invalid score");
+    throw std::logic_error("ribi::Chess::Score::Score exception: invalid score");
   }
 }
 
-const std::string Score::GetVersion()
+const std::string ribi::Chess::Score::GetVersion()
 {
   return "1.0";
 }
 
-const std::vector<std::string> Score::GetVersionHistory()
+const std::vector<std::string> ribi::Chess::Score::GetVersionHistory()
 {
   std::vector<std::string> v;
   v.push_back("YYYY-MM-DD: version X.Y: [description]");
@@ -49,7 +40,7 @@ const std::vector<std::string> Score::GetVersionHistory()
 }
 
 #ifndef NDEBUG
-void Score::Test()
+void ribi::Chess::Score::Test()
 {
   {
     static bool is_tested = false;
@@ -107,7 +98,7 @@ void Score::Test()
 }
 #endif
 
-const std::string Score::ToStr() const
+const std::string ribi::Chess::Score::ToStr() const
 {
   if (m_is_black_winner) return "0-1";
   if (m_is_draw) return "1/2-1/2";
@@ -115,13 +106,13 @@ const std::string Score::ToStr() const
   assert(!"Should not get here");
 }
 
-std::ostream& operator<<(std::ostream& os, const Score& s)
+std::ostream& ribi::Chess::operator<<(std::ostream& os, const Score& s)
 {
   os << s.ToStr();
   return os;
 }
 
-bool operator==(const Score& lhs, const Score& rhs)
+bool ribi::Chess::operator==(const Score& lhs, const Score& rhs)
 {
   return
        lhs.IsBlackWinner() == rhs.IsBlackWinner()
@@ -129,10 +120,7 @@ bool operator==(const Score& lhs, const Score& rhs)
     && lhs.IsWhiteWinner() == rhs.IsWhiteWinner();
 }
 
-bool operator!=(const Score& lhs, const Score& rhs)
+bool ribi::Chess::operator!=(const Score& lhs, const Score& rhs)
 {
   return !(lhs==rhs);
 }
-
-} //~namespace Chess
-

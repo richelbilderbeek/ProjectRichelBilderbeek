@@ -3,10 +3,6 @@
 #include <cassert>
 #include <iostream>
 
-#ifdef SADC_USE_THREADS
-#include <thread>
-#endif
-
 #include "chesscolor.h"
 #include "chessmove.h"
 #include "chessmovefactory.h"
@@ -17,20 +13,18 @@
 
 #include "trace.h"
 
-namespace Chess {
-
-Piece::Piece(
+ribi::Chess::Piece::Piece(
   const Color color,
   const boost::shared_ptr<Square> &square)
  : m_color(color),
    m_square(square)
 {
   #ifndef NDEBUG
-  Piece::Test();
+  ribi::Chess::Piece::Test();
   #endif
 }
 
-const std::vector<boost::shared_ptr<Move> > Piece::AddCheckAndCheckmate(const std::vector<boost::shared_ptr<Move> >& v)
+const std::vector<boost::shared_ptr<ribi::Chess::Move> > ribi::Chess::Piece::AddCheckAndCheckmate(const std::vector<boost::shared_ptr<Move> >& v)
 {
   std::vector<boost::shared_ptr<Move> > w;
   std::for_each(v.begin(),v.end(),
@@ -61,29 +55,29 @@ const std::vector<boost::shared_ptr<Move> > Piece::AddCheckAndCheckmate(const st
   return w;
 }
 
-void Piece::DoMove(const Chess::Move& move)
+void ribi::Chess::Piece::DoMove(const Chess::Move& move)
 {
   assert(CanDoMove(move));
   m_square = move.To();
   m_last_move = MoveFactory::DeepCopy(move);
 }
 
-Color Piece::GetColor() const
+ribi::Chess::Color ribi::Chess::Piece::GetColor() const
 {
   return m_color;
 }
 
-const boost::shared_ptr<Square>& Piece::GetSquare() const
+const boost::shared_ptr<ribi::Chess::Square>& ribi::Chess::Piece::GetSquare() const
 {
   return m_square;
 }
 
-const std::string Piece::GetVersion()
+const std::string ribi::Chess::Piece::GetVersion()
 {
   return "1.0";
 }
 
-const std::vector<std::string> Piece::GetVersionHistory()
+const std::vector<std::string> ribi::Chess::Piece::GetVersionHistory()
 {
   std::vector<std::string> v;
   v.push_back("YYYY-MM-DD: version X.Y: [description]");
@@ -91,7 +85,7 @@ const std::vector<std::string> Piece::GetVersionHistory()
   return v;
 }
 
-const std::string Piece::ToStr() const
+const std::string ribi::Chess::Piece::ToStr() const
 {
   return Chess::ColorToStr(GetColor())
     + std::string(" ")
@@ -100,7 +94,7 @@ const std::string Piece::ToStr() const
     + (this->GetSquare() ? this->GetSquare()->ToStr() : "an indetermined position");
 }
 
-PieceBishop::PieceBishop(
+ribi::Chess::PieceBishop::PieceBishop(
   const Color color,
   const boost::shared_ptr<Square>& square)
   : Piece(color,square)
@@ -108,7 +102,7 @@ PieceBishop::PieceBishop(
   //assert(GetColor() != Color::indeterminate);
 }
 
-bool PieceBishop::CanDoMove(const Chess::Move& move) const
+bool ribi::Chess::PieceBishop::CanDoMove(const Chess::Move& move) const
 {
   if (!move.Piece() || !dynamic_cast<PieceBishop*>(move.Piece().get()))
   {
@@ -142,7 +136,7 @@ bool PieceBishop::CanDoMove(const Chess::Move& move) const
   }
 }
 
-const boost::shared_ptr<Piece> PieceBishop::Clone() const
+const boost::shared_ptr<ribi::Chess::Piece> ribi::Chess::PieceBishop::Clone() const
 {
   const Color color = this->GetColor();
   assert(this->GetSquare());
@@ -153,7 +147,7 @@ const boost::shared_ptr<Piece> PieceBishop::Clone() const
   return p;
 }
 
-const std::vector<boost::shared_ptr<Move> > PieceBishop::GetMoves() const
+const std::vector<boost::shared_ptr<ribi::Chess::Move> > ribi::Chess::PieceBishop::GetMoves() const
 {
   std::vector<boost::shared_ptr<Move> > v;
   for (int i=1; i!=8; ++i)
@@ -279,7 +273,7 @@ bool PieceEmpty::CanDoMove(const Chess::Move& move) const
 }
 */
 
-PieceKing::PieceKing(
+ribi::Chess::PieceKing::PieceKing(
   const Color color,
   const boost::shared_ptr<Square>& square)
   : Piece(color,square)
@@ -288,7 +282,7 @@ PieceKing::PieceKing(
 
 }
 
-bool PieceKing::CanDoMove(const Chess::Move& move) const
+bool ribi::Chess::PieceKing::CanDoMove(const Chess::Move& move) const
 {
   if (!move.Piece() || !dynamic_cast<PieceKing*>(move.Piece().get()))
   {
@@ -322,13 +316,13 @@ bool PieceKing::CanDoMove(const Chess::Move& move) const
   }
 }
 
-const boost::shared_ptr<Piece> PieceKing::Clone() const
+const boost::shared_ptr<ribi::Chess::Piece> ribi::Chess::PieceKing::Clone() const
 {
   const boost::shared_ptr<Piece> p(new PieceKing(*this));
   return p;
 }
 
-const std::vector<boost::shared_ptr<Move> > PieceKing::GetMoves() const
+const std::vector<boost::shared_ptr<ribi::Chess::Move> > ribi::Chess::PieceKing::GetMoves() const
 {
   std::vector<boost::shared_ptr<Move> > v;
   std::vector<std::pair<int,int> > ds
@@ -361,7 +355,7 @@ const std::vector<boost::shared_ptr<Move> > PieceKing::GetMoves() const
   return v;
 }
 
-PieceKnight::PieceKnight(
+ribi::Chess::PieceKnight::PieceKnight(
   const Chess::Color color,
   const boost::shared_ptr<Square>& square)
   : Piece(color,square)
@@ -370,7 +364,7 @@ PieceKnight::PieceKnight(
 
 }
 
-bool PieceKnight::CanDoMove(const Chess::Move& move) const
+bool ribi::Chess::PieceKnight::CanDoMove(const Chess::Move& move) const
 {
   if (!move.Piece() || !dynamic_cast<PieceKnight*>(move.Piece().get()))
   {
@@ -405,13 +399,13 @@ bool PieceKnight::CanDoMove(const Chess::Move& move) const
   }
 }
 
-const boost::shared_ptr<Piece> PieceKnight::Clone() const
+const boost::shared_ptr<ribi::Chess::Piece> ribi::Chess::PieceKnight::Clone() const
 {
   const boost::shared_ptr<Piece> p(new PieceKnight(*this));
   return p;
 }
 
-const std::vector<boost::shared_ptr<Move> > PieceKnight::GetMoves() const
+const std::vector<boost::shared_ptr<ribi::Chess::Move> > ribi::Chess::PieceKnight::GetMoves() const
 {
   std::vector<boost::shared_ptr<Move> > v;
   std::vector<std::pair<int,int> > ds
@@ -444,7 +438,7 @@ const std::vector<boost::shared_ptr<Move> > PieceKnight::GetMoves() const
   return v;
 }
 
-PiecePawn::PiecePawn(
+ribi::Chess::PiecePawn::PiecePawn(
   const Color color,
   const boost::shared_ptr<Square>& square)
   : Piece(color,square)
@@ -452,7 +446,7 @@ PiecePawn::PiecePawn(
   //assert(GetColor() != Color::indeterminate);
 }
 
-bool PiecePawn::CanDoMove(const Chess::Move& move) const
+bool ribi::Chess::PiecePawn::CanDoMove(const Chess::Move& move) const
 {
   if (!move.Piece() || !dynamic_cast<PiecePawn*>(move.Piece().get()))
   {
@@ -548,13 +542,13 @@ bool PiecePawn::CanDoMove(const Chess::Move& move) const
   return true;
 }
 
-const boost::shared_ptr<Piece> PiecePawn::Clone() const
+const boost::shared_ptr<ribi::Chess::Piece> ribi::Chess::PiecePawn::Clone() const
 {
   const boost::shared_ptr<Piece> p(new PiecePawn(*this));
   return p;
 }
 
-const std::vector<boost::shared_ptr<Move> > PiecePawn::GetMoves() const
+const std::vector<boost::shared_ptr<ribi::Chess::Move> > ribi::Chess::PiecePawn::GetMoves() const
 {
   std::vector<boost::shared_ptr<Move> > v;
 
@@ -605,7 +599,7 @@ const std::vector<boost::shared_ptr<Move> > PiecePawn::GetMoves() const
   return v;
 }
 
-PieceQueen::PieceQueen(
+ribi::Chess::PieceQueen::PieceQueen(
   const Color color,
   const boost::shared_ptr<Square>& square)
   : Piece(color,square)
@@ -614,7 +608,7 @@ PieceQueen::PieceQueen(
 
 }
 
-bool PieceQueen::CanDoMove(const Chess::Move& move) const
+bool ribi::Chess::PieceQueen::CanDoMove(const Chess::Move& move) const
 {
   if (!move.Piece() || !dynamic_cast<PieceQueen*>(move.Piece().get()))
   {
@@ -647,13 +641,13 @@ bool PieceQueen::CanDoMove(const Chess::Move& move) const
   }
 }
 
-const boost::shared_ptr<Piece> PieceQueen::Clone() const
+const boost::shared_ptr<ribi::Chess::Piece> ribi::Chess::PieceQueen::Clone() const
 {
   const boost::shared_ptr<Piece> p(new PieceQueen(*this));
   return p;
 }
 
-const std::vector<boost::shared_ptr<Move> > PieceQueen::GetMoves() const
+const std::vector<boost::shared_ptr<ribi::Chess::Move> > ribi::Chess::PieceQueen::GetMoves() const
 {
   std::vector<boost::shared_ptr<Move> > v;
   for (int i=1; i!=8; ++i)
@@ -774,7 +768,7 @@ const std::vector<boost::shared_ptr<Move> > PieceQueen::GetMoves() const
   return v;
 }
 
-PieceRook::PieceRook(
+ribi::Chess::PieceRook::PieceRook(
   const Color color,
   const boost::shared_ptr<Square>& square)
   : Piece(color,square)
@@ -783,7 +777,7 @@ PieceRook::PieceRook(
 
 }
 
-bool PieceRook::CanDoMove(const Chess::Move& move) const
+bool ribi::Chess::PieceRook::CanDoMove(const Chess::Move& move) const
 {
   if (!move.Piece() || !dynamic_cast<PieceRook*>(move.Piece().get()))
   {
@@ -818,13 +812,13 @@ bool PieceRook::CanDoMove(const Chess::Move& move) const
   }
 }
 
-const boost::shared_ptr<Piece> PieceRook::Clone() const
+const boost::shared_ptr<ribi::Chess::Piece> ribi::Chess::PieceRook::Clone() const
 {
   const boost::shared_ptr<Piece> p(new PieceRook(*this));
   return p;
 }
 
-const std::vector<boost::shared_ptr<Move> > PieceRook::GetMoves() const
+const std::vector<boost::shared_ptr<ribi::Chess::Move> > ribi::Chess::PieceRook::GetMoves() const
 {
   std::vector<boost::shared_ptr<Move> > v;
   for (int i=1; i!=8; ++i)
@@ -888,13 +882,13 @@ const std::vector<boost::shared_ptr<Move> > PieceRook::GetMoves() const
   return v;
 }
 
-std::ostream& operator<<(std::ostream& os, const Piece& piece)
+std::ostream& ribi::Chess::operator<<(std::ostream& os, const Piece& piece)
 {
   os << piece.ToStr();
   return os;
 }
 
-bool IsEqual(const Piece& lhs, const Piece& rhs)
+bool ribi::Chess::IsEqual(const Piece& lhs, const Piece& rhs)
 {
   if (lhs.m_color != rhs.m_color) return false;
   if (static_cast<bool>(lhs.m_last_move) != static_cast<bool>(rhs.m_last_move)) return false;
@@ -920,6 +914,3 @@ bool IsEqual(const Piece& lhs, const Piece& rhs)
   }
   return true;
 }
-
-} //~ namespace Chess
-

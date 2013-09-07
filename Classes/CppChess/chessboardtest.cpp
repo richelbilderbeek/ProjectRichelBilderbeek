@@ -3,10 +3,6 @@
 #include <algorithm>
 #include <cassert>
 
-#ifdef SADC_USE_THREADS
-#include <thread>
-#endif
-
 #include "chessboardfactory.h"
 #include "chessbitboard.h"
 #include "chessmoves.h"
@@ -18,9 +14,7 @@
 #include "chessscore.h"
 #include "trace.h"
 
-namespace Chess {
-
-void Board::Test()
+void ribi::Chess::Board::Test()
 {
   //Testing boost::shared_ptr<Chess::Board> exactly once
   {
@@ -34,7 +28,7 @@ void Board::Test()
   #endif
     {
       FTRACE("Test Chess::Board");
-      //Chess::BitBoard::Test();
+      //Chess::Bitribi::Chess::Board::Test();
       //Chess::Move::Test();
       {
         FTRACE("Test Board operator=");
@@ -241,7 +235,7 @@ void Board::Test()
 
       {
         FTRACE("Test a Pawn on the board at e2");
-        const Board::Pieces v =
+        const ribi::Chess::Board::Pieces v =
         {
           PieceFactory::CreatePawn(Color::white,*Chess::SquareFactory::Create("e2")),
           PieceFactory::CreatePawn(Color::white,*Chess::SquareFactory::Create("d3")),
@@ -256,7 +250,7 @@ void Board::Test()
 
       {
         FTRACE("Test a Pawn on the board at e2, blocked by an opponent");
-        const Board::Pieces v =
+        const ribi::Chess::Board::Pieces v =
         {
           PieceFactory::CreatePawn(Color::white,Chess::SquareFactory::Create("e2")),
           PieceFactory::CreatePawn(Color::black,Chess::SquareFactory::Create("e3"))
@@ -268,7 +262,7 @@ void Board::Test()
 
       {
         FTRACE("Test a Pawn on the board at h4, blocked by an opponent");
-        const Board::Pieces v =
+        const ribi::Chess::Board::Pieces v =
         {
           PieceFactory::CreatePawn(Color::white,Chess::SquareFactory::Create("h4")),
           PieceFactory::CreatePawn(Color::black,Chess::SquareFactory::Create("h5"))
@@ -279,7 +273,7 @@ void Board::Test()
 
       {
         FTRACE("Test a Knight on the board at d4");
-        const Board::Pieces v =
+        const ribi::Chess::Board::Pieces v =
         {
           PieceFactory::CreateKnight(Color::white,Chess::SquareFactory::Create("d4")),
           PieceFactory::CreatePawn(Color::white,Chess::SquareFactory::Create("c6")),
@@ -408,7 +402,7 @@ void Board::Test()
         const Pieces pieces
           =
           {
-            boost::shared_ptr<Piece>(new PieceKing(Color::white,Chess::SquareFactory::Create("b2"))))
+            PieceFactory::Create('K',Color::white,"b2")
           };
         boost::shared_ptr<Chess::Board> b(BoardFactory::Create(pieces));
         assert( b->EmptyBetween(Square("a1"),Square("c1")));
@@ -600,6 +594,3 @@ void Board::Test()
   t.detach();
   #endif
 }
-
-} //~namespace Chess
-

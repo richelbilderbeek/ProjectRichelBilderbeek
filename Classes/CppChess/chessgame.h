@@ -13,6 +13,7 @@
 #include "chessmove.h"
 //#include "chesspiece.h"
 
+namespace ribi {
 namespace Chess {
 
 struct Piece;
@@ -96,7 +97,7 @@ struct Game
 
   private:
   ///The Chess::Board used for the Game
-  boost::shared_ptr<Chess::Board> m_board;
+  const boost::shared_ptr<Chess::Board> m_board;
 
   ///The Score if the game has ended by agreement (instead of by checkmate)
   boost::shared_ptr<Chess::Score> m_score;
@@ -110,5 +111,6 @@ bool operator==(const Game& lhs, const Game& rhs);
 bool operator!=(const Game& lhs, const Game& rhs);
 
 } //~ namespace Chess
+} //~namespace ribi
 
 #endif // CHESSGAME_H

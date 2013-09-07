@@ -1,21 +1,14 @@
-
 #include <algorithm>
 #include <cassert>
 #include <iostream>
 #include <iterator>
-
-#ifdef SADC_USE_THREADS
-#include <thread>
-#endif
 
 #include "chessbitboard.h"
 #include "chesssquare.h"
 #include "chesssquarefactory.h"
 #include "trace.h"
 
-namespace Chess {
-
-BitBoard::BitBoard()
+ribi::Chess::BitBoard::BitBoard()
   : m_v(8,std::vector<bool>(8,false))
 {
   #ifndef NDEBUG
@@ -25,12 +18,12 @@ BitBoard::BitBoard()
   assert(m_v[7].size() == 8);
 }
 
-const std::string BitBoard::GetVersion()
+const std::string ribi::Chess::BitBoard::GetVersion()
 {
   return "1.0";
 }
 
-const std::vector<std::string> BitBoard::GetVersionHistory()
+const std::vector<std::string> ribi::Chess::BitBoard::GetVersionHistory()
 {
   std::vector<std::string> v;
   v.push_back("YYYY-MM-DD: version X.Y: [description]");
@@ -38,7 +31,7 @@ const std::vector<std::string> BitBoard::GetVersionHistory()
   return v;
 }
 
-void BitBoard::Set(const Square& s, const bool value)
+void ribi::Chess::BitBoard::Set(const Square& s, const bool value)
 {
   const int x = s.GetFile().ToInt();
   const int y = s.GetRank().ToInt();
@@ -49,7 +42,7 @@ void BitBoard::Set(const Square& s, const bool value)
   #endif
 }
 
-bool BitBoard::Get(const Square& s) const
+bool ribi::Chess::BitBoard::Get(const Square& s) const
 {
   const int x = s.GetFile().ToInt();
   const int y = s.GetRank().ToInt();
@@ -60,7 +53,7 @@ bool BitBoard::Get(const Square& s) const
   #endif
 }
 
-void BitBoard::Test()
+void ribi::Chess::BitBoard::Test()
 {
   //Testing Chess::BitBoard exactly once
   {
@@ -88,7 +81,7 @@ void BitBoard::Test()
   #endif
 }
 
-std::ostream& operator<<(std::ostream& os, const BitBoard& b)
+std::ostream& ribi::Chess::operator<<(std::ostream& os, const BitBoard& b)
 {
   std::for_each(b.m_v.begin(),b.m_v.end(),
     [&os](const std::vector<bool>& v)
@@ -99,7 +92,4 @@ std::ostream& operator<<(std::ostream& os, const BitBoard& b)
   );
   return os;
 }
-
-} //~ namespace Chess
-
 

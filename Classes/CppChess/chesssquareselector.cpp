@@ -1,5 +1,6 @@
 
 #include <cassert>
+#include <memory>
 
 #include <boost/lexical_cast.hpp>
 
@@ -8,20 +9,19 @@
 #include "chessmove.h"
 #include "chesspiece.h"
 #include "chesssquare.h"
+#include "chesssquarefactory.h"
 #include "chesssquareselector.h"
 #include "chessmove.h"
 #include "chesswidget.h"
 #include "trace.h"
 
-namespace Chess {
-
-SquareSelector::SquareSelector()
-  : m_cursor(GetInitialSquare().release())
+ribi::Chess::SquareSelector::SquareSelector()
+  : m_cursor(GetInitialSquare())
 {
   assert(m_cursor);
 }
 
-void SquareSelector::Click(
+void ribi::Chess::SquareSelector::Click(
   const Chess::Square& square,
   const bool can_select_square)
 {
@@ -65,7 +65,7 @@ void SquareSelector::Click(
   assert(m_cursor);
 }
 
-void SquareSelector::DoSelect()
+void ribi::Chess::SquareSelector::DoSelect()
 {
   assert(m_cursor);
 
@@ -93,26 +93,25 @@ void SquareSelector::DoSelect()
   }
 }
 
-std::unique_ptr<const Square> SquareSelector::GetInitialSquare()
+boost::shared_ptr<ribi::Chess::Square> ribi::Chess::SquareSelector::GetInitialSquare()
 {
-  std::unique_ptr<const Square> s(new Square("c3"));
-  return s;
+  const std::string s { "c3" };
+  return SquareFactory::Create<Square>(s);
 }
 
-const std::string SquareSelector::GetVersion()
+const std::string ribi::Chess::SquareSelector::GetVersion()
 {
   return "1.0";
 }
 
-const std::vector<std::string> SquareSelector::GetVersionHistory()
+const std::vector<std::string> ribi::Chess::SquareSelector::GetVersionHistory()
 {
   std::vector<std::string> v;
-  v.push_back("YYYY-MM-DD: version X.Y: [description]");
   v.push_back("2012-01-25: version 1.0: initial version");
   return v;
 }
 
-void SquareSelector::MoveDown()
+void ribi::Chess::SquareSelector::MoveDown()
 {
   assert(m_cursor);
   if (m_cursor->GetRank().ToInt() != 7)
@@ -122,7 +121,7 @@ void SquareSelector::MoveDown()
   }
 }
 
-void SquareSelector::MoveLeft()
+void ribi::Chess::SquareSelector::MoveLeft()
 {
   assert(m_cursor);
   if (m_cursor->GetFile().ToInt() != 0)
@@ -132,7 +131,7 @@ void SquareSelector::MoveLeft()
   }
 }
 
-void SquareSelector::MoveRight()
+void ribi::Chess::SquareSelector::MoveRight()
 {
   assert(m_cursor);
   if (m_cursor->GetFile().ToInt() != 7)
@@ -143,7 +142,7 @@ void SquareSelector::MoveRight()
 }
 
 
-void SquareSelector::MoveUp()
+void ribi::Chess::SquareSelector::MoveUp()
 {
   assert(m_cursor);
   if (m_cursor->GetRank().ToInt() != 0)
@@ -153,7 +152,7 @@ void SquareSelector::MoveUp()
   }
 }
 
-const std::string SquareSelector::ToStr() const
+const std::string ribi::Chess::SquareSelector::ToStr() const
 {
   assert(m_cursor);
   std::string s = "Cursor: " + m_cursor->ToStr();
@@ -163,6 +162,3 @@ const std::string SquareSelector::ToStr() const
   }
   return s;
 }
-
-} //~namespace Chess
-

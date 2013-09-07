@@ -213,6 +213,3 @@ void BoardWidget::Test()
   );
   t.join();
 }
-
-} //~namespace Chess
-

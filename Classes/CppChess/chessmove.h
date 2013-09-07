@@ -9,6 +9,7 @@
 #include "chessfwd.h"
 #include "chesssquare.h"
 
+namespace ribi {
 namespace Chess {
 
 struct Move
@@ -159,5 +160,6 @@ bool operator!=(const Move& lhs, const Move& rhs);
 std::ostream& operator<<(std::ostream& os,const Move& m);
 
 } //~namespace Chess
+} //~namespace ribi
 
 #endif // CHESSMOVE_H
