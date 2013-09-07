@@ -1,6 +1,6 @@
 //---------------------------------------------------------------------------
 /*
-PaperRockScissors, time polling server
+PaperRockScissors, paper-rock-scissors game
 Copyright (C) 2011 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
@@ -20,17 +20,17 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #ifndef WTPAPERROCKSCISSORSDIALOG_H
 #define WTPAPERROCKSCISSORSDIALOG_H
-//---------------------------------------------------------------------------
+
 #include <string>
 #include <vector>
-//---------------------------------------------------------------------------
+
 #include <Wt/WContainerWidget>
-//---------------------------------------------------------------------------
+
 #include <boost/signals.hpp>
 #include <boost/signals2.hpp>
-//---------------------------------------------------------------------------
+
 #include "about.h"
-//---------------------------------------------------------------------------
+
 namespace Wt
 {
   struct WApplication;
@@ -38,12 +38,14 @@ namespace Wt
   struct WLabel;
   struct WPushButton;
 }
-//---------------------------------------------------------------------------
+
+namespace ribi {
+
 struct WtPaperRockScissorsDialogState;
 struct WtPaperRockScissorsEvent;
 struct WtPaperRockScissorsServer;
 struct WtPaperRockScissorsDialogState;
-//---------------------------------------------------------------------------
+
 struct WtPaperRockScissorsDialog : public Wt::WContainerWidget
 {
   typedef WtPaperRockScissorsDialogState State;
@@ -86,5 +88,7 @@ private:
   static const About GetAbout();
 
 };
-//---------------------------------------------------------------------------
+
+} //~namespace ribi
+
 #endif // WTPAPERROCKSCISSORSDIALOG_H

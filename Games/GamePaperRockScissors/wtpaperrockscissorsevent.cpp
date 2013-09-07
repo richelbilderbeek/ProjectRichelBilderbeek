@@ -1,6 +1,6 @@
 //---------------------------------------------------------------------------
 /*
-PaperRockScissors, time polling server
+PaperRockScissors, paper-rock-scissors game
 Copyright (C) 2011 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
@@ -19,8 +19,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //From http://www.richelbilderbeek.nl/ToolPaperRockScissors.htm
 //---------------------------------------------------------------------------
 #include "wtpaperrockscissorsevent.h"
-//---------------------------------------------------------------------------
-WtPaperRockScissorsEvent::WtPaperRockScissorsEvent(
+
+ribi::WtPaperRockScissorsEvent::WtPaperRockScissorsEvent(
   const int index,
   const std::vector<double>& fractions)
   : m_index(index),
@@ -28,4 +28,4 @@ WtPaperRockScissorsEvent::WtPaperRockScissorsEvent(
 {
 
 }
-//---------------------------------------------------------------------------
+

@@ -1,6 +1,6 @@
 //---------------------------------------------------------------------------
 /*
-PaperRockScissors, time polling server
+PaperRockScissors, paper-rock-scissors game
 Copyright (C) 2011 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
@@ -18,32 +18,29 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolPaperRockScissors.htm
 //---------------------------------------------------------------------------
+#include "wtpaperrockscissorsserver.h"
+
 //#include <algorithm>
 #include <numeric>
-//---------------------------------------------------------------------------
-#include <boost/numeric/conversion/cast.hpp>
-//---------------------------------------------------------------------------
-#include "wtpaperrockscissorsserver.h"
-//#include "wtpaperrockscissorsdialogstate.h"
-//---------------------------------------------------------------------------
-boost::scoped_ptr<WtPaperRockScissorsServer> WtPaperRockScissorsServer::m_instance;
-//---------------------------------------------------------------------------
-#undef NDEBUG
 #include <cassert>
-//---------------------------------------------------------------------------
-WtPaperRockScissorsServer::WtPaperRockScissorsServer()
+
+#include <boost/numeric/conversion/cast.hpp>
+
+boost::scoped_ptr<ribi::WtPaperRockScissorsServer> ribi::WtPaperRockScissorsServer::m_instance;
+
+ribi::WtPaperRockScissorsServer::WtPaperRockScissorsServer()
 {
 
 }
-//---------------------------------------------------------------------------
-WtPaperRockScissorsServer * WtPaperRockScissorsServer::GetInstance()
+
+ribi::WtPaperRockScissorsServer * ribi::WtPaperRockScissorsServer::GetInstance()
 {
   if (!m_instance) m_instance.reset(new WtPaperRockScissorsServer);
   return m_instance.get();
 }
-//---------------------------------------------------------------------------
+
 ///A client sends a message to the server
-void WtPaperRockScissorsServer::SendMessageToServer(const int index)
+void ribi::WtPaperRockScissorsServer::SendMessageToServer(const int /* index */)
 {
   boost::mutex::scoped_lock lock(m_mutex);
 
@@ -56,4 +53,4 @@ void WtPaperRockScissorsServer::SendMessageToServer(const int index)
     WtPaperRockScissorsEvent(
       0,std::vector<double>()));
 }
-//---------------------------------------------------------------------------
+

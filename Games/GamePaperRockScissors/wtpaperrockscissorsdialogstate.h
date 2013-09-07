@@ -1,14 +1,17 @@
 #ifndef WTPAPERROCKSCISSORSDIALOGSTATE_H
 #define WTPAPERROCKSCISSORSDIALOGSTATE_H
-//---------------------------------------------------------------------------
+
 #include <boost/checked_delete.hpp>
-//---------------------------------------------------------------------------
+
 #include <Wt/WObject>
-//---------------------------------------------------------------------------
+
+
+namespace ribi {
+
 struct WtPaperRockScissorsDialog;
 struct WtPaperRockScissorsServer;
 struct WtPaperRockScissorsEvent;
-//---------------------------------------------------------------------------
+
 struct WtPaperRockScissorsDialogState : public Wt::WObject
 {
   WtPaperRockScissorsDialogState(
@@ -21,7 +24,7 @@ struct WtPaperRockScissorsDialogState : public Wt::WObject
   ///another user does something we need to be noted of
   virtual void ProcessEvent(const WtPaperRockScissorsEvent& event) = 0;
 
-  void SetStateAbout(const WtPaperRockScissorsDialogState * const prev_state);
+  void SetStateAbout(WtPaperRockScissorsDialogState * const prev_state);
 
   virtual void Show() = 0;
 
@@ -35,7 +38,7 @@ struct WtPaperRockScissorsDialogState : public Wt::WObject
   WtPaperRockScissorsDialog * const m_dialog;
   WtPaperRockScissorsServer * const m_server;
 };
-//---------------------------------------------------------------------------
+
 struct WtPaperRockScissorsDialogStateAbout
   : public WtPaperRockScissorsDialogState
 {
@@ -58,7 +61,7 @@ struct WtPaperRockScissorsDialogStateAbout
 
   void OnClose();
 };
-//---------------------------------------------------------------------------
+
 struct WtPaperRockScissorsDialogStateConnect
   : public WtPaperRockScissorsDialogState
 {
@@ -75,7 +78,7 @@ struct WtPaperRockScissorsDialogStateConnect
   //Herb Sutter. Exceptional C++ style. 2005. ISBN: 0-201-76042-8. Item 8: 'Befriending templates'.
   friend void boost::checked_delete<>(WtPaperRockScissorsDialogStateConnect* x);
 };
-//---------------------------------------------------------------------------
+
 struct WtPaperRockScissorsDialogStateGame
   : public WtPaperRockScissorsDialogState
 {
@@ -95,7 +98,7 @@ struct WtPaperRockScissorsDialogStateGame
 
   Wt::WButtonGroup * m_group;
 };
-//---------------------------------------------------------------------------
+
 struct WtPaperRockScissorsDialogStateLogin
   : public WtPaperRockScissorsDialogState
 {
@@ -115,5 +118,7 @@ struct WtPaperRockScissorsDialogStateLogin
   Wt::WLineEdit * m_edit_username;
   void OnEditChanged();
 };
-//---------------------------------------------------------------------------
+
+} //~namespace ribi
+
 #endif // WTPAPERROCKSCISSORSDIALOGSTATE_H

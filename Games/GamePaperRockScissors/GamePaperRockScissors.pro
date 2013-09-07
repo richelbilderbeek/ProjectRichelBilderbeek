@@ -15,18 +15,20 @@ INCLUDEPATH += \
   ../../Classes/CppTrace \
   ../../Classes/CppWtAboutDialog
 
-SOURCES += wtmain.cpp \
-  wtpaperrockscissorsdialog.cpp \
-  wtpaperrockscissorsserver.cpp \
+SOURCES += \
   ../../Classes/CppAbout/about.cpp \
   ../../Classes/CppWtAboutDialog/wtaboutdialog.cpp \
+  wtmain.cpp \
+  wtpaperrockscissorsdialog.cpp \
+  wtpaperrockscissorsdialogstate.cpp \
   wtpaperrockscissorsevent.cpp \
-    wtpaperrockscissorsdialogstate.cpp
+  wtpaperrockscissorsserver.cpp
+
 HEADERS += \
-  wtpaperrockscissorsdialog.h \
-  wtpaperrockscissorsevent.h \
-  wtpaperrockscissorsserver.h \
   ../../Classes/CppAbout/about.h \
+  ../../Classes/CppTrace/trace.h \
   ../../Classes/CppWtAboutDialog/wtaboutdialog.h \
-    wtpaperrockscissorsdialogstate.h \
-    ../../Classes/CppTrace/trace.h
+  wtpaperrockscissorsdialog.h \
+  wtpaperrockscissorsdialogstate.h \
+  wtpaperrockscissorsevent.h \
+  wtpaperrockscissorsserver.h

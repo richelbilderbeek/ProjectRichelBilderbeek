@@ -1,6 +1,6 @@
 //---------------------------------------------------------------------------
 /*
-PaperRockScissors, time polling server
+PaperRockScissors, paper-rock-scissors game
 Copyright (C) 2011 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
@@ -20,7 +20,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #include <boost/lexical_cast.hpp>
 #include <boost/numeric/conversion/cast.hpp>
-//---------------------------------------------------------------------------
+
 #include <Wt/WApplication>
 #include <Wt/WBreak>
 #include <Wt/WButtonGroup>
@@ -29,14 +29,14 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <Wt/WLabel>
 #include <Wt/WRadioButton>
 #include <Wt/WPushButton>
-//---------------------------------------------------------------------------
+
 #include "about.h"
 #include "wtaboutdialog.h"
 #include "wtpaperrockscissorsdialog.h"
 #include "wtpaperrockscissorsserver.h"
 #include "wtpaperrockscissorsdialogstate.h"
-//---------------------------------------------------------------------------
-WtPaperRockScissorsDialog::WtPaperRockScissorsDialog(Wt::WContainerWidget *parent)
+
+ribi::WtPaperRockScissorsDialog::WtPaperRockScissorsDialog(Wt::WContainerWidget *parent)
   : WContainerWidget(parent),
     m_application(Wt::WApplication::instance()),
     m_server(WtPaperRockScissorsServer::GetInstance()),
@@ -47,7 +47,7 @@ WtPaperRockScissorsDialog::WtPaperRockScissorsDialog(Wt::WContainerWidget *paren
 {
   //Need to have Wt::WApplication::instance() at the
   //constructor of the class, to have it directly
-  //accessible in WtPaperRockScissorsDialog::PollChangedEvent
+  //accessible in ribi::WtPaperRockScissorsDialog::PollChangedEvent
 
   this->setContentAlignment(Wt::AlignCenter);
   this->SetState(this->GetStateLogin());
@@ -58,14 +58,14 @@ WtPaperRockScissorsDialog::WtPaperRockScissorsDialog(Wt::WContainerWidget *paren
   // session's event loop when another user selects another option.
   m_application->enableUpdates();
 }
-//---------------------------------------------------------------------------
- WtPaperRockScissorsDialog::~WtPaperRockScissorsDialog()
+
+ ribi::WtPaperRockScissorsDialog::~WtPaperRockScissorsDialog()
 {
   m_state->Disconnect();
   m_signal_close();
 }
-//---------------------------------------------------------------------------
-const About WtPaperRockScissorsDialog::GetAbout()
+
+const ribi::About ribi::WtPaperRockScissorsDialog::GetAbout()
 {
   About a(
     "Richel Bilderbeek",
@@ -78,63 +78,63 @@ const About WtPaperRockScissorsDialog::GetAbout()
     GetVersionHistory());
   return a;
 }
-//---------------------------------------------------------------------------
-WtPaperRockScissorsDialogState * WtPaperRockScissorsDialog::GetStateAbout() const
+
+ribi::WtPaperRockScissorsDialogState * ribi::WtPaperRockScissorsDialog::GetStateAbout() const
 {
   assert(m_state_about);
   return this->m_state_about.get();
 }
-//---------------------------------------------------------------------------
-WtPaperRockScissorsDialogState * WtPaperRockScissorsDialog::GetStateConnect() const
+
+ribi::WtPaperRockScissorsDialogState * ribi::WtPaperRockScissorsDialog::GetStateConnect() const
 {
   assert(m_state_connect);
   return this->m_state_connect.get();
 }
-//---------------------------------------------------------------------------
-WtPaperRockScissorsDialogState * WtPaperRockScissorsDialog::GetStateGame() const
+
+ribi::WtPaperRockScissorsDialogState * ribi::WtPaperRockScissorsDialog::GetStateGame() const
 {
   assert(m_state_game);
   return this->m_state_game.get();
 }
-//---------------------------------------------------------------------------
-WtPaperRockScissorsDialogState * WtPaperRockScissorsDialog::GetStateLogin() const
+
+ribi::WtPaperRockScissorsDialogState * ribi::WtPaperRockScissorsDialog::GetStateLogin() const
 {
   assert(m_state_login);
   return this->m_state_login.get();
 }
-//---------------------------------------------------------------------------
-const std::string WtPaperRockScissorsDialog::GetVersion()
+
+const std::string ribi::WtPaperRockScissorsDialog::GetVersion()
 {
   return "1.0";
 }
-//---------------------------------------------------------------------------
-const std::vector<std::string> WtPaperRockScissorsDialog::GetVersionHistory()
+
+const std::vector<std::string> ribi::WtPaperRockScissorsDialog::GetVersionHistory()
 {
   std::vector<std::string> v;
   v.push_back("2011-04-15: Version 1.0: initial version");
   return v;
 }
-//---------------------------------------------------------------------------
-void WtPaperRockScissorsDialog::OnClose()
+
+void ribi::WtPaperRockScissorsDialog::OnClose()
 {
   m_state->Disconnect();
   m_signal_close();
 }
-//---------------------------------------------------------------------------
-void WtPaperRockScissorsDialog::SetState(State * const state)
+
+void ribi::WtPaperRockScissorsDialog::SetState(State * const state)
 {
   assert(state);
   m_state = state;
   Show();
 }
-//---------------------------------------------------------------------------
-void WtPaperRockScissorsDialog::Show()
+
+void ribi::WtPaperRockScissorsDialog::Show()
 {
   m_state->Show();
 }
-//---------------------------------------------------------------------------
+
 ///Called by server triggered from other session
-void WtPaperRockScissorsDialog::ServerEvent(const WtPaperRockScissorsEvent& event)
+void ribi::WtPaperRockScissorsDialog::ServerEvent(const WtPaperRockScissorsEvent& event)
 {
   Wt::WApplication::UpdateLock lock = m_application->getUpdateLock();
 
@@ -142,4 +142,4 @@ void WtPaperRockScissorsDialog::ServerEvent(const WtPaperRockScissorsEvent& even
 
   m_application->triggerUpdate();
 }
-//---------------------------------------------------------------------------
+

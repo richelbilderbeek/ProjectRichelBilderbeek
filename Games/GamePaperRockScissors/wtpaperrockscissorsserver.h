@@ -1,6 +1,6 @@
 //---------------------------------------------------------------------------
 /*
-PaperRockScissors, time polling server
+PaperRockScissors, paper-rock-scissors game
 Copyright (C) 2011 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
@@ -20,16 +20,18 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #ifndef WTPAPERROCKSCISSORSSERVER_H
 #define WTPAPERROCKSCISSORSSERVER_H
-//---------------------------------------------------------------------------
+
 #include <boost/thread.hpp>
 //#include <boost/timer.hpp>
-//---------------------------------------------------------------------------
+
 #include <Wt/WObject>
 #include <Wt/WSignal>
 #include <Wt/WTimer>
-//---------------------------------------------------------------------------
+
 #include "wtpaperrockscissorsevent.h"
-//---------------------------------------------------------------------------
+
+namespace ribi {
+
 struct WtPaperRockScissorsServer : public Wt::WObject
 {
   static WtPaperRockScissorsServer * GetInstance();
@@ -44,5 +46,7 @@ private:
   Wt::Signal<WtPaperRockScissorsEvent> m_change_index_event;
   boost::mutex m_mutex;
 };
-//---------------------------------------------------------------------------
+
+} //~namespace ribi
+
 #endif // WTPAPERROCKSCISSORSSERVER_H

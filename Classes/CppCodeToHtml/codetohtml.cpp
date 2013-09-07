@@ -71,7 +71,7 @@ bool c2h::IsCleanHtml(const std::vector<std::string>& html)
     const int error = std::system(command.c_str());
     if (error)
     {
-      TRACE("CHECK tmp.htm");
+      TRACE("Dear assert, check tmp.htm, as this is the HTML tidy failed on");
       TRACE(command);
       TRACE(error);
       #ifndef NDEBUG

@@ -2744,7 +2744,7 @@ const std::vector<std::pair<std::string,std::string> > c2h::Content::CreateCppRe
     { "qtry","qt$ry" },
     { "rasm","ra$sm" },
     { "rfor","rf$or" },
-    { "ribi",R"(<a href="CppR$ibi.htm\">r$ibi</a>)" },
+    { "ribi",R"(<a href="CppR$ibi.htm">r$ibi</a>)" },
     { "rint","ri$nt" },
     { "rled","rl$ed" },
     { "rnew","rn$ew" },
