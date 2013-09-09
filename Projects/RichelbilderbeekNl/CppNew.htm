@@ -30,73 +30,34 @@ is <a href="CppReturn.htm">returned</a>.</p>
 <p>When the <a href="CppPointer.htm">pointer</a> is no longer needed, <a href="CppDelete.htm">delete</a> must be
 called.</p>
 <p>&nbsp;</p>
-<p>
-  Avoid 'naked' <a href="CppNew.htm">new</a> and <a href="CppDelete.htm">delete</a> [5,6]. 
-  Use <a href="CppConstructor.htm">constructor</a>/<a href="CppDestructor.htm">destructor</a> pairs to simplify resource management [4] 
-  or use of <a href="CppSmartPointer.htm">smart pointers</a> [1,2].
-</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Examples</h2>
+<p>&nbsp;</p>
+<ul>
+  <li><a href="CppNewExample1.htm">new example 1: naked new and delete</a> (note [4,5])</li>
+  <li><a href="CppNewExample2.htm">new example 2: new and a smart pointer</a></li>
+</ul>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
-<h2>Example with simple class</h2>
+<h2><a href="CppAdvice.htm">Advice</a></h2>
 <p>&nbsp;</p>
-<!-- start of code -->
-<table border = "1"><tr><td><code>
-<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
-{<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> MyClass * <b><a href="CppConst.htm">const</a></b> p <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> MyClass; <a href="CppComment.htm">//</a>Bad practice<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>Use p<br/>
-&nbsp;&nbsp;<b><a href="CppDelete.htm">delete</a></b> p; <a href="CppComment.htm">//</a>Do not forget to <b><a href="CppDelete.htm">delete</a></b> p<br/>
-}<br/>
-</code></td></tr></table>
-<!-- end of the code -->
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<h2>Example with base and derived class</h2>
-<p>&nbsp;</p>
-<p>Suppose
-you have a <a href="CppBaseClass.htm">base class</a> called Animal and a 
-<a href="CppDerivedClass.htm">derived class</a> called Monkey. Then you can store
-a Monkey as an Animal in the following way.</p>
-<p>&nbsp;</p>
-<!-- start of code -->
-<table border = "1"><tr><td><code>
-<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
-{<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Animal * <b><a href="CppConst.htm">const</a></b> p <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> Monkey; <a href="CppComment.htm">//</a>Bad practice<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>Use the Animal <a href="CppInterface.htm">interface</a> of p (p does not know it is monkey anymore)<br/>
-&nbsp;&nbsp;<b><a href="CppDelete.htm">delete</a></b> p; <a href="CppComment.htm">//</a>Do not forget to <b><a href="CppDelete.htm">delete</a></b> p<br/>
-}<br/>
-</code></td></tr></table>
-<!-- end of the code -->
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<h2>Example with <a href="CppBaseClass.htm">base</a> and <a href="CppDerivedClass.htm">derived class</a> using <a href="CppAuto_ptr.htm">std::auto_ptr</a></h2>
-<p>&nbsp;</p>
-<p>Prefer the use of <a href="CppAuto_ptr.htm">std::auto_ptr</a> (or other <a
-href="CppSmartPointer.htm">smart pointers</a>) over the use of plain <a
-href="CppPointer.htm">pointers</a> [1-3].</p>
-<p>&nbsp;</p>
-<!-- start of code -->
-<table border = "1"><tr><td><code>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppMemoryH.htm">memory</a>&gt;<br/>
-<br/>
-<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
-{<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppAuto_ptr.htm">std::auto_ptr</a>&lt;Animal&gt; p <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> Monkey;<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>Use the Animal <a href="CppInterface.htm">interface</a> of p (p does not know it is monkey anymore)<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppAuto_ptr.htm">std::auto_ptr</a> deletes p automatically<br/>
-}<br/>
-</code></td></tr></table>
-<!-- end of the code -->
+<ul>
+  <li>
+    Avoid 'naked' <a href="CppNew.htm">new</a> and <a href="CppDelete.htm">delete</a> [4,5]
+  </li>
+  <li>
+    Prefer the use of <a href="CppSmartPointer.htm">smart pointers</a> over the use of plain <a href="CppPointer.htm">pointers</a> [1-3].</p>
+  </li>
+  <li>
+    Use <a href="CppSmartPointer.htm">smart pointers</a> to avoid forgetting to <a href="CppDelete.htm">delete</a> objects created using <a href="CppNew.htm">new</a> [6]
+  </li>
+</ul>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
@@ -108,9 +69,9 @@ href="CppPointer.htm">pointers</a> [1-3].</p>
   <li><!--  1 --><a href="CppScottMeyers.htm">Scott Meyers</a>. Effective C++ (3rd edition). ISBN: 0-321-33487-6. Item 13: 'Use objects to manage resources'.</li>
   <li><!--  2 --><a href="CppScottMeyers.htm">Scott Meyers</a>. Effective C++ (3rd edition). ISBN: 0-321-33487-6. Item 17: 'Store <a href="CppNew.htm">new</a>ed objects in <a href="CppSmartPointer.htm">smart pointer</a>s in standalone statements'</li>
   <li><!--  3 --><a href="CppHerbSutter.htm">Herb Sutter</a>, <a href="CppAndreiAlexandrescu.htm">Andrei Alexandrescu</a>. C++ coding standards: 101 rules, guidelines, and best practices. 2005. ISBN: 0-32-111358-6. Chapter 13: 'Ensure resources are owned by objects. Use explicit RAII and smart pointers.</li>
-  <li><!--  4 --><a href="CppBjarneStroustrup.htm">Bjarne Stroustrup</a>. The C++ Programming Language (4th edition). 2013. ISBN: 978-0-321-56384-2. Page 19, 1.3.2 'Advice', item 2: 'Use constructor/destructor pairs to simplify resource management'</li>
-  <li><!--  5 --><a href="CppBjarneStroustrup.htm">Bjarne Stroustrup</a>. The C++ Programming Language (4th edition). 2013. ISBN: 978-0-321-56384-2. Page 19, 1.3.2 'Advice', item 3: 'Avoid 'naked' new and delete'</li>
-  <li><!--  6 --><a href="CppBjarneStroustrup.htm">Bjarne Stroustrup</a>. The C++ Programming Language (4th edition). 2013. ISBN: 978-0-321-56384-2. Chapter 11.6. Advice. page 303: '[4] Avoid "naked new" and "naked delete"'</li>
+  <li><!--  4 --><a href="CppBjarneStroustrup.htm">Bjarne Stroustrup</a>. The C++ Programming Language (4th edition). 2013. ISBN: 978-0-321-56384-2. Page 19, 1.3.2 'Advice', item 3: 'Avoid 'naked' new and delete'</li>
+  <li><!--  5 --><a href="CppBjarneStroustrup.htm">Bjarne Stroustrup</a>. The C++ Programming Language (4th edition). 2013. ISBN: 978-0-321-56384-2. Chapter 11.6. Advice. page 303: '[4] Avoid "naked new" and "naked delete"'</li>
+  <li><!--  6 --><a href="CppBjarneStroustrup.htm">Bjarne Stroustrup</a>. The C++ Programming Language (4th edition). 2013. ISBN: 978-0-321-56384-2. Chapter 21.4. Advice. page 640: '[1] Use unique_ptr or shared_ptr to avoid forgetting to delete objects created using new'</li>
 </ol>
 <p>&nbsp;</p>
 <p>&nbsp;</p>

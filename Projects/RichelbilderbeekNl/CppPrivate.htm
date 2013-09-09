@@ -32,25 +32,15 @@ access level by default, a <a href="CppClass.htm">class</a> created by the <a
 href="CppKeyword.htm">keyword</a> <a href="CppStruct.htm">struct</a> has <a
 href="CppPublic.htm">public</a> access level by default.</p>
 <p>&nbsp;</p>
-<!-- start of code -->
-<table border = "1"><tr><td><code>
-<b><a href="CppClass.htm">class</a></b> Test<br/>
-{<br/>
-&nbsp;&nbsp;<b><a href="CppPublic.htm">public</a></b>:<br/>
-&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> YouCanCallMe();<br/>
-&nbsp;&nbsp;<b><a href="CppPrivate.htm">private</a></b>:<br/>
-&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> YouCannotCallMe();<br/>
-};<br/>
-<br/>
-<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
-{<br/>
-&nbsp;&nbsp;Test t;<br/>
-&nbsp;&nbsp;t.YouCanCallMe();<br/>
-&nbsp;&nbsp;t.YouCannotCallMe(); <a href="CppComment.htm">//</a>Illegal<br/>
-}<br/>
-<br/>
-</code></td></tr></table>
-<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Examples</h2>
+<p>&nbsp;</p>
+<ul>
+  <li><a href="CppPrivateExample1.htm">private example 1: basic</a></li>
+</ul>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
@@ -61,6 +51,9 @@ href="CppPublic.htm">public</a> access level by default.</p>
 <ul>
   <li>
     <a href="CppDeclaration.htm">Declare</a> <a href="CppMemberVariable.htm">member variables</a> <a href="CppPrivate.htm">private</a> [1-5], except in <a href="CppPod.htm">POD</a>s [4]
+  </li>
+  <li>
+    Prefer <a href="CppPrivate.htm">private</a> <a href="CppMember.htm">members</a> for implementation details [6]
   </li>
 </ul>
 <p>&nbsp;</p>
@@ -77,6 +70,7 @@ href="CppPublic.htm">public</a> access level by default.</p>
   <li><!--  3 --><a href="CppHerbSutter.htm">Herb Sutter</a>, <a href="CppAndreiAlexandrescu.htm">Andrei Alexandrescu</a>. C++ coding standards: 101 rules, guidelines, and best practices. 2005. ISBN: 0-32-111358-6. Chapter 11: 'Hide information'.</li>
   <li><!--  4 --><a href="CppHerbSutter.htm">Herb Sutter</a>, <a href="CppAndreiAlexandrescu.htm">Andrei Alexandrescu</a>. C++ coding standards: 101 rules, guidelines, and best practices. 2005. ISBN: 0-32-111358-6. Chapter 41: 'Make data members private, except in behaviourless aggregates (C-style structs).</li>
   <li><!--  5 --><a href="CppJohnLakos.htm">John Lakos</a>. Large-Scale C++ Software Design. 1996. ISBN: 0-201-63362-0.</li>
+  <li><!--  6 --><a href="CppBjarneStroustrup.htm">Bjarne Stroustrup</a>. The C++ Programming Language (4th edition). 2013. ISBN: 978-0-321-56384-2. Chapter 20.7. Advice. page 611: '[10] Prefer private members for implementation details'</li>
 </ol>
 <p>&nbsp;</p>
 <p>&nbsp;</p>

@@ -66,7 +66,7 @@ hello differently: SilentHuman and LoudHuman:</p>
 <ul>
   <li>
     If a <a href="CppClass.htm">class</a> has a <a href="CppVirtual.htm">virtual</a> <a href="CppMemberFunction.htm">member functions</a>, 
-    it needs a <a href="CppVirtual.htm">virtual</a> <a href="CppDestructor.htm">destructor</a> [4]
+    it needs a <a href="CppVirtual.htm">virtual</a> <a href="CppDestructor.htm">destructor</a> [4,8]
   </li>
   <li>
     Avoid calling <a href="CppVirtual.htm">virtual</a> <a href="CppMemberFunction.htm">member functions</a> in <a href="CppConstructor.htm">constructors</a> and <a href="CppDestructor.htm">destructors</a> [2]
@@ -83,10 +83,11 @@ hello differently: SilentHuman and LoudHuman:</p>
 <h2><a href="CppReferences.htm">References</a></h2>
 <p>&nbsp;</p>
 <ol>
-  <li><!-- 1 --><a href="CppHerbSutter.htm">Herb Sutter</a>, <a href="CppAndreiAlexandrescu.htm">Andrei Alexandrescu</a>. C++ coding standards: 101 rules, guidelines, and best practices. 2005. ISBN: 0-32-111358-6. Item 50: 'Make base class destructors public and virtual, or protected and nonvirtual'</li>
-  <li><!-- 2 --><a href="CppHerbSutter.htm">Herb Sutter</a>, <a href="CppAndreiAlexandrescu.htm">Andrei Alexandrescu</a>. C++ coding standards: 101 rules, guidelines, and best practices. 2005. ISBN: 0-32-111358-6. Item 49: 'Avoid calling virtual functions in constructors and destructors'</li>
-  <li><!-- 3 --><a href="CppHerbSutter.htm">Herb Sutter</a>. <a href="CppExceptionalCpp.htm">Exceptional C++</a>. ISBN: 0-201-61562-2. Item 23, page 84, guideline: 'Avoid public virtual functions; prefer using the Template Method pattern instead'</li>
-  <li><!-- 4 --><a href="CppBjarneStroustrup.htm">Bjarne Stroustrup</a>. The C++ Programming Language (4th edition). 2013. ISBN: 978-0-321-56384-2. Chapter 17.7. Advice. page 525: '[4] If a class has a virtual function, it needs a virtual destructor'</li>
+  <li><!--  1 --><a href="CppHerbSutter.htm">Herb Sutter</a>, <a href="CppAndreiAlexandrescu.htm">Andrei Alexandrescu</a>. C++ coding standards: 101 rules, guidelines, and best practices. 2005. ISBN: 0-32-111358-6. Item 50: 'Make base class destructors public and virtual, or protected and nonvirtual'</li>
+  <li><!--  2 --><a href="CppHerbSutter.htm">Herb Sutter</a>, <a href="CppAndreiAlexandrescu.htm">Andrei Alexandrescu</a>. C++ coding standards: 101 rules, guidelines, and best practices. 2005. ISBN: 0-32-111358-6. Item 49: 'Avoid calling virtual functions in constructors and destructors'</li>
+  <li><!--  3 --><a href="CppHerbSutter.htm">Herb Sutter</a>. <a href="CppExceptionalCpp.htm">Exceptional C++</a>. ISBN: 0-201-61562-2. Item 23, page 84, guideline: 'Avoid public virtual functions; prefer using the Template Method pattern instead'</li>
+  <li><!--  4 --><a href="CppBjarneStroustrup.htm">Bjarne Stroustrup</a>. The C++ Programming Language (4th edition). 2013. ISBN: 978-0-321-56384-2. Chapter 17.7. Advice. page 525: '[4] If a class has a virtual function, it needs a virtual destructor'</li>
+  <li><!--  5 --><a href="CppBjarneStroustrup.htm">Bjarne Stroustrup</a>. The C++ Programming Language (4th edition). 2013. ISBN: 978-0-321-56384-2. Chapter 20.7. Advice. page 611: '[8] A class with a virtual function should have a virtual destructor'</li>
 </ol>
 <p>&nbsp;</p>
 <p>&nbsp;</p>

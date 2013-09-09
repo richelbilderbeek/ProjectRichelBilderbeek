@@ -20,9 +20,10 @@
 <!-- Page header -->
 <h1>(<a href="Cpp.htm">C++</a>) <a href="CppSmartPointer.htm">Smart pointer</a></h1>
 <p>&nbsp;</p>
-<p>A <a href="CppSmartPointer.htm">smart pointer</a> is a <a href="CppContainer.htm">container</a> that 
-manages a <a href="CppPointer.htm">pointer</a>. Prefer to use <a href="CppSmartPointer.htm">smart pointers</a> 
-over normal pointers [1-3].</p>
+<p>
+  A <a href="CppSmartPointer.htm">smart pointer</a> is a <a href="CppContainer.htm">container</a> that 
+  manages a <a href="CppPointer.htm">pointer</a>. 
+</p>
 <p>&nbsp;</p>
 <p><a href="CppSmart_ptr.htm">Boost.Smart_ptr</a> is the <a href="CppBoost.htm">Boost</a> <a href="CppSmartPointer.htm">smart pointer</a> <a href="CppLibrary.htm">library</a>.</p>
 <p>&nbsp;</p>
@@ -47,74 +48,24 @@ over normal pointers [1-3].</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
-<h2><img src="PicBoost.png" alt="Boost"/> <a href="CppSmartPointer.htm">Smart pointers</a> and <a href="CppNull.htm">null</a></h2>
+<h2><a href="CppExample.htm">Examples</a></h2>
 <p>&nbsp;</p>
-<p><a href="CppBoost.htm">Boost</a> <a href="CppSmartPointer.htm">smart pointers</a> check for <a href="CppNull.htm">null</a> themselves,
-so there is no need to check these to be inititialized. In the example below a <a href="CppMemberVariable.htm">member variable</a> 
-of a <a href="CppClass.htm">class</a> is requested from an unitialized <a href="CppSmartPointer.htm">smart pointer</a>. 
-The program will <a href="CppAbort.htm">abort</a> and the <a href="CppRuntimeError.htm">runtime error</a> will be shown.</p>
+<ul>
+  <li><a href="CppSmartPointerExample1.htm">Smart pointers example 1: do the classes check for uninitialized pointers?</a></li>
+  <li><a href="CppSmartPointerExample2.htm">Smart pointers example 2: reset smart pointers to nullptr</a></li>
+</ul>
 <p>&nbsp;</p>
-<!-- start of code -->
-<table border = "1"><tr><td><code>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppScoped_ptr.htm">scoped_ptr</a>.hpp&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppShared_ptr.htm">shared_ptr</a>.hpp&gt;<br/>
-<br/>
-<b><a href="CppStruct.htm">struct</a></b> Test<br/>
-{<br/>
-&nbsp;&nbsp;Test(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x) : m_x(x) {}<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> m_x;<br/>
-};<br/>
-<br/>
-<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
-{<br/>
-&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;Test&gt; p;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;p-&gt;m_x; <a href="CppComment.htm">//</a>Good: uninitialized <a href="CppPointer.htm">pointer</a> detected by <a href="CppBoost.htm">Boost</a><br/>
-&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppScoped_ptr.htm">boost::scoped_ptr</a>&lt;Test&gt; p;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;p-&gt;m_x; <a href="CppComment.htm">//</a>Good: uninitialized <a href="CppPointer.htm">pointer</a> detected by <a href="CppBoost.htm">Boost</a><br/>
-&nbsp;&nbsp;}<br/>
-}<br/>
-</code></td></tr></table>
-<!-- end of the code -->
 <p>&nbsp;</p>
-<p>The code below shows that initializing a <a href="CppShared_ptr.htm">boost::shared_ptr</a> with <a href="CppNull.htm">null</a> will not be easy,
-but even when it succeeds, <a href="CppShared_ptr.htm">boost::shared_ptr</a> will check itself for <a href="CppNull.htm">null</a>. A
-<a href="CppScoped_ptr.htm">boost::scoped_ptr</a> can be <a href="CppNull.htm">null</a>, but will check itself for it as well.</p>
 <p>&nbsp;</p>
-<!-- start of code -->
-<table border = "1"><tr><td><code>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppScoped_ptr.htm">scoped_ptr</a>.hpp&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppShared_ptr.htm">shared_ptr</a>.hpp&gt;<br/>
-<br/>
-<b><a href="CppStruct.htm">struct</a></b> Test<br/>
-{<br/>
-&nbsp;&nbsp;Test(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x) : m_x(x) {}<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> m_x;<br/>
-};<br/>
-<br/>
-Test * CreateNull<a href="CppPointer.htm">Pointer</a>() { <b><a href="CppReturn.htm">return</a></b> 0; }<br/>
-<br/>
-<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
-{<br/>
-&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;Test&gt; p;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>p.reset(0); <a href="CppComment.htm">//</a>Good: does not <a href="CppCompile.htm">compile</a>: 0 is an <a href="CppInt.htm">integer</a><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>p.reset(<a href="CppNULL.htm">NULL</a>); <a href="CppComment.htm">//</a>Good: does not <a href="CppCompile.htm">compile</a><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;p.reset(CreateNull<a href="CppPointer.htm">Pointer</a>()); <a href="CppComment.htm">//</a>Bad: tricked the <a href="CppCompiler.htm">compiler</a><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>p-&gt;m_x; <a href="CppComment.htm">//</a>Good: uninitialized <a href="CppPointer.htm">pointer</a> detected by <a href="CppBoost.htm">Boost</a><br/>
-&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppScoped_ptr.htm">boost::scoped_ptr</a>&lt;Test&gt; p;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;p.reset(0); <a href="CppComment.htm">//</a>Valid: <a href="CppScoped_ptr.htm">boost::scoped_ptr</a> can be empty<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;p.reset(CreateNull<a href="CppPointer.htm">Pointer</a>()); <a href="CppComment.htm">//</a>Valid: <a href="CppScoped_ptr.htm">boost::scoped_ptr</a> can be empty<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;p-&gt;m_x; <a href="CppComment.htm">//</a>Good: uninitialized <a href="CppPointer.htm">pointer</a> detected by <a href="CppBoost.htm">Boost</a><br/>
-&nbsp;&nbsp;}<br/>
-}<br/>
-</code></td></tr></table>
-<!-- end of the code -->
 <p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><a href="CppAdvice.htm">Advice</a></h2>
+<p>&nbsp;</p>
+<ul>
+  <li>
+    Prefer to use <a href="CppSmartPointer.htm">smart pointers</a> over "naked" new and delete [1-6]
+  </li>
+</ul>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
@@ -122,9 +73,12 @@ Test * CreateNull<a href="CppPointer.htm">Pointer</a>() { <b><a href="CppReturn.
 <h2><a href="CppReferences.htm">References</a></h2>
 <p>&nbsp;</p>
 <ol>
-  <li><a href="CppScottMeyers.htm">Scott Meyers</a>. Effective C++ (3rd edition). ISBN: 0-321-33487-6. Item 13: 'Use objects to manage resources'.</li>
-  <li><a href="CppScottMeyers.htm">Scott Meyers</a>. Effective C++ (3rd edition). ISBN: 0-321-33487-6. Item 17: 'Store <a href="CppNew.htm">new</a>ed objects in <a href="CppSmartPointer.htm">smart pointer</a>s in standalone statements'</li>
-  <li><a href="CppHerbSutter.htm">Herb Sutter</a>, <a href="CppAndreiAlexandrescu.htm">Andrei Alexandrescu</a>. C++ coding standards: 101 rules, guidelines, and best practices. 2005. ISBN: 0-32-111358-6. Chapter 13: 'Ensure resources are owned by objects. Use explicit RAII and smart pointers.</li>
+  <li><!--  1 --><a href="CppScottMeyers.htm">Scott Meyers</a>. Effective C++ (3rd edition). ISBN: 0-321-33487-6. Item 13: 'Use objects to manage resources'.</li>
+  <li><!--  2 --><a href="CppScottMeyers.htm">Scott Meyers</a>. Effective C++ (3rd edition). ISBN: 0-321-33487-6. Item 17: 'Store <a href="CppNew.htm">new</a>ed objects in <a href="CppSmartPointer.htm">smart pointer</a>s in standalone statements'</li>
+  <li><!--  3 --><a href="CppHerbSutter.htm">Herb Sutter</a>, <a href="CppAndreiAlexandrescu.htm">Andrei Alexandrescu</a>. C++ coding standards: 101 rules, guidelines, and best practices. 2005. ISBN: 0-32-111358-6. Chapter 13: 'Ensure resources are owned by objects. Use explicit RAII and smart pointers.</li>
+  <li><!--  4 --><a href="CppBjarneStroustrup.htm">Bjarne Stroustrup</a>. The C++ Programming Language (4th edition). 2013. ISBN: 978-0-321-56384-2. Page 19, 1.3.2 'Advice', item 3: 'Avoid 'naked' new and delete'</li>
+  <li><!--  5 --><a href="CppBjarneStroustrup.htm">Bjarne Stroustrup</a>. The C++ Programming Language (4th edition). 2013. ISBN: 978-0-321-56384-2. Chapter 11.6. Advice. page 303: '[4] Avoid "naked new" and "naked delete"'</li>
+  <li><!--  6 --><a href="CppBjarneStroustrup.htm">Bjarne Stroustrup</a>. The C++ Programming Language (4th edition). 2013. ISBN: 978-0-321-56384-2. Chapter 21.4. Advice. page 640: '[1] Use unique_ptr or shared_ptr to avoid forgetting to delete objects created using new'</li>
 </ol>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
