@@ -1,6 +1,5 @@
-
-
 #pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include "qtkalmanfilterexamplesdialog.h"
 
@@ -29,6 +28,7 @@
 
 ribi::kalman::QtKalmanFilterExamplesDialog::QtKalmanFilterExamplesDialog(QWidget *parent)
   : QDialog(parent),
+    m_signal_example{},
     ui(new Ui::QtKalmanFilterExamplesDialog)
 {
   ui->setupUi(this);

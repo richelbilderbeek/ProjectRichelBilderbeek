@@ -4,6 +4,7 @@
 #include <vector>
 
 #pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/shared_ptr.hpp>
 #include <boost/numeric/ublas/matrix.hpp>
@@ -69,17 +70,17 @@ private:
   ///The dialog to set the experiment its parameters
   QtKalmanFilterExperimentDialog * const m_experiment_dialog;
 
-  ///Contains the widgets that must be deleted at a new run
-  ///these must be stored because deleting
-  ///the layout that contains these does not work properly
-  std::vector<boost::shared_ptr<QWidget> > m_to_delete_at_new_run;
-
   ///The model
   const boost::shared_ptr<QtKalmanFilterExperimentModel> m_model;
 
   ///Contains the plots, these must be stored because deleting
   ///the layout that contains these does not work properly
   std::vector<boost::shared_ptr<QwtPlot> > m_plots;
+
+  ///Contains the widgets that must be deleted at a new run
+  ///these must be stored because deleting
+  ///the layout that contains these does not work properly
+  std::vector<boost::shared_ptr<QWidget> > m_to_delete_at_new_run;
 
 
   static const std::vector<std::vector<double> > CreateData(

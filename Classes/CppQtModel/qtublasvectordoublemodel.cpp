@@ -89,14 +89,14 @@ const std::string ribi::QtUblasVectorDoubleModel::GetVersion()
 
 const std::vector<std::string> ribi::QtUblasVectorDoubleModel::GetVersionHistory()
 {
-  std::vector<std::string> v;
-  v.push_back("2013-05-15: version 1.0: initial version");
-  v.push_back("2013-05-21: version 1.1: added rows are initialized with zeroes");
-  v.push_back("2013-05-23: version 1.2: allow an infine amount of digits behind the comma");
-  v.push_back("2013-05-28: version 1.3: allow columnCount to be zero, if rowCount is zero");
-  v.push_back("2013-06-27: version 1.4: added self-test");
-  v.push_back("2013-07-05: version 1.5: signal layoutChanged emitted correctly");
-  return v;
+  return {
+    "2013-05-15: version 1.0: initial version",
+    "2013-05-21: version 1.1: added rows are initialized with zeroes",
+    "2013-05-23: version 1.2: allow an infine amount of digits behind the comma",
+    "2013-05-28: version 1.3: allow columnCount to be zero, if rowCount is zero",
+    "2013-06-27: version 1.4: added self-test",
+    "2013-07-05: version 1.5: signal layoutChanged emitted correctly"
+  };
 }
 
 QVariant ribi::QtUblasVectorDoubleModel::headerData(int section, Qt::Orientation orientation, int role) const

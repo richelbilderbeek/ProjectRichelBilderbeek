@@ -130,12 +130,11 @@ const std::string ribi::Matrix::GetVersion()
 
 const std::vector<std::string> ribi::Matrix::GetVersionHistory()
 {
-  std::vector<std::string> v;
-  v.push_back("2013-04-28: version 1.0: initial version");
-  v.push_back("2013-06-11: version 1.1: fixed bugs in MatricesAreEqual and MatricesAreAboutEqual");
-  v.push_back("2013-06-27: version 1.2: added tests, renamed VectorsAreEqual to VectorsDoubleAreEqual and VectorsIntAreEqual");
-
-  return v;
+  return {
+    "2013-04-28: version 1.0: initial version",
+    "2013-06-11: version 1.1: fixed bugs in MatricesAreEqual and MatricesAreAboutEqual",
+    "2013-06-27: version 1.2: added tests, renamed VectorsAreEqual to VectorsDoubleAreEqual and VectorsIntAreEqual"
+  };
 }
 
 const boost::numeric::ublas::matrix<double> ribi::Matrix::Inverse(

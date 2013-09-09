@@ -1,11 +1,12 @@
-
-
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include "standardwhitenoisesystem.h"
 
 #include <iostream>
 #include <boost/numeric/ublas/io.hpp>
 #include <boost/random/lagged_fibonacci.hpp>
 #include <boost/random/normal_distribution.hpp>
+#pragma GCC diagnostic pop
 
 #include "matrix.h"
 #include "trace.h"
@@ -26,9 +27,9 @@ const std::string ribi::kalman::StandardWhiteNoiseSystem::GetVersion()
 
 const std::vector<std::string> ribi::kalman::StandardWhiteNoiseSystem::GetVersionHistory()
 {
-  std::vector<std::string> v;
-  v.push_back("2013-04-28: version 1.0: initial version");
-  return v;
+  return {
+    "2013-04-28: version 1.0: initial version"
+  };
 }
 
 void ribi::kalman::StandardWhiteNoiseSystem::GoToNextState()

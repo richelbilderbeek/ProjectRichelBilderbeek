@@ -1,13 +1,11 @@
-
-
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include "qtkalmanfiltererparameterdialog.h"
 
 #include <cassert>
 
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/lexical_cast.hpp>
-#pragma GCC diagnostic pop
 
 #include <QKeyEvent>
 #include <QTableWidgetItem>
@@ -33,6 +31,7 @@
 #include "steadystatekalmanfilterfactory.h"
 #include "trace.h"
 #include "ui_qtkalmanfiltererparameterdialog.h"
+#pragma GCC diagnostic pop
 
 ribi::kalman::QtKalmanFiltererParameterDialog::QtKalmanFiltererParameterDialog(
   const std::string& parameter_name,

@@ -1,6 +1,7 @@
-
-
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include "standardwhitenoisesystemparameters.h"
+#pragma GCC diagnostic pop
 
 #include <cassert>
 #include "matrix.h"
@@ -30,9 +31,9 @@ const std::string ribi::kalman::StandardWhiteNoiseSystemParameters::GetVersion()
 
 const std::vector<std::string> ribi::kalman::StandardWhiteNoiseSystemParameters::GetVersionHistory()
 {
-  std::vector<std::string> v;
-  v.push_back("2013-04-28: version 1.0: initial version");
-  return v;
+  return {
+    "2013-04-28: version 1.0: initial version"
+  };
 }
 
 bool ribi::kalman::StandardWhiteNoiseSystemParameters::IsAboutEqual(

@@ -2,15 +2,17 @@
 #define MODELFUNCTIONPARSER_H
 
 #include <boost/shared_ptr.hpp>
-#include <boost/noncopyable.hpp>
 
 struct FunctionParser;
 
 namespace ribi {
 
 ///Uses Warp's function parser and adds a random function
-struct ModelFunctionParser : public boost::noncopyable
+struct ModelFunctionParser
 {
+  ModelFunctionParser(const ModelFunctionParser&e) = delete;
+  ModelFunctionParser& operator=(const ModelFunctionParser&e) = delete;
+
   ///For example:
   ///my_function = 'x * x * sin(x) * rand(x)'
   ///variable_name = 'x'

@@ -2,14 +2,14 @@
 #define LAGGEDWHITENOISESYSTEMFACTORY_H
 
 #pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
-
 #include <boost/numeric/ublas/matrix.hpp>
 #include <boost/numeric/ublas/vector.hpp>
 #include <boost/shared_ptr.hpp>
-#include "laggedwhitenoisesystem.h"
-
 #pragma GCC diagnostic pop
+
+#include "laggedwhitenoisesystem.h"
 
 namespace ribi {
 namespace kalman {

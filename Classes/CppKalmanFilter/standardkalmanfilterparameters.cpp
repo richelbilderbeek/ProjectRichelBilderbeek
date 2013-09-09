@@ -1,6 +1,7 @@
-
-
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include "standardkalmanfilterparameters.h"
+#pragma GCC diagnostic pop
 
 #include <cassert>
 
@@ -39,10 +40,10 @@ const std::string ribi::kalman::StandardKalmanFilterParameters::GetVersion()
 
 const std::vector<std::string> ribi::kalman::StandardKalmanFilterParameters::GetVersionHistory()
 {
-  std::vector<std::string> v;
-  v.push_back("2013-04-28: version 1.0: initial version");
-  v.push_back("2013-05-03: version 1.1: inhertic from KalmanFilterParameters");
-  return v;
+  return {
+    "2013-04-28: version 1.0: initial version",
+    "2013-05-03: version 1.1: inhertic from KalmanFilterParameters"
+  };
 }
 
 bool ribi::kalman::StandardKalmanFilterParameters::HasParameterType(const KalmanFilterParameterType type)

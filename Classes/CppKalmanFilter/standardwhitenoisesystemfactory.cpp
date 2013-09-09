@@ -1,6 +1,7 @@
-
-
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include "standardwhitenoisesystemfactory.h"
+#pragma GCC diagnostic pop
 
 const boost::shared_ptr<ribi::kalman::StandardWhiteNoiseSystem>
   ribi::kalman::StandardWhiteNoiseSystemFactory::Create(

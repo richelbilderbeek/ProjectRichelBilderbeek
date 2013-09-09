@@ -83,12 +83,12 @@ const std::string ribi::QtUblasMatrixDoubleModel::GetVersion()
 
 const std::vector<std::string> ribi::QtUblasMatrixDoubleModel::GetVersionHistory()
 {
-  std::vector<std::string> v;
-  v.push_back("2013-05-15: version 1.0: initial version");
-  v.push_back("2013-05-21: version 1.1: added columns and rows are initialized with zeroes");
-  v.push_back("2013-05-23: version 1.2: allow an infine amount of digits behind the comma");
-  v.push_back("2013-07-05: version 1.3: signal layoutChanged emitted correctly");
-  return v;
+  return {
+    "2013-05-15: version 1.0: initial version",
+    "2013-05-21: version 1.1: added columns and rows are initialized with zeroes",
+    "2013-05-23: version 1.2: allow an infine amount of digits behind the comma",
+    "2013-07-05: version 1.3: signal layoutChanged emitted correctly"
+  };
 }
 
 QVariant ribi::QtUblasMatrixDoubleModel::headerData(int section, Qt::Orientation orientation, int role) const

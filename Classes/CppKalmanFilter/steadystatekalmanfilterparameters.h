@@ -1,7 +1,11 @@
 #ifndef STEADYSTATEKALMANFILTERPARAMETERS_H
 #define STEADYSTATEKALMANFILTERPARAMETERS_H
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include <boost/checked_delete.hpp>
+#pragma GCC diagnostic pop
+
 #include "kalmanfilterparameters.h"
 
 namespace ribi {

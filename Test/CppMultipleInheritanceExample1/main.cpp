@@ -1,5 +1,6 @@
 #include <cassert>
 #include <iostream>
+#include <memory>
 #include <string>
 
 //Abstract base class
@@ -52,19 +53,13 @@ struct ParticipantNotLoggedIn : public Participant, StateNotLoggedIn
   const std::string ToStr() const { return this->StateNotLoggedIn::ToStr(); }
 };
 
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Weffc++"
-#include <boost/scoped_ptr.hpp>
-#include <boost/shared_ptr.hpp>
-#pragma GCC diagnostic pop
-
 int main()
 {
 
-  boost::shared_ptr<Administrator> a1(new AdministratorLoggedIn);
-  boost::shared_ptr<Administrator> a2(new AdministratorNotLoggedIn);
-  boost::shared_ptr<Participant> p1(new ParticipantLoggedIn);
-  boost::shared_ptr<Participant> p2(new ParticipantNotLoggedIn);
+  std::shared_ptr<Administrator> a1(new AdministratorLoggedIn);
+  std::shared_ptr<Administrator> a2(new AdministratorNotLoggedIn);
+  std::shared_ptr<Participant> p1(new ParticipantLoggedIn);
+  std::shared_ptr<Participant> p2(new ParticipantNotLoggedIn);
 
   assert(a1->ToStr() == p1->ToStr());
   assert(a2->ToStr() == p2->ToStr());

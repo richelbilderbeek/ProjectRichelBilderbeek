@@ -1,3 +1,5 @@
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include "gapsfilledwhitenoisesystem.h"
 
 #include <cassert>
@@ -9,6 +11,8 @@
 #include "gapsfilledwhitenoisesystem.h"
 #include "gapsfilledwhitenoisesystemfactory.h"
 #include "gapsfilledwhitenoisesystemparameters.h"
+
+#pragma GCC diagnostic pop
 
 ribi::kalman::GapsFilledWhiteNoiseSystem::GapsFilledWhiteNoiseSystem(
   const boost::shared_ptr<const WhiteNoiseSystemParameters>& parameters)

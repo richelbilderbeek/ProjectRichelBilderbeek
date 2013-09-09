@@ -2,15 +2,16 @@
 #define STANDARDKALMANFILTER_H
 
 #pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/numeric/ublas/matrix.hpp>
 #include <boost/numeric/ublas/vector.hpp>
+#pragma GCC diagnostic pop
 
 #include "kalmanfilter.h"
 #include "standardkalmanfilterparameters.h"
 #include "standardkalmanfiltercalculationelements.h"
 
-#pragma GCC diagnostic pop
 
 namespace ribi {
 namespace kalman {
@@ -22,12 +23,20 @@ struct StandardKalmanFilter : public KalmanFilter
   const boost::numeric::ublas::matrix<double>& GetEstimationErrorCovariance() const
     { return m_covariance_estimate; }
 
+  ///Get the Kalman filter last calculation elements
+  const boost::shared_ptr<KalmanFilterCalculationElements> GetLastCalculation() const
+  { return m_last_standard_calculation; }
+
   ///Obtain the (downcasted) calculation
-  const boost::shared_ptr<StandardKalmanFilterCalculationElements>& GetLastStandardCalculation() const
+  const boost::shared_ptr<StandardKalmanFilterCalculationElements> GetLastStandardCalculation() const
     { return m_last_standard_calculation; }
 
+  ///Obtain the Kalman filter parameters
+  const boost::shared_ptr<const KalmanFilterParameters> GetParameters() const
+  { return m_standard_parameters; }
+
   ///The downcasted parameters
-  const boost::shared_ptr<const StandardKalmanFilterParameters>& GetStandardParameters() const
+  const boost::shared_ptr<const StandardKalmanFilterParameters> GetStandardParameters() const
     { return m_standard_parameters; }
 
   ///Obtain the number of values a state consists of
@@ -75,6 +84,9 @@ struct StandardKalmanFilter : public KalmanFilter
 
   ///The downcasted parameters
   const boost::shared_ptr<StandardKalmanFilterCalculationElements> m_last_standard_calculation;
+
+  ///The Kalman filter parameters
+  //const boost::shared_ptr<const KalmanFilterParameters> m_parameters;
 
   ///The downcasted parameters
   const boost::shared_ptr<const StandardKalmanFilterParameters> m_standard_parameters;

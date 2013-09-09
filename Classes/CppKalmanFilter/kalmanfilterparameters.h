@@ -2,10 +2,10 @@
 #define KALMANFILTERPARAMETERS_H
 
 #pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/numeric/ublas/matrix.hpp>
 #include <boost/numeric/ublas/vector.hpp>
-#include <boost/noncopyable.hpp>
 #pragma GCC diagnostic pop
 
 #include "kalmanfiltertype.h"
@@ -15,9 +15,10 @@ namespace ribi {
 namespace kalman {
 
 ///ABC for the parameters every Kalman filter needs at least
-struct KalmanFilterParameters : public boost::noncopyable
+struct KalmanFilterParameters
 {
-
+  KalmanFilterParameters(const KalmanFilterParameters&) = delete;
+  KalmanFilterParameters& operator=(const KalmanFilterParameters&) = delete;
 
 
   virtual ~KalmanFilterParameters() {}

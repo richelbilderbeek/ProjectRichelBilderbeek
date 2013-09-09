@@ -1,32 +1,34 @@
 #ifndef KALMANFILTER_H
 #define KALMANFILTER_H
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include <vector>
 #include <string>
-#include <boost/noncopyable.hpp>
 #include <boost/shared_ptr.hpp>
 #include "kalmanfiltertype.h"
 #include "kalmanfilterparameters.h"
 #include "kalmanfiltercalculationelements.h"
+#pragma GCC diagnostic pop
 
 namespace ribi {
 namespace kalman {
 
 ///Kalman filter base class
-struct KalmanFilter : public boost::noncopyable
+struct KalmanFilter
 {
+  KalmanFilter(const KalmanFilter&) = delete;
+  KalmanFilter& operator=(const KalmanFilter&) = delete;
   virtual ~KalmanFilter() {}
 
   ///Obtain the Kalman filter type as an enum
   virtual KalmanFilterType GetType() const = 0;
 
   ///Get the Kalman filter last calculation elements
-  const boost::shared_ptr<KalmanFilterCalculationElements>& GetLastCalculation() const
-    { return m_last_calculation; }
+  virtual const boost::shared_ptr<KalmanFilterCalculationElements> GetLastCalculation() const = 0;
 
   ///Obtain the Kalman filter parameters
-  const boost::shared_ptr<const KalmanFilterParameters>& GetParameters() const
-    { return m_parameters; }
+  virtual const boost::shared_ptr<const KalmanFilterParameters> GetParameters() const = 0;
 
   ///Obtain the version of this class
   static const std::string GetVersion();
@@ -39,19 +41,22 @@ struct KalmanFilter : public boost::noncopyable
     const boost::numeric::ublas::vector<double>& input) = 0;
 
   protected:
+  explicit KalmanFilter();
+
+  private:
+  /*
   ///An ABC can only be constructed by derived classes
   explicit KalmanFilter(
     const boost::shared_ptr<KalmanFilterCalculationElements>& calculation,
     const boost::shared_ptr<const KalmanFilterParameters>& parameters
   );
 
-  private:
-
   ///The Kalman filter last calculation elements
   const boost::shared_ptr<KalmanFilterCalculationElements> m_last_calculation;
 
   ///The Kalman filter parameters
   const boost::shared_ptr<const KalmanFilterParameters> m_parameters;
+  */
 };
 
 } //~namespace kalman

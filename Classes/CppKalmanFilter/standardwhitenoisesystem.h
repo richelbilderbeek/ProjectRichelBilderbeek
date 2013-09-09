@@ -2,13 +2,14 @@
 #define STANDARDWHITENOISESYSTEM_H
 
 #pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/numeric/ublas/matrix.hpp>
+#pragma GCC diagnostic pop
+
 #include "standardwhitenoisesystemparameters.h"
 #include "whitenoisesystem.h"
 #include "whitenoisesystemparameters.h"
-
-#pragma GCC diagnostic pop
 
 namespace ribi {
 namespace kalman {

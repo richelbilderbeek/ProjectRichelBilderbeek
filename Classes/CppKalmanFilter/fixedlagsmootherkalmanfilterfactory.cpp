@@ -1,8 +1,9 @@
-
-
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include "fixedlagsmootherkalmanfilterfactory.h"
 
 #include <cassert>
+#pragma GCC diagnostic pop
 
 const boost::shared_ptr<ribi::kalman::FixedLagSmootherKalmanFilter> ribi::kalman::FixedLagSmootherKalmanFilterFactory::Create(
   const boost::shared_ptr<const KalmanFilterParameters>& parameters)

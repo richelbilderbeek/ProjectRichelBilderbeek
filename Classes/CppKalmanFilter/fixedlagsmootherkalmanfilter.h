@@ -1,11 +1,14 @@
 #ifndef FIXEDLAGSMOOTHERKALMANFILTER_H
 #define FIXEDLAGSMOOTHERKALMANFILTER_H
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include "kalmanfilter.h"
 #include "standardkalmanfilter.h"
 #include "standardkalmanfilterparameters.h"
 #include "fixedlagsmootherkalmanfilterparameters.h"
 #include "fixedlagsmootherkalmanfiltercalculationelements.h"
+#pragma GCC diagnostic pop
 
 namespace ribi {
 namespace kalman {
@@ -21,7 +24,13 @@ struct FixedLagSmootherKalmanFilter : public KalmanFilter
   /// [         ]       [ C D ]
   /// [ [ E F ] ]       [ E F ]
   /// [ [ G H ] ]   ->  [ G H ]
-  const boost::numeric::ublas::matrix<double>& GetEstimationErrorCovariances() const { return m_estimation_error_covariances; }
+  //const boost::numeric::ublas::matrix<double>& GetEstimationErrorCovariances() const { return m_estimation_error_covariances; }
+
+  ///Get the Kalman filter last calculation elements
+  const boost::shared_ptr<KalmanFilterCalculationElements> GetLastCalculation() const
+  {
+    return m_last_calculation;
+  }
 
   ///The last augmented Kalman gains, that is the gain for each lag timestep
   ///Use boost::numeric::ublas::matrix<double> instead of
@@ -32,7 +41,7 @@ struct FixedLagSmootherKalmanFilter : public KalmanFilter
   /// [         ]       [ C D ]
   /// [ [ E F ] ]       [ E F ]
   /// [ [ G H ] ]   ->  [ G H ]
-  const boost::numeric::ublas::matrix<double>& GetLastGains() const { return m_kalman_gains; }
+  //const boost::numeric::ublas::matrix<double>& GetLastGains() const { return m_kalman_gains; }
 
   ///The last predicted augmented estimation error covariances,
   ///that is the estimation error covariance for each lag timestep
@@ -44,7 +53,7 @@ struct FixedLagSmootherKalmanFilter : public KalmanFilter
   /// [         ]       [ C D ]
   /// [ [ E F ] ]       [ E F ]
   /// [ [ G H ] ]   ->  [ G H ]
-  const boost::numeric::ublas::matrix<double>& GetLastPredictedCovariances() const { return m_last_predicted_covariances; }
+  //const boost::numeric::ublas::matrix<double>& GetLastPredictedCovariances() const { return m_last_predicted_covariances; }
 
   ///The last predicted augmented states
   ///Use boost::numeric::ublas::vector<double> instead of
@@ -55,7 +64,13 @@ struct FixedLagSmootherKalmanFilter : public KalmanFilter
   /// [       ]        [ B ]
   /// [ [ C ] ]        [ C ]
   /// [ [ D ] ]   ->   [ D ]
-  const boost::numeric::ublas::vector<double>& GetLastPredictedStates() const { return m_last_predicted_states; }
+  //const boost::numeric::ublas::vector<double>& GetLastPredictedStates() const { return m_last_predicted_states; }
+
+  ///Obtain the Kalman filter parameters
+  const boost::shared_ptr<const KalmanFilterParameters> GetParameters() const
+  {
+    return m_parameters;
+  }
 
   ///The augmented states, that is the state for each lag timestep
   ///Use boost::numeric::ublas::vector<double> instead of
@@ -97,6 +112,9 @@ struct FixedLagSmootherKalmanFilter : public KalmanFilter
   ~FixedLagSmootherKalmanFilter() {}
   friend void boost::checked_delete<>(FixedLagSmootherKalmanFilter*);
 
+  ///The Kalman filter last calculation elements
+  const boost::shared_ptr<KalmanFilterCalculationElements> m_last_calculation;
+
   ///The (downcasted) calculation
   const boost::shared_ptr<FixedLagSmootherKalmanFilterCalculationElements> m_last_fixed_lag_smoother_calculation;
 
@@ -112,7 +130,7 @@ struct FixedLagSmootherKalmanFilter : public KalmanFilter
   /// [         ]       [ C D ]
   /// [ [ E F ] ]       [ E F ]
   /// [ [ G H ] ]   ->  [ G H ]
-  boost::numeric::ublas::matrix<double> m_estimation_error_covariances;
+  //boost::numeric::ublas::matrix<double> m_estimation_error_covariances;
 
   ///The augmented Kalman gains, that is the gain for each lag timestep
   ///Use boost::numeric::ublas::matrix<double> instead of
@@ -123,7 +141,7 @@ struct FixedLagSmootherKalmanFilter : public KalmanFilter
   /// [         ]       [ C D ]
   /// [ [ E F ] ]       [ E F ]
   /// [ [ G H ] ]   ->  [ G H ]
-  boost::numeric::ublas::matrix<double> m_kalman_gains;
+  //boost::numeric::ublas::matrix<double> m_kalman_gains;
 
   ///The augmented Kalman gains, that is the gain for each lag timestep
   ///Use boost::numeric::ublas::matrix<double> instead of
@@ -134,7 +152,7 @@ struct FixedLagSmootherKalmanFilter : public KalmanFilter
   /// [         ]       [ C D ]
   /// [ [ E F ] ]       [ E F ]
   /// [ [ G H ] ]   ->  [ G H ]
-  boost::numeric::ublas::matrix<double> m_last_kalman_gains;
+  //boost::numeric::ublas::matrix<double> m_last_kalman_gains;
 
   ///The last predicted augmented estimation error covariances,
   ///that is the estimation error covariance for each lag timestep
@@ -146,7 +164,7 @@ struct FixedLagSmootherKalmanFilter : public KalmanFilter
   /// [         ]       [ C D ]
   /// [ [ E F ] ]       [ E F ]
   /// [ [ G H ] ]   ->  [ G H ]
-  boost::numeric::ublas::matrix<double> m_last_predicted_covariances;
+  //boost::numeric::ublas::matrix<double> m_last_predicted_covariances;
 
   ///The last predicted augmented states
   ///Use boost::numeric::ublas::vector<double> instead of
@@ -157,7 +175,7 @@ struct FixedLagSmootherKalmanFilter : public KalmanFilter
   /// [       ]        [ B ]
   /// [ [ C ] ]        [ C ]
   /// [ [ D ] ]   ->   [ D ]
-  boost::numeric::ublas::vector<double> m_last_predicted_states;
+  //boost::numeric::ublas::vector<double> m_last_predicted_states;
 
   ///The downcasted parameters
   const boost::shared_ptr<const FixedLagSmootherKalmanFilterParameters> m_parameters;

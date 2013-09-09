@@ -1,27 +1,27 @@
-
-
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include "steadystatekalmanfilter.h"
 
 #include <boost/numeric/conversion/cast.hpp>
 
 #include "matrix.h"
+#include "kalmanfilter.h"
+#include "kalmanfilterparameters.h"
+#include "steadystatekalmanfilterparameters.h"
 #include "trace.h"
+#pragma GCC diagnostic pop
 
 ribi::kalman::SteadyStateKalmanFilter::SteadyStateKalmanFilter(
   const boost::shared_ptr<KalmanFilterCalculationElements>& calculation,
   const boost::shared_ptr<const KalmanFilterParameters>& parameters)
-  : KalmanFilter{calculation,parameters},
+  : KalmanFilter{},
     m_last_calculation{boost::dynamic_pointer_cast<SteadyStateKalmanFilterCalculationElements>(calculation)},
-    m_parameters{dynamic_cast<const SteadyStateKalmanFilterParameters*>(parameters.get())}
+    m_parameters{boost::dynamic_pointer_cast<const SteadyStateKalmanFilterParameters>(parameters)},
+    m_state_estimate{dynamic_cast<const SteadyStateKalmanFilterParameters*>(parameters.get())->GetInitialStateEstimate()}
 {
   assert(m_last_calculation);
-  assert(m_parameters);
-  assert(this->GetType() == m_parameters->GetType());
-  assert(this->GetType() == GetParameters()->GetType()
+  assert(m_parameters
     && "Initialize each Kalman filter type with the right type of parameters");
-
-  m_state_estimate = m_parameters->GetInitialStateEstimate();
-
   #ifndef NDEBUG
   //Check for correct dimensionality
   const auto sz = m_state_estimate.size();
@@ -58,10 +58,10 @@ const std::string ribi::kalman::SteadyStateKalmanFilter::GetVersion()
 
 const std::vector<std::string> ribi::kalman::SteadyStateKalmanFilter::GetVersionHistory()
 {
-  std::vector<std::string> v;
-  v.push_back("2013-05-01: version 1.0: initial version");
-  v.push_back("2013-05-06: version 1.1: inherits from KalmanFilter");
-  return v;
+  return {
+    "2013-05-01: version 1.0: initial version",
+    "2013-05-06: version 1.1: inherits from KalmanFilter"
+  };
 }
 
 const boost::numeric::ublas::vector<double> ribi::kalman::SteadyStateKalmanFilter::PredictState(

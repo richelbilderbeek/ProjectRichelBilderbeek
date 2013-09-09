@@ -1,7 +1,10 @@
 #ifndef QTKALMANFILTERERMENUDIALOG_H
 #define QTKALMANFILTERERMENUDIALOG_H
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include "qthideandshowdialog.h"
+#pragma GCC diagnostic pop
 
 namespace Ui {
   class QtKalmanFiltererMenuDialog;
@@ -17,6 +20,9 @@ class QtKalmanFiltererMenuDialog : public QtHideAndShowDialog
 public:
   explicit QtKalmanFiltererMenuDialog(QWidget *parent = 0);
   ~QtKalmanFiltererMenuDialog();
+
+  QtKalmanFiltererMenuDialog(const QtKalmanFiltererMenuDialog&) = delete;
+  QtKalmanFiltererMenuDialog& operator=(const QtKalmanFiltererMenuDialog&) = delete;
 
 protected:
   void keyPressEvent(QKeyEvent * event);

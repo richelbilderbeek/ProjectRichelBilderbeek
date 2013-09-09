@@ -2,15 +2,16 @@
 #define STEADYSTATEKALMANFILTER_H
 
 #pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/numeric/ublas/matrix.hpp>
 #include <boost/numeric/ublas/vector.hpp>
+#pragma GCC diagnostic pop
+
 
 #include "kalmanfilter.h"
 #include "steadystatekalmanfilterparameters.h"
 #include "steadystatekalmanfiltercalculationelements.h"
-
-#pragma GCC diagnostic pop
 
 namespace ribi {
 namespace kalman {
@@ -18,14 +19,26 @@ namespace kalman {
 ///A discrete time Kalman filter
 struct SteadyStateKalmanFilter : public KalmanFilter
 {
+  SteadyStateKalmanFilter(const SteadyStateKalmanFilter&) = delete;
+  SteadyStateKalmanFilter& operator=(const SteadyStateKalmanFilter&) = delete;
+
   ///Clear the calculation, will set IsComplete to false
   void Clear();
+
+  ///Get the Kalman filter last calculation elements
+  const boost::shared_ptr<KalmanFilterCalculationElements> GetLastCalculation() const
+  { return m_last_calculation; }
+
+  ///Obtain the Kalman filter parameters
+  const boost::shared_ptr<const KalmanFilterParameters> GetParameters() const
+  { return m_parameters; }
 
   ///Obtain the number of values a state consists of
   int GetStateSize() const;
 
   ///Obtain the current prediction of the state ('x')
-  const boost::numeric::ublas::vector<double>& GetStateEstimate() const { return m_state_estimate; }
+  const boost::numeric::ublas::vector<double>& GetStateEstimate() const
+   { return m_state_estimate; }
 
   ///Obtain the Kalman filter type as an enum
   KalmanFilterType GetType() const { return KalmanFilterType::steady_state; }
@@ -60,7 +73,7 @@ struct SteadyStateKalmanFilter : public KalmanFilter
   const boost::shared_ptr<SteadyStateKalmanFilterCalculationElements> m_last_calculation;
 
   ///The downcasted parameters
-  const SteadyStateKalmanFilterParameters * const m_parameters;
+  const boost::shared_ptr<const SteadyStateKalmanFilterParameters> m_parameters;
 
   ///x: The (current prediction of the) state
   boost::numeric::ublas::vector<double> m_state_estimate;

@@ -3,7 +3,11 @@
 
 #include <string>
 #include <vector>
+
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include <QTableWidget>
+#pragma GCC diagnostic pop
 
 namespace ribi {
 

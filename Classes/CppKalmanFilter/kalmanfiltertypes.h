@@ -5,12 +5,13 @@
 #include <vector>
 
 #pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
-
 #include <boost/bimap.hpp>
+#pragma GCC diagnostic pop
+
 #include "kalmanfiltertype.h"
 
-#pragma GCC diagnostic pop
 
 namespace ribi {
 namespace kalman {

@@ -1,7 +1,10 @@
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include <QApplication>
 
 #include "qtkalmanfilterermenudialog.h"
 #include "trace.h"
+#pragma GCC diagnostic pop
 
 const std::string CreateStyleSheet()
 {

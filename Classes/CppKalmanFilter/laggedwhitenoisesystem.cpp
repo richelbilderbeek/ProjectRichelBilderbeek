@@ -1,8 +1,11 @@
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include "laggedwhitenoisesystem.h"
 
 #include <cassert>
 
 #include <boost/numeric/conversion/cast.hpp>
+#pragma GCC diagnostic pop
 
 #include "matrix.h"
 #include "trace.h"
@@ -15,6 +18,7 @@
 ribi::kalman::LaggedWhiteNoiseSystem::LaggedWhiteNoiseSystem(
   const boost::shared_ptr<const WhiteNoiseSystemParameters>& parameters)
   : WhiteNoiseSystem{parameters},
+    m_measuments{},
     m_parameters{boost::dynamic_pointer_cast<const LaggedWhiteNoiseSystemParameters>(parameters)},
     m_system{StandardWhiteNoiseSystemFactory::Create(
       parameters->GetControl(),

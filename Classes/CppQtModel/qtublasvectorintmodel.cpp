@@ -103,11 +103,11 @@ const std::string ribi::QtUblasVectorIntModel::GetVersion()
 
 const std::vector<std::string> ribi::QtUblasVectorIntModel::GetVersionHistory()
 {
-  std::vector<std::string> v;
-  v.push_back("2013-06-27: version 1.0: initial version");
-  v.push_back("2013-06-27: version 1.1: added setting a range");
-  v.push_back("2013-07-05: version 1.2: signal layoutChanged emitted correctly");
-  return v;
+  return {
+    "2013-06-27: version 1.0: initial version",
+    "2013-06-27: version 1.1: added setting a range",
+    "2013-07-05: version 1.2: signal layoutChanged emitted correctly"
+  };
 }
 
 QVariant ribi::QtUblasVectorIntModel::headerData(int section, Qt::Orientation orientation, int role) const

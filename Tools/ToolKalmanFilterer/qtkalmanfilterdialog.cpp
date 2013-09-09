@@ -1,6 +1,7 @@
 
 
 #pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include "qtkalmanfilterdialog.h"
 
@@ -32,8 +33,10 @@
 ribi::kalman::QtKalmanFilterDialog::QtKalmanFilterDialog(const boost::shared_ptr<QtKalmanFilterExperimentModel> model,
   QWidget *parent)
   : QDialog(parent),
+    m_signal_kalman_filter_type_changed{},
     ui(new Ui::QtKalmanFilterDialog),
-    m_model{model}
+    m_model{model},
+    m_parameters{}
 {
 
   assert(m_model);

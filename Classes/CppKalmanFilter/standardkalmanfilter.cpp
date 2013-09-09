@@ -1,19 +1,22 @@
-
-
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include "standardkalmanfilter.h"
 
 #include <boost/numeric/conversion/cast.hpp>
 
 #include "matrix.h"
 #include "trace.h"
+#pragma GCC diagnostic pop
 
 ribi::kalman::StandardKalmanFilter::StandardKalmanFilter(
   const boost::shared_ptr<StandardKalmanFilterCalculationElements>& calculation,
   const boost::shared_ptr<const KalmanFilterParameters>& parameters
   )
-  : KalmanFilter{calculation,parameters},
+  : KalmanFilter{},
+    m_covariance_estimate{boost::dynamic_pointer_cast<const StandardKalmanFilterParameters>(parameters)->GetInitialCovarianceEstimate()},
     m_last_standard_calculation{boost::dynamic_pointer_cast<StandardKalmanFilterCalculationElements>(calculation)},
-    m_standard_parameters{boost::dynamic_pointer_cast<const StandardKalmanFilterParameters>(parameters)}
+    m_standard_parameters{boost::dynamic_pointer_cast<const StandardKalmanFilterParameters>(parameters)},
+    m_state_estimate{boost::dynamic_pointer_cast<const StandardKalmanFilterParameters>(parameters)->GetInitialStateEstimate()}
 {
   assert(m_last_standard_calculation);
   assert(m_standard_parameters);
@@ -23,8 +26,8 @@ ribi::kalman::StandardKalmanFilter::StandardKalmanFilter(
   assert(this->GetType() == GetParameters()->GetType()
     && "Initialize each Kalman filter type with the right type of parameters");
 
-  m_covariance_estimate = m_standard_parameters->GetInitialCovarianceEstimate();
-  m_state_estimate = m_standard_parameters->GetInitialStateEstimate();
+  //m_covariance_estimate = m_standard_parameters->GetInitialCovarianceEstimate();
+  //m_state_estimate = m_standard_parameters->GetInitialStateEstimate();
 
   //Do not initialize the calculation yet
   //m_last_standard_calculation->m_predicted_state = m_standard_parameters->GetInitialStateEstimate();
@@ -62,9 +65,9 @@ const std::string ribi::kalman::StandardKalmanFilter::GetVersion()
 
 const std::vector<std::string> ribi::kalman::StandardKalmanFilter::GetVersionHistory()
 {
-  std::vector<std::string> v;
-  v.push_back("2013-04-28: version 1.0: initial version");
-  return v;
+  return {
+    "2013-04-28: version 1.0: initial version"
+  };
 }
 
 const boost::numeric::ublas::vector<double> ribi::kalman::StandardKalmanFilter::PredictState(

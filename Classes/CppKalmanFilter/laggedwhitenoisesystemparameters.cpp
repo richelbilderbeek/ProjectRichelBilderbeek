@@ -1,6 +1,7 @@
-
-
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include "laggedwhitenoisesystemparameters.h"
+#pragma GCC diagnostic pop
 
 #include <cassert>
 #include "standardwhitenoisesystemparameters.h"

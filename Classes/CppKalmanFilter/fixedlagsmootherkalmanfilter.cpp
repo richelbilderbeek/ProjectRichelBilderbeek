@@ -1,3 +1,5 @@
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include "fixedlagsmootherkalmanfilter.h"
 
 #include <boost/numeric/ublas/io.hpp>
@@ -6,11 +8,13 @@
 #include "matrix.h"
 #include "trace.h"
 #include "standardkalmanfilterfactory.h"
+#pragma GCC diagnostic pop
 
 ribi::kalman::FixedLagSmootherKalmanFilter::FixedLagSmootherKalmanFilter(
   const boost::shared_ptr<FixedLagSmootherKalmanFilterCalculationElements>& calculation,
   const boost::shared_ptr<const KalmanFilterParameters>& parameters)
-  : KalmanFilter{calculation,parameters},
+  : KalmanFilter{},
+    m_last_calculation{calculation},
     m_last_fixed_lag_smoother_calculation{boost::dynamic_pointer_cast<FixedLagSmootherKalmanFilterCalculationElements>(calculation)},
     m_standard_filter{StandardKalmanFilterFactory::Create(DownCast(parameters)->GetStandardParameters())},
     m_parameters{DownCast(parameters)},
@@ -21,8 +25,6 @@ ribi::kalman::FixedLagSmootherKalmanFilter::FixedLagSmootherKalmanFilter(
   #endif
   assert(m_last_fixed_lag_smoother_calculation);
   assert(m_parameters);
-  assert(static_cast<int>(this->GetType()) == static_cast<int>(GetParameters()->GetType())
-    && "Initialize each Kalman filter type with the right type of parameters");
   assert(boost::numeric_cast<int>(m_state_estimates.size()) == m_parameters->GetLag() * m_standard_filter->GetStateSize());
 }
 
@@ -165,9 +167,9 @@ const std::string ribi::kalman::FixedLagSmootherKalmanFilter::GetVersion()
 
 const std::vector<std::string> ribi::kalman::FixedLagSmootherKalmanFilter::GetVersionHistory()
 {
-  std::vector<std::string> v;
-  v.push_back("2013-05-03: version 1.0: initial version");
-  return v;
+  return {
+    "2013-05-03: version 1.0: initial version"
+  };
 }
 
 const boost::numeric::ublas::vector<double> ribi::kalman::FixedLagSmootherKalmanFilter::PredictState(

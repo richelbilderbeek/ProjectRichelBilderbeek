@@ -1,6 +1,7 @@
-
-
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include "fixedlagsmootherkalmanfiltercalculationelements.h"
+#pragma GCC diagnostic pop
 
 #include <cassert>
 
@@ -16,7 +17,8 @@ ribi::kalman::FixedLagSmootherKalmanFilterCalculationElements::FixedLagSmootherK
       predicted_state,
       previous_state_estimate,
       updated_state
-    )
+    ),
+    m_standard_calculation{}
 {
   //... nothing to check left
 }

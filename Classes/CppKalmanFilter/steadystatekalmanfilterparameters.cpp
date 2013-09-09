@@ -55,10 +55,10 @@ const std::string ribi::kalman::SteadyStateKalmanFilterParameters::GetVersion()
 
 const std::vector<std::string> ribi::kalman::SteadyStateKalmanFilterParameters::GetVersionHistory()
 {
-  std::vector<std::string> v;
-  v.push_back("2013-05-01: version 1.0: initial version");
-  v.push_back("2013-05-03: version 1.1: inherit from KalmanFilterParameters");
-  return v;
+  return {
+    "2013-05-01: version 1.0: initial version"
+    "2013-05-03: version 1.1: inherit from KalmanFilterParameters"
+  };
 }
 
 bool ribi::kalman::SteadyStateKalmanFilterParameters::HasParameterType(const KalmanFilterParameterType type)

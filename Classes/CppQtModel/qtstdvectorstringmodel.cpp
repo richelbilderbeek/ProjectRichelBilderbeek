@@ -80,11 +80,11 @@ const std::string ribi::QtStdVectorStringModel::GetVersion()
 
 const std::vector<std::string> ribi::QtStdVectorStringModel::GetVersionHistory()
 {
-  std::vector<std::string> v;
-  v.push_back("2013-05-15: version 1.0: initial version");
-  v.push_back("2013-05-28: version 1.1: allow columnCount to be zero, if rowCount is zero");
-  v.push_back("2013-07-05: version 1.2: signal layoutChanged emitted correctly");
-  return v;
+  return {
+    "2013-05-15: version 1.0: initial version",
+    "2013-05-28: version 1.1: allow columnCount to be zero, if rowCount is zero",
+    "2013-07-05: version 1.2: signal layoutChanged emitted correctly"
+  };
 }
 
 QVariant ribi::QtStdVectorStringModel::headerData(int section, Qt::Orientation orientation, int role) const

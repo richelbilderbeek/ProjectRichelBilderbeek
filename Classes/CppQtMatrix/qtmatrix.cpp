@@ -20,10 +20,10 @@ const std::string ribi::QtMatrix::GetVersion()
 
 const std::vector<std::string> ribi::QtMatrix::GetVersionHistory()
 {
-  std::vector<std::string> v;
-  v.push_back("2013-04-28: version 1.0: initial version");
-  v.push_back("2013-05-13: version 1.1: improved support for empty tables/vectors/matrices");
-  return v;
+  return {
+    "2013-04-28: version 1.0: initial version",
+    "2013-05-13: version 1.1: improved support for empty tables/vectors/matrices"
+  };
 }
 
 void ribi::QtMatrix::MatrixToTable(const boost::numeric::ublas::matrix<double>& m, QTableWidget * const table)

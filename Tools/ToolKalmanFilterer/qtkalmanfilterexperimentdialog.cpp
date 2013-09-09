@@ -1,13 +1,12 @@
-
-
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include "qtkalmanfilterexperimentdialog.h"
 
 #include <cassert>
 #include <cstdlib>
 #include <fstream>
 
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/bind.hpp>
 #include <boost/lambda/lambda.hpp>
 #include <boost/lexical_cast.hpp>
@@ -16,12 +15,9 @@
 #include <boost/numeric/ublas/matrix.hpp>
 #include <boost/numeric/ublas/vector.hpp>
 
-#pragma GCC diagnostic pop
-
 #include <QFileDialog>
 #include <QKeyEvent>
 #include <QMessageBox>
-
 
 #include "kalmanfilter.h"
 #include "kalmanfilterexample.h"
@@ -49,6 +45,8 @@
 #include "whitenoisesystemparameter.h"
 #include "whitenoisesystemtypes.h"
 
+#pragma GCC diagnostic pop
+
 ribi::kalman::QtKalmanFilterExperimentDialog::QtKalmanFilterExperimentDialog(
   const boost::shared_ptr<QtKalmanFilterExperimentModel> model,
   QWidget *parent)
@@ -57,7 +55,8 @@ ribi::kalman::QtKalmanFilterExperimentDialog::QtKalmanFilterExperimentDialog(
     m_examples_dialog{new QtKalmanFilterExamplesDialog},
     m_filter_dialog{new QtKalmanFilterDialog(model)},
     m_model{model},
-    m_noise_parameters_dialog{new QtWhiteNoiseSystemParametersDialog(model)}
+    m_noise_parameters_dialog{new QtWhiteNoiseSystemParametersDialog(model)},
+    m_parameters{}
 {
   #ifndef NDEBUG
   Test();

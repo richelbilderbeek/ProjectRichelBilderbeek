@@ -40,18 +40,16 @@ as parameters' [1].</p>
   <li>do <a href="CppTemplateMetaprogram.htm">template metaprogrammming</a> (programs performed at compile time)</li>
   </ul>
 <p>&nbsp;</p>
-<p>Templates make it possible to use one <a href="CppFunction.htm">function</a> or <a
-href="CppClass.htm">class</a> to handle many different <a href="CppDataType.htm">data
-types</a>.</p>
-<p>&nbsp;</p>
-<p>There is no semantic difference between <a href="CppClass.htm">class</a> and <a
-href="CppTypename.htm">typename</a> in a template-parameter [3,4]: 'template &lt;class T&gt;' and 'template&lt;typename T&gt;' are synonymous [5].</p>
+<p>
+  Templates make it possible to use one <a href="CppFunction.htm">function</a> or <a href="CppClass.htm">class</a> to handle many different <a href="CppDataType.htm">data types</a>.
+</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
-<h2>Examples</h2>
+<p>&nbsp;</p>
+<h2><a href="CppExample.htm">Examples</a></h2>
 <p>&nbsp;</p>
 <ul>
   <li><a href="CppTemplateClassExample1.htm">Example 1: templated class</a></li>
@@ -61,14 +59,93 @@ href="CppTypename.htm">typename</a> in a template-parameter [3,4]: 'template &lt
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
+<h2><a href="CppAdvice.htm">Advice</a></h2>
+<p>&nbsp;</p>
+<ul>
+  <li>
+    There is no semantic difference between <a href="CppClass.htm">class</a> and <a href="CppTypename.htm">typename</a> in a template-parameter [3,4]: 'template &lt;class T&gt;' and 'template&lt;typename T&gt;' are synonymous [5]
+  </li>
+  <li>
+    Use <a href="CppTemplate.htm">templates</a> to express <a href="CppAlgorithm.htm">algorithms</a> that apply to many <a href="CppArgument.htm">argument</a> <a href="CppDataType.htm">types</a> [6]
+  </li>
+  <li>
+    Use <a href="CppTemplate.htm">templates</a> to express <a href="CppContainer.htm">containers</a> [7]
+  </li>
+  <li>
+    When <a href="CppDefinition.htm">defining</a> a <a href="CppTemplate.htm">template</a>, first design and <a href="CppDebug.htm">debug</a> a non-template version; later generalize by adding parameters [8]
+  </li>
+  <li>
+    <a href="CppTemplate.htm">Templates</a> are type-safe, but checking happens too late [9]
+  </li>
+  <li>
+    When designing a <a href="CppTemplate.htm">template</a>, carefully consider the <a href="CppConcept.htm">concepts</a> 
+    assumed for its <a href="CppTemplate.htm">template</a> <a href="CppArgument.htm">arguments</a> [10]
+  </li>
+  <li>
+    If a class template should be copyable, give it a non-<a href="CppTemplate.htm">template</a> copy constructor and a non-<a href="CppTemplate.htm">template</a> copy assignment [11]
+  </li>
+  <li>
+    If a class template should be movable, give it a non-<a href="CppTemplate.htm">template</a> move constructor and a non-<a href="CppTemplate.htm">template</a> move assignment [12]
+  </li>
+  <li>
+    A virtual function member cannot be a <a href="CppTemplate.htm">template</a> member function [13]
+  </li>
+  <li>
+    Define a type as a member of a <a href="CppTemplate.htm">template</a> only if it depends on all the class <a href="CppTemplate.htm">template</a>'s arguments [14]
+  </li>
+  <li>
+    Use function <a href="CppTemplate.htm">templates</a> to deduce class <a href="CppTemplate.htm">template</a> argument types [15]
+  </li>
+  <li>
+    Overload function <a href="CppTemplate.htm">templates</a> to get the same semantics for a variety of argument types [16]
+  </li>
+  <li>
+    Use argument substitution failure to provide just the right set of functions for a program [17]
+  </li>
+  <li>
+    Use <a href="CppTemplate.htm">template</a> aliases to simplify notation and hide implementation details [18]
+  </li>
+  <li>
+    There is no seperate compilation of <a href="CppTemplate.htm">templates</a>: #include <a href="CppTemplate.htm">template</a> definitions in every translation unit that uses them [19]
+  </li>
+  <li>
+    Use ordinary functions as interfaces to code that cannot deal with <a href="CppTemplate.htm">templates</a> [20]
+  </li>
+  <li>
+    Seperately compile large <a href="CppTemplate.htm">templates</a> and <a href="CppTemplate.htm">templates</a> with nontrivial context dependencies [21]
+  </li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
 <h2><a href="CppReferences.htm">References</a></h2>
 <p>&nbsp;</p>
 <ol>
-  <li><a href="CppBjarneStroustrup.htm">Bjarne Stroustrup</a>. The C++ Programming Language (4th edition). 2013. ISBN: 978-0-321-56384-2. Chapter 23.1, page 665: 'Templates provide direct support for generic programming in the form of programming using types as parameters</li>
-  <li><a href="CppBjarneStroustrup.htm">Bjarne Stroustrup</a>. The C++ Programming Language (4th edition). 2013. ISBN: 978-0-321-56384-2. Chapter 25.2, page 722: 'A template can take parameters: Type parameters [...], Value parameters [...], Template parameters [...]'</li>
-  <li>C++. International Standard. ISO/IEC 14882. Second edition. Paragraph 14.1.2.</li>
-  <li><a href="CppBjarneStroustrup.htm">Bjarne Stroustrup</a>. The C++ Programming Language (4th edition). 2013. ISBN: 978-0-321-56384-2. Chapter 25.2, page 722: 'A template argument is defined to be a type argument by prefixing it with typename or class. The result of using either is completely equivalent'</li>
-  <li><a href="CppBjarneStroustrup.htm">Bjarne Stroustrup</a>. The C++ Programming Language (4th edition). 2013. ISBN: 978-0-321-56384-2. Chapter 23.8, page 698: 'template &lt;class T&gt;' and 'template&lt;typename T&gt;' are synonymous'</li>
+  <li><!--  1 --><a href="CppBjarneStroustrup.htm">Bjarne Stroustrup</a>. The C++ Programming Language (4th edition). 2013. ISBN: 978-0-321-56384-2. Chapter 23.1, page 665: 'Templates provide direct support for generic programming in the form of programming using types as parameters</li>
+  <li><!--  2 --><a href="CppBjarneStroustrup.htm">Bjarne Stroustrup</a>. The C++ Programming Language (4th edition). 2013. ISBN: 978-0-321-56384-2. Chapter 25.2, page 722: 'A template can take parameters: Type parameters [...], Value parameters [...], Template parameters [...]'</li>
+  <li><!--  3 -->C++. International Standard. ISO/IEC 14882. Second edition. Paragraph 14.1.2.</li>
+  <li><!--  4 --><a href="CppBjarneStroustrup.htm">Bjarne Stroustrup</a>. The C++ Programming Language (4th edition). 2013. ISBN: 978-0-321-56384-2. Chapter 25.2, page 722: 'A template argument is defined to be a type argument by prefixing it with typename or class. The result of using either is completely equivalent'</li>
+  <li><!--  5 --><a href="CppBjarneStroustrup.htm">Bjarne Stroustrup</a>. The C++ Programming Language (4th edition). 2013. ISBN: 978-0-321-56384-2. Chapter 23.8, page 698: '[3] template &lt;class T&gt;' and 'template&lt;typename T&gt;' are synonymous'</li>
+  <li><!--  6 --><a href="CppBjarneStroustrup.htm">Bjarne Stroustrup</a>. The C++ Programming Language (4th edition). 2013. ISBN: 978-0-321-56384-2. Chapter 23.8, page 698: '[1] Use templates to express algorithms that apply to many argument types'</li>
+  <li><!--  7 --><a href="CppBjarneStroustrup.htm">Bjarne Stroustrup</a>. The C++ Programming Language (4th edition). 2013. ISBN: 978-0-321-56384-2. Chapter 23.8, page 698: '[2] Use templates to express containers'</li>
+  <li><!--  8 --><a href="CppBjarneStroustrup.htm">Bjarne Stroustrup</a>. The C++ Programming Language (4th edition). 2013. ISBN: 978-0-321-56384-2. Chapter 23.8, page 698: '[4] When defining a template, first design and debug a non-template version; later generalize by adding parameters'</li>
+
+  <li><!--  9 --><a href="CppBjarneStroustrup.htm">Bjarne Stroustrup</a>. The C++ Programming Language (4th edition). 2013. ISBN: 978-0-321-56384-2. Chapter 23.8, page 698: '[5] Templates are type-safe, but checking happens too late'</li>
+  <li><!-- 10 --><a href="CppBjarneStroustrup.htm">Bjarne Stroustrup</a>. The C++ Programming Language (4th edition). 2013. ISBN: 978-0-321-56384-2. Chapter 23.8, page 698: '[6] When designing a template, carefully consider the concepts (requirements) assumed for its template arguments'</li>
+  <li><!-- 11 --><a href="CppBjarneStroustrup.htm">Bjarne Stroustrup</a>. The C++ Programming Language (4th edition). 2013. ISBN: 978-0-321-56384-2. Chapter 23.8, page 698: '[7] If a class template should be copyable, give it a non-template copy constructor and a non-template copy assignment'</li>
+  <li><!-- 12 --><a href="CppBjarneStroustrup.htm">Bjarne Stroustrup</a>. The C++ Programming Language (4th edition). 2013. ISBN: 978-0-321-56384-2. Chapter 23.8, page 698: '[8] If a class template should be movable, give it a non-template move constructor and a non-template move assignment'</li>
+  <li><!-- 13 --><a href="CppBjarneStroustrup.htm">Bjarne Stroustrup</a>. The C++ Programming Language (4th edition). 2013. ISBN: 978-0-321-56384-2. Chapter 23.8, page 698: '[9] A virtual function member cannot be a template member function'</li>
+  <li><!-- 14 --><a href="CppBjarneStroustrup.htm">Bjarne Stroustrup</a>. The C++ Programming Language (4th edition). 2013. ISBN: 978-0-321-56384-2. Chapter 23.8, page 698: '[10] Define a type as a member of a template only if it depends on all the class template's arguments'</li>
+  <li><!-- 15 --><a href="CppBjarneStroustrup.htm">Bjarne Stroustrup</a>. The C++ Programming Language (4th edition). 2013. ISBN: 978-0-321-56384-2. Chapter 23.8, page 698: '[11] Use function templates to deduce class template argument types'</li>
+  <li><!-- 16 --><a href="CppBjarneStroustrup.htm">Bjarne Stroustrup</a>. The C++ Programming Language (4th edition). 2013. ISBN: 978-0-321-56384-2. Chapter 23.8, page 698: '[12] Overload function templates to get the same semantics for a variety of argument types'</li>
+  <li><!-- 17 --><a href="CppBjarneStroustrup.htm">Bjarne Stroustrup</a>. The C++ Programming Language (4th edition). 2013. ISBN: 978-0-321-56384-2. Chapter 23.8, page 698: '[13] Use argument substitution failure to provide just the right set of functions for a program'</li>
+  <li><!-- 18 --><a href="CppBjarneStroustrup.htm">Bjarne Stroustrup</a>. The C++ Programming Language (4th edition). 2013. ISBN: 978-0-321-56384-2. Chapter 23.8, page 698: '[14] Use template aliases to simplify notation and hide implementation details'</li>
+  <li><!-- 19 --><a href="CppBjarneStroustrup.htm">Bjarne Stroustrup</a>. The C++ Programming Language (4th edition). 2013. ISBN: 978-0-321-56384-2. Chapter 23.8, page 698: '[15] There is no seperate compilation of templates: #include template definitions in every translation unit that uses them'</li>
+  <li><!-- 20 --><a href="CppBjarneStroustrup.htm">Bjarne Stroustrup</a>. The C++ Programming Language (4th edition). 2013. ISBN: 978-0-321-56384-2. Chapter 23.8, page 698: '[16] Use ordinary functions as interfaces to code that cannot deal with templates'</li>
+  <li><!-- 21 --><a href="CppBjarneStroustrup.htm">Bjarne Stroustrup</a>. The C++ Programming Language (4th edition). 2013. ISBN: 978-0-321-56384-2. Chapter 23.8, page 698: '[17] Seperately compile large templates and templates with nontrivial context dependencies'</li>
+
 </ol>
 <p>&nbsp;</p>
 <p>&nbsp;</p>

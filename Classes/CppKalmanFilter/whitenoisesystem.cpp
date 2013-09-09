@@ -1,6 +1,5 @@
-
-
 #pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include "whitenoisesystem.h"
 
@@ -31,9 +30,9 @@ const std::string ribi::kalman::WhiteNoiseSystem::GetVersion()
 
 const std::vector<std::string> ribi::kalman::WhiteNoiseSystem::GetVersionHistory()
 {
-  std::vector<std::string> v;
-  v.push_back("2013-05-03: version 1.0: initial version");
-  return v;
+  return {
+    "2013-05-03: version 1.0: initial version"
+  };
 }
 
 void ribi::kalman::WhiteNoiseSystem::SetNewCurrentState(const boost::numeric::ublas::vector<double>& new_current_state)

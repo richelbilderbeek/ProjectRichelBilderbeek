@@ -32,16 +32,16 @@ struct Trace
   }
   static const std::vector<std::string> GetVersionHistory()
   {
-    std::vector<std::string> v;
-    v.push_back("2010-xx-xx: Version 1.0: initial version, write trace to std::cout");
-    v.push_back("2011-06-22: Version 2.0: added versioning, added boost::lexical_cast in TRACE");
-    v.push_back("2011-08-15: Version 2.1: added all #includes");
-    v.push_back("2012-01-15: Version 2.2: Moved bracket in TRACE to allow 'if (false) TRACE(true);' without surprises");
-    v.push_back("2012-02-01: Version 2.3: put START_TRACE in its own scope");
-    v.push_back("2012-08-11: Version 2.4: put #ifdef _WIN32 on top for cross-compiling");
-    v.push_back("2013-02-24: Version 2.5: added FTRACE for tracing to file only");
-    v.push_back("2013-07-16: Version 2.6: transitioned to Qt5, GCC 4.8 and Boost 1.54.0, write trace to std::clog");
-    return v;
+    return {
+      "2010-xx-xx: Version 1.0: initial version, write trace to std::cout",
+      "2011-06-22: Version 2.0: added versioning, added boost::lexical_cast in TRACE",
+      "2011-08-15: Version 2.1: added all #includes",
+      "2012-01-15: Version 2.2: Moved bracket in TRACE to allow 'if (false) TRACE(true);' without surprises",
+      "2012-02-01: Version 2.3: put START_TRACE in its own scope",
+      "2012-08-11: Version 2.4: put #ifdef _WIN32 on top for cross-compiling",
+      "2013-02-24: Version 2.5: added FTRACE for tracing to file only",
+      "2013-07-16: Version 2.6: transitioned to Qt5, GCC 4.8 and Boost 1.54.0, write trace to std::clog"
+    };
   }
 };
 
@@ -56,6 +56,7 @@ struct Trace
   #include <stdexcept>
 
   #pragma GCC diagnostic push
+  #pragma GCC diagnostic ignored "-Weffc++"
   #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
   #include <boost/lexical_cast.hpp>
   #pragma GCC diagnostic pop

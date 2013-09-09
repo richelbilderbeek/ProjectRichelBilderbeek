@@ -5,6 +5,7 @@
 #include <vector>
 
 #pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/bimap.hpp>
 #pragma GCC diagnostic pop

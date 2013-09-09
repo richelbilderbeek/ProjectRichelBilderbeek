@@ -3,8 +3,8 @@
 
 #include <map>
 #include <string>
-#include "kalmanfilterparametertype.h"
 
+#include "kalmanfilterparametertype.h"
 #include "kalmanfilterexperimentparametertype.h"
 #include "whitenoisesystemparametertype.h"
 

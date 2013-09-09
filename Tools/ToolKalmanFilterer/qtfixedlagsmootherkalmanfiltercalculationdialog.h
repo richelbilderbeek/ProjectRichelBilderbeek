@@ -2,18 +2,18 @@
 #define QTFIXEDLAGSMOOTHERKALMANFILTERCALCULATIONDIALOG_H
 
 #pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/numeric/ublas/matrix.hpp>
 #include <boost/numeric/ublas/vector.hpp>
 
 #include <QDialog>
-
-///NEVER FORGET: Do never use forward declarations in header files parsed by MOC
 #include <QTableWidget>
+#pragma GCC diagnostic pop
+
 #include "kalmanfilterexperiment.h"
 #include "qtkalmanfiltercalculationdialog.h"
 #include "fixedlagsmootherkalmanfiltercalculationelements.h"
-#pragma GCC diagnostic pop
 
 namespace Ui {
   class QtFixedLagSmootherKalmanFilterCalculationDialog;

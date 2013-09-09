@@ -1,5 +1,5 @@
-
-
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include "qtkalmanfilterermenudialog.h"
 
 #include <QDesktopWidget>
@@ -20,6 +20,7 @@
 #include "standardwhitenoisesystemparameters.h"
 #include "trace.h"
 #include "ui_qtkalmanfilterermenudialog.h"
+#pragma GCC diagnostic pop
 
 ribi::kalman::QtKalmanFiltererMenuDialog::QtKalmanFiltererMenuDialog(QWidget *parent) :
     QtHideAndShowDialog(parent),

@@ -2,7 +2,11 @@
 
 #include <cassert>
 #include <stdexcept>
+
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include <boost/numeric/conversion/cast.hpp>
+#pragma GCC diagnostic pop
 
 #include "kalmanfilterparameter.h"
 #include "whitenoisesystemparameter.h"

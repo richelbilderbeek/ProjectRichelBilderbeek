@@ -1,4 +1,5 @@
 #pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include "qtkalmanfilterermaindialog.h"
 
@@ -66,7 +67,9 @@ ribi::kalman::QtKalmanFiltererMainDialog::QtKalmanFiltererMainDialog(
   : QtHideAndShowDialog(parent),
     ui(new Ui::QtKalmanFiltererMainDialog),
     m_experiment_dialog(new QtKalmanFilterExperimentDialog(model)),
-    m_model(model)
+    m_model(model),
+    m_plots{},
+    m_to_delete_at_new_run{}
 {
   #ifndef NDEBUG
   Test();

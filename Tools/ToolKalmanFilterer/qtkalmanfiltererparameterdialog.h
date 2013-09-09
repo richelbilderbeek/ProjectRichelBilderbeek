@@ -3,8 +3,11 @@
 
 #include <vector>
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include <QDialog>
 #include <QTableWidgetItem>
+#pragma GCC diagnostic pop
 
 namespace Ui {
   class QtKalmanFiltererParameterDialog;

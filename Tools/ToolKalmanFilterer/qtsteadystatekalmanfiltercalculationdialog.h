@@ -2,15 +2,14 @@
 #define QTSTEADYSTATEKALMANFILTERCALCULATIONDIALOG_H
 
 #pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/numeric/ublas/matrix.hpp>
 #include <boost/numeric/ublas/vector.hpp>
+#include <QDialog>
+#include <QTableWidget>
 #pragma GCC diagnostic pop
 
-#include <QDialog>
-
-///NEVER FORGET: Do never use forward declarations in header files parsed by MOC
-#include <QTableWidget>
 #include "kalmanfilterexperiment.h"
 #include "qtkalmanfiltercalculationdialog.h"
 #include "steadystatekalmanfiltercalculationelements.h"

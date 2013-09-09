@@ -1,6 +1,7 @@
-
-
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include "laggedwhitenoisesystemfactory.h"
+#pragma GCC diagnostic pop
 
 const boost::shared_ptr<ribi::kalman::LaggedWhiteNoiseSystem> ribi::kalman::LaggedWhiteNoiseSystemFactory::Create(
   const boost::numeric::ublas::matrix<double>& control,

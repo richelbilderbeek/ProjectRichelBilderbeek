@@ -1,5 +1,5 @@
-
-
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include "kalmanfilterermenudialog.h"
 
 #include "standardkalmanfilter.h"
@@ -13,6 +13,7 @@
 #include "standardwhitenoisesystem.h"
 #include "fixedlagsmootherkalmanfilter.h"
 #include "standardwhitenoisesystemparameters.h"
+#pragma GCC diagnostic pop
 
 const ribi::About ribi::kalman::KalmanFiltererMenuDialog::GetAbout()
 {

@@ -1,7 +1,10 @@
 #ifndef STEADYSTATEKALMANFILTERCALCULATIONELEMENTS_H
 #define STEADYSTATEKALMANFILTERCALCULATIONELEMENTS_H
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include "kalmanfiltercalculationelements.h"
+#pragma GCC diagnostic pop
 
 namespace ribi {
 namespace kalman {

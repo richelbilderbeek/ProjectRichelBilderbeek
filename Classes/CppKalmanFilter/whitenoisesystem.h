@@ -1,15 +1,14 @@
 #ifndef WHITENOISESYSTEM_H
 #define WHITENOISESYSTEM_H
 
-//#include <boost/numeric/ublas/vector.hpp>
-#include <boost/noncopyable.hpp>
-#include <boost/shared_ptr.hpp>
-#include "whitenoisesystemtype.h"
-
 #pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
-#include "whitenoisesystemparameters.h"
+#include <boost/shared_ptr.hpp>
 #pragma GCC diagnostic pop
+
+#include "whitenoisesystemtype.h"
+#include "whitenoisesystemparameters.h"
 
 namespace ribi {
 namespace kalman {

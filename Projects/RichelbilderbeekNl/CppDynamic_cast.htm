@@ -38,9 +38,6 @@ an Animal to a Monkey.</p><p>&nbsp;</p>
   </li>
 </ol>
 <p>&nbsp;</p>
-<ul>
-  <li><img src="PicQtCreator.png" alt="Qt Creator"/> <a href="CppDynamic_cast.zip">Download the Qt Creator project 'CppDynamic_cast' (zip)</a></li>
-</ul>
 <p>&nbsp;</p>
 <p>It is not possible to use <a href="CppDynamic_cast.htm">dynamic_cast</a> on <a href="CppSmartPointer.htm">smart pointers</a>, use 
 <a href="CppDynamic_pointer_cast.htm">boost::dynamic_pointer_cast</a> instead.</p>
@@ -49,136 +46,48 @@ an Animal to a Monkey.</p><p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
+<h2><a href="CppExample.htm">Example</a></h2>
 <p>&nbsp;</p>
-<h2>Technical facts</h2>
-<p>&nbsp;</p>
-<p><a href="CppApplication.htm">Application type(s)</a></p>
 <ul>
-  <li><img src="PicDesktop.png" alt="Desktop"/> <a href="CppDesktopApplication.htm">Desktop application</a></li>
-</ul>
-<p><a href="CppOs.htm">Operating system(s) or programming environment(s)</a></p>
-<ul>
-  <li><img src="PicLubuntu.png" alt="Lubuntu"/> <a href="CppLubuntu.htm">Lubuntu</a> 13.04 (raring)</li>
-</ul>
-<p><a href="CppIde.htm">IDE(s)</a>:</p>
-<ul>
-  <li><img src="PicQtCreator.png" alt="Qt Creator"/> <a href="CppQtCreator.htm">Qt Creator</a> 2.7.0</li>
-</ul>
-<p><a href="CppQtProjectType.htm">Project type</a>:</p>
-<ul>
-  <li><img src="PicConsole.png" alt="console"/> <a href="CppConsoleApplication.htm">Console application</a></li>
-</ul>
-<p><a href="CppStandard.htm">C++ standard</a>:</p>
-<ul>
-  <li><img src="PicCpp98.png" alt="C++98"/> <a href="Cpp98.htm">C++98</a></li>
-</ul>
-<p><a href="CppCompiler.htm">Compiler(s)</a>:</p>
-<ul>
-  <li><a href="CppGpp.htm">G++</a> 4.7.3</li>
-</ul>
-<p><a href="CppLibrary.htm">Libraries</a> used:</p>
-<ul>
-  <li><img src="PicStl.png" alt="STL"/> <a href="CppStl.htm">STL</a>: GNU ISO C++ Library, version 4.7.3</li>
+  <li><a href="CppDynamic_castExample1.htm">dynamic_cast example 1: basics</a></li>
 </ul>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
-<h2><a href="CppQtProjectFile.htm">Qt project file</a>: CppDynamic_cast.pro</h2>
+<h2><a href="CppAdvice.htm">Advice</a></h2>
 <p>&nbsp;</p>
-<!-- start of code -->
-<table summary="CppDynamic_cast.pro" border = "1"><tr><td><code>
-TEMPLATE = app<br/>
-CONFIG += console<br/>
-CONFIG -= app_bundle<br/>
-CONFIG -= qt<br/>
-<br/>
-<a href="CppSOURCES.htm">SOURCES</a> += <a href="CppMain.htm">main</a>.cpp<br/>
-</code></td></tr></table>
-<!-- end of the code -->
+<ul>
+  <li>
+    Use <a href="CppDynamic_cast.htm">dynamic_cast</a> where class hierarchy navigation is unavoidable [1]
+  </li>
+  <li>
+    Use <a href="CppDynamic_cast.htm">dynamic_cast</a> for type-safe explicit navigation of a class hierarchy [2]
+  </li>
+  <li>
+    Use <a href="CppDynamic_cast.htm">dynamic_cast</a> to a reference type when failure to find the required class is considered a failure [3]
+  </li>
+  <li>
+    Use <a href="CppDynamic_cast.htm">dynamic_cast</a> to a reference type when failure to find the required class is considered a valid alternative [4]
+  </li>
+  <li>
+    Prefer <a href="CppVirtual.htm">virtual</a> functions to repeated <a href="CppSwitch.htm">switch</a>-statements based on <a href="CppTypeid.htm">typeid</a> or <a href="CppDynamic_cast.htm">dynamic_cast</a> [5]    
+  </li>
+</ul>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
+<h2><a href="CppReferences.htm">References</a></h2>
 <p>&nbsp;</p>
-<h2>main.cpp</h2>
-<p>&nbsp;</p>
-<!-- start of code -->
-<table summary="main.cpp" border = "1"><tr><td><code>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppShared_ptr.htm">shared_ptr</a>.hpp&gt;<br/>
-<br/>
-<b><a href="CppStruct.htm">struct</a></b> Base<br/>
-{<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>All <a href="CppBaseClass.htm">base class</a>es must have a (<b><a href="CppPublic.htm">public</a></b>) <b><a href="CppVirtual.htm">virtual</a></b> <a href="CppDestructor.htm">destructor</a>.<br/>
-&nbsp;&nbsp;<b><a href="CppVirtual.htm">virtual</a></b> ~Base() {}<br/>
-};<br/>
-<br/>
-<b><a href="CppStruct.htm">struct</a></b> Derived : <b><a href="CppPublic.htm">public</a></b> Base { };<br/>
-<br/>
-<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
-{<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>Base initialized with derived, can be downcasted to derived<br/>
-&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;Base * <b><a href="CppConst.htm">const</a></b> p1 <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> Derived;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;Derived * <b><a href="CppConst.htm">const</a></b> p2 <a href="CppOperatorAssign.htm">=</a> <b><a href="CppDynamic_cast.htm">dynamic_cast</a></b>&lt;Derived*&gt;(p1);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(p1);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(p2);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(p1 <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> p2);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppDelete.htm">delete</a></b> p1;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppDelete.htm">delete</a></b> p2; <a href="CppComment.htm">//</a>Do not re-<b><a href="CppDelete.htm">delete</a></b>!<br/>
-&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>Base initialized with base, cannot be downcasted to derived<br/>
-&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;Base * <b><a href="CppConst.htm">const</a></b> p1 <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> Base;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;Derived * <b><a href="CppConst.htm">const</a></b> p2 <a href="CppOperatorAssign.htm">=</a> <b><a href="CppDynamic_cast.htm">dynamic_cast</a></b>&lt;Derived*&gt;(p1);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>( p1);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!p2);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(p1 <a href="CppOperatorNotEqual.htm">!=</a> p2);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppDelete.htm">delete</a></b> p1;<br/>
-&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>Const base initialized with derived, can be downcasted to <b><a href="CppConst.htm">const</a></b> derived<br/>
-&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;Base * <b><a href="CppConst.htm">const</a></b> p1 <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> Derived;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Derived * <b><a href="CppConst.htm">const</a></b> p2 <a href="CppOperatorAssign.htm">=</a> <b><a href="CppDynamic_cast.htm">dynamic_cast</a></b>&lt;<b><a href="CppConst.htm">const</a></b> Derived*&gt;(p1);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(p1);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(p2);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(p1 <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> p2);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppDelete.htm">delete</a></b> p1;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppDelete.htm">delete</a></b> p2; <a href="CppComment.htm">//</a>Do not re-<b><a href="CppDelete.htm">delete</a></b>!<br/>
-&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>Const base initialized with base, cannot be downcasted to <b><a href="CppConst.htm">const</a></b> derived<br/>
-&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Base * <b><a href="CppConst.htm">const</a></b> p1 <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> Base;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Derived * <b><a href="CppConst.htm">const</a></b> p2 <a href="CppOperatorAssign.htm">=</a> <b><a href="CppDynamic_cast.htm">dynamic_cast</a></b>&lt;<b><a href="CppConst.htm">const</a></b> Derived*&gt;(p1);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>( p1);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!p2);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(p1 <a href="CppOperatorNotEqual.htm">!=</a> p2);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppDelete.htm">delete</a></b> p1;<br/>
-&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>Const base initialized with derived, cannot be down<a href="CppOperatorMinus.htm">-</a> and <b><a href="CppConst.htm">const</a></b>-casted to non-<b><a href="CppConst.htm">const</a></b> derived<br/>
-&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Base * <b><a href="CppConst.htm">const</a></b> p1 <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> Derived;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Removing <b><a href="CppConst.htm">const</a></b>: will and should not <a href="CppCompile.htm">compile</a><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Derived * <b><a href="CppConst.htm">const</a></b> p2 <a href="CppOperatorAssign.htm">=</a> <b><a href="CppDynamic_cast.htm">dynamic_cast</a></b>&lt;Derived*&gt;(p1));<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(p1);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppDelete.htm">delete</a></b> p1;<br/>
-&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>Base initialized with derived, can be downcasted to <b><a href="CppConst.htm">const</a></b> derived with adding constness<br/>
-&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Base * <b><a href="CppConst.htm">const</a></b> p1 <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> Derived;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppAdd.htm">Add</a>ing <b><a href="CppConst.htm">const</a></b>: will and should <a href="CppCompile.htm">compile</a><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Derived * <b><a href="CppConst.htm">const</a></b> p2 <a href="CppOperatorAssign.htm">=</a> <b><a href="CppDynamic_cast.htm">dynamic_cast</a></b>&lt;<b><a href="CppConst.htm">const</a></b> Derived*&gt;(p1);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(p1);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(p2);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(p1 <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> p2);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppDelete.htm">delete</a></b> p1;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppDelete.htm">delete</a></b> p2; <a href="CppComment.htm">//</a>Do not re-<b><a href="CppDelete.htm">delete</a></b>!<br/>
-&nbsp;&nbsp;}<br/>
-}<br/>
-</code></td></tr></table>
-<!-- end of the code -->
+<ol>
+  <li><!--  1 --><a href="CppBjarneStroustrup.htm">Bjarne Stroustrup</a>. The C++ Programming Language (4th edition). 2013. ISBN: 978-0-321-56384-2. Chapter 22.7. Advice. page 663: '[2] Use dynamic_cast where class hierarchy navigation is unavoidable'</li>
+  <li><!--  2 --><a href="CppBjarneStroustrup.htm">Bjarne Stroustrup</a>. The C++ Programming Language (4th edition). 2013. ISBN: 978-0-321-56384-2. Chapter 22.7. Advice. page 663: '[3] Use dynamic_cast for type-safe explicit navigation of a class hierarchy'</li>
+  <li><!--  3 --><a href="CppBjarneStroustrup.htm">Bjarne Stroustrup</a>. The C++ Programming Language (4th edition). 2013. ISBN: 978-0-321-56384-2. Chapter 22.7. Advice. page 663: '[4] Use dynamic_cast to a reference type when failure to find the required class is considered a failure'</li>
+  <li><!--  4 --><a href="CppBjarneStroustrup.htm">Bjarne Stroustrup</a>. The C++ Programming Language (4th edition). 2013. ISBN: 978-0-321-56384-2. Chapter 22.7. Advice. page 663: '[5] Use dynamic_cast to a reference type when failure to find the required class is considered a valid alternative'</li>
+  <li><!--  5 --><a href="CppBjarneStroustrup.htm">Bjarne Stroustrup</a>. The C++ Programming Language (4th edition). 2013. ISBN: 978-0-321-56384-2. Chapter 22.7. Advice. page 663: '[10] Prefer virtual functions to repeated switch-statements based on typeid or dynamic_cast'</li>
+</ol>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>

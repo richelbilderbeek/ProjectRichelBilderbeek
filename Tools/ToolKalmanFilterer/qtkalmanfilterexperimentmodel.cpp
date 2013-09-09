@@ -1,6 +1,5 @@
-
-
 #pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include "qtkalmanfilterexperimentmodel.h"
 
@@ -136,6 +135,11 @@ const int ribi::kalman::QtKalmanFilterExperimentModel::m_version_current = 2;
 
 ribi::kalman::QtKalmanFilterExperimentModel::QtKalmanFilterExperimentModel(QObject *parent)
  : QObject(parent),
+   m_signal_context_changed{},
+   m_signal_kalman_filter_type_changed{},
+   m_signal_number_of_timesteps_changed{},
+   m_signal_white_noise_system_type_changed{},
+   m_context{},
    m_kalman_filter_type(KalmanFilterType::standard),
    m_lag_estimated(0),
    m_lag_real(0),

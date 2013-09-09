@@ -1,3 +1,5 @@
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include "kalmanfilterexperiment.h"
 
 #include <cassert>
@@ -7,6 +9,7 @@
 #include "modelfunctionparser.h"
 #include "matrix.h"
 #include "trace.h"
+#pragma GCC diagnostic pop
 
 ribi::kalman::KalmanFilterExperiment::KalmanFilterExperiment(
   const int time,
@@ -16,9 +19,11 @@ ribi::kalman::KalmanFilterExperiment::KalmanFilterExperiment(
   const boost::shared_ptr<WhiteNoiseSystem>& m_white_noise_system,
   const std::string& context
   )
-  : m_context{context},
+  : m_calculation_elements{},
+    m_context{context},
     m_inputs{ribi::kalman::KalmanFilterExperiment::ParseInput(input_functions,time)},
     m_kalman_filter{m_kalman_filter},
+    m_real_states{},
     m_state_names{state_names},
     m_white_noise_system{m_white_noise_system}
 {

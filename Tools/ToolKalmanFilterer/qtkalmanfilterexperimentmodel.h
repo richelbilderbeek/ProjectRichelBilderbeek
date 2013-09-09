@@ -1,14 +1,16 @@
 #ifndef QTKALMANFILTEREXPERIMENTMODEL_H
 #define QTKALMANFILTEREXPERIMENTMODEL_H
 
-#include <boost/shared_ptr.hpp>
 #include <map>
+
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#include <boost/shared_ptr.hpp>
 
 #include <QAbstractTableModel>
 #include <QObject>
 
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/signals2.hpp>
 #pragma GCC diagnostic pop
 #include "kalmanfilterexperimentparametertype.h"

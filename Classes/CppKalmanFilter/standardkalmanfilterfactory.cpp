@@ -1,8 +1,9 @@
-
-
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include "standardkalmanfilterfactory.h"
 
 #include <cassert>
+#pragma GCC diagnostic pop
 
 const boost::shared_ptr<ribi::kalman::StandardKalmanFilter> ribi::kalman::StandardKalmanFilterFactory::Create(
   const boost::shared_ptr<const KalmanFilterParameters>& parameters)

@@ -1,6 +1,7 @@
-
-
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include "gapsfilledwhitenoisesystemfactory.h"
+#pragma GCC diagnostic pop
 
 const boost::shared_ptr<ribi::kalman::GapsFilledWhiteNoiseSystem> ribi::kalman::GapsFilledWhiteNoiseSystemFactory::Create(
   const boost::numeric::ublas::matrix<double>& control,

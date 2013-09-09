@@ -3,9 +3,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
   <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
-  <title>Debug</title>
-  <meta name="description" content="C++ Debug"/>
-  <meta name="keywords" content="C++ to debug debugging"/>
+  <title>std::terminate</title>
+  <meta name="description" content="C++ std::terminate"/>
+  <meta name="keywords" content="C++ std::terminate terminate"/>
   <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
 </head>
 <!-- End of head, start of body -->
@@ -18,9 +18,11 @@
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <!-- Page header -->
-<h1>(<a href="Cpp.htm">C++</a>) <a href="CppDebug.htm">Debug</a></h1>
+<h1>(<a href="Cpp.htm">C++</a>) <a href="CppTerminate.htm">std::terminate</a></h1>
 <p>&nbsp;</p>
-<p><a href="CppDebug.htm">Debugging</a> is the process of removing <a href="CppBug.htm">bugs</a>.</p>
+<p>
+  <a href="CppTerminate.htm">std::terminate</a> is an <a href="CppStl.htm">STL</a> <a href="CppFunction.htm">function</a> to terminate a program's execution.
+</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
@@ -30,12 +32,10 @@
 <p>&nbsp;</p>
 <ul>
   <li>
-    The key question in <a href="CppDebug.htm">debugging</a> is: How would I know if the program actually worked correctly? [1]
-  <li>
-  <li>
-    When <a href="CppDefinition.htm">defining</a> a <a href="CppTemplate.htm">template</a>, first design and <a href="CppDebug.htm">debug</a> a non-template version; later generalize by adding parameters [8]
+    Call <a href="CppTerminate.htm">std::terminate</a> in case of serious trouble [1]
   </li>
 </ul>
+<p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
@@ -44,8 +44,7 @@
 <h2><a href="CppReferences.htm">References</a></h2>
 <p>&nbsp;</p>
 <ol>
-  <li><!--  1 --><a href="CppBjarneStroustrup.htm">Bjarne Stroustrup</a>. Programming. 2009. ISBN: 978-0-321-54372-1. Chapter 5.9: 'The key question in debugging is 'How would I know if the program actually worked correctly?'</li>
-  <li><!--  2 --><a href="CppBjarneStroustrup.htm">Bjarne Stroustrup</a>. The C++ Programming Language (4th edition). 2013. ISBN: 978-0-321-56384-2. Chapter 23.8, page 698: '[4] When defining a template, first design and debug a non-template version; later generalize by adding parameters'</li>
+  <li><!--  1 --><a href="CppBjarneStroustrup.htm">Bjarne Stroustrup</a>. The C++ Programming Language (4th edition). 2013. ISBN: 978-0-321-56384-2. Chapter 30.5. Advice. page 883: '[12] Call terminate in case of serious trouble'</li>
 </ol>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
@@ -56,5 +55,6 @@
 <p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
 <p>&nbsp;</p>
 <p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+<p>This page has been created by the <a href="Tools.htm">tool</a> <a href="ToolCodeToHtml.htm">CodeToHtml</a></p>
 </body>
 </html>

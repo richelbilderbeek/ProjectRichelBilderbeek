@@ -1,6 +1,7 @@
-
-
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include "kalmanfilterparameters.h"
+#pragma GCC diagnostic pop
 
 #include <cassert>
 #include "trace.h"
