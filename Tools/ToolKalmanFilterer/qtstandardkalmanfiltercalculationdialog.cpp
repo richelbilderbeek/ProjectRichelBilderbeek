@@ -15,7 +15,7 @@
 
 #pragma GCC diagnostic pop
 
-ribi::QtStandardKalmanFilterCalculationDialog::QtStandardKalmanFilterCalculationDialog(QWidget *parent) :
+ribi::kalman::QtStandardKalmanFilterCalculationDialog::QtStandardKalmanFilterCalculationDialog(QWidget *parent) :
   QtKalmanFilterCalculationDialog(parent),
   ui(new Ui::QtStandardKalmanFilterCalculationDialog)
 {
@@ -47,12 +47,12 @@ ribi::QtStandardKalmanFilterCalculationDialog::QtStandardKalmanFilterCalculation
   );
 }
 
-ribi::QtStandardKalmanFilterCalculationDialog::~QtStandardKalmanFilterCalculationDialog()
+ribi::kalman::QtStandardKalmanFilterCalculationDialog::~QtStandardKalmanFilterCalculationDialog()
 {
   delete ui;
 }
 
-const std::vector<QTableWidget *> ribi::QtStandardKalmanFilterCalculationDialog::CollectMatrices() const
+const std::vector<QTableWidget *> ribi::kalman::QtStandardKalmanFilterCalculationDialog::CollectMatrices() const
 {
   std::vector<QTableWidget *> v;
   v.push_back(ui->table_control_1);
@@ -81,7 +81,7 @@ const std::vector<QTableWidget *> ribi::QtStandardKalmanFilterCalculationDialog:
   return v;
 }
 
-const std::vector<QTableWidget *> ribi::QtStandardKalmanFilterCalculationDialog::CollectVectors() const
+const std::vector<QTableWidget *> ribi::kalman::QtStandardKalmanFilterCalculationDialog::CollectVectors() const
 {
   std::vector<QTableWidget *> v;
   v.push_back(ui->table_innovation_3);
@@ -96,7 +96,7 @@ const std::vector<QTableWidget *> ribi::QtStandardKalmanFilterCalculationDialog:
   return v;
 }
 
-void ribi::QtStandardKalmanFilterCalculationDialog::SetStandardCalculationElements(
+void ribi::kalman::QtStandardKalmanFilterCalculationDialog::SetStandardCalculationElements(
   const boost::shared_ptr<const StandardKalmanFilterCalculationElements>& calculation_elements)
 {
   assert(calculation_elements);
@@ -112,25 +112,25 @@ void ribi::QtStandardKalmanFilterCalculationDialog::SetStandardCalculationElemen
   this->SetUpdatedState(calculation_elements->GetUpdatedState());
 }
 
-void ribi::QtStandardKalmanFilterCalculationDialog::SetControl(const boost::numeric::ublas::matrix<double>& m)
+void ribi::kalman::QtStandardKalmanFilterCalculationDialog::SetControl(const boost::numeric::ublas::matrix<double>& m)
 {
   QtMatrix::MatrixToTable(m,ui->table_control_1);
 }
 
-void ribi::QtStandardKalmanFilterCalculationDialog::SetIdentityMatrix(const int sz)
+void ribi::kalman::QtStandardKalmanFilterCalculationDialog::SetIdentityMatrix(const int sz)
 {
   QtMatrix::MatrixToTable(
     boost::numeric::ublas::identity_matrix<double>(sz),
     ui->table_identity_matrix);
 }
 
-void ribi::QtStandardKalmanFilterCalculationDialog::SetInnovation(const boost::numeric::ublas::vector<double>& m)
+void ribi::kalman::QtStandardKalmanFilterCalculationDialog::SetInnovation(const boost::numeric::ublas::vector<double>& m)
 {
   QtMatrix::UblasVectorDoubleToTable(m,ui->table_innovation_3);
   QtMatrix::UblasVectorDoubleToTable(m,ui->table_innovation_6);
 }
 
-void ribi::QtStandardKalmanFilterCalculationDialog::SetInnovationCovariance(const boost::numeric::ublas::matrix<double>& m)
+void ribi::kalman::QtStandardKalmanFilterCalculationDialog::SetInnovationCovariance(const boost::numeric::ublas::matrix<double>& m)
 {
   QtMatrix::MatrixToTable(m,ui->table_innovation_covariance_4);
   QtMatrix::MatrixToTable(
@@ -138,30 +138,30 @@ void ribi::QtStandardKalmanFilterCalculationDialog::SetInnovationCovariance(cons
     ui->table_innovation_covariance_5_inverted);
 }
 
-void ribi::QtStandardKalmanFilterCalculationDialog::SetInput(const boost::numeric::ublas::vector<double>& m)
+void ribi::kalman::QtStandardKalmanFilterCalculationDialog::SetInput(const boost::numeric::ublas::vector<double>& m)
 {
   QtMatrix::UblasVectorDoubleToTable(m,ui->table_input);
 }
 
-void ribi::QtStandardKalmanFilterCalculationDialog::SetKalmanGain(const boost::numeric::ublas::matrix<double>& m)
+void ribi::kalman::QtStandardKalmanFilterCalculationDialog::SetKalmanGain(const boost::numeric::ublas::matrix<double>& m)
 {
   QtMatrix::MatrixToTable(m,ui->table_kalman_gain_5);
   QtMatrix::MatrixToTable(m,ui->table_kalman_gain_6);
   QtMatrix::MatrixToTable(m,ui->table_kalman_gain_7);
 }
 
-void ribi::QtStandardKalmanFilterCalculationDialog::SetMeasurement(const boost::numeric::ublas::vector<double>& m)
+void ribi::kalman::QtStandardKalmanFilterCalculationDialog::SetMeasurement(const boost::numeric::ublas::vector<double>& m)
 {
   QtMatrix::UblasVectorDoubleToTable(m,ui->table_measurement);
 }
 
 
-void ribi::QtStandardKalmanFilterCalculationDialog::SetMeasurementNoiseEstimate(const boost::numeric::ublas::matrix<double>& m)
+void ribi::kalman::QtStandardKalmanFilterCalculationDialog::SetMeasurementNoiseEstimate(const boost::numeric::ublas::matrix<double>& m)
 {
   QtMatrix::MatrixToTable(m,ui->table_estimated_measurement_noise);
 }
 
-void ribi::QtStandardKalmanFilterCalculationDialog::SetObservation(const boost::numeric::ublas::matrix<double>& m)
+void ribi::kalman::QtStandardKalmanFilterCalculationDialog::SetObservation(const boost::numeric::ublas::matrix<double>& m)
 {
   QtMatrix::MatrixToTable(m,ui->table_observation_3);
   QtMatrix::MatrixToTable(m,ui->table_observation_4);
@@ -174,7 +174,7 @@ void ribi::QtStandardKalmanFilterCalculationDialog::SetObservation(const boost::
   QtMatrix::MatrixToTable(m,ui->table_observation_7);
 }
 
-void ribi::QtStandardKalmanFilterCalculationDialog::SetPredictedCovariance(const boost::numeric::ublas::matrix<double>& m)
+void ribi::kalman::QtStandardKalmanFilterCalculationDialog::SetPredictedCovariance(const boost::numeric::ublas::matrix<double>& m)
 {
   QtMatrix::MatrixToTable(m,ui->table_covariance_predicted_2);
   QtMatrix::MatrixToTable(m,ui->table_covariance_predicted_4);
@@ -182,32 +182,32 @@ void ribi::QtStandardKalmanFilterCalculationDialog::SetPredictedCovariance(const
   QtMatrix::MatrixToTable(m,ui->table_covariance_predicted_7);
 }
 
-void ribi::QtStandardKalmanFilterCalculationDialog::SetPredictedState(const boost::numeric::ublas::vector<double>& m)
+void ribi::kalman::QtStandardKalmanFilterCalculationDialog::SetPredictedState(const boost::numeric::ublas::vector<double>& m)
 {
   QtMatrix::UblasVectorDoubleToTable(m,ui->table_state_predicted_1);
   QtMatrix::UblasVectorDoubleToTable(m,ui->table_state_predicted_3);
   QtMatrix::UblasVectorDoubleToTable(m,ui->table_state_predicted_6);
 }
 
-void ribi::QtStandardKalmanFilterCalculationDialog::SetPreviousCovarianceEstimate(
+void ribi::kalman::QtStandardKalmanFilterCalculationDialog::SetPreviousCovarianceEstimate(
   const boost::numeric::ublas::matrix<double>& m)
 {
   QtMatrix::MatrixToTable(m,ui->table_previous_covariance_estimate);
 }
 
-void ribi::QtStandardKalmanFilterCalculationDialog::SetPreviousStateEstimate(
+void ribi::kalman::QtStandardKalmanFilterCalculationDialog::SetPreviousStateEstimate(
   const boost::numeric::ublas::vector<double>& m)
 {
   QtMatrix::UblasVectorDoubleToTable(m,ui->table_previous_state_estimate);
 }
 
 
-void ribi::QtStandardKalmanFilterCalculationDialog::SetProcessNoiseEstimate(const boost::numeric::ublas::matrix<double>& m)
+void ribi::kalman::QtStandardKalmanFilterCalculationDialog::SetProcessNoiseEstimate(const boost::numeric::ublas::matrix<double>& m)
 {
   QtMatrix::MatrixToTable(m,ui->table_estimated_process_noise);
 }
 
-void ribi::QtStandardKalmanFilterCalculationDialog::SetStateNames(const std::vector<std::string>& names)
+void ribi::kalman::QtStandardKalmanFilterCalculationDialog::SetStateNames(const std::vector<std::string>& names)
 {
   const int n = boost::numeric_cast<int>(names.size());
   //Matrices
@@ -285,7 +285,7 @@ void ribi::QtStandardKalmanFilterCalculationDialog::SetStateNames(const std::vec
   }
 }
 
-void ribi::QtStandardKalmanFilterCalculationDialog::SetStateTransition(const boost::numeric::ublas::matrix<double>& m)
+void ribi::kalman::QtStandardKalmanFilterCalculationDialog::SetStateTransition(const boost::numeric::ublas::matrix<double>& m)
 {
   QtMatrix::MatrixToTable(m,ui->table_state_transition_1);
   QtMatrix::MatrixToTable(m,ui->table_state_transition_1_2);
@@ -294,13 +294,13 @@ void ribi::QtStandardKalmanFilterCalculationDialog::SetStateTransition(const boo
     ui->table_state_transition_2_transposed);
 }
 
-void ribi::QtStandardKalmanFilterCalculationDialog::SetTime(const int i)
+void ribi::kalman::QtStandardKalmanFilterCalculationDialog::SetTime(const int i)
 {
   const std::string s = "Time: " + boost::lexical_cast<std::string>(i);
   ui->label_time->setText(s.c_str());
 }
 
-void ribi::QtStandardKalmanFilterCalculationDialog::ShowCalculation(
+void ribi::kalman::QtStandardKalmanFilterCalculationDialog::ShowCalculation(
   const int i,
   const boost::shared_ptr<const KalmanFilterExperiment>& experiment)
 {
@@ -330,13 +330,13 @@ void ribi::QtStandardKalmanFilterCalculationDialog::ShowCalculation(
   this->SetStateTransition(parameters->GetStateTransition());
 }
 
-void ribi::QtStandardKalmanFilterCalculationDialog::SetUpdatedCovariance(const boost::numeric::ublas::matrix<double>& m)
+void ribi::kalman::QtStandardKalmanFilterCalculationDialog::SetUpdatedCovariance(const boost::numeric::ublas::matrix<double>& m)
 {
   QtMatrix::MatrixToTable(m,ui->table_new_covariance);
 
 }
 
-void ribi::QtStandardKalmanFilterCalculationDialog::SetUpdatedState(const boost::numeric::ublas::vector<double>& m)
+void ribi::kalman::QtStandardKalmanFilterCalculationDialog::SetUpdatedState(const boost::numeric::ublas::vector<double>& m)
 {
   QtMatrix::UblasVectorDoubleToTable(m,ui->table_new_state_estimate);
 }

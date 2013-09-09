@@ -6,6 +6,7 @@
 #include "standardwhitenoisesystemparameters.h"
 
 namespace ribi {
+namespace kalman {
 
 struct LaggedWhiteNoiseSystemParameters : public WhiteNoiseSystemParameters
 {
@@ -36,6 +37,7 @@ struct LaggedWhiteNoiseSystemParameters : public WhiteNoiseSystemParameters
   const int m_lag;
 };
 
+} //~namespace kalman
 } //~namespace ribi
 
 #endif // LAGGEDWHITENOISESYSTEMPARAMETERS_H

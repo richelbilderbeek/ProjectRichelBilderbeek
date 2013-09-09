@@ -9,14 +9,14 @@
 
 #pragma GCC diagnostic pop
 
-ribi::WhiteNoiseSystem::WhiteNoiseSystem(const boost::shared_ptr<const WhiteNoiseSystemParameters>& parameters)
+ribi::kalman::WhiteNoiseSystem::WhiteNoiseSystem(const boost::shared_ptr<const WhiteNoiseSystemParameters>& parameters)
   : m_current_state{parameters->GetInitialState()},
     m_parameters{parameters}
 {
   assert(m_parameters);
 }
 
-double ribi::WhiteNoiseSystem::GetRandomNormal(const double mean, const double sigma)
+double ribi::kalman::WhiteNoiseSystem::GetRandomNormal(const double mean, const double sigma)
 {
   boost::normal_distribution<double> norm_dist(mean, sigma);
   static boost::lagged_fibonacci19937 engine;
@@ -24,19 +24,19 @@ double ribi::WhiteNoiseSystem::GetRandomNormal(const double mean, const double s
   return value;
 }
 
-const std::string ribi::WhiteNoiseSystem::GetVersion()
+const std::string ribi::kalman::WhiteNoiseSystem::GetVersion()
 {
   return "1.0";
 }
 
-const std::vector<std::string> ribi::WhiteNoiseSystem::GetVersionHistory()
+const std::vector<std::string> ribi::kalman::WhiteNoiseSystem::GetVersionHistory()
 {
   std::vector<std::string> v;
   v.push_back("2013-05-03: version 1.0: initial version");
   return v;
 }
 
-void ribi::WhiteNoiseSystem::SetNewCurrentState(const boost::numeric::ublas::vector<double>& new_current_state)
+void ribi::kalman::WhiteNoiseSystem::SetNewCurrentState(const boost::numeric::ublas::vector<double>& new_current_state)
 {
   assert(m_current_state.size() == new_current_state.size());
   m_current_state = new_current_state;

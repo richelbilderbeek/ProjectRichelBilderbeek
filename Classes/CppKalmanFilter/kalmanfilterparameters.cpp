@@ -5,7 +5,7 @@
 #include <cassert>
 #include "trace.h"
 
-ribi::KalmanFilterParameters::KalmanFilterParameters(
+ribi::kalman::KalmanFilterParameters::KalmanFilterParameters(
   const boost::numeric::ublas::matrix<double>& control,
   const boost::numeric::ublas::vector<double>& initial_state_estimate,
   const boost::numeric::ublas::matrix<double>& observation,
@@ -29,7 +29,7 @@ ribi::KalmanFilterParameters::KalmanFilterParameters(
   #endif
 }
 
-bool ribi::KalmanFilterParameters::HasParameterType(const KalmanFilterParameterType type)
+bool ribi::kalman::KalmanFilterParameters::HasParameterType(const KalmanFilterParameterType type)
 {
   return
        type == KalmanFilterParameterType::control

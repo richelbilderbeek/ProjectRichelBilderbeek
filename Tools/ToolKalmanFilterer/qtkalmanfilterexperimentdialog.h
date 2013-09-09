@@ -4,17 +4,12 @@
 #include <vector>
 
 #include <boost/shared_ptr.hpp>
-//#include <boost/numeric/ublas/matrix.hpp>
-//#include <boost/numeric/ublas/vector.hpp>
-//#include <boost/signals2.hpp>
 
 #include <QDialog>
 #include <QTableWidget>
 
 #include "qwt_plot.h"
 
-///NEVER FORGET: Do never use forward declarations in header files parsed by MOC
-//#include "qtmatrix.h"
 #include "kalmanfilterexperiment.h"
 #include "kalmanfilterexperimentparametertype.h"
 #include "qtkalmanfilterexamplesdialog.h"
@@ -28,6 +23,7 @@ namespace Ui {
 }
 
 namespace ribi {
+namespace kalman {
 
 ///QtKalmanFilterExperimentDialog is a Facade for
 ///the KalmanFilterExperiment parameters
@@ -136,6 +132,7 @@ private:
 // I have the hypothesis that
 //
 
+} //~namespace kalman
 } //~namespace ribi
 
 #endif // QTKALMANFILTEREXPERIMENTDIALOG_H

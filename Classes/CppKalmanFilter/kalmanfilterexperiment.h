@@ -21,6 +21,7 @@
 #pragma GCC diagnostic pop
 
 namespace ribi {
+namespace kalman {
 
 ///A KalmanFilterExperiment
 struct KalmanFilterExperiment : public boost::noncopyable
@@ -109,6 +110,7 @@ struct KalmanFilterExperiment : public boost::noncopyable
   const boost::shared_ptr<WhiteNoiseSystem> m_white_noise_system;
 };
 
+} //~namespace kalman
 } //~namespace ribi
 
 #endif // KALMANFILTEREXPERIMENT_H

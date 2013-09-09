@@ -8,6 +8,7 @@
 #include "fixedlagsmootherkalmanfiltercalculationelements.h"
 
 namespace ribi {
+namespace kalman {
 
 struct FixedLagSmootherKalmanFilter : public KalmanFilter
 {
@@ -243,6 +244,7 @@ struct FixedLagSmootherKalmanFilter : public KalmanFilter
   #endif
 };
 
+} //~namespace kalman
 } //~namespace ribi
 
 #endif // FIXEDLAGSMOOTHERKALMANFILTER_H

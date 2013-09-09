@@ -21,7 +21,7 @@
 #include "trace.h"
 #include "ui_qtkalmanfilterermenudialog.h"
 
-ribi::QtKalmanFiltererMenuDialog::QtKalmanFiltererMenuDialog(QWidget *parent) :
+ribi::kalman::QtKalmanFiltererMenuDialog::QtKalmanFiltererMenuDialog(QWidget *parent) :
     QtHideAndShowDialog(parent),
     ui(new Ui::QtKalmanFiltererMenuDialog)
 {
@@ -31,17 +31,17 @@ ribi::QtKalmanFiltererMenuDialog::QtKalmanFiltererMenuDialog(QWidget *parent) :
   #endif
 }
 
-ribi::QtKalmanFiltererMenuDialog::~QtKalmanFiltererMenuDialog()
+ribi::kalman::QtKalmanFiltererMenuDialog::~QtKalmanFiltererMenuDialog()
 {
   delete ui;
 }
 
-void ribi::QtKalmanFiltererMenuDialog::keyPressEvent(QKeyEvent * event)
+void ribi::kalman::QtKalmanFiltererMenuDialog::keyPressEvent(QKeyEvent * event)
 {
   if (event->key() == Qt::Key_Escape) { close(); return; }
 }
 
-void ribi::QtKalmanFiltererMenuDialog::on_button_about_clicked()
+void ribi::kalman::QtKalmanFiltererMenuDialog::on_button_about_clicked()
 {
   About a = KalmanFiltererMenuDialog::GetAbout();
   a.AddLibrary("QtHideAndShowDialog version: " + QtHideAndShowDialog::GetVersion());
@@ -58,12 +58,12 @@ void ribi::QtKalmanFiltererMenuDialog::on_button_about_clicked()
   this->show();
 }
 
-void ribi::QtKalmanFiltererMenuDialog::on_button_quit_clicked()
+void ribi::kalman::QtKalmanFiltererMenuDialog::on_button_quit_clicked()
 {
   close();
 }
 
-void ribi::QtKalmanFiltererMenuDialog::on_button_start_clicked()
+void ribi::kalman::QtKalmanFiltererMenuDialog::on_button_start_clicked()
 {
   const boost::shared_ptr<QtKalmanFiltererMainDialog> d = QtKalmanFiltererMainDialog::Create();
   assert(d);
@@ -71,7 +71,7 @@ void ribi::QtKalmanFiltererMenuDialog::on_button_start_clicked()
 }
 
 #ifndef NDEBUG
-void ribi::QtKalmanFiltererMenuDialog::Test()
+void ribi::kalman::QtKalmanFiltererMenuDialog::Test()
 {
   {
     static bool is_tested = false;
@@ -81,10 +81,10 @@ void ribi::QtKalmanFiltererMenuDialog::Test()
   {
     Matrix::Test();
     QtMatrix::Test();
-    TRACE("Starting ribi::QtKalmanFiltererMenuDialog::Test()")
+    TRACE("Starting ribi::kalman::QtKalmanFiltererMenuDialog::Test()")
     const boost::shared_ptr<QtKalmanFiltererMainDialog> d = QtKalmanFiltererMainDialog::Create();
     assert(d);
-    TRACE("Finished ribi::QtKalmanFiltererMenuDialog::Test()")
+    TRACE("Finished ribi::kalman::QtKalmanFiltererMenuDialog::Test()")
   }
 }
 #endif

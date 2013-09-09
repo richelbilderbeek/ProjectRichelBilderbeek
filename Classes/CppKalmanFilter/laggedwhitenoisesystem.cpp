@@ -12,7 +12,7 @@
 #include "standardwhitenoisesystemparameters.h"
 #include "standardwhitenoisesystemfactory.h"
 
-ribi::LaggedWhiteNoiseSystem::LaggedWhiteNoiseSystem(
+ribi::kalman::LaggedWhiteNoiseSystem::LaggedWhiteNoiseSystem(
   const boost::shared_ptr<const WhiteNoiseSystemParameters>& parameters)
   : WhiteNoiseSystem{parameters},
     m_parameters{boost::dynamic_pointer_cast<const LaggedWhiteNoiseSystemParameters>(parameters)},
@@ -40,24 +40,24 @@ ribi::LaggedWhiteNoiseSystem::LaggedWhiteNoiseSystem(
   assert(lag == boost::numeric_cast<int>(m_measuments.size()));
 }
 
-const std::string ribi::LaggedWhiteNoiseSystem::GetVersion()
+const std::string ribi::kalman::LaggedWhiteNoiseSystem::GetVersion()
 {
   return "1.0";
 }
 
-const std::vector<std::string> ribi::LaggedWhiteNoiseSystem::GetVersionHistory()
+const std::vector<std::string> ribi::kalman::LaggedWhiteNoiseSystem::GetVersionHistory()
 {
-  std::vector<std::string> v;
-  v.push_back("2013-05-03: version 1.0: initial version");
-  return v;
+  return {
+    "2013-05-03: version 1.0: initial version"
+  };
 }
 
-void ribi::LaggedWhiteNoiseSystem::GoToNextState(const boost::numeric::ublas::vector<double>& input)
+void ribi::kalman::LaggedWhiteNoiseSystem::GoToNextState(const boost::numeric::ublas::vector<double>& input)
 {
   m_system->GoToNextState(input);
 }
 
-const boost::numeric::ublas::vector<double> ribi::LaggedWhiteNoiseSystem::Measure() const
+const boost::numeric::ublas::vector<double> ribi::kalman::LaggedWhiteNoiseSystem::Measure() const
 {
   assert(m_parameters->GetLag() == boost::numeric_cast<int>(m_measuments.size()));
   m_measuments.push(m_system->Measure());
@@ -70,20 +70,20 @@ const boost::numeric::ublas::vector<double> ribi::LaggedWhiteNoiseSystem::Measur
   return result;
 }
 
-const boost::numeric::ublas::vector<double>& ribi::LaggedWhiteNoiseSystem::PeekAtRealState() const
+const boost::numeric::ublas::vector<double>& ribi::kalman::LaggedWhiteNoiseSystem::PeekAtRealState() const
 {
   return m_system->PeekAtRealState();
 }
 
 #ifndef NDEBUG
-void ribi::LaggedWhiteNoiseSystem::Test()
+void ribi::kalman::LaggedWhiteNoiseSystem::Test()
 {
   {
     static bool is_tested = false;
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::LaggedWhiteNoiseSystem::Test()")
+  TRACE("Starting ribi::kalman::LaggedWhiteNoiseSystem::Test()")
   //Check if measurements are indeed lagged:
   //The system's real value should update immediatly, but this fresh measurement
   //must only be accessible after lag timesteps
@@ -115,6 +115,6 @@ void ribi::LaggedWhiteNoiseSystem::Test()
       my_system->GoToNextState(input);
     }
   }
-  TRACE("Finished ribi::LaggedWhiteNoiseSystem::Test()")
+  TRACE("Finished ribi::kalman::LaggedWhiteNoiseSystem::Test()")
 }
 #endif

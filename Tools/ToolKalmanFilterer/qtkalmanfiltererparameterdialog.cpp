@@ -34,7 +34,7 @@
 #include "trace.h"
 #include "ui_qtkalmanfiltererparameterdialog.h"
 
-ribi::QtKalmanFiltererParameterDialog::QtKalmanFiltererParameterDialog(
+ribi::kalman::QtKalmanFiltererParameterDialog::QtKalmanFiltererParameterDialog(
   const std::string& parameter_name,
   const std::string& parameter_description,
   QAbstractTableModel * const model,
@@ -60,18 +60,18 @@ ribi::QtKalmanFiltererParameterDialog::QtKalmanFiltererParameterDialog(
     this,SLOT(OnModelSizeChanged()));
 }
 
-ribi::QtKalmanFiltererParameterDialog::~QtKalmanFiltererParameterDialog()
+ribi::kalman::QtKalmanFiltererParameterDialog::~QtKalmanFiltererParameterDialog()
 {
   delete ui;
 }
 
-void ribi::QtKalmanFiltererParameterDialog::keyPressEvent(QKeyEvent * event)
+void ribi::kalman::QtKalmanFiltererParameterDialog::keyPressEvent(QKeyEvent * event)
 {
   if (event->key() == Qt::Key_Escape) return;
   QDialog::keyPressEvent(event);
 }
 
-const std::string ribi::QtKalmanFiltererParameterDialog::ToHtml() const
+const std::string ribi::kalman::QtKalmanFiltererParameterDialog::ToHtml() const
 {
   std::string s;
   s+="<table summary=\"" + ui->label->text().toStdString() + "\" border=\"1\">";
@@ -94,7 +94,7 @@ const std::string ribi::QtKalmanFiltererParameterDialog::ToHtml() const
   return s;
 }
 
-void ribi::QtKalmanFiltererParameterDialog::OnModelSizeChanged()
+void ribi::kalman::QtKalmanFiltererParameterDialog::OnModelSizeChanged()
 {
   ui->table->resizeColumnsToContents();
   ui->table->resizeRowsToContents();

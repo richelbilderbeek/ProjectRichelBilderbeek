@@ -5,6 +5,7 @@
 #include "kalmanfiltercalculationelements.h"
 
 namespace ribi {
+namespace kalman {
 
 struct KalmanFilterCalculationElementsFactory
 {
@@ -17,6 +18,7 @@ struct KalmanFilterCalculationElementsFactory
     const boost::shared_ptr<KalmanFilterCalculationElements>& elements);
 };
 
+} //~namespace kalman
 } //~namespace ribi
 
 #endif // KALMANFILTERCALCULATIONELEMENTSFACTORY_H

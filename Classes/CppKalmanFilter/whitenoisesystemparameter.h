@@ -6,6 +6,7 @@
 #include "whitenoisesystemparametertype.h"
 
 namespace ribi {
+namespace kalman {
 
 ///A single WhiteNoiseSystemParameter
 ///for example, the state transition matrix
@@ -35,6 +36,7 @@ struct WhiteNoiseSystemParameter
   static const std::string ToSymbol(const WhiteNoiseSystemParameterType type);
 };
 
+} //~namespace kalman
 } //~namespace ribi
 
 #endif // WHITENOISESYSTEMPARAMETER_H

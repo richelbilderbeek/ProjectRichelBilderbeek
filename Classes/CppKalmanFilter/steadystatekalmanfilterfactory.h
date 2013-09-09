@@ -5,6 +5,7 @@
 #include "steadystatekalmanfilter.h"
 
 namespace ribi {
+namespace kalman {
 
 ///Factory for SteadyStateKalmanFilter
 struct SteadyStateKalmanFilterFactory
@@ -14,6 +15,7 @@ struct SteadyStateKalmanFilterFactory
 
 };
 
+} //~namespace kalman
 } //~namespace ribi
 
 #endif // STEADYSTATEKALMANFILTERFACTORY_H

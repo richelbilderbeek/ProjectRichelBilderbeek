@@ -15,6 +15,7 @@
 #pragma GCC diagnostic pop
 
 namespace ribi {
+namespace kalman {
 
 ///KalmanFilterExample contains an example set of variables
 struct KalmanFilterExample
@@ -71,6 +72,7 @@ struct KalmanFilterExample
   static const std::string DisplayAsUblasVector(const std::vector<std::string>& v);
 };
 
+} //~namespace kalman
 } //~namespace ribi
 
 #endif // KALMANFILTEREXAMPLE_H

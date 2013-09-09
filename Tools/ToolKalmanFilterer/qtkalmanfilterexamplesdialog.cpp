@@ -27,7 +27,7 @@
 
 #pragma GCC diagnostic pop
 
-ribi::QtKalmanFilterExamplesDialog::QtKalmanFilterExamplesDialog(QWidget *parent)
+ribi::kalman::QtKalmanFilterExamplesDialog::QtKalmanFilterExamplesDialog(QWidget *parent)
   : QDialog(parent),
     ui(new Ui::QtKalmanFilterExamplesDialog)
 {
@@ -48,12 +48,12 @@ ribi::QtKalmanFilterExamplesDialog::QtKalmanFilterExamplesDialog(QWidget *parent
   }
 }
 
-ribi::QtKalmanFilterExamplesDialog::~QtKalmanFilterExamplesDialog()
+ribi::kalman::QtKalmanFilterExamplesDialog::~QtKalmanFilterExamplesDialog()
 {
   delete ui;
 }
 
-void ribi::QtKalmanFilterExamplesDialog::EmitExample(const int index) const
+void ribi::kalman::QtKalmanFilterExamplesDialog::EmitExample(const int index) const
 {
   std::unique_ptr<KalmanFilterExample> example = KalmanFilterExample::CreateExample(index);
   assert(example);
@@ -62,14 +62,14 @@ void ribi::QtKalmanFilterExamplesDialog::EmitExample(const int index) const
   m_signal_example(p);
 }
 
-void ribi::QtKalmanFilterExamplesDialog::keyPressEvent(QKeyEvent * event)
+void ribi::kalman::QtKalmanFilterExamplesDialog::keyPressEvent(QKeyEvent * event)
 {
   if (event->key() == Qt::Key_Escape) return;
   QDialog::keyPressEvent(event);
 }
 
 #ifndef NDEBUG
-void ribi::QtKalmanFilterExamplesDialog::Test()
+void ribi::kalman::QtKalmanFilterExamplesDialog::Test()
 {
   {
     static bool is_tested = false;
@@ -84,19 +84,19 @@ void ribi::QtKalmanFilterExamplesDialog::Test()
 }
 #endif
 
-void ribi::QtKalmanFilterExamplesDialog::on_button_clicked()
+void ribi::kalman::QtKalmanFilterExamplesDialog::on_button_clicked()
 {
   assert(ui->box->currentIndex() != -1);
   const int index = ui->box->currentIndex();
   EmitExample(index);
 }
 
-void ribi::QtKalmanFilterExamplesDialog::on_box_currentIndexChanged(int index)
+void ribi::kalman::QtKalmanFilterExamplesDialog::on_box_currentIndexChanged(int index)
 {
   ui->button->setEnabled(index != -1);
 }
 
-void ribi::QtKalmanFilterExamplesDialog::SetShowNoExample()
+void ribi::kalman::QtKalmanFilterExamplesDialog::SetShowNoExample()
 {
   ui->box->setCurrentIndex(-1);
 }

@@ -38,7 +38,7 @@ int main(int argc, char *argv[])
   QApplication a(argc, argv);
   START_TRACE();
   a.setStyleSheet(CreateStyleSheet().c_str());
-  ribi::QtKalmanFiltererMenuDialog w;
+  ribi::kalman::QtKalmanFiltererMenuDialog w;
   w.show();
   return a.exec();
 }

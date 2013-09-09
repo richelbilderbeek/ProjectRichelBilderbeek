@@ -5,6 +5,7 @@
 #include "whitenoisesystemparameters.h"
 
 namespace ribi {
+namespace kalman {
 
 struct GapsFilledWhiteNoiseSystemParameters : public WhiteNoiseSystemParameters
 {
@@ -35,6 +36,7 @@ struct GapsFilledWhiteNoiseSystemParameters : public WhiteNoiseSystemParameters
   #endif
 };
 
+} //~namespace kalman
 } //~namespace ribi
 
 #endif // GAPSFILLEDWHITENOISESYSTEMPARAMETERS_H

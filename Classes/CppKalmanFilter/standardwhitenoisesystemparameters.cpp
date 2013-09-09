@@ -5,7 +5,7 @@
 #include <cassert>
 #include "matrix.h"
 
-ribi::StandardWhiteNoiseSystemParameters::StandardWhiteNoiseSystemParameters(
+ribi::kalman::StandardWhiteNoiseSystemParameters::StandardWhiteNoiseSystemParameters(
   const boost::numeric::ublas::matrix<double>& control,
   const boost::numeric::ublas::vector<double>& initial_state,
   const boost::numeric::ublas::vector<double>& real_measurement_noise,
@@ -23,19 +23,19 @@ ribi::StandardWhiteNoiseSystemParameters::StandardWhiteNoiseSystemParameters(
 
 }
 
-const std::string ribi::StandardWhiteNoiseSystemParameters::GetVersion()
+const std::string ribi::kalman::StandardWhiteNoiseSystemParameters::GetVersion()
 {
   return "1.0";
 }
 
-const std::vector<std::string> ribi::StandardWhiteNoiseSystemParameters::GetVersionHistory()
+const std::vector<std::string> ribi::kalman::StandardWhiteNoiseSystemParameters::GetVersionHistory()
 {
   std::vector<std::string> v;
   v.push_back("2013-04-28: version 1.0: initial version");
   return v;
 }
 
-bool ribi::StandardWhiteNoiseSystemParameters::IsAboutEqual(
+bool ribi::kalman::StandardWhiteNoiseSystemParameters::IsAboutEqual(
   const StandardWhiteNoiseSystemParameters& lhs, const StandardWhiteNoiseSystemParameters& rhs)
 {
   return

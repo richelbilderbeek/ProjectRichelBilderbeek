@@ -20,6 +20,7 @@ namespace Ui {
 }
 
 namespace ribi {
+namespace kalman {
 
 class QtFixedLagSmootherKalmanFilterCalculationDialog : public QtKalmanFilterCalculationDialog
 {
@@ -59,6 +60,7 @@ private:
 
 };
 
+} //~namespace kalman
 } //~namespace ribi
 
 #endif // QTFIXEDLAGSMOOTHERKALMANFILTERCALCULATIONDIALOG_H

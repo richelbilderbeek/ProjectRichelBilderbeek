@@ -5,6 +5,7 @@
 #include "whitenoisesystemparameters.h"
 
 namespace ribi {
+namespace kalman {
 
 struct StandardWhiteNoiseSystemParameters : public WhiteNoiseSystemParameters
 {
@@ -33,6 +34,7 @@ struct StandardWhiteNoiseSystemParameters : public WhiteNoiseSystemParameters
   friend void boost::checked_delete<>(StandardWhiteNoiseSystemParameters*);
 };
 
+} //~namespace kalman
 } //~namespace ribi
 
 #endif // STANDARDWHITENOISESYSTEMPARAMETERS_H

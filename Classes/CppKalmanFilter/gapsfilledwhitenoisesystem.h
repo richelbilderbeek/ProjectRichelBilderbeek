@@ -9,6 +9,7 @@
 #include "gapsfilledwhitenoisesystemparameters.h"
 
 namespace ribi {
+namespace kalman {
 
 ///A gaps-filled white noise system is a system that does not have a measurement every timestep.
 ///Instead, it has for example 1 measurement and then 4 non-measurements (which is a gap of 5)
@@ -61,6 +62,7 @@ struct GapsFilledWhiteNoiseSystem : public WhiteNoiseSystem
   #endif
 };
 
+} //~namespace kalman
 } //~namespace ribi
 
 #endif // GAPSFILLEDWHITENOISESYSTEM_H

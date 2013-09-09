@@ -14,7 +14,6 @@
 #include <boost/numeric/ublas/vector.hpp>
 #pragma GCC diagnostic pop
 
-///NEVER FORGET: Do never use forward declarations in header files parsed by MOC
 #include "kalmanfilter.h"
 #include "kalmanfiltertype.h"
 #include "kalmanfilterparametertype.h"
@@ -28,6 +27,7 @@ namespace Ui {
 }
 
 namespace ribi {
+namespace kalman {
 
 ///QtKalmanFilterDialog is a Facade of multiple QtKalmanFiltererParameterDialog instances
 ///with the KalmanFilterType as its primary State
@@ -72,6 +72,7 @@ private slots:
 
 };
 
+} //~namespace kalman
 } //~namespace ribi
 
 #endif // QTKALMANFILTERDIALOG

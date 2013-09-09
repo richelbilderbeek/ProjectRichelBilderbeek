@@ -11,6 +11,7 @@
 #pragma GCC diagnostic pop
 
 namespace ribi {
+namespace kalman {
 
 ///Parameters for the standard Kalman filter
 struct StandardKalmanFilterParameters : public KalmanFilterParameters
@@ -67,6 +68,7 @@ struct StandardKalmanFilterParameters : public KalmanFilterParameters
   const boost::numeric::ublas::matrix<double> m_initial_covariance_estimate;
 };
 
+} //~namespace kalman
 } //~namespace ribi
 
 #endif // STANDARDKALMANFILTERPARAMETERS_H

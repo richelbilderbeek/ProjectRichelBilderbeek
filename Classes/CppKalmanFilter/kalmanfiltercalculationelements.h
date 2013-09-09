@@ -12,13 +12,14 @@
 #include "kalmanfiltertype.h"
 
 namespace ribi {
+namespace kalman {
 
 ///The elements of a steady-state Kalman filter calculation
 struct KalmanFilterCalculationElements : public boost::noncopyable
 {
-  ///ABC must have public virtual destructor
-  // * Herb Sutter, Andrei Alexandrescu. C++ coding standards: 101 rules, guidelines, and best practices.
-  //   ISBN: 0-32-111358-6. Item 50: 'Make base class destructors public and virtual, or protected and nonvirtual'
+
+
+
   virtual ~KalmanFilterCalculationElements() {}
 
   ///Clear the calculation, will set IsComplete to false
@@ -93,6 +94,7 @@ struct KalmanFilterCalculationElements : public boost::noncopyable
   boost::numeric::ublas::vector<double> m_updated_state;
 };
 
+} //~namespace kalman
 } //~namespace ribi
 
 #endif // KALMANFILTERCALCULATIONELEMENTS_H

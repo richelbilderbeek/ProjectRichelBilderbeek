@@ -6,20 +6,12 @@
 #include <QDialog>
 #include <QTableWidgetItem>
 
-//#include <boost/shared_ptr.hpp>
-//#include <boost/numeric/ublas/matrix.hpp>
-//#include <boost/numeric/ublas/vector.hpp>
-
-///NEVER FORGET: Do never use forward declarations in header files parsed by MOC
-//#include "kalmanfilterparametertype.h"
-//#include "kalmanfilterexperimentparametertype.h"
-//#include "whitenoisesystemparametertype.h"
-
 namespace Ui {
   class QtKalmanFiltererParameterDialog;
 }
 
 namespace ribi {
+namespace kalman {
 
 ///Dialog for a parameter, stores a QtKalmanFiltererParameterDialog::ValueType
 class QtKalmanFiltererParameterDialog : public QDialog
@@ -52,6 +44,7 @@ private slots:
   void OnModelSizeChanged();
 };
 
+} //~namespace kalman
 } //~namespace ribi
 
 #endif // QTKALMANFILTERERPARAMETERDIALOG

@@ -7,6 +7,7 @@
 #include "about.h"
 
 namespace ribi {
+namespace kalman {
 
 ///GUI independent KalmanFilterer menu dialog
 struct KalmanFiltererMenuDialog
@@ -16,6 +17,7 @@ struct KalmanFiltererMenuDialog
   static const std::vector<std::string> GetVersionHistory();
 };
 
+} //~namespace kalman
 } //~namespace ribi
 
 #endif // KALMANFILTERERMENUDIALOG_H

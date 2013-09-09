@@ -14,7 +14,6 @@
 
 #include "qwt_plot.h"
 
-///NEVER FORGET: Do never use forward declarations in header files parsed by MOC
 #include "kalmanfilterexperiment.h"
 #include "qthideandshowdialog.h"
 #include "qtkalmanfilterexperimentdialog.h"
@@ -31,6 +30,7 @@ namespace Ui {
 }
 
 namespace ribi {
+namespace kalman {
 
 class QtKalmanFiltererMainDialog : public QtHideAndShowDialog
 {
@@ -122,6 +122,7 @@ private slots:
   void on_edit_context_textChanged();
 };
 
+} //~namespace kalman
 } //~namespace ribi
 
 #endif // QTKALMANFILTERERMAINDIALOG_H

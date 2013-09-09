@@ -18,7 +18,7 @@
 
 #pragma GCC diagnostic pop
 
-ribi::KalmanFilterExample::KalmanFilterExample(
+ribi::kalman::KalmanFilterExample::KalmanFilterExample(
   const std::string& title,
   const std::string& context,
   const std::vector<std::string>& inputs,
@@ -42,7 +42,7 @@ ribi::KalmanFilterExample::KalmanFilterExample(
 
 }
 
-const std::vector<boost::shared_ptr<ribi::KalmanFilterExample> > ribi::KalmanFilterExample::CreateExamples()
+const std::vector<boost::shared_ptr<ribi::kalman::KalmanFilterExample> > ribi::kalman::KalmanFilterExample::CreateExamples()
 {
   std::vector<boost::shared_ptr<KalmanFilterExample> > v;
   for (int i=0; ; ++i)
@@ -58,7 +58,7 @@ const std::vector<boost::shared_ptr<ribi::KalmanFilterExample> > ribi::KalmanFil
   assert(!"Cannot get here: must return in for loop above");
 }
 
-std::unique_ptr<ribi::KalmanFilterExample> ribi::KalmanFilterExample::CreateExample(const int i)
+std::unique_ptr<ribi::kalman::KalmanFilterExample> ribi::kalman::KalmanFilterExample::CreateExample(const int i)
 {
   std::unique_ptr<KalmanFilterExample> p;
   switch (i)
@@ -81,7 +81,7 @@ std::unique_ptr<ribi::KalmanFilterExample> ribi::KalmanFilterExample::CreateExam
 
 
 
-std::unique_ptr<ribi::KalmanFilterExample> ribi::KalmanFilterExample::CreateExample0()
+std::unique_ptr<ribi::kalman::KalmanFilterExample> ribi::kalman::KalmanFilterExample::CreateExample0()
 {
   const std::string title = "Constant voltage";
 
@@ -175,7 +175,7 @@ std::unique_ptr<ribi::KalmanFilterExample> ribi::KalmanFilterExample::CreateExam
   return example;
 }
 
-std::unique_ptr<ribi::KalmanFilterExample> ribi::KalmanFilterExample::CreateExample1()
+std::unique_ptr<ribi::kalman::KalmanFilterExample> ribi::kalman::KalmanFilterExample::CreateExample1()
 {
   const std::string title = "Accelerating car (two states)";
   const int n = 2;
@@ -289,7 +289,7 @@ std::unique_ptr<ribi::KalmanFilterExample> ribi::KalmanFilterExample::CreateExam
   return example;
 }
 
-std::unique_ptr<ribi::KalmanFilterExample> ribi::KalmanFilterExample::CreateExample2()
+std::unique_ptr<ribi::kalman::KalmanFilterExample> ribi::kalman::KalmanFilterExample::CreateExample2()
 {
   const std::string title = "Cannonball";
   const int number_of_timesteps = 1000;
@@ -456,7 +456,7 @@ std::unique_ptr<ribi::KalmanFilterExample> ribi::KalmanFilterExample::CreateExam
   return example;
 }
 
-std::unique_ptr<ribi::KalmanFilterExample> ribi::KalmanFilterExample::CreateExample3()
+std::unique_ptr<ribi::kalman::KalmanFilterExample> ribi::kalman::KalmanFilterExample::CreateExample3()
 {
   const std::string title = "Spring";
   const std::string context
@@ -586,7 +586,7 @@ std::unique_ptr<ribi::KalmanFilterExample> ribi::KalmanFilterExample::CreateExam
   return example;
 }
 
-std::unique_ptr<ribi::KalmanFilterExample> ribi::KalmanFilterExample::CreateExample4()
+std::unique_ptr<ribi::kalman::KalmanFilterExample> ribi::kalman::KalmanFilterExample::CreateExample4()
 {
   const std::string title = "Airhockey puck";
   const std::string context
@@ -665,7 +665,7 @@ std::unique_ptr<ribi::KalmanFilterExample> ribi::KalmanFilterExample::CreateExam
 
 
 
-std::unique_ptr<ribi::KalmanFilterExample> ribi::KalmanFilterExample::CreateExample5()
+std::unique_ptr<ribi::kalman::KalmanFilterExample> ribi::kalman::KalmanFilterExample::CreateExample5()
 {
   const std::string title = "Accelerating car (3 states)";
   const std::string context
@@ -797,7 +797,7 @@ std::unique_ptr<ribi::KalmanFilterExample> ribi::KalmanFilterExample::CreateExam
   return example;
 }
 
-std::unique_ptr<ribi::KalmanFilterExample> ribi::KalmanFilterExample::CreateExample6()
+std::unique_ptr<ribi::kalman::KalmanFilterExample> ribi::kalman::KalmanFilterExample::CreateExample6()
 {
   const std::string title = "Exponential decay";
   //One state
@@ -954,7 +954,7 @@ std::unique_ptr<ribi::KalmanFilterExample> ribi::KalmanFilterExample::CreateExam
   return example;
 }
 
-std::unique_ptr<ribi::KalmanFilterExample> ribi::KalmanFilterExample::CreateExample7()
+std::unique_ptr<ribi::kalman::KalmanFilterExample> ribi::kalman::KalmanFilterExample::CreateExample7()
 {
   const std::string title = "Harmonic oscillation (two states)";
   //Two states
@@ -1120,7 +1120,7 @@ std::unique_ptr<ribi::KalmanFilterExample> ribi::KalmanFilterExample::CreateExam
   return example;
 }
 
-std::unique_ptr<ribi::KalmanFilterExample> ribi::KalmanFilterExample::CreateExample8()
+std::unique_ptr<ribi::kalman::KalmanFilterExample> ribi::kalman::KalmanFilterExample::CreateExample8()
 {
   const std::string title = "Harmonic oscillation (three states)";
   //Two states
@@ -1296,7 +1296,7 @@ std::unique_ptr<ribi::KalmanFilterExample> ribi::KalmanFilterExample::CreateExam
   return example;
 }
 
-const std::string ribi::KalmanFilterExample::DisplayAsUblasVector(const std::vector<std::string>& v)
+const std::string ribi::kalman::KalmanFilterExample::DisplayAsUblasVector(const std::vector<std::string>& v)
 {
   std::stringstream s;
   s << "[" << v.size() << "](";

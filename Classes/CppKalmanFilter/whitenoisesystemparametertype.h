@@ -2,6 +2,7 @@
 #define WHITENOISESYSTEMPARAMETERTYPE_H
 
 namespace ribi {
+namespace kalman {
 
 enum class WhiteNoiseSystemParameterType
 {
@@ -18,6 +19,7 @@ bool operator<(const WhiteNoiseSystemParameterType lhs, const WhiteNoiseSystemPa
 bool operator==(const WhiteNoiseSystemParameterType lhs, const WhiteNoiseSystemParameterType rhs);
 bool operator!=(const WhiteNoiseSystemParameterType lhs, const WhiteNoiseSystemParameterType rhs);
 
+} //~namespace kalman
 } //~namespace ribi
 
 #endif // WHITENOISESYSTEMPARAMETERTYPE_H

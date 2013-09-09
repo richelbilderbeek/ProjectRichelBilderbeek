@@ -4,6 +4,7 @@
 #include "kalmanfiltercalculationelements.h"
 
 namespace ribi {
+namespace kalman {
 
 ///The elements of a steady-state Kalman filter calculation
 struct SteadyStateKalmanFilterCalculationElements : public KalmanFilterCalculationElements
@@ -30,6 +31,7 @@ struct SteadyStateKalmanFilterCalculationElements : public KalmanFilterCalculati
 
 };
 
+} //~namespace kalman
 } //~namespace ribi
 
 #endif // STEADYSTATEKALMANFILTERCALCULATIONELEMENTS_H

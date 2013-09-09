@@ -2,7 +2,7 @@
 
 #include "kalmanfilter.h"
 
-ribi::KalmanFilter::KalmanFilter(
+ribi::kalman::KalmanFilter::KalmanFilter(
   const boost::shared_ptr<KalmanFilterCalculationElements>& calculation,
   const boost::shared_ptr<const KalmanFilterParameters>& parameters)
   : m_last_calculation{calculation},
@@ -17,12 +17,12 @@ ribi::KalmanFilter::KalmanFilter(
   //  && "Initialize each Kalman filter type with the right type of parameters");
 }
 
-const std::string ribi::KalmanFilter::GetVersion()
+const std::string ribi::kalman::KalmanFilter::GetVersion()
 {
   return "1.0";
 }
 
-const std::vector<std::string> ribi::KalmanFilter::GetVersionHistory()
+const std::vector<std::string> ribi::kalman::KalmanFilter::GetVersionHistory()
 {
   std::vector<std::string> v;
   v.push_back("2013-05-06: version 1.0: initial version");

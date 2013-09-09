@@ -5,6 +5,7 @@
 #include "kalmanfilterparameters.h"
 
 namespace ribi {
+namespace kalman {
 
 ///Parameters for the standard Kalman filter
 struct SteadyStateKalmanFilterParameters : public KalmanFilterParameters
@@ -53,6 +54,7 @@ struct SteadyStateKalmanFilterParameters : public KalmanFilterParameters
   const boost::numeric::ublas::matrix<double> m_estimated_optimal_kalman_gain;
 };
 
+} //~namespace kalman
 } //~namespace ribi
 
 #endif // STEADYSTATEKALMANFILTERPARAMETERS_H

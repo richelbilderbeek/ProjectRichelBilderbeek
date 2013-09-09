@@ -32,7 +32,7 @@
 
 #pragma GCC diagnostic pop
 
-ribi::QtWhiteNoiseSystemParametersDialog::QtWhiteNoiseSystemParametersDialog(
+ribi::kalman::QtWhiteNoiseSystemParametersDialog::QtWhiteNoiseSystemParametersDialog(
   const boost::shared_ptr<QtKalmanFilterExperimentModel> model,
   QWidget *parent)
   : QDialog(parent),
@@ -89,12 +89,12 @@ ribi::QtWhiteNoiseSystemParametersDialog::QtWhiteNoiseSystemParametersDialog(
   assert(m_model->CreateWhiteNoiseSystem() && "Obtain an empty white noise system (all components have size zero)");
 }
 
-ribi::QtWhiteNoiseSystemParametersDialog::~QtWhiteNoiseSystemParametersDialog()
+ribi::kalman::QtWhiteNoiseSystemParametersDialog::~QtWhiteNoiseSystemParametersDialog()
 {
   delete ui;
 }
 
-ribi::QtKalmanFiltererParameterDialog * ribi::QtWhiteNoiseSystemParametersDialog::Find(const WhiteNoiseSystemParameterType type)
+ribi::kalman::QtKalmanFiltererParameterDialog * ribi::kalman::QtWhiteNoiseSystemParametersDialog::Find(const WhiteNoiseSystemParameterType type)
 {
   //Calls the const version of Find
   //To avoid duplication in const and non-const member functions
@@ -103,7 +103,7 @@ ribi::QtKalmanFiltererParameterDialog * ribi::QtWhiteNoiseSystemParametersDialog
   return const_cast<QtKalmanFiltererParameterDialog *>(const_cast<const QtWhiteNoiseSystemParametersDialog&>(*this).Find(type));
 }
 
-const ribi::QtKalmanFiltererParameterDialog * ribi::QtWhiteNoiseSystemParametersDialog::Find(const WhiteNoiseSystemParameterType type) const
+const ribi::kalman::QtKalmanFiltererParameterDialog * ribi::kalman::QtWhiteNoiseSystemParametersDialog::Find(const WhiteNoiseSystemParameterType type) const
 {
   assert(m_model->CreateWhiteNoiseSystemParameters()->GetType() == this->GetWhiteNoiseSystemType());
   assert(m_parameters.find(type) != m_parameters.end());
@@ -112,13 +112,13 @@ const ribi::QtKalmanFiltererParameterDialog * ribi::QtWhiteNoiseSystemParameters
   return table;
 }
 
-int ribi::QtWhiteNoiseSystemParametersDialog::GetLag() const
+int ribi::kalman::QtWhiteNoiseSystemParametersDialog::GetLag() const
 {
   assert(ui->box_lag->value() >= 0);
   return ui->box_lag->value();
 }
 
-ribi::WhiteNoiseSystemType ribi::QtWhiteNoiseSystemParametersDialog::GetWhiteNoiseSystemType() const
+ribi::kalman::WhiteNoiseSystemType ribi::kalman::QtWhiteNoiseSystemParametersDialog::GetWhiteNoiseSystemType() const
 {
   switch (ui->box_white_noise_system_type->currentIndex())
   {
@@ -126,7 +126,7 @@ ribi::WhiteNoiseSystemType ribi::QtWhiteNoiseSystemParametersDialog::GetWhiteNoi
     case 1: return WhiteNoiseSystemType::lagged;
     case 2: return WhiteNoiseSystemType::gaps_filled;
     case -1:
-      assert(!"ribi::QtWhiteNoiseSystemParametersDialog::GetWhiteNoiseSystemType: box_white_noise_system_type must be initialized");
+      assert(!"ribi::kalman::QtWhiteNoiseSystemParametersDialog::GetWhiteNoiseSystemType: box_white_noise_system_type must be initialized");
       throw std::logic_error(__func__);
     default:
       assert(!"Unimplemented index of box_white_noise_system_type");
@@ -134,13 +134,13 @@ ribi::WhiteNoiseSystemType ribi::QtWhiteNoiseSystemParametersDialog::GetWhiteNoi
   }
 }
 
-void ribi::QtWhiteNoiseSystemParametersDialog::keyPressEvent(QKeyEvent * event)
+void ribi::kalman::QtWhiteNoiseSystemParametersDialog::keyPressEvent(QKeyEvent * event)
 {
   if (event->key() == Qt::Key_Escape) return;
   QDialog::keyPressEvent(event);
 }
 
-void ribi::QtWhiteNoiseSystemParametersDialog::on_box_white_noise_system_type_currentIndexChanged(int)
+void ribi::kalman::QtWhiteNoiseSystemParametersDialog::on_box_white_noise_system_type_currentIndexChanged(int)
 {
   //Notify the model
   m_model->SetWhiteNoiseSystemType(GetWhiteNoiseSystemType());
@@ -176,13 +176,13 @@ void ribi::QtWhiteNoiseSystemParametersDialog::on_box_white_noise_system_type_cu
   assert(m_model->CreateWhiteNoiseSystemParameters()->GetType() == this->GetWhiteNoiseSystemType());
 }
 
-void ribi::QtWhiteNoiseSystemParametersDialog::on_box_lag_valueChanged(int arg1)
+void ribi::kalman::QtWhiteNoiseSystemParametersDialog::on_box_lag_valueChanged(int arg1)
 {
   m_model->SetLagReal(arg1);
   assert(m_model->CreateWhiteNoiseSystemParameters()->GetType() == this->GetWhiteNoiseSystemType());
 }
 
-void ribi::QtWhiteNoiseSystemParametersDialog::SetWhiteNoiseSystemType(const WhiteNoiseSystemType type)
+void ribi::kalman::QtWhiteNoiseSystemParametersDialog::SetWhiteNoiseSystemType(const WhiteNoiseSystemType type)
 {
   switch (type)
   {
@@ -196,8 +196,8 @@ void ribi::QtWhiteNoiseSystemParametersDialog::SetWhiteNoiseSystemType(const Whi
       ui->box_white_noise_system_type->setCurrentIndex(0);
       break;
     case WhiteNoiseSystemType::n_types:
-      assert(!"ribi::QtWhiteNoiseSystemParametersDialog::SetWhiteNoiseSystemType: use of n_types");
-      throw std::logic_error("ribi::QtWhiteNoiseSystemParametersDialog::SetWhiteNoiseSystemType: use of n_types");
+      assert(!"ribi::kalman::QtWhiteNoiseSystemParametersDialog::SetWhiteNoiseSystemType: use of n_types");
+      throw std::logic_error("ribi::kalman::QtWhiteNoiseSystemParametersDialog::SetWhiteNoiseSystemType: use of n_types");
   }
   assert(this->GetWhiteNoiseSystemType() == type);
   assert(m_model->CreateWhiteNoiseSystemParameters()->GetType() == type);
@@ -205,14 +205,14 @@ void ribi::QtWhiteNoiseSystemParametersDialog::SetWhiteNoiseSystemType(const Whi
 
 
 #ifndef NDEBUG
-void ribi::QtWhiteNoiseSystemParametersDialog::Test()
+void ribi::kalman::QtWhiteNoiseSystemParametersDialog::Test()
 {
   {
     static bool is_tested = false;
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::QtWhiteNoiseSystemParametersDialog::Test");
+  TRACE("Starting ribi::kalman::QtWhiteNoiseSystemParametersDialog::Test");
   {
     const boost::shared_ptr<QtKalmanFilterExperimentModel> model(new QtKalmanFilterExperimentModel);
     assert(model);
@@ -240,6 +240,6 @@ void ribi::QtWhiteNoiseSystemParametersDialog::Test()
     assert(model->CreateWhiteNoiseSystemParameters());
     assert(model->CreateWhiteNoiseSystemParameters()->GetType() == WhiteNoiseSystemType::gaps_filled);
   }
-  TRACE("Finished ribi::QtWhiteNoiseSystemParametersDialog::Test successfully");
+  TRACE("Finished ribi::kalman::QtWhiteNoiseSystemParametersDialog::Test successfully");
 }
 #endif

@@ -19,6 +19,7 @@
 #include "kalmanfilterexample.h"
 
 namespace ribi {
+namespace kalman {
 
 ///Contains all parameters and QAbstractTableModels for these
 struct QtKalmanFilterExperimentModel : public QObject
@@ -194,6 +195,7 @@ struct QtKalmanFilterExperimentModel : public QObject
 
 bool operator==(const QtKalmanFilterExperimentModel& lhs, const QtKalmanFilterExperimentModel& rhs);
 
+} //~namespace kalman
 } //~namespace ribi
 
 #endif // QTKALMANFILTEREXPERIMENTMODEL_H

@@ -13,6 +13,7 @@
 #pragma GCC diagnostic pop
 
 namespace ribi {
+namespace kalman {
 
 ///A discrete time Kalman filter
 struct StandardKalmanFilter : public KalmanFilter
@@ -82,6 +83,7 @@ struct StandardKalmanFilter : public KalmanFilter
   boost::numeric::ublas::vector<double> m_state_estimate;
 };
 
+} //~namespace kalman
 } //~namespace ribi
 
 #endif // STANDARDKALMANFILTER_H

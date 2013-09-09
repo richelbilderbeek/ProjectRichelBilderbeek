@@ -12,13 +12,14 @@
 #include "kalmanfilterparametertype.h"
 
 namespace ribi {
+namespace kalman {
 
 ///ABC for the parameters every Kalman filter needs at least
 struct KalmanFilterParameters : public boost::noncopyable
 {
-  ///ABC must have public virtual destructor
-  // * Herb Sutter, Andrei Alexandrescu. C++ coding standards: 101 rules, guidelines, and best practices.
-  //   ISBN: 0-32-111358-6. Item 50: 'Make base class destructors public and virtual, or protected and nonvirtual'
+
+
+
   virtual ~KalmanFilterParameters() {}
 
   ///Obtain the Kalman filter type as an enum
@@ -66,6 +67,7 @@ struct KalmanFilterParameters : public boost::noncopyable
 
 };
 
+} //~namespace kalman
 } //~namespace ribi
 
 #endif // KALMANFILTERPARAMETERS_H

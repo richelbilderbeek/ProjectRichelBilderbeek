@@ -3,13 +3,12 @@
 
 #include "qthideandshowdialog.h"
 
-///NEVER FORGET: Do never use forward declarations in header files parsed by MOC
-
 namespace Ui {
   class QtKalmanFiltererMenuDialog;
 }
 
 namespace ribi {
+namespace kalman {
 
 class QtKalmanFiltererMenuDialog : public QtHideAndShowDialog
 {
@@ -36,6 +35,7 @@ private slots:
   #endif
 };
 
+} //~namespace kalman
 } //~namespace ribi
 
 #endif // QTKALMANFILTERERMENUDIALOG_H

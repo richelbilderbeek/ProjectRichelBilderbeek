@@ -60,7 +60,7 @@
 
 #pragma GCC diagnostic pop
 
-ribi::QtKalmanFiltererMainDialog::QtKalmanFiltererMainDialog(
+ribi::kalman::QtKalmanFiltererMainDialog::QtKalmanFiltererMainDialog(
   const boost::shared_ptr<QtKalmanFilterExperimentModel> model,
   QWidget *parent)
   : QtHideAndShowDialog(parent),
@@ -111,7 +111,7 @@ ribi::QtKalmanFiltererMainDialog::QtKalmanFiltererMainDialog(
   assert(m_model->CreateExperiment() && "Can get an empty experiment");
 
   m_model->m_signal_context_changed.connect(
-    boost::bind(&ribi::QtKalmanFiltererMainDialog::OnNewContext,this,boost::lambda::_1));
+    boost::bind(&ribi::kalman::QtKalmanFiltererMainDialog::OnNewContext,this,boost::lambda::_1));
 
   ui->box_show_calculation->setChecked(false);
   ui->box_show_statistics->setChecked(true);
@@ -122,13 +122,13 @@ ribi::QtKalmanFiltererMainDialog::QtKalmanFiltererMainDialog(
   this->ui->button_start->click(); //Start the simulation
 }
 
-ribi::QtKalmanFiltererMainDialog::~QtKalmanFiltererMainDialog()
+ribi::kalman::QtKalmanFiltererMainDialog::~QtKalmanFiltererMainDialog()
 {
   delete ui;
   delete m_experiment_dialog;
 }
 
-boost::shared_ptr<ribi::QtKalmanFiltererMainDialog> ribi::QtKalmanFiltererMainDialog::Create()
+boost::shared_ptr<ribi::kalman::QtKalmanFiltererMainDialog> ribi::kalman::QtKalmanFiltererMainDialog::Create()
 {
 
   const boost::shared_ptr<QtKalmanFilterExperimentModel> model{
@@ -145,7 +145,7 @@ boost::shared_ptr<ribi::QtKalmanFiltererMainDialog> ribi::QtKalmanFiltererMainDi
 }
 
 
-const std::vector<std::vector<double> > ribi::QtKalmanFiltererMainDialog::CreateData(
+const std::vector<std::vector<double> > ribi::kalman::QtKalmanFiltererMainDialog::CreateData(
   const std::vector<boost::numeric::ublas::vector<double> >& a,
   const std::vector<boost::numeric::ublas::vector<double> >& b,
   const std::vector<boost::numeric::ublas::vector<double> >& c,
@@ -201,7 +201,7 @@ const std::vector<std::vector<double> > ribi::QtKalmanFiltererMainDialog::Create
   return v;
 }
 
-const boost::shared_ptr<ribi::QtKalmanFilterCalculationDialog> ribi::QtKalmanFiltererMainDialog::CreateKalmanFilterCalculationDialog(
+const boost::shared_ptr<ribi::kalman::QtKalmanFilterCalculationDialog> ribi::kalman::QtKalmanFiltererMainDialog::CreateKalmanFilterCalculationDialog(
   const KalmanFilterType type) const
 {
   boost::shared_ptr<QtKalmanFilterCalculationDialog> p;
@@ -230,7 +230,7 @@ const boost::shared_ptr<ribi::QtKalmanFilterCalculationDialog> ribi::QtKalmanFil
   return p;
 }
 
-const std::vector<double> ribi::QtKalmanFiltererMainDialog::ExtractAverageSquaredError(
+const std::vector<double> ribi::kalman::QtKalmanFiltererMainDialog::ExtractAverageSquaredError(
   const boost::shared_ptr<const KalmanFilterExperiment>& experiment)
 {
   const std::vector<boost::numeric::ublas::vector<double> > predictions = experiment->GetPredictedStates();
@@ -269,12 +269,12 @@ const std::vector<double> ribi::QtKalmanFiltererMainDialog::ExtractAverageSquare
   return sum;
 }
 
-void ribi::QtKalmanFiltererMainDialog::keyPressEvent(QKeyEvent * event)
+void ribi::kalman::QtKalmanFiltererMainDialog::keyPressEvent(QKeyEvent * event)
 {
   if (event->key() == Qt::Key_Escape) { close(); return; }
 }
 
-void ribi::QtKalmanFiltererMainDialog::on_button_save_graph_clicked()
+void ribi::kalman::QtKalmanFiltererMainDialog::on_button_save_graph_clicked()
 {
   const QString filename
     = QFileDialog::getSaveFileName(
@@ -296,7 +296,7 @@ void ribi::QtKalmanFiltererMainDialog::on_button_save_graph_clicked()
   assert(QFile::exists(filename));
 }
 
-void ribi::QtKalmanFiltererMainDialog::on_button_start_clicked()
+void ribi::kalman::QtKalmanFiltererMainDialog::on_button_start_clicked()
 {
 
   assert(this->m_model->CreateWhiteNoiseSystemParameters()->GetType()
@@ -328,27 +328,27 @@ void ribi::QtKalmanFiltererMainDialog::on_button_start_clicked()
 }
 
 
-void ribi::QtKalmanFiltererMainDialog::SetShowCalculation(const bool do_show)
+void ribi::kalman::QtKalmanFiltererMainDialog::SetShowCalculation(const bool do_show)
 {
   ui->box_show_calculation->setChecked(do_show);
 }
 
-void ribi::QtKalmanFiltererMainDialog::SetShowGraph(const bool do_show)
+void ribi::kalman::QtKalmanFiltererMainDialog::SetShowGraph(const bool do_show)
 {
   ui->box_show_graphs->setChecked(do_show);
 }
 
-void ribi::QtKalmanFiltererMainDialog::SetShowStatistics(const bool do_show)
+void ribi::kalman::QtKalmanFiltererMainDialog::SetShowStatistics(const bool do_show)
 {
   ui->box_show_statistics->setChecked(do_show);
 }
 
-void ribi::QtKalmanFiltererMainDialog::SetShowTable(const bool do_show)
+void ribi::kalman::QtKalmanFiltererMainDialog::SetShowTable(const bool do_show)
 {
   ui->box_show_table->setChecked(do_show);
 }
 
-void ribi::QtKalmanFiltererMainDialog::ShowCalculation(
+void ribi::kalman::QtKalmanFiltererMainDialog::ShowCalculation(
   const boost::shared_ptr<const KalmanFilterExperiment>& experiment)
 {
   assert(experiment);
@@ -394,7 +394,7 @@ void ribi::QtKalmanFiltererMainDialog::ShowCalculation(
   }
 }
 
-void ribi::QtKalmanFiltererMainDialog::ShowGraph(const boost::shared_ptr<const KalmanFilterExperiment>& experiment)
+void ribi::kalman::QtKalmanFiltererMainDialog::ShowGraph(const boost::shared_ptr<const KalmanFilterExperiment>& experiment)
 {
   assert(experiment);
   assert(experiment->IsValid());
@@ -552,7 +552,7 @@ void ribi::QtKalmanFiltererMainDialog::ShowGraph(const boost::shared_ptr<const K
   }
 }
 
-void ribi::QtKalmanFiltererMainDialog::ShowStatistics(const boost::shared_ptr<const KalmanFilterExperiment>& experiment)
+void ribi::kalman::QtKalmanFiltererMainDialog::ShowStatistics(const boost::shared_ptr<const KalmanFilterExperiment>& experiment)
 {
   assert(experiment);
   assert(experiment->IsValid());
@@ -620,7 +620,7 @@ void ribi::QtKalmanFiltererMainDialog::ShowStatistics(const boost::shared_ptr<co
 }
 
 
-void ribi::QtKalmanFiltererMainDialog::ShowTable(const boost::shared_ptr<const KalmanFilterExperiment>& experiment)
+void ribi::kalman::QtKalmanFiltererMainDialog::ShowTable(const boost::shared_ptr<const KalmanFilterExperiment>& experiment)
 {
   assert(experiment);
   assert(experiment->IsValid());
@@ -711,7 +711,7 @@ void ribi::QtKalmanFiltererMainDialog::ShowTable(const boost::shared_ptr<const K
 }
 
 #ifndef NDEBUG
-void ribi::QtKalmanFiltererMainDialog::Test()
+void ribi::kalman::QtKalmanFiltererMainDialog::Test()
 {
   {
     static bool is_tested = false;
@@ -719,11 +719,11 @@ void ribi::QtKalmanFiltererMainDialog::Test()
     is_tested = true;
   }
   {
-    TRACE("Starting ribi::QtKalmanFiltererMainDialog::Test()")
-    TRACE("ribi::QtKalmanFiltererMainDialog::Test: Create self")
+    TRACE("Starting ribi::kalman::QtKalmanFiltererMainDialog::Test()")
+    TRACE("ribi::kalman::QtKalmanFiltererMainDialog::Test: Create self")
     {
       const boost::shared_ptr<QtKalmanFiltererMainDialog> d
-        = ribi::QtKalmanFiltererMainDialog::Create();
+        = ribi::kalman::QtKalmanFiltererMainDialog::Create();
       assert(d);
       assert(d->m_model);
       d->m_model->SetNumberOfTimesteps(2); //Otherwise these tests take too long
@@ -733,11 +733,11 @@ void ribi::QtKalmanFiltererMainDialog::Test()
       d->SetShowTable(true);
       d->on_button_start_clicked();
     }
-    TRACE("ribi::QtKalmanFiltererMainDialog::Test: (1/2) Click on example x and write these to a DokuWiki file")
-    TRACE("ribi::QtKalmanFiltererMainDialog::Test: (2/2) Click on example y and read the file from x")
+    TRACE("ribi::kalman::QtKalmanFiltererMainDialog::Test: (1/2) Click on example x and write these to a DokuWiki file")
+    TRACE("ribi::kalman::QtKalmanFiltererMainDialog::Test: (2/2) Click on example y and read the file from x")
     {
       const boost::shared_ptr<QtKalmanFiltererMainDialog> d
-        = ribi::QtKalmanFiltererMainDialog::Create();
+        = ribi::kalman::QtKalmanFiltererMainDialog::Create();
       assert(d);
       assert(d->m_model);
       assert(d->m_experiment_dialog);
@@ -763,13 +763,13 @@ void ribi::QtKalmanFiltererMainDialog::Test()
       //Delete file
       std::remove(filename.c_str());
     }
-    TRACE("Finished ribi::QtKalmanFiltererMainDialog::Test()")
+    TRACE("Finished ribi::kalman::QtKalmanFiltererMainDialog::Test()")
   }
 
 }
 #endif
 
-void ribi::QtKalmanFiltererMainDialog::on_tab_context_currentChanged(int index)
+void ribi::kalman::QtKalmanFiltererMainDialog::on_tab_context_currentChanged(int index)
 {
   assert(index == ui->tab_context->currentIndex());
   if (index == 0)
@@ -782,7 +782,7 @@ void ribi::QtKalmanFiltererMainDialog::on_tab_context_currentChanged(int index)
   }
 }
 
-void ribi::QtKalmanFiltererMainDialog::OnNewContext(const std::string context)
+void ribi::kalman::QtKalmanFiltererMainDialog::OnNewContext(const std::string context)
 {
   if (ui->edit_context->toPlainText().toStdString() != context)
   {
@@ -800,7 +800,7 @@ void ribi::QtKalmanFiltererMainDialog::OnNewContext(const std::string context)
 
 }
 
-void ribi::QtKalmanFiltererMainDialog::on_edit_context_textChanged()
+void ribi::kalman::QtKalmanFiltererMainDialog::on_edit_context_textChanged()
 {
   this->m_model->SetContext(ui->edit_context->toPlainText().toStdString());
 }

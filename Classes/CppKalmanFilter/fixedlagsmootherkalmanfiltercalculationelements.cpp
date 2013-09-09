@@ -6,7 +6,7 @@
 
 #include "standardkalmanfiltercalculationelements.h"
 
-ribi::FixedLagSmootherKalmanFilterCalculationElements::FixedLagSmootherKalmanFilterCalculationElements(
+ribi::kalman::FixedLagSmootherKalmanFilterCalculationElements::FixedLagSmootherKalmanFilterCalculationElements(
   const boost::numeric::ublas::vector<double>& measurement,
   const boost::numeric::ublas::vector<double>& predicted_state,
   const boost::numeric::ublas::vector<double>& previous_state_estimate,
@@ -21,7 +21,7 @@ ribi::FixedLagSmootherKalmanFilterCalculationElements::FixedLagSmootherKalmanFil
   //... nothing to check left
 }
 
-void ribi::FixedLagSmootherKalmanFilterCalculationElements::Clear()
+void ribi::kalman::FixedLagSmootherKalmanFilterCalculationElements::Clear()
 {
   KalmanFilterCalculationElements::Clear();
 
@@ -29,7 +29,7 @@ void ribi::FixedLagSmootherKalmanFilterCalculationElements::Clear()
   //m_updated_covariance = boost::numeric::ublas::matrix<double>();
 }
 
-const boost::shared_ptr<ribi::KalmanFilterCalculationElements> ribi::FixedLagSmootherKalmanFilterCalculationElements::Clone() const
+const boost::shared_ptr<ribi::kalman::KalmanFilterCalculationElements> ribi::kalman::FixedLagSmootherKalmanFilterCalculationElements::Clone() const
 {
   boost::shared_ptr<KalmanFilterCalculationElements> p;
   assert(p);
@@ -37,7 +37,7 @@ const boost::shared_ptr<ribi::KalmanFilterCalculationElements> ribi::FixedLagSmo
 }
 
 
-bool ribi::FixedLagSmootherKalmanFilterCalculationElements::IsComplete() const
+bool ribi::kalman::FixedLagSmootherKalmanFilterCalculationElements::IsComplete() const
 {
   const std::size_t sz = GetMeasurement().size();
   return
@@ -52,7 +52,7 @@ bool ribi::FixedLagSmootherKalmanFilterCalculationElements::IsComplete() const
     && sz == GetPreviousState().size();
 }
 
-void ribi::FixedLagSmootherKalmanFilterCalculationElements::SetStandardCalculationElement(
+void ribi::kalman::FixedLagSmootherKalmanFilterCalculationElements::SetStandardCalculationElement(
   const boost::shared_ptr<StandardKalmanFilterCalculationElements>& standard_calculation)
 {
   assert(!m_standard_calculation);

@@ -9,6 +9,7 @@
 #include "standardkalmanfilterparameters.h"
 
 namespace ribi {
+namespace kalman {
 
 struct FixedLagSmootherKalmanFilterParameters : public KalmanFilterParameters
 {
@@ -47,6 +48,7 @@ struct FixedLagSmootherKalmanFilterParameters : public KalmanFilterParameters
   const boost::shared_ptr<const StandardKalmanFilterParameters> m_standard_parameters;
 };
 
+} //~namespace kalman
 } //~namespace ribi
 
 #endif // FIXEDLAGSMOOTHERKALMANFILTERPARAMETERS_H

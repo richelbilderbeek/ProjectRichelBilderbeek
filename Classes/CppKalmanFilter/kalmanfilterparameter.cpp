@@ -6,7 +6,7 @@
 #include <stdexcept>
 #include <boost/numeric/conversion/cast.hpp>
 
-const std::vector<ribi::KalmanFilterParameterType> ribi::KalmanFilterParameter::GetAll()
+const std::vector<ribi::kalman::KalmanFilterParameterType> ribi::kalman::KalmanFilterParameter::GetAll()
 {
   const std::vector<KalmanFilterParameterType> v {
     KalmanFilterParameterType::control,
@@ -24,17 +24,17 @@ const std::vector<ribi::KalmanFilterParameterType> ribi::KalmanFilterParameter::
   return v;
 }
 
-bool ribi::KalmanFilterParameter::IsMatrix(const KalmanFilterParameterType type)
+bool ribi::kalman::KalmanFilterParameter::IsMatrix(const KalmanFilterParameterType type)
 {
-  return !ribi::KalmanFilterParameter::IsVector(type);
+  return !ribi::kalman::KalmanFilterParameter::IsVector(type);
 }
 
-bool ribi::KalmanFilterParameter::IsVector(const KalmanFilterParameterType type)
+bool ribi::kalman::KalmanFilterParameter::IsVector(const KalmanFilterParameterType type)
 {
   return type == KalmanFilterParameterType::initial_state_estimate;
 }
 
-const std::string ribi::KalmanFilterParameter::ToDescription(const KalmanFilterParameterType type)
+const std::string ribi::kalman::KalmanFilterParameter::ToDescription(const KalmanFilterParameterType type)
 {
   switch (type)
   {
@@ -62,7 +62,7 @@ const std::string ribi::KalmanFilterParameter::ToDescription(const KalmanFilterP
   throw std::logic_error(__func__);
 }
 
-const std::string ribi::KalmanFilterParameter::ToName(const KalmanFilterParameterType type)
+const std::string ribi::kalman::KalmanFilterParameter::ToName(const KalmanFilterParameterType type)
 {
   switch (type)
   {
@@ -90,7 +90,7 @@ const std::string ribi::KalmanFilterParameter::ToName(const KalmanFilterParamete
   throw std::logic_error(__func__);
 }
 
-const std::string ribi::KalmanFilterParameter::ToSymbol(const KalmanFilterParameterType type)
+const std::string ribi::kalman::KalmanFilterParameter::ToSymbol(const KalmanFilterParameterType type)
 {
   switch (type)
   {

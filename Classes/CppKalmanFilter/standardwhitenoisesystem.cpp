@@ -11,7 +11,7 @@
 #include "trace.h"
 #include "standardwhitenoisesystemparameters.h"
 
-ribi::StandardWhiteNoiseSystem::StandardWhiteNoiseSystem(
+ribi::kalman::StandardWhiteNoiseSystem::StandardWhiteNoiseSystem(
   const boost::shared_ptr<const WhiteNoiseSystemParameters>& parameters)
   : WhiteNoiseSystem{parameters},
     m_parameters{boost::dynamic_pointer_cast<const StandardWhiteNoiseSystemParameters>(parameters)}
@@ -19,19 +19,19 @@ ribi::StandardWhiteNoiseSystem::StandardWhiteNoiseSystem(
   assert(m_parameters);
 }
 
-const std::string ribi::StandardWhiteNoiseSystem::GetVersion()
+const std::string ribi::kalman::StandardWhiteNoiseSystem::GetVersion()
 {
   return "1.0";
 }
 
-const std::vector<std::string> ribi::StandardWhiteNoiseSystem::GetVersionHistory()
+const std::vector<std::string> ribi::kalman::StandardWhiteNoiseSystem::GetVersionHistory()
 {
   std::vector<std::string> v;
   v.push_back("2013-04-28: version 1.0: initial version");
   return v;
 }
 
-void ribi::StandardWhiteNoiseSystem::GoToNextState()
+void ribi::kalman::StandardWhiteNoiseSystem::GoToNextState()
 {
   //Create a no-input vector
   const auto sz = GetCurrentState().size();
@@ -39,7 +39,7 @@ void ribi::StandardWhiteNoiseSystem::GoToNextState()
   return GoToNextState(input);
 }
 
-void ribi::StandardWhiteNoiseSystem::GoToNextState(const boost::numeric::ublas::vector<double>& input)
+void ribi::kalman::StandardWhiteNoiseSystem::GoToNextState(const boost::numeric::ublas::vector<double>& input)
 {
   //First do a perfect transition
   assert(input.size() == GetCurrentState().size());
@@ -61,7 +61,7 @@ void ribi::StandardWhiteNoiseSystem::GoToNextState(const boost::numeric::ublas::
   SetNewCurrentState(new_state);
 }
 
-const boost::numeric::ublas::vector<double> ribi::StandardWhiteNoiseSystem::Measure() const
+const boost::numeric::ublas::vector<double> ribi::kalman::StandardWhiteNoiseSystem::Measure() const
 {
   const auto sz = GetCurrentState().size();
   assert(GetCurrentState().size() == m_parameters->GetMeasurementNoise().size());

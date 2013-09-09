@@ -10,7 +10,7 @@
 #include "gapsfilledwhitenoisesystemfactory.h"
 #include "gapsfilledwhitenoisesystemparameters.h"
 
-ribi::GapsFilledWhiteNoiseSystem::GapsFilledWhiteNoiseSystem(
+ribi::kalman::GapsFilledWhiteNoiseSystem::GapsFilledWhiteNoiseSystem(
   const boost::shared_ptr<const WhiteNoiseSystemParameters>& parameters)
   : WhiteNoiseSystem{parameters},
     m_last_measument{parameters->GetInitialState().size(),0.0},
@@ -33,19 +33,19 @@ ribi::GapsFilledWhiteNoiseSystem::GapsFilledWhiteNoiseSystem(
   #endif
 }
 
-const std::string ribi::GapsFilledWhiteNoiseSystem::GetVersion()
+const std::string ribi::kalman::GapsFilledWhiteNoiseSystem::GetVersion()
 {
   return "1.0";
 }
 
-const std::vector<std::string> ribi::GapsFilledWhiteNoiseSystem::GetVersionHistory()
+const std::vector<std::string> ribi::kalman::GapsFilledWhiteNoiseSystem::GetVersionHistory()
 {
-  std::vector<std::string> v;
-  v.push_back("2013-06-25: version 1.0: initial version");
-  return v;
+  return {
+    "2013-06-25: version 1.0: initial version"
+  };
 }
 
-void ribi::GapsFilledWhiteNoiseSystem::GoToNextState(const boost::numeric::ublas::vector<double>& input)
+void ribi::kalman::GapsFilledWhiteNoiseSystem::GoToNextState(const boost::numeric::ublas::vector<double>& input)
 {
   //Standard transition
   assert(input.size() == GetCurrentState().size());
@@ -67,7 +67,7 @@ void ribi::GapsFilledWhiteNoiseSystem::GoToNextState(const boost::numeric::ublas
   SetNewCurrentState(new_state);
 }
 
-const boost::numeric::ublas::vector<double> ribi::GapsFilledWhiteNoiseSystem::Measure() const
+const boost::numeric::ublas::vector<double> ribi::kalman::GapsFilledWhiteNoiseSystem::Measure() const
 {
   const boost::numeric::ublas::vector<int>& fs
     = this->GetGapsFilledWhiteNoiseSystemParameters()->GetMeasurementFrequency();
@@ -100,20 +100,20 @@ const boost::numeric::ublas::vector<double> ribi::GapsFilledWhiteNoiseSystem::Me
   return m_last_measument;
 }
 
-const boost::numeric::ublas::vector<double>& ribi::GapsFilledWhiteNoiseSystem::PeekAtRealState() const
+const boost::numeric::ublas::vector<double>& ribi::kalman::GapsFilledWhiteNoiseSystem::PeekAtRealState() const
 {
   return this->GetCurrentState();
 }
 
 #ifndef NDEBUG
-void ribi::GapsFilledWhiteNoiseSystem::Test()
+void ribi::kalman::GapsFilledWhiteNoiseSystem::Test()
 {
   {
     static bool is_tested = false;
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::GapsFilledWhiteNoiseSystem::Test()")
+  TRACE("Starting ribi::kalman::GapsFilledWhiteNoiseSystem::Test()")
   //Check if measurements are indeed lagged:
   //The system's real value should update immediatly, but this fresh measurement
   //must only be accessible after lag timesteps
@@ -154,6 +154,6 @@ void ribi::GapsFilledWhiteNoiseSystem::Test()
       my_system->GoToNextState(input);
     }
   }
-  TRACE("Finished ribi::GapsFilledWhiteNoiseSystem::Test()")
+  TRACE("Finished ribi::kalman::GapsFilledWhiteNoiseSystem::Test()")
 }
 #endif

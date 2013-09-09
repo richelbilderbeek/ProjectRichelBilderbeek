@@ -4,6 +4,7 @@
 #include "kalmanfiltercalculationelements.h"
 
 namespace ribi {
+namespace kalman {
 
 struct StandardKalmanFilterCalculationElements;
 
@@ -39,6 +40,7 @@ struct FixedLagSmootherKalmanFilterCalculationElements : public KalmanFilterCalc
 
 };
 
+} //~namespace kalman
 } //~namespace ribi
 
 #endif // FIXEDLAGSMOOTHERKALMANFILTERCALCULATIONELEMENTS_H

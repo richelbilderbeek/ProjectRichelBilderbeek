@@ -2,8 +2,8 @@
 
 #include "standardwhitenoisesystemfactory.h"
 
-const boost::shared_ptr<ribi::StandardWhiteNoiseSystem>
-  ribi::StandardWhiteNoiseSystemFactory::Create(
+const boost::shared_ptr<ribi::kalman::StandardWhiteNoiseSystem>
+  ribi::kalman::StandardWhiteNoiseSystemFactory::Create(
     const boost::numeric::ublas::matrix<double>& control,
     const boost::numeric::ublas::vector<double>& initial_state,
     const boost::numeric::ublas::vector<double>& real_measurement_noise,
@@ -11,7 +11,7 @@ const boost::shared_ptr<ribi::StandardWhiteNoiseSystem>
     const boost::numeric::ublas::matrix<double>& state_transition
   )
 {
-  boost::shared_ptr<const ribi::StandardWhiteNoiseSystemParameters> parameters{
+  boost::shared_ptr<const ribi::kalman::StandardWhiteNoiseSystemParameters> parameters{
     new StandardWhiteNoiseSystemParameters(
       control,
       initial_state,
@@ -28,8 +28,8 @@ const boost::shared_ptr<ribi::StandardWhiteNoiseSystem>
   return system;
 }
 
-const boost::shared_ptr<ribi::StandardWhiteNoiseSystem>
-  ribi::StandardWhiteNoiseSystemFactory::Create(
+const boost::shared_ptr<ribi::kalman::StandardWhiteNoiseSystem>
+  ribi::kalman::StandardWhiteNoiseSystemFactory::Create(
     const boost::shared_ptr<WhiteNoiseSystemParameters>& parameters
   )
 {

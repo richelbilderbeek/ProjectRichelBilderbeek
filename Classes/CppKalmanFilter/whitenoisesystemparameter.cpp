@@ -7,7 +7,7 @@
 #include <stdexcept>
 #include <boost/numeric/conversion/cast.hpp>
 
-const std::vector<ribi::WhiteNoiseSystemParameterType> ribi::WhiteNoiseSystemParameter::GetAll()
+const std::vector<ribi::kalman::WhiteNoiseSystemParameterType> ribi::kalman::WhiteNoiseSystemParameter::GetAll()
 {
   const std::vector<WhiteNoiseSystemParameterType> v {
     WhiteNoiseSystemParameterType::control,
@@ -23,7 +23,7 @@ const std::vector<ribi::WhiteNoiseSystemParameterType> ribi::WhiteNoiseSystemPar
   return v;
 }
 
-bool ribi::WhiteNoiseSystemParameter::IsMatrix(const WhiteNoiseSystemParameterType type)
+bool ribi::kalman::WhiteNoiseSystemParameter::IsMatrix(const WhiteNoiseSystemParameterType type)
 {
   switch (type)
   {
@@ -41,12 +41,12 @@ bool ribi::WhiteNoiseSystemParameter::IsMatrix(const WhiteNoiseSystemParameterTy
   throw std::logic_error(__func__);
 }
 
-bool ribi::WhiteNoiseSystemParameter::IsVector(const WhiteNoiseSystemParameterType type)
+bool ribi::kalman::WhiteNoiseSystemParameter::IsVector(const WhiteNoiseSystemParameterType type)
 {
-  return !ribi::WhiteNoiseSystemParameter::IsMatrix(type);
+  return !ribi::kalman::WhiteNoiseSystemParameter::IsMatrix(type);
 }
 
-const std::string ribi::WhiteNoiseSystemParameter::ToDescription(const WhiteNoiseSystemParameterType type)
+const std::string ribi::kalman::WhiteNoiseSystemParameter::ToDescription(const WhiteNoiseSystemParameterType type)
 {
   switch (type)
   {
@@ -70,7 +70,7 @@ const std::string ribi::WhiteNoiseSystemParameter::ToDescription(const WhiteNois
   throw std::logic_error(__func__);
 }
 
-const std::string ribi::WhiteNoiseSystemParameter::ToName(const WhiteNoiseSystemParameterType type)
+const std::string ribi::kalman::WhiteNoiseSystemParameter::ToName(const WhiteNoiseSystemParameterType type)
 {
   switch (type)
   {
@@ -94,7 +94,7 @@ const std::string ribi::WhiteNoiseSystemParameter::ToName(const WhiteNoiseSystem
   throw std::logic_error(__func__);
 }
 
-const std::string ribi::WhiteNoiseSystemParameter::ToSymbol(const WhiteNoiseSystemParameterType type)
+const std::string ribi::kalman::WhiteNoiseSystemParameter::ToSymbol(const WhiteNoiseSystemParameterType type)
 {
   switch (type)
   {

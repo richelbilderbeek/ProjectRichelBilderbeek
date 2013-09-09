@@ -2,9 +2,9 @@
 
 #include "whitenoisesystemtypes.h"
 
-boost::bimap<ribi::WhiteNoiseSystemType,std::string> ribi::WhiteNoiseSystemTypes::m_map;
+boost::bimap<ribi::kalman::WhiteNoiseSystemType,std::string> ribi::kalman::WhiteNoiseSystemTypes::m_map;
 
-const boost::bimap<ribi::WhiteNoiseSystemType,std::string> ribi::WhiteNoiseSystemTypes::CreateMap()
+const boost::bimap<ribi::kalman::WhiteNoiseSystemType,std::string> ribi::kalman::WhiteNoiseSystemTypes::CreateMap()
 {
   #ifndef NDEBUG
   Test();
@@ -20,7 +20,7 @@ const boost::bimap<ribi::WhiteNoiseSystemType,std::string> ribi::WhiteNoiseSyste
   return m;
 }
 
-const std::vector<ribi::WhiteNoiseSystemType> ribi::WhiteNoiseSystemTypes::GetAllTypes()
+const std::vector<ribi::kalman::WhiteNoiseSystemType> ribi::kalman::WhiteNoiseSystemTypes::GetAllTypes()
 {
   const std::vector<WhiteNoiseSystemType> v {
     WhiteNoiseSystemType::gaps_filled,
@@ -32,7 +32,7 @@ const std::vector<ribi::WhiteNoiseSystemType> ribi::WhiteNoiseSystemTypes::GetAl
 }
 
 #ifndef NDEBUG
-void ribi::WhiteNoiseSystemTypes::Test()
+void ribi::kalman::WhiteNoiseSystemTypes::Test()
 {
   {
     static bool is_tested = false;
@@ -53,7 +53,7 @@ void ribi::WhiteNoiseSystemTypes::Test()
 }
 #endif
 
-const std::string ribi::WhiteNoiseSystemTypes::ToStr(const WhiteNoiseSystemType type)
+const std::string ribi::kalman::WhiteNoiseSystemTypes::ToStr(const WhiteNoiseSystemType type)
 {
   if (m_map.left.empty()) m_map = CreateMap();
   assert(!m_map.left.empty());
@@ -62,7 +62,7 @@ const std::string ribi::WhiteNoiseSystemTypes::ToStr(const WhiteNoiseSystemType 
   return s;
 }
 
-ribi::WhiteNoiseSystemType ribi::WhiteNoiseSystemTypes::ToType(const std::string& s)
+ribi::kalman::WhiteNoiseSystemType ribi::kalman::WhiteNoiseSystemTypes::ToType(const std::string& s)
 {
   if (m_map.right.empty()) m_map = CreateMap();
   assert(!m_map.right.empty());

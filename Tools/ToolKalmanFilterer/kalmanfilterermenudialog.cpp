@@ -14,7 +14,7 @@
 #include "fixedlagsmootherkalmanfilter.h"
 #include "standardwhitenoisesystemparameters.h"
 
-const ribi::About ribi::KalmanFiltererMenuDialog::GetAbout()
+const ribi::About ribi::kalman::KalmanFiltererMenuDialog::GetAbout()
 {
   About a(
     "Richel Bilderbeek",
@@ -41,12 +41,12 @@ const ribi::About ribi::KalmanFiltererMenuDialog::GetAbout()
   return a;
 }
 
-const std::string ribi::KalmanFiltererMenuDialog::GetVersion()
+const std::string ribi::kalman::KalmanFiltererMenuDialog::GetVersion()
 {
   return "1.15";
 }
 
-const std::vector<std::string> ribi::KalmanFiltererMenuDialog::GetVersionHistory()
+const std::vector<std::string> ribi::kalman::KalmanFiltererMenuDialog::GetVersionHistory()
 {
   const std::vector<std::string> v {
     "2013-04-28: version 1.0: initial Qt4 and Boost 1.49.0 version that started from CppKalmanFilterExample13",

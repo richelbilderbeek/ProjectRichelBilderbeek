@@ -14,7 +14,7 @@
 
 #pragma GCC diagnostic pop
 
-ribi::QtFixedLagSmootherKalmanFilterCalculationDialog::QtFixedLagSmootherKalmanFilterCalculationDialog(QWidget *parent) :
+ribi::kalman::QtFixedLagSmootherKalmanFilterCalculationDialog::QtFixedLagSmootherKalmanFilterCalculationDialog(QWidget *parent) :
   QtKalmanFilterCalculationDialog(parent),
   ui(new Ui::QtFixedLagSmootherKalmanFilterCalculationDialog)
 {
@@ -46,12 +46,12 @@ ribi::QtFixedLagSmootherKalmanFilterCalculationDialog::QtFixedLagSmootherKalmanF
   );
 }
 
-ribi::QtFixedLagSmootherKalmanFilterCalculationDialog::~QtFixedLagSmootherKalmanFilterCalculationDialog()
+ribi::kalman::QtFixedLagSmootherKalmanFilterCalculationDialog::~QtFixedLagSmootherKalmanFilterCalculationDialog()
 {
   delete ui;
 }
 
-const std::vector<QTableWidget *> ribi::QtFixedLagSmootherKalmanFilterCalculationDialog::CollectMatrices() const
+const std::vector<QTableWidget *> ribi::kalman::QtFixedLagSmootherKalmanFilterCalculationDialog::CollectMatrices() const
 {
   std::vector<QTableWidget *> v;
   /*
@@ -64,7 +64,7 @@ const std::vector<QTableWidget *> ribi::QtFixedLagSmootherKalmanFilterCalculatio
   return v;
 }
 
-const std::vector<QTableWidget *> ribi::QtFixedLagSmootherKalmanFilterCalculationDialog::CollectVectors() const
+const std::vector<QTableWidget *> ribi::kalman::QtFixedLagSmootherKalmanFilterCalculationDialog::CollectVectors() const
 {
   std::vector<QTableWidget *> v;
   /*
@@ -76,7 +76,7 @@ const std::vector<QTableWidget *> ribi::QtFixedLagSmootherKalmanFilterCalculatio
   return v;
 }
 
-void ribi::QtFixedLagSmootherKalmanFilterCalculationDialog::SetFixedLagSmootherCalculationElements(
+void ribi::kalman::QtFixedLagSmootherKalmanFilterCalculationDialog::SetFixedLagSmootherCalculationElements(
   const boost::shared_ptr<const FixedLagSmootherKalmanFilterCalculationElements>& calculation_elements)
 {
   assert(calculation_elements);
@@ -85,45 +85,45 @@ void ribi::QtFixedLagSmootherKalmanFilterCalculationDialog::SetFixedLagSmootherC
   this->SetPreviousStateEstimate(calculation_elements->GetPreviousState());
 }
 
-void ribi::QtFixedLagSmootherKalmanFilterCalculationDialog::SetControl(const boost::numeric::ublas::matrix<double>& )
+void ribi::kalman::QtFixedLagSmootherKalmanFilterCalculationDialog::SetControl(const boost::numeric::ublas::matrix<double>& )
 {
   //QtMatrix::MatrixToTable(m,ui->table_control);
 }
 
-void ribi::QtFixedLagSmootherKalmanFilterCalculationDialog::SetInput(const boost::numeric::ublas::vector<double>& )
+void ribi::kalman::QtFixedLagSmootherKalmanFilterCalculationDialog::SetInput(const boost::numeric::ublas::vector<double>& )
 {
   //QtMatrix::UblasVectorDoubleToTable(m,ui->table_input);
 }
 
-void ribi::QtFixedLagSmootherKalmanFilterCalculationDialog::SetEstimatedOptimalKalmanGain(const boost::numeric::ublas::matrix<double>& )
+void ribi::kalman::QtFixedLagSmootherKalmanFilterCalculationDialog::SetEstimatedOptimalKalmanGain(const boost::numeric::ublas::matrix<double>& )
 {
   //QtMatrix::MatrixToTable(m,ui->table_gain_1);
   //QtMatrix::MatrixToTable(m,ui->table_gain_2);
 }
 
-void ribi::QtFixedLagSmootherKalmanFilterCalculationDialog::SetMeasurement(const boost::numeric::ublas::vector<double>& )
+void ribi::kalman::QtFixedLagSmootherKalmanFilterCalculationDialog::SetMeasurement(const boost::numeric::ublas::vector<double>& )
 {
   //QtMatrix::UblasVectorDoubleToTable(m,ui->table_measurement);
 }
 
-void ribi::QtFixedLagSmootherKalmanFilterCalculationDialog::SetObservation(const boost::numeric::ublas::matrix<double>& )
+void ribi::kalman::QtFixedLagSmootherKalmanFilterCalculationDialog::SetObservation(const boost::numeric::ublas::matrix<double>& )
 {
   //QtMatrix::MatrixToTable(m,ui->table_observation_model);
 }
 
 
-void ribi::QtFixedLagSmootherKalmanFilterCalculationDialog::SetPredictedState(const boost::numeric::ublas::vector<double>& )
+void ribi::kalman::QtFixedLagSmootherKalmanFilterCalculationDialog::SetPredictedState(const boost::numeric::ublas::vector<double>& )
 {
   //QtMatrix::UblasVectorDoubleToTable(m,ui->table_state_predicted);
 }
 
-void ribi::QtFixedLagSmootherKalmanFilterCalculationDialog::SetPreviousStateEstimate(
+void ribi::kalman::QtFixedLagSmootherKalmanFilterCalculationDialog::SetPreviousStateEstimate(
   const boost::numeric::ublas::vector<double>& )
 {
   //QtMatrix::UblasVectorDoubleToTable(m,ui->table_previous_state_estimate);
 }
 
-void ribi::QtFixedLagSmootherKalmanFilterCalculationDialog::SetStateNames(const std::vector<std::string>& names)
+void ribi::kalman::QtFixedLagSmootherKalmanFilterCalculationDialog::SetStateNames(const std::vector<std::string>& names)
 {
   const int n = boost::numeric_cast<int>(names.size());
   //Matrices
@@ -201,18 +201,18 @@ void ribi::QtFixedLagSmootherKalmanFilterCalculationDialog::SetStateNames(const 
   }
 }
 
-void ribi::QtFixedLagSmootherKalmanFilterCalculationDialog::SetStateTransition(const boost::numeric::ublas::matrix<double>& m)
+void ribi::kalman::QtFixedLagSmootherKalmanFilterCalculationDialog::SetStateTransition(const boost::numeric::ublas::matrix<double>& m)
 {
   QtMatrix::MatrixToTable(m,ui->table_state_transition);
 }
 
-void ribi::QtFixedLagSmootherKalmanFilterCalculationDialog::SetTime(const int i)
+void ribi::kalman::QtFixedLagSmootherKalmanFilterCalculationDialog::SetTime(const int i)
 {
   const std::string s = "Time: " + boost::lexical_cast<std::string>(i);
   ui->label_time->setText(s.c_str());
 }
 
-void ribi::QtFixedLagSmootherKalmanFilterCalculationDialog::ShowCalculation(const int i, const boost::shared_ptr<const KalmanFilterExperiment>& experiment)
+void ribi::kalman::QtFixedLagSmootherKalmanFilterCalculationDialog::ShowCalculation(const int i, const boost::shared_ptr<const KalmanFilterExperiment>& experiment)
 {
   assert(experiment);
   assert(experiment->GetKalmanFilter());

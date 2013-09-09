@@ -4,7 +4,7 @@
 
 #include <cassert>
 
-ribi::StandardKalmanFilterCalculationElements::StandardKalmanFilterCalculationElements(
+ribi::kalman::StandardKalmanFilterCalculationElements::StandardKalmanFilterCalculationElements(
   //Base
   const boost::numeric::ublas::vector<double>& measurement,
   const boost::numeric::ublas::vector<double>& predicted_state,
@@ -53,7 +53,7 @@ ribi::StandardKalmanFilterCalculationElements::StandardKalmanFilterCalculationEl
   #endif
 }
 
-void ribi::StandardKalmanFilterCalculationElements::Clear()
+void ribi::kalman::StandardKalmanFilterCalculationElements::Clear()
 {
   KalmanFilterCalculationElements::Clear();
   m_innovation = boost::numeric::ublas::vector<double>();
@@ -65,7 +65,7 @@ void ribi::StandardKalmanFilterCalculationElements::Clear()
   m_updated_covariance = boost::numeric::ublas::matrix<double>();
 }
 
-const boost::shared_ptr<ribi::KalmanFilterCalculationElements> ribi::StandardKalmanFilterCalculationElements::Clone() const
+const boost::shared_ptr<ribi::kalman::KalmanFilterCalculationElements> ribi::kalman::StandardKalmanFilterCalculationElements::Clone() const
 {
   const boost::shared_ptr<KalmanFilterCalculationElements> p(
     new StandardKalmanFilterCalculationElements(
@@ -88,7 +88,7 @@ const boost::shared_ptr<ribi::KalmanFilterCalculationElements> ribi::StandardKal
   return p;
 }
 
-bool ribi::StandardKalmanFilterCalculationElements::IsComplete() const
+bool ribi::kalman::StandardKalmanFilterCalculationElements::IsComplete() const
 {
   const std::size_t sz = m_innovation.size();
   return
@@ -112,41 +112,41 @@ bool ribi::StandardKalmanFilterCalculationElements::IsComplete() const
     && sz == GetUpdatedState().size();
 }
 
-void ribi::StandardKalmanFilterCalculationElements::SetInnovation(const boost::numeric::ublas::vector<double>& innovation)
+void ribi::kalman::StandardKalmanFilterCalculationElements::SetInnovation(const boost::numeric::ublas::vector<double>& innovation)
 {
   assert(m_innovation.empty());
   m_innovation = innovation;
 }
 
-void ribi::StandardKalmanFilterCalculationElements::SetInnovationCovariance(const boost::numeric::ublas::matrix<double>& innovation_covariance)
+void ribi::kalman::StandardKalmanFilterCalculationElements::SetInnovationCovariance(const boost::numeric::ublas::matrix<double>& innovation_covariance)
 {
   assert(m_innovation_covariance.size1() == 0);
   assert(m_innovation_covariance.size2() == 0);
   m_innovation_covariance = innovation_covariance;
 }
 
-void ribi::StandardKalmanFilterCalculationElements::SetKalmanGain(const boost::numeric::ublas::matrix<double>& kalman_gain)
+void ribi::kalman::StandardKalmanFilterCalculationElements::SetKalmanGain(const boost::numeric::ublas::matrix<double>& kalman_gain)
 {
   assert(m_kalman_gain.size1() == 0);
   assert(m_kalman_gain.size2() == 0);
   m_kalman_gain = kalman_gain;
 }
 
-void ribi::StandardKalmanFilterCalculationElements::SetPredictedCovariance(const boost::numeric::ublas::matrix<double>& predicted_covariance)
+void ribi::kalman::StandardKalmanFilterCalculationElements::SetPredictedCovariance(const boost::numeric::ublas::matrix<double>& predicted_covariance)
 {
   assert(m_predicted_covariance.size1() == 0);
   assert(m_predicted_covariance.size2() == 0);
   m_predicted_covariance = predicted_covariance;
 }
 
-void ribi::StandardKalmanFilterCalculationElements::SetPreviousCovarianceEstimate(const boost::numeric::ublas::matrix<double>& previous_covariance_estimate)
+void ribi::kalman::StandardKalmanFilterCalculationElements::SetPreviousCovarianceEstimate(const boost::numeric::ublas::matrix<double>& previous_covariance_estimate)
 {
   assert(m_previous_covariance_estimate.size1() == 0);
   assert(m_previous_covariance_estimate.size2() == 0);
   m_previous_covariance_estimate = previous_covariance_estimate;
 }
 
-void ribi::StandardKalmanFilterCalculationElements::SetUpdatedCovariance(const boost::numeric::ublas::matrix<double>& updated_covariance)
+void ribi::kalman::StandardKalmanFilterCalculationElements::SetUpdatedCovariance(const boost::numeric::ublas::matrix<double>& updated_covariance)
 {
   assert(m_updated_covariance.size1() == 0);
   assert(m_updated_covariance.size2() == 0);

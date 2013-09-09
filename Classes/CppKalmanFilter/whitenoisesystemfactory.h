@@ -6,6 +6,7 @@
 #include "whitenoisesystemparameters.h"
 
 namespace ribi {
+namespace kalman {
 
 struct WhiteNoiseSystemFactory
 {
@@ -13,6 +14,7 @@ struct WhiteNoiseSystemFactory
     const boost::shared_ptr<WhiteNoiseSystemParameters>& parameters);
 };
 
+} //~namespace kalman
 } //~namespace ribi
 
 #endif // WHITENOISESYSTEMFACTORY_H

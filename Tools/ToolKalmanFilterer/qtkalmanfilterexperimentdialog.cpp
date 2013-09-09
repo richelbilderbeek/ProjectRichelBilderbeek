@@ -49,7 +49,7 @@
 #include "whitenoisesystemparameter.h"
 #include "whitenoisesystemtypes.h"
 
-ribi::QtKalmanFilterExperimentDialog::QtKalmanFilterExperimentDialog(
+ribi::kalman::QtKalmanFilterExperimentDialog::QtKalmanFilterExperimentDialog(
   const boost::shared_ptr<QtKalmanFilterExperimentModel> model,
   QWidget *parent)
   : QDialog(parent),
@@ -124,15 +124,15 @@ ribi::QtKalmanFilterExperimentDialog::QtKalmanFilterExperimentDialog(
 
   //Connect clicking on the example buttons to setting (and showing) these
   m_examples_dialog->m_signal_example.connect(
-    boost::bind(&ribi::QtKalmanFilterExperimentDialog::SetExample,this,boost::lambda::_1));
+    boost::bind(&ribi::kalman::QtKalmanFilterExperimentDialog::SetExample,this,boost::lambda::_1));
 
   //When the model changes its number of timesteps, also display this new number
   m_model->m_signal_number_of_timesteps_changed.connect(
-    boost::bind(&ribi::QtKalmanFilterExperimentDialog::SetNumberOfTimesteps,this,boost::lambda::_1));
+    boost::bind(&ribi::kalman::QtKalmanFilterExperimentDialog::SetNumberOfTimesteps,this,boost::lambda::_1));
 
   //Make the white noise system parameters follow the possible tab changes in parameters
   this->GetFilterDialog()->m_signal_kalman_filter_type_changed.connect(
-    boost::bind(&ribi::QtKalmanFilterExperimentDialog::SetKalmanFilterType,this,boost::lambda::_1));
+    boost::bind(&ribi::kalman::QtKalmanFilterExperimentDialog::SetKalmanFilterType,this,boost::lambda::_1));
   //QObject::connect(
   //  this->m_filter_dialog,SIGNAL(signal_kalman_filter_type_changed(KalmanFilterType)),
   //  this,SLOT(SetKalmanFilterType(KalmanFilterType)));
@@ -142,7 +142,7 @@ ribi::QtKalmanFilterExperimentDialog::QtKalmanFilterExperimentDialog(
   assert(IsValid());
 }
 
-ribi::QtKalmanFilterExperimentDialog::~QtKalmanFilterExperimentDialog()
+ribi::kalman::QtKalmanFilterExperimentDialog::~QtKalmanFilterExperimentDialog()
 {
   delete ui;
   delete m_examples_dialog;
@@ -150,31 +150,31 @@ ribi::QtKalmanFilterExperimentDialog::~QtKalmanFilterExperimentDialog()
   delete m_noise_parameters_dialog;
 }
 
-void ribi::QtKalmanFilterExperimentDialog::ClickExample(const int i)
+void ribi::kalman::QtKalmanFilterExperimentDialog::ClickExample(const int i)
 {
   this->m_examples_dialog->EmitExample(i);
   assert(IsValid());
 }
 
-const ribi::QtKalmanFilterExamplesDialog * ribi::QtKalmanFilterExperimentDialog::GetExamplesDialog() const
+const ribi::kalman::QtKalmanFilterExamplesDialog * ribi::kalman::QtKalmanFilterExperimentDialog::GetExamplesDialog() const
 {
   assert(m_examples_dialog);
   return m_examples_dialog;
 }
 
-ribi::QtKalmanFilterExamplesDialog * ribi::QtKalmanFilterExperimentDialog::GetExamplesDialog()
+ribi::kalman::QtKalmanFilterExamplesDialog * ribi::kalman::QtKalmanFilterExperimentDialog::GetExamplesDialog()
 {
   assert(m_examples_dialog);
   return m_examples_dialog;
 }
 
-int ribi::QtKalmanFilterExperimentDialog::GetNumberOfTimesteps() const
+int ribi::kalman::QtKalmanFilterExperimentDialog::GetNumberOfTimesteps() const
 {
   return ui->box_n_timesteps->value();
 }
 
 #ifndef NDEBUG
-bool ribi::QtKalmanFilterExperimentDialog::IsValid() const
+bool ribi::kalman::QtKalmanFilterExperimentDialog::IsValid() const
 {
   if (this->GetNumberOfTimesteps() != m_model->GetNumberOfTimesteps())
   {
@@ -199,14 +199,14 @@ bool ribi::QtKalmanFilterExperimentDialog::IsValid() const
 }
 #endif
 
-void ribi::QtKalmanFilterExperimentDialog::keyPressEvent(QKeyEvent * event)
+void ribi::kalman::QtKalmanFilterExperimentDialog::keyPressEvent(QKeyEvent * event)
 {
   if (event->key() == Qt::Key_Escape) return;
   QDialog::keyPressEvent(event);
 }
 
 
-void ribi::QtKalmanFilterExperimentDialog::LoadFromDokuWiki(const std::string& filename)
+void ribi::kalman::QtKalmanFilterExperimentDialog::LoadFromDokuWiki(const std::string& filename)
 {
   assert(QFile::exists(filename.c_str()));
   std::string text;
@@ -223,7 +223,7 @@ void ribi::QtKalmanFilterExperimentDialog::LoadFromDokuWiki(const std::string& f
   assert(IsValid());
 }
 
-void ribi::QtKalmanFilterExperimentDialog::on_box_n_timesteps_valueChanged(int arg1)
+void ribi::kalman::QtKalmanFilterExperimentDialog::on_box_n_timesteps_valueChanged(int arg1)
 {
   m_model->SetNumberOfTimesteps(arg1);
   assert(m_model->GetNumberOfTimesteps() == this->GetNumberOfTimesteps());
@@ -234,7 +234,7 @@ void ribi::QtKalmanFilterExperimentDialog::on_box_n_timesteps_valueChanged(int a
 }
 
 
-void ribi::QtKalmanFilterExperimentDialog::on_button_add_state_clicked()
+void ribi::kalman::QtKalmanFilterExperimentDialog::on_button_add_state_clicked()
 {
   //Get the state names
   QAbstractTableModel * const abstract_model
@@ -249,7 +249,7 @@ void ribi::QtKalmanFilterExperimentDialog::on_button_add_state_clicked()
   assert(IsValid());
 }
 
-void ribi::QtKalmanFilterExperimentDialog::on_button_remove_state_clicked()
+void ribi::kalman::QtKalmanFilterExperimentDialog::on_button_remove_state_clicked()
 {
   //Get the state names
   QAbstractTableModel * const abstract_model
@@ -266,7 +266,7 @@ void ribi::QtKalmanFilterExperimentDialog::on_button_remove_state_clicked()
   assert(IsValid());
 }
 
-void ribi::QtKalmanFilterExperimentDialog::on_button_load_clicked()
+void ribi::kalman::QtKalmanFilterExperimentDialog::on_button_load_clicked()
 {
   if (ui->box_save->currentIndex() == 1)
   {
@@ -314,7 +314,7 @@ void ribi::QtKalmanFilterExperimentDialog::on_button_load_clicked()
   assert(IsValid());
 }
 
-void ribi::QtKalmanFilterExperimentDialog::SaveToDokuWiki(const std::string& filename) const
+void ribi::kalman::QtKalmanFilterExperimentDialog::SaveToDokuWiki(const std::string& filename) const
 {
   const std::string text = this->m_model->ToDokuWiki();
   std::ofstream f(filename.c_str());
@@ -322,7 +322,7 @@ void ribi::QtKalmanFilterExperimentDialog::SaveToDokuWiki(const std::string& fil
 }
 
 
-void ribi::QtKalmanFilterExperimentDialog::on_button_save_clicked()
+void ribi::kalman::QtKalmanFilterExperimentDialog::on_button_save_clicked()
 {
   std::string filter;
   switch (ui->box_save->currentIndex())
@@ -365,7 +365,7 @@ void ribi::QtKalmanFilterExperimentDialog::on_button_save_clicked()
   }
 }
 
-void ribi::QtKalmanFilterExperimentDialog::SetExample(const KalmanFilterExample * const example_raw)
+void ribi::kalman::QtKalmanFilterExperimentDialog::SetExample(const KalmanFilterExample * const example_raw)
 {
   assert(example_raw);
   const boost::shared_ptr<const KalmanFilterExample> example(example_raw);
@@ -393,7 +393,7 @@ void ribi::QtKalmanFilterExperimentDialog::SetExample(const KalmanFilterExample 
   assert(IsValid());
 }
 
-void ribi::QtKalmanFilterExperimentDialog::SetKalmanFilterType(const KalmanFilterType new_type)
+void ribi::kalman::QtKalmanFilterExperimentDialog::SetKalmanFilterType(const KalmanFilterType new_type)
 {
   if (m_filter_dialog->GetKalmanFilterType() != new_type)
   {
@@ -409,7 +409,7 @@ void ribi::QtKalmanFilterExperimentDialog::SetKalmanFilterType(const KalmanFilte
   //assert(IsValid());
 }
 
-void ribi::QtKalmanFilterExperimentDialog::SetNumberOfTimesteps(const int timesteps)
+void ribi::kalman::QtKalmanFilterExperimentDialog::SetNumberOfTimesteps(const int timesteps)
 {
   assert(timesteps > 0);
   ui->box_n_timesteps->setValue(timesteps);
@@ -423,14 +423,14 @@ void ribi::QtKalmanFilterExperimentDialog::SetNumberOfTimesteps(const int timest
 }
 
 #ifndef NDEBUG
-void ribi::QtKalmanFilterExperimentDialog::Test()
+void ribi::kalman::QtKalmanFilterExperimentDialog::Test()
 {
   {
     static bool is_tested = false;
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::QtKalmanFilterExperimentDialog::Test()")
+  TRACE("Starting ribi::kalman::QtKalmanFilterExperimentDialog::Test()")
   //TRACE("Test QtWhiteNoiseSystemParametersDialog");
   {
     const boost::shared_ptr<QtKalmanFilterExperimentModel> model(
@@ -527,7 +527,7 @@ void ribi::QtKalmanFilterExperimentDialog::Test()
       }
     }
   }
-  TRACE("Finished ribi::QtKalmanFilterExperimentDialog::Test()")
+  TRACE("Finished ribi::kalman::QtKalmanFilterExperimentDialog::Test()")
 }
 #endif
 

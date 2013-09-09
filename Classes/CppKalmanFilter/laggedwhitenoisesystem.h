@@ -10,6 +10,7 @@
 #include "standardwhitenoisesystem.h"
 
 namespace ribi {
+namespace kalman {
 
 ///A lagged white noise system is a system that can be measured only after a certain number
 ///of periods.
@@ -62,6 +63,7 @@ struct LaggedWhiteNoiseSystem : public WhiteNoiseSystem
   #endif
 };
 
+} //~namespace kalman
 } //~namespace ribi
 
 #endif // LAGGEDWHITENOISESYSTEM_H

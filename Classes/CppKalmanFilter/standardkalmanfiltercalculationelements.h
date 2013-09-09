@@ -5,6 +5,7 @@
 #include "kalmanfiltercalculationelements.h"
 
 namespace ribi {
+namespace kalman {
 
 ///The elements of a standard Kalman filter calculation
 struct StandardKalmanFilterCalculationElements : public KalmanFilterCalculationElements
@@ -119,6 +120,7 @@ struct StandardKalmanFilterCalculationElements : public KalmanFilterCalculationE
   boost::numeric::ublas::matrix<double> m_updated_covariance;
 };
 
+} //~namespace kalman
 } //~namespace ribi
 
 #endif // STANDARDKALMANFILTERCALCULATIONELEMENTS_H

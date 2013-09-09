@@ -7,7 +7,7 @@
 #include "matrix.h"
 #include "trace.h"
 
-ribi::SteadyStateKalmanFilter::SteadyStateKalmanFilter(
+ribi::kalman::SteadyStateKalmanFilter::SteadyStateKalmanFilter(
   const boost::shared_ptr<KalmanFilterCalculationElements>& calculation,
   const boost::shared_ptr<const KalmanFilterParameters>& parameters)
   : KalmanFilter{calculation,parameters},
@@ -45,18 +45,18 @@ ribi::SteadyStateKalmanFilter::SteadyStateKalmanFilter(
   //m_last_calculation->SetUpdatedState(m_parameters->GetInitialStateEstimate());
 }
 
-int ribi::SteadyStateKalmanFilter::GetStateSize() const
+int ribi::kalman::SteadyStateKalmanFilter::GetStateSize() const
 {
   const int sz = boost::numeric_cast<int>(m_state_estimate.size());
   return sz;
 }
 
-const std::string ribi::SteadyStateKalmanFilter::GetVersion()
+const std::string ribi::kalman::SteadyStateKalmanFilter::GetVersion()
 {
   return "1.1";
 }
 
-const std::vector<std::string> ribi::SteadyStateKalmanFilter::GetVersionHistory()
+const std::vector<std::string> ribi::kalman::SteadyStateKalmanFilter::GetVersionHistory()
 {
   std::vector<std::string> v;
   v.push_back("2013-05-01: version 1.0: initial version");
@@ -64,7 +64,7 @@ const std::vector<std::string> ribi::SteadyStateKalmanFilter::GetVersionHistory(
   return v;
 }
 
-const boost::numeric::ublas::vector<double> ribi::SteadyStateKalmanFilter::PredictState(
+const boost::numeric::ublas::vector<double> ribi::kalman::SteadyStateKalmanFilter::PredictState(
   const boost::numeric::ublas::vector<double>& input) const
 {
   const boost::numeric::ublas::matrix<double> term_a
@@ -84,7 +84,7 @@ const boost::numeric::ublas::vector<double> ribi::SteadyStateKalmanFilter::Predi
   return state_prediction;
 }
 
-void ribi::SteadyStateKalmanFilter::SupplyMeasurementAndInput(
+void ribi::kalman::SteadyStateKalmanFilter::SupplyMeasurementAndInput(
   const boost::numeric::ublas::vector<double>& measurements,
   const boost::numeric::ublas::vector<double>& input)
 {

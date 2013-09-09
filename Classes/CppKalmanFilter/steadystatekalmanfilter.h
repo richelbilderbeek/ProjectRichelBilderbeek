@@ -13,6 +13,7 @@
 #pragma GCC diagnostic pop
 
 namespace ribi {
+namespace kalman {
 
 ///A discrete time Kalman filter
 struct SteadyStateKalmanFilter : public KalmanFilter
@@ -66,6 +67,7 @@ struct SteadyStateKalmanFilter : public KalmanFilter
 
 };
 
+} //~namespace kalman
 } //~namespace ribi
 
 #endif // STEADYSTATEKALMANFILTER_H

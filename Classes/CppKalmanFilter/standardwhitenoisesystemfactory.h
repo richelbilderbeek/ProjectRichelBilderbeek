@@ -10,6 +10,7 @@
 #pragma GCC diagnostic pop
 
 namespace ribi {
+namespace kalman {
 
 struct StandardWhiteNoiseSystemFactory
 {
@@ -25,6 +26,7 @@ struct StandardWhiteNoiseSystemFactory
 
 };
 
+} //~namespace kalman
 } //~namespace ribi
 
 #endif // STANDARDWHITENOISESYSTEMFACTORY_H

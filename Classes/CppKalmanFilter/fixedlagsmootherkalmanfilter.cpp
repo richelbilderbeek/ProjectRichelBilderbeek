@@ -7,7 +7,7 @@
 #include "trace.h"
 #include "standardkalmanfilterfactory.h"
 
-ribi::FixedLagSmootherKalmanFilter::FixedLagSmootherKalmanFilter(
+ribi::kalman::FixedLagSmootherKalmanFilter::FixedLagSmootherKalmanFilter(
   const boost::shared_ptr<FixedLagSmootherKalmanFilterCalculationElements>& calculation,
   const boost::shared_ptr<const KalmanFilterParameters>& parameters)
   : KalmanFilter{calculation,parameters},
@@ -27,7 +27,7 @@ ribi::FixedLagSmootherKalmanFilter::FixedLagSmootherKalmanFilter(
 }
 
 
-const boost::numeric::ublas::vector<boost::numeric::ublas::matrix<double> > ribi::FixedLagSmootherKalmanFilter::CreateInitialGains(
+const boost::numeric::ublas::vector<boost::numeric::ublas::matrix<double> > ribi::kalman::FixedLagSmootherKalmanFilter::CreateInitialGains(
   const int lag,
   const StandardKalmanFilter& filter)
 {
@@ -38,7 +38,7 @@ const boost::numeric::ublas::vector<boost::numeric::ublas::matrix<double> > ribi
   return v;
 }
 
-const boost::numeric::ublas::vector<boost::numeric::ublas::vector<double> > ribi::FixedLagSmootherKalmanFilter::CreateComplexInitialStates(
+const boost::numeric::ublas::vector<boost::numeric::ublas::vector<double> > ribi::kalman::FixedLagSmootherKalmanFilter::CreateComplexInitialStates(
   const boost::shared_ptr<const FixedLagSmootherKalmanFilterParameters>& parameters)
 {
   assert(parameters);
@@ -49,7 +49,7 @@ const boost::numeric::ublas::vector<boost::numeric::ublas::vector<double> > ribi
 }
 
 const boost::numeric::ublas::vector<boost::numeric::ublas::matrix<double> >
-  ribi::FixedLagSmootherKalmanFilter::CreateComplexTermA(
+  ribi::kalman::FixedLagSmootherKalmanFilter::CreateComplexTermA(
   const int lag,
   const int state_size)
 {
@@ -67,7 +67,7 @@ const boost::numeric::ublas::vector<boost::numeric::ublas::matrix<double> >
 }
 
 const boost::numeric::ublas::matrix<double>
-  ribi::FixedLagSmootherKalmanFilter::CreateTermA(
+  ribi::kalman::FixedLagSmootherKalmanFilter::CreateTermA(
   const int lag,
   const int state_size)
 {
@@ -81,7 +81,7 @@ const boost::numeric::ublas::matrix<double>
 }
 
 const boost::numeric::ublas::matrix<double >
-  ribi::FixedLagSmootherKalmanFilter::CreateTermB(
+  ribi::kalman::FixedLagSmootherKalmanFilter::CreateTermB(
     const int lag,
     const int state_size)
 {
@@ -98,7 +98,7 @@ const boost::numeric::ublas::matrix<double >
 
 
 const boost::numeric::ublas::matrix<boost::numeric::ublas::matrix<double> >
-  ribi::FixedLagSmootherKalmanFilter::CreateComplexTermB(
+  ribi::kalman::FixedLagSmootherKalmanFilter::CreateComplexTermB(
     const int lag,
     const int state_size)
 {
@@ -128,7 +128,7 @@ const boost::numeric::ublas::matrix<boost::numeric::ublas::matrix<double> >
   return v;
 }
 
-const boost::numeric::ublas::vector<double> ribi::FixedLagSmootherKalmanFilter::CreateInitialStates(
+const boost::numeric::ublas::vector<double> ribi::kalman::FixedLagSmootherKalmanFilter::CreateInitialStates(
   const boost::shared_ptr<const FixedLagSmootherKalmanFilterParameters>& parameters)
 {
   assert(parameters);
@@ -139,7 +139,7 @@ const boost::numeric::ublas::vector<double> ribi::FixedLagSmootherKalmanFilter::
   return v;
 }
 
-const boost::shared_ptr<const ribi::FixedLagSmootherKalmanFilterParameters> ribi::FixedLagSmootherKalmanFilter::DownCast(
+const boost::shared_ptr<const ribi::kalman::FixedLagSmootherKalmanFilterParameters> ribi::kalman::FixedLagSmootherKalmanFilter::DownCast(
   const boost::shared_ptr<const KalmanFilterParameters>& parameters)
 {
   #ifndef NDEBUG
@@ -158,19 +158,19 @@ const boost::shared_ptr<const ribi::FixedLagSmootherKalmanFilterParameters> ribi
 }
 
 
-const std::string ribi::FixedLagSmootherKalmanFilter::GetVersion()
+const std::string ribi::kalman::FixedLagSmootherKalmanFilter::GetVersion()
 {
   return "1.0";
 }
 
-const std::vector<std::string> ribi::FixedLagSmootherKalmanFilter::GetVersionHistory()
+const std::vector<std::string> ribi::kalman::FixedLagSmootherKalmanFilter::GetVersionHistory()
 {
   std::vector<std::string> v;
   v.push_back("2013-05-03: version 1.0: initial version");
   return v;
 }
 
-const boost::numeric::ublas::vector<double> ribi::FixedLagSmootherKalmanFilter::PredictState(
+const boost::numeric::ublas::vector<double> ribi::kalman::FixedLagSmootherKalmanFilter::PredictState(
   const boost::numeric::ublas::vector<double>& input) const
 {
   //
@@ -187,7 +187,7 @@ const boost::numeric::ublas::vector<double> ribi::FixedLagSmootherKalmanFilter::
 }
 
 
-void ribi::FixedLagSmootherKalmanFilter::SupplyMeasurementAndInput(
+void ribi::kalman::FixedLagSmootherKalmanFilter::SupplyMeasurementAndInput(
   const boost::numeric::ublas::vector<double>& x,
   const boost::numeric::ublas::vector<double>& input)
 {
@@ -298,7 +298,7 @@ void ribi::FixedLagSmootherKalmanFilter::SupplyMeasurementAndInput(
 }
 
 #ifndef NDEBUG
-void ribi::FixedLagSmootherKalmanFilter::Test()
+void ribi::kalman::FixedLagSmootherKalmanFilter::Test()
 {
   {
     static bool is_tested = false;
@@ -306,7 +306,7 @@ void ribi::FixedLagSmootherKalmanFilter::Test()
     is_tested = true;
   }
   //
-  TRACE("Starting ribi::FixedLagSmootherKalmanFilter::Test()")
+  TRACE("Starting ribi::kalman::FixedLagSmootherKalmanFilter::Test()")
   try
   {
     boost::numeric_cast<std::size_t>(-1);
@@ -357,6 +357,6 @@ void ribi::FixedLagSmootherKalmanFilter::Test()
       }
     }
   }
-  TRACE("Finished ribi::FixedLagSmootherKalmanFilter::Test()")
+  TRACE("Finished ribi::kalman::FixedLagSmootherKalmanFilter::Test()")
 }
 #endif

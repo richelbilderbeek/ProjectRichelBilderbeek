@@ -157,7 +157,7 @@ const std::vector<std::string> ribi::About::CreateVersionHistory() const
 
 const std::string ribi::About::GetAboutVersion()
 {
-  return "1.5";
+  return "1.6";
 }
 
 const std::vector<std::string> ribi::About::GetAboutVersionHistory()

@@ -2,6 +2,7 @@
 #define KALMANFILTEREXPERIMENTPARAMETERTYPE_H
 
 namespace ribi {
+namespace kalman {
 
 //#include <vector>
 
@@ -32,6 +33,7 @@ bool operator<(const KalmanFilterExperimentParameterType lhs, const KalmanFilter
 bool operator==(const KalmanFilterExperimentParameterType lhs, const KalmanFilterExperimentParameterType rhs);
 bool operator!=(const KalmanFilterExperimentParameterType lhs, const KalmanFilterExperimentParameterType rhs);
 
+} //~namespace kalman
 } //~namespace ribi
 
 #endif // KALMANFILTEREXPERIMENTPARAMETERTYPE_H

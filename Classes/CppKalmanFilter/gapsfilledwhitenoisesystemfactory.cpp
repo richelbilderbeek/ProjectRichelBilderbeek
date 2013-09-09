@@ -2,7 +2,7 @@
 
 #include "gapsfilledwhitenoisesystemfactory.h"
 
-const boost::shared_ptr<ribi::GapsFilledWhiteNoiseSystem> ribi::GapsFilledWhiteNoiseSystemFactory::Create(
+const boost::shared_ptr<ribi::kalman::GapsFilledWhiteNoiseSystem> ribi::kalman::GapsFilledWhiteNoiseSystemFactory::Create(
   const boost::numeric::ublas::matrix<double>& control,
   const boost::numeric::ublas::vector<double>& initial_state,
   const boost::numeric::ublas::vector<int>& measurement_frequency,
@@ -28,7 +28,7 @@ const boost::shared_ptr<ribi::GapsFilledWhiteNoiseSystem> ribi::GapsFilledWhiteN
   return system;
 }
 
-const boost::shared_ptr<ribi::GapsFilledWhiteNoiseSystem> ribi::GapsFilledWhiteNoiseSystemFactory::Create(
+const boost::shared_ptr<ribi::kalman::GapsFilledWhiteNoiseSystem> ribi::kalman::GapsFilledWhiteNoiseSystemFactory::Create(
   const boost::shared_ptr<WhiteNoiseSystemParameters>& general_parameters)
 {
   assert(general_parameters);

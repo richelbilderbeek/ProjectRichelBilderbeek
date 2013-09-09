@@ -6,7 +6,7 @@
 
 #include "standardkalmanfilterparameters.h"
 
-ribi::FixedLagSmootherKalmanFilterParameters::FixedLagSmootherKalmanFilterParameters(
+ribi::kalman::FixedLagSmootherKalmanFilterParameters::FixedLagSmootherKalmanFilterParameters(
   const boost::shared_ptr<StandardKalmanFilterParameters>& standard_parameters,
   const int lag)
   : KalmanFilterParameters(
@@ -21,7 +21,7 @@ ribi::FixedLagSmootherKalmanFilterParameters::FixedLagSmootherKalmanFilterParame
   assert(m_standard_parameters);
 }
 
-bool ribi::FixedLagSmootherKalmanFilterParameters::HasParameterType(const KalmanFilterParameterType type)
+bool ribi::kalman::FixedLagSmootherKalmanFilterParameters::HasParameterType(const KalmanFilterParameterType type)
 {
   return StandardKalmanFilterParameters::HasParameterType(type);
 }

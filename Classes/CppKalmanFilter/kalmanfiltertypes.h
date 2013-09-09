@@ -13,6 +13,7 @@
 #pragma GCC diagnostic pop
 
 namespace ribi {
+namespace kalman {
 
 ///Class to work on one or more KalmanFilterType instances
 struct KalmanFilterTypes
@@ -30,6 +31,7 @@ struct KalmanFilterTypes
   #endif
 };
 
+} //~namespace kalman
 } //~namespace ribi
 
 #endif // KALMANFILTERTYPES_H

@@ -9,16 +9,15 @@
 
 #include <QDialog>
 
-///NEVER FORGET: Do never use forward declarations in header files parsed by MOC
 #include <QTableWidget>
 #include "kalmanfilterexperiment.h"
-//#include "steadystatekalmanfiltercalculationelements.h"
 
 namespace Ui {
   class QtKalmanFilterCalculationDialog;
 }
 
 namespace ribi {
+namespace kalman {
 
 class QtKalmanFilterCalculationDialog : public QDialog
 {
@@ -40,6 +39,7 @@ private:
   Ui::QtKalmanFilterCalculationDialog *ui;
 };
 
+} //~namespace kalman
 } //~namespace ribi
 
 #endif // QTKALMANFILTERCALCULATIONDIALOG_H

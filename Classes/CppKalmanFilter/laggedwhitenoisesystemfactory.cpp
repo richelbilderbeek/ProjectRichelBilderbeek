@@ -2,7 +2,7 @@
 
 #include "laggedwhitenoisesystemfactory.h"
 
-const boost::shared_ptr<ribi::LaggedWhiteNoiseSystem> ribi::LaggedWhiteNoiseSystemFactory::Create(
+const boost::shared_ptr<ribi::kalman::LaggedWhiteNoiseSystem> ribi::kalman::LaggedWhiteNoiseSystemFactory::Create(
   const boost::numeric::ublas::matrix<double>& control,
   const boost::numeric::ublas::vector<double>& initial_state,
   const int lag,
@@ -28,7 +28,7 @@ const boost::shared_ptr<ribi::LaggedWhiteNoiseSystem> ribi::LaggedWhiteNoiseSyst
   return system;
 }
 
-const boost::shared_ptr<ribi::LaggedWhiteNoiseSystem> ribi::LaggedWhiteNoiseSystemFactory::Create(
+const boost::shared_ptr<ribi::kalman::LaggedWhiteNoiseSystem> ribi::kalman::LaggedWhiteNoiseSystemFactory::Create(
   const boost::shared_ptr<WhiteNoiseSystemParameters>& parameters)
 {
   assert(parameters);

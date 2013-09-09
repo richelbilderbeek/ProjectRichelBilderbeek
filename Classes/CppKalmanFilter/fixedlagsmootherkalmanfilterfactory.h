@@ -4,6 +4,7 @@
 #include "fixedlagsmootherkalmanfilter.h"
 
 namespace ribi {
+namespace kalman {
 
 ///Factory for FixedLagSmootherKalmanFilter
 struct FixedLagSmootherKalmanFilterFactory
@@ -12,6 +13,7 @@ struct FixedLagSmootherKalmanFilterFactory
     const boost::shared_ptr<const KalmanFilterParameters>& parameters);
 };
 
+} //~namespace kalman
 } //~namespace ribi
 
 #endif // FIXEDLAGSMOOTHERKALMANFILTERFACTORY_H

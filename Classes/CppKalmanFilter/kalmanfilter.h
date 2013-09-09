@@ -10,13 +10,11 @@
 #include "kalmanfiltercalculationelements.h"
 
 namespace ribi {
+namespace kalman {
 
 ///Kalman filter base class
 struct KalmanFilter : public boost::noncopyable
 {
-  ///ABC must have public virtual destructor
-  // * Herb Sutter, Andrei Alexandrescu. C++ coding standards: 101 rules, guidelines, and best practices.
-  //   ISBN: 0-32-111358-6. Item 50: 'Make base class destructors public and virtual, or protected and nonvirtual'
   virtual ~KalmanFilter() {}
 
   ///Obtain the Kalman filter type as an enum
@@ -56,6 +54,7 @@ struct KalmanFilter : public boost::noncopyable
   const boost::shared_ptr<const KalmanFilterParameters> m_parameters;
 };
 
+} //~namespace kalman
 } //~namespace ribi
 
 #endif // KALMANFILTER_H

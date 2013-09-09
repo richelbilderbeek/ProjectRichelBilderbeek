@@ -11,6 +11,7 @@
 #pragma GCC diagnostic pop
 
 namespace ribi {
+namespace kalman {
 
 struct StandardWhiteNoiseSystem : public WhiteNoiseSystem
 {
@@ -46,6 +47,7 @@ struct StandardWhiteNoiseSystem : public WhiteNoiseSystem
   const boost::shared_ptr<const StandardWhiteNoiseSystemParameters> m_parameters;
 };
 
+} //~namespace kalman
 } //~namespace ribi
 
 #endif // STANDARDWHITENOISESYSTEM_H

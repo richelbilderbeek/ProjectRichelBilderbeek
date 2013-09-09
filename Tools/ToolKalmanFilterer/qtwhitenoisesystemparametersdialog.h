@@ -28,6 +28,7 @@ namespace Ui {
 }
 
 namespace ribi {
+namespace kalman {
 
 class QtWhiteNoiseSystemParametersDialog : public QDialog
 {
@@ -83,6 +84,7 @@ private slots:
   #endif
 };
 
+} //~namespace kalman
 } //~namespace ribi
 
 #endif // QTWHITENOISESYSTEMPARAMETERSDIALOG

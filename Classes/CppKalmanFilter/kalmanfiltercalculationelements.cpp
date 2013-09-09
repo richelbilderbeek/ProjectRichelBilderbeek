@@ -4,7 +4,7 @@
 
 #include <cassert>
 
-ribi::KalmanFilterCalculationElements::KalmanFilterCalculationElements(
+ribi::kalman::KalmanFilterCalculationElements::KalmanFilterCalculationElements(
   const boost::numeric::ublas::vector<double>& measurement,
   const boost::numeric::ublas::vector<double>& predicted_state,
   const boost::numeric::ublas::vector<double>& previous_state_estimate,
@@ -24,37 +24,37 @@ ribi::KalmanFilterCalculationElements::KalmanFilterCalculationElements(
   #endif
 }
 
-void ribi::KalmanFilterCalculationElements::Clear()
+void ribi::kalman::KalmanFilterCalculationElements::Clear()
 {
   m_measurement = boost::numeric::ublas::vector<double>();
   m_predicted_state = boost::numeric::ublas::vector<double>();
   m_previous_state_estimate = boost::numeric::ublas::vector<double>();
   m_updated_state = boost::numeric::ublas::vector<double>();
   assert(m_measurement.size() == 0);
-  assert(!ribi::KalmanFilterCalculationElements::IsComplete());
+  assert(!ribi::kalman::KalmanFilterCalculationElements::IsComplete());
 }
 
-const boost::numeric::ublas::vector<double>& ribi::KalmanFilterCalculationElements::GetMeasurement() const
+const boost::numeric::ublas::vector<double>& ribi::kalman::KalmanFilterCalculationElements::GetMeasurement() const
 {
   return m_measurement;
 }
 
-const boost::numeric::ublas::vector<double>& ribi::KalmanFilterCalculationElements::GetPredictedState() const
+const boost::numeric::ublas::vector<double>& ribi::kalman::KalmanFilterCalculationElements::GetPredictedState() const
 {
   return m_predicted_state;
 }
 
-const boost::numeric::ublas::vector<double>& ribi::KalmanFilterCalculationElements::GetPreviousState() const
+const boost::numeric::ublas::vector<double>& ribi::kalman::KalmanFilterCalculationElements::GetPreviousState() const
 {
   return m_previous_state_estimate;
 }
 
-const boost::numeric::ublas::vector<double>& ribi::KalmanFilterCalculationElements::GetUpdatedState() const
+const boost::numeric::ublas::vector<double>& ribi::kalman::KalmanFilterCalculationElements::GetUpdatedState() const
 {
   return m_updated_state;
 }
 
-bool ribi::KalmanFilterCalculationElements::IsComplete() const
+bool ribi::kalman::KalmanFilterCalculationElements::IsComplete() const
 {
   const std::size_t sz = m_measurement.size();
   return sz != 0
@@ -65,25 +65,25 @@ bool ribi::KalmanFilterCalculationElements::IsComplete() const
 }
 
 
-void ribi::KalmanFilterCalculationElements::SetMeasurement(const boost::numeric::ublas::vector<double>& measurement)
+void ribi::kalman::KalmanFilterCalculationElements::SetMeasurement(const boost::numeric::ublas::vector<double>& measurement)
 {
   assert(m_measurement.empty());
   m_measurement = measurement;
 }
 
-void ribi::KalmanFilterCalculationElements::SetPredictedState(const boost::numeric::ublas::vector<double>& predicted_state)
+void ribi::kalman::KalmanFilterCalculationElements::SetPredictedState(const boost::numeric::ublas::vector<double>& predicted_state)
 {
   assert(m_predicted_state.empty());
   m_predicted_state = predicted_state;
 }
 
-void ribi::KalmanFilterCalculationElements::SetPreviousStateEstimate(const boost::numeric::ublas::vector<double>& previous_state_estimate)
+void ribi::kalman::KalmanFilterCalculationElements::SetPreviousStateEstimate(const boost::numeric::ublas::vector<double>& previous_state_estimate)
 {
   assert(m_previous_state_estimate.empty());
   m_previous_state_estimate = previous_state_estimate;
 }
 
-void ribi::KalmanFilterCalculationElements::SetUpdatedState(const boost::numeric::ublas::vector<double>& updated_state)
+void ribi::kalman::KalmanFilterCalculationElements::SetUpdatedState(const boost::numeric::ublas::vector<double>& updated_state)
 {
   assert(m_updated_state.empty());
   m_updated_state = updated_state;

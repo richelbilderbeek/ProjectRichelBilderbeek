@@ -6,7 +6,7 @@
 
 #include "matrix.h"
 
-ribi::SteadyStateKalmanFilterParameters::SteadyStateKalmanFilterParameters(
+ribi::kalman::SteadyStateKalmanFilterParameters::SteadyStateKalmanFilterParameters(
   const boost::numeric::ublas::matrix<double>& control,
   const boost::numeric::ublas::matrix<double>& estimated_optimal_kalman_gain,
   const boost::numeric::ublas::vector<double>& initial_state_estimate,
@@ -24,7 +24,7 @@ ribi::SteadyStateKalmanFilterParameters::SteadyStateKalmanFilterParameters(
   #endif
 }
 
-const boost::numeric::ublas::matrix<double> ribi::SteadyStateKalmanFilterParameters::CalculateOptimalKalmanGain(
+const boost::numeric::ublas::matrix<double> ribi::kalman::SteadyStateKalmanFilterParameters::CalculateOptimalKalmanGain(
   const boost::numeric::ublas::matrix<double>& initial_covariance,
   const boost::numeric::ublas::matrix<double>& measurement_noise,
   const boost::numeric::ublas::matrix<double>& observation,
@@ -48,12 +48,12 @@ const boost::numeric::ublas::matrix<double> ribi::SteadyStateKalmanFilterParamet
 
 }
 
-const std::string ribi::SteadyStateKalmanFilterParameters::GetVersion()
+const std::string ribi::kalman::SteadyStateKalmanFilterParameters::GetVersion()
 {
   return "1.1";
 }
 
-const std::vector<std::string> ribi::SteadyStateKalmanFilterParameters::GetVersionHistory()
+const std::vector<std::string> ribi::kalman::SteadyStateKalmanFilterParameters::GetVersionHistory()
 {
   std::vector<std::string> v;
   v.push_back("2013-05-01: version 1.0: initial version");
@@ -61,7 +61,7 @@ const std::vector<std::string> ribi::SteadyStateKalmanFilterParameters::GetVersi
   return v;
 }
 
-bool ribi::SteadyStateKalmanFilterParameters::HasParameterType(const KalmanFilterParameterType type)
+bool ribi::kalman::SteadyStateKalmanFilterParameters::HasParameterType(const KalmanFilterParameterType type)
 {
   return
        type == KalmanFilterParameterType::control
@@ -71,7 +71,7 @@ bool ribi::SteadyStateKalmanFilterParameters::HasParameterType(const KalmanFilte
     || type == KalmanFilterParameterType::state_transition;
 }
 
-bool ribi::SteadyStateKalmanFilterParameters::IsAboutEqual(
+bool ribi::kalman::SteadyStateKalmanFilterParameters::IsAboutEqual(
   const SteadyStateKalmanFilterParameters& lhs,
   const SteadyStateKalmanFilterParameters& rhs)
 {

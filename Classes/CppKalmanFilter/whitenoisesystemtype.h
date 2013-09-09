@@ -4,6 +4,7 @@
 #include <string>
 
 namespace ribi {
+namespace kalman {
 
 enum class WhiteNoiseSystemType
 {
@@ -17,6 +18,7 @@ bool operator==(const WhiteNoiseSystemType lhs, const WhiteNoiseSystemType rhs);
 bool operator!=(const WhiteNoiseSystemType lhs, const WhiteNoiseSystemType rhs);
 bool operator<(const WhiteNoiseSystemType lhs, const WhiteNoiseSystemType rhs);
 
+} //~namespace kalman
 } //~namespace ribi
 
 #endif // WHITENOISESYSTEMTYPE_H

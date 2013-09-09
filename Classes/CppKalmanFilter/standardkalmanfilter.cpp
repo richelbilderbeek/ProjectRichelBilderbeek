@@ -7,7 +7,7 @@
 #include "matrix.h"
 #include "trace.h"
 
-ribi::StandardKalmanFilter::StandardKalmanFilter(
+ribi::kalman::StandardKalmanFilter::StandardKalmanFilter(
   const boost::shared_ptr<StandardKalmanFilterCalculationElements>& calculation,
   const boost::shared_ptr<const KalmanFilterParameters>& parameters
   )
@@ -49,25 +49,25 @@ ribi::StandardKalmanFilter::StandardKalmanFilter(
   #endif
 }
 
-int ribi::StandardKalmanFilter::GetStateSize() const
+int ribi::kalman::StandardKalmanFilter::GetStateSize() const
 {
   const int sz = boost::numeric_cast<int>(m_state_estimate.size());
   return sz;
 }
 
-const std::string ribi::StandardKalmanFilter::GetVersion()
+const std::string ribi::kalman::StandardKalmanFilter::GetVersion()
 {
   return "1.0";
 }
 
-const std::vector<std::string> ribi::StandardKalmanFilter::GetVersionHistory()
+const std::vector<std::string> ribi::kalman::StandardKalmanFilter::GetVersionHistory()
 {
   std::vector<std::string> v;
   v.push_back("2013-04-28: version 1.0: initial version");
   return v;
 }
 
-const boost::numeric::ublas::vector<double> ribi::StandardKalmanFilter::PredictState(
+const boost::numeric::ublas::vector<double> ribi::kalman::StandardKalmanFilter::PredictState(
   const boost::numeric::ublas::vector<double>& input) const
 {
   const boost::numeric::ublas::vector<double> state_prediction
@@ -76,7 +76,7 @@ const boost::numeric::ublas::vector<double> ribi::StandardKalmanFilter::PredictS
   return state_prediction;
 }
 
-const boost::numeric::ublas::matrix<double> ribi::StandardKalmanFilter::PredictCovariance() const
+const boost::numeric::ublas::matrix<double> ribi::kalman::StandardKalmanFilter::PredictCovariance() const
 {
   const boost::numeric::ublas::matrix<double> covariance_prediction
     = Matrix::MultiProd(
@@ -89,7 +89,7 @@ const boost::numeric::ublas::matrix<double> ribi::StandardKalmanFilter::PredictC
 }
 
 
-void ribi::StandardKalmanFilter::SupplyMeasurementAndInput(
+void ribi::kalman::StandardKalmanFilter::SupplyMeasurementAndInput(
   const boost::numeric::ublas::vector<double>& measurements,
   const boost::numeric::ublas::vector<double>& input)
 {

@@ -5,6 +5,7 @@
 #include "standardkalmanfilter.h"
 
 namespace ribi {
+namespace kalman {
 
 ///Factory for StandardKalmanFilter
 struct StandardKalmanFilterFactory
@@ -13,6 +14,7 @@ struct StandardKalmanFilterFactory
     const boost::shared_ptr<const KalmanFilterParameters>& parameters);
 };
 
+} //~namespace kalman
 } //~namespace ribi
 
 #endif // STANDARDKALMANFILTERFACTORY_H

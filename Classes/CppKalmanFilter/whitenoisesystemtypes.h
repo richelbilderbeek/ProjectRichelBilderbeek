@@ -12,6 +12,7 @@
 #include "whitenoisesystemtype.h"
 
 namespace ribi {
+namespace kalman {
 
 struct WhiteNoiseSystemTypes
 {
@@ -29,6 +30,7 @@ struct WhiteNoiseSystemTypes
 
 };
 
+} //~namespace kalman
 } //~namespace ribi
 
 #endif // WHITENOISESYSTEMTYPES_H

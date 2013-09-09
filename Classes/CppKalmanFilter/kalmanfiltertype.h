@@ -2,6 +2,7 @@
 #define KALMANFILTERTYPE_H
 
 namespace ribi {
+namespace kalman {
 
 enum class KalmanFilterType
 {
@@ -24,6 +25,7 @@ bool operator==(const KalmanFilterType lhs, const KalmanFilterType rhs);
 bool operator!=(const KalmanFilterType lhs, const KalmanFilterType rhs);
 bool operator<(const KalmanFilterType lhs, const KalmanFilterType rhs);
 
+} //~namespace kalman
 } //~namespace ribi
 
 #endif // KALMANFILTERTYPE_H

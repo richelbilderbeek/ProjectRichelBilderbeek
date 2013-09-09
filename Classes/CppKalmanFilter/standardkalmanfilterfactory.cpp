@@ -4,7 +4,7 @@
 
 #include <cassert>
 
-const boost::shared_ptr<ribi::StandardKalmanFilter> ribi::StandardKalmanFilterFactory::Create(
+const boost::shared_ptr<ribi::kalman::StandardKalmanFilter> ribi::kalman::StandardKalmanFilterFactory::Create(
   const boost::shared_ptr<const KalmanFilterParameters>& parameters)
 {
   assert(parameters);

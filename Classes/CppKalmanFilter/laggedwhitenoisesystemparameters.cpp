@@ -5,7 +5,7 @@
 #include <cassert>
 #include "standardwhitenoisesystemparameters.h"
 
-ribi::LaggedWhiteNoiseSystemParameters::LaggedWhiteNoiseSystemParameters(
+ribi::kalman::LaggedWhiteNoiseSystemParameters::LaggedWhiteNoiseSystemParameters(
     const boost::numeric::ublas::matrix<double>& control,
     const boost::numeric::ublas::vector<double>& initial_state,
     const int lag,

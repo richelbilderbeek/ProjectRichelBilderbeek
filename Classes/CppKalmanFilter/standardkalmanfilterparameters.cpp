@@ -6,7 +6,7 @@
 
 #include "matrix.h"
 
-ribi::StandardKalmanFilterParameters::StandardKalmanFilterParameters(
+ribi::kalman::StandardKalmanFilterParameters::StandardKalmanFilterParameters(
   const boost::numeric::ublas::matrix<double>& control,
   const boost::numeric::ublas::matrix<double>& estimated_measurement_noise,
   const boost::numeric::ublas::matrix<double>& estimated_process_noise_covariance,
@@ -32,12 +32,12 @@ ribi::StandardKalmanFilterParameters::StandardKalmanFilterParameters(
   #endif
 }
 
-const std::string ribi::StandardKalmanFilterParameters::GetVersion()
+const std::string ribi::kalman::StandardKalmanFilterParameters::GetVersion()
 {
   return "1.1";
 }
 
-const std::vector<std::string> ribi::StandardKalmanFilterParameters::GetVersionHistory()
+const std::vector<std::string> ribi::kalman::StandardKalmanFilterParameters::GetVersionHistory()
 {
   std::vector<std::string> v;
   v.push_back("2013-04-28: version 1.0: initial version");
@@ -45,7 +45,7 @@ const std::vector<std::string> ribi::StandardKalmanFilterParameters::GetVersionH
   return v;
 }
 
-bool ribi::StandardKalmanFilterParameters::HasParameterType(const KalmanFilterParameterType type)
+bool ribi::kalman::StandardKalmanFilterParameters::HasParameterType(const KalmanFilterParameterType type)
 {
   return
        type == KalmanFilterParameterType::control
@@ -57,7 +57,7 @@ bool ribi::StandardKalmanFilterParameters::HasParameterType(const KalmanFilterPa
     || type == KalmanFilterParameterType::state_transition;
 }
 
-bool ribi::StandardKalmanFilterParameters::IsAboutEqual(const StandardKalmanFilterParameters& lhs, const StandardKalmanFilterParameters& rhs)
+bool ribi::kalman::StandardKalmanFilterParameters::IsAboutEqual(const StandardKalmanFilterParameters& lhs, const StandardKalmanFilterParameters& rhs)
 {
   return
        Matrix::MatricesAreAboutEqual(lhs.GetControl(),rhs.GetControl())

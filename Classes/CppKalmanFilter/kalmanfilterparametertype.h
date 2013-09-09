@@ -4,6 +4,7 @@
 #include <vector>
 
 namespace ribi {
+namespace kalman {
 
 ///The matrix/vector types/names of Kalman filter parameters
 enum class KalmanFilterParameterType
@@ -23,6 +24,7 @@ bool operator<(const KalmanFilterParameterType lhs, const KalmanFilterParameterT
 bool operator==(const KalmanFilterParameterType lhs, const KalmanFilterParameterType rhs);
 bool operator!=(const KalmanFilterParameterType lhs, const KalmanFilterParameterType rhs);
 
+} //~namespace kalman
 } //~namespace ribi
 
 #endif // KALMANFILTERPARAMETERTYPE_H

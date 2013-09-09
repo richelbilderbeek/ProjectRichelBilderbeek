@@ -8,7 +8,6 @@
 #include <boost/signals2.hpp>
 #pragma GCC diagnostic pop
 
-///NEVER FORGET: Do never use forward declarations in header files parsed by MOC
 #include "kalmanfilterexample.h"
 
 namespace Ui {
@@ -16,6 +15,7 @@ namespace Ui {
 }
 
 namespace ribi {
+namespace kalman {
 
 class QtKalmanFilterExamplesDialog : public QDialog
 {
@@ -67,6 +67,7 @@ private slots:
 //     }
 // }
 
+} //~namespace kalman
 } //~namespace ribi
 
 #endif // QTKALMANFILTERERPARAMETERSDIALOG

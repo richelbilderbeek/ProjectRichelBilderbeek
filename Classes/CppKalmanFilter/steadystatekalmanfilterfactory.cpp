@@ -3,7 +3,7 @@
 #include <cassert>
 #include "kalmanfiltercalculationelementsfactory.h"
 
-const boost::shared_ptr<ribi::SteadyStateKalmanFilter> ribi::SteadyStateKalmanFilterFactory::Create(
+const boost::shared_ptr<ribi::kalman::SteadyStateKalmanFilter> ribi::kalman::SteadyStateKalmanFilterFactory::Create(
   const boost::shared_ptr<const KalmanFilterParameters>& parameters)
 {
   assert(parameters);
