@@ -22,14 +22,6 @@
 <p>&nbsp;</p>
 <p><a href="CppFor.htm">for</a> is a <a href="CppKeyword.htm">keyword</a> to start a for-loop.</p>
 <p>&nbsp;</p>
-<p>Prefer <a href="CppAlgorithm.htm">algorithms</a> over loops [1,2]. See 
-<a href="CppExerciseNoForLoops.htm">Exercise #9: No for-loops</a> to learn how to do so.</p>
-<p>&nbsp;</p>
-<p>
-  Prefer a <a href="CppFor.htm">for</a>-<a href="CppStatement.htm">statement</a> to a <a href="CppWhile.htm">while</a>-<a href="CppStatement.htm">statement</a> when there is an obvious loop <a href="CppVariable.htm">variable</a> [5].
-  Prefer a <a href="CppWhile.htm">while</a>-<a href="CppStatement.htm">statement</a> to a <a href="CppFor.htm">for</a>-<a href="CppStatement.htm">statement</a> when there is no obvious loop <a href="CppVariable.htm">variable</a> [6].
-  In <a href="Cpp11.htm">C++11</a>, prefer a range-for-statement to a for-statement when there is a choice [4].
-</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
@@ -85,37 +77,25 @@
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
-<h2><img src="PicCpp11.png" alt="C++11"/> Range-based <a href="CppFor.htm">for</a></h2>
+<h2><a href="CppAdvice.htm">Advice</h2>
 <p>&nbsp;</p>
 <ul>
-  <li><a href="CppFor.zip">Download the Qt Creator project 'CppFor' (zip)</a></li>
+  <li>
+    Prefer <a href="CppAlgorithm.htm">algorithms</a> over loops [1,2] 
+    (see <a href="CppExerciseNoForLoops.htm">Exercise #9: No for-loops</a> to learn how to do so)
+  </li>
+  <li>
+    Prefer a <a href="CppFor.htm">for</a>-<a href="CppStatement.htm">statement</a> to a <a href="CppWhile.htm">while</a>-<a href="CppStatement.htm">statement</a> 
+   when there is an obvious loop <a href="CppVariable.htm">variable</a> [5]
+  </li>
+  <li>
+    Prefer a <a href="CppWhile.htm">while</a>-<a href="CppStatement.htm">statement</a> to a <a href="CppFor.htm">for</a>-<a href="CppStatement.htm">statement</a> 
+    when there is no obvious loop <a href="CppVariable.htm">variable</a> [6]
+  </li>
+  <li>
+    In <a href="Cpp11.htm">C++11</a>, prefer a range-for-statement to a for-statement when there is a choice [4]
+  </li>
 </ul>
-<p>&nbsp;</p>
-<p><a href="Cpp11.htm">C++11</a> supports a range-based <a href="CppFor.htm">for</a>:</p>
-<p>&nbsp;</p>
-<!-- start of code -->
-<table border = "1"><tr><td><code>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
-<br/>
-<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
-{<br/>
-&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt; v <a href="CppOperatorAssign.htm">=</a> { 1,2,3,4,5,6,7,8,9 };<br/>
-&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b>&amp; i: v)<br/>
-&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;i<a href="CppOperatorMultiplyAssign.htm">*=</a>i;<br/>
-&nbsp;&nbsp;}<br/>
-}<br/>
-</code></td></tr></table>
-<!-- end of the code -->
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>Note that the example initializes the <a href="CppVector.htm">std::vector</a> with an
-<a href="CppInitializerList.htm">initializer list</a>.</p>
-<p>&nbsp;</p>
-<p>Technical note: the code shown did not <a href="CppCompile.htm">compile</a> using the 
-<a href="CppGpp.htm">G++</a> 4.4.5 <a href="CppCompiler.htm">compiler</a>,
-which is supplied with the <a href="CppQtCreator.htm">Qt Creator</a> 2.0.0 <a href="CppIde.htm">IDE</a>,
-but is expected to <a href="CppCompile.htm">compile</a> in <a href="CppGpp.htm">G++</a> 4.6 [3].</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
