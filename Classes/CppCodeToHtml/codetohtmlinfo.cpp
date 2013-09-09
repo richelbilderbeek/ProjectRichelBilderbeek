@@ -4097,17 +4097,18 @@ const std::vector<std::string> c2h::Info::ToHtml() const
   {
     v.push_back("<p><a href=\"GameBeerGetter.htm\">BeerGetter</a> is a simple <a href=\"Games.htm\">game</a>. Work in progress..</p>");
     v.push_back("<ul>");
-    v.push_back("  <li><a href=\"GameBeerGetterScreenshot.PNG\">View a screenshot of 'BeerGetter'</a></li>");
+    v.push_back("  <li><a href=\"GameBeerGetterScreenshot.png\">View a screenshot of 'BeerGetter'</a></li>");
     v.push_back("</ul>");
   }
   else if (m_page_name == "GameBeerWanter")
   {
-    v.push_back("<img src=\"PicCppBuilder.png\" alt=\"C++ Builder\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicNds.png\" alt=\"NDS\"/><img src=\"PicUbuntu.png\" alt=\"Ubuntu\"/><img src=\"PicWindows.png\" alt=\"Windows\"/>");
+    v.push_back("<img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicNds.png\" alt=\"NDS\"/><img src=\"PicUbuntu.png\" alt=\"Ubuntu\"/><img src=\"PicWindows.png\" alt=\"Windows\"/>");
     v.push_back("<p>&nbsp;</p>");
-    v.push_back("<p><a href=\"GameBeerWanter.htm\">BeerWanter</a> is a very simple <a href=\"Games.htm\">game</a> in which the player must click on the beer.</p>");
+    v.push_back("<p><a href=\"GameBeerWanter.htm\">BeerWanter</a> is a <a href=\"Games.htm\">game</a> in which the player must click on the beer.</p>");
     v.push_back("<p>&nbsp;</p>");
-    v.push_back("<p><a href=\"GameBeerWanter.htm\">BeerWanter</a> has been built for <a href=\"CppNds.htm\">NDS</a>, ");
-    v.push_back("<a href=\"CppUbuntu.htm\">Ubuntu</a> and <a href=\"CppWindows.htm\">Windows</a>.");
+    v.push_back(R"(<p><a href="GameBeerWanter.htm">BeerWanter</a>, the successor of <a href="GameBeerWanterVcl.htm">BeerWanterVcl</a>, uses the cross-platform <a href="CppQt.htm">Qt</a> <a href="CppLibrary.htm">library</a>.)");
+    v.push_back(R"(<p><a href="GameBeerWanterVcl.htm">BeerWanterVcl</a>, the predecessor of <a href="GameBeerWanter.htm">BeerWanter</a>, uses the Windows-only <a href="CppVcl.htm">VCL</a> <a href="CppLibrary.htm">library</a>.)");
+    v.push_back("<p>&nbsp;</p>");
     v.push_back("<a href=\"GameBeerWanter.htm\">BeerWanter</a> can also be deployed as a <a href=\"CppWebApplication.htm\">web application</a>.</p>");
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<p>&nbsp;</p>");
@@ -4122,10 +4123,6 @@ const std::vector<std::string> c2h::Info::ToHtml() const
     v.push_back("    <a href=\"GameBeerWanter5.png\">View a screenshot of 'BeerWanter' (version 5.0)(png)</a>");
     v.push_back("  </li>");
     v.push_back("  <li>");
-    v.push_back("    <img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicSpacer.png\" alt=\" \"/><img src=\"PicSpacer.png\" alt=\" \"/>");
-    v.push_back("    <a href=\"GameBeerWanter3.png\">View a screenshot of 'BeerWanter' (version 3.0)(png)</a>");
-    v.push_back("  </li>");
-    v.push_back("  <li>");
     v.push_back("    <img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicUbuntu.png\" alt=\"Ubuntu\"/><img src=\"PicNds.png\" alt=\"NDS\"/><img src=\"PicSpacer.png\" alt=\" \"/>");
     v.push_back("    <a href=\"GameBeerWanter_5_3.png\">View a screenshot of 'BeerWanter' (version 5.3)</a>");
     v.push_back("  </li>");
@@ -4137,14 +4134,6 @@ const std::vector<std::string> c2h::Info::ToHtml() const
     v.push_back("    <img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicNds.png\" alt=\"NDS\"/><img src=\"PicSpacer.png\" alt=\" \"/><img src=\"PicSpacer.png\" alt=\" \"/> ");
     v.push_back("    <a href=\"GameBeerWanterNds_5_3.zip\">Download the 'BeerWanter' NDS executable (version 5.3)(zip)</a>");
     v.push_back("  </li>");
-    v.push_back("  <li>");
-    v.push_back("    <img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicNds.png\" alt=\"NDS\"/><img src=\"PicUbuntu.png\" alt=\"Ubuntu\"/><img src=\"PicWindows.png\" alt=\"Windows\"/> ");
-    v.push_back("    <a href=\"GameBeerWanterSource_6_1.zip\">Download the 'BeerWanter' Qt Creator source code (version 6.1)(zip)</a>");
-    v.push_back("  </li>");
-    v.push_back("  <li>");
-    v.push_back("    <img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicNds.png\" alt=\"NDS\"/><img src=\"PicUbuntu.png\" alt=\"Ubuntu\"/><img src=\"PicWindows.png\" alt=\"Windows\"/> ");
-    v.push_back("    <a href=\"GameBeerWanterSource_6_1.htm\">View the 'BeerWanter' Qt Creator source code as web page (version 6.1)(htm)</a>");
-    v.push_back("  </li>");
     v.push_back("</ul>");
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<p>&nbsp;</p>");
@@ -4155,69 +4144,32 @@ const std::vector<std::string> c2h::Info::ToHtml() const
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<ul>");
     v.push_back("  <li>");
-    v.push_back("    <img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicNds.png\" alt=\"NDS\"/><img src=\"PicUbuntu.png\" alt=\"Ubuntu\"/><img src=\"PicWindows.png\" alt=\"Windows\"/> ");
-    v.push_back("    <a href=\"GameBeerWanterSource_6_0.zip\">Download the 'BeerWanter' Qt Creator source code (version 6.0)(zip)</a>");
-    v.push_back("  </li>");
-    v.push_back("  <li>");
-    v.push_back("    <img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicNds.png\" alt=\"NDS\"/><img src=\"PicUbuntu.png\" alt=\"Ubuntu\"/><img src=\"PicWindows.png\" alt=\"Windows\"/> ");
-    v.push_back("    <a href=\"GameBeerWanterSource_6_0.htm\">View the 'BeerWanter' Qt Creator source code as web page (version 6.0)(htm)</a>");
-    v.push_back("  </li>");
-    v.push_back("  <li>");
-    v.push_back("    <img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicNds.png\" alt=\"NDS\"/><img src=\"PicUbuntu.png\" alt=\"Ubuntu\"/><img src=\"PicWindows.png\" alt=\"Windows\"/> ");
-    v.push_back("    <a href=\"GameBeerWanterSource_5_3.zip\">Download the 'BeerWanter' Qt Creator source code (version 5.3)(zip)</a>");
-    v.push_back("  </li>");
-    v.push_back("  <li>");
-    v.push_back("    <img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicNds.png\" alt=\"NDS\"/><img src=\"PicUbuntu.png\" alt=\"Ubuntu\"/><img src=\"PicWindows.png\" alt=\"Windows\"/> ");
-    v.push_back("    <a href=\"GameBeerWanterSource_5_3.htm\">View the 'BeerWanter' Qt Creator source code as web page (version 5.3)(htm)</a>");
-    v.push_back("  </li>");
-    v.push_back("  <li>");
     v.push_back("    <img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicUbuntu.png\" alt=\"Ubuntu\"/><img src=\"PicNds.png\" alt=\"NDS\"/><img src=\"PicSpacer.png\" alt=\" \"/>");
     v.push_back("    <a href=\"GameBeerWanter_5_1.png\">View a screenshot of 'BeerWanter' under NDS (version 5.1)</a>");
-    v.push_back("  </li>");
-    v.push_back("  <li>");
-    v.push_back("    <img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicNds.png\" alt=\"NDS\"/><img src=\"PicSpacer.png\" alt=\" \"/><img src=\"PicSpacer.png\" alt=\" \"/> ");
-    v.push_back("    <a href=\"GameBeerWanterNds_5_2.zip\">Download the 'BeerWanter' NDS executable (version 5.2)(zip)</a>");
-    v.push_back("  </li>");
-    v.push_back("  <li>");
-    v.push_back("    <img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicNds.png\" alt=\"NDS\"/><img src=\"PicUbuntu.png\" alt=\"Ubuntu\"/><img src=\"PicWindows.png\" alt=\"Windows\"/> ");
-    v.push_back("    <a href=\"GameBeerWanterSource_5_2.zip\">Download the 'BeerWanter' Qt Creator source code (version 5.2)(zip)</a>");
-    v.push_back("  </li>");
-    v.push_back("  <li>");
-    v.push_back("    <img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicNds.png\" alt=\"NDS\"/><img src=\"PicUbuntu.png\" alt=\"Ubuntu\"/><img src=\"PicWindows.png\" alt=\"Windows\"/> ");
-    v.push_back("    <a href=\"GameBeerWanterSource_5_2.htm\">View the 'BeerWanter' Qt Creator source code as web page (version 5.2)(htm)</a>");
-    v.push_back("  </li>");
-    v.push_back("  <li>");
-    v.push_back("    <img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicUbuntu.png\" alt=\"Ubuntu\"/><img src=\"PicNds.png\" alt=\"NDS\"/><img src=\"PicSpacer.png\" alt=\" \"/> ");
-    v.push_back("    <a href=\"GameBeerWanterSource_5_1.zip\">Download the 'BeerWanter-NDS' Qt Creator source code (version 5.1)(zip)</a>");
-    v.push_back("  </li>");
-    v.push_back("  <li>");
-    v.push_back("    <img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicUbuntu.png\" alt=\"Ubuntu\"/><img src=\"PicNds.png\" alt=\"NDS\"/><img src=\"PicSpacer.png\" alt=\" \"/> ");
-    v.push_back("    <a href=\"GameBeerWanterSource_5_1.htm\">View the 'BeerWanter for NDS' Qt Creator source code as web page (version 5.1)(htm)</a>");
-    v.push_back("  </li>");
-    v.push_back("  <li>");
-    v.push_back("    <img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicUbuntu.png\" alt=\"Ubuntu\"/><img src=\"PicSpacer.png\" alt=\" \"/><img src=\"PicSpacer.png\" alt=\" \"/> ");
-    v.push_back("    <a href=\"GameBeerWanter5Source.zip\">Download the 'BeerWanter' Qt Creator source code (version 5.0)(zip)</a>");
-    v.push_back("  </li>");
-    v.push_back("  <li>");
-    v.push_back("    <img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicUbuntu.png\" alt=\"Ubuntu\"/><img src=\"PicSpacer.png\" alt=\" \"/><img src=\"PicSpacer.png\" alt=\" \"/> ");
-    v.push_back("    <a href=\"GameBeerWanterSource_5_0.htm\">View the 'BeerWanter' Qt Creator source code as web page (version 5.0)(htm)</a>");
     v.push_back("  </li>");
     v.push_back("  <li>");
     v.push_back("    <img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicUbuntu.png\" alt=\"Ubuntu\"/><img src=\"PicSpacer.png\" alt=\" \"/><img src=\"PicSpacer.png\" alt=\" \"/>");
     v.push_back("    <a href=\"GameBeerWanter4.png\">View a screenshot of 'BeerWanter' (version 4.0)</a>");
     v.push_back("  </li>");
-    v.push_back("  <li>");
-    v.push_back("    <img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicSpacer.png\" alt=\" \"/><img src=\"PicSpacer.png\" alt=\" \"/> ");
-    v.push_back("    <a href=\"GameBeerWanter4Exe.zip\">Download the 'BeerWanter' Windows executable (version 4.0)(zip)</a>");
-    v.push_back("  </li>");
-    v.push_back("  <li>");
-    v.push_back("    <img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicUbuntu.png\" alt=\"Ubuntu\"/><img src=\"PicSpacer.png\" alt=\" \"/><img src=\"PicSpacer.png\" alt=\" \"/> ");
-    v.push_back("    <a href=\"GameBeerWanter4Source.zip\">Download the 'BeerWanter' Qt Creator source code (version 4.0)(zip)</a>");
-    v.push_back("  </li>");
-    v.push_back("  <li>");
-    v.push_back("    <img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicUbuntu.png\" alt=\"Ubuntu\"/><img src=\"PicSpacer.png\" alt=\" \"/><img src=\"PicSpacer.png\" alt=\" \"/> ");
-    v.push_back("    <a href=\"GameBeerWanterSource_4_0.htm\">View the 'BeerWanter' Qt Creator source code as web page (version 4.0)(htm)</a>");
-    v.push_back("  </li>");
+    v.push_back("</ul>");
+    v.push_back("<p>&nbsp;</p>");
+  }
+  else if (m_page_name == "GameBeerWanterVcl")
+  {
+    v.push_back("<img src=\"PicCppBuilder.png\" alt=\"C++ Builder\"/><img src=\"PicWindows.png\" alt=\"Windows\"/>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p><a href=\"GameBeerWanterVcl.htm\">BeerWanterVcl</a> is a <a href=\"Games.htm\">game</a> in which the player must click on the beer.</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back(R"(<p><a href="GameBeerWanterVcl.htm">BeerWanterVcl</a>, the predecessor of <a href="GameBeerWanter.htm">BeerWanter</a>, uses the Windows-only <a href="CppVcl.htm">VCL</a> <a href="CppLibrary.htm">library</a>.)");
+    v.push_back(R"(<p><a href="GameBeerWanter.htm">BeerWanter</a>, the successor of <a href="GameBeerWanterVcl.htm">BeerWanterVcl</a>, uses the cross-platform <a href="CppQt.htm">Qt</a> <a href="CppLibrary.htm">library</a>.)");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<h2>Downloads</h2>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<ul>");
     v.push_back("  <li>");
     v.push_back("    <img src=\"PicCppBuilder.png\" alt=\"C++ Builder\"/><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicSpacer.png\" alt=\" \"/><img src=\"PicSpacer.png\" alt=\" \"/>");
     v.push_back("    <a href=\"GameBeerWanter3.png\">View a screenshot of 'BeerWanter' (version 3.0)</a>");
@@ -4226,23 +4178,47 @@ const std::vector<std::string> c2h::Info::ToHtml() const
     v.push_back("    <img src=\"PicCppBuilder.png\" alt=\"C++ Builder\"/><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicSpacer.png\" alt=\" \"/><img src=\"PicSpacer.png\" alt=\" \"/>");
     v.push_back("    <a href=\"GameBeerWanter3Exe.zip\">Download the 'BeerWanter' Windows executable (version 3.0)(zip)</a>");
     v.push_back("  </li>");
-    v.push_back("  <li>");
-    v.push_back("    <img src=\"PicCppBuilder.png\" alt=\"C++ Builder\"/><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicSpacer.png\" alt=\" \"/><img src=\"PicSpacer.png\" alt=\" \"/> ");
-    v.push_back("    <a href=\"GameBeerWanter3Source.zip\">Download the 'BeerWanter' C++ Builder source code (version 3.0)(zip)</a>");
-    v.push_back("  </li>");
-    v.push_back("  <li>");
-    v.push_back("    <img src=\"PicCppBuilder.png\" alt=\"C++ Builder\"/><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicSpacer.png\" alt=\" \"/><img src=\"PicSpacer.png\" alt=\" \"/> ");
-    v.push_back("    <a href=\"GameBeerWanterSource_3_0.htm\">View the 'BeerWanter' C++ Builder source code as web page (version 3.0)(htm)</a>");
-    v.push_back("  </li>");
     v.push_back("</ul>");
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<p>The source code of BeerWanter 1.0 and 2.0 has been lost (but was very simular to version 3.0).</p>");
   }
   else if (m_page_name == "GameBillysGarden")
   {
-    v.push_back("<p><a href=\"GameBillysGarden.htm\">Billy's Garden</a> is a PC clone of the MSX <a href=\"Games.htm\">game</a> 'Athletic Land'. It is not finished yet.</p>");
+    v.push_back("<img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/>");
     v.push_back("<p>&nbsp;</p>");
-    v.push_back("<p><a href=\"GameBillysGarden.htm\">Billy's Garden</a> is programmed in <a href=\"Cpp.htm\">C++</a> using the IDE <a href=\"CppBuilder.htm\">C++ Builder</a> 6.0. It uses the <a href=\"CppVcl.htm\">VCL</a> and <a href=\"CppBoost.htm\">Boost</a> libraries.</p>");
+    v.push_back("<p><a href=\"GameBillysGarden.htm\">BillysGarden</a> is an unfinished <a href=\"Games.htm\">game</a> that is a PC clone of the MSX <a href=\"Games.htm\">game</a> 'Athletic Land'.</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back(R"(<p><a href="GameBillysGarden.htm">BillysGarden</a>, the successor of <a href="GameBillysGardenVcl.htm">BillysGardenVcl</a>, uses the cross-platform <a href="CppQt.htm">Qt</a> <a href="CppLibrary.htm">library</a>.)");
+    v.push_back(R"(<p><a href="GameBillysGardenVcl.htm">BillysGardenVcl</a>, the predecessor of <a href="GameBillysGarden.htm">BillysGarden</a>, uses the Windows-only <a href="CppVcl.htm">VCL</a> <a href="CppLibrary.htm">library</a>.)");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<h2>Downloads</h2>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<ul>");
+    v.push_back("  <li><a href=\"GameBillysGarden_0_9.png\">View a screenshot of 'Billy's Garden' (version 0.9)(png)</a></li>");
+    v.push_back("</ul>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<h2>External links</h2>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<ul>");
+    v.push_back("  <li><a href=\"http://www.youtube.com/watch?v=isjCc7CiSfM\">YouTube video of 'Athletic Land'</a></li>");
+    v.push_back("</ul>");
+  }
+  else if (m_page_name == "GameBillysGardenVcl")
+  {
+    v.push_back("<img src=\"PicCppBuilder.png\" alt=\"C++ Builder\"/><img src=\"PicWindows.png\" alt=\"Windows\"/>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p><a href=\"GameBillysGardenVcl.htm\">BillysGardenVcl</a> is an unfinished <a href=\"Games.htm\">game</a> that is a PC clone of the MSX <a href=\"Games.htm\">game</a> 'Athletic Land'.</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back(R"(<p><a href="GameBillysGarden.htm">BillysGarden</a>, the successor of <a href="GameBillysGardenVcl.htm">BillysGardenVcl</a>, uses the cross-platform <a href="CppQt.htm">Qt</a> <a href="CppLibrary.htm">library</a>.)");
+    v.push_back(R"(<p><a href="GameBillysGardenVcl.htm">BillysGardenVcl</a>, the predecessor of <a href="GameBillysGarden.htm">BillysGarden</a>, uses the Windows-only <a href="CppVcl.htm">VCL</a> <a href="CppLibrary.htm">library</a>.)");
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<p>&nbsp;</p>");
@@ -4280,19 +4256,19 @@ const std::vector<std::string> c2h::Info::ToHtml() const
     v.push_back("<h2>Downloads</h2>");
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<ul>");
-    v.push_back("  <li><a href=\"GameBinnenVolleyScreenshot.PNG\">View a screenshot of 'BinnenVolley' (v.0.9)(png)</a></li>");
-    v.push_back("  <li><a href=\"GameBinnenVolleyScreenshotMenu.PNG\">View a screenshot of the 'BinnenVolley' menu screen (v.0.9)(png)</a></li>");
+    v.push_back("  <li><a href=\"GameBinnenVolleyScreenshot.png\">View a screenshot of 'BinnenVolley' (v.0.9)(png)</a></li>");
+    v.push_back("  <li><a href=\"GameBinnenVolleyScreenshotMenu.png\">View a screenshot of the 'BinnenVolley' menu screen (v.0.9)(png)</a></li>");
     v.push_back("  <li><a href=\"GameBinnenVolleyExe.zip\">Download the 'BinnenVolley' Windows executable (v.0.9)(zip)</a></li>");
     v.push_back("  <li><a href=\"GameBinnenVolleySource.zip\">Download the 'BinnenVolley' source code (v.0.9)(zip)</a></li>");
     v.push_back("  <li><a href=\"GameBinnenVolleySource_0_9.htm\">View the 'BinnenVolley' source code as web page (v.0.9)(htm)</a></li>");
     v.push_back("  <li><a href=\"GameBinnenVolleySprites.zip\">Download the 'BinnenVolley' (.bmp) sprites (v.0.9)(zip)</a></li>");
-    v.push_back("<!--  <li><a href=\"GameBinnenVolleyCdFront.PNG\">View the CD artwork of 'BinnenVolley' (front)(png)</a></li> -->");
-    v.push_back("<!--  <li><a href=\"GameBinnenVolleyCdBack.PNG\">View the CD artwork of 'BinnenVolley' (back)(png)</a></li> -->");
+    v.push_back("<!--  <li><a href=\"GameBinnenVolleyCdFront.png\">View the CD artwork of 'BinnenVolley' (front)(png)</a></li> -->");
+    v.push_back("<!--  <li><a href=\"GameBinnenVolleyCdBack.png\">View the CD artwork of 'BinnenVolley' (back)(png)</a></li> -->");
     v.push_back("</ul>");
   }
   else if (m_page_name == "GameBoenken")
   {
-    v.push_back("<p><a href=\"GameBoenken.htm\">Boenken</a> is a crossing-over between soccer and billiards and can be played with twenty players. The <a href=\"Games.htm\">game</a>'s name is Dutch, translating it to English would yield something like 'Bonking' (but if I would call the <a href=\"Games.htm\">game</a> like that, my website would attract other people). 'Boenk' is the phonetic word of the sound two colliding Dutch snooker balls make.</p>");
+    v.push_back("<p><a href=\"GameBoenken.htm\">Boenken</a> is <a href=\"Games.htm\">game</a> that is a crossing-over between soccer and billiards and can be played with twenty players. The <a href=\"Games.htm\">game</a>'s name is Dutch, translating it to English would yield something like 'Bonking' (but if I would call the <a href=\"Games.htm\">game</a> like that, my website would attract other people). 'Boenk' is the phonetic word of the sound two colliding Dutch snooker balls make.</p>");
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<p><a href=\"GameBoenken.htm\">Boenken</a> can be played with twenty players at the same time (on the same single keyboard). Who said that video <a href=\"Games.htm\">games</a> could not be cosy?</p>");
     v.push_back("<p>&nbsp;</p>");
@@ -4405,7 +4381,7 @@ const std::vector<std::string> c2h::Info::ToHtml() const
   }
   else if (m_page_name == "GameDasWahreSchlagerfest")
   {
-    v.push_back("<p><a href=\"GameDasWahreSchlagerfest.htm\">Das Wahre Schlagerfest</a> was programmed on the 30th September 2003 during a 'Spass programmieren' session. ");
+    v.push_back("<p><a href=\"GameDasWahreSchlagerfest.htm\">Das Wahre Schlagerfest</a> is a <a href=\"Games.htm\">game</a> that was programmed on the 30th September 2003 during a 'Spass programmieren' session.");
     v.push_back("It is the one <a href=\"Games.htm\">game</a> that can be played on a theme party with theme 'Germany', or as a substitute for the Oktoberfest. ");
     v.push_back("If you want a beer or bratwurst, you can just go fetching one without fear of losing the <a href=\"Games.htm\">game</a>!</p>");
     v.push_back("<p>&nbsp;</p>");
@@ -4471,7 +4447,7 @@ const std::vector<std::string> c2h::Info::ToHtml() const
 
   else if (m_page_name == "GameK3OpEenRij")
   {
-    v.push_back("<p><a href=\"GameK3OpEenRij.htm\">K3-Op-Een-Rij</a> is a tribute to the Flemisch girlyband K3. ");
+    v.push_back("<p><a href=\"GameK3OpEenRij.htm\">K3-Op-Een-Rij</a> is a <a href=\"Games.htm\">game</a> that is tribute to the Flemisch girlyband K3. ");
     v.push_back("<a href=\"GameK3OpEenRij.htm\">K3-Op-Een-Rij</a> is a turn-based tic-tac-toe-like <a href=\"Games.htm\">game</a>. ");
     v.push_back("It can be played by one, two or three players. The <a href=\"Games.htm\">game</a> is designed for this band's typical audience.</p>");
     v.push_back("<p>&nbsp;</p>");
@@ -4535,7 +4511,7 @@ const std::vector<std::string> c2h::Info::ToHtml() const
   }
   else if (m_page_name == "GameKnokfighter")
   {
-    v.push_back("<p><a href=\"GameKnokfighter.htm\">Knokfighter</a> was programmed by me and Joost van den Bogaart.</p>");
+    v.push_back("<p><a href=\"GameKnokfighter.htm\">Knokfighter</a> is a <a href=\"Games.htm\">game</a> programmed by me and Joost van den Bogaart.</p>");
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<p>We tried to make a Double Dragon clone with ourselves as the heroes.</p>");
     v.push_back("<p>&nbsp;</p>");
@@ -4604,29 +4580,19 @@ const std::vector<std::string> c2h::Info::ToHtml() const
     v.push_back("<p>Version 1.0 of the <a href=\"Games.htm\">game</a> relies heavily on the function <a href=\"CppDrawGlobe.htm\">DrawGlobe</a>.</p>");
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<ol>");
-    v.push_back("  <li><a href=\"GameMaziakExe_1_4.zip\">Download the 'Maziak' Windows executable (v.1.4)(zip)</a></li>");
-    v.push_back("  <li><a href=\"GameMaziakSource_1_4.zip\">Download the 'Maziak' source code (v.1.4)(zip)</a></li>");
     v.push_back("  <li><a href=\"GameMaziakSprites_1_4.zip\">Download the 'Maziak' (bmp) sprites (v.1.4)(zip)</a></li>");
-    v.push_back("  <li><a href=\"GameMaziak_1_3.PNG\">View a screenshot of 'Maziak' (v.1.3)(png)</a></li>");
-    v.push_back("  <li><a href=\"GameMaziakMenu_1_3.PNG\">View a screenshot of the 'Maziak' menu screen (v.1.3)(png)</a></li>");
-    v.push_back("  <li><a href=\"GameMaziakInstructions_1_3.PNG\">View a screenshot of the 'Maziak' instructions screen (v.1.3)(png)</a></li>");
-    v.push_back("  <li><a href=\"GameMaziakExe_1_3.zip\">Download the 'Maziak' Windows executable (v.1.3)(zip)</a></li>");
-    v.push_back("  <li><a href=\"GameMaziakSource_1_3.zip\">Download the 'Maziak' source code (v.1.3)(zip)</a></li>");
+    v.push_back("  <li><a href=\"GameMaziak_1_3.png\">View a screenshot of 'Maziak' (v.1.3)(png)</a></li>");
+    v.push_back("  <li><a href=\"GameMaziakMenu_1_3.png\">View a screenshot of the 'Maziak' menu screen (v.1.3)(png)</a></li>");
+    v.push_back("  <li><a href=\"GameMaziakInstructions_1_3.png\">View a screenshot of the 'Maziak' instructions screen (v.1.3)(png)</a></li>");
     v.push_back("  <li><a href=\"GameMaziakSprites_1_3.zip\">Download the 'Maziak' (bmp) sprites (v.1.3)(zip)</a></li>");
-    v.push_back("  <li><a href=\"GameMaziak_1_2.PNG\">View a screenshot of 'Maziak' (v.1.2)(png)</a></li>");
-    v.push_back("  <li><a href=\"GameMaziakMenu_1_2.PNG\">View a screenshot of the 'Maziak' menu screen (v.1.2)(png)</a></li>");
+    v.push_back("  <li><a href=\"GameMaziak_1_2.png\">View a screenshot of 'Maziak' (v.1.2)(png)</a></li>");
+    v.push_back("  <li><a href=\"GameMaziakMenu_1_2.png\">View a screenshot of the 'Maziak' menu screen (v.1.2)(png)</a></li>");
     v.push_back("  <li><a href=\"GameMaziakSprites_1_2.zip\">Download the 'Maziak' (bmp) sprites (v.1.2)(zip)</a></li>");
-    v.push_back("  <li><a href=\"GameMaziakExe_1_2.zip\">Download the 'Maziak' Windows executable (v.1.2)(zip)</a></li>");
-    v.push_back("  <li><a href=\"GameMaziakSource_1_2.zip\">Download the 'Maziak' source code (v.1.2)(zip)</a></li>");
-    v.push_back("  <li><a href=\"GameMaziak_1_1.PNG\">View a screenshot of 'Maziak' (v.1.1)(png)</a></li>");
-    v.push_back("  <li><a href=\"GameMaziakMenu_1_1.PNG\">View a screenshot of the 'Maziak' menu screen (v.1.1)(png)</a></li>");
+    v.push_back("  <li><a href=\"GameMaziak_1_1.png\">View a screenshot of 'Maziak' (v.1.1)(png)</a></li>");
+    v.push_back("  <li><a href=\"GameMaziakMenu_1_1.png\">View a screenshot of the 'Maziak' menu screen (v.1.1)(png)</a></li>");
     v.push_back("  <li><a href=\"GameMaziakSprites_1_1.zip\">Download the 'Maziak' (bmp) sprites (v.1.1)(zip)</a></li>");
-    v.push_back("  <li><a href=\"GameMaziakExe_1_1.zip\">Download the 'Maziak' Windows executable (v.1.1)(zip)</a></li>");
-    v.push_back("  <li><a href=\"GameMaziakSource_1_1.zip\">Download the 'Maziak' source code (v.1.1)(zip)</a></li>");
-    v.push_back("  <li><a href=\"GameMaziak_1_0.PNG\">View a screenshot of 'Maziak' (v.1.0)(png)</a></li>");
-    v.push_back("  <li><a href=\"GameMaziakMenu_1_0.PNG\">View a screenshot of the 'Maziak' menu screen (v.1.0)(png)</a></li>");
-    v.push_back("  <li><a href=\"GameMaziakExe_1_0.zip\">Download the 'Maziak' Windows executable (v.1.0)(zip)</a></li>");
-    v.push_back("  <li><a href=\"GameMaziakSource_1_0.zip\">Download the 'Maziak' source code (v.1.0)(zip)</a></li>");
+    v.push_back("  <li><a href=\"GameMaziak_1_0.png\">View a screenshot of 'Maziak' (v.1.0)(png)</a></li>");
+    v.push_back("  <li><a href=\"GameMaziakMenu_1_0.png\">View a screenshot of the 'Maziak' menu screen (v.1.0)(png)</a></li>");
     v.push_back("</ol>");
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<p>&nbsp;</p>");
@@ -4691,9 +4657,9 @@ const std::vector<std::string> c2h::Info::ToHtml() const
     v.push_back("  <li><a href=\"GameMetZnDrieenExe_1_3.zip\">Download the 'Met Z'n Drieen' Windows executable (v.1.3)(zip)</a></li>");
     v.push_back("  <li><a href=\"GameMetZnDrieenSource_1_3.zip\">Download the 'Met Z'n Drieen' source code (v.1.3)(zip)</a></li>");
     v.push_back("  <li><a href=\"GameMetZnDrieenSource_1_3.htm\">View the C++ Builder source code of 'Met Z'n Drieen' as a web site (v.1.3)(htm)</a></li>");
-    v.push_back("  <li><a href=\"GameMetZnDrieenCdFront.PNG\">View the CD artwork of 'Met z'n Drieen' (front)(png)</a></li>");
+    v.push_back("  <li><a href=\"GameMetZnDrieenCdFront.png\">View the CD artwork of 'Met z'n Drieen' (front)(png)</a></li>");
     v.push_back("  <li><a href=\"GameMetZnDrieenCdFront.bmp\">View the CD artwork of 'Met z'n Drieen' (front)(bmp)</a></li>");
-    v.push_back("  <li><a href=\"GameMetZnDrieenCdBack.PNG\">View the CD artwork of 'Met z'n Drieen' (back)(png)</a></li>");
+    v.push_back("  <li><a href=\"GameMetZnDrieenCdBack.png\">View the CD artwork of 'Met z'n Drieen' (back)(png)</a></li>");
     v.push_back("  <li><a href=\"GameMetZnDrieenCdBack.bmp\">View the CD artwork of 'Met z'n Drieen' (back)(bmp)</a></li>");
     v.push_back("</ul>");
     v.push_back("<p>&nbsp;</p>");
@@ -4704,9 +4670,9 @@ const std::vector<std::string> c2h::Info::ToHtml() const
     v.push_back("<h2>Older downloads</h2>");
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<ul>");
-    v.push_back("  <li><a href=\"GameMetZnDrieenScreenshot_1_2.PNG\">View a screenshot of 'Met Z'n Drieen' (v.1.2)(png)</a></li>");
-    v.push_back("  <li><a href=\"GameMetZnDrieenScreenshotMenu_1_2.PNG\">View a screenshot of the 'Met Z'n Drieen' menu screen (v.1.2)(png)</a></li>");
-    v.push_back("  <li><a href=\"GameMetZnDrieenScreenshot_1_0.PNG\">View a screenshot of 'Met Z'n Drieen' (v.1.0)(png)</a></li>");
+    v.push_back("  <li><a href=\"GameMetZnDrieenScreenshot_1_2.png\">View a screenshot of 'Met Z'n Drieen' (v.1.2)(png)</a></li>");
+    v.push_back("  <li><a href=\"GameMetZnDrieenScreenshotMenu_1_2.png\">View a screenshot of the 'Met Z'n Drieen' menu screen (v.1.2)(png)</a></li>");
+    v.push_back("  <li><a href=\"GameMetZnDrieenScreenshot_1_0.png\">View a screenshot of 'Met Z'n Drieen' (v.1.0)(png)</a></li>");
     v.push_back("  <li>Download the 'Met Z'n Drieen' Windows executable (v.1.2)(zip)(lost)</li>");
     v.push_back("  <li>Download the 'Met Z'n Drieen' source code (v.1.2)(zip)(lost)</li>");
     v.push_back("  <li><a href=\"GameMetZnDrieenExe_1_1.zip\">Download the 'Met Z'n Drieen' Windows executable (v.1.1)(zip)</a></li>");
@@ -5257,11 +5223,10 @@ const std::vector<std::string> c2h::Info::ToHtml() const
     v.push_back("<h2>Downloads</h2>");
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<ul>");
-    v.push_back("  <li><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/> <a href=\"ProjectBrainweaver_0_33.png\">View a screenshot of 'Brainweaver' (version 0.33)(png)</a></li>");
-    v.push_back("  <li><img src=\"PicWine.png\" alt=\"Wine\"/> <a href=\"ProjectBrainweaver_0_28Wine.png\">View a screenshot of 'Brainweaver' (version 0.28)(png)</a></li>");
-    v.push_back("  <li><img src=\"PicWindows.png\" alt=\"Windows\"/> <a href=\"ProjectBrainweaverExe_0_35.zip\">Download the 'Brainweaver' windows executable (version 0.35)(zip)</a></li>");
-    v.push_back("  <li><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/> <a href=\"ProjectBrainweaverSource_0_32.zip\">Download the source code of 'Brainweaver' (version 0.32)(zip)</a></li>");
-    v.push_back("  <li><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/> <a href=\"ProjectBrainweaver20130725.mp4\">View Brainweaver being tested by libcvautomation (mp4)</a></li>");
+    v.push_back(R"(  <li><img src="PicLubuntu.png" alt="Lubuntu"/> <a href="ProjectBrainweaver_0_33.png">View a screenshot of 'Brainweaver' (version 0.33)(png)</a></li>");
+    v.push_back(R"(  <li><img src="PicWine.png" alt="Wine"/> <a href=\"ProjectBrainweaver_0_28Wine.png">View a screenshot of 'Brainweaver' (version 0.28)(png)</a></li>");
+    v.push_back(R"(  <li><img src="PicWindows.png" alt="Windows"/> <a href="ProjectBrainweaverExe_0_36.zip">Download the 'Brainweaver' windows executable (version 0.36)(zip)</a></li>");
+    v.push_back(R"(  <li><img src="PicLubuntu.png" alt="Lubuntu"/> <a href="ProjectBrainweaver20130725.mp4">View Brainweaver being tested by libcvautomation (mp4)</a></li>");
     v.push_back("</ul>");
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<p>&nbsp;</p>");
@@ -5271,9 +5236,7 @@ const std::vector<std::string> c2h::Info::ToHtml() const
     v.push_back("<h2>Older downloads</h2>");
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<ul>");
-    v.push_back("  <li><img src=\"PicWindows.png\" alt=\"Windows\"/> <a href=\"ProjectBrainweaverExe_0_34.zip\">Download the 'Brainweaver' windows executable (version 0.34)(zip)</a></li>");
     v.push_back("  <li><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/> <a href=\"ProjectBrainweaver_0_28.png\">View a screenshot of 'Brainweaver' (version 0.28)(png)</a></li>");
-    v.push_back("  <li><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/> <a href=\"ProjectBrainweaverSource_0_30.zip\">Download the source code of 'Brainweaver' (version 0.30)(zip)</a></li>");
     v.push_back("</ul>");
   }
   else if (m_page_name == "ProjectBristol")
@@ -5344,10 +5307,10 @@ const std::vector<std::string> c2h::Info::ToHtml() const
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<p>Because the licence of <a href=\"ProjectCrossPoll.htm\">CrossPoll</a> is in hands of the <a href=\"http://www.cogem.net/\">COGEM</a>, I cannot give the source code. Also have I been very selective in choosing the following screenshots:</p>");
     v.push_back("<ul>");
-    v.push_back("  <li><a href=\"ProjectCrossPoll0.PNG\">View a screenshot of 'CrossPoll' #0 (PNG)</a></li>");
-    v.push_back("  <li><a href=\"ProjectCrossPoll1.PNG\">View a screenshot of 'CrossPoll' #1 (PNG)</a></li>");
-    v.push_back("  <li><a href=\"ProjectCrossPoll2.PNG\">View a screenshot of 'CrossPoll' #2 (PNG)</a></li>");
-    v.push_back("  <li><a href=\"ProjectCrossPoll3.PNG\">View a screenshot of 'CrossPoll' #3 (PNG)</a></li>");
+    v.push_back("  <li><a href=\"ProjectCrossPoll0.png\">View a screenshot of 'CrossPoll' #0 (PNG)</a></li>");
+    v.push_back("  <li><a href=\"ProjectCrossPoll1.png\">View a screenshot of 'CrossPoll' #1 (PNG)</a></li>");
+    v.push_back("  <li><a href=\"ProjectCrossPoll2.png\">View a screenshot of 'CrossPoll' #2 (PNG)</a></li>");
+    v.push_back("  <li><a href=\"ProjectCrossPoll3.png\">View a screenshot of 'CrossPoll' #3 (PNG)</a></li>");
     v.push_back("</ul>");
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<p><a href=\"ProjectCrossPoll.htm\">CrossPoll</a> was developed from about the 5th of July of 2004 to about the 27th of December of 2004.</p>");
@@ -6221,11 +6184,11 @@ const std::vector<std::string> c2h::Info::ToHtml() const
     v.push_back("<!-- end of code -->");
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<ul>");
-    v.push_back("  <li><a href=\"ProjectRampalSpeedBefore.PNG\">Execution speed for different complexities for Mr X's version (PNG)</a>.</li>");
+    v.push_back("  <li><a href=\"ProjectRampalSpeedBefore.png\">Execution speed for different complexities for Mr X's version (PNG)</a>.</li>");
     v.push_back("  <li><a href=\"ProjectRampalSpeedBefore.xls\">Execution speed for different complexities for Mr X's version (XLS)</a>.</li>");
-    v.push_back("  <li><a href=\"ProjectRampalSpeedAfter.PNG\">Execution speed for different complexities for Richel Bilderbeek's version (PNG)</a>.</li>");
+    v.push_back("  <li><a href=\"ProjectRampalSpeedAfter.png\">Execution speed for different complexities for Richel Bilderbeek's version (PNG)</a>.</li>");
     v.push_back("  <li><a href=\"ProjectRampalSpeedAfter.xls\">Execution speed for different complexities for Richel Bilderbeek's version (XLS)</a>.</li>");
-    v.push_back("  <li><a href=\"ProjectRampalSpeedCompare.PNG\">Comparison of execution speed for different complexities (PNG)</a>.</li>");
+    v.push_back("  <li><a href=\"ProjectRampalSpeedCompare.png\">Comparison of execution speed for different complexities (PNG)</a>.</li>");
     v.push_back("  <li><a href=\"ProjectRampalSpeedCompare.xls\">Comparison of execution speed for different complexities (XLS)</a>.</li>");
     v.push_back("</ul>");
     v.push_back("<p>&nbsp;</p>");
@@ -6257,7 +6220,7 @@ const std::vector<std::string> c2h::Info::ToHtml() const
     v.push_back("<!-- end of code -->");
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<ul>");
-    v.push_back("  <li><a href=\"ProjectRampalMemoryUse.PNG\">Memory use for different complexities for Richel Bilderbeek's version (PNG)</a>.</li>");
+    v.push_back("  <li><a href=\"ProjectRampalMemoryUse.png\">Memory use for different complexities for Richel Bilderbeek's version (PNG)</a>.</li>");
     v.push_back("  <li><a href=\"ProjectRampalMemoryUse.xls\">Memory use for different complexities for Richel Bilderbeek's version (XLS)</a>.</li>");
     v.push_back("</ul>");
     v.push_back("<p>&nbsp;</p>");
@@ -6297,8 +6260,8 @@ const std::vector<std::string> c2h::Info::ToHtml() const
     v.push_back("<p>The source code will not be downloadable yet.</p>");
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<ul>");
-    v.push_back("<li><a href=\"ProjectRampal1.PNG\">View a screenshot of 'The Rampal Etienne Project' #1 (PNG)</a>.</li>");
-    v.push_back("<li><a href=\"ProjectRampal2.PNG\">View a screenshot of 'The Rampal Etienne Project' #2 (PNG)</a>.</li>");
+    v.push_back("<li><a href=\"ProjectRampal1.png\">View a screenshot of 'The Rampal Etienne Project' #1 (PNG)</a>.</li>");
+    v.push_back("<li><a href=\"ProjectRampal2.png\">View a screenshot of 'The Rampal Etienne Project' #2 (PNG)</a>.</li>");
     v.push_back("<li><a href=\"ProjectRampalAllResults.xls\">Download all simulation results (XLS)</a>.</li>");
     v.push_back("</ul>");
     v.push_back("<p>&nbsp;</p>");
@@ -7175,7 +7138,7 @@ const std::vector<std::string> c2h::Info::ToHtml() const
     v.push_back("<p><a href=\"ToolCnd.htm\">Color Number Determinator</a> is one of my first self-written tool. It shows the color of a certain red, green and blue value.</p>");
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<ul>");
-    v.push_back("  <li><a href=\"ToolCndScreenshot.PNG\">View a screenshot of 'Color Number Determinator' (png)</a></li>");
+    v.push_back("  <li><a href=\"ToolCndScreenshot.png\">View a screenshot of 'Color Number Determinator' (png)</a></li>");
     v.push_back("  <li><a href=\"ToolCndSource.rar\">Download the 'Color Number Determinator' source code (rar)</a></li>");
     v.push_back("  <li><a href=\"ToolCndExe.rar\">Download the 'Color Number Determinator' Windows executable (rar)</a></li>");
     v.push_back("</ul>");
@@ -7347,7 +7310,7 @@ const std::vector<std::string> c2h::Info::ToHtml() const
     v.push_back("<p>If you have ever pondered this for whole numbers, <a href=\"ToolCombinator.htm\">Combinator</a> is the tool for you!</p>");
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<ul>");
-    v.push_back("  <li><a href=\"ToolCombinatorScreenshot.PNG\">View a screenshot of 'Combinator'</a></li>");
+    v.push_back("  <li><a href=\"ToolCombinatorScreenshot.png\">View a screenshot of 'Combinator'</a></li>");
     v.push_back("  <li><a href=\"ToolCombinatorExe.rar\">Download the 'Combinator' Windows executable</a></li>");
     v.push_back("  <li><a href=\"ToolCombinatorSource.rar\">Download the 'Combinator' source code</a></li>");
     v.push_back("</ul>");
@@ -7362,7 +7325,7 @@ const std::vector<std::string> c2h::Info::ToHtml() const
     v.push_back("library.</p>");
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<ul>");
-    v.push_back("  <li><a href=\"ToolCoutChildWindowsScreenshot.PNG\">View a screenshot of 'CoutChildWindows'</a></li>");
+    v.push_back("  <li><a href=\"ToolCoutChildWindowsScreenshot.png\">View a screenshot of 'CoutChildWindows'</a></li>");
     v.push_back("  <li><a href=\"ToolCoutChildWindowsExe.zip\">Download the 'CoutChildWindows' Windows executable (zip)</a></li>");
     v.push_back("  <li><a href=\"ToolCoutChildWindowsSource.zip\">Download the 'CoutChildWindows' source code (zip)</a></li>");
     v.push_back("</ul>");
@@ -7425,7 +7388,7 @@ const std::vector<std::string> c2h::Info::ToHtml() const
     v.push_back("site. And now, the 19th of October 2007, it seems to work... Whatever...</p>");
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<ul>");
-    v.push_back("  <li><a href=\"ToolEmptyTextLinesRemoverScreenshot.PNG\">View a screenshot of 'Empty Text Lines Remover'</a></li>");
+    v.push_back("  <li><a href=\"ToolEmptyTextLinesRemoverScreenshot.png\">View a screenshot of 'Empty Text Lines Remover'</a></li>");
     v.push_back("  <li><a href=\"ToolEmptyTextLinesRemoverSource.rar\">Download the 'Empty Text Lines Remover' source code</a></li>");
     v.push_back("  <li><a href=\"ToolEmptyTextLinesRemoverExe.rar\">Download the 'Empty Text Lines Remover' Windows executable</a></li>");
     v.push_back("</ul>");
@@ -7439,7 +7402,7 @@ const std::vector<std::string> c2h::Info::ToHtml() const
     v.push_back("it is a better tool in all aspects.</p>");
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<ul>");
-    v.push_back("  <li><a href=\"ToolEncrypterScreenshot.PNG\">View a screenshot of the Encrypter GUI shell</a></p>");
+    v.push_back("  <li><a href=\"ToolEncrypterScreenshot.png\">View a screenshot of the Encrypter GUI shell</a></p>");
     v.push_back("  <li><a href=\"ToolEncrypterSource.rar\">Download the Encrypter source code</a></p>");
     v.push_back("  <li><a href=\"ToolEncrypterExe.rar\">Download the Encrypter Windows executables</a></p>");
     v.push_back("</ul>");
@@ -7452,7 +7415,7 @@ const std::vector<std::string> c2h::Info::ToHtml() const
     v.push_back("and <a href=\"CppVcl.htm\">VCL</a> libraries.</p>");
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<ul>");
-    v.push_back("  <li><a href=\"CppDoFilterOperation.PNG\">View an example image of 'DoFilterOperation'</a></li>");
+    v.push_back("  <li><a href=\"CppDoFilterOperation.png\">View an example image of 'DoFilterOperation'</a></li>");
     v.push_back("  <li><a href=\"ToolFilterOperationer_1_0.png\">View a screenshot of 'FilterOperationer'</a></li>");
     v.push_back("  <li><a href=\"ToolFilterOperationerSource.rar\">Download the 'FilterOperationer' source code (rar)</a></li>");
     v.push_back("  <li><a href=\"ToolFilterOperationerSource.zip\">Download the 'FilterOperationer' source code (zip)</a></li>");
@@ -7901,7 +7864,7 @@ const std::vector<std::string> c2h::Info::ToHtml() const
     v.push_back("using the IDE <a href=\"CppBuilder.htm\">C++ Builder</a> 6.0. It uses the <a href=\"CppStl.htm\">STL</a>, <a href=\"CppVcl.htm\">VCL</a> and <a href=\"CppBoost.htm\">Boost</a> library.</p>");
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<ul>");
-    v.push_back("  <li><a href=\"ToolHaaifsKillerScreenshot.PNG\">View a screenshot of 'HaaifsKiller'</a> (before it hides itself)</li>");
+    v.push_back("  <li><a href=\"ToolHaaifsKillerScreenshot.png\">View a screenshot of 'HaaifsKiller'</a> (before it hides itself)</li>");
     v.push_back("  <li><a href=\"ToolHaaifsKillerExe.zip\">Download the 'HaaifsKiller' Windows executable (v. 1.0)(zip)</a></li>");
     v.push_back("  <li><a href=\"ToolHaaifsKillerSource.zip\">Download the 'HaaifsKiller' source code (v. 1.0)(zip)</a></li>");
     v.push_back("</ul>");
@@ -7917,7 +7880,7 @@ const std::vector<std::string> c2h::Info::ToHtml() const
     v.push_back("<a href=\"CppBuilder.htm\">C++ Builder</a> 6.0. It uses the <a href=\"CppStl.htm\">STL</a>, <a href=\"CppVcl.htm\">VCL</a> and <a href=\"CppBoost.htm\">Boost</a> library.</p>");
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<ul>");
-    v.push_back("  <li><a href=\"CppHistogramEqualizationerScreenshot.PNG\">View a screenshot of HistogramEqualizationer'</a></li>");
+    v.push_back("  <li><a href=\"CppHistogramEqualizationerScreenshot.png\">View a screenshot of HistogramEqualizationer'</a></li>");
     v.push_back("  <li><a href=\"CppHistogramEqualizationerExe.zip\">Download the 'HistogramEqualizationer' Windows executable (zip)</a></li>");
     v.push_back("  <li><a href=\"CppHistogramEqualizationerSource.zip\">Download the 'HistogramEqualizationer' source code (zip)</a></li>");
     v.push_back("</ul>");
@@ -8120,7 +8083,7 @@ const std::vector<std::string> c2h::Info::ToHtml() const
   {
     v.push_back("<p>A simple tool that converts It's Learning email adresses to Belcampo email adresses (as used in GroupWise).</p>");
     v.push_back("<p>&nbsp;</p>");
-    v.push_back("<p>* <a href=\"ToolItsBelcampoScreenshot.PNG\">View a screenshot of 'It's Belcampo'</a>.</p>");
+    v.push_back("<p>* <a href=\"ToolItsBelcampoScreenshot.png\">View a screenshot of 'It's Belcampo'</a>.</p>");
     v.push_back("<p>* <a href=\"ToolItsBelcampoSource.rar\">Download the 'It's Belcampo' source code</a>.</p>");
     v.push_back("<p>* <a href=\"ToolItsBelcampoExe.rar\">Download the 'It's Belcampo' Windows executable (rar)</a>.</p>");
     v.push_back("<p>* <a href=\"ToolItsBelcampoExe.zip\">Download the 'It's Belcampo' Windows executable (zip)</a>.</p>");
@@ -8433,7 +8396,7 @@ const std::vector<std::string> c2h::Info::ToHtml() const
     v.push_back("pixel.</p>");
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<ul>");
-    v.push_back("  <li><a href=\"ToolPaperRockScissorsScreenshot.PNG\">View a screenshot of 'ToolPaperRockScissors' (png)</a></li>");
+    v.push_back("  <li><a href=\"ToolPaperRockScissorsScreenshot.png\">View a screenshot of 'ToolPaperRockScissors' (png)</a></li>");
     v.push_back("  <li><a href=\"ToolPaperRockScissorsExe.zip\">Download the Windows executable of 'ToolPaperRockScissors' (zip)</a>.</p>");
     v.push_back("  <li><a href=\"ToolPaperRockScissorsSource.zip\">Download the 'ToolPaperRockScissors' source code (zip)</a>.</p>");
     v.push_back("</ul>");
@@ -10118,7 +10081,7 @@ const std::vector<std::string> c2h::Info::ToHtml() const
     v.push_back("<p><a href=\"ToolWindowViewer.htm\">WindowViewer</a> was released on the 6th of Fubruary of 2010 and programmed in <a href=\"Cpp.htm\">C++</a> using the <a href=\"CppIde.htm\">IDE</a> <a href=\"CppBuilder.htm\">C++ Builder</a> 6.0. It uses the <a href=\"CppStl.htm\">STL</a>, <a href=\"CppBoost.htm\">Boost</a> and <a href=\"CppVcl.htm\">VCL</a> <a href=\"CppLibrary.htm\">libraries</a>.</p>");
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<ul>");
-    v.push_back("  <li><a href=\"ToolWindowViewerScreenshot.PNG\">View a screenshot of 'WindowViewer'</a></li>");
+    v.push_back("  <li><a href=\"ToolWindowViewerScreenshot.png\">View a screenshot of 'WindowViewer'</a></li>");
     v.push_back("  <li><a href=\"ToolWindowViewerExe.zip\">Download the 'WindowViewer' Windows executable (version 1.0)(zip)</a></li>");
     v.push_back("  <li><a href=\"ToolWindowViewerSource.zip\">Download the 'WindowViewer' source code (version 1.0)(zip)</a></li>");
     v.push_back("</ul>");

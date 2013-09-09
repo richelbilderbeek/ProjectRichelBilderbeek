@@ -1,4 +1,6 @@
 QT       += core gui
+greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
+
 LIBS += -lboost_program_options
 TEMPLATE = app
 DEFINES += NDEBUG NTRACE_BILDERBIKKEL

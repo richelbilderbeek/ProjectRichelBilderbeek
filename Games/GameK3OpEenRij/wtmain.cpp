@@ -32,6 +32,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "wtaboutdialog.h"
 #include "wtconnectthreewidget.h"
 
+namespace ribi {
+
 struct K3OpEenRijApplication : public Wt::WApplication
 {
   K3OpEenRijApplication(
@@ -42,9 +44,11 @@ struct K3OpEenRijApplication : public Wt::WApplication
   {
     this->setTitle("K3OpEenRij (C) 2007-2013 Richel Bilderbeek");
     this->useStyleSheet(resources.GetCss());
-    root()->addWidget(new ribi::WtConnectThreeMenuDialog(about,resources,"K3OpEenRij"));
+    root()->addWidget(new ribi::WtConnectThreeMenuDialog(resources,"K3OpEenRij"));
   }
 };
+
+} //namespace ribi
 
 ribi::About CreateAbout()
 {
