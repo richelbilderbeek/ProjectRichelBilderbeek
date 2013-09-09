@@ -18,9 +18,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/CppQtModel.htm
 //---------------------------------------------------------------------------
-
-
 #pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include "qtstdvectorfunctionmodel.h"
 
@@ -37,6 +36,9 @@ ribi::QtStdVectorFunctionModel::QtStdVectorFunctionModel(
   const std::string& variable,
   QObject *parent)
   : QAbstractTableModel(parent),
+    m_data{},
+    m_header_horizontal_text{},
+    m_header_vertical_text{},
     m_variable{variable}
 {
   assert(!variable.empty());
@@ -44,7 +46,6 @@ ribi::QtStdVectorFunctionModel::QtStdVectorFunctionModel(
 
 int ribi::QtStdVectorFunctionModel::columnCount(const QModelIndex &) const
 {
-  //return 1;
   return rowCount() > 0 ? 1 : 0;
 }
 

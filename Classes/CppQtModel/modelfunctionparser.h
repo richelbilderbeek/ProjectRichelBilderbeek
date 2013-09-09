@@ -1,7 +1,10 @@
 #ifndef MODELFUNCTIONPARSER_H
 #define MODELFUNCTIONPARSER_H
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include <boost/shared_ptr.hpp>
+#pragma GCC diagnostic pop
 
 struct FunctionParser;
 
@@ -25,7 +28,6 @@ struct ModelFunctionParser
   const boost::shared_ptr<FunctionParser> m_parser;
 
   static double MyRand(const double * const max);
-
 };
 
 } //~namespace ribi

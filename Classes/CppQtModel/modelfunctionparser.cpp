@@ -1,17 +1,16 @@
-
-
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include "modelfunctionparser.h"
 
 #include <cassert>
 #include <stdexcept>
 
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/math/constants/constants.hpp>
-#pragma GCC diagnostic pop
 
 //Warp's function parser
 #include "fparser.hh"
+#pragma GCC diagnostic pop
 
 ribi::ModelFunctionParser::ModelFunctionParser(
   const std::string& my_function,
