@@ -1,4 +1,5 @@
 #pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 
 //static assertion failed: Source type is neither std::ostream`able nor std::wostream`able
@@ -9,7 +10,6 @@
 
 #include "multiapproximator.h"
 #include "canvas.h"
-
 
 #pragma GCC diagnostic pop
 
@@ -28,17 +28,17 @@ int main()
         && v <= 1.01 * boost::units::si::meters_per_second);
   }
 
-  typedef ribi::MultiApproximator<double,int> MultiApproximator_t;
+  typedef ribi::MultiApproximator<double,double> MultiApproximator_t;
 
   MultiApproximator_t a;
-  a.Add(20.0, 3);
-  a.Add(20.0, 7);
-  a.Add(30.0,14);
-  a.Add(30.0,16);
-  a.Add(40.0, 2);
-  a.Add(40.0, 8);
-  a.Add(50.0,12);
-  a.Add(50.0,18);
+  a.Add(20.0, 3.0);
+  a.Add(20.0, 7.0);
+  a.Add(30.0,14.0);
+  a.Add(30.0,16.0);
+  a.Add(40.0, 2.0);
+  a.Add(40.0, 8.0);
+  a.Add(50.0,12.0);
+  a.Add(50.0,18.0);
 
   const int max_x = 78;
   const int max_y = 20;

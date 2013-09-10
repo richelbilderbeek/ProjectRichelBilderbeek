@@ -18,8 +18,6 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/GamePylos.htm
 //---------------------------------------------------------------------------
-
-
 #include "pylosmenudialog.h"
 
 #include <cstdlib>

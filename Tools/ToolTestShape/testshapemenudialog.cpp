@@ -18,20 +18,20 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolTestShape.htm
 //---------------------------------------------------------------------------
-
-
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include "testshapemenudialog.h"
 
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/foreach.hpp>
-#pragma GCC diagnostic pop
 
 #include "shape.h"
 #include "shapewidget.h"
 #include "trace.h"
 
 #include <QFile>
+
+#pragma GCC diagnostic pop
 
 ribi::TestShapeMenuDialog::TestShapeMenuDialog()
 {

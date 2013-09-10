@@ -18,8 +18,9 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/CppQtCreatorProFile.htm
 //---------------------------------------------------------------------------
-
-
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include "qtcreatorprofilezipscript.h"
 
 #include <fstream>
@@ -27,18 +28,16 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <iterator>
 #include <set>
 
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/xpressive/xpressive.hpp>
 #include <boost/algorithm/string/split.hpp>
 #include <boost/algorithm/string.hpp>
-#pragma GCC diagnostic pop
 
 #include <QDir>
 
 #include "qrcfile.h"
 #include "qtcreatorprofile.h"
 #include "trace.h"
+#pragma GCC diagnostic pop
 
 struct PathOrdering
 {

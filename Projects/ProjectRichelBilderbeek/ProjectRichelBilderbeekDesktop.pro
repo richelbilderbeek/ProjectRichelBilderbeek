@@ -1648,14 +1648,7 @@ CONFIG(release, debug|release) {
 # Compiler flags
 #
 #
-QMAKE_CXXFLAGS += -std=c++11 -Wall -Wextra -Werror
-
-
-unix {
-  message(Unix)
-  #Strict error handling
-  QMAKE_CXXFLAGS += -Werror
-}
+QMAKE_CXXFLAGS += -std=c++11 -Wall -Wextra -Weffc++ -Werror
 
 #
 #

@@ -84,14 +84,9 @@ CONFIG(release, debug|release) {
 # Compiler flags
 #
 #
-QMAKE_CXXFLAGS += -std=c++11 -Wall -Wextra
 
-  QMAKE_CXXFLAGS += -Werror
-
-unix {
-  message(Unix)
-  QMAKE_CXXFLAGS += -Werror
-}
+#Cannot add -Weffc++ due to use of Qt resources
+QMAKE_CXXFLAGS += -std=c++11 -Wall -Wextra  -Werror
 
 #
 #
@@ -104,19 +99,8 @@ unix {
 }
 
 win32 {
-
-  cross_compile {
-    message(Lubuntu to Windows: Boost: link)
-  }
-
-  !cross_compile {
-    message(Native Windows: Boost: include)
-    INCLUDEPATH += \
-      ../../Libraries/boost_1_54_0
-  }
-
-
-  # Cannot link to the the non-header-only libraries when crosscompiling
+  INCLUDEPATH += \
+    ../../Libraries/boost_1_54_0
 }
 
 #

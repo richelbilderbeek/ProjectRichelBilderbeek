@@ -18,8 +18,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/CppPylos.htm
 //---------------------------------------------------------------------------
-
-
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include "pylosboard.h"
 
 #include "pyloscoordinat.h"
@@ -35,6 +35,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #ifdef PYLOSGAME_H
 #error Pylos::Game must not be defined for a Pylos::Board
 #endif
+
+#pragma GCC diagnostic pop
 
 ribi::Pylos::Board::Board()
   : m_board(CreateEmptyBoard())

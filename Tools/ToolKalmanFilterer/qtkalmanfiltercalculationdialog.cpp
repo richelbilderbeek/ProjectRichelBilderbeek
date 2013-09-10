@@ -1,14 +1,13 @@
-
-
 #pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include "qtkalmanfiltercalculationdialog.h"
 
 #include <boost/lexical_cast.hpp>
 
-#pragma GCC diagnostic pop
-
 #include "ui_qtkalmanfiltercalculationdialog.h"
+
+#pragma GCC diagnostic pop
 
 ribi::kalman::QtKalmanFilterCalculationDialog::QtKalmanFilterCalculationDialog(QWidget *parent) :
   QDialog(parent),

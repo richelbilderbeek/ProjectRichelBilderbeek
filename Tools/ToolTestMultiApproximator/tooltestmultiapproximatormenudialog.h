@@ -4,7 +4,11 @@
 #include <string>
 #include <vector>
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include "about.h"
+#pragma GCC diagnostic pop
+
 
 namespace ribi {
 

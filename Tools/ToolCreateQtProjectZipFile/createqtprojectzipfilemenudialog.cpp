@@ -18,12 +18,14 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolCreateQtProjectZipFile.htm
 //---------------------------------------------------------------------------
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include "createqtprojectzipfilemenudialog.h"
-
 #include "qrcfile.h"
 #include "qtcreatorprofile.h"
 #include "qtcreatorprofilezipscript.h"
 #include "trace.h"
+#pragma GCC diagnostic pop
 
 const ribi::About ribi::CreateQtProjectZipFile::MenuDialog::GetAbout()
 {

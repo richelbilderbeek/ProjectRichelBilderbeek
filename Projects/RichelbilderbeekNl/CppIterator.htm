@@ -22,54 +22,39 @@
 <p>&nbsp;</p>
 <p><a href="CppIterator.htm">Iterators</a> allow a uniform way to travel through all <a href="CppStl.htm">STL</a> <a href="CppContainer.htm">containers</a>.</p>
 <p>&nbsp;</p>
-<!-- start of code -->
-<table border = "1"><tr><td><code>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppIostreamH.htm">iostream</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppListH.htm">list</a>&gt;<br/>
-<br/>
-<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
-{<br/>
-&nbsp;&nbsp;<a href="CppList.htm">std::list</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt; my_list;<br/>
-&nbsp;&nbsp;my_list.push_back( 1);<br/>
-&nbsp;&nbsp;my_list.push_back( 4);<br/>
-&nbsp;&nbsp;my_list.push_back( 9);<br/>
-&nbsp;&nbsp;my_list.push_back(16);<br/>
-&nbsp;&nbsp;my_list.push_back(25);<br/>
-&nbsp;&nbsp;my_list.push_back(36);<br/>
-&nbsp;&nbsp;my_list.push_back(49);<br/>
-<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>Display the list (not preferred)<br/>
-&nbsp;&nbsp;<b><a href="CppTypedef.htm">typedef</a></b> <a href="CppList.htm">std::list</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;::const_iterator Iterator;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Iterator j <a href="CppOperatorAssign.htm">=</a> my_list.end();<br/>
-&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (Iterator i <a href="CppOperatorAssign.htm">=</a> my_list.begin(); i<a href="CppOperatorNotEqual.htm">!=</a>j; <a href="CppOperatorIncrement.htm">++</a>i)<br/>
-&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> *i <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n';<br/>
-&nbsp;&nbsp;}<br/>
-}<br/>
-</code></td></tr></table>
-<!-- end of the code -->
 <p>&nbsp;</p>
-<p>Screen output:</p>
 <p>&nbsp;</p>
-<!-- start of code -->
-<table border = "1"><tr><td><code>
-1<br/>
-4<br/>
-9<br/>
-16<br/>
-25<br/>
-36<br/>
-49<br/>
-</code></td></tr></table>
-<!-- end of the code -->
 <p>&nbsp;</p>
-<p>Note the following about the code shown above:</p>
-<ol>
-  <li>The preferred way to display the contents of the list can be found at the <a href="CppCoutContainer.htm">CoutContainer</a> <a href="CppCodeSnippets.htm">code snippet</a>. Prefer using standard algorithms, instead of crafting your own for loops [1].</li>
-  <li>std::list&lt;int&gt;::const_iterator was used, instead of std::list&lt;int&gt;::iterator. Use const_iterator when you are not modifying the contents of a <a href="CppContainer.htm">container</a> [2].</li>
-  <li><a href="CppOperatorNotEqual.htm">operator!=</a> was used instead of <a href="CppOperatorLess.htm">operator&lt;</a>. Prefer comparing iterators with <a href="CppOperatorNotEqual.htm">operator!=</a>, instead of <a href="CppOperatorLess.htm">operator&lt;</a> [3].</li>
-  <li>The prefix form of <a href="CppOperatorIncrement.htm">operator++</a> was used (that is '++i' instead of 'i++'). Prefer using the prefix form, unless you really need the old value [4].</li>
-</ol>
+<p>&nbsp;</p>
+<h2><a href="CppExample.htm">Example</a></h2>
+<p>&nbsp;</p>
+<ul>
+  <li><a href="CppIteratorExample1.htm">Iterator example 1: basics</a></li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><a href="CppAdvice.htm">Advice</a></h2>
+<p>&nbsp;</p>
+<ul>
+  <li>
+    Prefer using standard <a href="CppAlgorithm.htm">algorithms</a>, instead of crafting your own <a href="CppFor.htm">for</a> loops [1]
+  </li>
+  <li>
+    Use <a href="CppConst.htm">const</a> <a href="CppIterator.htm">iterators</a> when you are not modifying the contents of a <a href="CppContainer.htm">container</a> [2,4]
+  </li>
+  <li>
+    Prefer comparing <a href="CppIterator.htm">iterators</a> with <a href="CppOperatorNotEqual.htm">operator!=</a>, instead of <a href="CppOperatorLess.htm">operator&lt;</a> [3]
+  </li>
+  <li>
+    Use <a href="CppAuto.htm">auto</a> to avoid verbosity and typos when you use <a href="CppIterator.htm">iterators</a> [5]
+  </li>
+  <li>
+    Don't use <a href="CppIterator.htm">iterators</a> into a resized <a href="CppVector.htm">std::vector</a> or <a href="CppDeque.htm">std::deque</a> [6]
+  </li>
+</ul>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
@@ -78,10 +63,12 @@
 <h2><a href="CppReferences.htm">References</a></h2>
 <p>&nbsp;</p>
 <ol>
-  <li><a href="CppHerbSutter.htm">Herb Sutter</a>. Exceptional C++ style. 2005. ISBN: 0-201-76042-8. Item 1 guideline: 'Prefer reusing algorithms, particularly standard algorithms (e.g., for_each), instead of crafting your own loops'.</li>
-  <li><a href="CppHerbSutter.htm">Herb Sutter</a>. Exceptional C++ style. 2005. ISBN: 0-201-76042-8. Item 1 guideline: 'Use const_iterator when you are not modifying the contents of a container'.</li>
-  <li><a href="CppHerbSutter.htm">Herb Sutter</a>. Exceptional C++ style. 2005. ISBN: 0-201-76042-8. Item 1 guideline: 'Prefer comparing iterators with !=, not &lt;'.</li>
-  <li><a href="CppHerbSutter.htm">Herb Sutter</a>. Exceptional C++ style. 2005. ISBN: 0-201-76042-8. Item 1 guideline: 'Get in the habit of using the prefix forms of -- and ++ by default, unless you really need the old value'.</li>
+  <li><!--  1 --><a href="CppHerbSutter.htm">Herb Sutter</a>. Exceptional C++ style. 2005. ISBN: 0-201-76042-8. Item 1 guideline: 'Prefer reusing algorithms, particularly standard algorithms (e.g., for_each), instead of crafting your own loops'.</li>
+  <li><!--  2 --><a href="CppHerbSutter.htm">Herb Sutter</a>. Exceptional C++ style. 2005. ISBN: 0-201-76042-8. Item 1 guideline: 'Use const_iterator when you are not modifying the contents of a container'.</li>
+  <li><!--  3 --><a href="CppHerbSutter.htm">Herb Sutter</a>. Exceptional C++ style. 2005. ISBN: 0-201-76042-8. Item 1 guideline: 'Prefer comparing iterators with !=, not &lt;'.</li>
+  <li><!--  4 --><a href="CppBjarneStroustrup.htm">Bjarne Stroustrup</a>. The C++ Programming Language (4th edition). 2013. ISBN: 978-0-321-56384-2. Chapter 31.6. Advice. page 924: '[16] Use const iterators where you don't need to modify the elements of a container'</li>
+  <li><!--  5 --><a href="CppBjarneStroustrup.htm">Bjarne Stroustrup</a>. The C++ Programming Language (4th edition). 2013. ISBN: 978-0-321-56384-2. Chapter 31.6. Advice. page 924: '[17] Use auto to avoid verbosity and typos when you use iterators'</li>
+  <li><!--  6 --><a href="CppBjarneStroustrup.htm">Bjarne Stroustrup</a>. The C++ Programming Language (4th edition). 2013. ISBN: 978-0-321-56384-2. Chapter 31.6. Advice. page 924: '[21] Don't use iterators into a resized vector or deque'</li>
 </ol>
 <p>&nbsp;</p>
 <p>&nbsp;</p>

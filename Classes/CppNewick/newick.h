@@ -26,16 +26,17 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <vector>
 
 #pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/foreach.hpp>
 #include <boost/lexical_cast.hpp>
 #include <boost/tuple/tuple.hpp>
-#pragma GCC diagnostic pop
 
 #include "BigIntegerLibrary.hh"
 #include "newickcpp98.h"
 #include "newickstorage.h"
 #include "trace.h"
+#pragma GCC diagnostic pop
 
 namespace ribi {
 
@@ -54,6 +55,9 @@ namespace Newick
   ///an exact match is requested. Note that the value of 0.0 cannot
   ///be compared fuzzily.
   //From http://www.richelbilderbeek.nl/CppFuzzy_equal_to.htm
+
+  #pragma GCC diagnostic push
+  #pragma GCC diagnostic ignored "-Weffc++"
   struct fuzzy_equal_to : public std::binary_function<double,double,bool>
   {
     fuzzy_equal_to(const double tolerance = 0.01)
@@ -69,6 +73,7 @@ namespace Newick
     }
     const double m_tolerance;
   };
+  #pragma GCC diagnostic pop
 
   ///CreateVector creates a std::vector from three arguments
   ///From http://www.richelbilderbeek.nl/CppCreateVector.htm

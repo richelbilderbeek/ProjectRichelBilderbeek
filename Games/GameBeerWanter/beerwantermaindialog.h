@@ -72,10 +72,10 @@ struct BeerWanterMainDialog
   int m_level;
   const int m_screen_height;
   const int m_screen_width;
-  int m_sprite_x;
-  int m_sprite_y;
   const int m_sprite_height;
   const int m_sprite_width;
+  int m_sprite_x;
+  int m_sprite_y;
   const int m_window_height;
   const int m_window_width;
   int m_window_x;

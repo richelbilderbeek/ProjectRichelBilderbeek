@@ -19,14 +19,14 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/GameBeerWanter.htm
 //---------------------------------------------------------------------------
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include "qtbeerwanterwidget.h"
 
 #include <iostream>
 
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/lexical_cast.hpp>
-#pragma GCC diagnostic pop
 
 #include <QApplication>
 #include <QDesktopWidget>
@@ -39,6 +39,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <QVBoxLayout>
 
 #include "beerwantermaindialog.h"
+#pragma GCC diagnostic pop
 
 ribi::QtBeerWanterWidget::QtBeerWanterWidget(QWidget *parent)
   : QWidget(parent),
@@ -49,6 +50,8 @@ ribi::QtBeerWanterWidget::QtBeerWanterWidget(QWidget *parent)
         (0x00 + 0x00)/2  //Average blueness in stylesheet of menu
       )
     ),
+    m_debug_text{},
+    m_dialog{},
     m_sprite(new QPixmap(":/PicBeer.png")),
     m_timer(new QTimer)
 {

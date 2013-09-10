@@ -18,10 +18,9 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/CppNewick.htm
 //---------------------------------------------------------------------------
-
-
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include "newick.h"
-
 
 #include <algorithm>
 #include <cassert>
@@ -44,6 +43,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "newickcpp98.h"
 #include "trace.h"
 
+#pragma GCC diagnostic pop
 
 //From http://www.richelbilderbeek.nl/CppAccumulate_if.htm
 template
@@ -78,7 +78,7 @@ Out Copy_if(In first, In last, Out res, Pred Pr)
 }
 
 //From http://www.richelbilderbeek.nl/CppFunctorIncrease.htm
-struct Increase : public std::unary_function<void,int>
+struct Increase //: public std::unary_function<void,int>
 {
   explicit Increase(const int& initValue = 0) : mValue(initValue) {}
   void operator()(int& anything)

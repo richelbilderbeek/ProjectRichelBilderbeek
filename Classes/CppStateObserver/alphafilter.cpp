@@ -1,6 +1,9 @@
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include "alphafilter.h"
 
 #include <cassert>
+#pragma GCC diagnostic pop
 
 ribi::AlphaFilter::AlphaFilter(
   const double alpha,

@@ -77,8 +77,17 @@ struct Shape
 
   friend bool operator==(const Shape& lhs, const Shape& rhs);
 
+  ///The shape its blueness
+  unsigned char m_blue;
+
+  ///The shape its greenness
+  unsigned char m_green;
+
   ///The number of corners
   int m_n_corners;
+
+  ///The shape its redness
+  unsigned char m_red;
 
   ///The rotation
   ///
@@ -87,15 +96,6 @@ struct Shape
   ///and which 0.5 * M_PI is the equivalent to  3:00 o'clock
   ///Values not in this range are accepted nonetheless
   double m_rotation;
-
-  ///The shape its redness
-  unsigned char m_red;
-
-  ///The shape its greenness
-  unsigned char m_green;
-
-  ///The shape its blueness
-  unsigned char m_blue;
 
   #ifndef NDEBUG
   ///Test this class

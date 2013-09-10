@@ -18,6 +18,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolTestTwoDigitNewick.htm
 //---------------------------------------------------------------------------
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include "twodigitnewicks.h"
 
 #include <cassert>
@@ -28,7 +30,10 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "newick.h"
 #include "binarynewickvector.h"
 
+#pragma GCC diagnostic pop
+
 ribi::TwoDigitNewicks::TwoDigitNewicks(const int n_reserved, const double theta)
+  : m_v{}
 {
   //Create derivatives of simplest and reserved TwoDigitNewicks
 

@@ -5,15 +5,16 @@
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/shared_ptr.hpp>
-#pragma GCC diagnostic pop
 
 #include "whitenoisesystemtype.h"
 #include "whitenoisesystemparameters.h"
 
+#pragma GCC diagnostic pop
+
 namespace ribi {
 namespace kalman {
 
-struct WhiteNoiseSystem : public boost::noncopyable
+struct WhiteNoiseSystem
 {
   WhiteNoiseSystem(const WhiteNoiseSystem&) = delete;
   WhiteNoiseSystem& operator=(const WhiteNoiseSystem&) = delete;

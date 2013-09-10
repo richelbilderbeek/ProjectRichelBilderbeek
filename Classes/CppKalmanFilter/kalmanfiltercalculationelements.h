@@ -15,7 +15,7 @@ namespace ribi {
 namespace kalman {
 
 ///The elements of a steady-state Kalman filter calculation
-struct KalmanFilterCalculationElements : public boost::noncopyable
+struct KalmanFilterCalculationElements
 {
   KalmanFilterCalculationElements(const KalmanFilterCalculationElements&) = delete;
   KalmanFilterCalculationElements& operator=(const KalmanFilterCalculationElements&) = delete;

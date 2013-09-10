@@ -1,3 +1,5 @@
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include "noisefunctionparser.h"
 
 #include <cassert>
@@ -5,6 +7,8 @@
 
 //Warp's function parser
 #include "fparser.hh"
+
+#pragma GCC diagnostic pop
 
 ribi::NoiseFunctionParser::NoiseFunctionParser(
   const std::string& my_function,

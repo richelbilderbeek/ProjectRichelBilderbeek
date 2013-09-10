@@ -37,21 +37,23 @@
 <h2><a href="CppStl.htm">STL</a> <a href="CppContainer.htm">container</a>s (incomplete list)</h2>
 <p>&nbsp;</p>
 <ul>
-  <li><a href="CppBitset.htm">std::bitset</a></li>
-  <li><a href="CppDeque.htm">std::deque</a></li>
-  <li><a href="CppList.htm">std::list</a></li>
-  <li><a href="CppMap.htm">std::map</a></li>
-  <li><a href="CppMultimap.htm">std::multimap</a></li>
-  <li><a href="CppMultiset.htm">std::multiset</a></li>
-  <li><a href="CppPair.htm">std::pair</a></li>
-  <li><a href="CppPriority_queue.htm">std::priority_queue</a></li>
-  <li><a href="CppSet.htm">std::set</a></li>
-  <li><a href="CppSlist.htm">std::slist</a></li>
-  <li><a href="CppStack.htm">std::stack</a></li>
-  <li><a href="CppString.htm">std::string</a></li>
-  <li><a href="CppQueue.htm">std::queue</a></li>
-  <li><a href="CppValarray.htm">std::valarray</a></li>
-  <li><a href="CppVector.htm">std::vector</a></li>
+  <li><img src="PicCpp98.png" alt="C++98"/><img src="PicCpp11.png" alt="C++11"/> <a href="CppBitset.htm">std::bitset</a></li>
+  <li><img src="PicCpp98.png" alt="C++98"/><img src="PicCpp11.png" alt="C++11"/><a href="CppDeque.htm">std::deque</a></li>
+  <li><img src="PicSpacer.png" alt=" "/><img src="PicCpp11.png" alt="C++11"/><a href="CppForward_list.htm">std::forward_list</a></li>
+  <li><img src="PicCpp98.png" alt="C++98"/><img src="PicCpp11.png" alt="C++11"/><a href="CppList.htm">std::list</a></li>
+  <li><img src="PicCpp98.png" alt="C++98"/><img src="PicCpp11.png" alt="C++11"/><a href="CppMap.htm">std::map</a></li>
+  <li><img src="PicCpp98.png" alt="C++98"/><img src="PicCpp11.png" alt="C++11"/><a href="CppMultimap.htm">std::multimap</a></li>
+  <li><img src="PicCpp98.png" alt="C++98"/><img src="PicCpp11.png" alt="C++11"/><a href="CppMultiset.htm">std::multiset</a></li>
+  <li><img src="PicCpp98.png" alt="C++98"/><img src="PicCpp11.png" alt="C++11"/><a href="CppPair.htm">std::pair</a></li>
+  <li><img src="PicCpp98.png" alt="C++98"/><img src="PicCpp11.png" alt="C++11"/><a href="CppPriority_queue.htm">std::priority_queue</a></li>
+  <li><img src="PicCpp98.png" alt="C++98"/><img src="PicCpp11.png" alt="C++11"/><a href="CppSet.htm">std::set</a></li>
+  <li><img src="PicCpp98.png" alt="C++98"/><img src="PicCpp11.png" alt="C++11"/><a href="CppSlist.htm">std::slist</a></li>
+  <li><img src="PicCpp98.png" alt="C++98"/><img src="PicCpp11.png" alt="C++11"/><a href="CppStack.htm">std::stack</a></li>
+  <li><img src="PicCpp98.png" alt="C++98"/><img src="PicCpp11.png" alt="C++11"/><a href="CppString.htm">std::string</a></li>
+  <li><img src="PicCpp98.png" alt="C++98"/><img src="PicCpp11.png" alt="C++11"/><a href="CppQueue.htm">std::queue</a></li>
+  <li><img src="PicSpacer.png" alt=" "/><img src="PicCpp11.png" alt="C++11"/><a href="CppUnordered_map.htm">std::unordered_map</a></li>
+  <li><img src="PicCpp98.png" alt="C++98"/><img src="PicCpp11.png" alt="C++11"/><a href="CppValarray.htm">std::valarray</a></li>
+  <li><img src="PicCpp98.png" alt="C++98"/><img src="PicCpp11.png" alt="C++11"/><a href="CppVector.htm">std::vector</a></li>
 </ul>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
@@ -78,7 +80,7 @@
 <p>&nbsp;</p>
 <ul>
   <li><a href="CppAny.htm">boost::any</a></li>
-  <li><a href="CppArray.htm">boost::array</a></li>
+  <li><a href="CppBoostArray.htm">boost::array</a></li>
   <li>boost::compressed_pair</li>
   <li>boost::dynamic_bitset</li>
   <li><a href="CppMulti_array.htm">boost::multi_array</a></li>
@@ -91,7 +93,7 @@
   <li><a href="CppPtr_set.htm">boost::ptr_set</a></li>
   <li>boost::ptr_vector</li>
   <li>boost::shared_array</li>
-  <li><a href="CppTuple.htm">boost::tuple</a></li>
+  <li><a href="CppBoostTuple.htm">boost::tuple</a></li>
   <li>boost::variant</li>
 </ul>
 <p>&nbsp;</p>
@@ -138,10 +140,37 @@
 <p>&nbsp;</p>
 <ul>
   <li>
+    <a href="CppStl.htm">STL</a> <a href="CppContainer.htm">containers</a> are resource handles [6]
+  </li>
+  <li>
     If a <a href="CppClass.htm">class</a> is a <a href="CppContainer.htm">container</a>, give it an <a href="CppInitializerList.htm">initializer-list</a> <a href="CppContructor.htm">constructor</a> [1]
   </li>
   <li>
     Use <a href="CppTemplate.htm">templates</a> to express <a href="CppContainer.htm">containers</a> [2]
+  </li>
+  <li>
+    An <a href="CppStl.htm">STL</a> <a href="CppContainer.htm">container</a> defines a sequence [3]
+  </li>
+  <li>
+    Use <a href="CppVector.htm">std::vector</a> as your default <a href="CppContainer.htm">container</a> [4]
+  </li>
+  <li>
+    Insertion operators, such as insert() and push_back() are often more efficient on a <a href="CppVector.htm">std::vector</a> than on a <a href="CppList.htm">std::list</a> [5]
+  </li>
+  <li>
+    Pass a <a href="CppContainer.htm">container</a> by <a href="CppReference.htm">reference</a> and <a href="CppReturn.htm">return</a> a <a href="CppContainer.htm">container</a> by value [7]
+  </li>
+  <li>
+    For a <a href="CppContainer.htm">container</a>, use the ()-syntax for sizes and the <a href="CppListInitialization.htm">list initialization</a> syntax for lists of elements [8]
+  </li>
+  <li>
+    For simple traversal of a <a href="CppContainer.htm">container</a>, use a <a href="CppRangeFor.htm">range-for</a>-loop or a begin/end pair of <a href="CppIterator.htm">iterators</a> [9]
+  </li>
+  <li>
+    Use push_back() or resize() on a <a href="CppContainer.htm">container</a>, rather than <a href="CppRealloc.htm">std::realloc</a> on an <a href="CppArray.htm">array</a> [10]
+  </li>
+  <li>
+    Do not assume that <a href="CppOperatorIndex.htm">operator[]</a> range checks [11]
   </li>
 </ul>
 <p>&nbsp;</p>
@@ -154,6 +183,15 @@
 <ol>
   <li><!--  1 --><a href="CppBjarneStroustrup.htm">Bjarne Stroustrup</a>. The C++ Programming Language (4th edition). 2013. ISBN: 978-0-321-56384-2. Chapter 17.7. Advice. page 525: '[8] If a class is a container, give it an initializer-list constructor'</li>
   <li><!--  2 --><a href="CppBjarneStroustrup.htm">Bjarne Stroustrup</a>. The C++ Programming Language (4th edition). 2013. ISBN: 978-0-321-56384-2. Chapter 23.8, page 698: '[2] Use templates to express containers'</li>
+  <li><!--  3 --><a href="CppBjarneStroustrup.htm">Bjarne Stroustrup</a>. The C++ Programming Language (4th edition). 2013. ISBN: 978-0-321-56384-2. Chapter 31.6. Advice. page 924: '[1] An STL container defines a sequence'</li>
+  <li><!--  4 --><a href="CppBjarneStroustrup.htm">Bjarne Stroustrup</a>. The C++ Programming Language (4th edition). 2013. ISBN: 978-0-321-56384-2. Chapter 31.6. Advice. page 924: '[2] Use vector as your default container'</li>
+  <li><!--  5 --><a href="CppBjarneStroustrup.htm">Bjarne Stroustrup</a>. The C++ Programming Language (4th edition). 2013. ISBN: 978-0-321-56384-2. Chapter 31.6. Advice. page 924: '[3] Insertion operators, such as insert() and push_back() are often more efficient on a vector than on a list'</li>
+  <li><!--  6 --><a href="CppBjarneStroustrup.htm">Bjarne Stroustrup</a>. The C++ Programming Language (4th edition). 2013. ISBN: 978-0-321-56384-2. Chapter 31.6. Advice. page 924: '[7] STL containers are resource handles'</li>
+  <li><!--  7 --><a href="CppBjarneStroustrup.htm">Bjarne Stroustrup</a>. The C++ Programming Language (4th edition). 2013. ISBN: 978-0-321-56384-2. Chapter 31.6. Advice. page 924: '[13] Pass a container by reference and return a container by value'</li>
+  <li><!--  8 --><a href="CppBjarneStroustrup.htm">Bjarne Stroustrup</a>. The C++ Programming Language (4th edition). 2013. ISBN: 978-0-321-56384-2. Chapter 31.6. Advice. page 924: '[14] For a container, use the ()-syntax for sizes and the {}-initializer syntax for lists of elements'</li>
+  <li><!--  9 --><a href="CppBjarneStroustrup.htm">Bjarne Stroustrup</a>. The C++ Programming Language (4th edition). 2013. ISBN: 978-0-321-56384-2. Chapter 31.6. Advice. page 924: '[15] For simple traversal of a container, use a range-for-loop or a begin/end pair of iterators'</li>
+  <li><!-- 10 --><a href="CppBjarneStroustrup.htm">Bjarne Stroustrup</a>. The C++ Programming Language (4th edition). 2013. ISBN: 978-0-321-56384-2. Chapter 31.6. Advice. page 924: '[20] Use push_back() or resize() on a container, rather than realloc() on an array'</li>
+  <li><!-- 11 --><a href="CppBjarneStroustrup.htm">Bjarne Stroustrup</a>. The C++ Programming Language (4th edition). 2013. ISBN: 978-0-321-56384-2. Chapter 31.6. Advice. page 924: '[23] Do not assume that [] range checks'</li>
 </ol>
 <p>&nbsp;</p>
 <p>&nbsp;</p>

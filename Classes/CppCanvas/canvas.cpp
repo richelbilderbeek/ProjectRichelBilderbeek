@@ -18,6 +18,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 // From http://www.richelbilderbeek.nl/CppCanvas.htm
 //---------------------------------------------------------------------------
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include "canvas.h"
 
 #include <iostream>
@@ -27,8 +30,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <functional>
 #include <iterator>
 
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/math/constants/constants.hpp>
 #pragma GCC diagnostic pop
 

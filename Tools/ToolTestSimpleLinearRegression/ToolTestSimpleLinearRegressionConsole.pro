@@ -62,11 +62,7 @@ CONFIG(release, debug|release) {
 # Compiler flags
 #
 #
-QMAKE_CXXFLAGS += -std=c++11 -Wall -Wextra
-
-unix {
-  QMAKE_CXXFLAGS += -Werror
-}
+QMAKE_CXXFLAGS += -std=c++11 -Wall -Wextra -Weffc++ -Werror
 
 #
 #
@@ -74,13 +70,7 @@ unix {
 #
 #
 
-unix {
-  message(Unix: Boost already in include path)
-}
-
 win32 {
-  message(Windows: add Boost to include path)
   INCLUDEPATH += \
     ../../Libraries/boost_1_54_0
 }
-

@@ -15,10 +15,10 @@ namespace ribi {
 namespace kalman {
 
 ///ABC of the parameters of a white noise system
-struct WhiteNoiseSystemParameters : public boost::noncopyable
+struct WhiteNoiseSystemParameters
 {
-
-
+  WhiteNoiseSystemParameters(const WhiteNoiseSystemParameters&) = delete;
+  WhiteNoiseSystemParameters& operator=(const WhiteNoiseSystemParameters&) = delete;
 
   virtual ~WhiteNoiseSystemParameters() {}
 

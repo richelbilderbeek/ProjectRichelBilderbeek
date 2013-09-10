@@ -23,16 +23,17 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #include <vector>
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include <boost/shared_ptr.hpp>
-
 #include "pylosfwd.h"
 #include "pylosmove.h"
 #include "pyloswinner.h"
 #include "pylosplayer.h"
 #include "pylospositionstate.h"
+#pragma GCC diagnostic pop
 
 namespace ribi {
-
 namespace Pylos {
 
 struct Board
@@ -250,7 +251,6 @@ bool operator!=(const Board& lhs, const Board& rhs);
 std::ostream& operator<<(std::ostream& os,const Board& p);
 
 } //~namespace Pylos
-
 } //~namespace ribi
 
 #endif // PYLOSBOARD_H

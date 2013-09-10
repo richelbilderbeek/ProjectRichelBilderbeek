@@ -1,7 +1,12 @@
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include "multialphafilter.h"
 
 #include <cassert>
 #include <boost/foreach.hpp>
+
+#pragma GCC diagnostic pop
+
 ribi::MultiAlphaFilter::MultiAlphaFilter(
   const std::vector<double> alphas,
   const double dt)
@@ -49,8 +54,8 @@ const std::string ribi::MultiAlphaFilter::GetVersion()
 
 const std::vector<std::string> ribi::MultiAlphaFilter::GetVersionHistory()
 {
-  std::vector<std::string> v;
-  v.push_back("2013-05-25: version 1.0: initial version");
-  v.push_back("2013-06-18: version 1.1: derive from FloatingPointStateObserver");
-  return v;
+  return {
+    "2013-05-25: version 1.0: initial version",
+    "2013-06-18: version 1.1: derive from FloatingPointStateObserver"
+  };
 }

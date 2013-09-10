@@ -18,6 +18,9 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/CppBinaryNewickVector.htm
 //---------------------------------------------------------------------------
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include "binarynewickvector.h"
 
 #include <algorithm>
@@ -32,29 +35,32 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <sstream>
 #include <vector>
 
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/numeric/conversion/cast.hpp>
 #include <boost/foreach.hpp>
 #include <boost/lexical_cast.hpp>
-#pragma GCC diagnostic pop
 
 #include "BigIntegerLibrary.hh"
 
 #include "newick.h"
 
+#pragma GCC diagnostic pop
+
 ribi::BinaryNewickVector::BinaryNewickVector(const std::string& s)
+  : m_v{Newick::StringToNewick(s)}
 {
   assert(Newick::IsUnaryNewick(Newick::StringToNewick(s))
       || Newick::IsBinaryNewick(Newick::StringToNewick(s)));
-  m_v = Newick::StringToNewick(s);
+
+  //Can I add these as well?
+  //assert(Newick::IsUnaryNewick(m_v) || Newick::IsBinaryNewick(m_v));
+  //assert(m_v.empty() || Newick::IsNewick(m_v));
 }
 
 ribi::BinaryNewickVector::BinaryNewickVector(const std::vector<int>& v)
+  : m_v{v}
 {
-  assert(Newick::IsUnaryNewick(v) || Newick::IsBinaryNewick(v));
-  assert(v.empty() || Newick::IsNewick(v));
-  m_v = v;
+  assert(Newick::IsUnaryNewick(m_v) || Newick::IsBinaryNewick(m_v));
+  assert(m_v.empty() || Newick::IsNewick(m_v));
 }
 
 double ribi::BinaryNewickVector::CalcDenominator(const double theta) const
@@ -67,14 +73,6 @@ const BigInteger ribi::BinaryNewickVector::CalcNumOfCombinations() const
   assert(Newick::IsNewick(m_v));
   return Newick::CalcNumOfCombinationsBinary(m_v);
 }
-
-//#ifndef WIN32
-//const cln::cl_I ribi::BinaryNewickVector::CalcNumOfCombinationsCln() const
-//{
-//  assert(Newick::IsNewick(m_v));
-//  return Newick::CalcNumOfCombinationsCln(m_v);
-//}
-//#endif
 
 const BigInteger ribi::BinaryNewickVector::CalcNumOfSymmetries() const
 {

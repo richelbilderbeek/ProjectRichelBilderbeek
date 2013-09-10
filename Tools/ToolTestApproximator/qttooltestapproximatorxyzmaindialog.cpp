@@ -1,3 +1,6 @@
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+
 #include "qttooltestapproximatorxyzmaindialog.h"
 
 #include <cassert>
@@ -13,6 +16,8 @@
 #endif
 
 #include "ui_qttooltestapproximatorxyzmaindialog.h"
+
+#pragma GCC diagnostic pop
 
 ribi::QtToolTestApproximatorXyzMainDialog::QtToolTestApproximatorXyzMainDialog(QWidget *parent) :
   QtHideAndShowDialog(parent),

@@ -1,9 +1,12 @@
 #ifndef QTTOOLTESTAPPROXIMATORMAINDIALOG_H
 #define QTTOOLTESTAPPROXIMATORMAINDIALOG_H
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include <boost/shared_ptr.hpp>
 #include "approximator.h"
 #include "qthideandshowdialog.h"
+#pragma GCC diagnostic pop
 
 struct QwtPlot;
 struct QwtPlotCurve;
@@ -33,12 +36,11 @@ private:
   QwtPlotCurve * const m_curve_approximation;
   QwtPlotCurve * const m_curve_values;
 
-  std::vector<double> m_xs;
-  std::vector<double> m_ys;
-
   ///Contains the plot
   const boost::shared_ptr<QwtPlot> m_plot;
 
+  std::vector<double> m_xs;
+  std::vector<double> m_ys;
 
   void Plot();
 };

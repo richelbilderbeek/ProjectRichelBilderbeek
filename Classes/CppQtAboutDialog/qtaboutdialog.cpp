@@ -18,6 +18,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/CppQtAboutDialog.htm
 //---------------------------------------------------------------------------
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include "qtaboutdialog.h"
 
 #include <cassert>
@@ -28,6 +30,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #include "ui_qtaboutdialog.h"
 
+#pragma GCC diagnostic pop
 
 ribi::QtAboutDialog::QtAboutDialog(const ribi::About& about)
   : ui(new Ui::QtAboutDialog)
@@ -115,7 +118,7 @@ ribi::QtAboutDialog::~QtAboutDialog()
 
 const std::string ribi::QtAboutDialog::GetVersion()
 {
-  return "1.5";
+  return "1.7";
 }
 
 const std::vector<std::string> ribi::QtAboutDialog::GetVersionHistory()
@@ -128,6 +131,7 @@ const std::vector<std::string> ribi::QtAboutDialog::GetVersionHistory()
     "2012-01-12: version 1.4: fixed grammatical error",
     "2012-01-27: version 1.5: abandoned use of BOOST_FOREACH, due to run-time errors",
     "2013-09-05: version 1.6: transition to namespace ribi"
+    "2013-09-10: version 1.7: explicitly disabled copying, compiles with -Weffc++"
   };
 }
 

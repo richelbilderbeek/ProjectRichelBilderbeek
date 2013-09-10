@@ -14,6 +14,9 @@ class QtStateObserverMenuDialog : public QtHideAndShowDialog
   Q_OBJECT
 
 public:
+  QtStateObserverMenuDialog(const QtStateObserverMenuDialog&) = delete;
+  QtStateObserverMenuDialog& operator=(const QtStateObserverMenuDialog&) = delete;
+
   explicit QtStateObserverMenuDialog(QWidget *parent = 0);
   ~QtStateObserverMenuDialog();
 

@@ -27,6 +27,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <stdexcept>
 
 #pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/lexical_cast.hpp>
 #pragma GCC diagnostic pop
@@ -38,20 +39,21 @@ ribi::BeerWanterMainDialog::BeerWanterMainDialog(
   int sprite_height,
   int window_width,
   int window_height)
-  : m_level(1),
-   m_screen_height(screen_height),
-   m_screen_width(screen_width),
-   m_sprite_height(sprite_height),
-   m_sprite_width(sprite_width),
-   m_window_height(window_height),
-   m_window_width(window_width)
+  :
+    m_cursor_x{window_width  / 2},
+    m_cursor_y{window_height / 2},
+    m_level{1},
+    m_screen_height(screen_height),
+    m_screen_width(screen_width),
+    m_sprite_height(sprite_height),
+    m_sprite_width(sprite_width),
+    m_sprite_x{(window_width  / 2) - (sprite_width  / 2)},
+    m_sprite_y{(window_height / 2) - (sprite_height / 2)},
+    m_window_height(window_height),
+    m_window_width(window_width),
+    m_window_x{(screen_width  / 2) - (window_width  / 2)},
+    m_window_y{(screen_height / 2) - (window_height / 2)}
 {
-  m_cursor_x = m_window_width  / 2;
-  m_cursor_y = m_window_height / 2;
-  m_sprite_x = (m_window_width  / 2) - (m_sprite_width  / 2);
-  m_sprite_y = (m_window_height / 2) - (m_sprite_height / 2);
-  m_window_x = (m_screen_width  / 2) - (m_window_width  / 2);
-  m_window_y = (m_screen_height / 2) - (m_window_height / 2);
 }
 
 bool ribi::BeerWanterMainDialog::ClickWilBeSuccess() const

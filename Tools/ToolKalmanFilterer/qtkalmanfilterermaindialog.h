@@ -38,6 +38,9 @@ class QtKalmanFiltererMainDialog : public QtHideAndShowDialog
   Q_OBJECT
   
 public:
+  QtKalmanFiltererMainDialog(const QtKalmanFiltererMainDialog&) = delete;
+  QtKalmanFiltererMainDialog& operator=(const QtKalmanFiltererMainDialog&) = delete;
+
   explicit QtKalmanFiltererMainDialog(
     const boost::shared_ptr<QtKalmanFilterExperimentModel> model,
     QWidget *parent = 0);

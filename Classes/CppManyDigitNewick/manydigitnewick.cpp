@@ -18,7 +18,9 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/CppManyDigitNewick.htm
 //---------------------------------------------------------------------------
-
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 
 #include "manydigitnewick.h"
 
@@ -27,8 +29,6 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #include <iostream>
 
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/foreach.hpp>
 #include <boost/numeric/conversion/cast.hpp>
 

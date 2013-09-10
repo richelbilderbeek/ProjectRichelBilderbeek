@@ -19,26 +19,26 @@ INCLUDEPATH += \
 SOURCES += \
     ../../Classes/CppAbout/about.cpp \
     ../../Classes/CppApproximator/approximator.cpp \
+    ../../Classes/CppApproximator/exceptionnoextrapolation.cpp \
     ../../Classes/CppQtAboutDialog/qtaboutdialog.cpp \
     ../../Classes/CppQtHideAndShowDialog/qthideandshowdialog.cpp \
     qtmain.cpp \
-    tooltestapproximatormenudialog.cpp \
     qttooltestapproximatormenudialog.cpp \
-    ../../Classes/CppApproximator/exceptionnoextrapolation.cpp \
     qttooltestapproximatorxymaindialog.cpp \
-    qttooltestapproximatorxyzmaindialog.cpp
+    qttooltestapproximatorxyzmaindialog.cpp \
+    tooltestapproximatormenudialog.cpp
 
 HEADERS += \
     ../../Classes/CppAbout/about.h \
     ../../Classes/CppApproximator/approximator.h \
+    ../../Classes/CppApproximator/exceptionnoextrapolation.h \
     ../../Classes/CppQtAboutDialog/qtaboutdialog.h \
     ../../Classes/CppQtHideAndShowDialog/qthideandshowdialog.h \
     ../../Classes/CppTrace/trace.h \
     qttooltestapproximatormenudialog.h \
-    tooltestapproximatormenudialog.h \
-    ../../Classes/CppApproximator/exceptionnoextrapolation.h \
     qttooltestapproximatorxymaindialog.h \
-    qttooltestapproximatorxyzmaindialog.h
+    qttooltestapproximatorxyzmaindialog.h \
+    tooltestapproximatormenudialog.h
 
 FORMS += \
     ../../Classes/CppQtAboutDialog/qtaboutdialog.ui \
@@ -51,8 +51,8 @@ OTHER_FILES += \
     ../../Classes/CppApproximator/Licence.txt \
     Licence.txt
 
-#RESOURCES += \
-#    ToolTestApproximatorFilterer.qrc
+RESOURCES += \
+    ToolTestApproximator.qrc
 
 #
 #
@@ -82,14 +82,10 @@ CONFIG(release, debug|release) {
 # Compiler flags
 #
 #
-QMAKE_CXXFLAGS += -std=c++11 -Wall -Wextra
 
-  QMAKE_CXXFLAGS += -Werror
+#Cannot add -Weffc++ due to use of Qt resources
+QMAKE_CXXFLAGS += -std=c++11 -Wall -Wextra -Werror
 
-unix {
-  message(Unix)
-  QMAKE_CXXFLAGS += -Werror
-}
 
 #
 #
@@ -97,24 +93,9 @@ unix {
 #
 #
 
-unix {
-  # Cannot link to the the non-header-only libraries when crosscompiling
-}
-
 win32 {
-
-  cross_compile {
-    message(Lubuntu to Windows: Boost: link)
-  }
-
-  !cross_compile {
-    message(Native Windows: Boost: include)
-    INCLUDEPATH += \
-      ../../Libraries/boost_1_54_0
-  }
-
-
-  # Cannot link to the the non-header-only libraries when crosscompiling
+  INCLUDEPATH += \
+    ../../Libraries/boost_1_54_0
 }
 
 #
@@ -157,6 +138,3 @@ win32 {
     }
   }
 }
-
-RESOURCES += \
-    ToolTestApproximator.qrc

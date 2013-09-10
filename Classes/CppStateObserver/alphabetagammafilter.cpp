@@ -1,6 +1,10 @@
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include "alphabetagammafilter.h"
 
 #include <cassert>
+
+#pragma GCC diagnostic pop
 
 ribi::AlphaBetaGammaFilter::AlphaBetaGammaFilter(
   const double alpha,

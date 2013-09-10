@@ -27,6 +27,9 @@ class QtFixedLagSmootherKalmanFilterCalculationDialog : public QtKalmanFilterCal
   Q_OBJECT
   
 public:
+  QtFixedLagSmootherKalmanFilterCalculationDialog(const QtFixedLagSmootherKalmanFilterCalculationDialog&) = delete;
+  QtFixedLagSmootherKalmanFilterCalculationDialog operator=(const QtFixedLagSmootherKalmanFilterCalculationDialog&) = delete;
+
   explicit QtFixedLagSmootherKalmanFilterCalculationDialog(QWidget *parent = 0);
   ~QtFixedLagSmootherKalmanFilterCalculationDialog();
 

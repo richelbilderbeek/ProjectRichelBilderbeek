@@ -1,8 +1,11 @@
 #ifndef NOISEFUNCTIONPARSER_H
 #define NOISEFUNCTIONPARSER_H
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include <boost/shared_ptr.hpp>
 #include <boost/noncopyable.hpp>
+#pragma GCC diagnostic pop
 
 struct FunctionParser;
 

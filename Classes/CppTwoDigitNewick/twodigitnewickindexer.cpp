@@ -18,6 +18,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolTestTwoDigitNewick.htm
 //---------------------------------------------------------------------------
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include "twodigitnewickindexer.h"
 
 #include <algorithm>
@@ -31,18 +33,20 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "newick.h"
 #include "binarynewickvector.h"
 
+#pragma GCC diagnostic pop
+
 //TwoDigitNewickIndexer constructor does all the work
 ribi::TwoDigitNewickIndexer::TwoDigitNewickIndexer(
   const BinaryNewickVector& n,
   const double theta)
-  : m_newicks(CalculateReserved(n),theta),
-    m_theta(theta),
-    m_reserved(CalculateReserved(n)),
-    m_probability(-1.0)
+  : m_calculated_to_index{CalculateReserved(n)},
+    m_current_index{CalculateReserved(n)},
+    m_index_table{},
+    m_newicks{CalculateReserved(n),theta},
+    m_probability{-1.0},
+    m_reserved{CalculateReserved(n)},
+    m_theta{theta}
 {
-  m_current_index = m_reserved;
-  m_calculated_to_index = m_reserved;
-
   assert(m_reserved == m_newicks.Size());
   assert(m_current_index == m_newicks.Size());
 

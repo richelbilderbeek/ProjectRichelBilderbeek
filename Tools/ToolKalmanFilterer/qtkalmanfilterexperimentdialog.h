@@ -35,9 +35,11 @@ namespace kalman {
 class QtKalmanFilterExperimentDialog : public QDialog
 {
   Q_OBJECT
-
   
 public:
+  QtKalmanFilterExperimentDialog(const QtKalmanFilterExperimentDialog&) = delete;
+  QtKalmanFilterExperimentDialog& operator=(const QtKalmanFilterExperimentDialog&) = delete;
+
   explicit QtKalmanFilterExperimentDialog(
     const boost::shared_ptr<QtKalmanFilterExperimentModel> model,
     QWidget *parent = 0);

@@ -18,16 +18,19 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/CppPylos.htm
 //---------------------------------------------------------------------------
-
-
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include "pyloscurrentmovestate.h"
 
 #include <cassert>
 
 #include "trace.h"
 
+#pragma GCC diagnostic pop
+
 ribi::Pylos::CurrentMoveState::CurrentMoveState()
-  : m_must_remove(MustRemoveState::no)
+  : m_current_move{},
+    m_must_remove(MustRemoveState::no)
 {
   #ifndef NDEBUG
   Test();
@@ -44,9 +47,9 @@ const std::string ribi::Pylos::CurrentMoveState::GetVersion()
 
 const std::vector<std::string> ribi::Pylos::CurrentMoveState::GetVersionHistory()
 {
-  std::vector<std::string> v;
-  v.push_back("2012-05-05: version 2.0: initial release version");
-  return v;
+  return {
+    "2012-05-05: version 2.0: initial release version"
+  };
 }
 
 bool ribi::Pylos::CurrentMoveState::IsMoveMove() const

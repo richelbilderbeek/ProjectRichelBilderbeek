@@ -21,6 +21,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <iostream>
 #include <iterator>
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include <boost/filesystem.hpp>
 
 #ifndef _WIN32
@@ -32,6 +34,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "richelbilderbeekprogram.h"
 #include "richelbilderbeekmenudialog.h"
 #include "trace.h"
+
+#pragma GCC diagnostic pop
 
 void DisplayHelp()
 {

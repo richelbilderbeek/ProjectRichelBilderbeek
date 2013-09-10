@@ -18,14 +18,12 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolTestQuestion.htm
 //---------------------------------------------------------------------------
-
-
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include "testquestionmenudialog.h"
 
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/foreach.hpp>
-#pragma GCC diagnostic pop
 
 #include "multiplechoicequestion.h"
 #include "multiplechoicequestiondialog.h"
@@ -36,6 +34,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "trace.h"
 
 #include <QFile>
+
+#pragma GCC diagnostic pop
 
 ribi::TestQuestionMenuDialog::TestQuestionMenuDialog()
 {

@@ -1,10 +1,12 @@
-
-
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include "musicscale.h"
 
 #include <stdexcept>
 #include "musicchord.h"
 #include "trace.h"
+
+#pragma GCC diagnostic pop
 
 ribi::Music::Scale::Scale(const Note root, const std::vector<int>& intervals)
   : m_root(root),

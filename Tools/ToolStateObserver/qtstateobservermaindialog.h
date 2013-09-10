@@ -1,14 +1,19 @@
 #ifndef QTSTATEOBSERVERMAINDIALOG_H
 #define QTSTATEOBSERVERMAINDIALOG_H
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+
 #include <boost/shared_ptr.hpp>
 
 #include "qthideandshowdialog.h"
 #include "stateobserverfwd.h"
 
-struct LsqFilter;
-struct SlsqFilter;
-struct SymmetricLsqFilter;
+#pragma GCC diagnostic pop
+
+//struct LsqFilter;
+//struct SlsqFilter;
+//struct SymmetricLsqFilter;
 struct QwtPlotCurve;
 
 namespace Ui {
@@ -22,6 +27,9 @@ class QtStateObserverMainDialog : public QtHideAndShowDialog
   Q_OBJECT
   
 public:
+  QtStateObserverMainDialog(const QtStateObserverMainDialog&) = delete;
+  QtStateObserverMainDialog& operator=(const QtStateObserverMainDialog&) = delete;
+
   explicit QtStateObserverMainDialog(QWidget *parent = 0);
   ~QtStateObserverMainDialog();
   

@@ -33,7 +33,10 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic pop
 
 ribi::QtUblasVectorDoubleModel::QtUblasVectorDoubleModel(QObject *parent)
-  : QAbstractTableModel(parent)
+  : QAbstractTableModel(parent),
+    m_data{},
+    m_header_horizontal_text{},
+    m_header_vertical_text{}
 {
   #ifndef NDEBUG
   Test();

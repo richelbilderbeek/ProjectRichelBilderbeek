@@ -1,3 +1,5 @@
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include "qttooltestsimplelinearregressionmenudialog.h"
 
 #include <boost/units/systems/si.hpp>
@@ -12,6 +14,8 @@
 #include "qthideandshowdialog.h"
 #include "trace.h"
 #include "ui_qttooltestsimplelinearregressionmenudialog.h"
+
+#pragma GCC diagnostic pop
 
 ribi::QtToolTestSimpleLinearRegressionMenuDialog::QtToolTestSimpleLinearRegressionMenuDialog(QWidget *parent) :
   QtHideAndShowDialog(parent),

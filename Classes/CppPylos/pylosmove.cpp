@@ -30,6 +30,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 
 ribi::Pylos::Move::Move()
+  : m_move{},
+    m_remove{}
 {
   #ifndef NDEBUG
   Test();
@@ -39,13 +41,12 @@ ribi::Pylos::Move::Move()
 ribi::Pylos::Move::Move(
   const std::vector<Coordinat>& moving,
   const std::vector<Coordinat>& removing)
+  : m_move{moving},
+    m_remove{removing}
 {
   #ifndef NDEBUG
   Test();
   #endif
-
-  m_move = moving;
-  m_remove = removing;
 
   assert(!m_move.empty()
     && "In every move a marble must be placed or transferred");
@@ -55,6 +56,8 @@ ribi::Pylos::Move::Move(
 }
 
 ribi::Pylos::Move::Move(const std::string& s)
+  : m_move{},
+    m_remove{}
 {
   #ifndef NDEBUG
   Test();
@@ -116,9 +119,9 @@ const std::string ribi::Pylos::Move::GetVersion()
 
 const std::vector<std::string> ribi::Pylos::Move::GetVersionHistory()
 {
-  std::vector<std::string> v;
-  v.push_back("2012-05-05: version 2.0: initial release version");
-  return v;
+  return {
+    "2012-05-05: version 2.0: initial release version"
+  };
 }
 
 bool ribi::Pylos::Move::IsValid() const

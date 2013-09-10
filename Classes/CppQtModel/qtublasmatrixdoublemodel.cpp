@@ -18,8 +18,6 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/CppQtModel.htm
 //---------------------------------------------------------------------------
-
-
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
@@ -35,7 +33,10 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic pop
 
 ribi::QtUblasMatrixDoubleModel::QtUblasMatrixDoubleModel(QObject *parent)
-  : QAbstractTableModel(parent)
+  : QAbstractTableModel(parent),
+    m_data{},
+    m_header_horizontal_text{},
+    m_header_vertical_text{}
 {
 
 }

@@ -1,7 +1,12 @@
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include "multiintegerstateobserver.h"
 
 #include <cassert>
 #include <boost/foreach.hpp>
+
+#pragma GCC diagnostic pop
+
 ribi::MultiIntegerStateObserver::MultiIntegerStateObserver(
   std::vector<boost::shared_ptr<IntegerStateObserver> >& filters)
   : m_filters(filters)
@@ -33,8 +38,8 @@ const std::string ribi::MultiIntegerStateObserver::GetVersion()
 
 const std::vector<std::string> ribi::MultiIntegerStateObserver::GetVersionHistory()
 {
-  std::vector<std::string> v;
-  v.push_back("2013-06-04: version 1.0: initial version");
-  v.push_back("2013-06-18: version 1.1: derive from IntegerStateObserver");
-  return v;
+  return {
+    "2013-06-04: version 1.0: initial version",
+    "2013-06-18: version 1.1: derive from IntegerStateObserver"
+  };
 }

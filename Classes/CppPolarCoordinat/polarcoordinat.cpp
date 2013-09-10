@@ -1,4 +1,7 @@
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include "polarcoordinat.h"
+#pragma GCC diagnostic pop
 
 template<>
 double CalculateSqrt<double,double>(const double& x)

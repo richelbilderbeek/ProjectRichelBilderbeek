@@ -105,6 +105,8 @@ MultiApproximator<Key,Value,Container>::MultiApproximator(const Container& conta
 {
   static_assert(!std::is_integral<Key>(),
     "MultiApproximator will not work on integer keys");
+  static_assert(!std::is_integral<Value>(),
+    "MultiApproximator will not work on integer values");
   #ifndef NDEBUG
   Test();
   #endif
@@ -205,11 +207,10 @@ const std::string MultiApproximator<Key,Value,Container>::GetVersion()
 template <class Key, class Value, class Container>
 const std::vector<std::string> MultiApproximator<Key,Value,Container>::GetVersionHistory()
 {
-  const std::vector<std::string> v {
+  return {
     "2013-08-23: version 1.0: initial version",
     "2013-08-23: version 1.1: add conversion to an Approximator"
   };
-  return v;
 }
 
 template <class Key, class Value>

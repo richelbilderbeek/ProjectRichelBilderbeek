@@ -36,6 +36,9 @@ class QtKalmanFilterDialog : public QDialog
   Q_OBJECT
   
 public:
+  QtKalmanFilterDialog(const QtKalmanFilterDialog&) = delete;
+  QtKalmanFilterDialog& operator=(const QtKalmanFilterDialog&) = delete;
+
   explicit QtKalmanFilterDialog(
     const boost::shared_ptr<QtKalmanFilterExperimentModel> model,
     QWidget *parent = 0);

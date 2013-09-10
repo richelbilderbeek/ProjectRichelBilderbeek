@@ -2,10 +2,13 @@
 #include <cassert>
 #include <iostream>
 #include <cmath>
-#include <boost/units/systems/si.hpp>
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#include <boost/units/systems/si.hpp>
 #include "simplelinearregression.h"
 #include "canvas.h"
+#pragma GCC diagnostic pop
 
 int main()
 {

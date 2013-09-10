@@ -20,16 +20,31 @@
 <!-- Page header -->
 <h1>(<a href="Cpp.htm">C++</a>) <a href="CppStatic_assert.htm">static_assert</a></h1>
 <p>&nbsp;</p>
-<p>An <a href="CppStatic_assert.htm">static_assert</a> is a <a href="CppKeyword.htm">keyword</a> that can be used, depending
-on the <a href="CppStandard.htm">standard</a> used:</p>
+<p>
+  <a href="CppStatic_assert.htm">static_assert</a> is a <a href="Cpp11.htm">C++11</a> <a href="CppKeyword.htm">keyword</a> that can be used
+  to test at <a href="CppCompileTime.htm">compile time</a>.
+  In <a href="Cpp98.htm">C++98</a>, <a href="CppBOOST_STATIC_ASSERT.htm">BOOST_STATIC_ASSERT</a> can be used instead.
+</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><a href="CppExample.htm">Examples</a></h2>
+<p>&nbsp;</p>
+<ul>
+  <a href="CppStatic_assertExample1.htm">static_assert example 1: basics</a>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><a href="CppAdvice.htm">Advice</h2>
+<p>&nbsp;</p>
 <ul>
   <li>
-    <img src="PicCpp98.png" alt="C++98"/> 
-    <a href="CppStatic_assert.htm">static_assert</a> in the <a href="Cpp98.htm">C++98</a> <a href="CppStandard.htm">standard</a>
-  </li>
-  <li>
-    <img src="PicCpp11.png" alt="C++11"/> 
-    <a href="CppStatic_assert.htm">static_assert</a> in the <a href="Cpp11.htm">C++11</a> <a href="CppStandard.htm">standard</a>
+    Use <a href="CppStatic_assert.htm">static_assert</a> extensively [1]
   </li>
 </ul>
 <p>&nbsp;</p>
@@ -37,72 +52,11 @@ on the <a href="CppStandard.htm">standard</a> used:</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
-<h2>
-  <img src="PicCpp98.png" alt="C++98"/> 
-  <a href="CppStatic_assert.htm">static_assert</a> in the <a href="Cpp98.htm">C++98</a> <a href="CppStandard.htm">standard</a>
-</h2>
+<h2><a href="CppReferences.htm">References</a></h2>
 <p>&nbsp;</p>
-<p><a href="CppStatic_assert.htm">static_assert</a> is not supported in <a href="Cpp98.htm">C++98</a>:</p>
-<p>&nbsp;</p>
-<!-- start of code -->
-<table border = "1"><tr><td><code>
-<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
-{<br/>
-&nbsp;&nbsp;<b><a href="CppStatic_assert.htm">static_assert</a></b>(1<a href="CppOperatorEqual.htm">==</a>2,"One is not equal to two"); <a href="CppComment.htm">//</a>Fails in <a href="Cpp98.htm">C++98</a><br/>
-}<br/>
-</code></td></tr></table>
-<!-- end of the code -->
-<p>&nbsp;</p>
-<p><a href="CppCompiler.htm">Compiler</a> output:</p>
-<p>&nbsp;</p>
-<!-- start of code -->
-<table border = "1"><tr><td><code>
-/MyFolder/main.cpp:3: warning: identifier 'static_assert' will become a keyword in C++0x<br/>
-/MyFolder/main.cpp:: In function 'int main()':<br/>
-/MyFolder/main.cpp:3: error: 'static_assert' was not declared in this scope<br/>
-</code></td></tr></table>
-<!-- end of the code -->
-<p>&nbsp;</p>
-<p><a href="CppBOOST_STATIC_ASSERT.htm">BOOST_STATIC_ASSERT</a> does already allow for compile-time assertions 
-in <a href="Cpp98.htm">C++98</a>.</p> 
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<h2>
-  <img src="PicCpp11.png" alt="C++11"/> 
-  <a href="CppStatic_assert.htm">static_assert</a> in the <a href="Cpp11.htm">C++11</a> <a href="CppStandard.htm">standard</a>
-</h2>
-<p>&nbsp;</p>
-<ul>
-  <li><a href="CppStatic_assert.zip">Download the Qt Creator project 'CppStatic_assert' (zip)</a></li>
-</ul>
-<p>&nbsp;</p>
-<p><a href="CppStatic_assert.htm">static_assert</a> is a <a href="CppKeyword.htm">keyword</a> to perform assertions
-during compile-time.</p>
-<p>&nbsp;</p>
-<!-- start of code -->
-<table border = "1"><tr><td><code>
-<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
-{<br/>
-&nbsp;&nbsp;<b><a href="CppStatic_assert.htm">static_assert</a></b>(1<a href="CppOperatorEqual.htm">==</a>2,"One is not equal to two");<br/>
-}<br/>
-</code></td></tr></table>
-<!-- end of the code -->
-<p>&nbsp;</p>
-<p>Compiler output:</p>
-<p>&nbsp;</p>
-<!-- start of code -->
-<table border = "1"><tr><td><code>
-/MyFolder/main.cpp:: In function 'int main()':<br/>
-/MyFolder/main.cpp:3: error: static assertion failed: "One is not equal to two"<br/>
-</code></td></tr></table>
-<!-- end of the code -->
-<p>&nbsp;</p>
-<p>Technical note: the code shown is <a href="CppCompile.htm">compiled</a> successfully using the 
-<a href="CppGpp.htm">G++</a> 4.4.5 <a href="CppCompiler.htm">compiler</a>,
-which is supplied with the <a href="CppQtCreator.htm">Qt Creator</a> 2.0.0 <a href="CppIde.htm">IDE</a>.</p>
+<ol>
+  <li><!--  1 --><a href="CppBjarneStroustrup.htm">Bjarne Stroustrup</a>. The C++ Programming Language (4th edition). 2013. ISBN: 978-0-321-56384-2. Chapter 30.5. Advice. page 884: '[13] Use static_assert() and assert() extensively'</li>
+</ol>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>

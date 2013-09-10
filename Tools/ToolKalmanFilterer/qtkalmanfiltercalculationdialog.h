@@ -24,6 +24,9 @@ class QtKalmanFilterCalculationDialog : public QDialog
   Q_OBJECT
   
 public:
+  QtKalmanFilterCalculationDialog(const QtKalmanFilterCalculationDialog&) = delete;
+  QtKalmanFilterCalculationDialog& operator=(const QtKalmanFilterCalculationDialog&) = delete;
+
   explicit QtKalmanFilterCalculationDialog(QWidget *parent = 0);
   virtual ~QtKalmanFilterCalculationDialog();
 

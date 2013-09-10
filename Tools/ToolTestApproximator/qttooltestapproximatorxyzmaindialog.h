@@ -1,9 +1,12 @@
 #ifndef QTTOOLTESTAPPROXIMATORMAINDIALOG_H
 #define QTTOOLTESTAPPROXIMATORMAINDIALOG_H
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include <boost/shared_ptr.hpp>
 #include "approximator.h"
 #include "qthideandshowdialog.h"
+#pragma GCC diagnostic pop
 
 struct QwtPlot;
 struct QwtPlotCurve;

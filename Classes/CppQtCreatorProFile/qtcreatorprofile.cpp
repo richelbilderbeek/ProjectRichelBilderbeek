@@ -18,8 +18,9 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/CppQtCreatorProFile.htm
 //---------------------------------------------------------------------------
-
-
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include "qtcreatorprofile.h"
 
 #include <algorithm>
@@ -33,20 +34,33 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <string>
 #include <vector>
 
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/algorithm/string/split.hpp>
 #include <boost/algorithm/string/trim.hpp>
 #include <boost/function.hpp>
-#pragma GCC diagnostic pop
 
 #include <QDir>
 #include <QFile>
 
 #include "trace.h"
 
+#pragma GCC diagnostic pop
+
 ribi::QtCreatorProFile::QtCreatorProFile(const std::string& filename)
-  : m_pro_filename(filename)
+  :
+    m_config{},
+    m_defines{},
+    m_forms{},
+    m_headers{},
+    m_includepath{},
+    m_libs{},
+    m_other_files{},
+    m_pro_filename{filename},
+    m_qmake_cxxflags{},
+    m_qt{},
+    m_resources{},
+    m_target{},
+    m_template{},
+    m_sources{}
 {
   #ifndef NDEBUG
   Test();
@@ -100,19 +114,19 @@ const std::string ribi::QtCreatorProFile::GetVersion()
 
 const std::vector<std::string> ribi::QtCreatorProFile::GetVersionHistory()
 {
-  std::vector<std::string> v;
-  v.push_back("2010-12-19: version 1.0: initial version");
-  v.push_back("2011-01-06: version 1.1: added GetCommonRoot and GetLibs member functions, added operator<<");
-  v.push_back("2011-09-11: version 1.2: fixed bug");
-  v.push_back("2012-02-25: version 1.3: added GetAbout member function");
-  v.push_back("2012-02-28: version 1.4: added support for INCLUDEPATH, FORMS, OTHER_FILES, RESOURCES and QMAKE_CXXFLAGS");
-  v.push_back("2012-05-30: version 1.5: added SimplifyPath");
-  v.push_back("2012-08-13: version 1.6: modifiers like win32 and unix are ignored, instead of yielding an error");
-  v.push_back("2012-12-23: version 1.7: set destructor to private, except for boost::checked_delete");
-  v.push_back("2012-12-23: version 1.8: renamed to QtCreatorProFile due to naming conflicts when cross-compiling");
-  v.push_back("2013-05-18: version 2.0: simplified architecture by removing file I/O");
-  v.push_back("2013-08-19: version 2.1: replaced Boost.Regex by Boost.Xpressive, removed Boost.Filesystem");
-  return v;
+  return {
+    "2010-12-19: version 1.0: initial version",
+    "2011-01-06: version 1.1: added GetCommonRoot and GetLibs member functions, added operator<<",
+    "2011-09-11: version 1.2: fixed bug",
+    "2012-02-25: version 1.3: added GetAbout member function",
+    "2012-02-28: version 1.4: added support for INCLUDEPATH, FORMS, OTHER_FILES, RESOURCES and QMAKE_CXXFLAGS",
+    "2012-05-30: version 1.5: added SimplifyPath",
+    "2012-08-13: version 1.6: modifiers like win32 and unix are ignored, instead of yielding an error",
+    "2012-12-23: version 1.7: set destructor to private, except for boost::checked_delete",
+    "2012-12-23: version 1.8: renamed to QtCreatorProFile due to naming conflicts when cross-compiling",
+    "2013-05-18: version 2.0: simplified architecture by removing file I/O",
+    "2013-08-19: version 2.1: replaced Boost.Regex by Boost.Xpressive, removed Boost.Filesystem",
+  };
 }
 
 #ifndef NDEBUG

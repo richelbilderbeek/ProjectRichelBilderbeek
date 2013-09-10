@@ -1,11 +1,11 @@
-
-
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include "whitenoisesystemparameter.h"
-
 
 #include <cassert>
 #include <stdexcept>
 #include <boost/numeric/conversion/cast.hpp>
+#pragma GCC diagnostic pop
 
 const std::vector<ribi::kalman::WhiteNoiseSystemParameterType> ribi::kalman::WhiteNoiseSystemParameter::GetAll()
 {

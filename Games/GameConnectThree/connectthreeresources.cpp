@@ -18,6 +18,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/GameConnectThree.htm
 //---------------------------------------------------------------------------
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include "connectthreeresources.h"
 
 #include <cassert>
@@ -27,6 +29,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "trace.h"
 
 #include <QFile>
+
+#pragma GCC diagnostic pop
 
 ribi::ConnectThreeResources::ConnectThreeResources(
   const std::vector<std::string>& computers_filenames,

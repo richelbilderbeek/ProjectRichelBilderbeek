@@ -1,6 +1,7 @@
-
-
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include "floatingpointstateobserver.h"
+#pragma GCC diagnostic pop
 
 const std::string ribi::FloatingPointStateObserver::GetVersion()
 {

@@ -1,8 +1,12 @@
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include "tooltestmultiapproximatormenudialog.h"
 
 #include "approximator.h"
 #include "multiapproximator.h"
 #include "trace.h"
+
+#pragma GCC diagnostic pop
 
 const ribi::About ribi::ToolTestMultiApproximatorMenuDialog::GetAbout()
 {
@@ -28,8 +32,8 @@ const std::string ribi::ToolTestMultiApproximatorMenuDialog::GetVersion()
 
 const std::vector<std::string> ribi::ToolTestMultiApproximatorMenuDialog::GetVersionHistory()
 {
-  std::vector<std::string> v;
-  v.push_back("2013-08-23: version 1.0: initial version");
-  v.push_back("2013-08-23: version 1.1: display conversion from MultiApproximator to Approximator");
-  return v;
+  return {
+    "2013-08-23: version 1.0: initial version",
+    "2013-08-23: version 1.1: display conversion from MultiApproximator to Approximator"
+  };
 }

@@ -8,11 +8,10 @@
 #include <boost/numeric/ublas/vector.hpp>
 #include <QDialog>
 #include <QTableWidget>
-#pragma GCC diagnostic pop
-
 #include "kalmanfilterexperiment.h"
 #include "qtkalmanfiltercalculationdialog.h"
 #include "steadystatekalmanfiltercalculationelements.h"
+#pragma GCC diagnostic pop
 
 namespace Ui {
   class QtSteadyStateKalmanFilterCalculationDialog;
@@ -26,6 +25,9 @@ class QtSteadyStateKalmanFilterCalculationDialog : public QtKalmanFilterCalculat
   Q_OBJECT
   
 public:
+  QtSteadyStateKalmanFilterCalculationDialog(const QtSteadyStateKalmanFilterCalculationDialog&) = delete;
+  QtSteadyStateKalmanFilterCalculationDialog& operator=(const QtSteadyStateKalmanFilterCalculationDialog&) = delete;
+
   explicit QtSteadyStateKalmanFilterCalculationDialog(QWidget *parent = 0);
   ~QtSteadyStateKalmanFilterCalculationDialog();
 

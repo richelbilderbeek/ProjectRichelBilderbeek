@@ -19,6 +19,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //From http://www.richelbilderbeek.nl/CppToggleButton.htm
 //---------------------------------------------------------------------------
 #pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include "togglebutton.h"
@@ -37,7 +38,9 @@ ribi::ToggleButton::ToggleButton(
   const unsigned char red,
   const unsigned char green,
   const unsigned char blue)
-  : m_pressed(pressed),
+  : m_signal_color_changed{},
+    m_signal_toggled{},
+    m_pressed(pressed),
     m_red(red),
     m_green(green),
     m_blue(blue)

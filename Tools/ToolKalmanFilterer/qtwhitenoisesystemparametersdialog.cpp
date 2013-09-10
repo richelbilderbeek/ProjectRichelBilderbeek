@@ -1,6 +1,5 @@
-
-
 #pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include "qtwhitenoisesystemparametersdialog.h"
 
@@ -37,7 +36,8 @@ ribi::kalman::QtWhiteNoiseSystemParametersDialog::QtWhiteNoiseSystemParametersDi
   QWidget *parent)
   : QDialog(parent),
     ui(new Ui::QtWhiteNoiseSystemParametersDialog),
-    m_model{model}
+    m_model{model},
+    m_parameters{}
 {
   ui->setupUi(this);
   #ifndef NDEBUG

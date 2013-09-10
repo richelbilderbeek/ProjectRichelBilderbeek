@@ -10,7 +10,6 @@
 #include <boost/shared_ptr.hpp>
 #include <boost/numeric/ublas/matrix.hpp>
 #include <boost/numeric/ublas/vector.hpp>
-#pragma GCC diagnostic pop
 
 #include "steadystatekalmanfilterparameters.h"
 #include "steadystatekalmanfiltercalculationelements.h"
@@ -18,13 +17,17 @@
 #include "kalmanfilter.h"
 #include "whitenoisesystem.h"
 
+#pragma GCC diagnostic pop
 
 namespace ribi {
 namespace kalman {
 
 ///A KalmanFilterExperiment
-struct KalmanFilterExperiment : public boost::noncopyable
+struct KalmanFilterExperiment
 {
+  KalmanFilterExperiment(const KalmanFilterExperiment&) = delete;
+  KalmanFilterExperiment& operator=(const KalmanFilterExperiment&) = delete;
+
   explicit KalmanFilterExperiment(
     const int time,
     const std::vector<std::string>& input,

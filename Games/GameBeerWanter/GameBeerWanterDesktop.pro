@@ -55,11 +55,8 @@ OTHER_FILES += \
 # Compiler flags
 #
 #
-QMAKE_CXXFLAGS += -std=c++11 -Wall -Wextra
-
-unix {
-  QMAKE_CXXFLAGS += -Werror
-}
+#Cannot use -Weffc++ due to use of resources
+QMAKE_CXXFLAGS += -std=c++11 -Wall -Wextra -Werror
 
 #
 #

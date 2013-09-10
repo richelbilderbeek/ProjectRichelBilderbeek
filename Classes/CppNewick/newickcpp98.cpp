@@ -1,9 +1,8 @@
-
-
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include "newickcpp98.h"
 
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/numeric/conversion/cast.hpp>
 #include <boost/tuple/tuple.hpp>
 #include <boost/tuple/tuple_comparison.hpp>
@@ -12,8 +11,6 @@
 #include "newick.h"
 
 #pragma GCC diagnostic pop
-
-
 
 ///CreateValidTrinaryNewicks creates std::strings
 ///that can be converted to a TrinaryNewickVector.

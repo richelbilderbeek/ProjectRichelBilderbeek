@@ -1,3 +1,5 @@
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include "qttooltestsimplelinearregressionmaindialog.h"
 
 #include <cassert>
@@ -16,12 +18,16 @@
 #include "simplelinearregression.h"
 #include "ui_qttooltestsimplelinearregressionmaindialog.h"
 
+#pragma GCC diagnostic pop
+
 ribi::QtToolTestSimpleLinearRegressionMainDialog::QtToolTestSimpleLinearRegressionMainDialog(QWidget *parent) :
   QtHideAndShowDialog(parent),
   ui(new Ui::QtToolTestSimpleLinearRegressionMainDialog),
   m_curve_approximation(new QwtPlotCurve),
   m_curve_values(new QwtPlotCurve),
-  m_plot(new QwtPlot)
+  m_plot(new QwtPlot),
+  m_xs{},
+  m_ys{}
 {
   ui->setupUi(this);
 

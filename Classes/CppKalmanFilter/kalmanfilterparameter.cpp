@@ -1,10 +1,11 @@
-
-
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include "kalmanfilterparameter.h"
 
 #include <cassert>
 #include <stdexcept>
 #include <boost/numeric/conversion/cast.hpp>
+#pragma GCC diagnostic pop
 
 const std::vector<ribi::kalman::KalmanFilterParameterType> ribi::kalman::KalmanFilterParameter::GetAll()
 {

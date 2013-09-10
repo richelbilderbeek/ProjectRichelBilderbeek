@@ -2,8 +2,11 @@
 #define MUSICSCALE_H
 
 #include <vector>
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include <boost/shared_ptr.hpp>
 #include "musicnote.h"
+#pragma GCC diagnostic pop
 
 namespace ribi {
 

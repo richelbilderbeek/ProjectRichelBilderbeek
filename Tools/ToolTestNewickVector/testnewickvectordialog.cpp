@@ -18,23 +18,34 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolTestNewickVector.htm
 //---------------------------------------------------------------------------
-
-
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include "testnewickvectordialog.h"
 
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/numeric/conversion/cast.hpp>
 #include <boost/lexical_cast.hpp>
-#pragma GCC diagnostic pop
 
 #include "binarynewickvector.h"
 #include "newick.h"
 #include "newickvector.h"
 #include "twodigitnewick.h"
 
+#pragma GCC diagnostic pop
+
 ribi::TestNewickVectorDialog::TestNewickVectorDialog()
-  : m_analyse_calculation(false)
+  : m_analyse_calculation{false},
+    m_compare{false},
+    m_max_complexity_str{},
+    m_newick_str{},
+    m_theta_str{},
+    m_newick{},
+    m_theta{},
+    m_complexity{},
+    m_denominator{},
+    m_n_combinations{},
+    m_n_symmetries{},
+    m_text{}
 {
   #ifndef NDEBUG
   Newick::Test();

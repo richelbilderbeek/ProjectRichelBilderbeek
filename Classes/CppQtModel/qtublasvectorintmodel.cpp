@@ -18,8 +18,6 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/CppQtModel.htm
 //---------------------------------------------------------------------------
-
-
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
@@ -36,6 +34,9 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 ribi::QtUblasVectorIntModel::QtUblasVectorIntModel(QObject *parent)
   : QAbstractTableModel(parent),
+    m_data{},
+    m_header_horizontal_text{},
+    m_header_vertical_text{},
     m_range_default{0},
     m_range_max{std::numeric_limits<int>::max()},
     m_range_min{std::numeric_limits<int>::min()}

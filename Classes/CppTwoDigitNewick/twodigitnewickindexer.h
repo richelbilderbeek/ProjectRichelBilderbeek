@@ -77,17 +77,19 @@ struct TwoDigitNewickIndexer
 
 
   private:
+
+  int m_calculated_to_index;
+  int m_current_index;
   TwoDigitNewickIndexTable m_index_table;
   TwoDigitNewicks m_newicks;
-  const double m_theta;
-  const int m_reserved;
-  int m_current_index;
-  int m_calculated_to_index;
 
   ///m_probability is the probability of the given Newick.
   ///m_probability is calculated in the constructor of TwoDigitNewickIndexer
   ///and can be obtained by GetProbability.
   double m_probability;
+
+  const int m_reserved;
+  const double m_theta;
 
   ///Calculate the Newick probability of Newick (a,b).
   ///Both a and b are simple, that is: no index

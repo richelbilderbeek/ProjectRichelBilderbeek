@@ -1,9 +1,11 @@
-//#include own header file as first substantive line of code, from:
-// * John Lakos. Large-Scale C++ Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include "tooltestapproximatormenudialog.h"
 
 #include "approximator.h"
 #include "trace.h"
+
+#pragma GCC diagnostic pop
 
 const ribi::About ribi::ToolTestApproximatorMenuDialog::GetAbout()
 {
@@ -28,10 +30,8 @@ const std::string ribi::ToolTestApproximatorMenuDialog::GetVersion()
 
 const std::vector<std::string> ribi::ToolTestApproximatorMenuDialog::GetVersionHistory()
 {
-  const std::vector<std::string> v {
+  return {
     "2013-08-28: version 1.0: initial version",
     "2013-09-05: version 1.1: transition to namespace ribi"
   };
-
-  return v;
 }

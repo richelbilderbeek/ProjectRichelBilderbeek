@@ -23,9 +23,12 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #include <vector>
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include "pyloscoordinat.h"
 #include "pylosmove.h"
 #include "pylosmustremovestate.h"
+#pragma GCC diagnostic pop
 
 namespace ribi {
 
@@ -73,8 +76,8 @@ struct CurrentMoveState
 
 
   private:
-  MustRemoveState m_must_remove;
   Move m_current_move;
+  MustRemoveState m_must_remove;
 
   #ifndef NDEBUG
   ///Test this class

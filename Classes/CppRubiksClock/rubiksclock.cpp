@@ -19,6 +19,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //From http://www.richelbilderbeek.nl/CppRubiksClock.htm
 //---------------------------------------------------------------------------
 #pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include "rubiksclock.h"
@@ -150,8 +151,10 @@ ribi::RubiksClock::Pegs ribi::CreatePegsFromIndex(const int index)
 }
 
 ribi::RubiksClock::RubiksClock()
-  : mFront(Times(true)),
-    mBack(Times(false))
+  : m_signal_clock_changed{},
+    mFront{Times{true}},
+    mBack{Times{false}},
+    mPegs{}
 {
   Check();
 }

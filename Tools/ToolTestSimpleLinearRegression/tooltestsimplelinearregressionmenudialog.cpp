@@ -1,6 +1,9 @@
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include "tooltestsimplelinearregressionmenudialog.h"
 
 #include "trace.h"
+#pragma GCC diagnostic pop
 
 const ribi::About ribi::ToolTestSimpleLinearRegressionMenuDialog::GetAbout()
 {
@@ -24,8 +27,8 @@ const std::string ribi::ToolTestSimpleLinearRegressionMenuDialog::GetVersion()
 
 const std::vector<std::string> ribi::ToolTestSimpleLinearRegressionMenuDialog::GetVersionHistory()
 {
-  std::vector<std::string> v;
-  v.push_back("2013-08-27: version 1.0: initial version");
-  v.push_back("2013-08-28: version 1.1: isolated and templated SimpleLinearRegression class");
-  return v;
+  return {
+    "2013-08-27: version 1.0: initial version",
+    "2013-08-28: version 1.1: isolated and templated SimpleLinearRegression class"
+  };
 }

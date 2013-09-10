@@ -19,6 +19,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //From http://www.richelbilderbeek.nl/CppNewickVector.htm
 //---------------------------------------------------------------------------
 #pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include "newickvector.h"
 
@@ -46,21 +47,23 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic pop
 
 ribi::NewickVector::NewickVector(const std::string& s)
+  : m_v{Newick::StringToNewick(s)}
 {
   #ifndef NDEBUG
   Test();
   #endif
   assert(Newick::IsNewick(s));
-  m_v = Newick::StringToNewick(s);
+  //Can this be added?
+  //assert(m_v.empty() || Newick::IsNewick(m_v));
 }
 
 ribi::NewickVector::NewickVector(const std::vector<int>& v)
+  : m_v{v}
 {
   #ifndef NDEBUG
   Test();
   #endif
-  assert(v.empty() || Newick::IsNewick(v));
-  m_v = v;
+  assert(m_v.empty() || Newick::IsNewick(m_v));
 }
 
 const BigInteger ribi::NewickVector::CalcComplexity() const

@@ -1,3 +1,5 @@
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include "qtstateobservermaindialog.h"
 
 #include <cassert>
@@ -24,6 +26,8 @@
 #ifdef _WIN32
 #include "qwt_point_data.h"
 #endif
+
+#pragma GCC diagnostic pop
 
 ribi::QtStateObserverMainDialog::QtStateObserverMainDialog(QWidget *parent) :
   QtHideAndShowDialog(parent),

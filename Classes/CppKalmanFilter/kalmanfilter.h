@@ -41,7 +41,7 @@ struct KalmanFilter
     const boost::numeric::ublas::vector<double>& input) = 0;
 
   protected:
-  explicit KalmanFilter();
+  explicit KalmanFilter() {}
 
   private:
   /*

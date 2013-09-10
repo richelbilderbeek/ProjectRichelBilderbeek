@@ -18,7 +18,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/CppPylos.htm
 //---------------------------------------------------------------------------
-
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 
 #include "pylosgame.h"
 
@@ -33,6 +34,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "pyloscurrentmovestate.h"
 #include "pylosmove.h"
 #include "trace.h"
+
+#pragma GCC diagnostic pop
 
 ribi::Pylos::Game::Game(const Game& rhs)
   : m_board(rhs.m_board->Clone()),
@@ -50,7 +53,8 @@ ribi::Pylos::Game::Game(const Game& rhs)
 ribi::Pylos::Game::Game(const boost::shared_ptr<Board> &board)
   : m_board(board),
     m_current_move(new CurrentMoveState),
-    m_current_player(Player::player1)
+    m_current_player(Player::player1),
+    m_move_history{}
 {
   #ifndef NDEBUG
   Test();

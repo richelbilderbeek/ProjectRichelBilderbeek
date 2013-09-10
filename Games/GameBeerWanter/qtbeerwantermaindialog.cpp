@@ -19,6 +19,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/GameBeerWanter.htm
 //---------------------------------------------------------------------------
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include "qtbeerwantermaindialog.h"
 
 #include <iostream>
@@ -26,6 +28,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "beerwantermaindialog.h"
 #include "qtbeerwanterwidget.h"
 #include "ui_qtbeerwantermaindialog.h"
+#pragma GCC diagnostic pop
 
 ribi::QtBeerWanterMainDialog::QtBeerWanterMainDialog(QWidget *parent) :
     QtHideAndShowDialog(parent),

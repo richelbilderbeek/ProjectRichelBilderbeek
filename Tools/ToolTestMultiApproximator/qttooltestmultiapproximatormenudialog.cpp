@@ -1,3 +1,5 @@
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include "qttooltestmultiapproximatormenudialog.h"
 
 #include <QDesktopWidget>
@@ -9,6 +11,8 @@
 #include "qthideandshowdialog.h"
 #include "trace.h"
 #include "ui_qttooltestmultiapproximatormenudialog.h"
+
+#pragma GCC diagnostic pop
 
 ribi::QtToolTestMultiApproximatorMenuDialog::QtToolTestMultiApproximatorMenuDialog(QWidget *parent) :
   QtHideAndShowDialog(parent),

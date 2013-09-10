@@ -1,3 +1,5 @@
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include "simplelinearregression.h"
 
 #include <cassert>
@@ -7,6 +9,7 @@
 #include <sstream>
 
 #include "trace.h"
+#pragma GCC diagnostic pop
 
 double ribi::SimpleLinearRegression::CalculateCovariance(
   const std::vector<double>& xs,

@@ -104,26 +104,9 @@ CONFIG(release, debug|release) {
 # Compiler flags
 #
 #
-QMAKE_CXXFLAGS += -std=c++11 -Wall -Wextra
 
-unix {
-  message(Unix)
-  QMAKE_CXXFLAGS += -Werror
-}
-
-win32 {
-  !static {
-    message(Native Windows)
-    QMAKE_CXXFLAGS += -Werror
-
-  }
-
-  static {
-    message(Crosscompiling from Lubuntu to Windows)
-    #Allow the crosscompiler to emit warnings without terminating
-    QMAKE_CXXFLAGS += -std=c++11 #-Werror
-  }
-}
+#Can't add -Weffc++ due to Qt resources
+QMAKE_CXXFLAGS += -std=c++11 -Wall -Wextra  -Werror
 
 #
 #
@@ -131,33 +114,9 @@ win32 {
 #
 #
 
-unix {
-  message(Unix dynamic link to Boost)
-
-  LIBS += \
-  -lboost_date_time \
-  -lboost_filesystem \
-  -lboost_program_options \
-  -lboost_regex \
-  -lboost_signals \
-  -lboost_system
-}
-
 win32 {
-
-  message(Windows dynamic link to Boost)
-
   INCLUDEPATH += \
     ../../Libraries/boost_1_54_0
-
-  debug {
-    LIBS += ../../Libraries/boost_1_54_0/stage/lib/libboost_filesystem-mgw48-mt-d-1_54.a
-    LIBS += ../../Libraries/boost_1_54_0/stage/lib/libboost_system-mgw48-mt-d-1_54.a
-  }
-  release {
-    LIBS += ../../Libraries/boost_1_54_0/stage/lib/libboost_filesystem-mgw48-mt-1_54.a
-    LIBS += ../../Libraries/boost_1_54_0/stage/lib/libboost_system-mgw48-mt-1_54.a
-  }
 }
 
 #

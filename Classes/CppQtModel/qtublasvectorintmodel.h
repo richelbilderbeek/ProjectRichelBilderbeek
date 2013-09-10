@@ -64,6 +64,12 @@ struct QtUblasVectorIntModel: public QAbstractTableModel
   ///The raw data
   boost::numeric::ublas::vector<int> m_data;
 
+  ///The horizontal header text (for the only one column)
+  std::string m_header_horizontal_text;
+
+  ///The vertical header text
+  std::vector<std::string> m_header_vertical_text;
+
   ///The value set for default
   int m_range_default;
 
@@ -72,12 +78,6 @@ struct QtUblasVectorIntModel: public QAbstractTableModel
 
   ///The minimum value all values must have
   int m_range_min;
-
-  ///The horizontal header text (for the only one column)
-  std::string m_header_horizontal_text;
-
-  ///The vertical header text
-  std::vector<std::string> m_header_vertical_text;
 
   ///Must be defined from ABC
   int columnCount(const QModelIndex &parent = QModelIndex()) const;

@@ -18,6 +18,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolTestQrcFile.htm
 //---------------------------------------------------------------------------
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include "testqrcfilemenudialog.h"
 
 #include <cassert>
@@ -26,6 +28,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #include "trace.h"
 #include "qrcfile.h"
+
+#pragma GCC diagnostic pop
 
 const ribi::About ribi::TestQrcFileMenuDialog::GetAbout()
 {

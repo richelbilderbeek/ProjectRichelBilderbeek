@@ -19,8 +19,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/GameRubiksClock.htm
 //---------------------------------------------------------------------------
-
-
 #include "rubiksclockmenudialog.h"
 
 #include "about.h"

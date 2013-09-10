@@ -18,21 +18,20 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/CppPylos.htm
 //---------------------------------------------------------------------------
-
-
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include "pyloscoordinat.h"
 
 #include <algorithm>
 #include <cassert>
 
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/lexical_cast.hpp>
 #include <boost/numeric/conversion/cast.hpp>
-#pragma GCC diagnostic pop
 
 #include "trace.h"
 
+#pragma GCC diagnostic pop
 
 ribi::Pylos::Coordinat::Coordinat(
   const int layer,
@@ -49,21 +48,20 @@ ribi::Pylos::Coordinat::Coordinat(
 }
 
 ribi::Pylos::Coordinat::Coordinat(const std::string& s)
+  : m_layer{boost::lexical_cast<int>(s.at(1))},
+    m_x{boost::lexical_cast<int>(s.at(3))},
+    m_y{boost::lexical_cast<int>(s.at(5))}
 {
   #ifndef NDEBUG
   Test();
   #endif
   assert(s.size() == 7);
-  m_layer = boost::lexical_cast<int>(s[1]);
-  m_x = boost::lexical_cast<int>(s[3]);
-  m_y = boost::lexical_cast<int>(s[5]);
   #ifndef DEBUG
   if (!IsValid(m_layer,m_x,m_y)) { TRACE(s); }
   #endif
   assert(IsValid(m_layer,m_x,m_y));
 }
 
-///IsValid returns if the proposed coordinat is a valid Pylos coordinat
 bool ribi::Pylos::Coordinat::IsValid(const int layer, const int x, const int y)
 {
   return layer >= 0 && layer < 4
@@ -71,7 +69,6 @@ bool ribi::Pylos::Coordinat::IsValid(const int layer, const int x, const int y)
     && y >= 0 && y < 4-layer;
 }
 
-///GetAllCoordinats returns all possible Coordinats
 const std::vector<ribi::Pylos::Coordinat> ribi::Pylos::GetAllCoordinats()
 {
   std::vector<Coordinat> v;
@@ -96,9 +93,9 @@ const std::string ribi::Pylos::Coordinat::GetVersion()
 
 const std::vector<std::string> ribi::Pylos::Coordinat::GetVersionHistory()
 {
-  std::vector<std::string> v;
-  v.push_back("2012-05-05: version 2.0: initial release version");
-  return v;
+  return {
+    "2012-05-05: version 2.0: initial release version"
+  };
 }
 
 bool ribi::Pylos::Coordinat::IsValid() const
@@ -106,8 +103,6 @@ bool ribi::Pylos::Coordinat::IsValid() const
   return IsValid(m_layer,m_x,m_y);
 }
 
-///ToStr() converts the coordinat to a std::string
-///of the form '(layer,x,y)'.
 const std::string ribi::Pylos::Coordinat::ToStr() const
 {
   return std::string("(")
@@ -120,8 +115,6 @@ const std::string ribi::Pylos::Coordinat::ToStr() const
 
 }
 
-///GetAbove returns the coordinats physically
-///above the entered coordinat
 const std::vector<ribi::Pylos::Coordinat> ribi::Pylos::GetAbove(
   const Coordinat& c)
 {
@@ -137,8 +130,6 @@ const std::vector<ribi::Pylos::Coordinat> ribi::Pylos::GetAbove(
   return v;
 }
 
-///GetBelow returns the four coordinats physically
-///below the entered coordinat
 const std::vector<ribi::Pylos::Coordinat> ribi::Pylos::GetBelow(
   const Coordinat& c)
 {
@@ -155,7 +146,6 @@ const std::vector<ribi::Pylos::Coordinat> ribi::Pylos::GetBelow(
   return v;
 }
 
-///GetLines returns the possible 2x2 squares around the coordinat
 const std::vector<std::vector<ribi::Pylos::Coordinat> > ribi::Pylos::GetLines(
   const Coordinat& c)
 {
@@ -182,7 +172,6 @@ const std::vector<std::vector<ribi::Pylos::Coordinat> > ribi::Pylos::GetLines(
   return v;
 }
 
-///GetRandomCoordinat returns a random valid Coordinat
 const ribi::Pylos::Coordinat ribi::Pylos::GetRandomCoordinat()
 {
   const int layer = ( std::rand() >> 4) % 4;
@@ -192,7 +181,6 @@ const ribi::Pylos::Coordinat ribi::Pylos::GetRandomCoordinat()
   return Coordinat(layer,x,y);
 }
 
-///GetSquares returns the possible 2x2 squares around the coordinat
 const std::vector<std::vector<ribi::Pylos::Coordinat> > ribi::Pylos::GetSquares(
   const Coordinat& c)
 {

@@ -37,10 +37,7 @@ struct CodeToHtmlReplacements
 {
   CodeToHtmlReplacements(const std::vector<std::pair<std::string,std::string> >& replacements);
 
-  const std::vector<std::pair<std::string,std::string> >& Get() const { return m_all_replacements; }
-
-  ///All replacements
-  const std::vector<std::pair<std::string,std::string> > m_all_replacements;
+  const std::vector<std::pair<std::string,std::string> >& Get() const { return m_replacements; }
 
   private:
   ///The important replacements

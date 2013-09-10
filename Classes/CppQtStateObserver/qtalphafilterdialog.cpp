@@ -1,8 +1,12 @@
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include "qtalphafilterdialog.h"
 
 #include <cassert>
 #include "alphafilter.h"
 #include "ui_qtalphafilterdialog.h"
+
+#pragma GCC diagnostic pop
 
 ribi::QtAlphaFilterDialog::QtAlphaFilterDialog(QWidget *parent) :
   QDialog(parent),

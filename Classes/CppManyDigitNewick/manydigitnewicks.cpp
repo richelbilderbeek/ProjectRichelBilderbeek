@@ -18,6 +18,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/CppManyDigitNewick.htm
 //---------------------------------------------------------------------------
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include "manydigitnewicks.h"
 
 #include <cassert>
@@ -29,7 +31,10 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "manydigitnewickderivative.h"
 #include "newickvector.h"
 
+#pragma GCC diagnostic pop
+
 ribi::ManyDigitNewicks::ManyDigitNewicks(const int n_reserved, const double theta)
+  : m_v{}
 {
   //Create derivatives of simplest and reserved ManyDigitNewicks
 

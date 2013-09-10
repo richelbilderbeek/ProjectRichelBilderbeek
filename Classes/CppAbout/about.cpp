@@ -26,19 +26,13 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <iterator>
 
 #pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
-
-
-#if !(__GNUC__ > 4 && __GNUC_MINOR__ > 4)
-#include <boost/foreach.hpp>
-#endif
-
 #include <boost/lexical_cast.hpp>
 #include <boost/version.hpp>
-#pragma GCC diagnostic pop
-
 
 //#include "trace.h"
+#pragma GCC diagnostic pop
 
 ribi::About::About(
     const std::string author,
@@ -96,20 +90,10 @@ const std::vector<std::string> ribi::About::CreateLibrariesUsedText() const
 {
   std::vector<std::string> v;
   v.push_back("Libraries and classes used: ");
-  #if __GNUC__ > 4 && __GNUC_MINOR__ > 4
-  std::for_each(m_libraries.begin(), m_libraries.end(),
-    [&v](const std::string& s)
-    {
-      assert(!s.empty());
-      v.push_back(std::string(" * ") + s);
-    }
-  );
-  #else
-  BOOST_FOREACH(const std::string& s, m_libraries)
+  for(const std::string& s: m_libraries)
   {
     v.push_back(std::string(" * ") + s);
   }
-  #endif
   return v;
 }
 
@@ -139,19 +123,10 @@ const std::vector<std::string> ribi::About::CreateVersionHistory() const
   std::vector<std::string> v;
   v.push_back("Version history:");
   v.push_back(" * YYYY-MM-DD: version X.Y: [description]");
-  #if __GNUC__ > 4 && __GNUC_MINOR__ > 4
-  std::for_each(m_version_history.begin(), m_version_history.end(),
-    [&v](const std::string& s)
-    {
-      v.push_back(std::string(" * ") + s);
-    }
-  );
-  #else
-  BOOST_FOREACH(const std::string& s, m_version_history)
+  for(const std::string& s: m_version_history)
   {
     v.push_back(std::string(" * ") + s);
   }
-  #endif
   return v;
 }
 

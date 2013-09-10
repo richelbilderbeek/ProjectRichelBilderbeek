@@ -18,7 +18,9 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/CppQrcFile.htm
 //---------------------------------------------------------------------------
-
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 
 #include "qrcfile.h"
 
@@ -31,17 +33,17 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <string>
 #include <vector>
 
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/algorithm/string/trim.hpp>
 #include <boost/function.hpp>
 #include <boost/xpressive/xpressive.hpp>
-#pragma GCC diagnostic pop
 
 #include "trace.h"
 
+#pragma GCC diagnostic pop
+
 ribi::QrcFile::QrcFile(const std::string& filename)
-  : m_qrc_filename(filename)
+  : m_files{},
+    m_qrc_filename{filename}
 {
   #ifndef NDEBUG
   Test();

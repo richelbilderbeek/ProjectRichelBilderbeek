@@ -1,7 +1,10 @@
 #ifndef QTTOOLTESTAPPROXIMATORMENUDIALOG_H
 #define QTTOOLTESTAPPROXIMATORMENUDIALOG_H
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include "qthideandshowdialog.h"
+#pragma GCC diagnostic pop
 
 namespace Ui {
   class QtToolTestSimpleLinearRegressionMenuDialog;

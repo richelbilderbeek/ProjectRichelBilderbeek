@@ -22,23 +22,21 @@
 <p>&nbsp;</p>
 <p><a href="CppMap.htm">std::map</a> is an <a href="CppStl.htm">STL</a> <a href="CppContainer.htm">container</a> for mapping two kinds of <a href="CppDataType.htm">data types</a>.</p>
 <p>&nbsp;</p>
-<!-- start of code -->
-<table border = "1"><tr><td><code>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppIostreamH.htm">iostream</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppMapH.htm">map</a>&gt;<br/>
-<br/>
-<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
-{<br/>
-&nbsp;&nbsp;<a href="CppMap.htm">std::map</a>&lt;<a href="CppString.htm">std::string</a>, <b><a href="CppInt.htm">int</a></b>&gt; phonebook;<br/>
-&nbsp;&nbsp;phonebook["Bilderbikkel"] = 1234567890; <a href="CppComment.htm">//</a>Store<br/>
-&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> phonebook["Bilderbikkel"] <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppEndl.htm">std::endl</a>; <a href="CppComment.htm">//</a>Read<br/>
-}<br/>
-</code></td></tr></table>
-<!-- end of the code -->
+<p>
+  For a <a href="CppMap.htm">std::map</a>&lt;T,U&gt;, T is called the key, and U is called the value. 
+  One key can only have one value. 
+  If a key needs to have one or more values, use a <a href="CppMultimap.htm">std::multimap</a>.
+</p>
 <p>&nbsp;</p>
-<p>The <a href="CppString.htm">std::string</a> is the key (in this case a last name) and the <a href="CppInt.htm">int</a> is termed the value (in this calse the persons telephone number).</p>
 <p>&nbsp;</p>
-<p>One key can only have one value. If a key needs to have one or more values, use a <a href="CppMultimap.htm">std::multimap</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><a href="CppExample.htm">Examples</a></li>
+<p>&nbsp;</p>
+<ul>
+  <li><a href="CppMapExample1.htm">std::map example 1: basics</a></li>
+</ul>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
@@ -62,10 +60,32 @@
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
+<h2><a href="CppAdvice.htm">Advice</a></h2>
+<p>&nbsp;</p>
+<ul>
+  <li>
+    A <a href="CppMap.htm">std::map</a> is usually implemented as a red-black tree [1]
+  </li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
 <h2>External links</h2>
 <p>&nbsp;</p>
 <ol>
   <li><a href="http://www.sgi.com/tech/stl/Map.html">SGI page about std::map</a></li>
+</ol>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><a href="CppReferences.htm">References</a></h2>
+<p>&nbsp;</p>
+<ol>
+  <li><!--  1 --><a href="CppBjarneStroustrup.htm">Bjarne Stroustrup</a>. The C++ Programming Language (4th edition). 2013. ISBN: 978-0-321-56384-2. Chapter 31.6. Advice. page 924: '[8] A map is usually implemented as a red-black tree'</li>
 </ol>
 <p>&nbsp;</p>
 <p>&nbsp;</p>

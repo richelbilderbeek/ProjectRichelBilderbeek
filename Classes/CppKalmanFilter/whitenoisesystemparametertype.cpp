@@ -1,9 +1,10 @@
-
-
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include "whitenoisesystemparametertype.h"
 
 #include <cassert>
 #include <boost/numeric/conversion/cast.hpp>
+#pragma GCC diagnostic pop
 
 bool ribi::kalman::operator<(const WhiteNoiseSystemParameterType lhs, const WhiteNoiseSystemParameterType rhs)
 {

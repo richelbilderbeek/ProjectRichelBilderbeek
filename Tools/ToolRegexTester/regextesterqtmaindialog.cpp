@@ -18,12 +18,13 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolRegexTester.htm
 //---------------------------------------------------------------------------
-
-
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include "regextesterqtmaindialog.h"
 
 #include <QRegExp>
 #include "trace.h"
+#pragma GCC diagnostic pop
 
 const boost::shared_ptr<ribi::RegexTesterMainDialog> ribi::RegexTesterQtMainDialog::Clone() const
 {
@@ -90,4 +91,5 @@ bool ribi::RegexTesterQtMainDialog::GetRegexValid(
   //try { const boost::regex regex_temp(regex_str); }
   //catch (boost::regex_error& e) { return false; }
   //return true;
+  throw std::runtime_error("TODO: ribi::RegexTesterQtMainDialog::GetRegexValid");
 }

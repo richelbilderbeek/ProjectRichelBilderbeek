@@ -18,9 +18,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/CppShape.htm
 //---------------------------------------------------------------------------
-
-
 #pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include "shape.h"
@@ -39,15 +38,16 @@ ribi::Shape::Shape(
   const unsigned char red,
   const unsigned char green,
   const unsigned char blue)
-  : m_red(red),
-    m_green(green),
-    m_blue(blue)
+  : m_signal_changed{},
+    m_blue{red},
+    m_green{green},
+    m_n_corners{n_corners},
+    m_red{blue},
+    m_rotation{rotation}
 {
   #ifndef NDEBUG
   Test();
   #endif
-  SetNumberOfCorners(n_corners);
-  SetRotation(rotation);
 }
 
 const std::string ribi::Shape::GetVersion()
@@ -57,11 +57,11 @@ const std::string ribi::Shape::GetVersion()
 
 const std::vector<std::string> ribi::Shape::GetVersionHistory()
 {
-  std::vector<std::string> v;
-  v.push_back("2011-07-13: Version 1.0: initial version");
-  v.push_back("2011-08-08: Version 2.0: conformized architecture to MysteryMachineWidget");
-  v.push_back("2013-04-30: Version 2.1: added testing, fixed bug in GetAngle");
-  return v;
+  return {
+    "2011-07-13: Version 1.0: initial version",
+    "2011-08-08: Version 2.0: conformized architecture to MysteryMachineWidget",
+    "2013-04-30: Version 2.1: added testing, fixed bug in GetAngle"
+  };
 }
 
 void ribi::Shape::SetNumberOfCorners(const int n_corners)

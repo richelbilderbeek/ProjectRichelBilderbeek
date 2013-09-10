@@ -23,6 +23,9 @@ class QtKalmanFilterExamplesDialog : public QDialog
   Q_OBJECT
   
 public:
+  QtKalmanFilterExamplesDialog(const QtKalmanFilterExamplesDialog&) = delete;
+  QtKalmanFilterExamplesDialog& operator=(const QtKalmanFilterExamplesDialog&) = delete;
+
   explicit QtKalmanFilterExamplesDialog(QWidget *parent = 0);
   ~QtKalmanFilterExamplesDialog();
 

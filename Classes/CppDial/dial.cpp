@@ -19,6 +19,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //From http://www.richelbilderbeek.nl/CppDial.htm
 //---------------------------------------------------------------------------
 #pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include "dial.h"
 
@@ -36,14 +37,19 @@ ribi::Dial::Dial(
   const unsigned char red,
   const unsigned char green,
   const unsigned char blue)
-  : m_red(red), m_green(green), m_blue(blue)
+  :
+    m_signal_color_changed{},
+    m_signal_position_changed{},
+    m_blue{blue},
+    m_green{green},
+    m_position{position},
+    m_red{red}
 {
   #ifndef NDEBUG
   Test();
   #endif
-  assert(position >= 0.0);
-  assert(position <= 1.0);
-  SetPosition(position);
+  assert(m_position >= 0.0);
+  assert(m_position <= 1.0);
 }
 
 const std::string ribi::Dial::GetVersion()
@@ -207,16 +213,16 @@ std::ostream& ribi::operator<<(std::ostream& os, const Dial& dial)
   os
     << "<Dial>"
     << "<blue>"
-      << static_cast<int>(dial.m_blue)
+    <<   static_cast<int>(dial.m_blue)
     << "</blue>"
     << "<green>"
-    << static_cast<int>(dial.m_green)
+    <<   static_cast<int>(dial.m_green)
     << "</green>"
     << "<position>"
-    << dial.m_position
+    <<   dial.m_position
     << "</position>"
     << "<red>"
-    << static_cast<int>(dial.m_red)
+    <<   static_cast<int>(dial.m_red)
     << "</red>"
     << "</Dial>";
   return os;

@@ -24,7 +24,10 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <string>
 #include <vector>
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include <boost/shared_ptr.hpp>
+#pragma GCC diagnostic pop
 
 namespace ribi {
 
@@ -53,11 +56,12 @@ struct Exercise
   friend void boost::checked_delete<>(Exercise *);
   ~Exercise() {}
 
+  ///An iterator pointing to the current question
+  std::vector<std::string>::iterator m_current;
+
   ///The questions
   std::vector<std::string> m_questions;
 
-  ///An iterator pointing to the current question
-  std::vector<std::string>::iterator m_current;
 
   ///FileToVector reads a file and converts it to a std::vector<std::string>
   ///From http://www.richelbilderbeek.nl/CppFileToVector.htm

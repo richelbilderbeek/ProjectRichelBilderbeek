@@ -18,8 +18,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolHometrainer.htm
 //---------------------------------------------------------------------------
-
-
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include "hometrainermenudialog.h"
 
 #include <boost/foreach.hpp>
@@ -34,6 +34,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //#include "trace.h"
 
 #include <QFile>
+
+#pragma GCC diagnostic pop
 
 const ribi::About ribi::HometrainerMenuDialog::GetAbout() const
 {

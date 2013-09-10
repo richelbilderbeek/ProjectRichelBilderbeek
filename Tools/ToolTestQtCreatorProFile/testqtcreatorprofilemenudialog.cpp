@@ -18,12 +18,13 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolTestQtCreatorProFile.htm
 //---------------------------------------------------------------------------
-
-
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include "testqtcreatorprofilemenudialog.h"
 
 #include "trace.h"
 #include "qtcreatorprofile.h"
+#pragma GCC diagnostic pop
 
 const ribi::About ribi::TestQtCreatorProFileMenuDialog::GetAbout()
 {

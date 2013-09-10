@@ -1,14 +1,12 @@
-
-
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include "qtcopyalltableview.h"
 
 #include <string>
 #include <vector>
 
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/algorithm/string/split.hpp>
-#pragma GCC diagnostic pop
 
 #include <QApplication>
 #include <QClipboard>
@@ -17,6 +15,8 @@
 #include <QMimeData>
 
 #include "trace.h"
+
+#pragma GCC diagnostic pop
 
 ribi::QtCopyAllTableView::QtCopyAllTableView(QWidget *parent)
   : QTableView(parent)

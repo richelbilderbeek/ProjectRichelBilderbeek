@@ -35,6 +35,9 @@ class QtWhiteNoiseSystemParametersDialog : public QDialog
   Q_OBJECT
   
 public:
+  QtWhiteNoiseSystemParametersDialog(const QtWhiteNoiseSystemParametersDialog&) = delete;
+  QtWhiteNoiseSystemParametersDialog& operator=(const QtWhiteNoiseSystemParametersDialog&) = delete;
+
   explicit QtWhiteNoiseSystemParametersDialog(
     const boost::shared_ptr<QtKalmanFilterExperimentModel> model,
     QWidget *parent = 0);

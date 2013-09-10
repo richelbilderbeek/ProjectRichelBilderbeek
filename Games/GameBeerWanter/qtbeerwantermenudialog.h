@@ -35,6 +35,9 @@ class QtBeerWanterMenuDialog : public QtHideAndShowDialog
   Q_OBJECT
 
 public:
+  QtBeerWanterMenuDialog(const QtBeerWanterMenuDialog&) = delete;
+  QtBeerWanterMenuDialog& operator=(const QtBeerWanterMenuDialog&) = delete;
+
   explicit QtBeerWanterMenuDialog(QWidget *parent = 0);
   ~QtBeerWanterMenuDialog();
 

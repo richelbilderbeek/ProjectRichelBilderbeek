@@ -18,11 +18,13 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolCodeToHtml.htm
 //---------------------------------------------------------------------------
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include "codetohtmlmenudialog.h"
-
 #include "qrcfile.h"
 #include "qtcreatorprofile.h"
 #include "trace.h"
+#pragma GCC diagnostic pop
 
 const ribi::About ribi::CodeToHtmlMenuDialog::GetAbout()
 {
@@ -82,7 +84,8 @@ const std::vector<std::string> ribi::CodeToHtmlMenuDialog::GetVersionHistory()
     "2012-12-22: version 2.4: HTML produced is checked by 'tidy', many minor improvements",
     "2013-05-19: version 2.5: +3400 replacements, following architectural changes in QtCreatorProFile and QtCreatorProFileZipScript",
     "2013-08-19: version 2.6: replaced Boost.Filesystem and Boost.Regex by Qt and Boost.Xpressive, added tests, added +5000 lines of CodeToHtml info",
-    "2013-09-05: version 2.7: transition to namespace ribi"
+    "2013-09-05: version 2.7: transition to namespace ribi",
+    "2013-09-10: version 2.8: compile with -Weffc++, fixed bug due to this"
 
   };
   return v;

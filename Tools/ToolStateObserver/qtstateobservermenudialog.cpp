@@ -1,3 +1,5 @@
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include "qtstateobservermenudialog.h"
 
 #include "qtaboutdialog.h"
@@ -5,6 +7,8 @@
 #include "qthideandshowdialog.h"
 #include "stateobservermenudialog.h"
 #include "ui_qtstateobservermenudialog.h"
+
+#pragma GCC diagnostic pop
 
 ribi::QtStateObserverMenuDialog::QtStateObserverMenuDialog(QWidget *parent) :
   QtHideAndShowDialog(parent),

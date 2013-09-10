@@ -2,9 +2,13 @@
 #define MULTIINTEGERSTATEOBSERVER_H
 
 #include <vector>
+
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include <boost/shared_ptr.hpp>
 #include "integeralphafilter.h"
 #include "integerstateobserver.h"
+#pragma GCC diagnostic pop
 
 namespace ribi {
 

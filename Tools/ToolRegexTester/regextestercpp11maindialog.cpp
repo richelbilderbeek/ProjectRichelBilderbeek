@@ -18,10 +18,12 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolRegexTester.htm
 //---------------------------------------------------------------------------
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include "regextestercpp11maindialog.h"
-
 #include <regex>
 #include "trace.h"
+#pragma GCC diagnostic pop
 
 const boost::shared_ptr<ribi::RegexTesterMainDialog> ribi::RegexTesterCpp11MainDialog::Clone() const
 {

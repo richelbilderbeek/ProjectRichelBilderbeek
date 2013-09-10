@@ -22,6 +22,9 @@ class QtKalmanFiltererParameterDialog : public QDialog
   Q_OBJECT
   
 public:
+  QtKalmanFiltererParameterDialog(const QtKalmanFiltererParameterDialog&) = delete;
+  QtKalmanFiltererParameterDialog& operator=(const QtKalmanFiltererParameterDialog&) = delete;
+
   explicit QtKalmanFiltererParameterDialog(
     const std::string& parameter_name,
     const std::string& parameter_description,

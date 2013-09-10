@@ -18,9 +18,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/CppShinyButton.htm
 //---------------------------------------------------------------------------
-
-
 #pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include "shinybutton.h"
@@ -36,7 +35,9 @@ ribi::ShinyButton::ShinyButton(
   const double color,
   const double gradient,
   const std::string& text)
-  : m_color(color),
+  : m_signal_color_changed{},
+    m_signal_text_changed{},
+    m_color(color),
     m_gradient(gradient),
     m_text(text)
 {
