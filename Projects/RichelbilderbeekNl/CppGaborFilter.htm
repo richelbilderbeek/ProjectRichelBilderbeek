@@ -67,6 +67,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
 <br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-<b><a href="CppTypedef.htm">typedef</a></b>s"<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-but-set-parameter"<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/checked_delete.hpp&gt;<br/>
@@ -74,7 +75,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppSignals2.htm">signals2</a>.hpp&gt;<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
 <br/>
-<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a> {<br/>
+<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
 <br/>
 <a href="CppComment.htm">///</a>GaborFilter manages a Gabor filter<br/>
 <b><a href="CppStruct.htm">struct</a></b> GaborFilter : <b><a href="CppPublic.htm">public</a></b> <a href="CppNoncopyable.htm">boost::noncopyable</a><br/>
@@ -147,7 +148,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <br/>
 <a href="CppOstream.htm">std::ostream</a>&amp; <b><a href="CppOperatorStreamOut.htm">operator&lt;&lt;</a></b>(<a href="CppOstream.htm">std::ostream</a>&amp; os, <b><a href="CppConst.htm">const</a></b> GaborFilter&amp; g);<br/>
 <br/>
-} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a><br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
 <br/>
 <a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> GABORFILTER_H<br/>
 </code></td></tr></table>
@@ -181,9 +182,8 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="CppGaborFilter.htm">CppGaborFilter</a>.htm<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<br/>
-<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-<b><a href="CppTypedef.htm">typedef</a></b>s"<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-but-set-parameter"<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppGaborFilter.htm">gaborfilter</a>.h"<br/>
@@ -196,18 +196,19 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
 <br/>
-<a href="CppRibi.htm\">ribi</a>::GaborFilter::GaborFilter(<br/>
+<a href="CppRibi.htm">ribi</a>::GaborFilter::GaborFilter(<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> angle,<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> frequency,<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> sigma)<br/>
-&nbsp;&nbsp;: m_angle(angle),<br/>
+&nbsp;&nbsp;: m_signal_changed{},<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_angle(angle),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;m_frequency(frequency),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;m_sigma(sigma)<br/>
 {<br/>
 <br/>
 }<br/>
 <br/>
-<b><a href="CppDouble.htm">double</a></b> <a href="CppRibi.htm\">ribi</a>::GaborFilter::Gabor<a href="CppFunction.htm">Function</a>(<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> x, <b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> y,<br/>
+<b><a href="CppDouble.htm">double</a></b> <a href="CppRibi.htm">ribi</a>::GaborFilter::Gabor<a href="CppFunction.htm">Function</a>(<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> x, <b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> y,<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> angle, <b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> frequency, <b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> sigma)<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> dx <a href="CppOperatorAssign.htm">=</a> x;<br/>
@@ -221,24 +222,24 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> z;<br/>
 }<br/>
 <br/>
-<b><a href="CppDouble.htm">double</a></b> <a href="CppRibi.htm\">ribi</a>::GaborFilter::Gabor<a href="CppFunction.htm">Function</a>(<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> x, <b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> y) <b><a href="CppConst.htm">const</a></b><br/>
+<b><a href="CppDouble.htm">double</a></b> <a href="CppRibi.htm">ribi</a>::GaborFilter::Gabor<a href="CppFunction.htm">Function</a>(<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> x, <b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> y) <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> Gabor<a href="CppFunction.htm">Function</a>(x,y,m_angle,m_frequency,m_sigma);<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppRibi.htm\">ribi</a>::GaborFilter::Get<a href="CppVersion.htm">Version</a>()<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppRibi.htm">ribi</a>::GaborFilter::Get<a href="CppVersion.htm">Version</a>()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> "1.0";<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm\">ribi</a>::GaborFilter::Get<a href="CppVersion.htm">Version</a>History()<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm">ribi</a>::GaborFilter::Get<a href="CppVersion.htm">Version</a>History()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> {<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;"2012-07-08: <a href="CppVersion.htm">version</a> 1.0: initial <a href="CppVersion.htm">version</a>"<br/>
 &nbsp;&nbsp;};<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::GaborFilter::SetAngle(<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> angle)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::GaborFilter::SetAngle(<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> angle)<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (angle <a href="CppOperatorNotEqual.htm">!=</a> m_angle)<br/>
 &nbsp;&nbsp;{<br/>
@@ -247,7 +248,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;}<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::GaborFilter::SetFrequency(<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> frequency)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::GaborFilter::SetFrequency(<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> frequency)<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (frequency <a href="CppOperatorNotEqual.htm">!=</a> m_frequency)<br/>
 &nbsp;&nbsp;{<br/>
@@ -256,7 +257,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;}<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::GaborFilter::SetSigma(<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> sigma)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::GaborFilter::SetSigma(<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> sigma)<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (sigma <a href="CppOperatorNotEqual.htm">!=</a> m_sigma)<br/>
 &nbsp;&nbsp;{<br/>
@@ -265,13 +266,13 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;}<br/>
 }<br/>
 <br/>
-<b><a href="CppDouble.htm">double</a></b> <a href="CppRibi.htm\">ribi</a>::GaborFilter::SuggestSigma(<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> width, <b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> height) <b><a href="CppConst.htm">const</a></b><br/>
+<b><a href="CppDouble.htm">double</a></b> <a href="CppRibi.htm">ribi</a>::GaborFilter::SuggestSigma(<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> width, <b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> height) <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> s <a href="CppOperatorAssign.htm">=</a> <a href="CppSqrt.htm">std::sqrt</a>( ((width*0.5)*(width*0.5)) <a href="CppOperatorPlus.htm">+</a> ((height*0.5)*(height*0.5)));<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <a href="CppSqrt.htm">std::sqrt</a>(-(s * s) <a href="CppOperatorDivide.htm">/</a> (2.0*<a href="CppLog.htm">std::log</a>(1.0/510.0)));<br/>
 }<br/>
 <br/>
-<a href="CppOstream.htm">std::ostream</a>&amp; <a href="CppRibi.htm\">ribi</a>::<b><a href="CppOperatorStreamOut.htm">operator&lt;&lt;</a></b>(<a href="CppOstream.htm">std::ostream</a>&amp; os, <b><a href="CppConst.htm">const</a></b> GaborFilter&amp; g)<br/>
+<a href="CppOstream.htm">std::ostream</a>&amp; <a href="CppRibi.htm">ribi</a>::<b><a href="CppOperatorStreamOut.htm">operator&lt;&lt;</a></b>(<a href="CppOstream.htm">std::ostream</a>&amp; os, <b><a href="CppConst.htm">const</a></b> GaborFilter&amp; g)<br/>
 {<br/>
 &nbsp;&nbsp;os<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "&lt;GaborFilter&gt;"<br/>

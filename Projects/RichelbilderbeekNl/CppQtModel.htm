@@ -44,16 +44,21 @@ model <a href="CppClass.htm">classes</a>.</p>
 <a href="CppIfndef.htm">#ifndef</a> MODELFUNCTIONPARSER_H<br/>
 <a href="CppDefine.htm">#define</a> MODELFUNCTIONPARSER_H<br/>
 <br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppShared_ptr.htm">shared_ptr</a>.hpp&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppNoncopyable.htm">noncopyable</a>.hpp&gt;<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
 <br/>
 <b><a href="CppStruct.htm">struct</a></b> <a href="CppFunctionParser.htm">FunctionParser</a>;<br/>
 <br/>
-<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a> {<br/>
+<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
 <br/>
 <a href="CppComment.htm">///</a>Uses Warp's <a href="CppFunctionParser.htm">function parser</a> and adds a random <a href="CppFunction.htm">function</a><br/>
-<b><a href="CppStruct.htm">struct</a></b> Model<a href="CppFunctionParser.htm">FunctionParser</a> : <b><a href="CppPublic.htm">public</a></b> <a href="CppNoncopyable.htm">boost::noncopyable</a><br/>
+<b><a href="CppStruct.htm">struct</a></b> Model<a href="CppFunctionParser.htm">FunctionParser</a><br/>
 {<br/>
+&nbsp;&nbsp;Model<a href="CppFunctionParser.htm">FunctionParser</a>(<b><a href="CppConst.htm">const</a></b> Model<a href="CppFunctionParser.htm">FunctionParser</a>&amp;e) <a href="CppOperatorAssign.htm">=</a> <b><a href="CppDelete.htm">delete</a></b>;<br/>
+&nbsp;&nbsp;Model<a href="CppFunctionParser.htm">FunctionParser</a>&amp; <b><a href="CppOperator.htm">operator</a></b>=(<b><a href="CppConst.htm">const</a></b> Model<a href="CppFunctionParser.htm">FunctionParser</a>&amp;e) <a href="CppOperatorAssign.htm">=</a> <b><a href="CppDelete.htm">delete</a></b>;<br/>
+<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/For example:<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/my_function <a href="CppOperatorAssign.htm">=</a> 'x * x * sin(x) * rand(x)'<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/variable_name <a href="CppOperatorAssign.htm">=</a> 'x'<br/>
@@ -66,10 +71,9 @@ model <a href="CppClass.htm">classes</a>.</p>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppFunctionParser.htm">FunctionParser</a>&gt; m_parser;<br/>
 <br/>
 &nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppDouble.htm">double</a></b> MyRand(<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> * <b><a href="CppConst.htm">const</a></b> max);<br/>
-<br/>
 };<br/>
 <br/>
-} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a><br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
 <br/>
 <a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> MODELFUNCTIONPARSER_H<br/>
 </code></td></tr></table>
@@ -83,22 +87,21 @@ model <a href="CppClass.htm">classes</a>.</p>
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="modelfunctionparser.cpp" border = "1"><tr><td><code>
-<br/>
-<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-<b><a href="CppTypedef.htm">typedef</a></b>s"<br/>
 <a href="CppInclude.htm">#include</a> "model<a href="CppFunction.htm">function</a>parser.h"<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppStdexceptH.htm">stdexcept</a>&gt;<br/>
 <br/>
-<a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
-<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-<b><a href="CppTypedef.htm">typedef</a></b>s"<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/math/constants/constants.hpp&gt;<br/>
-<a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
 <br/>
 <a href="CppComment.htm">//</a>Warp's <a href="CppFunctionParser.htm">function parser</a><br/>
 <a href="CppInclude.htm">#include</a> "fparser.hh"<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
 <br/>
-<a href="CppRibi.htm\">ribi</a>::Model<a href="CppFunctionParser.htm">FunctionParser</a>::Model<a href="CppFunctionParser.htm">FunctionParser</a>(<br/>
+<a href="CppRibi.htm">ribi</a>::Model<a href="CppFunctionParser.htm">FunctionParser</a>::Model<a href="CppFunctionParser.htm">FunctionParser</a>(<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; my_function,<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; variable_name)<br/>
 &nbsp;&nbsp;: m_parser{<b><a href="CppNew.htm">new</a></b> <a href="CppFunctionParser.htm">FunctionParser</a>}<br/>
@@ -123,14 +126,14 @@ model <a href="CppClass.htm">classes</a>.</p>
 &nbsp;&nbsp;}<br/>
 }<br/>
 <br/>
-<b><a href="CppDouble.htm">double</a></b> <a href="CppRibi.htm\">ribi</a>::Model<a href="CppFunctionParser.htm">FunctionParser</a>::Evaluate(<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> x) <b><a href="CppConst.htm">const</a></b><br/>
+<b><a href="CppDouble.htm">double</a></b> <a href="CppRibi.htm">ribi</a>::Model<a href="CppFunctionParser.htm">FunctionParser</a>::Evaluate(<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> x) <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> xs[1] <a href="CppOperatorAssign.htm">=</a> { x };<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> y <a href="CppOperatorAssign.htm">=</a> m_parser-&gt;Eval(xs);<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> y;<br/>
 }<br/>
 <br/>
-<b><a href="CppDouble.htm">double</a></b> <a href="CppRibi.htm\">ribi</a>::Model<a href="CppFunctionParser.htm">FunctionParser</a>::MyRand(<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> * <b><a href="CppConst.htm">const</a></b> max)<br/>
+<b><a href="CppDouble.htm">double</a></b> <a href="CppRibi.htm">ribi</a>::Model<a href="CppFunctionParser.htm">FunctionParser</a>::MyRand(<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> * <b><a href="CppConst.htm">const</a></b> max)<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(max);<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> (*max) * <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(<a href="CppRand.htm">std::rand</a>()) <a href="CppOperatorDivide.htm">/</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(<a href="CppRAND_MAX.htm">RAND_MAX</a>);<br/>
@@ -169,16 +172,14 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppIfndef.htm">#ifndef</a> QTSTDVECTORFUNCTIONMODEL_H<br/>
 <a href="CppDefine.htm">#define</a> QTSTDVECTORFUNCTIONMODEL_H<br/>
 <br/>
-<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-<b><a href="CppTypedef.htm">typedef</a></b>s"<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/numeric/<a href="CppUblas.htm">ublas</a>/vector.hpp&gt;<br/>
-<br/>
 <a href="CppInclude.htm">#include</a> &lt;QAbstractTableModel&gt;<br/>
-<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
 <br/>
-<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a> {<br/>
+<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
 <br/>
 <b><a href="CppStruct.htm">struct</a></b> <a href="CppQtStdVectorFunctionModel.htm">QtStdVectorFunctionModel</a>: <b><a href="CppPublic.htm">public</a></b> QAbstractTableModel<br/>
 {<br/>
@@ -249,7 +250,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppBool.htm">bool</a></b> setHeaderData(<b><a href="CppInt.htm">int</a></b> section, <a href="CppQt.htm">Qt</a>::Orientation orientation, <b><a href="CppConst.htm">const</a></b> QVariant &amp;value, <b><a href="CppInt.htm">int</a></b> role);<br/>
 };<br/>
 <br/>
-} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a><br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
 <br/>
 <a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> QTSTDVECTORFUNCTIONMODEL_H<br/>
 </code></td></tr></table>
@@ -283,9 +284,8 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="CppQtModel.htm">CppQtModel</a>.htm<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<br/>
-<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-<b><a href="CppTypedef.htm">typedef</a></b>s"<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppQtStdVectorFunctionModel.htm">qtstdvectorfunctionmodel</a>.h"<br/>
 <br/>
@@ -298,22 +298,24 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
 <br/>
-<a href="CppRibi.htm\">ribi</a>::<a href="CppQtStdVectorFunctionModel.htm">QtStdVectorFunctionModel</a>::<a href="CppQtStdVectorFunctionModel.htm">QtStdVectorFunctionModel</a>(<br/>
+<a href="CppRibi.htm">ribi</a>::<a href="CppQtStdVectorFunctionModel.htm">QtStdVectorFunctionModel</a>::<a href="CppQtStdVectorFunctionModel.htm">QtStdVectorFunctionModel</a>(<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; variable,<br/>
 &nbsp;&nbsp;<a href="CppQObject.htm">QObject</a> *parent)<br/>
 &nbsp;&nbsp;: QAbstractTableModel(parent),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_data{},<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_header_horizontal_text{},<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_header_vertical_text{},<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;m_variable{variable}<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!variable.empty());<br/>
 }<br/>
 <br/>
-<b><a href="CppInt.htm">int</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQtStdVectorFunctionModel.htm">QtStdVectorFunctionModel</a>::columnCount(<b><a href="CppConst.htm">const</a></b> <a href="CppQModelIndex.htm">QModelIndex</a> &amp;) <b><a href="CppConst.htm">const</a></b><br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQtStdVectorFunctionModel.htm">QtStdVectorFunctionModel</a>::columnCount(<b><a href="CppConst.htm">const</a></b> <a href="CppQModelIndex.htm">QModelIndex</a> &amp;) <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppReturn.htm">return</a></b> 1;<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> rowCount() &gt; 0 ? 1 : 0;<br/>
 }<br/>
 <br/>
-QVariant <a href="CppRibi.htm\">ribi</a>::<a href="CppQtStdVectorFunctionModel.htm">QtStdVectorFunctionModel</a>::data(<b><a href="CppConst.htm">const</a></b> <a href="CppQModelIndex.htm">QModelIndex</a> &amp;index, <b><a href="CppInt.htm">int</a></b> role) <b><a href="CppConst.htm">const</a></b><br/>
+QVariant <a href="CppRibi.htm">ribi</a>::<a href="CppQtStdVectorFunctionModel.htm">QtStdVectorFunctionModel</a>::data(<b><a href="CppConst.htm">const</a></b> <a href="CppQModelIndex.htm">QModelIndex</a> &amp;index, <b><a href="CppInt.htm">int</a></b> role) <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Removing <b><a href="CppThis.htm">this</a></b> line will cause checkboxes to appear<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (role <a href="CppOperatorNotEqual.htm">!=</a> <a href="CppQt.htm">Qt</a>::EditRole <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a>&nbsp;&nbsp;role <a href="CppOperatorNotEqual.htm">!=</a> <a href="CppQt.htm">Qt</a>::DisplayRole) <b><a href="CppReturn.htm">return</a></b> QVariant();<br/>
@@ -332,7 +334,7 @@ QVariant <a href="CppRibi.htm\">ribi</a>::<a href="CppQtStdVectorFunctionModel.h
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <a href="CppQString.htm">QString</a>(m_data[row].c_str());<br/>
 }<br/>
 <br/>
-<a href="CppQt.htm">Qt</a>::ItemFlags <a href="CppRibi.htm\">ribi</a>::<a href="CppQtStdVectorFunctionModel.htm">QtStdVectorFunctionModel</a>::flags(<b><a href="CppConst.htm">const</a></b> <a href="CppQModelIndex.htm">QModelIndex</a> &amp;) <b><a href="CppConst.htm">const</a></b><br/>
+<a href="CppQt.htm">Qt</a>::ItemFlags <a href="CppRibi.htm">ribi</a>::<a href="CppQtStdVectorFunctionModel.htm">QtStdVectorFunctionModel</a>::flags(<b><a href="CppConst.htm">const</a></b> <a href="CppQModelIndex.htm">QModelIndex</a> &amp;) <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQt.htm">Qt</a>::ItemIsSelectable<br/>
@@ -342,21 +344,21 @@ QVariant <a href="CppRibi.htm\">ribi</a>::<a href="CppQtStdVectorFunctionModel.h
 &nbsp;&nbsp;| <a href="CppQt.htm">Qt</a>::ItemIsEnabled;<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppRibi.htm\">ribi</a>::<a href="CppQtStdVectorFunctionModel.htm">QtStdVectorFunctionModel</a>::Get<a href="CppVersion.htm">Version</a>()<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppRibi.htm">ribi</a>::<a href="CppQtStdVectorFunctionModel.htm">QtStdVectorFunctionModel</a>::Get<a href="CppVersion.htm">Version</a>()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> "1.2";<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm\">ribi</a>::<a href="CppQtStdVectorFunctionModel.htm">QtStdVectorFunctionModel</a>::Get<a href="CppVersion.htm">Version</a>History()<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm">ribi</a>::<a href="CppQtStdVectorFunctionModel.htm">QtStdVectorFunctionModel</a>::Get<a href="CppVersion.htm">Version</a>History()<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v;<br/>
-&nbsp;&nbsp;v.push_back("2013-05-15: <a href="CppVersion.htm">version</a> 1.0: initial <a href="CppVersion.htm">version</a>");<br/>
-&nbsp;&nbsp;v.push_back("2013-05-28: <a href="CppVersion.htm">version</a> 1.1: allow columnCount to be zero, <b><a href="CppIf.htm">if</a></b> rowCount is zero");<br/>
-&nbsp;&nbsp;v.push_back("2013-07-05: <a href="CppVersion.htm">version</a> 1.2: <a href="CppSignal.htm">signal</a> layoutChanged <a href="CppEmit.htm">emitted</a> correctly");<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"2013-05-15: <a href="CppVersion.htm">version</a> 1.0: initial <a href="CppVersion.htm">version</a>",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"2013-05-28: <a href="CppVersion.htm">version</a> 1.1: allow columnCount to be zero, <b><a href="CppIf.htm">if</a></b> rowCount is zero",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"2013-07-05: <a href="CppVersion.htm">version</a> 1.2: <a href="CppSignal.htm">signal</a> layoutChanged <a href="CppEmit.htm">emitted</a> correctly"<br/>
+&nbsp;&nbsp;};<br/>
 }<br/>
 <br/>
-QVariant <a href="CppRibi.htm\">ribi</a>::<a href="CppQtStdVectorFunctionModel.htm">QtStdVectorFunctionModel</a>::headerData(<b><a href="CppInt.htm">int</a></b> section, <a href="CppQt.htm">Qt</a>::Orientation orientation, <b><a href="CppInt.htm">int</a></b> role) <b><a href="CppConst.htm">const</a></b><br/>
+QVariant <a href="CppRibi.htm">ribi</a>::<a href="CppQtStdVectorFunctionModel.htm">QtStdVectorFunctionModel</a>::headerData(<b><a href="CppInt.htm">int</a></b> section, <a href="CppQt.htm">Qt</a>::Orientation orientation, <b><a href="CppInt.htm">int</a></b> role) <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Removing <b><a href="CppThis.htm">this</a></b> line will cause checkboxes to appear<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (role <a href="CppOperatorNotEqual.htm">!=</a> <a href="CppQt.htm">Qt</a>::EditRole <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> role <a href="CppOperatorNotEqual.htm">!=</a> <a href="CppQt.htm">Qt</a>::DisplayRole) <b><a href="CppReturn.htm">return</a></b> QVariant();<br/>
@@ -380,7 +382,7 @@ QVariant <a href="CppRibi.htm\">ribi</a>::<a href="CppQtStdVectorFunctionModel.h
 &nbsp;&nbsp;}<br/>
 }<br/>
 <br/>
-<b><a href="CppBool.htm">bool</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQtStdVectorFunctionModel.htm">QtStdVectorFunctionModel</a>::insertRows(<b><a href="CppInt.htm">int</a></b> row, <b><a href="CppInt.htm">int</a></b> count, <b><a href="CppConst.htm">const</a></b> <a href="CppQModelIndex.htm">QModelIndex</a> &amp;parent)<br/>
+<b><a href="CppBool.htm">bool</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQtStdVectorFunctionModel.htm">QtStdVectorFunctionModel</a>::insertRows(<b><a href="CppInt.htm">int</a></b> row, <b><a href="CppInt.htm">int</a></b> count, <b><a href="CppConst.htm">const</a></b> <a href="CppQModelIndex.htm">QModelIndex</a> &amp;parent)<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Must be called before the real operation<br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;beginInsertRows(parent,row,row+count-1);<br/>
@@ -401,7 +403,7 @@ QVariant <a href="CppRibi.htm\">ribi</a>::<a href="CppQtStdVectorFunctionModel.h
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <b><a href="CppTrue.htm">true</a></b>;<br/>
 }<br/>
 <br/>
-<b><a href="CppBool.htm">bool</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQtStdVectorFunctionModel.htm">QtStdVectorFunctionModel</a>::removeRows(<b><a href="CppInt.htm">int</a></b> row, <b><a href="CppInt.htm">int</a></b> count, <b><a href="CppConst.htm">const</a></b> <a href="CppQModelIndex.htm">QModelIndex</a> &amp;parent)<br/>
+<b><a href="CppBool.htm">bool</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQtStdVectorFunctionModel.htm">QtStdVectorFunctionModel</a>::removeRows(<b><a href="CppInt.htm">int</a></b> row, <b><a href="CppInt.htm">int</a></b> count, <b><a href="CppConst.htm">const</a></b> <a href="CppQModelIndex.htm">QModelIndex</a> &amp;parent)<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Must be called before the real operation<br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;beginRemoveRows(parent,row,row+count-1);<br/>
@@ -422,12 +424,12 @@ QVariant <a href="CppRibi.htm\">ribi</a>::<a href="CppQtStdVectorFunctionModel.h
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <b><a href="CppTrue.htm">true</a></b>;<br/>
 }<br/>
 <br/>
-<b><a href="CppInt.htm">int</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQtStdVectorFunctionModel.htm">QtStdVectorFunctionModel</a>::rowCount(<b><a href="CppConst.htm">const</a></b> <a href="CppQModelIndex.htm">QModelIndex</a> &amp;) <b><a href="CppConst.htm">const</a></b><br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQtStdVectorFunctionModel.htm">QtStdVectorFunctionModel</a>::rowCount(<b><a href="CppConst.htm">const</a></b> <a href="CppQModelIndex.htm">QModelIndex</a> &amp;) <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <a href="CppNumeric_cast.htm">boost::numeric_cast</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(m_data.size());<br/>
 }<br/>
 <br/>
-<b><a href="CppBool.htm">bool</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQtStdVectorFunctionModel.htm">QtStdVectorFunctionModel</a>::setData(<b><a href="CppConst.htm">const</a></b> <a href="CppQModelIndex.htm">QModelIndex</a> &amp;index, <b><a href="CppConst.htm">const</a></b> QVariant &amp;value, <b><a href="CppInt.htm">int</a></b> <a href="CppOperatorDivide.htm">/</a>* role <a href="CppComment.htm">*/</a>)<br/>
+<b><a href="CppBool.htm">bool</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQtStdVectorFunctionModel.htm">QtStdVectorFunctionModel</a>::setData(<b><a href="CppConst.htm">const</a></b> <a href="CppQModelIndex.htm">QModelIndex</a> &amp;index, <b><a href="CppConst.htm">const</a></b> QVariant &amp;value, <b><a href="CppInt.htm">int</a></b> <a href="CppOperatorDivide.htm">/</a>* role <a href="CppComment.htm">*/</a>)<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> row <a href="CppOperatorAssign.htm">=</a> index.row();<br/>
 &nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
@@ -458,7 +460,7 @@ QVariant <a href="CppRibi.htm\">ribi</a>::<a href="CppQtStdVectorFunctionModel.h
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <b><a href="CppTrue.htm">true</a></b>;<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQtStdVectorFunctionModel.htm">QtStdVectorFunctionModel</a>::SetHeaderData(<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQtStdVectorFunctionModel.htm">QtStdVectorFunctionModel</a>::SetHeaderData(<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; horizontal_header_text, <b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt;&amp; vertical_header_text)<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (m_header_horizontal_text <a href="CppOperatorNotEqual.htm">!=</a> horizontal_header_text)<br/>
@@ -500,7 +502,7 @@ QVariant <a href="CppRibi.htm\">ribi</a>::<a href="CppQtStdVectorFunctionModel.h
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<b><a href="CppThis.htm">this</a></b>-&gt;columnCount() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> (<b><a href="CppThis.htm">this</a></b>-&gt;rowCount() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 0 ? 0 : 1));<br/>
 }<br/>
 <br/>
-<b><a href="CppBool.htm">bool</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQtStdVectorFunctionModel.htm">QtStdVectorFunctionModel</a>::setHeaderData(<b><a href="CppInt.htm">int</a></b> section, <a href="CppQt.htm">Qt</a>::Orientation orientation, <b><a href="CppConst.htm">const</a></b> QVariant &amp;value, <b><a href="CppInt.htm">int</a></b> <a href="CppOperatorDivide.htm">/</a>*role<a href="CppComment.htm">*/</a>)<br/>
+<b><a href="CppBool.htm">bool</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQtStdVectorFunctionModel.htm">QtStdVectorFunctionModel</a>::setHeaderData(<b><a href="CppInt.htm">int</a></b> section, <a href="CppQt.htm">Qt</a>::Orientation orientation, <b><a href="CppConst.htm">const</a></b> QVariant &amp;value, <b><a href="CppInt.htm">int</a></b> <a href="CppOperatorDivide.htm">/</a>*role<a href="CppComment.htm">*/</a>)<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (orientation <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <a href="CppQt.htm">Qt</a>::Horizontal)<br/>
 &nbsp;&nbsp;{<br/>
@@ -525,7 +527,7 @@ QVariant <a href="CppRibi.htm\">ribi</a>::<a href="CppQtStdVectorFunctionModel.h
 &nbsp;&nbsp;}<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQtStdVectorFunctionModel.htm">QtStdVectorFunctionModel</a>::SetRawData(<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt;&amp; data)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQtStdVectorFunctionModel.htm">QtStdVectorFunctionModel</a>::SetRawData(<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt;&amp; data)<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (m_data <a href="CppOperatorNotEqual.htm">!=</a> data)<br/>
 &nbsp;&nbsp;{<br/>
@@ -594,12 +596,13 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppDefine.htm">#define</a> QTSTDVECTORSTRINGMODEL_H<br/>
 <br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-<b><a href="CppTypedef.htm">typedef</a></b>s"<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/numeric/<a href="CppUblas.htm">ublas</a>/vector.hpp&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;QAbstractTableModel&gt;<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
 <br/>
-<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a> {<br/>
+<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
 <br/>
 <b><a href="CppStruct.htm">struct</a></b> <a href="CppQtStdVectorStringModel.htm">QtStdVectorStringModel</a>: <b><a href="CppPublic.htm">public</a></b> QAbstractTableModel<br/>
 {<br/>
@@ -658,7 +661,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppBool.htm">bool</a></b> setHeaderData(<b><a href="CppInt.htm">int</a></b> section, <a href="CppQt.htm">Qt</a>::Orientation orientation, <b><a href="CppConst.htm">const</a></b> QVariant &amp;value, <b><a href="CppInt.htm">int</a></b> role);<br/>
 };<br/>
 <br/>
-} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a><br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
 <br/>
 <a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> QTSTDVECTORSTRINGMODEL_H<br/>
 </code></td></tr></table>
@@ -692,9 +695,8 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="CppQtModel.htm">CppQtModel</a>.htm<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<br/>
-<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-<b><a href="CppTypedef.htm">typedef</a></b>s"<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppQtStdVectorStringModel.htm">qtstdvectorstringmodel</a>.h"<br/>
 <br/>
@@ -705,19 +707,21 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
 <br/>
-<a href="CppRibi.htm\">ribi</a>::<a href="CppQtStdVectorStringModel.htm">QtStdVectorStringModel</a>::<a href="CppQtStdVectorStringModel.htm">QtStdVectorStringModel</a>(<a href="CppQObject.htm">QObject</a> *parent)<br/>
-&nbsp;&nbsp;: QAbstractTableModel(parent)<br/>
+<a href="CppRibi.htm">ribi</a>::<a href="CppQtStdVectorStringModel.htm">QtStdVectorStringModel</a>::<a href="CppQtStdVectorStringModel.htm">QtStdVectorStringModel</a>(<a href="CppQObject.htm">QObject</a> *parent)<br/>
+&nbsp;&nbsp;: QAbstractTableModel(parent),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_data{},<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_header_horizontal_text{},<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_header_vertical_text{}<br/>
 {<br/>
 <br/>
 }<br/>
 <br/>
-<b><a href="CppInt.htm">int</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQtStdVectorStringModel.htm">QtStdVectorStringModel</a>::columnCount(<b><a href="CppConst.htm">const</a></b> <a href="CppQModelIndex.htm">QModelIndex</a> &amp;) <b><a href="CppConst.htm">const</a></b><br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQtStdVectorStringModel.htm">QtStdVectorStringModel</a>::columnCount(<b><a href="CppConst.htm">const</a></b> <a href="CppQModelIndex.htm">QModelIndex</a> &amp;) <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppReturn.htm">return</a></b> 1;<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> rowCount() &gt; 0 ? 1 : 0;<br/>
 }<br/>
 <br/>
-QVariant <a href="CppRibi.htm\">ribi</a>::<a href="CppQtStdVectorStringModel.htm">QtStdVectorStringModel</a>::data(<b><a href="CppConst.htm">const</a></b> <a href="CppQModelIndex.htm">QModelIndex</a> &amp;index, <b><a href="CppInt.htm">int</a></b> role) <b><a href="CppConst.htm">const</a></b><br/>
+QVariant <a href="CppRibi.htm">ribi</a>::<a href="CppQtStdVectorStringModel.htm">QtStdVectorStringModel</a>::data(<b><a href="CppConst.htm">const</a></b> <a href="CppQModelIndex.htm">QModelIndex</a> &amp;index, <b><a href="CppInt.htm">int</a></b> role) <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Removing <b><a href="CppThis.htm">this</a></b> line will cause checkboxes to appear<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (role <a href="CppOperatorNotEqual.htm">!=</a> <a href="CppQt.htm">Qt</a>::EditRole <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a>&nbsp;&nbsp;role <a href="CppOperatorNotEqual.htm">!=</a> <a href="CppQt.htm">Qt</a>::DisplayRole) <b><a href="CppReturn.htm">return</a></b> QVariant();<br/>
@@ -737,7 +741,7 @@ QVariant <a href="CppRibi.htm\">ribi</a>::<a href="CppQtStdVectorStringModel.htm
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <a href="CppQString.htm">QString</a>(m_data[row].c_str());<br/>
 }<br/>
 <br/>
-<a href="CppQt.htm">Qt</a>::ItemFlags <a href="CppRibi.htm\">ribi</a>::<a href="CppQtStdVectorStringModel.htm">QtStdVectorStringModel</a>::flags(<b><a href="CppConst.htm">const</a></b> <a href="CppQModelIndex.htm">QModelIndex</a> &amp;) <b><a href="CppConst.htm">const</a></b><br/>
+<a href="CppQt.htm">Qt</a>::ItemFlags <a href="CppRibi.htm">ribi</a>::<a href="CppQtStdVectorStringModel.htm">QtStdVectorStringModel</a>::flags(<b><a href="CppConst.htm">const</a></b> <a href="CppQModelIndex.htm">QModelIndex</a> &amp;) <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQt.htm">Qt</a>::ItemIsSelectable<br/>
@@ -747,21 +751,21 @@ QVariant <a href="CppRibi.htm\">ribi</a>::<a href="CppQtStdVectorStringModel.htm
 &nbsp;&nbsp;| <a href="CppQt.htm">Qt</a>::ItemIsEnabled;<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppRibi.htm\">ribi</a>::<a href="CppQtStdVectorStringModel.htm">QtStdVectorStringModel</a>::Get<a href="CppVersion.htm">Version</a>()<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppRibi.htm">ribi</a>::<a href="CppQtStdVectorStringModel.htm">QtStdVectorStringModel</a>::Get<a href="CppVersion.htm">Version</a>()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> "1.2";<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm\">ribi</a>::<a href="CppQtStdVectorStringModel.htm">QtStdVectorStringModel</a>::Get<a href="CppVersion.htm">Version</a>History()<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm">ribi</a>::<a href="CppQtStdVectorStringModel.htm">QtStdVectorStringModel</a>::Get<a href="CppVersion.htm">Version</a>History()<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v;<br/>
-&nbsp;&nbsp;v.push_back("2013-05-15: <a href="CppVersion.htm">version</a> 1.0: initial <a href="CppVersion.htm">version</a>");<br/>
-&nbsp;&nbsp;v.push_back("2013-05-28: <a href="CppVersion.htm">version</a> 1.1: allow columnCount to be zero, <b><a href="CppIf.htm">if</a></b> rowCount is zero");<br/>
-&nbsp;&nbsp;v.push_back("2013-07-05: <a href="CppVersion.htm">version</a> 1.2: <a href="CppSignal.htm">signal</a> layoutChanged <a href="CppEmit.htm">emitted</a> correctly");<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"2013-05-15: <a href="CppVersion.htm">version</a> 1.0: initial <a href="CppVersion.htm">version</a>",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"2013-05-28: <a href="CppVersion.htm">version</a> 1.1: allow columnCount to be zero, <b><a href="CppIf.htm">if</a></b> rowCount is zero",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"2013-07-05: <a href="CppVersion.htm">version</a> 1.2: <a href="CppSignal.htm">signal</a> layoutChanged <a href="CppEmit.htm">emitted</a> correctly"<br/>
+&nbsp;&nbsp;};<br/>
 }<br/>
 <br/>
-QVariant <a href="CppRibi.htm\">ribi</a>::<a href="CppQtStdVectorStringModel.htm">QtStdVectorStringModel</a>::headerData(<b><a href="CppInt.htm">int</a></b> section, <a href="CppQt.htm">Qt</a>::Orientation orientation, <b><a href="CppInt.htm">int</a></b> role) <b><a href="CppConst.htm">const</a></b><br/>
+QVariant <a href="CppRibi.htm">ribi</a>::<a href="CppQtStdVectorStringModel.htm">QtStdVectorStringModel</a>::headerData(<b><a href="CppInt.htm">int</a></b> section, <a href="CppQt.htm">Qt</a>::Orientation orientation, <b><a href="CppInt.htm">int</a></b> role) <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Removing <b><a href="CppThis.htm">this</a></b> line will cause checkboxes to appear<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (role <a href="CppOperatorNotEqual.htm">!=</a> <a href="CppQt.htm">Qt</a>::EditRole <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> role <a href="CppOperatorNotEqual.htm">!=</a> <a href="CppQt.htm">Qt</a>::DisplayRole) <b><a href="CppReturn.htm">return</a></b> QVariant();<br/>
@@ -785,7 +789,7 @@ QVariant <a href="CppRibi.htm\">ribi</a>::<a href="CppQtStdVectorStringModel.htm
 &nbsp;&nbsp;}<br/>
 }<br/>
 <br/>
-<b><a href="CppBool.htm">bool</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQtStdVectorStringModel.htm">QtStdVectorStringModel</a>::insertRows(<b><a href="CppInt.htm">int</a></b> row, <b><a href="CppInt.htm">int</a></b> count, <b><a href="CppConst.htm">const</a></b> <a href="CppQModelIndex.htm">QModelIndex</a> &amp;parent)<br/>
+<b><a href="CppBool.htm">bool</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQtStdVectorStringModel.htm">QtStdVectorStringModel</a>::insertRows(<b><a href="CppInt.htm">int</a></b> row, <b><a href="CppInt.htm">int</a></b> count, <b><a href="CppConst.htm">const</a></b> <a href="CppQModelIndex.htm">QModelIndex</a> &amp;parent)<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Must be called before the real operation<br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;beginInsertRows(parent,row,row+count-1);<br/>
@@ -806,7 +810,7 @@ QVariant <a href="CppRibi.htm\">ribi</a>::<a href="CppQtStdVectorStringModel.htm
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <b><a href="CppTrue.htm">true</a></b>;<br/>
 }<br/>
 <br/>
-<b><a href="CppBool.htm">bool</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQtStdVectorStringModel.htm">QtStdVectorStringModel</a>::removeRows(<b><a href="CppInt.htm">int</a></b> row, <b><a href="CppInt.htm">int</a></b> count, <b><a href="CppConst.htm">const</a></b> <a href="CppQModelIndex.htm">QModelIndex</a> &amp;parent)<br/>
+<b><a href="CppBool.htm">bool</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQtStdVectorStringModel.htm">QtStdVectorStringModel</a>::removeRows(<b><a href="CppInt.htm">int</a></b> row, <b><a href="CppInt.htm">int</a></b> count, <b><a href="CppConst.htm">const</a></b> <a href="CppQModelIndex.htm">QModelIndex</a> &amp;parent)<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Must be called before the real operation<br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;beginRemoveRows(parent,row,row+count-1);<br/>
@@ -827,12 +831,12 @@ QVariant <a href="CppRibi.htm\">ribi</a>::<a href="CppQtStdVectorStringModel.htm
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <b><a href="CppTrue.htm">true</a></b>;<br/>
 }<br/>
 <br/>
-<b><a href="CppInt.htm">int</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQtStdVectorStringModel.htm">QtStdVectorStringModel</a>::rowCount(<b><a href="CppConst.htm">const</a></b> <a href="CppQModelIndex.htm">QModelIndex</a> &amp;) <b><a href="CppConst.htm">const</a></b><br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQtStdVectorStringModel.htm">QtStdVectorStringModel</a>::rowCount(<b><a href="CppConst.htm">const</a></b> <a href="CppQModelIndex.htm">QModelIndex</a> &amp;) <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <a href="CppNumeric_cast.htm">boost::numeric_cast</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(m_data.size());<br/>
 }<br/>
 <br/>
-<b><a href="CppBool.htm">bool</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQtStdVectorStringModel.htm">QtStdVectorStringModel</a>::setData(<b><a href="CppConst.htm">const</a></b> <a href="CppQModelIndex.htm">QModelIndex</a> &amp;index, <b><a href="CppConst.htm">const</a></b> QVariant &amp;value, <b><a href="CppInt.htm">int</a></b> <a href="CppOperatorDivide.htm">/</a>* role <a href="CppComment.htm">*/</a>)<br/>
+<b><a href="CppBool.htm">bool</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQtStdVectorStringModel.htm">QtStdVectorStringModel</a>::setData(<b><a href="CppConst.htm">const</a></b> <a href="CppQModelIndex.htm">QModelIndex</a> &amp;index, <b><a href="CppConst.htm">const</a></b> QVariant &amp;value, <b><a href="CppInt.htm">int</a></b> <a href="CppOperatorDivide.htm">/</a>* role <a href="CppComment.htm">*/</a>)<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> row <a href="CppOperatorAssign.htm">=</a> index.row();<br/>
 <br/>
@@ -851,7 +855,7 @@ QVariant <a href="CppRibi.htm\">ribi</a>::<a href="CppQtStdVectorStringModel.htm
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <b><a href="CppTrue.htm">true</a></b>;<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQtStdVectorStringModel.htm">QtStdVectorStringModel</a>::SetHeaderData(<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQtStdVectorStringModel.htm">QtStdVectorStringModel</a>::SetHeaderData(<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; horizontal_header_text, <b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt;&amp; vertical_header_text)<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (m_header_horizontal_text <a href="CppOperatorNotEqual.htm">!=</a> horizontal_header_text)<br/>
@@ -893,7 +897,7 @@ QVariant <a href="CppRibi.htm\">ribi</a>::<a href="CppQtStdVectorStringModel.htm
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<b><a href="CppThis.htm">this</a></b>-&gt;columnCount() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> (<b><a href="CppThis.htm">this</a></b>-&gt;rowCount() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 0 ? 0 : 1));<br/>
 }<br/>
 <br/>
-<b><a href="CppBool.htm">bool</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQtStdVectorStringModel.htm">QtStdVectorStringModel</a>::setHeaderData(<b><a href="CppInt.htm">int</a></b> section, <a href="CppQt.htm">Qt</a>::Orientation orientation, <b><a href="CppConst.htm">const</a></b> QVariant &amp;value, <b><a href="CppInt.htm">int</a></b> <a href="CppOperatorDivide.htm">/</a>*role<a href="CppComment.htm">*/</a>)<br/>
+<b><a href="CppBool.htm">bool</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQtStdVectorStringModel.htm">QtStdVectorStringModel</a>::setHeaderData(<b><a href="CppInt.htm">int</a></b> section, <a href="CppQt.htm">Qt</a>::Orientation orientation, <b><a href="CppConst.htm">const</a></b> QVariant &amp;value, <b><a href="CppInt.htm">int</a></b> <a href="CppOperatorDivide.htm">/</a>*role<a href="CppComment.htm">*/</a>)<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (orientation <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <a href="CppQt.htm">Qt</a>::Horizontal)<br/>
 &nbsp;&nbsp;{<br/>
@@ -919,7 +923,7 @@ QVariant <a href="CppRibi.htm\">ribi</a>::<a href="CppQtStdVectorStringModel.htm
 }<br/>
 <br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQtStdVectorStringModel.htm">QtStdVectorStringModel</a>::SetRawData(<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt;&amp; data)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQtStdVectorStringModel.htm">QtStdVectorStringModel</a>::SetRawData(<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt;&amp; data)<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (m_data <a href="CppOperatorNotEqual.htm">!=</a> data)<br/>
 &nbsp;&nbsp;{<br/>
@@ -954,8 +958,6 @@ QVariant <a href="CppRibi.htm\">ribi</a>::<a href="CppQtStdVectorStringModel.htm
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<b><a href="CppThis.htm">this</a></b>-&gt;rowCount() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <a href="CppNumeric_cast.htm">boost::numeric_cast</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(m_header_vertical_text.size()));<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<b><a href="CppThis.htm">this</a></b>-&gt;columnCount() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> (<b><a href="CppThis.htm">this</a></b>-&gt;rowCount() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 0 ? 0 : 1));<br/>
 }<br/>
-<br/>
-<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -993,12 +995,13 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <br/>
 <br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-<b><a href="CppTypedef.htm">typedef</a></b>s"<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/numeric/<a href="CppUblas.htm">ublas</a>/<a href="CppMatrix.htm">matrix</a>.hpp&gt;<br/>
-<a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
 <a href="CppInclude.htm">#include</a> &lt;QAbstractTableModel&gt;<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
 <br/>
-<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a> {<br/>
+<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
 <br/>
 <b><a href="CppStruct.htm">struct</a></b> <a href="CppQtUblasMatrixDoubleModel.htm">QtUblasMatrixDoubleModel</a> : <b><a href="CppPublic.htm">public</a></b> QAbstractTableModel<br/>
 {<br/>
@@ -1063,7 +1066,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppBool.htm">bool</a></b> setHeaderData(<b><a href="CppInt.htm">int</a></b> section, <a href="CppQt.htm">Qt</a>::Orientation orientation, <b><a href="CppConst.htm">const</a></b> QVariant &amp;value, <b><a href="CppInt.htm">int</a></b> role);<br/>
 };<br/>
 <br/>
-} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a><br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
 <br/>
 <a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> QTMATRIXDOUBLEMODEL_H<br/>
 </code></td></tr></table>
@@ -1097,9 +1100,8 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="CppQtModel.htm">CppQtModel</a>.htm<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<br/>
-<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-<b><a href="CppTypedef.htm">typedef</a></b>s"<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppQtUblasMatrixDoubleModel.htm">qtublasmatrixdoublemodel</a>.h"<br/>
 <br/>
@@ -1112,18 +1114,21 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
 <br/>
-<a href="CppRibi.htm\">ribi</a>::<a href="CppQtUblasMatrixDoubleModel.htm">QtUblasMatrixDoubleModel</a>::<a href="CppQtUblasMatrixDoubleModel.htm">QtUblasMatrixDoubleModel</a>(<a href="CppQObject.htm">QObject</a> *parent)<br/>
-&nbsp;&nbsp;: QAbstractTableModel(parent)<br/>
+<a href="CppRibi.htm">ribi</a>::<a href="CppQtUblasMatrixDoubleModel.htm">QtUblasMatrixDoubleModel</a>::<a href="CppQtUblasMatrixDoubleModel.htm">QtUblasMatrixDoubleModel</a>(<a href="CppQObject.htm">QObject</a> *parent)<br/>
+&nbsp;&nbsp;: QAbstractTableModel(parent),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_data{},<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_header_horizontal_text{},<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_header_vertical_text{}<br/>
 {<br/>
 <br/>
 }<br/>
 <br/>
-<b><a href="CppInt.htm">int</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQtUblasMatrixDoubleModel.htm">QtUblasMatrixDoubleModel</a>::columnCount(<b><a href="CppConst.htm">const</a></b> <a href="CppQModelIndex.htm">QModelIndex</a> &amp;) <b><a href="CppConst.htm">const</a></b><br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQtUblasMatrixDoubleModel.htm">QtUblasMatrixDoubleModel</a>::columnCount(<b><a href="CppConst.htm">const</a></b> <a href="CppQModelIndex.htm">QModelIndex</a> &amp;) <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> m_data.size2();<br/>
 }<br/>
 <br/>
-QVariant <a href="CppRibi.htm\">ribi</a>::<a href="CppQtUblasMatrixDoubleModel.htm">QtUblasMatrixDoubleModel</a>::data(<b><a href="CppConst.htm">const</a></b> <a href="CppQModelIndex.htm">QModelIndex</a> &amp;index, <b><a href="CppInt.htm">int</a></b> role) <b><a href="CppConst.htm">const</a></b><br/>
+QVariant <a href="CppRibi.htm">ribi</a>::<a href="CppQtUblasMatrixDoubleModel.htm">QtUblasMatrixDoubleModel</a>::data(<b><a href="CppConst.htm">const</a></b> <a href="CppQModelIndex.htm">QModelIndex</a> &amp;index, <b><a href="CppInt.htm">int</a></b> role) <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Removing <b><a href="CppThis.htm">this</a></b> line will cause checkboxes to appear<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (role <a href="CppOperatorNotEqual.htm">!=</a> <a href="CppQt.htm">Qt</a>::EditRole <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> role <a href="CppOperatorNotEqual.htm">!=</a> <a href="CppQt.htm">Qt</a>::DisplayRole) <b><a href="CppReturn.htm">return</a></b> QVariant();<br/>
@@ -1145,7 +1150,7 @@ QVariant <a href="CppRibi.htm\">ribi</a>::<a href="CppQtUblasMatrixDoubleModel.h
 &nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
 }<br/>
 <br/>
-<a href="CppQt.htm">Qt</a>::ItemFlags <a href="CppRibi.htm\">ribi</a>::<a href="CppQtUblasMatrixDoubleModel.htm">QtUblasMatrixDoubleModel</a>::flags(<b><a href="CppConst.htm">const</a></b> <a href="CppQModelIndex.htm">QModelIndex</a> &amp;) <b><a href="CppConst.htm">const</a></b><br/>
+<a href="CppQt.htm">Qt</a>::ItemFlags <a href="CppRibi.htm">ribi</a>::<a href="CppQtUblasMatrixDoubleModel.htm">QtUblasMatrixDoubleModel</a>::flags(<b><a href="CppConst.htm">const</a></b> <a href="CppQModelIndex.htm">QModelIndex</a> &amp;) <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQt.htm">Qt</a>::ItemIsSelectable<br/>
@@ -1155,22 +1160,22 @@ QVariant <a href="CppRibi.htm\">ribi</a>::<a href="CppQtUblasMatrixDoubleModel.h
 &nbsp;&nbsp;| <a href="CppQt.htm">Qt</a>::ItemIsEnabled;<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppRibi.htm\">ribi</a>::<a href="CppQtUblasMatrixDoubleModel.htm">QtUblasMatrixDoubleModel</a>::Get<a href="CppVersion.htm">Version</a>()<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppRibi.htm">ribi</a>::<a href="CppQtUblasMatrixDoubleModel.htm">QtUblasMatrixDoubleModel</a>::Get<a href="CppVersion.htm">Version</a>()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> "1.3";<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm\">ribi</a>::<a href="CppQtUblasMatrixDoubleModel.htm">QtUblasMatrixDoubleModel</a>::Get<a href="CppVersion.htm">Version</a>History()<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm">ribi</a>::<a href="CppQtUblasMatrixDoubleModel.htm">QtUblasMatrixDoubleModel</a>::Get<a href="CppVersion.htm">Version</a>History()<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v;<br/>
-&nbsp;&nbsp;v.push_back("2013-05-15: <a href="CppVersion.htm">version</a> 1.0: initial <a href="CppVersion.htm">version</a>");<br/>
-&nbsp;&nbsp;v.push_back("2013-05-21: <a href="CppVersion.htm">version</a> 1.1: added columns and rows are <a href="CppInitialize.htm">initialize</a>d with zeroes");<br/>
-&nbsp;&nbsp;v.push_back("2013-05-23: <a href="CppVersion.htm">version</a> 1.2: allow an infine amount of digits behind the comma");<br/>
-&nbsp;&nbsp;v.push_back("2013-07-05: <a href="CppVersion.htm">version</a> 1.3: <a href="CppSignal.htm">signal</a> layoutChanged <a href="CppEmit.htm">emitted</a> correctly");<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"2013-05-15: <a href="CppVersion.htm">version</a> 1.0: initial <a href="CppVersion.htm">version</a>",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"2013-05-21: <a href="CppVersion.htm">version</a> 1.1: added columns and rows are <a href="CppInitialize.htm">initialize</a>d with zeroes",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"2013-05-23: <a href="CppVersion.htm">version</a> 1.2: allow an infine amount of digits behind the comma",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"2013-07-05: <a href="CppVersion.htm">version</a> 1.3: <a href="CppSignal.htm">signal</a> layoutChanged <a href="CppEmit.htm">emitted</a> correctly"<br/>
+&nbsp;&nbsp;};<br/>
 }<br/>
 <br/>
-QVariant <a href="CppRibi.htm\">ribi</a>::<a href="CppQtUblasMatrixDoubleModel.htm">QtUblasMatrixDoubleModel</a>::headerData(<b><a href="CppInt.htm">int</a></b> section, <a href="CppQt.htm">Qt</a>::Orientation orientation, <b><a href="CppInt.htm">int</a></b> role) <b><a href="CppConst.htm">const</a></b><br/>
+QVariant <a href="CppRibi.htm">ribi</a>::<a href="CppQtUblasMatrixDoubleModel.htm">QtUblasMatrixDoubleModel</a>::headerData(<b><a href="CppInt.htm">int</a></b> section, <a href="CppQt.htm">Qt</a>::Orientation orientation, <b><a href="CppInt.htm">int</a></b> role) <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Removing <b><a href="CppThis.htm">this</a></b> line will cause checkboxes to appear<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (role <a href="CppOperatorNotEqual.htm">!=</a> <a href="CppQt.htm">Qt</a>::EditRole <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> role <a href="CppOperatorNotEqual.htm">!=</a> <a href="CppQt.htm">Qt</a>::DisplayRole) <b><a href="CppReturn.htm">return</a></b> QVariant();<br/>
@@ -1200,7 +1205,7 @@ QVariant <a href="CppRibi.htm\">ribi</a>::<a href="CppQtUblasMatrixDoubleModel.h
 &nbsp;&nbsp;}<br/>
 }<br/>
 <br/>
-<b><a href="CppBool.htm">bool</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQtUblasMatrixDoubleModel.htm">QtUblasMatrixDoubleModel</a>::insertColumns(<b><a href="CppInt.htm">int</a></b> col, <b><a href="CppInt.htm">int</a></b> count, <b><a href="CppConst.htm">const</a></b> <a href="CppQModelIndex.htm">QModelIndex</a> &amp;parent)<br/>
+<b><a href="CppBool.htm">bool</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQtUblasMatrixDoubleModel.htm">QtUblasMatrixDoubleModel</a>::insertColumns(<b><a href="CppInt.htm">int</a></b> col, <b><a href="CppInt.htm">int</a></b> count, <b><a href="CppConst.htm">const</a></b> <a href="CppQModelIndex.htm">QModelIndex</a> &amp;parent)<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Must be called before the real operation<br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;beginInsertColumns(parent,col,col+count-1);<br/>
@@ -1237,7 +1242,7 @@ QVariant <a href="CppRibi.htm\">ribi</a>::<a href="CppQtUblasMatrixDoubleModel.h
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <b><a href="CppTrue.htm">true</a></b>;<br/>
 }<br/>
 <br/>
-<b><a href="CppBool.htm">bool</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQtUblasMatrixDoubleModel.htm">QtUblasMatrixDoubleModel</a>::insertRows(<b><a href="CppInt.htm">int</a></b> row, <b><a href="CppInt.htm">int</a></b> count, <b><a href="CppConst.htm">const</a></b> <a href="CppQModelIndex.htm">QModelIndex</a> &amp;parent)<br/>
+<b><a href="CppBool.htm">bool</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQtUblasMatrixDoubleModel.htm">QtUblasMatrixDoubleModel</a>::insertRows(<b><a href="CppInt.htm">int</a></b> row, <b><a href="CppInt.htm">int</a></b> count, <b><a href="CppConst.htm">const</a></b> <a href="CppQModelIndex.htm">QModelIndex</a> &amp;parent)<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Must be called before the real operation<br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;beginInsertRows(parent,row,row+count-1);<br/>
@@ -1274,7 +1279,7 @@ QVariant <a href="CppRibi.htm\">ribi</a>::<a href="CppQtUblasMatrixDoubleModel.h
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <b><a href="CppTrue.htm">true</a></b>;<br/>
 }<br/>
 <br/>
-<b><a href="CppBool.htm">bool</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQtUblasMatrixDoubleModel.htm">QtUblasMatrixDoubleModel</a>::removeColumns(<b><a href="CppInt.htm">int</a></b> col, <b><a href="CppInt.htm">int</a></b> count, <b><a href="CppConst.htm">const</a></b> <a href="CppQModelIndex.htm">QModelIndex</a> &amp;parent)<br/>
+<b><a href="CppBool.htm">bool</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQtUblasMatrixDoubleModel.htm">QtUblasMatrixDoubleModel</a>::removeColumns(<b><a href="CppInt.htm">int</a></b> col, <b><a href="CppInt.htm">int</a></b> count, <b><a href="CppConst.htm">const</a></b> <a href="CppQModelIndex.htm">QModelIndex</a> &amp;parent)<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Must be called before the real operation<br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;beginRemoveColumns(parent,col,col+count-1);<br/>
@@ -1295,7 +1300,7 @@ QVariant <a href="CppRibi.htm\">ribi</a>::<a href="CppQtUblasMatrixDoubleModel.h
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <b><a href="CppTrue.htm">true</a></b>;<br/>
 }<br/>
 <br/>
-<b><a href="CppBool.htm">bool</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQtUblasMatrixDoubleModel.htm">QtUblasMatrixDoubleModel</a>::removeRows(<b><a href="CppInt.htm">int</a></b> row, <b><a href="CppInt.htm">int</a></b> count, <b><a href="CppConst.htm">const</a></b> <a href="CppQModelIndex.htm">QModelIndex</a> &amp;parent)<br/>
+<b><a href="CppBool.htm">bool</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQtUblasMatrixDoubleModel.htm">QtUblasMatrixDoubleModel</a>::removeRows(<b><a href="CppInt.htm">int</a></b> row, <b><a href="CppInt.htm">int</a></b> count, <b><a href="CppConst.htm">const</a></b> <a href="CppQModelIndex.htm">QModelIndex</a> &amp;parent)<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Must be called before the real operation<br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;beginRemoveRows(parent,row,row+count-1);<br/>
@@ -1316,12 +1321,12 @@ QVariant <a href="CppRibi.htm\">ribi</a>::<a href="CppQtUblasMatrixDoubleModel.h
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <b><a href="CppTrue.htm">true</a></b>;<br/>
 }<br/>
 <br/>
-<b><a href="CppInt.htm">int</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQtUblasMatrixDoubleModel.htm">QtUblasMatrixDoubleModel</a>::rowCount(<b><a href="CppConst.htm">const</a></b> <a href="CppQModelIndex.htm">QModelIndex</a> &amp;) <b><a href="CppConst.htm">const</a></b><br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQtUblasMatrixDoubleModel.htm">QtUblasMatrixDoubleModel</a>::rowCount(<b><a href="CppConst.htm">const</a></b> <a href="CppQModelIndex.htm">QModelIndex</a> &amp;) <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> m_data.size1();<br/>
 }<br/>
 <br/>
-<b><a href="CppBool.htm">bool</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQtUblasMatrixDoubleModel.htm">QtUblasMatrixDoubleModel</a>::setData(<b><a href="CppConst.htm">const</a></b> <a href="CppQModelIndex.htm">QModelIndex</a> &amp;index, <b><a href="CppConst.htm">const</a></b> QVariant &amp;value, <b><a href="CppInt.htm">int</a></b> <a href="CppOperatorDivide.htm">/</a>* role <a href="CppComment.htm">*/</a>)<br/>
+<b><a href="CppBool.htm">bool</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQtUblasMatrixDoubleModel.htm">QtUblasMatrixDoubleModel</a>::setData(<b><a href="CppConst.htm">const</a></b> <a href="CppQModelIndex.htm">QModelIndex</a> &amp;index, <b><a href="CppConst.htm">const</a></b> QVariant &amp;value, <b><a href="CppInt.htm">int</a></b> <a href="CppOperatorDivide.htm">/</a>* role <a href="CppComment.htm">*/</a>)<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> row <a href="CppOperatorAssign.htm">=</a> index.row();<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> col <a href="CppOperatorAssign.htm">=</a> index.column();<br/>
@@ -1336,7 +1341,7 @@ QVariant <a href="CppRibi.htm\">ribi</a>::<a href="CppQtUblasMatrixDoubleModel.h
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <b><a href="CppTrue.htm">true</a></b>;<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQtUblasMatrixDoubleModel.htm">QtUblasMatrixDoubleModel</a>::SetHeaderData(<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQtUblasMatrixDoubleModel.htm">QtUblasMatrixDoubleModel</a>::SetHeaderData(<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt;&amp; horizontal_header_text,<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt;&amp; vertical_header_text)<br/>
 {<br/>
@@ -1400,7 +1405,7 @@ QVariant <a href="CppRibi.htm\">ribi</a>::<a href="CppQtUblasMatrixDoubleModel.h
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<b><a href="CppThis.htm">this</a></b>-&gt;rowCount() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <a href="CppNumeric_cast.htm">boost::numeric_cast</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(m_header_vertical_text.size()));<br/>
 }<br/>
 <br/>
-<b><a href="CppBool.htm">bool</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQtUblasMatrixDoubleModel.htm">QtUblasMatrixDoubleModel</a>::setHeaderData(<b><a href="CppInt.htm">int</a></b> section, <a href="CppQt.htm">Qt</a>::Orientation orientation, <b><a href="CppConst.htm">const</a></b> QVariant &amp;value, <b><a href="CppInt.htm">int</a></b> <a href="CppOperatorDivide.htm">/</a>*role<a href="CppComment.htm">*/</a>)<br/>
+<b><a href="CppBool.htm">bool</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQtUblasMatrixDoubleModel.htm">QtUblasMatrixDoubleModel</a>::setHeaderData(<b><a href="CppInt.htm">int</a></b> section, <a href="CppQt.htm">Qt</a>::Orientation orientation, <b><a href="CppConst.htm">const</a></b> QVariant &amp;value, <b><a href="CppInt.htm">int</a></b> <a href="CppOperatorDivide.htm">/</a>*role<a href="CppComment.htm">*/</a>)<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (orientation <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <a href="CppQt.htm">Qt</a>::Horizontal)<br/>
 &nbsp;&nbsp;{<br/>
@@ -1425,7 +1430,7 @@ QVariant <a href="CppRibi.htm\">ribi</a>::<a href="CppQtUblasMatrixDoubleModel.h
 &nbsp;&nbsp;}<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQtUblasMatrixDoubleModel.htm">QtUblasMatrixDoubleModel</a>::SetRawData(<b><a href="CppConst.htm">const</a></b> <a href="CppUblasMatrix.htm">boost::numeric::ublas::matrix</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;&amp; data)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQtUblasMatrixDoubleModel.htm">QtUblasMatrixDoubleModel</a>::SetRawData(<b><a href="CppConst.htm">const</a></b> <a href="CppUblasMatrix.htm">boost::numeric::ublas::matrix</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;&amp; data)<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (!<a href="CppMatrix.htm">Matrix</a>::MatricesAreEqual(m_data,data))<br/>
 &nbsp;&nbsp;{<br/>
@@ -1537,12 +1542,13 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
 <br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-<b><a href="CppTypedef.htm">typedef</a></b>s"<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/numeric/<a href="CppUblas.htm">ublas</a>/vector.hpp&gt;<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
 <a href="CppInclude.htm">#include</a> &lt;QAbstractTableModel&gt;<br/>
 <br/>
-<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a> {<br/>
+<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
 <br/>
 <b><a href="CppStruct.htm">struct</a></b> <a href="CppQtUblasVectorDoubleModel.htm">QtUblasVectorDoubleModel</a>: <b><a href="CppPublic.htm">public</a></b> QAbstractTableModel<br/>
 {<br/>
@@ -1610,7 +1616,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <br/>
 };<br/>
 <br/>
-} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a><br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
 <br/>
 <a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> QTUBLASVECTORDOUBLEMODEL_H<br/>
 </code></td></tr></table>
@@ -1647,6 +1653,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <br/>
 <br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-<b><a href="CppTypedef.htm">typedef</a></b>s"<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppQtUblasVectorDoubleModel.htm">qtublasvectordoublemodel</a>.h"<br/>
 <br/>
@@ -1657,20 +1664,23 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
 <br/>
-<a href="CppRibi.htm\">ribi</a>::<a href="CppQtUblasVectorDoubleModel.htm">QtUblasVectorDoubleModel</a>::<a href="CppQtUblasVectorDoubleModel.htm">QtUblasVectorDoubleModel</a>(<a href="CppQObject.htm">QObject</a> *parent)<br/>
-&nbsp;&nbsp;: QAbstractTableModel(parent)<br/>
+<a href="CppRibi.htm">ribi</a>::<a href="CppQtUblasVectorDoubleModel.htm">QtUblasVectorDoubleModel</a>::<a href="CppQtUblasVectorDoubleModel.htm">QtUblasVectorDoubleModel</a>(<a href="CppQObject.htm">QObject</a> *parent)<br/>
+&nbsp;&nbsp;: QAbstractTableModel(parent),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_data{},<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_header_horizontal_text{},<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_header_vertical_text{}<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
 &nbsp;&nbsp;Test();<br/>
 &nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
 }<br/>
 <br/>
-<b><a href="CppInt.htm">int</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQtUblasVectorDoubleModel.htm">QtUblasVectorDoubleModel</a>::columnCount(<b><a href="CppConst.htm">const</a></b> <a href="CppQModelIndex.htm">QModelIndex</a> &amp;) <b><a href="CppConst.htm">const</a></b><br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQtUblasVectorDoubleModel.htm">QtUblasVectorDoubleModel</a>::columnCount(<b><a href="CppConst.htm">const</a></b> <a href="CppQModelIndex.htm">QModelIndex</a> &amp;) <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> rowCount() &gt; 0 ? 1 : 0;<br/>
 }<br/>
 <br/>
-QVariant <a href="CppRibi.htm\">ribi</a>::<a href="CppQtUblasVectorDoubleModel.htm">QtUblasVectorDoubleModel</a>::data(<b><a href="CppConst.htm">const</a></b> <a href="CppQModelIndex.htm">QModelIndex</a> &amp;index, <b><a href="CppInt.htm">int</a></b> role) <b><a href="CppConst.htm">const</a></b><br/>
+QVariant <a href="CppRibi.htm">ribi</a>::<a href="CppQtUblasVectorDoubleModel.htm">QtUblasVectorDoubleModel</a>::data(<b><a href="CppConst.htm">const</a></b> <a href="CppQModelIndex.htm">QModelIndex</a> &amp;index, <b><a href="CppInt.htm">int</a></b> role) <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Removing <b><a href="CppThis.htm">this</a></b> line will cause checkboxes to appear<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (role <a href="CppOperatorNotEqual.htm">!=</a> <a href="CppQt.htm">Qt</a>::EditRole <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> role <a href="CppOperatorNotEqual.htm">!=</a> <a href="CppQt.htm">Qt</a>::DisplayRole) <b><a href="CppReturn.htm">return</a></b> QVariant();<br/>
@@ -1698,7 +1708,7 @@ QVariant <a href="CppRibi.htm\">ribi</a>::<a href="CppQtUblasVectorDoubleModel.h
 <br/>
 }<br/>
 <br/>
-<a href="CppQt.htm">Qt</a>::ItemFlags <a href="CppRibi.htm\">ribi</a>::<a href="CppQtUblasVectorDoubleModel.htm">QtUblasVectorDoubleModel</a>::flags(<b><a href="CppConst.htm">const</a></b> <a href="CppQModelIndex.htm">QModelIndex</a> &amp;) <b><a href="CppConst.htm">const</a></b><br/>
+<a href="CppQt.htm">Qt</a>::ItemFlags <a href="CppRibi.htm">ribi</a>::<a href="CppQtUblasVectorDoubleModel.htm">QtUblasVectorDoubleModel</a>::flags(<b><a href="CppConst.htm">const</a></b> <a href="CppQModelIndex.htm">QModelIndex</a> &amp;) <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQt.htm">Qt</a>::ItemIsSelectable<br/>
@@ -1708,24 +1718,24 @@ QVariant <a href="CppRibi.htm\">ribi</a>::<a href="CppQtUblasVectorDoubleModel.h
 &nbsp;&nbsp;| <a href="CppQt.htm">Qt</a>::ItemIsEnabled;<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppRibi.htm\">ribi</a>::<a href="CppQtUblasVectorDoubleModel.htm">QtUblasVectorDoubleModel</a>::Get<a href="CppVersion.htm">Version</a>()<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppRibi.htm">ribi</a>::<a href="CppQtUblasVectorDoubleModel.htm">QtUblasVectorDoubleModel</a>::Get<a href="CppVersion.htm">Version</a>()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> "1.5";<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm\">ribi</a>::<a href="CppQtUblasVectorDoubleModel.htm">QtUblasVectorDoubleModel</a>::Get<a href="CppVersion.htm">Version</a>History()<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm">ribi</a>::<a href="CppQtUblasVectorDoubleModel.htm">QtUblasVectorDoubleModel</a>::Get<a href="CppVersion.htm">Version</a>History()<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v;<br/>
-&nbsp;&nbsp;v.push_back("2013-05-15: <a href="CppVersion.htm">version</a> 1.0: initial <a href="CppVersion.htm">version</a>");<br/>
-&nbsp;&nbsp;v.push_back("2013-05-21: <a href="CppVersion.htm">version</a> 1.1: added rows are <a href="CppInitialize.htm">initialize</a>d with zeroes");<br/>
-&nbsp;&nbsp;v.push_back("2013-05-23: <a href="CppVersion.htm">version</a> 1.2: allow an infine amount of digits behind the comma");<br/>
-&nbsp;&nbsp;v.push_back("2013-05-28: <a href="CppVersion.htm">version</a> 1.3: allow columnCount to be zero, <b><a href="CppIf.htm">if</a></b> rowCount is zero");<br/>
-&nbsp;&nbsp;v.push_back("2013-06-27: <a href="CppVersion.htm">version</a> 1.4: added self-test");<br/>
-&nbsp;&nbsp;v.push_back("2013-07-05: <a href="CppVersion.htm">version</a> 1.5: <a href="CppSignal.htm">signal</a> layoutChanged <a href="CppEmit.htm">emitted</a> correctly");<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"2013-05-15: <a href="CppVersion.htm">version</a> 1.0: initial <a href="CppVersion.htm">version</a>",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"2013-05-21: <a href="CppVersion.htm">version</a> 1.1: added rows are <a href="CppInitialize.htm">initialize</a>d with zeroes",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"2013-05-23: <a href="CppVersion.htm">version</a> 1.2: allow an infine amount of digits behind the comma",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"2013-05-28: <a href="CppVersion.htm">version</a> 1.3: allow columnCount to be zero, <b><a href="CppIf.htm">if</a></b> rowCount is zero",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"2013-06-27: <a href="CppVersion.htm">version</a> 1.4: added self-test",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"2013-07-05: <a href="CppVersion.htm">version</a> 1.5: <a href="CppSignal.htm">signal</a> layoutChanged <a href="CppEmit.htm">emitted</a> correctly"<br/>
+&nbsp;&nbsp;};<br/>
 }<br/>
 <br/>
-QVariant <a href="CppRibi.htm\">ribi</a>::<a href="CppQtUblasVectorDoubleModel.htm">QtUblasVectorDoubleModel</a>::headerData(<b><a href="CppInt.htm">int</a></b> section, <a href="CppQt.htm">Qt</a>::Orientation orientation, <b><a href="CppInt.htm">int</a></b> role) <b><a href="CppConst.htm">const</a></b><br/>
+QVariant <a href="CppRibi.htm">ribi</a>::<a href="CppQtUblasVectorDoubleModel.htm">QtUblasVectorDoubleModel</a>::headerData(<b><a href="CppInt.htm">int</a></b> section, <a href="CppQt.htm">Qt</a>::Orientation orientation, <b><a href="CppInt.htm">int</a></b> role) <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Removing <b><a href="CppThis.htm">this</a></b> line will cause checkboxes to appear<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (role <a href="CppOperatorNotEqual.htm">!=</a> <a href="CppQt.htm">Qt</a>::EditRole <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> role <a href="CppOperatorNotEqual.htm">!=</a> <a href="CppQt.htm">Qt</a>::DisplayRole) <b><a href="CppReturn.htm">return</a></b> QVariant();<br/>
@@ -1749,7 +1759,7 @@ QVariant <a href="CppRibi.htm\">ribi</a>::<a href="CppQtUblasVectorDoubleModel.h
 &nbsp;&nbsp;}<br/>
 }<br/>
 <br/>
-<b><a href="CppBool.htm">bool</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQtUblasVectorDoubleModel.htm">QtUblasVectorDoubleModel</a>::insertRows(<b><a href="CppInt.htm">int</a></b> row, <b><a href="CppInt.htm">int</a></b> count, <b><a href="CppConst.htm">const</a></b> <a href="CppQModelIndex.htm">QModelIndex</a> &amp;parent)<br/>
+<b><a href="CppBool.htm">bool</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQtUblasVectorDoubleModel.htm">QtUblasVectorDoubleModel</a>::insertRows(<b><a href="CppInt.htm">int</a></b> row, <b><a href="CppInt.htm">int</a></b> count, <b><a href="CppConst.htm">const</a></b> <a href="CppQModelIndex.htm">QModelIndex</a> &amp;parent)<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Must be called before the real operation<br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;beginInsertRows(parent,row,row+count-1);<br/>
@@ -1774,7 +1784,7 @@ QVariant <a href="CppRibi.htm\">ribi</a>::<a href="CppQtUblasVectorDoubleModel.h
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <b><a href="CppTrue.htm">true</a></b>;<br/>
 }<br/>
 <br/>
-<b><a href="CppBool.htm">bool</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQtUblasVectorDoubleModel.htm">QtUblasVectorDoubleModel</a>::removeRows(<b><a href="CppInt.htm">int</a></b> row, <b><a href="CppInt.htm">int</a></b> count, <b><a href="CppConst.htm">const</a></b> <a href="CppQModelIndex.htm">QModelIndex</a> &amp;parent)<br/>
+<b><a href="CppBool.htm">bool</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQtUblasVectorDoubleModel.htm">QtUblasVectorDoubleModel</a>::removeRows(<b><a href="CppInt.htm">int</a></b> row, <b><a href="CppInt.htm">int</a></b> count, <b><a href="CppConst.htm">const</a></b> <a href="CppQModelIndex.htm">QModelIndex</a> &amp;parent)<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Must be called before the real operation<br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;beginRemoveRows(parent,row,row+count-1);<br/>
@@ -1795,14 +1805,14 @@ QVariant <a href="CppRibi.htm\">ribi</a>::<a href="CppQtUblasVectorDoubleModel.h
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <b><a href="CppTrue.htm">true</a></b>;<br/>
 }<br/>
 <br/>
-<b><a href="CppInt.htm">int</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQtUblasVectorDoubleModel.htm">QtUblasVectorDoubleModel</a>::rowCount(<b><a href="CppConst.htm">const</a></b> <a href="CppQModelIndex.htm">QModelIndex</a> &amp;) <b><a href="CppConst.htm">const</a></b><br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQtUblasVectorDoubleModel.htm">QtUblasVectorDoubleModel</a>::rowCount(<b><a href="CppConst.htm">const</a></b> <a href="CppQModelIndex.htm">QModelIndex</a> &amp;) <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(m_data.size() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> m_header_vertical_text.size());<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <a href="CppNumeric_cast.htm">boost::numeric_cast</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(m_data.size());<br/>
 }<br/>
 <br/>
 <br/>
-<b><a href="CppBool.htm">bool</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQtUblasVectorDoubleModel.htm">QtUblasVectorDoubleModel</a>::setData(<b><a href="CppConst.htm">const</a></b> <a href="CppQModelIndex.htm">QModelIndex</a> &amp;index, <b><a href="CppConst.htm">const</a></b> QVariant &amp;value, <b><a href="CppInt.htm">int</a></b> <a href="CppOperatorDivide.htm">/</a>* role <a href="CppComment.htm">*/</a>)<br/>
+<b><a href="CppBool.htm">bool</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQtUblasVectorDoubleModel.htm">QtUblasVectorDoubleModel</a>::setData(<b><a href="CppConst.htm">const</a></b> <a href="CppQModelIndex.htm">QModelIndex</a> &amp;index, <b><a href="CppConst.htm">const</a></b> QVariant &amp;value, <b><a href="CppInt.htm">int</a></b> <a href="CppOperatorDivide.htm">/</a>* role <a href="CppComment.htm">*/</a>)<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> row <a href="CppOperatorAssign.htm">=</a> index.row();<br/>
 <br/>
@@ -1821,7 +1831,7 @@ QVariant <a href="CppRibi.htm\">ribi</a>::<a href="CppQtUblasVectorDoubleModel.h
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <b><a href="CppTrue.htm">true</a></b>;<br/>
 }<br/>
 <br/>
-<b><a href="CppBool.htm">bool</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQtUblasVectorDoubleModel.htm">QtUblasVectorDoubleModel</a>::setHeaderData(<b><a href="CppInt.htm">int</a></b> section, <a href="CppQt.htm">Qt</a>::Orientation orientation, <b><a href="CppConst.htm">const</a></b> QVariant &amp;value, <b><a href="CppInt.htm">int</a></b> <a href="CppOperatorDivide.htm">/</a>*role<a href="CppComment.htm">*/</a>)<br/>
+<b><a href="CppBool.htm">bool</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQtUblasVectorDoubleModel.htm">QtUblasVectorDoubleModel</a>::setHeaderData(<b><a href="CppInt.htm">int</a></b> section, <a href="CppQt.htm">Qt</a>::Orientation orientation, <b><a href="CppConst.htm">const</a></b> QVariant &amp;value, <b><a href="CppInt.htm">int</a></b> <a href="CppOperatorDivide.htm">/</a>*role<a href="CppComment.htm">*/</a>)<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (orientation <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <a href="CppQt.htm">Qt</a>::Horizontal)<br/>
 &nbsp;&nbsp;{<br/>
@@ -1846,7 +1856,7 @@ QVariant <a href="CppRibi.htm\">ribi</a>::<a href="CppQtUblasVectorDoubleModel.h
 &nbsp;&nbsp;}<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQtUblasVectorDoubleModel.htm">QtUblasVectorDoubleModel</a>::SetHeaderData(<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQtUblasVectorDoubleModel.htm">QtUblasVectorDoubleModel</a>::SetHeaderData(<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; horizontal_header_text, <b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt;&amp; vertical_header_text)<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (m_header_horizontal_text <a href="CppOperatorNotEqual.htm">!=</a> horizontal_header_text)<br/>
@@ -1889,7 +1899,7 @@ QVariant <a href="CppRibi.htm\">ribi</a>::<a href="CppQtUblasVectorDoubleModel.h
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<b><a href="CppThis.htm">this</a></b>-&gt;columnCount() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> (<b><a href="CppThis.htm">this</a></b>-&gt;rowCount() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 0 ? 0 : 1));<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQtUblasVectorDoubleModel.htm">QtUblasVectorDoubleModel</a>::SetRawData(<b><a href="CppConst.htm">const</a></b> <a href="CppUblasVector.htm">boost::numeric::ublas::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;&amp; data)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQtUblasVectorDoubleModel.htm">QtUblasVectorDoubleModel</a>::SetRawData(<b><a href="CppConst.htm">const</a></b> <a href="CppUblasVector.htm">boost::numeric::ublas::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;&amp; data)<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (!<a href="CppMatrix.htm">Matrix</a>::Vectors<a href="CppDouble.htm">Double</a>AreEqual(m_data,data))<br/>
 &nbsp;&nbsp;{<br/>
@@ -1925,14 +1935,14 @@ QVariant <a href="CppRibi.htm\">ribi</a>::<a href="CppQtUblasVectorDoubleModel.h
 }<br/>
 <br/>
 <a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQtUblasVectorDoubleModel.htm">QtUblasVectorDoubleModel</a>::Test()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQtUblasVectorDoubleModel.htm">QtUblasVectorDoubleModel</a>::Test()<br/>
 {<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppBool.htm">bool</a></b> is_tested <a href="CppOperatorAssign.htm">=</a> <b><a href="CppFalse.htm">false</a></b>;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (is_tested) <b><a href="CppReturn.htm">return</a></b>;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;is_tested <a href="CppOperatorAssign.htm">=</a> <b><a href="CppTrue.htm">true</a></b>;<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("Started <a href="CppRibi.htm\">ribi</a>::<a href="CppQtUblasVectorDoubleModel.htm">QtUblasVectorDoubleModel</a>::Test");<br/>
+&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("Started <a href="CppRibi.htm">ribi</a>::<a href="CppQtUblasVectorDoubleModel.htm">QtUblasVectorDoubleModel</a>::Test");<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQtUblasVectorDoubleModel.htm">QtUblasVectorDoubleModel</a> model;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(model.rowCount()&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 0);<br/>
@@ -1944,7 +1954,7 @@ QVariant <a href="CppRibi.htm\">ribi</a>::<a href="CppQtUblasVectorDoubleModel.h
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(model.rowCount()&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 0);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(model.columnCount() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 0);<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("Finished <a href="CppRibi.htm\">ribi</a>::<a href="CppQtUblasVectorDoubleModel.htm">QtUblasVectorDoubleModel</a>::Test successfully");<br/>
+&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("Finished <a href="CppRibi.htm">ribi</a>::<a href="CppQtUblasVectorDoubleModel.htm">QtUblasVectorDoubleModel</a>::Test successfully");<br/>
 }<br/>
 <a href="CppEndif.htm">#endif</a><br/>
 </code></td></tr></table>
@@ -1983,15 +1993,15 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppStringH.htm">string</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
-<a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
-<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-<b><a href="CppTypedef.htm">typedef</a></b>s"<br/>
 <br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-<b><a href="CppTypedef.htm">typedef</a></b>s"<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/numeric/<a href="CppUblas.htm">ublas</a>/vector.hpp&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;QAbstractTableModel&gt;<br/>
-<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
 <br/>
-<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a> {<br/>
+<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
 <br/>
 <b><a href="CppStruct.htm">struct</a></b> <a href="CppQt.htm">Qt</a>UblasVectorIntModel: <b><a href="CppPublic.htm">public</a></b> QAbstractTableModel<br/>
 {<br/>
@@ -2024,6 +2034,12 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/The raw data<br/>
 &nbsp;&nbsp;<a href="CppUblasVector.htm">boost::numeric::ublas::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt; m_data;<br/>
 <br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/The horizontal header text (<b><a href="CppFor.htm">for</a></b> the only one column)<br/>
+&nbsp;&nbsp;<a href="CppString.htm">std::string</a> m_header_horizontal_text;<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/The vertical header text<br/>
+&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; m_header_vertical_text;<br/>
+<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/The value set <b><a href="CppFor.htm">for</a></b> <b><a href="CppDefault.htm">default</a></b><br/>
 &nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> m_range_default;<br/>
 <br/>
@@ -2032,12 +2048,6 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/The minimum value all values must have<br/>
 &nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> m_range_min;<br/>
-<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>/The horizontal header text (<b><a href="CppFor.htm">for</a></b> the only one column)<br/>
-&nbsp;&nbsp;<a href="CppString.htm">std::string</a> m_header_horizontal_text;<br/>
-<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>/The vertical header text<br/>
-&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; m_header_vertical_text;<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/Must be defined from ABC<br/>
 &nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> columnCount(<b><a href="CppConst.htm">const</a></b> <a href="CppQModelIndex.htm">QModelIndex</a> &amp;parent <a href="CppOperatorAssign.htm">=</a> <a href="CppQModelIndex.htm">QModelIndex</a>()) <b><a href="CppConst.htm">const</a></b>;<br/>
@@ -2077,7 +2087,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <br/>
 };<br/>
 <br/>
-} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a><br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
 <br/>
 <a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> QTUBLASVECTORINTMODEL_H<br/>
 </code></td></tr></table>
@@ -2111,9 +2121,8 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="CppQtModel.htm">CppQtModel</a>.htm<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<br/>
-<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-<b><a href="CppTypedef.htm">typedef</a></b>s"<br/>
 <a href="CppInclude.htm">#include</a> "qt<a href="CppUblas.htm">ublas</a>vectorintmodel.h"<br/>
 <br/>
@@ -2126,8 +2135,11 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
 <br/>
-<a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a>UblasVectorIntModel::<a href="CppQt.htm">Qt</a>UblasVectorIntModel(<a href="CppQObject.htm">QObject</a> *parent)<br/>
+<a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>UblasVectorIntModel::<a href="CppQt.htm">Qt</a>UblasVectorIntModel(<a href="CppQObject.htm">QObject</a> *parent)<br/>
 &nbsp;&nbsp;: QAbstractTableModel(parent),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_data{},<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_header_horizontal_text{},<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_header_vertical_text{},<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;m_range_default{0},<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;m_range_max{<a href="CppNumeric_limits.htm">std::numeric_limits</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;::max()},<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;m_range_min{<a href="CppNumeric_limits.htm">std::numeric_limits</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;::min()}<br/>
@@ -2140,12 +2152,12 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<b><a href="CppThis.htm">this</a></b>-&gt;IsValid());<br/>
 }<br/>
 <br/>
-<b><a href="CppInt.htm">int</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a>UblasVectorIntModel::columnCount(<b><a href="CppConst.htm">const</a></b> <a href="CppQModelIndex.htm">QModelIndex</a> &amp;) <b><a href="CppConst.htm">const</a></b><br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>UblasVectorIntModel::columnCount(<b><a href="CppConst.htm">const</a></b> <a href="CppQModelIndex.htm">QModelIndex</a> &amp;) <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> rowCount() &gt; 0 ? 1 : 0;<br/>
 }<br/>
 <br/>
-QVariant <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a>UblasVectorIntModel::data(<b><a href="CppConst.htm">const</a></b> <a href="CppQModelIndex.htm">QModelIndex</a> &amp;index, <b><a href="CppInt.htm">int</a></b> role) <b><a href="CppConst.htm">const</a></b><br/>
+QVariant <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>UblasVectorIntModel::data(<b><a href="CppConst.htm">const</a></b> <a href="CppQModelIndex.htm">QModelIndex</a> &amp;index, <b><a href="CppInt.htm">int</a></b> role) <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<b><a href="CppThis.htm">this</a></b>-&gt;IsValid());<br/>
 <br/>
@@ -2179,7 +2191,7 @@ QVariant <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a>UblasVectorI
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <a href="CppQString.htm">QString</a>(s.c_str());<br/>
 }<br/>
 <br/>
-<a href="CppQt.htm">Qt</a>::ItemFlags <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a>UblasVectorIntModel::flags(<b><a href="CppConst.htm">const</a></b> <a href="CppQModelIndex.htm">QModelIndex</a> &amp;) <b><a href="CppConst.htm">const</a></b><br/>
+<a href="CppQt.htm">Qt</a>::ItemFlags <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>UblasVectorIntModel::flags(<b><a href="CppConst.htm">const</a></b> <a href="CppQModelIndex.htm">QModelIndex</a> &amp;) <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQt.htm">Qt</a>::ItemIsSelectable<br/>
@@ -2189,21 +2201,21 @@ QVariant <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a>UblasVectorI
 &nbsp;&nbsp;| <a href="CppQt.htm">Qt</a>::ItemIsEnabled;<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a>UblasVectorIntModel::Get<a href="CppVersion.htm">Version</a>()<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>UblasVectorIntModel::Get<a href="CppVersion.htm">Version</a>()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> "1.2";<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a>UblasVectorIntModel::Get<a href="CppVersion.htm">Version</a>History()<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>UblasVectorIntModel::Get<a href="CppVersion.htm">Version</a>History()<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v;<br/>
-&nbsp;&nbsp;v.push_back("2013-06-27: <a href="CppVersion.htm">version</a> 1.0: initial <a href="CppVersion.htm">version</a>");<br/>
-&nbsp;&nbsp;v.push_back("2013-06-27: <a href="CppVersion.htm">version</a> 1.1: added setting a range");<br/>
-&nbsp;&nbsp;v.push_back("2013-07-05: <a href="CppVersion.htm">version</a> 1.2: <a href="CppSignal.htm">signal</a> layoutChanged <a href="CppEmit.htm">emitted</a> correctly");<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"2013-06-27: <a href="CppVersion.htm">version</a> 1.0: initial <a href="CppVersion.htm">version</a>",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"2013-06-27: <a href="CppVersion.htm">version</a> 1.1: added setting a range",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"2013-07-05: <a href="CppVersion.htm">version</a> 1.2: <a href="CppSignal.htm">signal</a> layoutChanged <a href="CppEmit.htm">emitted</a> correctly"<br/>
+&nbsp;&nbsp;};<br/>
 }<br/>
 <br/>
-QVariant <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a>UblasVectorIntModel::headerData(<b><a href="CppInt.htm">int</a></b> section, <a href="CppQt.htm">Qt</a>::Orientation orientation, <b><a href="CppInt.htm">int</a></b> role) <b><a href="CppConst.htm">const</a></b><br/>
+QVariant <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>UblasVectorIntModel::headerData(<b><a href="CppInt.htm">int</a></b> section, <a href="CppQt.htm">Qt</a>::Orientation orientation, <b><a href="CppInt.htm">int</a></b> role) <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Removing <b><a href="CppThis.htm">this</a></b> line will cause checkboxes to appear<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (role <a href="CppOperatorNotEqual.htm">!=</a> <a href="CppQt.htm">Qt</a>::EditRole <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> role <a href="CppOperatorNotEqual.htm">!=</a> <a href="CppQt.htm">Qt</a>::DisplayRole) <b><a href="CppReturn.htm">return</a></b> QVariant();<br/>
@@ -2228,7 +2240,7 @@ QVariant <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a>UblasVectorI
 }<br/>
 <br/>
 <a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
-<b><a href="CppBool.htm">bool</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a>UblasVectorIntModel::IsValid() <b><a href="CppConst.htm">const</a></b><br/>
+<b><a href="CppBool.htm">bool</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>UblasVectorIntModel::IsValid() <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (m_range_min <a href="CppOperatorGreaterEqual.htm">&gt;=</a> m_range_max)<br/>
 &nbsp;&nbsp;{<br/>
@@ -2254,7 +2266,7 @@ QVariant <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a>UblasVectorI
 }<br/>
 <a href="CppEndif.htm">#endif</a><br/>
 <br/>
-<b><a href="CppBool.htm">bool</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a>UblasVectorIntModel::insertRows(<b><a href="CppInt.htm">int</a></b> row, <b><a href="CppInt.htm">int</a></b> count, <b><a href="CppConst.htm">const</a></b> <a href="CppQModelIndex.htm">QModelIndex</a> &amp;parent)<br/>
+<b><a href="CppBool.htm">bool</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>UblasVectorIntModel::insertRows(<b><a href="CppInt.htm">int</a></b> row, <b><a href="CppInt.htm">int</a></b> count, <b><a href="CppConst.htm">const</a></b> <a href="CppQModelIndex.htm">QModelIndex</a> &amp;parent)<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<b><a href="CppThis.htm">this</a></b>-&gt;IsValid());<br/>
 <br/>
@@ -2283,7 +2295,7 @@ QVariant <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a>UblasVectorI
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <b><a href="CppTrue.htm">true</a></b>;<br/>
 }<br/>
 <br/>
-<b><a href="CppBool.htm">bool</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a>UblasVectorIntModel::removeRows(<b><a href="CppInt.htm">int</a></b> row, <b><a href="CppInt.htm">int</a></b> count, <b><a href="CppConst.htm">const</a></b> <a href="CppQModelIndex.htm">QModelIndex</a> &amp;parent)<br/>
+<b><a href="CppBool.htm">bool</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>UblasVectorIntModel::removeRows(<b><a href="CppInt.htm">int</a></b> row, <b><a href="CppInt.htm">int</a></b> count, <b><a href="CppConst.htm">const</a></b> <a href="CppQModelIndex.htm">QModelIndex</a> &amp;parent)<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<b><a href="CppThis.htm">this</a></b>-&gt;IsValid());<br/>
 <br/>
@@ -2308,14 +2320,14 @@ QVariant <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a>UblasVectorI
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <b><a href="CppTrue.htm">true</a></b>;<br/>
 }<br/>
 <br/>
-<b><a href="CppInt.htm">int</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a>UblasVectorIntModel::rowCount(<b><a href="CppConst.htm">const</a></b> <a href="CppQModelIndex.htm">QModelIndex</a> &amp;) <b><a href="CppConst.htm">const</a></b><br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>UblasVectorIntModel::rowCount(<b><a href="CppConst.htm">const</a></b> <a href="CppQModelIndex.htm">QModelIndex</a> &amp;) <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(m_data.size() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> m_header_vertical_text.size());<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <a href="CppNumeric_cast.htm">boost::numeric_cast</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(m_data.size());<br/>
 }<br/>
 <br/>
 <br/>
-<b><a href="CppBool.htm">bool</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a>UblasVectorIntModel::setData(<b><a href="CppConst.htm">const</a></b> <a href="CppQModelIndex.htm">QModelIndex</a> &amp;index, <b><a href="CppConst.htm">const</a></b> QVariant &amp;value, <b><a href="CppInt.htm">int</a></b> <a href="CppOperatorDivide.htm">/</a>* role <a href="CppComment.htm">*/</a>)<br/>
+<b><a href="CppBool.htm">bool</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>UblasVectorIntModel::setData(<b><a href="CppConst.htm">const</a></b> <a href="CppQModelIndex.htm">QModelIndex</a> &amp;index, <b><a href="CppConst.htm">const</a></b> QVariant &amp;value, <b><a href="CppInt.htm">int</a></b> <a href="CppOperatorDivide.htm">/</a>* role <a href="CppComment.htm">*/</a>)<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<b><a href="CppThis.htm">this</a></b>-&gt;IsValid());<br/>
 <br/>
@@ -2358,7 +2370,7 @@ QVariant <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a>UblasVectorI
 &nbsp;&nbsp;}<br/>
 }<br/>
 <br/>
-<b><a href="CppBool.htm">bool</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a>UblasVectorIntModel::setHeaderData(<b><a href="CppInt.htm">int</a></b> section, <a href="CppQt.htm">Qt</a>::Orientation orientation, <b><a href="CppConst.htm">const</a></b> QVariant &amp;value, <b><a href="CppInt.htm">int</a></b> <a href="CppOperatorDivide.htm">/</a>*role<a href="CppComment.htm">*/</a>)<br/>
+<b><a href="CppBool.htm">bool</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>UblasVectorIntModel::setHeaderData(<b><a href="CppInt.htm">int</a></b> section, <a href="CppQt.htm">Qt</a>::Orientation orientation, <b><a href="CppConst.htm">const</a></b> QVariant &amp;value, <b><a href="CppInt.htm">int</a></b> <a href="CppOperatorDivide.htm">/</a>*role<a href="CppComment.htm">*/</a>)<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<b><a href="CppThis.htm">this</a></b>-&gt;IsValid());<br/>
 <br/>
@@ -2389,7 +2401,7 @@ QVariant <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a>UblasVectorI
 &nbsp;&nbsp;}<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a>UblasVectorIntModel::SetHeaderData(<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>UblasVectorIntModel::SetHeaderData(<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; horizontal_header_text, <b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt;&amp; vertical_header_text)<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<b><a href="CppThis.htm">this</a></b>-&gt;IsValid());<br/>
@@ -2437,7 +2449,7 @@ QVariant <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a>UblasVectorI
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<b><a href="CppThis.htm">this</a></b>-&gt;IsValid());<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a>UblasVectorIntModel::SetRange(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> from, <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> to, <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> default_value)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>UblasVectorIntModel::SetRange(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> from, <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> to, <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> default_value)<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<b><a href="CppThis.htm">this</a></b>-&gt;IsValid());<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(from &lt; to);<br/>
@@ -2461,7 +2473,7 @@ QVariant <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a>UblasVectorI
 &nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a>UblasVectorIntModel::SetRawData(<b><a href="CppConst.htm">const</a></b> <a href="CppUblasVector.htm">boost::numeric::ublas::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;&amp; data)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>UblasVectorIntModel::SetRawData(<b><a href="CppConst.htm">const</a></b> <a href="CppUblasVector.htm">boost::numeric::ublas::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;&amp; data)<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Check <b><a href="CppIf.htm">if</a></b> all data is in range<br/>
 &nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
@@ -2513,7 +2525,7 @@ QVariant <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a>UblasVectorI
 }<br/>
 <br/>
 <a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a>UblasVectorIntModel::Test()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>UblasVectorIntModel::Test()<br/>
 {<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppBool.htm">bool</a></b> is_tested <a href="CppOperatorAssign.htm">=</a> <b><a href="CppFalse.htm">false</a></b>;<br/>

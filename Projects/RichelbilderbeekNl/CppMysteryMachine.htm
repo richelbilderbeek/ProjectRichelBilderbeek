@@ -69,14 +69,15 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
 <br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-<b><a href="CppTypedef.htm">typedef</a></b>s"<br/>
-&nbsp;&nbsp;<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/checked_delete.hpp&gt;<br/>
-&nbsp;&nbsp;<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppScoped_ptr.htm">scoped_ptr</a>.hpp&gt;<br/>
-&nbsp;&nbsp;<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppNoncopyable.htm">noncopyable</a>.hpp&gt;<br/>
-&nbsp;&nbsp;<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppSignals2.htm">signals2</a>.hpp&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/checked_delete.hpp&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppScoped_ptr.htm">scoped_ptr</a>.hpp&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppNoncopyable.htm">noncopyable</a>.hpp&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppSignals2.htm">signals2</a>.hpp&gt;<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
 <br/>
-<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a> {<br/>
+<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
 <br/>
 <b><a href="CppStruct.htm">struct</a></b> <a href="CppDialWidget.htm">DialWidget</a>;<br/>
 <b><a href="CppStruct.htm">struct</a></b> <a href="CppLedWidget.htm">LedWidget</a>;<br/>
@@ -144,7 +145,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <br/>
 <a href="CppOstream.htm">std::ostream</a>&amp; <b><a href="CppOperatorStreamOut.htm">operator&lt;&lt;</a></b>(<a href="CppOstream.htm">std::ostream</a>&amp; os, <b><a href="CppConst.htm">const</a></b> <a href="CppMysteryMachine.htm">MysteryMachine</a>&amp; machine);<br/>
 <br/>
-} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a><br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
 <br/>
 <a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> MYSTERYMACHINE_H<br/>
 </code></td></tr></table>
@@ -178,9 +179,8 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="CppMysteryMachine.htm">CppMysteryMachine</a>.htm<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<br/>
-<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-<b><a href="CppTypedef.htm">typedef</a></b>s"<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppMysteryMachine.htm">mysterymachine</a>.h"<br/>
 <br/>
@@ -195,7 +195,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
 <br/>
-<a href="CppRibi.htm\">ribi</a>::<a href="CppMysteryMachine.htm">MysteryMachine</a>::<a href="CppMysteryMachine.htm">MysteryMachine</a>()<br/>
+<a href="CppRibi.htm">ribi</a>::<a href="CppMysteryMachine.htm">MysteryMachine</a>::<a href="CppMysteryMachine.htm">MysteryMachine</a>()<br/>
 &nbsp;&nbsp;: m_dial_back(<b><a href="CppNew.htm">new</a></b> <a href="CppDialWidget.htm">DialWidget</a>),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;m_dial_front(<b><a href="CppNew.htm">new</a></b> <a href="CppDialWidget.htm">DialWidget</a>),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;m_led_front_1(<b><a href="CppNew.htm">new</a></b> <a href="CppLedWidget.htm">LedWidget</a>(0,0,32,32,1.0,255,&nbsp;&nbsp;0,&nbsp;&nbsp;0)),<br/>
@@ -212,20 +212,20 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>m_front(0),<br/>
 {<br/>
 &nbsp;&nbsp;m_dial_back-&gt;GetDial()-&gt;m_signal_position_changed.connect(<a href="CppBind.htm">boost::bind</a>(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&amp;<a href="CppRibi.htm\">ribi</a>::<a href="CppMysteryMachine.htm">MysteryMachine</a>::Update,<b><a href="CppThis.htm">this</a></b>));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&amp;<a href="CppRibi.htm">ribi</a>::<a href="CppMysteryMachine.htm">MysteryMachine</a>::Update,<b><a href="CppThis.htm">this</a></b>));<br/>
 &nbsp;&nbsp;m_dial_front-&gt;GetDial()-&gt;m_signal_position_changed.connect(<a href="CppBind.htm">boost::bind</a>(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&amp;<a href="CppRibi.htm\">ribi</a>::<a href="CppMysteryMachine.htm">MysteryMachine</a>::Update,<b><a href="CppThis.htm">this</a></b>));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&amp;<a href="CppRibi.htm">ribi</a>::<a href="CppMysteryMachine.htm">MysteryMachine</a>::Update,<b><a href="CppThis.htm">this</a></b>));<br/>
 &nbsp;&nbsp;m_toggle_button-&gt;Get<a href="CppToggleButton.htm">ToggleButton</a>()-&gt;m_signal_toggled.connect(<a href="CppBind.htm">boost::bind</a>(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&amp;<a href="CppRibi.htm\">ribi</a>::<a href="CppMysteryMachine.htm">MysteryMachine</a>::Update,<b><a href="CppThis.htm">this</a></b>));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&amp;<a href="CppRibi.htm">ribi</a>::<a href="CppMysteryMachine.htm">MysteryMachine</a>::Update,<b><a href="CppThis.htm">this</a></b>));<br/>
 &nbsp;&nbsp;Update();<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppRibi.htm\">ribi</a>::<a href="CppMysteryMachine.htm">MysteryMachine</a>::Get<a href="CppVersion.htm">Version</a>()<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppRibi.htm">ribi</a>::<a href="CppMysteryMachine.htm">MysteryMachine</a>::Get<a href="CppVersion.htm">Version</a>()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> "1.1";<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm\">ribi</a>::<a href="CppMysteryMachine.htm">MysteryMachine</a>::Get<a href="CppVersion.htm">Version</a>History()<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm">ribi</a>::<a href="CppMysteryMachine.htm">MysteryMachine</a>::Get<a href="CppVersion.htm">Version</a>History()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> {<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;"2011-04-10: <a href="CppVersion.htm">Version</a> 1.0: initial <a href="CppVersion.htm">version</a>",<br/>
@@ -233,7 +233,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;};<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppMysteryMachine.htm">MysteryMachine</a>::Update()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppMysteryMachine.htm">MysteryMachine</a>::Update()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> back <a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(GetDialBack()-&gt;GetDial()-&gt;GetPosition() * 16.0) <a href="CppOperatorModulus.htm">%</a> 3;<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> front <a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(GetDialFront()-&gt;GetDial()-&gt;GetPosition() * 16.0) <a href="CppOperatorModulus.htm">%</a> 3;<br/>
@@ -257,7 +257,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;m_led_top_back-&gt;Get<a href="CppLed.htm">Led</a>()-&gt;SetIntensity(&nbsp;&nbsp;top <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 2 ? 1.0 : 0.0);<br/>
 }<br/>
 <br/>
-<a href="CppOstream.htm">std::ostream</a>&amp; <a href="CppRibi.htm\">ribi</a>::<b><a href="CppOperatorStreamOut.htm">operator&lt;&lt;</a></b>(<a href="CppOstream.htm">std::ostream</a>&amp; os, <b><a href="CppConst.htm">const</a></b> <a href="CppMysteryMachine.htm">MysteryMachine</a>&amp; machine)<br/>
+<a href="CppOstream.htm">std::ostream</a>&amp; <a href="CppRibi.htm">ribi</a>::<b><a href="CppOperatorStreamOut.htm">operator&lt;&lt;</a></b>(<a href="CppOstream.htm">std::ostream</a>&amp; os, <b><a href="CppConst.htm">const</a></b> <a href="CppMysteryMachine.htm">MysteryMachine</a>&amp; machine)<br/>
 {<br/>
 &nbsp;&nbsp;os<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "&lt;<a href="CppMysteryMachine.htm">MysteryMachine</a>&gt;"<br/>

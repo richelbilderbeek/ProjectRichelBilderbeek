@@ -180,7 +180,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppAbout.htm">about</a>.h"<br/>
 <br/>
-<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a> {<br/>
+<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
 <br/>
 <a href="CppComment.htm">///</a>The logic behind the menu dialog<br/>
 <b><a href="CppStruct.htm">struct</a></b> <a href="ToolTestExercise.htm">TestExercise</a>MenuDialog<br/>
@@ -201,7 +201,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; Get<a href="CppVersion.htm">Version</a>History();<br/>
 };<br/>
 <br/>
-} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a><br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
 <br/>
 <a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> TESTEXERCISEMENUDIALOG_H<br/>
 </code></td></tr></table>
@@ -235,6 +235,8 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="ToolTestExercise.htm">ToolTestExercise</a>.htm<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
 <a href="CppInclude.htm">#include</a> "<a href="ToolTestExercise.htm">testexercise</a>menudialog.h"<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppExercise.htm">exercise</a>.h"<br/>
@@ -245,8 +247,9 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppQuestion.htm">question</a>.h"<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppQuestionDialog.htm">questiondialog</a>.h"<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppTrace.htm">trace</a>.h"<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppAbout.htm">About</a> <a href="CppRibi.htm\">ribi</a>::<a href="ToolTestExercise.htm">TestExercise</a>MenuDialog::GetAbout() <b><a href="CppConst.htm">const</a></b><br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppAbout.htm">About</a> <a href="CppRibi.htm">ribi</a>::<a href="ToolTestExercise.htm">TestExercise</a>MenuDialog::GetAbout() <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppAbout.htm">About</a> a(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;"Richel Bilderbeek",<br/>
@@ -268,12 +271,12 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> a;<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppRibi.htm\">ribi</a>::<a href="ToolTestExercise.htm">TestExercise</a>MenuDialog::Get<a href="CppVersion.htm">Version</a>()<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppRibi.htm">ribi</a>::<a href="ToolTestExercise.htm">TestExercise</a>MenuDialog::Get<a href="CppVersion.htm">Version</a>()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> "1.0";<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm\">ribi</a>::<a href="ToolTestExercise.htm">TestExercise</a>MenuDialog::Get<a href="CppVersion.htm">Version</a>History()<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm">ribi</a>::<a href="ToolTestExercise.htm">TestExercise</a>MenuDialog::Get<a href="CppVersion.htm">Version</a>History()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> {<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;"2011-09-26: <a href="CppVersion.htm">Version</a> 1.0: initial <a href="CppVersion.htm">version</a>"<br/>
@@ -382,7 +385,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWContainerWidget.htm">WContainerWidget</a>&gt;<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <br/>
-<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a> {<br/>
+<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
 <br/>
 <b><a href="CppStruct.htm">struct</a></b> <a href="CppWtExercise.htm">WtExercise</a>;<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
@@ -405,7 +408,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> OnSubmit();<br/>
 };<br/>
 <br/>
-} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a><br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
 <br/>
 <a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> WTTESTEXERCISEMAINDIALOG_H<br/>
 </code></td></tr></table>
@@ -465,7 +468,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppWtExercise.htm">wtexercise</a>.h"<br/>
 <a href="CppInclude.htm">#include</a> "wt<a href="ToolTestExercise.htm">testexercise</a>maindialog.h"<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppRibi.htm\">ribi</a>::<a href="CppWt.htm">Wt</a><a href="ToolTestExercise.htm">TestExercise</a>MainDialog::<a href="CppUi.htm">Ui</a>::Ui()<br/>
+<a href="CppRibi.htm">ribi</a>::<a href="CppWt.htm">Wt</a><a href="ToolTestExercise.htm">TestExercise</a>MainDialog::<a href="CppUi.htm">Ui</a>::Ui()<br/>
 &nbsp;&nbsp;: m_area_input(<b><a href="CppNew.htm">new</a></b> <a href="CppWTextArea.htm">Wt::WTextArea</a>),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;m_button_submit(<b><a href="CppNew.htm">new</a></b> <a href="CppWPushButton.htm">Wt::WPushButton</a>),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;m_edit_wait_correct(<b><a href="CppNew.htm">new</a></b> <a href="CppWLineEdit.htm">Wt::WLineEdit</a>),<br/>
@@ -476,7 +479,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppRibi.htm\">ribi</a>::<a href="CppWt.htm">Wt</a><a href="ToolTestExercise.htm">TestExercise</a>MainDialog::<a href="CppWt.htm">Wt</a><a href="ToolTestExercise.htm">TestExercise</a>MainDialog()<br/>
+<a href="CppRibi.htm">ribi</a>::<a href="CppWt.htm">Wt</a><a href="ToolTestExercise.htm">TestExercise</a>MainDialog::<a href="CppWt.htm">Wt</a><a href="ToolTestExercise.htm">TestExercise</a>MainDialog()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;addWidget(<b><a href="CppNew.htm">new</a></b> <a href="CppWLabel.htm">Wt::WLabel</a>("Waiting <a href="CppTime.htm">time</a> correct (msecs)"));<br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;addWidget(ui.m_edit_wait_correct);<br/>
@@ -492,7 +495,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;addWidget(ui.m_exercise_dialog);<br/>
 <br/>
 &nbsp;&nbsp;ui.m_button_submit-&gt;setText("Submit");<br/>
-&nbsp;&nbsp;ui.m_button_submit-&gt;clicked().connect(<b><a href="CppThis.htm">this</a></b>,&amp;<a href="CppRibi.htm\">ribi</a>::<a href="CppWt.htm">Wt</a><a href="ToolTestExercise.htm">TestExercise</a>MainDialog::OnSubmit);<br/>
+&nbsp;&nbsp;ui.m_button_submit-&gt;clicked().connect(<b><a href="CppThis.htm">this</a></b>,&amp;<a href="CppRibi.htm">ribi</a>::<a href="CppWt.htm">Wt</a><a href="ToolTestExercise.htm">TestExercise</a>MainDialog::OnSubmit);<br/>
 <br/>
 &nbsp;&nbsp;ui.m_edit_wait_correct-&gt;setText("1000");<br/>
 &nbsp;&nbsp;ui.m_edit_wait_incorrect-&gt;setText("5000");<br/>
@@ -505,7 +508,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;"<a href="ToolTestExercise.htm">ToolTestExercise</a><a href="CppQuestion.htm">Question</a>.png,The solution of <b><a href="CppThis.htm">this</a></b> equation is:,2,1,3,4");<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppWt.htm">Wt</a><a href="ToolTestExercise.htm">TestExercise</a>MainDialog::OnSubmit()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppWt.htm">Wt</a><a href="ToolTestExercise.htm">TestExercise</a>MainDialog::OnSubmit()<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Test input<br/>
 &nbsp;&nbsp;{<br/>
@@ -611,7 +614,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWContainerWidget.htm">WContainerWidget</a>&gt;<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <br/>
-<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a> {<br/>
+<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
 <br/>
 <b><a href="CppStruct.htm">struct</a></b> <a href="ToolTestExercise.htm">TestExercise</a>MenuDialog;<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
@@ -626,7 +629,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<a href="CppScoped_ptr.htm">boost::scoped_ptr</a>&lt;<a href="ToolTestExercise.htm">TestExercise</a>MenuDialog&gt; m_dialog;<br/>
 };<br/>
 <br/>
-} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a><br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
 <br/>
 <a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> WTTESTEXERCISEMENUDIALOG_H<br/>
 </code></td></tr></table>
@@ -686,7 +689,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppQFile.htm">QFile</a>&gt;<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppRibi.htm\">ribi</a>::<a href="CppWt.htm">Wt</a><a href="ToolTestExercise.htm">TestExercise</a>MenuDialog::<a href="CppWt.htm">Wt</a><a href="ToolTestExercise.htm">TestExercise</a>MenuDialog()<br/>
+<a href="CppRibi.htm">ribi</a>::<a href="CppWt.htm">Wt</a><a href="ToolTestExercise.htm">TestExercise</a>MenuDialog::<a href="CppWt.htm">Wt</a><a href="ToolTestExercise.htm">TestExercise</a>MenuDialog()<br/>
 &nbsp;&nbsp;: m_dialog(<b><a href="CppNew.htm">new</a></b> <a href="ToolTestExercise.htm">TestExercise</a>MenuDialog)<br/>
 {<br/>
  {<br/>
@@ -746,7 +749,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;}<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppWWidget.htm">Wt::WWidget</a> * <a href="CppRibi.htm\">ribi</a>::<a href="CppWt.htm">Wt</a><a href="ToolTestExercise.htm">TestExercise</a>MenuDialog::CreateNew<a href="CppAbout.htm">About</a>Dialog() <b><a href="CppConst.htm">const</a></b><br/>
+<a href="CppWWidget.htm">Wt::WWidget</a> * <a href="CppRibi.htm">ribi</a>::<a href="CppWt.htm">Wt</a><a href="ToolTestExercise.htm">TestExercise</a>MenuDialog::CreateNew<a href="CppAbout.htm">About</a>Dialog() <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppAbout.htm">About</a> a <a href="CppOperatorAssign.htm">=</a> m_dialog-&gt;GetAbout();<br/>
 &nbsp;&nbsp;a.<a href="CppAdd.htm">Add</a><a href="CppLibrary.htm">Library</a>("<a href="CppWtAutoConfig.htm">WtAutoConfig</a> <a href="CppVersion.htm">version</a>: " <a href="CppOperatorPlus.htm">+</a> <a href="CppWtAutoConfig.htm">WtAutoConfig</a>::Get<a href="CppVersion.htm">Version</a>());<br/>
@@ -759,14 +762,14 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> d;<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppWWidget.htm">Wt::WWidget</a> * <a href="CppRibi.htm\">ribi</a>::<a href="CppWt.htm">Wt</a><a href="ToolTestExercise.htm">TestExercise</a>MenuDialog::CreateNewMainDialog() <b><a href="CppConst.htm">const</a></b><br/>
+<a href="CppWWidget.htm">Wt::WWidget</a> * <a href="CppRibi.htm">ribi</a>::<a href="CppWt.htm">Wt</a><a href="ToolTestExercise.htm">TestExercise</a>MenuDialog::CreateNewMainDialog() <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppWt.htm">Wt</a><a href="ToolTestExercise.htm">TestExercise</a>MainDialog * <b><a href="CppConst.htm">const</a></b> d <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppWt.htm">Wt</a><a href="ToolTestExercise.htm">TestExercise</a>MainDialog;<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(d);<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> d;<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppWWidget.htm">Wt::WWidget</a> * <a href="CppRibi.htm\">ribi</a>::<a href="CppWt.htm">Wt</a><a href="ToolTestExercise.htm">TestExercise</a>MenuDialog::CreateNewWelcomeDialog() <b><a href="CppConst.htm">const</a></b><br/>
+<a href="CppWWidget.htm">Wt::WWidget</a> * <a href="CppRibi.htm">ribi</a>::<a href="CppWt.htm">Wt</a><a href="ToolTestExercise.htm">TestExercise</a>MenuDialog::CreateNewWelcomeDialog() <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppWContainerWidget.htm">Wt::WContainerWidget</a> * dialog <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppWContainerWidget.htm">Wt::WContainerWidget</a>;<br/>
 &nbsp;&nbsp;dialog-&gt;setContentAlignment(<a href="CppWt.htm">Wt</a>::AlignCenter);<br/>

@@ -71,7 +71,7 @@ along with this program.&nbsp;&nbsp;If not, see &lt;http://www.gnu.org/licenses/
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppStringH.htm">string</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
 <br/>
-<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a> {<br/>
+<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
 <br/>
 <a href="CppComment.htm">//</a><a href="CppEncranger.htm">Encranger</a> stands <b><a href="CppFor.htm">for</a></b> 'ENCryption by RAndom Number GEneratoR'<br/>
 <b><a href="CppStruct.htm">struct</a></b> <a href="CppEncranger.htm">Encranger</a><br/>
@@ -114,7 +114,7 @@ along with this program.&nbsp;&nbsp;If not, see &lt;http://www.gnu.org/licenses/
 <br/>
 };<br/>
 <br/>
-} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a><br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
 <br/>
 <a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> ENCRANGER_H<br/>
 </code></td></tr></table>
@@ -161,14 +161,14 @@ along with this program.&nbsp;&nbsp;If not, see &lt;http://www.gnu.org/licenses/
 <br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppLoopReader.htm">loopreader</a>.h"<br/>
 <br/>
-<a href="CppRibi.htm\">ribi</a>::<a href="CppEncranger.htm">Encranger</a>::<a href="CppEncranger.htm">Encranger</a>(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> key)<br/>
+<a href="CppRibi.htm">ribi</a>::<a href="CppEncranger.htm">Encranger</a>::<a href="CppEncranger.htm">Encranger</a>(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> key)<br/>
 &nbsp;&nbsp;: <a href="CppChar.htm">character</a>s(Create<a href="CppChar.htm">Character</a>s()),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;table(CreateTable(key,<a href="CppChar.htm">character</a>s.size()))<br/>
 {<br/>
 <br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppRibi.htm\">ribi</a>::<a href="CppEncranger.htm">Encranger</a>::Encrypt(<a href="CppString.htm">std::string</a> s) <b><a href="CppConst.htm">const</a></b><br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppRibi.htm">ribi</a>::<a href="CppEncranger.htm">Encranger</a>::Encrypt(<a href="CppString.htm">std::string</a> s) <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppTypedef.htm">typedef</a></b> <a href="CppString.htm">std::string</a>::<a href="CppIterator.htm">iterator</a> String<a href="CppIterator.htm">Iterator</a>;<br/>
 &nbsp;&nbsp;<b><a href="CppTypedef.htm">typedef</a></b> <a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;::const_iterator <a href="CppLoopReader.htm">LoopReader</a><a href="CppIterator.htm">Iterator</a>Type;<br/>
@@ -182,7 +182,7 @@ along with this program.&nbsp;&nbsp;If not, see &lt;http://www.gnu.org/licenses/
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> s;<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppRibi.htm\">ribi</a>::<a href="CppEncranger.htm">Encranger</a>::Deencrypt(<a href="CppString.htm">std::string</a> s) <b><a href="CppConst.htm">const</a></b><br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppRibi.htm">ribi</a>::<a href="CppEncranger.htm">Encranger</a>::Deencrypt(<a href="CppString.htm">std::string</a> s) <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppTypedef.htm">typedef</a></b> <a href="CppString.htm">std::string</a>::<a href="CppIterator.htm">iterator</a> String<a href="CppIterator.htm">Iterator</a>;<br/>
 &nbsp;&nbsp;<a href="CppLoopReader.htm">LoopReader</a>&lt;<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;::const_iterator&gt; table_reader(table.begin(), table.end());<br/>
@@ -195,7 +195,7 @@ along with this program.&nbsp;&nbsp;If not, see &lt;http://www.gnu.org/licenses/
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> s;<br/>
 }<br/>
 <br/>
-<b><a href="CppChar.htm">char</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppEncranger.htm">Encranger</a>::Encrypt(<b><a href="CppConst.htm">const</a></b> <b><a href="CppChar.htm">char</a></b> c, <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> d) <b><a href="CppConst.htm">const</a></b><br/>
+<b><a href="CppChar.htm">char</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppEncranger.htm">Encranger</a>::Encrypt(<b><a href="CppConst.htm">const</a></b> <b><a href="CppChar.htm">char</a></b> c, <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> d) <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> i <a href="CppOperatorAssign.htm">=</a> GetIndex(c);<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> n_<b><a href="CppChar.htm">char</a></b>s <a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(<a href="CppChar.htm">character</a>s.size());<br/>
@@ -205,7 +205,7 @@ along with this program.&nbsp;&nbsp;If not, see &lt;http://www.gnu.org/licenses/
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <a href="CppChar.htm">character</a>s[i_new];<br/>
 }<br/>
 <br/>
-<b><a href="CppChar.htm">char</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppEncranger.htm">Encranger</a>::Deencrypt(<b><a href="CppConst.htm">const</a></b> <b><a href="CppChar.htm">char</a></b> c, <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> d) <b><a href="CppConst.htm">const</a></b><br/>
+<b><a href="CppChar.htm">char</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppEncranger.htm">Encranger</a>::Deencrypt(<b><a href="CppConst.htm">const</a></b> <b><a href="CppChar.htm">char</a></b> c, <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> d) <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> i <a href="CppOperatorAssign.htm">=</a> GetIndex(c);<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> n_<b><a href="CppChar.htm">char</a></b>s <a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(<a href="CppChar.htm">character</a>s.size());<br/>
@@ -215,7 +215,7 @@ along with this program.&nbsp;&nbsp;If not, see &lt;http://www.gnu.org/licenses/
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <a href="CppChar.htm">character</a>s[i_new];<br/>
 }<br/>
 <br/>
-<b><a href="CppInt.htm">int</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppEncranger.htm">Encranger</a>::GetIndex(<b><a href="CppConst.htm">const</a></b> <b><a href="CppChar.htm">char</a></b> c) <b><a href="CppConst.htm">const</a></b><br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppEncranger.htm">Encranger</a>::GetIndex(<b><a href="CppConst.htm">const</a></b> <b><a href="CppChar.htm">char</a></b> c) <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (c <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> '\t' <a href="CppOperatorLogicalOr.htm">||</a> c <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> '\n') <b><a href="CppReturn.htm">return</a></b> GetIndex(' ');<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppChar.htm">char</a></b>&gt;::const_iterator i<br/>
@@ -224,7 +224,7 @@ along with this program.&nbsp;&nbsp;If not, see &lt;http://www.gnu.org/licenses/
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> i <a href="CppOperatorMinus.htm">-</a> <a href="CppChar.htm">character</a>s.begin();<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt; <a href="CppRibi.htm\">ribi</a>::<a href="CppEncranger.htm">Encranger</a>::CreateTable(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> key, <b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppInt.htm">int</a></b> sz) <b><a href="CppConst.htm">const</a></b><br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt; <a href="CppRibi.htm">ribi</a>::<a href="CppEncranger.htm">Encranger</a>::CreateTable(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> key, <b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppInt.htm">int</a></b> sz) <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(sz<a href="CppOperatorNotEqual.htm">!=</a>0);<br/>
 <br/>
@@ -247,7 +247,7 @@ along with this program.&nbsp;&nbsp;If not, see &lt;http://www.gnu.org/licenses/
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppChar.htm">char</a></b>&gt; <a href="CppRibi.htm\">ribi</a>::<a href="CppEncranger.htm">Encranger</a>::Create<a href="CppChar.htm">Character</a>s() <b><a href="CppConst.htm">const</a></b><br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppChar.htm">char</a></b>&gt; <a href="CppRibi.htm">ribi</a>::<a href="CppEncranger.htm">Encranger</a>::Create<a href="CppChar.htm">Character</a>s() <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppChar.htm">char</a></b>&gt; v;<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Upper<b><a href="CppCase.htm">case</a></b><br/>
@@ -353,12 +353,12 @@ along with this program.&nbsp;&nbsp;If not, see &lt;http://www.gnu.org/licenses/
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppRibi.htm\">ribi</a>::<a href="CppEncranger.htm">Encranger</a>::Get<a href="CppVersion.htm">Version</a>()<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppRibi.htm">ribi</a>::<a href="CppEncranger.htm">Encranger</a>::Get<a href="CppVersion.htm">Version</a>()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> "1.1";<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm\">ribi</a>::<a href="CppEncranger.htm">Encranger</a>::Get<a href="CppVersion.htm">Version</a>History()<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm">ribi</a>::<a href="CppEncranger.htm">Encranger</a>::Get<a href="CppVersion.htm">Version</a>History()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> {<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;"2010-01-05: <a href="CppVersion.htm">version</a> 1.0: initial <a href="CppVersion.htm">version</a>",<br/>

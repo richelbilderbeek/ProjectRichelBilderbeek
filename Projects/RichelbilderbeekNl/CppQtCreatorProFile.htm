@@ -72,13 +72,15 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppStringH.htm">string</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
 <br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/checked_delete.hpp&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppShared_ptr.htm">shared_ptr</a>.hpp&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppNoncopyable.htm">noncopyable</a>.hpp&gt;<br/>
-<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppAbout.htm">about</a>.h"<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
 <br/>
-<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a> {<br/>
+<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
 <br/>
 <a href="CppComment.htm">///</a><a href="CppQtCreator.htm">QtCreator</a>ProFile parses .pro files<br/>
 <b><a href="CppStruct.htm">struct</a></b> <a href="CppQtCreator.htm">QtCreator</a>ProFile : <b><a href="CppPublic.htm">public</a></b> <a href="CppNoncopyable.htm">boost::noncopyable</a><br/>
@@ -87,7 +89,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppExplicit.htm">explicit</a></b> <a href="CppQtCreator.htm">QtCreator</a>ProFile(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; filename);<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/Obtain <b><a href="CppThis.htm">this</a></b> <b><a href="CppClass.htm">class</a></b> its <a href="CppAbout.htm">About</a> information<br/>
-&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppAbout.htm">About</a> GetAbout();<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppAbout.htm">About</a> GetAbout();<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/Obtain the CONFIG<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppSet.htm">std::set</a>&lt;<a href="CppString.htm">std::string</a>&gt;&amp; GetConfig() <b><a href="CppConst.htm">const</a></b> { <b><a href="CppReturn.htm">return</a></b> m_config; }<br/>
@@ -258,7 +260,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppOstream.htm">std::ostream</a>&amp; <b><a href="CppOperatorStreamOut.htm">operator&lt;&lt;</a></b>(<a href="CppOstream.htm">std::ostream</a>&amp; os, <b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> <a href="CppQtCreator.htm">QtCreator</a>ProFile&gt;&amp; p);<br/>
 <b><a href="CppBool.htm">bool</a></b> <b><a href="CppOperatorEqual.htm">operator==</a></b>(<b><a href="CppConst.htm">const</a></b> <a href="CppQtCreator.htm">QtCreator</a>ProFile&amp; lhs, <b><a href="CppConst.htm">const</a></b> <a href="CppQtCreator.htm">QtCreator</a>ProFile&amp; rhs);<br/>
 <br/>
-} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a><br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
 <br/>
 <a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> QTCREATORPROFILE_H<br/>
 </code></td></tr></table>
@@ -292,8 +294,9 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="CppQtCreatorProFile.htm">CppQtCreatorProFile</a>.htm<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<br/>
-<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-<b><a href="CppTypedef.htm">typedef</a></b>s"<br/>
 <a href="CppInclude.htm">#include</a> "qtcreator<a href="CppProFile.htm">profile</a>.h"<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppAlgorithmH.htm">algorithm</a>&gt;<br/>
@@ -307,20 +310,33 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppStringH.htm">string</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
 <br/>
-<a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
-<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-<b><a href="CppTypedef.htm">typedef</a></b>s"<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppAlgorithm.htm">algorithm</a>/string/split.hpp&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppAlgorithm.htm">algorithm</a>/string/trim.hpp&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppFunction.htm">function</a>.hpp&gt;<br/>
-<a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppQDir.htm">QDir</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppQFile.htm">QFile</a>&gt;<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppTrace.htm">trace</a>.h"<br/>
 <br/>
-<a href="CppRibi.htm\">ribi</a>::<a href="CppQtCreator.htm">QtCreator</a>ProFile::<a href="CppQtCreator.htm">QtCreator</a>ProFile(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; filename)<br/>
-&nbsp;&nbsp;: m_pro_filename(filename)<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
+<br/>
+<a href="CppRibi.htm">ribi</a>::<a href="CppQtCreator.htm">QtCreator</a>ProFile::<a href="CppQtCreator.htm">QtCreator</a>ProFile(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; filename)<br/>
+&nbsp;&nbsp;:<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_config{},<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_defines{},<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_forms{},<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_headers{},<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_includepath{},<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_libs{},<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_other_files{},<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_pro_filename{filename},<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_q<a href="CppMake.htm">make</a>_cxxflags{},<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_qt{},<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_resources{},<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_target{},<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_<b><a href="CppTemplate.htm">template</a></b>{},<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_sources{}<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
 &nbsp;&nbsp;Test();<br/>
@@ -339,7 +355,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;Parse(v);<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm\">ribi</a>::<a href="CppQtCreator.htm">QtCreator</a>ProFile::<a href="CppFileToVector.htm">FileToVector</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; filename)<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm">ribi</a>::<a href="CppQtCreator.htm">QtCreator</a>ProFile::<a href="CppFileToVector.htm">FileToVector</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; filename)<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(IsRegularFile(filename.c_str()));<br/>
 &nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v;<br/>
@@ -353,9 +369,9 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppAbout.htm">About</a> <a href="CppRibi.htm\">ribi</a>::<a href="CppQtCreator.htm">QtCreator</a>ProFile::GetAbout()<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppAbout.htm">About</a> <a href="CppRibi.htm">ribi</a>::<a href="CppQtCreator.htm">QtCreator</a>ProFile::GetAbout()<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppRibi.htm\">ribi</a>::<a href="CppAbout.htm">About</a> a(<br/>
+&nbsp;&nbsp;<a href="CppRibi.htm">ribi</a>::<a href="CppAbout.htm">About</a> a(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;"Richel Bilderbeek",<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;"<a href="CppQtCreator.htm">QtCreator</a>ProFile",<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;"<b><a href="CppClass.htm">class</a></b> to parse <a href="CppQt.htm">Qt</a> Project files",<br/>
@@ -367,36 +383,36 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> a;<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppRibi.htm\">ribi</a>::<a href="CppQtCreator.htm">QtCreator</a>ProFile::Get<a href="CppVersion.htm">Version</a>()<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppRibi.htm">ribi</a>::<a href="CppQtCreator.htm">QtCreator</a>ProFile::Get<a href="CppVersion.htm">Version</a>()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> "2.1";<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm\">ribi</a>::<a href="CppQtCreator.htm">QtCreator</a>ProFile::Get<a href="CppVersion.htm">Version</a>History()<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm">ribi</a>::<a href="CppQtCreator.htm">QtCreator</a>ProFile::Get<a href="CppVersion.htm">Version</a>History()<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v;<br/>
-&nbsp;&nbsp;v.push_back("2010-12-19: <a href="CppVersion.htm">version</a> 1.0: initial <a href="CppVersion.htm">version</a>");<br/>
-&nbsp;&nbsp;v.push_back("2011-01-06: <a href="CppVersion.htm">version</a> 1.1: added GetCommonRoot and GetLibs <a href="CppMemberFunction.htm">member functions</a>, added <b><a href="CppOperatorStreamOut.htm">operator&lt;&lt;</a></b>");<br/>
-&nbsp;&nbsp;v.push_back("2011-09-11: <a href="CppVersion.htm">version</a> 1.2: fixed <a href="CppBug.htm">bug</a>");<br/>
-&nbsp;&nbsp;v.push_back("2012-02-25: <a href="CppVersion.htm">version</a> 1.3: added GetAbout <a href="CppMemberFunction.htm">member function</a>");<br/>
-&nbsp;&nbsp;v.push_back("2012-02-28: <a href="CppVersion.htm">version</a> 1.4: added support <b><a href="CppFor.htm">for</a></b> <a href="CppINCLUDEPATH.htm">INCLUDEPATH</a>, <a href="CppFORMS.htm">FORMS</a>, OTHER_FILES, <a href="CppRESOURCES.htm">RESOURCES</a> and <a href="CppQMAKE_CXXFLAGS.htm">QMAKE_CXXFLAGS</a>");<br/>
-&nbsp;&nbsp;v.push_back("2012-05-30: <a href="CppVersion.htm">version</a> 1.5: added SimplifyPath");<br/>
-&nbsp;&nbsp;v.push_back("2012-08-13: <a href="CppVersion.htm">version</a> 1.6: modifiers like win32 and unix are ignored, instead of yielding an error");<br/>
-&nbsp;&nbsp;v.push_back("2012-12-23: <a href="CppVersion.htm">version</a> 1.7: set <a href="CppDestructor.htm">destructor</a> to <b><a href="CppPrivate.htm">private</a></b>, except <b><a href="CppFor.htm">for</a></b> <a href="CppChecked_delete.htm">boost::checked_delete</a>");<br/>
-&nbsp;&nbsp;v.push_back("2012-12-23: <a href="CppVersion.htm">version</a> 1.8: renamed to <a href="CppQtCreator.htm">QtCreator</a>ProFile due to naming conflicts when cross-compiling");<br/>
-&nbsp;&nbsp;v.push_back("2013-05-18: <a href="CppVersion.htm">version</a> 2.0: simplified architecture by removing file I/O");<br/>
-&nbsp;&nbsp;v.push_back("2013-08-19: <a href="CppVersion.htm">version</a> 2.1: replaced <a href="CppBoostRegex.htm">Boost.Regex</a> by <a href="CppBoostXpressive.htm">Boost.Xpressive</a>, removed <a href="CppBoost.htm">Boost</a>.Filesystem");<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"2010-12-19: <a href="CppVersion.htm">version</a> 1.0: initial <a href="CppVersion.htm">version</a>",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"2011-01-06: <a href="CppVersion.htm">version</a> 1.1: added GetCommonRoot and GetLibs <a href="CppMemberFunction.htm">member functions</a>, added <b><a href="CppOperatorStreamOut.htm">operator&lt;&lt;</a></b>",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"2011-09-11: <a href="CppVersion.htm">version</a> 1.2: fixed <a href="CppBug.htm">bug</a>",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"2012-02-25: <a href="CppVersion.htm">version</a> 1.3: added GetAbout <a href="CppMemberFunction.htm">member function</a>",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"2012-02-28: <a href="CppVersion.htm">version</a> 1.4: added support <b><a href="CppFor.htm">for</a></b> <a href="CppINCLUDEPATH.htm">INCLUDEPATH</a>, <a href="CppFORMS.htm">FORMS</a>, OTHER_FILES, <a href="CppRESOURCES.htm">RESOURCES</a> and <a href="CppQMAKE_CXXFLAGS.htm">QMAKE_CXXFLAGS</a>",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"2012-05-30: <a href="CppVersion.htm">version</a> 1.5: added SimplifyPath",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"2012-08-13: <a href="CppVersion.htm">version</a> 1.6: modifiers like win32 and unix are ignored, instead of yielding an error",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"2012-12-23: <a href="CppVersion.htm">version</a> 1.7: set <a href="CppDestructor.htm">destructor</a> to <b><a href="CppPrivate.htm">private</a></b>, except <b><a href="CppFor.htm">for</a></b> <a href="CppChecked_delete.htm">boost::checked_delete</a>",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"2012-12-23: <a href="CppVersion.htm">version</a> 1.8: renamed to <a href="CppQtCreator.htm">QtCreator</a>ProFile due to naming conflicts when cross-compiling",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"2013-05-18: <a href="CppVersion.htm">version</a> 2.0: simplified architecture by removing file I/O",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"2013-08-19: <a href="CppVersion.htm">version</a> 2.1: replaced <a href="CppBoostRegex.htm">Boost.Regex</a> by <a href="CppBoostXpressive.htm">Boost.Xpressive</a>, removed <a href="CppBoost.htm">Boost</a>.Filesystem",<br/>
+&nbsp;&nbsp;};<br/>
 }<br/>
 <br/>
 <a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
-<b><a href="CppBool.htm">bool</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQtCreator.htm">QtCreator</a>ProFile::IsRegularFile(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; filename)<br/>
+<b><a href="CppBool.htm">bool</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQtCreator.htm">QtCreator</a>ProFile::IsRegularFile(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; filename)<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> !<a href="CppQDir.htm">QDir</a>(filename.c_str()).exists() <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> <a href="CppQFile.htm">QFile</a>::exists(filename.c_str());<br/>
 }<br/>
 <a href="CppEndif.htm">#endif</a><br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQtCreator.htm">QtCreator</a>ProFile::Parse(<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; &amp;v)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQtCreator.htm">QtCreator</a>ProFile::Parse(<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; &amp;v)<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppSet.htm">std::set</a>&lt;<a href="CppString.htm">std::string</a>&gt; * p <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNullptr.htm">nullptr</a></b>; <a href="CppComment.htm">//</a>A set to write to<br/>
 &nbsp;&nbsp;<b><a href="CppEnumClass.htm">enum class</a></b> Prefix { none, plus, minus };<br/>
@@ -498,7 +514,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;}<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm\">ribi</a>::<a href="CppQtCreator.htm">QtCreator</a>ProFile::<a href="CppSeperateString.htm">SeperateString</a>(<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm">ribi</a>::<a href="CppQtCreator.htm">QtCreator</a>ProFile::<a href="CppSeperateString.htm">SeperateString</a>(<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; input,<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppChar.htm">char</a></b> seperator)<br/>
 {<br/>
@@ -515,7 +531,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 }<br/>
 <br/>
 <a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQtCreator.htm">QtCreator</a>ProFile::Test()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQtCreator.htm">QtCreator</a>ProFile::Test()<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Test exactly once<br/>
 &nbsp;&nbsp;{<br/>
@@ -698,21 +714,21 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;}<br/>
 }<br/>
 <a href="CppEndif.htm">#endif</a><br/>
-<a href="CppOstream.htm">std::ostream</a>&amp; <a href="CppRibi.htm\">ribi</a>::<b><a href="CppOperatorStreamOut.htm">operator&lt;&lt;</a></b>(<a href="CppOstream.htm">std::ostream</a>&amp; os, <b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppQtCreator.htm">QtCreator</a>ProFile&gt;&amp; p)<br/>
+<a href="CppOstream.htm">std::ostream</a>&amp; <a href="CppRibi.htm">ribi</a>::<b><a href="CppOperatorStreamOut.htm">operator&lt;&lt;</a></b>(<a href="CppOstream.htm">std::ostream</a>&amp; os, <b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppQtCreator.htm">QtCreator</a>ProFile&gt;&amp; p)<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(p);<br/>
 &nbsp;&nbsp;os <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> (*p);<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> os;<br/>
 }<br/>
 <br/>
-<a href="CppOstream.htm">std::ostream</a>&amp; <a href="CppRibi.htm\">ribi</a>::<b><a href="CppOperatorStreamOut.htm">operator&lt;&lt;</a></b>(<a href="CppOstream.htm">std::ostream</a>&amp; os, <b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> <a href="CppQtCreator.htm">QtCreator</a>ProFile&gt;&amp; p)<br/>
+<a href="CppOstream.htm">std::ostream</a>&amp; <a href="CppRibi.htm">ribi</a>::<b><a href="CppOperatorStreamOut.htm">operator&lt;&lt;</a></b>(<a href="CppOstream.htm">std::ostream</a>&amp; os, <b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> <a href="CppQtCreator.htm">QtCreator</a>ProFile&gt;&amp; p)<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(p);<br/>
 &nbsp;&nbsp;os <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> (*p);<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> os;<br/>
 }<br/>
 <br/>
-<a href="CppOstream.htm">std::ostream</a>&amp; <a href="CppRibi.htm\">ribi</a>::<b><a href="CppOperatorStreamOut.htm">operator&lt;&lt;</a></b>(<a href="CppOstream.htm">std::ostream</a>&amp; os, <b><a href="CppConst.htm">const</a></b> <a href="CppQtCreator.htm">QtCreator</a>ProFile&amp; p)<br/>
+<a href="CppOstream.htm">std::ostream</a>&amp; <a href="CppRibi.htm">ribi</a>::<b><a href="CppOperatorStreamOut.htm">operator&lt;&lt;</a></b>(<a href="CppOstream.htm">std::ostream</a>&amp; os, <b><a href="CppConst.htm">const</a></b> <a href="CppQtCreator.htm">QtCreator</a>ProFile&amp; p)<br/>
 {<br/>
 &nbsp;&nbsp;os <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "\n";<br/>
 <br/>
@@ -776,7 +792,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> os;<br/>
 }<br/>
 <br/>
-<b><a href="CppBool.htm">bool</a></b> <a href="CppRibi.htm\">ribi</a>::<b><a href="CppOperatorEqual.htm">operator==</a></b>(<b><a href="CppConst.htm">const</a></b> <a href="CppQtCreator.htm">QtCreator</a>ProFile&amp; lhs, <b><a href="CppConst.htm">const</a></b> <a href="CppQtCreator.htm">QtCreator</a>ProFile&amp; rhs)<br/>
+<b><a href="CppBool.htm">bool</a></b> <a href="CppRibi.htm">ribi</a>::<b><a href="CppOperatorEqual.htm">operator==</a></b>(<b><a href="CppConst.htm">const</a></b> <a href="CppQtCreator.htm">QtCreator</a>ProFile&amp; lhs, <b><a href="CppConst.htm">const</a></b> <a href="CppQtCreator.htm">QtCreator</a>ProFile&amp; rhs)<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; lhs.m_config <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> rhs.m_config<br/>
@@ -832,19 +848,22 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppStringH.htm">string</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
 <br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/checked_delete.hpp&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppNoncopyable.htm">noncopyable</a>.hpp&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppShared_ptr.htm">shared_ptr</a>.hpp&gt;<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> "qtcreator<a href="CppProFile.htm">profile</a>.h"<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
 <br/>
-<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a> {<br/>
+<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
 <br/>
 <a href="CppComment.htm">///</a>Create a shell script to zip a <a href="CppQtCreator.htm">Qt Creator</a> .pro file<br/>
 <b><a href="CppStruct.htm">struct</a></b> <a href="CppQtCreator.htm">QtCreator</a>ProFileZipScript : <b><a href="CppPublic.htm">public</a></b> <a href="CppNoncopyable.htm">boost::noncopyable</a><br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppQtCreator.htm">QtCreator</a>ProFileZipScript(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQtCreator.htm">QtCreator</a>ProFile&gt; pro_file);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQtCreator.htm">QtCreator</a>ProFile&gt; pro_file);<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/Create a script to zip all .pro files (and all they refer to) in a folder<br/>
 &nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> CreateScript(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; source_folder);<br/>
@@ -921,7 +940,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">///</a>Write the script to a stream<br/>
 <a href="CppOstream.htm">std::ostream</a>&amp; <b><a href="CppOperatorStreamOut.htm">operator&lt;&lt;</a></b>(<a href="CppOstream.htm">std::ostream</a>&amp; os,<b><a href="CppConst.htm">const</a></b> <a href="CppQtCreator.htm">QtCreator</a>ProFileZipScript&amp; script);<br/>
 <br/>
-} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a><br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
 <br/>
 <a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> QTCREATORPROFILEZIPSCRIPT<br/>
 </code></td></tr></table>
@@ -955,8 +974,9 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="CppQtCreatorProFile.htm">CppQtCreatorProFile</a>.htm<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<br/>
-<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-<b><a href="CppTypedef.htm">typedef</a></b>s"<br/>
 <a href="CppInclude.htm">#include</a> "qtcreator<a href="CppProFile.htm">profile</a>zipscript.h"<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppFstreamH.htm">fstream</a>&gt;<br/>
@@ -964,18 +984,16 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppIteratorH.htm">iterator</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppSetH.htm">set</a>&gt;<br/>
 <br/>
-<a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
-<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-<b><a href="CppTypedef.htm">typedef</a></b>s"<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppBoostXpressive.htm">xpressive</a>/<a href="CppBoostXpressive.htm">xpressive</a>.hpp&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppAlgorithm.htm">algorithm</a>/string/split.hpp&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppAlgorithm.htm">algorithm</a>/string.hpp&gt;<br/>
-<a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppQDir.htm">QDir</a>&gt;<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppQrcFile.htm">qrcfile</a>.h"<br/>
 <a href="CppInclude.htm">#include</a> "qtcreator<a href="CppProFile.htm">profile</a>.h"<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppTrace.htm">trace</a>.h"<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
 <br/>
 <b><a href="CppStruct.htm">struct</a></b> PathOrdering<br/>
 {<br/>
@@ -990,19 +1008,19 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 };<br/>
 <br/>
 <br/>
-<a href="CppRibi.htm\">ribi</a>::<a href="CppQtCreator.htm">QtCreator</a>ProFileZipScript::<a href="CppQtCreator.htm">QtCreator</a>ProFileZipScript(<br/>
+<a href="CppRibi.htm">ribi</a>::<a href="CppQtCreator.htm">QtCreator</a>ProFileZipScript::<a href="CppQtCreator.htm">QtCreator</a>ProFileZipScript(<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> <a href="CppQtCreator.htm">QtCreator</a>ProFile&gt; pro_file)<br/>
 &nbsp;&nbsp;: m_filenames(ExtractFilenames(pro_file)),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;m_pro_file_name(pro_file-&gt;Get<a href="CppQtCreator.htm">QtCreator</a>ProFilename())<br/>
 <br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
-&nbsp;&nbsp;<a href="CppRibi.htm\">ribi</a>::<a href="CppQtCreator.htm">QtCreator</a>ProFileZipScript::Test();<br/>
+&nbsp;&nbsp;<a href="CppRibi.htm">ribi</a>::<a href="CppQtCreator.htm">QtCreator</a>ProFileZipScript::Test();<br/>
 &nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(pro_file);<br/>
 }<br/>
 <br/>
-<a href="CppRibi.htm\">ribi</a>::<a href="CppQtCreator.htm">QtCreator</a>ProFileZipScript::<a href="CppQtCreator.htm">QtCreator</a>ProFileZipScript(<br/>
+<a href="CppRibi.htm">ribi</a>::<a href="CppQtCreator.htm">QtCreator</a>ProFileZipScript::<a href="CppQtCreator.htm">QtCreator</a>ProFileZipScript(<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppSet.htm">std::set</a>&lt;<a href="CppString.htm">std::string</a>&gt;&amp; filenames,<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; pro_file_name)<br/>
 &nbsp;&nbsp;: m_filenames(filenames),<br/>
@@ -1011,21 +1029,21 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRibi.htm\">ribi</a>::<a href="CppQtCreator.htm">QtCreator</a>ProFile&gt; &gt; <a href="CppRibi.htm\">ribi</a>::<a href="CppQtCreator.htm">QtCreator</a>ProFileZipScript::CreateProFiles(<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRibi.htm">ribi</a>::<a href="CppQtCreator.htm">QtCreator</a>ProFile&gt; &gt; <a href="CppRibi.htm">ribi</a>::<a href="CppQtCreator.htm">QtCreator</a>ProFileZipScript::CreateProFiles(<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt;&amp; filenames)<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRibi.htm\">ribi</a>::<a href="CppQtCreator.htm">QtCreator</a>ProFile&gt; &gt; pro_files;<br/>
+&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRibi.htm">ribi</a>::<a href="CppQtCreator.htm">QtCreator</a>ProFile&gt; &gt; pro_files;<br/>
 &nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; filename: filenames)<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(IsRegularFile(filename));<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRibi.htm\">ribi</a>::<a href="CppQtCreator.htm">QtCreator</a>ProFile&gt; pro_file(<b><a href="CppNew.htm">new</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQtCreator.htm">QtCreator</a>ProFile(filename));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRibi.htm">ribi</a>::<a href="CppQtCreator.htm">QtCreator</a>ProFile&gt; pro_file(<b><a href="CppNew.htm">new</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQtCreator.htm">QtCreator</a>ProFile(filename));<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(pro_file);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;pro_files.push_back(pro_file);<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> pro_files;<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppRibi.htm\">ribi</a>::<a href="CppQtCreator.htm">QtCreator</a>ProFileZipScript::CreateScript(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; source_folder)<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppRibi.htm">ribi</a>::<a href="CppQtCreator.htm">QtCreator</a>ProFileZipScript::CreateScript(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; source_folder)<br/>
 {<br/>
 <br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; pro_filenames <a href="CppOperatorAssign.htm">=</a> GetProFilesInFolder(source_folder);<br/>
@@ -1047,7 +1065,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <br/>
 <br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppQtCreator.htm">QtCreator</a>ProFileZipScript&gt; merged_script<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <a href="CppRibi.htm\">ribi</a>::<a href="CppQtCreator.htm">QtCreator</a>ProFileZipScript::Merge(scripts);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <a href="CppRibi.htm">ribi</a>::<a href="CppQtCreator.htm">QtCreator</a>ProFileZipScript::Merge(scripts);<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (!merged_script)<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> "Folder does not contain <a href="CppAny.htm">any</a> .pro files";<br/>
@@ -1061,7 +1079,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 }<br/>
 <br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppSet.htm">std::set</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm\">ribi</a>::<a href="CppQtCreator.htm">QtCreator</a>ProFileZipScript::ExtractFilenames(<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppSet.htm">std::set</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm">ribi</a>::<a href="CppQtCreator.htm">QtCreator</a>ProFileZipScript::ExtractFilenames(<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> <a href="CppQtCreator.htm">QtCreator</a>ProFile&gt;&amp; pro_file) <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(pro_file);<br/>
@@ -1138,9 +1156,9 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> filenames;<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppAbout.htm">About</a> <a href="CppRibi.htm\">ribi</a>::<a href="CppQtCreator.htm">QtCreator</a>ProFileZipScript::GetAbout()<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppAbout.htm">About</a> <a href="CppRibi.htm">ribi</a>::<a href="CppQtCreator.htm">QtCreator</a>ProFileZipScript::GetAbout()<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppRibi.htm\">ribi</a>::<a href="CppAbout.htm">About</a> a(<br/>
+&nbsp;&nbsp;<a href="CppRibi.htm">ribi</a>::<a href="CppAbout.htm">About</a> a(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;"Richel Bilderbeek",<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;"<a href="CppQtCreator.htm">QtCreator</a>ProFileZipScript",<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;"<b><a href="CppClass.htm">class</a></b> to create a zip file from a .pro file",<br/>
@@ -1155,7 +1173,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> a;<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm\">ribi</a>::<a href="CppQtCreator.htm">QtCreator</a>ProFileZipScript::<a href="CppGetFilesInFolder.htm">GetFilesInFolder</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; folder)<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm">ribi</a>::<a href="CppQtCreator.htm">QtCreator</a>ProFileZipScript::<a href="CppGetFilesInFolder.htm">GetFilesInFolder</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; folder)<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppQDir.htm">QDir</a> dir(folder.c_str());<br/>
 &nbsp;&nbsp;dir.setFilter(<a href="CppQDir.htm">QDir</a>::Files);<br/>
@@ -1172,7 +1190,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppRibi.htm\">ribi</a>::<a href="CppQtCreator.htm">QtCreator</a>ProFileZipScript::<a href="CppGetPath.htm">GetPath</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; filename)<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppRibi.htm">ribi</a>::<a href="CppQtCreator.htm">QtCreator</a>ProFileZipScript::<a href="CppGetPath.htm">GetPath</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; filename)<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> a <a href="CppOperatorAssign.htm">=</a> filename.rfind("\\",filename.size());<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> b <a href="CppOperatorAssign.htm">=</a> filename.rfind("/",filename.size());<br/>
@@ -1181,7 +1199,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> filename.substr(0,i);<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm\">ribi</a>::<a href="CppQtCreator.htm">QtCreator</a>ProFileZipScript::GetProFilesInFolder(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; folder)<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm">ribi</a>::<a href="CppQtCreator.htm">QtCreator</a>ProFileZipScript::GetProFilesInFolder(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; folder)<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Get all filenames<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v <a href="CppOperatorAssign.htm">=</a> <a href="CppGetFilesInFolder.htm">GetFilesInFolder</a>(folder);<br/>
@@ -1203,12 +1221,12 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> w;<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppRibi.htm\">ribi</a>::<a href="CppQtCreator.htm">QtCreator</a>ProFileZipScript::Get<a href="CppVersion.htm">Version</a>()<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppRibi.htm">ribi</a>::<a href="CppQtCreator.htm">QtCreator</a>ProFileZipScript::Get<a href="CppVersion.htm">Version</a>()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> "1.0";<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm\">ribi</a>::<a href="CppQtCreator.htm">QtCreator</a>ProFileZipScript::Get<a href="CppVersion.htm">Version</a>History()<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm">ribi</a>::<a href="CppQtCreator.htm">QtCreator</a>ProFileZipScript::Get<a href="CppVersion.htm">Version</a>History()<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v;<br/>
 &nbsp;&nbsp;v.push_back("2013-05-19: <a href="CppVersion.htm">version</a> 1.0: initial <a href="CppVersion.htm">version</a>");<br/>
@@ -1216,17 +1234,17 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
 }<br/>
 <br/>
-<b><a href="CppBool.htm">bool</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQtCreator.htm">QtCreator</a>ProFileZipScript::IsRegularFile(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; filename)<br/>
+<b><a href="CppBool.htm">bool</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQtCreator.htm">QtCreator</a>ProFileZipScript::IsRegularFile(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; filename)<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppFstream.htm">std::fstream</a> f;<br/>
 &nbsp;&nbsp;f.open(filename.c_str(),<a href="CppStd.htm">std</a>::ios::in);<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> f.is_open();<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRibi.htm\">ribi</a>::<a href="CppQtCreator.htm">QtCreator</a>ProFileZipScript&gt; <a href="CppRibi.htm\">ribi</a>::<a href="CppQtCreator.htm">QtCreator</a>ProFileZipScript::Merge(<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRibi.htm">ribi</a>::<a href="CppQtCreator.htm">QtCreator</a>ProFileZipScript&gt; <a href="CppRibi.htm">ribi</a>::<a href="CppQtCreator.htm">QtCreator</a>ProFileZipScript::Merge(<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> <a href="CppQtCreator.htm">QtCreator</a>ProFileZipScript&gt; &gt;&amp; scripts)<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRibi.htm\">ribi</a>::<a href="CppQtCreator.htm">QtCreator</a>ProFileZipScript&gt; p;<br/>
+&nbsp;&nbsp;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRibi.htm">ribi</a>::<a href="CppQtCreator.htm">QtCreator</a>ProFileZipScript&gt; p;<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (scripts.empty()) <b><a href="CppReturn.htm">return</a></b> p;<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppSet.htm">std::set</a>&lt;<a href="CppString.htm">std::string</a>&gt; all_filenames;<br/>
@@ -1245,14 +1263,14 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <br/>
 <br/>
 <a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQtCreator.htm">QtCreator</a>ProFileZipScript::Test()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQtCreator.htm">QtCreator</a>ProFileZipScript::Test()<br/>
 {<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppBool.htm">bool</a></b> is_tested <a href="CppOperatorAssign.htm">=</a> <b><a href="CppFalse.htm">false</a></b>;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (is_tested) <b><a href="CppReturn.htm">return</a></b>;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;is_tested <a href="CppOperatorAssign.htm">=</a> <b><a href="CppTrue.htm">true</a></b>;<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("Starting <a href="CppRibi.htm\">ribi</a>::<a href="CppQtCreator.htm">QtCreator</a>ProFileZipScript::Test");<br/>
+&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("Starting <a href="CppRibi.htm">ribi</a>::<a href="CppQtCreator.htm">QtCreator</a>ProFileZipScript::Test");<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Test basic <a href="CppFunction.htm">function</a>s on <b><a href="CppThis.htm">this</a></b> project with going two folders down<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; pro_file_names<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a><br/>
@@ -1297,13 +1315,13 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppSize_t.htm">std::size_t</a> q <a href="CppOperatorAssign.htm">=</a> GetProFilesInFolder("").size();<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(n <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> q);<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("Finished <a href="CppRibi.htm\">ribi</a>::<a href="CppQtCreator.htm">QtCreator</a>ProFileZipScript::Test successfully");<br/>
+&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("Finished <a href="CppRibi.htm">ribi</a>::<a href="CppQtCreator.htm">QtCreator</a>ProFileZipScript::Test successfully");<br/>
 }<br/>
 <a href="CppEndif.htm">#endif</a><br/>
 <br/>
-<a href="CppOstream.htm">std::ostream</a>&amp; <a href="CppRibi.htm\">ribi</a>::<b><a href="CppOperatorStreamOut.htm">operator&lt;&lt;</a></b>(<a href="CppOstream.htm">std::ostream</a>&amp; os,<b><a href="CppConst.htm">const</a></b> <a href="CppQtCreator.htm">QtCreator</a>ProFileZipScript&amp; script)<br/>
+<a href="CppOstream.htm">std::ostream</a>&amp; <a href="CppRibi.htm">ribi</a>::<b><a href="CppOperatorStreamOut.htm">operator&lt;&lt;</a></b>(<a href="CppOstream.htm">std::ostream</a>&amp; os,<b><a href="CppConst.htm">const</a></b> <a href="CppQtCreator.htm">QtCreator</a>ProFileZipScript&amp; script)<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppUsing.htm">using</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQtCreator.htm">QtCreator</a>ProFileZipScript::<a href="CppGetPath.htm">GetPath</a>;<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppUsing.htm">using</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQtCreator.htm">QtCreator</a>ProFileZipScript::<a href="CppGetPath.htm">GetPath</a>;<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(script.GetProFileName().size() &gt; 6);<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(script.GetProFileName().substr(0,6) <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <a href="CppString.htm">std::string</a>("../../"));<br/>
 <br/>
@@ -1346,12 +1364,12 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppAdd.htm">Add</a> the folders added by the .pro file<br/>
 &nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> filename: file_names)<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppString.htm">std::string</a> s <a href="CppOperatorAssign.htm">=</a> <a href="CppRibi.htm\">ribi</a>::<a href="CppQtCreator.htm">QtCreator</a>ProFileZipScript::<a href="CppGetPath.htm">GetPath</a>(filename);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppString.htm">std::string</a> s <a href="CppOperatorAssign.htm">=</a> <a href="CppRibi.htm">ribi</a>::<a href="CppQtCreator.htm">QtCreator</a>ProFileZipScript::<a href="CppGetPath.htm">GetPath</a>(filename);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppString.htm">std::string</a> s <a href="CppOperatorAssign.htm">=</a> <a href="CppFilesystem.htm">boost::filesystem</a>::path(filename).parent_path().string();<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppWhile.htm">while</a></b> (!s.empty())<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;folder_names.insert(s);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;s <a href="CppOperatorAssign.htm">=</a> <a href="CppRibi.htm\">ribi</a>::<a href="CppQtCreator.htm">QtCreator</a>ProFileZipScript::<a href="CppGetPath.htm">GetPath</a>(s);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;s <a href="CppOperatorAssign.htm">=</a> <a href="CppRibi.htm">ribi</a>::<a href="CppQtCreator.htm">QtCreator</a>ProFileZipScript::<a href="CppGetPath.htm">GetPath</a>(s);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>s <a href="CppOperatorAssign.htm">=</a> <a href="CppFilesystem.htm">boost::filesystem</a>::path(s).parent_path().string();<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;}<br/>
@@ -1380,7 +1398,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>A file in the .pro file its folder<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;os <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "cp " <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> s <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> " <a href="Projects.htm">Projects</a>/"<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppFilesystem.htm">boost::filesystem</a>::path(script.GetProFileName()).parent_path().string()<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppRibi.htm\">ribi</a>::<a href="CppQtCreator.htm">QtCreator</a>ProFileZipScript::<a href="CppGetPath.htm">GetPath</a>(script.GetProFileName())<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppRibi.htm">ribi</a>::<a href="CppQtCreator.htm">QtCreator</a>ProFileZipScript::<a href="CppGetPath.htm">GetPath</a>(script.GetProFileName())<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> s<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n';<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
@@ -1388,7 +1406,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <br/>
 &nbsp;&nbsp;os <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n';<br/>
 &nbsp;&nbsp;os <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "FILENAME=\""<br/>
-&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppRibi.htm\">ribi</a>::<a href="CppQtCreator.htm">QtCreator</a>ProFileZipScript::<a href="CppGetPath.htm">GetPath</a>( script.GetProFileName() )<br/>
+&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppRibi.htm">ribi</a>::<a href="CppQtCreator.htm">QtCreator</a>ProFileZipScript::<a href="CppGetPath.htm">GetPath</a>( script.GetProFileName() )<br/>
 &nbsp;&nbsp;&nbsp;&nbsp; <a href="CppComment.htm">//</a><a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppFilesystem.htm">boost::filesystem</a>::path( script.GetProFileName() ).parent_path().string()<br/>
 &nbsp;&nbsp;&nbsp;&nbsp; <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "Source\"" <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n';<br/>
 &nbsp;&nbsp;os <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "ZIP_FILENAME=$FILENAME\".zip\"" <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n';<br/>
@@ -1429,7 +1447,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;os <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n';<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; w<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <a href="CppRibi.htm\">ribi</a>::<a href="CppQtCreator.htm">QtCreator</a>ProFileZipScript::GetAbout().Create<a href="CppAbout.htm">About</a>Text();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <a href="CppRibi.htm">ribi</a>::<a href="CppQtCreator.htm">QtCreator</a>ProFileZipScript::GetAbout().Create<a href="CppAbout.htm">About</a>Text();<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppTransform.htm">std::transform</a>(w.begin(),w.end(),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOstream_iterator.htm">std::ostream_iterator</a>&lt;<a href="CppString.htm">std::string</a>&gt;(os,"\n"),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[](<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; s)<br/>

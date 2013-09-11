@@ -197,7 +197,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppShared_ptr.htm">shared_ptr</a>.hpp&gt;<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <br/>
-<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a> {<br/>
+<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
 <br/>
 <b><a href="CppStruct.htm">struct</a></b> <a href="CppStopwatch.htm">Stopwatch</a>;<br/>
 <br/>
@@ -246,7 +246,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 };<br/>
 <br/>
 } <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="ToolTimePoll.htm">ToolTimePoll</a><br/>
-} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a><br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
 <br/>
 <a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> TIMEPOLLDATA_H<br/>
 </code></td></tr></table>
@@ -265,11 +265,11 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppRibi.htm\">ribi</a>::<a href="ToolTimePoll.htm">ToolTimePoll</a>::Data * <a href="CppRibi.htm\">ribi</a>::<a href="ToolTimePoll.htm">ToolTimePoll</a>::Data::<a href="CppInstance.htm">m_instance</a> <a href="CppOperatorAssign.htm">=</a> 0;<br/>
+<a href="CppRibi.htm">ribi</a>::<a href="ToolTimePoll.htm">ToolTimePoll</a>::Data * <a href="CppRibi.htm">ribi</a>::<a href="ToolTimePoll.htm">ToolTimePoll</a>::Data::<a href="CppInstance.htm">m_instance</a> <a href="CppOperatorAssign.htm">=</a> 0;<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppRecursive_mutex.htm">std::recursive_mutex</a> <a href="CppRibi.htm\">ribi</a>::<a href="ToolTimePoll.htm">ToolTimePoll</a>::Data::m_mutex;<br/>
+<a href="CppRecursive_mutex.htm">std::recursive_mutex</a> <a href="CppRibi.htm">ribi</a>::<a href="ToolTimePoll.htm">ToolTimePoll</a>::Data::m_mutex;<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppRibi.htm\">ribi</a>::<a href="ToolTimePoll.htm">ToolTimePoll</a>::Data::Data(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> n_options)<br/>
+<a href="CppRibi.htm">ribi</a>::<a href="ToolTimePoll.htm">ToolTimePoll</a>::Data::Data(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> n_options)<br/>
 &nbsp;&nbsp;: m_index(-1),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;m_<a href="CppTime.htm">time</a>s(n_options,0.0),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;m_<a href="CppStopwatch.htm">stopwatch</a>(<b><a href="CppNew.htm">new</a></b> <a href="CppStopwatch.htm">Stopwatch</a>)<br/>
@@ -277,7 +277,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; <a href="CppRibi.htm\">ribi</a>::<a href="ToolTimePoll.htm">ToolTimePoll</a>::Data::GetFractions() <b><a href="CppConst.htm">const</a></b><br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; <a href="CppRibi.htm">ribi</a>::<a href="ToolTimePoll.htm">ToolTimePoll</a>::Data::GetFractions() <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppLock_guard.htm">std::lock_guard</a>&lt;<a href="CppRecursive_mutex.htm">std::recursive_mutex</a>&gt; lock(m_mutex);<br/>
 &nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; v <a href="CppOperatorAssign.htm">=</a> <a href="CppGetTime.htm">GetTime</a>s(); <a href="CppComment.htm">//</a>Recursion: need <a href="CppRecursive_mutex.htm">std::recursive_mutex</a><br/>
@@ -292,7 +292,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppRibi.htm\">ribi</a>::<a href="ToolTimePoll.htm">ToolTimePoll</a>::Data * <a href="CppRibi.htm\">ribi</a>::<a href="ToolTimePoll.htm">ToolTimePoll</a>::Data::GetInstance()<br/>
+<a href="CppRibi.htm">ribi</a>::<a href="ToolTimePoll.htm">ToolTimePoll</a>::Data * <a href="CppRibi.htm">ribi</a>::<a href="ToolTimePoll.htm">ToolTimePoll</a>::Data::GetInstance()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (<a href="CppInstance.htm">m_instance</a> <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 0)<br/>
 &nbsp;&nbsp;{<br/>
@@ -307,7 +307,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <a href="CppInstance.htm">m_instance</a>;<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; <a href="CppRibi.htm\">ribi</a>::<a href="ToolTimePoll.htm">ToolTimePoll</a>::Data::<a href="CppGetTime.htm">GetTime</a>s() <b><a href="CppConst.htm">const</a></b><br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; <a href="CppRibi.htm">ribi</a>::<a href="ToolTimePoll.htm">ToolTimePoll</a>::Data::<a href="CppGetTime.htm">GetTime</a>s() <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppLock_guard.htm">std::lock_guard</a>&lt;<a href="CppRecursive_mutex.htm">std::recursive_mutex</a>&gt; lock(m_mutex);<br/>
 &nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; <a href="CppTime.htm">time</a>s <a href="CppOperatorAssign.htm">=</a> m_<a href="CppTime.htm">time</a>s;<br/>
@@ -321,7 +321,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <a href="CppTime.htm">time</a>s;<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="ToolTimePoll.htm">ToolTimePoll</a>::Data::SetIndex(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> index)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="ToolTimePoll.htm">ToolTimePoll</a>::Data::SetIndex(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> index)<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppLock_guard.htm">std::lock_guard</a>&lt;<a href="CppRecursive_mutex.htm">std::recursive_mutex</a>&gt; lock(m_mutex);<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (m_index <a href="CppOperatorNotEqual.htm">!=</a> <a href="CppOperatorMinus.htm">-</a>1)<br/>
@@ -373,7 +373,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppAbout.htm">about</a>.h"<br/>
 <br/>
-<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a> {<br/>
+<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
 <b><a href="CppNamespace.htm">namespace</a></b> <a href="ToolTimePoll.htm">ToolTimePoll</a> {<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">///</a>The GUI independent <a href="CppVersion.htm">version</a> of <a href="CppWt.htm">Wt</a><a href="ToolTimePoll.htm">TimePoll</a>MainDialog<br/>
@@ -386,7 +386,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 } <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="ToolTimePoll.htm">ToolTimePoll</a><br/>
 <br/>
-} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a><br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
 <br/>
 <a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> TIMEPOLLMAINDIALOG_H<br/>
 </code></td></tr></table>
@@ -424,7 +424,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppStopwatch.htm">stopwatch</a>.h"<br/>
 <a href="CppInclude.htm">#include</a> "<a href="ToolTimePoll.htm">timepoll</a>menudialog.h"<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppAbout.htm">About</a> <a href="CppRibi.htm\">ribi</a>::<a href="ToolTimePoll.htm">ToolTimePoll</a>::<a href="ToolTimePoll.htm">TimePoll</a>MenuDialog::GetAbout()<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppAbout.htm">About</a> <a href="CppRibi.htm">ribi</a>::<a href="ToolTimePoll.htm">ToolTimePoll</a>::<a href="ToolTimePoll.htm">TimePoll</a>MenuDialog::GetAbout()<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppAbout.htm">About</a> a(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;"Richel Bilderbeek",<br/>
@@ -439,12 +439,12 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> a;<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppRibi.htm\">ribi</a>::<a href="ToolTimePoll.htm">ToolTimePoll</a>::<a href="ToolTimePoll.htm">TimePoll</a>MenuDialog::Get<a href="CppVersion.htm">Version</a>()<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppRibi.htm">ribi</a>::<a href="ToolTimePoll.htm">ToolTimePoll</a>::<a href="ToolTimePoll.htm">TimePoll</a>MenuDialog::Get<a href="CppVersion.htm">Version</a>()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> "4.2";<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm\">ribi</a>::<a href="ToolTimePoll.htm">ToolTimePoll</a>::<a href="ToolTimePoll.htm">TimePoll</a>MenuDialog::Get<a href="CppVersion.htm">Version</a>History()<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm">ribi</a>::<a href="ToolTimePoll.htm">ToolTimePoll</a>::<a href="ToolTimePoll.htm">TimePoll</a>MenuDialog::Get<a href="CppVersion.htm">Version</a>History()<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v;<br/>
 &nbsp;&nbsp;v.push_back("2011-04-13: <a href="CppVersion.htm">Version</a> 0.1: initial <a href="CppVersion.htm">version</a>, the as-simple-as-possible <a href="CppVersion.htm">version</a>");<br/>
@@ -510,7 +510,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppStruct.htm">struct</a></b> <a href="CppWLabel.htm">WLabel</a>;<br/>
 }<br/>
 <br/>
-<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a> {<br/>
+<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
 <b><a href="CppNamespace.htm">namespace</a></b> <a href="ToolTimePoll.htm">ToolTimePoll</a> {<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">///</a><a href="ToolTimePoll.htm">TimePoll</a> its <a href="CppMain.htm">main</a> dialog<br/>
@@ -549,7 +549,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 } <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="ToolTimePoll.htm">ToolTimePoll</a><br/>
 <br/>
-} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a><br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
 <br/>
 <a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> TIMEPOLLWTMAINDIALOG_H<br/>
 </code></td></tr></table>
@@ -600,14 +600,14 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppInclude.htm">#include</a> "<a href="ToolTimePoll.htm">timepoll</a>wtmaindialog.h"<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppRibi.htm\">ribi</a>::<a href="ToolTimePoll.htm">ToolTimePoll</a>::<a href="CppWt.htm">Wt</a><a href="ToolTimePoll.htm">TimePoll</a>MainDialog::<a href="CppWt.htm">Wt</a><a href="ToolTimePoll.htm">TimePoll</a>MainDialog()<br/>
+<a href="CppRibi.htm">ribi</a>::<a href="ToolTimePoll.htm">ToolTimePoll</a>::<a href="CppWt.htm">Wt</a><a href="ToolTimePoll.htm">TimePoll</a>MainDialog::<a href="CppWt.htm">Wt</a><a href="ToolTimePoll.htm">TimePoll</a>MainDialog()<br/>
 {<br/>
 &nbsp;&nbsp;ShowMain();<br/>
 &nbsp;&nbsp;OnServerPush();<br/>
 &nbsp;&nbsp;On<a href="CppTime.htm">Time</a>dServerPush();<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="ToolTimePoll.htm">ToolTimePoll</a>::<a href="CppWt.htm">Wt</a><a href="ToolTimePoll.htm">TimePoll</a>MainDialog::ShowMain()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="ToolTimePoll.htm">ToolTimePoll</a>::<a href="CppWt.htm">Wt</a><a href="ToolTimePoll.htm">TimePoll</a>MainDialog::ShowMain()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;clear();<br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;setContentAlignment(<a href="CppWt.htm">Wt</a>::AlignCenter);<br/>
@@ -633,7 +633,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;ui.m_group-&gt;checkedChanged().connect(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>,&amp;<a href="CppRibi.htm\">ribi</a>::<a href="ToolTimePoll.htm">ToolTimePoll</a>::<a href="CppWt.htm">Wt</a><a href="ToolTimePoll.htm">TimePoll</a>MainDialog::OnChangeIndex);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>,&amp;<a href="CppRibi.htm">ribi</a>::<a href="ToolTimePoll.htm">ToolTimePoll</a>::<a href="CppWt.htm">Wt</a><a href="ToolTimePoll.htm">TimePoll</a>MainDialog::OnChangeIndex);<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Faked <b><a href="CppChar.htm">char</a></b>t<br/>
 &nbsp;&nbsp;{<br/>
@@ -659,20 +659,20 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">///</a>Send the <b><a href="CppNew.htm">new</a></b> selected radio button's index<br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="ToolTimePoll.htm">ToolTimePoll</a>::<a href="CppWt.htm">Wt</a><a href="ToolTimePoll.htm">TimePoll</a>MainDialog::OnChangeIndex()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="ToolTimePoll.htm">ToolTimePoll</a>::<a href="CppWt.htm">Wt</a><a href="ToolTimePoll.htm">TimePoll</a>MainDialog::OnChangeIndex()<br/>
 {<br/>
 &nbsp;&nbsp;<a href="ToolTimePoll.htm">ToolTimePoll</a>::Data::GetInstance()-&gt;SetIndex(ui.m_group-&gt;selectedButtonIndex());<br/>
 &nbsp;&nbsp;<a href="CppWtServerPusher.htm">WtServerPusher</a>::GetInstance()-&gt;Post();<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="ToolTimePoll.htm">ToolTimePoll</a>::<a href="CppWt.htm">Wt</a><a href="ToolTimePoll.htm">TimePoll</a>MainDialog::OnServerPush()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="ToolTimePoll.htm">ToolTimePoll</a>::<a href="CppWt.htm">Wt</a><a href="ToolTimePoll.htm">TimePoll</a>MainDialog::OnServerPush()<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Only index has changed<br/>
 &nbsp;&nbsp;Data * <b><a href="CppConst.htm">const</a></b> data <a href="CppOperatorAssign.htm">=</a> <a href="ToolTimePoll.htm">ToolTimePoll</a>::Data::GetInstance();<br/>
 &nbsp;&nbsp;ui.m_group-&gt;setSelectedButtonIndex(data-&gt;GetIndex());<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="ToolTimePoll.htm">ToolTimePoll</a>::<a href="CppWt.htm">Wt</a><a href="ToolTimePoll.htm">TimePoll</a>MainDialog::On<a href="CppTime.htm">Time</a>dServerPush()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="ToolTimePoll.htm">ToolTimePoll</a>::<a href="CppWt.htm">Wt</a><a href="ToolTimePoll.htm">TimePoll</a>MainDialog::On<a href="CppTime.htm">Time</a>dServerPush()<br/>
 {<br/>
 &nbsp;&nbsp;Data * <b><a href="CppConst.htm">const</a></b> data <a href="CppOperatorAssign.htm">=</a> <a href="ToolTimePoll.htm">ToolTimePoll</a>::Data::GetInstance();<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppTime.htm">Time</a>s have changed<br/>
@@ -757,7 +757,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWContainerWidget.htm">WContainerWidget</a>&gt;<br/>
 <br/>
-<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a> {<br/>
+<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
 <b><a href="CppNamespace.htm">namespace</a></b> <a href="ToolTimePoll.htm">ToolTimePoll</a> {<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <b><a href="CppStruct.htm">struct</a></b> <a href="CppWt.htm">Wt</a><a href="ToolTimePoll.htm">TimePoll</a>MenuDialog : <b><a href="CppPublic.htm">public</a></b> <a href="CppWContainerWidget.htm">Wt::WContainerWidget</a><br/>
@@ -772,7 +772,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 } <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="ToolTimePoll.htm">ToolTimePoll</a><br/>
 <br/>
-} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a><br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
 <br/>
 <a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> TIMEPOLLWTMENUDIALOG_H<br/>
 </code></td></tr></table>
@@ -824,7 +824,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppInclude.htm">#include</a> "<a href="ToolTimePoll.htm">timepoll</a>wtmenudialog.h"<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppRibi.htm\">ribi</a>::<a href="ToolTimePoll.htm">ToolTimePoll</a>::<a href="CppWt.htm">Wt</a><a href="ToolTimePoll.htm">TimePoll</a>MenuDialog::<a href="CppWt.htm">Wt</a><a href="ToolTimePoll.htm">TimePoll</a>MenuDialog()<br/>
+<a href="CppRibi.htm">ribi</a>::<a href="ToolTimePoll.htm">ToolTimePoll</a>::<a href="CppWt.htm">Wt</a><a href="ToolTimePoll.htm">TimePoll</a>MenuDialog::<a href="CppWt.htm">Wt</a><a href="ToolTimePoll.htm">TimePoll</a>MenuDialog()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;setContentAlignment(<a href="CppWt.htm">Wt</a>::AlignCenter);<br/>
 &nbsp;&nbsp;{<br/>
@@ -864,7 +864,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;}<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppWWidget.htm">Wt::WWidget</a> * <a href="CppRibi.htm\">ribi</a>::<a href="ToolTimePoll.htm">ToolTimePoll</a>::<a href="CppWt.htm">Wt</a><a href="ToolTimePoll.htm">TimePoll</a>MenuDialog::CreateNew<a href="CppAbout.htm">About</a>Dialog()<br/>
+<a href="CppWWidget.htm">Wt::WWidget</a> * <a href="CppRibi.htm">ribi</a>::<a href="ToolTimePoll.htm">ToolTimePoll</a>::<a href="CppWt.htm">Wt</a><a href="ToolTimePoll.htm">TimePoll</a>MenuDialog::CreateNew<a href="CppAbout.htm">About</a>Dialog()<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppAbout.htm">About</a> a <a href="CppOperatorAssign.htm">=</a> <a href="ToolTimePoll.htm">TimePoll</a>MenuDialog::GetAbout();<br/>
 &nbsp;&nbsp;a.<a href="CppAdd.htm">Add</a><a href="CppLibrary.htm">Library</a>("<a href="CppWtAutoConfig.htm">WtAutoConfig</a> <a href="CppVersion.htm">version</a>: " <a href="CppOperatorPlus.htm">+</a> <a href="CppWtAutoConfig.htm">WtAutoConfig</a>::Get<a href="CppVersion.htm">Version</a>());<br/>
@@ -877,14 +877,14 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> d;<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppWWidget.htm">Wt::WWidget</a> * <a href="CppRibi.htm\">ribi</a>::<a href="ToolTimePoll.htm">ToolTimePoll</a>::<a href="CppWt.htm">Wt</a><a href="ToolTimePoll.htm">TimePoll</a>MenuDialog::CreateNewMainDialog() <b><a href="CppConst.htm">const</a></b><br/>
+<a href="CppWWidget.htm">Wt::WWidget</a> * <a href="CppRibi.htm">ribi</a>::<a href="ToolTimePoll.htm">ToolTimePoll</a>::<a href="CppWt.htm">Wt</a><a href="ToolTimePoll.htm">TimePoll</a>MenuDialog::CreateNewMainDialog() <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppWt.htm">Wt</a><a href="ToolTimePoll.htm">TimePoll</a>MainDialog * <b><a href="CppConst.htm">const</a></b> d <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppWt.htm">Wt</a><a href="ToolTimePoll.htm">TimePoll</a>MainDialog;<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(d);<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> d;<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppWWidget.htm">Wt::WWidget</a> * <a href="CppRibi.htm\">ribi</a>::<a href="ToolTimePoll.htm">ToolTimePoll</a>::<a href="CppWt.htm">Wt</a><a href="ToolTimePoll.htm">TimePoll</a>MenuDialog::CreateNewWelcomeDialog() <b><a href="CppConst.htm">const</a></b><br/>
+<a href="CppWWidget.htm">Wt::WWidget</a> * <a href="CppRibi.htm">ribi</a>::<a href="ToolTimePoll.htm">ToolTimePoll</a>::<a href="CppWt.htm">Wt</a><a href="ToolTimePoll.htm">TimePoll</a>MenuDialog::CreateNewWelcomeDialog() <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppWContainerWidget.htm">Wt::WContainerWidget</a> * dialog <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppWContainerWidget.htm">Wt::WContainerWidget</a>;<br/>
 &nbsp;&nbsp;dialog-&gt;setContentAlignment(<a href="CppWt.htm">Wt</a>::AlignCenter);<br/>

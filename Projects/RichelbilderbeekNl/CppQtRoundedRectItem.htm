@@ -53,7 +53,7 @@
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppQGraphicsRectItem.htm">QGraphicsRectItem</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;QPen&gt;<br/>
 <br/>
-<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a> {<br/>
+<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
 <br/>
 <a href="CppComment.htm">///</a>Rounded <a href="CppRectangle.htm">rectangle</a> item<br/>
 <b><a href="CppStruct.htm">struct</a></b> <a href="CppQtRoundedRectItem.htm">QtRoundedRectItem</a> : <b><a href="CppPublic.htm">public</a></b> <a href="CppQGraphicsRectItem.htm">QGraphicsRectItem</a><br/>
@@ -125,7 +125,7 @@
 &nbsp;&nbsp;<b><a href="CppDouble.htm">double</a></b> m_radius_y;<br/>
 };<br/>
 <br/>
-} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a><br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
 <br/>
 <a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> QTROUNDEDRECTITEM_H<br/>
 </code></td></tr></table>
@@ -153,7 +153,7 @@
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppQGraphicsScene.htm">QGraphicsScene</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppQPainter.htm">QPainter</a>&gt;<br/>
 <br/>
-<a href="CppRibi.htm\">ribi</a>::<a href="CppQtRoundedRectItem.htm">QtRoundedRectItem</a>::<a href="CppQtRoundedRectItem.htm">QtRoundedRectItem</a>(<a href="CppQGraphicsItem.htm">QGraphicsItem</a> *parent)<br/>
+<a href="CppRibi.htm">ribi</a>::<a href="CppQtRoundedRectItem.htm">QtRoundedRectItem</a>::<a href="CppQtRoundedRectItem.htm">QtRoundedRectItem</a>(<a href="CppQGraphicsItem.htm">QGraphicsItem</a> *parent)<br/>
 &nbsp;&nbsp;: <a href="CppQGraphicsRectItem.htm">QGraphicsRectItem</a>(parent), <a href="CppComment.htm">//</a>New since <a href="CppQt.htm">Qt</a>5<br/>
 &nbsp;&nbsp; m_contour_pen(QPen(<a href="CppQColor.htm">QColor</a>(0,0,0))),<br/>
 &nbsp;&nbsp; m_focus_pen(QPen(<a href="CppQColor.htm">QColor</a>(0,0,0),1,<a href="CppQt.htm">Qt</a>::DashLine))<br/>
@@ -165,12 +165,12 @@
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;SetRoundedRect(<a href="CppQRect.htm">QRect</a>F(-16.0,-16.0,32.0,32.0),4.0,4.0);<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppRibi.htm\">ribi</a>::<a href="CppQtRoundedRectItem.htm">QtRoundedRectItem</a>::Get<a href="CppVersion.htm">Version</a>()<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppRibi.htm">ribi</a>::<a href="CppQtRoundedRectItem.htm">QtRoundedRectItem</a>::Get<a href="CppVersion.htm">Version</a>()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> "1.2";<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm\">ribi</a>::<a href="CppQtRoundedRectItem.htm">QtRoundedRectItem</a>::Get<a href="CppVersion.htm">Version</a>History()<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm">ribi</a>::<a href="CppQtRoundedRectItem.htm">QtRoundedRectItem</a>::Get<a href="CppVersion.htm">Version</a>History()<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v;<br/>
 &nbsp;&nbsp;v.push_back("2012-12-13: <a href="CppVersion.htm">version</a> 1.0: initial <a href="CppVersion.htm">version</a>");<br/>
@@ -181,14 +181,14 @@
 <br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-but-set-parameter"<br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQtRoundedRectItem.htm">QtRoundedRectItem</a>::mouseMoveEvent(<a href="CppQGraphicsSceneMouseEvent.htm">QGraphicsSceneMouseEvent</a> *event)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQtRoundedRectItem.htm">QtRoundedRectItem</a>::mouseMoveEvent(<a href="CppQGraphicsSceneMouseEvent.htm">QGraphicsSceneMouseEvent</a> *event)<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppQGraphicsRectItem.htm">QGraphicsRectItem</a>::mouseMoveEvent(event);<br/>
 &nbsp;&nbsp;m_signal_request_scene_update();<br/>
 }<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQtRoundedRectItem.htm">QtRoundedRectItem</a>::paint(<a href="CppQPainter.htm">QPainter</a> *painter, <b><a href="CppConst.htm">const</a></b> <a href="CppQStyleOptionGraphicsItem.htm">QStyleOptionGraphicsItem</a> *, <a href="CppQWidget.htm">QWidget</a> *)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQtRoundedRectItem.htm">QtRoundedRectItem</a>::paint(<a href="CppQPainter.htm">QPainter</a> *painter, <b><a href="CppConst.htm">const</a></b> <a href="CppQStyleOptionGraphicsItem.htm">QStyleOptionGraphicsItem</a> *, <a href="CppQWidget.htm">QWidget</a> *)<br/>
 {<br/>
 &nbsp;&nbsp;painter-&gt;setBrush(brush());<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>The item can be selected by clicking on it, or can have focus by moving towards it<br/>
@@ -204,7 +204,7 @@
 &nbsp;&nbsp;}<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQtRoundedRectItem.htm">QtRoundedRectItem</a>::SetContourPen(<b><a href="CppConst.htm">const</a></b> QPen&amp; pen)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQtRoundedRectItem.htm">QtRoundedRectItem</a>::SetContourPen(<b><a href="CppConst.htm">const</a></b> QPen&amp; pen)<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (m_contour_pen <a href="CppOperatorNotEqual.htm">!=</a> pen)<br/>
 &nbsp;&nbsp;{<br/>
@@ -214,7 +214,7 @@
 &nbsp;&nbsp;}<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQtRoundedRectItem.htm">QtRoundedRectItem</a>::SetFocusPen(<b><a href="CppConst.htm">const</a></b> QPen&amp; pen)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQtRoundedRectItem.htm">QtRoundedRectItem</a>::SetFocusPen(<b><a href="CppConst.htm">const</a></b> QPen&amp; pen)<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (m_focus_pen <a href="CppOperatorNotEqual.htm">!=</a> pen)<br/>
 &nbsp;&nbsp;{<br/>
@@ -224,7 +224,7 @@
 &nbsp;&nbsp;}<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQtRoundedRectItem.htm">QtRoundedRectItem</a>::SetRadiusX(<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> radius_x)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQtRoundedRectItem.htm">QtRoundedRectItem</a>::SetRadiusX(<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> radius_x)<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (m_radius_x <a href="CppOperatorNotEqual.htm">!=</a> radius_x)<br/>
 &nbsp;&nbsp;{<br/>
@@ -234,7 +234,7 @@
 &nbsp;&nbsp;}<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQtRoundedRectItem.htm">QtRoundedRectItem</a>::SetRadiusY(<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> radius_y)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQtRoundedRectItem.htm">QtRoundedRectItem</a>::SetRadiusY(<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> radius_y)<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (m_radius_y <a href="CppOperatorNotEqual.htm">!=</a> radius_y)<br/>
 &nbsp;&nbsp;{<br/>
@@ -245,7 +245,7 @@
 }<br/>
 <br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQtRoundedRectItem.htm">QtRoundedRectItem</a>::SetRoundedRect(<b><a href="CppConst.htm">const</a></b> <a href="CppQRect.htm">QRect</a>F rect, <b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> radius_x, <b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> radius_y)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQtRoundedRectItem.htm">QtRoundedRectItem</a>::SetRoundedRect(<b><a href="CppConst.htm">const</a></b> <a href="CppQRect.htm">QRect</a>F rect, <b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> radius_x, <b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> radius_y)<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;setRect(rect);<br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;SetRadiusX(radius_x);<br/>

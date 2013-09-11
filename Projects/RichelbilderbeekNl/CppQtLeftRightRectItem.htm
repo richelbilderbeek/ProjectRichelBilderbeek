@@ -75,7 +75,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppQGraphicsRectItem.htm">QGraphicsRectItem</a>&gt;<br/>
 <br/>
-<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a> {<br/>
+<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
 <br/>
 <a href="CppComment.htm">///</a>A rect item that has two focuses: left and right!<br/>
 <b><a href="CppStruct.htm">struct</a></b> <a href="CppQt.htm">Qt</a>LeftRightRectItem : <b><a href="CppPublic.htm">public</a></b> <a href="CppQGraphicsRectItem.htm">QGraphicsRectItem</a><br/>
@@ -104,7 +104,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppEnumClass.htm">enum class</a></b> Focus { left, right } m_focus;<br/>
 };<br/>
 <br/>
-} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a><br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
 <br/>
 <a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> QTLEFTRIGHTRECTITEM_H<br/>
 </code></td></tr></table>
@@ -153,7 +153,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
 <br/>
-<a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a>LeftRightRectItem::<a href="CppQt.htm">Qt</a>LeftRightRectItem(<a href="CppQGraphicsItem.htm">QGraphicsItem</a>* parent)<br/>
+<a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>LeftRightRectItem::<a href="CppQt.htm">Qt</a>LeftRightRectItem(<a href="CppQGraphicsItem.htm">QGraphicsItem</a>* parent)<br/>
  : <a href="CppQGraphicsRectItem.htm">QGraphicsRectItem</a>(parent),<br/>
 &nbsp;&nbsp; m_focus(Focus::left)<br/>
 {<br/>
@@ -164,12 +164,12 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;setRect(-16.0,-16.0,32.0,32.0);<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a>LeftRightRectItem::Get<a href="CppVersion.htm">Version</a>()<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>LeftRightRectItem::Get<a href="CppVersion.htm">Version</a>()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> "1.1";<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a>LeftRightRectItem::Get<a href="CppVersion.htm">Version</a>History()<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>LeftRightRectItem::Get<a href="CppVersion.htm">Version</a>History()<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v;<br/>
 &nbsp;&nbsp;v.push_back("2012-12-19: <a href="CppVersion.htm">version</a> 1.0: initial <a href="CppVersion.htm">version</a>");<br/>
@@ -177,7 +177,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a>LeftRightRectItem::keyPressEvent(<a href="CppQKeyEvent.htm">QKeyEvent</a>* event)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>LeftRightRectItem::keyPressEvent(<a href="CppQKeyEvent.htm">QKeyEvent</a>* event)<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppSwitch.htm">switch</a></b> (event-&gt;key())<br/>
 &nbsp;&nbsp;{<br/>
@@ -206,14 +206,14 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-but-set-parameter"<br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a>LeftRightRectItem::mouseMoveEvent(<a href="CppQGraphicsSceneMouseEvent.htm">QGraphicsSceneMouseEvent</a>* event)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>LeftRightRectItem::mouseMoveEvent(<a href="CppQGraphicsSceneMouseEvent.htm">QGraphicsSceneMouseEvent</a>* event)<br/>
 {<br/>
 &nbsp;&nbsp;m_signal_request_scene_update();<br/>
 &nbsp;&nbsp;<a href="CppQGraphicsRectItem.htm">QGraphicsRectItem</a>::mouseMoveEvent(event);<br/>
 }<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a>LeftRightRectItem::paint(<a href="CppQPainter.htm">QPainter</a>* painter, <b><a href="CppConst.htm">const</a></b> <a href="CppQStyleOptionGraphicsItem.htm">QStyleOptionGraphicsItem</a>* , <a href="CppQWidget.htm">QWidget</a>* )<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>LeftRightRectItem::paint(<a href="CppQPainter.htm">QPainter</a>* painter, <b><a href="CppConst.htm">const</a></b> <a href="CppQStyleOptionGraphicsItem.htm">QStyleOptionGraphicsItem</a>* , <a href="CppQWidget.htm">QWidget</a>* )<br/>
 {<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Always draw the outer rect<br/>

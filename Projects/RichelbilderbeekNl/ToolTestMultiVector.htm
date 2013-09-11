@@ -87,7 +87,7 @@ the <a href="CppMultiVector.htm">MultiVector</a> <a href="CppClass.htm">class</a
 <table summary="ToolTestMultiVector.pro" border = "1"><tr><td><code>
 QT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; += core<br/>
 QT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -= gui<br/>
-<a href="CppQMAKE_CXXFLAGS.htm">QMAKE_CXXFLAGS</a> += -std=<a href="Cpp0x.htm">c++11</a><br/>
+<a href="CppQMAKE_CXXFLAGS.htm">QMAKE_CXXFLAGS</a> += -std=<a href="Cpp11.htm">c++11</a> <a href="CppWall.htm">-Wall</a> <a href="CppWextra.htm">-Wextra</a><br/>
 CONFIG&nbsp;&nbsp; += console<br/>
 CONFIG&nbsp;&nbsp; -= app_bundle<br/>
 TEMPLATE = app<br/>
@@ -129,12 +129,12 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppMultiVector.htm">multivector</a>.h"<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<br/>
 <b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppMultiVector.htm">MultiVector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt; x;<br/>
+&nbsp;&nbsp;<a href="CppRibi.htm">ribi</a>::<a href="CppMultiVector.htm">MultiVector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt; x;<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>1 dimensional<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="Cpp0x.htm">C++0x</a> <a href="CppInitialize.htm">initialization</a><br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="Cpp11.htm">C++11</a> <a href="CppInitialize.htm">initialization</a><br/>
 &nbsp;&nbsp;x.Store( { 0 }, 0);<br/>
 &nbsp;&nbsp;x.Store( { 1 }, 1);<br/>
 &nbsp;&nbsp;x.Store( { 2 }, 2);<br/>

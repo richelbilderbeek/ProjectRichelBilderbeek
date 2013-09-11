@@ -75,7 +75,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppLedWidget.htm">ledwidget</a>.h" <a href="CppComment.htm">//</a>Needed by MOC<br/>
 <br/>
-<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a> {<br/>
+<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
 <br/>
 <a href="CppComment.htm">///</a><a href="CppQtLedDisplayWidget.htm">QtLedDisplayWidget</a> displays a <a href="CppLed.htm">Led</a> without<br/>
 <a href="CppComment.htm">///</a>managing it.<br/>
@@ -99,7 +99,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <br/>
 };<br/>
 <br/>
-} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a><br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
 <br/>
 <a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> QT<a href="CppLed.htm">LED</a>DISPLAYWIDGET_H<br/>
 </code></td></tr></table>
@@ -143,7 +143,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppLed.htm">led</a>.h"<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppQtLedDisplayWidget.htm">qtleddisplaywidget</a>.h"<br/>
 <br/>
-<a href="CppRibi.htm\">ribi</a>::<a href="CppQtLedDisplayWidget.htm">QtLedDisplayWidget</a>::<a href="CppQtLedDisplayWidget.htm">QtLedDisplayWidget</a>(<br/>
+<a href="CppRibi.htm">ribi</a>::<a href="CppQtLedDisplayWidget.htm">QtLedDisplayWidget</a>::<a href="CppQtLedDisplayWidget.htm">QtLedDisplayWidget</a>(<br/>
 &nbsp;&nbsp;<a href="CppQWidget.htm">QWidget</a> *parent,<br/>
 &nbsp;&nbsp;<a href="CppLedWidget.htm">LedWidget</a> * <b><a href="CppConst.htm">const</a></b> <a href="CppWidget.htm">widget</a>)<br/>
 &nbsp;&nbsp;: <a href="CppQWidget.htm">QWidget</a>(parent),<br/>
@@ -154,33 +154,33 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <br/>
 &nbsp;&nbsp;m_<a href="CppWidget.htm">widget</a>-&gt;Get<a href="CppLed.htm">Led</a>()-&gt;m_signal_color_changed.connect(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBind.htm">boost::bind</a>(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;<a href="CppRibi.htm\">ribi</a>::<a href="CppQtLedDisplayWidget.htm">QtLedDisplayWidget</a>::repaint,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;<a href="CppRibi.htm">ribi</a>::<a href="CppQtLedDisplayWidget.htm">QtLedDisplayWidget</a>::repaint,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>));<br/>
 <br/>
 &nbsp;&nbsp;m_<a href="CppWidget.htm">widget</a>-&gt;Get<a href="CppLed.htm">Led</a>()-&gt;m_signal_intensity_changed.connect(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBind.htm">boost::bind</a>(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;<a href="CppRibi.htm\">ribi</a>::<a href="CppQtLedDisplayWidget.htm">QtLedDisplayWidget</a>::repaint,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;<a href="CppRibi.htm">ribi</a>::<a href="CppQtLedDisplayWidget.htm">QtLedDisplayWidget</a>::repaint,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>));<br/>
 <br/>
 &nbsp;&nbsp;m_<a href="CppWidget.htm">widget</a>-&gt;m_signal_<a href="CppGeometry.htm">geometry</a>_changed.connect(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBind.htm">boost::bind</a>(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;<a href="CppRibi.htm\">ribi</a>::<a href="CppQtLedDisplayWidget.htm">QtLedDisplayWidget</a>::repaint,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;<a href="CppRibi.htm">ribi</a>::<a href="CppQtLedDisplayWidget.htm">QtLedDisplayWidget</a>::repaint,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>));<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppRibi.htm\">ribi</a>::<a href="CppQtLedDisplayWidget.htm">QtLedDisplayWidget</a>::Get<a href="CppVersion.htm">Version</a>()<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppRibi.htm">ribi</a>::<a href="CppQtLedDisplayWidget.htm">QtLedDisplayWidget</a>::Get<a href="CppVersion.htm">Version</a>()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> "1.0";<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm\">ribi</a>::<a href="CppQtLedDisplayWidget.htm">QtLedDisplayWidget</a>::Get<a href="CppVersion.htm">Version</a>History()<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm">ribi</a>::<a href="CppQtLedDisplayWidget.htm">QtLedDisplayWidget</a>::Get<a href="CppVersion.htm">Version</a>History()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> {<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;"2011-04-10: <a href="CppVersion.htm">Version</a> 1.0: initial <a href="CppVersion.htm">version</a>"<br/>
 &nbsp;&nbsp;};<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQtLedDisplayWidget.htm">QtLedDisplayWidget</a>::paintEvent(<a href="CppQPaintEvent.htm">QPaintEvent</a> *)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQtLedDisplayWidget.htm">QtLedDisplayWidget</a>::paintEvent(<a href="CppQPaintEvent.htm">QPaintEvent</a> *)<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(m_<a href="CppWidget.htm">widget</a> <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "<a href="CppQtLedDisplayWidget.htm">QtLedDisplayWidget</a> must be <a href="CppInitialize.htm">initialize</a>d with a <a href="CppLed.htm">Led</a>*");<br/>
 &nbsp;&nbsp;<a href="CppQPainter.htm">QPainter</a> p(<b><a href="CppThis.htm">this</a></b>);<br/>
@@ -281,7 +281,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQtLedDisplayWidget.htm">QtLedDisplayWidget</a>::Set<a href="CppLed.htm">Led</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppLedWidget.htm">LedWidget</a> * <b><a href="CppConst.htm">const</a></b> <a href="CppLed.htm">led</a>)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQtLedDisplayWidget.htm">QtLedDisplayWidget</a>::Set<a href="CppLed.htm">Led</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppLedWidget.htm">LedWidget</a> * <b><a href="CppConst.htm">const</a></b> <a href="CppLed.htm">led</a>)<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppLed.htm">led</a>);<br/>
 &nbsp;&nbsp;m_<a href="CppWidget.htm">widget</a> <a href="CppOperatorAssign.htm">=</a> <a href="CppLed.htm">led</a>;<br/>

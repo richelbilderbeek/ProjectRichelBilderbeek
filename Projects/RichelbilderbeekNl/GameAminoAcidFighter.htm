@@ -86,10 +86,13 @@
 QT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; += core gui<br/>
 greaterThan(QT_MAJOR_VERSION, 4): QT += <a href="CppWidget.htm">widget</a>s<br/>
 TEMPLATE = app<br/>
-<a href="CppSOURCES.htm">SOURCES</a> += <a href="CppMain.htm">main</a>.cpp\<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;dialog<a href="CppMain.htm">main</a>.cpp<br/>
-<a href="CppHEADERS.htm">HEADERS</a>&nbsp;&nbsp;+= dialog<a href="CppMain.htm">main</a>.h<br/>
-<a href="CppFORMS.htm">FORMS</a>&nbsp;&nbsp;&nbsp;&nbsp;+= dialog<a href="CppMain.htm">main</a>.ui<br/>
+<a href="CppSOURCES.htm">SOURCES</a> +=\<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;qt<a href="CppMain.htm">main</a>.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;qtaminoacidfighter<a href="CppMain.htm">main</a>dialog.cpp<br/>
+<a href="CppHEADERS.htm">HEADERS</a>&nbsp;&nbsp;+= \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;qtaminoacidfighter<a href="CppMain.htm">main</a>dialog.h<br/>
+<a href="CppFORMS.htm">FORMS</a>&nbsp;&nbsp;&nbsp;&nbsp;+= \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;qtaminoacidfighter<a href="CppMain.htm">main</a>dialog.ui<br/>
 <a href="CppRESOURCES.htm">RESOURCES</a> += \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="GameAminoAcidFighter.htm">GameAminoAcidFighter</a>.qrc<br/>
 </code></td></tr></table>
@@ -99,12 +102,12 @@ TEMPLATE = app<br/>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
-<h2>dialogmain.h</h2>
+<h2>qtaminoacidfightermaindialog.h</h2>
 <p>&nbsp;</p>
 <!-- start of code -->
-<table summary="dialogmain.h" border = "1"><tr><td><code>
-<a href="CppIfndef.htm">#ifndef</a> DIALOGMAIN_H<br/>
-<a href="CppDefine.htm">#define</a> DIALOGMAIN_H<br/>
+<table summary="qtaminoacidfightermaindialog.h" border = "1"><tr><td><code>
+<a href="CppIfndef.htm">#ifndef</a> QTAMINOACIDFIGHTERMAINDIALOG_H<br/>
+<a href="CppDefine.htm">#define</a> QTAMINOACIDFIGHTERMAINDIALOG_H<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppQDialog.htm">QDialog</a>&gt;<br/>
 <br/>
@@ -112,22 +115,22 @@ TEMPLATE = app<br/>
 <b><a href="CppStruct.htm">struct</a></b> <a href="CppQGraphicsPixmapItem.htm">QGraphicsPixmapItem</a>;<br/>
 <br/>
 <b><a href="CppNamespace.htm">namespace</a></b> Ui {<br/>
-&nbsp;&nbsp;<b><a href="CppClass.htm">class</a></b> DialogMain;<br/>
+&nbsp;&nbsp;<b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a>AminoAcidFighterMainDialog;<br/>
 }<br/>
 <br/>
-<b><a href="CppClass.htm">class</a></b> DialogMain : <b><a href="CppPublic.htm">public</a></b> <a href="CppQDialog.htm">QDialog</a><br/>
+<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
+<b><a href="CppNamespace.htm">namespace</a></b> aaf {<br/>
+<br/>
+<b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a>AminoAcidFighterMainDialog : <b><a href="CppPublic.htm">public</a></b> <a href="CppQDialog.htm">QDialog</a><br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppQ_OBJECT.htm">Q_OBJECT</a><br/>
 <br/>
 <b><a href="CppPublic.htm">public</a></b>:<br/>
-&nbsp;&nbsp;<b><a href="CppExplicit.htm">explicit</a></b> DialogMain(<a href="CppQWidget.htm">QWidget</a> *parent <a href="CppOperatorAssign.htm">=</a> 0);<br/>
-&nbsp;&nbsp;~DialogMain();<br/>
-<br/>
-<b><a href="CppProtected.htm">protected</a></b>:<br/>
-&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> changeEvent(<a href="CppQEvent.htm">QEvent</a> *e);<br/>
+&nbsp;&nbsp;<b><a href="CppExplicit.htm">explicit</a></b> <a href="CppQt.htm">Qt</a>AminoAcidFighterMainDialog(<a href="CppQWidget.htm">QWidget</a> *parent <a href="CppOperatorAssign.htm">=</a> 0);<br/>
+&nbsp;&nbsp;~<a href="CppQt.htm">Qt</a>AminoAcidFighterMainDialog();<br/>
 <br/>
 <b><a href="CppPrivate.htm">private</a></b>:<br/>
-&nbsp;&nbsp;<a href="CppUi.htm">Ui</a>::DialogMain *ui;<br/>
+&nbsp;&nbsp;<a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a>AminoAcidFighterMainDialog *ui;<br/>
 &nbsp;&nbsp;<a href="CppQTimer.htm">QTimer</a> * <b><a href="CppConst.htm">const</a></b> m_<a href="CppTime.htm">time</a>r;<br/>
 &nbsp;&nbsp;<a href="CppQGraphicsScene.htm">QGraphicsScene</a> * <b><a href="CppConst.htm">const</a></b> m_scene;<br/>
 &nbsp;&nbsp;<a href="CppQGraphicsPixmapItem.htm">QGraphicsPixmapItem</a> * <b><a href="CppConst.htm">const</a></b> m_sprite;<br/>
@@ -143,7 +146,10 @@ TEMPLATE = app<br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> onButtonRight();<br/>
 };<br/>
 <br/>
-<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> DIALOGMAIN_H<br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> aaf<br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
+<br/>
+<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> QTAMINOACIDFIGHTERMAINDIALOG_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -151,10 +157,10 @@ TEMPLATE = app<br/>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
-<h2>dialogmain.cpp</h2>
+<h2>qtaminoacidfightermaindialog.cpp</h2>
 <p>&nbsp;</p>
 <!-- start of code -->
-<table summary="dialogmain.cpp" border = "1"><tr><td><code>
+<table summary="qtaminoacidfightermaindialog.cpp" border = "1"><tr><td><code>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppCmathH.htm">cmath</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppIostreamH.htm">iostream</a>&gt;<br/>
@@ -165,16 +171,16 @@ TEMPLATE = app<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppQKeyEvent.htm">QKeyEvent</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppQTimer.htm">QTimer</a>&gt;<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> "dialogmain.h"<br/>
-<a href="CppInclude.htm">#include</a> "ui_dialogmain.h"<br/>
+<a href="CppInclude.htm">#include</a> "qtaminoacidfightermaindialog.h"<br/>
+<a href="CppInclude.htm">#include</a> "ui_qtaminoacidfightermaindialog.h"<br/>
 <br/>
-DialogMain::DialogMain(<a href="CppQWidget.htm">QWidget</a> *parent) :<br/>
-&nbsp;&nbsp;<a href="CppQDialog.htm">QDialog</a>(parent),<br/>
-&nbsp;&nbsp;ui(<b><a href="CppNew.htm">new</a></b> <a href="CppUi.htm">Ui</a>::DialogMain),<br/>
-&nbsp;&nbsp;m_<a href="CppTime.htm">time</a>r(<b><a href="CppNew.htm">new</a></b> <a href="CppQTimer.htm">QTimer</a>(<b><a href="CppThis.htm">this</a></b>)),<br/>
-&nbsp;&nbsp;m_scene(<b><a href="CppNew.htm">new</a></b> <a href="CppQGraphicsScene.htm">QGraphicsScene</a>(<b><a href="CppThis.htm">this</a></b>)),<br/>
-&nbsp;&nbsp;m_sprite(<b><a href="CppNew.htm">new</a></b> <a href="CppQGraphicsPixmapItem.htm">QGraphicsPixmapItem</a>),<br/>
-&nbsp;&nbsp;m_angle(0.0)<br/>
+<a href="CppRibi.htm">ribi</a>::aaf::<a href="CppQt.htm">Qt</a>AminoAcidFighterMainDialog::<a href="CppQt.htm">Qt</a>AminoAcidFighterMainDialog(<a href="CppQWidget.htm">QWidget</a> *parent)<br/>
+&nbsp;&nbsp;: <a href="CppQDialog.htm">QDialog</a>(parent),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;ui(<b><a href="CppNew.htm">new</a></b> <a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a>AminoAcidFighterMainDialog),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_<a href="CppTime.htm">time</a>r(<b><a href="CppNew.htm">new</a></b> <a href="CppQTimer.htm">QTimer</a>(<b><a href="CppThis.htm">this</a></b>)),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_scene(<b><a href="CppNew.htm">new</a></b> <a href="CppQGraphicsScene.htm">QGraphicsScene</a>(<b><a href="CppThis.htm">this</a></b>)),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_sprite(<b><a href="CppNew.htm">new</a></b> <a href="CppQGraphicsPixmapItem.htm">QGraphicsPixmapItem</a>),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_angle(0.0)<br/>
 {<br/>
 &nbsp;&nbsp;ui-&gt;setupUi(<b><a href="CppThis.htm">this</a></b>);<br/>
 <br/>
@@ -210,26 +216,14 @@ DialogMain::DialogMain(<a href="CppQWidget.htm">QWidget</a> *parent) :<br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;move( screen.center() <a href="CppOperatorMinus.htm">-</a> <b><a href="CppThis.htm">this</a></b>-&gt;rect().center() );<br/>
 }<br/>
 <br/>
-DialogMain::~DialogMain()<br/>
+<a href="CppRibi.htm">ribi</a>::aaf::<a href="CppQt.htm">Qt</a>AminoAcidFighterMainDialog::~<a href="CppQt.htm">Qt</a>AminoAcidFighterMainDialog()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppDelete.htm">delete</a></b> ui;<br/>
 &nbsp;&nbsp;<b><a href="CppDelete.htm">delete</a></b> m_sprite;<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> DialogMain::changeEvent(<a href="CppQEvent.htm">QEvent</a> *e)<br/>
-{<br/>
-&nbsp;&nbsp;<a href="CppQDialog.htm">QDialog</a>::changeEvent(e);<br/>
-&nbsp;&nbsp;<b><a href="CppSwitch.htm">switch</a></b> (e-&gt;type()) {<br/>
-&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> <a href="CppQEvent.htm">QEvent</a>::LanguageChange:<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;ui-&gt;retranslateUi(<b><a href="CppThis.htm">this</a></b>);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppBreak.htm">break</a></b>;<br/>
-&nbsp;&nbsp;<b><a href="CppDefault.htm">default</a></b>:<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppBreak.htm">break</a></b>;<br/>
-&nbsp;&nbsp;}<br/>
-}<br/>
-<br/>
 <a href="CppComment.htm">//</a>Sets the scale of the maze<br/>
-<b><a href="CppVoid.htm">void</a></b> DialogMain::resizeEvent(<a href="CppQResizeEvent.htm">QResizeEvent</a>*)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::aaf::<a href="CppQt.htm">Qt</a>AminoAcidFighterMainDialog::resizeEvent(<a href="CppQResizeEvent.htm">QResizeEvent</a>*)<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> size <a href="CppOperatorAssign.htm">=</a> <a href="CppMax.htm">std::max</a>(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;m_sprite-&gt;pixmap().width(),<br/>
@@ -242,7 +236,7 @@ DialogMain::~DialogMain()<br/>
 &nbsp;&nbsp;m_sprite-&gt;setScale(scale);<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> DialogMain::keyPressEvent(<a href="CppQKeyEvent.htm">QKeyEvent</a>* e)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::aaf::<a href="CppQt.htm">Qt</a>AminoAcidFighterMainDialog::keyPressEvent(<a href="CppQKeyEvent.htm">QKeyEvent</a>* e)<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppSwitch.htm">switch</a></b> (e-&gt;key())<br/>
 &nbsp;&nbsp;{<br/>
@@ -257,13 +251,13 @@ DialogMain::~DialogMain()<br/>
 &nbsp;&nbsp;}<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> DialogMain::onTick()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::aaf::<a href="CppQt.htm">Qt</a>AminoAcidFighterMainDialog::onTick()<br/>
 {<br/>
 &nbsp;&nbsp;m_angle<a href="CppOperatorPlusAssign.htm">+=</a>1.0;<br/>
 &nbsp;&nbsp;m_sprite-&gt;setRotation(m_angle);<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> DialogMain::onCheck()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::aaf::<a href="CppQt.htm">Qt</a>AminoAcidFighterMainDialog::onCheck()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (ui-&gt;check_<b><a href="CppAuto.htm">auto</a></b>_rotate-&gt;isChecked())<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;m_<a href="CppTime.htm">time</a>r-&gt;start();<br/>
@@ -271,13 +265,13 @@ DialogMain::~DialogMain()<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;m_<a href="CppTime.htm">time</a>r-&gt;stop();<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> DialogMain::onButtonLeft()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::aaf::<a href="CppQt.htm">Qt</a>AminoAcidFighterMainDialog::onButtonLeft()<br/>
 {<br/>
 &nbsp;&nbsp;m_angle<a href="CppOperatorMinusAssign.htm">-=</a>1.0;<br/>
 &nbsp;&nbsp;m_sprite-&gt;setRotation(m_angle);<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> DialogMain::onButtonRight()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::aaf::<a href="CppQt.htm">Qt</a>AminoAcidFighterMainDialog::onButtonRight()<br/>
 {<br/>
 &nbsp;&nbsp;m_angle<a href="CppOperatorPlusAssign.htm">+=</a>1.0;<br/>
 &nbsp;&nbsp;m_sprite-&gt;setRotation(m_angle);<br/>
@@ -289,17 +283,17 @@ DialogMain::~DialogMain()<br/>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
-<h2>main.cpp</h2>
+<h2>qtmain.cpp</h2>
 <p>&nbsp;</p>
 <!-- start of code -->
-<table summary="main.cpp" border = "1"><tr><td><code>
+<table summary="qtmain.cpp" border = "1"><tr><td><code>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppQApplication.htm">QApplication</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> "dialogmain.h"<br/>
+<a href="CppInclude.htm">#include</a> "qtaminoacidfightermaindialog.h"<br/>
 <br/>
 <b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>(<b><a href="CppInt.htm">int</a></b> <a href="CppArgc.htm">argc</a>, <b><a href="CppChar.htm">char</a></b> *<a href="CppArgc.htm">argv</a>[])<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppQApplication.htm">QApplication</a> a(<a href="CppArgc.htm">argc</a>, <a href="CppArgc.htm">argv</a>);<br/>
-&nbsp;&nbsp;<a href="CppRibi.htm\">ribi</a>::DialogMain w;<br/>
+&nbsp;&nbsp;<a href="CppRibi.htm">ribi</a>::aaf::<a href="CppQt.htm">Qt</a>AminoAcidFighterMainDialog w;<br/>
 &nbsp;&nbsp;w.show();<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> a.exec();<br/>
 }<br/>

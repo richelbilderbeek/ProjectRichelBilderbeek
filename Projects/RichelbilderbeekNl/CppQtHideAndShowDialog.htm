@@ -64,9 +64,12 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppIfndef.htm">#ifndef</a> QTHIDEA<a href="CppNds.htm">NDS</a>HOWDIALOG_H<br/>
 <a href="CppDefine.htm">#define</a> QTHIDEA<a href="CppNds.htm">NDS</a>HOWDIALOG_H<br/>
 <br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppQDialog.htm">QDialog</a>&gt;<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
 <br/>
-<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a> {<br/>
+<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
 <br/>
 <a href="CppComment.htm">///</a>Dialog that lets parent dialog display children dialogs <b><a href="CppWhile.htm">while</a></b> being hidden<br/>
 <a href="CppComment.htm">///</a>from http://richelbilderbeek.nl/<a href="CppQtHideAndShowDialog.htm">CppQtHideAndShowDialog</a>.htm<br/>
@@ -112,7 +115,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <br/>
 };<br/>
 <br/>
-} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a><br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
 <br/>
 <a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> QTHIDEA<a href="CppNds.htm">NDS</a>HOWDIALOG_H<br/>
 </code></td></tr></table>
@@ -146,38 +149,41 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="CppQtHideAndShowDialog.htm">CppQtHideAndShowDialog</a>.htm<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppQtHideAndShowDialog.htm">qthideandshowdialog</a>.h"<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppQKeyEvent.htm">QKeyEvent</a>&gt;<br/>
 <br/>
 <a href="CppComment.htm">//</a><a href="CppInclude.htm">#include</a> "<a href="CppTrace.htm">trace</a>.h"<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
 <br/>
-<a href="CppRibi.htm\">ribi</a>::<a href="CppQtHideAndShowDialog.htm">QtHideAndShowDialog</a>::<a href="CppQtHideAndShowDialog.htm">QtHideAndShowDialog</a>(<a href="CppQWidget.htm">QWidget</a>* parent)<br/>
+<a href="CppRibi.htm">ribi</a>::<a href="CppQtHideAndShowDialog.htm">QtHideAndShowDialog</a>::<a href="CppQtHideAndShowDialog.htm">QtHideAndShowDialog</a>(<a href="CppQWidget.htm">QWidget</a>* parent)<br/>
 &nbsp;&nbsp;: <a href="CppQDialog.htm">QDialog</a>(parent),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;m_show_child { <b><a href="CppFalse.htm">false</a></b> }<br/>
 {<br/>
 <br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQtHideAndShowDialog.htm">QtHideAndShowDialog</a>::close_child()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQtHideAndShowDialog.htm">QtHideAndShowDialog</a>::close_child()<br/>
 {<br/>
 &nbsp;&nbsp;m_show_child <a href="CppOperatorAssign.htm">=</a> <b><a href="CppFalse.htm">false</a></b>;<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQtHideAndShowDialog.htm">QtHideAndShowDialog</a>::closeEvent(QCloseEvent*)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQtHideAndShowDialog.htm">QtHideAndShowDialog</a>::closeEvent(QCloseEvent*)<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppQDialog.htm">QDialog</a>::closeEvent(event); <a href="CppComment.htm">//</a>Not needed<br/>
 &nbsp;&nbsp;<b><a href="CppEmit.htm">emit</a></b> close_me();<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppQDialog.htm">QDialog</a>::closeEvent(event); <a href="CppComment.htm">//</a>Not needed<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppRibi.htm\">ribi</a>::<a href="CppQtHideAndShowDialog.htm">QtHideAndShowDialog</a>::Get<a href="CppVersion.htm">Version</a>()<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppRibi.htm">ribi</a>::<a href="CppQtHideAndShowDialog.htm">QtHideAndShowDialog</a>::Get<a href="CppVersion.htm">Version</a>()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> "1.3";<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm\">ribi</a>::<a href="CppQtHideAndShowDialog.htm">QtHideAndShowDialog</a>::Get<a href="CppVersion.htm">Version</a>History()<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm">ribi</a>::<a href="CppQtHideAndShowDialog.htm">QtHideAndShowDialog</a>::Get<a href="CppVersion.htm">Version</a>History()<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v {<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;"2012-11-13: <a href="CppVersion.htm">version</a> 1.0: initial <a href="CppVersion.htm">version</a>",<br/>
@@ -188,13 +194,13 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQtHideAndShowDialog.htm">QtHideAndShowDialog</a>::keyPressEvent(<a href="CppQKeyEvent.htm">QKeyEvent</a>* event)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQtHideAndShowDialog.htm">QtHideAndShowDialog</a>::keyPressEvent(<a href="CppQKeyEvent.htm">QKeyEvent</a>* event)<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (event-&gt;key() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <a href="CppQt.htm">Qt</a>::Key_Escape) { close(); <b><a href="CppReturn.htm">return</a></b>; }<br/>
 &nbsp;&nbsp;<a href="CppQDialog.htm">QDialog</a>::keyPressEvent(event);<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQtHideAndShowDialog.htm">QtHideAndShowDialog</a>::ShowChild(<a href="CppQtHideAndShowDialog.htm">QtHideAndShowDialog</a> * <b><a href="CppConst.htm">const</a></b> dialog)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQtHideAndShowDialog.htm">QtHideAndShowDialog</a>::ShowChild(<a href="CppQtHideAndShowDialog.htm">QtHideAndShowDialog</a> * <b><a href="CppConst.htm">const</a></b> dialog)<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(dialog);<br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;hide();<br/>
@@ -207,7 +213,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;show();<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQtHideAndShowDialog.htm">QtHideAndShowDialog</a>::ShowModal(<a href="CppQtHideAndShowDialog.htm">QtHideAndShowDialog</a> * <b><a href="CppConst.htm">const</a></b> dialog)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQtHideAndShowDialog.htm">QtHideAndShowDialog</a>::ShowModal(<a href="CppQtHideAndShowDialog.htm">QtHideAndShowDialog</a> * <b><a href="CppConst.htm">const</a></b> dialog)<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(dialog);<br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;setEnabled(<b><a href="CppFalse.htm">false</a></b>);<br/>

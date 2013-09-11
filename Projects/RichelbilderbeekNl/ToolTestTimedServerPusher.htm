@@ -160,7 +160,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/checked_delete.hpp&gt;<br/>
 <br/>
-<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a> {<br/>
+<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
 <b><a href="CppNamespace.htm">namespace</a></b> <a href="ToolTestTimedServerPusher.htm">ToolTestTimedServerPusher</a> {<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">///</a>Data is a <a href="CppDesignPatternSingleton.htm">Singleton</a><br/>
@@ -196,7 +196,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 } <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="ToolTestTimedServerPusher.htm">ToolTestTimedServerPusher</a><br/>
-} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a><br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
 <br/>
 <a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> TOOLTESTTIMEDSERVERPUSHERDATA_H<br/>
 </code></td></tr></table>
@@ -235,11 +235,11 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppRibi.htm\">ribi</a>::<a href="ToolTestTimedServerPusher.htm">ToolTestTimedServerPusher</a>::Data * <a href="CppRibi.htm\">ribi</a>::<a href="ToolTestTimedServerPusher.htm">ToolTestTimedServerPusher</a>::Data::<a href="CppInstance.htm">m_instance</a> <a href="CppOperatorAssign.htm">=</a> 0;<br/>
+<a href="CppRibi.htm">ribi</a>::<a href="ToolTestTimedServerPusher.htm">ToolTestTimedServerPusher</a>::Data * <a href="CppRibi.htm">ribi</a>::<a href="ToolTestTimedServerPusher.htm">ToolTestTimedServerPusher</a>::Data::<a href="CppInstance.htm">m_instance</a> <a href="CppOperatorAssign.htm">=</a> 0;<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppMutex.htm">std::mutex</a> <a href="CppRibi.htm\">ribi</a>::<a href="ToolTestTimedServerPusher.htm">ToolTestTimedServerPusher</a>::Data::m_mutex;<br/>
+<a href="CppMutex.htm">std::mutex</a> <a href="CppRibi.htm">ribi</a>::<a href="ToolTestTimedServerPusher.htm">ToolTestTimedServerPusher</a>::Data::m_mutex;<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppRibi.htm\">ribi</a>::<a href="ToolTestTimedServerPusher.htm">ToolTestTimedServerPusher</a>::Data::Data()<br/>
+<a href="CppRibi.htm">ribi</a>::<a href="ToolTestTimedServerPusher.htm">ToolTestTimedServerPusher</a>::Data::Data()<br/>
 &nbsp;&nbsp;: m_<a href="CppTime.htm">time</a>_start(<a href="CppTime.htm">std::time</a>(0)),<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>m_s(<a href="CppChrono.htm">std::chrono</a>::system_clock::now()),<br/>
 &nbsp;&nbsp;m_requested(0)<br/>
@@ -248,12 +248,12 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppRibi.htm\">ribi</a>::<a href="ToolTestTimedServerPusher.htm">ToolTestTimedServerPusher</a>::Data::~Data()<br/>
+<a href="CppRibi.htm">ribi</a>::<a href="ToolTestTimedServerPusher.htm">ToolTestTimedServerPusher</a>::Data::~Data()<br/>
 {<br/>
 <br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppRibi.htm\">ribi</a>::<a href="ToolTestTimedServerPusher.htm">ToolTestTimedServerPusher</a>::Data * <a href="CppRibi.htm\">ribi</a>::<a href="ToolTestTimedServerPusher.htm">ToolTestTimedServerPusher</a>::Data::GetInstance()<br/>
+<a href="CppRibi.htm">ribi</a>::<a href="ToolTestTimedServerPusher.htm">ToolTestTimedServerPusher</a>::Data * <a href="CppRibi.htm">ribi</a>::<a href="ToolTestTimedServerPusher.htm">ToolTestTimedServerPusher</a>::Data::GetInstance()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (!<a href="CppInstance.htm">m_instance</a>)<br/>
 &nbsp;&nbsp;{<br/>
@@ -267,7 +267,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <a href="CppInstance.htm">m_instance</a>;<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppRibi.htm\">ribi</a>::<a href="ToolTestTimedServerPusher.htm">ToolTestTimedServerPusher</a>::Data::GetData() <b><a href="CppConst.htm">const</a></b><br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppRibi.htm">ribi</a>::<a href="ToolTestTimedServerPusher.htm">ToolTestTimedServerPusher</a>::Data::GetData() <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppLock_guard.htm">std::lock_guard</a>&lt;<a href="CppMutex.htm">std::mutex</a>&gt; lock(m_mutex);<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppChrono.htm">std::chrono</a>::system_clock::<a href="CppTime.htm">time</a>_<a href="CppPointer.htm">point</a> now <a href="CppOperatorAssign.htm">=</a> <a href="CppChrono.htm">std::chrono</a>::system_clock::now();<br/>
@@ -321,7 +321,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppAbout.htm">about</a>.h"<br/>
 <br/>
-<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a> {<br/>
+<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
 <b><a href="CppNamespace.htm">namespace</a></b> <a href="ToolTestTimedServerPusher.htm">ToolTestTimedServerPusher</a> {<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">///</a>The GUI independent part of the menu<br/>
@@ -339,7 +339,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 } <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="ToolTestTimedServerPusher.htm">ToolTestTimedServerPusher</a><br/>
 <br/>
-} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a><br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
 <br/>
 <a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> TESTTIMEDSERVERPUSHERMENUDIALOG_H<br/>
 </code></td></tr></table>
@@ -378,7 +378,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppAbout.htm">About</a> <a href="CppRibi.htm\">ribi</a>::<a href="ToolTestTimedServerPusher.htm">ToolTestTimedServerPusher</a>::MenuDialog::GetAbout()<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppAbout.htm">About</a> <a href="CppRibi.htm">ribi</a>::<a href="ToolTestTimedServerPusher.htm">ToolTestTimedServerPusher</a>::MenuDialog::GetAbout()<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppAbout.htm">About</a> a(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;"Richel Bilderbeek",<br/>
@@ -392,12 +392,12 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> a;<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppRibi.htm\">ribi</a>::<a href="ToolTestTimedServerPusher.htm">ToolTestTimedServerPusher</a>::MenuDialog::Get<a href="CppVersion.htm">Version</a>()<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppRibi.htm">ribi</a>::<a href="ToolTestTimedServerPusher.htm">ToolTestTimedServerPusher</a>::MenuDialog::Get<a href="CppVersion.htm">Version</a>()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> "1.0";<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm\">ribi</a>::<a href="ToolTestTimedServerPusher.htm">ToolTestTimedServerPusher</a>::MenuDialog::Get<a href="CppVersion.htm">Version</a>History()<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm">ribi</a>::<a href="ToolTestTimedServerPusher.htm">ToolTestTimedServerPusher</a>::MenuDialog::Get<a href="CppVersion.htm">Version</a>History()<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v;<br/>
 &nbsp;&nbsp;v.push_back("2011-08-05: <a href="CppVersion.htm">Version</a> 1.0: initial <a href="CppVersion.htm">version</a>, derived from <a href="ToolTestBroadcastServer.htm">TestBroadcastServer</a>");<br/>
@@ -447,7 +447,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppStruct.htm">struct</a></b> <a href="CppWLineEdit.htm">WLineEdit</a>;<br/>
 }<br/>
 <br/>
-<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a> {<br/>
+<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
 <b><a href="CppNamespace.htm">namespace</a></b> <a href="ToolTestTimedServerPusher.htm">ToolTestTimedServerPusher</a> {<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">///</a><a href="ToolTestTimedServerPusher.htm">TestTimedServerPusher</a> its <a href="CppMain.htm">main</a> dialog<br/>
@@ -470,7 +470,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 } <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="ToolTestTimedServerPusher.htm">ToolTestTimedServerPusher</a><br/>
 <br/>
-} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a><br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
 <br/>
 <br/>
 <a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> WTTESTTIMEDSERVERPUSHERMAINDIALOG_H<br/>
@@ -519,7 +519,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppRibi.htm\">ribi</a>::<a href="ToolTestTimedServerPusher.htm">ToolTestTimedServerPusher</a>::WtMainDialog::WtMainDialog()<br/>
+<a href="CppRibi.htm">ribi</a>::<a href="ToolTestTimedServerPusher.htm">ToolTestTimedServerPusher</a>::WtMainDialog::WtMainDialog()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;clear();<br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;setContentAlignment(<a href="CppWt.htm">Wt</a>::AlignCenter);<br/>
@@ -527,7 +527,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;On<a href="CppTime.htm">Time</a>dServerPush();<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="ToolTestTimedServerPusher.htm">ToolTestTimedServerPusher</a>::WtMainDialog::On<a href="CppTime.htm">Time</a>dServerPush()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="ToolTestTimedServerPusher.htm">ToolTestTimedServerPusher</a>::WtMainDialog::On<a href="CppTime.htm">Time</a>dServerPush()<br/>
 {<br/>
 &nbsp;&nbsp;ui.m_text-&gt;setText(<a href="ToolTestTimedServerPusher.htm">ToolTestTimedServerPusher</a>::Data::GetInstance()-&gt;GetData());<br/>
 <br/>
@@ -575,7 +575,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWContainerWidget.htm">WContainerWidget</a>&gt;<br/>
 <br/>
-<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a> {<br/>
+<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
 <b><a href="CppNamespace.htm">namespace</a></b> <a href="ToolTestTimedServerPusher.htm">ToolTestTimedServerPusher</a> {<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <b><a href="CppStruct.htm">struct</a></b> WtMenuDialog : <b><a href="CppPublic.htm">public</a></b> <a href="CppWContainerWidget.htm">Wt::WContainerWidget</a><br/>
@@ -590,7 +590,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 } <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="ToolTestTimedServerPusher.htm">ToolTestTimedServerPusher</a><br/>
 <br/>
-} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a><br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
 <br/>
 <a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> WTTESTTIMEDSERVERPUSHERMENUDIALOG_H<br/>
 </code></td></tr></table>
@@ -641,7 +641,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppRibi.htm\">ribi</a>::<a href="ToolTestTimedServerPusher.htm">ToolTestTimedServerPusher</a>::WtMenuDialog::WtMenuDialog()<br/>
+<a href="CppRibi.htm">ribi</a>::<a href="ToolTestTimedServerPusher.htm">ToolTestTimedServerPusher</a>::WtMenuDialog::WtMenuDialog()<br/>
 {<br/>
  <b><a href="CppThis.htm">this</a></b>-&gt;setContentAlignment(<a href="CppWt.htm">Wt</a>::AlignCenter);<br/>
 &nbsp;&nbsp;{<br/>
@@ -681,7 +681,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;}<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppWWidget.htm">Wt::WWidget</a> * <a href="CppRibi.htm\">ribi</a>::<a href="ToolTestTimedServerPusher.htm">ToolTestTimedServerPusher</a>::WtMenuDialog::CreateNew<a href="CppAbout.htm">About</a>Dialog()<br/>
+<a href="CppWWidget.htm">Wt::WWidget</a> * <a href="CppRibi.htm">ribi</a>::<a href="ToolTestTimedServerPusher.htm">ToolTestTimedServerPusher</a>::WtMenuDialog::CreateNew<a href="CppAbout.htm">About</a>Dialog()<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppAbout.htm">About</a> a <a href="CppOperatorAssign.htm">=</a> <a href="ToolTestTimedServerPusher.htm">ToolTestTimedServerPusher</a>::MenuDialog::GetAbout();<br/>
 &nbsp;&nbsp;a.<a href="CppAdd.htm">Add</a><a href="CppLibrary.htm">Library</a>("<a href="CppWtAutoConfig.htm">WtAutoConfig</a> <a href="CppVersion.htm">version</a>: " <a href="CppOperatorPlus.htm">+</a> <a href="CppWtAutoConfig.htm">WtAutoConfig</a>::Get<a href="CppVersion.htm">Version</a>());<br/>
@@ -692,14 +692,14 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> d;<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppWWidget.htm">Wt::WWidget</a> * <a href="CppRibi.htm\">ribi</a>::<a href="ToolTestTimedServerPusher.htm">ToolTestTimedServerPusher</a>::WtMenuDialog::CreateNewMainDialog() <b><a href="CppConst.htm">const</a></b><br/>
+<a href="CppWWidget.htm">Wt::WWidget</a> * <a href="CppRibi.htm">ribi</a>::<a href="ToolTestTimedServerPusher.htm">ToolTestTimedServerPusher</a>::WtMenuDialog::CreateNewMainDialog() <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;WtMainDialog * <b><a href="CppConst.htm">const</a></b> d <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> WtMainDialog;<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(d);<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> d;<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppWWidget.htm">Wt::WWidget</a> * <a href="CppRibi.htm\">ribi</a>::<a href="ToolTestTimedServerPusher.htm">ToolTestTimedServerPusher</a>::WtMenuDialog::CreateNewWelcomeDialog() <b><a href="CppConst.htm">const</a></b><br/>
+<a href="CppWWidget.htm">Wt::WWidget</a> * <a href="CppRibi.htm">ribi</a>::<a href="ToolTestTimedServerPusher.htm">ToolTestTimedServerPusher</a>::WtMenuDialog::CreateNewWelcomeDialog() <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppWContainerWidget.htm">Wt::WContainerWidget</a> * dialog <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppWContainerWidget.htm">Wt::WContainerWidget</a>;<br/>
 &nbsp;&nbsp;dialog-&gt;setContentAlignment(<a href="CppWt.htm">Wt</a>::AlignCenter);<br/>

@@ -42,6 +42,7 @@
 <br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppMusic.htm">music</a>note.h"<br/>
 <br/>
+<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
 <b><a href="CppNamespace.htm">namespace</a></b> <a href="CppMusic.htm">Music</a> {<br/>
 <br/>
 <a href="CppComment.htm">///</a>A Bar is a collection of Note <a href="CppInstance.htm">instances</a> ensuring that<br/>
@@ -59,6 +60,7 @@
 };<br/>
 <br/>
 } <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppMusic.htm">Music</a><br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
 <br/>
 <a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> MUSICBAR_H<br/>
 </code></td></tr></table>
@@ -72,20 +74,12 @@
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="musicbar.cpp" border = "1"><tr><td><code>
-<a href="CppIfdef.htm">#ifdef</a> _WIN32<br/>
-<a href="CppComment.htm">//</a>See http://www.richelbilderbeek.nl/Cpp<a href="CppCompile.htm">Compile</a>ErrorSwprintfHasNotBeenDeclared.htm<br/>
-<a href="CppUndef.htm">#undef</a> __STRICT_ANSI__<br/>
-<a href="CppEndif.htm">#endif</a><br/>
-<br/>
-<a href="CppComment.htm">//</a><a href="CppInclude.htm">#include</a> own <a href="CppHeaderFile.htm">header file</a> as first substantive line of code, from:<br/>
-<a href="CppComment.htm">//</a> * John Lakos. Large-Scale <a href="Cpp.htm">C++</a> Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppMusic.htm">music</a>bar.h"<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
 <br/>
-<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppMusic.htm">Music</a> {<br/>
 <br/>
-Bar::Bar(<br/>
+<a href="CppRibi.htm">ribi</a>::<a href="CppMusic.htm">Music</a>::Bar::Bar(<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppPair.htm">std::pair</a>&lt;<b><a href="CppInt.htm">int</a></b>,<b><a href="CppInt.htm">int</a></b>&gt; <a href="CppTime.htm">time</a>_signature,<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;Note&gt;&amp; notes)<br/>
 &nbsp;&nbsp;: m_notes(notes),<br/>
@@ -93,8 +87,6 @@ Bar::Bar(<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!"TODO: Check that the num of lengths of the notes equals the <a href="CppTime.htm">time</a> signature");<br/>
 }<br/>
-<br/>
-} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppMusic.htm">Music</a><br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -115,7 +107,7 @@ Bar::Bar(<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppMusic.htm">music</a>note.h"<br/>
 <br/>
-<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a> {<br/>
+<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
 <br/>
 <b><a href="CppNamespace.htm">namespace</a></b> <a href="CppMusic.htm">Music</a> {<br/>
 <br/>
@@ -263,7 +255,7 @@ Bar::Bar(<br/>
 <br/>
 } <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppMusic.htm">Music</a><br/>
 <br/>
-} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a><br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
 <br/>
 <a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> MUSICCHORD_H<br/>
 </code></td></tr></table>
@@ -283,7 +275,7 @@ Bar::Bar(<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppSetH.htm">set</a>&gt;<br/>
 <br/>
-<a href="CppRibi.htm\">ribi</a>::<a href="CppMusic.htm">Music</a>::Chord::Chord(<br/>
+<a href="CppRibi.htm">ribi</a>::<a href="CppMusic.htm">Music</a>::Chord::Chord(<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Note root,<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; postfix,<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;&amp; intervals)<br/>
@@ -295,7 +287,7 @@ Bar::Bar(<br/>
 <br/>
 }<br/>
 <br/>
-<b><a href="CppInt.htm">int</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppMusic.htm">Music</a>::Chord::CountSameNotes(<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Chord&gt;&amp; lhs, <b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Chord&gt;&amp; rhs)<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppMusic.htm">Music</a>::Chord::CountSameNotes(<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Chord&gt;&amp; lhs, <b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Chord&gt;&amp; rhs)<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>The indices of the notes<br/>
 &nbsp;&nbsp;<a href="CppSet.htm">std::set</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt; x;<br/>
@@ -316,7 +308,7 @@ Bar::Bar(<br/>
 }<br/>
 <br/>
 <br/>
-<a href="CppVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRibi.htm\">ribi</a>::<a href="CppMusic.htm">Music</a>::Chord&gt; &gt; <a href="CppRibi.htm\">ribi</a>::<a href="CppMusic.htm">Music</a>::Chord::CreateAllChords()<br/>
+<a href="CppVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRibi.htm">ribi</a>::<a href="CppMusic.htm">Music</a>::Chord&gt; &gt; <a href="CppRibi.htm">ribi</a>::<a href="CppMusic.htm">Music</a>::Chord::CreateAllChords()<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Chord&gt; &gt; v;<br/>
 &nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;Note&gt; notes <a href="CppOperatorAssign.htm">=</a> Note::GetAllNotes();<br/>
@@ -330,7 +322,7 @@ Bar::Bar(<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
 }<br/>
 <br/>
-<a href="CppVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRibi.htm\">ribi</a>::<a href="CppMusic.htm">Music</a>::Chord&gt; &gt; <a href="CppRibi.htm\">ribi</a>::<a href="CppMusic.htm">Music</a>::Chord::CreateChords(<b><a href="CppConst.htm">const</a></b> Note root)<br/>
+<a href="CppVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRibi.htm">ribi</a>::<a href="CppMusic.htm">Music</a>::Chord&gt; &gt; <a href="CppRibi.htm">ribi</a>::<a href="CppMusic.htm">Music</a>::Chord::CreateChords(<b><a href="CppConst.htm">const</a></b> Note root)<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b><br/>
 &nbsp;&nbsp;{<br/>
@@ -345,7 +337,7 @@ Bar::Bar(<br/>
 &nbsp;&nbsp;};<br/>
 }<br/>
 <br/>
-<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRibi.htm\">ribi</a>::<a href="CppMusic.htm">Music</a>::Chord&gt; <a href="CppRibi.htm\">ribi</a>::<a href="CppMusic.htm">Music</a>::Chord::CreateChord(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; chord_name)<br/>
+<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRibi.htm">ribi</a>::<a href="CppMusic.htm">Music</a>::Chord&gt; <a href="CppRibi.htm">ribi</a>::<a href="CppMusic.htm">Music</a>::Chord::CreateChord(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; chord_name)<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Chord&gt; &gt; v <a href="CppOperatorAssign.htm">=</a> CreateAllChords();<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppAuto.htm">auto</a></b> i <a href="CppOperatorAssign.htm">=</a> <a href="CppFind_if.htm">std::find_if</a>(v.begin(),v.end(),<br/>
@@ -381,7 +373,7 @@ Bar::Bar(<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">*/</a><br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppRibi.htm\">ribi</a>::<a href="CppMusic.htm">Music</a>::Note&gt; <a href="CppRibi.htm\">ribi</a>::<a href="CppMusic.htm">Music</a>::Chord::GetNotes() <b><a href="CppConst.htm">const</a></b><br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppRibi.htm">ribi</a>::<a href="CppMusic.htm">Music</a>::Note&gt; <a href="CppRibi.htm">ribi</a>::<a href="CppMusic.htm">Music</a>::Chord::GetNotes() <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;Note&gt; notes;<br/>
 &nbsp;&nbsp;Note cur <a href="CppOperatorAssign.htm">=</a> m_root;<br/>
@@ -396,19 +388,19 @@ Bar::Bar(<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> notes;<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppRibi.htm\">ribi</a>::<a href="CppMusic.htm">Music</a>::Chord::Get<a href="CppVersion.htm">Version</a>()<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppRibi.htm">ribi</a>::<a href="CppMusic.htm">Music</a>::Chord::Get<a href="CppVersion.htm">Version</a>()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> "1.0";<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm\">ribi</a>::<a href="CppMusic.htm">Music</a>::Chord::Get<a href="CppVersion.htm">Version</a>History()<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm">ribi</a>::<a href="CppMusic.htm">Music</a>::Chord::Get<a href="CppVersion.htm">Version</a>History()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> {<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;"2012-08-10: <a href="CppVersion.htm">version</a> 1.0: initial <a href="CppVersion.htm">version</a>"<br/>
 &nbsp;&nbsp;};<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppMusic.htm">Music</a>::Chord::Test()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppMusic.htm">Music</a>::Chord::Test()<br/>
 {<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppBool.htm">bool</a></b> is_tested <a href="CppOperatorAssign.htm">=</a> <b><a href="CppFalse.htm">false</a></b>;<br/>
@@ -417,54 +409,54 @@ Bar::Bar(<br/>
 &nbsp;&nbsp;}<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppRibi.htm\">ribi</a>::<a href="CppMusic.htm">Music</a>::Chord::ToStr() <b><a href="CppConst.htm">const</a></b><br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppRibi.htm">ribi</a>::<a href="CppMusic.htm">Music</a>::Chord::ToStr() <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> m_root.ToStr() <a href="CppOperatorPlus.htm">+</a> m_postfix;<br/>
 }<br/>
 <br/>
-<a href="CppRibi.htm\">ribi</a>::<a href="CppMusic.htm">Music</a>::ChordAug::ChordAug(<b><a href="CppConst.htm">const</a></b> Note root)<br/>
+<a href="CppRibi.htm">ribi</a>::<a href="CppMusic.htm">Music</a>::ChordAug::ChordAug(<b><a href="CppConst.htm">const</a></b> Note root)<br/>
 &nbsp;&nbsp;: Chord(root,"+",{4,4})<br/>
 {<br/>
 <br/>
 }<br/>
 <br/>
-<a href="CppRibi.htm\">ribi</a>::<a href="CppMusic.htm">Music</a>::ChordDim::ChordDim(<b><a href="CppConst.htm">const</a></b> Note root)<br/>
+<a href="CppRibi.htm">ribi</a>::<a href="CppMusic.htm">Music</a>::ChordDim::ChordDim(<b><a href="CppConst.htm">const</a></b> Note root)<br/>
 &nbsp;&nbsp;: Chord(Note(root.<a href="CppToInt.htm">ToInt</a>() <a href="CppOperatorPlus.htm">+</a> 3),"dim",{3,3})<br/>
 {<br/>
 <br/>
 }<br/>
 <br/>
-<a href="CppRibi.htm\">ribi</a>::<a href="CppMusic.htm">Music</a>::ChordMajor::ChordMajor(<b><a href="CppConst.htm">const</a></b> Note root)<br/>
+<a href="CppRibi.htm">ribi</a>::<a href="CppMusic.htm">Music</a>::ChordMajor::ChordMajor(<b><a href="CppConst.htm">const</a></b> Note root)<br/>
 &nbsp;&nbsp;: Chord(root,"",{4,3})<br/>
 {<br/>
 <br/>
 }<br/>
 <br/>
-<a href="CppRibi.htm\">ribi</a>::<a href="CppMusic.htm">Music</a>::ChordMinor::ChordMinor(<b><a href="CppConst.htm">const</a></b> Note root)<br/>
+<a href="CppRibi.htm">ribi</a>::<a href="CppMusic.htm">Music</a>::ChordMinor::ChordMinor(<b><a href="CppConst.htm">const</a></b> Note root)<br/>
 &nbsp;&nbsp;: Chord(root,"m",{3,4})<br/>
 {<br/>
 <br/>
 }<br/>
 <br/>
-<a href="CppRibi.htm\">ribi</a>::<a href="CppMusic.htm">Music</a>::Chord6::Chord6(<b><a href="CppConst.htm">const</a></b> Note root)<br/>
+<a href="CppRibi.htm">ribi</a>::<a href="CppMusic.htm">Music</a>::Chord6::Chord6(<b><a href="CppConst.htm">const</a></b> Note root)<br/>
 &nbsp;&nbsp;: Chord(root,"6",{4,3,2})<br/>
 {<br/>
 <br/>
 }<br/>
 <br/>
-<a href="CppRibi.htm\">ribi</a>::<a href="CppMusic.htm">Music</a>::ChordMinor6::ChordMinor6(<b><a href="CppConst.htm">const</a></b> Note root)<br/>
+<a href="CppRibi.htm">ribi</a>::<a href="CppMusic.htm">Music</a>::ChordMinor6::ChordMinor6(<b><a href="CppConst.htm">const</a></b> Note root)<br/>
 &nbsp;&nbsp;: Chord(root,"m6",{3,4,2})<br/>
 {<br/>
 <br/>
 }<br/>
 <br/>
-<a href="CppRibi.htm\">ribi</a>::<a href="CppMusic.htm">Music</a>::Chord7::Chord7(<b><a href="CppConst.htm">const</a></b> Note root)<br/>
+<a href="CppRibi.htm">ribi</a>::<a href="CppMusic.htm">Music</a>::Chord7::Chord7(<b><a href="CppConst.htm">const</a></b> Note root)<br/>
 &nbsp;&nbsp;: Chord(Note(root.<a href="CppToInt.htm">ToInt</a>() <a href="CppOperatorPlus.htm">+</a> 4),"7",{3,3})<br/>
 {<br/>
 <br/>
 }<br/>
 <br/>
-<a href="CppRibi.htm\">ribi</a>::<a href="CppMusic.htm">Music</a>::ChordMinor7::ChordMinor7(<b><a href="CppConst.htm">const</a></b> Note root)<br/>
+<a href="CppRibi.htm">ribi</a>::<a href="CppMusic.htm">Music</a>::ChordMinor7::ChordMinor7(<b><a href="CppConst.htm">const</a></b> Note root)<br/>
 &nbsp;&nbsp;: Chord(Note(root.<a href="CppToInt.htm">ToInt</a>() <a href="CppOperatorPlus.htm">+</a> 3),"m7",{4,3})<br/>
 {<br/>
 <br/>
@@ -509,7 +501,7 @@ Bar::Bar(<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppStringH.htm">string</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
 <br/>
-<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a> {<br/>
+<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
 <br/>
 <b><a href="CppNamespace.htm">namespace</a></b> <a href="CppMusic.htm">Music</a> {<br/>
 <br/>
@@ -565,7 +557,7 @@ Bar::Bar(<br/>
 <br/>
 } <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppMusic.htm">Music</a><br/>
 <br/>
-} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a><br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
 <br/>
 <a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> MUSICNOTE_H<br/>
 </code></td></tr></table>
@@ -589,10 +581,10 @@ Bar::Bar(<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppTrace.htm">trace</a>.h"<br/>
 <br/>
-<a href="CppRibi.htm\">ribi</a>::<a href="CppMusic.htm">Music</a>::Note::Note(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> i, <b><a href="CppConst.htm">const</a></b> <a href="CppPair.htm">std::pair</a>&lt;<b><a href="CppInt.htm">int</a></b>,<b><a href="CppInt.htm">int</a></b>&gt;&amp; length)<br/>
-&nbsp;&nbsp;: m_accidental(<a href="CppRibi.htm\">ribi</a>::<a href="CppMusic.htm">Music</a>::Note::Accidental::none),<br/>
+<a href="CppRibi.htm">ribi</a>::<a href="CppMusic.htm">Music</a>::Note::Note(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> i, <b><a href="CppConst.htm">const</a></b> <a href="CppPair.htm">std::pair</a>&lt;<b><a href="CppInt.htm">int</a></b>,<b><a href="CppInt.htm">int</a></b>&gt;&amp; length)<br/>
+&nbsp;&nbsp;: m_accidental(<a href="CppRibi.htm">ribi</a>::<a href="CppMusic.htm">Music</a>::Note::Accidental::none),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;m_length(length),<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;m_letter(<a href="CppRibi.htm\">ribi</a>::<a href="CppMusic.htm">Music</a>::Note::Letter::C)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_letter(<a href="CppRibi.htm">ribi</a>::<a href="CppMusic.htm">Music</a>::Note::Letter::C)<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
 &nbsp;&nbsp;Test();<br/>
@@ -619,10 +611,10 @@ Bar::Bar(<br/>
 &nbsp;&nbsp;}<br/>
 }<br/>
 <br/>
-<a href="CppRibi.htm\">ribi</a>::<a href="CppMusic.htm">Music</a>::Note::Note(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; s, <b><a href="CppConst.htm">const</a></b> <a href="CppPair.htm">std::pair</a>&lt;<b><a href="CppInt.htm">int</a></b>,<b><a href="CppInt.htm">int</a></b>&gt;&amp; length)<br/>
-&nbsp;&nbsp;: m_accidental(<a href="CppRibi.htm\">ribi</a>::<a href="CppMusic.htm">Music</a>::Note::Accidental::none),<br/>
+<a href="CppRibi.htm">ribi</a>::<a href="CppMusic.htm">Music</a>::Note::Note(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; s, <b><a href="CppConst.htm">const</a></b> <a href="CppPair.htm">std::pair</a>&lt;<b><a href="CppInt.htm">int</a></b>,<b><a href="CppInt.htm">int</a></b>&gt;&amp; length)<br/>
+&nbsp;&nbsp;: m_accidental(<a href="CppRibi.htm">ribi</a>::<a href="CppMusic.htm">Music</a>::Note::Accidental::none),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;m_length(length),<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;m_letter(<a href="CppRibi.htm\">ribi</a>::<a href="CppMusic.htm">Music</a>::Note::Letter::C)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_letter(<a href="CppRibi.htm">ribi</a>::<a href="CppMusic.htm">Music</a>::Note::Letter::C)<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
 &nbsp;&nbsp;Test();<br/>
@@ -659,7 +651,7 @@ Bar::Bar(<br/>
 &nbsp;&nbsp;}<br/>
 }<br/>
 <br/>
-<a href="CppRibi.htm\">ribi</a>::<a href="CppMusic.htm">Music</a>::Note::Note(<br/>
+<a href="CppRibi.htm">ribi</a>::<a href="CppMusic.htm">Music</a>::Note::Note(<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Letter letter,<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Accidental accidental,<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppPair.htm">std::pair</a>&lt;<b><a href="CppInt.htm">int</a></b>,<b><a href="CppInt.htm">int</a></b>&gt;&amp; length)<br/>
@@ -674,7 +666,7 @@ Bar::Bar(<br/>
 <br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppRibi.htm\">ribi</a>::<a href="CppMusic.htm">Music</a>::Note&gt; <a href="CppRibi.htm\">ribi</a>::<a href="CppMusic.htm">Music</a>::Note::GetAllNotes()<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppRibi.htm">ribi</a>::<a href="CppMusic.htm">Music</a>::Note&gt; <a href="CppRibi.htm">ribi</a>::<a href="CppMusic.htm">Music</a>::Note::GetAllNotes()<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;Note&gt; v;<br/>
 &nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> i=0; i<a href="CppOperatorNotEqual.htm">!=</a>12; <a href="CppOperatorPlus.htm">+</a>+i)<br/>
@@ -684,19 +676,19 @@ Bar::Bar(<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppRibi.htm\">ribi</a>::<a href="CppMusic.htm">Music</a>::Note::Get<a href="CppVersion.htm">Version</a>()<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppRibi.htm">ribi</a>::<a href="CppMusic.htm">Music</a>::Note::Get<a href="CppVersion.htm">Version</a>()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> "1.0";<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm\">ribi</a>::<a href="CppMusic.htm">Music</a>::Note::Get<a href="CppVersion.htm">Version</a>History()<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm">ribi</a>::<a href="CppMusic.htm">Music</a>::Note::Get<a href="CppVersion.htm">Version</a>History()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> {<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;"2012-08-10: <a href="CppVersion.htm">version</a> 1.0: initial <a href="CppVersion.htm">version</a>"<br/>
 &nbsp;&nbsp;};<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppMusic.htm">Music</a>::Note::Test()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppMusic.htm">Music</a>::Note::Test()<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Test exactly once<br/>
 &nbsp;&nbsp;{<br/>
@@ -713,7 +705,7 @@ Bar::Bar(<br/>
 <br/>
 }<br/>
 <br/>
-<b><a href="CppInt.htm">int</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppMusic.htm">Music</a>::Note::<a href="CppToInt.htm">ToInt</a>() <b><a href="CppConst.htm">const</a></b><br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppMusic.htm">Music</a>::Note::<a href="CppToInt.htm">ToInt</a>() <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> x <a href="CppOperatorAssign.htm">=</a> 0;<br/>
 &nbsp;&nbsp;<b><a href="CppSwitch.htm">switch</a></b> (m_letter)<br/>
@@ -738,7 +730,7 @@ Bar::Bar(<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> x;<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppRibi.htm\">ribi</a>::<a href="CppMusic.htm">Music</a>::Note::ToStr() <b><a href="CppConst.htm">const</a></b><br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppRibi.htm">ribi</a>::<a href="CppMusic.htm">Music</a>::Note::ToStr() <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppString.htm">std::string</a> s;<br/>
 &nbsp;&nbsp;<b><a href="CppSwitch.htm">switch</a></b> (m_letter)<br/>
@@ -760,12 +752,12 @@ Bar::Bar(<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> s;<br/>
 }<br/>
 <br/>
-<b><a href="CppBool.htm">bool</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppMusic.htm">Music</a>::<b><a href="CppOperatorEqual.htm">operator==</a></b>(<b><a href="CppConst.htm">const</a></b> Note&amp; lhs, <b><a href="CppConst.htm">const</a></b> Note&amp; rhs)<br/>
+<b><a href="CppBool.htm">bool</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppMusic.htm">Music</a>::<b><a href="CppOperatorEqual.htm">operator==</a></b>(<b><a href="CppConst.htm">const</a></b> Note&amp; lhs, <b><a href="CppConst.htm">const</a></b> Note&amp; rhs)<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> lhs.<a href="CppToInt.htm">ToInt</a>() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> rhs.<a href="CppToInt.htm">ToInt</a>();<br/>
 }<br/>
 <br/>
-<b><a href="CppBool.htm">bool</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppMusic.htm">Music</a>::<b><a href="CppOperatorLess.htm">operator&lt;</a></b>(<b><a href="CppConst.htm">const</a></b> Note&amp; lhs, <b><a href="CppConst.htm">const</a></b> Note&amp; rhs)<br/>
+<b><a href="CppBool.htm">bool</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppMusic.htm">Music</a>::<b><a href="CppOperatorLess.htm">operator&lt;</a></b>(<b><a href="CppConst.htm">const</a></b> Note&amp; lhs, <b><a href="CppConst.htm">const</a></b> Note&amp; rhs)<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> lhs.<a href="CppToInt.htm">ToInt</a>() &lt; rhs.<a href="CppToInt.htm">ToInt</a>();<br/>
 }<br/>
@@ -784,10 +776,13 @@ Bar::Bar(<br/>
 <a href="CppDefine.htm">#define</a> MUSICSCALE_H<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppShared_ptr.htm">shared_ptr</a>.hpp&gt;<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppMusic.htm">music</a>note.h"<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
 <br/>
-<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a> {<br/>
+<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
 <br/>
 <b><a href="CppNamespace.htm">namespace</a></b> <a href="CppMusic.htm">Music</a> {<br/>
 <br/>
@@ -932,7 +927,7 @@ Bar::Bar(<br/>
 <br/>
 } <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppMusic.htm">Music</a><br/>
 <br/>
-} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a><br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
 <br/>
 <a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> MUSICSCALE_H<br/>
 </code></td></tr></table>
@@ -946,15 +941,17 @@ Bar::Bar(<br/>
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="musicscale.cpp" border = "1"><tr><td><code>
-<br/>
-<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppMusic.htm">music</a>scale.h"<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppStdexceptH.htm">stdexcept</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppMusic.htm">music</a>chord.h"<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppTrace.htm">trace</a>.h"<br/>
 <br/>
-<a href="CppRibi.htm\">ribi</a>::<a href="CppMusic.htm">Music</a>::Scale::Scale(<b><a href="CppConst.htm">const</a></b> Note root, <b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;&amp; intervals)<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
+<br/>
+<a href="CppRibi.htm">ribi</a>::<a href="CppMusic.htm">Music</a>::Scale::Scale(<b><a href="CppConst.htm">const</a></b> Note root, <b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;&amp; intervals)<br/>
 &nbsp;&nbsp;: m_root(root),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;m_intervals(intervals)<br/>
 {<br/>
@@ -964,7 +961,7 @@ Bar::Bar(<br/>
 <br/>
 }<br/>
 <br/>
-<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRibi.htm\">ribi</a>::<a href="CppMusic.htm">Music</a>::Scale&gt; <a href="CppRibi.htm\">ribi</a>::<a href="CppMusic.htm">Music</a>::Scale::CreateScale(<br/>
+<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRibi.htm">ribi</a>::<a href="CppMusic.htm">Music</a>::Scale&gt; <a href="CppRibi.htm">ribi</a>::<a href="CppMusic.htm">Music</a>::Scale::CreateScale(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; scale_name,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Note root)<br/>
 {<br/>
@@ -983,7 +980,7 @@ Bar::Bar(<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> *i;<br/>
 }<br/>
 <br/>
-<a href="CppVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRibi.htm\">ribi</a>::<a href="CppMusic.htm">Music</a>::Scale&gt; &gt; <a href="CppRibi.htm\">ribi</a>::<a href="CppMusic.htm">Music</a>::Scale::CreateScales(<b><a href="CppConst.htm">const</a></b> Note root)<br/>
+<a href="CppVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRibi.htm">ribi</a>::<a href="CppMusic.htm">Music</a>::Scale&gt; &gt; <a href="CppRibi.htm">ribi</a>::<a href="CppMusic.htm">Music</a>::Scale::CreateScales(<b><a href="CppConst.htm">const</a></b> Note root)<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b><br/>
 &nbsp;&nbsp;{<br/>
@@ -999,7 +996,7 @@ Bar::Bar(<br/>
 &nbsp;&nbsp;};<br/>
 }<br/>
 <br/>
-<b><a href="CppBool.htm">bool</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppMusic.htm">Music</a>::Scale::Fits(<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Chord&gt;&amp; chord) <b><a href="CppConst.htm">const</a></b><br/>
+<b><a href="CppBool.htm">bool</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppMusic.htm">Music</a>::Scale::Fits(<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Chord&gt;&amp; chord) <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;Note&gt; notes_chord <a href="CppOperatorAssign.htm">=</a> chord-&gt;GetNotes();<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;Note&gt; notes_scale <a href="CppOperatorAssign.htm">=</a> <b><a href="CppThis.htm">this</a></b>-&gt;GetNotes();<br/>
@@ -1017,7 +1014,7 @@ Bar::Bar(<br/>
 }<br/>
 <br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppRibi.htm\">ribi</a>::<a href="CppMusic.htm">Music</a>::Note&gt; <a href="CppRibi.htm\">ribi</a>::<a href="CppMusic.htm">Music</a>::Scale::GetNotes() <b><a href="CppConst.htm">const</a></b><br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppRibi.htm">ribi</a>::<a href="CppMusic.htm">Music</a>::Note&gt; <a href="CppRibi.htm">ribi</a>::<a href="CppMusic.htm">Music</a>::Scale::GetNotes() <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;Note&gt; notes;<br/>
 &nbsp;&nbsp;Note cur <a href="CppOperatorAssign.htm">=</a> m_root;<br/>
@@ -1032,12 +1029,12 @@ Bar::Bar(<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> notes;<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppRibi.htm\">ribi</a>::<a href="CppMusic.htm">Music</a>::Scale::Get<a href="CppVersion.htm">Version</a>()<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppRibi.htm">ribi</a>::<a href="CppMusic.htm">Music</a>::Scale::Get<a href="CppVersion.htm">Version</a>()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> "1.1";<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm\">ribi</a>::<a href="CppMusic.htm">Music</a>::Scale::Get<a href="CppVersion.htm">Version</a>History()<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm">ribi</a>::<a href="CppMusic.htm">Music</a>::Scale::Get<a href="CppVersion.htm">Version</a>History()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> {<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;"2012-08-10: <a href="CppVersion.htm">version</a> 1.0: initial <a href="CppVersion.htm">version</a> with five different scales",<br/>
@@ -1045,7 +1042,7 @@ Bar::Bar(<br/>
 &nbsp;&nbsp;};<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppMusic.htm">Music</a>::Scale::Test()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppMusic.htm">Music</a>::Scale::Test()<br/>
 {<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppBool.htm">bool</a></b> is_tested <a href="CppOperatorAssign.htm">=</a> <b><a href="CppFalse.htm">false</a></b>;<br/>
@@ -1054,7 +1051,7 @@ Bar::Bar(<br/>
 &nbsp;&nbsp;}<br/>
 }<br/>
 <br/>
-<a href="CppRibi.htm\">ribi</a>::<a href="CppMusic.htm">Music</a>::ScaleBlues::ScaleBlues(<b><a href="CppConst.htm">const</a></b> Note root)<br/>
+<a href="CppRibi.htm">ribi</a>::<a href="CppMusic.htm">Music</a>::ScaleBlues::ScaleBlues(<b><a href="CppConst.htm">const</a></b> Note root)<br/>
 &nbsp;&nbsp;: Scale(root, {3,2,1,1,3} )<br/>
 {<br/>
 <br/>
@@ -1062,26 +1059,26 @@ Bar::Bar(<br/>
 <br/>
 <a href="CppComment.htm">//</a>C-D-Eb-F-G-Ab-B<br/>
 <a href="CppComment.htm">//</a> 2 1&nbsp;&nbsp;2 2 1&nbsp;&nbsp;3<br/>
-<a href="CppRibi.htm\">ribi</a>::<a href="CppMusic.htm">Music</a>::ScaleHarmonicMinor::ScaleHarmonicMinor(<b><a href="CppConst.htm">const</a></b> Note root)<br/>
+<a href="CppRibi.htm">ribi</a>::<a href="CppMusic.htm">Music</a>::ScaleHarmonicMinor::ScaleHarmonicMinor(<b><a href="CppConst.htm">const</a></b> Note root)<br/>
 &nbsp;&nbsp;: Scale(root, {2,1,2,2,1,3} )<br/>
 {<br/>
 <br/>
 }<br/>
 <br/>
-<a href="CppRibi.htm\">ribi</a>::<a href="CppMusic.htm">Music</a>::ScaleHexatonic::ScaleHexatonic(<b><a href="CppConst.htm">const</a></b> Note root)<br/>
+<a href="CppRibi.htm">ribi</a>::<a href="CppMusic.htm">Music</a>::ScaleHexatonic::ScaleHexatonic(<b><a href="CppConst.htm">const</a></b> Note root)<br/>
 &nbsp;&nbsp;: Scale(root, {2,2,2,2,2} )<br/>
 {<br/>
 <br/>
 }<br/>
 <br/>
-<a href="CppRibi.htm\">ribi</a>::<a href="CppMusic.htm">Music</a>::ScaleHyperMajor::ScaleHyperMajor(<b><a href="CppConst.htm">const</a></b> Note root)<br/>
+<a href="CppRibi.htm">ribi</a>::<a href="CppMusic.htm">Music</a>::ScaleHyperMajor::ScaleHyperMajor(<b><a href="CppConst.htm">const</a></b> Note root)<br/>
 &nbsp;&nbsp;: Scale(root, {1,3,1,3,1} )<br/>
 {<br/>
 <br/>
 }<br/>
 <br/>
 <br/>
-<a href="CppRibi.htm\">ribi</a>::<a href="CppMusic.htm">Music</a>::ScaleMajor::ScaleMajor(<b><a href="CppConst.htm">const</a></b> Note root)<br/>
+<a href="CppRibi.htm">ribi</a>::<a href="CppMusic.htm">Music</a>::ScaleMajor::ScaleMajor(<b><a href="CppConst.htm">const</a></b> Note root)<br/>
 &nbsp;&nbsp;: Scale(root, {2,2,1,2,2,2} )<br/>
 {<br/>
 <br/>
@@ -1089,7 +1086,7 @@ Bar::Bar(<br/>
 <br/>
 <a href="CppComment.htm">//</a>C-D-E-G-A<br/>
 <a href="CppComment.htm">//</a> 2 2 3 2<br/>
-<a href="CppRibi.htm\">ribi</a>::<a href="CppMusic.htm">Music</a>::ScaleMajorPentatonic::ScaleMajorPentatonic(<b><a href="CppConst.htm">const</a></b> Note root)<br/>
+<a href="CppRibi.htm">ribi</a>::<a href="CppMusic.htm">Music</a>::ScaleMajorPentatonic::ScaleMajorPentatonic(<b><a href="CppConst.htm">const</a></b> Note root)<br/>
 &nbsp;&nbsp;: Scale(root, {2,2,3,2} )<br/>
 {<br/>
 <br/>
@@ -1097,19 +1094,19 @@ Bar::Bar(<br/>
 <br/>
 <a href="CppComment.htm">//</a>C-Eb-F-G_Bb<br/>
 <a href="CppComment.htm">//</a> 3&nbsp;&nbsp;2 2 3<br/>
-<a href="CppRibi.htm\">ribi</a>::<a href="CppMusic.htm">Music</a>::ScaleMinorPentatonic::ScaleMinorPentatonic(<b><a href="CppConst.htm">const</a></b> Note root)<br/>
+<a href="CppRibi.htm">ribi</a>::<a href="CppMusic.htm">Music</a>::ScaleMinorPentatonic::ScaleMinorPentatonic(<b><a href="CppConst.htm">const</a></b> Note root)<br/>
 &nbsp;&nbsp;: Scale(root, {3,2,2,3} )<br/>
 {<br/>
 <br/>
 }<br/>
 <br/>
-<a href="CppRibi.htm\">ribi</a>::<a href="CppMusic.htm">Music</a>::ScaleMollDurDominant::ScaleMollDurDominant(<b><a href="CppConst.htm">const</a></b> Note root)<br/>
+<a href="CppRibi.htm">ribi</a>::<a href="CppMusic.htm">Music</a>::ScaleMollDurDominant::ScaleMollDurDominant(<b><a href="CppConst.htm">const</a></b> Note root)<br/>
 &nbsp;&nbsp;: Scale(root, {2,2,1,2,1,3} )<br/>
 {<br/>
 <br/>
 }<br/>
 <br/>
-<a href="CppRibi.htm\">ribi</a>::<a href="CppMusic.htm">Music</a>::ScaleMollDurSubdominant::ScaleMollDurSubdominant(<b><a href="CppConst.htm">const</a></b> Note root)<br/>
+<a href="CppRibi.htm">ribi</a>::<a href="CppMusic.htm">Music</a>::ScaleMollDurSubdominant::ScaleMollDurSubdominant(<b><a href="CppConst.htm">const</a></b> Note root)<br/>
 &nbsp;&nbsp;: Scale(root, {2,2,1,2,1,2} )<br/>
 {<br/>
 <br/>

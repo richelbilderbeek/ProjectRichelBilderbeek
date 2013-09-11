@@ -233,7 +233,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a>SitemapGeneratorMainDialog;<br/>
 }<br/>
 <br/>
-<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a> {<br/>
+<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
 <br/>
 <b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a>SitemapGeneratorMainDialog : <b><a href="CppPublic.htm">public</a></b> <a href="CppQtHideAndShowDialog.htm">QtHideAndShowDialog</a><br/>
 {<br/>
@@ -284,7 +284,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <br/>
 };<br/>
 <br/>
-} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a><br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
 <br/>
 <a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> SITEMAPGENERATORMAINDIALOG_H<br/>
 </code></td></tr></table>
@@ -343,25 +343,25 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> "ui_qtsitemapgeneratormaindialog.h"<br/>
 <br/>
-<a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a>SitemapGeneratorMainDialog::<a href="CppQt.htm">Qt</a>SitemapGeneratorMainDialog(<a href="CppQWidget.htm">QWidget</a> *parent) :<br/>
+<a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>SitemapGeneratorMainDialog::<a href="CppQt.htm">Qt</a>SitemapGeneratorMainDialog(<a href="CppQWidget.htm">QWidget</a> *parent) :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQtHideAndShowDialog.htm">QtHideAndShowDialog</a>(parent),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;ui(<b><a href="CppNew.htm">new</a></b> <a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a>SitemapGeneratorMainDialog)<br/>
 {<br/>
 &nbsp;&nbsp;ui-&gt;setupUi(<b><a href="CppThis.htm">this</a></b>);<br/>
 }<br/>
 <br/>
-<a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a>SitemapGeneratorMainDialog::~<a href="CppQt.htm">Qt</a>SitemapGeneratorMainDialog()<br/>
+<a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>SitemapGeneratorMainDialog::~<a href="CppQt.htm">Qt</a>SitemapGeneratorMainDialog()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppDelete.htm">delete</a></b> ui;<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a>SitemapGeneratorMainDialog::keyPressEvent(<a href="CppQKeyEvent.htm">QKeyEvent</a> * e)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>SitemapGeneratorMainDialog::keyPressEvent(<a href="CppQKeyEvent.htm">QKeyEvent</a> * e)<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (e-&gt;key()&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <a href="CppQt.htm">Qt</a>::Key_Escape) { close(); <b><a href="CppReturn.htm">return</a></b>; }<br/>
 &nbsp;&nbsp;<a href="CppQtHideAndShowDialog.htm">QtHideAndShowDialog</a>::keyPressEvent(e);<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a>SitemapGeneratorMainDialog::<a href="CppGetFilesInFolder.htm">GetFilesInFolder</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; folder)<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>SitemapGeneratorMainDialog::<a href="CppGetFilesInFolder.htm">GetFilesInFolder</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; folder)<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppQDir.htm">QDir</a> dir(folder.c_str());<br/>
 &nbsp;&nbsp;dir.setFilter(<a href="CppQDir.htm">QDir</a>::Files);<br/>
@@ -378,7 +378,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a>SitemapGeneratorMainDialog::<a href="CppGetHtmlFilesInFolder.htm">GetHtmlFilesInFolder</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; folder)<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>SitemapGeneratorMainDialog::<a href="CppGetHtmlFilesInFolder.htm">GetHtmlFilesInFolder</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; folder)<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Get all filenames<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v <a href="CppOperatorAssign.htm">=</a> <a href="CppGetFilesInFolder.htm">GetFilesInFolder</a>(folder);<br/>
@@ -398,7 +398,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> w;<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a>SitemapGeneratorMainDialog::<a href="CppAdd.htm">Add</a>Header(<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt;&amp; files)<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>SitemapGeneratorMainDialog::<a href="CppAdd.htm">Add</a>Header(<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt;&amp; files)<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v;<br/>
 &nbsp;&nbsp;v.push_back("# To add a list of URLs, <a href="CppMake.htm">make</a> a space-delimited text file. The first");<br/>
@@ -420,7 +420,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a>SitemapGeneratorMainDialog::<a href="CppGetPath.htm">GetPath</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; filename)<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>SitemapGeneratorMainDialog::<a href="CppGetPath.htm">GetPath</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; filename)<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> a <a href="CppOperatorAssign.htm">=</a> filename.rfind("\\",filename.size());<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> b <a href="CppOperatorAssign.htm">=</a> filename.rfind("/",filename.size());<br/>
@@ -429,18 +429,18 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> filename.substr(0,i);<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a>SitemapGeneratorMainDialog::<a href="CppGetCurrentFolder.htm">GetCurrentFolder</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; s)<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>SitemapGeneratorMainDialog::<a href="CppGetCurrentFolder.htm">GetCurrentFolder</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; s)<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <a href="CppGetPath.htm">GetPath</a>(s);<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a>SitemapGeneratorMainDialog::<a href="CppGetCurrentFolder.htm">GetCurrentFolder</a>()<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>SitemapGeneratorMainDialog::<a href="CppGetCurrentFolder.htm">GetCurrentFolder</a>()<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppQString.htm">QString</a> s <a href="CppOperatorAssign.htm">=</a> <a href="CppQApplication.htm">QApplication</a>::<a href="CppApplication.htm">application</a>DirPath();<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> s.toStdString();<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a>SitemapGeneratorMainDialog::CreateConfig<a href="CppXml.htm">Xml</a>(<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>SitemapGeneratorMainDialog::CreateConfig<a href="CppXml.htm">Xml</a>(<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; local_website_path,<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; urllist_path)<br/>
 {<br/>
@@ -607,7 +607,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">//</a>v.push_back("&nbsp;&nbsp;&nbsp;&nbsp; lastmod=\"2007-07-28T01:00:00-07:00\"");<br/>
 <a href="CppComment.htm">//</a>Returns date in YYYY-MM-DD format<br/>
 <a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/Cpp<a href="CppGetDateIso8601.htm">GetDateIso8601</a>.htm<br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a>SitemapGeneratorMainDialog::<a href="CppGetDateIso8601.htm">GetDateIso8601</a>()<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>SitemapGeneratorMainDialog::<a href="CppGetDateIso8601.htm">GetDateIso8601</a>()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoost.htm">boost</a>::gregorian::date today<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <a href="CppBoost.htm">boost</a>::gregorian::day_clock::local_day();<br/>
@@ -628,7 +628,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">//</a>}<br/>
 <br/>
 <a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/Cpp<a href="CppFileToVector.htm">FileToVector</a>.htm<br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a>SitemapGeneratorMainDialog::<a href="CppFileToVector.htm">FileToVector</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; fileName)<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>SitemapGeneratorMainDialog::<a href="CppFileToVector.htm">FileToVector</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; fileName)<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppQFile.htm">QFile</a>::exists(fileName.c_str()));<br/>
 &nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; myVector;<br/>
@@ -642,7 +642,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> myVector;<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a>SitemapGeneratorMainDialog::on_button_start_clicked()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>SitemapGeneratorMainDialog::on_button_start_clicked()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> page_location <a href="CppOperatorAssign.htm">=</a> ui-&gt;edit_website-&gt;text().toStdString();<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> sitemapgen_location <a href="CppOperatorAssign.htm">=</a> <a href="CppGetCurrentFolder.htm">GetCurrentFolder</a>();<br/>
@@ -819,7 +819,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a>SitemapGeneratorMenuDialog;<br/>
 }<br/>
 <br/>
-<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a> {<br/>
+<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
 <br/>
 <b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a>SitemapGeneratorMenuDialog : <b><a href="CppPublic.htm">public</a></b> <a href="CppQtHideAndShowDialog.htm">QtHideAndShowDialog</a><br/>
 {<br/>
@@ -843,7 +843,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a>SitemapGeneratorMenuDialog *ui;<br/>
 };<br/>
 <br/>
-} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a><br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
 <br/>
 <a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> QTSITEMAPGENERATORMENUDIALOG_H<br/>
 </code></td></tr></table>
@@ -890,31 +890,31 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppInclude.htm">#include</a> "sitemapgeneratormenudialog.h"<br/>
 <a href="CppInclude.htm">#include</a> "ui_qtsitemapgeneratormenudialog.h"<br/>
 <br/>
-<a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a>SitemapGeneratorMenuDialog::<a href="CppQt.htm">Qt</a>SitemapGeneratorMenuDialog(<a href="CppQWidget.htm">QWidget</a> *parent) :<br/>
+<a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>SitemapGeneratorMenuDialog::<a href="CppQt.htm">Qt</a>SitemapGeneratorMenuDialog(<a href="CppQWidget.htm">QWidget</a> *parent) :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQtHideAndShowDialog.htm">QtHideAndShowDialog</a>(parent),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;ui(<b><a href="CppNew.htm">new</a></b> <a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a>SitemapGeneratorMenuDialog)<br/>
 {<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;ui-&gt;setupUi(<b><a href="CppThis.htm">this</a></b>);<br/>
 }<br/>
 <br/>
-<a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a>SitemapGeneratorMenuDialog::~<a href="CppQt.htm">Qt</a>SitemapGeneratorMenuDialog()<br/>
+<a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>SitemapGeneratorMenuDialog::~<a href="CppQt.htm">Qt</a>SitemapGeneratorMenuDialog()<br/>
 {<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppDelete.htm">delete</a></b> ui;<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a>SitemapGeneratorMenuDialog::keyPressEvent(<a href="CppQKeyEvent.htm">QKeyEvent</a> * e)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>SitemapGeneratorMenuDialog::keyPressEvent(<a href="CppQKeyEvent.htm">QKeyEvent</a> * e)<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (e-&gt;key()&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <a href="CppQt.htm">Qt</a>::Key_Escape) { close(); <b><a href="CppReturn.htm">return</a></b>; }<br/>
 &nbsp;&nbsp;<a href="CppQtHideAndShowDialog.htm">QtHideAndShowDialog</a>::keyPressEvent(e);<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a>SitemapGeneratorMenuDialog::on_button_start_clicked()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>SitemapGeneratorMenuDialog::on_button_start_clicked()<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppQt.htm">Qt</a>SitemapGeneratorMainDialog d;<br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;ShowChild(&amp;d);<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a>SitemapGeneratorMenuDialog::on_button_about_clicked()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>SitemapGeneratorMenuDialog::on_button_about_clicked()<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppAbout.htm">About</a> <a href="CppAbout.htm">about</a> <a href="CppOperatorAssign.htm">=</a> SitemapGeneratorMenuDialog::GetAbout();<br/>
 &nbsp;&nbsp;<a href="CppAbout.htm">about</a>.<a href="CppAdd.htm">Add</a><a href="CppLibrary.htm">Library</a>("<a href="CppQtHideAndShowDialog.htm">QtHideAndShowDialog</a> <a href="CppVersion.htm">version</a>: " <a href="CppOperatorPlus.htm">+</a> <a href="CppQtHideAndShowDialog.htm">QtHideAndShowDialog</a>::Get<a href="CppVersion.htm">Version</a>());<br/>
@@ -925,7 +925,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;show();<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a>SitemapGeneratorMenuDialog::on_button_quit_clicked()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>SitemapGeneratorMenuDialog::on_button_quit_clicked()<br/>
 {<br/>
 &nbsp;&nbsp;close();<br/>
 }<br/>
@@ -3184,7 +3184,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppAbout.htm">about</a>.h"<br/>
 <br/>
-<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a> {<br/>
+<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
 <br/>
 <b><a href="CppStruct.htm">struct</a></b> SitemapGeneratorMenuDialog<br/>
 {<br/>
@@ -3198,7 +3198,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; Get<a href="CppVersion.htm">Version</a>History();<br/>
 };<br/>
 <br/>
-} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a><br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
 <br/>
 <a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> SITEMAPGENERATORMENUDIALOG_H<br/>
 </code></td></tr></table>
@@ -3236,7 +3236,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> "sitemapgeneratormenudialog.h"<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppAbout.htm">About</a> <a href="CppRibi.htm\">ribi</a>::SitemapGeneratorMenuDialog::GetAbout()<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppAbout.htm">About</a> <a href="CppRibi.htm">ribi</a>::SitemapGeneratorMenuDialog::GetAbout()<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppAbout.htm">About</a> a(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;"Richel Bilderbeek",<br/>
@@ -3251,12 +3251,12 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> a;<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppRibi.htm\">ribi</a>::SitemapGeneratorMenuDialog::Get<a href="CppVersion.htm">Version</a>()<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppRibi.htm">ribi</a>::SitemapGeneratorMenuDialog::Get<a href="CppVersion.htm">Version</a>()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> "1.3";<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm\">ribi</a>::SitemapGeneratorMenuDialog::Get<a href="CppVersion.htm">Version</a>History()<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm">ribi</a>::SitemapGeneratorMenuDialog::Get<a href="CppVersion.htm">Version</a>History()<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v;<br/>
 &nbsp;&nbsp;v.push_back("2010-08-08: <a href="CppVersion.htm">version</a> 1.0: initial <a href="CppVersion.htm">version</a>");<br/>

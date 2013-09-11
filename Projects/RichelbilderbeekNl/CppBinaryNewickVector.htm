@@ -70,14 +70,14 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
 <br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-<b><a href="CppTypedef.htm">typedef</a></b>s"<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppLexical_cast.htm">lexical_cast</a>.hpp&gt;<br/>
-<a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
-<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppBigInt.htm">BigIntegerLibrary</a>.hh"<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppNewick.htm">newick</a>storage.h"<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
 <br/>
-<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a> {<br/>
+<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
 <br/>
 <a href="CppComment.htm">///</a><a href="CppBinaryNewickVector.htm">BinaryNewickVector</a> manages a <a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt; resembling<br/>
 <a href="CppComment.htm">///</a>a binary <a href="CppNewick.htm">Newick</a>.<br/>
@@ -134,7 +134,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBinaryNewickVector.htm">BinaryNewickVector</a>&amp; lhs,<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBinaryNewickVector.htm">BinaryNewickVector</a>&amp; rhs);<br/>
 <br/>
-} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a><br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
 <br/>
 <a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> BINARYNEWICKVECTOR_H<br/>
 </code></td></tr></table>
@@ -168,6 +168,9 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="CppBinaryNewickVector.htm">CppBinaryNewickVector</a>.htm<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-<b><a href="CppTypedef.htm">typedef</a></b>s"<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppBinaryNewickVector.htm">binarynewickvector</a>.h"<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppAlgorithmH.htm">algorithm</a>&gt;<br/>
@@ -182,64 +185,59 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppSstreamH.htm">sstream</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
 <br/>
-<a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
-<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-<b><a href="CppTypedef.htm">typedef</a></b>s"<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/numeric/con<a href="CppVersion.htm">version</a>/cast.hpp&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppBOOST_FOREACH.htm">foreach</a>.hpp&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppLexical_cast.htm">lexical_cast</a>.hpp&gt;<br/>
-<a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppBigInt.htm">BigIntegerLibrary</a>.hh"<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppNewick.htm">newick</a>.h"<br/>
 <br/>
-<a href="CppRibi.htm\">ribi</a>::<a href="CppBinaryNewickVector.htm">BinaryNewickVector</a>::<a href="CppBinaryNewickVector.htm">BinaryNewickVector</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; s)<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
+<br/>
+<a href="CppRibi.htm">ribi</a>::<a href="CppBinaryNewickVector.htm">BinaryNewickVector</a>::<a href="CppBinaryNewickVector.htm">BinaryNewickVector</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; s)<br/>
+&nbsp;&nbsp;: m_v{<a href="CppNewick.htm">Newick</a>::<a href="CppStringToNewick.htm">StringToNewick</a>(s)}<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppNewick.htm">Newick</a>::IsUnary<a href="CppNewick.htm">Newick</a>(<a href="CppNewick.htm">Newick</a>::<a href="CppStringToNewick.htm">StringToNewick</a>(s))<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorLogicalOr.htm">||</a> <a href="CppNewick.htm">Newick</a>::<a href="CppIsBinaryNewick.htm">IsBinaryNewick</a>(<a href="CppNewick.htm">Newick</a>::<a href="CppStringToNewick.htm">StringToNewick</a>(s)));<br/>
-&nbsp;&nbsp;m_v <a href="CppOperatorAssign.htm">=</a> <a href="CppNewick.htm">Newick</a>::<a href="CppStringToNewick.htm">StringToNewick</a>(s);<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Can I add these as well?<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppAssert.htm">assert</a>(<a href="CppNewick.htm">Newick</a>::IsUnary<a href="CppNewick.htm">Newick</a>(m_v) <a href="CppOperatorLogicalOr.htm">||</a> <a href="CppNewick.htm">Newick</a>::<a href="CppIsBinaryNewick.htm">IsBinaryNewick</a>(m_v));<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppAssert.htm">assert</a>(m_v.empty() <a href="CppOperatorLogicalOr.htm">||</a> <a href="CppNewick.htm">Newick</a>::<a href="CppIsNewick.htm">IsNewick</a>(m_v));<br/>
 }<br/>
 <br/>
-<a href="CppRibi.htm\">ribi</a>::<a href="CppBinaryNewickVector.htm">BinaryNewickVector</a>::<a href="CppBinaryNewickVector.htm">BinaryNewickVector</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;&amp; v)<br/>
+<a href="CppRibi.htm">ribi</a>::<a href="CppBinaryNewickVector.htm">BinaryNewickVector</a>::<a href="CppBinaryNewickVector.htm">BinaryNewickVector</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;&amp; v)<br/>
+&nbsp;&nbsp;: m_v{v}<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppNewick.htm">Newick</a>::IsUnary<a href="CppNewick.htm">Newick</a>(v) <a href="CppOperatorLogicalOr.htm">||</a> <a href="CppNewick.htm">Newick</a>::<a href="CppIsBinaryNewick.htm">IsBinaryNewick</a>(v));<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(v.empty() <a href="CppOperatorLogicalOr.htm">||</a> <a href="CppNewick.htm">Newick</a>::<a href="CppIsNewick.htm">IsNewick</a>(v));<br/>
-&nbsp;&nbsp;m_v <a href="CppOperatorAssign.htm">=</a> v;<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppNewick.htm">Newick</a>::IsUnary<a href="CppNewick.htm">Newick</a>(m_v) <a href="CppOperatorLogicalOr.htm">||</a> <a href="CppNewick.htm">Newick</a>::<a href="CppIsBinaryNewick.htm">IsBinaryNewick</a>(m_v));<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(m_v.empty() <a href="CppOperatorLogicalOr.htm">||</a> <a href="CppNewick.htm">Newick</a>::<a href="CppIsNewick.htm">IsNewick</a>(m_v));<br/>
 }<br/>
 <br/>
-<b><a href="CppDouble.htm">double</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppBinaryNewickVector.htm">BinaryNewickVector</a>::CalcDenominator(<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> theta) <b><a href="CppConst.htm">const</a></b><br/>
+<b><a href="CppDouble.htm">double</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppBinaryNewickVector.htm">BinaryNewickVector</a>::CalcDenominator(<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> theta) <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <a href="CppNewick.htm">Newick</a>::CalcDenominator(Peek(),theta);<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppBigInt.htm">BigInteger</a> <a href="CppRibi.htm\">ribi</a>::<a href="CppBinaryNewickVector.htm">BinaryNewickVector</a>::<a href="CppCalcNumOfCombinations.htm">CalcNumOfCombinations</a>() <b><a href="CppConst.htm">const</a></b><br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppBigInt.htm">BigInteger</a> <a href="CppRibi.htm">ribi</a>::<a href="CppBinaryNewickVector.htm">BinaryNewickVector</a>::<a href="CppCalcNumOfCombinations.htm">CalcNumOfCombinations</a>() <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppNewick.htm">Newick</a>::<a href="CppIsNewick.htm">IsNewick</a>(m_v));<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <a href="CppNewick.htm">Newick</a>::<a href="CppCalcNumOfCombinations.htm">CalcNumOfCombinations</a>Binary(m_v);<br/>
 }<br/>
 <br/>
-<a href="CppComment.htm">//</a><a href="CppIfndef.htm">#ifndef</a> WIN32<br/>
-<a href="CppComment.htm">//</a><b><a href="CppConst.htm">const</a></b> <a href="CppCl_I.htm">cln::cl_I</a> <a href="CppRibi.htm\">ribi</a>::<a href="CppBinaryNewickVector.htm">BinaryNewickVector</a>::<a href="CppCalcNumOfCombinations.htm">CalcNumOfCombinations</a>Cln() <b><a href="CppConst.htm">const</a></b><br/>
-<a href="CppComment.htm">//</a>{<br/>
-<a href="CppComment.htm">//</a>&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppNewick.htm">Newick</a>::<a href="CppIsNewick.htm">IsNewick</a>(m_v));<br/>
-<a href="CppComment.htm">//</a>&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <a href="CppNewick.htm">Newick</a>::<a href="CppCalcNumOfCombinations.htm">CalcNumOfCombinations</a>Cln(m_v);<br/>
-<a href="CppComment.htm">//</a>}<br/>
-<a href="CppComment.htm">//</a><a href="CppEndif.htm">#endif</a><br/>
-<br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppBigInt.htm">BigInteger</a> <a href="CppRibi.htm\">ribi</a>::<a href="CppBinaryNewickVector.htm">BinaryNewickVector</a>::<a href="CppCalcNumOfSymmetries.htm">CalcNumOfSymmetries</a>() <b><a href="CppConst.htm">const</a></b><br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppBigInt.htm">BigInteger</a> <a href="CppRibi.htm">ribi</a>::<a href="CppBinaryNewickVector.htm">BinaryNewickVector</a>::<a href="CppCalcNumOfSymmetries.htm">CalcNumOfSymmetries</a>() <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppNewick.htm">Newick</a>::<a href="CppIsNewick.htm">IsNewick</a>(m_v));<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <a href="CppNewick.htm">Newick</a>::<a href="CppCalcNumOfSymmetriesBinary.htm">CalcNumOfSymmetriesBinary</a>(m_v);<br/>
 }<br/>
 <br/>
-<b><a href="CppDouble.htm">double</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppBinaryNewickVector.htm">BinaryNewickVector</a>::CalcProbabilitySimple<a href="CppNewick.htm">Newick</a>(<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> theta) <b><a href="CppConst.htm">const</a></b><br/>
+<b><a href="CppDouble.htm">double</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppBinaryNewickVector.htm">BinaryNewickVector</a>::CalcProbabilitySimple<a href="CppNewick.htm">Newick</a>(<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> theta) <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppNewick.htm">Newick</a>::IsSimple(m_v));<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(theta &gt; 0.0);<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <a href="CppNewick.htm">Newick</a>::CalcProbabilitySimple<a href="CppNewick.htm">Newick</a>(m_v,theta);<br/>
 }<br/>
 <br/>
-<b><a href="CppDouble.htm">double</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppBinaryNewickVector.htm">BinaryNewickVector</a>::CalculateProbability(<br/>
+<b><a href="CppDouble.htm">double</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppBinaryNewickVector.htm">BinaryNewickVector</a>::CalculateProbability(<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; <a href="CppNewick.htm">newick</a>_str,<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> theta)<br/>
 {<br/>
@@ -256,7 +254,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <br/>
 }<br/>
 <br/>
-<b><a href="CppDouble.htm">double</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppBinaryNewickVector.htm">BinaryNewickVector</a>::CalculateProbabilityInternal(<br/>
+<b><a href="CppDouble.htm">double</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppBinaryNewickVector.htm">BinaryNewickVector</a>::CalculateProbabilityInternal(<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBinaryNewickVector.htm">BinaryNewickVector</a>&amp; n,<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> theta,<br/>
 &nbsp;&nbsp;<a href="CppNewick.htm">Newick</a>Storage&lt;<a href="CppBinaryNewickVector.htm">BinaryNewickVector</a>&gt;&amp; storage)<br/>
@@ -353,7 +351,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;}<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppRibi.htm\">ribi</a>::<a href="CppBinaryNewickVector.htm">BinaryNewickVector</a>&gt; <a href="CppRibi.htm\">ribi</a>::<a href="CppBinaryNewickVector.htm">BinaryNewickVector</a>::<a href="CppGetSimplerNewicks.htm">GetSimplerNewicks</a>() <b><a href="CppConst.htm">const</a></b><br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppRibi.htm">ribi</a>::<a href="CppBinaryNewickVector.htm">BinaryNewickVector</a>&gt; <a href="CppRibi.htm">ribi</a>::<a href="CppBinaryNewickVector.htm">BinaryNewickVector</a>::<a href="CppGetSimplerNewicks.htm">GetSimplerNewicks</a>() <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppNewick.htm">Newick</a>::<a href="CppIsNewick.htm">IsNewick</a>(m_v));<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt; &gt; v <a href="CppOperatorAssign.htm">=</a> <a href="CppNewick.htm">Newick</a>::GetSimplerBinary<a href="CppNewick.htm">Newick</a>s(m_v);<br/>
@@ -361,7 +359,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> w;<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppPair.htm">std::pair</a>&lt;<a href="CppRibi.htm\">ribi</a>::<a href="CppBinaryNewickVector.htm">BinaryNewickVector</a>,<a href="CppRibi.htm\">ribi</a>::<a href="CppBinaryNewickVector.htm">BinaryNewickVector</a>&gt; <a href="CppRibi.htm\">ribi</a>::<a href="CppBinaryNewickVector.htm">BinaryNewickVector</a>::<a href="CppGetRootBranches.htm">GetRootBranches</a>() <b><a href="CppConst.htm">const</a></b><br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppPair.htm">std::pair</a>&lt;<a href="CppRibi.htm">ribi</a>::<a href="CppBinaryNewickVector.htm">BinaryNewickVector</a>,<a href="CppRibi.htm">ribi</a>::<a href="CppBinaryNewickVector.htm">BinaryNewickVector</a>&gt; <a href="CppRibi.htm">ribi</a>::<a href="CppBinaryNewickVector.htm">BinaryNewickVector</a>::<a href="CppGetRootBranches.htm">GetRootBranches</a>() <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppNewick.htm">Newick</a>::<a href="CppIsNewick.htm">IsNewick</a>(m_v));<br/>
 &nbsp;&nbsp;<a href="CppPair.htm">std::pair</a>&lt;<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;,<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt; &gt; p<br/>
@@ -369,12 +367,12 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> p;<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppRibi.htm\">ribi</a>::<a href="CppBinaryNewickVector.htm">BinaryNewickVector</a>::Get<a href="CppVersion.htm">Version</a>()<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppRibi.htm">ribi</a>::<a href="CppBinaryNewickVector.htm">BinaryNewickVector</a>::Get<a href="CppVersion.htm">Version</a>()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> "3.1";<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm\">ribi</a>::<a href="CppBinaryNewickVector.htm">BinaryNewickVector</a>::Get<a href="CppVersion.htm">Version</a>History()<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm">ribi</a>::<a href="CppBinaryNewickVector.htm">BinaryNewickVector</a>::Get<a href="CppVersion.htm">Version</a>History()<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v;<br/>
 &nbsp;&nbsp;v.push_back("2009-06-01: <a href="CppVersion.htm">Version</a> 1.0: Initial <a href="CppVersion.htm">version</a>");<br/>
@@ -386,7 +384,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
 }<br/>
 <br/>
- <b><a href="CppBool.htm">bool</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppBinaryNewickVector.htm">BinaryNewickVector</a>::IsCloseBracketRight(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> pos) <b><a href="CppConst.htm">const</a></b><br/>
+ <b><a href="CppBool.htm">bool</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppBinaryNewickVector.htm">BinaryNewickVector</a>::IsCloseBracketRight(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> pos) <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> sz <a href="CppOperatorAssign.htm">=</a> m_v.size();<br/>
 <br/>
@@ -405,7 +403,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <b><a href="CppTrue.htm">true</a></b>;<br/>
 }<br/>
 <br/>
-<b><a href="CppBool.htm">bool</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppBinaryNewickVector.htm">BinaryNewickVector</a>::IsOpenBracketLeft(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> pos) <b><a href="CppConst.htm">const</a></b><br/>
+<b><a href="CppBool.htm">bool</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppBinaryNewickVector.htm">BinaryNewickVector</a>::IsOpenBracketLeft(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> pos) <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(pos <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 0);<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(pos &lt; <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(m_v.size()));<br/>
@@ -422,12 +420,12 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <b><a href="CppTrue.htm">true</a></b>;<br/>
 }<br/>
 <br/>
-<b><a href="CppBool.htm">bool</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppBinaryNewickVector.htm">BinaryNewickVector</a>::IsSimple() <b><a href="CppConst.htm">const</a></b><br/>
+<b><a href="CppBool.htm">bool</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppBinaryNewickVector.htm">BinaryNewickVector</a>::IsSimple() <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <a href="CppNewick.htm">Newick</a>::IsSimple(m_v);<br/>
 }<br/>
 <br/>
-<a href="CppComment.htm">//</a><b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppBinaryNewickVector.htm">BinaryNewickVector</a>::SetTheta(<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> theta)<br/>
+<a href="CppComment.htm">//</a><b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppBinaryNewickVector.htm">BinaryNewickVector</a>::SetTheta(<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> theta)<br/>
 <a href="CppComment.htm">//</a>{<br/>
 <a href="CppComment.htm">//</a>&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(theta &gt; 0.0);<br/>
 <a href="CppComment.htm">//</a>&nbsp;&nbsp;m_theta <a href="CppOperatorAssign.htm">=</a> theta;<br/>
@@ -448,7 +446,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">//</a> <a href="CppOperatorMinus.htm">-</a>&gt; bracket_close_pos <a href="CppOperatorAssign.htm">=</a> 7<br/>
 <a href="CppComment.htm">//</a> <a href="CppOperatorMinus.htm">-</a>&gt; sz_loss <a href="CppOperatorAssign.htm">=</a> 4 <a href="CppOperatorAssign.htm">=</a> 7 <a href="CppOperatorMinus.htm">-</a> 3 <a href="CppOperatorAssign.htm">=</a> bracket_close_pos <a href="CppOperatorMinus.htm">-</a> bracket_open_pos<br/>
 <a href="CppComment.htm">//</a> <a href="CppOperatorMinus.htm">-</a>&gt; new_sz <a href="CppOperatorAssign.htm">=</a> 5<br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppBinaryNewickVector.htm">BinaryNewickVector</a> <a href="CppRibi.htm\">ribi</a>::<a href="CppBinaryNewickVector.htm">BinaryNewickVector</a>::LoseBrackets(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x, <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> i) <b><a href="CppConst.htm">const</a></b><br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppBinaryNewickVector.htm">BinaryNewickVector</a> <a href="CppRibi.htm">ribi</a>::<a href="CppBinaryNewickVector.htm">BinaryNewickVector</a>::LoseBrackets(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x, <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> i) <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(i <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 0);<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(i &lt; Size());<br/>
@@ -474,7 +472,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <a href="CppBinaryNewickVector.htm">BinaryNewickVector</a>(v_copy);<br/>
 }<br/>
 <br/>
-<b><a href="CppBool.htm">bool</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppBinaryNewickVector.htm">BinaryNewickVector</a>::<a href="CppNewick.htm">Newick</a>Compare(<br/>
+<b><a href="CppBool.htm">bool</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppBinaryNewickVector.htm">BinaryNewickVector</a>::<a href="CppNewick.htm">Newick</a>Compare(<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;&amp; lhs,<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;&amp; rhs)<br/>
 {<br/>
@@ -498,12 +496,12 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <b><a href="CppFalse.htm">false</a></b>;<br/>
 }<br/>
 <br/>
-<b><a href="CppInt.htm">int</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppBinaryNewickVector.htm">BinaryNewickVector</a>::Size() <b><a href="CppConst.htm">const</a></b><br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppBinaryNewickVector.htm">BinaryNewickVector</a>::Size() <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <a href="CppNumeric_cast.htm">boost::numeric_cast</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(m_v.size());<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppBinaryNewickVector.htm">BinaryNewickVector</a> <a href="CppRibi.htm\">ribi</a>::<a href="CppBinaryNewickVector.htm">BinaryNewickVector</a>::TermIsNotOne(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> i) <b><a href="CppConst.htm">const</a></b><br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppBinaryNewickVector.htm">BinaryNewickVector</a> <a href="CppRibi.htm">ribi</a>::<a href="CppBinaryNewickVector.htm">BinaryNewickVector</a>::TermIsNotOne(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> i) <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(m_v[i]&gt;1);<br/>
 &nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt; v(m_v);<br/>
@@ -534,7 +532,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">//</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;^&nbsp;&nbsp;&nbsp;&nbsp;EXIT-1<br/>
 <a href="CppComment.htm">//</a> ((1,2,3),3), string_pos 3 <a href="CppOperatorMinus.htm">-</a>&gt; (3,3) <a href="CppComment.htm">//</a>Might be incorrect: <a href="CppAlgorithm.htm">algorithm</a> holds <b><a href="CppFor.htm">for</a></b> two numbers between brackets<br/>
 <a href="CppComment.htm">//</a>&nbsp;&nbsp;&nbsp;&nbsp;^<br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppBinaryNewickVector.htm">BinaryNewickVector</a> <a href="CppRibi.htm\">ribi</a>::<a href="CppBinaryNewickVector.htm">BinaryNewickVector</a>::TermIsOne(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> i) <b><a href="CppConst.htm">const</a></b><br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppBinaryNewickVector.htm">BinaryNewickVector</a> <a href="CppRibi.htm">ribi</a>::<a href="CppBinaryNewickVector.htm">BinaryNewickVector</a>::TermIsOne(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> i) <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> sz <a href="CppOperatorAssign.htm">=</a> m_v.size();<br/>
 <br/>
@@ -573,7 +571,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <a href="CppBinaryNewickVector.htm">BinaryNewickVector</a>(<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;());<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppBinaryNewickVector.htm">BinaryNewickVector</a>::Test()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppBinaryNewickVector.htm">BinaryNewickVector</a>::Test()<br/>
 {<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Check that well-formed <a href="CppNewick.htm">Newick</a>s are confirmed valid<br/>
@@ -659,16 +657,16 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;}<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppRibi.htm\">ribi</a>::<a href="CppBinaryNewickVector.htm">BinaryNewickVector</a>::ToStr() <b><a href="CppConst.htm">const</a></b><br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppRibi.htm">ribi</a>::<a href="CppBinaryNewickVector.htm">BinaryNewickVector</a>::ToStr() <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppNewick.htm">Newick</a>::<a href="CppIsNewick.htm">IsNewick</a>(m_v));<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <a href="CppNewick.htm">Newick</a>::<a href="CppNewickToString.htm">NewickToString</a>(m_v);<br/>
 }<br/>
 <br/>
-<b><a href="CppBool.htm">bool</a></b> <a href="CppRibi.htm\">ribi</a>::<b><a href="CppOperatorLess.htm">operator&lt;</a></b>(<b><a href="CppConst.htm">const</a></b> <a href="CppBinaryNewickVector.htm">BinaryNewickVector</a>&amp; lhs, <b><a href="CppConst.htm">const</a></b> <a href="CppBinaryNewickVector.htm">BinaryNewickVector</a>&amp; rhs)<br/>
+<b><a href="CppBool.htm">bool</a></b> <a href="CppRibi.htm">ribi</a>::<b><a href="CppOperatorLess.htm">operator&lt;</a></b>(<b><a href="CppConst.htm">const</a></b> <a href="CppBinaryNewickVector.htm">BinaryNewickVector</a>&amp; lhs, <b><a href="CppConst.htm">const</a></b> <a href="CppBinaryNewickVector.htm">BinaryNewickVector</a>&amp; rhs)<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppReturn.htm">return</a></b> lhs.v &lt; rhs.v;<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppBinaryNewickVector.htm">BinaryNewickVector</a>::<a href="CppNewick.htm">Newick</a>Compare(lhs.Peek(),rhs.Peek());<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppBinaryNewickVector.htm">BinaryNewickVector</a>::<a href="CppNewick.htm">Newick</a>Compare(lhs.Peek(),rhs.Peek());<br/>
 }<br/>
 </code></td></tr></table>
 <!-- end of the code -->

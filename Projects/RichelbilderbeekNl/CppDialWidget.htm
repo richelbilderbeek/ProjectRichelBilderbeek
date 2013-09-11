@@ -66,14 +66,14 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
 <br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-<b><a href="CppTypedef.htm">typedef</a></b>s"<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/checked_delete.hpp&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppSignals2.htm">signals2</a>.hpp&gt;<br/>
+<a href="CppInclude.htm">#include</a> "<a href="CppWidget.htm">widget</a>.h"<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppWidget.htm">widget</a>.h"<br/>
-<br/>
-<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a> {<br/>
+<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
 <br/>
 <b><a href="CppStruct.htm">struct</a></b> <a href="CppDial.htm">Dial</a>;<br/>
 <br/>
@@ -135,7 +135,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <br/>
 <a href="CppOstream.htm">std::ostream</a>&amp; <b><a href="CppOperatorStreamOut.htm">operator&lt;&lt;</a></b>(<a href="CppOstream.htm">std::ostream</a>&amp; os, <b><a href="CppConst.htm">const</a></b> <a href="CppDialWidget.htm">DialWidget</a>&amp; <a href="CppWidget.htm">widget</a>);<br/>
 <br/>
-} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a><br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
 <br/>
 <a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> DIALWIDGET_H<br/>
 </code></td></tr></table>
@@ -169,9 +169,8 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="CppDialWidget.htm">CppDialWidget</a>.htm<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<br/>
-<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-<b><a href="CppTypedef.htm">typedef</a></b>s"<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppDialWidget.htm">dialwidget</a>.h"<br/>
 <br/>
@@ -188,7 +187,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
 <br/>
-<a href="CppRibi.htm\">ribi</a>::<a href="CppDialWidget.htm">DialWidget</a>::<a href="CppDialWidget.htm">DialWidget</a>(<br/>
+<a href="CppRibi.htm">ribi</a>::<a href="CppDialWidget.htm">DialWidget</a>::<a href="CppDialWidget.htm">DialWidget</a>(<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> position,<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x,<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> y,<br/>
@@ -205,7 +204,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;SetGeometry(Rect(x,y,width,height));<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppDialWidget.htm">DialWidget</a>::Click(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x,<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> y)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppDialWidget.htm">DialWidget</a>::Click(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x,<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> y)<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (!IsClicked(x,y)) <b><a href="CppReturn.htm">return</a></b>;<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> midx <a href="CppOperatorAssign.htm">=</a> GetGeometry().GetX() <a href="CppOperatorPlus.htm">+</a> (GetGeometry().GetWidth()&nbsp;&nbsp;<a href="CppOperatorDivide.htm">/</a> 2);<br/>
@@ -220,12 +219,12 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;m_dial-&gt;SetPosition(position);<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppRibi.htm\">ribi</a>::<a href="CppDialWidget.htm">DialWidget</a>::Get<a href="CppVersion.htm">Version</a>()<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppRibi.htm">ribi</a>::<a href="CppDialWidget.htm">DialWidget</a>::Get<a href="CppVersion.htm">Version</a>()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> "2.4";<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm\">ribi</a>::<a href="CppDialWidget.htm">DialWidget</a>::Get<a href="CppVersion.htm">Version</a>History()<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm">ribi</a>::<a href="CppDialWidget.htm">DialWidget</a>::Get<a href="CppVersion.htm">Version</a>History()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> {<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;"2011-07-03: <a href="CppVersion.htm">Version</a> 1.0: initial <a href="CppVersion.htm">version</a>",<br/>
@@ -237,17 +236,17 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;};<br/>
 }<br/>
 <br/>
-<b><a href="CppDouble.htm">double</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppDialWidget.htm">DialWidget</a>::<a href="CppGetAngle.htm">GetAngle</a>(<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> dx, <b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> dy)<br/>
+<b><a href="CppDouble.htm">double</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppDialWidget.htm">DialWidget</a>::<a href="CppGetAngle.htm">GetAngle</a>(<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> dx, <b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> dy)<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <a href="CppDial.htm">Dial</a>::<a href="CppGetAngle.htm">GetAngle</a>(dx,dy);<br/>
 }<br/>
 <br/>
-<b><a href="CppDouble.htm">double</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppDialWidget.htm">DialWidget</a>::<a href="CppGetDistance.htm">GetDistance</a>(<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> dx, <b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> dy)<br/>
+<b><a href="CppDouble.htm">double</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppDialWidget.htm">DialWidget</a>::<a href="CppGetDistance.htm">GetDistance</a>(<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> dx, <b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> dy)<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <a href="CppDial.htm">Dial</a>::<a href="CppGetDistance.htm">GetDistance</a>(dx,dy);<br/>
 }<br/>
 <br/>
-<b><a href="CppBool.htm">bool</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppDialWidget.htm">DialWidget</a>::IsClicked(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x, <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> y) <b><a href="CppConst.htm">const</a></b><br/>
+<b><a href="CppBool.htm">bool</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppDialWidget.htm">DialWidget</a>::IsClicked(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x, <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> y) <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> <a href="CppWidget.htm">widget</a>_midx<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <a href="CppNumeric_cast.htm">boost::numeric_cast</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(GetGeometry().GetX())<br/>
@@ -261,7 +260,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&lt; (<a href="CppNumeric_cast.htm">boost::numeric_cast</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(<b><a href="CppThis.htm">this</a></b>-&gt;GetGeometry().GetWidth()) <a href="CppOperatorDivide.htm">/</a> 2.0);<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppDialWidget.htm">DialWidget</a>::Test()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppDialWidget.htm">DialWidget</a>::Test()<br/>
 {<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppBool.htm">bool</a></b> is_tested <a href="CppOperatorAssign.htm">=</a> <b><a href="CppFalse.htm">false</a></b>;<br/>
@@ -273,7 +272,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;}<br/>
 }<br/>
 <br/>
-<a href="CppOstream.htm">std::ostream</a>&amp; <a href="CppRibi.htm\">ribi</a>::<b><a href="CppOperatorStreamOut.htm">operator&lt;&lt;</a></b>(<a href="CppOstream.htm">std::ostream</a>&amp; os, <b><a href="CppConst.htm">const</a></b> <a href="CppDialWidget.htm">DialWidget</a>&amp; <a href="CppWidget.htm">widget</a>)<br/>
+<a href="CppOstream.htm">std::ostream</a>&amp; <a href="CppRibi.htm">ribi</a>::<b><a href="CppOperatorStreamOut.htm">operator&lt;&lt;</a></b>(<a href="CppOstream.htm">std::ostream</a>&amp; os, <b><a href="CppConst.htm">const</a></b> <a href="CppDialWidget.htm">DialWidget</a>&amp; <a href="CppWidget.htm">widget</a>)<br/>
 {<br/>
 &nbsp;&nbsp;os<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "&lt;<a href="CppDialWidget.htm">DialWidget</a>&gt;"<br/>

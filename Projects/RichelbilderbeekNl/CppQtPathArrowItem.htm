@@ -70,7 +70,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppQGraphicsLineItem.htm">QGraphicsLineItem</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;QPen&gt;<br/>
 <br/>
-<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a> {<br/>
+<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
 <br/>
 <a href="CppComment.htm">///</a>An arrow item that has one or more mid<a href="CppPointer.htm">point</a>s<br/>
 <b><a href="CppStruct.htm">struct</a></b> <a href="CppQt.htm">Qt</a>PathArrowItem : <b><a href="CppPublic.htm">public</a></b> <a href="CppQGraphicsItem.htm">QGraphicsItem</a><br/>
@@ -167,7 +167,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <br/>
 };<br/>
 <br/>
-} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a><br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
 <br/>
 <a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> QTPATHARROWITEM_H<br/>
 </code></td></tr></table>
@@ -216,9 +216,9 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppQKeyEvent.htm">QKeyEvent</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppQPainter.htm">QPainter</a>&gt;<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a>PathArrowItem::m_click_easy_width <a href="CppOperatorAssign.htm">=</a> 10.0;<br/>
+<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>PathArrowItem::m_click_easy_width <a href="CppOperatorAssign.htm">=</a> 10.0;<br/>
 <br/>
-<a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a>PathArrowItem::<a href="CppQt.htm">Qt</a>PathArrowItem(<br/>
+<a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>PathArrowItem::<a href="CppQt.htm">Qt</a>PathArrowItem(<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppQPointF.htm">QPointF</a>&amp; tail_pos,<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppBool.htm">bool</a></b> tail,<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppQPointF.htm">QPointF</a>&gt;&amp; mid_pos,<br/>
@@ -245,35 +245,35 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;setAcceptHoverEvents(<b><a href="CppTrue.htm">true</a></b>);<br/>
 }<br/>
 <br/>
-<a href="CppQRect.htm">QRect</a>F <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a>PathArrowItem::boundingRect() <b><a href="CppConst.htm">const</a></b><br/>
+<a href="CppQRect.htm">QRect</a>F <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>PathArrowItem::boundingRect() <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <a href="CppShape.htm">shape</a>().boundingRect();<br/>
 }<br/>
 <br/>
-<b><a href="CppDouble.htm">double</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a>PathArrowItem::<a href="CppGetAngle.htm">GetAngle</a>(<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> dx, <b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> dy)<br/>
+<b><a href="CppDouble.htm">double</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>PathArrowItem::<a href="CppGetAngle.htm">GetAngle</a>(<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> dx, <b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> dy)<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> pi <a href="CppOperatorAssign.htm">=</a> <a href="CppBoost.htm">boost</a>::math::constants::pi&lt;<b><a href="CppDouble.htm">double</a></b>&gt;();<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> pi <a href="CppOperatorMinus.htm">-</a> (<a href="CppAtan.htm">std::atan</a>(dx/dy));<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a>PathArrowItem::Get<a href="CppVersion.htm">Version</a>()<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>PathArrowItem::Get<a href="CppVersion.htm">Version</a>()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> "1.0";<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a>PathArrowItem::Get<a href="CppVersion.htm">Version</a>History()<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>PathArrowItem::Get<a href="CppVersion.htm">Version</a>History()<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v;<br/>
 &nbsp;&nbsp;v.push_back("2012-12-01: <a href="CppVersion.htm">version</a> 1.0: initial <a href="CppVersion.htm">version</a>");<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a>PathArrowItem::hoverEnterEvent(<a href="CppQGraphicsSceneHoverEvent.htm">QGraphicsSceneHoverEvent</a> *)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>PathArrowItem::hoverEnterEvent(<a href="CppQGraphicsSceneHoverEvent.htm">QGraphicsSceneHoverEvent</a> *)<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;setCursor(<a href="CppQCursor.htm">QCursor</a>(<a href="CppQt.htm">Qt</a>::<a href="CppPoint.htm">Point</a>ingHandCursor));<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a>PathArrowItem::keyPressEvent(<a href="CppQKeyEvent.htm">QKeyEvent</a> *event)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>PathArrowItem::keyPressEvent(<a href="CppQKeyEvent.htm">QKeyEvent</a> *event)<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppSwitch.htm">switch</a></b> (event-&gt;key())<br/>
 &nbsp;&nbsp;{<br/>
@@ -299,13 +299,13 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a>PathArrowItem::mouseMoveEvent(<a href="CppQGraphicsSceneMouseEvent.htm">QGraphicsSceneMouseEvent</a>*)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>PathArrowItem::mouseMoveEvent(<a href="CppQGraphicsSceneMouseEvent.htm">QGraphicsSceneMouseEvent</a>*)<br/>
 {<br/>
 &nbsp;&nbsp;m_signal_item_requests_scene_update(<b><a href="CppThis.htm">this</a></b>);<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppQGraphicsLineItem.htm">QGraphicsLineItem</a>::mouseMoveEvent(event);<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a>PathArrowItem::mousePressEvent(<a href="CppQGraphicsSceneMouseEvent.htm">QGraphicsSceneMouseEvent</a> *event)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>PathArrowItem::mousePressEvent(<a href="CppQGraphicsSceneMouseEvent.htm">QGraphicsSceneMouseEvent</a> *event)<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (event-&gt;modifiers() &amp; <a href="CppQt.htm">Qt</a>::ShiftModifier)<br/>
 &nbsp;&nbsp;{<br/>
@@ -323,7 +323,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<a href="CppQGraphicsItem.htm">QGraphicsItem</a>::mousePressEvent(event);<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a>PathArrowItem::paint(<a href="CppQPainter.htm">QPainter</a> *painter, <b><a href="CppConst.htm">const</a></b> <a href="CppQStyleOptionGraphicsItem.htm">QStyleOptionGraphicsItem</a> *, <a href="CppQWidget.htm">QWidget</a> *)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>PathArrowItem::paint(<a href="CppQPainter.htm">QPainter</a> *painter, <b><a href="CppConst.htm">const</a></b> <a href="CppQStyleOptionGraphicsItem.htm">QStyleOptionGraphicsItem</a> *, <a href="CppQWidget.htm">QWidget</a> *)<br/>
 {<br/>
 &nbsp;&nbsp;painter-&gt;setRenderH<b><a href="CppInt.htm">int</a></b>(<a href="CppQPainter.htm">QPainter</a>::Antialiasing);<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (<b><a href="CppThis.htm">this</a></b>-&gt;isSelected() <a href="CppOperatorLogicalOr.htm">||</a> <b><a href="CppThis.htm">this</a></b>-&gt;hasFocus())<br/>
@@ -385,7 +385,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;}<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a>PathArrowItem::SetArrowPath(<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>PathArrowItem::SetArrowPath(<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppQPointF.htm">QPointF</a>&amp; tail_pos,<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppQPointF.htm">QPointF</a>&gt;&amp; mid_pos,<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppQPointF.htm">QPointF</a>&amp; head_pos)<br/>
@@ -397,7 +397,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;update();<br/>
 }<br/>
 <br/>
-<a href="CppQPainterPath.htm">QPainterPath</a> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a>PathArrowItem::<a href="CppShape.htm">shape</a>() <b><a href="CppConst.htm">const</a></b><br/>
+<a href="CppQPainterPath.htm">QPainterPath</a> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>PathArrowItem::<a href="CppShape.htm">shape</a>() <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Thanks to norobro <b><a href="CppFor.htm">for</a></b> posting <b><a href="CppThis.htm">this</a></b> code at<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>http://www.qtcentre.org/<a href="CppThread.htm">thread</a>s/49201-<a href="CppIncrease.htm">Increase</a>-margin-<b><a href="CppFor.htm">for</a></b>-detecting-<a href="Tools.htm">tool</a>tip-events-of-<a href="CppQGraphicsLineItem.htm">QGraphicsLineItem</a><br/>

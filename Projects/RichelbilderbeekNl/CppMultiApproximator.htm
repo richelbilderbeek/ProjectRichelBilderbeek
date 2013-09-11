@@ -57,13 +57,13 @@
 <a href="CppInclude.htm">#include</a> "<a href="CppException.htm">exception</a>noextrapolation.h"<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppTrace.htm">trace</a>.h"<br/>
 <br/>
-<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a> {<br/>
+<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
 <br/>
 <a href="CppComment.htm">///</a>MultiApproximator can estimate a value between (non-unique) keys.<br/>
 <a href="CppComment.htm">///</a>For example, supply Approximator&lt;X,Y&gt; with (1.0,10) and (2.0,20)<br/>
 <a href="CppComment.htm">///</a>and it will estimate an X <b><a href="CppIf.htm">if</a></b> 1.5 to have a Y of 15.<br/>
 <a href="CppComment.htm">///</a>If the data used has unique keys only, use Approximator<br/>
-<a href="CppComment.htm">///</a><b><a href="CppFor.htm">for</a></b> an increase in run-<a href="CppTime.htm">time</a> speed.<br/>
+<a href="CppComment.htm">///</a><b><a href="CppFor.htm">for</a></b> an increase in <a href="CppRunTime.htm">run-time</a> speed.<br/>
 <a href="CppComment.htm">///</a>If all keys are added to MultiApproximator, it is possible to spawn<br/>
 <a href="CppComment.htm">///</a>an Approximator from it.<br/>
 <a href="CppComment.htm">///</a><br/>
@@ -144,6 +144,8 @@ MultiApproximator&lt;Key,Value,<a href="CppContainer.htm">Container</a>&gt;::Mul
 {<br/>
 &nbsp;&nbsp;<b><a href="CppStatic_assert.htm">static_assert</a></b>(!<a href="CppStd.htm">std</a>::is_integral&lt;Key&gt;(),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;"MultiApproximator will not work on <a href="CppInt.htm">integer</a> keys");<br/>
+&nbsp;&nbsp;<b><a href="CppStatic_assert.htm">static_assert</a></b>(!<a href="CppStd.htm">std</a>::is_integral&lt;Value&gt;(),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"MultiApproximator will not work on <a href="CppInt.htm">integer</a> values");<br/>
 &nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
 &nbsp;&nbsp;Test();<br/>
 &nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
@@ -244,11 +246,10 @@ MultiApproximator&lt;Key,Value,<a href="CppContainer.htm">Container</a>&gt;::Mul
 <b><a href="CppTemplate.htm">template</a></b> &lt;<b><a href="CppClass.htm">class</a></b> Key, <b><a href="CppClass.htm">class</a></b> Value, <b><a href="CppClass.htm">class</a></b> <a href="CppContainer.htm">Container</a>&gt;<br/>
 <b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; MultiApproximator&lt;Key,Value,<a href="CppContainer.htm">Container</a>&gt;::Get<a href="CppVersion.htm">Version</a>History()<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v {<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> {<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;"2013-08-23: <a href="CppVersion.htm">version</a> 1.0: initial <a href="CppVersion.htm">version</a>",<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;"2013-08-23: <a href="CppVersion.htm">version</a> 1.1: add con<a href="CppVersion.htm">version</a> to an Approximator"<br/>
 &nbsp;&nbsp;};<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
 }<br/>
 <br/>
 <b><a href="CppTemplate.htm">template</a></b> &lt;<b><a href="CppClass.htm">class</a></b> Key, <b><a href="CppClass.htm">class</a></b> Value&gt;<br/>
@@ -398,7 +399,7 @@ MultiApproximator&lt;Key,Value,<a href="CppContainer.htm">Container</a>&gt;::Mul
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> a;<br/>
 }<br/>
 <br/>
-} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a><br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
 <br/>
 <a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> MULTIAPPROXIMATOR_H<br/>
 </code></td></tr></table>

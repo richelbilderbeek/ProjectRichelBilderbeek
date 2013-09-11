@@ -67,7 +67,7 @@ and <a href="CppStl.htm">STL</a> <a href="CppLibrary.htm">libraries</a>.</p>
 </ul>
 <p><a href="CppStandard.htm">C++ standard</a>:</p>
 <ul>
-  <li><img src="PicCpp98.png" alt="C++98"/> <a href="Cpp98.htm">C++98</a></li>
+  <li><img src="PicCpp11.png" alt="C++11"/> <a href="Cpp11.htm">C++11</a></li>
 </ul>
 <p><a href="CppCompiler.htm">Compiler(s)</a>:</p>
 <ul>
@@ -89,6 +89,7 @@ and <a href="CppStl.htm">STL</a> <a href="CppLibrary.htm">libraries</a>.</p>
 <table summary="ToolTestStopwatch.pro" border = "1"><tr><td><code>
 QT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; += core<br/>
 QT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -= gui<br/>
+<a href="CppQMAKE_CXXFLAGS.htm">QMAKE_CXXFLAGS</a> += -std=<a href="Cpp11.htm">c++11</a> <a href="CppWall.htm">-Wall</a> <a href="CppWextra.htm">-Wextra</a> <a href="CppWerror.htm">-Werror</a><br/>
 CONFIG&nbsp;&nbsp; += console<br/>
 CONFIG&nbsp;&nbsp; -= app_bundle<br/>
 TEMPLATE = app<br/>
@@ -129,14 +130,14 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppCstdlibH.htm">cstdlib</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppIostreamH.htm">iostream</a>&gt;<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppTime.htm">time</a>r.hpp&gt;<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppStopwatch.htm">stopwatch</a>.h"<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<br/>
 <b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppStopwatch.htm">Stopwatch</a> s;<br/>
+&nbsp;&nbsp;<a href="CppRibi.htm">ribi</a>::<a href="CppStopwatch.htm">Stopwatch</a> s;<br/>
 &nbsp;&nbsp;<a href="CppBoostTimer.htm">boost::timer</a> t;<br/>
 &nbsp;&nbsp;<a href="CppSystem.htm">std::system</a>("./../<a href="ToolPause.htm">ToolPause</a>-build-desktop/<a href="ToolPause.htm">Pause</a> 5");<br/>
 &nbsp;&nbsp;<a href="CppCout.htm">std::cout</a><br/>
@@ -144,7 +145,6 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "<a href="CppStopwatch.htm">Stopwatch</a>: " <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> s.elapsed() <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> " seconds\n"<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "<a href="CppBoostTimer.htm">boost::timer</a>: " <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> t.elapsed() <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> " milliseconds\n";<br/>
 }<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>

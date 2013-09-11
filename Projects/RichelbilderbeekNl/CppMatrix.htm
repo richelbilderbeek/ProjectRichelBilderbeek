@@ -248,12 +248,13 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppDefine.htm">#define</a> MATRIX_H<br/>
 <br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-<b><a href="CppTypedef.htm">typedef</a></b>s"<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/numeric/<a href="CppUblas.htm">ublas</a>/<a href="CppMatrix.htm">matrix</a>.hpp&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/numeric/<a href="CppUblas.htm">ublas</a>/vector.hpp&gt;<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
 <br/>
-<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a> {<br/>
+<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
 <br/>
 <a href="CppComment.htm">///</a>Helper <b><a href="CppClass.htm">class</a></b> <b><a href="CppFor.htm">for</a></b> <a href="CppMatrix.htm">matrix</a> operations<br/>
 <b><a href="CppStruct.htm">struct</a></b> <a href="CppMatrix.htm">Matrix</a><br/>
@@ -411,7 +412,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppUblasVector.htm">boost::numeric::ublas::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;&amp; b);<br/>
 };<br/>
 <br/>
-} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a><br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
 <br/>
 <a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> MATRIX_H<br/>
 </code></td></tr></table>
@@ -445,15 +446,14 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="CppMatrix.htm">CppMatrix</a>.htm<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<br/>
-<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-<b><a href="CppTypedef.htm">typedef</a></b>s"<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppMatrix.htm">matrix</a>.h"<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppIostreamH.htm">iostream</a>&gt;<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/numeric/con<a href="CppVersion.htm">version</a>/cast.hpp&gt;<br/>
-<a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
-<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-<b><a href="CppTypedef.htm">typedef</a></b>s"<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/numeric/<a href="CppUblas.htm">ublas</a>/io.hpp&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/numeric/<a href="CppUblas.htm">ublas</a>/lu.hpp&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/numeric/<a href="CppUblas.htm">ublas</a>/<a href="CppMatrix.htm">matrix</a>.hpp&gt;<br/>
@@ -463,7 +463,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppTrace.htm">trace</a>.h"<br/>
 <br/>
-<b><a href="CppDouble.htm">double</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppMatrix.htm">Matrix</a>::CalcDeterminant(<a href="CppUblasMatrix.htm">boost::numeric::ublas::matrix</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; m)<br/>
+<b><a href="CppDouble.htm">double</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppMatrix.htm">Matrix</a>::CalcDeterminant(<a href="CppUblasMatrix.htm">boost::numeric::ublas::matrix</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; m)<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(m.size1() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> m.size2() <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "Can only calculate the determinant of square matrices");<br/>
 &nbsp;&nbsp;<a href="CppUblas.htm">boost::numeric::ublas</a>::permutation_<a href="CppMatrix.htm">matrix</a>&lt;<a href="CppSize_t.htm">std::size_t</a>&gt; pivots(m.size1() );<br/>
@@ -485,7 +485,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> d;<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppUblasMatrix.htm">boost::numeric::ublas::matrix</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; &gt; <a href="CppRibi.htm\">ribi</a>::<a href="CppMatrix.htm">Matrix</a>::Chop(<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppUblasMatrix.htm">boost::numeric::ublas::matrix</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; &gt; <a href="CppRibi.htm">ribi</a>::<a href="CppMatrix.htm">Matrix</a>::Chop(<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppUblasMatrix.htm">boost::numeric::ublas::matrix</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;&amp; m)<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppUsing.htm">using</a></b> <a href="CppUblas.htm">boost::numeric::ublas</a>::range;<br/>
@@ -506,7 +506,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppUblasMatrix.htm">boost::numeric::ublas::matrix</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; <a href="CppRibi.htm\">ribi</a>::<a href="CppMatrix.htm">Matrix</a>::Create<a href="CppMatrix.htm">Matrix</a>(<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppUblasMatrix.htm">boost::numeric::ublas::matrix</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; <a href="CppRibi.htm">ribi</a>::<a href="CppMatrix.htm">Matrix</a>::Create<a href="CppMatrix.htm">Matrix</a>(<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppSize_t.htm">std::size_t</a> n_rows,<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppSize_t.htm">std::size_t</a> n_cols,<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;&amp; v)<br/>
@@ -523,7 +523,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> m;<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppUblasMatrix.htm">boost::numeric::ublas::matrix</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; <a href="CppRibi.htm\">ribi</a>::<a href="CppMatrix.htm">Matrix</a>::CreateRandom<a href="CppMatrix.htm">Matrix</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppSize_t.htm">std::size_t</a> n_rows, <b><a href="CppConst.htm">const</a></b> <a href="CppSize_t.htm">std::size_t</a> n_cols)<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppUblasMatrix.htm">boost::numeric::ublas::matrix</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; <a href="CppRibi.htm">ribi</a>::<a href="CppMatrix.htm">Matrix</a>::CreateRandom<a href="CppMatrix.htm">Matrix</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppSize_t.htm">std::size_t</a> n_rows, <b><a href="CppConst.htm">const</a></b> <a href="CppSize_t.htm">std::size_t</a> n_cols)<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppUblasMatrix.htm">boost::numeric::ublas::matrix</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; m(n_rows,n_cols);<br/>
 &nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<a href="CppSize_t.htm">std::size_t</a> row=0; row<a href="CppOperatorNotEqual.htm">!=</a>n_rows; <a href="CppOperatorPlus.htm">+</a>+row)<br/>
@@ -536,36 +536,35 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> m;<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppUblasVector.htm">boost::numeric::ublas::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; <a href="CppRibi.htm\">ribi</a>::<a href="CppMatrix.htm">Matrix</a>::<a href="CppCreateVector.htm">CreateVector</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;&amp; v)<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppUblasVector.htm">boost::numeric::ublas::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; <a href="CppRibi.htm">ribi</a>::<a href="CppMatrix.htm">Matrix</a>::<a href="CppCreateVector.htm">CreateVector</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;&amp; v)<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppUblasVector.htm">boost::numeric::ublas::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; w(v.size());<br/>
 &nbsp;&nbsp;<a href="CppCopy.htm">std::copy</a>(v.begin(),v.end(),w.begin());<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> w;<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppUblasVector.htm">boost::numeric::ublas::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt; <a href="CppRibi.htm\">ribi</a>::<a href="CppMatrix.htm">Matrix</a>::<a href="CppCreateVector.htm">CreateVector</a>Int(<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;&amp; v)<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppUblasVector.htm">boost::numeric::ublas::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt; <a href="CppRibi.htm">ribi</a>::<a href="CppMatrix.htm">Matrix</a>::<a href="CppCreateVector.htm">CreateVector</a>Int(<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;&amp; v)<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppUblasVector.htm">boost::numeric::ublas::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt; w(v.size());<br/>
 &nbsp;&nbsp;<a href="CppCopy.htm">std::copy</a>(v.begin(),v.end(),w.begin());<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> w;<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppRibi.htm\">ribi</a>::<a href="CppMatrix.htm">Matrix</a>::Get<a href="CppVersion.htm">Version</a>()<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppRibi.htm">ribi</a>::<a href="CppMatrix.htm">Matrix</a>::Get<a href="CppVersion.htm">Version</a>()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> "1.2";<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm\">ribi</a>::<a href="CppMatrix.htm">Matrix</a>::Get<a href="CppVersion.htm">Version</a>History()<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm">ribi</a>::<a href="CppMatrix.htm">Matrix</a>::Get<a href="CppVersion.htm">Version</a>History()<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v;<br/>
-&nbsp;&nbsp;v.push_back("2013-04-28: <a href="CppVersion.htm">version</a> 1.0: initial <a href="CppVersion.htm">version</a>");<br/>
-&nbsp;&nbsp;v.push_back("2013-06-11: <a href="CppVersion.htm">version</a> 1.1: fixed <a href="CppBug.htm">bug</a>s in MatricesAreEqual and MatricesAre<a href="CppAbout.htm">About</a>Equal");<br/>
-&nbsp;&nbsp;v.push_back("2013-06-27: <a href="CppVersion.htm">version</a> 1.2: added tests, renamed VectorsAreEqual to Vectors<a href="CppDouble.htm">Double</a>AreEqual and VectorsIntAreEqual");<br/>
-<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"2013-04-28: <a href="CppVersion.htm">version</a> 1.0: initial <a href="CppVersion.htm">version</a>",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"2013-06-11: <a href="CppVersion.htm">version</a> 1.1: fixed <a href="CppBug.htm">bug</a>s in MatricesAreEqual and MatricesAre<a href="CppAbout.htm">About</a>Equal",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"2013-06-27: <a href="CppVersion.htm">version</a> 1.2: added tests, renamed VectorsAreEqual to Vectors<a href="CppDouble.htm">Double</a>AreEqual and VectorsIntAreEqual"<br/>
+&nbsp;&nbsp;};<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppUblasMatrix.htm">boost::numeric::ublas::matrix</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; <a href="CppRibi.htm\">ribi</a>::<a href="CppMatrix.htm">Matrix</a>::Inverse(<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppUblasMatrix.htm">boost::numeric::ublas::matrix</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; <a href="CppRibi.htm">ribi</a>::<a href="CppMatrix.htm">Matrix</a>::Inverse(<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppUblasMatrix.htm">boost::numeric::ublas::matrix</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;&amp; m)<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(m.size1() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> m.size2() <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "Can only calculate the inverse of square matrices");<br/>
@@ -640,7 +639,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppDefault.htm">default</a></b>:<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Use blockwise in<a href="CppVersion.htm">version</a><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppRibi.htm\">ribi</a>::<a href="CppMatrix.htm">Matrix</a>::Chop <a href="CppReturn.htm">returns</a> a <a href="CppVector.htm">std::vector</a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppRibi.htm">ribi</a>::<a href="CppMatrix.htm">Matrix</a>::Chop <a href="CppReturn.htm">returns</a> a <a href="CppVector.htm">std::vector</a><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>[ A at [0]&nbsp;&nbsp; B at [1] ]<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>[ C at [2]&nbsp;&nbsp; D at [4] ]<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(m.size1() &gt; 3);<br/>
@@ -654,18 +653,18 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppUblasMatrix.htm">boost::numeric::ublas::matrix</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;&amp; d <a href="CppOperatorAssign.htm">=</a> v[3];<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppUblasMatrix.htm">boost::numeric::ublas::matrix</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; term<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> d<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorMinus.htm">-</a> <a href="CppRibi.htm\">ribi</a>::<a href="CppMatrix.htm">Matrix</a>::Prod(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppUblasMatrix.htm">boost::numeric::ublas::matrix</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(<a href="CppRibi.htm\">ribi</a>::<a href="CppMatrix.htm">Matrix</a>::Prod(c,a_inv)),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorMinus.htm">-</a> <a href="CppRibi.htm">ribi</a>::<a href="CppMatrix.htm">Matrix</a>::Prod(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppUblasMatrix.htm">boost::numeric::ublas::matrix</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(<a href="CppRibi.htm">ribi</a>::<a href="CppMatrix.htm">Matrix</a>::Prod(c,a_inv)),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;b<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(term.size1() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> term.size2());<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppUblasMatrix.htm">boost::numeric::ublas::matrix</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; term_inv <a href="CppOperatorAssign.htm">=</a> Inverse(term);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppUblasMatrix.htm">boost::numeric::ublas::matrix</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; new_a<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> a_inv<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> <a href="CppUblasMatrix.htm">boost::numeric::ublas::matrix</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(<a href="CppRibi.htm\">ribi</a>::<a href="CppMatrix.htm">Matrix</a>::Prod(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppUblasMatrix.htm">boost::numeric::ublas::matrix</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(<a href="CppRibi.htm\">ribi</a>::<a href="CppMatrix.htm">Matrix</a>::Prod(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppUblasMatrix.htm">boost::numeric::ublas::matrix</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(<a href="CppRibi.htm\">ribi</a>::<a href="CppMatrix.htm">Matrix</a>::Prod(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppUblasMatrix.htm">boost::numeric::ublas::matrix</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(<a href="CppRibi.htm\">ribi</a>::<a href="CppMatrix.htm">Matrix</a>::Prod(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> <a href="CppUblasMatrix.htm">boost::numeric::ublas::matrix</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(<a href="CppRibi.htm">ribi</a>::<a href="CppMatrix.htm">Matrix</a>::Prod(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppUblasMatrix.htm">boost::numeric::ublas::matrix</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(<a href="CppRibi.htm">ribi</a>::<a href="CppMatrix.htm">Matrix</a>::Prod(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppUblasMatrix.htm">boost::numeric::ublas::matrix</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(<a href="CppRibi.htm">ribi</a>::<a href="CppMatrix.htm">Matrix</a>::Prod(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppUblasMatrix.htm">boost::numeric::ublas::matrix</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(<a href="CppRibi.htm">ribi</a>::<a href="CppMatrix.htm">Matrix</a>::Prod(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;a_inv,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;b)),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;term_inv)),<br/>
@@ -674,16 +673,16 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppUblasMatrix.htm">boost::numeric::ublas::matrix</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; new_b<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorMinus.htm">-</a> <a href="CppUblasMatrix.htm">boost::numeric::ublas::matrix</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(<a href="CppRibi.htm\">ribi</a>::<a href="CppMatrix.htm">Matrix</a>::Prod(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppUblasMatrix.htm">boost::numeric::ublas::matrix</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(<a href="CppRibi.htm\">ribi</a>::<a href="CppMatrix.htm">Matrix</a>::Prod(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorMinus.htm">-</a> <a href="CppUblasMatrix.htm">boost::numeric::ublas::matrix</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(<a href="CppRibi.htm">ribi</a>::<a href="CppMatrix.htm">Matrix</a>::Prod(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppUblasMatrix.htm">boost::numeric::ublas::matrix</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(<a href="CppRibi.htm">ribi</a>::<a href="CppMatrix.htm">Matrix</a>::Prod(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;a_inv,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;b)),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;term_inv));<br/>
 <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppUblasMatrix.htm">boost::numeric::ublas::matrix</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; new_c<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorMinus.htm">-</a> <a href="CppUblasMatrix.htm">boost::numeric::ublas::matrix</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(<a href="CppRibi.htm\">ribi</a>::<a href="CppMatrix.htm">Matrix</a>::Prod(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppUblasMatrix.htm">boost::numeric::ublas::matrix</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(<a href="CppRibi.htm\">ribi</a>::<a href="CppMatrix.htm">Matrix</a>::Prod(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorMinus.htm">-</a> <a href="CppUblasMatrix.htm">boost::numeric::ublas::matrix</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(<a href="CppRibi.htm">ribi</a>::<a href="CppMatrix.htm">Matrix</a>::Prod(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppUblasMatrix.htm">boost::numeric::ublas::matrix</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(<a href="CppRibi.htm">ribi</a>::<a href="CppMatrix.htm">Matrix</a>::Prod(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;term_inv,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;c)),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;a_inv));<br/>
@@ -697,13 +696,13 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 }<br/>
 <br/>
 <br/>
-<b><a href="CppBool.htm">bool</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppMatrix.htm">Matrix</a>::Is<a href="CppAbout.htm">About</a>Equal(<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> a, <b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> b)<br/>
+<b><a href="CppBool.htm">bool</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppMatrix.htm">Matrix</a>::Is<a href="CppAbout.htm">About</a>Equal(<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> a, <b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> b)<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> epsilon <a href="CppOperatorAssign.htm">=</a> 0.000001; <a href="CppComment.htm">//</a>Rounding error<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> a <a href="CppOperatorMinus.htm">-</a> epsilon &lt; b <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> a <a href="CppOperatorPlus.htm">+</a> epsilon &gt; b;<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppUblasMatrix.htm">boost::numeric::ublas::matrix</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; <a href="CppRibi.htm\">ribi</a>::<a href="CppMatrix.htm">Matrix</a>::Power(<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppUblasMatrix.htm">boost::numeric::ublas::matrix</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; <a href="CppRibi.htm">ribi</a>::<a href="CppMatrix.htm">Matrix</a>::Power(<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppUblasMatrix.htm">boost::numeric::ublas::matrix</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;&amp; m,<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> exponent)<br/>
 {<br/>
@@ -715,18 +714,18 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<a href="CppUblasMatrix.htm">boost::numeric::ublas::matrix</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; n(m);<br/>
 &nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> i=1; i<a href="CppOperatorNotEqual.htm">!=</a>exponent; <a href="CppOperatorPlus.htm">+</a>+i)<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;n <a href="CppOperatorAssign.htm">=</a> <a href="CppRibi.htm\">ribi</a>::<a href="CppMatrix.htm">Matrix</a>::Prod(n,m);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;n <a href="CppOperatorAssign.htm">=</a> <a href="CppRibi.htm">ribi</a>::<a href="CppMatrix.htm">Matrix</a>::Prod(n,m);<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> n;<br/>
 }<br/>
 <br/>
-<b><a href="CppBool.htm">bool</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppMatrix.htm">Matrix</a>::MatricesAre<a href="CppAbout.htm">About</a>Equal(<br/>
+<b><a href="CppBool.htm">bool</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppMatrix.htm">Matrix</a>::MatricesAre<a href="CppAbout.htm">About</a>Equal(<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppUblasMatrix.htm">boost::numeric::ublas::matrix</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;&amp; a,<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppUblasMatrix.htm">boost::numeric::ublas::matrix</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;&amp; b)<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (a.size1() <a href="CppOperatorNotEqual.htm">!=</a> b.size1()) <b><a href="CppReturn.htm">return</a></b> <b><a href="CppFalse.htm">false</a></b>;<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (a.size2() <a href="CppOperatorNotEqual.htm">!=</a> b.size2()) <b><a href="CppReturn.htm">return</a></b> <b><a href="CppFalse.htm">false</a></b>;<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppReturn.htm">return</a></b> <a href="CppEqual.htm">std::equal</a>(a.begin1(),a.end1(),b.begin1(),&amp;<a href="CppRibi.htm\">ribi</a>::<a href="CppMatrix.htm">Matrix</a>::Is<a href="CppAbout.htm">About</a>Equal); <a href="CppComment.htm">//</a>DON'T USE STD::EQUAL!<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppReturn.htm">return</a></b> <a href="CppEqual.htm">std::equal</a>(a.begin1(),a.end1(),b.begin1(),&amp;<a href="CppRibi.htm">ribi</a>::<a href="CppMatrix.htm">Matrix</a>::Is<a href="CppAbout.htm">About</a>Equal); <a href="CppComment.htm">//</a>DON'T USE STD::EQUAL!<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(a.size1() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> b.size1());<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(a.size2() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> b.size2());<br/>
@@ -743,7 +742,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <b><a href="CppTrue.htm">true</a></b>;<br/>
 }<br/>
 <br/>
-<b><a href="CppBool.htm">bool</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppMatrix.htm">Matrix</a>::MatricesAreEqual(<br/>
+<b><a href="CppBool.htm">bool</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppMatrix.htm">Matrix</a>::MatricesAreEqual(<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppUblasMatrix.htm">boost::numeric::ublas::matrix</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;&amp; a,<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppUblasMatrix.htm">boost::numeric::ublas::matrix</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;&amp; b)<br/>
 {<br/>
@@ -766,7 +765,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <b><a href="CppTrue.htm">true</a></b>;<br/>
 }<br/>
 <br/>
-<b><a href="CppBool.htm">bool</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppMatrix.htm">Matrix</a>::<a href="CppMatrix.htm">Matrix</a>Is<a href="CppAbout.htm">About</a>Equal(<br/>
+<b><a href="CppBool.htm">bool</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppMatrix.htm">Matrix</a>::<a href="CppMatrix.htm">Matrix</a>Is<a href="CppAbout.htm">About</a>Equal(<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppUblasMatrix.htm">boost::numeric::ublas::matrix</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;&amp; a,<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppUblasMatrix.htm">boost::numeric::ublas::matrix</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;&amp; b)<br/>
 {<br/>
@@ -774,7 +773,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> MatricesAre<a href="CppAbout.htm">About</a>Equal(a,b);<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppUblasMatrix.htm">boost::numeric::ublas::matrix</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; <a href="CppRibi.htm\">ribi</a>::<a href="CppMatrix.htm">Matrix</a>::MultiProd(<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppUblasMatrix.htm">boost::numeric::ublas::matrix</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; <a href="CppRibi.htm">ribi</a>::<a href="CppMatrix.htm">Matrix</a>::MultiProd(<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppUblasMatrix.htm">boost::numeric::ublas::matrix</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;&amp; a,<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppUblasMatrix.htm">boost::numeric::ublas::matrix</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;&amp; b,<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppUblasMatrix.htm">boost::numeric::ublas::matrix</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;&amp; c)<br/>
@@ -782,7 +781,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> Prod(Prod(a,b),c);<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppUblasMatrix.htm">boost::numeric::ublas::matrix</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; <a href="CppRibi.htm\">ribi</a>::<a href="CppMatrix.htm">Matrix</a>::Prod(<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppUblasMatrix.htm">boost::numeric::ublas::matrix</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; <a href="CppRibi.htm">ribi</a>::<a href="CppMatrix.htm">Matrix</a>::Prod(<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppUblasMatrix.htm">boost::numeric::ublas::matrix</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;&amp; a,<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppUblasMatrix.htm">boost::numeric::ublas::matrix</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;&amp; b<br/>
 &nbsp;&nbsp;)<br/>
@@ -791,7 +790,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <a href="CppUblas.htm">boost::numeric::ublas</a>::prod(a,b);<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppUblasVector.htm">boost::numeric::ublas::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; <a href="CppRibi.htm\">ribi</a>::<a href="CppMatrix.htm">Matrix</a>::Prod(<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppUblasVector.htm">boost::numeric::ublas::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; <a href="CppRibi.htm">ribi</a>::<a href="CppMatrix.htm">Matrix</a>::Prod(<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppUblasMatrix.htm">boost::numeric::ublas::matrix</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;&amp; a,<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppUblasVector.htm">boost::numeric::ublas::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;&amp; b<br/>
 &nbsp;&nbsp;)<br/>
@@ -800,7 +799,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <a href="CppUblas.htm">boost::numeric::ublas</a>::prod(a,b);<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppUblasMatrix.htm">boost::numeric::ublas::matrix</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; <a href="CppRibi.htm\">ribi</a>::<a href="CppMatrix.htm">Matrix</a>::Simplify<a href="CppMatrix.htm">Matrix</a>Of<a href="CppMatrix.htm">Matrix</a>(<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppUblasMatrix.htm">boost::numeric::ublas::matrix</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; <a href="CppRibi.htm">ribi</a>::<a href="CppMatrix.htm">Matrix</a>::Simplify<a href="CppMatrix.htm">Matrix</a>Of<a href="CppMatrix.htm">Matrix</a>(<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppUblasMatrix.htm">boost::numeric::ublas::matrix</a>&lt;<a href="CppUblasMatrix.htm">boost::numeric::ublas::matrix</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; &gt;&amp; m)<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a> [ [A B]&nbsp;&nbsp;[I J] ]<br/>
@@ -843,7 +842,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 }<br/>
 <br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppUblasMatrix.htm">boost::numeric::ublas::matrix</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; <a href="CppRibi.htm\">ribi</a>::<a href="CppMatrix.htm">Matrix</a>::SimplifyVectorOf<a href="CppMatrix.htm">Matrix</a>(<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppUblasMatrix.htm">boost::numeric::ublas::matrix</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; <a href="CppRibi.htm">ribi</a>::<a href="CppMatrix.htm">Matrix</a>::SimplifyVectorOf<a href="CppMatrix.htm">Matrix</a>(<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppUblasVector.htm">boost::numeric::ublas::vector</a>&lt;<a href="CppUblasMatrix.htm">boost::numeric::ublas::matrix</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; &gt;&amp; m)<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a> [ [A B] ]<br/>
@@ -879,7 +878,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 }<br/>
 <br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppUblasVector.htm">boost::numeric::ublas::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; <a href="CppRibi.htm\">ribi</a>::<a href="CppMatrix.htm">Matrix</a>::SimplifyVectorOfVector(<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppUblasVector.htm">boost::numeric::ublas::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; <a href="CppRibi.htm">ribi</a>::<a href="CppMatrix.htm">Matrix</a>::SimplifyVectorOfVector(<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppUblasVector.htm">boost::numeric::ublas::vector</a>&lt;<a href="CppUblasVector.htm">boost::numeric::ublas::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; &gt;&amp; m)<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a> [ [A] ]<br/>
@@ -903,7 +902,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <br/>
 <br/>
 <a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppMatrix.htm">Matrix</a>::Test()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppMatrix.htm">Matrix</a>::Test()<br/>
 {<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppBool.htm">bool</a></b> is_tested <a href="CppOperatorAssign.htm">=</a> <b><a href="CppFalse.htm">false</a></b>;<br/>
@@ -911,7 +910,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;is_tested <a href="CppOperatorAssign.htm">=</a> <b><a href="CppTrue.htm">true</a></b>;<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a><br/>
-&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("Starting <a href="CppRibi.htm\">ribi</a>::<a href="CppMatrix.htm">Matrix</a>::Test()")<br/>
+&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("Starting <a href="CppRibi.htm">ribi</a>::<a href="CppMatrix.htm">Matrix</a>::Test()")<br/>
 &nbsp;&nbsp;<b><a href="CppUsing.htm">using</a></b> <a href="CppUblas.htm">boost::numeric::ublas</a>::detail::equals;<br/>
 &nbsp;&nbsp;<b><a href="CppUsing.htm">using</a></b> <a href="CppUblasMatrix.htm">boost::numeric::ublas::matrix</a>;<br/>
 &nbsp;&nbsp;<b><a href="CppUsing.htm">using</a></b> <a href="CppUblasVector.htm">boost::numeric::ublas::vector</a>;<br/>
@@ -1071,10 +1070,10 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppMatrix.htm">matrix</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; expected_0 <a href="CppOperatorAssign.htm">=</a> <a href="CppUblas.htm">boost::numeric::ublas</a>::identity_<a href="CppMatrix.htm">matrix</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(sz);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppMatrix.htm">matrix</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; expected_1 <a href="CppOperatorAssign.htm">=</a> m;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppMatrix.htm">matrix</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; expected_2 <a href="CppOperatorAssign.htm">=</a> Create<a href="CppMatrix.htm">Matrix</a>(sz,sz, {7.0,15.0,10.0,22.0} );<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppRibi.htm\">ribi</a>::<a href="CppMatrix.htm">Matrix</a>::MatricesAre<a href="CppAbout.htm">About</a>Equal(m,m));<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppRibi.htm\">ribi</a>::<a href="CppMatrix.htm">Matrix</a>::MatricesAre<a href="CppAbout.htm">About</a>Equal(Power(m,0),expected_0));<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppRibi.htm\">ribi</a>::<a href="CppMatrix.htm">Matrix</a>::MatricesAre<a href="CppAbout.htm">About</a>Equal(Power(m,1),expected_1));<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppRibi.htm\">ribi</a>::<a href="CppMatrix.htm">Matrix</a>::MatricesAre<a href="CppAbout.htm">About</a>Equal(Power(m,2),expected_2));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppRibi.htm">ribi</a>::<a href="CppMatrix.htm">Matrix</a>::MatricesAre<a href="CppAbout.htm">About</a>Equal(m,m));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppRibi.htm">ribi</a>::<a href="CppMatrix.htm">Matrix</a>::MatricesAre<a href="CppAbout.htm">About</a>Equal(Power(m,0),expected_0));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppRibi.htm">ribi</a>::<a href="CppMatrix.htm">Matrix</a>::MatricesAre<a href="CppAbout.htm">About</a>Equal(Power(m,1),expected_1));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppRibi.htm">ribi</a>::<a href="CppMatrix.htm">Matrix</a>::MatricesAre<a href="CppAbout.htm">About</a>Equal(Power(m,2),expected_2));<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Test Unchop<br/>
 &nbsp;&nbsp;{<br/>
@@ -1087,13 +1086,13 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> epsilon <a href="CppOperatorAssign.htm">=</a> <a href="CppNumeric_limits.htm">std::numeric_limits</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;::epsilon();<br/>
 <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Create a random <a href="CppMatrix.htm">matrix</a><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppMatrix.htm">matrix</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; m <a href="CppOperatorAssign.htm">=</a> <a href="CppRibi.htm\">ribi</a>::<a href="CppMatrix.htm">Matrix</a>::CreateRandom<a href="CppMatrix.htm">Matrix</a>(n_rows,n_cols);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppMatrix.htm">matrix</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; m <a href="CppOperatorAssign.htm">=</a> <a href="CppRibi.htm">ribi</a>::<a href="CppMatrix.htm">Matrix</a>::CreateRandom<a href="CppMatrix.htm">Matrix</a>(n_rows,n_cols);<br/>
 <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Assume it is found identical to itself<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(equals(m,m,epsilon,epsilon));<br/>
 <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Chop and unchop the input <a href="CppMatrix.htm">matrix</a><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppMatrix.htm">matrix</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; n <a href="CppOperatorAssign.htm">=</a> <a href="CppRibi.htm\">ribi</a>::<a href="CppMatrix.htm">Matrix</a>::Unchop(Chop(m));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppMatrix.htm">matrix</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; n <a href="CppOperatorAssign.htm">=</a> <a href="CppRibi.htm">ribi</a>::<a href="CppMatrix.htm">Matrix</a>::Unchop(Chop(m));<br/>
 <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Assume input <a href="CppMatrix.htm">matrix</a> and result are identical<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(equals(m,n,epsilon,epsilon));<br/>
@@ -1104,21 +1103,21 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a> [ 1.0 2.0 ] <a href="CppOperatorMinus.htm">-</a>1&nbsp;&nbsp;&nbsp;&nbsp;[ <a href="CppOperatorMinus.htm">-</a>2.0&nbsp;&nbsp; 1.0 ]<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a> [ 3.0 4.0 ]&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppOperatorAssign.htm">=</a> [&nbsp;&nbsp;1.5&nbsp;&nbsp;<a href="CppOperatorMinus.htm">-</a>0.5 ]<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppMatrix.htm">matrix</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; m <a href="CppOperatorAssign.htm">=</a> <a href="CppRibi.htm\">ribi</a>::<a href="CppMatrix.htm">Matrix</a>::Create<a href="CppMatrix.htm">Matrix</a>(2,2, {1.0,3.0,2.0,4.0} );<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppMatrix.htm">matrix</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; m <a href="CppOperatorAssign.htm">=</a> <a href="CppRibi.htm">ribi</a>::<a href="CppMatrix.htm">Matrix</a>::Create<a href="CppMatrix.htm">Matrix</a>(2,2, {1.0,3.0,2.0,4.0} );<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(m(0,0) <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 1.0);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(m(1,0) <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 3.0);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(m(0,1) <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 2.0);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(m(1,1) <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 4.0);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppMatrix.htm">matrix</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; n <a href="CppOperatorAssign.htm">=</a> <a href="CppRibi.htm\">ribi</a>::<a href="CppMatrix.htm">Matrix</a>::Inverse(m);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppMatrix.htm">matrix</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; n <a href="CppOperatorAssign.htm">=</a> <a href="CppRibi.htm">ribi</a>::<a href="CppMatrix.htm">Matrix</a>::Inverse(m);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> epsilon <a href="CppOperatorAssign.htm">=</a> 0.0000001; <a href="CppComment.htm">//</a>Rounding error<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(n(0,0) &gt; <a href="CppOperatorMinus.htm">-</a>2.0 <a href="CppOperatorMinus.htm">-</a> epsilon <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> n(0,0) &lt; <a href="CppOperatorMinus.htm">-</a>2.0 <a href="CppOperatorPlus.htm">+</a> epsilon);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(n(1,0) &gt;&nbsp;&nbsp;1.5 <a href="CppOperatorMinus.htm">-</a> epsilon <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> n(1,0) &lt;&nbsp;&nbsp;1.5 <a href="CppOperatorPlus.htm">+</a> epsilon);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(n(0,1) &gt;&nbsp;&nbsp;1.0 <a href="CppOperatorMinus.htm">-</a> epsilon <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> n(0,1) &lt;&nbsp;&nbsp;1.0 <a href="CppOperatorPlus.htm">+</a> epsilon);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(n(1,1) &gt; <a href="CppOperatorMinus.htm">-</a>0.5 <a href="CppOperatorMinus.htm">-</a> epsilon <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> n(1,1) &lt; <a href="CppOperatorMinus.htm">-</a>0.5 <a href="CppOperatorPlus.htm">+</a> epsilon);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppRibi.htm\">ribi</a>::<a href="CppMatrix.htm">Matrix</a>::Prod(m,n)(0,0) &gt; 1.0 <a href="CppOperatorMinus.htm">-</a> epsilon <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> <a href="CppRibi.htm\">ribi</a>::<a href="CppMatrix.htm">Matrix</a>::Prod(m,n)(0,0) &lt; 1.0 <a href="CppOperatorPlus.htm">+</a> epsilon);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppRibi.htm\">ribi</a>::<a href="CppMatrix.htm">Matrix</a>::Prod(m,n)(1,0) &gt; 0.0 <a href="CppOperatorMinus.htm">-</a> epsilon <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> <a href="CppRibi.htm\">ribi</a>::<a href="CppMatrix.htm">Matrix</a>::Prod(m,n)(1,0) &lt; 0.0 <a href="CppOperatorPlus.htm">+</a> epsilon);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppRibi.htm\">ribi</a>::<a href="CppMatrix.htm">Matrix</a>::Prod(m,n)(0,1) &gt; 0.0 <a href="CppOperatorMinus.htm">-</a> epsilon <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> <a href="CppRibi.htm\">ribi</a>::<a href="CppMatrix.htm">Matrix</a>::Prod(m,n)(0,1) &lt; 0.0 <a href="CppOperatorPlus.htm">+</a> epsilon);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppRibi.htm\">ribi</a>::<a href="CppMatrix.htm">Matrix</a>::Prod(m,n)(1,1) &gt; 1.0 <a href="CppOperatorMinus.htm">-</a> epsilon <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> <a href="CppRibi.htm\">ribi</a>::<a href="CppMatrix.htm">Matrix</a>::Prod(m,n)(1,1) &lt; 1.0 <a href="CppOperatorPlus.htm">+</a> epsilon);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppRibi.htm">ribi</a>::<a href="CppMatrix.htm">Matrix</a>::Prod(m,n)(0,0) &gt; 1.0 <a href="CppOperatorMinus.htm">-</a> epsilon <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> <a href="CppRibi.htm">ribi</a>::<a href="CppMatrix.htm">Matrix</a>::Prod(m,n)(0,0) &lt; 1.0 <a href="CppOperatorPlus.htm">+</a> epsilon);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppRibi.htm">ribi</a>::<a href="CppMatrix.htm">Matrix</a>::Prod(m,n)(1,0) &gt; 0.0 <a href="CppOperatorMinus.htm">-</a> epsilon <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> <a href="CppRibi.htm">ribi</a>::<a href="CppMatrix.htm">Matrix</a>::Prod(m,n)(1,0) &lt; 0.0 <a href="CppOperatorPlus.htm">+</a> epsilon);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppRibi.htm">ribi</a>::<a href="CppMatrix.htm">Matrix</a>::Prod(m,n)(0,1) &gt; 0.0 <a href="CppOperatorMinus.htm">-</a> epsilon <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> <a href="CppRibi.htm">ribi</a>::<a href="CppMatrix.htm">Matrix</a>::Prod(m,n)(0,1) &lt; 0.0 <a href="CppOperatorPlus.htm">+</a> epsilon);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppRibi.htm">ribi</a>::<a href="CppMatrix.htm">Matrix</a>::Prod(m,n)(1,1) &gt; 1.0 <a href="CppOperatorMinus.htm">-</a> epsilon <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> <a href="CppRibi.htm">ribi</a>::<a href="CppMatrix.htm">Matrix</a>::Prod(m,n)(1,1) &lt; 1.0 <a href="CppOperatorPlus.htm">+</a> epsilon);<br/>
 &nbsp;&nbsp;}<br/>
 <br/>
 <br/>
@@ -1126,11 +1125,11 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a> [ 1.0 2.0 3.0] <a href="CppOperatorMinus.htm">-</a>1&nbsp;&nbsp;&nbsp;&nbsp;[ <a href="CppOperatorMinus.htm">-</a>24.0&nbsp;&nbsp; 18.0&nbsp;&nbsp; 5.0]<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a> [ 0.0 1.0 4.0]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [&nbsp;&nbsp;20.0&nbsp;&nbsp;<a href="CppOperatorMinus.htm">-</a>15.0&nbsp;&nbsp;<a href="CppOperatorMinus.htm">-</a>4.0]<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a> [ 5.0 6.0 0.0]&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppOperatorAssign.htm">=</a> [ <a href="CppOperatorMinus.htm">-</a> 5.0&nbsp;&nbsp;&nbsp;&nbsp;4.0&nbsp;&nbsp; 1.0]<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppMatrix.htm">matrix</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; m <a href="CppOperatorAssign.htm">=</a> <a href="CppRibi.htm\">ribi</a>::<a href="CppMatrix.htm">Matrix</a>::Create<a href="CppMatrix.htm">Matrix</a>(3,3, {1.0,0.0,5.0,2.0,1.0,6.0,3.0,4.0,0.0} );<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppMatrix.htm">matrix</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; m <a href="CppOperatorAssign.htm">=</a> <a href="CppRibi.htm">ribi</a>::<a href="CppMatrix.htm">Matrix</a>::Create<a href="CppMatrix.htm">Matrix</a>(3,3, {1.0,0.0,5.0,2.0,1.0,6.0,3.0,4.0,0.0} );<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(m(0,0) <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 1.0); <a href="CppAssert.htm">assert</a>(m(0,1) <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 2.0); <a href="CppAssert.htm">assert</a>(m(0,2) <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 3.0);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(m(1,0) <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 0.0); <a href="CppAssert.htm">assert</a>(m(1,1) <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 1.0); <a href="CppAssert.htm">assert</a>(m(1,2) <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 4.0);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(m(2,0) <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 5.0); <a href="CppAssert.htm">assert</a>(m(2,1) <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 6.0); <a href="CppAssert.htm">assert</a>(m(2,2) <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 0.0);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppMatrix.htm">matrix</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; n <a href="CppOperatorAssign.htm">=</a> <a href="CppRibi.htm\">ribi</a>::<a href="CppMatrix.htm">Matrix</a>::Inverse(m);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppMatrix.htm">matrix</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; n <a href="CppOperatorAssign.htm">=</a> <a href="CppRibi.htm">ribi</a>::<a href="CppMatrix.htm">Matrix</a>::Inverse(m);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> epsilon <a href="CppOperatorAssign.htm">=</a> 0.0001; <a href="CppComment.htm">//</a>Rounding error<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(n(0,0) &gt; <a href="CppOperatorMinus.htm">-</a>24.0 <a href="CppOperatorMinus.htm">-</a> epsilon <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> n(0,0) &lt; <a href="CppOperatorMinus.htm">-</a>24.0 <a href="CppOperatorPlus.htm">+</a> epsilon);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(n(1,0) &gt;&nbsp;&nbsp;20.0 <a href="CppOperatorMinus.htm">-</a> epsilon <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> n(1,0) &lt;&nbsp;&nbsp;20.0 <a href="CppOperatorPlus.htm">+</a> epsilon);<br/>
@@ -1141,7 +1140,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(n(0,2) &gt;&nbsp;&nbsp; 5.0 <a href="CppOperatorMinus.htm">-</a> epsilon <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> n(0,2) &lt;&nbsp;&nbsp; 5.0 <a href="CppOperatorPlus.htm">+</a> epsilon);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(n(1,2) &gt;&nbsp;&nbsp;<a href="CppOperatorMinus.htm">-</a>4.0 <a href="CppOperatorMinus.htm">-</a> epsilon <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> n(1,2) &lt; <a href="CppOperatorMinus.htm">-</a> 4.0 <a href="CppOperatorPlus.htm">+</a> epsilon);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(n(2,2) &gt;&nbsp;&nbsp; 1.0 <a href="CppOperatorMinus.htm">-</a> epsilon <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> n(2,2) &lt;&nbsp;&nbsp; 1.0 <a href="CppOperatorPlus.htm">+</a> epsilon);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppMatrix.htm">matrix</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; i <a href="CppOperatorAssign.htm">=</a> <a href="CppRibi.htm\">ribi</a>::<a href="CppMatrix.htm">Matrix</a>::Prod(m,n);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppMatrix.htm">matrix</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; i <a href="CppOperatorAssign.htm">=</a> <a href="CppRibi.htm">ribi</a>::<a href="CppMatrix.htm">Matrix</a>::Prod(m,n);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(i(0,0) &gt; 1.0 <a href="CppOperatorMinus.htm">-</a> epsilon <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> i(0,0) &lt; 1.0 <a href="CppOperatorPlus.htm">+</a> epsilon);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(i(1,0) &gt; 0.0 <a href="CppOperatorMinus.htm">-</a> epsilon <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> i(1,0) &lt; 0.0 <a href="CppOperatorPlus.htm">+</a> epsilon);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(i(2,0) &gt; 0.0 <a href="CppOperatorMinus.htm">-</a> epsilon <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> i(2,0) &lt; 0.0 <a href="CppOperatorPlus.htm">+</a> epsilon);<br/>
@@ -1159,13 +1158,13 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a> [ 7.0 8.0 9.0]<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a> Note: cannot <a href="CppMake.htm">make</a> the center value equal to 5.0, as <b><a href="CppThis.htm">this</a></b> <a href="CppMake.htm">make</a>s<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a> the <a href="CppMatrix.htm">matrix</a> un-invertible (the determinant becomes equal to zero)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppMatrix.htm">matrix</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; m <a href="CppOperatorAssign.htm">=</a> <a href="CppRibi.htm\">ribi</a>::<a href="CppMatrix.htm">Matrix</a>::Create<a href="CppMatrix.htm">Matrix</a>(3,3, {1.0,4.0,7.0,2.0,4.0,8.0,3.0,6.0,9.0} );<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppMatrix.htm">matrix</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; m <a href="CppOperatorAssign.htm">=</a> <a href="CppRibi.htm">ribi</a>::<a href="CppMatrix.htm">Matrix</a>::Create<a href="CppMatrix.htm">Matrix</a>(3,3, {1.0,4.0,7.0,2.0,4.0,8.0,3.0,6.0,9.0} );<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(m(0,0) <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 1.0); <a href="CppAssert.htm">assert</a>(m(0,1) <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 2.0); <a href="CppAssert.htm">assert</a>(m(0,2) <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 3.0);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(m(1,0) <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 4.0); <a href="CppAssert.htm">assert</a>(m(1,1) <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 4.0); <a href="CppAssert.htm">assert</a>(m(1,2) <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 6.0);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(m(2,0) <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 7.0); <a href="CppAssert.htm">assert</a>(m(2,1) <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 8.0); <a href="CppAssert.htm">assert</a>(m(2,2) <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 9.0);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppMatrix.htm">matrix</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; n <a href="CppOperatorAssign.htm">=</a> <a href="CppRibi.htm\">ribi</a>::<a href="CppMatrix.htm">Matrix</a>::Inverse(m);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppMatrix.htm">matrix</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; n <a href="CppOperatorAssign.htm">=</a> <a href="CppRibi.htm">ribi</a>::<a href="CppMatrix.htm">Matrix</a>::Inverse(m);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> epsilon <a href="CppOperatorAssign.htm">=</a> 0.00001; <a href="CppComment.htm">//</a>Rounding error<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppMatrix.htm">matrix</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; i <a href="CppOperatorAssign.htm">=</a> <a href="CppRibi.htm\">ribi</a>::<a href="CppMatrix.htm">Matrix</a>::Prod(m,n);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppMatrix.htm">matrix</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; i <a href="CppOperatorAssign.htm">=</a> <a href="CppRibi.htm">ribi</a>::<a href="CppMatrix.htm">Matrix</a>::Prod(m,n);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(i(0,0) &gt; 1.0 <a href="CppOperatorMinus.htm">-</a> epsilon <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> i(0,0) &lt; 1.0 <a href="CppOperatorPlus.htm">+</a> epsilon);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(i(1,0) &gt; 0.0 <a href="CppOperatorMinus.htm">-</a> epsilon <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> i(1,0) &lt; 0.0 <a href="CppOperatorPlus.htm">+</a> epsilon);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(i(2,0) &gt; 0.0 <a href="CppOperatorMinus.htm">-</a> epsilon <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> i(2,0) &lt; 0.0 <a href="CppOperatorPlus.htm">+</a> epsilon);<br/>
@@ -1178,10 +1177,10 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Test Inverse on 4x4 <a href="CppMatrix.htm">matrix</a><br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppMatrix.htm">matrix</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; m <a href="CppOperatorAssign.htm">=</a> <a href="CppRibi.htm\">ribi</a>::<a href="CppMatrix.htm">Matrix</a>::CreateRandom<a href="CppMatrix.htm">Matrix</a>(4,4);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppMatrix.htm">matrix</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; n <a href="CppOperatorAssign.htm">=</a> <a href="CppRibi.htm\">ribi</a>::<a href="CppMatrix.htm">Matrix</a>::Inverse(m);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppMatrix.htm">matrix</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; m <a href="CppOperatorAssign.htm">=</a> <a href="CppRibi.htm">ribi</a>::<a href="CppMatrix.htm">Matrix</a>::CreateRandom<a href="CppMatrix.htm">Matrix</a>(4,4);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppMatrix.htm">matrix</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; n <a href="CppOperatorAssign.htm">=</a> <a href="CppRibi.htm">ribi</a>::<a href="CppMatrix.htm">Matrix</a>::Inverse(m);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> epsilon <a href="CppOperatorAssign.htm">=</a> 0.00001; <a href="CppComment.htm">//</a>Rounding error<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppMatrix.htm">matrix</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; i <a href="CppOperatorAssign.htm">=</a> <a href="CppRibi.htm\">ribi</a>::<a href="CppMatrix.htm">Matrix</a>::Prod(m,n);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppMatrix.htm">matrix</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; i <a href="CppOperatorAssign.htm">=</a> <a href="CppRibi.htm">ribi</a>::<a href="CppMatrix.htm">Matrix</a>::Prod(m,n);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Test <b><a href="CppIf.htm">if</a></b> i is identity <a href="CppMatrix.htm">matrix</a><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(i(0,0) &gt; 1.0 <a href="CppOperatorMinus.htm">-</a> epsilon <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> i(0,0) &lt; 1.0 <a href="CppOperatorPlus.htm">+</a> epsilon);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(i(1,0) &gt; 0.0 <a href="CppOperatorMinus.htm">-</a> epsilon <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> i(1,0) &lt; 0.0 <a href="CppOperatorPlus.htm">+</a> epsilon);<br/>
@@ -1203,10 +1202,10 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppTRACE.htm">TRACE</a>("Test Inverse on bigger matrices");<br/>
 &nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<a href="CppSize_t.htm">std::size_t</a> sz <a href="CppOperatorAssign.htm">=</a> 5; sz<a href="CppOperatorNotEqual.htm">!=</a>20; <a href="CppOperatorPlus.htm">+</a>+sz)<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppMatrix.htm">matrix</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; m <a href="CppOperatorAssign.htm">=</a> <a href="CppRibi.htm\">ribi</a>::<a href="CppMatrix.htm">Matrix</a>::CreateRandom<a href="CppMatrix.htm">Matrix</a>(sz,sz);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppMatrix.htm">matrix</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; n <a href="CppOperatorAssign.htm">=</a> <a href="CppRibi.htm\">ribi</a>::<a href="CppMatrix.htm">Matrix</a>::Inverse(m);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppMatrix.htm">matrix</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; m <a href="CppOperatorAssign.htm">=</a> <a href="CppRibi.htm">ribi</a>::<a href="CppMatrix.htm">Matrix</a>::CreateRandom<a href="CppMatrix.htm">Matrix</a>(sz,sz);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppMatrix.htm">matrix</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; n <a href="CppOperatorAssign.htm">=</a> <a href="CppRibi.htm">ribi</a>::<a href="CppMatrix.htm">Matrix</a>::Inverse(m);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> epsilon <a href="CppOperatorAssign.htm">=</a> 0.00001; <a href="CppComment.htm">//</a>Rounding error<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppMatrix.htm">matrix</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; i <a href="CppOperatorAssign.htm">=</a> <a href="CppRibi.htm\">ribi</a>::<a href="CppMatrix.htm">Matrix</a>::Prod(m,n);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppMatrix.htm">matrix</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; i <a href="CppOperatorAssign.htm">=</a> <a href="CppRibi.htm">ribi</a>::<a href="CppMatrix.htm">Matrix</a>::Prod(m,n);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Test <b><a href="CppIf.htm">if</a></b> i is identity <a href="CppMatrix.htm">matrix</a><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<a href="CppSize_t.htm">std::size_t</a> y <a href="CppOperatorAssign.htm">=</a> 0; y<a href="CppOperatorNotEqual.htm">!=</a>sz; <a href="CppOperatorPlus.htm">+</a>+y)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
@@ -1302,11 +1301,11 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(VectorsAre<a href="CppAbout.htm">About</a>Equal(a,b));<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("Finished <a href="CppRibi.htm\">ribi</a>::<a href="CppMatrix.htm">Matrix</a>::Test()")<br/>
+&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("Finished <a href="CppRibi.htm">ribi</a>::<a href="CppMatrix.htm">Matrix</a>::Test()")<br/>
 }<br/>
 <a href="CppEndif.htm">#endif</a><br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppUblasMatrix.htm">boost::numeric::ublas::matrix</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; <a href="CppRibi.htm\">ribi</a>::<a href="CppMatrix.htm">Matrix</a>::Unchop(<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppUblasMatrix.htm">boost::numeric::ublas::matrix</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; <a href="CppRibi.htm">ribi</a>::<a href="CppMatrix.htm">Matrix</a>::Unchop(<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppUblasMatrix.htm">boost::numeric::ublas::matrix</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; &gt;&amp; v)<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Chop <a href="CppReturn.htm">returns</a> a <a href="CppVector.htm">std::vector</a> of sub-matrices<br/>
@@ -1345,7 +1344,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> m;<br/>
 }<br/>
 <br/>
-<b><a href="CppBool.htm">bool</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppMatrix.htm">Matrix</a>::VectorIs<a href="CppAbout.htm">About</a>Equal(<br/>
+<b><a href="CppBool.htm">bool</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppMatrix.htm">Matrix</a>::VectorIs<a href="CppAbout.htm">About</a>Equal(<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppUblasVector.htm">boost::numeric::ublas::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;&amp; a,<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppUblasVector.htm">boost::numeric::ublas::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;&amp; b)<br/>
 {<br/>
@@ -1353,15 +1352,15 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> VectorsAre<a href="CppAbout.htm">About</a>Equal(a,b);<br/>
 }<br/>
 <br/>
-<b><a href="CppBool.htm">bool</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppMatrix.htm">Matrix</a>::VectorsAre<a href="CppAbout.htm">About</a>Equal(<br/>
+<b><a href="CppBool.htm">bool</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppMatrix.htm">Matrix</a>::VectorsAre<a href="CppAbout.htm">About</a>Equal(<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppUblasVector.htm">boost::numeric::ublas::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;&amp; a,<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppUblasVector.htm">boost::numeric::ublas::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;&amp; b)<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (a.size() <a href="CppOperatorNotEqual.htm">!=</a> b.size()) <b><a href="CppReturn.htm">return</a></b> <b><a href="CppFalse.htm">false</a></b>;<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <a href="CppEqual.htm">std::equal</a>(a.begin(),a.end(),b.begin(),&amp;<a href="CppRibi.htm\">ribi</a>::<a href="CppMatrix.htm">Matrix</a>::Is<a href="CppAbout.htm">About</a>Equal);<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <a href="CppEqual.htm">std::equal</a>(a.begin(),a.end(),b.begin(),&amp;<a href="CppRibi.htm">ribi</a>::<a href="CppMatrix.htm">Matrix</a>::Is<a href="CppAbout.htm">About</a>Equal);<br/>
 }<br/>
 <br/>
-<b><a href="CppBool.htm">bool</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppMatrix.htm">Matrix</a>::Vectors<a href="CppDouble.htm">Double</a>AreEqual(<br/>
+<b><a href="CppBool.htm">bool</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppMatrix.htm">Matrix</a>::Vectors<a href="CppDouble.htm">Double</a>AreEqual(<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppUblasVector.htm">boost::numeric::ublas::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;&amp; a,<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppUblasVector.htm">boost::numeric::ublas::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;&amp; b)<br/>
 {<br/>
@@ -1369,7 +1368,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <a href="CppEqual.htm">std::equal</a>(a.begin(),a.end(),b.begin());<br/>
 }<br/>
 <br/>
-<b><a href="CppBool.htm">bool</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppMatrix.htm">Matrix</a>::VectorsIntAreEqual(<br/>
+<b><a href="CppBool.htm">bool</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppMatrix.htm">Matrix</a>::VectorsIntAreEqual(<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppUblasVector.htm">boost::numeric::ublas::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;&amp; a,<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppUblasVector.htm">boost::numeric::ublas::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;&amp; b)<br/>
 {<br/>

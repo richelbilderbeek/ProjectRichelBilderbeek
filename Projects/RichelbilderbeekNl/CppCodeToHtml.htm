@@ -63,10 +63,12 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppStringH.htm">string</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
 <br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppShared_ptr.htm">shared_ptr</a>.hpp&gt;<br/>
-<br/>
 <a href="CppInclude.htm">#include</a> "<a href="ToolCodeToHtml.htm">codetohtml</a>contenttype.h"<br/>
 <a href="CppInclude.htm">#include</a> "<a href="ToolCodeToHtml.htm">codetohtml</a>pagetype.h"<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
 <br/>
 <a href="CppComment.htm">///</a>c2h contains the <a href="ToolCodeToHtml.htm">CodeToHtml</a> <a href="CppFunction.htm">function</a>s<br/>
 <b><a href="CppNamespace.htm">namespace</a></b> c2h {<br/>
@@ -187,8 +189,9 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="ToolCodeToHtml.htm">ToolCodeToHtml</a>.htm<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<br/>
-<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-<b><a href="CppTypedef.htm">typedef</a></b>s"<br/>
 <a href="CppInclude.htm">#include</a> "<a href="ToolCodeToHtml.htm">codetohtml</a>.h"<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppAlgorithmH.htm">algorithm</a>&gt;<br/>
@@ -197,8 +200,6 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppFstreamH.htm">fstream</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppIostreamH.htm">iostream</a>&gt;<br/>
 <br/>
-<a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
-<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-<b><a href="CppTypedef.htm">typedef</a></b>s"<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppBoostXpressive.htm">xpressive</a>/<a href="CppBoostXpressive.htm">xpressive</a>.hpp&gt;<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppQDir.htm">QDir</a>&gt;<br/>
@@ -240,7 +241,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> error <a href="CppOperatorAssign.htm">=</a> <a href="CppSystem.htm">std::system</a>(command.c_str());<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (error)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("CHECK tmp.htm");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("Dear <a href="CppAssert.htm">assert</a>, check tmp.htm, as <b><a href="CppThis.htm">this</a></b> is the HTML tidy failed on");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>(command);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>(error);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
@@ -484,7 +485,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; c2h::<a href="CppConvert.htm">Convert</a>Project(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; filename)<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(GetExtension(filename) <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> ".pro");<br/>
-&nbsp;&nbsp;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRibi.htm\">ribi</a>::<a href="CppQtCreator.htm">QtCreator</a>ProFile&gt; pro_file(<b><a href="CppNew.htm">new</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQtCreator.htm">QtCreator</a>ProFile(filename));<br/>
+&nbsp;&nbsp;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRibi.htm">ribi</a>::<a href="CppQtCreator.htm">QtCreator</a>ProFile&gt; pro_file(<b><a href="CppNew.htm">new</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQtCreator.htm">QtCreator</a>ProFile(filename));<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v;<br/>
 &nbsp;&nbsp;{<br/>
@@ -500,8 +501,8 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Obtain all files with a full path<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRibi.htm\">ribi</a>::<a href="CppQtCreator.htm">QtCreator</a>ProFileZipScript&gt; script(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppNew.htm">new</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQtCreator.htm">QtCreator</a>ProFileZipScript(pro_file));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRibi.htm">ribi</a>::<a href="CppQtCreator.htm">QtCreator</a>ProFileZipScript&gt; script(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppNew.htm">new</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQtCreator.htm">QtCreator</a>ProFileZipScript(pro_file));<br/>
 <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppAuto.htm">auto</a></b> files <a href="CppOperatorAssign.htm">=</a> script-&gt;GetFilenames();<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppFor_each.htm">std::for_each</a>(files.begin(),files.end(),<br/>
@@ -907,16 +908,15 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="ToolCodeToHtml.htm">ToolCodeToHtml</a>.htm<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<br/>
-<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-<b><a href="CppTypedef.htm">typedef</a></b>s"<br/>
 <a href="CppInclude.htm">#include</a> "<a href="ToolCodeToHtml.htm">codetohtml</a>content.h"<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppAlgorithmH.htm">algorithm</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppIostreamH.htm">iostream</a>&gt;<br/>
 <br/>
-<a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
-<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-<b><a href="CppTypedef.htm">typedef</a></b>s"<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppBoostXpressive.htm">xpressive</a>/<a href="CppBoostXpressive.htm">xpressive</a>.hpp&gt;<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> "<a href="ToolCodeToHtml.htm">codetohtml</a>.h"<br/>
@@ -2185,7 +2185,7 @@ c2h::Info::Info(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">
 &nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&lt;tr&gt;&lt;td&gt;<a href="CppInitialize.htm">Initialization</a> at creation checked against too few elements&lt;/td&gt;&lt;td&gt;No&lt;/td&gt;&lt;td&gt;N/A&lt;/td&gt;&lt;td&gt;No&lt;/td&gt;&lt;td&gt;No&lt;/td&gt;&lt;td&gt;No&lt;/td&gt;&lt;/tr&gt;");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&lt;tr&gt;&lt;td&gt;<a href="CppInitialize.htm">Initialization</a> at creation checked against too m<a href="CppAny.htm">any</a> elements&lt;/td&gt;&lt;td&gt;Yes&lt;/td&gt;&lt;td&gt;N/A&lt;/td&gt;&lt;td&gt;Yes&lt;/td&gt;&lt;td&gt;Yes&lt;/td&gt;&lt;td&gt;Yes&lt;/td&gt;&lt;/tr&gt;");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&lt;tr&gt;&lt;td&gt;Size requestable at <a href="CppCompile.htm">compile</a>-<a href="CppTime.htm">time</a>&lt;/td&gt;&lt;td&gt;Yes&lt;/td&gt;&lt;td&gt;No&lt;/td&gt;&lt;td&gt;No&lt;/td&gt;&lt;td&gt;Yes&lt;/td&gt;&lt;td&gt;No&lt;/td&gt;&lt;/tr&gt;");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&lt;tr&gt;&lt;td&gt;Size requestable at run-<a href="CppTime.htm">time</a>&lt;/td&gt;&lt;td&gt;Yes&lt;/td&gt;&lt;td&gt;No&lt;/td&gt;&lt;td&gt;Yes&lt;/td&gt;&lt;td&gt;Yes&lt;/td&gt;&lt;td&gt;Yes&lt;/td&gt;&lt;/tr&gt;");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&lt;tr&gt;&lt;td&gt;Size requestable at <a href="CppRunTime.htm">run-time</a>&lt;/td&gt;&lt;td&gt;Yes&lt;/td&gt;&lt;td&gt;No&lt;/td&gt;&lt;td&gt;Yes&lt;/td&gt;&lt;td&gt;Yes&lt;/td&gt;&lt;td&gt;Yes&lt;/td&gt;&lt;/tr&gt;");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&lt;/table&gt;");<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;<b><a href="CppElse.htm">else</a></b> <b><a href="CppIf.htm">if</a></b> (m_page_name <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> "<a href="CppAsciiArter.htm">CppAsciiArter</a>")<br/>
@@ -3723,7 +3723,7 @@ c2h::Info::Info(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">
 &nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&lt;p&gt;&amp;nbsp;&lt;/p&gt;");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&lt;p&gt;A &lt;a href=\"CppVector.htm\"&gt;<a href="CppVector.htm">std::vector</a>&lt;/a&gt; can contain a collection of &lt;a href=\"CppVector.htm\"&gt;<a href="CppVector.htm">std::vector</a>&lt;/a&gt;s. If all &lt;a href=\"CppVector.htm\"&gt;<a href="CppVector.htm">std::vector</a>&lt;/a&gt;s in <b><a href="CppThis.htm">this</a></b> collection are of the same size, one has a <a href="CppMatrix.htm">matrix</a>.&lt;/p&gt;");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&lt;p&gt;&amp;nbsp;&lt;/p&gt;");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&lt;p&gt;When <b><a href="CppUsing.htm">using</a></b> &lt;a href=\"CppVector.htm\"&gt;<a href="CppVector.htm">std::vector</a>&lt;/a&gt;&amp;lt;&lt;a href=\"CppVector.htm\"&gt;<a href="CppVector.htm">std::vector</a>&lt;/a&gt;&amp;lt;&lt;b&gt;&lt;a href=\"CppInt.htm\"&gt;<b><a href="CppInt.htm">int</a></b>&lt;/a&gt;&lt;/b&gt;&amp;gt; &amp;gt; <b><a href="CppFor.htm">for</a></b> a two-dimensional <a href="CppMatrix.htm">matrix</a>, the choice between x-y-ordering or y-x-ordering must be made. The run-<a href="CppTime.htm">time</a> speed difference does not reside in individual element read/write, but when obtaining a row or collumn: in a y-x-ordered &lt;a href=\"CppVector.htm\"&gt;<a href="CppVector.htm">std::vector</a>&lt;/a&gt;&amp;lt;&lt;a href=\"CppVector.htm\"&gt;<a href="CppVector.htm">std::vector</a>&lt;/a&gt;&amp;lt;&lt;b&gt;&lt;a href=\"CppInt.htm\"&gt;<b><a href="CppInt.htm">int</a></b>&lt;/a&gt;&lt;/b&gt;&amp;gt; &amp;gt; an individual row can be obtained, in an x-y-ordered &lt;a href=\"CppVector.htm\"&gt;<a href="CppVector.htm">std::vector</a>&lt;/a&gt;&amp;lt;&lt;a href=\"CppVector.htm\"&gt;<a href="CppVector.htm">std::vector</a>&lt;/a&gt;&amp;lt;&lt;b&gt;&lt;a href=\"CppInt.htm\"&gt;<b><a href="CppInt.htm">int</a></b>&lt;/a&gt;&lt;/b&gt;&amp;gt; &amp;gt; an individual collumn can be obtained.&lt;/p&gt;");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&lt;p&gt;When <b><a href="CppUsing.htm">using</a></b> &lt;a href=\"CppVector.htm\"&gt;<a href="CppVector.htm">std::vector</a>&lt;/a&gt;&amp;lt;&lt;a href=\"CppVector.htm\"&gt;<a href="CppVector.htm">std::vector</a>&lt;/a&gt;&amp;lt;&lt;b&gt;&lt;a href=\"CppInt.htm\"&gt;<b><a href="CppInt.htm">int</a></b>&lt;/a&gt;&lt;/b&gt;&amp;gt; &amp;gt; <b><a href="CppFor.htm">for</a></b> a two-dimensional <a href="CppMatrix.htm">matrix</a>, the choice between x-y-ordering or y-x-ordering must be made. The <a href="CppRunTime.htm">run-time</a> speed difference does not reside in individual element read/write, but when obtaining a row or collumn: in a y-x-ordered &lt;a href=\"CppVector.htm\"&gt;<a href="CppVector.htm">std::vector</a>&lt;/a&gt;&amp;lt;&lt;a href=\"CppVector.htm\"&gt;<a href="CppVector.htm">std::vector</a>&lt;/a&gt;&amp;lt;&lt;b&gt;&lt;a href=\"CppInt.htm\"&gt;<b><a href="CppInt.htm">int</a></b>&lt;/a&gt;&lt;/b&gt;&amp;gt; &amp;gt; an individual row can be obtained, in an x-y-ordered &lt;a href=\"CppVector.htm\"&gt;<a href="CppVector.htm">std::vector</a>&lt;/a&gt;&amp;lt;&lt;a href=\"CppVector.htm\"&gt;<a href="CppVector.htm">std::vector</a>&lt;/a&gt;&amp;lt;&lt;b&gt;&lt;a href=\"CppInt.htm\"&gt;<b><a href="CppInt.htm">int</a></b>&lt;/a&gt;&lt;/b&gt;&amp;gt; &amp;gt; an individual collumn can be obtained.&lt;/p&gt;");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&lt;p&gt;&amp;nbsp;&lt;/p&gt;");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&lt;p&gt;Below is an example of a y-x-ordered &lt;a href=\"CppVector.htm\"&gt;<a href="CppVector.htm">std::vector</a>&lt;/a&gt;&amp;lt;&lt;a href=\"CppVector.htm\"&gt;<a href="CppVector.htm">std::vector</a>&lt;/a&gt;&amp;lt;&lt;b&gt;&lt;a href=\"CppInt.htm\"&gt;<b><a href="CppInt.htm">int</a></b>&lt;/a&gt;&lt;/b&gt;&amp;gt; &amp;gt;.&lt;/p&gt;");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&lt;p&gt;&amp;nbsp;&lt;/p&gt;");<br/>
@@ -6168,17 +6168,18 @@ c2h::Info::Info(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&lt;p&gt;&lt;a href=\"GameBeerGetter.htm\"&gt;BeerGetter&lt;/a&gt; is a simple &lt;a href=\"<a href="Games.htm">Games</a>.htm\"&gt;game&lt;/a&gt;. Work in progress..&lt;/p&gt;");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&lt;ul&gt;");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&lt;li&gt;&lt;a href=\"GameBeerGetterScreenshot.PNG\"&gt;View a screenshot of 'BeerGetter'&lt;/a&gt;&lt;/li&gt;");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&lt;li&gt;&lt;a href=\"GameBeerGetterScreenshot.png\"&gt;View a screenshot of 'BeerGetter'&lt;/a&gt;&lt;/li&gt;");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&lt;/ul&gt;");<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;<b><a href="CppElse.htm">else</a></b> <b><a href="CppIf.htm">if</a></b> (m_page_name <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> "<a href="GameBeerWanter.htm">GameBeerWanter</a>")<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&lt;img src=\"PicCppBuilder.png\" alt=\"<a href="CppBuilder.htm">C++ Builder</a>\"/&gt;&lt;img src=\"Pic<a href="CppQtCreator.htm">QtCreator</a>.png\" alt=\"<a href="CppQtCreator.htm">Qt Creator</a>\"/&gt;&lt;img src=\"PicNds.png\" alt=\"<a href="CppNds.htm">NDS</a>\"/&gt;&lt;img src=\"Pic<a href="CppUbuntu.htm">Ubuntu</a>.png\" alt=\"<a href="CppUbuntu.htm">Ubuntu</a>\"/&gt;&lt;img src=\"Pic<a href="CppWindows.htm">Windows</a>.png\" alt=\"<a href="CppWindows.htm">Windows</a>\"/&gt;");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&lt;img src=\"Pic<a href="CppQtCreator.htm">QtCreator</a>.png\" alt=\"<a href="CppQtCreator.htm">Qt Creator</a>\"/&gt;&lt;img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/&gt;&lt;img src=\"PicNds.png\" alt=\"<a href="CppNds.htm">NDS</a>\"/&gt;&lt;img src=\"Pic<a href="CppUbuntu.htm">Ubuntu</a>.png\" alt=\"<a href="CppUbuntu.htm">Ubuntu</a>\"/&gt;&lt;img src=\"Pic<a href="CppWindows.htm">Windows</a>.png\" alt=\"<a href="CppWindows.htm">Windows</a>\"/&gt;");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&lt;p&gt;&amp;nbsp;&lt;/p&gt;");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&lt;p&gt;&lt;a href=\"<a href="GameBeerWanter.htm">GameBeerWanter</a>.htm\"&gt;<a href="GameBeerWanter.htm">BeerWanter</a>&lt;/a&gt; is a very simple &lt;a href=\"<a href="Games.htm">Games</a>.htm\"&gt;game&lt;/a&gt; in which the player must click on the beer.&lt;/p&gt;");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&lt;p&gt;&lt;a href=\"<a href="GameBeerWanter.htm">GameBeerWanter</a>.htm\"&gt;<a href="GameBeerWanter.htm">BeerWanter</a>&lt;/a&gt; is a &lt;a href=\"<a href="Games.htm">Games</a>.htm\"&gt;game&lt;/a&gt; in which the player must click on the beer.&lt;/p&gt;");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&lt;p&gt;&amp;nbsp;&lt;/p&gt;");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&lt;p&gt;&lt;a href=\"<a href="GameBeerWanter.htm">GameBeerWanter</a>.htm\"&gt;<a href="GameBeerWanter.htm">BeerWanter</a>&lt;/a&gt; has been built <b><a href="CppFor.htm">for</a></b> &lt;a href=\"CppNds.htm\"&gt;<a href="CppNds.htm">NDS</a>&lt;/a&gt;, ");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&lt;a href=\"Cpp<a href="CppUbuntu.htm">Ubuntu</a>.htm\"&gt;<a href="CppUbuntu.htm">Ubuntu</a>&lt;/a&gt; and &lt;a href=\"Cpp<a href="CppWindows.htm">Windows</a>.htm\"&gt;<a href="CppWindows.htm">Windows</a>&lt;/a&gt;.");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;v.push_back(R"(&lt;p&gt;&lt;a href="<a href="GameBeerWanter.htm">GameBeerWanter</a>.htm"&gt;<a href="GameBeerWanter.htm">BeerWanter</a>&lt;/a&gt;, the successor of &lt;a href="<a href="GameBeerWanter.htm">GameBeerWanter</a>Vcl.htm"&gt;<a href="GameBeerWanter.htm">BeerWanter</a>Vcl&lt;/a&gt;, uses the cross-platform &lt;a href="Cpp<a href="CppQt.htm">Qt</a>.htm"&gt;<a href="CppQt.htm">Qt</a>&lt;/a&gt; &lt;a href="Cpp<a href="CppLibrary.htm">Library</a>.htm"&gt;<a href="CppLibrary.htm">library</a>&lt;/a&gt;.)");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;v.push_back(R"(&lt;p&gt;&lt;a href="<a href="GameBeerWanter.htm">GameBeerWanter</a>Vcl.htm"&gt;<a href="GameBeerWanter.htm">BeerWanter</a>Vcl&lt;/a&gt;, the predecessor of &lt;a href="<a href="GameBeerWanter.htm">GameBeerWanter</a>.htm"&gt;<a href="GameBeerWanter.htm">BeerWanter</a>&lt;/a&gt;, uses the <a href="CppWindows.htm">Windows</a>-only &lt;a href="CppVcl.htm"&gt;VCL&lt;/a&gt; &lt;a href="Cpp<a href="CppLibrary.htm">Library</a>.htm"&gt;<a href="CppLibrary.htm">library</a>&lt;/a&gt;.)");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&lt;p&gt;&amp;nbsp;&lt;/p&gt;");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&lt;a href=\"<a href="GameBeerWanter.htm">GameBeerWanter</a>.htm\"&gt;<a href="GameBeerWanter.htm">BeerWanter</a>&lt;/a&gt; can also be deployed as a &lt;a href=\"CppWeb<a href="CppApplication.htm">Application</a>.htm\"&gt;<a href="CppWebApplication.htm">web application</a>&lt;/a&gt;.&lt;/p&gt;");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&lt;p&gt;&amp;nbsp;&lt;/p&gt;");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&lt;p&gt;&amp;nbsp;&lt;/p&gt;");<br/>
@@ -6193,10 +6194,6 @@ c2h::Info::Info(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">
 &nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&nbsp;&nbsp;&lt;a href=\"<a href="GameBeerWanter.htm">GameBeerWanter</a>5.png\"&gt;View a screenshot of '<a href="GameBeerWanter.htm">BeerWanter</a>' (<a href="CppVersion.htm">version</a> 5.0)(png)&lt;/a&gt;");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&lt;/li&gt;");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&lt;li&gt;");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&nbsp;&nbsp;&lt;img src=\"Pic<a href="CppQtCreator.htm">QtCreator</a>.png\" alt=\"<a href="CppQtCreator.htm">Qt Creator</a>\"/&gt;&lt;img src=\"Pic<a href="CppWindows.htm">Windows</a>.png\" alt=\"<a href="CppWindows.htm">Windows</a>\"/&gt;&lt;img src=\"PicSpacer.png\" alt=\" \"/&gt;&lt;img src=\"PicSpacer.png\" alt=\" \"/&gt;");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&nbsp;&nbsp;&lt;a href=\"<a href="GameBeerWanter.htm">GameBeerWanter</a>3.png\"&gt;View a screenshot of '<a href="GameBeerWanter.htm">BeerWanter</a>' (<a href="CppVersion.htm">version</a> 3.0)(png)&lt;/a&gt;");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&lt;/li&gt;");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&lt;li&gt;");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&nbsp;&nbsp;&lt;img src=\"Pic<a href="CppQtCreator.htm">QtCreator</a>.png\" alt=\"<a href="CppQtCreator.htm">Qt Creator</a>\"/&gt;&lt;img src=\"Pic<a href="CppUbuntu.htm">Ubuntu</a>.png\" alt=\"<a href="CppUbuntu.htm">Ubuntu</a>\"/&gt;&lt;img src=\"PicNds.png\" alt=\"<a href="CppNds.htm">NDS</a>\"/&gt;&lt;img src=\"PicSpacer.png\" alt=\" \"/&gt;");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&nbsp;&nbsp;&lt;a href=\"<a href="GameBeerWanter.htm">GameBeerWanter</a>_5_3.png\"&gt;View a screenshot of '<a href="GameBeerWanter.htm">BeerWanter</a>' (<a href="CppVersion.htm">version</a> 5.3)&lt;/a&gt;");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&lt;/li&gt;");<br/>
@@ -6208,14 +6205,6 @@ c2h::Info::Info(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">
 &nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&nbsp;&nbsp;&lt;img src=\"Pic<a href="CppQtCreator.htm">QtCreator</a>.png\" alt=\"<a href="CppQtCreator.htm">Qt Creator</a>\"/&gt;&lt;img src=\"PicNds.png\" alt=\"<a href="CppNds.htm">NDS</a>\"/&gt;&lt;img src=\"PicSpacer.png\" alt=\" \"/&gt;&lt;img src=\"PicSpacer.png\" alt=\" \"/&gt; ");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&nbsp;&nbsp;&lt;a href=\"<a href="GameBeerWanter.htm">GameBeerWanter</a>Nds_5_3.zip\"&gt;Download the '<a href="GameBeerWanter.htm">BeerWanter</a>' <a href="CppNds.htm">NDS</a> executable (<a href="CppVersion.htm">version</a> 5.3)(zip)&lt;/a&gt;");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&lt;/li&gt;");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&lt;li&gt;");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&nbsp;&nbsp;&lt;img src=\"Pic<a href="CppQtCreator.htm">QtCreator</a>.png\" alt=\"<a href="CppQtCreator.htm">Qt Creator</a>\"/&gt;&lt;img src=\"PicNds.png\" alt=\"<a href="CppNds.htm">NDS</a>\"/&gt;&lt;img src=\"Pic<a href="CppUbuntu.htm">Ubuntu</a>.png\" alt=\"<a href="CppUbuntu.htm">Ubuntu</a>\"/&gt;&lt;img src=\"Pic<a href="CppWindows.htm">Windows</a>.png\" alt=\"<a href="CppWindows.htm">Windows</a>\"/&gt; ");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&nbsp;&nbsp;&lt;a href=\"<a href="GameBeerWanter.htm">GameBeerWanter</a>Source_6_1.zip\"&gt;Download the '<a href="GameBeerWanter.htm">BeerWanter</a>' <a href="CppQtCreator.htm">Qt Creator</a> source code (<a href="CppVersion.htm">version</a> 6.1)(zip)&lt;/a&gt;");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&lt;/li&gt;");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&lt;li&gt;");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&nbsp;&nbsp;&lt;img src=\"Pic<a href="CppQtCreator.htm">QtCreator</a>.png\" alt=\"<a href="CppQtCreator.htm">Qt Creator</a>\"/&gt;&lt;img src=\"PicNds.png\" alt=\"<a href="CppNds.htm">NDS</a>\"/&gt;&lt;img src=\"Pic<a href="CppUbuntu.htm">Ubuntu</a>.png\" alt=\"<a href="CppUbuntu.htm">Ubuntu</a>\"/&gt;&lt;img src=\"Pic<a href="CppWindows.htm">Windows</a>.png\" alt=\"<a href="CppWindows.htm">Windows</a>\"/&gt; ");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&nbsp;&nbsp;&lt;a href=\"<a href="GameBeerWanter.htm">GameBeerWanter</a>Source_6_1.htm\"&gt;View the '<a href="GameBeerWanter.htm">BeerWanter</a>' <a href="CppQtCreator.htm">Qt Creator</a> source code as web page (<a href="CppVersion.htm">version</a> 6.1)(htm)&lt;/a&gt;");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&lt;/li&gt;");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&lt;/ul&gt;");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&lt;p&gt;&amp;nbsp;&lt;/p&gt;");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&lt;p&gt;&amp;nbsp;&lt;/p&gt;");<br/>
@@ -6226,69 +6215,32 @@ c2h::Info::Info(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">
 &nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&lt;p&gt;&amp;nbsp;&lt;/p&gt;");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&lt;ul&gt;");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&lt;li&gt;");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&nbsp;&nbsp;&lt;img src=\"Pic<a href="CppQtCreator.htm">QtCreator</a>.png\" alt=\"<a href="CppQtCreator.htm">Qt Creator</a>\"/&gt;&lt;img src=\"PicNds.png\" alt=\"<a href="CppNds.htm">NDS</a>\"/&gt;&lt;img src=\"Pic<a href="CppUbuntu.htm">Ubuntu</a>.png\" alt=\"<a href="CppUbuntu.htm">Ubuntu</a>\"/&gt;&lt;img src=\"Pic<a href="CppWindows.htm">Windows</a>.png\" alt=\"<a href="CppWindows.htm">Windows</a>\"/&gt; ");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&nbsp;&nbsp;&lt;a href=\"<a href="GameBeerWanter.htm">GameBeerWanter</a>Source_6_0.zip\"&gt;Download the '<a href="GameBeerWanter.htm">BeerWanter</a>' <a href="CppQtCreator.htm">Qt Creator</a> source code (<a href="CppVersion.htm">version</a> 6.0)(zip)&lt;/a&gt;");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&lt;/li&gt;");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&lt;li&gt;");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&nbsp;&nbsp;&lt;img src=\"Pic<a href="CppQtCreator.htm">QtCreator</a>.png\" alt=\"<a href="CppQtCreator.htm">Qt Creator</a>\"/&gt;&lt;img src=\"PicNds.png\" alt=\"<a href="CppNds.htm">NDS</a>\"/&gt;&lt;img src=\"Pic<a href="CppUbuntu.htm">Ubuntu</a>.png\" alt=\"<a href="CppUbuntu.htm">Ubuntu</a>\"/&gt;&lt;img src=\"Pic<a href="CppWindows.htm">Windows</a>.png\" alt=\"<a href="CppWindows.htm">Windows</a>\"/&gt; ");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&nbsp;&nbsp;&lt;a href=\"<a href="GameBeerWanter.htm">GameBeerWanter</a>Source_6_0.htm\"&gt;View the '<a href="GameBeerWanter.htm">BeerWanter</a>' <a href="CppQtCreator.htm">Qt Creator</a> source code as web page (<a href="CppVersion.htm">version</a> 6.0)(htm)&lt;/a&gt;");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&lt;/li&gt;");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&lt;li&gt;");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&nbsp;&nbsp;&lt;img src=\"Pic<a href="CppQtCreator.htm">QtCreator</a>.png\" alt=\"<a href="CppQtCreator.htm">Qt Creator</a>\"/&gt;&lt;img src=\"PicNds.png\" alt=\"<a href="CppNds.htm">NDS</a>\"/&gt;&lt;img src=\"Pic<a href="CppUbuntu.htm">Ubuntu</a>.png\" alt=\"<a href="CppUbuntu.htm">Ubuntu</a>\"/&gt;&lt;img src=\"Pic<a href="CppWindows.htm">Windows</a>.png\" alt=\"<a href="CppWindows.htm">Windows</a>\"/&gt; ");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&nbsp;&nbsp;&lt;a href=\"<a href="GameBeerWanter.htm">GameBeerWanter</a>Source_5_3.zip\"&gt;Download the '<a href="GameBeerWanter.htm">BeerWanter</a>' <a href="CppQtCreator.htm">Qt Creator</a> source code (<a href="CppVersion.htm">version</a> 5.3)(zip)&lt;/a&gt;");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&lt;/li&gt;");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&lt;li&gt;");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&nbsp;&nbsp;&lt;img src=\"Pic<a href="CppQtCreator.htm">QtCreator</a>.png\" alt=\"<a href="CppQtCreator.htm">Qt Creator</a>\"/&gt;&lt;img src=\"PicNds.png\" alt=\"<a href="CppNds.htm">NDS</a>\"/&gt;&lt;img src=\"Pic<a href="CppUbuntu.htm">Ubuntu</a>.png\" alt=\"<a href="CppUbuntu.htm">Ubuntu</a>\"/&gt;&lt;img src=\"Pic<a href="CppWindows.htm">Windows</a>.png\" alt=\"<a href="CppWindows.htm">Windows</a>\"/&gt; ");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&nbsp;&nbsp;&lt;a href=\"<a href="GameBeerWanter.htm">GameBeerWanter</a>Source_5_3.htm\"&gt;View the '<a href="GameBeerWanter.htm">BeerWanter</a>' <a href="CppQtCreator.htm">Qt Creator</a> source code as web page (<a href="CppVersion.htm">version</a> 5.3)(htm)&lt;/a&gt;");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&lt;/li&gt;");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&lt;li&gt;");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&nbsp;&nbsp;&lt;img src=\"Pic<a href="CppQtCreator.htm">QtCreator</a>.png\" alt=\"<a href="CppQtCreator.htm">Qt Creator</a>\"/&gt;&lt;img src=\"Pic<a href="CppUbuntu.htm">Ubuntu</a>.png\" alt=\"<a href="CppUbuntu.htm">Ubuntu</a>\"/&gt;&lt;img src=\"PicNds.png\" alt=\"<a href="CppNds.htm">NDS</a>\"/&gt;&lt;img src=\"PicSpacer.png\" alt=\" \"/&gt;");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&nbsp;&nbsp;&lt;a href=\"<a href="GameBeerWanter.htm">GameBeerWanter</a>_5_1.png\"&gt;View a screenshot of '<a href="GameBeerWanter.htm">BeerWanter</a>' under <a href="CppNds.htm">NDS</a> (<a href="CppVersion.htm">version</a> 5.1)&lt;/a&gt;");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&lt;/li&gt;");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&lt;li&gt;");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&nbsp;&nbsp;&lt;img src=\"Pic<a href="CppQtCreator.htm">QtCreator</a>.png\" alt=\"<a href="CppQtCreator.htm">Qt Creator</a>\"/&gt;&lt;img src=\"PicNds.png\" alt=\"<a href="CppNds.htm">NDS</a>\"/&gt;&lt;img src=\"PicSpacer.png\" alt=\" \"/&gt;&lt;img src=\"PicSpacer.png\" alt=\" \"/&gt; ");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&nbsp;&nbsp;&lt;a href=\"<a href="GameBeerWanter.htm">GameBeerWanter</a>Nds_5_2.zip\"&gt;Download the '<a href="GameBeerWanter.htm">BeerWanter</a>' <a href="CppNds.htm">NDS</a> executable (<a href="CppVersion.htm">version</a> 5.2)(zip)&lt;/a&gt;");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&lt;/li&gt;");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&lt;li&gt;");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&nbsp;&nbsp;&lt;img src=\"Pic<a href="CppQtCreator.htm">QtCreator</a>.png\" alt=\"<a href="CppQtCreator.htm">Qt Creator</a>\"/&gt;&lt;img src=\"PicNds.png\" alt=\"<a href="CppNds.htm">NDS</a>\"/&gt;&lt;img src=\"Pic<a href="CppUbuntu.htm">Ubuntu</a>.png\" alt=\"<a href="CppUbuntu.htm">Ubuntu</a>\"/&gt;&lt;img src=\"Pic<a href="CppWindows.htm">Windows</a>.png\" alt=\"<a href="CppWindows.htm">Windows</a>\"/&gt; ");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&nbsp;&nbsp;&lt;a href=\"<a href="GameBeerWanter.htm">GameBeerWanter</a>Source_5_2.zip\"&gt;Download the '<a href="GameBeerWanter.htm">BeerWanter</a>' <a href="CppQtCreator.htm">Qt Creator</a> source code (<a href="CppVersion.htm">version</a> 5.2)(zip)&lt;/a&gt;");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&lt;/li&gt;");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&lt;li&gt;");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&nbsp;&nbsp;&lt;img src=\"Pic<a href="CppQtCreator.htm">QtCreator</a>.png\" alt=\"<a href="CppQtCreator.htm">Qt Creator</a>\"/&gt;&lt;img src=\"PicNds.png\" alt=\"<a href="CppNds.htm">NDS</a>\"/&gt;&lt;img src=\"Pic<a href="CppUbuntu.htm">Ubuntu</a>.png\" alt=\"<a href="CppUbuntu.htm">Ubuntu</a>\"/&gt;&lt;img src=\"Pic<a href="CppWindows.htm">Windows</a>.png\" alt=\"<a href="CppWindows.htm">Windows</a>\"/&gt; ");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&nbsp;&nbsp;&lt;a href=\"<a href="GameBeerWanter.htm">GameBeerWanter</a>Source_5_2.htm\"&gt;View the '<a href="GameBeerWanter.htm">BeerWanter</a>' <a href="CppQtCreator.htm">Qt Creator</a> source code as web page (<a href="CppVersion.htm">version</a> 5.2)(htm)&lt;/a&gt;");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&lt;/li&gt;");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&lt;li&gt;");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&nbsp;&nbsp;&lt;img src=\"Pic<a href="CppQtCreator.htm">QtCreator</a>.png\" alt=\"<a href="CppQtCreator.htm">Qt Creator</a>\"/&gt;&lt;img src=\"Pic<a href="CppUbuntu.htm">Ubuntu</a>.png\" alt=\"<a href="CppUbuntu.htm">Ubuntu</a>\"/&gt;&lt;img src=\"PicNds.png\" alt=\"<a href="CppNds.htm">NDS</a>\"/&gt;&lt;img src=\"PicSpacer.png\" alt=\" \"/&gt; ");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&nbsp;&nbsp;&lt;a href=\"<a href="GameBeerWanter.htm">GameBeerWanter</a>Source_5_1.zip\"&gt;Download the '<a href="GameBeerWanter.htm">BeerWanter</a>-<a href="CppNds.htm">NDS</a>' <a href="CppQtCreator.htm">Qt Creator</a> source code (<a href="CppVersion.htm">version</a> 5.1)(zip)&lt;/a&gt;");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&lt;/li&gt;");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&lt;li&gt;");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&nbsp;&nbsp;&lt;img src=\"Pic<a href="CppQtCreator.htm">QtCreator</a>.png\" alt=\"<a href="CppQtCreator.htm">Qt Creator</a>\"/&gt;&lt;img src=\"Pic<a href="CppUbuntu.htm">Ubuntu</a>.png\" alt=\"<a href="CppUbuntu.htm">Ubuntu</a>\"/&gt;&lt;img src=\"PicNds.png\" alt=\"<a href="CppNds.htm">NDS</a>\"/&gt;&lt;img src=\"PicSpacer.png\" alt=\" \"/&gt; ");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&nbsp;&nbsp;&lt;a href=\"<a href="GameBeerWanter.htm">GameBeerWanter</a>Source_5_1.htm\"&gt;View the '<a href="GameBeerWanter.htm">BeerWanter</a> <b><a href="CppFor.htm">for</a></b> <a href="CppNds.htm">NDS</a>' <a href="CppQtCreator.htm">Qt Creator</a> source code as web page (<a href="CppVersion.htm">version</a> 5.1)(htm)&lt;/a&gt;");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&lt;/li&gt;");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&lt;li&gt;");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&nbsp;&nbsp;&lt;img src=\"Pic<a href="CppQtCreator.htm">QtCreator</a>.png\" alt=\"<a href="CppQtCreator.htm">Qt Creator</a>\"/&gt;&lt;img src=\"Pic<a href="CppUbuntu.htm">Ubuntu</a>.png\" alt=\"<a href="CppUbuntu.htm">Ubuntu</a>\"/&gt;&lt;img src=\"PicSpacer.png\" alt=\" \"/&gt;&lt;img src=\"PicSpacer.png\" alt=\" \"/&gt; ");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&nbsp;&nbsp;&lt;a href=\"<a href="GameBeerWanter.htm">GameBeerWanter</a>5Source.zip\"&gt;Download the '<a href="GameBeerWanter.htm">BeerWanter</a>' <a href="CppQtCreator.htm">Qt Creator</a> source code (<a href="CppVersion.htm">version</a> 5.0)(zip)&lt;/a&gt;");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&lt;/li&gt;");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&lt;li&gt;");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&nbsp;&nbsp;&lt;img src=\"Pic<a href="CppQtCreator.htm">QtCreator</a>.png\" alt=\"<a href="CppQtCreator.htm">Qt Creator</a>\"/&gt;&lt;img src=\"Pic<a href="CppUbuntu.htm">Ubuntu</a>.png\" alt=\"<a href="CppUbuntu.htm">Ubuntu</a>\"/&gt;&lt;img src=\"PicSpacer.png\" alt=\" \"/&gt;&lt;img src=\"PicSpacer.png\" alt=\" \"/&gt; ");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&nbsp;&nbsp;&lt;a href=\"<a href="GameBeerWanter.htm">GameBeerWanter</a>Source_5_0.htm\"&gt;View the '<a href="GameBeerWanter.htm">BeerWanter</a>' <a href="CppQtCreator.htm">Qt Creator</a> source code as web page (<a href="CppVersion.htm">version</a> 5.0)(htm)&lt;/a&gt;");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&lt;/li&gt;");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&lt;li&gt;");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&nbsp;&nbsp;&lt;img src=\"Pic<a href="CppQtCreator.htm">QtCreator</a>.png\" alt=\"<a href="CppQtCreator.htm">Qt Creator</a>\"/&gt;&lt;img src=\"Pic<a href="CppUbuntu.htm">Ubuntu</a>.png\" alt=\"<a href="CppUbuntu.htm">Ubuntu</a>\"/&gt;&lt;img src=\"PicSpacer.png\" alt=\" \"/&gt;&lt;img src=\"PicSpacer.png\" alt=\" \"/&gt;");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&nbsp;&nbsp;&lt;a href=\"<a href="GameBeerWanter.htm">GameBeerWanter</a>4.png\"&gt;View a screenshot of '<a href="GameBeerWanter.htm">BeerWanter</a>' (<a href="CppVersion.htm">version</a> 4.0)&lt;/a&gt;");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&lt;/li&gt;");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&lt;li&gt;");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&nbsp;&nbsp;&lt;img src=\"Pic<a href="CppQtCreator.htm">QtCreator</a>.png\" alt=\"<a href="CppQtCreator.htm">Qt Creator</a>\"/&gt;&lt;img src=\"Pic<a href="CppWindows.htm">Windows</a>.png\" alt=\"<a href="CppWindows.htm">Windows</a>\"/&gt;&lt;img src=\"PicSpacer.png\" alt=\" \"/&gt;&lt;img src=\"PicSpacer.png\" alt=\" \"/&gt; ");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&nbsp;&nbsp;&lt;a href=\"<a href="GameBeerWanter.htm">GameBeerWanter</a>4Exe.zip\"&gt;Download the '<a href="GameBeerWanter.htm">BeerWanter</a>' <a href="CppWindows.htm">Windows</a> executable (<a href="CppVersion.htm">version</a> 4.0)(zip)&lt;/a&gt;");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&lt;/li&gt;");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&lt;li&gt;");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&nbsp;&nbsp;&lt;img src=\"Pic<a href="CppQtCreator.htm">QtCreator</a>.png\" alt=\"<a href="CppQtCreator.htm">Qt Creator</a>\"/&gt;&lt;img src=\"Pic<a href="CppUbuntu.htm">Ubuntu</a>.png\" alt=\"<a href="CppUbuntu.htm">Ubuntu</a>\"/&gt;&lt;img src=\"PicSpacer.png\" alt=\" \"/&gt;&lt;img src=\"PicSpacer.png\" alt=\" \"/&gt; ");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&nbsp;&nbsp;&lt;a href=\"<a href="GameBeerWanter.htm">GameBeerWanter</a>4Source.zip\"&gt;Download the '<a href="GameBeerWanter.htm">BeerWanter</a>' <a href="CppQtCreator.htm">Qt Creator</a> source code (<a href="CppVersion.htm">version</a> 4.0)(zip)&lt;/a&gt;");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&lt;/li&gt;");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&lt;li&gt;");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&nbsp;&nbsp;&lt;img src=\"Pic<a href="CppQtCreator.htm">QtCreator</a>.png\" alt=\"<a href="CppQtCreator.htm">Qt Creator</a>\"/&gt;&lt;img src=\"Pic<a href="CppUbuntu.htm">Ubuntu</a>.png\" alt=\"<a href="CppUbuntu.htm">Ubuntu</a>\"/&gt;&lt;img src=\"PicSpacer.png\" alt=\" \"/&gt;&lt;img src=\"PicSpacer.png\" alt=\" \"/&gt; ");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&nbsp;&nbsp;&lt;a href=\"<a href="GameBeerWanter.htm">GameBeerWanter</a>Source_4_0.htm\"&gt;View the '<a href="GameBeerWanter.htm">BeerWanter</a>' <a href="CppQtCreator.htm">Qt Creator</a> source code as web page (<a href="CppVersion.htm">version</a> 4.0)(htm)&lt;/a&gt;");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&lt;/li&gt;");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&lt;/ul&gt;");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&lt;p&gt;&amp;nbsp;&lt;/p&gt;");<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<b><a href="CppElse.htm">else</a></b> <b><a href="CppIf.htm">if</a></b> (m_page_name <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> "<a href="GameBeerWanter.htm">GameBeerWanter</a>Vcl")<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&lt;img src=\"PicCppBuilder.png\" alt=\"<a href="CppBuilder.htm">C++ Builder</a>\"/&gt;&lt;img src=\"Pic<a href="CppWindows.htm">Windows</a>.png\" alt=\"<a href="CppWindows.htm">Windows</a>\"/&gt;");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&lt;p&gt;&amp;nbsp;&lt;/p&gt;");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&lt;p&gt;&lt;a href=\"<a href="GameBeerWanter.htm">GameBeerWanter</a>Vcl.htm\"&gt;<a href="GameBeerWanter.htm">BeerWanter</a>Vcl&lt;/a&gt; is a &lt;a href=\"<a href="Games.htm">Games</a>.htm\"&gt;game&lt;/a&gt; in which the player must click on the beer.&lt;/p&gt;");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&lt;p&gt;&amp;nbsp;&lt;/p&gt;");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;v.push_back(R"(&lt;p&gt;&lt;a href="<a href="GameBeerWanter.htm">GameBeerWanter</a>Vcl.htm"&gt;<a href="GameBeerWanter.htm">BeerWanter</a>Vcl&lt;/a&gt;, the predecessor of &lt;a href="<a href="GameBeerWanter.htm">GameBeerWanter</a>.htm"&gt;<a href="GameBeerWanter.htm">BeerWanter</a>&lt;/a&gt;, uses the <a href="CppWindows.htm">Windows</a>-only &lt;a href="CppVcl.htm"&gt;VCL&lt;/a&gt; &lt;a href="Cpp<a href="CppLibrary.htm">Library</a>.htm"&gt;<a href="CppLibrary.htm">library</a>&lt;/a&gt;.)");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;v.push_back(R"(&lt;p&gt;&lt;a href="<a href="GameBeerWanter.htm">GameBeerWanter</a>.htm"&gt;<a href="GameBeerWanter.htm">BeerWanter</a>&lt;/a&gt;, the successor of &lt;a href="<a href="GameBeerWanter.htm">GameBeerWanter</a>Vcl.htm"&gt;<a href="GameBeerWanter.htm">BeerWanter</a>Vcl&lt;/a&gt;, uses the cross-platform &lt;a href="Cpp<a href="CppQt.htm">Qt</a>.htm"&gt;<a href="CppQt.htm">Qt</a>&lt;/a&gt; &lt;a href="Cpp<a href="CppLibrary.htm">Library</a>.htm"&gt;<a href="CppLibrary.htm">library</a>&lt;/a&gt;.)");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&lt;p&gt;&amp;nbsp;&lt;/p&gt;");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&lt;p&gt;&amp;nbsp;&lt;/p&gt;");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&lt;p&gt;&amp;nbsp;&lt;/p&gt;");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&lt;p&gt;&amp;nbsp;&lt;/p&gt;");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&lt;p&gt;&amp;nbsp;&lt;/p&gt;");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&lt;h2&gt;Downloads&lt;/h2&gt;");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&lt;p&gt;&amp;nbsp;&lt;/p&gt;");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&lt;ul&gt;");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&lt;li&gt;");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&nbsp;&nbsp;&lt;img src=\"PicCppBuilder.png\" alt=\"<a href="CppBuilder.htm">C++ Builder</a>\"/&gt;&lt;img src=\"Pic<a href="CppWindows.htm">Windows</a>.png\" alt=\"<a href="CppWindows.htm">Windows</a>\"/&gt;&lt;img src=\"PicSpacer.png\" alt=\" \"/&gt;&lt;img src=\"PicSpacer.png\" alt=\" \"/&gt;");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&nbsp;&nbsp;&lt;a href=\"<a href="GameBeerWanter.htm">GameBeerWanter</a>3.png\"&gt;View a screenshot of '<a href="GameBeerWanter.htm">BeerWanter</a>' (<a href="CppVersion.htm">version</a> 3.0)&lt;/a&gt;");<br/>
@@ -6297,23 +6249,47 @@ c2h::Info::Info(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">
 &nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&nbsp;&nbsp;&lt;img src=\"PicCppBuilder.png\" alt=\"<a href="CppBuilder.htm">C++ Builder</a>\"/&gt;&lt;img src=\"Pic<a href="CppWindows.htm">Windows</a>.png\" alt=\"<a href="CppWindows.htm">Windows</a>\"/&gt;&lt;img src=\"PicSpacer.png\" alt=\" \"/&gt;&lt;img src=\"PicSpacer.png\" alt=\" \"/&gt;");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&nbsp;&nbsp;&lt;a href=\"<a href="GameBeerWanter.htm">GameBeerWanter</a>3Exe.zip\"&gt;Download the '<a href="GameBeerWanter.htm">BeerWanter</a>' <a href="CppWindows.htm">Windows</a> executable (<a href="CppVersion.htm">version</a> 3.0)(zip)&lt;/a&gt;");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&lt;/li&gt;");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&lt;li&gt;");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&nbsp;&nbsp;&lt;img src=\"PicCppBuilder.png\" alt=\"<a href="CppBuilder.htm">C++ Builder</a>\"/&gt;&lt;img src=\"Pic<a href="CppWindows.htm">Windows</a>.png\" alt=\"<a href="CppWindows.htm">Windows</a>\"/&gt;&lt;img src=\"PicSpacer.png\" alt=\" \"/&gt;&lt;img src=\"PicSpacer.png\" alt=\" \"/&gt; ");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&nbsp;&nbsp;&lt;a href=\"<a href="GameBeerWanter.htm">GameBeerWanter</a>3Source.zip\"&gt;Download the '<a href="GameBeerWanter.htm">BeerWanter</a>' <a href="CppBuilder.htm">C++ Builder</a> source code (<a href="CppVersion.htm">version</a> 3.0)(zip)&lt;/a&gt;");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&lt;/li&gt;");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&lt;li&gt;");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&nbsp;&nbsp;&lt;img src=\"PicCppBuilder.png\" alt=\"<a href="CppBuilder.htm">C++ Builder</a>\"/&gt;&lt;img src=\"Pic<a href="CppWindows.htm">Windows</a>.png\" alt=\"<a href="CppWindows.htm">Windows</a>\"/&gt;&lt;img src=\"PicSpacer.png\" alt=\" \"/&gt;&lt;img src=\"PicSpacer.png\" alt=\" \"/&gt; ");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&nbsp;&nbsp;&lt;a href=\"<a href="GameBeerWanter.htm">GameBeerWanter</a>Source_3_0.htm\"&gt;View the '<a href="GameBeerWanter.htm">BeerWanter</a>' <a href="CppBuilder.htm">C++ Builder</a> source code as web page (<a href="CppVersion.htm">version</a> 3.0)(htm)&lt;/a&gt;");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&lt;/li&gt;");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&lt;/ul&gt;");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&lt;p&gt;&amp;nbsp;&lt;/p&gt;");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&lt;p&gt;The source code of <a href="GameBeerWanter.htm">BeerWanter</a> 1.0 and 2.0 has been lost (but was very simular to <a href="CppVersion.htm">version</a> 3.0).&lt;/p&gt;");<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;<b><a href="CppElse.htm">else</a></b> <b><a href="CppIf.htm">if</a></b> (m_page_name <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> "GameBillysGarden")<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&lt;p&gt;&lt;a href=\"GameBillysGarden.htm\"&gt;Billy's Garden&lt;/a&gt; is a PC clone of the MSX &lt;a href=\"<a href="Games.htm">Games</a>.htm\"&gt;game&lt;/a&gt; 'Athletic Land'. It is not finished yet.&lt;/p&gt;");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&lt;img src=\"Pic<a href="CppQt.htm">Qt</a>.png\" alt=\"<a href="CppQt.htm">Qt</a>\"/&gt;&lt;img src=\"Pic<a href="CppQtCreator.htm">QtCreator</a>.png\" alt=\"<a href="CppQtCreator.htm">Qt Creator</a>\"/&gt;&lt;img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/&gt;");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&lt;p&gt;&amp;nbsp;&lt;/p&gt;");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&lt;p&gt;&lt;a href=\"GameBillysGarden.htm\"&gt;Billy's Garden&lt;/a&gt; is programmed in &lt;a href=\"Cpp.htm\"&gt;<a href="Cpp.htm">C++</a>&lt;/a&gt; <b><a href="CppUsing.htm">using</a></b> the IDE &lt;a href=\"CppBuilder.htm\"&gt;<a href="CppBuilder.htm">C++ Builder</a>&lt;/a&gt; 6.0. It uses the &lt;a href=\"CppVcl.htm\"&gt;VCL&lt;/a&gt; and &lt;a href=\"Cpp<a href="CppBoost.htm">Boost</a>.htm\"&gt;<a href="CppBoost.htm">Boost</a>&lt;/a&gt; libraries.&lt;/p&gt;");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&lt;p&gt;&lt;a href=\"GameBillysGarden.htm\"&gt;BillysGarden&lt;/a&gt; is an unfinished &lt;a href=\"<a href="Games.htm">Games</a>.htm\"&gt;game&lt;/a&gt; that is a PC clone of the MSX &lt;a href=\"<a href="Games.htm">Games</a>.htm\"&gt;game&lt;/a&gt; 'Athletic Land'.&lt;/p&gt;");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&lt;p&gt;&amp;nbsp;&lt;/p&gt;");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;v.push_back(R"(&lt;p&gt;&lt;a href="GameBillysGarden.htm"&gt;BillysGarden&lt;/a&gt;, the successor of &lt;a href="GameBillysGardenVcl.htm"&gt;BillysGardenVcl&lt;/a&gt;, uses the cross-platform &lt;a href="Cpp<a href="CppQt.htm">Qt</a>.htm"&gt;<a href="CppQt.htm">Qt</a>&lt;/a&gt; &lt;a href="Cpp<a href="CppLibrary.htm">Library</a>.htm"&gt;<a href="CppLibrary.htm">library</a>&lt;/a&gt;.)");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;v.push_back(R"(&lt;p&gt;&lt;a href="GameBillysGardenVcl.htm"&gt;BillysGardenVcl&lt;/a&gt;, the predecessor of &lt;a href="GameBillysGarden.htm"&gt;BillysGarden&lt;/a&gt;, uses the <a href="CppWindows.htm">Windows</a>-only &lt;a href="CppVcl.htm"&gt;VCL&lt;/a&gt; &lt;a href="Cpp<a href="CppLibrary.htm">Library</a>.htm"&gt;<a href="CppLibrary.htm">library</a>&lt;/a&gt;.)");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&lt;p&gt;&amp;nbsp;&lt;/p&gt;");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&lt;p&gt;&amp;nbsp;&lt;/p&gt;");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&lt;p&gt;&amp;nbsp;&lt;/p&gt;");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&lt;p&gt;&amp;nbsp;&lt;/p&gt;");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&lt;p&gt;&amp;nbsp;&lt;/p&gt;");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&lt;h2&gt;Downloads&lt;/h2&gt;");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&lt;p&gt;&amp;nbsp;&lt;/p&gt;");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&lt;ul&gt;");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&lt;li&gt;&lt;a href=\"GameBillysGarden_0_9.png\"&gt;View a screenshot of 'Billy's Garden' (<a href="CppVersion.htm">version</a> 0.9)(png)&lt;/a&gt;&lt;/li&gt;");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&lt;/ul&gt;");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&lt;p&gt;&amp;nbsp;&lt;/p&gt;");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&lt;p&gt;&amp;nbsp;&lt;/p&gt;");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&lt;p&gt;&amp;nbsp;&lt;/p&gt;");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&lt;p&gt;&amp;nbsp;&lt;/p&gt;");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&lt;p&gt;&amp;nbsp;&lt;/p&gt;");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&lt;h2&gt;External <a href="CppLink.htm">link</a>s&lt;/h2&gt;");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&lt;p&gt;&amp;nbsp;&lt;/p&gt;");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&lt;ul&gt;");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&lt;li&gt;&lt;a href=\"http://www.youtube.com/watch?v=isjCc7CiSfM\"&gt;YouTube video of 'Athletic Land'&lt;/a&gt;&lt;/li&gt;");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&lt;/ul&gt;");<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<b><a href="CppElse.htm">else</a></b> <b><a href="CppIf.htm">if</a></b> (m_page_name <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> "GameBillysGardenVcl")<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&lt;img src=\"PicCppBuilder.png\" alt=\"<a href="CppBuilder.htm">C++ Builder</a>\"/&gt;&lt;img src=\"Pic<a href="CppWindows.htm">Windows</a>.png\" alt=\"<a href="CppWindows.htm">Windows</a>\"/&gt;");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&lt;p&gt;&amp;nbsp;&lt;/p&gt;");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&lt;p&gt;&lt;a href=\"GameBillysGardenVcl.htm\"&gt;BillysGardenVcl&lt;/a&gt; is an unfinished &lt;a href=\"<a href="Games.htm">Games</a>.htm\"&gt;game&lt;/a&gt; that is a PC clone of the MSX &lt;a href=\"<a href="Games.htm">Games</a>.htm\"&gt;game&lt;/a&gt; 'Athletic Land'.&lt;/p&gt;");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&lt;p&gt;&amp;nbsp;&lt;/p&gt;");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;v.push_back(R"(&lt;p&gt;&lt;a href="GameBillysGarden.htm"&gt;BillysGarden&lt;/a&gt;, the successor of &lt;a href="GameBillysGardenVcl.htm"&gt;BillysGardenVcl&lt;/a&gt;, uses the cross-platform &lt;a href="Cpp<a href="CppQt.htm">Qt</a>.htm"&gt;<a href="CppQt.htm">Qt</a>&lt;/a&gt; &lt;a href="Cpp<a href="CppLibrary.htm">Library</a>.htm"&gt;<a href="CppLibrary.htm">library</a>&lt;/a&gt;.)");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;v.push_back(R"(&lt;p&gt;&lt;a href="GameBillysGardenVcl.htm"&gt;BillysGardenVcl&lt;/a&gt;, the predecessor of &lt;a href="GameBillysGarden.htm"&gt;BillysGarden&lt;/a&gt;, uses the <a href="CppWindows.htm">Windows</a>-only &lt;a href="CppVcl.htm"&gt;VCL&lt;/a&gt; &lt;a href="Cpp<a href="CppLibrary.htm">Library</a>.htm"&gt;<a href="CppLibrary.htm">library</a>&lt;/a&gt;.)");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&lt;p&gt;&amp;nbsp;&lt;/p&gt;");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&lt;p&gt;&amp;nbsp;&lt;/p&gt;");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&lt;p&gt;&amp;nbsp;&lt;/p&gt;");<br/>
@@ -6351,19 +6327,19 @@ c2h::Info::Info(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">
 &nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&lt;h2&gt;Downloads&lt;/h2&gt;");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&lt;p&gt;&amp;nbsp;&lt;/p&gt;");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&lt;ul&gt;");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&lt;li&gt;&lt;a href=\"GameBinnenVolleyScreenshot.PNG\"&gt;View a screenshot of 'BinnenVolley' (v.0.9)(png)&lt;/a&gt;&lt;/li&gt;");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&lt;li&gt;&lt;a href=\"GameBinnenVolleyScreenshotMenu.PNG\"&gt;View a screenshot of the 'BinnenVolley' menu screen (v.0.9)(png)&lt;/a&gt;&lt;/li&gt;");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&lt;li&gt;&lt;a href=\"GameBinnenVolleyScreenshot.png\"&gt;View a screenshot of 'BinnenVolley' (v.0.9)(png)&lt;/a&gt;&lt;/li&gt;");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&lt;li&gt;&lt;a href=\"GameBinnenVolleyScreenshotMenu.png\"&gt;View a screenshot of the 'BinnenVolley' menu screen (v.0.9)(png)&lt;/a&gt;&lt;/li&gt;");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&lt;li&gt;&lt;a href=\"GameBinnenVolleyExe.zip\"&gt;Download the 'BinnenVolley' <a href="CppWindows.htm">Windows</a> executable (v.0.9)(zip)&lt;/a&gt;&lt;/li&gt;");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&lt;li&gt;&lt;a href=\"GameBinnenVolleySource.zip\"&gt;Download the 'BinnenVolley' source code (v.0.9)(zip)&lt;/a&gt;&lt;/li&gt;");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&lt;li&gt;&lt;a href=\"GameBinnenVolleySource_0_9.htm\"&gt;View the 'BinnenVolley' source code as web page (v.0.9)(htm)&lt;/a&gt;&lt;/li&gt;");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&lt;li&gt;&lt;a href=\"GameBinnenVolleySprites.zip\"&gt;Download the 'BinnenVolley' (.bmp) sprites (v.0.9)(zip)&lt;/a&gt;&lt;/li&gt;");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&lt;!-<a href="CppOperatorMinus.htm">-</a>&nbsp;&nbsp;&lt;li&gt;&lt;a href=\"GameBinnenVolleyCdFront.PNG\"&gt;View the CD artwork of 'BinnenVolley' (front)(png)&lt;/a&gt;&lt;/li&gt; <a href="CppOperatorMinus.htm">-</a>-&gt;");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&lt;!-<a href="CppOperatorMinus.htm">-</a>&nbsp;&nbsp;&lt;li&gt;&lt;a href=\"GameBinnenVolleyCdBack.PNG\"&gt;View the CD artwork of 'BinnenVolley' (back)(png)&lt;/a&gt;&lt;/li&gt; <a href="CppOperatorMinus.htm">-</a>-&gt;");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&lt;!-<a href="CppOperatorMinus.htm">-</a>&nbsp;&nbsp;&lt;li&gt;&lt;a href=\"GameBinnenVolleyCdFront.png\"&gt;View the CD artwork of 'BinnenVolley' (front)(png)&lt;/a&gt;&lt;/li&gt; <a href="CppOperatorMinus.htm">-</a>-&gt;");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&lt;!-<a href="CppOperatorMinus.htm">-</a>&nbsp;&nbsp;&lt;li&gt;&lt;a href=\"GameBinnenVolleyCdBack.png\"&gt;View the CD artwork of 'BinnenVolley' (back)(png)&lt;/a&gt;&lt;/li&gt; <a href="CppOperatorMinus.htm">-</a>-&gt;");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&lt;/ul&gt;");<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;<b><a href="CppElse.htm">else</a></b> <b><a href="CppIf.htm">if</a></b> (m_page_name <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> "<a href="GameBoenken.htm">GameBoenken</a>")<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&lt;p&gt;&lt;a href=\"<a href="GameBoenken.htm">GameBoenken</a>.htm\"&gt;<a href="GameBoenken.htm">Boenken</a>&lt;/a&gt; is a crossing-over between soccer and billiards and can be played with twenty players. The &lt;a href=\"<a href="Games.htm">Games</a>.htm\"&gt;game&lt;/a&gt;'s name is Dutch, translating it to English would yield something like 'Bonking' (but <b><a href="CppIf.htm">if</a></b> I would call the &lt;a href=\"<a href="Games.htm">Games</a>.htm\"&gt;game&lt;/a&gt; like that, my website would attract other people). 'Boenk' is the phonetic word of the sound two colliding Dutch snooker balls <a href="CppMake.htm">make</a>.&lt;/p&gt;");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&lt;p&gt;&lt;a href=\"<a href="GameBoenken.htm">GameBoenken</a>.htm\"&gt;<a href="GameBoenken.htm">Boenken</a>&lt;/a&gt; is &lt;a href=\"<a href="Games.htm">Games</a>.htm\"&gt;game&lt;/a&gt; that is a crossing-over between soccer and billiards and can be played with twenty players. The &lt;a href=\"<a href="Games.htm">Games</a>.htm\"&gt;game&lt;/a&gt;'s name is Dutch, translating it to English would yield something like 'Bonking' (but <b><a href="CppIf.htm">if</a></b> I would call the &lt;a href=\"<a href="Games.htm">Games</a>.htm\"&gt;game&lt;/a&gt; like that, my website would attract other people). 'Boenk' is the phonetic word of the sound two colliding Dutch snooker balls <a href="CppMake.htm">make</a>.&lt;/p&gt;");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&lt;p&gt;&amp;nbsp;&lt;/p&gt;");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&lt;p&gt;&lt;a href=\"<a href="GameBoenken.htm">GameBoenken</a>.htm\"&gt;<a href="GameBoenken.htm">Boenken</a>&lt;/a&gt; can be played with twenty players at the same <a href="CppTime.htm">time</a> (on the same single keyboard). Who said that video &lt;a href=\"<a href="Games.htm">Games</a>.htm\"&gt;games&lt;/a&gt; could not be cosy?&lt;/p&gt;");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&lt;p&gt;&amp;nbsp;&lt;/p&gt;");<br/>
@@ -6476,7 +6452,7 @@ c2h::Info::Info(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;<b><a href="CppElse.htm">else</a></b> <b><a href="CppIf.htm">if</a></b> (m_page_name <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> "<a href="GameDasWahreSchlagerfest.htm">GameDasWahreSchlagerfest</a>")<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&lt;p&gt;&lt;a href=\"<a href="GameDasWahreSchlagerfest.htm">GameDasWahreSchlagerfest</a>.htm\"&gt;<a href="GameDasWahreSchlagerfest.htm">Das Wahre Schlagerfest</a>&lt;/a&gt; was programmed on the 30th September 2003 during a 'Spass programmieren' session. ");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&lt;p&gt;&lt;a href=\"<a href="GameDasWahreSchlagerfest.htm">GameDasWahreSchlagerfest</a>.htm\"&gt;<a href="GameDasWahreSchlagerfest.htm">Das Wahre Schlagerfest</a>&lt;/a&gt; is a &lt;a href=\"<a href="Games.htm">Games</a>.htm\"&gt;game&lt;/a&gt; that was programmed on the 30th September 2003 during a 'Spass programmieren' session.");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;v.push_back("It is the one &lt;a href=\"<a href="Games.htm">Games</a>.htm\"&gt;game&lt;/a&gt; that can be played on a theme party with theme 'Germ<a href="CppAny.htm">any</a>', or as a substitute <b><a href="CppFor.htm">for</a></b> the Oktoberfest. ");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;v.push_back("If you want a beer or bratwurst, you can just go fetching one without fear of losing the &lt;a href=\"<a href="Games.htm">Games</a>.htm\"&gt;game&lt;/a&gt;!&lt;/p&gt;");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&lt;p&gt;&amp;nbsp;&lt;/p&gt;");<br/>
@@ -6542,7 +6518,7 @@ c2h::Info::Info(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">
 <br/>
 &nbsp;&nbsp;<b><a href="CppElse.htm">else</a></b> <b><a href="CppIf.htm">if</a></b> (m_page_name <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> "GameK3OpEenRij")<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&lt;p&gt;&lt;a href=\"GameK3OpEenRij.htm\"&gt;K3-Op-Een-Rij&lt;/a&gt; is a tribute to the Flemisch girlyband K3. ");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&lt;p&gt;&lt;a href=\"GameK3OpEenRij.htm\"&gt;K3-Op-Een-Rij&lt;/a&gt; is a &lt;a href=\"<a href="Games.htm">Games</a>.htm\"&gt;game&lt;/a&gt; that is tribute to the Flemisch girlyband K3. ");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&lt;a href=\"GameK3OpEenRij.htm\"&gt;K3-Op-Een-Rij&lt;/a&gt; is a turn-based tic-tac-toe-like &lt;a href=\"<a href="Games.htm">Games</a>.htm\"&gt;game&lt;/a&gt;. ");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;v.push_back("It can be played by one, two or three players. The &lt;a href=\"<a href="Games.htm">Games</a>.htm\"&gt;game&lt;/a&gt; is de<b><a href="CppSigned.htm">signed</a></b> <b><a href="CppFor.htm">for</a></b> <b><a href="CppThis.htm">this</a></b> band's typical audience.&lt;/p&gt;");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&lt;p&gt;&amp;nbsp;&lt;/p&gt;");<br/>
@@ -6606,7 +6582,7 @@ c2h::Info::Info(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;<b><a href="CppElse.htm">else</a></b> <b><a href="CppIf.htm">if</a></b> (m_page_name <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> "GameKnokfighter")<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&lt;p&gt;&lt;a href=\"GameKnokfighter.htm\"&gt;Knokfighter&lt;/a&gt; was programmed by me and Joost van den Bogaart.&lt;/p&gt;");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&lt;p&gt;&lt;a href=\"GameKnokfighter.htm\"&gt;Knokfighter&lt;/a&gt; is a &lt;a href=\"<a href="Games.htm">Games</a>.htm\"&gt;game&lt;/a&gt; programmed by me and Joost van den Bogaart.&lt;/p&gt;");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&lt;p&gt;&amp;nbsp;&lt;/p&gt;");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&lt;p&gt;We tried to <a href="CppMake.htm">make</a> a <a href="CppDouble.htm">Double</a> Dragon clone with ourselves as the heroes.&lt;/p&gt;");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&lt;p&gt;&amp;nbsp;&lt;/p&gt;");<br/>
@@ -6675,29 +6651,19 @@ c2h::Info::Info(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">
 &nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&lt;p&gt;<a href="CppVersion.htm">Version</a> 1.0 of the &lt;a href=\"<a href="Games.htm">Games</a>.htm\"&gt;game&lt;/a&gt; relies heavily on the <a href="CppFunction.htm">function</a> &lt;a href=\"Cpp<a href="CppDrawGlobe.htm">DrawGlobe</a>.htm\"&gt;<a href="CppDrawGlobe.htm">DrawGlobe</a>&lt;/a&gt;.&lt;/p&gt;");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&lt;p&gt;&amp;nbsp;&lt;/p&gt;");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&lt;ol&gt;");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&lt;li&gt;&lt;a href=\"<a href="GameMaziak.htm">GameMaziak</a>Exe_1_4.zip\"&gt;Download the 'Maziak' <a href="CppWindows.htm">Windows</a> executable (v.1.4)(zip)&lt;/a&gt;&lt;/li&gt;");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&lt;li&gt;&lt;a href=\"<a href="GameMaziak.htm">GameMaziak</a>Source_1_4.zip\"&gt;Download the 'Maziak' source code (v.1.4)(zip)&lt;/a&gt;&lt;/li&gt;");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&lt;li&gt;&lt;a href=\"<a href="GameMaziak.htm">GameMaziak</a>Sprites_1_4.zip\"&gt;Download the 'Maziak' (bmp) sprites (v.1.4)(zip)&lt;/a&gt;&lt;/li&gt;");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&lt;li&gt;&lt;a href=\"<a href="GameMaziak.htm">GameMaziak</a>_1_3.PNG\"&gt;View a screenshot of 'Maziak' (v.1.3)(png)&lt;/a&gt;&lt;/li&gt;");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&lt;li&gt;&lt;a href=\"<a href="GameMaziak.htm">GameMaziak</a>Menu_1_3.PNG\"&gt;View a screenshot of the 'Maziak' menu screen (v.1.3)(png)&lt;/a&gt;&lt;/li&gt;");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&lt;li&gt;&lt;a href=\"<a href="GameMaziak.htm">GameMaziak</a>Instructions_1_3.PNG\"&gt;View a screenshot of the 'Maziak' instructions screen (v.1.3)(png)&lt;/a&gt;&lt;/li&gt;");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&lt;li&gt;&lt;a href=\"<a href="GameMaziak.htm">GameMaziak</a>Exe_1_3.zip\"&gt;Download the 'Maziak' <a href="CppWindows.htm">Windows</a> executable (v.1.3)(zip)&lt;/a&gt;&lt;/li&gt;");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&lt;li&gt;&lt;a href=\"<a href="GameMaziak.htm">GameMaziak</a>Source_1_3.zip\"&gt;Download the 'Maziak' source code (v.1.3)(zip)&lt;/a&gt;&lt;/li&gt;");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&lt;li&gt;&lt;a href=\"<a href="GameMaziak.htm">GameMaziak</a>_1_3.png\"&gt;View a screenshot of 'Maziak' (v.1.3)(png)&lt;/a&gt;&lt;/li&gt;");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&lt;li&gt;&lt;a href=\"<a href="GameMaziak.htm">GameMaziak</a>Menu_1_3.png\"&gt;View a screenshot of the 'Maziak' menu screen (v.1.3)(png)&lt;/a&gt;&lt;/li&gt;");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&lt;li&gt;&lt;a href=\"<a href="GameMaziak.htm">GameMaziak</a>Instructions_1_3.png\"&gt;View a screenshot of the 'Maziak' instructions screen (v.1.3)(png)&lt;/a&gt;&lt;/li&gt;");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&lt;li&gt;&lt;a href=\"<a href="GameMaziak.htm">GameMaziak</a>Sprites_1_3.zip\"&gt;Download the 'Maziak' (bmp) sprites (v.1.3)(zip)&lt;/a&gt;&lt;/li&gt;");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&lt;li&gt;&lt;a href=\"<a href="GameMaziak.htm">GameMaziak</a>_1_2.PNG\"&gt;View a screenshot of 'Maziak' (v.1.2)(png)&lt;/a&gt;&lt;/li&gt;");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&lt;li&gt;&lt;a href=\"<a href="GameMaziak.htm">GameMaziak</a>Menu_1_2.PNG\"&gt;View a screenshot of the 'Maziak' menu screen (v.1.2)(png)&lt;/a&gt;&lt;/li&gt;");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&lt;li&gt;&lt;a href=\"<a href="GameMaziak.htm">GameMaziak</a>_1_2.png\"&gt;View a screenshot of 'Maziak' (v.1.2)(png)&lt;/a&gt;&lt;/li&gt;");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&lt;li&gt;&lt;a href=\"<a href="GameMaziak.htm">GameMaziak</a>Menu_1_2.png\"&gt;View a screenshot of the 'Maziak' menu screen (v.1.2)(png)&lt;/a&gt;&lt;/li&gt;");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&lt;li&gt;&lt;a href=\"<a href="GameMaziak.htm">GameMaziak</a>Sprites_1_2.zip\"&gt;Download the 'Maziak' (bmp) sprites (v.1.2)(zip)&lt;/a&gt;&lt;/li&gt;");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&lt;li&gt;&lt;a href=\"<a href="GameMaziak.htm">GameMaziak</a>Exe_1_2.zip\"&gt;Download the 'Maziak' <a href="CppWindows.htm">Windows</a> executable (v.1.2)(zip)&lt;/a&gt;&lt;/li&gt;");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&lt;li&gt;&lt;a href=\"<a href="GameMaziak.htm">GameMaziak</a>Source_1_2.zip\"&gt;Download the 'Maziak' source code (v.1.2)(zip)&lt;/a&gt;&lt;/li&gt;");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&lt;li&gt;&lt;a href=\"<a href="GameMaziak.htm">GameMaziak</a>_1_1.PNG\"&gt;View a screenshot of 'Maziak' (v.1.1)(png)&lt;/a&gt;&lt;/li&gt;");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&lt;li&gt;&lt;a href=\"<a href="GameMaziak.htm">GameMaziak</a>Menu_1_1.PNG\"&gt;View a screenshot of the 'Maziak' menu screen (v.1.1)(png)&lt;/a&gt;&lt;/li&gt;");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&lt;li&gt;&lt;a href=\"<a href="GameMaziak.htm">GameMaziak</a>_1_1.png\"&gt;View a screenshot of 'Maziak' (v.1.1)(png)&lt;/a&gt;&lt;/li&gt;");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&lt;li&gt;&lt;a href=\"<a href="GameMaziak.htm">GameMaziak</a>Menu_1_1.png\"&gt;View a screenshot of the 'Maziak' menu screen (v.1.1)(png)&lt;/a&gt;&lt;/li&gt;");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&lt;li&gt;&lt;a href=\"<a href="GameMaziak.htm">GameMaziak</a>Sprites_1_1.zip\"&gt;Download the 'Maziak' (bmp) sprites (v.1.1)(zip)&lt;/a&gt;&lt;/li&gt;");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&lt;li&gt;&lt;a href=\"<a href="GameMaziak.htm">GameMaziak</a>Exe_1_1.zip\"&gt;Download the 'Maziak' <a href="CppWindows.htm">Windows</a> executable (v.1.1)(zip)&lt;/a&gt;&lt;/li&gt;");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&lt;li&gt;&lt;a href=\"<a href="GameMaziak.htm">GameMaziak</a>Source_1_1.zip\"&gt;Download the 'Maziak' source code (v.1.1)(zip)&lt;/a&gt;&lt;/li&gt;");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&lt;li&gt;&lt;a href=\"<a href="GameMaziak.htm">GameMaziak</a>_1_0.PNG\"&gt;View a screenshot of 'Maziak' (v.1.0)(png)&lt;/a&gt;&lt;/li&gt;");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&lt;li&gt;&lt;a href=\"<a href="GameMaziak.htm">GameMaziak</a>Menu_1_0.PNG\"&gt;View a screenshot of the 'Maziak' menu screen (v.1.0)(png)&lt;/a&gt;&lt;/li&gt;");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&lt;li&gt;&lt;a href=\"<a href="GameMaziak.htm">GameMaziak</a>Exe_1_0.zip\"&gt;Download the 'Maziak' <a href="CppWindows.htm">Windows</a> executable (v.1.0)(zip)&lt;/a&gt;&lt;/li&gt;");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&lt;li&gt;&lt;a href=\"<a href="GameMaziak.htm">GameMaziak</a>Source_1_0.zip\"&gt;Download the 'Maziak' source code (v.1.0)(zip)&lt;/a&gt;&lt;/li&gt;");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&lt;li&gt;&lt;a href=\"<a href="GameMaziak.htm">GameMaziak</a>_1_0.png\"&gt;View a screenshot of 'Maziak' (v.1.0)(png)&lt;/a&gt;&lt;/li&gt;");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&lt;li&gt;&lt;a href=\"<a href="GameMaziak.htm">GameMaziak</a>Menu_1_0.png\"&gt;View a screenshot of the 'Maziak' menu screen (v.1.0)(png)&lt;/a&gt;&lt;/li&gt;");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&lt;/ol&gt;");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&lt;p&gt;&amp;nbsp;&lt;/p&gt;");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&lt;p&gt;&amp;nbsp;&lt;/p&gt;");<br/>
@@ -6762,9 +6728,9 @@ c2h::Info::Info(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">
 &nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&lt;li&gt;&lt;a href=\"GameMetZnDrieenExe_1_3.zip\"&gt;Download the 'Met Z'n Drieen' <a href="CppWindows.htm">Windows</a> executable (v.1.3)(zip)&lt;/a&gt;&lt;/li&gt;");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&lt;li&gt;&lt;a href=\"GameMetZnDrieenSource_1_3.zip\"&gt;Download the 'Met Z'n Drieen' source code (v.1.3)(zip)&lt;/a&gt;&lt;/li&gt;");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&lt;li&gt;&lt;a href=\"GameMetZnDrieenSource_1_3.htm\"&gt;View the <a href="CppBuilder.htm">C++ Builder</a> source code of 'Met Z'n Drieen' as a web site (v.1.3)(htm)&lt;/a&gt;&lt;/li&gt;");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&lt;li&gt;&lt;a href=\"GameMetZnDrieenCdFront.PNG\"&gt;View the CD artwork of 'Met z'n Drieen' (front)(png)&lt;/a&gt;&lt;/li&gt;");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&lt;li&gt;&lt;a href=\"GameMetZnDrieenCdFront.png\"&gt;View the CD artwork of 'Met z'n Drieen' (front)(png)&lt;/a&gt;&lt;/li&gt;");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&lt;li&gt;&lt;a href=\"GameMetZnDrieenCdFront.bmp\"&gt;View the CD artwork of 'Met z'n Drieen' (front)(bmp)&lt;/a&gt;&lt;/li&gt;");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&lt;li&gt;&lt;a href=\"GameMetZnDrieenCdBack.PNG\"&gt;View the CD artwork of 'Met z'n Drieen' (back)(png)&lt;/a&gt;&lt;/li&gt;");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&lt;li&gt;&lt;a href=\"GameMetZnDrieenCdBack.png\"&gt;View the CD artwork of 'Met z'n Drieen' (back)(png)&lt;/a&gt;&lt;/li&gt;");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&lt;li&gt;&lt;a href=\"GameMetZnDrieenCdBack.bmp\"&gt;View the CD artwork of 'Met z'n Drieen' (back)(bmp)&lt;/a&gt;&lt;/li&gt;");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&lt;/ul&gt;");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&lt;p&gt;&amp;nbsp;&lt;/p&gt;");<br/>
@@ -6775,9 +6741,9 @@ c2h::Info::Info(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">
 &nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&lt;h2&gt;Older downloads&lt;/h2&gt;");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&lt;p&gt;&amp;nbsp;&lt;/p&gt;");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&lt;ul&gt;");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&lt;li&gt;&lt;a href=\"GameMetZnDrieenScreenshot_1_2.PNG\"&gt;View a screenshot of 'Met Z'n Drieen' (v.1.2)(png)&lt;/a&gt;&lt;/li&gt;");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&lt;li&gt;&lt;a href=\"GameMetZnDrieenScreenshotMenu_1_2.PNG\"&gt;View a screenshot of the 'Met Z'n Drieen' menu screen (v.1.2)(png)&lt;/a&gt;&lt;/li&gt;");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&lt;li&gt;&lt;a href=\"GameMetZnDrieenScreenshot_1_0.PNG\"&gt;View a screenshot of 'Met Z'n Drieen' (v.1.0)(png)&lt;/a&gt;&lt;/li&gt;");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&lt;li&gt;&lt;a href=\"GameMetZnDrieenScreenshot_1_2.png\"&gt;View a screenshot of 'Met Z'n Drieen' (v.1.2)(png)&lt;/a&gt;&lt;/li&gt;");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&lt;li&gt;&lt;a href=\"GameMetZnDrieenScreenshotMenu_1_2.png\"&gt;View a screenshot of the 'Met Z'n Drieen' menu screen (v.1.2)(png)&lt;/a&gt;&lt;/li&gt;");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&lt;li&gt;&lt;a href=\"GameMetZnDrieenScreenshot_1_0.png\"&gt;View a screenshot of 'Met Z'n Drieen' (v.1.0)(png)&lt;/a&gt;&lt;/li&gt;");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&lt;li&gt;Download the 'Met Z'n Drieen' <a href="CppWindows.htm">Windows</a> executable (v.1.2)(zip)(lost)&lt;/li&gt;");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&lt;li&gt;Download the 'Met Z'n Drieen' source code (v.1.2)(zip)(lost)&lt;/li&gt;");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&lt;li&gt;&lt;a href=\"GameMetZnDrieenExe_1_1.zip\"&gt;Download the 'Met Z'n Drieen' <a href="CppWindows.htm">Windows</a> executable (v.1.1)(zip)&lt;/a&gt;&lt;/li&gt;");<br/>
@@ -7328,11 +7294,10 @@ c2h::Info::Info(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">
 &nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&lt;h2&gt;Downloads&lt;/h2&gt;");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&lt;p&gt;&amp;nbsp;&lt;/p&gt;");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&lt;ul&gt;");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&lt;li&gt;&lt;img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/&gt; &lt;a href=\"<a href="ProjectBrainweaver.htm">ProjectBrainweaver</a>_0_33.png\"&gt;View a screenshot of '<a href="ProjectBrainweaver.htm">Brainweaver</a>' (<a href="CppVersion.htm">version</a> 0.33)(png)&lt;/a&gt;&lt;/li&gt;");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&lt;li&gt;&lt;img src=\"Pic<a href="CppWine.htm">Wine</a>.png\" alt=\"<a href="CppWine.htm">Wine</a>\"/&gt; &lt;a href=\"<a href="ProjectBrainweaver.htm">ProjectBrainweaver</a>_0_28<a href="CppWine.htm">Wine</a>.png\"&gt;View a screenshot of '<a href="ProjectBrainweaver.htm">Brainweaver</a>' (<a href="CppVersion.htm">version</a> 0.28)(png)&lt;/a&gt;&lt;/li&gt;");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&lt;li&gt;&lt;img src=\"Pic<a href="CppWindows.htm">Windows</a>.png\" alt=\"<a href="CppWindows.htm">Windows</a>\"/&gt; &lt;a href=\"<a href="ProjectBrainweaver.htm">ProjectBrainweaver</a>Exe_0_35.zip\"&gt;Download the '<a href="ProjectBrainweaver.htm">Brainweaver</a>' windows executable (<a href="CppVersion.htm">version</a> 0.35)(zip)&lt;/a&gt;&lt;/li&gt;");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&lt;li&gt;&lt;img src=\"Pic<a href="CppQtCreator.htm">QtCreator</a>.png\" alt=\"<a href="CppQtCreator.htm">Qt Creator</a>\"/&gt; &lt;a href=\"<a href="ProjectBrainweaver.htm">ProjectBrainweaver</a>Source_0_32.zip\"&gt;Download the source code of '<a href="ProjectBrainweaver.htm">Brainweaver</a>' (<a href="CppVersion.htm">version</a> 0.32)(zip)&lt;/a&gt;&lt;/li&gt;");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&lt;li&gt;&lt;img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/&gt; &lt;a href=\"<a href="ProjectBrainweaver.htm">ProjectBrainweaver</a>20130725.mp4\"&gt;View <a href="ProjectBrainweaver.htm">Brainweaver</a> being tested by <a href="CppLibcvautomation.htm">libcvautomation</a> (mp4)&lt;/a&gt;&lt;/li&gt;");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;v.push_back(R"(&nbsp;&nbsp;&lt;li&gt;&lt;img src="PicLubuntu.png" alt="Lubuntu"/&gt; &lt;a href="<a href="ProjectBrainweaver.htm">ProjectBrainweaver</a>_0_33.png"&gt;View a screenshot of '<a href="ProjectBrainweaver.htm">Brainweaver</a>' (<a href="CppVersion.htm">version</a> 0.33)(png)&lt;/a&gt;&lt;/li&gt;");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;v.push_back(R"(&nbsp;&nbsp;&lt;li&gt;&lt;img src="Pic<a href="CppWine.htm">Wine</a>.png" alt="<a href="CppWine.htm">Wine</a>"/&gt; &lt;a href=\"<a href="ProjectBrainweaver.htm">ProjectBrainweaver</a>_0_28<a href="CppWine.htm">Wine</a>.png"&gt;View a screenshot of '<a href="ProjectBrainweaver.htm">Brainweaver</a>' (<a href="CppVersion.htm">version</a> 0.28)(png)&lt;/a&gt;&lt;/li&gt;");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;v.push_back(R"(&nbsp;&nbsp;&lt;li&gt;&lt;img src="Pic<a href="CppWindows.htm">Windows</a>.png" alt="<a href="CppWindows.htm">Windows</a>"/&gt; &lt;a href="<a href="ProjectBrainweaver.htm">ProjectBrainweaver</a>Exe_0_36.zip"&gt;Download the '<a href="ProjectBrainweaver.htm">Brainweaver</a>' windows executable (<a href="CppVersion.htm">version</a> 0.36)(zip)&lt;/a&gt;&lt;/li&gt;");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;v.push_back(R"(&nbsp;&nbsp;&lt;li&gt;&lt;img src="PicLubuntu.png" alt="Lubuntu"/&gt; &lt;a href="<a href="ProjectBrainweaver.htm">ProjectBrainweaver</a>20130725.mp4"&gt;View <a href="ProjectBrainweaver.htm">Brainweaver</a> being tested by <a href="CppLibcvautomation.htm">libcvautomation</a> (mp4)&lt;/a&gt;&lt;/li&gt;");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&lt;/ul&gt;");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&lt;p&gt;&amp;nbsp;&lt;/p&gt;");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&lt;p&gt;&amp;nbsp;&lt;/p&gt;");<br/>
@@ -7342,9 +7307,7 @@ c2h::Info::Info(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">
 &nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&lt;h2&gt;Older downloads&lt;/h2&gt;");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&lt;p&gt;&amp;nbsp;&lt;/p&gt;");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&lt;ul&gt;");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&lt;li&gt;&lt;img src=\"Pic<a href="CppWindows.htm">Windows</a>.png\" alt=\"<a href="CppWindows.htm">Windows</a>\"/&gt; &lt;a href=\"<a href="ProjectBrainweaver.htm">ProjectBrainweaver</a>Exe_0_34.zip\"&gt;Download the '<a href="ProjectBrainweaver.htm">Brainweaver</a>' windows executable (<a href="CppVersion.htm">version</a> 0.34)(zip)&lt;/a&gt;&lt;/li&gt;");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&lt;li&gt;&lt;img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/&gt; &lt;a href=\"<a href="ProjectBrainweaver.htm">ProjectBrainweaver</a>_0_28.png\"&gt;View a screenshot of '<a href="ProjectBrainweaver.htm">Brainweaver</a>' (<a href="CppVersion.htm">version</a> 0.28)(png)&lt;/a&gt;&lt;/li&gt;");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&lt;li&gt;&lt;img src=\"Pic<a href="CppQtCreator.htm">QtCreator</a>.png\" alt=\"<a href="CppQtCreator.htm">Qt Creator</a>\"/&gt; &lt;a href=\"<a href="ProjectBrainweaver.htm">ProjectBrainweaver</a>Source_0_30.zip\"&gt;Download the source code of '<a href="ProjectBrainweaver.htm">Brainweaver</a>' (<a href="CppVersion.htm">version</a> 0.30)(zip)&lt;/a&gt;&lt;/li&gt;");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&lt;/ul&gt;");<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;<b><a href="CppElse.htm">else</a></b> <b><a href="CppIf.htm">if</a></b> (m_page_name <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> "ProjectBristol")<br/>
@@ -7415,10 +7378,10 @@ c2h::Info::Info(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">
 &nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&lt;p&gt;&amp;nbsp;&lt;/p&gt;");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&lt;p&gt;Because the licence of &lt;a href=\"ProjectCrossPoll.htm\"&gt;CrossPoll&lt;/a&gt; is in hands of the &lt;a href=\"http://www.cogem.net/\"&gt;COGEM&lt;/a&gt;, I cannot give the source code. Also have I been very selective in choosing the following screenshots:&lt;/p&gt;");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&lt;ul&gt;");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&lt;li&gt;&lt;a href=\"ProjectCrossPoll0.PNG\"&gt;View a screenshot of 'CrossPoll' #0 (PNG)&lt;/a&gt;&lt;/li&gt;");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&lt;li&gt;&lt;a href=\"ProjectCrossPoll1.PNG\"&gt;View a screenshot of 'CrossPoll' #1 (PNG)&lt;/a&gt;&lt;/li&gt;");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&lt;li&gt;&lt;a href=\"ProjectCrossPoll2.PNG\"&gt;View a screenshot of 'CrossPoll' #2 (PNG)&lt;/a&gt;&lt;/li&gt;");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&lt;li&gt;&lt;a href=\"ProjectCrossPoll3.PNG\"&gt;View a screenshot of 'CrossPoll' #3 (PNG)&lt;/a&gt;&lt;/li&gt;");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&lt;li&gt;&lt;a href=\"ProjectCrossPoll0.png\"&gt;View a screenshot of 'CrossPoll' #0 (PNG)&lt;/a&gt;&lt;/li&gt;");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&lt;li&gt;&lt;a href=\"ProjectCrossPoll1.png\"&gt;View a screenshot of 'CrossPoll' #1 (PNG)&lt;/a&gt;&lt;/li&gt;");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&lt;li&gt;&lt;a href=\"ProjectCrossPoll2.png\"&gt;View a screenshot of 'CrossPoll' #2 (PNG)&lt;/a&gt;&lt;/li&gt;");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&lt;li&gt;&lt;a href=\"ProjectCrossPoll3.png\"&gt;View a screenshot of 'CrossPoll' #3 (PNG)&lt;/a&gt;&lt;/li&gt;");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&lt;/ul&gt;");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&lt;p&gt;&amp;nbsp;&lt;/p&gt;");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&lt;p&gt;&lt;a href=\"ProjectCrossPoll.htm\"&gt;CrossPoll&lt;/a&gt; was developed from <a href="CppAbout.htm">about</a> the 5th of July of 2004 to <a href="CppAbout.htm">about</a> the 27th of December of 2004.&lt;/p&gt;");<br/>
@@ -8292,11 +8255,11 @@ c2h::Info::Info(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">
 &nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&lt;!-<a href="CppOperatorMinus.htm">-</a> end of code <a href="CppOperatorMinus.htm">-</a>-&gt;");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&lt;p&gt;&amp;nbsp;&lt;/p&gt;");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&lt;ul&gt;");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&lt;li&gt;&lt;a href=\"ProjectRampalSpeedBefore.PNG\"&gt;Execution speed <b><a href="CppFor.htm">for</a></b> different complexities <b><a href="CppFor.htm">for</a></b> Mr X's <a href="CppVersion.htm">version</a> (PNG)&lt;/a&gt;.&lt;/li&gt;");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&lt;li&gt;&lt;a href=\"ProjectRampalSpeedBefore.png\"&gt;Execution speed <b><a href="CppFor.htm">for</a></b> different complexities <b><a href="CppFor.htm">for</a></b> Mr X's <a href="CppVersion.htm">version</a> (PNG)&lt;/a&gt;.&lt;/li&gt;");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&lt;li&gt;&lt;a href=\"ProjectRampalSpeedBefore.xls\"&gt;Execution speed <b><a href="CppFor.htm">for</a></b> different complexities <b><a href="CppFor.htm">for</a></b> Mr X's <a href="CppVersion.htm">version</a> (XLS)&lt;/a&gt;.&lt;/li&gt;");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&lt;li&gt;&lt;a href=\"ProjectRampalSpeedAfter.PNG\"&gt;Execution speed <b><a href="CppFor.htm">for</a></b> different complexities <b><a href="CppFor.htm">for</a></b> Richel Bilderbeek's <a href="CppVersion.htm">version</a> (PNG)&lt;/a&gt;.&lt;/li&gt;");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&lt;li&gt;&lt;a href=\"ProjectRampalSpeedAfter.png\"&gt;Execution speed <b><a href="CppFor.htm">for</a></b> different complexities <b><a href="CppFor.htm">for</a></b> Richel Bilderbeek's <a href="CppVersion.htm">version</a> (PNG)&lt;/a&gt;.&lt;/li&gt;");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&lt;li&gt;&lt;a href=\"ProjectRampalSpeedAfter.xls\"&gt;Execution speed <b><a href="CppFor.htm">for</a></b> different complexities <b><a href="CppFor.htm">for</a></b> Richel Bilderbeek's <a href="CppVersion.htm">version</a> (XLS)&lt;/a&gt;.&lt;/li&gt;");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&lt;li&gt;&lt;a href=\"ProjectRampalSpeedCompare.PNG\"&gt;Comparison of execution speed <b><a href="CppFor.htm">for</a></b> different complexities (PNG)&lt;/a&gt;.&lt;/li&gt;");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&lt;li&gt;&lt;a href=\"ProjectRampalSpeedCompare.png\"&gt;Comparison of execution speed <b><a href="CppFor.htm">for</a></b> different complexities (PNG)&lt;/a&gt;.&lt;/li&gt;");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&lt;li&gt;&lt;a href=\"ProjectRampalSpeedCompare.xls\"&gt;Comparison of execution speed <b><a href="CppFor.htm">for</a></b> different complexities (XLS)&lt;/a&gt;.&lt;/li&gt;");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&lt;/ul&gt;");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&lt;p&gt;&amp;nbsp;&lt;/p&gt;");<br/>
@@ -8328,7 +8291,7 @@ c2h::Info::Info(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">
 &nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&lt;!-<a href="CppOperatorMinus.htm">-</a> end of code <a href="CppOperatorMinus.htm">-</a>-&gt;");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&lt;p&gt;&amp;nbsp;&lt;/p&gt;");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&lt;ul&gt;");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&lt;li&gt;&lt;a href=\"ProjectRampal<a href="CppMemory.htm">Memory</a>Use.PNG\"&gt;<a href="CppMemory.htm">Memory</a> use <b><a href="CppFor.htm">for</a></b> different complexities <b><a href="CppFor.htm">for</a></b> Richel Bilderbeek's <a href="CppVersion.htm">version</a> (PNG)&lt;/a&gt;.&lt;/li&gt;");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&lt;li&gt;&lt;a href=\"ProjectRampal<a href="CppMemory.htm">Memory</a>Use.png\"&gt;<a href="CppMemory.htm">Memory</a> use <b><a href="CppFor.htm">for</a></b> different complexities <b><a href="CppFor.htm">for</a></b> Richel Bilderbeek's <a href="CppVersion.htm">version</a> (PNG)&lt;/a&gt;.&lt;/li&gt;");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&lt;li&gt;&lt;a href=\"ProjectRampal<a href="CppMemory.htm">Memory</a>Use.xls\"&gt;<a href="CppMemory.htm">Memory</a> use <b><a href="CppFor.htm">for</a></b> different complexities <b><a href="CppFor.htm">for</a></b> Richel Bilderbeek's <a href="CppVersion.htm">version</a> (XLS)&lt;/a&gt;.&lt;/li&gt;");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&lt;/ul&gt;");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&lt;p&gt;&amp;nbsp;&lt;/p&gt;");<br/>
@@ -8368,8 +8331,8 @@ c2h::Info::Info(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">
 &nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&lt;p&gt;The source code will not be downloadable yet.&lt;/p&gt;");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&lt;p&gt;&amp;nbsp;&lt;/p&gt;");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&lt;ul&gt;");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&lt;li&gt;&lt;a href=\"ProjectRampal1.PNG\"&gt;View a screenshot of 'The Rampal Etienne Project' #1 (PNG)&lt;/a&gt;.&lt;/li&gt;");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&lt;li&gt;&lt;a href=\"ProjectRampal2.PNG\"&gt;View a screenshot of 'The Rampal Etienne Project' #2 (PNG)&lt;/a&gt;.&lt;/li&gt;");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&lt;li&gt;&lt;a href=\"ProjectRampal1.png\"&gt;View a screenshot of 'The Rampal Etienne Project' #1 (PNG)&lt;/a&gt;.&lt;/li&gt;");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&lt;li&gt;&lt;a href=\"ProjectRampal2.png\"&gt;View a screenshot of 'The Rampal Etienne Project' #2 (PNG)&lt;/a&gt;.&lt;/li&gt;");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&lt;li&gt;&lt;a href=\"ProjectRampalAllResults.xls\"&gt;Download all simulation results (XLS)&lt;/a&gt;.&lt;/li&gt;");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&lt;/ul&gt;");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&lt;p&gt;&amp;nbsp;&lt;/p&gt;");<br/>
@@ -8473,7 +8436,7 @@ c2h::Info::Info(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">
 &nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&lt;h2&gt;Introduction&lt;/h2&gt;");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&lt;p&gt;&amp;nbsp;&lt;/p&gt;");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&lt;p&gt;&lt;a href=\"Project<a href="CppTwoDigitNewick.htm">TwoDigitNewick</a>.htm\"&gt;Project <a href="CppTwoDigitNewick.htm">TwoDigitNewick</a>&lt;/a&gt; is the successor &lt;a href=\"<a href="Projects.htm">Projects</a>.htm\"&gt;project&lt;/a&gt; of ");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&lt;a href=\"ProjectRampalEtienne.htm\"&gt;The Rampal Etienne Project&lt;/a&gt;, with the goal of improving run-<a href="CppTime.htm">time</a> speed.&lt;/p&gt;");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&lt;a href=\"ProjectRampalEtienne.htm\"&gt;The Rampal Etienne Project&lt;/a&gt;, with the goal of improving <a href="CppRunTime.htm">run-time</a> speed.&lt;/p&gt;");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&lt;p&gt;&amp;nbsp;&lt;/p&gt;");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&lt;p&gt;&lt;a href=\"Project<a href="CppTwoDigitNewick.htm">TwoDigitNewick</a>.htm\"&gt;Project <a href="CppTwoDigitNewick.htm">TwoDigitNewick</a>&lt;/a&gt; has been developed by (sorted alphabetically on first name):&lt;/p&gt;");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&lt;ul&gt;");<br/>
@@ -9246,7 +9209,7 @@ c2h::Info::Info(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">
 &nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&lt;p&gt;&lt;a href=\"<a href="Tools.htm">Tool</a>Cnd.htm\"&gt;Color Number Determinator&lt;/a&gt; is one of my first self-written <a href="Tools.htm">tool</a>. It shows the color of a certain red, green and blue value.&lt;/p&gt;");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&lt;p&gt;&amp;nbsp;&lt;/p&gt;");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&lt;ul&gt;");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&lt;li&gt;&lt;a href=\"<a href="Tools.htm">Tool</a>CndScreenshot.PNG\"&gt;View a screenshot of 'Color Number Determinator' (png)&lt;/a&gt;&lt;/li&gt;");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&lt;li&gt;&lt;a href=\"<a href="Tools.htm">Tool</a>CndScreenshot.png\"&gt;View a screenshot of 'Color Number Determinator' (png)&lt;/a&gt;&lt;/li&gt;");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&lt;li&gt;&lt;a href=\"<a href="Tools.htm">Tool</a>CndSource.rar\"&gt;Download the 'Color Number Determinator' source code (rar)&lt;/a&gt;&lt;/li&gt;");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&lt;li&gt;&lt;a href=\"<a href="Tools.htm">Tool</a>CndExe.rar\"&gt;Download the 'Color Number Determinator' <a href="CppWindows.htm">Windows</a> executable (rar)&lt;/a&gt;&lt;/li&gt;");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&lt;/ul&gt;");<br/>
@@ -9418,7 +9381,7 @@ c2h::Info::Info(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">
 &nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&lt;p&gt;If you have ever pondered <b><a href="CppThis.htm">this</a></b> <b><a href="CppFor.htm">for</a></b> whole numbers, &lt;a href=\"<a href="Tools.htm">Tool</a>Combinator.htm\"&gt;Combinator&lt;/a&gt; is the <a href="Tools.htm">tool</a> <b><a href="CppFor.htm">for</a></b> you!&lt;/p&gt;");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&lt;p&gt;&amp;nbsp;&lt;/p&gt;");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&lt;ul&gt;");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&lt;li&gt;&lt;a href=\"<a href="Tools.htm">Tool</a>CombinatorScreenshot.PNG\"&gt;View a screenshot of 'Combinator'&lt;/a&gt;&lt;/li&gt;");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&lt;li&gt;&lt;a href=\"<a href="Tools.htm">Tool</a>CombinatorScreenshot.png\"&gt;View a screenshot of 'Combinator'&lt;/a&gt;&lt;/li&gt;");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&lt;li&gt;&lt;a href=\"<a href="Tools.htm">Tool</a>CombinatorExe.rar\"&gt;Download the 'Combinator' <a href="CppWindows.htm">Windows</a> executable&lt;/a&gt;&lt;/li&gt;");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&lt;li&gt;&lt;a href=\"<a href="Tools.htm">Tool</a>CombinatorSource.rar\"&gt;Download the 'Combinator' source code&lt;/a&gt;&lt;/li&gt;");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&lt;/ul&gt;");<br/>
@@ -9433,7 +9396,7 @@ c2h::Info::Info(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">
 &nbsp;&nbsp;&nbsp;&nbsp;v.push_back("<a href="CppLibrary.htm">library</a>.&lt;/p&gt;");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&lt;p&gt;&amp;nbsp;&lt;/p&gt;");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&lt;ul&gt;");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&lt;li&gt;&lt;a href=\"<a href="Tools.htm">Tool</a>CoutChild<a href="CppWindows.htm">Windows</a>Screenshot.PNG\"&gt;View a screenshot of 'CoutChild<a href="CppWindows.htm">Windows</a>'&lt;/a&gt;&lt;/li&gt;");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&lt;li&gt;&lt;a href=\"<a href="Tools.htm">Tool</a>CoutChild<a href="CppWindows.htm">Windows</a>Screenshot.png\"&gt;View a screenshot of 'CoutChild<a href="CppWindows.htm">Windows</a>'&lt;/a&gt;&lt;/li&gt;");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&lt;li&gt;&lt;a href=\"<a href="Tools.htm">Tool</a>CoutChild<a href="CppWindows.htm">Windows</a>Exe.zip\"&gt;Download the 'CoutChild<a href="CppWindows.htm">Windows</a>' <a href="CppWindows.htm">Windows</a> executable (zip)&lt;/a&gt;&lt;/li&gt;");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&lt;li&gt;&lt;a href=\"<a href="Tools.htm">Tool</a>CoutChild<a href="CppWindows.htm">Windows</a>Source.zip\"&gt;Download the 'CoutChild<a href="CppWindows.htm">Windows</a>' source code (zip)&lt;/a&gt;&lt;/li&gt;");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&lt;/ul&gt;");<br/>
@@ -9496,7 +9459,7 @@ c2h::Info::Info(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">
 &nbsp;&nbsp;&nbsp;&nbsp;v.push_back("site. And now, the 19th of October 2007, it seems to work... Whatever...&lt;/p&gt;");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&lt;p&gt;&amp;nbsp;&lt;/p&gt;");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&lt;ul&gt;");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&lt;li&gt;&lt;a href=\"<a href="Tools.htm">Tool</a>EmptyTextLinesRemoverScreenshot.PNG\"&gt;View a screenshot of 'Empty Text Lines Remover'&lt;/a&gt;&lt;/li&gt;");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&lt;li&gt;&lt;a href=\"<a href="Tools.htm">Tool</a>EmptyTextLinesRemoverScreenshot.png\"&gt;View a screenshot of 'Empty Text Lines Remover'&lt;/a&gt;&lt;/li&gt;");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&lt;li&gt;&lt;a href=\"<a href="Tools.htm">Tool</a>EmptyTextLinesRemoverSource.rar\"&gt;Download the 'Empty Text Lines Remover' source code&lt;/a&gt;&lt;/li&gt;");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&lt;li&gt;&lt;a href=\"<a href="Tools.htm">Tool</a>EmptyTextLinesRemoverExe.rar\"&gt;Download the 'Empty Text Lines Remover' <a href="CppWindows.htm">Windows</a> executable&lt;/a&gt;&lt;/li&gt;");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&lt;/ul&gt;");<br/>
@@ -9510,7 +9473,7 @@ c2h::Info::Info(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">
 &nbsp;&nbsp;&nbsp;&nbsp;v.push_back("it is a better <a href="Tools.htm">tool</a> in all aspects.&lt;/p&gt;");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&lt;p&gt;&amp;nbsp;&lt;/p&gt;");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&lt;ul&gt;");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&lt;li&gt;&lt;a href=\"<a href="Tools.htm">Tool</a>EncrypterScreenshot.PNG\"&gt;View a screenshot of the Encrypter GUI shell&lt;/a&gt;&lt;/p&gt;");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&lt;li&gt;&lt;a href=\"<a href="Tools.htm">Tool</a>EncrypterScreenshot.png\"&gt;View a screenshot of the Encrypter GUI shell&lt;/a&gt;&lt;/p&gt;");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&lt;li&gt;&lt;a href=\"<a href="Tools.htm">Tool</a>EncrypterSource.rar\"&gt;Download the Encrypter source code&lt;/a&gt;&lt;/p&gt;");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&lt;li&gt;&lt;a href=\"<a href="Tools.htm">Tool</a>EncrypterExe.rar\"&gt;Download the Encrypter <a href="CppWindows.htm">Windows</a> executables&lt;/a&gt;&lt;/p&gt;");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&lt;/ul&gt;");<br/>
@@ -9523,7 +9486,7 @@ c2h::Info::Info(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">
 &nbsp;&nbsp;&nbsp;&nbsp;v.push_back("and &lt;a href=\"CppVcl.htm\"&gt;VCL&lt;/a&gt; libraries.&lt;/p&gt;");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&lt;p&gt;&amp;nbsp;&lt;/p&gt;");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&lt;ul&gt;");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&lt;li&gt;&lt;a href=\"CppDoFilterOperation.PNG\"&gt;View an example image of 'DoFilterOperation'&lt;/a&gt;&lt;/li&gt;");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&lt;li&gt;&lt;a href=\"CppDoFilterOperation.png\"&gt;View an example image of 'DoFilterOperation'&lt;/a&gt;&lt;/li&gt;");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&lt;li&gt;&lt;a href=\"<a href="Tools.htm">Tool</a>FilterOperationer_1_0.png\"&gt;View a screenshot of 'FilterOperationer'&lt;/a&gt;&lt;/li&gt;");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&lt;li&gt;&lt;a href=\"<a href="Tools.htm">Tool</a>FilterOperationerSource.rar\"&gt;Download the 'FilterOperationer' source code (rar)&lt;/a&gt;&lt;/li&gt;");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&lt;li&gt;&lt;a href=\"<a href="Tools.htm">Tool</a>FilterOperationerSource.zip\"&gt;Download the 'FilterOperationer' source code (zip)&lt;/a&gt;&lt;/li&gt;");<br/>
@@ -9553,7 +9516,7 @@ c2h::Info::Info(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">
 &nbsp;&nbsp;<b><a href="CppElse.htm">else</a></b> <b><a href="CppIf.htm">if</a></b> (m_page_name <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> "<a href="Tools.htm">Tool</a><a href="CppFunction.htm">Function</a>Plotter")<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&lt;p&gt;&lt;a href=\"<a href="Tools.htm">Tool</a><a href="CppFunction.htm">Function</a>Plotter.htm\"&gt;<a href="CppFunction.htm">Function</a>Plotter&lt;/a&gt; is a demonstration <a href="Tools.htm">tool</a> of &lt;a href=\"http://warp.povusers.org/<a href="CppFunctionParser.htm">FunctionParser</a>\"&gt;Warp's <a href="CppFunctionParser.htm">FunctionParser</a> <b><a href="CppClass.htm">class</a></b>&lt;/a&gt;:&lt;/p&gt;");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&lt;p&gt;The user can input a <a href="CppFunction.htm">function</a> in the <b><a href="CppFor.htm">for</a></b> 'y=f(x)' and a range <b><a href="CppFor.htm">for</a></b> x. &lt;a href=\"<a href="Tools.htm">Tool</a><a href="CppFunction.htm">Function</a>Plotter.htm\"&gt;<a href="CppFunction.htm">Function</a>Plotter&lt;/a&gt; then plots the values of y.&lt;/p&gt;");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&lt;p&gt;The user can input a <a href="CppFunction.htm">function</a> in the <b><a href="CppFor.htm">for</a></b> 'y=f(x)' and a <a href="CppRangeFor.htm">range for</a> x. &lt;a href=\"<a href="Tools.htm">Tool</a><a href="CppFunction.htm">Function</a>Plotter.htm\"&gt;<a href="CppFunction.htm">Function</a>Plotter&lt;/a&gt; then plots the values of y.&lt;/p&gt;");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&lt;p&gt;&amp;nbsp;&lt;/p&gt;");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&lt;p&gt;Since <a href="CppVersion.htm">version</a> 1.1 &lt;a href=\"<a href="Tools.htm">Tool</a><a href="CppFunction.htm">Function</a>Plotter.htm\"&gt;<a href="CppFunction.htm">Function</a>Plotter&lt;/a&gt; can also approximate the surface under the <a href="CppFunction.htm">function</a>.&lt;/p&gt;");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&lt;p&gt;&amp;nbsp;&lt;/p&gt;");<br/>
@@ -9972,7 +9935,7 @@ c2h::Info::Info(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">
 &nbsp;&nbsp;&nbsp;&nbsp;v.push_back("<b><a href="CppUsing.htm">using</a></b> the IDE &lt;a href=\"CppBuilder.htm\"&gt;<a href="CppBuilder.htm">C++ Builder</a>&lt;/a&gt; 6.0. It uses the &lt;a href=\"CppStl.htm\"&gt;<a href="CppStl.htm">STL</a>&lt;/a&gt;, &lt;a href=\"CppVcl.htm\"&gt;VCL&lt;/a&gt; and &lt;a href=\"Cpp<a href="CppBoost.htm">Boost</a>.htm\"&gt;<a href="CppBoost.htm">Boost</a>&lt;/a&gt; <a href="CppLibrary.htm">library</a>.&lt;/p&gt;");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&lt;p&gt;&amp;nbsp;&lt;/p&gt;");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&lt;ul&gt;");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&lt;li&gt;&lt;a href=\"<a href="Tools.htm">Tool</a>HaaifsKillerScreenshot.PNG\"&gt;View a screenshot of 'HaaifsKiller'&lt;/a&gt; (before it hides itself)&lt;/li&gt;");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&lt;li&gt;&lt;a href=\"<a href="Tools.htm">Tool</a>HaaifsKillerScreenshot.png\"&gt;View a screenshot of 'HaaifsKiller'&lt;/a&gt; (before it hides itself)&lt;/li&gt;");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&lt;li&gt;&lt;a href=\"<a href="Tools.htm">Tool</a>HaaifsKillerExe.zip\"&gt;Download the 'HaaifsKiller' <a href="CppWindows.htm">Windows</a> executable (v. 1.0)(zip)&lt;/a&gt;&lt;/li&gt;");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&lt;li&gt;&lt;a href=\"<a href="Tools.htm">Tool</a>HaaifsKillerSource.zip\"&gt;Download the 'HaaifsKiller' source code (v. 1.0)(zip)&lt;/a&gt;&lt;/li&gt;");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&lt;/ul&gt;");<br/>
@@ -9988,7 +9951,7 @@ c2h::Info::Info(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">
 &nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&lt;a href=\"CppBuilder.htm\"&gt;<a href="CppBuilder.htm">C++ Builder</a>&lt;/a&gt; 6.0. It uses the &lt;a href=\"CppStl.htm\"&gt;<a href="CppStl.htm">STL</a>&lt;/a&gt;, &lt;a href=\"CppVcl.htm\"&gt;VCL&lt;/a&gt; and &lt;a href=\"Cpp<a href="CppBoost.htm">Boost</a>.htm\"&gt;<a href="CppBoost.htm">Boost</a>&lt;/a&gt; <a href="CppLibrary.htm">library</a>.&lt;/p&gt;");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&lt;p&gt;&amp;nbsp;&lt;/p&gt;");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&lt;ul&gt;");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&lt;li&gt;&lt;a href=\"CppHistogramEqualizationerScreenshot.PNG\"&gt;View a screenshot of HistogramEqualizationer'&lt;/a&gt;&lt;/li&gt;");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&lt;li&gt;&lt;a href=\"CppHistogramEqualizationerScreenshot.png\"&gt;View a screenshot of HistogramEqualizationer'&lt;/a&gt;&lt;/li&gt;");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&lt;li&gt;&lt;a href=\"CppHistogramEqualizationerExe.zip\"&gt;Download the 'HistogramEqualizationer' <a href="CppWindows.htm">Windows</a> executable (zip)&lt;/a&gt;&lt;/li&gt;");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&lt;li&gt;&lt;a href=\"CppHistogramEqualizationerSource.zip\"&gt;Download the 'HistogramEqualizationer' source code (zip)&lt;/a&gt;&lt;/li&gt;");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&lt;/ul&gt;");<br/>
@@ -10191,7 +10154,7 @@ c2h::Info::Info(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&lt;p&gt;A simple <a href="Tools.htm">tool</a> that <a href="CppConvert.htm">converts</a> It's Learning email adresses to Belcampo email adresses (as used in GroupWise).&lt;/p&gt;");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&lt;p&gt;&amp;nbsp;&lt;/p&gt;");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&lt;p&gt;* &lt;a href=\"<a href="Tools.htm">Tool</a>ItsBelcampoScreenshot.PNG\"&gt;View a screenshot of 'It's Belcampo'&lt;/a&gt;.&lt;/p&gt;");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&lt;p&gt;* &lt;a href=\"<a href="Tools.htm">Tool</a>ItsBelcampoScreenshot.png\"&gt;View a screenshot of 'It's Belcampo'&lt;/a&gt;.&lt;/p&gt;");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&lt;p&gt;* &lt;a href=\"<a href="Tools.htm">Tool</a>ItsBelcampoSource.rar\"&gt;Download the 'It's Belcampo' source code&lt;/a&gt;.&lt;/p&gt;");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&lt;p&gt;* &lt;a href=\"<a href="Tools.htm">Tool</a>ItsBelcampoExe.rar\"&gt;Download the 'It's Belcampo' <a href="CppWindows.htm">Windows</a> executable (rar)&lt;/a&gt;.&lt;/p&gt;");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&lt;p&gt;* &lt;a href=\"<a href="Tools.htm">Tool</a>ItsBelcampoExe.zip\"&gt;Download the 'It's Belcampo' <a href="CppWindows.htm">Windows</a> executable (zip)&lt;/a&gt;.&lt;/p&gt;");<br/>
@@ -10504,7 +10467,7 @@ c2h::Info::Info(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">
 &nbsp;&nbsp;&nbsp;&nbsp;v.push_back("pixel.&lt;/p&gt;");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&lt;p&gt;&amp;nbsp;&lt;/p&gt;");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&lt;ul&gt;");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&lt;li&gt;&lt;a href=\"<a href="Tools.htm">Tool</a>PaperRockScissorsScreenshot.PNG\"&gt;View a screenshot of '<a href="Tools.htm">Tool</a>PaperRockScissors' (png)&lt;/a&gt;&lt;/li&gt;");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&lt;li&gt;&lt;a href=\"<a href="Tools.htm">Tool</a>PaperRockScissorsScreenshot.png\"&gt;View a screenshot of '<a href="Tools.htm">Tool</a>PaperRockScissors' (png)&lt;/a&gt;&lt;/li&gt;");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&lt;li&gt;&lt;a href=\"<a href="Tools.htm">Tool</a>PaperRockScissorsExe.zip\"&gt;Download the <a href="CppWindows.htm">Windows</a> executable of '<a href="Tools.htm">Tool</a>PaperRockScissors' (zip)&lt;/a&gt;.&lt;/p&gt;");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&lt;li&gt;&lt;a href=\"<a href="Tools.htm">Tool</a>PaperRockScissorsSource.zip\"&gt;Download the '<a href="Tools.htm">Tool</a>PaperRockScissors' source code (zip)&lt;/a&gt;.&lt;/p&gt;");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&lt;/ul&gt;");<br/>
@@ -12189,7 +12152,7 @@ c2h::Info::Info(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">
 &nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&lt;p&gt;&lt;a href=\"<a href="Tools.htm">Tool</a>WindowViewer.htm\"&gt;WindowViewer&lt;/a&gt; was released on the 6th of Fubruary of 2010 and programmed in &lt;a href=\"Cpp.htm\"&gt;<a href="Cpp.htm">C++</a>&lt;/a&gt; <b><a href="CppUsing.htm">using</a></b> the &lt;a href=\"CppIde.htm\"&gt;IDE&lt;/a&gt; &lt;a href=\"CppBuilder.htm\"&gt;<a href="CppBuilder.htm">C++ Builder</a>&lt;/a&gt; 6.0. It uses the &lt;a href=\"CppStl.htm\"&gt;<a href="CppStl.htm">STL</a>&lt;/a&gt;, &lt;a href=\"Cpp<a href="CppBoost.htm">Boost</a>.htm\"&gt;<a href="CppBoost.htm">Boost</a>&lt;/a&gt; and &lt;a href=\"CppVcl.htm\"&gt;VCL&lt;/a&gt; &lt;a href=\"Cpp<a href="CppLibrary.htm">Library</a>.htm\"&gt;libraries&lt;/a&gt;.&lt;/p&gt;");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&lt;p&gt;&amp;nbsp;&lt;/p&gt;");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&lt;ul&gt;");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&lt;li&gt;&lt;a href=\"<a href="Tools.htm">Tool</a>WindowViewerScreenshot.PNG\"&gt;View a screenshot of 'WindowViewer'&lt;/a&gt;&lt;/li&gt;");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&lt;li&gt;&lt;a href=\"<a href="Tools.htm">Tool</a>WindowViewerScreenshot.png\"&gt;View a screenshot of 'WindowViewer'&lt;/a&gt;&lt;/li&gt;");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&lt;li&gt;&lt;a href=\"<a href="Tools.htm">Tool</a>WindowViewerExe.zip\"&gt;Download the 'WindowViewer' <a href="CppWindows.htm">Windows</a> executable (<a href="CppVersion.htm">version</a> 1.0)(zip)&lt;/a&gt;&lt;/li&gt;");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&lt;li&gt;&lt;a href=\"<a href="Tools.htm">Tool</a>WindowViewerSource.zip\"&gt;Download the 'WindowViewer' source code (<a href="CppVersion.htm">version</a> 1.0)(zip)&lt;/a&gt;&lt;/li&gt;");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;v.push_back("&lt;/ul&gt;");<br/>
@@ -12468,10 +12431,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 {<br/>
 &nbsp;&nbsp;<a href="ToolCodeToHtml.htm">CodeToHtml</a>Replacements(<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppPair.htm">std::pair</a>&lt;<a href="CppString.htm">std::string</a>,<a href="CppString.htm">std::string</a>&gt; &gt;&amp; replacements);<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppPair.htm">std::pair</a>&lt;<a href="CppString.htm">std::string</a>,<a href="CppString.htm">std::string</a>&gt; &gt;&amp; Get() <b><a href="CppConst.htm">const</a></b> { <b><a href="CppReturn.htm">return</a></b> m_all_replacements; }<br/>
-<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>/All replacements<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppPair.htm">std::pair</a>&lt;<a href="CppString.htm">std::string</a>,<a href="CppString.htm">std::string</a>&gt; &gt; m_all_replacements;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppPair.htm">std::pair</a>&lt;<a href="CppString.htm">std::string</a>,<a href="CppString.htm">std::string</a>&gt; &gt;&amp; Get() <b><a href="CppConst.htm">const</a></b> { <b><a href="CppReturn.htm">return</a></b> m_replacements; }<br/>
 <br/>
 &nbsp;&nbsp;<b><a href="CppPrivate.htm">private</a></b>:<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/The important replacements<br/>
@@ -12516,8 +12476,8 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="ToolCodeToHtml.htm">ToolCodeToHtml</a>.htm<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<br/>
-<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
 <a href="CppInclude.htm">#include</a> "<a href="ToolCodeToHtml.htm">codetohtml</a>replacements.h"<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppAlgorithmH.htm">algorithm</a>&gt;<br/>
@@ -12525,10 +12485,11 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppIostreamH.htm">iostream</a>&gt;<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppTrace.htm">trace</a>.h"<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
 <br/>
 <a href="ToolCodeToHtml.htm">CodeToHtml</a>Replacements::<a href="ToolCodeToHtml.htm">CodeToHtml</a>Replacements(<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppPair.htm">std::pair</a>&lt;<a href="CppString.htm">std::string</a>,<a href="CppString.htm">std::string</a>&gt; &gt;&amp; replacements)<br/>
-&nbsp;&nbsp;: m_all_replacements(CreateAllReplacements(replacements))<br/>
+&nbsp;&nbsp;: m_replacements(CreateAllReplacements(replacements))<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
 &nbsp;&nbsp;{<br/>
@@ -12814,6 +12775,10 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{ "<a href="CppSet_symmetric_difference.htm">std::set_symmetric_difference</a>","&lt;a href=\"CppS$et_s$ymmetric_d$i$fference.htm\"&gt;st$d::s$et_s$ymmetric_di$fference&lt;/a&gt;" },<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{ "<a href="CppWCombinedLocalizedStrings.htm">Wt::WCombinedLocalizedStrings</a>","&lt;a href=\"CppW$C$ombinedL$ocalizedS$trings.htm\"&gt;W$t::W$C$ombinedL$ocalizedS$trings&lt;/a&gt;" },<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>28<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{ "&lt;<a href="CppIosH.htm">ios</a>&gt;","<a href="CppOperatorStreamOut.htm">&lt;&lt;</a>a href=\"CppIo$sH.htm\"&gt;i$o$s&lt;/a<a href="CppOperatorStreamIn.htm">&gt;&gt;</a>" },<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{ "&lt;<a href="CppMapH.htm">map</a>&gt;","<a href="CppOperatorStreamOut.htm">&lt;&lt;</a>a href=\"CppMa$pH.htm\"&gt;m$a$p&lt;/a<a href="CppOperatorStreamIn.htm">&gt;&gt;</a>" },<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{ "&lt;<a href="CppNewH.htm">new</a>&gt;","<a href="CppOperatorStreamOut.htm">&lt;&lt;</a>a href=\"CppNe$wH.htm\"&gt;ne$w&lt;/a<a href="CppOperatorStreamIn.htm">&gt;&gt;</a>" },<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{ "&lt;<a href="CppSetH.htm">set</a>&gt;","<a href="CppOperatorStreamOut.htm">&lt;&lt;</a>a href=\"CppSe$tH.htm\"&gt;s$e$t&lt;/a<a href="CppOperatorStreamIn.htm">&gt;&gt;</a>" },<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{ "<a href="CppFind_first.htm">boost::algorithm::find_first</a>","&lt;a href=\"CppF$ind_f$irst.htm\"&gt;b$oost::a$lgorithm::f$ind_first&lt;/a&gt;" },<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{ "<a href="CppCopy_file.htm">boost::filesystem::copy_file</a>","&lt;a href=\"CppC$opy_f$ile.htm\"&gt;b$oost::filesystem::copy_file&lt;/a&gt;" },<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{ "<a href="CppLexicographical_compare.htm">std::lexicographical_compare</a>","&lt;a href=\"CppL$exicographical_c$ompare.htm\"&gt;st$d::lexicographical_compare&lt;/a&gt;" },<br/>
@@ -13057,6 +13022,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{ "<a href="CppOstringstream.htm">std::ostringstream</a>","&lt;a href=\"CppO$stringstream.htm\"&gt;s$td::ost$ringstream&lt;/a&gt;" },<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{ "<a href="CppRuntime_error.htm">std::runtime_error</a>","&lt;a href=\"CppR$unt$ime_e$rror.htm\"&gt;st$d::r$unt$ime_error&lt;/a&gt;" },<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{ "<a href="CppResetiosflags.htm">std::resetiosflags</a>","&lt;a href=\"CppR$esetiosflags.htm\"&gt;st$d::r$eseti$osf$lags&lt;/a&gt;" },<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{ "<a href="CppUnordered_map.htm">std::unordered_map</a>","&lt;a href=\"CppU$nordered_m$ap.htm\"&gt;s$td::u$no$rdered_m$ap&lt;/a&gt;" },<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{ "significance_level","signi$ficance_level" },<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{ "<a href="CppCreateValidNewicks.htm">CreateValidNewicks</a>","&lt;a href=\"CppC$reateValidN$ewicks.htm\"&gt;C$reateValidN$ewicks&lt;/a&gt;" },<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{ "<a href="CppDumbNewickToString.htm">DumbNewickToString</a>","&lt;a href=\"CppD$umbN$ewickToString.htm\"&gt;D$umbN$ewickToS$tring&lt;/a&gt;" },<br/>
@@ -13120,6 +13086,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{ "<a href="CppCopyConstructor.htm">copy construction</a>","&lt;a href=\"CppC$opyC$ons$tructor.htm\"&gt;c$opy c$ons$truction&lt;/a&gt;" },<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{ "<a href="CppNot_equal_to.htm">std::not_equal_to</a>","&lt;a href=\"CppNot_equal_to.htm\"&gt;st$d::no$t_equ$al_t$o&lt;/a&gt;" },<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{ "<a href="CppDomain_error.htm">std::domain_error</a>","&lt;a href=\"CppDoma$in_error.htm\"&gt;st$d::d$oma$in_e$rror&lt;/a&gt;" },<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{ "<a href="CppForward_list.htm">std::forward_list</a>","&lt;a href=\"C$ppF$orward_l$ist.htm\"&gt;s$td::f$orward_l$ist&lt;/a&gt;" },<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{ "<a href="CppLength_error.htm">std::length_error</a>","&lt;a href=\"CppLength_error.htm\"&gt;st$d::l$ength_e$rror&lt;/a&gt;" },<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{ "<a href="CppSetprecision.htm">std::setprecision</a>","&lt;a href=\"CppSetprecision.htm\"&gt;st$d::s$etp$recision&lt;/a&gt;" },<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{ "<a href="CppOut_of_range.htm">std::out_of_range</a>","&lt;a href=\"CppOut_of_range.htm\"&gt;st$d::o$ut_o$f_r$ange&lt;/a&gt;" },<br/>
@@ -13148,6 +13115,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{ "<a href="CppAccumulate.htm">std::accumulate</a> ","&lt;a href=\"CppAc$cu$mulate.htm\"&gt;s$td::a$ccu$mulate&lt;/a&gt; " },<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{ "<a href="CppEqual_range.htm">std::equal_range</a>","&lt;a href=\"CppEqual_range.htm\"&gt;st$d::equal_range&lt;/a&gt;" },<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{ "<a href="CppFind_if_not.htm">std::find_if_not</a>","&lt;a href=\"C$ppF$ind_i$f_n$ot.htm\"&gt;s$td::fi$nd_i$f_n$ot&lt;/a&gt;" },<br/>
+<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{ "<a href="CppLogic_error.htm">std::logic_error</a>","&lt;a href=\"CppLogic_error.htm\"&gt;st$d::logic_error&lt;/a&gt;" },<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{ "<a href="CppLogical_and.htm">std::logical_and</a>","&lt;a href=\"CppLogical_and.htm\"&gt;st$d::lo$gical_and&lt;/a&gt;" },<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{ "<a href="CppLogical_not.htm">std::logical_not</a>","&lt;a href=\"CppLogical_not.htm\"&gt;st$d::lo$gical_not&lt;/a&gt;" },<br/>
@@ -13403,6 +13371,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{ "<a href="CppSelectionSort.htm">SelectionSort</a>","&lt;a href=\"CppS$electionSort.htm\"&gt;S$electionSort&lt;/a&gt;" },<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{ "<a href="CppSmartPointer.htm">Smart pointer</a>","&lt;a href=\"CppSm$artPoi$nter.htm\"&gt;Smart poi$nter&lt;/a&gt;" },<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{ "<a href="CppSortContainer.htm">SortContainer</a>","&lt;a href=\"CppS$ortC$ontainer.htm\"&gt;S$ortC$ontainer&lt;/a&gt;" },<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{ "<a href="CppUnordered_map.htm">Unordered_map</a>","&lt;a href=\"CppU$no$rdered_m$ap.htm\"&gt;U$no$rdered_m$ap&lt;/a&gt;" },<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{ "<a href="CppWBorderLayout.htm">WBorderLayout</a>","&lt;a href=\"CppW$B$orderL$ayout.htm\"&gt;W$B$orderL$ayout&lt;/a&gt;" },<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{ "<a href="CppWFileResource.htm">WFileResource</a>","&lt;a href=\"CppW$F$ileR$esource.htm\"&gt;W$F$ileR$esource&lt;/a&gt;" },<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{ "<a href="CppWCalendar.htm">Wt::WCalendar</a>","&lt;a href=\"CppW$C$alendar.htm\"&gt;W$t::W$C$alendar&lt;/a&gt;" },<br/>
@@ -13428,10 +13397,6 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{ "<a href="CppWTreeView.htm">Wt::WTreeView</a>","&lt;a href=\"C$ppW$T$reeV$iew.htm\"&gt;W$t::W$TreeView&lt;/a&gt;" },<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{ "<a href="CppWVmlImage.htm">Wt::WVmlImage</a>","&lt;a href=\"C$ppW$V$mlI$mage.htm\"&gt;W$t::W$VmlImage&lt;/a&gt;" },<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{ "<a href="CppWtGroupWidget.htm">WtGroupWidget</a>","&lt;a href=\"C$ppW$tG$roupW$idget.htm\"&gt;W$tG$roupW$idget&lt;/a&gt;" },<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;{ "&lt;<a href="CppIosH.htm">ios</a>&gt;","<a href="CppOperatorStreamOut.htm">&lt;&lt;</a>a href=\"CppIo$sH.htm\"&gt;i$o$s&lt;/a<a href="CppOperatorStreamIn.htm">&gt;&gt;</a>" },<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;{ "&lt;<a href="CppMapH.htm">map</a>&gt;","<a href="CppOperatorStreamOut.htm">&lt;&lt;</a>a href=\"CppMa$pH.htm\"&gt;m$a$p&lt;/a<a href="CppOperatorStreamIn.htm">&gt;&gt;</a>" },<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;{ "&lt;<a href="CppNewH.htm">new</a>&gt;","<a href="CppOperatorStreamOut.htm">&lt;&lt;</a>a href=\"CppNe$wH.htm\"&gt;ne$w&lt;/a<a href="CppOperatorStreamIn.htm">&gt;&gt;</a>" },<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;{ "&lt;<a href="CppSetH.htm">set</a>&gt;","<a href="CppOperatorStreamOut.htm">&lt;&lt;</a>a href=\"CppSe$tH.htm\"&gt;s$e$t&lt;/a<a href="CppOperatorStreamIn.htm">&gt;&gt;</a>" },<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{ "<a href="CppAccumulate_if.htm">accumulate_if</a>","&lt;a href=\"CppAc$cu$mulate_i$f.htm\"&gt;a$ccu$mulate_i$f&lt;/a&gt;" },<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{ "assigned_rank","assi$gned_rank" },<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{ "<a href="CppFormat.htm">boost::format</a>","&lt;a href=\"CppF$ormat.htm\"&gt;b$oost::f$ormat&lt;/a&gt;" },<br/>
@@ -13503,6 +13468,8 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{ "<a href="CppWcsrtomb.htm">std::wcsrtomb</a>","&lt;a href=\"CppWcsrtomb.htm\"&gt;s$td::wc$srtomb&lt;/a&gt;" },<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{ "<a href="CppWcstombs.htm">std::wcstombs</a>","&lt;a href=\"CppWcstombs.htm\"&gt;s$td::wc$stombs&lt;/a&gt;" },<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{ "<a href="CppWeak_ptr.htm">std::weak_ptr</a>","&lt;a href=\"CppW$eak_p$tr.htm\"&gt;s$td::w$eak_ptr&lt;/a&gt;" },<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{ "<a href="CppUnordered_map.htm">unordered_map</a>","&lt;a href=\"CppU$no$rdered_m$ap.htm\"&gt;u$no$rdered_m$ap&lt;/a&gt;" },<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{ "<a href="CppUnordered_map.htm">unordered map</a>","&lt;a href=\"CppU$no$rdered_m$ap.htm\"&gt;u$no$rdered m$ap&lt;/a&gt;" },<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>12<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{ "_declaration","_d$eclaration" },<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{ "(&amp;<a href="CppException.htm">exception</a>)","(&amp;amp;<a href="CppException.htm">exception</a>)" },<br/>
@@ -13514,6 +13481,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{ "<a href="CppCreateVector.htm">CreateVector</a>","&lt;a href=\"CppCr$eateVec$tor.htm\"&gt;Cre$ateV$ector&lt;/a&gt;" },<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{ "<a href="CppDataMember.htm">Data members</a>","&lt;a href=\"CppD$ataM$ember.htm\"&gt;D$ata m$embers&lt;/a&gt;" },<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{ "<a href="CppFileToVector.htm">FileToVector</a>","&lt;a href=\"CppFi$leT$oV$ector.htm\"&gt;Fi$leT$oV$ector&lt;/a&gt;" },<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{ "<a href="CppForward_list.htm">Forward_list</a>","&lt;a href=\"C$ppF$orward_l$ist.htm\"&gt;F$orward_l$ist&lt;/a&gt;" },<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{ "<a href="CppGetGrayCodes.htm">GetGrayCodes</a>","&lt;a href=\"CppGe$tG$rayC$odes.htm\"&gt;Ge$tG$rayC$odes&lt;/a&gt;" },<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{ "<a href="CppGetIpAddress.htm">GetIpAddress</a>","&lt;a href=\"CppG$etI$pA$ddress.htm\"&gt;G$etI$pA$ddress&lt;/a&gt;" },<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{ "<a href="CppGetMaxDouble.htm">GetMaxDouble</a>","&lt;a href=\"CppGe$tMa$xD$ouble.htm\"&gt;Ge$tMa$xD$ouble&lt;/a&gt;" },<br/>
@@ -13559,6 +13527,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{ "<a href="CppCodeSnippets.htm">code snippet</a>","&lt;a href=\"CppCodeSnippets.htm\"&gt;co$de snippet&lt;/a&gt;" },<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{ "<a href="CppDataMember.htm">data members</a>","&lt;a href=\"CppD$ataM$ember.htm\"&gt;d$ata m$embers&lt;/a&gt;" },<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{ "<b><a href="CppDynamic_cast.htm">dynamic_cast</a></b>","&lt;b&gt;&lt;a href=\"CppDy$namic_cast.htm\"&gt;dyna$mic_cast&lt;/a&gt;&lt;/b&gt;" },<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{ "<a href="CppForward_list.htm">forward_list</a>","&lt;a href=\"C$ppF$orward_l$ist.htm\"&gt;f$orward_l$ist&lt;/a&gt;" },<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{ "introduction","in$troduction" },<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{ "<a href="CppLexical_cast.htm">lexical_cast</a>","&lt;a href=\"CppLexical_cast.htm\"&gt;l$exical_ca$st&lt;/a&gt;" },<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{ "printMessage","pri$ntMessage" },<br/>
@@ -13648,6 +13617,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{ "<a href="CppDefinition.htm">definitions</a>","&lt;a href=\"CppDe$finition.htm\"&gt;de$fi$nitions&lt;/a&gt;" },<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{ "<a href="CppHeaderFile.htm">header file</a>","&lt;a href=\"CppH$eaderF$ile.htm\"&gt;h$eader f$ile&lt;/a&gt;" },<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{ "<a href="CppNoncopyable.htm">noncopyable</a>","&lt;a href=\"CppN$onc$opyable.htm\"&gt;n$onc$opyable&lt;/a&gt;" },<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{ "<a href="CppPerformance.htm">performance</a>","&lt;a href=\"CppP$erf$orm$ance.htm\"&gt;p$erf$orm$ance&lt;/a&gt;" },<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{ "r version 3","r v$ersion 3" }, <a href="CppComment.htm">//</a>Licence<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{ "<a href="CppReturnType.htm">return type</a>","&lt;a href=\"CppR$eturnT$ype.htm\"&gt;r$eturn t$ype&lt;/a&gt;" },<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{ "<b><a href="CppStatic_cast.htm">static_cast</a></b>","&lt;b&gt;&lt;a href=\"CppSt$atic_cast.htm\"&gt;sta$tic_ca$st&lt;/a&gt;&lt;/b&gt;" },<br/>
@@ -13757,6 +13727,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{ "<a href="CppHelloWorld.htm">Hello World</a>","&lt;a href=\"CppH$elloW$orld.htm\"&gt;H$ello W$orld&lt;/a&gt;" },<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{ "<a href="CppHerbSutter.htm">Herb Sutter</a>","&lt;a href=\"CppH$erbS$utter.htm\"&gt;H$erb Sutter&lt;/a&gt;" },<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{ "<a href="CppLexicalCast.htm">LexicalCast</a>","&lt;a href=\"CppL$exicalC$ast.htm\"&gt;L$exicalC$ast&lt;/a&gt;" },<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{ "<a href="CppPerformance.htm">Performance</a>","&lt;a href=\"CppP$erf$orm$ance.htm\"&gt;P$erf$orm$ance&lt;/a&gt;" },<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{ "<a href="CppPrimeExpert.htm">PrimeExpert</a>","&lt;a href=\"CppP$rimeE$xpert.htm\"&gt;P$rimeE$xpert&lt;/a&gt;" },<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{ "<a href="CppPylosWidget.htm">PylosWidget</a>","&lt;a href=\"CppP$ylosW$idget.htm\"&gt;P$ylosW$idget&lt;/a&gt;" },<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{ "<a href="CppQFontDialog.htm">QFontDialog</a>","&lt;a href=\"C$ppQ$F$ontD$ial$og.htm\"&gt;Q$F$ontD$ial$og&lt;/a&gt;" },<br/>
@@ -13990,6 +13961,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{ "<a href="CppGetStdDev.htm">GetStdDev</a>","&lt;a href=\"CppGe$tStdDev.htm\"&gt;Ge$tStdDev&lt;/a&gt;" },<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{ "<a href="CppGrayToInt.htm">GrayToInt</a>","&lt;a href=\"CppGr$ayT$oInt.htm\"&gt;GrayT$oI$nt&lt;/a&gt;" },<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{ "<a href="CppInterface.htm">Interface</a>","&lt;a href=\"CppI$nterface.htm\"&gt;In$terface&lt;/a&gt;" },<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{ "<a href="CppIntuition.htm">Intuition</a>","&lt;a href=\"CppI$nt$uit$ion.htm\"&gt;I$nt$uit$ion&lt;/a&gt;" },<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{ "<a href="CppInvariant.htm">Invariant</a>",R"(&lt;a href="CppI$nv$ariant.htm"&gt;I$nv$ariant&lt;/a&gt;)" },<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{ "<a href="CppIpAddress.htm">IpAddress</a>","&lt;a href=\"C$ppI$pA$ddress.htm\"&gt;I$pA$ddress&lt;/a&gt;" },<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{ "<a href="CppMaemoSdk.htm">Maemo SDK</a>","&lt;a href=\"CppM$aemoS$dk.htm\"&gt;M$aemo S$D$K&lt;/a&gt;" },<br/>
@@ -14006,6 +13978,10 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{ "<a href="CppQuickSort.htm">Quicksort</a>","&lt;a href=\"C$ppQ$uickS$ort.htm\"&gt;Q$uicks$ort&lt;/a&gt;" },<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{ "<a href="CppQuickSort.htm">QuickSort</a>","&lt;a href=\"C$ppQ$uickS$ort.htm\"&gt;Q$uickS$ort&lt;/a&gt;" },<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{ "<a href="CppQUndoView.htm">QUndoView</a>","&lt;a href=\"CppQ$U$ndoV$iew.htm\"&gt;Q$U$ndoV$iew&lt;/a&gt;" },<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{ "<a href="CppRangeFor.htm">Range for</a>","&lt;a href=\"CppR$angeF$or.htm\"&gt;R$ange f$or&lt;/a&gt;" },<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{ "<a href="CppRangeFor.htm">Range-for</a>","&lt;a href=\"CppR$angeF$or.htm\"&gt;R$ange-f$or&lt;/a&gt;" },<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{ "<a href="CppRangeFor.htm">Range For</a>","&lt;a href=\"CppR$angeF$or.htm\"&gt;R$ange F$or&lt;/a&gt;" },<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{ "<a href="CppRangeFor.htm">Range-For</a>","&lt;a href=\"CppR$angeF$or.htm\"&gt;R$ange-F$or&lt;/a&gt;" },<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{ "Remainder","Rem$ainder" },<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{ "<a href="CppDesignPatternSingleton.htm">Singleton</a>","&lt;a href=\"C$ppD$esignP$atternS$ingleton.htm\"&gt;S$ingleton&lt;/a&gt;" },<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{ "<a href="CppSolveMaze.htm">SolveMaze</a>","&lt;a href=\"CppS$olveM$aze.htm\"&gt;S$olveM$aze&lt;/a&gt;" },<br/>
@@ -14050,6 +14026,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{ "<a href="CppException.htm">exception</a>","&lt;a href=\"CppE$xception.htm\"&gt;e$xception&lt;/a&gt;" },<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{ "<a href="CppInstance.htm">instances</a>","&lt;a href=\"CppIn$stance.htm\"&gt;in$stances&lt;/a&gt;" },<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{ "<a href="CppInterface.htm">interface</a>","&lt;a href=\"CppI$nterface.htm\"&gt;in$terface&lt;/a&gt;" },<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{ "<a href="CppIntuition.htm">intuition</a>","&lt;a href=\"CppI$nt$uit$ion.htm\"&gt;i$nt$uit$ion&lt;/a&gt;" },<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{ "<a href="CppInvariant.htm">invariant</a>",R"(&lt;a href="CppI$nvariant.htm"&gt;i$nv$ariant&lt;/a&gt;)" },<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{ "<b><a href="CppNamespace.htm">namespace</a></b>","&lt;b&gt;&lt;a href=\"CppNa$mespace.htm\"&gt;name$space&lt;/a&gt;&lt;/b&gt;" },<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{ "<a href="CppNumericH.htm">numeric.h</a>","&lt;a href=\"CppNu$mericH.htm\"&gt;nu$meric.h&lt;/a&gt;" },<br/>
@@ -14065,6 +14042,8 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{ "<a href="CppPtr_array.htm">ptr_array</a>","&lt;a href=\"C$ppP$tr_a$rr$ay.htm\"&gt;p$tr_a$rr$ay&lt;/a&gt;" },<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{ "<a href="CppPtr_deque.htm">ptr_deque</a>","&lt;a href=\"C$ppP$tr_d$eq$ue.htm\"&gt;p$tr_d$eq$ue&lt;/a&gt;" },<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{ "<a href="CppQuickSort.htm">quicksort</a>","&lt;a href=\"C$ppQ$uickS$ort.htm\"&gt;q$uicks$ort&lt;/a&gt;" },<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{ "<a href="CppRangeFor.htm">range for</a>","&lt;a href=\"CppR$angeF$or.htm\"&gt;r$ange f$or&lt;/a&gt;" },<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{ "<a href="CppRangeFor.htm">range-for</a>","&lt;a href=\"CppR$angeF$or.htm\"&gt;r$ange-f$or&lt;/a&gt;" },<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{ "<a href="CppAcos.htm">std::acos</a>","&lt;a href=\"C$ppA$cos.htm\"&gt;s$td::ac$os&lt;/a&gt;" },<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{ "<a href="CppAsin.htm">std::asin</a>","&lt;a href=\"C$ppA$sin.htm\"&gt;s$td::as$in&lt;/a&gt;" },<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{ "<a href="CppAtan.htm">std::atan</a>","&lt;a href=\"C$ppA$tan.htm\"&gt;s$td::at$an&lt;/a&gt;" },<br/>
@@ -14162,6 +14141,8 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{ "<a href="CppQ_OBJECT.htm">Q_OBJECT</a>","&lt;a href=\"CppQ$_OBJECT.htm\"&gt;Q$_OBJECT&lt;/a&gt;" },<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{ "<a href="CppRAND_MAX.htm">RAND_MAX</a>","&lt;a href=\"CppRA$ND_MA$X.htm\"&gt;RA$ND_MA$X&lt;/a&gt;" },<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{ "<a href="CppRoundOff.htm">RoundOff</a>","&lt;a href=\"CppRo$undOff.htm\"&gt;Ro$undOff&lt;/a&gt;" },<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{ "<a href="CppRunTime.htm">Run time</a>","&lt;a href=\"CppR$unT$ime.htm\"&gt;R$un t$ime&lt;/a&gt;" },<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{ "<a href="CppRunTime.htm">Run-time</a>","&lt;a href=\"CppR$unT$ime.htm\"&gt;R$un-t$ime&lt;/a&gt;" },<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{ "Specific","Speci$fic" },<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{ "<a href="CppSplitXml.htm">SplitXml</a>","&lt;a href=\"C$ppS$plitX$ml.htm\"&gt;S$plitX$ml&lt;/a&gt;" },<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{ "<a href="CppStrToInt.htm">StrToInt</a>","&lt;a href=\"CppSt$rToI$nt.htm\"&gt;St$rToI$nt&lt;/a&gt;" },<br/>
@@ -14207,6 +14188,8 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{ "<a href="CppProfiler.htm">profiler</a>","&lt;a href=\"CppP$rofiler.htm\"&gt;p$rofiler&lt;/a&gt;" },<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{ "<a href="CppPtr_list.htm">ptr_list</a>","&lt;a href=\"C$ppP$tr_l$ist.htm\"&gt;p$tr_l$ist&lt;/a&gt;" },<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{ "<b><a href="CppRegister.htm">register</a></b>","&lt;b&gt;&lt;a href=\"CppRe$gister.htm\"&gt;reg$ister&lt;/a&gt;&lt;/b&gt;" },<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{ "<a href="CppRunTime.htm">run time</a>","&lt;a href=\"CppR$unT$ime.htm\"&gt;r$un t$ime&lt;/a&gt;" },<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{ "<a href="CppRunTime.htm">run-time</a>","&lt;a href=\"CppR$unT$ime.htm\"&gt;r$un-t$ime&lt;/a&gt;" },<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{ "<a href="CppSignals2.htm">signals2</a>","&lt;a href=\"C$ppS$ignals2.htm\"&gt;s$ignals2&lt;/a&gt;" },<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{ "specific","speci$fic" },<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{ "<a href="CppAbs.htm">std::abs</a>","&lt;a href=\"CppAb$s.htm\"&gt;s$td::a$bs&lt;/a&gt;" },<br/>
@@ -15447,7 +15430,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{ "qtry","qt$ry" },<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{ "rasm","ra$sm" },<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{ "rfor","rf$or" },<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;{ "<a href="CppRibi.htm\">ribi</a>",R"(&lt;a href="CppR$ibi.htm\"&gt;r$ibi&lt;/a&gt;)" },<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{ "<a href="CppRibi.htm">ribi</a>",R"(&lt;a href="CppR$ibi.htm"&gt;r$ibi&lt;/a&gt;)" },<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{ "rint","ri$nt" },<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{ "rled","rl$ed" },<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{ "rnew","rn$ew" },<br/>
@@ -16381,7 +16364,10 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppStringH.htm">string</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
 <br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
 <a href="CppInclude.htm">#include</a> "<a href="ToolCodeToHtml.htm">codetohtml</a>.h"<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
 <br/>
 <b><a href="CppNamespace.htm">namespace</a></b> c2h {<br/>
 <br/>
@@ -16453,8 +16439,8 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="ToolCodeToHtml.htm">ToolCodeToHtml</a>.htm<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<br/>
-<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
 <a href="CppInclude.htm">#include</a> "<a href="ToolCodeToHtml.htm">codetohtml</a>techinfo.h"<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
@@ -16462,21 +16448,30 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppInclude.htm">#include</a> "<a href="ToolCodeToHtml.htm">codetohtml</a><a href="CppVersion.htm">version</a>.h"<br/>
 <a href="CppInclude.htm">#include</a> "qtcreator<a href="CppProFile.htm">profile</a>.h"<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppTrace.htm">trace</a>.h"<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
 <br/>
 c2h::TechInfo::TechInfo(<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt;&amp; <a href="CppProFile.htm">profile</a>_filenames)<br/>
+&nbsp;&nbsp;:<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_<a href="CppApplication.htm">application</a>_types{},<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_<a href="CppCompiler.htm">compilers</a>{},<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_ides{},<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_libraries{},<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_operating_systems{},<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_project_types{},<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_standards{}<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Obtain the <a href="CppQtCreator.htm">QtCreator</a>ProFile<br/>
-&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQtCreator.htm">QtCreator</a>ProFile&gt; &gt; <a href="CppProFile.htm">profile</a>s;<br/>
+&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQtCreator.htm">QtCreator</a>ProFile&gt; &gt; <a href="CppProFile.htm">profile</a>s;<br/>
 &nbsp;&nbsp;<a href="CppTransform.htm">std::transform</a>(<a href="CppProFile.htm">profile</a>_filenames.begin(),<a href="CppProFile.htm">profile</a>_filenames.end(),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBack_inserter.htm">std::back_inserter</a>(<a href="CppProFile.htm">profile</a>s),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;[](<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; s)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(IsRegularFile(s));<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQtCreator.htm">QtCreator</a>ProFile&gt; p(<b><a href="CppNew.htm">new</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQtCreator.htm">QtCreator</a>ProFile(s));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQtCreator.htm">QtCreator</a>ProFile&gt; p(<b><a href="CppNew.htm">new</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQtCreator.htm">QtCreator</a>ProFile(s));<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> p;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;);<br/>
-&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQtCreator.htm">QtCreator</a>ProFile&gt;&amp; <a href="CppProFile.htm">profile</a>: <a href="CppProFile.htm">profile</a>s)<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQtCreator.htm">QtCreator</a>ProFile&gt;&amp; <a href="CppProFile.htm">profile</a>: <a href="CppProFile.htm">profile</a>s)<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (<a href="CppProFile.htm">profile</a>-&gt;Get<a href="CppQt.htm">Qt</a>().count("gui"))<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
@@ -17014,8 +17009,9 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="ToolCodeToHtml.htm">ToolCodeToHtml</a>.htm<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<br/>
-<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-<b><a href="CppTypedef.htm">typedef</a></b>s"<br/>
 <a href="CppInclude.htm">#include</a> "<a href="ToolCodeToHtml.htm">codetohtml</a><a href="CppVersion.htm">version</a>.h"<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppAlgorithmH.htm">algorithm</a>&gt;<br/>
@@ -17025,13 +17021,10 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppStdexceptH.htm">stdexcept</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
 <br/>
-<a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
-<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-<b><a href="CppTypedef.htm">typedef</a></b>s"<br/>
-<a href="CppComment.htm">//</a><br/>
+<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppBOOST_FOREACH.htm">foreach</a>.hpp&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppLexical_cast.htm">lexical_cast</a>.hpp&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppVersion.htm">version</a>.hpp&gt;<br/>
-<a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppQFile.htm">QFile</a>&gt;<br/>
 <br/>
@@ -17040,6 +17033,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppEndif.htm">#endif</a><br/>
 <br/>
 <a href="CppInclude.htm">#include</a> "<a href="ToolCodeToHtml.htm">codetohtml</a>.h"<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
 <br/>
 <b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppVersion.htm">Version</a>::<a href="CppFileToVector.htm">FileToVector</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; filename)<br/>
 {<br/>

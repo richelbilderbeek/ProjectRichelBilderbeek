@@ -294,7 +294,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a><a href="ToolTestDial.htm">TestDial</a>MainDialog;<br/>
 }<br/>
 <br/>
-<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a> {<br/>
+<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
 <br/>
 <b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a><a href="ToolTestDial.htm">TestDial</a>MainDialog : <b><a href="CppPublic.htm">public</a></b> <a href="CppQDialog.htm">QDialog</a><br/>
 {<br/>
@@ -317,7 +317,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> DisplayDialValue();<br/>
 };<br/>
 <br/>
-} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a><br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
 <br/>
 <a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> QTTESTDIALMAINDIALOG_H<br/>
 </code></td></tr></table>
@@ -368,7 +368,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppRainbow.htm">rainbow</a>.h"<br/>
 <a href="CppInclude.htm">#include</a> "ui_qt<a href="ToolTestDial.htm">testdial</a>maindialog.h"<br/>
 <br/>
-<a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="ToolTestDial.htm">TestDial</a>MainDialog::<a href="CppQt.htm">Qt</a><a href="ToolTestDial.htm">TestDial</a>MainDialog(<a href="CppQWidget.htm">QWidget</a> *parent) :<br/>
+<a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="ToolTestDial.htm">TestDial</a>MainDialog::<a href="CppQt.htm">Qt</a><a href="ToolTestDial.htm">TestDial</a>MainDialog(<a href="CppQWidget.htm">QWidget</a> *parent) :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQDialog.htm">QDialog</a>(parent),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;ui(<b><a href="CppNew.htm">new</a></b> <a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a><a href="ToolTestDial.htm">TestDial</a>MainDialog)<br/>
 {<br/>
@@ -376,24 +376,24 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <br/>
 &nbsp;&nbsp;ui-&gt;<a href="CppDial.htm">dial</a>-&gt;Get<a href="CppWidget.htm">Widget</a>()-&gt;GetDial()-&gt;m_signal_color_changed.connect(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBind.htm">boost::bind</a>(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;<a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="ToolTestDial.htm">TestDial</a>MainDialog::DisplayDialColor,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;<a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="ToolTestDial.htm">TestDial</a>MainDialog::DisplayDialColor,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>));<br/>
 <br/>
 &nbsp;&nbsp;ui-&gt;<a href="CppDial.htm">dial</a>-&gt;Get<a href="CppWidget.htm">Widget</a>()-&gt;GetDial()-&gt;m_signal_position_changed.connect(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBind.htm">boost::bind</a>(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;<a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="ToolTestDial.htm">TestDial</a>MainDialog::DisplayDialValue,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;<a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="ToolTestDial.htm">TestDial</a>MainDialog::DisplayDialValue,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>));<br/>
 <br/>
 &nbsp;&nbsp;DisplayDialColor();<br/>
 &nbsp;&nbsp;DisplayDialValue();<br/>
 }<br/>
 <br/>
-<a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="ToolTestDial.htm">TestDial</a>MainDialog::~<a href="CppQt.htm">Qt</a><a href="ToolTestDial.htm">TestDial</a>MainDialog()<br/>
+<a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="ToolTestDial.htm">TestDial</a>MainDialog::~<a href="CppQt.htm">Qt</a><a href="ToolTestDial.htm">TestDial</a>MainDialog()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppDelete.htm">delete</a></b> ui;<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="ToolTestDial.htm">TestDial</a>MainDialog::DisplayDialColor()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="ToolTestDial.htm">TestDial</a>MainDialog::DisplayDialColor()<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Check<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> r <a href="CppOperatorAssign.htm">=</a> ui-&gt;<a href="CppDial.htm">dial</a>-&gt;Get<a href="CppWidget.htm">Widget</a>()-&gt;GetDial()-&gt;GetRed();<br/>
@@ -411,7 +411,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;ui-&gt;label_color-&gt;setText(text.c_str());<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="ToolTestDial.htm">TestDial</a>MainDialog::DisplayDialValue()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="ToolTestDial.htm">TestDial</a>MainDialog::DisplayDialValue()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> s<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <a href="CppString.htm">std::string</a>("<a href="CppDial.htm">Dial</a> angle: ")<br/>
@@ -419,7 +419,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;ui-&gt;label_angle-&gt;setText(s.c_str());<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="ToolTestDial.htm">TestDial</a>MainDialog::on_dial_color_valueChanged(<b><a href="CppInt.htm">int</a></b> <a href="CppOperatorDivide.htm">/</a>* value <a href="CppComment.htm">*/</a>)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="ToolTestDial.htm">TestDial</a>MainDialog::on_dial_color_valueChanged(<b><a href="CppInt.htm">int</a></b> <a href="CppOperatorDivide.htm">/</a>* value <a href="CppComment.htm">*/</a>)<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Set the color<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> min <a href="CppOperatorAssign.htm">=</a> <a href="CppNumeric_cast.htm">boost::numeric_cast</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(ui-&gt;dial_color-&gt;minimum());<br/>
@@ -478,7 +478,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a><a href="ToolTestDial.htm">TestDial</a>MenuDialog;<br/>
 }<br/>
 <br/>
-<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a> {<br/>
+<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
 <br/>
 <b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a><a href="ToolTestDial.htm">TestDial</a>MenuDialog : <b><a href="CppPublic.htm">public</a></b> <a href="CppQDialog.htm">QDialog</a><br/>
 {<br/>
@@ -500,7 +500,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> Test();<br/>
 };<br/>
 <br/>
-} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a><br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
 <br/>
 <a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> QTTESTDIALMENUDIALOG_H<br/>
 </code></td></tr></table>
@@ -545,7 +545,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppInclude.htm">#include</a> "qt<a href="ToolTestDial.htm">testdial</a>menudialog.h"<br/>
 <a href="CppInclude.htm">#include</a> "ui_qt<a href="ToolTestDial.htm">testdial</a>menudialog.h"<br/>
 <br/>
-<a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="ToolTestDial.htm">TestDial</a>MenuDialog::<a href="CppQt.htm">Qt</a><a href="ToolTestDial.htm">TestDial</a>MenuDialog(<a href="CppQWidget.htm">QWidget</a> *parent) :<br/>
+<a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="ToolTestDial.htm">TestDial</a>MenuDialog::<a href="CppQt.htm">Qt</a><a href="ToolTestDial.htm">TestDial</a>MenuDialog(<a href="CppQWidget.htm">QWidget</a> *parent) :<br/>
 &nbsp;&nbsp;<a href="CppQDialog.htm">QDialog</a>(parent),<br/>
 &nbsp;&nbsp;ui(<b><a href="CppNew.htm">new</a></b> <a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a><a href="ToolTestDial.htm">TestDial</a>MenuDialog)<br/>
 {<br/>
@@ -555,12 +555,12 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
 }<br/>
 <br/>
-<a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="ToolTestDial.htm">TestDial</a>MenuDialog::~<a href="CppQt.htm">Qt</a><a href="ToolTestDial.htm">TestDial</a>MenuDialog()<br/>
+<a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="ToolTestDial.htm">TestDial</a>MenuDialog::~<a href="CppQt.htm">Qt</a><a href="ToolTestDial.htm">TestDial</a>MenuDialog()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppDelete.htm">delete</a></b> ui;<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="ToolTestDial.htm">TestDial</a>MenuDialog::on_button_start_clicked()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="ToolTestDial.htm">TestDial</a>MenuDialog::on_button_start_clicked()<br/>
 {<br/>
 &nbsp;&nbsp;hide();<br/>
 &nbsp;&nbsp;<a href="CppQt.htm">Qt</a><a href="ToolTestDial.htm">TestDial</a>MainDialog d;<br/>
@@ -568,7 +568,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;show();<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="ToolTestDial.htm">TestDial</a>MenuDialog::on_button_about_clicked()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="ToolTestDial.htm">TestDial</a>MenuDialog::on_button_about_clicked()<br/>
 {<br/>
 &nbsp;&nbsp;hide();<br/>
 &nbsp;&nbsp;<a href="CppAbout.htm">About</a> a <a href="CppOperatorAssign.htm">=</a> <a href="ToolTestDial.htm">TestDial</a>MenuDialog::GetAbout();<br/>
@@ -578,12 +578,12 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;show();<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="ToolTestDial.htm">TestDial</a>MenuDialog::on_button_quit_clicked()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="ToolTestDial.htm">TestDial</a>MenuDialog::on_button_quit_clicked()<br/>
 {<br/>
 &nbsp;&nbsp;close();<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="ToolTestDial.htm">TestDial</a>MenuDialog::Test()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="ToolTestDial.htm">TestDial</a>MenuDialog::Test()<br/>
 {<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppBool.htm">bool</a></b> is_tested <a href="CppOperatorAssign.htm">=</a> <b><a href="CppFalse.htm">false</a></b>;<br/>
@@ -630,7 +630,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppAbout.htm">about</a>.h"<br/>
 <br/>
-<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a> {<br/>
+<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
 <br/>
 <b><a href="CppStruct.htm">struct</a></b> <a href="ToolTestDial.htm">TestDial</a>MenuDialog<br/>
 {<br/>
@@ -639,7 +639,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; Get<a href="CppVersion.htm">Version</a>History();<br/>
 };<br/>
 <br/>
-} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a><br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
 <br/>
 <a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> TESTDIALMENUDIALOG_H<br/>
 </code></td></tr></table>
@@ -677,7 +677,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppDial.htm">dial</a>.h"<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppAbout.htm">About</a> <a href="CppRibi.htm\">ribi</a>::<a href="ToolTestDial.htm">TestDial</a>MenuDialog::GetAbout()<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppAbout.htm">About</a> <a href="CppRibi.htm">ribi</a>::<a href="ToolTestDial.htm">TestDial</a>MenuDialog::GetAbout()<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppAbout.htm">About</a> a(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;"Richel Bilderbeek",<br/>
@@ -692,12 +692,12 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> a;<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppRibi.htm\">ribi</a>::<a href="ToolTestDial.htm">TestDial</a>MenuDialog::Get<a href="CppVersion.htm">Version</a>()<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppRibi.htm">ribi</a>::<a href="ToolTestDial.htm">TestDial</a>MenuDialog::Get<a href="CppVersion.htm">Version</a>()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> "2.1";<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm\">ribi</a>::<a href="ToolTestDial.htm">TestDial</a>MenuDialog::Get<a href="CppVersion.htm">Version</a>History()<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm">ribi</a>::<a href="ToolTestDial.htm">TestDial</a>MenuDialog::Get<a href="CppVersion.htm">Version</a>History()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> {<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;"2011-04-11: <a href="CppVersion.htm">Version</a> 1.0: initial <a href="CppVersion.htm">version</a>, web <a href="CppVersion.htm">version</a> not yet working",<br/>
@@ -812,7 +812,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <b><a href="CppNamespace.htm">namespace</a></b> <a href="CppWt.htm">Wt</a> { <b><a href="CppStruct.htm">struct</a></b> <a href="CppWLabel.htm">WLabel</a>; }<br/>
 <br/>
-<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a> {<br/>
+<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
 <br/>
 <b><a href="CppStruct.htm">struct</a></b> <a href="CppWtDialWidget.htm">WtDialWidget</a>;<br/>
 <br/>
@@ -836,7 +836,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> Show();<br/>
 };<br/>
 <br/>
-} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a><br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
 <br/>
 <a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> WTTESTDIALMAINDIALOG_H<br/>
 </code></td></tr></table>
@@ -885,13 +885,13 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppWtDialWidget.htm">wtdialwidget</a>.h"<br/>
 <a href="CppInclude.htm">#include</a> "wt<a href="ToolTestDial.htm">testdial</a>maindialog.h"<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppRibi.htm\">ribi</a>::<a href="CppWt.htm">Wt</a><a href="ToolTestDial.htm">TestDial</a>MainDialog::<a href="CppWt.htm">Wt</a><a href="ToolTestDial.htm">TestDial</a>MainDialog()<br/>
+<a href="CppRibi.htm">ribi</a>::<a href="CppWt.htm">Wt</a><a href="ToolTestDial.htm">TestDial</a>MainDialog::<a href="CppWt.htm">Wt</a><a href="ToolTestDial.htm">TestDial</a>MainDialog()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;setContentAlignment(<a href="CppWt.htm">Wt</a>::AlignCenter);<br/>
 &nbsp;&nbsp;Show();<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppWt.htm">Wt</a><a href="ToolTestDial.htm">TestDial</a>MainDialog::OnDialPositionChange()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppWt.htm">Wt</a><a href="ToolTestDial.htm">TestDial</a>MainDialog::OnDialPositionChange()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> position <a href="CppOperatorAssign.htm">=</a> ui.m_dial-&gt;Get<a href="CppWidget.htm">Widget</a>()-&gt;GetDial()-&gt;GetPosition();<br/>
 <br/>
@@ -901,7 +901,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;ui.m_label_position-&gt;setText(text);<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppWt.htm">Wt</a><a href="ToolTestDial.htm">TestDial</a>MainDialog::OnDialColorChange()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppWt.htm">Wt</a><a href="ToolTestDial.htm">TestDial</a>MainDialog::OnDialColorChange()<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Set the color<br/>
 &nbsp;&nbsp;{<br/>
@@ -934,7 +934,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;}<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppWt.htm">Wt</a><a href="ToolTestDial.htm">TestDial</a>MainDialog::Show()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppWt.htm">Wt</a><a href="ToolTestDial.htm">TestDial</a>MainDialog::Show()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;clear();<br/>
 &nbsp;&nbsp;{<br/>
@@ -943,11 +943,11 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;ui.m_dial-&gt;Get<a href="CppWidget.htm">Widget</a>()-&gt;SetGeometry(Rect(0,0,100,100));<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;ui.m_dial-&gt;Get<a href="CppWidget.htm">Widget</a>()-&gt;GetDial()-&gt;m_signal_color_changed.connect(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBind.htm">boost::bind</a>(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;<a href="CppRibi.htm\">ribi</a>::<a href="CppWt.htm">Wt</a><a href="ToolTestDial.htm">TestDial</a>MainDialog::OnDialColorChange,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;<a href="CppRibi.htm">ribi</a>::<a href="CppWt.htm">Wt</a><a href="ToolTestDial.htm">TestDial</a>MainDialog::OnDialColorChange,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>));<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;ui.m_dial-&gt;Get<a href="CppWidget.htm">Widget</a>()-&gt;GetDial()-&gt;m_signal_position_changed.connect(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBind.htm">boost::bind</a>(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;<a href="CppRibi.htm\">ribi</a>::<a href="CppWt.htm">Wt</a><a href="ToolTestDial.htm">TestDial</a>MainDialog::OnDialPositionChange,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;<a href="CppRibi.htm">ribi</a>::<a href="CppWt.htm">Wt</a><a href="ToolTestDial.htm">TestDial</a>MainDialog::OnDialPositionChange,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>));<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;addWidget(<b><a href="CppNew.htm">new</a></b> <a href="CppWBreak.htm">Wt::WBreak</a>);<br/>
@@ -970,7 +970,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;ui.m_dial_color-&gt;Get<a href="CppWidget.htm">Widget</a>()-&gt;SetGeometry(Rect(0,0,50,50));<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;ui.m_dial_color-&gt;Get<a href="CppWidget.htm">Widget</a>()-&gt;GetDial()-&gt;m_signal_position_changed.connect(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBind.htm">boost::bind</a>(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;<a href="CppRibi.htm\">ribi</a>::<a href="CppWt.htm">Wt</a><a href="ToolTestDial.htm">TestDial</a>MainDialog::OnDialColorChange,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;<a href="CppRibi.htm">ribi</a>::<a href="CppWt.htm">Wt</a><a href="ToolTestDial.htm">TestDial</a>MainDialog::OnDialColorChange,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>));<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;addWidget(ui.m_dial_color);<br/>
 &nbsp;&nbsp;}<br/>
@@ -1015,7 +1015,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWContainerWidget.htm">WContainerWidget</a>&gt;<br/>
 <br/>
-<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a> {<br/>
+<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
 <br/>
 <b><a href="CppStruct.htm">struct</a></b> <a href="CppWt.htm">Wt</a><a href="ToolTestDial.htm">TestDial</a>MenuDialog : <b><a href="CppPublic.htm">public</a></b> <a href="CppWContainerWidget.htm">Wt::WContainerWidget</a><br/>
 {<br/>
@@ -1026,7 +1026,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<a href="CppWWidget.htm">Wt::WWidget</a> * CreateNewWelcomeDialog() <b><a href="CppConst.htm">const</a></b>;<br/>
 };<br/>
 <br/>
-} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a><br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
 <br/>
 <a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> WTTESTDIALMENUDIALOG_H<br/>
 </code></td></tr></table>
@@ -1079,7 +1079,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppQFile.htm">QFile</a>&gt;<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppRibi.htm\">ribi</a>::<a href="CppWt.htm">Wt</a><a href="ToolTestDial.htm">TestDial</a>MenuDialog::<a href="CppWt.htm">Wt</a><a href="ToolTestDial.htm">TestDial</a>MenuDialog()<br/>
+<a href="CppRibi.htm">ribi</a>::<a href="CppWt.htm">Wt</a><a href="ToolTestDial.htm">TestDial</a>MenuDialog::<a href="CppWt.htm">Wt</a><a href="ToolTestDial.htm">TestDial</a>MenuDialog()<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Create resources<br/>
 &nbsp;&nbsp;{<br/>
@@ -1144,7 +1144,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;}<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppWWidget.htm">Wt::WWidget</a> * <a href="CppRibi.htm\">ribi</a>::<a href="CppWt.htm">Wt</a><a href="ToolTestDial.htm">TestDial</a>MenuDialog::CreateNew<a href="CppAbout.htm">About</a>Dialog() <b><a href="CppConst.htm">const</a></b><br/>
+<a href="CppWWidget.htm">Wt::WWidget</a> * <a href="CppRibi.htm">ribi</a>::<a href="CppWt.htm">Wt</a><a href="ToolTestDial.htm">TestDial</a>MenuDialog::CreateNew<a href="CppAbout.htm">About</a>Dialog() <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppAbout.htm">About</a> a <a href="CppOperatorAssign.htm">=</a> <a href="ToolTestDial.htm">TestDial</a>MenuDialog::GetAbout();<br/>
 &nbsp;&nbsp;a.<a href="CppAdd.htm">Add</a><a href="CppLibrary.htm">Library</a>("<a href="CppRainbow.htm">Rainbow</a> <a href="CppVersion.htm">version</a>: " <a href="CppOperatorPlus.htm">+</a> <a href="CppRainbow.htm">Rainbow</a>::Get<a href="CppVersion.htm">Version</a>());<br/>
@@ -1155,14 +1155,14 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> d;<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppWWidget.htm">Wt::WWidget</a> * <a href="CppRibi.htm\">ribi</a>::<a href="CppWt.htm">Wt</a><a href="ToolTestDial.htm">TestDial</a>MenuDialog::CreateNewMainDialog() <b><a href="CppConst.htm">const</a></b><br/>
+<a href="CppWWidget.htm">Wt::WWidget</a> * <a href="CppRibi.htm">ribi</a>::<a href="CppWt.htm">Wt</a><a href="ToolTestDial.htm">TestDial</a>MenuDialog::CreateNewMainDialog() <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppWt.htm">Wt</a><a href="ToolTestDial.htm">TestDial</a>MainDialog * <b><a href="CppConst.htm">const</a></b> d <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppWt.htm">Wt</a><a href="ToolTestDial.htm">TestDial</a>MainDialog;<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(d);<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> d;<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppWWidget.htm">Wt::WWidget</a> * <a href="CppRibi.htm\">ribi</a>::<a href="CppWt.htm">Wt</a><a href="ToolTestDial.htm">TestDial</a>MenuDialog::CreateNewWelcomeDialog() <b><a href="CppConst.htm">const</a></b><br/>
+<a href="CppWWidget.htm">Wt::WWidget</a> * <a href="CppRibi.htm">ribi</a>::<a href="CppWt.htm">Wt</a><a href="ToolTestDial.htm">TestDial</a>MenuDialog::CreateNewWelcomeDialog() <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppWContainerWidget.htm">Wt::WContainerWidget</a> * dialog <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppWContainerWidget.htm">Wt::WContainerWidget</a>;<br/>
 &nbsp;&nbsp;dialog-&gt;setContentAlignment(<a href="CppWt.htm">Wt</a>::AlignCenter);<br/>

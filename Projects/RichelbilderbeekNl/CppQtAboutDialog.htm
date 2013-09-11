@@ -67,16 +67,19 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppStringH.htm">string</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
 <br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppQDialog.htm">QDialog</a>&gt;<br/>
 <br/>
-<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppAbout.htm">about</a>.h"<br/>
+<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
 <br/>
 <b><a href="CppNamespace.htm">namespace</a></b> Ui {<br/>
 &nbsp;&nbsp;<b><a href="CppClass.htm">class</a></b> <a href="CppQtAboutDialog.htm">QtAboutDialog</a>;<br/>
 }<br/>
 <br/>
-<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a> {<br/>
+<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
 <br/>
 <a href="CppComment.htm">///</a>An <a href="CppAbout.htm">About</a> dialog<br/>
 <b><a href="CppClass.htm">class</a></b> <a href="CppQtAboutDialog.htm">QtAboutDialog</a> : <b><a href="CppPublic.htm">public</a></b> <a href="CppQDialog.htm">QDialog</a><br/>
@@ -84,7 +87,10 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<a href="CppQ_OBJECT.htm">Q_OBJECT</a><br/>
 <br/>
 <b><a href="CppPublic.htm">public</a></b>:<br/>
-&nbsp;&nbsp;<b><a href="CppExplicit.htm">explicit</a></b> <a href="CppQtAboutDialog.htm">QtAboutDialog</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppAbout.htm">About</a>&amp; <a href="CppAbout.htm">about</a>);<br/>
+&nbsp;&nbsp;<a href="CppQtAboutDialog.htm">QtAboutDialog</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppQtAboutDialog.htm">QtAboutDialog</a>&amp;) <a href="CppOperatorAssign.htm">=</a> <b><a href="CppDelete.htm">delete</a></b>;<br/>
+&nbsp;&nbsp;<a href="CppQtAboutDialog.htm">QtAboutDialog</a>&amp; <b><a href="CppOperator.htm">operator</a></b>=(<b><a href="CppConst.htm">const</a></b> <a href="CppQtAboutDialog.htm">QtAboutDialog</a>&amp;) <a href="CppOperatorAssign.htm">=</a> <b><a href="CppDelete.htm">delete</a></b>;<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppExplicit.htm">explicit</a></b> <a href="CppQtAboutDialog.htm">QtAboutDialog</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppAbout.htm">About</a>&amp; <a href="CppAbout.htm">about</a>);<br/>
 &nbsp;&nbsp;~<a href="CppQtAboutDialog.htm">QtAboutDialog</a>();<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/Obtain the <a href="CppVersion.htm">version</a> of <b><a href="CppThis.htm">this</a></b> <b><a href="CppClass.htm">class</a></b><br/>
@@ -97,7 +103,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<a href="CppUi.htm">Ui</a>::<a href="CppQtAboutDialog.htm">QtAboutDialog</a> *ui;<br/>
 };<br/>
 <br/>
-} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a><br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
 <br/>
 <a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> QTABOUTDIALOG_H<br/>
 </code></td></tr></table>
@@ -131,6 +137,8 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="CppQtAboutDialog.htm">CppQtAboutDialog</a>.htm<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppQtAboutDialog.htm">qtaboutdialog</a>.h"<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
@@ -141,8 +149,9 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> "ui_<a href="CppQtAboutDialog.htm">qtaboutdialog</a>.h"<br/>
 <br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
 <br/>
-<a href="CppRibi.htm\">ribi</a>::<a href="CppQtAboutDialog.htm">QtAboutDialog</a>::<a href="CppQtAboutDialog.htm">QtAboutDialog</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppAbout.htm">About</a>&amp; <a href="CppAbout.htm">about</a>)<br/>
+<a href="CppRibi.htm">ribi</a>::<a href="CppQtAboutDialog.htm">QtAboutDialog</a>::<a href="CppQtAboutDialog.htm">QtAboutDialog</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppAbout.htm">About</a>&amp; <a href="CppAbout.htm">about</a>)<br/>
 &nbsp;&nbsp;: ui(<b><a href="CppNew.htm">new</a></b> <a href="CppUi.htm">Ui</a>::<a href="CppQtAboutDialog.htm">QtAboutDialog</a>)<br/>
 {<br/>
 &nbsp;&nbsp;ui-&gt;setupUi(<b><a href="CppThis.htm">this</a></b>);<br/>
@@ -221,17 +230,17 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;ui-&gt;text_whatsnew-&gt;moveCursor(QTextCursor::Start);<br/>
 }<br/>
 <br/>
-<a href="CppRibi.htm\">ribi</a>::<a href="CppQtAboutDialog.htm">QtAboutDialog</a>::~<a href="CppQtAboutDialog.htm">QtAboutDialog</a>()<br/>
+<a href="CppRibi.htm">ribi</a>::<a href="CppQtAboutDialog.htm">QtAboutDialog</a>::~<a href="CppQtAboutDialog.htm">QtAboutDialog</a>()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppDelete.htm">delete</a></b> ui;<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppRibi.htm\">ribi</a>::<a href="CppQtAboutDialog.htm">QtAboutDialog</a>::Get<a href="CppVersion.htm">Version</a>()<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppRibi.htm">ribi</a>::<a href="CppQtAboutDialog.htm">QtAboutDialog</a>::Get<a href="CppVersion.htm">Version</a>()<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> "1.5";<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> "1.7";<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm\">ribi</a>::<a href="CppQtAboutDialog.htm">QtAboutDialog</a>::Get<a href="CppVersion.htm">Version</a>History()<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm">ribi</a>::<a href="CppQtAboutDialog.htm">QtAboutDialog</a>::Get<a href="CppVersion.htm">Version</a>History()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> {<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;"2011-01-11: <a href="CppVersion.htm">version</a> 1.0: initial <a href="CppVersion.htm">version</a> of <a href="CppQtAboutDialog.htm">QtAboutDialog</a>",<br/>
@@ -239,8 +248,9 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;"2011-06-27: <a href="CppVersion.htm">version</a> 1.2: added date and <a href="CppTime.htm">time</a> when source code is built",<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;"2011-09-11: <a href="CppVersion.htm">version</a> 1.3: display the type of build",<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;"2012-01-12: <a href="CppVersion.htm">version</a> 1.4: fixed grammatical error",<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;"2012-01-27: <a href="CppVersion.htm">version</a> 1.5: abandoned use of <a href="CppBOOST_FOREACH.htm">BOOST_FOREACH</a>, due to run-<a href="CppTime.htm">time</a> errors",<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;"2013-09-05: <a href="CppVersion.htm">version</a> 1.6: transition to <b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a>"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"2012-01-27: <a href="CppVersion.htm">version</a> 1.5: abandoned use of <a href="CppBOOST_FOREACH.htm">BOOST_FOREACH</a>, due to <a href="CppRunTime.htm">run-time</a> errors",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"2013-09-05: <a href="CppVersion.htm">version</a> 1.6: transition to <b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a>"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"2013-09-10: <a href="CppVersion.htm">version</a> 1.7: <b><a href="CppExplicit.htm">explicit</a></b>ly disabled copying, <a href="CppCompile.htm">compile</a>s with <a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
 &nbsp;&nbsp;};<br/>
 }<br/>
 </code></td></tr></table>

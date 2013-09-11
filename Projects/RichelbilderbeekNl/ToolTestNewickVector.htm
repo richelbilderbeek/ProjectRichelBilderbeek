@@ -523,7 +523,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <br/>
-<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a> {<br/>
+<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
 <br/>
 <b><a href="CppStruct.htm">struct</a></b> <a href="ToolTestNewickVector.htm">TestNewickVector</a>Dialog;<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
@@ -558,7 +558,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppStatic.htm">static</a></b> <b><a href="CppBool.htm">bool</a></b> Match(<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;&amp; lhs, <b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;&amp; rhs);<br/>
 };<br/>
 <br/>
-} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a><br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
 <br/>
 <a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> QTTESTNEWICKVECTORDIALOG_H<br/>
 </code></td></tr></table>
@@ -621,7 +621,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppInclude.htm">#include</a> "ui_qttest<a href="CppNewickVector.htm">newickvector</a>dialog.h"<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">///</a><a href="CppQt.htm">Qt</a><a href="ToolTestNewickVector.htm">TestNewickVector</a>Dialog <a href="CppConstructor.htm">constructor</a> performs most <a href="CppNewick.htm">Newick</a> tests<br/>
-<a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="ToolTestNewickVector.htm">TestNewickVector</a>Dialog::<a href="CppQt.htm">Qt</a><a href="ToolTestNewickVector.htm">TestNewickVector</a>Dialog(<a href="CppQWidget.htm">QWidget</a> *parent) :<br/>
+<a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="ToolTestNewickVector.htm">TestNewickVector</a>Dialog::<a href="CppQt.htm">Qt</a><a href="ToolTestNewickVector.htm">TestNewickVector</a>Dialog(<a href="CppQWidget.htm">QWidget</a> *parent) :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQDialog.htm">QDialog</a>(parent),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;ui(<b><a href="CppNew.htm">new</a></b> <a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a><a href="ToolTestNewickVector.htm">TestNewickVector</a>Dialog),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;m_<a href="CppTime.htm">time</a>r(<b><a href="CppNew.htm">new</a></b> <a href="CppQTimer.htm">QTimer</a>),<br/>
@@ -658,7 +658,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;OnAnyChange();<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="ToolTestNewickVector.htm">TestNewickVector</a>Dialog::~<a href="CppQt.htm">Qt</a><a href="ToolTestNewickVector.htm">TestNewickVector</a>Dialog()<br/>
+<a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="ToolTestNewickVector.htm">TestNewickVector</a>Dialog::~<a href="CppQt.htm">Qt</a><a href="ToolTestNewickVector.htm">TestNewickVector</a>Dialog()<br/>
 {<br/>
 &nbsp;&nbsp;m_<a href="CppTime.htm">time</a>r-&gt;stop();<br/>
 &nbsp;&nbsp;<b><a href="CppDelete.htm">delete</a></b> ui;<br/>
@@ -666,7 +666,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="ToolTestNewickVector.htm">TestNewickVector</a>Dialog::Display()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="ToolTestNewickVector.htm">TestNewickVector</a>Dialog::Display()<br/>
 {<br/>
 &nbsp;&nbsp;ui-&gt;edit_text-&gt;clear();<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt;&amp; text <a href="CppOperatorAssign.htm">=</a> m_dialog-&gt;GetText();<br/>
@@ -677,7 +677,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;}<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="ToolTestNewickVector.htm">TestNewickVector</a>Dialog::OnAnyChange()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="ToolTestNewickVector.htm">TestNewickVector</a>Dialog::OnAnyChange()<br/>
 {<br/>
 &nbsp;&nbsp;m_dialog-&gt;SetMaxComplexity(ui-&gt;edit_max_complexity-&gt;text().toStdString());<br/>
 &nbsp;&nbsp;m_dialog-&gt;Set<a href="CppNewick.htm">Newick</a>(ui-&gt;edit_<a href="CppNewick.htm">newick</a>-&gt;text().toStdString());<br/>
@@ -686,7 +686,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;Display();<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="ToolTestNewickVector.htm">TestNewickVector</a>Dialog::OnDemoTick()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="ToolTestNewickVector.htm">TestNewickVector</a>Dialog::OnDemoTick()<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Get <a href="CppAny.htm">any</a> <a href="CppNewick.htm">Newick</a><br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> ((<a href="CppRand.htm">std::rand</a>() <a href="CppOperatorStreamIn.htm">&gt;&gt;</a> 4) <a href="CppOperatorModulus.htm">%</a> 2)<br/>
@@ -703,7 +703,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;}<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="ToolTestNewickVector.htm">TestNewickVector</a>Dialog::on_button_demo_clicked()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="ToolTestNewickVector.htm">TestNewickVector</a>Dialog::on_button_demo_clicked()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (m_<a href="CppTime.htm">time</a>r-&gt;isActive())<br/>
 &nbsp;&nbsp;{<br/>
@@ -719,13 +719,13 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;}<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="ToolTestNewickVector.htm">TestNewickVector</a>Dialog::on_button_about_clicked()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="ToolTestNewickVector.htm">TestNewickVector</a>Dialog::on_button_about_clicked()<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppQtAboutDialog.htm">QtAboutDialog</a> d(<a href="ToolTestNewickVector.htm">TestNewickVector</a>Dialog::GetAbout());<br/>
 &nbsp;&nbsp;d.exec();<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="ToolTestNewickVector.htm">TestNewickVector</a>Dialog::on_button_calculate_clicked()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="ToolTestNewickVector.htm">TestNewickVector</a>Dialog::on_button_calculate_clicked()<br/>
 {<br/>
 &nbsp;&nbsp;m_dialog-&gt;SetMaxComplexity(ui-&gt;edit_max_complexity-&gt;text().toStdString());<br/>
 &nbsp;&nbsp;m_dialog-&gt;Set<a href="CppNewick.htm">Newick</a>(ui-&gt;edit_<a href="CppNewick.htm">newick</a>-&gt;text().toStdString());<br/>
@@ -734,13 +734,13 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;Display();<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="ToolTestNewickVector.htm">TestNewickVector</a>Dialog::on_box_show_calculation_clicked()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="ToolTestNewickVector.htm">TestNewickVector</a>Dialog::on_box_show_calculation_clicked()<br/>
 {<br/>
 &nbsp;&nbsp;m_dialog-&gt;SetAnalyseCalculation(ui-&gt;box_show_calculation-&gt;isChecked());<br/>
 &nbsp;&nbsp;ui-&gt;box_compare-&gt;setEnabled( ui-&gt;box_show_calculation-&gt;isChecked() );<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="ToolTestNewickVector.htm">TestNewickVector</a>Dialog::on_box_compare_clicked()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="ToolTestNewickVector.htm">TestNewickVector</a>Dialog::on_box_compare_clicked()<br/>
 {<br/>
 &nbsp;&nbsp;m_dialog-&gt;SetCompareTo<a href="CppTwoDigitNewick.htm">TwoDigitNewick</a>(ui-&gt;box_compare-&gt;isChecked());<br/>
 }<br/>
@@ -784,7 +784,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppScoped_ptr.htm">scoped_ptr</a>.hpp&gt;<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppAbout.htm">about</a>.h"<br/>
 <br/>
-<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a> {<br/>
+<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
 <br/>
 <b><a href="CppStruct.htm">struct</a></b> <a href="CppNewickVector.htm">NewickVector</a>;<br/>
 <br/>
@@ -835,7 +835,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <br/>
 };<br/>
 <br/>
-} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a><br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
 <br/>
 <a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> TESTNEWICKVECTORDIALOG_H<br/>
 </code></td></tr></table>
@@ -869,23 +869,34 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="ToolTestNewickVector.htm">ToolTestNewickVector</a>.htm<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<br/>
-<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-<b><a href="CppTypedef.htm">typedef</a></b>s"<br/>
 <a href="CppInclude.htm">#include</a> "test<a href="CppNewickVector.htm">newickvector</a>dialog.h"<br/>
 <br/>
-<a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
-<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-<b><a href="CppTypedef.htm">typedef</a></b>s"<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/numeric/con<a href="CppVersion.htm">version</a>/cast.hpp&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppLexical_cast.htm">lexical_cast</a>.hpp&gt;<br/>
-<a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppBinaryNewickVector.htm">binarynewickvector</a>.h"<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppNewick.htm">newick</a>.h"<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppNewickVector.htm">newickvector</a>.h"<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppTwoDigitNewick.htm">twodigitnewick</a>.h"<br/>
 <br/>
-<a href="CppRibi.htm\">ribi</a>::<a href="ToolTestNewickVector.htm">TestNewickVector</a>Dialog::<a href="ToolTestNewickVector.htm">TestNewickVector</a>Dialog()<br/>
-&nbsp;&nbsp;: m_analyse_calculation(<b><a href="CppFalse.htm">false</a></b>)<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
+<br/>
+<a href="CppRibi.htm">ribi</a>::<a href="ToolTestNewickVector.htm">TestNewickVector</a>Dialog::<a href="ToolTestNewickVector.htm">TestNewickVector</a>Dialog()<br/>
+&nbsp;&nbsp;: m_analyse_calculation{<b><a href="CppFalse.htm">false</a></b>},<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_compare{<b><a href="CppFalse.htm">false</a></b>},<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_max_complexity_str{},<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_<a href="CppNewick.htm">newick</a>_str{},<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_theta_str{},<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_<a href="CppNewick.htm">newick</a>{},<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_theta{},<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_complexity{},<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_denominator{},<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_n_combinations{},<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_n_symmetries{},<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_text{}<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
 &nbsp;&nbsp;<a href="CppNewick.htm">Newick</a>::Test();<br/>
@@ -893,7 +904,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="ToolTestNewickVector.htm">TestNewickVector</a>Dialog::Analyse()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="ToolTestNewickVector.htm">TestNewickVector</a>Dialog::Analyse()<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Store the data<br/>
 &nbsp;&nbsp;m_<a href="CppNewick.htm">newick</a>.reset(<b><a href="CppNew.htm">new</a></b> <a href="CppNewickVector.htm">NewickVector</a>(m_<a href="CppNewick.htm">newick</a>_str));<br/>
@@ -925,7 +936,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;m_text.push_back(<a href="CppString.htm">std::string</a>("Denominator: ") <a href="CppOperatorPlus.htm">+</a> <a href="CppLexical_cast.htm">boost::lexical_cast</a>&lt;<a href="CppString.htm">std::string</a>&gt;(m_denominator));<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="ToolTestNewickVector.htm">TestNewickVector</a>Dialog::AnalyseArity()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="ToolTestNewickVector.htm">TestNewickVector</a>Dialog::AnalyseArity()<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Check <b><a href="CppIf.htm">if</a></b> simple <a href="CppNewick.htm">Newick</a><br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (<a href="CppNewick.htm">Newick</a>::IsSimple(m_<a href="CppNewick.htm">newick</a>-&gt;Peek()))<br/>
@@ -958,7 +969,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;}<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="ToolTestNewickVector.htm">TestNewickVector</a>Dialog::AnalyseCalculation()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="ToolTestNewickVector.htm">TestNewickVector</a>Dialog::AnalyseCalculation()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (!m_analyse_calculation) <b><a href="CppReturn.htm">return</a></b>;<br/>
 <br/>
@@ -1090,7 +1101,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;m_text.push_back(<a href="CppString.htm">std::string</a>(80,'-'));<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="ToolTestNewickVector.htm">TestNewickVector</a>Dialog::AnalyseRootBranches()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="ToolTestNewickVector.htm">TestNewickVector</a>Dialog::AnalyseRootBranches()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b>(!<a href="CppNewick.htm">Newick</a>::IsUnary<a href="CppNewick.htm">Newick</a>(m_<a href="CppNewick.htm">newick</a>-&gt;Peek()))<br/>
 &nbsp;&nbsp;{<br/>
@@ -1114,7 +1125,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;}<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="ToolTestNewickVector.htm">TestNewickVector</a>Dialog::AnalyseSimpler<a href="CppNewick.htm">Newick</a>s()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="ToolTestNewickVector.htm">TestNewickVector</a>Dialog::AnalyseSimpler<a href="CppNewick.htm">Newick</a>s()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppTypedef.htm">typedef</a></b> <a href="CppPair.htm">std::pair</a>&lt;<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;,<b><a href="CppInt.htm">int</a></b>&gt; <a href="CppNewick.htm">Newick</a>FrequencyPair;<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppNewick.htm">Newick</a>FrequencyPair&gt; simpler<br/>
@@ -1146,7 +1157,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;m_text.push_back(text.c_str());<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="ToolTestNewickVector.htm">TestNewickVector</a>Dialog::AutoCalculate()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="ToolTestNewickVector.htm">TestNewickVector</a>Dialog::AutoCalculate()<br/>
 {<br/>
 &nbsp;&nbsp;m_text.resize(0);<br/>
 <br/>
@@ -1165,7 +1176,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;Analyse();<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="ToolTestNewickVector.htm">TestNewickVector</a>Dialog::Calculate()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="ToolTestNewickVector.htm">TestNewickVector</a>Dialog::Calculate()<br/>
 {<br/>
 &nbsp;&nbsp;m_text.resize(0);<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (!<a href="CppCheckNewick.htm">CheckNewick</a>()) <b><a href="CppReturn.htm">return</a></b>;<br/>
@@ -1174,7 +1185,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <br/>
 }<br/>
 <br/>
-<b><a href="CppBool.htm">bool</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="ToolTestNewickVector.htm">TestNewickVector</a>Dialog::CheckMaxComplexity()<br/>
+<b><a href="CppBool.htm">bool</a></b> <a href="CppRibi.htm">ribi</a>::<a href="ToolTestNewickVector.htm">TestNewickVector</a>Dialog::CheckMaxComplexity()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppTry.htm">try</a></b><br/>
 &nbsp;&nbsp;{<br/>
@@ -1189,7 +1200,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <b><a href="CppTrue.htm">true</a></b>;<br/>
 }<br/>
 <br/>
-<b><a href="CppBool.htm">bool</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="ToolTestNewickVector.htm">TestNewickVector</a>Dialog::<a href="CppCheckNewick.htm">CheckNewick</a>()<br/>
+<b><a href="CppBool.htm">bool</a></b> <a href="CppRibi.htm">ribi</a>::<a href="ToolTestNewickVector.htm">TestNewickVector</a>Dialog::<a href="CppCheckNewick.htm">CheckNewick</a>()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (!<a href="CppNewick.htm">Newick</a>::<a href="CppIsNewick.htm">IsNewick</a>(m_<a href="CppNewick.htm">newick</a>_str))<br/>
 &nbsp;&nbsp;{<br/>
@@ -1210,7 +1221,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <b><a href="CppTrue.htm">true</a></b>;<br/>
 }<br/>
 <br/>
-<b><a href="CppBool.htm">bool</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="ToolTestNewickVector.htm">TestNewickVector</a>Dialog::CheckTheta()<br/>
+<b><a href="CppBool.htm">bool</a></b> <a href="CppRibi.htm">ribi</a>::<a href="ToolTestNewickVector.htm">TestNewickVector</a>Dialog::CheckTheta()<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Check <b><a href="CppIf.htm">if</a></b> theta is valid<br/>
 &nbsp;&nbsp;<b><a href="CppTry.htm">try</a></b><br/>
@@ -1226,7 +1237,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <b><a href="CppTrue.htm">true</a></b>;<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppAbout.htm">About</a> <a href="CppRibi.htm\">ribi</a>::<a href="ToolTestNewickVector.htm">TestNewickVector</a>Dialog::GetAbout()<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppAbout.htm">About</a> <a href="CppRibi.htm">ribi</a>::<a href="ToolTestNewickVector.htm">TestNewickVector</a>Dialog::GetAbout()<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppAbout.htm">About</a> <a href="CppAbout.htm">about</a>(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;"Richel Bilderbeek",<br/>
@@ -1243,12 +1254,12 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <a href="CppAbout.htm">about</a>;<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppRibi.htm\">ribi</a>::<a href="ToolTestNewickVector.htm">TestNewickVector</a>Dialog::Get<a href="CppVersion.htm">Version</a>()<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppRibi.htm">ribi</a>::<a href="ToolTestNewickVector.htm">TestNewickVector</a>Dialog::Get<a href="CppVersion.htm">Version</a>()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> "3.2";<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm\">ribi</a>::<a href="ToolTestNewickVector.htm">TestNewickVector</a>Dialog::Get<a href="CppVersion.htm">Version</a>History()<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm">ribi</a>::<a href="ToolTestNewickVector.htm">TestNewickVector</a>Dialog::Get<a href="CppVersion.htm">Version</a>History()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> {<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;"2011-02-20: <a href="CppVersion.htm">Version</a> 1.0: initial <a href="CppVersion.htm">version</a>",<br/>
@@ -1259,27 +1270,27 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;};<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="ToolTestNewickVector.htm">TestNewickVector</a>Dialog::SetAnalyseCalculation(<b><a href="CppConst.htm">const</a></b> <b><a href="CppBool.htm">bool</a></b> b)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="ToolTestNewickVector.htm">TestNewickVector</a>Dialog::SetAnalyseCalculation(<b><a href="CppConst.htm">const</a></b> <b><a href="CppBool.htm">bool</a></b> b)<br/>
 {<br/>
 &nbsp;&nbsp;m_analyse_calculation <a href="CppOperatorAssign.htm">=</a> b;<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="ToolTestNewickVector.htm">TestNewickVector</a>Dialog::SetCompareTo<a href="CppTwoDigitNewick.htm">TwoDigitNewick</a>(<b><a href="CppConst.htm">const</a></b> <b><a href="CppBool.htm">bool</a></b> b)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="ToolTestNewickVector.htm">TestNewickVector</a>Dialog::SetCompareTo<a href="CppTwoDigitNewick.htm">TwoDigitNewick</a>(<b><a href="CppConst.htm">const</a></b> <b><a href="CppBool.htm">bool</a></b> b)<br/>
 {<br/>
 &nbsp;&nbsp;m_compare <a href="CppOperatorAssign.htm">=</a> b;<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="ToolTestNewickVector.htm">TestNewickVector</a>Dialog::SetMaxComplexity(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; s)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="ToolTestNewickVector.htm">TestNewickVector</a>Dialog::SetMaxComplexity(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; s)<br/>
 {<br/>
 &nbsp;&nbsp;m_max_complexity_str <a href="CppOperatorAssign.htm">=</a> s;<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="ToolTestNewickVector.htm">TestNewickVector</a>Dialog::Set<a href="CppNewick.htm">Newick</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; s)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="ToolTestNewickVector.htm">TestNewickVector</a>Dialog::Set<a href="CppNewick.htm">Newick</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; s)<br/>
 {<br/>
 &nbsp;&nbsp;m_<a href="CppNewick.htm">newick</a>_str <a href="CppOperatorAssign.htm">=</a> s;<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="ToolTestNewickVector.htm">TestNewickVector</a>Dialog::SetTheta(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; s)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="ToolTestNewickVector.htm">TestNewickVector</a>Dialog::SetTheta(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; s)<br/>
 {<br/>
 &nbsp;&nbsp;m_theta_str <a href="CppOperatorAssign.htm">=</a> s;<br/>
 }<br/>
@@ -1699,7 +1710,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppAbout.htm">about</a>.h"<br/>
 <a href="CppInclude.htm">#include</a> "test<a href="CppNewickVector.htm">newickvector</a>dialog.h"<br/>
 <br/>
-<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a> {<br/>
+<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
 <br/>
 <b><a href="CppStruct.htm">struct</a></b> <a href="CppWt.htm">Wt</a><a href="ToolTestNewickVector.htm">TestNewickVector</a>Dialog : <b><a href="CppPublic.htm">public</a></b> <a href="CppWContainerWidget.htm">Wt::WContainerWidget</a><br/>
 {<br/>
@@ -1719,7 +1730,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> OnCalculate();<br/>
 };<br/>
 <br/>
-} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a><br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
 <br/>
 <a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> WTTESTNEWICKVECTORDIALOG_H<br/>
 </code></td></tr></table>
@@ -1758,7 +1769,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppRibi.htm\">ribi</a>::<a href="CppWt.htm">Wt</a><a href="ToolTestNewickVector.htm">TestNewickVector</a>Dialog::<a href="CppWt.htm">Wt</a><a href="ToolTestNewickVector.htm">TestNewickVector</a>Dialog()<br/>
+<a href="CppRibi.htm">ribi</a>::<a href="CppWt.htm">Wt</a><a href="ToolTestNewickVector.htm">TestNewickVector</a>Dialog::<a href="CppWt.htm">Wt</a><a href="ToolTestNewickVector.htm">TestNewickVector</a>Dialog()<br/>
 &nbsp;&nbsp;: m_box_show_calculation(<b><a href="CppNew.htm">new</a></b> <a href="CppWCheckBox.htm">Wt::WCheckBox</a>),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;m_box_compare(<b><a href="CppNew.htm">new</a></b> <a href="CppWCheckBox.htm">Wt::WCheckBox</a>),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;m_edit_<a href="CppNewick.htm">newick</a>(<b><a href="CppNew.htm">new</a></b> <a href="CppWLineEdit.htm">Wt::WLineEdit</a>("((2,2),2)")),<br/>
@@ -1809,12 +1820,12 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;addWidget(<b><a href="CppNew.htm">new</a></b> <a href="CppWBreak.htm">Wt::WBreak</a>);<br/>
 <br/>
 &nbsp;&nbsp;button_calculate-&gt;clicked().connect(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>,&amp;<a href="CppRibi.htm\">ribi</a>::<a href="CppWt.htm">Wt</a><a href="ToolTestNewickVector.htm">TestNewickVector</a>Dialog::OnCalculate);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>,&amp;<a href="CppRibi.htm">ribi</a>::<a href="CppWt.htm">Wt</a><a href="ToolTestNewickVector.htm">TestNewickVector</a>Dialog::OnCalculate);<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>button_about-&gt;clicked().connect(<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>,&amp;<a href="CppRibi.htm\">ribi</a>::<a href="CppWt.htm">Wt</a><a href="ToolTestNewickVector.htm">TestNewickVector</a>Dialog::On<a href="CppAbout.htm">About</a>);<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>,&amp;<a href="CppRibi.htm">ribi</a>::<a href="CppWt.htm">Wt</a><a href="ToolTestNewickVector.htm">TestNewickVector</a>Dialog::On<a href="CppAbout.htm">About</a>);<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppWt.htm">Wt</a><a href="ToolTestNewickVector.htm">TestNewickVector</a>Dialog::Display()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppWt.htm">Wt</a><a href="ToolTestNewickVector.htm">TestNewickVector</a>Dialog::Display()<br/>
 {<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v <a href="CppOperatorAssign.htm">=</a> m_dialog.GetText();<br/>
@@ -1828,13 +1839,13 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;}<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppWt.htm">Wt</a><a href="ToolTestNewickVector.htm">TestNewickVector</a>Dialog::On<a href="CppAbout.htm">About</a>()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppWt.htm">Wt</a><a href="ToolTestNewickVector.htm">TestNewickVector</a>Dialog::On<a href="CppAbout.htm">About</a>()<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppEmit.htm">Emit</a> that <a href="CppAbout.htm">about</a> is clicked<br/>
 &nbsp;&nbsp;m_signal_about();<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppWt.htm">Wt</a><a href="ToolTestNewickVector.htm">TestNewickVector</a>Dialog::OnCalculate()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppWt.htm">Wt</a><a href="ToolTestNewickVector.htm">TestNewickVector</a>Dialog::OnCalculate()<br/>
 {<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> s <a href="CppOperatorAssign.htm">=</a> m_edit_password-&gt;text().toUTF8();<br/>

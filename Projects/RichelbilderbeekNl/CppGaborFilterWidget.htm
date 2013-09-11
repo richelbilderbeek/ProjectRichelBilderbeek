@@ -40,7 +40,7 @@
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="gaborfilterwidget.h" border = "1"><tr><td><code>
-<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">/*</a><br/>
 GaborFilter<a href="CppWidget.htm">Widget</a>, <a href="CppWidget.htm">Widget</a> <b><a href="CppFor.htm">for</a></b> the GaborFilter <b><a href="CppClass.htm">class</a></b><br/>
 Copyright (C) 2011 Richel Bilderbeek<br/>
@@ -57,21 +57,21 @@ GNU General Public License for more details.<br/>
 You should have received a copy of the GNU General Public License<br/>
 along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">*/</a><br/>
-<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="CppGaborFilterWidget.htm">CppGaborFilterWidget</a>.htm<br/>
-<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppIfndef.htm">#ifndef</a> GABORFILTERWIDGET_H<br/>
 <a href="CppDefine.htm">#define</a> GABORFILTERWIDGET_H<br/>
 <br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-<b><a href="CppTypedef.htm">typedef</a></b>s"<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppScoped_ptr.htm">scoped_ptr</a>.hpp&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppSignals2.htm">signals2</a>.hpp&gt;<br/>
+<a href="CppInclude.htm">#include</a> "<a href="CppWidget.htm">widget</a>.h"<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppWidget.htm">widget</a>.h"<br/>
-<br/>
-<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a> {<br/>
+<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
 <br/>
 <b><a href="CppStruct.htm">struct</a></b> GaborFilter;<br/>
 <br/>
@@ -109,7 +109,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <br/>
 <a href="CppOstream.htm">std::ostream</a>&amp; <b><a href="CppOperatorStreamOut.htm">operator&lt;&lt;</a></b>(<a href="CppOstream.htm">std::ostream</a>&amp; os, <b><a href="CppConst.htm">const</a></b> GaborFilter<a href="CppWidget.htm">Widget</a>&amp; <a href="CppWidget.htm">widget</a>);<br/>
 <br/>
-} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a><br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
 <br/>
 <a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> GABORFILTERWIDGET_H<br/>
 </code></td></tr></table>
@@ -143,9 +143,8 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="CppGaborFilterWidget.htm">CppGaborFilterWidget</a>.htm<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<br/>
-<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-<b><a href="CppTypedef.htm">typedef</a></b>s"<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppGaborFilter.htm">gaborfilter</a><a href="CppWidget.htm">widget</a>.h"<br/>
 <br/>
@@ -155,7 +154,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
 <br/>
-<a href="CppRibi.htm\">ribi</a>::GaborFilter<a href="CppWidget.htm">Widget</a>::GaborFilter<a href="CppWidget.htm">Widget</a>(<br/>
+<a href="CppRibi.htm">ribi</a>::GaborFilter<a href="CppWidget.htm">Widget</a>::GaborFilter<a href="CppWidget.htm">Widget</a>(<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x,<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> y,<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> width,<br/>
@@ -168,19 +167,19 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;SetGeometry(Rect(x,y,width,height));<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppRibi.htm\">ribi</a>::GaborFilter<a href="CppWidget.htm">Widget</a>::Get<a href="CppVersion.htm">Version</a>()<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppRibi.htm">ribi</a>::GaborFilter<a href="CppWidget.htm">Widget</a>::Get<a href="CppVersion.htm">Version</a>()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> "1.0";<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm\">ribi</a>::GaborFilter<a href="CppWidget.htm">Widget</a>::Get<a href="CppVersion.htm">Version</a>History()<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm">ribi</a>::GaborFilter<a href="CppWidget.htm">Widget</a>::Get<a href="CppVersion.htm">Version</a>History()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> {<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;"2012-07-09: <a href="CppVersion.htm">version</a> 1.0: initial <a href="CppVersion.htm">version</a>"<br/>
 &nbsp;&nbsp;};<br/>
 }<br/>
 <br/>
-<a href="CppOstream.htm">std::ostream</a>&amp; <a href="CppRibi.htm\">ribi</a>::<b><a href="CppOperatorStreamOut.htm">operator&lt;&lt;</a></b>(<a href="CppOstream.htm">std::ostream</a>&amp; os, <b><a href="CppConst.htm">const</a></b> GaborFilter<a href="CppWidget.htm">Widget</a>&amp; <a href="CppWidget.htm">widget</a>)<br/>
+<a href="CppOstream.htm">std::ostream</a>&amp; <a href="CppRibi.htm">ribi</a>::<b><a href="CppOperatorStreamOut.htm">operator&lt;&lt;</a></b>(<a href="CppOstream.htm">std::ostream</a>&amp; os, <b><a href="CppConst.htm">const</a></b> GaborFilter<a href="CppWidget.htm">Widget</a>&amp; <a href="CppWidget.htm">widget</a>)<br/>
 {<br/>
 &nbsp;&nbsp;os<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "&lt;GaborFilter<a href="CppWidget.htm">Widget</a>&gt;"<br/>

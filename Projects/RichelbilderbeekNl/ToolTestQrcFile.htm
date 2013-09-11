@@ -359,7 +359,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a>TestQrcFileMainDialog;<br/>
 }<br/>
 <br/>
-<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a> {<br/>
+<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
 <br/>
 <b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a>TestQrcFileMainDialog : <b><a href="CppPublic.htm">public</a></b> <a href="CppQDialog.htm">QDialog</a><br/>
 {<br/>
@@ -381,7 +381,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <br/>
 };<br/>
 <br/>
-} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a><br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
 <br/>
 <a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> QTTESTQRCFILEMAINDIALOG_H<br/>
 </code></td></tr></table>
@@ -430,7 +430,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppInclude.htm">#include</a> "<a href="ToolTestQrcFile.htm">testqrcfile</a>menudialog.h"<br/>
 <a href="CppInclude.htm">#include</a> "ui_qt<a href="ToolTestQrcFile.htm">testqrcfile</a>maindialog.h"<br/>
 <br/>
-<a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a>TestQrcFileMainDialog::<a href="CppQt.htm">Qt</a>TestQrcFileMainDialog(<a href="CppQWidget.htm">QWidget</a> *parent) :<br/>
+<a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>TestQrcFileMainDialog::<a href="CppQt.htm">Qt</a>TestQrcFileMainDialog(<a href="CppQWidget.htm">QWidget</a> *parent) :<br/>
 &nbsp;&nbsp;<a href="CppQDialog.htm">QDialog</a>(parent),<br/>
 &nbsp;&nbsp;ui(<b><a href="CppNew.htm">new</a></b> <a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a>TestQrcFileMainDialog)<br/>
 {<br/>
@@ -439,12 +439,12 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;ui-&gt;edit-&gt;setText("<a href="Tools.htm">Tools</a>/<a href="ToolTestQrcFile.htm">ToolTestQrcFile</a>/<a href="ToolTestQrcFile.htm">ToolTestQrcFile</a>.qrc");<br/>
 }<br/>
 <br/>
-<a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a>TestQrcFileMainDialog::~<a href="CppQt.htm">Qt</a>TestQrcFileMainDialog()<br/>
+<a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>TestQrcFileMainDialog::~<a href="CppQt.htm">Qt</a>TestQrcFileMainDialog()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppDelete.htm">delete</a></b> ui;<br/>
 }<br/>
 <br/>
-<b><a href="CppBool.htm">bool</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a>TestQrcFileMainDialog::IsRegularFile(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; filename)<br/>
+<b><a href="CppBool.htm">bool</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>TestQrcFileMainDialog::IsRegularFile(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; filename)<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppFstream.htm">std::fstream</a> f;<br/>
 &nbsp;&nbsp;f.open(filename.c_str(),<a href="CppStd.htm">std</a>::ios::in);<br/>
@@ -452,7 +452,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 }<br/>
 <br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a>TestQrcFileMainDialog::on_edit_textChanged(<b><a href="CppConst.htm">const</a></b> <a href="CppQString.htm">QString</a> &amp;arg1)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>TestQrcFileMainDialog::on_edit_textChanged(<b><a href="CppConst.htm">const</a></b> <a href="CppQString.htm">QString</a> &amp;arg1)<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> filename <a href="CppOperatorAssign.htm">=</a> <a href="CppString.htm">std::string</a>("../../") <a href="CppOperatorPlus.htm">+</a> arg1.toStdString();<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (!IsRegularFile(filename))<br/>
@@ -511,7 +511,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a>TestQrcFileMenuDialog;<br/>
 }<br/>
 <br/>
-<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a> {<br/>
+<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
 <br/>
 <b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a>TestQrcFileMenuDialog : <b><a href="CppPublic.htm">public</a></b> <a href="CppQDialog.htm">QDialog</a><br/>
 {<br/>
@@ -530,7 +530,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a>TestQrcFileMenuDialog *ui;<br/>
 };<br/>
 <br/>
-} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a><br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
 <br/>
 <a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> QTTESTQRCFILEMENUDIALOG_H<br/>
 </code></td></tr></table>
@@ -574,19 +574,19 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppInclude.htm">#include</a> "<a href="ToolTestQrcFile.htm">testqrcfile</a>menudialog.h"<br/>
 <a href="CppInclude.htm">#include</a> "ui_qt<a href="ToolTestQrcFile.htm">testqrcfile</a>menudialog.h"<br/>
 <br/>
-<a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a>TestQrcFileMenuDialog::<a href="CppQt.htm">Qt</a>TestQrcFileMenuDialog(<a href="CppQWidget.htm">QWidget</a> *parent) :<br/>
+<a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>TestQrcFileMenuDialog::<a href="CppQt.htm">Qt</a>TestQrcFileMenuDialog(<a href="CppQWidget.htm">QWidget</a> *parent) :<br/>
 &nbsp;&nbsp;<a href="CppQDialog.htm">QDialog</a>(parent),<br/>
 &nbsp;&nbsp;ui(<b><a href="CppNew.htm">new</a></b> <a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a>TestQrcFileMenuDialog)<br/>
 {<br/>
 &nbsp;&nbsp;ui-&gt;setupUi(<b><a href="CppThis.htm">this</a></b>);<br/>
 }<br/>
 <br/>
-<a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a>TestQrcFileMenuDialog::~<a href="CppQt.htm">Qt</a>TestQrcFileMenuDialog()<br/>
+<a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>TestQrcFileMenuDialog::~<a href="CppQt.htm">Qt</a>TestQrcFileMenuDialog()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppDelete.htm">delete</a></b> ui;<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a>TestQrcFileMenuDialog::on_button_start_clicked()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>TestQrcFileMenuDialog::on_button_start_clicked()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;hide();<br/>
 &nbsp;&nbsp;<a href="CppQt.htm">Qt</a>TestQrcFileMainDialog d;<br/>
@@ -594,7 +594,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;show();<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a>TestQrcFileMenuDialog::on_button_about_clicked()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>TestQrcFileMenuDialog::on_button_about_clicked()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;hide();<br/>
 &nbsp;&nbsp;<a href="CppAbout.htm">About</a> a <a href="CppOperatorAssign.htm">=</a> TestQrcFileMenuDialog::GetAbout();<br/>
@@ -605,7 +605,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;show();<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a>TestQrcFileMenuDialog::on_button_quit_clicked()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>TestQrcFileMenuDialog::on_button_quit_clicked()<br/>
 {<br/>
 &nbsp;&nbsp;close();<br/>
 }<br/>
@@ -645,7 +645,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppAbout.htm">about</a>.h"<br/>
 <br/>
-<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a> {<br/>
+<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
 <br/>
 <b><a href="CppStruct.htm">struct</a></b> TestQrcFileMenuDialog<br/>
 {<br/>
@@ -663,7 +663,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppVoid.htm">void</a></b> Test();<br/>
 };<br/>
 <br/>
-} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a><br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
 <br/>
 <a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> TESTQRCFILEMENUDIALOG_H<br/>
 </code></td></tr></table>
@@ -697,6 +697,8 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="ToolTestQrcFile.htm">ToolTestQrcFile</a>.htm<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
 <a href="CppInclude.htm">#include</a> "<a href="ToolTestQrcFile.htm">testqrcfile</a>menudialog.h"<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
@@ -706,7 +708,9 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppTrace.htm">trace</a>.h"<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppQrcFile.htm">qrcfile</a>.h"<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppAbout.htm">About</a> <a href="CppRibi.htm\">ribi</a>::TestQrcFileMenuDialog::GetAbout()<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
+<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppAbout.htm">About</a> <a href="CppRibi.htm">ribi</a>::TestQrcFileMenuDialog::GetAbout()<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppAbout.htm">About</a> a(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;"Richel Bilderbeek",<br/>
@@ -723,12 +727,12 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> a;<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppRibi.htm\">ribi</a>::TestQrcFileMenuDialog::Get<a href="CppVersion.htm">Version</a>()<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppRibi.htm">ribi</a>::TestQrcFileMenuDialog::Get<a href="CppVersion.htm">Version</a>()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> "1.1";<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm\">ribi</a>::TestQrcFileMenuDialog::Get<a href="CppVersion.htm">Version</a>History()<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm">ribi</a>::TestQrcFileMenuDialog::Get<a href="CppVersion.htm">Version</a>History()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> {<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;"2012-06-13: <a href="CppVersion.htm">version</a> 1.0: initial <a href="CppVersion.htm">version</a>",<br/>
@@ -736,7 +740,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;};<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::TestQrcFileMenuDialog::Test()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::TestQrcFileMenuDialog::Test()<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Test exactly once<br/>
 &nbsp;&nbsp;{<br/>

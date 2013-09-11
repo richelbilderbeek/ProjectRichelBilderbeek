@@ -74,7 +74,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <b><a href="CppNamespace.htm">namespace</a></b> Ui { <b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a>RichelBilderbeekGalleryDialog; }<br/>
 <b><a href="CppStruct.htm">struct</a></b> <a href="CppQModelIndex.htm">QModelIndex</a>;<br/>
 <br/>
-<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a> {<br/>
+<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
 <br/>
 <b><a href="CppNamespace.htm">namespace</a></b> RichelBilderbeek { <b><a href="CppStruct.htm">struct</a></b> Program; }<br/>
 <br/>
@@ -112,7 +112,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> ShowScreenshot(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> col, <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> row);<br/>
 };<br/>
 <br/>
-} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a><br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
 <br/>
 <a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> QTRICHELBILDERBEEKGALLERYDIALOG_H<br/>
 </code></td></tr></table>
@@ -184,7 +184,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 };<br/>
 <br/>
 <br/>
-<a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a>RichelBilderbeekGalleryDialog::<a href="CppQt.htm">Qt</a>RichelBilderbeekGalleryDialog(<a href="CppQWidget.htm">QWidget</a> *parent) :<br/>
+<a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>RichelBilderbeekGalleryDialog::<a href="CppQt.htm">Qt</a>RichelBilderbeekGalleryDialog(<a href="CppQWidget.htm">QWidget</a> *parent) :<br/>
 &nbsp;&nbsp;<a href="CppQtHideAndShowDialog.htm">QtHideAndShowDialog</a>(parent),<br/>
 &nbsp;&nbsp;ui(<b><a href="CppNew.htm">new</a></b> <a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a>RichelBilderbeekGalleryDialog),<br/>
 &nbsp;&nbsp;m_programs(RichelBilderbeek::Program::GetAllPrograms())<br/>
@@ -287,17 +287,17 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;}<br/>
 }<br/>
 <br/>
-<a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a>RichelBilderbeekGalleryDialog::~<a href="CppQt.htm">Qt</a>RichelBilderbeekGalleryDialog()<br/>
+<a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>RichelBilderbeekGalleryDialog::~<a href="CppQt.htm">Qt</a>RichelBilderbeekGalleryDialog()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppDelete.htm">delete</a></b> ui;<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a>RichelBilderbeekGalleryDialog::Get<a href="CppVersion.htm">Version</a>()<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>RichelBilderbeekGalleryDialog::Get<a href="CppVersion.htm">Version</a>()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> "1.1";<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a>RichelBilderbeekGalleryDialog::Get<a href="CppVersion.htm">Version</a>History()<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>RichelBilderbeekGalleryDialog::Get<a href="CppVersion.htm">Version</a>History()<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v;<br/>
 &nbsp;&nbsp;v.push_back("2012-02-19: <a href="CppVersion.htm">version</a> 1.0: initial <a href="CppVersion.htm">version</a> of <a href="CppQtAboutDialog.htm">QtAboutDialog</a>");<br/>
@@ -305,12 +305,12 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a>RichelBilderbeekGalleryDialog::keyPressEvent(<a href="CppQKeyEvent.htm">QKeyEvent</a>* e)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>RichelBilderbeekGalleryDialog::keyPressEvent(<a href="CppQKeyEvent.htm">QKeyEvent</a>* e)<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (e-&gt;key()&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <a href="CppQt.htm">Qt</a>::Key_Escape) close();<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a>RichelBilderbeekGalleryDialog::on_table_clicked(<b><a href="CppConst.htm">const</a></b> <a href="CppQModelIndex.htm">QModelIndex</a> &amp;index)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>RichelBilderbeekGalleryDialog::on_table_clicked(<b><a href="CppConst.htm">const</a></b> <a href="CppQModelIndex.htm">QModelIndex</a> &amp;index)<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> row <a href="CppOperatorAssign.htm">=</a> index.row();<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (row <a href="CppOperatorMinus.htm">-</a> 1 &lt; 0 <a href="CppOperatorLogicalOr.htm">||</a> row <a href="CppOperatorMinus.htm">-</a> 1 <a href="CppOperatorGreaterEqual.htm">&gt;=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(m_programs.size())) <b><a href="CppReturn.htm">return</a></b>;<br/>
@@ -319,12 +319,12 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;ShowScreenshot(col,row);<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a>RichelBilderbeekGalleryDialog::on_table_cellEntered(<b><a href="CppInt.htm">int</a></b> row, <b><a href="CppInt.htm">int</a></b> column)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>RichelBilderbeekGalleryDialog::on_table_cellEntered(<b><a href="CppInt.htm">int</a></b> row, <b><a href="CppInt.htm">int</a></b> column)<br/>
 {<br/>
 &nbsp;&nbsp;ShowScreenshot(column,row);<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a>RichelBilderbeekGalleryDialog::ShowScreenshot(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> col, <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> row)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>RichelBilderbeekGalleryDialog::ShowScreenshot(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> col, <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> row)<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;RichelBilderbeek::Program&gt;&amp; p <a href="CppOperatorAssign.htm">=</a> m_programs[row <a href="CppOperatorMinus.htm">-</a> 1];<br/>
 &nbsp;&nbsp;<a href="CppString.htm">std::string</a> filename;<br/>
@@ -343,7 +343,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;move( screen.center() <a href="CppOperatorMinus.htm">-</a> <b><a href="CppThis.htm">this</a></b>-&gt;rect().center() );<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a>RichelBilderbeekGalleryDialog::on_table_entered(<b><a href="CppConst.htm">const</a></b> <a href="CppQModelIndex.htm">QModelIndex</a> &amp;index)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>RichelBilderbeekGalleryDialog::on_table_entered(<b><a href="CppConst.htm">const</a></b> <a href="CppQModelIndex.htm">QModelIndex</a> &amp;index)<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> row <a href="CppOperatorAssign.htm">=</a> index.row();<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (row <a href="CppOperatorMinus.htm">-</a> 1 &lt; 0 <a href="CppOperatorLogicalOr.htm">||</a> row <a href="CppOperatorMinus.htm">-</a> 1 <a href="CppOperatorGreaterEqual.htm">&gt;=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(m_programs.size())) <b><a href="CppReturn.htm">return</a></b>;<br/>

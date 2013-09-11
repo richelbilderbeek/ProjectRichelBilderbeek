@@ -108,7 +108,6 @@ It can be played by one, two or three players.</p>
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="GameConnectThreeDesktop.pro" border = "1"><tr><td><code>
-<br/>
 QT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; += core gui<br/>
 greaterThan(QT_MAJOR_VERSION, 4): QT += <a href="CppWidget.htm">widget</a>s<br/>
 <br/>
@@ -272,7 +271,7 @@ win32 {<br/>
 <table summary="GameConnectThreeWebsite.pro" border = "1"><tr><td><code>
 QT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; += core<br/>
 QT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -= gui<br/>
-<a href="CppLIBS.htm">LIBS</a> += <a href="CppWt.htm">-lwt</a> <a href="CppWt.htm">-lwt</a>http <a href="CppFilesystem.htm">-lboost_filesystem</a><br/>
+<a href="CppLIBS.htm">LIBS</a> += <a href="CppWt.htm">-lwt</a> <a href="CppWt.htm">-lwt</a>http <a href="CppFilesystem.htm">-lboost_filesystem</a> <a href="CppBoostSignals.htm">-lboost_signals</a> <a href="CppSystem.htm">-lboost_system</a> <a href="CppProgram_options.htm">-lboost_program_options</a><br/>
 <a href="CppQMAKE_CXXFLAGS.htm">QMAKE_CXXFLAGS</a> += -std=<a href="Cpp11.htm">c++11</a><br/>
 #&nbsp;&nbsp;-DNDEBUG \<br/>
 <br/>
@@ -288,33 +287,37 @@ TEMPLATE = app<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppWtAutoConfig.htm">CppWtAutoConfig</a> \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppWtConnectThreeWidget.htm">CppWtConnectThreeWidget</a><br/>
 <br/>
-<a href="CppSOURCES.htm">SOURCES</a> += wt<a href="CppMain.htm">main</a>.cpp \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;wt<a href="CppConnectThree.htm">connectthree</a>menudialog.cpp \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;wt<a href="CppConnectThree.htm">connectthree</a>gamedialog.cpp \<br/>
+<a href="CppSOURCES.htm">SOURCES</a> += \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppAbout.htm">CppAbout</a>/<a href="CppAbout.htm">about</a>.cpp \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppConnectThree.htm">CppConnectThree</a>/<a href="CppConnectThree.htm">connectthree</a>.cpp \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppWtAboutDialog.htm">CppWtAboutDialog</a>/<a href="CppWtAboutDialog.htm">wtaboutdialog</a>.cpp \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;wtselectplayer<a href="CppWidget.htm">widget</a>.cpp \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppConnectThree.htm">connectthree</a>resources.cpp \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppWtConnectThreeWidget.htm">CppWtConnectThreeWidget</a>/<a href="CppWtConnectThreeWidget.htm">wtconnectthreewidget</a>.cpp \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppWtAutoConfig.htm">CppWtAutoConfig</a>/<a href="CppWtAutoConfig.htm">wtautoconfig</a>.cpp \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppConnectThree.htm">connectthree</a>menudialog.cpp \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppConnectThreeWidget.htm">CppConnectThreeWidget</a>/<a href="CppConnectThree.htm">connectthree</a><a href="CppWidget.htm">widget</a>.cpp \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;wt<a href="CppConnectThree.htm">connectthree</a>resources.cpp<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppWtAboutDialog.htm">CppWtAboutDialog</a>/<a href="CppWtAboutDialog.htm">wtaboutdialog</a>.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppWtAutoConfig.htm">CppWtAutoConfig</a>/<a href="CppWtAutoConfig.htm">wtautoconfig</a>.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppWtConnectThreeWidget.htm">CppWtConnectThreeWidget</a>/<a href="CppWtConnectThreeWidget.htm">wtconnectthreewidget</a>.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppConnectThree.htm">connectthree</a>menudialog.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppConnectThree.htm">connectthree</a>resources.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;wt<a href="CppConnectThree.htm">connectthree</a>gamedialog.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;wt<a href="CppConnectThree.htm">connectthree</a>menudialog.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;wt<a href="CppConnectThree.htm">connectthree</a>resources.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;wt<a href="CppMain.htm">main</a>.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;wtselectplayer<a href="CppWidget.htm">widget</a>.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;qt<a href="CppConnectThree.htm">connectthree</a>resources.cpp<br/>
+<br/>
 <a href="CppHEADERS.htm">HEADERS</a> += \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;wt<a href="CppConnectThree.htm">connectthree</a>menudialog.h \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;wt<a href="CppConnectThree.htm">connectthree</a>gamedialog.h \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppAbout.htm">CppAbout</a>/<a href="CppAbout.htm">about</a>.h \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppConnectThree.htm">CppConnectThree</a>/<a href="CppConnectThree.htm">connectthree</a>.h \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppWtAboutDialog.htm">CppWtAboutDialog</a>/<a href="CppWtAboutDialog.htm">wtaboutdialog</a>.h \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;wtselectplayer<a href="CppWidget.htm">widget</a>.h \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppConnectThree.htm">connectthree</a>resources.h \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppWtAutoConfig.htm">CppWtAutoConfig</a>/<a href="CppWtAutoConfig.htm">wtautoconfig</a>.h \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppConnectThree.htm">connectthree</a>menudialog.h \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppTrace.htm">CppTrace</a>/<a href="CppTrace.htm">trace</a>.h \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppWtConnectThreeWidget.htm">CppWtConnectThreeWidget</a>/<a href="CppWtConnectThreeWidget.htm">wtconnectthreewidget</a>.h \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppConnectThreeWidget.htm">CppConnectThreeWidget</a>/<a href="CppConnectThree.htm">connectthree</a><a href="CppWidget.htm">widget</a>.h \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;wt<a href="CppConnectThree.htm">connectthree</a>resources.h<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppTrace.htm">CppTrace</a>/<a href="CppTrace.htm">trace</a>.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppWtAboutDialog.htm">CppWtAboutDialog</a>/<a href="CppWtAboutDialog.htm">wtaboutdialog</a>.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppWtAutoConfig.htm">CppWtAutoConfig</a>/<a href="CppWtAutoConfig.htm">wtautoconfig</a>.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppWtConnectThreeWidget.htm">CppWtConnectThreeWidget</a>/<a href="CppWtConnectThreeWidget.htm">wtconnectthreewidget</a>.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppConnectThree.htm">connectthree</a>menudialog.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppConnectThree.htm">connectthree</a>resources.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;wt<a href="CppConnectThree.htm">connectthree</a>gamedialog.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;wt<a href="CppConnectThree.htm">connectthree</a>menudialog.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;wt<a href="CppConnectThree.htm">connectthree</a>resources.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;wtselectplayer<a href="CppWidget.htm">widget</a>.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;qt<a href="CppConnectThree.htm">connectthree</a>resources.h<br/>
 <br/>
 <a href="CppRESOURCES.htm">RESOURCES</a> += \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="GameConnectThree.htm">GameConnectThree</a>.qrc<br/>
@@ -357,7 +360,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppAbout.htm">about</a>.h"<br/>
 <br/>
-<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a> {<br/>
+<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
 <br/>
 <a href="CppComment.htm">///</a><br/>
 <b><a href="CppStruct.htm">struct</a></b> <a href="CppConnectThree.htm">ConnectThree</a>MenuDialog<br/>
@@ -367,7 +370,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; Get<a href="CppVersion.htm">Version</a>History();<br/>
 };<br/>
 <br/>
-} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a><br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
 <br/>
 <a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> CONNECTTHREEMENUDIALOG_H<br/>
 </code></td></tr></table>
@@ -411,7 +414,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppAbout.htm">About</a> <a href="CppRibi.htm\">ribi</a>::<a href="CppConnectThree.htm">ConnectThree</a>MenuDialog::GetAbout()<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppAbout.htm">About</a> <a href="CppRibi.htm">ribi</a>::<a href="CppConnectThree.htm">ConnectThree</a>MenuDialog::GetAbout()<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppAbout.htm">About</a> a(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;"Richel Bilderbeek",<br/>
@@ -428,12 +431,12 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> a;<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppRibi.htm\">ribi</a>::<a href="CppConnectThree.htm">ConnectThree</a>MenuDialog::Get<a href="CppVersion.htm">Version</a>()<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppRibi.htm">ribi</a>::<a href="CppConnectThree.htm">ConnectThree</a>MenuDialog::Get<a href="CppVersion.htm">Version</a>()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> "6.5";<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm\">ribi</a>::<a href="CppConnectThree.htm">ConnectThree</a>MenuDialog::Get<a href="CppVersion.htm">Version</a>History()<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm">ribi</a>::<a href="CppConnectThree.htm">ConnectThree</a>MenuDialog::Get<a href="CppVersion.htm">Version</a>History()<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v;<br/>
 &nbsp;&nbsp;v.push_back("2007-xx-xx: <a href="CppVersion.htm">version</a> 1.0: initial <a href="CppVersion.htm">version</a> as part of K3OpEenRij");<br/>
@@ -484,7 +487,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppStringH.htm">string</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
 <br/>
-<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a> {<br/>
+<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
 <br/>
 <a href="CppComment.htm">///</a><a href="CppConnectThree.htm">ConnectThree</a>Resources contains all resources' filenames<br/>
 <a href="CppComment.htm">///</a>and checks that these are present<br/>
@@ -540,7 +543,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> CreateFile(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; s);<br/>
 };<br/>
 <br/>
-} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a><br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
 <br/>
 <a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> CONNECTTHREE<a href="CppRESOURCES.htm">RESOURCES</a>_H<br/>
 </code></td></tr></table>
@@ -574,6 +577,8 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="GameConnectThree.htm">GameConnectThree</a>.htm<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppConnectThree.htm">connectthree</a>resources.h"<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
@@ -584,7 +589,9 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppQFile.htm">QFile</a>&gt;<br/>
 <br/>
-<a href="CppRibi.htm\">ribi</a>::<a href="CppConnectThree.htm">ConnectThree</a>Resources::<a href="CppConnectThree.htm">ConnectThree</a>Resources(<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
+<br/>
+<a href="CppRibi.htm">ribi</a>::<a href="CppConnectThree.htm">ConnectThree</a>Resources::<a href="CppConnectThree.htm">ConnectThree</a>Resources(<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt;&amp; computers_filenames,<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; computer_grey_filename,<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; css,<br/>
@@ -612,7 +619,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;Create();<br/>
 }<br/>
 <br/>
-<a href="CppRibi.htm\">ribi</a>::<a href="CppConnectThree.htm">ConnectThree</a>Resources::~<a href="CppConnectThree.htm">ConnectThree</a>Resources()<br/>
+<a href="CppRibi.htm">ribi</a>::<a href="CppConnectThree.htm">ConnectThree</a>Resources::~<a href="CppConnectThree.htm">ConnectThree</a>Resources()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> filename: m_computers_filenames) { <a href="CppRemove.htm">std::remove</a>(filename.c_str()); }<br/>
 &nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> filename: m_players_filenames) { <a href="CppRemove.htm">std::remove</a>(filename.c_str()); }<br/>
@@ -625,7 +632,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<a href="CppRemove.htm">std::remove</a>(m_instructions_wrong_filename.c_str());<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppConnectThree.htm">ConnectThree</a>Resources::Create()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppConnectThree.htm">ConnectThree</a>Resources::Create()<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>CheckFile(m_background_filename);<br/>
 &nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> filename: m_computers_filenames) { CreateFile(filename); }<br/>
@@ -640,7 +647,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;CreateFile(m_instructions_wrong_filename);<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppConnectThree.htm">ConnectThree</a>Resources::CreateFile(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; s)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppConnectThree.htm">ConnectThree</a>Resources::CreateFile(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; s)<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (!<a href="CppQFile.htm">QFile</a>::exists(s.c_str()))<br/>
 &nbsp;&nbsp;{<br/>
@@ -709,7 +716,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">///</a><a href="CppMain.htm">main</a> only tests the <a href="CppConnectThree.htm">ConnectThree</a> <b><a href="CppClass.htm">class</a></b>.<br/>
 <b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppRibi.htm\">ribi</a>::Test<a href="CppConnectThree.htm">ConnectThree</a>();<br/>
+&nbsp;&nbsp;<a href="CppRibi.htm">ribi</a>::Test<a href="CppConnectThree.htm">ConnectThree</a>();<br/>
 }<br/>
 </code></td></tr></table>
 <!-- end of the code -->
@@ -759,7 +766,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a><a href="CppConnectThree.htm">ConnectThree</a>GameDialog;<br/>
 }<br/>
 <br/>
-<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a> {<br/>
+<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
 <br/>
 <b><a href="CppStruct.htm">struct</a></b> <a href="CppQtConnectThreeWidget.htm">QtConnectThreeWidget</a>;<br/>
 <b><a href="CppStruct.htm">struct</a></b> <a href="CppConnectThree.htm">ConnectThree</a>Resources;<br/>
@@ -791,7 +798,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> OnValidMove();<br/>
 };<br/>
 <br/>
-} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a><br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
 <br/>
 <a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> QTCONNECTTHREEGAMEDIALOG_H<br/>
 </code></td></tr></table>
@@ -841,7 +848,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppInclude.htm">#include</a> "qt<a href="CppConnectThree.htm">connectthree</a><a href="CppWidget.htm">widget</a>.h"<br/>
 <a href="CppInclude.htm">#include</a> "qtshowwinnerdialog.h"<br/>
 <br/>
-<a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppConnectThree.htm">ConnectThree</a>GameDialog::<a href="CppQt.htm">Qt</a><a href="CppConnectThree.htm">ConnectThree</a>GameDialog(<br/>
+<a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppConnectThree.htm">ConnectThree</a>GameDialog::<a href="CppQt.htm">Qt</a><a href="CppConnectThree.htm">ConnectThree</a>GameDialog(<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> <a href="CppConnectThree.htm">ConnectThree</a>Resources&gt; resources,<br/>
 &nbsp;&nbsp;<a href="CppQWidget.htm">QWidget</a> *parent,<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBitset.htm">std::bitset</a>&lt;3&gt;&amp; is_player_human)<br/>
@@ -869,7 +876,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <br/>
 &nbsp;&nbsp;m_board-&gt;m_signal_valid_move.connect(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBind.htm">boost::bind</a>(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;<a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppConnectThree.htm">ConnectThree</a>GameDialog::OnValidMove,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;<a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppConnectThree.htm">ConnectThree</a>GameDialog::OnValidMove,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>));<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Put the dialog in the screen center<br/>
@@ -881,12 +888,12 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;OnValidMove(); <a href="CppComment.htm">//</a>Draw screen<br/>
 }<br/>
 <br/>
-<a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppConnectThree.htm">ConnectThree</a>GameDialog::~<a href="CppQt.htm">Qt</a><a href="CppConnectThree.htm">ConnectThree</a>GameDialog()<br/>
+<a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppConnectThree.htm">ConnectThree</a>GameDialog::~<a href="CppQt.htm">Qt</a><a href="CppConnectThree.htm">ConnectThree</a>GameDialog()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppDelete.htm">delete</a></b> ui;<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppConnectThree.htm">ConnectThree</a>GameDialog::DoComputerTurn()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppConnectThree.htm">ConnectThree</a>GameDialog::DoComputerTurn()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;m_board-&gt;DoComputerTurn();<br/>
 &nbsp;&nbsp;OnValidMove();<br/>
@@ -895,7 +902,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">///</a>OnValidMove is called after a valid move. The game<br/>
 <a href="CppComment.htm">///</a>is either terminated, or the next player can <b><a href="CppDo.htm">do</a></b><br/>
 <a href="CppComment.htm">///</a>his/her move.<br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppConnectThree.htm">ConnectThree</a>GameDialog::OnValidMove()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppConnectThree.htm">ConnectThree</a>GameDialog::OnValidMove()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (m_board-&gt;GetWinner() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <a href="CppConnectThree.htm">ConnectThree</a>::no_player)<br/>
 &nbsp;&nbsp;{<br/>
@@ -997,7 +1004,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a><a href="CppConnectThree.htm">ConnectThree</a>MenuDialog;<br/>
 }<br/>
 <br/>
-<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a> {<br/>
+<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
 <br/>
 <b><a href="CppStruct.htm">struct</a></b> <a href="CppQt.htm">Qt</a>SelectPlayer<a href="CppWidget.htm">Widget</a>;<br/>
 <br/>
@@ -1024,7 +1031,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
 };<br/>
 <br/>
-} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a><br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
 <br/>
 <a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> QTCONNECTTHREEMENUDIALOG_H<br/>
 </code></td></tr></table>
@@ -1071,7 +1078,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppInclude.htm">#include</a> "qtselectplayer<a href="CppWidget.htm">widget</a>.h"<br/>
 <a href="CppInclude.htm">#include</a> "ui_qt<a href="CppConnectThree.htm">connectthree</a>menudialog.h"<br/>
 <br/>
-<a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppConnectThree.htm">ConnectThree</a>MenuDialog::<a href="CppQt.htm">Qt</a><a href="CppConnectThree.htm">ConnectThree</a>MenuDialog(<a href="CppQWidget.htm">QWidget</a> *parent) :<br/>
+<a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppConnectThree.htm">ConnectThree</a>MenuDialog::<a href="CppQt.htm">Qt</a><a href="CppConnectThree.htm">ConnectThree</a>MenuDialog(<a href="CppQWidget.htm">QWidget</a> *parent) :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQDialog.htm">QDialog</a>(parent),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;ui(<b><a href="CppNew.htm">new</a></b> <a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a><a href="CppConnectThree.htm">ConnectThree</a>MenuDialog),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;m_select(<b><a href="CppNew.htm">new</a></b> <a href="CppQt.htm">Qt</a>SelectPlayer<a href="CppWidget.htm">Widget</a>)<br/>
@@ -1084,13 +1091,13 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;ui-&gt;layout_horizontal-&gt;addWidget(m_select.get());<br/>
 }<br/>
 <br/>
-<a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppConnectThree.htm">ConnectThree</a>MenuDialog::~<a href="CppQt.htm">Qt</a><a href="CppConnectThree.htm">ConnectThree</a>MenuDialog()<br/>
+<a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppConnectThree.htm">ConnectThree</a>MenuDialog::~<a href="CppQt.htm">Qt</a><a href="CppConnectThree.htm">ConnectThree</a>MenuDialog()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppDelete.htm">delete</a></b> ui;<br/>
 }<br/>
 <br/>
 <a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppConnectThree.htm">ConnectThree</a>MenuDialog::Test()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppConnectThree.htm">ConnectThree</a>MenuDialog::Test()<br/>
 {<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppBool.htm">bool</a></b> is_tested <a href="CppOperatorAssign.htm">=</a> <b><a href="CppFalse.htm">false</a></b>;<br/>
@@ -1102,7 +1109,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 }<br/>
 <a href="CppEndif.htm">#endif</a><br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppConnectThree.htm">ConnectThree</a>MenuDialog::on_button_start_clicked()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppConnectThree.htm">ConnectThree</a>MenuDialog::on_button_start_clicked()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> <a href="CppConnectThree.htm">ConnectThree</a>Resources&gt; resources(<b><a href="CppNew.htm">new</a></b> <a href="CppQt.htm">Qt</a><a href="CppConnectThree.htm">ConnectThree</a>Resources);<br/>
 &nbsp;&nbsp;<a href="CppQt.htm">Qt</a><a href="CppConnectThree.htm">ConnectThree</a>GameDialog d(resources, <b><a href="CppNullptr.htm">nullptr</a></b>,<b><a href="CppThis.htm">this</a></b>-&gt;m_select-&gt;GetIsPlayerHuman());<br/>
@@ -1113,7 +1120,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;show();<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppConnectThree.htm">ConnectThree</a>MenuDialog::on_button_about_clicked()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppConnectThree.htm">ConnectThree</a>MenuDialog::on_button_about_clicked()<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppAbout.htm">About</a> <a href="CppAbout.htm">about</a> <a href="CppOperatorAssign.htm">=</a> <a href="CppConnectThree.htm">ConnectThree</a>MenuDialog::GetAbout();<br/>
 &nbsp;&nbsp;<a href="CppAbout.htm">about</a>.<a href="CppAdd.htm">Add</a><a href="CppLibrary.htm">Library</a>("<a href="CppQtConnectThreeWidget.htm">QtConnectThreeWidget</a> <a href="CppVersion.htm">version</a>: " <a href="CppOperatorPlus.htm">+</a> <a href="CppQtConnectThreeWidget.htm">QtConnectThreeWidget</a>::Get<a href="CppVersion.htm">Version</a>());<br/>
@@ -1125,7 +1132,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;show();<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppConnectThree.htm">ConnectThree</a>MenuDialog::on_button_quit_clicked()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppConnectThree.htm">ConnectThree</a>MenuDialog::on_button_quit_clicked()<br/>
 {<br/>
 &nbsp;&nbsp;close();<br/>
 }<br/>
@@ -1165,7 +1172,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppConnectThree.htm">connectthree</a>resources.h"<br/>
 <br/>
-<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a> {<br/>
+<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
 <br/>
 <a href="CppComment.htm">///</a><a href="CppQt.htm">Qt</a><a href="CppConnectThree.htm">ConnectThree</a>Resources is a <b><a href="CppClass.htm">class</a></b> containing<br/>
 <a href="CppComment.htm">///</a>all filenames to be used by the program<br/>
@@ -1177,7 +1184,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<a href="CppQt.htm">Qt</a><a href="CppConnectThree.htm">ConnectThree</a>Resources();<br/>
 };<br/>
 <br/>
-} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a><br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
 <br/>
 <a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> QTCONNECTTHREE<a href="CppRESOURCES.htm">RESOURCES</a>_H<br/>
 </code></td></tr></table>
@@ -1215,7 +1222,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
 <br/>
-<a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppConnectThree.htm">ConnectThree</a>Resources::<a href="CppQt.htm">Qt</a><a href="CppConnectThree.htm">ConnectThree</a>Resources()<br/>
+<a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppConnectThree.htm">ConnectThree</a>Resources::<a href="CppQt.htm">Qt</a><a href="CppConnectThree.htm">ConnectThree</a>Resources()<br/>
 &nbsp;&nbsp;: <a href="CppConnectThree.htm">ConnectThree</a>Resources(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"<a href="CppConnectThree.htm">ConnectThree</a>Computer1.png",<br/>
@@ -1293,9 +1300,9 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <br/>
 &nbsp;&nbsp;START_<a href="CppTRACE.htm">TRACE</a>();<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppConnectThree.htm">ConnectThree</a>MenuDialog w;<br/>
+&nbsp;&nbsp;<a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppConnectThree.htm">ConnectThree</a>MenuDialog w;<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppConnectThree.htm">ConnectThree</a>Resources resources;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppConnectThree.htm">ConnectThree</a>Resources resources;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> icon_filename <a href="CppOperatorAssign.htm">=</a> resources.GetIconFilename();<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppQFile.htm">QFile</a>::exists(icon_filename.c_str()));<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;w.setWindowIcon( <a href="CppQIcon.htm">QIcon</a>( <a href="CppQPixmap.htm">QPixmap</a>(icon_filename.c_str())));<br/>
@@ -1342,7 +1349,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppQImage.htm">QImage</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppQWidget.htm">QWidget</a>&gt;<br/>
 <br/>
-<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a> {<br/>
+<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
 <br/>
 <b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a>SelectPlayer<a href="CppWidget.htm">Widget</a> : <b><a href="CppPublic.htm">public</a></b> <a href="CppQWidget.htm">QWidget</a><br/>
 {<br/>
@@ -1372,7 +1379,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> m_sprite_width;<br/>
 };<br/>
 <br/>
-} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a><br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
 <br/>
 <a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> QTSELECTPLAYERWIDGET_H<br/>
 </code></td></tr></table>
@@ -1414,10 +1421,10 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppQPainter.htm">QPainter</a>&gt;<br/>
 <br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a>SelectPlayer<a href="CppWidget.htm">Widget</a>::m_sprite_height <a href="CppOperatorAssign.htm">=</a> 50;<br/>
-<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a>SelectPlayer<a href="CppWidget.htm">Widget</a>::m_sprite_width&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> 50;<br/>
+<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>SelectPlayer<a href="CppWidget.htm">Widget</a>::m_sprite_height <a href="CppOperatorAssign.htm">=</a> 50;<br/>
+<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>SelectPlayer<a href="CppWidget.htm">Widget</a>::m_sprite_width&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> 50;<br/>
 <br/>
-<a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a>SelectPlayer<a href="CppWidget.htm">Widget</a>::<a href="CppQt.htm">Qt</a>SelectPlayer<a href="CppWidget.htm">Widget</a>(<a href="CppQWidget.htm">QWidget</a> *parent)<br/>
+<a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>SelectPlayer<a href="CppWidget.htm">Widget</a>::<a href="CppQt.htm">Qt</a>SelectPlayer<a href="CppWidget.htm">Widget</a>(<a href="CppQWidget.htm">QWidget</a> *parent)<br/>
 &nbsp;&nbsp;: <a href="CppQWidget.htm">QWidget</a>(parent),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;m_player1(":/images/<a href="CppConnectThree.htm">ConnectThree</a>Player1.png"),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;m_player1_grey(":/images/<a href="CppConnectThree.htm">ConnectThree</a>Player1Grey.png"),<br/>
@@ -1440,7 +1447,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;setMaximumHeight(3 * m_sprite_height);<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a>SelectPlayer<a href="CppWidget.htm">Widget</a>::mousePressEvent(<a href="CppQMouseEvent.htm">QMouseEvent</a> * e)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>SelectPlayer<a href="CppWidget.htm">Widget</a>::mousePressEvent(<a href="CppQMouseEvent.htm">QMouseEvent</a> * e)<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> mouse_x <a href="CppOperatorAssign.htm">=</a> e-&gt;x();<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> mouse_y <a href="CppOperatorAssign.htm">=</a> e-&gt;y();<br/>
@@ -1450,7 +1457,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;repaint();<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a>SelectPlayer<a href="CppWidget.htm">Widget</a>::paintEvent(<a href="CppQPaintEvent.htm">QPaintEvent</a> *)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>SelectPlayer<a href="CppWidget.htm">Widget</a>::paintEvent(<a href="CppQPaintEvent.htm">QPaintEvent</a> *)<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppQPainter.htm">QPainter</a> painter(<b><a href="CppThis.htm">this</a></b>);<br/>
 &nbsp;&nbsp;painter.drawImage(0 * m_sprite_width,0 * m_sprite_height,m_is_player_human[0] ? m_player1 : m_player1_grey);<br/>
@@ -1502,7 +1509,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a>ShowWinnerDialog;<br/>
 }<br/>
 <br/>
-<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a> {<br/>
+<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
 <br/>
 <b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a>ShowWinnerDialog : <b><a href="CppPublic.htm">public</a></b> <a href="CppQDialog.htm">QDialog</a><br/>
 {<br/>
@@ -1523,7 +1530,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a>ShowWinnerDialog *ui;<br/>
 };<br/>
 <br/>
-} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a><br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
 <br/>
 <a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> QTSHOWWINNERDIALOG_H<br/>
 </code></td></tr></table>
@@ -1563,7 +1570,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> "ui_qtshowwinnerdialog.h"<br/>
 <br/>
-<a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a>ShowWinnerDialog::<a href="CppQt.htm">Qt</a>ShowWinnerDialog(<br/>
+<a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>ShowWinnerDialog::<a href="CppQt.htm">Qt</a>ShowWinnerDialog(<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; filename,<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; winner_text,<br/>
 &nbsp;&nbsp;<a href="CppQWidget.htm">QWidget</a> *parent)<br/>
@@ -1577,12 +1584,12 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;setWindowFlags(<a href="CppQt.htm">Qt</a>::WindowStaysOnTopH<b><a href="CppInt.htm">int</a></b>);<br/>
 }<br/>
 <br/>
-<a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a>ShowWinnerDialog::~<a href="CppQt.htm">Qt</a>ShowWinnerDialog()<br/>
+<a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>ShowWinnerDialog::~<a href="CppQt.htm">Qt</a>ShowWinnerDialog()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppDelete.htm">delete</a></b> ui;<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a>ShowWinnerDialog::keyPressEvent(<a href="CppQKeyEvent.htm">QKeyEvent</a> * e)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>ShowWinnerDialog::keyPressEvent(<a href="CppQKeyEvent.htm">QKeyEvent</a> * e)<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (e-&gt;key() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <a href="CppQt.htm">Qt</a>::Key_Escape) { close(); <b><a href="CppReturn.htm">return</a></b>; }<br/>
 }<br/>
@@ -1633,7 +1640,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <br/>
-<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a> {<br/>
+<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
 <br/>
 <b><a href="CppStruct.htm">struct</a></b> <a href="CppWtConnectThreeWidget.htm">WtConnectThreeWidget</a>;<br/>
 <b><a href="CppStruct.htm">struct</a></b> <a href="CppConnectThree.htm">ConnectThree</a>Resources;<br/>
@@ -1670,7 +1677,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> UpdatePlayersPanel();<br/>
 };<br/>
 <br/>
-} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a><br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
 <br/>
 <a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> WTCONNECTTHREEGAMEDIALOG_H<br/>
 </code></td></tr></table>
@@ -1719,7 +1726,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppRibi.htm\">ribi</a>::<a href="CppWt.htm">Wt</a><a href="CppConnectThree.htm">ConnectThree</a>GameDialog::<a href="CppWt.htm">Wt</a><a href="CppConnectThree.htm">ConnectThree</a>GameDialog(<br/>
+<a href="CppRibi.htm">ribi</a>::<a href="CppWt.htm">Wt</a><a href="CppConnectThree.htm">ConnectThree</a>GameDialog::<a href="CppWt.htm">Wt</a><a href="CppConnectThree.htm">ConnectThree</a>GameDialog(<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> <a href="CppConnectThree.htm">ConnectThree</a>Resources&gt; resources,<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBitset.htm">std::bitset</a>&lt;3&gt;&amp; is_player_human)<br/>
 &nbsp;&nbsp;: m_is_player_human(is_player_human),<br/>
@@ -1732,7 +1739,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <br/>
 &nbsp;&nbsp;m_<a href="CppTime.htm">time</a>r-&gt;<a href="CppTime.htm">time</a>out().connect(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&amp;<a href="CppRibi.htm\">ribi</a>::<a href="CppWt.htm">Wt</a><a href="CppConnectThree.htm">ConnectThree</a>GameDialog::DoComputerTurn);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&amp;<a href="CppRibi.htm">ribi</a>::<a href="CppWt.htm">Wt</a><a href="CppConnectThree.htm">ConnectThree</a>GameDialog::DoComputerTurn);<br/>
 &nbsp;&nbsp;m_<a href="CppTime.htm">time</a>r-&gt;setInterval(100);<br/>
 <br/>
 <br/>
@@ -1740,12 +1747,12 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>OnValidMove(); <a href="CppComment.htm">//</a>Draw screen<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppRibi.htm\">ribi</a>::<a href="CppWt.htm">Wt</a><a href="CppConnectThree.htm">ConnectThree</a>GameDialog::~<a href="CppWt.htm">Wt</a><a href="CppConnectThree.htm">ConnectThree</a>GameDialog()<br/>
+<a href="CppRibi.htm">ribi</a>::<a href="CppWt.htm">Wt</a><a href="CppConnectThree.htm">ConnectThree</a>GameDialog::~<a href="CppWt.htm">Wt</a><a href="CppConnectThree.htm">ConnectThree</a>GameDialog()<br/>
 {<br/>
 &nbsp;&nbsp;m_<a href="CppTime.htm">time</a>r-&gt;stop();<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppWt.htm">Wt</a><a href="CppConnectThree.htm">ConnectThree</a>GameDialog::DoComputerTurn()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppWt.htm">Wt</a><a href="CppConnectThree.htm">ConnectThree</a>GameDialog::DoComputerTurn()<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(m_board);<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (m_board-&gt;IsComputerTurn()<br/>
@@ -1759,7 +1766,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">///</a>OnValidMove is called after a valid move. The game<br/>
 <a href="CppComment.htm">///</a>is either terminated, or the next player can <b><a href="CppDo.htm">do</a></b><br/>
 <a href="CppComment.htm">///</a>his/her move.<br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppWt.htm">Wt</a><a href="CppConnectThree.htm">ConnectThree</a>GameDialog::OnValidMove()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppWt.htm">Wt</a><a href="CppConnectThree.htm">ConnectThree</a>GameDialog::OnValidMove()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (m_board-&gt;GetWinner() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <a href="CppConnectThree.htm">ConnectThree</a>::no_player)<br/>
 &nbsp;&nbsp;{<br/>
@@ -1771,7 +1778,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;ShowWinner();<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppWt.htm">Wt</a><a href="CppConnectThree.htm">ConnectThree</a>GameDialog::RestartGame()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppWt.htm">Wt</a><a href="CppConnectThree.htm">ConnectThree</a>GameDialog::RestartGame()<br/>
 {<br/>
 &nbsp;&nbsp;m_state <a href="CppOperatorAssign.htm">=</a> state_playing;<br/>
 &nbsp;&nbsp;ShowGame();<br/>
@@ -1781,7 +1788,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;Start<a href="CppTime.htm">Time</a>r();<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppWt.htm">Wt</a><a href="CppConnectThree.htm">ConnectThree</a>GameDialog::SetIsPlayerHuman(<b><a href="CppConst.htm">const</a></b> <a href="CppBitset.htm">std::bitset</a>&lt;3&gt;&amp; is_player_human)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppWt.htm">Wt</a><a href="CppConnectThree.htm">ConnectThree</a>GameDialog::SetIsPlayerHuman(<b><a href="CppConst.htm">const</a></b> <a href="CppBitset.htm">std::bitset</a>&lt;3&gt;&amp; is_player_human)<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (m_is_player_human <a href="CppOperatorNotEqual.htm">!=</a> is_player_human)<br/>
 &nbsp;&nbsp;{<br/>
@@ -1793,14 +1800,14 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;}<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppWt.htm">Wt</a><a href="CppConnectThree.htm">ConnectThree</a>GameDialog::ShowGame()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppWt.htm">Wt</a><a href="CppConnectThree.htm">ConnectThree</a>GameDialog::ShowGame()<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(m_state <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> state_playing);<br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;clear();<br/>
 &nbsp;&nbsp;m_board <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppWtConnectThreeWidget.htm">WtConnectThreeWidget</a>(m_resources,m_is_player_human,16,8);<br/>
 &nbsp;&nbsp;m_board-&gt;m_signal_valid_move.connect(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBind.htm">boost::bind</a>(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;<a href="CppRibi.htm\">ribi</a>::<a href="CppWt.htm">Wt</a><a href="CppConnectThree.htm">ConnectThree</a>GameDialog::OnValidMove,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;<a href="CppRibi.htm">ribi</a>::<a href="CppWt.htm">Wt</a><a href="CppConnectThree.htm">ConnectThree</a>GameDialog::OnValidMove,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>));<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(m_board);<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(m_board-&gt;GetWinner() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <a href="CppConnectThree.htm">ConnectThree</a>::no_player);<br/>
@@ -1828,7 +1835,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;UpdatePlayersPanel();<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppWt.htm">Wt</a><a href="CppConnectThree.htm">ConnectThree</a>GameDialog::ShowWinner()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppWt.htm">Wt</a><a href="CppConnectThree.htm">ConnectThree</a>GameDialog::ShowWinner()<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(m_state <a href="CppOperatorAssign.htm">=</a> state_winner);<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(m_board-&gt;GetWinner() <a href="CppOperatorNotEqual.htm">!=</a> <a href="CppConnectThree.htm">ConnectThree</a>::no_player);<br/>
@@ -1867,7 +1874,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppBreak.htm">break</a></b>;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppDefault.htm">default</a></b>:<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!"Should not get here");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThrow.htm">throw</a></b> <a href="CppLogic_error.htm">std::logic_error</a>("Known value of GetCurrentPlayer in <a href="CppRibi.htm\">ribi</a>::<a href="CppWt.htm">Wt</a><a href="CppConnectThree.htm">ConnectThree</a>GameDialog::OnValidMove");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThrow.htm">throw</a></b> <a href="CppLogic_error.htm">std::logic_error</a>("Known value of GetCurrentPlayer in <a href="CppRibi.htm">ribi</a>::<a href="CppWt.htm">Wt</a><a href="CppConnectThree.htm">ConnectThree</a>GameDialog::OnValidMove");<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;addWidget(winner);<br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;addWidget(<b><a href="CppNew.htm">new</a></b> <a href="CppWBreak.htm">Wt::WBreak</a>);<br/>
@@ -1881,11 +1888,11 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppWPushButton.htm">Wt::WPushButton</a> * <b><a href="CppConst.htm">const</a></b> button(<b><a href="CppNew.htm">new</a></b> <a href="CppWPushButton.htm">Wt::WPushButton</a>("Restart",<b><a href="CppThis.htm">this</a></b>));<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;button-&gt;clicked().connect(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;<a href="CppRibi.htm\">ribi</a>::<a href="CppWt.htm">Wt</a><a href="CppConnectThree.htm">ConnectThree</a>GameDialog::RestartGame);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;<a href="CppRibi.htm">ribi</a>::<a href="CppWt.htm">Wt</a><a href="CppConnectThree.htm">ConnectThree</a>GameDialog::RestartGame);<br/>
 &nbsp;&nbsp;}<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppWt.htm">Wt</a><a href="CppConnectThree.htm">ConnectThree</a>GameDialog::UpdatePlayersPanel()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppWt.htm">Wt</a><a href="CppConnectThree.htm">ConnectThree</a>GameDialog::UpdatePlayersPanel()<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(m_board);<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(m_players.size() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 3);<br/>
@@ -1921,12 +1928,12 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;}<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppWt.htm">Wt</a><a href="CppConnectThree.htm">ConnectThree</a>GameDialog::<a href="ToolPause.htm">Pause</a><a href="CppTime.htm">Time</a>r()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppWt.htm">Wt</a><a href="CppConnectThree.htm">ConnectThree</a>GameDialog::<a href="ToolPause.htm">Pause</a><a href="CppTime.htm">Time</a>r()<br/>
 {<br/>
 &nbsp;&nbsp;m_<a href="CppTime.htm">time</a>r-&gt;stop();<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppWt.htm">Wt</a><a href="CppConnectThree.htm">ConnectThree</a>GameDialog::Start<a href="CppTime.htm">Time</a>r()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppWt.htm">Wt</a><a href="CppConnectThree.htm">ConnectThree</a>GameDialog::Start<a href="CppTime.htm">Time</a>r()<br/>
 {<br/>
 &nbsp;&nbsp;m_<a href="CppTime.htm">time</a>r-&gt;start();<br/>
 }<br/>
@@ -1978,7 +1985,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppStruct.htm">struct</a></b> <a href="CppWWidget.htm">WWidget</a>;<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a> {<br/>
+<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
 <br/>
 <b><a href="CppStruct.htm">struct</a></b> WtSelectPlayer<a href="CppWidget.htm">Widget</a>;<br/>
 <b><a href="CppStruct.htm">struct</a></b> <a href="CppWtAboutDialog.htm">WtAboutDialog</a>;<br/>
@@ -2005,7 +2012,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> <a href="CppConnectThree.htm">ConnectThree</a>Resources&gt; m_resources;<br/>
 };<br/>
 <br/>
-} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a><br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
 <br/>
 <a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> WTCONNECTTHREEMENUDIALOG_H<br/>
 </code></td></tr></table>
@@ -2064,13 +2071,13 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppInclude.htm">#include</a> "qt<a href="CppConnectThree.htm">connectthree</a>resources.h"<br/>
 <a href="CppInclude.htm">#include</a> "wtselectplayer<a href="CppWidget.htm">widget</a>.h"<br/>
 <br/>
-<a href="CppRibi.htm\">ribi</a>::<a href="CppWt.htm">Wt</a><a href="CppConnectThree.htm">ConnectThree</a>MenuDialog::<a href="CppWt.htm">Wt</a><a href="CppConnectThree.htm">ConnectThree</a>MenuDialog()<br/>
-&nbsp;&nbsp;: <a href="CppRibi.htm\">ribi</a>::<a href="CppWt.htm">Wt</a><a href="CppConnectThree.htm">ConnectThree</a>MenuDialog(<a href="CppRibi.htm\">ribi</a>::<a href="CppWt.htm">Wt</a><a href="CppConnectThree.htm">ConnectThree</a>MenuDialog::CreateResources())<br/>
+<a href="CppRibi.htm">ribi</a>::<a href="CppWt.htm">Wt</a><a href="CppConnectThree.htm">ConnectThree</a>MenuDialog::<a href="CppWt.htm">Wt</a><a href="CppConnectThree.htm">ConnectThree</a>MenuDialog()<br/>
+&nbsp;&nbsp;: <a href="CppRibi.htm">ribi</a>::<a href="CppWt.htm">Wt</a><a href="CppConnectThree.htm">ConnectThree</a>MenuDialog(<a href="CppRibi.htm">ribi</a>::<a href="CppWt.htm">Wt</a><a href="CppConnectThree.htm">ConnectThree</a>MenuDialog::CreateResources())<br/>
 {<br/>
 <br/>
 }<br/>
 <br/>
-<a href="CppRibi.htm\">ribi</a>::<a href="CppWt.htm">Wt</a><a href="CppConnectThree.htm">ConnectThree</a>MenuDialog::<a href="CppWt.htm">Wt</a><a href="CppConnectThree.htm">ConnectThree</a>MenuDialog(<br/>
+<a href="CppRibi.htm">ribi</a>::<a href="CppWt.htm">Wt</a><a href="CppConnectThree.htm">ConnectThree</a>MenuDialog::<a href="CppWt.htm">Wt</a><a href="CppConnectThree.htm">ConnectThree</a>MenuDialog(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> <a href="CppConnectThree.htm">ConnectThree</a>Resources&gt; resources<br/>
 &nbsp;&nbsp;)<br/>
 &nbsp;&nbsp;: m_select(<b><a href="CppNew.htm">new</a></b> WtSelectPlayer<a href="CppWidget.htm">Widget</a>(resources)),<br/>
@@ -2121,15 +2128,15 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Display contents below menu<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;addWidget(contents);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;m_menu-&gt;itemSelected().connect(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>,&amp;<a href="CppRibi.htm\">ribi</a>::<a href="CppWt.htm">Wt</a><a href="CppConnectThree.htm">ConnectThree</a>MenuDialog::OnMenuItemChanged);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>,&amp;<a href="CppRibi.htm">ribi</a>::<a href="CppWt.htm">Wt</a><a href="CppConnectThree.htm">ConnectThree</a>MenuDialog::OnMenuItemChanged);<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;m_select-&gt;m_signal_on_clicked.connect(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBind.htm">boost::bind</a>(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;<a href="CppRibi.htm\">ribi</a>::<a href="CppWt.htm">Wt</a><a href="CppConnectThree.htm">ConnectThree</a>MenuDialog::OnSelectClicked,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;<a href="CppRibi.htm">ribi</a>::<a href="CppWt.htm">Wt</a><a href="CppConnectThree.htm">ConnectThree</a>MenuDialog::OnSelectClicked,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>));<br/>
 }<br/>
 <br/>
-<a href="CppRibi.htm\">ribi</a>::<a href="CppWtAboutDialog.htm">WtAboutDialog</a> * <a href="CppRibi.htm\">ribi</a>::<a href="CppWt.htm">Wt</a><a href="CppConnectThree.htm">ConnectThree</a>MenuDialog::CreateNew<a href="CppAbout.htm">About</a>Dialog()<br/>
+<a href="CppRibi.htm">ribi</a>::<a href="CppWtAboutDialog.htm">WtAboutDialog</a> * <a href="CppRibi.htm">ribi</a>::<a href="CppWt.htm">Wt</a><a href="CppConnectThree.htm">ConnectThree</a>MenuDialog::CreateNew<a href="CppAbout.htm">About</a>Dialog()<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppAbout.htm">About</a> a <a href="CppOperatorAssign.htm">=</a> <a href="CppConnectThree.htm">ConnectThree</a>MenuDialog::GetAbout();<br/>
 &nbsp;&nbsp;a.<a href="CppAdd.htm">Add</a><a href="CppLibrary.htm">Library</a>("<a href="CppWtConnectThreeWidget.htm">WtConnectThreeWidget</a> <a href="CppVersion.htm">version</a>: " <a href="CppOperatorPlus.htm">+</a> <a href="CppWtConnectThreeWidget.htm">WtConnectThreeWidget</a>::Get<a href="CppVersion.htm">Version</a>());<br/>
@@ -2138,7 +2145,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> d;<br/>
 }<br/>
 <br/>
-<a href="CppRibi.htm\">ribi</a>::<a href="CppWt.htm">Wt</a><a href="CppConnectThree.htm">ConnectThree</a>GameDialog * <a href="CppRibi.htm\">ribi</a>::<a href="CppWt.htm">Wt</a><a href="CppConnectThree.htm">ConnectThree</a>MenuDialog::CreateNewGameDialog()<br/>
+<a href="CppRibi.htm">ribi</a>::<a href="CppWt.htm">Wt</a><a href="CppConnectThree.htm">ConnectThree</a>GameDialog * <a href="CppRibi.htm">ribi</a>::<a href="CppWt.htm">Wt</a><a href="CppConnectThree.htm">ConnectThree</a>MenuDialog::CreateNewGameDialog()<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(m_select);<br/>
 &nbsp;&nbsp;m_game <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppWt.htm">Wt</a><a href="CppConnectThree.htm">ConnectThree</a>GameDialog(m_resources,m_select-&gt;GetIsPlayerHuman());<br/>
@@ -2146,7 +2153,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> m_game;<br/>
 }<br/>
 <br/>
-<a href="CppWWidget.htm">Wt::WWidget</a> * <a href="CppRibi.htm\">ribi</a>::<a href="CppWt.htm">Wt</a><a href="CppConnectThree.htm">ConnectThree</a>MenuDialog::CreateNewSelectPlayersDialog()<br/>
+<a href="CppWWidget.htm">Wt::WWidget</a> * <a href="CppRibi.htm">ribi</a>::<a href="CppWt.htm">Wt</a><a href="CppConnectThree.htm">ConnectThree</a>MenuDialog::CreateNewSelectPlayersDialog()<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppWContainerWidget.htm">Wt::WContainerWidget</a> * dialog <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppWContainerWidget.htm">Wt::WContainerWidget</a>;<br/>
 &nbsp;&nbsp;dialog-&gt;setContentAlignment(<a href="CppWt.htm">Wt</a>::AlignCenter);<br/>
@@ -2155,7 +2162,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> dialog;<br/>
 }<br/>
 <br/>
-<a href="CppWWidget.htm">Wt::WWidget</a> * <a href="CppRibi.htm\">ribi</a>::<a href="CppWt.htm">Wt</a><a href="CppConnectThree.htm">ConnectThree</a>MenuDialog::CreateNewWelcomeDialog() <b><a href="CppConst.htm">const</a></b><br/>
+<a href="CppWWidget.htm">Wt::WWidget</a> * <a href="CppRibi.htm">ribi</a>::<a href="CppWt.htm">Wt</a><a href="CppConnectThree.htm">ConnectThree</a>MenuDialog::CreateNewWelcomeDialog() <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppWContainerWidget.htm">Wt::WContainerWidget</a> * dialog <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppWContainerWidget.htm">Wt::WContainerWidget</a>;<br/>
 &nbsp;&nbsp;dialog-&gt;setContentAlignment(<a href="CppWt.htm">Wt</a>::AlignCenter);<br/>
@@ -2187,7 +2194,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> dialog;<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppConnectThree.htm">ConnectThree</a>Resources&gt; <a href="CppRibi.htm\">ribi</a>::<a href="CppWt.htm">Wt</a><a href="CppConnectThree.htm">ConnectThree</a>MenuDialog::CreateResources()<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppConnectThree.htm">ConnectThree</a>Resources&gt; <a href="CppRibi.htm">ribi</a>::<a href="CppWt.htm">Wt</a><a href="CppConnectThree.htm">ConnectThree</a>MenuDialog::CreateResources()<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> <a href="CppConnectThree.htm">ConnectThree</a>Resources&gt; r {<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppNew.htm">new</a></b> <a href="CppQt.htm">Qt</a><a href="CppConnectThree.htm">ConnectThree</a>Resources()<br/>
@@ -2196,7 +2203,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> r;<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppWt.htm">Wt</a><a href="CppConnectThree.htm">ConnectThree</a>MenuDialog::OnMenuItemChanged()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppWt.htm">Wt</a><a href="CppConnectThree.htm">ConnectThree</a>MenuDialog::OnMenuItemChanged()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (m_menu-&gt;currentItem()-&gt;text() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> "Start")<br/>
 &nbsp;&nbsp;{<br/>
@@ -2220,7 +2227,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;}<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppWt.htm">Wt</a><a href="CppConnectThree.htm">ConnectThree</a>MenuDialog::OnSelectClicked()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppWt.htm">Wt</a><a href="CppConnectThree.htm">ConnectThree</a>MenuDialog::OnSelectClicked()<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(m_game);<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (m_game-&gt;HasWinner())<br/>
@@ -2283,7 +2290,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;setTitle("<a href="CppConnectThree.htm">ConnectThree</a>");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;useStyleSheet("wt.css");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;root()-&gt;addWidget(<b><a href="CppNew.htm">new</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppWt.htm">Wt</a><a href="CppConnectThree.htm">ConnectThree</a>MenuDialog);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;root()-&gt;addWidget(<b><a href="CppNew.htm">new</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppWt.htm">Wt</a><a href="CppConnectThree.htm">ConnectThree</a>MenuDialog);<br/>
 &nbsp;&nbsp;}<br/>
 };<br/>
 <br/>
@@ -2294,8 +2301,8 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <br/>
 <b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>(<b><a href="CppInt.htm">int</a></b> <a href="CppArgc.htm">argc</a>, <b><a href="CppChar.htm">char</a></b> **<a href="CppArgc.htm">argv</a>)<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppRibi.htm\">ribi</a>::<a href="CppWtAutoConfig.htm">WtAutoConfig</a> a(<a href="CppArgc.htm">argc</a>,<a href="CppArgc.htm">argv</a>,create<a href="CppApplication.htm">Application</a>);<br/>
-&nbsp;&nbsp;<a href="CppRibi.htm\">ribi</a>::<a href="CppWtAutoConfig.htm">WtAutoConfig</a>::SaveDefaultStylesheet();<br/>
+&nbsp;&nbsp;<a href="CppRibi.htm">ribi</a>::<a href="CppWtAutoConfig.htm">WtAutoConfig</a> a(<a href="CppArgc.htm">argc</a>,<a href="CppArgc.htm">argv</a>,create<a href="CppApplication.htm">Application</a>);<br/>
+&nbsp;&nbsp;<a href="CppRibi.htm">ribi</a>::<a href="CppWtAutoConfig.htm">WtAutoConfig</a>::SaveDefaultStylesheet();<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> a.Run();<br/>
 }<br/>
 </code></td></tr></table>
@@ -2346,7 +2353,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppConnectThree.htm">connectthree</a>resources.h"<br/>
 <br/>
-<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a> {<br/>
+<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
 <br/>
 <b><a href="CppStruct.htm">struct</a></b> WtSelectPlayer<a href="CppWidget.htm">Widget</a> : <b><a href="CppPublic.htm">public</a></b> <a href="CppWPaintedWidget.htm">Wt::WPaintedWidget</a><br/>
 {<br/>
@@ -2368,7 +2375,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppConst.htm">const</a></b> <a href="CppWPainter.htm">Wt::WPainter</a>::Image *&gt; m_players_grey;<br/>
 };<br/>
 <br/>
-} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a><br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
 <br/>
 <a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> WTSELECTPLAYERWIDGET_H<br/>
 </code></td></tr></table>
@@ -2414,7 +2421,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">///</a>Yes, naming the filename twice feels dumb, but<br/>
 <a href="CppComment.htm">///</a>I could not find enough <a href="CppDocumentation.htm">documentation</a> <a href="CppAbout.htm">about</a><br/>
 <a href="CppComment.htm">///</a>how I should use the <a href="CppWPainter.htm">Wt::WPainter</a>::Image <a href="CppConstructor.htm">constructor</a><br/>
-<a href="CppRibi.htm\">ribi</a>::WtSelectPlayer<a href="CppWidget.htm">Widget</a>::WtSelectPlayer<a href="CppWidget.htm">Widget</a>(<br/>
+<a href="CppRibi.htm">ribi</a>::WtSelectPlayer<a href="CppWidget.htm">Widget</a>::WtSelectPlayer<a href="CppWidget.htm">Widget</a>(<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> <a href="CppConnectThree.htm">ConnectThree</a>Resources&gt; resources)<br/>
 &nbsp;&nbsp;: m_computer_grey(<b><a href="CppNew.htm">new</a></b> <a href="CppWPainter.htm">Wt::WPainter</a>::Image(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;resources-&gt;GetComputerGreyFilename(),<br/>
@@ -2479,11 +2486,11 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> sprite_height <a href="CppOperatorAssign.htm">=</a> m_computer_grey-&gt;height();<br/>
 <br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;resize(2 * sprite_width,3 * sprite_height);<br/>
-&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;mouseWentDown().connect(<b><a href="CppThis.htm">this</a></b>, &amp;<a href="CppRibi.htm\">ribi</a>::WtSelectPlayer<a href="CppWidget.htm">Widget</a>::OnClick);<br/>
+&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;mouseWentDown().connect(<b><a href="CppThis.htm">this</a></b>, &amp;<a href="CppRibi.htm">ribi</a>::WtSelectPlayer<a href="CppWidget.htm">Widget</a>::OnClick);<br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;update();<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::WtSelectPlayer<a href="CppWidget.htm">Widget</a>::OnClick(<b><a href="CppConst.htm">const</a></b> <a href="CppWMouseEvent.htm">Wt::WMouseEvent</a>&amp; e)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::WtSelectPlayer<a href="CppWidget.htm">Widget</a>::OnClick(<b><a href="CppConst.htm">const</a></b> <a href="CppWMouseEvent.htm">Wt::WMouseEvent</a>&amp; e)<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> sprite_width&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> m_computer_grey-&gt;width();<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> sprite_height <a href="CppOperatorAssign.htm">=</a> m_computer_grey-&gt;height();<br/>
@@ -2497,7 +2504,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;update();<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::WtSelectPlayer<a href="CppWidget.htm">Widget</a>::paintEvent(<a href="CppWPaintDevice.htm">Wt::WPaintDevice</a> *paintDevice)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::WtSelectPlayer<a href="CppWidget.htm">Widget</a>::paintEvent(<a href="CppWPaintDevice.htm">Wt::WPaintDevice</a> *paintDevice)<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppWPainter.htm">Wt::WPainter</a> painter(paintDevice);<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> sprite_width&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> m_computer_grey-&gt;width();<br/>

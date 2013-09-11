@@ -81,7 +81,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppDial.htm">dial</a>.h" <a href="CppComment.htm">//</a>For MOC<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppDialWidget.htm">dialwidget</a>.h" <a href="CppComment.htm">//</a>For MOC<br/>
 <br/>
-<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a> {<br/>
+<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
 <br/>
 <a href="CppComment.htm">///</a><a href="CppQtDialWidget.htm">QtDialWidget</a> manages and displays a <a href="CppDial.htm">Dial</a><br/>
 <b><a href="CppClass.htm">class</a></b> <a href="CppQtDialWidget.htm">QtDialWidget</a> : <b><a href="CppPublic.htm">public</a></b> <a href="CppQWidget.htm">QWidget</a><br/>
@@ -118,7 +118,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; Get<a href="CppVersion.htm">Version</a>History();<br/>
 };<br/>
 <br/>
-} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a><br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
 <br/>
 <a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> QTDIALWIDGET_H<br/>
 </code></td></tr></table>
@@ -170,23 +170,23 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
 <br/>
-<a href="CppRibi.htm\">ribi</a>::<a href="CppQtDialWidget.htm">QtDialWidget</a>::<a href="CppQtDialWidget.htm">QtDialWidget</a>(<a href="CppQWidget.htm">QWidget</a> *parent)<br/>
+<a href="CppRibi.htm">ribi</a>::<a href="CppQtDialWidget.htm">QtDialWidget</a>::<a href="CppQtDialWidget.htm">QtDialWidget</a>(<a href="CppQWidget.htm">QWidget</a> *parent)<br/>
 &nbsp;&nbsp;: <a href="CppQWidget.htm">QWidget</a>(parent),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;m_<a href="CppWidget.htm">widget</a>(<b><a href="CppNew.htm">new</a></b> <a href="CppDialWidget.htm">DialWidget</a>)<br/>
 {<br/>
 <br/>
 &nbsp;&nbsp;m_<a href="CppWidget.htm">widget</a>-&gt;GetDial()-&gt;m_signal_color_changed.connect(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBind.htm">boost::bind</a>(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;<a href="CppRibi.htm\">ribi</a>::<a href="CppQtDialWidget.htm">QtDialWidget</a>::OnDialChanged,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;<a href="CppRibi.htm">ribi</a>::<a href="CppQtDialWidget.htm">QtDialWidget</a>::OnDialChanged,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>));<br/>
 <br/>
 &nbsp;&nbsp;m_<a href="CppWidget.htm">widget</a>-&gt;GetDial()-&gt;m_signal_position_changed.connect(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBind.htm">boost::bind</a>(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;<a href="CppRibi.htm\">ribi</a>::<a href="CppQtDialWidget.htm">QtDialWidget</a>::OnDialChanged,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;<a href="CppRibi.htm">ribi</a>::<a href="CppQtDialWidget.htm">QtDialWidget</a>::OnDialChanged,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>));<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQtDialWidget.htm">QtDialWidget</a>::DrawDial(<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQtDialWidget.htm">QtDialWidget</a>::DrawDial(<br/>
 &nbsp;&nbsp;<a href="CppQPainter.htm">QPainter</a>&amp; painter,<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppDialWidget.htm">DialWidget</a> * <b><a href="CppConst.htm">const</a></b> <a href="CppWidget.htm">widget</a>)<br/>
 {<br/>
@@ -199,7 +199,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppWidget.htm">widget</a>-&gt;GetDial());<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQtDialWidget.htm">QtDialWidget</a>::DrawDial(<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQtDialWidget.htm">QtDialWidget</a>::DrawDial(<br/>
 &nbsp;&nbsp;<a href="CppQPainter.htm">QPainter</a>&amp; painter,<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> left, <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> top,<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> width, <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> height,<br/>
@@ -242,12 +242,12 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;painter.setPen(initial_pen);<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppRibi.htm\">ribi</a>::<a href="CppQtDialWidget.htm">QtDialWidget</a>::Get<a href="CppVersion.htm">Version</a>()<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppRibi.htm">ribi</a>::<a href="CppQtDialWidget.htm">QtDialWidget</a>::Get<a href="CppVersion.htm">Version</a>()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> "2.1";<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm\">ribi</a>::<a href="CppQtDialWidget.htm">QtDialWidget</a>::Get<a href="CppVersion.htm">Version</a>History()<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm">ribi</a>::<a href="CppQtDialWidget.htm">QtDialWidget</a>::Get<a href="CppVersion.htm">Version</a>History()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> {<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;"2011-04-11: <a href="CppVersion.htm">Version</a> 1.0: initial <a href="CppVersion.htm">version</a>",<br/>
@@ -257,24 +257,24 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;};<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQtDialWidget.htm">QtDialWidget</a>::mousePressEvent(<a href="CppQMouseEvent.htm">QMouseEvent</a> * e)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQtDialWidget.htm">QtDialWidget</a>::mousePressEvent(<a href="CppQMouseEvent.htm">QMouseEvent</a> * e)<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(e);<br/>
 &nbsp;&nbsp;m_<a href="CppWidget.htm">widget</a>-&gt;Click(e-&gt;x(),e-&gt;y());<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQtDialWidget.htm">QtDialWidget</a>::OnDialChanged()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQtDialWidget.htm">QtDialWidget</a>::OnDialChanged()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;repaint();<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQtDialWidget.htm">QtDialWidget</a>::paintEvent(<a href="CppQPaintEvent.htm">QPaintEvent</a> *)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQtDialWidget.htm">QtDialWidget</a>::paintEvent(<a href="CppQPaintEvent.htm">QPaintEvent</a> *)<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppQPainter.htm">QPainter</a> painter(<b><a href="CppThis.htm">this</a></b>);<br/>
 &nbsp;&nbsp;DrawDial(painter,0,0,width(),height(),<b><a href="CppThis.htm">this</a></b>-&gt;m_<a href="CppWidget.htm">widget</a>-&gt;GetDial());<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQtDialWidget.htm">QtDialWidget</a>::resizeEvent(<a href="CppQResizeEvent.htm">QResizeEvent</a> *)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQtDialWidget.htm">QtDialWidget</a>::resizeEvent(<a href="CppQResizeEvent.htm">QResizeEvent</a> *)<br/>
 {<br/>
 &nbsp;&nbsp;m_<a href="CppWidget.htm">widget</a>-&gt;SetGeometry(Rect(0,0,width(),height()));<br/>
 }<br/>

@@ -121,11 +121,7 @@ CONFIG(release, debug|release) {<br/>
 # Compiler flags<br/>
 #<br/>
 #<br/>
-<a href="CppQMAKE_CXXFLAGS.htm">QMAKE_CXXFLAGS</a> += -std=<a href="Cpp11.htm">c++11</a> <a href="CppWall.htm">-Wall</a> <a href="CppWextra.htm">-Wextra</a><br/>
-<br/>
-unix {<br/>
-&nbsp;&nbsp;<a href="CppQMAKE_CXXFLAGS.htm">QMAKE_CXXFLAGS</a> += <a href="CppWerror.htm">-Werror</a><br/>
-}<br/>
+<a href="CppQMAKE_CXXFLAGS.htm">QMAKE_CXXFLAGS</a> += -std=<a href="Cpp11.htm">c++11</a> <a href="CppWall.htm">-Wall</a> <a href="CppWextra.htm">-Wextra</a> <a href="CppWeffcpp.htm">-Weffc++</a> <a href="CppWerror.htm">-Werror</a><br/>
 <br/>
 #<br/>
 #<br/>
@@ -174,26 +170,26 @@ TEMPLATE = app<br/>
 <a href="CppSOURCES.htm">SOURCES</a> += \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppAbout.htm">CppAbout</a>/<a href="CppAbout.htm">about</a>.cpp \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/CppApproximator/approximator.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/CppApproximator/exceptionnoextrapolation.cpp \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppQtAboutDialog.htm">CppQtAboutDialog</a>/<a href="CppQtAboutDialog.htm">qtaboutdialog</a>.cpp \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppQtHideAndShowDialog.htm">CppQtHideAndShowDialog</a>/<a href="CppQtHideAndShowDialog.htm">qthideandshowdialog</a>.cpp \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;qt<a href="CppMain.htm">main</a>.cpp \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;tooltestapproximatormenudialog.cpp \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;qttooltestapproximatormenudialog.cpp \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/CppApproximator/exceptionnoextrapolation.cpp \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;qttooltestapproximatorxy<a href="CppMain.htm">main</a>dialog.cpp \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;qttooltestapproximatorxyz<a href="CppMain.htm">main</a>dialog.cpp<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;qttooltestapproximatorxyz<a href="CppMain.htm">main</a>dialog.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;tooltestapproximatormenudialog.cpp<br/>
 <br/>
 <a href="CppHEADERS.htm">HEADERS</a> += \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppAbout.htm">CppAbout</a>/<a href="CppAbout.htm">about</a>.h \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/CppApproximator/approximator.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/CppApproximator/exceptionnoextrapolation.h \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppQtAboutDialog.htm">CppQtAboutDialog</a>/<a href="CppQtAboutDialog.htm">qtaboutdialog</a>.h \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppQtHideAndShowDialog.htm">CppQtHideAndShowDialog</a>/<a href="CppQtHideAndShowDialog.htm">qthideandshowdialog</a>.h \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppTrace.htm">CppTrace</a>/<a href="CppTrace.htm">trace</a>.h \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;qttooltestapproximatormenudialog.h \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;tooltestapproximatormenudialog.h \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/CppApproximator/exceptionnoextrapolation.h \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;qttooltestapproximatorxy<a href="CppMain.htm">main</a>dialog.h \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;qttooltestapproximatorxyz<a href="CppMain.htm">main</a>dialog.h<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;qttooltestapproximatorxyz<a href="CppMain.htm">main</a>dialog.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;tooltestapproximatormenudialog.h<br/>
 <br/>
 <a href="CppFORMS.htm">FORMS</a> += \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppQtAboutDialog.htm">CppQtAboutDialog</a>/<a href="CppQtAboutDialog.htm">qtaboutdialog</a>.ui \<br/>
@@ -206,8 +202,8 @@ OTHER_FILES += \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/CppApproximator/Licence.txt \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;Licence.txt<br/>
 <br/>
-#<a href="CppRESOURCES.htm">RESOURCES</a> += \<br/>
-#&nbsp;&nbsp;&nbsp;&nbsp;ToolTestApproximatorFilterer.qrc<br/>
+<a href="CppRESOURCES.htm">RESOURCES</a> += \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;ToolTestApproximator.qrc<br/>
 <br/>
 #<br/>
 #<br/>
@@ -237,14 +233,10 @@ CONFIG(release, debug|release) {<br/>
 # Compiler flags<br/>
 #<br/>
 #<br/>
-<a href="CppQMAKE_CXXFLAGS.htm">QMAKE_CXXFLAGS</a> += -std=<a href="Cpp11.htm">c++11</a> <a href="CppWall.htm">-Wall</a> <a href="CppWextra.htm">-Wextra</a><br/>
 <br/>
-&nbsp;&nbsp;<a href="CppQMAKE_CXXFLAGS.htm">QMAKE_CXXFLAGS</a> += <a href="CppWerror.htm">-Werror</a><br/>
+#Cannot add <a href="CppWeffcpp.htm">-Weffc++</a> due to use of Qt resources<br/>
+<a href="CppQMAKE_CXXFLAGS.htm">QMAKE_CXXFLAGS</a> += -std=<a href="Cpp11.htm">c++11</a> <a href="CppWall.htm">-Wall</a> <a href="CppWextra.htm">-Wextra</a> <a href="CppWerror.htm">-Werror</a><br/>
 <br/>
-unix {<br/>
-&nbsp;&nbsp;message(Unix)<br/>
-&nbsp;&nbsp;<a href="CppQMAKE_CXXFLAGS.htm">QMAKE_CXXFLAGS</a> += <a href="CppWerror.htm">-Werror</a><br/>
-}<br/>
 <br/>
 #<br/>
 #<br/>
@@ -252,24 +244,9 @@ unix {<br/>
 #<br/>
 #<br/>
 <br/>
-unix {<br/>
-&nbsp;&nbsp;# Cannot link to the the non-header-only libraries when crosscompiling<br/>
-}<br/>
-<br/>
 win32 {<br/>
-<br/>
-&nbsp;&nbsp;cross_compile {<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;message(Lubuntu to Windows: Boost: link)<br/>
-&nbsp;&nbsp;}<br/>
-<br/>
-&nbsp;&nbsp;!cross_compile {<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;message(Native Windows: Boost: include)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppINCLUDEPATH.htm">INCLUDEPATH</a> += \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/boost_1_54_0<br/>
-&nbsp;&nbsp;}<br/>
-<br/>
-<br/>
-&nbsp;&nbsp;# Cannot link to the the non-header-only libraries when crosscompiling<br/>
+&nbsp;&nbsp;<a href="CppINCLUDEPATH.htm">INCLUDEPATH</a> += \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/boost_1_54_0<br/>
 }<br/>
 <br/>
 #<br/>
@@ -312,9 +289,6 @@ win32 {<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;}<br/>
 }<br/>
-<br/>
-<a href="CppRESOURCES.htm">RESOURCES</a> += \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;ToolTestApproximator.qrc<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -327,6 +301,7 @@ win32 {<br/>
 <!-- start of code -->
 <table summary="main.cpp" border = "1"><tr><td><code>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-<b><a href="CppTypedef.htm">typedef</a></b>s"<br/>
 <a href="CppInclude.htm">#include</a> "approximator.h"<br/>
 <a href="CppInclude.htm">#include</a> "canvas.h"<br/>
@@ -346,7 +321,7 @@ win32 {<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppTypedef.htm">typedef</a></b> <a href="CppUnits.htm">boost::units</a>::quantity&lt;<a href="CppUnits.htm">boost::units</a>::si::<a href="CppTime.htm">time</a>&gt; <a href="CppTime.htm">Time</a>;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppTypedef.htm">typedef</a></b> <a href="CppUnits.htm">boost::units</a>::quantity&lt;<a href="CppUnits.htm">boost::units</a>::si::velocity&gt; Velocity;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppRibi.htm\">ribi</a>::Approximator&lt;<a href="CppTime.htm">Time</a>,Velocity&gt; a;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppRibi.htm">ribi</a>::Approximator&lt;<a href="CppTime.htm">Time</a>,Velocity&gt; a;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;a.<a href="CppAdd.htm">Add</a>(0.0 * <a href="CppUnits.htm">boost::units</a>::si::second,0.0 * <a href="CppUnits.htm">boost::units</a>::si::meters_per_second);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;a.<a href="CppAdd.htm">Add</a>(2.0 * <a href="CppUnits.htm">boost::units</a>::si::second,2.0 * <a href="CppUnits.htm">boost::units</a>::si::meters_per_second);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Velocity v <a href="CppOperatorAssign.htm">=</a> a.Approximate(1.0 * <a href="CppUnits.htm">boost::units</a>::si::second);<br/>
@@ -354,7 +329,7 @@ win32 {<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> v <a href="CppOperatorLessEqual.htm">&lt;=</a> 1.01 * <a href="CppUnits.htm">boost::units</a>::si::meters_per_second);<br/>
 &nbsp;&nbsp;}<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppTypedef.htm">typedef</a></b> <a href="CppRibi.htm\">ribi</a>::Approximator&lt;<b><a href="CppDouble.htm">double</a></b>,<b><a href="CppInt.htm">int</a></b>&gt; Approximator_t;<br/>
+&nbsp;&nbsp;<b><a href="CppTypedef.htm">typedef</a></b> <a href="CppRibi.htm">ribi</a>::Approximator&lt;<b><a href="CppDouble.htm">double</a></b>,<b><a href="CppInt.htm">int</a></b>&gt; Approximator_t;<br/>
 &nbsp;&nbsp;Approximator_t a;<br/>
 &nbsp;&nbsp;a.<a href="CppAdd.htm">Add</a>(20, 5);<br/>
 &nbsp;&nbsp;a.<a href="CppAdd.htm">Add</a>(30,15);<br/>
@@ -363,7 +338,7 @@ win32 {<br/>
 <br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> max_x <a href="CppOperatorAssign.htm">=</a> 78;<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> max_y <a href="CppOperatorAssign.htm">=</a> 20;<br/>
-&nbsp;&nbsp;<a href="CppRibi.htm\">ribi</a>::Canvas c(max_x,max_y,<a href="CppRibi.htm\">ribi</a>::Canvas::ColorSystem::invert,<a href="CppRibi.htm\">ribi</a>::Canvas::CoordinatSystem::graph);<br/>
+&nbsp;&nbsp;<a href="CppRibi.htm">ribi</a>::Canvas c(max_x,max_y,<a href="CppRibi.htm">ribi</a>::Canvas::ColorSystem::invert,<a href="CppRibi.htm">ribi</a>::Canvas::CoordinatSystem::graph);<br/>
 &nbsp;&nbsp;c.DrawLine(0.0,0.0,max_x,0.0);<br/>
 &nbsp;&nbsp;c.DrawLine(0.0,0.0,0.0,max_y);<br/>
 <br/>
@@ -390,7 +365,7 @@ win32 {<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> y <a href="CppOperatorAssign.htm">=</a> a.Approximate(x);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;c.DrawDot(x,y);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCatch.htm">catch</a></b> (<a href="CppRibi.htm\">ribi</a>::<a href="CppException.htm">Exception</a>NoExtrapolation&lt;Approximator_t::key_type&gt;&amp; e)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCatch.htm">catch</a></b> (<a href="CppRibi.htm">ribi</a>::<a href="CppException.htm">Exception</a>NoExtrapolation&lt;Approximator_t::key_type&gt;&amp; e)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>X value not in range. OK not to plot then...<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
@@ -461,17 +436,21 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="Tools.htm">Tool</a>TestApproximator.htm<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppQApplication.htm">QApplication</a>&gt;<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> "qt<a href="Tools.htm">tool</a>testapproximatormenudialog.h"<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppTrace.htm">trace</a>.h"<br/>
+<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
 <br/>
 <b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>(<b><a href="CppInt.htm">int</a></b> <a href="CppArgc.htm">argc</a>, <b><a href="CppChar.htm">char</a></b> *<a href="CppArgc.htm">argv</a>[])<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppQApplication.htm">QApplication</a> a(<a href="CppArgc.htm">argc</a>, <a href="CppArgc.htm">argv</a>);<br/>
 &nbsp;&nbsp;START_<a href="CppTRACE.htm">TRACE</a>();<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>a.setStyleSheet(CreateStyleSheet().c_str());<br/>
-&nbsp;&nbsp;<a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="Tools.htm">Tool</a>TestApproximatorMenuDialog d;<br/>
+&nbsp;&nbsp;<a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="Tools.htm">Tool</a>TestApproximatorMenuDialog d;<br/>
 &nbsp;&nbsp;d.show();<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> a.exec();<br/>
 }<br/>
@@ -489,13 +468,16 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppIfndef.htm">#ifndef</a> QTTOOLTESTAPPROXIMATORMENUDIALOG_H<br/>
 <a href="CppDefine.htm">#define</a> QTTOOLTESTAPPROXIMATORMENUDIALOG_H<br/>
 <br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppQtHideAndShowDialog.htm">qthideandshowdialog</a>.h"<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
 <br/>
 <b><a href="CppNamespace.htm">namespace</a></b> Ui {<br/>
 &nbsp;&nbsp;<b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a><a href="Tools.htm">Tool</a>TestApproximatorMenuDialog;<br/>
 }<br/>
 <br/>
-<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a> {<br/>
+<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
 <br/>
 <b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a><a href="Tools.htm">Tool</a>TestApproximatorMenuDialog : <b><a href="CppPublic.htm">public</a></b> <a href="CppQtHideAndShowDialog.htm">QtHideAndShowDialog</a><br/>
 {<br/>
@@ -522,7 +504,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
 };<br/>
 <br/>
-} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a><br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
 <br/>
 <a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> QTTOOLTESTAPPROXIMATORMENUDIALOG_H<br/>
 </code></td></tr></table>
@@ -536,8 +518,8 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="qttooltestapproximatormenudialog.cpp" border = "1"><tr><td><code>
-<a href="CppComment.htm">//</a><a href="CppInclude.htm">#include</a> own <a href="CppHeaderFile.htm">header file</a> as first substantive line of code, from:<br/>
-<a href="CppComment.htm">//</a> * John Lakos. Large-Scale <a href="Cpp.htm">C++</a> Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
 <a href="CppInclude.htm">#include</a> "qt<a href="Tools.htm">tool</a>testapproximatormenudialog.h"<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppQDesktopWidget.htm">QDesktopWidget</a>&gt;<br/>
@@ -550,7 +532,9 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppTrace.htm">trace</a>.h"<br/>
 <a href="CppInclude.htm">#include</a> "ui_qt<a href="Tools.htm">tool</a>testapproximatormenudialog.h"<br/>
 <br/>
-<a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="Tools.htm">Tool</a>TestApproximatorMenuDialog::<a href="CppQt.htm">Qt</a><a href="Tools.htm">Tool</a>TestApproximatorMenuDialog(<a href="CppQWidget.htm">QWidget</a> *parent) :<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
+<br/>
+<a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="Tools.htm">Tool</a>TestApproximatorMenuDialog::<a href="CppQt.htm">Qt</a><a href="Tools.htm">Tool</a>TestApproximatorMenuDialog(<a href="CppQWidget.htm">QWidget</a> *parent) :<br/>
 &nbsp;&nbsp;<a href="CppQtHideAndShowDialog.htm">QtHideAndShowDialog</a>(parent),<br/>
 &nbsp;&nbsp;ui(<b><a href="CppNew.htm">new</a></b> <a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a><a href="Tools.htm">Tool</a>TestApproximatorMenuDialog)<br/>
 {<br/>
@@ -560,17 +544,17 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;ui-&gt;setupUi(<b><a href="CppThis.htm">this</a></b>);<br/>
 }<br/>
 <br/>
-<a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="Tools.htm">Tool</a>TestApproximatorMenuDialog::~<a href="CppQt.htm">Qt</a><a href="Tools.htm">Tool</a>TestApproximatorMenuDialog()<br/>
+<a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="Tools.htm">Tool</a>TestApproximatorMenuDialog::~<a href="CppQt.htm">Qt</a><a href="Tools.htm">Tool</a>TestApproximatorMenuDialog()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppDelete.htm">delete</a></b> ui;<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="Tools.htm">Tool</a>TestApproximatorMenuDialog::keyPressEvent(<a href="CppQKeyEvent.htm">QKeyEvent</a> * event)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="Tools.htm">Tool</a>TestApproximatorMenuDialog::keyPressEvent(<a href="CppQKeyEvent.htm">QKeyEvent</a> * event)<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (event-&gt;key() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <a href="CppQt.htm">Qt</a>::Key_Escape) { close(); <b><a href="CppReturn.htm">return</a></b>; }<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="Tools.htm">Tool</a>TestApproximatorMenuDialog::on_button_about_clicked()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="Tools.htm">Tool</a>TestApproximatorMenuDialog::on_button_about_clicked()<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppAbout.htm">About</a> a <a href="CppOperatorAssign.htm">=</a> <a href="Tools.htm">Tool</a>TestApproximatorMenuDialog::GetAbout();<br/>
 &nbsp;&nbsp;a.<a href="CppAdd.htm">Add</a><a href="CppLibrary.htm">Library</a>("<a href="CppQtHideAndShowDialog.htm">QtHideAndShowDialog</a> <a href="CppVersion.htm">version</a>: " <a href="CppOperatorPlus.htm">+</a> <a href="CppQtHideAndShowDialog.htm">QtHideAndShowDialog</a>::Get<a href="CppVersion.htm">Version</a>());<br/>
@@ -582,35 +566,35 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;show();<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="Tools.htm">Tool</a>TestApproximatorMenuDialog::on_button_quit_clicked()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="Tools.htm">Tool</a>TestApproximatorMenuDialog::on_button_quit_clicked()<br/>
 {<br/>
 &nbsp;&nbsp;close();<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="Tools.htm">Tool</a>TestApproximatorMenuDialog::on_button_start_xy_clicked()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="Tools.htm">Tool</a>TestApproximatorMenuDialog::on_button_start_xy_clicked()<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppQt.htm">Qt</a><a href="Tools.htm">Tool</a>TestApproximatorXyMainDialog d;<br/>
 &nbsp;&nbsp;ShowChild(&amp;d);<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="Tools.htm">Tool</a>TestApproximatorMenuDialog::on_button_start_xyz_clicked()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="Tools.htm">Tool</a>TestApproximatorMenuDialog::on_button_start_xyz_clicked()<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppQt.htm">Qt</a><a href="Tools.htm">Tool</a>TestApproximatorXyzMainDialog d;<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>ShowChild(&amp;d);<br/>
 }<br/>
 <br/>
 <a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="Tools.htm">Tool</a>TestApproximatorMenuDialog::Test()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="Tools.htm">Tool</a>TestApproximatorMenuDialog::Test()<br/>
 {<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppBool.htm">bool</a></b> is_tested <a href="CppOperatorAssign.htm">=</a> <b><a href="CppFalse.htm">false</a></b>;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (is_tested) <b><a href="CppReturn.htm">return</a></b>;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;is_tested <a href="CppOperatorAssign.htm">=</a> <b><a href="CppTrue.htm">true</a></b>;<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("Starting <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="Tools.htm">Tool</a>TestApproximatorMenuDialog::Test");<br/>
+&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("Starting <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="Tools.htm">Tool</a>TestApproximatorMenuDialog::Test");<br/>
 &nbsp;&nbsp;<a href="CppQt.htm">Qt</a><a href="Tools.htm">Tool</a>TestApproximatorXyMainDialog();<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppQt.htm">Qt</a><a href="Tools.htm">Tool</a>TestApproximatorMainXyzDialog();<br/>
-&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("Finished <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="Tools.htm">Tool</a>TestApproximatorMenuDialog::Test successfully");<br/>
+&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("Finished <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="Tools.htm">Tool</a>TestApproximatorMenuDialog::Test successfully");<br/>
 }<br/>
 <a href="CppEndif.htm">#endif</a><br/>
 </code></td></tr></table>
@@ -627,9 +611,12 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppIfndef.htm">#ifndef</a> QTTOOLTESTAPPROXIMATORMAINDIALOG_H<br/>
 <a href="CppDefine.htm">#define</a> QTTOOLTESTAPPROXIMATORMAINDIALOG_H<br/>
 <br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppShared_ptr.htm">shared_ptr</a>.hpp&gt;<br/>
 <a href="CppInclude.htm">#include</a> "approximator.h"<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppQtHideAndShowDialog.htm">qthideandshowdialog</a>.h"<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
 <br/>
 <b><a href="CppStruct.htm">struct</a></b> QwtPlot;<br/>
 <b><a href="CppStruct.htm">struct</a></b> QwtPlotCurve;<br/>
@@ -638,7 +625,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a><a href="Tools.htm">Tool</a>TestApproximatorXyMainDialog;<br/>
 }<br/>
 <br/>
-<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a> {<br/>
+<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
 <br/>
 <b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a><a href="Tools.htm">Tool</a>TestApproximatorXyMainDialog : <b><a href="CppPublic.htm">public</a></b> <a href="CppQtHideAndShowDialog.htm">QtHideAndShowDialog</a><br/>
 {<br/>
@@ -673,7 +660,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> Plot();<br/>
 };<br/>
 <br/>
-} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a><br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
 <br/>
 <a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> QTTOOLTESTAPPROXIMATORMAINDIALOG_H<br/>
 </code></td></tr></table>
@@ -687,6 +674,8 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="qttooltestapproximatorxymaindialog.cpp" border = "1"><tr><td><code>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
 <a href="CppInclude.htm">#include</a> "qt<a href="Tools.htm">tool</a>testapproximatorxymaindialog.h"<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
@@ -703,7 +692,9 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> "ui_qt<a href="Tools.htm">tool</a>testapproximatorxymaindialog.h"<br/>
 <br/>
-<a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="Tools.htm">Tool</a>TestApproximatorXyMainDialog::<a href="CppQt.htm">Qt</a><a href="Tools.htm">Tool</a>TestApproximatorXyMainDialog(<a href="CppQWidget.htm">QWidget</a> *parent) :<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
+<br/>
+<a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="Tools.htm">Tool</a>TestApproximatorXyMainDialog::<a href="CppQt.htm">Qt</a><a href="Tools.htm">Tool</a>TestApproximatorXyMainDialog(<a href="CppQWidget.htm">QWidget</a> *parent) :<br/>
 &nbsp;&nbsp;<a href="CppQtHideAndShowDialog.htm">QtHideAndShowDialog</a>(parent),<br/>
 &nbsp;&nbsp;ui(<b><a href="CppNew.htm">new</a></b> <a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a><a href="Tools.htm">Tool</a>TestApproximatorXyMainDialog),<br/>
 &nbsp;&nbsp;m_approximator(),<br/>
@@ -788,12 +779,12 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;ui-&gt;box_<b><a href="CppDouble.htm">double</a></b>_y-&gt;setValue(0.0);<br/>
 }<br/>
 <br/>
-<a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="Tools.htm">Tool</a>TestApproximatorXyMainDialog::~<a href="CppQt.htm">Qt</a><a href="Tools.htm">Tool</a>TestApproximatorXyMainDialog()<br/>
+<a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="Tools.htm">Tool</a>TestApproximatorXyMainDialog::~<a href="CppQt.htm">Qt</a><a href="Tools.htm">Tool</a>TestApproximatorXyMainDialog()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppDelete.htm">delete</a></b> ui;<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="Tools.htm">Tool</a>TestApproximatorXyMainDialog::on_button_clicked()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="Tools.htm">Tool</a>TestApproximatorXyMainDialog::on_button_clicked()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x <a href="CppOperatorAssign.htm">=</a> ui-&gt;box_int_x-&gt;value();<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> y <a href="CppOperatorAssign.htm">=</a> ui-&gt;box_<b><a href="CppDouble.htm">double</a></b>_y-&gt;value();<br/>
@@ -804,21 +795,21 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;Plot();<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="Tools.htm">Tool</a>TestApproximatorXyMainDialog::on_box_int_x_valueChanged(<b><a href="CppInt.htm">int</a></b>)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="Tools.htm">Tool</a>TestApproximatorXyMainDialog::on_box_int_x_valueChanged(<b><a href="CppInt.htm">int</a></b>)<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x <a href="CppOperatorAssign.htm">=</a> ui-&gt;box_int_x-&gt;value();<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> y <a href="CppOperatorAssign.htm">=</a> ui-&gt;box_<b><a href="CppDouble.htm">double</a></b>_y-&gt;value();<br/>
 &nbsp;&nbsp;ui-&gt;button-&gt;setEnabled( m_approximator.Can<a href="CppAdd.htm">Add</a>(x,y) );<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="Tools.htm">Tool</a>TestApproximatorXyMainDialog::on_box_<b><a href="CppDouble.htm">double</a></b>_y_valueChanged(<b><a href="CppDouble.htm">double</a></b>)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="Tools.htm">Tool</a>TestApproximatorXyMainDialog::on_box_<b><a href="CppDouble.htm">double</a></b>_y_valueChanged(<b><a href="CppDouble.htm">double</a></b>)<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x <a href="CppOperatorAssign.htm">=</a> ui-&gt;box_int_x-&gt;value();<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> y <a href="CppOperatorAssign.htm">=</a> ui-&gt;box_<b><a href="CppDouble.htm">double</a></b>_y-&gt;value();<br/>
 &nbsp;&nbsp;ui-&gt;button-&gt;setEnabled( m_approximator.Can<a href="CppAdd.htm">Add</a>(x,y) );<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="Tools.htm">Tool</a>TestApproximatorXyMainDialog::Plot()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="Tools.htm">Tool</a>TestApproximatorXyMainDialog::Plot()<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Plot approximation<br/>
 &nbsp;&nbsp;{<br/>
@@ -882,9 +873,12 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppIfndef.htm">#ifndef</a> QTTOOLTESTAPPROXIMATORMAINDIALOG_H<br/>
 <a href="CppDefine.htm">#define</a> QTTOOLTESTAPPROXIMATORMAINDIALOG_H<br/>
 <br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppShared_ptr.htm">shared_ptr</a>.hpp&gt;<br/>
 <a href="CppInclude.htm">#include</a> "approximator.h"<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppQtHideAndShowDialog.htm">qthideandshowdialog</a>.h"<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
 <br/>
 <b><a href="CppStruct.htm">struct</a></b> QwtPlot;<br/>
 <b><a href="CppStruct.htm">struct</a></b> QwtPlotCurve;<br/>
@@ -893,7 +887,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a><a href="Tools.htm">Tool</a>TestApproximatorXyzMainDialog;<br/>
 }<br/>
 <br/>
-<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a> {<br/>
+<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
 <br/>
 <b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a><a href="Tools.htm">Tool</a>TestApproximatorXyzMainDialog : <b><a href="CppPublic.htm">public</a></b> <a href="CppQtHideAndShowDialog.htm">QtHideAndShowDialog</a><br/>
 {<br/>
@@ -933,7 +927,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> Plot();<br/>
 };<br/>
 <br/>
-} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a><br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
 <br/>
 <a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> QTTOOLTESTAPPROXIMATORMAINDIALOG_H<br/>
 </code></td></tr></table>
@@ -947,6 +941,9 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="qttooltestapproximatorxyzmaindialog.cpp" border = "1"><tr><td><code>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
+<br/>
 <a href="CppInclude.htm">#include</a> "qt<a href="Tools.htm">tool</a>testapproximatorxyzmaindialog.h"<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
@@ -963,7 +960,9 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> "ui_qt<a href="Tools.htm">tool</a>testapproximatorxyzmaindialog.h"<br/>
 <br/>
-<a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="Tools.htm">Tool</a>TestApproximatorXyzMainDialog::<a href="CppQt.htm">Qt</a><a href="Tools.htm">Tool</a>TestApproximatorXyzMainDialog(<a href="CppQWidget.htm">QWidget</a> *parent) :<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
+<br/>
+<a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="Tools.htm">Tool</a>TestApproximatorXyzMainDialog::<a href="CppQt.htm">Qt</a><a href="Tools.htm">Tool</a>TestApproximatorXyzMainDialog(<a href="CppQWidget.htm">QWidget</a> *parent) :<br/>
 &nbsp;&nbsp;<a href="CppQtHideAndShowDialog.htm">QtHideAndShowDialog</a>(parent),<br/>
 &nbsp;&nbsp;ui(<b><a href="CppNew.htm">new</a></b> <a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a><a href="Tools.htm">Tool</a>TestApproximatorXyzMainDialog),<br/>
 &nbsp;&nbsp;m_approximator(),<br/>
@@ -1068,13 +1067,13 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;ui-&gt;box_<b><a href="CppDouble.htm">double</a></b>_y-&gt;setValue(0.0);<br/>
 }<br/>
 <br/>
-<a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="Tools.htm">Tool</a>TestApproximatorXyzMainDialog::~<a href="CppQt.htm">Qt</a><a href="Tools.htm">Tool</a>TestApproximatorXyzMainDialog()<br/>
+<a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="Tools.htm">Tool</a>TestApproximatorXyzMainDialog::~<a href="CppQt.htm">Qt</a><a href="Tools.htm">Tool</a>TestApproximatorXyzMainDialog()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppDelete.htm">delete</a></b> ui;<br/>
 }<br/>
 <br/>
-<a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="Tools.htm">Tool</a>TestApproximatorXyzMainDialog::Data<br/>
-&nbsp;&nbsp;<a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="Tools.htm">Tool</a>TestApproximatorXyzMainDialog::CreateData()<br/>
+<a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="Tools.htm">Tool</a>TestApproximatorXyzMainDialog::Data<br/>
+&nbsp;&nbsp;<a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="Tools.htm">Tool</a>TestApproximatorXyzMainDialog::CreateData()<br/>
 {<br/>
 &nbsp;&nbsp;Data d;<br/>
 &nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppAuto.htm">auto</a></b> i=0; i<a href="CppOperatorNotEqual.htm">!=</a>m_n_curves; <a href="CppOperatorPlus.htm">+</a>+i)<br/>
@@ -1090,21 +1089,21 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> d;<br/>
 }<br/>
 <br/>
-QwtPlotCurve * <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="Tools.htm">Tool</a>TestApproximatorXyzMainDialog::GetCurveApproximation(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> i)<br/>
+QwtPlotCurve * <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="Tools.htm">Tool</a>TestApproximatorXyzMainDialog::GetCurveApproximation(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> i)<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(i <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 0);<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(i &lt; <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(m_data.size()));<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <a href="CppStdGet.htm">std::get</a>&lt;0&gt;(m_data[i]);<br/>
 }<br/>
 <br/>
-QwtPlotCurve * <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="Tools.htm">Tool</a>TestApproximatorXyzMainDialog::GetCurveValues(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> i)<br/>
+QwtPlotCurve * <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="Tools.htm">Tool</a>TestApproximatorXyzMainDialog::GetCurveValues(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> i)<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(i <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 0);<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(i &lt; <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(m_data.size()));<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <a href="CppStdGet.htm">std::get</a>&lt;1&gt;(m_data[i]);<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;QwtPlot&gt; <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="Tools.htm">Tool</a>TestApproximatorXyzMainDialog::GetPlot(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> i)<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;QwtPlot&gt; <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="Tools.htm">Tool</a>TestApproximatorXyzMainDialog::GetPlot(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> i)<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(i <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 0);<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(i &lt; <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(m_data.size()));<br/>
@@ -1113,7 +1112,7 @@ QwtPlotCurve * <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a hre
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> p;<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="Tools.htm">Tool</a>TestApproximatorXyzMainDialog::on_button_clicked()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="Tools.htm">Tool</a>TestApproximatorXyzMainDialog::on_button_clicked()<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppIfdef.htm">#ifdef</a> TODO_723468346509350397<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> x <a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(ui-&gt;box_int_x-&gt;value());<br/>
@@ -1127,7 +1126,7 @@ QwtPlotCurve * <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a hre
 &nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="Tools.htm">Tool</a>TestApproximatorXyzMainDialog::on_box_int_x_valueChanged(<b><a href="CppInt.htm">int</a></b>)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="Tools.htm">Tool</a>TestApproximatorXyzMainDialog::on_box_int_x_valueChanged(<b><a href="CppInt.htm">int</a></b>)<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppIfdef.htm">#ifdef</a> TODO_723468346509350397<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x <a href="CppOperatorAssign.htm">=</a> ui-&gt;box_int_x-&gt;value();<br/>
@@ -1137,7 +1136,7 @@ QwtPlotCurve * <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a hre
 &nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="Tools.htm">Tool</a>TestApproximatorXyzMainDialog::on_box_<b><a href="CppDouble.htm">double</a></b>_y_valueChanged(<b><a href="CppDouble.htm">double</a></b>)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="Tools.htm">Tool</a>TestApproximatorXyzMainDialog::on_box_<b><a href="CppDouble.htm">double</a></b>_y_valueChanged(<b><a href="CppDouble.htm">double</a></b>)<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppIfdef.htm">#ifdef</a> TODO_723468346509350397<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x <a href="CppOperatorAssign.htm">=</a> ui-&gt;box_int_x-&gt;value();<br/>
@@ -1147,7 +1146,7 @@ QwtPlotCurve * <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a hre
 &nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="Tools.htm">Tool</a>TestApproximatorXyzMainDialog::on_box_int_z_valueChanged(<b><a href="CppInt.htm">int</a></b>)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="Tools.htm">Tool</a>TestApproximatorXyzMainDialog::on_box_int_z_valueChanged(<b><a href="CppInt.htm">int</a></b>)<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppIfdef.htm">#ifdef</a> TODO_723468346509350397<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x <a href="CppOperatorAssign.htm">=</a> ui-&gt;box_int_x-&gt;value();<br/>
@@ -1157,7 +1156,7 @@ QwtPlotCurve * <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a hre
 &nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="Tools.htm">Tool</a>TestApproximatorXyzMainDialog::Plot()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="Tools.htm">Tool</a>TestApproximatorXyzMainDialog::Plot()<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppIfdef.htm">#ifdef</a> TODO_723468346509350397<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Plot approximation<br/>
@@ -1226,9 +1225,12 @@ QwtPlotCurve * <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a hre
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppStringH.htm">string</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
 <br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppAbout.htm">about</a>.h"<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
 <br/>
-<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a> {<br/>
+<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
 <br/>
 <a href="CppComment.htm">///</a>GUI independent <a href="Tools.htm">Tool</a>TestApproximator menu dialog<br/>
 <b><a href="CppStruct.htm">struct</a></b> <a href="Tools.htm">Tool</a>TestApproximatorMenuDialog<br/>
@@ -1238,7 +1240,7 @@ QwtPlotCurve * <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a hre
 &nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; Get<a href="CppVersion.htm">Version</a>History();<br/>
 };<br/>
 <br/>
-} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a><br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
 <br/>
 <a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> TOOLTESTAPPROXIMATORMENUDIALOG_H<br/>
 </code></td></tr></table>
@@ -1252,14 +1254,16 @@ QwtPlotCurve * <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a hre
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="tooltestapproximatormenudialog.cpp" border = "1"><tr><td><code>
-<a href="CppComment.htm">//</a><a href="CppInclude.htm">#include</a> own <a href="CppHeaderFile.htm">header file</a> as first substantive line of code, from:<br/>
-<a href="CppComment.htm">//</a> * John Lakos. Large-Scale <a href="Cpp.htm">C++</a> Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
 <a href="CppInclude.htm">#include</a> "<a href="Tools.htm">tool</a>testapproximatormenudialog.h"<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> "approximator.h"<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppTrace.htm">trace</a>.h"<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppAbout.htm">About</a> <a href="CppRibi.htm\">ribi</a>::<a href="Tools.htm">Tool</a>TestApproximatorMenuDialog::GetAbout()<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
+<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppAbout.htm">About</a> <a href="CppRibi.htm">ribi</a>::<a href="Tools.htm">Tool</a>TestApproximatorMenuDialog::GetAbout()<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppAbout.htm">About</a> a(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;"Richel Bilderbeek",<br/>
@@ -1275,19 +1279,17 @@ QwtPlotCurve * <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a hre
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> a;<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppRibi.htm\">ribi</a>::<a href="Tools.htm">Tool</a>TestApproximatorMenuDialog::Get<a href="CppVersion.htm">Version</a>()<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppRibi.htm">ribi</a>::<a href="Tools.htm">Tool</a>TestApproximatorMenuDialog::Get<a href="CppVersion.htm">Version</a>()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> "1.1";<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm\">ribi</a>::<a href="Tools.htm">Tool</a>TestApproximatorMenuDialog::Get<a href="CppVersion.htm">Version</a>History()<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm">ribi</a>::<a href="Tools.htm">Tool</a>TestApproximatorMenuDialog::Get<a href="CppVersion.htm">Version</a>History()<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v {<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> {<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;"2013-08-28: <a href="CppVersion.htm">version</a> 1.0: initial <a href="CppVersion.htm">version</a>",<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;"2013-09-05: <a href="CppVersion.htm">version</a> 1.1: transition to <b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a>"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"2013-09-05: <a href="CppVersion.htm">version</a> 1.1: transition to <b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a>"<br/>
 &nbsp;&nbsp;};<br/>
-<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
 }<br/>
 </code></td></tr></table>
 <!-- end of the code -->

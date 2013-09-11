@@ -45,6 +45,7 @@
 <a href="CppInclude.htm">#include</a> "coordinat.h"<br/>
 <br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-<b><a href="CppTypedef.htm">typedef</a></b>s"<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/math/constants/constants.hpp&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppUnits.htm">boost/units</a>/quantity.hpp&gt;<br/>
@@ -279,7 +280,10 @@ PolarCoordinat&lt;Angle,Length&gt;::PolarCoordinat(<b><a href="CppConst.htm">con
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="polarcoordinat.cpp" border = "1"><tr><td><code>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
 <a href="CppInclude.htm">#include</a> "polarcoordinat.h"<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
 <br/>
 <b><a href="CppTemplate.htm">template</a></b>&lt;&gt;<br/>
 <b><a href="CppDouble.htm">double</a></b> CalculateSqrt&lt;<b><a href="CppDouble.htm">double</a></b>,<b><a href="CppDouble.htm">double</a></b>&gt;(<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b>&amp; x)<br/>
