@@ -22,8 +22,11 @@
 #define SORTEDBINARYNEWICKVECTOR_H
 
 #include <vector>
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include "binarynewickvector.h"
 #include "newick.h"
+#pragma GCC diagnostic pop
 
 namespace ribi {
 

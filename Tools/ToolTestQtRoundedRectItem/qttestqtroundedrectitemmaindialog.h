@@ -36,7 +36,10 @@ class QtTestQtRoundedRectItemMainDialog : public QtHideAndShowDialog
 public:
 
   explicit QtTestQtRoundedRectItemMainDialog(QWidget *parent = 0);
+  QtTestQtRoundedRectItemMainDialog(const QtTestQtRoundedRectItemMainDialog&) = delete;
+  QtTestQtRoundedRectItemMainDialog& operator=(const QtTestQtRoundedRectItemMainDialog&) = delete;
   ~QtTestQtRoundedRectItemMainDialog();
+
 protected:
   void keyPressEvent(QKeyEvent * event);
 

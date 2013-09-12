@@ -18,10 +18,13 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/GameMaziak.htm
 //---------------------------------------------------------------------------
-
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 
 #include "qtmaziakinstructionsdialog.h"
 #include "ui_qtmaziakinstructionsdialog.h"
+
+#pragma GCC diagnostic pop
 
 ribi::QtMaziakInstructionsDialog::QtMaziakInstructionsDialog(QWidget *parent) :
     QDialog(parent),

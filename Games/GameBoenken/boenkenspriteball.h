@@ -22,11 +22,13 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #ifndef BOENKENSPRITEBALL_H
 #define BOENKENSPRITEBALL_H
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include <boost/checked_delete.hpp>
 #include "boenkenspritemoving.h"
+#pragma GCC diagnostic pop
 
 namespace ribi {
-
 namespace Boenken {
 
 ///SpriteBall is green per default

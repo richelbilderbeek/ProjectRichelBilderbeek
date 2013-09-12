@@ -18,8 +18,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/GameMaziak.htm
 //---------------------------------------------------------------------------
-
-
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include "qtmaziakgamewondialog.h"
 
 #include <cassert>
@@ -32,6 +32,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <QTimer>
 
 #include "ui_qtmaziakgamewondialog.h"
+
+#pragma GCC diagnostic pop
 
 ribi::QtMaziakGameWonDialog::QtMaziakGameWonDialog(QWidget *parent) :
   QDialog(parent),

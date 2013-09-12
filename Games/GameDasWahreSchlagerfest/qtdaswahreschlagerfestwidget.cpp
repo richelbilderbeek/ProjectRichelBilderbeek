@@ -18,14 +18,15 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/GameDasWahreSchlagerfest.htm
 //---------------------------------------------------------------------------
-
-
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include "qtdaswahreschlagerfestwidget.h"
 
 #include <QKeyEvent>
 #include <QPainter>
 #include <QPixmap>
 #include "daswahreschlagerfestwidget.h"
+#pragma GCC diagnostic pop
 
 ribi::QtDasWahreSchlagerfestWidget::QtDasWahreSchlagerfestWidget(QWidget *parent) :
   QWidget(parent),

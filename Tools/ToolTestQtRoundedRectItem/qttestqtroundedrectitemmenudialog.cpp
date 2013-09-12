@@ -18,15 +18,15 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolTestQtRoundedRectItem.htm
 //---------------------------------------------------------------------------
-
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 
 #include "qttestqtroundedrectitemmenudialog.h"
 
 #include <QDesktopWidget>
 #include <QKeyEvent>
 
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include "qtkeyboardfriendlygraphicsview.h"
 #include "qtroundedrectitem.h"
 #include "testqtroundedrectitemmenudialog.h"

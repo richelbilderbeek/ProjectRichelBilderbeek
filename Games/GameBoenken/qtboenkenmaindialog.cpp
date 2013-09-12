@@ -19,17 +19,17 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/GameBoenken.htm
 //---------------------------------------------------------------------------
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include "qtboenkenmaindialog.h"
 
 #include <cassert>
 #include <cstdlib>
 
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/foreach.hpp>
 #include <boost/lexical_cast.hpp>
 #include <boost/numeric/conversion/cast.hpp>
-#pragma GCC diagnostic pop
 
 #include <QDesktopWidget>
 #include <QKeyEvent>
@@ -37,6 +37,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include "boenkengame.h"
 #include "ui_qtboenkenmaindialog.h"
+
+#pragma GCC diagnostic pop
 
 ///All parameters are fed into the contructor
 ribi::QtBoenkenMainDialog::QtBoenkenMainDialog(

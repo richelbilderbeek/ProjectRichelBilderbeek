@@ -18,11 +18,9 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/GameConnectThree.htm
 //---------------------------------------------------------------------------
-
-
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include "qtconnectthreemenudialog.h"
-
-
 #include "connectthreemenudialog.h"
 #include "qtaboutdialog.h"
 #include "qtconnectthreegamedialog.h"
@@ -30,6 +28,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "qtconnectthreewidget.h"
 #include "qtselectplayerwidget.h"
 #include "ui_qtconnectthreemenudialog.h"
+#pragma GCC diagnostic pop
 
 ribi::QtConnectThreeMenuDialog::QtConnectThreeMenuDialog(QWidget *parent) :
     QDialog(parent),

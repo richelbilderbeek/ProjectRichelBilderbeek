@@ -24,6 +24,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <vector>
 
 #pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/signals2.hpp>
 #pragma GCC diagnostic pop
@@ -35,7 +36,12 @@ struct DasWahreSchlagerfestWidget
 {
   enum class Key { up, right, down, left };
   enum class Tile { empty, beer, bratwurst, richel };
-  struct Cursor { int x; int y; Tile tile; };
+  struct Cursor
+  {
+    Cursor(const int any_x, const int any_y, const Tile any_tile)
+      : x(any_x), y(any_y), tile(any_tile) {}
+    int x; int y; Tile tile;
+  };
 
   DasWahreSchlagerfestWidget(const int width = 9, const int height = 5);
 
@@ -52,11 +58,11 @@ struct DasWahreSchlagerfestWidget
   boost::signals2::signal<void ()> m_signal_changed;
 
   private:
-  ///The Y-X ordered tiles
-  std::vector<std::vector<Tile> > m_v;
-
   ///The cursor
   Cursor m_cursor;
+
+  ///The Y-X ordered tiles
+  std::vector<std::vector<Tile> > m_v;
 
   //Check for three in a rows
   void CheckThree();

@@ -23,10 +23,12 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #include <string>
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include <boost/shared_ptr.hpp>
-
 #include "richelbilderbeekprogramstatus.h"
 #include "richelbilderbeekprogramtype.h"
+#pragma GCC diagnostic pop
 
 namespace ribi {
 

@@ -21,8 +21,11 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #ifndef QTMAZIAKGAMEWONDIALOG_H
 #define QTMAZIAKGAMEWONDIALOG_H
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include <boost/shared_ptr.hpp>
 #include <QDialog>
+#pragma GCC diagnostic pop
 
 struct QTimer;
 

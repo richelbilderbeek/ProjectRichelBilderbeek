@@ -18,19 +18,19 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/GameMaziak.htm
 //---------------------------------------------------------------------------
-
-
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include "qtmaziakgameoverdialog.h"
 
 #include <cassert>
 
 #include <boost/timer.hpp>
-
 #include <QPainter>
 #include <QPaintEvent>
 #include <QTimer>
 
 #include "ui_qtmaziakgameoverdialog.h"
+#pragma GCC diagnostic pop
 
 ribi::QtMaziakGameOverDialog::QtMaziakGameOverDialog(QWidget *parent) :
   QDialog(parent),

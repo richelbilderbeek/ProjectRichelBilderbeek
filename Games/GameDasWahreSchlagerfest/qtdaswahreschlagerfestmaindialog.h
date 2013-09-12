@@ -21,7 +21,10 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #ifndef QTDASWAHRESCHLAGERFESTMAINDIALOG_H
 #define QTDASWAHRESCHLAGERFESTMAINDIALOG_H
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include <QDialog>
+#pragma GCC diagnostic pop
 
 namespace Ui {
 class QtDasWahreSchlagerfestMainDialog;
@@ -35,6 +38,8 @@ class QtDasWahreSchlagerfestMainDialog : public QDialog
     
 public:
     explicit QtDasWahreSchlagerfestMainDialog(QWidget *parent = 0);
+    QtDasWahreSchlagerfestMainDialog(const QtDasWahreSchlagerfestMainDialog&) = delete;
+    QtDasWahreSchlagerfestMainDialog& operator=(const QtDasWahreSchlagerfestMainDialog&) = delete;
     ~QtDasWahreSchlagerfestMainDialog();
 
 private:

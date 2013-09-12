@@ -23,8 +23,11 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include <bitset>
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include <QImage>
 #include <QWidget>
+#pragma GCC diagnostic pop
 
 namespace ribi {
 

@@ -24,9 +24,11 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <string>
 #include <vector>
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include <boost/shared_ptr.hpp>
-
 #include <QDialog>
+#pragma GCC diagnostic pop
 
 namespace Ui {
   class QtConnectThreeMenuDialog;
@@ -42,6 +44,8 @@ class QtConnectThreeMenuDialog : public QDialog
 
 public:
   explicit QtConnectThreeMenuDialog(QWidget *parent = 0);
+  QtConnectThreeMenuDialog(const QtConnectThreeMenuDialog&) = delete;
+  QtConnectThreeMenuDialog& operator=(const QtConnectThreeMenuDialog&) = delete;
   ~QtConnectThreeMenuDialog();
 
 private:

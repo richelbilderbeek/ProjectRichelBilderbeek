@@ -23,7 +23,10 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include <string>
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include <QDialog>
+#pragma GCC diagnostic pop
 
 namespace Ui {
   class QtShowWinnerDialog;
@@ -40,8 +43,9 @@ public:
     const std::string& filename,
     const std::string& winner_text,
     QWidget *parent = 0);
+  QtShowWinnerDialog(const QtShowWinnerDialog&) = delete;
+  QtShowWinnerDialog& operator=(const QtShowWinnerDialog&) = delete;
   ~QtShowWinnerDialog();
-  void SetPixmap();
 
 protected:
   void keyPressEvent(QKeyEvent *);

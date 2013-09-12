@@ -19,12 +19,13 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/GameBoenken.htm
 //---------------------------------------------------------------------------
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include "boenkenspritemoving.h"
 
 #include <cassert>
 
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/numeric/conversion/cast.hpp>
 #include <boost/math/constants/constants.hpp>
 #pragma GCC diagnostic pop
@@ -44,7 +45,9 @@ ribi::Boenken::SpriteMoving::SpriteMoving(
   const unsigned char r,
   const unsigned char g,
   const unsigned char b)
-  : Sprite(x,y,size,r,g,b)
+  : Sprite(x,y,size,r,g,b),
+    m_dx{0.0},
+    m_dy{0.0}
 {
   ++sm_n_moving_sprites;
 }

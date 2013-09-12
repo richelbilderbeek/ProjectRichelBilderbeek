@@ -19,6 +19,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/GameBoenken.htm
 //---------------------------------------------------------------------------
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include "qtboenkenpresskeydialog.h"
 
 #include <cassert>
@@ -26,6 +28,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <QKeyEvent>
 
 #include "ui_qtboenkenpresskeydialog.h"
+#pragma GCC diagnostic pop
 
 ribi::QtBoenkenPressKeyDialog::QtBoenkenPressKeyDialog(QWidget *parent) :
   QDialog(parent),

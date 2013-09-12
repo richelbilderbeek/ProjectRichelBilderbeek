@@ -25,9 +25,12 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <vector>
 #include <boost/shared_ptr.hpp>
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include "boenkenarenasettings.h"
 #include "boenkencontrols.h"
 #include "boenkensprite.h"
+#pragma GCC diagnostic pop
 
 struct QPainter;
 

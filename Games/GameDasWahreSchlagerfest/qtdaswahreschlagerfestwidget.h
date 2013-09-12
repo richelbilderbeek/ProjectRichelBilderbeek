@@ -21,13 +21,16 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #ifndef QTDASWAHRESCHLAGERFESTWIDGET_H
 #define QTDASWAHRESCHLAGERFESTWIDGET_H
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include <boost/shared_ptr.hpp>
 #include <QWidget>
 #include "daswahreschlagerfestwidget.h"
+#pragma GCC diagnostic pop
 
 struct DasWahreSchlagerfestWidget;
 namespace Ui {
-class QtDasWahreSchlagerfestWidget;
+  class QtDasWahreSchlagerfestWidget;
 }
 
 namespace ribi {

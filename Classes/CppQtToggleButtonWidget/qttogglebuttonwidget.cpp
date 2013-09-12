@@ -43,7 +43,8 @@ ribi::QtToggleButtonWidget::QtToggleButtonWidget(
   const unsigned char red,
   const unsigned char green,
   const unsigned char blue)
-  : m_widget(new ToggleButtonWidget(toggled,red,green,blue))
+  : m_signal_toggled{},
+    m_widget(new ToggleButtonWidget(toggled,red,green,blue))
 {
   assert(m_widget);
   m_widget->GetToggleButton()->m_signal_toggled.connect(

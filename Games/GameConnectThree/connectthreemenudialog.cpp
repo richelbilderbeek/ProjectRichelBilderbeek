@@ -18,8 +18,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/GameConnectThree.htm
 //---------------------------------------------------------------------------
-
-
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include "connectthreemenudialog.h"
 
 
@@ -27,6 +27,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "connectthreewidget.h"
 
 #include <cassert>
+#pragma GCC diagnostic pop
 
 const ribi::About ribi::ConnectThreeMenuDialog::GetAbout()
 {

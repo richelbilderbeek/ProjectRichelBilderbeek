@@ -18,8 +18,6 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/GameDasWahreSchlagerfest.htm
 //---------------------------------------------------------------------------
-
-
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
@@ -29,13 +27,12 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <numeric>
 
 ribi::DasWahreSchlagerfestWidget::DasWahreSchlagerfestWidget(const int width, const int height)
-  : m_v(height,std::vector<Tile>(width,Tile::empty))
+  : m_signal_changed{},
+    m_cursor{Cursor(width / 2,0,Tile::beer)},
+    m_v(height,std::vector<Tile>(width,Tile::empty))
 {
   assert(height == static_cast<int>(m_v.size()));
   assert(width == static_cast<int>(m_v[0].size()));
-  m_cursor.x = width / 2;
-  m_cursor.y = 0;
-  m_cursor.tile = Tile::beer;
 }
 
 void ribi::DasWahreSchlagerfestWidget::CheckThree()

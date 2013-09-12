@@ -24,11 +24,11 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <bitset>
 
 #pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/signals2.hpp>
-#pragma GCC diagnostic pop
-
 #include <QDialog>
+#pragma GCC diagnostic pop
 
 
 namespace Ui {
@@ -49,10 +49,11 @@ public:
     const boost::shared_ptr<const ConnectThreeResources> resources,
     QWidget *parent = 0,
     const std::bitset<3>& is_player_human = std::bitset<3>(true));
-  boost::signals2::signal<void ()> m_signal_close;
-
-
+  QtConnectThreeGameDialog(const QtConnectThreeGameDialog&) = delete;
+  QtConnectThreeGameDialog& operator=(const QtConnectThreeGameDialog&) = delete;
   ~QtConnectThreeGameDialog();
+
+  boost::signals2::signal<void ()> m_signal_close;
 
 public slots:
   void DoComputerTurn();
@@ -64,6 +65,10 @@ private:
 
   ///The filenames
   const boost::shared_ptr<const ConnectThreeResources> m_resources;
+
+  ///OnValidMove is called after a valid move. The game
+  ///is either terminated, or the next player can do
+  ///his/her move.
   void OnValidMove();
 };
 

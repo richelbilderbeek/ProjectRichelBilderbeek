@@ -21,8 +21,11 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #ifndef QUESTIONDIALOG_H
 #define QUESTIONDIALOG_H
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include <boost/checked_delete.hpp>
 #include <boost/shared_ptr.hpp>
+#pragma GCC diagnostic pop
 
 namespace ribi {
 
@@ -31,7 +34,7 @@ struct Question;
 ///Dialog for an Question
 struct QuestionDialog
 {
-  explicit QuestionDialog(const boost::shared_ptr<Question>& question);
+  explicit QuestionDialog(const boost::shared_ptr<Question> question);
 
   ///Check if an answer can be submitted
   bool CanSubmit() const { return !m_has_submitted; }
@@ -56,7 +59,7 @@ struct QuestionDialog
 
   ///(Re)set the Question
   //void SetQuestion(const Question * const question);
-  void SetQuestion(const boost::shared_ptr<Question>& question);
+  void SetQuestion(const boost::shared_ptr<Question> question);
 
   ///Submit an answer
   void Submit(const std::string& s);
@@ -66,14 +69,14 @@ struct QuestionDialog
   friend void boost::checked_delete<>(QuestionDialog*);
 
   private:
-  ///The question
-  boost::shared_ptr<Question> m_question;
-
   ///Has the user already submitted an answer?
   bool m_has_submitted;
 
   ///Was the submitted answer correct?
   bool m_is_correct;
+
+  ///The question
+  boost::shared_ptr<Question> m_question;
 };
 
 } //~namespace ribi

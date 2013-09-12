@@ -26,10 +26,11 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <list>
 #include <vector>
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include <boost/shared_ptr.hpp>
-
 #include <QDialog>
-
+#pragma GCC diagnostic pop
 
 struct QPixmap;
 struct QTimer;
@@ -51,7 +52,8 @@ public:
   enum MazeSquare { msEmpty, msWall, msEnemy1, msEnemy2, msPrisoner1, msPrisoner2, msSword, msExit };
 
   explicit QtMaziakMainDialog(QWidget *parent = 0, const int maze_size = 0);
-
+  QtMaziakMainDialog(const QtMaziakMainDialog&) = delete;
+  QtMaziakMainDialog& operator=(const QtMaziakMainDialog&) = delete;
   ~QtMaziakMainDialog();
 
 private:

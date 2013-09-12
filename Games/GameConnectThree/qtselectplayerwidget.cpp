@@ -18,19 +18,19 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/GameConnectThree.htm
 //---------------------------------------------------------------------------
-
-
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include "qtselectplayerwidget.h"
-
 #include <QMouseEvent>
 #include <QPainter>
-
+#pragma GCC diagnostic pop
 
 const int ribi::QtSelectPlayerWidget::m_sprite_height = 50;
 const int ribi::QtSelectPlayerWidget::m_sprite_width  = 50;
 
 ribi::QtSelectPlayerWidget::QtSelectPlayerWidget(QWidget *parent)
   : QWidget(parent),
+    m_is_player_human{},
     m_player1(":/images/ConnectThreePlayer1.png"),
     m_player1_grey(":/images/ConnectThreePlayer1Grey.png"),
     m_player2(":/images/ConnectThreePlayer2.png"),
@@ -45,7 +45,6 @@ ribi::QtSelectPlayerWidget::QtSelectPlayerWidget(QWidget *parent)
   m_is_player_human[0] = true;
   m_is_player_human[1] = true;
   m_is_player_human[2] = true;
-
   this->setMinimumWidth( 2 * m_sprite_width );
   this->setMinimumHeight(3 * m_sprite_height);
   this->setMaximumWidth( 2 * m_sprite_width );

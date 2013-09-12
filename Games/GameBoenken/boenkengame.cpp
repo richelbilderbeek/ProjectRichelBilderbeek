@@ -19,8 +19,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/GameBoenken.htm
 //---------------------------------------------------------------------------
-
-
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include "boenkengame.h"
 
 #include <boost/foreach.hpp>
@@ -34,6 +34,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "boenkenspritenonmoving.h"
 #include "boenkenspriteplayer.h"
 
+#pragma GCC diagnostic pop
 
 ribi::Boenken::Game::Game(
   const ArenaSettings& arena_settings,

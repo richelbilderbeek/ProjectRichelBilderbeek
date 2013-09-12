@@ -21,8 +21,11 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #ifndef QTMAZIAKGAMEOVERDIALOG_H
 #define QTMAZIAKGAMEOVERDIALOG_H
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include <boost/shared_ptr.hpp>
 #include <QDialog>
+#pragma GCC diagnostic pop
 
 struct QTimer;
 
@@ -38,6 +41,8 @@ class QtMaziakGameOverDialog : public QDialog
 
 public:
   explicit QtMaziakGameOverDialog(QWidget *parent = 0);
+  QtMaziakGameOverDialog(const QtMaziakGameOverDialog&) = delete;
+  QtMaziakGameOverDialog& operator=(const QtMaziakGameOverDialog&) = delete;
   ~QtMaziakGameOverDialog();
 
 protected:

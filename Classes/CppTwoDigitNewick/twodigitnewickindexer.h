@@ -24,10 +24,13 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <cassert>
 #include <vector>
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include "twodigitnewickindextable.h"
 #include "twodigitnewicks.h"
 #include "twodigitnewick.h"
 #include "binarynewickvector.h"
+#pragma GCC diagnostic pop
 
 namespace ribi {
 

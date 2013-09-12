@@ -23,9 +23,13 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #define BOENKENSPRITE_H
 
 #include <cassert>
+
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include <boost/noncopyable.hpp>
 
 #include <QPixmap>
+#pragma GCC diagnostic pop
 
 namespace ribi {
 
