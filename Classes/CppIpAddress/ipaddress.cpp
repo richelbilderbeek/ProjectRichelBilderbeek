@@ -18,20 +18,25 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/CppIpAddress.htm
 //---------------------------------------------------------------------------
-
-
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include "ipaddress.h"
 
 #include <stdexcept>
 
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/xpressive/xpressive.hpp>
 #pragma GCC diagnostic pop
 
 ribi::IpAddress::IpAddress(const std::string& ip_address)
+  : m_ip_address{ip_address}
 {
-  Set(ip_address);
+  const boost::xpressive::sregex regex_ip_address
+    = boost::xpressive::sregex::compile("\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}");
+  if(!boost::xpressive::regex_match(ip_address,regex_ip_address))
+  {
+    throw std::logic_error("Invalid IP address");
+  }
 }
 
 const std::string ribi::IpAddress::GetVersion()
@@ -45,17 +50,6 @@ const std::vector<std::string> ribi::IpAddress::GetVersionHistory()
     "2011-06-08: version 1.0: initial version",
     "2013-09-02: version 1.1: replaced Boost.Regex by Boost.Xpressive"
   };
-}
-
-void ribi::IpAddress::Set(const std::string& ip_address)
-{
-  const boost::xpressive::sregex regex_ip_address
-    = boost::xpressive::sregex::compile("\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}");
-  if(!boost::xpressive::regex_match(ip_address,regex_ip_address))
-  {
-    throw std::logic_error("Invalid IP address");
-  }
-  m_ip_address = ip_address;
 }
 
 ribi::SafeIpAddress::SafeIpAddress(const std::string& ip_address)

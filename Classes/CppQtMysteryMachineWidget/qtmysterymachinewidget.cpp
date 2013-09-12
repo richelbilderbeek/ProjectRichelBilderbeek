@@ -18,9 +18,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/CppQtMysteryMachineWidget.htm
 //---------------------------------------------------------------------------
-
-
 #pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include "qtmysterymachinewidget.h"
@@ -49,6 +48,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 ribi::QtMysteryMachineWidget::QtMysteryMachineWidget(QWidget *parent)
   : QWidget(parent),
+    m_signal_changed{},
     m_widget(new MysteryMachineWidget(
     Rect(0,0,200,400)))
 {
@@ -72,8 +72,10 @@ ribi::QtMysteryMachineWidget::QtMysteryMachineWidget(
   const int width, const int height,
   QWidget *parent)
   : QWidget(parent),
-    m_widget(new MysteryMachineWidget(
-    Rect(0,0,width,height)))
+    m_signal_changed{},
+    m_widget{new MysteryMachineWidget(
+      Rect(0,0,width,height))
+    }
 {
   assert(m_widget);
 

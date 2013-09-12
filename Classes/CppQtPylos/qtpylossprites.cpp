@@ -18,50 +18,36 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolTestPylos.htm
 //---------------------------------------------------------------------------
-
-
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include "qtpylossprites.h"
-
 #include <cassert>
-
 #include <boost/numeric/conversion/cast.hpp>
-
 #include <QBitmap>
-
 #include "pylosmove.h"
+#pragma GCC diagnostic pop
 
 ribi::Pylos::QtSprites::QtSprites(
   const int board_width,
   const int board_height,
-  const boost::array<int,6> &colors)
-  : m_board_width(board_width),
-    m_board_height(board_height),
-    m_colors(colors)
+  const boost::array<int,6> &colors,
+  const int square_width,
+  const int square_height,
+  const int greyness_hole
+  )
+  : m_board_height{board_height},
+    m_board_width{board_width},
+    m_colors(colors),
+    m_sprite_board_bottom{DrawBoardBottom(m_board_width,m_board_height,greyness_hole,greyness_hole,greyness_hole)},
+    m_sprite_board_hole{DrawInvertedGlobe(square_width,square_height,greyness_hole,greyness_hole,greyness_hole)},
+    m_sprite_player1{DrawGlobe(square_width,square_height,m_colors[0],m_colors[1],m_colors[2])},
+    m_sprite_player1_remove{DrawRemover(square_width,square_height,m_colors[0],m_colors[1],m_colors[2])},
+    m_sprite_player1_select{DrawSelector(square_width,square_height,m_colors[0],m_colors[1],m_colors[2])},
+    m_sprite_player2{DrawGlobe(square_width,square_height,m_colors[3],m_colors[4],m_colors[5])},
+    m_sprite_player2_remove{DrawRemover(square_width,square_height,m_colors[3],m_colors[4],m_colors[5])},
+    m_sprite_player2_select{DrawSelector(square_width,square_height,m_colors[3],m_colors[4],m_colors[5])}
 {
-  GenerateSprites();
-}
 
-void ribi::Pylos::QtSprites::GenerateSprites()
-{
-  m_sprite_board_bottom
-    = DrawBoardBottom(m_board_width,m_board_height,64,64,64);
-  const int width  = m_board_width  / 4;
-  const int height = m_board_height / 4;
-
-  m_sprite_board_hole
-    = DrawInvertedGlobe(width,height,64,64,64);
-  m_sprite_player1
-    = DrawGlobe(width,height,m_colors[0],m_colors[1],m_colors[2]);
-  m_sprite_player2
-    = DrawGlobe(width,height,m_colors[3],m_colors[4],m_colors[5]);
-  m_sprite_player1_select
-    = DrawSelector(width,height,m_colors[0],m_colors[1],m_colors[2]);
-  m_sprite_player2_select
-    = DrawSelector(width,height,m_colors[3],m_colors[4],m_colors[5]);
-  m_sprite_player1_remove
-    = DrawRemover(width,height,m_colors[0],m_colors[1],m_colors[2]);
-  m_sprite_player2_remove
-    = DrawRemover(width,height,m_colors[3],m_colors[4],m_colors[5]);
 }
 
 const QPixmap& ribi::Pylos::QtSprites::Get(
@@ -89,11 +75,13 @@ const std::string ribi::Pylos::QtSprites::GetVersion()
 
 const std::vector<std::string> ribi::Pylos::QtSprites::GetVersionHistory()
 {
-  std::vector<std::string> v;
-  v.push_back("2012-05-28: version 2.0: initial release version");
-  return v;
+  return {
+    "2012-05-28: version 2.0: initial release version",
+    "2013-09-12: version 2.1: RAII",
+  };
 }
 
+/*
 void ribi::Pylos::QtSprites::SetBoardSize(const int board_width, const int board_height)
 {
   m_board_width  = board_width;
@@ -108,6 +96,7 @@ void ribi::Pylos::QtSprites::SetColorScheme(const boost::array<int,6> colors)
   m_colors = colors;
   GenerateSprites();
 }
+*/
 
 QPixmap ribi::Pylos::DrawBoardBottom(
   const int width,

@@ -22,12 +22,12 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #define QTQUESTIONDIALOG_H
 
 #pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/shared_ptr.hpp>
 #include <boost/signals2.hpp>
-#pragma GCC diagnostic pop
-
 #include <QDialog>
+#pragma GCC diagnostic pop
 
 namespace ribi {
 

@@ -21,6 +21,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #ifndef QTOPENQUESTIONDIALOG_H
 #define QTOPENQUESTIONDIALOG_H
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include <boost/scoped_ptr.hpp>
 #include <boost/shared_ptr.hpp>
 
@@ -28,9 +30,10 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #include "questiondialog.h"
 #include "qtquestiondialog.h"
+#pragma GCC diagnostic pop
 
 namespace Ui {
-class QtOpenQuestionDialog;
+  class QtOpenQuestionDialog;
 }
 
 namespace ribi {

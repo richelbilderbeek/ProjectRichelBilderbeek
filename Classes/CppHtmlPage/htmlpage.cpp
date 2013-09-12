@@ -26,15 +26,16 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <iostream>
 
 #pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/algorithm/string.hpp>
 #include <boost/xpressive/xpressive.hpp>
+#include <QFile>
 #pragma GCC diagnostic pop
 
-#include <QFile>
-
 ribi::HtmlPage::HtmlPage(const std::string& filename)
-  : m_filename(filename)
+  : m_filename(filename),
+    m_title{}
 {
   assert(QFile::exists(filename.c_str()));
 

@@ -18,9 +18,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/CppQtShapeWidget.htm
 //---------------------------------------------------------------------------
-
-
 #pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include "qtshapewidget.h"
 
@@ -41,6 +40,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 ribi::QtShapeWidget::QtShapeWidget(QWidget *parent)
   : QWidget(parent),
+    m_signal_position_changed{},
     m_widget(new ShapeWidget(0,0.0))
 {
   //m_widget->m_signal_position_changed.connect(
@@ -53,6 +53,7 @@ ribi::QtShapeWidget::QtShapeWidget(
   boost::shared_ptr<ShapeWidget> widget,
   QWidget *parent)
   : QWidget(parent),
+    m_signal_position_changed{},
     m_widget(widget)
 {
   //m_widget->m_signal_position_changed.connect(

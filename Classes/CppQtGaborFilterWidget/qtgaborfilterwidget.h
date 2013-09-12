@@ -21,12 +21,13 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #ifndef QTGABORFILTERWIDGET_H
 #define QTGABORFILTERWIDGET_H
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/scoped_ptr.hpp>
 
 #include <QWidget>
 
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include "gaborfilter.h"         //Needed by MOC
 #include "gaborfilterwidget.h"   //Needed by MOC
 #pragma GCC diagnostic pop

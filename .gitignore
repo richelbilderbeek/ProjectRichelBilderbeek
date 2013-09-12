@@ -208,3 +208,5 @@ Libraries/gsl-1.16/
 Libraries/alglib-3.8.0/
 Libraries/blitz-0.10/
 Libraries/gmtl-0.6.1/
+Libraries/bullet3/
+Libraries/tokamak_release/

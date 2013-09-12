@@ -18,8 +18,9 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolQmakeWatcher.htm
 //---------------------------------------------------------------------------
-
-
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include "qtqmakewatchermaindialog.h"
 
 #include <cassert>
@@ -29,15 +30,14 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <stdexcept>
 #include <string>
 
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/foreach.hpp>
-#pragma GCC diagnostic pop
 
 #include <QDesktopWidget>
 #include <QFile>
 
 #include "ui_qtqmakewatchermaindialog.h"
+
+#pragma GCC diagnostic pop
 
 QtQmakeWatcherMainDialog::QtQmakeWatcherMainDialog(QWidget *parent) :
     QDialog(parent, Qt::Window),

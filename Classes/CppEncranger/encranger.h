@@ -29,6 +29,8 @@ namespace ribi {
 //Encranger stands for 'ENCryption by RAndom Number GEneratoR'
 struct Encranger
 {
+  #pragma GCC diagnostic push
+  #pragma GCC diagnostic ignored "-Weffc++"
   //From http://www.richelbilderbeek.nl/CppIncrease.htm
   struct Increase : public std::unary_function<void,int>
   {
@@ -42,6 +44,7 @@ struct Encranger
     private:
     int m_x;
   };
+  #pragma GCC diagnostic pop
 
   Encranger(const int key);
   const std::string Encrypt(std::string s) const;

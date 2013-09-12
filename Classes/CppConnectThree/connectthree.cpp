@@ -20,9 +20,9 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //From http://www.richelbilderbeek.nl/CppConnectThree.htm
 //---------------------------------------------------------------------------
 #pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include "connectthree.h"
-#pragma GCC diagnostic pop
 
 #include <algorithm>
 #include <cassert>
@@ -30,6 +30,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include <boost/foreach.hpp>
 #include <boost/scoped_ptr.hpp>
+#pragma GCC diagnostic pop
 
 ribi::ConnectThree::ConnectThree(
   const int n_cols,

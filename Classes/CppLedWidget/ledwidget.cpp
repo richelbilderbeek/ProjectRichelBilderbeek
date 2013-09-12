@@ -18,16 +18,13 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/CppLedWidget.htm
 //---------------------------------------------------------------------------
-
-
 #pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include "ledwidget.h"
-#pragma GCC diagnostic pop
-
 #include <iostream>
-
 #include "led.h"
+#pragma GCC diagnostic pop
 
 ribi::LedWidget::LedWidget(
   const int x,

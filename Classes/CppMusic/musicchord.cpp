@@ -1,8 +1,8 @@
-
-
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include "musicchord.h"
-
 #include <set>
+#pragma GCC diagnostic pop
 
 ribi::Music::Chord::Chord(
   const Note root,

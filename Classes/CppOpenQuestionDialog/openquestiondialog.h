@@ -21,9 +21,11 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #ifndef OPENQUESTIONDIALOG_H
 #define OPENQUESTIONDIALOG_H
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include <boost/shared_ptr.hpp>
-
 #include "questiondialog.h"
+#pragma GCC diagnostic pop
 
 namespace ribi {
 

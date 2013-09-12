@@ -18,8 +18,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/CppQtOpenQuestionDialog.htm
 //---------------------------------------------------------------------------
-
-
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include "qtopenquestiondialog.h"
 
 #include "openquestion.h"
@@ -28,6 +28,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "ui_qtopenquestiondialog.h"
 
 #include <QFile>
+#pragma GCC diagnostic pop
 
 ribi::QtOpenQuestionDialog::QtOpenQuestionDialog(QWidget *parent)
   : QtQuestionDialog(

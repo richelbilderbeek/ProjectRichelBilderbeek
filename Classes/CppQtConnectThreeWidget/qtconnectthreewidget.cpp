@@ -1,8 +1,8 @@
 #pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include "qtconnectthreewidget.h"
-#pragma GCC diagnostic pop
 
 #include <QMouseEvent>
 #include <QPainter>
@@ -11,6 +11,7 @@
 #include "connectthreeresources.h"
 #include "connectthreewidget.h"
 #include "qtconnectthreeresources.h"
+#pragma GCC diagnostic pop
 
 const int ribi::QtConnectThreeWidget::m_sprite_width  = 50;
 const int ribi::QtConnectThreeWidget::m_sprite_height = 50;
@@ -22,6 +23,7 @@ ribi::QtConnectThreeWidget::QtConnectThreeWidget(
   const int n_cols,
   const int n_rows)
   : QWidget(parent),
+    m_signal_valid_move{},
     m_widget(new ConnectThreeWidget(is_player_human,n_cols,n_rows)),
     m_player1(resources->GetPlayersFilenames()[0].c_str()),
     m_player2(resources->GetPlayersFilenames()[1].c_str()),

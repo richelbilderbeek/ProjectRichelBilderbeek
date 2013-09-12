@@ -21,8 +21,10 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #ifndef QTSPRITES_H
 #define QTSPRITES_H
 
-//See http://www.richelbilderbeek.nl/CppCompileErrorSwprintfHasNotBeenDeclared.htm
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include <QPixmap>
+#pragma GCC diagnostic pop
 
 namespace ribi {
 

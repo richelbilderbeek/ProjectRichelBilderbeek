@@ -18,15 +18,17 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/CppQtQuestionDialog.htm
 //---------------------------------------------------------------------------
-
-
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include "qtquestiondialog.h"
-
-
 #include "questiondialog.h"
+#pragma GCC diagnostic pop
+
 
 ribi::QtQuestionDialog::QtQuestionDialog(QWidget *parent)
-  : QDialog(parent)
+  : QDialog(parent),
+    m_signal_submitted{},
+    m_dialog{}
 {
 
 }
@@ -35,6 +37,7 @@ ribi::QtQuestionDialog::QtQuestionDialog(
   const boost::shared_ptr<QuestionDialog>& dialog,
   QWidget *parent)
   : QDialog(parent),
+    m_signal_submitted{},
     m_dialog(dialog)
 {
   assert(m_dialog);

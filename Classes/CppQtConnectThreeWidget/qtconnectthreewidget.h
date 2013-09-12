@@ -4,19 +4,16 @@
 #include <bitset>
 
 #pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include <boost/signals2.hpp>
-#pragma GCC diagnostic pop
-
 #include <QWidget>
-
 #include "connectthreewidget.h" //thanks to MOC :-(
+#pragma GCC diagnostic pop
 
 namespace ribi {
 
-//#include "connectthree.h"       //thanks to MOC :-(
-//struct ConnectThreeWidget;
 struct ConnectThreeResources;
 struct ConnectThreeWidget;
 

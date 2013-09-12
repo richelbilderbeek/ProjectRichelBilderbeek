@@ -18,9 +18,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/CppLed.htm
 //---------------------------------------------------------------------------
-
-
 #pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include "led.h"
 
@@ -36,7 +35,9 @@ ribi::Led::Led(
   const unsigned char red,
   const unsigned char green,
   const unsigned char blue)
-  : m_intensity(intensity),
+  : m_signal_color_changed{},
+    m_signal_intensity_changed{},
+    m_intensity(intensity),
     m_red(red),
     m_green(green),
     m_blue(blue)

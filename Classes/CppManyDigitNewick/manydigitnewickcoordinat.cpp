@@ -18,6 +18,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/CppManyDigitNewick.htm
 //---------------------------------------------------------------------------
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include "manydigitnewickcoordinat.h"
 
 #include <algorithm>
@@ -25,6 +27,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <functional>
 
 #include <boost/numeric/conversion/cast.hpp>
+#pragma GCC diagnostic pop
 
 ribi::ManyDigitNewickCoordinat::ManyDigitNewickCoordinat(
   const std::vector<int>& v)

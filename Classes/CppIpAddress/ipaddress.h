@@ -39,11 +39,6 @@ struct IpAddress
   ///IpAddress is a base class, so its destructor must be virtual
   virtual ~IpAddress()  {}
 
-
-  ///Set the IP address. Will throws an exception when
-  ///the ip_address is not a valid IP address
-  void Set(const std::string& ip_address);
-
   ///Get the IP address as a std::string
   const std::string& Get() const { return m_ip_address; }
 

@@ -24,10 +24,10 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <vector>
 
 #pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/tuple/tuple.hpp>
 #include <boost/shared_ptr.hpp>
-#pragma GCC diagnostic pop
 
 #include <QWidget>
 
@@ -36,6 +36,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "pylosmove.h"
 #include "pyloswinner.h"
 #include "qtpylossprites.h"
+#pragma GCC diagnostic pop
 
 struct QPaintEvent;
 //namespace Pylos { struct Game; }
@@ -158,7 +159,7 @@ protected:
   Pylos::Coordinat m_select;
 
   ///All Pylos sprites
-  Pylos::QtSprites m_sprites;
+  boost::shared_ptr<const Pylos::QtSprites> m_sprites;
 
   ///The angle which the board is tilted in radians.
   ///0.0*M_PI denotes looking at the board from the top
