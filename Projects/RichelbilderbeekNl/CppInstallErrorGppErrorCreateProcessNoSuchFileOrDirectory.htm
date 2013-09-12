@@ -3,9 +3,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
   <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
-  <title>fatal error: bzlib.h: No such file or directory</title>
-  <meta name="description" content="C++ fatal error: bzlib.h: No such file or directory"/>
-  <meta name="keywords" content="C++ fatal error: bzlib.h: No such file or directory code snippet"/>
+  <title>g++: error: CreateProcess no such file or directory</title>
+  <meta name="description" content="C++ g++: error: CreateProcess no such file or directory"/>
+  <meta name="keywords" content="C++ g++: error: CreateProcess no such file or directory"/>
   <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
 </head>
 <!-- End of head, start of body -->
@@ -18,28 +18,39 @@
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <!-- Page header -->
-<h1>(<a href="Cpp.htm">C++</a>) <a href="CppInstallErrorBzlibHnoSuchFileOrDirectory.htm">bzlib.h: No such file or directory</a></h1>
+<h1>(<a href="Cpp.htm">C++</a>) <a href="CppInstallErrorGppErrorCreateProcessNoSuchFileOrDirectory.htm">g++: error: CreateProcess no such file or directory</a></h1>
 <p>&nbsp;</p>
-<p><a href="CppInstallError.htm">Install error</a> that can occur when installing <a href="CppBoost.htm">Boost</a>.</p>
+<p><a href="CppInstallError.htm">Install error</a> that can occur when installing <a href="CppQwt.htm">Qwt</a>
+under <a href="CppWindows.htm">Windows</a> 7.</p>
 <p>&nbsp;</p>
 <p>After doing the following, the error pops up:</p>
 <p>&nbsp;</p>
 <!-- start of code -->
-<table border = "1"><tr><td><code>
-./bootstrap
-./bjam --build-dir=/tmp/build-boost toolset=gcc stage<br/>
+<table summary="Create error" border = "1"><tr><td><code>
+cd D:\Projects\Libraries\qwt-6.1.0<br/>
+C:\Qt\5.1.1\mingw48_32\bin\qmake qwt.pro<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
-<p>Solution: install python-dev:</p>
+<p>The error message:</p>
 <p>&nbsp;</p>
 <!-- start of code -->
-<table border = "1"><tr><td><code>
-sudo apt-get install python-dev<br/>
-sudo apt-get install python-bzutils<br/>
-sudo apt-get install libbz2-dev<br/>
+<table summary="Error message" border = "1"><tr><td><code>
+g++: error: CreateProcess no such file or directory<br/>
 </code></td></tr></table>
 <!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Solution</h2>
+<p>&nbsp;</p>
+<p>
+  Add the folder with cc1plus.exe to the path. For me this was 'C:\Qt\Tools\mingw48_32\libexec\gcc\i686-w64-mingw32\4.8.0'.
+  Also add the folder with g++.exe to the path. For me this was 'C:\Qt\Tools\mingw48_32\bin'.
+  Reflecting upon this solution, perhaps only the latter is needed.
+</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
