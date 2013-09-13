@@ -20,26 +20,31 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #ifndef QTTESTNEWICKVECTORDIALOG_H
 #define QTTESTNEWICKVECTORDIALOG_H
-//---------------------------------------------------------------------------
+
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include <boost/scoped_ptr.hpp>
-//---------------------------------------------------------------------------
 #include <QDialog>
-//---------------------------------------------------------------------------
+#pragma GCC diagnostic pop
+
 namespace Ui {
   class QtTestNewickVectorDialog;
 }
-//---------------------------------------------------------------------------
+
 
 namespace ribi {
 
 struct TestNewickVectorDialog;
-//---------------------------------------------------------------------------
+
 class QtTestNewickVectorDialog : public QDialog
 {
   Q_OBJECT
 
 public:
+  ///QtTestNewickVectorDialog constructor performs most Newick tests
   explicit QtTestNewickVectorDialog(QWidget *parent = 0);
+  QtTestNewickVectorDialog(const QtTestNewickVectorDialog&) = delete;
+  QtTestNewickVectorDialog& operator=(const QtTestNewickVectorDialog&) = delete;
   ~QtTestNewickVectorDialog();
   static const std::string GetVersion();
   static const std::vector<std::string> GetVersionHistory();

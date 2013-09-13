@@ -18,9 +18,10 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolRegexTester.htm
 //---------------------------------------------------------------------------
-
-
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include "regextestermaindialog.h"
+#pragma GCC diagnostic pop
 
 const std::vector<std::string> ribi::RegexTesterMainDialog::GetTestRegexes()
 {

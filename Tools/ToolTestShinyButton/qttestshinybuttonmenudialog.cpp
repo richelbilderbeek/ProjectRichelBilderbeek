@@ -18,8 +18,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolTestShinyButton.htm
 //---------------------------------------------------------------------------
-
-
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include "qttestshinybuttonmenudialog.h"
 
 #include "qtaboutdialog.h"
@@ -27,6 +27,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "qttestshinybuttonmaindialog.h"
 #include "testshinybuttonmenudialog.h"
 #include "ui_qttestshinybuttonmenudialog.h"
+#pragma GCC diagnostic pop
 
 ribi::QtTestShinyButtonMenuDialog::QtTestShinyButtonMenuDialog(QWidget *parent) :
     QDialog(parent),

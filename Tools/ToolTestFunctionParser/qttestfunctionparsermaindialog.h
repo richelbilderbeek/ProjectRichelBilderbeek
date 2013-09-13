@@ -24,7 +24,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "qthideandshowdialog.h"
 
 namespace Ui {
-class QtTestFunctionParserMainDialog;
+  class QtTestFunctionParserMainDialog;
 }
 
 namespace ribi {
@@ -35,6 +35,8 @@ class QtTestFunctionParserMainDialog : public QtHideAndShowDialog
 
 public:
   explicit QtTestFunctionParserMainDialog(QWidget *parent = 0);
+  QtTestFunctionParserMainDialog(const QtTestFunctionParserMainDialog&) = delete;
+  QtTestFunctionParserMainDialog& operator=(const QtTestFunctionParserMainDialog&) = delete;
   ~QtTestFunctionParserMainDialog();
 
 private slots:

@@ -26,7 +26,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
-#include <boost/noncopyable.hpp>
+
 
 #include <QPixmap>
 #pragma GCC diagnostic pop
@@ -36,8 +36,7 @@ namespace ribi {
 namespace Boenken {
 
 ///Sprite is the ABC of anything that must be drawn on screen
-///Sprite is noncopyable
-struct Sprite : public boost::noncopyable
+struct Sprite
 {
   Sprite(
     const double x,
@@ -46,6 +45,8 @@ struct Sprite : public boost::noncopyable
     const unsigned char r,
     const unsigned char g,
     const unsigned char b);
+  Sprite(const Sprite&) = delete;
+  Sprite& operator=(const Sprite&) = delete;
 
   ///The size (width==height) in pixels
   const int m_size;

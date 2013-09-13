@@ -18,30 +18,31 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolTestPylos.htm
 //---------------------------------------------------------------------------
-
-
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include "qttestpylostestgamedialog.h"
 
 #include <cassert>
 #include <iostream>
-//---------------------------------------------------------------------------
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+
 #include <boost/numeric/conversion/cast.hpp>
 #include <boost/lexical_cast.hpp>
-#pragma GCC diagnostic pop
-//---------------------------------------------------------------------------
+
 #include <QBitmap>
 #include <QMouseEvent>
 #include <QPainter>
 #include <QTimer>
-//---------------------------------------------------------------------------
+
+#include "pylosgame.h"
 #include "pylosboard.h"
 #include "pylosmove.h"
 #include "pylospositionstate.h"
 #include "qtpylosboardwidget.h"
+#include "qtpylosgamewidget.h"
 #include "ui_qttestpylostestgamedialog.h"
-//---------------------------------------------------------------------------
+#pragma GCC diagnostic pop
+
 ribi::QtTestPylosTestGameDialog::QtTestPylosTestGameDialog(QWidget *parent) :
   QDialog(parent),
   ui(new Ui::QtTestPylosTestGameDialog),
@@ -72,7 +73,7 @@ ribi::QtTestPylosTestGameDialog::QtTestPylosTestGameDialog(QWidget *parent) :
 
   UpdateLog();
 }
-//---------------------------------------------------------------------------
+
 ribi::QtTestPylosTestGameDialog::~QtTestPylosTestGameDialog()
 {
   m_timer->stop();
@@ -104,7 +105,7 @@ void ribi::QtTestPylosTestGameDialog::on_button_play_visual_clicked()
     m_timer->start();
   }
 }
-//---------------------------------------------------------------------------
+
 void ribi::QtTestPylosTestGameDialog::OnTimer()
 {
   const QRect r = this->m_widget->geometry();
@@ -144,27 +145,27 @@ void ribi::QtTestPylosTestGameDialog::OnTimer()
     m_timer->stop();
   }
 }
-//---------------------------------------------------------------------------
+
 void ribi::QtTestPylosTestGameDialog::on_radio_advanced_clicked()
 {
   m_widget->StartAdvanced();
 }
-//---------------------------------------------------------------------------
+
 void ribi::QtTestPylosTestGameDialog::on_radio_basic_clicked()
 {
   m_widget->StartBasic();
 }
-//---------------------------------------------------------------------------
+
 void ribi::QtTestPylosTestGameDialog::on_radio_bw_clicked()
 {
   m_widget->SetColorSchemeBlackWhite();
 }
-//---------------------------------------------------------------------------
+
 void ribi::QtTestPylosTestGameDialog::on_radio_rb_clicked()
 {
   m_widget->SetColorSchemeRedBlue();
 }
-//---------------------------------------------------------------------------
+
 void ribi::QtTestPylosTestGameDialog::UpdateLog()
 {
   ui->text_log->clear();
@@ -222,4 +223,4 @@ void ribi::QtTestPylosTestGameDialog::UpdateLog()
   }
 
 }
-//---------------------------------------------------------------------------
+

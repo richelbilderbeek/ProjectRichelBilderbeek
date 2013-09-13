@@ -18,11 +18,9 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolSimMysteryMachine.htm
 //---------------------------------------------------------------------------
-
-
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include "qtsimmysterymachinemenudialog.h"
-
-
 
 #include "dial.h"
 #include "led.h"
@@ -38,6 +36,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "qttogglebuttonwidget.h"
 #include "simmysterymachinemenudialog.h"
 #include "ui_qtsimmysterymachinemenudialog.h"
+
+#pragma GCC diagnostic pop
 
 ribi::QtSimMysteryMachineMenuDialog::QtSimMysteryMachineMenuDialog(QWidget *parent) :
     QDialog(parent),

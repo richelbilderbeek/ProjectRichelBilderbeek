@@ -35,6 +35,8 @@ class QtTestQtCreatorProFileMenuDialog : public QtHideAndShowDialog
 
 public:
   explicit QtTestQtCreatorProFileMenuDialog(QWidget *parent = 0);
+  QtTestQtCreatorProFileMenuDialog(const QtTestQtCreatorProFileMenuDialog&) = delete;
+  QtTestQtCreatorProFileMenuDialog& operator=(const QtTestQtCreatorProFileMenuDialog&) = delete;
   ~QtTestQtCreatorProFileMenuDialog();
 
 private slots:

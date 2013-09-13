@@ -18,8 +18,9 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 // ---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolCodeToHtml.htm
 // ---------------------------------------------------------------------------
-
-
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include "qtcodetohtmlmaindialog.h"
 
 #define QTCODETOHTMLMAINDIALOG_TEMPORARILY_REMOVE_QWEBVIEW_253489729387428907
@@ -33,10 +34,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <sstream>
 #include <vector>
 
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/lexical_cast.hpp>
-#pragma GCC diagnostic pop
 
 #include <QDesktopWidget>
 #include <QFile>
@@ -50,6 +48,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "qtaboutdialog.h"
 #include "trace.h"
 #include "ui_qtcodetohtmlmaindialog.h"
+#pragma GCC diagnostic pop
 
 ribi::QtCodeToHtmlMainDialog::QtCodeToHtmlMainDialog(QWidget *parent) :
     QtHideAndShowDialog(parent),

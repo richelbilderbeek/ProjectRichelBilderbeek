@@ -29,7 +29,6 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/checked_delete.hpp>
 #include <boost/scoped_ptr.hpp>
-#include <boost/noncopyable.hpp>
 #include <boost/signals2.hpp>
 #pragma GCC diagnostic pop
 
@@ -40,9 +39,11 @@ struct LedWidget;
 struct ToggleButtonWidget;
 
 ///MysteryMachine contains the logic behind my Mystery Machine
-struct MysteryMachine : public boost::noncopyable
+struct MysteryMachine
 {
   MysteryMachine();
+  MysteryMachine(const MysteryMachine&);
+  MysteryMachine& operator=(const MysteryMachine&);
 
   DialWidget * GetDialBack() { return m_dial_back.get(); }
   DialWidget * GetDialFront() { return m_dial_front.get(); }
@@ -72,9 +73,7 @@ struct MysteryMachine : public boost::noncopyable
   const ToggleButtonWidget * GetToggleButton() const { return m_toggle_button.get(); }
 
   private:
-  ///MysteryMachine can only be deleted by Boost smart pointers
   virtual ~MysteryMachine() {}
-  ///MysteryMachine can only be deleted by Boost smart pointers
   friend void boost::checked_delete<>(MysteryMachine*);
 
   boost::scoped_ptr<DialWidget> m_dial_back;

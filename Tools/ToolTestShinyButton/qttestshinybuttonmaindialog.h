@@ -21,9 +21,12 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #ifndef QTTESTSHINYBUTTONDIALOG_H
 #define QTTESTSHINYBUTTONDIALOG_H
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include <boost/scoped_ptr.hpp>
 
 #include <QDialog>
+#pragma GCC diagnostic pop
 
 namespace Ui {
   class QtTestShinyButtonMainDialog;
@@ -39,6 +42,8 @@ class QtTestShinyButtonMainDialog : public QDialog
 
 public:
   explicit QtTestShinyButtonMainDialog(QWidget *parent = 0);
+  QtTestShinyButtonMainDialog(const QtTestShinyButtonMainDialog&) = delete;
+  QtTestShinyButtonMainDialog& operator=(const QtTestShinyButtonMainDialog&) = delete;
   ~QtTestShinyButtonMainDialog();
 
 protected:

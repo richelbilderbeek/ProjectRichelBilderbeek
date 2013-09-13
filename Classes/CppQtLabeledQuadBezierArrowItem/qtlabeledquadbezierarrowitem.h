@@ -4,15 +4,18 @@
 #include <string>
 
 #pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/signals2.hpp>
+
+//#include <QFont>
+#include "qtroundedtextrectitem.h"
+//#include "qtquadbezierarrowitem.h"
 #pragma GCC diagnostic pop
 
-#include <QFont>
-#include "qtroundedtextrectitem.h"
-#include "qtquadbezierarrowitem.h"
-
 namespace ribi {
+
+struct QtQuadBezierArrowItem;
 
 ///The QtLabeledQuadBezierArrowItem is a QtRoundedTextRectItem that
 ///draws a bezier curve underneath itself, between head and tail arrowhead

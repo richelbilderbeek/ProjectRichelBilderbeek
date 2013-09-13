@@ -35,6 +35,8 @@ class QtSitemapGeneratorMenuDialog : public QtHideAndShowDialog
     
 public:
   explicit QtSitemapGeneratorMenuDialog(QWidget *parent = 0);
+  QtSitemapGeneratorMenuDialog(const QtSitemapGeneratorMenuDialog&) = delete;
+  QtSitemapGeneratorMenuDialog& operator=(const QtSitemapGeneratorMenuDialog&) = delete;
   ~QtSitemapGeneratorMenuDialog();
     
 protected:

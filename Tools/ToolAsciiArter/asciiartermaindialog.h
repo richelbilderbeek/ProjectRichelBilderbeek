@@ -27,7 +27,6 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #include <boost/scoped_ptr.hpp>
-
 #include "about.h"
 #pragma GCC diagnostic pop
 
@@ -49,10 +48,9 @@ struct AsciiArterMainDialog
 
   private:
   std::vector<std::string> m_asciiart;
+  const boost::scoped_ptr<AsciiArter> m_asciiarter;
   std::vector<std::vector<double> > m_image;
   int m_width;
-
-  const boost::scoped_ptr<AsciiArter> m_asciiarter;
 };
 
 } //~namespace ribi

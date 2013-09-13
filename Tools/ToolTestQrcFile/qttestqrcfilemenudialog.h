@@ -21,10 +21,13 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #ifndef QTTESTQRCFILEMENUDIALOG_H
 #define QTTESTQRCFILEMENUDIALOG_H
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include <QDialog>
+#pragma GCC diagnostic pop
 
 namespace Ui {
-class QtTestQrcFileMenuDialog;
+  class QtTestQrcFileMenuDialog;
 }
 
 namespace ribi {
@@ -35,6 +38,8 @@ class QtTestQrcFileMenuDialog : public QDialog
 
 public:
   explicit QtTestQrcFileMenuDialog(QWidget *parent = 0);
+  QtTestQrcFileMenuDialog(const QtTestQrcFileMenuDialog&) = delete;
+  QtTestQrcFileMenuDialog& operator=(const QtTestQrcFileMenuDialog&) = delete;
   ~QtTestQrcFileMenuDialog();
 
 private slots:

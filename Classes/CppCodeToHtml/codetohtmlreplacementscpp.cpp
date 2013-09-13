@@ -597,6 +597,8 @@ const std::vector<std::pair<std::string,std::string> > c2h::Content::CreateCppRe
     { "dynamic_bitset","<a href=\"C$ppD$yn$amic_b$its$et.htm\">d$yn$amic_b$its$et</a>" },
     { "initialization",R"(<a href="CppI$nitialize.htm">i$nitialization</a>)" },
     { "plain old data","<a href=\"CppP$od.htm\">p$lain o$ld d$ata</a>" },
+    { "shared library","<a href=\"C$ppS$haredL$ibrary.htm\">s$hared l$ibrary</a>" },
+    { "static library","<a href=\"C$ppS$taticL$ibrary.htm\">s$tatic l$ibrary</a>" },
     { "std::bad_alloc","<a href=\"C$ppB$ad_a$lloc.htm\">st$d::b$ad_a$lloc</a>" },
     { "std::boolalpha","<a href=\"C$ppB$oola$lpha.htm\">st$d::bo$olalpha</a>" },
     { "std::call_once","<a href=\"C$ppC$all_o$nce.htm\">st$d::c$all_o$nce</a>" },

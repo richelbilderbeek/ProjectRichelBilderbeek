@@ -21,7 +21,10 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #ifndef QTMUSICTHEORYMENUDIALOG_H
 #define QTMUSICTHEORYMENUDIALOG_H
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include <QDialog>
+#pragma GCC diagnostic pop
 
 namespace Ui {
   class QtMusicTheoryMenuDialog;
@@ -35,6 +38,8 @@ class QtMusicTheoryMenuDialog : public QDialog
 
 public:
   explicit QtMusicTheoryMenuDialog(QWidget *parent = 0);
+  QtMusicTheoryMenuDialog(const QtMusicTheoryMenuDialog&) = delete;
+  QtMusicTheoryMenuDialog& operator=(const QtMusicTheoryMenuDialog&) = delete;
   ~QtMusicTheoryMenuDialog();
 
 private:

@@ -20,23 +20,24 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #ifndef QTTESTPYLOSTESTGAMEDIALOG_H
 #define QTTESTPYLOSTESTGAMEDIALOG_H
-//---------------------------------------------------------------------------
+
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include <boost/shared_ptr.hpp>
-//---------------------------------------------------------------------------
 #include <QDialog>
-//---------------------------------------------------------------------------
-#include "pylosmove.h"
-#include "pylosgame.h"
-#include "qtpylosgamewidget.h"
-//---------------------------------------------------------------------------
+#pragma GCC diagnostic pop
+
 struct QLabel;
 struct QTimer;
+
 namespace Ui {
   class QtTestPylosTestGameDialog;
 }
-//---------------------------------------------------------------------------
+
 
 namespace ribi {
+
+struct QtPylosGameWidget;
 
 class QtTestPylosTestGameDialog : public QDialog
 {
@@ -44,6 +45,8 @@ class QtTestPylosTestGameDialog : public QDialog
 
 public:
   explicit QtTestPylosTestGameDialog(QWidget *parent = 0);
+  QtTestPylosTestGameDialog(const QtTestPylosTestGameDialog&) = delete;
+  QtTestPylosTestGameDialog& operator=(const QtTestPylosTestGameDialog&) = delete;
   ~QtTestPylosTestGameDialog();
 
 protected:

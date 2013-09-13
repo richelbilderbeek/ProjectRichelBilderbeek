@@ -21,7 +21,10 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #ifndef QTPERFECTELASTICCOLLISIONMENUDIALOG_H
 #define QTPERFECTELASTICCOLLISIONMENUDIALOG_H
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include <QDialog>
+#pragma GCC diagnostic pop
 
 namespace Ui {
   class QtPerfectElasticCollisionMenuDialog;
@@ -35,6 +38,8 @@ class QtPerfectElasticCollisionMenuDialog : public QDialog
 
 public:
   explicit QtPerfectElasticCollisionMenuDialog(QWidget *parent = 0);
+  QtPerfectElasticCollisionMenuDialog(const QtPerfectElasticCollisionMenuDialog&) = delete;
+  QtPerfectElasticCollisionMenuDialog& operator=(const QtPerfectElasticCollisionMenuDialog&) = delete;
   ~QtPerfectElasticCollisionMenuDialog();
 
 private slots:

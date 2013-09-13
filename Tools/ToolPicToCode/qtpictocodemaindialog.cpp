@@ -18,18 +18,16 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolPicToCode.htm
 //---------------------------------------------------------------------------
-
-
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include "qtpictocodemaindialog.h"
 
 #include <cassert>
 
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/foreach.hpp>
 #include <boost/lexical_cast.hpp>
 #include <boost/numeric/conversion/cast.hpp>
-#pragma GCC diagnostic pop
 
 #include <QBitmap>
 #include <QDesktopWidget>
@@ -39,6 +37,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "pictocodemenudialog.h"
 #include "qtsprites.h"
 #include "ui_qtpictocodemaindialog.h"
+#pragma GCC diagnostic pop
 
 ribi::QtPicToCodeMainDialog::QtPicToCodeMainDialog(QWidget *parent) :
   QDialog(parent,Qt::Window),

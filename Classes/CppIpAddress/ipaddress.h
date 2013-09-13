@@ -25,7 +25,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <vector>
 
 #include <boost/checked_delete.hpp>
-#include <boost/noncopyable.hpp>
+
 
 namespace ribi {
 
@@ -53,33 +53,25 @@ struct IpAddress
   std::string m_ip_address;
 };
 
+/*
 ///SafeIpAddress guarantees to contain a valid IP address
 ///and only be of a complete type
-struct SafeIpAddress : public IpAddress, boost::noncopyable
+struct SafeIpAddress : public IpAddress
 {
   ///SafeIpAddress constructor throws an exception when
   ///ip_address is not a valid IP address
   SafeIpAddress(const std::string& ip_address);
+  SafeIpAddress(const SafeIpAddress&) = delete;
+  SafeIpAddress& operator=(const SafeIpAddress&) = delete;
 
   private:
-  ///To prevent the following trouble,
-  ///cited from http://www.boost.org/libs/utility/checked_delete.html:
-  ///The C++ Standard allows, in 5.3.5/5, pointers to incomplete
-  ///class types to be deleted with a delete-expression.
-  ///When the class has a non-trivial destructor, or a class-specific operator
-  ///delete, the behavior is undefined. Some compilers issue a warning when an
-  ///incomplete type is deleted, but unfortunately, not all do, and programmers
-  ///sometimes ignore or disable warnings.
   ~SafeIpAddress()  {}
-  ///Template syntax from Herb Sutter. Exceptional C++ style. 2005.
-  ///ISBN: 0-201-76042-8. Item 8: 'Befriending templates'.
   friend void boost::checked_delete<>(SafeIpAddress*);
 };
+*/
 
-///Test for equal IP addresses
 bool operator==(const IpAddress& lhs,const IpAddress& rhs);
-///Test for equal IP addresses
-bool operator==(const SafeIpAddress& lhs,const SafeIpAddress& rhs);
+//bool operator==(const SafeIpAddress& lhs,const SafeIpAddress& rhs);
 
 } //~namespace ribi
 

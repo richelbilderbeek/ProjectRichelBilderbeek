@@ -30,17 +30,18 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic ignored "-Weffc++"
 #include <boost/checked_delete.hpp>
 #include <boost/shared_ptr.hpp>
-#include <boost/noncopyable.hpp>
 #include "about.h"
 #pragma GCC diagnostic pop
 
 namespace ribi {
 
 ///QtCreatorProFile parses .pro files
-struct QtCreatorProFile : public boost::noncopyable
+struct QtCreatorProFile
 {
   ///Parse a .pro file
   explicit QtCreatorProFile(const std::string& filename);
+  QtCreatorProFile(const QtCreatorProFile&) = delete;
+  QtCreatorProFile& operator=(const QtCreatorProFile&) = delete;
 
   ///Obtain this class its About information
   static const ribi::About GetAbout();

@@ -28,19 +28,20 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #include <boost/checked_delete.hpp>
-#include <boost/noncopyable.hpp>
 #include <boost/shared_ptr.hpp>
-
 #include "qtcreatorprofile.h"
 #pragma GCC diagnostic pop
 
 namespace ribi {
 
 ///Create a shell script to zip a Qt Creator .pro file
-struct QtCreatorProFileZipScript : public boost::noncopyable
+struct QtCreatorProFileZipScript
 {
   QtCreatorProFileZipScript(
-    const boost::shared_ptr<const ribi::QtCreatorProFile> pro_file);
+    const boost::shared_ptr<const ribi::QtCreatorProFile> pro_file
+  );
+  QtCreatorProFileZipScript(const QtCreatorProFileZipScript&) = delete;
+  QtCreatorProFileZipScript& operator=(const QtCreatorProFileZipScript&) = delete;
 
   ///Create a script to zip all .pro files (and all they refer to) in a folder
   static const std::string CreateScript(const std::string& source_folder);

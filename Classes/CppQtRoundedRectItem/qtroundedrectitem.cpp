@@ -1,16 +1,17 @@
 #pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 
 
 #include "qtroundedrectitem.h"
-#pragma GCC diagnostic pop
 
 #include <cassert>
 #include <sstream>
 #include <QFont>
 #include <QGraphicsScene>
 #include <QPainter>
+#pragma GCC diagnostic pop
 
 ribi::QtRoundedRectItem::QtRoundedRectItem(QGraphicsItem *parent)
   : QGraphicsRectItem(parent), //New since Qt5

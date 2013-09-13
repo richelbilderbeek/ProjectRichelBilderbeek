@@ -52,19 +52,22 @@ const std::vector<std::string> ribi::IpAddress::GetVersionHistory()
   };
 }
 
+/*
 ribi::SafeIpAddress::SafeIpAddress(const std::string& ip_address)
   : IpAddress(ip_address)
 {
 
 }
+*/
 
 bool ribi::operator==(const IpAddress& lhs,const IpAddress& rhs)
 {
   return lhs.Get() == rhs.Get();
 }
 
+/*
 bool ribi::operator==(const SafeIpAddress& lhs,const SafeIpAddress& rhs)
 {
   return lhs.Get() == rhs.Get();
 }
-
+*/

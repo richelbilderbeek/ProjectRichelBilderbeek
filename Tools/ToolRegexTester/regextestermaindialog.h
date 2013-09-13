@@ -24,8 +24,11 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <string>
 #include <vector>
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include <boost/shared_ptr.hpp>
 #include <boost/logic/tribool.hpp>
+#pragma GCC diagnostic pop
 
 namespace ribi {
 
@@ -33,7 +36,8 @@ namespace ribi {
 struct RegexTesterMainDialog
 {
   RegexTesterMainDialog() {}
-
+  RegexTesterMainDialog(const RegexTesterMainDialog&) = delete;
+  RegexTesterMainDialog& operator=(const RegexTesterMainDialog&) = delete;
   virtual ~RegexTesterMainDialog() {}
 
   ///Clone this class

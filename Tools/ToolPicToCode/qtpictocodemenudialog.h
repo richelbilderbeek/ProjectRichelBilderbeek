@@ -1,12 +1,15 @@
 #ifndef QTPICTOCODEMENUDIALOG_H
 #define QTPICTOCODEMENUDIALOG_H
-//---------------------------------------------------------------------------
+
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include <QDialog>
-//---------------------------------------------------------------------------
+#pragma GCC diagnostic pop
+
 namespace Ui {
   class QtPicToCodeMenuDialog;
 }
-//---------------------------------------------------------------------------
+
 
 namespace ribi {
 
@@ -16,6 +19,8 @@ class QtPicToCodeMenuDialog : public QDialog
 
 public:
   explicit QtPicToCodeMenuDialog(QWidget *parent = 0);
+  QtPicToCodeMenuDialog(const QtPicToCodeMenuDialog&) = delete;
+  QtPicToCodeMenuDialog& operator=(const QtPicToCodeMenuDialog&) = delete;
   ~QtPicToCodeMenuDialog();
 
 protected:

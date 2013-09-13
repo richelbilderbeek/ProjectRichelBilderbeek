@@ -21,13 +21,14 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #include "asciiartermaindialog.h"
-
 #include "asciiarter.h"
 #pragma GCC diagnostic pop
 
 ribi::AsciiArterMainDialog::AsciiArterMainDialog()
-  : m_width(0),
-    m_asciiarter(new AsciiArter)
+  : m_asciiart{},
+    m_asciiarter(new AsciiArter),
+    m_image{},
+    m_width{0}
 {
 
 }

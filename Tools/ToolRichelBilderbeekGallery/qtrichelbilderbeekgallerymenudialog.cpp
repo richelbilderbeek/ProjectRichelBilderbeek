@@ -18,8 +18,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolRichelBilderbeekGallery.htm
 //---------------------------------------------------------------------------
-
-
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include "qtrichelbilderbeekgallerymenudialog.h"
 
 #include <fstream>
@@ -27,6 +27,9 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <QApplication>
 #include <QKeyEvent>
 #include <QMessageBox>
+#include <QBitmap>
+#include <QPainter>
+#include <QPixmap>
 
 #include "about.h"
 #include "qtaboutdialog.h"
@@ -35,9 +38,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "richelbilderbeekgallerymenudialog.h"
 #include "ui_qtrichelbilderbeekgallerymenudialog.h"
 
-#include <QBitmap>
-#include <QPainter>
-#include <QPixmap>
+#pragma GCC diagnostic pop
 
 ribi::QtRichelBilderbeekGalleryMenuDialog::QtRichelBilderbeekGalleryMenuDialog(QWidget *parent) :
   QtHideAndShowDialog(parent),

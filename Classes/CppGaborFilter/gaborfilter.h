@@ -29,19 +29,21 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include <boost/checked_delete.hpp>
-#include <boost/noncopyable.hpp>
+
 #include <boost/signals2.hpp>
 #pragma GCC diagnostic pop
 
 namespace ribi {
 
 ///GaborFilter manages a Gabor filter
-struct GaborFilter : public boost::noncopyable
+struct GaborFilter
 {
   GaborFilter(
     const double angle     = 0.0,
     const double frequency = 1.0,
     const double sigma     = 1.0);
+  GaborFilter(const GaborFilter&) = delete;
+  GaborFilter& operator=(const GaborFilter&) = delete;
 
   ///Signal emitted when a value of the Gabor filter changes
   mutable boost::signals2::signal<void ()> m_signal_changed;

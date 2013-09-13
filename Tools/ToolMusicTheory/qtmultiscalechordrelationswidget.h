@@ -21,8 +21,12 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #ifndef QTMULTISCALECHORDRELATIONSWIDGET_H
 #define QTMULTISCALECHORDRELATIONSWIDGET_H
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include <boost/shared_ptr.hpp>
 #include <QGraphicsView>
+#pragma GCC diagnostic pop
+
 struct QGraphicsScene;
 
 namespace ribi {

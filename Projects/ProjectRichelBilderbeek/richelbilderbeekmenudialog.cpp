@@ -18,6 +18,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ProjectRichelBilderbeek.htm
 //---------------------------------------------------------------------------
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include "richelbilderbeekmenudialog.h"
 
 #include "alphabetafilter.h"
@@ -109,6 +111,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "trace.h"
 #include "twodigitnewick.h"
 
+#pragma GCC diagnostic pop
+
 ribi::RichelBilderbeek::MenuDialog::MenuDialog()
   : m_programs(ribi::RichelBilderbeek::Program::GetAllPrograms())
 {
@@ -146,15 +150,15 @@ const ribi::About ribi::RichelBilderbeek::MenuDialog::GetAbout()
   a.AddLibrary("DialWidget version: " + DialWidget::GetVersion());
   a.AddLibrary("Encranger version: " + Encranger::GetVersion());
   a.AddLibrary("Exercise version: " + Exercise::GetVersion());
-  a.AddLibrary("FixedLagSmootherKalmanFilter version: " + FixedLagSmootherKalmanFilter::GetVersion());
+  a.AddLibrary("kalman::FixedLagSmootherKalmanFilter version: " + kalman::FixedLagSmootherKalmanFilter::GetVersion());
   a.AddLibrary("Fuzzy_equal_to version: " + fuzzy_equal_to::GetVersion());
   a.AddLibrary("GaborFilter version: " + GaborFilter::GetVersion());
   a.AddLibrary("GaborFilterWidget version: " + GaborFilterWidget::GetVersion());
   a.AddLibrary("Hometrainer version: " + ribi::HometrainerMenuDialog::GetVersion());
   a.AddLibrary("HtmlPage version: " + HtmlPage::GetVersion());
   a.AddLibrary("IpAddress version: " + IpAddress::GetVersion());
-  a.AddLibrary("KalmanFilter version: " + KalmanFilter::GetVersion());
-  a.AddLibrary("LaggedWhiteNoiseSystem version: " + LaggedWhiteNoiseSystem::GetVersion());
+  a.AddLibrary("kalman::KalmanFilter version: " + kalman::KalmanFilter::GetVersion());
+  a.AddLibrary("kalman::LaggedWhiteNoiseSystem version: " + kalman::LaggedWhiteNoiseSystem::GetVersion());
   a.AddLibrary("Lazy_init version: " + Lazy_initVersion::GetVersion());
   a.AddLibrary("Led version: " + Led::GetVersion());
   a.AddLibrary("LedWidget version: " + LedWidget::GetVersion());
@@ -195,17 +199,17 @@ const ribi::About ribi::RichelBilderbeek::MenuDialog::GetAbout()
   a.AddLibrary("ShinyButtonWidget version: " + ShinyButtonWidget::GetVersion());
   a.AddLibrary("SimMysteryMachine version: " + ribi::SimMysteryMachineMenuDialog::GetVersion());
   a.AddLibrary("SortedBinaryNewickVector version: " + SortedBinaryNewickVector::GetVersion());
-  a.AddLibrary("StandardKalmanFilterParameters version: " + StandardKalmanFilterParameters::GetVersion());
+  a.AddLibrary("kalman::StandardKalmanFilterParameters version: " + kalman::StandardKalmanFilterParameters::GetVersion());
   a.AddLibrary("AlphaFilter version: " + AlphaFilter::GetVersion());
   a.AddLibrary("AlphaBetaFilter version: " + AlphaBetaFilter::GetVersion());
   a.AddLibrary("AlphaBetaGammaFilter version: " + AlphaBetaGammaFilter::GetVersion());
   a.AddLibrary("MultiAlphaFilter version: " + MultiAlphaFilter::GetVersion());
   a.AddLibrary("StateObserver version: " + ribi::StateObserverMenuDialog::GetVersion());
-  a.AddLibrary("StandardKalmanFilter version: " + StandardKalmanFilter::GetVersion());
-  a.AddLibrary("StandardWhiteNoiseSystemParameters version: " + StandardWhiteNoiseSystemParameters::GetVersion());
-  a.AddLibrary("StandardWhiteNoiseSystem version: " + StandardWhiteNoiseSystem::GetVersion());
-  a.AddLibrary("SteadyStateKalmanFilterParameters version: " + SteadyStateKalmanFilterParameters::GetVersion());
-  a.AddLibrary("SteadyStateKalmanFilter version: " + SteadyStateKalmanFilter::GetVersion());
+  a.AddLibrary("kalman::StandardKalmanFilter version: " + kalman::StandardKalmanFilter::GetVersion());
+  a.AddLibrary("kalman::StandardWhiteNoiseSystemParameters version: " + kalman::StandardWhiteNoiseSystemParameters::GetVersion());
+  a.AddLibrary("kalman::StandardWhiteNoiseSystem version: " + kalman::StandardWhiteNoiseSystem::GetVersion());
+  a.AddLibrary("kalman::SteadyStateKalmanFilterParameters version: " + kalman::SteadyStateKalmanFilterParameters::GetVersion());
+  a.AddLibrary("kalman::SteadyStateKalmanFilter version: " + kalman::SteadyStateKalmanFilter::GetVersion());
   a.AddLibrary("Stopwatch version: " + Stopwatch::GetVersion());
   a.AddLibrary("TestDial version: " + ribi::TestDialMenuDialog::GetVersion());
   a.AddLibrary("TestEncranger version: " + TestEncrangerDialog::GetVersion());
@@ -228,7 +232,7 @@ const ribi::About ribi::RichelBilderbeek::MenuDialog::GetAbout()
   a.AddLibrary("Trace version: " + Trace::GetVersion());
   a.AddLibrary("TwoDigitNewick version: " + TwoDigitNewick::GetVersion());
   a.AddLibrary("Warp's FunctionParser version: 4.4.3");
-  a.AddLibrary("WhiteNoiseSystem version: " + WhiteNoiseSystem::GetVersion());
+  a.AddLibrary("kalman::WhiteNoiseSystem version: " + kalman::WhiteNoiseSystem::GetVersion());
   a.AddLibrary("Widget version: " + Widget::GetVersion());
   return a;
 }

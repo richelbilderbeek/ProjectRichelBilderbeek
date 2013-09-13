@@ -18,12 +18,11 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolTestQuestion.htm
 //---------------------------------------------------------------------------
-
-
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include "qttestquestionmaindialog.h"
 
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/foreach.hpp>
 #include <boost/lexical_cast.hpp>
 #include <boost/numeric/conversion/cast.hpp>
@@ -47,7 +46,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 ribi::QtTestQuestionMainDialog::QtTestQuestionMainDialog(QWidget *parent) :
     QtHideAndShowDialog(parent),
-    ui(new Ui::QtTestQuestionMainDialog)
+    ui(new Ui::QtTestQuestionMainDialog),
+    m_dialog{nullptr}
 {
   #ifndef NDEBUG
   Test();

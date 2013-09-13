@@ -21,9 +21,11 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #ifndef QTTESTQUESTIONMENUDIALOG_H
 #define QTTESTQUESTIONMENUDIALOG_H
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include <boost/scoped_ptr.hpp>
-
 #include "qthideandshowdialog.h"
+#pragma GCC diagnostic pop
 
 namespace Ui {
 class QtTestQuestionMenuDialog;
@@ -39,6 +41,8 @@ class QtTestQuestionMenuDialog : public QtHideAndShowDialog
 
 public:
   explicit QtTestQuestionMenuDialog(QWidget *parent = 0);
+  QtTestQuestionMenuDialog(const QtTestQuestionMenuDialog&) = delete;
+  QtTestQuestionMenuDialog& operator=(const QtTestQuestionMenuDialog&) = delete;
   ~QtTestQuestionMenuDialog();
 
 protected:

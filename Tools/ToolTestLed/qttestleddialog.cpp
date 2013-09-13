@@ -18,20 +18,19 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolTestLed.htm
 //---------------------------------------------------------------------------
-
-
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include "qttestleddialog.h"
 
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/numeric/conversion/cast.hpp>
-#pragma GCC diagnostic pop
-//---------------------------------------------------------------------------
+
 #include "qtaboutdialog.h"
 #include "qtledwidget.h"
 #include "testledmenudialog.h"
 #include "ui_qttestleddialog.h"
-//---------------------------------------------------------------------------
+#pragma GCC diagnostic pop
+
 ribi::QtTestLedDialog::QtTestLedDialog(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::QtTestLedDialog)
@@ -49,12 +48,12 @@ ribi::QtTestLedDialog::QtTestLedDialog(QWidget *parent) :
   ui->led_gray->GetWidget()->GetLed()->SetColor( 127,127,127);
   ui->led_white->GetWidget()->GetLed()->SetColor(255,255,255);
 }
-//---------------------------------------------------------------------------
+
 ribi::QtTestLedDialog::~QtTestLedDialog()
 {
   delete ui;
 }
-//---------------------------------------------------------------------------
+
 
 void ribi::QtTestLedDialog::on_slider_valueChanged(int value)
 {
@@ -72,7 +71,7 @@ void ribi::QtTestLedDialog::on_slider_valueChanged(int value)
   ui->led_gray->GetWidget()->GetLed()->SetIntensity(intensity);
   ui->led_white->GetWidget()->GetLed()->SetIntensity(intensity);
 }
-//---------------------------------------------------------------------------
+
 void ribi::QtTestLedDialog::on_button_about_clicked()
 {
   this->hide();
@@ -82,4 +81,4 @@ void ribi::QtTestLedDialog::on_button_about_clicked()
   d.exec();
   this->show();
 }
-//---------------------------------------------------------------------------
+

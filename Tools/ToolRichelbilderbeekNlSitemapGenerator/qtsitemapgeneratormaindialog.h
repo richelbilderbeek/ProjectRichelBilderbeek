@@ -35,6 +35,8 @@ class QtSitemapGeneratorMainDialog : public QtHideAndShowDialog
 
 public:
   explicit QtSitemapGeneratorMainDialog(QWidget *parent = 0);
+  QtSitemapGeneratorMainDialog(const QtSitemapGeneratorMainDialog&);
+  QtSitemapGeneratorMainDialog& operator=(const QtSitemapGeneratorMainDialog&);
   ~QtSitemapGeneratorMainDialog();
 
 protected:

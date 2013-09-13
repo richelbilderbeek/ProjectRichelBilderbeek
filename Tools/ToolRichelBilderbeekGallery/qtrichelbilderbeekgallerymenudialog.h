@@ -35,6 +35,8 @@ class QtRichelBilderbeekGalleryMenuDialog : public QtHideAndShowDialog
 
 public:
   explicit QtRichelBilderbeekGalleryMenuDialog(QWidget *parent = 0);
+  QtRichelBilderbeekGalleryMenuDialog(const QtRichelBilderbeekGalleryMenuDialog&) = delete;
+  QtRichelBilderbeekGalleryMenuDialog& operator=(const QtRichelBilderbeekGalleryMenuDialog&) = delete;
   ~QtRichelBilderbeekGalleryMenuDialog();
 
 protected:

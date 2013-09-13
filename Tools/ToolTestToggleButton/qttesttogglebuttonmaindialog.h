@@ -1,8 +1,11 @@
 #ifndef QTTESTTOGGLEBUTTONMAINDIALOG_H
 #define QTTESTTOGGLEBUTTONMAINDIALOG_H
-//---------------------------------------------------------------------------
+
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include <QDialog>
-//---------------------------------------------------------------------------
+#pragma GCC diagnostic pop
+
 namespace Ui {
   class QtTestToggleButtonMainDialog;
 }
@@ -15,6 +18,8 @@ class QtTestToggleButtonMainDialog : public QDialog
 
 public:
   explicit QtTestToggleButtonMainDialog(QWidget *parent = 0);
+  QtTestToggleButtonMainDialog(const QtTestToggleButtonMainDialog&) = delete;
+  QtTestToggleButtonMainDialog& operator=(const QtTestToggleButtonMainDialog&) = delete;
   ~QtTestToggleButtonMainDialog();
 
 protected:

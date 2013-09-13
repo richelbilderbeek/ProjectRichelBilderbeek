@@ -19,17 +19,15 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolRandomCode.htm
 //---------------------------------------------------------------------------
-
-
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include "qtrandomcodemaindialog.h"
 
 #include <string>
 #include <vector>
 
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/foreach.hpp>
-#pragma GCC diagnostic pop
 
 #include <QDesktopWidget>
 #include <QKeyEvent>
@@ -39,6 +37,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "ui_qtrandomcodemaindialog.h"
 #include "randomcode.h"
 #include "randomcodemenudialog.h"
+#pragma GCC diagnostic pop
 
 ribi::QtRandomCodeMainDialog::QtRandomCodeMainDialog(QWidget *parent) :
     QtHideAndShowDialog(parent),

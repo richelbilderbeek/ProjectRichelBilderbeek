@@ -18,14 +18,15 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From hhtp://www.richelbilderbeek.nl/ToolPerfectElasticCollision.htm
 //---------------------------------------------------------------------------
-
-
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include "qtperfectelasticcollisionmenudialog.h"
 
 #include "perfectelasticcollisionmenudialog.h"
 #include "qtaboutdialog.h"
 #include "qtperfectelasticcollisionmaindialog.h"
 #include "ui_qtperfectelasticcollisionmenudialog.h"
+#pragma GCC diagnostic pop
 
 ribi::QtPerfectElasticCollisionMenuDialog::QtPerfectElasticCollisionMenuDialog(QWidget *parent) :
   QDialog(parent),

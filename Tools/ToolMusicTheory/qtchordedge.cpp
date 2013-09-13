@@ -18,9 +18,10 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolMusicTheory.htm
 //---------------------------------------------------------------------------
-
-
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include "qtchordedge.h"
+#pragma GCC diagnostic pop
 
 QtChordEdge::QtChordEdge(QGraphicsItem *parent)
   : QGraphicsLineItem(parent)

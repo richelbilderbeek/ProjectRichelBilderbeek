@@ -20,13 +20,17 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #ifndef QTTESTPYLOSRANDOMPLAYDIALOG_H
 #define QTTESTPYLOSRANDOMPLAYDIALOG_H
-//---------------------------------------------------------------------------
+
+
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include <QDialog>
-//---------------------------------------------------------------------------
+#pragma GCC diagnostic pop
+
 namespace Ui {
-class QtTestPylosRandomPlayDialog;
+  class QtTestPylosRandomPlayDialog;
 }
-//---------------------------------------------------------------------------
+
 
 namespace ribi {
 
@@ -36,6 +40,8 @@ class QtTestPylosRandomPlayDialog : public QDialog
     
 public:
   explicit QtTestPylosRandomPlayDialog(QWidget *parent = 0);
+  QtTestPylosRandomPlayDialog(const QtTestPylosRandomPlayDialog&) = delete;
+  QtTestPylosRandomPlayDialog& operator=(const QtTestPylosRandomPlayDialog&) = delete;
   ~QtTestPylosRandomPlayDialog();
     
 private slots:

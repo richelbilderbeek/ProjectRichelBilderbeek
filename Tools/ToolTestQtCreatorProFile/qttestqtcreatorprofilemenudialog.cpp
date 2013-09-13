@@ -18,14 +18,15 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolTestQtCreatorProFile.htm
 //---------------------------------------------------------------------------
-
-
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include "qttestqtcreatorprofilemenudialog.h"
 
 #include "qtaboutdialog.h"
 #include "qttestqtcreatorprofilemaindialog.h"
 #include "testqtcreatorprofilemenudialog.h"
 #include "ui_qttestqtcreatorprofilemenudialog.h"
+#pragma GCC diagnostic pop
 
 ribi::QtTestQtCreatorProFileMenuDialog::QtTestQtCreatorProFileMenuDialog(QWidget *parent) :
   QtHideAndShowDialog(parent),

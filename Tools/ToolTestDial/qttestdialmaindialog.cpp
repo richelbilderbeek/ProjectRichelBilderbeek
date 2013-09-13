@@ -18,15 +18,13 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolTestDial.htm
 //---------------------------------------------------------------------------
-
-
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include "qttestdialmaindialog.h"
 
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/lexical_cast.hpp>
 #include <boost/numeric/conversion/cast.hpp>
-#pragma GCC diagnostic pop
 
 #include "dial.h"
 #include "dialwidget.h"
@@ -34,6 +32,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "qtdialwidget.h"
 #include "rainbow.h"
 #include "ui_qttestdialmaindialog.h"
+#pragma GCC diagnostic pop
 
 ribi::QtTestDialMainDialog::QtTestDialMainDialog(QWidget *parent) :
     QDialog(parent),

@@ -21,7 +21,10 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #ifndef QTMUSICTHEORYMULTISCALEDIALOG_H
 #define QTMUSICTHEORYMULTISCALEDIALOG_H
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include <QDialog>
+#pragma GCC diagnostic pop
 
 namespace Ui {
 class QtMusicTheoryMultiScaleDialog;
@@ -35,6 +38,8 @@ class QtMusicTheoryMultiScaleDialog : public QDialog
     
 public:
   explicit QtMusicTheoryMultiScaleDialog(QWidget *parent = 0);
+  QtMusicTheoryMultiScaleDialog(const QtMusicTheoryMultiScaleDialog&) = delete;
+  QtMusicTheoryMultiScaleDialog& operator=(const QtMusicTheoryMultiScaleDialog&) = delete;
   ~QtMusicTheoryMultiScaleDialog();
 
   void resizeEvent(QResizeEvent *);

@@ -20,16 +20,19 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #ifndef QTTESTENCRANGERDIALOG_H
 #define QTTESTENCRANGERDIALOG_H
-//---------------------------------------------------------------------------
+
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include <QDialog>
-#include "testencrangerdialog.h"
-//---------------------------------------------------------------------------
+#pragma GCC diagnostic pop
+
 namespace Ui {
   class QtTestEncrangerDialog;
 }
-//---------------------------------------------------------------------------
 
 namespace ribi {
+
+struct TestEncrangerDialog;
 
 class QtTestEncrangerDialog : public QDialog
 {
@@ -37,16 +40,17 @@ class QtTestEncrangerDialog : public QDialog
 
 public:
   explicit QtTestEncrangerDialog(QWidget *parent = 0);
+  QtTestEncrangerDialog(const QtTestEncrangerDialog&) = delete;
+  QtTestEncrangerDialog& operator=(const QtTestEncrangerDialog&) = delete;
   ~QtTestEncrangerDialog();
 
 protected:
-  
 
 private:
   Ui::QtTestEncrangerDialog *ui;
   static const std::string GetVersion();
   static const std::vector<std::string> GetVersionHistory();
-  TestEncrangerDialog m_dialog;
+  TestEncrangerDialog * const m_dialog;
 
 private slots:
   void on_button_about_clicked();

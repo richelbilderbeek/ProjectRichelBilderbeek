@@ -48,10 +48,10 @@ struct TestEncrangerDialog
   static const std::vector<std::string> GetVersionHistory();
 
   private:
+  boost::scoped_ptr<Encranger> m_encranger;
+  std::string m_encrypted_text;
   int m_key;
   std::string m_plain_text;
-  std::string m_encrypted_text;
-  boost::scoped_ptr<Encranger> m_encranger;
 };
 
 } //~namespace ribi

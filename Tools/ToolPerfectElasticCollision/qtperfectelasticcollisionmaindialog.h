@@ -21,8 +21,12 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #ifndef QTPERFECTELASTICCOLLISIONMAINDIALOG_H
 #define QTPERFECTELASTICCOLLISIONMAINDIALOG_H
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include <QDialog>
-#include <QTimer>
+#pragma GCC diagnostic pop
+
+struct QTimer;
 
 namespace Ui {
   class QtPerfectElasticCollisionMainDialog;
@@ -34,6 +38,8 @@ class QtPerfectElasticCollisionMainDialog : public QDialog
 
 public:
   explicit QtPerfectElasticCollisionMainDialog(QWidget *parent = 0);
+  QtPerfectElasticCollisionMainDialog(const QtPerfectElasticCollisionMainDialog&) = delete;
+  QtPerfectElasticCollisionMainDialog& operator=(const QtPerfectElasticCollisionMainDialog&) = delete;
   ~QtPerfectElasticCollisionMainDialog();
 
 protected:
@@ -41,7 +47,7 @@ protected:
 
 private:
   Ui::QtPerfectElasticCollisionMainDialog *ui;
-  QTimer m_timer;
+  QTimer * const m_timer;
 
 private slots:
   void onAnyChange();

@@ -18,18 +18,17 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolTestFunctionParser.htm
 //---------------------------------------------------------------------------
-
-
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include "qttestfunctionparsermaindialog.h"
 
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/lexical_cast.hpp>
 #include <boost/math/constants/constants.hpp>
-#pragma GCC diagnostic pop
 
 #include "fparser.hh"
 #include "ui_qttestfunctionparsermaindialog.h"
+#pragma GCC diagnostic pop
 
 ribi::QtTestFunctionParserMainDialog::QtTestFunctionParserMainDialog(QWidget *parent) :
   QtHideAndShowDialog(parent),

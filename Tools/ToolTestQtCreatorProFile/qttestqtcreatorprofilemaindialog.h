@@ -24,7 +24,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "qthideandshowdialog.h"
 
 namespace Ui {
-class QtTestQtCreatorProFileMainDialog;
+  class QtTestQtCreatorProFileMainDialog;
 }
 
 namespace ribi {
@@ -35,6 +35,8 @@ class QtTestQtCreatorProFileMainDialog : public QtHideAndShowDialog
 
 public:
   explicit QtTestQtCreatorProFileMainDialog(QWidget *parent = 0);
+  QtTestQtCreatorProFileMainDialog(const QtTestQtCreatorProFileMainDialog&) = delete;
+  QtTestQtCreatorProFileMainDialog& operator=(const QtTestQtCreatorProFileMainDialog&) = delete;
   ~QtTestQtCreatorProFileMainDialog();
 
 private slots:

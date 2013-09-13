@@ -1,7 +1,10 @@
 #ifndef QTTOOLGABORFILTERMAINDIALOG_H
 #define QTTOOLGABORFILTERMAINDIALOG_H
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include <QDialog>
+#pragma GCC diagnostic pop
 
 namespace Ui {
 class QtToolGaborFilterMainDialog;
@@ -13,6 +16,8 @@ class QtToolGaborFilterMainDialog : public QDialog
     
 public:
     explicit QtToolGaborFilterMainDialog(QWidget *parent = 0);
+    QtToolGaborFilterMainDialog(const QtToolGaborFilterMainDialog&) = delete;
+    QtToolGaborFilterMainDialog& operator=(const QtToolGaborFilterMainDialog&) = delete;
     ~QtToolGaborFilterMainDialog();
     
 private slots:

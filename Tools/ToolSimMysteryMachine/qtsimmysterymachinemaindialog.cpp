@@ -18,17 +18,14 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolSimMysteryMachine.htm
 //---------------------------------------------------------------------------
-
-
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include "qtsimmysterymachinemaindialog.h"
-
 
 #include <iostream>
 
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/lexical_cast.hpp>
-#pragma GCC diagnostic pop
 
 #include "dial.h"
 #include "dialwidget.h"
@@ -40,6 +37,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "togglebutton.h"
 #include "togglebuttonwidget.h"
 #include "ui_qtsimmysterymachinemaindialog.h"
+#pragma GCC diagnostic pop
 
 ribi::QtSimMysteryMachineMainDialog::QtSimMysteryMachineMainDialog(QWidget *parent)
  : QDialog(parent),

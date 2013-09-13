@@ -21,10 +21,13 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #ifndef QTTESTPYLOSMENUDIALOG_H
 #define QTTESTPYLOSMENUDIALOG_H
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include <QDialog>
+#pragma GCC diagnostic pop
 
 namespace Ui {
-    class QtTestPylosMenuDialog;
+  class QtTestPylosMenuDialog;
 }
 
 namespace ribi {
@@ -34,20 +37,15 @@ class QtTestPylosMenuDialog : public QDialog
     Q_OBJECT
 
 public:
-    explicit QtTestPylosMenuDialog(QWidget *parent = 0);
-    ~QtTestPylosMenuDialog();
+  explicit QtTestPylosMenuDialog(QWidget *parent = 0);
+  ~QtTestPylosMenuDialog();
 
 private slots:
   void on_button_test_board_clicked();
-
   void on_button_test_game_clicked();
-
   void on_button_show_game_tests_clicked();
-
   void on_button_about_clicked();
-
   void on_button_quit_clicked();
-
   void on_button_random_play_clicked();
 
 private:

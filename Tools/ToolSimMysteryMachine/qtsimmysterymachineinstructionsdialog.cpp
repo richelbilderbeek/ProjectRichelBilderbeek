@@ -18,10 +18,11 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolSimMysteryMachine.htm
 //---------------------------------------------------------------------------
-
-
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include "qtsimmysterymachineinstructionsdialog.h"
 #include "ui_qtsimmysterymachineinstructionsdialog.h"
+#pragma GCC diagnostic pop
 
 ribi::QtSimMysteryMachineInstructionsDialog::QtSimMysteryMachineInstructionsDialog(QWidget *parent) :
     QDialog(parent),

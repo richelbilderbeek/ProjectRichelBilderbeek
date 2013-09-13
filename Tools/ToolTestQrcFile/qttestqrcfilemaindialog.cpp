@@ -18,20 +18,19 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolTestQrcFile.htm
 //---------------------------------------------------------------------------
-
-
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include "qttestqrcfilemaindialog.h"
 
 #include <fstream>
 #include <sstream>
-
-
 
 #include <QFileDialog>
 
 #include "qrcfile.h"
 #include "testqrcfilemenudialog.h"
 #include "ui_qttestqrcfilemaindialog.h"
+#pragma GCC diagnostic pop
 
 ribi::QtTestQrcFileMainDialog::QtTestQrcFileMainDialog(QWidget *parent) :
   QDialog(parent),

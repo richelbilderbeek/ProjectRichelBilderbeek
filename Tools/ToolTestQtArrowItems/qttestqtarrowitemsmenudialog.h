@@ -21,7 +21,10 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #ifndef QTTESTQTARROWITEMSMENUDIALOG_H
 #define QTTESTQTARROWITEMSMENUDIALOG_H
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include "qthideandshowdialog.h"
+#pragma GCC diagnostic pop
 
 namespace Ui {
   class QtTestQtArrowItemsMenuDialog;
@@ -35,6 +38,8 @@ class QtTestQtArrowItemsMenuDialog : public ribi::QtHideAndShowDialog
 
 public:
   explicit QtTestQtArrowItemsMenuDialog(QWidget *parent = 0);
+  QtTestQtArrowItemsMenuDialog(const QtTestQtArrowItemsMenuDialog&) = delete;
+  QtTestQtArrowItemsMenuDialog& operator=(const QtTestQtArrowItemsMenuDialog&) = delete;
   ~QtTestQtArrowItemsMenuDialog();
 
 protected:

@@ -35,6 +35,8 @@ class QtCreateQtProjectZipFileMainDialog : public QtHideAndShowDialog
 
 public:
   explicit QtCreateQtProjectZipFileMainDialog(QWidget *parent = 0);
+  QtCreateQtProjectZipFileMainDialog(const QtCreateQtProjectZipFileMainDialog&) = delete;
+  QtCreateQtProjectZipFileMainDialog& operator=(const QtCreateQtProjectZipFileMainDialog&) = delete;
   ~QtCreateQtProjectZipFileMainDialog();
 
 

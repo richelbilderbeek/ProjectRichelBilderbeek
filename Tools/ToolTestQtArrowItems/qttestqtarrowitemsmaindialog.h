@@ -24,10 +24,12 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <string>
 #include <vector>
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include <QDialog>
-
 #include "about.h"
 #include "qthideandshowdialog.h"
+#pragma GCC diagnostic pop
 
 struct QPlainTextEdit;
 
@@ -43,6 +45,8 @@ class QtTestQtArrowItemsMainDialog : public ribi::QtHideAndShowDialog
 
 public:
   explicit QtTestQtArrowItemsMainDialog(QWidget *parent = 0);
+  QtTestQtArrowItemsMainDialog(const QtTestQtArrowItemsMainDialog&) = delete;
+  QtTestQtArrowItemsMainDialog& operator=(const QtTestQtArrowItemsMainDialog&) = delete;
   ~QtTestQtArrowItemsMainDialog();
 
 protected:

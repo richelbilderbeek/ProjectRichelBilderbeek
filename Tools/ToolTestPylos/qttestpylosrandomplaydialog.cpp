@@ -18,31 +18,30 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolTestPylos.htm
 //---------------------------------------------------------------------------
-
-
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include "qttestpylosrandomplaydialog.h"
 
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/lexical_cast.hpp>
-#pragma GCC diagnostic pop
-//---------------------------------------------------------------------------
+
 #include "pylosboard.h"
 #include "pylosgame.h"
 #include "ui_qttestpylosrandomplaydialog.h"
-//---------------------------------------------------------------------------
+#pragma GCC diagnostic pop
+
 ribi::QtTestPylosRandomPlayDialog::QtTestPylosRandomPlayDialog(QWidget *parent) :
   QDialog(parent),
   ui(new Ui::QtTestPylosRandomPlayDialog)
 {
   ui->setupUi(this);
 }
-//---------------------------------------------------------------------------
+
 ribi::QtTestPylosRandomPlayDialog::~QtTestPylosRandomPlayDialog()
 {
   delete ui;
 }
-//---------------------------------------------------------------------------
+
 void ribi::QtTestPylosRandomPlayDialog::on_button_start_clicked()
 {
   const boost::shared_ptr<Pylos::Board> board =  (ui->radio_advanced->isChecked()
@@ -69,7 +68,7 @@ void ribi::QtTestPylosRandomPlayDialog::on_button_start_clicked()
 
   ui->bar_progress->setValue(max);
 }
-//---------------------------------------------------------------------------
+
 void ribi::QtTestPylosRandomPlayDialog::on_edit_n_games_textChanged(const QString &arg1)
 {
   try
@@ -84,4 +83,4 @@ void ribi::QtTestPylosRandomPlayDialog::on_edit_n_games_textChanged(const QStrin
   ui->bar_progress->setMaximum(boost::lexical_cast<int>(arg1.toStdString()));
   ui->button_start->setEnabled(true);
 }
-//---------------------------------------------------------------------------
+

@@ -18,8 +18,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolTestPylos.htm
 //---------------------------------------------------------------------------
-
-
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include "qttestpylosmenudialog.h"
 
 #include "qtaboutdialog.h"
@@ -29,19 +29,21 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "qttestpylosrandomplaydialog.h"
 #include "testpylosmenudialog.h"
 #include "ui_qttestpylosmenudialog.h"
-//---------------------------------------------------------------------------
+
+#pragma GCC diagnostic pop
+
 ribi::QtTestPylosMenuDialog::QtTestPylosMenuDialog(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::QtTestPylosMenuDialog)
 {
   ui->setupUi(this);
 }
-//---------------------------------------------------------------------------
+
 ribi::QtTestPylosMenuDialog::~QtTestPylosMenuDialog()
 {
     delete ui;
 }
-//---------------------------------------------------------------------------
+
 void ribi::QtTestPylosMenuDialog::on_button_test_board_clicked()
 {
   QtTestPylosTestBoardDialog d;
@@ -49,7 +51,7 @@ void ribi::QtTestPylosMenuDialog::on_button_test_board_clicked()
   d.exec();
   this->show();
 }
-//---------------------------------------------------------------------------
+
 void ribi::QtTestPylosMenuDialog::on_button_test_game_clicked()
 {
   QtTestPylosTestGameDialog d;
@@ -57,7 +59,7 @@ void ribi::QtTestPylosMenuDialog::on_button_test_game_clicked()
   d.exec();
   this->show();
 }
-//---------------------------------------------------------------------------
+
 void ribi::QtTestPylosMenuDialog::on_button_show_game_tests_clicked()
 {
   QtTestPylosGameTestsDialog d;
@@ -65,7 +67,7 @@ void ribi::QtTestPylosMenuDialog::on_button_show_game_tests_clicked()
   d.exec();
   this->show();
 }
-//---------------------------------------------------------------------------
+
 void ribi::QtTestPylosMenuDialog::on_button_about_clicked()
 {
   QtAboutDialog d(TestPylosMenuDialog::GetAbout());
@@ -73,12 +75,12 @@ void ribi::QtTestPylosMenuDialog::on_button_about_clicked()
   d.exec();
   this->show();
 }
-//---------------------------------------------------------------------------
+
 void ribi::QtTestPylosMenuDialog::on_button_quit_clicked()
 {
   close();
 }
-//---------------------------------------------------------------------------
+
 void ribi::QtTestPylosMenuDialog::on_button_random_play_clicked()
 {
   QtTestPylosRandomPlayDialog d;
@@ -86,4 +88,4 @@ void ribi::QtTestPylosMenuDialog::on_button_random_play_clicked()
   d.exec();
   this->show();
 }
-//---------------------------------------------------------------------------
+

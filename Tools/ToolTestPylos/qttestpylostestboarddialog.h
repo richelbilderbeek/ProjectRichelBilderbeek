@@ -21,6 +21,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #ifndef QTTESTPYLOSTESTBOARDDIALOG_H
 #define QTTESTPYLOSTESTBOARDDIALOG_H
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include <boost/shared_ptr.hpp>
 
 #include <QDialog>
@@ -28,6 +30,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "pylosmove.h"
 #include "pylosboard.h"
 #include "qtpylosboardwidget.h"
+#pragma GCC diagnostic pop
 
 struct QLabel;
 struct QTimer;
@@ -43,6 +46,8 @@ class QtTestPylosTestBoardDialog : public QDialog
 
 public:
   explicit QtTestPylosTestBoardDialog(QWidget *parent = 0);
+  QtTestPylosTestBoardDialog(const QtTestPylosTestBoardDialog&) = delete;
+  QtTestPylosTestBoardDialog& operator=(const QtTestPylosTestBoardDialog&) = delete;
   ~QtTestPylosTestBoardDialog();
 
 protected:

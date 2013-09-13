@@ -24,13 +24,15 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //#include <string>
 //#include <vector>
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 //#include "about.h"
 //#include "codetohtml.h"
 #include "codetohtmlcontenttype.h"
 #include "codetohtmlpagetype.h"
 #include "codetohtmltechinfotype.h"
 #include "qthideandshowdialog.h"
-
+#pragma GCC diagnostic pop
 
 struct QPlainTextEdit;
 
@@ -46,6 +48,8 @@ class QtCodeToHtmlMainDialog : public QtHideAndShowDialog
 
 public:
   explicit QtCodeToHtmlMainDialog(QWidget *parent = 0);
+  QtCodeToHtmlMainDialog(const QtCodeToHtmlMainDialog&) = delete;
+  QtCodeToHtmlMainDialog& operator=(const QtCodeToHtmlMainDialog&) = delete;
   ~QtCodeToHtmlMainDialog();
 
 protected:

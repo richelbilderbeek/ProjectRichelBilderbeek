@@ -24,12 +24,13 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <string>
 #include <vector>
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include <boost/shared_ptr.hpp>
-
 #include "about.h"
+#pragma GCC diagnostic pop
 
 namespace ribi {
-
 namespace RichelBilderbeek {
 
 struct Program;
@@ -58,11 +59,9 @@ struct MenuDialog
   private:
   ///Create all programs in a sorted order
   const std::vector<boost::shared_ptr<Program> > CreatePrograms() const;
-
 };
 
 } //~namespace RichelBilderbeek
-
 } //~namespace ribi
 
 #endif // RICHELBILDERBEEKMENUDIALOG_H

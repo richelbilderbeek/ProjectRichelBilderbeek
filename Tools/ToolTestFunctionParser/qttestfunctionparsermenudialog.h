@@ -35,6 +35,8 @@ class QtTestFunctionParserMenuDialog : public QtHideAndShowDialog
 
 public:
   explicit QtTestFunctionParserMenuDialog(QWidget *parent = 0);
+  QtTestFunctionParserMenuDialog(const QtTestFunctionParserMenuDialog&) = delete;
+  QtTestFunctionParserMenuDialog& operator=(const QtTestFunctionParserMenuDialog&) = delete;
   ~QtTestFunctionParserMenuDialog();
 
 private slots:

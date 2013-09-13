@@ -18,8 +18,9 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/CppQtPathArrowItem.htm
 //---------------------------------------------------------------------------
-
-
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include "qtpatharrowitem.h"
 
 #include <cassert>
@@ -32,6 +33,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <QGraphicsSceneMouseEvent>
 #include <QKeyEvent>
 #include <QPainter>
+#pragma GCC diagnostic pop
 
 const double ribi::QtPathArrowItem::m_click_easy_width = 10.0;
 
@@ -43,6 +45,7 @@ ribi::QtPathArrowItem::QtPathArrowItem(
   const QPointF& head_pos,
   QGraphicsItem *parent)
   : QGraphicsItem(parent),       //New since Qt5
+    m_signal_item_requests_scene_update{},
     m_focus_pen(QPen(Qt::DashLine)),
     m_head(head),
     m_head_pos(head_pos),

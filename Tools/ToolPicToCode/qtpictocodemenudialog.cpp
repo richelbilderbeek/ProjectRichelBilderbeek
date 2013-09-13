@@ -18,8 +18,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolPicToCode.htm
 //---------------------------------------------------------------------------
-
-
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include "qtpictocodemenudialog.h"
 
 
@@ -28,14 +28,15 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "qtaboutdialog.h"
 #include "qtpictocodemaindialog.h"
 #include "ui_qtpictocodemenudialog.h"
-//---------------------------------------------------------------------------
+#pragma GCC diagnostic pop
+
 ribi::QtPicToCodeMenuDialog::QtPicToCodeMenuDialog(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::QtPicToCodeMenuDialog)
 {
   ui->setupUi(this);
 }
-//---------------------------------------------------------------------------
+
 ribi::QtPicToCodeMenuDialog::~QtPicToCodeMenuDialog()
 {
   delete ui;
@@ -48,7 +49,7 @@ void ribi::QtPicToCodeMenuDialog::on_button_start_clicked()
   d.exec();
   this->show();
 }
-//---------------------------------------------------------------------------
+
 void ribi::QtPicToCodeMenuDialog::on_button_about_clicked()
 {
   QtAboutDialog d(PicToCodeMenuDialog::GetAbout());
@@ -56,9 +57,9 @@ void ribi::QtPicToCodeMenuDialog::on_button_about_clicked()
   d.exec();
   this->show();
 }
-//---------------------------------------------------------------------------
+
 void ribi::QtPicToCodeMenuDialog::on_button_quit_clicked()
 {
   close();
 }
-//---------------------------------------------------------------------------
+

@@ -18,10 +18,9 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolRegexTester.htm
 //---------------------------------------------------------------------------
-
-
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include "qtregextestermenudialog.h"
-
 
 #include <cassert>
 #include <string>
@@ -41,6 +40,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "regextesterqtmaindialog.h"
 #include "trace.h"
 #include "ui_qtregextestermenudialog.h"
+#pragma GCC diagnostic pop
 
 ribi::QtRegexTesterMenuDialog::QtRegexTesterMenuDialog(QWidget *parent) :
     QtHideAndShowDialog(parent),

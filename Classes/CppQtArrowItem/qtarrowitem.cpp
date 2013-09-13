@@ -18,6 +18,9 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/CppQtArrowItem.htm
 //---------------------------------------------------------------------------
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include "qtarrowitem.h"
 
 #include <cassert>
@@ -32,6 +35,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <QPainter>
 
 #include "trace.h"
+#pragma GCC diagnostic pop
 
 const double ribi::QtArrowItem::m_click_easy_width = 10.0;
 
@@ -43,7 +47,8 @@ ribi::QtArrowItem::QtArrowItem(
   const double y2,
   const bool head,
   QGraphicsItem* parent)
-  : QGraphicsLineItem(x1,y1,x2,y2,parent),       //New since Qt5
+  : QGraphicsLineItem(x1,y1,x2,y2,parent),
+    m_signal_item_requests_scene_update{},
     m_arrow_head_clicking_distance(20.0),
     m_focus_pen(QPen(Qt::DashLine)),
     m_head(head),

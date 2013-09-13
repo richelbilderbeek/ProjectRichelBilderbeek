@@ -29,20 +29,21 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include <boost/checked_delete.hpp>
-#include <boost/noncopyable.hpp>
 #include <boost/signals2.hpp>
 #pragma GCC diagnostic pop
 
 namespace ribi {
 
 ///Led manages an LED lamp
-struct Led : public boost::noncopyable
+struct Led
 {
   explicit Led(
     const double intensity    = 0.0,
     const unsigned char red   = 255,
     const unsigned char green =   0,
     const unsigned char blue  =   0);
+  Led(const Led&) = delete;
+  Led& operator=(const Led&) = delete;
 
   mutable boost::signals2::signal<void ()> m_signal_color_changed;
   mutable boost::signals2::signal<void ()> m_signal_intensity_changed;

@@ -28,7 +28,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "about.h"
 
 namespace Ui {
-class QtRichelBilderbeekMenuDialog;
+  class QtRichelBilderbeekMenuDialog;
 }
 
 namespace ribi {
@@ -41,6 +41,8 @@ class QtRichelBilderbeekMenuDialog : public QtHideAndShowDialog
 
 public:
   explicit QtRichelBilderbeekMenuDialog(QWidget *parent = 0);
+  QtRichelBilderbeekMenuDialog(const QtRichelBilderbeekMenuDialog&) = delete;
+  QtRichelBilderbeekMenuDialog& operator=(const QtRichelBilderbeekMenuDialog&) = delete;
   ~QtRichelBilderbeekMenuDialog();
 
   static const About GetAbout();

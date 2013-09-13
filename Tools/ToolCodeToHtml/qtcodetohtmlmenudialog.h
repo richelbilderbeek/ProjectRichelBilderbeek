@@ -21,7 +21,10 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #ifndef QTCODETOHTMLMENUDIALOG_H
 #define QTCODETOHTMLMENUDIALOG_H
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include "qthideandshowdialog.h"
+#pragma GCC diagnostic pop
 
 namespace Ui {
   class QtCodeToHtmlMenuDialog;
@@ -35,6 +38,8 @@ class QtCodeToHtmlMenuDialog : public QtHideAndShowDialog
 
 public:
   explicit QtCodeToHtmlMenuDialog(QWidget *parent = 0);
+  QtCodeToHtmlMenuDialog(const QtCodeToHtmlMenuDialog&) = delete;
+  QtCodeToHtmlMenuDialog& operator=(const QtCodeToHtmlMenuDialog&) = delete;
   ~QtCodeToHtmlMenuDialog();
 
 protected:

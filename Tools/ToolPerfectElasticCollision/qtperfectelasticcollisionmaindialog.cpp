@@ -18,30 +18,31 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From hhtp://www.richelbilderbeek.nl/ToolPerfectElasticCollision.htm
 //---------------------------------------------------------------------------
-
-
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include "qtperfectelasticcollisionmaindialog.h"
 
 #include <cassert>
 #include <cstdlib>
 #include <iostream>
 
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/lexical_cast.hpp>
 #include <boost/math/constants/constants.hpp>
 #include <boost/numeric/conversion/cast.hpp>
-#pragma GCC diagnostic pop
 
 #include <QBitmap>
 #include <QMessageBox>
 #include <QPainter>
+#include <QTimer>
 
 #include "ui_qtperfectelasticcollisionmaindialog.h"
+#pragma GCC diagnostic pop
 
 QtPerfectElasticCollisionMainDialog::QtPerfectElasticCollisionMainDialog(QWidget *parent) :
     QDialog(parent),
-    ui(new Ui::QtPerfectElasticCollisionMainDialog)
+    ui(new Ui::QtPerfectElasticCollisionMainDialog),
+    m_timer(new QTimer)
 {
   ui->setupUi(this);
   #ifndef NDEBUG
@@ -66,13 +67,14 @@ QtPerfectElasticCollisionMainDialog::QtPerfectElasticCollisionMainDialog(QWidget
   QObject::connect(
     this->ui->check_demo,SIGNAL(toggled(bool)),
     this,SLOT(onCheck()));
-  QObject::connect( &m_timer,SIGNAL(timeout()),
+  QObject::connect(m_timer,SIGNAL(timeout()),
     this,SLOT(onTimer()));
 }
 
 QtPerfectElasticCollisionMainDialog::~QtPerfectElasticCollisionMainDialog()
 {
   delete ui;
+  delete m_timer;
 }
 
 void QtPerfectElasticCollisionMainDialog::paintEvent(QPaintEvent*)
@@ -213,11 +215,11 @@ void QtPerfectElasticCollisionMainDialog::onCheck()
 {
   if (ui->check_demo->isChecked())
   {
-    m_timer.start(10);
+    m_timer->start(10);
   }
   else
   {
-    m_timer.stop();
+    m_timer->stop();
   }
 }
 

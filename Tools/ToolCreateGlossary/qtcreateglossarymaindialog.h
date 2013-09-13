@@ -21,7 +21,10 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #ifndef QTCREATEGLOSSARYMAINDIALOG_H
 #define QTCREATEGLOSSARYMAINDIALOG_H
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include <QDialog>
+#pragma GCC diagnostic pop
 
 namespace Ui {
 class QtCreateGlossaryMainDialog;
@@ -35,6 +38,8 @@ class QtCreateGlossaryMainDialog : public QDialog
     
 public:
   explicit QtCreateGlossaryMainDialog(QWidget *parent = 0);
+  QtCreateGlossaryMainDialog(const QtCreateGlossaryMainDialog&) = delete;
+  QtCreateGlossaryMainDialog& operator=(const QtCreateGlossaryMainDialog&) = delete;
   ~QtCreateGlossaryMainDialog();
 
 private slots:

@@ -39,6 +39,8 @@ class QtSimMysteryMachineMainDialog : public QDialog
 
 public:
   explicit QtSimMysteryMachineMainDialog(QWidget *parent = 0);
+  QtSimMysteryMachineMainDialog(const QtSimMysteryMachineMainDialog&) = delete;
+  QtSimMysteryMachineMainDialog& operator=(const QtSimMysteryMachineMainDialog&) = delete;
   ~QtSimMysteryMachineMainDialog();
 
 private:

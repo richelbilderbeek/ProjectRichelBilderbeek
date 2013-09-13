@@ -21,9 +21,11 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #ifndef QTTESTSHAPEMENUDIALOG_H
 #define QTTESTSHAPEMENUDIALOG_H
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include <boost/scoped_ptr.hpp>
-
 #include <QDialog>
+#pragma GCC diagnostic pop
 
 namespace Ui {
 class QtTestShapeMenuDialog;
@@ -39,6 +41,8 @@ class QtTestShapeMenuDialog : public QDialog
 
 public:
   explicit QtTestShapeMenuDialog(QWidget *parent = 0);
+  QtTestShapeMenuDialog(const QtTestShapeMenuDialog&) = delete;
+  QtTestShapeMenuDialog& operator=(const QtTestShapeMenuDialog&) = delete;
   ~QtTestShapeMenuDialog();
 
 private slots:
