@@ -24,9 +24,12 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <string>
 #include <vector>
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include <boost/scoped_ptr.hpp>
 
 #include "about.h"
+#pragma GCC diagnostic pop
 
 namespace ribi {
 

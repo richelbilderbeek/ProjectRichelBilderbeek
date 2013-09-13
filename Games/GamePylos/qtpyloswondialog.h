@@ -21,9 +21,12 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #ifndef QTPYLOSWONDIALOG
 #define QTPYLOSWONDIALOG
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include <QDialog>
 
 #include "pyloswinner.h"
+#pragma GCC diagnostic pop
 
 namespace Ui {
   class QtPylosWonDialog;
@@ -37,6 +40,8 @@ class QtPylosWonDialog : public QDialog
 
 public:
   explicit QtPylosWonDialog(QWidget *parent = 0);
+  QtPylosWonDialog(const QtPylosWonDialog&) = delete;
+  QtPylosWonDialog& operator=(const QtPylosWonDialog&) = delete;
   ~QtPylosWonDialog();
   void SetWinner(const Pylos::Winner winner);
 

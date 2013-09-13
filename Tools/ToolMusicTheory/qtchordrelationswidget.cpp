@@ -18,14 +18,12 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolMusicTheory.htm
 //---------------------------------------------------------------------------
-
-
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include "qtchordrelationswidget.h"
 
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/math/constants/constants.hpp>
-#pragma GCC diagnostic pop
 
 #include <QGraphicsScene>
 #include <QPainterPath>
@@ -33,6 +31,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "qtchordvertex.h"
 #include "qtchordedge.h"
 #include "musicchord.h"
+#pragma GCC diagnostic pop
 
 ribi::QtChordRelationsWidget::QtChordRelationsWidget(QWidget *parent)
  : QGraphicsView(parent),

@@ -18,8 +18,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/GameTicTacToe.htm
 //---------------------------------------------------------------------------
-
-
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include "qttictactoegamedialog.h"
 
 #include <cassert>
@@ -30,6 +30,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "qttictactoewidget.h"
 #include "qttictactoewinnerdialog.h"
 #include "ui_qttictactoegamedialog.h"
+
+#pragma GCC diagnostic pop
 
 ribi::QtTicTacToeGameDialog::QtTicTacToeGameDialog(QWidget *parent) :
     QDialog(parent, Qt::Window),

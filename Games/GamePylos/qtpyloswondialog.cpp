@@ -18,14 +18,15 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/GamePylos.htm
 //---------------------------------------------------------------------------
-
-
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include "qtpyloswondialog.h"
 
 #include <cassert>
 
 #include "ui_qtpyloswondialog.h"
 #include "pyloswinner.h"
+#pragma GCC diagnostic pop
 
 ribi::QtPylosWonDialog::QtPylosWonDialog(QWidget *parent) :
     QDialog(parent),

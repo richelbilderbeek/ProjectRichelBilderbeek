@@ -18,15 +18,15 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolGaborFilter.htm
 //---------------------------------------------------------------------------
-
-
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include "qttoolgaborfiltermenudialog.h"
-
 
 #include "qtaboutdialog.h"
 #include "toolgaborfiltermenudialog.h"
 #include "qttoolgaborfiltermaindialog.h"
 #include "ui_qttoolgaborfiltermenudialog.h"
+#pragma GCC diagnostic pop
 
 ribi::QtToolGaborFilterMenuDialog::QtToolGaborFilterMenuDialog(QWidget *parent) :
     QDialog(parent),

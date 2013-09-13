@@ -18,8 +18,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolCreateGlossary.htm
 //---------------------------------------------------------------------------
-
-
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include "qtcreateglossarymenudialog.h"
 
 #include "createglossarymenudialog.h"
@@ -27,6 +27,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "qtcreateglossarymaindialog.h"
 #include "ui_qtcreateglossarymenudialog.h"
 #include "createglossarymaindialog.h"
+#pragma GCC diagnostic pop
 
 ribi::QtCreateGlossaryMenuDialog::QtCreateGlossaryMenuDialog(QWidget *parent) :
     QDialog(parent),

@@ -19,15 +19,16 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From hhtp://www.richelbilderbeek.nl/ToolMazeCreator.htm
 //---------------------------------------------------------------------------
-
-
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include "qtmazecreatormenudialog.h"
 
 #include "mazecreatormenudialog.h"
 #include "qtaboutdialog.h"
 #include "qtmazecreatormaindialog.h"
 #include "ui_qtmazecreatormenudialog.h"
-//---------------------------------------------------------------------------
+#pragma GCC diagnostic pop
+
 ribi::QtMazeCreatorMenuDialog::QtMazeCreatorMenuDialog(QWidget *parent) :
   QDialog(parent),
   ui(new Ui::QtMazeCreatorMenuDialog)

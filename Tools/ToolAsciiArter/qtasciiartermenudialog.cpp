@@ -18,15 +18,18 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolAsciiArter.htm
 //---------------------------------------------------------------------------
-
-
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include "qtasciiartermenudialog.h"
 
 #include <QKeyEvent>
+
 #include "qtaboutdialog.h"
 #include "asciiartermenudialog.h"
 #include "qtasciiartermaindialog.h"
 #include "ui_qtasciiartermenudialog.h"
+#pragma GCC diagnostic pop
+
 
 ribi::QtAsciiArterMenuDialog::QtAsciiArterMenuDialog(QWidget *parent) :
     QtHideAndShowDialog(parent),

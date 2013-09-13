@@ -18,8 +18,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/GamePylos.htm
 //---------------------------------------------------------------------------
-
-
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include "qtpylosmenudialog.h"
 
 #include <iostream>
@@ -35,6 +35,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "qtpylossprites.h"
 #include "qtpyloswidget.h"
 #include "ui_qtpylosmenudialog.h"
+#pragma GCC diagnostic pop
 
 ribi::QtPylosMenuDialog::QtPylosMenuDialog(QWidget *parent) :
   QDialog(parent),

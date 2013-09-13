@@ -23,9 +23,12 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #include <string>
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include <QDialog>
 
 #include "qtpylosgamewidget.h"
+#pragma GCC diagnostic pop
 
 namespace Ui {
   class QtPylosMainDialog;
@@ -41,6 +44,8 @@ public:
   explicit QtPylosMainDialog(
   QtPylosGameWidget * const pylos_widget = 0,
     QWidget *parent = 0);
+  QtPylosMainDialog(const QtPylosMainDialog&) = delete;
+  QtPylosMainDialog& operator=(const QtPylosMainDialog&) = delete;
   ~QtPylosMainDialog();
 
   ///Obtain this class its version

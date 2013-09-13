@@ -18,16 +18,14 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolAsciiArter.htm
 //---------------------------------------------------------------------------
-
-
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include "qtasciiartermaindialog.h"
 
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/foreach.hpp>
 #include <boost/lexical_cast.hpp>
 #include <boost/numeric/conversion/cast.hpp>
-#pragma GCC diagnostic pop
 
 #include <QDesktopWidget>
 #include <QFileDialog>
@@ -39,6 +37,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "asciiartermaindialog.h"
 #include "qtaboutdialog.h"
 #include "ui_qtasciiartermaindialog.h"
+#pragma GCC diagnostic pop
 
 ribi::QtAsciiArterMainDialog::QtAsciiArterMainDialog(QWidget *parent)
   : QtHideAndShowDialog(parent),

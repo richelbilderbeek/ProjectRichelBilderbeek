@@ -21,12 +21,15 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #ifndef QTASCIIARTERDIALOG_H
 #define QTASCIIARTERDIALOG_H
 
-#include <QDialog>
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include <boost/scoped_ptr.hpp>
+#include <QDialog>
 
 #include "asciiartermaindialog.h"
 #include "qthideandshowdialog.h"
+#pragma GCC diagnostic pop
 
 namespace Ui {
   class QtAsciiArterMainDialog;
