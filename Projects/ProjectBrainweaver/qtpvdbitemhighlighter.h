@@ -16,6 +16,8 @@ class QtPvdbItemHighlighter : public QObject
 
 public:
   QtPvdbItemHighlighter(QObject *parent = 0);
+  QtPvdbItemHighlighter(const QtPvdbItemHighlighter&) = delete;
+  QtPvdbItemHighlighter& operator=(const QtPvdbItemHighlighter&) = delete;
 
   ///Get the item being highlighted
   ///Returns nullptr if no item is highlighted

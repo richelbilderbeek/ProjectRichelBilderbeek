@@ -1,3 +1,5 @@
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include "qtpvdbcreateassessmentmenudialog.h"
 
 #include <QKeyEvent>
@@ -9,13 +11,14 @@
 
 #include "ui_qtpvdbcreateassessmentmenudialog.h"
 
-
-
 #include "pvdbfile.h"
+#pragma GCC diagnostic pop
 
 ribi::pvdb::QtPvdbCreateAssessmentMenuDialog::QtPvdbCreateAssessmentMenuDialog(QWidget* parent)
   : QtHideAndShowDialog(parent),
-    ui(new Ui::QtPvdbCreateAssessmentMenuDialog)
+    ui(new Ui::QtPvdbCreateAssessmentMenuDialog),
+    m_back_to_menu{false},
+    m_question{}
 {
   ui->setupUi(this);
 }

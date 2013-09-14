@@ -1,15 +1,13 @@
-
-
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include "qttestqtroundededitrectitemwidget.h"
 
 #include <cassert>
 #include <cmath>
 #include <iostream>
 
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/lexical_cast.hpp>
-#pragma GCC diagnostic pop
 
 #include <QFontDialog>
 #include <QGraphicsScene>
@@ -26,6 +24,8 @@
 #ifndef NDEBUG
 #include "qtroundedtextrectitem.h"
 #endif
+
+#pragma GCC diagnostic pop
 
 ribi::QtTestQtRoundedEditRectItemWidget::QtTestQtRoundedEditRectItemWidget(QWidget *parent)
   : QtKeyboardFriendlyGraphicsView(parent)

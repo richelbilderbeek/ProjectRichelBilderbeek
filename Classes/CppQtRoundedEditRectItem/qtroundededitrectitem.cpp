@@ -1,4 +1,5 @@
 #pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include "qtroundededitrectitem.h"
@@ -25,6 +26,7 @@ ribi::QtRoundedEditRectItem::QtRoundedEditRectItem(
   const QFont& font,
   QGraphicsItem* parent)
   : QtRoundedRectItem(parent),
+    m_signal_item_requests_edit{},
     m_font(font),
     m_padding(padding),
     m_text( {""} ) //Empty std::string, as m_text must be set by SetText
@@ -105,9 +107,9 @@ const std::string ribi::QtRoundedEditRectItem::GetVersion()
 
 const std::vector<std::string> ribi::QtRoundedEditRectItem::GetVersionHistory()
 {
-  std::vector<std::string> v;
-  v.push_back("2012-12-19: version 1.0: initial version");
-  return v;
+  return {
+    "2012-12-19: version 1.0: initial version"
+  };
 }
 
 void ribi::QtRoundedEditRectItem::keyPressEvent(QKeyEvent* event)
@@ -123,15 +125,6 @@ void ribi::QtRoundedEditRectItem::keyPressEvent(QKeyEvent* event)
 
 void ribi::QtRoundedEditRectItem::paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWidget* widget)
 {
-  /*
-  this->SetRoundedRect(
-    GetTextRect(m_text).adjusted(
-    -m_padding.left,
-    -m_padding.top,
-     m_padding.right,
-     m_padding.bottom),0.0,0.0);
-  */
-
   QtRoundedRectItem::paint(painter,option,widget);
 
   painter->setFont(m_font);

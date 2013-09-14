@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Printen student preview</string>
+   <string>Preview van PDF</string>
   </property>
   <property name="windowIcon">
    <iconset resource="Brainweaver.qrc">

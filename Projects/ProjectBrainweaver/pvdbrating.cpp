@@ -1,3 +1,5 @@
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include "pvdbrating.h"
 
 #include <cassert>
@@ -7,6 +9,7 @@
 #include "pvdbnode.h"
 #include "pvdbconcept.h"
 #include "pvdbexamples.h"
+#pragma GCC diagnostic pop
 
 int ribi::pvdb::Rating::SuggestComplexity(const int n_edges, const int n_examples)
 {

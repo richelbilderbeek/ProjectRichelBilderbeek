@@ -1,3 +1,5 @@
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include "qtpvdbdisplayconceptitem.h"
 
 #include <cstdlib>
@@ -12,6 +14,7 @@
 #include "pvdbcompetency.h"
 #include "qtpvdbbrushfactory.h"
 #include "trace.h"
+#pragma GCC diagnostic pop
 
 ribi::pvdb::QtPvdbDisplayConceptItem::QtPvdbDisplayConceptItem(const boost::shared_ptr<ribi::pvdb::Concept>& concept)
   : QtPvdbConceptItem(concept)

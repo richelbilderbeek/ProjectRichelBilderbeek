@@ -1,3 +1,5 @@
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include "qtpvdbconceptmapitem.h"
 
 #include <QCursor>
@@ -6,6 +8,7 @@
 #include "pvdbexamples.h"
 #include "qtpvdbconceptitem.h"
 #include "trace.h"
+#pragma GCC diagnostic pop
 
 void ribi::pvdb::QtPvdbConceptMapItem::OnConceptRequestsEdit()
 {

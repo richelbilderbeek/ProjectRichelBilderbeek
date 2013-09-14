@@ -10,7 +10,7 @@ QMAKE_CXXFLAGS += -pg
 QMAKE_LFLAGS += -pg
 
 DEFINES += PVDB_USE_FORWARD_DECLARATIONS_248738
-QMAKE_CXXFLAGS += -std=c++11 -Wextra #-Weffc++
+QMAKE_CXXFLAGS += -std=c++11 -Wall -Wextra -Weffc++
 
 unix {
   QMAKE_CXXFLAGS += -Werror

@@ -1,3 +1,5 @@
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include "qtpvdbprintconceptmapdialog.h"
 
 #include <cassert>
@@ -17,6 +19,7 @@
 #include "qtpvdbfiledialog.h"
 #include "ui_qtpvdbprintconceptmapdialog.h"
 #include "qtpvdbconceptmapdisplaywidget.h"
+#pragma GCC diagnostic pop
 
 ribi::pvdb::QtPvdbPrintConceptMapDialog::QtPvdbPrintConceptMapDialog(
   const boost::shared_ptr<pvdb::File>& file,

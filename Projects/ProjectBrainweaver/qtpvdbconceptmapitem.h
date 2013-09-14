@@ -11,11 +11,10 @@ namespace ribi {
 namespace pvdb {
 
 ///Either a Node or Edge of a ConceptMap
+///QtRoundedTextRectItem: single line
+///QtRoundedEditRectItem: multiple lines
 struct QtPvdbConceptMapItem : public QtRoundedTextRectItem
 {
-  ///ABC must have public virtual destructor
-  // * Herb Sutter, Andrei Alexandrescu. C++ coding standards: 101 rules, guidelines, and best practices.
-  //   ISBN: 0-32-111358-6. Item 50: 'Make base class destructors public and virtual, or protected and nonvirtual'
   virtual ~QtPvdbConceptMapItem() {}
 
   virtual void DisableAll() = 0;

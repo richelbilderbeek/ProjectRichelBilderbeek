@@ -1,3 +1,5 @@
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include "pvdbcluster.h"
 
 #include <algorithm>
@@ -19,6 +21,7 @@
 #include "pvdbexample.h"
 #include "pvdbconceptfactory.h"
 #include "trace.h"
+#pragma GCC diagnostic pop
 
 void ribi::pvdb::Cluster::Test()
 {

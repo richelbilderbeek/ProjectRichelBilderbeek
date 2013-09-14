@@ -18,8 +18,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/CppQtKeyboardFriendlyGraphicsView.htm
 //---------------------------------------------------------------------------
-
-
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include "qtkeyboardfriendlygraphicsview.h"
 
 #include <cassert>
@@ -28,9 +28,11 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <QGraphicsScene>
 #include <QKeyEvent>
 #include <QGraphicsSimpleTextItem>
+#pragma GCC diagnostic pop
 
 ribi::QtKeyboardFriendlyGraphicsView::QtKeyboardFriendlyGraphicsView(QWidget* parent)
-  : QGraphicsView(new QGraphicsScene,parent)
+  : QGraphicsView(new QGraphicsScene,parent),
+    m_signal_update{}
 {
 
 }

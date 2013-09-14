@@ -1,3 +1,5 @@
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include "qtpvdbdisplay.h"
 
 #include <boost/lexical_cast.hpp>
@@ -15,6 +17,7 @@
 #include "pvdbhelper.h"
 #include "pvdbnode.h"
 #include "qtpvdbcompetency.h"
+#pragma GCC diagnostic pop
 
 void ribi::pvdb::QtDisplay::DisplayRatedConcepts(
   const boost::shared_ptr<const pvdb::File> file,

@@ -3,19 +3,23 @@
 
 #include <string>
 #include <vector>
-#include <boost/shared_ptr.hpp>
-#include <boost/noncopyable.hpp>
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#include <boost/shared_ptr.hpp>
 #include "pvdbfwd.h"
+#pragma GCC diagnostic pop
 
 namespace ribi {
-
 namespace pvdb {
 
 struct ConceptMapFactory;
 
-struct ConceptMap : public boost::noncopyable
+struct ConceptMap
 {
+  ConceptMap(const ConceptMap&) = delete;
+  ConceptMap& operator=(const ConceptMap&) = delete;
+
   //Add an Edge, assumes that the nodes it points to are in the concept map
   void AddEdge(const boost::shared_ptr<ribi::pvdb::Edge> edge);
 
@@ -100,7 +104,6 @@ private:
 bool IsEqual(const ribi::pvdb::ConceptMap& lhs, const ribi::pvdb::ConceptMap& rhs);
 
 } //~namespace pvdb
-
 } //~namespace ribi
 
 #endif // PVDBCONCEPTMAP_H

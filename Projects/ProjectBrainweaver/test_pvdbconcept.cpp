@@ -1,3 +1,5 @@
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include "pvdbconcept.h"
 
 #include <cassert>
@@ -9,6 +11,7 @@
 #include "trace.h"
 #include "pvdbhelper.h"
 #include "pvdbconceptfactory.h"
+#pragma GCC diagnostic pop
 
 #ifndef NDEBUG
 void ribi::pvdb::Concept::Test()

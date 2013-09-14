@@ -1,3 +1,5 @@
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include "qtpvdbclusterwidget.h"
 
 #include <cassert>
@@ -17,6 +19,7 @@
 #include "pvdbexamplesfactory.h"
 #include "qtpvdbcompetency.h"
 #include "trace.h"
+#pragma GCC diagnostic pop
 
 ///QTreeWidgetItem with the only function of storing a pvdb::Competency additionally
 struct QtPvdbTreeWidgetItem : public QTreeWidgetItem

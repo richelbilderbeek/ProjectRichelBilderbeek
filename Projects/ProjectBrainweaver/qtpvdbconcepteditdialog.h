@@ -14,7 +14,6 @@ class QtPvdbConceptEditDialog;
 }
 
 namespace ribi {
-
 namespace pvdb {
 
 class QtPvdbConceptEditDialog : public ribi::QtHideAndShowDialog
@@ -27,16 +26,9 @@ public:
   explicit QtPvdbConceptEditDialog(
     const boost::shared_ptr<ribi::pvdb::Concept> concept,
     QWidget* parent = 0);
+  QtPvdbConceptEditDialog(const QtPvdbConceptEditDialog&) = delete;
+  QtPvdbConceptEditDialog& operator=(const QtPvdbConceptEditDialog&) = delete;
   ~QtPvdbConceptEditDialog();
-
-#ifdef PVDB_WRITE_TO_CONCEPT
-  const boost::shared_ptr<ribi::pvdb::Concept> WriteToConcept() const;
-#endif
-
-#ifndef PVDB_USE_ONLY_NEEDED
-  //const std::string GetName() const { return m_name; }
-#endif
-
 
 protected:
   void keyPressEvent(QKeyEvent *);

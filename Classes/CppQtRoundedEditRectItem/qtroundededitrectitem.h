@@ -17,6 +17,7 @@ namespace ribi {
 
 
 ///A QtRoundedRectTextItem displaying multiple lines of text
+///For a single line of text, use QtRoundedTextRectItem
 struct QtRoundedEditRectItem : public QtRoundedRectItem
 {
   struct Padding

@@ -1,7 +1,7 @@
 #ifndef QTPVDBCONCEPTMAPWIDGET_H
 #define QTPVDBCONCEPTMAPWIDGET_H
 
-#include <boost/noncopyable.hpp>
+
 #include "qtkeyboardfriendlygraphicsview.h"
 
 #include "pvdbfwd.h"

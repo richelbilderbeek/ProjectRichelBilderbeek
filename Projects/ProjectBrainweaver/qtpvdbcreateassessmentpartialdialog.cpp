@@ -1,12 +1,13 @@
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include "qtpvdbcreateassessmentpartialdialog.h"
 
 #include <QKeyEvent>
 #include <QFileDialog>
 #include "pvdbfile.h"
 
-
 #include "ui_qtpvdbcreateassessmentpartialdialog.h"
-
+#pragma GCC diagnostic pop
 
 ribi::pvdb::QtPvdbCreateAssessmentPartialDialog::QtPvdbCreateAssessmentPartialDialog(
   const boost::shared_ptr<pvdb::File> file, QWidget* parent)

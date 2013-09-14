@@ -1,3 +1,5 @@
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include "qtpvdbratingdialog.h"
 
 #include <cassert>
@@ -20,6 +22,7 @@
 #include "pvdbfile.h"
 #include "trace.h"
 #include "ui_qtpvdbratingdialog.h"
+#pragma GCC diagnostic pop
 
 ribi::pvdb::QtPvdbRatingDialog::QtPvdbRatingDialog(
   const boost::shared_ptr<pvdb::File> file,

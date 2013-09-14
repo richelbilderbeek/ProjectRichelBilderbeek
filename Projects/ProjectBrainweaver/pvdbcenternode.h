@@ -1,8 +1,11 @@
 #ifndef PVDBCENTERNODE_H
 #define PVDBCENTERNODE_H
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include "pvdbnode.h"
 #include "pvdbfwd.h"
+#pragma GCC diagnostic pop
 
 namespace ribi {
 

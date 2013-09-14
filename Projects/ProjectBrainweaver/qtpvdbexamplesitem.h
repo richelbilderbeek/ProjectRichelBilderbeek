@@ -6,8 +6,6 @@
 #include "qtroundededitrectitem.h"
 #include "pvdbfwd.h"
 
-#include "pvdbfwd.h"
-
 namespace ribi {
 
 namespace pvdb {
@@ -15,6 +13,8 @@ namespace pvdb {
 struct QtPvdbExamplesItem : public QtRoundedEditRectItem
 {
   QtPvdbExamplesItem(QGraphicsItem* parent = 0);
+  QtPvdbExamplesItem(const QtPvdbExamplesItem&) = delete;
+  QtPvdbExamplesItem& operator=(const QtPvdbExamplesItem&) = delete;
 
   ///Check the buddy item
   const QtPvdbConceptMapItem* GetBuddyItem() const { return m_item; }

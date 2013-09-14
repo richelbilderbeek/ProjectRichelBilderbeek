@@ -1,3 +1,5 @@
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include "qtpvdbconceptmapdialog.h"
 
 #include <cassert>
@@ -31,6 +33,7 @@
 #include "qtscopeddisable.h"
 #include "trace.h"
 #include "ui_qtpvdbconceptmapdialog.h"
+#pragma GCC diagnostic pop
 
 ///Collect all QGraphicsItems with class T in an unorderly way
 template <class T>

@@ -11,16 +11,16 @@
 #include "pvdbfwd.h"
 
 namespace ribi {
-
 namespace pvdb {
 
 ///QtPvdbNewArrow is the arrow shown before a new one is added
-struct QtPvdbNewArrow: public QtArrowItem
+struct QtPvdbNewArrow : public QtArrowItem
 {
   QtPvdbNewArrow(
     QtPvdbNodeItem * const from,
     const QPointF& current_to);
-
+  QtPvdbNewArrow(const QtPvdbNewArrow&) = delete;
+  QtPvdbNewArrow& operator=(const QtPvdbNewArrow&) = delete;
   ///Obtain the source node
   const QtPvdbNodeItem * GetFrom() const { return m_from; }
         QtPvdbNodeItem * GetFrom()       { return m_from; }
@@ -35,7 +35,6 @@ struct QtPvdbNewArrow: public QtArrowItem
 };
 
 } //~namespace pvdb
-
 } //~namespace ribi
 
 #endif // QTPVDBNEWARROW_H

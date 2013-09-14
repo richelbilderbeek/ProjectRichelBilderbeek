@@ -1,7 +1,7 @@
 QT       += core gui
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
-QMAKE_CXXFLAGS += -std=c++11 -Wall -Wextra -Werror
+QMAKE_CXXFLAGS += -std=c++11 -Wall -Wextra -Weffc++ -Werror
 TEMPLATE = app
 
 INCLUDEPATH += \
@@ -15,18 +15,18 @@ INCLUDEPATH += \
     ../../Classes/CppTrace
 
 SOURCES += \
-    qtmain.cpp \
-    ../../Classes/CppQtRoundedEditRectItem/qtroundededitrectitem.cpp \
-    ../../Classes/CppQtRoundedRectItem/qtroundedrectitem.cpp \
-    ../../Classes/CppQtKeyboardFriendlyGraphicsView/qtkeyboardfriendlygraphicsview.cpp \
     ../../Classes/CppAbout/about.cpp \
     ../../Classes/CppQtAboutDialog/qtaboutdialog.cpp \
-    qttestqtroundededitrectitemwidget.cpp \
-    testqtroundededitrectitemmenudialog.cpp \
+    ../../Classes/CppQtHideAndShowDialog/qthideandshowdialog.cpp \
+    ../../Classes/CppQtKeyboardFriendlyGraphicsView/qtkeyboardfriendlygraphicsview.cpp \
+    ../../Classes/CppQtRoundedEditRectItem/qtroundededitrectitem.cpp \
+    ../../Classes/CppQtRoundedRectItem/qtroundedrectitem.cpp \
     ../../Classes/CppQtRoundedTextRectItem/qtroundedtextrectitem.cpp \
-    qttestqtroundededitrectitemmenudialog.cpp \
+    qtmain.cpp \
     qttestqtroundededitrectitemmaindialog.cpp \
-    ../../Classes/CppQtHideAndShowDialog/qthideandshowdialog.cpp
+    qttestqtroundededitrectitemmenudialog.cpp \
+    qttestqtroundededitrectitemwidget.cpp \
+    testqtroundededitrectitemmenudialog.cpp
 
 HEADERS += \
     ../../Classes/CppQtRoundedEditRectItem/qtroundededitrectitem.h \

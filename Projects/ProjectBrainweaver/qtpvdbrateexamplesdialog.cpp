@@ -1,3 +1,5 @@
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include "qtpvdbrateexamplesdialog.h"
 
 #ifdef COMPILER_SUPPORTS_THREADS_20130507
@@ -14,6 +16,7 @@
 #include "ui_qtpvdbrateexamplesdialog.h"
 #include "pvdbconceptfactory.h"
 #include "trace.h"
+#pragma GCC diagnostic pop
 
 struct QtPvdbListWidgetItem : public QListWidgetItem
 {

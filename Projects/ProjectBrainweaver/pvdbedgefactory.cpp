@@ -1,3 +1,5 @@
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include "pvdbedgefactory.h"
 
 #include <cassert>
@@ -9,6 +11,7 @@
 #include "pvdbedgefactory.h"
 #include "pvdbhelper.h"
 #include "trace.h"
+#pragma GCC diagnostic pop
 
 const boost::shared_ptr<ribi::pvdb::Edge> ribi::pvdb::EdgeFactory::Create(
   const boost::shared_ptr<ribi::pvdb::Concept>& concept,

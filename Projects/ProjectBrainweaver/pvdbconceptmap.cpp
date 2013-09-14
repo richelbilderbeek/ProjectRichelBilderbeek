@@ -1,3 +1,5 @@
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include "pvdbconceptmap.h"
 
 #include <set>
@@ -15,6 +17,7 @@
 #include "pvdbnodefactory.h"
 #include "pvdbedge.h"
 #include "pvdbcluster.h"
+#pragma GCC diagnostic pop
 
 ribi::pvdb::ConceptMap::ConceptMap(const std::string& question)
   : m_edges( {} ),
@@ -68,7 +71,8 @@ ribi::pvdb::ConceptMap::ConceptMap(
 ribi::pvdb::ConceptMap::ConceptMap(
   const std::string& question,
   const boost::shared_ptr<pvdb::Cluster>& cluster)
-  : m_nodes(CreateNodes(question, {} ))
+  : m_edges{},
+    m_nodes(CreateNodes(question, {} ))
 {
   #ifndef NDEBUG
   Test();

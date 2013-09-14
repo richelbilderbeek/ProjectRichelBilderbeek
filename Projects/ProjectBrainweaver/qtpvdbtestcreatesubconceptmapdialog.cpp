@@ -1,3 +1,5 @@
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include "qtpvdbtestcreatesubconceptmapdialog.h"
 
 #include <cassert>
@@ -6,6 +8,8 @@
 #include "pvdbconceptmap.h"
 #include "qtpvdbconceptmapdisplaywidget.h"
 #include "ui_qtpvdbtestcreatesubconceptmapdialog.h"
+#pragma GCC diagnostic pop
+
 
 ribi::pvdb::QtPvdbTestCreateSubConceptMapDialog::QtPvdbTestCreateSubConceptMapDialog(QWidget *parent) :
   QtHideAndShowDialog(parent),

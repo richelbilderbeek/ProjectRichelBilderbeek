@@ -1,3 +1,5 @@
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include "pvdbedge.h"
 
 #ifdef COMPILER_SUPPORTS_THREADS_20130507
@@ -12,6 +14,7 @@
 #include "pvdbconceptfactory.h"
 #include "pvdbhelper.h"
 #include "trace.h"
+#pragma GCC diagnostic pop
 
 ribi::pvdb::Edge::Edge(
   const boost::shared_ptr<ribi::pvdb::Concept> & concept,
@@ -21,7 +24,8 @@ ribi::pvdb::Edge::Edge(
   const bool tail_arrow,
   const boost::shared_ptr<ribi::pvdb::Node> to,
   const bool head_arrow)
-  : m_concept(concept),
+  : m_signal_edge_changed{},
+    m_concept(concept),
     m_from(from),
     m_head_arrow(head_arrow),
     m_tail_arrow(tail_arrow),

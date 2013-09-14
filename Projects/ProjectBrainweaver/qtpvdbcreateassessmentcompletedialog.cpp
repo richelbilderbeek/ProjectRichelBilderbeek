@@ -1,3 +1,5 @@
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include "qtpvdbcreateassessmentcompletedialog.h"
 
 #include <QKeyEvent>
@@ -9,8 +11,8 @@
 
 #include "ui_qtpvdbcreateassessmentcompletedialog.h"
 
-
 #include "trace.h"
+#pragma GCC diagnostic pop
 
 ribi::pvdb::QtPvdbCreateAssessmentCompleteDialog::QtPvdbCreateAssessmentCompleteDialog(QWidget* parent)
   : QtHideAndShowDialog(parent),

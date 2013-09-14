@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Printen assessor preview</string>
+   <string>Preview van PDF</string>
   </property>
   <property name="windowIcon">
    <iconset resource="Brainweaver.qrc">
@@ -473,7 +473,7 @@
    <item>
     <widget class="QPushButton" name="button_print">
      <property name="text">
-      <string>&amp;Print</string>
+      <string>&amp;Opslaan</string>
      </property>
     </widget>
    </item>

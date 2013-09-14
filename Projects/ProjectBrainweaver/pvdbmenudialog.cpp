@@ -1,7 +1,10 @@
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include "pvdbmenudialog.h"
 
 #include "fuzzy_equal_to.h"
 #include "trace.h"
+#pragma GCC diagnostic pop
 
 const ribi::About ribi::pvdb::MenuDialog::GetAbout()
 {
@@ -9,7 +12,7 @@ const ribi::About ribi::pvdb::MenuDialog::GetAbout()
     "Richel Bilderbeek (programming) and Toine van den Bogaart (research)",
     "Brainweaver",
     "program to create and assess concept maps",
-    "the 7th of September 2013",
+    "the 15th of September 2013",
     "2012-2013",
     "http://www.richelbilderbeek.nl/ProjectBrainweaver.htm",
     GetVersion(),
@@ -21,7 +24,7 @@ const ribi::About ribi::pvdb::MenuDialog::GetAbout()
 
 const std::string ribi::pvdb::MenuDialog::GetVersion()
 {
-  return "0.36";
+  return "0.37";
 }
 
 const std::vector<std::string> ribi::pvdb::MenuDialog::GetVersionHistory()
@@ -62,6 +65,7 @@ const std::vector<std::string> ribi::pvdb::MenuDialog::GetVersionHistory()
     "2013-08-06: Version 0.33: added icons and artwork",
     "2013-08-18: Version 0.34: fixed file dialog",
     "2013-08-30: Version 0.35: fixed segmentation faults, replaced print dialogs by save file dialogs",
-    "2013-09-07: Version 0.36: placed all classes in namespace ribi::pvdb, minor changes"
+    "2013-09-07: Version 0.36: placed all classes in namespace ribi::pvdb, minor changes",
+    "2013-09-15: Version 0.37: minor changes"
   };
 }

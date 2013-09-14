@@ -1,3 +1,5 @@
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include "qtpvdbfiledialog.h"
 
 #include <QApplication>
@@ -5,6 +7,7 @@
 #include <QFileDialog>
 
 #include "pvdbfile.h"
+#pragma GCC diagnostic pop
 
 namespace ribi {
 

@@ -1,3 +1,5 @@
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include "qtpvdbconceptitem.h"
 
 #include <string>
@@ -22,11 +24,12 @@
 #include "pvdbnodefactory.h"
 #include "qtpvdbexamplesitem.h"
 #include "trace.h"
-
+#pragma GCC diagnostic pop
 
 ribi::pvdb::QtPvdbConceptItem::QtPvdbConceptItem(
   const boost::shared_ptr<ribi::pvdb::Concept>& concept)
-  : m_concept(concept),
+  : m_signal_position_changed{},
+    m_concept(concept),
     m_indicator_brush(QBrush(QColor(0,0,0,0))),
     m_indicator_pen(QPen(QColor(0,0,0)))
 {

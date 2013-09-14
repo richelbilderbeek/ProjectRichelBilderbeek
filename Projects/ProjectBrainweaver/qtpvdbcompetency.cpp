@@ -1,3 +1,5 @@
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include "qtpvdbcompetency.h"
 
 #include <cassert>
@@ -9,7 +11,7 @@
 #include <QImage>
 #include <QPixmap>
 #include "trace.h"
-
+#pragma GCC diagnostic pop
 
 const std::map<ribi::pvdb::Competency,QColor> ribi::pvdb::QtCompetency::m_color_map = ribi::pvdb::QtCompetency::CreateColorMap();
 //const std::map<pvdb::Competency,QIcon > ribi::pvdb::QtCompetency::m_icon_map  = ribi::pvdb::QtCompetency::CreateIconMap();

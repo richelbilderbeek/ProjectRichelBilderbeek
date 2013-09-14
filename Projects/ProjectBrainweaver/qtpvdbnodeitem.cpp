@@ -1,3 +1,5 @@
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include "qtpvdbnodeitem.h"
 
 #include <cassert>
@@ -16,6 +18,7 @@
 #include "pvdbconcept.h"
 #include "qtpvdbconceptitem.h"
 #include "trace.h"
+#pragma GCC diagnostic pop
 
 ribi::pvdb::QtPvdbNodeItem::QtPvdbNodeItem(
   const boost::shared_ptr<ribi::pvdb::Node> node,

@@ -1,3 +1,5 @@
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include "qtpvdbconceptmapwidget.h"
 
 #include <cassert>
@@ -6,6 +8,7 @@
 #include "pvdbconceptmap.h"
 #include "pvdbconceptmapfactory.h"
 #include "trace.h"
+#pragma GCC diagnostic pop
 
 #ifndef NDEBUG
 void ribi::pvdb::QtPvdbConceptMapWidget::Test(const boost::shared_ptr<const QtPvdbConceptMapWidget>& widget)

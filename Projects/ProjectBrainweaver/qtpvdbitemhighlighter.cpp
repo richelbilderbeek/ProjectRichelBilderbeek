@@ -1,3 +1,5 @@
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include "qtpvdbitemhighlighter.h"
 
 #include <boost/math/constants/constants.hpp>
@@ -7,6 +9,7 @@
 //#include "qtpvdbconceptitem.h"
 #include "qtpvdbnodeitem.h"
 #include "trace.h"
+#pragma GCC diagnostic pop
 
 ribi::pvdb::QtPvdbItemHighlighter::QtPvdbItemHighlighter(QObject *parent)
   : QObject(parent),

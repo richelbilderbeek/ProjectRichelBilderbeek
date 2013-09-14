@@ -3,7 +3,7 @@
 
 
 #include <boost/shared_ptr.hpp>
-#include <boost/noncopyable.hpp>
+
 #include "qtpvdbconceptmapwidget.h"
 
 #include "pvdbfwd.h"

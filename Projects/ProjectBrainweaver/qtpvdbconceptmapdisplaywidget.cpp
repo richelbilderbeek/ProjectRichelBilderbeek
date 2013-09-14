@@ -1,3 +1,5 @@
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include "qtpvdbconceptmapdisplaywidget.h"
 
 #include <boost/lambda/lambda.hpp>
@@ -16,6 +18,7 @@
 #include "qtpvdbnodeitem.h"
 #include "qtpvdbdisplayconceptitem.h"
 #include "trace.h"
+#pragma GCC diagnostic pop
 
 ///Collect all QGraphicsItems with class T in an unorderly way
 template <class T>

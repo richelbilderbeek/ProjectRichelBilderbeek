@@ -1,3 +1,5 @@
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include "qtpvdbassessormenudialog.h"
 
 #include <QFileDialog>
@@ -14,7 +16,7 @@
 
 
 #include "ui_qtpvdbassessormenudialog.h"
-
+#pragma GCC diagnostic pop
 
 ribi::pvdb::QtPvdbAssessorMenuDialog::QtPvdbAssessorMenuDialog(QWidget* parent)
   : QtHideAndShowDialog(parent),

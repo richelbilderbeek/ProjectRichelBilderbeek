@@ -34,6 +34,8 @@ class QtTestQtRoundedEditRectItemMainDialog : public ribi::QtHideAndShowDialog
 public:
 
   explicit QtTestQtRoundedEditRectItemMainDialog(QWidget *parent = 0);
+  QtTestQtRoundedEditRectItemMainDialog(const QtTestQtRoundedEditRectItemMainDialog&) = delete;
+  QtTestQtRoundedEditRectItemMainDialog& operator=(const QtTestQtRoundedEditRectItemMainDialog&) = delete;
   ~QtTestQtRoundedEditRectItemMainDialog();
 protected:
   void keyPressEvent(QKeyEvent * event);

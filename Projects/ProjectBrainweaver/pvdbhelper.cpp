@@ -1,3 +1,5 @@
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include "pvdbhelper.h"
 
 #include <cassert>
@@ -5,6 +7,7 @@
 #include <QFile>
 #include <QRegExp>
 #include "trace.h"
+#pragma GCC diagnostic pop
 
 const std::vector<std::string> ribi::pvdb::FileToVector(const std::string& filename)
 {

@@ -1,3 +1,5 @@
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include "qtpvdbstudentmenudialog.h"
 
 #include <cassert>
@@ -11,6 +13,7 @@
 #include "qtpvdbstudentstartcompletedialog.h"
 #include "trace.h"
 #include "ui_qtpvdbstudentmenudialog.h"
+#pragma GCC diagnostic pop
 
 ribi::pvdb::QtPvdbStudentMenuDialog::QtPvdbStudentMenuDialog(const boost::shared_ptr<pvdb::File> file, QWidget* parent)
   : QtHideAndShowDialog(parent),

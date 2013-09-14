@@ -1,3 +1,5 @@
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include "qtpvdbtoolsitem.h"
 
 #include <QCursor>
@@ -5,6 +7,7 @@
 #include <QGraphicsSceneMouseEvent>
 #include "qtpvdbnodeitem.h"
 #include "trace.h"
+#pragma GCC diagnostic pop
 
 ribi::pvdb::QtPvdbToolsItem::QtPvdbToolsItem()
   : m_signal_clicked(),

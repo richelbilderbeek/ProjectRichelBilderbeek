@@ -1,3 +1,5 @@
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include "qtpvdbedgeitem.h"
 
 #include <cassert>
@@ -19,6 +21,7 @@
 #include "qtpvdbnodeitem.h"
 #include "qtquadbezierarrowitem.h"
 #include "trace.h"
+#pragma GCC diagnostic pop
 
 ribi::pvdb::QtPvdbEdgeItem::QtPvdbEdgeItem(
     const boost::shared_ptr<ribi::pvdb::Edge> edge,

@@ -2,12 +2,11 @@
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
-
-
 #include "qtroundedrectitem.h"
 
 #include <cassert>
 #include <sstream>
+
 #include <QFont>
 #include <QGraphicsScene>
 #include <QPainter>
@@ -15,14 +14,18 @@
 
 ribi::QtRoundedRectItem::QtRoundedRectItem(QGraphicsItem *parent)
   : QGraphicsRectItem(parent), //New since Qt5
+   m_signal_item_has_updated{},
+   m_signal_request_scene_update{},
    m_contour_pen(QPen(QColor(0,0,0))),
-   m_focus_pen(QPen(QColor(0,0,0),1,Qt::DashLine))
+   m_focus_pen(QPen(QColor(0,0,0),1,Qt::DashLine)),
+   m_radius_x{4.0},
+   m_radius_y{4.0}
 {
   this->setFlags(
       QGraphicsItem::ItemIsFocusable
     | QGraphicsItem::ItemIsMovable
     | QGraphicsItem::ItemIsSelectable);
-  this->SetRoundedRect(QRectF(-16.0,-16.0,32.0,32.0),4.0,4.0);
+  this->SetRoundedRect(QRectF(-16.0,-16.0,32.0,32.0),m_radius_x,m_radius_y);
 }
 
 const std::string ribi::QtRoundedRectItem::GetVersion()

@@ -1,3 +1,5 @@
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include "qtpvdbconceptmapeditwidget.h"
 
 #include <QGraphicsItem>
@@ -27,6 +29,7 @@
 #include "qtquadbezierarrowitem.h"
 #include "qtscopeddisable.h"
 #include "trace.h"
+#pragma GCC diagnostic pop
 
 ///Collect all QGraphicsItems with class T in an unorderly way
 template <class T>
@@ -49,6 +52,7 @@ ribi::pvdb::QtPvdbConceptMapEditWidget::QtPvdbConceptMapEditWidget(
   const boost::shared_ptr<ribi::pvdb::ConceptMap> concept_map,
   QWidget* parent)
   : QtPvdbConceptMapWidget(concept_map,parent),
+    m_signal_conceptmapitem_requests_edit{},
     m_arrow(nullptr),
     m_highlighter(new QtPvdbItemHighlighter(0)),
     m_tools(new QtPvdbToolsItem)

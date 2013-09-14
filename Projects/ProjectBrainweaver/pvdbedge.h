@@ -1,7 +1,7 @@
 #ifndef PVDBEDGE_H
 #define PVDBEDGE_H
 
-#include <boost/noncopyable.hpp>
+
 #include <boost/shared_ptr.hpp>
 #include <boost/signals2.hpp>
 
@@ -14,8 +14,10 @@ struct EdgeFactory;
 
 ///An Edge is the GUI-independent part of the edges used in QtPvdbConceptMap.
 ///An Edge goes from one Node to another, which must a different Node
-struct Edge : public boost::noncopyable
+struct Edge
 {
+  Edge(const Edge&) = delete;
+  Edge& operator=(const Edge&) = delete;
   const boost::shared_ptr<const ribi::pvdb::Concept>  GetConcept() const { return m_concept; }
   const boost::shared_ptr<      ribi::pvdb::Concept>  GetConcept()       { return m_concept; }
 

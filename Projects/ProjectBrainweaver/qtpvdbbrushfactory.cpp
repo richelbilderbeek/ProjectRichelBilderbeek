@@ -1,6 +1,9 @@
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include "qtpvdbbrushfactory.h"
 
 #include <QLinearGradient>
+#pragma GCC diagnostic pop
 
 const int ribi::pvdb::QtPvdbBrushFactory::sm_bottom = 10;
 const int ribi::pvdb::QtPvdbBrushFactory::sm_left = -100;

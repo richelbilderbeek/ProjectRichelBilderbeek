@@ -1,3 +1,5 @@
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include "qtpvdbconceptmapdialog.h"
 
 #include <cassert>
@@ -30,6 +32,7 @@
 #include "qtpvdbedgeitem.h"
 #include "qtpvdbnodeitem.h"
 #include "trace.h"
+#pragma GCC diagnostic pop
 
 #ifndef NDEBUG
 void ribi::pvdb::QtPvdbConceptMapDialog::Test()

@@ -1,3 +1,5 @@
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include "qtpvdbnewarrow.h"
 
 #include <string>
@@ -13,6 +15,7 @@
 #include <boost/geometry.hpp>
 #include <boost/geometry/geometries/linestring.hpp>
 #include <boost/geometry/geometries/point_xy.hpp>
+#pragma GCC diagnostic pop
 
 ///Obtain the zero or one intersections between two finite lines
 //From http://www.richelbilderbeek.nl/CppGetLineLineIntersections.htm

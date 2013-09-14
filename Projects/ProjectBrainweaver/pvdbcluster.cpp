@@ -1,3 +1,5 @@
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include "pvdbcluster.h"
 
 #include <sstream>
@@ -10,7 +12,7 @@
 #include "pvdbconcept.h"
 #include "pvdbconceptfactory.h"
 #include "trace.h"
-
+#pragma GCC diagnostic pop
 
 ribi::pvdb::Cluster::Cluster(const std::vector<boost::shared_ptr<ribi::pvdb::Concept> >& v)
   : m_v(v)

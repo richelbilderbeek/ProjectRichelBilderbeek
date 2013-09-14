@@ -1,3 +1,5 @@
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include "pvdbnode.h"
 
 #ifdef COMPILER_SUPPORTS_THREADS_20130507
@@ -12,12 +14,14 @@
 #include "pvdbexamplefactory.h"
 #include "pvdbhelper.h"
 #include "trace.h"
+#pragma GCC diagnostic pop
 
 ribi::pvdb::Node::Node(
   const boost::shared_ptr<ribi::pvdb::Concept>& concept,
   const double x,
   const double y)
-  : m_concept(concept),
+  : m_signal_node_changed{},
+    m_concept(concept),
     m_x(x),
     m_y(y)
 {

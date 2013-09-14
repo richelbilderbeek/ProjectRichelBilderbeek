@@ -17,12 +17,17 @@ ribi::pvdb::Concept::Concept(
   const int rating_complexity,
   const int rating_concreteness,
   const int rating_specificity)
-  : m_examples(examples),
-    m_is_complex(is_complex),
-    m_name(name),
-    m_rating_complexity(rating_complexity),
-    m_rating_concreteness(rating_concreteness),
-    m_rating_specificity(rating_specificity)
+  : m_signal_examples_changed{},
+    m_signal_name_changed{},
+    m_signal_rating_complexity_changed{},
+    m_signal_rating_concreteness_changed{},
+    m_signal_rating_specificity_changed{},
+    m_examples{examples},
+    m_is_complex{is_complex},
+    m_name{name},
+    m_rating_complexity{rating_complexity},
+    m_rating_concreteness{rating_concreteness},
+    m_rating_specificity{rating_specificity}
 
 {
   #ifndef NDEBUG

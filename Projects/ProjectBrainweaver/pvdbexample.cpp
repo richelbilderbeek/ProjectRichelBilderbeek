@@ -1,3 +1,5 @@
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include "pvdbexample.h"
 
 #include <cassert>
@@ -15,6 +17,7 @@
 #include "pvdbexamplefactory.h"
 #include "pvdbhelper.h"
 #include "trace.h"
+#pragma GCC diagnostic pop
 
 ribi::pvdb::Example::Example(
   const std::string& text,
@@ -23,7 +26,9 @@ ribi::pvdb::Example::Example(
   const bool is_concrete,
   const bool is_specific
   )
-  : m_competency(competency),
+  : m_signal_competency_changed{},
+    m_signal_text_changed{},
+    m_competency(competency),
     m_is_complex(is_complex),
     m_is_concrete(is_concrete),
     m_is_specific(is_specific),

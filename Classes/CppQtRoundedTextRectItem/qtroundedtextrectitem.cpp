@@ -26,7 +26,8 @@ ribi::QtRoundedTextRectItem::QtRoundedTextRectItem(
   : QtRoundedRectItem(parent),
     m_font(font),
     m_padding(padding),
-    m_text("") //Empty std::string, as m_text must be set by SetText
+    m_text{}, //Empty std::string, as m_text must be set by SetText
+    m_text_pen{}
 {
   this->setFlags(
       QGraphicsItem::ItemIsFocusable
@@ -75,12 +76,12 @@ const std::string ribi::QtRoundedTextRectItem::GetVersion()
 
 const std::vector<std::string> ribi::QtRoundedTextRectItem::GetVersionHistory()
 {
-  std::vector<std::string> v;
-  v.push_back("2012-12-19: version 1.0: initial version");
-  v.push_back("2012-12-20: version 1.1: added response to key press, text is displayed fully");
-  v.push_back("2012-12-21: version 1.2: added debug drawing, text is displayed correctly to the pixel");
-  v.push_back("2012-12-28: version 1.3: fixed incomplete displaying when using Wine");
-  return v;
+  return {
+    "2012-12-19: version 1.0: initial version",
+    "2012-12-20: version 1.1: added response to key press, text is displayed fully",
+    "2012-12-21: version 1.2: added debug drawing, text is displayed correctly to the pixel",
+    "2012-12-28: version 1.3: fixed incomplete displaying when using Wine",
+  };
 }
 
 void ribi::QtRoundedTextRectItem::keyPressEvent(QKeyEvent* event)

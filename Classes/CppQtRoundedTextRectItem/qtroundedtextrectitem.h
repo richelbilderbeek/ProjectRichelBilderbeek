@@ -8,14 +8,16 @@
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include <boost/signals2.hpp>
-#pragma GCC diagnostic pop
 
 #include <QFont>
+
 #include "qtroundedrectitem.h"
+#pragma GCC diagnostic pop
 
 namespace ribi {
 
-///A QtRoundedRectItem displaying a single line of text
+///A QtRoundedTextItem displays a single line of text
+///For multiple lines of text, use QtRoundedEditRectItem
 struct QtRoundedTextRectItem : public QtRoundedRectItem
 {
   struct Padding

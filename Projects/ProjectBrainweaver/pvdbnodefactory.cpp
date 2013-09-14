@@ -1,9 +1,12 @@
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include "pvdbnodefactory.h"
 
 #include "pvdbnode.h"
 #include "pvdbconcept.h"
 #include "pvdbconceptfactory.h"
 #include "trace.h"
+#pragma GCC diagnostic pop
 
 const boost::shared_ptr<ribi::pvdb::Node> ribi::pvdb::NodeFactory::Create(
   const boost::shared_ptr<ribi::pvdb::Concept>& concept,

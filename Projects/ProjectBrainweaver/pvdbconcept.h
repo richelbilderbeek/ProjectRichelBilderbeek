@@ -3,15 +3,18 @@
 
 #include <string>
 #include <vector>
+
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include <boost/shared_ptr.hpp>
 #include <boost/signals2.hpp>
 
 #include <QRegExp>
 
 #include "pvdbfwd.h"
+#pragma GCC diagnostic pop
 
 namespace ribi {
-
 namespace pvdb {
 
 struct ConceptFactory;
@@ -176,7 +179,6 @@ bool operator>=(const boost::shared_ptr<ribi::pvdb::Concept>& lhs, const boost::
 bool operator>=(const boost::shared_ptr<ribi::pvdb::Concept>& lhs, const boost::shared_ptr<ribi::pvdb::Concept>& rhs) = delete;
 
 } //~namespace pvdb
-
 } //~namespace ribi
 
 #endif // PVDBCONCEPT_H

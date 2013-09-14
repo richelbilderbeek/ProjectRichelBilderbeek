@@ -1,3 +1,5 @@
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include "pvdbfilefactory.h"
 
 #include <cassert>
@@ -8,6 +10,7 @@
 #include "pvdbclusterfactory.h"
 #include "pvdbfile.h"
 #include "trace.h"
+#pragma GCC diagnostic pop
 
 const boost::shared_ptr<ribi::pvdb::File> ribi::pvdb::FileFactory::Create()
 {

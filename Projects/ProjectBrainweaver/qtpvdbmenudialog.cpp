@@ -1,3 +1,5 @@
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include "qtpvdbmenudialog.h"
 
 #ifdef COMPILER_SUPPORTS_THREADS_20130507
@@ -60,6 +62,7 @@
 #include "qttestqtroundedtextrectitemmenudialog.h"
 #include "trace.h"
 #include "ui_qtpvdbmenudialog.h"
+#pragma GCC diagnostic pop
 
 ribi::pvdb::QtPvdbMenuDialog::QtPvdbMenuDialog(QWidget* parent)
   : QtHideAndShowDialog(parent),

@@ -1,6 +1,9 @@
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include "pvdbexamplefactory.h"
 
 #include "pvdbexample.h"
+#pragma GCC diagnostic pop
 
 const boost::shared_ptr<ribi::pvdb::Example> ribi::pvdb::ExampleFactory::Create(
   const std::string& text,

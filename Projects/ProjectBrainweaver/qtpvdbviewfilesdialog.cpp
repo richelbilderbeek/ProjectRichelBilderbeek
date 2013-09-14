@@ -1,3 +1,5 @@
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include "qtpvdbviewfilesdialog.h"
 
 #include <cassert>
@@ -7,6 +9,7 @@
 #include "pvdbhelper.h"
 #include "qtpvdbfiledialog.h"
 #include "ui_qtpvdbviewfilesdialog.h"
+#pragma GCC diagnostic pop
 
 ribi::pvdb::QtPvdbViewFilesDialog::QtPvdbViewFilesDialog(QWidget* parent) :
   QtHideAndShowDialog(parent),

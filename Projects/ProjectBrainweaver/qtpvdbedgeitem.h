@@ -22,6 +22,8 @@ struct QtPvdbEdgeItem : public QtPvdbConceptMapItem
     const boost::shared_ptr<QtPvdbConceptItem> concept_item,
     QtPvdbNodeItem* const from,
     QtPvdbNodeItem* const to);
+  QtPvdbEdgeItem(const QtPvdbEdgeItem&) = delete;
+  QtPvdbEdgeItem& operator=(const QtPvdbEdgeItem&) = delete;
 
   QRectF boundingRect() const final;
 

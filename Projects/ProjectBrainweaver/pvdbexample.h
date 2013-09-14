@@ -2,10 +2,13 @@
 #define PVDBEXAMPLE_H
 
 #include <string>
-#include <boost/noncopyable.hpp>
+
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include <boost/shared_ptr.hpp>
 #include <boost/signals2.hpp>
 #include "pvdbcompetency.h"
+#pragma GCC diagnostic pop
 
 namespace ribi {
 
@@ -14,8 +17,11 @@ namespace pvdb {
 struct ExampleFactory;
 
 ///A concept (on a node or an edge) can have examples
-struct Example : public boost::noncopyable
+struct Example
 {
+  Example(const Example&) = delete;
+  Example& operator=(const Example&) = delete;
+
   ///Convert a pvdb::Competency to a std::string
   static const std::string CompetencyToStr(const pvdb::Competency competency);
 

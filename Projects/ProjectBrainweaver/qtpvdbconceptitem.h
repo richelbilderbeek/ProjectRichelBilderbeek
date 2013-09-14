@@ -4,6 +4,8 @@
 #include <string>
 #include <vector>
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include <QBrush>
 #include <QGraphicsItem>
 #include <QPen>
@@ -14,6 +16,7 @@
 #include "pvdbfwd.h"
 
 #include "qtroundedtextrectitem.h"
+#pragma GCC diagnostic pop
 
 namespace ribi {
 namespace pvdb {

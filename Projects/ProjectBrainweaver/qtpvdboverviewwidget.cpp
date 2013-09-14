@@ -1,3 +1,5 @@
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include "qtpvdboverviewdialog.h"
 
 #include <QDialog>
@@ -38,6 +40,7 @@
 #include "qtpvdbstudentmenudialog.h"
 #include "qtpvdbstudentstartcompletedialog.h"
 #include "trace.h"
+#pragma GCC diagnostic pop
 
 ribi::pvdb::QtPvdbOverviewWidget::QtPvdbOverviewWidget(QWidget* parent)
   : QGraphicsView(new QGraphicsScene,parent),

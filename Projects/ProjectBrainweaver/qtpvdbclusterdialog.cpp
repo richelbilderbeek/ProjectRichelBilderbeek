@@ -1,3 +1,5 @@
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include "qtpvdbclusterdialog.h"
 
 #include <fstream>
@@ -35,6 +37,7 @@
 #include "qtpvdbconceptmapdialog.h"
 #include "trace.h"
 #include "ui_qtpvdbclusterdialog.h"
+#pragma GCC diagnostic pop
 
 ribi::pvdb::QtPvdbClusterDialog::QtPvdbClusterDialog(
   const boost::shared_ptr<pvdb::File> file,

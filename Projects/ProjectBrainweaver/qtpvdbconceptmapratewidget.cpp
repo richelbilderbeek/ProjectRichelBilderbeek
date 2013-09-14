@@ -1,3 +1,5 @@
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include "qtpvdbconceptmapratewidget.h"
 
 #include <boost/lambda/lambda.hpp>
@@ -23,6 +25,7 @@
 #include "qtscopeddisable.h"
 #include "qtpvdbrateconceptdialog.h"
 #include "trace.h"
+#pragma GCC diagnostic pop
 
 ///Collect all QGraphicsItems with class T in an unorderly way
 template <class T>
@@ -44,7 +47,8 @@ std::vector<T*> Collect(const QGraphicsScene* const scene)
 ribi::pvdb::QtPvdbConceptMapRateWidget::QtPvdbConceptMapRateWidget(
   const boost::shared_ptr<ribi::pvdb::ConceptMap> concept_map,
   QWidget* parent)
-  : QtPvdbConceptMapWidget(concept_map,parent)
+  : QtPvdbConceptMapWidget(concept_map,parent),
+    m_signal_request_rate_concept_dialog{}
 {
   #ifndef NDEBUG
   Test();

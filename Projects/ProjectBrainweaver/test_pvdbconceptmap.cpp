@@ -1,3 +1,5 @@
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include "pvdbconceptmap.h"
 
 #include <sstream>
@@ -27,6 +29,7 @@
 #include "pvdbnode.h"
 #include "pvdbedge.h"
 #include "pvdbcluster.h"
+#pragma GCC diagnostic pop
 
 #ifndef NDEBUG
 void ribi::pvdb::ConceptMap::Test()

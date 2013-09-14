@@ -1,3 +1,5 @@
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include "pvdbfile.h"
 
 #include <cassert>
@@ -27,6 +29,7 @@
 #include "pvdbhelper.h"
 #include "pvdbnode.h"
 #include "trace.h"
+#pragma GCC diagnostic pop
 
 const std::string ribi::pvdb::File::m_filename_extension = "cmp";
 

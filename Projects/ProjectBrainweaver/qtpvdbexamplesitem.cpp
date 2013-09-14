@@ -1,3 +1,5 @@
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include "qtpvdbexamplesitem.h"
 
 #include <QFont>
@@ -11,6 +13,7 @@
 #include "qtpvdbedgeitem.h"
 #include "qtpvdbbrushfactory.h"
 #include "trace.h"
+#pragma GCC diagnostic pop
 
 ribi::pvdb::QtPvdbExamplesItem::QtPvdbExamplesItem(
   QGraphicsItem* parent)

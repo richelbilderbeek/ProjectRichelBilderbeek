@@ -1,3 +1,5 @@
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include <iostream>
 
 #ifdef COMPILER_SUPPORTS_THREADS_20130507
@@ -22,6 +24,7 @@
 #include "qtpvdbconceptmapratewidget.h"
 #include "qtpvdbmenudialog.h"
 #include "trace.h"
+#pragma GCC diagnostic pop
 
 const std::string CreateStyleSheet()
 {

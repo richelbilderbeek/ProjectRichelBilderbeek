@@ -1,3 +1,5 @@
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include "qtpvdbstudentstartcompletedialog.h"
 
 #include <fstream>
@@ -13,6 +15,7 @@
 #include "qtpvdbcreateassessmentmenudialog.h"
 #include "trace.h"
 #include "ui_qtpvdbstudentstartcompletedialog.h"
+#pragma GCC diagnostic pop
 
 ribi::pvdb::QtPvdbStudentStartCompleteDialog::QtPvdbStudentStartCompleteDialog(
   const boost::shared_ptr<pvdb::File> file,

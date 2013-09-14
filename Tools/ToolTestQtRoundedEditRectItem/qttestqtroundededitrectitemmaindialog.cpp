@@ -18,12 +18,12 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolTestQtRoundedEditRectItem.htm
 //---------------------------------------------------------------------------
-
-
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include "qttestqtroundededitrectitemmaindialog.h"
-
 #include <QKeyEvent>
 #include "ui_qttestqtroundededitrectitemmaindialog.h"
+#pragma GCC diagnostic pop
 
 QtTestQtRoundedEditRectItemMainDialog::QtTestQtRoundedEditRectItemMainDialog(QWidget *parent) :
     QtHideAndShowDialog(parent),

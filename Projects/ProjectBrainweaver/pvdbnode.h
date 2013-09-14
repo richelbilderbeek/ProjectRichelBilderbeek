@@ -1,11 +1,12 @@
 #ifndef PVDBNODE_H
 #define PVDBNODE_H
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include <boost/signals2.hpp>
 #include <boost/shared_ptr.hpp>
-#include <boost/noncopyable.hpp>
-
 #include "pvdbfwd.h"
+#pragma GCC diagnostic pop
 
 namespace ribi {
 
@@ -14,8 +15,10 @@ namespace pvdb {
 struct NodeFactory;
 
 ///A Node is the GUI independent part as used in QtPvdbConceptMapItem
-struct Node : public boost::noncopyable
+struct Node
 {
+  Node(const Node&) = delete;
+  Node& operator=(const Node&) = delete;
 
   ///Obtain a Node from an XML std::string
   static const boost::shared_ptr<ribi::pvdb::Node> FromXml(const std::string& s);

@@ -1,3 +1,5 @@
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include "qtpvdbrateconcepttallydialog.h"
 
 #include <cassert>
@@ -26,6 +28,7 @@
 #include "pvdbrating.h"
 #include "trace.h"
 #include "ui_qtpvdbrateconcepttallydialog.h"
+#pragma GCC diagnostic pop
 
 ribi::pvdb::QtPvdbRateConceptTallyDialog::QtPvdbRateConceptTallyDialog(
   const boost::shared_ptr</* const */ ribi::pvdb::ConceptMap> sub_concept_map,

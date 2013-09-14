@@ -1,3 +1,5 @@
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include "qtpvdbaboutdialog.h"
 
 #include <cassert>
@@ -13,6 +15,7 @@
 #include "qtkeyboardfriendlygraphicsview.h"
 #include "qtquadbezierarrowitem.h"
 #include "qtscopeddisable.h"
+#pragma GCC diagnostic pop
 
 const boost::shared_ptr<ribi::QtAboutDialog> ribi::pvdb::QtPvdbAboutDialog::Get()
 {

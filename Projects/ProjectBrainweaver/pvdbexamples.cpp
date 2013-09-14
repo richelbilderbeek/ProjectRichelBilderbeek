@@ -1,3 +1,5 @@
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include "pvdbexamples.h"
 
 #include <cassert>
@@ -15,9 +17,11 @@
 #include "pvdbexamplefactory.h"
 #include "pvdbexamplesfactory.h"
 #include "trace.h"
+#pragma GCC diagnostic pop
 
 ribi::pvdb::Examples::Examples(const std::vector<boost::shared_ptr<pvdb::Example> >& v)
-  : m_v(v)
+  : m_signal_examples_changed{},
+    m_v(v)
 {
   #ifndef NDEBUG
   Test();

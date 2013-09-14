@@ -22,11 +22,11 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #define QTKEYBOARDFRIENDLYGRAPHICSVIEW_H
 
 #pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/signals2.hpp>
-#pragma GCC diagnostic pop
-
 #include <QGraphicsView>
+#pragma GCC diagnostic pop
 
 struct QGraphicsItem;
 

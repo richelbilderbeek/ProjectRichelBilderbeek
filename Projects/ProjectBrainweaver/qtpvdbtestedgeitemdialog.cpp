@@ -1,3 +1,5 @@
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include "qtpvdbtestedgeitemdialog.h"
 
 
@@ -25,6 +27,7 @@
 #include "qtpvdbrateconceptitem.h"
 #include "trace.h"
 #include "ui_qtpvdbtestedgeitemdialog.h"
+#pragma GCC diagnostic pop
 
 ribi::pvdb::QtPvdbTestEdgeItemDialog::QtPvdbTestEdgeItemDialog(QWidget *parent) :
   QtHideAndShowDialog(parent),

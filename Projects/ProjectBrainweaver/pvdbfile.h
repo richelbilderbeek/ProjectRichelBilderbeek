@@ -1,20 +1,17 @@
 #ifndef PVDBFILE_H
 #define PVDBFILE_H
 
-#include <regex>
 #include <string>
 #include <vector>
 #include <boost/shared_ptr.hpp>
-#include <boost/noncopyable.hpp>
 
 #include "pvdbfwd.h"
 
 namespace ribi {
-
 namespace pvdb {
 
 ///The File used, also the main director of the program's flow
-struct File : public boost::noncopyable
+struct File
 {
   //Start an empty file
   File();
@@ -30,8 +27,8 @@ struct File : public boost::noncopyable
     const std::string& version
   );
 
-  //File(const File& other) = delete;
-  //File& operator=(const File& other) = delete;
+  File(const File& other) = delete;
+  File& operator=(const File& other) = delete;
 
   ///Convert the Cluster to a ConceptMap
   //void CreateConceptMapFromCluster();

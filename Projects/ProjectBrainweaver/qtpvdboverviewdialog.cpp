@@ -1,3 +1,5 @@
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include "qtpvdboverviewdialog.h"
 
 #include <QKeyEvent>
@@ -5,6 +7,7 @@
 
 #include "qtpvdboverviewwidget.h"
 #include "trace.h"
+#pragma GCC diagnostic pop
 
 ribi::pvdb::QtPvdbOverviewDialog::QtPvdbOverviewDialog(QWidget* parent)
   : QtHideAndShowDialog(parent)
