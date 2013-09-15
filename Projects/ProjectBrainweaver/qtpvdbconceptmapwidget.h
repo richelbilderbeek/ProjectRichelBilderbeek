@@ -2,9 +2,12 @@
 #define QTPVDBCONCEPTMAPWIDGET_H
 
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include "qtkeyboardfriendlygraphicsview.h"
 
 #include "pvdbfwd.h"
+#pragma GCC diagnostic pop
 
 namespace ribi {
 

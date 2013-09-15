@@ -14,6 +14,7 @@
 #include "pvdbconcept.h"
 #include "pvdbedge.h"
 #include "pvdbedgefactory.h"
+#include "pvdbhelper.h"
 #include "pvdbnode.h"
 #include "pvdbnodefactory.h"
 #include "qtpvdbbrushfactory.h"
@@ -64,10 +65,10 @@ ribi::pvdb::QtPvdbEdgeItem::QtPvdbEdgeItem(
 
   //Name
   this->SetName(edge->GetConcept()->GetName());
-  this->GetConceptItem()->SetText(edge->GetConcept()->GetName());
-  assert(m_edge->GetConcept()->GetName() == GetName()
-      && m_edge->GetConcept()->GetName() == m_concept_item->GetText()
-      && "Names/texts must be in sync");
+  this->GetConceptItem()->SetName(edge->GetConcept()->GetName());
+  //assert(m_edge->GetConcept()->GetName() == GetName()
+  //    && m_edge->GetConcept()->GetName() == m_concept_item->GetText()
+  //    && "Names/texts must be in sync");
 
 
   //Position
@@ -272,19 +273,21 @@ void ribi::pvdb::QtPvdbEdgeItem::OnEdgeChanged(const pvdb::Edge * const edge)
   m_arrow->SetHasTail(edge->HasTailArrow());
   assert( m_arrow->HasTail() == GetEdge()->HasTailArrow() );
   assert( m_arrow->HasHead() == GetEdge()->HasHeadArrow() );
-  m_concept_item->SetText(edge->GetConcept()->GetName());
+  m_concept_item->SetName(edge->GetConcept()->GetName());
   this->GetEdge()->SetX(edge->GetX());
   this->GetEdge()->SetY(edge->GetY());
 
-  assert(m_edge->GetConcept()->GetName() == GetName()
-      && m_edge->GetConcept()->GetName() == m_concept_item->GetText()
-      && "Names/texts must be in sync before");
+  //assert(m_edge->GetConcept()->GetName() == GetName()
+  //    && m_edge->GetConcept()->GetName() == m_concept_item->GetText()
+  //    && "Names/texts must be in sync before");
 
-  this->SetName(m_concept_item->GetText());
+  //this->SetName(m_concept_item->GetText());
+  this->SetName(edge->GetConcept()->GetName()); //2013-09-15
 
-  assert(m_edge->GetConcept()->GetName() == GetName()
-      && m_edge->GetConcept()->GetName() == m_concept_item->GetText()
-      && "Names/texts must be in sync after");
+
+  //assert(m_edge->GetConcept()->GetName() == GetName()
+  //    && m_edge->GetConcept()->GetName() == m_concept_item->GetText()
+  //    && "Names/texts must be in sync after");
 
   this->setRect(m_concept_item->boundingRect());
 
@@ -296,10 +299,10 @@ void ribi::pvdb::QtPvdbEdgeItem::OnEdgeChanged(const pvdb::Edge * const edge)
 
 void ribi::pvdb::QtPvdbEdgeItem::OnItemHasUpdated()
 {
-  this->SetName(m_concept_item->GetText());
+  this->SetName(m_concept_item->GetName());
 
   assert(m_edge->GetConcept()->GetName() == GetName()
-      && m_edge->GetConcept()->GetName() == m_concept_item->GetText()
+      && m_edge->GetConcept()->GetName() == m_concept_item->GetName()
       && "Names/texts must be in sync after");
 
   //this->setRect(QtPvdbConceptMapItem::boundingRect());
@@ -320,7 +323,7 @@ void ribi::pvdb::QtPvdbEdgeItem::OnRequestSceneUpdate()
 
 void ribi::pvdb::QtPvdbEdgeItem::paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWidget* widget)
 {
-  m_concept_item->SetText(this->GetConcept()->GetName());
+  m_concept_item->SetName(this->GetConcept()->GetName());
 
   //Only QtPvdbEditConceptItem actually modifies the position of the concept items
   if (dynamic_cast<QtPvdbEditConceptItem*>(m_concept_item.get()))
@@ -597,7 +600,7 @@ void ribi::pvdb::QtPvdbEdgeItem::Test()
       {
         const std::string edge_name = edge->GetConcept()->GetName();
         const std::string qtedge_name = qtedge->GetName();
-        const std::string qtconcept_text = qtconcept_item->GetText();
+        const std::string qtconcept_text = qtconcept_item->GetName();
 
         if(!(edge_name == qtedge_name && qtedge_name == qtconcept_text))
         {
@@ -611,7 +614,7 @@ void ribi::pvdb::QtPvdbEdgeItem::Test()
       {
         const std::string edge_name_before = edge->GetConcept()->GetName();
         const std::string qtedge_name_before = qtedge->GetName();
-        const std::string qtconcept_text_before = qtconcept_item->GetText();
+        const std::string qtconcept_text_before = qtconcept_item->GetName();
         assert(edge_name_before == qtedge_name_before && qtedge_name_before == qtconcept_text_before
          && "Names/texts must be in sync");
 
@@ -620,7 +623,7 @@ void ribi::pvdb::QtPvdbEdgeItem::Test()
 
         const std::string edge_name_after = edge->GetConcept()->GetName();
         const std::string qtedge_name_after = qtedge->GetName();
-        const std::string qtconcept_text_after = qtconcept_item->GetText();
+        const std::string qtconcept_text_after = qtconcept_item->GetName();
 
         assert(edge_name_after == qtedge_name_after && qtedge_name_after == qtconcept_text_after
          && "Names/texts must be in sync");
@@ -628,7 +631,7 @@ void ribi::pvdb::QtPvdbEdgeItem::Test()
       {
         const std::string edge_name_before = edge->GetConcept()->GetName();
         const std::string qtedge_name_before = qtedge->GetName();
-        const std::string qtconcept_text_before = qtconcept_item->GetText();
+        const std::string qtconcept_text_before = qtconcept_item->GetName();
         assert(edge_name_before == qtedge_name_before && qtedge_name_before == qtconcept_text_before
          && "Names/texts must be in sync");
 
@@ -637,7 +640,7 @@ void ribi::pvdb::QtPvdbEdgeItem::Test()
 
         const std::string edge_name_after = edge->GetConcept()->GetName();
         const std::string qtedge_name_after = qtedge->GetName();
-        const std::string qtconcept_text_after = qtconcept_item->GetText();
+        const std::string qtconcept_text_after = qtconcept_item->GetName();
 
         assert(edge_name_after == qtedge_name_after && qtedge_name_after == qtconcept_text_after
          && "Names/texts must be in sync");
@@ -645,16 +648,16 @@ void ribi::pvdb::QtPvdbEdgeItem::Test()
       {
         const std::string edge_name_before = edge->GetConcept()->GetName();
         const std::string qtedge_name_before = qtedge->GetName();
-        const std::string qtconcept_text_before = qtconcept_item->GetText();
+        const std::string qtconcept_text_before = qtconcept_item->GetName();
         assert(edge_name_before == qtedge_name_before && qtedge_name_before == qtconcept_text_before
          && "Names/texts must be in sync");
 
         //Change via Qt concept item
-        qtedge->GetConceptItem()->SetText(qtedge->GetConceptItem()->GetText() + " and again");
+        qtedge->GetConceptItem()->SetName(qtedge->GetConceptItem()->GetName() + " and again");
 
         const std::string edge_name_after = edge->GetConcept()->GetName();
         const std::string qtedge_name_after = qtedge->GetName();
-        const std::string qtconcept_text_after = qtconcept_item->GetText();
+        const std::string qtconcept_text_after = qtconcept_item->GetName();
         if (!(edge_name_after == qtedge_name_after && qtedge_name_after == qtconcept_text_after))
         {
           TRACE(edge_name_after);
@@ -693,7 +696,7 @@ void ribi::pvdb::QtPvdbEdgeItem::Test()
         const QRectF qtedge_rect = qtedge->boundingRect();
         const QRectF qtconcept_rect = qtconcept_item->boundingRect();
 
-        assert(qtedge->GetName() == qtconcept_item->GetText());
+        assert(qtedge->GetName() == qtconcept_item->GetName());
 
         assert(qtedge_rect.width() >= qtconcept_rect.width()
           && "The complete edge (including nodes will be at least as wide as the concept only");
@@ -756,7 +759,7 @@ void ribi::pvdb::QtPvdbEdgeItem::Test()
           && "The complete edge (including nodes will be at least as high as the concept only");
 
         //Change via Qt concept item
-        qtedge->GetConceptItem()->SetText(qtedge->GetConceptItem()->GetText() + " and again");
+        qtedge->GetConceptItem()->SetName(qtedge->GetConceptItem()->GetName() + " and again");
 
         const QRectF qtedge_rect_after = qtedge->boundingRect();
         const QRectF qtconcept_rect_after = qtconcept_item->boundingRect();

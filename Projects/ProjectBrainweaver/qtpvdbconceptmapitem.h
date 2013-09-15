@@ -4,7 +4,8 @@
 #include <boost/signals2.hpp>
 
 #include "pvdbfwd.h"
-#include "qtroundedtextrectitem.h"
+//#include "qtroundedtextrectitem.h"
+#include "qtroundededitrectitem.h"
 
 namespace ribi {
 
@@ -13,7 +14,7 @@ namespace pvdb {
 ///Either a Node or Edge of a ConceptMap
 ///QtRoundedTextRectItem: single line
 ///QtRoundedEditRectItem: multiple lines
-struct QtPvdbConceptMapItem : public QtRoundedTextRectItem
+struct QtPvdbConceptMapItem : public QtRoundedEditRectItem //NEW 2013-09-15
 {
   virtual ~QtPvdbConceptMapItem() {}
 
@@ -49,9 +50,9 @@ struct QtPvdbConceptMapItem : public QtRoundedTextRectItem
 
   protected:
   ///Remove this member function, let the client call the virual SetX and SetY member functions
-  void setPos(const QPointF &pos) { QtRoundedTextRectItem::setPos(pos); }
+  void setPos(const QPointF &pos) { QtRoundedEditRectItem::setPos(pos); }
   ///Remove this member function, let the client call the virual SetX and SetY member functions
-  void setPos(qreal x, qreal y) { QtRoundedTextRectItem::setPos(x,y); }
+  void setPos(qreal x, qreal y) { QtRoundedEditRectItem::setPos(x,y); }
 
   void hoverMoveEvent(QGraphicsSceneHoverEvent *) final;
 

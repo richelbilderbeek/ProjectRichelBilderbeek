@@ -12,6 +12,7 @@
 #include "pvdbhelper.h"
 #include "pvdbconcept.h"
 #include "pvdbcompetency.h"
+#include "pvdbconceptfactory.h"
 #include "qtpvdbbrushfactory.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
@@ -90,6 +91,18 @@ ribi::pvdb::QtPvdbDisplayConceptItem::~QtPvdbDisplayConceptItem()
         this
       )
     );
+}
+
+
+void ribi::pvdb::QtPvdbDisplayConceptItem::Test()
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting ribi::pvdb::QtPvdbDisplayConceptItem::Test()");
+  TRACE("Successfully finished ribi::pvdb::QtPvdbDisplayConceptItem::Test()");
 }
 
 void ribi::pvdb::QtPvdbDisplayConceptItem::UpdateBrushesAndPens()

@@ -29,8 +29,10 @@ protected:
   void keyPressEvent(QKeyEvent *event);
 
 private:
+  #ifndef NDEBUG
   ///Test this class
   static void Test();
+  #endif
 
   ///Update the brushes and pens
   void UpdateBrushesAndPens();

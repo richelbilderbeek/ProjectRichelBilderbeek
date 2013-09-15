@@ -12,16 +12,16 @@
 #include <QPainterPath>
 #include <QPainterPathStroker>
 
-#include "pvdbconcept.h"
-
 #include "fuzzy_equal_to.h"
+#include "pvdbconceptfactory.h"
+#include "pvdbconcept.h"
+#include "pvdbconcept.h"
 #include "pvdbedge.h"
 #include "pvdbexample.h"
 #include "pvdbexamples.h"
-#include "pvdbconcept.h"
-#include "pvdbconceptfactory.h"
-#include "pvdbnode.h"
+#include "pvdbhelper.h"
 #include "pvdbnodefactory.h"
+#include "pvdbnode.h"
 #include "qtpvdbexamplesitem.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
@@ -33,6 +33,10 @@ ribi::pvdb::QtPvdbConceptItem::QtPvdbConceptItem(
     m_indicator_brush(QBrush(QColor(0,0,0,0))),
     m_indicator_pen(QPen(QColor(0,0,0)))
 {
+  #ifndef NDEBUG
+  Test();
+  #endif
+
   assert(m_concept);
   assert(m_concept->GetExamples());
 
@@ -43,7 +47,7 @@ ribi::pvdb::QtPvdbConceptItem::QtPvdbConceptItem(
   //Allow mouse tracking
   this->setAcceptHoverEvents(true);
 
-  this->SetPadding(QtRoundedTextRectItem::Padding(1.0,6.0,1.0,2.0));
+  this->SetPadding(Base::Padding(1.0,6.0,1.0,2.0));
 
   //?FIX 2013-01-06 22:47
   GetConcept()->m_signal_name_changed.connect(
@@ -53,7 +57,8 @@ ribi::pvdb::QtPvdbConceptItem::QtPvdbConceptItem(
   //this->SetText("DUMMY TEXT");
   //assert(this->GetText() != m_concept->GetName()
   //  && "The text must be set, to get a resize");
-  this->SetText(m_concept->GetName());
+
+  this->SetName(m_concept->GetName());
 }
 
 const boost::shared_ptr<const ribi::pvdb::Concept> ribi::pvdb::QtPvdbConceptItem::GetConcept() const
@@ -61,6 +66,11 @@ const boost::shared_ptr<const ribi::pvdb::Concept> ribi::pvdb::QtPvdbConceptItem
   boost::shared_ptr<const ribi::pvdb::Concept> p(m_concept);
   assert(p);
   return p;
+}
+
+const std::string ribi::pvdb::QtPvdbConceptItem::GetName() const
+{
+  return Unwordwrap(this->GetText());
 }
 
 void ribi::pvdb::QtPvdbConceptItem::hoverStartEvent(QGraphicsSceneHoverEvent *)
@@ -94,7 +104,7 @@ void ribi::pvdb::QtPvdbConceptItem::OnConceptNameChanged()
   assert(this);
   assert(m_concept);
   assert(m_concept->GetExamples());
-  this->SetText( this->m_concept->GetName() );
+  this->SetName(m_concept->GetName());
   //m_signal_item_changed(this); //Called by SetText
 }
 
@@ -160,6 +170,26 @@ void ribi::pvdb::QtPvdbConceptItem::SetPos(const double x, const double y)
   }
 }
 
+void ribi::pvdb::QtPvdbConceptItem::SetName(const std::string& s)
+{
+  TRACE_FUNC();
+  //Set the text
+  TRACE(s);
+  const std::vector<std::string> v { Wordwrap(s,40) };
+  TRACE(v.size());
+  for (const auto t: v) TRACE(t);
+
+  this->SetTextTEMP(v);
+
+  #ifndef NDEBUG
+  if (this->GetName() != s)
+  {
+    TRACE(this->GetName());
+  }
+  #endif
+  assert(this->GetName() == s);
+}
+
 /*
 QPainterPath ribi::pvdb::QtPvdbConceptItem::shape() const
 {
@@ -172,3 +202,16 @@ QPainterPath ribi::pvdb::QtPvdbConceptItem::shape() const
   return stroker.createStroke(path);
 }
 */
+
+void ribi::pvdb::QtPvdbConceptItem::Test()
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting ribi::pvdb::QtPvdbConceptItem::Test()");
+
+  TRACE("Successfully finished ribi::pvdb::QtPvdbConceptItem::Test()");
+}
+

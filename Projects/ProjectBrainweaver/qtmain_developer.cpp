@@ -74,6 +74,7 @@ int main(int argc, char *argv[])
   //Perform tests
   #ifndef NDEBUG
   std::clog << "DEBUG mode" << std::endl;
+  ribi::pvdb::TestHelperFunctions();
   ribi::pvdb::QtPvdbMenuDialog::Test(); //Tests all
   #else
   std::clog << "RELEASE mode" << std::endl;

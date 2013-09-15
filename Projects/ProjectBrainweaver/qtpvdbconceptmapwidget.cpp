@@ -515,7 +515,7 @@ void ribi::pvdb::QtPvdbConceptMapWidget::RepositionItems()
       = dynamic_cast<const QtPvdbNodeItem *>(qtnodes[0]);
     assert(center_node);
 
-    std::vector<QtRoundedTextRectItem*> nodes_and_edges;
+    std::vector<QtRoundedEditRectItem*> nodes_and_edges;
     std::copy(qtnodes.begin(),qtnodes.end(),std::back_inserter(nodes_and_edges));
     assert(IsCenterNode(nodes_and_edges[0]));
     std::copy(qtedges.begin(),qtedges.end(),std::back_inserter(nodes_and_edges));
@@ -524,7 +524,7 @@ void ribi::pvdb::QtPvdbConceptMapWidget::RepositionItems()
     std::for_each(
       nodes_and_edges.begin() + 1, //+1 to skip the center node at [0]
       nodes_and_edges.end(),
-      [center_node,&done](QtRoundedTextRectItem* const node_or_edge)
+      [center_node,&done](QtRoundedEditRectItem* const node_or_edge)
       {
         if (center_node->boundingRect().intersects(
           node_or_edge->boundingRect().translated(-node_or_edge->pos())))

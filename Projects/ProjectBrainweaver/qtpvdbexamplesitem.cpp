@@ -92,5 +92,5 @@ void ribi::pvdb::QtPvdbExamplesItem::SetExamples(const boost::shared_ptr<const p
       return p->GetText();
     }
   );
-  this->SetText(w);
+  this->SetTextTEMP(w);
 }

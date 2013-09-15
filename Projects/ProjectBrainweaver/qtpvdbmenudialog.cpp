@@ -287,7 +287,7 @@ void ribi::pvdb::QtPvdbMenuDialog::Test()
       =
       {
         //Duplication of tests, the ones I am most interested in now
-        ui->button_rate_concept_auto,
+        ui->button_test_conceptedit,
 
         //Normal alphabetical order of tests
         ui->button_about,

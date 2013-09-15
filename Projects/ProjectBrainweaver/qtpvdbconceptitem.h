@@ -15,7 +15,8 @@
 
 #include "pvdbfwd.h"
 
-#include "qtroundedtextrectitem.h"
+//#include "qtroundedtextrectitem.h"
+#include "qtroundededitrectitem.h"
 #pragma GCC diagnostic pop
 
 namespace ribi {
@@ -23,9 +24,9 @@ namespace pvdb {
 
 ///A QtPvdbConceptItem shows a Concept
 ///A Concept can be shown in multiple different ways, which is performed by its derived classes.
-struct QtPvdbConceptItem : public QtRoundedTextRectItem
+struct QtPvdbConceptItem : public QtRoundedEditRectItem //NEW 2013-09-15
 {
-  typedef QtRoundedTextRectItem Base;
+  typedef QtRoundedEditRectItem Base;
 
   ///concept cannot be const, the user might edit it (in derived classes for example)
   explicit QtPvdbConceptItem(const boost::shared_ptr<ribi::pvdb::Concept>& concept);
@@ -42,6 +43,9 @@ struct QtPvdbConceptItem : public QtRoundedTextRectItem
 
   ///The pen by which the indicator is drawn
   const QPen& GetIndicatorPen() const { return m_indicator_pen; }
+
+  ///Get the (un-word-wrapped) name (the text written on the concept-item)
+  const std::string GetName() const;
 
   //Move hove
   virtual void hoverStartEvent(QGraphicsSceneHoverEvent *) final;
@@ -63,8 +67,14 @@ struct QtPvdbConceptItem : public QtRoundedTextRectItem
   ///Set the main brush
   void SetMainBrush(const QBrush& any_brush);
 
+  ///Set the name (the text), the base class (QtRoundedEditRectItem)
+  ///will wordwrap it
+  ///This class guarantees that GetName() will yield the same string again
+  void SetName(const std::string& s);
+
   ///Set the position
   void SetPos(const double x, const double y);
+
 
   ///Increase the sensitive area
   ///Add final to be sure that the shape is not set smaller
@@ -77,9 +87,9 @@ protected:
   void setBrush(const QBrush &brush) { QtRoundedRectItem::setBrush(brush); }
 
   ///Hide setPos from callers, let them use SetPos instead
-  void setPos(const QPointF &pos) { QtRoundedTextRectItem::setPos(pos); }
+  void setPos(const QPointF &pos) { QtRoundedEditRectItem::setPos(pos); }
   ///Hide setPos from callers, let them use SetPos instead
-  void setPos(qreal x, qreal y) { QtRoundedTextRectItem::setPos(x,y); }
+  void setPos(qreal x, qreal y) { QtRoundedEditRectItem::setPos(x,y); }
 
   virtual void mouseMoveEvent(QGraphicsSceneMouseEvent *event) final;
   virtual void mousePressEvent(QGraphicsSceneMouseEvent *event) final;
@@ -103,6 +113,9 @@ private:
 
   void setFocus(Qt::FocusReason focusReason) = delete;
 
+  #ifndef NDEBUG
+  static void Test();
+  #endif
 
 };
 

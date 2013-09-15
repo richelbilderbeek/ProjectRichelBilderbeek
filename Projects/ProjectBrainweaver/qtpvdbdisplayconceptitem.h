@@ -22,7 +22,9 @@ protected:
   virtual void keyPressEvent(QKeyEvent *) {} //Do not respond to key presses
 
 private:
-  static void Test() {}
+  #ifndef NDEBUG
+  static void Test();
+  #endif
 
   void UpdateBrushesAndPens();
 };

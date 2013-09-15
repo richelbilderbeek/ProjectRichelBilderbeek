@@ -108,6 +108,13 @@ const std::string StripXmlTag(const std::string& s);
 ///Test the helper functions
 void TestHelperFunctions();
 
+///Undo a Wordwrap
+const std::string Unwordwrap(const std::vector<std::string>& v) noexcept;
+
+///Wordwrap the text to obtain lines of max_len characters
+///If the string _must_ be seperable by spaces; a word can have a maximum length of max_len
+const std::vector<std::string> Wordwrap(const std::string& s, const int max_len) noexcept;
+
 ///Pretty-print an XML std::string by indenting its elements
 //From http://www.richelbilderbeek.nl/CppXmlToPretty.htm
 const std::vector<std::string> XmlToPretty(const std::string& s);

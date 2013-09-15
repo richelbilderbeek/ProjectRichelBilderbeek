@@ -261,6 +261,60 @@ void ribi::pvdb::TestHelperFunctions()
     assert(std::count(v.begin(),v.end(),expected_14));
     assert(std::count(v.begin(),v.end(),expected_15));
   }
+  //Test Wordwrap
+  /*
+  {
+    const std::string s = "1234567890 123";
+    const std::vector<std::string> expected = { "123456789", "123" };
+    const std::vector<std::string> v = Wordwrap(s,11);
+    assert(v == expected);
+    assert(Unwordwrap(v) == s);
+  }
+  {
+    const std::string s = "123 567890 123";
+    const std::vector<std::string> expected = { "123 56789", "123" };
+    const std::vector<std::string> v = Wordwrap(s,11);
+    assert(v == expected);
+    assert(Unwordwrap(v) == s);
+  }
+  */
+  {
+    const auto v {
+      "1",
+      "12",
+      "123",
+      "1234",
+      "12345",
+      "123456",
+      "1234567",
+      "12345678",
+      "123456789",
+      "1234567890",
+      "1234567890 1234567890",
+      "1234567890 1234567890 1234567890",
+      "1234567890 1234567890 1234567890 1234567890",
+      "1234567890 1234567890 1234567890 1234567890 1234567890",
+      "1234567890 1234567890 1234567890 1234567890 1234567890 1234567890",
+      "1234567890 1234567890 1234567890 1234567890 1234567890 1234567890 1234567890",
+      "1234567890 1234567890 1234567890 1234567890 1234567890 1234567890 1234567890 1234567890",
+      "1234567890 1234567890 1234567890 1234567890 1234567890 1234567890 1234567890 1234567890 1234567890",
+      "1234567890 1234567890 1234567890 1234567890 1234567890 1234567890 1234567890 1234567890 1234567890 1234567890",
+      "1234567890 1234567890 1234567890 1234567890 1234567890 1234567890 1234567890 1234567890 1234567890 1234567890 1234567890",
+      "1234567890 1234567890 1234567890 1234567890 1234567890 1234567890 1234567890 1234567890 1234567890 1234567890 1234567890 1234567890",
+      "1234567890 1234567890 1234567890 1234567890 1234567890 1234567890 1234567890 1234567890 1234567890 1234567890 1234567890 1234567890 1234567890",
+      "1234567890 1234567890 1234567890 1234567890 1234567890 1234567890 1234567890 1234567890 1234567890 1234567890 1234567890 1234567890 1234567890 1234567890"
+    };
+    for (int len=20; len!=80; ++len)
+    {
+      for (const std::string& s: v)
+      {
+        //Wordwrap calls Unwordwrap
+        TRACE(len);
+        Wordwrap(s,len);
+      }
+    }
+  }
+  //Test SplitXml
   {
     const std::string s = "<a>A</a>";
     const std::vector<std::string> split = pvdb::SplitXml(s);
@@ -346,6 +400,82 @@ void ribi::pvdb::TestHelperFunctions()
   }
   TRACE("TestHelperFunctions finished successfully");
 
+}
+
+const std::string ribi::pvdb::Unwordwrap(
+  const std::vector<std::string>& v) noexcept
+{
+  std::string t;
+  if (v.empty()) return "";
+  for (const std::string& s: v) { t = t + s + std::string(" "); }
+  if (t.empty()) return "";
+  assert(!t.empty());
+  assert(t[t.size() - 1] == ' ');
+  t.resize(t.size() - 1);
+  return t;
+}
+
+const std::vector<std::string> ribi::pvdb::Wordwrap(
+  const std::string& s_original, const int max_len) noexcept
+{
+  std::string s{s_original};
+  assert(s.size() == s_original.size());
+  std::vector<std::string> v;
+
+  while (!s.empty())
+  {
+    TRACE(s);
+    assert(static_cast<int>(s.find(' ')) < max_len
+      && "A word can have maximum length of max_len");
+    assert( !(s.find(' ') == std::string::npos && static_cast<int>(s.size()) > max_len)
+      && "A word can have maximum length of max_len");
+    //Find last space before max_len
+    std::size_t len = s.find(' ');
+    if (len == std::string::npos)
+    {
+      v.push_back(s);
+      s = std::string{};
+      assert(s.empty());
+      continue;
+    }
+    assert(len != std::string::npos);
+    assert(len  < s.size());
+    while (1)
+    {
+      if (len + 1 == s.size()) break;
+      const int new_len = s.find(' ',len + 1);
+      //TRACE(new_len);
+      if (new_len > max_len || new_len == static_cast<int>(std::string::npos)) break;
+      len = new_len;
+    }
+    assert(len < s.size());
+    //cut s, put cut part in vector
+    const std::string line = s.substr(0,len); //Remove space
+    //TRACE(line);
+    assert(!line.empty());
+    assert(line[0] != ' ');
+    assert(line[line.size() - 1] != ' ');
+    v.push_back(line);
+    const int new_index = len + 1;
+    assert(new_index < static_cast<int>(s.size()));
+    //TRACE(s);
+    const std::string new_s = s.substr(len + 1,s.size() - (len + 1)); //-1 due to space
+    assert(s != new_s);
+    s = new_s;
+    //TRACE(s);
+  }
+  #ifndef NDEBUG
+  if (Unwordwrap(v) != s_original)
+  {
+    TRACE(v.size());
+    for (auto line:v) TRACE(line);
+    TRACE(Unwordwrap(v));
+    TRACE(s_original);
+
+  }
+  #endif
+  assert(Unwordwrap(v) == s_original);
+  return v;
 }
 
 const std::vector<std::string> ribi::pvdb::XmlToPretty(const std::string& s)

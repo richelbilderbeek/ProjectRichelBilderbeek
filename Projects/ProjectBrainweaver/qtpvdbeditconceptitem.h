@@ -23,7 +23,9 @@ protected:
   void keyPressEvent(QKeyEvent *event);
 
 private:
-  static void Test() {}
+  #ifndef NDEBUG
+  static void Test();
+  #endif
 
   ///A Edit ConceptItem does not change its brushes and pens
   void UpdateBrushesAndPens() {}

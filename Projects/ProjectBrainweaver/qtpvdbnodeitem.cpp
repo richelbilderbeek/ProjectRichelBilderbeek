@@ -242,7 +242,7 @@ void ribi::pvdb::QtPvdbNodeItem::paint(QPainter* painter, const QStyleOptionGrap
   assert(!m_concept_item->hasFocus());
   assert(!m_concept_item->isSelected());
 
-  this->m_concept_item->SetText(this->GetConcept()->GetName());
+  this->m_concept_item->SetName(this->GetConcept()->GetName());
 
 
   //Only QtPvdbEditConceptItem actually modifies the position of the concept items
