@@ -6,10 +6,6 @@
 #include <stdexcept>
 #include <sstream>
 
-#ifdef COMPILER_SUPPORTS_THREADS_20130507
-#include <thread>
-#endif
-
 #include <boost/lexical_cast.hpp>
 #include <QRegExp>
 
@@ -141,12 +137,6 @@ void ribi::pvdb::Example::Test()
     if (is_tested) return;
     is_tested = true;
   }
-  #ifdef COMPILER_SUPPORTS_THREADS_20130507
-  std::thread t(
-    []
-    {
-  #endif
-
   TRACE("Starting ribi::pvdb::Example::Test");
   //Test of operator== and operator!=
   {
@@ -261,11 +251,6 @@ void ribi::pvdb::Example::Test()
     }
   }
   TRACE("Example::Test finished successfully");
-  #ifdef COMPILER_SUPPORTS_THREADS_20130507
-    }
-  );
-  t.detach();
-  #endif
 }
 
 const std::string ribi::pvdb::Example::ToXml(const boost::shared_ptr<const pvdb::Example>& c)

@@ -2,10 +2,6 @@
 #pragma GCC diagnostic ignored "-Weffc++"
 #include "qtpvdbrateexamplesdialog.h"
 
-#ifdef COMPILER_SUPPORTS_THREADS_20130507
-#include <thread>
-#endif
-
 #include <QKeyEvent>
 #include <QListWidgetItem>
 
@@ -116,11 +112,6 @@ void ribi::pvdb::QtPvdbRateExamplesDialog::Test()
     if (is_tested) return;
     is_tested = true;
   }
-  #ifdef COMPILER_SUPPORTS_THREADS_20130507
-  std::thread t(
-    []
-    {
-  #endif
   TRACE("ribi::pvdb::QtPvdbRateExamplesDialog::Test started");
   ///Test conversion between reading and writing a concept
   {
@@ -146,11 +137,6 @@ void ribi::pvdb::QtPvdbRateExamplesDialog::Test()
     }
   }
   TRACE("ribi::pvdb::QtPvdbRateExamplesDialog::Test finished successfully");
-  #ifdef COMPILER_SUPPORTS_THREADS_20130507
-    }
-  );
-  t.detach();
-  #endif
 }
 
 void ribi::pvdb::QtPvdbRateExamplesDialog::on_button_prof_clicked()

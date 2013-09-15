@@ -93,7 +93,7 @@ ribi::pvdb::QtPvdbDisplayConceptItem::~QtPvdbDisplayConceptItem()
     );
 }
 
-
+#ifndef NDEBUG
 void ribi::pvdb::QtPvdbDisplayConceptItem::Test()
 {
   {
@@ -104,6 +104,8 @@ void ribi::pvdb::QtPvdbDisplayConceptItem::Test()
   TRACE("Starting ribi::pvdb::QtPvdbDisplayConceptItem::Test()");
   TRACE("Successfully finished ribi::pvdb::QtPvdbDisplayConceptItem::Test()");
 }
+#endif
+
 
 void ribi::pvdb::QtPvdbDisplayConceptItem::UpdateBrushesAndPens()
 {

@@ -2,10 +2,6 @@
 #pragma GCC diagnostic ignored "-Weffc++"
 #include <iostream>
 
-#ifdef COMPILER_SUPPORTS_THREADS_20130507
-#include <thread>
-#endif
-
 #include <boost/lexical_cast.hpp>
 
 #include <QApplication>

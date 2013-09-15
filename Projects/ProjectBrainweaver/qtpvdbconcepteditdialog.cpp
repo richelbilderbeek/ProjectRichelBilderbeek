@@ -4,10 +4,6 @@
 
 #include <cassert>
 
-#ifdef COMPILER_SUPPORTS_THREADS_20130507
-#include <thread>
-#endif
-
 #include <QKeyEvent>
 #include <QObjectList>
 
@@ -147,11 +143,6 @@ void ribi::pvdb::QtPvdbConceptEditDialog::Test()
     if (is_tested) return;
     is_tested = true;
   }
-  #ifdef COMPILER_SUPPORTS_THREADS_20130507
-  std::thread t(
-    []
-    {
-  #endif
   {
     //Assume reading in a concept and clicking OK without modification does not modify anything
     const auto v = ribi::pvdb::ConceptFactory::GetTests();
@@ -240,11 +231,6 @@ void ribi::pvdb::QtPvdbConceptEditDialog::Test()
     );
   }
   TRACE("ribi::pvdb::QtPvdbConceptEditDialog::Test completed successfully");
-  #ifdef COMPILER_SUPPORTS_THREADS_20130507
-    }
-  );
-  t.detach();
-  #endif
 
 }
 #endif

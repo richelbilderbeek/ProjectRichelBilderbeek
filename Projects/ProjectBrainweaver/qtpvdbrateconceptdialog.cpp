@@ -2,10 +2,6 @@
 #pragma GCC diagnostic ignored "-Weffc++"
 #include "qtpvdbrateconceptdialog.h"
 
-#ifdef COMPILER_SUPPORTS_THREADS_20130507
-#include <thread>
-#endif
-
 #include <boost/bind.hpp>
 #include <boost/lambda/lambda.hpp>
 #include <boost/lexical_cast.hpp>
@@ -181,11 +177,6 @@ void ribi::pvdb::QtPvdbRateConceptDialog::Test()
     if (is_tested) return;
     is_tested = true;
   }
-  #ifdef COMPILER_SUPPORTS_THREADS_20130507
-  std::thread t(
-    []
-    {
-  #endif
   TRACE("Started ribi::pvdb::QtPvdbRateConceptDialog::Test");
 
   {
@@ -255,11 +246,6 @@ void ribi::pvdb::QtPvdbRateConceptDialog::Test()
       assert(!IsEqual(*concept,*old_concept) && "QtPvdbRateConceptDialog must change the concept when clicked OK");
     }
   }
-  #ifdef COMPILER_SUPPORTS_THREADS_20130507
-    }
-  );
-  t.detach();
-  #endif
   TRACE("Finished ribi::pvdb::QtPvdbRateConceptDialog::Test successfully");
 }
 #endif

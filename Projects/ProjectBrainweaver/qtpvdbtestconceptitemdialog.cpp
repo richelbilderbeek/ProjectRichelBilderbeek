@@ -5,10 +5,6 @@
 #include <cassert>
 #include <stdexcept>
 
-#ifdef COMPILER_SUPPORTS_THREADS_20130507
-#include <thread>
-#endif
-
 #include <boost/lexical_cast.hpp>
 
 #include <QKeyEvent>
@@ -212,11 +208,6 @@ void ribi::pvdb::QtPvdbTestConceptItemDialog::Test()
     if (is_tested) return;
     is_tested = true;
   }
-  #ifdef COMPILER_SUPPORTS_THREADS_20130507
-  std::thread t(
-    []
-    {
-  #endif
   TRACE("ribi::pvdb::QtPvdbTestConceptItemDialog::Test started");
   QtPvdbTestConceptItemDialog d;
   assert(d.m_concept.get() == d.m_display_concept->GetConcept().get());
@@ -229,10 +220,19 @@ void ribi::pvdb::QtPvdbTestConceptItemDialog::Test()
     assert(d.m_display_concept->boundingRect().width() == d.m_edit_concept->boundingRect().width());
     assert(d.m_display_concept->boundingRect().width() == d.m_rate_concept->boundingRect().width());
     const double w = d.m_display_concept->boundingRect().width();
+    const double h = d.m_display_concept->boundingRect().height();
+    const double a = w * h;
     d.m_concept->SetName(s + "*");
-    assert(d.m_display_concept->boundingRect().width() > w);
-    assert(d.m_edit_concept->boundingRect().width() > w);
-    assert(d.m_rate_concept->boundingRect().width() > w);
+
+    assert(d.m_display_concept->boundingRect().width()
+      * d.m_display_concept->boundingRect().height()
+      >= a);
+    assert(d.m_edit_concept->boundingRect().width()
+      * d.m_edit_concept->boundingRect().height()
+      >= a);
+    assert(d.m_rate_concept->boundingRect().width()
+      * d.m_rate_concept->boundingRect().height()
+      >= a);
   }
   //Test brushes being changed when ratings are given
   {
@@ -258,10 +258,5 @@ void ribi::pvdb::QtPvdbTestConceptItemDialog::Test()
     assert(d.m_rate_concept->brush()    == QtPvdbBrushFactory::CreateGreenGradientBrush());
   }
   TRACE("ribi::pvdb::QtPvdbTestConceptItemDialog::Test finished successfully");
-  #ifdef COMPILER_SUPPORTS_THREADS_20130507
-    }
-  );
-  t.detach();
-  #endif
 }
 #endif

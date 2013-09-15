@@ -2,10 +2,6 @@
 #pragma GCC diagnostic ignored "-Weffc++"
 #include "pvdbnode.h"
 
-#ifdef COMPILER_SUPPORTS_THREADS_20130507
-#include <thread>
-#endif
-
 #include <boost/lexical_cast.hpp>
 #include <QRegExp>
 #include "pvdbconcept.h"
@@ -121,11 +117,6 @@ void ribi::pvdb::Node::Test()
     if (is_tested) return;
     is_tested = true;
   }
-  #ifdef COMPILER_SUPPORTS_THREADS_20130507
-  std::thread t(
-    []
-    {
-  #endif
   TRACE("Started ribi::pvdb::Node::Test");
   {
     const std::vector<boost::shared_ptr<ribi::pvdb::Node> > v = ribi::pvdb::Node::GetTests();
@@ -255,11 +246,6 @@ void ribi::pvdb::Node::Test()
   }
 
   TRACE("Node::Test finished successfully");
-  #ifdef COMPILER_SUPPORTS_THREADS_20130507
-    }
-  );
-  t.detach();
-  #endif
 }
 #endif
 

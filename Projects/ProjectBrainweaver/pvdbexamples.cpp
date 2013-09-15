@@ -5,10 +5,6 @@
 #include <cassert>
 #include <sstream>
 
-#ifdef COMPILER_SUPPORTS_THREADS_20130507
-#include <thread>
-#endif
-
 #include <boost/bind.hpp>
 #include <boost/lambda/lambda.hpp>
 #include <QRegExp>
@@ -109,11 +105,6 @@ void ribi::pvdb::Examples::Test()
     if (is_tested) return;
     is_tested = true;
   }
-  #ifdef COMPILER_SUPPORTS_THREADS_20130507
-  std::thread t(
-    []
-    {
-  #endif
   TRACE("Started ribi::pvdb::Examples::Test");
   //Test of operator== and operator!=
   {
@@ -207,11 +198,6 @@ void ribi::pvdb::Examples::Test()
     assert(!IsEqual(*f,*d)); assert(!IsEqual(*f,*e)); assert( IsEqual(*f,*f));
   }
   TRACE("Examples::Test finished successfully");
-  #ifdef COMPILER_SUPPORTS_THREADS_20130507
-    }
-  );
-  t.detach();
-  #endif
 }
 
 const std::string ribi::pvdb::Examples::ToXml(const boost::shared_ptr<const pvdb::Examples> &c)

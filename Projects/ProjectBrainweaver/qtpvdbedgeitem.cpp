@@ -741,14 +741,19 @@ void ribi::pvdb::QtPvdbEdgeItem::Test()
         const QRectF qtedge_rect_after = qtedge->boundingRect();
         const QRectF qtconcept_rect_after = qtconcept_item->boundingRect();
 
+
         assert(qtedge_rect_after.width() >= qtconcept_rect_after.width()
           && "The complete edge (including nodes will be at least as wide as the concept only");
         assert(qtedge_rect_after.height() >= qtconcept_rect_after.height()
           && "The complete edge (including nodes will be at least as high as the concept only");
-        assert(qtedge_rect_after.width() > qtedge_rect_before.width()
-         && "bounding rects must be bigger");
-        assert(qtconcept_rect_after.width() > qtconcept_rect_before.width()
-         && "bounding rects must be bigger");
+        const double edge_area_after  = qtedge_rect_after.width()  * qtedge_rect_after.height();
+        const double edge_area_before = qtedge_rect_before.width() * qtedge_rect_before.height();
+        assert(edge_area_after + 1.0 >= edge_area_before //Add 1 pixel to be sure
+         && "bounding rects must get bigger");
+        const double concept_area_after  = qtconcept_rect_after.width()  * qtconcept_rect_after.height();
+        const double concept_area_before = qtconcept_rect_before.width() * qtconcept_rect_before.height();
+        assert(concept_area_after + 1.0 >= concept_area_before
+         && "bounding rects must get bigger");
       }
       {
         const QRectF qtedge_rect_before = qtedge->boundingRect();
@@ -768,10 +773,14 @@ void ribi::pvdb::QtPvdbEdgeItem::Test()
           && "The complete edge (including nodes will be at least as wide as the concept only");
         assert(qtedge_rect_after.height() >= qtconcept_rect_after.height()
           && "The complete edge (including nodes will be at least as high as the concept only");
-        assert(qtedge_rect_after.width() > qtedge_rect_before.width()
-         && "bounding rects must be bigger");
-        assert(qtconcept_rect_after.width() > qtconcept_rect_before.width()
-         && "bounding rects must be bigger");
+        const double edge_area_after  = qtedge_rect_after.width()  * qtedge_rect_after.height();
+        const double edge_area_before = qtedge_rect_before.width() * qtedge_rect_before.height();
+        assert(edge_area_after + 1.0 >= edge_area_before //Add 1 pixel to be sure
+         && "bounding rects must get bigger");
+        const double concept_area_after  = qtconcept_rect_after.width()  * qtconcept_rect_after.height();
+        const double concept_area_before = qtconcept_rect_before.width() * qtconcept_rect_before.height();
+        assert(concept_area_after + 1.0 >= concept_area_before
+         && "bounding rects must get bigger");
       }
     }
   }

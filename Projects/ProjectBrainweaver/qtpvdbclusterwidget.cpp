@@ -5,10 +5,6 @@
 #include <cassert>
 #include <vector>
 
-#ifdef COMPILER_SUPPORTS_THREADS_20130507
-#include <thread>
-#endif
-
 #include "pvdbcluster.h"
 #include "pvdbconcept.h"
 #include "pvdbconceptfactory.h"
@@ -307,11 +303,6 @@ void ribi::pvdb::QtPvdbClusterWidget::Test()
     if (is_tested) return;
     is_tested = true;
   }
-  #ifdef COMPILER_SUPPORTS_THREADS_20130507
-  std::thread t(
-    []
-    {
-  #endif
   TRACE("Started ribi::pvdb::QtPvdbClusterWidget::Test");
   {
     //const std::vector<boost::shared_ptr<pvdb::Cluster> > v = pvdb::ClusterFactory::GetTests();
@@ -339,11 +330,6 @@ void ribi::pvdb::QtPvdbClusterWidget::Test()
     //);
   }
   TRACE("ribi::pvdb::QtPvdbClusterWidget::Test completed successfully");
-  #ifdef COMPILER_SUPPORTS_THREADS_20130507
-    }
-  );
-  t.detach();
-  #endif
 }
 #endif
 

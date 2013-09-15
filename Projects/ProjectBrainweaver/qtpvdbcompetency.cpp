@@ -4,10 +4,6 @@
 
 #include <cassert>
 
-#ifdef COMPILER_SUPPORTS_THREADS_20130507
-#include <thread>
-#endif
-
 #include <QImage>
 #include <QPixmap>
 #include "trace.h"
@@ -128,11 +124,6 @@ void ribi::pvdb::QtCompetency::Test()
     if (is_tested) return;
     is_tested = true;
   }
-  #ifdef COMPILER_SUPPORTS_THREADS_20130507
-  std::thread t(
-    []
-    {
-  #endif
   //Conversion between QColor and pvdb::Competency
   {
     const std::vector<pvdb::Competency> v = pvdb::GetAllCompetencies();
@@ -156,11 +147,6 @@ void ribi::pvdb::QtCompetency::Test()
     );
   }
   TRACE("ribi::pvdb::QtCompetency::Test finished successfully");
-  #ifdef COMPILER_SUPPORTS_THREADS_20130507
-    }
-  );
-  t.detach();
-  #endif
 
 }
 #endif

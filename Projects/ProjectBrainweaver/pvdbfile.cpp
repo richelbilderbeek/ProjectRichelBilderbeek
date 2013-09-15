@@ -7,10 +7,6 @@
 #include <iostream>
 #include <string>
 
-#ifdef COMPILER_SUPPORTS_THREADS_20130507
-#include <thread>
-#endif
-
 #include <boost/algorithm/string.hpp>
 #include <boost/lexical_cast.hpp>
 #include <boost/xpressive/xpressive.hpp>
@@ -429,11 +425,6 @@ void ribi::pvdb::File::Test()
     if (is_tested) return;
     is_tested = true;
   }
-  #ifdef COMPILER_SUPPORTS_THREADS_20130507
-  std::thread t(
-    []
-    {
-  #endif
   TRACE("Started ribi::pvdb::File::Test");
   const std::string tmp_filename = ribi::pvdb::File::GetTempFileName();
   //Test copy constructor
@@ -548,11 +539,6 @@ void ribi::pvdb::File::Test()
     }
   }
   TRACE("File::Test finished successfully");
-  #ifdef COMPILER_SUPPORTS_THREADS_20130507
-    }
-  );
-  t.detach();
-  #endif
 }
 #endif
 

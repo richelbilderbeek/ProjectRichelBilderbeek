@@ -313,11 +313,6 @@ void ribi::pvdb::QtPvdbTestEdgeItemDialog::Test()
     if (is_tested) return;
     is_tested = true;
   }
-  #ifdef COMPILER_SUPPORTS_THREADS_20130507
-  std::thread t(
-    []
-    {
-  #endif
   TRACE("ribi::pvdb::QtPvdbTestEdgeItemDialog::Test started");
   //boost::shared_ptr<QtPvdbTestEdgeItemDialog> parent(new QtPvdbTestEdgeItemDialog);
   boost::shared_ptr<QtPvdbTestEdgeItemDialog> d(new QtPvdbTestEdgeItemDialog);
@@ -336,7 +331,7 @@ void ribi::pvdb::QtPvdbTestEdgeItemDialog::Test()
     const std::string s = d->m_edge->GetConcept()->GetName();
     const double concept_item_width_before = d->m_edge_item->GetConceptItem()->boundingRect().width();
     const double edge_item_width_before = d->m_edge_item->boundingRect().width();
-    d->m_edge->GetConcept()->SetName(s + "******************************************");
+    d->m_edge->GetConcept()->SetName(s + "******************************");
     //There must be no discrepancy between these boundingRects
     const double concept_item_width_after = d->m_edge_item->GetConceptItem()->boundingRect().width();
     const double edge_item_width_after = d->m_edge_item->boundingRect().width();
@@ -345,7 +340,7 @@ void ribi::pvdb::QtPvdbTestEdgeItemDialog::Test()
   }
   //Test resizing due to shorter text being set
   {
-    d->m_edge->GetConcept()->SetName(std::string(80,'*'));
+    d->m_edge->GetConcept()->SetName(std::string(30,'*'));
 
     const double concept_item_width_before = d->m_edge_item->GetConceptItem()->boundingRect().width();
     const double edge_item_width_before = d->m_edge_item->boundingRect().width();
@@ -373,7 +368,7 @@ void ribi::pvdb::QtPvdbTestEdgeItemDialog::Test()
 
     //Set some texts to enforce growth and shrinking in the text
     {
-      const std::string text = std::string(100,'*') + boost::lexical_cast<std::string>(type);
+      const std::string text = std::string(30,'*') + boost::lexical_cast<std::string>(type);
       d->ui->edit_name->setText(text.c_str());
     }
     {
@@ -381,7 +376,7 @@ void ribi::pvdb::QtPvdbTestEdgeItemDialog::Test()
       d->ui->edit_name->setText(text.c_str());
     }
     {
-      const std::string text = std::string(100,'*') + boost::lexical_cast<std::string>(type);
+      const std::string text = std::string(30,'*') + boost::lexical_cast<std::string>(type);
       d->ui->edit_name->setText(text.c_str());
     }
 
@@ -408,10 +403,5 @@ void ribi::pvdb::QtPvdbTestEdgeItemDialog::Test()
   }
   d->close();
   TRACE("ribi::pvdb::QtPvdbTestEdgeItemDialog::Test finished successfully");
-  #ifdef COMPILER_SUPPORTS_THREADS_20130507
-    }
-  );
-  t.detach();
-  #endif
 }
 #endif

@@ -280,6 +280,7 @@ void ribi::pvdb::TestHelperFunctions()
   */
   {
     const auto v {
+      "",
       "1",
       "12",
       "123",
@@ -290,6 +291,16 @@ void ribi::pvdb::TestHelperFunctions()
       "12345678",
       "123456789",
       "1234567890",
+      "1 1",
+      "12 12",
+      "123 123",
+      "1234 1234",
+      "12345 12345",
+      "123456 123456",
+      "1234567 1234567",
+      "12345678 8",
+      "123456789 9",
+      "1234567890 0",
       "1234567890 1234567890",
       "1234567890 1234567890 1234567890",
       "1234567890 1234567890 1234567890 1234567890",
@@ -424,7 +435,7 @@ const std::vector<std::string> ribi::pvdb::Wordwrap(
 
   while (!s.empty())
   {
-    TRACE(s);
+    //TRACE(s);
     assert(static_cast<int>(s.find(' ')) < max_len
       && "A word can have maximum length of max_len");
     assert( !(s.find(' ') == std::string::npos && static_cast<int>(s.size()) > max_len)
@@ -456,10 +467,10 @@ const std::vector<std::string> ribi::pvdb::Wordwrap(
     assert(line[0] != ' ');
     assert(line[line.size() - 1] != ' ');
     v.push_back(line);
-    const int new_index = len + 1;
+    const int new_index = len + 1; //-1 due to space
     assert(new_index < static_cast<int>(s.size()));
     //TRACE(s);
-    const std::string new_s = s.substr(len + 1,s.size() - (len + 1)); //-1 due to space
+    const std::string new_s = s.substr(new_index,s.size() - new_index);
     assert(s != new_s);
     s = new_s;
     //TRACE(s);

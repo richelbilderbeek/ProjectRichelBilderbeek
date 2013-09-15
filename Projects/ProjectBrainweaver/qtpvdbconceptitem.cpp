@@ -172,14 +172,9 @@ void ribi::pvdb::QtPvdbConceptItem::SetPos(const double x, const double y)
 
 void ribi::pvdb::QtPvdbConceptItem::SetName(const std::string& s)
 {
-  TRACE_FUNC();
   //Set the text
-  TRACE(s);
   const std::vector<std::string> v { Wordwrap(s,40) };
-  TRACE(v.size());
-  for (const auto t: v) TRACE(t);
-
-  this->SetTextTEMP(v);
+  this->SetText(v);
 
   #ifndef NDEBUG
   if (this->GetName() != s)
@@ -203,6 +198,7 @@ QPainterPath ribi::pvdb::QtPvdbConceptItem::shape() const
 }
 */
 
+#ifndef NDEBUG
 void ribi::pvdb::QtPvdbConceptItem::Test()
 {
   {
@@ -214,4 +210,4 @@ void ribi::pvdb::QtPvdbConceptItem::Test()
 
   TRACE("Successfully finished ribi::pvdb::QtPvdbConceptItem::Test()");
 }
-
+#endif

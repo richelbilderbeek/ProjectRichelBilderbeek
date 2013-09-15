@@ -5,10 +5,6 @@
 #include <cassert>
 #include <cstdlib>
 
-#ifdef COMPILER_SUPPORTS_THREADS_20130507
-#include <thread>
-#endif
-
 #include <boost/lexical_cast.hpp>
 
 #include <QKeyEvent>
@@ -68,20 +64,10 @@ void ribi::pvdb::QtPvdbTestConceptMapDisplayWidgetDialog::Test()
     if (is_tested) return;
     is_tested = true;
   }
-  #ifdef COMPILER_SUPPORTS_THREADS_20130507
-  std::thread t(
-    []
-    {
-  #endif
   TRACE("ribi::pvdb::QtPvdbTestConceptMapDisplayWidgetDialog::Test started");
   QtPvdbTestConceptMapDisplayWidgetDialog d;
   for (int i=0; i!=100; ++i) d.on_button_test_modify_clicked();
   TRACE("ribi::pvdb::QtPvdbTestConceptMapDisplayWidgetDialog::Test finished successfully");
-  #ifdef COMPILER_SUPPORTS_THREADS_20130507
-    }
-  );
-  t.detach();
-  #endif
 }
 
 void ribi::pvdb::QtPvdbTestConceptMapDisplayWidgetDialog::on_button_test_modify_clicked()

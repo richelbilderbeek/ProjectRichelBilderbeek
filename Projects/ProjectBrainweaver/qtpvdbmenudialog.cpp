@@ -2,10 +2,6 @@
 #pragma GCC diagnostic ignored "-Weffc++"
 #include "qtpvdbmenudialog.h"
 
-#ifdef COMPILER_SUPPORTS_THREADS_20130507
-#include <thread>
-#endif
-
 #include <boost/lexical_cast.hpp>
 
 #include <QFile>
@@ -269,11 +265,6 @@ void ribi::pvdb::QtPvdbMenuDialog::Test()
     if (is_tested) return;
     is_tested = true;
   }
-  #ifdef COMPILER_SUPPORTS_THREADS_20130507
-  std::thread t(
-    []
-    {
-  #endif
   TRACE("Started ribi::pvdb::QtPvdbMenuDialog::Test");
   {
     QtPvdbOverviewDialog d; //Creates all screens, does all tests
@@ -486,11 +477,6 @@ void ribi::pvdb::QtPvdbMenuDialog::Test()
     std::remove(pvdb::File::GetTestFileName().c_str());
   }
   TRACE("Finished ribi::pvdb::QtPvdbMenuDialog::Test successfully");
-  #ifdef COMPILER_SUPPORTS_THREADS_20130507
-    }
-  );
-  t.detach();
-  #endif
 }
 #endif
 

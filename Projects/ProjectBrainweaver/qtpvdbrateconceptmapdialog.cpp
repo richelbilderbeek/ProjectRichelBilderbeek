@@ -2,10 +2,6 @@
 #pragma GCC diagnostic ignored "-Weffc++"
 #include "qtpvdbrateconceptmapdialog.h"
 
-#ifdef COMPILER_SUPPORTS_THREADS_20130507
-#include <thread>
-#endif
-
 #include <cassert>
 
 #include <boost/bind.hpp>
@@ -125,11 +121,6 @@ void ribi::pvdb::QtPvdbRateConceptMapDialog::Test()
     if (is_tested) return;
     is_tested = true;
   }
-  #ifdef COMPILER_SUPPORTS_THREADS_20130507
-  std::thread t(
-    []
-    {
-  #endif
   TRACE("ribi::pvdb::QtPvdbRateConceptMapDialog::Test started");
   {
     const std::vector<boost::shared_ptr<pvdb::File> > v = pvdb::FileFactory::GetTests();
@@ -159,11 +150,6 @@ void ribi::pvdb::QtPvdbRateConceptMapDialog::Test()
     }
   }
   TRACE("ribi::pvdb::QtPvdbRateConceptMapDialog::Test finished successfully");
-  #ifdef COMPILER_SUPPORTS_THREADS_20130507
-    }
-  );
-  t.detach();
-  #endif
 }
 #endif
 

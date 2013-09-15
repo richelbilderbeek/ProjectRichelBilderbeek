@@ -2,10 +2,6 @@
 #pragma GCC diagnostic ignored "-Weffc++"
 #include "pvdbedge.h"
 
-#ifdef COMPILER_SUPPORTS_THREADS_20130507
-#include <thread>
-#endif
-
 #include <boost/lexical_cast.hpp>
 #include <QRegExp>
 #include "pvdbconcept.h"
@@ -130,11 +126,6 @@ void ribi::pvdb::Edge::Test()
     if (is_tested) return;
     is_tested = true;
   }
-  #ifdef COMPILER_SUPPORTS_THREADS_20130507
-  std::thread t(
-    []
-    {
-  #endif
   //Test member variables
   TRACE("Started ribi::pvdb::Edge::Test");
   {
@@ -166,11 +157,6 @@ void ribi::pvdb::Edge::Test()
     }
   }
   TRACE("Edge::Test finished successfully");
-  #ifdef COMPILER_SUPPORTS_THREADS_20130507
-    }
-  );
-  t.detach();
-  #endif
 }
 #endif
 

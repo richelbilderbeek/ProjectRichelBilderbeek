@@ -4,10 +4,6 @@
 
 #include <cstdlib>
 
-#ifdef COMPILER_SUPPORTS_THREADS_20130507
-#include <thread>
-#endif
-
 #include <QKeyEvent>
 
 #include "pvdbhelper.h"
@@ -104,6 +100,7 @@ void ribi::pvdb::QtPvdbRateConceptItem::keyPressEvent(QKeyEvent *event)
   }
 }
 
+#ifndef NDEBUG
 void ribi::pvdb::QtPvdbRateConceptItem::Test()
 {
   {
@@ -111,11 +108,6 @@ void ribi::pvdb::QtPvdbRateConceptItem::Test()
     if (is_tested) return;
     is_tested = true;
   }
-  #ifdef COMPILER_SUPPORTS_THREADS_20130507
-  std::thread t(
-    []
-    {
-  #endif
   TRACE("ribi::pvdb::QtPvdbRateConceptItem::Test started");
   //Check brush comparison
   {
@@ -144,12 +136,8 @@ void ribi::pvdb::QtPvdbRateConceptItem::Test()
     for (const auto s: v) { a.SetName(s); } //SetName tests GetName
   }
   TRACE("ribi::pvdb::QtPvdbRateConceptItem::Test finished successfully");
-  #ifdef COMPILER_SUPPORTS_THREADS_20130507
-    }
-  );
-  t.detach();
-  #endif
 }
+#endif
 
 void ribi::pvdb::QtPvdbRateConceptItem::UpdateBrushesAndPens()
 {

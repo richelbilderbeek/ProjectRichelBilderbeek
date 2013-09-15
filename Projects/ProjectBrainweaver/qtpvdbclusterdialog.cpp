@@ -4,10 +4,6 @@
 
 #include <fstream>
 
-#ifdef COMPILER_SUPPORTS_THREADS_20130507
-#include <thread>
-#endif
-
 #include <boost/algorithm/string/trim_all.hpp>
 #include <boost/shared_ptr.hpp>
 
@@ -285,12 +281,6 @@ void ribi::pvdb::QtPvdbClusterDialog::Test()
     if (is_tested) return;
     is_tested = true;
   }
-  #ifdef COMPILER_SUPPORTS_THREADS_20130507
-  std::thread t(
-    []
-    {
-  #endif
-
   typedef std::vector<boost::shared_ptr<ribi::pvdb::Edge> > Edges;
   typedef std::vector<boost::shared_ptr<ribi::pvdb::Node> > Nodes;
 
@@ -448,11 +438,6 @@ void ribi::pvdb::QtPvdbClusterDialog::Test()
     assert(!d.GetWidget()->isEnabled()
       && "QtClusterWidget is disabled when there is a filled ConceptMap");
   }
-  #ifdef COMPILER_SUPPORTS_THREADS_20130507
-    }
-  );
-  t.detach();
-  #endif
 }
 #endif
 
