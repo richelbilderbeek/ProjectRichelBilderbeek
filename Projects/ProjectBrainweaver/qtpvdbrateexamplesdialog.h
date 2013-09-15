@@ -7,11 +7,10 @@
 #include "pvdbfwd.h"
 
 namespace Ui {
-class QtPvdbRateExamplesDialog;
+  class QtPvdbRateExamplesDialog;
 }
 
 namespace ribi {
-
 namespace pvdb {
 
 ///Allows the user to rate the examples of a concept
@@ -20,7 +19,11 @@ class QtPvdbRateExamplesDialog : public ribi::QtHideAndShowDialog
   Q_OBJECT
   
 public:
-  explicit QtPvdbRateExamplesDialog(const boost::shared_ptr<ribi::pvdb::Concept> concept, QWidget* parent = 0);
+  explicit QtPvdbRateExamplesDialog(
+    const boost::shared_ptr<ribi::pvdb::Concept> concept,
+    QWidget* parent = 0);
+  QtPvdbRateExamplesDialog(const QtPvdbRateExamplesDialog&) = delete;
+  QtPvdbRateExamplesDialog& operator=(const QtPvdbRateExamplesDialog&) = delete;
   ~QtPvdbRateExamplesDialog();
 
 protected:
@@ -52,7 +55,6 @@ private:
 };
 
 } //~namespace pvdb
-
 } //~namespace ribi
 
 #endif // QTPVDBRATEEXAMPLESDIALOG_H

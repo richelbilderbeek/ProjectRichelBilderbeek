@@ -39,6 +39,8 @@ class QtQmakeWatcherMainDialog : public QDialog
 
 public:
   explicit QtQmakeWatcherMainDialog(QWidget *parent = 0);
+  QtQmakeWatcherMainDialog(const QtQmakeWatcherMainDialog&) = delete;
+  QtQmakeWatcherMainDialog& operator=(const QtQmakeWatcherMainDialog&) = delete;
   ~QtQmakeWatcherMainDialog();
 
 protected:

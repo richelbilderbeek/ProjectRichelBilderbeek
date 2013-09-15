@@ -44,23 +44,25 @@ ribi::WtExercise::Ui::Ui()
 }
 
 ribi::WtExercise::WtExercise()
-  : m_n_answered(0),
+  : m_exercise{},
+    m_n_answered(0),
     m_n_correct(0),
+    m_ui{},
     m_waiting_time_correct(1000),
     m_waiting_time_incorrect(5000)
 {
-  assert(ui.m_box);
-  assert(ui.m_label_score);
+  assert(m_ui.m_box);
+  assert(m_ui.m_label_score);
 
   TRACE_FUNC();
   this->clear();
-  this->addWidget(ui.m_box);
+  this->addWidget(m_ui.m_box);
   this->addWidget(new Wt::WBreak);
-  this->addWidget(ui.m_label_score);
+  this->addWidget(m_ui.m_label_score);
 
   TRACE("ribi::WtExercise::WtExercise #1");
 
-  ui.m_label_score->setText("Score: 0/0");
+  m_ui.m_label_score->setText("Score: 0/0");
 
   TRACE("ribi::WtExercise::WtExercise end");
 }
@@ -86,15 +88,15 @@ void ribi::WtExercise::DisplayCurrentQuestion()
   assert(question && "Exercise only contains valid question");
 
   //Add
-  assert(ui.m_box);
-  ui.m_box->clear();
-  ui.m_box->setContentAlignment(Wt::AlignLeft);
-  ui.m_box->addWidget(new Wt::WBreak);
+  assert(m_ui.m_box);
+  m_ui.m_box->clear();
+  m_ui.m_box->setContentAlignment(Wt::AlignLeft);
+  m_ui.m_box->addWidget(new Wt::WBreak);
 
   question->m_signal_submitted.connect(
     boost::bind(&ribi::WtExercise::OnSubmittedAnswer,this,boost::lambda::_1));
-  ui.m_box->addWidget(question);
-  ui.m_box->addWidget(new Wt::WBreak);
+  m_ui.m_box->addWidget(question);
+  m_ui.m_box->addWidget(new Wt::WBreak);
 
 }
 
@@ -120,7 +122,7 @@ void ribi::WtExercise::OnSubmittedAnswer(const bool answered_correct)
 {
   if (answered_correct) ++m_n_correct;
   ++m_n_answered;
-  ui.m_label_score->setText(
+  m_ui.m_label_score->setText(
     Wt::WString("Score: {1}/{2}").arg(m_n_correct).arg(m_n_answered));
   Wt::WTimer::singleShot(
     answered_correct ? m_waiting_time_correct : m_waiting_time_incorrect,

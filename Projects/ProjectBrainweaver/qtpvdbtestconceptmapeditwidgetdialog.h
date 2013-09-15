@@ -9,7 +9,6 @@
 namespace Ui { class QtPvdbTestConceptMapEditWidgetDialog; }
 
 namespace ribi {
-
 namespace pvdb {
 
 ///Tests all QtPvdbConceptMapWidgets
@@ -21,6 +20,8 @@ class QtPvdbTestConceptMapEditWidgetDialog : public ribi::QtHideAndShowDialog
   
 public:
   explicit QtPvdbTestConceptMapEditWidgetDialog(QWidget *parent = 0);
+  QtPvdbTestConceptMapEditWidgetDialog(const QtPvdbTestConceptMapEditWidgetDialog&) = delete;
+  QtPvdbTestConceptMapEditWidgetDialog& operator=(const QtPvdbTestConceptMapEditWidgetDialog&) = delete;
   ~QtPvdbTestConceptMapEditWidgetDialog();
 
 protected:
@@ -43,7 +44,6 @@ private:
 };
 
 } //~namespace pvdb
-
 } //~namespace ribi
 
 #endif // QTPVDBTESTCONCEPTMAPEDITWIDGETDIALOG_H

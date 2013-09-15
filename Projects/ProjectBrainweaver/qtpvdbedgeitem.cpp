@@ -28,7 +28,8 @@ ribi::pvdb::QtPvdbEdgeItem::QtPvdbEdgeItem(
     const boost::shared_ptr<QtPvdbConceptItem> concept_item,
     QtPvdbNodeItem* const from,
     QtPvdbNodeItem* const to)
-  : m_concept_item(concept_item),
+  : m_arrow{},
+    m_concept_item(concept_item),
     m_contour_pen(QPen(QColor(255,255,255))),
     m_focus_pen(concept_item->GetFocusPen()),
       m_edge(edge), //m_edge must be initialized before m_arrow

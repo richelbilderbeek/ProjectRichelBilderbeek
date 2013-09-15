@@ -22,7 +22,8 @@ public:
   explicit QtPvdbRateConceptMapDialog(
     boost::shared_ptr<pvdb::File> file,
     QWidget* parent = 0);
-
+  QtPvdbRateConceptMapDialog(const QtPvdbRateConceptMapDialog&) = delete;
+  QtPvdbRateConceptMapDialog& operator=(const QtPvdbRateConceptMapDialog&) = delete;
   ~QtPvdbRateConceptMapDialog();
 
   QtPvdbConceptMapRateWidget * GetWidget();

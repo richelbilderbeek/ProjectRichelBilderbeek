@@ -20,23 +20,26 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #ifndef WTABOUTDIALOG_H
 #define WTABOUTDIALOG_H
-//---------------------------------------------------------------------------
+
 #include <string>
 #include <vector>
-//---------------------------------------------------------------------------
+
 #include <boost/signals2.hpp>
-//---------------------------------------------------------------------------
+
 #include <Wt/WContainerWidget>
 #include <Wt/WPushButton>
-//---------------------------------------------------------------------------
+
 #include "about.h"
-//---------------------------------------------------------------------------
+
 
 namespace ribi {
 
 struct WtAboutDialog : public Wt::WContainerWidget
 {
-  WtAboutDialog(const About& about, const bool display_close_button = true);
+  explicit WtAboutDialog(const About& about, const bool display_close_button = true);
+  WtAboutDialog(const WtAboutDialog&) = delete;
+  WtAboutDialog& operator=(const WtAboutDialog&) = delete;
+
   boost::signals2::signal<void ()> m_signal_close;
 
   ///Get the version of this class

@@ -20,18 +20,18 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #ifndef WTMULTIPLECHOICEQUESTIONDIALOG_H
 #define WTMULTIPLECHOICEQUESTIONDIALOG_H
-//---------------------------------------------------------------------------
+
 #include <boost/scoped_ptr.hpp>
 #include <boost/shared_ptr.hpp>
-//---------------------------------------------------------------------------
+
 #include "wtquestiondialog.h"
-//---------------------------------------------------------------------------
+
 namespace ribi {
 
 struct Question;
 struct MultipleChoiceQuestion;
 struct MultipleChoiceQuestionDialog;
-//---------------------------------------------------------------------------
+
 struct WtMultipleChoiceQuestionDialog : public WtQuestionDialog
 {
   explicit WtMultipleChoiceQuestionDialog(const std::string& question);
@@ -51,10 +51,13 @@ private:
   struct Ui
   {
     Ui();
+    Ui(const Ui&) = delete;
+    Ui& operator=(const Ui&) = delete;
+
     Wt::WPushButton * const m_button_submit;
     std::vector<Wt::WRadioButton*> m_radio_buttons;
     Wt::WStackedWidget * const m_stacked_widget;
-  } ui;
+  } m_ui;
 
   ///Respond to a click on the Submit button
   void OnButtonSubmitClicked();

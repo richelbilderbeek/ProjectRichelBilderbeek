@@ -21,14 +21,14 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <Wt/WPaintDevice>
 #include <Wt/WPainter>
 #include <Wt/WTimer>
-//---------------------------------------------------------------------------
+
 #include "connectthree.h"
 #include "connectthreewidget.h"
 #include "connectthreeresources.h"
 #include "wtconnectthreewidget.h"
-//---------------------------------------------------------------------------
+
 #include <cassert>
-//---------------------------------------------------------------------------
+
 ///Yes, naming the filename twice feels dumb, but
 ///I could not find enough documentation about
 ///how I should use the Wt::WPainter::Image constructor
@@ -37,7 +37,8 @@ ribi::WtConnectThreeWidget::WtConnectThreeWidget(
   const std::bitset<3>& is_player_human,
   const int n_cols,
   const int n_rows)
-  : m_widget(new ConnectThreeWidget(is_player_human,n_cols,n_rows)),
+  : m_signal_valid_move{},
+    m_widget(new ConnectThreeWidget(is_player_human,n_cols,n_rows)),
     m_players(
       {
         boost::shared_ptr<const Wt::WPainter::Image>(
@@ -71,7 +72,7 @@ ribi::WtConnectThreeWidget::WtConnectThreeWidget(
       &ConnectThreeWidget::Tick,
       m_widget.get()));
 }
-//---------------------------------------------------------------------------
+
 void ribi::WtConnectThreeWidget::DoComputerTurn()
 {
   assert(IsComputerTurn());
@@ -82,22 +83,22 @@ void ribi::WtConnectThreeWidget::DoComputerTurn()
   m_widget->DoMove(move.get<0>(),move.get<1>());
   this->update();
 }
-//---------------------------------------------------------------------------
+
 int ribi::WtConnectThreeWidget::GetActivePlayer() const
 {
   return m_widget->GetGame()->GetActivePlayer();
 }
-//---------------------------------------------------------------------------
+
 const std::bitset<3>& ribi::WtConnectThreeWidget::GetIsPlayerHuman() const
 {
   return m_widget->GetIsPlayerHuman();
 }
-//---------------------------------------------------------------------------
+
 const std::string ribi::WtConnectThreeWidget::GetVersion()
 {
   return "2.0";
 }
-//---------------------------------------------------------------------------
+
 const std::vector<std::string> ribi::WtConnectThreeWidget::GetVersionHistory()
 {
   std::vector<std::string> v;
@@ -106,20 +107,20 @@ const std::vector<std::string> ribi::WtConnectThreeWidget::GetVersionHistory()
   v.push_back("2011-04-22: version 2.0: added Restart, SetIsPlayerHuman methods and a different way of resource acquisition");
   return v;
 }
-//---------------------------------------------------------------------------
+
 int ribi::WtConnectThreeWidget::GetWinner() const
 {
   assert(m_widget);
   assert(m_widget->GetGame());
   return m_widget->GetGame()->GetWinner();
 }
-//---------------------------------------------------------------------------
+
 bool ribi::WtConnectThreeWidget::IsComputerTurn() const
 {
   assert(m_widget);
   return m_widget->IsComputerTurn();
 }
-//---------------------------------------------------------------------------
+
 void ribi::WtConnectThreeWidget::OnClick(const Wt::WMouseEvent& e)
 {
   //Disable clicking if it's the AI's turn
@@ -140,7 +141,7 @@ void ribi::WtConnectThreeWidget::OnClick(const Wt::WMouseEvent& e)
   }
 
 }
-//---------------------------------------------------------------------------
+
 void ribi::WtConnectThreeWidget::paintEvent(Wt::WPaintDevice *paintDevice)
 {
   Wt::WPainter painter(paintDevice);
@@ -161,7 +162,7 @@ void ribi::WtConnectThreeWidget::paintEvent(Wt::WPaintDevice *paintDevice)
     }
   }
 }
-//---------------------------------------------------------------------------
+
 const Wt::WPainter::Image& ribi::WtConnectThreeWidget::GetImage(const int sprite) const
 {
   assert(ConnectThree::player1 == 0);
@@ -179,19 +180,19 @@ const Wt::WPainter::Image& ribi::WtConnectThreeWidget::GetImage(const int sprite
   assert(!"Should not get here");
   throw std::logic_error("Unknown ribi::WtConnectThreeWidget::GetImage value");
 }
-//---------------------------------------------------------------------------
+
 void ribi::WtConnectThreeWidget::Restart()
 {
   assert(m_widget);
   m_widget->Restart();
   this->update();
 }
-//---------------------------------------------------------------------------
+
 void ribi::WtConnectThreeWidget::SetIsPlayerHuman(const std::bitset<3>& is_player_human)
 {
   assert(m_widget);
   m_widget->SetIsPlayerHuman(is_player_human);
 }
-//---------------------------------------------------------------------------
+
 
 

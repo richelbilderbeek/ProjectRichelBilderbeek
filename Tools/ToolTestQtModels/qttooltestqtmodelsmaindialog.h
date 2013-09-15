@@ -35,6 +35,8 @@ class QtToolTestQtModelsMainDialog : public QtHideAndShowDialog
   
 public:
   explicit QtToolTestQtModelsMainDialog(QWidget *parent = 0);
+  QtToolTestQtModelsMainDialog(const QtToolTestQtModelsMainDialog&) = delete;
+  QtToolTestQtModelsMainDialog& operator=(const QtToolTestQtModelsMainDialog&) = delete;
   ~QtToolTestQtModelsMainDialog();
   
 private slots:

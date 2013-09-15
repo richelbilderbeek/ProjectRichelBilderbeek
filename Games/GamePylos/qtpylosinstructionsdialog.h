@@ -38,6 +38,8 @@ class QtPylosInstructionsDialog : public QDialog
 
 public:
   explicit QtPylosInstructionsDialog(QWidget *parent = 0);
+  QtPylosInstructionsDialog(const QtPylosInstructionsDialog&) = delete;
+  QtPylosInstructionsDialog& operator=(const QtPylosInstructionsDialog&) = delete;
   ~QtPylosInstructionsDialog();
 
 private:

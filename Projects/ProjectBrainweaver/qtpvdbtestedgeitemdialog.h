@@ -21,6 +21,8 @@ class QtPvdbTestEdgeItemDialog : public ribi::QtHideAndShowDialog
   
 public:
   explicit QtPvdbTestEdgeItemDialog(QWidget *parent = 0);
+  QtPvdbTestEdgeItemDialog(const QtPvdbTestEdgeItemDialog&) = delete;
+  QtPvdbTestEdgeItemDialog& operator=(const QtPvdbTestEdgeItemDialog&) = delete;
   ~QtPvdbTestEdgeItemDialog();
 protected:
 

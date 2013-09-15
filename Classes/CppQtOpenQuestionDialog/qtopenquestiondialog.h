@@ -48,12 +48,11 @@ class QtOpenQuestionDialog : public QtQuestionDialog
 
 public:
   explicit QtOpenQuestionDialog(QWidget *parent = 0);
-
-
-  QtOpenQuestionDialog(
+  explicit QtOpenQuestionDialog(
     const boost::shared_ptr<QuestionDialog>& dialog,
     QWidget *parent = 0);
-
+  QtOpenQuestionDialog(const QtOpenQuestionDialog&) = delete;
+  QtOpenQuestionDialog& operator=(const QtOpenQuestionDialog&) = delete;
   ~QtOpenQuestionDialog();
 
   static const std::string GetVersion();

@@ -19,20 +19,21 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //From http://www.richelbilderbeek.nl/CppWtAboutDialog.htm
 //---------------------------------------------------------------------------
 #include <string>
-//---------------------------------------------------------------------------
+
 #include <boost/foreach.hpp>
-//---------------------------------------------------------------------------
+
 #include <Wt/WBreak>
 #include <Wt/WConfig.h>
 #include <Wt/WLabel>
 #include <Wt/WTextArea>
-//---------------------------------------------------------------------------
+
 #include "wtaboutdialog.h"
-//---------------------------------------------------------------------------
+
 ribi::WtAboutDialog::WtAboutDialog(
   const About& about_original,
   const bool display_close_button)
-  : m_button_close(new Wt::WPushButton)
+  : m_signal_close{},
+    m_button_close(new Wt::WPushButton)
 {
   About about = about_original;
   about.AddLibrary("Wt version: " + GetWtVersion());
@@ -111,12 +112,12 @@ ribi::WtAboutDialog::WtAboutDialog(
       this,&ribi::WtAboutDialog::OnClose);
   }
 }
-//---------------------------------------------------------------------------
+
 const std::string ribi::WtAboutDialog::GetVersion()
 {
   return "1.5";
 }
-//---------------------------------------------------------------------------
+
 const std::vector<std::string> ribi::WtAboutDialog::GetVersionHistory()
 {
   std::vector<std::string> v;
@@ -128,17 +129,17 @@ const std::vector<std::string> ribi::WtAboutDialog::GetVersionHistory()
   v.push_back("2011-06-26: version 1.5: added newline for displaying build date and time");
   return v;
 }
-//---------------------------------------------------------------------------
+
 ///GetWtVersion returns the version of the currently installed Wt library
 ///From http://www.richelbilderbeek.nl/CppGetWtVersion.htm
 const std::string ribi::WtAboutDialog::GetWtVersion()
 {
   return WT_VERSION_STR;
 }
-//---------------------------------------------------------------------------
+
 void ribi::WtAboutDialog::OnClose()
 {
   //emit that this dialog closes
   m_signal_close();
 }
-//---------------------------------------------------------------------------
+

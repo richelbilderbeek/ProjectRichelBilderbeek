@@ -47,7 +47,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 ribi::QtTestQuestionMainDialog::QtTestQuestionMainDialog(QWidget *parent) :
     QtHideAndShowDialog(parent),
     ui(new Ui::QtTestQuestionMainDialog),
-    m_dialog{nullptr}
+    m_dialog{}
 {
   #ifndef NDEBUG
   Test();

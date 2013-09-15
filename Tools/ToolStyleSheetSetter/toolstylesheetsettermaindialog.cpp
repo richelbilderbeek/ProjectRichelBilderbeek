@@ -1,16 +1,20 @@
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include "toolstylesheetsettermaindialog.h"
 
 #include <QKeyEvent>
 
 #include "ui_toolstylesheetsettermaindialog.h"
+#pragma GCC diagnostic pop
 
 ToolStyleSheetSetterMainDialog::ToolStyleSheetSetterMainDialog(
   const std::string& stylesheet, QWidget *parent)
   : QtHideAndShowDialog(parent),
-    ui(new Ui::ToolStyleSheetSetterMainDialog)
+    ui(new Ui::ToolStyleSheetSetterMainDialog),
+    m_stylesheet(stylesheet)
 {
   ui->setupUi(this);
-  ui->stylesheet->setPlainText(stylesheet.c_str());
+  ui->stylesheet->setPlainText(m_stylesheet.c_str());
 }
 
 ToolStyleSheetSetterMainDialog::~ToolStyleSheetSetterMainDialog()

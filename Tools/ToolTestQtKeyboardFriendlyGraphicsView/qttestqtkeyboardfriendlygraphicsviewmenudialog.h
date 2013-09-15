@@ -35,6 +35,8 @@ class QtTestKeyboardFriendlyGraphicsViewMenuDialog : public QtHideAndShowDialog
   
 public:
   explicit QtTestKeyboardFriendlyGraphicsViewMenuDialog(QWidget *parent = 0);
+  QtTestKeyboardFriendlyGraphicsViewMenuDialog(const QtTestKeyboardFriendlyGraphicsViewMenuDialog&) = delete;
+  QtTestKeyboardFriendlyGraphicsViewMenuDialog& operator=(const QtTestKeyboardFriendlyGraphicsViewMenuDialog&) = delete;
   ~QtTestKeyboardFriendlyGraphicsViewMenuDialog();
 
   void ShowAbout();

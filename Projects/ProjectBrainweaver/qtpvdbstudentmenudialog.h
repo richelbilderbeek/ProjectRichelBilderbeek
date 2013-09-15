@@ -18,6 +18,8 @@ class QtPvdbStudentMenuDialog : public ribi::QtHideAndShowDialog
     
   public:
   explicit QtPvdbStudentMenuDialog(const boost::shared_ptr<pvdb::File> file, QWidget* parent = 0);
+  QtPvdbStudentMenuDialog(const QtPvdbStudentMenuDialog&) = delete;
+  QtPvdbStudentMenuDialog& operator=(const QtPvdbStudentMenuDialog&) = delete;
   ~QtPvdbStudentMenuDialog();
 
   ///Get the student his/her name

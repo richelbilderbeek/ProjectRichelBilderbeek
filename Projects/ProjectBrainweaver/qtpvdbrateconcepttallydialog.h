@@ -22,7 +22,8 @@ public:
   explicit QtPvdbRateConceptTallyDialog(
     const boost::shared_ptr</* const */ ribi::pvdb::ConceptMap> sub_concept_map,
     QWidget *parent = 0);
-
+  QtPvdbRateConceptTallyDialog(const QtPvdbRateConceptTallyDialog&) = delete;
+  QtPvdbRateConceptTallyDialog& operator=(const QtPvdbRateConceptTallyDialog&) = delete;
   ~QtPvdbRateConceptTallyDialog();
 
   static const boost::shared_ptr<ribi::pvdb::ConceptMap> CreateTestConceptMap();

@@ -82,8 +82,11 @@ CodeToHtmlReplacements::CodeToHtmlReplacements(
       for (auto j=m_replacements.begin();j!=end;++j)
       {
         if (i==j) continue;
+        if ((*i).first == std::string("$")) continue;
         if ((*i).first == (*j).first)
         {
+          TRACE("ERROR: duplicate in replacements");
+          TRACE("Remove the duplicate from codetohtmlreplacementscpp.cpp or codetohtmlreplacementspro.cpp");
           TRACE((*i).first);
         }
         assert((*i).first != (*j).first);

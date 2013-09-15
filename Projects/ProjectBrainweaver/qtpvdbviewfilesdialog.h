@@ -18,6 +18,8 @@ class QtPvdbViewFilesDialog : public ribi::QtHideAndShowDialog
   
 public:
   explicit QtPvdbViewFilesDialog(QWidget* parent = 0);
+  QtPvdbViewFilesDialog(const QtPvdbViewFilesDialog&) = delete;
+  QtPvdbViewFilesDialog& operator=(const QtPvdbViewFilesDialog&) = delete;
   ~QtPvdbViewFilesDialog();
   
 private slots:

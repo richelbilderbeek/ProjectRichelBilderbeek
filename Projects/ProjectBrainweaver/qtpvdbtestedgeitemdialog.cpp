@@ -32,7 +32,8 @@
 ribi::pvdb::QtPvdbTestEdgeItemDialog::QtPvdbTestEdgeItemDialog(QWidget *parent) :
   QtHideAndShowDialog(parent),
   ui(new Ui::QtPvdbTestEdgeItemDialog),
-  m_edge_item(nullptr),
+  m_edge{},
+  m_edge_item{},
   m_from(CreateFrom()),
   m_to(CreateTo())
 {

@@ -10,7 +10,8 @@
 #pragma GCC diagnostic pop
 
 ribi::pvdb::QtPvdbEditConceptItem::QtPvdbEditConceptItem(const boost::shared_ptr<ribi::pvdb::Concept> concept)
-  : QtPvdbConceptItem(concept)
+  : QtPvdbConceptItem(concept),
+    m_signal_request_edit{}
 {
   #ifndef NDEBUG
   Test();

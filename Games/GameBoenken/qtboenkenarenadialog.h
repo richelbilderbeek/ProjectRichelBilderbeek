@@ -22,8 +22,11 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #ifndef QTBOENKENARENADIALOG_H
 #define QTBOENKENARENADIALOG_H
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include <QDialog>
 #include "boenkenarenasettings.h"
+#pragma GCC diagnostic pop
 
 namespace Ui {
   class QtBoenkenArenaDialog;
@@ -40,7 +43,10 @@ class QtBoenkenArenaDialog : public QDialog
 
 public:
   explicit QtBoenkenArenaDialog(QWidget *parent = 0);
+  QtBoenkenArenaDialog(const QtBoenkenArenaDialog&) = delete;
+  QtBoenkenArenaDialog& operator=(const QtBoenkenArenaDialog&) = delete;
   ~QtBoenkenArenaDialog();
+
   const std::pair<int,int> GetScreenSize() const;
   int GetNballs() const;
   int GetNobstacles() const;

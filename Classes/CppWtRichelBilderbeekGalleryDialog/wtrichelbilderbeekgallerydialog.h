@@ -20,13 +20,13 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #ifndef WTRICHELBILDERBEEKGALLERYDIALOG_H
 #define WTRICHELBILDERBEEKGALLERYDIALOG_H
-//---------------------------------------------------------------------------
+
 #include <Wt/WContainerWidget>
-//---------------------------------------------------------------------------
+
 namespace ribi {
 
 namespace RichelBilderbeek {
-//---------------------------------------------------------------------------
+
 ///WtGalleryDialog displays a
 ///WtMysteryMachineWidget
 struct WtGalleryDialog : public Wt::WContainerWidget
@@ -39,10 +39,12 @@ struct WtGalleryDialog : public Wt::WContainerWidget
   struct Ui
   {
     Ui();
+    Ui(const Ui&) = delete;
+    Ui& operator=(const Ui&) = delete;
     Wt::WTable * const m_table;
-  } ui;
+  } m_ui;
 };
-//---------------------------------------------------------------------------
+
 } //~namespace RichelBilderbeek
 
 } //~namespace ribi

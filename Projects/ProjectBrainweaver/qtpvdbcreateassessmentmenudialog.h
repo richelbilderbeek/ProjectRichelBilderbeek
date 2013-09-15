@@ -19,6 +19,8 @@ class QtPvdbCreateAssessmentMenuDialog : public ribi::QtHideAndShowDialog
     
 public:
   explicit QtPvdbCreateAssessmentMenuDialog(QWidget* parent = 0);
+  QtPvdbCreateAssessmentMenuDialog(const QtPvdbCreateAssessmentMenuDialog&) = delete;
+  QtPvdbCreateAssessmentMenuDialog& operator=(const QtPvdbCreateAssessmentMenuDialog&) = delete;
   ~QtPvdbCreateAssessmentMenuDialog();
 
   ///Must the parent go back to the menu?

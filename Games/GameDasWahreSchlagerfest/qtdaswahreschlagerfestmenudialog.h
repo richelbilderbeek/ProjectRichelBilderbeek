@@ -38,6 +38,8 @@ class QtDasWahreSchlagerfestMenuDialog : public QDialog
     
 public:
     explicit QtDasWahreSchlagerfestMenuDialog(QWidget *parent = 0);
+    QtDasWahreSchlagerfestMenuDialog(const QtDasWahreSchlagerfestMenuDialog&) = delete;
+    QtDasWahreSchlagerfestMenuDialog& operator=(const QtDasWahreSchlagerfestMenuDialog&) = delete;
     ~QtDasWahreSchlagerfestMenuDialog();
     
 private slots:

@@ -23,7 +23,12 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #define QTMAZECREATORMAINDIALOG_H
 
 #include <boost/shared_ptr.hpp>
+
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include <QDialog>
+#pragma GCC diagnostic pop
+
 struct QGraphicsPixmapItem;
 struct QGraphicsScene;
 struct QTimer;
@@ -32,12 +37,16 @@ namespace Ui {
   class QtMazeCreatorMainDialog;
 }
 
+namespace ribi {
+
 class QtMazeCreatorMainDialog : public QDialog
 {
   Q_OBJECT
 
 public:
   explicit QtMazeCreatorMainDialog(QWidget *parent = 0);
+  QtMazeCreatorMainDialog(const QtMazeCreatorMainDialog&) = delete;
+  QtMazeCreatorMainDialog& operator=(const QtMazeCreatorMainDialog&) = delete;
   ~QtMazeCreatorMainDialog();
 
   //From http://www.richelbilderbeek.nl/CppCreateMaze.htm
@@ -61,6 +70,8 @@ private slots:
   void onTimer();
 
 };
+
+} //~namespace ribi
 
 
 #endif // QTMAZECREATORMAINDIALOG_H

@@ -22,7 +22,10 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #ifndef QTBOENKENPLAYERSDIALOG_H
 #define QTBOENKENPLAYERSDIALOG_H
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include <QDialog>
+#pragma GCC diagnostic pop
 
 namespace Ui {
   class QtBoenkenPlayersDialog;
@@ -40,6 +43,8 @@ class QtBoenkenPlayersDialog : public QDialog
 
 public:
   explicit QtBoenkenPlayersDialog(QWidget *parent = 0);
+  QtBoenkenPlayersDialog(const QtBoenkenPlayersDialog&) = delete;
+  QtBoenkenPlayersDialog& operator=(const QtBoenkenPlayersDialog&) = delete;
   ~QtBoenkenPlayersDialog();
 
 private:

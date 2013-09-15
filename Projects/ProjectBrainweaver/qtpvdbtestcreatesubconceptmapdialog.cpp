@@ -13,7 +13,9 @@
 
 ribi::pvdb::QtPvdbTestCreateSubConceptMapDialog::QtPvdbTestCreateSubConceptMapDialog(QWidget *parent) :
   QtHideAndShowDialog(parent),
-  ui(new Ui::QtPvdbTestCreateSubConceptMapDialog)
+  ui(new Ui::QtPvdbTestCreateSubConceptMapDialog),
+  m_concept_map{},
+  m_sub_concept_map{}
 {
   ui->setupUi(this);
   #ifndef NDEBUG

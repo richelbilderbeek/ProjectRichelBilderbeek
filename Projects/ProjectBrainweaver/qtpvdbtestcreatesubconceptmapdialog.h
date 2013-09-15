@@ -20,6 +20,8 @@ class QtPvdbTestCreateSubConceptMapDialog : public ribi::QtHideAndShowDialog
   
 public:
   explicit QtPvdbTestCreateSubConceptMapDialog(QWidget *parent = 0);
+  QtPvdbTestCreateSubConceptMapDialog(const QtPvdbTestCreateSubConceptMapDialog&) = delete;
+  QtPvdbTestCreateSubConceptMapDialog& operator=(const QtPvdbTestCreateSubConceptMapDialog&) = delete;
   ~QtPvdbTestCreateSubConceptMapDialog();
 
 private slots:

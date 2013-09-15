@@ -1,7 +1,7 @@
 QT       += core gui
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets printsupport
-TEMPLATE = app
 
+TEMPLATE = app
 
 #For gprof
 QMAKE_CXXFLAGS_DEBUG += -pg
@@ -9,13 +9,10 @@ QMAKE_LFLAGS_DEBUG += -pg
 QMAKE_CXXFLAGS += -pg
 QMAKE_LFLAGS += -pg
 
-DEFINES += PVDB_USE_FORWARD_DECLARATIONS_248738
 QMAKE_CXXFLAGS += -std=c++11 -Wall -Wextra -Weffc++
 
 unix {
   QMAKE_CXXFLAGS += -Werror
-  #The crosscompiler does not support threads yet, as of 2013-05-02
-  #DEFINES += COMPILER_SUPPORTS_THREADS_20130507
 }
 
 INCLUDEPATH += \

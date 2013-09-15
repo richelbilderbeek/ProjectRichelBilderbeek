@@ -18,9 +18,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolTestKeyboardFriendlyGraphicsView.htm
 //---------------------------------------------------------------------------
-
-
 #pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include "qttestqtkeyboardfriendlygraphicsviewwidget.h"
@@ -29,7 +28,6 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <boost/lambda/lambda.hpp>
 #include <boost/lexical_cast.hpp>
 #include <boost/math/constants/constants.hpp>
-#pragma GCC diagnostic pop
 
 #include <QKeyEvent>
 
@@ -41,8 +39,11 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "qtroundededitrectitem.h"
 #include "qtroundedtextrectitem.h"
 #include "qtquadbezierarrowitem.h"
+#pragma GCC diagnostic pop
 
 ribi::QtTestKeyboardFriendlyGraphicsViewWidget::QtTestKeyboardFriendlyGraphicsViewWidget()
+  : m_signal_request_about{},
+    m_signal_request_quit{}
 {
   const double pi = boost::math::constants::pi<double>();
   {

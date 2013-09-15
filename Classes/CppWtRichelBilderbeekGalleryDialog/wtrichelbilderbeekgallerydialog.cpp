@@ -18,48 +18,50 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/CppWtRichelBilderbeekGalleryDialog.htm
 //---------------------------------------------------------------------------
+#include "wtrichelbilderbeekgallerydialog.h"
+
 #include <cassert>
-//---------------------------------------------------------------------------
+
 #include <boost/lexical_cast.hpp>
-//---------------------------------------------------------------------------
+
 #include <Wt/WBreak>
 #include <Wt/WLabel>
 #include <Wt/WTable>
 #include <Wt/WText>
 #include <Wt/WImage>
-//---------------------------------------------------------------------------
+
 #include "about.h"
 #include "qtrichelbilderbeekgalleryresources.h"
 #include "richelbilderbeekprogram.h"
 #include "trace.h"
 #include "wtaboutdialog.h"
-#include "wtrichelbilderbeekgallerydialog.h"
-//---------------------------------------------------------------------------
+
 
 ribi::RichelBilderbeek::WtGalleryDialog::Ui::Ui()
   : m_table(new Wt::WTable)
 {
 
 }
-//---------------------------------------------------------------------------
+
 ribi::RichelBilderbeek::WtGalleryDialog::WtGalleryDialog()
+  : m_ui{}
 {
   this->setContentAlignment(Wt::AlignCenter);
   new Wt::WBreak(this);
   new Wt::WLabel("Overview of Richel Bilderbeek's work",this);
   new Wt::WBreak(this);
   new Wt::WBreak(this);
-  this->addWidget(ui.m_table);
+  this->addWidget(m_ui.m_table);
 
   //table->setHeaderCount(1,Wt::Horizontal);
   //table->setHeaderCount(1,Wt::Vertical);
-  ui.m_table->setMaximumSize(400,200);
+  m_ui.m_table->setMaximumSize(400,200);
   QtResources r;
-  ui.m_table->elementAt(0,0)->addWidget(new Wt::WLabel("Program"));
-  ui.m_table->elementAt(0,1)->addWidget(new Wt::WImage(r.GetCl()));
-  ui.m_table->elementAt(0,2)->addWidget(new Wt::WImage(r.GetWindows()));
-  ui.m_table->elementAt(0,3)->addWidget(new Wt::WImage(r.GetDesktop()));
-  ui.m_table->elementAt(0,4)->addWidget(new Wt::WImage(r.GetWeb()));
+  m_ui.m_table->elementAt(0,0)->addWidget(new Wt::WLabel("Program"));
+  m_ui.m_table->elementAt(0,1)->addWidget(new Wt::WImage(r.GetCl()));
+  m_ui.m_table->elementAt(0,2)->addWidget(new Wt::WImage(r.GetWindows()));
+  m_ui.m_table->elementAt(0,3)->addWidget(new Wt::WImage(r.GetDesktop()));
+  m_ui.m_table->elementAt(0,4)->addWidget(new Wt::WImage(r.GetWeb()));
   //ui.m_table->setPositionScheme(Wt::PositionScheme(Wt::CenterX | Wt::CenterY));
 
   const std::vector<boost::shared_ptr<Program> > v = RichelBilderbeek::Program::GetAllPrograms();
@@ -71,7 +73,7 @@ ribi::RichelBilderbeek::WtGalleryDialog::WtGalleryDialog()
       Wt::WLabel * const label = new Wt::WLabel(v[i]->GetName().c_str());
       //label->setMaximumSize(Wt::WLength::Auto,6);
       //label->setHeight(6);
-      ui.m_table->elementAt(i+1,0)->addWidget(label);
+      m_ui.m_table->elementAt(i+1,0)->addWidget(label);
       //ui.m_table->elementAt(i+1,0)->setMaximumSize(Wt::WLength::Auto,6);
     }
     for (int j=0; j!=4; ++j)
@@ -95,22 +97,22 @@ ribi::RichelBilderbeek::WtGalleryDialog::WtGalleryDialog()
         case ProgramStatus::tbd: s = r.GetOrange(); break;
         case ProgramStatus::unk: s = r.GetBlack(); break;
       }
-      ui.m_table->elementAt(i+1,j+1)->addWidget(new Wt::WImage(s.c_str()));
+      m_ui.m_table->elementAt(i+1,j+1)->addWidget(new Wt::WImage(s.c_str()));
     }
   }
   {
-    const int n_rows = ui.m_table->rowCount();
+    const int n_rows = m_ui.m_table->rowCount();
     for (int i=0; i!=n_rows; ++i)
     {
       //ui.m_table->rowAt(i)->elementAt(0)->set
     }
   }
-  ui.m_table->clicked().connect(this,&ribi::RichelBilderbeek::WtGalleryDialog::OnClick);
+  m_ui.m_table->clicked().connect(this,&ribi::RichelBilderbeek::WtGalleryDialog::OnClick);
 }
-//---------------------------------------------------------------------------
+
 void ribi::RichelBilderbeek::WtGalleryDialog::OnClick(const Wt::WMouseEvent&)
 {
   //const int x = event.widget().x;
   //const int y = event.widget().y;
 }
-//---------------------------------------------------------------------------
+

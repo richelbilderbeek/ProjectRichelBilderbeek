@@ -4,16 +4,19 @@
 
 #include <string>
 #include <vector>
+
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include <boost/shared_ptr.hpp>
 #include <QDialog>
 #include "pvdbfwd.h"
+#pragma GCC diagnostic pop
 
 namespace Ui {
   class QtPvdbRatedConceptWidget;
 }
 
 namespace ribi {
-
 namespace pvdb {
 
 class QtPvdbRatedConceptWidget : public QDialog
@@ -26,6 +29,8 @@ public:
     const boost::shared_ptr<const ribi::pvdb::ConceptMap> concept_map,
     const boost::shared_ptr<const pvdb::Node> node,
     QWidget *parent = 0);
+  QtPvdbRatedConceptWidget(const QtPvdbRatedConceptWidget&) = delete;
+  QtPvdbRatedConceptWidget& operator=(const QtPvdbRatedConceptWidget&) = delete;
   ~QtPvdbRatedConceptWidget();
 
   ///Hides the rating. This is used when a student views his/her

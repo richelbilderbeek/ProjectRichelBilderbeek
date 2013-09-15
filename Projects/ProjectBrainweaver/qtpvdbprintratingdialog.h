@@ -27,6 +27,8 @@ public:
   explicit QtPvdbPrintRatingDialog(
     const boost::shared_ptr<pvdb::File>& file,
     QWidget *parent = 0);
+  QtPvdbPrintRatingDialog(const QtPvdbPrintRatingDialog&) = delete;
+  QtPvdbPrintRatingDialog& operator=(const QtPvdbPrintRatingDialog&) = delete;
   ~QtPvdbPrintRatingDialog();
 
   QTableWidget * GetTableConcepts();

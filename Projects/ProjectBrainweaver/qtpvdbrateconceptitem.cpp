@@ -21,7 +21,9 @@
 #pragma GCC diagnostic pop
 
 ribi::pvdb::QtPvdbRateConceptItem::QtPvdbRateConceptItem(const boost::shared_ptr<ribi::pvdb::Concept>& concept)
-  : QtPvdbConceptItem(concept)
+  : QtPvdbConceptItem(concept),
+    m_signal_request_rate_concept{},
+    m_signal_request_rate_examples{}
 {
   #ifndef NDEBUG
   Test();

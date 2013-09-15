@@ -38,6 +38,8 @@ class QtTicTacToeWinnerDialog : public QDialog
 
 public:
   explicit QtTicTacToeWinnerDialog(QWidget *parent = 0);
+  QtTicTacToeWinnerDialog(const QtTicTacToeWinnerDialog&) = delete;
+  QtTicTacToeWinnerDialog& operator=(const QtTicTacToeWinnerDialog&) = delete;
   ~QtTicTacToeWinnerDialog();
   void SetDraw();
   void SetWinnerCross();

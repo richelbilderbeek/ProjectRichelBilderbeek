@@ -37,7 +37,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "ui_qtmazecreatormaindialog.h"
 #pragma GCC diagnostic pop
 
-QtMazeCreatorMainDialog::QtMazeCreatorMainDialog(QWidget *parent) :
+ribi::QtMazeCreatorMainDialog::QtMazeCreatorMainDialog(QWidget *parent) :
     QDialog(parent,Qt::Window),
     ui(new Ui::QtMazeCreatorMainDialog),
     m_scene(new QGraphicsScene),
@@ -67,13 +67,13 @@ QtMazeCreatorMainDialog::QtMazeCreatorMainDialog(QWidget *parent) :
   this->move( screen.center() - this->rect().center() );
 }
 
-QtMazeCreatorMainDialog::~QtMazeCreatorMainDialog()
+ribi::QtMazeCreatorMainDialog::~QtMazeCreatorMainDialog()
 {
   delete ui;
 }
 
 //Sets the scale of the maze
-void QtMazeCreatorMainDialog::resizeEvent(QResizeEvent*)
+void ribi::QtMazeCreatorMainDialog::resizeEvent(QResizeEvent*)
 {
   const double scale
     = 0.9 * std::min(ui->graphicsView->width(),ui->graphicsView->height())
@@ -81,7 +81,7 @@ void QtMazeCreatorMainDialog::resizeEvent(QResizeEvent*)
   m_background->setScale(scale);
 }
 
-void QtMazeCreatorMainDialog::keyPressEvent(QKeyEvent* event)
+void ribi::QtMazeCreatorMainDialog::keyPressEvent(QKeyEvent* event)
 {
   if (event->type() == QEvent::KeyPress)
   {
@@ -105,7 +105,7 @@ void QtMazeCreatorMainDialog::keyPressEvent(QKeyEvent* event)
   }
 }
 
-void QtMazeCreatorMainDialog::drawMaze()
+void ribi::QtMazeCreatorMainDialog::drawMaze()
 {
   const int size = static_cast<int>(m_maze_sz);
   //Prepare a pixmap of right size
@@ -149,7 +149,7 @@ void QtMazeCreatorMainDialog::drawMaze()
   m_background->setPixmap(m_background->pixmap().fromImage(i));
 }
 
-void QtMazeCreatorMainDialog::onTimer()
+void ribi::QtMazeCreatorMainDialog::onTimer()
 {
   m_rotation+=1.0;
   m_background->setRotation(m_rotation);
@@ -159,7 +159,7 @@ void QtMazeCreatorMainDialog::onTimer()
 // 0 : path
 // 1 : wall
 //From http://www.richelbilderbeek.nl/CppCreateMaze.htm
-const std::vector<std::vector<int> > QtMazeCreatorMainDialog::CreateMaze(const int sz)
+const std::vector<std::vector<int> > ribi::QtMazeCreatorMainDialog::CreateMaze(const int sz)
 {
   //Assume correct size dimensions
   assert( sz > 4 && sz % 4 == 3

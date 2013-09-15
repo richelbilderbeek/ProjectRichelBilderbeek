@@ -20,22 +20,25 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #ifndef WTSERVERPUSHER_H
 #define WTSERVERPUSHER_H
-//---------------------------------------------------------------------------
+
 #include <mutex>
 #include <thread>
 #include <vector>
-//---------------------------------------------------------------------------
+
 #include <boost/function.hpp>
 #include <boost/scoped_ptr.hpp>
-//---------------------------------------------------------------------------
+
 namespace ribi {
 
 struct WtServerPusherClient;
 
-//---------------------------------------------------------------------------
+
 ///A Server that broadcasts its messages
 struct WtServerPusher
 {
+  WtServerPusher(const WtServerPusher&) = delete;
+  WtServerPusher& operator=(const WtServerPusher&) = delete;
+
   ///Let a WtServerPusherClient have its supplied function called by WtServerPusher::Run
   void Connect(WtServerPusherClient * const client, const boost::function<void()>& function);
 
@@ -66,6 +69,8 @@ private:
     {
 
     }
+    Connection(const Connection&) = delete;
+    Connection& operator=(const Connection&) = delete;
     std::string m_session_id;
     WtServerPusherClient * m_client;
     boost::function<void()> m_function;

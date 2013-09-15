@@ -38,6 +38,8 @@ class QtPylosMenuDialog : public QDialog
 
 public:
   explicit QtPylosMenuDialog(QWidget *parent = 0);
+  QtPylosMenuDialog(const QtPylosMenuDialog&) = delete;
+  QtPylosMenuDialog& operator=(const QtPylosMenuDialog&) = delete;
   ~QtPylosMenuDialog();
 
 protected:

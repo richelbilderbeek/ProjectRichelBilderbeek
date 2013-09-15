@@ -18,9 +18,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/CppQtLeftRightRectItem.htm
 //---------------------------------------------------------------------------
-
-
 #pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include "qtleftrightrectitem.h"
@@ -35,6 +34,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 ribi::QtLeftRightRectItem::QtLeftRightRectItem(QGraphicsItem* parent)
  : QGraphicsRectItem(parent),
+   m_signal_request_scene_update{},
    m_focus(Focus::left)
 {
   this->setFlags(

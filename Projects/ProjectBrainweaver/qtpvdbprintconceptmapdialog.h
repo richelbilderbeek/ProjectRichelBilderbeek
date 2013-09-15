@@ -26,6 +26,8 @@ public:
   explicit QtPvdbPrintConceptMapDialog(
     const boost::shared_ptr<pvdb::File>& file,
     QWidget *parent = 0);
+  QtPvdbPrintConceptMapDialog(const QtPvdbPrintConceptMapDialog&) = delete;
+  QtPvdbPrintConceptMapDialog& operator=(const QtPvdbPrintConceptMapDialog&) = delete;
   ~QtPvdbPrintConceptMapDialog();
   void Print();
 

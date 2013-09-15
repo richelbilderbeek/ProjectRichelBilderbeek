@@ -43,6 +43,8 @@ class QtTicTacToeGameDialog : public QDialog
 
 public:
   explicit QtTicTacToeGameDialog(QWidget *parent = 0);
+  QtTicTacToeGameDialog(const QtTicTacToeGameDialog&) = delete;
+  QtTicTacToeGameDialog& operator=(const QtTicTacToeGameDialog&) = delete;
   ~QtTicTacToeGameDialog();
   static const std::string GetVersion() { return "1.2"; }
 

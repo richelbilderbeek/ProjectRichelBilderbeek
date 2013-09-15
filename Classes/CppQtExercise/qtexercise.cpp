@@ -18,15 +18,17 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/CppQtExercise.htm
 //---------------------------------------------------------------------------
-#include <fstream>
-
 #pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
+#include "qtexercise.h"
+
+#include <fstream>
+
 #include <boost/bind.hpp>
 #include <boost/lambda/lambda.hpp>
 #include <boost/signals2.hpp>
-#pragma GCC diagnostic pop
 
 #include <QGroupBox>
 #include <QLabel>
@@ -36,11 +38,11 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "exercise.h"
 #include "multiplechoicequestiondialog.h"
 #include "openquestiondialog.h"
-#include "qtexercise.h"
 #include "qtmultiplechoicequestiondialog.h"
 #include "qtopenquestiondialog.h"
 #include "qtquestiondialog.h"
 #include "trace.h"
+#pragma GCC diagnostic pop
 
 ribi::QtExercise::MyUi::MyUi()
   : m_box(new QGroupBox),
@@ -50,8 +52,10 @@ ribi::QtExercise::MyUi::MyUi()
 }
 
 ribi::QtExercise::QtExercise()
-  : m_n_answered(0),
+  : m_exercise{},
+    m_n_answered(0),
     m_n_correct(0),
+    m_ui{},
     m_waiting_time_correct(1000),
     m_waiting_time_incorrect(5000)
 {

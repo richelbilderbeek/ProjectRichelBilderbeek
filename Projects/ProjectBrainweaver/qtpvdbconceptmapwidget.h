@@ -11,7 +11,7 @@ namespace ribi {
 namespace pvdb {
 
 //An ABC View with a ConceptMap as the Model
-class QtPvdbConceptMapWidget : public ribi::QtKeyboardFriendlyGraphicsView, boost::noncopyable
+class QtPvdbConceptMapWidget : public ribi::QtKeyboardFriendlyGraphicsView
 {
   Q_OBJECT
 
@@ -19,6 +19,8 @@ public:
   explicit QtPvdbConceptMapWidget(
     const boost::shared_ptr<ribi::pvdb::ConceptMap> concept_map,
     QWidget* parent = 0);
+  QtPvdbConceptMapWidget(const QtPvdbConceptMapWidget&) = delete;
+  QtPvdbConceptMapWidget& operator=(const QtPvdbConceptMapWidget&) = delete;
   virtual ~QtPvdbConceptMapWidget();
 
   #ifndef NDEBUG

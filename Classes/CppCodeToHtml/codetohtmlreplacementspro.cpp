@@ -530,7 +530,7 @@ const std::vector<std::pair<std::string,std::string> > c2h::Content::CreateProRe
     { "testled","<a href=\"T$oolT$estL$ed.htm\">t$estl$ed</a>" },
   //6
     { "Assert","<a href=\"C$ppA$ssert.htm\">A$ssert</a>" },
-    { "CONFIG","<a href=\"CppQ$m$akeC$onfig.htm\">CONFIG</a>" },
+    { "CONFIG","<a href=\"CppQ$m$akeC$onfig.htm\">C$ONFIG</a>" },
     { "FORMS3","<a href=\"CppF$ORMS3.htm\">F$ORMS3</a>" },
     { "assert","<a href=\"C$ppA$ssert.htm\">a$ss$ert</a>" },
     { "effc++","<a href=\"C$ppW$e$f$f$c$p$p.htm\">e$f$fc$+$+$</a>" },

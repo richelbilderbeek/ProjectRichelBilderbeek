@@ -38,6 +38,8 @@ class QtTicTacToeMenuDialog : public QDialog
 
 public:
   explicit QtTicTacToeMenuDialog(QWidget *parent = 0);
+  QtTicTacToeMenuDialog(const QtTicTacToeMenuDialog&) = delete;
+  QtTicTacToeMenuDialog& operator=(const QtTicTacToeMenuDialog&) = delete;
   ~QtTicTacToeMenuDialog();
 
 private:

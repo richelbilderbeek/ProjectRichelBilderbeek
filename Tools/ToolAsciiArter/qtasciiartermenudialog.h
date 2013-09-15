@@ -38,6 +38,8 @@ class QtAsciiArterMenuDialog : public QtHideAndShowDialog
 
 public:
   explicit QtAsciiArterMenuDialog(QWidget *parent = 0);
+  QtAsciiArterMenuDialog(const QtAsciiArterMenuDialog&) = delete;
+  QtAsciiArterMenuDialog& operator=(const QtAsciiArterMenuDialog&) = delete;
   ~QtAsciiArterMenuDialog();
 
 protected:

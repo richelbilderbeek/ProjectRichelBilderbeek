@@ -20,6 +20,8 @@ class QtPvdbTestConceptItemDialog : public ribi::QtHideAndShowDialog
   
 public:
   explicit QtPvdbTestConceptItemDialog(QWidget *parent = 0);
+  QtPvdbTestConceptItemDialog(const QtPvdbTestConceptItemDialog&) = delete;
+  QtPvdbTestConceptItemDialog& operator=(const QtPvdbTestConceptItemDialog&) = delete;
   ~QtPvdbTestConceptItemDialog();
 
 protected:

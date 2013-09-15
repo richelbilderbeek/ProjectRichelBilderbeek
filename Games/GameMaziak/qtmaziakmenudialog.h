@@ -42,6 +42,8 @@ class QtMaziakMenuDialog : public QDialog
 
 public:
   explicit QtMaziakMenuDialog(QWidget *parent = 0);
+  QtMaziakMenuDialog(const QtMaziakMenuDialog&) = delete;
+  QtMaziakMenuDialog& operator=(const QtMaziakMenuDialog&) = delete;
   ~QtMaziakMenuDialog();
 
 private:

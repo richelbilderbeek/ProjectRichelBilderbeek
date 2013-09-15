@@ -32,8 +32,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 ribi::WtSelectHometrainerFileDialog::WtSelectHometrainerFileDialog()
 {
-  ui.m_edit_filter->hide();
-  ui.m_label_filter->hide();
+  m_ui.m_edit_filter->hide();
+  m_ui.m_label_filter->hide();
   OnUpdateDialog();
 }
 

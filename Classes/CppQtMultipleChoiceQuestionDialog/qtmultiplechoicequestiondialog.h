@@ -55,6 +55,8 @@ public:
   QtMultipleChoiceQuestionDialog(
     const boost::shared_ptr<QuestionDialog>& dialog,
     QWidget *parent = 0);
+  QtMultipleChoiceQuestionDialog(const QtMultipleChoiceQuestionDialog&) = delete;
+  QtMultipleChoiceQuestionDialog& operator=(const QtMultipleChoiceQuestionDialog&) = delete;
 
   ~QtMultipleChoiceQuestionDialog();
 

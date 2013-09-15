@@ -3,9 +3,12 @@
 
 #include <boost/shared_ptr.hpp>
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include <QDialog>
 
 #include "pvdbfwd.h"
+#pragma GCC diagnostic pop
 
 namespace Ui {
   class QtPvdbCreateAssessmentPartialDialog;
@@ -23,6 +26,8 @@ class QtPvdbCreateAssessmentPartialDialog : public QDialog
   explicit QtPvdbCreateAssessmentPartialDialog(
     const boost::shared_ptr<pvdb::File> file,
     QWidget* parent = 0);
+  QtPvdbCreateAssessmentPartialDialog(const QtPvdbCreateAssessmentPartialDialog&) = delete;
+  QtPvdbCreateAssessmentPartialDialog& operator=(const QtPvdbCreateAssessmentPartialDialog&) = delete;
   ~QtPvdbCreateAssessmentPartialDialog();
 
   private slots:

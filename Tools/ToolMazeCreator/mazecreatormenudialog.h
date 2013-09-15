@@ -21,12 +21,12 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #ifndef MAZECREATORMENUDIALOG_H
 #define MAZECREATORMENUDIALOG_H
-//---------------------------------------------------------------------------
+
 #include <string>
 #include <vector>
-//---------------------------------------------------------------------------
+
 #include "about.h"
-//---------------------------------------------------------------------------
+
 namespace ribi {
 
 ///MazeCreatorMenuDialog contains the MazeCreator menu dialog
@@ -36,7 +36,7 @@ struct MazeCreatorMenuDialog
   static const std::string GetVersion();
   static const std::vector<std::string> GetVersionHistory();
 };
-//---------------------------------------------------------------------------
+
 ///From http://www.richelbilderbeek.nl/CppIntToStr.htm
 const std::string IntToStr(const int x);
 

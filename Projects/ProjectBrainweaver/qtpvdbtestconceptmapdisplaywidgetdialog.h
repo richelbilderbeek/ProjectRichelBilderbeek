@@ -21,6 +21,8 @@ class QtPvdbTestConceptMapDisplayWidgetDialog : public ribi::QtHideAndShowDialog
   
 public:
   explicit QtPvdbTestConceptMapDisplayWidgetDialog(QWidget *parent = 0);
+  QtPvdbTestConceptMapDisplayWidgetDialog(const QtPvdbTestConceptMapDisplayWidgetDialog&) = delete;
+  QtPvdbTestConceptMapDisplayWidgetDialog& operator=(const QtPvdbTestConceptMapDisplayWidgetDialog&) = delete;
   ~QtPvdbTestConceptMapDisplayWidgetDialog();
 
 protected:

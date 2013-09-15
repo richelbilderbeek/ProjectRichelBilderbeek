@@ -18,8 +18,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolTestQtModels.htm
 //---------------------------------------------------------------------------
-
-
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include "qttooltestqtmodelsmenudialog.h"
 
 #include <QDesktopWidget>
@@ -37,6 +37,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "tooltestqtmodelsmenudialog.h"
 #include "trace.h"
 #include "ui_qttooltestqtmodelsmenudialog.h"
+#pragma GCC diagnostic pop
 
 ribi::QtToolTestQtModelsMenuDialog::QtToolTestQtModelsMenuDialog(QWidget *parent) :
     QtHideAndShowDialog(parent),

@@ -23,7 +23,9 @@
 ribi::pvdb::QtPvdbNodeItem::QtPvdbNodeItem(
   const boost::shared_ptr<ribi::pvdb::Node> node,
   const boost::shared_ptr<QtPvdbConceptItem> concept_item)
-  : m_concept_item(concept_item),
+  : m_signal_node_requests_rate_concept{},
+    m_signal_node_requests_rate_examples{},
+    m_concept_item(concept_item),
     m_contour_pen(concept_item->GetContourPen()),
     m_focus_pen(concept_item->GetFocusPen()),
     m_node(node)

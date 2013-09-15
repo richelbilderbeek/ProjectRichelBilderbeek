@@ -18,9 +18,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/CppQtDisplayPosItem.htm
 //---------------------------------------------------------------------------
-
-
 #pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include "qtdisplaypositem.h"
@@ -32,7 +31,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic pop
 
 ribi::QtDisplayPosItem::QtDisplayPosItem(QGraphicsItem *parent)
- : QGraphicsSimpleTextItem(parent)
+ : QGraphicsSimpleTextItem(parent),
+   m_signal_request_scene_update{}
 {
   this->setFlags(
       QGraphicsItem::ItemIsFocusable

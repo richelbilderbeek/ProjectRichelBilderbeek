@@ -21,26 +21,28 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <algorithm>
 #include <chrono>
 #include <numeric>
-//---------------------------------------------------------------------------
+
 #include <boost/bind.hpp>
-//---------------------------------------------------------------------------
+
 #include <Wt/WApplication>
 #include <Wt/WServer>
-//---------------------------------------------------------------------------
+
 #include "wtserverpusher.h"
-//---------------------------------------------------------------------------
+
 boost::scoped_ptr<ribi::WtServerPusher> ribi::WtServerPusher::m_instance;
-//---------------------------------------------------------------------------
+
 ribi::WtServerPusher::WtServerPusher()
+  : m_connections{},
+    m_mutex{}
 {
 
 }
-//---------------------------------------------------------------------------
+
 ribi::WtServerPusher::~WtServerPusher()
 {
 
 }
-//---------------------------------------------------------------------------
+
 void ribi::WtServerPusher::Connect(
    WtServerPusherClient * const client,
    const boost::function<void()>& function)
@@ -53,7 +55,7 @@ void ribi::WtServerPusher::Connect(
       client,
       function));
 }
-//---------------------------------------------------------------------------
+
 void ribi::WtServerPusher::Disconnect(const WtServerPusherClient* const client)
 {
   std::lock_guard<std::mutex> lock(m_mutex);
@@ -61,25 +63,25 @@ void ribi::WtServerPusher::Disconnect(const WtServerPusherClient* const client)
     std::remove_if(m_connections.begin(),m_connections.end(),
       [client](const Connection& c) { return c.m_client == client; } ));
 }
-//---------------------------------------------------------------------------
+
 ribi::WtServerPusher * ribi::WtServerPusher::GetInstance()
 {
   if (!m_instance) m_instance.reset(new WtServerPusher);
   return m_instance.get();
 }
-//---------------------------------------------------------------------------
+
 const std::string ribi::WtServerPusher::GetVersion()
 {
   return "1.0";
 }
-//---------------------------------------------------------------------------
+
 const std::vector<std::string> ribi::WtServerPusher::GetVersionHistory()
 {
   std::vector<std::string> v;
   v.push_back("2011-08-05: version 1.0: initial version");
   return v;
 }
-//---------------------------------------------------------------------------
+
 void ribi::WtServerPusher::Post()
 {
   ///Let this thread sleep, to give the other thread a chance
@@ -89,4 +91,4 @@ void ribi::WtServerPusher::Post()
   std::for_each(m_connections.begin(),m_connections.end(),
     [](const Connection& i) { Wt::WServer::instance()->post(i.m_session_id, i.m_function); });
 }
-//---------------------------------------------------------------------------
+

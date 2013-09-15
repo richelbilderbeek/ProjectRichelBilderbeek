@@ -22,7 +22,10 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #ifndef QTBOENKENPRESSKEYDIALOG_H
 #define QTBOENKENPRESSKEYDIALOG_H
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include <QDialog>
+#pragma GCC diagnostic pop
 
 namespace Ui {
   class QtBoenkenPressKeyDialog;
@@ -39,6 +42,8 @@ class QtBoenkenPressKeyDialog : public QDialog
 
 public:
   explicit QtBoenkenPressKeyDialog(QWidget *parent = 0);
+  QtBoenkenPressKeyDialog(const QtBoenkenPressKeyDialog&) = delete;
+  QtBoenkenPressKeyDialog& operator=(const QtBoenkenPressKeyDialog&) = delete;
   ~QtBoenkenPressKeyDialog();
   int GetKey() const { return m_key; }
 

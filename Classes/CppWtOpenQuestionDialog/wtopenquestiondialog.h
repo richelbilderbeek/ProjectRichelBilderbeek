@@ -20,25 +20,25 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #ifndef WTOPENQUESTIONDIALOG_H
 #define WTOPENQUESTIONDIALOG_H
-//---------------------------------------------------------------------------
+
 #include <boost/scoped_ptr.hpp>
 #include <boost/shared_ptr.hpp>
-//---------------------------------------------------------------------------
+
 #include "wtquestiondialog.h"
-//---------------------------------------------------------------------------
+
 namespace Wt
 {
   struct WLineEdit;
   struct WStackedWidget;
 }
-//---------------------------------------------------------------------------
+
 
 namespace ribi {
 
 struct Question;
 struct OpenQuestion;
 struct OpenQuestionDialog;
-//---------------------------------------------------------------------------
+
 struct WtOpenQuestionDialog : public WtQuestionDialog
 {
   explicit WtOpenQuestionDialog(const std::string& question);
@@ -56,7 +56,7 @@ private:
     Wt::WPushButton * const m_button_submit;
     Wt::WLineEdit * const m_edit_answer;
     Wt::WStackedWidget * const m_stacked_widget;
-  } ui;
+  } m_ui;
 
   ///Set the Question
   void SetQuestion(const boost::shared_ptr<Question>& question);

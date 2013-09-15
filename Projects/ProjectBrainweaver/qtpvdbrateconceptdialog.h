@@ -23,6 +23,8 @@ class QtPvdbRateConceptDialog : public ribi::QtHideAndShowDialog
   ///sub_concept_map is non-const, as GetRatedConcept will produce a new concept
   explicit QtPvdbRateConceptDialog(const boost::shared_ptr<ribi::pvdb::ConceptMap> sub_concept_map,
     QWidget* parent = 0);
+  QtPvdbRateConceptDialog(const QtPvdbRateConceptDialog&) = delete;
+  QtPvdbRateConceptDialog& operator=(const QtPvdbRateConceptDialog&) = delete;
   ~QtPvdbRateConceptDialog();
 
   ///Set suggested values for this concept

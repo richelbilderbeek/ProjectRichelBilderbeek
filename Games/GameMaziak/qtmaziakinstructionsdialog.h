@@ -38,6 +38,8 @@ class QtMaziakInstructionsDialog : public QDialog
 
 public:
     explicit QtMaziakInstructionsDialog(QWidget *parent = 0);
+    QtMaziakInstructionsDialog(const QtMaziakInstructionsDialog&) = delete;
+    QtMaziakInstructionsDialog& operator=(const QtMaziakInstructionsDialog&) = delete;
     ~QtMaziakInstructionsDialog();
 
 private:

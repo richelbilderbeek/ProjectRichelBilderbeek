@@ -26,7 +26,8 @@ ribi::pvdb::QtPvdbViewTestsDialog::QtPvdbViewTestsDialog(QWidget* parent)
     ui(new Ui::QtPvdbViewTestsDialog),
     m_c(pvdb::ConceptMapFactory::GetComplexHomomorphousTestConceptMaps()),
     m_h(pvdb::ConceptMapFactory::GetHeteromorphousTestConceptMaps()),
-    m_s(pvdb::ConceptMapFactory::GetSimpleHomomorphousTestConceptMaps())
+    m_s(pvdb::ConceptMapFactory::GetSimpleHomomorphousTestConceptMaps()),
+    m_widgets{}
 {
 
   ui->setupUi(this);

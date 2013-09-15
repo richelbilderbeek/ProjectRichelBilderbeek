@@ -18,7 +18,8 @@ class QtPvdbConceptMapDialog : public ::ribi::QtHideAndShowDialog
     
   public:
   explicit QtPvdbConceptMapDialog(const boost::shared_ptr<File> file, QWidget* parent = 0);
-
+  QtPvdbConceptMapDialog(const QtPvdbConceptMapDialog&) = delete;
+  QtPvdbConceptMapDialog& operator=(const QtPvdbConceptMapDialog&) = delete;
   ~QtPvdbConceptMapDialog();
 
   #ifndef NDEBUG

@@ -1,14 +1,18 @@
 #ifndef QTPVDBOVERVIEWWIDGET_H
 #define QTPVDBOVERVIEWWIDGET_H
 
+
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include <boost/shared_ptr.hpp>
-
 #include <QGraphicsView>
-
 #include "pvdbfwd.h"
-struct QtHideAndShowDialog;
+#pragma GCC diagnostic pop
+
 
 namespace ribi {
+
+struct QtHideAndShowDialog;
 
 namespace pvdb {
 

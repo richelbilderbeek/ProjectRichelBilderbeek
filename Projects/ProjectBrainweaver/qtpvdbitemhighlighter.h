@@ -1,10 +1,13 @@
 #ifndef QTHIGHLIGHTER_H
 #define QTHIGHLIGHTER_H
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include <QObject>
 #include <QTimer>
 
 #include "pvdbfwd.h"
+#pragma GCC diagnostic pop
 
 namespace ribi {
 

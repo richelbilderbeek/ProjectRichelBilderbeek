@@ -22,8 +22,11 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #ifndef QTBOENKENTRAINDIALOG_H
 #define QTBOENKENTRAINDIALOG_H
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include <boost/shared_ptr.hpp>
 #include <QDialog>
+#pragma GCC diagnostic pop
 
 namespace Ui {
   class QtBoenkenTrainDialog;
@@ -37,6 +40,8 @@ class QtBoenkenTrainDialog : public QDialog
 
 public:
   explicit QtBoenkenTrainDialog(QWidget *parent = 0);
+  QtBoenkenTrainDialog(const QtBoenkenTrainDialog&) = delete;
+  QtBoenkenTrainDialog& operator=(const QtBoenkenTrainDialog&) = delete;
   ~QtBoenkenTrainDialog();
 
 private:

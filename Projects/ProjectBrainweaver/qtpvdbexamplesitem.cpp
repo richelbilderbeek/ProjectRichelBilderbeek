@@ -23,7 +23,8 @@ ribi::pvdb::QtPvdbExamplesItem::QtPvdbExamplesItem(
       QFont("monospace",9),
       parent
     ),
-    m_item(nullptr)
+    m_signal_request_scene_update{},
+    m_item{}
 {
   this->setPen(QPen(QColor(255,0,0)));
   this->setBrush(QtPvdbBrushFactory::CreateWhiteGradientBrush());

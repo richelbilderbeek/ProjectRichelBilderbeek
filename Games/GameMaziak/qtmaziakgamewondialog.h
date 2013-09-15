@@ -41,6 +41,8 @@ class QtMaziakGameWonDialog : public QDialog
 
 public:
   explicit QtMaziakGameWonDialog(QWidget *parent = 0);
+  QtMaziakGameWonDialog(const QtMaziakGameWonDialog&) = delete;
+  QtMaziakGameWonDialog& operator=(const QtMaziakGameWonDialog&) = delete;
   ~QtMaziakGameWonDialog();
 
 protected:

@@ -18,8 +18,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ProjectRichelBilderbeek.htm
 //---------------------------------------------------------------------------
-
-
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include "qtrichelbilderbeekprogram.h"
 
 #include <cassert>
@@ -76,6 +76,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "qttoolgaborfiltermenudialog.h"
 #include "qttooltestqtmodelsmenudialog.h"
 
+#pragma GCC diagnostic pop
+
 QDialog * ribi::QtRichelBilderbeekProgram::CreateQtMenuDialog(const RichelBilderbeek::ProgramType type)
 {
   using namespace RichelBilderbeek;
@@ -113,7 +115,7 @@ QDialog * ribi::QtRichelBilderbeekProgram::CreateQtMenuDialog(const RichelBilder
     case ProgramType::imageRotaterClx: break;
     case ProgramType::imageRotaterVcl: break;
     case ProgramType::k3OpEenRij: break;
-    case ProgramType::kalmanFilterer: p = new QtKalmanFiltererMenuDialog; break;
+    case ProgramType::kalmanFilterer: p = new kalman::QtKalmanFiltererMenuDialog; break;
     case ProgramType::keySender: break;
     case ProgramType::knokfighter: break;
     case ProgramType::kTouchLectureCreator: break;

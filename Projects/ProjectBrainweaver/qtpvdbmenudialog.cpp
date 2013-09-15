@@ -67,6 +67,7 @@
 ribi::pvdb::QtPvdbMenuDialog::QtPvdbMenuDialog(QWidget* parent)
   : QtHideAndShowDialog(parent),
     ui(new Ui::QtPvdbMenuDialog),
+    m_file{},
     m_show_child_dialogs_modal(true)
 {
   ui->setupUi(this);

@@ -38,6 +38,8 @@ class QtMusicTheorySingleScaleDialog : public QDialog
     
 public:
   explicit QtMusicTheorySingleScaleDialog(QWidget *parent = 0);
+  QtMusicTheorySingleScaleDialog(const QtMusicTheorySingleScaleDialog&) = delete;
+  QtMusicTheorySingleScaleDialog& operator=(const QtMusicTheorySingleScaleDialog&) = delete;
   ~QtMusicTheorySingleScaleDialog();
 
   void resizeEvent(QResizeEvent *);

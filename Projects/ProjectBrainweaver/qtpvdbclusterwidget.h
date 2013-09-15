@@ -6,15 +6,17 @@
 
 #include <boost/shared_ptr.hpp>
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include <QTreeWidget>
 
 #include "pvdbcompetency.h"
 #include "pvdbcluster.h"
 
 #include "pvdbfwd.h"
+#pragma GCC diagnostic pop
 
 namespace ribi {
-
 namespace pvdb {
 
 class QtPvdbClusterWidget : public QTreeWidget
@@ -64,7 +66,6 @@ private:
 };
 
 } //~namespace pvdb
-
 } //~namespace ribi
 
 #endif // QTPVDBCLUSTERWIDGET_H
