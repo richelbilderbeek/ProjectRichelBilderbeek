@@ -22,9 +22,9 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <cstdlib>
 #include <fstream>
 #include <iostream>
-//---------------------------------------------------------------------------
+
 #include <boost/filesystem.hpp>
-//---------------------------------------------------------------------------
+
 #include <Wt/WAnchor>
 #include <Wt/WApplication>
 #include <Wt/WBreak>
@@ -41,7 +41,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <Wt/WRadioButton>
 #include <Wt/WStackedWidget>
 #include <Wt/WTextArea>
-//---------------------------------------------------------------------------
+
 #include "administrator.h"
 #include "administratordialog.h"
 #include "administratordialogstateloggedin.h"
@@ -62,137 +62,139 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "wtselectfiledialog.h"
 #include "wtshapegroupwidget.h"
 #include "wtshapewidget.h"
-//---------------------------------------------------------------------------
+
 ribi::gtst::AdministratorDialogStateLoggedIn::AdministratorDialogStateLoggedIn(
   Server * const server,
   AdministratorDialog * const dialog)
-  : AdministratorDialogState(server,dialog)
+  : AdministratorDialogState(server,dialog),
+    m_safe_compile{nullptr},
+    m_ui{}
 
 {
   m_safe_compile.m_select_file_dialog.reset(new WtSelectFileDialog);
 }
-//---------------------------------------------------------------------------
+
 Wt::WContainerWidget * ribi::gtst::AdministratorDialogStateLoggedIn::CreateStartExperimentDialog()
 {
   Wt::WContainerWidget * const dialog = new Wt::WContainerWidget;
   assert(dialog);
 
-  ui.m_fileupload = new Wt::WFileUpload;
-  ui.m_label_state_upload = new Wt::WLabel;
+  m_ui.m_fileupload = new Wt::WFileUpload;
+  m_ui.m_label_state_upload = new Wt::WLabel;
 
-  assert(ui.m_fileupload);
-  assert(ui.m_label_state_upload);
+  assert(m_ui.m_fileupload);
+  assert(m_ui.m_label_state_upload);
 
   dialog->setContentAlignment(Wt::AlignCenter);
   new Wt::WBreak(dialog);
-  dialog->addWidget(ui.m_label_state_upload);
+  dialog->addWidget(m_ui.m_label_state_upload);
   new Wt::WBreak(dialog);
   new Wt::WBreak(dialog);
-  dialog->addWidget(ui.m_fileupload);
+  dialog->addWidget(m_ui.m_fileupload);
   new Wt::WBreak(dialog);
   new Wt::WBreak(dialog);
 
-  ui.m_label_state_upload->setText("Please select a file to upload or press the button");
+  m_ui.m_label_state_upload->setText("Please select a file to upload or press the button");
 
   //Upload automatically when the user entered a file
-  ui.m_fileupload->changed().connect(
-    ui.m_fileupload,
+  m_ui.m_fileupload->changed().connect(
+    m_ui.m_fileupload,
     &Wt::WFileUpload::upload);
 
   //Call WtTextUploadDialog::on_upload_done when file is uploaded
-  ui.m_fileupload->uploaded().connect(
+  m_ui.m_fileupload->uploaded().connect(
     this,
     &ribi::gtst::AdministratorDialogStateLoggedIn::OnUploadDone);
   return dialog;
 }
-//---------------------------------------------------------------------------
+
 Wt::WContainerWidget * ribi::gtst::AdministratorDialogStateLoggedIn::CreateViewGroupsDialog()
 {
   Wt::WContainerWidget * const dialog = new Wt::WContainerWidget;
   assert(dialog);
 
-  ui.m_text_groups = new Wt::WTextArea;
-  ui.m_group_widget = new WtShapeGroupWidget;
+  m_ui.m_text_groups = new Wt::WTextArea;
+  m_ui.m_group_widget = new WtShapeGroupWidget;
 
-  assert(ui.m_text_groups);
-  assert(ui.m_group_widget);
+  assert(m_ui.m_text_groups);
+  assert(m_ui.m_group_widget);
 
   dialog->setContentAlignment(Wt::AlignCenter);
   new Wt::WBreak(dialog);
   new Wt::WBreak(dialog);
-  dialog->addWidget(ui.m_group_widget);
+  dialog->addWidget(m_ui.m_group_widget);
   new Wt::WBreak(dialog);
   new Wt::WBreak(dialog);
-  dialog->addWidget(ui.m_text_groups);
+  dialog->addWidget(m_ui.m_text_groups);
   new Wt::WBreak(dialog);
   new Wt::WBreak(dialog);
   new Wt::WImage("Groups.png",dialog);
-  ui.m_text_groups->setReadOnly(true);
-  ui.m_text_groups->setMinimumSize(600,200);
-  ui.m_group_widget->resize(400,400);
+  m_ui.m_text_groups->setReadOnly(true);
+  m_ui.m_text_groups->setMinimumSize(600,200);
+  m_ui.m_group_widget->resize(400,400);
 
   m_server->GetGroups()->m_signal_groups_changed.connect(
     boost::bind(&ribi::gtst::AdministratorDialogStateLoggedIn::OnGroupsChanged,this));
-  ui.m_group_widget->SetShapes(ExtractShapes());
+  m_ui.m_group_widget->SetShapes(ExtractShapes());
 
   return dialog;
 }
-//---------------------------------------------------------------------------
+
 Wt::WContainerWidget * ribi::gtst::AdministratorDialogStateLoggedIn::CreateViewParametersDialog()
 {
   Wt::WContainerWidget * const dialog = new Wt::WContainerWidget;
   assert(dialog);
 
-  ui.m_text_parameter_file = new Wt::WTextArea;
+  m_ui.m_text_parameter_file = new Wt::WTextArea;
 
-  assert(ui.m_text_parameter_file);
+  assert(m_ui.m_text_parameter_file);
 
   dialog->setContentAlignment(Wt::AlignCenter);
   new Wt::WBreak(dialog);
-  ui.m_text_parameter_file->setReadOnly(true);
-  ui.m_text_parameter_file->setMinimumSize(600,300);
-  dialog->addWidget(ui.m_text_parameter_file);
+  m_ui.m_text_parameter_file->setReadOnly(true);
+  m_ui.m_text_parameter_file->setMinimumSize(600,300);
+  dialog->addWidget(m_ui.m_text_parameter_file);
 
   return dialog;
 }
-//---------------------------------------------------------------------------
+
 Wt::WContainerWidget * ribi::gtst::AdministratorDialogStateLoggedIn::CreateViewParticipantsDialog()
 {
   Wt::WContainerWidget * const dialog = new Wt::WContainerWidget;
   assert(dialog);
 
-  ui.m_text_participants = new Wt::WTextArea;
+  m_ui.m_text_participants = new Wt::WTextArea;
 
-  assert(ui.m_text_participants);
+  assert(m_ui.m_text_participants);
 
   dialog->setContentAlignment(Wt::AlignCenter);
   new Wt::WBreak(dialog);
   new Wt::WBreak(dialog);
-  dialog->addWidget(ui.m_text_participants);
-  ui.m_text_participants->setReadOnly(true);
-  ui.m_text_participants->setMinimumSize(600,300);
+  dialog->addWidget(m_ui.m_text_participants);
+  m_ui.m_text_participants->setReadOnly(true);
+  m_ui.m_text_participants->setMinimumSize(600,300);
   return dialog;
 }
-//---------------------------------------------------------------------------
+
 Wt::WContainerWidget * ribi::gtst::AdministratorDialogStateLoggedIn::CreateViewServerDialog()
 {
   Wt::WContainerWidget * const dialog = new Wt::WContainerWidget;
   assert(dialog);
 
-  ui.m_server_anchor = new Wt::WAnchor;
-  ui.m_label_state_server = new Wt::WLabel;
-  ui.m_server_select_file_dialog = new WtSelectFileDialog;
+  m_ui.m_server_anchor = new Wt::WAnchor;
+  m_ui.m_label_state_server = new Wt::WLabel;
+  m_ui.m_server_select_file_dialog = new WtSelectFileDialog;
 
-  assert(ui.m_label_state_server);
-  assert(ui.m_server_select_file_dialog);
+  assert(m_ui.m_label_state_server);
+  assert(m_ui.m_server_select_file_dialog);
 
   dialog->setContentAlignment(Wt::AlignCenter);
   new Wt::WBreak(dialog);
-  dialog->addWidget(ui.m_label_state_server);
+  dialog->addWidget(m_ui.m_label_state_server);
   new Wt::WBreak(dialog);
   new Wt::WBreak(dialog);
-  dialog->addWidget(ui.m_server_select_file_dialog);
-  dialog->addWidget(ui.m_server_anchor);
+  dialog->addWidget(m_ui.m_server_select_file_dialog);
+  dialog->addWidget(m_ui.m_server_anchor);
   new Wt::WBreak(dialog);
   new Wt::WBreak(dialog);
   {
@@ -201,17 +203,17 @@ Wt::WContainerWidget * ribi::gtst::AdministratorDialogStateLoggedIn::CreateViewS
     button->clicked().connect(this,&ribi::gtst::AdministratorDialogStateLoggedIn::OnStopServer);
   }
 
-  ui.m_label_state_server->setText("Server state: ... (updated automatically)");
-  ui.m_server_select_file_dialog->setMinimumSize(600,300);
-  ui.m_server_select_file_dialog->SetFilter(".*(\\.xml|\\.txt|\\.sh)");
-  ui.m_server_select_file_dialog->SetFilterReadOnly(true);
+  m_ui.m_label_state_server->setText("Server state: ... (updated automatically)");
+  m_ui.m_server_select_file_dialog->setMinimumSize(600,300);
+  m_ui.m_server_select_file_dialog->SetFilter(".*(\\.xml|\\.txt|\\.sh)");
+  m_ui.m_server_select_file_dialog->SetFilterReadOnly(true);
 
-  ui.m_server_select_file_dialog->m_signal_selected.connect(
+  m_ui.m_server_select_file_dialog->m_signal_selected.connect(
     boost::bind(&ribi::gtst::AdministratorDialogStateLoggedIn::OnViewLogFile,this));
 
   return dialog;
 }
-//---------------------------------------------------------------------------
+
 const std::vector<std::vector<const ribi::Shape*> > ribi::gtst::AdministratorDialogStateLoggedIn::ExtractShapes() const
 {
 
@@ -241,7 +243,7 @@ const std::vector<std::vector<const ribi::Shape*> > ribi::gtst::AdministratorDia
   );
   return v;
 }
-//---------------------------------------------------------------------------
+
 const std::string ribi::gtst::AdministratorDialogStateLoggedIn::GetExtension(const std::string& filename)
 {
   const size_t i = filename.rfind('.');
@@ -251,11 +253,11 @@ const std::string ribi::gtst::AdministratorDialogStateLoggedIn::GetExtension(con
   assert(filename[i+1] != '/' && "Filename must have an extension");
   return filename.substr(i+1,filename.size());
 }
-//---------------------------------------------------------------------------
+
 void ribi::gtst::AdministratorDialogStateLoggedIn::OnGroupsChanged()
 {
   TRACE_FUNC();
-  ui.m_group_widget->SetShapes(ExtractShapes());
+  m_ui.m_group_widget->SetShapes(ExtractShapes());
 
   //Display textual info
   {
@@ -318,18 +320,18 @@ void ribi::gtst::AdministratorDialogStateLoggedIn::OnGroupsChanged()
       } );
 
     assert(!text.empty());
-    ui.m_text_groups->setText(text.c_str());
+    m_ui.m_text_groups->setText(text.c_str());
     TRACE_FUNC();
   }
 }
-//---------------------------------------------------------------------------
+
 ///Stops the server
 void ribi::gtst::AdministratorDialogStateLoggedIn::OnStopServer()
 {
   Wt::WApplication::instance()->quit();
   std::exit(0);
 }
-//---------------------------------------------------------------------------
+
 ///Show all automatically
 void ribi::gtst::AdministratorDialogStateLoggedIn::OnTimer()
 {
@@ -342,8 +344,8 @@ void ribi::gtst::AdministratorDialogStateLoggedIn::OnTimer()
       = std::string("Current server state: \'")
       + m_server->GetStates()->GetCurrentState()->ToStr()
       + std::string("\' (updated automatically)");
-    assert(ui.m_label_state_server);
-    ui.m_label_state_server->setText(text.c_str());
+    assert(m_ui.m_label_state_server);
+    m_ui.m_label_state_server->setText(text.c_str());
   }
   //Display Parameters
   {
@@ -359,7 +361,7 @@ void ribi::gtst::AdministratorDialogStateLoggedIn::OnTimer()
     );
     assert(!text.empty());
     text.resize(text.size() - 1);
-    ui.m_text_parameter_file->setText(text.c_str());
+    m_ui.m_text_parameter_file->setText(text.c_str());
   }
   //Display Participants
   {
@@ -384,10 +386,10 @@ void ribi::gtst::AdministratorDialogStateLoggedIn::OnTimer()
       //Pop trailing newline
       text.resize(text.size() - 1);
     }
-     ui.m_text_participants->setText(text.c_str());
+     m_ui.m_text_participants->setText(text.c_str());
   }
 }
-//---------------------------------------------------------------------------
+
 void ribi::gtst::AdministratorDialogStateLoggedIn::ShowPage(AdministratorDialog * const dialog)
 {
   assert(dialog);
@@ -436,49 +438,49 @@ void ribi::gtst::AdministratorDialogStateLoggedIn::ShowPage(AdministratorDialog 
     dialog->addWidget(contents);
   }
 }
-//---------------------------------------------------------------------------
+
 void ribi::gtst::AdministratorDialogStateLoggedIn::OnUploadDone()
 {
    
-  assert(boost::filesystem::exists(ui.m_fileupload->spoolFileName()));
+  assert(boost::filesystem::exists(m_ui.m_fileupload->spoolFileName()));
   //Display parameter file
   {
-    const std::vector<std::string> v = FileToVector(ui.m_fileupload->spoolFileName());
+    const std::vector<std::string> v = FileToVector(m_ui.m_fileupload->spoolFileName());
     std::string text;
     std::for_each(v.begin(),v.end(),[&text](const std::string& s) { text+=(s+'\n'); } );
     //Pop trailing newline
     text.resize(text.size() - 1);
-    assert(ui.m_text_parameter_file);
-    ui.m_text_parameter_file->setText(text.c_str());
+    assert(m_ui.m_text_parameter_file);
+    m_ui.m_text_parameter_file->setText(text.c_str());
   }
 
   boost::shared_ptr<Parameters> parameters(new Parameters(m_server));
   assert(parameters);
   try
   {
-    assert(boost::filesystem::exists(ui.m_fileupload->spoolFileName()));
-    parameters->ReadFromFile(ui.m_fileupload->spoolFileName());
+    assert(boost::filesystem::exists(m_ui.m_fileupload->spoolFileName()));
+    parameters->ReadFromFile(m_ui.m_fileupload->spoolFileName());
   }
   catch (std::runtime_error& e)
   {
-    ui.m_label_state_upload->setText(e.what());
+    m_ui.m_label_state_upload->setText(e.what());
     return;
   }
 
-  ui.m_label_state_upload->setText("OK: parameter file loaded");
+  m_ui.m_label_state_upload->setText("OK: parameter file loaded");
   m_server->SetParameters(parameters);
 
   WtServerPusher::GetInstance()->Post();
 }
-//---------------------------------------------------------------------------
+
 void ribi::gtst::AdministratorDialogStateLoggedIn::OnViewLogFile()
 {
-  const std::string filename = ui.m_server_select_file_dialog->GetSelectedFile();
+  const std::string filename = m_ui.m_server_select_file_dialog->GetSelectedFile();
 
-  ui.m_server_anchor->setText((std::string("Download ") + ui.m_server_select_file_dialog->GetSelectedFile()).c_str() );
-  ui.m_server_anchor->setResource(new Wt::WFileResource(ui.m_server_select_file_dialog->GetSelectedFile(),ui.m_server_select_file_dialog->GetSelectedFile()));
+  m_ui.m_server_anchor->setText((std::string("Download ") + m_ui.m_server_select_file_dialog->GetSelectedFile()).c_str() );
+  m_ui.m_server_anchor->setResource(new Wt::WFileResource(m_ui.m_server_select_file_dialog->GetSelectedFile(),m_ui.m_server_select_file_dialog->GetSelectedFile()));
 }
-//---------------------------------------------------------------------------
+
 const std::vector<std::string> ribi::gtst::AdministratorDialogStateLoggedIn::SplitXml(const std::string& s)
 {
   std::vector<std::string> v;
@@ -501,7 +503,7 @@ const std::vector<std::string> ribi::gtst::AdministratorDialogStateLoggedIn::Spl
   }
   return v;
 }
-//---------------------------------------------------------------------------
+
 ///Pretty-print an XML std::string
 //From http://www.richelbilderbeek.nl/CppXmlToPretty.htm
 const std::vector<std::string> ribi::gtst::AdministratorDialogStateLoggedIn::XmlToPretty(const std::string& s)
@@ -525,4 +527,4 @@ const std::vector<std::string> ribi::gtst::AdministratorDialogStateLoggedIn::Xml
   );
   return v;
 }
-//---------------------------------------------------------------------------
+

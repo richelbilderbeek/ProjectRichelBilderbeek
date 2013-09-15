@@ -44,6 +44,8 @@ struct AdministratorDialog : public Wt::WContainerWidget, WtServerPusherClient
 {
   ///The GUI of an Administrator
   AdministratorDialog(Server * const server);
+  AdministratorDialog(const AdministratorDialog&) = delete;
+  AdministratorDialog& operator=(const AdministratorDialog&) = delete;
 
   ///Check if there is a logged-in Administrator
   bool CanGetAdministrator() const;
@@ -64,19 +66,7 @@ struct AdministratorDialog : public Wt::WContainerWidget, WtServerPusherClient
   void SetState(AdministratorDialogState * const state);
 
   private:
-  ///\brief Only allow a Boost smart pointer to delete WtAdministratorDialog
-  ///
-  ///This prevents the following trouble,
-  ///cited from http://www.boost.org/libs/utility/checked_delete.html:
-  ///The C++ Standard allows, in 5.3.5/5, pointers to incomplete
-  ///class types to be deleted with a delete-expression.
-  ///When the class has a non-trivial destructor, or a class-specific operator
-  ///delete, the behavior is undefined. Some compilers issue a warning when an
-  ///incomplete type is deleted, but unfortunately, not all do, and programmers
-  ///sometimes ignore or disable warnings.
   ~AdministratorDialog();
-  ///Only allow a Boost smart pointer to delete WtAdministratorDialog
-  //Template syntax from Herb Sutter. Exceptional C++ style. 2005. ISBN: 0-201-76042-8. Item 8: 'Befriending templates'.
   friend void boost::checked_delete<>(AdministratorDialog*);
 
   ///m_administrator contains either nothing or one logged in Administrator

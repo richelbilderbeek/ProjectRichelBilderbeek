@@ -43,19 +43,7 @@ struct GroupFinished : public Group, StateFinished
   const std::string ToStr() const { return this->StateFinished::ToStr(); }
 
   private:
-  ///Only allow a Boost smart pointer to delete GroupFinished
-  //to prevent the following trouble,
-  //cited from http://www.boost.org/libs/utility/checked_delete.html:
-  //The C++ Standard allows, in 5.3.5/5, pointers to incomplete
-  //class types to be deleted with a delete-expression.
-  //When the class has a non-trivial destructor, or a class-specific operator
-  //delete, the behavior is undefined. Some compilers issue a warning when an
-  //incomplete type is deleted, but unfortunately, not all do, and programmers
-  //sometimes ignore or disable warnings.
   virtual ~GroupFinished() {}
-  ///Only allow a Boost smart pointer to delete GroupFinished
-  //Template syntax from Herb Sutter. Exceptional C++ style. 2005.
-  //ISBN: 0-201-76042-8. Item 8: 'Befriending templates'.
   friend void boost::checked_delete<>(GroupFinished*);
 };
 

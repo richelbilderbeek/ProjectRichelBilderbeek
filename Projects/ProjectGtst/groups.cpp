@@ -25,13 +25,13 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <numeric>
 #include <stdexcept>
 #include <thread>
-//---------------------------------------------------------------------------
+
 #include <boost/bind.hpp>
 #include <boost/lambda/bind.hpp>
 #include <boost/lambda/lambda.hpp>
 #include <boost/numeric/conversion/cast.hpp>
 #include <boost/weak_ptr.hpp>
-//---------------------------------------------------------------------------
+
 #include "groupassigner.h"
 #include "groups.h"
 #include "groupfinished.h"
@@ -42,22 +42,23 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "server.h"
 #include "state.h"
 #include "trace.h"
-//---------------------------------------------------------------------------
+
 std::recursive_mutex ribi::gtst::Groups::m_mutex;
-//---------------------------------------------------------------------------
+
 boost::signals2::signal<void ()> ribi::gtst::Groups::m_signal_groups_changed;
-//---------------------------------------------------------------------------
+
 ribi::gtst::Groups::Groups(Server * const server)
-  : m_finished(new GroupFinished(server)),
-    m_last_id_participant(0),
-    m_logged_in(new GroupLoggedIn(server)),
-    m_not_logged_in(new GroupNotLoggedIn(server)),
-    m_server(server)
+  : m_finished{new GroupFinished(server)},
+    m_last_id_participant{},
+    m_logged_in{new GroupLoggedIn(server)},
+    m_not_logged_in{new GroupNotLoggedIn(server)},
+    m_participating{},
+    m_server{server}
 {
   assert(m_server);
   m_signal_groups_changed();
 }
-//---------------------------------------------------------------------------
+
 ///Check if a Participant can be from his/her non-wildcard IP address
 bool ribi::gtst::Groups::CanFind(const boost::shared_ptr<const SafeIpAddress>& ip_address) const
 {
@@ -84,7 +85,7 @@ bool ribi::gtst::Groups::CanFind(const boost::shared_ptr<const SafeIpAddress>& i
 
   return i!=v.end();
 }
-//---------------------------------------------------------------------------
+
 ///Search the Group for a Participant with a certain IP address
 bool ribi::gtst::Groups::CanGetParticipantWithIpAddress(const boost::shared_ptr<const SafeIpAddress>& ip_address) const
 {
@@ -104,7 +105,7 @@ bool ribi::gtst::Groups::CanGetParticipantWithIpAddress(const boost::shared_ptr<
       }
     ) != ps.end();
 }
-//---------------------------------------------------------------------------
+
 ///A Participant can log in, if
 ///- he/she reloaded the page by pressing F5, recovery of all actions
 ///- he/she started viewing the page, start of new actions
@@ -125,7 +126,7 @@ bool ribi::gtst::Groups::CanLetLogin(const boost::shared_ptr<const SafeIpAddress
       }
     ) != ps.end();
 }
-//---------------------------------------------------------------------------
+
 ///Collect all Groups as a read-only std::vector
 const std::vector<const ribi::gtst::Group *> ribi::gtst::Groups::CollectGroups(
   const bool not_logged_in,
@@ -154,7 +155,7 @@ const std::vector<const ribi::gtst::Group *> ribi::gtst::Groups::CollectGroups(
   }
   return v;
 }
-//---------------------------------------------------------------------------
+
 ///Collect all Participants as a read-only std::vector
 const std::vector<boost::shared_ptr<const ribi::gtst::Participant> > ribi::gtst::Groups::CollectParticipants(
   const bool not_logged_in,
@@ -178,7 +179,7 @@ const std::vector<boost::shared_ptr<const ribi::gtst::Participant> > ribi::gtst:
   } );
   return v;
 }
-//---------------------------------------------------------------------------
+
 ///Find a Participant from his/her non-wildcard IP address
 const boost::shared_ptr<const ribi::gtst::Participant> ribi::gtst::Groups::Find(const boost::shared_ptr<const SafeIpAddress>& ip_address) const
 {
@@ -215,7 +216,7 @@ const boost::shared_ptr<const ribi::gtst::Participant> ribi::gtst::Groups::Find(
   assert(!"Should not get here");
   throw std::logic_error("Should not get here");
 }
-//---------------------------------------------------------------------------
+
 ///Find a read/write Group from a read-only Group
 ///Just checks if the Group really exists
 ///
@@ -235,7 +236,7 @@ ribi::gtst::Group * ribi::gtst::Groups::FindGroup(const Group * const group) con
 
   return const_cast<Group*>(group);
 }
-//---------------------------------------------------------------------------
+
 ///Finds the Group the Participant is in
 const ribi::gtst::Group * ribi::gtst::Groups::FindMyGroup(const boost::shared_ptr<const Participant>& participant) const
 {
@@ -252,7 +253,7 @@ const ribi::gtst::Group * ribi::gtst::Groups::FindMyGroup(const boost::shared_pt
   assert(!"All Participants must be in a Group");
   return 0;
 }
-//---------------------------------------------------------------------------
+
 ///Find a read/write Participant from a read-only Participant
 ///Just checks if the Participant really exists
 ///
@@ -265,25 +266,25 @@ boost::shared_ptr<ribi::gtst::Participant> ribi::gtst::Groups::FindParticipant(c
 
   return boost::const_pointer_cast<Participant>(participant);
 }
-//---------------------------------------------------------------------------
+
 const ribi::gtst::GroupFinished * ribi::gtst::Groups::GetGroupFinished() const
 {
   assert(m_finished);
   return m_finished.get();
 }
-//---------------------------------------------------------------------------
+
 const ribi::gtst::GroupLoggedIn * ribi::gtst::Groups::GetGroupLoggedIn() const
 {
   assert(m_logged_in);
   return m_logged_in.get();
 }
-//---------------------------------------------------------------------------
+
 const ribi::gtst::GroupNotLoggedIn * ribi::gtst::Groups::GetGroupNotLoggedIn() const
 {
   assert(m_not_logged_in);
   return m_not_logged_in.get();
 }
-//---------------------------------------------------------------------------
+
 ///Find the Group for the Participant with a certain IP address
 const boost::shared_ptr<const ribi::gtst::Participant> ribi::gtst::Groups::GetParticipantWithIpAddress(
   const boost::shared_ptr<const SafeIpAddress>& ip_address) const
@@ -300,7 +301,7 @@ const boost::shared_ptr<const ribi::gtst::Participant> ribi::gtst::Groups::GetPa
     }
   );
 }
-//---------------------------------------------------------------------------
+
 ///Let a Group grow from 3 to 5 Participants
 void ribi::gtst::Groups::GrowGroup(const Group * const group)
 {
@@ -321,7 +322,7 @@ void ribi::gtst::Groups::GrowGroup(const Group * const group)
   }
   m_signal_groups_changed();
 }
-//---------------------------------------------------------------------------
+
 ///Relocate a GroupParticipating to GroupFinished
 void ribi::gtst::Groups::KillGroup(const Group * const group_to_move)
 {
@@ -364,7 +365,7 @@ void ribi::gtst::Groups::KillGroup(const Group * const group_to_move)
   ///just quits the lambda expression
   m_signal_groups_changed();
 }
-//---------------------------------------------------------------------------
+
 ///Move a Participant from the any Group to the GroupLoggedIn
 const boost::shared_ptr<const ribi::gtst::Participant> ribi::gtst::Groups::LetLogin(const boost::shared_ptr<const SafeIpAddress>& ip_address)
 {
@@ -442,7 +443,7 @@ const boost::shared_ptr<const ribi::gtst::Participant> ribi::gtst::Groups::LetLo
 
   return participant;
 }
-//---------------------------------------------------------------------------
+
 ///Split a Group of 5 Participants to 2 groups of 3
 void ribi::gtst::Groups::SplitGroup(const Group * const group)
 {
@@ -469,7 +470,7 @@ void ribi::gtst::Groups::SplitGroup(const Group * const group)
   m_participating.insert(group2);
   m_signal_groups_changed();
 }
-//---------------------------------------------------------------------------
+
 ///MoveAllToFinished moves all Participants to the Finished Group
 void ribi::gtst::Groups::MoveAllToFinished()
 {
@@ -509,7 +510,7 @@ void ribi::gtst::Groups::MoveAllToFinished()
 
   m_signal_groups_changed();
 }
-//---------------------------------------------------------------------------
+
 ///Moves all logged in Participants to the GroupPartipating
 void ribi::gtst::Groups::MoveLoggedInToParticipating()
 {
@@ -558,7 +559,7 @@ void ribi::gtst::Groups::MoveLoggedInToParticipating()
 
   m_signal_groups_changed();
 }
-//---------------------------------------------------------------------------
+
 ///Remove all Participants
 void ribi::gtst::Groups::Reset()
 {
@@ -572,7 +573,7 @@ void ribi::gtst::Groups::Reset()
 
   m_signal_groups_changed();
 }
-//---------------------------------------------------------------------------
+
 ///Set the Participants for the coming experiment
 void ribi::gtst::Groups::SetParticipants(std::vector<boost::shared_ptr<Participant> > participants)
 {
@@ -587,7 +588,7 @@ void ribi::gtst::Groups::SetParticipants(std::vector<boost::shared_ptr<Participa
 
   m_signal_groups_changed();
 }
-//---------------------------------------------------------------------------
+
 std::ostream& ribi::gtst::operator<<(std::ostream& os,const Groups& groups)
 {
   os
@@ -606,5 +607,5 @@ std::ostream& ribi::gtst::operator<<(std::ostream& os,const Groups& groups)
     << "</groups>";
   return os;
 }
-//---------------------------------------------------------------------------
+
 

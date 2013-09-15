@@ -43,6 +43,8 @@ class QtPicToCodeMainDialog : public QDialog
 
 public:
   explicit QtPicToCodeMainDialog(QWidget *parent = 0);
+  QtPicToCodeMainDialog(const QtPicToCodeMainDialog&) = delete;
+  QtPicToCodeMainDialog& operator=(const QtPicToCodeMainDialog&) = delete;
   ~QtPicToCodeMainDialog();
 
 private:

@@ -32,7 +32,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 ///how I should use the Wt::WPainter::Image constructor
 ribi::WtSelectPlayerWidget::WtSelectPlayerWidget(
   const boost::shared_ptr<const ConnectThreeResources> resources)
-  : m_computer_grey(new Wt::WPainter::Image(
+  : m_signal_on_clicked{},
+    m_computer_grey(new Wt::WPainter::Image(
       resources->GetComputerGreyFilename(),
       resources->GetComputerGreyFilename())
       ),
@@ -51,6 +52,7 @@ ribi::WtSelectPlayerWidget::WtSelectPlayerWidget(
         resources->GetComputersFilenames()[2]
         )
     } ),
+    m_is_player_human{},
     m_players(
     {
       new Wt::WPainter::Image(

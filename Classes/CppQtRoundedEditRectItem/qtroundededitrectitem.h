@@ -41,6 +41,9 @@ struct QtRoundedEditRectItem : public QtRoundedRectItem
   ///Get the font by which the text is drawn
   const QFont& GetFont() const { return m_font; }
 
+  ///Obtain the text on the item
+  const std::vector<std::string>& GetText() const { return m_text; }
+
   ///Obtain the version of this class
   static const std::string GetVersion();
 
@@ -55,6 +58,9 @@ struct QtRoundedEditRectItem : public QtRoundedRectItem
 
   ///Set the text displayed
   virtual void SetText(const std::vector<std::string>& text);
+
+  ///Set the pen by which the text is drawn
+  void SetTextPen(const QPen& pen);
 
   ///Called when the user wants to edit the text
   boost::signals2::signal<void(QtRoundedEditRectItem*)> m_signal_item_requests_edit;
@@ -76,6 +82,9 @@ private:
 
   ///Set the padding around text, so the text will be centered
   static const Padding m_text_padding;
+
+  ///The pen by which the text is drawn
+  QPen m_text_pen;
 
   ///Obtain the unpadded text rectangle for a single line
   ///Note: even this rectangle is enlarged by a pixel in both dimensions, so the text will be drawn in full

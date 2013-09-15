@@ -39,6 +39,8 @@ class QtTestLedDialog : public QDialog
 
 public:
   explicit QtTestLedDialog(QWidget *parent = 0);
+  QtTestLedDialog(const QtTestLedDialog&) = delete;
+  QtTestLedDialog& operator=(const QtTestLedDialog&) = delete;
   ~QtTestLedDialog();
 
 protected:

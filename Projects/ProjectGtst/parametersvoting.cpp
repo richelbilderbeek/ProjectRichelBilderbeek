@@ -23,20 +23,20 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //#include <iostream>
 #include <sstream>
 #include <stdexcept>
-//---------------------------------------------------------------------------
+
 #include <boost/numeric/conversion/cast.hpp>
-//---------------------------------------------------------------------------
+
 #include "parametersvoting.h"
 #include "votingoption.h"
-//---------------------------------------------------------------------------
+
 ribi::gtst::ParametersVoting::ParametersVoting()
   : m_duration(10),
-    //m_options(CreateDefaultOptions()),
+    m_options(CreateDefaultOptions()),
     m_wait(true)
 {
 
 }
-//---------------------------------------------------------------------------
+
 const std::vector<boost::shared_ptr<ribi::gtst::VotingOption> >
   ribi::gtst::ParametersVoting::CreateDefaultOptions()
 {
@@ -55,13 +55,13 @@ const std::vector<boost::shared_ptr<ribi::gtst::VotingOption> >
   }
   return v;
 }
-//---------------------------------------------------------------------------
+
 int ribi::gtst::ParametersVoting::GetDuration() const
 {
   assert(m_duration >= 0);
   return m_duration;
 }
-//---------------------------------------------------------------------------
+
 ///Get the descriptions of the options to vote for only
 const std::vector<std::string> ribi::gtst::ParametersVoting::GetVoteDescriptions() const
 {
@@ -79,7 +79,7 @@ const std::vector<std::string> ribi::gtst::ParametersVoting::GetVoteDescriptions
     );
   return w;
 }
-//---------------------------------------------------------------------------
+
 ///Parse a line
 void ribi::gtst::ParametersVoting::Parse(const std::string& s)
 {
@@ -180,7 +180,7 @@ void ribi::gtst::ParametersVoting::Parse(const std::string& s)
   }
 
 }
-//---------------------------------------------------------------------------
+
 ///SeperateString splits a std::string
 //From http://www.richelbilderbeek.nl/CppSeperateString.htm
 const std::vector<std::string> ribi::gtst::ParametersVoting::SeperateString(
@@ -198,13 +198,13 @@ const std::vector<std::string> ribi::gtst::ParametersVoting::SeperateString(
   }
   return v;
 }
-//---------------------------------------------------------------------------
+
 void ribi::gtst::ParametersVoting::SetDuration(const int time)
 {
   m_duration = time;
   assert(m_duration >= 0);
 }
-//---------------------------------------------------------------------------
+
 void ribi::gtst::ParametersVoting::SetOptions(
   const std::vector<boost::shared_ptr<VotingOption> >& options)
 {
@@ -212,13 +212,13 @@ void ribi::gtst::ParametersVoting::SetOptions(
     && "A participant must vote between at least two options");
   m_options = options;
 }
-//---------------------------------------------------------------------------
+
 ///Set if there is waited for all before going on
 void ribi::gtst::ParametersVoting::SetWait(const bool wait)
 {
   m_wait = wait;
 }
-//---------------------------------------------------------------------------
+
 std::ostream& ribi::gtst::operator<<(std::ostream& os,const ParametersVoting& parameters)
 {
   os
@@ -240,6 +240,6 @@ std::ostream& ribi::gtst::operator<<(std::ostream& os,const ParametersVoting& pa
 
   return os;
 }
-//---------------------------------------------------------------------------
+
 
 

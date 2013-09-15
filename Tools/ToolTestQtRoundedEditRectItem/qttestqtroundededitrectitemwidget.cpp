@@ -77,6 +77,7 @@ void ribi::QtTestQtRoundedEditRectItemWidget::Display(const QFont& font)
         = std::string(1 + col,c)
         + std::string(" ")
         + boost::lexical_cast<std::string>(c);
+
       item->SetText( std::vector<std::string>(1 + col,s) );
       item->setPos(x,y);
       item->SetFocusPen(QPen(QColor(255,0,0),3.0));

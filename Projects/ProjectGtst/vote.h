@@ -38,6 +38,8 @@ struct Vote
   Vote(
     const boost::shared_ptr<const Participant>& sender,
     const VotingOption * const vote);
+  Vote(const Vote&) = delete;
+  Vote& operator=(const Vote&) = delete;
 
   ///Obtain a read-only pointer to the sender
   const boost::shared_ptr<const Participant>& GetSender() const { return m_sender; }
@@ -46,19 +48,7 @@ struct Vote
   const VotingOption * GetVote() const { return m_vote; }
 
   private:
-  ///\brief Only allow a Boost smart pointer to delete Vote
-  ///
-  ///This prevents the following trouble,
-  ///cited from http://www.boost.org/libs/utility/checked_delete.html:
-  ///The C++ Standard allows, in 5.3.5/5, pointers to incomplete
-  ///class types to be deleted with a delete-expression.
-  ///When the class has a non-trivial destructor, or a class-specific operator
-  ///delete, the behavior is undefined. Some compilers issue a warning when an
-  ///incomplete type is deleted, but unfortunately, not all do, and programmers
-  ///sometimes ignore or disable warnings.
   ~Vote() {}
-  ///Only allow a Boost smart pointer to delete Vote
-  //Template syntax from Herb Sutter. Exceptional C++ style. 2005. ISBN: 0-201-76042-8. Item 8: 'Befriending templates'.
   friend void boost::checked_delete<>(Vote*);
 
   ///The ShapeWidget of the sender

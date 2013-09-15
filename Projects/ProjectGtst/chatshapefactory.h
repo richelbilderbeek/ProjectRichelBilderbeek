@@ -26,7 +26,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <boost/shared_ptr.hpp>
 //---------------------------------------------------------------------------
 #include <boost/scoped_ptr.hpp>
-#include <boost/noncopyable.hpp>
+
 //---------------------------------------------------------------------------
 #include "forward_declarations.h"
 //---------------------------------------------------------------------------
@@ -36,8 +36,11 @@ namespace gtst {
 
 ////brief
 ///ChatShapeFactory creates WtShapeWidgets used as chat shapes
-struct ChatShapeFactory : public boost::noncopyable
+struct ChatShapeFactory
 {
+  ChatShapeFactory(const ChatShapeFactory&) = delete;
+  ChatShapeFactory& operator=(const ChatShapeFactory&) = delete;
+
   ///Obtain the instance of the ChatShapeFactory
   static ChatShapeFactory * Get();
 
@@ -50,19 +53,8 @@ struct ChatShapeFactory : public boost::noncopyable
   private:
   ///A Singleton has a private constructor
   ChatShapeFactory();
-
-  ///Only allow a Boost smart pointer to delete ChatShapeFactory
-  //to prevent the following trouble,
-  //cited from http://www.boost.org/libs/utility/checked_delete.html:
-  //The C++ Standard allows, in 5.3.5/5, pointers to incomplete
-  //class types to be deleted with a delete-expression.
-  //When the class has a non-trivial destructor, or a class-specific operator
-  //delete, the behavior is undefined. Some compilers issue a warning when an
-  //incomplete type is deleted, but unfortunately, not all do, and programmers
-  //sometimes ignore or disable warnings.
   ~ChatShapeFactory() {}
-  ///Only allow a Boost smart pointer to delete ChatShapeFactory
-  //Template syntax from Herb Sutter. Exceptional C++ style. 2005. ISBN: 0-201-76042-8. Item 8: 'Befriending templates'.
+  
   friend void boost::checked_delete<>(ChatShapeFactory*);
 
   ///The instance

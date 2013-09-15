@@ -19,10 +19,10 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //From http://www.richelbilderbeek.nl/ProjectGtst.htm
 //---------------------------------------------------------------------------
 #include "groupparticipating.h"
-//---------------------------------------------------------------------------
+
 ///m_group_last_index contains the index given to the last group
 int ribi::gtst::GroupParticipating::m_group_last_id = 0;
-//---------------------------------------------------------------------------
+
 ///Constructor that assigns an ID
 ribi::gtst::GroupParticipating::GroupParticipating(Server * const server)
   : Group(server),
@@ -30,10 +30,10 @@ ribi::gtst::GroupParticipating::GroupParticipating(Server * const server)
 {
   assert(m_id > 0);
 }
-//---------------------------------------------------------------------------
+
 ///Reset the m_group_last_id to zero
 void ribi::gtst::GroupParticipating::Reset()
 {
   m_group_last_id = 0;
 }
-//---------------------------------------------------------------------------
+

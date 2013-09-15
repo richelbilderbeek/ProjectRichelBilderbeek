@@ -20,15 +20,15 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #ifndef WTTIMEDSERVERPUSHER_H
 #define WTTIMEDSERVERPUSHER_H
-//---------------------------------------------------------------------------
+
 #include <mutex>
 #include <thread>
 #include <vector>
-//---------------------------------------------------------------------------
+
 #include <boost/any.hpp>
 #include <boost/function.hpp>
 #include <boost/scoped_ptr.hpp>
-//---------------------------------------------------------------------------
+
 
 namespace ribi {
 
@@ -72,9 +72,11 @@ private:
     {
 
     }
-    std::string m_session_id;
-    WtTimedServerPusherClient * m_client;
-    boost::function<void()> m_function;
+    Connection(const Connection&) = delete;
+    Connection& operator=(const Connection&) = delete;
+    const std::string m_session_id;
+    WtTimedServerPusherClient * const m_client;
+    const boost::function<void()> m_function;
   };
 
   ///WtTimedServerPusher constructor, which is private, because WtTimedServerPusher follows
@@ -88,7 +90,7 @@ private:
   friend void boost::checked_delete<>(WtTimedServerPusher*);
 
   ///All connections to the WtTimedServerPusherClients
-  std::vector<Connection> m_connections;
+  std::vector<boost::shared_ptr<Connection> > m_connections;
 
   ///The WtTimedServerPusher its only instance
   static boost::scoped_ptr<WtTimedServerPusher> m_instance;

@@ -45,7 +45,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 ribi::gtst::ParticipantDialogStateGroupAssign::ParticipantDialogStateGroupAssign(
   ParticipantDialog * const dialog,Server * const server)
-  : ParticipantDialogState(dialog,server)
+  : ParticipantDialogState(dialog,server),
+    ui{}
 {
 
 }

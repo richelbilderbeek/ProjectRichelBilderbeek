@@ -19,10 +19,10 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //From http://www.richelbilderbeek.nl/ProjectGtst.htm
 //---------------------------------------------------------------------------
 #include <cassert>
-//---------------------------------------------------------------------------
+
 #include <Wt/WBreak>
 #include <Wt/WLabel>
-//---------------------------------------------------------------------------
+
 #include "all_groups.h"
 #include "all_parameters.h"
 #include "all_serverstates.h"
@@ -38,14 +38,14 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "participantdialogstatefinished.h"
 #include "server.h"
 #include "wtserverpusher.h"
-//---------------------------------------------------------------------------
+
 ribi::gtst::ParticipantDialogStateFinished::ParticipantDialogStateFinished(
   ParticipantDialog * const dialog,Server * const server)
   : ParticipantDialogState(dialog,server)
 {
 
 }
-//---------------------------------------------------------------------------
+
 void ribi::gtst::ParticipantDialogStateFinished::ShowPage(ParticipantDialog * const dialog)
 {
   assert(dialog);
@@ -79,4 +79,4 @@ void ribi::gtst::ParticipantDialogStateFinished::ShowPage(ParticipantDialog * co
       + " euros"));
 
 }
-//---------------------------------------------------------------------------
+

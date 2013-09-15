@@ -26,7 +26,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <set>
 #include <vector>
 //---------------------------------------------------------------------------
-#include <boost/noncopyable.hpp>
+
 #include <boost/scoped_ptr.hpp>
 #include <boost/shared_ptr.hpp>
 #include <boost/weak_ptr.hpp>
@@ -43,8 +43,11 @@ namespace gtst {
 ///
 ///Server is a thread-safe Non-copyable Singleton
 ///this is a client of WtTimedServerPusher
-struct Server : public boost::noncopyable, WtTimedServerPusherClient
+struct Server : public WtTimedServerPusherClient
 {
+  Server(const Server&) = delete;
+  Server& operator=(const Server&) = delete;
+
   ///Deletes all Participant instances
   void DeleteParticipants();
 

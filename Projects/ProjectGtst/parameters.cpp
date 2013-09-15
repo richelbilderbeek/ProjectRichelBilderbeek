@@ -23,11 +23,11 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <iostream>
 #include <map>
 #include <stdexcept>
-//---------------------------------------------------------------------------
+
 #include <boost/filesystem.hpp>
 #include <boost/numeric/conversion/cast.hpp>
 #include <boost/algorithm/string/trim.hpp>
-//---------------------------------------------------------------------------
+
 #include "all_parameters.h"
 #include "chatshapefactory.h"
 #include "groupassigner.h"
@@ -38,7 +38,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "shapewidget.h"
 //#include "trace.h"
 #include "wtshapewidget.h"
-//---------------------------------------------------------------------------
+
 ribi::gtst::Parameters::Parameters(Server * const server)
   : m_assign_payoff(new ParametersAssignPayoff),
     m_chat(new ParametersChat),
@@ -46,6 +46,7 @@ ribi::gtst::Parameters::Parameters(Server * const server)
     m_finished(new ParametersFinished),
     m_group_assign(new ParametersGroupAssign),
     m_group_reassign(new ParametersGroupReAssign),
+    m_participants{},
     m_quiz(new ParametersQuiz),
     m_server(server),
     m_view_results_group(new ParametersViewResultsGroup),
@@ -56,7 +57,7 @@ ribi::gtst::Parameters::Parameters(Server * const server)
   assert(m_participants.empty()
     && "Do not create Participants by default as this will start a default experiment");
 }
-//---------------------------------------------------------------------------
+
 ///Add Participants to Parameters
 void ribi::gtst::Parameters::AddParticipant(boost::shared_ptr<Participant> participant)
 {
@@ -64,7 +65,7 @@ void ribi::gtst::Parameters::AddParticipant(boost::shared_ptr<Participant> parti
   assert(participant);
   m_participants.push_back(participant);
 }
-//---------------------------------------------------------------------------
+
 ///Create a default non-logged in Partipant
 boost::shared_ptr<ribi::gtst::Participant> ribi::gtst::Parameters::CreateDefaultParticipant()
 {
@@ -101,14 +102,14 @@ boost::shared_ptr<ribi::gtst::Participant> ribi::gtst::Parameters::CreateDefault
 
   return p;
 }
-//---------------------------------------------------------------------------
+
 ///Deletes all Participant instances
 void ribi::gtst::Parameters::DeleteParticipants()
 {
   this->m_participants.clear();
   assert(m_participants.empty());
 }
-//---------------------------------------------------------------------------
+
 void ribi::gtst::Parameters::ReadFromFile(const std::string& filename)
 {
   if (!boost::filesystem::exists(filename))
@@ -187,7 +188,7 @@ void ribi::gtst::Parameters::ReadFromFile(const std::string& filename)
     throw std::runtime_error("Please specify at least two voting_options");
   }
 }
-//---------------------------------------------------------------------------
+
 ///FileToVector reads a file and converts it to a std::vector<std::string>
 ///From http://www.richelbilderbeek.nl/CppFileToVector.htm
 const std::vector<std::string> ribi::gtst::Parameters::FileToVector(const std::string& filename)
@@ -203,7 +204,7 @@ const std::vector<std::string> ribi::gtst::Parameters::FileToVector(const std::s
   }
   return v;
 }
-//---------------------------------------------------------------------------
+
 ///Parse a line in a Parameter file.
 void ribi::gtst::Parameters::Parse(const std::string& s)
 {
@@ -326,7 +327,7 @@ void ribi::gtst::Parameters::Parse(const std::string& s)
   }
   throw std::runtime_error((std::string("Unparsable parameter file line: ") + s).c_str());
 }
-//---------------------------------------------------------------------------
+
 //From http://www.richelbilderbeek.nl/CppSeperateString.htm
 const std::vector<std::string> ribi::gtst::Parameters::SeperateString(
   const std::string& input,
@@ -343,7 +344,7 @@ const std::vector<std::string> ribi::gtst::Parameters::SeperateString(
   }
   return v;
 }
-//---------------------------------------------------------------------------
+
 std::ostream& ribi::gtst::operator<<(std::ostream& os,const Parameters& parameters)
 {
   os
@@ -372,4 +373,4 @@ std::ostream& ribi::gtst::operator<<(std::ostream& os,const Parameters& paramete
 
   return os;
 }
-//---------------------------------------------------------------------------
+

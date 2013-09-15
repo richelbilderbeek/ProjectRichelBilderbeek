@@ -38,6 +38,8 @@ class QtTestQrcFileMainDialog : public QDialog
 
 public:
   explicit QtTestQrcFileMainDialog(QWidget *parent = 0);
+  QtTestQrcFileMainDialog(const QtTestQrcFileMainDialog&) = delete;
+  QtTestQrcFileMainDialog& operator=(const QtTestQrcFileMainDialog&) = delete;
   ~QtTestQrcFileMainDialog();
 
 private slots:

@@ -49,11 +49,15 @@ void ribi::WtServerPusher::Connect(
 {
   std::lock_guard<std::mutex> lock(m_mutex);
 
-  m_connections.push_back(
-    Connection(
+  boost::shared_ptr<Connection> connection {
+    new Connection(
       Wt::WApplication::instance()->sessionId(),
       client,
-      function));
+      function
+    )
+  };
+
+  m_connections.push_back(connection);
 }
 
 void ribi::WtServerPusher::Disconnect(const WtServerPusherClient* const client)
@@ -61,7 +65,7 @@ void ribi::WtServerPusher::Disconnect(const WtServerPusherClient* const client)
   std::lock_guard<std::mutex> lock(m_mutex);
   m_connections.erase(
     std::remove_if(m_connections.begin(),m_connections.end(),
-      [client](const Connection& c) { return c.m_client == client; } ));
+      [client](const boost::shared_ptr<Connection>& c) { return c->m_client == client; } ));
 }
 
 ribi::WtServerPusher * ribi::WtServerPusher::GetInstance()
@@ -77,9 +81,9 @@ const std::string ribi::WtServerPusher::GetVersion()
 
 const std::vector<std::string> ribi::WtServerPusher::GetVersionHistory()
 {
-  std::vector<std::string> v;
-  v.push_back("2011-08-05: version 1.0: initial version");
-  return v;
+  return {
+    "2011-08-05: version 1.0: initial version"
+  };
 }
 
 void ribi::WtServerPusher::Post()
@@ -88,7 +92,9 @@ void ribi::WtServerPusher::Post()
   //std::this_thread::sleep_for(std::chrono::milliseconds(10));
   std::lock_guard<std::mutex> lock(m_mutex);
 
-  std::for_each(m_connections.begin(),m_connections.end(),
-    [](const Connection& i) { Wt::WServer::instance()->post(i.m_session_id, i.m_function); });
+  for (auto c: m_connections)
+  {
+    Wt::WServer::instance()->post(c->m_session_id, c->m_function);
+    };
 }
 

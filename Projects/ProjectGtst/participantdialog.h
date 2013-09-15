@@ -23,7 +23,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #include <string>
 //---------------------------------------------------------------------------
-#include <boost/noncopyable.hpp>
+
 #include <boost/scoped_ptr.hpp>
 #include <boost/shared_ptr.hpp>
 //---------------------------------------------------------------------------
@@ -105,7 +105,7 @@ struct ParticipantDialog
     Ui() : m_led(0) {}
     //Wt::WLabel * m_label_time_left;
     WtLedWidget * m_led;
-  } ui;
+  } m_ui;
   #endif
 };
 

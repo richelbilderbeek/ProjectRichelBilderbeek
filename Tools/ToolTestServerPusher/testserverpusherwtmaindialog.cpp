@@ -33,6 +33,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 //---------------------------------------------------------------------------
 ribi::ToolTestServerPusher::WtMainDialog::WtMainDialog()
+  : ui{}
 {
   this->clear();
   this->setContentAlignment(Wt::AlignCenter);

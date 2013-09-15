@@ -44,6 +44,7 @@ ribi::gtst::ServerStateQuiz::ServerStateQuiz(
   Server * const server, const int period, const int cycle,
   const boost::shared_ptr<const ParametersQuiz>& parameters)
   : ServerState(server,period,cycle),
+    m_has_voted{},
     m_parameters(parameters)
 {
   assert(m_parameters);

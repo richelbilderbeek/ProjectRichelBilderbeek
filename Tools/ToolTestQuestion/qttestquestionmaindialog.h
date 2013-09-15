@@ -43,6 +43,8 @@ class QtTestQuestionMainDialog : public QtHideAndShowDialog
 
 public:
   explicit QtTestQuestionMainDialog(QWidget *parent = 0);
+  QtTestQuestionMainDialog(const QtTestQuestionMainDialog&) = delete;
+  QtTestQuestionMainDialog& operator=(const QtTestQuestionMainDialog&) = delete;
   ~QtTestQuestionMainDialog();
   const boost::shared_ptr<const QtQuestionDialog> GetDialog() const { return m_dialog; }
   void SetQuestion(const std::string& s);

@@ -32,6 +32,8 @@ struct TestEncrangerDialog;
 struct WtTestEncrangerMainDialog : public Wt::WContainerWidget
 {
   WtTestEncrangerMainDialog();
+  WtTestEncrangerMainDialog(const WtTestEncrangerMainDialog&) = delete;
+  WtTestEncrangerMainDialog& operator=(const WtTestEncrangerMainDialog&) = delete;
 
   private:
   boost::scoped_ptr<TestEncrangerDialog> m_dialog;

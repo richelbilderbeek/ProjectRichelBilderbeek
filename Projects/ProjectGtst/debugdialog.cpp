@@ -20,14 +20,12 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #include <cassert>
 #include <iostream>
-//---------------------------------------------------------------------------
 
-//---------------------------------------------------------------------------
 #include <Wt/WBreak>
 #include <Wt/WFileUpload>
 #include <Wt/WGroupBox>
 #include <Wt/WLabel>
-//---------------------------------------------------------------------------
+
 #include "all_groups.h"
 #include "all_parameters.h"
 #include "all_serverstates.h"
@@ -36,24 +34,26 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "ipaddress.h"
 #include "logfile.h"
 #include "participantdialog.h"
+#include "ipaddress.h"
 #include "server.h"
 #include "stopwatch.h"
 #include "wttimedserverpusher.h"
-//---------------------------------------------------------------------------
+
 ribi::gtst::DebugDialog::DebugDialog(Server * const server)
-  : m_fileupload(0),
-    m_label_state_upload(0),
+  : m_dialogs{},
+    m_fileupload{},
+    m_label_state_upload{},
     m_server(server)
 {
   assert(m_server);
   Show();
 }
-//---------------------------------------------------------------------------
+
 ribi::gtst::DebugDialog::~DebugDialog()
 {
 
 }
-//---------------------------------------------------------------------------
+
 ///Do something random to the dialog
 void ribi::gtst::DebugDialog::OnTimedServerPush()
 {
@@ -61,7 +61,7 @@ void ribi::gtst::DebugDialog::OnTimedServerPush()
     [](ParticipantDialog* dialog) { dialog->DoSomethingRandom(); }
   );
 }
-//---------------------------------------------------------------------------
+
 void ribi::gtst::DebugDialog::OnUploadDone()
 {
   boost::shared_ptr<Parameters> parameters(new Parameters(m_server));
@@ -111,7 +111,7 @@ void ribi::gtst::DebugDialog::OnUploadDone()
     addWidget(box);
   }
 }
-//---------------------------------------------------------------------------
+
 void ribi::gtst::DebugDialog::Show()
 {
   this->clear();
@@ -141,4 +141,4 @@ void ribi::gtst::DebugDialog::Show()
     this,
     &ribi::gtst::DebugDialog::OnUploadDone);
 }
-//---------------------------------------------------------------------------
+

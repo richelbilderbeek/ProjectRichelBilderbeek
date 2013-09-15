@@ -19,25 +19,25 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //From http://www.richelbilderbeek.nl/ProjectGtst.htm
 //---------------------------------------------------------------------------
 #include <boost/numeric/conversion/bounds.hpp>
-//---------------------------------------------------------------------------
+
 #include "groupfinished.h"
-//---------------------------------------------------------------------------
+
 ribi::gtst::GroupFinished::GroupFinished(Server * const server)
   : Group(server)
 {
 
 }
-//---------------------------------------------------------------------------
+
 void ribi::gtst::GroupFinished::AddFinishedParticipant(boost::shared_ptr<Participant> participant)
 {
   this->AddParticipant(participant);
   boost::shared_ptr<State> state(new StateFinished);
   participant->SetState(state.get());
 }
-//---------------------------------------------------------------------------
+
 ///GroupFinished its ID is the highest maximum int
 int ribi::gtst::GroupFinished::GetId() const
 {
   return boost::numeric::bounds<int>::highest();
 }
-//---------------------------------------------------------------------------
+

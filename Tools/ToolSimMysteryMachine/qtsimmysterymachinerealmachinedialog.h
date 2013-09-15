@@ -21,10 +21,13 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #ifndef QTSIMMYSTERYMACHINEREALMACHINEDIALOG_H
 #define QTSIMMYSTERYMACHINEREALMACHINEDIALOG_H
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include <QDialog>
+#pragma GCC diagnostic pop
 
 namespace Ui {
-    class QtSimMysteryMachineRealMachineDialog;
+  class QtSimMysteryMachineRealMachineDialog;
 }
 
 namespace ribi {
@@ -35,6 +38,8 @@ class QtSimMysteryMachineRealMachineDialog : public QDialog
 
 public:
     explicit QtSimMysteryMachineRealMachineDialog(QWidget *parent = 0);
+    QtSimMysteryMachineRealMachineDialog(const QtSimMysteryMachineRealMachineDialog&) = delete;
+    QtSimMysteryMachineRealMachineDialog& operator=(const QtSimMysteryMachineRealMachineDialog&) = delete;
     ~QtSimMysteryMachineRealMachineDialog();
 
 private:

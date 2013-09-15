@@ -21,22 +21,22 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <cassert>
 #include <iostream>
 #include <stdexcept>
-//---------------------------------------------------------------------------
+
 // 
-//---------------------------------------------------------------------------
+
 #include "parametersviewresultsvoting.h"
-//---------------------------------------------------------------------------
+
 ribi::gtst::ParametersViewResultsVoting::ParametersViewResultsVoting()
   : m_duration(5)
 {
 }
-//---------------------------------------------------------------------------
+
 int ribi::gtst::ParametersViewResultsVoting::GetDuration() const
 {
   assert(m_duration >= 0);
   return m_duration;
 }
-//---------------------------------------------------------------------------
+
 ///Parse a line
 void ribi::gtst::ParametersViewResultsVoting::Parse(const std::string& s)
 {
@@ -55,13 +55,13 @@ void ribi::gtst::ParametersViewResultsVoting::Parse(const std::string& s)
     return;
   }
 }
-//---------------------------------------------------------------------------
+
 void ribi::gtst::ParametersViewResultsVoting::SetDuration(const int time)
 {
   m_duration = time;
   assert(m_duration >= 0);
 }
-//---------------------------------------------------------------------------
+
 std::ostream& ribi::gtst::operator<<(std::ostream& os,const ParametersViewResultsVoting& parameters)
 {
   os
@@ -73,5 +73,5 @@ std::ostream& ribi::gtst::operator<<(std::ostream& os,const ParametersViewResult
 
   return os;
 }
-//---------------------------------------------------------------------------
+
 

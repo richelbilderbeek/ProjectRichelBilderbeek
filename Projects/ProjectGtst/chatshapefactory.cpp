@@ -19,21 +19,21 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //From http://www.richelbilderbeek.nl/ProjectGtst.htm
 //---------------------------------------------------------------------------
 #include <boost/numeric/conversion/cast.hpp>
-//---------------------------------------------------------------------------
+
 #include "chatshapefactory.h"
 #include "rainbow.h"
 #include "shape.h"
 #include "shapewidget.h"
-//---------------------------------------------------------------------------
+
 boost::scoped_ptr<ribi::gtst::ChatShapeFactory> ribi::gtst::ChatShapeFactory::m_instance;
-//---------------------------------------------------------------------------
+
 ribi::gtst::ChatShapeFactory::ChatShapeFactory()
   : m_widgets(CreateWidgets(56)),
     m_i(0)
 {
 
 }
-//---------------------------------------------------------------------------
+
 ///Obtain a nice series of ShapeWidgets
 const std::vector<boost::shared_ptr<ribi::ShapeWidget> > ribi::gtst::ChatShapeFactory::CreateWidgets(const int n)
 {
@@ -69,13 +69,13 @@ const std::vector<boost::shared_ptr<ribi::ShapeWidget> > ribi::gtst::ChatShapeFa
   std::random_shuffle(v.begin(),v.end());
   return v;
 }
-//---------------------------------------------------------------------------
+
 ribi::gtst::ChatShapeFactory * ribi::gtst::ChatShapeFactory::Get()
 {
   if (!m_instance) m_instance.reset(new ChatShapeFactory);
   return m_instance.get();
 }
-//---------------------------------------------------------------------------
+
 ///Obtain the next ShapeWidget
 const boost::shared_ptr<ribi::ShapeWidget> ribi::gtst::ChatShapeFactory::GetNextWidget()
 {
@@ -89,9 +89,9 @@ const boost::shared_ptr<ribi::ShapeWidget> ribi::gtst::ChatShapeFactory::GetNext
   }
   return widget;
 }
-//---------------------------------------------------------------------------
+
 void ribi::gtst::ChatShapeFactory::Reset()
 {
   m_i = 0;
 }
-//---------------------------------------------------------------------------
+

@@ -29,7 +29,8 @@ ribi::QtRoundedEditRectItem::QtRoundedEditRectItem(
     m_signal_item_requests_edit{},
     m_font(font),
     m_padding(padding),
-    m_text( {""} ) //Empty std::string, as m_text must be set by SetText
+    m_text( {""} ), //Empty std::vector<std::string>, as m_text must be set by SetText
+    m_text_pen{}
 {
   this->setFlags(
       QGraphicsItem::ItemIsFocusable
@@ -128,6 +129,7 @@ void ribi::QtRoundedEditRectItem::paint(QPainter* painter, const QStyleOptionGra
   QtRoundedRectItem::paint(painter,option,widget);
 
   painter->setFont(m_font);
+  painter->setPen(m_text_pen);
   const int sz = static_cast<int>(m_text.size());
   //const double line_height = rect().height() / static_cast<double>(sz);
   for (int i=0; i!=sz;++i)
@@ -160,10 +162,7 @@ void ribi::QtRoundedEditRectItem::paint(QPainter* painter, const QStyleOptionGra
     //painter->drawRect(r);
     #endif
     //Draw text to the unpadded text rectangle
-
-    painter->drawText(
-    r
-    ,s.c_str());
+    painter->drawText(r,s.c_str());
   }
 }
 
@@ -220,6 +219,17 @@ void ribi::QtRoundedEditRectItem::SetText(const std::vector<std::string>& text)
       this->GetRadiusY()
     );
     this->update();
+    this->m_signal_item_has_updated(this);
     m_signal_request_scene_update();
+  }
+}
+
+void ribi::QtRoundedEditRectItem::SetTextPen(const QPen& pen)
+{
+  if (m_text_pen != pen)
+  {
+    m_text_pen = pen;
+    this->update();
+    this->m_signal_item_has_updated(this);
   }
 }

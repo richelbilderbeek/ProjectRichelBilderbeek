@@ -336,7 +336,7 @@ const std::vector<std::pair<std::string,std::string> > c2h::Content::CreateCppRe
     { "std::unary_function","<a href=\"CppU$nary_f$unction.htm\">s$td::un$ary_fu$nction</a>" },
   //18
     { "boost::multi_array","<a href=\"CppM$ulti_ar$ray.htm\">bo$ost::m$ulti_a$rray</a>" },
-    { "boost::noncopyable","<a href=\"CppN$onc$opyable.htm\">b$oost::n$onc$opyable</a>" },
+    { "boostXXnoncopyable","<a href=\"CppN$onc$opyable.htm\">b$oost::n$onc$opyable</a>" },
     { "boost::regex_match","<a href=\"CppR$egex_m$atch.htm\">b$oost::r$egex_match</a>" },
     { "boost::tuples::tie","<a href=\"CppT$ie.htm\">b$oost::t$uples::t$ie</a>" },
     { "lambda expressions","<a href=\"CppL$ambdaE$xpression.htm\">l$ambda e$xpressions</a>" },

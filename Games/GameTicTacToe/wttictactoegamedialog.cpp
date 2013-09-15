@@ -20,15 +20,17 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #include <Wt/WBreak>
 #include <Wt/WPushButton>
-//---------------------------------------------------------------------------
+
 #include "wttictactoegamedialog.h"
 #include "wttictactoewidget.h"
-//---------------------------------------------------------------------------
+
 #include <cassert>
-//---------------------------------------------------------------------------
+
 ribi::WtTicTacToeGameDialog::WtTicTacToeGameDialog(
   const bool display_close_button)
-  : m_tictactoe(new WtTicTacToeWidget)
+  : m_signal_close{},
+    m_button_restart{},
+    m_tictactoe(new WtTicTacToeWidget)
 {
   this->setContentAlignment(Wt::AlignCenter);
   //TicTacToeWidget
@@ -57,19 +59,19 @@ ribi::WtTicTacToeGameDialog::WtTicTacToeGameDialog(
       this,&ribi::WtTicTacToeGameDialog::OnClose);
   }
 }
-//---------------------------------------------------------------------------
+
 void ribi::WtTicTacToeGameDialog::OnClose()
 {
   //emit that this dialog closes
   m_signal_close();
 }
-//---------------------------------------------------------------------------
+
 void ribi::WtTicTacToeGameDialog::OnRestart()
 {
   m_tictactoe->Restart();
   m_button_restart->setText("Restart");
 }
-//---------------------------------------------------------------------------
+
 void ribi::WtTicTacToeGameDialog::OnStateChanged()
 {
   switch (m_tictactoe->GetState())
@@ -91,6 +93,6 @@ void ribi::WtTicTacToeGameDialog::OnStateChanged()
       break;
   }
 }
-//---------------------------------------------------------------------------
+
 
 

@@ -21,17 +21,21 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <cassert>
 #include <cstdlib>
 #include <iostream>
-//---------------------------------------------------------------------------
 
-//---------------------------------------------------------------------------
 #include "repeatassigner.h"
-//---------------------------------------------------------------------------
+
+ribi::gtst::RepeatAssigner::RepeatAssigner()
+  : m_assigned_values{}
+{
+
+}
+
 ///Returns the last assigned number of repeats
 bool ribi::gtst::RepeatAssigner::CanGetLastAssigned() const
 {
   return !m_assigned_values.empty();
 }
-//---------------------------------------------------------------------------
+
 ///Returns if there already is a value assigned
 int ribi::gtst::RepeatAssigner::GetLastAssigned() const
 {
@@ -42,4 +46,4 @@ int ribi::gtst::RepeatAssigner::GetLastAssigned() const
   assert(CanGetLastAssigned());
   return m_assigned_values.back();
 }
-//---------------------------------------------------------------------------
+

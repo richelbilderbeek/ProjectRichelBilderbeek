@@ -57,9 +57,7 @@ struct ParticipantDialogStateViewResultsGroup
   const std::string ToStr() const { return this->StateViewResultsGroup::ToStr(); }
 
   private:
-  ///Only allow a Boost smart pointer to delete ParticipantDialogStateViewResultsGroup
   ~ParticipantDialogStateViewResultsGroup() {}
-  ///Only let smart pointers delete ParticipantDialogStateViewResultsGroup
   friend void boost::checked_delete<>(ParticipantDialogStateViewResultsGroup*);
 
   ///User interface

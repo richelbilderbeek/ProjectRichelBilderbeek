@@ -24,7 +24,10 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <boost/scoped_ptr.hpp>
 #include <boost/shared_ptr.hpp>
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include <QDialog>
+#pragma GCC diagnostic pop
 
 namespace Ui {
   class QtTestShapeMainDialog;
@@ -41,6 +44,8 @@ class QtTestShapeMainDialog : public QDialog
 
 public:
   explicit QtTestShapeMainDialog(QWidget *parent = 0);
+  QtTestShapeMainDialog(const QtTestShapeMainDialog&) = delete;
+  QtTestShapeMainDialog& operator=(const QtTestShapeMainDialog&) = delete;
   ~QtTestShapeMainDialog();
 
 protected:

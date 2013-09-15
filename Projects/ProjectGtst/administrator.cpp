@@ -20,21 +20,21 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #include <cassert>
 #include <iostream>
-//---------------------------------------------------------------------------
+
 #include "administrator.h"
-//---------------------------------------------------------------------------
+
 ribi::gtst::Administrator::Administrator(const int id)
   : m_id(id)
 {
   assert(m_id > 0);
 }
-//---------------------------------------------------------------------------
+
 int ribi::gtst::Administrator::GetId() const
 {
   assert(m_id > 0);
   return m_id;
 }
-//---------------------------------------------------------------------------
+
 std::ostream& ribi::gtst::operator<<(std::ostream& os,const Administrator& administrator)
 {
   os
@@ -46,5 +46,5 @@ std::ostream& ribi::gtst::operator<<(std::ostream& os,const Administrator& admin
   return os;
 
 }
-//---------------------------------------------------------------------------
+
 

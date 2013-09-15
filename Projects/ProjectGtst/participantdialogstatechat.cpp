@@ -20,10 +20,10 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #include <cassert>
 #include <fstream>
-//---------------------------------------------------------------------------
+
 #include <boost/numeric/conversion/cast.hpp>
 #include <boost/shared_ptr.hpp>
-//---------------------------------------------------------------------------
+
 #include <Wt/WBreak>
 #include <Wt/WGroupBox>
 #include <Wt/WLabel>
@@ -33,7 +33,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <Wt/WTableRow>
 #include <Wt/WText>
 #include <Wt/WTextArea>
-//---------------------------------------------------------------------------
+
 #include "all_parameters.h"
 #include "all_serverstates.h"
 #include "chatmessage.h"
@@ -56,14 +56,15 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //#include "trace.h"
 #include "wtserverpusher.h"
 #include "wtshapewidget.h"
-//---------------------------------------------------------------------------
+
 ribi::gtst::ParticipantDialogStateChat::ParticipantDialogStateChat(
   ParticipantDialog * const dialog,Server * const server)
-  : ParticipantDialogState(dialog,server)
+  : ParticipantDialogState(dialog,server),
+    ui{}
 {
 
 }
-//---------------------------------------------------------------------------
+
 ///Do something random with the UI, used by DebugDialog
 void ribi::gtst::ParticipantDialogStateChat::DoSomethingRandom()
 {
@@ -74,7 +75,7 @@ void ribi::gtst::ParticipantDialogStateChat::DoSomethingRandom()
     default: break; //No problem
   }
 }
-//---------------------------------------------------------------------------
+
 const std::string ribi::gtst::ParticipantDialogStateChat::GetRandomDebugString() const
 {
   static std::vector<std::string> v;
@@ -257,7 +258,7 @@ const std::string ribi::gtst::ParticipantDialogStateChat::GetRandomDebugString()
   std::string s = v[ std::rand() % v.size() ];
   return s;
 }
-//---------------------------------------------------------------------------
+
 void ribi::gtst::ParticipantDialogStateChat::RespondToServerPush()
 {
   ServerStateChat * const server_state
@@ -293,7 +294,7 @@ void ribi::gtst::ParticipantDialogStateChat::RespondToServerPush()
   //Display the Participant
   RespondToParticipant();
 }
-//---------------------------------------------------------------------------
+
 void ribi::gtst::ParticipantDialogStateChat::RespondToTimedServerPush()
 {
   const int time_left = m_server->GetStates()->GetCurrentState()->GetTimeLeft();
@@ -308,7 +309,7 @@ void ribi::gtst::ParticipantDialogStateChat::RespondToTimedServerPush()
     ui.m_label_time_left->setText(text.c_str());
   }
 }
-//---------------------------------------------------------------------------
+
 void ribi::gtst::ParticipantDialogStateChat::ShowPage(ParticipantDialog * const dialog)
 {
   assert(dialog);
@@ -382,7 +383,7 @@ void ribi::gtst::ParticipantDialogStateChat::ShowPage(ParticipantDialog * const 
   ui.m_edit_chat->enterPressed().connect(
     this,&ribi::gtst::ParticipantDialogStateChat::SubmitChatText);
 }
-//---------------------------------------------------------------------------
+
 void ribi::gtst::ParticipantDialogStateChat::SubmitChatText()
 {
   assert(ui.m_edit_chat);
@@ -411,4 +412,4 @@ void ribi::gtst::ParticipantDialogStateChat::SubmitChatText()
         new ChatMessage(
           GetDialog()->GetParticipant(),s)));
 }
-//---------------------------------------------------------------------------
+

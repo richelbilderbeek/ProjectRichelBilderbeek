@@ -21,7 +21,10 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #ifndef QTTESTDIALMENUDIALOG_H
 #define QTTESTDIALMENUDIALOG_H
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include <QDialog>
+#pragma GCC diagnostic pop
 
 namespace Ui {
 class QtTestDialMenuDialog;
@@ -35,6 +38,8 @@ class QtTestDialMenuDialog : public QDialog
 
 public:
   explicit QtTestDialMenuDialog(QWidget *parent = 0);
+  QtTestDialMenuDialog(const QtTestDialMenuDialog&) = delete;
+  QtTestDialMenuDialog& operator=(const QtTestDialMenuDialog&) = delete;
   ~QtTestDialMenuDialog();
 
 private slots:

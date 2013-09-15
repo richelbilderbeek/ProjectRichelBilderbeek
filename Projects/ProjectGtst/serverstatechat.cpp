@@ -45,6 +45,7 @@ ribi::gtst::ServerStateChat::ServerStateChat(
   const int cycle,
   const boost::shared_ptr<const ParametersChat> parameters)
   : ServerState(server,period,cycle),
+    m_chat_messages{},
     m_parameters(parameters)
 {
   assert(m_parameters);

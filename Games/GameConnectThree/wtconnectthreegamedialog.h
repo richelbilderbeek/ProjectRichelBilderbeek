@@ -20,19 +20,19 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #ifndef WTCONNECTTHREEGAMEDIALOG_H
 #define WTCONNECTTHREEGAMEDIALOG_H
-//---------------------------------------------------------------------------
+
 #include <bitset>
 #include <vector>
-//---------------------------------------------------------------------------
+
 #include <boost/signals2.hpp>
-//---------------------------------------------------------------------------
+
 #include <Wt/WContainerWidget>
-//---------------------------------------------------------------------------
+
 namespace Wt
 {
   struct WTimer;
 }
-//---------------------------------------------------------------------------
+
 
 namespace ribi {
 
@@ -44,11 +44,12 @@ struct ConnectThreeResources;
 struct WtConnectThreeGameDialog : public Wt::WContainerWidget
 {
   enum State { state_playing, state_winner };
-  WtConnectThreeGameDialog(
+  explicit WtConnectThreeGameDialog(
     const boost::shared_ptr<const ConnectThreeResources> resources,
     const std::bitset<3>& is_player_human = std::bitset<3>(true)
   );
-
+  WtConnectThreeGameDialog(const WtConnectThreeGameDialog&) = delete;
+  WtConnectThreeGameDialog& operator=(const WtConnectThreeGameDialog&) = delete;
   bool HasWinner() const { return m_state == state_winner; }
   void PauseTimer();
   void RestartGame();

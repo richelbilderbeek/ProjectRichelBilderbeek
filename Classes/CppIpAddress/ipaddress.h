@@ -53,10 +53,9 @@ struct IpAddress
   std::string m_ip_address;
 };
 
-/*
 ///SafeIpAddress guarantees to contain a valid IP address
 ///and only be of a complete type
-struct SafeIpAddress : public IpAddress
+struct SafeIpAddress //: public IpAddress
 {
   ///SafeIpAddress constructor throws an exception when
   ///ip_address is not a valid IP address
@@ -64,14 +63,19 @@ struct SafeIpAddress : public IpAddress
   SafeIpAddress(const SafeIpAddress&) = delete;
   SafeIpAddress& operator=(const SafeIpAddress&) = delete;
 
+  ///Get the possibe IP address as a std::string
+  const std::string& Get() const { return m_ip_address; }
+
   private:
   ~SafeIpAddress()  {}
   friend void boost::checked_delete<>(SafeIpAddress*);
+
+  ///The std::string that might hold a valid IP address
+  std::string m_ip_address;
 };
-*/
 
 bool operator==(const IpAddress& lhs,const IpAddress& rhs);
-//bool operator==(const SafeIpAddress& lhs,const SafeIpAddress& rhs);
+bool operator==(const SafeIpAddress& lhs,const SafeIpAddress& rhs);
 
 } //~namespace ribi
 

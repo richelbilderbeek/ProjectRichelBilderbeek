@@ -56,6 +56,7 @@ ribi::WtTestExerciseMainDialog::Ui::Ui()
 }
 //---------------------------------------------------------------------------
 ribi::WtTestExerciseMainDialog::WtTestExerciseMainDialog()
+  : ui{}
 {
   this->addWidget(new Wt::WLabel("Waiting time correct (msecs)"));
   this->addWidget(ui.m_edit_wait_correct);

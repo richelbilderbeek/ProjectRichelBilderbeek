@@ -21,16 +21,18 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <cassert>
 #include <iostream>
 #include <stdexcept>
-//---------------------------------------------------------------------------
+
 #include "fparser.hh"
 #include "parametersfinished.h"
-//---------------------------------------------------------------------------
+
 ribi::gtst::ParametersFinished::ParametersFinished()
+  : m_earnings_function{},
+    m_message{}
 {
   SetEarningsFunction("1.0 + (0.01 * p)");
   SetMessage("Thanks for participating in this experiment");
 }
-//---------------------------------------------------------------------------
+
 double ribi::gtst::ParametersFinished::CalculateEarnings(const double payoff) const
 {
   FunctionParser f;
@@ -56,7 +58,7 @@ double ribi::gtst::ParametersFinished::CalculateEarnings(const double payoff) co
 
   return earnings;
 }
-//---------------------------------------------------------------------------
+
 ///Parse a line
 void ribi::gtst::ParametersFinished::Parse(const std::string& s)
 {
@@ -79,7 +81,7 @@ void ribi::gtst::ParametersFinished::Parse(const std::string& s)
     SetEarningsFunction(t);
   }
 }
-//---------------------------------------------------------------------------
+
 ///Set the function that is used to calculate the earnings of
 ///a Participant for participating, from the amount of payoff
 ///he/she has gathered
@@ -94,14 +96,14 @@ void ribi::gtst::ParametersFinished::SetEarningsFunction(const std::string& earn
   }
   m_earnings_function = earnings_function;
 }
-//---------------------------------------------------------------------------
+
 ///Set the message shown to the Participant when the experiment has finished
 void ribi::gtst::ParametersFinished::SetMessage(const std::string& message)
 {
   assert(!message.empty());
   m_message = message;
 }
-//---------------------------------------------------------------------------
+
 std::ostream& ribi::gtst::operator<<(std::ostream& os,const ParametersFinished& parameters)
 {
   os
@@ -116,5 +118,5 @@ std::ostream& ribi::gtst::operator<<(std::ostream& os,const ParametersFinished& 
 
   return os;
 }
-//---------------------------------------------------------------------------
+
 

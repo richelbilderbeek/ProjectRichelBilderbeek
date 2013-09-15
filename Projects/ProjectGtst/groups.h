@@ -20,19 +20,19 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #ifndef PROJECTGTSTGROUPS_H
 #define PROJECTGTSTGROUPS_H
-//---------------------------------------------------------------------------
+
 #include <mutex>
 #include <set>
 #include <vector>
-//---------------------------------------------------------------------------
+
 #include <boost/checked_delete.hpp>
-#include <boost/noncopyable.hpp>
+
 #include <boost/scoped_ptr.hpp>
 #include <boost/shared_ptr.hpp>
 #include <boost/signals2.hpp>
-//---------------------------------------------------------------------------
+
 #include "forward_declarations.h"
-//---------------------------------------------------------------------------
+
 
 namespace ribi {
 namespace gtst {
@@ -42,10 +42,12 @@ namespace gtst {
 ///
 ///Groups is befriended to ServerStateGroupDynamics for modifying
 ///the Participant Group distribution
-struct Groups : public boost::noncopyable
+struct Groups
 {
   ///Groups constructor
   Groups(Server * const server);
+  Groups(const Groups&) = delete;
+  Groups& operator=(const Groups&) = delete;
 
   ///Check if a Participant can be from his/her non-wildcard IP address
   bool CanFind(const boost::shared_ptr<const SafeIpAddress>& ip_address) const;
@@ -111,18 +113,7 @@ struct Groups : public boost::noncopyable
   static boost::signals2::signal<void ()> m_signal_groups_changed;
 
   private:
-  ///Only allow a Boost smart pointer to delete Groups
-  //to prevent the following trouble,
-  //cited from http://www.boost.org/libs/utility/checked_delete.html:
-  //The C++ Standard allows, in 5.3.5/5, pointers to incomplete
-  //class types to be deleted with a delete-expression.
-  //When the class has a non-trivial destructor, or a class-specific operator
-  //delete, the behavior is undefined. Some compilers issue a warning when an
-  //incomplete type is deleted, but unfortunately, not all do, and programmers
-  //sometimes ignore or disable warnings.
   ~Groups() {}
-  ///Only allow a Boost smart pointer to delete Groups
-  //Template syntax from Herb Sutter. Exceptional C++ style. 2005. ISBN: 0-201-76042-8. Item 8: 'Befriending templates'.
   friend void boost::checked_delete<>(Groups*);
 
   ///ServerState can modify
@@ -180,7 +171,7 @@ struct Groups : public boost::noncopyable
   ///Remove all Participants
   void Reset();
 };
-//---------------------------------------------------------------------------
+
 std::ostream& operator<<(std::ostream& os,const Groups& groups);
 
 } //~namespace gtst

@@ -18,6 +18,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolCodeToHtml.htm
 //---------------------------------------------------------------------------
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include <fstream>
 #include <string>
 #include <vector>
@@ -43,6 +45,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "codetohtml.h"
 #include "codetohtmldialog.h"
 #include "wtcodetohtmldialog.h"
+#pragma GCC diagnostic pop
 
 namespace c2h {
 
@@ -55,6 +58,7 @@ WtDialog::Ui::Ui()
     m_box_content_type(new Wt::WComboBox),
     m_button_convert(new Wt::WPushButton),
     m_edit_source(new Wt::WLineEdit),
+    m_menu{},
     m_stack(new Wt::WStackedWidget)
 {
   m_area_result->setMinimumSize(800,400);
@@ -117,6 +121,7 @@ WtDialog::Ui::Ui()
 }
 
 WtDialog::WtDialog()
+  : ui{}
 {
   this->setContentAlignment(Wt::AlignCenter);
   this->addWidget(new Wt::WBreak);

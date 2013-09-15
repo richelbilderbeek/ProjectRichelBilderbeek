@@ -21,17 +21,17 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <cassert>
 #include <iostream>
 #include <stdexcept>
-//---------------------------------------------------------------------------
+
 // 
-//---------------------------------------------------------------------------
+
 #include "parametersassignpayoff.h"
-//---------------------------------------------------------------------------
+
 ribi::gtst::ParametersAssignPayoff::ParametersAssignPayoff()
   : m_message("Assigning payoffs...")
 {
 
 }
-//---------------------------------------------------------------------------
+
 ///Parse a line
 void ribi::gtst::ParametersAssignPayoff::Parse(const std::string& s)
 {
@@ -52,14 +52,14 @@ void ribi::gtst::ParametersAssignPayoff::Parse(const std::string& s)
     return;
   }
 }
-//---------------------------------------------------------------------------
+
 ///Set the message displayed in the ParticipantDialogStateAssignPayoff
 void ribi::gtst::ParametersAssignPayoff::SetMessage(const std::string& message)
 {
   assert(!message.empty());
   m_message = message;
 }
-//---------------------------------------------------------------------------
+
 std::ostream& ribi::gtst::operator<<(std::ostream& os,const ParametersAssignPayoff& parameters)
 {
   os
@@ -77,5 +77,5 @@ std::ostream& ribi::gtst::operator<<(std::ostream& os,const ParametersAssignPayo
 
   return os;
 }
-//---------------------------------------------------------------------------
+
 

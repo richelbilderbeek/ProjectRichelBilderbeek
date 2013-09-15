@@ -20,7 +20,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #include <Wt/WGroupBox>
 #include <Wt/WLabel>
-//---------------------------------------------------------------------------
+
 #include "all_serverstates.h"
 #include "administratordialog.h"
 #include "administratordialogstateloggedin.h"
@@ -32,29 +32,31 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "stopwatch.h"
 #include "wtledwidget.h"
 #include "wtselectfiledialog.h"
-//---------------------------------------------------------------------------
+
 ribi::gtst::AdministratorDialog::AdministratorDialog(Server * const server)
-  : m_state(0),
+  : m_administrator{},
+    m_state(0),
     m_state_logged_in(new AdministratorDialogStateLoggedIn(server,this)),
-    m_state_not_logged_in(new AdministratorDialogStateNotLoggedIn(server,this))
+    m_state_not_logged_in(new AdministratorDialogStateNotLoggedIn(server,this)),
+    ui{}
 {
   assert(!m_state);
   assert(m_state_logged_in);
   assert(m_state_not_logged_in);
   SetState(GetStateNotLoggedIn());
 }
-//---------------------------------------------------------------------------
+
 ribi::gtst::AdministratorDialog::~AdministratorDialog()
 {
 
 }
-//---------------------------------------------------------------------------
+
 bool ribi::gtst::AdministratorDialog::CanGetAdministrator() const
 {
   assert(m_administrator.empty() || m_administrator.size() == 1);
   return !m_administrator.empty();
 }
-//---------------------------------------------------------------------------
+
 ribi::gtst::AdministratorDialog * ribi::gtst::AdministratorDialog::CreateDialogHeading()
 {
   AdministratorDialog * const dialog = this->m_state->GetDialog();
@@ -71,26 +73,26 @@ ribi::gtst::AdministratorDialog * ribi::gtst::AdministratorDialog::CreateDialogH
 
   return dialog;
 }
-//---------------------------------------------------------------------------
+
 boost::weak_ptr<ribi::gtst::Administrator> ribi::gtst::AdministratorDialog::GetAdministrator() const
 {
   assert(CanGetAdministrator());
   assert(m_administrator.size() == 1);
   return m_administrator[0];
 }
-//---------------------------------------------------------------------------
+
 ribi::gtst::AdministratorDialogStateLoggedIn * ribi::gtst::AdministratorDialog::GetStateLoggedIn() const
 {
   assert(m_state_logged_in);
   return m_state_logged_in.get();
 }
-//---------------------------------------------------------------------------
+
 ribi::gtst::AdministratorDialogStateNotLoggedIn * ribi::gtst::AdministratorDialog::GetStateNotLoggedIn() const
 {
   assert(m_state_not_logged_in);
   return m_state_not_logged_in.get();
 }
-//---------------------------------------------------------------------------
+
 void ribi::gtst::AdministratorDialog::SetState(AdministratorDialogState * const state)
 {
   assert(state);
@@ -98,19 +100,19 @@ void ribi::gtst::AdministratorDialog::SetState(AdministratorDialogState * const 
   assert(m_state);
   m_state->ShowPage(CreateDialogHeading());
 }
-//---------------------------------------------------------------------------
+
 void ribi::gtst::AdministratorDialog::OnServerPush()
 {
   //OnServerTimer();
   this->m_state->OnTimer();
 }
-//---------------------------------------------------------------------------
+
 void ribi::gtst::AdministratorDialog::SetAdministrator(boost::weak_ptr<Administrator> administrator)
 {
   assert(m_administrator.empty());
   m_administrator.push_back(administrator);
 }
-//---------------------------------------------------------------------------
-//---------------------------------------------------------------------------
-//---------------------------------------------------------------------------
-//---------------------------------------------------------------------------
+
+
+
+

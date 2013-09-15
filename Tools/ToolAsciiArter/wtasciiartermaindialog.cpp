@@ -18,6 +18,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolTestAsciiArter.htm
 //---------------------------------------------------------------------------
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include <boost/filesystem.hpp>
 #include <boost/foreach.hpp>
 #include <boost/lexical_cast.hpp>
@@ -44,7 +46,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "wtaboutdialog.h"
 #include "wtautoconfig.h"
 #include "wtasciiartermaindialog.h"
-//---------------------------------------------------------------------------
+#pragma GCC diagnostic pop
+
 ribi::WtAsciiArterMainDialog::Ui::Ui()
   : m_edit_width(new Wt::WLineEdit),
     m_fileupload(new Wt::WFileUpload),
@@ -54,7 +57,8 @@ ribi::WtAsciiArterMainDialog::Ui::Ui()
 }
 //---------------------------------------------------------------------------
 ribi::WtAsciiArterMainDialog::WtAsciiArterMainDialog()
-  : m_dialog(new AsciiArterMainDialog)
+  : m_dialog(new AsciiArterMainDialog),
+    ui{}
 {
   //Create resources
   {

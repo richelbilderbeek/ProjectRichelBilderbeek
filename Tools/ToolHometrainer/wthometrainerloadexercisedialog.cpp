@@ -18,6 +18,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolHometrainer.htm
 //---------------------------------------------------------------------------
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include <boost/foreach.hpp>
 #include <boost/lexical_cast.hpp>
 #include <boost/numeric/conversion/cast.hpp>
@@ -45,6 +47,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "wtopenquestiondialog.h"
 #include "wtmultiplechoicequestiondialog.h"
 #include "wtselecthometrainerfiledialog.h"
+#pragma GCC diagnostic pop
 
 ribi::WtHometrainerLoadExerciseDialog::Ui::Ui()
   : m_label_status(new Wt::WLabel("Please select a Hometrainer file")),
@@ -54,6 +57,8 @@ ribi::WtHometrainerLoadExerciseDialog::Ui::Ui()
 }
 
 ribi::WtHometrainerLoadExerciseDialog::WtHometrainerLoadExerciseDialog()
+  : m_signal_selected_file{},
+    ui{}
 {
   this->addWidget(ui.m_select_file);
   this->addWidget(new Wt::WBreak);

@@ -41,7 +41,7 @@ struct WtRubiksClockMainDialog : public Wt::WContainerWidget
     WtDialWidget * const m_dial_size;
     Wt::WLabel * const m_label_size;
     WtRubiksClockWidget * const m_widget;
-  } ui;
+  } m_ui;
 
   ///Respond to a click on m_button_flip
   void OnFlip();

@@ -18,25 +18,29 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/GameConnectThree.htm
 //---------------------------------------------------------------------------
+#include "wtconnectthreegamedialog.h"
+
+#include <cassert>
+
 #include <Wt/WBreak>
 #include <Wt/WImage>
 #include <Wt/WPushButton>
 #include <Wt/WText>
 #include <Wt/WTimer>
 #include <Wt/WResource>
-//---------------------------------------------------------------------------
+
 #include "connectthree.h"
 #include "connectthreeresources.h"
 #include "trace.h"
-#include "wtconnectthreegamedialog.h"
 #include "wtconnectthreewidget.h"
-//---------------------------------------------------------------------------
-#include <cassert>
-//---------------------------------------------------------------------------
+
+
 ribi::WtConnectThreeGameDialog::WtConnectThreeGameDialog(
   const boost::shared_ptr<const ConnectThreeResources> resources,
   const std::bitset<3>& is_player_human)
-  : m_is_player_human(is_player_human),
+  : m_board{},
+    m_is_player_human(is_player_human),
+    m_players{},
     m_resources(resources),
     m_state(state_playing),
     m_timer(new Wt::WTimer(this))
@@ -53,12 +57,12 @@ ribi::WtConnectThreeGameDialog::WtConnectThreeGameDialog(
   ShowGame();
   //OnValidMove(); //Draw screen
 }
-//---------------------------------------------------------------------------
+
 ribi::WtConnectThreeGameDialog::~WtConnectThreeGameDialog()
 {
   m_timer->stop();
 }
-//---------------------------------------------------------------------------
+
 void ribi::WtConnectThreeGameDialog::DoComputerTurn()
 {
   assert(m_board);
@@ -69,7 +73,7 @@ void ribi::WtConnectThreeGameDialog::DoComputerTurn()
     OnValidMove();
   }
 }
-//---------------------------------------------------------------------------
+
 ///OnValidMove is called after a valid move. The game
 ///is either terminated, or the next player can do
 ///his/her move.
@@ -84,7 +88,7 @@ void ribi::WtConnectThreeGameDialog::OnValidMove()
   this->PauseTimer();
   ShowWinner();
 }
-//---------------------------------------------------------------------------
+
 void ribi::WtConnectThreeGameDialog::RestartGame()
 {
   m_state = state_playing;
@@ -94,7 +98,7 @@ void ribi::WtConnectThreeGameDialog::RestartGame()
   UpdatePlayersPanel();
   StartTimer();
 }
-//---------------------------------------------------------------------------
+
 void ribi::WtConnectThreeGameDialog::SetIsPlayerHuman(const std::bitset<3>& is_player_human)
 {
   if (m_is_player_human != is_player_human)
@@ -106,7 +110,7 @@ void ribi::WtConnectThreeGameDialog::SetIsPlayerHuman(const std::bitset<3>& is_p
     UpdatePlayersPanel();
   }
 }
-//---------------------------------------------------------------------------
+
 void ribi::WtConnectThreeGameDialog::ShowGame()
 {
   assert(m_state == state_playing);
@@ -141,7 +145,7 @@ void ribi::WtConnectThreeGameDialog::ShowGame()
   this->addWidget(m_players[2]);
   UpdatePlayersPanel();
 }
-//---------------------------------------------------------------------------
+
 void ribi::WtConnectThreeGameDialog::ShowWinner()
 {
   assert(m_state = state_winner);
@@ -198,7 +202,7 @@ void ribi::WtConnectThreeGameDialog::ShowWinner()
       &ribi::WtConnectThreeGameDialog::RestartGame);
   }
 }
-//---------------------------------------------------------------------------
+
 void ribi::WtConnectThreeGameDialog::UpdatePlayersPanel()
 {
   assert(m_board);
@@ -234,15 +238,15 @@ void ribi::WtConnectThreeGameDialog::UpdatePlayersPanel()
     }
   }
 }
-//---------------------------------------------------------------------------
+
 void ribi::WtConnectThreeGameDialog::PauseTimer()
 {
   m_timer->stop();
 }
-//---------------------------------------------------------------------------
+
 void ribi::WtConnectThreeGameDialog::StartTimer()
 {
   m_timer->start();
 }
-//---------------------------------------------------------------------------
+
 

@@ -48,6 +48,7 @@ ribi::WtTestQuestionMainDialog::Ui::Ui()
 }
 
 ribi::WtTestQuestionMainDialog::WtTestQuestionMainDialog()
+  : ui{}
 {
   this->addWidget(ui.m_box);
   this->addWidget(new Wt::WBreak);

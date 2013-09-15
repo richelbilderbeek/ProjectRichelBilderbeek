@@ -38,6 +38,8 @@ class QtTestPylosMenuDialog : public QDialog
 
 public:
   explicit QtTestPylosMenuDialog(QWidget *parent = 0);
+  QtTestPylosMenuDialog(const QtTestPylosMenuDialog&) = delete;
+  QtTestPylosMenuDialog& operator=(const QtTestPylosMenuDialog&) = delete;
   ~QtTestPylosMenuDialog();
 
 private slots:

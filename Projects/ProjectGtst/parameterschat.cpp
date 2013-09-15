@@ -21,29 +21,27 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <cassert>
 #include <iostream>
 #include <stdexcept>
-//---------------------------------------------------------------------------
-// 
-//---------------------------------------------------------------------------
+
 #include "parameterschat.h"
-//---------------------------------------------------------------------------
+
 ribi::gtst::ParametersChat::ParametersChat()
   : m_duration(5)
 {
 
 }
-//---------------------------------------------------------------------------
+
 int ribi::gtst::ParametersChat::GetDuration() const
 {
   assert(m_duration >= 0);
   return m_duration;
 }
-//---------------------------------------------------------------------------
+
 void ribi::gtst::ParametersChat::SetDuration(const int time)
 {
   m_duration = time;
   assert(m_duration >= 0);
 }
-//---------------------------------------------------------------------------
+
 ///Parse a line
 void ribi::gtst::ParametersChat::Parse(const std::string& s)
 {
@@ -67,7 +65,7 @@ void ribi::gtst::ParametersChat::Parse(const std::string& s)
     return;
   }
 }
-//---------------------------------------------------------------------------
+
 std::ostream& ribi::gtst::operator<<(std::ostream& os,const ParametersChat& parameters)
 {
   os
@@ -79,5 +77,5 @@ std::ostream& ribi::gtst::operator<<(std::ostream& os,const ParametersChat& para
 
   return os;
 }
-//---------------------------------------------------------------------------
+
 

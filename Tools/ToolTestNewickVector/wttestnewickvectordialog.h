@@ -22,6 +22,8 @@ namespace ribi {
 struct WtTestNewickVectorDialog : public Wt::WContainerWidget
 {
   WtTestNewickVectorDialog();
+  WtTestNewickVectorDialog(const WtTestNewickVectorDialog&) = delete;
+  WtTestNewickVectorDialog& operator=(const WtTestNewickVectorDialog&) = delete;
   boost::signals2::signal<void ()> m_signal_about;
   boost::signals2::signal<void ()> m_signal_any_change;
   private:

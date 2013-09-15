@@ -20,29 +20,32 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #ifndef WTCONNECTTHREEMENUDIALOG_H
 #define WTCONNECTTHREEMENUDIALOG_H
-//---------------------------------------------------------------------------
+
 #include <boost/scoped_ptr.hpp>
 #include <boost/signals2.hpp>
-//---------------------------------------------------------------------------
+
 #include <Wt/WContainerWidget>
-//---------------------------------------------------------------------------
+
 #include "connectthreeresources.h"
-//---------------------------------------------------------------------------
+
 namespace Wt
 {
   struct WMenu;
   struct WWidget;
 }
-//---------------------------------------------------------------------------
+
 namespace ribi {
 
 struct WtSelectPlayerWidget;
 struct WtAboutDialog;
 struct WtConnectThreeGameDialog;
-//---------------------------------------------------------------------------
+
 struct WtConnectThreeMenuDialog : public Wt::WContainerWidget
 {
   WtConnectThreeMenuDialog();
+  WtConnectThreeMenuDialog(const WtConnectThreeMenuDialog&) = delete;
+  WtConnectThreeMenuDialog& operator=(const WtConnectThreeMenuDialog&) = delete;
+
   private:
   WtConnectThreeMenuDialog(
     const boost::shared_ptr<const ConnectThreeResources> resources

@@ -21,7 +21,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #ifndef PROJECTGTSTPARTICIPANTSTATE_H
 #define PROJECTGTSTPARTICIPANTSTATE_H
 //---------------------------------------------------------------------------
-#include <boost/noncopyable.hpp>
+
 //---------------------------------------------------------------------------
 #include "forward_declarations.h"
 #include "state.h"
@@ -44,12 +44,14 @@ namespace gtst {
 ///- ParticipantStateAssignPayoff: assign payoff
 ///- ParticipantStateViewResultsGroup: views group payoff
 ///- ParticipantStateViewResultsAll: views all group payoff
-struct ParticipantState : public boost::noncopyable, public State
+struct ParticipantState : public State
 {
   ///Contruct every ParticipantState from a pointer to its Participant
   ParticipantState(
     Participant * const participant,
     Server * const server);
+  ParticipantState(const ParticipantState&) = delete;
+  ParticipantState& operator=(const ParticipantState&) = delete;
 
   ///Obtain a read-only Participant
   const Participant * GetParticipant() const { return m_participant; }

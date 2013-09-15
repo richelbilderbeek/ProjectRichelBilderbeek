@@ -52,52 +52,53 @@ ribi::WtRubiksClockMainDialog::Ui::Ui()
 }
 
 ribi::WtRubiksClockMainDialog::WtRubiksClockMainDialog()
+  : m_ui{}
 {
   this->clear();
   this->setContentAlignment(Wt::AlignCenter);
   this->addWidget(new Wt::WBreak);
   this->addWidget(new Wt::WBreak);
-  this->addWidget(ui.m_widget);
+  this->addWidget(m_ui.m_widget);
   this->addWidget(new Wt::WBreak);
   this->addWidget(new Wt::WBreak);
-  this->addWidget(ui.m_button_flip);
+  this->addWidget(m_ui.m_button_flip);
   this->addWidget(new Wt::WBreak);
   this->addWidget(new Wt::WBreak);
-  this->addWidget(ui.m_label_size);
-  this->addWidget(ui.m_dial_size);
+  this->addWidget(m_ui.m_label_size);
+  this->addWidget(m_ui.m_dial_size);
 
-  ui.m_button_flip->clicked().connect(
+  m_ui.m_button_flip->clicked().connect(
     this,
     &ribi::WtRubiksClockMainDialog::OnFlip);
 
-  ui.m_dial_size->GetWidget()->GetDial()->m_signal_position_changed.connect(
+  m_ui.m_dial_size->GetWidget()->GetDial()->m_signal_position_changed.connect(
     boost::bind(
       &ribi::WtRubiksClockMainDialog::OnSizeChanged,
       this));
 
-  ui.m_dial_size->GetWidget()->SetGeometry(Rect(0,0,32,32));
-  ui.m_label_size->setText("Size: ?x? (width x height)");
-  ui.m_widget->GetWidget()->SetGeometry(Rect(0,0,300,300));
+  m_ui.m_dial_size->GetWidget()->SetGeometry(Rect(0,0,32,32));
+  m_ui.m_label_size->setText("Size: ?x? (width x height)");
+  m_ui.m_widget->GetWidget()->SetGeometry(Rect(0,0,300,300));
 
-  ui.m_dial_size->GetWidget()->GetDial()->SetPosition(0.5);
+  m_ui.m_dial_size->GetWidget()->GetDial()->SetPosition(0.5);
 }
 
 void ribi::WtRubiksClockMainDialog::OnFlip()
 {
-  ui.m_widget->GetWidget()->Flip();
+  m_ui.m_widget->GetWidget()->Flip();
 }
 
 void ribi::WtRubiksClockMainDialog::OnSizeChanged()
 {
   const int size = boost::numeric_cast<int>(
-    500.0 * ui.m_dial_size->GetWidget()->GetDial()->GetPosition());
-  ui.m_widget->GetWidget()->SetGeometry(Rect(0,0,size,size));
+    500.0 * m_ui.m_dial_size->GetWidget()->GetDial()->GetPosition());
+  m_ui.m_widget->GetWidget()->SetGeometry(Rect(0,0,size,size));
   std::string text
     = std::string("Size: ")
     + boost::lexical_cast<std::string>(size)
     + std::string("x")
     + boost::lexical_cast<std::string>(size)
     + std::string(" (width x height)");
-  ui.m_label_size->setText(text.c_str());
+  m_ui.m_label_size->setText(text.c_str());
 }
 

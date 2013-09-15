@@ -50,7 +50,9 @@ ribi::gtst::ServerStateGroupReAssign::ServerStateGroupReAssign(
   Server * const server, const int period, const int cycle,
   const boost::shared_ptr<const ParametersGroupReAssign>& parameters)
   : ServerState(server,period,cycle),
-    m_parameters(parameters)
+    m_group_payoffs{},
+    m_parameters(parameters),
+    m_worst_and_best_group{}
 {
 
 }

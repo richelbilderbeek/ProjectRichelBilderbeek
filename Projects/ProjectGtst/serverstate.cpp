@@ -52,7 +52,8 @@ ribi::gtst::ServerState::ServerState(
   : m_cycle(cycle),
     m_period(period),
     m_server(server),
-    m_stopwatch(new Stopwatch)
+    m_stopwatch(new Stopwatch),
+    m_wait_time{}
 {
   assert(m_server);
   assert(m_stopwatch);

@@ -44,51 +44,43 @@ struct AdministratorDialogStateLoggedIn : public AdministratorDialogState
   void ShowPage(AdministratorDialog * const dialog);
 
   private:
-  ///Only allow a Boost smart pointer to delete AdministratorDialogStateLoggedIn
-  //to prevent the following trouble,
-  //cited from http://www.boost.org/libs/utility/checked_delete.html:
-  //The C++ StandardParticipantDialogState allows, in 5.3.5/5, pointers to incomplete
-  //class types to be deleted with a delete-expression.
-  //When the class has a non-trivial destructor, or a class-specific operator
-  //delete, the behavior is undefined. Some compilers issue a warning when an
-  //incomplete type is deleted, but unfortunately, not all do, and programmers
-  //sometimes ignore or disable warnings.
   ~AdministratorDialogStateLoggedIn() {}
-  ///Only allow a Boost smart pointer to delete AdministratorDialogStateLoggedIn
-  //Template syntax from Herb Sutter. Exceptional C++ style. 2005. ISBN: 0-201-76042-8. Item 8: 'Befriending templates'.
   friend void boost::checked_delete<>(AdministratorDialogStateLoggedIn* x);
+
+  struct SafeCompile
+  {
+    SafeCompile(WtSelectFileDialog * const p) : m_select_file_dialog(p) {}
+    boost::scoped_ptr<WtSelectFileDialog> m_select_file_dialog;
+  } m_safe_compile;
 
   struct Ui
   {
     Ui()
-      : m_server_anchor(0),
+      :
         m_button_group_set_phase(0),
         m_group_widget(0),
         m_fileupload(0),
         m_label_state_server(0),
         m_label_state_upload(0),
+        m_server_anchor(0),
+        m_server_select_file_dialog{},
         m_text_groups(0),
         m_text_parameter_file(0),
         m_text_participants(0)
     {
 
     }
-    Wt::WAnchor * m_server_anchor;
     Wt::WButtonGroup * m_button_group_set_phase;
     WtShapeGroupWidget * m_group_widget;
     Wt::WFileUpload * m_fileupload;
     Wt::WLabel * m_label_state_server;
     Wt::WLabel * m_label_state_upload;
+    Wt::WAnchor * m_server_anchor;
+    WtSelectFileDialog * m_server_select_file_dialog;
     Wt::WTextArea * m_text_groups;
     Wt::WTextArea * m_text_parameter_file;
     Wt::WTextArea * m_text_participants;
-    WtSelectFileDialog * m_server_select_file_dialog;
-  } ui;
-
-  struct SafeCompile
-  {
-    boost::scoped_ptr<WtSelectFileDialog> m_select_file_dialog;
-  } m_safe_compile;
+  } m_ui;
 
   Wt::WContainerWidget * CreateStartExperimentDialog();
   Wt::WContainerWidget * CreateViewGroupsDialog();

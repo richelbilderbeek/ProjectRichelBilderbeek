@@ -69,11 +69,12 @@ struct ServerStateAssignPayoff : public ServerState, StateAssignPayoff
 
   friend std::ostream& operator<<(std::ostream& os,const ServerStateAssignPayoff& s);
 
+  ///Keeps track of Participants having assigned their payoff
+  std::map<const Participant *,bool> m_has_assigned_payoff;
+
   ///Read-only parameters
   const boost::shared_ptr<const ParametersAssignPayoff> m_parameters;
 
-  ///Keeps track of Participants having assigned their payoff
-  std::map<const Participant *,bool> m_has_assigned_payoff;
 
   ///ServerStateViewResultsVoting this ServerState reads its information from
   const boost::shared_ptr<const ServerStateViewResultsVoting> m_state_view_results_voting;

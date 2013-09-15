@@ -52,7 +52,9 @@ ribi::WtConnectThreeMenuDialog::WtConnectThreeMenuDialog()
 ribi::WtConnectThreeMenuDialog::WtConnectThreeMenuDialog(
     const boost::shared_ptr<const ConnectThreeResources> resources
   )
-  : m_select(new WtSelectPlayerWidget(resources)),
+  : m_game{},
+    m_menu{},
+    m_select(new WtSelectPlayerWidget(resources)),
     m_resources(resources)
 {
   assert(m_select);

@@ -19,12 +19,12 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //From http://www.richelbilderbeek.nl/ProjectGtst.htm
 //---------------------------------------------------------------------------
 #include <cassert>
-//---------------------------------------------------------------------------
+
 #include <Wt/WApplication>
 //#include <Wt/WTimer>
 #include <Wt/WGroupBox>
 #include <Wt/WLabel>
-//---------------------------------------------------------------------------
+
 #include "all_serverstates.h"
 #include "all_participantdialogstates.h"
 #include "groupfinished.h"
@@ -45,7 +45,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //#include "trace.h"
 #include "wtledwidget.h"
 #include "wtserverpusher.h"
-//---------------------------------------------------------------------------
+
 ///\note
 ///Do not make m_timer a child of this,
 ///to prevent it being delete by Wt classes
@@ -53,25 +53,27 @@ ribi::gtst::ParticipantDialog::ParticipantDialog(
   Server * const server,
   const SafeIpAddress * const ip_address)
   : m_ip_address(new SafeIpAddress(ip_address->Get())),
+    m_participant{},
     m_server(server),
-    m_states(new ParticipantDialogStates(this,server))
+    m_states(new ParticipantDialogStates(this,server)),
+    m_ui{}
 {
   assert(m_server);
   assert(!m_participant && "Participant is obtained from Server");
 
   m_states->GetCurrentState()->ShowPage(CreateDialogHeading());
 }
-//---------------------------------------------------------------------------
+
 ribi::gtst::ParticipantDialog::~ParticipantDialog()
 {
 
 }
-//---------------------------------------------------------------------------
+
 bool ribi::gtst::ParticipantDialog::CanGetParticipant() const
 {
   return m_participant;
 }
-//---------------------------------------------------------------------------
+
 ribi::gtst::ParticipantDialog * ribi::gtst::ParticipantDialog::CreateDialogHeading()
 {
   ParticipantDialog * const dialog = GetStates()->GetCurrentState()->GetDialog();
@@ -80,37 +82,37 @@ ribi::gtst::ParticipantDialog * ribi::gtst::ParticipantDialog::CreateDialogHeadi
   dialog->setContentAlignment(Wt::AlignRight);
 
   #ifndef NDEBUG
-  ui.m_led = new WtLedWidget(1.0);
-  ui.m_led->GetWidget()->SetGeometry(Rect(0,0,24,24));
-  dialog->addWidget(ui.m_led);
+  m_ui.m_led = new WtLedWidget(1.0);
+  m_ui.m_led->GetWidget()->SetGeometry(Rect(0,0,24,24));
+  dialog->addWidget(m_ui.m_led);
   #endif
 
   dialog->setContentAlignment(Wt::AlignCenter);
 
   return dialog;
 }
-//---------------------------------------------------------------------------
+
 void ribi::gtst::ParticipantDialog::DoSomethingRandom()
 {
   m_states->GetCurrentState()->DoSomethingRandom();
 }
-//---------------------------------------------------------------------------
+
 const boost::shared_ptr<const ribi::SafeIpAddress> ribi::gtst::ParticipantDialog::GetIpAddress() const
 {
   return m_ip_address;
 }
-//---------------------------------------------------------------------------
+
 const boost::shared_ptr<const ribi::gtst::Participant>& ribi::gtst::ParticipantDialog::GetParticipant() const
 {
   assert(CanGetParticipant());
   return m_participant;
 }
-//---------------------------------------------------------------------------
+
 const boost::shared_ptr<const ribi::gtst::ParticipantDialogStates> ribi::gtst::ParticipantDialog::GetStates() const
 {
   return m_states;
 }
-//---------------------------------------------------------------------------
+
 void ribi::gtst::ParticipantDialog::OnServerPush()
 {
   //If the participant is logged out, throw him/her back to the login screen
@@ -123,7 +125,7 @@ void ribi::gtst::ParticipantDialog::OnServerPush()
 
   m_states->GetCurrentState()->RespondToServerPush();
 }
-//---------------------------------------------------------------------------
+
 void ribi::gtst::ParticipantDialog::OnTimedServerPush()
 {
   //If the participant is logged out, throw him/her back to the login screen
@@ -148,11 +150,11 @@ void ribi::gtst::ParticipantDialog::OnTimedServerPush()
     const double f = static_cast<double>(std::rand())/static_cast<double>(RAND_MAX);
     double r,g,b;
     Rainbow::GetRgb(f,r,g,b);
-    ui.m_led->GetWidget()->GetLed()->SetColor(
+    m_ui.m_led->GetWidget()->GetLed()->SetColor(
       r * 255.0,
       g * 255.0,
       b * 255.0);
-    ui.m_led->refresh();
+    m_ui.m_led->refresh();
     #endif
   }
 
@@ -160,13 +162,13 @@ void ribi::gtst::ParticipantDialog::OnTimedServerPush()
 
   m_states->GetCurrentState()->RespondToTimedServerPush();
 }
-//---------------------------------------------------------------------------
+
 void ribi::gtst::ParticipantDialog::SetParticipant(const boost::shared_ptr<const Participant>& participant)
 {
   assert(participant);
   m_participant = participant;
 }
-//---------------------------------------------------------------------------
+
 ///Let a State perform a transition that is logged and lets the new State be drawn to screen.
 void ribi::gtst::ParticipantDialog::SetState(ParticipantDialogState * const state)
 {
@@ -180,4 +182,4 @@ void ribi::gtst::ParticipantDialog::SetState(ParticipantDialogState * const stat
   //Show the new page
   m_states->GetCurrentState()->ShowPage(CreateDialogHeading());
 }
-//---------------------------------------------------------------------------
+

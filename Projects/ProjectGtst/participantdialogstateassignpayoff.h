@@ -60,25 +60,14 @@ struct ParticipantDialogStateAssignPayoff
   const std::string ToStr() const { return this->StateAssignPayoff::ToStr(); }
 
   private:
-  ///Only allow a Boost smart pointer to delete ParticipantDialogStateAssignPayoff
-  //to prevent the following trouble,
-  //cited from http://www.boost.org/libs/utility/checked_delete.html:
-  //The C++ Standard allows, in 5.3.5/5, pointers to incomplete
-  //class types to be deleted with a delete-expression.
-  //When the class has a non-trivial destructor, or a class-specific operator
-  //delete, the behavior is undefined. Some compilers issue a warning when an
-  //incomplete type is deleted, but unfortunately, not all do, and programmers
-  //sometimes ignore or disable warnings.
   ~ParticipantDialogStateAssignPayoff() {}
-  ///Only allow a Boost smart pointer to delete ParticipantDialogStateAssignPayoff
-  //Template syntax from Herb Sutter. Exceptional C++ style. 2005. ISBN: 0-201-76042-8. Item 8: 'Befriending templates'.
   friend void boost::checked_delete<>(ParticipantDialogStateAssignPayoff*);
 
   struct Ui
   {
     Ui() : m_label_status(0) {}
     Wt::WLabel * m_label_status;
-  } ui;
+  } m_ui;
 
   ///Checks if each Participant already has his/her payoff assigned this/last round
   //Could have use lambda functions instead as well :-(

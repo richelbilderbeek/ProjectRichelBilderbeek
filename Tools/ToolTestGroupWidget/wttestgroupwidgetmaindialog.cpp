@@ -42,6 +42,7 @@ ribi::WtTestGroupWidgetMainDialog::Ui::Ui()
 }
 //---------------------------------------------------------------------------
 ribi::WtTestGroupWidgetMainDialog::WtTestGroupWidgetMainDialog()
+  : ui{}
 {
   this->clear();
   this->setContentAlignment(Wt::AlignCenter);

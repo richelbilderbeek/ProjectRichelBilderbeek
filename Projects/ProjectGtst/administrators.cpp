@@ -21,12 +21,13 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "administrator.h"
 #include "administrators.h"
 #include "counter.h"
-//---------------------------------------------------------------------------
+
 ribi::gtst::Administrators::Administrators()
-  : m_last_id_administrator(new Counter(1))
+  : m_administrators{},
+    m_last_id_administrator(new Counter(1))
 {
 }
-//---------------------------------------------------------------------------
+
 boost::weak_ptr<ribi::gtst::Administrator> ribi::gtst::Administrators::CreateNewAdministrator()
 {
   #ifndef NDEBUG
@@ -64,4 +65,4 @@ boost::weak_ptr<ribi::gtst::Administrator> ribi::gtst::Administrators::CreateNew
 
   return new_administrator;
 }
-//---------------------------------------------------------------------------
+

@@ -36,6 +36,8 @@ struct WtShapeWidget;
 struct WtTestShapeMainDialog : public Wt::WContainerWidget
 {
   WtTestShapeMainDialog();
+  WtTestShapeMainDialog(const WtTestShapeMainDialog&) = delete;
+  WtTestShapeMainDialog& operator=(const WtTestShapeMainDialog&) = delete;
 
   private:
 

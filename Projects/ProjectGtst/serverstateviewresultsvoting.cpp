@@ -50,7 +50,8 @@ ribi::gtst::ServerStateViewResultsVoting::ServerStateViewResultsVoting(
   Server * const server, const int period, const int cycle,
   const boost::shared_ptr<const ParametersViewResultsVoting>& parameters)
   : ServerState(server,period,cycle),
-    m_parameters(parameters)
+    m_parameters(parameters),
+    m_voted_concensus{}
 {
   assert(m_parameters);
 }
