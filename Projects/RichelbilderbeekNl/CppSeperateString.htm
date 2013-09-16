@@ -80,14 +80,14 @@
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="CppSeperateString.pro" border = "1"><tr><td><code>
-TEMPLATE = app<br/>
-CONFIG += console<br/>
-CONFIG -= app_bundle<br/>
-CONFIG -= qt<br/>
+<a href="CppQmakeTemplate.htm">TEMPLATE</a> = app<br/>
+<a href="CppQmakeConfig.htm">CONFIG</a> += console<br/>
+<a href="CppQmakeConfig.htm">CONFIG</a> -= app_bundle<br/>
+<a href="CppQmakeConfig.htm">CONFIG</a> -= qt<br/>
 <br/>
-<a href="CppSOURCES.htm">SOURCES</a> += <a href="CppMain.htm">main</a>.cpp<br/>
+<a href="CppQmakeSources.htm">SOURCES</a> += <a href="CppMain.htm">main</a>.cpp<br/>
 <br/>
-<a href="CppINCLUDEPATH.htm">INCLUDEPATH</a> += \<br/>
+<a href="CppQmakeIncludepath.htm">INCLUDEPATH</a> += \<br/>
 &nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/boost_1_54_0<br/>
 </code></td></tr></table>
 <!-- end of the code -->
@@ -100,94 +100,94 @@ CONFIG -= qt<br/>
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="main.cpp" border = "1"><tr><td><code>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppAlgorithmH.htm">algorithm</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppSstreamH.htm">sstream</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppStringH.htm">string</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppAlgorithmH.html">algorithm</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppCassertH.html">cassert</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppSstreamH.html">sstream</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppStringH.html">string</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppVectorH.html">vector</a>&gt;<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppStringH.htm">string</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppStringH.html">string</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppVectorH.html">vector</a>&gt;<br/>
 <br/>
-<a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
-<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-<b><a href="CppTypedef.htm">typedef</a></b>s"<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppAlgorithm.htm">algorithm</a>/string/split.hpp&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppFunction.htm">function</a>.hpp&gt;<br/>
-<a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic push<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic ignored "-Wunused-local-<b><a href="CppTypedef.html">typedef</a></b>s"<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppBoost.html">boost</a>/<a href="CppAlgorithm.html">algorithm</a>/string/split<a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppBoost.html">boost</a>/<a href="CppFunction.html">function</a><a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic pop<br/>
 <br/>
-<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/Cpp<a href="CppSeperateString.htm">SeperateString</a>.htm<br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppSeperateString.htm">SeperateString</a>1(<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; input,<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppChar.htm">char</a></b> seperator)<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/Cpp<a href="CppSeperateString.html">SeperateString</a>.html<br/>
+<b><a href="CppConst.html">const</a></b> <a href="CppVector.html">std::vector</a>&lt;<a href="CppString.html">std::string</a>&gt; <a href="CppSeperateString.html">SeperateString</a>1(<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a>&amp; input,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppChar.htm">char</a></b> seperator)<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v;<br/>
-&nbsp;&nbsp;<a href="CppSplit.htm">boost::algorithm::split</a>(v,input,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBind2nd.htm">std::bind2nd</a>(<a href="CppEqual_to.htm">std::equal_to</a>&lt;<b><a href="CppChar.htm">char</a></b>&gt;(),seperator),<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBoost.htm">boost</a>::<a href="CppAlgorithm.htm">algorithm</a>::token_compress_on);<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
+&nbsp;&nbsp;<a href="CppVector.html">std::vector</a>&lt;<a href="CppString.html">std::string</a>&gt; v;<br/>
+&nbsp;&nbsp;<a href="CppSplit.html">boost::algorithm::split</a>(v,input,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBind2nd.html">std::bind2nd</a>(<a href="CppEqual_to.html">std::equal_to</a>&lt;<b><a href="CppChar.htm">char</a></b>&gt;(),seperator),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBoost.html">boost</a>::<a href="CppAlgorithm.html">algorithm</a>::token_compress_on);<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> v;<br/>
 }<br/>
 <br/>
-<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/Cpp<a href="CppSeperateString.htm">SeperateString</a>.htm<br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppSeperateString.htm">SeperateString</a>2(<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; input,<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppChar.htm">char</a></b> seperator)<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/Cpp<a href="CppSeperateString.html">SeperateString</a>.html<br/>
+<b><a href="CppConst.html">const</a></b> <a href="CppVector.html">std::vector</a>&lt;<a href="CppString.html">std::string</a>&gt; <a href="CppSeperateString.html">SeperateString</a>2(<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a>&amp; input,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppChar.htm">char</a></b> seperator)<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppIstringstream.htm">std::istringstream</a> is(input);<br/>
-&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v;<br/>
+&nbsp;&nbsp;<a href="CppIstringstream.html">std::istringstream</a> is(input);<br/>
+&nbsp;&nbsp;<a href="CppVector.html">std::vector</a>&lt;<a href="CppString.html">std::string</a>&gt; v;<br/>
 &nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppString.htm">std::string</a> sub;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppGetline.htm">std::getline</a>(is, sub, seperator);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppString.html">std::string</a> sub;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppGetline.html">std::getline</a>(is, sub, seperator);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;v.push_back(sub))<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Empty <b><a href="CppFor.htm">for</a></b> loop<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> v;<br/>
 }<br/>
 <br/>
-<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/Cpp<a href="CppSeperateString.htm">SeperateString</a>.htm<br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppSeperateString.htm">SeperateString</a>3(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; input, <b><a href="CppConst.htm">const</a></b> <b><a href="CppChar.htm">char</a></b>&amp; seperator)<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/Cpp<a href="CppSeperateString.html">SeperateString</a>.html<br/>
+<b><a href="CppConst.html">const</a></b> <a href="CppVector.html">std::vector</a>&lt;<a href="CppString.html">std::string</a>&gt; <a href="CppSeperateString.html">SeperateString</a>3(<b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a>&amp; input, <b><a href="CppConst.html">const</a></b> <b><a href="CppChar.htm">char</a></b>&amp; seperator)<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v;<br/>
-&nbsp;&nbsp;<b><a href="CppTypedef.htm">typedef</a></b> <a href="CppString.htm">std::string</a>::const_iterator <a href="CppIterator.htm">Iterator</a>;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppIterator.htm">Iterator</a> end <a href="CppOperatorAssign.htm">=</a> input.end();<br/>
-&nbsp;&nbsp;<a href="CppIterator.htm">Iterator</a> i1 <a href="CppOperatorAssign.htm">=</a> input.begin();<br/>
+&nbsp;&nbsp;<a href="CppVector.html">std::vector</a>&lt;<a href="CppString.html">std::string</a>&gt; v;<br/>
+&nbsp;&nbsp;<b><a href="CppTypedef.html">typedef</a></b> <a href="CppString.html">std::string</a>::const_iterator <a href="CppIterator.html">Iterator</a>;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppIterator.html">Iterator</a> end <a href="CppOperatorAssign.htm">=</a> input.end();<br/>
+&nbsp;&nbsp;<a href="CppIterator.html">Iterator</a> i1 <a href="CppOperatorAssign.htm">=</a> input.begin();<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Copy until first comma<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppIterator.htm">Iterator</a> i2 <a href="CppOperatorAssign.htm">=</a> <a href="CppFind.htm">std::find</a>(i1,end,seperator);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(i1<a href="CppOperatorNotEqual.htm">!=</a>i2);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppString.htm">std::string</a> s;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCopy.htm">std::copy</a>(i1,i2,<a href="CppBack_inserter.htm">std::back_inserter</a>(s));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppIterator.html">Iterator</a> i2 <a href="CppOperatorAssign.htm">=</a> <a href="CppFind.html">std::find</a>(i1,end,seperator);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(i1<a href="CppOperatorNotEqual.htm">!=</a>i2);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppString.html">std::string</a> s;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCopy.html">std::copy</a>(i1,i2,<a href="CppBack_inserter.html">std::back_inserter</a>(s));<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;v.push_back(s);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;i1 <a href="CppOperatorAssign.htm">=</a> i2;<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<b><a href="CppWhile.htm">while</a></b> (i1<a href="CppOperatorNotEqual.htm">!=</a>end)<br/>
+&nbsp;&nbsp;<b><a href="CppWhile.html">while</a></b> (i1<a href="CppOperatorNotEqual.htm">!=</a>end)<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Copy from comma to (comma <a href="CppOperatorLogicalOr.htm">||</a> end)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppIterator.htm">Iterator</a> i2 <a href="CppOperatorAssign.htm">=</a> <a href="CppFind.htm">std::find</a>(i1 <a href="CppOperatorPlus.htm">+</a> 1,end,seperator);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(i1<a href="CppOperatorNotEqual.htm">!=</a>i2);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(i2 <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> end <a href="CppOperatorLogicalOr.htm">||</a> *i2 <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> seperator);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppString.htm">std::string</a> s;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCopy.htm">std::copy</a>(i1+1,i2,<a href="CppBack_inserter.htm">std::back_inserter</a>(s));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppIterator.html">Iterator</a> i2 <a href="CppOperatorAssign.htm">=</a> <a href="CppFind.html">std::find</a>(i1 <a href="CppOperatorPlus.htm">+</a> 1,end,seperator);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(i1<a href="CppOperatorNotEqual.htm">!=</a>i2);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(i2 <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> end <a href="CppOperatorLogicalOr.htm">||</a> *i2 <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> seperator);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppString.html">std::string</a> s;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCopy.html">std::copy</a>(i1+1,i2,<a href="CppBack_inserter.html">std::back_inserter</a>(s));<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;v.push_back(s);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;i1 <a href="CppOperatorAssign.htm">=</a> i2;<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> v;<br/>
 }<br/>
 <br/>
-<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/Cpp<a href="CppSeperateString.htm">SeperateString</a>.htm<br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppSeperateString.htm">SeperateString</a>4(<a href="CppString.htm">std::string</a> input, <b><a href="CppConst.htm">const</a></b> <b><a href="CppChar.htm">char</a></b>&amp; seperator)<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/Cpp<a href="CppSeperateString.html">SeperateString</a>.html<br/>
+<b><a href="CppConst.html">const</a></b> <a href="CppVector.html">std::vector</a>&lt;<a href="CppString.html">std::string</a>&gt; <a href="CppSeperateString.html">SeperateString</a>4(<a href="CppString.html">std::string</a> input, <b><a href="CppConst.html">const</a></b> <b><a href="CppChar.htm">char</a></b>&amp; seperator)<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(input.empty()<a href="CppOperatorEqual.htm">==</a><b><a href="CppFalse.htm">false</a></b>);<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(input[0]<a href="CppOperatorNotEqual.htm">!=</a>seperator);<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(input[input.size()-1]<a href="CppOperatorNotEqual.htm">!=</a>seperator);<br/>
+&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(input.empty()<a href="CppOperatorEqual.htm">==</a><b><a href="CppFalse.html">false</a></b>);<br/>
+&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(input[0]<a href="CppOperatorNotEqual.htm">!=</a>seperator);<br/>
+&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(input[input.size()-1]<a href="CppOperatorNotEqual.htm">!=</a>seperator);<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; result;<br/>
+&nbsp;&nbsp;<a href="CppVector.html">std::vector</a>&lt;<a href="CppString.html">std::string</a>&gt; result;<br/>
 &nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> pos <a href="CppOperatorAssign.htm">=</a> 0;<br/>
-&nbsp;&nbsp;<b><a href="CppWhile.htm">while</a></b>(pos&lt;<b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(input.size()))<br/>
+&nbsp;&nbsp;<b><a href="CppWhile.html">while</a></b>(pos&lt;<b><a href="CppStatic_cast.html">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(input.size()))<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (input[pos]<a href="CppOperatorEqual.htm">==</a>seperator)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> found <a href="CppOperatorAssign.htm">=</a> input.substr(0,pos);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a> found <a href="CppOperatorAssign.htm">=</a> input.substr(0,pos);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;result.push_back(found);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;input <a href="CppOperatorAssign.htm">=</a> input.substr(pos+1,input.size()-pos);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pos <a href="CppOperatorAssign.htm">=</a> 0;<br/>
@@ -195,54 +195,54 @@ CONFIG -= qt<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a>+pos;<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;result.push_back(input);<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> result;<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> result;<br/>
 }<br/>
 <br/>
-<a href="CppComment.htm">//</a>From <a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/Cpp<a href="CppSeperateString.htm">SeperateString</a>.htm<br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppSeperateString.htm">SeperateString</a>5(<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; input,<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; seperator)<br/>
+<a href="CppComment.htm">//</a>From <a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/Cpp<a href="CppSeperateString.html">SeperateString</a>.html<br/>
+<b><a href="CppConst.html">const</a></b> <a href="CppVector.html">std::vector</a>&lt;<a href="CppString.html">std::string</a>&gt; <a href="CppSeperateString.html">SeperateString</a>5(<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a>&amp; input,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a>&amp; seperator)<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v;<br/>
-&nbsp;&nbsp;<b><a href="CppTypedef.htm">typedef</a></b> <a href="CppString.htm">std::string</a>::const_iterator <a href="CppIterator.htm">Iterator</a>;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppIterator.htm">Iterator</a> end <a href="CppOperatorAssign.htm">=</a> input.end();<br/>
-&nbsp;&nbsp;<a href="CppIterator.htm">Iterator</a> i1 <a href="CppOperatorAssign.htm">=</a> input.begin();<br/>
+&nbsp;&nbsp;<a href="CppVector.html">std::vector</a>&lt;<a href="CppString.html">std::string</a>&gt; v;<br/>
+&nbsp;&nbsp;<b><a href="CppTypedef.html">typedef</a></b> <a href="CppString.html">std::string</a>::const_iterator <a href="CppIterator.html">Iterator</a>;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppIterator.html">Iterator</a> end <a href="CppOperatorAssign.htm">=</a> input.end();<br/>
+&nbsp;&nbsp;<a href="CppIterator.html">Iterator</a> i1 <a href="CppOperatorAssign.htm">=</a> input.begin();<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Copy until first comma<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppIterator.htm">Iterator</a> i2 <a href="CppOperatorAssign.htm">=</a> <a href="CppSearch.htm">std::search</a>(i1,end,seperator.begin(), seperator.end());<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(i1<a href="CppOperatorNotEqual.htm">!=</a>i2);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppString.htm">std::string</a> s;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCopy.htm">std::copy</a>(i1,i2,<a href="CppBack_inserter.htm">std::back_inserter</a>(s));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppIterator.html">Iterator</a> i2 <a href="CppOperatorAssign.htm">=</a> <a href="CppSearch.html">std::search</a>(i1,end,seperator.begin(), seperator.end());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(i1<a href="CppOperatorNotEqual.htm">!=</a>i2);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppString.html">std::string</a> s;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCopy.html">std::copy</a>(i1,i2,<a href="CppBack_inserter.html">std::back_inserter</a>(s));<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;v.push_back(s);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;i1 <a href="CppOperatorAssign.htm">=</a> i2;<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<b><a href="CppWhile.htm">while</a></b> (i1<a href="CppOperatorNotEqual.htm">!=</a>end)<br/>
+&nbsp;&nbsp;<b><a href="CppWhile.html">while</a></b> (i1<a href="CppOperatorNotEqual.htm">!=</a>end)<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Copy from comma to (comma <a href="CppOperatorLogicalOr.htm">||</a> end)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppIterator.htm">Iterator</a> i2 <a href="CppOperatorAssign.htm">=</a> <a href="CppSearch.htm">std::search</a>(i1 <a href="CppOperatorPlus.htm">+</a> 1,end,seperator.begin(), seperator.end());<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(i1<a href="CppOperatorNotEqual.htm">!=</a>i2);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(i2 <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> end <a href="CppOperatorLogicalOr.htm">||</a> <a href="CppEqual.htm">std::equal</a>(seperator.begin(),seperator.end(),i2));<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppString.htm">std::string</a> s;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCopy.htm">std::copy</a>(i1+1,i2,<a href="CppBack_inserter.htm">std::back_inserter</a>(s));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppIterator.html">Iterator</a> i2 <a href="CppOperatorAssign.htm">=</a> <a href="CppSearch.html">std::search</a>(i1 <a href="CppOperatorPlus.htm">+</a> 1,end,seperator.begin(), seperator.end());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(i1<a href="CppOperatorNotEqual.htm">!=</a>i2);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(i2 <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> end <a href="CppOperatorLogicalOr.htm">||</a> <a href="CppEqual.html">std::equal</a>(seperator.begin(),seperator.end(),i2));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppString.html">std::string</a> s;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCopy.html">std::copy</a>(i1+1,i2,<a href="CppBack_inserter.html">std::back_inserter</a>(s));<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;v.push_back(s);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;i1 <a href="CppOperatorAssign.htm">=</a> i2;<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> v;<br/>
 }<br/>
 <br/>
-<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/Cpp<a href="CppSeperateString.htm">SeperateString</a>.htm<br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppSeperateString.htm">SeperateString</a>6(<a href="CppString.htm">std::string</a> input, <b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; seperator)<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/Cpp<a href="CppSeperateString.html">SeperateString</a>.html<br/>
+<b><a href="CppConst.html">const</a></b> <a href="CppVector.html">std::vector</a>&lt;<a href="CppString.html">std::string</a>&gt; <a href="CppSeperateString.html">SeperateString</a>6(<a href="CppString.html">std::string</a> input, <b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a>&amp; seperator)<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(input.empty()<a href="CppOperatorEqual.htm">==</a><b><a href="CppFalse.htm">false</a></b>);<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(input.substr(0,seperator.size()) <a href="CppOperatorNotEqual.htm">!=</a> seperator);<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(input.substr(input.size()-seperator.size(),seperator.size())<a href="CppOperatorNotEqual.htm">!=</a>seperator);<br/>
-&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; result;<br/>
+&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(input.empty()<a href="CppOperatorEqual.htm">==</a><b><a href="CppFalse.html">false</a></b>);<br/>
+&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(input.substr(0,seperator.size()) <a href="CppOperatorNotEqual.htm">!=</a> seperator);<br/>
+&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(input.substr(input.size()-seperator.size(),seperator.size())<a href="CppOperatorNotEqual.htm">!=</a>seperator);<br/>
+&nbsp;&nbsp;<a href="CppVector.html">std::vector</a>&lt;<a href="CppString.html">std::string</a>&gt; result;<br/>
 &nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> pos <a href="CppOperatorAssign.htm">=</a> 0;<br/>
-&nbsp;&nbsp;<b><a href="CppWhile.htm">while</a></b>(pos&lt;<b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(input.size()))<br/>
+&nbsp;&nbsp;<b><a href="CppWhile.html">while</a></b>(pos&lt;<b><a href="CppStatic_cast.html">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(input.size()))<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (input.substr(pos,seperator.size())<a href="CppOperatorEqual.htm">==</a>seperator)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> found <a href="CppOperatorAssign.htm">=</a> input.substr(0,pos);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a> found <a href="CppOperatorAssign.htm">=</a> input.substr(0,pos);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;result.push_back(found);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;input <a href="CppOperatorAssign.htm">=</a> input.substr(pos+seperator.size(),input.size()-pos);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pos <a href="CppOperatorAssign.htm">=</a> 0;<br/>
@@ -250,110 +250,110 @@ CONFIG -= qt<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a>+pos;<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;result.push_back(input);<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> result;<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> result;<br/>
 }<br/>
 <br/>
-<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/Cpp<a href="CppSeperateString.htm">SeperateString</a>.htm<br/>
-<b><a href="CppVoid.htm">void</a></b> Test<a href="CppSeperateString.htm">SeperateString</a>SeperatorIsChar(<a href="CppBoostFunction.htm">boost::function</a>&lt;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt;(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp;, <b><a href="CppConst.htm">const</a></b> <b><a href="CppChar.htm">char</a></b>)&gt; f)<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/Cpp<a href="CppSeperateString.html">SeperateString</a>.html<br/>
+<b><a href="CppVoid.htm">void</a></b> Test<a href="CppSeperateString.html">SeperateString</a>SeperatorIsChar(<a href="CppBoostFunction.html">boost::function</a>&lt;<a href="CppVector.html">std::vector</a>&lt;<a href="CppString.html">std::string</a>&gt;(<b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a>&amp;, <b><a href="CppConst.html">const</a></b> <b><a href="CppChar.htm">char</a></b>)&gt; f)<br/>
 {<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppDefine.htm">#define</a> THESE_WILL_FAIL_AND_SHOULD_FAIL<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppIfdef.htm">#ifdef</a> THESE_WILL_FAIL_AND_SHOULD_FAIL<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppDefine.html">#define</a> THESE_WILL_FAIL_AND_SHOULD_FAIL<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppIfdef.html">#ifdef</a> THESE_WILL_FAIL_AND_SHOULD_FAIL<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Empty<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v1 <a href="CppOperatorAssign.htm">=</a> f("",',');<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppVector.html">std::vector</a>&lt;<a href="CppString.html">std::string</a>&gt; v1 <a href="CppOperatorAssign.htm">=</a> f("",',');<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Seperator only<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v2 <a href="CppOperatorAssign.htm">=</a> f(",",',');<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppVector.html">std::vector</a>&lt;<a href="CppString.html">std::string</a>&gt; v2 <a href="CppOperatorAssign.htm">=</a> f(",",',');<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Single input, leading seperator<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v3 <a href="CppOperatorAssign.htm">=</a> f(",a",',');<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppVector.html">std::vector</a>&lt;<a href="CppString.html">std::string</a>&gt; v3 <a href="CppOperatorAssign.htm">=</a> f(",a",',');<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Single input, trailing seperator<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v4 <a href="CppOperatorAssign.htm">=</a> f("a,",',');<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppVector.html">std::vector</a>&lt;<a href="CppString.html">std::string</a>&gt; v4 <a href="CppOperatorAssign.htm">=</a> f("a,",',');<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Two inputs, leading seperator<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v5 <a href="CppOperatorAssign.htm">=</a> f(",a,a",',');<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppVector.html">std::vector</a>&lt;<a href="CppString.html">std::string</a>&gt; v5 <a href="CppOperatorAssign.htm">=</a> f(",a,a",',');<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Two inputs, trailing seperator<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v6 <a href="CppOperatorAssign.htm">=</a> f("a,a,",',');<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppVector.html">std::vector</a>&lt;<a href="CppString.html">std::string</a>&gt; v6 <a href="CppOperatorAssign.htm">=</a> f("a,a,",',');<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppEndif.html">#endif</a><br/>
 &nbsp;&nbsp;}<br/>
 <br/>
 &nbsp;&nbsp;{ <a href="CppComment.htm">//</a>Single input, seperator of type <b><a href="CppChar.htm">char</a></b><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v <a href="CppOperatorAssign.htm">=</a> f("a",',');<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(v[0]<a href="CppOperatorEqual.htm">==</a>"a");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppVector.html">std::vector</a>&lt;<a href="CppString.html">std::string</a>&gt; v <a href="CppOperatorAssign.htm">=</a> f("a",',');<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(v[0]<a href="CppOperatorEqual.htm">==</a>"a");<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;{ <a href="CppComment.htm">//</a>Two inputs, seperator of type <b><a href="CppChar.htm">char</a></b><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v <a href="CppOperatorAssign.htm">=</a> <a href="CppSeperateString.htm">SeperateString</a>3("a,b",',');<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(v[0]<a href="CppOperatorEqual.htm">==</a>"a");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(v[1]<a href="CppOperatorEqual.htm">==</a>"b");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppVector.html">std::vector</a>&lt;<a href="CppString.html">std::string</a>&gt; v <a href="CppOperatorAssign.htm">=</a> <a href="CppSeperateString.html">SeperateString</a>3("a,b",',');<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(v[0]<a href="CppOperatorEqual.htm">==</a>"a");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(v[1]<a href="CppOperatorEqual.htm">==</a>"b");<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;{ <a href="CppComment.htm">//</a>Five inputs, seperator of type <b><a href="CppChar.htm">char</a></b><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v <a href="CppOperatorAssign.htm">=</a> <a href="CppSeperateString.htm">SeperateString</a>3("a,bb,ccc,dddd,eeeee",',');<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(v[0]<a href="CppOperatorEqual.htm">==</a>"a");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(v[1]<a href="CppOperatorEqual.htm">==</a>"bb");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(v[2]<a href="CppOperatorEqual.htm">==</a>"ccc");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(v[3]<a href="CppOperatorEqual.htm">==</a>"dddd");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(v[4]<a href="CppOperatorEqual.htm">==</a>"eeeee");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppVector.html">std::vector</a>&lt;<a href="CppString.html">std::string</a>&gt; v <a href="CppOperatorAssign.htm">=</a> <a href="CppSeperateString.html">SeperateString</a>3("a,bb,ccc,dddd,eeeee",',');<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(v[0]<a href="CppOperatorEqual.htm">==</a>"a");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(v[1]<a href="CppOperatorEqual.htm">==</a>"bb");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(v[2]<a href="CppOperatorEqual.htm">==</a>"ccc");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(v[3]<a href="CppOperatorEqual.htm">==</a>"dddd");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(v[4]<a href="CppOperatorEqual.htm">==</a>"eeeee");<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;{ <a href="CppComment.htm">//</a>Three inputs, of which one empty, seperator of type <b><a href="CppChar.htm">char</a></b><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v <a href="CppOperatorAssign.htm">=</a> <a href="CppSeperateString.htm">SeperateString</a>3("a, ,ccc",',');<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(v[0]<a href="CppOperatorEqual.htm">==</a>"a");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(v[1]<a href="CppOperatorEqual.htm">==</a>" ");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(v[2]<a href="CppOperatorEqual.htm">==</a>"ccc");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppVector.html">std::vector</a>&lt;<a href="CppString.html">std::string</a>&gt; v <a href="CppOperatorAssign.htm">=</a> <a href="CppSeperateString.html">SeperateString</a>3("a, ,ccc",',');<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(v[0]<a href="CppOperatorEqual.htm">==</a>"a");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(v[1]<a href="CppOperatorEqual.htm">==</a>" ");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(v[2]<a href="CppOperatorEqual.htm">==</a>"ccc");<br/>
 &nbsp;&nbsp;}<br/>
 }<br/>
 <br/>
 <br/>
 <br/>
-<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/Cpp<a href="CppSeperateString.htm">SeperateString</a>.htm<br/>
-<b><a href="CppVoid.htm">void</a></b> Test<a href="CppSeperateString.htm">SeperateString</a>SeperatorIsString(<a href="CppBoostFunction.htm">boost::function</a>&lt;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt;(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp;, <b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp;)&gt; f)<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/Cpp<a href="CppSeperateString.html">SeperateString</a>.html<br/>
+<b><a href="CppVoid.htm">void</a></b> Test<a href="CppSeperateString.html">SeperateString</a>SeperatorIsString(<a href="CppBoostFunction.html">boost::function</a>&lt;<a href="CppVector.html">std::vector</a>&lt;<a href="CppString.html">std::string</a>&gt;(<b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a>&amp;, <b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a>&amp;)&gt; f)<br/>
 {<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppDefine.htm">#define</a> THESE_WILL_FAIL_AND_SHOULD_FAIL<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppIfdef.htm">#ifdef</a> THESE_WILL_FAIL_AND_SHOULD_FAIL<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppDefine.html">#define</a> THESE_WILL_FAIL_AND_SHOULD_FAIL<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppIfdef.html">#ifdef</a> THESE_WILL_FAIL_AND_SHOULD_FAIL<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Empty<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v1 <a href="CppOperatorAssign.htm">=</a> f("",",");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppVector.html">std::vector</a>&lt;<a href="CppString.html">std::string</a>&gt; v1 <a href="CppOperatorAssign.htm">=</a> f("",",");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Seperator only<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v2 <a href="CppOperatorAssign.htm">=</a> f(",",",");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppVector.html">std::vector</a>&lt;<a href="CppString.html">std::string</a>&gt; v2 <a href="CppOperatorAssign.htm">=</a> f(",",",");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Single input, leading seperator<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v3 <a href="CppOperatorAssign.htm">=</a> f(",a",",");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppVector.html">std::vector</a>&lt;<a href="CppString.html">std::string</a>&gt; v3 <a href="CppOperatorAssign.htm">=</a> f(",a",",");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Single input, trailing seperator<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v4 <a href="CppOperatorAssign.htm">=</a> f("a,",",");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppVector.html">std::vector</a>&lt;<a href="CppString.html">std::string</a>&gt; v4 <a href="CppOperatorAssign.htm">=</a> f("a,",",");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Two inputs, leading seperator<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v5 <a href="CppOperatorAssign.htm">=</a> f(",a,a",",");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppVector.html">std::vector</a>&lt;<a href="CppString.html">std::string</a>&gt; v5 <a href="CppOperatorAssign.htm">=</a> f(",a,a",",");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Two inputs, trailing seperator<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v6 <a href="CppOperatorAssign.htm">=</a> f("a,a,",",");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppVector.html">std::vector</a>&lt;<a href="CppString.html">std::string</a>&gt; v6 <a href="CppOperatorAssign.htm">=</a> f("a,a,",",");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppEndif.html">#endif</a><br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;{ <a href="CppComment.htm">//</a>Single input, seperator of type <a href="CppString.htm">std::string</a><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v <a href="CppOperatorAssign.htm">=</a> f("a",",");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(v[0]<a href="CppOperatorEqual.htm">==</a>"a");<br/>
+&nbsp;&nbsp;{ <a href="CppComment.htm">//</a>Single input, seperator of type <a href="CppString.html">std::string</a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppVector.html">std::vector</a>&lt;<a href="CppString.html">std::string</a>&gt; v <a href="CppOperatorAssign.htm">=</a> f("a",",");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(v[0]<a href="CppOperatorEqual.htm">==</a>"a");<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;{ <a href="CppComment.htm">//</a>Two inputs, seperator of type <a href="CppString.htm">std::string</a><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v <a href="CppOperatorAssign.htm">=</a> f("a,b",",");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(v[0]<a href="CppOperatorEqual.htm">==</a>"a");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(v[1]<a href="CppOperatorEqual.htm">==</a>"b");<br/>
+&nbsp;&nbsp;{ <a href="CppComment.htm">//</a>Two inputs, seperator of type <a href="CppString.html">std::string</a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppVector.html">std::vector</a>&lt;<a href="CppString.html">std::string</a>&gt; v <a href="CppOperatorAssign.htm">=</a> f("a,b",",");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(v[0]<a href="CppOperatorEqual.htm">==</a>"a");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(v[1]<a href="CppOperatorEqual.htm">==</a>"b");<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;{ <a href="CppComment.htm">//</a>Five inputs, seperator of type <a href="CppString.htm">std::string</a><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v <a href="CppOperatorAssign.htm">=</a> f("a,bb,ccc,dddd,eeeee",",");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(v[0]<a href="CppOperatorEqual.htm">==</a>"a");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(v[1]<a href="CppOperatorEqual.htm">==</a>"bb");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(v[2]<a href="CppOperatorEqual.htm">==</a>"ccc");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(v[3]<a href="CppOperatorEqual.htm">==</a>"dddd");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(v[4]<a href="CppOperatorEqual.htm">==</a>"eeeee");<br/>
+&nbsp;&nbsp;{ <a href="CppComment.htm">//</a>Five inputs, seperator of type <a href="CppString.html">std::string</a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppVector.html">std::vector</a>&lt;<a href="CppString.html">std::string</a>&gt; v <a href="CppOperatorAssign.htm">=</a> f("a,bb,ccc,dddd,eeeee",",");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(v[0]<a href="CppOperatorEqual.htm">==</a>"a");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(v[1]<a href="CppOperatorEqual.htm">==</a>"bb");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(v[2]<a href="CppOperatorEqual.htm">==</a>"ccc");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(v[3]<a href="CppOperatorEqual.htm">==</a>"dddd");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(v[4]<a href="CppOperatorEqual.htm">==</a>"eeeee");<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;{ <a href="CppComment.htm">//</a>Three inputs, of which one empty, seperator of type <a href="CppString.htm">std::string</a><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v <a href="CppOperatorAssign.htm">=</a> f("a, ,ccc",",");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(v[0]<a href="CppOperatorEqual.htm">==</a>"a");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(v[1]<a href="CppOperatorEqual.htm">==</a>" ");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(v[2]<a href="CppOperatorEqual.htm">==</a>"ccc");<br/>
+&nbsp;&nbsp;{ <a href="CppComment.htm">//</a>Three inputs, of which one empty, seperator of type <a href="CppString.html">std::string</a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppVector.html">std::vector</a>&lt;<a href="CppString.html">std::string</a>&gt; v <a href="CppOperatorAssign.htm">=</a> f("a, ,ccc",",");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(v[0]<a href="CppOperatorEqual.htm">==</a>"a");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(v[1]<a href="CppOperatorEqual.htm">==</a>" ");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(v[2]<a href="CppOperatorEqual.htm">==</a>"ccc");<br/>
 &nbsp;&nbsp;}<br/>
 }<br/>
 <br/>
-<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a>()<br/>
 {<br/>
-&nbsp;&nbsp;Test<a href="CppSeperateString.htm">SeperateString</a>SeperatorIsChar(<a href="CppSeperateString.htm">SeperateString</a>1);<br/>
-&nbsp;&nbsp;Test<a href="CppSeperateString.htm">SeperateString</a>SeperatorIsChar(<a href="CppSeperateString.htm">SeperateString</a>2);<br/>
-&nbsp;&nbsp;Test<a href="CppSeperateString.htm">SeperateString</a>SeperatorIsChar(<a href="CppSeperateString.htm">SeperateString</a>3);<br/>
-&nbsp;&nbsp;Test<a href="CppSeperateString.htm">SeperateString</a>SeperatorIsChar(<a href="CppSeperateString.htm">SeperateString</a>4);<br/>
-&nbsp;&nbsp;Test<a href="CppSeperateString.htm">SeperateString</a>SeperatorIsString(<a href="CppSeperateString.htm">SeperateString</a>5);<br/>
-&nbsp;&nbsp;Test<a href="CppSeperateString.htm">SeperateString</a>SeperatorIsString(<a href="CppSeperateString.htm">SeperateString</a>6);<br/>
+&nbsp;&nbsp;Test<a href="CppSeperateString.html">SeperateString</a>SeperatorIsChar(<a href="CppSeperateString.html">SeperateString</a>1);<br/>
+&nbsp;&nbsp;Test<a href="CppSeperateString.html">SeperateString</a>SeperatorIsChar(<a href="CppSeperateString.html">SeperateString</a>2);<br/>
+&nbsp;&nbsp;Test<a href="CppSeperateString.html">SeperateString</a>SeperatorIsChar(<a href="CppSeperateString.html">SeperateString</a>3);<br/>
+&nbsp;&nbsp;Test<a href="CppSeperateString.html">SeperateString</a>SeperatorIsChar(<a href="CppSeperateString.html">SeperateString</a>4);<br/>
+&nbsp;&nbsp;Test<a href="CppSeperateString.html">SeperateString</a>SeperatorIsString(<a href="CppSeperateString.html">SeperateString</a>5);<br/>
+&nbsp;&nbsp;Test<a href="CppSeperateString.html">SeperateString</a>SeperatorIsString(<a href="CppSeperateString.html">SeperateString</a>6);<br/>
 }<br/>
 </code></td></tr></table>
 <!-- end of the code -->

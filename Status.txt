@@ -36,6 +36,8 @@ CppBoostXpressiveExample3
 CppBoostXpressiveExample3.exe
 CppCalculateSqrt
 CppCalculateSqrt.exe
+CppCfileExample1
+CppCfileExample1.exe
 CppCompileErrorParseErrorAtBOOST_JOIN
 CppCopyUnique
 CppCopyUnique.exe
@@ -188,6 +190,8 @@ CppQFileDialogExample4
 CppQFileDialogExample4.exe
 CppQFileExample1
 CppQFileExample1.exe
+CppQmakeExample1
+CppQmakeExample1.exe
 CppQPainterExample1
 CppQPainterExample1.exe
 CppQPrintDialogExample1
@@ -414,8 +418,6 @@ ToolMidiLessonCreator
 ToolMidiLessonCreator.exe
 ToolQmakeWatcher
 ToolQmakeWatcher.exe
-ToolSimMysteryMachineDesktop
-ToolSimMysteryMachineDesktop.exe
 ToolSolvePuzzleX
 ToolSolvePuzzleX.exe
 ToolStaircaseCardCreator
@@ -436,6 +438,8 @@ ToolTestLazy_init.exe
 ToolTestMultiVector
 ToolTestMultiVector.exe
 ToolTestQtOcrWidget
+ToolTestQtRoundedEditRectItem
+ToolTestQtRoundedTextRectItem
 ToolTestStopwatch.exe
 ToolTestTextPositionWidget
 ToolTestTextPositionWidget.exe

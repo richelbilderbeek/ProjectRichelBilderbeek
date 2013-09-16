@@ -43,7 +43,7 @@
 <table summary="qtexercise.h" border = "1"><tr><td><code>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">/*</a><br/>
-<a href="CppQt.htm">Qt</a><a href="CppExercise.htm">Exercise</a>, <a href="CppQt.htm">Qt</a> GUI of <a href="CppExercise.htm">Exercise</a><br/>
+<a href="CppQt.htm">Qt</a><a href="CppExercise.html">Exercise</a>, <a href="CppQt.htm">Qt</a> GUI of <a href="CppExercise.html">Exercise</a><br/>
 Copyright (C) 2012 Richel Bilderbeek<br/>
 <br/>
 This program is free software: you can redistribute it and/or modify<br/>
@@ -59,62 +59,69 @@ You should have received a copy of the GNU General Public License<br/>
 along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">*/</a><br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="CppQtExercise.htm">CppQtExercise</a>.htm<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="CppQtExercise.html">CppQtExercise</a>.html<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppIfndef.htm">#ifndef</a> QTEXERCISE_H<br/>
-<a href="CppDefine.htm">#define</a> QTEXERCISE_H<br/>
+<a href="CppIfndef.html">#ifndef</a> QTEXERCISE_H<br/>
+<a href="CppDefine.html">#define</a> QTEXERCISE_H<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppStringH.htm">string</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppStringH.html">string</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppVectorH.html">vector</a>&gt;<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppShared_ptr.htm">shared_ptr</a>.hpp&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppBoost.html">boost</a>/<a href="CppShared_ptr.html">shared_ptr</a><a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppQDialog.htm">QDialog</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppQDialog.html">QDialog</a>&gt;<br/>
 <br/>
-<b><a href="CppStruct.htm">struct</a></b> QGroupBox;<br/>
-<b><a href="CppStruct.htm">struct</a></b> <a href="CppQLabel.htm">QLabel</a>;<br/>
+<b><a href="CppStruct.html">struct</a></b> QGroupBox;<br/>
+<b><a href="CppStruct.html">struct</a></b> <a href="CppQLabel.html">QLabel</a>;<br/>
 <br/>
-<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
+<b><a href="CppNamespace.html">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
 <br/>
-<b><a href="CppStruct.htm">struct</a></b> <a href="CppExercise.htm">Exercise</a>;<br/>
+<b><a href="CppStruct.html">struct</a></b> <a href="CppExercise.html">Exercise</a>;<br/>
 <br/>
-<a href="CppComment.htm">///</a>A <a href="CppQt.htm">Qt</a><a href="CppExercise.htm">Exercise</a> is the <a href="CppQt.htm">Qt</a> dialog of <a href="CppExercise.htm">Exercise</a><br/>
-<b><a href="CppStruct.htm">struct</a></b> <a href="CppQt.htm">Qt</a><a href="CppExercise.htm">Exercise</a> : <b><a href="CppPublic.htm">public</a></b> <a href="CppQDialog.htm">QDialog</a><br/>
+<a href="CppComment.htm">///</a>A <a href="CppQt.htm">Qt</a><a href="CppExercise.html">Exercise</a> is the <a href="CppQt.htm">Qt</a> dialog of <a href="CppExercise.html">Exercise</a><br/>
+<b><a href="CppStruct.html">struct</a></b> <a href="CppQt.htm">Qt</a><a href="CppExercise.html">Exercise</a> : <b><a href="CppPublic.html">public</a></b> <a href="CppQDialog.html">QDialog</a><br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>/<a href="CppConstructor.htm">Construct</a> a <a href="CppQt.htm">Qt</a><a href="CppExercise.htm">Exercise</a> without <a href="CppQuestion.htm">question</a>s<br/>
-&nbsp;&nbsp;<a href="CppQt.htm">Qt</a><a href="CppExercise.htm">Exercise</a>();<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/<a href="CppConstructor.html">Construct</a> a <a href="CppQt.htm">Qt</a><a href="CppExercise.html">Exercise</a> without <a href="CppQuestion.html">question</a>s<br/>
+&nbsp;&nbsp;<a href="CppQt.htm">Qt</a><a href="CppExercise.html">Exercise</a>();<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/Obtain the user its score: its number of correctly answered<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>/<a href="CppQuestion.htm">question</a>s and the total number of <a href="CppQuestion.htm">question</a>s answered<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppPair.htm">std::pair</a>&lt;<b><a href="CppInt.htm">int</a></b>,<b><a href="CppInt.htm">int</a></b>&gt; GetCurrentScore() <b><a href="CppConst.htm">const</a></b>;<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/<a href="CppQuestion.html">question</a>s and the total number of <a href="CppQuestion.html">question</a>s answered<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppPair.html">std::pair</a>&lt;<b><a href="CppInt.htm">int</a></b>,<b><a href="CppInt.htm">int</a></b>&gt; GetCurrentScore() <b><a href="CppConst.html">const</a></b>;<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Get the <a href="CppExercise.htm">Exercise</a><br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppExercise.htm">Exercise</a> * Get<a href="CppExercise.htm">Exercise</a>() <b><a href="CppConst.htm">const</a></b>;<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Get the <a href="CppExercise.html">Exercise</a><br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppExercise.html">Exercise</a> * Get<a href="CppExercise.html">Exercise</a>() <b><a href="CppConst.html">const</a></b>;<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Obtain <b><a href="CppThis.htm">this</a></b> <b><a href="CppClass.htm">class</a></b> its <a href="CppVersion.htm">version</a><br/>
-&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> Get<a href="CppVersion.htm">Version</a>();<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Obtain <b><a href="CppThis.htm">this</a></b> <b><a href="CppClass.html">class</a></b> its <a href="CppVersion.html">version</a><br/>
+&nbsp;&nbsp;<b><a href="CppStatic.html">static</a></b> <b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a> Get<a href="CppVersion.html">Version</a>();<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Obtain <b><a href="CppThis.htm">this</a></b> <b><a href="CppClass.htm">class</a></b> its <a href="CppVersion.htm">version</a> history<br/>
-&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; Get<a href="CppVersion.htm">Version</a>History();<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Obtain <b><a href="CppThis.htm">this</a></b> <b><a href="CppClass.html">class</a></b> its <a href="CppVersion.html">version</a> history<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.html">static</a></b> <b><a href="CppConst.html">const</a></b> <a href="CppVector.html">std::vector</a>&lt;<a href="CppString.html">std::string</a>&gt; Get<a href="CppVersion.html">Version</a>History();<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Set the <a href="CppQuestion.htm">question</a>s<br/>
-&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> Set<a href="CppQuestion.htm">Question</a>s(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; filename);<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Set the <a href="CppQuestion.html">question</a>s<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> Set<a href="CppQuestion.html">Question</a>s(<b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a>&amp; filename);<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/Set the <a href="CppTime.htm">time</a> the user has to wait when he/she answered correctly, in milliseconds<br/>
-&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> SetWaiting<a href="CppTime.htm">Time</a>Correct(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> msecs);<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> SetWaiting<a href="CppTime.htm">Time</a>Correct(<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> msecs);<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/Set the <a href="CppTime.htm">time</a> the user has to wait when he/she answered incorrectly, in milliseconds<br/>
-&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> SetWaiting<a href="CppTime.htm">Time</a>Incorrect(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> msecs);<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> SetWaiting<a href="CppTime.htm">Time</a>Incorrect(<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> msecs);<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppPrivate.htm">private</a></b>:<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>/The <a href="CppExercise.htm">Exercise</a><br/>
-&nbsp;&nbsp;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppExercise.htm">Exercise</a>&gt; m_exercise;<br/>
+&nbsp;&nbsp;<b><a href="CppPrivate.html">private</a></b>:<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/The <a href="CppExercise.html">Exercise</a><br/>
+&nbsp;&nbsp;<a href="CppBoostShared_ptr.html">boost::shared_ptr</a>&lt;<a href="CppExercise.html">Exercise</a>&gt; m_exercise;<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>/The number of answered <a href="CppQuestion.htm">question</a>s<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/The number of answered <a href="CppQuestion.html">question</a>s<br/>
 &nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> m_n_answered;<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>/The number of correctly answered <a href="CppQuestion.htm">question</a>s<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/The number of correctly answered <a href="CppQuestion.html">question</a>s<br/>
 &nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> m_n_correct;<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppStruct.html">struct</a></b> MyUi<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;MyUi();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;QGroupBox * <b><a href="CppConst.html">const</a></b> m_box;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQLabel.html">QLabel</a> * <b><a href="CppConst.html">const</a></b> m_label_score;<br/>
+&nbsp;&nbsp;} m_ui;<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/The <a href="CppTime.htm">time</a> the user has to wait when he/she answered correctly, in milliseconds<br/>
 &nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> m_waiting_<a href="CppTime.htm">time</a>_correct;<br/>
@@ -122,26 +129,20 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/The <a href="CppTime.htm">time</a> the user has to wait when he/she answered incorrectly, in milliseconds<br/>
 &nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> m_waiting_<a href="CppTime.htm">time</a>_incorrect;<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppStruct.htm">struct</a></b> MyUi<br/>
-&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;MyUi();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;QGroupBox * <b><a href="CppConst.htm">const</a></b> m_box;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQLabel.htm">QLabel</a> * <b><a href="CppConst.htm">const</a></b> m_label_score;<br/>
-&nbsp;&nbsp;} m_ui;<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Displays m_dialog its current <a href="CppQuestion.htm">question</a><br/>
-&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> DisplayCurrent<a href="CppQuestion.htm">Question</a>();<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Displays m_dialog its current <a href="CppQuestion.html">question</a><br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> DisplayCurrent<a href="CppQuestion.html">Question</a>();<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Respond to the client having answered a <a href="CppQuestion.htm">question</a><br/>
-&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> OnSubmittedAnswer(<b><a href="CppConst.htm">const</a></b> <b><a href="CppBool.htm">bool</a></b> answered_correct);<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Respond to the client having answered a <a href="CppQuestion.html">question</a><br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> OnSubmittedAnswer(<b><a href="CppConst.html">const</a></b> <b><a href="CppBool.htm">bool</a></b> answered_correct);<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Respond to the client having viewed the answer of a <a href="CppQuestion.htm">question</a><br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Respond to the client having viewed the answer of a <a href="CppQuestion.html">question</a><br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> OnViewedAnswer();<br/>
 };<br/>
 <br/>
-} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.html">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
 <br/>
-<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> QTEXERCISE_H<br/>
+<a href="CppEndif.html">#endif</a> <a href="CppComment.htm">//</a> QTEXERCISE_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -155,7 +156,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <table summary="qtexercise.cpp" border = "1"><tr><td><code>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">/*</a><br/>
-<a href="CppQt.htm">Qt</a><a href="CppExercise.htm">Exercise</a>, <a href="CppQt.htm">Qt</a> GUI of <a href="CppExercise.htm">Exercise</a><br/>
+<a href="CppQt.htm">Qt</a><a href="CppExercise.html">Exercise</a>, <a href="CppQt.htm">Qt</a> GUI of <a href="CppExercise.html">Exercise</a><br/>
 Copyright (C) 2011 Richel Bilderbeek<br/>
 <br/>
 This program is free software: you can redistribute it and/or modify<br/>
@@ -171,49 +172,53 @@ You should have received a copy of the GNU General Public License<br/>
 along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">*/</a><br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="CppQtExercise.htm">CppQtExercise</a>.htm<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="CppQtExercise.html">CppQtExercise</a>.html<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppFstreamH.htm">fstream</a>&gt;<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic push<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.html">-Weffc++</a>"<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic ignored "-Wunused-local-<b><a href="CppTypedef.html">typedef</a></b>s"<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic ignored "-Wunused-but-set-parameter"<br/>
+<a href="CppInclude.html">#include</a> "qt<a href="CppExercise.html">exercise</a><a href="CppHeaderFile.htm">.h</a>"<br/>
 <br/>
-<a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
-<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-<b><a href="CppTypedef.htm">typedef</a></b>s"<br/>
-<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-but-set-parameter"<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/bind.hpp&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/lambda/lambda.hpp&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppSignals2.htm">signals2</a>.hpp&gt;<br/>
-<a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppFstreamH.html">fstream</a>&gt;<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> &lt;QGroupBox&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppQLabel.htm">QLabel</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppQTimer.htm">QTimer</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppQVBoxLayout.htm">QVBoxLayout</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppBoost.html">boost</a>/bind<a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppBoost.html">boost</a>/lambda/lambda<a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppBoost.html">boost</a>/<a href="CppSignals2.html">signals2</a><a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppExercise.htm">exercise</a>.h"<br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppMultipleChoiceQuestionDialog.htm">multiplechoicequestiondialog</a>.h"<br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppOpenQuestionDialog.htm">openquestiondialog</a>.h"<br/>
-<a href="CppInclude.htm">#include</a> "qt<a href="CppExercise.htm">exercise</a>.h"<br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppQtMultipleChoiceQuestionDialog.htm">qtmultiplechoicequestiondialog</a>.h"<br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppQtOpenQuestionDialog.htm">qtopenquestiondialog</a>.h"<br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppQtQuestionDialog.htm">qtquestiondialog</a>.h"<br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppTrace.htm">trace</a>.h"<br/>
+<a href="CppInclude.html">#include</a> &lt;QGroupBox&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppQLabel.html">QLabel</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppQTimer.html">QTimer</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppQVBoxLayout.html">QVBoxLayout</a>&gt;<br/>
 <br/>
-<a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppExercise.htm">Exercise</a>::My<a href="CppUi.htm">Ui</a>::MyUi()<br/>
+<a href="CppInclude.html">#include</a> "<a href="CppExercise.html">exercise</a><a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "<a href="CppMultipleChoiceQuestionDialog.html">multiplechoicequestiondialog</a><a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "<a href="CppOpenQuestionDialog.html">openquestiondialog</a><a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "<a href="CppQtMultipleChoiceQuestionDialog.html">qtmultiplechoicequestiondialog</a><a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "<a href="CppQtOpenQuestionDialog.html">qtopenquestiondialog</a><a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "<a href="CppQtQuestionDialog.html">qtquestiondialog</a><a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "<a href="CppTrace.html">trace</a><a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic pop<br/>
+<br/>
+<a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppExercise.html">Exercise</a>::My<a href="CppUi.htm">Ui</a>::MyUi()<br/>
 &nbsp;&nbsp;: m_box(<b><a href="CppNew.htm">new</a></b> QGroupBox),<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;m_label_score(<b><a href="CppNew.htm">new</a></b> <a href="CppQLabel.htm">QLabel</a>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_label_score(<b><a href="CppNew.htm">new</a></b> <a href="CppQLabel.html">QLabel</a>)<br/>
 {<br/>
 <br/>
 }<br/>
 <br/>
-<a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppExercise.htm">Exercise</a>::<a href="CppQt.htm">Qt</a><a href="CppExercise.htm">Exercise</a>()<br/>
-&nbsp;&nbsp;: m_n_answered(0),<br/>
+<a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppExercise.html">Exercise</a>::<a href="CppQt.htm">Qt</a><a href="CppExercise.html">Exercise</a>()<br/>
+&nbsp;&nbsp;: m_exercise{},<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_n_answered(0),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;m_n_correct(0),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_ui{},<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;m_waiting_<a href="CppTime.htm">time</a>_correct(1000),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;m_waiting_<a href="CppTime.htm">time</a>_incorrect(5000)<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(m_ui.m_box);<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(m_ui.m_label_score);<br/>
+&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(m_ui.m_box);<br/>
+&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(m_ui.m_label_score);<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppQVBoxLayout.htm">QVBoxLayout</a> * <b><a href="CppConst.htm">const</a></b> layout <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppQVBoxLayout.htm">QVBoxLayout</a>;<br/>
+&nbsp;&nbsp;<a href="CppQVBoxLayout.html">QVBoxLayout</a> * <b><a href="CppConst.html">const</a></b> layout <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppQVBoxLayout.html">QVBoxLayout</a>;<br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;setLayout(layout);<br/>
 &nbsp;&nbsp;layout-&gt;addWidget(m_ui.m_box);<br/>
 &nbsp;&nbsp;layout-&gt;addWidget(m_ui.m_label_score);<br/>
@@ -221,91 +226,91 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;m_ui.m_label_score-&gt;setText("Score: 0/0");<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppExercise.htm">Exercise</a>::DisplayCurrent<a href="CppQuestion.htm">Question</a>()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppExercise.html">Exercise</a>::DisplayCurrent<a href="CppQuestion.html">Question</a>()<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> s <a href="CppOperatorAssign.htm">=</a> m_exercise-&gt;GetCurrent<a href="CppQuestion.htm">Question</a>();<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a> s <a href="CppOperatorAssign.htm">=</a> m_exercise-&gt;GetCurrent<a href="CppQuestion.html">Question</a>();<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppQt.htm">Qt</a><a href="CppQuestionDialog.htm">QuestionDialog</a> * <a href="CppQuestion.htm">question</a> <a href="CppOperatorAssign.htm">=</a> 0;<br/>
+&nbsp;&nbsp;<a href="CppQt.htm">Qt</a><a href="CppQuestionDialog.html">QuestionDialog</a> * <a href="CppQuestion.html">question</a> <a href="CppOperatorAssign.htm">=</a> 0;<br/>
 &nbsp;&nbsp;<b><a href="CppTry.htm">try</a></b><br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppOpenQuestionDialog.htm">OpenQuestionDialog</a>&gt; d(<b><a href="CppNew.htm">new</a></b> <a href="CppOpenQuestionDialog.htm">OpenQuestionDialog</a>(s));<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQuestion.htm">question</a> <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppQtOpenQuestionDialog.htm">QtOpenQuestionDialog</a>(d);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppBoostShared_ptr.html">boost::shared_ptr</a>&lt;<a href="CppOpenQuestionDialog.html">OpenQuestionDialog</a>&gt; d(<b><a href="CppNew.htm">new</a></b> <a href="CppOpenQuestionDialog.html">OpenQuestionDialog</a>(s));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQuestion.html">question</a> <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppQtOpenQuestionDialog.html">QtOpenQuestionDialog</a>(d);<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<b><a href="CppCatch.htm">catch</a></b>(<a href="CppStdException.htm">std::exception</a>&amp;) {}<br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (!<a href="CppQuestion.htm">question</a>)<br/>
+&nbsp;&nbsp;<b><a href="CppCatch.html">catch</a></b>(<a href="CppStdException.html">std::exception</a>&amp;) {}<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (!<a href="CppQuestion.html">question</a>)<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppTry.htm">try</a></b><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppMultipleChoiceQuestionDialog.htm">MultipleChoiceQuestionDialog</a>&gt; d(<b><a href="CppNew.htm">new</a></b> <a href="CppMultipleChoiceQuestionDialog.htm">MultipleChoiceQuestionDialog</a>(s));<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQuestion.htm">question</a> <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppQtMultipleChoiceQuestionDialog.htm">QtMultipleChoiceQuestionDialog</a>(d);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppBoostShared_ptr.html">boost::shared_ptr</a>&lt;<a href="CppMultipleChoiceQuestionDialog.html">MultipleChoiceQuestionDialog</a>&gt; d(<b><a href="CppNew.htm">new</a></b> <a href="CppMultipleChoiceQuestionDialog.html">MultipleChoiceQuestionDialog</a>(s));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQuestion.html">question</a> <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppQtMultipleChoiceQuestionDialog.html">QtMultipleChoiceQuestionDialog</a>(d);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCatch.htm">catch</a></b>(<a href="CppStdException.htm">std::exception</a>&amp;) {}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCatch.html">catch</a></b>(<a href="CppStdException.html">std::exception</a>&amp;) {}<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppQuestion.htm">question</a> <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "<a href="CppExercise.htm">Exercise</a> only contains valid <a href="CppQuestion.htm">question</a>");<br/>
+&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(<a href="CppQuestion.html">question</a> <a href="CppOperatorLogicalAnd.html">&amp;&amp;</a> "<a href="CppExercise.html">Exercise</a> only contains valid <a href="CppQuestion.html">question</a>");<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppAdd.htm">Add</a> <a href="CppQt.htm">Qt</a><a href="CppQuestionDialog.htm">QuestionDialog</a><br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(m_ui.m_box);<br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (m_ui.m_box-&gt;layout()) <b><a href="CppDelete.htm">delete</a></b> m_ui.m_box-&gt;layout();<br/>
-&nbsp;&nbsp;<a href="CppQVBoxLayout.htm">QVBoxLayout</a> * <b><a href="CppConst.htm">const</a></b> layout <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppQVBoxLayout.htm">QVBoxLayout</a>;<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppAdd.htm">Add</a> <a href="CppQt.htm">Qt</a><a href="CppQuestionDialog.html">QuestionDialog</a><br/>
+&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(m_ui.m_box);<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (m_ui.m_box-&gt;layout()) <b><a href="CppDelete.html">delete</a></b> m_ui.m_box-&gt;layout();<br/>
+&nbsp;&nbsp;<a href="CppQVBoxLayout.html">QVBoxLayout</a> * <b><a href="CppConst.html">const</a></b> layout <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppQVBoxLayout.html">QVBoxLayout</a>;<br/>
 &nbsp;&nbsp;m_ui.m_box-&gt;setLayout(layout);<br/>
-&nbsp;&nbsp;layout-&gt;addWidget(<a href="CppQuestion.htm">question</a>);<br/>
+&nbsp;&nbsp;layout-&gt;addWidget(<a href="CppQuestion.html">question</a>);<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppQuestion.htm">question</a>-&gt;m_signal_submitted.connect(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBind.htm">boost::bind</a>(&amp;<a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppExercise.htm">Exercise</a>::OnSubmittedAnswer,<b><a href="CppThis.htm">this</a></b>,<a href="CppBoostLambda.htm">boost::lambda</a>::_1));<br/>
+&nbsp;&nbsp;<a href="CppQuestion.html">question</a>-&gt;m_signal_submitted.connect(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBind.html">boost::bind</a>(&amp;<a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppExercise.html">Exercise</a>::OnSubmittedAnswer,<b><a href="CppThis.htm">this</a></b>,<a href="CppBoostLambda.html">boost::lambda</a>::_1));<br/>
 <br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppExercise.htm">Exercise</a> * <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppExercise.htm">Exercise</a>::Get<a href="CppExercise.htm">Exercise</a>() <b><a href="CppConst.htm">const</a></b><br/>
+<b><a href="CppConst.html">const</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppExercise.html">Exercise</a> * <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppExercise.html">Exercise</a>::Get<a href="CppExercise.html">Exercise</a>() <b><a href="CppConst.html">const</a></b><br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(m_exercise);<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> m_exercise.get();<br/>
+&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(m_exercise);<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> m_exercise.get();<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppExercise.htm">Exercise</a>::Get<a href="CppVersion.htm">Version</a>()<br/>
+<b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppExercise.html">Exercise</a>::Get<a href="CppVersion.html">Version</a>()<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> "1.0";<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> "1.0";<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppExercise.htm">Exercise</a>::Get<a href="CppVersion.htm">Version</a>History()<br/>
+<b><a href="CppConst.html">const</a></b> <a href="CppVector.html">std::vector</a>&lt;<a href="CppString.html">std::string</a>&gt; <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppExercise.html">Exercise</a>::Get<a href="CppVersion.html">Version</a>History()<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> {<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;"2012-12-23: <a href="CppVersion.htm">Version</a> 1.0: initial <a href="CppVersion.htm">version</a>"<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"2012-12-23: <a href="CppVersion.html">Version</a> 1.0: initial <a href="CppVersion.html">version</a>"<br/>
 &nbsp;&nbsp;};<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppExercise.htm">Exercise</a>::OnSubmittedAnswer(<b><a href="CppConst.htm">const</a></b> <b><a href="CppBool.htm">bool</a></b> answered_correct)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppExercise.html">Exercise</a>::OnSubmittedAnswer(<b><a href="CppConst.html">const</a></b> <b><a href="CppBool.htm">bool</a></b> answered_correct)<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (answered_correct) <a href="CppOperatorPlus.htm">+</a>+m_n_correct;<br/>
 &nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a>+m_n_answered;<br/>
 &nbsp;&nbsp;m_ui.m_label_score-&gt;setText(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQString.htm">QString</a>("Score: {1}/{2}").arg(m_n_correct).arg(m_n_answered));<br/>
-&nbsp;&nbsp;<a href="CppQTimer.htm">QTimer</a>::singleShot(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQString.html">QString</a>("Score: {1}/{2}").arg(m_n_correct).arg(m_n_answered));<br/>
+&nbsp;&nbsp;<a href="CppQTimer.html">QTimer</a>::singleShot(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;answered_correct ? m_waiting_<a href="CppTime.htm">time</a>_correct : m_waiting_<a href="CppTime.htm">time</a>_incorrect,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppSLOT.htm">SLOT</a>(&amp;<a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppExercise.htm">Exercise</a>::OnViewedAnswer));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppSLOT.htm">SLOT</a>(&amp;<a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppExercise.html">Exercise</a>::OnViewedAnswer));<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppExercise.htm">Exercise</a>::OnViewedAnswer()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppExercise.html">Exercise</a>::OnViewedAnswer()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;m_exercise-&gt;Next();<br/>
-&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;DisplayCurrent<a href="CppQuestion.htm">Question</a>();<br/>
+&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;DisplayCurrent<a href="CppQuestion.html">Question</a>();<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppExercise.htm">Exercise</a>::Set<a href="CppQuestion.htm">Question</a>s(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; filename)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppExercise.html">Exercise</a>::Set<a href="CppQuestion.html">Question</a>s(<b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a>&amp; filename)<br/>
 {<br/>
-&nbsp;&nbsp;m_exercise.reset(<b><a href="CppNew.htm">new</a></b> <a href="CppExercise.htm">Exercise</a>(filename));<br/>
-&nbsp;&nbsp;DisplayCurrent<a href="CppQuestion.htm">Question</a>();<br/>
+&nbsp;&nbsp;m_exercise.reset(<b><a href="CppNew.htm">new</a></b> <a href="CppExercise.html">Exercise</a>(filename));<br/>
+&nbsp;&nbsp;DisplayCurrent<a href="CppQuestion.html">Question</a>();<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppExercise.htm">Exercise</a>::SetWaiting<a href="CppTime.htm">Time</a>Correct(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> msecs)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppExercise.html">Exercise</a>::SetWaiting<a href="CppTime.htm">Time</a>Correct(<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> msecs)<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(msecs <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 0);<br/>
+&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(msecs <a href="CppOperatorGreaterEqual.html">&gt;=</a> 0);<br/>
 &nbsp;&nbsp;m_waiting_<a href="CppTime.htm">time</a>_correct <a href="CppOperatorAssign.htm">=</a> msecs;<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppExercise.htm">Exercise</a>::SetWaiting<a href="CppTime.htm">Time</a>Incorrect(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> msecs)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppExercise.html">Exercise</a>::SetWaiting<a href="CppTime.htm">Time</a>Incorrect(<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> msecs)<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(msecs <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 0);<br/>
+&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(msecs <a href="CppOperatorGreaterEqual.html">&gt;=</a> 0);<br/>
 &nbsp;&nbsp;m_waiting_<a href="CppTime.htm">time</a>_incorrect <a href="CppOperatorAssign.htm">=</a> msecs;<br/>
 }<br/>
 </code></td></tr></table>

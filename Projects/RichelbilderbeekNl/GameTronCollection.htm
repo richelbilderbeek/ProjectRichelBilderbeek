@@ -99,21 +99,21 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += <a href="CppWidget.htm">widget</a>s<br/>
 <br/>
 <br/>
 <br/>
-TEMPLATE = app<br/>
+<a href="CppQmakeTemplate.htm">TEMPLATE</a> = app<br/>
 <br/>
 <br/>
-<a href="CppSOURCES.htm">SOURCES</a> += <a href="CppMain.htm">main</a>.cpp\<br/>
+<a href="CppQmakeSources.htm">SOURCES</a> += <a href="CppMain.htm">main</a>.cpp\<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;dialoggame.cpp \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;player.cpp \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;worldtype.cpp<br/>
 <br/>
-<a href="CppHEADERS.htm">HEADERS</a>&nbsp;&nbsp;+= dialoggame.h \<br/>
+<a href="CppQmakeHeaders.htm">HEADERS</a>&nbsp;&nbsp;+= dialoggame.h \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;player.h \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;worldtype.h<br/>
 <br/>
 <a href="CppFORMS.htm">FORMS</a>&nbsp;&nbsp;&nbsp;&nbsp;+= dialoggame.ui<br/>
 <br/>
-<a href="CppRESOURCES.htm">RESOURCES</a> += \<br/>
+<a href="CppQmakeResources.htm">RESOURCES</a> += \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;GameTronCollection.qrc<br/>
 </code></td></tr></table>
 <!-- end of the code -->
@@ -126,53 +126,53 @@ TEMPLATE = app<br/>
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="dialoggame.h" border = "1"><tr><td><code>
-<a href="CppIfndef.htm">#ifndef</a> DIALOGGAME_H<br/>
-<a href="CppDefine.htm">#define</a> DIALOGGAME_H<br/>
+<a href="CppIfndef.html">#ifndef</a> DIALOGGAME_H<br/>
+<a href="CppDefine.html">#define</a> DIALOGGAME_H<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppVectorH.html">vector</a>&gt;<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppShared_ptr.htm">shared_ptr</a>.hpp&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppBoost.html">boost</a>/<a href="CppShared_ptr.html">shared_ptr</a><a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppQDialog.htm">QDialog</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppQDialog.html">QDialog</a>&gt;<br/>
 <br/>
-<b><a href="CppStruct.htm">struct</a></b> <a href="CppQGraphicsScene.htm">QGraphicsScene</a>;<br/>
-<b><a href="CppStruct.htm">struct</a></b> <a href="CppQGraphicsPixmapItem.htm">QGraphicsPixmapItem</a>;<br/>
-<b><a href="CppStruct.htm">struct</a></b> <a href="CppQImage.htm">QImage</a>;<br/>
-<b><a href="CppStruct.htm">struct</a></b> <a href="CppQPixmap.htm">QPixmap</a>;<br/>
-<b><a href="CppStruct.htm">struct</a></b> <a href="CppQTimer.htm">QTimer</a>;<br/>
-<b><a href="CppStruct.htm">struct</a></b> Player;<br/>
+<b><a href="CppStruct.html">struct</a></b> <a href="CppQGraphicsScene.html">QGraphicsScene</a>;<br/>
+<b><a href="CppStruct.html">struct</a></b> <a href="CppQGraphicsPixmapItem.html">QGraphicsPixmapItem</a>;<br/>
+<b><a href="CppStruct.html">struct</a></b> <a href="CppQImage.html">QImage</a>;<br/>
+<b><a href="CppStruct.html">struct</a></b> <a href="CppQPixmap.html">QPixmap</a>;<br/>
+<b><a href="CppStruct.html">struct</a></b> <a href="CppQTimer.html">QTimer</a>;<br/>
+<b><a href="CppStruct.html">struct</a></b> Player;<br/>
 <br/>
-<b><a href="CppNamespace.htm">namespace</a></b> Ui {<br/>
-&nbsp;&nbsp;<b><a href="CppClass.htm">class</a></b> DialogGame;<br/>
+<b><a href="CppNamespace.html">namespace</a></b> Ui {<br/>
+&nbsp;&nbsp;<b><a href="CppClass.html">class</a></b> DialogGame;<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Player&gt; &gt; CreatePlayers();<br/>
+<b><a href="CppConst.html">const</a></b> <a href="CppVector.html">std::vector</a>&lt;<a href="CppBoostShared_ptr.html">boost::shared_ptr</a>&lt;Player&gt; &gt; CreatePlayers();<br/>
 <br/>
-<b><a href="CppClass.htm">class</a></b> DialogGame : <b><a href="CppPublic.htm">public</a></b> <a href="CppQDialog.htm">QDialog</a><br/>
+<b><a href="CppClass.html">class</a></b> DialogGame : <b><a href="CppPublic.html">public</a></b> <a href="CppQDialog.html">QDialog</a><br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppQ_OBJECT.htm">Q_OBJECT</a><br/>
+&nbsp;&nbsp;<a href="CppQ_OBJECT.html">Q_OBJECT</a><br/>
 <br/>
-<b><a href="CppPublic.htm">public</a></b>:<br/>
-&nbsp;&nbsp;<b><a href="CppExplicit.htm">explicit</a></b> DialogGame(<a href="CppQWidget.htm">QWidget</a> *parent <a href="CppOperatorAssign.htm">=</a> 0,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Player&gt; &gt;&amp; players <a href="CppOperatorAssign.htm">=</a> CreatePlayers());<br/>
+<b><a href="CppPublic.html">public</a></b>:<br/>
+&nbsp;&nbsp;<b><a href="CppExplicit.html">explicit</a></b> DialogGame(<a href="CppQWidget.html">QWidget</a> *parent <a href="CppOperatorAssign.htm">=</a> 0,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppVector.html">std::vector</a>&lt;<a href="CppBoostShared_ptr.html">boost::shared_ptr</a>&lt;Player&gt; &gt;&amp; players <a href="CppOperatorAssign.htm">=</a> CreatePlayers());<br/>
 &nbsp;&nbsp;~DialogGame();<br/>
 <br/>
-<b><a href="CppProtected.htm">protected</a></b>:<br/>
-&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> changeEvent(<a href="CppQEvent.htm">QEvent</a> *e);<br/>
+<b><a href="CppProtected.html">protected</a></b>:<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> changeEvent(<a href="CppQEvent.html">QEvent</a> *e);<br/>
 <br/>
-<b><a href="CppPrivate.htm">private</a></b>:<br/>
+<b><a href="CppPrivate.html">private</a></b>:<br/>
 &nbsp;&nbsp;<a href="CppUi.htm">Ui</a>::DialogGame *ui;<br/>
-&nbsp;&nbsp;<a href="CppQTimer.htm">QTimer</a> * m_<a href="CppTime.htm">time</a>r;<br/>
-&nbsp;&nbsp;<a href="CppQPixmap.htm">QPixmap</a> * m_pixmap;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> m_width;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> m_height;<br/>
-&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Player&gt; &gt; m_players;<br/>
+&nbsp;&nbsp;<a href="CppQTimer.html">QTimer</a> * m_<a href="CppTime.htm">time</a>r;<br/>
+&nbsp;&nbsp;<a href="CppQPixmap.html">QPixmap</a> * m_pixmap;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> m_width;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> m_height;<br/>
+&nbsp;&nbsp;<a href="CppVector.html">std::vector</a>&lt;<a href="CppBoostShared_ptr.html">boost::shared_ptr</a>&lt;Player&gt; &gt; m_players;<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> paintEvent(<a href="CppQPaintEvent.htm">QPaintEvent</a> *);<br/>
-&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> resizeEvent(<a href="CppQResizeEvent.htm">QResizeEvent</a>*);<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> paintEvent(<a href="CppQPaintEvent.html">QPaintEvent</a> *);<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> resizeEvent(<a href="CppQResizeEvent.html">QResizeEvent</a>*);<br/>
 };<br/>
 <br/>
-<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> DIALOGGAME_H<br/>
+<a href="CppEndif.html">#endif</a> <a href="CppComment.htm">//</a> DIALOGGAME_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -184,27 +184,27 @@ TEMPLATE = app<br/>
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="dialoggame.cpp" border = "1"><tr><td><code>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppCstdlibH.htm">cstdlib</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppCassertH.html">cassert</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppCstdlibH.html">cstdlib</a>&gt;<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppBOOST_FOREACH.htm">foreach</a>.hpp&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppBoost.html">boost</a>/<a href="CppBOOST_FOREACH.html">foreach</a><a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppQGraphicsScene.htm">QGraphicsScene</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppQGraphicsPixmapItem.htm">QGraphicsPixmapItem</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppQImage.htm">QImage</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppQPainter.htm">QPainter</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppQPixmap.htm">QPixmap</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppQTimer.htm">QTimer</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppQGraphicsScene.html">QGraphicsScene</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppQGraphicsPixmapItem.html">QGraphicsPixmapItem</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppQImage.html">QImage</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppQPainter.html">QPainter</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppQPixmap.html">QPixmap</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppQTimer.html">QTimer</a>&gt;<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> "dialoggame.h"<br/>
-<a href="CppInclude.htm">#include</a> "player.h"<br/>
-<a href="CppInclude.htm">#include</a> "ui_dialoggame.h"<br/>
-<a href="CppInclude.htm">#include</a> "worldtype.h"<br/>
+<a href="CppInclude.html">#include</a> "dialoggame<a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "player<a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "ui_dialoggame<a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "worldtype<a href="CppHeaderFile.htm">.h</a>"<br/>
 <br/>
-DialogGame::DialogGame(<a href="CppQWidget.htm">QWidget</a> *parent, <b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Player&gt; &gt;&amp; players)<br/>
-&nbsp;&nbsp;: <a href="CppQDialog.htm">QDialog</a>(parent, <a href="CppQt.htm">Qt</a>::Window),<br/>
+DialogGame::DialogGame(<a href="CppQWidget.html">QWidget</a> *parent, <b><a href="CppConst.html">const</a></b> <a href="CppVector.html">std::vector</a>&lt;<a href="CppBoostShared_ptr.html">boost::shared_ptr</a>&lt;Player&gt; &gt;&amp; players)<br/>
+&nbsp;&nbsp;: <a href="CppQDialog.html">QDialog</a>(parent, <a href="CppQt.htm">Qt</a>::Window),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;ui(<b><a href="CppNew.htm">new</a></b> <a href="CppUi.htm">Ui</a>::DialogGame),<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;m_<a href="CppTime.htm">time</a>r(<b><a href="CppNew.htm">new</a></b> <a href="CppQTimer.htm">QTimer</a>(<b><a href="CppThis.htm">this</a></b>)),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_<a href="CppTime.htm">time</a>r(<b><a href="CppNew.htm">new</a></b> <a href="CppQTimer.html">QTimer</a>(<b><a href="CppThis.htm">this</a></b>)),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;m_pixmap(0),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;m_width(320),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;m_height(200),<br/>
@@ -213,101 +213,101 @@ DialogGame::DialogGame(<a href="CppQWidget.htm">QWidget</a> *parent, <b><a href=
 &nbsp;&nbsp;ui-&gt;setupUi(<b><a href="CppThis.htm">this</a></b>);<br/>
 <br/>
 &nbsp;&nbsp;Player::m_world.reset(<b><a href="CppNew.htm">new</a></b> WorldTypeDonut(m_width,m_height));<br/>
-&nbsp;&nbsp;<a href="CppQObject.htm">QObject</a>::connect(m_<a href="CppTime.htm">time</a>r,<a href="CppSignalMacro.htm">SIGNAL</a>(<a href="CppTime.htm">time</a>out()),<b><a href="CppThis.htm">this</a></b>,<a href="CppSLOT.htm">SLOT</a>(repaint()));<br/>
+&nbsp;&nbsp;<a href="CppQObject.html">QObject</a>::connect(m_<a href="CppTime.htm">time</a>r,<a href="CppSignalMacro.html">SIGNAL</a>(<a href="CppTime.htm">time</a>out()),<b><a href="CppThis.htm">this</a></b>,<a href="CppSLOT.htm">SLOT</a>(repaint()));<br/>
 &nbsp;&nbsp;m_<a href="CppTime.htm">time</a>r-&gt;start(20);<br/>
 }<br/>
 <br/>
 DialogGame::~DialogGame()<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppDelete.htm">delete</a></b> ui;<br/>
+&nbsp;&nbsp;<b><a href="CppDelete.html">delete</a></b> ui;<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> DialogGame::changeEvent(<a href="CppQEvent.htm">QEvent</a> *e)<br/>
+<b><a href="CppVoid.htm">void</a></b> DialogGame::changeEvent(<a href="CppQEvent.html">QEvent</a> *e)<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppQDialog.htm">QDialog</a>::changeEvent(e);<br/>
-&nbsp;&nbsp;<b><a href="CppSwitch.htm">switch</a></b> (e-&gt;type()) {<br/>
-&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> <a href="CppQEvent.htm">QEvent</a>::LanguageChange:<br/>
+&nbsp;&nbsp;<a href="CppQDialog.html">QDialog</a>::changeEvent(e);<br/>
+&nbsp;&nbsp;<b><a href="CppSwitch.html">switch</a></b> (e-&gt;type()) {<br/>
+&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> <a href="CppQEvent.html">QEvent</a>::LanguageChange:<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;ui-&gt;retranslateUi(<b><a href="CppThis.htm">this</a></b>);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppBreak.htm">break</a></b>;<br/>
-&nbsp;&nbsp;<b><a href="CppDefault.htm">default</a></b>:<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppBreak.htm">break</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppBreak.html">break</a></b>;<br/>
+&nbsp;&nbsp;<b><a href="CppDefault.html">default</a></b>:<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppBreak.html">break</a></b>;<br/>
 &nbsp;&nbsp;}<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> DialogGame::resizeEvent(<a href="CppQResizeEvent.htm">QResizeEvent</a>*)<br/>
+<b><a href="CppVoid.htm">void</a></b> DialogGame::resizeEvent(<a href="CppQResizeEvent.html">QResizeEvent</a>*)<br/>
 {<br/>
 <br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> DialogGame::paintEvent(<a href="CppQPaintEvent.htm">QPaintEvent</a> *)<br/>
+<b><a href="CppVoid.htm">void</a></b> DialogGame::paintEvent(<a href="CppQPaintEvent.html">QPaintEvent</a> *)<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppBool.htm">bool</a></b> must_init <a href="CppOperatorAssign.htm">=</a> <b><a href="CppTrue.htm">true</a></b>;<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.html">static</a></b> <b><a href="CppBool.htm">bool</a></b> must_init <a href="CppOperatorAssign.htm">=</a> <b><a href="CppTrue.htm">true</a></b>;<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppQPainter.htm">QPainter</a> painter(<b><a href="CppThis.htm">this</a></b>);<br/>
+&nbsp;&nbsp;<a href="CppQPainter.html">QPainter</a> painter(<b><a href="CppThis.htm">this</a></b>);<br/>
 <br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (must_init)<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppQPixmap.htm">QPixmap</a> pixmap(m_width,m_height);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;m_pixmap <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppQPixmap.htm">QPixmap</a>(m_width,m_height);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQImage.htm">QImage</a> image <a href="CppOperatorAssign.htm">=</a> m_pixmap-&gt;toImage();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppQPixmap.html">QPixmap</a> pixmap(m_width,m_height);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_pixmap <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppQPixmap.html">QPixmap</a>(m_width,m_height);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQImage.html">QImage</a> image <a href="CppOperatorAssign.htm">=</a> m_pixmap-&gt;toImage();<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> y=0; y<a href="CppOperatorNotEqual.htm">!=</a>m_height; <a href="CppOperatorPlus.htm">+</a>+y)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> x=0; x<a href="CppOperatorNotEqual.htm">!=</a>m_width; <a href="CppOperatorPlus.htm">+</a>+x)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;image.setPixel(<a href="CppQPoint.htm">QPoint</a>(x,y),<a href="CppQColor.htm">QColor</a>(0,0,0).rgb());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;image.setPixel(<a href="CppQPoint.html">QPoint</a>(x,y),<a href="CppQColor.html">QColor</a>(0,0,0).rgb());<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQPixmap.htm">QPixmap</a> * <b><a href="CppConst.htm">const</a></b> p <a href="CppOperatorAssign.htm">=</a> m_pixmap;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppIfndef.html">#ifndef</a> <a href="CppNDEBUG.html">NDEBUG</a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQPixmap.html">QPixmap</a> * <b><a href="CppConst.html">const</a></b> p <a href="CppOperatorAssign.htm">=</a> m_pixmap;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppEndif.html">#endif</a><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;*m_pixmap <a href="CppOperatorAssign.htm">=</a> m_pixmap-&gt;fromImage(image);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(m_pixmap <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> p);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppIfndef.html">#ifndef</a> <a href="CppNDEBUG.html">NDEBUG</a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(m_pixmap <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> p);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppEndif.html">#endif</a><br/>
 <br/>
-&nbsp;&nbsp;&nbsp;&nbsp;painter.drawPixmap(ui-&gt;<a href="CppWidget.htm">widget</a>-&gt;rect(),*m_pixmap);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;must_init <a href="CppOperatorAssign.htm">=</a> <b><a href="CppFalse.htm">false</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;painter.drawPixmap(ui-&gt;<a href="CppWidget.html">widget</a>-&gt;rect(),*m_pixmap);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;must_init <a href="CppOperatorAssign.htm">=</a> <b><a href="CppFalse.html">false</a></b>;<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;<b><a href="CppElse.htm">else</a></b><br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQImage.htm">QImage</a> image <a href="CppOperatorAssign.htm">=</a> m_pixmap-&gt;toImage();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQImage.html">QImage</a> image <a href="CppOperatorAssign.htm">=</a> m_pixmap-&gt;toImage();<br/>
 <br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBOOST_FOREACH.htm">BOOST_FOREACH</a>(<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Player&gt; player, m_players)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBOOST_FOREACH.html">BOOST_FOREACH</a>(<a href="CppBoostShared_ptr.html">boost::shared_ptr</a>&lt;Player&gt; player, m_players)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Move players<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;player-&gt;Advance();<br/>
 <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Draw players<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;image.setPixel(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQPoint.htm">QPoint</a>(player-&gt;GetX(),player-&gt;GetY()),<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQColor.htm">QColor</a>(player-&gt;m_r,player-&gt;m_g,player-&gt;m_b).rgb());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQPoint.html">QPoint</a>(player-&gt;GetX(),player-&gt;GetY()),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQColor.html">QColor</a>(player-&gt;m_r,player-&gt;m_g,player-&gt;m_b).rgb());<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 <br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQPixmap.htm">QPixmap</a> * <b><a href="CppConst.htm">const</a></b> p <a href="CppOperatorAssign.htm">=</a> m_pixmap;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppIfndef.html">#ifndef</a> <a href="CppNDEBUG.html">NDEBUG</a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQPixmap.html">QPixmap</a> * <b><a href="CppConst.html">const</a></b> p <a href="CppOperatorAssign.htm">=</a> m_pixmap;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppEndif.html">#endif</a><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;*m_pixmap <a href="CppOperatorAssign.htm">=</a> m_pixmap-&gt;fromImage(image);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(m_pixmap <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> p);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;painter.drawPixmap(ui-&gt;<a href="CppWidget.htm">widget</a>-&gt;rect(),*m_pixmap);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;must_init <a href="CppOperatorAssign.htm">=</a> <b><a href="CppFalse.htm">false</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppIfndef.html">#ifndef</a> <a href="CppNDEBUG.html">NDEBUG</a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(m_pixmap <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> p);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppEndif.html">#endif</a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;painter.drawPixmap(ui-&gt;<a href="CppWidget.html">widget</a>-&gt;rect(),*m_pixmap);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;must_init <a href="CppOperatorAssign.htm">=</a> <b><a href="CppFalse.html">false</a></b>;<br/>
 <br/>
 &nbsp;&nbsp;}<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Player&gt; &gt; CreatePlayers()<br/>
+<b><a href="CppConst.html">const</a></b> <a href="CppVector.html">std::vector</a>&lt;<a href="CppBoostShared_ptr.html">boost::shared_ptr</a>&lt;Player&gt; &gt; CreatePlayers()<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Player&gt; &gt; v;<br/>
+&nbsp;&nbsp;<a href="CppVector.html">std::vector</a>&lt;<a href="CppBoostShared_ptr.html">boost::shared_ptr</a>&lt;Player&gt; &gt; v;<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Player&gt; p(<b><a href="CppNew.htm">new</a></b> ClassicPlayer(159,100,3,255,0,0));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBoostShared_ptr.html">boost::shared_ptr</a>&lt;Player&gt; p(<b><a href="CppNew.htm">new</a></b> ClassicPlayer(159,100,3,255,0,0));<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;v.push_back(p);<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Player&gt; p(<b><a href="CppNew.htm">new</a></b> ClassicPlayer(161,100,1,0,255,0));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBoostShared_ptr.html">boost::shared_ptr</a>&lt;Player&gt; p(<b><a href="CppNew.htm">new</a></b> ClassicPlayer(161,100,1,0,255,0));<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;v.push_back(p);<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> v;<br/>
 }<br/>
 </code></td></tr></table>
 <!-- end of the code -->
@@ -320,16 +320,16 @@ DialogGame::~DialogGame()<br/>
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="main.cpp" border = "1"><tr><td><code>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppQApplication.htm">QApplication</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> "dialoggame.h"<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppQApplication.html">QApplication</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> "dialoggame<a href="CppHeaderFile.htm">.h</a>"<br/>
 <br/>
-<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>(<b><a href="CppInt.htm">int</a></b> <a href="CppArgc.htm">argc</a>, <b><a href="CppChar.htm">char</a></b> *<a href="CppArgc.htm">argv</a>[])<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a>(<b><a href="CppInt.htm">int</a></b> <a href="CppArgc.htm">argc</a>, <b><a href="CppChar.htm">char</a></b> *<a href="CppArgc.htm">argv</a>[])<br/>
 {<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQApplication.htm">QApplication</a> a(<a href="CppArgc.htm">argc</a>, <a href="CppArgc.htm">argv</a>);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQApplication.html">QApplication</a> a(<a href="CppArgc.htm">argc</a>, <a href="CppArgc.htm">argv</a>);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;DialogGame w;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;w.show();<br/>
 <br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> a.exec();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> a.exec();<br/>
 }<br/>
 </code></td></tr></table>
 <!-- end of the code -->
@@ -342,77 +342,77 @@ DialogGame::~DialogGame()<br/>
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="player.h" border = "1"><tr><td><code>
-<a href="CppIfndef.htm">#ifndef</a> PLAYER_H<br/>
-<a href="CppDefine.htm">#define</a> PLAYER_H<br/>
+<a href="CppIfndef.html">#ifndef</a> PLAYER_H<br/>
+<a href="CppDefine.html">#define</a> PLAYER_H<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppCassertH.html">cassert</a>&gt;<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/cast.hpp&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppShared_ptr.htm">shared_ptr</a>.hpp&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppBoost.html">boost</a>/cast<a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppBoost.html">boost</a>/<a href="CppShared_ptr.html">shared_ptr</a><a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> "worldtype.h"<br/>
+<a href="CppInclude.html">#include</a> "worldtype<a href="CppHeaderFile.htm">.h</a>"<br/>
 <br/>
-<b><a href="CppStruct.htm">struct</a></b> Player<br/>
+<b><a href="CppStruct.html">struct</a></b> Player<br/>
 {<br/>
 &nbsp;&nbsp;Player(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> r,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> g,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> b)<br/>
-&nbsp;&nbsp;: m_r(r), m_g(g), m_b(b), m_dead(<b><a href="CppFalse.htm">false</a></b>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppUnsigned.html">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> r,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppUnsigned.html">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> g,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppUnsigned.html">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> b)<br/>
+&nbsp;&nbsp;: m_r(r), m_g(g), m_b(b), m_dead(<b><a href="CppFalse.html">false</a></b>)<br/>
 &nbsp;&nbsp;{<br/>
 <br/>
 &nbsp;&nbsp;}<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> m_r;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> m_g;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> m_b;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppUnsigned.html">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> m_r;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppUnsigned.html">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> m_g;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppUnsigned.html">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> m_b;<br/>
 &nbsp;&nbsp;<b><a href="CppBool.htm">bool</a></b> m_dead;<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;WorldType&gt; m_world;<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.html">static</a></b> <a href="CppBoostShared_ptr.html">boost::shared_ptr</a>&lt;WorldType&gt; m_world;<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppBool.htm">bool</a></b> IsDead() <b><a href="CppConst.htm">const</a></b> { <b><a href="CppReturn.htm">return</a></b> m_dead; }<br/>
-&nbsp;&nbsp;<b><a href="CppVirtual.htm">virtual</a></b> <b><a href="CppInt.htm">int</a></b> GetX() <b><a href="CppConst.htm">const</a></b> <a href="CppOperatorAssign.htm">=</a> 0;<br/>
-&nbsp;&nbsp;<b><a href="CppVirtual.htm">virtual</a></b> <b><a href="CppInt.htm">int</a></b> GetY() <b><a href="CppConst.htm">const</a></b> <a href="CppOperatorAssign.htm">=</a> 0;<br/>
-&nbsp;&nbsp;<b><a href="CppVirtual.htm">virtual</a></b> <b><a href="CppVoid.htm">void</a></b> Advance() <a href="CppOperatorAssign.htm">=</a> 0;<br/>
-&nbsp;&nbsp;<b><a href="CppVirtual.htm">virtual</a></b> <b><a href="CppVoid.htm">void</a></b> TurnLeft() <a href="CppOperatorAssign.htm">=</a> 0;<br/>
-&nbsp;&nbsp;<b><a href="CppVirtual.htm">virtual</a></b> <b><a href="CppVoid.htm">void</a></b> TurnRight() <a href="CppOperatorAssign.htm">=</a> 0;<br/>
+&nbsp;&nbsp;<b><a href="CppBool.htm">bool</a></b> IsDead() <b><a href="CppConst.html">const</a></b> { <b><a href="CppReturn.html">return</a></b> m_dead; }<br/>
+&nbsp;&nbsp;<b><a href="CppVirtual.html">virtual</a></b> <b><a href="CppInt.htm">int</a></b> GetX() <b><a href="CppConst.html">const</a></b> <a href="CppOperatorAssign.htm">=</a> 0;<br/>
+&nbsp;&nbsp;<b><a href="CppVirtual.html">virtual</a></b> <b><a href="CppInt.htm">int</a></b> GetY() <b><a href="CppConst.html">const</a></b> <a href="CppOperatorAssign.htm">=</a> 0;<br/>
+&nbsp;&nbsp;<b><a href="CppVirtual.html">virtual</a></b> <b><a href="CppVoid.htm">void</a></b> Advance() <a href="CppOperatorAssign.htm">=</a> 0;<br/>
+&nbsp;&nbsp;<b><a href="CppVirtual.html">virtual</a></b> <b><a href="CppVoid.htm">void</a></b> TurnLeft() <a href="CppOperatorAssign.htm">=</a> 0;<br/>
+&nbsp;&nbsp;<b><a href="CppVirtual.html">virtual</a></b> <b><a href="CppVoid.htm">void</a></b> TurnRight() <a href="CppOperatorAssign.htm">=</a> 0;<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppProtected.htm">protected</a></b>:<br/>
-&nbsp;&nbsp;<b><a href="CppVirtual.htm">virtual</a></b> ~Player() {}<br/>
+&nbsp;&nbsp;<b><a href="CppProtected.html">protected</a></b>:<br/>
+&nbsp;&nbsp;<b><a href="CppVirtual.html">virtual</a></b> ~Player() {}<br/>
 };<br/>
 <br/>
-<b><a href="CppStruct.htm">struct</a></b> ClassicPlayer : <b><a href="CppPublic.htm">public</a></b> Player<br/>
+<b><a href="CppStruct.html">struct</a></b> ClassicPlayer : <b><a href="CppPublic.html">public</a></b> Player<br/>
 {<br/>
 &nbsp;&nbsp;ClassicPlayer(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> y,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> direction,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> r,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> g,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> b)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> x,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> y,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> direction,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppUnsigned.html">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> r,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppUnsigned.html">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> g,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppUnsigned.html">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> b)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;: Player(r,g,b),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;m_x(x), m_y(y),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;m_direction(direction)<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(m_direction <a href="CppOperatorModulus.htm">%</a> 4 <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> m_direction<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "Direction must be in set {0,1,2,3}");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(m_direction <a href="CppOperatorModulus.htm">%</a> 4 <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> m_direction<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorLogicalAnd.html">&amp;&amp;</a> "Direction must be in set {0,1,2,3}");<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> GetX() <b><a href="CppConst.htm">const</a></b> { <b><a href="CppReturn.htm">return</a></b> m_x; }<br/>
-&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> GetY() <b><a href="CppConst.htm">const</a></b> { <b><a href="CppReturn.htm">return</a></b> m_y; }<br/>
+&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> GetX() <b><a href="CppConst.html">const</a></b> { <b><a href="CppReturn.html">return</a></b> m_x; }<br/>
+&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> GetY() <b><a href="CppConst.html">const</a></b> { <b><a href="CppReturn.html">return</a></b> m_y; }<br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> Advance()<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppSwitch.htm">switch</a></b>(m_direction <a href="CppOperatorModulus.htm">%</a> 4)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppSwitch.html">switch</a></b>(m_direction <a href="CppOperatorModulus.htm">%</a> 4)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> 0: <a href="CppOperatorMinus.htm">-</a>-m_y; <b><a href="CppBreak.htm">break</a></b>;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> 1: <a href="CppOperatorPlus.htm">+</a>+m_x; <b><a href="CppBreak.htm">break</a></b>;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> 2: <a href="CppOperatorPlus.htm">+</a>+m_y; <b><a href="CppBreak.htm">break</a></b>;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> 3: <a href="CppOperatorMinus.htm">-</a>-m_x; <b><a href="CppBreak.htm">break</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> 0: <a href="CppOperatorMinus.htm">-</a>-m_y; <b><a href="CppBreak.html">break</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> 1: <a href="CppOperatorPlus.htm">+</a>+m_x; <b><a href="CppBreak.html">break</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> 2: <a href="CppOperatorPlus.htm">+</a>+m_y; <b><a href="CppBreak.html">break</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> 3: <a href="CppOperatorMinus.htm">-</a>-m_x; <b><a href="CppBreak.html">break</a></b>;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppDouble.htm">double</a></b> dx <a href="CppOperatorAssign.htm">=</a> <a href="CppNumeric_cast.htm">boost::numeric_cast</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(m_x);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppDouble.htm">double</a></b> dy <a href="CppOperatorAssign.htm">=</a> <a href="CppNumeric_cast.htm">boost::numeric_cast</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(m_y);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppDouble.html">double</a></b> dx <a href="CppOperatorAssign.htm">=</a> <a href="CppNumeric_cast.html">boost::numeric_cast</a>&lt;<b><a href="CppDouble.html">double</a></b>&gt;(m_x);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppDouble.html">double</a></b> dy <a href="CppOperatorAssign.htm">=</a> <a href="CppNumeric_cast.html">boost::numeric_cast</a>&lt;<b><a href="CppDouble.html">double</a></b>&gt;(m_y);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;m_world-&gt;RespondToPlayer(dx,dy,m_dead);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;m_x <a href="CppOperatorAssign.htm">=</a> <a href="CppNumeric_cast.htm">boost::numeric_cast</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(dx);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;m_y <a href="CppOperatorAssign.htm">=</a> <a href="CppNumeric_cast.htm">boost::numeric_cast</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(dy);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_x <a href="CppOperatorAssign.htm">=</a> <a href="CppNumeric_cast.html">boost::numeric_cast</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(dx);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_y <a href="CppOperatorAssign.htm">=</a> <a href="CppNumeric_cast.html">boost::numeric_cast</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(dy);<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> TurnLeft()<br/>
 &nbsp;&nbsp;{<br/>
@@ -423,13 +423,13 @@ DialogGame::~DialogGame()<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a>+m_direction;<br/>
 &nbsp;&nbsp;}<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppPrivate.htm">private</a></b>:<br/>
+&nbsp;&nbsp;<b><a href="CppPrivate.html">private</a></b>:<br/>
 &nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> m_x;<br/>
 &nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> m_y;<br/>
 &nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> m_direction;<br/>
 };<br/>
 <br/>
-<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> PLAYER_H<br/>
+<a href="CppEndif.html">#endif</a> <a href="CppComment.htm">//</a> PLAYER_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -441,9 +441,9 @@ DialogGame::~DialogGame()<br/>
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="player.cpp" border = "1"><tr><td><code>
-<a href="CppInclude.htm">#include</a> "player.h"<br/>
+<a href="CppInclude.html">#include</a> "player<a href="CppHeaderFile.htm">.h</a>"<br/>
 <br/>
-<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;WorldType&gt; Player::m_world;<br/>
+<a href="CppBoostShared_ptr.html">boost::shared_ptr</a>&lt;WorldType&gt; Player::m_world;<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -455,52 +455,52 @@ DialogGame::~DialogGame()<br/>
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="worldtype.h" border = "1"><tr><td><code>
-<a href="CppIfndef.htm">#ifndef</a> WORLDTYPE_H<br/>
-<a href="CppDefine.htm">#define</a> WORLDTYPE_H<br/>
+<a href="CppIfndef.html">#ifndef</a> WORLDTYPE_H<br/>
+<a href="CppDefine.html">#define</a> WORLDTYPE_H<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/checked_delete.hpp&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppBoost.html">boost</a>/checked_delete<a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
 <br/>
-<b><a href="CppStruct.htm">struct</a></b> WorldType<br/>
+<b><a href="CppStruct.html">struct</a></b> WorldType<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppProtected.htm">protected</a></b>:<br/>
-&nbsp;&nbsp;WorldType(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> width, <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> height)<br/>
+&nbsp;&nbsp;<b><a href="CppProtected.html">protected</a></b>:<br/>
+&nbsp;&nbsp;WorldType(<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> width, <b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> height)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;: m_width(width), m_height(height) {}<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> m_width;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> m_height;<br/>
-&nbsp;&nbsp;<b><a href="CppVirtual.htm">virtual</a></b> ~WorldType() {}<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> m_width;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> m_height;<br/>
+&nbsp;&nbsp;<b><a href="CppVirtual.html">virtual</a></b> ~WorldType() {}<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppPublic.htm">public</a></b>:<br/>
-&nbsp;&nbsp;<b><a href="CppVirtual.htm">virtual</a></b> <b><a href="CppVoid.htm">void</a></b> RespondToPlayer(<b><a href="CppDouble.htm">double</a></b>&amp; x, <b><a href="CppDouble.htm">double</a></b>&amp; y, <b><a href="CppBool.htm">bool</a></b>&amp; dead) <b><a href="CppConst.htm">const</a></b> <a href="CppOperatorAssign.htm">=</a> 0;<br/>
+&nbsp;&nbsp;<b><a href="CppPublic.html">public</a></b>:<br/>
+&nbsp;&nbsp;<b><a href="CppVirtual.html">virtual</a></b> <b><a href="CppVoid.htm">void</a></b> RespondToPlayer(<b><a href="CppDouble.html">double</a></b>&amp; x, <b><a href="CppDouble.html">double</a></b>&amp; y, <b><a href="CppBool.htm">bool</a></b>&amp; dead) <b><a href="CppConst.html">const</a></b> <a href="CppOperatorAssign.htm">=</a> 0;<br/>
 };<br/>
 <br/>
-<b><a href="CppStruct.htm">struct</a></b> WorldTypeDonut : <b><a href="CppPublic.htm">public</a></b> WorldType<br/>
+<b><a href="CppStruct.html">struct</a></b> WorldTypeDonut : <b><a href="CppPublic.html">public</a></b> WorldType<br/>
 {<br/>
-&nbsp;&nbsp;WorldTypeDonut(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> width, <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> height)<br/>
+&nbsp;&nbsp;WorldTypeDonut(<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> width, <b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> height)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;: WorldType(width,height) {}<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> RespondToPlayer(<b><a href="CppDouble.htm">double</a></b>&amp; x, <b><a href="CppDouble.htm">double</a></b>&amp; y, <b><a href="CppBool.htm">bool</a></b>&amp;) <b><a href="CppConst.htm">const</a></b><br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> RespondToPlayer(<b><a href="CppDouble.html">double</a></b>&amp; x, <b><a href="CppDouble.html">double</a></b>&amp; y, <b><a href="CppBool.htm">bool</a></b>&amp;) <b><a href="CppConst.html">const</a></b><br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (x &lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0) x<a href="CppOperatorPlusAssign.htm">+=</a>m_width;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (x <a href="CppOperatorGreaterEqual.htm">&gt;=</a> m_width) x<a href="CppOperatorMinusAssign.htm">-=</a>m_width;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (x <a href="CppOperatorGreaterEqual.html">&gt;=</a> m_width) x<a href="CppOperatorMinusAssign.htm">-=</a>m_width;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (y &lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0) y<a href="CppOperatorPlusAssign.htm">+=</a>m_height;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (y <a href="CppOperatorGreaterEqual.htm">&gt;=</a> m_height) y<a href="CppOperatorMinusAssign.htm">-=</a>m_height;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (y <a href="CppOperatorGreaterEqual.html">&gt;=</a> m_height) y<a href="CppOperatorMinusAssign.htm">-=</a>m_height;<br/>
 &nbsp;&nbsp;}<br/>
 };<br/>
 <br/>
-<b><a href="CppStruct.htm">struct</a></b> WorldTypeSquare : <b><a href="CppPublic.htm">public</a></b> WorldType<br/>
+<b><a href="CppStruct.html">struct</a></b> WorldTypeSquare : <b><a href="CppPublic.html">public</a></b> WorldType<br/>
 {<br/>
-&nbsp;&nbsp;WorldTypeSquare(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> width, <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> height)<br/>
+&nbsp;&nbsp;WorldTypeSquare(<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> width, <b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> height)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;: WorldType(width,height) {}<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> RespondToPlayer(<b><a href="CppDouble.htm">double</a></b>&amp; x, <b><a href="CppDouble.htm">double</a></b>&amp; y, <b><a href="CppBool.htm">bool</a></b>&amp; dead) <b><a href="CppConst.htm">const</a></b><br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> RespondToPlayer(<b><a href="CppDouble.html">double</a></b>&amp; x, <b><a href="CppDouble.html">double</a></b>&amp; y, <b><a href="CppBool.htm">bool</a></b>&amp; dead) <b><a href="CppConst.html">const</a></b><br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (x &lt; 0 <a href="CppOperatorLogicalOr.htm">||</a> x <a href="CppOperatorGreaterEqual.htm">&gt;=</a> m_width <a href="CppOperatorLogicalOr.htm">||</a> y &lt; 0 <a href="CppOperatorLogicalOr.htm">||</a> y <a href="CppOperatorGreaterEqual.htm">&gt;=</a> m_height) dead <a href="CppOperatorAssign.htm">=</a> <b><a href="CppTrue.htm">true</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (x &lt; 0 <a href="CppOperatorLogicalOr.htm">||</a> x <a href="CppOperatorGreaterEqual.html">&gt;=</a> m_width <a href="CppOperatorLogicalOr.htm">||</a> y &lt; 0 <a href="CppOperatorLogicalOr.htm">||</a> y <a href="CppOperatorGreaterEqual.html">&gt;=</a> m_height) dead <a href="CppOperatorAssign.htm">=</a> <b><a href="CppTrue.htm">true</a></b>;<br/>
 &nbsp;&nbsp;}<br/>
 };<br/>
 <br/>
 <br/>
-<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> WORLDTYPE_H<br/>
+<a href="CppEndif.html">#endif</a> <a href="CppComment.htm">//</a> WORLDTYPE_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -512,7 +512,7 @@ DialogGame::~DialogGame()<br/>
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="worldtype.cpp" border = "1"><tr><td><code>
-<a href="CppInclude.htm">#include</a> "worldtype.h"<br/>
+<a href="CppInclude.html">#include</a> "worldtype<a href="CppHeaderFile.htm">.h</a>"<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>

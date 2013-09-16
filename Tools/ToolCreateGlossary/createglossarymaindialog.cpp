@@ -43,12 +43,12 @@ ribi::CreateGlossaryMainDialog::CreateGlossaryMainDialog()
 {
   //std::cout << "Starting CreateGlossary version 1.1...\n\n";
 
-  CreatePage("Command-line glossary","ClGlossary.htm","Cl.*\\.htm\\z");
-  CreatePage("C++ glossary","CppGlossary.htm","Cpp.*\\.htm\\z");
-  CreatePage("Game glossary","GameGlossary.htm","Game.*\\.htm\\z");
-  CreatePage("Levend Cluedo glossary","LevendCluedoGlossary.htm","LevendCluedo.*\\.htm\\z");
-  CreatePage("Tool glossary","ToolGlossary.htm","Tool.*\\.htm\\z");
-  CreatePage("Music glossary","MusicGlossary.htm","(Music|Song|Cd).*\\.htm\\z");
+  CreatePage("Command-line glossary","ClGlossary.htm","Cl.*\\.htm\\>");
+  CreatePage("C++ glossary","CppGlossary.htm","Cpp.*\\.htm\\>");
+  CreatePage("Game glossary","GameGlossary.htm","Game.*\\.htm\\>");
+  CreatePage("Levend Cluedo glossary","LevendCluedoGlossary.htm","LevendCluedo.*\\.htm\\>");
+  CreatePage("Tool glossary","ToolGlossary.htm","Tool.*\\.htm\\>");
+  CreatePage("Music glossary","MusicGlossary.htm","(Music|Song|Cd).*\\.htm\\>");
   CreatePage("Sitemap","Sitemap.htm",".*\\.htm\\z");
 
   //std::cout << "Successfully created glossaries in folder "

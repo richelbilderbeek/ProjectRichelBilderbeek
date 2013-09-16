@@ -77,17 +77,17 @@
 QT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; += core gui<br/>
 greaterThan(QT_MAJOR_VERSION, 4): QT += <a href="CppWidget.htm">widget</a>s<br/>
 <br/>
-TEMPLATE = app<br/>
+<a href="CppQmakeTemplate.htm">TEMPLATE</a> = app<br/>
 <br/>
 <br/>
-<a href="CppSOURCES.htm">SOURCES</a> += <a href="CppMain.htm">main</a>.cpp\<br/>
+<a href="CppQmakeSources.htm">SOURCES</a> += <a href="CppMain.htm">main</a>.cpp\<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;transparentdialog.cpp<br/>
 <br/>
-<a href="CppHEADERS.htm">HEADERS</a>&nbsp;&nbsp;+= transparentdialog.h<br/>
+<a href="CppQmakeHeaders.htm">HEADERS</a>&nbsp;&nbsp;+= transparentdialog.h<br/>
 <br/>
 <a href="CppFORMS.htm">FORMS</a>&nbsp;&nbsp;&nbsp;&nbsp;+= transparentdialog.ui<br/>
 <br/>
-#CONFIG += mobility<br/>
+#<a href="CppQmakeConfig.htm">CONFIG</a> += mobility<br/>
 #MOBILITY =<br/>
 #symbian {<br/>
 #&nbsp;&nbsp;&nbsp;&nbsp;TARGET.UID3 = 0xec5641b7<br/>
@@ -106,19 +106,19 @@ TEMPLATE = app<br/>
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="main.cpp" border = "1"><tr><td><code>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppQApplication.htm">QApplication</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> "transparentdialog.h"<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppQApplication.html">QApplication</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> "transparentdialog<a href="CppHeaderFile.htm">.h</a>"<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>(<b><a href="CppInt.htm">int</a></b> <a href="CppArgc.htm">argc</a>, <b><a href="CppChar.htm">char</a></b> *<a href="CppArgc.htm">argv</a>[])<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a>(<b><a href="CppInt.htm">int</a></b> <a href="CppArgc.htm">argc</a>, <b><a href="CppChar.htm">char</a></b> *<a href="CppArgc.htm">argv</a>[])<br/>
 {<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQApplication.htm">QApplication</a> a(<a href="CppArgc.htm">argc</a>, <a href="CppArgc.htm">argv</a>);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQApplication.html">QApplication</a> a(<a href="CppArgc.htm">argc</a>, <a href="CppArgc.htm">argv</a>);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;TransparentDialog w;<br/>
 <a href="CppPreIf.htm">#if</a> defined(Q_WS_S60)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;w.showMaximized();<br/>
-<a href="CppPreElse.htm">#else</a><br/>
+<a href="CppPreElse.html">#else</a><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;w.show();<br/>
-<a href="CppEndif.htm">#endif</a><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> a.exec();<br/>
+<a href="CppEndif.html">#endif</a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> a.exec();<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 </code></td></tr></table>
@@ -132,32 +132,32 @@ TEMPLATE = app<br/>
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="transparentdialog.h" border = "1"><tr><td><code>
-<a href="CppIfndef.htm">#ifndef</a> TRANSPARENTDIALOG_H<br/>
-<a href="CppDefine.htm">#define</a> TRANSPARENTDIALOG_H<br/>
+<a href="CppIfndef.html">#ifndef</a> TRANSPARENTDIALOG_H<br/>
+<a href="CppDefine.html">#define</a> TRANSPARENTDIALOG_H<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppQDialog.htm">QDialog</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppQDialog.html">QDialog</a>&gt;<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppNamespace.htm">namespace</a></b> Ui {<br/>
-&nbsp;&nbsp;<b><a href="CppClass.htm">class</a></b> TransparentDialog;<br/>
+<b><a href="CppNamespace.html">namespace</a></b> Ui {<br/>
+&nbsp;&nbsp;<b><a href="CppClass.html">class</a></b> TransparentDialog;<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppClass.htm">class</a></b> TransparentDialog : <b><a href="CppPublic.htm">public</a></b> <a href="CppQDialog.htm">QDialog</a><br/>
+<b><a href="CppClass.html">class</a></b> TransparentDialog : <b><a href="CppPublic.html">public</a></b> <a href="CppQDialog.html">QDialog</a><br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppQ_OBJECT.htm">Q_OBJECT</a><br/>
+&nbsp;&nbsp;<a href="CppQ_OBJECT.html">Q_OBJECT</a><br/>
 <br/>
-<b><a href="CppPublic.htm">public</a></b>:<br/>
-&nbsp;&nbsp;<b><a href="CppExplicit.htm">explicit</a></b> TransparentDialog(<a href="CppQWidget.htm">QWidget</a> *parent <a href="CppOperatorAssign.htm">=</a> 0);<br/>
+<b><a href="CppPublic.html">public</a></b>:<br/>
+&nbsp;&nbsp;<b><a href="CppExplicit.html">explicit</a></b> TransparentDialog(<a href="CppQWidget.html">QWidget</a> *parent <a href="CppOperatorAssign.htm">=</a> 0);<br/>
 &nbsp;&nbsp;~TransparentDialog();<br/>
 <br/>
-<b><a href="CppProtected.htm">protected</a></b>:<br/>
-&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> changeEvent(<a href="CppQEvent.htm">QEvent</a> *e);<br/>
-&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> resizeEvent(<a href="CppQResizeEvent.htm">QResizeEvent</a> *);<br/>
+<b><a href="CppProtected.html">protected</a></b>:<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> changeEvent(<a href="CppQEvent.html">QEvent</a> *e);<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> resizeEvent(<a href="CppQResizeEvent.html">QResizeEvent</a> *);<br/>
 <br/>
-<b><a href="CppPrivate.htm">private</a></b>:<br/>
+<b><a href="CppPrivate.html">private</a></b>:<br/>
 &nbsp;&nbsp;<a href="CppUi.htm">Ui</a>::TransparentDialog *ui;<br/>
 };<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> TRANSPARENTDIALOG_H<br/>
+<a href="CppEndif.html">#endif</a> <a href="CppComment.htm">//</a> TRANSPARENTDIALOG_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -169,13 +169,13 @@ TEMPLATE = app<br/>
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="transparentdialog.cpp" border = "1"><tr><td><code>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppQBitmap.htm">QBitmap</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppQPainter.htm">QPainter</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> "transparentdialog.h"<br/>
-<a href="CppInclude.htm">#include</a> "ui_transparentdialog.h"<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppQBitmap.html">QBitmap</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppQPainter.html">QPainter</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> "transparentdialog<a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "ui_transparentdialog<a href="CppHeaderFile.htm">.h</a>"<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-TransparentDialog::TransparentDialog(<a href="CppQWidget.htm">QWidget</a> *parent) :<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQDialog.htm">QDialog</a>(parent),<br/>
+TransparentDialog::TransparentDialog(<a href="CppQWidget.html">QWidget</a> *parent) :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQDialog.html">QDialog</a>(parent),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;ui(<b><a href="CppNew.htm">new</a></b> <a href="CppUi.htm">Ui</a>::TransparentDialog)<br/>
 {<br/>
 &nbsp;&nbsp;ui-&gt;setupUi(<b><a href="CppThis.htm">this</a></b>);<br/>
@@ -183,25 +183,25 @@ TransparentDialog::TransparentDialog(<a href="CppQWidget.htm">QWidget</a> *paren
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 TransparentDialog::~TransparentDialog()<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppDelete.htm">delete</a></b> ui;<br/>
+&nbsp;&nbsp;<b><a href="CppDelete.html">delete</a></b> ui;<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppVoid.htm">void</a></b> TransparentDialog::changeEvent(<a href="CppQEvent.htm">QEvent</a> *e)<br/>
+<b><a href="CppVoid.htm">void</a></b> TransparentDialog::changeEvent(<a href="CppQEvent.html">QEvent</a> *e)<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppQDialog.htm">QDialog</a>::changeEvent(e);<br/>
-&nbsp;&nbsp;<b><a href="CppSwitch.htm">switch</a></b> (e-&gt;type()) {<br/>
-&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> <a href="CppQEvent.htm">QEvent</a>::LanguageChange:<br/>
+&nbsp;&nbsp;<a href="CppQDialog.html">QDialog</a>::changeEvent(e);<br/>
+&nbsp;&nbsp;<b><a href="CppSwitch.html">switch</a></b> (e-&gt;type()) {<br/>
+&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> <a href="CppQEvent.html">QEvent</a>::LanguageChange:<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;ui-&gt;retranslateUi(<b><a href="CppThis.htm">this</a></b>);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppBreak.htm">break</a></b>;<br/>
-&nbsp;&nbsp;<b><a href="CppDefault.htm">default</a></b>:<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppBreak.htm">break</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppBreak.html">break</a></b>;<br/>
+&nbsp;&nbsp;<b><a href="CppDefault.html">default</a></b>:<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppBreak.html">break</a></b>;<br/>
 &nbsp;&nbsp;}<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppVoid.htm">void</a></b> TransparentDialog::resizeEvent(<a href="CppQResizeEvent.htm">QResizeEvent</a> *)<br/>
+<b><a href="CppVoid.htm">void</a></b> TransparentDialog::resizeEvent(<a href="CppQResizeEvent.html">QResizeEvent</a> *)<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Make all transparent, except <b><a href="CppFor.htm">for</a></b> the label<br/>
-&nbsp;&nbsp;QRegion maskedRegion(ui-&gt;label-&gt;<a href="CppGeometry.htm">geometry</a>());<br/>
+&nbsp;&nbsp;QRegion maskedRegion(ui-&gt;label-&gt;<a href="CppGeometry.html">geometry</a>());<br/>
 &nbsp;&nbsp;setMask(maskedRegion);<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>

@@ -68,10 +68,10 @@
 <!-- start of code -->
 <table summary="ToolTestManyDigitNewick.pro" border = "1"><tr><td><code>
 QT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; += core gui<br/>
-CONFIG&nbsp;&nbsp; += console<br/>
-CONFIG&nbsp;&nbsp; -= app_bundle<br/>
-<a href="CppQMAKE_CXXFLAGS.htm">QMAKE_CXXFLAGS</a> += -std=<a href="Cpp0x.htm">c++11</a><br/>
-<a href="CppINCLUDEPATH.htm">INCLUDEPATH</a> += \<br/>
+<a href="CppQmakeConfig.htm">CONFIG</a>&nbsp;&nbsp; += console<br/>
+<a href="CppQmakeConfig.htm">CONFIG</a>&nbsp;&nbsp; -= app_bundle<br/>
+<a href="CppQmakeQmake_cxxflags.htm">QMAKE_CXXFLAGS</a> += -std=<a href="Cpp0x.htm">c++11</a><br/>
+<a href="CppQmakeIncludepath.htm">INCLUDEPATH</a> += \<br/>
 &nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppAbout.htm">CppAbout</a> \<br/>
 &nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppBinaryNewickVector.htm">CppBinaryNewickVector</a> \<br/>
 &nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppManyDigitNewick.htm">CppManyDigitNewick</a> \<br/>
@@ -82,16 +82,16 @@ CONFIG&nbsp;&nbsp; -= app_bundle<br/>
 &nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppTrace.htm">CppTrace</a> \<br/>
 &nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppTwoDigitNewick.htm">CppTwoDigitNewick</a><br/>
 #Debug flag for keeping/removing <a href="CppAssert.htm">assert</a><br/>
-CONFIG(release,debug|release):DEFINES += NDEBUG<br/>
-DEFINES += DEBUG_SKIP_SAZ_AND_SAO<br/>
+<a href="CppQmakeConfig.htm">CONFIG</a>(release,debug|release):<a href="CppQmakeDefines.htm">DEFINES</a> += NDEBUG<br/>
+<a href="CppQmakeDefines.htm">DEFINES</a> += DEBUG_SKIP_SAZ_AND_SAO<br/>
 #Add the path of the BigInt library<br/>
-<a href="CppINCLUDEPATH.htm">INCLUDEPATH</a> += ../../<a href="CppLibrary.htm">Libraries</a>/bigint-2010.04.30<br/>
+<a href="CppQmakeIncludepath.htm">INCLUDEPATH</a> += ../../<a href="CppLibrary.htm">Libraries</a>/bigint-2010.04.30<br/>
 #<a href="CppLibrary.htm">Libraries</a><br/>
-win32: <a href="CppLIBS.htm">LIBS</a> +=C:/Qt/2010.02.1/qt/lib/libboost_regex.lib<br/>
-unix : <a href="CppLIBS.htm">LIBS</a> += -L/usr/local/lib <a href="CppRegex.htm">-lboost_regex</a><br/>
+win32: <a href="CppQmakeLibs.htm">LIBS</a> +=C:/Qt/2010.02.1/qt/lib/libboost_regex.lib<br/>
+unix : <a href="CppQmakeLibs.htm">LIBS</a> += -L/usr/local/lib <a href="CppRegex.htm">-lboost_regex</a><br/>
 #Using BigInt library by including its source<br/>
-TEMPLATE = app<br/>
-<a href="CppSOURCES.htm">SOURCES</a> += <a href="CppMain.htm">main</a>.cpp \<br/>
+<a href="CppQmakeTemplate.htm">TEMPLATE</a> = app<br/>
+<a href="CppQmakeSources.htm">SOURCES</a> += <a href="CppMain.htm">main</a>.cpp \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;dialogtest<a href="CppManyDigitNewick.htm">manydigitnewick</a>.cpp \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppAbout.htm">CppAbout</a>/<a href="CppAbout.htm">about</a>.cpp \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppBinaryNewickVector.htm">CppBinaryNewickVector</a>/<a href="CppBinaryNewickVector.htm">binarynewickvector</a>.cpp \<br/>
@@ -114,7 +114,7 @@ TEMPLATE = app<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/bigint-2010.04.30/BigUnsignedInABase.cc \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppNewickVector.htm">CppNewickVector</a>/<a href="CppNewickVector.htm">newickvector</a>.cpp \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppManyDigitNewick.htm">CppManyDigitNewick</a>/<a href="CppManyDigitNewick.htm">manydigitnewick</a>coordinat.cpp<br/>
-<a href="CppHEADERS.htm">HEADERS</a> += \<br/>
+<a href="CppQmakeHeaders.htm">HEADERS</a> += \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;dialogtest<a href="CppManyDigitNewick.htm">manydigitnewick</a>.h \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppAbout.htm">CppAbout</a>/<a href="CppAbout.htm">about</a>.h \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppManyDigitNewick.htm">CppManyDigitNewick</a>/<a href="CppManyDigitNewick.htm">manydigitnewick</a>indexer.h \<br/>
@@ -137,7 +137,7 @@ TEMPLATE = app<br/>
 <a href="CppFORMS.htm">FORMS</a> += \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;dialogtest<a href="CppManyDigitNewick.htm">manydigitnewick</a>.ui \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppQtAboutDialog.htm">CppQtAboutDialog</a>/<a href="CppQtAboutDialog.htm">qtaboutdialog</a>.ui<br/>
-<a href="CppRESOURCES.htm">RESOURCES</a> += \<br/>
+<a href="CppQmakeResources.htm">RESOURCES</a> += \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;ToolTest<a href="CppManyDigitNewick.htm">ManyDigitNewick</a>.qrc<br/>
 <br/>
 OTHER_FILES += \<br/>
@@ -155,7 +155,7 @@ OTHER_FILES += \<br/>
 <table summary="dialogtestmanydigitnewick.h" border = "1"><tr><td><code>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">/*</a><br/>
-Test<a href="CppManyDigitNewick.htm">ManyDigitNewick</a>, <a href="Tools.htm">tool</a> to test the two-digit-<a href="CppNewick.htm">Newick</a> architecture<br/>
+Test<a href="CppManyDigitNewick.html">ManyDigitNewick</a>, <a href="Tools.htm">tool</a> to test the two-digit-<a href="CppNewick.html">Newick</a> architecture<br/>
 Copyright (C) 2010 Richel Bilderbeek<br/>
 <br/>
 This program is free software: you can redistribute it and/or modify<br/>
@@ -171,42 +171,42 @@ You should have received a copy of the GNU General Public License<br/>
 along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">*/</a><br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="Tools.htm">Tool</a>Test<a href="CppManyDigitNewick.htm">ManyDigitNewick</a>.htm<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="Tools.htm">Tool</a>Test<a href="CppManyDigitNewick.html">ManyDigitNewick</a>.html<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppIfndef.htm">#ifndef</a> DIALOGTEST_H<br/>
-<a href="CppDefine.htm">#define</a> DIALOGTEST_H<br/>
+<a href="CppIfndef.html">#ifndef</a> DIALOGTEST_H<br/>
+<a href="CppDefine.html">#define</a> DIALOGTEST_H<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppQDialog.htm">QDialog</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppQDialog.html">QDialog</a>&gt;<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppNamespace.htm">namespace</a></b> Ui {<br/>
-&nbsp;&nbsp;<b><a href="CppClass.htm">class</a></b> DialogTest<a href="CppManyDigitNewick.htm">ManyDigitNewick</a>;<br/>
+<b><a href="CppNamespace.html">namespace</a></b> Ui {<br/>
+&nbsp;&nbsp;<b><a href="CppClass.html">class</a></b> DialogTest<a href="CppManyDigitNewick.html">ManyDigitNewick</a>;<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppClass.htm">class</a></b> DialogTest<a href="CppManyDigitNewick.htm">ManyDigitNewick</a> : <b><a href="CppPublic.htm">public</a></b> <a href="CppQDialog.htm">QDialog</a><br/>
+<b><a href="CppClass.html">class</a></b> DialogTest<a href="CppManyDigitNewick.html">ManyDigitNewick</a> : <b><a href="CppPublic.html">public</a></b> <a href="CppQDialog.html">QDialog</a><br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppQ_OBJECT.htm">Q_OBJECT</a><br/>
+&nbsp;&nbsp;<a href="CppQ_OBJECT.html">Q_OBJECT</a><br/>
 <br/>
-<b><a href="CppPublic.htm">public</a></b>:<br/>
-&nbsp;&nbsp;<b><a href="CppExplicit.htm">explicit</a></b> DialogTest<a href="CppManyDigitNewick.htm">ManyDigitNewick</a>(<a href="CppQWidget.htm">QWidget</a> *parent <a href="CppOperatorAssign.htm">=</a> 0);<br/>
-&nbsp;&nbsp;~DialogTest<a href="CppManyDigitNewick.htm">ManyDigitNewick</a>();<br/>
-&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> Get<a href="CppVersion.htm">Version</a>();<br/>
-&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; Get<a href="CppVersion.htm">Version</a>History();<br/>
+<b><a href="CppPublic.html">public</a></b>:<br/>
+&nbsp;&nbsp;<b><a href="CppExplicit.html">explicit</a></b> DialogTest<a href="CppManyDigitNewick.html">ManyDigitNewick</a>(<a href="CppQWidget.html">QWidget</a> *parent <a href="CppOperatorAssign.htm">=</a> 0);<br/>
+&nbsp;&nbsp;~DialogTest<a href="CppManyDigitNewick.html">ManyDigitNewick</a>();<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.html">static</a></b> <b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a> Get<a href="CppVersion.html">Version</a>();<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.html">static</a></b> <b><a href="CppConst.html">const</a></b> <a href="CppVector.html">std::vector</a>&lt;<a href="CppString.html">std::string</a>&gt; Get<a href="CppVersion.html">Version</a>History();<br/>
 <br/>
-<b><a href="CppProtected.htm">protected</a></b>:<br/>
-&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> changeEvent(<a href="CppQEvent.htm">QEvent</a> *e);<br/>
+<b><a href="CppProtected.html">protected</a></b>:<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> changeEvent(<a href="CppQEvent.html">QEvent</a> *e);<br/>
 <br/>
-<b><a href="CppPrivate.htm">private</a></b>:<br/>
-&nbsp;&nbsp;<a href="CppUi.htm">Ui</a>::DialogTest<a href="CppManyDigitNewick.htm">ManyDigitNewick</a> *ui;<br/>
+<b><a href="CppPrivate.html">private</a></b>:<br/>
+&nbsp;&nbsp;<a href="CppUi.htm">Ui</a>::DialogTest<a href="CppManyDigitNewick.html">ManyDigitNewick</a> *ui;<br/>
 <br/>
-<b><a href="CppPrivate.htm">private</a></b> <b><a href="CppSlots.htm">slots</a></b>:<br/>
+<b><a href="CppPrivate.html">private</a></b> <b><a href="CppSlots.html">slots</a></b>:<br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> on_button_calculate_clicked();<br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> OnAnyChange();<br/>
-&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> On<a href="CppAbout.htm">About</a>Click();<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> On<a href="CppAbout.html">About</a>Click();<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppDouble.htm">double</a></b> <a href="CppGetRandomUniform.htm">GetRandomUniform</a>();<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.html">static</a></b> <b><a href="CppDouble.html">double</a></b> <a href="CppGetRandomUniform.html">GetRandomUniform</a>();<br/>
 };<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> DIALOGTEST_H<br/>
+<a href="CppEndif.html">#endif</a> <a href="CppComment.htm">//</a> DIALOGTEST_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -220,7 +220,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <table summary="dialogtestmanydigitnewick.cpp" border = "1"><tr><td><code>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">/*</a><br/>
-Test<a href="CppManyDigitNewick.htm">ManyDigitNewick</a>, <a href="Tools.htm">tool</a> to test the two-digit-<a href="CppNewick.htm">Newick</a> architecture<br/>
+Test<a href="CppManyDigitNewick.html">ManyDigitNewick</a>, <a href="Tools.htm">tool</a> to test the two-digit-<a href="CppNewick.html">Newick</a> architecture<br/>
 Copyright (C) 2010 Richel Bilderbeek<br/>
 <br/>
 This program is free software: you can redistribute it and/or modify<br/>
@@ -236,233 +236,233 @@ You should have received a copy of the GNU General Public License<br/>
 along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">*/</a><br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="Tools.htm">Tool</a>Test<a href="CppManyDigitNewick.htm">ManyDigitNewick</a>.htm<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="Tools.htm">Tool</a>Test<a href="CppManyDigitNewick.html">ManyDigitNewick</a>.html<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppAlgorithmH.htm">algorithm</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppStringH.htm">string</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppAlgorithmH.html">algorithm</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppStringH.html">string</a>&gt;<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppBOOST_FOREACH.htm">foreach</a>.hpp&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppLexical_cast.htm">lexical_cast</a>.hpp&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/numeric/con<a href="CppVersion.htm">version</a>/cast.hpp&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppBoost.html">boost</a>/<a href="CppBOOST_FOREACH.html">foreach</a><a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppBoost.html">boost</a>/<a href="CppLexical_cast.html">lexical_cast</a><a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppBoost.html">boost</a>/numeric/con<a href="CppVersion.html">version</a>/cast<a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppQDesktopWidget.htm">QDesktopWidget</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppQDesktopWidget.html">QDesktopWidget</a>&gt;<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppBigInt.htm">BigInteger</a>.hh"<br/>
+<a href="CppInclude.html">#include</a> "<a href="CppBigInt.html">BigInteger</a><a href="CppHeaderFile.htm">.h</a>h"<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppAbout.htm">about</a>.h"<br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppBinaryNewickVector.htm">binarynewickvector</a>.h"<br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppNewickVector.htm">newickvector</a>.h"<br/>
-<a href="CppInclude.htm">#include</a> "dialogtest<a href="CppManyDigitNewick.htm">manydigitnewick</a>.h"<br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppManyDigitNewick.htm">manydigitnewick</a>.h"<br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppManyDigitNewick.htm">manydigitnewick</a>indexer.h"<br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppNewick.htm">newick</a>.h"<br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppQtAboutDialog.htm">qtaboutdialog</a>.h"<br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppTwoDigitNewick.htm">twodigitnewick</a>.h"<br/>
-<a href="CppInclude.htm">#include</a> "ui_dialogtest<a href="CppManyDigitNewick.htm">manydigitnewick</a>.h"<br/>
+<a href="CppInclude.html">#include</a> "<a href="CppAbout.html">about</a><a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "<a href="CppBinaryNewickVector.html">binarynewickvector</a><a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "<a href="CppNewickVector.html">newickvector</a><a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "dialogtest<a href="CppManyDigitNewick.html">manydigitnewick</a><a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "<a href="CppManyDigitNewick.html">manydigitnewick</a><a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "<a href="CppManyDigitNewick.html">manydigitnewick</a>indexer<a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "<a href="CppNewick.html">newick</a><a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "<a href="CppQtAboutDialog.html">qtaboutdialog</a><a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "<a href="CppTwoDigitNewick.html">twodigitnewick</a><a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "ui_dialogtest<a href="CppManyDigitNewick.html">manydigitnewick</a><a href="CppHeaderFile.htm">.h</a>"<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-DialogTest<a href="CppManyDigitNewick.htm">ManyDigitNewick</a>::DialogTest<a href="CppManyDigitNewick.htm">ManyDigitNewick</a>(<a href="CppQWidget.htm">QWidget</a> *parent) :<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQDialog.htm">QDialog</a>(parent,<a href="CppQt.htm">Qt</a>::Window),<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;ui(<b><a href="CppNew.htm">new</a></b> <a href="CppUi.htm">Ui</a>::DialogTest<a href="CppManyDigitNewick.htm">ManyDigitNewick</a>)<br/>
+DialogTest<a href="CppManyDigitNewick.html">ManyDigitNewick</a>::DialogTest<a href="CppManyDigitNewick.html">ManyDigitNewick</a>(<a href="CppQWidget.html">QWidget</a> *parent) :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQDialog.html">QDialog</a>(parent,<a href="CppQt.htm">Qt</a>::Window),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;ui(<b><a href="CppNew.htm">new</a></b> <a href="CppUi.htm">Ui</a>::DialogTest<a href="CppManyDigitNewick.html">ManyDigitNewick</a>)<br/>
 {<br/>
 &nbsp;&nbsp;ui-&gt;setupUi(<b><a href="CppThis.htm">this</a></b>);<br/>
-&nbsp;&nbsp;<a href="CppQObject.htm">QObject</a>::connect(ui-&gt;edit_<a href="CppNewick.htm">newick</a>,<a href="CppSignalMacro.htm">SIGNAL</a>(textChanged(<a href="CppQString.htm">QString</a>)),<br/>
+&nbsp;&nbsp;<a href="CppQObject.html">QObject</a>::connect(ui-&gt;edit_<a href="CppNewick.html">newick</a>,<a href="CppSignalMacro.html">SIGNAL</a>(textChanged(<a href="CppQString.html">QString</a>)),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>,<a href="CppSLOT.htm">SLOT</a>(OnAnyChange()));<br/>
-&nbsp;&nbsp;<a href="CppQObject.htm">QObject</a>::connect(ui-&gt;edit_theta,<a href="CppSignalMacro.htm">SIGNAL</a>(textChanged(<a href="CppQString.htm">QString</a>)),<br/>
+&nbsp;&nbsp;<a href="CppQObject.html">QObject</a>::connect(ui-&gt;edit_theta,<a href="CppSignalMacro.html">SIGNAL</a>(textChanged(<a href="CppQString.html">QString</a>)),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>,<a href="CppSLOT.htm">SLOT</a>(OnAnyChange()));<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppQObject.htm">QObject</a>::connect(ui-&gt;button_about,<a href="CppSignalMacro.htm">SIGNAL</a>(clicked()),<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>,<a href="CppSLOT.htm">SLOT</a>(On<a href="CppAbout.htm">About</a>Click()));<br/>
+&nbsp;&nbsp;<a href="CppQObject.html">QObject</a>::connect(ui-&gt;button_about,<a href="CppSignalMacro.html">SIGNAL</a>(clicked()),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>,<a href="CppSLOT.htm">SLOT</a>(On<a href="CppAbout.html">About</a>Click()));<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Put the dialog in the screen center<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppQRect.htm">QRect</a> screen <a href="CppOperatorAssign.htm">=</a> <a href="CppQApplication.htm">QApplication</a>::desktop()-&gt;screenGeometry();<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppQRect.html">QRect</a> screen <a href="CppOperatorAssign.htm">=</a> <a href="CppQApplication.html">QApplication</a>::desktop()-&gt;screenGeometry();<br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;move( screen.center() <a href="CppOperatorMinus.htm">-</a> <b><a href="CppThis.htm">this</a></b>-&gt;rect().center() );<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Set the text of edit_theta to the value of 10.0,<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>handled by the locale<br/>
 &nbsp;&nbsp;ui-&gt;edit_theta-&gt;setText(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQString.htm">QString</a>(<a href="CppLexical_cast.htm">boost::lexical_cast</a>&lt;<a href="CppString.htm">std::string</a>&gt;(10.0).c_str()));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQString.html">QString</a>(<a href="CppLexical_cast.html">boost::lexical_cast</a>&lt;<a href="CppString.html">std::string</a>&gt;(10.0).c_str()));<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Run some test <b><a href="CppCase.htm">case</a></b>s<br/>
-&nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
-&nbsp;&nbsp;<a href="CppNewick.htm">Newick</a>::Test();<br/>
-&nbsp;&nbsp;<a href="CppBinaryNewickVector.htm">BinaryNewickVector</a>::Test();<br/>
-&nbsp;&nbsp;<a href="CppNewickVector.htm">NewickVector</a>::Test();<br/>
-&nbsp;&nbsp;<a href="CppTwoDigitNewick.htm">TwoDigitNewick</a>::Test();<br/>
-&nbsp;&nbsp;<a href="CppManyDigitNewick.htm">ManyDigitNewick</a>::Test();<br/>
+&nbsp;&nbsp;<a href="CppIfndef.html">#ifndef</a> <a href="CppNDEBUG.html">NDEBUG</a><br/>
+&nbsp;&nbsp;<a href="CppNewick.html">Newick</a>::Test();<br/>
+&nbsp;&nbsp;<a href="CppBinaryNewickVector.html">BinaryNewickVector</a>::Test();<br/>
+&nbsp;&nbsp;<a href="CppNewickVector.html">NewickVector</a>::Test();<br/>
+&nbsp;&nbsp;<a href="CppTwoDigitNewick.html">TwoDigitNewick</a>::Test();<br/>
+&nbsp;&nbsp;<a href="CppManyDigitNewick.html">ManyDigitNewick</a>::Test();<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v <a href="CppOperatorAssign.htm">=</a> <a href="CppNewick.htm">Newick</a>::<a href="CppCreateValidNewicks.htm">CreateValidNewicks</a>();<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBigInt.htm">BigInteger</a> max_complexity <a href="CppOperatorAssign.htm">=</a> 10000;<br/>
-&nbsp;&nbsp;<a href="CppBOOST_FOREACH.htm">BOOST_FOREACH</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; s,v)<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppVector.html">std::vector</a>&lt;<a href="CppString.html">std::string</a>&gt; v <a href="CppOperatorAssign.htm">=</a> <a href="CppNewick.html">Newick</a>::<a href="CppCreateValidNewicks.html">CreateValidNewicks</a>();<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppBigInt.html">BigInteger</a> max_complexity <a href="CppOperatorAssign.htm">=</a> 10000;<br/>
+&nbsp;&nbsp;<a href="CppBOOST_FOREACH.html">BOOST_FOREACH</a>(<b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a>&amp; s,v)<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Only test binary <a href="CppNewick.htm">Newick</a>s and relatively small <a href="CppNewick.htm">Newick</a>s<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (<a href="CppNewick.htm">Newick</a>::<a href="CppCalcComplexity.htm">CalcComplexity</a>(<a href="CppNewick.htm">Newick</a>::<a href="CppStringToNewick.htm">StringToNewick</a>(s)) &gt; max_complexity)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Only test binary <a href="CppNewick.html">Newick</a>s and relatively small <a href="CppNewick.html">Newick</a>s<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (<a href="CppNewick.html">Newick</a>::<a href="CppCalcComplexity.html">CalcComplexity</a>(<a href="CppNewick.html">Newick</a>::<a href="CppStringToNewick.html">StringToNewick</a>(s)) &gt; max_complexity)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppContinue.htm">continue</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppContinue.html">continue</a></b>;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Start the tests<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> theta <a href="CppOperatorAssign.htm">=</a> 1.0 <a href="CppOperatorPlus.htm">+</a> <a href="CppGetRandomUniform.htm">GetRandomUniform</a>() * 10.0;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> N<a href="CppTRACE.htm">TRACE</a>_BILDERBIKKEL<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (<a href="CppNewick.htm">Newick</a>::<a href="CppIsBinaryNewick.htm">IsBinaryNewick</a>(<a href="CppNewick.htm">Newick</a>::<a href="CppStringToNewick.htm">StringToNewick</a>(s)))<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> theta <a href="CppOperatorAssign.htm">=</a> 1.0 <a href="CppOperatorPlus.htm">+</a> <a href="CppGetRandomUniform.html">GetRandomUniform</a>() * 10.0;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppIfndef.html">#ifndef</a> N<a href="CppTRACE.html">TRACE</a>_BILDERBIKKEL<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (<a href="CppNewick.html">Newick</a>::<a href="CppIsBinaryNewick.html">IsBinaryNewick</a>(<a href="CppNewick.html">Newick</a>::<a href="CppStringToNewick.html">StringToNewick</a>(s)))<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> t <a href="CppOperatorAssign.htm">=</a> <a href="CppString.htm">std::string</a>("Testing ")<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a> t <a href="CppOperatorAssign.htm">=</a> <a href="CppString.html">std::string</a>("Testing ")<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> s<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> <a href="CppString.htm">std::string</a>(" with complexity ")<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> ::big<a href="CppInt.htm">Integer</a>ToString(<a href="CppNewick.htm">Newick</a>::<a href="CppCalcComplexity.htm">CalcComplexity</a>(<a href="CppNewick.htm">Newick</a>::<a href="CppStringToNewick.htm">StringToNewick</a>(s)))<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> <a href="CppString.htm">std::string</a>(" <b><a href="CppFor.htm">for</a></b> three tests");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>(t);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> p2 <a href="CppOperatorAssign.htm">=</a> <a href="CppTwoDigitNewick.htm">TwoDigitNewick</a>::CalculateProbability(s,theta);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> p5 <a href="CppOperatorAssign.htm">=</a> <a href="CppNewickVector.htm">NewickVector</a>::CalculateProbability(s,theta);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> p6 <a href="CppOperatorAssign.htm">=</a> <a href="CppManyDigitNewick.htm">ManyDigitNewick</a>::CalculateProbability(s,theta);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> ( !<a href="CppNewick.htm">Newick</a>::<a href="CppFuzzy_equal_to.htm">fuzzy_equal_to</a>()(p2,p5))<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppOperatorLogicalOr.htm">||</a> !<a href="CppNewick.htm">Newick</a>::<a href="CppFuzzy_equal_to.htm">fuzzy_equal_to</a>()(p2,p6))<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> <a href="CppString.html">std::string</a>(" with complexity ")<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> ::big<a href="CppInt.html">Integer</a>ToString(<a href="CppNewick.html">Newick</a>::<a href="CppCalcComplexity.html">CalcComplexity</a>(<a href="CppNewick.html">Newick</a>::<a href="CppStringToNewick.html">StringToNewick</a>(s)))<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> <a href="CppString.html">std::string</a>(" <b><a href="CppFor.htm">for</a></b> three tests");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppTRACE.html">TRACE</a>(t);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppEndif.html">#endif</a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> p2 <a href="CppOperatorAssign.htm">=</a> <a href="CppTwoDigitNewick.html">TwoDigitNewick</a>::CalculateProbability(s,theta);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> p5 <a href="CppOperatorAssign.htm">=</a> <a href="CppNewickVector.html">NewickVector</a>::CalculateProbability(s,theta);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> p6 <a href="CppOperatorAssign.htm">=</a> <a href="CppManyDigitNewick.html">ManyDigitNewick</a>::CalculateProbability(s,theta);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> ( !<a href="CppNewick.html">Newick</a>::<a href="CppFuzzy_equal_to.html">fuzzy_equal_to</a>()(p2,p5))<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppOperatorLogicalOr.htm">||</a> !<a href="CppNewick.html">Newick</a>::<a href="CppFuzzy_equal_to.html">fuzzy_equal_to</a>()(p2,p6))<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCerr.htm">std::cerr</a><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "ERROR: DIFFERENT PROBABILITIES FOUND"&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n'<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "FOR UNARY/BINARY NEWICK " <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> s <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n'<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "Probability (<a href="CppTwoDigitNewick.htm">TwoDigitNewick</a>): "&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> p2 <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n'<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "Probability (<a href="CppNewickVector.htm">NewickVector</a>): "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> p5 <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n';<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "Probability (<a href="CppManyDigitNewick.htm">ManyDigitNewick</a>): "&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> p6 <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n';<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCerr.html">std::cerr</a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "ERROR: DIFFERENT PROBABILITIES FOUND"&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> '\n'<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "FOR UNARY/BINARY NEWICK " <a href="CppOperatorStreamOut.html">&lt;&lt;</a> s <a href="CppOperatorStreamOut.html">&lt;&lt;</a> '\n'<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "Probability (<a href="CppTwoDigitNewick.html">TwoDigitNewick</a>): "&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppOperatorStreamOut.html">&lt;&lt;</a> p2 <a href="CppOperatorStreamOut.html">&lt;&lt;</a> '\n'<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "Probability (<a href="CppNewickVector.html">NewickVector</a>): "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppOperatorStreamOut.html">&lt;&lt;</a> p5 <a href="CppOperatorStreamOut.html">&lt;&lt;</a> '\n';<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppOperatorStreamOut.html">&lt;&lt;</a> "Probability (<a href="CppManyDigitNewick.html">ManyDigitNewick</a>): "&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> p6 <a href="CppOperatorStreamOut.html">&lt;&lt;</a> '\n';<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppNewick.htm">Newick</a>::<a href="CppFuzzy_equal_to.htm">fuzzy_equal_to</a>()(p2,p5));<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppAssert.htm">assert</a>(<a href="CppNewick.htm">Newick</a>::<a href="CppFuzzy_equal_to.htm">fuzzy_equal_to</a>()(p2,p6));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(<a href="CppNewick.html">Newick</a>::<a href="CppFuzzy_equal_to.html">fuzzy_equal_to</a>()(p2,p5));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppAssert.html">assert</a>(<a href="CppNewick.html">Newick</a>::<a href="CppFuzzy_equal_to.html">fuzzy_equal_to</a>()(p2,p6));<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppElse.htm">else</a></b><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Trinary <a href="CppNewick.htm">Newick</a><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("Testing trinary <a href="CppNewick.htm">Newick</a>");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> p5 <a href="CppOperatorAssign.htm">=</a> <a href="CppNewickVector.htm">NewickVector</a>::CalculateProbability(s,theta);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> p6 <a href="CppOperatorAssign.htm">=</a> <a href="CppManyDigitNewick.htm">ManyDigitNewick</a>::CalculateProbability(s,theta);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> ( !<a href="CppNewick.htm">Newick</a>::<a href="CppFuzzy_equal_to.htm">fuzzy_equal_to</a>()(p5,p6))<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Trinary <a href="CppNewick.html">Newick</a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppTRACE.html">TRACE</a>("Testing trinary <a href="CppNewick.html">Newick</a>");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> p5 <a href="CppOperatorAssign.htm">=</a> <a href="CppNewickVector.html">NewickVector</a>::CalculateProbability(s,theta);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> p6 <a href="CppOperatorAssign.htm">=</a> <a href="CppManyDigitNewick.html">ManyDigitNewick</a>::CalculateProbability(s,theta);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> ( !<a href="CppNewick.html">Newick</a>::<a href="CppFuzzy_equal_to.html">fuzzy_equal_to</a>()(p5,p6))<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCerr.htm">std::cerr</a><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "WARNING: DIFFERENT PROBABILITIES FOUND"&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n'<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "FOR HIGHER-ARITY NEWICK " <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> s <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n'<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "Probability (<a href="CppNewickVector.htm">NewickVector</a>): "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> p5 <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n'<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "Probability (<a href="CppManyDigitNewick.htm">ManyDigitNewick</a>): "&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> p6 <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n';<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCerr.html">std::cerr</a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "WARNING: DIFFERENT PROBABILITIES FOUND"&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> '\n'<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "FOR HIGHER-ARITY NEWICK " <a href="CppOperatorStreamOut.html">&lt;&lt;</a> s <a href="CppOperatorStreamOut.html">&lt;&lt;</a> '\n'<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "Probability (<a href="CppNewickVector.html">NewickVector</a>): "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppOperatorStreamOut.html">&lt;&lt;</a> p5 <a href="CppOperatorStreamOut.html">&lt;&lt;</a> '\n'<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "Probability (<a href="CppManyDigitNewick.html">ManyDigitNewick</a>): "&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> p6 <a href="CppOperatorStreamOut.html">&lt;&lt;</a> '\n';<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
+&nbsp;&nbsp;<a href="CppEndif.html">#endif</a><br/>
 <br/>
-&nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
-&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;setWindowTitle(<b><a href="CppThis.htm">this</a></b>-&gt;windowTitle() <a href="CppOperatorPlus.htm">+</a> <a href="CppQString.htm">QString</a>(" (<a href="CppDebug.htm">Debug</a>)"));<br/>
-&nbsp;&nbsp;<a href="CppPreElse.htm">#else</a><br/>
-&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;setWindowTitle(<b><a href="CppThis.htm">this</a></b>-&gt;windowTitle() <a href="CppOperatorPlus.htm">+</a> <a href="CppQString.htm">QString</a>(" (Release)"));<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(1<a href="CppOperatorEqual.htm">==</a>2 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "All <a href="CppAssert.htm">assert</a>s are turned off");<br/>
-&nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
+&nbsp;&nbsp;<a href="CppIfndef.html">#ifndef</a> <a href="CppNDEBUG.html">NDEBUG</a><br/>
+&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;setWindowTitle(<b><a href="CppThis.htm">this</a></b>-&gt;windowTitle() <a href="CppOperatorPlus.htm">+</a> <a href="CppQString.html">QString</a>(" (<a href="CppDebug.html">Debug</a>)"));<br/>
+&nbsp;&nbsp;<a href="CppPreElse.html">#else</a><br/>
+&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;setWindowTitle(<b><a href="CppThis.htm">this</a></b>-&gt;windowTitle() <a href="CppOperatorPlus.htm">+</a> <a href="CppQString.html">QString</a>(" (Release)"));<br/>
+&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(1<a href="CppOperatorEqual.htm">==</a>2 <a href="CppOperatorLogicalAnd.html">&amp;&amp;</a> "All <a href="CppAssert.html">assert</a>s are turned off");<br/>
+&nbsp;&nbsp;<a href="CppEndif.html">#endif</a><br/>
 <br/>
 <br/>
 <br/>
 &nbsp;&nbsp;OnAnyChange();<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-DialogTest<a href="CppManyDigitNewick.htm">ManyDigitNewick</a>::~DialogTest<a href="CppManyDigitNewick.htm">ManyDigitNewick</a>()<br/>
+DialogTest<a href="CppManyDigitNewick.html">ManyDigitNewick</a>::~DialogTest<a href="CppManyDigitNewick.html">ManyDigitNewick</a>()<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppDelete.htm">delete</a></b> ui;<br/>
+&nbsp;&nbsp;<b><a href="CppDelete.html">delete</a></b> ui;<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppVoid.htm">void</a></b> DialogTest<a href="CppManyDigitNewick.htm">ManyDigitNewick</a>::changeEvent(<a href="CppQEvent.htm">QEvent</a> *e)<br/>
+<b><a href="CppVoid.htm">void</a></b> DialogTest<a href="CppManyDigitNewick.html">ManyDigitNewick</a>::changeEvent(<a href="CppQEvent.html">QEvent</a> *e)<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppQDialog.htm">QDialog</a>::changeEvent(e);<br/>
-&nbsp;&nbsp;<b><a href="CppSwitch.htm">switch</a></b> (e-&gt;type()) {<br/>
-&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> <a href="CppQEvent.htm">QEvent</a>::LanguageChange:<br/>
+&nbsp;&nbsp;<a href="CppQDialog.html">QDialog</a>::changeEvent(e);<br/>
+&nbsp;&nbsp;<b><a href="CppSwitch.html">switch</a></b> (e-&gt;type()) {<br/>
+&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> <a href="CppQEvent.html">QEvent</a>::LanguageChange:<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;ui-&gt;retranslateUi(<b><a href="CppThis.htm">this</a></b>);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppBreak.htm">break</a></b>;<br/>
-&nbsp;&nbsp;<b><a href="CppDefault.htm">default</a></b>:<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppBreak.htm">break</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppBreak.html">break</a></b>;<br/>
+&nbsp;&nbsp;<b><a href="CppDefault.html">default</a></b>:<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppBreak.html">break</a></b>;<br/>
 &nbsp;&nbsp;}<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/Cpp<a href="CppGetRandomUniform.htm">GetRandomUniform</a>.htm<br/>
-<b><a href="CppDouble.htm">double</a></b> DialogTest<a href="CppManyDigitNewick.htm">ManyDigitNewick</a>::<a href="CppGetRandomUniform.htm">GetRandomUniform</a>()<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/Cpp<a href="CppGetRandomUniform.html">GetRandomUniform</a>.html<br/>
+<b><a href="CppDouble.html">double</a></b> DialogTest<a href="CppManyDigitNewick.html">ManyDigitNewick</a>::<a href="CppGetRandomUniform.html">GetRandomUniform</a>()<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(<a href="CppRand.htm">std::rand</a>())/<b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(<a href="CppRAND_MAX.htm">RAND_MAX</a>);<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> <b><a href="CppStatic_cast.html">static_cast</a></b>&lt;<b><a href="CppDouble.html">double</a></b>&gt;(<a href="CppRand.html">std::rand</a>())/<b><a href="CppStatic_cast.html">static_cast</a></b>&lt;<b><a href="CppDouble.html">double</a></b>&gt;(<a href="CppRAND_MAX.html">RAND_MAX</a>);<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> DialogTest<a href="CppManyDigitNewick.htm">ManyDigitNewick</a>::Get<a href="CppVersion.htm">Version</a>()<br/>
+<b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a> DialogTest<a href="CppManyDigitNewick.html">ManyDigitNewick</a>::Get<a href="CppVersion.html">Version</a>()<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> "1.0";<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> "1.0";<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; DialogTest<a href="CppManyDigitNewick.htm">ManyDigitNewick</a>::Get<a href="CppVersion.htm">Version</a>History()<br/>
+<b><a href="CppConst.html">const</a></b> <a href="CppVector.html">std::vector</a>&lt;<a href="CppString.html">std::string</a>&gt; DialogTest<a href="CppManyDigitNewick.html">ManyDigitNewick</a>::Get<a href="CppVersion.html">Version</a>History()<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v;<br/>
-&nbsp;&nbsp;v.push_back("2011-03-02: <a href="CppVersion.htm">version</a> 1.0: initial <a href="CppVersion.htm">version</a> copied and from <a href="ToolTestTwoDigitNewick.htm">TestTwoDigitNewick</a>");<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
+&nbsp;&nbsp;<a href="CppVector.html">std::vector</a>&lt;<a href="CppString.html">std::string</a>&gt; v;<br/>
+&nbsp;&nbsp;v.push_back("2011-03-02: <a href="CppVersion.html">version</a> 1.0: initial <a href="CppVersion.html">version</a> copied and from <a href="ToolTestTwoDigitNewick.html">TestTwoDigitNewick</a>");<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> v;<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppVoid.htm">void</a></b> DialogTest<a href="CppManyDigitNewick.htm">ManyDigitNewick</a>::OnAnyChange()<br/>
+<b><a href="CppVoid.htm">void</a></b> DialogTest<a href="CppManyDigitNewick.html">ManyDigitNewick</a>::OnAnyChange()<br/>
 {<br/>
-&nbsp;&nbsp;ui-&gt;button_calculate-&gt;setEnabled(<b><a href="CppFalse.htm">false</a></b>);<br/>
+&nbsp;&nbsp;ui-&gt;button_calculate-&gt;setEnabled(<b><a href="CppFalse.html">false</a></b>);<br/>
 &nbsp;&nbsp;ui-&gt;edit_text-&gt;clear();<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>Check <a href="CppNewick.htm">Newick</a>s<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> s <a href="CppOperatorAssign.htm">=</a> ui-&gt;edit_<a href="CppNewick.htm">newick</a>-&gt;text().toStdString();<br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (!<a href="CppNewick.htm">Newick</a>::<a href="CppIsNewick.htm">IsNewick</a>(s))<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Check <a href="CppNewick.html">Newick</a>s<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a> s <a href="CppOperatorAssign.htm">=</a> ui-&gt;edit_<a href="CppNewick.html">newick</a>-&gt;text().toStdString();<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (!<a href="CppNewick.html">Newick</a>::<a href="CppIsNewick.html">IsNewick</a>(s))<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;ui-&gt;edit_text-&gt;appendPlainText("Not a valid <a href="CppNewick.htm">Newick</a>");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;ui-&gt;edit_text-&gt;appendPlainText("Not a valid <a href="CppNewick.html">Newick</a>");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b>;<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (!<a href="CppNewick.htm">Newick</a>::<a href="CppIsBinaryNewick.htm">IsBinaryNewick</a>(<a href="CppNewick.htm">Newick</a>::<a href="CppStringToNewick.htm">StringToNewick</a>(s)))<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (!<a href="CppNewick.html">Newick</a>::<a href="CppIsBinaryNewick.html">IsBinaryNewick</a>(<a href="CppNewick.html">Newick</a>::<a href="CppStringToNewick.html">StringToNewick</a>(s)))<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;ui-&gt;edit_text-&gt;appendPlainText("Not a binary <a href="CppNewick.htm">Newick</a>");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;ui-&gt;edit_text-&gt;appendPlainText("Not a binary <a href="CppNewick.html">Newick</a>");<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;ui-&gt;edit_text-&gt;appendPlainText("<a href="CppNewick.htm">Newick</a>: " <a href="CppOperatorPlus.htm">+</a> <a href="CppQString.htm">QString</a>(s.c_str()));<br/>
+&nbsp;&nbsp;ui-&gt;edit_text-&gt;appendPlainText("<a href="CppNewick.html">Newick</a>: " <a href="CppOperatorPlus.htm">+</a> <a href="CppQString.html">QString</a>(s.c_str()));<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Check theta<br/>
 &nbsp;&nbsp;<b><a href="CppTry.htm">try</a></b><br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppLexical_cast.htm">boost::lexical_cast</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppString.htm">std::string</a>(ui-&gt;edit_theta-&gt;text().toStdString()));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppLexical_cast.html">boost::lexical_cast</a>&lt;<b><a href="CppDouble.html">double</a></b>&gt;(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppString.html">std::string</a>(ui-&gt;edit_theta-&gt;text().toStdString()));<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<b><a href="CppCatch.htm">catch</a></b> (<a href="CppBad_lexical_cast.htm">boost::bad_lexical_cast</a>&amp;)<br/>
+&nbsp;&nbsp;<b><a href="CppCatch.html">catch</a></b> (<a href="CppBad_lexical_cast.html">boost::bad_lexical_cast</a>&amp;)<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;ui-&gt;edit_text-&gt;appendPlainText("Not a valid value <b><a href="CppFor.htm">for</a></b> theta");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b>;<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> theta <a href="CppOperatorAssign.htm">=</a> <a href="CppLexical_cast.htm">boost::lexical_cast</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppString.htm">std::string</a>(ui-&gt;edit_theta-&gt;text().toStdString()));<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> theta <a href="CppOperatorAssign.htm">=</a> <a href="CppLexical_cast.html">boost::lexical_cast</a>&lt;<b><a href="CppDouble.html">double</a></b>&gt;(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppString.html">std::string</a>(ui-&gt;edit_theta-&gt;text().toStdString()));<br/>
 &nbsp;&nbsp;ui-&gt;edit_text-&gt;appendPlainText("Theta: "<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> <a href="CppQString.htm">QString</a>(<a href="CppLexical_cast.htm">boost::lexical_cast</a>&lt;<a href="CppString.htm">std::string</a>&gt;(theta).c_str()));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> <a href="CppQString.html">QString</a>(<a href="CppLexical_cast.html">boost::lexical_cast</a>&lt;<a href="CppString.html">std::string</a>&gt;(theta).c_str()));<br/>
 <br/>
 &nbsp;&nbsp;ui-&gt;button_calculate-&gt;setEnabled(<b><a href="CppTrue.htm">true</a></b>);<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>/\warning: theta must be set before <a href="CppNewick.htm">Newick</a>Indexer is created<br/>
-&nbsp;&nbsp;<a href="CppManyDigitNewick.htm">ManyDigitNewick</a>::SetTheta(theta);<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppNewickVector.htm">NewickVector</a> n(s);<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppManyDigitNewick.htm">ManyDigitNewick</a>Indexer i(n,theta);<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/\warning: theta must be set before <a href="CppNewick.html">Newick</a>Indexer is created<br/>
+&nbsp;&nbsp;<a href="CppManyDigitNewick.html">ManyDigitNewick</a>::SetTheta(theta);<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppNewickVector.html">NewickVector</a> n(s);<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppManyDigitNewick.html">ManyDigitNewick</a>Indexer i(n,theta);<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>View all indices in the index table<br/>
 &nbsp;&nbsp;<a href="CppOperatorDivide.htm">/</a>*<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt; &gt;&amp; index_table<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppVector.html">std::vector</a>&lt;<a href="CppVector.html">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt; &gt;&amp; index_table<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> i.GetIndexTable().Get();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> maxx <a href="CppOperatorAssign.htm">=</a> <a href="CppNumeric_cast.htm">boost::numeric_cast</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(index_table.size());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> maxx <a href="CppOperatorAssign.htm">=</a> <a href="CppNumeric_cast.html">boost::numeric_cast</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(index_table.size());<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> x=0; x<a href="CppOperatorNotEqual.htm">!=</a>maxx; <a href="CppOperatorPlus.htm">+</a>+x)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> maxy <a href="CppOperatorAssign.htm">=</a> <a href="CppNumeric_cast.htm">boost::numeric_cast</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(index_table[x].size());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> maxy <a href="CppOperatorAssign.htm">=</a> <a href="CppNumeric_cast.html">boost::numeric_cast</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(index_table[x].size());<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> y=0; y<a href="CppOperatorNotEqual.htm">!=</a>maxy; <a href="CppOperatorPlus.htm">+</a>+y)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> z <a href="CppOperatorAssign.htm">=</a> index_table[x][y];<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (!z) <b><a href="CppContinue.htm">continue</a></b>;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppString.htm">std::string</a> s <a href="CppOperatorAssign.htm">=</a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> z <a href="CppOperatorAssign.htm">=</a> index_table[x][y];<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (!z) <b><a href="CppContinue.html">continue</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppString.html">std::string</a> s <a href="CppOperatorAssign.htm">=</a><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"F <a href="CppOperatorAssign.htm">=</a> "<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> <a href="CppLexical_cast.htm">boost::lexical_cast</a>&lt;<a href="CppString.htm">std::string</a>&gt;(z)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> <a href="CppLexical_cast.html">boost::lexical_cast</a>&lt;<a href="CppString.html">std::string</a>&gt;(z)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> " <a href="CppOperatorAssign.htm">=</a> ("<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> <a href="CppLexical_cast.htm">boost::lexical_cast</a>&lt;<a href="CppString.htm">std::string</a>&gt;(x)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> <a href="CppLexical_cast.html">boost::lexical_cast</a>&lt;<a href="CppString.html">std::string</a>&gt;(x)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> ","<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> <a href="CppLexical_cast.htm">boost::lexical_cast</a>&lt;<a href="CppString.htm">std::string</a>&gt;(y)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> <a href="CppLexical_cast.html">boost::lexical_cast</a>&lt;<a href="CppString.html">std::string</a>&gt;(y)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> "): F' <a href="CppOperatorAssign.htm">=</a> { ";<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppAdd.htm">Add</a> all derivatives<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBOOST_FOREACH.htm">BOOST_FOREACH</a>(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> M<a href="CppAny.htm">any</a>DigitDerivative&amp; di,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;i.Get<a href="CppNewick.htm">Newick</a>(z).GetDerivatives())<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBOOST_FOREACH.html">BOOST_FOREACH</a>(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> M<a href="CppAny.htm">any</a>DigitDerivative&amp; di,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;i.Get<a href="CppNewick.html">Newick</a>(z).GetDerivatives())<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;s <a href="CppOperatorAssign.htm">=</a> s<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> <a href="CppLexical_cast.htm">boost::lexical_cast</a>&lt;<a href="CppString.htm">std::string</a>&gt;(di.m_derived_index)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> <a href="CppLexical_cast.html">boost::lexical_cast</a>&lt;<a href="CppString.html">std::string</a>&gt;(di.m_derived_index)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> " ("<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> <a href="CppLexical_cast.htm">boost::lexical_cast</a>&lt;<a href="CppString.htm">std::string</a>&gt;(di.m_value_changed)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> <a href="CppLexical_cast.html">boost::lexical_cast</a>&lt;<a href="CppString.html">std::string</a>&gt;(di.m_value_changed)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> "-&gt;"<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> <a href="CppLexical_cast.htm">boost::lexical_cast</a>&lt;<a href="CppString.htm">std::string</a>&gt;(di.m_value_changed-1)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> <a href="CppLexical_cast.html">boost::lexical_cast</a>&lt;<a href="CppString.html">std::string</a>&gt;(di.m_value_changed-1)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> "), ";<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;s[s.size()-2]=' ';<br/>
@@ -472,20 +472,20 @@ DialogTest<a href="CppManyDigitNewick.htm">ManyDigitNewick</a>::~DialogTest<a hr
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">*/</a><br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>Just display all <a href="CppNewick.htm">Newick</a>s<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Just display all <a href="CppNewick.html">Newick</a>s<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> n_<a href="CppNewick.htm">newick</a>s <a href="CppOperatorAssign.htm">=</a> i.Get<a href="CppNewick.htm">Newick</a>s().Size();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> ix=0; ix<a href="CppOperatorNotEqual.htm">!=</a>n_<a href="CppNewick.htm">newick</a>s; <a href="CppOperatorPlus.htm">+</a>+ix)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> n_<a href="CppNewick.html">newick</a>s <a href="CppOperatorAssign.htm">=</a> i.Get<a href="CppNewick.html">Newick</a>s().Size();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> ix=0; ix<a href="CppOperatorNotEqual.htm">!=</a>n_<a href="CppNewick.html">newick</a>s; <a href="CppOperatorPlus.htm">+</a>+ix)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 <br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppManyDigitNewick.htm">ManyDigitNewick</a>&amp; n <a href="CppOperatorAssign.htm">=</a> i.Get<a href="CppNewick.htm">Newick</a>s().Get<a href="CppNewick.htm">Newick</a>(ix);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppString.htm">std::string</a> s<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <a href="CppLexical_cast.htm">boost::lexical_cast</a>&lt;<a href="CppString.htm">std::string</a>&gt;(ix)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppManyDigitNewick.html">ManyDigitNewick</a>&amp; n <a href="CppOperatorAssign.htm">=</a> i.Get<a href="CppNewick.html">Newick</a>s().Get<a href="CppNewick.html">Newick</a>(ix);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppString.html">std::string</a> s<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <a href="CppLexical_cast.html">boost::lexical_cast</a>&lt;<a href="CppString.html">std::string</a>&gt;(ix)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> " : ";<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;s<a href="CppOperatorPlusAssign.htm">+=</a>i.<a href="CppConstructor.htm">Construct</a><a href="CppNewick.htm">Newick</a>(ix).ToStr() <a href="CppOperatorPlus.htm">+</a> " : ";<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;s<a href="CppOperatorPlusAssign.htm">+=</a>i.<a href="CppConstructor.html">Construct</a><a href="CppNewick.html">Newick</a>(ix).ToStr() <a href="CppOperatorPlus.htm">+</a> " : ";<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (n.IsProbabilityKnown())<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;s<a href="CppOperatorPlusAssign.htm">+=</a><a href="CppLexical_cast.htm">boost::lexical_cast</a>&lt;<a href="CppString.htm">std::string</a>&gt;(n.GetProbability());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;s<a href="CppOperatorPlusAssign.htm">+=</a><a href="CppLexical_cast.html">boost::lexical_cast</a>&lt;<a href="CppString.html">std::string</a>&gt;(n.GetProbability());<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppElse.htm">else</a></b><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
@@ -494,111 +494,111 @@ DialogTest<a href="CppManyDigitNewick.htm">ManyDigitNewick</a>::~DialogTest<a hr
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (n.IsComplete())<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;s<a href="CppOperatorPlusAssign.htm">+=</a>", ";<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;s<a href="CppOperatorPlusAssign.htm">+=</a><a href="CppLexical_cast.htm">boost::lexical_cast</a>&lt;<a href="CppString.htm">std::string</a>&gt;(n.<a href="CppGetSum.htm">GetSum</a>TermsAboveZero());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;s<a href="CppOperatorPlusAssign.htm">+=</a><a href="CppLexical_cast.html">boost::lexical_cast</a>&lt;<a href="CppString.html">std::string</a>&gt;(n.<a href="CppGetSum.html">GetSum</a>TermsAboveZero());<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;s<a href="CppOperatorPlusAssign.htm">+=</a>", ";<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;s<a href="CppOperatorPlusAssign.htm">+=</a><a href="CppLexical_cast.htm">boost::lexical_cast</a>&lt;<a href="CppString.htm">std::string</a>&gt;(n.<a href="CppGetSum.htm">GetSum</a>TermsAboveOne());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;s<a href="CppOperatorPlusAssign.htm">+=</a><a href="CppLexical_cast.html">boost::lexical_cast</a>&lt;<a href="CppString.html">std::string</a>&gt;(n.<a href="CppGetSum.html">GetSum</a>TermsAboveOne());<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;s<a href="CppOperatorPlusAssign.htm">+=</a>", ";<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;s<a href="CppOperatorPlusAssign.htm">+=</a><a href="CppLexical_cast.htm">boost::lexical_cast</a>&lt;<a href="CppString.htm">std::string</a>&gt;(n.GetDenominator());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;s<a href="CppOperatorPlusAssign.htm">+=</a><a href="CppLexical_cast.html">boost::lexical_cast</a>&lt;<a href="CppString.html">std::string</a>&gt;(n.GetDenominator());<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppElse.htm">else</a></b><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;s<a href="CppOperatorPlusAssign.htm">+=</a>", [not complete]";<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ui-&gt;edit_text-&gt;appendPlainText(<a href="CppQString.htm">QString</a>(s.c_str()));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ui-&gt;edit_text-&gt;appendPlainText(<a href="CppQString.html">QString</a>(s.c_str()));<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;}<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Display misc information<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> s<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> "Probability of <a href="CppNewick.htm">Newick</a>: "<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> <a href="CppLexical_cast.htm">boost::lexical_cast</a>&lt;<a href="CppString.htm">std::string</a>&gt;(i.GetProbability());<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;ui-&gt;edit_text-&gt;appendPlainText(<a href="CppQString.htm">QString</a>(s.c_str()));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a> s<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> "Probability of <a href="CppNewick.html">Newick</a>: "<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> <a href="CppLexical_cast.html">boost::lexical_cast</a>&lt;<a href="CppString.html">std::string</a>&gt;(i.GetProbability());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;ui-&gt;edit_text-&gt;appendPlainText(<a href="CppQString.html">QString</a>(s.c_str()));<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> s<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a> s<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> "Number of reserved indices: "<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> <a href="CppLexical_cast.htm">boost::lexical_cast</a>&lt;<a href="CppString.htm">std::string</a>&gt;(i.GetReserved());<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;ui-&gt;edit_text-&gt;appendPlainText(<a href="CppQString.htm">QString</a>(s.c_str()));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> <a href="CppLexical_cast.html">boost::lexical_cast</a>&lt;<a href="CppString.html">std::string</a>&gt;(i.GetReserved());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;ui-&gt;edit_text-&gt;appendPlainText(<a href="CppQString.html">QString</a>(s.c_str()));<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Display IndexTable use<br/>
 &nbsp;&nbsp;<a href="CppOperatorDivide.htm">/</a>*<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> n_non_zero&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> i.GetIndexTable().GetNumUsed();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> n_allocated <a href="CppOperatorAssign.htm">=</a> i.GetIndexTable().GetNumAllocated();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> f_used<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> n_non_zero&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> i.GetIndexTable().GetNumUsed();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> n_allocated <a href="CppOperatorAssign.htm">=</a> i.GetIndexTable().GetNumAllocated();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> f_used<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> (n_allocated <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 0 ? 0.0 :<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppNumeric_cast.htm">boost::numeric_cast</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(n_non_zero)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorDivide.htm">/</a> <a href="CppNumeric_cast.htm">boost::numeric_cast</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(n_allocated));<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;ui-&gt;edit_text-&gt;appendPlainText(<a href="CppQString.htm">QString</a>("Indices allocated: ")<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> <a href="CppQString.htm">QString</a>(<a href="CppLexical_cast.htm">boost::lexical_cast</a>&lt;<a href="CppString.htm">std::string</a>&gt;(n_allocated).c_str()) );<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;ui-&gt;edit_text-&gt;appendPlainText(<a href="CppQString.htm">QString</a>("Indices used: ")<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> <a href="CppQString.htm">QString</a>(<a href="CppLexical_cast.htm">boost::lexical_cast</a>&lt;<a href="CppString.htm">std::string</a>&gt;(n_non_zero).c_str()) );<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;ui-&gt;edit_text-&gt;appendPlainText(<a href="CppQString.htm">QString</a>("Fraction used: ")<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> <a href="CppQString.htm">QString</a>(<a href="CppLexical_cast.htm">boost::lexical_cast</a>&lt;<a href="CppString.htm">std::string</a>&gt;(f_used).c_str()) );<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppNumeric_cast.html">boost::numeric_cast</a>&lt;<b><a href="CppDouble.html">double</a></b>&gt;(n_non_zero)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorDivide.htm">/</a> <a href="CppNumeric_cast.html">boost::numeric_cast</a>&lt;<b><a href="CppDouble.html">double</a></b>&gt;(n_allocated));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;ui-&gt;edit_text-&gt;appendPlainText(<a href="CppQString.html">QString</a>("Indices allocated: ")<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> <a href="CppQString.html">QString</a>(<a href="CppLexical_cast.html">boost::lexical_cast</a>&lt;<a href="CppString.html">std::string</a>&gt;(n_allocated).c_str()) );<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;ui-&gt;edit_text-&gt;appendPlainText(<a href="CppQString.html">QString</a>("Indices used: ")<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> <a href="CppQString.html">QString</a>(<a href="CppLexical_cast.html">boost::lexical_cast</a>&lt;<a href="CppString.html">std::string</a>&gt;(n_non_zero).c_str()) );<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;ui-&gt;edit_text-&gt;appendPlainText(<a href="CppQString.html">QString</a>("Fraction used: ")<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> <a href="CppQString.html">QString</a>(<a href="CppLexical_cast.html">boost::lexical_cast</a>&lt;<a href="CppString.html">std::string</a>&gt;(f_used).c_str()) );<br/>
 <br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">*/</a><br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>Check <a href="CppCalcNumOfCombinations.htm">CalcNumOfCombinations</a> and <a href="CppCalcNumOfSymmetries.htm">CalcNumOfSymmetries</a><br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Check <a href="CppCalcNumOfCombinations.html">CalcNumOfCombinations</a> and <a href="CppCalcNumOfSymmetries.html">CalcNumOfSymmetries</a><br/>
 &nbsp;&nbsp;<a href="CppOperatorDivide.htm">/</a>*<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppNewickVector.htm">NewickVector</a> n(s);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBigInt.htm">BigInteger</a> n_s <a href="CppOperatorAssign.htm">=</a> n.<a href="CppCalcNumOfSymmetries.htm">CalcNumOfSymmetries</a>();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBigInt.htm">BigInteger</a> n_c <a href="CppOperatorAssign.htm">=</a> n.<a href="CppCalcNumOfCombinations.htm">CalcNumOfCombinations</a>();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppNewickVector.html">NewickVector</a> n(s);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppBigInt.html">BigInteger</a> n_s <a href="CppOperatorAssign.htm">=</a> n.<a href="CppCalcNumOfSymmetries.html">CalcNumOfSymmetries</a>();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppBigInt.html">BigInteger</a> n_c <a href="CppOperatorAssign.htm">=</a> n.<a href="CppCalcNumOfCombinations.html">CalcNumOfCombinations</a>();<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;ui-&gt;edit_text-&gt;appendPlainText(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQString.htm">QString</a>("Number of symmetries: ")<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> <a href="CppQString.htm">QString</a>(<a href="CppLexical_cast.htm">boost::lexical_cast</a>&lt;<a href="CppString.htm">std::string</a>&gt;(n_s).c_str()));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQString.html">QString</a>("Number of symmetries: ")<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> <a href="CppQString.html">QString</a>(<a href="CppLexical_cast.html">boost::lexical_cast</a>&lt;<a href="CppString.html">std::string</a>&gt;(n_s).c_str()));<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;ui-&gt;edit_text-&gt;appendPlainText(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQString.htm">QString</a>("Number of combinations: ")<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> <a href="CppQString.htm">QString</a>(big<a href="CppInt.htm">Integer</a>ToString(n_c).c_str()));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQString.html">QString</a>("Number of combinations: ")<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> <a href="CppQString.html">QString</a>(big<a href="CppInt.html">Integer</a>ToString(n_c).c_str()));<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">*/</a><br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppVoid.htm">void</a></b> DialogTest<a href="CppManyDigitNewick.htm">ManyDigitNewick</a>::On<a href="CppAbout.htm">About</a>Click()<br/>
+<b><a href="CppVoid.htm">void</a></b> DialogTest<a href="CppManyDigitNewick.html">ManyDigitNewick</a>::On<a href="CppAbout.html">About</a>Click()<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppAbout.htm">About</a> <a href="CppAbout.htm">about</a>(<br/>
+&nbsp;&nbsp;<a href="CppAbout.html">About</a> <a href="CppAbout.html">about</a>(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;"Richel Bilderbeek",<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;"Test<a href="CppManyDigitNewick.htm">ManyDigitNewick</a>",<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;"<a href="Tools.htm">tool</a> to test the two-digit-<a href="CppNewick.htm">Newick</a> architecture",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"Test<a href="CppManyDigitNewick.html">ManyDigitNewick</a>",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"<a href="Tools.htm">tool</a> to test the two-digit-<a href="CppNewick.html">Newick</a> architecture",<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;"the 20th of February 2011",<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;"2010-2011",<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;"http://www.richelbilderbeek.nl/<a href="Tools.htm">Tool</a>Test<a href="CppManyDigitNewick.htm">ManyDigitNewick</a>",<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;Get<a href="CppVersion.htm">Version</a>(),<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;Get<a href="CppVersion.htm">Version</a>History());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"http://www.richelbilderbeek.nl/<a href="Tools.htm">Tool</a>Test<a href="CppManyDigitNewick.html">ManyDigitNewick</a>",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Get<a href="CppVersion.html">Version</a>(),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Get<a href="CppVersion.html">Version</a>History());<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppAbout.htm">about</a>.<a href="CppAdd.htm">Add</a><a href="CppLibrary.htm">Library</a>("BigInt: <a href="CppVersion.htm">version</a> 2010.04.30");<br/>
-&nbsp;&nbsp;<a href="CppAbout.htm">about</a>.<a href="CppAdd.htm">Add</a><a href="CppLibrary.htm">Library</a>("<a href="CppNewickVector.htm">NewickVector</a>: <a href="CppVersion.htm">version</a> " <a href="CppOperatorPlus.htm">+</a> <a href="CppNewickVector.htm">NewickVector</a>::Get<a href="CppVersion.htm">Version</a>());<br/>
-&nbsp;&nbsp;<a href="CppAbout.htm">about</a>.<a href="CppAdd.htm">Add</a><a href="CppLibrary.htm">Library</a>("<a href="CppManyDigitNewick.htm">ManyDigitNewick</a>: <a href="CppVersion.htm">version</a> " <a href="CppOperatorPlus.htm">+</a> <a href="CppManyDigitNewick.htm">ManyDigitNewick</a>::Get<a href="CppVersion.htm">Version</a>());<br/>
+&nbsp;&nbsp;<a href="CppAbout.html">about</a>.<a href="CppAdd.htm">Add</a><a href="CppLibrary.html">Library</a>("BigInt: <a href="CppVersion.html">version</a> 2010.04.30");<br/>
+&nbsp;&nbsp;<a href="CppAbout.html">about</a>.<a href="CppAdd.htm">Add</a><a href="CppLibrary.html">Library</a>("<a href="CppNewickVector.html">NewickVector</a>: <a href="CppVersion.html">version</a> " <a href="CppOperatorPlus.htm">+</a> <a href="CppNewickVector.html">NewickVector</a>::Get<a href="CppVersion.html">Version</a>());<br/>
+&nbsp;&nbsp;<a href="CppAbout.html">about</a>.<a href="CppAdd.htm">Add</a><a href="CppLibrary.html">Library</a>("<a href="CppManyDigitNewick.html">ManyDigitNewick</a>: <a href="CppVersion.html">version</a> " <a href="CppOperatorPlus.htm">+</a> <a href="CppManyDigitNewick.html">ManyDigitNewick</a>::Get<a href="CppVersion.html">Version</a>());<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppQtAboutDialog.htm">QtAboutDialog</a> d(<a href="CppAbout.htm">about</a>);<br/>
+&nbsp;&nbsp;<a href="CppQtAboutDialog.html">QtAboutDialog</a> d(<a href="CppAbout.html">about</a>);<br/>
 &nbsp;&nbsp;d.exec();<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> DialogTest<a href="CppManyDigitNewick.htm">ManyDigitNewick</a>::on_button_calculate_clicked()<br/>
+<b><a href="CppVoid.htm">void</a></b> DialogTest<a href="CppManyDigitNewick.html">ManyDigitNewick</a>::on_button_calculate_clicked()<br/>
 {<br/>
 &nbsp;&nbsp;ui-&gt;edit_text-&gt;clear();<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>Check <a href="CppNewick.htm">Newick</a>s<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> s <a href="CppOperatorAssign.htm">=</a> ui-&gt;edit_<a href="CppNewick.htm">newick</a>-&gt;text().toStdString();<br/>
-&nbsp;&nbsp;ui-&gt;edit_text-&gt;appendPlainText("<a href="CppNewick.htm">Newick</a>: " <a href="CppOperatorPlus.htm">+</a> <a href="CppQString.htm">QString</a>(s.c_str()));<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Check <a href="CppNewick.html">Newick</a>s<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a> s <a href="CppOperatorAssign.htm">=</a> ui-&gt;edit_<a href="CppNewick.html">newick</a>-&gt;text().toStdString();<br/>
+&nbsp;&nbsp;ui-&gt;edit_text-&gt;appendPlainText("<a href="CppNewick.html">Newick</a>: " <a href="CppOperatorPlus.htm">+</a> <a href="CppQString.html">QString</a>(s.c_str()));<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Check theta<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> theta <a href="CppOperatorAssign.htm">=</a> <a href="CppLexical_cast.htm">boost::lexical_cast</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppString.htm">std::string</a>(ui-&gt;edit_theta-&gt;text().toStdString()));<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> theta <a href="CppOperatorAssign.htm">=</a> <a href="CppLexical_cast.html">boost::lexical_cast</a>&lt;<b><a href="CppDouble.html">double</a></b>&gt;(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppString.html">std::string</a>(ui-&gt;edit_theta-&gt;text().toStdString()));<br/>
 &nbsp;&nbsp;ui-&gt;edit_text-&gt;appendPlainText("Theta: "<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> <a href="CppQString.htm">QString</a>(<a href="CppLexical_cast.htm">boost::lexical_cast</a>&lt;<a href="CppString.htm">std::string</a>&gt;(theta).c_str()));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> <a href="CppQString.html">QString</a>(<a href="CppLexical_cast.html">boost::lexical_cast</a>&lt;<a href="CppString.html">std::string</a>&gt;(theta).c_str()));<br/>
 <br/>
 &nbsp;&nbsp;ui-&gt;button_calculate-&gt;setEnabled(<b><a href="CppTrue.htm">true</a></b>);<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>/\warning: theta must be set before <a href="CppNewick.htm">Newick</a>Indexer is created<br/>
-&nbsp;&nbsp;<a href="CppManyDigitNewick.htm">ManyDigitNewick</a>::SetTheta(theta);<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppNewickVector.htm">NewickVector</a> n(s);<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppManyDigitNewick.htm">ManyDigitNewick</a>Indexer i(n,theta);<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/\warning: theta must be set before <a href="CppNewick.html">Newick</a>Indexer is created<br/>
+&nbsp;&nbsp;<a href="CppManyDigitNewick.html">ManyDigitNewick</a>::SetTheta(theta);<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppNewickVector.html">NewickVector</a> n(s);<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppManyDigitNewick.html">ManyDigitNewick</a>Indexer i(n,theta);<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> probability_str<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> "Probability of <a href="CppNewick.htm">Newick</a>: "<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> <a href="CppLexical_cast.htm">boost::lexical_cast</a>&lt;<a href="CppString.htm">std::string</a>&gt;(i.GetProbability());<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;ui-&gt;edit_text-&gt;appendPlainText(<a href="CppQString.htm">QString</a>(probability_str.c_str()));<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a> probability_str<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> "Probability of <a href="CppNewick.html">Newick</a>: "<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> <a href="CppLexical_cast.html">boost::lexical_cast</a>&lt;<a href="CppString.html">std::string</a>&gt;(i.GetProbability());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;ui-&gt;edit_text-&gt;appendPlainText(<a href="CppQString.html">QString</a>(probability_str.c_str()));<br/>
 <br/>
 }<br/>
 </code></td></tr></table>
@@ -612,27 +612,27 @@ DialogTest<a href="CppManyDigitNewick.htm">ManyDigitNewick</a>::~DialogTest<a hr
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="main.cpp" border = "1"><tr><td><code>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppCmathH.htm">cmath</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppCtimeH.htm">ctime</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppCstdlibH.htm">cstdlib</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppFstreamH.htm">fstream</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppIomanipH.htm">iomanip</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppIostreamH.htm">iostream</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppCmathH.html">cmath</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppCtimeH.html">ctime</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppCstdlibH.html">cstdlib</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppFstreamH.html">fstream</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppIomanipH.html">iomanip</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppIostreamH.html">iostream</a>&gt;<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppLexical_cast.htm">lexical_cast</a>.hpp&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppBoost.html">boost</a>/<a href="CppLexical_cast.html">lexical_cast</a><a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppQApplication.htm">QApplication</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppQApplication.html">QApplication</a>&gt;<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppBigInt.htm">BigInteger</a>.hh"<br/>
+<a href="CppInclude.html">#include</a> "<a href="CppBigInt.html">BigInteger</a><a href="CppHeaderFile.htm">.h</a>h"<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppInclude.htm">#include</a> "dialogtest<a href="CppManyDigitNewick.htm">manydigitnewick</a>.h"<br/>
+<a href="CppInclude.html">#include</a> "dialogtest<a href="CppManyDigitNewick.html">manydigitnewick</a><a href="CppHeaderFile.htm">.h</a>"<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>(<b><a href="CppInt.htm">int</a></b> <a href="CppArgc.htm">argc</a>, <b><a href="CppChar.htm">char</a></b>* <a href="CppArgc.htm">argv</a>[])<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a>(<b><a href="CppInt.htm">int</a></b> <a href="CppArgc.htm">argc</a>, <b><a href="CppChar.htm">char</a></b>* <a href="CppArgc.htm">argv</a>[])<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppQApplication.htm">QApplication</a> a(<a href="CppArgc.htm">argc</a>, <a href="CppArgc.htm">argv</a>);<br/>
-&nbsp;&nbsp;DialogTest<a href="CppManyDigitNewick.htm">ManyDigitNewick</a> w;<br/>
+&nbsp;&nbsp;<a href="CppQApplication.html">QApplication</a> a(<a href="CppArgc.htm">argc</a>, <a href="CppArgc.htm">argv</a>);<br/>
+&nbsp;&nbsp;DialogTest<a href="CppManyDigitNewick.html">ManyDigitNewick</a> w;<br/>
 &nbsp;&nbsp;w.show();<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> a.exec();<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> a.exec();<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 </code></td></tr></table>

@@ -51,35 +51,35 @@
 <table summary="EverythingToPiecesShooter.cpp" border = "1"><tr><td><code>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> &lt;vcl.h&gt;<br/>
-<a href="CppPragma.htm">#pragma</a> hdrstop<br/>
+<a href="CppInclude.html">#include</a> &lt;vcl<a href="CppHeaderFile.htm">.h</a>&gt;<br/>
+<a href="CppPragma.html">#pragma</a> hdrstop<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-USEFORM("UnitGameMain.cpp", FormGameMain);<br/>
+USEFORM("UnitGameMain<a href="CppImplementationFile.html">.cpp</a>", FormGameMain);<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, <b><a href="CppInt.htm">int</a></b>)<br/>
 {<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppTry.htm">try</a></b><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppApplication.htm">Application</a>-&gt;<a href="CppInitialize.htm">Initialize</a>();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppApplication.htm">Application</a>-&gt;CreateForm(__classid(TFormGameMain), &amp;FormGameMain);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppApplication.htm">Application</a>-&gt;Run();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppApplication.html">Application</a>-&gt;<a href="CppInitialize.html">Initialize</a>();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppApplication.html">Application</a>-&gt;CreateForm(__classid(TFormGameMain), &amp;FormGameMain);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppApplication.html">Application</a>-&gt;Run();<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCatch.htm">catch</a></b> (<a href="CppException.htm">Exception</a> &amp;<a href="CppException.htm">exception</a>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCatch.html">catch</a></b> (<a href="CppException.html">Exception</a> &amp;<a href="CppException.html">exception</a>)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppApplication.htm">Application</a>-&gt;Show<a href="CppException.htm">Exception</a>(&amp;<a href="CppException.htm">exception</a>);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppApplication.html">Application</a>-&gt;Show<a href="CppException.html">Exception</a>(&amp;<a href="CppException.html">exception</a>);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCatch.htm">catch</a></b> (...)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCatch.html">catch</a></b> (...)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b><a href="CppTry.htm">try</a></b><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b><a href="CppThrow.htm">throw</a></b> <a href="CppException.htm">Exception</a>("");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b><a href="CppThrow.html">throw</a></b> <a href="CppException.html">Exception</a>("");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b><a href="CppCatch.htm">catch</a></b> (<a href="CppException.htm">Exception</a> &amp;<a href="CppException.htm">exception</a>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b><a href="CppCatch.html">catch</a></b> (<a href="CppException.html">Exception</a> &amp;<a href="CppException.html">exception</a>)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppApplication.htm">Application</a>-&gt;Show<a href="CppException.htm">Exception</a>(&amp;<a href="CppException.htm">exception</a>);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppApplication.html">Application</a>-&gt;Show<a href="CppException.html">Exception</a>(&amp;<a href="CppException.html">exception</a>);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> 0;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> 0;<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 </code></td></tr></table>
@@ -95,35 +95,35 @@ WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, <b><a href="CppInt.htm">int</a></b>)
 <table summary="Project1.cpp" border = "1"><tr><td><code>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> &lt;vcl.h&gt;<br/>
-<a href="CppPragma.htm">#pragma</a> hdrstop<br/>
+<a href="CppInclude.html">#include</a> &lt;vcl<a href="CppHeaderFile.htm">.h</a>&gt;<br/>
+<a href="CppPragma.html">#pragma</a> hdrstop<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-USEFORM("Unit1.cpp", Form1);<br/>
+USEFORM("Unit1<a href="CppImplementationFile.html">.cpp</a>", Form1);<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, <b><a href="CppInt.htm">int</a></b>)<br/>
 {<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppTry.htm">try</a></b><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppApplication.htm">Application</a>-&gt;<a href="CppInitialize.htm">Initialize</a>();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppApplication.htm">Application</a>-&gt;CreateForm(__classid(TForm1), &amp;Form1);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppApplication.htm">Application</a>-&gt;Run();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppApplication.html">Application</a>-&gt;<a href="CppInitialize.html">Initialize</a>();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppApplication.html">Application</a>-&gt;CreateForm(__classid(TForm1), &amp;Form1);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppApplication.html">Application</a>-&gt;Run();<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCatch.htm">catch</a></b> (<a href="CppException.htm">Exception</a> &amp;<a href="CppException.htm">exception</a>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCatch.html">catch</a></b> (<a href="CppException.html">Exception</a> &amp;<a href="CppException.html">exception</a>)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppApplication.htm">Application</a>-&gt;Show<a href="CppException.htm">Exception</a>(&amp;<a href="CppException.htm">exception</a>);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppApplication.html">Application</a>-&gt;Show<a href="CppException.html">Exception</a>(&amp;<a href="CppException.html">exception</a>);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCatch.htm">catch</a></b> (...)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCatch.html">catch</a></b> (...)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b><a href="CppTry.htm">try</a></b><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b><a href="CppThrow.htm">throw</a></b> <a href="CppException.htm">Exception</a>("");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b><a href="CppThrow.html">throw</a></b> <a href="CppException.html">Exception</a>("");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b><a href="CppCatch.htm">catch</a></b> (<a href="CppException.htm">Exception</a> &amp;<a href="CppException.htm">exception</a>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b><a href="CppCatch.html">catch</a></b> (<a href="CppException.html">Exception</a> &amp;<a href="CppException.html">exception</a>)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppApplication.htm">Application</a>-&gt;Show<a href="CppException.htm">Exception</a>(&amp;<a href="CppException.htm">exception</a>);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppApplication.html">Application</a>-&gt;Show<a href="CppException.html">Exception</a>(&amp;<a href="CppException.html">exception</a>);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> 0;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> 0;<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 </code></td></tr></table>
@@ -139,62 +139,62 @@ WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, <b><a href="CppInt.htm">int</a></b>)
 <table summary="Unit1.h" border = "1"><tr><td><code>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <br/>
-<a href="CppIfndef.htm">#ifndef</a> Unit1H<br/>
-<a href="CppDefine.htm">#define</a> Unit1H<br/>
+<a href="CppIfndef.html">#ifndef</a> Unit1H<br/>
+<a href="CppDefine.html">#define</a> Unit1H<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppClass.htm">Classes</a>.hpp&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;Controls.hpp&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;StdCtrls.hpp&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;Forms.hpp&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;ExtCtrls.hpp&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;AppEvnts.hpp&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;Graphics.hpp&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;ComCtrls.hpp&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;ImgList.hpp&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppClass.html">Classes</a><a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;Controls<a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;StdCtrls<a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;Forms<a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;ExtCtrls<a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;AppEvnts<a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;Graphics<a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;ComCtrls<a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;ImgList<a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppClass.htm">class</a></b> TForm1 : <b><a href="CppPublic.htm">public</a></b> TForm<br/>
+<b><a href="CppClass.html">class</a></b> TForm1 : <b><a href="CppPublic.html">public</a></b> TForm<br/>
 {<br/>
-__published:	<a href="CppComment.htm">//</a> IDE-managed <a href="CppComponent.htm">Component</a>s<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppTImage.htm">TImage</a> *ImageSprites;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;T<a href="CppApplication.htm">Application</a>Events *<a href="CppApplication.htm">Application</a>Events1;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppTImage.htm">TImage</a> *ImageBuffer;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppTImage.htm">TImage</a> *ImagePlayer;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppTImage.htm">TImage</a> *ImageBackground;<br/>
+__published:	<a href="CppComment.htm">//</a> IDE-managed <a href="CppComponent.html">Component</a>s<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppTImage.html">TImage</a> *ImageSprites;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;T<a href="CppApplication.html">Application</a>Events *<a href="CppApplication.html">Application</a>Events1;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppTImage.html">TImage</a> *ImageBuffer;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppTImage.html">TImage</a> *ImagePlayer;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppTImage.html">TImage</a> *ImageBackground;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TStatusBar *StatusBar1;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppTImage.htm">TImage</a>List *ImageList1;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> __fastcall <a href="CppApplication.htm">Application</a>Events1Idle(TObject *Sender,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppTImage.html">TImage</a>List *ImageList1;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> __fastcall <a href="CppApplication.html">Application</a>Events1Idle(TObject *Sender,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppBool.htm">bool</a></b> &amp;Done);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> __fastcall FormResize(TObject *Sender);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> __fastcall FormKeyDown(TObject *Sender, WORD &amp;Key,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TShift<a href="CppState.htm">State</a> Shift);<br/>
-<b><a href="CppPrivate.htm">private</a></b>:	<a href="CppComment.htm">//</a> User <a href="CppDeclaration.htm">declaration</a>s<br/>
-&nbsp;&nbsp;<b><a href="CppDouble.htm">double</a></b> mPlayerX;<br/>
-&nbsp;&nbsp;<b><a href="CppDouble.htm">double</a></b> mPlayerY;<br/>
-&nbsp;&nbsp;<b><a href="CppDouble.htm">double</a></b> mJumpY;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TShift<a href="CppState.html">State</a> Shift);<br/>
+<b><a href="CppPrivate.html">private</a></b>:	<a href="CppComment.htm">//</a> User <a href="CppDeclaration.html">declaration</a>s<br/>
+&nbsp;&nbsp;<b><a href="CppDouble.html">double</a></b> mPlayerX;<br/>
+&nbsp;&nbsp;<b><a href="CppDouble.html">double</a></b> mPlayerY;<br/>
+&nbsp;&nbsp;<b><a href="CppDouble.html">double</a></b> mJumpY;<br/>
 &nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> mSpriteX;<br/>
 &nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> mSpriteY;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> mSpriteWidth;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> mSpriteHeight;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> mPlayerAccel;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> mPlayerJumpAccel;<br/>
-&nbsp;&nbsp;<b><a href="CppDouble.htm">double</a></b> mSpeedX;<br/>
-&nbsp;&nbsp;<b><a href="CppDouble.htm">double</a></b> mSpeedY;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> mSpriteWidth;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> mSpriteHeight;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> mPlayerAccel;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> mPlayerJumpAccel;<br/>
+&nbsp;&nbsp;<b><a href="CppDouble.html">double</a></b> mSpeedX;<br/>
+&nbsp;&nbsp;<b><a href="CppDouble.html">double</a></b> mSpeedY;<br/>
 &nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> mSpriteIndex;<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppVoid.htm">void</a></b> getPlayerImage();<br/>
-&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> resizeImage(<b><a href="CppConst.htm">const</a></b> <a href="CppTImage.htm">TImage</a>* image, <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b>&amp; width,<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b>&amp; height);<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> resizeImage(<b><a href="CppConst.html">const</a></b> <a href="CppTImage.html">TImage</a>* image, <b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b>&amp; width,<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b>&amp; height);<br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> turnLeft();<br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> turnRight();<br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> pressUp();<br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> pressDown();<br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> jump();<br/>
-&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> setSpriteIndex(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b>&amp; index);<br/>
-<b><a href="CppPublic.htm">public</a></b>:		<a href="CppComment.htm">//</a> User <a href="CppDeclaration.htm">declaration</a>s<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;__fastcall TForm1(T<a href="CppComponent.htm">Component</a>* Owner);<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> setSpriteIndex(<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b>&amp; index);<br/>
+<b><a href="CppPublic.html">public</a></b>:		<a href="CppComment.htm">//</a> User <a href="CppDeclaration.html">declaration</a>s<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;__fastcall TForm1(T<a href="CppComponent.html">Component</a>* Owner);<br/>
 };<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppExtern.htm">extern</a></b> PACKAGE TForm1 *Form1;<br/>
+<b><a href="CppExtern.html">extern</a></b> PACKAGE TForm1 *Form1;<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppEndif.htm">#endif</a><br/>
+<a href="CppEndif.html">#endif</a><br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -208,16 +208,16 @@ __published:	<a href="CppComment.htm">//</a> IDE-managed <a href="CppComponent.h
 <table summary="Unit1.cpp" border = "1"><tr><td><code>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> &lt;vcl.h&gt;<br/>
-<a href="CppPragma.htm">#pragma</a> hdrstop<br/>
+<a href="CppInclude.html">#include</a> &lt;vcl<a href="CppHeaderFile.htm">.h</a>&gt;<br/>
+<a href="CppPragma.html">#pragma</a> hdrstop<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> "Unit1.h"<br/>
+<a href="CppInclude.html">#include</a> "Unit1<a href="CppHeaderFile.htm">.h</a>"<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppPragma.htm">#pragma</a> package(smart_init)<br/>
-<a href="CppPragma.htm">#pragma</a> resource "*.dfm"<br/>
+<a href="CppPragma.html">#pragma</a> package(smart_init)<br/>
+<a href="CppPragma.html">#pragma</a> resource "*.dfm"<br/>
 TForm1 *Form1;<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-__fastcall TForm1::TForm1(T<a href="CppComponent.htm">Component</a>* Owner)<br/>
+__fastcall TForm1::TForm1(T<a href="CppComponent.html">Component</a>* Owner)<br/>
 &nbsp;&nbsp;: TForm(Owner),<br/>
 &nbsp;&nbsp;mPlayerX(0),<br/>
 &nbsp;&nbsp;mPlayerY(0),<br/>
@@ -236,21 +236,21 @@ __fastcall TForm1::TForm1(T<a href="CppComponent.htm">Component</a>* Owner)<br/
 &nbsp;&nbsp;resizeImage(ImagePlayer,mSpriteWidth,mSpriteHeight);<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Fill ImageList<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> width <a href="CppOperatorAssign.htm">=</a> 34;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> height <a href="CppOperatorAssign.htm">=</a> 34;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> width <a href="CppOperatorAssign.htm">=</a> 34;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> height <a href="CppOperatorAssign.htm">=</a> 34;<br/>
 &nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b>(<b><a href="CppInt.htm">int</a></b> i=0; i&lt;18; <a href="CppOperatorPlus.htm">+</a>+i)<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> j=0; j&lt;11; <a href="CppOperatorPlus.htm">+</a>+j)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> ((i+j)%2<a href="CppOperatorEqual.htm">==</a>0) <b><a href="CppContinue.htm">continue</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> ((i+j)%2<a href="CppOperatorEqual.htm">==</a>0) <b><a href="CppContinue.html">continue</a></b>;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mSpriteX <a href="CppOperatorAssign.htm">=</a> width * i;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mSpriteY <a href="CppOperatorAssign.htm">=</a> height * j;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mPlayerX <a href="CppOperatorAssign.htm">=</a> mSpriteX;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mPlayerY <a href="CppOperatorAssign.htm">=</a> mSpriteY;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b>(<b><a href="CppInt.htm">int</a></b> readY=mSpriteY,writeY=0; readY&lt;mSpriteY+mSpriteHeight;<a href="CppOperatorIncrement.htm">++</a>readY,<a href="CppOperatorIncrement.htm">++</a>writeY)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> * lineRead <a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppConst.htm">const</a></b> <b><a href="CppChar.htm">char</a></b>*&gt;(ImageSprites-&gt;Picture-&gt;Bitmap-&gt;ScanLine[readY]);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> * lineWrite <a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppChar.htm">char</a></b>*&gt;(ImagePlayer-&gt;Picture-&gt;Bitmap-&gt;ScanLine[writeY]);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppUnsigned.html">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> * lineRead <a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.html">static_cast</a></b>&lt;<b><a href="CppConst.html">const</a></b> <b><a href="CppChar.htm">char</a></b>*&gt;(ImageSprites-&gt;Picture-&gt;Bitmap-&gt;ScanLine[readY]);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppUnsigned.html">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> * lineWrite <a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.html">static_cast</a></b>&lt;<b><a href="CppChar.htm">char</a></b>*&gt;(ImagePlayer-&gt;Picture-&gt;Bitmap-&gt;ScanLine[writeY]);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b>(<b><a href="CppInt.htm">int</a></b> readX=mSpriteX,writeX=0; readX&lt;mSpriteX+mSpriteWidth;<a href="CppOperatorIncrement.htm">++</a>readX,<a href="CppOperatorIncrement.htm">++</a>writeX)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lineWrite[writeX*3+0] <a href="CppOperatorAssign.htm">=</a> lineRead[readX*3+0];<br/>
@@ -266,7 +266,7 @@ __fastcall TForm1::TForm1(T<a href="CppComponent.htm">Component</a>* Owner)<br/
 <br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppVoid.htm">void</a></b> __fastcall TForm1::<a href="CppApplication.htm">Application</a>Events1Idle(TObject *Sender, <b><a href="CppBool.htm">bool</a></b> &amp;Done)<br/>
+<b><a href="CppVoid.htm">void</a></b> __fastcall TForm1::<a href="CppApplication.html">Application</a>Events1Idle(TObject *Sender, <b><a href="CppBool.htm">bool</a></b> &amp;Done)<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Draw everything<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Image<br/>
@@ -280,7 +280,7 @@ __fastcall TForm1::TForm1(T<a href="CppComponent.htm">Component</a>* Owner)<br/
 &nbsp;&nbsp;ImageList1-&gt;Draw(ImageBuffer-&gt;Canvas,mPlayerX,mPlayerY,mSpriteIndex);<br/>
 <br/>
 &nbsp;&nbsp;Canvas-&gt;Draw(0,0,ImageBuffer-&gt;Picture-&gt;Graphic);<br/>
-&nbsp;&nbsp;Done <a href="CppOperatorAssign.htm">=</a> <b><a href="CppFalse.htm">false</a></b>;<br/>
+&nbsp;&nbsp;Done <a href="CppOperatorAssign.htm">=</a> <b><a href="CppFalse.html">false</a></b>;<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <br/>
@@ -290,29 +290,29 @@ __fastcall TForm1::TForm1(T<a href="CppComponent.htm">Component</a>* Owner)<br/
 <br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppVoid.htm">void</a></b> TForm1::resizeImage(<b><a href="CppConst.htm">const</a></b> <a href="CppTImage.htm">TImage</a>* image, <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b>&amp; width,<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b>&amp; height)<br/>
+<b><a href="CppVoid.htm">void</a></b> TForm1::resizeImage(<b><a href="CppConst.html">const</a></b> <a href="CppTImage.html">TImage</a>* image, <b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b>&amp; width,<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b>&amp; height)<br/>
 {<br/>
 &nbsp;&nbsp;image-&gt;Picture-&gt;Graphic-&gt;Width&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> width;<br/>
 &nbsp;&nbsp;image-&gt;Picture-&gt;Graphic-&gt;Height <a href="CppOperatorAssign.htm">=</a> height;<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <b><a href="CppVoid.htm">void</a></b> __fastcall TForm1::FormKeyDown(TObject *Sender, WORD &amp;Key,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TShift<a href="CppState.htm">State</a> Shift)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TShift<a href="CppState.html">State</a> Shift)<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppSwitch.htm">switch</a></b>(Key)<br/>
+&nbsp;&nbsp;<b><a href="CppSwitch.html">switch</a></b>(Key)<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> VK_LEFT:&nbsp;&nbsp;turnLeft();<b><a href="CppBreak.htm">break</a></b>;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> VK_RIGHT: turnRight(); <b><a href="CppBreak.htm">break</a></b>;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> VK_UP:&nbsp;&nbsp;&nbsp;&nbsp;pressUp();<b><a href="CppBreak.htm">break</a></b>;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> VK_DOWN:&nbsp;&nbsp;pressDown(); <b><a href="CppBreak.htm">break</a></b>;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppDefault.htm">default</a></b>: Caption <a href="CppOperatorAssign.htm">=</a> Key;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> VK_LEFT:&nbsp;&nbsp;turnLeft();<b><a href="CppBreak.html">break</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> VK_RIGHT: turnRight(); <b><a href="CppBreak.html">break</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> VK_UP:&nbsp;&nbsp;&nbsp;&nbsp;pressUp();<b><a href="CppBreak.html">break</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> VK_DOWN:&nbsp;&nbsp;pressDown(); <b><a href="CppBreak.html">break</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppDefault.html">default</a></b>: Caption <a href="CppOperatorAssign.htm">=</a> Key;<br/>
 &nbsp;&nbsp;}<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> String text <a href="CppOperatorAssign.htm">=</a><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppIntToStr.htm">IntToStr</a>(mSpriteX) <a href="CppOperatorPlus.htm">+</a> " "<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> <a href="CppIntToStr.htm">IntToStr</a>(mSpriteY) <a href="CppOperatorPlus.htm">+</a> " "<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> <a href="CppIntToStr.htm">IntToStr</a>(mSpriteWidth) <a href="CppOperatorPlus.htm">+</a> " "<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> <a href="CppIntToStr.htm">IntToStr</a>(mSpriteHeight);<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> String text <a href="CppOperatorAssign.htm">=</a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppIntToStr.html">IntToStr</a>(mSpriteX) <a href="CppOperatorPlus.htm">+</a> " "<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> <a href="CppIntToStr.html">IntToStr</a>(mSpriteY) <a href="CppOperatorPlus.htm">+</a> " "<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> <a href="CppIntToStr.html">IntToStr</a>(mSpriteWidth) <a href="CppOperatorPlus.htm">+</a> " "<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> <a href="CppIntToStr.html">IntToStr</a>(mSpriteHeight);<br/>
 &nbsp;&nbsp;StatusBar1-&gt;Panels-&gt;Items[0]-&gt;Text <a href="CppOperatorAssign.htm">=</a> text;<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
@@ -350,7 +350,7 @@ __fastcall TForm1::TForm1(T<a href="CppComponent.htm">Component</a>* Owner)<br/
 &nbsp;&nbsp;<b><a href="CppElse.htm">else</a></b> <b><a href="CppIf.htm">if</a></b> (mSpriteIndex<a href="CppOperatorEqual.htm">==</a>13) setSpriteIndex(35);<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppVoid.htm">void</a></b> TForm1::setSpriteIndex(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b>&amp; index)<br/>
+<b><a href="CppVoid.htm">void</a></b> TForm1::setSpriteIndex(<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b>&amp; index)<br/>
 {<br/>
 &nbsp;&nbsp;mSpriteIndex <a href="CppOperatorAssign.htm">=</a> index;<br/>
 &nbsp;&nbsp;ImageList1-&gt;Draw(ImagePlayer-&gt;Canvas,0,0,index);<br/>
@@ -382,125 +382,125 @@ __fastcall TForm1::TForm1(T<a href="CppComponent.htm">Component</a>* Owner)<br/
 <table summary="UnitConstants.h" border = "1"><tr><td><code>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <br/>
-<a href="CppIfndef.htm">#ifndef</a> UnitConstantsH<br/>
-<a href="CppDefine.htm">#define</a> UnitConstantsH<br/>
+<a href="CppIfndef.html">#ifndef</a> UnitConstantsH<br/>
+<a href="CppDefine.html">#define</a> UnitConstantsH<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppNamespace.htm">namespace</a></b> TPS<br/>
+<b><a href="CppNamespace.html">namespace</a></b> TPS<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Row #1<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> missileUp1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp; 0;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> missileUp2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp; 1;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> barVert&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp; 2;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> barsDiagonal1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp; 3;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> barsDiagonal2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp; 4;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> roundBulletSize3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp; 5;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> roundBulletSize2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp; 6;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> roundBulletSize1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp; 7;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> missileDown1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp; 8;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> missileDown2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp; 9;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> missileDownLeft1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;10;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> missileDownLeft2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;11;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> missileDownRight1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;12;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> missileDownRight2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;13;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> barDiagonal1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;14;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> bulletGold&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;15;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> barVertical&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;16;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> bulletSilver&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;17;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> missileUp1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp; 0;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> missileUp2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp; 1;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> barVert&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp; 2;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> barsDiagonal1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp; 3;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> barsDiagonal2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp; 4;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> roundBulletSize3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp; 5;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> roundBulletSize2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp; 6;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> roundBulletSize1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp; 7;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> missileDown1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp; 8;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> missileDown2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp; 9;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> missileDownLeft1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;10;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> missileDownLeft2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;11;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> missileDownRight1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;12;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> missileDownRight2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;13;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> barDiagonal1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;14;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> bulletGold&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;15;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> barVertical&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;16;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> bulletSilver&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;17;<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Row #2<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> missileLeft1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;18;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> missileLeft2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;19;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> missileUpLeft1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;20;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> missileUpLeft2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;21;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> missileUpRight1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;22;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> missileUpRight2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;23;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> missileRight1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;24;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> missileRight2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;25;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> unknown1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;26;<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> barDiagonal1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;27; <a href="CppComment.htm">//</a>Identical with other barDiagonal1<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> barHorizontal&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;28;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> barsVertical&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;29;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> diamondGold&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;30;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> diamondBlack&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;31;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> diamondBlue&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;32;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> flameUp&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;33;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> flameDown&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;34;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> flameRight&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;35;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> missileLeft1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;18;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> missileLeft2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;19;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> missileUpLeft1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;20;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> missileUpLeft2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;21;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> missileUpRight1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;22;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> missileUpRight2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;23;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> missileRight1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;24;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> missileRight2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;25;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> unknown1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;26;<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> barDiagonal1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;27; <a href="CppComment.htm">//</a>Identical with other barDiagonal1<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> barHorizontal&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;28;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> barsVertical&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;29;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> diamondGold&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;30;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> diamondBlack&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;31;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> diamondBlue&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;32;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> flameUp&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;33;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> flameDown&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;34;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> flameRight&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;35;<br/>
 <a href="CppComment.htm">//</a>Row #3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>CharGunLeft1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;36;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>CharGunRight1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;37;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>CharGunUp1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;38;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>CharGunUpRight1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;39;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>CharGunUpLeft1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;40;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>CharGunDown1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;41;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>CharGunDownRight1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;42;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>CharGunDownLeft1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;43;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> enemyBeardUp1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;44;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> enemyBeardDown1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;45;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> enemyBeardLeft1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;46;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> enemyBeardRight1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;47;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> scorpionDown1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;48;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> scorpionRight1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;49;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> scorpionLeft1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;50;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> moneyBag&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;51;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> key&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;52;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> chip&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;53;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> <a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a>CharGunLeft1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;36;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> <a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a>CharGunRight1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;37;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> <a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a>CharGunUp1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;38;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> <a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a>CharGunUpRight1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;39;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> <a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a>CharGunUpLeft1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;40;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> <a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a>CharGunDown1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;41;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> <a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a>CharGunDownRight1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;42;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> <a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a>CharGunDownLeft1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;43;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> enemyBeardUp1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;44;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> enemyBeardDown1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;45;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> enemyBeardLeft1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;46;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> enemyBeardRight1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;47;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> scorpionDown1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;48;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> scorpionRight1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;49;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> scorpionLeft1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;50;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> moneyBag&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;51;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> key&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;52;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> chip&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;53;<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>#Row 4<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>CharGunLeft2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;54;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>CharGunRight2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;55;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>CharGunUp2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;56;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>CharGunUpRight2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;57;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>CharGunUpLeft2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;58;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>CharGunDown2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;59;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>CharGunDownRight2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;60;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>CharGunDownLeft2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;61;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> enemyBeardUp2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;62;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> enemyBeardDown2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;63;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> enemyBeardLeft2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;64;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> enemyBeardRight2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;65;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> scorpionDown2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;66;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> scorpionRight2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;67;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> scorpionLeft2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;68;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> itemBullet&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;69;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> diamondRed&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;70;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> flameLeft&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;71;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> <a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a>CharGunLeft2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;54;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> <a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a>CharGunRight2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;55;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> <a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a>CharGunUp2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;56;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> <a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a>CharGunUpRight2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;57;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> <a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a>CharGunUpLeft2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;58;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> <a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a>CharGunDown2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;59;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> <a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a>CharGunDownRight2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;60;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> <a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a>CharGunDownLeft2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;61;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> enemyBeardUp2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;62;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> enemyBeardDown2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;63;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> enemyBeardLeft2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;64;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> enemyBeardRight2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;65;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> scorpionDown2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;66;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> scorpionRight2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;67;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> scorpionLeft2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;68;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> itemBullet&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;69;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> diamondRed&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;70;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> flameLeft&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;71;<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Row #5<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>CharRocketUp1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;72;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>CharRocketDown1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;73;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>CharRocketLeft1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;74;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>CharRocketUpRight1&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;75;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>CharRocketDownRight1&nbsp;&nbsp; <a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;76;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>CharRocketRight1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;77;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>CharRocketDownLeft1&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;78;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>CharRocketUpLeft1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;79;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> enemyCapDown1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;80;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> enemyCapUp1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;81;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> enemyCapLeft1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;82;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> enemyCapRight1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;83;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> enemyArmoredDown1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;84;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> enemyArmoredRight1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;85;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> enemyArmoredLeft1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;86;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> enemyArmoredUp1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;87;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> scorpionUp1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;88;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> eyeLeft1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;89;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> <a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a>CharRocketUp1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;72;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> <a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a>CharRocketDown1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;73;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> <a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a>CharRocketLeft1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;74;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> <a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a>CharRocketUpRight1&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;75;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> <a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a>CharRocketDownRight1&nbsp;&nbsp; <a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;76;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> <a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a>CharRocketRight1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;77;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> <a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a>CharRocketDownLeft1&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;78;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> <a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a>CharRocketUpLeft1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;79;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> enemyCapDown1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;80;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> enemyCapUp1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;81;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> enemyCapLeft1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;82;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> enemyCapRight1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;83;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> enemyArmoredDown1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;84;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> enemyArmoredRight1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;85;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> enemyArmoredLeft1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;86;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> enemyArmoredUp1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;87;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> scorpionUp1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;88;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> eyeLeft1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;89;<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Row #6<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>CharRocketUp2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;90;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>CharRocketDown2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;91;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>CharRocketLeft2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;92;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>CharRocketUpRight2&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;93;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>CharRocketDownRight2&nbsp;&nbsp; <a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;94;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>CharRocketRight2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;95;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>CharRocketDownLeft2&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;96;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>CharRocketUpLeft2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;97;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> enemyCapDown2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;98;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> enemyCapUp2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;99;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> enemyCapLeft2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> 100;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> enemyCapRight2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppOperatorAssign.htm">=</a> 101;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> enemyArmoredDown2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> 102;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> enemyArmoredRight2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppOperatorAssign.htm">=</a> 103;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> enemyArmoredLeft2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> 104;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> enemyArmoredUp2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> 105;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> scorpionUp2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> 106;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> eyeLeft2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppOperatorAssign.htm">=</a> 107;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> <a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a>CharRocketUp2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;90;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> <a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a>CharRocketDown2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;91;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> <a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a>CharRocketLeft2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;92;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> <a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a>CharRocketUpRight2&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;93;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> <a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a>CharRocketDownRight2&nbsp;&nbsp; <a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;94;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> <a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a>CharRocketRight2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;95;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> <a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a>CharRocketDownLeft2&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;96;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> <a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a>CharRocketUpLeft2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;97;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> enemyCapDown2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;98;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> enemyCapUp2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;99;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> enemyCapLeft2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> 100;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> enemyCapRight2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppOperatorAssign.htm">=</a> 101;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> enemyArmoredDown2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> 102;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> enemyArmoredRight2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppOperatorAssign.htm">=</a> 103;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> enemyArmoredLeft2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> 104;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> enemyArmoredUp2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> 105;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> scorpionUp2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> 106;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> eyeLeft2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppOperatorAssign.htm">=</a> 107;<br/>
 <br/>
 <br/>
 <br/>
@@ -509,7 +509,7 @@ __fastcall TForm1::TForm1(T<a href="CppComponent.htm">Component</a>* Owner)<br/
 <br/>
 <br/>
 }<br/>
-<a href="CppEndif.htm">#endif</a><br/>
+<a href="CppEndif.html">#endif</a><br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -524,13 +524,13 @@ __fastcall TForm1::TForm1(T<a href="CppComponent.htm">Component</a>* Owner)<br/
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <br/>
 <br/>
-<a href="CppPragma.htm">#pragma</a> hdrstop<br/>
+<a href="CppPragma.html">#pragma</a> hdrstop<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> "UnitConstants.h"<br/>
+<a href="CppInclude.html">#include</a> "UnitConstants<a href="CppHeaderFile.htm">.h</a>"<br/>
 <br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <br/>
-<a href="CppPragma.htm">#pragma</a> package(smart_init)<br/>
+<a href="CppPragma.html">#pragma</a> package(smart_init)<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -544,13 +544,13 @@ __fastcall TForm1::TForm1(T<a href="CppComponent.htm">Component</a>* Owner)<br/
 <table summary="UnitEnums.h" border = "1"><tr><td><code>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <br/>
-<a href="CppIfndef.htm">#ifndef</a> UnitEnumsH<br/>
-<a href="CppDefine.htm">#define</a> UnitEnumsH<br/>
+<a href="CppIfndef.html">#ifndef</a> UnitEnumsH<br/>
+<a href="CppDefine.html">#define</a> UnitEnumsH<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <b><a href="CppEnum.htm">enum</a></b> EnumKey { keyUp, keyRight, keyDown, keyLeft, keyJump, keyShoot };<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <br/>
-<a href="CppEndif.htm">#endif</a><br/>
+<a href="CppEndif.html">#endif</a><br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -565,13 +565,13 @@ __fastcall TForm1::TForm1(T<a href="CppComponent.htm">Component</a>* Owner)<br/
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <br/>
 <br/>
-<a href="CppPragma.htm">#pragma</a> hdrstop<br/>
+<a href="CppPragma.html">#pragma</a> hdrstop<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> "UnitEnums.h"<br/>
+<a href="CppInclude.html">#include</a> "UnitEnums<a href="CppHeaderFile.htm">.h</a>"<br/>
 <br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <br/>
-<a href="CppPragma.htm">#pragma</a> package(smart_init)<br/>
+<a href="CppPragma.html">#pragma</a> package(smart_init)<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -585,66 +585,66 @@ __fastcall TForm1::TForm1(T<a href="CppComponent.htm">Component</a>* Owner)<br/
 <table summary="UnitGameMain.h" border = "1"><tr><td><code>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <br/>
-<a href="CppIfndef.htm">#ifndef</a> UnitGameMainH<br/>
-<a href="CppDefine.htm">#define</a> UnitGameMainH<br/>
+<a href="CppIfndef.html">#ifndef</a> UnitGameMainH<br/>
+<a href="CppDefine.html">#define</a> UnitGameMainH<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppClass.htm">Classes</a>.hpp&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;Controls.hpp&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;StdCtrls.hpp&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;Forms.hpp&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;ExtCtrls.hpp&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;AppEvnts.hpp&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;Graphics.hpp&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;ComCtrls.hpp&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;ImgList.hpp&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppClass.html">Classes</a><a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;Controls<a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;StdCtrls<a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;Forms<a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;ExtCtrls<a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;AppEvnts<a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;Graphics<a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;ComCtrls<a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;ImgList<a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppInclude.htm">#include</a> "UnitSpriteIndexChanger.h"<br/>
-<a href="CppInclude.htm">#include</a> "UnitKeyList.h"<br/>
+<a href="CppInclude.html">#include</a> "UnitSpriteIndexChanger<a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "UnitKeyList<a href="CppHeaderFile.htm">.h</a>"<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppClass.htm">class</a></b> TFormGameMain : <b><a href="CppPublic.htm">public</a></b> TForm<br/>
+<b><a href="CppClass.html">class</a></b> TFormGameMain : <b><a href="CppPublic.html">public</a></b> TForm<br/>
 {<br/>
-__published:	<a href="CppComment.htm">//</a> IDE-managed <a href="CppComponent.htm">Component</a>s<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppTImage.htm">TImage</a> *ImageSprites;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;T<a href="CppApplication.htm">Application</a>Events *<a href="CppApplication.htm">Application</a>Events1;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppTImage.htm">TImage</a> *ImageBuffer;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppTImage.htm">TImage</a> *ImagePlayer;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppTImage.htm">TImage</a> *ImageBackground;<br/>
+__published:	<a href="CppComment.htm">//</a> IDE-managed <a href="CppComponent.html">Component</a>s<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppTImage.html">TImage</a> *ImageSprites;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;T<a href="CppApplication.html">Application</a>Events *<a href="CppApplication.html">Application</a>Events1;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppTImage.html">TImage</a> *ImageBuffer;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppTImage.html">TImage</a> *ImagePlayer;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppTImage.html">TImage</a> *ImageBackground;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TStatusBar *StatusBar1;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppTImage.htm">TImage</a>List *ImageList1;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> __fastcall <a href="CppApplication.htm">Application</a>Events1Idle(TObject *Sender,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppTImage.html">TImage</a>List *ImageList1;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> __fastcall <a href="CppApplication.html">Application</a>Events1Idle(TObject *Sender,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppBool.htm">bool</a></b> &amp;Done);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> __fastcall FormResize(TObject *Sender);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> __fastcall FormKeyDown(TObject *Sender, WORD &amp;Key,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TShift<a href="CppState.htm">State</a> Shift);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TShift<a href="CppState.html">State</a> Shift);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> __fastcall FormKeyUp(TObject *Sender, WORD &amp;Key,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TShift<a href="CppState.htm">State</a> Shift);<br/>
-<b><a href="CppPrivate.htm">private</a></b>:	<a href="CppComment.htm">//</a> User <a href="CppDeclaration.htm">declaration</a>s<br/>
-&nbsp;&nbsp;<b><a href="CppDouble.htm">double</a></b> mPlayerX;<br/>
-&nbsp;&nbsp;<b><a href="CppDouble.htm">double</a></b> mPlayerY;<br/>
-&nbsp;&nbsp;<b><a href="CppDouble.htm">double</a></b> mJumpY;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TShift<a href="CppState.html">State</a> Shift);<br/>
+<b><a href="CppPrivate.html">private</a></b>:	<a href="CppComment.htm">//</a> User <a href="CppDeclaration.html">declaration</a>s<br/>
+&nbsp;&nbsp;<b><a href="CppDouble.html">double</a></b> mPlayerX;<br/>
+&nbsp;&nbsp;<b><a href="CppDouble.html">double</a></b> mPlayerY;<br/>
+&nbsp;&nbsp;<b><a href="CppDouble.html">double</a></b> mJumpY;<br/>
 &nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> mSpriteX;<br/>
 &nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> mSpriteY;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> mSpriteWidth;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> mSpriteHeight;<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> mPlayerAccel;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> mPlayerJumpAccel;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> mPlayerStep;<br/>
-&nbsp;&nbsp;<b><a href="CppDouble.htm">double</a></b> mSpeedX;<br/>
-&nbsp;&nbsp;<b><a href="CppDouble.htm">double</a></b> mSpeedY;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> mSpriteWidth;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> mSpriteHeight;<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> mPlayerAccel;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> mPlayerJumpAccel;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> mPlayerStep;<br/>
+&nbsp;&nbsp;<b><a href="CppDouble.html">double</a></b> mSpeedX;<br/>
+&nbsp;&nbsp;<b><a href="CppDouble.html">double</a></b> mSpeedY;<br/>
 &nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> mSpriteIndex;<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppVoid.htm">void</a></b> getPlayerImage();<br/>
 &nbsp;&nbsp;SpriteIndexChanger mSpriteIndexChanger;<br/>
 &nbsp;&nbsp;KeyList mKeyList;<br/>
-&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> resizeImage(<b><a href="CppConst.htm">const</a></b> <a href="CppTImage.htm">TImage</a>* image, <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b>&amp; width,<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b>&amp; height);<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> resizeImage(<b><a href="CppConst.html">const</a></b> <a href="CppTImage.html">TImage</a>* image, <b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b>&amp; width,<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b>&amp; height);<br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> jump();<br/>
-&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> setSpriteIndex(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b>&amp; index);<br/>
-<b><a href="CppPublic.htm">public</a></b>:		<a href="CppComment.htm">//</a> User <a href="CppDeclaration.htm">declaration</a>s<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;__fastcall TFormGameMain(T<a href="CppComponent.htm">Component</a>* Owner);<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> setSpriteIndex(<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b>&amp; index);<br/>
+<b><a href="CppPublic.html">public</a></b>:		<a href="CppComment.htm">//</a> User <a href="CppDeclaration.html">declaration</a>s<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;__fastcall TFormGameMain(T<a href="CppComponent.html">Component</a>* Owner);<br/>
 };<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppExtern.htm">extern</a></b> PACKAGE TFormGameMain *FormGameMain;<br/>
+<b><a href="CppExtern.html">extern</a></b> PACKAGE TFormGameMain *FormGameMain;<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppEndif.htm">#endif</a><br/>
+<a href="CppEndif.html">#endif</a><br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -658,19 +658,19 @@ __published:	<a href="CppComment.htm">//</a> IDE-managed <a href="CppComponent.h
 <table summary="UnitGameMain.cpp" border = "1"><tr><td><code>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> &lt;vcl.h&gt;<br/>
-<a href="CppPragma.htm">#pragma</a> hdrstop<br/>
+<a href="CppInclude.html">#include</a> &lt;vcl<a href="CppHeaderFile.htm">.h</a>&gt;<br/>
+<a href="CppPragma.html">#pragma</a> hdrstop<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> "UnitGameMain.h"<br/>
+<a href="CppInclude.html">#include</a> "UnitGameMain<a href="CppHeaderFile.htm">.h</a>"<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppAssert.htm">Assert</a>.hpp&gt;<br/>
-<a href="CppInclude.htm">#include</a> "UnitConstants.h"<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppAssert.html">Assert</a><a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
+<a href="CppInclude.html">#include</a> "UnitConstants<a href="CppHeaderFile.htm">.h</a>"<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppPragma.htm">#pragma</a> package(smart_init)<br/>
-<a href="CppPragma.htm">#pragma</a> resource "*.dfm"<br/>
+<a href="CppPragma.html">#pragma</a> package(smart_init)<br/>
+<a href="CppPragma.html">#pragma</a> resource "*.dfm"<br/>
 TFormGameMain *FormGameMain;<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-__fastcall TFormGameMain::TFormGameMain(T<a href="CppComponent.htm">Component</a>* Owner)<br/>
+__fastcall TFormGameMain::TFormGameMain(T<a href="CppComponent.html">Component</a>* Owner)<br/>
 &nbsp;&nbsp;: TForm(Owner),<br/>
 &nbsp;&nbsp;mPlayerX(0),<br/>
 &nbsp;&nbsp;mPlayerY(0),<br/>
@@ -678,7 +678,7 @@ __fastcall TFormGameMain::TFormGameMain(T<a href="CppComponent.htm">Component</a
 &nbsp;&nbsp;mSpriteY(100),<br/>
 &nbsp;&nbsp;mSpriteWidth(34),<br/>
 &nbsp;&nbsp;mSpriteHeight(34),<br/>
-&nbsp;&nbsp;mSpriteIndex(TPS::<a href="CppMain.htm">main</a>CharRocketLeft1),<br/>
+&nbsp;&nbsp;mSpriteIndex(TPS::<a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a>CharRocketLeft1),<br/>
 &nbsp;&nbsp;mSpeedX(0.0),<br/>
 &nbsp;&nbsp;mSpeedY(0.0),<br/>
 &nbsp;&nbsp;mPlayerStep(5),<br/>
@@ -690,8 +690,8 @@ __fastcall TFormGameMain::TFormGameMain(T<a href="CppComponent.htm">Component</a
 &nbsp;&nbsp;resizeImage(ImagePlayer,mSpriteWidth,mSpriteHeight);<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Fill ImageList with all images<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> width <a href="CppOperatorAssign.htm">=</a> 34;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> height <a href="CppOperatorAssign.htm">=</a> 34;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> width <a href="CppOperatorAssign.htm">=</a> 34;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> height <a href="CppOperatorAssign.htm">=</a> 34;<br/>
 &nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> y=0; y&lt;11; <a href="CppOperatorPlus.htm">+</a>+y)<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b>(<b><a href="CppInt.htm">int</a></b> x=0; x&lt;18; <a href="CppOperatorPlus.htm">+</a>+x)<br/>
@@ -702,8 +702,8 @@ __fastcall TFormGameMain::TFormGameMain(T<a href="CppComponent.htm">Component</a
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mPlayerY <a href="CppOperatorAssign.htm">=</a> mSpriteY;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b>(<b><a href="CppInt.htm">int</a></b> readY=mSpriteY,writeY=0; readY&lt;mSpriteY+mSpriteHeight;<a href="CppOperatorIncrement.htm">++</a>readY,<a href="CppOperatorIncrement.htm">++</a>writeY)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> * lineRead <a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppConst.htm">const</a></b> <b><a href="CppChar.htm">char</a></b>*&gt;(ImageSprites-&gt;Picture-&gt;Bitmap-&gt;ScanLine[readY]);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> * lineWrite <a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppChar.htm">char</a></b>*&gt;(ImagePlayer-&gt;Picture-&gt;Bitmap-&gt;ScanLine[writeY]);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppUnsigned.html">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> * lineRead <a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.html">static_cast</a></b>&lt;<b><a href="CppConst.html">const</a></b> <b><a href="CppChar.htm">char</a></b>*&gt;(ImageSprites-&gt;Picture-&gt;Bitmap-&gt;ScanLine[readY]);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppUnsigned.html">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> * lineWrite <a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.html">static_cast</a></b>&lt;<b><a href="CppChar.htm">char</a></b>*&gt;(ImagePlayer-&gt;Picture-&gt;Bitmap-&gt;ScanLine[writeY]);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b>(<b><a href="CppInt.htm">int</a></b> readX=mSpriteX,writeX=0; readX&lt;mSpriteX+mSpriteWidth;<a href="CppOperatorIncrement.htm">++</a>readX,<a href="CppOperatorIncrement.htm">++</a>writeX)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lineWrite[writeX*3+0] <a href="CppOperatorAssign.htm">=</a> lineRead[readX*3+0];<br/>
@@ -719,17 +719,17 @@ __fastcall TFormGameMain::TFormGameMain(T<a href="CppComponent.htm">Component</a
 <br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppVoid.htm">void</a></b> __fastcall TFormGameMain::<a href="CppApplication.htm">Application</a>Events1Idle(TObject *Sender, <b><a href="CppBool.htm">bool</a></b> &amp;Done)<br/>
+<b><a href="CppVoid.htm">void</a></b> __fastcall TFormGameMain::<a href="CppApplication.html">Application</a>Events1Idle(TObject *Sender, <b><a href="CppBool.htm">bool</a></b> &amp;Done)<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Draw everything<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;EnumKey&gt; keys <a href="CppOperatorAssign.htm">=</a> mKeyList.GetKeys();<br/>
-&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b>(<a href="CppVector.htm">std::vector</a>&lt;EnumKey&gt;::const_iterator i <a href="CppOperatorAssign.htm">=</a> keys.begin(); i<a href="CppOperatorNotEqual.htm">!=</a>keys.end(); <a href="CppOperatorPlus.htm">+</a>+i)<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppVector.html">std::vector</a>&lt;EnumKey&gt; keys <a href="CppOperatorAssign.htm">=</a> mKeyList.GetKeys();<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b>(<a href="CppVector.html">std::vector</a>&lt;EnumKey&gt;::const_iterator i <a href="CppOperatorAssign.htm">=</a> keys.begin(); i<a href="CppOperatorNotEqual.htm">!=</a>keys.end(); <a href="CppOperatorPlus.htm">+</a>+i)<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;mSpriteIndex <a href="CppOperatorAssign.htm">=</a> mSpriteIndexChanger.Move(*i,mSpriteIndex);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppSwitch.htm">switch</a></b> (*i)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppSwitch.html">switch</a></b> (*i)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> keyLeft : mPlayerX<a href="CppOperatorMinusAssign.htm">-=</a>mPlayerStep; <b><a href="CppBreak.htm">break</a></b>;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> keyRight: mPlayerX<a href="CppOperatorPlusAssign.htm">+=</a>mPlayerStep; <b><a href="CppBreak.htm">break</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> keyLeft : mPlayerX<a href="CppOperatorMinusAssign.htm">-=</a>mPlayerStep; <b><a href="CppBreak.html">break</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> keyRight: mPlayerX<a href="CppOperatorPlusAssign.htm">+=</a>mPlayerStep; <b><a href="CppBreak.html">break</a></b>;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Image<br/>
@@ -743,7 +743,7 @@ __fastcall TFormGameMain::TFormGameMain(T<a href="CppComponent.htm">Component</a
 &nbsp;&nbsp;ImageList1-&gt;Draw(ImageBuffer-&gt;Canvas,mPlayerX,mPlayerY,mSpriteIndex);<br/>
 <br/>
 &nbsp;&nbsp;Canvas-&gt;Draw(0,0,ImageBuffer-&gt;Picture-&gt;Graphic);<br/>
-&nbsp;&nbsp;Done <a href="CppOperatorAssign.htm">=</a> <b><a href="CppFalse.htm">false</a></b>;<br/>
+&nbsp;&nbsp;Done <a href="CppOperatorAssign.htm">=</a> <b><a href="CppFalse.html">false</a></b>;<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <br/>
@@ -753,37 +753,37 @@ __fastcall TFormGameMain::TFormGameMain(T<a href="CppComponent.htm">Component</a
 <br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppVoid.htm">void</a></b> TFormGameMain::resizeImage(<b><a href="CppConst.htm">const</a></b> <a href="CppTImage.htm">TImage</a>* image, <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b>&amp; width,<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b>&amp; height)<br/>
+<b><a href="CppVoid.htm">void</a></b> TFormGameMain::resizeImage(<b><a href="CppConst.html">const</a></b> <a href="CppTImage.html">TImage</a>* image, <b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b>&amp; width,<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b>&amp; height)<br/>
 {<br/>
 &nbsp;&nbsp;image-&gt;Picture-&gt;Graphic-&gt;Width&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> width;<br/>
 &nbsp;&nbsp;image-&gt;Picture-&gt;Graphic-&gt;Height <a href="CppOperatorAssign.htm">=</a> height;<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <b><a href="CppVoid.htm">void</a></b> __fastcall TFormGameMain::FormKeyDown(TObject *Sender, WORD &amp;Key,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TShift<a href="CppState.htm">State</a> Shift)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TShift<a href="CppState.html">State</a> Shift)<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppSwitch.htm">switch</a></b>(Key)<br/>
+&nbsp;&nbsp;<b><a href="CppSwitch.html">switch</a></b>(Key)<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> VK_UP:<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mSpriteIndex <a href="CppOperatorAssign.htm">=</a> mSpriteIndexChanger.MoveUp(mSpriteIndex); <b><a href="CppBreak.htm">break</a></b>;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>mKeyList.<a href="CppAdd.htm">Add</a>Key(keyUp)&nbsp;&nbsp; ; <b><a href="CppBreak.htm">break</a></b>;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> VK_RIGHT: mKeyList.<a href="CppAdd.htm">Add</a>Key(keyRight); <b><a href="CppBreak.htm">break</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mSpriteIndex <a href="CppOperatorAssign.htm">=</a> mSpriteIndexChanger.MoveUp(mSpriteIndex); <b><a href="CppBreak.html">break</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>mKeyList.<a href="CppAdd.htm">Add</a>Key(keyUp)&nbsp;&nbsp; ; <b><a href="CppBreak.html">break</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> VK_RIGHT: mKeyList.<a href="CppAdd.htm">Add</a>Key(keyRight); <b><a href="CppBreak.html">break</a></b>;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> VK_DOWN:<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>mKeyList.<a href="CppAdd.htm">Add</a>Key(keyDown) ;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mSpriteIndex <a href="CppOperatorAssign.htm">=</a> mSpriteIndexChanger.MoveDown(mSpriteIndex); <b><a href="CppBreak.htm">break</a></b>;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> VK_LEFT:&nbsp;&nbsp;mKeyList.<a href="CppAdd.htm">Add</a>Key(keyLeft) ; <b><a href="CppBreak.htm">break</a></b>;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppDefault.htm">default</a></b>: Caption <a href="CppOperatorAssign.htm">=</a> Key;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mSpriteIndex <a href="CppOperatorAssign.htm">=</a> mSpriteIndexChanger.MoveDown(mSpriteIndex); <b><a href="CppBreak.html">break</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> VK_LEFT:&nbsp;&nbsp;mKeyList.<a href="CppAdd.htm">Add</a>Key(keyLeft) ; <b><a href="CppBreak.html">break</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppDefault.html">default</a></b>: Caption <a href="CppOperatorAssign.htm">=</a> Key;<br/>
 &nbsp;&nbsp;}<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> String text <a href="CppOperatorAssign.htm">=</a><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppIntToStr.htm">IntToStr</a>(mSpriteX) <a href="CppOperatorPlus.htm">+</a> " "<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> <a href="CppIntToStr.htm">IntToStr</a>(mSpriteY) <a href="CppOperatorPlus.htm">+</a> " "<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> <a href="CppIntToStr.htm">IntToStr</a>(mSpriteWidth) <a href="CppOperatorPlus.htm">+</a> " "<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> <a href="CppIntToStr.htm">IntToStr</a>(mSpriteHeight);<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> String text <a href="CppOperatorAssign.htm">=</a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppIntToStr.html">IntToStr</a>(mSpriteX) <a href="CppOperatorPlus.htm">+</a> " "<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> <a href="CppIntToStr.html">IntToStr</a>(mSpriteY) <a href="CppOperatorPlus.htm">+</a> " "<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> <a href="CppIntToStr.html">IntToStr</a>(mSpriteWidth) <a href="CppOperatorPlus.htm">+</a> " "<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> <a href="CppIntToStr.html">IntToStr</a>(mSpriteHeight);<br/>
 &nbsp;&nbsp;StatusBar1-&gt;Panels-&gt;Items[0]-&gt;Text <a href="CppOperatorAssign.htm">=</a> text;<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppVoid.htm">void</a></b> TFormGameMain::setSpriteIndex(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b>&amp; index)<br/>
+<b><a href="CppVoid.htm">void</a></b> TFormGameMain::setSpriteIndex(<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b>&amp; index)<br/>
 {<br/>
 &nbsp;&nbsp;mSpriteIndex <a href="CppOperatorAssign.htm">=</a> index;<br/>
 &nbsp;&nbsp;ImageList1-&gt;Draw(ImagePlayer-&gt;Canvas,0,0,index);<br/>
@@ -803,15 +803,15 @@ __fastcall TFormGameMain::TFormGameMain(T<a href="CppComponent.htm">Component</a
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <br/>
 <b><a href="CppVoid.htm">void</a></b> __fastcall TFormGameMain::FormKeyUp(TObject *Sender, WORD &amp;Key,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TShift<a href="CppState.htm">State</a> Shift)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TShift<a href="CppState.html">State</a> Shift)<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppSwitch.htm">switch</a></b>(Key)<br/>
+&nbsp;&nbsp;<b><a href="CppSwitch.html">switch</a></b>(Key)<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> VK_UP:&nbsp;&nbsp;&nbsp;&nbsp;mKeyList.RemoveKey(keyUp)&nbsp;&nbsp; ; <b><a href="CppBreak.htm">break</a></b>;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> VK_RIGHT: mKeyList.RemoveKey(keyRight); <b><a href="CppBreak.htm">break</a></b>;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> VK_DOWN:&nbsp;&nbsp;mKeyList.RemoveKey(keyDown) ; <b><a href="CppBreak.htm">break</a></b>;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> VK_LEFT:&nbsp;&nbsp;mKeyList.RemoveKey(keyLeft) ; <b><a href="CppBreak.htm">break</a></b>;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppDefault.htm">default</a></b>: Caption <a href="CppOperatorAssign.htm">=</a> Key;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> VK_UP:&nbsp;&nbsp;&nbsp;&nbsp;mKeyList.RemoveKey(keyUp)&nbsp;&nbsp; ; <b><a href="CppBreak.html">break</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> VK_RIGHT: mKeyList.RemoveKey(keyRight); <b><a href="CppBreak.html">break</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> VK_DOWN:&nbsp;&nbsp;mKeyList.RemoveKey(keyDown) ; <b><a href="CppBreak.html">break</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> VK_LEFT:&nbsp;&nbsp;mKeyList.RemoveKey(keyLeft) ; <b><a href="CppBreak.html">break</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppDefault.html">default</a></b>: Caption <a href="CppOperatorAssign.htm">=</a> Key;<br/>
 &nbsp;&nbsp;}<br/>
 <br/>
 }<br/>
@@ -830,22 +830,22 @@ __fastcall TFormGameMain::TFormGameMain(T<a href="CppComponent.htm">Component</a
 <table summary="UnitKeylist.h" border = "1"><tr><td><code>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <br/>
-<a href="CppIfndef.htm">#ifndef</a> UnitKeylistH<br/>
-<a href="CppDefine.htm">#define</a> UnitKeylistH<br/>
+<a href="CppIfndef.html">#ifndef</a> UnitKeylistH<br/>
+<a href="CppDefine.html">#define</a> UnitKeylistH<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppSetH.htm">set</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> "UnitEnums.h"<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppSetH.html">set</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppVectorH.html">vector</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> "UnitEnums<a href="CppHeaderFile.htm">.h</a>"<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppStruct.htm">struct</a></b> KeyList<br/>
+<b><a href="CppStruct.html">struct</a></b> KeyList<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> <a href="CppAdd.htm">Add</a>Key(<b><a href="CppConst.htm">const</a></b> EnumKey&amp; key);<br/>
-&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> RemoveKey(<b><a href="CppConst.htm">const</a></b> EnumKey&amp; key);<br/>
-&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;EnumKey&gt; GetKeys() <b><a href="CppConst.htm">const</a></b>;<br/>
-&nbsp;&nbsp;<b><a href="CppPrivate.htm">private</a></b>:<br/>
-&nbsp;&nbsp;<a href="CppSet.htm">std::set</a>&lt;EnumKey&gt; mSet;<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> <a href="CppAdd.htm">Add</a>Key(<b><a href="CppConst.html">const</a></b> EnumKey&amp; key);<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> RemoveKey(<b><a href="CppConst.html">const</a></b> EnumKey&amp; key);<br/>
+&nbsp;&nbsp;<a href="CppVector.html">std::vector</a>&lt;EnumKey&gt; GetKeys() <b><a href="CppConst.html">const</a></b>;<br/>
+&nbsp;&nbsp;<b><a href="CppPrivate.html">private</a></b>:<br/>
+&nbsp;&nbsp;<a href="CppSet.html">std::set</a>&lt;EnumKey&gt; mSet;<br/>
 };<br/>
-<a href="CppEndif.htm">#endif</a><br/>
+<a href="CppEndif.html">#endif</a><br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -860,38 +860,38 @@ __fastcall TFormGameMain::TFormGameMain(T<a href="CppComponent.htm">Component</a
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <br/>
 <br/>
-<a href="CppPragma.htm">#pragma</a> hdrstop<br/>
+<a href="CppPragma.html">#pragma</a> hdrstop<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> "UnitKeylist.h"<br/>
+<a href="CppInclude.html">#include</a> "UnitKeylist<a href="CppHeaderFile.htm">.h</a>"<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppAssert.htm">Assert</a>.hpp&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppAssert.html">Assert</a><a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppVoid.htm">void</a></b> KeyList::<a href="CppAdd.htm">Add</a>Key(<b><a href="CppConst.htm">const</a></b> EnumKey&amp; key)<br/>
+<b><a href="CppVoid.htm">void</a></b> KeyList::<a href="CppAdd.htm">Add</a>Key(<b><a href="CppConst.html">const</a></b> EnumKey&amp; key)<br/>
 {<br/>
 &nbsp;&nbsp;mSet.insert(key);<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppVoid.htm">void</a></b> KeyList::RemoveKey(<b><a href="CppConst.htm">const</a></b> EnumKey&amp; key)<br/>
+<b><a href="CppVoid.htm">void</a></b> KeyList::RemoveKey(<b><a href="CppConst.html">const</a></b> EnumKey&amp; key)<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> oldSize <a href="CppOperatorAssign.htm">=</a> mSet.size();<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppBool.htm">bool</a></b> isInSet <a href="CppOperatorAssign.htm">=</a> mSet.count(key);<br/>
-&nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
+&nbsp;&nbsp;<a href="CppIfndef.html">#ifndef</a> <a href="CppNDEBUG.html">NDEBUG</a><br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> oldSize <a href="CppOperatorAssign.htm">=</a> mSet.size();<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppBool.htm">bool</a></b> isInSet <a href="CppOperatorAssign.htm">=</a> mSet.count(key);<br/>
+&nbsp;&nbsp;<a href="CppEndif.html">#endif</a><br/>
 <br/>
 &nbsp;&nbsp;mSet.erase(key);<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> <b><a href="CppNew.htm">new</a></b>Size <a href="CppOperatorAssign.htm">=</a> mSet.size();<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">Assert</a>( isInSet <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <b><a href="CppFalse.htm">false</a></b> <a href="CppOperatorLogicalOr.htm">||</a> (isInSet <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <b><a href="CppTrue.htm">true</a></b> <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> <b><a href="CppNew.htm">new</a></b>Size <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> oldSize <a href="CppOperatorMinus.htm">-</a> 1));<br/>
-&nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
+&nbsp;&nbsp;<a href="CppIfndef.html">#ifndef</a> <a href="CppNDEBUG.html">NDEBUG</a><br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> <b><a href="CppNew.htm">new</a></b>Size <a href="CppOperatorAssign.htm">=</a> mSet.size();<br/>
+&nbsp;&nbsp;<a href="CppAssert.html">Assert</a>( isInSet <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <b><a href="CppFalse.html">false</a></b> <a href="CppOperatorLogicalOr.htm">||</a> (isInSet <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <b><a href="CppTrue.htm">true</a></b> <a href="CppOperatorLogicalAnd.html">&amp;&amp;</a> <b><a href="CppNew.htm">new</a></b>Size <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> oldSize <a href="CppOperatorMinus.htm">-</a> 1));<br/>
+&nbsp;&nbsp;<a href="CppEndif.html">#endif</a><br/>
 <br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppVector.htm">std::vector</a>&lt;EnumKey&gt; KeyList::GetKeys() <b><a href="CppConst.htm">const</a></b><br/>
+<a href="CppVector.html">std::vector</a>&lt;EnumKey&gt; KeyList::GetKeys() <b><a href="CppConst.html">const</a></b><br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;EnumKey&gt; v;<br/>
+&nbsp;&nbsp;<a href="CppVector.html">std::vector</a>&lt;EnumKey&gt; v;<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Get all the keys<br/>
-&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<a href="CppSet.htm">std::set</a>&lt;EnumKey&gt;::const_iterator i <a href="CppOperatorAssign.htm">=</a> mSet.begin(); i <a href="CppOperatorNotEqual.htm">!=</a> mSet.end(); <a href="CppOperatorPlus.htm">+</a>+i)<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<a href="CppSet.html">std::set</a>&lt;EnumKey&gt;::const_iterator i <a href="CppOperatorAssign.htm">=</a> mSet.begin(); i <a href="CppOperatorNotEqual.htm">!=</a> mSet.end(); <a href="CppOperatorPlus.htm">+</a>+i)<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;v.push_back(*i);<br/>
 &nbsp;&nbsp;}<br/>
@@ -901,11 +901,11 @@ __fastcall TFormGameMain::TFormGameMain(T<a href="CppComponent.htm">Component</a
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (mSet.count(keyUp)&nbsp;&nbsp; <a href="CppOperatorNotEqual.htm">!=</a> 0) mSet.erase(keyUp);<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (mSet.count(keyDown) <a href="CppOperatorNotEqual.htm">!=</a> 0) mSet.erase(keyDown);<br/>
 &nbsp;&nbsp; <a href="CppComment.htm">*/</a><br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> v;<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <br/>
-<a href="CppPragma.htm">#pragma</a> package(smart_init)<br/>
+<a href="CppPragma.html">#pragma</a> package(smart_init)<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -919,46 +919,46 @@ __fastcall TFormGameMain::TFormGameMain(T<a href="CppComponent.htm">Component</a
 <table summary="UnitMissile.h" border = "1"><tr><td><code>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <br/>
-<a href="CppIfndef.htm">#ifndef</a> UnitMissileH<br/>
-<a href="CppDefine.htm">#define</a> UnitMissileH<br/>
+<a href="CppIfndef.html">#ifndef</a> UnitMissileH<br/>
+<a href="CppDefine.html">#define</a> UnitMissileH<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppStruct.htm">struct</a></b> Missile<br/>
+<b><a href="CppStruct.html">struct</a></b> Missile<br/>
 {<br/>
 &nbsp;&nbsp;Missile(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b>&amp; x, <b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b>&amp; y,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b>&amp; dX, <b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b>&amp; dY,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b>&amp; spriteIndex1, <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b>&amp; spriteIndex2)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b>&amp; x, <b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b>&amp; y,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b>&amp; dX, <b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b>&amp; dY,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b>&amp; spriteIndex1, <b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b>&amp; spriteIndex2)<br/>
 &nbsp;&nbsp;: mX(x), mY(y),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;mDx(dX), mDy(dY),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;mSpriteIndex1(spriteIndex1),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;mSpriteIndex2(spriteIndex2),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;mSpriteIndex(spriteIndex1),<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;mDeleteMe(<b><a href="CppFalse.htm">false</a></b>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;mDeleteMe(<b><a href="CppFalse.html">false</a></b>)<br/>
 &nbsp;&nbsp;{<br/>
 <br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> mDx;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> mDy;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> mSpriteIndex1;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> mSpriteIndex2;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> mDx;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> mDy;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> mSpriteIndex1;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> mSpriteIndex2;<br/>
 <br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> Move();<br/>
-&nbsp;&nbsp;<b><a href="CppBool.htm">bool</a></b> DeleteMe() <b><a href="CppConst.htm">const</a></b> { <b><a href="CppReturn.htm">return</a></b> mDeleteMe; }<br/>
+&nbsp;&nbsp;<b><a href="CppBool.htm">bool</a></b> DeleteMe() <b><a href="CppConst.html">const</a></b> { <b><a href="CppReturn.html">return</a></b> mDeleteMe; }<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppPrivate.htm">private</a></b>:<br/>
-&nbsp;&nbsp;<b><a href="CppDouble.htm">double</a></b> mX;<br/>
-&nbsp;&nbsp;<b><a href="CppDouble.htm">double</a></b> mY;<br/>
+&nbsp;&nbsp;<b><a href="CppPrivate.html">private</a></b>:<br/>
+&nbsp;&nbsp;<b><a href="CppDouble.html">double</a></b> mX;<br/>
+&nbsp;&nbsp;<b><a href="CppDouble.html">double</a></b> mY;<br/>
 &nbsp;&nbsp;<b><a href="CppBool.htm">bool</a></b> mDeleteMe;<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppDouble.htm">double</a></b> mMinX;<br/>
-&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppDouble.htm">double</a></b> mMinY;<br/>
-&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppDouble.htm">double</a></b> mMaxX;<br/>
-&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppDouble.htm">double</a></b> mMaxY;<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.html">static</a></b> <b><a href="CppDouble.html">double</a></b> mMinX;<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.html">static</a></b> <b><a href="CppDouble.html">double</a></b> mMinY;<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.html">static</a></b> <b><a href="CppDouble.html">double</a></b> mMaxX;<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.html">static</a></b> <b><a href="CppDouble.html">double</a></b> mMaxY;<br/>
 <br/>
 &nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> mSpriteIndex;<br/>
 };<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppEndif.htm">#endif</a><br/>
+<a href="CppEndif.html">#endif</a><br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -973,9 +973,9 @@ __fastcall TFormGameMain::TFormGameMain(T<a href="CppComponent.htm">Component</a
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <br/>
 <br/>
-<a href="CppPragma.htm">#pragma</a> hdrstop<br/>
+<a href="CppPragma.html">#pragma</a> hdrstop<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> "UnitMissile.h"<br/>
+<a href="CppInclude.html">#include</a> "UnitMissile<a href="CppHeaderFile.htm">.h</a>"<br/>
 <br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <b><a href="CppVoid.htm">void</a></b> Missile::Move()<br/>
@@ -991,7 +991,7 @@ __fastcall TFormGameMain::TFormGameMain(T<a href="CppComponent.htm">Component</a
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <br/>
-<a href="CppPragma.htm">#pragma</a> package(smart_init)<br/>
+<a href="CppPragma.html">#pragma</a> package(smart_init)<br/>
 <br/>
 </code></td></tr></table>
 <!-- end of the code -->
@@ -1006,24 +1006,24 @@ __fastcall TFormGameMain::TFormGameMain(T<a href="CppComponent.htm">Component</a
 <table summary="UnitSpriteIndexChanger.h" border = "1"><tr><td><code>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <br/>
-<a href="CppIfndef.htm">#ifndef</a> UnitSpriteIndexChangerH<br/>
-<a href="CppDefine.htm">#define</a> UnitSpriteIndexChangerH<br/>
+<a href="CppIfndef.html">#ifndef</a> UnitSpriteIndexChangerH<br/>
+<a href="CppDefine.html">#define</a> UnitSpriteIndexChangerH<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppInclude.htm">#include</a> "UnitEnums.h"<br/>
+<a href="CppInclude.html">#include</a> "UnitEnums<a href="CppHeaderFile.htm">.h</a>"<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">//</a>Given a certain sprite index<br/>
 <a href="CppComment.htm">//</a>and given a certain action<br/>
-<a href="CppComment.htm">//</a>SpriteIndexChanger possibly <a href="CppReturn.htm">returns</a> a next sprite index<br/>
-<b><a href="CppStruct.htm">struct</a></b> SpriteIndexChanger<br/>
+<a href="CppComment.htm">//</a>SpriteIndexChanger possibly <a href="CppReturn.html">returns</a> a next sprite index<br/>
+<b><a href="CppStruct.html">struct</a></b> SpriteIndexChanger<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> Move(<b><a href="CppConst.htm">const</a></b> EnumKey&amp; key, <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b>&amp; index) <b><a href="CppConst.htm">const</a></b>;<br/>
-&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> MoveUp(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b>&amp; index) <b><a href="CppConst.htm">const</a></b>;<br/>
-&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> MoveRight(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b>&amp; index) <b><a href="CppConst.htm">const</a></b>;<br/>
-&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> MoveDown(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b>&amp; index) <b><a href="CppConst.htm">const</a></b>;<br/>
-&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> MoveLeft(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b>&amp; index) <b><a href="CppConst.htm">const</a></b>;<br/>
+&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> Move(<b><a href="CppConst.html">const</a></b> EnumKey&amp; key, <b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b>&amp; index) <b><a href="CppConst.html">const</a></b>;<br/>
+&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> MoveUp(<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b>&amp; index) <b><a href="CppConst.html">const</a></b>;<br/>
+&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> MoveRight(<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b>&amp; index) <b><a href="CppConst.html">const</a></b>;<br/>
+&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> MoveDown(<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b>&amp; index) <b><a href="CppConst.html">const</a></b>;<br/>
+&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> MoveLeft(<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b>&amp; index) <b><a href="CppConst.html">const</a></b>;<br/>
 };<br/>
 <br/>
-<a href="CppEndif.htm">#endif</a><br/>
+<a href="CppEndif.html">#endif</a><br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -1038,148 +1038,148 @@ __fastcall TFormGameMain::TFormGameMain(T<a href="CppComponent.htm">Component</a
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <br/>
 <br/>
-<a href="CppPragma.htm">#pragma</a> hdrstop<br/>
+<a href="CppPragma.html">#pragma</a> hdrstop<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> "UnitSpriteIndexChanger.h"<br/>
+<a href="CppInclude.html">#include</a> "UnitSpriteIndexChanger<a href="CppHeaderFile.htm">.h</a>"<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppInclude.htm">#include</a> "UnitConstants.h"<br/>
+<a href="CppInclude.html">#include</a> "UnitConstants<a href="CppHeaderFile.htm">.h</a>"<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppInt.htm">int</a></b> SpriteIndexChanger::Move(<b><a href="CppConst.htm">const</a></b> EnumKey&amp; key, <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b>&amp; index) <b><a href="CppConst.htm">const</a></b><br/>
+<b><a href="CppInt.htm">int</a></b> SpriteIndexChanger::Move(<b><a href="CppConst.html">const</a></b> EnumKey&amp; key, <b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b>&amp; index) <b><a href="CppConst.html">const</a></b><br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppSwitch.htm">switch</a></b>(key)<br/>
+&nbsp;&nbsp;<b><a href="CppSwitch.html">switch</a></b>(key)<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> keyUp&nbsp;&nbsp; : <b><a href="CppReturn.htm">return</a></b> MoveUp(index);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> keyRight: <b><a href="CppReturn.htm">return</a></b> MoveRight(index);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> keyDown : <b><a href="CppReturn.htm">return</a></b> MoveDown(index);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> keyLeft : <b><a href="CppReturn.htm">return</a></b> MoveLeft(index);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> keyUp&nbsp;&nbsp; : <b><a href="CppReturn.html">return</a></b> MoveUp(index);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> keyRight: <b><a href="CppReturn.html">return</a></b> MoveRight(index);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> keyDown : <b><a href="CppReturn.html">return</a></b> MoveDown(index);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> keyLeft : <b><a href="CppReturn.html">return</a></b> MoveLeft(index);<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> index;<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> index;<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppInt.htm">int</a></b> SpriteIndexChanger::MoveUp(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b>&amp; index) <b><a href="CppConst.htm">const</a></b><br/>
+<b><a href="CppInt.htm">int</a></b> SpriteIndexChanger::MoveUp(<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b>&amp; index) <b><a href="CppConst.html">const</a></b><br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppSwitch.htm">switch</a></b>(index)<br/>
+&nbsp;&nbsp;<b><a href="CppSwitch.html">switch</a></b>(index)<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Looking right, gun <a href="CppPointer.htm">point</a>ing down-right<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> TPS::<a href="CppMain.htm">main</a>CharRocketDownRight1: <b><a href="CppReturn.htm">return</a></b> TPS::<a href="CppMain.htm">main</a>CharRocketRight1;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> TPS::<a href="CppMain.htm">main</a>CharRocketDownRight2: <b><a href="CppReturn.htm">return</a></b> TPS::<a href="CppMain.htm">main</a>CharRocketRight2;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Looking right, gun <a href="CppPointer.html">point</a>ing down-right<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> TPS::<a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a>CharRocketDownRight1: <b><a href="CppReturn.html">return</a></b> TPS::<a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a>CharRocketRight1;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> TPS::<a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a>CharRocketDownRight2: <b><a href="CppReturn.html">return</a></b> TPS::<a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a>CharRocketRight2;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Looking right, normal gun position<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> TPS::<a href="CppMain.htm">main</a>CharRocketRight1: <b><a href="CppReturn.htm">return</a></b> TPS::<a href="CppMain.htm">main</a>CharRocketUpRight1;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> TPS::<a href="CppMain.htm">main</a>CharRocketRight2: <b><a href="CppReturn.htm">return</a></b> TPS::<a href="CppMain.htm">main</a>CharRocketUpRight2;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Looking right, gun <a href="CppPointer.htm">point</a>ing up-right<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> TPS::<a href="CppMain.htm">main</a>CharRocketUpRight1: <b><a href="CppReturn.htm">return</a></b> TPS::<a href="CppMain.htm">main</a>CharRocketUp1;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> TPS::<a href="CppMain.htm">main</a>CharRocketUpRight2: <b><a href="CppReturn.htm">return</a></b> TPS::<a href="CppMain.htm">main</a>CharRocketUp2;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> TPS::<a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a>CharRocketRight1: <b><a href="CppReturn.html">return</a></b> TPS::<a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a>CharRocketUpRight1;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> TPS::<a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a>CharRocketRight2: <b><a href="CppReturn.html">return</a></b> TPS::<a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a>CharRocketUpRight2;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Looking right, gun <a href="CppPointer.html">point</a>ing up-right<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> TPS::<a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a>CharRocketUpRight1: <b><a href="CppReturn.html">return</a></b> TPS::<a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a>CharRocketUp1;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> TPS::<a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a>CharRocketUpRight2: <b><a href="CppReturn.html">return</a></b> TPS::<a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a>CharRocketUp2;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Looking down<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> TPS::<a href="CppMain.htm">main</a>CharRocketDown1: <b><a href="CppReturn.htm">return</a></b> TPS::<a href="CppMain.htm">main</a>CharRocketUp1;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> TPS::<a href="CppMain.htm">main</a>CharRocketDown2: <b><a href="CppReturn.htm">return</a></b> TPS::<a href="CppMain.htm">main</a>CharRocketUp2;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Looking left, gun <a href="CppPointer.htm">point</a>ing down-left<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> TPS::<a href="CppMain.htm">main</a>CharRocketDownLeft1: <b><a href="CppReturn.htm">return</a></b> TPS::<a href="CppMain.htm">main</a>CharRocketLeft1;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> TPS::<a href="CppMain.htm">main</a>CharRocketDownLeft2: <b><a href="CppReturn.htm">return</a></b> TPS::<a href="CppMain.htm">main</a>CharRocketLeft2;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> TPS::<a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a>CharRocketDown1: <b><a href="CppReturn.html">return</a></b> TPS::<a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a>CharRocketUp1;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> TPS::<a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a>CharRocketDown2: <b><a href="CppReturn.html">return</a></b> TPS::<a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a>CharRocketUp2;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Looking left, gun <a href="CppPointer.html">point</a>ing down-left<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> TPS::<a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a>CharRocketDownLeft1: <b><a href="CppReturn.html">return</a></b> TPS::<a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a>CharRocketLeft1;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> TPS::<a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a>CharRocketDownLeft2: <b><a href="CppReturn.html">return</a></b> TPS::<a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a>CharRocketLeft2;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Looking left, normal gun position<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> TPS::<a href="CppMain.htm">main</a>CharRocketLeft1: <b><a href="CppReturn.htm">return</a></b> TPS::<a href="CppMain.htm">main</a>CharRocketUpLeft1;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> TPS::<a href="CppMain.htm">main</a>CharRocketLeft2: <b><a href="CppReturn.htm">return</a></b> TPS::<a href="CppMain.htm">main</a>CharRocketUpLeft2;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Looking left, gun <a href="CppPointer.htm">point</a>ing up-left<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> TPS::<a href="CppMain.htm">main</a>CharRocketUpLeft1: <b><a href="CppReturn.htm">return</a></b> TPS::<a href="CppMain.htm">main</a>CharRocketUp1;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> TPS::<a href="CppMain.htm">main</a>CharRocketUpLeft2: <b><a href="CppReturn.htm">return</a></b> TPS::<a href="CppMain.htm">main</a>CharRocketUp2;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> TPS::<a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a>CharRocketLeft1: <b><a href="CppReturn.html">return</a></b> TPS::<a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a>CharRocketUpLeft1;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> TPS::<a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a>CharRocketLeft2: <b><a href="CppReturn.html">return</a></b> TPS::<a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a>CharRocketUpLeft2;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Looking left, gun <a href="CppPointer.html">point</a>ing up-left<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> TPS::<a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a>CharRocketUpLeft1: <b><a href="CppReturn.html">return</a></b> TPS::<a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a>CharRocketUp1;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> TPS::<a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a>CharRocketUpLeft2: <b><a href="CppReturn.html">return</a></b> TPS::<a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a>CharRocketUp2;<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> index;<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> index;<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppInt.htm">int</a></b> SpriteIndexChanger::MoveRight(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b>&amp; index) <b><a href="CppConst.htm">const</a></b><br/>
+<b><a href="CppInt.htm">int</a></b> SpriteIndexChanger::MoveRight(<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b>&amp; index) <b><a href="CppConst.html">const</a></b><br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppSwitch.htm">switch</a></b>(index)<br/>
+&nbsp;&nbsp;<b><a href="CppSwitch.html">switch</a></b>(index)<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Accelerate right, normal gun position<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> TPS::<a href="CppMain.htm">main</a>CharRocketRight1: <b><a href="CppReturn.htm">return</a></b> TPS::<a href="CppMain.htm">main</a>CharRocketRight2;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> TPS::<a href="CppMain.htm">main</a>CharRocketRight2: <b><a href="CppReturn.htm">return</a></b> TPS::<a href="CppMain.htm">main</a>CharRocketRight1;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Accelate right, gun <a href="CppPointer.htm">point</a>ing up-right<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> TPS::<a href="CppMain.htm">main</a>CharRocketUpRight1: <b><a href="CppReturn.htm">return</a></b> TPS::<a href="CppMain.htm">main</a>CharRocketUpRight2;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> TPS::<a href="CppMain.htm">main</a>CharRocketUpRight2: <b><a href="CppReturn.htm">return</a></b> TPS::<a href="CppMain.htm">main</a>CharRocketUpRight1;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Accelate right, gun <a href="CppPointer.htm">point</a>ing down-right<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> TPS::<a href="CppMain.htm">main</a>CharRocketDownRight1: <b><a href="CppReturn.htm">return</a></b> TPS::<a href="CppMain.htm">main</a>CharRocketDownRight2;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> TPS::<a href="CppMain.htm">main</a>CharRocketDownRight2: <b><a href="CppReturn.htm">return</a></b> TPS::<a href="CppMain.htm">main</a>CharRocketDownRight1;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> TPS::<a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a>CharRocketRight1: <b><a href="CppReturn.html">return</a></b> TPS::<a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a>CharRocketRight2;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> TPS::<a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a>CharRocketRight2: <b><a href="CppReturn.html">return</a></b> TPS::<a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a>CharRocketRight1;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Accelate right, gun <a href="CppPointer.html">point</a>ing up-right<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> TPS::<a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a>CharRocketUpRight1: <b><a href="CppReturn.html">return</a></b> TPS::<a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a>CharRocketUpRight2;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> TPS::<a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a>CharRocketUpRight2: <b><a href="CppReturn.html">return</a></b> TPS::<a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a>CharRocketUpRight1;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Accelate right, gun <a href="CppPointer.html">point</a>ing down-right<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> TPS::<a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a>CharRocketDownRight1: <b><a href="CppReturn.html">return</a></b> TPS::<a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a>CharRocketDownRight2;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> TPS::<a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a>CharRocketDownRight2: <b><a href="CppReturn.html">return</a></b> TPS::<a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a>CharRocketDownRight1;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Looking down<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> TPS::<a href="CppMain.htm">main</a>CharRocketDown1: <b><a href="CppReturn.htm">return</a></b> TPS::<a href="CppMain.htm">main</a>CharRocketRight1;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> TPS::<a href="CppMain.htm">main</a>CharRocketDown2: <b><a href="CppReturn.htm">return</a></b> TPS::<a href="CppMain.htm">main</a>CharRocketRight2;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> TPS::<a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a>CharRocketDown1: <b><a href="CppReturn.html">return</a></b> TPS::<a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a>CharRocketRight1;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> TPS::<a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a>CharRocketDown2: <b><a href="CppReturn.html">return</a></b> TPS::<a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a>CharRocketRight2;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Looking up<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> TPS::<a href="CppMain.htm">main</a>CharRocketUp1: <b><a href="CppReturn.htm">return</a></b> TPS::<a href="CppMain.htm">main</a>CharRocketRight1;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> TPS::<a href="CppMain.htm">main</a>CharRocketUp2: <b><a href="CppReturn.htm">return</a></b> TPS::<a href="CppMain.htm">main</a>CharRocketRight2;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> TPS::<a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a>CharRocketUp1: <b><a href="CppReturn.html">return</a></b> TPS::<a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a>CharRocketRight1;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> TPS::<a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a>CharRocketUp2: <b><a href="CppReturn.html">return</a></b> TPS::<a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a>CharRocketRight2;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Turn right, gun position up-right<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> TPS::<a href="CppMain.htm">main</a>CharRocketUpLeft1: <b><a href="CppReturn.htm">return</a></b> TPS::<a href="CppMain.htm">main</a>CharRocketUpRight1;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> TPS::<a href="CppMain.htm">main</a>CharRocketUpLeft2: <b><a href="CppReturn.htm">return</a></b> TPS::<a href="CppMain.htm">main</a>CharRocketUpRight2;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> TPS::<a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a>CharRocketUpLeft1: <b><a href="CppReturn.html">return</a></b> TPS::<a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a>CharRocketUpRight1;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> TPS::<a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a>CharRocketUpLeft2: <b><a href="CppReturn.html">return</a></b> TPS::<a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a>CharRocketUpRight2;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Turn right, gun position horizontal<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> TPS::<a href="CppMain.htm">main</a>CharRocketLeft1: <b><a href="CppReturn.htm">return</a></b> TPS::<a href="CppMain.htm">main</a>CharRocketRight1;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> TPS::<a href="CppMain.htm">main</a>CharRocketLeft2: <b><a href="CppReturn.htm">return</a></b> TPS::<a href="CppMain.htm">main</a>CharRocketRight2;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> TPS::<a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a>CharRocketLeft1: <b><a href="CppReturn.html">return</a></b> TPS::<a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a>CharRocketRight1;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> TPS::<a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a>CharRocketLeft2: <b><a href="CppReturn.html">return</a></b> TPS::<a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a>CharRocketRight2;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Turn right, gun position down-right<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> TPS::<a href="CppMain.htm">main</a>CharRocketDownLeft1: <b><a href="CppReturn.htm">return</a></b> TPS::<a href="CppMain.htm">main</a>CharRocketDownRight1;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> TPS::<a href="CppMain.htm">main</a>CharRocketDownLeft2: <b><a href="CppReturn.htm">return</a></b> TPS::<a href="CppMain.htm">main</a>CharRocketDownRight2;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> TPS::<a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a>CharRocketDownLeft1: <b><a href="CppReturn.html">return</a></b> TPS::<a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a>CharRocketDownRight1;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> TPS::<a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a>CharRocketDownLeft2: <b><a href="CppReturn.html">return</a></b> TPS::<a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a>CharRocketDownRight2;<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> index;<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> index;<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppInt.htm">int</a></b> SpriteIndexChanger::MoveDown(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b>&amp; index) <b><a href="CppConst.htm">const</a></b><br/>
+<b><a href="CppInt.htm">int</a></b> SpriteIndexChanger::MoveDown(<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b>&amp; index) <b><a href="CppConst.html">const</a></b><br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppSwitch.htm">switch</a></b>(index)<br/>
+&nbsp;&nbsp;<b><a href="CppSwitch.html">switch</a></b>(index)<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Looking right, gun <a href="CppPointer.htm">point</a>ing down-right<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> TPS::<a href="CppMain.htm">main</a>CharRocketDownRight1: <b><a href="CppReturn.htm">return</a></b> TPS::<a href="CppMain.htm">main</a>CharRocketDown1;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> TPS::<a href="CppMain.htm">main</a>CharRocketDownRight2: <b><a href="CppReturn.htm">return</a></b> TPS::<a href="CppMain.htm">main</a>CharRocketDown2;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Looking right, gun <a href="CppPointer.html">point</a>ing down-right<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> TPS::<a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a>CharRocketDownRight1: <b><a href="CppReturn.html">return</a></b> TPS::<a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a>CharRocketDown1;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> TPS::<a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a>CharRocketDownRight2: <b><a href="CppReturn.html">return</a></b> TPS::<a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a>CharRocketDown2;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Looking right, normal gun position<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> TPS::<a href="CppMain.htm">main</a>CharRocketRight1: <b><a href="CppReturn.htm">return</a></b> TPS::<a href="CppMain.htm">main</a>CharRocketDownRight1;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> TPS::<a href="CppMain.htm">main</a>CharRocketRight2: <b><a href="CppReturn.htm">return</a></b> TPS::<a href="CppMain.htm">main</a>CharRocketDownRight2;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Looking right, gun <a href="CppPointer.htm">point</a>ing up-right<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> TPS::<a href="CppMain.htm">main</a>CharRocketUpRight1: <b><a href="CppReturn.htm">return</a></b> TPS::<a href="CppMain.htm">main</a>CharRocketRight1;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> TPS::<a href="CppMain.htm">main</a>CharRocketUpRight2: <b><a href="CppReturn.htm">return</a></b> TPS::<a href="CppMain.htm">main</a>CharRocketRight2;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> TPS::<a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a>CharRocketRight1: <b><a href="CppReturn.html">return</a></b> TPS::<a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a>CharRocketDownRight1;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> TPS::<a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a>CharRocketRight2: <b><a href="CppReturn.html">return</a></b> TPS::<a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a>CharRocketDownRight2;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Looking right, gun <a href="CppPointer.html">point</a>ing up-right<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> TPS::<a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a>CharRocketUpRight1: <b><a href="CppReturn.html">return</a></b> TPS::<a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a>CharRocketRight1;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> TPS::<a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a>CharRocketUpRight2: <b><a href="CppReturn.html">return</a></b> TPS::<a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a>CharRocketRight2;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Looking up<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> TPS::<a href="CppMain.htm">main</a>CharRocketUp1: <b><a href="CppReturn.htm">return</a></b> TPS::<a href="CppMain.htm">main</a>CharRocketDown1;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> TPS::<a href="CppMain.htm">main</a>CharRocketUp2: <b><a href="CppReturn.htm">return</a></b> TPS::<a href="CppMain.htm">main</a>CharRocketDown2;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Looking left, gun <a href="CppPointer.htm">point</a>ing down-left<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> TPS::<a href="CppMain.htm">main</a>CharRocketDownLeft1: <b><a href="CppReturn.htm">return</a></b> TPS::<a href="CppMain.htm">main</a>CharRocketDown1;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> TPS::<a href="CppMain.htm">main</a>CharRocketDownLeft2: <b><a href="CppReturn.htm">return</a></b> TPS::<a href="CppMain.htm">main</a>CharRocketDown2;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> TPS::<a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a>CharRocketUp1: <b><a href="CppReturn.html">return</a></b> TPS::<a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a>CharRocketDown1;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> TPS::<a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a>CharRocketUp2: <b><a href="CppReturn.html">return</a></b> TPS::<a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a>CharRocketDown2;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Looking left, gun <a href="CppPointer.html">point</a>ing down-left<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> TPS::<a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a>CharRocketDownLeft1: <b><a href="CppReturn.html">return</a></b> TPS::<a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a>CharRocketDown1;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> TPS::<a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a>CharRocketDownLeft2: <b><a href="CppReturn.html">return</a></b> TPS::<a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a>CharRocketDown2;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Looking left, normal gun position<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> TPS::<a href="CppMain.htm">main</a>CharRocketLeft1: <b><a href="CppReturn.htm">return</a></b> TPS::<a href="CppMain.htm">main</a>CharRocketDownLeft1;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> TPS::<a href="CppMain.htm">main</a>CharRocketLeft2: <b><a href="CppReturn.htm">return</a></b> TPS::<a href="CppMain.htm">main</a>CharRocketDownLeft2;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Looking left, gun <a href="CppPointer.htm">point</a>ing up-left<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> TPS::<a href="CppMain.htm">main</a>CharRocketUpLeft1: <b><a href="CppReturn.htm">return</a></b> TPS::<a href="CppMain.htm">main</a>CharRocketLeft1;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> TPS::<a href="CppMain.htm">main</a>CharRocketUpLeft2: <b><a href="CppReturn.htm">return</a></b> TPS::<a href="CppMain.htm">main</a>CharRocketLeft2;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> TPS::<a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a>CharRocketLeft1: <b><a href="CppReturn.html">return</a></b> TPS::<a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a>CharRocketDownLeft1;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> TPS::<a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a>CharRocketLeft2: <b><a href="CppReturn.html">return</a></b> TPS::<a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a>CharRocketDownLeft2;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Looking left, gun <a href="CppPointer.html">point</a>ing up-left<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> TPS::<a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a>CharRocketUpLeft1: <b><a href="CppReturn.html">return</a></b> TPS::<a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a>CharRocketLeft1;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> TPS::<a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a>CharRocketUpLeft2: <b><a href="CppReturn.html">return</a></b> TPS::<a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a>CharRocketLeft2;<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> index;<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> index;<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppInt.htm">int</a></b> SpriteIndexChanger::MoveLeft(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b>&amp; index) <b><a href="CppConst.htm">const</a></b><br/>
+<b><a href="CppInt.htm">int</a></b> SpriteIndexChanger::MoveLeft(<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b>&amp; index) <b><a href="CppConst.html">const</a></b><br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppSwitch.htm">switch</a></b>(index)<br/>
+&nbsp;&nbsp;<b><a href="CppSwitch.html">switch</a></b>(index)<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Accelerate left, normal gun position<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> TPS::<a href="CppMain.htm">main</a>CharRocketLeft1: <b><a href="CppReturn.htm">return</a></b> TPS::<a href="CppMain.htm">main</a>CharRocketLeft2;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> TPS::<a href="CppMain.htm">main</a>CharRocketLeft2: <b><a href="CppReturn.htm">return</a></b> TPS::<a href="CppMain.htm">main</a>CharRocketLeft1;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Accelate left, gun <a href="CppPointer.htm">point</a>ing up-left<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> TPS::<a href="CppMain.htm">main</a>CharRocketUpLeft1: <b><a href="CppReturn.htm">return</a></b> TPS::<a href="CppMain.htm">main</a>CharRocketUpLeft2;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> TPS::<a href="CppMain.htm">main</a>CharRocketUpLeft2: <b><a href="CppReturn.htm">return</a></b> TPS::<a href="CppMain.htm">main</a>CharRocketUpLeft1;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Accelate left, gun <a href="CppPointer.htm">point</a>ing down-left<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> TPS::<a href="CppMain.htm">main</a>CharRocketDownLeft1: <b><a href="CppReturn.htm">return</a></b> TPS::<a href="CppMain.htm">main</a>CharRocketDownLeft2;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> TPS::<a href="CppMain.htm">main</a>CharRocketDownLeft2: <b><a href="CppReturn.htm">return</a></b> TPS::<a href="CppMain.htm">main</a>CharRocketDownLeft1;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> TPS::<a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a>CharRocketLeft1: <b><a href="CppReturn.html">return</a></b> TPS::<a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a>CharRocketLeft2;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> TPS::<a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a>CharRocketLeft2: <b><a href="CppReturn.html">return</a></b> TPS::<a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a>CharRocketLeft1;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Accelate left, gun <a href="CppPointer.html">point</a>ing up-left<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> TPS::<a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a>CharRocketUpLeft1: <b><a href="CppReturn.html">return</a></b> TPS::<a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a>CharRocketUpLeft2;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> TPS::<a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a>CharRocketUpLeft2: <b><a href="CppReturn.html">return</a></b> TPS::<a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a>CharRocketUpLeft1;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Accelate left, gun <a href="CppPointer.html">point</a>ing down-left<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> TPS::<a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a>CharRocketDownLeft1: <b><a href="CppReturn.html">return</a></b> TPS::<a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a>CharRocketDownLeft2;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> TPS::<a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a>CharRocketDownLeft2: <b><a href="CppReturn.html">return</a></b> TPS::<a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a>CharRocketDownLeft1;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Looking down<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> TPS::<a href="CppMain.htm">main</a>CharRocketDown1: <b><a href="CppReturn.htm">return</a></b> TPS::<a href="CppMain.htm">main</a>CharRocketLeft1;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> TPS::<a href="CppMain.htm">main</a>CharRocketDown2: <b><a href="CppReturn.htm">return</a></b> TPS::<a href="CppMain.htm">main</a>CharRocketLeft2;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> TPS::<a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a>CharRocketDown1: <b><a href="CppReturn.html">return</a></b> TPS::<a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a>CharRocketLeft1;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> TPS::<a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a>CharRocketDown2: <b><a href="CppReturn.html">return</a></b> TPS::<a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a>CharRocketLeft2;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Looking up<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> TPS::<a href="CppMain.htm">main</a>CharRocketUp1: <b><a href="CppReturn.htm">return</a></b> TPS::<a href="CppMain.htm">main</a>CharRocketLeft1;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> TPS::<a href="CppMain.htm">main</a>CharRocketUp2: <b><a href="CppReturn.htm">return</a></b> TPS::<a href="CppMain.htm">main</a>CharRocketLeft2;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> TPS::<a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a>CharRocketUp1: <b><a href="CppReturn.html">return</a></b> TPS::<a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a>CharRocketLeft1;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> TPS::<a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a>CharRocketUp2: <b><a href="CppReturn.html">return</a></b> TPS::<a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a>CharRocketLeft2;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Turn left, gun position up-right<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> TPS::<a href="CppMain.htm">main</a>CharRocketUpRight1: <b><a href="CppReturn.htm">return</a></b> TPS::<a href="CppMain.htm">main</a>CharRocketUpLeft1;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> TPS::<a href="CppMain.htm">main</a>CharRocketUpRight2: <b><a href="CppReturn.htm">return</a></b> TPS::<a href="CppMain.htm">main</a>CharRocketUpLeft2;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> TPS::<a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a>CharRocketUpRight1: <b><a href="CppReturn.html">return</a></b> TPS::<a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a>CharRocketUpLeft1;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> TPS::<a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a>CharRocketUpRight2: <b><a href="CppReturn.html">return</a></b> TPS::<a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a>CharRocketUpLeft2;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Turn left, gun position horizontal<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> TPS::<a href="CppMain.htm">main</a>CharRocketRight1: <b><a href="CppReturn.htm">return</a></b> TPS::<a href="CppMain.htm">main</a>CharRocketLeft1;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> TPS::<a href="CppMain.htm">main</a>CharRocketRight2: <b><a href="CppReturn.htm">return</a></b> TPS::<a href="CppMain.htm">main</a>CharRocketLeft2;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> TPS::<a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a>CharRocketRight1: <b><a href="CppReturn.html">return</a></b> TPS::<a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a>CharRocketLeft1;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> TPS::<a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a>CharRocketRight2: <b><a href="CppReturn.html">return</a></b> TPS::<a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a>CharRocketLeft2;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Turn left, gun position down-right<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> TPS::<a href="CppMain.htm">main</a>CharRocketDownRight1: <b><a href="CppReturn.htm">return</a></b> TPS::<a href="CppMain.htm">main</a>CharRocketDownLeft1;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> TPS::<a href="CppMain.htm">main</a>CharRocketDownRight2: <b><a href="CppReturn.htm">return</a></b> TPS::<a href="CppMain.htm">main</a>CharRocketDownLeft2;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> TPS::<a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a>CharRocketDownRight1: <b><a href="CppReturn.html">return</a></b> TPS::<a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a>CharRocketDownLeft1;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> TPS::<a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a>CharRocketDownRight2: <b><a href="CppReturn.html">return</a></b> TPS::<a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a>CharRocketDownLeft2;<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> index;<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> index;<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <br/>
-<a href="CppPragma.htm">#pragma</a> package(smart_init)<br/>
+<a href="CppPragma.html">#pragma</a> package(smart_init)<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>

@@ -46,7 +46,7 @@
 <table summary="dial.h" border = "1"><tr><td><code>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">/*</a><br/>
-<a href="CppDial.htm">Dial</a>, <a href="CppDial.htm">dial</a> <b><a href="CppClass.htm">class</a></b><br/>
+<a href="CppDial.htm">Dial</a>, <a href="CppDial<a href="CppHeaderFile.htm">.h</a>tm">dial</a> <b><a href="CppClass.html">class</a></b><br/>
 Copyright (C) 2011 Richel Bilderbeek<br/>
 <br/>
 This program is free software: you can redistribute it and/or modify<br/>
@@ -62,38 +62,38 @@ You should have received a copy of the GNU General Public License<br/>
 along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">*/</a><br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="CppDial.htm">CppDial</a>.htm<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="CppDial.html">CppDial</a>.html<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppIfndef.htm">#ifndef</a> DIAL_H<br/>
-<a href="CppDefine.htm">#define</a> DIAL_H<br/>
+<a href="CppIfndef.html">#ifndef</a> DIAL_H<br/>
+<a href="CppDefine.html">#define</a> DIAL_H<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppIosfwdH.htm">iosfwd</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppStringH.htm">string</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppIosfwdH.html">iosfwd</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppStringH.html">string</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppVectorH.html">vector</a>&gt;<br/>
 <br/>
-<a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
-<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
-<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-<b><a href="CppTypedef.htm">typedef</a></b>s"<br/>
-<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-but-set-parameter"<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/checked_delete.hpp&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppSignals2.htm">signals2</a>.hpp&gt;<br/>
-<a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic push<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.html">-Weffc++</a>"<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic ignored "-Wunused-local-<b><a href="CppTypedef.html">typedef</a></b>s"<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic ignored "-Wunused-but-set-parameter"<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppBoost.html">boost</a>/checked_delete<a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppBoost.html">boost</a>/<a href="CppSignals2.html">signals2</a><a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic pop<br/>
 <br/>
-<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
+<b><a href="CppNamespace.html">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
 <br/>
-<a href="CppComment.htm">///</a><a href="CppDial.htm">Dial</a> is a <b><a href="CppClass.htm">class</a></b> <b><a href="CppFor.htm">for</a></b> a <a href="CppDial.htm">dial</a><br/>
-<b><a href="CppStruct.htm">struct</a></b> <a href="CppDial.htm">Dial</a><br/>
+<a href="CppComment.htm">///</a><a href="CppDial.htm">Dial</a> is a <b><a href="CppClass.html">class</a></b> <b><a href="CppFor.htm">for</a></b> a <a href="CppDial<a href="CppHeaderFile.htm">.h</a>tm">dial</a><br/>
+<b><a href="CppStruct.html">struct</a></b> <a href="CppDial.htm">Dial</a><br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppExplicit.htm">explicit</a></b> <a href="CppDial.htm">Dial</a>(<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> position <a href="CppOperatorAssign.htm">=</a> 0.0,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> red&nbsp;&nbsp; <a href="CppOperatorAssign.htm">=</a> 255,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> green <a href="CppOperatorAssign.htm">=</a> 255,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> blue&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> 255);<br/>
+&nbsp;&nbsp;<b><a href="CppExplicit.html">explicit</a></b> <a href="CppDial.htm">Dial</a>(<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> position <a href="CppOperatorAssign.htm">=</a> 0.0,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppUnsigned.html">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> red&nbsp;&nbsp; <a href="CppOperatorAssign.htm">=</a> 255,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppUnsigned.html">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> green <a href="CppOperatorAssign.htm">=</a> 255,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppUnsigned.html">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> blue&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> 255);<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/Get the blueness of the <a href="CppDial.htm">Dial</a> its color<br/>
-&nbsp;&nbsp;<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> GetBlue() <b><a href="CppConst.htm">const</a></b> { <b><a href="CppReturn.htm">return</a></b> m_blue; }<br/>
+&nbsp;&nbsp;<b><a href="CppUnsigned.html">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> GetBlue() <b><a href="CppConst.html">const</a></b> { <b><a href="CppReturn.html">return</a></b> m_blue; }<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/Get the greenness of the <a href="CppDial.htm">Dial</a> its color<br/>
-&nbsp;&nbsp;<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> GetGreen() <b><a href="CppConst.htm">const</a></b> { <b><a href="CppReturn.htm">return</a></b> m_green; }<br/>
+&nbsp;&nbsp;<b><a href="CppUnsigned.html">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> GetGreen() <b><a href="CppConst.html">const</a></b> { <b><a href="CppReturn.html">return</a></b> m_green; }<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/\brief<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/Get the position of the <a href="CppDial.htm">Dial</a><br/>
@@ -103,73 +103,73 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/0.05: Down ,&nbsp;&nbsp;6:00 'o clock<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/0.75: Left ,&nbsp;&nbsp;9:00 'o clock<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/1.00: Up&nbsp;&nbsp; , 12:00 'o clock<br/>
-&nbsp;&nbsp;<b><a href="CppDouble.htm">double</a></b> GetPosition() <b><a href="CppConst.htm">const</a></b> { <b><a href="CppReturn.htm">return</a></b> m_position; }<br/>
+&nbsp;&nbsp;<b><a href="CppDouble.html">double</a></b> GetPosition() <b><a href="CppConst.html">const</a></b> { <b><a href="CppReturn.html">return</a></b> m_position; }<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/Get the redness of the <a href="CppDial.htm">Dial</a> its color<br/>
-&nbsp;&nbsp;<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> GetRed() <b><a href="CppConst.htm">const</a></b> { <b><a href="CppReturn.htm">return</a></b> m_red; }<br/>
+&nbsp;&nbsp;<b><a href="CppUnsigned.html">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> GetRed() <b><a href="CppConst.html">const</a></b> { <b><a href="CppReturn.html">return</a></b> m_red; }<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Obtain <b><a href="CppThis.htm">this</a></b> <b><a href="CppClass.htm">class</a></b> its <a href="CppVersion.htm">version</a><br/>
-&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> Get<a href="CppVersion.htm">Version</a>();<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Obtain <b><a href="CppThis.htm">this</a></b> <b><a href="CppClass.html">class</a></b> its <a href="CppVersion.html">version</a><br/>
+&nbsp;&nbsp;<b><a href="CppStatic.html">static</a></b> <b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a> Get<a href="CppVersion.html">Version</a>();<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Obtain <b><a href="CppThis.htm">this</a></b> <b><a href="CppClass.htm">class</a></b> its <a href="CppVersion.htm">version</a> history<br/>
-&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; Get<a href="CppVersion.htm">Version</a>History();<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Obtain <b><a href="CppThis.htm">this</a></b> <b><a href="CppClass.html">class</a></b> its <a href="CppVersion.html">version</a> history<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.html">static</a></b> <b><a href="CppConst.html">const</a></b> <a href="CppVector.html">std::vector</a>&lt;<a href="CppString.html">std::string</a>&gt; Get<a href="CppVersion.html">Version</a>History();<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/Set the blue the <a href="CppDial.htm">Dial</a><br/>
-&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> SetBlue(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> b);<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> SetBlue(<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> b);<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/Set the color the <a href="CppDial.htm">Dial</a><br/>
-&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> SetColor(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> r, <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> g, <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> b);<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> SetColor(<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> r, <b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> g, <b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> b);<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/Set the greenness the <a href="CppDial.htm">Dial</a><br/>
-&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> SetGreen(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> g);<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> SetGreen(<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> g);<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/Set the position of the <a href="CppDial.htm">Dial</a><br/>
-&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> SetPosition(<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> position);<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> SetPosition(<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> position);<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/Set the redness the <a href="CppDial.htm">Dial</a><br/>
-&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> SetRed(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> r);<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> SetRed(<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> r);<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>/The <a href="CppSignal.htm">signal</a> <a href="CppEmit.htm">emitted</a> when the <a href="CppDial.htm">Dial</a> its color is changed<br/>
-&nbsp;&nbsp;<b><a href="CppMutable.htm">mutable</a></b> <a href="CppBoostSignal.htm">boost::signals2::signal</a>&lt;<b><a href="CppVoid.htm">void</a></b> ()&gt; m_signal_color_changed;<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/The <a href="CppSignal.html">signal</a> <a href="CppEmit.html">emitted</a> when the <a href="CppDial.htm">Dial</a> its color is changed<br/>
+&nbsp;&nbsp;<b><a href="CppMutable.html">mutable</a></b> <a href="CppBoostSignal.html">boost::signals2::signal</a>&lt;<b><a href="CppVoid.htm">void</a></b> ()&gt; m_signal_color_changed;<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>/The <a href="CppSignal.htm">signal</a> <a href="CppEmit.htm">emitted</a> when the <a href="CppDial.htm">Dial</a> position is changed<br/>
-&nbsp;&nbsp;<b><a href="CppMutable.htm">mutable</a></b> <a href="CppBoostSignal.htm">boost::signals2::signal</a>&lt;<b><a href="CppVoid.htm">void</a></b> ()&gt; m_signal_position_changed;<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/The <a href="CppSignal.html">signal</a> <a href="CppEmit.html">emitted</a> when the <a href="CppDial.htm">Dial</a> position is changed<br/>
+&nbsp;&nbsp;<b><a href="CppMutable.html">mutable</a></b> <a href="CppBoostSignal.html">boost::signals2::signal</a>&lt;<b><a href="CppVoid.htm">void</a></b> ()&gt; m_signal_position_changed;<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppPrivate.htm">private</a></b>:<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppDial.htm">Dial</a> can only be deleted by <a href="CppBoost.htm">Boost</a> <a href="CppSmartPointer.htm">smart pointer</a>s<br/>
-&nbsp;&nbsp;<b><a href="CppVirtual.htm">virtual</a></b> ~<a href="CppDial.htm">Dial</a>() {}<br/>
-&nbsp;&nbsp;<b><a href="CppFriend.htm">friend</a></b> <b><a href="CppVoid.htm">void</a></b> <a href="CppChecked_delete.htm">boost::checked_delete</a>&lt;&gt;(<a href="CppDial.htm">Dial</a>*);<br/>
+&nbsp;&nbsp;<b><a href="CppPrivate.html">private</a></b>:<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppDial.htm">Dial</a> can only be deleted by <a href="CppBoost.html">Boost</a> <a href="CppSmartPointer.html">smart pointer</a>s<br/>
+&nbsp;&nbsp;<b><a href="CppVirtual.html">virtual</a></b> ~<a href="CppDial.htm">Dial</a>() {}<br/>
+&nbsp;&nbsp;<b><a href="CppFriend.html">friend</a></b> <b><a href="CppVoid.htm">void</a></b> <a href="CppChecked_delete.html">boost::checked_delete</a>&lt;&gt;(<a href="CppDial.htm">Dial</a>*);<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> m_blue;<br/>
-&nbsp;&nbsp;<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> m_green;<br/>
-&nbsp;&nbsp;<b><a href="CppDouble.htm">double</a></b> m_position;<br/>
-&nbsp;&nbsp;<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> m_red;<br/>
+&nbsp;&nbsp;<b><a href="CppUnsigned.html">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> m_blue;<br/>
+&nbsp;&nbsp;<b><a href="CppUnsigned.html">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> m_green;<br/>
+&nbsp;&nbsp;<b><a href="CppDouble.html">double</a></b> m_position;<br/>
+&nbsp;&nbsp;<b><a href="CppUnsigned.html">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> m_red;<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppFriend.htm">friend</a></b> <a href="CppOstream.htm">std::ostream</a>&amp; <b><a href="CppOperatorStreamOut.htm">operator&lt;&lt;</a></b>(<a href="CppOstream.htm">std::ostream</a>&amp; os, <b><a href="CppConst.htm">const</a></b> <a href="CppDial.htm">Dial</a>&amp; <a href="CppDial.htm">dial</a>);<br/>
+&nbsp;&nbsp;<b><a href="CppFriend.html">friend</a></b> <a href="CppOstream.html">std::ostream</a>&amp; <b><a href="CppOperatorStreamOut.html">operator&lt;&lt;</a></b>(<a href="CppOstream.html">std::ostream</a>&amp; os, <b><a href="CppConst.html">const</a></b> <a href="CppDial.htm">Dial</a>&amp; <a href="CppDial<a href="CppHeaderFile.htm">.h</a>tm">dial</a>);<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppPublic.htm">public</a></b>:<br/>
+&nbsp;&nbsp;<b><a href="CppPublic.html">public</a></b>:<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/Obtain the angle in radians between two deltas<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/12 o'clock is 0.0 * pi<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppOperatorDivide.htm">/</a> 3 o'clock is 0.5 * pi<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppOperatorDivide.htm">/</a> 6 o'clock is 1.0 * pi<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppOperatorDivide.htm">/</a> 9 o'clock is 1.5 * pi<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>From www.richelbilderbeek.nl/Cpp<a href="CppGetAngle.htm">GetAngle</a>.htm<br/>
-&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppDouble.htm">double</a></b> <a href="CppGetAngle.htm">GetAngle</a>(<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> dx, <b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> dy);<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>From www.richelbilderbeek.nl/Cpp<a href="CppGetAngle.html">GetAngle</a>.html<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.html">static</a></b> <b><a href="CppDouble.html">double</a></b> <a href="CppGetAngle.html">GetAngle</a>(<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> dx, <b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> dy);<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>From www.richelbilderbeek.nl/Cpp<a href="CppGetDistance.htm">GetDistance</a>.htm<br/>
-&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppDouble.htm">double</a></b> <a href="CppGetDistance.htm">GetDistance</a>(<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> dX, <b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> dY);<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>From www.richelbilderbeek.nl/Cpp<a href="CppGetDistance.html">GetDistance</a>.html<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.html">static</a></b> <b><a href="CppDouble.html">double</a></b> <a href="CppGetDistance.html">GetDistance</a>(<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> dX, <b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> dY);<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Test <b><a href="CppThis.htm">this</a></b> <b><a href="CppClass.htm">class</a></b><br/>
-&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppVoid.htm">void</a></b> Test();<br/>
-&nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
+&nbsp;&nbsp;<a href="CppIfndef.html">#ifndef</a> <a href="CppNDEBUG.html">NDEBUG</a><br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Test <b><a href="CppThis.htm">this</a></b> <b><a href="CppClass.html">class</a></b><br/>
+&nbsp;&nbsp;<b><a href="CppStatic.html">static</a></b> <b><a href="CppVoid.htm">void</a></b> Test();<br/>
+&nbsp;&nbsp;<a href="CppEndif.html">#endif</a><br/>
 };<br/>
 <br/>
-<a href="CppOstream.htm">std::ostream</a>&amp; <b><a href="CppOperatorStreamOut.htm">operator&lt;&lt;</a></b>(<a href="CppOstream.htm">std::ostream</a>&amp; os, <b><a href="CppConst.htm">const</a></b> <a href="CppDial.htm">Dial</a>&amp; <a href="CppDial.htm">dial</a>);<br/>
+<a href="CppOstream.html">std::ostream</a>&amp; <b><a href="CppOperatorStreamOut.html">operator&lt;&lt;</a></b>(<a href="CppOstream.html">std::ostream</a>&amp; os, <b><a href="CppConst.html">const</a></b> <a href="CppDial.htm">Dial</a>&amp; <a href="CppDial<a href="CppHeaderFile.htm">.h</a>tm">dial</a>);<br/>
 <br/>
-} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.html">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
 <br/>
-<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> DIAL_H<br/>
+<a href="CppEndif.html">#endif</a> <a href="CppComment.htm">//</a> DIAL_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -183,7 +183,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <table summary="dial.cpp" border = "1"><tr><td><code>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">/*</a><br/>
-<a href="CppDial.htm">Dial</a>, <a href="CppDial.htm">dial</a> <b><a href="CppClass.htm">class</a></b><br/>
+<a href="CppDial.htm">Dial</a>, <a href="CppDial<a href="CppHeaderFile.htm">.h</a>tm">dial</a> <b><a href="CppClass.html">class</a></b><br/>
 Copyright (C) 2011 Richel Bilderbeek<br/>
 <br/>
 This program is free software: you can redistribute it and/or modify<br/>
@@ -199,27 +199,27 @@ You should have received a copy of the GNU General Public License<br/>
 along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">*/</a><br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="CppDial.htm">CppDial</a>.htm<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="CppDial.html">CppDial</a>.html<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
-<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
-<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-<b><a href="CppTypedef.htm">typedef</a></b>s"<br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppDial.htm">dial</a>.h"<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic push<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.html">-Weffc++</a>"<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic ignored "-Wunused-local-<b><a href="CppTypedef.html">typedef</a></b>s"<br/>
+<a href="CppInclude.html">#include</a> "<a href="CppDial<a href="CppHeaderFile.htm">.h</a>tm">dial</a><a href="CppHeaderFile.htm">.h</a>"<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppLexical_cast.htm">lexical_cast</a>.hpp&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/math/constants/constants.hpp&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/numeric/con<a href="CppVersion.htm">version</a>/cast.hpp&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppCassertH.html">cassert</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppBoost.html">boost</a>/<a href="CppLexical_cast.html">lexical_cast</a><a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppBoost.html">boost</a>/math/constants/constants<a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppBoost.html">boost</a>/numeric/con<a href="CppVersion.html">version</a>/cast<a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppTrace.htm">trace</a>.h"<br/>
+<a href="CppInclude.html">#include</a> "<a href="CppTrace.html">trace</a><a href="CppHeaderFile.htm">.h</a>"<br/>
 <br/>
-<a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic pop<br/>
 <br/>
 <a href="CppRibi.htm">ribi</a>::<a href="CppDial.htm">Dial</a>::<a href="CppDial.htm">Dial</a>(<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> position,<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> red,<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> green,<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> blue)<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> position,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppUnsigned.html">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> red,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppUnsigned.html">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> green,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppUnsigned.html">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> blue)<br/>
 &nbsp;&nbsp;:<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;m_signal_color_changed{},<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;m_signal_position_changed{},<br/>
@@ -228,77 +228,77 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;m_position{position},<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;m_red{red}<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
+&nbsp;&nbsp;<a href="CppIfndef.html">#ifndef</a> <a href="CppNDEBUG.html">NDEBUG</a><br/>
 &nbsp;&nbsp;Test();<br/>
-&nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(m_position <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 0.0);<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(m_position <a href="CppOperatorLessEqual.htm">&lt;=</a> 1.0);<br/>
+&nbsp;&nbsp;<a href="CppEndif.html">#endif</a><br/>
+&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(m_position <a href="CppOperatorGreaterEqual.html">&gt;=</a> 0.0);<br/>
+&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(m_position <a href="CppOperatorLessEqual.html">&lt;=</a> 1.0);<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppRibi.htm">ribi</a>::<a href="CppDial.htm">Dial</a>::Get<a href="CppVersion.htm">Version</a>()<br/>
+<b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a> <a href="CppRibi.htm">ribi</a>::<a href="CppDial.htm">Dial</a>::Get<a href="CppVersion.html">Version</a>()<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> "3.3";<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> "3.3";<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm">ribi</a>::<a href="CppDial.htm">Dial</a>::Get<a href="CppVersion.htm">Version</a>History()<br/>
+<b><a href="CppConst.html">const</a></b> <a href="CppVector.html">std::vector</a>&lt;<a href="CppString.html">std::string</a>&gt; <a href="CppRibi.htm">ribi</a>::<a href="CppDial.htm">Dial</a>::Get<a href="CppVersion.html">Version</a>History()<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> {<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;"2011-04-11: <a href="CppVersion.htm">Version</a> 1.0: initial <a href="CppVersion.htm">version</a>",<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;"2011-06-03: <a href="CppVersion.htm">Version</a> 2.0: moved <a href="CppWidget.htm">widget</a> logic to <a href="CppDialWidget.htm">DialWidget</a> <b><a href="CppClass.htm">class</a></b>",<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;"2011-08-07: <a href="CppVersion.htm">Version</a> 3.0: conformized architure <b><a href="CppFor.htm">for</a></b> <a href="CppMysteryMachine.htm">MysteryMachine</a>",<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;"2011-08-20: <a href="CppVersion.htm">Version</a> 3.1: added <b><a href="CppOperatorStreamOut.htm">operator&lt;&lt;</a></b>",<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;"2011-08-31: <a href="CppVersion.htm">Version</a> 3.2: allow changing the <a href="CppDial.htm">dial</a> its color",<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;"2013-04-30: <a href="CppVersion.htm">Version</a> 3.3: added testing, fixed <a href="CppBug.htm">bug</a> in <a href="CppGetAngle.htm">GetAngle</a>"<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"2011-04-11: <a href="CppVersion.html">Version</a> 1.0: initial <a href="CppVersion.html">version</a>",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"2011-06-03: <a href="CppVersion.html">Version</a> 2.0: moved <a href="CppWidget.html">widget</a> logic to <a href="CppDialWidget.html">DialWidget</a> <b><a href="CppClass.html">class</a></b>",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"2011-08-07: <a href="CppVersion.html">Version</a> 3.0: conformized architure <b><a href="CppFor.htm">for</a></b> <a href="CppMysteryMachine.html">MysteryMachine</a>",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"2011-08-20: <a href="CppVersion.html">Version</a> 3.1: added <b><a href="CppOperatorStreamOut.html">operator&lt;&lt;</a></b>",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"2011-08-31: <a href="CppVersion.html">Version</a> 3.2: allow changing the <a href="CppDial<a href="CppHeaderFile.htm">.h</a>tm">dial</a> its color",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"2013-04-30: <a href="CppVersion.html">Version</a> 3.3: added testing, fixed <a href="CppBug.htm">bug</a> in <a href="CppGetAngle.html">GetAngle</a>"<br/>
 &nbsp;&nbsp;};<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppDial.htm">Dial</a>::SetBlue(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> b)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppDial.htm">Dial</a>::SetBlue(<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> b)<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(b <a href="CppOperatorGreaterEqual.htm">&gt;=</a>&nbsp;&nbsp; 0);<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(b&nbsp;&nbsp;&lt; 256);<br/>
+&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(b <a href="CppOperatorGreaterEqual.html">&gt;=</a>&nbsp;&nbsp; 0);<br/>
+&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(b&nbsp;&nbsp;&lt; 256);<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (m_blue <a href="CppOperatorNotEqual.htm">!=</a> <a href="CppNumeric_cast.htm">boost::numeric_cast</a>&lt;<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b>&gt;(b))<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (m_blue <a href="CppOperatorNotEqual.htm">!=</a> <a href="CppNumeric_cast.html">boost::numeric_cast</a>&lt;<b><a href="CppUnsigned.html">unsigned</a></b> <b><a href="CppChar.htm">char</a></b>&gt;(b))<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;m_blue <a href="CppOperatorAssign.htm">=</a> <a href="CppNumeric_cast.htm">boost::numeric_cast</a>&lt;<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b>&gt;(b);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_blue <a href="CppOperatorAssign.htm">=</a> <a href="CppNumeric_cast.html">boost::numeric_cast</a>&lt;<b><a href="CppUnsigned.html">unsigned</a></b> <b><a href="CppChar.htm">char</a></b>&gt;(b);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;m_signal_color_changed();<br/>
 &nbsp;&nbsp;}<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppDial.htm">Dial</a>::SetColor(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> r,<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> g,<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> b)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppDial.htm">Dial</a>::SetColor(<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> r,<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> g,<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> b)<br/>
 {<br/>
 &nbsp;&nbsp;SetRed(r);<br/>
 &nbsp;&nbsp;SetGreen(g);<br/>
 &nbsp;&nbsp;SetBlue(b);<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppDial.htm">Dial</a>::SetGreen(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> g)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppDial.htm">Dial</a>::SetGreen(<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> g)<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(g <a href="CppOperatorGreaterEqual.htm">&gt;=</a>&nbsp;&nbsp; 0);<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(g&nbsp;&nbsp;&lt; 256);<br/>
+&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(g <a href="CppOperatorGreaterEqual.html">&gt;=</a>&nbsp;&nbsp; 0);<br/>
+&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(g&nbsp;&nbsp;&lt; 256);<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (m_green <a href="CppOperatorNotEqual.htm">!=</a> <a href="CppNumeric_cast.htm">boost::numeric_cast</a>&lt;<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b>&gt;(g))<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (m_green <a href="CppOperatorNotEqual.htm">!=</a> <a href="CppNumeric_cast.html">boost::numeric_cast</a>&lt;<b><a href="CppUnsigned.html">unsigned</a></b> <b><a href="CppChar.htm">char</a></b>&gt;(g))<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;m_green <a href="CppOperatorAssign.htm">=</a> <a href="CppNumeric_cast.htm">boost::numeric_cast</a>&lt;<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b>&gt;(g);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_green <a href="CppOperatorAssign.htm">=</a> <a href="CppNumeric_cast.html">boost::numeric_cast</a>&lt;<b><a href="CppUnsigned.html">unsigned</a></b> <b><a href="CppChar.htm">char</a></b>&gt;(g);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;m_signal_color_changed();<br/>
 &nbsp;&nbsp;}<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppDial.htm">Dial</a>::SetRed(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> r)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppDial.htm">Dial</a>::SetRed(<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> r)<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(r <a href="CppOperatorGreaterEqual.htm">&gt;=</a>&nbsp;&nbsp; 0);<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(r&nbsp;&nbsp;&lt; 256);<br/>
+&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(r <a href="CppOperatorGreaterEqual.html">&gt;=</a>&nbsp;&nbsp; 0);<br/>
+&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(r&nbsp;&nbsp;&lt; 256);<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (m_red <a href="CppOperatorNotEqual.htm">!=</a> <a href="CppNumeric_cast.htm">boost::numeric_cast</a>&lt;<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b>&gt;(r))<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (m_red <a href="CppOperatorNotEqual.htm">!=</a> <a href="CppNumeric_cast.html">boost::numeric_cast</a>&lt;<b><a href="CppUnsigned.html">unsigned</a></b> <b><a href="CppChar.htm">char</a></b>&gt;(r))<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;m_red <a href="CppOperatorAssign.htm">=</a> <a href="CppNumeric_cast.htm">boost::numeric_cast</a>&lt;<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b>&gt;(r);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_red <a href="CppOperatorAssign.htm">=</a> <a href="CppNumeric_cast.html">boost::numeric_cast</a>&lt;<b><a href="CppUnsigned.html">unsigned</a></b> <b><a href="CppChar.htm">char</a></b>&gt;(r);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;m_signal_color_changed();<br/>
 &nbsp;&nbsp;}<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppDial.htm">Dial</a>::SetPosition(<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> position)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppDial.htm">Dial</a>::SetPosition(<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> position)<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(position <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 0.0);<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(position <a href="CppOperatorLessEqual.htm">&lt;=</a> 1.0);<br/>
+&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(position <a href="CppOperatorGreaterEqual.html">&gt;=</a> 0.0);<br/>
+&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(position <a href="CppOperatorLessEqual.html">&lt;=</a> 1.0);<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (m_position <a href="CppOperatorNotEqual.htm">!=</a> position)<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;m_position <a href="CppOperatorAssign.htm">=</a> position;<br/>
@@ -306,109 +306,109 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;}<br/>
 }<br/>
 <br/>
-<b><a href="CppDouble.htm">double</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppDial.htm">Dial</a>::<a href="CppGetAngle.htm">GetAngle</a>(<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> dx, <b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> dy)<br/>
+<b><a href="CppDouble.html">double</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppDial.htm">Dial</a>::<a href="CppGetAngle.html">GetAngle</a>(<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> dx, <b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> dy)<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> pi <a href="CppOperatorAssign.htm">=</a> <a href="CppBoost.htm">boost</a>::math::constants::pi&lt;<b><a href="CppDouble.htm">double</a></b>&gt;();<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> pi <a href="CppOperatorMinus.htm">-</a> (<a href="CppAtan.htm">std::atan</a>2(dx,dy));<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> pi <a href="CppOperatorAssign.htm">=</a> <a href="CppBoost.html">boost</a>::math::constants::pi&lt;<b><a href="CppDouble.html">double</a></b>&gt;();<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> pi <a href="CppOperatorMinus.htm">-</a> (<a href="CppAtan.html">std::atan</a>2(dx,dy));<br/>
 }<br/>
 <br/>
-<b><a href="CppDouble.htm">double</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppDial.htm">Dial</a>::<a href="CppGetDistance.htm">GetDistance</a>(<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> dX, <b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> dY)<br/>
+<b><a href="CppDouble.html">double</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppDial.htm">Dial</a>::<a href="CppGetDistance.html">GetDistance</a>(<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> dX, <b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> dY)<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <a href="CppSqrt.htm">std::sqrt</a>( (dX * dX) <a href="CppOperatorPlus.htm">+</a> (dY * dY) );<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> <a href="CppSqrt.html">std::sqrt</a>( (dX * dX) <a href="CppOperatorPlus.htm">+</a> (dY * dY) );<br/>
 }<br/>
 <br/>
-<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
+<a href="CppIfndef.html">#ifndef</a> <a href="CppNDEBUG.html">NDEBUG</a><br/>
 <b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppDial.htm">Dial</a>::Test()<br/>
 {<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppBool.htm">bool</a></b> is_tested <a href="CppOperatorAssign.htm">=</a> <b><a href="CppFalse.htm">false</a></b>;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (is_tested) <b><a href="CppReturn.htm">return</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppStatic.html">static</a></b> <b><a href="CppBool.htm">bool</a></b> is_tested <a href="CppOperatorAssign.htm">=</a> <b><a href="CppFalse.html">false</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (is_tested) <b><a href="CppReturn.html">return</a></b>;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;is_tested <a href="CppOperatorAssign.htm">=</a> <b><a href="CppTrue.htm">true</a></b>;<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> pi <a href="CppOperatorAssign.htm">=</a> <a href="CppBoost.htm">boost</a>::math::constants::pi&lt;<b><a href="CppDouble.htm">double</a></b>&gt;();<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>Test <a href="CppGetAngle.htm">GetAngle</a><br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> pi <a href="CppOperatorAssign.htm">=</a> <a href="CppBoost.html">boost</a>::math::constants::pi&lt;<b><a href="CppDouble.html">double</a></b>&gt;();<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Test <a href="CppGetAngle.html">GetAngle</a><br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> angle <a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;<a href="CppGetAngle.htm">GetAngle</a>(0.0,-1.0); <a href="CppComment.htm">//</a>North<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> expected <a href="CppOperatorAssign.htm">=</a> 0.0 * pi;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppAbs.htm">std::abs</a>(angle-expected) &lt; 0.01);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> angle <a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;<a href="CppGetAngle.html">GetAngle</a>(0.0,-1.0); <a href="CppComment.htm">//</a>North<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> expected <a href="CppOperatorAssign.htm">=</a> 0.0 * pi;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(<a href="CppAbs.html">std::abs</a>(angle-expected) &lt; 0.01);<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> angle <a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;<a href="CppGetAngle.htm">GetAngle</a>(1.0,-1.0); <a href="CppComment.htm">//</a>North-East<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> expected <a href="CppOperatorAssign.htm">=</a> 0.25 * pi;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppAbs.htm">std::abs</a>(angle-expected) &lt; 0.01);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> angle <a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;<a href="CppGetAngle.html">GetAngle</a>(1.0,-1.0); <a href="CppComment.htm">//</a>North-East<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> expected <a href="CppOperatorAssign.htm">=</a> 0.25 * pi;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(<a href="CppAbs.html">std::abs</a>(angle-expected) &lt; 0.01);<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> angle <a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;<a href="CppGetAngle.htm">GetAngle</a>(1.0,0.0); <a href="CppComment.htm">//</a>East<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> expected <a href="CppOperatorAssign.htm">=</a> 0.5 * pi;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppAbs.htm">std::abs</a>(angle-expected) &lt; 0.01);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> angle <a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;<a href="CppGetAngle.html">GetAngle</a>(1.0,0.0); <a href="CppComment.htm">//</a>East<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> expected <a href="CppOperatorAssign.htm">=</a> 0.5 * pi;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(<a href="CppAbs.html">std::abs</a>(angle-expected) &lt; 0.01);<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> angle <a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;<a href="CppGetAngle.htm">GetAngle</a>(1.0,1.0); <a href="CppComment.htm">//</a>South-East<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> expected <a href="CppOperatorAssign.htm">=</a> 0.75 * pi;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppAbs.htm">std::abs</a>(angle-expected) &lt; 0.01);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> angle <a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;<a href="CppGetAngle.html">GetAngle</a>(1.0,1.0); <a href="CppComment.htm">//</a>South-East<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> expected <a href="CppOperatorAssign.htm">=</a> 0.75 * pi;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(<a href="CppAbs.html">std::abs</a>(angle-expected) &lt; 0.01);<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> angle <a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;<a href="CppGetAngle.htm">GetAngle</a>(0.0,1.0); <a href="CppComment.htm">//</a>South<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> expected <a href="CppOperatorAssign.htm">=</a> 1.0 * pi;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppAbs.htm">std::abs</a>(angle-expected) &lt; 0.01);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> angle <a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;<a href="CppGetAngle.html">GetAngle</a>(0.0,1.0); <a href="CppComment.htm">//</a>South<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> expected <a href="CppOperatorAssign.htm">=</a> 1.0 * pi;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(<a href="CppAbs.html">std::abs</a>(angle-expected) &lt; 0.01);<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> angle <a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;<a href="CppGetAngle.htm">GetAngle</a>(-1.0,1.0); <a href="CppComment.htm">//</a>South-West<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> expected <a href="CppOperatorAssign.htm">=</a> 1.25 * pi;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppAbs.htm">std::abs</a>(angle-expected) &lt; 0.01);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> angle <a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;<a href="CppGetAngle.html">GetAngle</a>(-1.0,1.0); <a href="CppComment.htm">//</a>South-West<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> expected <a href="CppOperatorAssign.htm">=</a> 1.25 * pi;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(<a href="CppAbs.html">std::abs</a>(angle-expected) &lt; 0.01);<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> angle <a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;<a href="CppGetAngle.htm">GetAngle</a>(-1.0,0.0); <a href="CppComment.htm">//</a>West<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> expected <a href="CppOperatorAssign.htm">=</a> 1.5 * pi;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppAbs.htm">std::abs</a>(angle-expected) &lt; 0.01);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> angle <a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;<a href="CppGetAngle.html">GetAngle</a>(-1.0,0.0); <a href="CppComment.htm">//</a>West<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> expected <a href="CppOperatorAssign.htm">=</a> 1.5 * pi;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(<a href="CppAbs.html">std::abs</a>(angle-expected) &lt; 0.01);<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> angle <a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;<a href="CppGetAngle.htm">GetAngle</a>(-1.0,-1.0); <a href="CppComment.htm">//</a>North-West<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> expected <a href="CppOperatorAssign.htm">=</a> 1.75 * pi;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppAbs.htm">std::abs</a>(angle-expected) &lt; 0.01);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> angle <a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;<a href="CppGetAngle.html">GetAngle</a>(-1.0,-1.0); <a href="CppComment.htm">//</a>North-West<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> expected <a href="CppOperatorAssign.htm">=</a> 1.75 * pi;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(<a href="CppAbs.html">std::abs</a>(angle-expected) &lt; 0.01);<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppGetDistance.htm">GetDistance</a><br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppGetDistance.html">GetDistance</a><br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> distance <a href="CppOperatorAssign.htm">=</a> <a href="CppGetDistance.htm">GetDistance</a>(3.0,4.0);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> expected <a href="CppOperatorAssign.htm">=</a> 5.0;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppAbs.htm">std::abs</a>(distance-expected) &lt; 0.01);<br/>
-&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> distance <a href="CppOperatorAssign.htm">=</a> <a href="CppGetDistance.htm">GetDistance</a>(-3.0,4.0);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> expected <a href="CppOperatorAssign.htm">=</a> 5.0;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppAbs.htm">std::abs</a>(distance-expected) &lt; 0.01);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> distance <a href="CppOperatorAssign.htm">=</a> <a href="CppGetDistance.html">GetDistance</a>(3.0,4.0);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> expected <a href="CppOperatorAssign.htm">=</a> 5.0;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(<a href="CppAbs.html">std::abs</a>(distance-expected) &lt; 0.01);<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> distance <a href="CppOperatorAssign.htm">=</a> <a href="CppGetDistance.htm">GetDistance</a>(3.0,-4.0);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> expected <a href="CppOperatorAssign.htm">=</a> 5.0;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppAbs.htm">std::abs</a>(distance-expected) &lt; 0.01);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> distance <a href="CppOperatorAssign.htm">=</a> <a href="CppGetDistance.html">GetDistance</a>(-3.0,4.0);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> expected <a href="CppOperatorAssign.htm">=</a> 5.0;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(<a href="CppAbs.html">std::abs</a>(distance-expected) &lt; 0.01);<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> distance <a href="CppOperatorAssign.htm">=</a> <a href="CppGetDistance.htm">GetDistance</a>(-3.0,-4.0);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> expected <a href="CppOperatorAssign.htm">=</a> 5.0;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppAbs.htm">std::abs</a>(distance-expected) &lt; 0.01);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> distance <a href="CppOperatorAssign.htm">=</a> <a href="CppGetDistance.html">GetDistance</a>(3.0,-4.0);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> expected <a href="CppOperatorAssign.htm">=</a> 5.0;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(<a href="CppAbs.html">std::abs</a>(distance-expected) &lt; 0.01);<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> distance <a href="CppOperatorAssign.htm">=</a> <a href="CppGetDistance.html">GetDistance</a>(-3.0,-4.0);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> expected <a href="CppOperatorAssign.htm">=</a> 5.0;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(<a href="CppAbs.html">std::abs</a>(distance-expected) &lt; 0.01);<br/>
 &nbsp;&nbsp;}<br/>
 }<br/>
-<a href="CppEndif.htm">#endif</a><br/>
+<a href="CppEndif.html">#endif</a><br/>
 <br/>
-<a href="CppOstream.htm">std::ostream</a>&amp; <a href="CppRibi.htm">ribi</a>::<b><a href="CppOperatorStreamOut.htm">operator&lt;&lt;</a></b>(<a href="CppOstream.htm">std::ostream</a>&amp; os, <b><a href="CppConst.htm">const</a></b> <a href="CppDial.htm">Dial</a>&amp; <a href="CppDial.htm">dial</a>)<br/>
+<a href="CppOstream.html">std::ostream</a>&amp; <a href="CppRibi.htm">ribi</a>::<b><a href="CppOperatorStreamOut.html">operator&lt;&lt;</a></b>(<a href="CppOstream.html">std::ostream</a>&amp; os, <b><a href="CppConst.html">const</a></b> <a href="CppDial.htm">Dial</a>&amp; <a href="CppDial<a href="CppHeaderFile.htm">.h</a>tm">dial</a>)<br/>
 {<br/>
 &nbsp;&nbsp;os<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "&lt;<a href="CppDial.htm">Dial</a>&gt;"<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "&lt;blue&gt;"<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a>&nbsp;&nbsp; <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(<a href="CppDial.htm">dial</a>.m_blue)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "&lt;/blue&gt;"<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "&lt;green&gt;"<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a>&nbsp;&nbsp; <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(<a href="CppDial.htm">dial</a>.m_green)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "&lt;/green&gt;"<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "&lt;position&gt;"<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a>&nbsp;&nbsp; <a href="CppDial.htm">dial</a>.m_position<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "&lt;/position&gt;"<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "&lt;red&gt;"<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a>&nbsp;&nbsp; <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(<a href="CppDial.htm">dial</a>.m_red)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "&lt;/red&gt;"<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "&lt;/<a href="CppDial.htm">Dial</a>&gt;";<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> os;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "&lt;<a href="CppDial.htm">Dial</a>&gt;"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "&lt;blue&gt;"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a>&nbsp;&nbsp; <b><a href="CppStatic_cast.html">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(<a href="CppDial<a href="CppHeaderFile.htm">.h</a>tm">dial</a>.m_blue)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "&lt;/blue&gt;"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "&lt;green&gt;"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a>&nbsp;&nbsp; <b><a href="CppStatic_cast.html">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(<a href="CppDial<a href="CppHeaderFile.htm">.h</a>tm">dial</a>.m_green)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "&lt;/green&gt;"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "&lt;position&gt;"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a>&nbsp;&nbsp; <a href="CppDial<a href="CppHeaderFile.htm">.h</a>tm">dial</a>.m_position<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "&lt;/position&gt;"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "&lt;red&gt;"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a>&nbsp;&nbsp; <b><a href="CppStatic_cast.html">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(<a href="CppDial<a href="CppHeaderFile.htm">.h</a>tm">dial</a>.m_red)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "&lt;/red&gt;"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "&lt;/<a href="CppDial.htm">Dial</a>&gt;";<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> os;<br/>
 }<br/>
 </code></td></tr></table>
 <!-- end of the code -->

@@ -73,12 +73,12 @@ that uses <a href="CppSingleton.htm">Singleton</a> to produce dialogs until it i
 QT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; += core gui<br/>
 greaterThan(QT_MAJOR_VERSION, 4): QT += <a href="CppWidget.htm">widget</a>s<br/>
 <br/>
-TEMPLATE = app<br/>
-<a href="CppSOURCES.htm">SOURCES</a> += <a href="CppMain.htm">main</a>.cpp\<br/>
+<a href="CppQmakeTemplate.htm">TEMPLATE</a> = app<br/>
+<a href="CppQmakeSources.htm">SOURCES</a> += <a href="CppMain.htm">main</a>.cpp\<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;firstdialog.cpp \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;seconddialog.cpp \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;commander.cpp<br/>
-<a href="CppHEADERS.htm">HEADERS</a>&nbsp;&nbsp;+= \<br/>
+<a href="CppQmakeHeaders.htm">HEADERS</a>&nbsp;&nbsp;+= \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;firstdialog.h \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;seconddialog.h \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;commander.h<br/>
@@ -96,14 +96,14 @@ TEMPLATE = app<br/>
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="commander.h" border = "1"><tr><td><code>
-<a href="CppIfndef.htm">#ifndef</a> COMMANDER_H<br/>
-<a href="CppDefine.htm">#define</a> COMMANDER_H<br/>
+<a href="CppIfndef.html">#ifndef</a> COMMANDER_H<br/>
+<a href="CppDefine.html">#define</a> COMMANDER_H<br/>
 <br/>
-<a href="CppComment.htm">///</a>Commander is a <a href="CppDesignPatternSingleton.htm">Singleton</a> <b><a href="CppFor.htm">for</a></b> managing program flow<br/>
-<b><a href="CppStruct.htm">struct</a></b> Commander<br/>
+<a href="CppComment.htm">///</a>Commander is a <a href="CppDesignPatternSingleton.html">Singleton</a> <b><a href="CppFor.htm">for</a></b> managing program flow<br/>
+<b><a href="CppStruct.html">struct</a></b> Commander<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Get the Commander's only <a href="CppInstance.htm">instance</a><br/>
-&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> Commander * GetInstance();<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Get the Commander's only <a href="CppInstance.html">instance</a><br/>
+&nbsp;&nbsp;<b><a href="CppStatic.html">static</a></b> Commander * GetInstance();<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/Start the program<br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> Run();<br/>
@@ -111,18 +111,18 @@ TEMPLATE = app<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/Child asks to quit the program<br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> Quit();<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppPrivate.htm">private</a></b>:<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>/A <a href="CppDesignPatternSingleton.htm">Singleton</a>'s <a href="CppConstructor.htm">constructor</a> is <b><a href="CppPrivate.htm">private</a></b><br/>
+&nbsp;&nbsp;<b><a href="CppPrivate.html">private</a></b>:<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/A <a href="CppDesignPatternSingleton.html">Singleton</a>'s <a href="CppConstructor.html">constructor</a> is <b><a href="CppPrivate.html">private</a></b><br/>
 &nbsp;&nbsp;Commander();<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>/The one and only Commander <a href="CppInstance.htm">instance</a><br/>
-&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> Commander * <a href="CppInstance.htm">m_instance</a>;<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/The one and only Commander <a href="CppInstance.html">instance</a><br/>
+&nbsp;&nbsp;<b><a href="CppStatic.html">static</a></b> Commander * <a href="CppInstance.html">m_instance</a>;<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/Flag the tell whether to quit<br/>
 &nbsp;&nbsp;<b><a href="CppBool.htm">bool</a></b> m_quit;<br/>
 };<br/>
 <br/>
-<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> COMMANDER_H<br/>
+<a href="CppEndif.html">#endif</a> <a href="CppComment.htm">//</a> COMMANDER_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -134,24 +134,24 @@ TEMPLATE = app<br/>
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="commander.cpp" border = "1"><tr><td><code>
-<a href="CppInclude.htm">#include</a> "commander.h"<br/>
+<a href="CppInclude.html">#include</a> "commander<a href="CppHeaderFile.htm">.h</a>"<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppShared_ptr.htm">shared_ptr</a>.hpp&gt;<br/>
-<a href="CppInclude.htm">#include</a> "fir<a href="CppStd.htm">std</a>ialog.h"<br/>
-<a href="CppInclude.htm">#include</a> "seconddialog.h"<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppBoost.html">boost</a>/<a href="CppShared_ptr.html">shared_ptr</a><a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
+<a href="CppInclude.html">#include</a> "fir<a href="CppStd.htm">std</a>ialog<a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "seconddialog<a href="CppHeaderFile.htm">.h</a>"<br/>
 <br/>
-Commander * Commander::<a href="CppInstance.htm">m_instance</a> <a href="CppOperatorAssign.htm">=</a> 0;<br/>
+Commander * Commander::<a href="CppInstance.html">m_instance</a> <a href="CppOperatorAssign.htm">=</a> 0;<br/>
 <br/>
 Commander::Commander()<br/>
-&nbsp;&nbsp;: m_quit(<b><a href="CppFalse.htm">false</a></b>)<br/>
+&nbsp;&nbsp;: m_quit(<b><a href="CppFalse.html">false</a></b>)<br/>
 {<br/>
 <br/>
 }<br/>
 <br/>
 Commander * Commander::GetInstance()<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (!<a href="CppInstance.htm">m_instance</a>) <a href="CppInstance.htm">m_instance</a> <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> Commander;<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <a href="CppInstance.htm">m_instance</a>;<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (!<a href="CppInstance.html">m_instance</a>) <a href="CppInstance.html">m_instance</a> <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> Commander;<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> <a href="CppInstance.html">m_instance</a>;<br/>
 }<br/>
 <br/>
 <b><a href="CppVoid.htm">void</a></b> Commander::Quit()<br/>
@@ -161,12 +161,12 @@ Commander * Commander::GetInstance()<br/>
 <br/>
 <b><a href="CppVoid.htm">void</a></b> Commander::Run()<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppWhile.htm">while</a></b> (!m_quit)<br/>
+&nbsp;&nbsp;<b><a href="CppWhile.html">while</a></b> (!m_quit)<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppQDialog.htm">QDialog</a>&gt; dialog(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;((<a href="CppRand.htm">std::rand</a>() <a href="CppOperatorStreamIn.htm">&gt;&gt;</a> 4) <a href="CppOperatorModulus.htm">%</a> 2)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;? <b><a href="CppDynamic_cast.htm">dynamic_cast</a></b>&lt;<a href="CppQDialog.htm">QDialog</a>*&gt;(<b><a href="CppNew.htm">new</a></b> FirstDialog)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: <b><a href="CppDynamic_cast.htm">dynamic_cast</a></b>&lt;<a href="CppQDialog.htm">QDialog</a>*&gt;(<b><a href="CppNew.htm">new</a></b> SecondDialog));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBoostShared_ptr.html">boost::shared_ptr</a>&lt;<a href="CppQDialog.html">QDialog</a>&gt; dialog(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;((<a href="CppRand.html">std::rand</a>() <a href="CppOperatorStreamIn.html">&gt;&gt;</a> 4) <a href="CppOperatorModulus.htm">%</a> 2)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;? <b><a href="CppDynamic_cast.html">dynamic_cast</a></b>&lt;<a href="CppQDialog.html">QDialog</a>*&gt;(<b><a href="CppNew.htm">new</a></b> FirstDialog)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: <b><a href="CppDynamic_cast.html">dynamic_cast</a></b>&lt;<a href="CppQDialog.html">QDialog</a>*&gt;(<b><a href="CppNew.htm">new</a></b> SecondDialog));<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;dialog-&gt;exec();<br/>
 &nbsp;&nbsp;}<br/>
 }<br/>
@@ -181,28 +181,28 @@ Commander * Commander::GetInstance()<br/>
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="firstdialog.h" border = "1"><tr><td><code>
-<a href="CppIfndef.htm">#ifndef</a> FIRSTDIALOG_H<br/>
-<a href="CppDefine.htm">#define</a> FIRSTDIALOG_H<br/>
+<a href="CppIfndef.html">#ifndef</a> FIRSTDIALOG_H<br/>
+<a href="CppDefine.html">#define</a> FIRSTDIALOG_H<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppQDialog.htm">QDialog</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppQDialog.html">QDialog</a>&gt;<br/>
 <br/>
-<b><a href="CppNamespace.htm">namespace</a></b> Ui {<br/>
-<b><a href="CppClass.htm">class</a></b> FirstDialog;<br/>
+<b><a href="CppNamespace.html">namespace</a></b> Ui {<br/>
+<b><a href="CppClass.html">class</a></b> FirstDialog;<br/>
 }<br/>
 <br/>
-<b><a href="CppClass.htm">class</a></b> FirstDialog : <b><a href="CppPublic.htm">public</a></b> <a href="CppQDialog.htm">QDialog</a><br/>
+<b><a href="CppClass.html">class</a></b> FirstDialog : <b><a href="CppPublic.html">public</a></b> <a href="CppQDialog.html">QDialog</a><br/>
 {<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQ_OBJECT.htm">Q_OBJECT</a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQ_OBJECT.html">Q_OBJECT</a><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<br/>
-<b><a href="CppPublic.htm">public</a></b>:<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppExplicit.htm">explicit</a></b> FirstDialog(<a href="CppQWidget.htm">QWidget</a> *parent <a href="CppOperatorAssign.htm">=</a> 0);<br/>
+<b><a href="CppPublic.html">public</a></b>:<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppExplicit.html">explicit</a></b> FirstDialog(<a href="CppQWidget.html">QWidget</a> *parent <a href="CppOperatorAssign.htm">=</a> 0);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;~FirstDialog();<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<br/>
-<b><a href="CppPrivate.htm">private</a></b>:<br/>
+<b><a href="CppPrivate.html">private</a></b>:<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppUi.htm">Ui</a>::FirstDialog *ui;<br/>
 };<br/>
 <br/>
-<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> FIRSTDIALOG_H<br/>
+<a href="CppEndif.html">#endif</a> <a href="CppComment.htm">//</a> FIRSTDIALOG_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -214,11 +214,11 @@ Commander * Commander::GetInstance()<br/>
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="firstdialog.cpp" border = "1"><tr><td><code>
-<a href="CppInclude.htm">#include</a> "fir<a href="CppStd.htm">std</a>ialog.h"<br/>
-<a href="CppInclude.htm">#include</a> "ui_fir<a href="CppStd.htm">std</a>ialog.h"<br/>
+<a href="CppInclude.html">#include</a> "fir<a href="CppStd.htm">std</a>ialog<a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "ui_fir<a href="CppStd.htm">std</a>ialog<a href="CppHeaderFile.htm">.h</a>"<br/>
 <br/>
-FirstDialog::FirstDialog(<a href="CppQWidget.htm">QWidget</a> *parent) :<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQDialog.htm">QDialog</a>(parent),<br/>
+FirstDialog::FirstDialog(<a href="CppQWidget.html">QWidget</a> *parent) :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQDialog.html">QDialog</a>(parent),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;ui(<b><a href="CppNew.htm">new</a></b> <a href="CppUi.htm">Ui</a>::FirstDialog)<br/>
 {<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;ui-&gt;setupUi(<b><a href="CppThis.htm">this</a></b>);<br/>
@@ -226,7 +226,7 @@ FirstDialog::FirstDialog(<a href="CppQWidget.htm">QWidget</a> *parent) :<br/>
 <br/>
 FirstDialog::~FirstDialog()<br/>
 {<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppDelete.htm">delete</a></b> ui;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppDelete.html">delete</a></b> ui;<br/>
 }<br/>
 </code></td></tr></table>
 <!-- end of the code -->
@@ -239,12 +239,12 @@ FirstDialog::~FirstDialog()<br/>
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="main.cpp" border = "1"><tr><td><code>
-<a href="CppInclude.htm">#include</a> "commander.h"<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppQApplication.htm">QApplication</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> "commander<a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppQApplication.html">QApplication</a>&gt;<br/>
 <br/>
-<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>(<b><a href="CppInt.htm">int</a></b> <a href="CppArgc.htm">argc</a>, <b><a href="CppChar.htm">char</a></b> *<a href="CppArgc.htm">argv</a>[])<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a>(<b><a href="CppInt.htm">int</a></b> <a href="CppArgc.htm">argc</a>, <b><a href="CppChar.htm">char</a></b> *<a href="CppArgc.htm">argv</a>[])<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppQApplication.htm">QApplication</a> a(<a href="CppArgc.htm">argc</a>, <a href="CppArgc.htm">argv</a>);<br/>
+&nbsp;&nbsp;<a href="CppQApplication.html">QApplication</a> a(<a href="CppArgc.htm">argc</a>, <a href="CppArgc.htm">argv</a>);<br/>
 &nbsp;&nbsp;Commander::GetInstance()-&gt;Run();<br/>
 }<br/>
 </code></td></tr></table>
@@ -258,31 +258,31 @@ FirstDialog::~FirstDialog()<br/>
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="seconddialog.h" border = "1"><tr><td><code>
-<a href="CppIfndef.htm">#ifndef</a> SECONDDIALOG_H<br/>
-<a href="CppDefine.htm">#define</a> SECONDDIALOG_H<br/>
+<a href="CppIfndef.html">#ifndef</a> SECONDDIALOG_H<br/>
+<a href="CppDefine.html">#define</a> SECONDDIALOG_H<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppQDialog.htm">QDialog</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppQDialog.html">QDialog</a>&gt;<br/>
 <br/>
-<b><a href="CppNamespace.htm">namespace</a></b> Ui {<br/>
-<b><a href="CppClass.htm">class</a></b> SecondDialog;<br/>
+<b><a href="CppNamespace.html">namespace</a></b> Ui {<br/>
+<b><a href="CppClass.html">class</a></b> SecondDialog;<br/>
 }<br/>
 <br/>
-<b><a href="CppClass.htm">class</a></b> SecondDialog : <b><a href="CppPublic.htm">public</a></b> <a href="CppQDialog.htm">QDialog</a><br/>
+<b><a href="CppClass.html">class</a></b> SecondDialog : <b><a href="CppPublic.html">public</a></b> <a href="CppQDialog.html">QDialog</a><br/>
 {<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQ_OBJECT.htm">Q_OBJECT</a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQ_OBJECT.html">Q_OBJECT</a><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<br/>
-<b><a href="CppPublic.htm">public</a></b>:<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppExplicit.htm">explicit</a></b> SecondDialog(<a href="CppQWidget.htm">QWidget</a> *parent <a href="CppOperatorAssign.htm">=</a> 0);<br/>
+<b><a href="CppPublic.html">public</a></b>:<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppExplicit.html">explicit</a></b> SecondDialog(<a href="CppQWidget.html">QWidget</a> *parent <a href="CppOperatorAssign.htm">=</a> 0);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;~SecondDialog();<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<br/>
-<b><a href="CppPrivate.htm">private</a></b> <b><a href="CppSlots.htm">slots</a></b>:<br/>
+<b><a href="CppPrivate.html">private</a></b> <b><a href="CppSlots.html">slots</a></b>:<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> on_pushButton_clicked();<br/>
 <br/>
-<b><a href="CppPrivate.htm">private</a></b>:<br/>
+<b><a href="CppPrivate.html">private</a></b>:<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppUi.htm">Ui</a>::SecondDialog *ui;<br/>
 };<br/>
 <br/>
-<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> SECONDDIALOG_H<br/>
+<a href="CppEndif.html">#endif</a> <a href="CppComment.htm">//</a> SECONDDIALOG_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -294,12 +294,12 @@ FirstDialog::~FirstDialog()<br/>
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="seconddialog.cpp" border = "1"><tr><td><code>
-<a href="CppInclude.htm">#include</a> "seconddialog.h"<br/>
-<a href="CppInclude.htm">#include</a> "ui_seconddialog.h"<br/>
-<a href="CppInclude.htm">#include</a> "commander.h"<br/>
+<a href="CppInclude.html">#include</a> "seconddialog<a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "ui_seconddialog<a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "commander<a href="CppHeaderFile.htm">.h</a>"<br/>
 <br/>
-SecondDialog::SecondDialog(<a href="CppQWidget.htm">QWidget</a> *parent) :<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQDialog.htm">QDialog</a>(parent),<br/>
+SecondDialog::SecondDialog(<a href="CppQWidget.html">QWidget</a> *parent) :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQDialog.html">QDialog</a>(parent),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;ui(<b><a href="CppNew.htm">new</a></b> <a href="CppUi.htm">Ui</a>::SecondDialog)<br/>
 {<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;ui-&gt;setupUi(<b><a href="CppThis.htm">this</a></b>);<br/>
@@ -307,7 +307,7 @@ SecondDialog::SecondDialog(<a href="CppQWidget.htm">QWidget</a> *parent) :<br/>
 <br/>
 SecondDialog::~SecondDialog()<br/>
 {<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppDelete.htm">delete</a></b> ui;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppDelete.html">delete</a></b> ui;<br/>
 }<br/>
 <br/>
 <b><a href="CppVoid.htm">void</a></b> SecondDialog::on_pushButton_clicked()<br/>

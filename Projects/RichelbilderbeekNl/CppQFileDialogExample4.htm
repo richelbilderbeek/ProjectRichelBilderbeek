@@ -75,9 +75,9 @@
 <table summary="CppQFileDialogExample4.pro" border = "1"><tr><td><code>
 QT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; += core gui<br/>
 greaterThan(QT_MAJOR_VERSION, 4): QT += <a href="CppWidget.htm">widget</a>s<br/>
-<a href="CppQMAKE_CXXFLAGS.htm">QMAKE_CXXFLAGS</a> += -std=<a href="Cpp11.htm">c++11</a><br/>
-TEMPLATE = app<br/>
-<a href="CppSOURCES.htm">SOURCES</a> += <a href="CppMain.htm">main</a>.cpp<br/>
+<a href="CppQmakeQmake_cxxflags.htm">QMAKE_CXXFLAGS</a> += -std=<a href="Cpp11.htm">c++11</a><br/>
+<a href="CppQmakeTemplate.htm">TEMPLATE</a> = app<br/>
+<a href="CppQmakeSources.htm">SOURCES</a> += <a href="CppMain.htm">main</a>.cpp<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -89,53 +89,53 @@ TEMPLATE = app<br/>
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="main.cpp" border = "1"><tr><td><code>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppIostreamH.htm">iostream</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppCassertH.html">cassert</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppIostreamH.html">iostream</a>&gt;<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppQApplication.htm">QApplication</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppQFile.htm">QFile</a>Dialog&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppQApplication.html">QApplication</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppQFile.html">QFile</a>Dialog&gt;<br/>
 <br/>
-<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>(<b><a href="CppInt.htm">int</a></b> <a href="CppArgc.htm">argc</a>, <b><a href="CppChar.htm">char</a></b> *<a href="CppArgc.htm">argv</a>[])<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a>(<b><a href="CppInt.htm">int</a></b> <a href="CppArgc.htm">argc</a>, <b><a href="CppChar.htm">char</a></b> *<a href="CppArgc.htm">argv</a>[])<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppQApplication.htm">QApplication</a> a(<a href="CppArgc.htm">argc</a>, <a href="CppArgc.htm">argv</a>);<br/>
+&nbsp;&nbsp;<a href="CppQApplication.html">QApplication</a> a(<a href="CppArgc.htm">argc</a>, <a href="CppArgc.htm">argv</a>);<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppQFile.htm">QFile</a>Dialog d;<br/>
+&nbsp;&nbsp;<a href="CppQFile.html">QFile</a>Dialog d;<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppEnum.htm">enum</a></b> ViewMode { Detail, List };<br/>
-&nbsp;&nbsp;d.setViewMode(<a href="CppQFile.htm">QFile</a>Dialog::Detail);<br/>
+&nbsp;&nbsp;d.setViewMode(<a href="CppQFile.html">QFile</a>Dialog::Detail);<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppEnum.htm">enum</a></b> FileMode { AnyFile, ExistingFile, Directory, ExistingFiles, DirectoryOnly };<br/>
-&nbsp;&nbsp;d.setFileMode(<a href="CppQFile.htm">QFile</a>Dialog::AnyFile);<br/>
+&nbsp;&nbsp;d.setFileMode(<a href="CppQFile.html">QFile</a>Dialog::AnyFile);<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppEnum.htm">enum</a></b> AcceptMode { AcceptOpen, AcceptSave };<br/>
-&nbsp;&nbsp;d.setAcceptDrops(<a href="CppQFile.htm">QFile</a>Dialog::AcceptSave);<br/>
+&nbsp;&nbsp;d.setAcceptDrops(<a href="CppQFile.html">QFile</a>Dialog::AcceptSave);<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppEnum.htm">enum</a></b> Option { ShowDirsOnly, DontResolveSym<a href="CppLink.htm">link</a>s, DontConfirmOverwrite, DontUseSheet, DontUseNativeDialog, ReadOnly, HideNameFilterDetails }<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>Without <a href="CppQFile.htm">QFile</a>Dialog::DontUseNativeDialog there will not be an edit box to supply<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Without <a href="CppQFile.html">QFile</a>Dialog::DontUseNativeDialog there will not be an edit box to supply<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>a filename, under Lubuntu 13.04 (raring)<br/>
-&nbsp;&nbsp;d.setOptions(<a href="CppQFile.htm">QFile</a>Dialog::DontUseNativeDialog);<br/>
+&nbsp;&nbsp;d.setOptions(<a href="CppQFile.html">QFile</a>Dialog::DontUseNativeDialog);<br/>
 <br/>
 &nbsp;&nbsp;d.setWindowTitle("Save"); <a href="CppComment.htm">//</a>Otherwise it states 'Open'<br/>
 <br/>
 &nbsp;&nbsp;d.exec();<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (d.result() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <a href="CppQDialog.htm">QDialog</a>::Accepted)<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (d.result() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <a href="CppQDialog.html">QDialog</a>::Accepted)<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "Number of files selected: " <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> d.selectedFiles().size() <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n';<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppAuto.htm">auto</a></b> v <a href="CppOperatorAssign.htm">=</a> d.selectedFiles();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppAuto.htm">auto</a></b> s: v) <a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> s.toStdString() <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n';<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCout.html">std::cout</a> <a href="CppOperatorStreamOut.html">&lt;&lt;</a> "Number of files selected: " <a href="CppOperatorStreamOut.html">&lt;&lt;</a> d.selectedFiles().size() <a href="CppOperatorStreamOut.html">&lt;&lt;</a> '\n';<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppAuto.htm">auto</a></b> v <a href="CppOperatorAssign.htm">=</a> d.selectedFiles();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppAuto.htm">auto</a></b> s: v) <a href="CppCout.html">std::cout</a> <a href="CppOperatorStreamOut.html">&lt;&lt;</a> s.toStdString() <a href="CppOperatorStreamOut.html">&lt;&lt;</a> '\n';<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;<b><a href="CppElse.htm">else</a></b><br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(d.result() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <a href="CppQDialog.htm">QDialog</a>::Rejected);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "Dialog closed with cancel or close\n";<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(d.result() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <a href="CppQDialog.html">QDialog</a>::Rejected);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCout.html">std::cout</a> <a href="CppOperatorStreamOut.html">&lt;&lt;</a> "Dialog closed with cancel or close\n";<br/>
 &nbsp;&nbsp;}<br/>
 }<br/>
 <br/>
 <a href="CppComment.htm">/*</a> Example output:<br/>
 <br/>
 Number of files selected: 1<br/>
-/home/richel/<a href="ProjectRichelBilderbeek.htm">ProjectRichelBilderbeek</a>/Test/Cpp<a href="CppQFile.htm">QFile</a>DialogExample4/mynewfile.txt<br/>
+/home/richel/<a href="ProjectRichelBilderbeek.html">ProjectRichelBilderbeek</a>/Test/Cpp<a href="CppQFile.html">QFile</a>DialogExample4/mynewfile.txt<br/>
 <br/>
 <a href="CppComment.htm">*/</a><br/>
 </code></td></tr></table>

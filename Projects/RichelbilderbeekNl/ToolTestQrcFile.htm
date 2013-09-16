@@ -70,28 +70,28 @@
 <table summary="ToolTestQrcFileConsole.pro" border = "1"><tr><td><code>
 QT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; += core<br/>
 QT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -= gui<br/>
-CONFIG&nbsp;&nbsp; += console<br/>
-CONFIG&nbsp;&nbsp; -= app_bundle<br/>
-TEMPLATE = app<br/>
-<a href="CppQMAKE_CXXFLAGS.htm">QMAKE_CXXFLAGS</a> += -std=<a href="Cpp0x.htm">c++11</a><br/>
+<a href="CppQmakeConfig.htm">CONFIG</a>&nbsp;&nbsp; += console<br/>
+<a href="CppQmakeConfig.htm">CONFIG</a>&nbsp;&nbsp; -= app_bundle<br/>
+<a href="CppQmakeTemplate.htm">TEMPLATE</a> = app<br/>
+<a href="CppQmakeQmake_cxxflags.htm">QMAKE_CXXFLAGS</a> += -std=<a href="Cpp0x.htm">c++11</a><br/>
 <br/>
-<a href="CppLIBS.htm">LIBS</a> += \<br/>
+<a href="CppQmakeLibs.htm">LIBS</a> += \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppFilesystem.htm">-lboost_filesystem</a> \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppProgram_options.htm">-lboost_program_options</a> \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppRegex.htm">-lboost_regex</a> \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppSystem.htm">-lboost_system</a><br/>
 <br/>
-<a href="CppINCLUDEPATH.htm">INCLUDEPATH</a> += \<br/>
+<a href="CppQmakeIncludepath.htm">INCLUDEPATH</a> += \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppAbout.htm">CppAbout</a> \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppQrcFile.htm">CppQrcFile</a> \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppTrace.htm">CppTrace</a><br/>
 <br/>
-<a href="CppSOURCES.htm">SOURCES</a> += <a href="CppMain.htm">main</a>.cpp \<br/>
+<a href="CppQmakeSources.htm">SOURCES</a> += <a href="CppMain.htm">main</a>.cpp \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppQrcFile.htm">CppQrcFile</a>/<a href="CppQrcFile.htm">qrcfile</a>.cpp \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppAbout.htm">CppAbout</a>/<a href="CppAbout.htm">about</a>.cpp \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="ToolTestQrcFile.htm">testqrcfile</a>menudialog.cpp<br/>
 <br/>
-<a href="CppHEADERS.htm">HEADERS</a> += \<br/>
+<a href="CppQmakeHeaders.htm">HEADERS</a> += \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppQrcFile.htm">CppQrcFile</a>/<a href="CppQrcFile.htm">qrcfile</a>.h \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppAbout.htm">CppAbout</a>/<a href="CppAbout.htm">about</a>.h \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppTrace.htm">CppTrace</a>/<a href="CppTrace.htm">trace</a>.h \<br/>
@@ -110,25 +110,25 @@ TEMPLATE = app<br/>
 QT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; += core gui<br/>
 greaterThan(QT_MAJOR_VERSION, 4): QT += <a href="CppWidget.htm">widget</a>s<br/>
 <br/>
-<a href="CppQMAKE_CXXFLAGS.htm">QMAKE_CXXFLAGS</a> += -std=<a href="Cpp11.htm">c++11</a> <a href="CppWall.htm">-Wall</a> <a href="CppWextra.htm">-Wextra</a><br/>
+<a href="CppQmakeQmake_cxxflags.htm">QMAKE_CXXFLAGS</a> += -std=<a href="Cpp11.htm">c++11</a> <a href="CppWall.htm">-Wall</a> <a href="CppWextra.htm">-Wextra</a><br/>
 <br/>
-CONFIG&nbsp;&nbsp; += console<br/>
-CONFIG&nbsp;&nbsp; -= app_bundle<br/>
-TEMPLATE = app<br/>
+<a href="CppQmakeConfig.htm">CONFIG</a>&nbsp;&nbsp; += console<br/>
+<a href="CppQmakeConfig.htm">CONFIG</a>&nbsp;&nbsp; -= app_bundle<br/>
+<a href="CppQmakeTemplate.htm">TEMPLATE</a> = app<br/>
 <br/>
-<a href="CppLIBS.htm">LIBS</a> += \<br/>
+<a href="CppQmakeLibs.htm">LIBS</a> += \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppFilesystem.htm">-lboost_filesystem</a> \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppProgram_options.htm">-lboost_program_options</a> \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppRegex.htm">-lboost_regex</a> \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppSystem.htm">-lboost_system</a><br/>
 <br/>
-<a href="CppINCLUDEPATH.htm">INCLUDEPATH</a> += \<br/>
+<a href="CppQmakeIncludepath.htm">INCLUDEPATH</a> += \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppAbout.htm">CppAbout</a> \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppQrcFile.htm">CppQrcFile</a> \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppQtAboutDialog.htm">CppQtAboutDialog</a> \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppTrace.htm">CppTrace</a><br/>
 <br/>
-<a href="CppSOURCES.htm">SOURCES</a> += \<br/>
+<a href="CppQmakeSources.htm">SOURCES</a> += \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;qt<a href="CppMain.htm">main</a>.cpp \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppQrcFile.htm">CppQrcFile</a>/<a href="CppQrcFile.htm">qrcfile</a>.cpp \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppAbout.htm">CppAbout</a>/<a href="CppAbout.htm">about</a>.cpp \<br/>
@@ -137,7 +137,7 @@ TEMPLATE = app<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;qt<a href="ToolTestQrcFile.htm">testqrcfile</a><a href="CppMain.htm">main</a>dialog.cpp \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppQtAboutDialog.htm">CppQtAboutDialog</a>/<a href="CppQtAboutDialog.htm">qtaboutdialog</a>.cpp<br/>
 <br/>
-<a href="CppHEADERS.htm">HEADERS</a> += \<br/>
+<a href="CppQmakeHeaders.htm">HEADERS</a> += \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppQrcFile.htm">CppQrcFile</a>/<a href="CppQrcFile.htm">qrcfile</a>.h \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppAbout.htm">CppAbout</a>/<a href="CppAbout.htm">about</a>.h \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppTrace.htm">CppTrace</a>/<a href="CppTrace.htm">trace</a>.h \<br/>
@@ -158,7 +158,7 @@ OTHER_FILES += \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppTrace.htm">CppTrace</a>/Licence.txt \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;Licence.txt<br/>
 <br/>
-<a href="CppRESOURCES.htm">RESOURCES</a> += \<br/>
+<a href="CppQmakeResources.htm">RESOURCES</a> += \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="ToolTestQrcFile.htm">ToolTestQrcFile</a>.qrc<br/>
 </code></td></tr></table>
 <!-- end of the code -->
@@ -173,7 +173,7 @@ OTHER_FILES += \<br/>
 <table summary="main.cpp" border = "1"><tr><td><code>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">/*</a><br/>
-TestQrcFile, <a href="Tools.htm">tool</a> to test the QrcFile <b><a href="CppClass.htm">class</a></b><br/>
+TestQrcFile, <a href="Tools.htm">tool</a> to test the QrcFile <b><a href="CppClass.html">class</a></b><br/>
 Copyright (C) 2012 Richel Bilderbeek<br/>
 <br/>
 This program is free software: you can redistribute it and/or modify<br/>
@@ -189,89 +189,89 @@ You should have received a copy of the GNU General Public License<br/>
 along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">*/</a><br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="ToolTestQrcFile.htm">ToolTestQrcFile</a>.htm<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="ToolTestQrcFile.html">ToolTestQrcFile</a>.html<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppFstreamH.htm">fstream</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppIostreamH.htm">iostream</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppIteratorH.htm">iterator</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppCassertH.html">cassert</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppFstreamH.html">fstream</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppIostreamH.html">iostream</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppIteratorH.html">iterator</a>&gt;<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/filesystem.hpp&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppProgram_options.htm">boost/program_options.hpp</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppBoost.html">boost</a>/filesystem<a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppProgram_options.html">boost/program_options<a href="CppHeaderFile.htm">.h</a>pp</a>&gt;<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppQrcFile.htm">qrcfile</a>.h"<br/>
-<a href="CppInclude.htm">#include</a> "<a href="ToolTestQrcFile.htm">testqrcfile</a>menudialog.h"<br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppTrace.htm">trace</a>.h"<br/>
+<a href="CppInclude.html">#include</a> "<a href="CppQrcFile.html">qrcfile</a><a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "<a href="ToolTestQrcFile.html">testqrcfile</a>menudialog<a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "<a href="CppTrace.html">trace</a><a href="CppHeaderFile.htm">.h</a>"<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>(<b><a href="CppInt.htm">int</a></b> <a href="CppArgc.htm">argc</a>, <b><a href="CppChar.htm">char</a></b>* <a href="CppArgc.htm">argv</a>[])<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a>(<b><a href="CppInt.htm">int</a></b> <a href="CppArgc.htm">argc</a>, <b><a href="CppChar.htm">char</a></b>* <a href="CppArgc.htm">argv</a>[])<br/>
 {<br/>
-&nbsp;&nbsp;START_<a href="CppTRACE.htm">TRACE</a>();<br/>
+&nbsp;&nbsp;START_<a href="CppTRACE.html">TRACE</a>();<br/>
 &nbsp;&nbsp;QrcFile::Test();<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppProgram_options.htm">boost::program_options</a>::options_description d("Allowed options <b><a href="CppFor.htm">for</a></b> <a href="ToolTestQrcFile.htm">ToolTestQrcFile</a>Console");<br/>
-&nbsp;&nbsp;<a href="CppString.htm">std::string</a> filename;<br/>
+&nbsp;&nbsp;<a href="CppProgram_options.html">boost::program_options</a>::options_description d("Allowed options <b><a href="CppFor.htm">for</a></b> <a href="ToolTestQrcFile.html">ToolTestQrcFile</a>Console");<br/>
+&nbsp;&nbsp;<a href="CppString.html">std::string</a> filename;<br/>
 <br/>
 &nbsp;&nbsp;d.add_options()<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;("<a href="CppAbout.htm">about</a>","displays the '<a href="CppAbout.htm">About</a>' information")<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;("<a href="CppAbout.html">about</a>","displays the '<a href="CppAbout.html">About</a>' information")<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;("filename",<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppProgram_options.htm">boost::program_options</a>::value&lt;<a href="CppString.htm">std::string</a>&gt;(&amp;filename),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppProgram_options.html">boost::program_options</a>::value&lt;<a href="CppString.html">std::string</a>&gt;(&amp;filename),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "filename of the <a href="CppQt.htm">Qt</a> Resource file (.qrc) file")<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;("help","produce <b><a href="CppThis.htm">this</a></b> help message")<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;("<a href="CppVersion.htm">version</a>","displays the <a href="CppVersion.htm">version</a>")<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;("<a href="CppVersion.html">version</a>","displays the <a href="CppVersion.html">version</a>")<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ;<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppProgram_options.htm">boost::program_options</a>::variables_map m;<br/>
-&nbsp;&nbsp;<a href="CppProgram_options.htm">boost::program_options</a>::store(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppProgram_options.htm">boost::program_options</a>::parse_command_line(<br/>
+&nbsp;&nbsp;<a href="CppProgram_options.html">boost::program_options</a>::variables_map m;<br/>
+&nbsp;&nbsp;<a href="CppProgram_options.html">boost::program_options</a>::store(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppProgram_options.html">boost::program_options</a>::parse_command_line(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppArgc.htm">argc</a>, <a href="CppArgc.htm">argv</a>, d), m);<br/>
-&nbsp;&nbsp;<a href="CppProgram_options.htm">boost::program_options</a>::notify(m);<br/>
+&nbsp;&nbsp;<a href="CppProgram_options.html">boost::program_options</a>::notify(m);<br/>
 <br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (m.count("help"))<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> d <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "\n";<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> 0;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCout.html">std::cout</a> <a href="CppOperatorStreamOut.html">&lt;&lt;</a> d <a href="CppOperatorStreamOut.html">&lt;&lt;</a> "\n";<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> 0;<br/>
 &nbsp;&nbsp;}<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (m.count("<a href="CppAbout.htm">about</a>"))<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (m.count("<a href="CppAbout.html">about</a>"))<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> TestQrcFileMenuDialog::GetAbout() <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "\n";<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> 0;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCout.html">std::cout</a> <a href="CppOperatorStreamOut.html">&lt;&lt;</a> TestQrcFileMenuDialog::GetAbout() <a href="CppOperatorStreamOut.html">&lt;&lt;</a> "\n";<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> 0;<br/>
 &nbsp;&nbsp;}<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (m.count("<a href="CppVersion.htm">version</a>"))<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (m.count("<a href="CppVersion.html">version</a>"))<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> TestQrcFileMenuDialog::Get<a href="CppVersion.htm">Version</a>() <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "\n";<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> 0;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCout.html">std::cout</a> <a href="CppOperatorStreamOut.html">&lt;&lt;</a> TestQrcFileMenuDialog::Get<a href="CppVersion.html">Version</a>() <a href="CppOperatorStreamOut.html">&lt;&lt;</a> "\n";<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> 0;<br/>
 &nbsp;&nbsp;}<br/>
 <br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (m.count("filename"))<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (filename.empty())<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "Please specify a filename.\n";<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> 1;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCout.html">std::cout</a> <a href="CppOperatorStreamOut.html">&lt;&lt;</a> "Please specify a filename.\n";<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> 1;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (filename.size() &lt; 5)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "Please specify a full <a href="CppQtCreator.htm">Qt Creator</a> (.qrc) project filename.\n";<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> 1;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCout.html">std::cout</a> <a href="CppOperatorStreamOut.html">&lt;&lt;</a> "Please specify a full <a href="CppQtCreator.html">Qt Creator</a> (.qrc) project filename.\n";<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> 1;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (filename.substr(filename.size() <a href="CppOperatorMinus.htm">-</a> 4,4) <a href="CppOperatorNotEqual.htm">!=</a> ".qrc")<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "Please specify a filename ending on .qrc.\n";<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> 1;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCout.html">std::cout</a> <a href="CppOperatorStreamOut.html">&lt;&lt;</a> "Please specify a filename ending on .qrc.\n";<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> 1;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (!<a href="CppFilesystem.htm">boost::filesystem</a>::exists(filename))<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (!<a href="CppFilesystem.html">boost::filesystem</a>::exists(filename))<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "Please specify a <a href="CppQtCreator.htm">Qt Creator</a> Resource (.qrc) filename that exists.\n";<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> 1;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCout.html">std::cout</a> <a href="CppOperatorStreamOut.html">&lt;&lt;</a> "Please specify a <a href="CppQtCreator.html">Qt Creator</a> Resource (.qrc) filename that exists.\n";<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> 1;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;QrcFile p(filename);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> p <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n';<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> 0;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCout.html">std::cout</a> <a href="CppOperatorStreamOut.html">&lt;&lt;</a> p <a href="CppOperatorStreamOut.html">&lt;&lt;</a> '\n';<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> 0;<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Display the help<br/>
-&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> d <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "\n";<br/>
+&nbsp;&nbsp;<a href="CppCout.html">std::cout</a> <a href="CppOperatorStreamOut.html">&lt;&lt;</a> d <a href="CppOperatorStreamOut.html">&lt;&lt;</a> "\n";<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 </code></td></tr></table>
@@ -287,7 +287,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <table summary="qtmain.cpp" border = "1"><tr><td><code>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">/*</a><br/>
-TestQrcFile, <a href="Tools.htm">tool</a> to test the QrcFile <b><a href="CppClass.htm">class</a></b><br/>
+TestQrcFile, <a href="Tools.htm">tool</a> to test the QrcFile <b><a href="CppClass.html">class</a></b><br/>
 Copyright (C) 2012-2013 Richel Bilderbeek<br/>
 <br/>
 This program is free software: you can redistribute it and/or modify<br/>
@@ -303,21 +303,21 @@ You should have received a copy of the GNU General Public License<br/>
 along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">*/</a><br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="ToolTestQrcFile.htm">ToolTestQrcFile</a>.htm<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="ToolTestQrcFile.html">ToolTestQrcFile</a>.html<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppQApplication.htm">QApplication</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> "qt<a href="ToolTestQrcFile.htm">testqrcfile</a>menudialog.h"<br/>
-<a href="CppInclude.htm">#include</a> "<a href="ToolTestQrcFile.htm">testqrcfile</a>menudialog.h"<br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppTrace.htm">trace</a>.h"<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppQApplication.html">QApplication</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> "qt<a href="ToolTestQrcFile.html">testqrcfile</a>menudialog<a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "<a href="ToolTestQrcFile.html">testqrcfile</a>menudialog<a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "<a href="CppTrace.html">trace</a><a href="CppHeaderFile.htm">.h</a>"<br/>
 <br/>
-<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>(<b><a href="CppInt.htm">int</a></b> <a href="CppArgc.htm">argc</a>, <b><a href="CppChar.htm">char</a></b> *<a href="CppArgc.htm">argv</a>[])<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a>(<b><a href="CppInt.htm">int</a></b> <a href="CppArgc.htm">argc</a>, <b><a href="CppChar.htm">char</a></b> *<a href="CppArgc.htm">argv</a>[])<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppQApplication.htm">QApplication</a> a(<a href="CppArgc.htm">argc</a>, <a href="CppArgc.htm">argv</a>);<br/>
-&nbsp;&nbsp;START_<a href="CppTRACE.htm">TRACE</a>();<br/>
+&nbsp;&nbsp;<a href="CppQApplication.html">QApplication</a> a(<a href="CppArgc.htm">argc</a>, <a href="CppArgc.htm">argv</a>);<br/>
+&nbsp;&nbsp;START_<a href="CppTRACE.html">TRACE</a>();<br/>
 &nbsp;&nbsp;TestQrcFileMenuDialog::Test();<br/>
 &nbsp;&nbsp;<a href="CppQt.htm">Qt</a>TestQrcFileMenuDialog w;<br/>
 &nbsp;&nbsp;w.show();<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> a.exec();<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> a.exec();<br/>
 }<br/>
 </code></td></tr></table>
 <!-- end of the code -->
@@ -332,7 +332,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <table summary="qttestqrcfilemaindialog.h" border = "1"><tr><td><code>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">/*</a><br/>
-TestQrcFile, <a href="Tools.htm">tool</a> to test the QrcFile <b><a href="CppClass.htm">class</a></b><br/>
+TestQrcFile, <a href="Tools.htm">tool</a> to test the QrcFile <b><a href="CppClass.html">class</a></b><br/>
 Copyright (C) 2012-2013 Richel Bilderbeek<br/>
 <br/>
 This program is free software: you can redistribute it and/or modify<br/>
@@ -348,42 +348,47 @@ You should have received a copy of the GNU General Public License<br/>
 along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">*/</a><br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="ToolTestQrcFile.htm">ToolTestQrcFile</a>.htm<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="ToolTestQrcFile.html">ToolTestQrcFile</a>.html<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppIfndef.htm">#ifndef</a> QTTESTQRCFILEMAINDIALOG_H<br/>
-<a href="CppDefine.htm">#define</a> QTTESTQRCFILEMAINDIALOG_H<br/>
+<a href="CppIfndef.html">#ifndef</a> QTTESTQRC<a href="CppCfile<a href="CppHeaderFile.htm">.h</a>tm">FILE</a>MAINDIALOG_H<br/>
+<a href="CppDefine.html">#define</a> QTTESTQRC<a href="CppCfile<a href="CppHeaderFile.htm">.h</a>tm">FILE</a>MAINDIALOG_H<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppQDialog.htm">QDialog</a>&gt;<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic push<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.html">-Weffc++</a>"<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppQDialog.html">QDialog</a>&gt;<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic pop<br/>
 <br/>
-<b><a href="CppNamespace.htm">namespace</a></b> Ui {<br/>
-&nbsp;&nbsp;<b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a>TestQrcFileMainDialog;<br/>
+<b><a href="CppNamespace.html">namespace</a></b> Ui {<br/>
+&nbsp;&nbsp;<b><a href="CppClass.html">class</a></b> <a href="CppQt.htm">Qt</a>TestQrcFileMainDialog;<br/>
 }<br/>
 <br/>
-<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
+<b><a href="CppNamespace.html">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
 <br/>
-<b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a>TestQrcFileMainDialog : <b><a href="CppPublic.htm">public</a></b> <a href="CppQDialog.htm">QDialog</a><br/>
+<b><a href="CppClass.html">class</a></b> <a href="CppQt.htm">Qt</a>TestQrcFileMainDialog : <b><a href="CppPublic.html">public</a></b> <a href="CppQDialog.html">QDialog</a><br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppQ_OBJECT.htm">Q_OBJECT</a><br/>
+&nbsp;&nbsp;<a href="CppQ_OBJECT.html">Q_OBJECT</a><br/>
 <br/>
-<b><a href="CppPublic.htm">public</a></b>:<br/>
-&nbsp;&nbsp;<b><a href="CppExplicit.htm">explicit</a></b> <a href="CppQt.htm">Qt</a>TestQrcFileMainDialog(<a href="CppQWidget.htm">QWidget</a> *parent <a href="CppOperatorAssign.htm">=</a> 0);<br/>
+<b><a href="CppPublic.html">public</a></b>:<br/>
+&nbsp;&nbsp;<b><a href="CppExplicit.html">explicit</a></b> <a href="CppQt.htm">Qt</a>TestQrcFileMainDialog(<a href="CppQWidget.html">QWidget</a> *parent <a href="CppOperatorAssign.htm">=</a> 0);<br/>
+&nbsp;&nbsp;<a href="CppQt.htm">Qt</a>TestQrcFileMainDialog(<b><a href="CppConst.html">const</a></b> <a href="CppQt.htm">Qt</a>TestQrcFileMainDialog&amp;) <a href="CppOperatorAssign.htm">=</a> <b><a href="CppDelete.html">delete</a></b>;<br/>
+&nbsp;&nbsp;<a href="CppQt.htm">Qt</a>TestQrcFileMainDialog&amp; <b><a href="CppOperator.html">operator</a></b>=(<b><a href="CppConst.html">const</a></b> <a href="CppQt.htm">Qt</a>TestQrcFileMainDialog&amp;) <a href="CppOperatorAssign.htm">=</a> <b><a href="CppDelete.html">delete</a></b>;<br/>
 &nbsp;&nbsp;~<a href="CppQt.htm">Qt</a>TestQrcFileMainDialog();<br/>
 <br/>
-<b><a href="CppPrivate.htm">private</a></b> <b><a href="CppSlots.htm">slots</a></b>:<br/>
-&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> on_edit_textChanged(<b><a href="CppConst.htm">const</a></b> <a href="CppQString.htm">QString</a> &amp;arg1);<br/>
+<b><a href="CppPrivate.html">private</a></b> <b><a href="CppSlots.html">slots</a></b>:<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> on_edit_textChanged(<b><a href="CppConst.html">const</a></b> <a href="CppQString.html">QString</a> &amp;arg1);<br/>
 <br/>
-<b><a href="CppPrivate.htm">private</a></b>:<br/>
+<b><a href="CppPrivate.html">private</a></b>:<br/>
 &nbsp;&nbsp;<a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a>TestQrcFileMainDialog *ui;<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/Determines <b><a href="CppIf.htm">if</a></b> a filename is a regular file<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>/From http://www.richelbilderbeek.nl/CppIsRegularFile.htm<br/>
-&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppBool.htm">bool</a></b> IsRegularFile(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; filename);<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/From http://www.richelbilderbeek.nl/CppIsRegularFile.html<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.html">static</a></b> <b><a href="CppBool.htm">bool</a></b> IsRegularFile(<b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a>&amp; filename);<br/>
 <br/>
 };<br/>
 <br/>
-} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.html">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
 <br/>
-<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> QTTESTQRCFILEMAINDIALOG_H<br/>
+<a href="CppEndif.html">#endif</a> <a href="CppComment.htm">//</a> QTTESTQRC<a href="CppCfile<a href="CppHeaderFile.htm">.h</a>tm">FILE</a>MAINDIALOG_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -397,7 +402,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <table summary="qttestqrcfilemaindialog.cpp" border = "1"><tr><td><code>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">/*</a><br/>
-TestQrcFile, <a href="Tools.htm">tool</a> to test the QrcFile <b><a href="CppClass.htm">class</a></b><br/>
+TestQrcFile, <a href="Tools.htm">tool</a> to test the QrcFile <b><a href="CppClass.html">class</a></b><br/>
 Copyright (C) 2012-2013 Richel Bilderbeek<br/>
 <br/>
 This program is free software: you can redistribute it and/or modify<br/>
@@ -413,60 +418,59 @@ You should have received a copy of the GNU General Public License<br/>
 along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">*/</a><br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="ToolTestQrcFile.htm">ToolTestQrcFile</a>.htm<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="ToolTestQrcFile.html">ToolTestQrcFile</a>.html<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic push<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.html">-Weffc++</a>"<br/>
+<a href="CppInclude.html">#include</a> "qt<a href="ToolTestQrcFile.html">testqrcfile</a>maindialog<a href="CppHeaderFile.htm">.h</a>"<br/>
 <br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppFstreamH.html">fstream</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppSstreamH.html">sstream</a>&gt;<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> "qt<a href="ToolTestQrcFile.htm">testqrcfile</a>maindialog.h"<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppQFile.html">QFile</a>Dialog&gt;<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppFstreamH.htm">fstream</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppSstreamH.htm">sstream</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> "<a href="CppQrcFile.html">qrcfile</a><a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "<a href="ToolTestQrcFile.html">testqrcfile</a>menudialog<a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "ui_qt<a href="ToolTestQrcFile.html">testqrcfile</a>maindialog<a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic pop<br/>
 <br/>
-<br/>
-<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppQFile.htm">QFile</a>Dialog&gt;<br/>
-<br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppQrcFile.htm">qrcfile</a>.h"<br/>
-<a href="CppInclude.htm">#include</a> "<a href="ToolTestQrcFile.htm">testqrcfile</a>menudialog.h"<br/>
-<a href="CppInclude.htm">#include</a> "ui_qt<a href="ToolTestQrcFile.htm">testqrcfile</a>maindialog.h"<br/>
-<br/>
-<a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>TestQrcFileMainDialog::<a href="CppQt.htm">Qt</a>TestQrcFileMainDialog(<a href="CppQWidget.htm">QWidget</a> *parent) :<br/>
-&nbsp;&nbsp;<a href="CppQDialog.htm">QDialog</a>(parent),<br/>
+<a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>TestQrcFileMainDialog::<a href="CppQt.htm">Qt</a>TestQrcFileMainDialog(<a href="CppQWidget.html">QWidget</a> *parent) :<br/>
+&nbsp;&nbsp;<a href="CppQDialog.html">QDialog</a>(parent),<br/>
 &nbsp;&nbsp;ui(<b><a href="CppNew.htm">new</a></b> <a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a>TestQrcFileMainDialog)<br/>
 {<br/>
 &nbsp;&nbsp;ui-&gt;setupUi(<b><a href="CppThis.htm">this</a></b>);<br/>
 <br/>
-&nbsp;&nbsp;ui-&gt;edit-&gt;setText("<a href="Tools.htm">Tools</a>/<a href="ToolTestQrcFile.htm">ToolTestQrcFile</a>/<a href="ToolTestQrcFile.htm">ToolTestQrcFile</a>.qrc");<br/>
+&nbsp;&nbsp;ui-&gt;edit-&gt;setText("<a href="Tools.html">Tools</a>/<a href="ToolTestQrcFile.html">ToolTestQrcFile</a>/<a href="ToolTestQrcFile.html">ToolTestQrcFile</a>.qrc");<br/>
 }<br/>
 <br/>
 <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>TestQrcFileMainDialog::~<a href="CppQt.htm">Qt</a>TestQrcFileMainDialog()<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppDelete.htm">delete</a></b> ui;<br/>
+&nbsp;&nbsp;<b><a href="CppDelete.html">delete</a></b> ui;<br/>
 }<br/>
 <br/>
-<b><a href="CppBool.htm">bool</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>TestQrcFileMainDialog::IsRegularFile(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; filename)<br/>
+<b><a href="CppBool.htm">bool</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>TestQrcFileMainDialog::IsRegularFile(<b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a>&amp; filename)<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppFstream.htm">std::fstream</a> f;<br/>
+&nbsp;&nbsp;<a href="CppFstream.html">std::fstream</a> f;<br/>
 &nbsp;&nbsp;f.open(filename.c_str(),<a href="CppStd.htm">std</a>::ios::in);<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> f.is_open();<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> f.is_open();<br/>
 }<br/>
 <br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>TestQrcFileMainDialog::on_edit_textChanged(<b><a href="CppConst.htm">const</a></b> <a href="CppQString.htm">QString</a> &amp;arg1)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>TestQrcFileMainDialog::on_edit_textChanged(<b><a href="CppConst.html">const</a></b> <a href="CppQString.html">QString</a> &amp;arg1)<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> filename <a href="CppOperatorAssign.htm">=</a> <a href="CppString.htm">std::string</a>("../../") <a href="CppOperatorPlus.htm">+</a> arg1.toStdString();<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a> filename <a href="CppOperatorAssign.htm">=</a> <a href="CppString.html">std::string</a>("../../") <a href="CppOperatorPlus.htm">+</a> arg1.toStdString();<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (!IsRegularFile(filename))<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;ui-&gt;text_result-&gt;clear();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> text <a href="CppOperatorAssign.htm">=</a> <a href="CppString.htm">std::string</a>("File '") <a href="CppOperatorPlus.htm">+</a> filename <a href="CppOperatorPlus.htm">+</a> <a href="CppString.htm">std::string</a>("' does not exist.");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a> text <a href="CppOperatorAssign.htm">=</a> <a href="CppString.html">std::string</a>("File '") <a href="CppOperatorPlus.htm">+</a> filename <a href="CppOperatorPlus.htm">+</a> <a href="CppString.html">std::string</a>("' does not exist.");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;ui-&gt;text_result-&gt;setPlainText(text.c_str());<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b>;<br/>
 &nbsp;&nbsp;}<br/>
 <br/>
 &nbsp;&nbsp;QrcFile p(filename);<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppStringstream.htm">std::stringstream</a> s;<br/>
-&nbsp;&nbsp;s <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> p;<br/>
+&nbsp;&nbsp;<a href="CppStringstream.html">std::stringstream</a> s;<br/>
+&nbsp;&nbsp;s <a href="CppOperatorStreamOut.html">&lt;&lt;</a> p;<br/>
 <br/>
 &nbsp;&nbsp;ui-&gt;text_result-&gt;clear();<br/>
 &nbsp;&nbsp;ui-&gt;text_result-&gt;setPlainText(s.str().c_str());<br/>
@@ -484,7 +488,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <table summary="qttestqrcfilemenudialog.h" border = "1"><tr><td><code>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">/*</a><br/>
-TestQrcFile, <a href="Tools.htm">tool</a> to test the QrcFile <b><a href="CppClass.htm">class</a></b><br/>
+TestQrcFile, <a href="Tools.htm">tool</a> to test the QrcFile <b><a href="CppClass.html">class</a></b><br/>
 Copyright (C) 2012-2013 Richel Bilderbeek<br/>
 <br/>
 This program is free software: you can redistribute it and/or modify<br/>
@@ -500,39 +504,44 @@ You should have received a copy of the GNU General Public License<br/>
 along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">*/</a><br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="ToolTestQrcFile.htm">ToolTestQrcFile</a>.htm<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="ToolTestQrcFile.html">ToolTestQrcFile</a>.html<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppIfndef.htm">#ifndef</a> QTTESTQRCFILEMENUDIALOG_H<br/>
-<a href="CppDefine.htm">#define</a> QTTESTQRCFILEMENUDIALOG_H<br/>
+<a href="CppIfndef.html">#ifndef</a> QTTESTQRC<a href="CppCfile<a href="CppHeaderFile.htm">.h</a>tm">FILE</a>MENUDIALOG_H<br/>
+<a href="CppDefine.html">#define</a> QTTESTQRC<a href="CppCfile<a href="CppHeaderFile.htm">.h</a>tm">FILE</a>MENUDIALOG_H<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppQDialog.htm">QDialog</a>&gt;<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic push<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.html">-Weffc++</a>"<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppQDialog.html">QDialog</a>&gt;<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic pop<br/>
 <br/>
-<b><a href="CppNamespace.htm">namespace</a></b> Ui {<br/>
-<b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a>TestQrcFileMenuDialog;<br/>
+<b><a href="CppNamespace.html">namespace</a></b> Ui {<br/>
+&nbsp;&nbsp;<b><a href="CppClass.html">class</a></b> <a href="CppQt.htm">Qt</a>TestQrcFileMenuDialog;<br/>
 }<br/>
 <br/>
-<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
+<b><a href="CppNamespace.html">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
 <br/>
-<b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a>TestQrcFileMenuDialog : <b><a href="CppPublic.htm">public</a></b> <a href="CppQDialog.htm">QDialog</a><br/>
+<b><a href="CppClass.html">class</a></b> <a href="CppQt.htm">Qt</a>TestQrcFileMenuDialog : <b><a href="CppPublic.html">public</a></b> <a href="CppQDialog.html">QDialog</a><br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppQ_OBJECT.htm">Q_OBJECT</a><br/>
+&nbsp;&nbsp;<a href="CppQ_OBJECT.html">Q_OBJECT</a><br/>
 <br/>
-<b><a href="CppPublic.htm">public</a></b>:<br/>
-&nbsp;&nbsp;<b><a href="CppExplicit.htm">explicit</a></b> <a href="CppQt.htm">Qt</a>TestQrcFileMenuDialog(<a href="CppQWidget.htm">QWidget</a> *parent <a href="CppOperatorAssign.htm">=</a> 0);<br/>
+<b><a href="CppPublic.html">public</a></b>:<br/>
+&nbsp;&nbsp;<b><a href="CppExplicit.html">explicit</a></b> <a href="CppQt.htm">Qt</a>TestQrcFileMenuDialog(<a href="CppQWidget.html">QWidget</a> *parent <a href="CppOperatorAssign.htm">=</a> 0);<br/>
+&nbsp;&nbsp;<a href="CppQt.htm">Qt</a>TestQrcFileMenuDialog(<b><a href="CppConst.html">const</a></b> <a href="CppQt.htm">Qt</a>TestQrcFileMenuDialog&amp;) <a href="CppOperatorAssign.htm">=</a> <b><a href="CppDelete.html">delete</a></b>;<br/>
+&nbsp;&nbsp;<a href="CppQt.htm">Qt</a>TestQrcFileMenuDialog&amp; <b><a href="CppOperator.html">operator</a></b>=(<b><a href="CppConst.html">const</a></b> <a href="CppQt.htm">Qt</a>TestQrcFileMenuDialog&amp;) <a href="CppOperatorAssign.htm">=</a> <b><a href="CppDelete.html">delete</a></b>;<br/>
 &nbsp;&nbsp;~<a href="CppQt.htm">Qt</a>TestQrcFileMenuDialog();<br/>
 <br/>
-<b><a href="CppPrivate.htm">private</a></b> <b><a href="CppSlots.htm">slots</a></b>:<br/>
+<b><a href="CppPrivate.html">private</a></b> <b><a href="CppSlots.html">slots</a></b>:<br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> on_button_start_clicked();<br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> on_button_about_clicked();<br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> on_button_quit_clicked();<br/>
 <br/>
-<b><a href="CppPrivate.htm">private</a></b>:<br/>
+<b><a href="CppPrivate.html">private</a></b>:<br/>
 &nbsp;&nbsp;<a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a>TestQrcFileMenuDialog *ui;<br/>
 };<br/>
 <br/>
-} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.html">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
 <br/>
-<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> QTTESTQRCFILEMENUDIALOG_H<br/>
+<a href="CppEndif.html">#endif</a> <a href="CppComment.htm">//</a> QTTESTQRC<a href="CppCfile<a href="CppHeaderFile.htm">.h</a>tm">FILE</a>MENUDIALOG_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -546,7 +555,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <table summary="qttestqrcfilemenudialog.cpp" border = "1"><tr><td><code>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">/*</a><br/>
-TestQrcFile, <a href="Tools.htm">tool</a> to test the QrcFile <b><a href="CppClass.htm">class</a></b><br/>
+TestQrcFile, <a href="Tools.htm">tool</a> to test the QrcFile <b><a href="CppClass.html">class</a></b><br/>
 Copyright (C) 2012-2013 Richel Bilderbeek<br/>
 <br/>
 This program is free software: you can redistribute it and/or modify<br/>
@@ -562,20 +571,20 @@ You should have received a copy of the GNU General Public License<br/>
 along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">*/</a><br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="ToolTestQrcFile.htm">ToolTestQrcFile</a>.htm<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="ToolTestQrcFile.html">ToolTestQrcFile</a>.html<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic push<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.html">-Weffc++</a>"<br/>
+<a href="CppInclude.html">#include</a> "qt<a href="ToolTestQrcFile.html">testqrcfile</a>menudialog<a href="CppHeaderFile.htm">.h</a>"<br/>
 <br/>
+<a href="CppInclude.html">#include</a> "<a href="CppQtAboutDialog.html">qtaboutdialog</a><a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "qt<a href="ToolTestQrcFile.html">testqrcfile</a>maindialog<a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "<a href="ToolTestQrcFile.html">testqrcfile</a>menudialog<a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "ui_qt<a href="ToolTestQrcFile.html">testqrcfile</a>menudialog<a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic pop<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> "qt<a href="ToolTestQrcFile.htm">testqrcfile</a>menudialog.h"<br/>
-<br/>
-<br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppQtAboutDialog.htm">qtaboutdialog</a>.h"<br/>
-<a href="CppInclude.htm">#include</a> "qt<a href="ToolTestQrcFile.htm">testqrcfile</a>maindialog.h"<br/>
-<a href="CppInclude.htm">#include</a> "<a href="ToolTestQrcFile.htm">testqrcfile</a>menudialog.h"<br/>
-<a href="CppInclude.htm">#include</a> "ui_qt<a href="ToolTestQrcFile.htm">testqrcfile</a>menudialog.h"<br/>
-<br/>
-<a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>TestQrcFileMenuDialog::<a href="CppQt.htm">Qt</a>TestQrcFileMenuDialog(<a href="CppQWidget.htm">QWidget</a> *parent) :<br/>
-&nbsp;&nbsp;<a href="CppQDialog.htm">QDialog</a>(parent),<br/>
+<a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>TestQrcFileMenuDialog::<a href="CppQt.htm">Qt</a>TestQrcFileMenuDialog(<a href="CppQWidget.html">QWidget</a> *parent) :<br/>
+&nbsp;&nbsp;<a href="CppQDialog.html">QDialog</a>(parent),<br/>
 &nbsp;&nbsp;ui(<b><a href="CppNew.htm">new</a></b> <a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a>TestQrcFileMenuDialog)<br/>
 {<br/>
 &nbsp;&nbsp;ui-&gt;setupUi(<b><a href="CppThis.htm">this</a></b>);<br/>
@@ -583,7 +592,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <br/>
 <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>TestQrcFileMenuDialog::~<a href="CppQt.htm">Qt</a>TestQrcFileMenuDialog()<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppDelete.htm">delete</a></b> ui;<br/>
+&nbsp;&nbsp;<b><a href="CppDelete.html">delete</a></b> ui;<br/>
 }<br/>
 <br/>
 <b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>TestQrcFileMenuDialog::on_button_start_clicked()<br/>
@@ -597,10 +606,10 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>TestQrcFileMenuDialog::on_button_about_clicked()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;hide();<br/>
-&nbsp;&nbsp;<a href="CppAbout.htm">About</a> a <a href="CppOperatorAssign.htm">=</a> TestQrcFileMenuDialog::GetAbout();<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>a.<a href="CppAdd.htm">Add</a><a href="CppLibrary.htm">Library</a>("<a href="CppQt.htm">Qt</a>RichelBilderbeekGalleryDialog <a href="CppVersion.htm">version</a>: " <a href="CppOperatorPlus.htm">+</a> <a href="CppQt.htm">Qt</a>RichelBilderbeekGalleryDialog::Get<a href="CppVersion.htm">Version</a>());<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>a.<a href="CppAdd.htm">Add</a><a href="CppLibrary.htm">Library</a>("<a href="CppQt.htm">Qt</a>RichelBilderbeekResources <a href="CppVersion.htm">version</a>: " <a href="CppOperatorPlus.htm">+</a> RichelBilderbeek::<a href="CppQt.htm">Qt</a>Resources::Get<a href="CppVersion.htm">Version</a>());<br/>
-&nbsp;&nbsp;<a href="CppQtAboutDialog.htm">QtAboutDialog</a> d(a);<br/>
+&nbsp;&nbsp;<a href="CppAbout.html">About</a> a <a href="CppOperatorAssign.htm">=</a> TestQrcFileMenuDialog::GetAbout();<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>a.<a href="CppAdd.htm">Add</a><a href="CppLibrary.html">Library</a>("<a href="CppQt.htm">Qt</a>RichelBilderbeekGalleryDialog <a href="CppVersion.html">version</a>: " <a href="CppOperatorPlus.htm">+</a> <a href="CppQt.htm">Qt</a>RichelBilderbeekGalleryDialog::Get<a href="CppVersion.html">Version</a>());<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>a.<a href="CppAdd.htm">Add</a><a href="CppLibrary.html">Library</a>("<a href="CppQt.htm">Qt</a>RichelBilderbeekResources <a href="CppVersion.html">version</a>: " <a href="CppOperatorPlus.htm">+</a> RichelBilderbeek::<a href="CppQt.htm">Qt</a>Resources::Get<a href="CppVersion.html">Version</a>());<br/>
+&nbsp;&nbsp;<a href="CppQtAboutDialog.html">QtAboutDialog</a> d(a);<br/>
 &nbsp;&nbsp;d.exec();<br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;show();<br/>
 }<br/>
@@ -622,7 +631,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <table summary="testqrcfilemenudialog.h" border = "1"><tr><td><code>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">/*</a><br/>
-TestQrcFile, <a href="Tools.htm">tool</a> to test the QrcFile <b><a href="CppClass.htm">class</a></b><br/>
+TestQrcFile, <a href="Tools.htm">tool</a> to test the QrcFile <b><a href="CppClass.html">class</a></b><br/>
 Copyright (C) 2012-2013 Richel Bilderbeek<br/>
 <br/>
 This program is free software: you can redistribute it and/or modify<br/>
@@ -638,34 +647,34 @@ You should have received a copy of the GNU General Public License<br/>
 along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">*/</a><br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="ToolTestQrcFile.htm">ToolTestQrcFile</a>.htm<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="ToolTestQrcFile.html">ToolTestQrcFile</a>.html<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppIfndef.htm">#ifndef</a> TESTQRCFILEMENUDIALOG_H<br/>
-<a href="CppDefine.htm">#define</a> TESTQRCFILEMENUDIALOG_H<br/>
+<a href="CppIfndef.html">#ifndef</a> TESTQRC<a href="CppCfile<a href="CppHeaderFile.htm">.h</a>tm">FILE</a>MENUDIALOG_H<br/>
+<a href="CppDefine.html">#define</a> TESTQRC<a href="CppCfile<a href="CppHeaderFile.htm">.h</a>tm">FILE</a>MENUDIALOG_H<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppAbout.htm">about</a>.h"<br/>
+<a href="CppInclude.html">#include</a> "<a href="CppAbout.html">about</a><a href="CppHeaderFile.htm">.h</a>"<br/>
 <br/>
-<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
+<b><a href="CppNamespace.html">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
 <br/>
-<b><a href="CppStruct.htm">struct</a></b> TestQrcFileMenuDialog<br/>
+<b><a href="CppStruct.html">struct</a></b> TestQrcFileMenuDialog<br/>
 {<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Obtain <b><a href="CppThis.htm">this</a></b> <b><a href="CppClass.htm">class</a></b> its <a href="CppAbout.htm">About</a> information<br/>
-&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppAbout.htm">About</a> GetAbout();<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Obtain <b><a href="CppThis.htm">this</a></b> <b><a href="CppClass.html">class</a></b> its <a href="CppAbout.html">About</a> information<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.html">static</a></b> <b><a href="CppConst.html">const</a></b> <a href="CppAbout.html">About</a> GetAbout();<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Obtain <b><a href="CppThis.htm">this</a></b> <b><a href="CppClass.htm">class</a></b> its <a href="CppVersion.htm">version</a><br/>
-&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> Get<a href="CppVersion.htm">Version</a>();<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Obtain <b><a href="CppThis.htm">this</a></b> <b><a href="CppClass.html">class</a></b> its <a href="CppVersion.html">version</a><br/>
+&nbsp;&nbsp;<b><a href="CppStatic.html">static</a></b> <b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a> Get<a href="CppVersion.html">Version</a>();<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Obtain <b><a href="CppThis.htm">this</a></b> <b><a href="CppClass.htm">class</a></b> its <a href="CppVersion.htm">version</a> history<br/>
-&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; Get<a href="CppVersion.htm">Version</a>History();<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Obtain <b><a href="CppThis.htm">this</a></b> <b><a href="CppClass.html">class</a></b> its <a href="CppVersion.html">version</a> history<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.html">static</a></b> <b><a href="CppConst.html">const</a></b> <a href="CppVector.html">std::vector</a>&lt;<a href="CppString.html">std::string</a>&gt; Get<a href="CppVersion.html">Version</a>History();<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/Test the QrcFile<br/>
-&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppVoid.htm">void</a></b> Test();<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.html">static</a></b> <b><a href="CppVoid.htm">void</a></b> Test();<br/>
 };<br/>
 <br/>
-} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.html">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
 <br/>
-<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> TESTQRCFILEMENUDIALOG_H<br/>
+<a href="CppEndif.html">#endif</a> <a href="CppComment.htm">//</a> TESTQRC<a href="CppCfile<a href="CppHeaderFile.htm">.h</a>tm">FILE</a>MENUDIALOG_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -679,7 +688,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <table summary="testqrcfilemenudialog.cpp" border = "1"><tr><td><code>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">/*</a><br/>
-TestQrcFile, <a href="Tools.htm">tool</a> to test the QrcFile <b><a href="CppClass.htm">class</a></b><br/>
+TestQrcFile, <a href="Tools.htm">tool</a> to test the QrcFile <b><a href="CppClass.html">class</a></b><br/>
 Copyright (C) 2012-2013 Richel Bilderbeek<br/>
 <br/>
 This program is free software: you can redistribute it and/or modify<br/>
@@ -695,48 +704,48 @@ You should have received a copy of the GNU General Public License<br/>
 along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">*/</a><br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="ToolTestQrcFile.htm">ToolTestQrcFile</a>.htm<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="ToolTestQrcFile.html">ToolTestQrcFile</a>.html<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
-<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
-<a href="CppInclude.htm">#include</a> "<a href="ToolTestQrcFile.htm">testqrcfile</a>menudialog.h"<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic push<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.html">-Weffc++</a>"<br/>
+<a href="CppInclude.html">#include</a> "<a href="ToolTestQrcFile.html">testqrcfile</a>menudialog<a href="CppHeaderFile.htm">.h</a>"<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppCassertH.html">cassert</a>&gt;<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppQFile.htm">QFile</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppQFile.html">QFile</a>&gt;<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppTrace.htm">trace</a>.h"<br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppQrcFile.htm">qrcfile</a>.h"<br/>
+<a href="CppInclude.html">#include</a> "<a href="CppTrace.html">trace</a><a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "<a href="CppQrcFile.html">qrcfile</a><a href="CppHeaderFile.htm">.h</a>"<br/>
 <br/>
-<a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic pop<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppAbout.htm">About</a> <a href="CppRibi.htm">ribi</a>::TestQrcFileMenuDialog::GetAbout()<br/>
+<b><a href="CppConst.html">const</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppAbout.html">About</a> <a href="CppRibi.htm">ribi</a>::TestQrcFileMenuDialog::GetAbout()<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppAbout.htm">About</a> a(<br/>
+&nbsp;&nbsp;<a href="CppAbout.html">About</a> a(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;"Richel Bilderbeek",<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;"TestQrcFile",<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;"<a href="Tools.htm">tool</a> to test the QrcFile <b><a href="CppClass.htm">class</a></b>",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"<a href="Tools.htm">tool</a> to test the QrcFile <b><a href="CppClass.html">class</a></b>",<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;"the 20th of May 2013",<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;"2012-2013",<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;"http://www.richelbilderbeek.nl/<a href="ToolTestQrcFile.htm">ToolTestQrcFile</a>.htm",<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;Get<a href="CppVersion.htm">Version</a>(),<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;Get<a href="CppVersion.htm">Version</a>History());<br/>
-&nbsp;&nbsp;a.<a href="CppAdd.htm">Add</a><a href="CppLibrary.htm">Library</a>("QrcFile <a href="CppVersion.htm">version</a>: " <a href="CppOperatorPlus.htm">+</a> QrcFile::Get<a href="CppVersion.htm">Version</a>());<br/>
-&nbsp;&nbsp;a.<a href="CppAdd.htm">Add</a><a href="CppLibrary.htm">Library</a>("<a href="CppTrace.htm">Trace</a> <a href="CppVersion.htm">version</a>: " <a href="CppOperatorPlus.htm">+</a> <a href="CppTrace.htm">Trace</a>::Get<a href="CppVersion.htm">Version</a>());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"http://www.richelbilderbeek.nl/<a href="ToolTestQrcFile.html">ToolTestQrcFile</a>.html",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Get<a href="CppVersion.html">Version</a>(),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Get<a href="CppVersion.html">Version</a>History());<br/>
+&nbsp;&nbsp;a.<a href="CppAdd.htm">Add</a><a href="CppLibrary.html">Library</a>("QrcFile <a href="CppVersion.html">version</a>: " <a href="CppOperatorPlus.htm">+</a> QrcFile::Get<a href="CppVersion.html">Version</a>());<br/>
+&nbsp;&nbsp;a.<a href="CppAdd.htm">Add</a><a href="CppLibrary.html">Library</a>("<a href="CppTrace.html">Trace</a> <a href="CppVersion.html">version</a>: " <a href="CppOperatorPlus.htm">+</a> <a href="CppTrace.html">Trace</a>::Get<a href="CppVersion.html">Version</a>());<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> a;<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> a;<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppRibi.htm">ribi</a>::TestQrcFileMenuDialog::Get<a href="CppVersion.htm">Version</a>()<br/>
+<b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a> <a href="CppRibi.htm">ribi</a>::TestQrcFileMenuDialog::Get<a href="CppVersion.html">Version</a>()<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> "1.1";<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> "1.1";<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm">ribi</a>::TestQrcFileMenuDialog::Get<a href="CppVersion.htm">Version</a>History()<br/>
+<b><a href="CppConst.html">const</a></b> <a href="CppVector.html">std::vector</a>&lt;<a href="CppString.html">std::string</a>&gt; <a href="CppRibi.htm">ribi</a>::TestQrcFileMenuDialog::Get<a href="CppVersion.html">Version</a>History()<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> {<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;"2012-06-13: <a href="CppVersion.htm">version</a> 1.0: initial <a href="CppVersion.htm">version</a>",<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;"2013-05-20: <a href="CppVersion.htm">version</a> 1.1: some GUI modifications"<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"2012-06-13: <a href="CppVersion.html">version</a> 1.0: initial <a href="CppVersion.html">version</a>",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"2013-05-20: <a href="CppVersion.html">version</a> 1.1: some GUI modifications"<br/>
 &nbsp;&nbsp;};<br/>
 }<br/>
 <br/>
@@ -744,17 +753,17 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Test exactly once<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppBool.htm">bool</a></b> is_tested <a href="CppOperatorAssign.htm">=</a> <b><a href="CppFalse.htm">false</a></b>;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (is_tested) <b><a href="CppReturn.htm">return</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppStatic.html">static</a></b> <b><a href="CppBool.htm">bool</a></b> is_tested <a href="CppOperatorAssign.htm">=</a> <b><a href="CppFalse.html">false</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (is_tested) <b><a href="CppReturn.html">return</a></b>;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;is_tested <a href="CppOperatorAssign.htm">=</a> <b><a href="CppTrue.htm">true</a></b>;<br/>
 &nbsp;&nbsp;}<br/>
 <br/>
 &nbsp;&nbsp;QrcFile::Test();<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppQFile.htm">QFile</a>::exists("../<a href="ToolTestQrcFile.htm">ToolTestQrcFile</a>/<a href="ToolTestQrcFile.htm">ToolTestQrcFile</a>.qrc"));<br/>
+&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(<a href="CppQFile.html">QFile</a>::exists("../<a href="ToolTestQrcFile.html">ToolTestQrcFile</a>/<a href="ToolTestQrcFile.html">ToolTestQrcFile</a>.qrc"));<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;QrcFile f("../<a href="ToolTestQrcFile.htm">ToolTestQrcFile</a>/<a href="ToolTestQrcFile.htm">ToolTestQrcFile</a>.qrc");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(f.GetFiles().count("R.png"));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;QrcFile f("../<a href="ToolTestQrcFile.html">ToolTestQrcFile</a>/<a href="ToolTestQrcFile.html">ToolTestQrcFile</a>.qrc");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(f.GetFiles().count("R.png"));<br/>
 &nbsp;&nbsp;}<br/>
 }<br/>
 </code></td></tr></table>

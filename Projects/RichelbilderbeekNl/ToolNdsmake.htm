@@ -119,14 +119,14 @@ from a <a href="CppQtCreator.htm">Qt Creator</a> <a href="CppQtProjectFile.htm">
 <table summary="ToolNdsmake.pro" border = "1"><tr><td><code>
 QT += core<br/>
 QT -= gui qt<br/>
-CONFIG&nbsp;&nbsp; += console static<br/>
-CONFIG&nbsp;&nbsp; -= app_bundle<br/>
-TEMPLATE = app<br/>
-<a href="CppSOURCES.htm">SOURCES</a> += <a href="CppMain.htm">main</a>.cpp \<br/>
+<a href="CppQmakeConfig.htm">CONFIG</a>&nbsp;&nbsp; += console static<br/>
+<a href="CppQmakeConfig.htm">CONFIG</a>&nbsp;&nbsp; -= app_bundle<br/>
+<a href="CppQmakeTemplate.htm">TEMPLATE</a> = app<br/>
+<a href="CppQmakeSources.htm">SOURCES</a> += <a href="CppMain.htm">main</a>.cpp \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../ToolTestProFile/<a href="CppProFile.htm">profile</a>.cpp \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;ndsmake.cpp<br/>
 QMAKE_CXX_FLAGS_WARN_ON += <a href="CppWextra.htm">-Wextra</a><br/>
-<a href="CppHEADERS.htm">HEADERS</a> += \<br/>
+<a href="CppQmakeHeaders.htm">HEADERS</a> += \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;createholymakefile.h \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;createmakefile.h \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../ToolTestProFile/<a href="CppProFile.htm">profile</a>.h \<br/>
@@ -142,144 +142,144 @@ QMAKE_CXX_FLAGS_WARN_ON += <a href="CppWextra.htm">-Wextra</a><br/>
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="createholymakefile.h" border = "1"><tr><td><code>
-<a href="CppIfndef.htm">#ifndef</a> CREATEHOLYMAKEFILE_H<br/>
-<a href="CppDefine.htm">#define</a> CREATEHOLYMAKEFILE_H<br/>
+<a href="CppIfndef.html">#ifndef</a> CREATEHOLYMAKE<a href="CppCfile<a href="CppHeaderFile.htm">.h</a>tm">FILE</a>_H<br/>
+<a href="CppDefine.html">#define</a> CREATEHOLYMAKE<a href="CppCfile<a href="CppHeaderFile.htm">.h</a>tm">FILE</a>_H<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppFstreamH.htm">fstream</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppFstreamH.html">fstream</a>&gt;<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> CreateHoly<a href="CppMakefile.htm">Makefile</a>()<br/>
+<b><a href="CppVoid.htm">void</a></b> CreateHoly<a href="CppMakefile.html">Makefile</a>()<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppOfstream.htm">std::ofstream</a> f("<a href="CppMakefile.htm">Makefile</a>");<br/>
+&nbsp;&nbsp;<a href="CppOfstream.html">std::ofstream</a> f("<a href="CppMakefile.html">Makefile</a>");<br/>
 &nbsp;&nbsp;f<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "#---------------------------------------------------------------------------------\n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> ".SUFFIXES:\n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "#---------------------------------------------------------------------------------\n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "\n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "ifeq ($(strip $(DEVKITARM)),)\n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "$(error \"Please set DEVKITARM in your environment. <b><a href="CppExport.htm">export</a></b> DEVKITARM=&lt;path to&gt;<a href="CppDevkitArm.htm">devkitARM</a>\")\n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "endif\n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "\n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "include $(DEVKITARM)/ds_rules\n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "\n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "#---------------------------------------------------------------------------------\n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "# TARGET is the name of the output\n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "# BUILD is the directory where object files &amp; intermediate files will be placed\n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "# <a href="CppSOURCES.htm">SOURCES</a> is a list of directories containing source code\n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "# INCLUDES is a list of directories containing extra <a href="CppHeaderFile.htm">header file</a>s\n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "#---------------------------------------------------------------------------------\n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "TARGET		:=	$(shell basename $(CURDIR))\n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "BUILD		:=	build\n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "<a href="CppSOURCES.htm">SOURCES</a>		:=	gfx source data&nbsp;&nbsp;\n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "INCLUDES	:=	include build <a href="CppOperatorDivide.htm">/</a>opt/devkitpro/<a href="CppLibnds.htm">libnds</a>-1.4.7/include\n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "\n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "#---------------------------------------------------------------------------------\n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "# options <b><a href="CppFor.htm">for</a></b> code generation\n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "#---------------------------------------------------------------------------------\n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "ARCH	:=	-mthumb <a href="CppOperatorMinus.htm">-</a>mthumb-interwork\n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "\n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "CFLAGS	:=	-g <a href="CppWall.htm">-Wall</a> <a href="CppOperatorMinus.htm">-</a>O2\\\n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> " 			-march=armv5te <a href="CppOperatorMinus.htm">-</a>mtune=arm946e-s <a href="CppOperatorMinus.htm">-</a>fomit-frame-<a href="CppPointer.htm">pointer</a>\\\n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "			-ffast-math \\\n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "			$(ARCH)\n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "\n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "CFLAGS	<a href="CppOperatorPlusAssign.htm">+=</a>	$(INCLUDE) <a href="CppOperatorMinus.htm">-</a>DARM9\n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "CXXFLAGS	:<a href="CppOperatorAssign.htm">=</a> $(CFLAGS) <a href="CppOperatorMinus.htm">-</a>fno-rtti <a href="CppOperatorMinus.htm">-</a>fno-<a href="CppException.htm">exception</a>s\n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "\n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "ASFLAGS	:=	-g $(ARCH)\n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "LDFLAGS	=	-specs=ds_arm9.specs <a href="CppOperatorMinus.htm">-</a>g $(ARCH) <a href="CppOperatorMinus.htm">-</a>mno-fpu <a href="CppOperatorMinus.htm">-</a>Wl,-Map,$(notdir $*.map)\n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "\n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "#---------------------------------------------------------------------------------\n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "# <a href="CppAny.htm">any</a> extra libraries we wish to <a href="CppLink.htm">link</a> with the project\n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "#---------------------------------------------------------------------------------\n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "<a href="CppLIBS.htm">LIBS</a>	:<a href="CppOperatorAssign.htm">=</a> <a href="CppOperatorMinus.htm">-</a>lnds9\n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> " \n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> " \n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "#---------------------------------------------------------------------------------\n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "# list of directories containing libraries, <b><a href="CppThis.htm">this</a></b> must be the top level containing\n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "# include and lib\n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "#---------------------------------------------------------------------------------\n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "LIBDIRS	:=	$(LIB<a href="CppNds.htm">NDS</a>)\n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> " \n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "#---------------------------------------------------------------------------------\n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "# no real need to edit <a href="CppAny.htm">any</a>thing past <b><a href="CppThis.htm">this</a></b> <a href="CppPointer.htm">point</a> unless you need to add additional\n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "# rules <b><a href="CppFor.htm">for</a></b> different file extensions\n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "#---------------------------------------------------------------------------------\n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "ifneq ($(BUILD),$(notdir $(CURDIR)))\n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "#---------------------------------------------------------------------------------\n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> " \n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "<b><a href="CppExport.htm">export</a></b> OUTPUT	:=	$(CURDIR)/$(TARGET)\n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> " \n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "<b><a href="CppExport.htm">export</a></b> VPATH	:=	$(<a href="CppBOOST_FOREACH.htm">foreach</a> dir,$(<a href="CppSOURCES.htm">SOURCES</a>),$(CURDIR)/$(dir))\n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "<b><a href="CppExport.htm">export</a></b> DEPSDIR	:=	$(CURDIR)/$(BUILD)\n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "\n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "CFILES		:=	$(<a href="CppBOOST_FOREACH.htm">foreach</a> dir,$(<a href="CppSOURCES.htm">SOURCES</a>),$(notdir $(wildcard $(dir)<a href="CppComment.htm">/*</a>.c)))\n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "CPPFILES	:=	$(<a href="CppBOOST_FOREACH.htm">foreach</a> dir,$(<a href="CppSOURCES.htm">SOURCES</a>),$(notdir $(wildcard $(dir)<a href="CppComment.htm">/*</a>.cpp)))\n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "SFILES		:=	$(<a href="CppBOOST_FOREACH.htm">foreach</a> dir,$(<a href="CppSOURCES.htm">SOURCES</a>),$(notdir $(wildcard $(dir)<a href="CppComment.htm">/*</a>.s)))\n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "BINFILES	:=	$(<a href="CppBOOST_FOREACH.htm">foreach</a> dir,$(<a href="CppSOURCES.htm">SOURCES</a>),$(notdir $(wildcard $(dir)<a href="CppComment.htm">/*</a>.bin)))\n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> " \n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "#---------------------------------------------------------------------------------\n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "# use CXX <b><a href="CppFor.htm">for</a></b> <a href="CppLink.htm">link</a>ing <a href="Cpp.htm">C++</a> projects, CC <b><a href="CppFor.htm">for</a></b> standard C\n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "#---------------------------------------------------------------------------------\n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "ifeq ($(strip $(CPPFILES)),)\n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "#---------------------------------------------------------------------------------\n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "	<b><a href="CppExport.htm">export</a></b> LD	:=	$(CC)\n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "#---------------------------------------------------------------------------------\n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "<b><a href="CppElse.htm">else</a></b>\n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "#---------------------------------------------------------------------------------\n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "	<b><a href="CppExport.htm">export</a></b> LD	:=	$(CXX)\n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "#---------------------------------------------------------------------------------\n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "endif\n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "#---------------------------------------------------------------------------------\n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "\n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "<b><a href="CppExport.htm">export</a></b> OFILES	:=	$(BINFILES:.bin=.o) \\\n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "					$(CPPFILES:.cpp=.o) $(CFILES:.c=.o) $(SFILES:.s=.o)\n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> " \n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "<b><a href="CppExport.htm">export</a></b> INCLUDE	:=	$(<a href="CppBOOST_FOREACH.htm">foreach</a> dir,$(INCLUDES),-I$(CURDIR)/$(dir)) \\\n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "					$(<a href="CppBOOST_FOREACH.htm">foreach</a> dir,$(LIBDIRS),-I$(dir)/include) \\\n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "					$(<a href="CppBOOST_FOREACH.htm">foreach</a> dir,$(LIBDIRS),-I$(dir)/include) \\\n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "					-I$(CURDIR)/$(BUILD)\n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> " \n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "<b><a href="CppExport.htm">export</a></b> LIBPATHS	:=	$(<a href="CppBOOST_FOREACH.htm">foreach</a> dir,$(LIBDIRS),-L$(dir)/lib)\n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> " \n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> ".PHONY: $(BUILD) clean\n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> " \n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "#---------------------------------------------------------------------------------\n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "$(BUILD):\n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "	@[ <a href="CppOperatorMinus.htm">-</a>d $@ ] <a href="CppOperatorLogicalOr.htm">||</a> mkdir <a href="CppOperatorMinus.htm">-</a>p $@\n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "	@<a href="CppMake.htm">make</a> <a href="CppOperatorMinus.htm">-</a>-no-print-directory <a href="CppOperatorMinus.htm">-</a>C $(BUILD) <a href="CppOperatorMinus.htm">-</a>f $(CURDIR)/<a href="CppMakefile.htm">Makefile</a>\n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> " \n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "#---------------------------------------------------------------------------------\n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "clean:\n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "	@echo clean ...\n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "	@rm <a href="CppOperatorMinus.htm">-</a>fr $(BUILD) $(TARGET).elf $(TARGET).nds $(TARGET).ds.gba \n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> " \n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> " \n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "#---------------------------------------------------------------------------------\n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "<b><a href="CppElse.htm">else</a></b>\n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> " \n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "DEPE<a href="CppNds.htm">NDS</a>	:=	$(OFILES:.o=.d)\n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> " \n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "#---------------------------------------------------------------------------------\n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "# <a href="CppMain.htm">main</a> targets\n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "#---------------------------------------------------------------------------------\n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "$(OUTPUT).nds	: 	$(OUTPUT).elf\n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "$(OUTPUT).elf	:	$(OFILES)\n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> " \n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "#---------------------------------------------------------------------------------\n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "%.o	:	%.bin\n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "#---------------------------------------------------------------------------------\n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "	@echo $(notdir $&lt;)\n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "	$(bin2o)\n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> " \n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> " \n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "-include $(DEPE<a href="CppNds.htm">NDS</a>)\n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> " \n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "#---------------------------------------------------------------------------------------\n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "endif\n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "#---------------------------------------------------------------------------------------\n";<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "#---------------------------------------------------------------------------------\n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> ".SUFFIXES:\n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "#---------------------------------------------------------------------------------\n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "\n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "ifeq ($(strip $(DEVKITARM)),)\n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "$(error \"Please set DEVKITARM in your environment. <b><a href="CppExport.html">export</a></b> DEVKITARM=&lt;path to&gt;<a href="CppDevkitArm.html">devkitARM</a>\")\n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "endif\n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "\n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "include $(DEVKITARM)/ds_rules\n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "\n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "#---------------------------------------------------------------------------------\n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "# TARGET is the name of the output\n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "# BUILD is the directory where object files &amp; intermediate files will be placed\n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "# <a href="CppQmakeSources.html">SOURCES</a> is a list of directories containing source code\n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "# INCLUDES is a list of directories containing extra <a href="CppHeaderFile.html">header file</a>s\n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "#---------------------------------------------------------------------------------\n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "TARGET		:=	$(shell basename $(CURDIR))\n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "BUILD		:=	build\n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "<a href="CppQmakeSources.html">SOURCES</a>		:=	gfx source data&nbsp;&nbsp;\n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "INCLUDES	:=	include build <a href="CppOperatorDivide.htm">/</a>opt/devkitpro/<a href="CppLibnds.html">libnds</a>-1.4.7/include\n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "\n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "#---------------------------------------------------------------------------------\n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "# options <b><a href="CppFor.htm">for</a></b> code generation\n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "#---------------------------------------------------------------------------------\n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "ARCH	:=	-mthumb <a href="CppOperatorMinus.htm">-</a>mthumb-interwork\n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "\n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "CFLAGS	:=	-g <a href="CppWall.html">-Wall</a> <a href="CppOperatorMinus.htm">-</a>O2\\\n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> " 			-march=armv5te <a href="CppOperatorMinus.htm">-</a>mtune=arm946e-s <a href="CppOperatorMinus.htm">-</a>fomit-frame-<a href="CppPointer.html">pointer</a>\\\n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "			-ffast-math \\\n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "			$(ARCH)\n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "\n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "CFLAGS	<a href="CppOperatorPlusAssign.htm">+=</a>	$(INCLUDE) <a href="CppOperatorMinus.htm">-</a>DARM9\n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "CXXFLAGS	:<a href="CppOperatorAssign.htm">=</a> $(CFLAGS) <a href="CppOperatorMinus.htm">-</a>fno-rtti <a href="CppOperatorMinus.htm">-</a>fno-<a href="CppException.html">exception</a>s\n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "\n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "ASFLAGS	:=	-g $(ARCH)\n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "LDFLAGS	=	-specs=ds_arm9.specs <a href="CppOperatorMinus.htm">-</a>g $(ARCH) <a href="CppOperatorMinus.htm">-</a>mno-fpu <a href="CppOperatorMinus.htm">-</a>Wl,-Map,$(notdir $*.map)\n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "\n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "#---------------------------------------------------------------------------------\n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "# <a href="CppAny.htm">any</a> extra libraries we wish to <a href="CppLink.htm">link</a> with the project\n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "#---------------------------------------------------------------------------------\n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "<a href="CppQmakeLibs<a href="CppHeaderFile.htm">.h</a>tm">LIBS</a>	:<a href="CppOperatorAssign.htm">=</a> <a href="CppOperatorMinus.htm">-</a>lnds9\n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> " \n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> " \n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "#---------------------------------------------------------------------------------\n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "# list of directories containing libraries, <b><a href="CppThis.htm">this</a></b> must be the top level containing\n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "# include and lib\n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "#---------------------------------------------------------------------------------\n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "LIBDIRS	:=	$(LIB<a href="CppNds.htm">NDS</a>)\n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> " \n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "#---------------------------------------------------------------------------------\n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "# no real need to edit <a href="CppAny.htm">any</a>thing past <b><a href="CppThis.htm">this</a></b> <a href="CppPointer.html">point</a> unless you need to add additional\n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "# rules <b><a href="CppFor.htm">for</a></b> different file extensions\n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "#---------------------------------------------------------------------------------\n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "ifneq ($(BUILD),$(notdir $(CURDIR)))\n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "#---------------------------------------------------------------------------------\n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> " \n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "<b><a href="CppExport.html">export</a></b> OUTPUT	:=	$(CURDIR)/$(TARGET)\n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> " \n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "<b><a href="CppExport.html">export</a></b> VPATH	:=	$(<a href="CppBOOST_FOREACH.html">foreach</a> dir,$(<a href="CppQmakeSources.html">SOURCES</a>),$(CURDIR)/$(dir))\n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "<b><a href="CppExport.html">export</a></b> DEPSDIR	:=	$(CURDIR)/$(BUILD)\n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "\n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "C<a href="CppCfile<a href="CppHeaderFile.htm">.h</a>tm">FILE</a>S		:=	$(<a href="CppBOOST_FOREACH.html">foreach</a> dir,$(<a href="CppQmakeSources.html">SOURCES</a>),$(notdir $(wildcard $(dir)<a href="CppComment.htm">/*</a>.c)))\n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "CPP<a href="CppCfile<a href="CppHeaderFile.htm">.h</a>tm">FILE</a>S	:=	$(<a href="CppBOOST_FOREACH.html">foreach</a> dir,$(<a href="CppQmakeSources.html">SOURCES</a>),$(notdir $(wildcard $(dir)<a href="CppComment.htm">/*</a><a href="CppImplementationFile.html">.cpp</a>)))\n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "S<a href="CppCfile<a href="CppHeaderFile.htm">.h</a>tm">FILE</a>S		:=	$(<a href="CppBOOST_FOREACH.html">foreach</a> dir,$(<a href="CppQmakeSources.html">SOURCES</a>),$(notdir $(wildcard $(dir)<a href="CppComment.htm">/*</a>.s)))\n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "BIN<a href="CppCfile<a href="CppHeaderFile.htm">.h</a>tm">FILE</a>S	:=	$(<a href="CppBOOST_FOREACH.html">foreach</a> dir,$(<a href="CppQmakeSources.html">SOURCES</a>),$(notdir $(wildcard $(dir)<a href="CppComment.htm">/*</a>.bin)))\n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> " \n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "#---------------------------------------------------------------------------------\n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "# use CXX <b><a href="CppFor.htm">for</a></b> <a href="CppLink.htm">link</a>ing <a href="Cpp.htm">C++</a> projects, CC <b><a href="CppFor.htm">for</a></b> standard C\n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "#---------------------------------------------------------------------------------\n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "ifeq ($(strip $(CPP<a href="CppCfile<a href="CppHeaderFile.htm">.h</a>tm">FILE</a>S)),)\n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "#---------------------------------------------------------------------------------\n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "	<b><a href="CppExport.html">export</a></b> LD	:=	$(CC)\n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "#---------------------------------------------------------------------------------\n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "<b><a href="CppElse.htm">else</a></b>\n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "#---------------------------------------------------------------------------------\n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "	<b><a href="CppExport.html">export</a></b> LD	:=	$(CXX)\n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "#---------------------------------------------------------------------------------\n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "endif\n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "#---------------------------------------------------------------------------------\n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "\n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "<b><a href="CppExport.html">export</a></b> O<a href="CppCfile<a href="CppHeaderFile.htm">.h</a>tm">FILE</a>S	:=	$(BIN<a href="CppCfile<a href="CppHeaderFile.htm">.h</a>tm">FILE</a>S:.bin=.o) \\\n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "					$(CPP<a href="CppCfile<a href="CppHeaderFile.htm">.h</a>tm">FILE</a>S:<a href="CppImplementationFile.html">.cpp</a>=.o) $(C<a href="CppCfile<a href="CppHeaderFile.htm">.h</a>tm">FILE</a>S:.c=.o) $(S<a href="CppCfile<a href="CppHeaderFile.htm">.h</a>tm">FILE</a>S:.s=.o)\n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> " \n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "<b><a href="CppExport.html">export</a></b> INCLUDE	:=	$(<a href="CppBOOST_FOREACH.html">foreach</a> dir,$(INCLUDES),-I$(CURDIR)/$(dir)) \\\n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "					$(<a href="CppBOOST_FOREACH.html">foreach</a> dir,$(LIBDIRS),-I$(dir)/include) \\\n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "					$(<a href="CppBOOST_FOREACH.html">foreach</a> dir,$(LIBDIRS),-I$(dir)/include) \\\n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "					-I$(CURDIR)/$(BUILD)\n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> " \n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "<b><a href="CppExport.html">export</a></b> LIBPATHS	:=	$(<a href="CppBOOST_FOREACH.html">foreach</a> dir,$(LIBDIRS),-L$(dir)/lib)\n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> " \n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> ".PHONY: $(BUILD) clean\n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> " \n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "#---------------------------------------------------------------------------------\n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "$(BUILD):\n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "	@[ <a href="CppOperatorMinus.htm">-</a>d $@ ] <a href="CppOperatorLogicalOr.htm">||</a> mkdir <a href="CppOperatorMinus.htm">-</a>p $@\n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "	@<a href="CppMake.htm">make</a> <a href="CppOperatorMinus.htm">-</a>-no-print-directory <a href="CppOperatorMinus.htm">-</a>C $(BUILD) <a href="CppOperatorMinus.htm">-</a>f $(CURDIR)/<a href="CppMakefile.html">Makefile</a>\n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> " \n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "#---------------------------------------------------------------------------------\n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "clean:\n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "	@echo clean ...\n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "	@rm <a href="CppOperatorMinus.htm">-</a>fr $(BUILD) $(TARGET).elf $(TARGET).nds $(TARGET).ds.gba \n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> " \n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> " \n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "#---------------------------------------------------------------------------------\n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "<b><a href="CppElse.htm">else</a></b>\n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> " \n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "DEPE<a href="CppNds.htm">NDS</a>	:=	$(O<a href="CppCfile<a href="CppHeaderFile.htm">.h</a>tm">FILE</a>S:.o=.d)\n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> " \n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "#---------------------------------------------------------------------------------\n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "# <a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a> targets\n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "#---------------------------------------------------------------------------------\n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "$(OUTPUT).nds	: 	$(OUTPUT).elf\n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "$(OUTPUT).elf	:	$(O<a href="CppCfile<a href="CppHeaderFile.htm">.h</a>tm">FILE</a>S)\n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> " \n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "#---------------------------------------------------------------------------------\n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "%.o	:	%.bin\n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "#---------------------------------------------------------------------------------\n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "	@echo $(notdir $&lt;)\n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "	$(bin2o)\n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> " \n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> " \n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "-include $(DEPE<a href="CppNds.htm">NDS</a>)\n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> " \n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "#---------------------------------------------------------------------------------------\n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "endif\n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "#---------------------------------------------------------------------------------------\n";<br/>
 }<br/>
 <br/>
-<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> CREATEHOLYMAKEFILE_H<br/>
+<a href="CppEndif.html">#endif</a> <a href="CppComment.htm">//</a> CREATEHOLYMAKE<a href="CppCfile<a href="CppHeaderFile.htm">.h</a>tm">FILE</a>_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -291,152 +291,152 @@ QMAKE_CXX_FLAGS_WARN_ON += <a href="CppWextra.htm">-Wextra</a><br/>
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="createmakefile.h" border = "1"><tr><td><code>
-<a href="CppIfndef.htm">#ifndef</a> CREATEMAKEFILE_H<br/>
-<a href="CppDefine.htm">#define</a> CREATEMAKEFILE_H<br/>
+<a href="CppIfndef.html">#ifndef</a> CREATEMAKE<a href="CppCfile<a href="CppHeaderFile.htm">.h</a>tm">FILE</a>_H<br/>
+<a href="CppDefine.html">#define</a> CREATEMAKE<a href="CppCfile<a href="CppHeaderFile.htm">.h</a>tm">FILE</a>_H<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppFstreamH.htm">fstream</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> "../<a href="Tools.htm">Tool</a>TestProFile/<a href="CppProFile.htm">profile</a>.h"<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppFstreamH.html">fstream</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> "../<a href="Tools.htm">Tool</a>TestProFile/<a href="CppProFile.html">profile</a><a href="CppHeaderFile.htm">.h</a>"<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> Create<a href="CppMakefile.htm">Makefile</a>(<b><a href="CppConst.htm">const</a></b> ProFile&amp; p)<br/>
+<b><a href="CppVoid.htm">void</a></b> Create<a href="CppMakefile.html">Makefile</a>(<b><a href="CppConst.html">const</a></b> ProFile&amp; p)<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppOfstream.htm">std::ofstream</a> f("<a href="CppMakefile.htm">Makefile</a>");<br/>
+&nbsp;&nbsp;<a href="CppOfstream.html">std::ofstream</a> f("<a href="CppMakefile.html">Makefile</a>");<br/>
 &nbsp;&nbsp;f<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppAdd.htm">Add</a> header<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "# <a href="ToolNdsmake.htm">ndsmake</a> <a href="CppVersion.htm">version</a> 0.2\n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "# by Richel Bilderbeek\n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "# www.richelbilderbeek.nl\n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "# Arguments: " <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> p.GetProFilename() <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "\n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "#---------------------------------------------------------------------------------\n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> ".SUFFIXES:\n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "#---------------------------------------------------------------------------------\n"<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "DEVKITARM:=/opt/devkitpro/<a href="CppDevkitArm.htm">devkitARM</a>\n" <a href="CppComment.htm">//</a>Bilderbikkel addition<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "DEVKITPRO:=/opt/devkitpro\n" <a href="CppComment.htm">//</a>Bilderbikkel addition<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "\n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "ifeq ($(strip $(DEVKITARM)),)\n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "$(error \"Please set DEVKITARM in your environment. <b><a href="CppExport.htm">export</a></b> DEVKITARM=&lt;path to&gt;<a href="CppDevkitArm.htm">devkitARM</a>\")\n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "endif\n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "\n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "include $(DEVKITARM)/ds_rules\n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "\n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "#---------------------------------------------------------------------------------\n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "# TARGET is the name of the output\n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "# BUILD is the directory where object files &amp; intermediate files will be placed\n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "# <a href="CppSOURCES.htm">SOURCES</a> is a list of directories containing source code\n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "# INCLUDES is a list of directories containing extra <a href="CppHeaderFile.htm">header file</a>s\n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "#---------------------------------------------------------------------------------\n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "TARGET :<a href="CppOperatorAssign.htm">=</a> " <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> p.GetTarget() <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "\n" <a href="CppComment.htm">//</a>Bilderbikkel addition<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "BUILD		:=	build\n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "<a href="CppSOURCES.htm">SOURCES</a>		:=	gfx source data&nbsp;&nbsp;\n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "INCLUDES	:=	include build <a href="CppOperatorDivide.htm">/</a>usr/include <a href="CppOperatorDivide.htm">/</a>opt/devkitpro/<a href="CppLibnds.htm">libnds</a>-1.4.7/include\n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "\n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "#---------------------------------------------------------------------------------\n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "# options <b><a href="CppFor.htm">for</a></b> code generation\n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "#---------------------------------------------------------------------------------\n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "ARCH	:=	-mthumb <a href="CppOperatorMinus.htm">-</a>mthumb-interwork\n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "\n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "CFLAGS	:=	-g <a href="CppWall.htm">-Wall</a> <a href="CppOperatorMinus.htm">-</a>O2\\\n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> " 			-march=armv5te <a href="CppOperatorMinus.htm">-</a>mtune=arm946e-s <a href="CppOperatorMinus.htm">-</a>fomit-frame-<a href="CppPointer.htm">pointer</a>\\\n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "			-ffast-math \\\n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "			$(ARCH)\n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "\n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "CFLAGS	<a href="CppOperatorPlusAssign.htm">+=</a>	$(INCLUDE) <a href="CppOperatorMinus.htm">-</a>DARM9\n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "CXXFLAGS	:<a href="CppOperatorAssign.htm">=</a> $(CFLAGS) <a href="CppOperatorMinus.htm">-</a>fno-rtti <a href="CppOperatorMinus.htm">-</a>fno-<a href="CppException.htm">exception</a>s\n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "\n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "ASFLAGS	:=	-g $(ARCH)\n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "LDFLAGS	=	-specs=ds_arm9.specs <a href="CppOperatorMinus.htm">-</a>g $(ARCH) <a href="CppOperatorMinus.htm">-</a>mno-fpu <a href="CppOperatorMinus.htm">-</a>Wl,-Map,$(notdir $*.map)\n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "\n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "#---------------------------------------------------------------------------------\n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "# <a href="CppAny.htm">any</a> extra libraries we wish to <a href="CppLink.htm">link</a> with the project\n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "#---------------------------------------------------------------------------------\n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "<a href="CppLIBS.htm">LIBS</a>	:<a href="CppOperatorAssign.htm">=</a> <a href="CppOperatorMinus.htm">-</a>lnds9\n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> " \n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> " \n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "#---------------------------------------------------------------------------------\n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "# list of directories containing libraries, <b><a href="CppThis.htm">this</a></b> must be the top level containing\n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "# include and lib\n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "#---------------------------------------------------------------------------------\n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "LIBDIRS	:=	$(LIB<a href="CppNds.htm">NDS</a>)\n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> " \n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "#---------------------------------------------------------------------------------\n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "# no real need to edit <a href="CppAny.htm">any</a>thing past <b><a href="CppThis.htm">this</a></b> <a href="CppPointer.htm">point</a> unless you need to add additional\n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "# rules <b><a href="CppFor.htm">for</a></b> different file extensions\n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "#---------------------------------------------------------------------------------\n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "ifneq ($(BUILD),$(notdir $(CURDIR)))\n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "#---------------------------------------------------------------------------------\n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> " \n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "<b><a href="CppExport.htm">export</a></b> OUTPUT	:=	$(CURDIR)/$(TARGET)\n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> " \n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "<b><a href="CppExport.htm">export</a></b> VPATH	:=	$(<a href="CppBOOST_FOREACH.htm">foreach</a> dir,$(<a href="CppSOURCES.htm">SOURCES</a>),$(CURDIR)/$(dir))\n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "<b><a href="CppExport.htm">export</a></b> DEPSDIR	:=	$(CURDIR)/$(BUILD)\n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "\n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "CFILES		:=	$(<a href="CppBOOST_FOREACH.htm">foreach</a> dir,$(<a href="CppSOURCES.htm">SOURCES</a>),$(notdir $(wildcard $(dir)<a href="CppComment.htm">/*</a>.c)))\n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "CPPFILES	:=	$(<a href="CppBOOST_FOREACH.htm">foreach</a> dir,$(<a href="CppSOURCES.htm">SOURCES</a>),$(notdir $(wildcard $(dir)<a href="CppComment.htm">/*</a>.cpp)))\n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "SFILES		:=	$(<a href="CppBOOST_FOREACH.htm">foreach</a> dir,$(<a href="CppSOURCES.htm">SOURCES</a>),$(notdir $(wildcard $(dir)<a href="CppComment.htm">/*</a>.s)))\n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "BINFILES	:=	$(<a href="CppBOOST_FOREACH.htm">foreach</a> dir,$(<a href="CppSOURCES.htm">SOURCES</a>),$(notdir $(wildcard $(dir)<a href="CppComment.htm">/*</a>.bin)))\n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> " \n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "#---------------------------------------------------------------------------------\n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "# use CXX <b><a href="CppFor.htm">for</a></b> <a href="CppLink.htm">link</a>ing <a href="Cpp.htm">C++</a> projects, CC <b><a href="CppFor.htm">for</a></b> standard C\n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "#---------------------------------------------------------------------------------\n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "ifeq ($(strip $(CPPFILES)),)\n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "#---------------------------------------------------------------------------------\n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "	<b><a href="CppExport.htm">export</a></b> LD	:=	$(CC)\n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "#---------------------------------------------------------------------------------\n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "<b><a href="CppElse.htm">else</a></b>\n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "#---------------------------------------------------------------------------------\n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "	<b><a href="CppExport.htm">export</a></b> LD	:=	$(CXX)\n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "#---------------------------------------------------------------------------------\n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "endif\n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "#---------------------------------------------------------------------------------\n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "\n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "<b><a href="CppExport.htm">export</a></b> OFILES	:=	$(BINFILES:.bin=.o) \\\n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "					$(CPPFILES:.cpp=.o) $(CFILES:.c=.o) $(SFILES:.s=.o)\n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> " \n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "<b><a href="CppExport.htm">export</a></b> INCLUDE	:=	$(<a href="CppBOOST_FOREACH.htm">foreach</a> dir,$(INCLUDES),-I$(CURDIR)/$(dir)) \\\n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "					$(<a href="CppBOOST_FOREACH.htm">foreach</a> dir,$(LIBDIRS),-I$(dir)/include) \\\n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "					$(<a href="CppBOOST_FOREACH.htm">foreach</a> dir,$(LIBDIRS),-I$(dir)/include) \\\n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "					-I$(CURDIR)/$(BUILD)\n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> " \n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "<b><a href="CppExport.htm">export</a></b> LIBPATHS	:=	$(<a href="CppBOOST_FOREACH.htm">foreach</a> dir,$(LIBDIRS),-L$(dir)/lib)\n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> " \n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> ".PHONY: $(BUILD) clean\n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> " \n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "#---------------------------------------------------------------------------------\n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "$(BUILD):\n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "	@[ <a href="CppOperatorMinus.htm">-</a>d $@ ] <a href="CppOperatorLogicalOr.htm">||</a> mkdir <a href="CppOperatorMinus.htm">-</a>p $@\n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "	@<a href="CppMake.htm">make</a> <a href="CppOperatorMinus.htm">-</a>-no-print-directory <a href="CppOperatorMinus.htm">-</a>C $(BUILD) <a href="CppOperatorMinus.htm">-</a>f $(CURDIR)/<a href="CppMakefile.htm">Makefile</a>\n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> " \n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "#---------------------------------------------------------------------------------\n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "clean:\n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "	@echo clean ...\n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "	@rm <a href="CppOperatorMinus.htm">-</a>fr $(BUILD) $(TARGET).elf $(TARGET).nds $(TARGET).ds.gba \n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> " \n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> " \n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "#---------------------------------------------------------------------------------\n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "<b><a href="CppElse.htm">else</a></b>\n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> " \n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "DEPE<a href="CppNds.htm">NDS</a>	:=	$(OFILES:.o=.d)\n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> " \n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "#---------------------------------------------------------------------------------\n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "# <a href="CppMain.htm">main</a> targets\n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "#---------------------------------------------------------------------------------\n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "$(OUTPUT).nds	: 	$(OUTPUT).elf\n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "$(OUTPUT).elf	:	$(OFILES)\n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> " \n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "#---------------------------------------------------------------------------------\n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "%.o	:	%.bin\n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "#---------------------------------------------------------------------------------\n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "	@echo $(notdir $&lt;)\n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "	$(bin2o)\n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> " \n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> " \n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "-include $(DEPE<a href="CppNds.htm">NDS</a>)\n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> " \n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "#---------------------------------------------------------------------------------------\n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "endif\n"<br/>
-&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "#---------------------------------------------------------------------------------------\n";<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "# <a href="ToolNdsmake.html">ndsmake</a> <a href="CppVersion.html">version</a> 0.2\n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "# by Richel Bilderbeek\n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "# www.richelbilderbeek.nl\n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "# Arguments: " <a href="CppOperatorStreamOut.html">&lt;&lt;</a> p.GetProFilename() <a href="CppOperatorStreamOut.html">&lt;&lt;</a> "\n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "#---------------------------------------------------------------------------------\n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> ".SUFFIXES:\n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "#---------------------------------------------------------------------------------\n"<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppOperatorStreamOut.html">&lt;&lt;</a> "DEVKITARM:=/opt/devkitpro/<a href="CppDevkitArm.html">devkitARM</a>\n" <a href="CppComment.htm">//</a>Bilderbikkel addition<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppOperatorStreamOut.html">&lt;&lt;</a> "DEVKITPRO:=/opt/devkitpro\n" <a href="CppComment.htm">//</a>Bilderbikkel addition<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "\n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "ifeq ($(strip $(DEVKITARM)),)\n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "$(error \"Please set DEVKITARM in your environment. <b><a href="CppExport.html">export</a></b> DEVKITARM=&lt;path to&gt;<a href="CppDevkitArm.html">devkitARM</a>\")\n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "endif\n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "\n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "include $(DEVKITARM)/ds_rules\n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "\n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "#---------------------------------------------------------------------------------\n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "# TARGET is the name of the output\n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "# BUILD is the directory where object files &amp; intermediate files will be placed\n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "# <a href="CppQmakeSources.html">SOURCES</a> is a list of directories containing source code\n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "# INCLUDES is a list of directories containing extra <a href="CppHeaderFile.html">header file</a>s\n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "#---------------------------------------------------------------------------------\n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "TARGET :<a href="CppOperatorAssign.htm">=</a> " <a href="CppOperatorStreamOut.html">&lt;&lt;</a> p.GetTarget() <a href="CppOperatorStreamOut.html">&lt;&lt;</a> "\n" <a href="CppComment.htm">//</a>Bilderbikkel addition<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "BUILD		:=	build\n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "<a href="CppQmakeSources.html">SOURCES</a>		:=	gfx source data&nbsp;&nbsp;\n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "INCLUDES	:=	include build <a href="CppOperatorDivide.htm">/</a>usr/include <a href="CppOperatorDivide.htm">/</a>opt/devkitpro/<a href="CppLibnds.html">libnds</a>-1.4.7/include\n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "\n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "#---------------------------------------------------------------------------------\n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "# options <b><a href="CppFor.htm">for</a></b> code generation\n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "#---------------------------------------------------------------------------------\n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "ARCH	:=	-mthumb <a href="CppOperatorMinus.htm">-</a>mthumb-interwork\n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "\n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "CFLAGS	:=	-g <a href="CppWall.html">-Wall</a> <a href="CppOperatorMinus.htm">-</a>O2\\\n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> " 			-march=armv5te <a href="CppOperatorMinus.htm">-</a>mtune=arm946e-s <a href="CppOperatorMinus.htm">-</a>fomit-frame-<a href="CppPointer.html">pointer</a>\\\n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "			-ffast-math \\\n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "			$(ARCH)\n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "\n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "CFLAGS	<a href="CppOperatorPlusAssign.htm">+=</a>	$(INCLUDE) <a href="CppOperatorMinus.htm">-</a>DARM9\n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "CXXFLAGS	:<a href="CppOperatorAssign.htm">=</a> $(CFLAGS) <a href="CppOperatorMinus.htm">-</a>fno-rtti <a href="CppOperatorMinus.htm">-</a>fno-<a href="CppException.html">exception</a>s\n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "\n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "ASFLAGS	:=	-g $(ARCH)\n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "LDFLAGS	=	-specs=ds_arm9.specs <a href="CppOperatorMinus.htm">-</a>g $(ARCH) <a href="CppOperatorMinus.htm">-</a>mno-fpu <a href="CppOperatorMinus.htm">-</a>Wl,-Map,$(notdir $*.map)\n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "\n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "#---------------------------------------------------------------------------------\n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "# <a href="CppAny.htm">any</a> extra libraries we wish to <a href="CppLink.htm">link</a> with the project\n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "#---------------------------------------------------------------------------------\n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "<a href="CppQmakeLibs<a href="CppHeaderFile.htm">.h</a>tm">LIBS</a>	:<a href="CppOperatorAssign.htm">=</a> <a href="CppOperatorMinus.htm">-</a>lnds9\n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> " \n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> " \n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "#---------------------------------------------------------------------------------\n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "# list of directories containing libraries, <b><a href="CppThis.htm">this</a></b> must be the top level containing\n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "# include and lib\n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "#---------------------------------------------------------------------------------\n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "LIBDIRS	:=	$(LIB<a href="CppNds.htm">NDS</a>)\n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> " \n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "#---------------------------------------------------------------------------------\n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "# no real need to edit <a href="CppAny.htm">any</a>thing past <b><a href="CppThis.htm">this</a></b> <a href="CppPointer.html">point</a> unless you need to add additional\n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "# rules <b><a href="CppFor.htm">for</a></b> different file extensions\n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "#---------------------------------------------------------------------------------\n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "ifneq ($(BUILD),$(notdir $(CURDIR)))\n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "#---------------------------------------------------------------------------------\n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> " \n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "<b><a href="CppExport.html">export</a></b> OUTPUT	:=	$(CURDIR)/$(TARGET)\n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> " \n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "<b><a href="CppExport.html">export</a></b> VPATH	:=	$(<a href="CppBOOST_FOREACH.html">foreach</a> dir,$(<a href="CppQmakeSources.html">SOURCES</a>),$(CURDIR)/$(dir))\n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "<b><a href="CppExport.html">export</a></b> DEPSDIR	:=	$(CURDIR)/$(BUILD)\n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "\n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "C<a href="CppCfile<a href="CppHeaderFile.htm">.h</a>tm">FILE</a>S		:=	$(<a href="CppBOOST_FOREACH.html">foreach</a> dir,$(<a href="CppQmakeSources.html">SOURCES</a>),$(notdir $(wildcard $(dir)<a href="CppComment.htm">/*</a>.c)))\n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "CPP<a href="CppCfile<a href="CppHeaderFile.htm">.h</a>tm">FILE</a>S	:=	$(<a href="CppBOOST_FOREACH.html">foreach</a> dir,$(<a href="CppQmakeSources.html">SOURCES</a>),$(notdir $(wildcard $(dir)<a href="CppComment.htm">/*</a><a href="CppImplementationFile.html">.cpp</a>)))\n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "S<a href="CppCfile<a href="CppHeaderFile.htm">.h</a>tm">FILE</a>S		:=	$(<a href="CppBOOST_FOREACH.html">foreach</a> dir,$(<a href="CppQmakeSources.html">SOURCES</a>),$(notdir $(wildcard $(dir)<a href="CppComment.htm">/*</a>.s)))\n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "BIN<a href="CppCfile<a href="CppHeaderFile.htm">.h</a>tm">FILE</a>S	:=	$(<a href="CppBOOST_FOREACH.html">foreach</a> dir,$(<a href="CppQmakeSources.html">SOURCES</a>),$(notdir $(wildcard $(dir)<a href="CppComment.htm">/*</a>.bin)))\n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> " \n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "#---------------------------------------------------------------------------------\n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "# use CXX <b><a href="CppFor.htm">for</a></b> <a href="CppLink.htm">link</a>ing <a href="Cpp.htm">C++</a> projects, CC <b><a href="CppFor.htm">for</a></b> standard C\n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "#---------------------------------------------------------------------------------\n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "ifeq ($(strip $(CPP<a href="CppCfile<a href="CppHeaderFile.htm">.h</a>tm">FILE</a>S)),)\n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "#---------------------------------------------------------------------------------\n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "	<b><a href="CppExport.html">export</a></b> LD	:=	$(CC)\n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "#---------------------------------------------------------------------------------\n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "<b><a href="CppElse.htm">else</a></b>\n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "#---------------------------------------------------------------------------------\n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "	<b><a href="CppExport.html">export</a></b> LD	:=	$(CXX)\n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "#---------------------------------------------------------------------------------\n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "endif\n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "#---------------------------------------------------------------------------------\n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "\n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "<b><a href="CppExport.html">export</a></b> O<a href="CppCfile<a href="CppHeaderFile.htm">.h</a>tm">FILE</a>S	:=	$(BIN<a href="CppCfile<a href="CppHeaderFile.htm">.h</a>tm">FILE</a>S:.bin=.o) \\\n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "					$(CPP<a href="CppCfile<a href="CppHeaderFile.htm">.h</a>tm">FILE</a>S:<a href="CppImplementationFile.html">.cpp</a>=.o) $(C<a href="CppCfile<a href="CppHeaderFile.htm">.h</a>tm">FILE</a>S:.c=.o) $(S<a href="CppCfile<a href="CppHeaderFile.htm">.h</a>tm">FILE</a>S:.s=.o)\n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> " \n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "<b><a href="CppExport.html">export</a></b> INCLUDE	:=	$(<a href="CppBOOST_FOREACH.html">foreach</a> dir,$(INCLUDES),-I$(CURDIR)/$(dir)) \\\n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "					$(<a href="CppBOOST_FOREACH.html">foreach</a> dir,$(LIBDIRS),-I$(dir)/include) \\\n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "					$(<a href="CppBOOST_FOREACH.html">foreach</a> dir,$(LIBDIRS),-I$(dir)/include) \\\n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "					-I$(CURDIR)/$(BUILD)\n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> " \n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "<b><a href="CppExport.html">export</a></b> LIBPATHS	:=	$(<a href="CppBOOST_FOREACH.html">foreach</a> dir,$(LIBDIRS),-L$(dir)/lib)\n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> " \n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> ".PHONY: $(BUILD) clean\n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> " \n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "#---------------------------------------------------------------------------------\n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "$(BUILD):\n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "	@[ <a href="CppOperatorMinus.htm">-</a>d $@ ] <a href="CppOperatorLogicalOr.htm">||</a> mkdir <a href="CppOperatorMinus.htm">-</a>p $@\n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "	@<a href="CppMake.htm">make</a> <a href="CppOperatorMinus.htm">-</a>-no-print-directory <a href="CppOperatorMinus.htm">-</a>C $(BUILD) <a href="CppOperatorMinus.htm">-</a>f $(CURDIR)/<a href="CppMakefile.html">Makefile</a>\n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> " \n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "#---------------------------------------------------------------------------------\n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "clean:\n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "	@echo clean ...\n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "	@rm <a href="CppOperatorMinus.htm">-</a>fr $(BUILD) $(TARGET).elf $(TARGET).nds $(TARGET).ds.gba \n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> " \n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> " \n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "#---------------------------------------------------------------------------------\n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "<b><a href="CppElse.htm">else</a></b>\n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> " \n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "DEPE<a href="CppNds.htm">NDS</a>	:=	$(O<a href="CppCfile<a href="CppHeaderFile.htm">.h</a>tm">FILE</a>S:.o=.d)\n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> " \n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "#---------------------------------------------------------------------------------\n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "# <a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a> targets\n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "#---------------------------------------------------------------------------------\n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "$(OUTPUT).nds	: 	$(OUTPUT).elf\n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "$(OUTPUT).elf	:	$(O<a href="CppCfile<a href="CppHeaderFile.htm">.h</a>tm">FILE</a>S)\n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> " \n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "#---------------------------------------------------------------------------------\n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "%.o	:	%.bin\n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "#---------------------------------------------------------------------------------\n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "	@echo $(notdir $&lt;)\n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "	$(bin2o)\n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> " \n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> " \n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "-include $(DEPE<a href="CppNds.htm">NDS</a>)\n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> " \n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "#---------------------------------------------------------------------------------------\n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "endif\n"<br/>
+&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "#---------------------------------------------------------------------------------------\n";<br/>
 }<br/>
 <br/>
-<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> CREATEMAKEFILE_H<br/>
+<a href="CppEndif.html">#endif</a> <a href="CppComment.htm">//</a> CREATEMAKE<a href="CppCfile<a href="CppHeaderFile.htm">.h</a>tm">FILE</a>_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -450,7 +450,7 @@ QMAKE_CXX_FLAGS_WARN_ON += <a href="CppWextra.htm">-Wextra</a><br/>
 <table summary="main.cpp" border = "1"><tr><td><code>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">/*</a><br/>
-<a href="ToolNdsmake.htm">ndsmake</a>, <a href="Tools.htm">tool</a> to generate <a href="CppNds.htm">NDS</a> <a href="CppMakefile.htm">makefile</a> from <a href="CppQtCreator.htm">Qt Creator</a> project file<br/>
+<a href="ToolNdsmake.html">ndsmake</a>, <a href="Tools.htm">tool</a> to generate <a href="CppNds.htm">NDS</a> <a href="CppMakefile.html">makefile</a> from <a href="CppQtCreator.html">Qt Creator</a> project file<br/>
 Copyright (C) 2010 Richel Bilderbeek<br/>
 <br/>
 This program is free software: you can redistribute it and/or modify<br/>
@@ -466,69 +466,69 @@ You should have received a copy of the GNU General Public License<br/>
 along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">*/</a><br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">//</a> From http://www.richelbilderbeek.nl/<a href="Tools.htm">Tool</a><a href="CppNdsmake.htm">Ndsmake</a>.htm<br/>
+<a href="CppComment.htm">//</a> From http://www.richelbilderbeek.nl/<a href="Tools.htm">Tool</a><a href="CppNdsmake.html">Ndsmake</a>.html<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppAlgorithmH.htm">algorithm</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppCstdlibH.htm">cstdlib</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppFstreamH.htm">fstream</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppIostreamH.htm">iostream</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppIteratorH.htm">iterator</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppStringH.htm">string</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppAlgorithmH.html">algorithm</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppCassertH.html">cassert</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppCstdlibH.html">cstdlib</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppFstreamH.html">fstream</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppIostreamH.html">iostream</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppIteratorH.html">iterator</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppStringH.html">string</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppVectorH.html">vector</a>&gt;<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppInclude.htm">#include</a> "createholy<a href="CppMakefile.htm">makefile</a>.h"<br/>
-<a href="CppInclude.htm">#include</a> "create<a href="CppMakefile.htm">makefile</a>.h"<br/>
-<a href="CppInclude.htm">#include</a> "<a href="ToolNdsmake.htm">ndsmake</a>.h"<br/>
-<a href="CppInclude.htm">#include</a> "../<a href="Tools.htm">Tool</a>TestProFile/<a href="CppProFile.htm">profile</a>.h"<br/>
+<a href="CppInclude.html">#include</a> "createholy<a href="CppMakefile.html">makefile</a><a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "create<a href="CppMakefile.html">makefile</a><a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "<a href="ToolNdsmake.html">ndsmake</a><a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "../<a href="Tools.htm">Tool</a>TestProFile/<a href="CppProFile.html">profile</a><a href="CppHeaderFile.htm">.h</a>"<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>(<b><a href="CppInt.htm">int</a></b> <a href="CppArgc.htm">argc</a>, <b><a href="CppChar.htm">char</a></b>* <a href="CppArgc.htm">argv</a>[])<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a>(<b><a href="CppInt.htm">int</a></b> <a href="CppArgc.htm">argc</a>, <b><a href="CppChar.htm">char</a></b>* <a href="CppArgc.htm">argv</a>[])<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> ( <a href="CppArgc.htm">argc</a><a href="CppOperatorNotEqual.htm">!=</a> 2<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorLogicalOr.htm">||</a> <a href="CppString.htm">std::string</a>(<a href="CppArgc.htm">argv</a>[1]) <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> "-help"<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorLogicalOr.htm">||</a> <a href="CppString.htm">std::string</a>(<a href="CppArgc.htm">argv</a>[1]) <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> "<a href="CppOperatorDecrement.htm">--</a>help")<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorLogicalOr.htm">||</a> <a href="CppString.html">std::string</a>(<a href="CppArgc.htm">argv</a>[1]) <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> "-help"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorLogicalOr.htm">||</a> <a href="CppString.html">std::string</a>(<a href="CppArgc.htm">argv</a>[1]) <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> "<a href="CppOperatorDecrement.htm">--</a>help")<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt;&amp; v <a href="CppOperatorAssign.htm">=</a> <a href="CppNdsmake.htm">Ndsmake</a>::GetHelp();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCopy.htm">std::copy</a>(v.begin(),v.end(),<a href="CppOstream_iterator.htm">std::ostream_iterator</a>&lt;<a href="CppString.htm">std::string</a>&gt;(<a href="CppCout.htm">std::cout</a>,"\n"));<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> 0;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppVector.html">std::vector</a>&lt;<a href="CppString.html">std::string</a>&gt;&amp; v <a href="CppOperatorAssign.htm">=</a> <a href="CppNdsmake.html">Ndsmake</a>::GetHelp();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCopy.html">std::copy</a>(v.begin(),v.end(),<a href="CppOstream_iterator.html">std::ostream_iterator</a>&lt;<a href="CppString.html">std::string</a>&gt;(<a href="CppCout.html">std::cout</a>,"\n"));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> 0;<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (<a href="CppString.htm">std::string</a>(<a href="CppArgc.htm">argv</a>[1]) <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> "<a href="CppOperatorDecrement.htm">--</a>history")<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (<a href="CppString.html">std::string</a>(<a href="CppArgc.htm">argv</a>[1]) <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> "<a href="CppOperatorDecrement.htm">--</a>history")<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt;&amp; v <a href="CppOperatorAssign.htm">=</a> <a href="CppNdsmake.htm">Ndsmake</a>::GetHistory();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCopy.htm">std::copy</a>(v.begin(),v.end(),<a href="CppOstream_iterator.htm">std::ostream_iterator</a>&lt;<a href="CppString.htm">std::string</a>&gt;(<a href="CppCout.htm">std::cout</a>,"\n"));<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> 0;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppVector.html">std::vector</a>&lt;<a href="CppString.html">std::string</a>&gt;&amp; v <a href="CppOperatorAssign.htm">=</a> <a href="CppNdsmake.html">Ndsmake</a>::GetHistory();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCopy.html">std::copy</a>(v.begin(),v.end(),<a href="CppOstream_iterator.html">std::ostream_iterator</a>&lt;<a href="CppString.html">std::string</a>&gt;(<a href="CppCout.html">std::cout</a>,"\n"));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> 0;<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (<a href="CppString.htm">std::string</a>(<a href="CppArgc.htm">argv</a>[1]) <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> "<a href="CppOperatorDecrement.htm">--</a>licence")<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (<a href="CppString.html">std::string</a>(<a href="CppArgc.htm">argv</a>[1]) <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> "<a href="CppOperatorDecrement.htm">--</a>licence")<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt;&amp; v <a href="CppOperatorAssign.htm">=</a> <a href="CppNdsmake.htm">Ndsmake</a>::GetLicence();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCopy.htm">std::copy</a>(v.begin(),v.end(),<a href="CppOstream_iterator.htm">std::ostream_iterator</a>&lt;<a href="CppString.htm">std::string</a>&gt;(<a href="CppCout.htm">std::cout</a>,"\n"));<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> 0;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppVector.html">std::vector</a>&lt;<a href="CppString.html">std::string</a>&gt;&amp; v <a href="CppOperatorAssign.htm">=</a> <a href="CppNdsmake.html">Ndsmake</a>::GetLicence();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCopy.html">std::copy</a>(v.begin(),v.end(),<a href="CppOstream_iterator.html">std::ostream_iterator</a>&lt;<a href="CppString.html">std::string</a>&gt;(<a href="CppCout.html">std::cout</a>,"\n"));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> 0;<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (<a href="CppString.htm">std::string</a>(<a href="CppArgc.htm">argv</a>[1]) <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> "<a href="CppOperatorDecrement.htm">--</a><a href="CppVersion.htm">version</a>")<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (<a href="CppString.html">std::string</a>(<a href="CppArgc.htm">argv</a>[1]) <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> "<a href="CppOperatorDecrement.htm">--</a><a href="CppVersion.html">version</a>")<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppNdsmake.htm">Ndsmake</a>::Get<a href="CppVersion.htm">Version</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n';<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> 0;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCout.html">std::cout</a> <a href="CppOperatorStreamOut.html">&lt;&lt;</a> <a href="CppNdsmake.html">Ndsmake</a>::Get<a href="CppVersion.html">Version</a> <a href="CppOperatorStreamOut.html">&lt;&lt;</a> '\n';<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> 0;<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>Start <a href="ToolNdsmake.htm">ndsmake</a><br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppNdsmake.htm">Ndsmake</a> n(<a href="CppArgc.htm">argv</a>[1]);<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Start <a href="ToolNdsmake.html">ndsmake</a><br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppNdsmake.html">Ndsmake</a> n(<a href="CppArgc.htm">argv</a>[1]);<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Copy source files<br/>
-&nbsp;&nbsp;<a href="CppClog.htm">std::clog</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "<a href="CppNdsmake.htm">Ndsmake</a> cmd: " <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> n.GetCommand() <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n';<br/>
-&nbsp;&nbsp;<a href="CppSystem.htm">std::system</a>(n.GetCommand().c_str());<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>Create <a href="CppMakefile.htm">makefile</a> and <a href="CppMake.htm">make</a> it<br/>
+&nbsp;&nbsp;<a href="CppClog.html">std::clog</a> <a href="CppOperatorStreamOut.html">&lt;&lt;</a> "<a href="CppNdsmake.html">Ndsmake</a> cmd: " <a href="CppOperatorStreamOut.html">&lt;&lt;</a> n.GetCommand() <a href="CppOperatorStreamOut.html">&lt;&lt;</a> '\n';<br/>
+&nbsp;&nbsp;<a href="CppSystem.html">std::system</a>(n.GetCommand().c_str());<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Create <a href="CppMakefile.html">makefile</a> and <a href="CppMake.htm">make</a> it<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;Create<a href="CppMakefile.htm">Makefile</a>(n.GetProFile());<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> s <a href="CppOperatorAssign.htm">=</a><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"<b><a href="CppExport.htm">export</a></b> DEVKITARM=/opt/devkitpro/<a href="CppDevkitArm.htm">devkitARM</a>; "<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"<b><a href="CppExport.htm">export</a></b> DEVKITPRO=/opt/devkitpro; "<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Create<a href="CppMakefile.html">Makefile</a>(n.GetProFile());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a> s <a href="CppOperatorAssign.htm">=</a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"<b><a href="CppExport.html">export</a></b> DEVKITARM=/opt/devkitpro/<a href="CppDevkitArm.html">devkitARM</a>; "<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"<b><a href="CppExport.html">export</a></b> DEVKITPRO=/opt/devkitpro; "<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"<a href="CppMake.htm">make</a>;";<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppSystem.htm">std::system</a>(s.c_str());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppSystem.html">std::system</a>(s.c_str());<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Run the <a href="CppNds.htm">NDS</a> file<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppSystem.htm">std::system</a>(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<a href="CppString.htm">std::string</a>("desmume ")<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppSystem.html">std::system</a>(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<a href="CppString.html">std::string</a>("desmume ")<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> n.GetProFile().GetTarget()<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> <a href="CppString.htm">std::string</a>(".nds")).c_str());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> <a href="CppString.html">std::string</a>(".nds")).c_str());<br/>
 &nbsp;&nbsp;}<br/>
 }<br/>
 </code></td></tr></table>
@@ -544,7 +544,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <table summary="ndsmake.h" border = "1"><tr><td><code>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">/*</a><br/>
-<a href="ToolNdsmake.htm">ndsmake</a>, <a href="Tools.htm">tool</a> to generate <a href="CppNds.htm">NDS</a> <a href="CppMakefile.htm">makefile</a> from <a href="CppQtCreator.htm">Qt Creator</a> project file<br/>
+<a href="ToolNdsmake.html">ndsmake</a>, <a href="Tools.htm">tool</a> to generate <a href="CppNds.htm">NDS</a> <a href="CppMakefile.html">makefile</a> from <a href="CppQtCreator.html">Qt Creator</a> project file<br/>
 Copyright (C) 2010 Richel Bilderbeek<br/>
 <br/>
 This program is free software: you can redistribute it and/or modify<br/>
@@ -560,32 +560,32 @@ You should have received a copy of the GNU General Public License<br/>
 along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">*/</a><br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">//</a> From http://www.richelbilderbeek.nl/<a href="Tools.htm">Tool</a><a href="CppNdsmake.htm">Ndsmake</a>.htm<br/>
+<a href="CppComment.htm">//</a> From http://www.richelbilderbeek.nl/<a href="Tools.htm">Tool</a><a href="CppNdsmake.html">Ndsmake</a>.html<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppIfndef.htm">#ifndef</a> <a href="CppNds.htm">NDS</a>MAKE_H<br/>
-<a href="CppDefine.htm">#define</a> <a href="CppNds.htm">NDS</a>MAKE_H<br/>
+<a href="CppIfndef.html">#ifndef</a> <a href="CppNds.htm">NDS</a>MAKE_H<br/>
+<a href="CppDefine.html">#define</a> <a href="CppNds.htm">NDS</a>MAKE_H<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppStringH.htm">string</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppStringH.html">string</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppVectorH.html">vector</a>&gt;<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppInclude.htm">#include</a> "../<a href="Tools.htm">Tool</a>TestProFile/<a href="CppProFile.htm">profile</a>.h"<br/>
+<a href="CppInclude.html">#include</a> "../<a href="Tools.htm">Tool</a>TestProFile/<a href="CppProFile.html">profile</a><a href="CppHeaderFile.htm">.h</a>"<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppStruct.htm">struct</a></b> <a href="CppNdsmake.htm">Ndsmake</a><br/>
+<b><a href="CppStruct.html">struct</a></b> <a href="CppNdsmake.html">Ndsmake</a><br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppNdsmake.htm">Ndsmake</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> filename);<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; GetCommand() <b><a href="CppConst.htm">const</a></b> { <b><a href="CppReturn.htm">return</a></b> m_command; }<br/>
-&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; GetHelp();<br/>
-&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; GetHistory();<br/>
-&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; GetLicence();<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> ProFile&amp; GetProFile() <b><a href="CppConst.htm">const</a></b> { <b><a href="CppReturn.htm">return</a></b> m_proFile; }<br/>
-&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <a href="CppString.htm">std::string</a> Get<a href="CppVersion.htm">Version</a>() { <b><a href="CppReturn.htm">return</a></b> "1.2"; }<br/>
-&nbsp;&nbsp;<b><a href="CppPrivate.htm">private</a></b>:<br/>
-&nbsp;&nbsp;<a href="CppOperatorDivide.htm">/</a>* <b><a href="CppConst.htm">const</a></b> <a href="CppComment.htm">*/</a> <a href="CppString.htm">std::string</a> m_command; <a href="CppComment.htm">//</a>A terminal command<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> ProFile m_proFile;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> CreateCommand() <b><a href="CppConst.htm">const</a></b>;<br/>
+&nbsp;&nbsp;<a href="CppNdsmake.html">Ndsmake</a>(<b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a> filename);<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a>&amp; GetCommand() <b><a href="CppConst.html">const</a></b> { <b><a href="CppReturn.html">return</a></b> m_command; }<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.html">static</a></b> <b><a href="CppConst.html">const</a></b> <a href="CppVector.html">std::vector</a>&lt;<a href="CppString.html">std::string</a>&gt; GetHelp();<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.html">static</a></b> <b><a href="CppConst.html">const</a></b> <a href="CppVector.html">std::vector</a>&lt;<a href="CppString.html">std::string</a>&gt; GetHistory();<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.html">static</a></b> <b><a href="CppConst.html">const</a></b> <a href="CppVector.html">std::vector</a>&lt;<a href="CppString.html">std::string</a>&gt; GetLicence();<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> ProFile&amp; GetProFile() <b><a href="CppConst.html">const</a></b> { <b><a href="CppReturn.html">return</a></b> m_proFile; }<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.html">static</a></b> <a href="CppString.html">std::string</a> Get<a href="CppVersion.html">Version</a>() { <b><a href="CppReturn.html">return</a></b> "1.2"; }<br/>
+&nbsp;&nbsp;<b><a href="CppPrivate.html">private</a></b>:<br/>
+&nbsp;&nbsp;<a href="CppOperatorDivide.htm">/</a>* <b><a href="CppConst.html">const</a></b> <a href="CppComment.htm">*/</a> <a href="CppString.html">std::string</a> m_command; <a href="CppComment.htm">//</a>A terminal command<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> ProFile m_proFile;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a> CreateCommand() <b><a href="CppConst.html">const</a></b>;<br/>
 };<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> <a href="CppNds.htm">NDS</a>MAKE_H<br/>
+<a href="CppEndif.html">#endif</a> <a href="CppComment.htm">//</a> <a href="CppNds.htm">NDS</a>MAKE_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -599,7 +599,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <table summary="ndsmake.cpp" border = "1"><tr><td><code>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">/*</a><br/>
-<a href="ToolNdsmake.htm">ndsmake</a>, <a href="Tools.htm">tool</a> to generate <a href="CppNds.htm">NDS</a> <a href="CppMakefile.htm">makefile</a> from <a href="CppQtCreator.htm">Qt Creator</a> project file<br/>
+<a href="ToolNdsmake.html">ndsmake</a>, <a href="Tools.htm">tool</a> to generate <a href="CppNds.htm">NDS</a> <a href="CppMakefile.html">makefile</a> from <a href="CppQtCreator.html">Qt Creator</a> project file<br/>
 Copyright (C) 2010 Richel Bilderbeek<br/>
 <br/>
 This program is free software: you can redistribute it and/or modify<br/>
@@ -615,93 +615,93 @@ You should have received a copy of the GNU General Public License<br/>
 along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">*/</a><br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">//</a> From http://www.richelbilderbeek.nl/<a href="Tools.htm">Tool</a><a href="CppNdsmake.htm">Ndsmake</a>.htm<br/>
+<a href="CppComment.htm">//</a> From http://www.richelbilderbeek.nl/<a href="Tools.htm">Tool</a><a href="CppNdsmake.html">Ndsmake</a>.html<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppInclude.htm">#include</a> "<a href="ToolNdsmake.htm">ndsmake</a>.h"<br/>
+<a href="CppInclude.html">#include</a> "<a href="ToolNdsmake.html">ndsmake</a><a href="CppHeaderFile.htm">.h</a>"<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppNdsmake.htm">Ndsmake</a>::<a href="CppNdsmake.htm">Ndsmake</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> filename)<br/>
+<a href="CppNdsmake.html">Ndsmake</a>::<a href="CppNdsmake.html">Ndsmake</a>(<b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a> filename)<br/>
 &nbsp;&nbsp;: m_proFile(filename)<br/>
 {<br/>
 &nbsp;&nbsp;m_command <a href="CppOperatorAssign.htm">=</a> CreateCommand();<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppNdsmake.htm">Ndsmake</a>::CreateCommand() <b><a href="CppConst.htm">const</a></b><br/>
+<b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a> <a href="CppNdsmake.html">Ndsmake</a>::CreateCommand() <b><a href="CppConst.html">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Copy ProFile files to the needed folders<br/>
-&nbsp;&nbsp;<a href="CppString.htm">std::string</a> s<br/>
+&nbsp;&nbsp;<a href="CppString.html">std::string</a> s<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> "cd .. ;"<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> <a href="CppString.htm">std::string</a>("mkdir ") <a href="CppOperatorPlus.htm">+</a> m_proFile.GetBuildDir() <a href="CppOperatorPlus.htm">+</a> "; "<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> <a href="CppString.html">std::string</a>("mkdir ") <a href="CppOperatorPlus.htm">+</a> m_proFile.GetBuildDir() <a href="CppOperatorPlus.htm">+</a> "; "<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> "cd " <a href="CppOperatorPlus.htm">+</a> m_proFile.GetBuildDir() <a href="CppOperatorPlus.htm">+</a> "; "<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> "mkdir source; ";<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Start copying all files<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppSize_t.htm">std::size_t</a> sz <a href="CppOperatorAssign.htm">=</a> m_proFile.GetHeaders().size();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<a href="CppSize_t.htm">std::size_t</a> i <a href="CppOperatorAssign.htm">=</a> 0; i<a href="CppOperatorNotEqual.htm">!=</a>sz; <a href="CppOperatorPlus.htm">+</a>+i)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppBOOST_FOREACH.htm">BOOST_FOREACH</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; f,m_proFile.GetHeaders())<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppSize_t.html">std::size_t</a> sz <a href="CppOperatorAssign.htm">=</a> m_proFile.GetHeaders().size();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<a href="CppSize_t.html">std::size_t</a> i <a href="CppOperatorAssign.htm">=</a> 0; i<a href="CppOperatorNotEqual.htm">!=</a>sz; <a href="CppOperatorPlus.htm">+</a>+i)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppBOOST_FOREACH.html">BOOST_FOREACH</a>(<b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a>&amp; f,m_proFile.GetHeaders())<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> f <a href="CppOperatorAssign.htm">=</a> m_proFile.GetHeaders()[i];<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;s <a href="CppOperatorPlus.htm">+</a><a href="CppOperatorAssign.htm">=</a> <a href="CppString.htm">std::string</a>("cp ")<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a> f <a href="CppOperatorAssign.htm">=</a> m_proFile.GetHeaders()[i];<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;s <a href="CppOperatorPlus.htm">+</a><a href="CppOperatorAssign.htm">=</a> <a href="CppString.html">std::string</a>("cp ")<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> m_proFile.GetCurDirFull()<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> <a href="CppString.htm">std::string</a>("/")<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> <a href="CppString.html">std::string</a>("/")<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> f<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> <a href="CppString.htm">std::string</a>(" ")<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> <a href="CppString.html">std::string</a>(" ")<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> m_proFile.GetBuildDirFull()<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> <a href="CppString.htm">std::string</a>("/source/")<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> <a href="CppString.html">std::string</a>("/source/")<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> f<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> <a href="CppString.htm">std::string</a>("; ");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> <a href="CppString.html">std::string</a>("; ");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppSize_t.htm">std::size_t</a> sz <a href="CppOperatorAssign.htm">=</a> m_proFile.GetSources().size();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<a href="CppSize_t.htm">std::size_t</a> i <a href="CppOperatorAssign.htm">=</a> 0; i<a href="CppOperatorNotEqual.htm">!=</a>sz; <a href="CppOperatorPlus.htm">+</a>+i)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppBOOST_FOREACH.htm">BOOST_FOREACH</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; f,m_proFile.GetSources())<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppSize_t.html">std::size_t</a> sz <a href="CppOperatorAssign.htm">=</a> m_proFile.GetSources().size();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<a href="CppSize_t.html">std::size_t</a> i <a href="CppOperatorAssign.htm">=</a> 0; i<a href="CppOperatorNotEqual.htm">!=</a>sz; <a href="CppOperatorPlus.htm">+</a>+i)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppBOOST_FOREACH.html">BOOST_FOREACH</a>(<b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a>&amp; f,m_proFile.GetSources())<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> f <a href="CppOperatorAssign.htm">=</a> m_proFile.GetSources()[i];<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;s <a href="CppOperatorPlus.htm">+</a><a href="CppOperatorAssign.htm">=</a> <a href="CppString.htm">std::string</a>("cp ")<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a> f <a href="CppOperatorAssign.htm">=</a> m_proFile.GetSources()[i];<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;s <a href="CppOperatorPlus.htm">+</a><a href="CppOperatorAssign.htm">=</a> <a href="CppString.html">std::string</a>("cp ")<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> m_proFile.GetCurDirFull()<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> <a href="CppString.htm">std::string</a>("/")<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> <a href="CppString.html">std::string</a>("/")<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> f<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> <a href="CppString.htm">std::string</a>(" ")<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> <a href="CppString.html">std::string</a>(" ")<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> m_proFile.GetBuildDirFull()<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> <a href="CppString.htm">std::string</a>("/source/")<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> <a href="CppString.html">std::string</a>("/source/")<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> f<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> <a href="CppString.htm">std::string</a>("; ");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> <a href="CppString.html">std::string</a>("; ");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> s;<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> s;<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppNdsmake.htm">Ndsmake</a>::GetHelp()<br/>
+<b><a href="CppConst.html">const</a></b> <a href="CppVector.html">std::vector</a>&lt;<a href="CppString.html">std::string</a>&gt; <a href="CppNdsmake.html">Ndsmake</a>::GetHelp()<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v;<br/>
-&nbsp;&nbsp;v.push_back("Usage: <a href="ToolNdsmake.htm">ndsmake</a> [options] [target]");<br/>
+&nbsp;&nbsp;<a href="CppVector.html">std::vector</a>&lt;<a href="CppString.html">std::string</a>&gt; v;<br/>
+&nbsp;&nbsp;v.push_back("Usage: <a href="ToolNdsmake.html">ndsmake</a> [options] [target]");<br/>
 &nbsp;&nbsp;v.push_back("");<br/>
-&nbsp;&nbsp;v.push_back("[target] must be the full path and filename of your <a href="CppQtCreator.htm">Qt Creator</a> project");<br/>
-&nbsp;&nbsp;v.push_back("<b><a href="CppFor.htm">for</a></b> example: '<a href="ToolNdsmake.htm">ndsmake</a> <a href="CppOperatorDivide.htm">/</a>myqtfolder/myqtproject.pro'");<br/>
+&nbsp;&nbsp;v.push_back("[target] must be the full path and filename of your <a href="CppQtCreator.html">Qt Creator</a> project");<br/>
+&nbsp;&nbsp;v.push_back("<b><a href="CppFor.htm">for</a></b> example: '<a href="ToolNdsmake.html">ndsmake</a> <a href="CppOperatorDivide.htm">/</a>myqtfolder/myqtproject.pro'");<br/>
 &nbsp;&nbsp;v.push_back("");<br/>
 &nbsp;&nbsp;v.push_back("Options:");<br/>
 &nbsp;&nbsp;v.push_back("&nbsp;&nbsp;<a href="CppOperatorMinus.htm">-</a>-help: prints <b><a href="CppThis.htm">this</a></b> message and exits");<br/>
-&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;<a href="CppOperatorMinus.htm">-</a>-history: prints <b><a href="CppThis.htm">this</a></b> <a href="ToolNdsmake.htm">ndsmake</a> <a href="CppVersion.htm">version</a> history and exits");<br/>
-&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;<a href="CppOperatorMinus.htm">-</a>-licence: prints the <a href="ToolNdsmake.htm">ndsmake</a> licence and exits");<br/>
-&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;<a href="CppOperatorMinus.htm">-</a>-<a href="CppVersion.htm">version</a>: print the current <a href="CppVersion.htm">version</a> of <a href="ToolNdsmake.htm">ndsmake</a> and exits");<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
+&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;<a href="CppOperatorMinus.htm">-</a>-history: prints <b><a href="CppThis.htm">this</a></b> <a href="ToolNdsmake.html">ndsmake</a> <a href="CppVersion.html">version</a> history and exits");<br/>
+&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;<a href="CppOperatorMinus.htm">-</a>-licence: prints the <a href="ToolNdsmake.html">ndsmake</a> licence and exits");<br/>
+&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;<a href="CppOperatorMinus.htm">-</a>-<a href="CppVersion.html">version</a>: print the current <a href="CppVersion.html">version</a> of <a href="ToolNdsmake.html">ndsmake</a> and exits");<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> v;<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppNdsmake.htm">Ndsmake</a>::GetHistory()<br/>
+<b><a href="CppConst.html">const</a></b> <a href="CppVector.html">std::vector</a>&lt;<a href="CppString.html">std::string</a>&gt; <a href="CppNdsmake.html">Ndsmake</a>::GetHistory()<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v;<br/>
-&nbsp;&nbsp;v.push_back("YYYY-MM-DD: <a href="CppVersion.htm">version</a> X.Y: [description]");<br/>
-&nbsp;&nbsp;v.push_back("2010-10-10: <a href="CppVersion.htm">version</a> 0.1: incomplete, could not be run from <a href="CppQtCreator.htm">Qt Creator</a>");<br/>
-&nbsp;&nbsp;v.push_back("2010-10-13: <a href="CppVersion.htm">version</a> 1.0: initial release, works from <a href="CppQtCreator.htm">Qt Creator</a>, tested by <a href="ToolTestNdsmake.htm">TestNdsmake</a>");<br/>
-&nbsp;&nbsp;v.push_back("2010-12-19: <a href="CppVersion.htm">version</a> 1.1: added extra commands, use of ProFile <b><a href="CppClass.htm">class</a></b>");<br/>
-&nbsp;&nbsp;v.push_back("2010-12-19: <a href="CppVersion.htm">version</a> 1.2: use of <a href="CppNdsmake.htm">Ndsmake</a> <b><a href="CppClass.htm">class</a></b>");<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
+&nbsp;&nbsp;<a href="CppVector.html">std::vector</a>&lt;<a href="CppString.html">std::string</a>&gt; v;<br/>
+&nbsp;&nbsp;v.push_back("YYYY-MM-DD: <a href="CppVersion.html">version</a> X.Y: [description]");<br/>
+&nbsp;&nbsp;v.push_back("2010-10-10: <a href="CppVersion.html">version</a> 0.1: incomplete, could not be run from <a href="CppQtCreator.html">Qt Creator</a>");<br/>
+&nbsp;&nbsp;v.push_back("2010-10-13: <a href="CppVersion.html">version</a> 1.0: initial release, works from <a href="CppQtCreator.html">Qt Creator</a>, tested by <a href="ToolTestNdsmake.html">TestNdsmake</a>");<br/>
+&nbsp;&nbsp;v.push_back("2010-12-19: <a href="CppVersion.html">version</a> 1.1: added extra commands, use of ProFile <b><a href="CppClass.html">class</a></b>");<br/>
+&nbsp;&nbsp;v.push_back("2010-12-19: <a href="CppVersion.html">version</a> 1.2: use of <a href="CppNdsmake.html">Ndsmake</a> <b><a href="CppClass.html">class</a></b>");<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> v;<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppNdsmake.htm">Ndsmake</a>::GetLicence()<br/>
+<b><a href="CppConst.html">const</a></b> <a href="CppVector.html">std::vector</a>&lt;<a href="CppString.html">std::string</a>&gt; <a href="CppNdsmake.html">Ndsmake</a>::GetLicence()<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v;<br/>
-&nbsp;&nbsp;v.push_back("<a href="ToolNdsmake.htm">ndsmake</a>, <a href="Tools.htm">tool</a> to generate <a href="CppNds.htm">NDS</a> <a href="CppMakefile.htm">makefile</a> from <a href="CppQtCreator.htm">Qt Creator</a> project file");<br/>
+&nbsp;&nbsp;<a href="CppVector.html">std::vector</a>&lt;<a href="CppString.html">std::string</a>&gt; v;<br/>
+&nbsp;&nbsp;v.push_back("<a href="ToolNdsmake.html">ndsmake</a>, <a href="Tools.htm">tool</a> to generate <a href="CppNds.htm">NDS</a> <a href="CppMakefile.html">makefile</a> from <a href="CppQtCreator.html">Qt Creator</a> project file");<br/>
 &nbsp;&nbsp;v.push_back("Copyright (C) 2010 Richel Bilderbeek");<br/>
 &nbsp;&nbsp;v.push_back("");<br/>
 &nbsp;&nbsp;v.push_back("This program is free software: you can redistribute it and/or modify");<br/>
@@ -715,7 +715,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;v.push_back("GNU General Public License for more details.");<br/>
 &nbsp;&nbsp;v.push_back("You should have received a copy of the GNU General Public License");<br/>
 &nbsp;&nbsp;v.push_back("along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.");<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> v;<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 </code></td></tr></table>

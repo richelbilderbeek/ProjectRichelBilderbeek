@@ -71,17 +71,17 @@
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="CppBoostRegexExample3.pro" border = "1"><tr><td><code>
-TEMPLATE = app<br/>
-CONFIG += console<br/>
-CONFIG -= qt<br/>
+<a href="CppQmakeTemplate.htm">TEMPLATE</a> = app<br/>
+<a href="CppQmakeConfig.htm">CONFIG</a> += console<br/>
+<a href="CppQmakeConfig.htm">CONFIG</a> -= qt<br/>
 <br/>
 win32 {<br/>
-&nbsp;&nbsp;<a href="CppLIBS.htm">LIBS</a> += -L../../<a href="CppLibrary.htm">Libraries</a>/mxe/usr/i686-pc-mingw32/lib<br/>
+&nbsp;&nbsp;<a href="CppQmakeLibs.htm">LIBS</a> += -L../../<a href="CppLibrary.htm">Libraries</a>/mxe/usr/i686-pc-mingw32/lib<br/>
 }<br/>
 <br/>
-<a href="CppLIBS.htm">LIBS</a> += <a href="CppRegex.htm">-lboost_regex</a><br/>
+<a href="CppQmakeLibs.htm">LIBS</a> += <a href="CppRegex.htm">-lboost_regex</a><br/>
 <br/>
-<a href="CppSOURCES.htm">SOURCES</a> += <a href="CppMain.htm">main</a>.cpp<br/>
+<a href="CppQmakeSources.htm">SOURCES</a> += <a href="CppMain.htm">main</a>.cpp<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -93,23 +93,23 @@ win32 {<br/>
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="main.cpp" border = "1"><tr><td><code>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppStringH.htm">string</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppRegex.htm">regex</a>.hpp&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppCassertH.html">cassert</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppStringH.html">string</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppBoost.html">boost</a>/<a href="CppRegex.html">regex</a><a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
 <br/>
-<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a>()<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> s <a href="CppOperatorAssign.htm">=</a> "(1) 1234 AB (2) 2345 BC (3)";<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostRegex.htm">boost::regex</a> r("\\d{4} [A-Z]{2}");<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a> s <a href="CppOperatorAssign.htm">=</a> "(1) 1234 AB (2) 2345 BC (3)";<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppBoostRegex.html">boost::regex</a> r("\\d{4} [A-Z]{2}");<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppBoost.htm">boost</a>::s<a href="CppRegex.htm">regex</a>_<a href="CppIterator.htm">iterator</a> i(s.begin(),s.end(),r);<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(i <a href="CppOperatorNotEqual.htm">!=</a> <a href="CppBoost.htm">boost</a>::s<a href="CppRegex.htm">regex</a>_<a href="CppIterator.htm">iterator</a>());<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(i-&gt;str()<a href="CppOperatorEqual.htm">==</a>"1234 AB");<br/>
+&nbsp;&nbsp;<a href="CppBoost.html">boost</a>::s<a href="CppRegex.html">regex</a>_<a href="CppIterator.html">iterator</a> i(s.begin(),s.end(),r);<br/>
+&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(i <a href="CppOperatorNotEqual.htm">!=</a> <a href="CppBoost.html">boost</a>::s<a href="CppRegex.html">regex</a>_<a href="CppIterator.html">iterator</a>());<br/>
+&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(i-&gt;str()<a href="CppOperatorEqual.htm">==</a>"1234 AB");<br/>
 &nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a>+i;<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(i <a href="CppOperatorNotEqual.htm">!=</a> <a href="CppBoost.htm">boost</a>::s<a href="CppRegex.htm">regex</a>_<a href="CppIterator.htm">iterator</a>());<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(i-&gt;str()<a href="CppOperatorEqual.htm">==</a>"2345 BC");<br/>
+&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(i <a href="CppOperatorNotEqual.htm">!=</a> <a href="CppBoost.html">boost</a>::s<a href="CppRegex.html">regex</a>_<a href="CppIterator.html">iterator</a>());<br/>
+&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(i-&gt;str()<a href="CppOperatorEqual.htm">==</a>"2345 BC");<br/>
 &nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a>+i;<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(i <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <a href="CppBoost.htm">boost</a>::s<a href="CppRegex.htm">regex</a>_<a href="CppIterator.htm">iterator</a>());<br/>
+&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(i <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <a href="CppBoost.html">boost</a>::s<a href="CppRegex.html">regex</a>_<a href="CppIterator.html">iterator</a>());<br/>
 }<br/>
 </code></td></tr></table>
 <!-- end of the code -->

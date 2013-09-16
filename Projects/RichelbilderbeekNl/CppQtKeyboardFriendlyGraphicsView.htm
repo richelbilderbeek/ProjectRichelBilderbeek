@@ -43,7 +43,7 @@
 <table summary="qtkeyboardfriendlygraphicsview.h" border = "1"><tr><td><code>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">/*</a><br/>
-<a href="CppQtKeyboardFriendlyGraphicsView.htm">QtKeyboardFriendlyGraphicsView</a>, an keyboard <b><a href="CppFriend.htm">friend</a></b>ly <a href="CppQGraphicsView.htm">QGraphicsView</a><br/>
+<a href="CppQtKeyboardFriendlyGraphicsView.html">QtKeyboardFriendlyGraphicsView</a>, an keyboard <b><a href="CppFriend.html">friend</a></b>ly <a href="CppQGraphicsView.html">QGraphicsView</a><br/>
 Copyright (C) 2012 Richel Bilderbeek<br/>
 <br/>
 This program is free software: you can redistribute it and/or modify<br/>
@@ -59,74 +59,74 @@ You should have received a copy of the GNU General Public License<br/>
 along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">*/</a><br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="CppQtKeyboardFriendlyGraphicsView.htm">CppQtKeyboardFriendlyGraphicsView</a>.htm<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="CppQtKeyboardFriendlyGraphicsView.html">CppQtKeyboardFriendlyGraphicsView</a>.html<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppIfndef.htm">#ifndef</a> QTKEYBOARDFRIENDLYGRAPHICSVIEW_H<br/>
-<a href="CppDefine.htm">#define</a> QTKEYBOARDFRIENDLYGRAPHICSVIEW_H<br/>
+<a href="CppIfndef.html">#ifndef</a> QTKEYBOARDFRIENDLYGRAPHICSVIEW_H<br/>
+<a href="CppDefine.html">#define</a> QTKEYBOARDFRIENDLYGRAPHICSVIEW_H<br/>
 <br/>
-<a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
-<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-<b><a href="CppTypedef.htm">typedef</a></b>s"<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppSignals2.htm">signals2</a>.hpp&gt;<br/>
-<a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic push<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.html">-Weffc++</a>"<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic ignored "-Wunused-local-<b><a href="CppTypedef.html">typedef</a></b>s"<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppBoost.html">boost</a>/<a href="CppSignals2.html">signals2</a><a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppQGraphicsView.html">QGraphicsView</a>&gt;<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic pop<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppQGraphicsView.htm">QGraphicsView</a>&gt;<br/>
+<b><a href="CppStruct.html">struct</a></b> <a href="CppQGraphicsItem.html">QGraphicsItem</a>;<br/>
 <br/>
-<b><a href="CppStruct.htm">struct</a></b> <a href="CppQGraphicsItem.htm">QGraphicsItem</a>;<br/>
+<b><a href="CppNamespace.html">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
 <br/>
-<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
-<br/>
-<a href="CppComment.htm">///</a>The <a href="CppWidget.htm">widget</a> holding the items<br/>
-<b><a href="CppStruct.htm">struct</a></b> <a href="CppQtKeyboardFriendlyGraphicsView.htm">QtKeyboardFriendlyGraphicsView</a> : <b><a href="CppPublic.htm">public</a></b> <a href="CppQGraphicsView.htm">QGraphicsView</a><br/>
+<a href="CppComment.htm">///</a>The <a href="CppWidget.html">widget</a> holding the items<br/>
+<b><a href="CppStruct.html">struct</a></b> <a href="CppQtKeyboardFriendlyGraphicsView.html">QtKeyboardFriendlyGraphicsView</a> : <b><a href="CppPublic.html">public</a></b> <a href="CppQGraphicsView.html">QGraphicsView</a><br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppQtKeyboardFriendlyGraphicsView.htm">QtKeyboardFriendlyGraphicsView</a>(<a href="CppQWidget.htm">QWidget</a>* parent <a href="CppOperatorAssign.htm">=</a> 0);<br/>
+&nbsp;&nbsp;<a href="CppQtKeyboardFriendlyGraphicsView.html">QtKeyboardFriendlyGraphicsView</a>(<a href="CppQWidget.html">QWidget</a>* parent <a href="CppOperatorAssign.htm">=</a> 0);<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>/<a href="CppQtKeyboardFriendlyGraphicsView.htm">QtKeyboardFriendlyGraphicsView</a> creates its own <a href="CppQGraphicsScene.htm">QGraphicsScene</a><br/>
-&nbsp;&nbsp;<a href="CppQtKeyboardFriendlyGraphicsView.htm">QtKeyboardFriendlyGraphicsView</a>(<a href="CppQGraphicsScene.htm">QGraphicsScene</a>* scene, <a href="CppQWidget.htm">QWidget</a>* parent) <a href="CppOperatorAssign.htm">=</a> <b><a href="CppDelete.htm">delete</a></b>;<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/<a href="CppQtKeyboardFriendlyGraphicsView.html">QtKeyboardFriendlyGraphicsView</a> creates its own <a href="CppQGraphicsScene.html">QGraphicsScene</a><br/>
+&nbsp;&nbsp;<a href="CppQtKeyboardFriendlyGraphicsView.html">QtKeyboardFriendlyGraphicsView</a>(<a href="CppQGraphicsScene.html">QGraphicsScene</a>* scene, <a href="CppQWidget.html">QWidget</a>* parent) <a href="CppOperatorAssign.htm">=</a> <b><a href="CppDelete.html">delete</a></b>;<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppVirtual.htm">virtual</a></b> ~<a href="CppQtKeyboardFriendlyGraphicsView.htm">QtKeyboardFriendlyGraphicsView</a>() {}<br/>
+&nbsp;&nbsp;<b><a href="CppVirtual.html">virtual</a></b> ~<a href="CppQtKeyboardFriendlyGraphicsView.html">QtKeyboardFriendlyGraphicsView</a>() {}<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Obtain the <a href="CppVersion.htm">version</a> of <b><a href="CppThis.htm">this</a></b> <b><a href="CppClass.htm">class</a></b><br/>
-&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> Get<a href="CppVersion.htm">Version</a>();<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Obtain the <a href="CppVersion.html">version</a> of <b><a href="CppThis.htm">this</a></b> <b><a href="CppClass.html">class</a></b><br/>
+&nbsp;&nbsp;<b><a href="CppStatic.html">static</a></b> <b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a> Get<a href="CppVersion.html">Version</a>();<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Obtain the <a href="CppVersion.htm">version</a> history of <b><a href="CppThis.htm">this</a></b> <b><a href="CppClass.htm">class</a></b><br/>
-&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; Get<a href="CppVersion.htm">Version</a>History();<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Obtain the <a href="CppVersion.html">version</a> history of <b><a href="CppThis.htm">this</a></b> <b><a href="CppClass.html">class</a></b><br/>
+&nbsp;&nbsp;<b><a href="CppStatic.html">static</a></b> <b><a href="CppConst.html">const</a></b> <a href="CppVector.html">std::vector</a>&lt;<a href="CppString.html">std::string</a>&gt; Get<a href="CppVersion.html">Version</a>History();<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/Respond to a key press<br/>
-&nbsp;&nbsp;<b><a href="CppVirtual.htm">virtual</a></b> <b><a href="CppVoid.htm">void</a></b> keyPressEvent(<a href="CppQKeyEvent.htm">QKeyEvent</a> *event);<br/>
+&nbsp;&nbsp;<b><a href="CppVirtual.html">virtual</a></b> <b><a href="CppVoid.htm">void</a></b> keyPressEvent(<a href="CppQKeyEvent.html">QKeyEvent</a> *event);<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>/<a href="CppSignal.htm">Signal</a>s which <a href="CppQGraphicsItem.htm">QGraphicsItem</a> has been moved by setpos<br/>
-&nbsp;&nbsp;<a href="CppBoostSignal.htm">boost::signals2::signal</a>&lt;<b><a href="CppVoid.htm">void</a></b> (<a href="CppQGraphicsItem.htm">QGraphicsItem</a>*)&gt; m_signal_update;<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/<a href="CppSignal.html">Signal</a>s which <a href="CppQGraphicsItem.html">QGraphicsItem</a> has been moved by setpos<br/>
+&nbsp;&nbsp;<a href="CppBoostSignal.html">boost::signals2::signal</a>&lt;<b><a href="CppVoid.htm">void</a></b> (<a href="CppQGraphicsItem.html">QGraphicsItem</a>*)&gt; m_signal_update;<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppPrivate.htm">private</a></b>:<br/>
+&nbsp;&nbsp;<b><a href="CppPrivate.html">private</a></b>:<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/Obtain the closest item in the collection<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Returns <b><a href="CppNullptr.htm">nullptr</a></b> <b><a href="CppIf.htm">if</a></b> there is no focusable item in the items<br/>
-&nbsp;&nbsp;<a href="CppQGraphicsItem.htm">QGraphicsItem</a>* GetClosest(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppQGraphicsItem.htm">QGraphicsItem</a>* <b><a href="CppConst.htm">const</a></b> focus_item,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppQGraphicsItem.htm">QGraphicsItem</a> *&gt;&amp; items) <b><a href="CppConst.htm">const</a></b>;<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Returns <b><a href="CppNullptr.html">nullptr</a></b> <b><a href="CppIf.htm">if</a></b> there is no focusable item in the items<br/>
+&nbsp;&nbsp;<a href="CppQGraphicsItem.html">QGraphicsItem</a>* GetClosest(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppQGraphicsItem.html">QGraphicsItem</a>* <b><a href="CppConst.html">const</a></b> focus_item,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppVector.html">std::vector</a>&lt;<a href="CppQGraphicsItem.html">QGraphicsItem</a> *&gt;&amp; items) <b><a href="CppConst.html">const</a></b>;<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Calculate the Euclidian distance between two <a href="CppPointer.htm">point</a>s<br/>
-&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppDouble.htm">double</a></b> <a href="CppGetDistance.htm">GetDistance</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppQPointF.htm">QPointF</a>&amp; a, <b><a href="CppConst.htm">const</a></b> <a href="CppQPointF.htm">QPointF</a>&amp; b);<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Calculate the Euclidian distance between two <a href="CppPointer.html">point</a>s<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.html">static</a></b> <b><a href="CppDouble.html">double</a></b> <a href="CppGetDistance.html">GetDistance</a>(<b><a href="CppConst.html">const</a></b> <a href="CppQPointF.html">QPointF</a>&amp; a, <b><a href="CppConst.html">const</a></b> <a href="CppQPointF.html">QPointF</a>&amp; b);<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/Obtain the items above the focus_item<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppQGraphicsItem.htm">QGraphicsItem</a> *&gt; GetItemsAbove(<b><a href="CppConst.htm">const</a></b> <a href="CppQGraphicsItem.htm">QGraphicsItem</a>* <b><a href="CppConst.htm">const</a></b> focus_item) <b><a href="CppConst.htm">const</a></b>;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppVector.html">std::vector</a>&lt;<a href="CppQGraphicsItem.html">QGraphicsItem</a> *&gt; GetItemsAbove(<b><a href="CppConst.html">const</a></b> <a href="CppQGraphicsItem.html">QGraphicsItem</a>* <b><a href="CppConst.html">const</a></b> focus_item) <b><a href="CppConst.html">const</a></b>;<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/Obtain the items below the focus_item<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppQGraphicsItem.htm">QGraphicsItem</a> *&gt; GetItemsBelow(<b><a href="CppConst.htm">const</a></b> <a href="CppQGraphicsItem.htm">QGraphicsItem</a>* <b><a href="CppConst.htm">const</a></b> focus_item) <b><a href="CppConst.htm">const</a></b>;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppVector.html">std::vector</a>&lt;<a href="CppQGraphicsItem.html">QGraphicsItem</a> *&gt; GetItemsBelow(<b><a href="CppConst.html">const</a></b> <a href="CppQGraphicsItem.html">QGraphicsItem</a>* <b><a href="CppConst.html">const</a></b> focus_item) <b><a href="CppConst.html">const</a></b>;<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/Obtain the items left of the focus_item<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppQGraphicsItem.htm">QGraphicsItem</a> *&gt; GetItemsLeft(<b><a href="CppConst.htm">const</a></b> <a href="CppQGraphicsItem.htm">QGraphicsItem</a>* <b><a href="CppConst.htm">const</a></b> focus_item) <b><a href="CppConst.htm">const</a></b>;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppVector.html">std::vector</a>&lt;<a href="CppQGraphicsItem.html">QGraphicsItem</a> *&gt; GetItemsLeft(<b><a href="CppConst.html">const</a></b> <a href="CppQGraphicsItem.html">QGraphicsItem</a>* <b><a href="CppConst.html">const</a></b> focus_item) <b><a href="CppConst.html">const</a></b>;<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/Obtain the items right of the focus_item<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppQGraphicsItem.htm">QGraphicsItem</a> *&gt; GetItemsRight(<b><a href="CppConst.htm">const</a></b> <a href="CppQGraphicsItem.htm">QGraphicsItem</a>* <b><a href="CppConst.htm">const</a></b> focus_item) <b><a href="CppConst.htm">const</a></b>;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppVector.html">std::vector</a>&lt;<a href="CppQGraphicsItem.html">QGraphicsItem</a> *&gt; GetItemsRight(<b><a href="CppConst.html">const</a></b> <a href="CppQGraphicsItem.html">QGraphicsItem</a>* <b><a href="CppConst.html">const</a></b> focus_item) <b><a href="CppConst.html">const</a></b>;<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/Give focus to a random item<br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> SetRandomFocus();<br/>
 };<br/>
 <br/>
-} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.html">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
 <br/>
-<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> QTKEYBOARDFRIENDLYGRAPHICSVIEW_H<br/>
+<a href="CppEndif.html">#endif</a> <a href="CppComment.htm">//</a> QTKEYBOARDFRIENDLYGRAPHICSVIEW_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -140,7 +140,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <table summary="qtkeyboardfriendlygraphicsview.cpp" border = "1"><tr><td><code>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">/*</a><br/>
-<a href="CppQtKeyboardFriendlyGraphicsView.htm">QtKeyboardFriendlyGraphicsView</a>, an keyboard <b><a href="CppFriend.htm">friend</a></b>ly <a href="CppQGraphicsView.htm">QGraphicsView</a><br/>
+<a href="CppQtKeyboardFriendlyGraphicsView.html">QtKeyboardFriendlyGraphicsView</a>, an keyboard <b><a href="CppFriend.html">friend</a></b>ly <a href="CppQGraphicsView.html">QGraphicsView</a><br/>
 Copyright (C) 2012 Richel Bilderbeek<br/>
 <br/>
 This program is free software: you can redistribute it and/or modify<br/>
@@ -156,356 +156,358 @@ You should have received a copy of the GNU General Public License<br/>
 along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">*/</a><br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="CppQtKeyboardFriendlyGraphicsView.htm">CppQtKeyboardFriendlyGraphicsView</a>.htm<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="CppQtKeyboardFriendlyGraphicsView.html">CppQtKeyboardFriendlyGraphicsView</a>.html<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic push<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.html">-Weffc++</a>"<br/>
+<a href="CppInclude.html">#include</a> "<a href="CppQtKeyboardFriendlyGraphicsView.html">qtkeyboardfriendlygraphicsview</a><a href="CppHeaderFile.htm">.h</a>"<br/>
 <br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppCassertH.html">cassert</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppCmathH.html">cmath</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppIostreamH.html">iostream</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppQGraphicsScene.html">QGraphicsScene</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppQKeyEvent.html">QKeyEvent</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppQGraphicsSimpleTextItem.html">QGraphicsSimpleTextItem</a>&gt;<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic pop<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppQtKeyboardFriendlyGraphicsView.htm">qtkeyboardfriendlygraphicsview</a>.h"<br/>
-<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppCmathH.htm">cmath</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppIostreamH.htm">iostream</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppQGraphicsScene.htm">QGraphicsScene</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppQKeyEvent.htm">QKeyEvent</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppQGraphicsSimpleTextItem.htm">QGraphicsSimpleTextItem</a>&gt;<br/>
-<br/>
-<a href="CppRibi.htm">ribi</a>::<a href="CppQtKeyboardFriendlyGraphicsView.htm">QtKeyboardFriendlyGraphicsView</a>::<a href="CppQtKeyboardFriendlyGraphicsView.htm">QtKeyboardFriendlyGraphicsView</a>(<a href="CppQWidget.htm">QWidget</a>* parent)<br/>
-&nbsp;&nbsp;: <a href="CppQGraphicsView.htm">QGraphicsView</a>(<b><a href="CppNew.htm">new</a></b> <a href="CppQGraphicsScene.htm">QGraphicsScene</a>,parent)<br/>
+<a href="CppRibi.htm">ribi</a>::<a href="CppQtKeyboardFriendlyGraphicsView.html">QtKeyboardFriendlyGraphicsView</a>::<a href="CppQtKeyboardFriendlyGraphicsView.html">QtKeyboardFriendlyGraphicsView</a>(<a href="CppQWidget.html">QWidget</a>* parent)<br/>
+&nbsp;&nbsp;: <a href="CppQGraphicsView.html">QGraphicsView</a>(<b><a href="CppNew.htm">new</a></b> <a href="CppQGraphicsScene.html">QGraphicsScene</a>,parent),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_signal_update{}<br/>
 {<br/>
 <br/>
 }<br/>
 <br/>
-<a href="CppQGraphicsItem.htm">QGraphicsItem</a>* <a href="CppRibi.htm">ribi</a>::<a href="CppQtKeyboardFriendlyGraphicsView.htm">QtKeyboardFriendlyGraphicsView</a>::GetClosest(<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppQGraphicsItem.htm">QGraphicsItem</a>* <b><a href="CppConst.htm">const</a></b> focus_item,<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppQGraphicsItem.htm">QGraphicsItem</a> *&gt;&amp; items) <b><a href="CppConst.htm">const</a></b><br/>
+<a href="CppQGraphicsItem.html">QGraphicsItem</a>* <a href="CppRibi.htm">ribi</a>::<a href="CppQtKeyboardFriendlyGraphicsView.html">QtKeyboardFriendlyGraphicsView</a>::GetClosest(<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppQGraphicsItem.html">QGraphicsItem</a>* <b><a href="CppConst.html">const</a></b> focus_item,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppVector.html">std::vector</a>&lt;<a href="CppQGraphicsItem.html">QGraphicsItem</a> *&gt;&amp; items) <b><a href="CppConst.html">const</a></b><br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!items.empty());<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppCount.htm">std::count</a>(items.begin(),items.end(),focus_item) <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 0);<br/>
+&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(!items.empty());<br/>
+&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(<a href="CppCount.html">std::count</a>(items.begin(),items.end(),focus_item) <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 0);<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppQGraphicsItem.htm">QGraphicsItem</a>* best <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNullptr.htm">nullptr</a></b>;<br/>
-&nbsp;&nbsp;<b><a href="CppDouble.htm">double</a></b> best_distance <a href="CppOperatorAssign.htm">=</a> <a href="CppNumeric_limits.htm">std::numeric_limits</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;::max();<br/>
-&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<a href="CppQGraphicsItem.htm">QGraphicsItem</a>* <b><a href="CppConst.htm">const</a></b> item:items)<br/>
+&nbsp;&nbsp;<a href="CppQGraphicsItem.html">QGraphicsItem</a>* best <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNullptr.html">nullptr</a></b>;<br/>
+&nbsp;&nbsp;<b><a href="CppDouble.html">double</a></b> best_distance <a href="CppOperatorAssign.htm">=</a> <a href="CppNumeric_limits.html">std::numeric_limits</a>&lt;<b><a href="CppDouble.html">double</a></b>&gt;::max();<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<a href="CppQGraphicsItem.html">QGraphicsItem</a>* <b><a href="CppConst.html">const</a></b> item:items)<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (!(item-&gt;flags() &amp; <a href="CppQGraphicsItem.htm">QGraphicsItem</a>::ItemIsFocusable)) <b><a href="CppContinue.htm">continue</a></b>;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (!(item-&gt;isVisible())) <b><a href="CppContinue.htm">continue</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (!(item-&gt;flags() &amp; <a href="CppQGraphicsItem.html">QGraphicsItem</a>::ItemIsFocusable)) <b><a href="CppContinue.html">continue</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (!(item-&gt;isVisible())) <b><a href="CppContinue.html">continue</a></b>;<br/>
 <br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(item <a href="CppOperatorNotEqual.htm">!=</a> focus_item);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> distance <a href="CppOperatorAssign.htm">=</a> <a href="CppGetDistance.htm">GetDistance</a>(focus_item-&gt;pos(),item-&gt;pos());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(item <a href="CppOperatorNotEqual.htm">!=</a> focus_item);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> distance <a href="CppOperatorAssign.htm">=</a> <a href="CppGetDistance.html">GetDistance</a>(focus_item-&gt;pos(),item-&gt;pos());<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (distance &lt; best_distance)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;best_distance <a href="CppOperatorAssign.htm">=</a> distance;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;best <a href="CppOperatorAssign.htm">=</a> item;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> best; <a href="CppComment.htm">//</a>best can be <b><a href="CppNullptr.htm">nullptr</a></b><br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> best; <a href="CppComment.htm">//</a>best can be <b><a href="CppNullptr.html">nullptr</a></b><br/>
 }<br/>
 <br/>
-<b><a href="CppDouble.htm">double</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQtKeyboardFriendlyGraphicsView.htm">QtKeyboardFriendlyGraphicsView</a>::<a href="CppGetDistance.htm">GetDistance</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppQPointF.htm">QPointF</a>&amp; a, <b><a href="CppConst.htm">const</a></b> <a href="CppQPointF.htm">QPointF</a>&amp; b)<br/>
+<b><a href="CppDouble.html">double</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQtKeyboardFriendlyGraphicsView.html">QtKeyboardFriendlyGraphicsView</a>::<a href="CppGetDistance.html">GetDistance</a>(<b><a href="CppConst.html">const</a></b> <a href="CppQPointF.html">QPointF</a>&amp; a, <b><a href="CppConst.html">const</a></b> <a href="CppQPointF.html">QPointF</a>&amp; b)<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> dx <a href="CppOperatorAssign.htm">=</a> a.x() <a href="CppOperatorMinus.htm">-</a> b.x();<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> dy <a href="CppOperatorAssign.htm">=</a> a.y() <a href="CppOperatorMinus.htm">-</a> b.y();<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <a href="CppSqrt.htm">std::sqrt</a>((dx * dx) <a href="CppOperatorPlus.htm">+</a> (dy * dy));<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> dx <a href="CppOperatorAssign.htm">=</a> a.x() <a href="CppOperatorMinus.htm">-</a> b.x();<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> dy <a href="CppOperatorAssign.htm">=</a> a.y() <a href="CppOperatorMinus.htm">-</a> b.y();<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> <a href="CppSqrt.html">std::sqrt</a>((dx * dx) <a href="CppOperatorPlus.htm">+</a> (dy * dy));<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppQGraphicsItem.htm">QGraphicsItem</a> *&gt; <a href="CppRibi.htm">ribi</a>::<a href="CppQtKeyboardFriendlyGraphicsView.htm">QtKeyboardFriendlyGraphicsView</a>::GetItemsAbove(<b><a href="CppConst.htm">const</a></b> <a href="CppQGraphicsItem.htm">QGraphicsItem</a>* <b><a href="CppConst.htm">const</a></b> focus_item) <b><a href="CppConst.htm">const</a></b><br/>
+<b><a href="CppConst.html">const</a></b> <a href="CppVector.html">std::vector</a>&lt;<a href="CppQGraphicsItem.html">QGraphicsItem</a> *&gt; <a href="CppRibi.htm">ribi</a>::<a href="CppQtKeyboardFriendlyGraphicsView.html">QtKeyboardFriendlyGraphicsView</a>::GetItemsAbove(<b><a href="CppConst.html">const</a></b> <a href="CppQGraphicsItem.html">QGraphicsItem</a>* <b><a href="CppConst.html">const</a></b> focus_item) <b><a href="CppConst.html">const</a></b><br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppQGraphicsItem.htm">QGraphicsItem</a> *&gt; v;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppQList.htm">QList</a>&lt;<a href="CppQGraphicsItem.htm">QGraphicsItem</a> *&gt; items <a href="CppOperatorAssign.htm">=</a> <b><a href="CppThis.htm">this</a></b>-&gt;items();<br/>
+&nbsp;&nbsp;<a href="CppVector.html">std::vector</a>&lt;<a href="CppQGraphicsItem.html">QGraphicsItem</a> *&gt; v;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppQList.html">QList</a>&lt;<a href="CppQGraphicsItem.html">QGraphicsItem</a> *&gt; items <a href="CppOperatorAssign.htm">=</a> <b><a href="CppThis.htm">this</a></b>-&gt;items();<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Look <b><a href="CppFor.htm">for</a></b> items between North-West and North-East first<br/>
-&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b>(<a href="CppQGraphicsItem.htm">QGraphicsItem</a>* <b><a href="CppConst.htm">const</a></b> item: items)<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b>(<a href="CppQGraphicsItem.html">QGraphicsItem</a>* <b><a href="CppConst.html">const</a></b> item: items)<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> dy <a href="CppOperatorAssign.htm">=</a> item-&gt;pos().y() <a href="CppOperatorMinus.htm">-</a> focus_item-&gt;pos().y();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (dy &lt; 0.0)&nbsp;&nbsp;<a href="CppComment.htm">//</a>Use '&lt;' (instead of '<a href="CppOperatorLessEqual.htm">&lt;=</a>') to leave out focus_item<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> dy <a href="CppOperatorAssign.htm">=</a> item-&gt;pos().y() <a href="CppOperatorMinus.htm">-</a> focus_item-&gt;pos().y();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (dy &lt; 0.0)&nbsp;&nbsp;<a href="CppComment.htm">//</a>Use '&lt;' (instead of '<a href="CppOperatorLessEqual.html">&lt;=</a>') to leave out focus_item<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> dx <a href="CppOperatorAssign.htm">=</a> item-&gt;pos().x() <a href="CppOperatorMinus.htm">-</a> focus_item-&gt;pos().x();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (<a href="CppAbs.htm">std::abs</a>(dx) &lt; <a href="CppAbs.htm">std::abs</a>(dy))<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> dx <a href="CppOperatorAssign.htm">=</a> item-&gt;pos().x() <a href="CppOperatorMinus.htm">-</a> focus_item-&gt;pos().x();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (<a href="CppAbs.html">std::abs</a>(dx) &lt; <a href="CppAbs.html">std::abs</a>(dy))<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(item <a href="CppOperatorNotEqual.htm">!=</a> focus_item);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(item <a href="CppOperatorNotEqual.htm">!=</a> focus_item);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;v.push_back(item);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (!v.empty()) <b><a href="CppReturn.htm">return</a></b> v;<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (!v.empty()) <b><a href="CppReturn.html">return</a></b> v;<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Look <b><a href="CppFor.htm">for</a></b> items North (from West, through North, through East)<br/>
-&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b>(<a href="CppQGraphicsItem.htm">QGraphicsItem</a>* <b><a href="CppConst.htm">const</a></b> item: items)<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b>(<a href="CppQGraphicsItem.html">QGraphicsItem</a>* <b><a href="CppConst.html">const</a></b> item: items)<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> dy <a href="CppOperatorAssign.htm">=</a> item-&gt;pos().y() <a href="CppOperatorMinus.htm">-</a> focus_item-&gt;pos().y();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (dy &lt; 0.0)&nbsp;&nbsp;<a href="CppComment.htm">//</a>Use '&lt;' (instead of '<a href="CppOperatorLessEqual.htm">&lt;=</a>') to leave out focus_item<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> dy <a href="CppOperatorAssign.htm">=</a> item-&gt;pos().y() <a href="CppOperatorMinus.htm">-</a> focus_item-&gt;pos().y();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (dy &lt; 0.0)&nbsp;&nbsp;<a href="CppComment.htm">//</a>Use '&lt;' (instead of '<a href="CppOperatorLessEqual.html">&lt;=</a>') to leave out focus_item<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(item <a href="CppOperatorNotEqual.htm">!=</a> focus_item);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(item <a href="CppOperatorNotEqual.htm">!=</a> focus_item);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;v.push_back(item);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> v;<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppQGraphicsItem.htm">QGraphicsItem</a> *&gt; <a href="CppRibi.htm">ribi</a>::<a href="CppQtKeyboardFriendlyGraphicsView.htm">QtKeyboardFriendlyGraphicsView</a>::GetItemsBelow(<b><a href="CppConst.htm">const</a></b> <a href="CppQGraphicsItem.htm">QGraphicsItem</a>* <b><a href="CppConst.htm">const</a></b> focus_item) <b><a href="CppConst.htm">const</a></b><br/>
+<b><a href="CppConst.html">const</a></b> <a href="CppVector.html">std::vector</a>&lt;<a href="CppQGraphicsItem.html">QGraphicsItem</a> *&gt; <a href="CppRibi.htm">ribi</a>::<a href="CppQtKeyboardFriendlyGraphicsView.html">QtKeyboardFriendlyGraphicsView</a>::GetItemsBelow(<b><a href="CppConst.html">const</a></b> <a href="CppQGraphicsItem.html">QGraphicsItem</a>* <b><a href="CppConst.html">const</a></b> focus_item) <b><a href="CppConst.html">const</a></b><br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppQGraphicsItem.htm">QGraphicsItem</a> *&gt; v;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppQList.htm">QList</a>&lt;<a href="CppQGraphicsItem.htm">QGraphicsItem</a> *&gt; items <a href="CppOperatorAssign.htm">=</a> <b><a href="CppThis.htm">this</a></b>-&gt;items();<br/>
+&nbsp;&nbsp;<a href="CppVector.html">std::vector</a>&lt;<a href="CppQGraphicsItem.html">QGraphicsItem</a> *&gt; v;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppQList.html">QList</a>&lt;<a href="CppQGraphicsItem.html">QGraphicsItem</a> *&gt; items <a href="CppOperatorAssign.htm">=</a> <b><a href="CppThis.htm">this</a></b>-&gt;items();<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Look <b><a href="CppFor.htm">for</a></b> items between South-East and South-West first<br/>
-&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b>(<a href="CppQGraphicsItem.htm">QGraphicsItem</a>* <b><a href="CppConst.htm">const</a></b> item: items)<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b>(<a href="CppQGraphicsItem.html">QGraphicsItem</a>* <b><a href="CppConst.html">const</a></b> item: items)<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> dy <a href="CppOperatorAssign.htm">=</a> item-&gt;pos().y() <a href="CppOperatorMinus.htm">-</a> focus_item-&gt;pos().y();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (dy &gt; 0.0)&nbsp;&nbsp;<a href="CppComment.htm">//</a>Use '&gt;' (instead of '<a href="CppOperatorGreaterEqual.htm">&gt;=</a>') to leave out focus_item<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> dy <a href="CppOperatorAssign.htm">=</a> item-&gt;pos().y() <a href="CppOperatorMinus.htm">-</a> focus_item-&gt;pos().y();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (dy &gt; 0.0)&nbsp;&nbsp;<a href="CppComment.htm">//</a>Use '&gt;' (instead of '<a href="CppOperatorGreaterEqual.html">&gt;=</a>') to leave out focus_item<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> dx <a href="CppOperatorAssign.htm">=</a> item-&gt;pos().x() <a href="CppOperatorMinus.htm">-</a> focus_item-&gt;pos().x();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (<a href="CppAbs.htm">std::abs</a>(dx) &lt; <a href="CppAbs.htm">std::abs</a>(dy))<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> dx <a href="CppOperatorAssign.htm">=</a> item-&gt;pos().x() <a href="CppOperatorMinus.htm">-</a> focus_item-&gt;pos().x();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (<a href="CppAbs.html">std::abs</a>(dx) &lt; <a href="CppAbs.html">std::abs</a>(dy))<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(item <a href="CppOperatorNotEqual.htm">!=</a> focus_item);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(item <a href="CppOperatorNotEqual.htm">!=</a> focus_item);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;v.push_back(item);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (!v.empty()) <b><a href="CppReturn.htm">return</a></b> v;<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (!v.empty()) <b><a href="CppReturn.html">return</a></b> v;<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Look <b><a href="CppFor.htm">for</a></b> items South<br/>
-&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b>(<a href="CppQGraphicsItem.htm">QGraphicsItem</a>* <b><a href="CppConst.htm">const</a></b> item: items)<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b>(<a href="CppQGraphicsItem.html">QGraphicsItem</a>* <b><a href="CppConst.html">const</a></b> item: items)<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> dy <a href="CppOperatorAssign.htm">=</a> item-&gt;pos().y() <a href="CppOperatorMinus.htm">-</a> focus_item-&gt;pos().y();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (dy &gt; 0.0)&nbsp;&nbsp;<a href="CppComment.htm">//</a>Use '&gt;' (instead of '<a href="CppOperatorGreaterEqual.htm">&gt;=</a>') to leave out focus_item<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> dy <a href="CppOperatorAssign.htm">=</a> item-&gt;pos().y() <a href="CppOperatorMinus.htm">-</a> focus_item-&gt;pos().y();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (dy &gt; 0.0)&nbsp;&nbsp;<a href="CppComment.htm">//</a>Use '&gt;' (instead of '<a href="CppOperatorGreaterEqual.html">&gt;=</a>') to leave out focus_item<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(item <a href="CppOperatorNotEqual.htm">!=</a> focus_item);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(item <a href="CppOperatorNotEqual.htm">!=</a> focus_item);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;v.push_back(item);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> v;<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppQGraphicsItem.htm">QGraphicsItem</a> *&gt; <a href="CppRibi.htm">ribi</a>::<a href="CppQtKeyboardFriendlyGraphicsView.htm">QtKeyboardFriendlyGraphicsView</a>::GetItemsLeft(<b><a href="CppConst.htm">const</a></b> <a href="CppQGraphicsItem.htm">QGraphicsItem</a>* <b><a href="CppConst.htm">const</a></b> focus_item) <b><a href="CppConst.htm">const</a></b><br/>
+<b><a href="CppConst.html">const</a></b> <a href="CppVector.html">std::vector</a>&lt;<a href="CppQGraphicsItem.html">QGraphicsItem</a> *&gt; <a href="CppRibi.htm">ribi</a>::<a href="CppQtKeyboardFriendlyGraphicsView.html">QtKeyboardFriendlyGraphicsView</a>::GetItemsLeft(<b><a href="CppConst.html">const</a></b> <a href="CppQGraphicsItem.html">QGraphicsItem</a>* <b><a href="CppConst.html">const</a></b> focus_item) <b><a href="CppConst.html">const</a></b><br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppQGraphicsItem.htm">QGraphicsItem</a> *&gt; v;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppQList.htm">QList</a>&lt;<a href="CppQGraphicsItem.htm">QGraphicsItem</a> *&gt; items <a href="CppOperatorAssign.htm">=</a> <b><a href="CppThis.htm">this</a></b>-&gt;items();<br/>
+&nbsp;&nbsp;<a href="CppVector.html">std::vector</a>&lt;<a href="CppQGraphicsItem.html">QGraphicsItem</a> *&gt; v;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppQList.html">QList</a>&lt;<a href="CppQGraphicsItem.html">QGraphicsItem</a> *&gt; items <a href="CppOperatorAssign.htm">=</a> <b><a href="CppThis.htm">this</a></b>-&gt;items();<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Look <b><a href="CppFor.htm">for</a></b> items between South-West and North-West first<br/>
-&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b>(<a href="CppQGraphicsItem.htm">QGraphicsItem</a>* <b><a href="CppConst.htm">const</a></b> item: items)<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b>(<a href="CppQGraphicsItem.html">QGraphicsItem</a>* <b><a href="CppConst.html">const</a></b> item: items)<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> dx <a href="CppOperatorAssign.htm">=</a> item-&gt;pos().x() <a href="CppOperatorMinus.htm">-</a> focus_item-&gt;pos().x();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (dx &lt; 0.0)&nbsp;&nbsp;<a href="CppComment.htm">//</a>Use '&lt;' (instead of '<a href="CppOperatorLessEqual.htm">&lt;=</a>') to leave out focus_item<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> dx <a href="CppOperatorAssign.htm">=</a> item-&gt;pos().x() <a href="CppOperatorMinus.htm">-</a> focus_item-&gt;pos().x();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (dx &lt; 0.0)&nbsp;&nbsp;<a href="CppComment.htm">//</a>Use '&lt;' (instead of '<a href="CppOperatorLessEqual.html">&lt;=</a>') to leave out focus_item<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> dy <a href="CppOperatorAssign.htm">=</a> item-&gt;pos().y() <a href="CppOperatorMinus.htm">-</a> focus_item-&gt;pos().y();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (<a href="CppAbs.htm">std::abs</a>(dy) &lt; <a href="CppAbs.htm">std::abs</a>(dx))<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> dy <a href="CppOperatorAssign.htm">=</a> item-&gt;pos().y() <a href="CppOperatorMinus.htm">-</a> focus_item-&gt;pos().y();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (<a href="CppAbs.html">std::abs</a>(dy) &lt; <a href="CppAbs.html">std::abs</a>(dx))<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(item <a href="CppOperatorNotEqual.htm">!=</a> focus_item);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(item <a href="CppOperatorNotEqual.htm">!=</a> focus_item);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;v.push_back(item);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Look <b><a href="CppFor.htm">for</a></b> items Westwards<br/>
-&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b>(<a href="CppQGraphicsItem.htm">QGraphicsItem</a>* <b><a href="CppConst.htm">const</a></b> item: items)<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b>(<a href="CppQGraphicsItem.html">QGraphicsItem</a>* <b><a href="CppConst.html">const</a></b> item: items)<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> dx <a href="CppOperatorAssign.htm">=</a> item-&gt;pos().x() <a href="CppOperatorMinus.htm">-</a> focus_item-&gt;pos().x();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (dx &lt; 0.0)&nbsp;&nbsp;<a href="CppComment.htm">//</a>Use '&lt;' (instead of '<a href="CppOperatorLessEqual.htm">&lt;=</a>') to leave out focus_item<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> dx <a href="CppOperatorAssign.htm">=</a> item-&gt;pos().x() <a href="CppOperatorMinus.htm">-</a> focus_item-&gt;pos().x();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (dx &lt; 0.0)&nbsp;&nbsp;<a href="CppComment.htm">//</a>Use '&lt;' (instead of '<a href="CppOperatorLessEqual.html">&lt;=</a>') to leave out focus_item<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(item <a href="CppOperatorNotEqual.htm">!=</a> focus_item);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(item <a href="CppOperatorNotEqual.htm">!=</a> focus_item);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;v.push_back(item);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> v;<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppQGraphicsItem.htm">QGraphicsItem</a> *&gt; <a href="CppRibi.htm">ribi</a>::<a href="CppQtKeyboardFriendlyGraphicsView.htm">QtKeyboardFriendlyGraphicsView</a>::GetItemsRight(<b><a href="CppConst.htm">const</a></b> <a href="CppQGraphicsItem.htm">QGraphicsItem</a>* <b><a href="CppConst.htm">const</a></b> focus_item) <b><a href="CppConst.htm">const</a></b><br/>
+<b><a href="CppConst.html">const</a></b> <a href="CppVector.html">std::vector</a>&lt;<a href="CppQGraphicsItem.html">QGraphicsItem</a> *&gt; <a href="CppRibi.htm">ribi</a>::<a href="CppQtKeyboardFriendlyGraphicsView.html">QtKeyboardFriendlyGraphicsView</a>::GetItemsRight(<b><a href="CppConst.html">const</a></b> <a href="CppQGraphicsItem.html">QGraphicsItem</a>* <b><a href="CppConst.html">const</a></b> focus_item) <b><a href="CppConst.html">const</a></b><br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppQGraphicsItem.htm">QGraphicsItem</a> *&gt; v;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppQList.htm">QList</a>&lt;<a href="CppQGraphicsItem.htm">QGraphicsItem</a> *&gt; items <a href="CppOperatorAssign.htm">=</a> <b><a href="CppThis.htm">this</a></b>-&gt;items();<br/>
+&nbsp;&nbsp;<a href="CppVector.html">std::vector</a>&lt;<a href="CppQGraphicsItem.html">QGraphicsItem</a> *&gt; v;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppQList.html">QList</a>&lt;<a href="CppQGraphicsItem.html">QGraphicsItem</a> *&gt; items <a href="CppOperatorAssign.htm">=</a> <b><a href="CppThis.htm">this</a></b>-&gt;items();<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Look <b><a href="CppFor.htm">for</a></b> items between North-East and South-East first<br/>
-&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b>(<a href="CppQGraphicsItem.htm">QGraphicsItem</a>* <b><a href="CppConst.htm">const</a></b> item: items)<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b>(<a href="CppQGraphicsItem.html">QGraphicsItem</a>* <b><a href="CppConst.html">const</a></b> item: items)<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> dx <a href="CppOperatorAssign.htm">=</a> item-&gt;pos().x() <a href="CppOperatorMinus.htm">-</a> focus_item-&gt;pos().x();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (dx &gt; 0.0) <a href="CppComment.htm">//</a>Use '&gt;' (instead of '<a href="CppOperatorGreaterEqual.htm">&gt;=</a>') to leave out focus_item<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> dx <a href="CppOperatorAssign.htm">=</a> item-&gt;pos().x() <a href="CppOperatorMinus.htm">-</a> focus_item-&gt;pos().x();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (dx &gt; 0.0) <a href="CppComment.htm">//</a>Use '&gt;' (instead of '<a href="CppOperatorGreaterEqual.html">&gt;=</a>') to leave out focus_item<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> dy <a href="CppOperatorAssign.htm">=</a> item-&gt;pos().y() <a href="CppOperatorMinus.htm">-</a> focus_item-&gt;pos().y();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (<a href="CppAbs.htm">std::abs</a>(dy) &lt; <a href="CppAbs.htm">std::abs</a>(dx))<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> dy <a href="CppOperatorAssign.htm">=</a> item-&gt;pos().y() <a href="CppOperatorMinus.htm">-</a> focus_item-&gt;pos().y();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (<a href="CppAbs.html">std::abs</a>(dy) &lt; <a href="CppAbs.html">std::abs</a>(dx))<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(item <a href="CppOperatorNotEqual.htm">!=</a> focus_item);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(item <a href="CppOperatorNotEqual.htm">!=</a> focus_item);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;v.push_back(item);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Look <b><a href="CppFor.htm">for</a></b> items Eastwards<br/>
-&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b>(<a href="CppQGraphicsItem.htm">QGraphicsItem</a>* <b><a href="CppConst.htm">const</a></b> item: items)<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b>(<a href="CppQGraphicsItem.html">QGraphicsItem</a>* <b><a href="CppConst.html">const</a></b> item: items)<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> dx <a href="CppOperatorAssign.htm">=</a> item-&gt;pos().x() <a href="CppOperatorMinus.htm">-</a> focus_item-&gt;pos().x();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (dx &gt; 0.0) <a href="CppComment.htm">//</a>Use '&gt;' (instead of '<a href="CppOperatorGreaterEqual.htm">&gt;=</a>') to leave out focus_item<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> dx <a href="CppOperatorAssign.htm">=</a> item-&gt;pos().x() <a href="CppOperatorMinus.htm">-</a> focus_item-&gt;pos().x();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (dx &gt; 0.0) <a href="CppComment.htm">//</a>Use '&gt;' (instead of '<a href="CppOperatorGreaterEqual.html">&gt;=</a>') to leave out focus_item<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(item <a href="CppOperatorNotEqual.htm">!=</a> focus_item);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(item <a href="CppOperatorNotEqual.htm">!=</a> focus_item);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;v.push_back(item);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> v;<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppRibi.htm">ribi</a>::<a href="CppQtKeyboardFriendlyGraphicsView.htm">QtKeyboardFriendlyGraphicsView</a>::Get<a href="CppVersion.htm">Version</a>()<br/>
+<b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a> <a href="CppRibi.htm">ribi</a>::<a href="CppQtKeyboardFriendlyGraphicsView.html">QtKeyboardFriendlyGraphicsView</a>::Get<a href="CppVersion.html">Version</a>()<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> "1.1";<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> "1.1";<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm">ribi</a>::<a href="CppQtKeyboardFriendlyGraphicsView.htm">QtKeyboardFriendlyGraphicsView</a>::Get<a href="CppVersion.htm">Version</a>History()<br/>
+<b><a href="CppConst.html">const</a></b> <a href="CppVector.html">std::vector</a>&lt;<a href="CppString.html">std::string</a>&gt; <a href="CppRibi.htm">ribi</a>::<a href="CppQtKeyboardFriendlyGraphicsView.html">QtKeyboardFriendlyGraphicsView</a>::Get<a href="CppVersion.html">Version</a>History()<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v;<br/>
-&nbsp;&nbsp;v.push_back("2012-12-13: <a href="CppVersion.htm">version</a> 1.0: initial <a href="CppVersion.htm">version</a>");<br/>
-&nbsp;&nbsp;v.push_back("2012-12-31: <a href="CppVersion.htm">version</a> 1.1: improved moving focus");<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
+&nbsp;&nbsp;<a href="CppVector.html">std::vector</a>&lt;<a href="CppString.html">std::string</a>&gt; v;<br/>
+&nbsp;&nbsp;v.push_back("2012-12-13: <a href="CppVersion.html">version</a> 1.0: initial <a href="CppVersion.html">version</a>");<br/>
+&nbsp;&nbsp;v.push_back("2012-12-31: <a href="CppVersion.html">version</a> 1.1: improved moving focus");<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> v;<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQtKeyboardFriendlyGraphicsView.htm">QtKeyboardFriendlyGraphicsView</a>::keyPressEvent(<a href="CppQKeyEvent.htm">QKeyEvent</a> *event)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQtKeyboardFriendlyGraphicsView.html">QtKeyboardFriendlyGraphicsView</a>::keyPressEvent(<a href="CppQKeyEvent.html">QKeyEvent</a> *event)<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (event-&gt;modifiers() &amp; <a href="CppQt.htm">Qt</a>::ShiftModifier)<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppSwitch.htm">switch</a></b> (event-&gt;key())<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppSwitch.html">switch</a></b> (event-&gt;key())<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> <a href="CppQt.htm">Qt</a>::Key_Up:<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQGraphicsItem.htm">QGraphicsItem</a>* <b><a href="CppConst.htm">const</a></b> focus_item <a href="CppOperatorAssign.htm">=</a> scene()-&gt;focusItem();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (!focus_item) { <b><a href="CppReturn.htm">return</a></b>; }<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (!(focus_item-&gt;flags() &amp; <a href="CppQGraphicsItem.htm">QGraphicsItem</a>::ItemIsMovable)) { <b><a href="CppReturn.htm">return</a></b>; }<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;focus_item-&gt;setPos(focus_item-&gt;pos() <a href="CppOperatorPlus.htm">+</a> <a href="CppQPointF.htm">QPointF</a>(0.0,-10.0));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQGraphicsItem.html">QGraphicsItem</a>* <b><a href="CppConst.html">const</a></b> focus_item <a href="CppOperatorAssign.htm">=</a> scene()-&gt;focusItem();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (!focus_item) { <b><a href="CppReturn.html">return</a></b>; }<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (!(focus_item-&gt;flags() &amp; <a href="CppQGraphicsItem.html">QGraphicsItem</a>::ItemIsMovable)) { <b><a href="CppReturn.html">return</a></b>; }<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;focus_item-&gt;setPos(focus_item-&gt;pos() <a href="CppOperatorPlus.htm">+</a> <a href="CppQPointF.html">QPointF</a>(0.0,-10.0));<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;m_signal_update(focus_item);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;scene()-&gt;update();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b>;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> <a href="CppQt.htm">Qt</a>::Key_Right:<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQGraphicsItem.htm">QGraphicsItem</a>* <b><a href="CppConst.htm">const</a></b> focus_item <a href="CppOperatorAssign.htm">=</a> scene()-&gt;focusItem();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (!focus_item) { <b><a href="CppReturn.htm">return</a></b>; }<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (!(focus_item-&gt;flags() &amp; <a href="CppQGraphicsItem.htm">QGraphicsItem</a>::ItemIsMovable)) { <b><a href="CppReturn.htm">return</a></b>; }<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;focus_item-&gt;setPos(focus_item-&gt;pos() <a href="CppOperatorPlus.htm">+</a> <a href="CppQPointF.htm">QPointF</a>(10.0,0.0));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQGraphicsItem.html">QGraphicsItem</a>* <b><a href="CppConst.html">const</a></b> focus_item <a href="CppOperatorAssign.htm">=</a> scene()-&gt;focusItem();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (!focus_item) { <b><a href="CppReturn.html">return</a></b>; }<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (!(focus_item-&gt;flags() &amp; <a href="CppQGraphicsItem.html">QGraphicsItem</a>::ItemIsMovable)) { <b><a href="CppReturn.html">return</a></b>; }<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;focus_item-&gt;setPos(focus_item-&gt;pos() <a href="CppOperatorPlus.htm">+</a> <a href="CppQPointF.html">QPointF</a>(10.0,0.0));<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;m_signal_update(focus_item);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;scene()-&gt;update();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b>;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> <a href="CppQt.htm">Qt</a>::Key_Down:<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQGraphicsItem.htm">QGraphicsItem</a>* <b><a href="CppConst.htm">const</a></b> focus_item <a href="CppOperatorAssign.htm">=</a> scene()-&gt;focusItem();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (!focus_item) { <b><a href="CppReturn.htm">return</a></b>; }<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (!(focus_item-&gt;flags() &amp; <a href="CppQGraphicsItem.htm">QGraphicsItem</a>::ItemIsMovable)) { <b><a href="CppReturn.htm">return</a></b>; }<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;focus_item-&gt;setPos(focus_item-&gt;pos() <a href="CppOperatorPlus.htm">+</a> <a href="CppQPointF.htm">QPointF</a>(0.0,10.0));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQGraphicsItem.html">QGraphicsItem</a>* <b><a href="CppConst.html">const</a></b> focus_item <a href="CppOperatorAssign.htm">=</a> scene()-&gt;focusItem();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (!focus_item) { <b><a href="CppReturn.html">return</a></b>; }<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (!(focus_item-&gt;flags() &amp; <a href="CppQGraphicsItem.html">QGraphicsItem</a>::ItemIsMovable)) { <b><a href="CppReturn.html">return</a></b>; }<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;focus_item-&gt;setPos(focus_item-&gt;pos() <a href="CppOperatorPlus.htm">+</a> <a href="CppQPointF.html">QPointF</a>(0.0,10.0));<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;m_signal_update(focus_item);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;scene()-&gt;update();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b>;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> <a href="CppQt.htm">Qt</a>::Key_Left:<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQGraphicsItem.htm">QGraphicsItem</a>* <b><a href="CppConst.htm">const</a></b> focus_item <a href="CppOperatorAssign.htm">=</a> scene()-&gt;focusItem();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (!focus_item) { <b><a href="CppReturn.htm">return</a></b>; }<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (!(focus_item-&gt;flags() &amp; <a href="CppQGraphicsItem.htm">QGraphicsItem</a>::ItemIsMovable)) { <b><a href="CppReturn.htm">return</a></b>; }<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;focus_item-&gt;setPos(focus_item-&gt;pos() <a href="CppOperatorPlus.htm">+</a> <a href="CppQPointF.htm">QPointF</a>(-10.0,0.0));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQGraphicsItem.html">QGraphicsItem</a>* <b><a href="CppConst.html">const</a></b> focus_item <a href="CppOperatorAssign.htm">=</a> scene()-&gt;focusItem();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (!focus_item) { <b><a href="CppReturn.html">return</a></b>; }<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (!(focus_item-&gt;flags() &amp; <a href="CppQGraphicsItem.html">QGraphicsItem</a>::ItemIsMovable)) { <b><a href="CppReturn.html">return</a></b>; }<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;focus_item-&gt;setPos(focus_item-&gt;pos() <a href="CppOperatorPlus.htm">+</a> <a href="CppQPointF.html">QPointF</a>(-10.0,0.0));<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;m_signal_update(focus_item);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;scene()-&gt;update();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b>;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;}<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppSwitch.htm">switch</a></b> (event-&gt;key())<br/>
+&nbsp;&nbsp;<b><a href="CppSwitch.html">switch</a></b> (event-&gt;key())<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> <a href="CppQt.htm">Qt</a>::Key_Up:<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQGraphicsItem.htm">QGraphicsItem</a>* <b><a href="CppConst.htm">const</a></b> focus_item <a href="CppOperatorAssign.htm">=</a> scene()-&gt;focusItem();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (!focus_item) { <b><a href="CppReturn.htm">return</a></b>; }<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppQGraphicsItem.htm">QGraphicsItem</a> *&gt; items <a href="CppOperatorAssign.htm">=</a> GetItemsAbove(focus_item);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (items.empty()) { <b><a href="CppReturn.htm">return</a></b>; }<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQGraphicsItem.htm">QGraphicsItem</a>* <b><a href="CppConst.htm">const</a></b> new_focus_item <a href="CppOperatorAssign.htm">=</a> GetClosest(focus_item,items);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (!new_focus_item) <b><a href="CppReturn.htm">return</a></b>;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;focus_item-&gt;setEnabled(<b><a href="CppFalse.htm">false</a></b>);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQGraphicsItem.html">QGraphicsItem</a>* <b><a href="CppConst.html">const</a></b> focus_item <a href="CppOperatorAssign.htm">=</a> scene()-&gt;focusItem();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (!focus_item) { <b><a href="CppReturn.html">return</a></b>; }<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppVector.html">std::vector</a>&lt;<a href="CppQGraphicsItem.html">QGraphicsItem</a> *&gt; items <a href="CppOperatorAssign.htm">=</a> GetItemsAbove(focus_item);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (items.empty()) { <b><a href="CppReturn.html">return</a></b>; }<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQGraphicsItem.html">QGraphicsItem</a>* <b><a href="CppConst.html">const</a></b> new_focus_item <a href="CppOperatorAssign.htm">=</a> GetClosest(focus_item,items);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (!new_focus_item) <b><a href="CppReturn.html">return</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;focus_item-&gt;setEnabled(<b><a href="CppFalse.html">false</a></b>);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;focus_item-&gt;clearFocus();<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;focus_item-&gt;setEnabled(<b><a href="CppTrue.htm">true</a></b>);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;new_focus_item-&gt;setFocus();<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppBreak.htm">break</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppBreak.html">break</a></b>;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> <a href="CppQt.htm">Qt</a>::Key_Tab:<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> <a href="CppQt.htm">Qt</a>::Key_Right:<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQGraphicsItem.htm">QGraphicsItem</a>* <b><a href="CppConst.htm">const</a></b> focus_item <a href="CppOperatorAssign.htm">=</a> scene()-&gt;focusItem();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (!focus_item) { <b><a href="CppReturn.htm">return</a></b>; }<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppQGraphicsItem.htm">QGraphicsItem</a> *&gt; items <a href="CppOperatorAssign.htm">=</a> GetItemsRight(focus_item);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (items.empty()) { <b><a href="CppReturn.htm">return</a></b>; }<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQGraphicsItem.htm">QGraphicsItem</a>* <b><a href="CppConst.htm">const</a></b> new_focus_item <a href="CppOperatorAssign.htm">=</a> GetClosest(focus_item,items);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (!new_focus_item) <b><a href="CppReturn.htm">return</a></b>;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;focus_item-&gt;setEnabled(<b><a href="CppFalse.htm">false</a></b>);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQGraphicsItem.html">QGraphicsItem</a>* <b><a href="CppConst.html">const</a></b> focus_item <a href="CppOperatorAssign.htm">=</a> scene()-&gt;focusItem();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (!focus_item) { <b><a href="CppReturn.html">return</a></b>; }<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppVector.html">std::vector</a>&lt;<a href="CppQGraphicsItem.html">QGraphicsItem</a> *&gt; items <a href="CppOperatorAssign.htm">=</a> GetItemsRight(focus_item);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (items.empty()) { <b><a href="CppReturn.html">return</a></b>; }<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQGraphicsItem.html">QGraphicsItem</a>* <b><a href="CppConst.html">const</a></b> new_focus_item <a href="CppOperatorAssign.htm">=</a> GetClosest(focus_item,items);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (!new_focus_item) <b><a href="CppReturn.html">return</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;focus_item-&gt;setEnabled(<b><a href="CppFalse.html">false</a></b>);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;focus_item-&gt;clearFocus();<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;focus_item-&gt;setEnabled(<b><a href="CppTrue.htm">true</a></b>);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;new_focus_item-&gt;setFocus();<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppBreak.htm">break</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppBreak.html">break</a></b>;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> <a href="CppQt.htm">Qt</a>::Key_Down:<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQGraphicsItem.htm">QGraphicsItem</a>* <b><a href="CppConst.htm">const</a></b> focus_item <a href="CppOperatorAssign.htm">=</a> scene()-&gt;focusItem();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (!focus_item) { <b><a href="CppReturn.htm">return</a></b>; }<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppQGraphicsItem.htm">QGraphicsItem</a> *&gt; items <a href="CppOperatorAssign.htm">=</a> GetItemsBelow(focus_item);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (items.empty()) { <b><a href="CppReturn.htm">return</a></b>; }<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQGraphicsItem.htm">QGraphicsItem</a>* <b><a href="CppConst.htm">const</a></b> new_focus_item <a href="CppOperatorAssign.htm">=</a> GetClosest(focus_item,items);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (!new_focus_item) <b><a href="CppReturn.htm">return</a></b>;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;focus_item-&gt;setEnabled(<b><a href="CppFalse.htm">false</a></b>);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQGraphicsItem.html">QGraphicsItem</a>* <b><a href="CppConst.html">const</a></b> focus_item <a href="CppOperatorAssign.htm">=</a> scene()-&gt;focusItem();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (!focus_item) { <b><a href="CppReturn.html">return</a></b>; }<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppVector.html">std::vector</a>&lt;<a href="CppQGraphicsItem.html">QGraphicsItem</a> *&gt; items <a href="CppOperatorAssign.htm">=</a> GetItemsBelow(focus_item);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (items.empty()) { <b><a href="CppReturn.html">return</a></b>; }<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQGraphicsItem.html">QGraphicsItem</a>* <b><a href="CppConst.html">const</a></b> new_focus_item <a href="CppOperatorAssign.htm">=</a> GetClosest(focus_item,items);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (!new_focus_item) <b><a href="CppReturn.html">return</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;focus_item-&gt;setEnabled(<b><a href="CppFalse.html">false</a></b>);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;focus_item-&gt;clearFocus();<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;focus_item-&gt;setEnabled(<b><a href="CppTrue.htm">true</a></b>);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;new_focus_item-&gt;setFocus();<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppBreak.htm">break</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppBreak.html">break</a></b>;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> <a href="CppQt.htm">Qt</a>::Key_Left:<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> <a href="CppQt.htm">Qt</a>::Key_Backtab:<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQGraphicsItem.htm">QGraphicsItem</a>* <b><a href="CppConst.htm">const</a></b> focus_item <a href="CppOperatorAssign.htm">=</a> scene()-&gt;focusItem();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (!focus_item) { <b><a href="CppReturn.htm">return</a></b>; }<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppQGraphicsItem.htm">QGraphicsItem</a> *&gt; items <a href="CppOperatorAssign.htm">=</a> GetItemsLeft(focus_item);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (items.empty()) { <b><a href="CppReturn.htm">return</a></b>; }<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQGraphicsItem.htm">QGraphicsItem</a>* <b><a href="CppConst.htm">const</a></b> new_focus_item <a href="CppOperatorAssign.htm">=</a> GetClosest(focus_item,items);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (!new_focus_item) <b><a href="CppReturn.htm">return</a></b>;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;focus_item-&gt;setEnabled(<b><a href="CppFalse.htm">false</a></b>);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQGraphicsItem.html">QGraphicsItem</a>* <b><a href="CppConst.html">const</a></b> focus_item <a href="CppOperatorAssign.htm">=</a> scene()-&gt;focusItem();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (!focus_item) { <b><a href="CppReturn.html">return</a></b>; }<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppVector.html">std::vector</a>&lt;<a href="CppQGraphicsItem.html">QGraphicsItem</a> *&gt; items <a href="CppOperatorAssign.htm">=</a> GetItemsLeft(focus_item);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (items.empty()) { <b><a href="CppReturn.html">return</a></b>; }<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQGraphicsItem.html">QGraphicsItem</a>* <b><a href="CppConst.html">const</a></b> new_focus_item <a href="CppOperatorAssign.htm">=</a> GetClosest(focus_item,items);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (!new_focus_item) <b><a href="CppReturn.html">return</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;focus_item-&gt;setEnabled(<b><a href="CppFalse.html">false</a></b>);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;focus_item-&gt;clearFocus();<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;focus_item-&gt;setEnabled(<b><a href="CppTrue.htm">true</a></b>);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;new_focus_item-&gt;setFocus();<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppBreak.htm">break</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppBreak.html">break</a></b>;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> <a href="CppQt.htm">Qt</a>::Key_Space:<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SetRandomFocus();<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppBreak.htm">break</a></b>;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> <a href="CppQt.htm">Qt</a>::Key_<a href="CppQuestion.htm">Question</a>:<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppBreak.html">break</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> <a href="CppQt.htm">Qt</a>::Key_<a href="CppQuestion.html">Question</a>:<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (<b><a href="CppConst.htm">const</a></b> <a href="CppQGraphicsItem.htm">QGraphicsItem</a>* <b><a href="CppConst.htm">const</a></b> item <a href="CppOperatorAssign.htm">=</a> scene()-&gt;focusItem())<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (<b><a href="CppConst.html">const</a></b> <a href="CppQGraphicsItem.html">QGraphicsItem</a>* <b><a href="CppConst.html">const</a></b> item <a href="CppOperatorAssign.htm">=</a> scene()-&gt;focusItem())<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppClog.htm">std::clog</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="Cpp__func__.htm">__func__</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> ": <a href="CppQGraphicsItem.htm">QGraphicsItem</a> selected at ("<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> item-&gt;pos().x() <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> ","<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> item-&gt;pos().y() <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> ")"<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppEndl.htm">std::endl</a>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppClog.html">std::clog</a> <a href="CppOperatorStreamOut.html">&lt;&lt;</a> <a href="Cpp__func__.html">__func__</a> <a href="CppOperatorStreamOut.html">&lt;&lt;</a> ": <a href="CppQGraphicsItem.html">QGraphicsItem</a> selected at ("<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> item-&gt;pos().x() <a href="CppOperatorStreamOut.html">&lt;&lt;</a> ","<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> item-&gt;pos().y() <a href="CppOperatorStreamOut.html">&lt;&lt;</a> ")"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> <a href="CppEndl.html">std::endl</a>;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppElse.htm">else</a></b><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppClog.htm">std::clog</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="Cpp__func__.htm">__func__</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> ": no <a href="CppQGraphicsItem.htm">QGraphicsItem</a> selected" <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppEndl.htm">std::endl</a>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppClog.html">std::clog</a> <a href="CppOperatorStreamOut.html">&lt;&lt;</a> <a href="Cpp__func__.html">__func__</a> <a href="CppOperatorStreamOut.html">&lt;&lt;</a> ": no <a href="CppQGraphicsItem.html">QGraphicsItem</a> selected" <a href="CppOperatorStreamOut.html">&lt;&lt;</a> <a href="CppEndl.html">std::endl</a>;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppBreak.htm">break</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppBreak.html">break</a></b>;<br/>
 &nbsp;&nbsp;}<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>Let <a href="CppQGraphicsView.htm">QGraphicsView</a> <b><a href="CppDo.htm">do</a></b> the rest...<br/>
-&nbsp;&nbsp;<a href="CppQGraphicsView.htm">QGraphicsView</a>::keyPressEvent(event);<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Let <a href="CppQGraphicsView.html">QGraphicsView</a> <b><a href="CppDo.htm">do</a></b> the rest...<br/>
+&nbsp;&nbsp;<a href="CppQGraphicsView.html">QGraphicsView</a>::keyPressEvent(event);<br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;update();<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQtKeyboardFriendlyGraphicsView.htm">QtKeyboardFriendlyGraphicsView</a>::SetRandomFocus()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQtKeyboardFriendlyGraphicsView.html">QtKeyboardFriendlyGraphicsView</a>::SetRandomFocus()<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Let existing item lose focus<br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (<a href="CppQGraphicsItem.htm">QGraphicsItem</a>* <b><a href="CppConst.htm">const</a></b> item <a href="CppOperatorAssign.htm">=</a> scene()-&gt;focusItem())<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (<a href="CppQGraphicsItem.html">QGraphicsItem</a>* <b><a href="CppConst.html">const</a></b> item <a href="CppOperatorAssign.htm">=</a> scene()-&gt;focusItem())<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Really lose focus<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;item-&gt;setEnabled(<b><a href="CppFalse.htm">false</a></b>);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;item-&gt;setEnabled(<b><a href="CppFalse.html">false</a></b>);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;item-&gt;clearFocus();<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;item-&gt;setEnabled(<b><a href="CppTrue.htm">true</a></b>);<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Let a random item receive focus<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppQList.htm">QList</a>&lt;<a href="CppQGraphicsItem.htm">QGraphicsItem</a> *&gt; all_items <a href="CppOperatorAssign.htm">=</a> <b><a href="CppThis.htm">this</a></b>-&gt;items();<br/>
-&nbsp;&nbsp;<a href="CppQList.htm">QList</a>&lt;<a href="CppQGraphicsItem.htm">QGraphicsItem</a> *&gt; items;<br/>
-&nbsp;&nbsp;<a href="CppCopy_if.htm">std::copy_if</a>(all_items.begin(),all_items.end(),<a href="CppBack_inserter.htm">std::back_inserter</a>(items),<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;[](<b><a href="CppConst.htm">const</a></b> <a href="CppQGraphicsItem.htm">QGraphicsItem</a>* <b><a href="CppConst.htm">const</a></b> item)<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppQList.html">QList</a>&lt;<a href="CppQGraphicsItem.html">QGraphicsItem</a> *&gt; all_items <a href="CppOperatorAssign.htm">=</a> <b><a href="CppThis.htm">this</a></b>-&gt;items();<br/>
+&nbsp;&nbsp;<a href="CppQList.html">QList</a>&lt;<a href="CppQGraphicsItem.html">QGraphicsItem</a> *&gt; items;<br/>
+&nbsp;&nbsp;<a href="CppCopy_if.html">std::copy_if</a>(all_items.begin(),all_items.end(),<a href="CppBack_inserter.html">std::back_inserter</a>(items),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;[](<b><a href="CppConst.html">const</a></b> <a href="CppQGraphicsItem.html">QGraphicsItem</a>* <b><a href="CppConst.html">const</a></b> item)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> (item-&gt;flags() &amp; <a href="CppQGraphicsItem.htm">QGraphicsItem</a>::ItemIsFocusable)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> item-&gt;isVisible();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> (item-&gt;flags() &amp; <a href="CppQGraphicsItem.html">QGraphicsItem</a>::ItemIsFocusable)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorLogicalAnd.html">&amp;&amp;</a> item-&gt;isVisible();<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;);<br/>
 <br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (!items.empty())<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> i <a href="CppOperatorAssign.htm">=</a> <a href="CppRand.htm">std::rand</a>() <a href="CppOperatorModulus.htm">%</a> items.size();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> i <a href="CppOperatorAssign.htm">=</a> <a href="CppRand.html">std::rand</a>() <a href="CppOperatorModulus.htm">%</a> items.size();<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;items.at(i)-&gt;setFocus();<br/>
 &nbsp;&nbsp;}<br/>
 }<br/>

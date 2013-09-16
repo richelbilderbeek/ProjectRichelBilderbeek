@@ -68,11 +68,11 @@
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="CppAssertExample2.pro" border = "1"><tr><td><code>
-TEMPLATE = app<br/>
-CONFIG += console<br/>
-CONFIG -= app_bundle<br/>
-CONFIG -= qt<br/>
-<a href="CppSOURCES.htm">SOURCES</a> += <a href="CppMain.htm">main</a>.cpp<br/>
+<a href="CppQmakeTemplate.htm">TEMPLATE</a> = app<br/>
+<a href="CppQmakeConfig.htm">CONFIG</a> += console<br/>
+<a href="CppQmakeConfig.htm">CONFIG</a> -= app_bundle<br/>
+<a href="CppQmakeConfig.htm">CONFIG</a> -= qt<br/>
+<a href="CppQmakeSources.htm">SOURCES</a> += <a href="CppMain.htm">main</a>.cpp<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -84,61 +84,61 @@ CONFIG -= qt<br/>
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="main.cpp" border = "1"><tr><td><code>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppCsignalH.htm">csignal</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppCstdlibH.htm">cstdlib</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppIostreamH.htm">iostream</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppCassertH.html">cassert</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppCsignalH.html">csignal</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppCstdlibH.html">cstdlib</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppIostreamH.html">iostream</a>&gt;<br/>
 <br/>
 <b><a href="CppVoid.htm">void</a></b> onAbort(<b><a href="CppInt.htm">int</a></b>)<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppExit.htm">std::exit</a>(1);<br/>
+&nbsp;&nbsp;<a href="CppExit.html">std::exit</a>(1);<br/>
 }<br/>
 <br/>
-<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a>()<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>Connect the abort <a href="CppSignal.htm">signal</a> to the OnAbort, to obtain informative<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>screen output with '<a href="Projects.htm">Projects</a> | Run | Run in terminal' unchecked<br/>
-&nbsp;&nbsp;<a href="CppStdSignal.htm">std::signal</a>(SIGABRT,onAbort);<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Connect the abort <a href="CppSignal.html">signal</a> to the OnAbort, to obtain informative<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>screen output with '<a href="Projects.html">Projects</a> | Run | Run in terminal' unchecked<br/>
+&nbsp;&nbsp;<a href="CppStdSignal.html">std::signal</a>(SIGABRT,onAbort);<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> numerator <a href="CppOperatorAssign.htm">=</a> 1.0;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> denominator <a href="CppOperatorAssign.htm">=</a> 0.0;<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(denominator <a href="CppOperatorNotEqual.htm">!=</a> 0.0);<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> result <a href="CppOperatorAssign.htm">=</a> numerator <a href="CppOperatorDivide.htm">/</a> denominator;<br/>
-&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> result <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppEndl.htm">std::endl</a>;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> numerator <a href="CppOperatorAssign.htm">=</a> 1.0;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> denominator <a href="CppOperatorAssign.htm">=</a> 0.0;<br/>
+&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(denominator <a href="CppOperatorNotEqual.htm">!=</a> 0.0);<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> result <a href="CppOperatorAssign.htm">=</a> numerator <a href="CppOperatorDivide.htm">/</a> denominator;<br/>
+&nbsp;&nbsp;<a href="CppCout.html">std::cout</a> <a href="CppOperatorStreamOut.html">&lt;&lt;</a> result <a href="CppOperatorStreamOut.html">&lt;&lt;</a> <a href="CppEndl.html">std::endl</a>;<br/>
 }<br/>
 <br/>
-<a href="CppComment.htm">/*</a> Screen output with '<a href="Projects.htm">Projects</a> | Run | Run in terminal' checked<br/>
+<a href="CppComment.htm">/*</a> Screen output with '<a href="Projects.html">Projects</a> | Run | Run in terminal' checked<br/>
 <br/>
-<a href="CppAssert.htm">Assert</a>ion failed!<br/>
+<a href="CppAssert.html">Assert</a>ion failed!<br/>
 <br/>
-Program: E:\<a href="Projects.htm">Projects</a>\Test\build-<a href="CppAssert.htm">CppAssert</a>Example2-Desktop_<a href="CppQt.htm">Qt</a>_5_1_0_MinGW_32bit-D<br/>
-e<a href="CppBug.htm">bug</a>\<a href="CppDebug.htm">debug</a>\<a href="CppAssert.htm">CppAssert</a>Example2.exe<br/>
-File: ../<a href="CppAssert.htm">CppAssert</a>Example2/<a href="CppMain.htm">main</a>.cpp, Line 19<br/>
+Program: E:\<a href="Projects.html">Projects</a>\Test\build-<a href="CppAssert.html">CppAssert</a>Example2-Desktop_<a href="CppQt.htm">Qt</a>_5_1_0_MinGW_32bit-D<br/>
+e<a href="CppBug.htm">bug</a>\<a href="CppDebug.html">debug</a>\<a href="CppAssert.html">CppAssert</a>Example2.exe<br/>
+File: ../<a href="CppAssert.html">CppAssert</a>Example2/<a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a><a href="CppImplementationFile.html">.cpp</a>, Line 19<br/>
 <br/>
 Expression: denominator <a href="CppOperatorNotEqual.htm">!=</a> 0.0<br/>
 <br/>
-This <a href="CppApplication.htm">application</a> has requested the Run<a href="CppTime.htm">time</a> to terminate it in an unusual way.<br/>
-Please contact the <a href="CppApplication.htm">application</a>'s support team <b><a href="CppFor.htm">for</a></b> more information.<br/>
+This <a href="CppApplication.html">application</a> has requested the Run<a href="CppTime.htm">time</a> to terminate it in an unusual way.<br/>
+Please contact the <a href="CppApplication.html">application</a>'s support team <b><a href="CppFor.htm">for</a></b> more information.<br/>
 Press &lt;RETURN&gt; to close <b><a href="CppThis.htm">this</a></b> window...<br/>
 <br/>
 <a href="CppComment.htm">*/</a><br/>
 <br/>
 <br/>
 <br/>
-<a href="CppComment.htm">/*</a> Screen output with '<a href="Projects.htm">Projects</a> | Run | Run in terminal' unchecked<br/>
+<a href="CppComment.htm">/*</a> Screen output with '<a href="Projects.html">Projects</a> | Run | Run in terminal' unchecked<br/>
 <br/>
-Starting E:\<a href="Projects.htm">Projects</a>\Test\build-<a href="CppAssert.htm">CppAssert</a>Example2-Desktop_<a href="CppQt.htm">Qt</a>_5_1_0_MinGW_32bit-<a href="CppDebug.htm">Debug</a>\<a href="CppDebug.htm">debug</a>\<a href="CppAssert.htm">CppAssert</a>Example2.exe...<br/>
-Cannot retrieve <a href="CppDebug.htm">debugging</a> output.<br/>
+Starting E:\<a href="Projects.html">Projects</a>\Test\build-<a href="CppAssert.html">CppAssert</a>Example2-Desktop_<a href="CppQt.htm">Qt</a>_5_1_0_MinGW_32bit-<a href="CppDebug.html">Debug</a>\<a href="CppDebug.html">debug</a>\<a href="CppAssert.html">CppAssert</a>Example2.exe...<br/>
+Cannot retrieve <a href="CppDebug.html">debugging</a> output.<br/>
 <br/>
-This <a href="CppApplication.htm">application</a> has requested the Run<a href="CppTime.htm">time</a> to terminate it in an unusual way.<br/>
-Please contact the <a href="CppApplication.htm">application</a>'s support team <b><a href="CppFor.htm">for</a></b> more information.<br/>
-<a href="CppAssert.htm">Assert</a>ion failed!<br/>
+This <a href="CppApplication.html">application</a> has requested the Run<a href="CppTime.htm">time</a> to terminate it in an unusual way.<br/>
+Please contact the <a href="CppApplication.html">application</a>'s support team <b><a href="CppFor.htm">for</a></b> more information.<br/>
+<a href="CppAssert.html">Assert</a>ion failed!<br/>
 <br/>
-Program: E:\<a href="Projects.htm">Projects</a>\Test\build-<a href="CppAssert.htm">CppAssert</a>Example2-Desktop_<a href="CppQt.htm">Qt</a>_5_1_0_MinGW_32bit-<a href="CppDebug.htm">Debug</a>\<a href="CppDebug.htm">debug</a>\<a href="CppAssert.htm">CppAssert</a>Example2.exe<br/>
-File: ../<a href="CppAssert.htm">CppAssert</a>Example2/<a href="CppMain.htm">main</a>.cpp, Line 27<br/>
+Program: E:\<a href="Projects.html">Projects</a>\Test\build-<a href="CppAssert.html">CppAssert</a>Example2-Desktop_<a href="CppQt.htm">Qt</a>_5_1_0_MinGW_32bit-<a href="CppDebug.html">Debug</a>\<a href="CppDebug.html">debug</a>\<a href="CppAssert.html">CppAssert</a>Example2.exe<br/>
+File: ../<a href="CppAssert.html">CppAssert</a>Example2/<a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a><a href="CppImplementationFile.html">.cpp</a>, Line 27<br/>
 <br/>
 Expression: denominator <a href="CppOperatorNotEqual.htm">!=</a> 0.0<br/>
-E:\<a href="Projects.htm">Projects</a>\Test\build-<a href="CppAssert.htm">CppAssert</a>Example2-Desktop_<a href="CppQt.htm">Qt</a>_5_1_0_MinGW_32bit-<a href="CppDebug.htm">Debug</a>\<a href="CppDebug.htm">debug</a>\<a href="CppAssert.htm">CppAssert</a>Example2.exe exited with code 1<br/>
+E:\<a href="Projects.html">Projects</a>\Test\build-<a href="CppAssert.html">CppAssert</a>Example2-Desktop_<a href="CppQt.htm">Qt</a>_5_1_0_MinGW_32bit-<a href="CppDebug.html">Debug</a>\<a href="CppDebug.html">debug</a>\<a href="CppAssert.html">CppAssert</a>Example2.exe exited with code 1<br/>
 <br/>
 <a href="CppComment.htm">*/</a><br/>
 </code></td></tr></table>

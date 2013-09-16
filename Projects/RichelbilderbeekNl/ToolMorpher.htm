@@ -48,37 +48,37 @@ images, <a href="ToolMorpherExample.png">as shown in this example</a>.</p>
 <table summary="ProjectMorpher.cpp" border = "1"><tr><td><code>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> &lt;vcl.h&gt;<br/>
-<a href="CppPragma.htm">#pragma</a> hdrstop<br/>
+<a href="CppInclude.html">#include</a> &lt;vcl<a href="CppHeaderFile.htm">.h</a>&gt;<br/>
+<a href="CppPragma.html">#pragma</a> hdrstop<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-USEFORM("UnitFormMorpher.cpp", FormMorpher);<br/>
-USEFORM("UnitForm<a href="CppAbout.htm">About</a>.cpp", Form<a href="CppAbout.htm">About</a>);<br/>
+USEFORM("UnitFormMorpher<a href="CppImplementationFile.html">.cpp</a>", FormMorpher);<br/>
+USEFORM("UnitForm<a href="CppAbout.html">About</a><a href="CppImplementationFile.html">.cpp</a>", Form<a href="CppAbout.html">About</a>);<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, <b><a href="CppInt.htm">int</a></b>)<br/>
 {<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppTry.htm">try</a></b><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppApplication.htm">Application</a>-&gt;<a href="CppInitialize.htm">Initialize</a>();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppApplication.htm">Application</a>-&gt;Title <a href="CppOperatorAssign.htm">=</a> "Morpher";<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppApplication.htm">Application</a>-&gt;CreateForm(__classid(TFormMorpher), &amp;FormMorpher);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppApplication.htm">Application</a>-&gt;Run();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppApplication.html">Application</a>-&gt;<a href="CppInitialize.html">Initialize</a>();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppApplication.html">Application</a>-&gt;Title <a href="CppOperatorAssign.htm">=</a> "Morpher";<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppApplication.html">Application</a>-&gt;CreateForm(__classid(TFormMorpher), &amp;FormMorpher);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppApplication.html">Application</a>-&gt;Run();<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCatch.htm">catch</a></b> (<a href="CppException.htm">Exception</a> &amp;<a href="CppException.htm">exception</a>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCatch.html">catch</a></b> (<a href="CppException.html">Exception</a> &amp;<a href="CppException.html">exception</a>)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppApplication.htm">Application</a>-&gt;Show<a href="CppException.htm">Exception</a>(&amp;<a href="CppException.htm">exception</a>);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppApplication.html">Application</a>-&gt;Show<a href="CppException.html">Exception</a>(&amp;<a href="CppException.html">exception</a>);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCatch.htm">catch</a></b> (...)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCatch.html">catch</a></b> (...)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b><a href="CppTry.htm">try</a></b><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b><a href="CppThrow.htm">throw</a></b> <a href="CppException.htm">Exception</a>("");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b><a href="CppThrow.html">throw</a></b> <a href="CppException.html">Exception</a>("");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b><a href="CppCatch.htm">catch</a></b> (<a href="CppException.htm">Exception</a> &amp;<a href="CppException.htm">exception</a>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b><a href="CppCatch.html">catch</a></b> (<a href="CppException.html">Exception</a> &amp;<a href="CppException.html">exception</a>)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppApplication.htm">Application</a>-&gt;Show<a href="CppException.htm">Exception</a>(&amp;<a href="CppException.htm">exception</a>);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppApplication.html">Application</a>-&gt;Show<a href="CppException.html">Exception</a>(&amp;<a href="CppException.html">exception</a>);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> 0;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> 0;<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 </code></td></tr></table>
@@ -111,37 +111,37 @@ WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, <b><a href="CppInt.htm">int</a></b>)
 &nbsp;&nbsp;&nbsp;&nbsp;along with this program.&nbsp;&nbsp;If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">*/</a><br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppIfndef.htm">#ifndef</a> UnitForm<a href="CppAbout.htm">About</a>H<br/>
-<a href="CppDefine.htm">#define</a> UnitForm<a href="CppAbout.htm">About</a>H<br/>
+<a href="CppIfndef.html">#ifndef</a> UnitForm<a href="CppAbout.html">About</a>H<br/>
+<a href="CppDefine.html">#define</a> UnitForm<a href="CppAbout.html">About</a>H<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppClass.htm">Classes</a>.hpp&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;Controls.hpp&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;StdCtrls.hpp&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;Forms.hpp&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;ComCtrls.hpp&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;ExtCtrls.hpp&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;Graphics.hpp&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppClass.html">Classes</a><a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;Controls<a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;StdCtrls<a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;Forms<a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;ComCtrls<a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;ExtCtrls<a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;Graphics<a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppClass.htm">class</a></b> TForm<a href="CppAbout.htm">About</a> : <b><a href="CppPublic.htm">public</a></b> TForm<br/>
+<b><a href="CppClass.html">class</a></b> TForm<a href="CppAbout.html">About</a> : <b><a href="CppPublic.html">public</a></b> TForm<br/>
 {<br/>
-__published:	<a href="CppComment.htm">//</a> IDE-managed <a href="CppComponent.htm">Component</a>s<br/>
+__published:	<a href="CppComment.htm">//</a> IDE-managed <a href="CppComponent.html">Component</a>s<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TPanel *PanelTop;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TRichEdit *RichEdit1;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppTImage.htm">TImage</a> *Image1;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppTImage.html">TImage</a> *Image1;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TPanel *PanelTopRight;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TPanel *Panel1;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TPanel *Panel2;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TPanel *Panel3;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TPanel *Panel4;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TPanel *Panel5;<br/>
-<b><a href="CppPrivate.htm">private</a></b>:	<a href="CppComment.htm">//</a> User <a href="CppDeclaration.htm">declaration</a>s<br/>
-<b><a href="CppPublic.htm">public</a></b>:		<a href="CppComment.htm">//</a> User <a href="CppDeclaration.htm">declaration</a>s<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;__fastcall TForm<a href="CppAbout.htm">About</a>(T<a href="CppComponent.htm">Component</a>* Owner);<br/>
+<b><a href="CppPrivate.html">private</a></b>:	<a href="CppComment.htm">//</a> User <a href="CppDeclaration.html">declaration</a>s<br/>
+<b><a href="CppPublic.html">public</a></b>:		<a href="CppComment.htm">//</a> User <a href="CppDeclaration.html">declaration</a>s<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;__fastcall TForm<a href="CppAbout.html">About</a>(T<a href="CppComponent.html">Component</a>* Owner);<br/>
 };<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppExtern.htm">extern</a></b> PACKAGE TForm<a href="CppAbout.htm">About</a> *Form<a href="CppAbout.htm">About</a>;<br/>
+<b><a href="CppExtern.html">extern</a></b> PACKAGE TForm<a href="CppAbout.html">About</a> *Form<a href="CppAbout.html">About</a>;<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppEndif.htm">#endif</a><br/>
+<a href="CppEndif.html">#endif</a><br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -172,16 +172,16 @@ __published:	<a href="CppComment.htm">//</a> IDE-managed <a href="CppComponent.h
 &nbsp;&nbsp;&nbsp;&nbsp;along with this program.&nbsp;&nbsp;If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">*/</a><br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppInclude.htm">#include</a> &lt;vcl.h&gt;<br/>
-<a href="CppPragma.htm">#pragma</a> hdrstop<br/>
+<a href="CppInclude.html">#include</a> &lt;vcl<a href="CppHeaderFile.htm">.h</a>&gt;<br/>
+<a href="CppPragma.html">#pragma</a> hdrstop<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> "UnitForm<a href="CppAbout.htm">About</a>.h"<br/>
+<a href="CppInclude.html">#include</a> "UnitForm<a href="CppAbout.html">About</a><a href="CppHeaderFile.htm">.h</a>"<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppPragma.htm">#pragma</a> package(smart_init)<br/>
-<a href="CppPragma.htm">#pragma</a> resource "*.dfm"<br/>
-TForm<a href="CppAbout.htm">About</a> *Form<a href="CppAbout.htm">About</a>;<br/>
+<a href="CppPragma.html">#pragma</a> package(smart_init)<br/>
+<a href="CppPragma.html">#pragma</a> resource "*.dfm"<br/>
+TForm<a href="CppAbout.html">About</a> *Form<a href="CppAbout.html">About</a>;<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-__fastcall TForm<a href="CppAbout.htm">About</a>::TForm<a href="CppAbout.htm">About</a>(T<a href="CppComponent.htm">Component</a>* Owner)<br/>
+__fastcall TForm<a href="CppAbout.html">About</a>::TForm<a href="CppAbout.html">About</a>(T<a href="CppComponent.html">Component</a>* Owner)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: TForm(Owner)<br/>
 {<br/>
 }<br/>
@@ -216,51 +216,51 @@ __fastcall TForm<a href="CppAbout.htm">About</a>::TForm<a href="CppAbout.htm">Ab
 &nbsp;&nbsp;&nbsp;&nbsp;along with this program.&nbsp;&nbsp;If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">*/</a><br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppIfndef.htm">#ifndef</a> UnitFormMorpherH<br/>
-<a href="CppDefine.htm">#define</a> UnitFormMorpherH<br/>
+<a href="CppIfndef.html">#ifndef</a> UnitFormMorpherH<br/>
+<a href="CppDefine.html">#define</a> UnitFormMorpherH<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppClass.htm">Classes</a>.hpp&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;Controls.hpp&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;StdCtrls.hpp&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;Forms.hpp&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;ExtCtrls.hpp&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;Graphics.hpp&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;Dialogs.hpp&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;ComCtrls.hpp&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppClass.html">Classes</a><a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;Controls<a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;StdCtrls<a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;Forms<a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;ExtCtrls<a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;Graphics<a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;Dialogs<a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;ComCtrls<a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppClass.htm">class</a></b> TFormMorpher : <b><a href="CppPublic.htm">public</a></b> TForm<br/>
+<b><a href="CppClass.html">class</a></b> TFormMorpher : <b><a href="CppPublic.html">public</a></b> TForm<br/>
 {<br/>
-__published:	<a href="CppComment.htm">//</a> IDE-managed <a href="CppComponent.htm">Component</a>s<br/>
+__published:	<a href="CppComment.htm">//</a> IDE-managed <a href="CppComponent.html">Component</a>s<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TPanel *PanelTop;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TButton *ButtonLoad1;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TButton *ButtonLoad2;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TButton *ButtonMorph;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TButton *Button<a href="CppAbout.htm">About</a>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TButton *Button<a href="CppAbout.html">About</a>;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TEdit *EditNumber;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TLabel *Label1;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TLabel *Label2;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TEdit *EditFileStart;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppTImage.htm">TImage</a> *Image1;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppTImage.htm">TImage</a> *Image2;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppTImage.html">TImage</a> *Image1;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppTImage.html">TImage</a> *Image2;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TOpenDialog *OpenDialog1;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TOpenDialog *OpenDialog2;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TPageControl *PageControl1;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TTabSheet *TabSheet1;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TTabSheet *TabSheet2;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TTabSheet *TabSheet3;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppTImage.htm">TImage</a> *Image3;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppTImage.html">TImage</a> *Image3;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> __fastcall ButtonLoad1Click(TObject *Sender);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> __fastcall ButtonLoad2Click(TObject *Sender);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> __fastcall ButtonMorphClick(TObject *Sender);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> __fastcall Button<a href="CppAbout.htm">About</a>Click(TObject *Sender);<br/>
-<b><a href="CppPrivate.htm">private</a></b>:	<a href="CppComment.htm">//</a> User <a href="CppDeclaration.htm">declaration</a>s<br/>
-<b><a href="CppPublic.htm">public</a></b>:		<a href="CppComment.htm">//</a> User <a href="CppDeclaration.htm">declaration</a>s<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;__fastcall TFormMorpher(T<a href="CppComponent.htm">Component</a>* Owner);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> __fastcall Button<a href="CppAbout.html">About</a>Click(TObject *Sender);<br/>
+<b><a href="CppPrivate.html">private</a></b>:	<a href="CppComment.htm">//</a> User <a href="CppDeclaration.html">declaration</a>s<br/>
+<b><a href="CppPublic.html">public</a></b>:		<a href="CppComment.htm">//</a> User <a href="CppDeclaration.html">declaration</a>s<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;__fastcall TFormMorpher(T<a href="CppComponent.html">Component</a>* Owner);<br/>
 };<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppExtern.htm">extern</a></b> PACKAGE TFormMorpher *FormMorpher;<br/>
+<b><a href="CppExtern.html">extern</a></b> PACKAGE TFormMorpher *FormMorpher;<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppEndif.htm">#endif</a><br/>
+<a href="CppEndif.html">#endif</a><br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -291,28 +291,28 @@ __published:	<a href="CppComment.htm">//</a> IDE-managed <a href="CppComponent.h
 &nbsp;&nbsp;&nbsp;&nbsp;along with this program.&nbsp;&nbsp;If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">*/</a><br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppDefine.htm">#define</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppMemoryH.htm">memory</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppAlgorithmH.htm">algorithm</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;vcl.h&gt;<br/>
-<a href="CppPragma.htm">#pragma</a> hdrstop<br/>
+<a href="CppDefine.html">#define</a> <a href="CppNDEBUG.html">NDEBUG</a><br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppMemoryH.html">memory</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppCassertH.html">cassert</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppAlgorithmH.html">algorithm</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;vcl<a href="CppHeaderFile.htm">.h</a>&gt;<br/>
+<a href="CppPragma.html">#pragma</a> hdrstop<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> "UnitFormMorpher.h"<br/>
-<a href="CppInclude.htm">#include</a> "UnitForm<a href="CppAbout.htm">About</a>.h"<br/>
+<a href="CppInclude.html">#include</a> "UnitFormMorpher<a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "UnitForm<a href="CppAbout.html">About</a><a href="CppHeaderFile.htm">.h</a>"<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppPragma.htm">#pragma</a> package(smart_init)<br/>
-<a href="CppPragma.htm">#pragma</a> resource "*.dfm"<br/>
+<a href="CppPragma.html">#pragma</a> package(smart_init)<br/>
+<a href="CppPragma.html">#pragma</a> resource "*.dfm"<br/>
 TFormMorpher *FormMorpher;<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-__fastcall TFormMorpher::TFormMorpher(T<a href="CppComponent.htm">Component</a>* Owner)<br/>
+__fastcall TFormMorpher::TFormMorpher(T<a href="CppComponent.html">Component</a>* Owner)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: TForm(Owner)<br/>
 {<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <b><a href="CppVoid.htm">void</a></b> __fastcall TFormMorpher::ButtonLoad1Click(TObject *Sender)<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (OpenDialog1-&gt;Execute() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <b><a href="CppFalse.htm">false</a></b>) <b><a href="CppReturn.htm">return</a></b>;<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (OpenDialog1-&gt;Execute() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <b><a href="CppFalse.html">false</a></b>) <b><a href="CppReturn.html">return</a></b>;<br/>
 &nbsp;&nbsp;Image1-&gt;Picture-&gt;LoadFromFile(OpenDialog1-&gt;FileName);<br/>
 &nbsp;&nbsp;PageControl1-&gt;ActivePageIndex <a href="CppOperatorAssign.htm">=</a> 0;<br/>
 }<br/>
@@ -320,19 +320,19 @@ __fastcall TFormMorpher::TFormMorpher(T<a href="CppComponent.htm">Component</a>*
 <br/>
 <b><a href="CppVoid.htm">void</a></b> __fastcall TFormMorpher::ButtonLoad2Click(TObject *Sender)<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (OpenDialog2-&gt;Execute() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <b><a href="CppFalse.htm">false</a></b>) <b><a href="CppReturn.htm">return</a></b>;<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (OpenDialog2-&gt;Execute() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <b><a href="CppFalse.html">false</a></b>) <b><a href="CppReturn.html">return</a></b>;<br/>
 &nbsp;&nbsp;Image2-&gt;Picture-&gt;LoadFromFile(OpenDialog2-&gt;FileName);<br/>
 &nbsp;&nbsp;PageControl1-&gt;ActivePageIndex <a href="CppOperatorAssign.htm">=</a> 1;<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <b><a href="CppVoid.htm">void</a></b> __fastcall TFormMorpher::ButtonMorphClick(TObject *Sender)<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> n <a href="CppOperatorAssign.htm">=</a> EditNumber-&gt;Text.<a href="CppToInt.htm">ToInt</a>Def(-1);<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> String fileStart <a href="CppOperatorAssign.htm">=</a> EditFileStart-&gt;Text;<br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (n &lt; 1)&nbsp;&nbsp;&nbsp;&nbsp;{ ShowMessage("Number must be at least 1");&nbsp;&nbsp; <b><a href="CppReturn.htm">return</a></b>; }<br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (n &gt; 1000) { ShowMessage("Number must not exceed 1000"); <b><a href="CppReturn.htm">return</a></b>; }<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> maxx <a href="CppOperatorAssign.htm">=</a> <a href="CppMin.htm">std::min</a>(Image1-&gt;Picture-&gt;Bitmap-&gt;Width,Image2-&gt;Picture-&gt;Bitmap-&gt;Width);<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> maxy <a href="CppOperatorAssign.htm">=</a> <a href="CppMin.htm">std::min</a>(Image1-&gt;Picture-&gt;Bitmap-&gt;Height,Image2-&gt;Picture-&gt;Bitmap-&gt;Height);<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> n <a href="CppOperatorAssign.htm">=</a> EditNumber-&gt;Text.<a href="CppToInt.html">ToInt</a>Def(-1);<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> String fileStart <a href="CppOperatorAssign.htm">=</a> EditFileStart-&gt;Text;<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (n &lt; 1)&nbsp;&nbsp;&nbsp;&nbsp;{ ShowMessage("Number must be at least 1");&nbsp;&nbsp; <b><a href="CppReturn.html">return</a></b>; }<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (n &gt; 1000) { ShowMessage("Number must not exceed 1000"); <b><a href="CppReturn.html">return</a></b>; }<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> maxx <a href="CppOperatorAssign.htm">=</a> <a href="CppMin.html">std::min</a>(Image1-&gt;Picture-&gt;Bitmap-&gt;Width,Image2-&gt;Picture-&gt;Bitmap-&gt;Width);<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> maxy <a href="CppOperatorAssign.htm">=</a> <a href="CppMin.html">std::min</a>(Image1-&gt;Picture-&gt;Bitmap-&gt;Height,Image2-&gt;Picture-&gt;Bitmap-&gt;Height);<br/>
 &nbsp;&nbsp;Image3-&gt;Picture-&gt;Bitmap-&gt;Width&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> maxx;<br/>
 &nbsp;&nbsp;Image3-&gt;Picture-&gt;Bitmap-&gt;Height <a href="CppOperatorAssign.htm">=</a> maxy;<br/>
 <br/>
@@ -341,49 +341,49 @@ __fastcall TFormMorpher::TFormMorpher(T<a href="CppComponent.htm">Component</a>*
 <br/>
 &nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> i=0; i<a href="CppOperatorNotEqual.htm">!=</a>n; <a href="CppOperatorPlus.htm">+</a>+i)<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> fraction <a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(i) <a href="CppOperatorDivide.htm">/</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(n+1);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> fraction <a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.html">static_cast</a></b>&lt;<b><a href="CppDouble.html">double</a></b>&gt;(i) <a href="CppOperatorDivide.htm">/</a> <b><a href="CppStatic_cast.html">static_cast</a></b>&lt;<b><a href="CppDouble.html">double</a></b>&gt;(n+1);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> y=0; y<a href="CppOperatorNotEqual.htm">!=</a>maxy; <a href="CppOperatorPlus.htm">+</a>+y)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> * <b><a href="CppConst.htm">const</a></b> line1<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> *&gt;(Image1-&gt;Picture-&gt;Bitmap-&gt;ScanLine[y]);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> * <b><a href="CppConst.htm">const</a></b> line2<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> *&gt;(Image2-&gt;Picture-&gt;Bitmap-&gt;ScanLine[y]);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> * <b><a href="CppConst.htm">const</a></b> line3<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> *&gt;(Image3-&gt;Picture-&gt;Bitmap-&gt;ScanLine[y]);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppUnsigned.html">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> * <b><a href="CppConst.html">const</a></b> line1<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.html">static_cast</a></b>&lt;<b><a href="CppUnsigned.html">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> *&gt;(Image1-&gt;Picture-&gt;Bitmap-&gt;ScanLine[y]);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppUnsigned.html">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> * <b><a href="CppConst.html">const</a></b> line2<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.html">static_cast</a></b>&lt;<b><a href="CppUnsigned.html">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> *&gt;(Image2-&gt;Picture-&gt;Bitmap-&gt;ScanLine[y]);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppUnsigned.html">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> * <b><a href="CppConst.html">const</a></b> line3<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.html">static_cast</a></b>&lt;<b><a href="CppUnsigned.html">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> *&gt;(Image3-&gt;Picture-&gt;Bitmap-&gt;ScanLine[y]);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> x=0; x<a href="CppOperatorNotEqual.htm">!=</a>maxx; <a href="CppOperatorPlus.htm">+</a>+x)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppShort.htm">short</a></b> r1 <a href="CppOperatorAssign.htm">=</a> line1[x*3+2];<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppShort.htm">short</a></b> g1 <a href="CppOperatorAssign.htm">=</a> line1[x*3+1];<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppShort.htm">short</a></b> b1 <a href="CppOperatorAssign.htm">=</a> line1[x*3+0];<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppShort.htm">short</a></b> r2 <a href="CppOperatorAssign.htm">=</a> line2[x*3+2];<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppShort.htm">short</a></b> g2 <a href="CppOperatorAssign.htm">=</a> line2[x*3+1];<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppShort.htm">short</a></b> b2 <a href="CppOperatorAssign.htm">=</a> line2[x*3+0];<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppShort.htm">short</a></b> dr <a href="CppOperatorAssign.htm">=</a> r2 <a href="CppOperatorMinus.htm">-</a> r1; <a href="CppComment.htm">//</a>Delta red<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppShort.htm">short</a></b> dg <a href="CppOperatorAssign.htm">=</a> g2 <a href="CppOperatorMinus.htm">-</a> g1; <a href="CppComment.htm">//</a>Delta green<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppShort.htm">short</a></b> db <a href="CppOperatorAssign.htm">=</a> b2 <a href="CppOperatorMinus.htm">-</a> b1; <a href="CppComment.htm">//</a>Delta blue<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppShort.htm">short</a></b> r3 <a href="CppOperatorAssign.htm">=</a> r1 <a href="CppOperatorPlus.htm">+</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppShort.htm">short</a></b>&gt;(fraction * <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(dr));<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppShort.htm">short</a></b> g3 <a href="CppOperatorAssign.htm">=</a> g1 <a href="CppOperatorPlus.htm">+</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppShort.htm">short</a></b>&gt;(fraction * <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(dg));<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppShort.htm">short</a></b> b3 <a href="CppOperatorAssign.htm">=</a> b1 <a href="CppOperatorPlus.htm">+</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppShort.htm">short</a></b>&gt;(fraction * <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(db));<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>( r3 <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 0);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>( r3 <a href="CppOperatorLessEqual.htm">&lt;=</a> 255);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>( g3 <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 0);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>( g3 <a href="CppOperatorLessEqual.htm">&lt;=</a> 255);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>( b3 <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 0);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>( b3 <a href="CppOperatorLessEqual.htm">&lt;=</a> 255);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppShort.html">short</a></b> r1 <a href="CppOperatorAssign.htm">=</a> line1[x*3+2];<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppShort.html">short</a></b> g1 <a href="CppOperatorAssign.htm">=</a> line1[x*3+1];<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppShort.html">short</a></b> b1 <a href="CppOperatorAssign.htm">=</a> line1[x*3+0];<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppShort.html">short</a></b> r2 <a href="CppOperatorAssign.htm">=</a> line2[x*3+2];<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppShort.html">short</a></b> g2 <a href="CppOperatorAssign.htm">=</a> line2[x*3+1];<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppShort.html">short</a></b> b2 <a href="CppOperatorAssign.htm">=</a> line2[x*3+0];<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppShort.html">short</a></b> dr <a href="CppOperatorAssign.htm">=</a> r2 <a href="CppOperatorMinus.htm">-</a> r1; <a href="CppComment.htm">//</a>Delta red<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppShort.html">short</a></b> dg <a href="CppOperatorAssign.htm">=</a> g2 <a href="CppOperatorMinus.htm">-</a> g1; <a href="CppComment.htm">//</a>Delta green<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppShort.html">short</a></b> db <a href="CppOperatorAssign.htm">=</a> b2 <a href="CppOperatorMinus.htm">-</a> b1; <a href="CppComment.htm">//</a>Delta blue<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppShort.html">short</a></b> r3 <a href="CppOperatorAssign.htm">=</a> r1 <a href="CppOperatorPlus.htm">+</a> <b><a href="CppStatic_cast.html">static_cast</a></b>&lt;<b><a href="CppShort.html">short</a></b>&gt;(fraction * <b><a href="CppStatic_cast.html">static_cast</a></b>&lt;<b><a href="CppDouble.html">double</a></b>&gt;(dr));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppShort.html">short</a></b> g3 <a href="CppOperatorAssign.htm">=</a> g1 <a href="CppOperatorPlus.htm">+</a> <b><a href="CppStatic_cast.html">static_cast</a></b>&lt;<b><a href="CppShort.html">short</a></b>&gt;(fraction * <b><a href="CppStatic_cast.html">static_cast</a></b>&lt;<b><a href="CppDouble.html">double</a></b>&gt;(dg));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppShort.html">short</a></b> b3 <a href="CppOperatorAssign.htm">=</a> b1 <a href="CppOperatorPlus.htm">+</a> <b><a href="CppStatic_cast.html">static_cast</a></b>&lt;<b><a href="CppShort.html">short</a></b>&gt;(fraction * <b><a href="CppStatic_cast.html">static_cast</a></b>&lt;<b><a href="CppDouble.html">double</a></b>&gt;(db));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.html">assert</a>( r3 <a href="CppOperatorGreaterEqual.html">&gt;=</a> 0);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.html">assert</a>( r3 <a href="CppOperatorLessEqual.html">&lt;=</a> 255);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.html">assert</a>( g3 <a href="CppOperatorGreaterEqual.html">&gt;=</a> 0);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.html">assert</a>( g3 <a href="CppOperatorLessEqual.html">&lt;=</a> 255);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.html">assert</a>( b3 <a href="CppOperatorGreaterEqual.html">&gt;=</a> 0);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.html">assert</a>( b3 <a href="CppOperatorLessEqual.html">&lt;=</a> 255);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;line3[x*3+2] <a href="CppOperatorAssign.htm">=</a> r3;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;line3[x*3+1] <a href="CppOperatorAssign.htm">=</a> g3;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;line3[x*3+0] <a href="CppOperatorAssign.htm">=</a> b3;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;Image3-&gt;Refresh();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> String fileName <a href="CppOperatorAssign.htm">=</a> fileStart <a href="CppOperatorPlus.htm">+</a> <a href="CppIntToStr.htm">IntToStr</a>(i) <a href="CppOperatorPlus.htm">+</a> ".bmp";<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> String fileName <a href="CppOperatorAssign.htm">=</a> fileStart <a href="CppOperatorPlus.htm">+</a> <a href="CppIntToStr.html">IntToStr</a>(i) <a href="CppOperatorPlus.htm">+</a> ".bmp";<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;Image3-&gt;Picture-&gt;SaveToFile(fileName);<br/>
 &nbsp;&nbsp;}<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppVoid.htm">void</a></b> __fastcall TFormMorpher::Button<a href="CppAbout.htm">About</a>Click(TObject *Sender)<br/>
+<b><a href="CppVoid.htm">void</a></b> __fastcall TFormMorpher::Button<a href="CppAbout.html">About</a>Click(TObject *Sender)<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppAuto_ptr.htm">std::auto_ptr</a>&lt;TForm<a href="CppAbout.htm">About</a>&gt; f(<b><a href="CppNew.htm">new</a></b> TForm<a href="CppAbout.htm">About</a>(0));<br/>
+&nbsp;&nbsp;<a href="CppAuto_ptr.html">std::auto_ptr</a>&lt;TForm<a href="CppAbout.html">About</a>&gt; f(<b><a href="CppNew.htm">new</a></b> TForm<a href="CppAbout.html">About</a>(0));<br/>
 &nbsp;&nbsp;f-&gt;ShowModal();<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>

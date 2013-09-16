@@ -127,17 +127,17 @@ QT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; += core<br/>
 QT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -= gui<br/>
 <br/>
 #Use <a href="CppGprof.htm">gprof</a> for profiling in release mode, use for run-time speed optimization<br/>
-<a href="CppQMAKE_CXXFLAGS.htm">QMAKE_CXXFLAGS</a> += -pg<br/>
+<a href="CppQmakeQmake_cxxflags.htm">QMAKE_CXXFLAGS</a> += -pg<br/>
 QMAKE_LFLAGS += -pg<br/>
 #Use <a href="CppGprof.htm">gprof</a> for profiling in debug mode, okay for detecting memory leaks<br/>
-<a href="CppQMAKE_CXXFLAGS.htm">QMAKE_CXXFLAGS</a>_DEBUG += -pg<br/>
+<a href="CppQmakeQmake_cxxflags.htm">QMAKE_CXXFLAGS</a>_DEBUG += -pg<br/>
 QMAKE_LFLAGS_DEBUG += -pg<br/>
 <br/>
-CONFIG&nbsp;&nbsp; += console<br/>
-CONFIG&nbsp;&nbsp; -= app_bundle<br/>
-TEMPLATE = app<br/>
+<a href="CppQmakeConfig.htm">CONFIG</a>&nbsp;&nbsp; += console<br/>
+<a href="CppQmakeConfig.htm">CONFIG</a>&nbsp;&nbsp; -= app_bundle<br/>
+<a href="CppQmakeTemplate.htm">TEMPLATE</a> = app<br/>
 <br/>
-<a href="CppSOURCES.htm">SOURCES</a> += <a href="CppMain.htm">main</a>.cpp<br/>
+<a href="CppQmakeSources.htm">SOURCES</a> += <a href="CppMain.htm">main</a>.cpp<br/>
 <br/>
 <br/>
 #<br/>
@@ -146,15 +146,15 @@ TEMPLATE = app<br/>
 #<br/>
 #<br/>
 <br/>
-CONFIG(debug, debug|release) {<br/>
+<a href="CppQmakeConfig.htm">CONFIG</a>(debug, debug|release) {<br/>
 &nbsp;&nbsp;message(Debug mode)<br/>
 }<br/>
 <br/>
-CONFIG(release, debug|release) {<br/>
+<a href="CppQmakeConfig.htm">CONFIG</a>(release, debug|release) {<br/>
 &nbsp;&nbsp;message(Release mode)<br/>
 <br/>
 &nbsp;&nbsp;#Remove all <a href="CppAssert.htm">assert</a>s and <a href="CppTRACE.htm">TRACE</a><br/>
-&nbsp;&nbsp;DEFINES += NDEBUG N<a href="CppTRACE.htm">TRACE</a>_BILDERBIKKEL<br/>
+&nbsp;&nbsp;<a href="CppQmakeDefines.htm">DEFINES</a> += NDEBUG N<a href="CppTRACE.htm">TRACE</a>_BILDERBIKKEL<br/>
 }<br/>
 <br/>
 #<br/>
@@ -168,12 +168,12 @@ CONFIG(release, debug|release) {<br/>
 # Compiler flags<br/>
 #<br/>
 #<br/>
-<a href="CppQMAKE_CXXFLAGS.htm">QMAKE_CXXFLAGS</a> += -std=<a href="Cpp11.htm">c++11</a> <a href="CppWall.htm">-Wall</a> <a href="CppWextra.htm">-Wextra</a><br/>
+<a href="CppQmakeQmake_cxxflags.htm">QMAKE_CXXFLAGS</a> += -std=<a href="Cpp11.htm">c++11</a> <a href="CppWall.htm">-Wall</a> <a href="CppWextra.htm">-Wextra</a><br/>
 <br/>
 <br/>
 unix {<br/>
 &nbsp;&nbsp;message(Unix)<br/>
-&nbsp;&nbsp;<a href="CppQMAKE_CXXFLAGS.htm">QMAKE_CXXFLAGS</a> += <a href="CppWerror.htm">-Werror</a><br/>
+&nbsp;&nbsp;<a href="CppQmakeQmake_cxxflags.htm">QMAKE_CXXFLAGS</a> += <a href="CppWerror.htm">-Werror</a><br/>
 }<br/>
 </code></td></tr></table>
 <!-- end of the code -->
@@ -186,41 +186,41 @@ unix {<br/>
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="main.cpp" border = "1"><tr><td><code>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppAlgorithmH.htm">algorithm</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppIostreamH.htm">iostream</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppBOOST_FOREACH.htm">foreach</a>.hpp&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppAlgorithmH.html">algorithm</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppCassertH.html">cassert</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppIostreamH.html">iostream</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppVectorH.html">vector</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppBoost.html">boost</a>/<a href="CppBOOST_FOREACH.html">foreach</a><a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
 <br/>
-<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/Cpp<a href="CppBubbleSort.htm">BubbleSort</a>.htm<br/>
-<b><a href="CppTemplate.htm">template</a></b> &lt;<b><a href="CppClass.htm">class</a></b> T&gt;<br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppBubbleSort.htm">BubbleSort</a>(<a href="CppVector.htm">std::vector</a>&lt;T&gt;&amp; v)<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/Cpp<a href="CppBubbleSort.html">BubbleSort</a>.html<br/>
+<b><a href="CppTemplate.html">template</a></b> &lt;<b><a href="CppClass.html">class</a></b> T&gt;<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppBubbleSort.html">BubbleSort</a>(<a href="CppVector.html">std::vector</a>&lt;T&gt;&amp; v)<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> size <a href="CppOperatorAssign.htm">=</a> v.size();<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> size <a href="CppOperatorAssign.htm">=</a> v.size();<br/>
 &nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b>(<b><a href="CppInt.htm">int</a></b> i=0; i<a href="CppOperatorNotEqual.htm">!=</a>size-1; <a href="CppOperatorPlus.htm">+</a>+i)<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b>(<b><a href="CppInt.htm">int</a></b> j=0; j<a href="CppOperatorNotEqual.htm">!=</a>size-i-1; <a href="CppOperatorPlus.htm">+</a>+j)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b>(v[j] &gt; v[j+1])<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppSwap.htm">std::swap</a>(v[j],v[j+1]);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppSwap.html">std::swap</a>(v[j],v[j+1]);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;}<br/>
 }<br/>
 <br/>
-<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/Cpp<a href="CppInsertionSort.htm">InsertionSort</a>.htm<br/>
-<b><a href="CppTemplate.htm">template</a></b> &lt;<b><a href="CppTypename.htm">typename</a></b> T&gt;<br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppInsertionSort.htm">InsertionSort</a>(<a href="CppVector.htm">std::vector</a>&lt;T&gt;&amp; v)<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/Cpp<a href="CppInsertionSort.html">InsertionSort</a>.html<br/>
+<b><a href="CppTemplate.html">template</a></b> &lt;<b><a href="CppTypename.html">typename</a></b> T&gt;<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppInsertionSort.html">InsertionSort</a>(<a href="CppVector.html">std::vector</a>&lt;T&gt;&amp; v)<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> size <a href="CppOperatorAssign.htm">=</a> v.size();<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> size <a href="CppOperatorAssign.htm">=</a> v.size();<br/>
 &nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b>(<b><a href="CppInt.htm">int</a></b> i=1; i<a href="CppOperatorNotEqual.htm">!=</a>size; <a href="CppOperatorPlus.htm">+</a>+i)<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b>(<b><a href="CppInt.htm">int</a></b> j=0; j<a href="CppOperatorNotEqual.htm">!=</a>i; <a href="CppOperatorPlus.htm">+</a>+j)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (v[j]&gt;v[i])<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> temp=v[j];<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> temp=v[j];<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;v[j]=v[i];<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b>(<b><a href="CppInt.htm">int</a></b> k=i;k&gt;j;<a href="CppOperatorDecrement.htm">--</a>k) { v[k]=v[k-1]; }<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;v[j+1]=temp;<br/>
@@ -229,68 +229,68 @@ unix {<br/>
 &nbsp;&nbsp;}<br/>
 }<br/>
 <br/>
-<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/Cpp<a href="CppSelectionSort.htm">SelectionSort</a>.htm<br/>
-<b><a href="CppTemplate.htm">template</a></b> &lt;<b><a href="CppTypename.htm">typename</a></b> T&gt;<br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppSelectionSort.htm">SelectionSort</a>(<a href="CppVector.htm">std::vector</a>&lt;T&gt;&amp; v)<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/Cpp<a href="CppSelectionSort.html">SelectionSort</a>.html<br/>
+<b><a href="CppTemplate.html">template</a></b> &lt;<b><a href="CppTypename.html">typename</a></b> T&gt;<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppSelectionSort.html">SelectionSort</a>(<a href="CppVector.html">std::vector</a>&lt;T&gt;&amp; v)<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> size <a href="CppOperatorAssign.htm">=</a> v.size();<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> size <a href="CppOperatorAssign.htm">=</a> v.size();<br/>
 &nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b>(<b><a href="CppInt.htm">int</a></b> i=0; i<a href="CppOperatorNotEqual.htm">!=</a>size-1; <a href="CppOperatorPlus.htm">+</a>+i)<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b>(<b><a href="CppInt.htm">int</a></b> j=i+1; j<a href="CppOperatorNotEqual.htm">!=</a>size; <a href="CppOperatorPlus.htm">+</a>+j)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (v[i]&gt; v[j])<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppSwap.htm">std::swap</a>(v[i],v[j]);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppSwap.html">std::swap</a>(v[i],v[j]);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;}<br/>
 }<br/>
 <br/>
-<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/Cpp<a href="CppSortVector.htm">SortVector</a>.htm<br/>
-<b><a href="CppTemplate.htm">template</a></b> &lt;<b><a href="CppClass.htm">class</a></b> T&gt;<br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppSortVector.htm">SortVector</a>(<a href="CppVector.htm">std::vector</a>&lt;T&gt;&amp; v)<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/Cpp<a href="CppSortVector.html">SortVector</a>.html<br/>
+<b><a href="CppTemplate.html">template</a></b> &lt;<b><a href="CppClass.html">class</a></b> T&gt;<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppSortVector.html">SortVector</a>(<a href="CppVector.html">std::vector</a>&lt;T&gt;&amp; v)<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppSort.htm">std::sort</a>(v.begin(), v.end());<br/>
+&nbsp;&nbsp;<a href="CppSort.html">std::sort</a>(v.begin(), v.end());<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt; CreateShuffledVector(<b><a href="CppConst.htm">const</a></b> <a href="CppSize_t.htm">std::size_t</a> sz)<br/>
+<b><a href="CppConst.html">const</a></b> <a href="CppVector.html">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt; CreateShuffledVector(<b><a href="CppConst.html">const</a></b> <a href="CppSize_t.html">std::size_t</a> sz)<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt; v(sz);<br/>
+&nbsp;&nbsp;<a href="CppVector.html">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt; v(sz);<br/>
 <br/>
 &nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> value <a href="CppOperatorAssign.htm">=</a> 0;<br/>
-&nbsp;&nbsp;<a href="CppBOOST_FOREACH.htm">BOOST_FOREACH</a>(<b><a href="CppInt.htm">int</a></b>&amp; i,v)<br/>
+&nbsp;&nbsp;<a href="CppBOOST_FOREACH.html">BOOST_FOREACH</a>(<b><a href="CppInt.htm">int</a></b>&amp; i,v)<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;i <a href="CppOperatorAssign.htm">=</a> value;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a>+value;<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<a href="CppRandom_shuffle.htm">std::random_shuffle</a>(v.begin(),v.end());<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
+&nbsp;&nbsp;<a href="CppRandom_shuffle.html">std::random_shuffle</a>(v.begin(),v.end());<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> v;<br/>
 }<br/>
 <br/>
 <br/>
-<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a>()<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt; v <a href="CppOperatorAssign.htm">=</a> CreateShuffledVector(100000);<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppVector.html">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt; v <a href="CppOperatorAssign.htm">=</a> CreateShuffledVector(100000);<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt; v1(v);<br/>
-&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt; v2(v);<br/>
-&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt; v3(v);<br/>
-&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt; v4(v);<br/>
+&nbsp;&nbsp;<a href="CppVector.html">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt; v1(v);<br/>
+&nbsp;&nbsp;<a href="CppVector.html">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt; v2(v);<br/>
+&nbsp;&nbsp;<a href="CppVector.html">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt; v3(v);<br/>
+&nbsp;&nbsp;<a href="CppVector.html">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt; v4(v);<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppBubbleSort.htm">BubbleSort</a>(v1);<br/>
-&nbsp;&nbsp;<a href="CppInsertionSort.htm">InsertionSort</a>(v2);<br/>
-&nbsp;&nbsp;<a href="CppSelectionSort.htm">SelectionSort</a>(v3);<br/>
-&nbsp;&nbsp;<a href="CppSortVector.htm">SortVector</a>(v4);<br/>
+&nbsp;&nbsp;<a href="CppBubbleSort.html">BubbleSort</a>(v1);<br/>
+&nbsp;&nbsp;<a href="CppInsertionSort.html">InsertionSort</a>(v2);<br/>
+&nbsp;&nbsp;<a href="CppSelectionSort.html">SelectionSort</a>(v3);<br/>
+&nbsp;&nbsp;<a href="CppSortVector.html">SortVector</a>(v4);<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(v1<a href="CppOperatorEqual.htm">==</a>v2);<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(v2<a href="CppOperatorEqual.htm">==</a>v3);<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(v3<a href="CppOperatorEqual.htm">==</a>v4);<br/>
+&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(v1<a href="CppOperatorEqual.htm">==</a>v2);<br/>
+&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(v2<a href="CppOperatorEqual.htm">==</a>v3);<br/>
+&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(v3<a href="CppOperatorEqual.htm">==</a>v4);<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
-&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "Finished <a href="CppDebug.htm">debug</a> mode" <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppEndl.htm">std::endl</a>;<br/>
-&nbsp;&nbsp;<a href="CppPreElse.htm">#else</a><br/>
-&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "Finished release mode" <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppEndl.htm">std::endl</a>;<br/>
-&nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
+&nbsp;&nbsp;<a href="CppIfndef.html">#ifndef</a> <a href="CppNDEBUG.html">NDEBUG</a><br/>
+&nbsp;&nbsp;<a href="CppCout.html">std::cout</a> <a href="CppOperatorStreamOut.html">&lt;&lt;</a> "Finished <a href="CppDebug.html">debug</a> mode" <a href="CppOperatorStreamOut.html">&lt;&lt;</a> <a href="CppEndl.html">std::endl</a>;<br/>
+&nbsp;&nbsp;<a href="CppPreElse.html">#else</a><br/>
+&nbsp;&nbsp;<a href="CppCout.html">std::cout</a> <a href="CppOperatorStreamOut.html">&lt;&lt;</a> "Finished release mode" <a href="CppOperatorStreamOut.html">&lt;&lt;</a> <a href="CppEndl.html">std::endl</a>;<br/>
+&nbsp;&nbsp;<a href="CppEndif.html">#endif</a><br/>
 }<br/>
 </code></td></tr></table>
 <!-- end of the code -->

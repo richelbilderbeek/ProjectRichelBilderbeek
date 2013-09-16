@@ -84,7 +84,7 @@ const std::vector<std::string> ribi::QtSitemapGeneratorMainDialog::GetHtmlFilesI
 
   //Create the regex for a correct HTML filename
   const boost::xpressive::sregex cpp_file_regex
-    = boost::xpressive::sregex::compile(".*\\.(html|htm)\\z");
+    = boost::xpressive::sregex::compile(".*\\.(html|htm)\\>");
 
   //Create the resulting std::vector
   std::vector<std::string> w;

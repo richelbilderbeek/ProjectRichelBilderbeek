@@ -82,37 +82,37 @@
 &nbsp;&nbsp;QT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; += core gui<br/>
 greaterThan(QT_MAJOR_VERSION, 4): QT += <a href="CppWidget.htm">widget</a>s<br/>
 <br/>
-TEMPLATE = app<br/>
+<a href="CppQmakeTemplate.htm">TEMPLATE</a> = app<br/>
 <br/>
-<a href="CppQMAKE_CXXFLAGS.htm">QMAKE_CXXFLAGS</a> += <a href="CppWall.htm">-Wall</a> <a href="CppWextra.htm">-Wextra</a> <a href="CppWerror.htm">-Werror</a><br/>
+<a href="CppQmakeQmake_cxxflags.htm">QMAKE_CXXFLAGS</a> += <a href="CppWall.htm">-Wall</a> <a href="CppWextra.htm">-Wextra</a> <a href="CppWerror.htm">-Werror</a><br/>
 <br/>
 unix {<br/>
-&nbsp;&nbsp;<a href="CppQMAKE_CXXFLAGS.htm">QMAKE_CXXFLAGS</a> += -std=<a href="Cpp11.htm">c++11</a><br/>
+&nbsp;&nbsp;<a href="CppQmakeQmake_cxxflags.htm">QMAKE_CXXFLAGS</a> += -std=<a href="Cpp11.htm">c++11</a><br/>
 <br/>
 &nbsp;&nbsp;#Warp's function parser<br/>
-&nbsp;&nbsp;<a href="CppINCLUDEPATH.htm">INCLUDEPATH</a> += ../../<a href="CppLibrary.htm">Libraries</a>/fparser4.5.1<br/>
-&nbsp;&nbsp;<a href="CppSOURCES.htm">SOURCES</a> += ../../<a href="CppLibrary.htm">Libraries</a>/fparser4.5.1/fparser.cc<br/>
-&nbsp;&nbsp;<a href="CppHEADERS.htm">HEADERS</a> += ../../<a href="CppLibrary.htm">Libraries</a>/fparser4.5.1/fparser.hh<br/>
+&nbsp;&nbsp;<a href="CppQmakeIncludepath.htm">INCLUDEPATH</a> += ../../<a href="CppLibrary.htm">Libraries</a>/fparser4.5.1<br/>
+&nbsp;&nbsp;<a href="CppQmakeSources.htm">SOURCES</a> += ../../<a href="CppLibrary.htm">Libraries</a>/fparser4.5.1/fparser.cc<br/>
+&nbsp;&nbsp;<a href="CppQmakeHeaders.htm">HEADERS</a> += ../../<a href="CppLibrary.htm">Libraries</a>/fparser4.5.1/fparser.hh<br/>
 }<br/>
 <br/>
 win32 {<br/>
-&nbsp;&nbsp;<a href="CppQMAKE_CXXFLAGS.htm">QMAKE_CXXFLAGS</a> += -std=<a href="Cpp0x.htm">c++11</a><br/>
+&nbsp;&nbsp;<a href="CppQmakeQmake_cxxflags.htm">QMAKE_CXXFLAGS</a> += -std=<a href="Cpp0x.htm">c++11</a><br/>
 <br/>
 &nbsp;&nbsp;#Prevents error:<br/>
 &nbsp;&nbsp;#/my_boost_folder/boost/type_traits/detail/has_binary_operator.hp:50: Parse error at "BOOST_JOIN"<br/>
-&nbsp;&nbsp;DEFINES += BOOST_TT_HAS_OPERATOR_HPP_INCLUDED<br/>
+&nbsp;&nbsp;<a href="CppQmakeDefines.htm">DEFINES</a> += BOOST_TT_HAS_OPERATOR_HPP_INCLUDED<br/>
 <br/>
 &nbsp;&nbsp;#Boost<br/>
-&nbsp;&nbsp;<a href="CppINCLUDEPATH.htm">INCLUDEPATH</a> += E:/boost_1_50_0<br/>
-&nbsp;&nbsp;<a href="CppLIBS.htm">LIBS</a> += -LE:/boost_1_50_0/stage/lib<br/>
+&nbsp;&nbsp;<a href="CppQmakeIncludepath.htm">INCLUDEPATH</a> += E:/boost_1_50_0<br/>
+&nbsp;&nbsp;<a href="CppQmakeLibs.htm">LIBS</a> += -LE:/boost_1_50_0/stage/lib<br/>
 <br/>
 &nbsp;&nbsp;#Warp's function parser<br/>
-&nbsp;&nbsp;<a href="CppINCLUDEPATH.htm">INCLUDEPATH</a> += ../../<a href="CppLibrary.htm">Libraries</a>/fparser4.4.3<br/>
-&nbsp;&nbsp;<a href="CppSOURCES.htm">SOURCES</a> += ../../<a href="CppLibrary.htm">Libraries</a>/fparser4.4.3/fparser.cc<br/>
-&nbsp;&nbsp;<a href="CppHEADERS.htm">HEADERS</a> += ../../<a href="CppLibrary.htm">Libraries</a>/fparser4.4.3/fparser.hh<br/>
+&nbsp;&nbsp;<a href="CppQmakeIncludepath.htm">INCLUDEPATH</a> += ../../<a href="CppLibrary.htm">Libraries</a>/fparser4.4.3<br/>
+&nbsp;&nbsp;<a href="CppQmakeSources.htm">SOURCES</a> += ../../<a href="CppLibrary.htm">Libraries</a>/fparser4.4.3/fparser.cc<br/>
+&nbsp;&nbsp;<a href="CppQmakeHeaders.htm">HEADERS</a> += ../../<a href="CppLibrary.htm">Libraries</a>/fparser4.4.3/fparser.hh<br/>
 }<br/>
 <br/>
-<a href="CppINCLUDEPATH.htm">INCLUDEPATH</a>+= \<br/>
+<a href="CppQmakeIncludepath.htm">INCLUDEPATH</a>+= \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppAbout.htm">CppAbout</a> \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppMatrix.htm">CppMatrix</a> \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppQtAboutDialog.htm">CppQtAboutDialog</a> \<br/>
@@ -120,7 +120,7 @@ win32 {<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppQtModel.htm">CppQtModel</a> \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppTrace.htm">CppTrace</a><br/>
 <br/>
-<a href="CppSOURCES.htm">SOURCES</a>+= \<br/>
+<a href="CppQmakeSources.htm">SOURCES</a>+= \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppAbout.htm">CppAbout</a>/<a href="CppAbout.htm">about</a>.cpp \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppMatrix.htm">CppMatrix</a>/<a href="CppMatrix.htm">matrix</a>.cpp \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppQtAboutDialog.htm">CppQtAboutDialog</a>/<a href="CppQtAboutDialog.htm">qtaboutdialog</a>.cpp \<br/>
@@ -136,7 +136,7 @@ win32 {<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="ToolTestQtModels.htm">tooltestqtmodels</a>menudialog.cpp \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppQtModel.htm">CppQtModel</a>/qtublasvectorintmodel.cpp<br/>
 <br/>
-<a href="CppHEADERS.htm">HEADERS</a> += \<br/>
+<a href="CppQmakeHeaders.htm">HEADERS</a> += \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppAbout.htm">CppAbout</a>/<a href="CppAbout.htm">about</a>.h \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppMatrix.htm">CppMatrix</a>/<a href="CppMatrix.htm">matrix</a>.h \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppQtAboutDialog.htm">CppQtAboutDialog</a>/<a href="CppQtAboutDialog.htm">qtaboutdialog</a>.h \<br/>
@@ -178,7 +178,7 @@ OTHER_FILES += \<br/>
 <table summary="qtmain.cpp" border = "1"><tr><td><code>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">/*</a><br/>
-<a href="ToolTestQtModels.htm">TestQtModels</a>, <a href="Tools.htm">tool</a> to test the <a href="CppQt.htm">Qt</a>Model <b><a href="CppClass.htm">classes</a></b><br/>
+<a href="ToolTestQtModels.html">TestQtModels</a>, <a href="Tools.htm">tool</a> to test the <a href="CppQt.htm">Qt</a>Model <b><a href="CppClass.html">classes</a></b><br/>
 Copyright (C) 2013 Richel Bilderbeek<br/>
 <br/>
 This program is free software: you can redistribute it and/or modify<br/>
@@ -194,23 +194,23 @@ You should have received a copy of the GNU General Public License<br/>
 along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">*/</a><br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="ToolTestQtModels.htm">ToolTestQtModels</a>.htm<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="ToolTestQtModels.html">ToolTestQtModels</a>.html<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppIfdef.htm">#ifdef</a> _WIN32<br/>
-<a href="CppComment.htm">//</a>See http://www.richelbilderbeek.nl/Cpp<a href="CppCompile.htm">Compile</a>ErrorSwprintfHasNotBeenDeclared.htm<br/>
-<a href="CppUndef.htm">#undef</a> __STRICT_ANSI__<br/>
-<a href="CppEndif.htm">#endif</a><br/>
+<a href="CppIfdef.html">#ifdef</a> _WIN32<br/>
+<a href="CppComment.htm">//</a>See http://www.richelbilderbeek.nl/Cpp<a href="CppCompile.html">Compile</a>ErrorSwprintfHasNotBeenDeclared.html<br/>
+<a href="CppUndef.html">#undef</a> __STRICT_ANSI__<br/>
+<a href="CppEndif.html">#endif</a><br/>
 <br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppQApplication.htm">QApplication</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> "qt<a href="ToolTestQtModels.htm">tooltestqtmodels</a>menudialog.h"<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppQApplication.html">QApplication</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> "qt<a href="ToolTestQtModels.html">tooltestqtmodels</a>menudialog<a href="CppHeaderFile.htm">.h</a>"<br/>
 <br/>
-<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>(<b><a href="CppInt.htm">int</a></b> <a href="CppArgc.htm">argc</a>, <b><a href="CppChar.htm">char</a></b> *<a href="CppArgc.htm">argv</a>[])<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a>(<b><a href="CppInt.htm">int</a></b> <a href="CppArgc.htm">argc</a>, <b><a href="CppChar.htm">char</a></b> *<a href="CppArgc.htm">argv</a>[])<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppQApplication.htm">QApplication</a> a(<a href="CppArgc.htm">argc</a>, <a href="CppArgc.htm">argv</a>);<br/>
-&nbsp;&nbsp;<a href="CppQt.htm">Qt</a><a href="ToolTestQtModels.htm">ToolTestQtModels</a>MenuDialog w;<br/>
+&nbsp;&nbsp;<a href="CppQApplication.html">QApplication</a> a(<a href="CppArgc.htm">argc</a>, <a href="CppArgc.htm">argv</a>);<br/>
+&nbsp;&nbsp;<a href="CppQt.htm">Qt</a><a href="ToolTestQtModels.html">ToolTestQtModels</a>MenuDialog w;<br/>
 &nbsp;&nbsp;w.show();<br/>
 &nbsp;&nbsp;<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> a.exec();<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> a.exec();<br/>
 }<br/>
 </code></td></tr></table>
 <!-- end of the code -->
@@ -225,7 +225,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <table summary="qttooltestqtmodelsmaindialog.h" border = "1"><tr><td><code>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">/*</a><br/>
-<a href="ToolTestQtModels.htm">TestQtModels</a>, <a href="Tools.htm">tool</a> to test the <a href="CppQt.htm">Qt</a>Model <b><a href="CppClass.htm">classes</a></b><br/>
+<a href="ToolTestQtModels.html">TestQtModels</a>, <a href="Tools.htm">tool</a> to test the <a href="CppQt.htm">Qt</a>Model <b><a href="CppClass.html">classes</a></b><br/>
 Copyright (C) 2013 Richel Bilderbeek<br/>
 <br/>
 This program is free software: you can redistribute it and/or modify<br/>
@@ -241,47 +241,49 @@ You should have received a copy of the GNU General Public License<br/>
 along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">*/</a><br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="ToolTestQtModels.htm">ToolTestQtModels</a>.htm<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="ToolTestQtModels.html">ToolTestQtModels</a>.html<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppIfndef.htm">#ifndef</a> QTTOOLTESTQTMODELSMAINDIALOG_H<br/>
-<a href="CppDefine.htm">#define</a> QTTOOLTESTQTMODELSMAINDIALOG_H<br/>
+<a href="CppIfndef.html">#ifndef</a> QTTOOLTESTQTMODELSMAINDIALOG_H<br/>
+<a href="CppDefine.html">#define</a> QTTOOLTESTQTMODELSMAINDIALOG_H<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppQtHideAndShowDialog.htm">qthideandshowdialog</a>.h"<br/>
+<a href="CppInclude.html">#include</a> "<a href="CppQtHideAndShowDialog.html">qthideandshowdialog</a><a href="CppHeaderFile.htm">.h</a>"<br/>
 <br/>
-<b><a href="CppNamespace.htm">namespace</a></b> Ui {<br/>
-&nbsp;&nbsp;<b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a><a href="ToolTestQtModels.htm">ToolTestQtModels</a>MainDialog;<br/>
+<b><a href="CppNamespace.html">namespace</a></b> Ui {<br/>
+&nbsp;&nbsp;<b><a href="CppClass.html">class</a></b> <a href="CppQt.htm">Qt</a><a href="ToolTestQtModels.html">ToolTestQtModels</a>MainDialog;<br/>
 }<br/>
 <br/>
-<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
+<b><a href="CppNamespace.html">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
 <br/>
-<b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a><a href="ToolTestQtModels.htm">ToolTestQtModels</a>MainDialog : <b><a href="CppPublic.htm">public</a></b> <a href="CppQtHideAndShowDialog.htm">QtHideAndShowDialog</a><br/>
+<b><a href="CppClass.html">class</a></b> <a href="CppQt.htm">Qt</a><a href="ToolTestQtModels.html">ToolTestQtModels</a>MainDialog : <b><a href="CppPublic.html">public</a></b> <a href="CppQtHideAndShowDialog.html">QtHideAndShowDialog</a><br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppQ_OBJECT.htm">Q_OBJECT</a><br/>
+&nbsp;&nbsp;<a href="CppQ_OBJECT.html">Q_OBJECT</a><br/>
 &nbsp;&nbsp;<br/>
-<b><a href="CppPublic.htm">public</a></b>:<br/>
-&nbsp;&nbsp;<b><a href="CppExplicit.htm">explicit</a></b> <a href="CppQt.htm">Qt</a><a href="ToolTestQtModels.htm">ToolTestQtModels</a>MainDialog(<a href="CppQWidget.htm">QWidget</a> *parent <a href="CppOperatorAssign.htm">=</a> 0);<br/>
-&nbsp;&nbsp;~<a href="CppQt.htm">Qt</a><a href="ToolTestQtModels.htm">ToolTestQtModels</a>MainDialog();<br/>
+<b><a href="CppPublic.html">public</a></b>:<br/>
+&nbsp;&nbsp;<b><a href="CppExplicit.html">explicit</a></b> <a href="CppQt.htm">Qt</a><a href="ToolTestQtModels.html">ToolTestQtModels</a>MainDialog(<a href="CppQWidget.html">QWidget</a> *parent <a href="CppOperatorAssign.htm">=</a> 0);<br/>
+&nbsp;&nbsp;<a href="CppQt.htm">Qt</a><a href="ToolTestQtModels.html">ToolTestQtModels</a>MainDialog(<b><a href="CppConst.html">const</a></b> <a href="CppQt.htm">Qt</a><a href="ToolTestQtModels.html">ToolTestQtModels</a>MainDialog&amp;) <a href="CppOperatorAssign.htm">=</a> <b><a href="CppDelete.html">delete</a></b>;<br/>
+&nbsp;&nbsp;<a href="CppQt.htm">Qt</a><a href="ToolTestQtModels.html">ToolTestQtModels</a>MainDialog&amp; <b><a href="CppOperator.html">operator</a></b>=(<b><a href="CppConst.html">const</a></b> <a href="CppQt.htm">Qt</a><a href="ToolTestQtModels.html">ToolTestQtModels</a>MainDialog&amp;) <a href="CppOperatorAssign.htm">=</a> <b><a href="CppDelete.html">delete</a></b>;<br/>
+&nbsp;&nbsp;~<a href="CppQt.htm">Qt</a><a href="ToolTestQtModels.html">ToolTestQtModels</a>MainDialog();<br/>
 &nbsp;&nbsp;<br/>
-<b><a href="CppPrivate.htm">private</a></b> <b><a href="CppSlots.htm">slots</a></b>:<br/>
-&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> keyPressEvent(<a href="CppQKeyEvent.htm">QKeyEvent</a> *);<br/>
+<b><a href="CppPrivate.html">private</a></b> <b><a href="CppSlots.html">slots</a></b>:<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> keyPressEvent(<a href="CppQKeyEvent.html">QKeyEvent</a> *);<br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> on_button_data_clicked();<br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> on_button_headers_clicked();<br/>
 <br/>
-<b><a href="CppPrivate.htm">private</a></b>:<br/>
-&nbsp;&nbsp;<a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a><a href="ToolTestQtModels.htm">ToolTestQtModels</a>MainDialog *ui;<br/>
+<b><a href="CppPrivate.html">private</a></b>:<br/>
+&nbsp;&nbsp;<a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a><a href="ToolTestQtModels.html">ToolTestQtModels</a>MainDialog *ui;<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> CreateRandomText();<br/>
-&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; CreateRandomTexts();<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.html">static</a></b> <b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a> CreateRandomText();<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.html">static</a></b> <b><a href="CppConst.html">const</a></b> <a href="CppVector.html">std::vector</a>&lt;<a href="CppString.html">std::string</a>&gt; CreateRandomTexts();<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
-&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppVoid.htm">void</a></b> Test();<br/>
-&nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
+&nbsp;&nbsp;<a href="CppIfndef.html">#ifndef</a> <a href="CppNDEBUG.html">NDEBUG</a><br/>
+&nbsp;&nbsp;<b><a href="CppStatic.html">static</a></b> <b><a href="CppVoid.htm">void</a></b> Test();<br/>
+&nbsp;&nbsp;<a href="CppEndif.html">#endif</a><br/>
 <br/>
 };<br/>
 <br/>
-} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.html">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
 <br/>
-<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> QTTOOLTESTQTMODELSMAINDIALOG_H<br/>
+<a href="CppEndif.html">#endif</a> <a href="CppComment.htm">//</a> QTTOOLTESTQTMODELSMAINDIALOG_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -295,7 +297,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <table summary="qttooltestqtmodelsmaindialog.cpp" border = "1"><tr><td><code>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">/*</a><br/>
-<a href="ToolTestQtModels.htm">TestQtModels</a>, <a href="Tools.htm">tool</a> to test the <a href="CppQt.htm">Qt</a>Model <b><a href="CppClass.htm">classes</a></b><br/>
+<a href="ToolTestQtModels.html">TestQtModels</a>, <a href="Tools.htm">tool</a> to test the <a href="CppQt.htm">Qt</a>Model <b><a href="CppClass.html">classes</a></b><br/>
 Copyright (C) 2013 Richel Bilderbeek<br/>
 <br/>
 This program is free software: you can redistribute it and/or modify<br/>
@@ -311,283 +313,282 @@ You should have received a copy of the GNU General Public License<br/>
 along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">*/</a><br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="ToolTestQtModels.htm">ToolTestQtModels</a>.htm<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="ToolTestQtModels.html">ToolTestQtModels</a>.html<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic push<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.html">-Weffc++</a>"<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic ignored "-Wunused-local-<b><a href="CppTypedef.html">typedef</a></b>s"<br/>
+<a href="CppInclude.html">#include</a> "qt<a href="ToolTestQtModels.html">tooltestqtmodels</a>maindialog<a href="CppHeaderFile.htm">.h</a>"<br/>
 <br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppCassertH.html">cassert</a>&gt;<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> "qt<a href="ToolTestQtModels.htm">tooltestqtmodels</a>maindialog.h"<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppBoost.html">boost</a>/<a href="CppLexical_cast.html">lexical_cast</a><a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppQKeyEvent.html">QKeyEvent</a>&gt;<br/>
 <br/>
-<a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
-<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-<b><a href="CppTypedef.htm">typedef</a></b>s"<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppLexical_cast.htm">lexical_cast</a>.hpp&gt;<br/>
-<a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
+<a href="CppInclude.html">#include</a> "<a href="CppMatrix.html">matrix</a><a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "<a href="CppQtUblasMatrixDoubleModel.html">qtublasmatrixdoublemodel</a><a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "<a href="CppQtUblasVectorDoubleModel.html">qtublasvectordoublemodel</a><a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "qt<a href="CppUblas.html">ublas</a>vectorintmodel<a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "<a href="CppQtStdVectorFunctionModel.html">qtstdvectorfunctionmodel</a><a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "<a href="CppQtStdVectorStringModel.html">qtstdvectorstringmodel</a><a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "<a href="CppTrace.html">trace</a><a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "ui_qt<a href="ToolTestQtModels.html">tooltestqtmodels</a>maindialog<a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic pop<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppQKeyEvent.htm">QKeyEvent</a>&gt;<br/>
-<br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppMatrix.htm">matrix</a>.h"<br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppQtUblasMatrixDoubleModel.htm">qtublasmatrixdoublemodel</a>.h"<br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppQtUblasVectorDoubleModel.htm">qtublasvectordoublemodel</a>.h"<br/>
-<a href="CppInclude.htm">#include</a> "qt<a href="CppUblas.htm">ublas</a>vectorintmodel.h"<br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppQtStdVectorFunctionModel.htm">qtstdvectorfunctionmodel</a>.h"<br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppQtStdVectorStringModel.htm">qtstdvectorstringmodel</a>.h"<br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppTrace.htm">trace</a>.h"<br/>
-<a href="CppInclude.htm">#include</a> "ui_qt<a href="ToolTestQtModels.htm">tooltestqtmodels</a>maindialog.h"<br/>
-<br/>
-<a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="ToolTestQtModels.htm">ToolTestQtModels</a>MainDialog::<a href="CppQt.htm">Qt</a><a href="ToolTestQtModels.htm">ToolTestQtModels</a>MainDialog(<a href="CppQWidget.htm">QWidget</a> *parent) :<br/>
-&nbsp;&nbsp;<a href="CppQtHideAndShowDialog.htm">QtHideAndShowDialog</a>(parent),<br/>
-&nbsp;&nbsp;ui(<b><a href="CppNew.htm">new</a></b> <a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a><a href="ToolTestQtModels.htm">ToolTestQtModels</a>MainDialog)<br/>
+<a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="ToolTestQtModels.html">ToolTestQtModels</a>MainDialog::<a href="CppQt.htm">Qt</a><a href="ToolTestQtModels.html">ToolTestQtModels</a>MainDialog(<a href="CppQWidget.html">QWidget</a> *parent) :<br/>
+&nbsp;&nbsp;<a href="CppQtHideAndShowDialog.html">QtHideAndShowDialog</a>(parent),<br/>
+&nbsp;&nbsp;ui(<b><a href="CppNew.htm">new</a></b> <a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a><a href="ToolTestQtModels.html">ToolTestQtModels</a>MainDialog)<br/>
 {<br/>
 &nbsp;&nbsp;ui-&gt;setupUi(<b><a href="CppThis.htm">this</a></b>);<br/>
-&nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
+&nbsp;&nbsp;<a href="CppIfndef.html">#ifndef</a> <a href="CppNDEBUG.html">NDEBUG</a><br/>
 &nbsp;&nbsp;Test();<br/>
-&nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
+&nbsp;&nbsp;<a href="CppEndif.html">#endif</a><br/>
 }<br/>
 <br/>
-<a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="ToolTestQtModels.htm">ToolTestQtModels</a>MainDialog::~<a href="CppQt.htm">Qt</a><a href="ToolTestQtModels.htm">ToolTestQtModels</a>MainDialog()<br/>
+<a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="ToolTestQtModels.html">ToolTestQtModels</a>MainDialog::~<a href="CppQt.htm">Qt</a><a href="ToolTestQtModels.html">ToolTestQtModels</a>MainDialog()<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppDelete.htm">delete</a></b> ui;<br/>
+&nbsp;&nbsp;<b><a href="CppDelete.html">delete</a></b> ui;<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="ToolTestQtModels.htm">ToolTestQtModels</a>MainDialog::CreateRandomText()<br/>
+<b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="ToolTestQtModels.html">ToolTestQtModels</a>MainDialog::CreateRandomText()<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> sz <a href="CppOperatorAssign.htm">=</a> (<a href="CppRand.htm">std::rand</a>() <a href="CppOperatorStreamIn.htm">&gt;&gt;</a> 4) <a href="CppOperatorModulus.htm">%</a> 10;<br/>
-&nbsp;&nbsp;<a href="CppString.htm">std::string</a> s;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> sz <a href="CppOperatorAssign.htm">=</a> (<a href="CppRand.html">std::rand</a>() <a href="CppOperatorStreamIn.html">&gt;&gt;</a> 4) <a href="CppOperatorModulus.htm">%</a> 10;<br/>
+&nbsp;&nbsp;<a href="CppString.html">std::string</a> s;<br/>
 &nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> i=0; i<a href="CppOperatorNotEqual.htm">!=</a>sz; <a href="CppOperatorPlus.htm">+</a>+i)<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> t <a href="CppOperatorAssign.htm">=</a> <a href="CppLexical_cast.htm">boost::lexical_cast</a>&lt;<a href="CppString.htm">std::string</a>,<b><a href="CppChar.htm">char</a></b>&gt;('a' <a href="CppOperatorPlus.htm">+</a> <a href="CppRand.htm">std::rand</a>() <a href="CppOperatorModulus.htm">%</a> 26);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a> t <a href="CppOperatorAssign.htm">=</a> <a href="CppLexical_cast.html">boost::lexical_cast</a>&lt;<a href="CppString.html">std::string</a>,<b><a href="CppChar.htm">char</a></b>&gt;('a' <a href="CppOperatorPlus.htm">+</a> <a href="CppRand.html">std::rand</a>() <a href="CppOperatorModulus.htm">%</a> 26);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;s <a href="CppOperatorPlus.htm">+</a><a href="CppOperatorAssign.htm">=</a> t;<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> s;<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> s;<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="ToolTestQtModels.htm">ToolTestQtModels</a>MainDialog::CreateRandomTexts()<br/>
+<b><a href="CppConst.html">const</a></b> <a href="CppVector.html">std::vector</a>&lt;<a href="CppString.html">std::string</a>&gt; <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="ToolTestQtModels.html">ToolTestQtModels</a>MainDialog::CreateRandomTexts()<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> sz <a href="CppOperatorAssign.htm">=</a> (<a href="CppRand.htm">std::rand</a>() <a href="CppOperatorStreamIn.htm">&gt;&gt;</a> 4) <a href="CppOperatorModulus.htm">%</a> 10;<br/>
-&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> sz <a href="CppOperatorAssign.htm">=</a> (<a href="CppRand.html">std::rand</a>() <a href="CppOperatorStreamIn.html">&gt;&gt;</a> 4) <a href="CppOperatorModulus.htm">%</a> 10;<br/>
+&nbsp;&nbsp;<a href="CppVector.html">std::vector</a>&lt;<a href="CppString.html">std::string</a>&gt; v;<br/>
 &nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> i=0; i<a href="CppOperatorNotEqual.htm">!=</a>sz; <a href="CppOperatorPlus.htm">+</a>+i)<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> s <a href="CppOperatorAssign.htm">=</a> CreateRandomText();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a> s <a href="CppOperatorAssign.htm">=</a> CreateRandomText();<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;v.push_back(s);<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> v;<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="ToolTestQtModels.htm">ToolTestQtModels</a>MainDialog::keyPressEvent(<a href="CppQKeyEvent.htm">QKeyEvent</a> * event)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="ToolTestQtModels.html">ToolTestQtModels</a>MainDialog::keyPressEvent(<a href="CppQKeyEvent.html">QKeyEvent</a> * event)<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (event-&gt;key() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <a href="CppQt.htm">Qt</a>::Key_Escape) { close(); <b><a href="CppReturn.htm">return</a></b>; }<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (event-&gt;key() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <a href="CppQt.htm">Qt</a>::Key_Escape) { close(); <b><a href="CppReturn.html">return</a></b>; }<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="ToolTestQtModels.htm">ToolTestQtModels</a>MainDialog::on_button_data_clicked()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="ToolTestQtModels.html">ToolTestQtModels</a>MainDialog::on_button_data_clicked()<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> index <a href="CppOperatorAssign.htm">=</a> ui-&gt;box_type-&gt;currentIndex();<br/>
-&nbsp;&nbsp;<b><a href="CppSwitch.htm">switch</a></b> (index)<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> index <a href="CppOperatorAssign.htm">=</a> ui-&gt;box_type-&gt;currentIndex();<br/>
+&nbsp;&nbsp;<b><a href="CppSwitch.html">switch</a></b> (index)<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> 0:<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppTypedef.htm">typedef</a></b> <a href="CppQtStdVectorStringModel.htm">QtStdVectorStringModel</a> Model;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Model * <b><a href="CppConst.htm">const</a></b> model<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <b><a href="CppDynamic_cast.htm">dynamic_cast</a></b>&lt;Model *&gt;(ui-&gt;table-&gt;model())<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;? <b><a href="CppDynamic_cast.htm">dynamic_cast</a></b>&lt;Model *&gt;(ui-&gt;table-&gt;model())<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppTypedef.html">typedef</a></b> <a href="CppQtStdVectorStringModel.html">QtStdVectorStringModel</a> Model;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Model * <b><a href="CppConst.html">const</a></b> model<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <b><a href="CppDynamic_cast.html">dynamic_cast</a></b>&lt;Model *&gt;(ui-&gt;table-&gt;model())<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;? <b><a href="CppDynamic_cast.html">dynamic_cast</a></b>&lt;Model *&gt;(ui-&gt;table-&gt;model())<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: <b><a href="CppNew.htm">new</a></b> Model;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v <a href="CppOperatorAssign.htm">=</a> CreateRandomTexts();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppVector.html">std::vector</a>&lt;<a href="CppString.html">std::string</a>&gt; v <a href="CppOperatorAssign.htm">=</a> CreateRandomTexts();<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;model-&gt;SetRawData(v);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ui-&gt;table-&gt;setModel(model);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppBreak.htm">break</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppBreak.html">break</a></b>;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> 1:<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> variable <a href="CppOperatorAssign.htm">=</a> "x";<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppTypedef.htm">typedef</a></b> <a href="CppQtStdVectorFunctionModel.htm">QtStdVectorFunctionModel</a> Model;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Model * <b><a href="CppConst.htm">const</a></b> model<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <b><a href="CppDynamic_cast.htm">dynamic_cast</a></b>&lt;Model *&gt;(ui-&gt;table-&gt;model())<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;? <b><a href="CppDynamic_cast.htm">dynamic_cast</a></b>&lt;Model *&gt;(ui-&gt;table-&gt;model())<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a> variable <a href="CppOperatorAssign.htm">=</a> "x";<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppTypedef.html">typedef</a></b> <a href="CppQtStdVectorFunctionModel.html">QtStdVectorFunctionModel</a> Model;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Model * <b><a href="CppConst.html">const</a></b> model<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <b><a href="CppDynamic_cast.html">dynamic_cast</a></b>&lt;Model *&gt;(ui-&gt;table-&gt;model())<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;? <b><a href="CppDynamic_cast.html">dynamic_cast</a></b>&lt;Model *&gt;(ui-&gt;table-&gt;model())<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: <b><a href="CppNew.htm">new</a></b> Model(variable);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> sz <a href="CppOperatorAssign.htm">=</a> (<a href="CppRand.htm">std::rand</a>() <a href="CppOperatorStreamIn.htm">&gt;&gt;</a> 4) <a href="CppOperatorModulus.htm">%</a> 10;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> sz <a href="CppOperatorAssign.htm">=</a> (<a href="CppRand.html">std::rand</a>() <a href="CppOperatorStreamIn.html">&gt;&gt;</a> 4) <a href="CppOperatorModulus.htm">%</a> 10;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppVector.html">std::vector</a>&lt;<a href="CppString.html">std::string</a>&gt; v;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> i=0; i<a href="CppOperatorNotEqual.htm">!=</a>sz; <a href="CppOperatorPlus.htm">+</a>+i)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> s<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <a href="CppLexical_cast.htm">boost::lexical_cast</a>&lt;<a href="CppString.htm">std::string</a>&gt;(i)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a> s<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <a href="CppLexical_cast.html">boost::lexical_cast</a>&lt;<a href="CppString.html">std::string</a>&gt;(i)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> " * " <a href="CppOperatorPlus.htm">+</a> variable;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;v.push_back(s);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;model-&gt;SetRawData(v);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ui-&gt;table-&gt;setModel(model);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppBreak.htm">break</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppBreak.html">break</a></b>;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> 2:<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppTypedef.htm">typedef</a></b> <a href="CppQtUblasMatrixDoubleModel.htm">QtUblasMatrixDoubleModel</a> Model;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Model * <b><a href="CppConst.htm">const</a></b> model<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <b><a href="CppDynamic_cast.htm">dynamic_cast</a></b>&lt;Model *&gt;(ui-&gt;table-&gt;model())<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;? <b><a href="CppDynamic_cast.htm">dynamic_cast</a></b>&lt;Model *&gt;(ui-&gt;table-&gt;model())<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppTypedef.html">typedef</a></b> <a href="CppQtUblasMatrixDoubleModel.html">QtUblasMatrixDoubleModel</a> Model;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Model * <b><a href="CppConst.html">const</a></b> model<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <b><a href="CppDynamic_cast.html">dynamic_cast</a></b>&lt;Model *&gt;(ui-&gt;table-&gt;model())<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;? <b><a href="CppDynamic_cast.html">dynamic_cast</a></b>&lt;Model *&gt;(ui-&gt;table-&gt;model())<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: <b><a href="CppNew.htm">new</a></b> Model;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> n_cols <a href="CppOperatorAssign.htm">=</a> (<a href="CppRand.htm">std::rand</a>() <a href="CppOperatorStreamIn.htm">&gt;&gt;</a> 4) <a href="CppOperatorModulus.htm">%</a> 10;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> n_rows <a href="CppOperatorAssign.htm">=</a> (<a href="CppRand.htm">std::rand</a>() <a href="CppOperatorStreamIn.htm">&gt;&gt;</a> 4) <a href="CppOperatorModulus.htm">%</a> 10;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppUblasMatrix.htm">boost::numeric::ublas::matrix</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; m(n_rows,n_cols);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> n_cols <a href="CppOperatorAssign.htm">=</a> (<a href="CppRand.html">std::rand</a>() <a href="CppOperatorStreamIn.html">&gt;&gt;</a> 4) <a href="CppOperatorModulus.htm">%</a> 10;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> n_rows <a href="CppOperatorAssign.htm">=</a> (<a href="CppRand.html">std::rand</a>() <a href="CppOperatorStreamIn.html">&gt;&gt;</a> 4) <a href="CppOperatorModulus.htm">%</a> 10;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppUblasMatrix.html">boost::numeric::ublas::matrix</a>&lt;<b><a href="CppDouble.html">double</a></b>&gt; m(n_rows,n_cols);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> row=0; row<a href="CppOperatorNotEqual.htm">!=</a>n_rows; <a href="CppOperatorPlus.htm">+</a>+row)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> col=0; col<a href="CppOperatorNotEqual.htm">!=</a>n_cols; <a href="CppOperatorPlus.htm">+</a>+col)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> x <a href="CppOperatorAssign.htm">=</a> <a href="CppNumeric_cast.htm">boost::numeric_cast</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(<a href="CppRand.htm">std::rand</a>());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> x <a href="CppOperatorAssign.htm">=</a> <a href="CppNumeric_cast.html">boost::numeric_cast</a>&lt;<b><a href="CppDouble.html">double</a></b>&gt;(<a href="CppRand.html">std::rand</a>());<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;m(row,col) <a href="CppOperatorAssign.htm">=</a> x;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;model-&gt;SetRawData(m);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ui-&gt;table-&gt;setModel(model);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppBreak.htm">break</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppBreak.html">break</a></b>;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> 3:<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppTypedef.htm">typedef</a></b> <a href="CppQtUblasVectorDoubleModel.htm">QtUblasVectorDoubleModel</a> Model;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Model * <b><a href="CppConst.htm">const</a></b> model<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <b><a href="CppDynamic_cast.htm">dynamic_cast</a></b>&lt;Model *&gt;(ui-&gt;table-&gt;model())<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;? <b><a href="CppDynamic_cast.htm">dynamic_cast</a></b>&lt;Model *&gt;(ui-&gt;table-&gt;model())<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppTypedef.html">typedef</a></b> <a href="CppQtUblasVectorDoubleModel.html">QtUblasVectorDoubleModel</a> Model;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Model * <b><a href="CppConst.html">const</a></b> model<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <b><a href="CppDynamic_cast.html">dynamic_cast</a></b>&lt;Model *&gt;(ui-&gt;table-&gt;model())<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;? <b><a href="CppDynamic_cast.html">dynamic_cast</a></b>&lt;Model *&gt;(ui-&gt;table-&gt;model())<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: <b><a href="CppNew.htm">new</a></b> Model;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> sz <a href="CppOperatorAssign.htm">=</a> (<a href="CppRand.htm">std::rand</a>() <a href="CppOperatorStreamIn.htm">&gt;&gt;</a> 4) <a href="CppOperatorModulus.htm">%</a> 10;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppUblasVector.htm">boost::numeric::ublas::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; v(sz);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> sz <a href="CppOperatorAssign.htm">=</a> (<a href="CppRand.html">std::rand</a>() <a href="CppOperatorStreamIn.html">&gt;&gt;</a> 4) <a href="CppOperatorModulus.htm">%</a> 10;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppUblasVector.html">boost::numeric::ublas::vector</a>&lt;<b><a href="CppDouble.html">double</a></b>&gt; v(sz);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> i=0; i<a href="CppOperatorNotEqual.htm">!=</a>sz; <a href="CppOperatorPlus.htm">+</a>+i)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> x <a href="CppOperatorAssign.htm">=</a> <a href="CppNumeric_cast.htm">boost::numeric_cast</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(<a href="CppRand.htm">std::rand</a>());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> x <a href="CppOperatorAssign.htm">=</a> <a href="CppNumeric_cast.html">boost::numeric_cast</a>&lt;<b><a href="CppDouble.html">double</a></b>&gt;(<a href="CppRand.html">std::rand</a>());<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;v(i) <a href="CppOperatorAssign.htm">=</a> x;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;model-&gt;SetRawData(v);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ui-&gt;table-&gt;setModel(model);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppBreak.htm">break</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppBreak.html">break</a></b>;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> 4:<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppTypedef.htm">typedef</a></b> <a href="CppQt.htm">Qt</a>UblasVectorIntModel Model;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Model * <b><a href="CppConst.htm">const</a></b> model<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <b><a href="CppDynamic_cast.htm">dynamic_cast</a></b>&lt;Model *&gt;(ui-&gt;table-&gt;model())<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;? <b><a href="CppDynamic_cast.htm">dynamic_cast</a></b>&lt;Model *&gt;(ui-&gt;table-&gt;model())<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppTypedef.html">typedef</a></b> <a href="CppQt.htm">Qt</a>UblasVectorIntModel Model;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Model * <b><a href="CppConst.html">const</a></b> model<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <b><a href="CppDynamic_cast.html">dynamic_cast</a></b>&lt;Model *&gt;(ui-&gt;table-&gt;model())<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;? <b><a href="CppDynamic_cast.html">dynamic_cast</a></b>&lt;Model *&gt;(ui-&gt;table-&gt;model())<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: <b><a href="CppNew.htm">new</a></b> Model;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> sz <a href="CppOperatorAssign.htm">=</a> (<a href="CppRand.htm">std::rand</a>() <a href="CppOperatorStreamIn.htm">&gt;&gt;</a> 4) <a href="CppOperatorModulus.htm">%</a> 10;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppUblasVector.htm">boost::numeric::ublas::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt; v(sz);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> sz <a href="CppOperatorAssign.htm">=</a> (<a href="CppRand.html">std::rand</a>() <a href="CppOperatorStreamIn.html">&gt;&gt;</a> 4) <a href="CppOperatorModulus.htm">%</a> 10;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppUblasVector.html">boost::numeric::ublas::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt; v(sz);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> i=0; i<a href="CppOperatorNotEqual.htm">!=</a>sz; <a href="CppOperatorPlus.htm">+</a>+i)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x <a href="CppOperatorAssign.htm">=</a> <a href="CppRand.htm">std::rand</a>();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> x <a href="CppOperatorAssign.htm">=</a> <a href="CppRand.html">std::rand</a>();<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;v(i) <a href="CppOperatorAssign.htm">=</a> x;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;model-&gt;SetRawData(v);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ui-&gt;table-&gt;setModel(model);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppBreak.htm">break</a></b>;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppDefault.htm">default</a></b>:<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!"<a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="ToolTestQtModels.htm">ToolTestQtModels</a>MainDialog::on_button_data_clicked: Unimplemented ui-&gt;box_type-&gt;currentIndex()");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThrow.htm">throw</a></b> <a href="CppLogic_error.htm">std::logic_error</a>("<a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="ToolTestQtModels.htm">ToolTestQtModels</a>MainDialog::on_button_data_clicked: Unimplemented ui-&gt;box_type-&gt;currentIndex()");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppBreak.html">break</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppDefault.html">default</a></b>:<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(!"<a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="ToolTestQtModels.html">ToolTestQtModels</a>MainDialog::on_button_data_clicked: Unimplemented ui-&gt;box_type-&gt;currentIndex()");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThrow.html">throw</a></b> <a href="CppLogic_error.html">std::logic_error</a>("<a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="ToolTestQtModels.html">ToolTestQtModels</a>MainDialog::on_button_data_clicked: Unimplemented ui-&gt;box_type-&gt;currentIndex()");<br/>
 &nbsp;&nbsp;}<br/>
 <br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="ToolTestQtModels.htm">ToolTestQtModels</a>MainDialog::on_button_headers_clicked()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="ToolTestQtModels.html">ToolTestQtModels</a>MainDialog::on_button_headers_clicked()<br/>
 {<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> index <a href="CppOperatorAssign.htm">=</a> ui-&gt;box_type-&gt;currentIndex();<br/>
-&nbsp;&nbsp;<b><a href="CppSwitch.htm">switch</a></b> (index)<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> index <a href="CppOperatorAssign.htm">=</a> ui-&gt;box_type-&gt;currentIndex();<br/>
+&nbsp;&nbsp;<b><a href="CppSwitch.html">switch</a></b> (index)<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> 0:<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppTypedef.htm">typedef</a></b> <a href="CppQtStdVectorStringModel.htm">QtStdVectorStringModel</a> Model;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Model * <b><a href="CppConst.htm">const</a></b> model<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <b><a href="CppDynamic_cast.htm">dynamic_cast</a></b>&lt;Model *&gt;(ui-&gt;table-&gt;model())<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;? <b><a href="CppDynamic_cast.htm">dynamic_cast</a></b>&lt;Model *&gt;(ui-&gt;table-&gt;model())<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppTypedef.html">typedef</a></b> <a href="CppQtStdVectorStringModel.html">QtStdVectorStringModel</a> Model;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Model * <b><a href="CppConst.html">const</a></b> model<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <b><a href="CppDynamic_cast.html">dynamic_cast</a></b>&lt;Model *&gt;(ui-&gt;table-&gt;model())<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;? <b><a href="CppDynamic_cast.html">dynamic_cast</a></b>&lt;Model *&gt;(ui-&gt;table-&gt;model())<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: <b><a href="CppNew.htm">new</a></b> Model;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> h <a href="CppOperatorAssign.htm">=</a> CreateRandomText();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v <a href="CppOperatorAssign.htm">=</a> CreateRandomTexts();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a> h <a href="CppOperatorAssign.htm">=</a> CreateRandomText();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppVector.html">std::vector</a>&lt;<a href="CppString.html">std::string</a>&gt; v <a href="CppOperatorAssign.htm">=</a> CreateRandomTexts();<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;model-&gt;SetHeaderData(h,v);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ui-&gt;table-&gt;setModel(model);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppBreak.htm">break</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppBreak.html">break</a></b>;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> 1:<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> variable <a href="CppOperatorAssign.htm">=</a> "x";<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppTypedef.htm">typedef</a></b> <a href="CppQtStdVectorFunctionModel.htm">QtStdVectorFunctionModel</a> Model;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Model * <b><a href="CppConst.htm">const</a></b> model<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <b><a href="CppDynamic_cast.htm">dynamic_cast</a></b>&lt;Model *&gt;(ui-&gt;table-&gt;model())<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;? <b><a href="CppDynamic_cast.htm">dynamic_cast</a></b>&lt;Model *&gt;(ui-&gt;table-&gt;model())<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a> variable <a href="CppOperatorAssign.htm">=</a> "x";<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppTypedef.html">typedef</a></b> <a href="CppQtStdVectorFunctionModel.html">QtStdVectorFunctionModel</a> Model;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Model * <b><a href="CppConst.html">const</a></b> model<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <b><a href="CppDynamic_cast.html">dynamic_cast</a></b>&lt;Model *&gt;(ui-&gt;table-&gt;model())<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;? <b><a href="CppDynamic_cast.html">dynamic_cast</a></b>&lt;Model *&gt;(ui-&gt;table-&gt;model())<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: <b><a href="CppNew.htm">new</a></b> Model(variable);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> h <a href="CppOperatorAssign.htm">=</a> CreateRandomText();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v <a href="CppOperatorAssign.htm">=</a> CreateRandomTexts();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a> h <a href="CppOperatorAssign.htm">=</a> CreateRandomText();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppVector.html">std::vector</a>&lt;<a href="CppString.html">std::string</a>&gt; v <a href="CppOperatorAssign.htm">=</a> CreateRandomTexts();<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;model-&gt;SetHeaderData(h,v);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ui-&gt;table-&gt;setModel(model);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppBreak.htm">break</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppBreak.html">break</a></b>;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> 2:<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppTypedef.htm">typedef</a></b> <a href="CppQtUblasMatrixDoubleModel.htm">QtUblasMatrixDoubleModel</a> Model;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Model * <b><a href="CppConst.htm">const</a></b> model<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <b><a href="CppDynamic_cast.htm">dynamic_cast</a></b>&lt;Model *&gt;(ui-&gt;table-&gt;model())<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;? <b><a href="CppDynamic_cast.htm">dynamic_cast</a></b>&lt;Model *&gt;(ui-&gt;table-&gt;model())<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppTypedef.html">typedef</a></b> <a href="CppQtUblasMatrixDoubleModel.html">QtUblasMatrixDoubleModel</a> Model;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Model * <b><a href="CppConst.html">const</a></b> model<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <b><a href="CppDynamic_cast.html">dynamic_cast</a></b>&lt;Model *&gt;(ui-&gt;table-&gt;model())<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;? <b><a href="CppDynamic_cast.html">dynamic_cast</a></b>&lt;Model *&gt;(ui-&gt;table-&gt;model())<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: <b><a href="CppNew.htm">new</a></b> Model;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v <a href="CppOperatorAssign.htm">=</a> CreateRandomTexts();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; w <a href="CppOperatorAssign.htm">=</a> CreateRandomTexts();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppVector.html">std::vector</a>&lt;<a href="CppString.html">std::string</a>&gt; v <a href="CppOperatorAssign.htm">=</a> CreateRandomTexts();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppVector.html">std::vector</a>&lt;<a href="CppString.html">std::string</a>&gt; w <a href="CppOperatorAssign.htm">=</a> CreateRandomTexts();<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;model-&gt;SetHeaderData(v,w);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ui-&gt;table-&gt;setModel(model);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppBreak.htm">break</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppBreak.html">break</a></b>;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> 3:<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppTypedef.htm">typedef</a></b> <a href="CppQtUblasVectorDoubleModel.htm">QtUblasVectorDoubleModel</a> Model;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Model * <b><a href="CppConst.htm">const</a></b> model<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <b><a href="CppDynamic_cast.htm">dynamic_cast</a></b>&lt;Model *&gt;(ui-&gt;table-&gt;model())<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;? <b><a href="CppDynamic_cast.htm">dynamic_cast</a></b>&lt;Model *&gt;(ui-&gt;table-&gt;model())<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppTypedef.html">typedef</a></b> <a href="CppQtUblasVectorDoubleModel.html">QtUblasVectorDoubleModel</a> Model;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Model * <b><a href="CppConst.html">const</a></b> model<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <b><a href="CppDynamic_cast.html">dynamic_cast</a></b>&lt;Model *&gt;(ui-&gt;table-&gt;model())<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;? <b><a href="CppDynamic_cast.html">dynamic_cast</a></b>&lt;Model *&gt;(ui-&gt;table-&gt;model())<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: <b><a href="CppNew.htm">new</a></b> Model;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> h <a href="CppOperatorAssign.htm">=</a> CreateRandomText();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v <a href="CppOperatorAssign.htm">=</a> CreateRandomTexts();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a> h <a href="CppOperatorAssign.htm">=</a> CreateRandomText();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppVector.html">std::vector</a>&lt;<a href="CppString.html">std::string</a>&gt; v <a href="CppOperatorAssign.htm">=</a> CreateRandomTexts();<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;model-&gt;SetHeaderData(h,v);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ui-&gt;table-&gt;setModel(model);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppBreak.htm">break</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppBreak.html">break</a></b>;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> 4:<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppTypedef.htm">typedef</a></b> <a href="CppQt.htm">Qt</a>UblasVectorIntModel Model;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Model * <b><a href="CppConst.htm">const</a></b> model<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <b><a href="CppDynamic_cast.htm">dynamic_cast</a></b>&lt;Model *&gt;(ui-&gt;table-&gt;model())<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;? <b><a href="CppDynamic_cast.htm">dynamic_cast</a></b>&lt;Model *&gt;(ui-&gt;table-&gt;model())<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppTypedef.html">typedef</a></b> <a href="CppQt.htm">Qt</a>UblasVectorIntModel Model;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Model * <b><a href="CppConst.html">const</a></b> model<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <b><a href="CppDynamic_cast.html">dynamic_cast</a></b>&lt;Model *&gt;(ui-&gt;table-&gt;model())<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;? <b><a href="CppDynamic_cast.html">dynamic_cast</a></b>&lt;Model *&gt;(ui-&gt;table-&gt;model())<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: <b><a href="CppNew.htm">new</a></b> Model;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> h <a href="CppOperatorAssign.htm">=</a> CreateRandomText();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v <a href="CppOperatorAssign.htm">=</a> CreateRandomTexts();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a> h <a href="CppOperatorAssign.htm">=</a> CreateRandomText();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppVector.html">std::vector</a>&lt;<a href="CppString.html">std::string</a>&gt; v <a href="CppOperatorAssign.htm">=</a> CreateRandomTexts();<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;model-&gt;SetHeaderData(h,v);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ui-&gt;table-&gt;setModel(model);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppBreak.htm">break</a></b>;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppDefault.htm">default</a></b>:<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!"<a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="ToolTestQtModels.htm">ToolTestQtModels</a>MainDialog::on_button_headers_clicked: Unimplemented ui-&gt;box_type-&gt;currentIndex()");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThrow.htm">throw</a></b> <a href="CppLogic_error.htm">std::logic_error</a>("<a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="ToolTestQtModels.htm">ToolTestQtModels</a>MainDialog::on_button_headers_clicked: Unimplemented ui-&gt;box_type-&gt;currentIndex()");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppBreak.html">break</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppDefault.html">default</a></b>:<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(!"<a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="ToolTestQtModels.html">ToolTestQtModels</a>MainDialog::on_button_headers_clicked: Unimplemented ui-&gt;box_type-&gt;currentIndex()");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThrow.html">throw</a></b> <a href="CppLogic_error.html">std::logic_error</a>("<a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="ToolTestQtModels.html">ToolTestQtModels</a>MainDialog::on_button_headers_clicked: Unimplemented ui-&gt;box_type-&gt;currentIndex()");<br/>
 &nbsp;&nbsp;}<br/>
 }<br/>
 <br/>
-<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="ToolTestQtModels.htm">ToolTestQtModels</a>MainDialog::Test()<br/>
+<a href="CppIfndef.html">#ifndef</a> <a href="CppNDEBUG.html">NDEBUG</a><br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="ToolTestQtModels.html">ToolTestQtModels</a>MainDialog::Test()<br/>
 {<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppBool.htm">bool</a></b> is_tested <a href="CppOperatorAssign.htm">=</a> <b><a href="CppFalse.htm">false</a></b>;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (is_tested) <b><a href="CppReturn.htm">return</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppStatic.html">static</a></b> <b><a href="CppBool.htm">bool</a></b> is_tested <a href="CppOperatorAssign.htm">=</a> <b><a href="CppFalse.html">false</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (is_tested) <b><a href="CppReturn.html">return</a></b>;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;is_tested <a href="CppOperatorAssign.htm">=</a> <b><a href="CppTrue.htm">true</a></b>;<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("Start of <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="ToolTestQtModels.htm">ToolTestQtModels</a>MainDialog::Test");<br/>
+&nbsp;&nbsp;<a href="CppTRACE.html">TRACE</a>("Start of <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="ToolTestQtModels.html">ToolTestQtModels</a>MainDialog::Test");<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQtUblasVectorDoubleModel.htm">QtUblasVectorDoubleModel</a> * <b><a href="CppConst.htm">const</a></b> model <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppQtUblasVectorDoubleModel.htm">QtUblasVectorDoubleModel</a>;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(model);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;model-&gt;SetRawData( <a href="CppMatrix.htm">Matrix</a>::<a href="CppCreateVector.htm">CreateVector</a>( {&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} ) );<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;model-&gt;SetRawData( <a href="CppMatrix.htm">Matrix</a>::<a href="CppCreateVector.htm">CreateVector</a>( { 1.1, 2.2, 3.3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} ) );<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;model-&gt;SetRawData( <a href="CppMatrix.htm">Matrix</a>::<a href="CppCreateVector.htm">CreateVector</a>( {&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} ) );<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;model-&gt;SetRawData( <a href="CppMatrix.htm">Matrix</a>::<a href="CppCreateVector.htm">CreateVector</a>( {&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2.2, 3.3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} ) );<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;model-&gt;SetRawData( <a href="CppMatrix.htm">Matrix</a>::<a href="CppCreateVector.htm">CreateVector</a>( {&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} ) );<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;model-&gt;SetRawData( <a href="CppMatrix.htm">Matrix</a>::<a href="CppCreateVector.htm">CreateVector</a>( { 1.1, 2.2, 3.3, 4.4 } ) );<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;model-&gt;SetRawData( <a href="CppMatrix.htm">Matrix</a>::<a href="CppCreateVector.htm">CreateVector</a>( {&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} ) );<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQtUblasVectorDoubleModel.html">QtUblasVectorDoubleModel</a> * <b><a href="CppConst.html">const</a></b> model <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppQtUblasVectorDoubleModel.html">QtUblasVectorDoubleModel</a>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(model);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;model-&gt;SetRawData( <a href="CppMatrix.html">Matrix</a>::<a href="CppCreateVector.html">CreateVector</a>( {&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} ) );<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;model-&gt;SetRawData( <a href="CppMatrix.html">Matrix</a>::<a href="CppCreateVector.html">CreateVector</a>( { 1.1, 2.2, 3.3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} ) );<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;model-&gt;SetRawData( <a href="CppMatrix.html">Matrix</a>::<a href="CppCreateVector.html">CreateVector</a>( {&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} ) );<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;model-&gt;SetRawData( <a href="CppMatrix.html">Matrix</a>::<a href="CppCreateVector.html">CreateVector</a>( {&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2.2, 3.3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} ) );<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;model-&gt;SetRawData( <a href="CppMatrix.html">Matrix</a>::<a href="CppCreateVector.html">CreateVector</a>( {&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} ) );<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;model-&gt;SetRawData( <a href="CppMatrix.html">Matrix</a>::<a href="CppCreateVector.html">CreateVector</a>( { 1.1, 2.2, 3.3, 4.4 } ) );<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;model-&gt;SetRawData( <a href="CppMatrix.html">Matrix</a>::<a href="CppCreateVector.html">CreateVector</a>( {&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} ) );<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Test of dialog<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQt.htm">Qt</a><a href="ToolTestQtModels.htm">ToolTestQtModels</a>MainDialog d;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> n_types <a href="CppOperatorAssign.htm">=</a> d.ui-&gt;box_type-&gt;count();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQt.htm">Qt</a><a href="ToolTestQtModels.html">ToolTestQtModels</a>MainDialog d;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> n_types <a href="CppOperatorAssign.htm">=</a> d.ui-&gt;box_type-&gt;count();<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> i=0; i<a href="CppOperatorNotEqual.htm">!=</a>n_types; <a href="CppOperatorPlus.htm">+</a>+i)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;d.ui-&gt;box_type-&gt;setCurrentIndex(i);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> n <a href="CppOperatorAssign.htm">=</a> 10;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> n <a href="CppOperatorAssign.htm">=</a> 10;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> j=0; j<a href="CppOperatorNotEqual.htm">!=</a>n; <a href="CppOperatorPlus.htm">+</a>+j)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;d.ui-&gt;button_data-&gt;click();<br/>
@@ -608,9 +609,9 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("Finished <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="ToolTestQtModels.htm">ToolTestQtModels</a>MainDialog::Test successfully");<br/>
+&nbsp;&nbsp;<a href="CppTRACE.html">TRACE</a>("Finished <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="ToolTestQtModels.html">ToolTestQtModels</a>MainDialog::Test successfully");<br/>
 }<br/>
-<a href="CppEndif.htm">#endif</a><br/>
+<a href="CppEndif.html">#endif</a><br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -624,7 +625,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <table summary="qttooltestqtmodelsmenudialog.h" border = "1"><tr><td><code>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">/*</a><br/>
-<a href="ToolTestQtModels.htm">TestQtModels</a>, <a href="Tools.htm">tool</a> to test the <a href="CppQt.htm">Qt</a>Model <b><a href="CppClass.htm">classes</a></b><br/>
+<a href="ToolTestQtModels.html">TestQtModels</a>, <a href="Tools.htm">tool</a> to test the <a href="CppQt.htm">Qt</a>Model <b><a href="CppClass.html">classes</a></b><br/>
 Copyright (C) 2013 Richel Bilderbeek<br/>
 <br/>
 This program is free software: you can redistribute it and/or modify<br/>
@@ -640,47 +641,49 @@ You should have received a copy of the GNU General Public License<br/>
 along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">*/</a><br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="ToolTestQtModels.htm">ToolTestQtModels</a>.htm<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="ToolTestQtModels.html">ToolTestQtModels</a>.html<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppIfndef.htm">#ifndef</a> QTTOOLTESTQTMODELSMENUDIALOG<br/>
-<a href="CppDefine.htm">#define</a> QTTOOLTESTQTMODELSMENUDIALOG<br/>
+<a href="CppIfndef.html">#ifndef</a> QTTOOLTESTQTMODELSMENUDIALOG<br/>
+<a href="CppDefine.html">#define</a> QTTOOLTESTQTMODELSMENUDIALOG<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppQtHideAndShowDialog.htm">qthideandshowdialog</a>.h"<br/>
+<a href="CppInclude.html">#include</a> "<a href="CppQtHideAndShowDialog.html">qthideandshowdialog</a><a href="CppHeaderFile.htm">.h</a>"<br/>
 <br/>
-<b><a href="CppNamespace.htm">namespace</a></b> Ui {<br/>
-&nbsp;&nbsp;<b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a><a href="ToolTestQtModels.htm">ToolTestQtModels</a>MenuDialog;<br/>
+<b><a href="CppNamespace.html">namespace</a></b> Ui {<br/>
+&nbsp;&nbsp;<b><a href="CppClass.html">class</a></b> <a href="CppQt.htm">Qt</a><a href="ToolTestQtModels.html">ToolTestQtModels</a>MenuDialog;<br/>
 }<br/>
 <br/>
-<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
+<b><a href="CppNamespace.html">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
 <br/>
-<b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a><a href="ToolTestQtModels.htm">ToolTestQtModels</a>MenuDialog : <b><a href="CppPublic.htm">public</a></b> <a href="CppQtHideAndShowDialog.htm">QtHideAndShowDialog</a><br/>
+<b><a href="CppClass.html">class</a></b> <a href="CppQt.htm">Qt</a><a href="ToolTestQtModels.html">ToolTestQtModels</a>MenuDialog : <b><a href="CppPublic.html">public</a></b> <a href="CppQtHideAndShowDialog.html">QtHideAndShowDialog</a><br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppQ_OBJECT.htm">Q_OBJECT</a><br/>
+&nbsp;&nbsp;<a href="CppQ_OBJECT.html">Q_OBJECT</a><br/>
 <br/>
-<b><a href="CppPublic.htm">public</a></b>:<br/>
-&nbsp;&nbsp;<b><a href="CppExplicit.htm">explicit</a></b> <a href="CppQt.htm">Qt</a><a href="ToolTestQtModels.htm">ToolTestQtModels</a>MenuDialog(<a href="CppQWidget.htm">QWidget</a> *parent <a href="CppOperatorAssign.htm">=</a> 0);<br/>
-&nbsp;&nbsp;~<a href="CppQt.htm">Qt</a><a href="ToolTestQtModels.htm">ToolTestQtModels</a>MenuDialog();<br/>
+<b><a href="CppPublic.html">public</a></b>:<br/>
+&nbsp;&nbsp;<b><a href="CppExplicit.html">explicit</a></b> <a href="CppQt.htm">Qt</a><a href="ToolTestQtModels.html">ToolTestQtModels</a>MenuDialog(<a href="CppQWidget.html">QWidget</a> *parent <a href="CppOperatorAssign.htm">=</a> 0);<br/>
+&nbsp;&nbsp;<a href="CppQt.htm">Qt</a><a href="ToolTestQtModels.html">ToolTestQtModels</a>MenuDialog(<b><a href="CppConst.html">const</a></b> <a href="CppQt.htm">Qt</a><a href="ToolTestQtModels.html">ToolTestQtModels</a>MenuDialog&amp;) <a href="CppOperatorAssign.htm">=</a> <b><a href="CppDelete.html">delete</a></b>;<br/>
+&nbsp;&nbsp;<a href="CppQt.htm">Qt</a><a href="ToolTestQtModels.html">ToolTestQtModels</a>MenuDialog&amp; <b><a href="CppOperator.html">operator</a></b>=(<b><a href="CppConst.html">const</a></b> <a href="CppQt.htm">Qt</a><a href="ToolTestQtModels.html">ToolTestQtModels</a>MenuDialog&amp;) <a href="CppOperatorAssign.htm">=</a> <b><a href="CppDelete.html">delete</a></b>;<br/>
+&nbsp;&nbsp;~<a href="CppQt.htm">Qt</a><a href="ToolTestQtModels.html">ToolTestQtModels</a>MenuDialog();<br/>
 <br/>
-<b><a href="CppProtected.htm">protected</a></b>:<br/>
+<b><a href="CppProtected.html">protected</a></b>:<br/>
 &nbsp;&nbsp;<br/>
-&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> keyPressEvent(<a href="CppQKeyEvent.htm">QKeyEvent</a> * event);<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> keyPressEvent(<a href="CppQKeyEvent.html">QKeyEvent</a> * event);<br/>
 <br/>
-<b><a href="CppPrivate.htm">private</a></b>:<br/>
-&nbsp;&nbsp;<a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a><a href="ToolTestQtModels.htm">ToolTestQtModels</a>MenuDialog *ui;<br/>
+<b><a href="CppPrivate.html">private</a></b>:<br/>
+&nbsp;&nbsp;<a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a><a href="ToolTestQtModels.html">ToolTestQtModels</a>MenuDialog *ui;<br/>
 <br/>
-<b><a href="CppPrivate.htm">private</a></b> <b><a href="CppSlots.htm">slots</a></b>:<br/>
+<b><a href="CppPrivate.html">private</a></b> <b><a href="CppSlots.html">slots</a></b>:<br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> on_button_about_clicked();<br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> on_button_quit_clicked();<br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> on_button_start_clicked();<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
-&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppVoid.htm">void</a></b> Test();<br/>
-&nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
+&nbsp;&nbsp;<a href="CppIfndef.html">#ifndef</a> <a href="CppNDEBUG.html">NDEBUG</a><br/>
+&nbsp;&nbsp;<b><a href="CppStatic.html">static</a></b> <b><a href="CppVoid.htm">void</a></b> Test();<br/>
+&nbsp;&nbsp;<a href="CppEndif.html">#endif</a><br/>
 };<br/>
 <br/>
-} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.html">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
 <br/>
-<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> QTTOOLTESTQTMODELSMENUDIALOG<br/>
+<a href="CppEndif.html">#endif</a> <a href="CppComment.htm">//</a> QTTOOLTESTQTMODELSMENUDIALOG<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -694,7 +697,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <table summary="qttooltestqtmodelsmenudialog.cpp" border = "1"><tr><td><code>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">/*</a><br/>
-<a href="ToolTestQtModels.htm">TestQtModels</a>, <a href="Tools.htm">tool</a> to test the <a href="CppQt.htm">Qt</a>Model <b><a href="CppClass.htm">classes</a></b><br/>
+<a href="ToolTestQtModels.html">TestQtModels</a>, <a href="Tools.htm">tool</a> to test the <a href="CppQt.htm">Qt</a>Model <b><a href="CppClass.html">classes</a></b><br/>
 Copyright (C) 2013 Richel Bilderbeek<br/>
 <br/>
 This program is free software: you can redistribute it and/or modify<br/>
@@ -710,58 +713,59 @@ You should have received a copy of the GNU General Public License<br/>
 along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">*/</a><br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="ToolTestQtModels.htm">ToolTestQtModels</a>.htm<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="ToolTestQtModels.html">ToolTestQtModels</a>.html<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic push<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.html">-Weffc++</a>"<br/>
+<a href="CppInclude.html">#include</a> "qt<a href="ToolTestQtModels.html">tooltestqtmodels</a>menudialog<a href="CppHeaderFile.htm">.h</a>"<br/>
 <br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppQDesktopWidget.html">QDesktopWidget</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppQKeyEvent.html">QKeyEvent</a>&gt;<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> "qt<a href="ToolTestQtModels.htm">tooltestqtmodels</a>menudialog.h"<br/>
+<a href="CppInclude.html">#include</a> "<a href="CppQtAboutDialog.html">qtaboutdialog</a><a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "<a href="CppQtHideAndShowDialog.html">qthideandshowdialog</a><a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "<a href="CppQtStdVectorFunctionModel.html">qtstdvectorfunctionmodel</a><a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "<a href="CppQtStdVectorStringModel.html">qtstdvectorstringmodel</a><a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "qt<a href="ToolTestQtModels.html">tooltestqtmodels</a>maindialog<a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "qt<a href="ToolTestQtModels.html">tooltestqtmodels</a>menudialog<a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "qt<a href="CppUblas.html">ublas</a>vectorintmodel<a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "<a href="CppQtUblasMatrixDoubleModel.html">qtublasmatrixdoublemodel</a><a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "<a href="CppQtUblasVectorDoubleModel.html">qtublasvectordoublemodel</a><a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "<a href="ToolTestQtModels.html">tooltestqtmodels</a>menudialog<a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "<a href="CppTrace.html">trace</a><a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "ui_qt<a href="ToolTestQtModels.html">tooltestqtmodels</a>menudialog<a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic pop<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppQDesktopWidget.htm">QDesktopWidget</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppQKeyEvent.htm">QKeyEvent</a>&gt;<br/>
-<br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppQtAboutDialog.htm">qtaboutdialog</a>.h"<br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppQtHideAndShowDialog.htm">qthideandshowdialog</a>.h"<br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppQtStdVectorFunctionModel.htm">qtstdvectorfunctionmodel</a>.h"<br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppQtStdVectorStringModel.htm">qtstdvectorstringmodel</a>.h"<br/>
-<a href="CppInclude.htm">#include</a> "qt<a href="ToolTestQtModels.htm">tooltestqtmodels</a>maindialog.h"<br/>
-<a href="CppInclude.htm">#include</a> "qt<a href="ToolTestQtModels.htm">tooltestqtmodels</a>menudialog.h"<br/>
-<a href="CppInclude.htm">#include</a> "qt<a href="CppUblas.htm">ublas</a>vectorintmodel.h"<br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppQtUblasMatrixDoubleModel.htm">qtublasmatrixdoublemodel</a>.h"<br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppQtUblasVectorDoubleModel.htm">qtublasvectordoublemodel</a>.h"<br/>
-<a href="CppInclude.htm">#include</a> "<a href="ToolTestQtModels.htm">tooltestqtmodels</a>menudialog.h"<br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppTrace.htm">trace</a>.h"<br/>
-<a href="CppInclude.htm">#include</a> "ui_qt<a href="ToolTestQtModels.htm">tooltestqtmodels</a>menudialog.h"<br/>
-<br/>
-<a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="ToolTestQtModels.htm">ToolTestQtModels</a>MenuDialog::<a href="CppQt.htm">Qt</a><a href="ToolTestQtModels.htm">ToolTestQtModels</a>MenuDialog(<a href="CppQWidget.htm">QWidget</a> *parent) :<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQtHideAndShowDialog.htm">QtHideAndShowDialog</a>(parent),<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;ui(<b><a href="CppNew.htm">new</a></b> <a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a><a href="ToolTestQtModels.htm">ToolTestQtModels</a>MenuDialog)<br/>
+<a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="ToolTestQtModels.html">ToolTestQtModels</a>MenuDialog::<a href="CppQt.htm">Qt</a><a href="ToolTestQtModels.html">ToolTestQtModels</a>MenuDialog(<a href="CppQWidget.html">QWidget</a> *parent) :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQtHideAndShowDialog.html">QtHideAndShowDialog</a>(parent),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;ui(<b><a href="CppNew.htm">new</a></b> <a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a><a href="ToolTestQtModels.html">ToolTestQtModels</a>MenuDialog)<br/>
 {<br/>
 &nbsp;&nbsp;ui-&gt;setupUi(<b><a href="CppThis.htm">this</a></b>);<br/>
-&nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
+&nbsp;&nbsp;<a href="CppIfndef.html">#ifndef</a> <a href="CppNDEBUG.html">NDEBUG</a><br/>
 &nbsp;&nbsp;Test();<br/>
-&nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
+&nbsp;&nbsp;<a href="CppEndif.html">#endif</a><br/>
 }<br/>
 <br/>
-<a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="ToolTestQtModels.htm">ToolTestQtModels</a>MenuDialog::~<a href="CppQt.htm">Qt</a><a href="ToolTestQtModels.htm">ToolTestQtModels</a>MenuDialog()<br/>
+<a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="ToolTestQtModels.html">ToolTestQtModels</a>MenuDialog::~<a href="CppQt.htm">Qt</a><a href="ToolTestQtModels.html">ToolTestQtModels</a>MenuDialog()<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppDelete.htm">delete</a></b> ui;<br/>
+&nbsp;&nbsp;<b><a href="CppDelete.html">delete</a></b> ui;<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="ToolTestQtModels.htm">ToolTestQtModels</a>MenuDialog::keyPressEvent(<a href="CppQKeyEvent.htm">QKeyEvent</a> * event)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="ToolTestQtModels.html">ToolTestQtModels</a>MenuDialog::keyPressEvent(<a href="CppQKeyEvent.html">QKeyEvent</a> * event)<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (event-&gt;key() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <a href="CppQt.htm">Qt</a>::Key_Escape) { close(); <b><a href="CppReturn.htm">return</a></b>; }<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (event-&gt;key() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <a href="CppQt.htm">Qt</a>::Key_Escape) { close(); <b><a href="CppReturn.html">return</a></b>; }<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="ToolTestQtModels.htm">ToolTestQtModels</a>MenuDialog::on_button_about_clicked()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="ToolTestQtModels.html">ToolTestQtModels</a>MenuDialog::on_button_about_clicked()<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppAbout.htm">About</a> a <a href="CppOperatorAssign.htm">=</a> <a href="ToolTestQtModels.htm">ToolTestQtModels</a>MenuDialog::GetAbout();<br/>
-&nbsp;&nbsp;a.<a href="CppAdd.htm">Add</a><a href="CppLibrary.htm">Library</a>("<a href="CppQtHideAndShowDialog.htm">QtHideAndShowDialog</a> <a href="CppVersion.htm">version</a>: " <a href="CppOperatorPlus.htm">+</a> <a href="CppQtHideAndShowDialog.htm">QtHideAndShowDialog</a>::Get<a href="CppVersion.htm">Version</a>());<br/>
-&nbsp;&nbsp;a.<a href="CppAdd.htm">Add</a><a href="CppLibrary.htm">Library</a>("<a href="CppQtStdVectorFunctionModel.htm">QtStdVectorFunctionModel</a> <a href="CppVersion.htm">version</a>: " <a href="CppOperatorPlus.htm">+</a> <a href="CppQtStdVectorFunctionModel.htm">QtStdVectorFunctionModel</a>::Get<a href="CppVersion.htm">Version</a>());<br/>
-&nbsp;&nbsp;a.<a href="CppAdd.htm">Add</a><a href="CppLibrary.htm">Library</a>("<a href="CppQtStdVectorStringModel.htm">QtStdVectorStringModel</a> <a href="CppVersion.htm">version</a>: " <a href="CppOperatorPlus.htm">+</a> <a href="CppQtStdVectorStringModel.htm">QtStdVectorStringModel</a>::Get<a href="CppVersion.htm">Version</a>());<br/>
-&nbsp;&nbsp;a.<a href="CppAdd.htm">Add</a><a href="CppLibrary.htm">Library</a>("<a href="CppQtUblasMatrixDoubleModel.htm">QtUblasMatrixDoubleModel</a> <a href="CppVersion.htm">version</a>: " <a href="CppOperatorPlus.htm">+</a> <a href="CppQtUblasMatrixDoubleModel.htm">QtUblasMatrixDoubleModel</a>::Get<a href="CppVersion.htm">Version</a>());<br/>
-&nbsp;&nbsp;a.<a href="CppAdd.htm">Add</a><a href="CppLibrary.htm">Library</a>("<a href="CppQtUblasVectorDoubleModel.htm">QtUblasVectorDoubleModel</a> <a href="CppVersion.htm">version</a>: " <a href="CppOperatorPlus.htm">+</a> <a href="CppQtUblasVectorDoubleModel.htm">QtUblasVectorDoubleModel</a>::Get<a href="CppVersion.htm">Version</a>());<br/>
-&nbsp;&nbsp;a.<a href="CppAdd.htm">Add</a><a href="CppLibrary.htm">Library</a>("<a href="CppQt.htm">Qt</a>UblasVectorIntModel <a href="CppVersion.htm">version</a>: " <a href="CppOperatorPlus.htm">+</a> <a href="CppQt.htm">Qt</a>UblasVectorIntModel::Get<a href="CppVersion.htm">Version</a>());<br/>
-&nbsp;&nbsp;<a href="CppQtAboutDialog.htm">QtAboutDialog</a> d(a);<br/>
+&nbsp;&nbsp;<a href="CppAbout.html">About</a> a <a href="CppOperatorAssign.htm">=</a> <a href="ToolTestQtModels.html">ToolTestQtModels</a>MenuDialog::GetAbout();<br/>
+&nbsp;&nbsp;a.<a href="CppAdd.htm">Add</a><a href="CppLibrary.html">Library</a>("<a href="CppQtHideAndShowDialog.html">QtHideAndShowDialog</a> <a href="CppVersion.html">version</a>: " <a href="CppOperatorPlus.htm">+</a> <a href="CppQtHideAndShowDialog.html">QtHideAndShowDialog</a>::Get<a href="CppVersion.html">Version</a>());<br/>
+&nbsp;&nbsp;a.<a href="CppAdd.htm">Add</a><a href="CppLibrary.html">Library</a>("<a href="CppQtStdVectorFunctionModel.html">QtStdVectorFunctionModel</a> <a href="CppVersion.html">version</a>: " <a href="CppOperatorPlus.htm">+</a> <a href="CppQtStdVectorFunctionModel.html">QtStdVectorFunctionModel</a>::Get<a href="CppVersion.html">Version</a>());<br/>
+&nbsp;&nbsp;a.<a href="CppAdd.htm">Add</a><a href="CppLibrary.html">Library</a>("<a href="CppQtStdVectorStringModel.html">QtStdVectorStringModel</a> <a href="CppVersion.html">version</a>: " <a href="CppOperatorPlus.htm">+</a> <a href="CppQtStdVectorStringModel.html">QtStdVectorStringModel</a>::Get<a href="CppVersion.html">Version</a>());<br/>
+&nbsp;&nbsp;a.<a href="CppAdd.htm">Add</a><a href="CppLibrary.html">Library</a>("<a href="CppQtUblasMatrixDoubleModel.html">QtUblasMatrixDoubleModel</a> <a href="CppVersion.html">version</a>: " <a href="CppOperatorPlus.htm">+</a> <a href="CppQtUblasMatrixDoubleModel.html">QtUblasMatrixDoubleModel</a>::Get<a href="CppVersion.html">Version</a>());<br/>
+&nbsp;&nbsp;a.<a href="CppAdd.htm">Add</a><a href="CppLibrary.html">Library</a>("<a href="CppQtUblasVectorDoubleModel.html">QtUblasVectorDoubleModel</a> <a href="CppVersion.html">version</a>: " <a href="CppOperatorPlus.htm">+</a> <a href="CppQtUblasVectorDoubleModel.html">QtUblasVectorDoubleModel</a>::Get<a href="CppVersion.html">Version</a>());<br/>
+&nbsp;&nbsp;a.<a href="CppAdd.htm">Add</a><a href="CppLibrary.html">Library</a>("<a href="CppQt.htm">Qt</a>UblasVectorIntModel <a href="CppVersion.html">version</a>: " <a href="CppOperatorPlus.htm">+</a> <a href="CppQt.htm">Qt</a>UblasVectorIntModel::Get<a href="CppVersion.html">Version</a>());<br/>
+&nbsp;&nbsp;<a href="CppQtAboutDialog.html">QtAboutDialog</a> d(a);<br/>
 &nbsp;&nbsp;d.setWindowIcon(<b><a href="CppThis.htm">this</a></b>-&gt;windowIcon());<br/>
 &nbsp;&nbsp;d.setStyleSheet(<b><a href="CppThis.htm">this</a></b>-&gt;styleSheet());<br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;hide();<br/>
@@ -769,32 +773,32 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;show();<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="ToolTestQtModels.htm">ToolTestQtModels</a>MenuDialog::on_button_quit_clicked()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="ToolTestQtModels.html">ToolTestQtModels</a>MenuDialog::on_button_quit_clicked()<br/>
 {<br/>
 &nbsp;&nbsp;close();<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="ToolTestQtModels.htm">ToolTestQtModels</a>MenuDialog::on_button_start_clicked()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="ToolTestQtModels.html">ToolTestQtModels</a>MenuDialog::on_button_start_clicked()<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppQt.htm">Qt</a><a href="ToolTestQtModels.htm">ToolTestQtModels</a>MainDialog d;<br/>
+&nbsp;&nbsp;<a href="CppQt.htm">Qt</a><a href="ToolTestQtModels.html">ToolTestQtModels</a>MainDialog d;<br/>
 &nbsp;&nbsp;ShowChild(&amp;d);<br/>
 }<br/>
 <br/>
-<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="ToolTestQtModels.htm">ToolTestQtModels</a>MenuDialog::Test()<br/>
+<a href="CppIfndef.html">#ifndef</a> <a href="CppNDEBUG.html">NDEBUG</a><br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="ToolTestQtModels.html">ToolTestQtModels</a>MenuDialog::Test()<br/>
 {<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppBool.htm">bool</a></b> is_tested <a href="CppOperatorAssign.htm">=</a> <b><a href="CppFalse.htm">false</a></b>;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (is_tested) <b><a href="CppReturn.htm">return</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppStatic.html">static</a></b> <b><a href="CppBool.htm">bool</a></b> is_tested <a href="CppOperatorAssign.htm">=</a> <b><a href="CppFalse.html">false</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (is_tested) <b><a href="CppReturn.html">return</a></b>;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;is_tested <a href="CppOperatorAssign.htm">=</a> <b><a href="CppTrue.htm">true</a></b>;<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("Start of <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="ToolTestQtModels.htm">ToolTestQtModels</a>MenuDialog::Test");<br/>
+&nbsp;&nbsp;<a href="CppTRACE.html">TRACE</a>("Start of <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="ToolTestQtModels.html">ToolTestQtModels</a>MenuDialog::Test");<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQt.htm">Qt</a><a href="ToolTestQtModels.htm">ToolTestQtModels</a>MainDialog d;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQt.htm">Qt</a><a href="ToolTestQtModels.html">ToolTestQtModels</a>MainDialog d;<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("Finished <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="ToolTestQtModels.htm">ToolTestQtModels</a>MenuDialog::Test successfully");<br/>
+&nbsp;&nbsp;<a href="CppTRACE.html">TRACE</a>("Finished <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="ToolTestQtModels.html">ToolTestQtModels</a>MenuDialog::Test successfully");<br/>
 }<br/>
-<a href="CppEndif.htm">#endif</a><br/>
+<a href="CppEndif.html">#endif</a><br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -808,7 +812,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <table summary="tooltestqtmodelsmenudialog.h" border = "1"><tr><td><code>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">/*</a><br/>
-<a href="ToolTestQtModels.htm">TestQtModels</a>, <a href="Tools.htm">tool</a> to test the <a href="CppQt.htm">Qt</a>Model <b><a href="CppClass.htm">classes</a></b><br/>
+<a href="ToolTestQtModels.html">TestQtModels</a>, <a href="Tools.htm">tool</a> to test the <a href="CppQt.htm">Qt</a>Model <b><a href="CppClass.html">classes</a></b><br/>
 Copyright (C) 2013 Richel Bilderbeek<br/>
 <br/>
 This program is free software: you can redistribute it and/or modify<br/>
@@ -824,32 +828,32 @@ You should have received a copy of the GNU General Public License<br/>
 along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">*/</a><br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="ToolTestQtModels.htm">ToolTestQtModels</a>.htm<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="ToolTestQtModels.html">ToolTestQtModels</a>.html<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppIfndef.htm">#ifndef</a> TOOLTESTQTMODELSMENUDIALOG_H<br/>
-<a href="CppDefine.htm">#define</a> TOOLTESTQTMODELSMENUDIALOG_H<br/>
+<a href="CppIfndef.html">#ifndef</a> TOOLTESTQTMODELSMENUDIALOG_H<br/>
+<a href="CppDefine.html">#define</a> TOOLTESTQTMODELSMENUDIALOG_H<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppStringH.htm">string</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppAbout.htm">about</a>.h"<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppStringH.html">string</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppVectorH.html">vector</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> "<a href="CppAbout.html">about</a><a href="CppHeaderFile.htm">.h</a>"<br/>
 <br/>
-<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
+<b><a href="CppNamespace.html">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
 <br/>
-<b><a href="CppStruct.htm">struct</a></b> <a href="ToolTestQtModels.htm">ToolTestQtModels</a>MenuDialog<br/>
+<b><a href="CppStruct.html">struct</a></b> <a href="ToolTestQtModels.html">ToolTestQtModels</a>MenuDialog<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Obtain the <a href="CppAbout.htm">About</a> information<br/>
-&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppAbout.htm">About</a> GetAbout();<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Obtain the <a href="CppAbout.html">About</a> information<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.html">static</a></b> <b><a href="CppConst.html">const</a></b> <a href="CppAbout.html">About</a> GetAbout();<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Obtain the <a href="CppVersion.htm">version</a> of <b><a href="CppThis.htm">this</a></b> <b><a href="CppClass.htm">class</a></b><br/>
-&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> Get<a href="CppVersion.htm">Version</a>();<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Obtain the <a href="CppVersion.html">version</a> of <b><a href="CppThis.htm">this</a></b> <b><a href="CppClass.html">class</a></b><br/>
+&nbsp;&nbsp;<b><a href="CppStatic.html">static</a></b> <b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a> Get<a href="CppVersion.html">Version</a>();<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Obtain the <a href="CppVersion.htm">version</a> history of <b><a href="CppThis.htm">this</a></b> <b><a href="CppClass.htm">class</a></b><br/>
-&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; Get<a href="CppVersion.htm">Version</a>History();<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Obtain the <a href="CppVersion.html">version</a> history of <b><a href="CppThis.htm">this</a></b> <b><a href="CppClass.html">class</a></b><br/>
+&nbsp;&nbsp;<b><a href="CppStatic.html">static</a></b> <b><a href="CppConst.html">const</a></b> <a href="CppVector.html">std::vector</a>&lt;<a href="CppString.html">std::string</a>&gt; Get<a href="CppVersion.html">Version</a>History();<br/>
 };<br/>
 <br/>
-} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.html">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
 <br/>
-<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> TOOLTESTQTMODELSMENUDIALOG_H<br/>
+<a href="CppEndif.html">#endif</a> <a href="CppComment.htm">//</a> TOOLTESTQTMODELSMENUDIALOG_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -863,7 +867,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <table summary="tooltestqtmodelsmenudialog.cpp" border = "1"><tr><td><code>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">/*</a><br/>
-<a href="ToolTestQtModels.htm">TestQtModels</a>, <a href="Tools.htm">tool</a> to test the <a href="CppQt.htm">Qt</a>Model <b><a href="CppClass.htm">classes</a></b><br/>
+<a href="ToolTestQtModels.html">TestQtModels</a>, <a href="Tools.htm">tool</a> to test the <a href="CppQt.htm">Qt</a>Model <b><a href="CppClass.html">classes</a></b><br/>
 Copyright (C) 2013 Richel Bilderbeek<br/>
 <br/>
 This program is free software: you can redistribute it and/or modify<br/>
@@ -879,40 +883,40 @@ You should have received a copy of the GNU General Public License<br/>
 along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">*/</a><br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="ToolTestQtModels.htm">ToolTestQtModels</a>.htm<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="ToolTestQtModels.html">ToolTestQtModels</a>.html<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <br/>
 <br/>
-<a href="CppInclude.htm">#include</a> "<a href="ToolTestQtModels.htm">tooltestqtmodels</a>menudialog.h"<br/>
+<a href="CppInclude.html">#include</a> "<a href="ToolTestQtModels.html">tooltestqtmodels</a>menudialog<a href="CppHeaderFile.htm">.h</a>"<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppTrace.htm">trace</a>.h"<br/>
+<a href="CppInclude.html">#include</a> "<a href="CppTrace.html">trace</a><a href="CppHeaderFile.htm">.h</a>"<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppAbout.htm">About</a> <a href="CppRibi.htm">ribi</a>::<a href="ToolTestQtModels.htm">ToolTestQtModels</a>MenuDialog::GetAbout()<br/>
+<b><a href="CppConst.html">const</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppAbout.html">About</a> <a href="CppRibi.htm">ribi</a>::<a href="ToolTestQtModels.html">ToolTestQtModels</a>MenuDialog::GetAbout()<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppAbout.htm">About</a> a(<br/>
+&nbsp;&nbsp;<a href="CppAbout.html">About</a> a(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;"Richel Bilderbeek",<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;"<a href="ToolTestQtModels.htm">TestQtModels</a>",<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;"<a href="Tools.htm">tool</a> to test the <a href="CppQt.htm">Qt</a>Model <b><a href="CppClass.htm">classes</a></b>",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"<a href="ToolTestQtModels.html">TestQtModels</a>",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"<a href="Tools.htm">tool</a> to test the <a href="CppQt.htm">Qt</a>Model <b><a href="CppClass.html">classes</a></b>",<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;"the 27th of June 2013",<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;"2013",<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;"http://www.richelbilderbeek.nl/<a href="ToolTestQtModels.htm">ToolTestQtModels</a>.htm",<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;Get<a href="CppVersion.htm">Version</a>(),<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;Get<a href="CppVersion.htm">Version</a>History());<br/>
-&nbsp;&nbsp;a.<a href="CppAdd.htm">Add</a><a href="CppLibrary.htm">Library</a>("<a href="CppTrace.htm">Trace</a> <a href="CppVersion.htm">version</a>: " <a href="CppOperatorPlus.htm">+</a> <a href="CppTrace.htm">Trace</a>::Get<a href="CppVersion.htm">Version</a>());<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> a;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"http://www.richelbilderbeek.nl/<a href="ToolTestQtModels.html">ToolTestQtModels</a>.html",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Get<a href="CppVersion.html">Version</a>(),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Get<a href="CppVersion.html">Version</a>History());<br/>
+&nbsp;&nbsp;a.<a href="CppAdd.htm">Add</a><a href="CppLibrary.html">Library</a>("<a href="CppTrace.html">Trace</a> <a href="CppVersion.html">version</a>: " <a href="CppOperatorPlus.htm">+</a> <a href="CppTrace.html">Trace</a>::Get<a href="CppVersion.html">Version</a>());<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> a;<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppRibi.htm">ribi</a>::<a href="ToolTestQtModels.htm">ToolTestQtModels</a>MenuDialog::Get<a href="CppVersion.htm">Version</a>()<br/>
+<b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a> <a href="CppRibi.htm">ribi</a>::<a href="ToolTestQtModels.html">ToolTestQtModels</a>MenuDialog::Get<a href="CppVersion.html">Version</a>()<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> "1.1";<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> "1.1";<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm">ribi</a>::<a href="ToolTestQtModels.htm">ToolTestQtModels</a>MenuDialog::Get<a href="CppVersion.htm">Version</a>History()<br/>
+<b><a href="CppConst.html">const</a></b> <a href="CppVector.html">std::vector</a>&lt;<a href="CppString.html">std::string</a>&gt; <a href="CppRibi.htm">ribi</a>::<a href="ToolTestQtModels.html">ToolTestQtModels</a>MenuDialog::Get<a href="CppVersion.html">Version</a>History()<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v;<br/>
-&nbsp;&nbsp;v.push_back("2013-05-15: <a href="CppVersion.htm">version</a> 1.0: initial <a href="CppVersion.htm">version</a>");<br/>
-&nbsp;&nbsp;v.push_back("2013-06-27: <a href="CppVersion.htm">version</a> 1.1: added <a href="CppQt.htm">Qt</a>UblasVectorIntModel");<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
+&nbsp;&nbsp;<a href="CppVector.html">std::vector</a>&lt;<a href="CppString.html">std::string</a>&gt; v;<br/>
+&nbsp;&nbsp;v.push_back("2013-05-15: <a href="CppVersion.html">version</a> 1.0: initial <a href="CppVersion.html">version</a>");<br/>
+&nbsp;&nbsp;v.push_back("2013-06-27: <a href="CppVersion.html">version</a> 1.1: added <a href="CppQt.htm">Qt</a>UblasVectorIntModel");<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> v;<br/>
 }<br/>
 </code></td></tr></table>
 <!-- end of the code -->

@@ -77,13 +77,13 @@
 <table summary="CppQTableViewExample3.pro" border = "1"><tr><td><code>
 QT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; += core gui<br/>
 greaterThan(QT_MAJOR_VERSION, 4): QT += <a href="CppWidget.htm">widget</a>s<br/>
-TEMPLATE = app<br/>
-<a href="CppQMAKE_CXXFLAGS.htm">QMAKE_CXXFLAGS</a> += -std=<a href="Cpp11.htm">c++11</a><br/>
-<a href="CppSOURCES.htm">SOURCES</a> += \<br/>
+<a href="CppQmakeTemplate.htm">TEMPLATE</a> = app<br/>
+<a href="CppQmakeQmake_cxxflags.htm">QMAKE_CXXFLAGS</a> += -std=<a href="Cpp11.htm">c++11</a><br/>
+<a href="CppQmakeSources.htm">SOURCES</a> += \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;qtdialog.cpp \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;qt<a href="CppMain.htm">main</a>.cpp<br/>
 <br/>
-<a href="CppHEADERS.htm">HEADERS</a>&nbsp;&nbsp;+= qtdialog.h<br/>
+<a href="CppQmakeHeaders.htm">HEADERS</a>&nbsp;&nbsp;+= qtdialog.h<br/>
 <br/>
 <a href="CppFORMS.htm">FORMS</a>&nbsp;&nbsp;&nbsp;&nbsp;+= qtdialog.ui<br/>
 </code></td></tr></table>
@@ -97,33 +97,33 @@ TEMPLATE = app<br/>
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="qtdialog.h" border = "1"><tr><td><code>
-<a href="CppIfndef.htm">#ifndef</a> QTDIALOG_H<br/>
-<a href="CppDefine.htm">#define</a> QTDIALOG_H<br/>
+<a href="CppIfndef.html">#ifndef</a> QTDIALOG_H<br/>
+<a href="CppDefine.html">#define</a> QTDIALOG_H<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppQDialog.htm">QDialog</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppQDialog.html">QDialog</a>&gt;<br/>
 <br/>
-<b><a href="CppNamespace.htm">namespace</a></b> Ui {<br/>
-&nbsp;&nbsp;<b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a>Dialog;<br/>
+<b><a href="CppNamespace.html">namespace</a></b> Ui {<br/>
+&nbsp;&nbsp;<b><a href="CppClass.html">class</a></b> <a href="CppQt.htm">Qt</a>Dialog;<br/>
 }<br/>
 <br/>
-<b><a href="CppStruct.htm">struct</a></b> <a href="CppQStandardItemModel.htm">QStandardItemModel</a>;<br/>
+<b><a href="CppStruct.html">struct</a></b> <a href="CppQStandardItemModel.html">QStandardItemModel</a>;<br/>
 <br/>
-<b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a>Dialog : <b><a href="CppPublic.htm">public</a></b> <a href="CppQDialog.htm">QDialog</a><br/>
+<b><a href="CppClass.html">class</a></b> <a href="CppQt.htm">Qt</a>Dialog : <b><a href="CppPublic.html">public</a></b> <a href="CppQDialog.html">QDialog</a><br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppQ_OBJECT.htm">Q_OBJECT</a><br/>
+&nbsp;&nbsp;<a href="CppQ_OBJECT.html">Q_OBJECT</a><br/>
 &nbsp;&nbsp;<br/>
-<b><a href="CppPublic.htm">public</a></b>:<br/>
-&nbsp;&nbsp;<b><a href="CppExplicit.htm">explicit</a></b> <a href="CppQt.htm">Qt</a>Dialog(<a href="CppQWidget.htm">QWidget</a> *parent <a href="CppOperatorAssign.htm">=</a> 0);<br/>
+<b><a href="CppPublic.html">public</a></b>:<br/>
+&nbsp;&nbsp;<b><a href="CppExplicit.html">explicit</a></b> <a href="CppQt.htm">Qt</a>Dialog(<a href="CppQWidget.html">QWidget</a> *parent <a href="CppOperatorAssign.htm">=</a> 0);<br/>
 &nbsp;&nbsp;~<a href="CppQt.htm">Qt</a>Dialog();<br/>
 &nbsp;&nbsp;<br/>
-<b><a href="CppPrivate.htm">private</a></b> <b><a href="CppSlots.htm">slots</a></b>:<br/>
+<b><a href="CppPrivate.html">private</a></b> <b><a href="CppSlots.html">slots</a></b>:<br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> on_button_clicked();<br/>
 <br/>
-<b><a href="CppPrivate.htm">private</a></b>:<br/>
+<b><a href="CppPrivate.html">private</a></b>:<br/>
 &nbsp;&nbsp;<a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a>Dialog *ui;<br/>
 };<br/>
 <br/>
-<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> QTDIALOG_H<br/>
+<a href="CppEndif.html">#endif</a> <a href="CppComment.htm">//</a> QTDIALOG_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -135,29 +135,29 @@ TEMPLATE = app<br/>
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="qtdialog.cpp" border = "1"><tr><td><code>
-<a href="CppInclude.htm">#include</a> "qtdialog.h"<br/>
+<a href="CppInclude.html">#include</a> "qtdialog<a href="CppHeaderFile.htm">.h</a>"<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppCassertH.html">cassert</a>&gt;<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> &lt;QHeaderView&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppQStandardItemModel.htm">QStandardItemModel</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> "ui_qtdialog.h"<br/>
+<a href="CppInclude.html">#include</a> &lt;QHeaderView&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppQStandardItemModel.html">QStandardItemModel</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> "ui_qtdialog<a href="CppHeaderFile.htm">.h</a>"<br/>
 <br/>
-<a href="CppQt.htm">Qt</a>Dialog::<a href="CppQt.htm">Qt</a>Dialog(<a href="CppQWidget.htm">QWidget</a> *parent) :<br/>
-&nbsp;&nbsp;<a href="CppQDialog.htm">QDialog</a>(parent),<br/>
+<a href="CppQt.htm">Qt</a>Dialog::<a href="CppQt.htm">Qt</a>Dialog(<a href="CppQWidget.html">QWidget</a> *parent) :<br/>
+&nbsp;&nbsp;<a href="CppQDialog.html">QDialog</a>(parent),<br/>
 &nbsp;&nbsp;ui(<b><a href="CppNew.htm">new</a></b> <a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a>Dialog)<br/>
 {<br/>
 &nbsp;&nbsp;ui-&gt;setupUi(<b><a href="CppThis.htm">this</a></b>);<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!ui-&gt;table-&gt;model());<br/>
-&nbsp;&nbsp;ui-&gt;table-&gt;setModel(<b><a href="CppNew.htm">new</a></b> <a href="CppQStandardItemModel.htm">QStandardItemModel</a>(<b><a href="CppThis.htm">this</a></b>));<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>( ui-&gt;table-&gt;model());<br/>
+&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(!ui-&gt;table-&gt;model());<br/>
+&nbsp;&nbsp;ui-&gt;table-&gt;setModel(<b><a href="CppNew.htm">new</a></b> <a href="CppQStandardItemModel.html">QStandardItemModel</a>(<b><a href="CppThis.htm">this</a></b>));<br/>
+&nbsp;&nbsp;<a href="CppAssert.html">assert</a>( ui-&gt;table-&gt;model());<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<b><a href="CppDynamic_cast.htm">dynamic_cast</a></b>&lt;<a href="CppQStandardItemModel.htm">QStandardItemModel</a>*&gt;(ui-&gt;table-&gt;model()));<br/>
-&nbsp;&nbsp;<b><a href="CppDynamic_cast.htm">dynamic_cast</a></b>&lt;<a href="CppQStandardItemModel.htm">QStandardItemModel</a>*&gt;(ui-&gt;table-&gt;model())-&gt;setColumnCount(3);<br/>
-&nbsp;&nbsp;<b><a href="CppDynamic_cast.htm">dynamic_cast</a></b>&lt;<a href="CppQStandardItemModel.htm">QStandardItemModel</a>*&gt;(ui-&gt;table-&gt;model())-&gt;setHeaderData(0,<a href="CppQt.htm">Qt</a>::Horizontal,"Y");<br/>
-&nbsp;&nbsp;<b><a href="CppDynamic_cast.htm">dynamic_cast</a></b>&lt;<a href="CppQStandardItemModel.htm">QStandardItemModel</a>*&gt;(ui-&gt;table-&gt;model())-&gt;setHeaderData(1,<a href="CppQt.htm">Qt</a>::Horizontal,"N");<br/>
-&nbsp;&nbsp;<b><a href="CppDynamic_cast.htm">dynamic_cast</a></b>&lt;<a href="CppQStandardItemModel.htm">QStandardItemModel</a>*&gt;(ui-&gt;table-&gt;model())-&gt;setHeaderData(2,<a href="CppQt.htm">Qt</a>::Horizontal,"<a href="CppQuestion.htm">Question</a>");<br/>
+&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(<b><a href="CppDynamic_cast.html">dynamic_cast</a></b>&lt;<a href="CppQStandardItemModel.html">QStandardItemModel</a>*&gt;(ui-&gt;table-&gt;model()));<br/>
+&nbsp;&nbsp;<b><a href="CppDynamic_cast.html">dynamic_cast</a></b>&lt;<a href="CppQStandardItemModel.html">QStandardItemModel</a>*&gt;(ui-&gt;table-&gt;model())-&gt;setColumnCount(3);<br/>
+&nbsp;&nbsp;<b><a href="CppDynamic_cast.html">dynamic_cast</a></b>&lt;<a href="CppQStandardItemModel.html">QStandardItemModel</a>*&gt;(ui-&gt;table-&gt;model())-&gt;setHeaderData(0,<a href="CppQt.htm">Qt</a>::Horizontal,"Y");<br/>
+&nbsp;&nbsp;<b><a href="CppDynamic_cast.html">dynamic_cast</a></b>&lt;<a href="CppQStandardItemModel.html">QStandardItemModel</a>*&gt;(ui-&gt;table-&gt;model())-&gt;setHeaderData(1,<a href="CppQt.htm">Qt</a>::Horizontal,"N");<br/>
+&nbsp;&nbsp;<b><a href="CppDynamic_cast.html">dynamic_cast</a></b>&lt;<a href="CppQStandardItemModel.html">QStandardItemModel</a>*&gt;(ui-&gt;table-&gt;model())-&gt;setHeaderData(2,<a href="CppQt.htm">Qt</a>::Horizontal,"<a href="CppQuestion.html">Question</a>");<br/>
 <br/>
 &nbsp;&nbsp;ui-&gt;table-&gt;setColumnWidth(0, 24);<br/>
 &nbsp;&nbsp;ui-&gt;table-&gt;setColumnWidth(1, 24);<br/>
@@ -168,40 +168,40 @@ TEMPLATE = app<br/>
 <br/>
 <a href="CppQt.htm">Qt</a>Dialog::~<a href="CppQt.htm">Qt</a>Dialog()<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppDelete.htm">delete</a></b> ui;<br/>
+&nbsp;&nbsp;<b><a href="CppDelete.html">delete</a></b> ui;<br/>
 }<br/>
 <br/>
 <b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a>Dialog::on_button_clicked()<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppQList.htm">QList</a>&lt;<a href="CppQStandardItem.htm">QStandardItem</a>*&gt; items;<br/>
+&nbsp;&nbsp;<a href="CppQList.html">QList</a>&lt;<a href="CppQStandardItem.html">QStandardItem</a>*&gt; items;<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppAdd.htm">Add</a> 'yes' checkbox<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQStandardItem.htm">QStandardItem</a> * <b><a href="CppConst.htm">const</a></b> item <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppQStandardItem.htm">QStandardItem</a>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQStandardItem.html">QStandardItem</a> * <b><a href="CppConst.html">const</a></b> item <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppQStandardItem.html">QStandardItem</a>;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;item-&gt;setCheckable(<b><a href="CppTrue.htm">true</a></b>);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;item-&gt;setEditable(<b><a href="CppFalse.htm">false</a></b>);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;item-&gt;setCheck<a href="CppState.htm">State</a>(<a href="CppQt.htm">Qt</a>::Unchecked);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;item-&gt;setEditable(<b><a href="CppFalse.html">false</a></b>);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;item-&gt;setCheck<a href="CppState.html">State</a>(<a href="CppQt.htm">Qt</a>::Unchecked);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;items.push_back(item);<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppAdd.htm">Add</a> 'no' checkbox<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQStandardItem.htm">QStandardItem</a> * <b><a href="CppConst.htm">const</a></b> item <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppQStandardItem.htm">QStandardItem</a>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQStandardItem.html">QStandardItem</a> * <b><a href="CppConst.html">const</a></b> item <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppQStandardItem.html">QStandardItem</a>;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;item-&gt;setCheckable(<b><a href="CppTrue.htm">true</a></b>);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;item-&gt;setEditable(<b><a href="CppFalse.htm">false</a></b>);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;item-&gt;setCheck<a href="CppState.htm">State</a>(<a href="CppQt.htm">Qt</a>::Unchecked);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;item-&gt;setEditable(<b><a href="CppFalse.html">false</a></b>);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;item-&gt;setCheck<a href="CppState.html">State</a>(<a href="CppQt.htm">Qt</a>::Unchecked);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;items.push_back(item);<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppAdd.htm">Add</a> 'yes' checkbox<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQStandardItem.htm">QStandardItem</a> * <b><a href="CppConst.htm">const</a></b> item <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppQStandardItem.htm">QStandardItem</a>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQStandardItem.html">QStandardItem</a> * <b><a href="CppConst.html">const</a></b> item <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppQStandardItem.html">QStandardItem</a>;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;item-&gt;setEditable(<b><a href="CppTrue.htm">true</a></b>);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;item-&gt;setText("Is <b><a href="CppThis.htm">this</a></b> a useful <a href="CppQuestion.htm">question</a>?");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;item-&gt;setText("Is <b><a href="CppThis.htm">this</a></b> a useful <a href="CppQuestion.html">question</a>?");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;items.push_back(item);<br/>
 &nbsp;&nbsp;}<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<b><a href="CppDynamic_cast.htm">dynamic_cast</a></b>&lt;<a href="CppQStandardItemModel.htm">QStandardItemModel</a>*&gt;(ui-&gt;table-&gt;model()));<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<b><a href="CppDynamic_cast.htm">dynamic_cast</a></b>&lt;<a href="CppQStandardItemModel.htm">QStandardItemModel</a>*&gt;(ui-&gt;table-&gt;model())-&gt;columnCount() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> items.size());<br/>
+&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(<b><a href="CppDynamic_cast.html">dynamic_cast</a></b>&lt;<a href="CppQStandardItemModel.html">QStandardItemModel</a>*&gt;(ui-&gt;table-&gt;model()));<br/>
+&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(<b><a href="CppDynamic_cast.html">dynamic_cast</a></b>&lt;<a href="CppQStandardItemModel.html">QStandardItemModel</a>*&gt;(ui-&gt;table-&gt;model())-&gt;columnCount() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> items.size());<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppDynamic_cast.htm">dynamic_cast</a></b>&lt;<a href="CppQStandardItemModel.htm">QStandardItemModel</a>*&gt;(ui-&gt;table-&gt;model())-&gt;appendRow(items);<br/>
+&nbsp;&nbsp;<b><a href="CppDynamic_cast.html">dynamic_cast</a></b>&lt;<a href="CppQStandardItemModel.html">QStandardItemModel</a>*&gt;(ui-&gt;table-&gt;model())-&gt;appendRow(items);<br/>
 <br/>
 &nbsp;&nbsp;ui-&gt;table-&gt;scrollToBottom();<br/>
 &nbsp;&nbsp;ui-&gt;table-&gt;setCurrentIndex(items[2]-&gt;index());<br/>
@@ -218,15 +218,15 @@ TEMPLATE = app<br/>
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="qtmain.cpp" border = "1"><tr><td><code>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppQApplication.htm">QApplication</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> "qtdialog.h"<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppQApplication.html">QApplication</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> "qtdialog<a href="CppHeaderFile.htm">.h</a>"<br/>
 <br/>
-<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>(<b><a href="CppInt.htm">int</a></b> <a href="CppArgc.htm">argc</a>, <b><a href="CppChar.htm">char</a></b> *<a href="CppArgc.htm">argv</a>[])<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a>(<b><a href="CppInt.htm">int</a></b> <a href="CppArgc.htm">argc</a>, <b><a href="CppChar.htm">char</a></b> *<a href="CppArgc.htm">argv</a>[])<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppQApplication.htm">QApplication</a> a(<a href="CppArgc.htm">argc</a>, <a href="CppArgc.htm">argv</a>);<br/>
+&nbsp;&nbsp;<a href="CppQApplication.html">QApplication</a> a(<a href="CppArgc.htm">argc</a>, <a href="CppArgc.htm">argv</a>);<br/>
 &nbsp;&nbsp;<a href="CppQt.htm">Qt</a>Dialog w;<br/>
 &nbsp;&nbsp;w.show();<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> a.exec();<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> a.exec();<br/>
 }<br/>
 </code></td></tr></table>
 <!-- end of the code -->

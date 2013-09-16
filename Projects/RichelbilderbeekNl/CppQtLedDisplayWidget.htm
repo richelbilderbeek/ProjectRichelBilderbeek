@@ -45,7 +45,7 @@
 <table summary="qtleddisplaywidget.h" border = "1"><tr><td><code>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">/*</a><br/>
-<a href="CppQtLedWidget.htm">QtLedWidget</a>, <a href="CppQt.htm">Qt</a> <a href="CppWidget.htm">widget</a> <b><a href="CppFor.htm">for</a></b> displaying the <a href="CppLed.htm">Led</a> <b><a href="CppClass.htm">class</a></b><br/>
+<a href="CppQtLedWidget.html">QtLedWidget</a>, <a href="CppQt.htm">Qt</a> <a href="CppWidget.html">widget</a> <b><a href="CppFor.htm">for</a></b> displaying the <a href="CppLed.htm">Led</a> <b><a href="CppClass.html">class</a></b><br/>
 Copyright (C) 2011 Richel Bilderbeek<br/>
 <br/>
 This program is free software: you can redistribute it and/or modify<br/>
@@ -61,47 +61,47 @@ You should have received a copy of the GNU General Public License<br/>
 along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">*/</a><br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="CppQtLedWidget.htm">CppQtLedWidget</a>.htm<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="CppQtLedWidget.html">CppQtLedWidget</a>.html<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppIfndef.htm">#ifndef</a> QT<a href="CppLed.htm">LED</a>DISPLAYWIDGET_H<br/>
-<a href="CppDefine.htm">#define</a> QT<a href="CppLed.htm">LED</a>DISPLAYWIDGET_H<br/>
+<a href="CppIfndef.html">#ifndef</a> QT<a href="CppLed.htm">LED</a>DISPLAYWIDGET_H<br/>
+<a href="CppDefine.html">#define</a> QT<a href="CppLed.htm">LED</a>DISPLAYWIDGET_H<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppStringH.htm">string</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppStringH.html">string</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppVectorH.html">vector</a>&gt;<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppScoped_ptr.htm">scoped_ptr</a>.hpp&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppBoost.html">boost</a>/<a href="CppScoped_ptr.html">scoped_ptr</a><a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppQWidget.htm">QWidget</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppQWidget.html">QWidget</a>&gt;<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppLedWidget.htm">ledwidget</a>.h" <a href="CppComment.htm">//</a>Needed by MOC<br/>
+<a href="CppInclude.html">#include</a> "<a href="CppLedWidget.html">ledwidget</a><a href="CppHeaderFile.htm">.h</a>" <a href="CppComment.htm">//</a>Needed by MOC<br/>
 <br/>
-<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
+<b><a href="CppNamespace.html">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
 <br/>
-<a href="CppComment.htm">///</a><a href="CppQtLedDisplayWidget.htm">QtLedDisplayWidget</a> displays a <a href="CppLed.htm">Led</a> without<br/>
+<a href="CppComment.htm">///</a><a href="CppQtLedDisplayWidget.html">QtLedDisplayWidget</a> displays a <a href="CppLed.htm">Led</a> without<br/>
 <a href="CppComment.htm">///</a>managing it.<br/>
-<b><a href="CppClass.htm">class</a></b> <a href="CppQtLedDisplayWidget.htm">QtLedDisplayWidget</a> : <b><a href="CppPublic.htm">public</a></b> <a href="CppQWidget.htm">QWidget</a><br/>
+<b><a href="CppClass.html">class</a></b> <a href="CppQtLedDisplayWidget.html">QtLedDisplayWidget</a> : <b><a href="CppPublic.html">public</a></b> <a href="CppQWidget.html">QWidget</a><br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppQ_OBJECT.htm">Q_OBJECT</a><br/>
-<b><a href="CppPublic.htm">public</a></b>:<br/>
-&nbsp;&nbsp;<b><a href="CppExplicit.htm">explicit</a></b> <a href="CppQtLedDisplayWidget.htm">QtLedDisplayWidget</a>(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQWidget.htm">QWidget</a> *parent <a href="CppOperatorAssign.htm">=</a> 0,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppLedWidget.htm">LedWidget</a> * <b><a href="CppConst.htm">const</a></b> <a href="CppWidget.htm">widget</a> <a href="CppOperatorAssign.htm">=</a> 0);<br/>
-&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> Set<a href="CppLed.htm">Led</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppLedWidget.htm">LedWidget</a> * <b><a href="CppConst.htm">const</a></b> <a href="CppLed.htm">led</a>);<br/>
-<b><a href="CppProtected.htm">protected</a></b>:<br/>
-&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> paintEvent(<a href="CppQPaintEvent.htm">QPaintEvent</a> *);<br/>
+&nbsp;&nbsp;<a href="CppQ_OBJECT.html">Q_OBJECT</a><br/>
+<b><a href="CppPublic.html">public</a></b>:<br/>
+&nbsp;&nbsp;<b><a href="CppExplicit.html">explicit</a></b> <a href="CppQtLedDisplayWidget.html">QtLedDisplayWidget</a>(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQWidget.html">QWidget</a> *parent <a href="CppOperatorAssign.htm">=</a> 0,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppLedWidget.html">LedWidget</a> * <b><a href="CppConst.html">const</a></b> <a href="CppWidget.html">widget</a> <a href="CppOperatorAssign.htm">=</a> 0);<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> Set<a href="CppLed.htm">Led</a>(<b><a href="CppConst.html">const</a></b> <a href="CppLedWidget.html">LedWidget</a> * <b><a href="CppConst.html">const</a></b> <a href="CppLed<a href="CppHeaderFile.htm">.h</a>tm">led</a>);<br/>
+<b><a href="CppProtected.html">protected</a></b>:<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> paintEvent(<a href="CppQPaintEvent.html">QPaintEvent</a> *);<br/>
 <br/>
-<b><a href="CppPrivate.htm">private</a></b>:<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppLedWidget.htm">LedWidget</a> * m_<a href="CppWidget.htm">widget</a>;<br/>
+<b><a href="CppPrivate.html">private</a></b>:<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppLedWidget.html">LedWidget</a> * m_<a href="CppWidget.html">widget</a>;<br/>
 <br/>
-<b><a href="CppPublic.htm">public</a></b>:<br/>
-<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> Get<a href="CppVersion.htm">Version</a>();<br/>
-<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; Get<a href="CppVersion.htm">Version</a>History();<br/>
+<b><a href="CppPublic.html">public</a></b>:<br/>
+<b><a href="CppStatic.html">static</a></b> <b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a> Get<a href="CppVersion.html">Version</a>();<br/>
+<b><a href="CppStatic.html">static</a></b> <b><a href="CppConst.html">const</a></b> <a href="CppVector.html">std::vector</a>&lt;<a href="CppString.html">std::string</a>&gt; Get<a href="CppVersion.html">Version</a>History();<br/>
 <br/>
 };<br/>
 <br/>
-} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.html">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
 <br/>
-<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> QT<a href="CppLed.htm">LED</a>DISPLAYWIDGET_H<br/>
+<a href="CppEndif.html">#endif</a> <a href="CppComment.htm">//</a> QT<a href="CppLed.htm">LED</a>DISPLAYWIDGET_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -115,7 +115,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <table summary="qtleddisplaywidget.cpp" border = "1"><tr><td><code>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">/*</a><br/>
-<a href="CppQtLedWidget.htm">QtLedWidget</a>, <a href="CppQt.htm">Qt</a> <a href="CppWidget.htm">widget</a> <b><a href="CppFor.htm">for</a></b> displaying the <a href="CppLed.htm">Led</a> <b><a href="CppClass.htm">class</a></b><br/>
+<a href="CppQtLedWidget.html">QtLedWidget</a>, <a href="CppQt.htm">Qt</a> <a href="CppWidget.html">widget</a> <b><a href="CppFor.htm">for</a></b> displaying the <a href="CppLed.htm">Led</a> <b><a href="CppClass.html">class</a></b><br/>
 Copyright (C) 2011 Richel Bilderbeek<br/>
 <br/>
 This program is free software: you can redistribute it and/or modify<br/>
@@ -131,93 +131,93 @@ You should have received a copy of the GNU General Public License<br/>
 along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">*/</a><br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="CppQtLedWidget.htm">CppQtLedWidget</a>.htm<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="CppQtLedWidget.html">CppQtLedWidget</a>.html<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppIostreamH.htm">iostream</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppCassertH.html">cassert</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppIostreamH.html">iostream</a>&gt;<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/numeric/con<a href="CppVersion.htm">version</a>/cast.hpp&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppBoost.html">boost</a>/numeric/con<a href="CppVersion.html">version</a>/cast<a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppQPainter.htm">QPainter</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppQPainter.html">QPainter</a>&gt;<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppLed.htm">led</a>.h"<br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppQtLedDisplayWidget.htm">qtleddisplaywidget</a>.h"<br/>
+<a href="CppInclude.html">#include</a> "<a href="CppLed<a href="CppHeaderFile.htm">.h</a>tm">led</a><a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "<a href="CppQtLedDisplayWidget.html">qtleddisplaywidget</a><a href="CppHeaderFile.htm">.h</a>"<br/>
 <br/>
-<a href="CppRibi.htm">ribi</a>::<a href="CppQtLedDisplayWidget.htm">QtLedDisplayWidget</a>::<a href="CppQtLedDisplayWidget.htm">QtLedDisplayWidget</a>(<br/>
-&nbsp;&nbsp;<a href="CppQWidget.htm">QWidget</a> *parent,<br/>
-&nbsp;&nbsp;<a href="CppLedWidget.htm">LedWidget</a> * <b><a href="CppConst.htm">const</a></b> <a href="CppWidget.htm">widget</a>)<br/>
-&nbsp;&nbsp;: <a href="CppQWidget.htm">QWidget</a>(parent),<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;m_<a href="CppWidget.htm">widget</a>(<a href="CppWidget.htm">widget</a>)<br/>
+<a href="CppRibi.htm">ribi</a>::<a href="CppQtLedDisplayWidget.html">QtLedDisplayWidget</a>::<a href="CppQtLedDisplayWidget.html">QtLedDisplayWidget</a>(<br/>
+&nbsp;&nbsp;<a href="CppQWidget.html">QWidget</a> *parent,<br/>
+&nbsp;&nbsp;<a href="CppLedWidget.html">LedWidget</a> * <b><a href="CppConst.html">const</a></b> <a href="CppWidget.html">widget</a>)<br/>
+&nbsp;&nbsp;: <a href="CppQWidget.html">QWidget</a>(parent),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_<a href="CppWidget.html">widget</a>(<a href="CppWidget.html">widget</a>)<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (!m_<a href="CppWidget.htm">widget</a>) <b><a href="CppReturn.htm">return</a></b>;<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(m_<a href="CppWidget.htm">widget</a>);<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (!m_<a href="CppWidget.html">widget</a>) <b><a href="CppReturn.html">return</a></b>;<br/>
+&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(m_<a href="CppWidget.html">widget</a>);<br/>
 <br/>
-&nbsp;&nbsp;m_<a href="CppWidget.htm">widget</a>-&gt;Get<a href="CppLed.htm">Led</a>()-&gt;m_signal_color_changed.connect(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBind.htm">boost::bind</a>(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;<a href="CppRibi.htm">ribi</a>::<a href="CppQtLedDisplayWidget.htm">QtLedDisplayWidget</a>::repaint,<br/>
+&nbsp;&nbsp;m_<a href="CppWidget.html">widget</a>-&gt;Get<a href="CppLed.htm">Led</a>()-&gt;m_signal_color_changed.connect(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBind.html">boost::bind</a>(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;<a href="CppRibi.htm">ribi</a>::<a href="CppQtLedDisplayWidget.html">QtLedDisplayWidget</a>::repaint,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>));<br/>
 <br/>
-&nbsp;&nbsp;m_<a href="CppWidget.htm">widget</a>-&gt;Get<a href="CppLed.htm">Led</a>()-&gt;m_signal_intensity_changed.connect(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBind.htm">boost::bind</a>(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;<a href="CppRibi.htm">ribi</a>::<a href="CppQtLedDisplayWidget.htm">QtLedDisplayWidget</a>::repaint,<br/>
+&nbsp;&nbsp;m_<a href="CppWidget.html">widget</a>-&gt;Get<a href="CppLed.htm">Led</a>()-&gt;m_signal_intensity_changed.connect(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBind.html">boost::bind</a>(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;<a href="CppRibi.htm">ribi</a>::<a href="CppQtLedDisplayWidget.html">QtLedDisplayWidget</a>::repaint,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>));<br/>
 <br/>
-&nbsp;&nbsp;m_<a href="CppWidget.htm">widget</a>-&gt;m_signal_<a href="CppGeometry.htm">geometry</a>_changed.connect(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBind.htm">boost::bind</a>(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;<a href="CppRibi.htm">ribi</a>::<a href="CppQtLedDisplayWidget.htm">QtLedDisplayWidget</a>::repaint,<br/>
+&nbsp;&nbsp;m_<a href="CppWidget.html">widget</a>-&gt;m_signal_<a href="CppGeometry.html">geometry</a>_changed.connect(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBind.html">boost::bind</a>(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;<a href="CppRibi.htm">ribi</a>::<a href="CppQtLedDisplayWidget.html">QtLedDisplayWidget</a>::repaint,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>));<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppRibi.htm">ribi</a>::<a href="CppQtLedDisplayWidget.htm">QtLedDisplayWidget</a>::Get<a href="CppVersion.htm">Version</a>()<br/>
+<b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a> <a href="CppRibi.htm">ribi</a>::<a href="CppQtLedDisplayWidget.html">QtLedDisplayWidget</a>::Get<a href="CppVersion.html">Version</a>()<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> "1.0";<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> "1.0";<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm">ribi</a>::<a href="CppQtLedDisplayWidget.htm">QtLedDisplayWidget</a>::Get<a href="CppVersion.htm">Version</a>History()<br/>
+<b><a href="CppConst.html">const</a></b> <a href="CppVector.html">std::vector</a>&lt;<a href="CppString.html">std::string</a>&gt; <a href="CppRibi.htm">ribi</a>::<a href="CppQtLedDisplayWidget.html">QtLedDisplayWidget</a>::Get<a href="CppVersion.html">Version</a>History()<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> {<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;"2011-04-10: <a href="CppVersion.htm">Version</a> 1.0: initial <a href="CppVersion.htm">version</a>"<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"2011-04-10: <a href="CppVersion.html">Version</a> 1.0: initial <a href="CppVersion.html">version</a>"<br/>
 &nbsp;&nbsp;};<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQtLedDisplayWidget.htm">QtLedDisplayWidget</a>::paintEvent(<a href="CppQPaintEvent.htm">QPaintEvent</a> *)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQtLedDisplayWidget.html">QtLedDisplayWidget</a>::paintEvent(<a href="CppQPaintEvent.html">QPaintEvent</a> *)<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(m_<a href="CppWidget.htm">widget</a> <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "<a href="CppQtLedDisplayWidget.htm">QtLedDisplayWidget</a> must be <a href="CppInitialize.htm">initialize</a>d with a <a href="CppLed.htm">Led</a>*");<br/>
-&nbsp;&nbsp;<a href="CppQPainter.htm">QPainter</a> p(<b><a href="CppThis.htm">this</a></b>);<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> QPen initial_pen <a href="CppOperatorAssign.htm">=</a> p.pen();<br/>
+&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(m_<a href="CppWidget.html">widget</a> <a href="CppOperatorLogicalAnd.html">&amp;&amp;</a> "<a href="CppQtLedDisplayWidget.html">QtLedDisplayWidget</a> must be <a href="CppInitialize.html">initialize</a>d with a <a href="CppLed.htm">Led</a>*");<br/>
+&nbsp;&nbsp;<a href="CppQPainter.html">QPainter</a> p(<b><a href="CppThis.htm">this</a></b>);<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> QPen initial_pen <a href="CppOperatorAssign.htm">=</a> p.pen();<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> red&nbsp;&nbsp; <a href="CppOperatorAssign.htm">=</a> <a href="CppNumeric_cast.htm">boost::numeric_cast</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(m_<a href="CppWidget.htm">widget</a>-&gt;Get<a href="CppLed.htm">Led</a>()-&gt;GetRed());<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> green <a href="CppOperatorAssign.htm">=</a> <a href="CppNumeric_cast.htm">boost::numeric_cast</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(m_<a href="CppWidget.htm">widget</a>-&gt;Get<a href="CppLed.htm">Led</a>()-&gt;GetGreen());<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> blue&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <a href="CppNumeric_cast.htm">boost::numeric_cast</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(m_<a href="CppWidget.htm">widget</a>-&gt;Get<a href="CppLed.htm">Led</a>()-&gt;GetBlue());<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> intensity <a href="CppOperatorAssign.htm">=</a> m_<a href="CppWidget.htm">widget</a>-&gt;Get<a href="CppLed.htm">Led</a>()-&gt;GetIntensity();<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> width&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <b><a href="CppThis.htm">this</a></b>-&gt;width();<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> height <a href="CppOperatorAssign.htm">=</a> <b><a href="CppThis.htm">this</a></b>-&gt;height();<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> red&nbsp;&nbsp; <a href="CppOperatorAssign.htm">=</a> <a href="CppNumeric_cast.html">boost::numeric_cast</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(m_<a href="CppWidget.html">widget</a>-&gt;Get<a href="CppLed.htm">Led</a>()-&gt;GetRed());<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> green <a href="CppOperatorAssign.htm">=</a> <a href="CppNumeric_cast.html">boost::numeric_cast</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(m_<a href="CppWidget.html">widget</a>-&gt;Get<a href="CppLed.htm">Led</a>()-&gt;GetGreen());<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> blue&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <a href="CppNumeric_cast.html">boost::numeric_cast</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(m_<a href="CppWidget.html">widget</a>-&gt;Get<a href="CppLed.htm">Led</a>()-&gt;GetBlue());<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> intensity <a href="CppOperatorAssign.htm">=</a> m_<a href="CppWidget.html">widget</a>-&gt;Get<a href="CppLed.htm">Led</a>()-&gt;GetIntensity();<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> width&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <b><a href="CppThis.htm">this</a></b>-&gt;width();<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> height <a href="CppOperatorAssign.htm">=</a> <b><a href="CppThis.htm">this</a></b>-&gt;height();<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Fraction red/green/blue<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> fR <a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(red&nbsp;&nbsp;) <a href="CppOperatorDivide.htm">/</a> 255.0;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> fG <a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(green) <a href="CppOperatorDivide.htm">/</a> 255.0;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> fB <a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(blue ) <a href="CppOperatorDivide.htm">/</a> 255.0;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> fR <a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.html">static_cast</a></b>&lt;<b><a href="CppDouble.html">double</a></b>&gt;(red&nbsp;&nbsp;) <a href="CppOperatorDivide.htm">/</a> 255.0;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> fG <a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.html">static_cast</a></b>&lt;<b><a href="CppDouble.html">double</a></b>&gt;(green) <a href="CppOperatorDivide.htm">/</a> 255.0;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> fB <a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.html">static_cast</a></b>&lt;<b><a href="CppDouble.html">double</a></b>&gt;(blue ) <a href="CppOperatorDivide.htm">/</a> 255.0;<br/>
 <br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Draw circle and major surface<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> maxBrightness <a href="CppOperatorAssign.htm">=</a> 0.66 * 255.0;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> minBrightness <a href="CppOperatorAssign.htm">=</a> 0.25 * maxBrightness;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> r <a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> maxBrightness <a href="CppOperatorAssign.htm">=</a> 0.66 * 255.0;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> minBrightness <a href="CppOperatorAssign.htm">=</a> 0.25 * maxBrightness;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> r <a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.html">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;minBrightness <a href="CppOperatorPlus.htm">+</a> (fR * intensity * (maxBrightness <a href="CppOperatorMinus.htm">-</a> minBrightness) ) );<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> g <a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> g <a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.html">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;minBrightness <a href="CppOperatorPlus.htm">+</a> (fG * intensity * (maxBrightness <a href="CppOperatorMinus.htm">-</a> minBrightness) ) );<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> b <a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> b <a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.html">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;minBrightness <a href="CppOperatorPlus.htm">+</a> (fB * intensity * (maxBrightness <a href="CppOperatorMinus.htm">-</a> minBrightness) ) );<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>( r <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 0 ); <a href="CppAssert.htm">assert</a>( r &lt; 256);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>( g <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 0 ); <a href="CppAssert.htm">assert</a>( g &lt; 256);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>( b <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 0 ); <a href="CppAssert.htm">assert</a>( b &lt; 256);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> pen_width <a href="CppOperatorAssign.htm">=</a> 1 <a href="CppOperatorPlus.htm">+</a> (<a href="CppMin.htm">std::min</a>(width,height) <a href="CppOperatorDivide.htm">/</a> 25);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.html">assert</a>( r <a href="CppOperatorGreaterEqual.html">&gt;=</a> 0 ); <a href="CppAssert.html">assert</a>( r &lt; 256);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.html">assert</a>( g <a href="CppOperatorGreaterEqual.html">&gt;=</a> 0 ); <a href="CppAssert.html">assert</a>( g &lt; 256);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.html">assert</a>( b <a href="CppOperatorGreaterEqual.html">&gt;=</a> 0 ); <a href="CppAssert.html">assert</a>( b &lt; 256);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> pen_width <a href="CppOperatorAssign.htm">=</a> 1 <a href="CppOperatorPlus.htm">+</a> (<a href="CppMin.html">std::min</a>(width,height) <a href="CppOperatorDivide.htm">/</a> 25);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;QPen pen <a href="CppOperatorAssign.htm">=</a> p.pen();<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pen.setWidth(pen_width);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pen.setColor(<a href="CppQColor.htm">QColor</a>(0,0,0));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pen.setColor(<a href="CppQColor.html">QColor</a>(0,0,0));<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;p.setPen(pen);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;p.setBrush(QBrush(<a href="CppQColor.htm">QColor</a>(r,g,b)));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;p.setBrush(QBrush(<a href="CppQColor.html">QColor</a>(r,g,b)));<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;p.drawEllipse(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pen_width,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pen_width,<br/>
@@ -226,65 +226,65 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Draw topleft smaller lighter surface<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> maxBrightness <a href="CppOperatorAssign.htm">=</a> 1.00 * 255.0;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> minBrightness <a href="CppOperatorAssign.htm">=</a> 0.25 * maxBrightness;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> r <a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> maxBrightness <a href="CppOperatorAssign.htm">=</a> 1.00 * 255.0;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> minBrightness <a href="CppOperatorAssign.htm">=</a> 0.25 * maxBrightness;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> r <a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.html">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;minBrightness <a href="CppOperatorPlus.htm">+</a> (fR * intensity * (maxBrightness <a href="CppOperatorMinus.htm">-</a> minBrightness) ) );<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> g <a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> g <a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.html">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;minBrightness <a href="CppOperatorPlus.htm">+</a> (fG * intensity * (maxBrightness <a href="CppOperatorMinus.htm">-</a> minBrightness) ) );<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> b <a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> b <a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.html">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;minBrightness <a href="CppOperatorPlus.htm">+</a> (fB * intensity * (maxBrightness <a href="CppOperatorMinus.htm">-</a> minBrightness) ) );<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>( r <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 0 ); <a href="CppAssert.htm">assert</a>( r &lt; 256);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>( g <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 0 ); <a href="CppAssert.htm">assert</a>( g &lt; 256);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>( b <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 0 ); <a href="CppAssert.htm">assert</a>( b &lt; 256);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x <a href="CppOperatorAssign.htm">=</a> (width&nbsp;&nbsp;<a href="CppOperatorDivide.htm">/</a> 2) <a href="CppOperatorMinus.htm">-</a> (0.707 * <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(width ) * 0.5);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> y <a href="CppOperatorAssign.htm">=</a> (height <a href="CppOperatorDivide.htm">/</a> 2) <a href="CppOperatorMinus.htm">-</a> (0.707 * <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(height) * 0.5);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> w <a href="CppOperatorAssign.htm">=</a> (0.707 * <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(width ) * 0.5);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> h <a href="CppOperatorAssign.htm">=</a> (0.707 * <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(height) * 0.5);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.html">assert</a>( r <a href="CppOperatorGreaterEqual.html">&gt;=</a> 0 ); <a href="CppAssert.html">assert</a>( r &lt; 256);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.html">assert</a>( g <a href="CppOperatorGreaterEqual.html">&gt;=</a> 0 ); <a href="CppAssert.html">assert</a>( g &lt; 256);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.html">assert</a>( b <a href="CppOperatorGreaterEqual.html">&gt;=</a> 0 ); <a href="CppAssert.html">assert</a>( b &lt; 256);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> x <a href="CppOperatorAssign.htm">=</a> (width&nbsp;&nbsp;<a href="CppOperatorDivide.htm">/</a> 2) <a href="CppOperatorMinus.htm">-</a> (0.707 * <b><a href="CppStatic_cast.html">static_cast</a></b>&lt;<b><a href="CppDouble.html">double</a></b>&gt;(width ) * 0.5);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> y <a href="CppOperatorAssign.htm">=</a> (height <a href="CppOperatorDivide.htm">/</a> 2) <a href="CppOperatorMinus.htm">-</a> (0.707 * <b><a href="CppStatic_cast.html">static_cast</a></b>&lt;<b><a href="CppDouble.html">double</a></b>&gt;(height) * 0.5);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> w <a href="CppOperatorAssign.htm">=</a> (0.707 * <b><a href="CppStatic_cast.html">static_cast</a></b>&lt;<b><a href="CppDouble.html">double</a></b>&gt;(width ) * 0.5);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> h <a href="CppOperatorAssign.htm">=</a> (0.707 * <b><a href="CppStatic_cast.html">static_cast</a></b>&lt;<b><a href="CppDouble.html">double</a></b>&gt;(height) * 0.5);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;QPen pen <a href="CppOperatorAssign.htm">=</a> p.pen();<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pen.setWidth(1);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pen.setColor(<a href="CppQColor.htm">QColor</a>(r,g,b));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pen.setColor(<a href="CppQColor.html">QColor</a>(r,g,b));<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;p.setPen(pen);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;p.setBrush(QBrush(<a href="CppQColor.htm">QColor</a>(r,g,b)));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;p.setBrush(QBrush(<a href="CppQColor.html">QColor</a>(r,g,b)));<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;p.drawEllipse(x,y,w,h);<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Draw bottomright smaller lighter surface<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> maxBrightness <a href="CppOperatorAssign.htm">=</a> 0.33 * 255.0;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> minBrightness <a href="CppOperatorAssign.htm">=</a> 0.25 * maxBrightness;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> r <a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> maxBrightness <a href="CppOperatorAssign.htm">=</a> 0.33 * 255.0;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> minBrightness <a href="CppOperatorAssign.htm">=</a> 0.25 * maxBrightness;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> r <a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.html">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;minBrightness <a href="CppOperatorPlus.htm">+</a> (fR * intensity * (maxBrightness <a href="CppOperatorMinus.htm">-</a> minBrightness) ) );<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> g <a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> g <a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.html">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;minBrightness <a href="CppOperatorPlus.htm">+</a> (fG * intensity * (maxBrightness <a href="CppOperatorMinus.htm">-</a> minBrightness) ) );<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> b <a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> b <a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.html">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;minBrightness <a href="CppOperatorPlus.htm">+</a> (fB * intensity * (maxBrightness <a href="CppOperatorMinus.htm">-</a> minBrightness) ) );<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>( r <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 0 ); <a href="CppAssert.htm">assert</a>( r &lt; 256);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>( g <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 0 ); <a href="CppAssert.htm">assert</a>( g &lt; 256);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>( b <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 0 ); <a href="CppAssert.htm">assert</a>( b &lt; 256);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x <a href="CppOperatorAssign.htm">=</a> (width&nbsp;&nbsp;<a href="CppOperatorDivide.htm">/</a> 2) <a href="CppOperatorMinus.htm">-</a> 1;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> y <a href="CppOperatorAssign.htm">=</a> (height <a href="CppOperatorDivide.htm">/</a> 2) <a href="CppOperatorMinus.htm">-</a> 1;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> w <a href="CppOperatorAssign.htm">=</a> (0.707 * <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(width ) * 0.5);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> h <a href="CppOperatorAssign.htm">=</a> (0.707 * <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(height) * 0.5);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.html">assert</a>( r <a href="CppOperatorGreaterEqual.html">&gt;=</a> 0 ); <a href="CppAssert.html">assert</a>( r &lt; 256);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.html">assert</a>( g <a href="CppOperatorGreaterEqual.html">&gt;=</a> 0 ); <a href="CppAssert.html">assert</a>( g &lt; 256);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.html">assert</a>( b <a href="CppOperatorGreaterEqual.html">&gt;=</a> 0 ); <a href="CppAssert.html">assert</a>( b &lt; 256);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> x <a href="CppOperatorAssign.htm">=</a> (width&nbsp;&nbsp;<a href="CppOperatorDivide.htm">/</a> 2) <a href="CppOperatorMinus.htm">-</a> 1;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> y <a href="CppOperatorAssign.htm">=</a> (height <a href="CppOperatorDivide.htm">/</a> 2) <a href="CppOperatorMinus.htm">-</a> 1;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> w <a href="CppOperatorAssign.htm">=</a> (0.707 * <b><a href="CppStatic_cast.html">static_cast</a></b>&lt;<b><a href="CppDouble.html">double</a></b>&gt;(width ) * 0.5);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> h <a href="CppOperatorAssign.htm">=</a> (0.707 * <b><a href="CppStatic_cast.html">static_cast</a></b>&lt;<b><a href="CppDouble.html">double</a></b>&gt;(height) * 0.5);<br/>
 <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;QPen pen <a href="CppOperatorAssign.htm">=</a> p.pen();<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pen.setWidth(1);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pen.setColor(<a href="CppQColor.htm">QColor</a>(r,g,b));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pen.setColor(<a href="CppQColor.html">QColor</a>(r,g,b));<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;p.setPen(pen);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;p.setBrush(QBrush(<a href="CppQColor.htm">QColor</a>(r,g,b)));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;p.setBrush(QBrush(<a href="CppQColor.html">QColor</a>(r,g,b)));<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;p.drawEllipse(x,y,w,h);<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;p.setPen(initial_pen);<br/>
 <br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQtLedDisplayWidget.htm">QtLedDisplayWidget</a>::Set<a href="CppLed.htm">Led</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppLedWidget.htm">LedWidget</a> * <b><a href="CppConst.htm">const</a></b> <a href="CppLed.htm">led</a>)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQtLedDisplayWidget.html">QtLedDisplayWidget</a>::Set<a href="CppLed.htm">Led</a>(<b><a href="CppConst.html">const</a></b> <a href="CppLedWidget.html">LedWidget</a> * <b><a href="CppConst.html">const</a></b> <a href="CppLed<a href="CppHeaderFile.htm">.h</a>tm">led</a>)<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppLed.htm">led</a>);<br/>
-&nbsp;&nbsp;m_<a href="CppWidget.htm">widget</a> <a href="CppOperatorAssign.htm">=</a> <a href="CppLed.htm">led</a>;<br/>
+&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(<a href="CppLed<a href="CppHeaderFile.htm">.h</a>tm">led</a>);<br/>
+&nbsp;&nbsp;m_<a href="CppWidget.html">widget</a> <a href="CppOperatorAssign.htm">=</a> <a href="CppLed<a href="CppHeaderFile.htm">.h</a>tm">led</a>;<br/>
 }<br/>
 </code></td></tr></table>
 <!-- end of the code -->

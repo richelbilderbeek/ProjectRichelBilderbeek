@@ -111,15 +111,15 @@
 QT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; += core gui<br/>
 greaterThan(QT_MAJOR_VERSION, 4): QT += <a href="CppWidget.htm">widget</a>s<br/>
 <br/>
-TEMPLATE = app<br/>
+<a href="CppQmakeTemplate.htm">TEMPLATE</a> = app<br/>
 <br/>
-<a href="CppINCLUDEPATH.htm">INCLUDEPATH</a> += \<br/>
+<a href="CppQmakeIncludepath.htm">INCLUDEPATH</a> += \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppAbout.htm">CppAbout</a> \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppQtAboutDialog.htm">CppQtAboutDialog</a> \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppQtTicTacToeWidget.htm">CppQtTicTacToeWidget</a> \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppTicTacToe.htm">CppTicTacToe</a><br/>
 <br/>
-<a href="CppSOURCES.htm">SOURCES</a> += qt<a href="CppMain.htm">main</a>.cpp\<br/>
+<a href="CppQmakeSources.htm">SOURCES</a> += qt<a href="CppMain.htm">main</a>.cpp\<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;qt<a href="CppTicTacToe.htm">tictactoe</a>gamedialog.cpp \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;qt<a href="CppTicTacToe.htm">tictactoe</a>winnerdialog.cpp \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;qt<a href="CppTicTacToe.htm">tictactoe</a>menudialog.cpp \<br/>
@@ -129,7 +129,7 @@ TEMPLATE = app<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppAbout.htm">CppAbout</a>/<a href="CppAbout.htm">about</a>.cpp \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppQtAboutDialog.htm">CppQtAboutDialog</a>/<a href="CppQtAboutDialog.htm">qtaboutdialog</a>.cpp<br/>
 <br/>
-<a href="CppHEADERS.htm">HEADERS</a>&nbsp;&nbsp;+= \<br/>
+<a href="CppQmakeHeaders.htm">HEADERS</a>&nbsp;&nbsp;+= \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;qt<a href="CppTicTacToe.htm">tictactoe</a>gamedialog.h \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;qt<a href="CppTicTacToe.htm">tictactoe</a>winnerdialog.h \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;qt<a href="CppTicTacToe.htm">tictactoe</a>menudialog.h \<br/>
@@ -144,7 +144,7 @@ TEMPLATE = app<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;qt<a href="CppTicTacToe.htm">tictactoe</a>winnerdialog.ui \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;qt<a href="CppTicTacToe.htm">tictactoe</a>menudialog.ui \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppQtAboutDialog.htm">CppQtAboutDialog</a>/<a href="CppQtAboutDialog.htm">qtaboutdialog</a>.ui<br/>
-<a href="CppRESOURCES.htm">RESOURCES</a> += <a href="GameTicTacToe.htm">GameTicTacToe</a>.qrc<br/>
+<a href="CppQmakeResources.htm">RESOURCES</a> += <a href="GameTicTacToe.htm">GameTicTacToe</a>.qrc<br/>
 <br/>
 #<br/>
 #<br/>
@@ -152,15 +152,15 @@ TEMPLATE = app<br/>
 #<br/>
 #<br/>
 <br/>
-CONFIG(debug, debug|release) {<br/>
+<a href="CppQmakeConfig.htm">CONFIG</a>(debug, debug|release) {<br/>
 &nbsp;&nbsp;message(Debug mode)<br/>
 }<br/>
 <br/>
-CONFIG(release, debug|release) {<br/>
+<a href="CppQmakeConfig.htm">CONFIG</a>(release, debug|release) {<br/>
 &nbsp;&nbsp;message(Release mode)<br/>
 <br/>
 &nbsp;&nbsp;#Remove all <a href="CppAssert.htm">assert</a>s and <a href="CppTRACE.htm">TRACE</a><br/>
-&nbsp;&nbsp;DEFINES += NDEBUG N<a href="CppTRACE.htm">TRACE</a>_BILDERBIKKEL<br/>
+&nbsp;&nbsp;<a href="CppQmakeDefines.htm">DEFINES</a> += NDEBUG N<a href="CppTRACE.htm">TRACE</a>_BILDERBIKKEL<br/>
 }<br/>
 <br/>
 #<br/>
@@ -174,10 +174,10 @@ CONFIG(release, debug|release) {<br/>
 # Compiler flags<br/>
 #<br/>
 #<br/>
-<a href="CppQMAKE_CXXFLAGS.htm">QMAKE_CXXFLAGS</a> += -std=<a href="Cpp11.htm">c++11</a> <a href="CppWall.htm">-Wall</a> <a href="CppWextra.htm">-Wextra</a><br/>
+<a href="CppQmakeQmake_cxxflags.htm">QMAKE_CXXFLAGS</a> += -std=<a href="Cpp11.htm">c++11</a> <a href="CppWall.htm">-Wall</a> <a href="CppWextra.htm">-Wextra</a><br/>
 <br/>
 unix {<br/>
-&nbsp;&nbsp;<a href="CppQMAKE_CXXFLAGS.htm">QMAKE_CXXFLAGS</a> += <a href="CppWerror.htm">-Werror</a><br/>
+&nbsp;&nbsp;<a href="CppQmakeQmake_cxxflags.htm">QMAKE_CXXFLAGS</a> += <a href="CppWerror.htm">-Werror</a><br/>
 }<br/>
 <br/>
 #<br/>
@@ -187,7 +187,7 @@ unix {<br/>
 #<br/>
 <br/>
 win32 {<br/>
-&nbsp;&nbsp;<a href="CppINCLUDEPATH.htm">INCLUDEPATH</a> += \<br/>
+&nbsp;&nbsp;<a href="CppQmakeIncludepath.htm">INCLUDEPATH</a> += \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/boost_1_54_0<br/>
 }<br/>
 </code></td></tr></table>
@@ -204,19 +204,19 @@ win32 {<br/>
 <br/>
 QT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; += core<br/>
 QT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -= gui<br/>
-<a href="CppLIBS.htm">LIBS</a> += <a href="CppWt.htm">-lwt</a> <a href="CppWt.htm">-lwt</a>http<br/>
-CONFIG&nbsp;&nbsp; += console<br/>
-CONFIG&nbsp;&nbsp; -= app_bundle<br/>
-TEMPLATE = app<br/>
+<a href="CppQmakeLibs.htm">LIBS</a> += <a href="CppWt.htm">-lwt</a> <a href="CppWt.htm">-lwt</a>http<br/>
+<a href="CppQmakeConfig.htm">CONFIG</a>&nbsp;&nbsp; += console<br/>
+<a href="CppQmakeConfig.htm">CONFIG</a>&nbsp;&nbsp; -= app_bundle<br/>
+<a href="CppQmakeTemplate.htm">TEMPLATE</a> = app<br/>
 <br/>
-<a href="CppINCLUDEPATH.htm">INCLUDEPATH</a> += \<br/>
+<a href="CppQmakeIncludepath.htm">INCLUDEPATH</a> += \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppAbout.htm">CppAbout</a> \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppTicTacToe.htm">CppTicTacToe</a> \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppWtAboutDialog.htm">CppWtAboutDialog</a> \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppWtAutoConfig.htm">CppWtAutoConfig</a> \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppWtTicTacToeWidget.htm">CppWtTicTacToeWidget</a><br/>
 <br/>
-<a href="CppSOURCES.htm">SOURCES</a> += \<br/>
+<a href="CppQmakeSources.htm">SOURCES</a> += \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppTicTacToe.htm">tictactoe</a>menudialog.cpp \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;wt<a href="CppMain.htm">main</a>.cpp \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;wt<a href="CppTicTacToe.htm">tictactoe</a>gamedialog.cpp \<br/>
@@ -227,7 +227,7 @@ TEMPLATE = app<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppWtAutoConfig.htm">CppWtAutoConfig</a>/<a href="CppWtAutoConfig.htm">wtautoconfig</a>.cpp \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppWtTicTacToeWidget.htm">CppWtTicTacToeWidget</a>/<a href="CppWtTicTacToeWidget.htm">wttictactoewidget</a>.cpp<br/>
 <br/>
-<a href="CppHEADERS.htm">HEADERS</a> += \<br/>
+<a href="CppQmakeHeaders.htm">HEADERS</a> += \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppTicTacToe.htm">tictactoe</a>menudialog.h \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;wt<a href="CppTicTacToe.htm">tictactoe</a>gamedialog.h \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;wt<a href="CppTicTacToe.htm">tictactoe</a>menudialog.h \<br/>
@@ -249,7 +249,7 @@ TEMPLATE = app<br/>
 <table summary="qtmain.cpp" border = "1"><tr><td><code>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">/*</a><br/>
-<a href="CppTicTacToe.htm">TicTacToe</a>, tic-tac-toe game<br/>
+<a href="CppTicTacToe.html">TicTacToe</a>, tic-tac-toe game<br/>
 Copyright (C) 2010-2011 Richel Bilderbeek<br/>
 <br/>
 This program is free software: you can redistribute it and/or modify<br/>
@@ -265,17 +265,17 @@ You should have received a copy of the GNU General Public License<br/>
 along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">*/</a><br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="GameTicTacToe.htm">GameTicTacToe</a>.htm<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="GameTicTacToe.html">GameTicTacToe</a>.html<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppQApplication.htm">QApplication</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> "qt<a href="CppTicTacToe.htm">tictactoe</a>menudialog.h"<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppQApplication.html">QApplication</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> "qt<a href="CppTicTacToe.html">tictactoe</a>menudialog<a href="CppHeaderFile.htm">.h</a>"<br/>
 <br/>
-<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>(<b><a href="CppInt.htm">int</a></b> <a href="CppArgc.htm">argc</a>, <b><a href="CppChar.htm">char</a></b> *<a href="CppArgc.htm">argv</a>[])<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a>(<b><a href="CppInt.htm">int</a></b> <a href="CppArgc.htm">argc</a>, <b><a href="CppChar.htm">char</a></b> *<a href="CppArgc.htm">argv</a>[])<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppQApplication.htm">QApplication</a> a(<a href="CppArgc.htm">argc</a>, <a href="CppArgc.htm">argv</a>);<br/>
-&nbsp;&nbsp;<a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppTicTacToe.htm">TicTacToe</a>MenuDialog w;<br/>
+&nbsp;&nbsp;<a href="CppQApplication.html">QApplication</a> a(<a href="CppArgc.htm">argc</a>, <a href="CppArgc.htm">argv</a>);<br/>
+&nbsp;&nbsp;<a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppTicTacToe.html">TicTacToe</a>MenuDialog w;<br/>
 &nbsp;&nbsp;w.show();<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> a.exec();<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> a.exec();<br/>
 }<br/>
 </code></td></tr></table>
 <!-- end of the code -->
@@ -290,7 +290,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <table summary="qttictactoegamedialog.h" border = "1"><tr><td><code>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">/*</a><br/>
-<a href="CppTicTacToe.htm">TicTacToe</a>, tic-tac-toe game<br/>
+<a href="CppTicTacToe.html">TicTacToe</a>, tic-tac-toe game<br/>
 Copyright (C) 2010-2011 Richel Bilderbeek<br/>
 <br/>
 This program is free software: you can redistribute it and/or modify<br/>
@@ -306,45 +306,49 @@ You should have received a copy of the GNU General Public License<br/>
 along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">*/</a><br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="GameTicTacToe.htm">GameTicTacToe</a>.htm<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="GameTicTacToe.html">GameTicTacToe</a>.html<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppIfndef.htm">#ifndef</a> QTTICTACTOEGAMEDIALOG_H<br/>
-<a href="CppDefine.htm">#define</a> QTTICTACTOEGAMEDIALOG_H<br/>
+<a href="CppIfndef.html">#ifndef</a> QTTICTACTOEGAMEDIALOG_H<br/>
+<a href="CppDefine.html">#define</a> QTTICTACTOEGAMEDIALOG_H<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppStringH.htm">string</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppStringH.html">string</a>&gt;<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppShared_ptr.htm">shared_ptr</a>.hpp&gt;<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic push<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.html">-Weffc++</a>"<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppBoost.html">boost</a>/<a href="CppShared_ptr.html">shared_ptr</a><a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppQDialog.html">QDialog</a>&gt;<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic pop<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppQDialog.htm">QDialog</a>&gt;<br/>
-<br/>
-<b><a href="CppNamespace.htm">namespace</a></b> Ui {<br/>
-&nbsp;&nbsp;<b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a><a href="CppTicTacToe.htm">TicTacToe</a>GameDialog;<br/>
+<b><a href="CppNamespace.html">namespace</a></b> Ui {<br/>
+&nbsp;&nbsp;<b><a href="CppClass.html">class</a></b> <a href="CppQt.htm">Qt</a><a href="CppTicTacToe.html">TicTacToe</a>GameDialog;<br/>
 }<br/>
 <br/>
-<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a> {<br/>
+<b><a href="CppNamespace.html">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
 <br/>
-<b><a href="CppStruct.htm">struct</a></b> <a href="CppQtTicTacToeWidget.htm">QtTicTacToeWidget</a>;<br/>
+<b><a href="CppStruct.html">struct</a></b> <a href="CppQtTicTacToeWidget.html">QtTicTacToeWidget</a>;<br/>
 <br/>
-<b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a><a href="CppTicTacToe.htm">TicTacToe</a>GameDialog : <b><a href="CppPublic.htm">public</a></b> <a href="CppQDialog.htm">QDialog</a><br/>
+<b><a href="CppClass.html">class</a></b> <a href="CppQt.htm">Qt</a><a href="CppTicTacToe.html">TicTacToe</a>GameDialog : <b><a href="CppPublic.html">public</a></b> <a href="CppQDialog.html">QDialog</a><br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppQ_OBJECT.htm">Q_OBJECT</a><br/>
+&nbsp;&nbsp;<a href="CppQ_OBJECT.html">Q_OBJECT</a><br/>
 <br/>
-<b><a href="CppPublic.htm">public</a></b>:<br/>
-&nbsp;&nbsp;<b><a href="CppExplicit.htm">explicit</a></b> <a href="CppQt.htm">Qt</a><a href="CppTicTacToe.htm">TicTacToe</a>GameDialog(<a href="CppQWidget.htm">QWidget</a> *parent <a href="CppOperatorAssign.htm">=</a> 0);<br/>
-&nbsp;&nbsp;~<a href="CppQt.htm">Qt</a><a href="CppTicTacToe.htm">TicTacToe</a>GameDialog();<br/>
-&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> Get<a href="CppVersion.htm">Version</a>() { <b><a href="CppReturn.htm">return</a></b> "1.2"; }<br/>
+<b><a href="CppPublic.html">public</a></b>:<br/>
+&nbsp;&nbsp;<b><a href="CppExplicit.html">explicit</a></b> <a href="CppQt.htm">Qt</a><a href="CppTicTacToe.html">TicTacToe</a>GameDialog(<a href="CppQWidget.html">QWidget</a> *parent <a href="CppOperatorAssign.htm">=</a> 0);<br/>
+&nbsp;&nbsp;<a href="CppQt.htm">Qt</a><a href="CppTicTacToe.html">TicTacToe</a>GameDialog(<b><a href="CppConst.html">const</a></b> <a href="CppQt.htm">Qt</a><a href="CppTicTacToe.html">TicTacToe</a>GameDialog&amp;) <a href="CppOperatorAssign.htm">=</a> <b><a href="CppDelete.html">delete</a></b>;<br/>
+&nbsp;&nbsp;<a href="CppQt.htm">Qt</a><a href="CppTicTacToe.html">TicTacToe</a>GameDialog&amp; <b><a href="CppOperator.html">operator</a></b>=(<b><a href="CppConst.html">const</a></b> <a href="CppQt.htm">Qt</a><a href="CppTicTacToe.html">TicTacToe</a>GameDialog&amp;) <a href="CppOperatorAssign.htm">=</a> <b><a href="CppDelete.html">delete</a></b>;<br/>
+&nbsp;&nbsp;~<a href="CppQt.htm">Qt</a><a href="CppTicTacToe.html">TicTacToe</a>GameDialog();<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.html">static</a></b> <b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a> Get<a href="CppVersion.html">Version</a>() { <b><a href="CppReturn.html">return</a></b> "1.2"; }<br/>
 <br/>
-<b><a href="CppPrivate.htm">private</a></b>:<br/>
-&nbsp;&nbsp;<a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a><a href="CppTicTacToe.htm">TicTacToe</a>GameDialog *ui;<br/>
-&nbsp;&nbsp;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppQtTicTacToeWidget.htm">QtTicTacToeWidget</a>&gt; m_<a href="CppTicTacToe.htm">tictactoe</a>;<br/>
+<b><a href="CppPrivate.html">private</a></b>:<br/>
+&nbsp;&nbsp;<a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a><a href="CppTicTacToe.html">TicTacToe</a>GameDialog *ui;<br/>
+&nbsp;&nbsp;<a href="CppBoostShared_ptr.html">boost::shared_ptr</a>&lt;<a href="CppQtTicTacToeWidget.html">QtTicTacToeWidget</a>&gt; m_<a href="CppTicTacToe.html">tictactoe</a>;<br/>
 <br/>
-<b><a href="CppPrivate.htm">private</a></b> <b><a href="CppSlots.htm">slots</a></b>:<br/>
+<b><a href="CppPrivate.html">private</a></b> <b><a href="CppSlots.html">slots</a></b>:<br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> HasWinner();<br/>
 };<br/>
 <br/>
-} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a><br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.html">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
 <br/>
-<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> QTTICTACTOEGAMEDIALOG_H<br/>
+<a href="CppEndif.html">#endif</a> <a href="CppComment.htm">//</a> QTTICTACTOEGAMEDIALOG_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -358,7 +362,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <table summary="qttictactoegamedialog.cpp" border = "1"><tr><td><code>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">/*</a><br/>
-<a href="CppTicTacToe.htm">TicTacToe</a>, tic-tac-toe game<br/>
+<a href="CppTicTacToe.html">TicTacToe</a>, tic-tac-toe game<br/>
 Copyright (C) 2010-2011 Richel Bilderbeek<br/>
 <br/>
 This program is free software: you can redistribute it and/or modify<br/>
@@ -374,55 +378,57 @@ You should have received a copy of the GNU General Public License<br/>
 along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">*/</a><br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="GameTicTacToe.htm">GameTicTacToe</a>.htm<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="GameTicTacToe.html">GameTicTacToe</a>.html<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic push<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.html">-Weffc++</a>"<br/>
+<a href="CppInclude.html">#include</a> "qt<a href="CppTicTacToe.html">tictactoe</a>gamedialog<a href="CppHeaderFile.htm">.h</a>"<br/>
 <br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppCassertH.html">cassert</a>&gt;<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> "qt<a href="CppTicTacToe.htm">tictactoe</a>gamedialog.h"<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppQDesktopWidget.html">QDesktopWidget</a>&gt;<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> "<a href="CppTicTacToe.html">tictactoe</a><a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "<a href="CppQtTicTacToeWidget.html">qttictactoewidget</a><a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "qt<a href="CppTicTacToe.html">tictactoe</a>winnerdialog<a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "ui_qt<a href="CppTicTacToe.html">tictactoe</a>gamedialog<a href="CppHeaderFile.htm">.h</a>"<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppQDesktopWidget.htm">QDesktopWidget</a>&gt;<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic pop<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppTicTacToe.htm">tictactoe</a>.h"<br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppQtTicTacToeWidget.htm">qttictactoewidget</a>.h"<br/>
-<a href="CppInclude.htm">#include</a> "qt<a href="CppTicTacToe.htm">tictactoe</a>winnerdialog.h"<br/>
-<a href="CppInclude.htm">#include</a> "ui_qt<a href="CppTicTacToe.htm">tictactoe</a>gamedialog.h"<br/>
-<br/>
-<a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppTicTacToe.htm">TicTacToe</a>GameDialog::<a href="CppQt.htm">Qt</a><a href="CppTicTacToe.htm">TicTacToe</a>GameDialog(<a href="CppQWidget.htm">QWidget</a> *parent) :<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQDialog.htm">QDialog</a>(parent, <a href="CppQt.htm">Qt</a>::Window),<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;ui(<b><a href="CppNew.htm">new</a></b> <a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a><a href="CppTicTacToe.htm">TicTacToe</a>GameDialog),<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;m_<a href="CppTicTacToe.htm">tictactoe</a>(<b><a href="CppNew.htm">new</a></b> <a href="CppQtTicTacToeWidget.htm">QtTicTacToeWidget</a>)<br/>
+<a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppTicTacToe.html">TicTacToe</a>GameDialog::<a href="CppQt.htm">Qt</a><a href="CppTicTacToe.html">TicTacToe</a>GameDialog(<a href="CppQWidget.html">QWidget</a> *parent) :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQDialog.html">QDialog</a>(parent, <a href="CppQt.htm">Qt</a>::Window),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;ui(<b><a href="CppNew.htm">new</a></b> <a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a><a href="CppTicTacToe.html">TicTacToe</a>GameDialog),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_<a href="CppTicTacToe.html">tictactoe</a>(<b><a href="CppNew.htm">new</a></b> <a href="CppQtTicTacToeWidget.html">QtTicTacToeWidget</a>)<br/>
 {<br/>
 &nbsp;&nbsp;ui-&gt;setupUi(<b><a href="CppThis.htm">this</a></b>);<br/>
-&nbsp;&nbsp;ui-&gt;layout-&gt;addWidget(m_<a href="CppTicTacToe.htm">tictactoe</a>.get());<br/>
-&nbsp;&nbsp;<a href="CppQObject.htm">QObject</a>::connect(m_<a href="CppTicTacToe.htm">tictactoe</a>.get(),<a href="CppSignalMacro.htm">SIGNAL</a>(hasWinner()),<br/>
+&nbsp;&nbsp;ui-&gt;layout-&gt;addWidget(m_<a href="CppTicTacToe.html">tictactoe</a>.get());<br/>
+&nbsp;&nbsp;<a href="CppQObject.html">QObject</a>::connect(m_<a href="CppTicTacToe.html">tictactoe</a>.get(),<a href="CppSignalMacro.html">SIGNAL</a>(hasWinner()),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>,<a href="CppSLOT.htm">SLOT</a>(HasWinner()));<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Put the dialog in the screen center<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppQRect.htm">QRect</a> screen <a href="CppOperatorAssign.htm">=</a> <a href="CppQApplication.htm">QApplication</a>::desktop()-&gt;screenGeometry();<br/>
-&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;setGeometry(0,0,3 * screen.width() <a href="CppOperatorDivide.htm">/</a> 4,3 * screen.height() <a href="CppOperatorDivide.htm">/</a> 4);<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppQRect.html">QRect</a> screen <a href="CppOperatorAssign.htm">=</a> <a href="CppQApplication.html">QApplication</a>::desktop()-&gt;screenGeometry();<br/>
+&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;setGeometry(0,0,3 * screen.width() <a href="CppOperatorDivide.htm">/</a> 4,3 * screen<a href="CppHeaderFile.htm">.h</a>eight() <a href="CppOperatorDivide.htm">/</a> 4);<br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;move( screen.center() <a href="CppOperatorMinus.htm">-</a> <b><a href="CppThis.htm">this</a></b>-&gt;rect().center() );<br/>
 }<br/>
 <br/>
-<a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppTicTacToe.htm">TicTacToe</a>GameDialog::~<a href="CppQt.htm">Qt</a><a href="CppTicTacToe.htm">TicTacToe</a>GameDialog()<br/>
+<a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppTicTacToe.html">TicTacToe</a>GameDialog::~<a href="CppQt.htm">Qt</a><a href="CppTicTacToe.html">TicTacToe</a>GameDialog()<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppDelete.htm">delete</a></b> ui;<br/>
+&nbsp;&nbsp;<b><a href="CppDelete.html">delete</a></b> ui;<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppTicTacToe.htm">TicTacToe</a>GameDialog::HasWinner()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppTicTacToe.html">TicTacToe</a>GameDialog::HasWinner()<br/>
 {<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppQt.htm">Qt</a><a href="CppTicTacToe.htm">TicTacToe</a>WinnerDialog d;<br/>
-&nbsp;&nbsp;<b><a href="CppSwitch.htm">switch</a></b> (m_<a href="CppTicTacToe.htm">tictactoe</a>-&gt;Get<a href="CppTicTacToe.htm">TicTacToe</a>()-&gt;GetWinner())<br/>
+&nbsp;&nbsp;<a href="CppQt.htm">Qt</a><a href="CppTicTacToe.html">TicTacToe</a>WinnerDialog d;<br/>
+&nbsp;&nbsp;<b><a href="CppSwitch.html">switch</a></b> (m_<a href="CppTicTacToe.html">tictactoe</a>-&gt;Get<a href="CppTicTacToe.html">TicTacToe</a>()-&gt;GetWinner())<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> <a href="CppTicTacToe.htm">TicTacToe</a>::player1: d.SetWinnerCross(); <b><a href="CppBreak.htm">break</a></b>;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> <a href="CppTicTacToe.htm">TicTacToe</a>::player2: d.SetWinnerCircle(); <b><a href="CppBreak.htm">break</a></b>;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> <a href="CppTicTacToe.htm">TicTacToe</a>::draw: d.SetDraw(); <b><a href="CppBreak.htm">break</a></b>;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppDefault.htm">default</a></b>: <a href="CppAssert.htm">assert</a>(!"Should not get here");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> <a href="CppTicTacToe.html">TicTacToe</a>::player1: d.SetWinnerCross(); <b><a href="CppBreak.html">break</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> <a href="CppTicTacToe.html">TicTacToe</a>::player2: d.SetWinnerCircle(); <b><a href="CppBreak.html">break</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> <a href="CppTicTacToe.html">TicTacToe</a>::draw: d.SetDraw(); <b><a href="CppBreak.html">break</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppDefault.html">default</a></b>: <a href="CppAssert.html">assert</a>(!"Should not get here");<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;d.exec();<br/>
-&nbsp;&nbsp;m_<a href="CppTicTacToe.htm">tictactoe</a>-&gt;Restart();<br/>
+&nbsp;&nbsp;m_<a href="CppTicTacToe.html">tictactoe</a>-&gt;Restart();<br/>
 }<br/>
 </code></td></tr></table>
 <!-- end of the code -->
@@ -437,7 +443,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <table summary="qttictactoemenudialog.h" border = "1"><tr><td><code>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">/*</a><br/>
-<a href="CppTicTacToe.htm">TicTacToe</a>, tic-tac-toe game<br/>
+<a href="CppTicTacToe.html">TicTacToe</a>, tic-tac-toe game<br/>
 Copyright (C) 2010-2011 Richel Bilderbeek<br/>
 <br/>
 This program is free software: you can redistribute it and/or modify<br/>
@@ -453,39 +459,44 @@ You should have received a copy of the GNU General Public License<br/>
 along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">*/</a><br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="GameTicTacToe.htm">GameTicTacToe</a>.htm<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="GameTicTacToe.html">GameTicTacToe</a>.html<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppIfndef.htm">#ifndef</a> QTTICTACTOEMENUDIALOG_H<br/>
-<a href="CppDefine.htm">#define</a> QTTICTACTOEMENUDIALOG_H<br/>
+<a href="CppIfndef.html">#ifndef</a> QTTICTACTOEMENUDIALOG_H<br/>
+<a href="CppDefine.html">#define</a> QTTICTACTOEMENUDIALOG_H<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppQDialog.htm">QDialog</a>&gt;<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic push<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.html">-Weffc++</a>"<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppQDialog.html">QDialog</a>&gt;<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic pop<br/>
 <br/>
-<b><a href="CppNamespace.htm">namespace</a></b> Ui {<br/>
-&nbsp;&nbsp;<b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a><a href="CppTicTacToe.htm">TicTacToe</a>MenuDialog;<br/>
+<b><a href="CppNamespace.html">namespace</a></b> Ui {<br/>
+&nbsp;&nbsp;<b><a href="CppClass.html">class</a></b> <a href="CppQt.htm">Qt</a><a href="CppTicTacToe.html">TicTacToe</a>MenuDialog;<br/>
 }<br/>
 <br/>
-<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a> {<br/>
+<b><a href="CppNamespace.html">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
 <br/>
-<b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a><a href="CppTicTacToe.htm">TicTacToe</a>MenuDialog : <b><a href="CppPublic.htm">public</a></b> <a href="CppQDialog.htm">QDialog</a><br/>
+<b><a href="CppClass.html">class</a></b> <a href="CppQt.htm">Qt</a><a href="CppTicTacToe.html">TicTacToe</a>MenuDialog : <b><a href="CppPublic.html">public</a></b> <a href="CppQDialog.html">QDialog</a><br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppQ_OBJECT.htm">Q_OBJECT</a><br/>
+&nbsp;&nbsp;<a href="CppQ_OBJECT.html">Q_OBJECT</a><br/>
 <br/>
-<b><a href="CppPublic.htm">public</a></b>:<br/>
-&nbsp;&nbsp;<b><a href="CppExplicit.htm">explicit</a></b> <a href="CppQt.htm">Qt</a><a href="CppTicTacToe.htm">TicTacToe</a>MenuDialog(<a href="CppQWidget.htm">QWidget</a> *parent <a href="CppOperatorAssign.htm">=</a> 0);<br/>
-&nbsp;&nbsp;~<a href="CppQt.htm">Qt</a><a href="CppTicTacToe.htm">TicTacToe</a>MenuDialog();<br/>
+<b><a href="CppPublic.html">public</a></b>:<br/>
+&nbsp;&nbsp;<b><a href="CppExplicit.html">explicit</a></b> <a href="CppQt.htm">Qt</a><a href="CppTicTacToe.html">TicTacToe</a>MenuDialog(<a href="CppQWidget.html">QWidget</a> *parent <a href="CppOperatorAssign.htm">=</a> 0);<br/>
+&nbsp;&nbsp;<a href="CppQt.htm">Qt</a><a href="CppTicTacToe.html">TicTacToe</a>MenuDialog(<b><a href="CppConst.html">const</a></b> <a href="CppQt.htm">Qt</a><a href="CppTicTacToe.html">TicTacToe</a>MenuDialog&amp;) <a href="CppOperatorAssign.htm">=</a> <b><a href="CppDelete.html">delete</a></b>;<br/>
+&nbsp;&nbsp;<a href="CppQt.htm">Qt</a><a href="CppTicTacToe.html">TicTacToe</a>MenuDialog&amp; <b><a href="CppOperator.html">operator</a></b>=(<b><a href="CppConst.html">const</a></b> <a href="CppQt.htm">Qt</a><a href="CppTicTacToe.html">TicTacToe</a>MenuDialog&amp;) <a href="CppOperatorAssign.htm">=</a> <b><a href="CppDelete.html">delete</a></b>;<br/>
+&nbsp;&nbsp;~<a href="CppQt.htm">Qt</a><a href="CppTicTacToe.html">TicTacToe</a>MenuDialog();<br/>
 <br/>
-<b><a href="CppPrivate.htm">private</a></b>:<br/>
-&nbsp;&nbsp;<a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a><a href="CppTicTacToe.htm">TicTacToe</a>MenuDialog *ui;<br/>
+<b><a href="CppPrivate.html">private</a></b>:<br/>
+&nbsp;&nbsp;<a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a><a href="CppTicTacToe.html">TicTacToe</a>MenuDialog *ui;<br/>
 <br/>
-<b><a href="CppPrivate.htm">private</a></b> <b><a href="CppSlots.htm">slots</a></b>:<br/>
+<b><a href="CppPrivate.html">private</a></b> <b><a href="CppSlots.html">slots</a></b>:<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> on_button_quit_clicked();<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> on_button_about_clicked();<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> on_button_start_clicked();<br/>
 };<br/>
 <br/>
-} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a><br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.html">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
 <br/>
-<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> QTTICTACTOEMENUDIALOG_H<br/>
+<a href="CppEndif.html">#endif</a> <a href="CppComment.htm">//</a> QTTICTACTOEMENUDIALOG_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -499,7 +510,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <table summary="qttictactoemenudialog.cpp" border = "1"><tr><td><code>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">/*</a><br/>
-<a href="CppTicTacToe.htm">TicTacToe</a>, tic-tac-toe game<br/>
+<a href="CppTicTacToe.html">TicTacToe</a>, tic-tac-toe game<br/>
 Copyright (C) 2010-2011 Richel Bilderbeek<br/>
 <br/>
 This program is free software: you can redistribute it and/or modify<br/>
@@ -515,49 +526,50 @@ You should have received a copy of the GNU General Public License<br/>
 along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">*/</a><br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="GameTicTacToe.htm">GameTicTacToe</a>.htm<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="GameTicTacToe.html">GameTicTacToe</a>.html<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic push<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.html">-Weffc++</a>"<br/>
+<a href="CppInclude.html">#include</a> "qt<a href="CppTicTacToe.html">tictactoe</a>menudialog<a href="CppHeaderFile.htm">.h</a>"<br/>
 <br/>
+<a href="CppInclude.html">#include</a> "<a href="CppQtAboutDialog.html">qtaboutdialog</a><a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "qt<a href="CppTicTacToe.html">tictactoe</a>gamedialog<a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "<a href="CppQtTicTacToeWidget.html">qttictactoewidget</a><a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "<a href="CppTicTacToe.html">tictactoe</a>menudialog<a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "ui_qt<a href="CppTicTacToe.html">tictactoe</a>menudialog<a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic pop<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> "qt<a href="CppTicTacToe.htm">tictactoe</a>menudialog.h"<br/>
-<br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppQtAboutDialog.htm">qtaboutdialog</a>.h"<br/>
-<a href="CppInclude.htm">#include</a> "qt<a href="CppTicTacToe.htm">tictactoe</a>gamedialog.h"<br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppQtTicTacToeWidget.htm">qttictactoewidget</a>.h"<br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppTicTacToe.htm">tictactoe</a>menudialog.h"<br/>
-<a href="CppInclude.htm">#include</a> "ui_qt<a href="CppTicTacToe.htm">tictactoe</a>menudialog.h"<br/>
-<br/>
-<a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppTicTacToe.htm">TicTacToe</a>MenuDialog::<a href="CppQt.htm">Qt</a><a href="CppTicTacToe.htm">TicTacToe</a>MenuDialog(<a href="CppQWidget.htm">QWidget</a> *parent) :<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQDialog.htm">QDialog</a>(parent),<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;ui(<b><a href="CppNew.htm">new</a></b> <a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a><a href="CppTicTacToe.htm">TicTacToe</a>MenuDialog)<br/>
+<a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppTicTacToe.html">TicTacToe</a>MenuDialog::<a href="CppQt.htm">Qt</a><a href="CppTicTacToe.html">TicTacToe</a>MenuDialog(<a href="CppQWidget.html">QWidget</a> *parent) :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQDialog.html">QDialog</a>(parent),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;ui(<b><a href="CppNew.htm">new</a></b> <a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a><a href="CppTicTacToe.html">TicTacToe</a>MenuDialog)<br/>
 {<br/>
 &nbsp;&nbsp;ui-&gt;setupUi(<b><a href="CppThis.htm">this</a></b>);<br/>
 }<br/>
 <br/>
-<a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppTicTacToe.htm">TicTacToe</a>MenuDialog::~<a href="CppQt.htm">Qt</a><a href="CppTicTacToe.htm">TicTacToe</a>MenuDialog()<br/>
+<a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppTicTacToe.html">TicTacToe</a>MenuDialog::~<a href="CppQt.htm">Qt</a><a href="CppTicTacToe.html">TicTacToe</a>MenuDialog()<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppDelete.htm">delete</a></b> ui;<br/>
+&nbsp;&nbsp;<b><a href="CppDelete.html">delete</a></b> ui;<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppTicTacToe.htm">TicTacToe</a>MenuDialog::on_button_start_clicked()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppTicTacToe.html">TicTacToe</a>MenuDialog::on_button_start_clicked()<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppQt.htm">Qt</a><a href="CppTicTacToe.htm">TicTacToe</a>GameDialog d;<br/>
+&nbsp;&nbsp;<a href="CppQt.htm">Qt</a><a href="CppTicTacToe.html">TicTacToe</a>GameDialog d;<br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;hide();<br/>
 &nbsp;&nbsp;d.exec();<br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;show();<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppTicTacToe.htm">TicTacToe</a>MenuDialog::on_button_about_clicked()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppTicTacToe.html">TicTacToe</a>MenuDialog::on_button_about_clicked()<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppAbout.htm">About</a> a <a href="CppOperatorAssign.htm">=</a> <a href="CppTicTacToe.htm">TicTacToe</a>MenuDialog::GetAbout();<br/>
-&nbsp;&nbsp;a.<a href="CppAdd.htm">Add</a><a href="CppLibrary.htm">Library</a>("<a href="CppQtTicTacToeWidget.htm">QtTicTacToeWidget</a> <a href="CppVersion.htm">version</a>: " <a href="CppOperatorPlus.htm">+</a> <a href="CppQtTicTacToeWidget.htm">QtTicTacToeWidget</a>::Get<a href="CppVersion.htm">Version</a>());<br/>
-&nbsp;&nbsp;<a href="CppQtAboutDialog.htm">QtAboutDialog</a> d(a);<br/>
+&nbsp;&nbsp;<a href="CppAbout.html">About</a> a <a href="CppOperatorAssign.htm">=</a> <a href="CppTicTacToe.html">TicTacToe</a>MenuDialog::GetAbout();<br/>
+&nbsp;&nbsp;a.<a href="CppAdd.htm">Add</a><a href="CppLibrary.html">Library</a>("<a href="CppQtTicTacToeWidget.html">QtTicTacToeWidget</a> <a href="CppVersion.html">version</a>: " <a href="CppOperatorPlus.htm">+</a> <a href="CppQtTicTacToeWidget.html">QtTicTacToeWidget</a>::Get<a href="CppVersion.html">Version</a>());<br/>
+&nbsp;&nbsp;<a href="CppQtAboutDialog.html">QtAboutDialog</a> d(a);<br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;hide();<br/>
 &nbsp;&nbsp;d.exec();<br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;show();<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppTicTacToe.htm">TicTacToe</a>MenuDialog::on_button_quit_clicked()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppTicTacToe.html">TicTacToe</a>MenuDialog::on_button_quit_clicked()<br/>
 {<br/>
 &nbsp;&nbsp;close();<br/>
 }<br/>
@@ -574,7 +586,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <table summary="qttictactoewinnerdialog.h" border = "1"><tr><td><code>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">/*</a><br/>
-<a href="CppTicTacToe.htm">TicTacToe</a>, tic-tac-toe game<br/>
+<a href="CppTicTacToe.html">TicTacToe</a>, tic-tac-toe game<br/>
 Copyright (C) 2010-2011 Richel Bilderbeek<br/>
 <br/>
 This program is free software: you can redistribute it and/or modify<br/>
@@ -590,37 +602,42 @@ You should have received a copy of the GNU General Public License<br/>
 along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">*/</a><br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="GameTicTacToe.htm">GameTicTacToe</a>.htm<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="GameTicTacToe.html">GameTicTacToe</a>.html<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppIfndef.htm">#ifndef</a> QTTICTACTOEWINNERDIALOG_H<br/>
-<a href="CppDefine.htm">#define</a> QTTICTACTOEWINNERDIALOG_H<br/>
+<a href="CppIfndef.html">#ifndef</a> QTTICTACTOEWINNERDIALOG_H<br/>
+<a href="CppDefine.html">#define</a> QTTICTACTOEWINNERDIALOG_H<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppQDialog.htm">QDialog</a>&gt;<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic push<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.html">-Weffc++</a>"<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppQDialog.html">QDialog</a>&gt;<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic pop<br/>
 <br/>
-<b><a href="CppNamespace.htm">namespace</a></b> Ui {<br/>
-&nbsp;&nbsp;<b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a><a href="CppTicTacToe.htm">TicTacToe</a>WinnerDialog;<br/>
+<b><a href="CppNamespace.html">namespace</a></b> Ui {<br/>
+&nbsp;&nbsp;<b><a href="CppClass.html">class</a></b> <a href="CppQt.htm">Qt</a><a href="CppTicTacToe.html">TicTacToe</a>WinnerDialog;<br/>
 }<br/>
 <br/>
-<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a> {<br/>
+<b><a href="CppNamespace.html">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
 <br/>
-<b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a><a href="CppTicTacToe.htm">TicTacToe</a>WinnerDialog : <b><a href="CppPublic.htm">public</a></b> <a href="CppQDialog.htm">QDialog</a><br/>
+<b><a href="CppClass.html">class</a></b> <a href="CppQt.htm">Qt</a><a href="CppTicTacToe.html">TicTacToe</a>WinnerDialog : <b><a href="CppPublic.html">public</a></b> <a href="CppQDialog.html">QDialog</a><br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppQ_OBJECT.htm">Q_OBJECT</a><br/>
+&nbsp;&nbsp;<a href="CppQ_OBJECT.html">Q_OBJECT</a><br/>
 <br/>
-<b><a href="CppPublic.htm">public</a></b>:<br/>
-&nbsp;&nbsp;<b><a href="CppExplicit.htm">explicit</a></b> <a href="CppQt.htm">Qt</a><a href="CppTicTacToe.htm">TicTacToe</a>WinnerDialog(<a href="CppQWidget.htm">QWidget</a> *parent <a href="CppOperatorAssign.htm">=</a> 0);<br/>
-&nbsp;&nbsp;~<a href="CppQt.htm">Qt</a><a href="CppTicTacToe.htm">TicTacToe</a>WinnerDialog();<br/>
+<b><a href="CppPublic.html">public</a></b>:<br/>
+&nbsp;&nbsp;<b><a href="CppExplicit.html">explicit</a></b> <a href="CppQt.htm">Qt</a><a href="CppTicTacToe.html">TicTacToe</a>WinnerDialog(<a href="CppQWidget.html">QWidget</a> *parent <a href="CppOperatorAssign.htm">=</a> 0);<br/>
+&nbsp;&nbsp;<a href="CppQt.htm">Qt</a><a href="CppTicTacToe.html">TicTacToe</a>WinnerDialog(<b><a href="CppConst.html">const</a></b> <a href="CppQt.htm">Qt</a><a href="CppTicTacToe.html">TicTacToe</a>WinnerDialog&amp;) <a href="CppOperatorAssign.htm">=</a> <b><a href="CppDelete.html">delete</a></b>;<br/>
+&nbsp;&nbsp;<a href="CppQt.htm">Qt</a><a href="CppTicTacToe.html">TicTacToe</a>WinnerDialog&amp; <b><a href="CppOperator.html">operator</a></b>=(<b><a href="CppConst.html">const</a></b> <a href="CppQt.htm">Qt</a><a href="CppTicTacToe.html">TicTacToe</a>WinnerDialog&amp;) <a href="CppOperatorAssign.htm">=</a> <b><a href="CppDelete.html">delete</a></b>;<br/>
+&nbsp;&nbsp;~<a href="CppQt.htm">Qt</a><a href="CppTicTacToe.html">TicTacToe</a>WinnerDialog();<br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> SetDraw();<br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> SetWinnerCross();<br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> SetWinnerCircle();<br/>
 <br/>
-<b><a href="CppPrivate.htm">private</a></b>:<br/>
-&nbsp;&nbsp;<a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a><a href="CppTicTacToe.htm">TicTacToe</a>WinnerDialog *ui;<br/>
+<b><a href="CppPrivate.html">private</a></b>:<br/>
+&nbsp;&nbsp;<a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a><a href="CppTicTacToe.html">TicTacToe</a>WinnerDialog *ui;<br/>
 };<br/>
 <br/>
-} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a><br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.html">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
 <br/>
-<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> QTTICTACTOEWINNERDIALOG_H<br/>
+<a href="CppEndif.html">#endif</a> <a href="CppComment.htm">//</a> QTTICTACTOEWINNERDIALOG_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -634,7 +651,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <table summary="qttictactoewinnerdialog.cpp" border = "1"><tr><td><code>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">/*</a><br/>
-<a href="CppTicTacToe.htm">TicTacToe</a>, tic-tac-toe game<br/>
+<a href="CppTicTacToe.html">TicTacToe</a>, tic-tac-toe game<br/>
 Copyright (C) 2010-2011 Richel Bilderbeek<br/>
 <br/>
 This program is free software: you can redistribute it and/or modify<br/>
@@ -650,40 +667,41 @@ You should have received a copy of the GNU General Public License<br/>
 along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">*/</a><br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="GameTicTacToe.htm">GameTicTacToe</a>.htm<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="GameTicTacToe.html">GameTicTacToe</a>.html<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic push<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.html">-Weffc++</a>"<br/>
+<a href="CppInclude.html">#include</a> "qt<a href="CppTicTacToe.html">tictactoe</a>winnerdialog<a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "ui_qt<a href="CppTicTacToe.html">tictactoe</a>winnerdialog<a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic pop<br/>
 <br/>
-<br/>
-<a href="CppInclude.htm">#include</a> "qt<a href="CppTicTacToe.htm">tictactoe</a>winnerdialog.h"<br/>
-<a href="CppInclude.htm">#include</a> "ui_qt<a href="CppTicTacToe.htm">tictactoe</a>winnerdialog.h"<br/>
-<br/>
-<a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppTicTacToe.htm">TicTacToe</a>WinnerDialog::<a href="CppQt.htm">Qt</a><a href="CppTicTacToe.htm">TicTacToe</a>WinnerDialog(<a href="CppQWidget.htm">QWidget</a> *parent) :<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQDialog.htm">QDialog</a>(parent),<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;ui(<b><a href="CppNew.htm">new</a></b> <a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a><a href="CppTicTacToe.htm">TicTacToe</a>WinnerDialog)<br/>
+<a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppTicTacToe.html">TicTacToe</a>WinnerDialog::<a href="CppQt.htm">Qt</a><a href="CppTicTacToe.html">TicTacToe</a>WinnerDialog(<a href="CppQWidget.html">QWidget</a> *parent) :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQDialog.html">QDialog</a>(parent),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;ui(<b><a href="CppNew.htm">new</a></b> <a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a><a href="CppTicTacToe.html">TicTacToe</a>WinnerDialog)<br/>
 {<br/>
 &nbsp;&nbsp;ui-&gt;setupUi(<b><a href="CppThis.htm">this</a></b>);<br/>
 }<br/>
 <br/>
-<a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppTicTacToe.htm">TicTacToe</a>WinnerDialog::~<a href="CppQt.htm">Qt</a><a href="CppTicTacToe.htm">TicTacToe</a>WinnerDialog()<br/>
+<a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppTicTacToe.html">TicTacToe</a>WinnerDialog::~<a href="CppQt.htm">Qt</a><a href="CppTicTacToe.html">TicTacToe</a>WinnerDialog()<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppDelete.htm">delete</a></b> ui;<br/>
+&nbsp;&nbsp;<b><a href="CppDelete.html">delete</a></b> ui;<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppTicTacToe.htm">TicTacToe</a>WinnerDialog::SetDraw()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppTicTacToe.html">TicTacToe</a>WinnerDialog::SetDraw()<br/>
 {<br/>
 &nbsp;&nbsp;ui-&gt;label_title-&gt;setText("Draw");<br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;setWindowTitle("Draw");<br/>
 &nbsp;&nbsp;ui-&gt;label_winner-&gt;setText(" ");<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppTicTacToe.htm">TicTacToe</a>WinnerDialog::SetWinnerCross()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppTicTacToe.html">TicTacToe</a>WinnerDialog::SetWinnerCross()<br/>
 {<br/>
-&nbsp;&nbsp;ui-&gt;label_winner-&gt;setPixmap(<a href="CppQPixmap.htm">QPixmap</a>(":/images/X.png"));<br/>
+&nbsp;&nbsp;ui-&gt;label_winner-&gt;setPixmap(<a href="CppQPixmap.html">QPixmap</a>(":/images/X.png"));<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppTicTacToe.htm">TicTacToe</a>WinnerDialog::SetWinnerCircle()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppTicTacToe.html">TicTacToe</a>WinnerDialog::SetWinnerCircle()<br/>
 {<br/>
-&nbsp;&nbsp;ui-&gt;label_winner-&gt;setPixmap(<a href="CppQPixmap.htm">QPixmap</a>(":/images/O.png"));<br/>
+&nbsp;&nbsp;ui-&gt;label_winner-&gt;setPixmap(<a href="CppQPixmap.html">QPixmap</a>(":/images/O.png"));<br/>
 }<br/>
 </code></td></tr></table>
 <!-- end of the code -->
@@ -698,7 +716,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <table summary="symbianmain.cpp" border = "1"><tr><td><code>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">/*</a><br/>
-<a href="CppTicTacToe.htm">TicTacToe</a>, tic-tac-toe game<br/>
+<a href="CppTicTacToe.html">TicTacToe</a>, tic-tac-toe game<br/>
 Copyright (C) 2010 Richel Bilderbeek<br/>
 <br/>
 This program is free software: you can redistribute it and/or modify<br/>
@@ -714,17 +732,17 @@ You should have received a copy of the GNU General Public License<br/>
 along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">*/</a><br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="GameTicTacToe.htm">GameTicTacToe</a>.htm<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="GameTicTacToe.html">GameTicTacToe</a>.html<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppQApplication.htm">QApplication</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> "dialogmenu.h"<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppQApplication.html">QApplication</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> "dialogmenu<a href="CppHeaderFile.htm">.h</a>"<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>(<b><a href="CppInt.htm">int</a></b> <a href="CppArgc.htm">argc</a>, <b><a href="CppChar.htm">char</a></b> *<a href="CppArgc.htm">argv</a>[])<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a>(<b><a href="CppInt.htm">int</a></b> <a href="CppArgc.htm">argc</a>, <b><a href="CppChar.htm">char</a></b> *<a href="CppArgc.htm">argv</a>[])<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppQApplication.htm">QApplication</a> a(<a href="CppArgc.htm">argc</a>, <a href="CppArgc.htm">argv</a>);<br/>
+&nbsp;&nbsp;<a href="CppQApplication.html">QApplication</a> a(<a href="CppArgc.htm">argc</a>, <a href="CppArgc.htm">argv</a>);<br/>
 &nbsp;&nbsp;DialogMenu w;<br/>
 &nbsp;&nbsp;w.show();<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> a.exec();<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> a.exec();<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 </code></td></tr></table>
@@ -740,7 +758,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <table summary="tictactoemenudialog.h" border = "1"><tr><td><code>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">/*</a><br/>
-<a href="CppTicTacToe.htm">TicTacToe</a>, tic-tac-toe game<br/>
+<a href="CppTicTacToe.html">TicTacToe</a>, tic-tac-toe game<br/>
 Copyright (C) 2010-2011 Richel Bilderbeek<br/>
 <br/>
 This program is free software: you can redistribute it and/or modify<br/>
@@ -756,30 +774,30 @@ You should have received a copy of the GNU General Public License<br/>
 along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">*/</a><br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="GameTicTacToe.htm">GameTicTacToe</a>.htm<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="GameTicTacToe.html">GameTicTacToe</a>.html<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppIfndef.htm">#ifndef</a> TICTACTOEMENUDIALOG_H<br/>
-<a href="CppDefine.htm">#define</a> TICTACTOEMENUDIALOG_H<br/>
+<a href="CppIfndef.html">#ifndef</a> TICTACTOEMENUDIALOG_H<br/>
+<a href="CppDefine.html">#define</a> TICTACTOEMENUDIALOG_H<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppStringH.htm">string</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppStringH.html">string</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppVectorH.html">vector</a>&gt;<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppAbout.htm">about</a>.h"<br/>
+<a href="CppInclude.html">#include</a> "<a href="CppAbout.html">about</a><a href="CppHeaderFile.htm">.h</a>"<br/>
 <br/>
-<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a> {<br/>
+<b><a href="CppNamespace.html">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
 <br/>
-<a href="CppComment.htm">///</a><a href="CppTicTacToe.htm">TicTacToe</a>MenuDialog embodies the logic<br/>
-<a href="CppComment.htm">///</a>behind the <a href="CppTicTacToe.htm">TicTacToe</a> menu<br/>
-<b><a href="CppStruct.htm">struct</a></b> <a href="CppTicTacToe.htm">TicTacToe</a>MenuDialog<br/>
+<a href="CppComment.htm">///</a><a href="CppTicTacToe.html">TicTacToe</a>MenuDialog embodies the logic<br/>
+<a href="CppComment.htm">///</a>behind the <a href="CppTicTacToe.html">TicTacToe</a> menu<br/>
+<b><a href="CppStruct.html">struct</a></b> <a href="CppTicTacToe.html">TicTacToe</a>MenuDialog<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppAbout.htm">About</a> GetAbout();<br/>
-&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> Get<a href="CppVersion.htm">Version</a>();<br/>
-&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; Get<a href="CppVersion.htm">Version</a>History();<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.html">static</a></b> <b><a href="CppConst.html">const</a></b> <a href="CppAbout.html">About</a> GetAbout();<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.html">static</a></b> <b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a> Get<a href="CppVersion.html">Version</a>();<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.html">static</a></b> <b><a href="CppConst.html">const</a></b> <a href="CppVector.html">std::vector</a>&lt;<a href="CppString.html">std::string</a>&gt; Get<a href="CppVersion.html">Version</a>History();<br/>
 };<br/>
 <br/>
-} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a><br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.html">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
 <br/>
-<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> TICTACTOEMENUDIALOG_H<br/>
+<a href="CppEndif.html">#endif</a> <a href="CppComment.htm">//</a> TICTACTOEMENUDIALOG_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -793,7 +811,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <table summary="tictactoemenudialog.cpp" border = "1"><tr><td><code>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">/*</a><br/>
-<a href="CppTicTacToe.htm">TicTacToe</a>, tic-tac-toe game<br/>
+<a href="CppTicTacToe.html">TicTacToe</a>, tic-tac-toe game<br/>
 Copyright (C) 2010-2011 Richel Bilderbeek<br/>
 <br/>
 This program is free software: you can redistribute it and/or modify<br/>
@@ -809,44 +827,43 @@ You should have received a copy of the GNU General Public License<br/>
 along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">*/</a><br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="GameTicTacToe.htm">GameTicTacToe</a>.htm<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="GameTicTacToe.html">GameTicTacToe</a>.html<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic push<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.html">-Weffc++</a>"<br/>
+<a href="CppInclude.html">#include</a> "<a href="CppTicTacToe.html">tictactoe</a>menudialog<a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "<a href="CppTicTacToe.html">tictactoe</a><a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic pop<br/>
 <br/>
-<br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppTicTacToe.htm">tictactoe</a>menudialog.h"<br/>
-<br/>
-<br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppTicTacToe.htm">tictactoe</a>.h"<br/>
-<br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppAbout.htm">About</a> <a href="CppRibi.htm\">ribi</a>::<a href="CppTicTacToe.htm">TicTacToe</a>MenuDialog::GetAbout()<br/>
+<b><a href="CppConst.html">const</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppAbout.html">About</a> <a href="CppRibi.htm">ribi</a>::<a href="CppTicTacToe.html">TicTacToe</a>MenuDialog::GetAbout()<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppAbout.htm">About</a> a(<br/>
+&nbsp;&nbsp;<a href="CppAbout.html">About</a> a(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;"Richel Bilderbeek",<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;"<a href="CppTicTacToe.htm">TicTacToe</a>",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"<a href="CppTicTacToe.html">TicTacToe</a>",<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;"tic-tac-toe game",<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;"the 16th of April 2011",<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;"2010-2011",<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;"http://www.richelbilderbeek.nl/<a href="GameTicTacToe.htm">GameTicTacToe</a>.htm",<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;Get<a href="CppVersion.htm">Version</a>(),<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;Get<a href="CppVersion.htm">Version</a>History());<br/>
-&nbsp;&nbsp;a.<a href="CppAdd.htm">Add</a><a href="CppLibrary.htm">Library</a>("<a href="CppTicTacToe.htm">TicTacToe</a> <a href="CppVersion.htm">version</a>: " <a href="CppOperatorPlus.htm">+</a> <a href="CppTicTacToe.htm">TicTacToe</a>::Get<a href="CppVersion.htm">Version</a>());<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> a;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"http://www.richelbilderbeek.nl/<a href="GameTicTacToe.html">GameTicTacToe</a>.html",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Get<a href="CppVersion.html">Version</a>(),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Get<a href="CppVersion.html">Version</a>History());<br/>
+&nbsp;&nbsp;a.<a href="CppAdd.htm">Add</a><a href="CppLibrary.html">Library</a>("<a href="CppTicTacToe.html">TicTacToe</a> <a href="CppVersion.html">version</a>: " <a href="CppOperatorPlus.htm">+</a> <a href="CppTicTacToe.html">TicTacToe</a>::Get<a href="CppVersion.html">Version</a>());<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> a;<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppRibi.htm\">ribi</a>::<a href="CppTicTacToe.htm">TicTacToe</a>MenuDialog::Get<a href="CppVersion.htm">Version</a>()<br/>
+<b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a> <a href="CppRibi.htm">ribi</a>::<a href="CppTicTacToe.html">TicTacToe</a>MenuDialog::Get<a href="CppVersion.html">Version</a>()<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> "1.5";<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> "1.5";<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm\">ribi</a>::<a href="CppTicTacToe.htm">TicTacToe</a>MenuDialog::Get<a href="CppVersion.htm">Version</a>History()<br/>
+<b><a href="CppConst.html">const</a></b> <a href="CppVector.html">std::vector</a>&lt;<a href="CppString.html">std::string</a>&gt; <a href="CppRibi.htm">ribi</a>::<a href="CppTicTacToe.html">TicTacToe</a>MenuDialog::Get<a href="CppVersion.html">Version</a>History()<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> {<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;"2010-09-24: <a href="CppVersion.htm">Version</a> 1.0: initial <a href="CppVersion.htm">version</a>",<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;"2010-11-20: <a href="CppVersion.htm">Version</a> 1.1: fixed menu",<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;"2011-01-07: <a href="CppVersion.htm">version</a> 1.2: merge with <a href="CppWt.htm">Wt</a> <a href="CppTicTacToe.htm">TicTacToe</a> game",<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;"2011-01-07: <a href="CppVersion.htm">version</a> 1.3: seperated wtmain.cpp in multiple units",<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;"2011-04-15: <a href="CppVersion.htm">version</a> 1.4: major architectural changes",<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;"2011-04-16: <a href="CppVersion.htm">version</a> 1.5: added use of <a href="CppWtAutoConfig.htm">WtAutoConfig</a> (<b><a href="CppFor.htm">for</a></b> <a href="CppWebApplication.htm">web application</a>)"<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"2010-09-24: <a href="CppVersion.html">Version</a> 1.0: initial <a href="CppVersion.html">version</a>",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"2010-11-20: <a href="CppVersion.html">Version</a> 1.1: fixed menu",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"2011-01-07: <a href="CppVersion.html">version</a> 1.2: merge with <a href="CppWt.htm">Wt</a> <a href="CppTicTacToe.html">TicTacToe</a> game",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"2011-01-07: <a href="CppVersion.html">version</a> 1.3: seperated wtmain<a href="CppImplementationFile.html">.cpp</a> in multiple units",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"2011-04-15: <a href="CppVersion.html">version</a> 1.4: major architectural changes",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"2011-04-16: <a href="CppVersion.html">version</a> 1.5: added use of <a href="CppWtAutoConfig.html">WtAutoConfig</a> (<b><a href="CppFor.htm">for</a></b> <a href="CppWebApplication.html">web application</a>)"<br/>
 &nbsp;&nbsp;};<br/>
 }<br/>
 </code></td></tr></table>
@@ -862,7 +879,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <table summary="wtmain.cpp" border = "1"><tr><td><code>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">/*</a><br/>
-<a href="CppTicTacToe.htm">TicTacToe</a>, tic-tac-toe game<br/>
+<a href="CppTicTacToe.html">TicTacToe</a>, tic-tac-toe game<br/>
 Copyright (C) 2010 Richel Bilderbeek<br/>
 <br/>
 This program is free software: you can redistribute it and/or modify<br/>
@@ -878,47 +895,47 @@ You should have received a copy of the GNU General Public License<br/>
 along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">*/</a><br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="GameTicTacToe.htm">GameTicTacToe</a>.htm<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="GameTicTacToe.html">GameTicTacToe</a>.html<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/filesystem.hpp&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppBoost.html">boost</a>/filesystem<a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWApplication.htm">WApplication</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWEnvironment.htm">WEnvironment</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWApplication.html">WApplication</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWEnvironment.html">WEnvironment</a>&gt;<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppWtAutoConfig.htm">wtautoconfig</a>.h"<br/>
-<a href="CppInclude.htm">#include</a> "wt<a href="CppTicTacToe.htm">tictactoe</a>menudialog.h"<br/>
+<a href="CppInclude.html">#include</a> "<a href="CppWtAutoConfig.html">wtautoconfig</a><a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "wt<a href="CppTicTacToe.html">tictactoe</a>menudialog<a href="CppHeaderFile.htm">.h</a>"<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppStruct.htm">struct</a></b> <a href="CppWt.htm">Wt</a><a href="CppTicTacToe.htm">TicTacToe</a><a href="CppApplication.htm">Application</a> : <b><a href="CppPublic.htm">public</a></b> <a href="CppWApplication.htm">Wt::WApplication</a><br/>
+<b><a href="CppStruct.html">struct</a></b> <a href="CppWt.htm">Wt</a><a href="CppTicTacToe.html">TicTacToe</a><a href="CppApplication.html">Application</a> : <b><a href="CppPublic.html">public</a></b> <a href="CppWApplication.html">Wt::WApplication</a><br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppWt.htm">Wt</a><a href="CppTicTacToe.htm">TicTacToe</a><a href="CppApplication.htm">Application</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppWEnvironment.htm">Wt::WEnvironment</a>&amp; env)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;: <a href="CppWApplication.htm">Wt::WApplication</a>(env)<br/>
+&nbsp;&nbsp;<a href="CppWt.htm">Wt</a><a href="CppTicTacToe.html">TicTacToe</a><a href="CppApplication.html">Application</a>(<b><a href="CppConst.html">const</a></b> <a href="CppWEnvironment.html">Wt::WEnvironment</a>&amp; env)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;: <a href="CppWApplication.html">Wt::WApplication</a>(env)<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;setTitle("<a href="CppTicTacToe.htm">TicTacToe</a>");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> css_filename <a href="CppOperatorAssign.htm">=</a> "wt.css";<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (!<a href="CppFilesystem.htm">boost::filesystem</a>::exists(css_filename))<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;setTitle("<a href="CppTicTacToe.html">TicTacToe</a>");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a> css_filename <a href="CppOperatorAssign.htm">=</a> "wt.css";<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (!<a href="CppFilesystem.html">boost::filesystem</a>::exists(css_filename))<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> s<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <a href="CppString.htm">std::string</a>("File '")<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a> s<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <a href="CppString.html">std::string</a>("File '")<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> css_filename<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> <a href="CppString.htm">std::string</a>("' not found");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThrow.htm">throw</a></b> <a href="CppRuntime_error.htm">std::runtime_error</a>(s);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> <a href="CppString.html">std::string</a>("' not found");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThrow.html">throw</a></b> <a href="CppRuntime_error.html">std::runtime_error</a>(s);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;useStyleSheet(css_filename);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;root()-&gt;addWidget(<b><a href="CppNew.htm">new</a></b> <a href="CppWt.htm">Wt</a><a href="CppTicTacToe.htm">TicTacToe</a>MenuDialog);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;root()-&gt;addWidget(<b><a href="CppNew.htm">new</a></b> <a href="CppWt.htm">Wt</a><a href="CppTicTacToe.html">TicTacToe</a>MenuDialog);<br/>
 &nbsp;&nbsp;}<br/>
 <br/>
 };<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppWApplication.htm">Wt::WApplication</a> * create<a href="CppApplication.htm">Application</a>(<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppWEnvironment.htm">Wt::WEnvironment</a>&amp; env)<br/>
+<a href="CppWApplication.html">Wt::WApplication</a> * create<a href="CppApplication.html">Application</a>(<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppWEnvironment.html">Wt::WEnvironment</a>&amp; env)<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <b><a href="CppNew.htm">new</a></b> <a href="CppWt.htm">Wt</a><a href="CppTicTacToe.htm">TicTacToe</a><a href="CppApplication.htm">Application</a>(env);<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> <b><a href="CppNew.htm">new</a></b> <a href="CppWt.htm">Wt</a><a href="CppTicTacToe.html">TicTacToe</a><a href="CppApplication.html">Application</a>(env);<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>(<b><a href="CppInt.htm">int</a></b> <a href="CppArgc.htm">argc</a>, <b><a href="CppChar.htm">char</a></b>* <a href="CppArgc.htm">argv</a>[])<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a>(<b><a href="CppInt.htm">int</a></b> <a href="CppArgc.htm">argc</a>, <b><a href="CppChar.htm">char</a></b>* <a href="CppArgc.htm">argv</a>[])<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppWtAutoConfig.htm">WtAutoConfig</a> a(<a href="CppArgc.htm">argc</a>,<a href="CppArgc.htm">argv</a>,create<a href="CppApplication.htm">Application</a>);<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> a.Run();<br/>
+&nbsp;&nbsp;<a href="CppWtAutoConfig.html">WtAutoConfig</a> a(<a href="CppArgc.htm">argc</a>,<a href="CppArgc.htm">argv</a>,create<a href="CppApplication.html">Application</a>);<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> a.Run();<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 </code></td></tr></table>
@@ -934,7 +951,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <table summary="wttictactoegamedialog.h" border = "1"><tr><td><code>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">/*</a><br/>
-<a href="CppTicTacToe.htm">TicTacToe</a>, tic-tac-toe game<br/>
+<a href="CppTicTacToe.html">TicTacToe</a>, tic-tac-toe game<br/>
 Copyright (C) 2010 Richel Bilderbeek<br/>
 <br/>
 This program is free software: you can redistribute it and/or modify<br/>
@@ -950,35 +967,38 @@ You should have received a copy of the GNU General Public License<br/>
 along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">*/</a><br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="GameTicTacToe.htm">GameTicTacToe</a>.htm<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="GameTicTacToe.html">GameTicTacToe</a>.html<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppIfndef.htm">#ifndef</a> WTTICTACTOEGAMEDIALOG_H<br/>
-<a href="CppDefine.htm">#define</a> WTTICTACTOEGAMEDIALOG_H<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppSignals2.htm">signals2</a>.hpp&gt;<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWContainerWidget.htm">WContainerWidget</a>&gt;<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppIfndef.html">#ifndef</a> WTTICTACTOEGAMEDIALOG_H<br/>
+<a href="CppDefine.html">#define</a> WTTICTACTOEGAMEDIALOG_H<br/>
 <br/>
-<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a> {<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppBoost.html">boost</a>/<a href="CppSignals2.html">signals2</a><a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
 <br/>
-<b><a href="CppStruct.htm">struct</a></b> <a href="CppWtTicTacToeWidget.htm">WtTicTacToeWidget</a>;<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppStruct.htm">struct</a></b> <a href="CppWt.htm">Wt</a><a href="CppTicTacToe.htm">TicTacToe</a>GameDialog : <b><a href="CppPublic.htm">public</a></b> <a href="CppWContainerWidget.htm">Wt::WContainerWidget</a><br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWContainerWidget.html">WContainerWidget</a>&gt;<br/>
+<br/>
+<br/>
+<b><a href="CppNamespace.html">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
+<br/>
+<b><a href="CppStruct.html">struct</a></b> <a href="CppWtTicTacToeWidget.html">WtTicTacToeWidget</a>;<br/>
+<br/>
+<b><a href="CppStruct.html">struct</a></b> <a href="CppWt.htm">Wt</a><a href="CppTicTacToe.html">TicTacToe</a>GameDialog : <b><a href="CppPublic.html">public</a></b> <a href="CppWContainerWidget.html">Wt::WContainerWidget</a><br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppWt.htm">Wt</a><a href="CppTicTacToe.htm">TicTacToe</a>GameDialog(<b><a href="CppConst.htm">const</a></b> <b><a href="CppBool.htm">bool</a></b> display_close_button <a href="CppOperatorAssign.htm">=</a> <b><a href="CppTrue.htm">true</a></b>);<br/>
-&nbsp;&nbsp;<a href="CppBoostSignal.htm">boost::signals2::signal</a>&lt;<b><a href="CppVoid.htm">void</a></b> ()&gt; m_signal_close;<br/>
-&nbsp;&nbsp;<b><a href="CppPrivate.htm">private</a></b>:<br/>
-&nbsp;&nbsp;<a href="CppWPushButton.htm">Wt::WPushButton</a> * m_button_restart;<br/>
-&nbsp;&nbsp;<a href="CppWtTicTacToeWidget.htm">WtTicTacToeWidget</a> * <b><a href="CppConst.htm">const</a></b> m_<a href="CppTicTacToe.htm">tictactoe</a>;<br/>
+&nbsp;&nbsp;<a href="CppWt.htm">Wt</a><a href="CppTicTacToe.html">TicTacToe</a>GameDialog(<b><a href="CppConst.html">const</a></b> <b><a href="CppBool.htm">bool</a></b> display_close_button <a href="CppOperatorAssign.htm">=</a> <b><a href="CppTrue.htm">true</a></b>);<br/>
+&nbsp;&nbsp;<a href="CppWt.htm">Wt</a><a href="CppTicTacToe.html">TicTacToe</a>GameDialog(<b><a href="CppConst.html">const</a></b> <a href="CppWt.htm">Wt</a><a href="CppTicTacToe.html">TicTacToe</a>GameDialog&amp;) <a href="CppOperatorAssign.htm">=</a> <b><a href="CppDelete.html">delete</a></b>;<br/>
+&nbsp;&nbsp;<a href="CppWt.htm">Wt</a><a href="CppTicTacToe.html">TicTacToe</a>GameDialog&amp; <b><a href="CppOperator.html">operator</a></b>=(<b><a href="CppConst.html">const</a></b> <a href="CppWt.htm">Wt</a><a href="CppTicTacToe.html">TicTacToe</a>GameDialog&amp;) <a href="CppOperatorAssign.htm">=</a> <b><a href="CppDelete.html">delete</a></b>;<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppBoostSignal.html">boost::signals2::signal</a>&lt;<b><a href="CppVoid.htm">void</a></b> ()&gt; m_signal_close;<br/>
+&nbsp;&nbsp;<b><a href="CppPrivate.html">private</a></b>:<br/>
+&nbsp;&nbsp;<a href="CppWPushButton.html">Wt::WPushButton</a> * m_button_restart;<br/>
+&nbsp;&nbsp;<a href="CppWtTicTacToeWidget.html">WtTicTacToeWidget</a> * <b><a href="CppConst.html">const</a></b> m_<a href="CppTicTacToe.html">tictactoe</a>;<br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> OnClose();<br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> OnRestart();<br/>
-&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> On<a href="CppState.htm">State</a>Changed();<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> On<a href="CppState.html">State</a>Changed();<br/>
 };<br/>
 <br/>
-} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a><br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.html">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
 <br/>
-<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> WTTICTACTOEGAMEDIALOG_H<br/>
+<a href="CppEndif.html">#endif</a> <a href="CppComment.htm">//</a> WTTICTACTOEGAMEDIALOG_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -992,7 +1012,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <table summary="wttictactoegamedialog.cpp" border = "1"><tr><td><code>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">/*</a><br/>
-<a href="CppTicTacToe.htm">TicTacToe</a>, tic-tac-toe game<br/>
+<a href="CppTicTacToe.html">TicTacToe</a>, tic-tac-toe game<br/>
 Copyright (C) 2010 Richel Bilderbeek<br/>
 <br/>
 This program is free software: you can redistribute it and/or modify<br/>
@@ -1008,82 +1028,83 @@ You should have received a copy of the GNU General Public License<br/>
 along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">*/</a><br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="GameTicTacToe.htm">GameTicTacToe</a>.htm<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="GameTicTacToe.html">GameTicTacToe</a>.html<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWBreak.htm">WBreak</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWPushButton.htm">WPushButton</a>&gt;<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppInclude.htm">#include</a> "wt<a href="CppTicTacToe.htm">tictactoe</a>gamedialog.h"<br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppWtTicTacToeWidget.htm">wttictactoewidget</a>.h"<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppRibi.htm\">ribi</a>::<a href="CppWt.htm">Wt</a><a href="CppTicTacToe.htm">TicTacToe</a>GameDialog::<a href="CppWt.htm">Wt</a><a href="CppTicTacToe.htm">TicTacToe</a>GameDialog(<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppBool.htm">bool</a></b> display_close_button)<br/>
-&nbsp;&nbsp;: m_<a href="CppTicTacToe.htm">tictactoe</a>(<b><a href="CppNew.htm">new</a></b> <a href="CppWtTicTacToeWidget.htm">WtTicTacToeWidget</a>)<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWBreak.html">WBreak</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWPushButton.html">WPushButton</a>&gt;<br/>
+<br/>
+<a href="CppInclude.html">#include</a> "wt<a href="CppTicTacToe.html">tictactoe</a>gamedialog<a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "<a href="CppWtTicTacToeWidget.html">wttictactoewidget</a><a href="CppHeaderFile.htm">.h</a>"<br/>
+<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppCassertH.html">cassert</a>&gt;<br/>
+<br/>
+<a href="CppRibi.htm">ribi</a>::<a href="CppWt.htm">Wt</a><a href="CppTicTacToe.html">TicTacToe</a>GameDialog::<a href="CppWt.htm">Wt</a><a href="CppTicTacToe.html">TicTacToe</a>GameDialog(<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppBool.htm">bool</a></b> display_close_button)<br/>
+&nbsp;&nbsp;: m_signal_close{},<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_button_restart{},<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_<a href="CppTicTacToe.html">tictactoe</a>(<b><a href="CppNew.htm">new</a></b> <a href="CppWtTicTacToeWidget.html">WtTicTacToeWidget</a>)<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;setContentAlignment(<a href="CppWt.htm">Wt</a>::AlignCenter);<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppTicTacToe.htm">TicTacToe</a><a href="CppWidget.htm">Widget</a><br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppTicTacToe.html">TicTacToe</a><a href="CppWidget.html">Widget</a><br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;addWidget(m_<a href="CppTicTacToe.htm">tictactoe</a>);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;m_<a href="CppTicTacToe.htm">tictactoe</a>-&gt;m_signal_state_changed.connect(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBind.htm">boost::bind</a>(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;<a href="CppRibi.htm\">ribi</a>::<a href="CppWt.htm">Wt</a><a href="CppTicTacToe.htm">TicTacToe</a>GameDialog::On<a href="CppState.htm">State</a>Changed,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;addWidget(m_<a href="CppTicTacToe.html">tictactoe</a>);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_<a href="CppTicTacToe.html">tictactoe</a>-&gt;m_signal_state_changed.connect(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBind.html">boost::bind</a>(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;<a href="CppRibi.htm">ribi</a>::<a href="CppWt.htm">Wt</a><a href="CppTicTacToe.html">TicTacToe</a>GameDialog::On<a href="CppState.html">State</a>Changed,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>));<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;addWidget(<b><a href="CppNew.htm">new</a></b> <a href="CppWBreak.htm">Wt::WBreak</a>);<br/>
+&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;addWidget(<b><a href="CppNew.htm">new</a></b> <a href="CppWBreak.html">Wt::WBreak</a>);<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Restart button<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;m_button_restart<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppWPushButton.htm">Wt::WPushButton</a>("Restart",<b><a href="CppThis.htm">this</a></b>);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppWPushButton.html">Wt::WPushButton</a>("Restart",<b><a href="CppThis.htm">this</a></b>);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;addWidget(m_button_restart);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;m_button_restart-&gt;clicked().connect(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>,&amp;<a href="CppRibi.htm\">ribi</a>::<a href="CppWt.htm">Wt</a><a href="CppTicTacToe.htm">TicTacToe</a>GameDialog::OnRestart);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>,&amp;<a href="CppRibi.htm">ribi</a>::<a href="CppWt.htm">Wt</a><a href="CppTicTacToe.html">TicTacToe</a>GameDialog::OnRestart);<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Close button<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (display_close_button)<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppWPushButton.htm">Wt::WPushButton</a> * <b><a href="CppConst.htm">const</a></b> button<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppWPushButton.htm">Wt::WPushButton</a>("Close",<b><a href="CppThis.htm">this</a></b>);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppWPushButton.html">Wt::WPushButton</a> * <b><a href="CppConst.html">const</a></b> button<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppWPushButton.html">Wt::WPushButton</a>("Close",<b><a href="CppThis.htm">this</a></b>);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;button-&gt;clicked().connect(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>,&amp;<a href="CppRibi.htm\">ribi</a>::<a href="CppWt.htm">Wt</a><a href="CppTicTacToe.htm">TicTacToe</a>GameDialog::OnClose);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>,&amp;<a href="CppRibi.htm">ribi</a>::<a href="CppWt.htm">Wt</a><a href="CppTicTacToe.html">TicTacToe</a>GameDialog::OnClose);<br/>
 &nbsp;&nbsp;}<br/>
 }<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppWt.htm">Wt</a><a href="CppTicTacToe.htm">TicTacToe</a>GameDialog::OnClose()<br/>
+<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppWt.htm">Wt</a><a href="CppTicTacToe.html">TicTacToe</a>GameDialog::OnClose()<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppEmit.htm">emit</a></b> that <b><a href="CppThis.htm">this</a></b> dialog closes<br/>
 &nbsp;&nbsp;m_signal_close();<br/>
 }<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppWt.htm">Wt</a><a href="CppTicTacToe.htm">TicTacToe</a>GameDialog::OnRestart()<br/>
+<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppWt.htm">Wt</a><a href="CppTicTacToe.html">TicTacToe</a>GameDialog::OnRestart()<br/>
 {<br/>
-&nbsp;&nbsp;m_<a href="CppTicTacToe.htm">tictactoe</a>-&gt;Restart();<br/>
+&nbsp;&nbsp;m_<a href="CppTicTacToe.html">tictactoe</a>-&gt;Restart();<br/>
 &nbsp;&nbsp;m_button_restart-&gt;setText("Restart");<br/>
 }<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppWt.htm">Wt</a><a href="CppTicTacToe.htm">TicTacToe</a>GameDialog::On<a href="CppState.htm">State</a>Changed()<br/>
+<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppWt.htm">Wt</a><a href="CppTicTacToe.html">TicTacToe</a>GameDialog::On<a href="CppState.html">State</a>Changed()<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppSwitch.htm">switch</a></b> (m_<a href="CppTicTacToe.htm">tictactoe</a>-&gt;Get<a href="CppState.htm">State</a>())<br/>
+&nbsp;&nbsp;<b><a href="CppSwitch.html">switch</a></b> (m_<a href="CppTicTacToe.html">tictactoe</a>-&gt;Get<a href="CppState.html">State</a>())<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> <a href="CppTicTacToe.htm">TicTacToe</a>::player1:<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> <a href="CppTicTacToe.html">TicTacToe</a>::player1:<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;m_button_restart-&gt;setText("Player 1 has won. Click to restart");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppBreak.htm">break</a></b>;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> <a href="CppTicTacToe.htm">TicTacToe</a>::player2:<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppBreak.html">break</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> <a href="CppTicTacToe.html">TicTacToe</a>::player2:<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;m_button_restart-&gt;setText("Player 2 has won. Click to restart");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppBreak.htm">break</a></b>;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> <a href="CppTicTacToe.htm">TicTacToe</a>::draw:<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppBreak.html">break</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> <a href="CppTicTacToe.html">TicTacToe</a>::draw:<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;m_button_restart-&gt;setText("Draw. Click to restart");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppBreak.htm">break</a></b>;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> <a href="CppTicTacToe.htm">TicTacToe</a>::no_winner:<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppBreak.html">break</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> <a href="CppTicTacToe.html">TicTacToe</a>::no_winner:<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;m_button_restart-&gt;setText("Restart");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppBreak.htm">break</a></b>;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppDefault.htm">default</a></b>:<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!"Should not get here");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppBreak.htm">break</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppBreak.html">break</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppDefault.html">default</a></b>:<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(!"Should not get here");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppBreak.html">break</a></b>;<br/>
 &nbsp;&nbsp;}<br/>
 }<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -1097,7 +1118,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <table summary="wttictactoemenudialog.h" border = "1"><tr><td><code>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">/*</a><br/>
-<a href="CppTicTacToe.htm">TicTacToe</a>, tic-tac-toe game<br/>
+<a href="CppTicTacToe.html">TicTacToe</a>, tic-tac-toe game<br/>
 Copyright (C) 2010 Richel Bilderbeek<br/>
 <br/>
 This program is free software: you can redistribute it and/or modify<br/>
@@ -1113,31 +1134,31 @@ You should have received a copy of the GNU General Public License<br/>
 along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">*/</a><br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="GameTicTacToe.htm">GameTicTacToe</a>.htm<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="GameTicTacToe.html">GameTicTacToe</a>.html<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppIfndef.htm">#ifndef</a> WTTICTACTOEMENUDIALOG_H<br/>
-<a href="CppDefine.htm">#define</a> WTTICTACTOEMENUDIALOG_H<br/>
+<a href="CppIfndef.html">#ifndef</a> WTTICTACTOEMENUDIALOG_H<br/>
+<a href="CppDefine.html">#define</a> WTTICTACTOEMENUDIALOG_H<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppSignals2.htm">signals2</a>.hpp&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppBoost.html">boost</a>/<a href="CppSignals2.html">signals2</a><a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWContainerWidget.htm">WContainerWidget</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWContainerWidget.html">WContainerWidget</a>&gt;<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <br/>
-<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a> {<br/>
+<b><a href="CppNamespace.html">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
 <br/>
-<b><a href="CppStruct.htm">struct</a></b> <a href="CppWtAboutDialog.htm">WtAboutDialog</a>;<br/>
+<b><a href="CppStruct.html">struct</a></b> <a href="CppWtAboutDialog.html">WtAboutDialog</a>;<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppStruct.htm">struct</a></b> <a href="CppWt.htm">Wt</a><a href="CppTicTacToe.htm">TicTacToe</a>MenuDialog : <b><a href="CppPublic.htm">public</a></b> <a href="CppWContainerWidget.htm">Wt::WContainerWidget</a><br/>
+<b><a href="CppStruct.html">struct</a></b> <a href="CppWt.htm">Wt</a><a href="CppTicTacToe.html">TicTacToe</a>MenuDialog : <b><a href="CppPublic.html">public</a></b> <a href="CppWContainerWidget.html">Wt::WContainerWidget</a><br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppWt.htm">Wt</a><a href="CppTicTacToe.htm">TicTacToe</a>MenuDialog();<br/>
+&nbsp;&nbsp;<a href="CppWt.htm">Wt</a><a href="CppTicTacToe.html">TicTacToe</a>MenuDialog();<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppPrivate.htm">private</a></b>:<br/>
-&nbsp;&nbsp;<a href="CppWtAboutDialog.htm">WtAboutDialog</a> * CreateNew<a href="CppAbout.htm">About</a>Dialog() <b><a href="CppConst.htm">const</a></b>;<br/>
+&nbsp;&nbsp;<b><a href="CppPrivate.html">private</a></b>:<br/>
+&nbsp;&nbsp;<a href="CppWtAboutDialog.html">WtAboutDialog</a> * CreateNew<a href="CppAbout.html">About</a>Dialog() <b><a href="CppConst.html">const</a></b>;<br/>
 };<br/>
 <br/>
-} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a><br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.html">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
 <br/>
-<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> WTTICTACTOEMENUDIALOG_H<br/>
+<a href="CppEndif.html">#endif</a> <a href="CppComment.htm">//</a> WTTICTACTOEMENUDIALOG_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -1151,7 +1172,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <table summary="wttictactoemenudialog.cpp" border = "1"><tr><td><code>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">/*</a><br/>
-<a href="CppTicTacToe.htm">TicTacToe</a>, tic-tac-toe game<br/>
+<a href="CppTicTacToe.html">TicTacToe</a>, tic-tac-toe game<br/>
 Copyright (C) 2010 Richel Bilderbeek<br/>
 <br/>
 This program is free software: you can redistribute it and/or modify<br/>
@@ -1167,64 +1188,64 @@ You should have received a copy of the GNU General Public License<br/>
 along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">*/</a><br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="GameTicTacToe.htm">GameTicTacToe</a>.htm<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="GameTicTacToe.html">GameTicTacToe</a>.html<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWBreak.htm">WBreak</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWLabel.htm">WLabel</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWMenu.htm">WMenu</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWStackedWidget.htm">WStackedWidget</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWBreak.html">WBreak</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWLabel.html">WLabel</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWMenu.html">WMenu</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWStackedWidget.html">WStackedWidget</a>&gt;<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppAbout.htm">about</a>.h"<br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppTicTacToe.htm">tictactoe</a>menudialog.h"<br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppWtAboutDialog.htm">wtaboutdialog</a>.h"<br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppWtAutoConfig.htm">wtautoconfig</a>.h"<br/>
-<a href="CppInclude.htm">#include</a> "wt<a href="CppTicTacToe.htm">tictactoe</a>gamedialog.h"<br/>
-<a href="CppInclude.htm">#include</a> "wt<a href="CppTicTacToe.htm">tictactoe</a>menudialog.h"<br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppWtTicTacToeWidget.htm">wttictactoewidget</a>.h"<br/>
+<a href="CppInclude.html">#include</a> "<a href="CppAbout.html">about</a><a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "<a href="CppTicTacToe.html">tictactoe</a>menudialog<a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "<a href="CppWtAboutDialog.html">wtaboutdialog</a><a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "<a href="CppWtAutoConfig.html">wtautoconfig</a><a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "wt<a href="CppTicTacToe.html">tictactoe</a>gamedialog<a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "wt<a href="CppTicTacToe.html">tictactoe</a>menudialog<a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "<a href="CppWtTicTacToeWidget.html">wttictactoewidget</a><a href="CppHeaderFile.htm">.h</a>"<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppCassertH.html">cassert</a>&gt;<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppRibi.htm\">ribi</a>::<a href="CppWt.htm">Wt</a><a href="CppTicTacToe.htm">TicTacToe</a>MenuDialog::<a href="CppWt.htm">Wt</a><a href="CppTicTacToe.htm">TicTacToe</a>MenuDialog()<br/>
+<a href="CppRibi.htm">ribi</a>::<a href="CppWt.htm">Wt</a><a href="CppTicTacToe.html">TicTacToe</a>MenuDialog::<a href="CppWt.htm">Wt</a><a href="CppTicTacToe.html">TicTacToe</a>MenuDialog()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;setContentAlignment(<a href="CppWt.htm">Wt</a>::AlignCenter);<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppWLabel.htm">Wt::WLabel</a> * <b><a href="CppConst.htm">const</a></b> title <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppWLabel.htm">Wt::WLabel</a>("<a href="CppTicTacToe.htm">TicTacToe</a>");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppWLabel.html">Wt::WLabel</a> * <b><a href="CppConst.html">const</a></b> title <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppWLabel.html">Wt::WLabel</a>("<a href="CppTicTacToe.html">TicTacToe</a>");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;title-&gt;setStyleClass("title");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;addWidget(title);<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Menu<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppWStackedWidget.htm">Wt::WStackedWidget</a> * <b><a href="CppConst.htm">const</a></b> contents <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppWStackedWidget.htm">Wt::WStackedWidget</a>;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppWMenu.htm">Wt::WMenu</a> * <b><a href="CppConst.htm">const</a></b> menu <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppWMenu.htm">Wt::WMenu</a>(contents,<a href="CppWt.htm">Wt</a>::Horizontal);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Using CSS style<b><a href="CppClass.htm">class</a></b> is the best (only?) way to display the menu well<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppWStackedWidget.html">Wt::WStackedWidget</a> * <b><a href="CppConst.html">const</a></b> contents <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppWStackedWidget.html">Wt::WStackedWidget</a>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppWMenu.html">Wt::WMenu</a> * <b><a href="CppConst.html">const</a></b> menu <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppWMenu.html">Wt::WMenu</a>(contents,<a href="CppWt.htm">Wt</a>::Horizontal);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Using CSS style<b><a href="CppClass.html">class</a></b> is the best (only?) way to display the menu well<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;menu-&gt;setStyleClass("menu");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppWMenuItem.htm">Wt::WMenuItem</a> * <b><a href="CppConst.htm">const</a></b> item <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppWMenuItem.htm">Wt::WMenuItem</a>(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppWMenuItem.html">Wt::WMenuItem</a> * <b><a href="CppConst.html">const</a></b> item <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppWMenuItem.html">Wt::WMenuItem</a>(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Start",<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppNew.htm">new</a></b> <a href="CppWt.htm">Wt</a><a href="CppTicTacToe.htm">TicTacToe</a>GameDialog(<b><a href="CppFalse.htm">false</a></b>));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppNew.htm">new</a></b> <a href="CppWt.htm">Wt</a><a href="CppTicTacToe.html">TicTacToe</a>GameDialog(<b><a href="CppFalse.html">false</a></b>));<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;menu-&gt;addItem(item);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppWMenuItem.htm">Wt::WMenuItem</a> * <b><a href="CppConst.htm">const</a></b> item <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppWMenuItem.htm">Wt::WMenuItem</a>(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"<a href="CppAbout.htm">About</a>",<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CreateNew<a href="CppAbout.htm">About</a>Dialog());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppWMenuItem.html">Wt::WMenuItem</a> * <b><a href="CppConst.html">const</a></b> item <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppWMenuItem.html">Wt::WMenuItem</a>(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"<a href="CppAbout.html">About</a>",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CreateNew<a href="CppAbout.html">About</a>Dialog());<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;menu-&gt;addItem(item);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Display menu on top<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;addWidget(menu);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;addWidget(<b><a href="CppNew.htm">new</a></b> <a href="CppWBreak.htm">Wt::WBreak</a>);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;addWidget(<b><a href="CppNew.htm">new</a></b> <a href="CppWBreak.html">Wt::WBreak</a>);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Display contents below menu<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;addWidget(contents);<br/>
 &nbsp;&nbsp;}<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppRibi.htm\">ribi</a>::<a href="CppWtAboutDialog.htm">WtAboutDialog</a> * <a href="CppRibi.htm\">ribi</a>::<a href="CppWt.htm">Wt</a><a href="CppTicTacToe.htm">TicTacToe</a>MenuDialog::CreateNew<a href="CppAbout.htm">About</a>Dialog() <b><a href="CppConst.htm">const</a></b><br/>
+<a href="CppRibi.htm">ribi</a>::<a href="CppWtAboutDialog.html">WtAboutDialog</a> * <a href="CppRibi.htm">ribi</a>::<a href="CppWt.htm">Wt</a><a href="CppTicTacToe.html">TicTacToe</a>MenuDialog::CreateNew<a href="CppAbout.html">About</a>Dialog() <b><a href="CppConst.html">const</a></b><br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppAbout.htm">About</a> a <a href="CppOperatorAssign.htm">=</a> <a href="CppTicTacToe.htm">TicTacToe</a>MenuDialog::GetAbout();<br/>
-&nbsp;&nbsp;a.<a href="CppAdd.htm">Add</a><a href="CppLibrary.htm">Library</a>("<a href="CppWtTicTacToeWidget.htm">WtTicTacToeWidget</a> <a href="CppVersion.htm">version</a>: " <a href="CppOperatorPlus.htm">+</a> <a href="CppWtTicTacToeWidget.htm">WtTicTacToeWidget</a>::Get<a href="CppVersion.htm">Version</a>());<br/>
-&nbsp;&nbsp;a.<a href="CppAdd.htm">Add</a><a href="CppLibrary.htm">Library</a>("<a href="CppWtAutoConfig.htm">WtAutoConfig</a> <a href="CppVersion.htm">version</a>: " <a href="CppOperatorPlus.htm">+</a> <a href="CppWtAutoConfig.htm">WtAutoConfig</a>::Get<a href="CppVersion.htm">Version</a>());<br/>
-&nbsp;&nbsp;<a href="CppWtAboutDialog.htm">WtAboutDialog</a> * <b><a href="CppConst.htm">const</a></b> d <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppWtAboutDialog.htm">WtAboutDialog</a>(a,<b><a href="CppFalse.htm">false</a></b>);<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> d;<br/>
+&nbsp;&nbsp;<a href="CppAbout.html">About</a> a <a href="CppOperatorAssign.htm">=</a> <a href="CppTicTacToe.html">TicTacToe</a>MenuDialog::GetAbout();<br/>
+&nbsp;&nbsp;a.<a href="CppAdd.htm">Add</a><a href="CppLibrary.html">Library</a>("<a href="CppWtTicTacToeWidget.html">WtTicTacToeWidget</a> <a href="CppVersion.html">version</a>: " <a href="CppOperatorPlus.htm">+</a> <a href="CppWtTicTacToeWidget.html">WtTicTacToeWidget</a>::Get<a href="CppVersion.html">Version</a>());<br/>
+&nbsp;&nbsp;a.<a href="CppAdd.htm">Add</a><a href="CppLibrary.html">Library</a>("<a href="CppWtAutoConfig.html">WtAutoConfig</a> <a href="CppVersion.html">version</a>: " <a href="CppOperatorPlus.htm">+</a> <a href="CppWtAutoConfig.html">WtAutoConfig</a>::Get<a href="CppVersion.html">Version</a>());<br/>
+&nbsp;&nbsp;<a href="CppWtAboutDialog.html">WtAboutDialog</a> * <b><a href="CppConst.html">const</a></b> d <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppWtAboutDialog.html">WtAboutDialog</a>(a,<b><a href="CppFalse.html">false</a></b>);<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> d;<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 </code></td></tr></table>

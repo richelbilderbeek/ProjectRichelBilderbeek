@@ -41,7 +41,7 @@ for <a href="CppMultipleChoiceQuestion.htm">MultipleChoiceQuestion</a>.</p>
 <table summary="multiplechoicequestiondialog.h" border = "1"><tr><td><code>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">/*</a><br/>
-<a href="CppMultipleChoiceQuestionDialog.htm">MultipleChoiceQuestionDialog</a>, dialog <b><a href="CppFor.htm">for</a></b> <a href="CppMultipleChoiceQuestion.htm">MultipleChoiceQuestion</a><br/>
+<a href="CppMultipleChoiceQuestionDialog.html">MultipleChoiceQuestionDialog</a>, dialog <b><a href="CppFor.htm">for</a></b> <a href="CppMultipleChoiceQuestion.html">MultipleChoiceQuestion</a><br/>
 Copyright (C) 2011 Richel Bilderbeek<br/>
 <br/>
 This program is free software: you can redistribute it and/or modify<br/>
@@ -57,45 +57,47 @@ You should have received a copy of the GNU General Public License<br/>
 along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">*/</a><br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="CppMultipleChoiceQuestionDialog.htm">CppMultipleChoiceQuestionDialog</a>.htm<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="CppMultipleChoiceQuestionDialog.html">CppMultipleChoiceQuestionDialog</a>.html<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppIfndef.htm">#ifndef</a> MULTIPLECHOICEQUESTIONDIALOG_H<br/>
-<a href="CppDefine.htm">#define</a> MULTIPLECHOICEQUESTIONDIALOG_H<br/>
+<a href="CppIfndef.html">#ifndef</a> MULTIPLECHOICEQUESTIONDIALOG_H<br/>
+<a href="CppDefine.html">#define</a> MULTIPLECHOICEQUESTIONDIALOG_H<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppShared_ptr.htm">shared_ptr</a>.hpp&gt;<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic push<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.html">-Weffc++</a>"<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppBoost.html">boost</a>/<a href="CppShared_ptr.html">shared_ptr</a><a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
+<a href="CppInclude.html">#include</a> "<a href="CppQuestionDialog.html">questiondialog</a><a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic pop<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppQuestionDialog.htm">questiondialog</a>.h"<br/>
+<b><a href="CppNamespace.html">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
 <br/>
-<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
+<b><a href="CppStruct.html">struct</a></b> <a href="CppMultipleChoiceQuestion.html">MultipleChoiceQuestion</a>;<br/>
 <br/>
-<b><a href="CppStruct.htm">struct</a></b> <a href="CppMultipleChoiceQuestion.htm">MultipleChoiceQuestion</a>;<br/>
-<br/>
-<b><a href="CppStruct.htm">struct</a></b> <a href="CppMultipleChoiceQuestionDialog.htm">MultipleChoiceQuestionDialog</a> : <b><a href="CppPublic.htm">public</a></b> <a href="CppQuestionDialog.htm">QuestionDialog</a><br/>
+<b><a href="CppStruct.html">struct</a></b> <a href="CppMultipleChoiceQuestionDialog.html">MultipleChoiceQuestionDialog</a> : <b><a href="CppPublic.html">public</a></b> <a href="CppQuestionDialog.html">QuestionDialog</a><br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppExplicit.htm">explicit</a></b> <a href="CppMultipleChoiceQuestionDialog.htm">MultipleChoiceQuestionDialog</a>(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppMultipleChoiceQuestion.htm">MultipleChoiceQuestion</a>&gt;&amp; <a href="CppQuestion.htm">question</a><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> CreateDefault<a href="CppQuestion.htm">Question</a>());<br/>
+&nbsp;&nbsp;<b><a href="CppExplicit.html">explicit</a></b> <a href="CppMultipleChoiceQuestionDialog.html">MultipleChoiceQuestionDialog</a>(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppBoostShared_ptr.html">boost::shared_ptr</a>&lt;<a href="CppMultipleChoiceQuestion.html">MultipleChoiceQuestion</a>&gt;&amp; <a href="CppQuestion.html">question</a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> CreateDefault<a href="CppQuestion.html">Question</a>());<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppExplicit.htm">explicit</a></b> <a href="CppMultipleChoiceQuestionDialog.htm">MultipleChoiceQuestionDialog</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; <a href="CppQuestion.htm">question</a>);<br/>
+&nbsp;&nbsp;<b><a href="CppExplicit.html">explicit</a></b> <a href="CppMultipleChoiceQuestionDialog.html">MultipleChoiceQuestionDialog</a>(<b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a>&amp; <a href="CppQuestion.html">question</a>);<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Obtain the <a href="CppVersion.htm">version</a><br/>
-&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> Get<a href="CppVersion.htm">Version</a>();<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Obtain the <a href="CppVersion.html">version</a><br/>
+&nbsp;&nbsp;<b><a href="CppStatic.html">static</a></b> <b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a> Get<a href="CppVersion.html">Version</a>();<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Obtain the <a href="CppVersion.htm">version</a> history<br/>
-&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; Get<a href="CppVersion.htm">Version</a>History();<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Obtain the <a href="CppVersion.html">version</a> history<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.html">static</a></b> <b><a href="CppConst.html">const</a></b> <a href="CppVector.html">std::vector</a>&lt;<a href="CppString.html">std::string</a>&gt; Get<a href="CppVersion.html">Version</a>History();<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppPrivate.htm">private</a></b>:<br/>
-&nbsp;&nbsp;<b><a href="CppFriend.htm">friend</a></b> <b><a href="CppVoid.htm">void</a></b> <a href="CppChecked_delete.htm">boost::checked_delete</a>&lt;&gt;(<a href="CppMultipleChoiceQuestionDialog.htm">MultipleChoiceQuestionDialog</a> *);<br/>
-&nbsp;&nbsp;~<a href="CppMultipleChoiceQuestionDialog.htm">MultipleChoiceQuestionDialog</a>() {}<br/>
+&nbsp;&nbsp;<b><a href="CppPrivate.html">private</a></b>:<br/>
+&nbsp;&nbsp;<b><a href="CppFriend.html">friend</a></b> <b><a href="CppVoid.htm">void</a></b> <a href="CppChecked_delete.html">boost::checked_delete</a>&lt;&gt;(<a href="CppMultipleChoiceQuestionDialog.html">MultipleChoiceQuestionDialog</a> *);<br/>
+&nbsp;&nbsp;~<a href="CppMultipleChoiceQuestionDialog.html">MultipleChoiceQuestionDialog</a>() {}<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Create a <b><a href="CppDefault.htm">default</a></b> <a href="CppQuestion.htm">Question</a><br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppStatic.htm">static</a></b> <a href="CppMultipleChoiceQuestion.htm">MultipleChoiceQuestion</a> * CreateDefault<a href="CppQuestion.htm">Question</a>();<br/>
-&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppMultipleChoiceQuestion.htm">MultipleChoiceQuestion</a>&gt; CreateDefault<a href="CppQuestion.htm">Question</a>();<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Create a <b><a href="CppDefault.html">default</a></b> <a href="CppQuestion.html">Question</a><br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppStatic.html">static</a></b> <a href="CppMultipleChoiceQuestion.html">MultipleChoiceQuestion</a> * CreateDefault<a href="CppQuestion.html">Question</a>();<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.html">static</a></b> <a href="CppBoostShared_ptr.html">boost::shared_ptr</a>&lt;<a href="CppMultipleChoiceQuestion.html">MultipleChoiceQuestion</a>&gt; CreateDefault<a href="CppQuestion.html">Question</a>();<br/>
 };<br/>
 <br/>
-} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.html">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
 <br/>
-<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> MULTIPLECHOICEQUESTIONDIALOG_H<br/>
+<a href="CppEndif.html">#endif</a> <a href="CppComment.htm">//</a> MULTIPLECHOICEQUESTIONDIALOG_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -109,7 +111,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <table summary="multiplechoicequestiondialog.cpp" border = "1"><tr><td><code>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">/*</a><br/>
-<a href="CppMultipleChoiceQuestionDialog.htm">MultipleChoiceQuestionDialog</a>, dialog <b><a href="CppFor.htm">for</a></b> <a href="CppMultipleChoiceQuestion.htm">MultipleChoiceQuestion</a><br/>
+<a href="CppMultipleChoiceQuestionDialog.html">MultipleChoiceQuestionDialog</a>, dialog <b><a href="CppFor.htm">for</a></b> <a href="CppMultipleChoiceQuestion.html">MultipleChoiceQuestion</a><br/>
 Copyright (C) 2011 Richel Bilderbeek<br/>
 <br/>
 This program is free software: you can redistribute it and/or modify<br/>
@@ -125,41 +127,40 @@ You should have received a copy of the GNU General Public License<br/>
 along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">*/</a><br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="CppMultipleChoiceQuestionDialog.htm">CppMultipleChoiceQuestionDialog</a>.htm<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="CppMultipleChoiceQuestionDialog.html">CppMultipleChoiceQuestionDialog</a>.html<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic push<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.html">-Weffc++</a>"<br/>
+<a href="CppInclude.html">#include</a> "<a href="CppMultipleChoiceQuestionDialog.html">multiplechoicequestiondialog</a><a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppCassertH.html">cassert</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> "<a href="CppMultipleChoiceQuestion.html">multiplechoicequestion</a><a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "<a href="CppQuestion.html">question</a><a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic pop<br/>
 <br/>
-<br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppMultipleChoiceQuestionDialog.htm">multiplechoicequestiondialog</a>.h"<br/>
-<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
-<br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppMultipleChoiceQuestion.htm">multiplechoicequestion</a>.h"<br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppQuestion.htm">question</a>.h"<br/>
-<br/>
-<a href="CppRibi.htm">ribi</a>::<a href="CppMultipleChoiceQuestionDialog.htm">MultipleChoiceQuestionDialog</a>::<a href="CppMultipleChoiceQuestionDialog.htm">MultipleChoiceQuestionDialog</a>(<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppMultipleChoiceQuestion.htm">MultipleChoiceQuestion</a>&gt;&amp; <a href="CppQuestion.htm">question</a>)<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppConst.htm">const</a></b> <a href="CppMultipleChoiceQuestion.htm">MultipleChoiceQuestion</a> * <b><a href="CppConst.htm">const</a></b> <a href="CppQuestion.htm">question</a>)<br/>
-&nbsp;&nbsp;: <a href="CppQuestionDialog.htm">QuestionDialog</a>(<a href="CppQuestion.htm">question</a>)<br/>
+<a href="CppRibi.htm">ribi</a>::<a href="CppMultipleChoiceQuestionDialog.html">MultipleChoiceQuestionDialog</a>::<a href="CppMultipleChoiceQuestionDialog.html">MultipleChoiceQuestionDialog</a>(<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppBoostShared_ptr.html">boost::shared_ptr</a>&lt;<a href="CppMultipleChoiceQuestion.html">MultipleChoiceQuestion</a>&gt;&amp; <a href="CppQuestion.html">question</a>)<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppConst.html">const</a></b> <a href="CppMultipleChoiceQuestion.html">MultipleChoiceQuestion</a> * <b><a href="CppConst.html">const</a></b> <a href="CppQuestion.html">question</a>)<br/>
+&nbsp;&nbsp;: <a href="CppQuestionDialog.html">QuestionDialog</a>(<a href="CppQuestion.html">question</a>)<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(CanSubmit());<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!HasSubmitted());<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(Get<a href="CppQuestion.htm">Question</a>());<br/>
+&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(CanSubmit());<br/>
+&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(!HasSubmitted());<br/>
+&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(Get<a href="CppQuestion.html">Question</a>());<br/>
 }<br/>
 <br/>
-<a href="CppRibi.htm">ribi</a>::<a href="CppMultipleChoiceQuestionDialog.htm">MultipleChoiceQuestionDialog</a>::<a href="CppMultipleChoiceQuestionDialog.htm">MultipleChoiceQuestionDialog</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; <a href="CppQuestion.htm">question</a>)<br/>
-&nbsp;&nbsp;: <a href="CppQuestionDialog.htm">QuestionDialog</a>(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppMultipleChoiceQuestion.htm">MultipleChoiceQuestion</a>&gt;(<b><a href="CppNew.htm">new</a></b><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppMultipleChoiceQuestion.htm">MultipleChoiceQuestion</a>(<a href="CppQuestion.htm">question</a>)))<br/>
+<a href="CppRibi.htm">ribi</a>::<a href="CppMultipleChoiceQuestionDialog.html">MultipleChoiceQuestionDialog</a>::<a href="CppMultipleChoiceQuestionDialog.html">MultipleChoiceQuestionDialog</a>(<b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a>&amp; <a href="CppQuestion.html">question</a>)<br/>
+&nbsp;&nbsp;: <a href="CppQuestionDialog.html">QuestionDialog</a>(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBoostShared_ptr.html">boost::shared_ptr</a>&lt;<a href="CppMultipleChoiceQuestion.html">MultipleChoiceQuestion</a>&gt;(<b><a href="CppNew.htm">new</a></b><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppMultipleChoiceQuestion.html">MultipleChoiceQuestion</a>(<a href="CppQuestion.html">question</a>)))<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(CanSubmit());<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!HasSubmitted());<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(Get<a href="CppQuestion.htm">Question</a>());<br/>
+&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(CanSubmit());<br/>
+&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(!HasSubmitted());<br/>
+&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(Get<a href="CppQuestion.html">Question</a>());<br/>
 }<br/>
 <br/>
-<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRibi.htm">ribi</a>::<a href="CppMultipleChoiceQuestion.htm">MultipleChoiceQuestion</a>&gt; <a href="CppRibi.htm">ribi</a>::<a href="CppMultipleChoiceQuestionDialog.htm">MultipleChoiceQuestionDialog</a>::CreateDefault<a href="CppQuestion.htm">Question</a>()<br/>
+<a href="CppBoostShared_ptr.html">boost::shared_ptr</a>&lt;<a href="CppRibi.htm">ribi</a>::<a href="CppMultipleChoiceQuestion.html">MultipleChoiceQuestion</a>&gt; <a href="CppRibi.htm">ribi</a>::<a href="CppMultipleChoiceQuestionDialog.html">MultipleChoiceQuestionDialog</a>::CreateDefault<a href="CppQuestion.html">Question</a>()<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppMultipleChoiceQuestion.htm">MultipleChoiceQuestion</a>&gt;(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppNew.htm">new</a></b> <a href="CppMultipleChoiceQuestion.htm">MultipleChoiceQuestion</a>(<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> <a href="CppBoostShared_ptr.html">boost::shared_ptr</a>&lt;<a href="CppMultipleChoiceQuestion.html">MultipleChoiceQuestion</a>&gt;(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppNew.htm">new</a></b> <a href="CppMultipleChoiceQuestion.html">MultipleChoiceQuestion</a>(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"*",<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"1+2=",<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"3",<br/>
@@ -168,15 +169,15 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;);<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppRibi.htm">ribi</a>::<a href="CppMultipleChoiceQuestionDialog.htm">MultipleChoiceQuestionDialog</a>::Get<a href="CppVersion.htm">Version</a>()<br/>
+<b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a> <a href="CppRibi.htm">ribi</a>::<a href="CppMultipleChoiceQuestionDialog.html">MultipleChoiceQuestionDialog</a>::Get<a href="CppVersion.html">Version</a>()<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> "1.0";<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> "1.0";<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm">ribi</a>::<a href="CppMultipleChoiceQuestionDialog.htm">MultipleChoiceQuestionDialog</a>::Get<a href="CppVersion.htm">Version</a>History()<br/>
+<b><a href="CppConst.html">const</a></b> <a href="CppVector.html">std::vector</a>&lt;<a href="CppString.html">std::string</a>&gt; <a href="CppRibi.htm">ribi</a>::<a href="CppMultipleChoiceQuestionDialog.html">MultipleChoiceQuestionDialog</a>::Get<a href="CppVersion.html">Version</a>History()<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> {<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;"2011-06-29: <a href="CppVersion.htm">version</a> 1.0: initial <a href="CppVersion.htm">version</a>"<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"2011-06-29: <a href="CppVersion.html">version</a> 1.0: initial <a href="CppVersion.html">version</a>"<br/>
 &nbsp;&nbsp;};<br/>
 }<br/>
 </code></td></tr></table>

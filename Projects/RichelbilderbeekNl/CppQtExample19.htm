@@ -76,12 +76,12 @@
 QT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; += core gui<br/>
 greaterThan(QT_MAJOR_VERSION, 4): QT += <a href="CppWidget.htm">widget</a>s<br/>
 <br/>
-TEMPLATE = app<br/>
-<a href="CppSOURCES.htm">SOURCES</a> += <a href="CppMain.htm">main</a>.cpp\<br/>
+<a href="CppQmakeTemplate.htm">TEMPLATE</a> = app<br/>
+<a href="CppQmakeSources.htm">SOURCES</a> += <a href="CppMain.htm">main</a>.cpp\<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;dialog<a href="CppMain.htm">main</a>.cpp<br/>
-<a href="CppHEADERS.htm">HEADERS</a>&nbsp;&nbsp;+= dialog<a href="CppMain.htm">main</a>.h<br/>
+<a href="CppQmakeHeaders.htm">HEADERS</a>&nbsp;&nbsp;+= dialog<a href="CppMain.htm">main</a>.h<br/>
 <a href="CppFORMS.htm">FORMS</a>&nbsp;&nbsp;&nbsp;&nbsp;+= dialog<a href="CppMain.htm">main</a>.ui<br/>
-<a href="CppRESOURCES.htm">RESOURCES</a> += \<br/>
+<a href="CppQmakeResources.htm">RESOURCES</a> += \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;resources.qrc<br/>
 </code></td></tr></table>
 <!-- end of the code -->
@@ -94,48 +94,48 @@ TEMPLATE = app<br/>
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="dialogmain.h" border = "1"><tr><td><code>
-<a href="CppIfndef.htm">#ifndef</a> DIALOGMAIN_H<br/>
-<a href="CppDefine.htm">#define</a> DIALOGMAIN_H<br/>
+<a href="CppIfndef.html">#ifndef</a> DIALOGMAIN_H<br/>
+<a href="CppDefine.html">#define</a> DIALOGMAIN_H<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppQDialog.htm">QDialog</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppQDialog.html">QDialog</a>&gt;<br/>
 <br/>
-<b><a href="CppStruct.htm">struct</a></b> <a href="CppQGraphicsScene.htm">QGraphicsScene</a>;<br/>
-<b><a href="CppStruct.htm">struct</a></b> <a href="CppQGraphicsPixmapItem.htm">QGraphicsPixmapItem</a>;<br/>
+<b><a href="CppStruct.html">struct</a></b> <a href="CppQGraphicsScene.html">QGraphicsScene</a>;<br/>
+<b><a href="CppStruct.html">struct</a></b> <a href="CppQGraphicsPixmapItem.html">QGraphicsPixmapItem</a>;<br/>
 <br/>
-<b><a href="CppNamespace.htm">namespace</a></b> Ui {<br/>
-&nbsp;&nbsp;<b><a href="CppClass.htm">class</a></b> DialogMain;<br/>
+<b><a href="CppNamespace.html">namespace</a></b> Ui {<br/>
+&nbsp;&nbsp;<b><a href="CppClass.html">class</a></b> DialogMain;<br/>
 }<br/>
 <br/>
-<b><a href="CppClass.htm">class</a></b> DialogMain : <b><a href="CppPublic.htm">public</a></b> <a href="CppQDialog.htm">QDialog</a><br/>
+<b><a href="CppClass.html">class</a></b> DialogMain : <b><a href="CppPublic.html">public</a></b> <a href="CppQDialog.html">QDialog</a><br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppQ_OBJECT.htm">Q_OBJECT</a><br/>
+&nbsp;&nbsp;<a href="CppQ_OBJECT.html">Q_OBJECT</a><br/>
 <br/>
-<b><a href="CppPublic.htm">public</a></b>:<br/>
-&nbsp;&nbsp;<b><a href="CppExplicit.htm">explicit</a></b> DialogMain(<a href="CppQWidget.htm">QWidget</a> *parent <a href="CppOperatorAssign.htm">=</a> 0);<br/>
+<b><a href="CppPublic.html">public</a></b>:<br/>
+&nbsp;&nbsp;<b><a href="CppExplicit.html">explicit</a></b> DialogMain(<a href="CppQWidget.html">QWidget</a> *parent <a href="CppOperatorAssign.htm">=</a> 0);<br/>
 &nbsp;&nbsp;~DialogMain();<br/>
 <br/>
-<b><a href="CppProtected.htm">protected</a></b>:<br/>
-&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> changeEvent(<a href="CppQEvent.htm">QEvent</a> *e);<br/>
+<b><a href="CppProtected.html">protected</a></b>:<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> changeEvent(<a href="CppQEvent.html">QEvent</a> *e);<br/>
 <br/>
-<b><a href="CppPrivate.htm">private</a></b>:<br/>
+<b><a href="CppPrivate.html">private</a></b>:<br/>
 &nbsp;&nbsp;<a href="CppUi.htm">Ui</a>::DialogMain *ui;<br/>
-&nbsp;&nbsp;<a href="CppQTimer.htm">QTimer</a> * <b><a href="CppConst.htm">const</a></b> m_<a href="CppTime.htm">time</a>r;<br/>
-&nbsp;&nbsp;<a href="CppQGraphicsScene.htm">QGraphicsScene</a> * <b><a href="CppConst.htm">const</a></b> m_scene;<br/>
-&nbsp;&nbsp;<a href="CppQGraphicsPixmapItem.htm">QGraphicsPixmapItem</a> * <b><a href="CppConst.htm">const</a></b> m_sprite;<br/>
-&nbsp;&nbsp;<b><a href="CppDouble.htm">double</a></b> m_angle;<br/>
+&nbsp;&nbsp;<a href="CppQTimer.html">QTimer</a> * <b><a href="CppConst.html">const</a></b> m_<a href="CppTime.htm">time</a>r;<br/>
+&nbsp;&nbsp;<a href="CppQGraphicsScene.html">QGraphicsScene</a> * <b><a href="CppConst.html">const</a></b> m_scene;<br/>
+&nbsp;&nbsp;<a href="CppQGraphicsPixmapItem.html">QGraphicsPixmapItem</a> * <b><a href="CppConst.html">const</a></b> m_sprite;<br/>
+&nbsp;&nbsp;<b><a href="CppDouble.html">double</a></b> m_angle;<br/>
 <br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> resizeEvent(<a href="CppQResizeEvent.htm">QResizeEvent</a>*);<br/>
-&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> keyPressEvent(<a href="CppQKeyEvent.htm">QKeyEvent</a>* e);<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> resizeEvent(<a href="CppQResizeEvent.html">QResizeEvent</a>*);<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> keyPressEvent(<a href="CppQKeyEvent.html">QKeyEvent</a>* e);<br/>
 <br/>
-<b><a href="CppPrivate.htm">private</a></b> <b><a href="CppSlots.htm">slots</a></b>:<br/>
+<b><a href="CppPrivate.html">private</a></b> <b><a href="CppSlots.html">slots</a></b>:<br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> onTick();<br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> onCheck();<br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> onButtonLeft();<br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> onButtonRight();<br/>
 };<br/>
 <br/>
-<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> DIALOGMAIN_H<br/>
+<a href="CppEndif.html">#endif</a> <a href="CppComment.htm">//</a> DIALOGMAIN_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -147,37 +147,37 @@ TEMPLATE = app<br/>
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="dialogmain.cpp" border = "1"><tr><td><code>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppCmathH.htm">cmath</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppIostreamH.htm">iostream</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppCassertH.html">cassert</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppCmathH.html">cmath</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppIostreamH.html">iostream</a>&gt;<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppQDesktopWidget.htm">QDesktopWidget</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppQGraphicsPixmapItem.htm">QGraphicsPixmapItem</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppQGraphicsScene.htm">QGraphicsScene</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppQKeyEvent.htm">QKeyEvent</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppQTimer.htm">QTimer</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppQDesktopWidget.html">QDesktopWidget</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppQGraphicsPixmapItem.html">QGraphicsPixmapItem</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppQGraphicsScene.html">QGraphicsScene</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppQKeyEvent.html">QKeyEvent</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppQTimer.html">QTimer</a>&gt;<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> "dialogmain.h"<br/>
-<a href="CppInclude.htm">#include</a> "ui_dialogmain.h"<br/>
+<a href="CppInclude.html">#include</a> "dialogmain<a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "ui_dialogmain<a href="CppHeaderFile.htm">.h</a>"<br/>
 <br/>
-DialogMain::DialogMain(<a href="CppQWidget.htm">QWidget</a> *parent) :<br/>
-&nbsp;&nbsp;<a href="CppQDialog.htm">QDialog</a>(parent),<br/>
+DialogMain::DialogMain(<a href="CppQWidget.html">QWidget</a> *parent) :<br/>
+&nbsp;&nbsp;<a href="CppQDialog.html">QDialog</a>(parent),<br/>
 &nbsp;&nbsp;ui(<b><a href="CppNew.htm">new</a></b> <a href="CppUi.htm">Ui</a>::DialogMain),<br/>
-&nbsp;&nbsp;m_<a href="CppTime.htm">time</a>r(<b><a href="CppNew.htm">new</a></b> <a href="CppQTimer.htm">QTimer</a>(<b><a href="CppThis.htm">this</a></b>)),<br/>
-&nbsp;&nbsp;m_scene(<b><a href="CppNew.htm">new</a></b> <a href="CppQGraphicsScene.htm">QGraphicsScene</a>(<b><a href="CppThis.htm">this</a></b>)),<br/>
-&nbsp;&nbsp;m_sprite(<b><a href="CppNew.htm">new</a></b> <a href="CppQGraphicsPixmapItem.htm">QGraphicsPixmapItem</a>),<br/>
+&nbsp;&nbsp;m_<a href="CppTime.htm">time</a>r(<b><a href="CppNew.htm">new</a></b> <a href="CppQTimer.html">QTimer</a>(<b><a href="CppThis.htm">this</a></b>)),<br/>
+&nbsp;&nbsp;m_scene(<b><a href="CppNew.htm">new</a></b> <a href="CppQGraphicsScene.html">QGraphicsScene</a>(<b><a href="CppThis.htm">this</a></b>)),<br/>
+&nbsp;&nbsp;m_sprite(<b><a href="CppNew.htm">new</a></b> <a href="CppQGraphicsPixmapItem.html">QGraphicsPixmapItem</a>),<br/>
 &nbsp;&nbsp;m_angle(0.0)<br/>
 {<br/>
 &nbsp;&nbsp;ui-&gt;setupUi(<b><a href="CppThis.htm">this</a></b>);<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Load the sprite<br/>
-&nbsp;&nbsp;m_sprite-&gt;setPixmap(<a href="CppQPixmap.htm">QPixmap</a>(":/images/R.png"));<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!m_sprite-&gt;pixmap().isNull());<br/>
+&nbsp;&nbsp;m_sprite-&gt;setPixmap(<a href="CppQPixmap.html">QPixmap</a>(":/images/R.png"));<br/>
+&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(!m_sprite-&gt;pixmap().isNull());<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Set the center of the sprite <b><a href="CppFor.htm">for</a></b> rotation<br/>
-&nbsp;&nbsp;m_sprite-&gt;setTransformOrigin<a href="CppPoint.htm">Point</a>(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(m_sprite-&gt;pixmap().width()) <a href="CppOperatorDivide.htm">/</a> 2.0,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(m_sprite-&gt;pixmap().height()) <a href="CppOperatorDivide.htm">/</a> 2.0);<br/>
+&nbsp;&nbsp;m_sprite-&gt;setTransformOrigin<a href="CppPoint.html">Point</a>(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppStatic_cast.html">static_cast</a></b>&lt;<b><a href="CppDouble.html">double</a></b>&gt;(m_sprite-&gt;pixmap().width()) <a href="CppOperatorDivide.htm">/</a> 2.0,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppStatic_cast.html">static_cast</a></b>&lt;<b><a href="CppDouble.html">double</a></b>&gt;(m_sprite-&gt;pixmap()<a href="CppHeaderFile.htm">.h</a>eight()) <a href="CppOperatorDivide.htm">/</a> 2.0);<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppAdd.htm">Add</a> the sprite to the scene<br/>
 &nbsp;&nbsp;m_scene-&gt;addItem(m_sprite);<br/>
@@ -186,66 +186,66 @@ DialogMain::DialogMain(<a href="CppQWidget.htm">QWidget</a> *parent) :<br/>
 &nbsp;&nbsp;ui-&gt;graphicsView-&gt;setScene(m_scene);<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Connect and start a <a href="CppTime.htm">time</a>r<br/>
-&nbsp;&nbsp;<a href="CppQObject.htm">QObject</a>::connect(m_<a href="CppTime.htm">time</a>r,<a href="CppSignalMacro.htm">SIGNAL</a>(<a href="CppTime.htm">time</a>out()),<b><a href="CppThis.htm">this</a></b>,<a href="CppSLOT.htm">SLOT</a>(onTick()));<br/>
-&nbsp;&nbsp;<a href="CppQObject.htm">QObject</a>::connect(ui-&gt;check_<b><a href="CppAuto.htm">auto</a></b>_rotate,<a href="CppSignalMacro.htm">SIGNAL</a>(clicked()),<b><a href="CppThis.htm">this</a></b>,<a href="CppSLOT.htm">SLOT</a>(onCheck()));<br/>
-&nbsp;&nbsp;<a href="CppQObject.htm">QObject</a>::connect(ui-&gt;button_left,<a href="CppSignalMacro.htm">SIGNAL</a>(clicked()),<b><a href="CppThis.htm">this</a></b>,<a href="CppSLOT.htm">SLOT</a>(onButtonLeft()));<br/>
-&nbsp;&nbsp;<a href="CppQObject.htm">QObject</a>::connect(ui-&gt;button_right,<a href="CppSignalMacro.htm">SIGNAL</a>(clicked()),<b><a href="CppThis.htm">this</a></b>,<a href="CppSLOT.htm">SLOT</a>(onButtonRight()));<br/>
+&nbsp;&nbsp;<a href="CppQObject.html">QObject</a>::connect(m_<a href="CppTime.htm">time</a>r,<a href="CppSignalMacro.html">SIGNAL</a>(<a href="CppTime.htm">time</a>out()),<b><a href="CppThis.htm">this</a></b>,<a href="CppSLOT.htm">SLOT</a>(onTick()));<br/>
+&nbsp;&nbsp;<a href="CppQObject.html">QObject</a>::connect(ui-&gt;check_<b><a href="CppAuto.htm">auto</a></b>_rotate,<a href="CppSignalMacro.html">SIGNAL</a>(clicked()),<b><a href="CppThis.htm">this</a></b>,<a href="CppSLOT.htm">SLOT</a>(onCheck()));<br/>
+&nbsp;&nbsp;<a href="CppQObject.html">QObject</a>::connect(ui-&gt;button_left,<a href="CppSignalMacro.html">SIGNAL</a>(clicked()),<b><a href="CppThis.htm">this</a></b>,<a href="CppSLOT.htm">SLOT</a>(onButtonLeft()));<br/>
+&nbsp;&nbsp;<a href="CppQObject.html">QObject</a>::connect(ui-&gt;button_right,<a href="CppSignalMacro.html">SIGNAL</a>(clicked()),<b><a href="CppThis.htm">this</a></b>,<a href="CppSLOT.htm">SLOT</a>(onButtonRight()));<br/>
 <br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Start the <a href="CppTime.htm">time</a>r<br/>
 &nbsp;&nbsp;m_<a href="CppTime.htm">time</a>r-&gt;start(100);<br/>
 <br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;setGeometry(0,0,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(640),<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(640));<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppQRect.htm">QRect</a> screen <a href="CppOperatorAssign.htm">=</a> <a href="CppQApplication.htm">QApplication</a>::desktop()-&gt;screenGeometry();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppStatic_cast.html">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(640),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppStatic_cast.html">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(640));<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppQRect.html">QRect</a> screen <a href="CppOperatorAssign.htm">=</a> <a href="CppQApplication.html">QApplication</a>::desktop()-&gt;screenGeometry();<br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;move( screen.center() <a href="CppOperatorMinus.htm">-</a> <b><a href="CppThis.htm">this</a></b>-&gt;rect().center() );<br/>
 }<br/>
 <br/>
 DialogMain::~DialogMain()<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppDelete.htm">delete</a></b> ui;<br/>
-&nbsp;&nbsp;<b><a href="CppDelete.htm">delete</a></b> m_sprite;<br/>
+&nbsp;&nbsp;<b><a href="CppDelete.html">delete</a></b> ui;<br/>
+&nbsp;&nbsp;<b><a href="CppDelete.html">delete</a></b> m_sprite;<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> DialogMain::changeEvent(<a href="CppQEvent.htm">QEvent</a> *e)<br/>
+<b><a href="CppVoid.htm">void</a></b> DialogMain::changeEvent(<a href="CppQEvent.html">QEvent</a> *e)<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppQDialog.htm">QDialog</a>::changeEvent(e);<br/>
-&nbsp;&nbsp;<b><a href="CppSwitch.htm">switch</a></b> (e-&gt;type()) {<br/>
-&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> <a href="CppQEvent.htm">QEvent</a>::LanguageChange:<br/>
+&nbsp;&nbsp;<a href="CppQDialog.html">QDialog</a>::changeEvent(e);<br/>
+&nbsp;&nbsp;<b><a href="CppSwitch.html">switch</a></b> (e-&gt;type()) {<br/>
+&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> <a href="CppQEvent.html">QEvent</a>::LanguageChange:<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;ui-&gt;retranslateUi(<b><a href="CppThis.htm">this</a></b>);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppBreak.htm">break</a></b>;<br/>
-&nbsp;&nbsp;<b><a href="CppDefault.htm">default</a></b>:<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppBreak.htm">break</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppBreak.html">break</a></b>;<br/>
+&nbsp;&nbsp;<b><a href="CppDefault.html">default</a></b>:<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppBreak.html">break</a></b>;<br/>
 &nbsp;&nbsp;}<br/>
 }<br/>
 <br/>
 <a href="CppComment.htm">//</a>Sets the scale of the maze<br/>
-<b><a href="CppVoid.htm">void</a></b> DialogMain::resizeEvent(<a href="CppQResizeEvent.htm">QResizeEvent</a>*)<br/>
+<b><a href="CppVoid.htm">void</a></b> DialogMain::resizeEvent(<a href="CppQResizeEvent.html">QResizeEvent</a>*)<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> size <a href="CppOperatorAssign.htm">=</a> <a href="CppMax.htm">std::max</a>(<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> size <a href="CppOperatorAssign.htm">=</a> <a href="CppMax.html">std::max</a>(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;m_sprite-&gt;pixmap().width(),<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;m_sprite-&gt;pixmap().height());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_sprite-&gt;pixmap()<a href="CppHeaderFile.htm">.h</a>eight());<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> scale <a href="CppOperatorAssign.htm">=</a> 0.9<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;* <a href="CppMin.htm">std::min</a>(ui-&gt;graphicsView-&gt;width(),<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> scale <a href="CppOperatorAssign.htm">=</a> 0.9<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;* <a href="CppMin.html">std::min</a>(ui-&gt;graphicsView-&gt;width(),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ui-&gt;graphicsView-&gt;height())<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorDivide.htm">/</a> (<b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(size) * <a href="CppSqrt.htm">std::sqrt</a>(2.0));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorDivide.htm">/</a> (<b><a href="CppStatic_cast.html">static_cast</a></b>&lt;<b><a href="CppDouble.html">double</a></b>&gt;(size) * <a href="CppSqrt.html">std::sqrt</a>(2.0));<br/>
 &nbsp;&nbsp;m_sprite-&gt;setScale(scale);<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> DialogMain::keyPressEvent(<a href="CppQKeyEvent.htm">QKeyEvent</a>* e)<br/>
+<b><a href="CppVoid.htm">void</a></b> DialogMain::keyPressEvent(<a href="CppQKeyEvent.html">QKeyEvent</a>* e)<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppSwitch.htm">switch</a></b> (e-&gt;key())<br/>
+&nbsp;&nbsp;<b><a href="CppSwitch.html">switch</a></b> (e-&gt;key())<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> <a href="CppQt.htm">Qt</a>::Key_Left: <b><a href="CppCase.htm">case</a></b> <a href="CppQt.htm">Qt</a>::Key_Minus: <b><a href="CppCase.htm">case</a></b> <a href="CppQt.htm">Qt</a>::Key_A:<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;m_angle<a href="CppOperatorMinusAssign.htm">-=</a>1.0;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;m_sprite-&gt;setRotation(m_angle);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppBreak.htm">break</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppBreak.html">break</a></b>;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> <a href="CppQt.htm">Qt</a>::Key_Right: <b><a href="CppCase.htm">case</a></b> <a href="CppQt.htm">Qt</a>::Key_Plus: <b><a href="CppCase.htm">case</a></b> <a href="CppQt.htm">Qt</a>::Key_D:<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;m_angle<a href="CppOperatorPlusAssign.htm">+=</a>1.0;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;m_sprite-&gt;setRotation(m_angle);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppBreak.htm">break</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppBreak.html">break</a></b>;<br/>
 &nbsp;&nbsp;}<br/>
 }<br/>
 <br/>
@@ -286,16 +286,16 @@ DialogMain::~DialogMain()<br/>
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="main.cpp" border = "1"><tr><td><code>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppQApplication.htm">QApplication</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> "dialogmain.h"<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppQApplication.html">QApplication</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> "dialogmain<a href="CppHeaderFile.htm">.h</a>"<br/>
 <br/>
-<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>(<b><a href="CppInt.htm">int</a></b> <a href="CppArgc.htm">argc</a>, <b><a href="CppChar.htm">char</a></b> *<a href="CppArgc.htm">argv</a>[])<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a>(<b><a href="CppInt.htm">int</a></b> <a href="CppArgc.htm">argc</a>, <b><a href="CppChar.htm">char</a></b> *<a href="CppArgc.htm">argv</a>[])<br/>
 {<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQApplication.htm">QApplication</a> a(<a href="CppArgc.htm">argc</a>, <a href="CppArgc.htm">argv</a>);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQApplication.html">QApplication</a> a(<a href="CppArgc.htm">argc</a>, <a href="CppArgc.htm">argv</a>);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;DialogMain w;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;w.show();<br/>
 <br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> a.exec();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> a.exec();<br/>
 }<br/>
 </code></td></tr></table>
 <!-- end of the code -->

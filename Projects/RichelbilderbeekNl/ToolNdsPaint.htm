@@ -69,23 +69,23 @@
 #-------------------------------------------------<br/>
 QT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; += core<br/>
 QT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -= gui<br/>
-CONFIG&nbsp;&nbsp; += console<br/>
-CONFIG&nbsp;&nbsp; -= app_bundle<br/>
-TEMPLATE = app<br/>
-<a href="CppSOURCES.htm">SOURCES</a> += <a href="CppMain.htm">main</a>.cpp<br/>
+<a href="CppQmakeConfig.htm">CONFIG</a>&nbsp;&nbsp; += console<br/>
+<a href="CppQmakeConfig.htm">CONFIG</a>&nbsp;&nbsp; -= app_bundle<br/>
+<a href="CppQmakeTemplate.htm">TEMPLATE</a> = app<br/>
+<a href="CppQmakeSources.htm">SOURCES</a> += <a href="CppMain.htm">main</a>.cpp<br/>
 <br/>
 #Define this flag for NDS<br/>
 #NDS development (must make from command line, however)<br/>
-<a href="CppINCLUDEPATH.htm">INCLUDEPATH</a> += /opt/devkitpro/libnds-1.4.7/include<br/>
-<a href="CppINCLUDEPATH.htm">INCLUDEPATH</a> += /opt/devkitpro/libnds-src-1.4.7/include/nds<br/>
-<a href="CppINCLUDEPATH.htm">INCLUDEPATH</a> += /opt/devkitpro/devkitARM/arm-eabi/include<br/>
-<a href="CppLIBS.htm">LIBS</a> += -L/opt/devkitpro/libnds-1.4.7/lib -lnds9<br/>
-<a href="CppLIBS.htm">LIBS</a> += -L/opt/devkitpro/devkitARM/arm-eabi/lib -lstdc++<br/>
-DEFINES += ARM9<br/>
-CONFIG&nbsp;&nbsp; += console<br/>
-CONFIG -= qt<br/>
-CONFIG&nbsp;&nbsp; -= app_bundle<br/>
-TEMPLATE = app<br/>
+<a href="CppQmakeIncludepath.htm">INCLUDEPATH</a> += /opt/devkitpro/libnds-1.4.7/include<br/>
+<a href="CppQmakeIncludepath.htm">INCLUDEPATH</a> += /opt/devkitpro/libnds-src-1.4.7/include/nds<br/>
+<a href="CppQmakeIncludepath.htm">INCLUDEPATH</a> += /opt/devkitpro/devkitARM/arm-eabi/include<br/>
+<a href="CppQmakeLibs.htm">LIBS</a> += -L/opt/devkitpro/libnds-1.4.7/lib -lnds9<br/>
+<a href="CppQmakeLibs.htm">LIBS</a> += -L/opt/devkitpro/devkitARM/arm-eabi/lib -lstdc++<br/>
+<a href="CppQmakeDefines.htm">DEFINES</a> += ARM9<br/>
+<a href="CppQmakeConfig.htm">CONFIG</a>&nbsp;&nbsp; += console<br/>
+<a href="CppQmakeConfig.htm">CONFIG</a> -= qt<br/>
+<a href="CppQmakeConfig.htm">CONFIG</a>&nbsp;&nbsp; -= app_bundle<br/>
+<a href="CppQmakeTemplate.htm">TEMPLATE</a> = app<br/>
 QMAKE_CC = /opt/devkitpro/devkitARM/bin/arm-eabi-g++<br/>
 QMAKE_CXX = /opt/devkitpro/devkitARM/bin/arm-eabi-g++<br/>
 QMAKE_LINK = /opt/devkitpro/devkitARM/bin/arm-eabi-g++<br/>
@@ -101,17 +101,17 @@ QMAKE_LFLAGS = -T/opt/devkitpro/devkitARM/arm-eabi/lib/ds_arm9.ld<br/>
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="main.cpp" border = "1"><tr><td><code>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppCstdlibH.htm">cstdlib</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppIostreamH.htm">iostream</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppCstdlibH.html">cstdlib</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppIostreamH.html">iostream</a>&gt;<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> &lt;nds.h&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;nds<a href="CppHeaderFile.htm">.h</a>&gt;<br/>
 <br/>
-<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a>()<br/>
 {<br/>
 &nbsp;&nbsp;videoSetMode(MODE_FB0);<br/>
 &nbsp;&nbsp;vramSetBankA(VRAM_A_LCD);<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>notice we <a href="CppMake.htm">make</a> sure the <a href="CppMain.htm">main</a> graphics engine renders<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>notice we <a href="CppMake.htm">make</a> sure the <a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a> graphics engine renders<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>to the lower lcd screen as it would be hard to draw <b><a href="CppIf.htm">if</a></b> the<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>pixels did not show up directly beneath the pen<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>lcdMainOnBottom();<br/>
@@ -119,7 +119,7 @@ QMAKE_LFLAGS = -T/opt/devkitpro/devkitARM/arm-eabi/lib/ds_arm9.ld<br/>
 &nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> y <a href="CppOperatorAssign.htm">=</a> 0;<br/>
 &nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> z <a href="CppOperatorAssign.htm">=</a> 0;<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppWhile.htm">while</a></b>(1)<br/>
+&nbsp;&nbsp;<b><a href="CppWhile.html">while</a></b>(1)<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a>+x;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (x <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> SCREEN_WIDTH )<br/>
@@ -135,7 +135,7 @@ QMAKE_LFLAGS = -T/opt/devkitpro/devkitARM/arm-eabi/lib/ds_arm9.ld<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>VRAM_A[x <a href="CppOperatorPlus.htm">+</a> y * SCREEN_WIDTH] <a href="CppOperatorAssign.htm">=</a> RGB15(z,z,z);<br/>
 <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;scanKeys();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> keys <a href="CppOperatorAssign.htm">=</a> keysHeld();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> keys <a href="CppOperatorAssign.htm">=</a> keysHeld();<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppIf.htm">if</a></b>(keys &amp; KEY_TOUCH)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>z <a href="CppOperatorAssign.htm">=</a> 0;<br/>
@@ -145,11 +145,11 @@ QMAKE_LFLAGS = -T/opt/devkitpro/devkitARM/arm-eabi/lib/ds_arm9.ld<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;touchRead(&amp;pos);<br/>
 <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;VRAM_A[pos.px <a href="CppOperatorPlus.htm">+</a> (pos.py * 256)] <a href="CppOperatorAssign.htm">=</a> rand();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>VRAM_A[ <a href="CppRand.htm">std::rand</a>() <a href="CppOperatorModulus.htm">%</a> (SCREEN_WIDTH * SCREEN_HEIGHT) ] <a href="CppOperatorAssign.htm">=</a> <a href="CppRand.htm">std::rand</a>();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>VRAM_A[ <a href="CppRand.html">std::rand</a>() <a href="CppOperatorModulus.htm">%</a> (SCREEN_WIDTH * SCREEN_HEIGHT) ] <a href="CppOperatorAssign.htm">=</a> <a href="CppRand.html">std::rand</a>();<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;}<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> 0;<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> 0;<br/>
 }<br/>
 </code></td></tr></table>
 <!-- end of the code -->

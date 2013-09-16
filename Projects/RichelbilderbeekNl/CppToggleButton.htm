@@ -42,7 +42,7 @@
 <table summary="togglebutton.h" border = "1"><tr><td><code>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">/*</a><br/>
-<a href="CppToggleButton.htm">ToggleButton</a>, toggle button <b><a href="CppClass.htm">class</a></b><br/>
+<a href="CppToggleButton.html">ToggleButton</a>, toggle button <b><a href="CppClass.html">class</a></b><br/>
 Copyright (C) 2011 Richel Bilderbeek<br/>
 <br/>
 This program is free software: you can redistribute it and/or modify<br/>
@@ -58,96 +58,97 @@ You should have received a copy of the GNU General Public License<br/>
 along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">*/</a><br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="CppToggleButton.htm">CppToggleButton</a>.htm<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="CppToggleButton.html">CppToggleButton</a>.html<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppIfndef.htm">#ifndef</a> TOGGLEBUTTON_H<br/>
-<a href="CppDefine.htm">#define</a> TOGGLEBUTTON_H<br/>
+<a href="CppIfndef.html">#ifndef</a> TOGGLEBUTTON_H<br/>
+<a href="CppDefine.html">#define</a> TOGGLEBUTTON_H<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppStringH.htm">string</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppStringH.html">string</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppVectorH.html">vector</a>&gt;<br/>
 <br/>
-<a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
-<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-<b><a href="CppTypedef.htm">typedef</a></b>s"<br/>
-<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-but-set-parameter"<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/checked_delete.hpp&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppSignals2.htm">signals2</a>.hpp&gt;<br/>
-<a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic push<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.html">-Weffc++</a>"<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic ignored "-Wunused-local-<b><a href="CppTypedef.html">typedef</a></b>s"<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic ignored "-Wunused-but-set-parameter"<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppBoost.html">boost</a>/checked_delete<a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppBoost.html">boost</a>/<a href="CppSignals2.html">signals2</a><a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic pop<br/>
 <br/>
-<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a> {<br/>
+<b><a href="CppNamespace.html">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
 <br/>
-<a href="CppComment.htm">///</a><a href="CppToggleButton.htm">ToggleButton</a> is a <b><a href="CppClass.htm">class</a></b> <b><a href="CppFor.htm">for</a></b> a toggle button<br/>
-<b><a href="CppStruct.htm">struct</a></b> <a href="CppToggleButton.htm">ToggleButton</a><br/>
+<a href="CppComment.htm">///</a><a href="CppToggleButton.html">ToggleButton</a> is a <b><a href="CppClass.html">class</a></b> <b><a href="CppFor.htm">for</a></b> a toggle button<br/>
+<b><a href="CppStruct.html">struct</a></b> <a href="CppToggleButton.html">ToggleButton</a><br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppExplicit.htm">explicit</a></b> <a href="CppToggleButton.htm">ToggleButton</a>(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppBool.htm">bool</a></b> pressed <a href="CppOperatorAssign.htm">=</a> <b><a href="CppFalse.htm">false</a></b>,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> red <a href="CppOperatorAssign.htm">=</a> 255,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> green <a href="CppOperatorAssign.htm">=</a> 255,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> blue <a href="CppOperatorAssign.htm">=</a> 255);<br/>
+&nbsp;&nbsp;<b><a href="CppExplicit.html">explicit</a></b> <a href="CppToggleButton.html">ToggleButton</a>(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppBool.htm">bool</a></b> pressed <a href="CppOperatorAssign.htm">=</a> <b><a href="CppFalse.html">false</a></b>,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppUnsigned.html">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> red <a href="CppOperatorAssign.htm">=</a> 255,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppUnsigned.html">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> green <a href="CppOperatorAssign.htm">=</a> 255,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppUnsigned.html">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> blue <a href="CppOperatorAssign.htm">=</a> 255);<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Get the blueness of the <a href="CppToggleButton.htm">ToggleButton</a>'s surface<br/>
-&nbsp;&nbsp;<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> GetBlue() <b><a href="CppConst.htm">const</a></b> { <b><a href="CppReturn.htm">return</a></b> m_blue; }<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Get the blueness of the <a href="CppToggleButton.html">ToggleButton</a>'s surface<br/>
+&nbsp;&nbsp;<b><a href="CppUnsigned.html">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> GetBlue() <b><a href="CppConst.html">const</a></b> { <b><a href="CppReturn.html">return</a></b> m_blue; }<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Get the greenness of the <a href="CppToggleButton.htm">ToggleButton</a>'s surface<br/>
-&nbsp;&nbsp;<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> GetGreen() <b><a href="CppConst.htm">const</a></b> { <b><a href="CppReturn.htm">return</a></b> m_green; }<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Get the greenness of the <a href="CppToggleButton.html">ToggleButton</a>'s surface<br/>
+&nbsp;&nbsp;<b><a href="CppUnsigned.html">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> GetGreen() <b><a href="CppConst.html">const</a></b> { <b><a href="CppReturn.html">return</a></b> m_green; }<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Get the redness of the <a href="CppToggleButton.htm">ToggleButton</a>'s surface<br/>
-&nbsp;&nbsp;<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> GetRed() <b><a href="CppConst.htm">const</a></b> { <b><a href="CppReturn.htm">return</a></b> m_red; }<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Get the redness of the <a href="CppToggleButton.html">ToggleButton</a>'s surface<br/>
+&nbsp;&nbsp;<b><a href="CppUnsigned.html">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> GetRed() <b><a href="CppConst.html">const</a></b> { <b><a href="CppReturn.html">return</a></b> m_red; }<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Returns <b><a href="CppIf.htm">if</a></b> the <a href="CppToggleButton.htm">ToggleButton</a> is pressed<br/>
-&nbsp;&nbsp;<b><a href="CppBool.htm">bool</a></b> IsPressed() <b><a href="CppConst.htm">const</a></b> { <b><a href="CppReturn.htm">return</a></b> m_pressed; }<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Returns <b><a href="CppIf.htm">if</a></b> the <a href="CppToggleButton.html">ToggleButton</a> is pressed<br/>
+&nbsp;&nbsp;<b><a href="CppBool.htm">bool</a></b> IsPressed() <b><a href="CppConst.html">const</a></b> { <b><a href="CppReturn.html">return</a></b> m_pressed; }<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Press the <a href="CppToggleButton.htm">ToggleButton</a><br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Press the <a href="CppToggleButton.html">ToggleButton</a><br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> Press();<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Release/'unpress' the <a href="CppToggleButton.htm">ToggleButton</a><br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Release/'unpress' the <a href="CppToggleButton.html">ToggleButton</a><br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> Release();<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Set the <a href="CppToggleButton.htm">ToggleButton</a> its color<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Set the <a href="CppToggleButton.html">ToggleButton</a> its color<br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> SetColor(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> red,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> green,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> blue);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppUnsigned.html">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> red,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppUnsigned.html">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> green,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppUnsigned.html">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> blue);<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Toggle the <a href="CppToggleButton.htm">ToggleButton</a><br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Toggle the <a href="CppToggleButton.html">ToggleButton</a><br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> Toggle();<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>/The <a href="CppSignal.htm">signal</a> that is <a href="CppEmit.htm">emitted</a> when <a href="CppToggleButton.htm">ToggleButton</a> changes color<br/>
-&nbsp;&nbsp;<b><a href="CppMutable.htm">mutable</a></b> <a href="CppBoostSignal.htm">boost::signals2::signal</a>&lt;<b><a href="CppVoid.htm">void</a></b> ()&gt; m_signal_color_changed;<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/The <a href="CppSignal.html">signal</a> that is <a href="CppEmit.html">emitted</a> when <a href="CppToggleButton.html">ToggleButton</a> changes color<br/>
+&nbsp;&nbsp;<b><a href="CppMutable.html">mutable</a></b> <a href="CppBoostSignal.html">boost::signals2::signal</a>&lt;<b><a href="CppVoid.htm">void</a></b> ()&gt; m_signal_color_changed;<br/>
 <br/>
 <br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>/The <a href="CppSignal.htm">signal</a> that is <a href="CppEmit.htm">emitted</a> when <a href="CppToggleButton.htm">ToggleButton</a> changes state<br/>
-&nbsp;&nbsp;<b><a href="CppMutable.htm">mutable</a></b> <a href="CppBoostSignal.htm">boost::signals2::signal</a>&lt;<b><a href="CppVoid.htm">void</a></b> ()&gt; m_signal_toggled;<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/The <a href="CppSignal.html">signal</a> that is <a href="CppEmit.html">emitted</a> when <a href="CppToggleButton.html">ToggleButton</a> changes state<br/>
+&nbsp;&nbsp;<b><a href="CppMutable.html">mutable</a></b> <a href="CppBoostSignal.html">boost::signals2::signal</a>&lt;<b><a href="CppVoid.htm">void</a></b> ()&gt; m_signal_toggled;<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppPrivate.htm">private</a></b>:<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppToggleButton.htm">ToggleButton</a> can only be deleted by <a href="CppBoost.htm">Boost</a> <a href="CppSmartPointer.htm">smart pointer</a>s<br/>
-&nbsp;&nbsp;<b><a href="CppVirtual.htm">virtual</a></b> ~<a href="CppToggleButton.htm">ToggleButton</a>() {}<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppToggleButton.htm">ToggleButton</a> can only be deleted by <a href="CppBoost.htm">Boost</a> <a href="CppSmartPointer.htm">smart pointer</a>s<br/>
-&nbsp;&nbsp;<b><a href="CppFriend.htm">friend</a></b> <b><a href="CppVoid.htm">void</a></b> <a href="CppChecked_delete.htm">boost::checked_delete</a>&lt;&gt;(<a href="CppToggleButton.htm">ToggleButton</a>*);<br/>
+&nbsp;&nbsp;<b><a href="CppPrivate.html">private</a></b>:<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppToggleButton.html">ToggleButton</a> can only be deleted by <a href="CppBoost.html">Boost</a> <a href="CppSmartPointer.html">smart pointer</a>s<br/>
+&nbsp;&nbsp;<b><a href="CppVirtual.html">virtual</a></b> ~<a href="CppToggleButton.html">ToggleButton</a>() {}<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppToggleButton.html">ToggleButton</a> can only be deleted by <a href="CppBoost.html">Boost</a> <a href="CppSmartPointer.html">smart pointer</a>s<br/>
+&nbsp;&nbsp;<b><a href="CppFriend.html">friend</a></b> <b><a href="CppVoid.htm">void</a></b> <a href="CppChecked_delete.html">boost::checked_delete</a>&lt;&gt;(<a href="CppToggleButton.html">ToggleButton</a>*);<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/Is the toggle button pressed?<br/>
 &nbsp;&nbsp;<b><a href="CppBool.htm">bool</a></b> m_pressed;<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>/The redness of the <a href="CppToggleButton.htm">ToggleButton</a>'s surface<br/>
-&nbsp;&nbsp;<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> m_red;<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/The redness of the <a href="CppToggleButton.html">ToggleButton</a>'s surface<br/>
+&nbsp;&nbsp;<b><a href="CppUnsigned.html">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> m_red;<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>/The greenness of the <a href="CppToggleButton.htm">ToggleButton</a>'s surface<br/>
-&nbsp;&nbsp;<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> m_green;<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/The greenness of the <a href="CppToggleButton.html">ToggleButton</a>'s surface<br/>
+&nbsp;&nbsp;<b><a href="CppUnsigned.html">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> m_green;<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>/The blueness of the <a href="CppToggleButton.htm">ToggleButton</a>'s surface<br/>
-&nbsp;&nbsp;<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> m_blue;<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/The blueness of the <a href="CppToggleButton.html">ToggleButton</a>'s surface<br/>
+&nbsp;&nbsp;<b><a href="CppUnsigned.html">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> m_blue;<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppFriend.htm">friend</a></b> <a href="CppOstream.htm">std::ostream</a>&amp; <b><a href="CppOperatorStreamOut.htm">operator&lt;&lt;</a></b>(<a href="CppOstream.htm">std::ostream</a>&amp; os, <b><a href="CppConst.htm">const</a></b> <a href="CppToggleButton.htm">ToggleButton</a>&amp; button);<br/>
+&nbsp;&nbsp;<b><a href="CppFriend.html">friend</a></b> <a href="CppOstream.html">std::ostream</a>&amp; <b><a href="CppOperatorStreamOut.html">operator&lt;&lt;</a></b>(<a href="CppOstream.html">std::ostream</a>&amp; os, <b><a href="CppConst.html">const</a></b> <a href="CppToggleButton.html">ToggleButton</a>&amp; button);<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppPublic.htm">public</a></b>:<br/>
-&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> Get<a href="CppVersion.htm">Version</a>();<br/>
-&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; Get<a href="CppVersion.htm">Version</a>History();<br/>
+&nbsp;&nbsp;<b><a href="CppPublic.html">public</a></b>:<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.html">static</a></b> <b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a> Get<a href="CppVersion.html">Version</a>();<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.html">static</a></b> <b><a href="CppConst.html">const</a></b> <a href="CppVector.html">std::vector</a>&lt;<a href="CppString.html">std::string</a>&gt; Get<a href="CppVersion.html">Version</a>History();<br/>
 };<br/>
 <br/>
-<a href="CppOstream.htm">std::ostream</a>&amp; <b><a href="CppOperatorStreamOut.htm">operator&lt;&lt;</a></b>(<a href="CppOstream.htm">std::ostream</a>&amp; os, <b><a href="CppConst.htm">const</a></b> <a href="CppToggleButton.htm">ToggleButton</a>&amp; button);<br/>
+<a href="CppOstream.html">std::ostream</a>&amp; <b><a href="CppOperatorStreamOut.html">operator&lt;&lt;</a></b>(<a href="CppOstream.html">std::ostream</a>&amp; os, <b><a href="CppConst.html">const</a></b> <a href="CppToggleButton.html">ToggleButton</a>&amp; button);<br/>
 <br/>
-} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a><br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.html">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
 <br/>
-<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> TOGGLEBUTTON_H<br/>
+<a href="CppEndif.html">#endif</a> <a href="CppComment.htm">//</a> TOGGLEBUTTON_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -161,7 +162,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <table summary="togglebutton.cpp" border = "1"><tr><td><code>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">/*</a><br/>
-<a href="CppToggleButton.htm">ToggleButton</a>, toggle button <b><a href="CppClass.htm">class</a></b><br/>
+<a href="CppToggleButton.html">ToggleButton</a>, toggle button <b><a href="CppClass.html">class</a></b><br/>
 Copyright (C) 2011 Richel Bilderbeek<br/>
 <br/>
 This program is free software: you can redistribute it and/or modify<br/>
@@ -177,28 +178,31 @@ You should have received a copy of the GNU General Public License<br/>
 along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">*/</a><br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="CppToggleButton.htm">CppToggleButton</a>.htm<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="CppToggleButton.html">CppToggleButton</a>.html<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
-<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-<b><a href="CppTypedef.htm">typedef</a></b>s"<br/>
-<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-but-set-parameter"<br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppToggleButton.htm">togglebutton</a>.h"<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic push<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.html">-Weffc++</a>"<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic ignored "-Wunused-local-<b><a href="CppTypedef.html">typedef</a></b>s"<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic ignored "-Wunused-but-set-parameter"<br/>
+<a href="CppInclude.html">#include</a> "<a href="CppToggleButton.html">togglebutton</a><a href="CppHeaderFile.htm">.h</a>"<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
-<a href="CppComment.htm">//</a><a href="CppInclude.htm">#include</a> &lt;<a href="CppCmathH.htm">cmath</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppCassertH.html">cassert</a>&gt;<br/>
+<a href="CppComment.htm">//</a><a href="CppInclude.html">#include</a> &lt;<a href="CppCmathH.html">cmath</a>&gt;<br/>
 <br/>
-<a href="CppComment.htm">//</a><a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/math/constants/constants.hpp&gt;<br/>
+<a href="CppComment.htm">//</a><a href="CppInclude.html">#include</a> &lt;<a href="CppBoost.html">boost</a>/math/constants/constants<a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppTrace.htm">trace</a>.h"<br/>
+<a href="CppInclude.html">#include</a> "<a href="CppTrace.html">trace</a><a href="CppHeaderFile.htm">.h</a>"<br/>
 <br/>
-<a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic pop<br/>
 <br/>
-<a href="CppRibi.htm\">ribi</a>::<a href="CppToggleButton.htm">ToggleButton</a>::<a href="CppToggleButton.htm">ToggleButton</a>(<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppBool.htm">bool</a></b> pressed,<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> red,<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> green,<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> blue)<br/>
-&nbsp;&nbsp;: m_pressed(pressed),<br/>
+<a href="CppRibi.htm">ribi</a>::<a href="CppToggleButton.html">ToggleButton</a>::<a href="CppToggleButton.html">ToggleButton</a>(<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppBool.htm">bool</a></b> pressed,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppUnsigned.html">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> red,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppUnsigned.html">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> green,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppUnsigned.html">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> blue)<br/>
+&nbsp;&nbsp;: m_signal_color_changed{},<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_signal_toggled{},<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_pressed(pressed),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;m_red(red),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;m_green(green),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;m_blue(blue)<br/>
@@ -206,34 +210,34 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppRibi.htm\">ribi</a>::<a href="CppToggleButton.htm">ToggleButton</a>::Get<a href="CppVersion.htm">Version</a>()<br/>
+<b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a> <a href="CppRibi.htm">ribi</a>::<a href="CppToggleButton.html">ToggleButton</a>::Get<a href="CppVersion.html">Version</a>()<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> "1.2";<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> "1.2";<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm\">ribi</a>::<a href="CppToggleButton.htm">ToggleButton</a>::Get<a href="CppVersion.htm">Version</a>History()<br/>
+<b><a href="CppConst.html">const</a></b> <a href="CppVector.html">std::vector</a>&lt;<a href="CppString.html">std::string</a>&gt; <a href="CppRibi.htm">ribi</a>::<a href="CppToggleButton.html">ToggleButton</a>::Get<a href="CppVersion.html">Version</a>History()<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> {<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;"2011-04-11: <a href="CppVersion.htm">Version</a> 1.0: initial <a href="CppVersion.htm">version</a>",<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;"2011-08-20: <a href="CppVersion.htm">Version</a> 1.1: added <b><a href="CppOperatorStreamOut.htm">operator&lt;&lt;</a></b>",<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;"2011-08-31: <a href="CppVersion.htm">Version</a> 1.2: added setting the color of a <a href="CppToggleButton.htm">ToggleButton</a>"<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"2011-04-11: <a href="CppVersion.html">Version</a> 1.0: initial <a href="CppVersion.html">version</a>",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"2011-08-20: <a href="CppVersion.html">Version</a> 1.1: added <b><a href="CppOperatorStreamOut.html">operator&lt;&lt;</a></b>",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"2011-08-31: <a href="CppVersion.html">Version</a> 1.2: added setting the color of a <a href="CppToggleButton.html">ToggleButton</a>"<br/>
 &nbsp;&nbsp;};<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppToggleButton.htm">ToggleButton</a>::Press()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppToggleButton.html">ToggleButton</a>::Press()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (!m_pressed) { Toggle(); }<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppToggleButton.htm">ToggleButton</a>::Release()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppToggleButton.html">ToggleButton</a>::Release()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (m_pressed) { Toggle(); }<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppToggleButton.htm">ToggleButton</a>::SetColor(<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> red,<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> green,<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> blue)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppToggleButton.html">ToggleButton</a>::SetColor(<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppUnsigned.html">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> red,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppUnsigned.html">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> green,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppUnsigned.html">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> blue)<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (red <a href="CppOperatorNotEqual.htm">!=</a> m_red <a href="CppOperatorLogicalOr.htm">||</a> green <a href="CppOperatorNotEqual.htm">!=</a> m_green <a href="CppOperatorLogicalOr.htm">||</a> blue <a href="CppOperatorNotEqual.htm">!=</a> m_blue)<br/>
 &nbsp;&nbsp;{<br/>
@@ -244,30 +248,30 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;}<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppToggleButton.htm">ToggleButton</a>::Toggle()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppToggleButton.html">ToggleButton</a>::Toggle()<br/>
 {<br/>
 &nbsp;&nbsp;m_pressed <a href="CppOperatorAssign.htm">=</a> !m_pressed;<br/>
 &nbsp;&nbsp;m_signal_toggled();<br/>
 }<br/>
 <br/>
-<a href="CppOstream.htm">std::ostream</a>&amp; <a href="CppRibi.htm\">ribi</a>::<b><a href="CppOperatorStreamOut.htm">operator&lt;&lt;</a></b>(<a href="CppOstream.htm">std::ostream</a>&amp; os, <b><a href="CppConst.htm">const</a></b> <a href="CppToggleButton.htm">ToggleButton</a>&amp; button)<br/>
+<a href="CppOstream.html">std::ostream</a>&amp; <a href="CppRibi.htm">ribi</a>::<b><a href="CppOperatorStreamOut.html">operator&lt;&lt;</a></b>(<a href="CppOstream.html">std::ostream</a>&amp; os, <b><a href="CppConst.html">const</a></b> <a href="CppToggleButton.html">ToggleButton</a>&amp; button)<br/>
 {<br/>
 &nbsp;&nbsp;os<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "&lt;<a href="CppToggleButton.htm">ToggleButton</a>&gt;"<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "&lt;blue&gt;"<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(button.m_blue)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "&lt;/blue&gt;"<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "&lt;green&gt;"<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(button.m_green)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "&lt;/green&gt;"<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "&lt;pressed&gt;"<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> button.m_pressed<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "&lt;/pressed&gt;"<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "&lt;red&gt;"<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(button.m_red)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "&lt;/red&gt;"<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "&lt;/<a href="CppToggleButton.htm">ToggleButton</a>&gt;";<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> os;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "&lt;<a href="CppToggleButton.html">ToggleButton</a>&gt;"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "&lt;blue&gt;"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> <b><a href="CppStatic_cast.html">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(button.m_blue)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "&lt;/blue&gt;"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "&lt;green&gt;"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> <b><a href="CppStatic_cast.html">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(button.m_green)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "&lt;/green&gt;"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "&lt;pressed&gt;"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> button.m_pressed<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "&lt;/pressed&gt;"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "&lt;red&gt;"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> <b><a href="CppStatic_cast.html">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(button.m_red)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "&lt;/red&gt;"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "&lt;/<a href="CppToggleButton.html">ToggleButton</a>&gt;";<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> os;<br/>
 }<br/>
 </code></td></tr></table>
 <!-- end of the code -->

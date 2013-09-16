@@ -58,9 +58,6 @@ void ribi::QtCreateGlossaryMenuDialog::on_button_quit_clicked()
 
 void ribi::QtCreateGlossaryMenuDialog::on_button_start_clicked()
 {
-  //Make a screenshot
-  QPixmap::grabWidget(this,this->window()->rect()).save("ToolCreateGlossaryMenuDialog.png");
-
   QtCreateGlossaryMainDialog d;
   //d.setStyleSheet(this->styleSheet());
   this->hide();

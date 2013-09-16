@@ -43,7 +43,7 @@
 <table summary="qtshinybuttonwidget.h" border = "1"><tr><td><code>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">/*</a><br/>
-<a href="CppQt.htm">Qt</a><a href="CppShinyButtonWidget.htm">ShinyButtonWidget</a>, <a href="CppQt.htm">Qt</a> <a href="CppWidget.htm">widget</a> <b><a href="CppFor.htm">for</a></b> displaying the <a href="CppShinyButton.htm">ShinyButton</a> <b><a href="CppClass.htm">class</a></b><br/>
+<a href="CppQt.htm">Qt</a><a href="CppShinyButtonWidget.html">ShinyButtonWidget</a>, <a href="CppQt.htm">Qt</a> <a href="CppWidget.html">widget</a> <b><a href="CppFor.htm">for</a></b> displaying the <a href="CppShinyButton.html">ShinyButton</a> <b><a href="CppClass.html">class</a></b><br/>
 Copyright (C) 2011 Richel Bilderbeek<br/>
 <br/>
 This program is free software: you can redistribute it and/or modify<br/>
@@ -59,97 +59,96 @@ You should have received a copy of the GNU General Public License<br/>
 along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">*/</a><br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="CppQtShinyButtonWidget.htm">CppQtShinyButtonWidget</a>.htm<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="CppQtShinyButtonWidget.html">CppQtShinyButtonWidget</a>.html<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppIfndef.htm">#ifndef</a> QTSHINYBUTTONWIDGET_H<br/>
-<a href="CppDefine.htm">#define</a> QTSHINYBUTTONWIDGET_H<br/>
+<a href="CppIfndef.html">#ifndef</a> QTSHINYBUTTONWIDGET_H<br/>
+<a href="CppDefine.html">#define</a> QTSHINYBUTTONWIDGET_H<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppStringH.htm">string</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppStringH.html">string</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppVectorH.html">vector</a>&gt;<br/>
 <br/>
-<a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
-<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-<b><a href="CppTypedef.htm">typedef</a></b>s"<br/>
-<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-but-set-parameter"<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppSignals2.htm">signals2</a>.hpp&gt;<br/>
-<a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic push<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.html">-Weffc++</a>"<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic ignored "-Wunused-local-<b><a href="CppTypedef.html">typedef</a></b>s"<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic ignored "-Wunused-but-set-parameter"<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppBoost.html">boost</a>/<a href="CppSignals2.html">signals2</a><a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppQWidget.html">QWidget</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> "<a href="CppShinyButton.html">shinybutton</a><a href="CppHeaderFile.htm">.h</a>" <a href="CppComment.htm">//</a>For MOC<br/>
+<a href="CppInclude.html">#include</a> "<a href="CppShinyButtonWidget.html">shinybuttonwidget</a><a href="CppHeaderFile.htm">.h</a>" <a href="CppComment.htm">//</a>For MOC<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic pop<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppQWidget.htm">QWidget</a>&gt;<br/>
+<b><a href="CppNamespace.html">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppShinyButton.htm">shinybutton</a>.h" <a href="CppComment.htm">//</a>For MOC<br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppShinyButtonWidget.htm">shinybuttonwidget</a>.h" <a href="CppComment.htm">//</a>For MOC<br/>
+<b><a href="CppStruct.html">struct</a></b> <a href="CppQtToggleButton.html">QtToggleButton</a><a href="CppWidget.html">Widget</a>;<br/>
 <br/>
-<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
-<br/>
-<b><a href="CppStruct.htm">struct</a></b> <a href="CppQtToggleButton.htm">QtToggleButton</a><a href="CppWidget.htm">Widget</a>;<br/>
-<br/>
-<a href="CppComment.htm">///</a><a href="CppQt.htm">Qt</a><a href="CppShinyButtonWidget.htm">ShinyButtonWidget</a> displays a <a href="CppShinyButton.htm">ShinyButton</a><br/>
-<b><a href="CppStruct.htm">struct</a></b> <a href="CppQt.htm">Qt</a><a href="CppShinyButtonWidget.htm">ShinyButtonWidget</a> : <b><a href="CppPublic.htm">public</a></b> <a href="CppQWidget.htm">QWidget</a><br/>
+<a href="CppComment.htm">///</a><a href="CppQt.htm">Qt</a><a href="CppShinyButtonWidget.html">ShinyButtonWidget</a> displays a <a href="CppShinyButton.html">ShinyButton</a><br/>
+<b><a href="CppStruct.html">struct</a></b> <a href="CppQt.htm">Qt</a><a href="CppShinyButtonWidget.html">ShinyButtonWidget</a> : <b><a href="CppPublic.html">public</a></b> <a href="CppQWidget.html">QWidget</a><br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppQ_OBJECT.htm">Q_OBJECT</a><br/>
+&nbsp;&nbsp;<a href="CppQ_OBJECT.html">Q_OBJECT</a><br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppPublic.htm">public</a></b>:<br/>
+&nbsp;&nbsp;<b><a href="CppPublic.html">public</a></b>:<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppExplicit.htm">explicit</a></b> <a href="CppQt.htm">Qt</a><a href="CppShinyButtonWidget.htm">ShinyButtonWidget</a>(<a href="CppQWidget.htm">QWidget</a> *parent <a href="CppOperatorAssign.htm">=</a> 0);<br/>
+&nbsp;&nbsp;<b><a href="CppExplicit.html">explicit</a></b> <a href="CppQt.htm">Qt</a><a href="CppShinyButtonWidget.html">ShinyButtonWidget</a>(<a href="CppQWidget.html">QWidget</a> *parent <a href="CppOperatorAssign.htm">=</a> 0);<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>/A <a href="CppQt.htm">Qt</a><a href="CppShinyButtonWidget.htm">ShinyButtonWidget</a> is created by its width and height<br/>
-&nbsp;&nbsp;<a href="CppQt.htm">Qt</a><a href="CppShinyButtonWidget.htm">ShinyButtonWidget</a>(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> color,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> gradient,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; text <a href="CppOperatorAssign.htm">=</a> "",<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Rect rect <a href="CppOperatorAssign.htm">=</a> Rect(80,20),<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQWidget.htm">QWidget</a> *parent <a href="CppOperatorAssign.htm">=</a> 0);<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/A <a href="CppQt.htm">Qt</a><a href="CppShinyButtonWidget.html">ShinyButtonWidget</a> is created by its width and height<br/>
+&nbsp;&nbsp;<a href="CppQt.htm">Qt</a><a href="CppShinyButtonWidget.html">ShinyButtonWidget</a>(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> color,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> gradient,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a>&amp; text <a href="CppOperatorAssign.htm">=</a> "",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> Rect rect <a href="CppOperatorAssign.htm">=</a> Rect(80,20),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQWidget.html">QWidget</a> *parent <a href="CppOperatorAssign.htm">=</a> 0);<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppVoid.htm">void</a></b> Draw<a href="CppShinyButton.htm">ShinyButton</a>(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQPainter.htm">QPainter</a>&amp; painter,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> left, <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> top,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> width, <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> height,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppShinyButton.htm">ShinyButton</a> * <b><a href="CppConst.htm">const</a></b> button);<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.html">static</a></b> <b><a href="CppVoid.htm">void</a></b> Draw<a href="CppShinyButton.html">ShinyButton</a>(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQPainter.html">QPainter</a>&amp; painter,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> left, <b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> top,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> width, <b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> height,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppShinyButton.html">ShinyButton</a> * <b><a href="CppConst.html">const</a></b> button);<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Draw a <a href="CppShinyButton.htm">ShinyButton</a><br/>
-&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppVoid.htm">void</a></b> Draw<a href="CppShinyButton.htm">ShinyButton</a>(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQPainter.htm">QPainter</a>&amp; painter,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppShinyButtonWidget.htm">ShinyButtonWidget</a> * <b><a href="CppConst.htm">const</a></b> <a href="CppWidget.htm">widget</a>);<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Draw a <a href="CppShinyButton.html">ShinyButton</a><br/>
+&nbsp;&nbsp;<b><a href="CppStatic.html">static</a></b> <b><a href="CppVoid.htm">void</a></b> Draw<a href="CppShinyButton.html">ShinyButton</a>(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQPainter.html">QPainter</a>&amp; painter,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppShinyButtonWidget.html">ShinyButtonWidget</a> * <b><a href="CppConst.html">const</a></b> <a href="CppWidget.html">widget</a>);<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Obtain a read-only <a href="CppPointer.htm">pointer</a> to the <a href="CppShinyButton.htm">ShinyButton</a><br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppShinyButtonWidget.htm">ShinyButtonWidget</a> * Get<a href="CppWidget.htm">Widget</a>() <b><a href="CppConst.htm">const</a></b> { <b><a href="CppReturn.htm">return</a></b> m_<a href="CppWidget.htm">widget</a>.get(); }<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Obtain a read-only <a href="CppPointer.html">pointer</a> to the <a href="CppShinyButton.html">ShinyButton</a><br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppShinyButtonWidget.html">ShinyButtonWidget</a> * Get<a href="CppWidget.html">Widget</a>() <b><a href="CppConst.html">const</a></b> { <b><a href="CppReturn.html">return</a></b> m_<a href="CppWidget.html">widget</a>.get(); }<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Obtain a read-and-write <a href="CppPointer.htm">pointer</a> to the <a href="CppShinyButton.htm">ShinyButton</a><br/>
-&nbsp;&nbsp;<a href="CppShinyButtonWidget.htm">ShinyButtonWidget</a> * Get<a href="CppWidget.htm">Widget</a>() { <b><a href="CppReturn.htm">return</a></b> m_<a href="CppWidget.htm">widget</a>.get(); }<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Obtain a read-and-write <a href="CppPointer.html">pointer</a> to the <a href="CppShinyButton.html">ShinyButton</a><br/>
+&nbsp;&nbsp;<a href="CppShinyButtonWidget.html">ShinyButtonWidget</a> * Get<a href="CppWidget.html">Widget</a>() { <b><a href="CppReturn.html">return</a></b> m_<a href="CppWidget.html">widget</a>.get(); }<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>/<a href="CppSignal.htm">Signal</a> that is <a href="CppEmit.htm">emitted</a> when a <a href="CppQt.htm">Qt</a><a href="CppShinyButtonWidget.htm">ShinyButtonWidget</a> is toggled<br/>
-&nbsp;&nbsp;<b><a href="CppMutable.htm">mutable</a></b> <a href="CppBoostSignal.htm">boost::signals2::signal</a>&lt;<b><a href="CppVoid.htm">void</a></b> ()&gt; m_signal_changed;<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/<a href="CppSignal.html">Signal</a> that is <a href="CppEmit.html">emitted</a> when a <a href="CppQt.htm">Qt</a><a href="CppShinyButtonWidget.html">ShinyButtonWidget</a> is toggled<br/>
+&nbsp;&nbsp;<b><a href="CppMutable.html">mutable</a></b> <a href="CppBoostSignal.html">boost::signals2::signal</a>&lt;<b><a href="CppVoid.htm">void</a></b> ()&gt; m_signal_changed;<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Obtain the <a href="CppQt.htm">Qt</a><a href="CppShinyButtonWidget.htm">ShinyButtonWidget</a> its <a href="CppVersion.htm">version</a><br/>
-&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> Get<a href="CppVersion.htm">Version</a>();<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Obtain the <a href="CppQt.htm">Qt</a><a href="CppShinyButtonWidget.html">ShinyButtonWidget</a> its <a href="CppVersion.html">version</a><br/>
+&nbsp;&nbsp;<b><a href="CppStatic.html">static</a></b> <b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a> Get<a href="CppVersion.html">Version</a>();<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Obtain the <a href="CppQt.htm">Qt</a><a href="CppShinyButtonWidget.htm">ShinyButtonWidget</a> its <a href="CppVersion.htm">version</a> history<br/>
-&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; Get<a href="CppVersion.htm">Version</a>History();<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Obtain the <a href="CppQt.htm">Qt</a><a href="CppShinyButtonWidget.html">ShinyButtonWidget</a> its <a href="CppVersion.html">version</a> history<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.html">static</a></b> <b><a href="CppConst.html">const</a></b> <a href="CppVector.html">std::vector</a>&lt;<a href="CppString.html">std::string</a>&gt; Get<a href="CppVersion.html">Version</a>History();<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppProtected.htm">protected</a></b>:<br/>
+&nbsp;&nbsp;<b><a href="CppProtected.html">protected</a></b>:<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/Respond to mouse clicks<br/>
-&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> mousePressEvent(<a href="CppQMouseEvent.htm">QMouseEvent</a> *);<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> mousePressEvent(<a href="CppQMouseEvent.html">QMouseEvent</a> *);<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>/<a href="CppPaint.htm">Paint</a> the <a href="CppQt.htm">Qt</a><a href="CppShinyButtonWidget.htm">ShinyButtonWidget</a><br/>
-&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> paintEvent(<a href="CppQPaintEvent.htm">QPaintEvent</a> *);<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/<a href="CppPaint.html">Paint</a> the <a href="CppQt.htm">Qt</a><a href="CppShinyButtonWidget.html">ShinyButtonWidget</a><br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> paintEvent(<a href="CppQPaintEvent.html">QPaintEvent</a> *);<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Resize the <a href="CppQt.htm">Qt</a><a href="CppShinyButtonWidget.htm">ShinyButtonWidget</a><br/>
-&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> resizeEvent(<a href="CppQResizeEvent.htm">QResizeEvent</a> *);<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Resize the <a href="CppQt.htm">Qt</a><a href="CppShinyButtonWidget.html">ShinyButtonWidget</a><br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> resizeEvent(<a href="CppQResizeEvent.html">QResizeEvent</a> *);<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppPrivate.htm">private</a></b>:<br/>
+&nbsp;&nbsp;<b><a href="CppPrivate.html">private</a></b>:<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>/The <a href="CppShinyButton.htm">ShinyButton</a><br/>
-&nbsp;&nbsp;<a href="CppScoped_ptr.htm">boost::scoped_ptr</a>&lt;<a href="CppShinyButtonWidget.htm">ShinyButtonWidget</a>&gt; m_<a href="CppWidget.htm">widget</a>;<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/The <a href="CppShinyButton.html">ShinyButton</a><br/>
+&nbsp;&nbsp;<a href="CppScoped_ptr.html">boost::scoped_ptr</a>&lt;<a href="CppShinyButtonWidget.html">ShinyButtonWidget</a>&gt; m_<a href="CppWidget.html">widget</a>;<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Repaint the <a href="CppQt.htm">Qt</a><a href="CppShinyButtonWidget.htm">ShinyButtonWidget</a><br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Repaint the <a href="CppQt.htm">Qt</a><a href="CppShinyButtonWidget.html">ShinyButtonWidget</a><br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> DoRepaint();<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/Respond to mouse click<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppVoid.htm">void</a></b> OnClicked(<b><a href="CppConst.htm">const</a></b> <a href="CppWMouseEvent.htm">Wt::WMouseEvent</a>&amp; e);<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppVoid.htm">void</a></b> OnClicked(<b><a href="CppConst.html">const</a></b> <a href="CppWMouseEvent.html">Wt::WMouseEvent</a>&amp; e);<br/>
 };<br/>
 <br/>
-} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.html">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
 <br/>
-<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> WTSHINYBUTTONWIDGET_H<br/>
+<a href="CppEndif.html">#endif</a> <a href="CppComment.htm">//</a> WTSHINYBUTTONWIDGET_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -163,7 +162,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <table summary="qtshinybuttonwidget.cpp" border = "1"><tr><td><code>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">/*</a><br/>
-<a href="CppQt.htm">Qt</a><a href="CppShinyButtonWidget.htm">ShinyButtonWidget</a>, <a href="CppWt.htm">Wt</a> <a href="CppWidget.htm">widget</a> <b><a href="CppFor.htm">for</a></b> displaying the <a href="CppShinyButton.htm">ShinyButton</a> <b><a href="CppClass.htm">class</a></b><br/>
+<a href="CppQt.htm">Qt</a><a href="CppShinyButtonWidget.html">ShinyButtonWidget</a>, <a href="CppWt.htm">Wt</a> <a href="CppWidget.html">widget</a> <b><a href="CppFor.htm">for</a></b> displaying the <a href="CppShinyButton.html">ShinyButton</a> <b><a href="CppClass.html">class</a></b><br/>
 Copyright (C) 2011 Richel Bilderbeek<br/>
 <br/>
 This program is free software: you can redistribute it and/or modify<br/>
@@ -179,91 +178,92 @@ You should have received a copy of the GNU General Public License<br/>
 along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">*/</a><br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="CppQtShinyButtonWidget.htm">CppQtShinyButtonWidget</a>.htm<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="CppQtShinyButtonWidget.html">CppQtShinyButtonWidget</a>.html<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic push<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.html">-Weffc++</a>"<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic ignored "-Wunused-local-<b><a href="CppTypedef.html">typedef</a></b>s"<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic ignored "-Wunused-but-set-parameter"<br/>
+<a href="CppInclude.html">#include</a> "qt<a href="CppShinyButtonWidget.html">shinybuttonwidget</a><a href="CppHeaderFile.htm">.h</a>"<br/>
 <br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppIostreamH.html">iostream</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppBoost.html">boost</a>/bind<a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppBoost.html">boost</a>/numeric/con<a href="CppVersion.html">version</a>/cast<a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
 <br/>
-<a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
-<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-<b><a href="CppTypedef.htm">typedef</a></b>s"<br/>
-<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-but-set-parameter"<br/>
-<a href="CppInclude.htm">#include</a> "qt<a href="CppShinyButtonWidget.htm">shinybuttonwidget</a>.h"<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppQMouseEvent.html">QMouseEvent</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppQPainter.html">QPainter</a>&gt;<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppIostreamH.htm">iostream</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/bind.hpp&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/numeric/con<a href="CppVersion.htm">version</a>/cast.hpp&gt;<br/>
+<a href="CppInclude.html">#include</a> "<a href="CppRainbow.html">rainbow</a><a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppComment.htm">//</a><a href="CppInclude.html">#include</a> "<a href="CppTrace.html">trace</a><a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "<a href="CppShinyButton.html">shinybutton</a><a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "<a href="CppShinyButtonWidget.html">shinybuttonwidget</a><a href="CppHeaderFile.htm">.h</a>"<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppQMouseEvent.htm">QMouseEvent</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppQPainter.htm">QPainter</a>&gt;<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic pop<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppRainbow.htm">rainbow</a>.h"<br/>
-<a href="CppComment.htm">//</a><a href="CppInclude.htm">#include</a> "<a href="CppTrace.htm">trace</a>.h"<br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppShinyButton.htm">shinybutton</a>.h"<br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppShinyButtonWidget.htm">shinybuttonwidget</a>.h"<br/>
-<br/>
-<a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
-<br/>
-<a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppShinyButtonWidget.htm">ShinyButtonWidget</a>::<a href="CppQt.htm">Qt</a><a href="CppShinyButtonWidget.htm">ShinyButtonWidget</a>(<a href="CppQWidget.htm">QWidget</a> *parent)<br/>
-&nbsp;&nbsp;: <a href="CppQWidget.htm">QWidget</a>(parent),<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;m_<a href="CppWidget.htm">widget</a>(<b><a href="CppNew.htm">new</a></b> <a href="CppShinyButtonWidget.htm">ShinyButtonWidget</a>(0.5,0.5))<br/>
+<a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppShinyButtonWidget.html">ShinyButtonWidget</a>::<a href="CppQt.htm">Qt</a><a href="CppShinyButtonWidget.html">ShinyButtonWidget</a>(<a href="CppQWidget.html">QWidget</a> *parent)<br/>
+&nbsp;&nbsp;: <a href="CppQWidget.html">QWidget</a>(parent),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_signal_changed{},<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_<a href="CppWidget.html">widget</a>(<b><a href="CppNew.htm">new</a></b> <a href="CppShinyButtonWidget.html">ShinyButtonWidget</a>(0.5,0.5))<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(m_<a href="CppWidget.htm">widget</a>);<br/>
+&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(m_<a href="CppWidget.html">widget</a>);<br/>
 <br/>
-&nbsp;&nbsp;m_<a href="CppWidget.htm">widget</a>-&gt;Get<a href="CppShinyButton.htm">ShinyButton</a>()-&gt;m_signal_color_changed.connect(<a href="CppBind.htm">boost::bind</a>(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&amp;<a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppShinyButtonWidget.htm">ShinyButtonWidget</a>::DoRepaint,<b><a href="CppThis.htm">this</a></b>));<br/>
-&nbsp;&nbsp;m_<a href="CppWidget.htm">widget</a>-&gt;Get<a href="CppShinyButton.htm">ShinyButton</a>()-&gt;m_signal_text_changed.connect(<a href="CppBind.htm">boost::bind</a>(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&amp;<a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppShinyButtonWidget.htm">ShinyButtonWidget</a>::DoRepaint,<b><a href="CppThis.htm">this</a></b>));<br/>
-&nbsp;&nbsp;m_<a href="CppWidget.htm">widget</a>-&gt;m_signal_<a href="CppGeometry.htm">geometry</a>_changed.connect(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBind.htm">boost::bind</a>(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;<a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppShinyButtonWidget.htm">ShinyButtonWidget</a>::DoRepaint,<br/>
+&nbsp;&nbsp;m_<a href="CppWidget.html">widget</a>-&gt;Get<a href="CppShinyButton.html">ShinyButton</a>()-&gt;m_signal_color_changed.connect(<a href="CppBind.html">boost::bind</a>(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&amp;<a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppShinyButtonWidget.html">ShinyButtonWidget</a>::DoRepaint,<b><a href="CppThis.htm">this</a></b>));<br/>
+&nbsp;&nbsp;m_<a href="CppWidget.html">widget</a>-&gt;Get<a href="CppShinyButton.html">ShinyButton</a>()-&gt;m_signal_text_changed.connect(<a href="CppBind.html">boost::bind</a>(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&amp;<a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppShinyButtonWidget.html">ShinyButtonWidget</a>::DoRepaint,<b><a href="CppThis.htm">this</a></b>));<br/>
+&nbsp;&nbsp;m_<a href="CppWidget.html">widget</a>-&gt;m_signal_<a href="CppGeometry.html">geometry</a>_changed.connect(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBind.html">boost::bind</a>(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;<a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppShinyButtonWidget.html">ShinyButtonWidget</a>::DoRepaint,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>));<br/>
 <br/>
 &nbsp;&nbsp;resize(200,400);<br/>
 }<br/>
 <br/>
-<a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppShinyButtonWidget.htm">ShinyButtonWidget</a>::<a href="CppQt.htm">Qt</a><a href="CppShinyButtonWidget.htm">ShinyButtonWidget</a>(<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> color,<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> gradient,<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; text,<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Rect rect,<br/>
-&nbsp;&nbsp;<a href="CppQWidget.htm">QWidget</a> *parent)<br/>
-&nbsp;&nbsp;: <a href="CppQWidget.htm">QWidget</a>(parent),<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;m_<a href="CppWidget.htm">widget</a>(<b><a href="CppNew.htm">new</a></b> <a href="CppShinyButtonWidget.htm">ShinyButtonWidget</a>(color,gradient,text,rect))<br/>
+<a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppShinyButtonWidget.html">ShinyButtonWidget</a>::<a href="CppQt.htm">Qt</a><a href="CppShinyButtonWidget.html">ShinyButtonWidget</a>(<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> color,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> gradient,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a>&amp; text,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> Rect rect,<br/>
+&nbsp;&nbsp;<a href="CppQWidget.html">QWidget</a> *parent)<br/>
+&nbsp;&nbsp;: <a href="CppQWidget.html">QWidget</a>(parent),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_signal_changed{},<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_<a href="CppWidget.html">widget</a>(<b><a href="CppNew.htm">new</a></b> <a href="CppShinyButtonWidget.html">ShinyButtonWidget</a>(color,gradient,text,rect))<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(m_<a href="CppWidget.htm">widget</a>);<br/>
+&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(m_<a href="CppWidget.html">widget</a>);<br/>
 <br/>
-&nbsp;&nbsp;m_<a href="CppWidget.htm">widget</a>-&gt;Get<a href="CppShinyButton.htm">ShinyButton</a>()-&gt;m_signal_color_changed.connect(<a href="CppBind.htm">boost::bind</a>(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&amp;<a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppShinyButtonWidget.htm">ShinyButtonWidget</a>::DoRepaint,<b><a href="CppThis.htm">this</a></b>));<br/>
-&nbsp;&nbsp;m_<a href="CppWidget.htm">widget</a>-&gt;Get<a href="CppShinyButton.htm">ShinyButton</a>()-&gt;m_signal_text_changed.connect(<a href="CppBind.htm">boost::bind</a>(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&amp;<a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppShinyButtonWidget.htm">ShinyButtonWidget</a>::DoRepaint,<b><a href="CppThis.htm">this</a></b>));<br/>
-&nbsp;&nbsp;m_<a href="CppWidget.htm">widget</a>-&gt;m_signal_<a href="CppGeometry.htm">geometry</a>_changed.connect(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBind.htm">boost::bind</a>(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;<a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppShinyButtonWidget.htm">ShinyButtonWidget</a>::DoRepaint,<br/>
+&nbsp;&nbsp;m_<a href="CppWidget.html">widget</a>-&gt;Get<a href="CppShinyButton.html">ShinyButton</a>()-&gt;m_signal_color_changed.connect(<a href="CppBind.html">boost::bind</a>(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&amp;<a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppShinyButtonWidget.html">ShinyButtonWidget</a>::DoRepaint,<b><a href="CppThis.htm">this</a></b>));<br/>
+&nbsp;&nbsp;m_<a href="CppWidget.html">widget</a>-&gt;Get<a href="CppShinyButton.html">ShinyButton</a>()-&gt;m_signal_text_changed.connect(<a href="CppBind.html">boost::bind</a>(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&amp;<a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppShinyButtonWidget.html">ShinyButtonWidget</a>::DoRepaint,<b><a href="CppThis.htm">this</a></b>));<br/>
+&nbsp;&nbsp;m_<a href="CppWidget.html">widget</a>-&gt;m_signal_<a href="CppGeometry.html">geometry</a>_changed.connect(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBind.html">boost::bind</a>(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;<a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppShinyButtonWidget.html">ShinyButtonWidget</a>::DoRepaint,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>));<br/>
 <br/>
 &nbsp;&nbsp;resize(rect.GetWidth(),rect.GetHeight());<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppShinyButtonWidget.htm">ShinyButtonWidget</a>::Draw<a href="CppShinyButton.htm">ShinyButton</a>(<br/>
-&nbsp;&nbsp;<a href="CppQPainter.htm">QPainter</a>&amp; painter,<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> left, <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> top,<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> width, <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> height,<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppShinyButton.htm">ShinyButton</a> * <b><a href="CppConst.htm">const</a></b> button)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppShinyButtonWidget.html">ShinyButtonWidget</a>::Draw<a href="CppShinyButton.html">ShinyButton</a>(<br/>
+&nbsp;&nbsp;<a href="CppQPainter.html">QPainter</a>&amp; painter,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> left, <b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> top,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> width, <b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> height,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppShinyButton.html">ShinyButton</a> * <b><a href="CppConst.html">const</a></b> button)<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> from <a href="CppOperatorAssign.htm">=</a> button-&gt;GetColor() <a href="CppOperatorMinus.htm">-</a> (0.5 * button-&gt;GetGradient());<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> to&nbsp;&nbsp; <a href="CppOperatorAssign.htm">=</a> button-&gt;GetColor() <a href="CppOperatorPlus.htm">+</a> (0.5 * button-&gt;GetGradient());<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> dc&nbsp;&nbsp; <a href="CppOperatorAssign.htm">=</a> (to <a href="CppOperatorMinus.htm">-</a> from) <a href="CppOperatorDivide.htm">/</a> <a href="CppNumeric_cast.htm">boost::numeric_cast</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(width);<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> from <a href="CppOperatorAssign.htm">=</a> button-&gt;GetColor() <a href="CppOperatorMinus.htm">-</a> (0.5 * button-&gt;GetGradient());<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> to&nbsp;&nbsp; <a href="CppOperatorAssign.htm">=</a> button-&gt;GetColor() <a href="CppOperatorPlus.htm">+</a> (0.5 * button-&gt;GetGradient());<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> dc&nbsp;&nbsp; <a href="CppOperatorAssign.htm">=</a> (to <a href="CppOperatorMinus.htm">-</a> from) <a href="CppOperatorDivide.htm">/</a> <a href="CppNumeric_cast.html">boost::numeric_cast</a>&lt;<b><a href="CppDouble.html">double</a></b>&gt;(width);<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> right <a href="CppOperatorAssign.htm">=</a> left <a href="CppOperatorPlus.htm">+</a> width;<br/>
-&nbsp;&nbsp;<b><a href="CppDouble.htm">double</a></b> c <a href="CppOperatorAssign.htm">=</a> from;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> right <a href="CppOperatorAssign.htm">=</a> left <a href="CppOperatorPlus.htm">+</a> width;<br/>
+&nbsp;&nbsp;<b><a href="CppDouble.html">double</a></b> c <a href="CppOperatorAssign.htm">=</a> from;<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> QPen old_pen <a href="CppOperatorAssign.htm">=</a> painter.pen();<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> QPen old_pen <a href="CppOperatorAssign.htm">=</a> painter.pen();<br/>
 &nbsp;&nbsp;QPen pen <a href="CppOperatorAssign.htm">=</a> painter.pen();<br/>
 <br/>
 &nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> x=left; x<a href="CppOperatorNotEqual.htm">!=</a>right; <a href="CppOperatorPlus.htm">+</a>+x,c<a href="CppOperatorPlusAssign.htm">+=</a>dc)<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppDouble.htm">double</a></b> r,g,b;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppRainbow.htm">Rainbow</a>::GetRgb(c,r,g,b);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;pen.setColor(<a href="CppQColor.htm">QColor</a>(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppDouble.html">double</a></b> r,g,b;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppRainbow.html">Rainbow</a>::GetRgb(c,r,g,b);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;pen.setColor(<a href="CppQColor.html">QColor</a>(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;r * 255.0,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;g * 255.0,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;b * 255.0));<br/>
@@ -275,57 +275,57 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;top <a href="CppOperatorPlus.htm">+</a> height);<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;painter.setPen(old_pen);<br/>
-&nbsp;&nbsp;<a href="CppQRect.htm">QRect</a>F r(left,top,width,height);<br/>
+&nbsp;&nbsp;<a href="CppQRect.html">QRect</a>F r(left,top,width,height);<br/>
 &nbsp;&nbsp;painter.drawText(r,<a href="CppQt.htm">Qt</a>::AlignCenter | <a href="CppQt.htm">Qt</a>::AlignVCenter,button-&gt;GetText().c_str());<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppShinyButtonWidget.htm">ShinyButtonWidget</a>::Draw<a href="CppShinyButton.htm">ShinyButton</a>(<br/>
-&nbsp;&nbsp;<a href="CppQPainter.htm">QPainter</a>&amp; painter,<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppShinyButtonWidget.htm">ShinyButtonWidget</a> * <b><a href="CppConst.htm">const</a></b> <a href="CppWidget.htm">widget</a>)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppShinyButtonWidget.html">ShinyButtonWidget</a>::Draw<a href="CppShinyButton.html">ShinyButton</a>(<br/>
+&nbsp;&nbsp;<a href="CppQPainter.html">QPainter</a>&amp; painter,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppShinyButtonWidget.html">ShinyButtonWidget</a> * <b><a href="CppConst.html">const</a></b> <a href="CppWidget.html">widget</a>)<br/>
 {<br/>
-&nbsp;&nbsp;Draw<a href="CppShinyButton.htm">ShinyButton</a>(<br/>
+&nbsp;&nbsp;Draw<a href="CppShinyButton.html">ShinyButton</a>(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;painter,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppWidget.htm">widget</a>-&gt;GetGeometry().GetX(),<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppWidget.htm">widget</a>-&gt;GetGeometry().GetY(),<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppWidget.htm">widget</a>-&gt;GetGeometry().GetWidth(),<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppWidget.htm">widget</a>-&gt;GetGeometry().GetHeight(),<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppWidget.htm">widget</a>-&gt;Get<a href="CppShinyButton.htm">ShinyButton</a>());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppWidget.html">widget</a>-&gt;GetGeometry().GetX(),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppWidget.html">widget</a>-&gt;GetGeometry().GetY(),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppWidget.html">widget</a>-&gt;GetGeometry().GetWidth(),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppWidget.html">widget</a>-&gt;GetGeometry().GetHeight(),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppWidget.html">widget</a>-&gt;Get<a href="CppShinyButton.html">ShinyButton</a>());<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppShinyButtonWidget.htm">ShinyButtonWidget</a>::DoRepaint()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppShinyButtonWidget.html">ShinyButtonWidget</a>::DoRepaint()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;repaint();<br/>
 &nbsp;&nbsp;m_signal_changed();<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppShinyButtonWidget.htm">ShinyButtonWidget</a>::Get<a href="CppVersion.htm">Version</a>()<br/>
+<b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppShinyButtonWidget.html">ShinyButtonWidget</a>::Get<a href="CppVersion.html">Version</a>()<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> "1.0";<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> "1.0";<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppShinyButtonWidget.htm">ShinyButtonWidget</a>::Get<a href="CppVersion.htm">Version</a>History()<br/>
+<b><a href="CppConst.html">const</a></b> <a href="CppVector.html">std::vector</a>&lt;<a href="CppString.html">std::string</a>&gt; <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppShinyButtonWidget.html">ShinyButtonWidget</a>::Get<a href="CppVersion.html">Version</a>History()<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v;<br/>
-&nbsp;&nbsp;v.push_back("YYYY-MM-DD: <a href="CppVersion.htm">version</a> X.Y: [description]");<br/>
-&nbsp;&nbsp;v.push_back("2011-07-04: <a href="CppVersion.htm">version</a> 1.0: initial <a href="CppVersion.htm">version</a>");<br/>
-&nbsp;&nbsp;v.push_back("2011-09-15: <a href="CppVersion.htm">version</a> 2.0: made <a href="CppQt.htm">Qt</a><a href="CppShinyButtonWidget.htm">ShinyButtonWidget</a> same as <a href="CppWtShinyButtonWidget.htm">WtShinyButtonWidget</a>");<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
+&nbsp;&nbsp;<a href="CppVector.html">std::vector</a>&lt;<a href="CppString.html">std::string</a>&gt; v;<br/>
+&nbsp;&nbsp;v.push_back("YYYY-MM-DD: <a href="CppVersion.html">version</a> X.Y: [description]");<br/>
+&nbsp;&nbsp;v.push_back("2011-07-04: <a href="CppVersion.html">version</a> 1.0: initial <a href="CppVersion.html">version</a>");<br/>
+&nbsp;&nbsp;v.push_back("2011-09-15: <a href="CppVersion.html">version</a> 2.0: made <a href="CppQt.htm">Qt</a><a href="CppShinyButtonWidget.html">ShinyButtonWidget</a> same as <a href="CppWtShinyButtonWidget.html">WtShinyButtonWidget</a>");<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> v;<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppShinyButtonWidget.htm">ShinyButtonWidget</a>::mousePressEvent(<a href="CppQMouseEvent.htm">QMouseEvent</a> *)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppShinyButtonWidget.html">ShinyButtonWidget</a>::mousePressEvent(<a href="CppQMouseEvent.html">QMouseEvent</a> *)<br/>
 {<br/>
-&nbsp;&nbsp;m_<a href="CppWidget.htm">widget</a>-&gt;Click();<br/>
+&nbsp;&nbsp;m_<a href="CppWidget.html">widget</a>-&gt;Click();<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppShinyButtonWidget.htm">ShinyButtonWidget</a>::paintEvent(<a href="CppQPaintEvent.htm">QPaintEvent</a> *)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppShinyButtonWidget.html">ShinyButtonWidget</a>::paintEvent(<a href="CppQPaintEvent.html">QPaintEvent</a> *)<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppQPainter.htm">QPainter</a> painter(<b><a href="CppThis.htm">this</a></b>);<br/>
-&nbsp;&nbsp;Draw<a href="CppShinyButton.htm">ShinyButton</a>(painter,m_<a href="CppWidget.htm">widget</a>.get());<br/>
+&nbsp;&nbsp;<a href="CppQPainter.html">QPainter</a> painter(<b><a href="CppThis.htm">this</a></b>);<br/>
+&nbsp;&nbsp;Draw<a href="CppShinyButton.html">ShinyButton</a>(painter,m_<a href="CppWidget.html">widget</a>.get());<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppShinyButtonWidget.htm">ShinyButtonWidget</a>::resizeEvent(<a href="CppQResizeEvent.htm">QResizeEvent</a> *)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppShinyButtonWidget.html">ShinyButtonWidget</a>::resizeEvent(<a href="CppQResizeEvent.html">QResizeEvent</a> *)<br/>
 {<br/>
-&nbsp;&nbsp;m_<a href="CppWidget.htm">widget</a>-&gt;SetGeometry(Rect(0,0,width(),height()));<br/>
+&nbsp;&nbsp;m_<a href="CppWidget.html">widget</a>-&gt;SetGeometry(Rect(0,0,width(),height()));<br/>
 }<br/>
 </code></td></tr></table>
 <!-- end of the code -->

@@ -94,17 +94,17 @@ what Ubuntu One is doing.</p>
 QT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; += core gui<br/>
 greaterThan(QT_MAJOR_VERSION, 4): QT += <a href="CppWidget.htm">widget</a>s<br/>
 <br/>
-<a href="CppQMAKE_CXXFLAGS.htm">QMAKE_CXXFLAGS</a> += -std=<a href="Cpp11.htm">c++11</a> <a href="CppWall.htm">-Wall</a> <a href="CppWextra.htm">-Wextra</a><br/>
+<a href="CppQmakeQmake_cxxflags.htm">QMAKE_CXXFLAGS</a> += -std=<a href="Cpp11.htm">c++11</a> <a href="CppWall.htm">-Wall</a> <a href="CppWextra.htm">-Wextra</a><br/>
 <br/>
-TEMPLATE = app<br/>
+<a href="CppQmakeTemplate.htm">TEMPLATE</a> = app<br/>
 <br/>
 <br/>
-<a href="CppSOURCES.htm">SOURCES</a> += <a href="CppMain.htm">main</a>.cpp\<br/>
+<a href="CppQmakeSources.htm">SOURCES</a> += <a href="CppMain.htm">main</a>.cpp\<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;dialog<a href="CppAbout.htm">about</a>.cpp \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;dialogwhatsnew.cpp \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;dialog<a href="CppMain.htm">main</a>.cpp<br/>
 <br/>
-<a href="CppHEADERS.htm">HEADERS</a>&nbsp;&nbsp;+= \<br/>
+<a href="CppQmakeHeaders.htm">HEADERS</a>&nbsp;&nbsp;+= \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;dialog<a href="CppAbout.htm">about</a>.h \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;dialogwhatsnew.h \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;dialog<a href="CppMain.htm">main</a>.h<br/>
@@ -114,7 +114,7 @@ TEMPLATE = app<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;dialogwhatsnew.ui \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;dialog<a href="CppMain.htm">main</a>.ui<br/>
 <br/>
-<a href="CppRESOURCES.htm">RESOURCES</a> += \<br/>
+<a href="CppQmakeResources.htm">RESOURCES</a> += \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;ToolUbuntuOneWatcher.qrc<br/>
 </code></td></tr></table>
 <!-- end of the code -->
@@ -129,7 +129,7 @@ TEMPLATE = app<br/>
 <table summary="dialogabout.h" border = "1"><tr><td><code>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">/*</a><br/>
-<a href="CppUbuntu.htm">Ubuntu</a>OneWatcher, <a href="Tools.htm">tool</a> to see what <a href="CppUbuntu.htm">Ubuntu</a> One is doing<br/>
+<a href="CppUbuntu.html">Ubuntu</a>OneWatcher, <a href="Tools.htm">tool</a> to see what <a href="CppUbuntu.html">Ubuntu</a> One is doing<br/>
 Copyright (C) 2010 Richel Bilderbeek<br/>
 <br/>
 This program is free software: you can redistribute it and/or modify<br/>
@@ -145,42 +145,42 @@ You should have received a copy of the GNU General Public License<br/>
 along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">*/</a><br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="Tools.htm">Tool</a><a href="CppUbuntu.htm">Ubuntu</a>OneWatcher.htm<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="Tools.htm">Tool</a><a href="CppUbuntu.html">Ubuntu</a>OneWatcher.html<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppIfndef.htm">#ifndef</a> DIALOGABOUT_H<br/>
-<a href="CppDefine.htm">#define</a> DIALOGABOUT_H<br/>
+<a href="CppIfndef.html">#ifndef</a> DIALOGABOUT_H<br/>
+<a href="CppDefine.html">#define</a> DIALOGABOUT_H<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppStringH.htm">string</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppStringH.html">string</a>&gt;<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppQDialog.htm">QDialog</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppQDialog.html">QDialog</a>&gt;<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppNamespace.htm">namespace</a></b> Ui {<br/>
-&nbsp;&nbsp;<b><a href="CppClass.htm">class</a></b> Dialog<a href="CppAbout.htm">About</a>;<br/>
+<b><a href="CppNamespace.html">namespace</a></b> Ui {<br/>
+&nbsp;&nbsp;<b><a href="CppClass.html">class</a></b> Dialog<a href="CppAbout.html">About</a>;<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppClass.htm">class</a></b> Dialog<a href="CppAbout.htm">About</a> : <b><a href="CppPublic.htm">public</a></b> <a href="CppQDialog.htm">QDialog</a><br/>
+<b><a href="CppClass.html">class</a></b> Dialog<a href="CppAbout.html">About</a> : <b><a href="CppPublic.html">public</a></b> <a href="CppQDialog.html">QDialog</a><br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppQ_OBJECT.htm">Q_OBJECT</a><br/>
+&nbsp;&nbsp;<a href="CppQ_OBJECT.html">Q_OBJECT</a><br/>
 <br/>
-<b><a href="CppPublic.htm">public</a></b>:<br/>
-&nbsp;&nbsp;<b><a href="CppExplicit.htm">explicit</a></b> Dialog<a href="CppAbout.htm">About</a>(<a href="CppQWidget.htm">QWidget</a> *parent <a href="CppOperatorAssign.htm">=</a> 0);<br/>
-&nbsp;&nbsp;~Dialog<a href="CppAbout.htm">About</a>();<br/>
+<b><a href="CppPublic.html">public</a></b>:<br/>
+&nbsp;&nbsp;<b><a href="CppExplicit.html">explicit</a></b> Dialog<a href="CppAbout.html">About</a>(<a href="CppQWidget.html">QWidget</a> *parent <a href="CppOperatorAssign.htm">=</a> 0);<br/>
+&nbsp;&nbsp;~Dialog<a href="CppAbout.html">About</a>();<br/>
 <br/>
-<b><a href="CppProtected.htm">protected</a></b>:<br/>
-&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> changeEvent(<a href="CppQEvent.htm">QEvent</a> *e);<br/>
+<b><a href="CppProtected.html">protected</a></b>:<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> changeEvent(<a href="CppQEvent.html">QEvent</a> *e);<br/>
 <br/>
-<b><a href="CppPrivate.htm">private</a></b>:<br/>
-&nbsp;&nbsp;<a href="CppUi.htm">Ui</a>::Dialog<a href="CppAbout.htm">About</a> *ui;<br/>
+<b><a href="CppPrivate.html">private</a></b>:<br/>
+&nbsp;&nbsp;<a href="CppUi.htm">Ui</a>::Dialog<a href="CppAbout.html">About</a> *ui;<br/>
 <br/>
-<b><a href="CppPrivate.htm">private</a></b> <b><a href="CppSlots.htm">slots</a></b>:<br/>
+<b><a href="CppPrivate.html">private</a></b> <b><a href="CppSlots.html">slots</a></b>:<br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> onWhatsNew();<br/>
 };<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">///</a><a href="CppGetBoostVersion.htm">GetBoostVersion</a> <a href="CppReturn.htm">returns</a> the <a href="CppVersion.htm">version</a> of the current <a href="CppBoost.htm">Boost</a> <a href="CppLibrary.htm">library</a>.<br/>
-<a href="CppComment.htm">///</a>From http://www.richelbilderbeek.nl/Cpp<a href="CppGetBoostVersion.htm">GetBoostVersion</a>.htm<br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppGetBoostVersion.htm">GetBoostVersion</a>();<br/>
+<a href="CppComment.htm">///</a><a href="CppGetBoostVersion.html">GetBoostVersion</a> <a href="CppReturn.html">returns</a> the <a href="CppVersion.html">version</a> of the current <a href="CppBoost.html">Boost</a> <a href="CppLibrary.html">library</a>.<br/>
+<a href="CppComment.htm">///</a>From http://www.richelbilderbeek.nl/Cpp<a href="CppGetBoostVersion.html">GetBoostVersion</a>.html<br/>
+<b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a> <a href="CppGetBoostVersion.html">GetBoostVersion</a>();<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> DIALOGABOUT_H<br/>
+<a href="CppEndif.html">#endif</a> <a href="CppComment.htm">//</a> DIALOGABOUT_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -194,7 +194,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <table summary="dialogabout.cpp" border = "1"><tr><td><code>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">/*</a><br/>
-<a href="CppUbuntu.htm">Ubuntu</a>OneWatcher, <a href="Tools.htm">tool</a> to see what <a href="CppUbuntu.htm">Ubuntu</a> One is doing<br/>
+<a href="CppUbuntu.html">Ubuntu</a>OneWatcher, <a href="Tools.htm">tool</a> to see what <a href="CppUbuntu.html">Ubuntu</a> One is doing<br/>
 Copyright (C) 2010 Richel Bilderbeek<br/>
 <br/>
 This program is free software: you can redistribute it and/or modify<br/>
@@ -210,72 +210,72 @@ You should have received a copy of the GNU General Public License<br/>
 along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">*/</a><br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="Tools.htm">Tool</a><a href="CppUbuntu.htm">Ubuntu</a>OneWatcher.htm<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="Tools.htm">Tool</a><a href="CppUbuntu.html">Ubuntu</a>OneWatcher.html<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppAlgorithmH.htm">algorithm</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppCstdlibH.htm">cstdlib</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppStringH.htm">string</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppAlgorithmH.html">algorithm</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppCstdlibH.html">cstdlib</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppStringH.html">string</a>&gt;<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppVersion.htm">version</a>.hpp&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppBoost.html">boost</a>/<a href="CppVersion.html">version</a><a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppQFile.htm">QFile</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppQFile.html">QFile</a>&gt;<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppInclude.htm">#include</a> "dialog<a href="CppAbout.htm">about</a>.h"<br/>
-<a href="CppInclude.htm">#include</a> "dialogmain.h"<br/>
-<a href="CppInclude.htm">#include</a> "dialogwhatsnew.h"<br/>
-<a href="CppInclude.htm">#include</a> "ui_dialog<a href="CppAbout.htm">about</a>.h"<br/>
+<a href="CppInclude.html">#include</a> "dialog<a href="CppAbout.html">about</a><a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "dialogmain<a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "dialogwhatsnew<a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "ui_dialog<a href="CppAbout.html">about</a><a href="CppHeaderFile.htm">.h</a>"<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-Dialog<a href="CppAbout.htm">About</a>::Dialog<a href="CppAbout.htm">About</a>(<a href="CppQWidget.htm">QWidget</a> *parent) :<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQDialog.htm">QDialog</a>(parent),<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;ui(<b><a href="CppNew.htm">new</a></b> <a href="CppUi.htm">Ui</a>::Dialog<a href="CppAbout.htm">About</a>)<br/>
+Dialog<a href="CppAbout.html">About</a>::Dialog<a href="CppAbout.html">About</a>(<a href="CppQWidget.html">QWidget</a> *parent) :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQDialog.html">QDialog</a>(parent),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;ui(<b><a href="CppNew.htm">new</a></b> <a href="CppUi.htm">Ui</a>::Dialog<a href="CppAbout.html">About</a>)<br/>
 {<br/>
 &nbsp;&nbsp;ui-&gt;setupUi(<b><a href="CppThis.htm">this</a></b>);<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppQObject.htm">QObject</a>::connect(ui-&gt;button_whats_new,<a href="CppSignalMacro.htm">SIGNAL</a>(clicked()),<br/>
+&nbsp;&nbsp;<a href="CppQObject.html">QObject</a>::connect(ui-&gt;button_whats_new,<a href="CppSignalMacro.html">SIGNAL</a>(clicked()),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>,<a href="CppSLOT.htm">SLOT</a>(onWhatsNew()));<br/>
-&nbsp;&nbsp;<a href="CppQObject.htm">QObject</a>::connect(ui-&gt;button_about_qt,<a href="CppSignalMacro.htm">SIGNAL</a>(clicked()),<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;qApp,<a href="CppSLOT.htm">SLOT</a>(<a href="CppAbout.htm">about</a><a href="CppQt.htm">Qt</a>()));<br/>
+&nbsp;&nbsp;<a href="CppQObject.html">QObject</a>::connect(ui-&gt;button_about_qt,<a href="CppSignalMacro.html">SIGNAL</a>(clicked()),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;qApp,<a href="CppSLOT.htm">SLOT</a>(<a href="CppAbout.html">about</a><a href="CppQt.htm">Qt</a>()));<br/>
 <br/>
 &nbsp;&nbsp;ui-&gt;label_title-&gt;setText(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQString.htm">QString</a>("<a href="CppUbuntu.htm">Ubuntu</a>OneWatcher <a href="CppVersion.htm">version</a> ")<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> <a href="CppQString.htm">QString</a>(DialogMain::Get<a href="CppVersion.htm">Version</a>().c_str()));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQString.html">QString</a>("<a href="CppUbuntu.html">Ubuntu</a>OneWatcher <a href="CppVersion.html">version</a> ")<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> <a href="CppQString.html">QString</a>(DialogMain::Get<a href="CppVersion.html">Version</a>().c_str()));<br/>
 <br/>
 <br/>
-&nbsp;&nbsp;ui-&gt;label_<a href="CppBoost.htm">boost</a>_<a href="CppVersion.htm">version</a>-&gt;setText(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQString.htm">QString</a>("<a href="CppBoost.htm">Boost</a> <a href="CppVersion.htm">version</a>: ")<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> <a href="CppQString.htm">QString</a>(<a href="CppGetBoostVersion.htm">GetBoostVersion</a>().c_str()));<br/>
+&nbsp;&nbsp;ui-&gt;label_<a href="CppBoost.html">boost</a>_<a href="CppVersion.html">version</a>-&gt;setText(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQString.html">QString</a>("<a href="CppBoost.html">Boost</a> <a href="CppVersion.html">version</a>: ")<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> <a href="CppQString.html">QString</a>(<a href="CppGetBoostVersion.html">GetBoostVersion</a>().c_str()));<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-Dialog<a href="CppAbout.htm">About</a>::~Dialog<a href="CppAbout.htm">About</a>()<br/>
+Dialog<a href="CppAbout.html">About</a>::~Dialog<a href="CppAbout.html">About</a>()<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppDelete.htm">delete</a></b> ui;<br/>
+&nbsp;&nbsp;<b><a href="CppDelete.html">delete</a></b> ui;<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppVoid.htm">void</a></b> Dialog<a href="CppAbout.htm">About</a>::changeEvent(<a href="CppQEvent.htm">QEvent</a> *e)<br/>
+<b><a href="CppVoid.htm">void</a></b> Dialog<a href="CppAbout.html">About</a>::changeEvent(<a href="CppQEvent.html">QEvent</a> *e)<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppQDialog.htm">QDialog</a>::changeEvent(e);<br/>
-&nbsp;&nbsp;<b><a href="CppSwitch.htm">switch</a></b> (e-&gt;type()) {<br/>
-&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> <a href="CppQEvent.htm">QEvent</a>::LanguageChange:<br/>
+&nbsp;&nbsp;<a href="CppQDialog.html">QDialog</a>::changeEvent(e);<br/>
+&nbsp;&nbsp;<b><a href="CppSwitch.html">switch</a></b> (e-&gt;type()) {<br/>
+&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> <a href="CppQEvent.html">QEvent</a>::LanguageChange:<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;ui-&gt;retranslateUi(<b><a href="CppThis.htm">this</a></b>);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppBreak.htm">break</a></b>;<br/>
-&nbsp;&nbsp;<b><a href="CppDefault.htm">default</a></b>:<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppBreak.htm">break</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppBreak.html">break</a></b>;<br/>
+&nbsp;&nbsp;<b><a href="CppDefault.html">default</a></b>:<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppBreak.html">break</a></b>;<br/>
 &nbsp;&nbsp;}<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppVoid.htm">void</a></b> Dialog<a href="CppAbout.htm">About</a>::onWhatsNew()<br/>
+<b><a href="CppVoid.htm">void</a></b> Dialog<a href="CppAbout.html">About</a>::onWhatsNew()<br/>
 {<br/>
 &nbsp;&nbsp;DialogWhatsNew d;<br/>
 &nbsp;&nbsp;d.exec();<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">///</a><a href="CppGetBoostVersion.htm">GetBoostVersion</a> <a href="CppReturn.htm">returns</a> the <a href="CppVersion.htm">version</a> of the current <a href="CppBoost.htm">Boost</a> <a href="CppLibrary.htm">library</a>.<br/>
-<a href="CppComment.htm">///</a>From http://www.richelbilderbeek.nl/Cpp<a href="CppGetBoostVersion.htm">GetBoostVersion</a>.htm<br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppGetBoostVersion.htm">GetBoostVersion</a>()<br/>
+<a href="CppComment.htm">///</a><a href="CppGetBoostVersion.html">GetBoostVersion</a> <a href="CppReturn.html">returns</a> the <a href="CppVersion.html">version</a> of the current <a href="CppBoost.html">Boost</a> <a href="CppLibrary.html">library</a>.<br/>
+<a href="CppComment.htm">///</a>From http://www.richelbilderbeek.nl/Cpp<a href="CppGetBoostVersion.html">GetBoostVersion</a>.html<br/>
+<b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a> <a href="CppGetBoostVersion.html">GetBoostVersion</a>()<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppString.htm">std::string</a> s <a href="CppOperatorAssign.htm">=</a> BOOST_LIB_VERSION;<br/>
-&nbsp;&nbsp;<a href="CppReplace.htm">std::replace</a>(s.begin(),s.end(),'_','.');<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> s;<br/>
+&nbsp;&nbsp;<a href="CppString.html">std::string</a> s <a href="CppOperatorAssign.htm">=</a> BOOST_LIB_VERSION;<br/>
+&nbsp;&nbsp;<a href="CppReplace.html">std::replace</a>(s.begin(),s.end(),'_','.');<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> s;<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 </code></td></tr></table>
@@ -291,7 +291,7 @@ Dialog<a href="CppAbout.htm">About</a>::~Dialog<a href="CppAbout.htm">About</a>(
 <table summary="dialogmain.h" border = "1"><tr><td><code>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">/*</a><br/>
-<a href="CppUbuntu.htm">Ubuntu</a>OneWatcher, <a href="Tools.htm">tool</a> to see what <a href="CppUbuntu.htm">Ubuntu</a> One is doing<br/>
+<a href="CppUbuntu.html">Ubuntu</a>OneWatcher, <a href="Tools.htm">tool</a> to see what <a href="CppUbuntu.html">Ubuntu</a> One is doing<br/>
 Copyright (C) 2010 Richel Bilderbeek<br/>
 <br/>
 This program is free software: you can redistribute it and/or modify<br/>
@@ -307,44 +307,44 @@ You should have received a copy of the GNU General Public License<br/>
 along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">*/</a><br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="Tools.htm">Tool</a><a href="CppUbuntu.htm">Ubuntu</a>OneWatcher.htm<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="Tools.htm">Tool</a><a href="CppUbuntu.html">Ubuntu</a>OneWatcher.html<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppIfndef.htm">#ifndef</a> DIALOGMAIN_H<br/>
-<a href="CppDefine.htm">#define</a> DIALOGMAIN_H<br/>
+<a href="CppIfndef.html">#ifndef</a> DIALOGMAIN_H<br/>
+<a href="CppDefine.html">#define</a> DIALOGMAIN_H<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppStringH.htm">string</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppStringH.html">string</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppVectorH.html">vector</a>&gt;<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppQDialog.htm">QDialog</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppQDialog.html">QDialog</a>&gt;<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppNamespace.htm">namespace</a></b> Ui {<br/>
-&nbsp;&nbsp;<b><a href="CppClass.htm">class</a></b> DialogMain;<br/>
+<b><a href="CppNamespace.html">namespace</a></b> Ui {<br/>
+&nbsp;&nbsp;<b><a href="CppClass.html">class</a></b> DialogMain;<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppClass.htm">class</a></b> DialogMain : <b><a href="CppPublic.htm">public</a></b> <a href="CppQDialog.htm">QDialog</a><br/>
+<b><a href="CppClass.html">class</a></b> DialogMain : <b><a href="CppPublic.html">public</a></b> <a href="CppQDialog.html">QDialog</a><br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppQ_OBJECT.htm">Q_OBJECT</a><br/>
+&nbsp;&nbsp;<a href="CppQ_OBJECT.html">Q_OBJECT</a><br/>
 <br/>
-<b><a href="CppPublic.htm">public</a></b>:<br/>
-&nbsp;&nbsp;<b><a href="CppExplicit.htm">explicit</a></b> DialogMain(<a href="CppQWidget.htm">QWidget</a> *parent <a href="CppOperatorAssign.htm">=</a> 0);<br/>
+<b><a href="CppPublic.html">public</a></b>:<br/>
+&nbsp;&nbsp;<b><a href="CppExplicit.html">explicit</a></b> DialogMain(<a href="CppQWidget.html">QWidget</a> *parent <a href="CppOperatorAssign.htm">=</a> 0);<br/>
 &nbsp;&nbsp;~DialogMain();<br/>
-&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> Get<a href="CppVersion.htm">Version</a>() { <b><a href="CppReturn.htm">return</a></b> "1.0"; }<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.html">static</a></b> <b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a> Get<a href="CppVersion.html">Version</a>() { <b><a href="CppReturn.html">return</a></b> "1.0"; }<br/>
 <br/>
-<b><a href="CppProtected.htm">protected</a></b>:<br/>
-&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> changeEvent(<a href="CppQEvent.htm">QEvent</a> *e);<br/>
+<b><a href="CppProtected.html">protected</a></b>:<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> changeEvent(<a href="CppQEvent.html">QEvent</a> *e);<br/>
 <br/>
-<b><a href="CppPrivate.htm">private</a></b>:<br/>
+<b><a href="CppPrivate.html">private</a></b>:<br/>
 &nbsp;&nbsp;<a href="CppUi.htm">Ui</a>::DialogMain *ui;<br/>
 <br/>
-<b><a href="CppPrivate.htm">private</a></b> <b><a href="CppSlots.htm">slots</a></b>:<br/>
-&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> On<a href="CppAbout.htm">About</a>();<br/>
+<b><a href="CppPrivate.html">private</a></b> <b><a href="CppSlots.html">slots</a></b>:<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> On<a href="CppAbout.html">About</a>();<br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> OnFindOut();<br/>
 };<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/Cpp<a href="CppFileToVector.htm">FileToVector</a>.htm<br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppFileToVector.htm">FileToVector</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; fileName);<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/Cpp<a href="CppFileToVector.html">FileToVector</a>.html<br/>
+<b><a href="CppConst.html">const</a></b> <a href="CppVector.html">std::vector</a>&lt;<a href="CppString.html">std::string</a>&gt; <a href="CppFileToVector.html">FileToVector</a>(<b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a>&amp; fileName);<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> DIALOGMAIN_H<br/>
+<a href="CppEndif.html">#endif</a> <a href="CppComment.htm">//</a> DIALOGMAIN_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -358,7 +358,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <table summary="dialogmain.cpp" border = "1"><tr><td><code>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">/*</a><br/>
-<a href="CppUbuntu.htm">Ubuntu</a>OneWatcher, <a href="Tools.htm">tool</a> to see what <a href="CppUbuntu.htm">Ubuntu</a> One is doing<br/>
+<a href="CppUbuntu.html">Ubuntu</a>OneWatcher, <a href="Tools.htm">tool</a> to see what <a href="CppUbuntu.html">Ubuntu</a> One is doing<br/>
 Copyright (C) 2010 Richel Bilderbeek<br/>
 <br/>
 This program is free software: you can redistribute it and/or modify<br/>
@@ -374,59 +374,59 @@ You should have received a copy of the GNU General Public License<br/>
 along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">*/</a><br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="Tools.htm">Tool</a><a href="CppUbuntu.htm">Ubuntu</a>OneWatcher.htm<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="Tools.htm">Tool</a><a href="CppUbuntu.html">Ubuntu</a>OneWatcher.html<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppCstdlibH.htm">cstdlib</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppFstreamH.htm">fstream</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppStringH.htm">string</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppCassertH.html">cassert</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppCstdlibH.html">cstdlib</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppFstreamH.html">fstream</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppStringH.html">string</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppVectorH.html">vector</a>&gt;<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppBOOST_FOREACH.htm">foreach</a>.hpp&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppBoost.html">boost</a>/<a href="CppBOOST_FOREACH.html">foreach</a><a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppQDesktopWidget.htm">QDesktopWidget</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppQFile.htm">QFile</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppQDesktopWidget.html">QDesktopWidget</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppQFile.html">QFile</a>&gt;<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppInclude.htm">#include</a> "dialog<a href="CppAbout.htm">about</a>.h"<br/>
-<a href="CppInclude.htm">#include</a> "dialogmain.h"<br/>
-<a href="CppInclude.htm">#include</a> "ui_dialogmain.h"<br/>
+<a href="CppInclude.html">#include</a> "dialog<a href="CppAbout.html">about</a><a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "dialogmain<a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "ui_dialogmain<a href="CppHeaderFile.htm">.h</a>"<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-DialogMain::DialogMain(<a href="CppQWidget.htm">QWidget</a> *parent) :<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQDialog.htm">QDialog</a>(parent, <a href="CppQt.htm">Qt</a>::Window),<br/>
+DialogMain::DialogMain(<a href="CppQWidget.html">QWidget</a> *parent) :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQDialog.html">QDialog</a>(parent, <a href="CppQt.htm">Qt</a>::Window),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;ui(<b><a href="CppNew.htm">new</a></b> <a href="CppUi.htm">Ui</a>::DialogMain)<br/>
 {<br/>
 &nbsp;&nbsp;ui-&gt;setupUi(<b><a href="CppThis.htm">this</a></b>);<br/>
-&nbsp;&nbsp;<a href="CppQObject.htm">QObject</a>::connect(ui-&gt;button_about,<a href="CppSignalMacro.htm">SIGNAL</a>(clicked()),<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>,<a href="CppSLOT.htm">SLOT</a>(On<a href="CppAbout.htm">About</a>()));<br/>
-&nbsp;&nbsp;<a href="CppQObject.htm">QObject</a>::connect(ui-&gt;button_find_out,<a href="CppSignalMacro.htm">SIGNAL</a>(clicked()),<br/>
+&nbsp;&nbsp;<a href="CppQObject.html">QObject</a>::connect(ui-&gt;button_about,<a href="CppSignalMacro.html">SIGNAL</a>(clicked()),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>,<a href="CppSLOT.htm">SLOT</a>(On<a href="CppAbout.html">About</a>()));<br/>
+&nbsp;&nbsp;<a href="CppQObject.html">QObject</a>::connect(ui-&gt;button_find_out,<a href="CppSignalMacro.html">SIGNAL</a>(clicked()),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>,<a href="CppSLOT.htm">SLOT</a>(OnFindOut()));<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Put the dialog in the screen center<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppQRect.htm">QRect</a> screen <a href="CppOperatorAssign.htm">=</a> <a href="CppQApplication.htm">QApplication</a>::desktop()-&gt;screenGeometry();<br/>
-&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;setGeometry(0,0,screen.width() * 3 <a href="CppOperatorDivide.htm">/</a> 4, screen.height() * 3 <a href="CppOperatorDivide.htm">/</a> 4);<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppQRect.html">QRect</a> screen <a href="CppOperatorAssign.htm">=</a> <a href="CppQApplication.html">QApplication</a>::desktop()-&gt;screenGeometry();<br/>
+&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;setGeometry(0,0,screen.width() * 3 <a href="CppOperatorDivide.htm">/</a> 4, screen<a href="CppHeaderFile.htm">.h</a>eight() * 3 <a href="CppOperatorDivide.htm">/</a> 4);<br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;move( screen.center() <a href="CppOperatorMinus.htm">-</a> <b><a href="CppThis.htm">this</a></b>-&gt;rect().center() );<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 DialogMain::~DialogMain()<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppDelete.htm">delete</a></b> ui;<br/>
+&nbsp;&nbsp;<b><a href="CppDelete.html">delete</a></b> ui;<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppVoid.htm">void</a></b> DialogMain::changeEvent(<a href="CppQEvent.htm">QEvent</a> *e)<br/>
+<b><a href="CppVoid.htm">void</a></b> DialogMain::changeEvent(<a href="CppQEvent.html">QEvent</a> *e)<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppQDialog.htm">QDialog</a>::changeEvent(e);<br/>
-&nbsp;&nbsp;<b><a href="CppSwitch.htm">switch</a></b> (e-&gt;type()) {<br/>
-&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> <a href="CppQEvent.htm">QEvent</a>::LanguageChange:<br/>
+&nbsp;&nbsp;<a href="CppQDialog.html">QDialog</a>::changeEvent(e);<br/>
+&nbsp;&nbsp;<b><a href="CppSwitch.html">switch</a></b> (e-&gt;type()) {<br/>
+&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> <a href="CppQEvent.html">QEvent</a>::LanguageChange:<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;ui-&gt;retranslateUi(<b><a href="CppThis.htm">this</a></b>);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppBreak.htm">break</a></b>;<br/>
-&nbsp;&nbsp;<b><a href="CppDefault.htm">default</a></b>:<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppBreak.htm">break</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppBreak.html">break</a></b>;<br/>
+&nbsp;&nbsp;<b><a href="CppDefault.html">default</a></b>:<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppBreak.html">break</a></b>;<br/>
 &nbsp;&nbsp;}<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppVoid.htm">void</a></b> DialogMain::On<a href="CppAbout.htm">About</a>()<br/>
+<b><a href="CppVoid.htm">void</a></b> DialogMain::On<a href="CppAbout.html">About</a>()<br/>
 {<br/>
-&nbsp;&nbsp;Dialog<a href="CppAbout.htm">About</a> d;<br/>
+&nbsp;&nbsp;Dialog<a href="CppAbout.html">About</a> d;<br/>
 &nbsp;&nbsp;hide();<br/>
 &nbsp;&nbsp;d.exec();<br/>
 &nbsp;&nbsp;show();<br/>
@@ -437,30 +437,30 @@ DialogMain::~DialogMain()<br/>
 &nbsp;&nbsp;ui-&gt;text-&gt;clear();<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>List the current state<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppSystem.htm">std::system</a>("u1sd<a href="Tools.htm">tool</a> <a href="CppOperatorMinus.htm">-</a>s &gt; tmp.txt");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;ui-&gt;text-&gt;appendHtml("<a href="CppUbuntu.htm">Ubuntu</a> One current state:");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v <a href="CppOperatorAssign.htm">=</a> <a href="CppFileToVector.htm">FileToVector</a>("tmp.txt");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBOOST_FOREACH.htm">BOOST_FOREACH</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; s,v)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppSystem.html">std::system</a>("u1sd<a href="Tools.htm">tool</a> <a href="CppOperatorMinus.htm">-</a>s &gt; tmp.txt");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;ui-&gt;text-&gt;appendHtml("<a href="CppUbuntu.html">Ubuntu</a> One current state:");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppVector.html">std::vector</a>&lt;<a href="CppString.html">std::string</a>&gt; v <a href="CppOperatorAssign.htm">=</a> <a href="CppFileToVector.html">FileToVector</a>("tmp.txt");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBOOST_FOREACH.html">BOOST_FOREACH</a>(<b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a>&amp; s,v)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ui-&gt;text-&gt;appendHtml(s.c_str());<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>List the current transfers<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppSystem.htm">std::system</a>("u1sd<a href="Tools.htm">tool</a> <a href="CppOperatorMinus.htm">-</a>-current-transfers &gt; tmp.txt");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppSystem.html">std::system</a>("u1sd<a href="Tools.htm">tool</a> <a href="CppOperatorMinus.htm">-</a>-current-transfers &gt; tmp.txt");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;ui-&gt;text-&gt;appendHtml("List of current transfers:");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v <a href="CppOperatorAssign.htm">=</a> <a href="CppFileToVector.htm">FileToVector</a>("tmp.txt");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBOOST_FOREACH.htm">BOOST_FOREACH</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; s,v)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppVector.html">std::vector</a>&lt;<a href="CppString.html">std::string</a>&gt; v <a href="CppOperatorAssign.htm">=</a> <a href="CppFileToVector.html">FileToVector</a>("tmp.txt");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBOOST_FOREACH.html">BOOST_FOREACH</a>(<b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a>&amp; s,v)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ui-&gt;text-&gt;appendHtml(s.c_str());<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>List the synched folders<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppSystem.htm">std::system</a>("u1sd<a href="Tools.htm">tool</a> <a href="CppOperatorMinus.htm">-</a>-list-folders &gt; tmp.txt");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppSystem.html">std::system</a>("u1sd<a href="Tools.htm">tool</a> <a href="CppOperatorMinus.htm">-</a>-list-folders &gt; tmp.txt");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;ui-&gt;text-&gt;appendHtml("List of synchronized folders:");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v <a href="CppOperatorAssign.htm">=</a> <a href="CppFileToVector.htm">FileToVector</a>("tmp.txt");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBOOST_FOREACH.htm">BOOST_FOREACH</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; s,v)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppVector.html">std::vector</a>&lt;<a href="CppString.html">std::string</a>&gt; v <a href="CppOperatorAssign.htm">=</a> <a href="CppFileToVector.html">FileToVector</a>("tmp.txt");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBOOST_FOREACH.html">BOOST_FOREACH</a>(<b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a>&amp; s,v)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ui-&gt;text-&gt;appendHtml(s.c_str());<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
@@ -468,10 +468,10 @@ DialogMain::~DialogMain()<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>List the synched folders<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppSystem.htm">std::system</a>("u1sd<a href="Tools.htm">tool</a> <a href="CppOperatorMinus.htm">-</a>-waiting-content &gt; tmp.txt");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppSystem.html">std::system</a>("u1sd<a href="Tools.htm">tool</a> <a href="CppOperatorMinus.htm">-</a>-waiting-content &gt; tmp.txt");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;ui-&gt;text-&gt;appendHtml("List of content waiting to be synchronized:");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v <a href="CppOperatorAssign.htm">=</a> <a href="CppFileToVector.htm">FileToVector</a>("tmp.txt");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBOOST_FOREACH.htm">BOOST_FOREACH</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; s,v)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppVector.html">std::vector</a>&lt;<a href="CppString.html">std::string</a>&gt; v <a href="CppOperatorAssign.htm">=</a> <a href="CppFileToVector.html">FileToVector</a>("tmp.txt");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBOOST_FOREACH.html">BOOST_FOREACH</a>(<b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a>&amp; s,v)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ui-&gt;text-&gt;appendHtml(s.c_str());<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
@@ -482,19 +482,19 @@ DialogMain::~DialogMain()<br/>
 <br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/Cpp<a href="CppFileToVector.htm">FileToVector</a>.htm<br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppFileToVector.htm">FileToVector</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; fileName)<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/Cpp<a href="CppFileToVector.html">FileToVector</a>.html<br/>
+<b><a href="CppConst.html">const</a></b> <a href="CppVector.html">std::vector</a>&lt;<a href="CppString.html">std::string</a>&gt; <a href="CppFileToVector.html">FileToVector</a>(<b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a>&amp; fileName)<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppQFile.htm">QFile</a>::exists(fileName.c_str()));<br/>
-&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; myVector;<br/>
-&nbsp;&nbsp;<a href="CppIfstream.htm">std::ifstream</a> in(fileName.c_str());<br/>
-&nbsp;&nbsp;<a href="CppString.htm">std::string</a> myString;<br/>
+&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(<a href="CppQFile.html">QFile</a>::exists(fileName.c_str()));<br/>
+&nbsp;&nbsp;<a href="CppVector.html">std::vector</a>&lt;<a href="CppString.html">std::string</a>&gt; myVector;<br/>
+&nbsp;&nbsp;<a href="CppIfstream.html">std::ifstream</a> in(fileName.c_str());<br/>
+&nbsp;&nbsp;<a href="CppString.html">std::string</a> myString;<br/>
 &nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> i=0; !in.eof(); <a href="CppOperatorPlus.htm">+</a>+i)<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppGetline.htm">std::getline</a>(in,myString);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppGetline.html">std::getline</a>(in,myString);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;myVector.push_back(myString);<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> myVector;<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> myVector;<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 </code></td></tr></table>
@@ -510,7 +510,7 @@ DialogMain::~DialogMain()<br/>
 <table summary="dialogwhatsnew.h" border = "1"><tr><td><code>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">/*</a><br/>
-<a href="CppUbuntu.htm">Ubuntu</a>OneWatcher, <a href="Tools.htm">tool</a> to see what <a href="CppUbuntu.htm">Ubuntu</a> One is doing<br/>
+<a href="CppUbuntu.html">Ubuntu</a>OneWatcher, <a href="Tools.htm">tool</a> to see what <a href="CppUbuntu.html">Ubuntu</a> One is doing<br/>
 Copyright (C) 2010 Richel Bilderbeek<br/>
 <br/>
 This program is free software: you can redistribute it and/or modify<br/>
@@ -526,33 +526,33 @@ You should have received a copy of the GNU General Public License<br/>
 along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">*/</a><br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="Tools.htm">Tool</a><a href="CppUbuntu.htm">Ubuntu</a>OneWatcher.htm<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="Tools.htm">Tool</a><a href="CppUbuntu.html">Ubuntu</a>OneWatcher.html<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppIfndef.htm">#ifndef</a> DIALOGWHATSNEW_H<br/>
-<a href="CppDefine.htm">#define</a> DIALOGWHATSNEW_H<br/>
+<a href="CppIfndef.html">#ifndef</a> DIALOGWHATSNEW_H<br/>
+<a href="CppDefine.html">#define</a> DIALOGWHATSNEW_H<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppQDialog.htm">QDialog</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppQDialog.html">QDialog</a>&gt;<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppNamespace.htm">namespace</a></b> Ui {<br/>
-&nbsp;&nbsp;<b><a href="CppClass.htm">class</a></b> DialogWhatsNew;<br/>
+<b><a href="CppNamespace.html">namespace</a></b> Ui {<br/>
+&nbsp;&nbsp;<b><a href="CppClass.html">class</a></b> DialogWhatsNew;<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppClass.htm">class</a></b> DialogWhatsNew : <b><a href="CppPublic.htm">public</a></b> <a href="CppQDialog.htm">QDialog</a><br/>
+<b><a href="CppClass.html">class</a></b> DialogWhatsNew : <b><a href="CppPublic.html">public</a></b> <a href="CppQDialog.html">QDialog</a><br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppQ_OBJECT.htm">Q_OBJECT</a><br/>
+&nbsp;&nbsp;<a href="CppQ_OBJECT.html">Q_OBJECT</a><br/>
 <br/>
-<b><a href="CppPublic.htm">public</a></b>:<br/>
-&nbsp;&nbsp;<b><a href="CppExplicit.htm">explicit</a></b> DialogWhatsNew(<a href="CppQWidget.htm">QWidget</a> *parent <a href="CppOperatorAssign.htm">=</a> 0);<br/>
+<b><a href="CppPublic.html">public</a></b>:<br/>
+&nbsp;&nbsp;<b><a href="CppExplicit.html">explicit</a></b> DialogWhatsNew(<a href="CppQWidget.html">QWidget</a> *parent <a href="CppOperatorAssign.htm">=</a> 0);<br/>
 &nbsp;&nbsp;~DialogWhatsNew();<br/>
 <br/>
-<b><a href="CppProtected.htm">protected</a></b>:<br/>
-&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> changeEvent(<a href="CppQEvent.htm">QEvent</a> *e);<br/>
+<b><a href="CppProtected.html">protected</a></b>:<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> changeEvent(<a href="CppQEvent.html">QEvent</a> *e);<br/>
 <br/>
-<b><a href="CppPrivate.htm">private</a></b>:<br/>
+<b><a href="CppPrivate.html">private</a></b>:<br/>
 &nbsp;&nbsp;<a href="CppUi.htm">Ui</a>::DialogWhatsNew *ui;<br/>
 };<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> DIALOGWHATSNEW_H<br/>
+<a href="CppEndif.html">#endif</a> <a href="CppComment.htm">//</a> DIALOGWHATSNEW_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -566,7 +566,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <table summary="dialogwhatsnew.cpp" border = "1"><tr><td><code>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">/*</a><br/>
-<a href="CppUbuntu.htm">Ubuntu</a>OneWatcher, <a href="Tools.htm">tool</a> to see what <a href="CppUbuntu.htm">Ubuntu</a> One is doing<br/>
+<a href="CppUbuntu.html">Ubuntu</a>OneWatcher, <a href="Tools.htm">tool</a> to see what <a href="CppUbuntu.html">Ubuntu</a> One is doing<br/>
 Copyright (C) 2010 Richel Bilderbeek<br/>
 <br/>
 This program is free software: you can redistribute it and/or modify<br/>
@@ -582,13 +582,13 @@ You should have received a copy of the GNU General Public License<br/>
 along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">*/</a><br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="Tools.htm">Tool</a><a href="CppUbuntu.htm">Ubuntu</a>OneWatcher.htm<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="Tools.htm">Tool</a><a href="CppUbuntu.html">Ubuntu</a>OneWatcher.html<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppInclude.htm">#include</a> "dialogwhatsnew.h"<br/>
-<a href="CppInclude.htm">#include</a> "ui_dialogwhatsnew.h"<br/>
+<a href="CppInclude.html">#include</a> "dialogwhatsnew<a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "ui_dialogwhatsnew<a href="CppHeaderFile.htm">.h</a>"<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-DialogWhatsNew::DialogWhatsNew(<a href="CppQWidget.htm">QWidget</a> *parent) :<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQDialog.htm">QDialog</a>(parent),<br/>
+DialogWhatsNew::DialogWhatsNew(<a href="CppQWidget.html">QWidget</a> *parent) :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQDialog.html">QDialog</a>(parent),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;ui(<b><a href="CppNew.htm">new</a></b> <a href="CppUi.htm">Ui</a>::DialogWhatsNew)<br/>
 {<br/>
 &nbsp;&nbsp;ui-&gt;setupUi(<b><a href="CppThis.htm">this</a></b>);<br/>
@@ -596,18 +596,18 @@ DialogWhatsNew::DialogWhatsNew(<a href="CppQWidget.htm">QWidget</a> *parent) :<b
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 DialogWhatsNew::~DialogWhatsNew()<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppDelete.htm">delete</a></b> ui;<br/>
+&nbsp;&nbsp;<b><a href="CppDelete.html">delete</a></b> ui;<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppVoid.htm">void</a></b> DialogWhatsNew::changeEvent(<a href="CppQEvent.htm">QEvent</a> *e)<br/>
+<b><a href="CppVoid.htm">void</a></b> DialogWhatsNew::changeEvent(<a href="CppQEvent.html">QEvent</a> *e)<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppQDialog.htm">QDialog</a>::changeEvent(e);<br/>
-&nbsp;&nbsp;<b><a href="CppSwitch.htm">switch</a></b> (e-&gt;type()) {<br/>
-&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> <a href="CppQEvent.htm">QEvent</a>::LanguageChange:<br/>
+&nbsp;&nbsp;<a href="CppQDialog.html">QDialog</a>::changeEvent(e);<br/>
+&nbsp;&nbsp;<b><a href="CppSwitch.html">switch</a></b> (e-&gt;type()) {<br/>
+&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> <a href="CppQEvent.html">QEvent</a>::LanguageChange:<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;ui-&gt;retranslateUi(<b><a href="CppThis.htm">this</a></b>);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppBreak.htm">break</a></b>;<br/>
-&nbsp;&nbsp;<b><a href="CppDefault.htm">default</a></b>:<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppBreak.htm">break</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppBreak.html">break</a></b>;<br/>
+&nbsp;&nbsp;<b><a href="CppDefault.html">default</a></b>:<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppBreak.html">break</a></b>;<br/>
 &nbsp;&nbsp;}<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
@@ -624,7 +624,7 @@ DialogWhatsNew::~DialogWhatsNew()<br/>
 <table summary="main.cpp" border = "1"><tr><td><code>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">/*</a><br/>
-<a href="CppUbuntu.htm">Ubuntu</a>OneWatcher, <a href="Tools.htm">tool</a> to see what <a href="CppUbuntu.htm">Ubuntu</a> One is doing<br/>
+<a href="CppUbuntu.html">Ubuntu</a>OneWatcher, <a href="Tools.htm">tool</a> to see what <a href="CppUbuntu.html">Ubuntu</a> One is doing<br/>
 Copyright (C) 2010 Richel Bilderbeek<br/>
 <br/>
 This program is free software: you can redistribute it and/or modify<br/>
@@ -640,17 +640,17 @@ You should have received a copy of the GNU General Public License<br/>
 along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">*/</a><br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="Tools.htm">Tool</a><a href="CppUbuntu.htm">Ubuntu</a>OneWatcher.htm<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="Tools.htm">Tool</a><a href="CppUbuntu.html">Ubuntu</a>OneWatcher.html<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppQApplication.htm">QApplication</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> "dialogmain.h"<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppQApplication.html">QApplication</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> "dialogmain<a href="CppHeaderFile.htm">.h</a>"<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>(<b><a href="CppInt.htm">int</a></b> <a href="CppArgc.htm">argc</a>, <b><a href="CppChar.htm">char</a></b> *<a href="CppArgc.htm">argv</a>[])<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a>(<b><a href="CppInt.htm">int</a></b> <a href="CppArgc.htm">argc</a>, <b><a href="CppChar.htm">char</a></b> *<a href="CppArgc.htm">argv</a>[])<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppQApplication.htm">QApplication</a> a(<a href="CppArgc.htm">argc</a>, <a href="CppArgc.htm">argv</a>);<br/>
+&nbsp;&nbsp;<a href="CppQApplication.html">QApplication</a> a(<a href="CppArgc.htm">argc</a>, <a href="CppArgc.htm">argv</a>);<br/>
 &nbsp;&nbsp;DialogMain w;<br/>
 &nbsp;&nbsp;w.show();<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> a.exec();<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> a.exec();<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 </code></td></tr></table>

@@ -59,62 +59,65 @@ You should have received a copy of the GNU General Public License<br/>
 along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">*/</a><br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="CppQtRichelBilderbeekGalleryDialog.htm">CppQtRichelBilderbeekGalleryDialog</a>.htm<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="CppQtRichelBilderbeekGalleryDialog.html">CppQtRichelBilderbeekGalleryDialog</a>.html<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppIfndef.htm">#ifndef</a> QTRICHELBILDERBEEKGALLERYDIALOG_H<br/>
-<a href="CppDefine.htm">#define</a> QTRICHELBILDERBEEKGALLERYDIALOG_H<br/>
+<a href="CppIfndef.html">#ifndef</a> QTRICHELBILDERBEEKGALLERYDIALOG_H<br/>
+<a href="CppDefine.html">#define</a> QTRICHELBILDERBEEKGALLERYDIALOG_H<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppVectorH.html">vector</a>&gt;<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppShared_ptr.htm">shared_ptr</a>.hpp&gt;<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic push<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.html">-Weffc++</a>"<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppBoost.html">boost</a>/<a href="CppShared_ptr.html">shared_ptr</a><a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
+<a href="CppInclude.html">#include</a> "<a href="CppQtHideAndShowDialog.html">qthideandshowdialog</a><a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic pop<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppQtHideAndShowDialog.htm">qthideandshowdialog</a>.h"<br/>
+<b><a href="CppNamespace.html">namespace</a></b> Ui { <b><a href="CppClass.html">class</a></b> <a href="CppQt.htm">Qt</a>RichelBilderbeekGalleryDialog; }<br/>
+<b><a href="CppStruct.html">struct</a></b> <a href="CppQModelIndex.html">QModelIndex</a>;<br/>
+<br/>
+<b><a href="CppNamespace.html">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
+<br/>
+<b><a href="CppNamespace.html">namespace</a></b> RichelBilderbeek { <b><a href="CppStruct.html">struct</a></b> Program; }<br/>
 <br/>
 <br/>
-<b><a href="CppNamespace.htm">namespace</a></b> Ui { <b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a>RichelBilderbeekGalleryDialog; }<br/>
-<b><a href="CppStruct.htm">struct</a></b> <a href="CppQModelIndex.htm">QModelIndex</a>;<br/>
-<br/>
-<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
-<br/>
-<b><a href="CppNamespace.htm">namespace</a></b> RichelBilderbeek { <b><a href="CppStruct.htm">struct</a></b> Program; }<br/>
-<br/>
-<br/>
-<b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a>RichelBilderbeekGalleryDialog : <b><a href="CppPublic.htm">public</a></b> <a href="CppQtHideAndShowDialog.htm">QtHideAndShowDialog</a><br/>
+<b><a href="CppClass.html">class</a></b> <a href="CppQt.htm">Qt</a>RichelBilderbeekGalleryDialog : <b><a href="CppPublic.html">public</a></b> <a href="CppQtHideAndShowDialog.html">QtHideAndShowDialog</a><br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppQ_OBJECT.htm">Q_OBJECT</a><br/>
+&nbsp;&nbsp;<a href="CppQ_OBJECT.html">Q_OBJECT</a><br/>
 <br/>
-<b><a href="CppPublic.htm">public</a></b>:<br/>
-&nbsp;&nbsp;<b><a href="CppExplicit.htm">explicit</a></b> <a href="CppQt.htm">Qt</a>RichelBilderbeekGalleryDialog(<a href="CppQWidget.htm">QWidget</a> *parent <a href="CppOperatorAssign.htm">=</a> 0);<br/>
+<b><a href="CppPublic.html">public</a></b>:<br/>
+&nbsp;&nbsp;<b><a href="CppExplicit.html">explicit</a></b> <a href="CppQt.htm">Qt</a>RichelBilderbeekGalleryDialog(<a href="CppQWidget.html">QWidget</a> *parent <a href="CppOperatorAssign.htm">=</a> 0);<br/>
+&nbsp;&nbsp;<a href="CppQt.htm">Qt</a>RichelBilderbeekGalleryDialog(<b><a href="CppConst.html">const</a></b> <a href="CppQt.htm">Qt</a>RichelBilderbeekGalleryDialog&amp;) <a href="CppOperatorAssign.htm">=</a> <b><a href="CppDelete.html">delete</a></b>;<br/>
+&nbsp;&nbsp;<a href="CppQt.htm">Qt</a>RichelBilderbeekGalleryDialog&amp; <b><a href="CppOperator.html">operator</a></b>=(<b><a href="CppConst.html">const</a></b> <a href="CppQt.htm">Qt</a>RichelBilderbeekGalleryDialog&amp;) <a href="CppOperatorAssign.htm">=</a> <b><a href="CppDelete.html">delete</a></b>;<br/>
 &nbsp;&nbsp;~<a href="CppQt.htm">Qt</a>RichelBilderbeekGalleryDialog();<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Obtain the <a href="CppVersion.htm">version</a> of <b><a href="CppThis.htm">this</a></b> <b><a href="CppClass.htm">class</a></b><br/>
-&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> Get<a href="CppVersion.htm">Version</a>();<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Obtain the <a href="CppVersion.html">version</a> of <b><a href="CppThis.htm">this</a></b> <b><a href="CppClass.html">class</a></b><br/>
+&nbsp;&nbsp;<b><a href="CppStatic.html">static</a></b> <b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a> Get<a href="CppVersion.html">Version</a>();<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Obtain the <a href="CppVersion.htm">version</a> history of <b><a href="CppThis.htm">this</a></b> <b><a href="CppClass.htm">class</a></b><br/>
-&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; Get<a href="CppVersion.htm">Version</a>History();<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Obtain the <a href="CppVersion.html">version</a> history of <b><a href="CppThis.htm">this</a></b> <b><a href="CppClass.html">class</a></b><br/>
+&nbsp;&nbsp;<b><a href="CppStatic.html">static</a></b> <b><a href="CppConst.html">const</a></b> <a href="CppVector.html">std::vector</a>&lt;<a href="CppString.html">std::string</a>&gt; Get<a href="CppVersion.html">Version</a>History();<br/>
 <br/>
-<b><a href="CppProtected.htm">protected</a></b>:<br/>
-&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> keyPressEvent(<a href="CppQKeyEvent.htm">QKeyEvent</a>* e);<br/>
+<b><a href="CppProtected.html">protected</a></b>:<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> keyPressEvent(<a href="CppQKeyEvent.html">QKeyEvent</a>* e);<br/>
 <br/>
 <br/>
-<b><a href="CppPrivate.htm">private</a></b> <b><a href="CppSlots.htm">slots</a></b>:<br/>
-&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> on_table_clicked(<b><a href="CppConst.htm">const</a></b> <a href="CppQModelIndex.htm">QModelIndex</a> &amp;index);<br/>
+<b><a href="CppPrivate.html">private</a></b> <b><a href="CppSlots.html">slots</a></b>:<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> on_table_clicked(<b><a href="CppConst.html">const</a></b> <a href="CppQModelIndex.html">QModelIndex</a> &amp;index);<br/>
 <br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> on_table_cellEntered(<b><a href="CppInt.htm">int</a></b> row, <b><a href="CppInt.htm">int</a></b> column);<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> on_table_entered(<b><a href="CppConst.htm">const</a></b> <a href="CppQModelIndex.htm">QModelIndex</a> &amp;index);<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> on_table_entered(<b><a href="CppConst.html">const</a></b> <a href="CppQModelIndex.html">QModelIndex</a> &amp;index);<br/>
 <br/>
-<b><a href="CppPrivate.htm">private</a></b>:<br/>
+<b><a href="CppPrivate.html">private</a></b>:<br/>
 &nbsp;&nbsp;<a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a>RichelBilderbeekGalleryDialog *ui;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;RichelBilderbeek::Program&gt; &gt; m_programs;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppVector.html">std::vector</a>&lt;<a href="CppBoostShared_ptr.html">boost::shared_ptr</a>&lt;RichelBilderbeek::Program&gt; &gt; m_programs;<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/Show the screenshot requested by the item in [col,row]<br/>
-&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> ShowScreenshot(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> col, <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> row);<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> ShowScreenshot(<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> col, <b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> row);<br/>
 };<br/>
 <br/>
-} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.html">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
 <br/>
-<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> QTRICHELBILDERBEEKGALLERYDIALOG_H<br/>
+<a href="CppEndif.html">#endif</a> <a href="CppComment.htm">//</a> QTRICHELBILDERBEEKGALLERYDIALOG_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -144,107 +147,109 @@ You should have received a copy of the GNU General Public License<br/>
 along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">*/</a><br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="CppQtRichelBilderbeekGalleryDialog.htm">CppQtRichelBilderbeekGalleryDialog</a>.htm<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="CppQtRichelBilderbeekGalleryDialog.html">CppQtRichelBilderbeekGalleryDialog</a>.html<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic push<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.html">-Weffc++</a>"<br/>
+<a href="CppInclude.html">#include</a> "qtrichelbilderbeekgallerydialog<a href="CppHeaderFile.htm">.h</a>"<br/>
 <br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppCassertH.html">cassert</a>&gt;<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> "qtrichelbilderbeekgallerydialog.h"<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppQDesktopWidget.html">QDesktopWidget</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppQIcon.html">QIcon</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppQKeyEvent.html">QKeyEvent</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppQMouseEvent.html">QMouseEvent</a>&gt;<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppBoost.html">boost</a>/<a href="CppShared_ptr.html">shared_ptr</a><a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppQDesktopWidget.htm">QDesktopWidget</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppQIcon.htm">QIcon</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppQKeyEvent.htm">QKeyEvent</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppQMouseEvent.htm">QMouseEvent</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> "qtrichelbilderbeekgalleryresources<a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "<a href="CppRichelBilderbeekProgram.html">richelbilderbeekprogram</a><a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "<a href="CppRichelBilderbeekProgram.html">richelbilderbeekprogram</a>status<a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "<a href="CppTrace.html">trace</a><a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "ui_qtrichelbilderbeekgallerydialog<a href="CppHeaderFile.htm">.h</a>"<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppShared_ptr.htm">shared_ptr</a>.hpp&gt;<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic pop<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> "qtrichelbilderbeekgalleryresources.h"<br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppRichelBilderbeekProgram.htm">richelbilderbeekprogram</a>.h"<br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppRichelBilderbeekProgram.htm">richelbilderbeekprogram</a>status.h"<br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppTrace.htm">trace</a>.h"<br/>
-<a href="CppInclude.htm">#include</a> "ui_qtrichelbilderbeekgallerydialog.h"<br/>
-<br/>
-<b><a href="CppStruct.htm">struct</a></b> <a href="CppQt.htm">Qt</a>GalleryItem : <b><a href="CppPublic.htm">public</a></b> <a href="CppQTableWidget.htm">QTableWidget</a>Item<br/>
+<b><a href="CppStruct.html">struct</a></b> <a href="CppQt.htm">Qt</a>GalleryItem : <b><a href="CppPublic.html">public</a></b> <a href="CppQTableWidget.html">QTableWidget</a>Item<br/>
 {<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppQt.htm">Qt</a>GalleryItem(<b><a href="CppConst.htm">const</a></b> <a href="CppQIcon.htm">QIcon</a> &amp;icon, <b><a href="CppConst.htm">const</a></b> <a href="CppQString.htm">QString</a> &amp;text)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;: <a href="CppQTableWidget.htm">QTableWidget</a>Item(icon,text)<br/>
+&nbsp;&nbsp;<a href="CppQt.htm">Qt</a>GalleryItem(<b><a href="CppConst.html">const</a></b> <a href="CppQIcon.html">QIcon</a> &amp;icon, <b><a href="CppConst.html">const</a></b> <a href="CppQString.html">QString</a> &amp;text)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;: <a href="CppQTableWidget.html">QTableWidget</a>Item(icon,text)<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;setFlags(<a href="CppQt.htm">Qt</a>::ItemIsEnabled | <a href="CppQt.htm">Qt</a>::ItemIsSelectable);<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<a href="CppQt.htm">Qt</a>GalleryItem(<b><a href="CppConst.htm">const</a></b> <a href="CppQString.htm">QString</a> &amp;text)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;: <a href="CppQTableWidget.htm">QTableWidget</a>Item(text)<br/>
+&nbsp;&nbsp;<a href="CppQt.htm">Qt</a>GalleryItem(<b><a href="CppConst.html">const</a></b> <a href="CppQString.html">QString</a> &amp;text)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;: <a href="CppQTableWidget.html">QTableWidget</a>Item(text)<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;setFlags(<a href="CppQt.htm">Qt</a>::ItemIsEnabled | <a href="CppQt.htm">Qt</a>::ItemIsSelectable);<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<b><a href="CppProtected.htm">protected</a></b>:<br/>
+&nbsp;&nbsp;<b><a href="CppProtected.html">protected</a></b>:<br/>
 <br/>
 <br/>
 };<br/>
 <br/>
 <br/>
-<a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>RichelBilderbeekGalleryDialog::<a href="CppQt.htm">Qt</a>RichelBilderbeekGalleryDialog(<a href="CppQWidget.htm">QWidget</a> *parent) :<br/>
-&nbsp;&nbsp;<a href="CppQtHideAndShowDialog.htm">QtHideAndShowDialog</a>(parent),<br/>
+<a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>RichelBilderbeekGalleryDialog::<a href="CppQt.htm">Qt</a>RichelBilderbeekGalleryDialog(<a href="CppQWidget.html">QWidget</a> *parent) :<br/>
+&nbsp;&nbsp;<a href="CppQtHideAndShowDialog.html">QtHideAndShowDialog</a>(parent),<br/>
 &nbsp;&nbsp;ui(<b><a href="CppNew.htm">new</a></b> <a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a>RichelBilderbeekGalleryDialog),<br/>
 &nbsp;&nbsp;m_programs(RichelBilderbeek::Program::GetAllPrograms())<br/>
 {<br/>
 &nbsp;&nbsp;ui-&gt;setupUi(<b><a href="CppThis.htm">this</a></b>);<br/>
 <br/>
 &nbsp;&nbsp;RichelBilderbeek::<a href="CppQt.htm">Qt</a>Resources r;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> n <a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(m_programs.size());<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> n <a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.html">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(m_programs.size());<br/>
 &nbsp;&nbsp;ui-&gt;table-&gt;setColumnCount(5);<br/>
 &nbsp;&nbsp;ui-&gt;table-&gt;setRowCount(n <a href="CppOperatorPlus.htm">+</a> 1);<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQt.htm">Qt</a>GalleryItem * <b><a href="CppConst.htm">const</a></b> item <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppQt.htm">Qt</a>GalleryItem(<a href="CppQIcon.htm">QIcon</a>(r.GetCl().c_str()),<a href="CppQString.htm">QString</a>());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQt.htm">Qt</a>GalleryItem * <b><a href="CppConst.html">const</a></b> item <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppQt.htm">Qt</a>GalleryItem(<a href="CppQIcon.html">QIcon</a>(r.GetCl().c_str()),<a href="CppQString.html">QString</a>());<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;item-&gt;set<a href="Tools.htm">Tool</a>Tip("Command line");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;ui-&gt;table-&gt;setItem(0,1,item);<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQt.htm">Qt</a>GalleryItem * <b><a href="CppConst.htm">const</a></b> item <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppQt.htm">Qt</a>GalleryItem(<a href="CppQIcon.htm">QIcon</a>(r.Get<a href="CppWindows.htm">Windows</a>().c_str()),<a href="CppQString.htm">QString</a>());<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;item-&gt;set<a href="Tools.htm">Tool</a>Tip("<a href="CppWindows.htm">Windows</a>-only desktop ");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQt.htm">Qt</a>GalleryItem * <b><a href="CppConst.html">const</a></b> item <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppQt.htm">Qt</a>GalleryItem(<a href="CppQIcon.html">QIcon</a>(r.Get<a href="CppWindows.html">Windows</a>().c_str()),<a href="CppQString.html">QString</a>());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;item-&gt;set<a href="Tools.htm">Tool</a>Tip("<a href="CppWindows.html">Windows</a>-only desktop ");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;ui-&gt;table-&gt;setItem(0,2,item);<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQt.htm">Qt</a>GalleryItem * <b><a href="CppConst.htm">const</a></b> item <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppQt.htm">Qt</a>GalleryItem(<a href="CppQIcon.htm">QIcon</a>(r.GetDesktop().c_str()),<a href="CppQString.htm">QString</a>());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQt.htm">Qt</a>GalleryItem * <b><a href="CppConst.html">const</a></b> item <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppQt.htm">Qt</a>GalleryItem(<a href="CppQIcon.html">QIcon</a>(r.GetDesktop().c_str()),<a href="CppQString.html">QString</a>());<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;item-&gt;set<a href="Tools.htm">Tool</a>Tip("Desktop");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;ui-&gt;table-&gt;setItem(0,3,item);<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQt.htm">Qt</a>GalleryItem * <b><a href="CppConst.htm">const</a></b> item <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppQt.htm">Qt</a>GalleryItem(<a href="CppQIcon.htm">QIcon</a>(r.GetWeb().c_str()),<a href="CppQString.htm">QString</a>());<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;item-&gt;set<a href="Tools.htm">Tool</a>Tip("<a href="CppWebApplication.htm">Web application</a>");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQt.htm">Qt</a>GalleryItem * <b><a href="CppConst.html">const</a></b> item <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppQt.htm">Qt</a>GalleryItem(<a href="CppQIcon.html">QIcon</a>(r.GetWeb().c_str()),<a href="CppQString.html">QString</a>());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;item-&gt;set<a href="Tools.htm">Tool</a>Tip("<a href="CppWebApplication.html">Web application</a>");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;ui-&gt;table-&gt;setItem(0,4,item);<br/>
 &nbsp;&nbsp;}<br/>
 <br/>
 &nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> row=0; row<a href="CppOperatorNotEqual.htm">!=</a>n; <a href="CppOperatorPlus.htm">+</a>+row)<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQt.htm">Qt</a>GalleryItem * <b><a href="CppConst.htm">const</a></b> item <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppQt.htm">Qt</a>GalleryItem(m_programs[row]-&gt;GetName().c_str());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQt.htm">Qt</a>GalleryItem * <b><a href="CppConst.html">const</a></b> item <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppQt.htm">Qt</a>GalleryItem(m_programs[row]-&gt;GetName().c_str());<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ui-&gt;table-&gt;setItem(row+1,0,item);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> col=0; col<a href="CppOperatorNotEqual.htm">!=</a>4; <a href="CppOperatorPlus.htm">+</a>+col)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RichelBilderbeek::ProgramStatus p <a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;RichelBilderbeek::ProgramStatus::unk;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppSwitch.htm">switch</a></b> (col)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppSwitch.html">switch</a></b> (col)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> 0: p <a href="CppOperatorAssign.htm">=</a> m_programs[row]-&gt;GetStatusConsole(); <b><a href="CppBreak.htm">break</a></b>;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> 1: p <a href="CppOperatorAssign.htm">=</a> m_programs[row]-&gt;GetStatusDesktop<a href="CppWindows.htm">Windows</a>Only(); <b><a href="CppBreak.htm">break</a></b>;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> 2: p <a href="CppOperatorAssign.htm">=</a> m_programs[row]-&gt;GetStatusDesktop(); <b><a href="CppBreak.htm">break</a></b>;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> 3: p <a href="CppOperatorAssign.htm">=</a> m_programs[row]-&gt;GetStatusWeb<a href="CppApplication.htm">Application</a>(); <b><a href="CppBreak.htm">break</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> 0: p <a href="CppOperatorAssign.htm">=</a> m_programs[row]-&gt;GetStatusConsole(); <b><a href="CppBreak.html">break</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> 1: p <a href="CppOperatorAssign.htm">=</a> m_programs[row]-&gt;GetStatusDesktop<a href="CppWindows.html">Windows</a>Only(); <b><a href="CppBreak.html">break</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> 2: p <a href="CppOperatorAssign.htm">=</a> m_programs[row]-&gt;GetStatusDesktop(); <b><a href="CppBreak.html">break</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> 3: p <a href="CppOperatorAssign.htm">=</a> m_programs[row]-&gt;GetStatusWeb<a href="CppApplication.html">Application</a>(); <b><a href="CppBreak.html">break</a></b>;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppString.htm">std::string</a> s;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppSwitch.htm">switch</a></b> (p)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppString.html">std::string</a> s;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppSwitch.html">switch</a></b> (p)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> RichelBilderbeek::ProgramStatus::yes: s <a href="CppOperatorAssign.htm">=</a> r.GetGreen(); <b><a href="CppBreak.htm">break</a></b>;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> RichelBilderbeek::ProgramStatus::no: s <a href="CppOperatorAssign.htm">=</a> r.GetRed(); <b><a href="CppBreak.htm">break</a></b>;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> RichelBilderbeek::ProgramStatus::nvr: s <a href="CppOperatorAssign.htm">=</a> r.GetBlack(); <b><a href="CppBreak.htm">break</a></b>;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> RichelBilderbeek::ProgramStatus::n_a: s <a href="CppOperatorAssign.htm">=</a> r.GetBlack(); <b><a href="CppBreak.htm">break</a></b>;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> RichelBilderbeek::ProgramStatus::wip: s <a href="CppOperatorAssign.htm">=</a> r.GetYellow(); <b><a href="CppBreak.htm">break</a></b>;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> RichelBilderbeek::ProgramStatus::tbd: s <a href="CppOperatorAssign.htm">=</a> r.GetOrange(); <b><a href="CppBreak.htm">break</a></b>;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> RichelBilderbeek::ProgramStatus::unk: s <a href="CppOperatorAssign.htm">=</a> r.GetBlack(); <b><a href="CppBreak.htm">break</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> RichelBilderbeek::ProgramStatus::yes: s <a href="CppOperatorAssign.htm">=</a> r.GetGreen(); <b><a href="CppBreak.html">break</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> RichelBilderbeek::ProgramStatus::no: s <a href="CppOperatorAssign.htm">=</a> r.GetRed(); <b><a href="CppBreak.html">break</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> RichelBilderbeek::ProgramStatus::nvr: s <a href="CppOperatorAssign.htm">=</a> r.GetBlack(); <b><a href="CppBreak.html">break</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> RichelBilderbeek::ProgramStatus::n_a: s <a href="CppOperatorAssign.htm">=</a> r.GetBlack(); <b><a href="CppBreak.html">break</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> RichelBilderbeek::ProgramStatus::wip: s <a href="CppOperatorAssign.htm">=</a> r.GetYellow(); <b><a href="CppBreak.html">break</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> RichelBilderbeek::ProgramStatus::tbd: s <a href="CppOperatorAssign.htm">=</a> r.GetOrange(); <b><a href="CppBreak.html">break</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> RichelBilderbeek::ProgramStatus::unk: s <a href="CppOperatorAssign.htm">=</a> r.GetBlack(); <b><a href="CppBreak.html">break</a></b>;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQt.htm">Qt</a>GalleryItem * <b><a href="CppConst.htm">const</a></b> item <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppQt.htm">Qt</a>GalleryItem(<a href="CppQIcon.htm">QIcon</a>(s.c_str()),<a href="CppQString.htm">QString</a>());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQt.htm">Qt</a>GalleryItem * <b><a href="CppConst.html">const</a></b> item <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppQt.htm">Qt</a>GalleryItem(<a href="CppQIcon.html">QIcon</a>(s.c_str()),<a href="CppQString.html">QString</a>());<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;item-&gt;set<a href="Tools.htm">Tool</a>Tip(RichelBilderbeek::ProgramStatusToStr(p).c_str());<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ui-&gt;table-&gt;setItem(row+1,col+1,item);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
@@ -253,8 +258,8 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Set all row heights<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> n_rows <a href="CppOperatorAssign.htm">=</a> ui-&gt;table-&gt;rowCount();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> row_height <a href="CppOperatorAssign.htm">=</a> 18;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> n_rows <a href="CppOperatorAssign.htm">=</a> ui-&gt;table-&gt;rowCount();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> row_height <a href="CppOperatorAssign.htm">=</a> 18;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> i=0; i<a href="CppOperatorNotEqual.htm">!=</a>n_rows; <a href="CppOperatorPlus.htm">+</a>+i)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ui-&gt;table-&gt;setRowHeight(i,row_height);<br/>
@@ -262,9 +267,9 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Set all column widths<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> n_cols <a href="CppOperatorAssign.htm">=</a> ui-&gt;table-&gt;columnCount();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> col_width <a href="CppOperatorAssign.htm">=</a> 18;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> first_col_width <a href="CppOperatorAssign.htm">=</a> 200;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> n_cols <a href="CppOperatorAssign.htm">=</a> ui-&gt;table-&gt;columnCount();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> col_width <a href="CppOperatorAssign.htm">=</a> 18;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> first_col_width <a href="CppOperatorAssign.htm">=</a> 200;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;ui-&gt;table-&gt;setColumnWidth(0,first_col_width);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> i=1; i<a href="CppOperatorNotEqual.htm">!=</a>n_cols; <a href="CppOperatorPlus.htm">+</a>+i)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
@@ -277,9 +282,9 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Put the maximized dialog in the screen center<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppQRect.htm">QRect</a> screen <a href="CppOperatorAssign.htm">=</a> <a href="CppQApplication.htm">QApplication</a>::desktop()-&gt;screenGeometry();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> width <a href="CppOperatorAssign.htm">=</a> screen.width() <a href="CppOperatorMinus.htm">-</a> 64;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> height <a href="CppOperatorAssign.htm">=</a> screen.height() <a href="CppOperatorMinus.htm">-</a> 128;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppQRect.html">QRect</a> screen <a href="CppOperatorAssign.htm">=</a> <a href="CppQApplication.html">QApplication</a>::desktop()-&gt;screenGeometry();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> width <a href="CppOperatorAssign.htm">=</a> screen.width() <a href="CppOperatorMinus.htm">-</a> 64;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> height <a href="CppOperatorAssign.htm">=</a> screen<a href="CppHeaderFile.htm">.h</a>eight() <a href="CppOperatorMinus.htm">-</a> 128;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;setGeometry(0,0,width,height);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;move( screen.center() <a href="CppOperatorMinus.htm">-</a> <b><a href="CppThis.htm">this</a></b>-&gt;rect().center() );<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;setMaximumHeight(height);<br/>
@@ -289,33 +294,33 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <br/>
 <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>RichelBilderbeekGalleryDialog::~<a href="CppQt.htm">Qt</a>RichelBilderbeekGalleryDialog()<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppDelete.htm">delete</a></b> ui;<br/>
+&nbsp;&nbsp;<b><a href="CppDelete.html">delete</a></b> ui;<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>RichelBilderbeekGalleryDialog::Get<a href="CppVersion.htm">Version</a>()<br/>
+<b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>RichelBilderbeekGalleryDialog::Get<a href="CppVersion.html">Version</a>()<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> "1.1";<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> "1.1";<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>RichelBilderbeekGalleryDialog::Get<a href="CppVersion.htm">Version</a>History()<br/>
+<b><a href="CppConst.html">const</a></b> <a href="CppVector.html">std::vector</a>&lt;<a href="CppString.html">std::string</a>&gt; <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>RichelBilderbeekGalleryDialog::Get<a href="CppVersion.html">Version</a>History()<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v;<br/>
-&nbsp;&nbsp;v.push_back("2012-02-19: <a href="CppVersion.htm">version</a> 1.0: initial <a href="CppVersion.htm">version</a> of <a href="CppQtAboutDialog.htm">QtAboutDialog</a>");<br/>
-&nbsp;&nbsp;v.push_back("2012-12-25: <a href="CppVersion.htm">version</a> 1.1: inherits from <a href="CppQtHideAndShowDialog.htm">QtHideAndShowDialog</a>, added keyPressEvent");<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
+&nbsp;&nbsp;<a href="CppVector.html">std::vector</a>&lt;<a href="CppString.html">std::string</a>&gt; v;<br/>
+&nbsp;&nbsp;v.push_back("2012-02-19: <a href="CppVersion.html">version</a> 1.0: initial <a href="CppVersion.html">version</a> of <a href="CppQtAboutDialog.html">QtAboutDialog</a>");<br/>
+&nbsp;&nbsp;v.push_back("2012-12-25: <a href="CppVersion.html">version</a> 1.1: inherits from <a href="CppQtHideAndShowDialog.html">QtHideAndShowDialog</a>, added keyPressEvent");<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> v;<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>RichelBilderbeekGalleryDialog::keyPressEvent(<a href="CppQKeyEvent.htm">QKeyEvent</a>* e)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>RichelBilderbeekGalleryDialog::keyPressEvent(<a href="CppQKeyEvent.html">QKeyEvent</a>* e)<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (e-&gt;key()&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <a href="CppQt.htm">Qt</a>::Key_Escape) close();<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>RichelBilderbeekGalleryDialog::on_table_clicked(<b><a href="CppConst.htm">const</a></b> <a href="CppQModelIndex.htm">QModelIndex</a> &amp;index)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>RichelBilderbeekGalleryDialog::on_table_clicked(<b><a href="CppConst.html">const</a></b> <a href="CppQModelIndex.html">QModelIndex</a> &amp;index)<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> row <a href="CppOperatorAssign.htm">=</a> index.row();<br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (row <a href="CppOperatorMinus.htm">-</a> 1 &lt; 0 <a href="CppOperatorLogicalOr.htm">||</a> row <a href="CppOperatorMinus.htm">-</a> 1 <a href="CppOperatorGreaterEqual.htm">&gt;=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(m_programs.size())) <b><a href="CppReturn.htm">return</a></b>;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> row <a href="CppOperatorAssign.htm">=</a> index.row();<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (row <a href="CppOperatorMinus.htm">-</a> 1 &lt; 0 <a href="CppOperatorLogicalOr.htm">||</a> row <a href="CppOperatorMinus.htm">-</a> 1 <a href="CppOperatorGreaterEqual.html">&gt;=</a> <b><a href="CppStatic_cast.html">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(m_programs.size())) <b><a href="CppReturn.html">return</a></b>;<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> col <a href="CppOperatorAssign.htm">=</a> index.column();<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> col <a href="CppOperatorAssign.htm">=</a> index.column();<br/>
 &nbsp;&nbsp;ShowScreenshot(col,row);<br/>
 }<br/>
 <br/>
@@ -324,30 +329,30 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;ShowScreenshot(column,row);<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>RichelBilderbeekGalleryDialog::ShowScreenshot(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> col, <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> row)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>RichelBilderbeekGalleryDialog::ShowScreenshot(<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> col, <b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> row)<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;RichelBilderbeek::Program&gt;&amp; p <a href="CppOperatorAssign.htm">=</a> m_programs[row <a href="CppOperatorMinus.htm">-</a> 1];<br/>
-&nbsp;&nbsp;<a href="CppString.htm">std::string</a> filename;<br/>
-&nbsp;&nbsp;<b><a href="CppSwitch.htm">switch</a></b> (col)<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppBoostShared_ptr.html">boost::shared_ptr</a>&lt;RichelBilderbeek::Program&gt;&amp; p <a href="CppOperatorAssign.htm">=</a> m_programs[row <a href="CppOperatorMinus.htm">-</a> 1];<br/>
+&nbsp;&nbsp;<a href="CppString.html">std::string</a> filename;<br/>
+&nbsp;&nbsp;<b><a href="CppSwitch.html">switch</a></b> (col)<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> 0: <b><a href="CppBreak.htm">break</a></b>;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> 1: filename <a href="CppOperatorAssign.htm">=</a> p-&gt;GetFilenameConsole(); <b><a href="CppBreak.htm">break</a></b>;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> 2: filename <a href="CppOperatorAssign.htm">=</a> p-&gt;GetFilenameDesktop<a href="CppWindows.htm">Windows</a>Only(); <b><a href="CppBreak.htm">break</a></b>;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> 3: filename <a href="CppOperatorAssign.htm">=</a> p-&gt;GetFilenameDesktop(); <b><a href="CppBreak.htm">break</a></b>;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> 4: filename <a href="CppOperatorAssign.htm">=</a> p-&gt;GetFilenameWeb(); <b><a href="CppBreak.htm">break</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> 0: <b><a href="CppBreak.html">break</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> 1: filename <a href="CppOperatorAssign.htm">=</a> p-&gt;GetFilenameConsole(); <b><a href="CppBreak.html">break</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> 2: filename <a href="CppOperatorAssign.htm">=</a> p-&gt;GetFilenameDesktop<a href="CppWindows.html">Windows</a>Only(); <b><a href="CppBreak.html">break</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> 3: filename <a href="CppOperatorAssign.htm">=</a> p-&gt;GetFilenameDesktop(); <b><a href="CppBreak.html">break</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> 4: filename <a href="CppOperatorAssign.htm">=</a> p-&gt;GetFilenameWeb(); <b><a href="CppBreak.html">break</a></b>;<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;ui-&gt;image-&gt;setPixmap(<a href="CppQPixmap.htm">QPixmap</a>(filename.c_str()));<br/>
+&nbsp;&nbsp;ui-&gt;image-&gt;setPixmap(<a href="CppQPixmap.html">QPixmap</a>(filename.c_str()));<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Put the dialog in the screen center<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppQRect.htm">QRect</a> screen <a href="CppOperatorAssign.htm">=</a> <a href="CppQApplication.htm">QApplication</a>::desktop()-&gt;screenGeometry();<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppQRect.html">QRect</a> screen <a href="CppOperatorAssign.htm">=</a> <a href="CppQApplication.html">QApplication</a>::desktop()-&gt;screenGeometry();<br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;move( screen.center() <a href="CppOperatorMinus.htm">-</a> <b><a href="CppThis.htm">this</a></b>-&gt;rect().center() );<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>RichelBilderbeekGalleryDialog::on_table_entered(<b><a href="CppConst.htm">const</a></b> <a href="CppQModelIndex.htm">QModelIndex</a> &amp;index)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>RichelBilderbeekGalleryDialog::on_table_entered(<b><a href="CppConst.html">const</a></b> <a href="CppQModelIndex.html">QModelIndex</a> &amp;index)<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> row <a href="CppOperatorAssign.htm">=</a> index.row();<br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (row <a href="CppOperatorMinus.htm">-</a> 1 &lt; 0 <a href="CppOperatorLogicalOr.htm">||</a> row <a href="CppOperatorMinus.htm">-</a> 1 <a href="CppOperatorGreaterEqual.htm">&gt;=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(m_programs.size())) <b><a href="CppReturn.htm">return</a></b>;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> col <a href="CppOperatorAssign.htm">=</a> index.column();<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> row <a href="CppOperatorAssign.htm">=</a> index.row();<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (row <a href="CppOperatorMinus.htm">-</a> 1 &lt; 0 <a href="CppOperatorLogicalOr.htm">||</a> row <a href="CppOperatorMinus.htm">-</a> 1 <a href="CppOperatorGreaterEqual.html">&gt;=</a> <b><a href="CppStatic_cast.html">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(m_programs.size())) <b><a href="CppReturn.html">return</a></b>;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> col <a href="CppOperatorAssign.htm">=</a> index.column();<br/>
 &nbsp;&nbsp;ShowScreenshot(col,row);<br/>
 }<br/>
 </code></td></tr></table>

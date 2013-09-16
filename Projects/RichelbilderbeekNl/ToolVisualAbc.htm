@@ -85,18 +85,18 @@ it allows to view the generated sheet music by a single click and to </p>
 QT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; += core gui<br/>
 greaterThan(QT_MAJOR_VERSION, 4): QT += <a href="CppWidget.htm">widget</a>s<br/>
 <br/>
-<a href="CppQMAKE_CXXFLAGS.htm">QMAKE_CXXFLAGS</a> += -std=<a href="Cpp11.htm">c++11</a> <a href="CppWall.htm">-Wall</a> <a href="CppWextra.htm">-Wextra</a><br/>
+<a href="CppQmakeQmake_cxxflags.htm">QMAKE_CXXFLAGS</a> += -std=<a href="Cpp11.htm">c++11</a> <a href="CppWall.htm">-Wall</a> <a href="CppWextra.htm">-Wextra</a><br/>
 <br/>
-<a href="CppLIBS.htm">LIBS</a> += <a href="CppSystem.htm">-lboost_system</a> <a href="CppFilesystem.htm">-lboost_filesystem</a><br/>
-TEMPLATE = app<br/>
+<a href="CppQmakeLibs.htm">LIBS</a> += <a href="CppSystem.htm">-lboost_system</a> <a href="CppFilesystem.htm">-lboost_filesystem</a><br/>
+<a href="CppQmakeTemplate.htm">TEMPLATE</a> = app<br/>
 <br/>
-<a href="CppINCLUDEPATH.htm">INCLUDEPATH</a> += \<br/>
+<a href="CppQmakeIncludepath.htm">INCLUDEPATH</a> += \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppAbout.htm">CppAbout</a> \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppMusic.htm">CppMusic</a> \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppQtAboutDialog.htm">CppQtAboutDialog</a> \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppTrace.htm">CppTrace</a><br/>
 <br/>
-<a href="CppSOURCES.htm">SOURCES</a> += \<br/>
+<a href="CppQmakeSources.htm">SOURCES</a> += \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;checkprerequisites.cpp \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;chords.cpp \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppAbout.htm">CppAbout</a>/<a href="CppAbout.htm">about</a>.cpp \<br/>
@@ -111,7 +111,7 @@ TEMPLATE = app<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;qt<a href="CppMain.htm">main</a>dialog.cpp \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;qtvisualabcmenudialog.cpp<br/>
 <br/>
-<a href="CppHEADERS.htm">HEADERS</a>&nbsp;&nbsp;+= \<br/>
+<a href="CppQmakeHeaders.htm">HEADERS</a>&nbsp;&nbsp;+= \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;checkprerequisites.h \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;chords.h \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppAbout.htm">CppAbout</a>/<a href="CppAbout.htm">about</a>.h \<br/>
@@ -133,7 +133,7 @@ TEMPLATE = app<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;qt<a href="CppMain.htm">main</a>dialog.ui \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;qtvisualabcmenudialog.ui<br/>
 <br/>
-<a href="CppRESOURCES.htm">RESOURCES</a> += \<br/>
+<a href="CppQmakeResources.htm">RESOURCES</a> += \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;ToolVisualAbc.qrc<br/>
 <br/>
 OTHER_FILES += \<br/>
@@ -150,22 +150,22 @@ OTHER_FILES += \<br/>
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="checkprerequisites.h" border = "1"><tr><td><code>
-<a href="CppIfndef.htm">#ifndef</a> VISUALABCCHECKPREREQUISITES_H<br/>
-<a href="CppDefine.htm">#define</a> VISUALABCCHECKPREREQUISITES_H<br/>
+<a href="CppIfndef.html">#ifndef</a> VISUALABCCHECKPREREQUISITES_H<br/>
+<a href="CppDefine.html">#define</a> VISUALABCCHECKPREREQUISITES_H<br/>
 <br/>
-<b><a href="CppStruct.htm">struct</a></b> CheckPrerequisites<br/>
+<b><a href="CppStruct.html">struct</a></b> CheckPrerequisites<br/>
 {<br/>
 &nbsp;&nbsp;CheckPrerequisites();<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppPrivate.htm">private</a></b>:<br/>
+&nbsp;&nbsp;<b><a href="CppPrivate.html">private</a></b>:<br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> CheckAbc2midi();<br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> CheckAbcm2ps();<br/>
-&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> Check<a href="CppConvert.htm">Convert</a>();<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> Check<a href="CppConvert.html">Convert</a>();<br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> CheckPlaysound();<br/>
-&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppBool.htm">bool</a></b> <a href="CppFileExists.htm">FileExists</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; filename);<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.html">static</a></b> <b><a href="CppBool.htm">bool</a></b> <a href="CppFileExists.html">FileExists</a>(<b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a>&amp; filename);<br/>
 };<br/>
 <br/>
-<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> VISUALABCCHECKPREREQUISITES_H<br/>
+<a href="CppEndif.html">#endif</a> <a href="CppComment.htm">//</a> VISUALABCCHECKPREREQUISITES_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -178,91 +178,91 @@ OTHER_FILES += \<br/>
 <!-- start of code -->
 <table summary="checkprerequisites.cpp" border = "1"><tr><td><code>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppCstdlibH.htm">cstdlib</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppCstdioH.htm">cstdio</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppStdexceptH.htm">stdexcept</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppFstreamH.htm">fstream</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppCassertH.html">cassert</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppCstdlibH.html">cstdlib</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppCstdioH.html">cstdio</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppStdexceptH.html">stdexcept</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppFstreamH.html">fstream</a>&gt;<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppInclude.htm">#include</a> "checkprerequisites.h"<br/>
+<a href="CppInclude.html">#include</a> "checkprerequisites<a href="CppHeaderFile.htm">.h</a>"<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 CheckPrerequisites::CheckPrerequisites()<br/>
 {<br/>
 &nbsp;&nbsp;CheckAbc2midi();<br/>
 &nbsp;&nbsp;CheckAbcm2ps();<br/>
-&nbsp;&nbsp;Check<a href="CppConvert.htm">Convert</a>();<br/>
+&nbsp;&nbsp;Check<a href="CppConvert.html">Convert</a>();<br/>
 &nbsp;&nbsp;CheckPlaysound();<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <b><a href="CppVoid.htm">void</a></b> CheckPrerequisites::CheckAbc2midi()<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppRemove.htm">std::remove</a>("tmp.txt");<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!<a href="CppFileExists.htm">FileExists</a>("tmp.txt"));<br/>
+&nbsp;&nbsp;<a href="CppRemove.html">std::remove</a>("tmp.txt");<br/>
+&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(!<a href="CppFileExists.html">FileExists</a>("tmp.txt"));<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> result<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <a href="CppSystem.htm">std::system</a>("abc2midi &gt; tmp.txt");<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> result<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <a href="CppSystem.html">std::system</a>("abc2midi &gt; tmp.txt");<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (result <a href="CppOperatorNotEqual.htm">!=</a> 0)<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThrow.htm">throw</a></b> <a href="CppRuntime_error.htm">std::runtime_error</a>(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThrow.html">throw</a></b> <a href="CppRuntime_error.html">std::runtime_error</a>(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"\'abc2midi\' not not present. "<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Type \'sudo apt-get install abcmidi\' to install");<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<a href="CppRemove.htm">std::remove</a>("tmp.txt");<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!<a href="CppFileExists.htm">FileExists</a>("tmp.txt"));<br/>
+&nbsp;&nbsp;<a href="CppRemove.html">std::remove</a>("tmp.txt");<br/>
+&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(!<a href="CppFileExists.html">FileExists</a>("tmp.txt"));<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <b><a href="CppVoid.htm">void</a></b> CheckPrerequisites::CheckAbcm2ps()<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> result<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <a href="CppSystem.htm">std::system</a>("abcm2ps &gt; tmp.txt");<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> result<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <a href="CppSystem.html">std::system</a>("abcm2ps &gt; tmp.txt");<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (result <a href="CppOperatorNotEqual.htm">!=</a> 0)<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThrow.htm">throw</a></b> <a href="CppRuntime_error.htm">std::runtime_error</a>(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThrow.html">throw</a></b> <a href="CppRuntime_error.html">std::runtime_error</a>(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"\'abcm2ps\' not not present. "<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Type \'sudo apt-get install abcm2ps\' to install");<br/>
 &nbsp;&nbsp;}<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppRemove.htm">std::remove</a>("tmp.txt");<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!<a href="CppFileExists.htm">FileExists</a>("tmp.txt"));<br/>
+&nbsp;&nbsp;<a href="CppRemove.html">std::remove</a>("tmp.txt");<br/>
+&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(!<a href="CppFileExists.html">FileExists</a>("tmp.txt"));<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppVoid.htm">void</a></b> CheckPrerequisites::Check<a href="CppConvert.htm">Convert</a>()<br/>
+<b><a href="CppVoid.htm">void</a></b> CheckPrerequisites::Check<a href="CppConvert.html">Convert</a>()<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> result<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <a href="CppSystem.htm">std::system</a>("<a href="CppConvert.htm">convert</a> <a href="CppOperatorMinus.htm">-</a>-help &gt; tmp.txt");<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> result<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <a href="CppSystem.html">std::system</a>("<a href="CppConvert.html">convert</a> <a href="CppOperatorMinus.htm">-</a>-help &gt; tmp.txt");<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (result <a href="CppOperatorNotEqual.htm">!=</a> 0)<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppFileExists.htm">FileExists</a>("tmp.txt"))<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThrow.htm">throw</a></b> <a href="CppRuntime_error.htm">std::runtime_error</a>(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"\'<a href="CppConvert.htm">convert</a>\' not not present. "<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppFileExists.html">FileExists</a>("tmp.txt"))<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThrow.html">throw</a></b> <a href="CppRuntime_error.html">std::runtime_error</a>(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"\'<a href="CppConvert.html">convert</a>\' not not present. "<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Type \'sudo apt-get install imagemagick\' to install");<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<a href="CppRemove.htm">std::remove</a>("tmp.txt");<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!<a href="CppFileExists.htm">FileExists</a>("tmp.txt"));<br/>
+&nbsp;&nbsp;<a href="CppRemove.html">std::remove</a>("tmp.txt");<br/>
+&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(!<a href="CppFileExists.html">FileExists</a>("tmp.txt"));<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <b><a href="CppVoid.htm">void</a></b> CheckPrerequisites::CheckPlaysound()<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> error<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <a href="CppSystem.htm">std::system</a>("playsound <a href="CppOperatorMinus.htm">-</a>-<a href="CppVersion.htm">version</a> &gt; tmp.txt");<br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (!<a href="CppFileExists.htm">FileExists</a>("tmp.txt"))<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> error<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <a href="CppSystem.html">std::system</a>("playsound <a href="CppOperatorMinus.htm">-</a>-<a href="CppVersion.html">version</a> &gt; tmp.txt");<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (!<a href="CppFileExists.html">FileExists</a>("tmp.txt"))<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(error);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThrow.htm">throw</a></b> <a href="CppRuntime_error.htm">std::runtime_error</a>(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(error);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThrow.html">throw</a></b> <a href="CppRuntime_error.html">std::runtime_error</a>(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"\'playsound\' not not present. "<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Type \'sudo apt-get install libsdl-sound1.2\' to install");<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<a href="CppRemove.htm">std::remove</a>("tmp.txt");<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!<a href="CppFileExists.htm">FileExists</a>("tmp.txt"));<br/>
+&nbsp;&nbsp;<a href="CppRemove.html">std::remove</a>("tmp.txt");<br/>
+&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(!<a href="CppFileExists.html">FileExists</a>("tmp.txt"));<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">///</a><a href="CppFileExists.htm">FileExists</a> checks <b><a href="CppIf.htm">if</a></b> a certain file exists<br/>
-<a href="CppComment.htm">///</a>From http://www.richelbilderbeek.nl/Cpp<a href="CppFileExists.htm">FileExists</a>.htm<br/>
-<b><a href="CppBool.htm">bool</a></b> CheckPrerequisites::<a href="CppFileExists.htm">FileExists</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; filename)<br/>
+<a href="CppComment.htm">///</a><a href="CppFileExists.html">FileExists</a> checks <b><a href="CppIf.htm">if</a></b> a certain file exists<br/>
+<a href="CppComment.htm">///</a>From http://www.richelbilderbeek.nl/Cpp<a href="CppFileExists.html">FileExists</a>.html<br/>
+<b><a href="CppBool.htm">bool</a></b> CheckPrerequisites::<a href="CppFileExists.html">FileExists</a>(<b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a>&amp; filename)<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppFstream.htm">std::fstream</a> f;<br/>
+&nbsp;&nbsp;<a href="CppFstream.html">std::fstream</a> f;<br/>
 &nbsp;&nbsp;f.open(filename.c_str(),<a href="CppStd.htm">std</a>::ios::in);<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> f.is_open();<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> f.is_open();<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 </code></td></tr></table>
@@ -276,18 +276,18 @@ CheckPrerequisites::CheckPrerequisites()<br/>
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="chords.h" border = "1"><tr><td><code>
-<a href="CppIfndef.htm">#ifndef</a> CHORDS_H<br/>
-<a href="CppDefine.htm">#define</a> CHORDS_H<br/>
+<a href="CppIfndef.html">#ifndef</a> CHORDS_H<br/>
+<a href="CppDefine.html">#define</a> CHORDS_H<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppStringH.htm">string</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppStringH.html">string</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppVectorH.html">vector</a>&gt;<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppStruct.htm">struct</a></b> Chords<br/>
+<b><a href="CppStruct.html">struct</a></b> Chords<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; GetChords();<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.html">static</a></b> <b><a href="CppConst.html">const</a></b> <a href="CppVector.html">std::vector</a>&lt;<a href="CppString.html">std::string</a>&gt; GetChords();<br/>
 };<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> CHORDS_H<br/>
+<a href="CppEndif.html">#endif</a> <a href="CppComment.htm">//</a> CHORDS_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -299,18 +299,18 @@ CheckPrerequisites::CheckPrerequisites()<br/>
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="chords.cpp" border = "1"><tr><td><code>
-<a href="CppInclude.htm">#include</a> "chords.h"<br/>
+<a href="CppInclude.html">#include</a> "chords<a href="CppHeaderFile.htm">.h</a>"<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; Chords::GetChords()<br/>
+<b><a href="CppConst.html">const</a></b> <a href="CppVector.html">std::vector</a>&lt;<a href="CppString.html">std::string</a>&gt; Chords::GetChords()<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v;<br/>
+&nbsp;&nbsp;<a href="CppVector.html">std::vector</a>&lt;<a href="CppString.html">std::string</a>&gt; v;<br/>
 &nbsp;&nbsp;v.push_back("Am: A&nbsp;&nbsp;C&nbsp;&nbsp;E: [ACE]");<br/>
 &nbsp;&nbsp;v.push_back("C : G&nbsp;&nbsp;C&nbsp;&nbsp;E: [GCE]");<br/>
 &nbsp;&nbsp;v.push_back("Dm: A&nbsp;&nbsp;D&nbsp;&nbsp;F: [ADF]");<br/>
 &nbsp;&nbsp;v.push_back("E : G# B&nbsp;&nbsp;E: [G#BE]");<br/>
 &nbsp;&nbsp;v.push_back("F : A&nbsp;&nbsp;C&nbsp;&nbsp;F: [ACF]");<br/>
 &nbsp;&nbsp;v.push_back("G : G&nbsp;&nbsp;B&nbsp;&nbsp;D: [GBD]");<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> v;<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 </code></td></tr></table>
@@ -324,26 +324,26 @@ CheckPrerequisites::CheckPrerequisites()<br/>
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="maindialog.h" border = "1"><tr><td><code>
-<a href="CppIfndef.htm">#ifndef</a> VISUALABCMAINDIALOG_H<br/>
-<a href="CppDefine.htm">#define</a> VISUALABCMAINDIALOG_H<br/>
+<a href="CppIfndef.html">#ifndef</a> VISUALABCMAINDIALOG_H<br/>
+<a href="CppDefine.html">#define</a> VISUALABCMAINDIALOG_H<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppStringH.htm">string</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppStringH.html">string</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppVectorH.html">vector</a>&gt;<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppStruct.htm">struct</a></b> VisualAbcMainDialog<br/>
+<b><a href="CppStruct.html">struct</a></b> VisualAbcMainDialog<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppVoid.htm">void</a></b> <a href="CppConvert.htm">Convert</a>ToPng(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; s);<br/>
-&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppVoid.htm">void</a></b> <a href="CppConvert.htm">Convert</a>ToMid(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; s);<br/>
-&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppVoid.htm">void</a></b> PlayMid();<br/>
-&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; GetAbcFriday();<br/>
-&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> m_abc_filename;<br/>
-&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> m_log_filename;<br/>
-&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> m_mid_filename;<br/>
-&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> m_png_filename;<br/>
-&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> m_pngs_filename;<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.html">static</a></b> <b><a href="CppVoid.htm">void</a></b> <a href="CppConvert.html">Convert</a>ToPng(<b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a>&amp; s);<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.html">static</a></b> <b><a href="CppVoid.htm">void</a></b> <a href="CppConvert.html">Convert</a>ToMid(<b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a>&amp; s);<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.html">static</a></b> <b><a href="CppVoid.htm">void</a></b> PlayMid();<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.html">static</a></b> <b><a href="CppConst.html">const</a></b> <a href="CppVector.html">std::vector</a>&lt;<a href="CppString.html">std::string</a>&gt; GetAbcFriday();<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.html">static</a></b> <b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a> m_abc_filename;<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.html">static</a></b> <b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a> m_log_filename;<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.html">static</a></b> <b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a> m_mid_filename;<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.html">static</a></b> <b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a> m_png_filename;<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.html">static</a></b> <b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a> m_pngs_filename;<br/>
 };<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> VISUALABCMAINDIALOG_H<br/>
+<a href="CppEndif.html">#endif</a> <a href="CppComment.htm">//</a> VISUALABCMAINDIALOG_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -356,24 +356,24 @@ CheckPrerequisites::CheckPrerequisites()<br/>
 <!-- start of code -->
 <table summary="maindialog.cpp" border = "1"><tr><td><code>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppCstdlibH.htm">cstdlib</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppCstdioH.htm">cstdio</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppFstreamH.htm">fstream</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppCassertH.html">cassert</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppCstdlibH.html">cstdlib</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppCstdioH.html">cstdio</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppFstreamH.html">fstream</a>&gt;<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/filesystem.hpp&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppBoost.html">boost</a>/filesystem<a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppInclude.htm">#include</a> "maindialog.h"<br/>
+<a href="CppInclude.html">#include</a> "maindialog<a href="CppHeaderFile.htm">.h</a>"<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> VisualAbcMainDialog::m_abc_filename <a href="CppOperatorAssign.htm">=</a> "temp.abc";<br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> VisualAbcMainDialog::m_log_filename <a href="CppOperatorAssign.htm">=</a> "temp.log";<br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> VisualAbcMainDialog::m_mid_filename <a href="CppOperatorAssign.htm">=</a> "temp.mid";<br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> VisualAbcMainDialog::m_png_filename <a href="CppOperatorAssign.htm">=</a> "temp.png";<br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> VisualAbcMainDialog::m_pngs_filename <a href="CppOperatorAssign.htm">=</a> "temp-0.png";<br/>
+<b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a> VisualAbcMainDialog::m_abc_filename <a href="CppOperatorAssign.htm">=</a> "temp.abc";<br/>
+<b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a> VisualAbcMainDialog::m_log_filename <a href="CppOperatorAssign.htm">=</a> "temp.log";<br/>
+<b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a> VisualAbcMainDialog::m_mid_filename <a href="CppOperatorAssign.htm">=</a> "temp.mid";<br/>
+<b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a> VisualAbcMainDialog::m_png_filename <a href="CppOperatorAssign.htm">=</a> "temp.png";<br/>
+<b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a> VisualAbcMainDialog::m_pngs_filename <a href="CppOperatorAssign.htm">=</a> "temp-0.png";<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; VisualAbcMainDialog::GetAbcFriday()<br/>
+<b><a href="CppConst.html">const</a></b> <a href="CppVector.html">std::vector</a>&lt;<a href="CppString.html">std::string</a>&gt; VisualAbcMainDialog::GetAbcFriday()<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v;<br/>
+&nbsp;&nbsp;<a href="CppVector.html">std::vector</a>&lt;<a href="CppString.html">std::string</a>&gt; v;<br/>
 &nbsp;&nbsp;v.push_back("X:1");<br/>
 &nbsp;&nbsp;v.push_back("T:Friday");<br/>
 &nbsp;&nbsp;v.push_back("C:Richel Bilderbeek");<br/>
@@ -401,61 +401,61 @@ CheckPrerequisites::CheckPrerequisites()<br/>
 &nbsp;&nbsp;v.push_back("<a href="CppOperatorModulus.htm">%</a> Verse 1, 13-16");<br/>
 &nbsp;&nbsp;v.push_back("%");<br/>
 &nbsp;&nbsp;v.push_back("[V:V1] [GBe]2&nbsp;&nbsp;e B&nbsp;&nbsp; | [GBe]2&nbsp;&nbsp;e B&nbsp;&nbsp;| [FAc]2 c A&nbsp;&nbsp;| [FAc]2 c&nbsp;&nbsp; A&nbsp;&nbsp;|");<br/>
-&nbsp;&nbsp;v.push_back("w:&nbsp;&nbsp;&nbsp;&nbsp; gotta have my | <a href="Tools.htm">tools</a>, gotta | have ~ mer<a href="CppOperatorMinus.htm">-</a> | cu<a href="CppOperatorMinus.htm">-</a>&nbsp;&nbsp;&nbsp;&nbsp;ri<a href="CppOperatorMinus.htm">-</a> al |");<br/>
+&nbsp;&nbsp;v.push_back("w:&nbsp;&nbsp;&nbsp;&nbsp; gotta have my | <a href="Tools.html">tools</a>, gotta | have ~ mer<a href="CppOperatorMinus.htm">-</a> | cu<a href="CppOperatorMinus.htm">-</a>&nbsp;&nbsp;&nbsp;&nbsp;ri<a href="CppOperatorMinus.htm">-</a> al |");<br/>
 &nbsp;&nbsp;v.push_back("[V:V2] E,4&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | E4&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | F,,4&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| F,4&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |");<br/>
 &nbsp;&nbsp;v.push_back("<a href="CppOperatorModulus.htm">%</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;E&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| F#&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |");<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> v;<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppVoid.htm">void</a></b> VisualAbcMainDialog::<a href="CppConvert.htm">Convert</a>ToPng(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; s)<br/>
+<b><a href="CppVoid.htm">void</a></b> VisualAbcMainDialog::<a href="CppConvert.html">Convert</a>ToPng(<b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a>&amp; s)<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Save to file<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOfstream.htm">std::ofstream</a> f(m_abc_filename.c_str());<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;f <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> s;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOfstream.html">std::ofstream</a> f(m_abc_filename.c_str());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;f <a href="CppOperatorStreamOut.html">&lt;&lt;</a> s;<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppConvert.htm">Convert</a> ABC file to PS<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppConvert.html">Convert</a> ABC file to PS<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> cmd <a href="CppOperatorAssign.htm">=</a> "abcm2ps " <a href="CppOperatorPlus.htm">+</a> m_abc_filename;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> error <a href="CppOperatorAssign.htm">=</a> <a href="CppSystem.htm">std::system</a>(cmd.c_str());<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!error);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a> cmd <a href="CppOperatorAssign.htm">=</a> "abcm2ps " <a href="CppOperatorPlus.htm">+</a> m_abc_filename;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> error <a href="CppOperatorAssign.htm">=</a> <a href="CppSystem.html">std::system</a>(cmd.c_str());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(!error);<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppConvert.htm">Convert</a> PS file to PNG or PNGs<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppConvert.html">Convert</a> PS file to PNG or PNGs<br/>
 <br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> cmd<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <a href="CppString.htm">std::string</a>("<a href="CppConvert.htm">convert</a> <a href="CppOperatorMinus.htm">-</a>density 250 <a href="CppOperatorMinus.htm">-</a>trim Out.ps ")<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a> cmd<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <a href="CppString.html">std::string</a>("<a href="CppConvert.html">convert</a> <a href="CppOperatorMinus.htm">-</a>density 250 <a href="CppOperatorMinus.htm">-</a>trim Out.ps ")<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> m_png_filename;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> error <a href="CppOperatorAssign.htm">=</a> <a href="CppSystem.htm">std::system</a>(cmd.c_str());<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!error);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> error <a href="CppOperatorAssign.htm">=</a> <a href="CppSystem.html">std::system</a>(cmd.c_str());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(!error);<br/>
 &nbsp;&nbsp;}<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppVoid.htm">void</a></b> VisualAbcMainDialog::<a href="CppConvert.htm">Convert</a>ToMid(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; s)<br/>
+<b><a href="CppVoid.htm">void</a></b> VisualAbcMainDialog::<a href="CppConvert.html">Convert</a>ToMid(<b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a>&amp; s)<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Save to file<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOfstream.htm">std::ofstream</a> f(m_abc_filename.c_str());<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;f <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> s;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOfstream.html">std::ofstream</a> f(m_abc_filename.c_str());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;f <a href="CppOperatorStreamOut.html">&lt;&lt;</a> s;<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppConvert.htm">Convert</a> ABC file to midi<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppConvert.html">Convert</a> ABC file to midi<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> cmd <a href="CppOperatorAssign.htm">=</a> "abc2midi "<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a> cmd <a href="CppOperatorAssign.htm">=</a> "abc2midi "<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> m_abc_filename<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> " <a href="CppOperatorMinus.htm">-</a>o " <a href="CppOperatorPlus.htm">+</a> m_mid_filename;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> error <a href="CppOperatorAssign.htm">=</a> <a href="CppSystem.htm">std::system</a>(cmd.c_str());<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!error);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> error <a href="CppOperatorAssign.htm">=</a> <a href="CppSystem.html">std::system</a>(cmd.c_str());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(!error);<br/>
 &nbsp;&nbsp;}<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <b><a href="CppVoid.htm">void</a></b> VisualAbcMainDialog::PlayMid()<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppConvert.htm">Convert</a> ABC file to midi<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppConvert.html">Convert</a> ABC file to midi<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> cmd <a href="CppOperatorAssign.htm">=</a> "playsound "<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a> cmd <a href="CppOperatorAssign.htm">=</a> "playsound "<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> m_mid_filename;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> error <a href="CppOperatorAssign.htm">=</a> <a href="CppSystem.htm">std::system</a>(cmd.c_str());<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!error <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "playsound not found, type 'sudo apt-get install playmidi'");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> error <a href="CppOperatorAssign.htm">=</a> <a href="CppSystem.html">std::system</a>(cmd.c_str());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(!error <a href="CppOperatorLogicalAnd.html">&amp;&amp;</a> "playsound not found, type 'sudo apt-get install playmidi'");<br/>
 &nbsp;&nbsp;}<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
@@ -470,22 +470,22 @@ CheckPrerequisites::CheckPrerequisites()<br/>
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="menudialog.h" border = "1"><tr><td><code>
-<a href="CppIfndef.htm">#ifndef</a> VISUALABCMENUDIALOG_H<br/>
-<a href="CppDefine.htm">#define</a> VISUALABCMENUDIALOG_H<br/>
+<a href="CppIfndef.html">#ifndef</a> VISUALABCMENUDIALOG_H<br/>
+<a href="CppDefine.html">#define</a> VISUALABCMENUDIALOG_H<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppStringH.htm">string</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppStringH.html">string</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppVectorH.html">vector</a>&gt;<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppAbout.htm">about</a>.h"<br/>
+<a href="CppInclude.html">#include</a> "<a href="CppAbout.html">about</a><a href="CppHeaderFile.htm">.h</a>"<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppStruct.htm">struct</a></b> VisualAbcMenuDialog<br/>
+<b><a href="CppStruct.html">struct</a></b> VisualAbcMenuDialog<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppAbout.htm">About</a> GetAbout();<br/>
-&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> Get<a href="CppVersion.htm">Version</a>();<br/>
-&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; Get<a href="CppVersion.htm">Version</a>History();<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.html">static</a></b> <b><a href="CppConst.html">const</a></b> <a href="CppAbout.html">About</a> GetAbout();<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.html">static</a></b> <b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a> Get<a href="CppVersion.html">Version</a>();<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.html">static</a></b> <b><a href="CppConst.html">const</a></b> <a href="CppVector.html">std::vector</a>&lt;<a href="CppString.html">std::string</a>&gt; Get<a href="CppVersion.html">Version</a>History();<br/>
 };<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> VISUALABCMENUDIALOG_H<br/>
+<a href="CppEndif.html">#endif</a> <a href="CppComment.htm">//</a> VISUALABCMENUDIALOG_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -498,35 +498,35 @@ CheckPrerequisites::CheckPrerequisites()<br/>
 <!-- start of code -->
 <table summary="menudialog.cpp" border = "1"><tr><td><code>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppInclude.htm">#include</a> "menudialog.h"<br/>
+<a href="CppInclude.html">#include</a> "menudialog<a href="CppHeaderFile.htm">.h</a>"<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppAbout.htm">About</a> VisualAbcMenuDialog::GetAbout()<br/>
+<b><a href="CppConst.html">const</a></b> <a href="CppAbout.html">About</a> VisualAbcMenuDialog::GetAbout()<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppAbout.htm">About</a> a(<br/>
+&nbsp;&nbsp;<a href="CppAbout.html">About</a> a(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;"Richel Bilderbeek",<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;"Visual ABC",<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;"visual ABC editor",<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;"the 5th of May 2011",<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;"2011",<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;"http://www.richelbilderbeek.nl/<a href="Tools.htm">Tool</a>VisualAbc.htm",<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;Get<a href="CppVersion.htm">Version</a>(),<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;Get<a href="CppVersion.htm">Version</a>History());<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>a.<a href="CppAdd.htm">Add</a><a href="CppLibrary.htm">Library</a>("<a href="CppEncranger.htm">Encranger</a> <a href="CppVersion.htm">version</a>: " <a href="CppOperatorPlus.htm">+</a> <a href="CppEncranger.htm">Encranger</a>::Get<a href="CppVersion.htm">Version</a>());<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>a.<a href="CppAdd.htm">Add</a><a href="CppLibrary.htm">Library</a>("<a href="CppLoopReader.htm">LoopReader</a> <a href="CppVersion.htm">version</a>: " <a href="CppOperatorPlus.htm">+</a> <a href="CppLoopReader.htm">LoopReader</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;::Get<a href="CppVersion.htm">Version</a>());<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> a;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"http://www.richelbilderbeek.nl/<a href="Tools.htm">Tool</a>VisualAbc.html",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Get<a href="CppVersion.html">Version</a>(),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Get<a href="CppVersion.html">Version</a>History());<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>a.<a href="CppAdd.htm">Add</a><a href="CppLibrary.html">Library</a>("<a href="CppEncranger.html">Encranger</a> <a href="CppVersion.html">version</a>: " <a href="CppOperatorPlus.htm">+</a> <a href="CppEncranger.html">Encranger</a>::Get<a href="CppVersion.html">Version</a>());<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>a.<a href="CppAdd.htm">Add</a><a href="CppLibrary.html">Library</a>("<a href="CppLoopReader.html">LoopReader</a> <a href="CppVersion.html">version</a>: " <a href="CppOperatorPlus.htm">+</a> <a href="CppLoopReader.html">LoopReader</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;::Get<a href="CppVersion.html">Version</a>());<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> a;<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> VisualAbcMenuDialog::Get<a href="CppVersion.htm">Version</a>()<br/>
+<b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a> VisualAbcMenuDialog::Get<a href="CppVersion.html">Version</a>()<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> "1.1";<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> "1.1";<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; VisualAbcMenuDialog::Get<a href="CppVersion.htm">Version</a>History()<br/>
+<b><a href="CppConst.html">const</a></b> <a href="CppVector.html">std::vector</a>&lt;<a href="CppString.html">std::string</a>&gt; VisualAbcMenuDialog::Get<a href="CppVersion.html">Version</a>History()<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v;<br/>
-&nbsp;&nbsp;v.push_back("2011-05-01: <a href="CppVersion.htm">Version</a> 1.0: initial <a href="CppVersion.htm">version</a>");<br/>
-&nbsp;&nbsp;v.push_back("2011-05-01: <a href="CppVersion.htm">Version</a> 1.1: added button to save ABC text");<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
+&nbsp;&nbsp;<a href="CppVector.html">std::vector</a>&lt;<a href="CppString.html">std::string</a>&gt; v;<br/>
+&nbsp;&nbsp;v.push_back("2011-05-01: <a href="CppVersion.html">Version</a> 1.0: initial <a href="CppVersion.html">version</a>");<br/>
+&nbsp;&nbsp;v.push_back("2011-05-01: <a href="CppVersion.html">Version</a> 1.1: added button to save ABC text");<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> v;<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 </code></td></tr></table>
@@ -540,31 +540,31 @@ CheckPrerequisites::CheckPrerequisites()<br/>
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="qtchordsdialog.h" border = "1"><tr><td><code>
-<a href="CppIfndef.htm">#ifndef</a> QTCHORDSDIALOG_H<br/>
-<a href="CppDefine.htm">#define</a> QTCHORDSDIALOG_H<br/>
+<a href="CppIfndef.html">#ifndef</a> QTCHORDSDIALOG_H<br/>
+<a href="CppDefine.html">#define</a> QTCHORDSDIALOG_H<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppQDialog.htm">QDialog</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppQDialog.html">QDialog</a>&gt;<br/>
 <br/>
-<b><a href="CppNamespace.htm">namespace</a></b> Ui {<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a>ChordsDialog;<br/>
+<b><a href="CppNamespace.html">namespace</a></b> Ui {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppClass.html">class</a></b> <a href="CppQt.htm">Qt</a>ChordsDialog;<br/>
 }<br/>
 <br/>
-<b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a>ChordsDialog : <b><a href="CppPublic.htm">public</a></b> <a href="CppQDialog.htm">QDialog</a><br/>
+<b><a href="CppClass.html">class</a></b> <a href="CppQt.htm">Qt</a>ChordsDialog : <b><a href="CppPublic.html">public</a></b> <a href="CppQDialog.html">QDialog</a><br/>
 {<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQ_OBJECT.htm">Q_OBJECT</a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQ_OBJECT.html">Q_OBJECT</a><br/>
 <br/>
-<b><a href="CppPublic.htm">public</a></b>:<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppExplicit.htm">explicit</a></b> <a href="CppQt.htm">Qt</a>ChordsDialog(<a href="CppQWidget.htm">QWidget</a> *parent <a href="CppOperatorAssign.htm">=</a> 0);<br/>
+<b><a href="CppPublic.html">public</a></b>:<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppExplicit.html">explicit</a></b> <a href="CppQt.htm">Qt</a>ChordsDialog(<a href="CppQWidget.html">QWidget</a> *parent <a href="CppOperatorAssign.htm">=</a> 0);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;~<a href="CppQt.htm">Qt</a>ChordsDialog();<br/>
 <br/>
-<b><a href="CppProtected.htm">protected</a></b>:<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> changeEvent(<a href="CppQEvent.htm">QEvent</a> *e);<br/>
+<b><a href="CppProtected.html">protected</a></b>:<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> changeEvent(<a href="CppQEvent.html">QEvent</a> *e);<br/>
 <br/>
-<b><a href="CppPrivate.htm">private</a></b>:<br/>
+<b><a href="CppPrivate.html">private</a></b>:<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a>ChordsDialog *ui;<br/>
 };<br/>
 <br/>
-<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> QTCHORDSDIALOG_H<br/>
+<a href="CppEndif.html">#endif</a> <a href="CppComment.htm">//</a> QTCHORDSDIALOG_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -576,11 +576,11 @@ CheckPrerequisites::CheckPrerequisites()<br/>
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="qtchordsdialog.cpp" border = "1"><tr><td><code>
-<a href="CppInclude.htm">#include</a> "qtchordsdialog.h"<br/>
-<a href="CppInclude.htm">#include</a> "ui_qtchordsdialog.h"<br/>
+<a href="CppInclude.html">#include</a> "qtchordsdialog<a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "ui_qtchordsdialog<a href="CppHeaderFile.htm">.h</a>"<br/>
 <br/>
-<a href="CppQt.htm">Qt</a>ChordsDialog::<a href="CppQt.htm">Qt</a>ChordsDialog(<a href="CppQWidget.htm">QWidget</a> *parent) :<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQDialog.htm">QDialog</a>(parent),<br/>
+<a href="CppQt.htm">Qt</a>ChordsDialog::<a href="CppQt.htm">Qt</a>ChordsDialog(<a href="CppQWidget.html">QWidget</a> *parent) :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQDialog.html">QDialog</a>(parent),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;ui(<b><a href="CppNew.htm">new</a></b> <a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a>ChordsDialog)<br/>
 {<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;ui-&gt;setupUi(<b><a href="CppThis.htm">this</a></b>);<br/>
@@ -588,18 +588,18 @@ CheckPrerequisites::CheckPrerequisites()<br/>
 <br/>
 <a href="CppQt.htm">Qt</a>ChordsDialog::~<a href="CppQt.htm">Qt</a>ChordsDialog()<br/>
 {<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppDelete.htm">delete</a></b> ui;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppDelete.html">delete</a></b> ui;<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a>ChordsDialog::changeEvent(<a href="CppQEvent.htm">QEvent</a> *e)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a>ChordsDialog::changeEvent(<a href="CppQEvent.html">QEvent</a> *e)<br/>
 {<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQDialog.htm">QDialog</a>::changeEvent(e);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppSwitch.htm">switch</a></b> (e-&gt;type()) {<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> <a href="CppQEvent.htm">QEvent</a>::LanguageChange:<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQDialog.html">QDialog</a>::changeEvent(e);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppSwitch.html">switch</a></b> (e-&gt;type()) {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> <a href="CppQEvent.html">QEvent</a>::LanguageChange:<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ui-&gt;retranslateUi(<b><a href="CppThis.htm">this</a></b>);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppBreak.htm">break</a></b>;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppDefault.htm">default</a></b>:<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppBreak.htm">break</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppBreak.html">break</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppDefault.html">default</a></b>:<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppBreak.html">break</a></b>;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 }<br/>
 </code></td></tr></table>
@@ -615,17 +615,17 @@ CheckPrerequisites::CheckPrerequisites()<br/>
 <table summary="qtmain.cpp" border = "1"><tr><td><code>
 <br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppQApplication.htm">QApplication</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> "qtvisualabcmenudialog.h"<br/>
-<a href="CppInclude.htm">#include</a> "checkprerequisites.h"<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppQApplication.html">QApplication</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> "qtvisualabcmenudialog<a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "checkprerequisites<a href="CppHeaderFile.htm">.h</a>"<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>(<b><a href="CppInt.htm">int</a></b> <a href="CppArgc.htm">argc</a>, <b><a href="CppChar.htm">char</a></b> *<a href="CppArgc.htm">argv</a>[])<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a>(<b><a href="CppInt.htm">int</a></b> <a href="CppArgc.htm">argc</a>, <b><a href="CppChar.htm">char</a></b> *<a href="CppArgc.htm">argv</a>[])<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppQApplication.htm">QApplication</a> a(<a href="CppArgc.htm">argc</a>, <a href="CppArgc.htm">argv</a>);<br/>
+&nbsp;&nbsp;<a href="CppQApplication.html">QApplication</a> a(<a href="CppArgc.htm">argc</a>, <a href="CppArgc.htm">argv</a>);<br/>
 &nbsp;&nbsp;CheckPrerequisites();<br/>
 &nbsp;&nbsp;<a href="CppQt.htm">Qt</a>VisualAbcMenuDialog w;<br/>
 &nbsp;&nbsp;w.show();<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> a.exec();<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> a.exec();<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 </code></td></tr></table>
@@ -639,37 +639,37 @@ CheckPrerequisites::CheckPrerequisites()<br/>
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="qtmaindialog.h" border = "1"><tr><td><code>
-<a href="CppIfndef.htm">#ifndef</a> QTVISUALABCMAINDIALOG_H<br/>
-<a href="CppDefine.htm">#define</a> QTVISUALABCMAINDIALOG_H<br/>
+<a href="CppIfndef.html">#ifndef</a> QTVISUALABCMAINDIALOG_H<br/>
+<a href="CppDefine.html">#define</a> QTVISUALABCMAINDIALOG_H<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppQDialog.htm">QDialog</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppQDialog.html">QDialog</a>&gt;<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppNamespace.htm">namespace</a></b> Ui {<br/>
-&nbsp;&nbsp;<b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a>MainDialog;<br/>
+<b><a href="CppNamespace.html">namespace</a></b> Ui {<br/>
+&nbsp;&nbsp;<b><a href="CppClass.html">class</a></b> <a href="CppQt.htm">Qt</a>MainDialog;<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a>MainDialog : <b><a href="CppPublic.htm">public</a></b> <a href="CppQDialog.htm">QDialog</a><br/>
+<b><a href="CppClass.html">class</a></b> <a href="CppQt.htm">Qt</a>MainDialog : <b><a href="CppPublic.html">public</a></b> <a href="CppQDialog.html">QDialog</a><br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppQ_OBJECT.htm">Q_OBJECT</a><br/>
+&nbsp;&nbsp;<a href="CppQ_OBJECT.html">Q_OBJECT</a><br/>
 <br/>
-<b><a href="CppPublic.htm">public</a></b>:<br/>
-&nbsp;&nbsp;<b><a href="CppExplicit.htm">explicit</a></b> <a href="CppQt.htm">Qt</a>MainDialog(<a href="CppQWidget.htm">QWidget</a> *parent <a href="CppOperatorAssign.htm">=</a> 0);<br/>
+<b><a href="CppPublic.html">public</a></b>:<br/>
+&nbsp;&nbsp;<b><a href="CppExplicit.html">explicit</a></b> <a href="CppQt.htm">Qt</a>MainDialog(<a href="CppQWidget.html">QWidget</a> *parent <a href="CppOperatorAssign.htm">=</a> 0);<br/>
 &nbsp;&nbsp;~<a href="CppQt.htm">Qt</a>MainDialog();<br/>
 <br/>
-<b><a href="CppProtected.htm">protected</a></b>:<br/>
-&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> changeEvent(<a href="CppQEvent.htm">QEvent</a> *e);<br/>
+<b><a href="CppProtected.html">protected</a></b>:<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> changeEvent(<a href="CppQEvent.html">QEvent</a> *e);<br/>
 <br/>
-<b><a href="CppPrivate.htm">private</a></b>:<br/>
+<b><a href="CppPrivate.html">private</a></b>:<br/>
 &nbsp;&nbsp;<a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a>MainDialog *ui;<br/>
-&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> resizeEvent(<a href="CppQResizeEvent.htm">QResizeEvent</a> *);<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> resizeEvent(<a href="CppQResizeEvent.html">QResizeEvent</a> *);<br/>
 <br/>
-<b><a href="CppPrivate.htm">private</a></b> <b><a href="CppSlots.htm">slots</a></b>:<br/>
+<b><a href="CppPrivate.html">private</a></b> <b><a href="CppSlots.html">slots</a></b>:<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> on_label_save_clicked();<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> on_button_play_clicked();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> on_button_<a href="CppConvert.htm">convert</a>_clicked();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> on_button_<a href="CppConvert.html">convert</a>_clicked();<br/>
 };<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> QTVISUALABCMAINDIALOG_H<br/>
+<a href="CppEndif.html">#endif</a> <a href="CppComment.htm">//</a> QTVISUALABCMAINDIALOG_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -681,23 +681,23 @@ CheckPrerequisites::CheckPrerequisites()<br/>
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="qtmaindialog.cpp" border = "1"><tr><td><code>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppFstreamH.htm">fstream</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppIostreamH.htm">iostream</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppFstreamH.html">fstream</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppIostreamH.html">iostream</a>&gt;<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/filesystem.hpp&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppBOOST_FOREACH.htm">foreach</a>.hpp&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppLexical_cast.htm">lexical_cast</a>.hpp&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppBoost.html">boost</a>/filesystem<a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppBoost.html">boost</a>/<a href="CppBOOST_FOREACH.html">foreach</a><a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppBoost.html">boost</a>/<a href="CppLexical_cast.html">lexical_cast</a><a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppQDesktopWidget.htm">QDesktopWidget</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppQFile.htm">QFile</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppQFile.htm">QFile</a>Dialog&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppQDesktopWidget.html">QDesktopWidget</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppQFile.html">QFile</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppQFile.html">QFile</a>Dialog&gt;<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppInclude.htm">#include</a> "qtmaindialog.h"<br/>
-<a href="CppInclude.htm">#include</a> "ui_qtmaindialog.h"<br/>
-<a href="CppInclude.htm">#include</a> "maindialog.h"<br/>
+<a href="CppInclude.html">#include</a> "qtmaindialog<a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "ui_qtmaindialog<a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "maindialog<a href="CppHeaderFile.htm">.h</a>"<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppQt.htm">Qt</a>MainDialog::<a href="CppQt.htm">Qt</a>MainDialog(<a href="CppQWidget.htm">QWidget</a> *parent) :<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQDialog.htm">QDialog</a>(parent),<br/>
+<a href="CppQt.htm">Qt</a>MainDialog::<a href="CppQt.htm">Qt</a>MainDialog(<a href="CppQWidget.html">QWidget</a> *parent) :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQDialog.html">QDialog</a>(parent),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;ui(<b><a href="CppNew.htm">new</a></b> <a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a>MainDialog)<br/>
 {<br/>
 &nbsp;&nbsp;ui-&gt;setupUi(<b><a href="CppThis.htm">this</a></b>);<br/>
@@ -706,9 +706,9 @@ CheckPrerequisites::CheckPrerequisites()<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Set the example text<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v <a href="CppOperatorAssign.htm">=</a> VisualAbcMainDialog::GetAbcFriday();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppString.htm">std::string</a> t;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBOOST_FOREACH.htm">BOOST_FOREACH</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; s,v)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppVector.html">std::vector</a>&lt;<a href="CppString.html">std::string</a>&gt; v <a href="CppOperatorAssign.htm">=</a> VisualAbcMainDialog::GetAbcFriday();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppString.html">std::string</a> t;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBOOST_FOREACH.html">BOOST_FOREACH</a>(<b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a>&amp; s,v)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;t<a href="CppOperatorPlusAssign.htm">+=</a>s;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;t<a href="CppOperatorPlusAssign.htm">+=</a>'\n';<br/>
@@ -718,52 +718,52 @@ CheckPrerequisites::CheckPrerequisites()<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;ui-&gt;edit_text-&gt;setPlainText(t.c_str());<br/>
 &nbsp;&nbsp;}<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;on_button_<a href="CppConvert.htm">convert</a>_clicked();<br/>
+&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;on_button_<a href="CppConvert.html">convert</a>_clicked();<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppQt.htm">Qt</a>MainDialog::~<a href="CppQt.htm">Qt</a>MainDialog()<br/>
 {<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOfstream.htm">std::ofstream</a> f("last_text.abc");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;f <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> ui-&gt;edit_text-&gt;toPlainText().toStdString();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOfstream.html">std::ofstream</a> f("last_text.abc");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;f <a href="CppOperatorStreamOut.html">&lt;&lt;</a> ui-&gt;edit_text-&gt;toPlainText().toStdString();<br/>
 &nbsp;&nbsp;}<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppDelete.htm">delete</a></b> ui;<br/>
+&nbsp;&nbsp;<b><a href="CppDelete.html">delete</a></b> ui;<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a>MainDialog::changeEvent(<a href="CppQEvent.htm">QEvent</a> *e)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a>MainDialog::changeEvent(<a href="CppQEvent.html">QEvent</a> *e)<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppQDialog.htm">QDialog</a>::changeEvent(e);<br/>
-&nbsp;&nbsp;<b><a href="CppSwitch.htm">switch</a></b> (e-&gt;type()) {<br/>
-&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> <a href="CppQEvent.htm">QEvent</a>::LanguageChange:<br/>
+&nbsp;&nbsp;<a href="CppQDialog.html">QDialog</a>::changeEvent(e);<br/>
+&nbsp;&nbsp;<b><a href="CppSwitch.html">switch</a></b> (e-&gt;type()) {<br/>
+&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> <a href="CppQEvent.html">QEvent</a>::LanguageChange:<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;ui-&gt;retranslateUi(<b><a href="CppThis.htm">this</a></b>);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppBreak.htm">break</a></b>;<br/>
-&nbsp;&nbsp;<b><a href="CppDefault.htm">default</a></b>:<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppBreak.htm">break</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppBreak.html">break</a></b>;<br/>
+&nbsp;&nbsp;<b><a href="CppDefault.html">default</a></b>:<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppBreak.html">break</a></b>;<br/>
 &nbsp;&nbsp;}<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a>MainDialog::on_button_<a href="CppConvert.htm">convert</a>_clicked()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a>MainDialog::on_button_<a href="CppConvert.html">convert</a>_clicked()<br/>
 {<br/>
-&nbsp;&nbsp;VisualAbcMainDialog::<a href="CppConvert.htm">Convert</a>ToPng(ui-&gt;edit_text-&gt;toPlainText().toStdString());<br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (<a href="CppFilesystem.htm">boost::filesystem</a>::exists(VisualAbcMainDialog::m_png_filename))<br/>
+&nbsp;&nbsp;VisualAbcMainDialog::<a href="CppConvert.html">Convert</a>ToPng(ui-&gt;edit_text-&gt;toPlainText().toStdString());<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (<a href="CppFilesystem.html">boost::filesystem</a>::exists(VisualAbcMainDialog::m_png_filename))<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;ui-&gt;label_sheet-&gt;setPixmap(<a href="CppQPixmap.htm">QPixmap</a>(VisualAbcMainDialog::m_png_filename.c_str()));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;ui-&gt;label_sheet-&gt;setPixmap(<a href="CppQPixmap.html">QPixmap</a>(VisualAbcMainDialog::m_png_filename.c_str()));<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;<b><a href="CppElse.htm">else</a></b><br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppFilesystem.htm">boost::filesystem</a>::exists(VisualAbcMainDialog::m_pngs_filename));<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;ui-&gt;label_sheet-&gt;setPixmap(<a href="CppQPixmap.htm">QPixmap</a>(VisualAbcMainDialog::m_pngs_filename.c_str()));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(<a href="CppFilesystem.html">boost::filesystem</a>::exists(VisualAbcMainDialog::m_pngs_filename));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;ui-&gt;label_sheet-&gt;setPixmap(<a href="CppQPixmap.html">QPixmap</a>(VisualAbcMainDialog::m_pngs_filename.c_str()));<br/>
 &nbsp;&nbsp;}<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a>MainDialog::on_button_play_clicked()<br/>
 {<br/>
-&nbsp;&nbsp;VisualAbcMainDialog::<a href="CppConvert.htm">Convert</a>ToMid(ui-&gt;edit_text-&gt;toPlainText().toStdString());<br/>
+&nbsp;&nbsp;VisualAbcMainDialog::<a href="CppConvert.html">Convert</a>ToMid(ui-&gt;edit_text-&gt;toPlainText().toStdString());<br/>
 &nbsp;&nbsp;VisualAbcMainDialog::PlayMid();<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a>MainDialog::resizeEvent(<a href="CppQResizeEvent.htm">QResizeEvent</a> *)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a>MainDialog::resizeEvent(<a href="CppQResizeEvent.html">QResizeEvent</a> *)<br/>
 {<br/>
 <br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;setMaximumWidth(1024);<br/>
@@ -773,17 +773,17 @@ CheckPrerequisites::CheckPrerequisites()<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>ui-&gt;label_sheet-&gt;setMaximumHeight(300);<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Put the dialog in the screen center<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppQRect.htm">QRect</a> screen <a href="CppOperatorAssign.htm">=</a> <a href="CppQApplication.htm">QApplication</a>::desktop()-&gt;screenGeometry();<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppQRect.html">QRect</a> screen <a href="CppOperatorAssign.htm">=</a> <a href="CppQApplication.html">QApplication</a>::desktop()-&gt;screenGeometry();<br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;move( screen.center() <a href="CppOperatorMinus.htm">-</a> <b><a href="CppThis.htm">this</a></b>-&gt;rect().center() );<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a>MainDialog::on_label_save_clicked()<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> filename<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <a href="CppQFile.htm">QFile</a>Dialog::getOpenFileName(<b><a href="CppThis.htm">this</a></b>,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a> filename<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <a href="CppQFile.html">QFile</a>Dialog::getOpenFileName(<b><a href="CppThis.htm">this</a></b>,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp; "Save your ABC file","", "ABC notation file (*.abc)").toStdString();<br/>
-&nbsp;&nbsp;<a href="CppOfstream.htm">std::ofstream</a> file(filename.c_str());<br/>
-&nbsp;&nbsp;file <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> ui-&gt;edit_text-&gt;toPlainText().toStdString();<br/>
+&nbsp;&nbsp;<a href="CppOfstream.html">std::ofstream</a> file(filename.c_str());<br/>
+&nbsp;&nbsp;file <a href="CppOperatorStreamOut.html">&lt;&lt;</a> ui-&gt;edit_text-&gt;toPlainText().toStdString();<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 </code></td></tr></table>
@@ -797,36 +797,36 @@ CheckPrerequisites::CheckPrerequisites()<br/>
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="qtvisualabcmenudialog.h" border = "1"><tr><td><code>
-<a href="CppIfndef.htm">#ifndef</a> QTVISUALABCMENUDIALOG_H<br/>
-<a href="CppDefine.htm">#define</a> QTVISUALABCMENUDIALOG_H<br/>
+<a href="CppIfndef.html">#ifndef</a> QTVISUALABCMENUDIALOG_H<br/>
+<a href="CppDefine.html">#define</a> QTVISUALABCMENUDIALOG_H<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppQDialog.htm">QDialog</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppQDialog.html">QDialog</a>&gt;<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppNamespace.htm">namespace</a></b> Ui {<br/>
-&nbsp;&nbsp;<b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a>VisualAbcMenuDialog;<br/>
+<b><a href="CppNamespace.html">namespace</a></b> Ui {<br/>
+&nbsp;&nbsp;<b><a href="CppClass.html">class</a></b> <a href="CppQt.htm">Qt</a>VisualAbcMenuDialog;<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a>VisualAbcMenuDialog : <b><a href="CppPublic.htm">public</a></b> <a href="CppQDialog.htm">QDialog</a><br/>
+<b><a href="CppClass.html">class</a></b> <a href="CppQt.htm">Qt</a>VisualAbcMenuDialog : <b><a href="CppPublic.html">public</a></b> <a href="CppQDialog.html">QDialog</a><br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppQ_OBJECT.htm">Q_OBJECT</a><br/>
+&nbsp;&nbsp;<a href="CppQ_OBJECT.html">Q_OBJECT</a><br/>
 <br/>
-<b><a href="CppPublic.htm">public</a></b>:<br/>
-&nbsp;&nbsp;<b><a href="CppExplicit.htm">explicit</a></b> <a href="CppQt.htm">Qt</a>VisualAbcMenuDialog(<a href="CppQWidget.htm">QWidget</a> *parent <a href="CppOperatorAssign.htm">=</a> 0);<br/>
+<b><a href="CppPublic.html">public</a></b>:<br/>
+&nbsp;&nbsp;<b><a href="CppExplicit.html">explicit</a></b> <a href="CppQt.htm">Qt</a>VisualAbcMenuDialog(<a href="CppQWidget.html">QWidget</a> *parent <a href="CppOperatorAssign.htm">=</a> 0);<br/>
 &nbsp;&nbsp;~<a href="CppQt.htm">Qt</a>VisualAbcMenuDialog();<br/>
 <br/>
-<b><a href="CppProtected.htm">protected</a></b>:<br/>
-&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> changeEvent(<a href="CppQEvent.htm">QEvent</a> *e);<br/>
+<b><a href="CppProtected.html">protected</a></b>:<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> changeEvent(<a href="CppQEvent.html">QEvent</a> *e);<br/>
 <br/>
-<b><a href="CppPrivate.htm">private</a></b>:<br/>
+<b><a href="CppPrivate.html">private</a></b>:<br/>
 &nbsp;&nbsp;<a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a>VisualAbcMenuDialog *ui;<br/>
 <br/>
-<b><a href="CppPrivate.htm">private</a></b> <b><a href="CppSlots.htm">slots</a></b>:<br/>
+<b><a href="CppPrivate.html">private</a></b> <b><a href="CppSlots.html">slots</a></b>:<br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> on_button_quit_clicked();<br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> on_button_about_clicked();<br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> on_button_start_clicked();<br/>
 };<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> QTVISUALABCMENUDIALOG_H<br/>
+<a href="CppEndif.html">#endif</a> <a href="CppComment.htm">//</a> QTVISUALABCMENUDIALOG_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -839,15 +839,15 @@ CheckPrerequisites::CheckPrerequisites()<br/>
 <!-- start of code -->
 <table summary="qtvisualabcmenudialog.cpp" border = "1"><tr><td><code>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppAbout.htm">about</a>.h"<br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppQtAboutDialog.htm">qtaboutdialog</a>.h"<br/>
-<a href="CppInclude.htm">#include</a> "qtmaindialog.h"<br/>
-<a href="CppInclude.htm">#include</a> "qtvisualabcmenudialog.h"<br/>
-<a href="CppInclude.htm">#include</a> "ui_qtvisualabcmenudialog.h"<br/>
-<a href="CppInclude.htm">#include</a> "menudialog.h"<br/>
+<a href="CppInclude.html">#include</a> "<a href="CppAbout.html">about</a><a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "<a href="CppQtAboutDialog.html">qtaboutdialog</a><a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "qtmaindialog<a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "qtvisualabcmenudialog<a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "ui_qtvisualabcmenudialog<a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "menudialog<a href="CppHeaderFile.htm">.h</a>"<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppQt.htm">Qt</a>VisualAbcMenuDialog::<a href="CppQt.htm">Qt</a>VisualAbcMenuDialog(<a href="CppQWidget.htm">QWidget</a> *parent) :<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQDialog.htm">QDialog</a>(parent),<br/>
+<a href="CppQt.htm">Qt</a>VisualAbcMenuDialog::<a href="CppQt.htm">Qt</a>VisualAbcMenuDialog(<a href="CppQWidget.html">QWidget</a> *parent) :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQDialog.html">QDialog</a>(parent),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;ui(<b><a href="CppNew.htm">new</a></b> <a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a>VisualAbcMenuDialog)<br/>
 {<br/>
 &nbsp;&nbsp;ui-&gt;setupUi(<b><a href="CppThis.htm">this</a></b>);<br/>
@@ -855,18 +855,18 @@ CheckPrerequisites::CheckPrerequisites()<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppQt.htm">Qt</a>VisualAbcMenuDialog::~<a href="CppQt.htm">Qt</a>VisualAbcMenuDialog()<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppDelete.htm">delete</a></b> ui;<br/>
+&nbsp;&nbsp;<b><a href="CppDelete.html">delete</a></b> ui;<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a>VisualAbcMenuDialog::changeEvent(<a href="CppQEvent.htm">QEvent</a> *e)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a>VisualAbcMenuDialog::changeEvent(<a href="CppQEvent.html">QEvent</a> *e)<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppQDialog.htm">QDialog</a>::changeEvent(e);<br/>
-&nbsp;&nbsp;<b><a href="CppSwitch.htm">switch</a></b> (e-&gt;type()) {<br/>
-&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> <a href="CppQEvent.htm">QEvent</a>::LanguageChange:<br/>
+&nbsp;&nbsp;<a href="CppQDialog.html">QDialog</a>::changeEvent(e);<br/>
+&nbsp;&nbsp;<b><a href="CppSwitch.html">switch</a></b> (e-&gt;type()) {<br/>
+&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> <a href="CppQEvent.html">QEvent</a>::LanguageChange:<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;ui-&gt;retranslateUi(<b><a href="CppThis.htm">this</a></b>);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppBreak.htm">break</a></b>;<br/>
-&nbsp;&nbsp;<b><a href="CppDefault.htm">default</a></b>:<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppBreak.htm">break</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppBreak.html">break</a></b>;<br/>
+&nbsp;&nbsp;<b><a href="CppDefault.html">default</a></b>:<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppBreak.html">break</a></b>;<br/>
 &nbsp;&nbsp;}<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
@@ -881,8 +881,8 @@ CheckPrerequisites::CheckPrerequisites()<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a>VisualAbcMenuDialog::on_button_about_clicked()<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppAbout.htm">About</a> a <a href="CppOperatorAssign.htm">=</a> VisualAbcMenuDialog::GetAbout();<br/>
-&nbsp;&nbsp;<a href="CppQtAboutDialog.htm">QtAboutDialog</a> d(a);<br/>
+&nbsp;&nbsp;<a href="CppAbout.html">About</a> a <a href="CppOperatorAssign.htm">=</a> VisualAbcMenuDialog::GetAbout();<br/>
+&nbsp;&nbsp;<a href="CppQtAboutDialog.html">QtAboutDialog</a> d(a);<br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;hide();<br/>
 &nbsp;&nbsp;d.exec();<br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;show();<br/>

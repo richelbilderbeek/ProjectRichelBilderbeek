@@ -72,11 +72,11 @@
 #<br/>
 #-------------------------------------------------<br/>
 QT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; += core gui<br/>
-<a href="CppLIBS.htm">LIBS</a> += -L/usr/local/lib -lcln<br/>
-TEMPLATE = app<br/>
-<a href="CppSOURCES.htm">SOURCES</a> += <a href="CppMain.htm">main</a>.cpp\<br/>
+<a href="CppQmakeLibs.htm">LIBS</a> += -L/usr/local/lib -lcln<br/>
+<a href="CppQmakeTemplate.htm">TEMPLATE</a> = app<br/>
+<a href="CppQmakeSources.htm">SOURCES</a> += <a href="CppMain.htm">main</a>.cpp\<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;dialog.cpp<br/>
-<a href="CppHEADERS.htm">HEADERS</a>&nbsp;&nbsp;+= dialog.h \<br/>
+<a href="CppQmakeHeaders.htm">HEADERS</a>&nbsp;&nbsp;+= dialog.h \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;hugevector.h<br/>
 <a href="CppFORMS.htm">FORMS</a>&nbsp;&nbsp;&nbsp;&nbsp;+= dialog.ui<br/>
 </code></td></tr></table>
@@ -90,33 +90,33 @@ TEMPLATE = app<br/>
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="dialog.h" border = "1"><tr><td><code>
-<a href="CppIfndef.htm">#ifndef</a> DIALOG_H<br/>
-<a href="CppDefine.htm">#define</a> DIALOG_H<br/>
+<a href="CppIfndef.html">#ifndef</a> DIALOG_H<br/>
+<a href="CppDefine.html">#define</a> DIALOG_H<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppInclude.htm">#include</a> &lt;cln/cln.h&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;cln/cln<a href="CppHeaderFile.htm">.h</a>&gt;<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppQDialog.htm">QDialog</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppQDialog.html">QDialog</a>&gt;<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppNamespace.htm">namespace</a></b> Ui {<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppClass.htm">class</a></b> Dialog;<br/>
+<b><a href="CppNamespace.html">namespace</a></b> Ui {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppClass.html">class</a></b> Dialog;<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppClass.htm">class</a></b> Dialog : <b><a href="CppPublic.htm">public</a></b> <a href="CppQDialog.htm">QDialog</a><br/>
+<b><a href="CppClass.html">class</a></b> Dialog : <b><a href="CppPublic.html">public</a></b> <a href="CppQDialog.html">QDialog</a><br/>
 {<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQ_OBJECT.htm">Q_OBJECT</a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQ_OBJECT.html">Q_OBJECT</a><br/>
 <br/>
-<b><a href="CppPublic.htm">public</a></b>:<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppExplicit.htm">explicit</a></b> Dialog(<a href="CppQWidget.htm">QWidget</a> *parent <a href="CppOperatorAssign.htm">=</a> 0);<br/>
+<b><a href="CppPublic.html">public</a></b>:<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppExplicit.html">explicit</a></b> Dialog(<a href="CppQWidget.html">QWidget</a> *parent <a href="CppOperatorAssign.htm">=</a> 0);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;~Dialog();<br/>
 <br/>
-<b><a href="CppProtected.htm">protected</a></b>:<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> changeEvent(<a href="CppQEvent.htm">QEvent</a> *e);<br/>
+<b><a href="CppProtected.html">protected</a></b>:<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> changeEvent(<a href="CppQEvent.html">QEvent</a> *e);<br/>
 <br/>
-<b><a href="CppPrivate.htm">private</a></b>:<br/>
+<b><a href="CppPrivate.html">private</a></b>:<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppUi.htm">Ui</a>::Dialog *ui;<br/>
 };<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> DIALOG_H<br/>
+<a href="CppEndif.html">#endif</a> <a href="CppComment.htm">//</a> DIALOG_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -129,45 +129,45 @@ TEMPLATE = app<br/>
 <!-- start of code -->
 <table summary="dialog.cpp" border = "1"><tr><td><code>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppIostreamH.htm">iostream</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppIostreamH.html">iostream</a>&gt;<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/numeric/con<a href="CppVersion.htm">version</a>/bounds.hpp&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppBoost.html">boost</a>/numeric/con<a href="CppVersion.html">version</a>/bounds<a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppInclude.htm">#include</a> "dialog.h"<br/>
-<a href="CppInclude.htm">#include</a> "hugevector.h"<br/>
-<a href="CppInclude.htm">#include</a> "ui_dialog.h"<br/>
+<a href="CppInclude.html">#include</a> "dialog<a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "hugevector<a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "ui_dialog<a href="CppHeaderFile.htm">.h</a>"<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-Dialog::Dialog(<a href="CppQWidget.htm">QWidget</a> *parent) :<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQDialog.htm">QDialog</a>(parent),<br/>
+Dialog::Dialog(<a href="CppQWidget.html">QWidget</a> *parent) :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQDialog.html">QDialog</a>(parent),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;ui(<b><a href="CppNew.htm">new</a></b> <a href="CppUi.htm">Ui</a>::Dialog)<br/>
 {<br/>
 &nbsp;&nbsp;ui-&gt;setupUi(<b><a href="CppThis.htm">this</a></b>);<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppCl_I.htm">cln::cl_I</a>&gt; v;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppClog.htm">std::clog</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "A regular <a href="CppVector.htm">std::vector</a> has max size: "<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> v.max_size() <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n';<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppVector.html">std::vector</a>&lt;<a href="CppCl_I.html">cln::cl_I</a>&gt; v;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppClog.html">std::clog</a> <a href="CppOperatorStreamOut.html">&lt;&lt;</a> "A regular <a href="CppVector.html">std::vector</a> has max size: "<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> v.max_size() <a href="CppOperatorStreamOut.html">&lt;&lt;</a> '\n';<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>100 million<br/>
-&nbsp;&nbsp;<a href="CppCl_I.htm">cln::cl_I</a> sz("100000000");<br/>
-&nbsp;&nbsp;HugeVector&lt;<a href="CppCl_I.htm">cln::cl_I</a>&gt; v(sz);<br/>
+&nbsp;&nbsp;<a href="CppCl_I.html">cln::cl_I</a> sz("100000000");<br/>
+&nbsp;&nbsp;HugeVector&lt;<a href="CppCl_I.html">cln::cl_I</a>&gt; v(sz);<br/>
 <br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppTry.htm">try</a></b><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;v.reserve_all();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<a href="CppCl_I.htm">cln::cl_I</a> i=0; i<a href="CppOperatorNotEqual.htm">!=</a>sz; <a href="CppOperatorPlus.htm">+</a>+i)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<a href="CppCl_I.html">cln::cl_I</a> i=0; i<a href="CppOperatorNotEqual.htm">!=</a>sz; <a href="CppOperatorPlus.htm">+</a>+i)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;v.push_back(i);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(v[i]<a href="CppOperatorEqual.htm">==</a>i);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(v[i]<a href="CppOperatorEqual.htm">==</a>i);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCatch.htm">catch</a></b> (<a href="CppStdException.htm">std::exception</a>&amp; e)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCatch.html">catch</a></b> (<a href="CppStdException.html">std::exception</a>&amp; e)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCerr.htm">std::cerr</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> e.what() <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n';<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCerr.html">std::cerr</a> <a href="CppOperatorStreamOut.html">&lt;&lt;</a> e.what() <a href="CppOperatorStreamOut.html">&lt;&lt;</a> '\n';<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCatch.htm">catch</a></b> (...)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCatch.html">catch</a></b> (...)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCerr.htm">std::cerr</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "Unknown <a href="CppException.htm">exception</a>!" <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n';<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCerr.html">std::cerr</a> <a href="CppOperatorStreamOut.html">&lt;&lt;</a> "Unknown <a href="CppException.html">exception</a>!" <a href="CppOperatorStreamOut.html">&lt;&lt;</a> '\n';<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 <br/>
 &nbsp;&nbsp;}<br/>
@@ -175,18 +175,18 @@ Dialog::Dialog(<a href="CppQWidget.htm">QWidget</a> *parent) :<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 Dialog::~Dialog()<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppDelete.htm">delete</a></b> ui;<br/>
+&nbsp;&nbsp;<b><a href="CppDelete.html">delete</a></b> ui;<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppVoid.htm">void</a></b> Dialog::changeEvent(<a href="CppQEvent.htm">QEvent</a> *e)<br/>
+<b><a href="CppVoid.htm">void</a></b> Dialog::changeEvent(<a href="CppQEvent.html">QEvent</a> *e)<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppQDialog.htm">QDialog</a>::changeEvent(e);<br/>
-&nbsp;&nbsp;<b><a href="CppSwitch.htm">switch</a></b> (e-&gt;type()) {<br/>
-&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> <a href="CppQEvent.htm">QEvent</a>::LanguageChange:<br/>
+&nbsp;&nbsp;<a href="CppQDialog.html">QDialog</a>::changeEvent(e);<br/>
+&nbsp;&nbsp;<b><a href="CppSwitch.html">switch</a></b> (e-&gt;type()) {<br/>
+&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> <a href="CppQEvent.html">QEvent</a>::LanguageChange:<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;ui-&gt;retranslateUi(<b><a href="CppThis.htm">this</a></b>);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppBreak.htm">break</a></b>;<br/>
-&nbsp;&nbsp;<b><a href="CppDefault.htm">default</a></b>:<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppBreak.htm">break</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppBreak.html">break</a></b>;<br/>
+&nbsp;&nbsp;<b><a href="CppDefault.html">default</a></b>:<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppBreak.html">break</a></b>;<br/>
 &nbsp;&nbsp;}<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
@@ -201,83 +201,83 @@ Dialog::~Dialog()<br/>
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="hugevector.h" border = "1"><tr><td><code>
-<a href="CppIfndef.htm">#ifndef</a> HUGEVECTOR_H<br/>
-<a href="CppDefine.htm">#define</a> HUGEVECTOR_H<br/>
+<a href="CppIfndef.html">#ifndef</a> HUGEVECTOR_H<br/>
+<a href="CppDefine.html">#define</a> HUGEVECTOR_H<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppLexical_cast.htm">lexical_cast</a>.hpp&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/numeric/con<a href="CppVersion.htm">version</a>/bounds.hpp&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/numeric/con<a href="CppVersion.htm">version</a>/cast.hpp&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;cln/cln.h&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppCassertH.html">cassert</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppVectorH.html">vector</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppBoost.html">boost</a>/<a href="CppLexical_cast.html">lexical_cast</a><a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppBoost.html">boost</a>/numeric/con<a href="CppVersion.html">version</a>/bounds<a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppBoost.html">boost</a>/numeric/con<a href="CppVersion.html">version</a>/cast<a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;cln/cln<a href="CppHeaderFile.htm">.h</a>&gt;<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">///</a><a href="CppIntToStrWithSep.htm">IntToStrWithSep</a> <a href="CppConvert.htm">converts</a> an <a href="CppInt.htm">integer</a> to <a href="CppString.htm">std::string</a><br/>
+<a href="CppComment.htm">///</a><a href="CppIntToStrWithSep.html">IntToStrWithSep</a> <a href="CppConvert.html">converts</a> an <a href="CppInt.html">integer</a> to <a href="CppString.html">std::string</a><br/>
 <a href="CppComment.htm">///</a>and adds thousands seperators.<br/>
-<a href="CppComment.htm">///</a>From http://www.richelbilderbeek.nl/Cpp<a href="CppIntToStrWithSep.htm">IntToStrWithSep</a>.htm<br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppIntToStrWithSep.htm">IntToStrWithSep</a>(<a href="CppCl_I.htm">cln::cl_I</a> i);<br/>
+<a href="CppComment.htm">///</a>From http://www.richelbilderbeek.nl/Cpp<a href="CppIntToStrWithSep.html">IntToStrWithSep</a>.html<br/>
+<b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a> <a href="CppIntToStrWithSep.html">IntToStrWithSep</a>(<a href="CppCl_I.html">cln::cl_I</a> i);<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">///</a><a href="CppSafeIntToCli.htm">SafeIntToCli</a> <a href="CppConvert.htm">converts</a> an <b><a href="CppInt.htm">int</a></b> to <a href="CppCl_I.htm">cln::cl_I</a> safely.<br/>
-<a href="CppComment.htm">///</a>From http://www.richelbilderbeek.nl/Cpp<a href="CppSafeIntToCli.htm">SafeIntToCli</a>.htm<br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppCl_I.htm">cln::cl_I</a> <a href="CppSafeIntToCli.htm">SafeIntToCli</a>(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> i);<br/>
+<a href="CppComment.htm">///</a><a href="CppSafeIntToCli.html">SafeIntToCli</a> <a href="CppConvert.html">converts</a> an <b><a href="CppInt.htm">int</a></b> to <a href="CppCl_I.html">cln::cl_I</a> safely.<br/>
+<a href="CppComment.htm">///</a>From http://www.richelbilderbeek.nl/Cpp<a href="CppSafeIntToCli.html">SafeIntToCli</a>.html<br/>
+<b><a href="CppConst.html">const</a></b> <a href="CppCl_I.html">cln::cl_I</a> <a href="CppSafeIntToCli.html">SafeIntToCli</a>(<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> i);<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">///</a>HugeVector is a <b><a href="CppClass.htm">class</a></b> <b><a href="CppFor.htm">for</a></b> storing<br/>
-<b><a href="CppTemplate.htm">template</a></b> &lt;<b><a href="CppClass.htm">class</a></b> T&gt;<br/>
-<b><a href="CppStruct.htm">struct</a></b> HugeVector<br/>
+<a href="CppComment.htm">///</a>HugeVector is a <b><a href="CppClass.html">class</a></b> <b><a href="CppFor.htm">for</a></b> storing<br/>
+<b><a href="CppTemplate.html">template</a></b> &lt;<b><a href="CppClass.html">class</a></b> T&gt;<br/>
+<b><a href="CppStruct.html">struct</a></b> HugeVector<br/>
 {<br/>
-&nbsp;&nbsp;HugeVector(<b><a href="CppConst.htm">const</a></b> <a href="CppCl_I.htm">cln::cl_I</a>&amp; sz)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;: m_max_index(<a href="CppCln.htm">cln</a>::isqrt(sz)+1),<br/>
+&nbsp;&nbsp;HugeVector(<b><a href="CppConst.html">const</a></b> <a href="CppCl_I.html">cln::cl_I</a>&amp; sz)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;: m_max_index(<a href="CppCln.html">cln</a>::isqrt(sz)+1),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;m_cur_index(0)<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppClog.htm">std::clog</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "HugeVector(" <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> sz <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> ")"<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> ": m_max_index(" <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> m_max_index <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> ")\n";<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<b><a href="CppThis.htm">this</a></b>-&gt;max_size() <a href="CppOperatorGreaterEqual.htm">&gt;=</a> sz);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Only add an empty <a href="CppVector.htm">std::vector</a>,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppClog.html">std::clog</a> <a href="CppOperatorStreamOut.html">&lt;&lt;</a> "HugeVector(" <a href="CppOperatorStreamOut.html">&lt;&lt;</a> sz <a href="CppOperatorStreamOut.html">&lt;&lt;</a> ")"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> ": m_max_index(" <a href="CppOperatorStreamOut.html">&lt;&lt;</a> m_max_index <a href="CppOperatorStreamOut.html">&lt;&lt;</a> ")\n";<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(<b><a href="CppThis.htm">this</a></b>-&gt;max_size() <a href="CppOperatorGreaterEqual.html">&gt;=</a> sz);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Only add an empty <a href="CppVector.html">std::vector</a>,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppFor.htm">for</a></b> HugeVector::push_back to work<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>(because it needs an existing m_v.back())<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;m_v.push_back(<a href="CppVector.htm">std::vector</a>&lt;T&gt;());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_v.push_back(<a href="CppVector.html">std::vector</a>&lt;T&gt;());<br/>
 <br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(m_max_index &lt; <a href="CppSafeIntToCli.htm">SafeIntToCli</a>(m_v.max_size()));<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppClog.htm">std::clog</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "m_v.max_size: " <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> m_v.max_size() <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n';<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(m_max_index &lt; <a href="CppSafeIntToCli.html">SafeIntToCli</a>(m_v.max_size()));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppClog.html">std::clog</a> <a href="CppOperatorStreamOut.html">&lt;&lt;</a> "m_v.max_size: " <a href="CppOperatorStreamOut.html">&lt;&lt;</a> m_v.max_size() <a href="CppOperatorStreamOut.html">&lt;&lt;</a> '\n';<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> T&amp; <b><a href="CppOperator.htm">operator</a></b>[](<b><a href="CppConst.htm">const</a></b> <a href="CppCl_I.htm">cln::cl_I</a>&amp; i) <b><a href="CppConst.htm">const</a></b><br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> T&amp; <b><a href="CppOperator.html">operator</a></b>[](<b><a href="CppConst.html">const</a></b> <a href="CppCl_I.html">cln::cl_I</a>&amp; i) <b><a href="CppConst.html">const</a></b><br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(i <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 0);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(i &lt; m_max_index * m_max_index);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(i <a href="CppOperatorGreaterEqual.html">&gt;=</a> 0);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(i &lt; m_max_index * m_max_index);<br/>
 <br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppCl_I_to_int.htm">cln::cl_I_to_int</a> will <b><a href="CppThrow.htm">throw</a></b> <b><a href="CppIf.htm">if</a></b> <a href="CppCl_I.htm">cln::cl_I</a> is bigger then the maximum<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppInt.htm">integer</a> value. This <a href="CppMemberFunction.htm">member function</a> should not <b><a href="CppThrow.htm">throw</a></b>, however.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppCl_I_to_int.html">cln::cl_I_to_int</a> will <b><a href="CppThrow.html">throw</a></b> <b><a href="CppIf.htm">if</a></b> <a href="CppCl_I.html">cln::cl_I</a> is bigger then the maximum<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppInt.html">integer</a> value. This <a href="CppMemberFunction.html">member function</a> should not <b><a href="CppThrow.html">throw</a></b>, however.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>x <a href="CppOperatorAssign.htm">=</a> i <a href="CppOperatorDivide.htm">/</a> m_max_index<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x <a href="CppOperatorAssign.htm">=</a> <a href="CppCl_I_to_int.htm">cln::cl_I_to_int</a>(<a href="CppCln.htm">cln</a>::floor1(i,m_max_index));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> x <a href="CppOperatorAssign.htm">=</a> <a href="CppCl_I_to_int.html">cln::cl_I_to_int</a>(<a href="CppCln.html">cln</a>::floor1(i,m_max_index));<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>y <a href="CppOperatorAssign.htm">=</a> i <a href="CppOperatorModulus.htm">%</a> m_max_index<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> y <a href="CppOperatorAssign.htm">=</a> <a href="CppCl_I_to_int.htm">cln::cl_I_to_int</a>(<a href="CppCln.htm">cln</a>::mod(i,m_max_index));<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppClog.htm">std::clog</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "<b><a href="CppConst.htm">const</a></b> T&amp; <b><a href="CppOperator.htm">operator</a></b>[" <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> i <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "], "<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "retrieves at (x,y) <a href="CppOperatorAssign.htm">=</a> (" <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> x <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> ',' <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> y <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> ")\n";<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(x &lt; <a href="CppNumeric_cast.htm">boost::numeric_cast</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(m_v.size()));<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(y &lt; <a href="CppNumeric_cast.htm">boost::numeric_cast</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(m_v[x].size()));<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> m_v[x][y];<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> y <a href="CppOperatorAssign.htm">=</a> <a href="CppCl_I_to_int.html">cln::cl_I_to_int</a>(<a href="CppCln.html">cln</a>::mod(i,m_max_index));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppClog.html">std::clog</a> <a href="CppOperatorStreamOut.html">&lt;&lt;</a> "<b><a href="CppConst.html">const</a></b> T&amp; <b><a href="CppOperator.html">operator</a></b>[" <a href="CppOperatorStreamOut.html">&lt;&lt;</a> i <a href="CppOperatorStreamOut.html">&lt;&lt;</a> "], "<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "retrieves at (x,y) <a href="CppOperatorAssign.htm">=</a> (" <a href="CppOperatorStreamOut.html">&lt;&lt;</a> x <a href="CppOperatorStreamOut.html">&lt;&lt;</a> ',' <a href="CppOperatorStreamOut.html">&lt;&lt;</a> y <a href="CppOperatorStreamOut.html">&lt;&lt;</a> ")\n";<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(x &lt; <a href="CppNumeric_cast.html">boost::numeric_cast</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(m_v.size()));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(y &lt; <a href="CppNumeric_cast.html">boost::numeric_cast</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(m_v[x].size()));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> m_v[x][y];<br/>
 &nbsp;&nbsp;}<br/>
 <br/>
-&nbsp;&nbsp;T&amp; <b><a href="CppOperator.htm">operator</a></b>[](<b><a href="CppConst.htm">const</a></b> <a href="CppCl_I.htm">cln::cl_I</a>&amp; i)<br/>
+&nbsp;&nbsp;T&amp; <b><a href="CppOperator.html">operator</a></b>[](<b><a href="CppConst.html">const</a></b> <a href="CppCl_I.html">cln::cl_I</a>&amp; i)<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Calls the <b><a href="CppConst.htm">const</a></b> <a href="CppVersion.htm">version</a> of <b><a href="CppOperator.htm">operator</a></b>[]<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>To avoid duplication in <b><a href="CppConst.htm">const</a></b> and non-<a href="CppConstMemberFunction.htm">const member function</a>s [1]<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <b><a href="CppConst_cast.htm">const_cast</a></b>&lt;T&amp;&gt;(<b><a href="CppConst_cast.htm">const_cast</a></b>&lt;<b><a href="CppConst.htm">const</a></b> HugeVector&lt;T&gt;&amp; &gt;(*<b><a href="CppThis.htm">this</a></b>)[i]);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Calls the <b><a href="CppConst.html">const</a></b> <a href="CppVersion.html">version</a> of <b><a href="CppOperator.html">operator</a></b>[]<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>To avoid duplication in <b><a href="CppConst.html">const</a></b> and non-<a href="CppConstMemberFunction.html">const member function</a>s [1]<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> <b><a href="CppConst_cast.html">const_cast</a></b>&lt;T&amp;&gt;(<b><a href="CppConst_cast.html">const_cast</a></b>&lt;<b><a href="CppConst.html">const</a></b> HugeVector&lt;T&gt;&amp; &gt;(*<b><a href="CppThis.htm">this</a></b>)[i]);<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> push_back(<b><a href="CppConst.htm">const</a></b> T&amp; t)<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> push_back(<b><a href="CppConst.html">const</a></b> T&amp; t)<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppClog.htm">std::clog</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "HugeVector::push_back\n";<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> cur_sz <a href="CppOperatorAssign.htm">=</a> <a href="CppNumeric_cast.htm">boost::numeric_cast</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(m_v[m_cur_index].size());<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppClog.htm">std::clog</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "Current size: " <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> cur_sz <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n';<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(cur_sz &lt; <a href="CppNumeric_cast.htm">boost::numeric_cast</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(m_v[m_cur_index].max_size()));<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (<a href="CppCl_I.htm">cln::cl_I</a>(cur_sz) <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> m_max_index)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppClog.html">std::clog</a> <a href="CppOperatorStreamOut.html">&lt;&lt;</a> "HugeVector::push_back\n";<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> cur_sz <a href="CppOperatorAssign.htm">=</a> <a href="CppNumeric_cast.html">boost::numeric_cast</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(m_v[m_cur_index].size());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppClog.html">std::clog</a> <a href="CppOperatorStreamOut.html">&lt;&lt;</a> "Current size: " <a href="CppOperatorStreamOut.html">&lt;&lt;</a> cur_sz <a href="CppOperatorStreamOut.html">&lt;&lt;</a> '\n';<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(cur_sz &lt; <a href="CppNumeric_cast.html">boost::numeric_cast</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(m_v[m_cur_index].max_size()));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (<a href="CppCl_I.html">cln::cl_I</a>(cur_sz) <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> m_max_index)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppClog.htm">std::clog</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "<a href="CppAdd.htm">Add</a> a <a href="CppVector.htm">std::vector</a>\n";<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;m_v.push_back(<a href="CppVector.htm">std::vector</a>&lt;T&gt;());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppClog.html">std::clog</a> <a href="CppOperatorStreamOut.html">&lt;&lt;</a> "<a href="CppAdd.htm">Add</a> a <a href="CppVector.html">std::vector</a>\n";<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;m_v.push_back(<a href="CppVector.html">std::vector</a>&lt;T&gt;());<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a>+m_cur_index;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> index <a href="CppOperatorAssign.htm">=</a> <a href="CppNumeric_cast.htm">boost::numeric_cast</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(m_v.size()) <a href="CppOperatorMinus.htm">-</a> 1;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(m_cur_index <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 0);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppClog.htm">std::clog</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "Push_back data at m_v["<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> m_cur_index <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "]\n";<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> index <a href="CppOperatorAssign.htm">=</a> <a href="CppNumeric_cast.html">boost::numeric_cast</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(m_v.size()) <a href="CppOperatorMinus.htm">-</a> 1;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(m_cur_index <a href="CppOperatorGreaterEqual.html">&gt;=</a> 0);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppClog.html">std::clog</a> <a href="CppOperatorStreamOut.html">&lt;&lt;</a> "Push_back data at m_v["<a href="CppOperatorStreamOut.html">&lt;&lt;</a> m_cur_index <a href="CppOperatorStreamOut.html">&lt;&lt;</a> "]\n";<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;m_v[m_cur_index].push_back(t);<br/>
 <br/>
 &nbsp;&nbsp;}<br/>
@@ -286,89 +286,89 @@ Dialog::~Dialog()<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;reserve(max_size());<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> reserve(<b><a href="CppConst.htm">const</a></b> <a href="CppCl_I.htm">cln::cl_I</a>&amp; i)<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> reserve(<b><a href="CppConst.html">const</a></b> <a href="CppCl_I.html">cln::cl_I</a>&amp; i)<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(i <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 0);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppClog.htm">std::clog</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "HugeVector&lt;T&gt;::reserve(" <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> i <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> ")\n";<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>how m<a href="CppAny.htm">any</a> 1D <a href="CppVector.htm">std::vector</a>s to reserve in?<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(i <a href="CppOperatorGreaterEqual.html">&gt;=</a> 0);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppClog.html">std::clog</a> <a href="CppOperatorStreamOut.html">&lt;&lt;</a> "HugeVector&lt;T&gt;::reserve(" <a href="CppOperatorStreamOut.html">&lt;&lt;</a> i <a href="CppOperatorStreamOut.html">&lt;&lt;</a> ")\n";<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>how m<a href="CppAny.htm">any</a> 1D <a href="CppVector.html">std::vector</a>s to reserve in?<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>j <a href="CppOperatorAssign.htm">=</a> 1 <a href="CppOperatorPlus.htm">+</a> (i <a href="CppOperatorDivide.htm">/</a> m_max_index)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> j <a href="CppOperatorAssign.htm">=</a> 1 <a href="CppOperatorPlus.htm">+</a> <a href="CppCl_I_to_int.htm">cln::cl_I_to_int</a>(<a href="CppCln.htm">cln</a>::floor1(i,m_max_index));<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppClog.htm">std::clog</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "Number of 1D <a href="CppVector.htm">std::vector</a>s: " <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> j <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n';<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>create space <b><a href="CppFor.htm">for</a></b> those 1D <a href="CppVector.htm">std::vector</a>s<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> j <a href="CppOperatorAssign.htm">=</a> 1 <a href="CppOperatorPlus.htm">+</a> <a href="CppCl_I_to_int.html">cln::cl_I_to_int</a>(<a href="CppCln.html">cln</a>::floor1(i,m_max_index));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppClog.html">std::clog</a> <a href="CppOperatorStreamOut.html">&lt;&lt;</a> "Number of 1D <a href="CppVector.html">std::vector</a>s: " <a href="CppOperatorStreamOut.html">&lt;&lt;</a> j <a href="CppOperatorStreamOut.html">&lt;&lt;</a> '\n';<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>create space <b><a href="CppFor.htm">for</a></b> those 1D <a href="CppVector.html">std::vector</a>s<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;m_v.resize(j);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>reserve in all those 1D <a href="CppVector.htm">std::vector</a>s<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> reserve_sz <a href="CppOperatorAssign.htm">=</a> <a href="CppCl_I_to_int.htm">cln::cl_I_to_int</a>(m_max_index);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppClog.htm">std::clog</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "Reserved size in 1D <a href="CppVector.htm">std::vector</a>s: " <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> reserve_sz <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n';<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>reserve in all those 1D <a href="CppVector.html">std::vector</a>s<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> reserve_sz <a href="CppOperatorAssign.htm">=</a> <a href="CppCl_I_to_int.html">cln::cl_I_to_int</a>(m_max_index);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppClog.html">std::clog</a> <a href="CppOperatorStreamOut.html">&lt;&lt;</a> "Reserved size in 1D <a href="CppVector.html">std::vector</a>s: " <a href="CppOperatorStreamOut.html">&lt;&lt;</a> reserve_sz <a href="CppOperatorStreamOut.html">&lt;&lt;</a> '\n';<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> i=0; i<a href="CppOperatorNotEqual.htm">!=</a>j; <a href="CppOperatorPlus.htm">+</a>+i)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppClog.htm">std::clog</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "Reserving " <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> reserve_sz <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> " spaces in <a href="CppVector.htm">std::vector</a>[" <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> i <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "]\n";<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(i &lt; <a href="CppNumeric_cast.htm">boost::numeric_cast</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(m_v.size()));<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(reserve_sz &lt; <a href="CppNumeric_cast.htm">boost::numeric_cast</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(m_v[i].max_size()));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppClog.html">std::clog</a> <a href="CppOperatorStreamOut.html">&lt;&lt;</a> "Reserving " <a href="CppOperatorStreamOut.html">&lt;&lt;</a> reserve_sz <a href="CppOperatorStreamOut.html">&lt;&lt;</a> " spaces in <a href="CppVector.html">std::vector</a>[" <a href="CppOperatorStreamOut.html">&lt;&lt;</a> i <a href="CppOperatorStreamOut.html">&lt;&lt;</a> "]\n";<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(i &lt; <a href="CppNumeric_cast.html">boost::numeric_cast</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(m_v.size()));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(reserve_sz &lt; <a href="CppNumeric_cast.html">boost::numeric_cast</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(m_v[i].max_size()));<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>reserve maximum space<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;m_v[i].reserve(reserve_sz);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppCl_I.htm">cln::cl_I</a> max_size() <b><a href="CppConst.htm">const</a></b><br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppCl_I.html">cln::cl_I</a> max_size() <b><a href="CppConst.html">const</a></b><br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppCl_I.htm">cln::cl_I</a> x <a href="CppOperatorAssign.htm">=</a> (m_max_index * m_max_index);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppCl_I.htm">cln::cl_I</a> y <a href="CppOperatorAssign.htm">=</a> x <a href="CppOperatorMinus.htm">-</a> <a href="CppCl_I.htm">cln::cl_I</a>(1);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppClog.htm">std::clog</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "HugeVector&lt;T&gt;::max_size() <a href="CppOperatorAssign.htm">=</a> " <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> y <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n';<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> y;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppCl_I.html">cln::cl_I</a> x <a href="CppOperatorAssign.htm">=</a> (m_max_index * m_max_index);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppCl_I.html">cln::cl_I</a> y <a href="CppOperatorAssign.htm">=</a> x <a href="CppOperatorMinus.htm">-</a> <a href="CppCl_I.html">cln::cl_I</a>(1);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppClog.html">std::clog</a> <a href="CppOperatorStreamOut.html">&lt;&lt;</a> "HugeVector&lt;T&gt;::max_size() <a href="CppOperatorAssign.htm">=</a> " <a href="CppOperatorStreamOut.html">&lt;&lt;</a> y <a href="CppOperatorStreamOut.html">&lt;&lt;</a> '\n';<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> y;<br/>
 &nbsp;&nbsp;}<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppPrivate.htm">private</a></b>:<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>The maximum index a <a href="CppVector.htm">std::vector</a> will/can be called from<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppCl_I.htm">cln::cl_I</a> m_max_index;<br/>
+&nbsp;&nbsp;<b><a href="CppPrivate.html">private</a></b>:<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>The maximum index a <a href="CppVector.html">std::vector</a> will/can be called from<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppCl_I.html">cln::cl_I</a> m_max_index;<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>m_cur_index is the index in m_v currently working on<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>(m_v.size() does not work, because in HugeVector::reserve<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a> the 1D <a href="CppVector.htm">std::vector</a>s must exist, to be able to reserve<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a> <a href="CppMemory.htm">memory</a> <b><a href="CppFor.htm">for</a></b> them).<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a> the 1D <a href="CppVector.html">std::vector</a>s must exist, to be able to reserve<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a> <a href="CppMemory.html">memory</a> <b><a href="CppFor.htm">for</a></b> them).<br/>
 &nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> m_cur_index;<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>The 2D <a href="CppVector.htm">std::vector</a> containing all data<br/>
-&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppVector.htm">std::vector</a>&lt;T&gt; &gt; m_v;<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>The 2D <a href="CppVector.html">std::vector</a> containing all data<br/>
+&nbsp;&nbsp;<a href="CppVector.html">std::vector</a>&lt;<a href="CppVector.html">std::vector</a>&lt;T&gt; &gt; m_v;<br/>
 };<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">///</a>m_max_index <a href="CppOperatorAssign.htm">=</a> 2 ^ 27 <a href="CppOperatorAssign.htm">=</a> 134217728<br/>
 <a href="CppComment.htm">///</a>m_max_index <a href="CppOperatorAssign.htm">=</a> 2 ^ 28 <a href="CppOperatorAssign.htm">=</a> 268435456<br/>
-<a href="CppComment.htm">///</a>m_max_index must be less than <a href="CppVector.htm">std::vector</a>&lt;T&gt;::max_size<br/>
+<a href="CppComment.htm">///</a>m_max_index must be less than <a href="CppVector.html">std::vector</a>&lt;T&gt;::max_size<br/>
 <a href="CppComment.htm">///</a>Measured was 357913941, which equals 2 ^ 28.415<br/>
-<a href="CppComment.htm">///</a><b><a href="CppTemplate.htm">template</a></b> &lt;<b><a href="CppClass.htm">class</a></b> T&gt;<br/>
-<a href="CppComment.htm">///</a><b><a href="CppConst.htm">const</a></b> <a href="CppCl_I.htm">cln::cl_I</a> HugeVector&lt;T&gt;::m_max_index("134217728");<br/>
+<a href="CppComment.htm">///</a><b><a href="CppTemplate.html">template</a></b> &lt;<b><a href="CppClass.html">class</a></b> T&gt;<br/>
+<a href="CppComment.htm">///</a><b><a href="CppConst.html">const</a></b> <a href="CppCl_I.html">cln::cl_I</a> HugeVector&lt;T&gt;::m_max_index("134217728");<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">///</a><a href="CppIntToStrWithSep.htm">IntToStrWithSep</a> <a href="CppConvert.htm">converts</a> an <a href="CppInt.htm">integer</a> to <a href="CppString.htm">std::string</a><br/>
+<a href="CppComment.htm">///</a><a href="CppIntToStrWithSep.html">IntToStrWithSep</a> <a href="CppConvert.html">converts</a> an <a href="CppInt.html">integer</a> to <a href="CppString.html">std::string</a><br/>
 <a href="CppComment.htm">///</a>and adds thousands seperators.<br/>
-<a href="CppComment.htm">///</a>From http://www.richelbilderbeek.nl/Cpp<a href="CppIntToStrWithSep.htm">IntToStrWithSep</a>.htm<br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppIntToStrWithSep.htm">IntToStrWithSep</a>(<a href="CppCl_I.htm">cln::cl_I</a> i)<br/>
+<a href="CppComment.htm">///</a>From http://www.richelbilderbeek.nl/Cpp<a href="CppIntToStrWithSep.html">IntToStrWithSep</a>.html<br/>
+<b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a> <a href="CppIntToStrWithSep.html">IntToStrWithSep</a>(<a href="CppCl_I.html">cln::cl_I</a> i)<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppString.htm">std::string</a> s<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <a href="CppLexical_cast.htm">boost::lexical_cast</a>&lt;<a href="CppString.htm">std::string</a>&gt;(<a href="CppCln.htm">cln</a>::mod(i,10));<br/>
-&nbsp;&nbsp;i <a href="CppOperatorAssign.htm">=</a> <a href="CppCln.htm">cln</a>::floor1(i,10);<br/>
+&nbsp;&nbsp;<a href="CppString.html">std::string</a> s<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <a href="CppLexical_cast.html">boost::lexical_cast</a>&lt;<a href="CppString.html">std::string</a>&gt;(<a href="CppCln.html">cln</a>::mod(i,10));<br/>
+&nbsp;&nbsp;i <a href="CppOperatorAssign.htm">=</a> <a href="CppCln.html">cln</a>::floor1(i,10);<br/>
 &nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> d <a href="CppOperatorAssign.htm">=</a> 1;<br/>
-&nbsp;&nbsp;<b><a href="CppWhile.htm">while</a></b> (!<a href="CppCln.htm">cln</a>::zerop(i))<br/>
+&nbsp;&nbsp;<b><a href="CppWhile.html">while</a></b> (!<a href="CppCln.html">cln</a>::zerop(i))<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;s <a href="CppOperatorAssign.htm">=</a> <a href="CppLexical_cast.htm">boost::lexical_cast</a>&lt;<a href="CppString.htm">std::string</a>&gt;(<a href="CppCln.htm">cln</a>::mod(i,10))<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;s <a href="CppOperatorAssign.htm">=</a> <a href="CppLexical_cast.html">boost::lexical_cast</a>&lt;<a href="CppString.html">std::string</a>&gt;(<a href="CppCln.html">cln</a>::mod(i,10))<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> (d <a href="CppOperatorModulus.htm">%</a> 3 <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 0 ? "," : "")<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> s;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;i <a href="CppOperatorAssign.htm">=</a> <a href="CppCln.htm">cln</a>::floor1(i,10);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;i <a href="CppOperatorAssign.htm">=</a> <a href="CppCln.html">cln</a>::floor1(i,10);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a>+d;<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> s;<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> s;<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">///</a><a href="CppSafeIntToCli.htm">SafeIntToCli</a> <a href="CppConvert.htm">converts</a> an <b><a href="CppInt.htm">int</a></b> to <a href="CppCl_I.htm">cln::cl_I</a> safely.<br/>
-<a href="CppComment.htm">///</a>From http://www.richelbilderbeek.nl/Cpp<a href="CppSafeIntToCli.htm">SafeIntToCli</a>.htm<br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppCl_I.htm">cln::cl_I</a> <a href="CppSafeIntToCli.htm">SafeIntToCli</a>(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> i)<br/>
+<a href="CppComment.htm">///</a><a href="CppSafeIntToCli.html">SafeIntToCli</a> <a href="CppConvert.html">converts</a> an <b><a href="CppInt.htm">int</a></b> to <a href="CppCl_I.html">cln::cl_I</a> safely.<br/>
+<a href="CppComment.htm">///</a>From http://www.richelbilderbeek.nl/Cpp<a href="CppSafeIntToCli.html">SafeIntToCli</a>.html<br/>
+<b><a href="CppConst.html">const</a></b> <a href="CppCl_I.html">cln::cl_I</a> <a href="CppSafeIntToCli.html">SafeIntToCli</a>(<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> i)<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>A <a href="CppCl_I.htm">cln::cl_I</a> can handle <a href="CppInt.htm">integer</a> values to 2^29 in its <a href="CppConstructor.htm">constructor</a><br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>A <a href="CppCl_I.html">cln::cl_I</a> can handle <a href="CppInt.html">integer</a> values to 2^29 in its <a href="CppConstructor.html">constructor</a><br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (i &lt; 536870912)<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <a href="CppCl_I.htm">cln::cl_I</a>(i);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> <a href="CppCl_I.html">cln::cl_I</a>(i);<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> s <a href="CppOperatorAssign.htm">=</a> <a href="CppLexical_cast.htm">boost::lexical_cast</a>&lt;<a href="CppString.htm">std::string</a>&gt;(i);<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <a href="CppCl_I.htm">cln::cl_I</a>(s.c_str());<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a> s <a href="CppOperatorAssign.htm">=</a> <a href="CppLexical_cast.html">boost::lexical_cast</a>&lt;<a href="CppString.html">std::string</a>&gt;(i);<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> <a href="CppCl_I.html">cln::cl_I</a>(s.c_str());<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> HUGEVECTOR_H<br/>
+<a href="CppEndif.html">#endif</a> <a href="CppComment.htm">//</a> HUGEVECTOR_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -380,15 +380,15 @@ Dialog::~Dialog()<br/>
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="main.cpp" border = "1"><tr><td><code>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppQApplication.htm">QApplication</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> "dialog.h"<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppQApplication.html">QApplication</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> "dialog<a href="CppHeaderFile.htm">.h</a>"<br/>
 <br/>
-<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>(<b><a href="CppInt.htm">int</a></b> <a href="CppArgc.htm">argc</a>, <b><a href="CppChar.htm">char</a></b> *<a href="CppArgc.htm">argv</a>[])<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a>(<b><a href="CppInt.htm">int</a></b> <a href="CppArgc.htm">argc</a>, <b><a href="CppChar.htm">char</a></b> *<a href="CppArgc.htm">argv</a>[])<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppQApplication.htm">QApplication</a> a(<a href="CppArgc.htm">argc</a>, <a href="CppArgc.htm">argv</a>);<br/>
+&nbsp;&nbsp;<a href="CppQApplication.html">QApplication</a> a(<a href="CppArgc.htm">argc</a>, <a href="CppArgc.htm">argv</a>);<br/>
 &nbsp;&nbsp;Dialog w;<br/>
 &nbsp;&nbsp;w.show();<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> a.exec();<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> a.exec();<br/>
 }<br/>
 </code></td></tr></table>
 <!-- end of the code -->

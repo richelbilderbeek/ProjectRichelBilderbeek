@@ -108,22 +108,22 @@
 <table summary="ToolRichelbilderbeekNlSitemapGenerator.pro" border = "1"><tr><td><code>
 QT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; += core gui <a href="CppWidget.htm">widget</a>s<br/>
 <br/>
-<a href="CppQMAKE_CXXFLAGS.htm">QMAKE_CXXFLAGS</a> += -std=<a href="Cpp11.htm">c++11</a> <a href="CppWall.htm">-Wall</a> <a href="CppWextra.htm">-Wextra</a> <a href="CppWerror.htm">-Werror</a><br/>
+<a href="CppQmakeQmake_cxxflags.htm">QMAKE_CXXFLAGS</a> += -std=<a href="Cpp11.htm">c++11</a> <a href="CppWall.htm">-Wall</a> <a href="CppWextra.htm">-Wextra</a> <a href="CppWerror.htm">-Werror</a><br/>
 <br/>
-TEMPLATE = app<br/>
+<a href="CppQmakeTemplate.htm">TEMPLATE</a> = app<br/>
 <br/>
-<a href="CppLIBS.htm">LIBS</a> += \<br/>
+<a href="CppQmakeLibs.htm">LIBS</a> += \<br/>
 &nbsp;&nbsp;<a href="CppDate_Time.htm">-lboost_date_time</a> \<br/>
 &nbsp;&nbsp;<a href="CppFilesystem.htm">-lboost_filesystem</a> \<br/>
 &nbsp;&nbsp;<a href="CppRegex.htm">-lboost_regex</a> \<br/>
 &nbsp;&nbsp;<a href="CppSystem.htm">-lboost_system</a><br/>
 <br/>
-<a href="CppINCLUDEPATH.htm">INCLUDEPATH</a> += \<br/>
+<a href="CppQmakeIncludepath.htm">INCLUDEPATH</a> += \<br/>
 &nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppAbout.htm">CppAbout</a> \<br/>
 &nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppQtAboutDialog.htm">CppQtAboutDialog</a> \<br/>
 &nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppQtHideAndShowDialog.htm">CppQtHideAndShowDialog</a><br/>
 <br/>
-<a href="CppSOURCES.htm">SOURCES</a> += \<br/>
+<a href="CppQmakeSources.htm">SOURCES</a> += \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppAbout.htm">CppAbout</a>/<a href="CppAbout.htm">about</a>.cpp \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppQtAboutDialog.htm">CppQtAboutDialog</a>/<a href="CppQtAboutDialog.htm">qtaboutdialog</a>.cpp \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppQtHideAndShowDialog.htm">CppQtHideAndShowDialog</a>/<a href="CppQtHideAndShowDialog.htm">qthideandshowdialog</a>.cpp \<br/>
@@ -132,7 +132,7 @@ TEMPLATE = app<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;qtsitemapgeneratormenudialog.cpp \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;sitemapgeneratormenudialog.cpp<br/>
 <br/>
-<a href="CppHEADERS.htm">HEADERS</a> += \<br/>
+<a href="CppQmakeHeaders.htm">HEADERS</a> += \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppAbout.htm">CppAbout</a>/<a href="CppAbout.htm">about</a>.h \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppQtAboutDialog.htm">CppQtAboutDialog</a>/<a href="CppQtAboutDialog.htm">qtaboutdialog</a>.h \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppQtHideAndShowDialog.htm">CppQtHideAndShowDialog</a>/<a href="CppQtHideAndShowDialog.htm">qthideandshowdialog</a>.h \<br/>
@@ -145,7 +145,7 @@ TEMPLATE = app<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;qtsitemapgenerator<a href="CppMain.htm">main</a>dialog.ui \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;qtsitemapgeneratormenudialog.ui<br/>
 <br/>
-<a href="CppRESOURCES.htm">RESOURCES</a> += \<br/>
+<a href="CppQmakeResources.htm">RESOURCES</a> += \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="ToolRichelbilderbeekNlSitemapGenerator.htm">ToolRichelbilderbeekNlSitemapGenerator</a>.qrc<br/>
 <br/>
 OTHER_FILES += \<br/>
@@ -181,17 +181,17 @@ You should have received a copy of the GNU General Public License<br/>
 along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">*/</a><br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="ToolRichelbilderbeekNlSitemapGenerator.htm">ToolRichelbilderbeekNlSitemapGenerator</a>.htm<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="ToolRichelbilderbeekNlSitemapGenerator.html">ToolRichelbilderbeekNlSitemapGenerator</a>.html<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppQApplication.htm">QApplication</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> "qtsitemapgeneratormenudialog.h"<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppQApplication.html">QApplication</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> "qtsitemapgeneratormenudialog<a href="CppHeaderFile.htm">.h</a>"<br/>
 <br/>
-<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>(<b><a href="CppInt.htm">int</a></b> <a href="CppArgc.htm">argc</a>, <b><a href="CppChar.htm">char</a></b> *<a href="CppArgc.htm">argv</a>[])<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a>(<b><a href="CppInt.htm">int</a></b> <a href="CppArgc.htm">argc</a>, <b><a href="CppChar.htm">char</a></b> *<a href="CppArgc.htm">argv</a>[])<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppQApplication.htm">QApplication</a> a(<a href="CppArgc.htm">argc</a>, <a href="CppArgc.htm">argv</a>);<br/>
+&nbsp;&nbsp;<a href="CppQApplication.html">QApplication</a> a(<a href="CppArgc.htm">argc</a>, <a href="CppArgc.htm">argv</a>);<br/>
 &nbsp;&nbsp;<a href="CppQt.htm">Qt</a>SitemapGeneratorMenuDialog w;<br/>
 &nbsp;&nbsp;w.show();<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> a.exec();<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> a.exec();<br/>
 }<br/>
 </code></td></tr></table>
 <!-- end of the code -->
@@ -222,71 +222,73 @@ You should have received a copy of the GNU General Public License<br/>
 along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">*/</a><br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="ToolRichelbilderbeekNlSitemapGenerator.htm">ToolRichelbilderbeekNlSitemapGenerator</a>.htm<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="ToolRichelbilderbeekNlSitemapGenerator.html">ToolRichelbilderbeekNlSitemapGenerator</a>.html<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppIfndef.htm">#ifndef</a> SITEMAPGENERATORMAINDIALOG_H<br/>
-<a href="CppDefine.htm">#define</a> SITEMAPGENERATORMAINDIALOG_H<br/>
+<a href="CppIfndef.html">#ifndef</a> SITEMAPGENERATORMAINDIALOG_H<br/>
+<a href="CppDefine.html">#define</a> SITEMAPGENERATORMAINDIALOG_H<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppQtHideAndShowDialog.htm">qthideandshowdialog</a>.h"<br/>
+<a href="CppInclude.html">#include</a> "<a href="CppQtHideAndShowDialog.html">qthideandshowdialog</a><a href="CppHeaderFile.htm">.h</a>"<br/>
 <br/>
-<b><a href="CppNamespace.htm">namespace</a></b> Ui {<br/>
-&nbsp;&nbsp;<b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a>SitemapGeneratorMainDialog;<br/>
+<b><a href="CppNamespace.html">namespace</a></b> Ui {<br/>
+&nbsp;&nbsp;<b><a href="CppClass.html">class</a></b> <a href="CppQt.htm">Qt</a>SitemapGeneratorMainDialog;<br/>
 }<br/>
 <br/>
-<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
+<b><a href="CppNamespace.html">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
 <br/>
-<b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a>SitemapGeneratorMainDialog : <b><a href="CppPublic.htm">public</a></b> <a href="CppQtHideAndShowDialog.htm">QtHideAndShowDialog</a><br/>
+<b><a href="CppClass.html">class</a></b> <a href="CppQt.htm">Qt</a>SitemapGeneratorMainDialog : <b><a href="CppPublic.html">public</a></b> <a href="CppQtHideAndShowDialog.html">QtHideAndShowDialog</a><br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppQ_OBJECT.htm">Q_OBJECT</a><br/>
+&nbsp;&nbsp;<a href="CppQ_OBJECT.html">Q_OBJECT</a><br/>
 <br/>
-<b><a href="CppPublic.htm">public</a></b>:<br/>
-&nbsp;&nbsp;<b><a href="CppExplicit.htm">explicit</a></b> <a href="CppQt.htm">Qt</a>SitemapGeneratorMainDialog(<a href="CppQWidget.htm">QWidget</a> *parent <a href="CppOperatorAssign.htm">=</a> 0);<br/>
+<b><a href="CppPublic.html">public</a></b>:<br/>
+&nbsp;&nbsp;<b><a href="CppExplicit.html">explicit</a></b> <a href="CppQt.htm">Qt</a>SitemapGeneratorMainDialog(<a href="CppQWidget.html">QWidget</a> *parent <a href="CppOperatorAssign.htm">=</a> 0);<br/>
+&nbsp;&nbsp;<a href="CppQt.htm">Qt</a>SitemapGeneratorMainDialog(<b><a href="CppConst.html">const</a></b> <a href="CppQt.htm">Qt</a>SitemapGeneratorMainDialog&amp;);<br/>
+&nbsp;&nbsp;<a href="CppQt.htm">Qt</a>SitemapGeneratorMainDialog&amp; <b><a href="CppOperator.html">operator</a></b>=(<b><a href="CppConst.html">const</a></b> <a href="CppQt.htm">Qt</a>SitemapGeneratorMainDialog&amp;);<br/>
 &nbsp;&nbsp;~<a href="CppQt.htm">Qt</a>SitemapGeneratorMainDialog();<br/>
 <br/>
-<b><a href="CppProtected.htm">protected</a></b>:<br/>
-&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> keyPressEvent(<a href="CppQKeyEvent.htm">QKeyEvent</a> * e);<br/>
+<b><a href="CppProtected.html">protected</a></b>:<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> keyPressEvent(<a href="CppQKeyEvent.html">QKeyEvent</a> * e);<br/>
 <br/>
-<b><a href="CppPrivate.htm">private</a></b>:<br/>
+<b><a href="CppPrivate.html">private</a></b>:<br/>
 &nbsp;&nbsp;<a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a>SitemapGeneratorMainDialog *ui;<br/>
 <br/>
-<b><a href="CppPrivate.htm">private</a></b> <b><a href="CppSlots.htm">slots</a></b>:<br/>
+<b><a href="CppPrivate.html">private</a></b> <b><a href="CppSlots.html">slots</a></b>:<br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> on_button_start_clicked();<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppAdd.htm">Add</a>Header(<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt;&amp; files);<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.html">static</a></b> <b><a href="CppConst.html">const</a></b> <a href="CppVector.html">std::vector</a>&lt;<a href="CppString.html">std::string</a>&gt; <a href="CppAdd.htm">Add</a>Header(<b><a href="CppConst.html">const</a></b> <a href="CppVector.html">std::vector</a>&lt;<a href="CppString.html">std::string</a>&gt;&amp; files);<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; CreateConfig<a href="CppXml.htm">Xml</a>(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; local_website_path,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; urllist_path);<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.html">static</a></b> <b><a href="CppConst.html">const</a></b> <a href="CppVector.html">std::vector</a>&lt;<a href="CppString.html">std::string</a>&gt; CreateConfig<a href="CppXml.htm">Xml</a>(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a>&amp; local_website_path,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a>&amp; urllist_path);<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/Cpp<a href="CppFileExists.htm">FileExists</a>.htm<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppBool.htm">bool</a></b> <a href="CppFileExists.htm">FileExists</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; filename);<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/Cpp<a href="CppFileExists.html">FileExists</a>.html<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppBool.htm">bool</a></b> <a href="CppFileExists.html">FileExists</a>(<b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a>&amp; filename);<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/Cpp<a href="CppFileToVector.htm">FileToVector</a>.htm<br/>
-&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppFileToVector.htm">FileToVector</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; fileName);<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/Cpp<a href="CppFileToVector.html">FileToVector</a>.html<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.html">static</a></b> <b><a href="CppConst.html">const</a></b> <a href="CppVector.html">std::vector</a>&lt;<a href="CppString.html">std::string</a>&gt; <a href="CppFileToVector.html">FileToVector</a>(<b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a>&amp; fileName);<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/Cpp<a href="CppGetCurrentFolder.htm">GetCurrentFolder</a>.htm<br/>
-&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppGetCurrentFolder.htm">GetCurrentFolder</a>();<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/Cpp<a href="CppGetCurrentFolder.html">GetCurrentFolder</a>.html<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.html">static</a></b> <b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a> <a href="CppGetCurrentFolder.html">GetCurrentFolder</a>();<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/Cpp<a href="CppGetCurrentFolder.htm">GetCurrentFolder</a>.htm<br/>
-&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppGetCurrentFolder.htm">GetCurrentFolder</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; s);<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/Cpp<a href="CppGetCurrentFolder.html">GetCurrentFolder</a>.html<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.html">static</a></b> <b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a> <a href="CppGetCurrentFolder.html">GetCurrentFolder</a>(<b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a>&amp; s);<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/Cpp<a href="CppGetFilesInFolder.htm">GetFilesInFolder</a>.htm<br/>
-&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppGetFilesInFolder.htm">GetFilesInFolder</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; folder);<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/Cpp<a href="CppGetFilesInFolder.html">GetFilesInFolder</a>.html<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.html">static</a></b> <b><a href="CppConst.html">const</a></b> <a href="CppVector.html">std::vector</a>&lt;<a href="CppString.html">std::string</a>&gt; <a href="CppGetFilesInFolder.html">GetFilesInFolder</a>(<b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a>&amp; folder);<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/Cpp<a href="CppGetHtmlFilesInFolder.htm">GetHtmlFilesInFolder</a>.htm<br/>
-&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppGetHtmlFilesInFolder.htm">GetHtmlFilesInFolder</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; folder);<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/Cpp<a href="CppGetHtmlFilesInFolder.html">GetHtmlFilesInFolder</a>.html<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.html">static</a></b> <b><a href="CppConst.html">const</a></b> <a href="CppVector.html">std::vector</a>&lt;<a href="CppString.html">std::string</a>&gt; <a href="CppGetHtmlFilesInFolder.html">GetHtmlFilesInFolder</a>(<b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a>&amp; folder);<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/Cpp<a href="CppGetDateIso8601.htm">GetDateIso8601</a>.htm<br/>
-&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppGetDateIso8601.htm">GetDateIso8601</a>();<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/Cpp<a href="CppGetDateIso8601.html">GetDateIso8601</a>.html<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.html">static</a></b> <b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a> <a href="CppGetDateIso8601.html">GetDateIso8601</a>();<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/Cpp<a href="CppGetPath.htm">GetPath</a>.htm<br/>
-&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppGetPath.htm">GetPath</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; filename);<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/Cpp<a href="CppGetPath.html">GetPath</a>.html<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.html">static</a></b> <b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a> <a href="CppGetPath.html">GetPath</a>(<b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a>&amp; filename);<br/>
 <br/>
 };<br/>
 <br/>
-} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.html">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
 <br/>
-<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> SITEMAPGENERATORMAINDIALOG_H<br/>
+<a href="CppEndif.html">#endif</a> <a href="CppComment.htm">//</a> SITEMAPGENERATORMAINDIALOG_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -316,35 +318,34 @@ You should have received a copy of the GNU General Public License<br/>
 along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">*/</a><br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="ToolRichelbilderbeekNlSitemapGenerator.htm">ToolRichelbilderbeekNlSitemapGenerator</a>.htm<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="ToolRichelbilderbeekNlSitemapGenerator.html">ToolRichelbilderbeekNlSitemapGenerator</a>.html<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic push<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.html">-Weffc++</a>"<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic ignored "-Wunused-local-<b><a href="CppTypedef.html">typedef</a></b>s"<br/>
+<a href="CppInclude.html">#include</a> "qtsitemapgeneratormaindialog<a href="CppHeaderFile.htm">.h</a>"<br/>
 <br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppCassertH.html">cassert</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppCtimeH.html">ctime</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppFstreamH.html">fstream</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppIostreamH.html">iostream</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppStringH.html">string</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppVectorH.html">vector</a>&gt;<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> "qtsitemapgeneratormaindialog.h"<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppBoost.html">boost</a>/date_<a href="CppTime.htm">time</a>/gregorian/gregorian<a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppBoost.html">boost</a>/<a href="CppBOOST_FOREACH.html">foreach</a><a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppBoost.html">boost</a>/<a href="CppLexical_cast.html">lexical_cast</a><a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppBoost.html">boost</a>/<a href="CppBoostXpressive.html">xpressive</a>/<a href="CppBoostXpressive.html">xpressive</a><a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppCtimeH.htm">ctime</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppFstreamH.htm">fstream</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppIostreamH.htm">iostream</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppStringH.htm">string</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppQDir.htm">QDir</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppQFile.html">QFile</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppQKeyEvent.html">QKeyEvent</a>&gt;<br/>
 <br/>
-<a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
-<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-<b><a href="CppTypedef.htm">typedef</a></b>s"<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/date_<a href="CppTime.htm">time</a>/gregorian/gregorian.hpp&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppBOOST_FOREACH.htm">foreach</a>.hpp&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppLexical_cast.htm">lexical_cast</a>.hpp&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppBoostXpressive.htm">xpressive</a>/<a href="CppBoostXpressive.htm">xpressive</a>.hpp&gt;<br/>
-<a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
+<a href="CppInclude.html">#include</a> "ui_qtsitemapgeneratormaindialog<a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic pop<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppQDir.htm">QDir</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppQFile.htm">QFile</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppQKeyEvent.htm">QKeyEvent</a>&gt;<br/>
-<br/>
-<a href="CppInclude.htm">#include</a> "ui_qtsitemapgeneratormaindialog.h"<br/>
-<br/>
-<a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>SitemapGeneratorMainDialog::<a href="CppQt.htm">Qt</a>SitemapGeneratorMainDialog(<a href="CppQWidget.htm">QWidget</a> *parent) :<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQtHideAndShowDialog.htm">QtHideAndShowDialog</a>(parent),<br/>
+<a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>SitemapGeneratorMainDialog::<a href="CppQt.htm">Qt</a>SitemapGeneratorMainDialog(<a href="CppQWidget.html">QWidget</a> *parent) :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQtHideAndShowDialog.html">QtHideAndShowDialog</a>(parent),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;ui(<b><a href="CppNew.htm">new</a></b> <a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a>SitemapGeneratorMainDialog)<br/>
 {<br/>
 &nbsp;&nbsp;ui-&gt;setupUi(<b><a href="CppThis.htm">this</a></b>);<br/>
@@ -352,55 +353,55 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <br/>
 <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>SitemapGeneratorMainDialog::~<a href="CppQt.htm">Qt</a>SitemapGeneratorMainDialog()<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppDelete.htm">delete</a></b> ui;<br/>
+&nbsp;&nbsp;<b><a href="CppDelete.html">delete</a></b> ui;<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>SitemapGeneratorMainDialog::keyPressEvent(<a href="CppQKeyEvent.htm">QKeyEvent</a> * e)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>SitemapGeneratorMainDialog::keyPressEvent(<a href="CppQKeyEvent.html">QKeyEvent</a> * e)<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (e-&gt;key()&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <a href="CppQt.htm">Qt</a>::Key_Escape) { close(); <b><a href="CppReturn.htm">return</a></b>; }<br/>
-&nbsp;&nbsp;<a href="CppQtHideAndShowDialog.htm">QtHideAndShowDialog</a>::keyPressEvent(e);<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (e-&gt;key()&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <a href="CppQt.htm">Qt</a>::Key_Escape) { close(); <b><a href="CppReturn.html">return</a></b>; }<br/>
+&nbsp;&nbsp;<a href="CppQtHideAndShowDialog.html">QtHideAndShowDialog</a>::keyPressEvent(e);<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>SitemapGeneratorMainDialog::<a href="CppGetFilesInFolder.htm">GetFilesInFolder</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; folder)<br/>
+<b><a href="CppConst.html">const</a></b> <a href="CppVector.html">std::vector</a>&lt;<a href="CppString.html">std::string</a>&gt; <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>SitemapGeneratorMainDialog::<a href="CppGetFilesInFolder.html">GetFilesInFolder</a>(<b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a>&amp; folder)<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppQDir.htm">QDir</a> dir(folder.c_str());<br/>
 &nbsp;&nbsp;dir.setFilter(<a href="CppQDir.htm">QDir</a>::Files);<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppQFile.htm">QFile</a>InfoList list <a href="CppOperatorAssign.htm">=</a> dir.entryInfoList();<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppQFile.html">QFile</a>InfoList list <a href="CppOperatorAssign.htm">=</a> dir.entryInfoList();<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppConvert.htm">Convert</a> <a href="CppQFile.htm">QFile</a>InfoList to <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; of filenames<br/>
-&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> size <a href="CppOperatorAssign.htm">=</a> list.size();<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppConvert.html">Convert</a> <a href="CppQFile.html">QFile</a>InfoList to <a href="CppVector.html">std::vector</a>&lt;<a href="CppString.html">std::string</a>&gt; of filenames<br/>
+&nbsp;&nbsp;<a href="CppVector.html">std::vector</a>&lt;<a href="CppString.html">std::string</a>&gt; v;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> size <a href="CppOperatorAssign.htm">=</a> list.size();<br/>
 &nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> i <a href="CppOperatorAssign.htm">=</a> 0; i <a href="CppOperatorNotEqual.htm">!=</a> size; <a href="CppOperatorPlus.htm">+</a>+i)<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> file_name <a href="CppOperatorAssign.htm">=</a> list.at(i).fileName().toStdString();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a> file_name <a href="CppOperatorAssign.htm">=</a> list.at(i).fileName().toStdString();<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;v.push_back(file_name);<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> v;<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>SitemapGeneratorMainDialog::<a href="CppGetHtmlFilesInFolder.htm">GetHtmlFilesInFolder</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; folder)<br/>
+<b><a href="CppConst.html">const</a></b> <a href="CppVector.html">std::vector</a>&lt;<a href="CppString.html">std::string</a>&gt; <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>SitemapGeneratorMainDialog::<a href="CppGetHtmlFilesInFolder.html">GetHtmlFilesInFolder</a>(<b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a>&amp; folder)<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Get all filenames<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v <a href="CppOperatorAssign.htm">=</a> <a href="CppGetFilesInFolder.htm">GetFilesInFolder</a>(folder);<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppVector.html">std::vector</a>&lt;<a href="CppString.html">std::string</a>&gt; v <a href="CppOperatorAssign.htm">=</a> <a href="CppGetFilesInFolder.html">GetFilesInFolder</a>(folder);<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>Create the <a href="CppRegex.htm">regex</a> <b><a href="CppFor.htm">for</a></b> a correct HTML filename<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostXpressive.htm">boost::xpressive</a>::s<a href="CppRegex.htm">regex</a> cpp_file_<a href="CppRegex.htm">regex</a><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <a href="CppBoostXpressive.htm">boost::xpressive</a>::s<a href="CppRegex.htm">regex</a>::<a href="CppCompile.htm">compile</a>(".*\\.(html|htm)\\z");<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Create the <a href="CppRegex.html">regex</a> <b><a href="CppFor.htm">for</a></b> a correct HTML filename<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppBoostXpressive.html">boost::xpressive</a>::s<a href="CppRegex.html">regex</a> cpp_file_<a href="CppRegex.html">regex</a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <a href="CppBoostXpressive.html">boost::xpressive</a>::s<a href="CppRegex.html">regex</a>::<a href="CppCompile.html">compile</a>(".*\\.(html|htm)\\z");<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>Create the resulting <a href="CppVector.htm">std::vector</a><br/>
-&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; w;<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Create the resulting <a href="CppVector.html">std::vector</a><br/>
+&nbsp;&nbsp;<a href="CppVector.html">std::vector</a>&lt;<a href="CppString.html">std::string</a>&gt; w;<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>Copy all filenames matching the <a href="CppRegex.htm">regex</a> in the resulting <a href="CppVector.htm">std::vector</a><br/>
-&nbsp;&nbsp;<a href="CppBOOST_FOREACH.htm">BOOST_FOREACH</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; s, v)<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Copy all filenames matching the <a href="CppRegex.html">regex</a> in the resulting <a href="CppVector.html">std::vector</a><br/>
+&nbsp;&nbsp;<a href="CppBOOST_FOREACH.html">BOOST_FOREACH</a>(<b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a>&amp; s, v)<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (<a href="CppBoostXpressive.htm">boost::xpressive</a>::<a href="CppRegex.htm">regex</a>_match(s,cpp_file_<a href="CppRegex.htm">regex</a>)) w.push_back(s);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (<a href="CppBoostXpressive.html">boost::xpressive</a>::<a href="CppRegex.html">regex</a>_match(s,cpp_file_<a href="CppRegex.html">regex</a>)) w.push_back(s);<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> w;<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> w;<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>SitemapGeneratorMainDialog::<a href="CppAdd.htm">Add</a>Header(<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt;&amp; files)<br/>
+<b><a href="CppConst.html">const</a></b> <a href="CppVector.html">std::vector</a>&lt;<a href="CppString.html">std::string</a>&gt; <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>SitemapGeneratorMainDialog::<a href="CppAdd.htm">Add</a>Header(<b><a href="CppConst.html">const</a></b> <a href="CppVector.html">std::vector</a>&lt;<a href="CppString.html">std::string</a>&gt;&amp; files)<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v;<br/>
+&nbsp;&nbsp;<a href="CppVector.html">std::vector</a>&lt;<a href="CppString.html">std::string</a>&gt; v;<br/>
 &nbsp;&nbsp;v.push_back("# To add a list of URLs, <a href="CppMake.htm">make</a> a space-delimited text file. The first");<br/>
 &nbsp;&nbsp;v.push_back("# column contains the URL; then you can specify various optional");<br/>
 &nbsp;&nbsp;v.push_back("# attributes in the form key=value:");<br/>
@@ -416,37 +417,37 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;v.push_back("# the base_url (e.g., 'http://www.example.com/') as specified in config.xml.");<br/>
 &nbsp;&nbsp;v.push_back("#");<br/>
 &nbsp;&nbsp;v.push_back("# Any line beginning with a # is a comment.");<br/>
-&nbsp;&nbsp;<a href="CppCopy.htm">std::copy</a>(files.begin(),files.end(),<a href="CppBack_inserter.htm">std::back_inserter</a>(v));<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
+&nbsp;&nbsp;<a href="CppCopy.html">std::copy</a>(files.begin(),files.end(),<a href="CppBack_inserter.html">std::back_inserter</a>(v));<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> v;<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>SitemapGeneratorMainDialog::<a href="CppGetPath.htm">GetPath</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; filename)<br/>
+<b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>SitemapGeneratorMainDialog::<a href="CppGetPath.html">GetPath</a>(<b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a>&amp; filename)<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> a <a href="CppOperatorAssign.htm">=</a> filename.rfind("\\",filename.size());<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> b <a href="CppOperatorAssign.htm">=</a> filename.rfind("/",filename.size());<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> i <a href="CppOperatorAssign.htm">=</a> <a href="CppMax.htm">std::max</a>(a,b);<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(i &lt; <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(filename.size()));<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> filename.substr(0,i);<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> a <a href="CppOperatorAssign.htm">=</a> filename.rfind("\\",filename.size());<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> b <a href="CppOperatorAssign.htm">=</a> filename.rfind("/",filename.size());<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> i <a href="CppOperatorAssign.htm">=</a> <a href="CppMax.html">std::max</a>(a,b);<br/>
+&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(i &lt; <b><a href="CppStatic_cast.html">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(filename.size()));<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> filename.substr(0,i);<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>SitemapGeneratorMainDialog::<a href="CppGetCurrentFolder.htm">GetCurrentFolder</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; s)<br/>
+<b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>SitemapGeneratorMainDialog::<a href="CppGetCurrentFolder.html">GetCurrentFolder</a>(<b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a>&amp; s)<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <a href="CppGetPath.htm">GetPath</a>(s);<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> <a href="CppGetPath.html">GetPath</a>(s);<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>SitemapGeneratorMainDialog::<a href="CppGetCurrentFolder.htm">GetCurrentFolder</a>()<br/>
+<b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>SitemapGeneratorMainDialog::<a href="CppGetCurrentFolder.html">GetCurrentFolder</a>()<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppQString.htm">QString</a> s <a href="CppOperatorAssign.htm">=</a> <a href="CppQApplication.htm">QApplication</a>::<a href="CppApplication.htm">application</a>DirPath();<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> s.toStdString();<br/>
+&nbsp;&nbsp;<a href="CppQString.html">QString</a> s <a href="CppOperatorAssign.htm">=</a> <a href="CppQApplication.html">QApplication</a>::<a href="CppApplication.html">application</a>DirPath();<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> s.toStdString();<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>SitemapGeneratorMainDialog::CreateConfig<a href="CppXml.htm">Xml</a>(<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; local_website_path,<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; urllist_path)<br/>
+<b><a href="CppConst.html">const</a></b> <a href="CppVector.html">std::vector</a>&lt;<a href="CppString.html">std::string</a>&gt; <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>SitemapGeneratorMainDialog::CreateConfig<a href="CppXml.htm">Xml</a>(<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a>&amp; local_website_path,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a>&amp; urllist_path)<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v;<br/>
+&nbsp;&nbsp;<a href="CppVector.html">std::vector</a>&lt;<a href="CppString.html">std::string</a>&gt; v;<br/>
 <br/>
-&nbsp;&nbsp;v.push_back("&lt;?xml <a href="CppVersion.htm">version</a>=\"1.0\" encoding=\"UTF-8\"?&gt;");<br/>
+&nbsp;&nbsp;v.push_back("&lt;?xml <a href="CppVersion.html">version</a>=\"1.0\" encoding=\"UTF-8\"?&gt;");<br/>
 &nbsp;&nbsp;v.push_back("&lt;!<a href="CppOperatorDecrement.htm">--</a>");<br/>
 &nbsp;&nbsp;v.push_back("&nbsp;&nbsp;sitemap_gen.py example configuration script");<br/>
 &nbsp;&nbsp;v.push_back("");<br/>
@@ -470,13 +471,13 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (the script will create <b><a href="CppThis.htm">this</a></b> file)");<br/>
 &nbsp;&nbsp;v.push_back("");<br/>
 &nbsp;&nbsp;v.push_back("&nbsp;&nbsp;Optional attributes:");<br/>
-&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&nbsp;&nbsp;verbose&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorMinus.htm">-</a> an <a href="CppInt.htm">integer</a> from 0 (quiet) to 3 (noisy) <b><a href="CppFor.htm">for</a></b>");<br/>
+&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&nbsp;&nbsp;verbose&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorMinus.htm">-</a> an <a href="CppInt.html">integer</a> from 0 (quiet) to 3 (noisy) <b><a href="CppFor.htm">for</a></b>");<br/>
 &nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; how much diagnostic output the script gives");<br/>
 &nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&nbsp;&nbsp;suppress_search_engine_notify=\"1\"");<br/>
-&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppOperatorMinus.htm">-</a> disables notifying search engines <a href="CppAbout.htm">about</a> the <b><a href="CppNew.htm">new</a></b> map");<br/>
+&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppOperatorMinus.htm">-</a> disables notifying search engines <a href="CppAbout.html">about</a> the <b><a href="CppNew.htm">new</a></b> map");<br/>
 &nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (same as the \"testing\" command-line argument.)");<br/>
 &nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&nbsp;&nbsp;default_encoding");<br/>
-&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppOperatorMinus.htm">-</a> names a <a href="CppChar.htm">character</a> encoding to use <b><a href="CppFor.htm">for</a></b> URLs and");<br/>
+&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppOperatorMinus.htm">-</a> names a <a href="CppChar.html">character</a> encoding to use <b><a href="CppFor.htm">for</a></b> URLs and");<br/>
 &nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; file paths.&nbsp;&nbsp;(Example: \"UTF-8\")");<br/>
 &nbsp;&nbsp;v.push_back("<a href="CppOperatorDecrement.htm">--</a>&gt;");<br/>
 &nbsp;&nbsp;v.push_back("&lt;site");<br/>
@@ -507,7 +508,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&lt;url");<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>v.push_back("&nbsp;&nbsp;&nbsp;&nbsp; href=\"http://www.richelbilderbeek.nl/stats?q=name\""); <a href="CppComment.htm">//</a><b><a href="CppNew.htm">new</a></b><br/>
 &nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&nbsp;&nbsp; href=\"http://www.richelbilderbeek.nl/stats?q=age\"");<br/>
-&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&nbsp;&nbsp; lastmod=\"" <a href="CppOperatorPlus.htm">+</a> <a href="CppGetDateIso8601.htm">GetDateIso8601</a>() <a href="CppOperatorPlus.htm">+</a>"T01:00:00-07:00\"");<br/>
+&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&nbsp;&nbsp; lastmod=\"" <a href="CppOperatorPlus.htm">+</a> <a href="CppGetDateIso8601.html">GetDateIso8601</a>() <a href="CppOperatorPlus.htm">+</a>"T01:00:00-07:00\"");<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>v.push_back("&nbsp;&nbsp;&nbsp;&nbsp; changefreq=\"weekly\"");<br/>
 &nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&nbsp;&nbsp; priority=\"0.5\"");<br/>
 &nbsp;&nbsp;v.push_back("&nbsp;&nbsp;<a href="CppOperatorDivide.htm">/</a>&gt;");<br/>
@@ -534,19 +535,19 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;url&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorMinus.htm">-</a> URL equivalent of that path");<br/>
 &nbsp;&nbsp;v.push_back("");<br/>
 &nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&nbsp;&nbsp;Optional attributes:");<br/>
-&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;default_file <a href="CppOperatorMinus.htm">-</a> name of the index or <b><a href="CppDefault.htm">default</a></b> file <b><a href="CppFor.htm">for</a></b> directory URLs");<br/>
+&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;default_file <a href="CppOperatorMinus.htm">-</a> name of the index or <b><a href="CppDefault.html">default</a></b> file <b><a href="CppFor.htm">for</a></b> directory URLs");<br/>
 &nbsp;&nbsp;v.push_back("&nbsp;&nbsp;<a href="CppOperatorMinus.htm">-</a>-&gt;");<br/>
 &nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&lt;directory");<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>v.push_back("&nbsp;&nbsp;&nbsp;&nbsp; path=\"C:\\docume~1\\richel~1\\mydocu~1\\richel~1\"");<br/>
 &nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&nbsp;&nbsp; path=\"" <a href="CppOperatorPlus.htm">+</a> local_website_path <a href="CppOperatorPlus.htm">+</a> "\"");<br/>
 &nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&nbsp;&nbsp; url=\"http://www.richelbilderbeek.nl\"");<br/>
-&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&nbsp;&nbsp; default_file=\"index.html\"");<br/>
+&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&nbsp;&nbsp; default_file=\"index.htmll\"");<br/>
 &nbsp;&nbsp;v.push_back("&nbsp;&nbsp;<a href="CppOperatorDivide.htm">/</a>&gt;");<br/>
 &nbsp;&nbsp;v.push_back("");<br/>
 &nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&lt;!-<a href="CppOperatorMinus.htm">-</a> ** MODIFY or DELETE **");<br/>
 &nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&nbsp;&nbsp;\"accesslog\" nodes tell the script to scan webserver log files to");<br/>
-&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&nbsp;&nbsp;extract URLs on your site.&nbsp;&nbsp;Both Common Logfile Format (Apache's <b><a href="CppDefault.htm">default</a></b>");<br/>
-&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&nbsp;&nbsp;logfile) and Extended Logfile Format (IIS's <b><a href="CppDefault.htm">default</a></b> logfile) can be read.");<br/>
+&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&nbsp;&nbsp;extract URLs on your site.&nbsp;&nbsp;Both Common Logfile Format (Apache's <b><a href="CppDefault.html">default</a></b>");<br/>
+&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&nbsp;&nbsp;logfile) and Extended Logfile Format (IIS's <b><a href="CppDefault.html">default</a></b> logfile) can be read.");<br/>
 &nbsp;&nbsp;v.push_back("");<br/>
 &nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&nbsp;&nbsp;Required attributes:");<br/>
 &nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;path&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppOperatorMinus.htm">-</a> path to the file");<br/>
@@ -569,12 +570,12 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;v.push_back("");<br/>
 &nbsp;&nbsp;v.push_back("&nbsp;&nbsp;Filters specify wild-card patterns that the script compares");<br/>
 &nbsp;&nbsp;v.push_back("&nbsp;&nbsp;against all URLs it finds.&nbsp;&nbsp;Filters can be used to exclude");<br/>
-&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;certain URLs from your Sitemap, <b><a href="CppFor.htm">for</a></b> <a href="CppInstance.htm">instance</a> <b><a href="CppIf.htm">if</a></b> you have");<br/>
+&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;certain URLs from your Sitemap, <b><a href="CppFor.htm">for</a></b> <a href="CppInstance.html">instance</a> <b><a href="CppIf.htm">if</a></b> you have");<br/>
 &nbsp;&nbsp;v.push_back("&nbsp;&nbsp;hidden content that you hope the search engines don't find.");<br/>
 &nbsp;&nbsp;v.push_back("");<br/>
 &nbsp;&nbsp;v.push_back("&nbsp;&nbsp;Filters can be either type=\"wildcard\", which means standard");<br/>
 &nbsp;&nbsp;v.push_back("&nbsp;&nbsp;path wildcards (* and ?) are used to compare against URLs,");<br/>
-&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;or type=\"<a href="CppRegex.htm">regex</a>p\", which means regular expressions are used");<br/>
+&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;or type=\"<a href="CppRegex.html">regex</a>p\", which means regular expressions are used");<br/>
 &nbsp;&nbsp;v.push_back("&nbsp;&nbsp;to compare.");<br/>
 &nbsp;&nbsp;v.push_back("");<br/>
 &nbsp;&nbsp;v.push_back("&nbsp;&nbsp;Filters are applied in the order specified in <b><a href="CppThis.htm">this</a></b> file.");<br/>
@@ -585,8 +586,8 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;v.push_back("&nbsp;&nbsp;If no filter at all matches a URL, the URL will be included.");<br/>
 &nbsp;&nbsp;v.push_back("&nbsp;&nbsp;Together you can build up fairly complex rules.");<br/>
 &nbsp;&nbsp;v.push_back("");<br/>
-&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;The <b><a href="CppDefault.htm">default</a></b> action is \"drop\".");<br/>
-&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;The <b><a href="CppDefault.htm">default</a></b> type is \"wildcard\".");<br/>
+&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;The <b><a href="CppDefault.html">default</a></b> action is \"drop\".");<br/>
+&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;The <b><a href="CppDefault.html">default</a></b> type is \"wildcard\".");<br/>
 &nbsp;&nbsp;v.push_back("");<br/>
 &nbsp;&nbsp;v.push_back("&nbsp;&nbsp;You can MODIFY or DELETE these entries as appropriate <b><a href="CppFor.htm">for</a></b>");<br/>
 &nbsp;&nbsp;v.push_back("&nbsp;&nbsp;your site.&nbsp;&nbsp;However, unlike above, the example entries in");<br/>
@@ -598,154 +599,154 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&lt;filter&nbsp;&nbsp;action=\"drop\"&nbsp;&nbsp;type=\"wildcard\"&nbsp;&nbsp;pattern=\"*~\"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppOperatorDivide.htm">/</a>&gt;");<br/>
 &nbsp;&nbsp;v.push_back("");<br/>
 &nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&lt;!-<a href="CppOperatorMinus.htm">-</a> Exclude URLs within <a href="CppUnix.htm">UNIX</a>-style hidden files or directories&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppOperatorMinus.htm">-</a>-&gt;");<br/>
-&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&lt;filter&nbsp;&nbsp;action=\"drop\"&nbsp;&nbsp;type=\"<a href="CppRegex.htm">regex</a>p\"&nbsp;&nbsp;&nbsp;&nbsp;pattern=\"/\\.[^/]*\"&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppOperatorDivide.htm">/</a>&gt;");<br/>
+&nbsp;&nbsp;v.push_back("&nbsp;&nbsp;&lt;filter&nbsp;&nbsp;action=\"drop\"&nbsp;&nbsp;type=\"<a href="CppRegex.html">regex</a>p\"&nbsp;&nbsp;&nbsp;&nbsp;pattern=\"/\\.[^/]*\"&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppOperatorDivide.htm">/</a>&gt;");<br/>
 &nbsp;&nbsp;v.push_back("");<br/>
 &nbsp;&nbsp;v.push_back("&lt;/site&gt;");<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> v;<br/>
 }<br/>
 <br/>
 <a href="CppComment.htm">//</a>v.push_back("&nbsp;&nbsp;&nbsp;&nbsp; lastmod=\"2007-07-28T01:00:00-07:00\"");<br/>
 <a href="CppComment.htm">//</a>Returns date in YYYY-MM-DD format<br/>
-<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/Cpp<a href="CppGetDateIso8601.htm">GetDateIso8601</a>.htm<br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>SitemapGeneratorMainDialog::<a href="CppGetDateIso8601.htm">GetDateIso8601</a>()<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/Cpp<a href="CppGetDateIso8601.html">GetDateIso8601</a>.html<br/>
+<b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>SitemapGeneratorMainDialog::<a href="CppGetDateIso8601.html">GetDateIso8601</a>()<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoost.htm">boost</a>::gregorian::date today<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <a href="CppBoost.htm">boost</a>::gregorian::day_clock::local_day();<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> s<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <a href="CppBoost.htm">boost</a>::gregorian::to_iso_extended_string(today);<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(s.size()<a href="CppOperatorEqual.htm">==</a>10);<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(s[4]<a href="CppOperatorEqual.htm">==</a>'-');<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(s[7]<a href="CppOperatorEqual.htm">==</a>'-');<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> s;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppBoost.html">boost</a>::gregorian::date today<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <a href="CppBoost.html">boost</a>::gregorian::day_clock::local_day();<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a> s<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <a href="CppBoost.html">boost</a>::gregorian::to_iso_extended_string(today);<br/>
+&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(s.size()<a href="CppOperatorEqual.htm">==</a>10);<br/>
+&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(s[4]<a href="CppOperatorEqual.htm">==</a>'-');<br/>
+&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(s[7]<a href="CppOperatorEqual.htm">==</a>'-');<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> s;<br/>
 }<br/>
 <br/>
-<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/Cpp<a href="CppFileExists.htm">FileExists</a>.htm<br/>
-<a href="CppComment.htm">//</a><b><a href="CppBool.htm">bool</a></b> <a href="CppFileExists.htm">FileExists</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; filename)<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/Cpp<a href="CppFileExists.html">FileExists</a>.html<br/>
+<a href="CppComment.htm">//</a><b><a href="CppBool.htm">bool</a></b> <a href="CppFileExists.html">FileExists</a>(<b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a>&amp; filename)<br/>
 <a href="CppComment.htm">//</a>{<br/>
-<a href="CppComment.htm">//</a>&nbsp;&nbsp;<a href="CppFstream.htm">std::fstream</a> f;<br/>
+<a href="CppComment.htm">//</a>&nbsp;&nbsp;<a href="CppFstream.html">std::fstream</a> f;<br/>
 <a href="CppComment.htm">//</a>&nbsp;&nbsp;f.open(filename.c_str(),<a href="CppStd.htm">std</a>::ios::in);<br/>
-<a href="CppComment.htm">//</a>&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> f.is_open();<br/>
+<a href="CppComment.htm">//</a>&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> f.is_open();<br/>
 <a href="CppComment.htm">//</a>}<br/>
 <br/>
-<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/Cpp<a href="CppFileToVector.htm">FileToVector</a>.htm<br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>SitemapGeneratorMainDialog::<a href="CppFileToVector.htm">FileToVector</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; fileName)<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/Cpp<a href="CppFileToVector.html">FileToVector</a>.html<br/>
+<b><a href="CppConst.html">const</a></b> <a href="CppVector.html">std::vector</a>&lt;<a href="CppString.html">std::string</a>&gt; <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>SitemapGeneratorMainDialog::<a href="CppFileToVector.html">FileToVector</a>(<b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a>&amp; fileName)<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppQFile.htm">QFile</a>::exists(fileName.c_str()));<br/>
-&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; myVector;<br/>
-&nbsp;&nbsp;<a href="CppIfstream.htm">std::ifstream</a> in(fileName.c_str());<br/>
-&nbsp;&nbsp;<a href="CppString.htm">std::string</a> myString;<br/>
+&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(<a href="CppQFile.html">QFile</a>::exists(fileName.c_str()));<br/>
+&nbsp;&nbsp;<a href="CppVector.html">std::vector</a>&lt;<a href="CppString.html">std::string</a>&gt; myVector;<br/>
+&nbsp;&nbsp;<a href="CppIfstream.html">std::ifstream</a> in(fileName.c_str());<br/>
+&nbsp;&nbsp;<a href="CppString.html">std::string</a> myString;<br/>
 &nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> i=0; !in.eof(); <a href="CppOperatorPlus.htm">+</a>+i)<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppGetline.htm">std::getline</a>(in,myString);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppGetline.html">std::getline</a>(in,myString);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;myVector.push_back(myString);<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> myVector;<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> myVector;<br/>
 }<br/>
 <br/>
 <b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>SitemapGeneratorMainDialog::on_button_start_clicked()<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> page_location <a href="CppOperatorAssign.htm">=</a> ui-&gt;edit_website-&gt;text().toStdString();<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> sitemapgen_location <a href="CppOperatorAssign.htm">=</a> <a href="CppGetCurrentFolder.htm">GetCurrentFolder</a>();<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a> page_location <a href="CppOperatorAssign.htm">=</a> ui-&gt;edit_website-&gt;text().toStdString();<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a> sitemapgen_location <a href="CppOperatorAssign.htm">=</a> <a href="CppGetCurrentFolder.html">GetCurrentFolder</a>();<br/>
 <br/>
 &nbsp;&nbsp;ui-&gt;text_output-&gt;clear();<br/>
 <br/>
 &nbsp;&nbsp;ui-&gt;text_output-&gt;appendPlainText(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQString.htm">QString</a>("* This <a href="CppApplication.htm">application</a> runs in the folder \'")<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> <a href="CppQString.htm">QString</a>(sitemapgen_location.c_str())<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> <a href="CppQString.htm">QString</a>("'"));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQString.html">QString</a>("* This <a href="CppApplication.html">application</a> runs in the folder \'")<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> <a href="CppQString.html">QString</a>(sitemapgen_location.c_str())<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> <a href="CppQString.html">QString</a>("'"));<br/>
 <br/>
 &nbsp;&nbsp;ui-&gt;text_output-&gt;appendPlainText(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQString.htm">QString</a>("* Searching <b><a href="CppFor.htm">for</a></b> HTML files found in folder '")<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> <a href="CppQString.htm">QString</a>(page_location.c_str())<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> <a href="CppQString.htm">QString</a>("\'"));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQString.html">QString</a>("* Searching <b><a href="CppFor.htm">for</a></b> HTML files found in folder '")<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> <a href="CppQString.html">QString</a>(page_location.c_str())<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> <a href="CppQString.html">QString</a>("\'"));<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; files_raw <a href="CppOperatorAssign.htm">=</a> <a href="CppGetHtmlFilesInFolder.htm">GetHtmlFilesInFolder</a>(page_location);<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppVector.html">std::vector</a>&lt;<a href="CppString.html">std::string</a>&gt; files_raw <a href="CppOperatorAssign.htm">=</a> <a href="CppGetHtmlFilesInFolder.html">GetHtmlFilesInFolder</a>(page_location);<br/>
 <br/>
 <br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (files_raw.empty())<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;ui-&gt;text_output-&gt;appendPlainText(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQString.htm">QString</a>("* No HTML files found in folder '")<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> <a href="CppQString.htm">QString</a>(page_location.c_str())<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> <a href="CppQString.htm">QString</a>("\'"));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQString.html">QString</a>("* No HTML files found in folder '")<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> <a href="CppQString.html">QString</a>(page_location.c_str())<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> <a href="CppQString.html">QString</a>("\'"));<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;ui-&gt;text_output-&gt;appendPlainText(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"* Please select the correct folder with the websites' HTML files");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b>;<br/>
 &nbsp;&nbsp;}<br/>
 <br/>
 &nbsp;&nbsp;ui-&gt;text_output-&gt;appendPlainText(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQString.htm">QString</a>("* ")<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> <a href="CppQString.htm">QString</a>(<a href="CppLexical_cast.htm">boost::lexical_cast</a>&lt;<a href="CppString.htm">std::string</a>&gt;(files_raw.size()).c_str())<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> <a href="CppQString.htm">QString</a>(" HTML files found in folder '")<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> <a href="CppQString.htm">QString</a>(page_location.c_str())<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> <a href="CppQString.htm">QString</a>("\'"));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQString.html">QString</a>("* ")<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> <a href="CppQString.html">QString</a>(<a href="CppLexical_cast.html">boost::lexical_cast</a>&lt;<a href="CppString.html">std::string</a>&gt;(files_raw.size()).c_str())<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> <a href="CppQString.html">QString</a>(" HTML files found in folder '")<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> <a href="CppQString.html">QString</a>(page_location.c_str())<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> <a href="CppQString.html">QString</a>("\'"));<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppBOOST_FOREACH.htm">BOOST_FOREACH</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; s,files_raw) <a href="CppClog.htm">std::clog</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> s <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n';<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppBOOST_FOREACH.html">BOOST_FOREACH</a>(<b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a>&amp; s,files_raw) <a href="CppClog.html">std::clog</a> <a href="CppOperatorStreamOut.html">&lt;&lt;</a> s <a href="CppOperatorStreamOut.html">&lt;&lt;</a> '\n';<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Save config.xml to file CreateConfig<a href="CppXml.htm">Xml</a>()<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!<a href="CppGetCurrentFolder.htm">GetCurrentFolder</a>().empty());<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppGetCurrentFolder.htm">GetCurrentFolder</a>().at(<a href="CppGetCurrentFolder.htm">GetCurrentFolder</a>().size() <a href="CppOperatorMinus.htm">-</a> 1));<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> config_filename <a href="CppOperatorAssign.htm">=</a> <a href="CppGetCurrentFolder.htm">GetCurrentFolder</a>() <a href="CppOperatorPlus.htm">+</a> "/config.xml";<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(!<a href="CppGetCurrentFolder.html">GetCurrentFolder</a>().empty());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(<a href="CppGetCurrentFolder.html">GetCurrentFolder</a>().at(<a href="CppGetCurrentFolder.html">GetCurrentFolder</a>().size() <a href="CppOperatorMinus.htm">-</a> 1));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a> config_filename <a href="CppOperatorAssign.htm">=</a> <a href="CppGetCurrentFolder.html">GetCurrentFolder</a>() <a href="CppOperatorPlus.htm">+</a> "/config.xml";<br/>
 <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;ui-&gt;text_output-&gt;appendPlainText(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<a href="CppString.htm">std::string</a>("* Creating '")<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<a href="CppString.html">std::string</a>("* Creating '")<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> config_filename <a href="CppOperatorPlus.htm">+</a><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppString.htm">std::string</a>("' in <b><a href="CppThis.htm">this</a></b> app's folder")).c_str()<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppString.html">std::string</a>("' in <b><a href="CppThis.htm">this</a></b> app's folder")).c_str()<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOfstream.htm">std::ofstream</a> file(config_filename);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; config_file(CreateConfig<a href="CppXml.htm">Xml</a>(page_location,sitemapgen_location));<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCopy.htm">std::copy</a>(config_file.begin(),config_file.end(),<a href="CppOstream_iterator.htm">std::ostream_iterator</a>&lt;<a href="CppString.htm">std::string</a>&gt;(file,"\n"));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOfstream.html">std::ofstream</a> file(config_filename);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppVector.html">std::vector</a>&lt;<a href="CppString.html">std::string</a>&gt; config_file(CreateConfig<a href="CppXml.htm">Xml</a>(page_location,sitemapgen_location));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCopy.html">std::copy</a>(config_file.begin(),config_file.end(),<a href="CppOstream_iterator.html">std::ostream_iterator</a>&lt;<a href="CppString.html">std::string</a>&gt;(file,"\n"));<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;ui-&gt;text_output-&gt;appendPlainText(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<a href="CppString.htm">std::string</a>("'")<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<a href="CppString.html">std::string</a>("'")<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> config_filename<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> <a href="CppString.htm">std::string</a>("' created successfully")).c_str()<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> <a href="CppString.html">std::string</a>("' created successfully")).c_str()<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;);<br/>
 &nbsp;&nbsp;}<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Save urllist to file<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppConvert.htm">Convert</a> <b><a href="CppShort.htm">short</a></b> filenames to full filenames<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; files_full;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBOOST_FOREACH.htm">BOOST_FOREACH</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; line, files_raw)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppConvert.html">Convert</a> <b><a href="CppShort.html">short</a></b> filenames to full filenames<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppVector.html">std::vector</a>&lt;<a href="CppString.html">std::string</a>&gt; files_full;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBOOST_FOREACH.html">BOOST_FOREACH</a>(<b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a>&amp; line, files_raw)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;files_full.push_back("http://www.richelbilderbeek.nl/" <a href="CppOperatorPlus.htm">+</a> line);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppAdd.htm">Add</a> header to full filenames<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; full_files_with_header <a href="CppOperatorAssign.htm">=</a> <a href="CppAdd.htm">Add</a>Header(files_full);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppVector.html">std::vector</a>&lt;<a href="CppString.html">std::string</a>&gt; full_files_with_header <a href="CppOperatorAssign.htm">=</a> <a href="CppAdd.htm">Add</a>Header(files_full);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;ui-&gt;text_output-&gt;appendPlainText("* Saving urllist.txt in <b><a href="CppThis.htm">this</a></b> app's folder");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> sitemapgen_url_list_filename <a href="CppOperatorAssign.htm">=</a> sitemapgen_location <a href="CppOperatorPlus.htm">+</a> "/urllist.txt";<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOfstream.htm">std::ofstream</a> file(sitemapgen_url_list_filename.c_str());<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCopy.htm">std::copy</a>(full_files_with_header.begin(),full_files_with_header.end(),<a href="CppOstream_iterator.htm">std::ostream_iterator</a>&lt;<a href="CppString.htm">std::string</a>&gt;(file,"\n"));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a> sitemapgen_url_list_filename <a href="CppOperatorAssign.htm">=</a> sitemapgen_location <a href="CppOperatorPlus.htm">+</a> "/urllist.txt";<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOfstream.html">std::ofstream</a> file(sitemapgen_url_list_filename.c_str());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCopy.html">std::copy</a>(full_files_with_header.begin(),full_files_with_header.end(),<a href="CppOstream_iterator.html">std::ostream_iterator</a>&lt;<a href="CppString.html">std::string</a>&gt;(file,"\n"));<br/>
 &nbsp;&nbsp;}<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Check <b><a href="CppFor.htm">for</a></b> sitemap_gen.py<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;ui-&gt;text_output-&gt;appendPlainText("* Check <b><a href="CppFor.htm">for</a></b> sitemap_gen.py in <b><a href="CppThis.htm">this</a></b> app's folder");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> sitemap_file<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> sitemapgen_location <a href="CppOperatorPlus.htm">+</a> <a href="CppString.htm">std::string</a>("/sitemap_gen.py");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (<a href="CppQFile.htm">QFile</a>::exists(sitemap_file.c_str()))<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a> sitemap_file<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> sitemapgen_location <a href="CppOperatorPlus.htm">+</a> <a href="CppString.html">std::string</a>("/sitemap_gen.py");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (<a href="CppQFile.html">QFile</a>::exists(sitemap_file.c_str()))<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ui-&gt;text_output-&gt;appendPlainText("* sitemap_gen.py present");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppElse.htm">else</a></b><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ui-&gt;text_output-&gt;appendPlainText("* creating sitemap_py");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQFile.htm">QFile</a> f_in(":/files/sitemap_gen.py");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQFile.html">QFile</a> f_in(":/files/sitemap_gen.py");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;f_in.copy(sitemap_file.c_str());<br/>
 <br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppIfstream.htm">std::ifstream</a> f_in(":/files/sitemap_gen.py");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppIfstream.html">std::ifstream</a> f_in(":/files/sitemap_gen.py");<br/>
 <br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppOfstream.htm">std::ofstream</a> f_out(sitemap_file.c_str() );<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>f_out <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> f_in.rdbuf();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppOfstream.html">std::ofstream</a> f_out(sitemap_file.c_str() );<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>f_out <a href="CppOperatorStreamOut.html">&lt;&lt;</a> f_in.rdbuf();<br/>
 <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Assume file does exist now<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppQFile.htm">QFile</a>::exists(sitemap_file.c_str()));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(<a href="CppQFile.html">QFile</a>::exists(sitemap_file.c_str()));<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ui-&gt;text_output-&gt;appendPlainText("* sitemap_py created successfully");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;}<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> python_command<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a> python_command<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> "python "<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> sitemapgen_location<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> "/sitemap_gen.py"<br/>
@@ -756,24 +757,24 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;ui-&gt;text_output-&gt;appendPlainText("* Starting following command:");<br/>
 &nbsp;&nbsp;ui-&gt;text_output-&gt;appendPlainText(python_command.c_str());<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppDefine.htm">#define</a> DO_NOT_EXECUTE_COMMAND<br/>
-&nbsp;&nbsp;<a href="CppIfdef.htm">#ifdef</a> DO_NOT_EXECUTE_COMMAND<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppDefine.html">#define</a> DO_NOT_EXECUTE_COMMAND<br/>
+&nbsp;&nbsp;<a href="CppIfdef.html">#ifdef</a> DO_NOT_EXECUTE_COMMAND<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;ui-&gt;text_output-&gt;appendPlainText("* DEBUG: COMMAND NOT EXECUTED ");<br/>
-&nbsp;&nbsp;<a href="CppPreElse.htm">#else</a><br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> system_<b><a href="CppReturn.htm">return</a></b>_code <a href="CppOperatorAssign.htm">=</a> <a href="CppSystem.htm">std::system</a>(python_command.c_str());<br/>
+&nbsp;&nbsp;<a href="CppPreElse.html">#else</a><br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> system_<b><a href="CppReturn.html">return</a></b>_code <a href="CppOperatorAssign.htm">=</a> <a href="CppSystem.html">std::system</a>(python_command.c_str());<br/>
 &nbsp;&nbsp;ui-&gt;text_output-&gt;appendPlainText(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQString.htm">QString</a>("* System command finished with <b><a href="CppReturn.htm">return</a></b> code ")<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> <a href="CppQString.htm">QString</a>(<a href="CppLexical_cast.htm">boost::lexical_cast</a>&lt;<a href="CppString.htm">std::string</a>&gt;(system_<b><a href="CppReturn.htm">return</a></b>_code).c_str()));<br/>
-&nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQString.html">QString</a>("* System command finished with <b><a href="CppReturn.html">return</a></b> code ")<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> <a href="CppQString.html">QString</a>(<a href="CppLexical_cast.html">boost::lexical_cast</a>&lt;<a href="CppString.html">std::string</a>&gt;(system_<b><a href="CppReturn.html">return</a></b>_code).c_str()));<br/>
+&nbsp;&nbsp;<a href="CppEndif.html">#endif</a><br/>
 <br/>
 &nbsp;&nbsp;ui-&gt;text_output-&gt;appendPlainText("* Program finished");<br/>
 <br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; output(<a href="CppFileToVector.htm">FileToVector</a>("output.txt"));<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBOOST_FOREACH.htm">BOOST_FOREACH</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; s,output)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppVector.html">std::vector</a>&lt;<a href="CppString.html">std::string</a>&gt; output(<a href="CppFileToVector.html">FileToVector</a>("output.txt"));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBOOST_FOREACH.html">BOOST_FOREACH</a>(<b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a>&amp; s,output)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ui-&gt;text_output-&gt;appendPlainText(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQString.htm">QString</a>(" ") <a href="CppOperatorPlus.htm">+</a> <a href="CppQString.htm">QString</a>(s.c_str()));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQString.html">QString</a>(" ") <a href="CppOperatorPlus.htm">+</a> <a href="CppQString.html">QString</a>(s.c_str()));<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;}<br/>
 <br/>
@@ -808,44 +809,46 @@ You should have received a copy of the GNU General Public License<br/>
 along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">*/</a><br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="ToolRichelbilderbeekNlSitemapGenerator.htm">ToolRichelbilderbeekNlSitemapGenerator</a>.htm<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="ToolRichelbilderbeekNlSitemapGenerator.html">ToolRichelbilderbeekNlSitemapGenerator</a>.html<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppIfndef.htm">#ifndef</a> QTSITEMAPGENERATORMENUDIALOG_H<br/>
-<a href="CppDefine.htm">#define</a> QTSITEMAPGENERATORMENUDIALOG_H<br/>
+<a href="CppIfndef.html">#ifndef</a> QTSITEMAPGENERATORMENUDIALOG_H<br/>
+<a href="CppDefine.html">#define</a> QTSITEMAPGENERATORMENUDIALOG_H<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppQtHideAndShowDialog.htm">qthideandshowdialog</a>.h"<br/>
+<a href="CppInclude.html">#include</a> "<a href="CppQtHideAndShowDialog.html">qthideandshowdialog</a><a href="CppHeaderFile.htm">.h</a>"<br/>
 <br/>
-<b><a href="CppNamespace.htm">namespace</a></b> Ui {<br/>
-<b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a>SitemapGeneratorMenuDialog;<br/>
+<b><a href="CppNamespace.html">namespace</a></b> Ui {<br/>
+<b><a href="CppClass.html">class</a></b> <a href="CppQt.htm">Qt</a>SitemapGeneratorMenuDialog;<br/>
 }<br/>
 <br/>
-<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
+<b><a href="CppNamespace.html">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
 <br/>
-<b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a>SitemapGeneratorMenuDialog : <b><a href="CppPublic.htm">public</a></b> <a href="CppQtHideAndShowDialog.htm">QtHideAndShowDialog</a><br/>
+<b><a href="CppClass.html">class</a></b> <a href="CppQt.htm">Qt</a>SitemapGeneratorMenuDialog : <b><a href="CppPublic.html">public</a></b> <a href="CppQtHideAndShowDialog.html">QtHideAndShowDialog</a><br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppQ_OBJECT.htm">Q_OBJECT</a><br/>
+&nbsp;&nbsp;<a href="CppQ_OBJECT.html">Q_OBJECT</a><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<br/>
-<b><a href="CppPublic.htm">public</a></b>:<br/>
-&nbsp;&nbsp;<b><a href="CppExplicit.htm">explicit</a></b> <a href="CppQt.htm">Qt</a>SitemapGeneratorMenuDialog(<a href="CppQWidget.htm">QWidget</a> *parent <a href="CppOperatorAssign.htm">=</a> 0);<br/>
+<b><a href="CppPublic.html">public</a></b>:<br/>
+&nbsp;&nbsp;<b><a href="CppExplicit.html">explicit</a></b> <a href="CppQt.htm">Qt</a>SitemapGeneratorMenuDialog(<a href="CppQWidget.html">QWidget</a> *parent <a href="CppOperatorAssign.htm">=</a> 0);<br/>
+&nbsp;&nbsp;<a href="CppQt.htm">Qt</a>SitemapGeneratorMenuDialog(<b><a href="CppConst.html">const</a></b> <a href="CppQt.htm">Qt</a>SitemapGeneratorMenuDialog&amp;) <a href="CppOperatorAssign.htm">=</a> <b><a href="CppDelete.html">delete</a></b>;<br/>
+&nbsp;&nbsp;<a href="CppQt.htm">Qt</a>SitemapGeneratorMenuDialog&amp; <b><a href="CppOperator.html">operator</a></b>=(<b><a href="CppConst.html">const</a></b> <a href="CppQt.htm">Qt</a>SitemapGeneratorMenuDialog&amp;) <a href="CppOperatorAssign.htm">=</a> <b><a href="CppDelete.html">delete</a></b>;<br/>
 &nbsp;&nbsp;~<a href="CppQt.htm">Qt</a>SitemapGeneratorMenuDialog();<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<br/>
-<b><a href="CppProtected.htm">protected</a></b>:<br/>
-&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> keyPressEvent(<a href="CppQKeyEvent.htm">QKeyEvent</a> * event);<br/>
+<b><a href="CppProtected.html">protected</a></b>:<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> keyPressEvent(<a href="CppQKeyEvent.html">QKeyEvent</a> * event);<br/>
 <br/>
-<b><a href="CppPrivate.htm">private</a></b> <b><a href="CppSlots.htm">slots</a></b>:<br/>
+<b><a href="CppPrivate.html">private</a></b> <b><a href="CppSlots.html">slots</a></b>:<br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> on_button_start_clicked();<br/>
 <br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> on_button_about_clicked();<br/>
 <br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> on_button_quit_clicked();<br/>
 <br/>
-<b><a href="CppPrivate.htm">private</a></b>:<br/>
+<b><a href="CppPrivate.html">private</a></b>:<br/>
 &nbsp;&nbsp;<a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a>SitemapGeneratorMenuDialog *ui;<br/>
 };<br/>
 <br/>
-} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.html">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
 <br/>
-<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> QTSITEMAPGENERATORMENUDIALOG_H<br/>
+<a href="CppEndif.html">#endif</a> <a href="CppComment.htm">//</a> QTSITEMAPGENERATORMENUDIALOG_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -875,23 +878,24 @@ You should have received a copy of the GNU General Public License<br/>
 along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">*/</a><br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="ToolRichelbilderbeekNlSitemapGenerator.htm">ToolRichelbilderbeekNlSitemapGenerator</a>.htm<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="ToolRichelbilderbeekNlSitemapGenerator.html">ToolRichelbilderbeekNlSitemapGenerator</a>.html<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic push<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.html">-Weffc++</a>"<br/>
+<a href="CppInclude.html">#include</a> "qtsitemapgeneratormenudialog<a href="CppHeaderFile.htm">.h</a>"<br/>
 <br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppCassertH.html">cassert</a>&gt;<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> "qtsitemapgeneratormenudialog.h"<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppQKeyEvent.html">QKeyEvent</a>&gt;<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> "<a href="CppQtAboutDialog.html">qtaboutdialog</a><a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "qtsitemapgeneratormaindialog<a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "sitemapgeneratormenudialog<a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "ui_qtsitemapgeneratormenudialog<a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic pop<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppQKeyEvent.htm">QKeyEvent</a>&gt;<br/>
-<br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppQtAboutDialog.htm">qtaboutdialog</a>.h"<br/>
-<a href="CppInclude.htm">#include</a> "qtsitemapgeneratormaindialog.h"<br/>
-<a href="CppInclude.htm">#include</a> "sitemapgeneratormenudialog.h"<br/>
-<a href="CppInclude.htm">#include</a> "ui_qtsitemapgeneratormenudialog.h"<br/>
-<br/>
-<a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>SitemapGeneratorMenuDialog::<a href="CppQt.htm">Qt</a>SitemapGeneratorMenuDialog(<a href="CppQWidget.htm">QWidget</a> *parent) :<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQtHideAndShowDialog.htm">QtHideAndShowDialog</a>(parent),<br/>
+<a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>SitemapGeneratorMenuDialog::<a href="CppQt.htm">Qt</a>SitemapGeneratorMenuDialog(<a href="CppQWidget.html">QWidget</a> *parent) :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQtHideAndShowDialog.html">QtHideAndShowDialog</a>(parent),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;ui(<b><a href="CppNew.htm">new</a></b> <a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a>SitemapGeneratorMenuDialog)<br/>
 {<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;ui-&gt;setupUi(<b><a href="CppThis.htm">this</a></b>);<br/>
@@ -899,13 +903,13 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <br/>
 <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>SitemapGeneratorMenuDialog::~<a href="CppQt.htm">Qt</a>SitemapGeneratorMenuDialog()<br/>
 {<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppDelete.htm">delete</a></b> ui;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppDelete.html">delete</a></b> ui;<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>SitemapGeneratorMenuDialog::keyPressEvent(<a href="CppQKeyEvent.htm">QKeyEvent</a> * e)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>SitemapGeneratorMenuDialog::keyPressEvent(<a href="CppQKeyEvent.html">QKeyEvent</a> * e)<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (e-&gt;key()&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <a href="CppQt.htm">Qt</a>::Key_Escape) { close(); <b><a href="CppReturn.htm">return</a></b>; }<br/>
-&nbsp;&nbsp;<a href="CppQtHideAndShowDialog.htm">QtHideAndShowDialog</a>::keyPressEvent(e);<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (e-&gt;key()&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <a href="CppQt.htm">Qt</a>::Key_Escape) { close(); <b><a href="CppReturn.html">return</a></b>; }<br/>
+&nbsp;&nbsp;<a href="CppQtHideAndShowDialog.html">QtHideAndShowDialog</a>::keyPressEvent(e);<br/>
 }<br/>
 <br/>
 <b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>SitemapGeneratorMenuDialog::on_button_start_clicked()<br/>
@@ -916,10 +920,10 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <br/>
 <b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>SitemapGeneratorMenuDialog::on_button_about_clicked()<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppAbout.htm">About</a> <a href="CppAbout.htm">about</a> <a href="CppOperatorAssign.htm">=</a> SitemapGeneratorMenuDialog::GetAbout();<br/>
-&nbsp;&nbsp;<a href="CppAbout.htm">about</a>.<a href="CppAdd.htm">Add</a><a href="CppLibrary.htm">Library</a>("<a href="CppQtHideAndShowDialog.htm">QtHideAndShowDialog</a> <a href="CppVersion.htm">version</a>: " <a href="CppOperatorPlus.htm">+</a> <a href="CppQtHideAndShowDialog.htm">QtHideAndShowDialog</a>::Get<a href="CppVersion.htm">Version</a>());<br/>
+&nbsp;&nbsp;<a href="CppAbout.html">About</a> <a href="CppAbout.html">about</a> <a href="CppOperatorAssign.htm">=</a> SitemapGeneratorMenuDialog::GetAbout();<br/>
+&nbsp;&nbsp;<a href="CppAbout.html">about</a>.<a href="CppAdd.htm">Add</a><a href="CppLibrary.html">Library</a>("<a href="CppQtHideAndShowDialog.html">QtHideAndShowDialog</a> <a href="CppVersion.html">version</a>: " <a href="CppOperatorPlus.htm">+</a> <a href="CppQtHideAndShowDialog.html">QtHideAndShowDialog</a>::Get<a href="CppVersion.html">Version</a>());<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppQtAboutDialog.htm">QtAboutDialog</a> d(<a href="CppAbout.htm">about</a>);<br/>
+&nbsp;&nbsp;<a href="CppQtAboutDialog.html">QtAboutDialog</a> d(<a href="CppAbout.html">about</a>);<br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;hide();<br/>
 &nbsp;&nbsp;d.exec();<br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;show();<br/>
@@ -3174,33 +3178,33 @@ You should have received a copy of the GNU General Public License<br/>
 along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">*/</a><br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="ToolRichelbilderbeekNlSitemapGenerator.htm">ToolRichelbilderbeekNlSitemapGenerator</a>.htm<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="ToolRichelbilderbeekNlSitemapGenerator.html">ToolRichelbilderbeekNlSitemapGenerator</a>.html<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppIfndef.htm">#ifndef</a> SITEMAPGENERATORMENUDIALOG_H<br/>
-<a href="CppDefine.htm">#define</a> SITEMAPGENERATORMENUDIALOG_H<br/>
+<a href="CppIfndef.html">#ifndef</a> SITEMAPGENERATORMENUDIALOG_H<br/>
+<a href="CppDefine.html">#define</a> SITEMAPGENERATORMENUDIALOG_H<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppStringH.htm">string</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppStringH.html">string</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppVectorH.html">vector</a>&gt;<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppAbout.htm">about</a>.h"<br/>
+<a href="CppInclude.html">#include</a> "<a href="CppAbout.html">about</a><a href="CppHeaderFile.htm">.h</a>"<br/>
 <br/>
-<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
+<b><a href="CppNamespace.html">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
 <br/>
-<b><a href="CppStruct.htm">struct</a></b> SitemapGeneratorMenuDialog<br/>
+<b><a href="CppStruct.html">struct</a></b> SitemapGeneratorMenuDialog<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Obtain the Abou information of <b><a href="CppThis.htm">this</a></b> <b><a href="CppClass.htm">class</a></b><br/>
-&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppAbout.htm">About</a> GetAbout();<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Obtain the Abou information of <b><a href="CppThis.htm">this</a></b> <b><a href="CppClass.html">class</a></b><br/>
+&nbsp;&nbsp;<b><a href="CppStatic.html">static</a></b> <b><a href="CppConst.html">const</a></b> <a href="CppAbout.html">About</a> GetAbout();<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Obtain the <a href="CppVersion.htm">version</a> of <b><a href="CppThis.htm">this</a></b> <b><a href="CppClass.htm">class</a></b><br/>
-&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> Get<a href="CppVersion.htm">Version</a>();<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Obtain the <a href="CppVersion.html">version</a> of <b><a href="CppThis.htm">this</a></b> <b><a href="CppClass.html">class</a></b><br/>
+&nbsp;&nbsp;<b><a href="CppStatic.html">static</a></b> <b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a> Get<a href="CppVersion.html">Version</a>();<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Obtain the <a href="CppVersion.htm">version</a> history of <b><a href="CppThis.htm">this</a></b> <b><a href="CppClass.htm">class</a></b><br/>
-&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; Get<a href="CppVersion.htm">Version</a>History();<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Obtain the <a href="CppVersion.html">version</a> history of <b><a href="CppThis.htm">this</a></b> <b><a href="CppClass.html">class</a></b><br/>
+&nbsp;&nbsp;<b><a href="CppStatic.html">static</a></b> <b><a href="CppConst.html">const</a></b> <a href="CppVector.html">std::vector</a>&lt;<a href="CppString.html">std::string</a>&gt; Get<a href="CppVersion.html">Version</a>History();<br/>
 };<br/>
 <br/>
-} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.html">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
 <br/>
-<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> SITEMAPGENERATORMENUDIALOG_H<br/>
+<a href="CppEndif.html">#endif</a> <a href="CppComment.htm">//</a> SITEMAPGENERATORMENUDIALOG_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -3230,40 +3234,40 @@ You should have received a copy of the GNU General Public License<br/>
 along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">*/</a><br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="ToolRichelbilderbeekNlSitemapGenerator.htm">ToolRichelbilderbeekNlSitemapGenerator</a>.htm<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="ToolRichelbilderbeekNlSitemapGenerator.html">ToolRichelbilderbeekNlSitemapGenerator</a>.html<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <br/>
 <br/>
-<a href="CppInclude.htm">#include</a> "sitemapgeneratormenudialog.h"<br/>
+<a href="CppInclude.html">#include</a> "sitemapgeneratormenudialog<a href="CppHeaderFile.htm">.h</a>"<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppAbout.htm">About</a> <a href="CppRibi.htm">ribi</a>::SitemapGeneratorMenuDialog::GetAbout()<br/>
+<b><a href="CppConst.html">const</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppAbout.html">About</a> <a href="CppRibi.htm">ribi</a>::SitemapGeneratorMenuDialog::GetAbout()<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppAbout.htm">About</a> a(<br/>
+&nbsp;&nbsp;<a href="CppAbout.html">About</a> a(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;"Richel Bilderbeek",<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;"RichelbilderbeekNlSitemapGenerator",<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;"generates the richelbilderbeek.nl sitemap",<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;"the 15th of December 2012",<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;"2010-2012",<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;"http://www.richelbilderbeek.nl/<a href="ToolRichelbilderbeekNlSitemapGenerator.htm">ToolRichelbilderbeekNlSitemapGenerator</a>.htm",<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;Get<a href="CppVersion.htm">Version</a>(),<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;Get<a href="CppVersion.htm">Version</a>History());<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>a.<a href="CppAdd.htm">Add</a><a href="CppLibrary.htm">Library</a>("ProFile <a href="CppVersion.htm">version</a>: " <a href="CppOperatorPlus.htm">+</a> <a href="CppQtCreator.htm">QtCreator</a>ProFile::Get<a href="CppVersion.htm">Version</a>());<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> a;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"http://www.richelbilderbeek.nl/<a href="ToolRichelbilderbeekNlSitemapGenerator.html">ToolRichelbilderbeekNlSitemapGenerator</a>.html",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Get<a href="CppVersion.html">Version</a>(),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Get<a href="CppVersion.html">Version</a>History());<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>a.<a href="CppAdd.htm">Add</a><a href="CppLibrary.html">Library</a>("ProFile <a href="CppVersion.html">version</a>: " <a href="CppOperatorPlus.htm">+</a> <a href="CppQtCreator.html">QtCreator</a>ProFile::Get<a href="CppVersion.html">Version</a>());<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> a;<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppRibi.htm">ribi</a>::SitemapGeneratorMenuDialog::Get<a href="CppVersion.htm">Version</a>()<br/>
+<b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a> <a href="CppRibi.htm">ribi</a>::SitemapGeneratorMenuDialog::Get<a href="CppVersion.html">Version</a>()<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> "1.3";<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> "1.3";<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm">ribi</a>::SitemapGeneratorMenuDialog::Get<a href="CppVersion.htm">Version</a>History()<br/>
+<b><a href="CppConst.html">const</a></b> <a href="CppVector.html">std::vector</a>&lt;<a href="CppString.html">std::string</a>&gt; <a href="CppRibi.htm">ribi</a>::SitemapGeneratorMenuDialog::Get<a href="CppVersion.html">Version</a>History()<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v;<br/>
-&nbsp;&nbsp;v.push_back("2010-08-08: <a href="CppVersion.htm">version</a> 1.0: initial <a href="CppVersion.htm">version</a>");<br/>
-&nbsp;&nbsp;v.push_back("2011-09-15: <a href="CppVersion.htm">version</a> 1.1: improved code");<br/>
-&nbsp;&nbsp;v.push_back("2012-06-20: <a href="CppVersion.htm">version</a> 1.2: improved code");<br/>
-&nbsp;&nbsp;v.push_back("2012-12-15: <a href="CppVersion.htm">version</a> 1.3: made global <a href="CppFunction.htm">function</a>s <a href="CppStaticMemberFunction.htm">static member function</a>s, use of <a href="CppQtHideAndShowDialog.htm">QtHideAndShowDialog</a>, added some graphics to menu");<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
+&nbsp;&nbsp;<a href="CppVector.html">std::vector</a>&lt;<a href="CppString.html">std::string</a>&gt; v;<br/>
+&nbsp;&nbsp;v.push_back("2010-08-08: <a href="CppVersion.html">version</a> 1.0: initial <a href="CppVersion.html">version</a>");<br/>
+&nbsp;&nbsp;v.push_back("2011-09-15: <a href="CppVersion.html">version</a> 1.1: improved code");<br/>
+&nbsp;&nbsp;v.push_back("2012-06-20: <a href="CppVersion.html">version</a> 1.2: improved code");<br/>
+&nbsp;&nbsp;v.push_back("2012-12-15: <a href="CppVersion.html">version</a> 1.3: made global <a href="CppFunction.html">function</a>s <a href="CppStaticMemberFunction.html">static member function</a>s, use of <a href="CppQtHideAndShowDialog.html">QtHideAndShowDialog</a>, added some graphics to menu");<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> v;<br/>
 }<br/>
 </code></td></tr></table>
 <!-- end of the code -->

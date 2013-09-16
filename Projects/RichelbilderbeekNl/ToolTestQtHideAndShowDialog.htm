@@ -69,19 +69,19 @@
 QT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; += core gui<br/>
 greaterThan(QT_MAJOR_VERSION, 4): QT += <a href="CppWidget.htm">widget</a>s<br/>
 <br/>
-<a href="CppQMAKE_CXXFLAGS.htm">QMAKE_CXXFLAGS</a> += -std=<a href="Cpp11.htm">c++11</a> <a href="CppWall.htm">-Wall</a> <a href="CppWextra.htm">-Wextra</a> <a href="CppWerror.htm">-Werror</a><br/>
+<a href="CppQmakeQmake_cxxflags.htm">QMAKE_CXXFLAGS</a> += -std=<a href="Cpp11.htm">c++11</a> <a href="CppWall.htm">-Wall</a> <a href="CppWextra.htm">-Wextra</a> <a href="CppWerror.htm">-Werror</a><br/>
 <br/>
-TEMPLATE = app<br/>
+<a href="CppQmakeTemplate.htm">TEMPLATE</a> = app<br/>
 <br/>
-<a href="CppINCLUDEPATH.htm">INCLUDEPATH</a> += \<br/>
+<a href="CppQmakeIncludepath.htm">INCLUDEPATH</a> += \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppQtHideAndShowDialog.htm">CppQtHideAndShowDialog</a><br/>
 <br/>
-<a href="CppSOURCES.htm">SOURCES</a> += \<br/>
+<a href="CppQmakeSources.htm">SOURCES</a> += \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppQtHideAndShowDialog.htm">CppQtHideAndShowDialog</a>/<a href="CppQtHideAndShowDialog.htm">qthideandshowdialog</a>.cpp \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;qt<a href="CppMain.htm">main</a>.cpp \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;qttesthideandshow<a href="CppMain.htm">main</a>dialog.cpp<br/>
 <br/>
-<a href="CppHEADERS.htm">HEADERS</a> += \<br/>
+<a href="CppQmakeHeaders.htm">HEADERS</a> += \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppQtHideAndShowDialog.htm">CppQtHideAndShowDialog</a>/<a href="CppQtHideAndShowDialog.htm">qthideandshowdialog</a>.h \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;qttesthideandshow<a href="CppMain.htm">main</a>dialog.h<br/>
 <br/>
@@ -101,16 +101,16 @@ OTHER_FILES += \<br/>
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="qtmain.cpp" border = "1"><tr><td><code>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppQApplication.htm">QApplication</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppQDesktopWidget.htm">QDesktopWidget</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> "qttesthideandshowmaindialog.h"<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppQApplication.html">QApplication</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppQDesktopWidget.html">QDesktopWidget</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> "qttesthideandshowmaindialog<a href="CppHeaderFile.htm">.h</a>"<br/>
 <br/>
-<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>(<b><a href="CppInt.htm">int</a></b> <a href="CppArgc.htm">argc</a>, <b><a href="CppChar.htm">char</a></b> *<a href="CppArgc.htm">argv</a>[])<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a>(<b><a href="CppInt.htm">int</a></b> <a href="CppArgc.htm">argc</a>, <b><a href="CppChar.htm">char</a></b> *<a href="CppArgc.htm">argv</a>[])<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppQApplication.htm">QApplication</a> a(<a href="CppArgc.htm">argc</a>, <a href="CppArgc.htm">argv</a>);<br/>
+&nbsp;&nbsp;<a href="CppQApplication.html">QApplication</a> a(<a href="CppArgc.htm">argc</a>, <a href="CppArgc.htm">argv</a>);<br/>
 &nbsp;&nbsp;<a href="CppQt.htm">Qt</a>TestHideAndShowMainDialog d;<br/>
 &nbsp;&nbsp;d.show();<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> a.exec();<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> a.exec();<br/>
 }<br/>
 </code></td></tr></table>
 <!-- end of the code -->
@@ -123,25 +123,25 @@ OTHER_FILES += \<br/>
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="qttesthideandshowmaindialog.h" border = "1"><tr><td><code>
-<a href="CppIfndef.htm">#ifndef</a> QTTESTHIDEA<a href="CppNds.htm">NDS</a>HOWMAINDIALOG_H<br/>
-<a href="CppDefine.htm">#define</a> QTTESTHIDEA<a href="CppNds.htm">NDS</a>HOWMAINDIALOG_H<br/>
+<a href="CppIfndef.html">#ifndef</a> QTTESTHIDEA<a href="CppNds.htm">NDS</a>HOWMAINDIALOG_H<br/>
+<a href="CppDefine.html">#define</a> QTTESTHIDEA<a href="CppNds.htm">NDS</a>HOWMAINDIALOG_H<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppQDialog.htm">QDialog</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppQtHideAndShowDialog.htm">qthideandshowdialog</a>.h"<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppQDialog.html">QDialog</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> "<a href="CppQtHideAndShowDialog.html">qthideandshowdialog</a><a href="CppHeaderFile.htm">.h</a>"<br/>
 <br/>
-<b><a href="CppNamespace.htm">namespace</a></b> Ui {<br/>
-&nbsp;&nbsp;<b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a>TestHideAndShowMainDialog;<br/>
+<b><a href="CppNamespace.html">namespace</a></b> Ui {<br/>
+&nbsp;&nbsp;<b><a href="CppClass.html">class</a></b> <a href="CppQt.htm">Qt</a>TestHideAndShowMainDialog;<br/>
 }<br/>
 <br/>
-<b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a>TestHideAndShowMainDialog : <b><a href="CppPublic.htm">public</a></b> <a href="CppQtHideAndShowDialog.htm">QtHideAndShowDialog</a><br/>
+<b><a href="CppClass.html">class</a></b> <a href="CppQt.htm">Qt</a>TestHideAndShowMainDialog : <b><a href="CppPublic.html">public</a></b> <a href="CppQtHideAndShowDialog.html">QtHideAndShowDialog</a><br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppQ_OBJECT.htm">Q_OBJECT</a><br/>
+&nbsp;&nbsp;<a href="CppQ_OBJECT.html">Q_OBJECT</a><br/>
 &nbsp;&nbsp;<br/>
-<b><a href="CppPublic.htm">public</a></b>:<br/>
-&nbsp;&nbsp;<b><a href="CppExplicit.htm">explicit</a></b> <a href="CppQt.htm">Qt</a>TestHideAndShowMainDialog(<a href="CppQWidget.htm">QWidget</a> *parent <a href="CppOperatorAssign.htm">=</a> 0);<br/>
+<b><a href="CppPublic.html">public</a></b>:<br/>
+&nbsp;&nbsp;<b><a href="CppExplicit.html">explicit</a></b> <a href="CppQt.htm">Qt</a>TestHideAndShowMainDialog(<a href="CppQWidget.html">QWidget</a> *parent <a href="CppOperatorAssign.htm">=</a> 0);<br/>
 &nbsp;&nbsp;~<a href="CppQt.htm">Qt</a>TestHideAndShowMainDialog();<br/>
 &nbsp;&nbsp;<br/>
-<b><a href="CppProtected.htm">protected</a></b>:<br/>
+<b><a href="CppProtected.html">protected</a></b>:<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/Prevents warnings as the one below, appearing when pressing ESC:<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppOperatorDivide.htm">/</a> X Error: BadWindow (invalid Window parameter) 3<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppOperatorDivide.htm">/</a>&nbsp;&nbsp; Major opcode: 20 (X_GetProperty)<br/>
@@ -149,19 +149,19 @@ OTHER_FILES += \<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppOperatorDivide.htm">/</a> X Error: BadWindow (invalid Window parameter) 3<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppOperatorDivide.htm">/</a>&nbsp;&nbsp; Major opcode: 15 (X_QueryTree)<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppOperatorDivide.htm">/</a>&nbsp;&nbsp; Resource id:&nbsp;&nbsp;0x280c90d<br/>
-&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> keyPressEvent(<a href="CppQKeyEvent.htm">QKeyEvent</a> *);<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> keyPressEvent(<a href="CppQKeyEvent.html">QKeyEvent</a> *);<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> showEvent(<a href="CppQShowEvent.htm">QShowEvent</a> *);<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> showEvent(<a href="CppQShowEvent.html">QShowEvent</a> *);<br/>
 <br/>
-<b><a href="CppPrivate.htm">private</a></b> <b><a href="CppSlots.htm">slots</a></b>:<br/>
+<b><a href="CppPrivate.html">private</a></b> <b><a href="CppSlots.html">slots</a></b>:<br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> on_button_clicked();<br/>
 <br/>
 <br/>
-<b><a href="CppPrivate.htm">private</a></b>:<br/>
+<b><a href="CppPrivate.html">private</a></b>:<br/>
 &nbsp;&nbsp;<a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a>TestHideAndShowMainDialog *ui;<br/>
 };<br/>
 <br/>
-<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> QTTESTHIDEA<a href="CppNds.htm">NDS</a>HOWMAINDIALOG_H<br/>
+<a href="CppEndif.html">#endif</a> <a href="CppComment.htm">//</a> QTTESTHIDEA<a href="CppNds.htm">NDS</a>HOWMAINDIALOG_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -173,40 +173,40 @@ OTHER_FILES += \<br/>
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="qttesthideandshowmaindialog.cpp" border = "1"><tr><td><code>
-<a href="CppInclude.htm">#include</a> "qttesthideandshowmaindialog.h"<br/>
+<a href="CppInclude.html">#include</a> "qttesthideandshowmaindialog<a href="CppHeaderFile.htm">.h</a>"<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppLexical_cast.htm">lexical_cast</a>.hpp&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppQKeyEvent.htm">QKeyEvent</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> "ui_qttesthideandshowmaindialog.h"<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppBoost.html">boost</a>/<a href="CppLexical_cast.html">lexical_cast</a><a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppQKeyEvent.html">QKeyEvent</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> "ui_qttesthideandshowmaindialog<a href="CppHeaderFile.htm">.h</a>"<br/>
 <br/>
-<a href="CppQt.htm">Qt</a>TestHideAndShowMainDialog::<a href="CppQt.htm">Qt</a>TestHideAndShowMainDialog(<a href="CppQWidget.htm">QWidget</a> *parent)<br/>
-&nbsp;&nbsp;: <a href="CppQtHideAndShowDialog.htm">QtHideAndShowDialog</a>(parent),<br/>
+<a href="CppQt.htm">Qt</a>TestHideAndShowMainDialog::<a href="CppQt.htm">Qt</a>TestHideAndShowMainDialog(<a href="CppQWidget.html">QWidget</a> *parent)<br/>
+&nbsp;&nbsp;: <a href="CppQtHideAndShowDialog.html">QtHideAndShowDialog</a>(parent),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;ui(<b><a href="CppNew.htm">new</a></b> <a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a>TestHideAndShowMainDialog)<br/>
 {<br/>
 &nbsp;&nbsp;ui-&gt;setupUi(<b><a href="CppThis.htm">this</a></b>);<br/>
 <br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> s(200,<a href="CppLexical_cast.htm">boost::lexical_cast</a>&lt;<b><a href="CppChar.htm">char</a></b>,<a href="CppString.htm">std::string</a>&gt;("."));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a> s(200,<a href="CppLexical_cast.html">boost::lexical_cast</a>&lt;<b><a href="CppChar.htm">char</a></b>,<a href="CppString.html">std::string</a>&gt;("."));<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;ui-&gt;label_spacer-&gt;setText(s.c_str());<br/>
 &nbsp;&nbsp;}<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppQString.htm">QString</a> s <a href="CppOperatorAssign.htm">=</a> "Dialog width: " <a href="CppOperatorPlus.htm">+</a> <a href="CppQString.htm">QString</a>::number(<b><a href="CppThis.htm">this</a></b>-&gt;width()) <a href="CppOperatorPlus.htm">+</a> " pixels";<br/>
-&nbsp;&nbsp;ui-&gt;label_width_<a href="CppConstructor.htm">constructor</a>-&gt;setText(s);<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppQString.html">QString</a> s <a href="CppOperatorAssign.htm">=</a> "Dialog width: " <a href="CppOperatorPlus.htm">+</a> <a href="CppQString.html">QString</a>::number(<b><a href="CppThis.htm">this</a></b>-&gt;width()) <a href="CppOperatorPlus.htm">+</a> " pixels";<br/>
+&nbsp;&nbsp;ui-&gt;label_width_<a href="CppConstructor.html">constructor</a>-&gt;setText(s);<br/>
 }<br/>
 <br/>
 <a href="CppQt.htm">Qt</a>TestHideAndShowMainDialog::~<a href="CppQt.htm">Qt</a>TestHideAndShowMainDialog()<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppDelete.htm">delete</a></b> ui;<br/>
+&nbsp;&nbsp;<b><a href="CppDelete.html">delete</a></b> ui;<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a>TestHideAndShowMainDialog::keyPressEvent(<a href="CppQKeyEvent.htm">QKeyEvent</a> * event)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a>TestHideAndShowMainDialog::keyPressEvent(<a href="CppQKeyEvent.html">QKeyEvent</a> * event)<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (event-&gt;key() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <a href="CppQt.htm">Qt</a>::Key_Escape) { close(); <b><a href="CppReturn.htm">return</a></b>; }<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (event-&gt;key() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <a href="CppQt.htm">Qt</a>::Key_Escape) { close(); <b><a href="CppReturn.html">return</a></b>; }<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a>TestHideAndShowMainDialog::showEvent(<a href="CppQShowEvent.htm">QShowEvent</a> *)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a>TestHideAndShowMainDialog::showEvent(<a href="CppQShowEvent.html">QShowEvent</a> *)<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppQString.htm">QString</a> s <a href="CppOperatorAssign.htm">=</a> "Dialog width: " <a href="CppOperatorPlus.htm">+</a> <a href="CppQString.htm">QString</a>::number(<b><a href="CppThis.htm">this</a></b>-&gt;width()) <a href="CppOperatorPlus.htm">+</a> " pixels";<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppQString.html">QString</a> s <a href="CppOperatorAssign.htm">=</a> "Dialog width: " <a href="CppOperatorPlus.htm">+</a> <a href="CppQString.html">QString</a>::number(<b><a href="CppThis.htm">this</a></b>-&gt;width()) <a href="CppOperatorPlus.htm">+</a> " pixels";<br/>
 &nbsp;&nbsp;ui-&gt;label_width_showevent-&gt;setText(s);<br/>
 <br/>
 }<br/>
@@ -216,8 +216,8 @@ OTHER_FILES += \<br/>
 &nbsp;&nbsp;<a href="CppQt.htm">Qt</a>TestHideAndShowMainDialog d;<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Move the child dialog a 8 pixels down and right<br/>
-&nbsp;&nbsp;<a href="CppQPoint.htm">QPoint</a> pos <a href="CppOperatorAssign.htm">=</a> <b><a href="CppThis.htm">this</a></b>-&gt;pos();<br/>
-&nbsp;&nbsp;pos<a href="CppOperatorPlusAssign.htm">+=</a><a href="CppQPoint.htm">QPoint</a>(8,8);<br/>
+&nbsp;&nbsp;<a href="CppQPoint.html">QPoint</a> pos <a href="CppOperatorAssign.htm">=</a> <b><a href="CppThis.htm">this</a></b>-&gt;pos();<br/>
+&nbsp;&nbsp;pos<a href="CppOperatorPlusAssign.htm">+=</a><a href="CppQPoint.html">QPoint</a>(8,8);<br/>
 &nbsp;&nbsp;d.move(pos);<br/>
 <br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;ShowChild(&amp;d);<br/>

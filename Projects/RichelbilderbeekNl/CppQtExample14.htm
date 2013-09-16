@@ -76,12 +76,12 @@
 QT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; += core gui<br/>
 greaterThan(QT_MAJOR_VERSION, 4): QT += <a href="CppWidget.htm">widget</a>s<br/>
 <br/>
-TEMPLATE = app<br/>
+<a href="CppQmakeTemplate.htm">TEMPLATE</a> = app<br/>
 <br/>
-<a href="CppSOURCES.htm">SOURCES</a> += <a href="CppMain.htm">main</a>.cpp\<br/>
+<a href="CppQmakeSources.htm">SOURCES</a> += <a href="CppMain.htm">main</a>.cpp\<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mydialog.cpp<br/>
 <br/>
-<a href="CppHEADERS.htm">HEADERS</a>&nbsp;&nbsp;+= mydialog.h<br/>
+<a href="CppQmakeHeaders.htm">HEADERS</a>&nbsp;&nbsp;+= mydialog.h<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -93,15 +93,15 @@ TEMPLATE = app<br/>
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="main.cpp" border = "1"><tr><td><code>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppQApplication.htm">QApplication</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> "mydialog.h"<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppQApplication.html">QApplication</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> "mydialog<a href="CppHeaderFile.htm">.h</a>"<br/>
 <br/>
-<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>(<b><a href="CppInt.htm">int</a></b> <a href="CppArgc.htm">argc</a>, <b><a href="CppChar.htm">char</a></b> *<a href="CppArgc.htm">argv</a>[])<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a>(<b><a href="CppInt.htm">int</a></b> <a href="CppArgc.htm">argc</a>, <b><a href="CppChar.htm">char</a></b> *<a href="CppArgc.htm">argv</a>[])<br/>
 {<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQApplication.htm">QApplication</a> a(<a href="CppArgc.htm">argc</a>, <a href="CppArgc.htm">argv</a>);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQApplication.html">QApplication</a> a(<a href="CppArgc.htm">argc</a>, <a href="CppArgc.htm">argv</a>);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;MyDialog w;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;w.show();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> a.exec();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> a.exec();<br/>
 }<br/>
 </code></td></tr></table>
 <!-- end of the code -->
@@ -114,37 +114,37 @@ TEMPLATE = app<br/>
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="mydialog.h" border = "1"><tr><td><code>
-<a href="CppIfndef.htm">#ifndef</a> MYDIALOG_H<br/>
-<a href="CppDefine.htm">#define</a> MYDIALOG_H<br/>
+<a href="CppIfndef.html">#ifndef</a> MYDIALOG_H<br/>
+<a href="CppDefine.html">#define</a> MYDIALOG_H<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppShared_ptr.htm">shared_ptr</a>.hpp&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppQDialog.htm">QDialog</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppBoost.html">boost</a>/<a href="CppShared_ptr.html">shared_ptr</a><a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppQDialog.html">QDialog</a>&gt;<br/>
 <br/>
-<a href="CppComment.htm">//</a><a href="CppForwardDeclaration.htm">Forward declaration</a>s<br/>
-<b><a href="CppClass.htm">class</a></b> <a href="CppQVBoxLayout.htm">QVBoxLayout</a>;<br/>
-<b><a href="CppClass.htm">class</a></b> <a href="CppQPushButton.htm">QPushButton</a>;<br/>
+<a href="CppComment.htm">//</a><a href="CppForwardDeclaration.html">Forward declaration</a>s<br/>
+<b><a href="CppClass.html">class</a></b> <a href="CppQVBoxLayout.html">QVBoxLayout</a>;<br/>
+<b><a href="CppClass.html">class</a></b> <a href="CppQPushButton.html">QPushButton</a>;<br/>
 <br/>
-<b><a href="CppClass.htm">class</a></b> MyDialog : <b><a href="CppPublic.htm">public</a></b> <a href="CppQDialog.htm">QDialog</a><br/>
+<b><a href="CppClass.html">class</a></b> MyDialog : <b><a href="CppPublic.html">public</a></b> <a href="CppQDialog.html">QDialog</a><br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppQ_OBJECT.htm">Q_OBJECT</a><br/>
+&nbsp;&nbsp;<a href="CppQ_OBJECT.html">Q_OBJECT</a><br/>
 <br/>
-<b><a href="CppPublic.htm">public</a></b>:<br/>
+<b><a href="CppPublic.html">public</a></b>:<br/>
 <br/>
 &nbsp;&nbsp;MyDialog();<br/>
 <br/>
-<b><a href="CppPrivate.htm">private</a></b>:<br/>
+<b><a href="CppPrivate.html">private</a></b>:<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppQVBoxLayout.htm">QVBoxLayout</a>&gt; m_layout;<br/>
-&nbsp;&nbsp;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppQPushButton.htm">QPushButton</a>&gt; m_button1;<br/>
-&nbsp;&nbsp;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppQPushButton.htm">QPushButton</a>&gt; m_button2;<br/>
+&nbsp;&nbsp;<a href="CppBoostShared_ptr.html">boost::shared_ptr</a>&lt;<a href="CppQVBoxLayout.html">QVBoxLayout</a>&gt; m_layout;<br/>
+&nbsp;&nbsp;<a href="CppBoostShared_ptr.html">boost::shared_ptr</a>&lt;<a href="CppQPushButton.html">QPushButton</a>&gt; m_button1;<br/>
+&nbsp;&nbsp;<a href="CppBoostShared_ptr.html">boost::shared_ptr</a>&lt;<a href="CppQPushButton.html">QPushButton</a>&gt; m_button2;<br/>
 &nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> m_clicks;<br/>
 <br/>
-<b><a href="CppPrivate.htm">private</a></b> <b><a href="CppSlots.htm">slots</a></b>:<br/>
+<b><a href="CppPrivate.html">private</a></b> <b><a href="CppSlots.html">slots</a></b>:<br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> buttonClicked();<br/>
 <br/>
 };<br/>
 <br/>
-<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> MYDIALOG_H<br/>
+<a href="CppEndif.html">#endif</a> <a href="CppComment.htm">//</a> MYDIALOG_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -156,25 +156,25 @@ TEMPLATE = app<br/>
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="mydialog.cpp" border = "1"><tr><td><code>
-<a href="CppInclude.htm">#include</a> "mydialog.h"<br/>
+<a href="CppInclude.html">#include</a> "mydialog<a href="CppHeaderFile.htm">.h</a>"<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppQPushButton.htm">QPushButton</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppQVBoxLayout.htm">QVBoxLayout</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppQPushButton.html">QPushButton</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppQVBoxLayout.html">QVBoxLayout</a>&gt;<br/>
 <br/>
 <br/>
 MyDialog::MyDialog()<br/>
-&nbsp;&nbsp;: m_layout(<b><a href="CppNew.htm">new</a></b> <a href="CppQVBoxLayout.htm">QVBoxLayout</a>),<br/>
-&nbsp;&nbsp;m_button1(<b><a href="CppNew.htm">new</a></b> <a href="CppQPushButton.htm">QPushButton</a>),<br/>
-&nbsp;&nbsp;m_button2(<b><a href="CppNew.htm">new</a></b> <a href="CppQPushButton.htm">QPushButton</a>),<br/>
+&nbsp;&nbsp;: m_layout(<b><a href="CppNew.htm">new</a></b> <a href="CppQVBoxLayout.html">QVBoxLayout</a>),<br/>
+&nbsp;&nbsp;m_button1(<b><a href="CppNew.htm">new</a></b> <a href="CppQPushButton.html">QPushButton</a>),<br/>
+&nbsp;&nbsp;m_button2(<b><a href="CppNew.htm">new</a></b> <a href="CppQPushButton.html">QPushButton</a>),<br/>
 &nbsp;&nbsp;m_clicks(0)<br/>
 {<br/>
 &nbsp;&nbsp;m_button1-&gt;setText("Count");<br/>
 &nbsp;&nbsp;m_button1-&gt;connect(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;m_button1.get(),<a href="CppSignalMacro.htm">SIGNAL</a>(clicked()),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;m_button1.get(),<a href="CppSignalMacro.html">SIGNAL</a>(clicked()),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>,<a href="CppSLOT.htm">SLOT</a>(buttonClicked()));<br/>
 &nbsp;&nbsp;m_button2-&gt;setText("Quit");<br/>
 &nbsp;&nbsp;m_button2-&gt;connect(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;m_button2.get(),<a href="CppSignalMacro.htm">SIGNAL</a>(clicked()),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;m_button2.get(),<a href="CppSignalMacro.html">SIGNAL</a>(clicked()),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>,<a href="CppSLOT.htm">SLOT</a>(close()));<br/>
 &nbsp;&nbsp;m_layout-&gt;addWidget(m_button1.get());<br/>
 &nbsp;&nbsp;m_layout-&gt;addWidget(m_button2.get());<br/>
@@ -187,7 +187,7 @@ MyDialog::MyDialog()<br/>
 <b><a href="CppVoid.htm">void</a></b> MyDialog::buttonClicked()<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a>+m_clicks;<br/>
-&nbsp;&nbsp;<a href="CppQString.htm">QString</a> s; s <a href="CppOperatorAssign.htm">=</a> s.number(m_clicks);<br/>
+&nbsp;&nbsp;<a href="CppQString.html">QString</a> s; s <a href="CppOperatorAssign.htm">=</a> s.number(m_clicks);<br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;setWindowTitle("Top button is clicked " <a href="CppOperatorPlus.htm">+</a> s <a href="CppOperatorPlus.htm">+</a> " <a href="CppTime.htm">time</a>s");<br/>
 }<br/>
 </code></td></tr></table>

@@ -41,7 +41,7 @@ for a <a href="GameConnectThree.htm">ConnectThree game</a>.</p>
 <table summary="connectthreewidget.h" border = "1"><tr><td><code>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">/*</a><br/>
-<a href="CppConnectThreeWidget.htm">ConnectThreeWidget</a>. GUI independent <a href="CppConnectThree.htm">ConnectThree</a> <a href="CppWidget.htm">widget</a>.<br/>
+<a href="CppConnectThreeWidget.html">ConnectThreeWidget</a>. GUI independent <a href="CppConnectThree.html">ConnectThree</a> <a href="CppWidget.html">widget</a>.<br/>
 Copyright (C) 2010 Richel Bilderbeek<br/>
 <br/>
 This program is free software: you can redistribute it and/or modify<br/>
@@ -58,61 +58,62 @@ You should have received a copy of the GNU General Public License<br/>
 along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">*/</a><br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="CppConnectThreeWidget.htm">CppConnectThreeWidget</a>.htm<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="CppConnectThreeWidget.html">CppConnectThreeWidget</a>.html<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppIfndef.htm">#ifndef</a> CONNECTTHREEWIDGET_H<br/>
-<a href="CppDefine.htm">#define</a> CONNECTTHREEWIDGET_H<br/>
+<a href="CppIfndef.html">#ifndef</a> CONNECTTHREEWIDGET_H<br/>
+<a href="CppDefine.html">#define</a> CONNECTTHREEWIDGET_H<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppBitsetH.htm">bitset</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppStringH.htm">string</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppBitsetH.html">bitset</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppStringH.html">string</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppVectorH.html">vector</a>&gt;<br/>
 <br/>
-<a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
-<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-<b><a href="CppTypedef.htm">typedef</a></b>s"<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppScoped_ptr.htm">scoped_ptr</a>.hpp&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppTuple.htm">tuple</a>/<a href="CppTuple.htm">tuple</a>.hpp&gt;<br/>
-<a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic push<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.html">-Weffc++</a>"<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic ignored "-Wunused-local-<b><a href="CppTypedef.html">typedef</a></b>s"<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppBoost.html">boost</a>/<a href="CppScoped_ptr.html">scoped_ptr</a><a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppBoost.html">boost</a>/<a href="CppTuple.html">tuple</a>/<a href="CppTuple.html">tuple</a><a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppConnectThree.htm">connectthree</a>.h"<br/>
+<a href="CppInclude.html">#include</a> "<a href="CppConnectThree.html">connectthree</a><a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic pop<br/>
 <br/>
-<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
+<b><a href="CppNamespace.html">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
 <br/>
-<b><a href="CppStruct.htm">struct</a></b> <a href="CppConnectThree.htm">ConnectThree</a>;<br/>
+<b><a href="CppStruct.html">struct</a></b> <a href="CppConnectThree.html">ConnectThree</a>;<br/>
 <br/>
-<a href="CppComment.htm">///</a><a href="CppConnectThreeWidget.htm">ConnectThreeWidget</a> embodies the interaction with a user<br/>
-<b><a href="CppStruct.htm">struct</a></b> <a href="CppConnectThreeWidget.htm">ConnectThreeWidget</a><br/>
+<a href="CppComment.htm">///</a><a href="CppConnectThreeWidget.html">ConnectThreeWidget</a> embodies the interaction with a user<br/>
+<b><a href="CppStruct.html">struct</a></b> <a href="CppConnectThreeWidget.html">ConnectThreeWidget</a><br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppExplicit.htm">explicit</a></b> <a href="CppConnectThreeWidget.htm">ConnectThreeWidget</a>(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBitset.htm">std::bitset</a>&lt;3&gt;&amp; is_player_human <a href="CppOperatorAssign.htm">=</a> <a href="CppBitset.htm">std::bitset</a>&lt;3&gt;(<b><a href="CppTrue.htm">true</a></b>),<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> n_cols <a href="CppOperatorAssign.htm">=</a> 16,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> n_rows <a href="CppOperatorAssign.htm">=</a> 12);<br/>
+&nbsp;&nbsp;<b><a href="CppExplicit.html">explicit</a></b> <a href="CppConnectThreeWidget.html">ConnectThreeWidget</a>(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppBitset.html">std::bitset</a>&lt;3&gt;&amp; is_player_human <a href="CppOperatorAssign.htm">=</a> <a href="CppBitset.html">std::bitset</a>&lt;3&gt;(<b><a href="CppTrue.htm">true</a></b>),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> n_cols <a href="CppOperatorAssign.htm">=</a> 16,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> n_rows <a href="CppOperatorAssign.htm">=</a> 12);<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppConnectThree.htm">ConnectThree</a> * GetGame() <b><a href="CppConst.htm">const</a></b>;<br/>
-&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> DoMove(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x,<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> y);<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBitset.htm">std::bitset</a>&lt;3&gt;&amp; GetIsPlayerHuman() <b><a href="CppConst.htm">const</a></b> { <b><a href="CppReturn.htm">return</a></b> m_is_player_human; }<br/>
-&nbsp;&nbsp;<b><a href="CppBool.htm">bool</a></b> IsComputerTurn() <b><a href="CppConst.htm">const</a></b>;<br/>
-&nbsp;&nbsp;<b><a href="CppBool.htm">bool</a></b> IsHuman(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> player_index) <b><a href="CppConst.htm">const</a></b>;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppConnectThree.html">ConnectThree</a> * GetGame() <b><a href="CppConst.html">const</a></b>;<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> DoMove(<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> x,<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> y);<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppBitset.html">std::bitset</a>&lt;3&gt;&amp; GetIsPlayerHuman() <b><a href="CppConst.html">const</a></b> { <b><a href="CppReturn.html">return</a></b> m_is_player_human; }<br/>
+&nbsp;&nbsp;<b><a href="CppBool.htm">bool</a></b> IsComputerTurn() <b><a href="CppConst.html">const</a></b>;<br/>
+&nbsp;&nbsp;<b><a href="CppBool.htm">bool</a></b> IsHuman(<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> player_index) <b><a href="CppConst.html">const</a></b>;<br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> Restart();<br/>
-&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> SetIsPlayerHuman(<b><a href="CppConst.htm">const</a></b> <a href="CppBitset.htm">std::bitset</a>&lt;3&gt;&amp; is_player_human);<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostTuple.htm">boost::tuple</a>&lt;<b><a href="CppInt.htm">int</a></b>,<b><a href="CppInt.htm">int</a></b>,<b><a href="CppInt.htm">int</a></b>&gt; SuggestMove() <b><a href="CppConst.htm">const</a></b>;<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> SetIsPlayerHuman(<b><a href="CppConst.html">const</a></b> <a href="CppBitset.html">std::bitset</a>&lt;3&gt;&amp; is_player_human);<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppBoostTuple.html">boost::tuple</a>&lt;<b><a href="CppInt.htm">int</a></b>,<b><a href="CppInt.htm">int</a></b>,<b><a href="CppInt.htm">int</a></b>&gt; SuggestMove() <b><a href="CppConst.html">const</a></b>;<br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> Tick();<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppPrivate.htm">private</a></b>:<br/>
-&nbsp;&nbsp;~<a href="CppConnectThreeWidget.htm">ConnectThreeWidget</a>() {}<br/>
-&nbsp;&nbsp;<b><a href="CppFriend.htm">friend</a></b> <b><a href="CppVoid.htm">void</a></b> <a href="CppChecked_delete.htm">boost::checked_delete</a>&lt;&gt;(<a href="CppConnectThreeWidget.htm">ConnectThreeWidget</a>*);<br/>
+&nbsp;&nbsp;<b><a href="CppPrivate.html">private</a></b>:<br/>
+&nbsp;&nbsp;~<a href="CppConnectThreeWidget.html">ConnectThreeWidget</a>() {}<br/>
+&nbsp;&nbsp;<b><a href="CppFriend.html">friend</a></b> <b><a href="CppVoid.htm">void</a></b> <a href="CppChecked_delete.html">boost::checked_delete</a>&lt;&gt;(<a href="CppConnectThreeWidget.html">ConnectThreeWidget</a>*);<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppScoped_ptr.htm">boost::scoped_ptr</a>&lt;<a href="CppConnectThree.htm">ConnectThree</a>&gt; m_game;<br/>
-&nbsp;&nbsp;<a href="CppBitset.htm">std::bitset</a>&lt;3&gt; m_is_player_human;<br/>
+&nbsp;&nbsp;<a href="CppScoped_ptr.html">boost::scoped_ptr</a>&lt;<a href="CppConnectThree.html">ConnectThree</a>&gt; m_game;<br/>
+&nbsp;&nbsp;<a href="CppBitset.html">std::bitset</a>&lt;3&gt; m_is_player_human;<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppPublic.htm">public</a></b>:<br/>
-&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> Get<a href="CppVersion.htm">Version</a>();<br/>
-&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; Get<a href="CppVersion.htm">Version</a>History();<br/>
+&nbsp;&nbsp;<b><a href="CppPublic.html">public</a></b>:<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.html">static</a></b> <b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a> Get<a href="CppVersion.html">Version</a>();<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.html">static</a></b> <b><a href="CppConst.html">const</a></b> <a href="CppVector.html">std::vector</a>&lt;<a href="CppString.html">std::string</a>&gt; Get<a href="CppVersion.html">Version</a>History();<br/>
 <br/>
 };<br/>
 <br/>
-} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.html">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
 <br/>
-<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> CONNECTTHREEWIDGET_H<br/>
+<a href="CppEndif.html">#endif</a> <a href="CppComment.htm">//</a> CONNECTTHREEWIDGET_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -126,7 +127,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <table summary="connectthreewidget.cpp" border = "1"><tr><td><code>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">/*</a><br/>
-<a href="CppConnectThreeWidget.htm">ConnectThreeWidget</a>. GUI independent <a href="CppConnectThree.htm">ConnectThree</a> <a href="CppWidget.htm">widget</a>.<br/>
+<a href="CppConnectThreeWidget.html">ConnectThreeWidget</a>. GUI independent <a href="CppConnectThree.html">ConnectThree</a> <a href="CppWidget.html">widget</a>.<br/>
 Copyright (C) 2010 Richel Bilderbeek<br/>
 <br/>
 This program is free software: you can redistribute it and/or modify<br/>
@@ -143,76 +144,77 @@ You should have received a copy of the GNU General Public License<br/>
 along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">*/</a><br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="CppConnectThreeWidget.htm">CppConnectThreeWidget</a>.htm<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="CppConnectThreeWidget.html">CppConnectThreeWidget</a>.html<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
-<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-<b><a href="CppTypedef.htm">typedef</a></b>s"<br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppConnectThree.htm">connectthree</a><a href="CppWidget.htm">widget</a>.h"<br/>
-<a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic push<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.html">-Weffc++</a>"<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic ignored "-Wunused-local-<b><a href="CppTypedef.html">typedef</a></b>s"<br/>
+<a href="CppInclude.html">#include</a> "<a href="CppConnectThree.html">connectthree</a><a href="CppWidget.html">widget</a><a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic pop<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppConnectThree.htm">connectthree</a>.h"<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppCassertH.html">cassert</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> "<a href="CppConnectThree.html">connectthree</a><a href="CppHeaderFile.htm">.h</a>"<br/>
 <br/>
-<a href="CppRibi.htm">ribi</a>::<a href="CppConnectThreeWidget.htm">ConnectThreeWidget</a>::<a href="CppConnectThreeWidget.htm">ConnectThreeWidget</a>(<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBitset.htm">std::bitset</a>&lt;3&gt;&amp; is_player_human,<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> n_cols,<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> n_rows)<br/>
-&nbsp;&nbsp;: m_game(<b><a href="CppNew.htm">new</a></b> <a href="CppConnectThree.htm">ConnectThree</a>(n_cols,n_rows)),<br/>
+<a href="CppRibi.htm">ribi</a>::<a href="CppConnectThreeWidget.html">ConnectThreeWidget</a>::<a href="CppConnectThreeWidget.html">ConnectThreeWidget</a>(<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppBitset.html">std::bitset</a>&lt;3&gt;&amp; is_player_human,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> n_cols,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> n_rows)<br/>
+&nbsp;&nbsp;: m_game(<b><a href="CppNew.htm">new</a></b> <a href="CppConnectThree.html">ConnectThree</a>(n_cols,n_rows)),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;m_is_player_human(is_player_human)<br/>
 {<br/>
 <br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppConnectThreeWidget.htm">ConnectThreeWidget</a>::DoMove(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x,<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> y)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppConnectThreeWidget.html">ConnectThreeWidget</a>::DoMove(<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> x,<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> y)<br/>
 {<br/>
 &nbsp;&nbsp;m_game-&gt;DoMove(x,y);<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppConnectThree.htm">ConnectThree</a> * <a href="CppRibi.htm">ribi</a>::<a href="CppConnectThreeWidget.htm">ConnectThreeWidget</a>::GetGame() <b><a href="CppConst.htm">const</a></b><br/>
+<b><a href="CppConst.html">const</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppConnectThree.html">ConnectThree</a> * <a href="CppRibi.htm">ribi</a>::<a href="CppConnectThreeWidget.html">ConnectThreeWidget</a>::GetGame() <b><a href="CppConst.html">const</a></b><br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> m_game.get();<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> m_game.get();<br/>
 }<br/>
 <br/>
-<a href="CppComment.htm">//</a><a href="CppConnectThree.htm">ConnectThree</a> * <a href="CppRibi.htm">ribi</a>::<a href="CppConnectThreeWidget.htm">ConnectThreeWidget</a>::GetGame()<br/>
+<a href="CppComment.htm">//</a><a href="CppConnectThree.html">ConnectThree</a> * <a href="CppRibi.htm">ribi</a>::<a href="CppConnectThreeWidget.html">ConnectThreeWidget</a>::GetGame()<br/>
 <a href="CppComment.htm">//</a>{<br/>
-<a href="CppComment.htm">//</a>&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> m_game.get();<br/>
+<a href="CppComment.htm">//</a>&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> m_game.get();<br/>
 <a href="CppComment.htm">//</a>}<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppRibi.htm">ribi</a>::<a href="CppConnectThreeWidget.htm">ConnectThreeWidget</a>::Get<a href="CppVersion.htm">Version</a>()<br/>
+<b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a> <a href="CppRibi.htm">ribi</a>::<a href="CppConnectThreeWidget.html">ConnectThreeWidget</a>::Get<a href="CppVersion.html">Version</a>()<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> "1.0";<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> "1.0";<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm">ribi</a>::<a href="CppConnectThreeWidget.htm">ConnectThreeWidget</a>::Get<a href="CppVersion.htm">Version</a>History()<br/>
+<b><a href="CppConst.html">const</a></b> <a href="CppVector.html">std::vector</a>&lt;<a href="CppString.html">std::string</a>&gt; <a href="CppRibi.htm">ribi</a>::<a href="CppConnectThreeWidget.html">ConnectThreeWidget</a>::Get<a href="CppVersion.html">Version</a>History()<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v;<br/>
-&nbsp;&nbsp;v.push_back("2011-04-20: <a href="CppVersion.htm">version</a> 1.0: initial <a href="CppVersion.htm">version</a>");<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
+&nbsp;&nbsp;<a href="CppVector.html">std::vector</a>&lt;<a href="CppString.html">std::string</a>&gt; v;<br/>
+&nbsp;&nbsp;v.push_back("2011-04-20: <a href="CppVersion.html">version</a> 1.0: initial <a href="CppVersion.html">version</a>");<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> v;<br/>
 }<br/>
 <br/>
-<b><a href="CppBool.htm">bool</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppConnectThreeWidget.htm">ConnectThreeWidget</a>::IsComputerTurn() <b><a href="CppConst.htm">const</a></b><br/>
+<b><a href="CppBool.htm">bool</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppConnectThreeWidget.html">ConnectThreeWidget</a>::IsComputerTurn() <b><a href="CppConst.html">const</a></b><br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(m_game);<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> !IsHuman(m_game-&gt;GetActivePlayer());<br/>
+&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(m_game);<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> !IsHuman(m_game-&gt;GetActivePlayer());<br/>
 }<br/>
 <br/>
-<b><a href="CppBool.htm">bool</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppConnectThreeWidget.htm">ConnectThreeWidget</a>::IsHuman(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> player_index) <b><a href="CppConst.htm">const</a></b><br/>
+<b><a href="CppBool.htm">bool</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppConnectThreeWidget.html">ConnectThreeWidget</a>::IsHuman(<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> player_index) <b><a href="CppConst.html">const</a></b><br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppConnectThree.htm">ConnectThree</a>::player1 <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 0);<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppConnectThree.htm">ConnectThree</a>::player2 <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 1);<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppConnectThree.htm">ConnectThree</a>::player3 <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 2);<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(player_index <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 0);<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(player_index &lt; <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(m_is_player_human.size()));<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> m_is_player_human[player_index];<br/>
+&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(<a href="CppConnectThree.html">ConnectThree</a>::player1 <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 0);<br/>
+&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(<a href="CppConnectThree.html">ConnectThree</a>::player2 <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 1);<br/>
+&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(<a href="CppConnectThree.html">ConnectThree</a>::player3 <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 2);<br/>
+&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(player_index <a href="CppOperatorGreaterEqual.html">&gt;=</a> 0);<br/>
+&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(player_index &lt; <b><a href="CppStatic_cast.html">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(m_is_player_human.size()));<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> m_is_player_human[player_index];<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppConnectThreeWidget.htm">ConnectThreeWidget</a>::Restart()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppConnectThreeWidget.html">ConnectThreeWidget</a>::Restart()<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(m_game);<br/>
+&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(m_game);<br/>
 &nbsp;&nbsp;m_game-&gt;Restart();<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppConnectThreeWidget.htm">ConnectThreeWidget</a>::SetIsPlayerHuman(<b><a href="CppConst.htm">const</a></b> <a href="CppBitset.htm">std::bitset</a>&lt;3&gt;&amp; is_player_human)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppConnectThreeWidget.html">ConnectThreeWidget</a>::SetIsPlayerHuman(<b><a href="CppConst.html">const</a></b> <a href="CppBitset.html">std::bitset</a>&lt;3&gt;&amp; is_player_human)<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (m_is_player_human <a href="CppOperatorNotEqual.htm">!=</a> is_player_human)<br/>
 &nbsp;&nbsp;{<br/>
@@ -222,19 +224,19 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;}<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppBoostTuple.htm">boost::tuple</a>&lt;<b><a href="CppInt.htm">int</a></b>,<b><a href="CppInt.htm">int</a></b>,<b><a href="CppInt.htm">int</a></b>&gt; <a href="CppRibi.htm">ribi</a>::<a href="CppConnectThreeWidget.htm">ConnectThreeWidget</a>::SuggestMove() <b><a href="CppConst.htm">const</a></b><br/>
+<b><a href="CppConst.html">const</a></b> <a href="CppBoostTuple.html">boost::tuple</a>&lt;<b><a href="CppInt.htm">int</a></b>,<b><a href="CppInt.htm">int</a></b>,<b><a href="CppInt.htm">int</a></b>&gt; <a href="CppRibi.htm">ribi</a>::<a href="CppConnectThreeWidget.html">ConnectThreeWidget</a>::SuggestMove() <b><a href="CppConst.html">const</a></b><br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> m_game-&gt;SuggestMove(<b><a href="CppThis.htm">this</a></b>-&gt;GetIsPlayerHuman());<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> m_game-&gt;SuggestMove(<b><a href="CppThis.htm">this</a></b>-&gt;GetIsPlayerHuman());<br/>
 }<br/>
 <br/>
 <a href="CppComment.htm">///</a>Tick does either wait <b><a href="CppFor.htm">for</a></b> a human to <a href="CppMake.htm">make</a> his/her move<br/>
 <a href="CppComment.htm">///</a>or lets a computer <b><a href="CppDo.htm">do</a></b> its move. Tick must be called by<br/>
-<a href="CppComment.htm">///</a><b><a href="CppExtern.htm">extern</a></b>al <a href="CppTime.htm">time</a>rs like <a href="CppWTimer.htm">Wt::WTimer</a> or <a href="CppQTimer.htm">QTimer</a>.<br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppConnectThreeWidget.htm">ConnectThreeWidget</a>::Tick()<br/>
+<a href="CppComment.htm">///</a><b><a href="CppExtern.html">extern</a></b>al <a href="CppTime.htm">time</a>rs like <a href="CppWTimer.html">Wt::WTimer</a> or <a href="CppQTimer.html">QTimer</a>.<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppConnectThreeWidget.html">ConnectThreeWidget</a>::Tick()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (IsComputerTurn())<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostTuple.htm">boost::tuple</a>&lt;<b><a href="CppInt.htm">int</a></b>,<b><a href="CppInt.htm">int</a></b>,<b><a href="CppInt.htm">int</a></b>&gt; m <a href="CppOperatorAssign.htm">=</a> m_game-&gt;SuggestMove(<b><a href="CppThis.htm">this</a></b>-&gt;GetIsPlayerHuman());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppBoostTuple.html">boost::tuple</a>&lt;<b><a href="CppInt.htm">int</a></b>,<b><a href="CppInt.htm">int</a></b>,<b><a href="CppInt.htm">int</a></b>&gt; m <a href="CppOperatorAssign.htm">=</a> m_game-&gt;SuggestMove(<b><a href="CppThis.htm">this</a></b>-&gt;GetIsPlayerHuman());<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;m_game-&gt;DoMove(m.get&lt;0&gt;(),m.get&lt;1&gt;());<br/>
 &nbsp;&nbsp;}<br/>
 }<br/>

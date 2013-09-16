@@ -96,20 +96,20 @@
 QT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; += core gui<br/>
 #greaterThan(QT_MAJOR_VERSION, 4): QT += <a href="CppWidget.htm">widget</a>s<br/>
 <br/>
-<a href="CppLIBS.htm">LIBS</a> += <a href="CppWt.htm">-lwt</a> <a href="CppWt.htm">-lwt</a>http <a href="CppBoostSignals.htm">-lboost_signals</a> <a href="CppRegex.htm">-lboost_regex</a> <a href="CppSystem.htm">-lboost_system</a> <a href="CppFilesystem.htm">-lboost_filesystem</a> <a href="CppProgram_options.htm">-lboost_program_options</a><br/>
-<a href="CppQMAKE_CXXFLAGS.htm">QMAKE_CXXFLAGS</a> += -std=<a href="Cpp11.htm">c++11</a> <a href="CppWall.htm">-Wall</a> <a href="CppWextra.htm">-Wextra</a><br/>
-CONFIG&nbsp;&nbsp; += console<br/>
-CONFIG&nbsp;&nbsp; -= app_bundle<br/>
-TEMPLATE = app<br/>
+<a href="CppQmakeLibs.htm">LIBS</a> += <a href="CppWt.htm">-lwt</a> <a href="CppWt.htm">-lwt</a>http <a href="CppBoostSignals.htm">-lboost_signals</a> <a href="CppRegex.htm">-lboost_regex</a> <a href="CppSystem.htm">-lboost_system</a> <a href="CppFilesystem.htm">-lboost_filesystem</a> <a href="CppProgram_options.htm">-lboost_program_options</a><br/>
+<a href="CppQmakeQmake_cxxflags.htm">QMAKE_CXXFLAGS</a> += -std=<a href="Cpp11.htm">c++11</a> <a href="CppWall.htm">-Wall</a> <a href="CppWextra.htm">-Wextra</a><br/>
+<a href="CppQmakeConfig.htm">CONFIG</a>&nbsp;&nbsp; += console<br/>
+<a href="CppQmakeConfig.htm">CONFIG</a>&nbsp;&nbsp; -= app_bundle<br/>
+<a href="CppQmakeTemplate.htm">TEMPLATE</a> = app<br/>
 <br/>
-<a href="CppINCLUDEPATH.htm">INCLUDEPATH</a> += \<br/>
+<a href="CppQmakeIncludepath.htm">INCLUDEPATH</a> += \<br/>
 &nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppAbout.htm">CppAbout</a> \<br/>
 &nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/CppRaspberryPi \<br/>
 &nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppTrace.htm">CppTrace</a> \<br/>
 &nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppWtAboutDialog.htm">CppWtAboutDialog</a> \<br/>
 &nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppWtAutoConfig.htm">CppWtAutoConfig</a><br/>
 <br/>
-<a href="CppSOURCES.htm">SOURCES</a> += \<br/>
+<a href="CppQmakeSources.htm">SOURCES</a> += \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppAbout.htm">CppAbout</a>/<a href="CppAbout.htm">about</a>.cpp \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/CppRaspberryPi/raspberrypigpiopin.cpp \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppWtAboutDialog.htm">CppWtAboutDialog</a>/<a href="CppWtAboutDialog.htm">wtaboutdialog</a>.cpp \<br/>
@@ -120,7 +120,7 @@ TEMPLATE = app<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;wtraspermenudialog.cpp \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;wtrasperresources.cpp<br/>
 <br/>
-<a href="CppHEADERS.htm">HEADERS</a> += \<br/>
+<a href="CppQmakeHeaders.htm">HEADERS</a> += \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppAbout.htm">CppAbout</a>/<a href="CppAbout.htm">about</a>.h \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/CppRaspberryPi/raspberrypifwd.h \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/CppRaspberryPi/raspberrypigpiopin.h \<br/>
@@ -135,7 +135,7 @@ TEMPLATE = app<br/>
 OTHER_FILES += \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppTrace.htm">CppTrace</a>/Licence.txt<br/>
 <br/>
-<a href="CppRESOURCES.htm">RESOURCES</a> += \<br/>
+<a href="CppQmakeResources.htm">RESOURCES</a> += \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;ToolRasper.qrc<br/>
 </code></td></tr></table>
 <!-- end of the code -->
@@ -150,7 +150,7 @@ OTHER_FILES += \<br/>
 <table summary="raspermenudialog.h" border = "1"><tr><td><code>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">/*</a><br/>
-Rasper, Raspberry Pi GPIO <a href="CppWebApplication.htm">web application</a> controller<br/>
+Rasper, Raspberry Pi GPIO <a href="CppWebApplication.html">web application</a> controller<br/>
 Copyright (C) 2013 Richel Bilderbeek<br/>
 <br/>
 This program is free software: you can redistribute it and/or modify<br/>
@@ -166,34 +166,34 @@ You should have received a copy of the GNU General Public License<br/>
 along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">*/</a><br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="Tools.htm">Tool</a>Rasper.htm<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="Tools.htm">Tool</a>Rasper.html<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppIfndef.htm">#ifndef</a> RASPERMENUDIALOG_H<br/>
-<a href="CppDefine.htm">#define</a> RASPERMENUDIALOG_H<br/>
+<a href="CppIfndef.html">#ifndef</a> RASPERMENUDIALOG_H<br/>
+<a href="CppDefine.html">#define</a> RASPERMENUDIALOG_H<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppStringH.htm">string</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppStringH.html">string</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppVectorH.html">vector</a>&gt;<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppAbout.htm">about</a>.h"<br/>
+<a href="CppInclude.html">#include</a> "<a href="CppAbout.html">about</a><a href="CppHeaderFile.htm">.h</a>"<br/>
 <br/>
-<b><a href="CppNamespace.htm">namespace</a></b> <a href="Tools.htm">Tool</a>Rasper {<br/>
+<b><a href="CppNamespace.html">namespace</a></b> <a href="Tools.htm">Tool</a>Rasper {<br/>
 <br/>
 <a href="CppComment.htm">///</a>The GUI independent part of the menu<br/>
-<b><a href="CppStruct.htm">struct</a></b> MenuDialog<br/>
+<b><a href="CppStruct.html">struct</a></b> MenuDialog<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Get <b><a href="CppThis.htm">this</a></b> <b><a href="CppClass.htm">class</a></b> its <a href="CppVersion.htm">version</a><br/>
-&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> Get<a href="CppVersion.htm">Version</a>();<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Get <b><a href="CppThis.htm">this</a></b> <b><a href="CppClass.html">class</a></b> its <a href="CppVersion.html">version</a><br/>
+&nbsp;&nbsp;<b><a href="CppStatic.html">static</a></b> <b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a> Get<a href="CppVersion.html">Version</a>();<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Get <b><a href="CppThis.htm">this</a></b> <b><a href="CppClass.htm">class</a></b> its <a href="CppVersion.htm">version</a> history<br/>
-&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; Get<a href="CppVersion.htm">Version</a>History();<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Get <b><a href="CppThis.htm">this</a></b> <b><a href="CppClass.html">class</a></b> its <a href="CppVersion.html">version</a> history<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.html">static</a></b> <b><a href="CppConst.html">const</a></b> <a href="CppVector.html">std::vector</a>&lt;<a href="CppString.html">std::string</a>&gt; Get<a href="CppVersion.html">Version</a>History();<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Get <b><a href="CppThis.htm">this</a></b> <b><a href="CppClass.htm">class</a></b> its <a href="CppAbout.htm">About</a><br/>
-&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppAbout.htm">About</a> GetAbout();<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Get <b><a href="CppThis.htm">this</a></b> <b><a href="CppClass.html">class</a></b> its <a href="CppAbout.html">About</a><br/>
+&nbsp;&nbsp;<b><a href="CppStatic.html">static</a></b> <b><a href="CppConst.html">const</a></b> <a href="CppAbout.html">About</a> GetAbout();<br/>
 };<br/>
 <br/>
-} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="Tools.htm">Tool</a>Rasper<br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.html">namespace</a></b> <a href="Tools.htm">Tool</a>Rasper<br/>
 <br/>
-<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> RASPERMENUDIALOG_H<br/>
+<a href="CppEndif.html">#endif</a> <a href="CppComment.htm">//</a> RASPERMENUDIALOG_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -207,7 +207,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <table summary="raspermenudialog.cpp" border = "1"><tr><td><code>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">/*</a><br/>
-Rasper, Raspberry Pi GPIO <a href="CppWebApplication.htm">web application</a> controller<br/>
+Rasper, Raspberry Pi GPIO <a href="CppWebApplication.html">web application</a> controller<br/>
 Copyright (C) 2013 Richel Bilderbeek<br/>
 <br/>
 This program is free software: you can redistribute it and/or modify<br/>
@@ -223,44 +223,44 @@ You should have received a copy of the GNU General Public License<br/>
 along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">*/</a><br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="Tools.htm">Tool</a>Rasper.htm<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="Tools.htm">Tool</a>Rasper.html<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppAbout.htm">about</a>.h"<br/>
-<a href="CppInclude.htm">#include</a> "raspermenudialog.h"<br/>
+<a href="CppInclude.html">#include</a> "<a href="CppAbout.html">about</a><a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "raspermenudialog<a href="CppHeaderFile.htm">.h</a>"<br/>
 <br/>
-<b><a href="CppNamespace.htm">namespace</a></b> <a href="Tools.htm">Tool</a>Rasper {<br/>
+<b><a href="CppNamespace.html">namespace</a></b> <a href="Tools.htm">Tool</a>Rasper {<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppAbout.htm">About</a> MenuDialog::GetAbout()<br/>
+<b><a href="CppConst.html">const</a></b> <a href="CppAbout.html">About</a> MenuDialog::GetAbout()<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppAbout.htm">About</a> a(<br/>
+&nbsp;&nbsp;<a href="CppAbout.html">About</a> a(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;"Richel Bilderbeek",<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;"Rasper",<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;"Raspberry Pi GPIO <a href="CppWebApplication.htm">web application</a> controller",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"Raspberry Pi GPIO <a href="CppWebApplication.html">web application</a> controller",<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;"the 9th of February 2013",<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;"2013",<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;"http://www.richelbilderbeek.nl/<a href="Tools.htm">Tool</a>Rasper.htm",<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;Get<a href="CppVersion.htm">Version</a>(),<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;Get<a href="CppVersion.htm">Version</a>History());<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>a.<a href="CppAdd.htm">Add</a><a href="CppLibrary.htm">Library</a>("<a href="CppIpAddress.htm">IpAddress</a> <a href="CppVersion.htm">version</a>: " <a href="CppOperatorPlus.htm">+</a> <a href="CppIpAddress.htm">IpAddress</a>::Get<a href="CppVersion.htm">Version</a>());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"http://www.richelbilderbeek.nl/<a href="Tools.htm">Tool</a>Rasper.html",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Get<a href="CppVersion.html">Version</a>(),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Get<a href="CppVersion.html">Version</a>History());<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>a.<a href="CppAdd.htm">Add</a><a href="CppLibrary.html">Library</a>("<a href="CppIpAddress.html">IpAddress</a> <a href="CppVersion.html">version</a>: " <a href="CppOperatorPlus.htm">+</a> <a href="CppIpAddress.html">IpAddress</a>::Get<a href="CppVersion.html">Version</a>());<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> a;<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> a;<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> MenuDialog::Get<a href="CppVersion.htm">Version</a>()<br/>
+<b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a> MenuDialog::Get<a href="CppVersion.html">Version</a>()<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> "0.3";<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> "0.3";<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; MenuDialog::Get<a href="CppVersion.htm">Version</a>History()<br/>
+<b><a href="CppConst.html">const</a></b> <a href="CppVector.html">std::vector</a>&lt;<a href="CppString.html">std::string</a>&gt; MenuDialog::Get<a href="CppVersion.html">Version</a>History()<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v;<br/>
-&nbsp;&nbsp;v.push_back("2013-01-23: <a href="CppVersion.htm">Version</a> 0.1: initial <a href="CppVersion.htm">version</a>");<br/>
-&nbsp;&nbsp;v.push_back("2013-02-06: <a href="CppVersion.htm">Version</a> 0.2: progress on GUI");<br/>
-&nbsp;&nbsp;v.push_back("2013-02-09: <a href="CppVersion.htm">Version</a> 0.3: initial GUI");<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
+&nbsp;&nbsp;<a href="CppVector.html">std::vector</a>&lt;<a href="CppString.html">std::string</a>&gt; v;<br/>
+&nbsp;&nbsp;v.push_back("2013-01-23: <a href="CppVersion.html">Version</a> 0.1: initial <a href="CppVersion.html">version</a>");<br/>
+&nbsp;&nbsp;v.push_back("2013-02-06: <a href="CppVersion.html">Version</a> 0.2: progress on GUI");<br/>
+&nbsp;&nbsp;v.push_back("2013-02-09: <a href="CppVersion.html">Version</a> 0.3: initial GUI");<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> v;<br/>
 }<br/>
 <br/>
-} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="Tools.htm">Tool</a>Rasper<br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.html">namespace</a></b> <a href="Tools.htm">Tool</a>Rasper<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -274,7 +274,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <table summary="wtmain.cpp" border = "1"><tr><td><code>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">/*</a><br/>
-Rasper, Raspberry Pi GPIO <a href="CppWebApplication.htm">web application</a> controller<br/>
+Rasper, Raspberry Pi GPIO <a href="CppWebApplication.html">web application</a> controller<br/>
 Copyright (C) 2013 Richel Bilderbeek<br/>
 <br/>
 This program is free software: you can redistribute it and/or modify<br/>
@@ -290,19 +290,19 @@ You should have received a copy of the GNU General Public License<br/>
 along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">*/</a><br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="Tools.htm">Tool</a>Rasper.htm<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="Tools.htm">Tool</a>Rasper.html<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWApplication.htm">WApplication</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWEnvironment.htm">WEnvironment</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWApplication.html">WApplication</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWEnvironment.html">WEnvironment</a>&gt;<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> "wtrasperresources.h"<br/>
-<a href="CppInclude.htm">#include</a> "wtraspermenudialog.h"<br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppWtAutoConfig.htm">wtautoconfig</a>.h"<br/>
+<a href="CppInclude.html">#include</a> "wtrasperresources<a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "wtraspermenudialog<a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "<a href="CppWtAutoConfig.html">wtautoconfig</a><a href="CppHeaderFile.htm">.h</a>"<br/>
 <br/>
-<b><a href="CppStruct.htm">struct</a></b> <a href="CppWt.htm">Wt</a><a href="CppApplication.htm">Application</a> : <b><a href="CppPublic.htm">public</a></b> <a href="CppWApplication.htm">Wt::WApplication</a><br/>
+<b><a href="CppStruct.html">struct</a></b> <a href="CppWt.htm">Wt</a><a href="CppApplication.html">Application</a> : <b><a href="CppPublic.html">public</a></b> <a href="CppWApplication.html">Wt::WApplication</a><br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppWt.htm">Wt</a><a href="CppApplication.htm">Application</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppWEnvironment.htm">Wt::WEnvironment</a>&amp; env)<br/>
-&nbsp;&nbsp;: <a href="CppWApplication.htm">WApplication</a>(env)<br/>
+&nbsp;&nbsp;<a href="CppWt.htm">Wt</a><a href="CppApplication.html">Application</a>(<b><a href="CppConst.html">const</a></b> <a href="CppWEnvironment.html">Wt::WEnvironment</a>&amp; env)<br/>
+&nbsp;&nbsp;: <a href="CppWApplication.html">WApplication</a>(env)<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;setTitle("Rasper");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;useStyleSheet("wt.css");<br/>
@@ -311,20 +311,20 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;}<br/>
 };<br/>
 <br/>
-<a href="CppWApplication.htm">Wt::WApplication</a> *create<a href="CppApplication.htm">Application</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppWEnvironment.htm">Wt::WEnvironment</a>&amp; env)<br/>
+<a href="CppWApplication.html">Wt::WApplication</a> *create<a href="CppApplication.html">Application</a>(<b><a href="CppConst.html">const</a></b> <a href="CppWEnvironment.html">Wt::WEnvironment</a>&amp; env)<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <b><a href="CppNew.htm">new</a></b> <a href="CppWt.htm">Wt</a><a href="CppApplication.htm">Application</a>(env);<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> <b><a href="CppNew.htm">new</a></b> <a href="CppWt.htm">Wt</a><a href="CppApplication.html">Application</a>(env);<br/>
 }<br/>
 <br/>
-<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>(<b><a href="CppInt.htm">int</a></b> <a href="CppArgc.htm">argc</a>, <b><a href="CppChar.htm">char</a></b> **<a href="CppArgc.htm">argv</a>)<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a>(<b><a href="CppInt.htm">int</a></b> <a href="CppArgc.htm">argc</a>, <b><a href="CppChar.htm">char</a></b> **<a href="CppArgc.htm">argv</a>)<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Create the resources<br/>
 &nbsp;&nbsp;<a href="Tools.htm">Tool</a>Rasper::WtResources();<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppWtAutoConfig.htm">WtAutoConfig</a>::SaveDefaultStylesheet();<br/>
-&nbsp;&nbsp;<a href="CppWtAutoConfig.htm">WtAutoConfig</a> a(<a href="CppArgc.htm">argc</a>,<a href="CppArgc.htm">argv</a>,create<a href="CppApplication.htm">Application</a>);<br/>
+&nbsp;&nbsp;<a href="CppWtAutoConfig.html">WtAutoConfig</a>::SaveDefaultStylesheet();<br/>
+&nbsp;&nbsp;<a href="CppWtAutoConfig.html">WtAutoConfig</a> a(<a href="CppArgc.htm">argc</a>,<a href="CppArgc.htm">argv</a>,create<a href="CppApplication.html">Application</a>);<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> a.Run();<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> a.Run();<br/>
 }<br/>
 </code></td></tr></table>
 <!-- end of the code -->
@@ -339,7 +339,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <table summary="wtraspermaindialog.h" border = "1"><tr><td><code>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">/*</a><br/>
-Rasper, Raspberry Pi GPIO <a href="CppWebApplication.htm">web application</a> controller<br/>
+Rasper, Raspberry Pi GPIO <a href="CppWebApplication.html">web application</a> controller<br/>
 Copyright (C) 2013 Richel Bilderbeek<br/>
 <br/>
 This program is free software: you can redistribute it and/or modify<br/>
@@ -355,44 +355,44 @@ You should have received a copy of the GNU General Public License<br/>
 along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">*/</a><br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="Tools.htm">Tool</a>Rasper.htm<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="Tools.htm">Tool</a>Rasper.html<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppIfndef.htm">#ifndef</a> WTRASPERMAINDIALOG_H<br/>
-<a href="CppDefine.htm">#define</a> WTRASPERMAINDIALOG_H<br/>
+<a href="CppIfndef.html">#ifndef</a> WTRASPERMAINDIALOG_H<br/>
+<a href="CppDefine.html">#define</a> WTRASPERMAINDIALOG_H<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWContainerWidget.htm">WContainerWidget</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> "raspberrypigpiopin.h"<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppVectorH.html">vector</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWContainerWidget.html">WContainerWidget</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> "raspberrypigpiopin<a href="CppHeaderFile.htm">.h</a>"<br/>
 <br/>
-<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppWt.htm">Wt</a><br/>
+<b><a href="CppNamespace.html">namespace</a></b> <a href="CppWt.htm">Wt</a><br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppStruct.htm">struct</a></b> <a href="CppWPushButton.htm">WPushButton</a>;<br/>
-&nbsp;&nbsp;<b><a href="CppStruct.htm">struct</a></b> <a href="CppWMouseEvent.htm">WMouseEvent</a>;<br/>
+&nbsp;&nbsp;<b><a href="CppStruct.html">struct</a></b> <a href="CppWPushButton.html">WPushButton</a>;<br/>
+&nbsp;&nbsp;<b><a href="CppStruct.html">struct</a></b> <a href="CppWMouseEvent.html">WMouseEvent</a>;<br/>
 }<br/>
 <br/>
 <br/>
-<b><a href="CppStruct.htm">struct</a></b> <a href="CppIpAddress.htm">IpAddress</a>;<br/>
+<b><a href="CppStruct.html">struct</a></b> <a href="CppIpAddress.html">IpAddress</a>;<br/>
 <br/>
-<b><a href="CppNamespace.htm">namespace</a></b> <a href="Tools.htm">Tool</a>Rasper {<br/>
+<b><a href="CppNamespace.html">namespace</a></b> <a href="Tools.htm">Tool</a>Rasper {<br/>
 <br/>
-<a href="CppComment.htm">///</a>Rasper its <a href="CppMain.htm">main</a> dialog<br/>
-<b><a href="CppStruct.htm">struct</a></b> WtMainDialog : <b><a href="CppPublic.htm">public</a></b> <a href="CppWContainerWidget.htm">Wt::WContainerWidget</a><br/>
+<a href="CppComment.htm">///</a>Rasper its <a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a> dialog<br/>
+<b><a href="CppStruct.html">struct</a></b> WtMainDialog : <b><a href="CppPublic.html">public</a></b> <a href="CppWContainerWidget.html">Wt::WContainerWidget</a><br/>
 {<br/>
 &nbsp;&nbsp;WtMainDialog();<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppPrivate.htm">private</a></b>:<br/>
-&nbsp;&nbsp;<b><a href="CppStruct.htm">struct</a></b> Ui<br/>
+&nbsp;&nbsp;<b><a href="CppPrivate.html">private</a></b>:<br/>
+&nbsp;&nbsp;<b><a href="CppStruct.html">struct</a></b> Ui<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;Ui();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppWPushButton.htm">Wt::WPushButton</a>*&gt; m_buttons;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppVector.html">std::vector</a>&lt;<a href="CppWPushButton.html">Wt::WPushButton</a>*&gt; m_buttons;<br/>
 &nbsp;&nbsp;} ui;<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;rpi::gpio::Pin&gt; m_pins;<br/>
+&nbsp;&nbsp;<a href="CppVector.html">std::vector</a>&lt;rpi::gpio::Pin&gt; m_pins;<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/Respond to the user changing the name edit<br/>
-&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> OnClick(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> pin_number);<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> OnClick(<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> pin_number);<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppConst.htm">const</a></b> <a href="CppSet.htm">std::set</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt; pins { 3,5,7,8,10,11,12,13,15,16,18,19,21,22,23,24,26 };<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppConst.html">const</a></b> <a href="CppSet.html">std::set</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt; pins { 3,5,7,8,10,11,12,13,15,16,18,19,21,22,23,24,26 };<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppVoid.htm">void</a></b> OnClick1()&nbsp;&nbsp;{ OnClick( 1); }<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppVoid.htm">void</a></b> OnClick2()&nbsp;&nbsp;{ OnClick( 2); }<br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> OnClick3()&nbsp;&nbsp;{ OnClick( 3); }<br/>
@@ -420,13 +420,13 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppVoid.htm">void</a></b> OnClick25() { OnClick(25); }<br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> OnClick26() { OnClick(26); }<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;rpi::gpio::Pin&gt; CreatePins();<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.html">static</a></b> <b><a href="CppConst.html">const</a></b> <a href="CppVector.html">std::vector</a>&lt;rpi::gpio::Pin&gt; CreatePins();<br/>
 };<br/>
 <br/>
-} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="Tools.htm">Tool</a>Rasper<br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.html">namespace</a></b> <a href="Tools.htm">Tool</a>Rasper<br/>
 <br/>
 <br/>
-<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> WTRASPERMAINDIALOG_H<br/>
+<a href="CppEndif.html">#endif</a> <a href="CppComment.htm">//</a> WTRASPERMAINDIALOG_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -440,7 +440,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <table summary="wtraspermaindialog.cpp" border = "1"><tr><td><code>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">/*</a><br/>
-Rasper, Raspberry Pi GPIO <a href="CppWebApplication.htm">web application</a> controller<br/>
+Rasper, Raspberry Pi GPIO <a href="CppWebApplication.html">web application</a> controller<br/>
 Copyright (C) 2013 Richel Bilderbeek<br/>
 <br/>
 This program is free software: you can redistribute it and/or modify<br/>
@@ -456,50 +456,50 @@ You should have received a copy of the GNU General Public License<br/>
 along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">*/</a><br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="Tools.htm">Tool</a>Rasper.htm<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="Tools.htm">Tool</a>Rasper.html<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppCassertH.html">cassert</a>&gt;<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppSetH.htm">set</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppSetH.html">set</a>&gt;<br/>
 <br/>
-<a href="CppComment.htm">//</a><a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppAlgorithm.htm">algorithm</a>/string/trim.hpp&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppLexical_cast.htm">lexical_cast</a>.hpp&gt;<br/>
-<a href="CppComment.htm">//</a><a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/numeric/con<a href="CppVersion.htm">version</a>/cast.hpp&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/lambda/lambda.hpp&gt;<br/>
-<br/>
-<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppWt.htm">Wt</a>/WAnchor&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWBreak.htm">WBreak</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWGroupBox.htm">WGroupBox</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWImage.htm">WImage</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWLabel.htm">WLabel</a>&gt;<br/>
-<br/>
-<a href="CppInclude.htm">#include</a> "raspberrypigpiopin.h"<br/>
-<a href="CppInclude.htm">#include</a> "raspermenudialog.h"<br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppTrace.htm">trace</a>.h"<br/>
-<a href="CppInclude.htm">#include</a> "wtrasperresources.h"<br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppWtAboutDialog.htm">wtaboutdialog</a>.h"<br/>
-<a href="CppInclude.htm">#include</a> "wtraspermaindialog.h"<br/>
-<br/>
-<b><a href="CppNamespace.htm">namespace</a></b> <a href="Tools.htm">Tool</a>Rasper {<br/>
+<a href="CppComment.htm">//</a><a href="CppInclude.html">#include</a> &lt;<a href="CppBoost.html">boost</a>/<a href="CppAlgorithm.html">algorithm</a>/string/trim<a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppBoost.html">boost</a>/<a href="CppLexical_cast.html">lexical_cast</a><a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
+<a href="CppComment.htm">//</a><a href="CppInclude.html">#include</a> &lt;<a href="CppBoost.html">boost</a>/numeric/con<a href="CppVersion.html">version</a>/cast<a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppBoost.html">boost</a>/lambda/lambda<a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
 <br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;rpi::gpio::Pin&gt; WtMainDialog::CreatePins()<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppWt.htm">Wt</a>/WAnchor&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWBreak.html">WBreak</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWGroupBox.html">WGroupBox</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWImage.html">WImage</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWLabel.html">WLabel</a>&gt;<br/>
+<br/>
+<a href="CppInclude.html">#include</a> "raspberrypigpiopin<a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "raspermenudialog<a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "<a href="CppTrace.html">trace</a><a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "wtrasperresources<a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "<a href="CppWtAboutDialog.html">wtaboutdialog</a><a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "wtraspermaindialog<a href="CppHeaderFile.htm">.h</a>"<br/>
+<br/>
+<b><a href="CppNamespace.html">namespace</a></b> <a href="Tools.htm">Tool</a>Rasper {<br/>
+<br/>
+<br/>
+<b><a href="CppConst.html">const</a></b> <a href="CppVector.html">std::vector</a>&lt;rpi::gpio::Pin&gt; WtMainDialog::CreatePins()<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;rpi::gpio::Pin&gt; v;<br/>
+&nbsp;&nbsp;<a href="CppVector.html">std::vector</a>&lt;rpi::gpio::Pin&gt; v;<br/>
 &nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> pin: rpi::gpio::Pin::CreatePinNumbers())<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;v.push_back(rpi::gpio::Pin(pin));<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> v;<br/>
 }<br/>
 <br/>
 WtMainDialog::<a href="CppUi.htm">Ui</a>::Ui()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> i=0; i<a href="CppOperatorNotEqual.htm">!=</a>rpi::gpio::GetMaxPinNumber(); <a href="CppOperatorPlus.htm">+</a>+i)<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppWPushButton.htm">Wt::WPushButton</a> * <b><a href="CppConst.htm">const</a></b> button<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppWPushButton.htm">Wt::WPushButton</a>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppWPushButton.html">Wt::WPushButton</a> * <b><a href="CppConst.html">const</a></b> button<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppWPushButton.html">Wt::WPushButton</a>;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;button-&gt;setText(".");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;m_buttons.push_back(button);<br/>
 &nbsp;&nbsp;}<br/>
@@ -511,7 +511,7 @@ WtMainDialog::WtMainDialog()<br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;setContentAlignment(<a href="CppWt.htm">Wt</a>::AlignCenter);<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>-1 as buttons are human counted<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppConst.htm">const</a></b> <a href="CppSet.htm">std::set</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt; pins { 3,5,7,8,10,11,12,13,15,16,18,19,21,22,23,24,26 };<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppConst.html">const</a></b> <a href="CppSet.html">std::set</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt; pins { 3,5,7,8,10,11,12,13,15,16,18,19,21,22,23,24,26 };<br/>
 <br/>
 &nbsp;&nbsp;ui.m_buttons[ 1-1]-&gt;setText("3v3");<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>ui.m_buttons[ 1-1]-&gt;setText("1");<br/>
@@ -577,46 +577,46 @@ WtMainDialog::WtMainDialog()<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppAdd.htm">Add</a> buttons<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppWGroupBox.htm">Wt::WGroupBox</a> * <b><a href="CppConst.htm">const</a></b> box <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppWGroupBox.htm">Wt::WGroupBox</a>("Control buttons",<b><a href="CppThis.htm">this</a></b>);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppWGroupBox.html">Wt::WGroupBox</a> * <b><a href="CppConst.html">const</a></b> box <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppWGroupBox.html">Wt::WGroupBox</a>("Control buttons",<b><a href="CppThis.htm">this</a></b>);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> i=0; i<a href="CppOperatorNotEqual.htm">!=</a>rpi::gpio::GetMaxPinNumber(); <a href="CppOperatorPlus.htm">+</a>+i)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> row <a href="CppOperatorAssign.htm">=</a> 1 <a href="CppOperatorMinus.htm">-</a> (i <a href="CppOperatorDivide.htm">/</a> (rpi::gpio::GetMaxPinNumber() <a href="CppOperatorDivide.htm">/</a> 2));<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> col <a href="CppOperatorAssign.htm">=</a> i <a href="CppOperatorModulus.htm">%</a> (rpi::gpio::GetMaxPinNumber() <a href="CppOperatorDivide.htm">/</a> 2);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> button_index <a href="CppOperatorAssign.htm">=</a> (col * 2) <a href="CppOperatorPlus.htm">+</a> row;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> row <a href="CppOperatorAssign.htm">=</a> 1 <a href="CppOperatorMinus.htm">-</a> (i <a href="CppOperatorDivide.htm">/</a> (rpi::gpio::GetMaxPinNumber() <a href="CppOperatorDivide.htm">/</a> 2));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> col <a href="CppOperatorAssign.htm">=</a> i <a href="CppOperatorModulus.htm">%</a> (rpi::gpio::GetMaxPinNumber() <a href="CppOperatorDivide.htm">/</a> 2);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> button_index <a href="CppOperatorAssign.htm">=</a> (col * 2) <a href="CppOperatorPlus.htm">+</a> row;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;box-&gt;addWidget(ui.m_buttons[button_index]);<br/>
 <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ui.m_buttons[i]-&gt;setMaximumSize(43,32);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ui.m_buttons[i]-&gt;setMinimumSize(43,32);<br/>
 <br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (col <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> ((rpi::gpio::GetMaxPinNumber() <a href="CppOperatorDivide.htm">/</a> 2) <a href="CppOperatorMinus.htm">-</a> 1)) box-&gt;addWidget(<b><a href="CppNew.htm">new</a></b> <a href="CppWBreak.htm">Wt::WBreak</a>);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (col <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> ((rpi::gpio::GetMaxPinNumber() <a href="CppOperatorDivide.htm">/</a> 2) <a href="CppOperatorMinus.htm">-</a> 1)) box-&gt;addWidget(<b><a href="CppNew.htm">new</a></b> <a href="CppWBreak.html">Wt::WBreak</a>);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;addWidget(<b><a href="CppNew.htm">new</a></b> <a href="CppWBreak.htm">Wt::WBreak</a>);<br/>
+&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;addWidget(<b><a href="CppNew.htm">new</a></b> <a href="CppWBreak.html">Wt::WBreak</a>);<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppAdd.htm">Add</a> images<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppWGroupBox.htm">Wt::WGroupBox</a> * <b><a href="CppConst.htm">const</a></b> box <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppWGroupBox.htm">Wt::WGroupBox</a>("GPIO pins layout",<b><a href="CppThis.htm">this</a></b>);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> WtResources w;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;box-&gt;addWidget(<b><a href="CppNew.htm">new</a></b> <a href="CppWBreak.htm">Wt::WBreak</a>);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;box-&gt;addWidget(<b><a href="CppNew.htm">new</a></b> <a href="CppWImage.htm">Wt::WImage</a>(w.GetImageGpioFilename().c_str()));<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;box-&gt;addWidget(<b><a href="CppNew.htm">new</a></b> <a href="CppWBreak.htm">Wt::WBreak</a>);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;box-&gt;addWidget(<b><a href="CppNew.htm">new</a></b> <a href="CppWAnchor.htm">Wt::WAnchor</a>( WtResources().GetImageGpioSource(), WtResources().GetImageGpioAttribute()));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppWGroupBox.html">Wt::WGroupBox</a> * <b><a href="CppConst.html">const</a></b> box <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppWGroupBox.html">Wt::WGroupBox</a>("GPIO pins layout",<b><a href="CppThis.htm">this</a></b>);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> WtResources w;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;box-&gt;addWidget(<b><a href="CppNew.htm">new</a></b> <a href="CppWBreak.html">Wt::WBreak</a>);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;box-&gt;addWidget(<b><a href="CppNew.htm">new</a></b> <a href="CppWImage.html">Wt::WImage</a>(w.GetImageGpioFilename().c_str()));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;box-&gt;addWidget(<b><a href="CppNew.htm">new</a></b> <a href="CppWBreak.html">Wt::WBreak</a>);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;box-&gt;addWidget(<b><a href="CppNew.htm">new</a></b> <a href="CppWAnchor.html">Wt::WAnchor</a>( WtResources().GetImageGpioSource(), WtResources().GetImageGpioAttribute()));<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;addWidget(<b><a href="CppNew.htm">new</a></b> <a href="CppWBreak.htm">Wt::WBreak</a>);<br/>
+&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;addWidget(<b><a href="CppNew.htm">new</a></b> <a href="CppWBreak.html">Wt::WBreak</a>);<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppWGroupBox.htm">Wt::WGroupBox</a> * <b><a href="CppConst.htm">const</a></b> box <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppWGroupBox.htm">Wt::WGroupBox</a>("Raspberry Pi",<b><a href="CppThis.htm">this</a></b>);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> WtResources w;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;box-&gt;addWidget(<b><a href="CppNew.htm">new</a></b> <a href="CppWImage.htm">Wt::WImage</a>(w.GetImageRaspberryPiTopFilename().c_str()));<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;box-&gt;addWidget(<b><a href="CppNew.htm">new</a></b> <a href="CppWBreak.htm">Wt::WBreak</a>);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;box-&gt;addWidget(<b><a href="CppNew.htm">new</a></b> <a href="CppWAnchor.htm">Wt::WAnchor</a>( WtResources().GetImageRaspberryPiTopSource(), WtResources().GetImageRaspberryPiTopAttribute()));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppWGroupBox.html">Wt::WGroupBox</a> * <b><a href="CppConst.html">const</a></b> box <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppWGroupBox.html">Wt::WGroupBox</a>("Raspberry Pi",<b><a href="CppThis.htm">this</a></b>);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> WtResources w;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;box-&gt;addWidget(<b><a href="CppNew.htm">new</a></b> <a href="CppWImage.html">Wt::WImage</a>(w.GetImageRaspberryPiTopFilename().c_str()));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;box-&gt;addWidget(<b><a href="CppNew.htm">new</a></b> <a href="CppWBreak.html">Wt::WBreak</a>);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;box-&gt;addWidget(<b><a href="CppNew.htm">new</a></b> <a href="CppWAnchor.html">Wt::WAnchor</a>( WtResources().GetImageRaspberryPiTopSource(), WtResources().GetImageRaspberryPiTopAttribute()));<br/>
 &nbsp;&nbsp;}<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> WtMainDialog::OnClick(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> pin_number)<br/>
+<b><a href="CppVoid.htm">void</a></b> WtMainDialog::OnClick(<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> pin_number)<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;rpi::gpio::Pin&gt;::<a href="CppIterator.htm">iterator</a> iter <a href="CppOperatorAssign.htm">=</a> <a href="CppFind_if.htm">std::find_if</a>(m_pins.begin(),m_pins.end(),<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;[pin_number](<b><a href="CppConst.htm">const</a></b> rpi::gpio::Pin&amp; pin)<br/>
+&nbsp;&nbsp;<a href="CppVector.html">std::vector</a>&lt;rpi::gpio::Pin&gt;::<a href="CppIterator.html">iterator</a> iter <a href="CppOperatorAssign.htm">=</a> <a href="CppFind_if.html">std::find_if</a>(m_pins.begin(),m_pins.end(),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;[pin_number](<b><a href="CppConst.html">const</a></b> rpi::gpio::Pin&amp; pin)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> pin.GetPinNumber() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> pin_number;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> pin.GetPinNumber() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> pin_number;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;);<br/>
 <br/>
@@ -626,7 +626,7 @@ WtMainDialog::WtMainDialog()<br/>
 &nbsp;&nbsp;}<br/>
 }<br/>
 <br/>
-} <a href="CppComment.htm">//</a><b><a href="CppNamespace.htm">namespace</a></b> <a href="Tools.htm">Tool</a>Rasper<br/>
+} <a href="CppComment.htm">//</a><b><a href="CppNamespace.html">namespace</a></b> <a href="Tools.htm">Tool</a>Rasper<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -640,7 +640,7 @@ WtMainDialog::WtMainDialog()<br/>
 <table summary="wtraspermenudialog.h" border = "1"><tr><td><code>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">/*</a><br/>
-Rasper, Raspberry Pi GPIO <a href="CppWebApplication.htm">web application</a> controller<br/>
+Rasper, Raspberry Pi GPIO <a href="CppWebApplication.html">web application</a> controller<br/>
 Copyright (C) 2013 Richel Bilderbeek<br/>
 <br/>
 This program is free software: you can redistribute it and/or modify<br/>
@@ -656,31 +656,31 @@ You should have received a copy of the GNU General Public License<br/>
 along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">*/</a><br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="Tools.htm">Tool</a>Rasper.htm<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="Tools.htm">Tool</a>Rasper.html<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppIfndef.htm">#ifndef</a> WTRASPERMENUDIALOG_H<br/>
-<a href="CppDefine.htm">#define</a> WTRASPERMENUDIALOG_H<br/>
+<a href="CppIfndef.html">#ifndef</a> WTRASPERMENUDIALOG_H<br/>
+<a href="CppDefine.html">#define</a> WTRASPERMENUDIALOG_H<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppShared_ptr.htm">shared_ptr</a>.hpp&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppBoost.html">boost</a>/<a href="CppShared_ptr.html">shared_ptr</a><a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWContainerWidget.htm">WContainerWidget</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWContainerWidget.html">WContainerWidget</a>&gt;<br/>
 <br/>
-<b><a href="CppStruct.htm">struct</a></b> <a href="CppIpAddress.htm">IpAddress</a>;<br/>
+<b><a href="CppStruct.html">struct</a></b> <a href="CppIpAddress.html">IpAddress</a>;<br/>
 <br/>
-<b><a href="CppNamespace.htm">namespace</a></b> <a href="Tools.htm">Tool</a>Rasper {<br/>
+<b><a href="CppNamespace.html">namespace</a></b> <a href="Tools.htm">Tool</a>Rasper {<br/>
 <br/>
-<b><a href="CppStruct.htm">struct</a></b> WtMenuDialog : <b><a href="CppPublic.htm">public</a></b> <a href="CppWContainerWidget.htm">Wt::WContainerWidget</a><br/>
+<b><a href="CppStruct.html">struct</a></b> WtMenuDialog : <b><a href="CppPublic.html">public</a></b> <a href="CppWContainerWidget.html">Wt::WContainerWidget</a><br/>
 {<br/>
 &nbsp;&nbsp;WtMenuDialog();<br/>
-&nbsp;&nbsp;<b><a href="CppPrivate.htm">private</a></b>:<br/>
-&nbsp;&nbsp;<a href="CppWWidget.htm">Wt::WWidget</a> * CreateNew<a href="CppAbout.htm">About</a>Dialog();<br/>
-&nbsp;&nbsp;<a href="CppWWidget.htm">Wt::WWidget</a> * CreateNewMainDialog() <b><a href="CppConst.htm">const</a></b>;<br/>
-&nbsp;&nbsp;<a href="CppWWidget.htm">Wt::WWidget</a> * CreateNewWelcomeDialog() <b><a href="CppConst.htm">const</a></b>;<br/>
+&nbsp;&nbsp;<b><a href="CppPrivate.html">private</a></b>:<br/>
+&nbsp;&nbsp;<a href="CppWWidget.html">Wt::WWidget</a> * CreateNew<a href="CppAbout.html">About</a>Dialog();<br/>
+&nbsp;&nbsp;<a href="CppWWidget.html">Wt::WWidget</a> * CreateNewMainDialog() <b><a href="CppConst.html">const</a></b>;<br/>
+&nbsp;&nbsp;<a href="CppWWidget.html">Wt::WWidget</a> * CreateNewWelcomeDialog() <b><a href="CppConst.html">const</a></b>;<br/>
 };<br/>
 <br/>
-} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="Tools.htm">Tool</a>Rasper<br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.html">namespace</a></b> <a href="Tools.htm">Tool</a>Rasper<br/>
 <br/>
-<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> WTRASPERMENUDIALOG_H<br/>
+<a href="CppEndif.html">#endif</a> <a href="CppComment.htm">//</a> WTRASPERMENUDIALOG_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -694,7 +694,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <table summary="wtraspermenudialog.cpp" border = "1"><tr><td><code>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">/*</a><br/>
-Rasper, Raspberry Pi GPIO <a href="CppWebApplication.htm">web application</a> controller<br/>
+Rasper, Raspberry Pi GPIO <a href="CppWebApplication.html">web application</a> controller<br/>
 Copyright (C) 2013 Richel Bilderbeek<br/>
 <br/>
 This program is free software: you can redistribute it and/or modify<br/>
@@ -710,106 +710,106 @@ You should have received a copy of the GNU General Public License<br/>
 along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">*/</a><br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="Tools.htm">Tool</a>Rasper.htm<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="Tools.htm">Tool</a>Rasper.html<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/filesystem.hpp&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppBOOST_FOREACH.htm">foreach</a>.hpp&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppBoost.html">boost</a>/filesystem<a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppBoost.html">boost</a>/<a href="CppBOOST_FOREACH.html">foreach</a><a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppWt.htm">Wt</a>/WAnchor&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWBreak.htm">WBreak</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWContainerWidget.htm">WContainerWidget</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWGroupBox.htm">WGroupBox</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWImage.htm">WImage</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWLabel.htm">WLabel</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWStackedWidget.htm">WStackedWidget</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWMenu.htm">WMenu</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWMenuItem.htm">WMenuItem</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppWt.htm">Wt</a>/WAnchor&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWBreak.html">WBreak</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWContainerWidget.html">WContainerWidget</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWGroupBox.html">WGroupBox</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWImage.html">WImage</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWLabel.html">WLabel</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWStackedWidget.html">WStackedWidget</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWMenu.html">WMenu</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWMenuItem.html">WMenuItem</a>&gt;<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> "raspermenudialog.h"<br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppWtAboutDialog.htm">wtaboutdialog</a>.h"<br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppWtAutoConfig.htm">wtautoconfig</a>.h"<br/>
-<a href="CppInclude.htm">#include</a> "wtraspermaindialog.h"<br/>
-<a href="CppInclude.htm">#include</a> "wtrasperresources.h"<br/>
-<a href="CppInclude.htm">#include</a> "wtraspermenudialog.h"<br/>
+<a href="CppInclude.html">#include</a> "raspermenudialog<a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "<a href="CppWtAboutDialog.html">wtaboutdialog</a><a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "<a href="CppWtAutoConfig.html">wtautoconfig</a><a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "wtraspermaindialog<a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "wtrasperresources<a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "wtraspermenudialog<a href="CppHeaderFile.htm">.h</a>"<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppQFile.htm">QFile</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppQFile.html">QFile</a>&gt;<br/>
 <br/>
-<b><a href="CppNamespace.htm">namespace</a></b> <a href="Tools.htm">Tool</a>Rasper {<br/>
+<b><a href="CppNamespace.html">namespace</a></b> <a href="Tools.htm">Tool</a>Rasper {<br/>
 <br/>
 WtMenuDialog::WtMenuDialog()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;setContentAlignment(<a href="CppWt.htm">Wt</a>::AlignCenter);<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppWLabel.htm">Wt::WLabel</a> * <b><a href="CppConst.htm">const</a></b> title <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppWLabel.htm">Wt::WLabel</a>("Rasper");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppWLabel.html">Wt::WLabel</a> * <b><a href="CppConst.html">const</a></b> title <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppWLabel.html">Wt::WLabel</a>("Rasper");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;title-&gt;setStyleClass("title");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;addWidget(title);<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Menu<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppWStackedWidget.htm">Wt::WStackedWidget</a> * <b><a href="CppConst.htm">const</a></b> contents <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppWStackedWidget.htm">Wt::WStackedWidget</a>;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppWMenu.htm">Wt::WMenu</a> * <b><a href="CppConst.htm">const</a></b> menu <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppWMenu.htm">Wt::WMenu</a>(contents,<a href="CppWt.htm">Wt</a>::Horizontal);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppWStackedWidget.html">Wt::WStackedWidget</a> * <b><a href="CppConst.html">const</a></b> contents <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppWStackedWidget.html">Wt::WStackedWidget</a>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppWMenu.html">Wt::WMenu</a> * <b><a href="CppConst.html">const</a></b> menu <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppWMenu.html">Wt::WMenu</a>(contents,<a href="CppWt.htm">Wt</a>::Horizontal);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;menu-&gt;setStyleClass("menu");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppWMenuItem.htm">Wt::WMenuItem</a> * <b><a href="CppConst.htm">const</a></b> item <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppWMenuItem.htm">Wt::WMenuItem</a>(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppWMenuItem.html">Wt::WMenuItem</a> * <b><a href="CppConst.html">const</a></b> item <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppWMenuItem.html">Wt::WMenuItem</a>(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Welcome",<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CreateNewWelcomeDialog());<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;menu-&gt;addItem(item);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppWMenuItem.htm">Wt::WMenuItem</a> * <b><a href="CppConst.htm">const</a></b> item <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppWMenuItem.htm">Wt::WMenuItem</a>(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppWMenuItem.html">Wt::WMenuItem</a> * <b><a href="CppConst.html">const</a></b> item <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppWMenuItem.html">Wt::WMenuItem</a>(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Start",<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CreateNewMainDialog());<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;menu-&gt;addItem(item);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppWMenuItem.htm">Wt::WMenuItem</a> * <b><a href="CppConst.htm">const</a></b> item <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppWMenuItem.htm">Wt::WMenuItem</a>(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"<a href="CppAbout.htm">About</a>",<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CreateNew<a href="CppAbout.htm">About</a>Dialog());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppWMenuItem.html">Wt::WMenuItem</a> * <b><a href="CppConst.html">const</a></b> item <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppWMenuItem.html">Wt::WMenuItem</a>(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"<a href="CppAbout.html">About</a>",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CreateNew<a href="CppAbout.html">About</a>Dialog());<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;menu-&gt;addItem(item);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Display menu on top<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;addWidget(menu);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;addWidget(<b><a href="CppNew.htm">new</a></b> <a href="CppWBreak.htm">Wt::WBreak</a>);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;addWidget(<b><a href="CppNew.htm">new</a></b> <a href="CppWBreak.html">Wt::WBreak</a>);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Display contents below menu<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;addWidget(contents);<br/>
 &nbsp;&nbsp;}<br/>
 }<br/>
 <br/>
-<a href="CppWWidget.htm">Wt::WWidget</a> * WtMenuDialog::CreateNew<a href="CppAbout.htm">About</a>Dialog()<br/>
+<a href="CppWWidget.html">Wt::WWidget</a> * WtMenuDialog::CreateNew<a href="CppAbout.html">About</a>Dialog()<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppAbout.htm">About</a> a <a href="CppOperatorAssign.htm">=</a> MenuDialog::GetAbout();<br/>
-&nbsp;&nbsp;a.<a href="CppAdd.htm">Add</a><a href="CppLibrary.htm">Library</a>("<a href="CppWtAutoConfig.htm">WtAutoConfig</a> <a href="CppVersion.htm">version</a>: " <a href="CppOperatorPlus.htm">+</a> <a href="CppWtAutoConfig.htm">WtAutoConfig</a>::Get<a href="CppVersion.htm">Version</a>());<br/>
-&nbsp;&nbsp;<a href="CppWtAboutDialog.htm">WtAboutDialog</a> * <b><a href="CppConst.htm">const</a></b> d <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppWtAboutDialog.htm">WtAboutDialog</a>(a,<b><a href="CppFalse.htm">false</a></b>);<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(d);<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> d;<br/>
+&nbsp;&nbsp;<a href="CppAbout.html">About</a> a <a href="CppOperatorAssign.htm">=</a> MenuDialog::GetAbout();<br/>
+&nbsp;&nbsp;a.<a href="CppAdd.htm">Add</a><a href="CppLibrary.html">Library</a>("<a href="CppWtAutoConfig.html">WtAutoConfig</a> <a href="CppVersion.html">version</a>: " <a href="CppOperatorPlus.htm">+</a> <a href="CppWtAutoConfig.html">WtAutoConfig</a>::Get<a href="CppVersion.html">Version</a>());<br/>
+&nbsp;&nbsp;<a href="CppWtAboutDialog.html">WtAboutDialog</a> * <b><a href="CppConst.html">const</a></b> d <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppWtAboutDialog.html">WtAboutDialog</a>(a,<b><a href="CppFalse.html">false</a></b>);<br/>
+&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(d);<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> d;<br/>
 }<br/>
 <br/>
-<a href="CppWWidget.htm">Wt::WWidget</a> * WtMenuDialog::CreateNewMainDialog() <b><a href="CppConst.htm">const</a></b><br/>
+<a href="CppWWidget.html">Wt::WWidget</a> * WtMenuDialog::CreateNewMainDialog() <b><a href="CppConst.html">const</a></b><br/>
 {<br/>
-&nbsp;&nbsp;WtMainDialog * <b><a href="CppConst.htm">const</a></b> d <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> WtMainDialog;<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(d);<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> d;<br/>
+&nbsp;&nbsp;WtMainDialog * <b><a href="CppConst.html">const</a></b> d <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> WtMainDialog;<br/>
+&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(d);<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> d;<br/>
 }<br/>
 <br/>
-<a href="CppWWidget.htm">Wt::WWidget</a> * WtMenuDialog::CreateNewWelcomeDialog() <b><a href="CppConst.htm">const</a></b><br/>
+<a href="CppWWidget.html">Wt::WWidget</a> * WtMenuDialog::CreateNewWelcomeDialog() <b><a href="CppConst.html">const</a></b><br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppWContainerWidget.htm">Wt::WContainerWidget</a> * dialog <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppWContainerWidget.htm">Wt::WContainerWidget</a>;<br/>
+&nbsp;&nbsp;<a href="CppWContainerWidget.html">Wt::WContainerWidget</a> * dialog <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppWContainerWidget.html">Wt::WContainerWidget</a>;<br/>
 &nbsp;&nbsp;dialog-&gt;setContentAlignment(<a href="CppWt.htm">Wt</a>::AlignCenter);<br/>
-&nbsp;&nbsp;dialog-&gt;addWidget(<b><a href="CppNew.htm">new</a></b> <a href="CppWBreak.htm">Wt::WBreak</a>);<br/>
-&nbsp;&nbsp;<b><a href="CppNew.htm">new</a></b> <a href="CppWLabel.htm">Wt::WLabel</a>("Welcome to Rasper",dialog);<br/>
-&nbsp;&nbsp;<b><a href="CppNew.htm">new</a></b> <a href="CppWBreak.htm">Wt::WBreak</a>(dialog);<br/>
-&nbsp;&nbsp;<b><a href="CppNew.htm">new</a></b> <a href="CppWBreak.htm">Wt::WBreak</a>(dialog);<br/>
-&nbsp;&nbsp;<b><a href="CppNew.htm">new</a></b> <a href="CppWLabel.htm">Wt::WLabel</a>("Rasper is a Raspberry Pi GPIO <a href="CppWebApplication.htm">web application</a> controller",dialog);<br/>
-&nbsp;&nbsp;<b><a href="CppNew.htm">new</a></b> <a href="CppWBreak.htm">Wt::WBreak</a>(dialog);<br/>
-&nbsp;&nbsp;<b><a href="CppNew.htm">new</a></b> <a href="CppWBreak.htm">Wt::WBreak</a>(dialog);<br/>
-&nbsp;&nbsp;<a href="CppWGroupBox.htm">Wt::WGroupBox</a> * <b><a href="CppConst.htm">const</a></b> box <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppWGroupBox.htm">Wt::WGroupBox</a>("Raspberry Pi",dialog);<br/>
-&nbsp;&nbsp;box-&gt;addWidget(<b><a href="CppNew.htm">new</a></b> <a href="CppWImage.htm">Wt::WImage</a>( WtResources().GetImageRaspberryPiDiagonallyFilename().c_str()));<br/>
-&nbsp;&nbsp;box-&gt;addWidget(<b><a href="CppNew.htm">new</a></b> <a href="CppWBreak.htm">Wt::WBreak</a>);<br/>
-&nbsp;&nbsp;box-&gt;addWidget(<b><a href="CppNew.htm">new</a></b> <a href="CppWAnchor.htm">Wt::WAnchor</a>( WtResources().GetImageRaspberryPiDiagonallySource(), WtResources().GetImageRaspberryPiDiagonallyAttribute()));<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> dialog;<br/>
+&nbsp;&nbsp;dialog-&gt;addWidget(<b><a href="CppNew.htm">new</a></b> <a href="CppWBreak.html">Wt::WBreak</a>);<br/>
+&nbsp;&nbsp;<b><a href="CppNew.htm">new</a></b> <a href="CppWLabel.html">Wt::WLabel</a>("Welcome to Rasper",dialog);<br/>
+&nbsp;&nbsp;<b><a href="CppNew.htm">new</a></b> <a href="CppWBreak.html">Wt::WBreak</a>(dialog);<br/>
+&nbsp;&nbsp;<b><a href="CppNew.htm">new</a></b> <a href="CppWBreak.html">Wt::WBreak</a>(dialog);<br/>
+&nbsp;&nbsp;<b><a href="CppNew.htm">new</a></b> <a href="CppWLabel.html">Wt::WLabel</a>("Rasper is a Raspberry Pi GPIO <a href="CppWebApplication.html">web application</a> controller",dialog);<br/>
+&nbsp;&nbsp;<b><a href="CppNew.htm">new</a></b> <a href="CppWBreak.html">Wt::WBreak</a>(dialog);<br/>
+&nbsp;&nbsp;<b><a href="CppNew.htm">new</a></b> <a href="CppWBreak.html">Wt::WBreak</a>(dialog);<br/>
+&nbsp;&nbsp;<a href="CppWGroupBox.html">Wt::WGroupBox</a> * <b><a href="CppConst.html">const</a></b> box <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppWGroupBox.html">Wt::WGroupBox</a>("Raspberry Pi",dialog);<br/>
+&nbsp;&nbsp;box-&gt;addWidget(<b><a href="CppNew.htm">new</a></b> <a href="CppWImage.html">Wt::WImage</a>( WtResources().GetImageRaspberryPiDiagonallyFilename().c_str()));<br/>
+&nbsp;&nbsp;box-&gt;addWidget(<b><a href="CppNew.htm">new</a></b> <a href="CppWBreak.html">Wt::WBreak</a>);<br/>
+&nbsp;&nbsp;box-&gt;addWidget(<b><a href="CppNew.htm">new</a></b> <a href="CppWAnchor.html">Wt::WAnchor</a>( WtResources().GetImageRaspberryPiDiagonallySource(), WtResources().GetImageRaspberryPiDiagonallyAttribute()));<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> dialog;<br/>
 }<br/>
 <br/>
-} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="Tools.htm">Tool</a>Rasper<br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.html">namespace</a></b> <a href="Tools.htm">Tool</a>Rasper<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -821,42 +821,42 @@ WtMenuDialog::WtMenuDialog()<br/>
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="wtrasperresources.h" border = "1"><tr><td><code>
-<a href="CppIfndef.htm">#ifndef</a> WTRASPER<a href="CppRESOURCES.htm">RESOURCES</a>_H<br/>
-<a href="CppDefine.htm">#define</a> WTRASPER<a href="CppRESOURCES.htm">RESOURCES</a>_H<br/>
+<a href="CppIfndef.html">#ifndef</a> WTRASPER<a href="CppQmakeResources.html">RESOURCES</a>_H<br/>
+<a href="CppDefine.html">#define</a> WTRASPER<a href="CppQmakeResources.html">RESOURCES</a>_H<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppStringH.htm">string</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppStringH.html">string</a>&gt;<br/>
 <br/>
-<b><a href="CppNamespace.htm">namespace</a></b> <a href="Tools.htm">Tool</a>Rasper {<br/>
+<b><a href="CppNamespace.html">namespace</a></b> <a href="Tools.htm">Tool</a>Rasper {<br/>
 <br/>
-<b><a href="CppStruct.htm">struct</a></b> WtResources<br/>
+<b><a href="CppStruct.html">struct</a></b> WtResources<br/>
 {<br/>
 &nbsp;&nbsp;WtResources();<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> GetImageBackgroundAttribute() <b><a href="CppConst.htm">const</a></b> { <b><a href="CppReturn.htm">return</a></b> "(C) Richel Bilderbeek"; }<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> GetImageBackgroundFilename() <b><a href="CppConst.htm">const</a></b>;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> GetImageBackgroundSource() <b><a href="CppConst.htm">const</a></b> { <b><a href="CppReturn.htm">return</a></b> "http://www.richelbilderbeek.nl"; }<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a> GetImageBackgroundAttribute() <b><a href="CppConst.html">const</a></b> { <b><a href="CppReturn.html">return</a></b> "(C) Richel Bilderbeek"; }<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a> GetImageBackgroundFilename() <b><a href="CppConst.html">const</a></b>;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a> GetImageBackgroundSource() <b><a href="CppConst.html">const</a></b> { <b><a href="CppReturn.html">return</a></b> "http://www.richelbilderbeek.nl"; }<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> GetImageGpioAttribute() <b><a href="CppConst.htm">const</a></b> { <b><a href="CppReturn.htm">return</a></b> "(C) Matt <a href="CppOperatorDivide.htm">/</a> raspberrypi-spy.co.uk"; }<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> GetImageGpioFilename() <b><a href="CppConst.htm">const</a></b>;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> GetImageGpioSource() <b><a href="CppConst.htm">const</a></b> { <b><a href="CppReturn.htm">return</a></b> "http://www.raspberrypi-spy.co.uk/2012/06/simple-guide-to-the-rpi-gpio-header-and-pins"; }<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a> GetImageGpioAttribute() <b><a href="CppConst.html">const</a></b> { <b><a href="CppReturn.html">return</a></b> "(C) Matt <a href="CppOperatorDivide.htm">/</a> raspberrypi-spy.co.uk"; }<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a> GetImageGpioFilename() <b><a href="CppConst.html">const</a></b>;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a> GetImageGpioSource() <b><a href="CppConst.html">const</a></b> { <b><a href="CppReturn.html">return</a></b> "http://www.raspberrypi-spy.co.uk/2012/06/simple-guide-to-the-rpi-gpio-header-and-pins"; }<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> GetImageRaspberryPiTopAttribute() <b><a href="CppConst.htm">const</a></b> { <b><a href="CppReturn.htm">return</a></b> "(C) Maiakaat <a href="CppOperatorDivide.htm">/</a> Wikimedia Commons <a href="CppOperatorDivide.htm">/</a> CC-BY-SA-2.0 <a href="CppOperatorDivide.htm">/</a> Front of Raspberry Pi"; }<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> GetImageRaspberryPiTopFilename() <b><a href="CppConst.htm">const</a></b>;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> GetImageRaspberryPiTopSource() <b><a href="CppConst.htm">const</a></b> { <b><a href="CppReturn.htm">return</a></b> "http://commons.wikimedia.org/wiki/File:Front_of_Raspberry_Pi.jpg"; }<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a> GetImageRaspberryPiTopAttribute() <b><a href="CppConst.html">const</a></b> { <b><a href="CppReturn.html">return</a></b> "(C) Maiakaat <a href="CppOperatorDivide.htm">/</a> Wikimedia Commons <a href="CppOperatorDivide.htm">/</a> CC-BY-SA-2.0 <a href="CppOperatorDivide.htm">/</a> Front of Raspberry Pi"; }<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a> GetImageRaspberryPiTopFilename() <b><a href="CppConst.html">const</a></b>;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a> GetImageRaspberryPiTopSource() <b><a href="CppConst.html">const</a></b> { <b><a href="CppReturn.html">return</a></b> "http://commons.wikimedia.org/wiki/File:Front_of_Raspberry_Pi.jpg"; }<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> GetImageRaspberryPiDiagonallyAttribute() <b><a href="CppConst.htm">const</a></b> { <b><a href="CppReturn.htm">return</a></b> "(C) cowjuice <a href="CppOperatorDivide.htm">/</a> Wikimedia Commons <a href="CppOperatorDivide.htm">/</a> CC-BY-SA-3.0 <a href="CppOperatorDivide.htm">/</a> Raspberry Pi Photo"; }<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> GetImageRaspberryPiDiagonallyFilename() <b><a href="CppConst.htm">const</a></b>;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> GetImageRaspberryPiDiagonallySource() <b><a href="CppConst.htm">const</a></b> { <b><a href="CppReturn.htm">return</a></b> "http://commons.wikimedia.org/wiki/File:Raspberry_Pi_Photo.jpg"; }<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a> GetImageRaspberryPiDiagonallyAttribute() <b><a href="CppConst.html">const</a></b> { <b><a href="CppReturn.html">return</a></b> "(C) cowjuice <a href="CppOperatorDivide.htm">/</a> Wikimedia Commons <a href="CppOperatorDivide.htm">/</a> CC-BY-SA-3.0 <a href="CppOperatorDivide.htm">/</a> Raspberry Pi Photo"; }<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a> GetImageRaspberryPiDiagonallyFilename() <b><a href="CppConst.html">const</a></b>;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a> GetImageRaspberryPiDiagonallySource() <b><a href="CppConst.html">const</a></b> { <b><a href="CppReturn.html">return</a></b> "http://commons.wikimedia.org/wiki/File:Raspberry_Pi_Photo.jpg"; }<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppPrivate.htm">private</a></b>:<br/>
+&nbsp;&nbsp;<b><a href="CppPrivate.html">private</a></b>:<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppVoid.htm">void</a></b> Create(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; filename);<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.html">static</a></b> <b><a href="CppVoid.htm">void</a></b> Create(<b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a>&amp; filename);<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppVoid.htm">void</a></b> Test();<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.html">static</a></b> <b><a href="CppVoid.htm">void</a></b> Test();<br/>
 };<br/>
 <br/>
-} <a href="CppComment.htm">//</a><b><a href="CppNamespace.htm">namespace</a></b> <a href="Tools.htm">Tool</a>Rasper<br/>
+} <a href="CppComment.htm">//</a><b><a href="CppNamespace.html">namespace</a></b> <a href="Tools.htm">Tool</a>Rasper<br/>
 <br/>
-<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> WTRASPER<a href="CppRESOURCES.htm">RESOURCES</a>_H<br/>
+<a href="CppEndif.html">#endif</a> <a href="CppComment.htm">//</a> WTRASPER<a href="CppQmakeResources.html">RESOURCES</a>_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -868,72 +868,72 @@ WtMenuDialog::WtMenuDialog()<br/>
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="wtrasperresources.cpp" border = "1"><tr><td><code>
-<a href="CppInclude.htm">#include</a> "wtrasperresources.h"<br/>
+<a href="CppInclude.html">#include</a> "wtrasperresources<a href="CppHeaderFile.htm">.h</a>"<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppIostreamH.htm">iostream</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppCassertH.html">cassert</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppIostreamH.html">iostream</a>&gt;<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppQFile.htm">QFile</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppQFile.html">QFile</a>&gt;<br/>
 <br/>
-<b><a href="CppNamespace.htm">namespace</a></b> <a href="Tools.htm">Tool</a>Rasper {<br/>
+<b><a href="CppNamespace.html">namespace</a></b> <a href="Tools.htm">Tool</a>Rasper {<br/>
 <br/>
 WtResources::WtResources()<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
+&nbsp;&nbsp;<a href="CppIfndef.html">#ifndef</a> <a href="CppNDEBUG.html">NDEBUG</a><br/>
 &nbsp;&nbsp;Test();<br/>
-&nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
+&nbsp;&nbsp;<a href="CppEndif.html">#endif</a><br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> WtResources::Create(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; filename)<br/>
+<b><a href="CppVoid.htm">void</a></b> WtResources::Create(<b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a>&amp; filename)<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (!<a href="CppQFile.htm">QFile</a>::exists(filename.c_str()))<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (!<a href="CppQFile.html">QFile</a>::exists(filename.c_str()))<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppQString.htm">QString</a> q <a href="CppOperatorAssign.htm">=</a> <a href="CppQString.htm">QString</a>(":/images/") <a href="CppOperatorPlus.htm">+</a> <a href="CppQString.htm">QString</a>(filename.c_str());<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQFile.htm">QFile</a> file(q);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppQString.html">QString</a> q <a href="CppOperatorAssign.htm">=</a> <a href="CppQString.html">QString</a>(":/images/") <a href="CppOperatorPlus.htm">+</a> <a href="CppQString.html">QString</a>(filename.c_str());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQFile.html">QFile</a> file(q);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;file.copy(filename.c_str());<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;file.close();<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (!<a href="CppQFile.htm">QFile</a>::exists(filename.c_str()))<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (!<a href="CppQFile.html">QFile</a>::exists(filename.c_str()))<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCerr.htm">std::cerr</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "Warning: '" <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> filename <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "' not found\n";<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCerr.html">std::cerr</a> <a href="CppOperatorStreamOut.html">&lt;&lt;</a> "Warning: '" <a href="CppOperatorStreamOut.html">&lt;&lt;</a> filename <a href="CppOperatorStreamOut.html">&lt;&lt;</a> "' not found\n";<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppQFile.htm">QFile</a>::exists(filename.c_str()));<br/>
+&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(<a href="CppQFile.html">QFile</a>::exists(filename.c_str()));<br/>
 <br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> WtResources::GetImageBackgroundFilename() <b><a href="CppConst.htm">const</a></b><br/>
+<b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a> WtResources::GetImageBackgroundFilename() <b><a href="CppConst.html">const</a></b><br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> s <a href="CppOperatorAssign.htm">=</a> "RichelbilderbeekNlBackground.png";<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a> s <a href="CppOperatorAssign.htm">=</a> "RichelbilderbeekNlBackground.png";<br/>
 &nbsp;&nbsp;Create(s);<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> s;<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> s;<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> WtResources::GetImageGpioFilename() <b><a href="CppConst.htm">const</a></b><br/>
+<b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a> WtResources::GetImageGpioFilename() <b><a href="CppConst.html">const</a></b><br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> s <a href="CppOperatorAssign.htm">=</a> "<a href="Tools.htm">Tool</a>RasperGpioLayout.png";<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a> s <a href="CppOperatorAssign.htm">=</a> "<a href="Tools.htm">Tool</a>RasperGpioLayout.png";<br/>
 &nbsp;&nbsp;Create(s);<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> s;<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> s;<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> WtResources::GetImageRaspberryPiDiagonallyFilename() <b><a href="CppConst.htm">const</a></b><br/>
+<b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a> WtResources::GetImageRaspberryPiDiagonallyFilename() <b><a href="CppConst.html">const</a></b><br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> s <a href="CppOperatorAssign.htm">=</a> "<a href="Tools.htm">Tool</a>RasperRaspberryPiDiagonally.jpg";<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a> s <a href="CppOperatorAssign.htm">=</a> "<a href="Tools.htm">Tool</a>RasperRaspberryPiDiagonally.jpg";<br/>
 &nbsp;&nbsp;Create(s);<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> s;<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> s;<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> WtResources::GetImageRaspberryPiTopFilename() <b><a href="CppConst.htm">const</a></b><br/>
+<b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a> WtResources::GetImageRaspberryPiTopFilename() <b><a href="CppConst.html">const</a></b><br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> s <a href="CppOperatorAssign.htm">=</a> "<a href="Tools.htm">Tool</a>RasperRaspberryPiTop.jpg";<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a> s <a href="CppOperatorAssign.htm">=</a> "<a href="Tools.htm">Tool</a>RasperRaspberryPiTop.jpg";<br/>
 &nbsp;&nbsp;Create(s);<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> s;<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> s;<br/>
 }<br/>
 <br/>
 <b><a href="CppVoid.htm">void</a></b> WtResources::Test()<br/>
 {<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppBool.htm">bool</a></b> is_tested <a href="CppOperatorAssign.htm">=</a> <b><a href="CppFalse.htm">false</a></b>;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (is_tested) <b><a href="CppReturn.htm">return</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppStatic.html">static</a></b> <b><a href="CppBool.htm">bool</a></b> is_tested <a href="CppOperatorAssign.htm">=</a> <b><a href="CppFalse.html">false</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (is_tested) <b><a href="CppReturn.html">return</a></b>;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;is_tested <a href="CppOperatorAssign.htm">=</a> <b><a href="CppTrue.htm">true</a></b>;<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;WtResources().GetImageBackgroundFilename();<br/>
@@ -942,7 +942,7 @@ WtResources::WtResources()<br/>
 &nbsp;&nbsp;WtResources().GetImageRaspberryPiTopFilename();<br/>
 }<br/>
 <br/>
-} <a href="CppComment.htm">//</a><b><a href="CppNamespace.htm">namespace</a></b> <a href="Tools.htm">Tool</a>Rasper<br/>
+} <a href="CppComment.htm">//</a><b><a href="CppNamespace.html">namespace</a></b> <a href="Tools.htm">Tool</a>Rasper<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>

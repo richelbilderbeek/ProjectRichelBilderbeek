@@ -40,9 +40,9 @@
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="shapewidget.h" border = "1"><tr><td><code>
-<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">/*</a><br/>
-<a href="CppShapeWidget.htm">ShapeWidget</a>, <b><a href="CppClass.htm">class</a></b> <b><a href="CppFor.htm">for</a></b> displaying a <a href="CppShape.htm">Shape</a><br/>
+<a href="CppShapeWidget.html">ShapeWidget</a>, <b><a href="CppClass.html">class</a></b> <b><a href="CppFor.htm">for</a></b> displaying a <a href="CppShape.html">Shape</a><br/>
 Copyright (C) 2011 Richel Bilderbeek<br/>
 <br/>
 This program is free software: you can redistribute it and/or modify<br/>
@@ -57,67 +57,67 @@ GNU General Public License for more details.<br/>
 You should have received a copy of the GNU General Public License<br/>
 along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">*/</a><br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="CppShapeWidget.html">CppShapeWidget</a>.html<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppIfndef.html">#ifndef</a> SHAPEWIDGET_H<br/>
+<a href="CppDefine.html">#define</a> SHAPEWIDGET_H<br/>
 <br/>
-<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="CppShapeWidget.htm">CppShapeWidget</a>.htm<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppStringH.html">string</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppVectorH.html">vector</a>&gt;<br/>
 <br/>
-<a href="CppIfndef.htm">#ifndef</a> SHAPEWIDGET_H<br/>
-<a href="CppDefine.htm">#define</a> SHAPEWIDGET_H<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic push<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.html">-Weffc++</a>"<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic ignored "-Wunused-local-<b><a href="CppTypedef.html">typedef</a></b>s"<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppBoost.html">boost</a>/checked_delete<a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppBoost.html">boost</a>/<a href="CppSignals2.html">signals2</a><a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
+<a href="CppInclude.html">#include</a> "<a href="CppWidget.html">widget</a><a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic pop<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppStringH.htm">string</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
+<b><a href="CppNamespace.html">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
 <br/>
-<a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
-<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-<b><a href="CppTypedef.htm">typedef</a></b>s"<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/checked_delete.hpp&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppSignals2.htm">signals2</a>.hpp&gt;<br/>
-<a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
+<b><a href="CppStruct.html">struct</a></b> <a href="CppShape.html">Shape</a>;<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppWidget.htm">widget</a>.h"<br/>
-<br/>
-<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a> {<br/>
-<br/>
-<b><a href="CppStruct.htm">struct</a></b> <a href="CppShape.htm">Shape</a>;<br/>
-<br/>
-<a href="CppComment.htm">///</a><a href="CppShapeWidget.htm">ShapeWidget</a> is a <b><a href="CppClass.htm">class</a></b> to display a <a href="CppShape.htm">Shape</a><br/>
-<b><a href="CppStruct.htm">struct</a></b> <a href="CppShapeWidget.htm">ShapeWidget</a> : <b><a href="CppPublic.htm">public</a></b> <a href="CppWidget.htm">Widget</a><br/>
+<a href="CppComment.htm">///</a><a href="CppShapeWidget.html">ShapeWidget</a> is a <b><a href="CppClass.html">class</a></b> to display a <a href="CppShape.html">Shape</a><br/>
+<b><a href="CppStruct.html">struct</a></b> <a href="CppShapeWidget.html">ShapeWidget</a> : <b><a href="CppPublic.html">public</a></b> <a href="CppWidget.html">Widget</a><br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppExplicit.htm">explicit</a></b> <a href="CppShapeWidget.htm">ShapeWidget</a>(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> n_corners,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> rotation,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x <a href="CppOperatorAssign.htm">=</a> 0,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> y <a href="CppOperatorAssign.htm">=</a> 0,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> width <a href="CppOperatorAssign.htm">=</a> 100,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> height <a href="CppOperatorAssign.htm">=</a> 100,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> red <a href="CppOperatorAssign.htm">=</a> 255,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> green <a href="CppOperatorAssign.htm">=</a> 255,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> blue <a href="CppOperatorAssign.htm">=</a> 255);<br/>
+&nbsp;&nbsp;<b><a href="CppExplicit.html">explicit</a></b> <a href="CppShapeWidget.html">ShapeWidget</a>(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> n_corners,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> rotation,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> x <a href="CppOperatorAssign.htm">=</a> 0,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> y <a href="CppOperatorAssign.htm">=</a> 0,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> width <a href="CppOperatorAssign.htm">=</a> 100,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> height <a href="CppOperatorAssign.htm">=</a> 100,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppUnsigned.html">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> red <a href="CppOperatorAssign.htm">=</a> 255,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppUnsigned.html">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> green <a href="CppOperatorAssign.htm">=</a> 255,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppUnsigned.html">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> blue <a href="CppOperatorAssign.htm">=</a> 255);<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Make a deep copy of <a href="CppShapeWidget.htm">ShapeWidget</a><br/>
-&nbsp;&nbsp;<a href="CppShapeWidget.htm">ShapeWidget</a> * Clone() <b><a href="CppConst.htm">const</a></b>;<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Make a deep copy of <a href="CppShapeWidget.html">ShapeWidget</a><br/>
+&nbsp;&nbsp;<a href="CppShapeWidget.html">ShapeWidget</a> * Clone() <b><a href="CppConst.html">const</a></b>;<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Obtain a read-only <a href="CppPointer.htm">pointer</a>t to the <a href="CppShape.htm">Shape</a><br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppShape.htm">Shape</a> * Get<a href="CppShape.htm">Shape</a>() <b><a href="CppConst.htm">const</a></b> { <b><a href="CppReturn.htm">return</a></b> m_<a href="CppShape.htm">shape</a>.get(); }<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Obtain a read-only <a href="CppPointer.html">pointer</a>t to the <a href="CppShape.html">Shape</a><br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppShape.html">Shape</a> * Get<a href="CppShape.html">Shape</a>() <b><a href="CppConst.html">const</a></b> { <b><a href="CppReturn.html">return</a></b> m_<a href="CppShape.html">shape</a>.get(); }<br/>
 <br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppPrivate.htm">private</a></b>:<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppShapeWidget.htm">ShapeWidget</a> can only be deleted by <a href="CppBoost.htm">Boost</a> <a href="CppSmartPointer.htm">smart pointer</a>s<br/>
-&nbsp;&nbsp;<b><a href="CppVirtual.htm">virtual</a></b> ~<a href="CppShapeWidget.htm">ShapeWidget</a>() {}<br/>
-&nbsp;&nbsp;<b><a href="CppFriend.htm">friend</a></b> <b><a href="CppVoid.htm">void</a></b> <a href="CppChecked_delete.htm">boost::checked_delete</a>&lt;&gt;(<a href="CppShapeWidget.htm">ShapeWidget</a>*);<br/>
-&nbsp;&nbsp;<b><a href="CppFriend.htm">friend</a></b> <b><a href="CppBool.htm">bool</a></b> <b><a href="CppOperatorEqual.htm">operator==</a></b>(<b><a href="CppConst.htm">const</a></b> <a href="CppShapeWidget.htm">ShapeWidget</a>&amp; lhs,<b><a href="CppConst.htm">const</a></b> <a href="CppShapeWidget.htm">ShapeWidget</a>&amp; rhs);<br/>
+&nbsp;&nbsp;<b><a href="CppPrivate.html">private</a></b>:<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppShapeWidget.html">ShapeWidget</a> can only be deleted by <a href="CppBoost.html">Boost</a> <a href="CppSmartPointer.html">smart pointer</a>s<br/>
+&nbsp;&nbsp;<b><a href="CppVirtual.html">virtual</a></b> ~<a href="CppShapeWidget.html">ShapeWidget</a>() {}<br/>
+&nbsp;&nbsp;<b><a href="CppFriend.html">friend</a></b> <b><a href="CppVoid.htm">void</a></b> <a href="CppChecked_delete.html">boost::checked_delete</a>&lt;&gt;(<a href="CppShapeWidget.html">ShapeWidget</a>*);<br/>
+&nbsp;&nbsp;<b><a href="CppFriend.html">friend</a></b> <b><a href="CppBool.htm">bool</a></b> <b><a href="CppOperatorEqual.html">operator==</a></b>(<b><a href="CppConst.html">const</a></b> <a href="CppShapeWidget.html">ShapeWidget</a>&amp; lhs,<b><a href="CppConst.html">const</a></b> <a href="CppShapeWidget.html">ShapeWidget</a>&amp; rhs);<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>/The <a href="CppShape.htm">Shape</a><br/>
-&nbsp;&nbsp;<a href="CppScoped_ptr.htm">boost::scoped_ptr</a>&lt;<a href="CppShape.htm">Shape</a>&gt; m_<a href="CppShape.htm">shape</a>;<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/The <a href="CppShape.html">Shape</a><br/>
+&nbsp;&nbsp;<a href="CppScoped_ptr.html">boost::scoped_ptr</a>&lt;<a href="CppShape.html">Shape</a>&gt; m_<a href="CppShape.html">shape</a>;<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppPublic.htm">public</a></b>:<br/>
-&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> Get<a href="CppVersion.htm">Version</a>();<br/>
-&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; Get<a href="CppVersion.htm">Version</a>History();<br/>
+&nbsp;&nbsp;<b><a href="CppPublic.html">public</a></b>:<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.html">static</a></b> <b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a> Get<a href="CppVersion.html">Version</a>();<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.html">static</a></b> <b><a href="CppConst.html">const</a></b> <a href="CppVector.html">std::vector</a>&lt;<a href="CppString.html">std::string</a>&gt; Get<a href="CppVersion.html">Version</a>History();<br/>
 };<br/>
 <br/>
-<b><a href="CppBool.htm">bool</a></b> <b><a href="CppOperatorEqual.htm">operator==</a></b>(<b><a href="CppConst.htm">const</a></b> <a href="CppShapeWidget.htm">ShapeWidget</a>&amp; lhs,<b><a href="CppConst.htm">const</a></b> <a href="CppShapeWidget.htm">ShapeWidget</a>&amp; rhs);<br/>
+<b><a href="CppBool.htm">bool</a></b> <b><a href="CppOperatorEqual.html">operator==</a></b>(<b><a href="CppConst.html">const</a></b> <a href="CppShapeWidget.html">ShapeWidget</a>&amp; lhs,<b><a href="CppConst.html">const</a></b> <a href="CppShapeWidget.html">ShapeWidget</a>&amp; rhs);<br/>
 <br/>
-} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a><br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.html">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
 <br/>
-<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> SHAPEWIDGET_H<br/>
+<a href="CppEndif.html">#endif</a> <a href="CppComment.htm">//</a> SHAPEWIDGET_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -129,72 +129,71 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="shapewidget.cpp" border = "1"><tr><td><code>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic push<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.html">-Weffc++</a>"<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic ignored "-Wunused-local-<b><a href="CppTypedef.html">typedef</a></b>s"<br/>
+<a href="CppInclude.html">#include</a> "<a href="CppShapeWidget.html">shapewidget</a><a href="CppHeaderFile.htm">.h</a>"<br/>
 <br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppCassertH.html">cassert</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppCmathH.html">cmath</a>&gt;<br/>
 <br/>
-<a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
-<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-<b><a href="CppTypedef.htm">typedef</a></b>s"<br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppShapeWidget.htm">shapewidget</a>.h"<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppBoost.html">boost</a>/numeric/con<a href="CppVersion.html">version</a>/cast<a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppCmathH.htm">cmath</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> "<a href="CppShape.html">shape</a><a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "<a href="CppRectangle.html">rectangle</a><a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppComment.htm">//</a><a href="CppInclude.html">#include</a> "<a href="CppTrace.html">trace</a><a href="CppHeaderFile.htm">.h</a>"<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/numeric/con<a href="CppVersion.htm">version</a>/cast.hpp&gt;<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic pop<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppShape.htm">shape</a>.h"<br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppRectangle.htm">rectangle</a>.h"<br/>
-<a href="CppComment.htm">//</a><a href="CppInclude.htm">#include</a> "<a href="CppTrace.htm">trace</a>.h"<br/>
-<br/>
-<a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
-<br/>
-<a href="CppRibi.htm\">ribi</a>::<a href="CppShapeWidget.htm">ShapeWidget</a>::<a href="CppShapeWidget.htm">ShapeWidget</a>(<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> n_corners,<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> rotation,<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x,<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> y,<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> width,<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> height,<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> red,<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> green,<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> blue)<br/>
-&nbsp;&nbsp;: m_<a href="CppShape.htm">shape</a>(<b><a href="CppNew.htm">new</a></b> <a href="CppShape.htm">Shape</a>(n_corners,rotation,red,green,blue))<br/>
+<a href="CppRibi.htm">ribi</a>::<a href="CppShapeWidget.html">ShapeWidget</a>::<a href="CppShapeWidget.html">ShapeWidget</a>(<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> n_corners,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> rotation,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> x,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> y,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> width,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> height,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppUnsigned.html">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> red,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppUnsigned.html">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> green,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppUnsigned.html">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> blue)<br/>
+&nbsp;&nbsp;: m_<a href="CppShape.html">shape</a>(<b><a href="CppNew.htm">new</a></b> <a href="CppShape.html">Shape</a>(n_corners,rotation,red,green,blue))<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;SetGeometry(Rect(x,y,width,height));<br/>
 }<br/>
 <br/>
-<a href="CppRibi.htm\">ribi</a>::<a href="CppShapeWidget.htm">ShapeWidget</a> * <a href="CppRibi.htm\">ribi</a>::<a href="CppShapeWidget.htm">ShapeWidget</a>::Clone() <b><a href="CppConst.htm">const</a></b><br/>
+<a href="CppRibi.htm">ribi</a>::<a href="CppShapeWidget.html">ShapeWidget</a> * <a href="CppRibi.htm">ribi</a>::<a href="CppShapeWidget.html">ShapeWidget</a>::Clone() <b><a href="CppConst.html">const</a></b><br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppShapeWidget.htm">ShapeWidget</a> * <b><a href="CppConst.htm">const</a></b> w <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppShapeWidget.htm">ShapeWidget</a>(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;Get<a href="CppShape.htm">Shape</a>()-&gt;GetNumberOfCorners(),<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;Get<a href="CppShape.htm">Shape</a>()-&gt;GetRotation(),<br/>
+&nbsp;&nbsp;<a href="CppShapeWidget.html">ShapeWidget</a> * <b><a href="CppConst.html">const</a></b> w <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppShapeWidget.html">ShapeWidget</a>(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;Get<a href="CppShape.html">Shape</a>()-&gt;GetNumberOfCorners(),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;Get<a href="CppShape.html">Shape</a>()-&gt;GetRotation(),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;GetGeometry().GetX(),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;GetGeometry().GetY(),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;GetGeometry().GetWidth(),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;GetGeometry().GetHeight(),<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;Get<a href="CppShape.htm">Shape</a>()-&gt;GetRed(),<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;Get<a href="CppShape.htm">Shape</a>()-&gt;GetGreen(),<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;Get<a href="CppShape.htm">Shape</a>()-&gt;GetBlue());<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(*w <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> *<b><a href="CppThis.htm">this</a></b>);<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> w;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;Get<a href="CppShape.html">Shape</a>()-&gt;GetRed(),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;Get<a href="CppShape.html">Shape</a>()-&gt;GetGreen(),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;Get<a href="CppShape.html">Shape</a>()-&gt;GetBlue());<br/>
+&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(*w <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> *<b><a href="CppThis.htm">this</a></b>);<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> w;<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppRibi.htm\">ribi</a>::<a href="CppShapeWidget.htm">ShapeWidget</a>::Get<a href="CppVersion.htm">Version</a>()<br/>
+<b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a> <a href="CppRibi.htm">ribi</a>::<a href="CppShapeWidget.html">ShapeWidget</a>::Get<a href="CppVersion.html">Version</a>()<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> "2.0";<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> "2.0";<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm\">ribi</a>::<a href="CppShapeWidget.htm">ShapeWidget</a>::Get<a href="CppVersion.htm">Version</a>History()<br/>
+<b><a href="CppConst.html">const</a></b> <a href="CppVector.html">std::vector</a>&lt;<a href="CppString.html">std::string</a>&gt; <a href="CppRibi.htm">ribi</a>::<a href="CppShapeWidget.html">ShapeWidget</a>::Get<a href="CppVersion.html">Version</a>History()<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> {<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;"2011-07-13: <a href="CppVersion.htm">Version</a> 1.0: initial <a href="CppVersion.htm">version</a>",<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;"2011-07-18: <a href="CppVersion.htm">Version</a> 1.1: removed useless <a href="CppMemberFunction.htm">member function</a>s",<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;"2011-08-08: <a href="CppVersion.htm">Version</a> 2.0: conformized architecture to <a href="CppMysteryMachineWidget.htm">MysteryMachineWidget</a>"<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"2011-07-13: <a href="CppVersion.html">Version</a> 1.0: initial <a href="CppVersion.html">version</a>",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"2011-07-18: <a href="CppVersion.html">Version</a> 1.1: removed useless <a href="CppMemberFunction.html">member function</a>s",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"2011-08-08: <a href="CppVersion.html">Version</a> 2.0: conformized architecture to <a href="CppMysteryMachineWidget.html">MysteryMachineWidget</a>"<br/>
 &nbsp;&nbsp;};<br/>
 }<br/>
 <br/>
-<b><a href="CppBool.htm">bool</a></b> <a href="CppRibi.htm\">ribi</a>::<b><a href="CppOperatorEqual.htm">operator==</a></b>(<b><a href="CppConst.htm">const</a></b> <a href="CppShapeWidget.htm">ShapeWidget</a>&amp; lhs,<b><a href="CppConst.htm">const</a></b> <a href="CppShapeWidget.htm">ShapeWidget</a>&amp; rhs)<br/>
+<b><a href="CppBool.htm">bool</a></b> <a href="CppRibi.htm">ribi</a>::<b><a href="CppOperatorEqual.html">operator==</a></b>(<b><a href="CppConst.html">const</a></b> <a href="CppShapeWidget.html">ShapeWidget</a>&amp; lhs,<b><a href="CppConst.html">const</a></b> <a href="CppShapeWidget.html">ShapeWidget</a>&amp; rhs)<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b>&nbsp;&nbsp;lhs.GetGeometry() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;rhs.GetGeometry()<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a>&nbsp;&nbsp; *lhs.Get<a href="CppShape.htm">Shape</a>()&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> *rhs.Get<a href="CppShape.htm">Shape</a>();<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b>&nbsp;&nbsp;lhs.GetGeometry() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;rhs.GetGeometry()<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorLogicalAnd.html">&amp;&amp;</a>&nbsp;&nbsp; *lhs.Get<a href="CppShape.html">Shape</a>()&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> *rhs.Get<a href="CppShape.html">Shape</a>();<br/>
 }<br/>
 </code></td></tr></table>
 <!-- end of the code -->

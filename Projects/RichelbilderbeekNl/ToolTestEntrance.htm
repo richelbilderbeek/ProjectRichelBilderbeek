@@ -84,19 +84,19 @@
 <table summary="ToolTestEntrance.pro" border = "1"><tr><td><code>
 QT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; += core<br/>
 QT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -= gui<br/>
-<a href="CppLIBS.htm">LIBS</a> += <a href="CppWt.htm">-lwt</a> <a href="CppWt.htm">-lwt</a>http <a href="CppBoostSignals.htm">-lboost_signals</a> <a href="CppRegex.htm">-lboost_regex</a> <a href="CppSystem.htm">-lboost_system</a> <a href="CppFilesystem.htm">-lboost_filesystem</a> <a href="CppProgram_options.htm">-lboost_program_options</a><br/>
-<a href="CppQMAKE_CXXFLAGS.htm">QMAKE_CXXFLAGS</a> += -std=<a href="Cpp0x.htm">c++11</a><br/>
-CONFIG&nbsp;&nbsp; += console<br/>
-CONFIG&nbsp;&nbsp; -= app_bundle<br/>
-TEMPLATE = app<br/>
-<a href="CppINCLUDEPATH.htm">INCLUDEPATH</a> += \<br/>
+<a href="CppQmakeLibs.htm">LIBS</a> += <a href="CppWt.htm">-lwt</a> <a href="CppWt.htm">-lwt</a>http <a href="CppBoostSignals.htm">-lboost_signals</a> <a href="CppRegex.htm">-lboost_regex</a> <a href="CppSystem.htm">-lboost_system</a> <a href="CppFilesystem.htm">-lboost_filesystem</a> <a href="CppProgram_options.htm">-lboost_program_options</a><br/>
+<a href="CppQmakeQmake_cxxflags.htm">QMAKE_CXXFLAGS</a> += -std=<a href="Cpp0x.htm">c++11</a><br/>
+<a href="CppQmakeConfig.htm">CONFIG</a>&nbsp;&nbsp; += console<br/>
+<a href="CppQmakeConfig.htm">CONFIG</a>&nbsp;&nbsp; -= app_bundle<br/>
+<a href="CppQmakeTemplate.htm">TEMPLATE</a> = app<br/>
+<a href="CppQmakeIncludepath.htm">INCLUDEPATH</a> += \<br/>
 &nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppAbout.htm">CppAbout</a> \<br/>
 &nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppIpAddress.htm">CppIpAddress</a> \<br/>
 &nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppWtAboutDialog.htm">CppWtAboutDialog</a> \<br/>
 &nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppWtAutoConfig.htm">CppWtAutoConfig</a> \<br/>
 &nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppWtEntrance.htm">CppWtEntrance</a><br/>
 <br/>
-<a href="CppSOURCES.htm">SOURCES</a> += wt<a href="CppMain.htm">main</a>.cpp \<br/>
+<a href="CppQmakeSources.htm">SOURCES</a> += wt<a href="CppMain.htm">main</a>.cpp \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppAbout.htm">CppAbout</a>/<a href="CppAbout.htm">about</a>.cpp \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppWtAboutDialog.htm">CppWtAboutDialog</a>/<a href="CppWtAboutDialog.htm">wtaboutdialog</a>.cpp \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppWtAutoConfig.htm">CppWtAutoConfig</a>/<a href="CppWtAutoConfig.htm">wtautoconfig</a>.cpp \<br/>
@@ -106,7 +106,7 @@ TEMPLATE = app<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="ToolTestEntrance.htm">wttestentrancemenudialog</a>.cpp \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="ToolTestEntrance.htm">wttestentrancemaindialog</a>.cpp<br/>
 <br/>
-<a href="CppHEADERS.htm">HEADERS</a> += \<br/>
+<a href="CppQmakeHeaders.htm">HEADERS</a> += \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppAbout.htm">CppAbout</a>/<a href="CppAbout.htm">about</a>.h \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppWtAboutDialog.htm">CppWtAboutDialog</a>/<a href="CppWtAboutDialog.htm">wtaboutdialog</a>.h \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppWtAutoConfig.htm">CppWtAutoConfig</a>/<a href="CppWtAutoConfig.htm">wtautoconfig</a>.h \<br/>
@@ -116,7 +116,7 @@ TEMPLATE = app<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="ToolTestEntrance.htm">wttestentrancemenudialog</a>.h \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="ToolTestEntrance.htm">wttestentrancemaindialog</a>.h<br/>
 <br/>
-<a href="CppRESOURCES.htm">RESOURCES</a> += \<br/>
+<a href="CppQmakeResources.htm">RESOURCES</a> += \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="ToolTestEntrance.htm">ToolTestEntrance</a>.qrc<br/>
 </code></td></tr></table>
 <!-- end of the code -->
@@ -131,7 +131,7 @@ TEMPLATE = app<br/>
 <table summary="testentrancemenudialog.h" border = "1"><tr><td><code>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">/*</a><br/>
-<a href="ToolTestEntrance.htm">TestEntrance</a>, <a href="Tools.htm">tool</a> to test <a href="CppWtEntrance.htm">WtEntrance</a><br/>
+<a href="ToolTestEntrance.html">TestEntrance</a>, <a href="Tools.htm">tool</a> to test <a href="CppWtEntrance.html">WtEntrance</a><br/>
 Copyright (C) 2011 Richel Bilderbeek<br/>
 <br/>
 This program is free software: you can redistribute it and/or modify<br/>
@@ -147,38 +147,38 @@ You should have received a copy of the GNU General Public License<br/>
 along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">*/</a><br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="ToolTestEntrance.htm">ToolTestEntrance</a>.htm<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="ToolTestEntrance.html">ToolTestEntrance</a>.html<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppIfndef.htm">#ifndef</a> TESTENTRANCEMENUDIALOG_H<br/>
-<a href="CppDefine.htm">#define</a> TESTENTRANCEMENUDIALOG_H<br/>
+<a href="CppIfndef.html">#ifndef</a> TESTENTRANCEMENUDIALOG_H<br/>
+<a href="CppDefine.html">#define</a> TESTENTRANCEMENUDIALOG_H<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppStringH.htm">string</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppStringH.html">string</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppVectorH.html">vector</a>&gt;<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppAbout.htm">about</a>.h"<br/>
+<a href="CppInclude.html">#include</a> "<a href="CppAbout.html">about</a><a href="CppHeaderFile.htm">.h</a>"<br/>
 <br/>
-<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
+<b><a href="CppNamespace.html">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
 <br/>
-<b><a href="CppNamespace.htm">namespace</a></b> <a href="ToolTestEntrance.htm">ToolTestEntrance</a> {<br/>
+<b><a href="CppNamespace.html">namespace</a></b> <a href="ToolTestEntrance.html">ToolTestEntrance</a> {<br/>
 <br/>
 <a href="CppComment.htm">///</a>The GUI independent part of the menu<br/>
-<b><a href="CppStruct.htm">struct</a></b> MenuDialog<br/>
+<b><a href="CppStruct.html">struct</a></b> MenuDialog<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Get <b><a href="CppThis.htm">this</a></b> <b><a href="CppClass.htm">class</a></b> its <a href="CppVersion.htm">version</a><br/>
-&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> Get<a href="CppVersion.htm">Version</a>();<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Get <b><a href="CppThis.htm">this</a></b> <b><a href="CppClass.html">class</a></b> its <a href="CppVersion.html">version</a><br/>
+&nbsp;&nbsp;<b><a href="CppStatic.html">static</a></b> <b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a> Get<a href="CppVersion.html">Version</a>();<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Get <b><a href="CppThis.htm">this</a></b> <b><a href="CppClass.htm">class</a></b> its <a href="CppVersion.htm">version</a> history<br/>
-&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; Get<a href="CppVersion.htm">Version</a>History();<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Get <b><a href="CppThis.htm">this</a></b> <b><a href="CppClass.html">class</a></b> its <a href="CppVersion.html">version</a> history<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.html">static</a></b> <b><a href="CppConst.html">const</a></b> <a href="CppVector.html">std::vector</a>&lt;<a href="CppString.html">std::string</a>&gt; Get<a href="CppVersion.html">Version</a>History();<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Get <b><a href="CppThis.htm">this</a></b> <b><a href="CppClass.htm">class</a></b> its <a href="CppAbout.htm">About</a><br/>
-&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppAbout.htm">About</a> GetAbout();<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Get <b><a href="CppThis.htm">this</a></b> <b><a href="CppClass.html">class</a></b> its <a href="CppAbout.html">About</a><br/>
+&nbsp;&nbsp;<b><a href="CppStatic.html">static</a></b> <b><a href="CppConst.html">const</a></b> <a href="CppAbout.html">About</a> GetAbout();<br/>
 };<br/>
 <br/>
-} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="ToolTestEntrance.htm">ToolTestEntrance</a><br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.html">namespace</a></b> <a href="ToolTestEntrance.html">ToolTestEntrance</a><br/>
 <br/>
-} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.html">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
 <br/>
-<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> TESTENTRANCEMENUDIALOG_H<br/>
+<a href="CppEndif.html">#endif</a> <a href="CppComment.htm">//</a> TESTENTRANCEMENUDIALOG_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -192,7 +192,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <table summary="testentrancemenudialog.cpp" border = "1"><tr><td><code>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">/*</a><br/>
-<a href="ToolTestEntrance.htm">TestEntrance</a>, <a href="Tools.htm">tool</a> to test <a href="CppWtEntrance.htm">WtEntrance</a><br/>
+<a href="ToolTestEntrance.html">TestEntrance</a>, <a href="Tools.htm">tool</a> to test <a href="CppWtEntrance.html">WtEntrance</a><br/>
 Copyright (C) 2011 Richel Bilderbeek<br/>
 <br/>
 This program is free software: you can redistribute it and/or modify<br/>
@@ -208,38 +208,38 @@ You should have received a copy of the GNU General Public License<br/>
 along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">*/</a><br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="ToolTestEntrance.htm">ToolTestEntrance</a>.htm<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="ToolTestEntrance.html">ToolTestEntrance</a>.html<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppAbout.htm">about</a>.h"<br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppIpaddress.htm">ipaddress</a>.h"<br/>
-<a href="CppInclude.htm">#include</a> "<a href="ToolTestEntrance.htm">testentrancemenudialog</a>.h"<br/>
+<a href="CppInclude.html">#include</a> "<a href="CppAbout.html">about</a><a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "<a href="CppIpaddress.html">ipaddress</a><a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "<a href="ToolTestEntrance.html">testentrancemenudialog</a><a href="CppHeaderFile.htm">.h</a>"<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppAbout.htm">About</a> <a href="CppRibi.htm">ribi</a>::<a href="ToolTestEntrance.htm">ToolTestEntrance</a>::MenuDialog::GetAbout()<br/>
+<b><a href="CppConst.html">const</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppAbout.html">About</a> <a href="CppRibi.htm">ribi</a>::<a href="ToolTestEntrance.html">ToolTestEntrance</a>::MenuDialog::GetAbout()<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppAbout.htm">About</a> a(<br/>
+&nbsp;&nbsp;<a href="CppAbout.html">About</a> a(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;"Richel Bilderbeek",<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;"<a href="ToolTestEntrance.htm">TestEntrance</a>",<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;"<a href="Tools.htm">tool</a> to test <a href="CppWtEntrance.htm">WtEntrance</a>",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"<a href="ToolTestEntrance.html">TestEntrance</a>",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"<a href="Tools.htm">tool</a> to test <a href="CppWtEntrance.html">WtEntrance</a>",<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;"the 19th of September 2011",<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;"2011",<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;"http://www.richelbilderbeek.nl/<a href="ToolTestEntrance.htm">ToolTestEntrance</a>.htm",<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;Get<a href="CppVersion.htm">Version</a>(),<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;Get<a href="CppVersion.htm">Version</a>History());<br/>
-&nbsp;&nbsp;a.<a href="CppAdd.htm">Add</a><a href="CppLibrary.htm">Library</a>("<a href="CppIpAddress.htm">IpAddress</a> <a href="CppVersion.htm">version</a>: " <a href="CppOperatorPlus.htm">+</a> <a href="CppIpAddress.htm">IpAddress</a>::Get<a href="CppVersion.htm">Version</a>());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"http://www.richelbilderbeek.nl/<a href="ToolTestEntrance.html">ToolTestEntrance</a>.html",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Get<a href="CppVersion.html">Version</a>(),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Get<a href="CppVersion.html">Version</a>History());<br/>
+&nbsp;&nbsp;a.<a href="CppAdd.htm">Add</a><a href="CppLibrary.html">Library</a>("<a href="CppIpAddress.html">IpAddress</a> <a href="CppVersion.html">version</a>: " <a href="CppOperatorPlus.htm">+</a> <a href="CppIpAddress.html">IpAddress</a>::Get<a href="CppVersion.html">Version</a>());<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> a;<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> a;<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppRibi.htm">ribi</a>::<a href="ToolTestEntrance.htm">ToolTestEntrance</a>::MenuDialog::Get<a href="CppVersion.htm">Version</a>()<br/>
+<b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a> <a href="CppRibi.htm">ribi</a>::<a href="ToolTestEntrance.html">ToolTestEntrance</a>::MenuDialog::Get<a href="CppVersion.html">Version</a>()<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> "1.0";<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> "1.0";<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm">ribi</a>::<a href="ToolTestEntrance.htm">ToolTestEntrance</a>::MenuDialog::Get<a href="CppVersion.htm">Version</a>History()<br/>
+<b><a href="CppConst.html">const</a></b> <a href="CppVector.html">std::vector</a>&lt;<a href="CppString.html">std::string</a>&gt; <a href="CppRibi.htm">ribi</a>::<a href="ToolTestEntrance.html">ToolTestEntrance</a>::MenuDialog::Get<a href="CppVersion.html">Version</a>History()<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v;<br/>
-&nbsp;&nbsp;v.push_back("2011-09-19: <a href="CppVersion.htm">Version</a> 1.0: initial <a href="CppVersion.htm">version</a>");<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
+&nbsp;&nbsp;<a href="CppVector.html">std::vector</a>&lt;<a href="CppString.html">std::string</a>&gt; v;<br/>
+&nbsp;&nbsp;v.push_back("2011-09-19: <a href="CppVersion.html">Version</a> 1.0: initial <a href="CppVersion.html">version</a>");<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> v;<br/>
 }<br/>
 </code></td></tr></table>
 <!-- end of the code -->
@@ -254,7 +254,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <table summary="wtmain.cpp" border = "1"><tr><td><code>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">/*</a><br/>
-<a href="ToolTestEntrance.htm">TestEntrance</a>, <a href="Tools.htm">tool</a> to test <a href="CppWtEntrance.htm">WtEntrance</a><br/>
+<a href="ToolTestEntrance.html">TestEntrance</a>, <a href="Tools.htm">tool</a> to test <a href="CppWtEntrance.html">WtEntrance</a><br/>
 Copyright (C) 2011 Richel Bilderbeek<br/>
 <br/>
 This program is free software: you can redistribute it and/or modify<br/>
@@ -270,45 +270,45 @@ You should have received a copy of the GNU General Public License<br/>
 along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">*/</a><br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="ToolTestEntrance.htm">ToolTestEntrance</a>.htm<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="ToolTestEntrance.html">ToolTestEntrance</a>.html<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppIostreamH.htm">iostream</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppIostreamH.html">iostream</a>&gt;<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppProgram_options.htm">boost/program_options.hpp</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppProgram_options.html">boost/program_options<a href="CppHeaderFile.htm">.h</a>pp</a>&gt;<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWApplication.htm">WApplication</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWEnvironment.htm">WEnvironment</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWText.htm">WText</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWApplication.html">WApplication</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWEnvironment.html">WEnvironment</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWText.html">WText</a>&gt;<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppIpaddress.htm">ipaddress</a>.h"<br/>
-<a href="CppInclude.htm">#include</a> "<a href="ToolTestEntrance.htm">wttestentrancemenudialog</a>.h"<br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppWtAutoConfig.htm">wtautoconfig</a>.h"<br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppWtEntrance.htm">wtentrance</a>.h"<br/>
+<a href="CppInclude.html">#include</a> "<a href="CppIpaddress.html">ipaddress</a><a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "<a href="ToolTestEntrance.html">wttestentrancemenudialog</a><a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "<a href="CppWtAutoConfig.html">wtautoconfig</a><a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "<a href="CppWtEntrance.html">wtentrance</a><a href="CppHeaderFile.htm">.h</a>"<br/>
 <br/>
-<b><a href="CppStruct.htm">struct</a></b> <a href="CppWt.htm">Wt</a><a href="CppApplication.htm">Application</a> : <b><a href="CppPublic.htm">public</a></b> <a href="CppWApplication.htm">Wt::WApplication</a><br/>
+<b><a href="CppStruct.html">struct</a></b> <a href="CppWt.htm">Wt</a><a href="CppApplication.html">Application</a> : <b><a href="CppPublic.html">public</a></b> <a href="CppWApplication.html">Wt::WApplication</a><br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppWt.htm">Wt</a><a href="CppApplication.htm">Application</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppWEnvironment.htm">Wt::WEnvironment</a>&amp; env)<br/>
-&nbsp;&nbsp;: <a href="CppWApplication.htm">WApplication</a>(env)<br/>
+&nbsp;&nbsp;<a href="CppWt.htm">Wt</a><a href="CppApplication.html">Application</a>(<b><a href="CppConst.html">const</a></b> <a href="CppWEnvironment.html">Wt::WEnvironment</a>&amp; env)<br/>
+&nbsp;&nbsp;: <a href="CppWApplication.html">WApplication</a>(env)<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;setTitle("<a href="ToolTestEntrance.htm">TestEntrance</a>");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;setTitle("<a href="ToolTestEntrance.html">TestEntrance</a>");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;useStyleSheet("wt.css");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> <a href="CppIpAddress.htm">IpAddress</a>&gt; ip_address(<b><a href="CppNew.htm">new</a></b> <a href="CppIpAddress.htm">IpAddress</a>(env.client<a href="CppAddress.htm">Address</a>()));<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppWtEntrance.htm">WtEntrance</a>::Get()-&gt;Visit(ip_address.get());<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;root()-&gt;addWidget(<b><a href="CppNew.htm">new</a></b> <a href="ToolTestEntrance.htm">ToolTestEntrance</a>::WtMenuDialog(ip_address));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBoostShared_ptr.html">boost::shared_ptr</a>&lt;<b><a href="CppConst.html">const</a></b> <a href="CppIpAddress.html">IpAddress</a>&gt; ip_address(<b><a href="CppNew.htm">new</a></b> <a href="CppIpAddress.html">IpAddress</a>(env.client<a href="CppAddress.html">Address</a>()));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppWtEntrance.html">WtEntrance</a>::Get()-&gt;Visit(ip_address.get());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;root()-&gt;addWidget(<b><a href="CppNew.htm">new</a></b> <a href="ToolTestEntrance.html">ToolTestEntrance</a>::WtMenuDialog(ip_address));<br/>
 &nbsp;&nbsp;}<br/>
 };<br/>
 <br/>
-<a href="CppWApplication.htm">Wt::WApplication</a> *create<a href="CppApplication.htm">Application</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppWEnvironment.htm">Wt::WEnvironment</a>&amp; env)<br/>
+<a href="CppWApplication.html">Wt::WApplication</a> *create<a href="CppApplication.html">Application</a>(<b><a href="CppConst.html">const</a></b> <a href="CppWEnvironment.html">Wt::WEnvironment</a>&amp; env)<br/>
 {<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <b><a href="CppNew.htm">new</a></b> <a href="CppWt.htm">Wt</a><a href="CppApplication.htm">Application</a>(env);<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> <b><a href="CppNew.htm">new</a></b> <a href="CppWt.htm">Wt</a><a href="CppApplication.html">Application</a>(env);<br/>
 }<br/>
 <br/>
-<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>(<b><a href="CppInt.htm">int</a></b> <a href="CppArgc.htm">argc</a>, <b><a href="CppChar.htm">char</a></b> **<a href="CppArgc.htm">argv</a>)<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a>(<b><a href="CppInt.htm">int</a></b> <a href="CppArgc.htm">argc</a>, <b><a href="CppChar.htm">char</a></b> **<a href="CppArgc.htm">argv</a>)<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppWtAutoConfig.htm">WtAutoConfig</a>::SaveDefaultStylesheet();<br/>
-&nbsp;&nbsp;<a href="CppWtAutoConfig.htm">WtAutoConfig</a> a(<a href="CppArgc.htm">argc</a>,<a href="CppArgc.htm">argv</a>,create<a href="CppApplication.htm">Application</a>);<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> a.Run();<br/>
+&nbsp;&nbsp;<a href="CppWtAutoConfig.html">WtAutoConfig</a>::SaveDefaultStylesheet();<br/>
+&nbsp;&nbsp;<a href="CppWtAutoConfig.html">WtAutoConfig</a> a(<a href="CppArgc.htm">argc</a>,<a href="CppArgc.htm">argv</a>,create<a href="CppApplication.html">Application</a>);<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> a.Run();<br/>
 }<br/>
 </code></td></tr></table>
 <!-- end of the code -->
@@ -323,7 +323,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <table summary="wttestentrancemaindialog.h" border = "1"><tr><td><code>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">/*</a><br/>
-<a href="ToolTestEntrance.htm">TestEntrance</a>, <a href="Tools.htm">tool</a> to test <a href="CppWtEntrance.htm">WtEntrance</a><br/>
+<a href="ToolTestEntrance.html">TestEntrance</a>, <a href="Tools.htm">tool</a> to test <a href="CppWtEntrance.html">WtEntrance</a><br/>
 Copyright (C) 2011 Richel Bilderbeek<br/>
 <br/>
 This program is free software: you can redistribute it and/or modify<br/>
@@ -339,40 +339,33 @@ You should have received a copy of the GNU General Public License<br/>
 along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">*/</a><br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="ToolTestEntrance.htm">ToolTestEntrance</a>.htm<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="ToolTestEntrance.html">ToolTestEntrance</a>.html<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppIfndef.htm">#ifndef</a> WTTESTENTRANCEMAINDIALOG_H<br/>
-<a href="CppDefine.htm">#define</a> WTTESTENTRANCEMAINDIALOG_H<br/>
+<a href="CppIfndef.html">#ifndef</a> WTTESTENTRANCEMAINDIALOG_H<br/>
+<a href="CppDefine.html">#define</a> WTTESTENTRANCEMAINDIALOG_H<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWContainerWidget.htm">WContainerWidget</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWContainerWidget.html">WContainerWidget</a>&gt;<br/>
 <br/>
-<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppWt.htm">Wt</a><br/>
+<b><a href="CppNamespace.html">namespace</a></b> <a href="CppWt.htm">Wt</a><br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppStruct.htm">struct</a></b> <a href="CppWLineEdit.htm">WLineEdit</a>;<br/>
+&nbsp;&nbsp;<b><a href="CppStruct.html">struct</a></b> <a href="CppWLineEdit.html">WLineEdit</a>;<br/>
 }<br/>
 <br/>
-<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
+<b><a href="CppNamespace.html">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
 <br/>
-<b><a href="CppStruct.htm">struct</a></b> <a href="CppIpAddress.htm">IpAddress</a>;<br/>
+<b><a href="CppStruct.html">struct</a></b> <a href="CppIpAddress.html">IpAddress</a>;<br/>
 <br/>
-<b><a href="CppNamespace.htm">namespace</a></b> <a href="ToolTestEntrance.htm">ToolTestEntrance</a> {<br/>
+<b><a href="CppNamespace.html">namespace</a></b> <a href="ToolTestEntrance.html">ToolTestEntrance</a> {<br/>
 <br/>
-<a href="CppComment.htm">///</a><a href="ToolTestEntrance.htm">TestEntrance</a> its <a href="CppMain.htm">main</a> dialog<br/>
-<b><a href="CppStruct.htm">struct</a></b> WtMainDialog : <b><a href="CppPublic.htm">public</a></b> <a href="CppWContainerWidget.htm">Wt::WContainerWidget</a><br/>
+<a href="CppComment.htm">///</a><a href="ToolTestEntrance.html">TestEntrance</a> its <a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a> dialog<br/>
+<b><a href="CppStruct.html">struct</a></b> WtMainDialog : <b><a href="CppPublic.html">public</a></b> <a href="CppWContainerWidget.html">Wt::WContainerWidget</a><br/>
 {<br/>
-&nbsp;&nbsp;WtMainDialog(<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> <a href="CppIpAddress.htm">IpAddress</a>&gt; ip_address);<br/>
+&nbsp;&nbsp;WtMainDialog(<a href="CppBoostShared_ptr.html">boost::shared_ptr</a>&lt;<b><a href="CppConst.html">const</a></b> <a href="CppIpAddress.html">IpAddress</a>&gt; ip_address);<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppPrivate.htm">private</a></b>:<br/>
-&nbsp;&nbsp;<b><a href="CppStruct.htm">struct</a></b> Ui<br/>
-&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;Ui();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppWLineEdit.htm">Wt::WLineEdit</a> * <b><a href="CppConst.htm">const</a></b> m_edit;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppWContainerWidget.htm">Wt::WContainerWidget</a> * <b><a href="CppConst.htm">const</a></b> m_view_names_dialog;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppWContainerWidget.htm">Wt::WContainerWidget</a> * <b><a href="CppConst.htm">const</a></b> m_view_visits_dialog;<br/>
-&nbsp;&nbsp;} ui;<br/>
+&nbsp;&nbsp;<b><a href="CppPrivate.html">private</a></b>:<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/Create the Welcome dialog<br/>
-&nbsp;&nbsp;<a href="CppWWidget.htm">Wt::WWidget</a> * CreateNewWelcomeDialog();<br/>
+&nbsp;&nbsp;<a href="CppWWidget.html">Wt::WWidget</a> * CreateNewWelcomeDialog();<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/Respond to the user changing the name edit<br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> OnEditChanged();<br/>
@@ -383,14 +376,22 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/Respond to a <b><a href="CppNew.htm">new</a></b> visitor<br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> OnNewVisit();<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> <a href="CppIpAddress.htm">IpAddress</a>&gt; m_ip_address;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppBoostShared_ptr.html">boost::shared_ptr</a>&lt;<b><a href="CppConst.html">const</a></b> <a href="CppIpAddress.html">IpAddress</a>&gt; m_ip_address;<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppStruct.html">struct</a></b> Ui<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Ui();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppWLineEdit.html">Wt::WLineEdit</a> * <b><a href="CppConst.html">const</a></b> m_edit;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppWContainerWidget.html">Wt::WContainerWidget</a> * <b><a href="CppConst.html">const</a></b> m_view_names_dialog;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppWContainerWidget.html">Wt::WContainerWidget</a> * <b><a href="CppConst.html">const</a></b> m_view_visits_dialog;<br/>
+&nbsp;&nbsp;} ui;<br/>
 };<br/>
 <br/>
-} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="ToolTestEntrance.htm">ToolTestEntrance</a><br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.html">namespace</a></b> <a href="ToolTestEntrance.html">ToolTestEntrance</a><br/>
 <br/>
-} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.html">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
 <br/>
-<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> WTTESTENTRANCEMAINDIALOG_H<br/>
+<a href="CppEndif.html">#endif</a> <a href="CppComment.htm">//</a> WTTESTENTRANCEMAINDIALOG_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -404,7 +405,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <table summary="wttestentrancemaindialog.cpp" border = "1"><tr><td><code>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">/*</a><br/>
-<a href="ToolTestEntrance.htm">TestEntrance</a>, <a href="Tools.htm">tool</a> to test <a href="CppWtEntrance.htm">WtEntrance</a><br/>
+<a href="ToolTestEntrance.html">TestEntrance</a>, <a href="Tools.htm">tool</a> to test <a href="CppWtEntrance.html">WtEntrance</a><br/>
 Copyright (C) 2011 Richel Bilderbeek<br/>
 <br/>
 This program is free software: you can redistribute it and/or modify<br/>
@@ -420,152 +421,153 @@ You should have received a copy of the GNU General Public License<br/>
 along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">*/</a><br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="ToolTestEntrance.htm">ToolTestEntrance</a>.htm<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="ToolTestEntrance.html">ToolTestEntrance</a>.html<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppCassertH.html">cassert</a>&gt;<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppAlgorithm.htm">algorithm</a>/string/trim.hpp&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppLexical_cast.htm">lexical_cast</a>.hpp&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/numeric/con<a href="CppVersion.htm">version</a>/cast.hpp&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppBoost.html">boost</a>/<a href="CppAlgorithm.html">algorithm</a>/string/trim<a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppBoost.html">boost</a>/<a href="CppLexical_cast.html">lexical_cast</a><a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppBoost.html">boost</a>/numeric/con<a href="CppVersion.html">version</a>/cast<a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWBreak.htm">WBreak</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWContainerWidget.htm">WContainerWidget</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWLabel.htm">WLabel</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWLineEdit.htm">WLineEdit</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWMenu.htm">WMenu</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWMenuItem.htm">WMenuItem</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWStackedWidget.htm">WStackedWidget</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWTable.htm">WTable</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWTableRow.htm">WTableRow</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWBreak.html">WBreak</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWContainerWidget.html">WContainerWidget</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWLabel.html">WLabel</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWLineEdit.html">WLineEdit</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWMenu.html">WMenu</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWMenuItem.html">WMenuItem</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWStackedWidget.html">WStackedWidget</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWTable.html">WTable</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWTableRow.html">WTableRow</a>&gt;<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppIpaddress.htm">ipaddress</a>.h"<br/>
-<a href="CppInclude.htm">#include</a> "<a href="ToolTestEntrance.htm">testentrancemenudialog</a>.h"<br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppWtEntrance.htm">wtentrance</a>.h"<br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppWtAboutDialog.htm">wtaboutdialog</a>.h"<br/>
-<a href="CppInclude.htm">#include</a> "<a href="ToolTestEntrance.htm">wttestentrancemaindialog</a>.h"<br/>
+<a href="CppInclude.html">#include</a> "<a href="CppIpaddress.html">ipaddress</a><a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "<a href="ToolTestEntrance.html">testentrancemenudialog</a><a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "<a href="CppWtEntrance.html">wtentrance</a><a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "<a href="CppWtAboutDialog.html">wtaboutdialog</a><a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "<a href="ToolTestEntrance.html">wttestentrancemaindialog</a><a href="CppHeaderFile.htm">.h</a>"<br/>
 <br/>
-<a href="CppRibi.htm">ribi</a>::<a href="ToolTestEntrance.htm">ToolTestEntrance</a>::WtMainDialog::<a href="CppUi.htm">Ui</a>::Ui()<br/>
-&nbsp;&nbsp;: m_edit(<b><a href="CppNew.htm">new</a></b> <a href="CppWLineEdit.htm">Wt::WLineEdit</a>),<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;m_view_names_dialog(<b><a href="CppNew.htm">new</a></b> <a href="CppWContainerWidget.htm">Wt::WContainerWidget</a>),<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;m_view_visits_dialog(<b><a href="CppNew.htm">new</a></b> <a href="CppWContainerWidget.htm">Wt::WContainerWidget</a>)<br/>
+<a href="CppRibi.htm">ribi</a>::<a href="ToolTestEntrance.html">ToolTestEntrance</a>::WtMainDialog::<a href="CppUi.htm">Ui</a>::Ui()<br/>
+&nbsp;&nbsp;: m_edit(<b><a href="CppNew.htm">new</a></b> <a href="CppWLineEdit.html">Wt::WLineEdit</a>),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_view_names_dialog(<b><a href="CppNew.htm">new</a></b> <a href="CppWContainerWidget.html">Wt::WContainerWidget</a>),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_view_visits_dialog(<b><a href="CppNew.htm">new</a></b> <a href="CppWContainerWidget.html">Wt::WContainerWidget</a>)<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(m_view_visits_dialog);<br/>
-&nbsp;&nbsp;m_edit-&gt;setMinimumSize(400,<a href="CppWLength.htm">Wt::WLength</a>::Auto);<br/>
+&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(m_view_visits_dialog);<br/>
+&nbsp;&nbsp;m_edit-&gt;setMinimumSize(400,<a href="CppWLength.html">Wt::WLength</a>::Auto);<br/>
 }<br/>
 <br/>
-<a href="CppRibi.htm">ribi</a>::<a href="ToolTestEntrance.htm">ToolTestEntrance</a>::WtMainDialog::WtMainDialog(<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> <a href="CppIpAddress.htm">IpAddress</a>&gt; ip_address)<br/>
- :&nbsp;&nbsp;m_ip_address(ip_address)<br/>
+<a href="CppRibi.htm">ribi</a>::<a href="ToolTestEntrance.html">ToolTestEntrance</a>::WtMainDialog::WtMainDialog(<a href="CppBoostShared_ptr.html">boost::shared_ptr</a>&lt;<b><a href="CppConst.html">const</a></b> <a href="CppIpAddress.html">IpAddress</a>&gt; ip_address)<br/>
+ :&nbsp;&nbsp;m_ip_address(ip_address),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;ui{}<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(ip_address);<br/>
+&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(ip_address);<br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;setContentAlignment(<a href="CppWt.htm">Wt</a>::AlignCenter);<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Menu<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppWStackedWidget.htm">Wt::WStackedWidget</a> * <b><a href="CppConst.htm">const</a></b> contents <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppWStackedWidget.htm">Wt::WStackedWidget</a>;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppWMenu.htm">Wt::WMenu</a> * <b><a href="CppConst.htm">const</a></b> menu <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppWMenu.htm">Wt::WMenu</a>(contents,<a href="CppWt.htm">Wt</a>::Horizontal);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppWStackedWidget.html">Wt::WStackedWidget</a> * <b><a href="CppConst.html">const</a></b> contents <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppWStackedWidget.html">Wt::WStackedWidget</a>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppWMenu.html">Wt::WMenu</a> * <b><a href="CppConst.html">const</a></b> menu <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppWMenu.html">Wt::WMenu</a>(contents,<a href="CppWt.htm">Wt</a>::Horizontal);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;menu-&gt;setStyleClass("menu");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 <br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppWMenuItem.htm">Wt::WMenuItem</a> * <b><a href="CppConst.htm">const</a></b> item <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppWMenuItem.htm">Wt::WMenuItem</a>(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppWMenuItem.html">Wt::WMenuItem</a> * <b><a href="CppConst.html">const</a></b> item <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppWMenuItem.html">Wt::WMenuItem</a>(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Welcome",<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CreateNewWelcomeDialog());<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;menu-&gt;addItem(item);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppWMenuItem.htm">Wt::WMenuItem</a> * <b><a href="CppConst.htm">const</a></b> item <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppWMenuItem.htm">Wt::WMenuItem</a>(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppWMenuItem.html">Wt::WMenuItem</a> * <b><a href="CppConst.html">const</a></b> item <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppWMenuItem.html">Wt::WMenuItem</a>(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"View names",<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ui.m_view_names_dialog);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;menu-&gt;addItem(item);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(ui.m_view_visits_dialog);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppWMenuItem.htm">Wt::WMenuItem</a> * <b><a href="CppConst.htm">const</a></b> item <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppWMenuItem.htm">Wt::WMenuItem</a>(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(ui.m_view_visits_dialog);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppWMenuItem.html">Wt::WMenuItem</a> * <b><a href="CppConst.html">const</a></b> item <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppWMenuItem.html">Wt::WMenuItem</a>(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"View visits",<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ui.m_view_visits_dialog);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;menu-&gt;addItem(item);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Display menu on top<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;addWidget(menu);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;addWidget(<b><a href="CppNew.htm">new</a></b> <a href="CppWBreak.htm">Wt::WBreak</a>);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;addWidget(<b><a href="CppNew.htm">new</a></b> <a href="CppWBreak.html">Wt::WBreak</a>);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Display contents below menu<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;addWidget(contents);<br/>
 &nbsp;&nbsp;}<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>DO NOT MAKE THESE CONNECTIONS!<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>When closing the page, and opening one again,<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>these <b><a href="CppQtSignals.htm">signals</a></b> connect to the old page!<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppWtEntrance.htm">WtEntrance</a>::Get()-&gt;m_signal_name_changed.connect(<a href="CppBind.htm">boost::bind</a>(<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>&nbsp;&nbsp;&amp;<a href="CppRibi.htm">ribi</a>::<a href="ToolTestEntrance.htm">ToolTestEntrance</a>::WtMainDialog::OnNewName,<b><a href="CppThis.htm">this</a></b>));<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>these <b><a href="CppQtSignals.html">signals</a></b> connect to the old page!<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppWtEntrance.html">WtEntrance</a>::Get()-&gt;m_signal_name_changed.connect(<a href="CppBind.html">boost::bind</a>(<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>&nbsp;&nbsp;&amp;<a href="CppRibi.htm">ribi</a>::<a href="ToolTestEntrance.html">ToolTestEntrance</a>::WtMainDialog::OnNewName,<b><a href="CppThis.htm">this</a></b>));<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppWtEntrance.htm">WtEntrance</a>::Get()-&gt;m_signal_new_visit.connect(<a href="CppBind.htm">boost::bind</a>(<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>&nbsp;&nbsp;&amp;<a href="CppRibi.htm">ribi</a>::<a href="ToolTestEntrance.htm">ToolTestEntrance</a>::WtMainDialog::OnNewVisit,<b><a href="CppThis.htm">this</a></b>));<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppWtEntrance.html">WtEntrance</a>::Get()-&gt;m_signal_new_visit.connect(<a href="CppBind.html">boost::bind</a>(<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>&nbsp;&nbsp;&amp;<a href="CppRibi.htm">ribi</a>::<a href="ToolTestEntrance.html">ToolTestEntrance</a>::WtMainDialog::OnNewVisit,<b><a href="CppThis.htm">this</a></b>));<br/>
 <br/>
 &nbsp;&nbsp;OnEditChanged();<br/>
 &nbsp;&nbsp;OnNewName();<br/>
 &nbsp;&nbsp;OnNewVisit();<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="ToolTestEntrance.htm">ToolTestEntrance</a>::WtMainDialog::OnNewName()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="ToolTestEntrance.html">ToolTestEntrance</a>::WtMainDialog::OnNewName()<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(ui.m_view_names_dialog);<br/>
+&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(ui.m_view_names_dialog);<br/>
 &nbsp;&nbsp;ui.m_view_names_dialog-&gt;clear();<br/>
-&nbsp;&nbsp;ui.m_view_names_dialog-&gt;addWidget(<b><a href="CppNew.htm">new</a></b> <a href="CppWBreak.htm">Wt::WBreak</a>);<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppPair.htm">std::pair</a>&lt;<a href="CppString.htm">std::string</a>,<a href="CppString.htm">std::string</a>&gt; &gt; v<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <a href="CppWtEntrance.htm">WtEntrance</a>::Get()-&gt;GetNames();<br/>
-&nbsp;&nbsp;<a href="CppFor_each.htm">std::for_each</a>(v.begin(),v.end(),<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;[<b><a href="CppThis.htm">this</a></b>](<b><a href="CppConst.htm">const</a></b> <a href="CppPair.htm">std::pair</a>&lt;<a href="CppString.htm">std::string</a>,<a href="CppString.htm">std::string</a>&gt;&amp; p)<br/>
+&nbsp;&nbsp;ui.m_view_names_dialog-&gt;addWidget(<b><a href="CppNew.htm">new</a></b> <a href="CppWBreak.html">Wt::WBreak</a>);<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppVector.html">std::vector</a>&lt;<a href="CppPair.html">std::pair</a>&lt;<a href="CppString.html">std::string</a>,<a href="CppString.html">std::string</a>&gt; &gt; v<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <a href="CppWtEntrance.html">WtEntrance</a>::Get()-&gt;GetNames();<br/>
+&nbsp;&nbsp;<a href="CppFor_each.html">std::for_each</a>(v.begin(),v.end(),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;[<b><a href="CppThis.htm">this</a></b>](<b><a href="CppConst.html">const</a></b> <a href="CppPair.html">std::pair</a>&lt;<a href="CppString.html">std::string</a>,<a href="CppString.html">std::string</a>&gt;&amp; p)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> s<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a> s<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> p.first<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> <a href="CppString.htm">std::string</a>(": ")<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> <a href="CppString.html">std::string</a>(": ")<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> p.second;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ui.m_view_names_dialog-&gt;addWidget(<b><a href="CppNew.htm">new</a></b> <a href="CppWLabel.htm">Wt::WLabel</a>(s.c_str()));<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ui.m_view_names_dialog-&gt;addWidget(<b><a href="CppNew.htm">new</a></b> <a href="CppWBreak.htm">Wt::WBreak</a>);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ui.m_view_names_dialog-&gt;addWidget(<b><a href="CppNew.htm">new</a></b> <a href="CppWLabel.html">Wt::WLabel</a>(s.c_str()));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ui.m_view_names_dialog-&gt;addWidget(<b><a href="CppNew.htm">new</a></b> <a href="CppWBreak.html">Wt::WBreak</a>);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;);<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="ToolTestEntrance.htm">ToolTestEntrance</a>::WtMainDialog::OnNewVisit()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="ToolTestEntrance.html">ToolTestEntrance</a>::WtMainDialog::OnNewVisit()<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(ui.m_view_visits_dialog);<br/>
+&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(ui.m_view_visits_dialog);<br/>
 &nbsp;&nbsp;ui.m_view_visits_dialog-&gt;clear();<br/>
-&nbsp;&nbsp;ui.m_view_visits_dialog-&gt;addWidget(<b><a href="CppNew.htm">new</a></b> <a href="CppWBreak.htm">Wt::WBreak</a>);<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppPair.htm">std::pair</a>&lt;<a href="CppString.htm">std::string</a>,<a href="CppString.htm">std::string</a>&gt; &gt; v<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <a href="CppWtEntrance.htm">WtEntrance</a>::Get()-&gt;GetVisits();<br/>
-&nbsp;&nbsp;<a href="CppFor_each.htm">std::for_each</a>(v.begin(),v.end(),<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;[<b><a href="CppThis.htm">this</a></b>](<b><a href="CppConst.htm">const</a></b> <a href="CppPair.htm">std::pair</a>&lt;<a href="CppString.htm">std::string</a>,<a href="CppString.htm">std::string</a>&gt;&amp; p)<br/>
+&nbsp;&nbsp;ui.m_view_visits_dialog-&gt;addWidget(<b><a href="CppNew.htm">new</a></b> <a href="CppWBreak.html">Wt::WBreak</a>);<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppVector.html">std::vector</a>&lt;<a href="CppPair.html">std::pair</a>&lt;<a href="CppString.html">std::string</a>,<a href="CppString.html">std::string</a>&gt; &gt; v<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <a href="CppWtEntrance.html">WtEntrance</a>::Get()-&gt;GetVisits();<br/>
+&nbsp;&nbsp;<a href="CppFor_each.html">std::for_each</a>(v.begin(),v.end(),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;[<b><a href="CppThis.htm">this</a></b>](<b><a href="CppConst.html">const</a></b> <a href="CppPair.html">std::pair</a>&lt;<a href="CppString.html">std::string</a>,<a href="CppString.html">std::string</a>&gt;&amp; p)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> s<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a> s<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> p.first<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> <a href="CppString.htm">std::string</a>(": ")<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> <a href="CppString.html">std::string</a>(": ")<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> p.second;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ui.m_view_visits_dialog-&gt;addWidget(<b><a href="CppNew.htm">new</a></b> <a href="CppWLabel.htm">Wt::WLabel</a>(s.c_str()));<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ui.m_view_visits_dialog-&gt;addWidget(<b><a href="CppNew.htm">new</a></b> <a href="CppWBreak.htm">Wt::WBreak</a>);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ui.m_view_visits_dialog-&gt;addWidget(<b><a href="CppNew.htm">new</a></b> <a href="CppWLabel.html">Wt::WLabel</a>(s.c_str()));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ui.m_view_visits_dialog-&gt;addWidget(<b><a href="CppNew.htm">new</a></b> <a href="CppWBreak.html">Wt::WBreak</a>);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;);<br/>
 }<br/>
 <br/>
-<a href="CppWWidget.htm">Wt::WWidget</a> * <a href="CppRibi.htm">ribi</a>::<a href="ToolTestEntrance.htm">ToolTestEntrance</a>::WtMainDialog::CreateNewWelcomeDialog()<br/>
+<a href="CppWWidget.html">Wt::WWidget</a> * <a href="CppRibi.htm">ribi</a>::<a href="ToolTestEntrance.html">ToolTestEntrance</a>::WtMainDialog::CreateNewWelcomeDialog()<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppWContainerWidget.htm">Wt::WContainerWidget</a> * dialog <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppWContainerWidget.htm">Wt::WContainerWidget</a>;<br/>
+&nbsp;&nbsp;<a href="CppWContainerWidget.html">Wt::WContainerWidget</a> * dialog <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppWContainerWidget.html">Wt::WContainerWidget</a>;<br/>
 &nbsp;&nbsp;dialog-&gt;setContentAlignment(<a href="CppWt.htm">Wt</a>::AlignCenter);<br/>
-&nbsp;&nbsp;<b><a href="CppNew.htm">new</a></b> <a href="CppWBreak.htm">Wt::WBreak</a>(dialog);<br/>
-&nbsp;&nbsp;<b><a href="CppNew.htm">new</a></b> <a href="CppWLabel.htm">Wt::WLabel</a>("Welcome",dialog);<br/>
+&nbsp;&nbsp;<b><a href="CppNew.htm">new</a></b> <a href="CppWBreak.html">Wt::WBreak</a>(dialog);<br/>
+&nbsp;&nbsp;<b><a href="CppNew.htm">new</a></b> <a href="CppWLabel.html">Wt::WLabel</a>("Welcome",dialog);<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> s <a href="CppOperatorAssign.htm">=</a> <a href="CppWtEntrance.htm">WtEntrance</a>::Get()-&gt;GetName(m_ip_address.get());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a> s <a href="CppOperatorAssign.htm">=</a> <a href="CppWtEntrance.html">WtEntrance</a>::Get()-&gt;GetName(m_ip_address.get());<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;ui.m_edit-&gt;setText(s.c_str());<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;ui.m_edit-&gt;keyWentUp().connect(<b><a href="CppThis.htm">this</a></b>,&amp;<a href="CppRibi.htm">ribi</a>::<a href="ToolTestEntrance.htm">ToolTestEntrance</a>::WtMainDialog::OnEditChanged);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;ui.m_edit-&gt;keyWentUp().connect(<b><a href="CppThis.htm">this</a></b>,&amp;<a href="CppRibi.htm">ribi</a>::<a href="ToolTestEntrance.html">ToolTestEntrance</a>::WtMainDialog::OnEditChanged);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;dialog-&gt;addWidget(ui.m_edit);<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> dialog;<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> dialog;<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="ToolTestEntrance.htm">ToolTestEntrance</a>::WtMainDialog::OnEditChanged()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="ToolTestEntrance.html">ToolTestEntrance</a>::WtMainDialog::OnEditChanged()<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppString.htm">std::string</a> s <a href="CppOperatorAssign.htm">=</a> ui.m_edit-&gt;text().toUTF8();<br/>
-&nbsp;&nbsp;<a href="CppReplace.htm">std::replace</a>(s.begin(),s.end(),',',' ');<br/>
-&nbsp;&nbsp;s <a href="CppOperatorAssign.htm">=</a> <a href="CppBoost.htm">boost</a>::<a href="CppAlgorithm.htm">algorithm</a>::trim_copy(s);<br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (s.empty()) <b><a href="CppReturn.htm">return</a></b>;<br/>
-&nbsp;&nbsp;<a href="CppWtEntrance.htm">WtEntrance</a>::Get()-&gt;SetName(m_ip_address.get(),s);<br/>
+&nbsp;&nbsp;<a href="CppString.html">std::string</a> s <a href="CppOperatorAssign.htm">=</a> ui.m_edit-&gt;text().toUTF8();<br/>
+&nbsp;&nbsp;<a href="CppReplace.html">std::replace</a>(s.begin(),s.end(),',',' ');<br/>
+&nbsp;&nbsp;s <a href="CppOperatorAssign.htm">=</a> <a href="CppBoost.html">boost</a>::<a href="CppAlgorithm.html">algorithm</a>::trim_copy(s);<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (s.empty()) <b><a href="CppReturn.html">return</a></b>;<br/>
+&nbsp;&nbsp;<a href="CppWtEntrance.html">WtEntrance</a>::Get()-&gt;SetName(m_ip_address.get(),s);<br/>
 &nbsp;&nbsp;OnNewName();<br/>
 }<br/>
 </code></td></tr></table>
@@ -581,7 +583,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <table summary="wttestentrancemenudialog.h" border = "1"><tr><td><code>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">/*</a><br/>
-<a href="ToolTestEntrance.htm">TestEntrance</a>, <a href="Tools.htm">tool</a> to test <a href="CppWtEntrance.htm">WtEntrance</a><br/>
+<a href="ToolTestEntrance.html">TestEntrance</a>, <a href="Tools.htm">tool</a> to test <a href="CppWtEntrance.html">WtEntrance</a><br/>
 Copyright (C) 2011 Richel Bilderbeek<br/>
 <br/>
 This program is free software: you can redistribute it and/or modify<br/>
@@ -597,35 +599,35 @@ You should have received a copy of the GNU General Public License<br/>
 along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">*/</a><br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="ToolTestEntrance.htm">ToolTestEntrance</a>.htm<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="ToolTestEntrance.html">ToolTestEntrance</a>.html<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppIfndef.htm">#ifndef</a> WTTESTENTRANCEMENUDIALOG_H<br/>
-<a href="CppDefine.htm">#define</a> WTTESTENTRANCEMENUDIALOG_H<br/>
+<a href="CppIfndef.html">#ifndef</a> WTTESTENTRANCEMENUDIALOG_H<br/>
+<a href="CppDefine.html">#define</a> WTTESTENTRANCEMENUDIALOG_H<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppShared_ptr.htm">shared_ptr</a>.hpp&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppBoost.html">boost</a>/<a href="CppShared_ptr.html">shared_ptr</a><a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWContainerWidget.htm">WContainerWidget</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWContainerWidget.html">WContainerWidget</a>&gt;<br/>
 <br/>
-<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
+<b><a href="CppNamespace.html">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
 <br/>
-<b><a href="CppStruct.htm">struct</a></b> <a href="CppIpAddress.htm">IpAddress</a>;<br/>
+<b><a href="CppStruct.html">struct</a></b> <a href="CppIpAddress.html">IpAddress</a>;<br/>
 <br/>
-<b><a href="CppNamespace.htm">namespace</a></b> <a href="ToolTestEntrance.htm">ToolTestEntrance</a> {<br/>
+<b><a href="CppNamespace.html">namespace</a></b> <a href="ToolTestEntrance.html">ToolTestEntrance</a> {<br/>
 <br/>
-<b><a href="CppStruct.htm">struct</a></b> WtMenuDialog : <b><a href="CppPublic.htm">public</a></b> <a href="CppWContainerWidget.htm">Wt::WContainerWidget</a><br/>
+<b><a href="CppStruct.html">struct</a></b> WtMenuDialog : <b><a href="CppPublic.html">public</a></b> <a href="CppWContainerWidget.html">Wt::WContainerWidget</a><br/>
 {<br/>
-&nbsp;&nbsp;WtMenuDialog(<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> <a href="CppIpAddress.htm">IpAddress</a>&gt; ip_address);<br/>
-&nbsp;&nbsp;<b><a href="CppPrivate.htm">private</a></b>:<br/>
-&nbsp;&nbsp;<a href="CppWWidget.htm">Wt::WWidget</a> * CreateNew<a href="CppAbout.htm">About</a>Dialog();<br/>
-&nbsp;&nbsp;<a href="CppWWidget.htm">Wt::WWidget</a> * CreateNewMainDialog(<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> <a href="CppIpAddress.htm">IpAddress</a>&gt; ip_address) <b><a href="CppConst.htm">const</a></b>;<br/>
-&nbsp;&nbsp;<a href="CppWWidget.htm">Wt::WWidget</a> * CreateNewWelcomeDialog() <b><a href="CppConst.htm">const</a></b>;<br/>
+&nbsp;&nbsp;WtMenuDialog(<a href="CppBoostShared_ptr.html">boost::shared_ptr</a>&lt;<b><a href="CppConst.html">const</a></b> <a href="CppIpAddress.html">IpAddress</a>&gt; ip_address);<br/>
+&nbsp;&nbsp;<b><a href="CppPrivate.html">private</a></b>:<br/>
+&nbsp;&nbsp;<a href="CppWWidget.html">Wt::WWidget</a> * CreateNew<a href="CppAbout.html">About</a>Dialog();<br/>
+&nbsp;&nbsp;<a href="CppWWidget.html">Wt::WWidget</a> * CreateNewMainDialog(<a href="CppBoostShared_ptr.html">boost::shared_ptr</a>&lt;<b><a href="CppConst.html">const</a></b> <a href="CppIpAddress.html">IpAddress</a>&gt; ip_address) <b><a href="CppConst.html">const</a></b>;<br/>
+&nbsp;&nbsp;<a href="CppWWidget.html">Wt::WWidget</a> * CreateNewWelcomeDialog() <b><a href="CppConst.html">const</a></b>;<br/>
 };<br/>
 <br/>
-} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="ToolTestEntrance.htm">ToolTestEntrance</a><br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.html">namespace</a></b> <a href="ToolTestEntrance.html">ToolTestEntrance</a><br/>
 <br/>
-} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.html">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
 <br/>
-<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> WTTESTENTRANCEMENUDIALOG_H<br/>
+<a href="CppEndif.html">#endif</a> <a href="CppComment.htm">//</a> WTTESTENTRANCEMENUDIALOG_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -639,7 +641,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <table summary="wttestentrancemenudialog.cpp" border = "1"><tr><td><code>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">/*</a><br/>
-<a href="ToolTestEntrance.htm">TestEntrance</a>, <a href="Tools.htm">tool</a> to test <a href="CppWtEntrance.htm">WtEntrance</a><br/>
+<a href="ToolTestEntrance.html">TestEntrance</a>, <a href="Tools.htm">tool</a> to test <a href="CppWtEntrance.html">WtEntrance</a><br/>
 Copyright (C) 2011 Richel Bilderbeek<br/>
 <br/>
 This program is free software: you can redistribute it and/or modify<br/>
@@ -655,118 +657,121 @@ You should have received a copy of the GNU General Public License<br/>
 along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">*/</a><br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="ToolTestEntrance.htm">ToolTestEntrance</a>.htm<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="ToolTestEntrance.html">ToolTestEntrance</a>.html<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/filesystem.hpp&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppBOOST_FOREACH.htm">foreach</a>.hpp&gt;<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic push<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.html">-Weffc++</a>"<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppBoost.html">boost</a>/filesystem<a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppBoost.html">boost</a>/<a href="CppBOOST_FOREACH.html">foreach</a><a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWBreak.htm">WBreak</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWContainerWidget.htm">WContainerWidget</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWGroupBox.htm">WGroupBox</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWImage.htm">WImage</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWLabel.htm">WLabel</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWStackedWidget.htm">WStackedWidget</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWMenu.htm">WMenu</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWMenuItem.htm">WMenuItem</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWBreak.html">WBreak</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWContainerWidget.html">WContainerWidget</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWGroupBox.html">WGroupBox</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWImage.html">WImage</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWLabel.html">WLabel</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWStackedWidget.html">WStackedWidget</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWMenu.html">WMenu</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWMenuItem.html">WMenuItem</a>&gt;<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> "<a href="ToolTestEntrance.htm">testentrancemenudialog</a>.h"<br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppWtAboutDialog.htm">wtaboutdialog</a>.h"<br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppWtAutoConfig.htm">wtautoconfig</a>.h"<br/>
-<a href="CppInclude.htm">#include</a> "<a href="ToolTestEntrance.htm">wttestentrancemaindialog</a>.h"<br/>
-<a href="CppInclude.htm">#include</a> "<a href="ToolTestEntrance.htm">wttestentrancemenudialog</a>.h"<br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppWtEntrance.htm">wtentrance</a>.h"<br/>
+<a href="CppInclude.html">#include</a> "<a href="ToolTestEntrance.html">testentrancemenudialog</a><a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "<a href="CppWtAboutDialog.html">wtaboutdialog</a><a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "<a href="CppWtAutoConfig.html">wtautoconfig</a><a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "<a href="ToolTestEntrance.html">wttestentrancemaindialog</a><a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "<a href="ToolTestEntrance.html">wttestentrancemenudialog</a><a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "<a href="CppWtEntrance.html">wtentrance</a><a href="CppHeaderFile.htm">.h</a>"<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppQFile.htm">QFile</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppQFile.html">QFile</a>&gt;<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic pop<br/>
 <br/>
-<a href="CppRibi.htm">ribi</a>::<a href="ToolTestEntrance.htm">ToolTestEntrance</a>::WtMenuDialog::WtMenuDialog(<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> <a href="CppIpAddress.htm">IpAddress</a>&gt; ip_address)<br/>
+<a href="CppRibi.htm">ribi</a>::<a href="ToolTestEntrance.html">ToolTestEntrance</a>::WtMenuDialog::WtMenuDialog(<a href="CppBoostShared_ptr.html">boost::shared_ptr</a>&lt;<b><a href="CppConst.html">const</a></b> <a href="CppIpAddress.html">IpAddress</a>&gt; ip_address)<br/>
 {<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; image_names;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;image_names.push_back("<a href="ToolTestEntrance.htm">ToolTestEntrance</a>Welcome.png");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppVector.html">std::vector</a>&lt;<a href="CppString.html">std::string</a>&gt; image_names;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;image_names.push_back("<a href="ToolTestEntrance.html">ToolTestEntrance</a>Welcome.png");<br/>
 <br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBOOST_FOREACH.htm">BOOST_FOREACH</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; filename,image_names)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBOOST_FOREACH.html">BOOST_FOREACH</a>(<b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a>&amp; filename,image_names)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (!(<a href="CppQFile.htm">QFile</a>::exists(filename.c_str())))<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (!(<a href="CppQFile.html">QFile</a>::exists(filename.c_str())))<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQFile.htm">QFile</a> f( (<a href="CppString.htm">std::string</a>(":/images/") <a href="CppOperatorPlus.htm">+</a> filename).c_str() );<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQFile.html">QFile</a> f( (<a href="CppString.html">std::string</a>(":/images/") <a href="CppOperatorPlus.htm">+</a> filename).c_str() );<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;f.copy(filename.c_str());<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (!<a href="CppFilesystem.htm">boost::filesystem</a>::exists(filename.c_str()))<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (!<a href="CppFilesystem.html">boost::filesystem</a>::exists(filename.c_str()))<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCerr.htm">std::cerr</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "File not found: " <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> filename <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n';<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCerr.html">std::cerr</a> <a href="CppOperatorStreamOut.html">&lt;&lt;</a> "File not found: " <a href="CppOperatorStreamOut.html">&lt;&lt;</a> filename <a href="CppOperatorStreamOut.html">&lt;&lt;</a> '\n';<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppFilesystem.htm">boost::filesystem</a>::exists(filename.c_str()));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(<a href="CppFilesystem.html">boost::filesystem</a>::exists(filename.c_str()));<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;}<br/>
 <br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;setContentAlignment(<a href="CppWt.htm">Wt</a>::AlignCenter);<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppWLabel.htm">Wt::WLabel</a> * <b><a href="CppConst.htm">const</a></b> title <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppWLabel.htm">Wt::WLabel</a>("<a href="ToolTestEntrance.htm">TestEntrance</a>");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppWLabel.html">Wt::WLabel</a> * <b><a href="CppConst.html">const</a></b> title <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppWLabel.html">Wt::WLabel</a>("<a href="ToolTestEntrance.html">TestEntrance</a>");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;title-&gt;setStyleClass("title");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;addWidget(title);<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Menu<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppWStackedWidget.htm">Wt::WStackedWidget</a> * <b><a href="CppConst.htm">const</a></b> contents <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppWStackedWidget.htm">Wt::WStackedWidget</a>;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppWMenu.htm">Wt::WMenu</a> * <b><a href="CppConst.htm">const</a></b> menu <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppWMenu.htm">Wt::WMenu</a>(contents,<a href="CppWt.htm">Wt</a>::Horizontal);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppWStackedWidget.html">Wt::WStackedWidget</a> * <b><a href="CppConst.html">const</a></b> contents <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppWStackedWidget.html">Wt::WStackedWidget</a>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppWMenu.html">Wt::WMenu</a> * <b><a href="CppConst.html">const</a></b> menu <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppWMenu.html">Wt::WMenu</a>(contents,<a href="CppWt.htm">Wt</a>::Horizontal);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;menu-&gt;setStyleClass("menu");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppWMenuItem.htm">Wt::WMenuItem</a> * <b><a href="CppConst.htm">const</a></b> item <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppWMenuItem.htm">Wt::WMenuItem</a>(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppWMenuItem.html">Wt::WMenuItem</a> * <b><a href="CppConst.html">const</a></b> item <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppWMenuItem.html">Wt::WMenuItem</a>(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Welcome",<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CreateNewWelcomeDialog());<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;menu-&gt;addItem(item);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppWMenuItem.htm">Wt::WMenuItem</a> * <b><a href="CppConst.htm">const</a></b> item <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppWMenuItem.htm">Wt::WMenuItem</a>(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppWMenuItem.html">Wt::WMenuItem</a> * <b><a href="CppConst.html">const</a></b> item <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppWMenuItem.html">Wt::WMenuItem</a>(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Start",<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CreateNewMainDialog(ip_address));<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;menu-&gt;addItem(item);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppWMenuItem.htm">Wt::WMenuItem</a> * <b><a href="CppConst.htm">const</a></b> item <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppWMenuItem.htm">Wt::WMenuItem</a>(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"<a href="CppAbout.htm">About</a>",<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CreateNew<a href="CppAbout.htm">About</a>Dialog());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppWMenuItem.html">Wt::WMenuItem</a> * <b><a href="CppConst.html">const</a></b> item <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppWMenuItem.html">Wt::WMenuItem</a>(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"<a href="CppAbout.html">About</a>",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CreateNew<a href="CppAbout.html">About</a>Dialog());<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;menu-&gt;addItem(item);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Display menu on top<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;addWidget(menu);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;addWidget(<b><a href="CppNew.htm">new</a></b> <a href="CppWBreak.htm">Wt::WBreak</a>);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;addWidget(<b><a href="CppNew.htm">new</a></b> <a href="CppWBreak.html">Wt::WBreak</a>);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Display contents below menu<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;addWidget(contents);<br/>
 &nbsp;&nbsp;}<br/>
 }<br/>
 <br/>
-<a href="CppWWidget.htm">Wt::WWidget</a> * <a href="CppRibi.htm">ribi</a>::<a href="ToolTestEntrance.htm">ToolTestEntrance</a>::WtMenuDialog::CreateNew<a href="CppAbout.htm">About</a>Dialog()<br/>
+<a href="CppWWidget.html">Wt::WWidget</a> * <a href="CppRibi.htm">ribi</a>::<a href="ToolTestEntrance.html">ToolTestEntrance</a>::WtMenuDialog::CreateNew<a href="CppAbout.html">About</a>Dialog()<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppAbout.htm">About</a> a <a href="CppOperatorAssign.htm">=</a> MenuDialog::GetAbout();<br/>
-&nbsp;&nbsp;a.<a href="CppAdd.htm">Add</a><a href="CppLibrary.htm">Library</a>("<a href="CppWtAutoConfig.htm">WtAutoConfig</a> <a href="CppVersion.htm">version</a>: " <a href="CppOperatorPlus.htm">+</a> <a href="CppWtAutoConfig.htm">WtAutoConfig</a>::Get<a href="CppVersion.htm">Version</a>());<br/>
-&nbsp;&nbsp;a.<a href="CppAdd.htm">Add</a><a href="CppLibrary.htm">Library</a>("<a href="CppWtEntrance.htm">WtEntrance</a> <a href="CppVersion.htm">version</a>: " <a href="CppOperatorPlus.htm">+</a> <a href="CppWtEntrance.htm">WtEntrance</a>::Get<a href="CppVersion.htm">Version</a>());<br/>
-&nbsp;&nbsp;<a href="CppWtAboutDialog.htm">WtAboutDialog</a> * <b><a href="CppConst.htm">const</a></b> d <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppWtAboutDialog.htm">WtAboutDialog</a>(a,<b><a href="CppFalse.htm">false</a></b>);<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(d);<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> d;<br/>
+&nbsp;&nbsp;<a href="CppAbout.html">About</a> a <a href="CppOperatorAssign.htm">=</a> MenuDialog::GetAbout();<br/>
+&nbsp;&nbsp;a.<a href="CppAdd.htm">Add</a><a href="CppLibrary.html">Library</a>("<a href="CppWtAutoConfig.html">WtAutoConfig</a> <a href="CppVersion.html">version</a>: " <a href="CppOperatorPlus.htm">+</a> <a href="CppWtAutoConfig.html">WtAutoConfig</a>::Get<a href="CppVersion.html">Version</a>());<br/>
+&nbsp;&nbsp;a.<a href="CppAdd.htm">Add</a><a href="CppLibrary.html">Library</a>("<a href="CppWtEntrance.html">WtEntrance</a> <a href="CppVersion.html">version</a>: " <a href="CppOperatorPlus.htm">+</a> <a href="CppWtEntrance.html">WtEntrance</a>::Get<a href="CppVersion.html">Version</a>());<br/>
+&nbsp;&nbsp;<a href="CppWtAboutDialog.html">WtAboutDialog</a> * <b><a href="CppConst.html">const</a></b> d <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppWtAboutDialog.html">WtAboutDialog</a>(a,<b><a href="CppFalse.html">false</a></b>);<br/>
+&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(d);<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> d;<br/>
 }<br/>
 <br/>
-<a href="CppWWidget.htm">Wt::WWidget</a> * <a href="CppRibi.htm">ribi</a>::<a href="ToolTestEntrance.htm">ToolTestEntrance</a>::WtMenuDialog::CreateNewMainDialog(<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> <a href="CppIpAddress.htm">IpAddress</a>&gt; ip_address) <b><a href="CppConst.htm">const</a></b><br/>
+<a href="CppWWidget.html">Wt::WWidget</a> * <a href="CppRibi.htm">ribi</a>::<a href="ToolTestEntrance.html">ToolTestEntrance</a>::WtMenuDialog::CreateNewMainDialog(<a href="CppBoostShared_ptr.html">boost::shared_ptr</a>&lt;<b><a href="CppConst.html">const</a></b> <a href="CppIpAddress.html">IpAddress</a>&gt; ip_address) <b><a href="CppConst.html">const</a></b><br/>
 {<br/>
-&nbsp;&nbsp;WtMainDialog * <b><a href="CppConst.htm">const</a></b> d <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> WtMainDialog(ip_address);<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(d);<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> d;<br/>
+&nbsp;&nbsp;WtMainDialog * <b><a href="CppConst.html">const</a></b> d <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> WtMainDialog(ip_address);<br/>
+&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(d);<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> d;<br/>
 }<br/>
 <br/>
-<a href="CppWWidget.htm">Wt::WWidget</a> * <a href="CppRibi.htm">ribi</a>::<a href="ToolTestEntrance.htm">ToolTestEntrance</a>::WtMenuDialog::CreateNewWelcomeDialog() <b><a href="CppConst.htm">const</a></b><br/>
+<a href="CppWWidget.html">Wt::WWidget</a> * <a href="CppRibi.htm">ribi</a>::<a href="ToolTestEntrance.html">ToolTestEntrance</a>::WtMenuDialog::CreateNewWelcomeDialog() <b><a href="CppConst.html">const</a></b><br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppWContainerWidget.htm">Wt::WContainerWidget</a> * dialog <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppWContainerWidget.htm">Wt::WContainerWidget</a>;<br/>
+&nbsp;&nbsp;<a href="CppWContainerWidget.html">Wt::WContainerWidget</a> * dialog <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppWContainerWidget.html">Wt::WContainerWidget</a>;<br/>
 &nbsp;&nbsp;dialog-&gt;setContentAlignment(<a href="CppWt.htm">Wt</a>::AlignCenter);<br/>
-&nbsp;&nbsp;dialog-&gt;addWidget(<b><a href="CppNew.htm">new</a></b> <a href="CppWBreak.htm">Wt::WBreak</a>);<br/>
-&nbsp;&nbsp;<b><a href="CppNew.htm">new</a></b> <a href="CppWLabel.htm">Wt::WLabel</a>("Welcome to <a href="ToolTestEntrance.htm">TestEntrance</a>",dialog);<br/>
-&nbsp;&nbsp;<b><a href="CppNew.htm">new</a></b> <a href="CppWBreak.htm">Wt::WBreak</a>(dialog);<br/>
-&nbsp;&nbsp;<b><a href="CppNew.htm">new</a></b> <a href="CppWBreak.htm">Wt::WBreak</a>(dialog);<br/>
-&nbsp;&nbsp;<b><a href="CppNew.htm">new</a></b> <a href="CppWLabel.htm">Wt::WLabel</a>("<a href="ToolTestEntrance.htm">TestEntrance</a> demonstrates the <a href="CppWtEntrance.htm">WtEntrance</a> <b><a href="CppClass.htm">class</a></b>",dialog);<br/>
-&nbsp;&nbsp;<b><a href="CppNew.htm">new</a></b> <a href="CppWBreak.htm">Wt::WBreak</a>(dialog);<br/>
-&nbsp;&nbsp;<b><a href="CppNew.htm">new</a></b> <a href="CppWBreak.htm">Wt::WBreak</a>(dialog);<br/>
-&nbsp;&nbsp;<a href="CppWGroupBox.htm">Wt::WGroupBox</a> * <b><a href="CppConst.htm">const</a></b> box <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppWGroupBox.htm">Wt::WGroupBox</a>("Explanation",dialog);<br/>
-&nbsp;&nbsp;box-&gt;addWidget(<b><a href="CppNew.htm">new</a></b> <a href="CppWImage.htm">Wt::WImage</a>("<a href="ToolTestEntrance.htm">ToolTestEntrance</a>Welcome.png"));<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> dialog;<br/>
+&nbsp;&nbsp;dialog-&gt;addWidget(<b><a href="CppNew.htm">new</a></b> <a href="CppWBreak.html">Wt::WBreak</a>);<br/>
+&nbsp;&nbsp;<b><a href="CppNew.htm">new</a></b> <a href="CppWLabel.html">Wt::WLabel</a>("Welcome to <a href="ToolTestEntrance.html">TestEntrance</a>",dialog);<br/>
+&nbsp;&nbsp;<b><a href="CppNew.htm">new</a></b> <a href="CppWBreak.html">Wt::WBreak</a>(dialog);<br/>
+&nbsp;&nbsp;<b><a href="CppNew.htm">new</a></b> <a href="CppWBreak.html">Wt::WBreak</a>(dialog);<br/>
+&nbsp;&nbsp;<b><a href="CppNew.htm">new</a></b> <a href="CppWLabel.html">Wt::WLabel</a>("<a href="ToolTestEntrance.html">TestEntrance</a> demonstrates the <a href="CppWtEntrance.html">WtEntrance</a> <b><a href="CppClass.html">class</a></b>",dialog);<br/>
+&nbsp;&nbsp;<b><a href="CppNew.htm">new</a></b> <a href="CppWBreak.html">Wt::WBreak</a>(dialog);<br/>
+&nbsp;&nbsp;<b><a href="CppNew.htm">new</a></b> <a href="CppWBreak.html">Wt::WBreak</a>(dialog);<br/>
+&nbsp;&nbsp;<a href="CppWGroupBox.html">Wt::WGroupBox</a> * <b><a href="CppConst.html">const</a></b> box <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppWGroupBox.html">Wt::WGroupBox</a>("Explanation",dialog);<br/>
+&nbsp;&nbsp;box-&gt;addWidget(<b><a href="CppNew.htm">new</a></b> <a href="CppWImage.html">Wt::WImage</a>("<a href="ToolTestEntrance.html">ToolTestEntrance</a>Welcome.png"));<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> dialog;<br/>
 }<br/>
 </code></td></tr></table>
 <!-- end of the code -->

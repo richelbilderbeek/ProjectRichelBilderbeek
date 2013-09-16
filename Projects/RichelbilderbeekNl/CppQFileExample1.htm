@@ -67,11 +67,11 @@
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="CppQFileExample1.pro" border = "1"><tr><td><code>
-TEMPLATE = app<br/>
-CONFIG += console qt<br/>
-CONFIG -= app_bundle<br/>
+<a href="CppQmakeTemplate.htm">TEMPLATE</a> = app<br/>
+<a href="CppQmakeConfig.htm">CONFIG</a> += console qt<br/>
+<a href="CppQmakeConfig.htm">CONFIG</a> -= app_bundle<br/>
 <br/>
-<a href="CppSOURCES.htm">SOURCES</a> += <a href="CppMain.htm">main</a>.cpp<br/>
+<a href="CppQmakeSources.htm">SOURCES</a> += <a href="CppMain.htm">main</a>.cpp<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -83,23 +83,23 @@ CONFIG -= app_bundle<br/>
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="main.cpp" border = "1"><tr><td><code>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppCstdioH.htm">cstdio</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppQFile.htm">QFile</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppCassertH.html">cassert</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppCstdioH.html">cstdio</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppQFile.html">QFile</a>&gt;<br/>
 <br/>
-<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>(<b><a href="CppInt.htm">int</a></b> <a href="CppOperatorDivide.htm">/</a>* <a href="CppArgc.htm">argc</a> <a href="CppComment.htm">*/</a>, <b><a href="CppChar.htm">char</a></b>* <a href="CppArgc.htm">argv</a>[])<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a>(<b><a href="CppInt.htm">int</a></b> <a href="CppOperatorDivide.htm">/</a>* <a href="CppArgc.htm">argc</a> <a href="CppComment.htm">*/</a>, <b><a href="CppChar.htm">char</a></b>* <a href="CppArgc.htm">argv</a>[])<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Copy executable (<a href="CppArgc.htm">argv</a>[0] is <b><a href="CppThis.htm">this</a></b> executable its full path)<br/>
-&nbsp;&nbsp;<a href="CppQFile.htm">QFile</a> me(<a href="CppArgc.htm">argv</a>[0]);<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> temp_filename <a href="CppOperatorAssign.htm">=</a> "tmp";<br/>
+&nbsp;&nbsp;<a href="CppQFile.html">QFile</a> me(<a href="CppArgc.htm">argv</a>[0]);<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a> temp_filename <a href="CppOperatorAssign.htm">=</a> "tmp";<br/>
 &nbsp;&nbsp;me.copy(temp_filename.c_str());<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Check that copy exists<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppQFile.htm">QFile</a>::exists(temp_filename.c_str()));<br/>
+&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(<a href="CppQFile.html">QFile</a>::exists(temp_filename.c_str()));<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Delete the copy<br/>
-&nbsp;&nbsp;<a href="CppRemove.htm">std::remove</a>(temp_filename.c_str());<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!<a href="CppQFile.htm">QFile</a>::exists(temp_filename.c_str()));<br/>
+&nbsp;&nbsp;<a href="CppRemove.html">std::remove</a>(temp_filename.c_str());<br/>
+&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(!<a href="CppQFile.html">QFile</a>::exists(temp_filename.c_str()));<br/>
 }<br/>
 </code></td></tr></table>
 <!-- end of the code -->

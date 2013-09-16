@@ -61,12 +61,12 @@
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="CppGmtlExample1.pro" border = "1"><tr><td><code>
-TEMPLATE = app<br/>
-CONFIG += console<br/>
-CONFIG -= app_bundle<br/>
-CONFIG -= qt<br/>
+<a href="CppQmakeTemplate.htm">TEMPLATE</a> = app<br/>
+<a href="CppQmakeConfig.htm">CONFIG</a> += console<br/>
+<a href="CppQmakeConfig.htm">CONFIG</a> -= app_bundle<br/>
+<a href="CppQmakeConfig.htm">CONFIG</a> -= qt<br/>
 <br/>
-<a href="CppSOURCES.htm">SOURCES</a> += <a href="CppMain.htm">main</a>.cpp<br/>
+<a href="CppQmakeSources.htm">SOURCES</a> += <a href="CppMain.htm">main</a>.cpp<br/>
 <br/>
 #<br/>
 #<br/>
@@ -74,15 +74,15 @@ CONFIG -= qt<br/>
 #<br/>
 #<br/>
 <br/>
-CONFIG(debug, debug|release) {<br/>
+<a href="CppQmakeConfig.htm">CONFIG</a>(debug, debug|release) {<br/>
 &nbsp;&nbsp;message(Debug mode)<br/>
 }<br/>
 <br/>
-CONFIG(release, debug|release) {<br/>
+<a href="CppQmakeConfig.htm">CONFIG</a>(release, debug|release) {<br/>
 &nbsp;&nbsp;message(Release mode)<br/>
 <br/>
 &nbsp;&nbsp;#Remove all <a href="CppAssert.htm">assert</a>s and <a href="CppTRACE.htm">TRACE</a><br/>
-&nbsp;&nbsp;DEFINES += NDEBUG N<a href="CppTRACE.htm">TRACE</a>_BILDERBIKKEL<br/>
+&nbsp;&nbsp;<a href="CppQmakeDefines.htm">DEFINES</a> += NDEBUG N<a href="CppTRACE.htm">TRACE</a>_BILDERBIKKEL<br/>
 }<br/>
 <br/>
 #<br/>
@@ -96,10 +96,10 @@ CONFIG(release, debug|release) {<br/>
 # Compiler flags<br/>
 #<br/>
 #<br/>
-<a href="CppQMAKE_CXXFLAGS.htm">QMAKE_CXXFLAGS</a> += -std=<a href="Cpp11.htm">c++11</a> <a href="CppWall.htm">-Wall</a> <a href="CppWextra.htm">-Wextra</a><br/>
+<a href="CppQmakeQmake_cxxflags.htm">QMAKE_CXXFLAGS</a> += -std=<a href="Cpp11.htm">c++11</a> <a href="CppWall.htm">-Wall</a> <a href="CppWextra.htm">-Wextra</a><br/>
 <br/>
 unix {<br/>
-&nbsp;&nbsp;<a href="CppQMAKE_CXXFLAGS.htm">QMAKE_CXXFLAGS</a> += <a href="CppWerror.htm">-Werror</a><br/>
+&nbsp;&nbsp;<a href="CppQmakeQmake_cxxflags.htm">QMAKE_CXXFLAGS</a> += <a href="CppWerror.htm">-Werror</a><br/>
 }<br/>
 <br/>
 #<br/>
@@ -114,7 +114,7 @@ unix {<br/>
 <br/>
 win32 {<br/>
 &nbsp;&nbsp;message(Windows: add Boost to include path)<br/>
-&nbsp;&nbsp;<a href="CppINCLUDEPATH.htm">INCLUDEPATH</a> += \<br/>
+&nbsp;&nbsp;<a href="CppQmakeIncludepath.htm">INCLUDEPATH</a> += \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/boost_1_54_0<br/>
 }<br/>
 <br/>
@@ -131,7 +131,7 @@ unix {<br/>
 <br/>
 win32 {<br/>
 &nbsp;&nbsp;message(Windows: gmtl: include path)<br/>
-&nbsp;&nbsp;<a href="CppINCLUDEPATH.htm">INCLUDEPATH</a>+= ../../<a href="CppLibrary.htm">Libraries</a>/gmtl-0.6.1<br/>
+&nbsp;&nbsp;<a href="CppQmakeIncludepath.htm">INCLUDEPATH</a>+= ../../<a href="CppLibrary.htm">Libraries</a>/gmtl-0.6.1<br/>
 }<br/>
 </code></td></tr></table>
 <!-- end of the code -->
@@ -144,17 +144,17 @@ win32 {<br/>
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="main.cpp" border = "1"><tr><td><code>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppIostreamH.htm">iostream</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;gmtl/gmtl.h&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppCassertH.html">cassert</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppIostreamH.html">iostream</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;gmtl/gmtl<a href="CppHeaderFile.htm">.h</a>&gt;<br/>
 <br/>
-<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a>()<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> gmtl::Vec3f a { 1.0, 2.0,&nbsp;&nbsp;3.0 };<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> gmtl::Vec3f b { 4.0, 8.0, 12.0 };<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> gmtl::Vec3f a { 1.0, 2.0,&nbsp;&nbsp;3.0 };<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> gmtl::Vec3f b { 4.0, 8.0, 12.0 };<br/>
 &nbsp;&nbsp;gmtl::Vec3f result;<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppFloat.htm">float</a></b> w <a href="CppOperatorAssign.htm">=</a> 1.0 <a href="CppOperatorDivide.htm">/</a> 3.0;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppFloat.html">float</a></b> w <a href="CppOperatorAssign.htm">=</a> 1.0 <a href="CppOperatorDivide.htm">/</a> 3.0;<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/Obtain the weighted vector between a and b, closest to a:<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppOperatorDivide.htm">/</a> a[1] <a href="CppOperatorAssign.htm">=</a> 2.0<br/>
@@ -165,10 +165,10 @@ win32 {<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppOperatorDivide.htm">/</a> r[1] <a href="CppOperatorAssign.htm">=</a> a[1] <a href="CppOperatorPlus.htm">+</a> d_a <a href="CppOperatorAssign.htm">=</a> 2.0 <a href="CppOperatorPlus.htm">+</a> 2.0 <a href="CppOperatorAssign.htm">=</a> 4;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppComment.htm">//</a>resulting value<br/>
 &nbsp;&nbsp;gmtl::lerp( result, w, a, b );<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> e <a href="CppOperatorAssign.htm">=</a> 0.000001;<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(result[0] &gt; 2.0 <a href="CppOperatorMinus.htm">-</a> e <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> result[0] &lt; 2.0 <a href="CppOperatorPlus.htm">+</a> e);<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(result[1] &gt; 4.0 <a href="CppOperatorMinus.htm">-</a> e <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> result[1] &lt; 4.0 <a href="CppOperatorPlus.htm">+</a> e);<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(result[2] &gt; 6.0 <a href="CppOperatorMinus.htm">-</a> e <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> result[2] &lt; 6.0 <a href="CppOperatorPlus.htm">+</a> e);<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> e <a href="CppOperatorAssign.htm">=</a> 0.000001;<br/>
+&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(result[0] &gt; 2.0 <a href="CppOperatorMinus.htm">-</a> e <a href="CppOperatorLogicalAnd.html">&amp;&amp;</a> result[0] &lt; 2.0 <a href="CppOperatorPlus.htm">+</a> e);<br/>
+&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(result[1] &gt; 4.0 <a href="CppOperatorMinus.htm">-</a> e <a href="CppOperatorLogicalAnd.html">&amp;&amp;</a> result[1] &lt; 4.0 <a href="CppOperatorPlus.htm">+</a> e);<br/>
+&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(result[2] &gt; 6.0 <a href="CppOperatorMinus.htm">-</a> e <a href="CppOperatorLogicalAnd.html">&amp;&amp;</a> result[2] &lt; 6.0 <a href="CppOperatorPlus.htm">+</a> e);<br/>
 }<br/>
 </code></td></tr></table>
 <!-- end of the code -->

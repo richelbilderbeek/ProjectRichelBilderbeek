@@ -140,25 +140,25 @@ on the very last line of the <a href="CppMakefile.htm">makefile</a> that also ne
 <!-- start of code -->
 <table summary="Zork.pro" border = "1"><tr><td><code>
 QT -= gui<br/>
-CONFIG += console<br/>
-CONFIG -= app_bundle -qt<br/>
-<a href="CppLIBS.htm">LIBS</a> += -L/usr/lib -lcurses -ltermcap<br/>
+<a href="CppQmakeConfig.htm">CONFIG</a> += console<br/>
+<a href="CppQmakeConfig.htm">CONFIG</a> -= app_bundle -qt<br/>
+<a href="CppQmakeLibs.htm">LIBS</a> += -L/usr/lib -lcurses -ltermcap<br/>
 <br/>
-TEMPLATE = app<br/>
+<a href="CppQmakeTemplate.htm">TEMPLATE</a> = app<br/>
 QMAKE_CC = gcc<br/>
 QMAKE_CCFLAGS = -x c<br/>
 <br/>
 #Compile to C code: 'i486-linux-gnu-gcc -x c' denotes: compile C code<br/>
 QMAKE_CXX = gcc<br/>
-<a href="CppQMAKE_CXXFLAGS.htm">QMAKE_CXXFLAGS</a> = -x c<br/>
+<a href="CppQmakeQmake_cxxflags.htm">QMAKE_CXXFLAGS</a> = -x c<br/>
 <br/>
-<a href="CppHEADERS.htm">HEADERS</a> += \<br/>
+<a href="CppQmakeHeaders.htm">HEADERS</a> += \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;VARS.H \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;PARSE.H \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;parse.h \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;vars.h \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;funcs.h<br/>
-<a href="CppSOURCES.htm">SOURCES</a> += \<br/>
+<a href="CppQmakeSources.htm">SOURCES</a> += \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;DMAIN.C \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;VERBS.C \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;VILLNS.C \<br/>
@@ -203,22 +203,22 @@ QMAKE_CXX = gcc<br/>
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="funcs.h" border = "1"><tr><td><code>
-<a href="CppComment.htm">/*</a> funcs.h <a href="CppOperatorMinus.htm">-</a><a href="CppOperatorMinus.htm">-</a> <a href="CppFunction.htm">function</a>s <b><a href="CppFor.htm">for</a></b> dungeon <a href="CppComment.htm">*/</a><br/>
+<a href="CppComment.htm">/*</a> funcs<a href="CppHeaderFile.htm">.h</a> <a href="CppOperatorMinus.htm">-</a><a href="CppOperatorMinus.htm">-</a> <a href="CppFunction.html">function</a>s <b><a href="CppFor.htm">for</a></b> dungeon <a href="CppComment.htm">*/</a><br/>
 <br/>
-<a href="CppIfndef.htm">#ifndef</a> FUNCS_H<br/>
-<a href="CppDefine.htm">#define</a> FUNCS_H<br/>
+<a href="CppIfndef.html">#ifndef</a> FUNCS_H<br/>
+<a href="CppDefine.html">#define</a> FUNCS_H<br/>
 <br/>
-<a href="CppComment.htm">/*</a> If __STDC__ is not defined, don't use <a href="CppFunction.htm">function</a> prototypes, <b><a href="CppVoid.htm">void</a></b>, or<br/>
- * <b><a href="CppConst.htm">const</a></b>.<br/>
+<a href="CppComment.htm">/*</a> If __STDC__ is not defined, don't use <a href="CppFunction.html">function</a> prototypes, <b><a href="CppVoid.htm">void</a></b>, or<br/>
+ * <b><a href="CppConst.html">const</a></b>.<br/>
  <a href="CppComment.htm">*/</a><br/>
 <br/>
-<a href="CppIfdef.htm">#ifdef</a> __STDC__<br/>
-<a href="CppDefine.htm">#define</a> P(x) x<br/>
-<a href="CppPreElse.htm">#else</a><br/>
-<a href="CppDefine.htm">#define</a> P(x) ()<br/>
-<a href="CppDefine.htm">#define</a> <b><a href="CppVoid.htm">void</a></b> <b><a href="CppInt.htm">int</a></b><br/>
-<a href="CppDefine.htm">#define</a> <b><a href="CppConst.htm">const</a></b><br/>
-<a href="CppEndif.htm">#endif</a><br/>
+<a href="CppIfdef.html">#ifdef</a> __STDC__<br/>
+<a href="CppDefine.html">#define</a> P(x) x<br/>
+<a href="CppPreElse.html">#else</a><br/>
+<a href="CppDefine.html">#define</a> P(x) ()<br/>
+<a href="CppDefine.html">#define</a> <b><a href="CppVoid.htm">void</a></b> <b><a href="CppInt.htm">int</a></b><br/>
+<a href="CppDefine.html">#define</a> <b><a href="CppConst.html">const</a></b><br/>
+<a href="CppEndif.html">#endif</a><br/>
 <br/>
 <a href="CppComment.htm">/*</a> Try to guess whether we need "rb" to open files in binary mode.<br/>
  * If <b><a href="CppThis.htm">this</a></b> is unix, it doesn't matter.&nbsp;&nbsp;Otherwise, assume that <b><a href="CppIf.htm">if</a></b><br/>
@@ -226,118 +226,118 @@ QMAKE_CXX = gcc<br/>
  * had better use "r" or fopen will fail.<br/>
  <a href="CppComment.htm">*/</a><br/>
 <br/>
-<a href="CppIfdef.htm">#ifdef</a> unix<br/>
-<a href="CppDefine.htm">#define</a> BINREAD "r"<br/>
-<a href="CppDefine.htm">#define</a> BINWRITE "w"<br/>
-<a href="CppPreElse.htm">#else</a> <a href="CppOperatorDivide.htm">/</a>* ! unix <a href="CppComment.htm">*/</a><br/>
-<a href="CppIfdef.htm">#ifdef</a> __STDC__<br/>
-<a href="CppDefine.htm">#define</a> BINREAD "rb"<br/>
-<a href="CppDefine.htm">#define</a> BINWRITE "wb"<br/>
-<a href="CppPreElse.htm">#else</a> <a href="CppOperatorDivide.htm">/</a>* ! __STDC__ <a href="CppComment.htm">*/</a><br/>
-<a href="CppDefine.htm">#define</a> BINREAD "r"<br/>
-<a href="CppDefine.htm">#define</a> BINWRITE "w"<br/>
-<a href="CppEndif.htm">#endif</a> <a href="CppOperatorDivide.htm">/</a>* ! __STDC__ <a href="CppComment.htm">*/</a><br/>
-<a href="CppEndif.htm">#endif</a> <a href="CppOperatorDivide.htm">/</a>* ! unix <a href="CppComment.htm">*/</a><br/>
+<a href="CppIfdef.html">#ifdef</a> unix<br/>
+<a href="CppDefine.html">#define</a> BINREAD "r"<br/>
+<a href="CppDefine.html">#define</a> BINWRITE "w"<br/>
+<a href="CppPreElse.html">#else</a> <a href="CppOperatorDivide.htm">/</a>* ! unix <a href="CppComment.htm">*/</a><br/>
+<a href="CppIfdef.html">#ifdef</a> __STDC__<br/>
+<a href="CppDefine.html">#define</a> BINREAD "rb"<br/>
+<a href="CppDefine.html">#define</a> BINWRITE "wb"<br/>
+<a href="CppPreElse.html">#else</a> <a href="CppOperatorDivide.htm">/</a>* ! __STDC__ <a href="CppComment.htm">*/</a><br/>
+<a href="CppDefine.html">#define</a> BINREAD "r"<br/>
+<a href="CppDefine.html">#define</a> BINWRITE "w"<br/>
+<a href="CppEndif.html">#endif</a> <a href="CppOperatorDivide.htm">/</a>* ! __STDC__ <a href="CppComment.htm">*/</a><br/>
+<a href="CppEndif.html">#endif</a> <a href="CppOperatorDivide.htm">/</a>* ! unix <a href="CppComment.htm">*/</a><br/>
 <br/>
-<b><a href="CppTypedef.htm">typedef</a></b> <b><a href="CppInt.htm">int</a></b> <a href="CppInt.htm">integer</a>;<br/>
-<b><a href="CppTypedef.htm">typedef</a></b> <b><a href="CppInt.htm">int</a></b> logical;<br/>
+<b><a href="CppTypedef.html">typedef</a></b> <b><a href="CppInt.htm">int</a></b> <a href="CppInt.html">integer</a>;<br/>
+<b><a href="CppTypedef.html">typedef</a></b> <b><a href="CppInt.htm">int</a></b> logical;<br/>
 <br/>
-<a href="CppDefine.htm">#define</a> TRUE_ (1)<br/>
-<a href="CppDefine.htm">#define</a> FALSE_ (0)<br/>
+<a href="CppDefine.html">#define</a> TRUE_ (1)<br/>
+<a href="CppDefine.html">#define</a> FALSE_ (0)<br/>
 <br/>
-<a href="CppDefine.htm">#define</a> abs(x) ((x) <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 0 ? (x) : <a href="CppOperatorMinus.htm">-</a>(x))<br/>
-<a href="CppDefine.htm">#define</a> min(a,b) ((a) <a href="CppOperatorLessEqual.htm">&lt;=</a> (b) ? (a) : (b))<br/>
-<a href="CppDefine.htm">#define</a> max(a,b) ((a) <a href="CppOperatorGreaterEqual.htm">&gt;=</a> (b) ? (a) : (b))<br/>
+<a href="CppDefine.html">#define</a> abs(x) ((x) <a href="CppOperatorGreaterEqual.html">&gt;=</a> 0 ? (x) : <a href="CppOperatorMinus.htm">-</a>(x))<br/>
+<a href="CppDefine.html">#define</a> min(a,b) ((a) <a href="CppOperatorLessEqual.html">&lt;=</a> (b) ? (a) : (b))<br/>
+<a href="CppDefine.html">#define</a> max(a,b) ((a) <a href="CppOperatorGreaterEqual.html">&gt;=</a> (b) ? (a) : (b))<br/>
 <br/>
-<b><a href="CppExtern.htm">extern</a></b> logical<br/>
-	<b><a href="CppProtected.htm">protected</a></b> P((<b><a href="CppVoid.htm">void</a></b>)),<br/>
+<b><a href="CppExtern.html">extern</a></b> logical<br/>
+	<b><a href="CppProtected.html">protected</a></b> P((<b><a href="CppVoid.htm">void</a></b>)),<br/>
 	wizard P((<b><a href="CppVoid.htm">void</a></b>));<br/>
 <br/>
-<b><a href="CppExtern.htm">extern</a></b> <b><a href="CppVoid.htm">void</a></b><br/>
+<b><a href="CppExtern.html">extern</a></b> <b><a href="CppVoid.htm">void</a></b><br/>
 	more_init P((<b><a href="CppVoid.htm">void</a></b>)),<br/>
-	more_output P((<b><a href="CppConst.htm">const</a></b> <b><a href="CppChar.htm">char</a></b> *)),<br/>
+	more_output P((<b><a href="CppConst.html">const</a></b> <b><a href="CppChar.htm">char</a></b> *)),<br/>
 	more_input P((<b><a href="CppVoid.htm">void</a></b>));<br/>
 <br/>
-<b><a href="CppExtern.htm">extern</a></b> <b><a href="CppVoid.htm">void</a></b><br/>
-	<a href="CppBug.htm">bug</a>_ P((<a href="CppInt.htm">integer</a>, <a href="CppInt.htm">integer</a>)),<br/>
-	cevapp_ P((<a href="CppInt.htm">integer</a>)),<br/>
-	cp<b><a href="CppGoto.htm">goto</a></b>_ P((<a href="CppInt.htm">integer</a>)),<br/>
-	cpinfo_ P((<a href="CppInt.htm">integer</a>, <a href="CppInt.htm">integer</a>)),<br/>
-	encryp_ P((<b><a href="CppConst.htm">const</a></b> <b><a href="CppChar.htm">char</a></b> *, <b><a href="CppChar.htm">char</a></b> *)),<br/>
+<b><a href="CppExtern.html">extern</a></b> <b><a href="CppVoid.htm">void</a></b><br/>
+	<a href="CppBug.htm">bug</a>_ P((<a href="CppInt.html">integer</a>, <a href="CppInt.html">integer</a>)),<br/>
+	cevapp_ P((<a href="CppInt.html">integer</a>)),<br/>
+	cp<b><a href="CppGoto.htm">goto</a></b>_ P((<a href="CppInt.html">integer</a>)),<br/>
+	cpinfo_ P((<a href="CppInt.html">integer</a>, <a href="CppInt.html">integer</a>)),<br/>
+	encryp_ P((<b><a href="CppConst.html">const</a></b> <b><a href="CppChar.htm">char</a></b> *, <b><a href="CppChar.htm">char</a></b> *)),<br/>
 	exit_ P((<b><a href="CppVoid.htm">void</a></b>)),<br/>
 	fightd_ P((<b><a href="CppVoid.htm">void</a></b>)),<br/>
 	game_ P((<b><a href="CppVoid.htm">void</a></b>)),<br/>
 	gdt_ P((<b><a href="CppVoid.htm">void</a></b>)),<br/>
-	gt<a href="CppTime.htm">time</a>_ P((<a href="CppInt.htm">integer</a> *)),<br/>
-	invent_ P((<a href="CppInt.htm">integer</a>)),<br/>
-	i<a href="CppTime.htm">time</a>_ P((<a href="CppInt.htm">integer</a> *, <a href="CppInt.htm">integer</a> *, <a href="CppInt.htm">integer</a> *)),<br/>
-	jigsup_ P((<a href="CppInt.htm">integer</a>)),<br/>
-	newsta_ P((<a href="CppInt.htm">integer</a>, <a href="CppInt.htm">integer</a>, <a href="CppInt.htm">integer</a>, <a href="CppInt.htm">integer</a>, <a href="CppInt.htm">integer</a>)),<br/>
-	orphan_ P((<a href="CppInt.htm">integer</a>, <a href="CppInt.htm">integer</a>, <a href="CppInt.htm">integer</a>, <a href="CppInt.htm">integer</a>, <a href="CppInt.htm">integer</a>)),<br/>
-	princo_ P((<a href="CppInt.htm">integer</a>, <a href="CppInt.htm">integer</a>)),<br/>
-	princr_ P((logical, <a href="CppInt.htm">integer</a>)),<br/>
-	rdline_ P((<b><a href="CppChar.htm">char</a></b> *, <a href="CppInt.htm">integer</a>)),<br/>
-	rspeak_ P((<a href="CppInt.htm">integer</a>)),<br/>
-	rspsb2_ P((<a href="CppInt.htm">integer</a>, <a href="CppInt.htm">integer</a>, <a href="CppInt.htm">integer</a>)),<br/>
-	rspsub_ P((<a href="CppInt.htm">integer</a>, <a href="CppInt.htm">integer</a>)),<br/>
+	gt<a href="CppTime.htm">time</a>_ P((<a href="CppInt.html">integer</a> *)),<br/>
+	invent_ P((<a href="CppInt.html">integer</a>)),<br/>
+	i<a href="CppTime.htm">time</a>_ P((<a href="CppInt.html">integer</a> *, <a href="CppInt.html">integer</a> *, <a href="CppInt.html">integer</a> *)),<br/>
+	jigsup_ P((<a href="CppInt.html">integer</a>)),<br/>
+	newsta_ P((<a href="CppInt.html">integer</a>, <a href="CppInt.html">integer</a>, <a href="CppInt.html">integer</a>, <a href="CppInt.html">integer</a>, <a href="CppInt.html">integer</a>)),<br/>
+	orphan_ P((<a href="CppInt.html">integer</a>, <a href="CppInt.html">integer</a>, <a href="CppInt.html">integer</a>, <a href="CppInt.html">integer</a>, <a href="CppInt.html">integer</a>)),<br/>
+	princo_ P((<a href="CppInt.html">integer</a>, <a href="CppInt.html">integer</a>)),<br/>
+	princr_ P((logical, <a href="CppInt.html">integer</a>)),<br/>
+	rdline_ P((<b><a href="CppChar.htm">char</a></b> *, <a href="CppInt.html">integer</a>)),<br/>
+	rspeak_ P((<a href="CppInt.html">integer</a>)),<br/>
+	rspsb2_ P((<a href="CppInt.html">integer</a>, <a href="CppInt.html">integer</a>, <a href="CppInt.html">integer</a>)),<br/>
+	rspsub_ P((<a href="CppInt.html">integer</a>, <a href="CppInt.html">integer</a>)),<br/>
 	rstrgm_ P((<b><a href="CppVoid.htm">void</a></b>)),<br/>
 	savegm_ P((<b><a href="CppVoid.htm">void</a></b>)),<br/>
 	score_ P((logical)),<br/>
-	scrupd_ P((<a href="CppInt.htm">integer</a>)),<br/>
+	scrupd_ P((<a href="CppInt.html">integer</a>)),<br/>
 	swordd_ P((<b><a href="CppVoid.htm">void</a></b>)),<br/>
 	thiefd_ P((<b><a href="CppVoid.htm">void</a></b>)),<br/>
-	valuac_ P((<a href="CppInt.htm">integer</a>));<br/>
-<b><a href="CppExtern.htm">extern</a></b> <a href="CppInt.htm">integer</a><br/>
-	blow_ P((<a href="CppInt.htm">integer</a>, <a href="CppInt.htm">integer</a>, <a href="CppInt.htm">integer</a>, logical, <a href="CppInt.htm">integer</a>)),<br/>
-	fights_ P((<a href="CppInt.htm">integer</a>, logical)),<br/>
-	fwim_ P((<a href="CppInt.htm">integer</a>, <a href="CppInt.htm">integer</a>, <a href="CppInt.htm">integer</a>, <a href="CppInt.htm">integer</a>, <a href="CppInt.htm">integer</a>, logical)),<br/>
-	getobj_ P((<a href="CppInt.htm">integer</a>, <a href="CppInt.htm">integer</a>, <a href="CppInt.htm">integer</a>)),<br/>
-	schlst_ P((<a href="CppInt.htm">integer</a>, <a href="CppInt.htm">integer</a>, <a href="CppInt.htm">integer</a>, <a href="CppInt.htm">integer</a>,&nbsp;&nbsp;<a href="CppInt.htm">integer</a>, <a href="CppInt.htm">integer</a>)),<br/>
-	mrhere_ P((<a href="CppInt.htm">integer</a>)),<br/>
-	oactor_ P((<a href="CppInt.htm">integer</a>)),<br/>
-	rnd_ P((<a href="CppInt.htm">integer</a>)),<br/>
-	robadv_ P((<a href="CppInt.htm">integer</a>, <a href="CppInt.htm">integer</a>, <a href="CppInt.htm">integer</a>, <a href="CppInt.htm">integer</a>)), <br/>
-	robrm_ P((<a href="CppInt.htm">integer</a>, <a href="CppInt.htm">integer</a>, <a href="CppInt.htm">integer</a>, <a href="CppInt.htm">integer</a>, <a href="CppInt.htm">integer</a>)),<br/>
-	sparse_ P((<b><a href="CppConst.htm">const</a></b> <a href="CppInt.htm">integer</a> *, <a href="CppInt.htm">integer</a>, logical)),<br/>
-	vilstr_ P((<a href="CppInt.htm">integer</a>)),<br/>
-	weight_ P((<a href="CppInt.htm">integer</a>, <a href="CppInt.htm">integer</a>, <a href="CppInt.htm">integer</a>));<br/>
-<b><a href="CppExtern.htm">extern</a></b> logical<br/>
-	aappli_ P((<a href="CppInt.htm">integer</a>)),<br/>
-	ballop_ P((<a href="CppInt.htm">integer</a>)),<br/>
+	valuac_ P((<a href="CppInt.html">integer</a>));<br/>
+<b><a href="CppExtern.html">extern</a></b> <a href="CppInt.html">integer</a><br/>
+	blow_ P((<a href="CppInt.html">integer</a>, <a href="CppInt.html">integer</a>, <a href="CppInt.html">integer</a>, logical, <a href="CppInt.html">integer</a>)),<br/>
+	fights_ P((<a href="CppInt.html">integer</a>, logical)),<br/>
+	fwim_ P((<a href="CppInt.html">integer</a>, <a href="CppInt.html">integer</a>, <a href="CppInt.html">integer</a>, <a href="CppInt.html">integer</a>, <a href="CppInt.html">integer</a>, logical)),<br/>
+	getobj_ P((<a href="CppInt.html">integer</a>, <a href="CppInt.html">integer</a>, <a href="CppInt.html">integer</a>)),<br/>
+	schlst_ P((<a href="CppInt.html">integer</a>, <a href="CppInt.html">integer</a>, <a href="CppInt.html">integer</a>, <a href="CppInt.html">integer</a>,&nbsp;&nbsp;<a href="CppInt.html">integer</a>, <a href="CppInt.html">integer</a>)),<br/>
+	mrhere_ P((<a href="CppInt.html">integer</a>)),<br/>
+	oactor_ P((<a href="CppInt.html">integer</a>)),<br/>
+	rnd_ P((<a href="CppInt.html">integer</a>)),<br/>
+	robadv_ P((<a href="CppInt.html">integer</a>, <a href="CppInt.html">integer</a>, <a href="CppInt.html">integer</a>, <a href="CppInt.html">integer</a>)), <br/>
+	robrm_ P((<a href="CppInt.html">integer</a>, <a href="CppInt.html">integer</a>, <a href="CppInt.html">integer</a>, <a href="CppInt.html">integer</a>, <a href="CppInt.html">integer</a>)),<br/>
+	sparse_ P((<b><a href="CppConst.html">const</a></b> <a href="CppInt.html">integer</a> *, <a href="CppInt.html">integer</a>, logical)),<br/>
+	vilstr_ P((<a href="CppInt.html">integer</a>)),<br/>
+	weight_ P((<a href="CppInt.html">integer</a>, <a href="CppInt.html">integer</a>, <a href="CppInt.html">integer</a>));<br/>
+<b><a href="CppExtern.html">extern</a></b> logical<br/>
+	aappli_ P((<a href="CppInt.html">integer</a>)),<br/>
+	ballop_ P((<a href="CppInt.html">integer</a>)),<br/>
 	clockd_ P((<b><a href="CppVoid.htm">void</a></b>)),<br/>
-	cyclop_ P((<a href="CppInt.htm">integer</a>)),<br/>
+	cyclop_ P((<a href="CppInt.html">integer</a>)),<br/>
 	drop_ P((logical)),<br/>
-	findxt_ P((<a href="CppInt.htm">integer</a>, <a href="CppInt.htm">integer</a>)),<br/>
-	ghere_ P((<a href="CppInt.htm">integer</a>, <a href="CppInt.htm">integer</a>)),<br/>
+	findxt_ P((<a href="CppInt.html">integer</a>, <a href="CppInt.html">integer</a>)),<br/>
+	ghere_ P((<a href="CppInt.html">integer</a>, <a href="CppInt.html">integer</a>)),<br/>
 	init_ P((<b><a href="CppVoid.htm">void</a></b>)),<br/>
-	lightp_ P((<a href="CppInt.htm">integer</a>)),<br/>
-	lit_ P((<a href="CppInt.htm">integer</a>)),<br/>
-	moveto_ P((<a href="CppInt.htm">integer</a>, <a href="CppInt.htm">integer</a>)),<br/>
-	nobjs_ P((<a href="CppInt.htm">integer</a>, <a href="CppInt.htm">integer</a>)),<br/>
-	oappli_ P((<a href="CppInt.htm">integer</a>, <a href="CppInt.htm">integer</a>)),<br/>
+	lightp_ P((<a href="CppInt.html">integer</a>)),<br/>
+	lit_ P((<a href="CppInt.html">integer</a>)),<br/>
+	moveto_ P((<a href="CppInt.html">integer</a>, <a href="CppInt.html">integer</a>)),<br/>
+	nobjs_ P((<a href="CppInt.html">integer</a>, <a href="CppInt.html">integer</a>)),<br/>
+	oappli_ P((<a href="CppInt.html">integer</a>, <a href="CppInt.html">integer</a>)),<br/>
 	objact_ P((<b><a href="CppVoid.htm">void</a></b>)),<br/>
-	opncls_ P((<a href="CppInt.htm">integer</a>, <a href="CppInt.htm">integer</a>, <a href="CppInt.htm">integer</a>)),<br/>
+	opncls_ P((<a href="CppInt.html">integer</a>, <a href="CppInt.html">integer</a>, <a href="CppInt.html">integer</a>)),<br/>
 	parse_ P((<b><a href="CppChar.htm">char</a></b> *, logical)),<br/>
-	prob_ P((<a href="CppInt.htm">integer</a>, <a href="CppInt.htm">integer</a>)),<br/>
+	prob_ P((<a href="CppInt.html">integer</a>, <a href="CppInt.html">integer</a>)),<br/>
 	put_ P((logical)),<br/>
-	rappli_ P((<a href="CppInt.htm">integer</a>)),<br/>
-	rappl1_ P((<a href="CppInt.htm">integer</a>)),<br/>
-	rappl2_ P((<a href="CppInt.htm">integer</a>)),<br/>
-	rmdesc_ P((<a href="CppInt.htm">integer</a>)),<br/>
-	sobjs_ P((<a href="CppInt.htm">integer</a>, <a href="CppInt.htm">integer</a>)),<br/>
-	sverbs_ P((<a href="CppInt.htm">integer</a>)),<br/>
+	rappli_ P((<a href="CppInt.html">integer</a>)),<br/>
+	rappl1_ P((<a href="CppInt.html">integer</a>)),<br/>
+	rappl2_ P((<a href="CppInt.html">integer</a>)),<br/>
+	rmdesc_ P((<a href="CppInt.html">integer</a>)),<br/>
+	sobjs_ P((<a href="CppInt.html">integer</a>, <a href="CppInt.html">integer</a>)),<br/>
+	sverbs_ P((<a href="CppInt.html">integer</a>)),<br/>
 	synmch_ P((<b><a href="CppVoid.htm">void</a></b>)),<br/>
 	take_ P((logical)),<br/>
-	thiefp_ P((<a href="CppInt.htm">integer</a>)),<br/>
-	trollp_ P((<a href="CppInt.htm">integer</a>)),<br/>
-	qempty_ P((<a href="CppInt.htm">integer</a>)),<br/>
-	qhere_ P((<a href="CppInt.htm">integer</a>, <a href="CppInt.htm">integer</a>)),<br/>
-	vappli_ P((<a href="CppInt.htm">integer</a>)),<br/>
+	thiefp_ P((<a href="CppInt.html">integer</a>)),<br/>
+	trollp_ P((<a href="CppInt.html">integer</a>)),<br/>
+	qempty_ P((<a href="CppInt.html">integer</a>)),<br/>
+	qhere_ P((<a href="CppInt.html">integer</a>, <a href="CppInt.html">integer</a>)),<br/>
+	vappli_ P((<a href="CppInt.html">integer</a>)),<br/>
 	walk_ P((<b><a href="CppVoid.htm">void</a></b>)),<br/>
-	winnin_ P((<a href="CppInt.htm">integer</a>, <a href="CppInt.htm">integer</a>)),<br/>
-	yesno_ P((<a href="CppInt.htm">integer</a>, <a href="CppInt.htm">integer</a>, <a href="CppInt.htm">integer</a>));<br/>
+	winnin_ P((<a href="CppInt.html">integer</a>, <a href="CppInt.html">integer</a>)),<br/>
+	yesno_ P((<a href="CppInt.html">integer</a>, <a href="CppInt.html">integer</a>, <a href="CppInt.html">integer</a>));<br/>
 <br/>
-<a href="CppEndif.htm">#endif</a><br/>
+<a href="CppEndif.html">#endif</a><br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -349,54 +349,54 @@ QMAKE_CXX = gcc<br/>
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="parse.h" border = "1"><tr><td><code>
-<a href="CppComment.htm">/*</a> parse.h <a href="CppOperatorMinus.htm">-</a><a href="CppOperatorMinus.htm">-</a> <a href="CppHeaderFile.htm">header file</a> <b><a href="CppFor.htm">for</a></b> parsing structures used by dungeon <a href="CppComment.htm">*/</a><br/>
+<a href="CppComment.htm">/*</a> parse<a href="CppHeaderFile.htm">.h</a> <a href="CppOperatorMinus.htm">-</a><a href="CppOperatorMinus.htm">-</a> <a href="CppHeaderFile.html">header file</a> <b><a href="CppFor.htm">for</a></b> parsing structures used by dungeon <a href="CppComment.htm">*/</a><br/>
 <br/>
 <a href="CppComment.htm">/*</a> These structures are only used by the parsing routines.&nbsp;&nbsp;They are in<br/>
  * their own file since they are so large.<br/>
  <a href="CppComment.htm">*/</a><br/>
 <br/>
-<a href="CppIfndef.htm">#ifndef</a> PARSE_H<br/>
-<a href="CppDefine.htm">#define</a> PARSE_H<br/>
+<a href="CppIfndef.html">#ifndef</a> PARSE_H<br/>
+<a href="CppDefine.html">#define</a> PARSE_H<br/>
 <br/>
-<a href="CppIfndef.htm">#ifndef</a> EXTERN<br/>
-<a href="CppDefine.htm">#define</a> EXTERN <b><a href="CppExtern.htm">extern</a></b><br/>
-<a href="CppEndif.htm">#endif</a><br/>
+<a href="CppIfndef.html">#ifndef</a> EXTERN<br/>
+<a href="CppDefine.html">#define</a> EXTERN <b><a href="CppExtern.html">extern</a></b><br/>
+<a href="CppEndif.html">#endif</a><br/>
 <br/>
-EXTERN <b><a href="CppStruct.htm">struct</a></b> {<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppInt.htm">integer</a> act, o1, o2, p1, p2;<br/>
+EXTERN <b><a href="CppStruct.html">struct</a></b> {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppInt.html">integer</a> act, o1, o2, p1, p2;<br/>
 } pv_;<br/>
 <br/>
-<a href="CppDefine.htm">#define</a> pv_1 pv_<br/>
-<a href="CppDefine.htm">#define</a> pvec ((<a href="CppInt.htm">integer</a> *)&amp;pv_1)<br/>
-<a href="CppDefine.htm">#define</a> objvec ((<a href="CppInt.htm">integer</a> *)&amp;pv_1 <a href="CppOperatorPlus.htm">+</a> 1)<br/>
-<a href="CppDefine.htm">#define</a> prpvec ((<a href="CppInt.htm">integer</a> *)&amp;pv_1 <a href="CppOperatorPlus.htm">+</a> 3)<br/>
+<a href="CppDefine.html">#define</a> pv_1 pv_<br/>
+<a href="CppDefine.html">#define</a> pvec ((<a href="CppInt.html">integer</a> *)&amp;pv_1)<br/>
+<a href="CppDefine.html">#define</a> objvec ((<a href="CppInt.html">integer</a> *)&amp;pv_1 <a href="CppOperatorPlus.htm">+</a> 1)<br/>
+<a href="CppDefine.html">#define</a> prpvec ((<a href="CppInt.html">integer</a> *)&amp;pv_1 <a href="CppOperatorPlus.htm">+</a> 3)<br/>
 <br/>
-EXTERN <b><a href="CppStruct.htm">struct</a></b> {<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppInt.htm">integer</a> vflag, dobj, dfl1, dfl2, dfw1, dfw2, iobj, ifl1, ifl2, ifw1, ifw2;<br/>
+EXTERN <b><a href="CppStruct.html">struct</a></b> {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppInt.html">integer</a> vflag, dobj, dfl1, dfl2, dfw1, dfw2, iobj, ifl1, ifl2, ifw1, ifw2;<br/>
 <br/>
 } syntax_;<br/>
 <br/>
-<a href="CppDefine.htm">#define</a> syntax_1 syntax_<br/>
-<a href="CppDefine.htm">#define</a> syn ((<a href="CppInt.htm">integer</a> *)&amp;syntax_1)<br/>
+<a href="CppDefine.html">#define</a> syntax_1 syntax_<br/>
+<a href="CppDefine.html">#define</a> syn ((<a href="CppInt.html">integer</a> *)&amp;syntax_1)<br/>
 <br/>
 <a href="CppComment.htm">/*</a> Object flags (objflg) <a href="CppComment.htm">*/</a><br/>
 <br/>
-<a href="CppDefine.htm">#define</a> VABIT (16384)<br/>
-<a href="CppDefine.htm">#define</a> VRBIT (8192)<br/>
-<a href="CppDefine.htm">#define</a> VTBIT (4096)<br/>
-<a href="CppDefine.htm">#define</a> VCBIT (2048)<br/>
-<a href="CppDefine.htm">#define</a> VEBIT (1024)<br/>
-<a href="CppDefine.htm">#define</a> VFBIT (512)<br/>
-<a href="CppDefine.htm">#define</a> VPMASK (511)<br/>
+<a href="CppDefine.html">#define</a> VABIT (16384)<br/>
+<a href="CppDefine.html">#define</a> VRBIT (8192)<br/>
+<a href="CppDefine.html">#define</a> VTBIT (4096)<br/>
+<a href="CppDefine.html">#define</a> VCBIT (2048)<br/>
+<a href="CppDefine.html">#define</a> VEBIT (1024)<br/>
+<a href="CppDefine.html">#define</a> VFBIT (512)<br/>
+<a href="CppDefine.html">#define</a> VPMASK (511)<br/>
 <br/>
 <a href="CppComment.htm">/*</a> Syntax flags (synflg) <a href="CppComment.htm">*/</a><br/>
 <br/>
-<a href="CppDefine.htm">#define</a> SDIR (16384)<br/>
-<a href="CppDefine.htm">#define</a> SIND (8192)<br/>
-<a href="CppDefine.htm">#define</a> SSTD (4096)<br/>
-<a href="CppDefine.htm">#define</a> SFLIP (2048)<br/>
-<a href="CppDefine.htm">#define</a> SDRIV (1024)<br/>
-<a href="CppDefine.htm">#define</a> SVMASK (511)<br/>
+<a href="CppDefine.html">#define</a> SDIR (16384)<br/>
+<a href="CppDefine.html">#define</a> SIND (8192)<br/>
+<a href="CppDefine.html">#define</a> SSTD (4096)<br/>
+<a href="CppDefine.html">#define</a> SFLIP (2048)<br/>
+<a href="CppDefine.html">#define</a> SDRIV (1024)<br/>
+<a href="CppDefine.html">#define</a> SVMASK (511)<br/>
 <br/>
 <a href="CppComment.htm">/*</a> BUZZ WORDS<a href="CppOperatorDecrement.htm">--</a>	IGNORED IN SYNTACTIC PROCESSING <a href="CppComment.htm">*/</a><br/>
 <br/>
@@ -405,16 +405,16 @@ EXTERN <b><a href="CppStruct.htm">struct</a></b> {<br/>
 <a href="CppComment.htm">/*</a> 	DATA BVOC/3RAND,0,2RBY,0,2RIS,0,1RA,0, <a href="CppComment.htm">*/</a><br/>
 <a href="CppComment.htm">/*</a> &amp;		2RAN,0,3RTHE,0,3RRUN,0,2RGO,0,3RPRO,3RCEE,0,0<a href="CppOperatorDivide.htm">/</a> <a href="CppComment.htm">*/</a><br/>
 <br/>
-EXTERN <b><a href="CppConst.htm">const</a></b> <b><a href="CppStruct.htm">struct</a></b> {<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppInt.htm">integer</a> bvoc[20];<br/>
+EXTERN <b><a href="CppConst.html">const</a></b> <b><a href="CppStruct.html">struct</a></b> {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppInt.html">integer</a> bvoc[20];<br/>
 } buzvoc_<br/>
-<a href="CppIfdef.htm">#ifdef</a> INIT<br/>
+<a href="CppIfdef.html">#ifdef</a> INIT<br/>
 	<a href="CppOperatorAssign.htm">=</a> { 2164, 0, 4200, 0, 15160, 0, 1600, 0, 2160, 0, 32325, 0, <br/>
 	&nbsp;&nbsp;&nbsp;&nbsp;29654, 0, 11800, 0, 26335, 5005, 0, 0 }<br/>
-<a href="CppEndif.htm">#endif</a><br/>
+<a href="CppEndif.html">#endif</a><br/>
 	;<br/>
 <br/>
-<a href="CppDefine.htm">#define</a> buzvoc_1 buzvoc_<br/>
+<a href="CppDefine.html">#define</a> buzvoc_1 buzvoc_<br/>
 <br/>
 <a href="CppComment.htm">/*</a> PREPOSITIONS<a href="CppOperatorDecrement.htm">--</a>	MAPS PREPOSITIONS TO INDICES <a href="CppComment.htm">*/</a><br/>
 <br/>
@@ -425,18 +425,18 @@ EXTERN <b><a href="CppConst.htm">const</a></b> <b><a href="CppStruct.htm">struct
 <a href="CppComment.htm">/*</a> &amp;		3RDOW,1RN,6,2RUP,0,7,3RUND,2RER,8,2ROF,0,9,2RON,0,10, <a href="CppComment.htm">*/</a><br/>
 <a href="CppComment.htm">/*</a> &amp;		3ROFF,0,11<a href="CppOperatorDivide.htm">/</a> <a href="CppComment.htm">*/</a><br/>
 <br/>
-EXTERN <b><a href="CppConst.htm">const</a></b> <b><a href="CppStruct.htm">struct</a></b> {<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppInt.htm">integer</a> pvoc[45];<br/>
+EXTERN <b><a href="CppConst.html">const</a></b> <b><a href="CppStruct.html">struct</a></b> {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppInt.html">integer</a> pvoc[45];<br/>
 } prpvoc_<br/>
-<a href="CppIfdef.htm">#ifdef</a> INIT<br/>
+<a href="CppIfdef.html">#ifdef</a> INIT<br/>
 	<a href="CppOperatorAssign.htm">=</a> { 24885, 28800, 1, 37180, 12800, 2, 34369, 22680, 2, 32338, <br/>
 	&nbsp;&nbsp;&nbsp;&nbsp;24847, 2, 2400, 0, 3, 32600, 0, 4, 14960, 0, 5, 14979, 14565, 5, <br/>
 	&nbsp;&nbsp;&nbsp;&nbsp;14980, 0, 5, 7023, 22400, 6, 34240, 0, 7, 34164, 8720, 8, 24240, <br/>
 	&nbsp;&nbsp;&nbsp;&nbsp;0, 9, 24560, 0, 10, 24246, 0, 11 }<br/>
-<a href="CppEndif.htm">#endif</a><br/>
+<a href="CppEndif.html">#endif</a><br/>
 	;<br/>
 <br/>
-<a href="CppDefine.htm">#define</a> prpvoc_1 prpvoc_<br/>
+<a href="CppDefine.html">#define</a> prpvoc_1 prpvoc_<br/>
 <br/>
 <a href="CppComment.htm">/*</a> DIRECTIONS<a href="CppOperatorDecrement.htm">--</a>	MAPS DIRECTIONS TO INDICES <a href="CppComment.htm">*/</a><br/>
 <br/>
@@ -453,10 +453,10 @@ EXTERN <b><a href="CppConst.htm">const</a></b> <b><a href="CppStruct.htm">struct
 <a href="CppComment.htm">/*</a> &amp;	 2RIN,0,"32000, <a href="CppComment.htm">*/</a><br/>
 <a href="CppComment.htm">/*</a> &amp;	 3RCRO,2RSS,"36000<a href="CppOperatorDivide.htm">/</a> <a href="CppComment.htm">*/</a><br/>
 <br/>
-EXTERN <b><a href="CppConst.htm">const</a></b> <b><a href="CppStruct.htm">struct</a></b> {<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppInt.htm">integer</a> dvoc[75];<br/>
+EXTERN <b><a href="CppConst.html">const</a></b> <b><a href="CppStruct.html">struct</a></b> {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppInt.html">integer</a> dvoc[75];<br/>
 } dirvoc_<br/>
-<a href="CppIfdef.htm">#ifdef</a> INIT<br/>
+<a href="CppIfdef.html">#ifdef</a> INIT<br/>
 	<a href="CppOperatorAssign.htm">=</a> { 22400, 0, 1024, 23018, 32320, 1024, 30400, 0, 5120, 8000, 0,<br/>
 	&nbsp;&nbsp;&nbsp;&nbsp;3072, 8059, 32000, 3072, 36800, 0, 7168, 37019, 32000, 7168, <br/>
 	&nbsp;&nbsp;&nbsp;&nbsp;30600, 0, 4096, 31320, 0, 6144, 22600, 0, 2048, 23320, 0, 8192, <br/>
@@ -465,10 +465,10 @@ EXTERN <b><a href="CppConst.htm">const</a></b> <b><a href="CppStruct.htm">struct
 	&nbsp;&nbsp;&nbsp;&nbsp;8969, 32000, 14336, 24860, 0, 14336, 19401, 35400, 14336, 32721, <br/>
 	&nbsp;&nbsp;&nbsp;&nbsp;35412, 15360, 31021, 32320, 5120, 14960, 0, 13312, 5535, 31160, <br/>
 	&nbsp;&nbsp;&nbsp;&nbsp;15360 }<br/>
-<a href="CppEndif.htm">#endif</a><br/>
+<a href="CppEndif.html">#endif</a><br/>
 	;<br/>
 <br/>
-<a href="CppDefine.htm">#define</a> dirvoc_1 dirvoc_<br/>
+<a href="CppDefine.html">#define</a> dirvoc_1 dirvoc_<br/>
 <br/>
 <a href="CppComment.htm">/*</a> ADJECTIVES<a href="CppOperatorDecrement.htm">--</a>	MAPS ADJECTIVES TO OBJECT NUMBERS <a href="CppComment.htm">*/</a><br/>
 <br/>
@@ -529,8 +529,8 @@ EXTERN <b><a href="CppConst.htm">const</a></b> <b><a href="CppStruct.htm">struct
 <a href="CppComment.htm">/*</a> &amp;	 3RSOU,3RTHE,206,3REAS,1RT,207,3REAS,3RTER,207, <a href="CppComment.htm">*/</a><br/>
 <a href="CppComment.htm">/*</a> &amp;	 3RWES,1RT,208,3RWES,3RTER,208,3RDUN,3RGEO,215<a href="CppOperatorDivide.htm">/</a> <a href="CppComment.htm">*/</a><br/>
 <br/>
-EXTERN <b><a href="CppConst.htm">const</a></b> <a href="CppInt.htm">integer</a> avoc[]<br/>
-<a href="CppIfdef.htm">#ifdef</a> INIT<br/>
+EXTERN <b><a href="CppConst.html">const</a></b> <a href="CppInt.html">integer</a> avoc[]<br/>
+<a href="CppIfdef.html">#ifdef</a> INIT<br/>
 	<a href="CppOperatorAssign.htm">=</a> { 3935, 37360, 1, 81, 8495, 22681, 1, 13420, 0, 3, 25816, <br/>
 	&nbsp;&nbsp;&nbsp;&nbsp;25818, 3, 35580, 29015, 4, 16044, 8000, 6, 13647, 8000, 8, 8575, <br/>
 	&nbsp;&nbsp;&nbsp;&nbsp;29335, 8, 122, 32735, 25945, 9, 5285, 2320, 10, 19258, 11400, 12, <br/>
@@ -567,7 +567,7 @@ EXTERN <b><a href="CppConst.htm">const</a></b> <a href="CppInt.htm">integer</a> 
 	&nbsp;&nbsp;&nbsp;&nbsp;205, 23018, 32325, 205, 31021, 32320, 206, 31021, 32325, 206, <br/>
 	&nbsp;&nbsp;&nbsp;&nbsp;8059, 32000, 207, 8059, 32218, 207, 37019, 32000, 208, 37019, <br/>
 	&nbsp;&nbsp;&nbsp;&nbsp;32218, 208, 7254, 11415, 215, <a href="CppOperatorMinus.htm">-</a>1 }<br/>
-<a href="CppEndif.htm">#endif</a><br/>
+<a href="CppEndif.html">#endif</a><br/>
 	;<br/>
 <br/>
 <a href="CppComment.htm">/*</a> VERBS<a href="CppOperatorDecrement.htm">--</a>	MAPS VERBS TO SYNTAX <a href="CppSLOT.htm">SLOT</a>S <a href="CppComment.htm">*/</a><br/>
@@ -739,8 +739,8 @@ EXTERN <b><a href="CppConst.htm">const</a></b> <a href="CppInt.htm">integer</a> 
 <a href="CppComment.htm">/*</a> &amp;	 3RWAV,1RE,3RFLA,3RUNT,3RBRA,3RNDI,4,"40154,"40000,-1,-1, <a href="CppComment.htm">*/</a><br/>
 <a href="CppComment.htm">/*</a> &amp;	 3RWIN,1RD,5,"50233,"40233,"61007,-1,-1<a href="CppOperatorDivide.htm">/</a> <a href="CppComment.htm">*/</a><br/>
 <br/>
-EXTERN <b><a href="CppConst.htm">const</a></b> <a href="CppInt.htm">integer</a> vvoc[]<br/>
-<a href="CppIfdef.htm">#ifdef</a> INIT<br/>
+EXTERN <b><a href="CppConst.html">const</a></b> <a href="CppInt.html">integer</a> vvoc[]<br/>
+<a href="CppIfdef.html">#ifdef</a> INIT<br/>
 	<a href="CppOperatorAssign.htm">=</a> { 3929, 8240, 1, 70, 35418, 3819, 1, 71, 31256, 8722, 1, 72, <br/>
 	&nbsp;&nbsp;&nbsp;&nbsp;31201, 40000, 1, 73, 35418, 30775, 1, 74, 31329, 20800, 3260, <br/>
 	&nbsp;&nbsp;&nbsp;&nbsp;13000, 36844, 8000, 1, 75, 11418, 24569, 1, 76, 34105, 31165, <br/>
@@ -822,7 +822,7 @@ EXTERN <b><a href="CppConst.htm">const</a></b> <a href="CppInt.htm">integer</a> 
 	&nbsp;&nbsp;&nbsp;&nbsp;26329, 2081, 29320, 31201, 29612, 8, 17512, 8192, 32, 0, 16488, <br/>
 	&nbsp;&nbsp;&nbsp;&nbsp;8199, 32, 0, 36862, 8000, 10081, 34180, 3921, 22569, 4, 16492, <br/>
 	&nbsp;&nbsp;&nbsp;&nbsp;16384, <a href="CppOperatorMinus.htm">-</a>1, <a href="CppOperatorMinus.htm">-</a>1, 37174, 6400, 5, 20635, 16539, 25095, <a href="CppOperatorMinus.htm">-</a>1, <a href="CppOperatorMinus.htm">-</a>1, <a href="CppOperatorMinus.htm">-</a>1 }<br/>
-<a href="CppEndif.htm">#endif</a><br/>
+<a href="CppEndif.html">#endif</a><br/>
 	;<br/>
 <br/>
 <a href="CppComment.htm">/*</a> OBJECTS<a href="CppOperatorDecrement.htm">--</a>	MAPS OBJECTS TO OBJECT INDICES <a href="CppComment.htm">*/</a><br/>
@@ -948,8 +948,8 @@ EXTERN <b><a href="CppConst.htm">const</a></b> <a href="CppInt.htm">integer</a> 
 <a href="CppComment.htm">/*</a> &amp;	 3RSTR,3RUCT,212,3RCHA,3RNNE,214, <a href="CppComment.htm">*/</a><br/>
 <a href="CppComment.htm">/*</a> &amp;	 3RKEE,3RPER,215,3RLAD,3RDER,216<a href="CppOperatorDivide.htm">/</a> <a href="CppComment.htm">*/</a><br/>
 <br/>
-EXTERN <b><a href="CppConst.htm">const</a></b> <a href="CppInt.htm">integer</a> ovoc[]<br/>
-<a href="CppIfdef.htm">#ifdef</a> INIT<br/>
+EXTERN <b><a href="CppConst.html">const</a></b> <a href="CppInt.html">integer</a> ovoc[]<br/>
+<a href="CppIfdef.html">#ifdef</a> INIT<br/>
 	<a href="CppOperatorAssign.htm">=</a> { 3247, 0, 1, 25, 100, 30443, 17600, 1, 11258, 19563, 2, 5295,<br/>
 	&nbsp;&nbsp;&nbsp;&nbsp;35400, 2, 10215, 6400, 3, 30454, 7329, 3, 20054, 5120, 3, 6774, <br/>
 	&nbsp;&nbsp;&nbsp;&nbsp;22618, 3, 12054, 17600, 4, 55, 25965, 5000, 4, 143, 186, 30881, <br/>
@@ -1039,10 +1039,10 @@ EXTERN <b><a href="CppConst.htm">const</a></b> <a href="CppInt.htm">integer</a> 
 	&nbsp;&nbsp;&nbsp;&nbsp;4854, 2345, 157, 158, 3578, 6400, 203, 31014, 11289, 203, 12041, <br/>
 	&nbsp;&nbsp;&nbsp;&nbsp;28960, 210, 12041, 28969, 210, 29419, 8000, 211, 31218, 33740, <br/>
 	&nbsp;&nbsp;&nbsp;&nbsp;212, 5121, 22965, 214, 17805, 25818, 215, 19244, 6618, 216, <a href="CppOperatorMinus.htm">-</a>1 }<br/>
-<a href="CppEndif.htm">#endif</a><br/>
+<a href="CppEndif.html">#endif</a><br/>
 	;<br/>
 <br/>
-<a href="CppEndif.htm">#endif</a><br/>
+<a href="CppEndif.html">#endif</a><br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -1054,78 +1054,78 @@ EXTERN <b><a href="CppConst.htm">const</a></b> <a href="CppInt.htm">integer</a> 
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="vars.h" border = "1"><tr><td><code>
-<a href="CppComment.htm">/*</a> vars.h <a href="CppOperatorMinus.htm">-</a><a href="CppOperatorMinus.htm">-</a> variables <b><a href="CppFor.htm">for</a></b> dungeon <a href="CppComment.htm">*/</a><br/>
+<a href="CppComment.htm">/*</a> vars<a href="CppHeaderFile.htm">.h</a> <a href="CppOperatorMinus.htm">-</a><a href="CppOperatorMinus.htm">-</a> variables <b><a href="CppFor.htm">for</a></b> dungeon <a href="CppComment.htm">*/</a><br/>
 <br/>
-<a href="CppComment.htm">/*</a> These variable <a href="CppDefinition.htm">definitions</a> are really ugly because they are actually<br/>
+<a href="CppComment.htm">/*</a> These variable <a href="CppDefinition.html">definitions</a> are really ugly because they are actually<br/>
  * translations of FORTRAN common blocks.&nbsp;&nbsp;In the original FORTRAN source<br/>
- * the common blocks were included m<a href="CppAny.htm">any</a> <a href="CppTime.htm">time</a>s by each <a href="CppFunction.htm">function</a> that<br/>
+ * the common blocks were included m<a href="CppAny.htm">any</a> <a href="CppTime.htm">time</a>s by each <a href="CppFunction.html">function</a> that<br/>
  * needed them; I have changed <b><a href="CppThis.htm">this</a></b> to define them all in <b><a href="CppThis.htm">this</a></b> one file,<br/>
  * and include <b><a href="CppThis.htm">this</a></b> in every source file.&nbsp;&nbsp;It's less modular, and it<br/>
- * <a href="CppMake.htm">make</a>s everything slower to <a href="CppCompile.htm">compile</a>, but it's easier on me.<br/>
- * A few structures used only by the parsing routines are in parse.h.<br/>
+ * <a href="CppMake.htm">make</a>s everything slower to <a href="CppCompile.html">compile</a>, but it's easier on me.<br/>
+ * A few structures used only by the parsing routines are in parse<a href="CppHeaderFile.htm">.h</a>.<br/>
  <a href="CppComment.htm">*/</a><br/>
 <br/>
-<a href="CppIfndef.htm">#ifndef</a> VARS_H<br/>
-<a href="CppDefine.htm">#define</a> VARS_H<br/>
+<a href="CppIfndef.html">#ifndef</a> VARS_H<br/>
+<a href="CppDefine.html">#define</a> VARS_H<br/>
 <br/>
-<a href="CppIfndef.htm">#ifndef</a> EXTERN<br/>
-<a href="CppDefine.htm">#define</a> EXTERN <b><a href="CppExtern.htm">extern</a></b><br/>
-<a href="CppEndif.htm">#endif</a><br/>
+<a href="CppIfndef.html">#ifndef</a> EXTERN<br/>
+<a href="CppDefine.html">#define</a> EXTERN <b><a href="CppExtern.html">extern</a></b><br/>
+<a href="CppEndif.html">#endif</a><br/>
 <br/>
-EXTERN <b><a href="CppStruct.htm">struct</a></b> {<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppInt.htm">integer</a> prsa, prsi, prso;<br/>
+EXTERN <b><a href="CppStruct.html">struct</a></b> {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppInt.html">integer</a> prsa, prsi, prso;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;logical prswon;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppInt.htm">integer</a> prscon;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppInt.html">integer</a> prscon;<br/>
 } prsvec_;<br/>
 <br/>
-<a href="CppDefine.htm">#define</a> prsvec_1 prsvec_<br/>
+<a href="CppDefine.html">#define</a> prsvec_1 prsvec_<br/>
 <br/>
-EXTERN <b><a href="CppStruct.htm">struct</a></b> {<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppInt.htm">integer</a> oflag, oact, oslot, oprep, oname;<br/>
+EXTERN <b><a href="CppStruct.html">struct</a></b> {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppInt.html">integer</a> oflag, oact, oslot, oprep, oname;<br/>
 } orphs_;<br/>
 <br/>
-<a href="CppDefine.htm">#define</a> orphs_1 orphs_<br/>
-<a href="CppDefine.htm">#define</a> orp ((<a href="CppInt.htm">integer</a> *)&amp;orphs_1)<br/>
+<a href="CppDefine.html">#define</a> orphs_1 orphs_<br/>
+<a href="CppDefine.html">#define</a> orp ((<a href="CppInt.html">integer</a> *)&amp;orphs_1)<br/>
 <br/>
-EXTERN <b><a href="CppStruct.htm">struct</a></b> {<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppInt.htm">integer</a> lastit;<br/>
+EXTERN <b><a href="CppStruct.html">struct</a></b> {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppInt.html">integer</a> lastit;<br/>
 } last_;<br/>
 <br/>
-<a href="CppDefine.htm">#define</a> last_1 last_<br/>
+<a href="CppDefine.html">#define</a> last_1 last_<br/>
 <br/>
-EXTERN <b><a href="CppStruct.htm">struct</a></b> {<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppInt.htm">integer</a> winner, here;<br/>
+EXTERN <b><a href="CppStruct.html">struct</a></b> {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppInt.html">integer</a> winner, here;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;logical telflg;<br/>
 } play_;<br/>
 <br/>
-<a href="CppDefine.htm">#define</a> play_1 play_<br/>
+<a href="CppDefine.html">#define</a> play_1 play_<br/>
 <br/>
-EXTERN <b><a href="CppStruct.htm">struct</a></b> {<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppInt.htm">integer</a> rlnt, rdesc1[200], rdesc2[200], rexit[200], ractio[200],<br/>
+EXTERN <b><a href="CppStruct.html">struct</a></b> {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppInt.html">integer</a> rlnt, rdesc1[200], rdesc2[200], rexit[200], ractio[200],<br/>
 	&nbsp;&nbsp;&nbsp;&nbsp;rval[200], rflag[200];<br/>
 } rooms_;<br/>
 <br/>
-<a href="CppDefine.htm">#define</a> rooms_1 rooms_<br/>
-<a href="CppDefine.htm">#define</a> eqr ((<a href="CppInt.htm">integer</a> *)&amp;rooms_1 <a href="CppOperatorPlus.htm">+</a> 1)<br/>
-<a href="CppDefine.htm">#define</a> rrand ((<a href="CppInt.htm">integer</a> *)&amp;rooms_1 <a href="CppOperatorPlus.htm">+</a> 601)<br/>
+<a href="CppDefine.html">#define</a> rooms_1 rooms_<br/>
+<a href="CppDefine.html">#define</a> eqr ((<a href="CppInt.html">integer</a> *)&amp;rooms_1 <a href="CppOperatorPlus.htm">+</a> 1)<br/>
+<a href="CppDefine.html">#define</a> rrand ((<a href="CppInt.html">integer</a> *)&amp;rooms_1 <a href="CppOperatorPlus.htm">+</a> 601)<br/>
 <br/>
 <a href="CppComment.htm">/*</a> Room flags <a href="CppComment.htm">*/</a><br/>
 <br/>
-<a href="CppDefine.htm">#define</a> RSEEN (32768)<br/>
-<a href="CppDefine.htm">#define</a> RLIGHT (16384)<br/>
-<a href="CppDefine.htm">#define</a> RLAND (8192)<br/>
-<a href="CppDefine.htm">#define</a> RWATER (4096)<br/>
-<a href="CppDefine.htm">#define</a> RAIR (2048)<br/>
-<a href="CppDefine.htm">#define</a> RSACRD (1024)<br/>
-<a href="CppDefine.htm">#define</a> RFILL (512)<br/>
-<a href="CppDefine.htm">#define</a> RMUNG (256)<br/>
-<a href="CppDefine.htm">#define</a> RBUCK (128)<br/>
-<a href="CppDefine.htm">#define</a> RHOUSE (64)<br/>
-<a href="CppDefine.htm">#define</a> RNWALL (32)<br/>
-<a href="CppDefine.htm">#define</a> REND (16)<br/>
+<a href="CppDefine.html">#define</a> RSEEN (32768)<br/>
+<a href="CppDefine.html">#define</a> RLIGHT (16384)<br/>
+<a href="CppDefine.html">#define</a> RLAND (8192)<br/>
+<a href="CppDefine.html">#define</a> RWATER (4096)<br/>
+<a href="CppDefine.html">#define</a> RAIR (2048)<br/>
+<a href="CppDefine.html">#define</a> RSACRD (1024)<br/>
+<a href="CppDefine.html">#define</a> RFILL (512)<br/>
+<a href="CppDefine.html">#define</a> RMUNG (256)<br/>
+<a href="CppDefine.html">#define</a> RBUCK (128)<br/>
+<a href="CppDefine.html">#define</a> RHOUSE (64)<br/>
+<a href="CppDefine.html">#define</a> RNWALL (32)<br/>
+<a href="CppDefine.html">#define</a> REND (16)<br/>
 <br/>
-EXTERN <b><a href="CppConst.htm">const</a></b> <b><a href="CppStruct.htm">struct</a></b> {<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppInt.htm">integer</a> whous, lroom, cella, mtrol, maze1, mgrat, maz15, fore1, fore3, <br/>
+EXTERN <b><a href="CppConst.html">const</a></b> <b><a href="CppStruct.html">struct</a></b> {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppInt.html">integer</a> whous, lroom, cella, mtrol, maze1, mgrat, maz15, fore1, fore3, <br/>
 	&nbsp;&nbsp;&nbsp;&nbsp;clear, reser, strea, egypt, echor, tshaf, bshaf, mmach, dome, <br/>
 	&nbsp;&nbsp;&nbsp;&nbsp;mtorc, carou, riddl, lld2, temp1, temp2, maint, blroo, treas, <br/>
 	&nbsp;&nbsp;&nbsp;&nbsp;rivr1, rivr2, rivr3, mcycl, rivr4, rivr5, fchmp, falls, mbarr, <br/>
@@ -1136,7 +1136,7 @@ EXTERN <b><a href="CppConst.htm">const</a></b> <b><a href="CppStruct.htm">struct
 	&nbsp;&nbsp;&nbsp;&nbsp;mrgw, mrdw, inmir, scorr, ncorr, parap, cell, pcell, ncell, cpant,<br/>
 	&nbsp;&nbsp;&nbsp;&nbsp;cpout, cpuzz;<br/>
 } rindex_<br/>
-<a href="CppIfdef.htm">#ifdef</a> INIT<br/>
+<a href="CppIfdef.html">#ifdef</a> INIT<br/>
 	<a href="CppOperatorAssign.htm">=</a> { 2, 8, 9, 10, 11, 25, 30, 31, 33, 36, 40, 42, 44, 49, 61, 76,<br/>
 	&nbsp;&nbsp;&nbsp;&nbsp;77, 79, 80, 83, 91, 94, 96, 97, 100, 102, 103, 107, 108, 109, <br/>
 	&nbsp;&nbsp;&nbsp;&nbsp;101, 112, 113, 114, 120, 119, 121, 122, 126, 127, 128, 129, 130, <br/>
@@ -1144,75 +1144,75 @@ EXTERN <b><a href="CppConst.htm">const</a></b> <b><a href="CppStruct.htm">struct
 	&nbsp;&nbsp;&nbsp;&nbsp;151, 153, 154, 155, 157, 158, 159, 160, 161, 162, 163, 164, 165, <br/>
 	&nbsp;&nbsp;&nbsp;&nbsp;166, 167, 171, 172, 173, 174, 176, 177, 179, 182, 183, 184, 185, <br/>
 	&nbsp;&nbsp;&nbsp;&nbsp;186, 188, 189, 190 }<br/>
-<a href="CppEndif.htm">#endif</a><br/>
+<a href="CppEndif.html">#endif</a><br/>
 	;<br/>
 <br/>
-<a href="CppDefine.htm">#define</a> rindex_1 rindex_<br/>
+<a href="CppDefine.html">#define</a> rindex_1 rindex_<br/>
 <br/>
-EXTERN <b><a href="CppConst.htm">const</a></b> <b><a href="CppStruct.htm">struct</a></b> {<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppInt.htm">integer</a> xmin, xmax, xdown, xup, xnorth, xsouth, xenter, xexit, xeast, <br/>
+EXTERN <b><a href="CppConst.html">const</a></b> <b><a href="CppStruct.html">struct</a></b> {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppInt.html">integer</a> xmin, xmax, xdown, xup, xnorth, xsouth, xenter, xexit, xeast, <br/>
 	&nbsp;&nbsp;&nbsp;&nbsp;xwest;<br/>
 } xsrch_<br/>
-<a href="CppIfdef.htm">#ifdef</a> INIT<br/>
+<a href="CppIfdef.html">#ifdef</a> INIT<br/>
 	<a href="CppOperatorAssign.htm">=</a> { 1024, 16384, 10240, 9216, 1024, 5120, 13312, 14336, 3072, <br/>
 	&nbsp;&nbsp;&nbsp;&nbsp;7168 }<br/>
-<a href="CppEndif.htm">#endif</a><br/>
+<a href="CppEndif.html">#endif</a><br/>
 	;<br/>
 <br/>
-<a href="CppDefine.htm">#define</a> xsrch_1 xsrch_<br/>
+<a href="CppDefine.html">#define</a> xsrch_1 xsrch_<br/>
 <br/>
-EXTERN <b><a href="CppStruct.htm">struct</a></b> {<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppInt.htm">integer</a> olnt, odesc1[220], odesc2[220], odesco[220], oactio[220], oflag1[<br/>
+EXTERN <b><a href="CppStruct.html">struct</a></b> {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppInt.html">integer</a> olnt, odesc1[220], odesc2[220], odesco[220], oactio[220], oflag1[<br/>
 	&nbsp;&nbsp;&nbsp;&nbsp;220], oflag2[220], ofval[220], otval[220], osize[220], ocapac[220]<br/>
 	&nbsp;&nbsp;&nbsp;&nbsp;, oroom[220], oadv[220], ocan[220], oread[220];<br/>
 } objcts_;<br/>
 <br/>
-<a href="CppDefine.htm">#define</a> objcts_1 objcts_<br/>
-<a href="CppDefine.htm">#define</a> eqo ((<a href="CppInt.htm">integer</a> *)&amp;objcts_1 <a href="CppOperatorPlus.htm">+</a> 1)<br/>
+<a href="CppDefine.html">#define</a> objcts_1 objcts_<br/>
+<a href="CppDefine.html">#define</a> eqo ((<a href="CppInt.html">integer</a> *)&amp;objcts_1 <a href="CppOperatorPlus.htm">+</a> 1)<br/>
 <br/>
-EXTERN <b><a href="CppStruct.htm">struct</a></b> {<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppInt.htm">integer</a> r2lnt, oroom2[20], rroom2[20];<br/>
+EXTERN <b><a href="CppStruct.html">struct</a></b> {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppInt.html">integer</a> r2lnt, oroom2[20], rroom2[20];<br/>
 } oroom2_;<br/>
 <br/>
-<a href="CppDefine.htm">#define</a> oroom2_1 oroom2_<br/>
+<a href="CppDefine.html">#define</a> oroom2_1 oroom2_<br/>
 <br/>
 <a href="CppComment.htm">/*</a> Object flags (oflags) <a href="CppComment.htm">*/</a><br/>
 <br/>
-<a href="CppDefine.htm">#define</a> VISIBT (32768)<br/>
-<a href="CppDefine.htm">#define</a> READBT (16384)<br/>
-<a href="CppDefine.htm">#define</a> TAKEBT (8192)<br/>
-<a href="CppDefine.htm">#define</a> DOORBT (4096)<br/>
-<a href="CppDefine.htm">#define</a> TRANBT (2048)<br/>
-<a href="CppDefine.htm">#define</a> FOODBT (1024)<br/>
-<a href="CppDefine.htm">#define</a> <a href="CppNds.htm">NDS</a>CBT (512)<br/>
-<a href="CppDefine.htm">#define</a> DRNKBT (256)<br/>
-<a href="CppDefine.htm">#define</a> CONTBT (128)<br/>
-<a href="CppDefine.htm">#define</a> LITEBT (64)<br/>
-<a href="CppDefine.htm">#define</a> VICTBT (32)<br/>
-<a href="CppDefine.htm">#define</a> BURNBT (16)<br/>
-<a href="CppDefine.htm">#define</a> FLAMBT (8)<br/>
-<a href="CppDefine.htm">#define</a> TOOLBT (4)<br/>
-<a href="CppDefine.htm">#define</a> TURNBT (2)<br/>
-<a href="CppDefine.htm">#define</a> ONBT (1)<br/>
-<a href="CppDefine.htm">#define</a> FINDBT (32768)<br/>
-<a href="CppDefine.htm">#define</a> SLEPBT (16384)<br/>
-<a href="CppDefine.htm">#define</a> SCRDBT (8192)<br/>
-<a href="CppDefine.htm">#define</a> TIEBT (4096)<br/>
-<a href="CppDefine.htm">#define</a> CLMBBT (2048)<br/>
-<a href="CppDefine.htm">#define</a> ACTRBT (1024)<br/>
-<a href="CppDefine.htm">#define</a> WEAPBT (512)<br/>
-<a href="CppDefine.htm">#define</a> FITEBT (256)<br/>
-<a href="CppDefine.htm">#define</a> VILLBT (128)<br/>
-<a href="CppDefine.htm">#define</a> STAGBT (64)<br/>
-<a href="CppDefine.htm">#define</a> TRYBT (32)<br/>
-<a href="CppDefine.htm">#define</a> NOCHBT (16)<br/>
-<a href="CppDefine.htm">#define</a> OPENBT (8)<br/>
-<a href="CppDefine.htm">#define</a> TCHBT (4)<br/>
-<a href="CppDefine.htm">#define</a> VEHBT (2)<br/>
-<a href="CppDefine.htm">#define</a> SCHBT (1)<br/>
+<a href="CppDefine.html">#define</a> VISIBT (32768)<br/>
+<a href="CppDefine.html">#define</a> READBT (16384)<br/>
+<a href="CppDefine.html">#define</a> TAKEBT (8192)<br/>
+<a href="CppDefine.html">#define</a> DOORBT (4096)<br/>
+<a href="CppDefine.html">#define</a> TRANBT (2048)<br/>
+<a href="CppDefine.html">#define</a> FOODBT (1024)<br/>
+<a href="CppDefine.html">#define</a> <a href="CppNds.htm">NDS</a>CBT (512)<br/>
+<a href="CppDefine.html">#define</a> DRNKBT (256)<br/>
+<a href="CppDefine.html">#define</a> CONTBT (128)<br/>
+<a href="CppDefine.html">#define</a> LITEBT (64)<br/>
+<a href="CppDefine.html">#define</a> VICTBT (32)<br/>
+<a href="CppDefine.html">#define</a> BURNBT (16)<br/>
+<a href="CppDefine.html">#define</a> FLAMBT (8)<br/>
+<a href="CppDefine.html">#define</a> TOOLBT (4)<br/>
+<a href="CppDefine.html">#define</a> TURNBT (2)<br/>
+<a href="CppDefine.html">#define</a> ONBT (1)<br/>
+<a href="CppDefine.html">#define</a> FINDBT (32768)<br/>
+<a href="CppDefine.html">#define</a> SLEPBT (16384)<br/>
+<a href="CppDefine.html">#define</a> SCRDBT (8192)<br/>
+<a href="CppDefine.html">#define</a> TIEBT (4096)<br/>
+<a href="CppDefine.html">#define</a> CLMBBT (2048)<br/>
+<a href="CppDefine.html">#define</a> ACTRBT (1024)<br/>
+<a href="CppDefine.html">#define</a> WEAPBT (512)<br/>
+<a href="CppDefine.html">#define</a> FITEBT (256)<br/>
+<a href="CppDefine.html">#define</a> VILLBT (128)<br/>
+<a href="CppDefine.html">#define</a> STAGBT (64)<br/>
+<a href="CppDefine.html">#define</a> TRYBT (32)<br/>
+<a href="CppDefine.html">#define</a> NOCHBT (16)<br/>
+<a href="CppDefine.html">#define</a> OPENBT (8)<br/>
+<a href="CppDefine.html">#define</a> TCHBT (4)<br/>
+<a href="CppDefine.html">#define</a> VEHBT (2)<br/>
+<a href="CppDefine.html">#define</a> SCHBT (1)<br/>
 <br/>
-EXTERN <b><a href="CppConst.htm">const</a></b> <b><a href="CppStruct.htm">struct</a></b> {<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppInt.htm">integer</a> garli, food, gunk, coal, machi, diamo, t<b><a href="CppCase.htm">case</a></b>, bottl, water, rope, <br/>
+EXTERN <b><a href="CppConst.html">const</a></b> <b><a href="CppStruct.html">struct</a></b> {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppInt.html">integer</a> garli, food, gunk, coal, machi, diamo, t<b><a href="CppCase.htm">case</a></b>, bottl, water, rope, <br/>
 	&nbsp;&nbsp;&nbsp;&nbsp;knife, sword, lamp, blamp, rug, leave, troll, axe, rknif, keys, <br/>
 	&nbsp;&nbsp;&nbsp;&nbsp;ice, bar, coffi, torch, tbask, fbask, irbox, ghost, trunk, bell, <br/>
 	&nbsp;&nbsp;&nbsp;&nbsp;book, candl, match, tube, putty, wrenc, screw, cyclo, chali, <br/>
@@ -1226,7 +1226,7 @@ EXTERN <b><a href="CppConst.htm">const</a></b> <b><a href="CppStruct.htm">struct
 	&nbsp;&nbsp;&nbsp;&nbsp;warni, cslit, gcard, stldr, hands, wall, lungs, sailo, aviat, <br/>
 	&nbsp;&nbsp;&nbsp;&nbsp;teeth, itobj, every, valua, oplay, wnort, gwate, master;<br/>
 } oindex_<br/>
-<a href="CppIfdef.htm">#ifdef</a> INIT<br/>
+<a href="CppIfdef.html">#ifdef</a> INIT<br/>
 	<a href="CppOperatorAssign.htm">=</a> { 2, 3, 4, 5, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19,<br/>
 	&nbsp;&nbsp;&nbsp;&nbsp;20, 21, 23, 30, 26, 33, 34, 35, 36, 39, 42, 45, 46, 47, 48, 51, <br/>
 	&nbsp;&nbsp;&nbsp;&nbsp;54, 55, 56, 57, 58, 59, 61, 62, 63, 65, 66, 71, 78, 79, 75, 85, <br/>
@@ -1236,214 +1236,214 @@ EXTERN <b><a href="CppConst.htm">const</a></b> <b><a href="CppStruct.htm">struct
 	&nbsp;&nbsp;&nbsp;&nbsp;154, 155, 156, 157, 158, 159, 161, 164, 171, 172, 173, 175, 178, <br/>
 	&nbsp;&nbsp;&nbsp;&nbsp;185, 186, 187, 188, 189, 200, 198, 201, 196, 202, 197, 192, 194, <br/>
 	&nbsp;&nbsp;&nbsp;&nbsp;195, 193, 205, 209, 215 }<br/>
-<a href="CppEndif.htm">#endif</a><br/>
+<a href="CppEndif.html">#endif</a><br/>
 	;<br/>
 <br/>
-<a href="CppDefine.htm">#define</a> oindex_1 oindex_<br/>
+<a href="CppDefine.html">#define</a> oindex_1 oindex_<br/>
 <br/>
-EXTERN <b><a href="CppStruct.htm">struct</a></b> {<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppInt.htm">integer</a> clnt, ctick[25], cactio[25];<br/>
+EXTERN <b><a href="CppStruct.html">struct</a></b> {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppInt.html">integer</a> clnt, ctick[25], cactio[25];<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;logical cflag[25];<br/>
 } cevent_;<br/>
 <br/>
-<a href="CppDefine.htm">#define</a> cevent_1 cevent_<br/>
-<a href="CppDefine.htm">#define</a> eqc ((<a href="CppInt.htm">integer</a> *)&amp;cevent_1 <a href="CppOperatorPlus.htm">+</a> 1)<br/>
+<a href="CppDefine.html">#define</a> cevent_1 cevent_<br/>
+<a href="CppDefine.html">#define</a> eqc ((<a href="CppInt.html">integer</a> *)&amp;cevent_1 <a href="CppOperatorPlus.htm">+</a> 1)<br/>
 <br/>
-EXTERN <b><a href="CppConst.htm">const</a></b> <b><a href="CppStruct.htm">struct</a></b> {<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppInt.htm">integer</a> cevcur, cevmnt, cevlnt, cevmat, cevcnd, cevbal, cevbrn, cevfus, <br/>
+EXTERN <b><a href="CppConst.html">const</a></b> <b><a href="CppStruct.html">struct</a></b> {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppInt.html">integer</a> cevcur, cevmnt, cevlnt, cevmat, cevcnd, cevbal, cevbrn, cevfus, <br/>
 	&nbsp;&nbsp;&nbsp;&nbsp;cevled, cevsaf, cevvlg, cevgno, cevbuc, cevsph, cevegh, cevfor, <br/>
 	&nbsp;&nbsp;&nbsp;&nbsp;cevscl, cevzgi, cevzgo, cevste, cevmrs, cevpin, cevinq, cevfol;<br/>
 } cindex_<br/>
-<a href="CppIfdef.htm">#ifdef</a> INIT<br/>
+<a href="CppIfdef.html">#ifdef</a> INIT<br/>
 	<a href="CppOperatorAssign.htm">=</a> { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, <br/>
 	&nbsp;&nbsp;&nbsp;&nbsp;18, 19, 20, 21, 22, 23, 24 }<br/>
-<a href="CppEndif.htm">#endif</a><br/>
+<a href="CppEndif.html">#endif</a><br/>
 	;<br/>
 <br/>
-<a href="CppDefine.htm">#define</a> cindex_1 cindex_<br/>
+<a href="CppDefine.html">#define</a> cindex_1 cindex_<br/>
 <br/>
-EXTERN <b><a href="CppStruct.htm">struct</a></b> {<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppInt.htm">integer</a> alnt, aroom[4], ascore[4], avehic[4], aobj[4], aactio[4], astren[<br/>
+EXTERN <b><a href="CppStruct.html">struct</a></b> {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppInt.html">integer</a> alnt, aroom[4], ascore[4], avehic[4], aobj[4], aactio[4], astren[<br/>
 	&nbsp;&nbsp;&nbsp;&nbsp;4], aflag[4];<br/>
 } advs_;<br/>
 <br/>
-<a href="CppDefine.htm">#define</a> advs_1 advs_<br/>
-<a href="CppDefine.htm">#define</a> eqa ((<a href="CppInt.htm">integer</a> *)&amp;advs_1 <a href="CppOperatorPlus.htm">+</a> 1)<br/>
+<a href="CppDefine.html">#define</a> advs_1 advs_<br/>
+<a href="CppDefine.html">#define</a> eqa ((<a href="CppInt.html">integer</a> *)&amp;advs_1 <a href="CppOperatorPlus.htm">+</a> 1)<br/>
 <br/>
-EXTERN <b><a href="CppConst.htm">const</a></b> <b><a href="CppStruct.htm">struct</a></b> {<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppInt.htm">integer</a> astag;<br/>
+EXTERN <b><a href="CppConst.html">const</a></b> <b><a href="CppStruct.html">struct</a></b> {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppInt.html">integer</a> astag;<br/>
 } aflags_<br/>
-<a href="CppIfdef.htm">#ifdef</a> INIT<br/>
+<a href="CppIfdef.html">#ifdef</a> INIT<br/>
 	<a href="CppOperatorAssign.htm">=</a> { 32768 }<br/>
-<a href="CppEndif.htm">#endif</a><br/>
+<a href="CppEndif.html">#endif</a><br/>
 	;<br/>
 <br/>
-<a href="CppDefine.htm">#define</a> aflags_1 aflags_<br/>
+<a href="CppDefine.html">#define</a> aflags_1 aflags_<br/>
 <br/>
-EXTERN <b><a href="CppConst.htm">const</a></b> <b><a href="CppStruct.htm">struct</a></b> {<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppInt.htm">integer</a> player, arobot, amastr;<br/>
+EXTERN <b><a href="CppConst.html">const</a></b> <b><a href="CppStruct.html">struct</a></b> {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppInt.html">integer</a> player, arobot, amastr;<br/>
 } aindex_<br/>
-<a href="CppIfdef.htm">#ifdef</a> INIT<br/>
+<a href="CppIfdef.html">#ifdef</a> INIT<br/>
 	<a href="CppOperatorAssign.htm">=</a> { 1, 2, 3 }<br/>
-<a href="CppEndif.htm">#endif</a><br/>
+<a href="CppEndif.html">#endif</a><br/>
 	;<br/>
 <br/>
-<a href="CppDefine.htm">#define</a> aindex_1 aindex_<br/>
+<a href="CppDefine.html">#define</a> aindex_1 aindex_<br/>
 <br/>
-EXTERN <b><a href="CppConst.htm">const</a></b> <b><a href="CppStruct.htm">struct</a></b> {<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppInt.htm">integer</a> cintw, deadxw, frstqw, inxw, outxw, walkiw, fightw, foow, meltw, <br/>
+EXTERN <b><a href="CppConst.html">const</a></b> <b><a href="CppStruct.html">struct</a></b> {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppInt.html">integer</a> cintw, deadxw, frstqw, inxw, outxw, walkiw, fightw, foow, meltw, <br/>
 	&nbsp;&nbsp;&nbsp;&nbsp;readw, inflaw, deflaw, alarmw, exorcw, plugw, kickw, wavew, <br/>
 	&nbsp;&nbsp;&nbsp;&nbsp;raisew, lowerw, rubw, pushw, untiew, tiew, tieupw, turnw, breatw, <br/>
 	&nbsp;&nbsp;&nbsp;&nbsp;knockw, lookw, examiw, shakew, movew, trnonw, trnofw, openw, <br/>
 	&nbsp;&nbsp;&nbsp;&nbsp;closew, findw, waitw, spinw, boardw, unboaw, takew, invenw, fillw,<br/>
 	&nbsp;&nbsp;&nbsp;&nbsp; eatw, drinkw, burnw, mungw, killw, attacw, swingw, walkw, tellw, <br/>
-	&nbsp;&nbsp;&nbsp;&nbsp;putw, dropw, givew, pourw, <b><a href="CppThrow.htm">throw</a></b>w, digw, leapw, stayw, follow, <br/>
+	&nbsp;&nbsp;&nbsp;&nbsp;putw, dropw, givew, pourw, <b><a href="CppThrow.html">throw</a></b>w, digw, leapw, stayw, follow, <br/>
 	&nbsp;&nbsp;&nbsp;&nbsp;hellow, lookiw, lookuw, pumpw, windw, clmbw, clmbuw, clmbdw, <br/>
 	&nbsp;&nbsp;&nbsp;&nbsp;trntow;<br/>
 } vindex_<br/>
-<a href="CppIfdef.htm">#ifdef</a> INIT<br/>
+<a href="CppIfdef.html">#ifdef</a> INIT<br/>
 	<a href="CppOperatorAssign.htm">=</a> { 1, 2, 3, 4, 5, 6, 7, 8, 101, 100, 102, 103, 104, 105, 106, <br/>
 	&nbsp;&nbsp;&nbsp;&nbsp;107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118, 119, <br/>
 	&nbsp;&nbsp;&nbsp;&nbsp;120, 121, 122, 123, 124, 125, 126, 127, 128, 129, 130, 131, 132, <br/>
 	&nbsp;&nbsp;&nbsp;&nbsp;133, 134, 135, 136, 137, 138, 139, 141, 140, 142, 143, 144, 145, <br/>
 	&nbsp;&nbsp;&nbsp;&nbsp;146, 147, 148, 89, 91, 73, 85, 151, 152, 153, 154, 155, 156, 157, <br/>
 	&nbsp;&nbsp;&nbsp;&nbsp;158, 159 }<br/>
-<a href="CppEndif.htm">#endif</a><br/>
+<a href="CppEndif.html">#endif</a><br/>
 	;<br/>
 <br/>
-<a href="CppDefine.htm">#define</a> vindex_1 vindex_<br/>
+<a href="CppDefine.html">#define</a> vindex_1 vindex_<br/>
 <br/>
-EXTERN <b><a href="CppStruct.htm">struct</a></b> {<br/>
+EXTERN <b><a href="CppStruct.html">struct</a></b> {<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;logical trollf, cagesf, bucktf, caroff, carozf, lwtidf, domef, glacrf, <br/>
 	&nbsp;&nbsp;&nbsp;&nbsp;echof, riddlf, lldf, cyclof, magicf, litldf, safef, gnomef, <br/>
 	&nbsp;&nbsp;&nbsp;&nbsp;gnodrf, mirrmf, egyptf, onpolf, blabf, brieff, superf, buoyf, <br/>
 	&nbsp;&nbsp;&nbsp;&nbsp;grunlf, gatef, rainbf, cagetf, empthf, deflaf, glacmf, frobzf, <br/>
 	&nbsp;&nbsp;&nbsp;&nbsp;endgmf, badlkf, thfenf, singsf, mrpshf, mropnf, wdopnf, mr1f, <br/>
 	&nbsp;&nbsp;&nbsp;&nbsp;mr2f, inqstf, follwf, spellf, cpoutf, cpushf;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppInt.htm">integer</a> btief, binff, rvmnt, rvclr, rvcyc, rvsnd, rvgua, orrug, orcand, <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppInt.html">integer</a> btief, binff, rvmnt, rvclr, rvcyc, rvsnd, rvgua, orrug, orcand, <br/>
 	&nbsp;&nbsp;&nbsp;&nbsp;ormtch, orlamp, mdir, mloc, poleuf, quesno, nqatt, corrct, lcell, <br/>
 	&nbsp;&nbsp;&nbsp;&nbsp;pnumb, acell, dcell, cphere;<br/>
 } findex_;<br/>
 <br/>
-<a href="CppDefine.htm">#define</a> findex_1 findex_<br/>
-<a href="CppDefine.htm">#define</a> flags ((logical *)&amp;findex_1)<br/>
-<a href="CppDefine.htm">#define</a> <b><a href="CppSwitch.htm">switch</a></b>_ ((<a href="CppInt.htm">integer</a> *)&amp;findex_1 <a href="CppOperatorPlus.htm">+</a> 46)<br/>
+<a href="CppDefine.html">#define</a> findex_1 findex_<br/>
+<a href="CppDefine.html">#define</a> flags ((logical *)&amp;findex_1)<br/>
+<a href="CppDefine.html">#define</a> <b><a href="CppSwitch.html">switch</a></b>_ ((<a href="CppInt.html">integer</a> *)&amp;findex_1 <a href="CppOperatorPlus.htm">+</a> 46)<br/>
 <br/>
-EXTERN <b><a href="CppStruct.htm">struct</a></b> {<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppInt.htm">integer</a> dbgflg, prsflg, gdtflg;<br/>
-} <a href="CppDebug.htm">debug</a>_;<br/>
+EXTERN <b><a href="CppStruct.html">struct</a></b> {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppInt.html">integer</a> dbgflg, prsflg, gdtflg;<br/>
+} <a href="CppDebug.html">debug</a>_;<br/>
 <br/>
-<a href="CppDefine.htm">#define</a> <a href="CppDebug.htm">debug</a>_1 <a href="CppDebug.htm">debug</a>_<br/>
+<a href="CppDefine.html">#define</a> <a href="CppDebug.html">debug</a>_1 <a href="CppDebug.html">debug</a>_<br/>
 <br/>
-EXTERN <b><a href="CppStruct.htm">struct</a></b> {<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppInt.htm">integer</a> thfpos;<br/>
+EXTERN <b><a href="CppStruct.html">struct</a></b> {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppInt.html">integer</a> thfpos;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;logical thfflg, thfact, swdact;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppInt.htm">integer</a> swdsta;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppInt.html">integer</a> swdsta;<br/>
 } hack_;<br/>
 <br/>
-<a href="CppDefine.htm">#define</a> hack_1 hack_<br/>
+<a href="CppDefine.html">#define</a> hack_1 hack_<br/>
 <br/>
-EXTERN <b><a href="CppStruct.htm">struct</a></b> {<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppInt.htm">integer</a> vlnt, villns[4], vprob[4], vopps[4], vbest[4], vmelee[4];<br/>
+EXTERN <b><a href="CppStruct.html">struct</a></b> {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppInt.html">integer</a> vlnt, villns[4], vprob[4], vopps[4], vbest[4], vmelee[4];<br/>
 } vill_;<br/>
 <br/>
-<a href="CppDefine.htm">#define</a> vill_1 vill_<br/>
-<a href="CppDefine.htm">#define</a> eqv ((<a href="CppInt.htm">integer</a> *)&amp;vill_1 <a href="CppOperatorPlus.htm">+</a> 1)<br/>
+<a href="CppDefine.html">#define</a> vill_1 vill_<br/>
+<a href="CppDefine.html">#define</a> eqv ((<a href="CppInt.html">integer</a> *)&amp;vill_1 <a href="CppOperatorPlus.htm">+</a> 1)<br/>
 <br/>
-EXTERN <b><a href="CppStruct.htm">struct</a></b> {<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppInt.htm">integer</a> moves, deaths, rwscor, mxscor, mxload, ltshft, bloc, mungrm, hs, <br/>
+EXTERN <b><a href="CppStruct.html">struct</a></b> {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppInt.html">integer</a> moves, deaths, rwscor, mxscor, mxload, ltshft, bloc, mungrm, hs, <br/>
 	&nbsp;&nbsp;&nbsp;&nbsp;egscor, egmxsc;<br/>
 } state_;<br/>
 <br/>
-<a href="CppDefine.htm">#define</a> state_1 state_<br/>
+<a href="CppDefine.html">#define</a> state_1 state_<br/>
 <br/>
-EXTERN <b><a href="CppStruct.htm">struct</a></b> {<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppInt.htm">integer</a> xtype, xroom1, xstrng, xactio, xobj;<br/>
+EXTERN <b><a href="CppStruct.html">struct</a></b> {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppInt.html">integer</a> xtype, xroom1, xstrng, xactio, xobj;<br/>
 } curxt_;<br/>
 <br/>
-<a href="CppDefine.htm">#define</a> curxt_1 curxt_<br/>
-<a href="CppDefine.htm">#define</a> xflag ((<a href="CppInt.htm">integer</a> *)&amp;curxt_1 <a href="CppOperatorPlus.htm">+</a> 4)<br/>
+<a href="CppDefine.html">#define</a> curxt_1 curxt_<br/>
+<a href="CppDefine.html">#define</a> xflag ((<a href="CppInt.html">integer</a> *)&amp;curxt_1 <a href="CppOperatorPlus.htm">+</a> 4)<br/>
 <br/>
-EXTERN <b><a href="CppConst.htm">const</a></b> <b><a href="CppStruct.htm">struct</a></b> {<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppInt.htm">integer</a> xrmask, xdmask, xfmask, xfshft, xashft, xelnt[4], xnorm, xno, <br/>
+EXTERN <b><a href="CppConst.html">const</a></b> <b><a href="CppStruct.html">struct</a></b> {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppInt.html">integer</a> xrmask, xdmask, xfmask, xfshft, xashft, xelnt[4], xnorm, xno, <br/>
 	&nbsp;&nbsp;&nbsp;&nbsp;xcond, xdoor, xlflag;<br/>
 } xpars_<br/>
-<a href="CppIfdef.htm">#ifdef</a> INIT<br/>
+<a href="CppIfdef.html">#ifdef</a> INIT<br/>
 	<a href="CppOperatorAssign.htm">=</a> { 255, 31744, 3, 256, 256, { 1, 2, 3, 3 }, 1, 2, 3, 4, 32768 }<br/>
-<a href="CppEndif.htm">#endif</a><br/>
+<a href="CppEndif.html">#endif</a><br/>
 	;<br/>
 <br/>
-<a href="CppDefine.htm">#define</a> xpars_1 xpars_<br/>
+<a href="CppDefine.html">#define</a> xpars_1 xpars_<br/>
 <br/>
-EXTERN <b><a href="CppStruct.htm">struct</a></b> {<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppInt.htm">integer</a> mbase, strbit;<br/>
+EXTERN <b><a href="CppStruct.html">struct</a></b> {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppInt.html">integer</a> mbase, strbit;<br/>
 } star_;<br/>
 <br/>
-<a href="CppDefine.htm">#define</a> star_1 star_<br/>
+<a href="CppDefine.html">#define</a> star_1 star_<br/>
 <br/>
-EXTERN <b><a href="CppStruct.htm">struct</a></b> {<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppInt.htm">integer</a> inlnt;<br/>
+EXTERN <b><a href="CppStruct.html">struct</a></b> {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppInt.html">integer</a> inlnt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppChar.htm">char</a></b> inbuf[78];<br/>
 } input_;<br/>
 <br/>
-<a href="CppDefine.htm">#define</a> input_1 input_<br/>
+<a href="CppDefine.html">#define</a> input_1 input_<br/>
 <br/>
-EXTERN <b><a href="CppStruct.htm">struct</a></b> {<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppInt.htm">integer</a> fromdr, scolrm, scolac;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppInt.htm">integer</a> scoldr[8], scolwl[12];<br/>
+EXTERN <b><a href="CppStruct.html">struct</a></b> {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppInt.html">integer</a> fromdr, scolrm, scolac;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppInt.html">integer</a> scoldr[8], scolwl[12];<br/>
 } screen_<br/>
-<a href="CppIfdef.htm">#ifdef</a> INIT<br/>
+<a href="CppIfdef.html">#ifdef</a> INIT<br/>
 	<a href="CppOperatorAssign.htm">=</a> { 0, 0, 0, { 1024, 153, 5120, 154, 3072, 152, 7168, 151 },<br/>
 	&nbsp;&nbsp;&nbsp;&nbsp;{ 151, 207, 3072, 152, 208, 7168, 153, 206, 5120, 154, 205,<br/>
 	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1024 } }<br/>
-<a href="CppEndif.htm">#endif</a><br/>
+<a href="CppEndif.html">#endif</a><br/>
 	;<br/>
 <br/>
-<a href="CppDefine.htm">#define</a> screen_1 screen_<br/>
+<a href="CppDefine.html">#define</a> screen_1 screen_<br/>
 <br/>
-EXTERN <b><a href="CppStruct.htm">struct</a></b> {<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppInt.htm">integer</a> mlnt, mrloc, rtext[1050];<br/>
+EXTERN <b><a href="CppStruct.html">struct</a></b> {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppInt.html">integer</a> mlnt, mrloc, rtext[1050];<br/>
 } rmsg_;<br/>
 <br/>
-<a href="CppDefine.htm">#define</a> rmsg_1 rmsg_<br/>
+<a href="CppDefine.html">#define</a> rmsg_1 rmsg_<br/>
 <br/>
-EXTERN <b><a href="CppConst.htm">const</a></b> <b><a href="CppStruct.htm">struct</a></b> {<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppInt.htm">integer</a> vmaj, vmin, vedit;<br/>
+EXTERN <b><a href="CppConst.html">const</a></b> <b><a href="CppStruct.html">struct</a></b> {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppInt.html">integer</a> vmaj, vmin, vedit;<br/>
 } vers_<br/>
-<a href="CppIfdef.htm">#ifdef</a> INIT<br/>
+<a href="CppIfdef.html">#ifdef</a> INIT<br/>
 	<a href="CppOperatorAssign.htm">=</a> { 2, 7, 'A' }<br/>
-<a href="CppEndif.htm">#endif</a><br/>
+<a href="CppEndif.html">#endif</a><br/>
 	;<br/>
 <br/>
-<a href="CppDefine.htm">#define</a> vers_1 vers_<br/>
+<a href="CppDefine.html">#define</a> vers_1 vers_<br/>
 <br/>
-EXTERN <b><a href="CppStruct.htm">struct</a></b> {<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppInt.htm">integer</a> pl<a href="CppTime.htm">time</a>, shour, smin, ssec;<br/>
+EXTERN <b><a href="CppStruct.html">struct</a></b> {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppInt.html">integer</a> pl<a href="CppTime.htm">time</a>, shour, smin, ssec;<br/>
 } <a href="CppTime.htm">time</a>_;<br/>
 <br/>
-<a href="CppDefine.htm">#define</a> <a href="CppTime.htm">time</a>_1 <a href="CppTime.htm">time</a>_<br/>
+<a href="CppDefine.html">#define</a> <a href="CppTime.htm">time</a>_1 <a href="CppTime.htm">time</a>_<br/>
 <br/>
-EXTERN <b><a href="CppConst.htm">const</a></b> <b><a href="CppStruct.htm">struct</a></b> {<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppInt.htm">integer</a> hfactr;<br/>
+EXTERN <b><a href="CppConst.html">const</a></b> <b><a href="CppStruct.html">struct</a></b> {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppInt.html">integer</a> hfactr;<br/>
 } hyper_<br/>
-<a href="CppIfdef.htm">#ifdef</a> INIT<br/>
+<a href="CppIfdef.html">#ifdef</a> INIT<br/>
 	<a href="CppOperatorAssign.htm">=</a> { 500 }<br/>
-<a href="CppEndif.htm">#endif</a><br/>
+<a href="CppEndif.html">#endif</a><br/>
 	;<br/>
 <br/>
-<a href="CppDefine.htm">#define</a> hyper_1 hyper_<br/>
+<a href="CppDefine.html">#define</a> hyper_1 hyper_<br/>
 <br/>
-EXTERN <b><a href="CppStruct.htm">struct</a></b> {<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppInt.htm">integer</a> xlnt, travel[900];<br/>
+EXTERN <b><a href="CppStruct.html">struct</a></b> {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppInt.html">integer</a> xlnt, travel[900];<br/>
 } exits_;<br/>
 <br/>
-<a href="CppDefine.htm">#define</a> exits_1 exits_<br/>
+<a href="CppDefine.html">#define</a> exits_1 exits_<br/>
 <br/>
-EXTERN <b><a href="CppStruct.htm">struct</a></b> {<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppInt.htm">integer</a> cpdr[16], cpwl[8];<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppInt.htm">integer</a> cpvec[64];<br/>
+EXTERN <b><a href="CppStruct.html">struct</a></b> {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppInt.html">integer</a> cpdr[16], cpwl[8];<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppInt.html">integer</a> cpvec[64];<br/>
 } puzzle_<br/>
-<a href="CppIfdef.htm">#ifdef</a> INIT<br/>
+<a href="CppIfdef.html">#ifdef</a> INIT<br/>
 	<a href="CppOperatorAssign.htm">=</a> { { 1024, <a href="CppOperatorMinus.htm">-</a>8, 2048, <a href="CppOperatorMinus.htm">-</a>7, 3072, 1, 4096, 9, 5120, 8, 6144, 7, <br/>
 	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;7168, <a href="CppOperatorMinus.htm">-</a>1, 8192, <a href="CppOperatorMinus.htm">-</a>9 },<br/>
 	&nbsp;&nbsp;&nbsp;&nbsp;{ 205, <a href="CppOperatorMinus.htm">-</a>8, 206, 8, 207, 1, 208, <a href="CppOperatorMinus.htm">-</a>1 },<br/>
@@ -1455,22 +1455,22 @@ EXTERN <b><a href="CppStruct.htm">struct</a></b> {<br/>
 	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1,&nbsp;&nbsp;0,&nbsp;&nbsp;0, <a href="CppOperatorMinus.htm">-</a>1,&nbsp;&nbsp;0,&nbsp;&nbsp;0, 0, 1,<br/>
 	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1,&nbsp;&nbsp;1,&nbsp;&nbsp;1,&nbsp;&nbsp;0,&nbsp;&nbsp;0,&nbsp;&nbsp;0, 1, 1,<br/>
 	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1,&nbsp;&nbsp;1,&nbsp;&nbsp;1,&nbsp;&nbsp;1,&nbsp;&nbsp;1,&nbsp;&nbsp;1, 1, 1 } }<br/>
-<a href="CppEndif.htm">#endif</a><br/>
+<a href="CppEndif.html">#endif</a><br/>
 	;<br/>
 <br/>
-<a href="CppDefine.htm">#define</a> puzzle_1 puzzle_<br/>
+<a href="CppDefine.html">#define</a> puzzle_1 puzzle_<br/>
 <br/>
-EXTERN <b><a href="CppConst.htm">const</a></b> <b><a href="CppStruct.htm">struct</a></b> {<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppInt.htm">integer</a> batdrp[9];<br/>
+EXTERN <b><a href="CppConst.html">const</a></b> <b><a href="CppStruct.html">struct</a></b> {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppInt.html">integer</a> batdrp[9];<br/>
 } bats_<br/>
-<a href="CppIfdef.htm">#ifdef</a> INIT<br/>
+<a href="CppIfdef.html">#ifdef</a> INIT<br/>
 	<a href="CppOperatorAssign.htm">=</a> { 66, 67, 68, 69, 70, 71, 72, 65, 73 }<br/>
-<a href="CppEndif.htm">#endif</a><br/>
+<a href="CppEndif.html">#endif</a><br/>
 	;<br/>
 <br/>
-<a href="CppDefine.htm">#define</a> bats_1 bats_<br/>
+<a href="CppDefine.html">#define</a> bats_1 bats_<br/>
 <br/>
-<a href="CppEndif.htm">#endif</a><br/>
+<a href="CppEndif.html">#endif</a><br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>

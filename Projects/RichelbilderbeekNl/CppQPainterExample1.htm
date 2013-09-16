@@ -68,9 +68,9 @@
 <table summary="CppQPainterExample1.pro" border = "1"><tr><td><code>
 QT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; += core gui<br/>
 greaterThan(QT_MAJOR_VERSION, 4): QT += <a href="CppWidget.htm">widget</a>s<br/>
-TEMPLATE = app<br/>
-<a href="CppQMAKE_CXXFLAGS.htm">QMAKE_CXXFLAGS</a> += -std=<a href="Cpp11.htm">c++11</a> <a href="CppWall.htm">-Wall</a> <a href="CppWextra.htm">-Wextra</a><br/>
-<a href="CppSOURCES.htm">SOURCES</a> += <a href="CppMain.htm">main</a>.cpp<br/>
+<a href="CppQmakeTemplate.htm">TEMPLATE</a> = app<br/>
+<a href="CppQmakeQmake_cxxflags.htm">QMAKE_CXXFLAGS</a> += -std=<a href="Cpp11.htm">c++11</a> <a href="CppWall.htm">-Wall</a> <a href="CppWextra.htm">-Wextra</a><br/>
+<a href="CppQmakeSources.htm">SOURCES</a> += <a href="CppMain.htm">main</a>.cpp<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -82,32 +82,32 @@ TEMPLATE = app<br/>
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="main.cpp" border = "1"><tr><td><code>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppQApplication.htm">QApplication</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppQPixmap.htm">QPixmap</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppQLabel.htm">QLabel</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppQPainter.htm">QPainter</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppQApplication.html">QApplication</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppQPixmap.html">QPixmap</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppQLabel.html">QLabel</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppQPainter.html">QPainter</a>&gt;<br/>
 <br/>
-<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>( <b><a href="CppInt.htm">int</a></b> <a href="CppArgc.htm">argc</a>, <b><a href="CppChar.htm">char</a></b>* <a href="CppArgc.htm">argv</a>[])<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a>( <b><a href="CppInt.htm">int</a></b> <a href="CppArgc.htm">argc</a>, <b><a href="CppChar.htm">char</a></b>* <a href="CppArgc.htm">argv</a>[])<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppQApplication.htm">QApplication</a> app( <a href="CppArgc.htm">argc</a>, <a href="CppArgc.htm">argv</a> );<br/>
+&nbsp;&nbsp;<a href="CppQApplication.html">QApplication</a> app( <a href="CppArgc.htm">argc</a>, <a href="CppArgc.htm">argv</a> );<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>Create a <a href="CppQPixmap.htm">QPixmap</a> to show<br/>
-&nbsp;&nbsp;<a href="CppQPixmap.htm">QPixmap</a> pixmap(256,256);<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Create a <a href="CppQPixmap.html">QPixmap</a> to show<br/>
+&nbsp;&nbsp;<a href="CppQPixmap.html">QPixmap</a> pixmap(256,256);<br/>
 &nbsp;&nbsp;pixmap.fill( <a href="CppQt.htm">Qt</a>::white );<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>Create a <a href="CppQPainter.htm">QPainter</a> to draw on the <a href="CppQPixmap.htm">QPixmap</a><br/>
-&nbsp;&nbsp;<a href="CppQPainter.htm">QPainter</a> painter(&amp;pixmap);<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Create a <a href="CppQPainter.html">QPainter</a> to draw on the <a href="CppQPixmap.html">QPixmap</a><br/>
+&nbsp;&nbsp;<a href="CppQPainter.html">QPainter</a> painter(&amp;pixmap);<br/>
 &nbsp;&nbsp;painter.setPen(<a href="CppQt.htm">Qt</a>::black);<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>Wanted to tyy out some strange floating <a href="CppPointer.htm">point</a> values<br/>
-&nbsp;&nbsp;painter.drawEllipse(<a href="CppQPointF.htm">QPointF</a>(126.6,126.4),124.1,123.3);<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Wanted to tyy out some strange floating <a href="CppPointer.html">point</a> values<br/>
+&nbsp;&nbsp;painter.drawEllipse(<a href="CppQPointF.html">QPointF</a>(126.6,126.4),124.1,123.3);<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>Create a <a href="CppQLabel.htm">QLabel</a> to show the <a href="CppQPixmap.htm">QPixmap</a><br/>
-&nbsp;&nbsp;<a href="CppQLabel.htm">QLabel</a> label;<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Create a <a href="CppQLabel.html">QLabel</a> to show the <a href="CppQPixmap.html">QPixmap</a><br/>
+&nbsp;&nbsp;<a href="CppQLabel.html">QLabel</a> label;<br/>
 &nbsp;&nbsp;label.setPixmap(pixmap);<br/>
 &nbsp;&nbsp;label.show();<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> app.exec();<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> app.exec();<br/>
 }<br/>
 </code></td></tr></table>
 <!-- end of the code -->

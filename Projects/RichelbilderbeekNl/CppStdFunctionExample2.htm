@@ -61,12 +61,12 @@
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="CppStdFunctionExample2.pro" border = "1"><tr><td><code>
-TEMPLATE = app<br/>
-CONFIG += console<br/>
-CONFIG -= app_bundle<br/>
-CONFIG -= qt<br/>
+<a href="CppQmakeTemplate.htm">TEMPLATE</a> = app<br/>
+<a href="CppQmakeConfig.htm">CONFIG</a> += console<br/>
+<a href="CppQmakeConfig.htm">CONFIG</a> -= app_bundle<br/>
+<a href="CppQmakeConfig.htm">CONFIG</a> -= qt<br/>
 <br/>
-<a href="CppSOURCES.htm">SOURCES</a> += <a href="CppMain.htm">main</a>.cpp<br/>
+<a href="CppQmakeSources.htm">SOURCES</a> += <a href="CppMain.htm">main</a>.cpp<br/>
 <br/>
 #<br/>
 #<br/>
@@ -74,15 +74,15 @@ CONFIG -= qt<br/>
 #<br/>
 #<br/>
 <br/>
-CONFIG(debug, debug|release) {<br/>
+<a href="CppQmakeConfig.htm">CONFIG</a>(debug, debug|release) {<br/>
 &nbsp;&nbsp;message(Debug mode)<br/>
 }<br/>
 <br/>
-CONFIG(release, debug|release) {<br/>
+<a href="CppQmakeConfig.htm">CONFIG</a>(release, debug|release) {<br/>
 &nbsp;&nbsp;message(Release mode)<br/>
 <br/>
 &nbsp;&nbsp;#Remove all <a href="CppAssert.htm">assert</a>s and <a href="CppTRACE.htm">TRACE</a><br/>
-&nbsp;&nbsp;DEFINES += NDEBUG N<a href="CppTRACE.htm">TRACE</a>_BILDERBIKKEL<br/>
+&nbsp;&nbsp;<a href="CppQmakeDefines.htm">DEFINES</a> += NDEBUG N<a href="CppTRACE.htm">TRACE</a>_BILDERBIKKEL<br/>
 }<br/>
 <br/>
 #<br/>
@@ -96,10 +96,10 @@ CONFIG(release, debug|release) {<br/>
 # Compiler flags<br/>
 #<br/>
 #<br/>
-<a href="CppQMAKE_CXXFLAGS.htm">QMAKE_CXXFLAGS</a> += -std=<a href="Cpp11.htm">c++11</a> <a href="CppWall.htm">-Wall</a> <a href="CppWextra.htm">-Wextra</a><br/>
+<a href="CppQmakeQmake_cxxflags.htm">QMAKE_CXXFLAGS</a> += -std=<a href="Cpp11.htm">c++11</a> <a href="CppWall.htm">-Wall</a> <a href="CppWextra.htm">-Wextra</a><br/>
 <br/>
 unix {<br/>
-&nbsp;&nbsp;<a href="CppQMAKE_CXXFLAGS.htm">QMAKE_CXXFLAGS</a> += <a href="CppWerror.htm">-Werror</a><br/>
+&nbsp;&nbsp;<a href="CppQmakeQmake_cxxflags.htm">QMAKE_CXXFLAGS</a> += <a href="CppWerror.htm">-Werror</a><br/>
 }<br/>
 </code></td></tr></table>
 <!-- end of the code -->
@@ -112,32 +112,32 @@ unix {<br/>
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="main.cpp" border = "1"><tr><td><code>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppIostreamH.htm">iostream</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppFunctionalH.htm">functional</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppIostreamH.html">iostream</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppFunctionalH.html">functional</a>&gt;<br/>
 <br/>
-<b><a href="CppStruct.htm">struct</a></b> Speaker<br/>
+<b><a href="CppStruct.html">struct</a></b> Speaker<br/>
 {<br/>
-&nbsp;&nbsp;Speaker(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> hello_message, <b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> bye_message)<br/>
+&nbsp;&nbsp;Speaker(<b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a> hello_message, <b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a> bye_message)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;: m_hello_message(hello_message),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;m_bye_message(bye_message)<br/>
 &nbsp;&nbsp;{<br/>
 <br/>
 &nbsp;&nbsp;}<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> SayHello() <b><a href="CppConst.htm">const</a></b> { <a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> m_hello_message <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n'; }<br/>
-&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> SayBye() <b><a href="CppConst.htm">const</a></b> { <a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> m_bye_message <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n'; }<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> SayHello() <b><a href="CppConst.html">const</a></b> { <a href="CppCout.html">std::cout</a> <a href="CppOperatorStreamOut.html">&lt;&lt;</a> m_hello_message <a href="CppOperatorStreamOut.html">&lt;&lt;</a> '\n'; }<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> SayBye() <b><a href="CppConst.html">const</a></b> { <a href="CppCout.html">std::cout</a> <a href="CppOperatorStreamOut.html">&lt;&lt;</a> m_bye_message <a href="CppOperatorStreamOut.html">&lt;&lt;</a> '\n'; }<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> m_hello_message;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> m_bye_message;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a> m_hello_message;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a> m_bye_message;<br/>
 };<br/>
 <br/>
-<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a>()<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Speaker s1("Hello!","Bye!");<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Speaker s2("HELLO!","BYE!");<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> Speaker s1("Hello!","Bye!");<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> Speaker s2("HELLO!","BYE!");<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdFunction.htm">std::function</a>&lt;<b><a href="CppVoid.htm">void</a></b> (<b><a href="CppConst.htm">const</a></b> Speaker*)&gt; say_hello_function <a href="CppOperatorAssign.htm">=</a> &amp;Speaker::SayHello;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdFunction.htm">std::function</a>&lt;<b><a href="CppVoid.htm">void</a></b> (<b><a href="CppConst.htm">const</a></b> Speaker*)&gt; say_bye_function <a href="CppOperatorAssign.htm">=</a> &amp;Speaker::SayBye;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppStdFunction.html">std::function</a>&lt;<b><a href="CppVoid.htm">void</a></b> (<b><a href="CppConst.html">const</a></b> Speaker*)&gt; say_hello_function <a href="CppOperatorAssign.htm">=</a> &amp;Speaker::SayHello;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppStdFunction.html">std::function</a>&lt;<b><a href="CppVoid.htm">void</a></b> (<b><a href="CppConst.html">const</a></b> Speaker*)&gt; say_bye_function <a href="CppOperatorAssign.htm">=</a> &amp;Speaker::SayBye;<br/>
 <br/>
 &nbsp;&nbsp;say_hello_function(&amp;s1);<br/>
 &nbsp;&nbsp;say_bye_function(&amp;s1);<br/>

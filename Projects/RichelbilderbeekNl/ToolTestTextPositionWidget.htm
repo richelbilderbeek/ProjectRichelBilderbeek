@@ -69,17 +69,17 @@
 QT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; += core gui<br/>
 greaterThan(QT_MAJOR_VERSION, 4): QT += <a href="CppWidget.htm">widget</a>s<br/>
 <br/>
-<a href="CppQMAKE_CXXFLAGS.htm">QMAKE_CXXFLAGS</a> += -std=<a href="Cpp11.htm">c++11</a> <a href="CppWall.htm">-Wall</a> <a href="CppWextra.htm">-Wextra</a> <a href="CppWerror.htm">-Werror</a><br/>
+<a href="CppQmakeQmake_cxxflags.htm">QMAKE_CXXFLAGS</a> += -std=<a href="Cpp11.htm">c++11</a> <a href="CppWall.htm">-Wall</a> <a href="CppWextra.htm">-Wextra</a> <a href="CppWerror.htm">-Werror</a><br/>
 <br/>
-TEMPLATE = app<br/>
+<a href="CppQmakeTemplate.htm">TEMPLATE</a> = app<br/>
 <br/>
-<a href="CppSOURCES.htm">SOURCES</a> += \<br/>
+<a href="CppQmakeSources.htm">SOURCES</a> += \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;qt<a href="CppMain.htm">main</a>.cpp \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;tooltesttextposition<a href="CppWidget.htm">widget</a>dialog.cpp \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;qttextposition<a href="CppWidget.htm">widget</a>.cpp \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;qttextpositionitem.cpp<br/>
 <br/>
-<a href="CppHEADERS.htm">HEADERS</a> += \<br/>
+<a href="CppQmakeHeaders.htm">HEADERS</a> += \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;tooltesttextposition<a href="CppWidget.htm">widget</a>dialog.h \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;qttextposition<a href="CppWidget.htm">widget</a>.h \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;qttextpositionitem.h<br/>
@@ -96,15 +96,15 @@ TEMPLATE = app<br/>
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="qtmain.cpp" border = "1"><tr><td><code>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppQApplication.htm">QApplication</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> "<a href="Tools.htm">tool</a>testtextposition<a href="CppWidget.htm">widget</a>dialog.h"<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppQApplication.html">QApplication</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> "<a href="Tools.htm">tool</a>testtextposition<a href="CppWidget.html">widget</a>dialog<a href="CppHeaderFile.htm">.h</a>"<br/>
 <br/>
-<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>(<b><a href="CppInt.htm">int</a></b> <a href="CppArgc.htm">argc</a>, <b><a href="CppChar.htm">char</a></b> *<a href="CppArgc.htm">argv</a>[])<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a>(<b><a href="CppInt.htm">int</a></b> <a href="CppArgc.htm">argc</a>, <b><a href="CppChar.htm">char</a></b> *<a href="CppArgc.htm">argv</a>[])<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppQApplication.htm">QApplication</a> a(<a href="CppArgc.htm">argc</a>, <a href="CppArgc.htm">argv</a>);<br/>
-&nbsp;&nbsp;<a href="Tools.htm">Tool</a>TestTextPosition<a href="CppWidget.htm">Widget</a>Dialog w;<br/>
+&nbsp;&nbsp;<a href="CppQApplication.html">QApplication</a> a(<a href="CppArgc.htm">argc</a>, <a href="CppArgc.htm">argv</a>);<br/>
+&nbsp;&nbsp;<a href="Tools.htm">Tool</a>TestTextPosition<a href="CppWidget.html">Widget</a>Dialog w;<br/>
 &nbsp;&nbsp;w.show();<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> a.exec();<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> a.exec();<br/>
 }<br/>
 </code></td></tr></table>
 <!-- end of the code -->
@@ -117,32 +117,32 @@ TEMPLATE = app<br/>
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="qttextpositionitem.h" border = "1"><tr><td><code>
-<a href="CppIfndef.htm">#ifndef</a> QTTEXTPOSITIONITEM_H<br/>
-<a href="CppDefine.htm">#define</a> QTTEXTPOSITIONITEM_H<br/>
+<a href="CppIfndef.html">#ifndef</a> QTTEXTPOSITIONITEM_H<br/>
+<a href="CppDefine.html">#define</a> QTTEXTPOSITIONITEM_H<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppQGraphicsItem.htm">QGraphicsItem</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppQGraphicsItem.html">QGraphicsItem</a>&gt;<br/>
 <br/>
-<b><a href="CppStruct.htm">struct</a></b> <a href="CppQt.htm">Qt</a>TextPositionItem : <b><a href="CppPublic.htm">public</a></b> <a href="CppQGraphicsItem.htm">QGraphicsItem</a><br/>
+<b><a href="CppStruct.html">struct</a></b> <a href="CppQt.htm">Qt</a>TextPositionItem : <b><a href="CppPublic.html">public</a></b> <a href="CppQGraphicsItem.html">QGraphicsItem</a><br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>/<a href="CppConstructor.htm">Constructor</a> of <a href="CppQt.htm">Qt</a>TextPositionItem<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/<a href="CppConstructor.html">Constructor</a> of <a href="CppQt.htm">Qt</a>TextPositionItem<br/>
 &nbsp;&nbsp;<a href="CppQt.htm">Qt</a>TextPositionItem(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; text,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQGraphicsItem.htm">QGraphicsItem</a> *parent <a href="CppOperatorAssign.htm">=</a> 0);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a>&amp; text,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQGraphicsItem.html">QGraphicsItem</a> *parent <a href="CppOperatorAssign.htm">=</a> 0);<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppProtected.htm">protected</a></b>:<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>/<a href="CppPaint.htm">Paint</a> a <a href="CppQt.htm">Qt</a>TextPositionItem<br/>
-&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> paint(<a href="CppQPainter.htm">QPainter</a> *painter, <b><a href="CppConst.htm">const</a></b> <a href="CppQStyleOptionGraphicsItem.htm">QStyleOptionGraphicsItem</a> *, <a href="CppQWidget.htm">QWidget</a> *);<br/>
+&nbsp;&nbsp;<b><a href="CppProtected.html">protected</a></b>:<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/<a href="CppPaint.html">Paint</a> a <a href="CppQt.htm">Qt</a>TextPositionItem<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> paint(<a href="CppQPainter.html">QPainter</a> *painter, <b><a href="CppConst.html">const</a></b> <a href="CppQStyleOptionGraphicsItem.html">QStyleOptionGraphicsItem</a> *, <a href="CppQWidget.html">QWidget</a> *);<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>/The <a href="CppRectangle.htm">rectangle</a> that determines the edges of the <a href="CppQt.htm">Qt</a>TextPositionItem<br/>
-&nbsp;&nbsp;<a href="CppQRect.htm">QRect</a>F boundingRect() <b><a href="CppConst.htm">const</a></b>;<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/The <a href="CppRectangle.html">rectangle</a> that determines the edges of the <a href="CppQt.htm">Qt</a>TextPositionItem<br/>
+&nbsp;&nbsp;<a href="CppQRect.html">QRect</a>F boundingRect() <b><a href="CppConst.html">const</a></b>;<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/The text to display<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> m_text;<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>/The <a href="CppRectangle.htm">rectangle</a> the text is in<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppQRect.htm">QRect</a>F m_rect;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a> m_text;<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/The <a href="CppRectangle.html">rectangle</a> the text is in<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppQRect.html">QRect</a>F m_rect;<br/>
 };<br/>
 <br/>
-<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> QTTEXTPOSITIONITEM_H<br/>
+<a href="CppEndif.html">#endif</a> <a href="CppComment.htm">//</a> QTTEXTPOSITIONITEM_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -154,46 +154,46 @@ TEMPLATE = app<br/>
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="qttextpositionitem.cpp" border = "1"><tr><td><code>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppIostreamH.htm">iostream</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppQCursor.htm">QCursor</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppQFont.htm">QFont</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppQGraphicsSceneMouseEvent.htm">QGraphicsSceneMouseEvent</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppQPainter.htm">QPainter</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> "qttextpositionitem.h"<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppIostreamH.html">iostream</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppQCursor.html">QCursor</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppQFont.html">QFont</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppQGraphicsSceneMouseEvent.html">QGraphicsSceneMouseEvent</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppQPainter.html">QPainter</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> "qttextpositionitem<a href="CppHeaderFile.htm">.h</a>"<br/>
 <br/>
 <a href="CppQt.htm">Qt</a>TextPositionItem::<a href="CppQt.htm">Qt</a>TextPositionItem(<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; text,<br/>
-&nbsp;&nbsp;<a href="CppQGraphicsItem.htm">QGraphicsItem</a> *parent)<br/>
-&nbsp;&nbsp;: <a href="CppQGraphicsItem.htm">QGraphicsItem</a>(parent),<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a>&amp; text,<br/>
+&nbsp;&nbsp;<a href="CppQGraphicsItem.html">QGraphicsItem</a> *parent)<br/>
+&nbsp;&nbsp;: <a href="CppQGraphicsItem.html">QGraphicsItem</a>(parent),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;m_text(text),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppAdd.htm">Add</a> a margin of 2 pixels at the edges<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;m_rect(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorMinus.htm">-</a>2,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorMinus.htm">-</a>2,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>For a pixels size of 13, the <a href="CppChar.htm">character</a>s will be 8 pixels wide<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4 <a href="CppOperatorPlus.htm">+</a> (8 * <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(text.size())),<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>For a pixels size of 13, the <a href="CppChar.htm">character</a>s will be 13 pixels high<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>For a pixels size of 13, the <a href="CppChar.html">character</a>s will be 8 pixels wide<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4 <a href="CppOperatorPlus.htm">+</a> (8 * <b><a href="CppStatic_cast.html">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(text.size())),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>For a pixels size of 13, the <a href="CppChar.html">character</a>s will be 13 pixels high<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4 <a href="CppOperatorPlus.htm">+</a> 13)<br/>
 <br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;setFlags(ItemIsMovable);<br/>
 }<br/>
 <br/>
-<a href="CppQRect.htm">QRect</a>F <a href="CppQt.htm">Qt</a>TextPositionItem::boundingRect() <b><a href="CppConst.htm">const</a></b><br/>
+<a href="CppQRect.html">QRect</a>F <a href="CppQt.htm">Qt</a>TextPositionItem::boundingRect() <b><a href="CppConst.html">const</a></b><br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> m_rect;<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> m_rect;<br/>
 }<br/>
 <br/>
 <b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a>TextPositionItem::paint(<br/>
-&nbsp;&nbsp;<a href="CppQPainter.htm">QPainter</a> *painter,<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppQStyleOptionGraphicsItem.htm">QStyleOptionGraphicsItem</a> * <a href="CppOperatorDivide.htm">/</a>* option <a href="CppComment.htm">*/</a> ,<br/>
-&nbsp;&nbsp;<a href="CppQWidget.htm">QWidget</a> * <a href="CppOperatorDivide.htm">/</a>* <a href="CppWidget.htm">widget</a> <a href="CppComment.htm">*/</a> )<br/>
+&nbsp;&nbsp;<a href="CppQPainter.html">QPainter</a> *painter,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppQStyleOptionGraphicsItem.html">QStyleOptionGraphicsItem</a> * <a href="CppOperatorDivide.htm">/</a>* option <a href="CppComment.htm">*/</a> ,<br/>
+&nbsp;&nbsp;<a href="CppQWidget.html">QWidget</a> * <a href="CppOperatorDivide.htm">/</a>* <a href="CppWidget.html">widget</a> <a href="CppComment.htm">*/</a> )<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppQFont.htm">QFont</a> font;<br/>
+&nbsp;&nbsp;<a href="CppQFont.html">QFont</a> font;<br/>
 &nbsp;&nbsp;font.setFamily("monospace");<br/>
 &nbsp;&nbsp;font.setPixelSize(13);<br/>
 &nbsp;&nbsp;painter-&gt;setFont(font);<br/>
-&nbsp;&nbsp;painter-&gt;setBrush(QBrush(<a href="CppQColor.htm">QColor</a>(228,228,228)));<br/>
+&nbsp;&nbsp;painter-&gt;setBrush(QBrush(<a href="CppQColor.html">QColor</a>(228,228,228)));<br/>
 &nbsp;&nbsp;painter-&gt;drawRect(m_rect);<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Use a margin of 2 around the edges<br/>
 &nbsp;&nbsp;painter-&gt;drawText(m_rect.adjusted(2,2,-2,-2),m_text.c_str());<br/>
@@ -209,17 +209,17 @@ TEMPLATE = app<br/>
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="qttextpositionwidget.h" border = "1"><tr><td><code>
-<a href="CppIfndef.htm">#ifndef</a> QTTEXTPOSITIONWIDGET_H<br/>
-<a href="CppDefine.htm">#define</a> QTTEXTPOSITIONWIDGET_H<br/>
+<a href="CppIfndef.html">#ifndef</a> QTTEXTPOSITIONWIDGET_H<br/>
+<a href="CppDefine.html">#define</a> QTTEXTPOSITIONWIDGET_H<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppQGraphicsView.htm">QGraphicsView</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppQGraphicsView.html">QGraphicsView</a>&gt;<br/>
 <br/>
-<b><a href="CppStruct.htm">struct</a></b> <a href="CppQt.htm">Qt</a>TextPosition<a href="CppWidget.htm">Widget</a> : <b><a href="CppPublic.htm">public</a></b> <a href="CppQGraphicsView.htm">QGraphicsView</a><br/>
+<b><a href="CppStruct.html">struct</a></b> <a href="CppQt.htm">Qt</a>TextPosition<a href="CppWidget.html">Widget</a> : <b><a href="CppPublic.html">public</a></b> <a href="CppQGraphicsView.html">QGraphicsView</a><br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppQt.htm">Qt</a>TextPosition<a href="CppWidget.htm">Widget</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt;&amp; items);<br/>
+&nbsp;&nbsp;<a href="CppQt.htm">Qt</a>TextPosition<a href="CppWidget.html">Widget</a>(<b><a href="CppConst.html">const</a></b> <a href="CppVector.html">std::vector</a>&lt;<a href="CppString.html">std::string</a>&gt;&amp; items);<br/>
 };<br/>
 <br/>
-<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> QTTEXTPOSITIONWIDGET_H<br/>
+<a href="CppEndif.html">#endif</a> <a href="CppComment.htm">//</a> QTTEXTPOSITIONWIDGET_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -231,25 +231,25 @@ TEMPLATE = app<br/>
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="qttextpositionwidget.cpp" border = "1"><tr><td><code>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppQGraphicsScene.htm">QGraphicsScene</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppQGraphicsPixmapItem.htm">QGraphicsPixmapItem</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> "qttextpositionitem.h"<br/>
-<a href="CppInclude.htm">#include</a> "qttextposition<a href="CppWidget.htm">widget</a>.h"<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppCassertH.html">cassert</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppQGraphicsScene.html">QGraphicsScene</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppQGraphicsPixmapItem.html">QGraphicsPixmapItem</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> "qttextpositionitem<a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "qttextposition<a href="CppWidget.html">widget</a><a href="CppHeaderFile.htm">.h</a>"<br/>
 <br/>
-<a href="CppQt.htm">Qt</a>TextPosition<a href="CppWidget.htm">Widget</a>::<a href="CppQt.htm">Qt</a>TextPosition<a href="CppWidget.htm">Widget</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt;&amp; items)<br/>
+<a href="CppQt.htm">Qt</a>TextPosition<a href="CppWidget.html">Widget</a>::<a href="CppQt.htm">Qt</a>TextPosition<a href="CppWidget.html">Widget</a>(<b><a href="CppConst.html">const</a></b> <a href="CppVector.html">std::vector</a>&lt;<a href="CppString.html">std::string</a>&gt;&amp; items)<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppQGraphicsScene.htm">QGraphicsScene</a> * <b><a href="CppConst.htm">const</a></b> scene <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppQGraphicsScene.htm">QGraphicsScene</a>(<b><a href="CppThis.htm">this</a></b>);<br/>
+&nbsp;&nbsp;<a href="CppQGraphicsScene.html">QGraphicsScene</a> * <b><a href="CppConst.html">const</a></b> scene <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppQGraphicsScene.html">QGraphicsScene</a>(<b><a href="CppThis.htm">this</a></b>);<br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;setScene(scene);<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppFor_each.htm">std::for_each</a>(items.begin(),items.end(),<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;[<b><a href="CppThis.htm">this</a></b>,scene](<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; s)<br/>
+&nbsp;&nbsp;<a href="CppFor_each.html">std::for_each</a>(items.begin(),items.end(),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;[<b><a href="CppThis.htm">this</a></b>,scene](<b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a>&amp; s)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQt.htm">Qt</a>TextPositionItem * item <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppQt.htm">Qt</a>TextPositionItem(s);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Scatter those items around a bit<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;item-&gt;setPos(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<b><a href="CppThis.htm">this</a></b>-&gt;width()&nbsp;&nbsp;<a href="CppOperatorDivide.htm">/</a> 2.0) <a href="CppOperatorMinus.htm">-</a> 64 <a href="CppOperatorPlus.htm">+</a> (<a href="CppRand.htm">std::rand</a>() <a href="CppOperatorModulus.htm">%</a> 128),<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<b><a href="CppThis.htm">this</a></b>-&gt;height() <a href="CppOperatorDivide.htm">/</a> 2.0) <a href="CppOperatorMinus.htm">-</a> 64 <a href="CppOperatorPlus.htm">+</a> (<a href="CppRand.htm">std::rand</a>() <a href="CppOperatorModulus.htm">%</a> 128));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<b><a href="CppThis.htm">this</a></b>-&gt;width()&nbsp;&nbsp;<a href="CppOperatorDivide.htm">/</a> 2.0) <a href="CppOperatorMinus.htm">-</a> 64 <a href="CppOperatorPlus.htm">+</a> (<a href="CppRand.html">std::rand</a>() <a href="CppOperatorModulus.htm">%</a> 128),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<b><a href="CppThis.htm">this</a></b>-&gt;height() <a href="CppOperatorDivide.htm">/</a> 2.0) <a href="CppOperatorMinus.htm">-</a> 64 <a href="CppOperatorPlus.htm">+</a> (<a href="CppRand.html">std::rand</a>() <a href="CppOperatorModulus.htm">%</a> 128));<br/>
 <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;scene-&gt;addItem(item);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
@@ -266,28 +266,28 @@ TEMPLATE = app<br/>
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="tooltesttextpositionwidgetdialog.h" border = "1"><tr><td><code>
-<a href="CppIfndef.htm">#ifndef</a> TOOLTESTTEXTPOSITIONWIDGETDIALOG_H<br/>
-<a href="CppDefine.htm">#define</a> TOOLTESTTEXTPOSITIONWIDGETDIALOG_H<br/>
+<a href="CppIfndef.html">#ifndef</a> TOOLTESTTEXTPOSITIONWIDGETDIALOG_H<br/>
+<a href="CppDefine.html">#define</a> TOOLTESTTEXTPOSITIONWIDGETDIALOG_H<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppQDialog.htm">QDialog</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppQDialog.html">QDialog</a>&gt;<br/>
 <br/>
-<b><a href="CppNamespace.htm">namespace</a></b> Ui {<br/>
-<b><a href="CppClass.htm">class</a></b> <a href="Tools.htm">Tool</a>TestTextPosition<a href="CppWidget.htm">Widget</a>Dialog;<br/>
+<b><a href="CppNamespace.html">namespace</a></b> Ui {<br/>
+<b><a href="CppClass.html">class</a></b> <a href="Tools.htm">Tool</a>TestTextPosition<a href="CppWidget.html">Widget</a>Dialog;<br/>
 }<br/>
 <br/>
-<b><a href="CppClass.htm">class</a></b> <a href="Tools.htm">Tool</a>TestTextPosition<a href="CppWidget.htm">Widget</a>Dialog : <b><a href="CppPublic.htm">public</a></b> <a href="CppQDialog.htm">QDialog</a><br/>
+<b><a href="CppClass.html">class</a></b> <a href="Tools.htm">Tool</a>TestTextPosition<a href="CppWidget.html">Widget</a>Dialog : <b><a href="CppPublic.html">public</a></b> <a href="CppQDialog.html">QDialog</a><br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppQ_OBJECT.htm">Q_OBJECT</a><br/>
+&nbsp;&nbsp;<a href="CppQ_OBJECT.html">Q_OBJECT</a><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<br/>
-<b><a href="CppPublic.htm">public</a></b>:<br/>
-&nbsp;&nbsp;<b><a href="CppExplicit.htm">explicit</a></b> <a href="Tools.htm">Tool</a>TestTextPosition<a href="CppWidget.htm">Widget</a>Dialog(<a href="CppQWidget.htm">QWidget</a> *parent <a href="CppOperatorAssign.htm">=</a> 0);<br/>
-&nbsp;&nbsp;~<a href="Tools.htm">Tool</a>TestTextPosition<a href="CppWidget.htm">Widget</a>Dialog();<br/>
+<b><a href="CppPublic.html">public</a></b>:<br/>
+&nbsp;&nbsp;<b><a href="CppExplicit.html">explicit</a></b> <a href="Tools.htm">Tool</a>TestTextPosition<a href="CppWidget.html">Widget</a>Dialog(<a href="CppQWidget.html">QWidget</a> *parent <a href="CppOperatorAssign.htm">=</a> 0);<br/>
+&nbsp;&nbsp;~<a href="Tools.htm">Tool</a>TestTextPosition<a href="CppWidget.html">Widget</a>Dialog();<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<br/>
-<b><a href="CppPrivate.htm">private</a></b>:<br/>
-&nbsp;&nbsp;<a href="CppUi.htm">Ui</a>::<a href="Tools.htm">Tool</a>TestTextPosition<a href="CppWidget.htm">Widget</a>Dialog *ui;<br/>
+<b><a href="CppPrivate.html">private</a></b>:<br/>
+&nbsp;&nbsp;<a href="CppUi.htm">Ui</a>::<a href="Tools.htm">Tool</a>TestTextPosition<a href="CppWidget.html">Widget</a>Dialog *ui;<br/>
 };<br/>
 <br/>
-<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> TOOLTESTTEXTPOSITIONWIDGETDIALOG_H<br/>
+<a href="CppEndif.html">#endif</a> <a href="CppComment.htm">//</a> TOOLTESTTEXTPOSITIONWIDGETDIALOG_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -299,17 +299,17 @@ TEMPLATE = app<br/>
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="tooltesttextpositionwidgetdialog.cpp" border = "1"><tr><td><code>
-<a href="CppInclude.htm">#include</a> "qttextposition<a href="CppWidget.htm">widget</a>.h"<br/>
-<a href="CppInclude.htm">#include</a> "<a href="Tools.htm">tool</a>testtextposition<a href="CppWidget.htm">widget</a>dialog.h"<br/>
-<a href="CppInclude.htm">#include</a> "ui_<a href="Tools.htm">tool</a>testtextposition<a href="CppWidget.htm">widget</a>dialog.h"<br/>
+<a href="CppInclude.html">#include</a> "qttextposition<a href="CppWidget.html">widget</a><a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "<a href="Tools.htm">tool</a>testtextposition<a href="CppWidget.html">widget</a>dialog<a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "ui_<a href="Tools.htm">tool</a>testtextposition<a href="CppWidget.html">widget</a>dialog<a href="CppHeaderFile.htm">.h</a>"<br/>
 <br/>
-<a href="Tools.htm">Tool</a>TestTextPosition<a href="CppWidget.htm">Widget</a>Dialog::<a href="Tools.htm">Tool</a>TestTextPosition<a href="CppWidget.htm">Widget</a>Dialog(<a href="CppQWidget.htm">QWidget</a> *parent) :<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQDialog.htm">QDialog</a>(parent),<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;ui(<b><a href="CppNew.htm">new</a></b> <a href="CppUi.htm">Ui</a>::<a href="Tools.htm">Tool</a>TestTextPosition<a href="CppWidget.htm">Widget</a>Dialog)<br/>
+<a href="Tools.htm">Tool</a>TestTextPosition<a href="CppWidget.html">Widget</a>Dialog::<a href="Tools.htm">Tool</a>TestTextPosition<a href="CppWidget.html">Widget</a>Dialog(<a href="CppQWidget.html">QWidget</a> *parent) :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQDialog.html">QDialog</a>(parent),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;ui(<b><a href="CppNew.htm">new</a></b> <a href="CppUi.htm">Ui</a>::<a href="Tools.htm">Tool</a>TestTextPosition<a href="CppWidget.html">Widget</a>Dialog)<br/>
 {<br/>
 &nbsp;&nbsp;ui-&gt;setupUi(<b><a href="CppThis.htm">this</a></b>);<br/>
 &nbsp;&nbsp;ui-&gt;layout-&gt;addWidget(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppNew.htm">new</a></b> <a href="CppQt.htm">Qt</a>TextPosition<a href="CppWidget.htm">Widget</a>(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppNew.htm">new</a></b> <a href="CppQt.htm">Qt</a>TextPosition<a href="CppWidget.html">Widget</a>(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "Alpha",<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "Beta",<br/>
@@ -322,9 +322,9 @@ TEMPLATE = app<br/>
 &nbsp;&nbsp;);<br/>
 }<br/>
 <br/>
-<a href="Tools.htm">Tool</a>TestTextPosition<a href="CppWidget.htm">Widget</a>Dialog::~<a href="Tools.htm">Tool</a>TestTextPosition<a href="CppWidget.htm">Widget</a>Dialog()<br/>
+<a href="Tools.htm">Tool</a>TestTextPosition<a href="CppWidget.html">Widget</a>Dialog::~<a href="Tools.htm">Tool</a>TestTextPosition<a href="CppWidget.html">Widget</a>Dialog()<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppDelete.htm">delete</a></b> ui;<br/>
+&nbsp;&nbsp;<b><a href="CppDelete.html">delete</a></b> ui;<br/>
 }<br/>
 </code></td></tr></table>
 <!-- end of the code -->

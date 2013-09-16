@@ -76,8 +76,8 @@
 QT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; += core gui<br/>
 greaterThan(QT_MAJOR_VERSION, 4): QT += <a href="CppWidget.htm">widget</a>s<br/>
 <br/>
-TEMPLATE = app<br/>
-<a href="CppSOURCES.htm">SOURCES</a> += <a href="CppMain.htm">main</a>.cpp<br/>
+<a href="CppQmakeTemplate.htm">TEMPLATE</a> = app<br/>
+<a href="CppQmakeSources.htm">SOURCES</a> += <a href="CppMain.htm">main</a>.cpp<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -89,25 +89,25 @@ TEMPLATE = app<br/>
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="main.cpp" border = "1"><tr><td><code>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppScoped_ptr.htm">scoped_ptr</a>.hpp&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppQApplication.htm">QApplication</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppQDialog.htm">QDialog</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppQPushButton.htm">QPushButton</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppQVBoxLayout.htm">QVBoxLayout</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppBoost.html">boost</a>/<a href="CppScoped_ptr.html">scoped_ptr</a><a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppQApplication.html">QApplication</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppQDialog.html">QDialog</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppQPushButton.html">QPushButton</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppQVBoxLayout.html">QVBoxLayout</a>&gt;<br/>
 <br/>
-<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>(<b><a href="CppInt.htm">int</a></b> <a href="CppArgc.htm">argc</a>, <b><a href="CppChar.htm">char</a></b> *<a href="CppArgc.htm">argv</a>[])<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a>(<b><a href="CppInt.htm">int</a></b> <a href="CppArgc.htm">argc</a>, <b><a href="CppChar.htm">char</a></b> *<a href="CppArgc.htm">argv</a>[])<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppQApplication.htm">QApplication</a> a(<a href="CppArgc.htm">argc</a>, <a href="CppArgc.htm">argv</a>);<br/>
-&nbsp;&nbsp;<a href="CppScoped_ptr.htm">boost::scoped_ptr</a>&lt;<a href="CppQDialog.htm">QDialog</a>&gt; dialog(<b><a href="CppNew.htm">new</a></b> <a href="CppQDialog.htm">QDialog</a>);<br/>
-&nbsp;&nbsp;<a href="CppScoped_ptr.htm">boost::scoped_ptr</a>&lt;<a href="CppQVBoxLayout.htm">QVBoxLayout</a>&gt; layout(<b><a href="CppNew.htm">new</a></b> <a href="CppQVBoxLayout.htm">QVBoxLayout</a>);<br/>
-&nbsp;&nbsp;<a href="CppScoped_ptr.htm">boost::scoped_ptr</a>&lt;<a href="CppQPushButton.htm">QPushButton</a>&gt; button1(<b><a href="CppNew.htm">new</a></b> <a href="CppQPushButton.htm">QPushButton</a>);<br/>
-&nbsp;&nbsp;<a href="CppScoped_ptr.htm">boost::scoped_ptr</a>&lt;<a href="CppQPushButton.htm">QPushButton</a>&gt; button2(<b><a href="CppNew.htm">new</a></b> <a href="CppQPushButton.htm">QPushButton</a>);<br/>
+&nbsp;&nbsp;<a href="CppQApplication.html">QApplication</a> a(<a href="CppArgc.htm">argc</a>, <a href="CppArgc.htm">argv</a>);<br/>
+&nbsp;&nbsp;<a href="CppScoped_ptr.html">boost::scoped_ptr</a>&lt;<a href="CppQDialog.html">QDialog</a>&gt; dialog(<b><a href="CppNew.htm">new</a></b> <a href="CppQDialog.html">QDialog</a>);<br/>
+&nbsp;&nbsp;<a href="CppScoped_ptr.html">boost::scoped_ptr</a>&lt;<a href="CppQVBoxLayout.html">QVBoxLayout</a>&gt; layout(<b><a href="CppNew.htm">new</a></b> <a href="CppQVBoxLayout.html">QVBoxLayout</a>);<br/>
+&nbsp;&nbsp;<a href="CppScoped_ptr.html">boost::scoped_ptr</a>&lt;<a href="CppQPushButton.html">QPushButton</a>&gt; button1(<b><a href="CppNew.htm">new</a></b> <a href="CppQPushButton.html">QPushButton</a>);<br/>
+&nbsp;&nbsp;<a href="CppScoped_ptr.html">boost::scoped_ptr</a>&lt;<a href="CppQPushButton.html">QPushButton</a>&gt; button2(<b><a href="CppNew.htm">new</a></b> <a href="CppQPushButton.html">QPushButton</a>);<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Cannot let button1 <b><a href="CppDo.htm">do</a></b> <a href="CppAny.htm">any</a>thing fancy,<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>without creating a derived <b><a href="CppClass.htm">class</a></b> from <a href="CppQDialog.htm">QDialog</a><br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>without creating a derived <b><a href="CppClass.html">class</a></b> from <a href="CppQDialog.html">QDialog</a><br/>
 &nbsp;&nbsp;button1-&gt;setText("Nothing");<br/>
 &nbsp;&nbsp;button2-&gt;setText("Quit");<br/>
-&nbsp;&nbsp;button2-&gt;connect(button2.get(),<a href="CppSignalMacro.htm">SIGNAL</a>(clicked()),dialog.get(),<a href="CppSLOT.htm">SLOT</a>(close()));<br/>
+&nbsp;&nbsp;button2-&gt;connect(button2.get(),<a href="CppSignalMacro.html">SIGNAL</a>(clicked()),dialog.get(),<a href="CppSLOT.htm">SLOT</a>(close()));<br/>
 &nbsp;&nbsp;layout-&gt;addWidget(button1.get());<br/>
 &nbsp;&nbsp;layout-&gt;addWidget(button2.get());<br/>
 <br/>
@@ -116,7 +116,7 @@ TEMPLATE = app<br/>
 &nbsp;&nbsp;dialog-&gt;setLayout(layout.get());<br/>
 <br/>
 &nbsp;&nbsp;dialog-&gt;show();<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> a.exec();<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> a.exec();<br/>
 }<br/>
 </code></td></tr></table>
 <!-- end of the code -->

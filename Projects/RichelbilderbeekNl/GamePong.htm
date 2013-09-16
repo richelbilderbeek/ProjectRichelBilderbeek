@@ -69,14 +69,14 @@
 QT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; += core gui<br/>
 greaterThan(QT_MAJOR_VERSION, 4): QT += <a href="CppWidget.htm">widget</a>s<br/>
 <br/>
-<a href="CppQMAKE_CXXFLAGS.htm">QMAKE_CXXFLAGS</a> += -std=<a href="Cpp11.htm">c++11</a> <a href="CppWall.htm">-Wall</a> <a href="CppWextra.htm">-Wextra</a><br/>
-TEMPLATE = app<br/>
+<a href="CppQmakeQmake_cxxflags.htm">QMAKE_CXXFLAGS</a> += -std=<a href="Cpp11.htm">c++11</a> <a href="CppWall.htm">-Wall</a> <a href="CppWextra.htm">-Wextra</a><br/>
+<a href="CppQmakeTemplate.htm">TEMPLATE</a> = app<br/>
 <br/>
 <br/>
-<a href="CppSOURCES.htm">SOURCES</a> += <a href="CppMain.htm">main</a>.cpp\<br/>
+<a href="CppQmakeSources.htm">SOURCES</a> += <a href="CppMain.htm">main</a>.cpp\<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pong<a href="CppMain.htm">main</a>dialog.cpp<br/>
 <br/>
-<a href="CppHEADERS.htm">HEADERS</a>&nbsp;&nbsp;+= pong<a href="CppMain.htm">main</a>dialog.h<br/>
+<a href="CppQmakeHeaders.htm">HEADERS</a>&nbsp;&nbsp;+= pong<a href="CppMain.htm">main</a>dialog.h<br/>
 <br/>
 <a href="CppFORMS.htm">FORMS</a>&nbsp;&nbsp;&nbsp;&nbsp;+= pong<a href="CppMain.htm">main</a>dialog.ui<br/>
 </code></td></tr></table>
@@ -90,16 +90,16 @@ TEMPLATE = app<br/>
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="main.cpp" border = "1"><tr><td><code>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppQApplication.htm">QApplication</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> "pongmaindialog.h"<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppQApplication.html">QApplication</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> "pongmaindialog<a href="CppHeaderFile.htm">.h</a>"<br/>
 <br/>
-<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>(<b><a href="CppInt.htm">int</a></b> <a href="CppArgc.htm">argc</a>, <b><a href="CppChar.htm">char</a></b> *<a href="CppArgc.htm">argv</a>[])<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a>(<b><a href="CppInt.htm">int</a></b> <a href="CppArgc.htm">argc</a>, <b><a href="CppChar.htm">char</a></b> *<a href="CppArgc.htm">argv</a>[])<br/>
 {<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQApplication.htm">QApplication</a> a(<a href="CppArgc.htm">argc</a>, <a href="CppArgc.htm">argv</a>);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQApplication.html">QApplication</a> a(<a href="CppArgc.htm">argc</a>, <a href="CppArgc.htm">argv</a>);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;PongMainDialog w;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;w.show();<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> a.exec();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> a.exec();<br/>
 }<br/>
 </code></td></tr></table>
 <!-- end of the code -->
@@ -112,34 +112,34 @@ TEMPLATE = app<br/>
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="pongmaindialog.h" border = "1"><tr><td><code>
-<a href="CppIfndef.htm">#ifndef</a> PONGMAINDIALOG_H<br/>
-<a href="CppDefine.htm">#define</a> PONGMAINDIALOG_H<br/>
+<a href="CppIfndef.html">#ifndef</a> PONGMAINDIALOG_H<br/>
+<a href="CppDefine.html">#define</a> PONGMAINDIALOG_H<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppCmathH.htm">cmath</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppQDialog.htm">QDialog</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppQGraphicsRectItem.htm">QGraphicsRectItem</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppQGraphicsPixmapItem.htm">QGraphicsPixmapItem</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;QPen&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppCassertH.html">cassert</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppCmathH.html">cmath</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppQDialog.html">QDialog</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppQGraphicsRectItem.html">QGraphicsRectItem</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppQGraphicsPixmapItem.html">QGraphicsPixmapItem</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;QPen&gt;<br/>
 <br/>
 <a href="CppComment.htm">///</a>PongBackground is a resizable background used in Pong<br/>
-<b><a href="CppStruct.htm">struct</a></b> PongBackground : <b><a href="CppPublic.htm">public</a></b> <a href="CppQGraphicsPixmapItem.htm">QGraphicsPixmapItem</a><br/>
+<b><a href="CppStruct.html">struct</a></b> PongBackground : <b><a href="CppPublic.html">public</a></b> <a href="CppQGraphicsPixmapItem.html">QGraphicsPixmapItem</a><br/>
 {<br/>
 &nbsp;&nbsp;PongBackground(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQGraphicsItem.htm">QGraphicsItem</a> * parent <a href="CppOperatorAssign.htm">=</a> 0)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;: <a href="CppQGraphicsPixmapItem.htm">QGraphicsPixmapItem</a>(parent)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQGraphicsItem.html">QGraphicsItem</a> * parent <a href="CppOperatorAssign.htm">=</a> 0)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;: <a href="CppQGraphicsPixmapItem.html">QGraphicsPixmapItem</a>(parent)<br/>
 &nbsp;&nbsp;{<br/>
 <br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> SetGeometry(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> width, <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> height)<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> SetGeometry(<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> width, <b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> height)<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQImage.htm">QImage</a> i(width,height,<a href="CppQImage.htm">QImage</a>::Format_ARGB32);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQImage.html">QImage</a> i(width,height,<a href="CppQImage.html">QImage</a>::Format_ARGB32);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> y=0;y<a href="CppOperatorNotEqual.htm">!=</a>height;<a href="CppOperatorIncrement.htm">++</a>y)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> x=0;x<a href="CppOperatorNotEqual.htm">!=</a>width;<a href="CppOperatorIncrement.htm">++</a>x)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> gray <a href="CppOperatorAssign.htm">=</a> (x <a href="CppOperatorPlus.htm">+</a> y) <a href="CppOperatorModulus.htm">%</a> 256;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;i.setPixel(<a href="CppQPoint.htm">QPoint</a>(x,y),<a href="CppQColor.htm">QColor</a>(gray,gray,gray).rgb());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> gray <a href="CppOperatorAssign.htm">=</a> (x <a href="CppOperatorPlus.htm">+</a> y) <a href="CppOperatorModulus.htm">%</a> 256;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;i.setPixel(<a href="CppQPoint.html">QPoint</a>(x,y),<a href="CppQColor.html">QColor</a>(gray,gray,gray).rgb());<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;setPixmap(<b><a href="CppThis.htm">this</a></b>-&gt;pixmap().fromImage(i));<br/>
@@ -147,118 +147,118 @@ TEMPLATE = app<br/>
 };<br/>
 <br/>
 <a href="CppComment.htm">///</a>PongPlayer is a player<br/>
-<b><a href="CppStruct.htm">struct</a></b> PongPlayer : <b><a href="CppPublic.htm">public</a></b> <a href="CppQGraphicsRectItem.htm">QGraphicsRectItem</a><br/>
+<b><a href="CppStruct.html">struct</a></b> PongPlayer : <b><a href="CppPublic.html">public</a></b> <a href="CppQGraphicsRectItem.html">QGraphicsRectItem</a><br/>
 {<br/>
 &nbsp;&nbsp;PongPlayer(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQGraphicsItem.htm">QGraphicsItem</a> * parent <a href="CppOperatorAssign.htm">=</a> 0)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;: <a href="CppQGraphicsRectItem.htm">QGraphicsRectItem</a>(parent),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQGraphicsItem.html">QGraphicsItem</a> * parent <a href="CppOperatorAssign.htm">=</a> 0)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;: <a href="CppQGraphicsRectItem.html">QGraphicsRectItem</a>(parent),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;m_dy(0.0)<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;setBrush(QBrush(<a href="CppQColor.htm">QColor</a>(0,0,0)));<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;setPen(QPen(<a href="CppQColor.htm">QColor</a>(128,128,128)));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;setBrush(QBrush(<a href="CppQColor.html">QColor</a>(0,0,0)));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;setPen(QPen(<a href="CppQColor.html">QColor</a>(128,128,128)));<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> SetArenaGeometry(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> maxx, <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> maxy)<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> SetArenaGeometry(<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> maxx, <b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> maxy)<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;m_maxx <a href="CppOperatorAssign.htm">=</a> maxx;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;m_maxy <a href="CppOperatorAssign.htm">=</a> maxy;<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/Set the vertical speed of the player<br/>
-&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> SetDy(<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> dy) { m_dy <a href="CppOperatorAssign.htm">=</a> dy; }<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> SetDy(<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> dy) { m_dy <a href="CppOperatorAssign.htm">=</a> dy; }<br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> advance(<b><a href="CppInt.htm">int</a></b>)<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Check the next coordinats<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppDouble.htm">double</a></b> new_y <a href="CppOperatorAssign.htm">=</a> <b><a href="CppThis.htm">this</a></b>-&gt;y() <a href="CppOperatorPlus.htm">+</a> m_dy;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (new_y&lt;0.0) m_dy <a href="CppOperatorAssign.htm">=</a> <a href="CppAbs.htm">std::abs</a>(m_dy);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppElse.htm">else</a></b> <b><a href="CppIf.htm">if</a></b> (new_y <a href="CppOperatorGreaterEqual.htm">&gt;=</a> m_maxy <a href="CppOperatorMinus.htm">-</a> <b><a href="CppThis.htm">this</a></b>-&gt;rect().height()) m_dy <a href="CppOperatorAssign.htm">=</a> <a href="CppOperatorMinus.htm">-</a><a href="CppAbs.htm">std::abs</a>(m_dy);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppDouble.html">double</a></b> new_y <a href="CppOperatorAssign.htm">=</a> <b><a href="CppThis.htm">this</a></b>-&gt;y() <a href="CppOperatorPlus.htm">+</a> m_dy;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (new_y&lt;0.0) m_dy <a href="CppOperatorAssign.htm">=</a> <a href="CppAbs.html">std::abs</a>(m_dy);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppElse.htm">else</a></b> <b><a href="CppIf.htm">if</a></b> (new_y <a href="CppOperatorGreaterEqual.html">&gt;=</a> m_maxy <a href="CppOperatorMinus.htm">-</a> <b><a href="CppThis.htm">this</a></b>-&gt;rect()<a href="CppHeaderFile.htm">.h</a>eight()) m_dy <a href="CppOperatorAssign.htm">=</a> <a href="CppOperatorMinus.htm">-</a><a href="CppAbs.html">std::abs</a>(m_dy);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Set the nice <b><a href="CppNew.htm">new</a></b> coordinats<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;setY(<b><a href="CppThis.htm">this</a></b>-&gt;y() <a href="CppOperatorPlus.htm">+</a> m_dy);<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<b><a href="CppPrivate.htm">private</a></b>:<br/>
-&nbsp;&nbsp;<b><a href="CppDouble.htm">double</a></b> m_dy;<br/>
+&nbsp;&nbsp;<b><a href="CppPrivate.html">private</a></b>:<br/>
+&nbsp;&nbsp;<b><a href="CppDouble.html">double</a></b> m_dy;<br/>
 &nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> m_maxx;<br/>
 &nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> m_maxy;<br/>
 };<br/>
 <br/>
 <a href="CppComment.htm">///</a>PongBall is the ball used in Pong<br/>
-<b><a href="CppStruct.htm">struct</a></b> PongBall : <b><a href="CppPublic.htm">public</a></b> <a href="CppQGraphicsPixmapItem.htm">QGraphicsPixmapItem</a><br/>
+<b><a href="CppStruct.html">struct</a></b> PongBall : <b><a href="CppPublic.html">public</a></b> <a href="CppQGraphicsPixmapItem.html">QGraphicsPixmapItem</a><br/>
 {<br/>
 &nbsp;&nbsp;PongBall(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQGraphicsItem.htm">QGraphicsItem</a> * parent <a href="CppOperatorAssign.htm">=</a> 0,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> width <a href="CppOperatorAssign.htm">=</a> 32,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> height <a href="CppOperatorAssign.htm">=</a> 32)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;: <a href="CppQGraphicsPixmapItem.htm">QGraphicsPixmapItem</a>(parent),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQGraphicsItem.html">QGraphicsItem</a> * parent <a href="CppOperatorAssign.htm">=</a> 0,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> width <a href="CppOperatorAssign.htm">=</a> 32,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> height <a href="CppOperatorAssign.htm">=</a> 32)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;: <a href="CppQGraphicsPixmapItem.html">QGraphicsPixmapItem</a>(parent),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;m_dx(1.0), m_dy(1.0), m_maxx(0.0), m_maxy(0.0)<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQImage.htm">QImage</a> i(width,height,<a href="CppQImage.htm">QImage</a>::Format_ARGB32);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQImage.html">QImage</a> i(width,height,<a href="CppQImage.html">QImage</a>::Format_ARGB32);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> y=0;y<a href="CppOperatorNotEqual.htm">!=</a>height;<a href="CppOperatorIncrement.htm">++</a>y)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> x=0;x<a href="CppOperatorNotEqual.htm">!=</a>width;<a href="CppOperatorIncrement.htm">++</a>x)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> gray <a href="CppOperatorAssign.htm">=</a> ((8 * x) <a href="CppOperatorPlus.htm">+</a> (8 * y)) <a href="CppOperatorModulus.htm">%</a> 256;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;i.setPixel(<a href="CppQPoint.htm">QPoint</a>(x,y),<a href="CppQColor.htm">QColor</a>(gray,gray,gray).rgb());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> gray <a href="CppOperatorAssign.htm">=</a> ((8 * x) <a href="CppOperatorPlus.htm">+</a> (8 * y)) <a href="CppOperatorModulus.htm">%</a> 256;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;i.setPixel(<a href="CppQPoint.html">QPoint</a>(x,y),<a href="CppQColor.html">QColor</a>(gray,gray,gray).rgb());<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;setPixmap(<b><a href="CppThis.htm">this</a></b>-&gt;pixmap().fromImage(i));<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/Make the ball bounce<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>advance (an inherited <a href="CppMemberFunction.htm">member function</a>) determines what <b><a href="CppThis.htm">this</a></b> sprite must<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppDo.htm">do</a></b> upon a <a href="CppQGraphicsScene.htm">QGraphicsScene</a>::advance call<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>advance (an inherited <a href="CppMemberFunction.html">member function</a>) determines what <b><a href="CppThis.htm">this</a></b> sprite must<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppDo.htm">do</a></b> upon a <a href="CppQGraphicsScene.html">QGraphicsScene</a>::advance call<br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> advance(<b><a href="CppInt.htm">int</a></b>)<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Check the next coordinats<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppDouble.htm">double</a></b> new_x <a href="CppOperatorAssign.htm">=</a> <b><a href="CppThis.htm">this</a></b>-&gt;x() <a href="CppOperatorPlus.htm">+</a> m_dx;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppDouble.htm">double</a></b> new_y <a href="CppOperatorAssign.htm">=</a> <b><a href="CppThis.htm">this</a></b>-&gt;y() <a href="CppOperatorPlus.htm">+</a> m_dy;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (new_x&lt;0.0) m_dx <a href="CppOperatorAssign.htm">=</a> <a href="CppAbs.htm">std::abs</a>(m_dx);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppElse.htm">else</a></b> <b><a href="CppIf.htm">if</a></b> (new_x <a href="CppOperatorGreaterEqual.htm">&gt;=</a> m_maxx <a href="CppOperatorMinus.htm">-</a> <b><a href="CppThis.htm">this</a></b>-&gt;pixmap().width()) m_dx <a href="CppOperatorAssign.htm">=</a> <a href="CppOperatorMinus.htm">-</a><a href="CppAbs.htm">std::abs</a>(m_dx);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppDouble.html">double</a></b> new_x <a href="CppOperatorAssign.htm">=</a> <b><a href="CppThis.htm">this</a></b>-&gt;x() <a href="CppOperatorPlus.htm">+</a> m_dx;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppDouble.html">double</a></b> new_y <a href="CppOperatorAssign.htm">=</a> <b><a href="CppThis.htm">this</a></b>-&gt;y() <a href="CppOperatorPlus.htm">+</a> m_dy;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (new_x&lt;0.0) m_dx <a href="CppOperatorAssign.htm">=</a> <a href="CppAbs.html">std::abs</a>(m_dx);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppElse.htm">else</a></b> <b><a href="CppIf.htm">if</a></b> (new_x <a href="CppOperatorGreaterEqual.html">&gt;=</a> m_maxx <a href="CppOperatorMinus.htm">-</a> <b><a href="CppThis.htm">this</a></b>-&gt;pixmap().width()) m_dx <a href="CppOperatorAssign.htm">=</a> <a href="CppOperatorMinus.htm">-</a><a href="CppAbs.html">std::abs</a>(m_dx);<br/>
 <br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (new_y&lt;0.0) m_dy <a href="CppOperatorAssign.htm">=</a> <a href="CppAbs.htm">std::abs</a>(m_dy);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppElse.htm">else</a></b> <b><a href="CppIf.htm">if</a></b> (new_y <a href="CppOperatorGreaterEqual.htm">&gt;=</a> m_maxy <a href="CppOperatorMinus.htm">-</a> <b><a href="CppThis.htm">this</a></b>-&gt;pixmap().height()) m_dy <a href="CppOperatorAssign.htm">=</a> <a href="CppOperatorMinus.htm">-</a><a href="CppAbs.htm">std::abs</a>(m_dy);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (new_y&lt;0.0) m_dy <a href="CppOperatorAssign.htm">=</a> <a href="CppAbs.html">std::abs</a>(m_dy);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppElse.htm">else</a></b> <b><a href="CppIf.htm">if</a></b> (new_y <a href="CppOperatorGreaterEqual.html">&gt;=</a> m_maxy <a href="CppOperatorMinus.htm">-</a> <b><a href="CppThis.htm">this</a></b>-&gt;pixmap()<a href="CppHeaderFile.htm">.h</a>eight()) m_dy <a href="CppOperatorAssign.htm">=</a> <a href="CppOperatorMinus.htm">-</a><a href="CppAbs.html">std::abs</a>(m_dy);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Set the nice <b><a href="CppNew.htm">new</a></b> coordinats<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;setX(<b><a href="CppThis.htm">this</a></b>-&gt;x() <a href="CppOperatorPlus.htm">+</a> m_dx);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;setY(<b><a href="CppThis.htm">this</a></b>-&gt;y() <a href="CppOperatorPlus.htm">+</a> m_dy);<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> SetArenaRect(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> width, <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> height)<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> SetArenaRect(<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> width, <b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> height)<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;m_maxx <a href="CppOperatorAssign.htm">=</a> width;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;m_maxy <a href="CppOperatorAssign.htm">=</a> height;<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<b><a href="CppPrivate.htm">private</a></b>:<br/>
-&nbsp;&nbsp;<b><a href="CppDouble.htm">double</a></b> m_dx;<br/>
-&nbsp;&nbsp;<b><a href="CppDouble.htm">double</a></b> m_dy;<br/>
-&nbsp;&nbsp;<b><a href="CppDouble.htm">double</a></b> m_maxx;<br/>
-&nbsp;&nbsp;<b><a href="CppDouble.htm">double</a></b> m_maxy;<br/>
+&nbsp;&nbsp;<b><a href="CppPrivate.html">private</a></b>:<br/>
+&nbsp;&nbsp;<b><a href="CppDouble.html">double</a></b> m_dx;<br/>
+&nbsp;&nbsp;<b><a href="CppDouble.html">double</a></b> m_dy;<br/>
+&nbsp;&nbsp;<b><a href="CppDouble.html">double</a></b> m_maxx;<br/>
+&nbsp;&nbsp;<b><a href="CppDouble.html">double</a></b> m_maxy;<br/>
 };<br/>
 <br/>
 <br/>
-<b><a href="CppNamespace.htm">namespace</a></b> Ui {<br/>
-<b><a href="CppClass.htm">class</a></b> PongMainDialog;<br/>
+<b><a href="CppNamespace.html">namespace</a></b> Ui {<br/>
+<b><a href="CppClass.html">class</a></b> PongMainDialog;<br/>
 }<br/>
 <br/>
-<b><a href="CppClass.htm">class</a></b> PongMainDialog : <b><a href="CppPublic.htm">public</a></b> <a href="CppQDialog.htm">QDialog</a><br/>
+<b><a href="CppClass.html">class</a></b> PongMainDialog : <b><a href="CppPublic.html">public</a></b> <a href="CppQDialog.html">QDialog</a><br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppQ_OBJECT.htm">Q_OBJECT</a><br/>
+&nbsp;&nbsp;<a href="CppQ_OBJECT.html">Q_OBJECT</a><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<br/>
-<b><a href="CppPublic.htm">public</a></b>:<br/>
-&nbsp;&nbsp;<b><a href="CppExplicit.htm">explicit</a></b> PongMainDialog(<a href="CppQWidget.htm">QWidget</a> *parent <a href="CppOperatorAssign.htm">=</a> 0);<br/>
+<b><a href="CppPublic.html">public</a></b>:<br/>
+&nbsp;&nbsp;<b><a href="CppExplicit.html">explicit</a></b> PongMainDialog(<a href="CppQWidget.html">QWidget</a> *parent <a href="CppOperatorAssign.htm">=</a> 0);<br/>
 &nbsp;&nbsp;~PongMainDialog();<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<br/>
-<b><a href="CppPrivate.htm">private</a></b>:<br/>
+<b><a href="CppPrivate.html">private</a></b>:<br/>
 &nbsp;&nbsp;<a href="CppUi.htm">Ui</a>::PongMainDialog *ui;<br/>
 <br/>
-&nbsp;&nbsp;PongBackground * <b><a href="CppConst.htm">const</a></b> m_background;<br/>
-&nbsp;&nbsp;PongBall * <b><a href="CppConst.htm">const</a></b> m_ball;<br/>
-&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;PongPlayer*&gt; m_players;<br/>
-<b><a href="CppProtected.htm">protected</a></b>:<br/>
-&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> keyPressEvent(<a href="CppQKeyEvent.htm">QKeyEvent</a> *);<br/>
-&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> resizeEvent(<a href="CppQResizeEvent.htm">QResizeEvent</a> *);<br/>
+&nbsp;&nbsp;PongBackground * <b><a href="CppConst.html">const</a></b> m_background;<br/>
+&nbsp;&nbsp;PongBall * <b><a href="CppConst.html">const</a></b> m_ball;<br/>
+&nbsp;&nbsp;<a href="CppVector.html">std::vector</a>&lt;PongPlayer*&gt; m_players;<br/>
+<b><a href="CppProtected.html">protected</a></b>:<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> keyPressEvent(<a href="CppQKeyEvent.html">QKeyEvent</a> *);<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> resizeEvent(<a href="CppQResizeEvent.html">QResizeEvent</a> *);<br/>
 <br/>
 };<br/>
 <br/>
-<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> PONGMAINDIALOG_H<br/>
+<a href="CppEndif.html">#endif</a> <a href="CppComment.htm">//</a> PONGMAINDIALOG_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -270,33 +270,33 @@ TEMPLATE = app<br/>
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="pongmaindialog.cpp" border = "1"><tr><td><code>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppCmathH.htm">cmath</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;QBrush&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppQGraphicsScene.htm">QGraphicsScene</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppQGraphicsView.htm">QGraphicsView</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppQKeyEvent.htm">QKeyEvent</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppQTimer.htm">QTimer</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppQVBoxLayout.htm">QVBoxLayout</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppCmathH.html">cmath</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;QBrush&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppQGraphicsScene.html">QGraphicsScene</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppQGraphicsView.html">QGraphicsView</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppQKeyEvent.html">QKeyEvent</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppQTimer.html">QTimer</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppQVBoxLayout.html">QVBoxLayout</a>&gt;<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> "pongmaindialog.h"<br/>
-<a href="CppInclude.htm">#include</a> "ui_pongmaindialog.h"<br/>
+<a href="CppInclude.html">#include</a> "pongmaindialog<a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "ui_pongmaindialog<a href="CppHeaderFile.htm">.h</a>"<br/>
 <br/>
-PongMainDialog::PongMainDialog(<a href="CppQWidget.htm">QWidget</a> *parent) :<br/>
-&nbsp;&nbsp;<a href="CppQDialog.htm">QDialog</a>(parent),<br/>
+PongMainDialog::PongMainDialog(<a href="CppQWidget.html">QWidget</a> *parent) :<br/>
+&nbsp;&nbsp;<a href="CppQDialog.html">QDialog</a>(parent),<br/>
 &nbsp;&nbsp;ui(<b><a href="CppNew.htm">new</a></b> <a href="CppUi.htm">Ui</a>::PongMainDialog),<br/>
 &nbsp;&nbsp;m_background(<b><a href="CppNew.htm">new</a></b> PongBackground),<br/>
 &nbsp;&nbsp;m_ball(<b><a href="CppNew.htm">new</a></b> PongBall),<br/>
 &nbsp;&nbsp;m_players( { <b><a href="CppNew.htm">new</a></b> PongPlayer, <b><a href="CppNew.htm">new</a></b> PongPlayer } )<br/>
 {<br/>
 &nbsp;&nbsp;ui-&gt;setupUi(<b><a href="CppThis.htm">this</a></b>);<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> w <a href="CppOperatorAssign.htm">=</a> <b><a href="CppThis.htm">this</a></b>-&gt;width();<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> h <a href="CppOperatorAssign.htm">=</a> <b><a href="CppThis.htm">this</a></b>-&gt;height();<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> w <a href="CppOperatorAssign.htm">=</a> <b><a href="CppThis.htm">this</a></b>-&gt;width();<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> h <a href="CppOperatorAssign.htm">=</a> <b><a href="CppThis.htm">this</a></b>-&gt;height();<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Start by creating a scene<br/>
-&nbsp;&nbsp;<a href="CppQGraphicsScene.htm">QGraphicsScene</a> * <b><a href="CppConst.htm">const</a></b> scene(<b><a href="CppNew.htm">new</a></b> <a href="CppQGraphicsScene.htm">QGraphicsScene</a>(<b><a href="CppThis.htm">this</a></b>));<br/>
+&nbsp;&nbsp;<a href="CppQGraphicsScene.html">QGraphicsScene</a> * <b><a href="CppConst.html">const</a></b> scene(<b><a href="CppNew.htm">new</a></b> <a href="CppQGraphicsScene.html">QGraphicsScene</a>(<b><a href="CppThis.htm">this</a></b>));<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Connect a view to display the scene<br/>
-&nbsp;&nbsp;<a href="CppQGraphicsView.htm">QGraphicsView</a> * <b><a href="CppConst.htm">const</a></b> view(<b><a href="CppNew.htm">new</a></b> <a href="CppQGraphicsView.htm">QGraphicsView</a>(scene));<br/>
+&nbsp;&nbsp;<a href="CppQGraphicsView.html">QGraphicsView</a> * <b><a href="CppConst.html">const</a></b> view(<b><a href="CppNew.htm">new</a></b> <a href="CppQGraphicsView.html">QGraphicsView</a>(scene));<br/>
 &nbsp;&nbsp;view-&gt;setHorizontalScrollBarPolicy(<a href="CppQt.htm">Qt</a>::ScrollBarAlwaysOff);<br/>
 &nbsp;&nbsp;view-&gt;setVerticalScrollBarPolicy(<a href="CppQt.htm">Qt</a>::ScrollBarAlwaysOff);<br/>
 &nbsp;&nbsp;view-&gt;setGeometry(0,0,w,h);<br/>
@@ -316,41 +316,41 @@ PongMainDialog::PongMainDialog(<a href="CppQWidget.htm">QWidget</a> *parent) :<b
 &nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppAdd.htm">Add</a> players<br/>
 &nbsp;&nbsp;m_players[0]-&gt;setRect(0,(h <a href="CppOperatorDivide.htm">/</a> 2)-64,32,128);<br/>
 &nbsp;&nbsp;m_players[1]-&gt;setRect(w-32,(h <a href="CppOperatorDivide.htm">/</a> 2)-64,32,128);<br/>
-&nbsp;&nbsp;<a href="CppFor_each.htm">std::for_each</a>(m_players.begin(),m_players.end(),<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;[scene](PongPlayer * <b><a href="CppConst.htm">const</a></b> player)<br/>
+&nbsp;&nbsp;<a href="CppFor_each.html">std::for_each</a>(m_players.begin(),m_players.end(),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;[scene](PongPlayer * <b><a href="CppConst.html">const</a></b> player)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;scene-&gt;addItem(player);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;);<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Create a <a href="CppTime.htm">time</a>r to call 'advance' on all sprites<br/>
-&nbsp;&nbsp;<a href="CppQTimer.htm">QTimer</a> * <b><a href="CppConst.htm">const</a></b> <a href="CppTime.htm">time</a>r(<b><a href="CppNew.htm">new</a></b> <a href="CppQTimer.htm">QTimer</a>(<b><a href="CppThis.htm">this</a></b>));<br/>
-&nbsp;&nbsp;<a href="CppTime.htm">time</a>r-&gt;connect(<a href="CppTime.htm">time</a>r, <a href="CppSignalMacro.htm">SIGNAL</a>(<a href="CppTime.htm">time</a>out()), scene, <a href="CppSLOT.htm">SLOT</a>(advance()));<br/>
+&nbsp;&nbsp;<a href="CppQTimer.html">QTimer</a> * <b><a href="CppConst.html">const</a></b> <a href="CppTime.htm">time</a>r(<b><a href="CppNew.htm">new</a></b> <a href="CppQTimer.html">QTimer</a>(<b><a href="CppThis.htm">this</a></b>));<br/>
+&nbsp;&nbsp;<a href="CppTime.htm">time</a>r-&gt;connect(<a href="CppTime.htm">time</a>r, <a href="CppSignalMacro.html">SIGNAL</a>(<a href="CppTime.htm">time</a>out()), scene, <a href="CppSLOT.htm">SLOT</a>(advance()));<br/>
 &nbsp;&nbsp;<a href="CppTime.htm">time</a>r-&gt;start(20);<br/>
 }<br/>
 <br/>
 PongMainDialog::~PongMainDialog()<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppDelete.htm">delete</a></b> ui;<br/>
+&nbsp;&nbsp;<b><a href="CppDelete.html">delete</a></b> ui;<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> PongMainDialog::keyPressEvent(<a href="CppQKeyEvent.htm">QKeyEvent</a> * e)<br/>
+<b><a href="CppVoid.htm">void</a></b> PongMainDialog::keyPressEvent(<a href="CppQKeyEvent.html">QKeyEvent</a> * e)<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> player <a href="CppOperatorAssign.htm">=</a> <a href="CppOperatorMinus.htm">-</a>1;<br/>
-&nbsp;&nbsp;<b><a href="CppDouble.htm">double</a></b> dy <a href="CppOperatorAssign.htm">=</a> 0.0;<br/>
-&nbsp;&nbsp;<b><a href="CppSwitch.htm">switch</a></b> (e-&gt;key())<br/>
+&nbsp;&nbsp;<b><a href="CppDouble.html">double</a></b> dy <a href="CppOperatorAssign.htm">=</a> 0.0;<br/>
+&nbsp;&nbsp;<b><a href="CppSwitch.html">switch</a></b> (e-&gt;key())<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> <a href="CppQt.htm">Qt</a>::Key_Up&nbsp;&nbsp;: player <a href="CppOperatorAssign.htm">=</a> 0; dy <a href="CppOperatorAssign.htm">=</a> <a href="CppOperatorMinus.htm">-</a>1.0; <b><a href="CppBreak.htm">break</a></b>;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> <a href="CppQt.htm">Qt</a>::Key_Down: player <a href="CppOperatorAssign.htm">=</a> 0; dy <a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;1.0; <b><a href="CppBreak.htm">break</a></b>;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> <a href="CppQt.htm">Qt</a>::Key_W&nbsp;&nbsp; : player <a href="CppOperatorAssign.htm">=</a> 1; dy <a href="CppOperatorAssign.htm">=</a> <a href="CppOperatorMinus.htm">-</a>1.0; <b><a href="CppBreak.htm">break</a></b>;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> <a href="CppQt.htm">Qt</a>::Key_S&nbsp;&nbsp; : player <a href="CppOperatorAssign.htm">=</a> 1; dy <a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;1.0; <b><a href="CppBreak.htm">break</a></b>;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppDefault.htm">default</a></b>: <b><a href="CppReturn.htm">return</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> <a href="CppQt.htm">Qt</a>::Key_Up&nbsp;&nbsp;: player <a href="CppOperatorAssign.htm">=</a> 0; dy <a href="CppOperatorAssign.htm">=</a> <a href="CppOperatorMinus.htm">-</a>1.0; <b><a href="CppBreak.html">break</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> <a href="CppQt.htm">Qt</a>::Key_Down: player <a href="CppOperatorAssign.htm">=</a> 0; dy <a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;1.0; <b><a href="CppBreak.html">break</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> <a href="CppQt.htm">Qt</a>::Key_W&nbsp;&nbsp; : player <a href="CppOperatorAssign.htm">=</a> 1; dy <a href="CppOperatorAssign.htm">=</a> <a href="CppOperatorMinus.htm">-</a>1.0; <b><a href="CppBreak.html">break</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> <a href="CppQt.htm">Qt</a>::Key_S&nbsp;&nbsp; : player <a href="CppOperatorAssign.htm">=</a> 1; dy <a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;1.0; <b><a href="CppBreak.html">break</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppDefault.html">default</a></b>: <b><a href="CppReturn.html">return</a></b>;<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(player <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 0 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> player &lt; <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(m_players.size()));<br/>
+&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(player <a href="CppOperatorGreaterEqual.html">&gt;=</a> 0 <a href="CppOperatorLogicalAnd.html">&amp;&amp;</a> player &lt; <b><a href="CppStatic_cast.html">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(m_players.size()));<br/>
 &nbsp;&nbsp;m_players[player]-&gt;SetDy(dy);<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> PongMainDialog::resizeEvent(<a href="CppQResizeEvent.htm">QResizeEvent</a> *)<br/>
+<b><a href="CppVoid.htm">void</a></b> PongMainDialog::resizeEvent(<a href="CppQResizeEvent.html">QResizeEvent</a> *)<br/>
 {<br/>
 &nbsp;&nbsp;m_background-&gt;SetGeometry(<b><a href="CppThis.htm">this</a></b>-&gt;width(),<b><a href="CppThis.htm">this</a></b>-&gt;height());<br/>
 &nbsp;&nbsp;m_ball-&gt;SetArenaRect(<b><a href="CppThis.htm">this</a></b>-&gt;width(),<b><a href="CppThis.htm">this</a></b>-&gt;height());<br/>

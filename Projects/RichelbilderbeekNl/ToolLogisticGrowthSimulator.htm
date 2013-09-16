@@ -48,38 +48,38 @@ shows a Feigenbaum diagram.</p>
 <table summary="ProjectLogisticGrowth.cpp" border = "1"><tr><td><code>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> &lt;vcl.h&gt;<br/>
-<a href="CppPragma.htm">#pragma</a> hdrstop<br/>
+<a href="CppInclude.html">#include</a> &lt;vcl<a href="CppHeaderFile.htm">.h</a>&gt;<br/>
+<a href="CppPragma.html">#pragma</a> hdrstop<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-USEFORM("UnitFormScatterplot.cpp", FormScatterplot);<br/>
-USEFORM("UnitFormMain.cpp", FormMain);<br/>
-USEFORM("UnitFormLineChart.cpp", FormLineChart);<br/>
+USEFORM("UnitFormScatterplot<a href="CppImplementationFile.html">.cpp</a>", FormScatterplot);<br/>
+USEFORM("UnitFormMain<a href="CppImplementationFile.html">.cpp</a>", FormMain);<br/>
+USEFORM("UnitFormLineChart<a href="CppImplementationFile.html">.cpp</a>", FormLineChart);<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, <b><a href="CppInt.htm">int</a></b>)<br/>
 {<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppTry.htm">try</a></b><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppApplication.htm">Application</a>-&gt;<a href="CppInitialize.htm">Initialize</a>();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppApplication.htm">Application</a>-&gt;Title <a href="CppOperatorAssign.htm">=</a> "Logistic Growth Simulation";<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppApplication.htm">Application</a>-&gt;CreateForm(__classid(TFormMain), &amp;FormMain);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppApplication.htm">Application</a>-&gt;Run();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppApplication.html">Application</a>-&gt;<a href="CppInitialize.html">Initialize</a>();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppApplication.html">Application</a>-&gt;Title <a href="CppOperatorAssign.htm">=</a> "Logistic Growth Simulation";<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppApplication.html">Application</a>-&gt;CreateForm(__classid(TFormMain), &amp;FormMain);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppApplication.html">Application</a>-&gt;Run();<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCatch.htm">catch</a></b> (<a href="CppException.htm">Exception</a> &amp;<a href="CppException.htm">exception</a>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCatch.html">catch</a></b> (<a href="CppException.html">Exception</a> &amp;<a href="CppException.html">exception</a>)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppApplication.htm">Application</a>-&gt;Show<a href="CppException.htm">Exception</a>(&amp;<a href="CppException.htm">exception</a>);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppApplication.html">Application</a>-&gt;Show<a href="CppException.html">Exception</a>(&amp;<a href="CppException.html">exception</a>);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCatch.htm">catch</a></b> (...)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCatch.html">catch</a></b> (...)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b><a href="CppTry.htm">try</a></b><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b><a href="CppThrow.htm">throw</a></b> <a href="CppException.htm">Exception</a>("");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b><a href="CppThrow.html">throw</a></b> <a href="CppException.html">Exception</a>("");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b><a href="CppCatch.htm">catch</a></b> (<a href="CppException.htm">Exception</a> &amp;<a href="CppException.htm">exception</a>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b><a href="CppCatch.html">catch</a></b> (<a href="CppException.html">Exception</a> &amp;<a href="CppException.html">exception</a>)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppApplication.htm">Application</a>-&gt;Show<a href="CppException.htm">Exception</a>(&amp;<a href="CppException.htm">exception</a>);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppApplication.html">Application</a>-&gt;Show<a href="CppException.html">Exception</a>(&amp;<a href="CppException.html">exception</a>);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> 0;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> 0;<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 </code></td></tr></table>
@@ -95,32 +95,32 @@ WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, <b><a href="CppInt.htm">int</a></b>)
 <table summary="UnitFormChart.h" border = "1"><tr><td><code>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <br/>
-<a href="CppIfndef.htm">#ifndef</a> UnitFormChartH<br/>
-<a href="CppDefine.htm">#define</a> UnitFormChartH<br/>
+<a href="CppIfndef.html">#ifndef</a> UnitFormChartH<br/>
+<a href="CppDefine.html">#define</a> UnitFormChartH<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppClass.htm">Classes</a>.hpp&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;Controls.hpp&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;StdCtrls.hpp&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;Forms.hpp&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;Chart.hpp&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;ExtCtrls.hpp&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;Series.hpp&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;TeEngine.hpp&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;TeeProcs.hpp&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppClass.html">Classes</a><a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;Controls<a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;StdCtrls<a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;Forms<a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;Chart<a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;ExtCtrls<a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;Series<a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;TeEngine<a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;TeeProcs<a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppClass.htm">class</a></b> TFormLineChart : <b><a href="CppPublic.htm">public</a></b> TForm<br/>
+<b><a href="CppClass.html">class</a></b> TFormLineChart : <b><a href="CppPublic.html">public</a></b> TForm<br/>
 {<br/>
-__published:	<a href="CppComment.htm">//</a> IDE-managed <a href="CppComponent.htm">Component</a>s<br/>
+__published:	<a href="CppComment.htm">//</a> IDE-managed <a href="CppComponent.html">Component</a>s<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TChart *mChart;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TFastLineSeries *Series1;<br/>
-<b><a href="CppPrivate.htm">private</a></b>:	<a href="CppComment.htm">//</a> User <a href="CppDeclaration.htm">declaration</a>s<br/>
-<b><a href="CppPublic.htm">public</a></b>:		<a href="CppComment.htm">//</a> User <a href="CppDeclaration.htm">declaration</a>s<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;__fastcall TFormLineChart(T<a href="CppComponent.htm">Component</a>* Owner);<br/>
+<b><a href="CppPrivate.html">private</a></b>:	<a href="CppComment.htm">//</a> User <a href="CppDeclaration.html">declaration</a>s<br/>
+<b><a href="CppPublic.html">public</a></b>:		<a href="CppComment.htm">//</a> User <a href="CppDeclaration.html">declaration</a>s<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;__fastcall TFormLineChart(T<a href="CppComponent.html">Component</a>* Owner);<br/>
 };<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppExtern.htm">extern</a></b> PACKAGE TFormLineChart *FormLineChart;<br/>
+<b><a href="CppExtern.html">extern</a></b> PACKAGE TFormLineChart *FormLineChart;<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppEndif.htm">#endif</a><br/>
+<a href="CppEndif.html">#endif</a><br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -134,16 +134,16 @@ __published:	<a href="CppComment.htm">//</a> IDE-managed <a href="CppComponent.h
 <table summary="UnitFormChart.cpp" border = "1"><tr><td><code>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> &lt;vcl.h&gt;<br/>
-<a href="CppPragma.htm">#pragma</a> hdrstop<br/>
+<a href="CppInclude.html">#include</a> &lt;vcl<a href="CppHeaderFile.htm">.h</a>&gt;<br/>
+<a href="CppPragma.html">#pragma</a> hdrstop<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> "UnitFormChart.h"<br/>
+<a href="CppInclude.html">#include</a> "UnitFormChart<a href="CppHeaderFile.htm">.h</a>"<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppPragma.htm">#pragma</a> package(smart_init)<br/>
-<a href="CppPragma.htm">#pragma</a> resource "*.dfm"<br/>
+<a href="CppPragma.html">#pragma</a> package(smart_init)<br/>
+<a href="CppPragma.html">#pragma</a> resource "*.dfm"<br/>
 TFormLineChart *FormLineChart;<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-__fastcall TFormLineChart::TFormLineChart(T<a href="CppComponent.htm">Component</a>* Owner)<br/>
+__fastcall TFormLineChart::TFormLineChart(T<a href="CppComponent.html">Component</a>* Owner)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: TForm(Owner)<br/>
 {<br/>
 }<br/>
@@ -179,32 +179,32 @@ __fastcall TFormLineChart::TFormLineChart(T<a href="CppComponent.htm">Component<
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">//</a> From http://www.richelbilderbeek.nl<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppIfndef.htm">#ifndef</a> UnitFormLineChartH<br/>
-<a href="CppDefine.htm">#define</a> UnitFormLineChartH<br/>
+<a href="CppIfndef.html">#ifndef</a> UnitFormLineChartH<br/>
+<a href="CppDefine.html">#define</a> UnitFormLineChartH<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppClass.htm">Classes</a>.hpp&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;Controls.hpp&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;StdCtrls.hpp&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;Forms.hpp&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;Chart.hpp&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;ExtCtrls.hpp&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;Series.hpp&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;TeEngine.hpp&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;TeeProcs.hpp&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppClass.html">Classes</a><a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;Controls<a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;StdCtrls<a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;Forms<a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;Chart<a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;ExtCtrls<a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;Series<a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;TeEngine<a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;TeeProcs<a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppClass.htm">class</a></b> TFormLineChart : <b><a href="CppPublic.htm">public</a></b> TForm<br/>
+<b><a href="CppClass.html">class</a></b> TFormLineChart : <b><a href="CppPublic.html">public</a></b> TForm<br/>
 {<br/>
-__published:	<a href="CppComment.htm">//</a> IDE-managed <a href="CppComponent.htm">Component</a>s<br/>
+__published:	<a href="CppComment.htm">//</a> IDE-managed <a href="CppComponent.html">Component</a>s<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TChart *mChart;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TFastLineSeries *Series1;<br/>
-<b><a href="CppPrivate.htm">private</a></b>:	<a href="CppComment.htm">//</a> User <a href="CppDeclaration.htm">declaration</a>s<br/>
-<b><a href="CppPublic.htm">public</a></b>:		<a href="CppComment.htm">//</a> User <a href="CppDeclaration.htm">declaration</a>s<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;__fastcall TFormLineChart(T<a href="CppComponent.htm">Component</a>* Owner);<br/>
+<b><a href="CppPrivate.html">private</a></b>:	<a href="CppComment.htm">//</a> User <a href="CppDeclaration.html">declaration</a>s<br/>
+<b><a href="CppPublic.html">public</a></b>:		<a href="CppComment.htm">//</a> User <a href="CppDeclaration.html">declaration</a>s<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;__fastcall TFormLineChart(T<a href="CppComponent.html">Component</a>* Owner);<br/>
 };<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppExtern.htm">extern</a></b> PACKAGE TFormLineChart *FormLineChart;<br/>
+<b><a href="CppExtern.html">extern</a></b> PACKAGE TFormLineChart *FormLineChart;<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppEndif.htm">#endif</a><br/>
+<a href="CppEndif.html">#endif</a><br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -236,16 +236,16 @@ __published:	<a href="CppComment.htm">//</a> IDE-managed <a href="CppComponent.h
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">//</a> From http://www.richelbilderbeek.nl<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppInclude.htm">#include</a> &lt;vcl.h&gt;<br/>
-<a href="CppPragma.htm">#pragma</a> hdrstop<br/>
+<a href="CppInclude.html">#include</a> &lt;vcl<a href="CppHeaderFile.htm">.h</a>&gt;<br/>
+<a href="CppPragma.html">#pragma</a> hdrstop<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> "UnitFormLineChart.h"<br/>
+<a href="CppInclude.html">#include</a> "UnitFormLineChart<a href="CppHeaderFile.htm">.h</a>"<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppPragma.htm">#pragma</a> package(smart_init)<br/>
-<a href="CppPragma.htm">#pragma</a> resource "*.dfm"<br/>
+<a href="CppPragma.html">#pragma</a> package(smart_init)<br/>
+<a href="CppPragma.html">#pragma</a> resource "*.dfm"<br/>
 TFormLineChart *FormLineChart;<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-__fastcall TFormLineChart::TFormLineChart(T<a href="CppComponent.htm">Component</a>* Owner)<br/>
+__fastcall TFormLineChart::TFormLineChart(T<a href="CppComponent.html">Component</a>* Owner)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: TForm(Owner)<br/>
 {<br/>
 }<br/>
@@ -281,56 +281,56 @@ __fastcall TFormLineChart::TFormLineChart(T<a href="CppComponent.htm">Component<
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">//</a> From http://www.richelbilderbeek.nl<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppIfndef.htm">#ifndef</a> UnitFormMainH<br/>
-<a href="CppDefine.htm">#define</a> UnitFormMainH<br/>
+<a href="CppIfndef.html">#ifndef</a> UnitFormMainH<br/>
+<a href="CppDefine.html">#define</a> UnitFormMainH<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppClass.htm">Classes</a>.hpp&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;Controls.hpp&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;StdCtrls.hpp&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;Forms.hpp&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;ExtCtrls.hpp&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;Grids.hpp&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;ValEdit.hpp&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;Chart.hpp&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;Series.hpp&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;TeEngine.hpp&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;TeeProcs.hpp&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;ComCtrls.hpp&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppClass.html">Classes</a><a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;Controls<a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;StdCtrls<a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;Forms<a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;ExtCtrls<a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;Grids<a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;ValEdit<a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;Chart<a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;Series<a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;TeEngine<a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;TeeProcs<a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;ComCtrls<a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppMemoryH.htm">memory</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> "UnitSimulation.h"<br/>
-<b><a href="CppClass.htm">class</a></b> TFormLineChart;<br/>
-<b><a href="CppClass.htm">class</a></b> TFormScatterplot;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppMemoryH.html">memory</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> "UnitSimulation<a href="CppHeaderFile.htm">.h</a>"<br/>
+<b><a href="CppClass.html">class</a></b> TFormLineChart;<br/>
+<b><a href="CppClass.html">class</a></b> TFormScatterplot;<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppClass.htm">class</a></b> TFormMain : <b><a href="CppPublic.htm">public</a></b> TForm<br/>
+<b><a href="CppClass.html">class</a></b> TFormMain : <b><a href="CppPublic.html">public</a></b> TForm<br/>
 {<br/>
-__published:	<a href="CppComment.htm">//</a> IDE-managed <a href="CppComponent.htm">Component</a>s<br/>
+__published:	<a href="CppComment.htm">//</a> IDE-managed <a href="CppComponent.html">Component</a>s<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TTrackBar *TrackBar1;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TValueListEditor *Editor1;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TButton *ButtonCreateFeigen;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TButton *Button<a href="CppAbout.htm">About</a>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TButton *Button<a href="CppAbout.html">About</a>;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> __fastcall TrackBar1Change(TObject *Sender);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> __fastcall FormCreate(TObject *Sender);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> __fastcall ButtonCreateFeigenClick(TObject *Sender);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> __fastcall Button<a href="CppAbout.htm">About</a>Click(TObject *Sender);<br/>
-<b><a href="CppPrivate.htm">private</a></b>:	<a href="CppComment.htm">//</a> User <a href="CppDeclaration.htm">declaration</a>s<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAuto_ptr.htm">std::auto_ptr</a>&lt;Simulation&gt; mSimulation;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAuto_ptr.htm">std::auto_ptr</a>&lt;TFormLineChart&gt; mChartBegin;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAuto_ptr.htm">std::auto_ptr</a>&lt;TFormLineChart&gt; mChartEnd;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAuto_ptr.htm">std::auto_ptr</a>&lt;TFormLineChart&gt; mChartFeigenNvalues;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAuto_ptr.htm">std::auto_ptr</a>&lt;TFormScatterplot&gt; mChartFeigenValues;<br/>
-<b><a href="CppPublic.htm">public</a></b>:		<a href="CppComment.htm">//</a> User <a href="CppDeclaration.htm">declaration</a>s<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;__fastcall TFormMain(T<a href="CppComponent.htm">Component</a>* Owner);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Parameters GetParams() <b><a href="CppConst.htm">const</a></b>;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppDouble.htm">double</a></b> GetR() <b><a href="CppConst.htm">const</a></b>;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppDouble.htm">double</a></b> GetK() <b><a href="CppConst.htm">const</a></b>;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppDouble.htm">double</a></b> GetXzero() <b><a href="CppConst.htm">const</a></b>;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> GetT() <b><a href="CppConst.htm">const</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> __fastcall Button<a href="CppAbout.html">About</a>Click(TObject *Sender);<br/>
+<b><a href="CppPrivate.html">private</a></b>:	<a href="CppComment.htm">//</a> User <a href="CppDeclaration.html">declaration</a>s<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAuto_ptr.html">std::auto_ptr</a>&lt;Simulation&gt; mSimulation;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAuto_ptr.html">std::auto_ptr</a>&lt;TFormLineChart&gt; mChartBegin;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAuto_ptr.html">std::auto_ptr</a>&lt;TFormLineChart&gt; mChartEnd;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAuto_ptr.html">std::auto_ptr</a>&lt;TFormLineChart&gt; mChartFeigenNvalues;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAuto_ptr.html">std::auto_ptr</a>&lt;TFormScatterplot&gt; mChartFeigenValues;<br/>
+<b><a href="CppPublic.html">public</a></b>:		<a href="CppComment.htm">//</a> User <a href="CppDeclaration.html">declaration</a>s<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;__fastcall TFormMain(T<a href="CppComponent.html">Component</a>* Owner);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Parameters GetParams() <b><a href="CppConst.html">const</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppDouble.html">double</a></b> GetR() <b><a href="CppConst.html">const</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppDouble.html">double</a></b> GetK() <b><a href="CppConst.html">const</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppDouble.html">double</a></b> GetXzero() <b><a href="CppConst.html">const</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> GetT() <b><a href="CppConst.html">const</a></b>;<br/>
 };<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppExtern.htm">extern</a></b> PACKAGE TFormMain *FormMain;<br/>
+<b><a href="CppExtern.html">extern</a></b> PACKAGE TFormMain *FormMain;<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppEndif.htm">#endif</a><br/>
+<a href="CppEndif.html">#endif</a><br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -363,21 +363,21 @@ __published:	<a href="CppComment.htm">//</a> IDE-managed <a href="CppComponent.h
 <a href="CppComment.htm">//</a> From http://www.richelbilderbeek.nl<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> &lt;vcl.h&gt;<br/>
-<a href="CppPragma.htm">#pragma</a> hdrstop<br/>
+<a href="CppInclude.html">#include</a> &lt;vcl<a href="CppHeaderFile.htm">.h</a>&gt;<br/>
+<a href="CppPragma.html">#pragma</a> hdrstop<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> "UnitFormMain.h"<br/>
+<a href="CppInclude.html">#include</a> "UnitFormMain<a href="CppHeaderFile.htm">.h</a>"<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppMapH.htm">map</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppAlgorithmH.htm">algorithm</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> "UnitFormLineChart.h"<br/>
-<a href="CppInclude.htm">#include</a> "UnitFormScatterplot.h"<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppMapH.html">map</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppAlgorithmH.html">algorithm</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> "UnitFormLineChart<a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "UnitFormScatterplot<a href="CppHeaderFile.htm">.h</a>"<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppPragma.htm">#pragma</a> package(smart_init)<br/>
-<a href="CppPragma.htm">#pragma</a> resource "*.dfm"<br/>
+<a href="CppPragma.html">#pragma</a> package(smart_init)<br/>
+<a href="CppPragma.html">#pragma</a> resource "*.dfm"<br/>
 TFormMain *FormMain;<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-__fastcall TFormMain::TFormMain(T<a href="CppComponent.htm">Component</a>* Owner)<br/>
+__fastcall TFormMain::TFormMain(T<a href="CppComponent.html">Component</a>* Owner)<br/>
 &nbsp;&nbsp;: TForm(Owner),<br/>
 &nbsp;&nbsp;mChartBegin(<b><a href="CppNew.htm">new</a></b> TFormLineChart(0)),<br/>
 &nbsp;&nbsp;mChartEnd(<b><a href="CppNew.htm">new</a></b> TFormLineChart(0)),<br/>
@@ -387,59 +387,59 @@ __fastcall TFormMain::TFormMain(T<a href="CppComponent.htm">Component</a>* Owner
 <br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-Parameters TFormMain::GetParams() <b><a href="CppConst.htm">const</a></b><br/>
+Parameters TFormMain::GetParams() <b><a href="CppConst.html">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;Parameters params;<br/>
 &nbsp;&nbsp;params.mR <a href="CppOperatorAssign.htm">=</a> <b><a href="CppThis.htm">this</a></b>-&gt;GetR();<br/>
 &nbsp;&nbsp;params.mK <a href="CppOperatorAssign.htm">=</a> <b><a href="CppThis.htm">this</a></b>-&gt;GetK();<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> params;<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> params;<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppDouble.htm">double</a></b> TFormMain::GetR() <b><a href="CppConst.htm">const</a></b><br/>
+<b><a href="CppDouble.html">double</a></b> TFormMain::GetR() <b><a href="CppConst.html">const</a></b><br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(TrackBar1-&gt;Position) <a href="CppOperatorDivide.htm">/</a> 1000.0;<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> <b><a href="CppStatic_cast.html">static_cast</a></b>&lt;<b><a href="CppDouble.html">double</a></b>&gt;(TrackBar1-&gt;Position) <a href="CppOperatorDivide.htm">/</a> 1000.0;<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppDouble.htm">double</a></b> TFormMain::GetK() <b><a href="CppConst.htm">const</a></b><br/>
+<b><a href="CppDouble.html">double</a></b> TFormMain::GetK() <b><a href="CppConst.html">const</a></b><br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> 1.0;<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> 1.0;<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppDouble.htm">double</a></b> TFormMain::GetXzero() <b><a href="CppConst.htm">const</a></b><br/>
+<b><a href="CppDouble.html">double</a></b> TFormMain::GetXzero() <b><a href="CppConst.html">const</a></b><br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> 0.1;<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> 0.1;<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppInt.htm">int</a></b> TFormMain::GetT() <b><a href="CppConst.htm">const</a></b><br/>
+<b><a href="CppInt.htm">int</a></b> TFormMain::GetT() <b><a href="CppConst.html">const</a></b><br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> 10000;<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> 10000;<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <b><a href="CppVoid.htm">void</a></b> __fastcall TFormMain::TrackBar1Change(TObject *Sender)<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> r <a href="CppOperatorAssign.htm">=</a> <b><a href="CppThis.htm">this</a></b>-&gt;GetR();<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> r <a href="CppOperatorAssign.htm">=</a> <b><a href="CppThis.htm">this</a></b>-&gt;GetR();<br/>
 <br/>
 &nbsp;&nbsp;Editor1-&gt;Cells[1][1] <a href="CppOperatorAssign.htm">=</a> r;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Parameters params <a href="CppOperatorAssign.htm">=</a> GetParams();<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> xZero <a href="CppOperatorAssign.htm">=</a> <b><a href="CppThis.htm">this</a></b>-&gt;GetXzero();<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> Parameters params <a href="CppOperatorAssign.htm">=</a> GetParams();<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> xZero <a href="CppOperatorAssign.htm">=</a> <b><a href="CppThis.htm">this</a></b>-&gt;GetXzero();<br/>
 &nbsp;&nbsp;mSimulation.reset(<b><a href="CppNew.htm">new</a></b> Simulation(xZero,params));<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> max<a href="CppTime.htm">Time</a> <a href="CppOperatorAssign.htm">=</a> <b><a href="CppThis.htm">this</a></b>-&gt;GetT();<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> max<a href="CppTime.htm">Time</a> <a href="CppOperatorAssign.htm">=</a> <b><a href="CppThis.htm">this</a></b>-&gt;GetT();<br/>
 &nbsp;&nbsp;mSimulation-&gt;Run(max<a href="CppTime.htm">Time</a>);<br/>
-&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; popSizes <a href="CppOperatorAssign.htm">=</a> mSimulation-&gt;GetPopSizes();<br/>
+&nbsp;&nbsp;<a href="CppVector.html">std::vector</a>&lt;<b><a href="CppDouble.html">double</a></b>&gt; popSizes <a href="CppOperatorAssign.htm">=</a> mSimulation-&gt;GetPopSizes();<br/>
 &nbsp;&nbsp;mChartBegin-&gt;mChart-&gt;Series[0]-&gt;Clear();<br/>
-&nbsp;&nbsp;mChartBegin-&gt;mChart-&gt;Series[0]-&gt;<a href="CppAdd.htm">Add</a><a href="CppArray.htm">Array</a>(&amp;popSizes[0],1000-1);<br/>
+&nbsp;&nbsp;mChartBegin-&gt;mChart-&gt;Series[0]-&gt;<a href="CppAdd.htm">Add</a><a href="CppArray.html">Array</a>(&amp;popSizes[0],1000-1);<br/>
 &nbsp;&nbsp;mChartBegin-&gt;mChart-&gt;Refresh();<br/>
 &nbsp;&nbsp;mChartEnd-&gt;mChart-&gt;Series[0]-&gt;Clear();<br/>
-&nbsp;&nbsp;mChartEnd-&gt;mChart-&gt;Series[0]-&gt;<a href="CppAdd.htm">Add</a><a href="CppArray.htm">Array</a>(&amp;popSizes[9000],1000-1);<br/>
+&nbsp;&nbsp;mChartEnd-&gt;mChart-&gt;Series[0]-&gt;<a href="CppAdd.htm">Add</a><a href="CppArray.html">Array</a>(&amp;popSizes[9000],1000-1);<br/>
 &nbsp;&nbsp;mChartEnd-&gt;mChart-&gt;Refresh();<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppMap.htm">std::map</a>&lt;<b><a href="CppDouble.htm">double</a></b>,<b><a href="CppChar.htm">char</a></b>&gt; histogram;<br/>
-&nbsp;&nbsp;<b><a href="CppTypedef.htm">typedef</a></b> <a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;::const_iterator Iter;<br/>
+&nbsp;&nbsp;<a href="CppMap.html">std::map</a>&lt;<b><a href="CppDouble.html">double</a></b>,<b><a href="CppChar.htm">char</a></b>&gt; histogram;<br/>
+&nbsp;&nbsp;<b><a href="CppTypedef.html">typedef</a></b> <a href="CppVector.html">std::vector</a>&lt;<b><a href="CppDouble.html">double</a></b>&gt;::const_iterator Iter;<br/>
 &nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (Iter i <a href="CppOperatorAssign.htm">=</a> &amp;popSizes[9000]; i<a href="CppOperatorNotEqual.htm">!=</a>popSizes.end(); <a href="CppOperatorPlus.htm">+</a>+i)<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;histogram[*i] <a href="CppOperatorAssign.htm">=</a> '0';<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> nEquil <a href="CppOperatorAssign.htm">=</a> histogram.size();<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> nEquil <a href="CppOperatorAssign.htm">=</a> histogram.size();<br/>
 &nbsp;&nbsp;Editor1-&gt;Cells[1][2] <a href="CppOperatorAssign.htm">=</a> nEquil;<br/>
 <br/>
 &nbsp;&nbsp;Refresh();<br/>
@@ -448,8 +448,8 @@ Parameters TFormMain::GetParams() <b><a href="CppConst.htm">const</a></b><br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <b><a href="CppVoid.htm">void</a></b> __fastcall TFormMain::FormCreate(TObject *Sender)<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> maxx <a href="CppOperatorAssign.htm">=</a> 800;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> maxy <a href="CppOperatorAssign.htm">=</a> 600;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> maxx <a href="CppOperatorAssign.htm">=</a> 800;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> maxy <a href="CppOperatorAssign.htm">=</a> 600;<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>This <a href="CppOperatorMinus.htm">-</a>&gt; Topleft<br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;Left&nbsp;&nbsp; <a href="CppOperatorAssign.htm">=</a> 0;<br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;Top&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> 0;<br/>
@@ -475,8 +475,8 @@ Parameters TFormMain::GetParams() <b><a href="CppConst.htm">const</a></b><br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <b><a href="CppVoid.htm">void</a></b> __fastcall TFormMain::ButtonCreateFeigenClick(TObject *Sender)<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> maxx <a href="CppOperatorAssign.htm">=</a> 800;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> maxy <a href="CppOperatorAssign.htm">=</a> 600;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> maxx <a href="CppOperatorAssign.htm">=</a> 800;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> maxy <a href="CppOperatorAssign.htm">=</a> 600;<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>FeigenValues <a href="CppOperatorMinus.htm">-</a>&gt; BottomRight<br/>
 &nbsp;&nbsp;mChartFeigenValues-&gt;Caption <a href="CppOperatorAssign.htm">=</a> "Feigen";<br/>
@@ -497,26 +497,26 @@ Parameters TFormMain::GetParams() <b><a href="CppConst.htm">const</a></b><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> i=1; i&lt;4000; <a href="CppOperatorPlus.htm">+</a>+i)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Parameters params;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;params.mR <a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(i) <a href="CppOperatorDivide.htm">/</a> 1000.0;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;params.mR <a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.html">static_cast</a></b>&lt;<b><a href="CppDouble.html">double</a></b>&gt;(i) <a href="CppOperatorDivide.htm">/</a> 1000.0;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;params.mK <a href="CppOperatorAssign.htm">=</a> 1.0;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Simulation sim(0.1,params);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sim.Run(10000);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; popSizes <a href="CppOperatorAssign.htm">=</a> sim.GetPopSizes();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppVector.html">std::vector</a>&lt;<b><a href="CppDouble.html">double</a></b>&gt; popSizes <a href="CppOperatorAssign.htm">=</a> sim.GetPopSizes();<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>How m<a href="CppAny.htm">any</a> equilibria does it have?<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppMap.htm">std::map</a>&lt;<b><a href="CppDouble.htm">double</a></b>,<b><a href="CppChar.htm">char</a></b>&gt; histogram;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppTypedef.htm">typedef</a></b> <a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;::const_iterator Iter;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppMap.html">std::map</a>&lt;<b><a href="CppDouble.html">double</a></b>,<b><a href="CppChar.htm">char</a></b>&gt; histogram;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppTypedef.html">typedef</a></b> <a href="CppVector.html">std::vector</a>&lt;<b><a href="CppDouble.html">double</a></b>&gt;::const_iterator Iter;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (Iter i <a href="CppOperatorAssign.htm">=</a> &amp;popSizes[9000]; i<a href="CppOperatorNotEqual.htm">!=</a>popSizes.end(); <a href="CppOperatorPlus.htm">+</a>+i)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;histogram[*i] <a href="CppOperatorAssign.htm">=</a> '0';<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 <br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppTypedef.htm">typedef</a></b> <a href="CppMap.htm">std::map</a>&lt;<b><a href="CppDouble.htm">double</a></b>,<b><a href="CppChar.htm">char</a></b>&gt;::const_iterator IterMap;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppTypedef.html">typedef</a></b> <a href="CppMap.html">std::map</a>&lt;<b><a href="CppDouble.html">double</a></b>,<b><a href="CppChar.htm">char</a></b>&gt;::const_iterator IterMap;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (IterMap i <a href="CppOperatorAssign.htm">=</a> histogram.begin(); i<a href="CppOperatorNotEqual.htm">!=</a>histogram.end(); <a href="CppOperatorPlus.htm">+</a>+i)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mChartFeigenValues-&gt;mChart-&gt;Series[0]-&gt;<a href="CppAdd.htm">Add</a>XY(params.mR, (*i).first);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 <br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> nEquil <a href="CppOperatorAssign.htm">=</a> histogram.size();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> nEquil <a href="CppOperatorAssign.htm">=</a> histogram.size();<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mChartFeigenNvalues-&gt;mChart-&gt;Series[0]-&gt;<a href="CppAdd.htm">Add</a>XY(params.mR,nEquil);<br/>
 <br/>
 <br/>
@@ -532,7 +532,7 @@ Parameters TFormMain::GetParams() <b><a href="CppConst.htm">const</a></b><br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> __fastcall TFormMain::Button<a href="CppAbout.htm">About</a>Click(TObject *Sender)<br/>
+<b><a href="CppVoid.htm">void</a></b> __fastcall TFormMain::Button<a href="CppAbout.html">About</a>Click(TObject *Sender)<br/>
 {<br/>
 &nbsp;&nbsp;ShowMessage(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;"&nbsp;&nbsp;Logistic Growth Simulator, logistic growth simulation&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\n"<br/>
@@ -584,32 +584,32 @@ Parameters TFormMain::GetParams() <b><a href="CppConst.htm">const</a></b><br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">//</a> From http://www.richelbilderbeek.nl<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppIfndef.htm">#ifndef</a> UnitFormScatterplotH<br/>
-<a href="CppDefine.htm">#define</a> UnitFormScatterplotH<br/>
+<a href="CppIfndef.html">#ifndef</a> UnitFormScatterplotH<br/>
+<a href="CppDefine.html">#define</a> UnitFormScatterplotH<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppClass.htm">Classes</a>.hpp&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;Controls.hpp&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;StdCtrls.hpp&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;Forms.hpp&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;Chart.hpp&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;ExtCtrls.hpp&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;Series.hpp&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;TeEngine.hpp&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;TeeProcs.hpp&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppClass.html">Classes</a><a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;Controls<a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;StdCtrls<a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;Forms<a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;Chart<a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;ExtCtrls<a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;Series<a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;TeEngine<a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;TeeProcs<a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppClass.htm">class</a></b> TFormScatterplot : <b><a href="CppPublic.htm">public</a></b> TForm<br/>
+<b><a href="CppClass.html">class</a></b> TFormScatterplot : <b><a href="CppPublic.html">public</a></b> TForm<br/>
 {<br/>
-__published:	<a href="CppComment.htm">//</a> IDE-managed <a href="CppComponent.htm">Component</a>s<br/>
+__published:	<a href="CppComment.htm">//</a> IDE-managed <a href="CppComponent.html">Component</a>s<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TChart *mChart;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TPointSeries *Series1;<br/>
-<b><a href="CppPrivate.htm">private</a></b>:	<a href="CppComment.htm">//</a> User <a href="CppDeclaration.htm">declaration</a>s<br/>
-<b><a href="CppPublic.htm">public</a></b>:		<a href="CppComment.htm">//</a> User <a href="CppDeclaration.htm">declaration</a>s<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;__fastcall TFormScatterplot(T<a href="CppComponent.htm">Component</a>* Owner);<br/>
+<b><a href="CppPrivate.html">private</a></b>:	<a href="CppComment.htm">//</a> User <a href="CppDeclaration.html">declaration</a>s<br/>
+<b><a href="CppPublic.html">public</a></b>:		<a href="CppComment.htm">//</a> User <a href="CppDeclaration.html">declaration</a>s<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;__fastcall TFormScatterplot(T<a href="CppComponent.html">Component</a>* Owner);<br/>
 };<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppExtern.htm">extern</a></b> PACKAGE TFormScatterplot *FormScatterplot;<br/>
+<b><a href="CppExtern.html">extern</a></b> PACKAGE TFormScatterplot *FormScatterplot;<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppEndif.htm">#endif</a><br/>
+<a href="CppEndif.html">#endif</a><br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -641,16 +641,16 @@ __published:	<a href="CppComment.htm">//</a> IDE-managed <a href="CppComponent.h
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">//</a> From http://www.richelbilderbeek.nl<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppInclude.htm">#include</a> &lt;vcl.h&gt;<br/>
-<a href="CppPragma.htm">#pragma</a> hdrstop<br/>
+<a href="CppInclude.html">#include</a> &lt;vcl<a href="CppHeaderFile.htm">.h</a>&gt;<br/>
+<a href="CppPragma.html">#pragma</a> hdrstop<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> "UnitFormScatterplot.h"<br/>
+<a href="CppInclude.html">#include</a> "UnitFormScatterplot<a href="CppHeaderFile.htm">.h</a>"<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppPragma.htm">#pragma</a> package(smart_init)<br/>
-<a href="CppPragma.htm">#pragma</a> resource "*.dfm"<br/>
+<a href="CppPragma.html">#pragma</a> package(smart_init)<br/>
+<a href="CppPragma.html">#pragma</a> resource "*.dfm"<br/>
 TFormScatterplot *FormScatterplot;<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-__fastcall TFormScatterplot::TFormScatterplot(T<a href="CppComponent.htm">Component</a>* Owner)<br/>
+__fastcall TFormScatterplot::TFormScatterplot(T<a href="CppComponent.html">Component</a>* Owner)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: TForm(Owner)<br/>
 {<br/>
 }<br/>
@@ -686,36 +686,36 @@ __fastcall TFormScatterplot::TFormScatterplot(T<a href="CppComponent.htm">Compon
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">//</a> From http://www.richelbilderbeek.nl<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppIfndef.htm">#ifndef</a> UnitSimulationH<br/>
-<a href="CppDefine.htm">#define</a> UnitSimulationH<br/>
+<a href="CppIfndef.html">#ifndef</a> UnitSimulationH<br/>
+<a href="CppDefine.html">#define</a> UnitSimulationH<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppVectorH.html">vector</a>&gt;<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppStruct.htm">struct</a></b> Parameters<br/>
+<b><a href="CppStruct.html">struct</a></b> Parameters<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppDouble.htm">double</a></b> mR; <a href="CppComment.htm">//</a>Intrinsic growth rate<br/>
-&nbsp;&nbsp;<b><a href="CppDouble.htm">double</a></b> mK; <a href="CppComment.htm">//</a>Carrying capacity<br/>
+&nbsp;&nbsp;<b><a href="CppDouble.html">double</a></b> mR; <a href="CppComment.htm">//</a>Intrinsic growth rate<br/>
+&nbsp;&nbsp;<b><a href="CppDouble.html">double</a></b> mK; <a href="CppComment.htm">//</a>Carrying capacity<br/>
 };<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppStruct.htm">struct</a></b> Simulation<br/>
+<b><a href="CppStruct.html">struct</a></b> Simulation<br/>
 {<br/>
 &nbsp;&nbsp;Simulation(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b>&amp; initPopSize,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Parameters&amp; params);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b>&amp; initPopSize,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> Parameters&amp; params);<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Parameters mParams;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> Parameters mParams;<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> Run(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b>&amp; nGenerations);<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> Run(<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b>&amp; nGenerations);<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;&amp; GetPopSizes() <b><a href="CppConst.htm">const</a></b> { <b><a href="CppReturn.htm">return</a></b> mPopSizes; }<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppVector.html">std::vector</a>&lt;<b><a href="CppDouble.html">double</a></b>&gt;&amp; GetPopSizes() <b><a href="CppConst.html">const</a></b> { <b><a href="CppReturn.html">return</a></b> mPopSizes; }<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppPrivate.htm">private</a></b>:<br/>
-&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; mPopSizes;<br/>
+&nbsp;&nbsp;<b><a href="CppPrivate.html">private</a></b>:<br/>
+&nbsp;&nbsp;<a href="CppVector.html">std::vector</a>&lt;<b><a href="CppDouble.html">double</a></b>&gt; mPopSizes;<br/>
 <br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> NextGeneration();<br/>
 };<br/>
 <br/>
-<a href="CppEndif.htm">#endif</a><br/>
+<a href="CppEndif.html">#endif</a><br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -747,32 +747,32 @@ __fastcall TFormScatterplot::TFormScatterplot(T<a href="CppComponent.htm">Compon
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">//</a> From http://www.richelbilderbeek.nl<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppPragma.htm">#pragma</a> hdrstop<br/>
+<a href="CppPragma.html">#pragma</a> hdrstop<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> "UnitSimulation.h"<br/>
+<a href="CppInclude.html">#include</a> "UnitSimulation<a href="CppHeaderFile.htm">.h</a>"<br/>
 <br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 Simulation::Simulation(<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b>&amp; initPopSize,<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Parameters&amp; params)<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b>&amp; initPopSize,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> Parameters&amp; params)<br/>
 &nbsp;&nbsp;: mParams(params)<br/>
 {<br/>
 &nbsp;&nbsp;mPopSizes.push_back(initPopSize);<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppVoid.htm">void</a></b> Simulation::Run(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b>&amp; nGenerations)<br/>
+<b><a href="CppVoid.htm">void</a></b> Simulation::Run(<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b>&amp; nGenerations)<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppWhile.htm">while</a></b> (<b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(mPopSizes.size()) &lt; nGenerations) NextGeneration();<br/>
+&nbsp;&nbsp;<b><a href="CppWhile.html">while</a></b> (<b><a href="CppStatic_cast.html">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(mPopSizes.size()) &lt; nGenerations) NextGeneration();<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <b><a href="CppVoid.htm">void</a></b> Simulation::NextGeneration()<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> popNow <a href="CppOperatorAssign.htm">=</a> mPopSizes.back();<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> popNext <a href="CppOperatorAssign.htm">=</a> mParams.mR * popNow * (mParams.mK <a href="CppOperatorMinus.htm">-</a> popNow);<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> popNow <a href="CppOperatorAssign.htm">=</a> mPopSizes.back();<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> popNext <a href="CppOperatorAssign.htm">=</a> mParams.mR * popNow * (mParams.mK <a href="CppOperatorMinus.htm">-</a> popNow);<br/>
 &nbsp;&nbsp;mPopSizes.push_back(popNext);<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppPragma.htm">#pragma</a> package(smart_init)<br/>
+<a href="CppPragma.html">#pragma</a> package(smart_init)<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>

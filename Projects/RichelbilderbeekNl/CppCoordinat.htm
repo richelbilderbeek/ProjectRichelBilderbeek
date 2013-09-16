@@ -37,65 +37,65 @@
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="coordinat.h" border = "1"><tr><td><code>
-<a href="CppIfndef.htm">#ifndef</a> COORDINAT_H<br/>
-<a href="CppDefine.htm">#define</a> COORDINAT_H<br/>
+<a href="CppIfndef.html">#ifndef</a> COORDINAT_H<br/>
+<a href="CppDefine.html">#define</a> COORDINAT_H<br/>
 <br/>
 <a href="CppComment.htm">///</a>A normal (x,y) coordinat<br/>
-<b><a href="CppTemplate.htm">template</a></b> &lt;<b><a href="CppClass.htm">class</a></b> Length&gt;<br/>
-<b><a href="CppStruct.htm">struct</a></b> Coordinat<br/>
+<b><a href="CppTemplate.html">template</a></b> &lt;<b><a href="CppClass.html">class</a></b> Length&gt;<br/>
+<b><a href="CppStruct.html">struct</a></b> Coordinat<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppExplicit.htm">explicit</a></b> Coordinat(<b><a href="CppConst.htm">const</a></b> Length&amp; x, <b><a href="CppConst.htm">const</a></b> Length&amp; y);<br/>
+&nbsp;&nbsp;<b><a href="CppExplicit.html">explicit</a></b> Coordinat(<b><a href="CppConst.html">const</a></b> Length&amp; x, <b><a href="CppConst.html">const</a></b> Length&amp; y);<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Length&amp; GetX() <b><a href="CppConst.htm">const</a></b> { <b><a href="CppReturn.htm">return</a></b> m_x; }<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Length&amp; GetY() <b><a href="CppConst.htm">const</a></b> { <b><a href="CppReturn.htm">return</a></b> m_y; }<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> Length&amp; GetX() <b><a href="CppConst.html">const</a></b> { <b><a href="CppReturn.html">return</a></b> m_x; }<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> Length&amp; GetY() <b><a href="CppConst.html">const</a></b> { <b><a href="CppReturn.html">return</a></b> m_y; }<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Test <b><a href="CppThis.htm">this</a></b> <b><a href="CppClass.htm">class</a></b><br/>
-&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppVoid.htm">void</a></b> Test();<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Test <b><a href="CppThis.htm">this</a></b> <b><a href="CppClass.html">class</a></b><br/>
+&nbsp;&nbsp;<b><a href="CppStatic.html">static</a></b> <b><a href="CppVoid.htm">void</a></b> Test();<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> Translate(<b><a href="CppConst.htm">const</a></b> Length&amp; dx, <b><a href="CppConst.htm">const</a></b> Length&amp; dy);<br/>
-&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> Translate(<b><a href="CppConst.htm">const</a></b> Coordinat&amp; delta);<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> Translate(<b><a href="CppConst.html">const</a></b> Length&amp; dx, <b><a href="CppConst.html">const</a></b> Length&amp; dy);<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> Translate(<b><a href="CppConst.html">const</a></b> Coordinat&amp; delta);<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppPrivate.htm">private</a></b>:<br/>
+&nbsp;&nbsp;<b><a href="CppPrivate.html">private</a></b>:<br/>
 &nbsp;&nbsp;Length m_x;<br/>
 &nbsp;&nbsp;Length m_y;<br/>
 };<br/>
 <br/>
 <br/>
 <br/>
-<b><a href="CppTemplate.htm">template</a></b> &lt;<b><a href="CppClass.htm">class</a></b> Length&gt;<br/>
-Coordinat&lt;Length&gt;::Coordinat(<b><a href="CppConst.htm">const</a></b> Length&amp; x, <b><a href="CppConst.htm">const</a></b> Length&amp; y)<br/>
+<b><a href="CppTemplate.html">template</a></b> &lt;<b><a href="CppClass.html">class</a></b> Length&gt;<br/>
+Coordinat&lt;Length&gt;::Coordinat(<b><a href="CppConst.html">const</a></b> Length&amp; x, <b><a href="CppConst.html">const</a></b> Length&amp; y)<br/>
 &nbsp;&nbsp;: m_x { x },<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;m_y { y }<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
+&nbsp;&nbsp;<a href="CppIfndef.html">#ifndef</a> <a href="CppNDEBUG.html">NDEBUG</a><br/>
 &nbsp;&nbsp;Test();<br/>
-&nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
+&nbsp;&nbsp;<a href="CppEndif.html">#endif</a><br/>
 }<br/>
 <br/>
-<b><a href="CppTemplate.htm">template</a></b> &lt;<b><a href="CppClass.htm">class</a></b> Length&gt;<br/>
+<b><a href="CppTemplate.html">template</a></b> &lt;<b><a href="CppClass.html">class</a></b> Length&gt;<br/>
 <b><a href="CppVoid.htm">void</a></b> Coordinat&lt;Length&gt;::Test()<br/>
 {<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppBool.htm">bool</a></b> is_tested { <b><a href="CppFalse.htm">false</a></b> };<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (is_tested) <b><a href="CppReturn.htm">return</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppStatic.html">static</a></b> <b><a href="CppBool.htm">bool</a></b> is_tested { <b><a href="CppFalse.html">false</a></b> };<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (is_tested) <b><a href="CppReturn.html">return</a></b>;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;is_tested <a href="CppOperatorAssign.htm">=</a> <b><a href="CppTrue.htm">true</a></b>;<br/>
 &nbsp;&nbsp;}<br/>
 }<br/>
 <br/>
-<b><a href="CppTemplate.htm">template</a></b> &lt;<b><a href="CppClass.htm">class</a></b> Length&gt;<br/>
-<b><a href="CppVoid.htm">void</a></b> Coordinat&lt;Length&gt;::Translate(<b><a href="CppConst.htm">const</a></b> Coordinat&amp; delta)<br/>
+<b><a href="CppTemplate.html">template</a></b> &lt;<b><a href="CppClass.html">class</a></b> Length&gt;<br/>
+<b><a href="CppVoid.htm">void</a></b> Coordinat&lt;Length&gt;::Translate(<b><a href="CppConst.html">const</a></b> Coordinat&amp; delta)<br/>
 {<br/>
 &nbsp;&nbsp;Translate(delta.GetX(),delta.GetY());<br/>
 }<br/>
 <br/>
-<b><a href="CppTemplate.htm">template</a></b> &lt;<b><a href="CppClass.htm">class</a></b> Length&gt;<br/>
-<b><a href="CppVoid.htm">void</a></b> Coordinat&lt;Length&gt;::Translate(<b><a href="CppConst.htm">const</a></b> Length&amp; dx, <b><a href="CppConst.htm">const</a></b> Length&amp; dy)<br/>
+<b><a href="CppTemplate.html">template</a></b> &lt;<b><a href="CppClass.html">class</a></b> Length&gt;<br/>
+<b><a href="CppVoid.htm">void</a></b> Coordinat&lt;Length&gt;::Translate(<b><a href="CppConst.html">const</a></b> Length&amp; dx, <b><a href="CppConst.html">const</a></b> Length&amp; dy)<br/>
 {<br/>
 &nbsp;&nbsp;m_x <a href="CppOperatorPlus.htm">+</a><a href="CppOperatorAssign.htm">=</a> dx;<br/>
 &nbsp;&nbsp;m_y <a href="CppOperatorPlus.htm">+</a><a href="CppOperatorAssign.htm">=</a> dy;<br/>
 }<br/>
 <br/>
-<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> COORDINAT_H<br/>
+<a href="CppEndif.html">#endif</a> <a href="CppComment.htm">//</a> COORDINAT_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -107,10 +107,10 @@ Coordinat&lt;Length&gt;::Coordinat(<b><a href="CppConst.htm">const</a></b> Lengt
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="coordinat.cpp" border = "1"><tr><td><code>
-<a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
-<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-<b><a href="CppTypedef.htm">typedef</a></b>s"<br/>
-<a href="CppInclude.htm">#include</a> "coordinat.h"<br/>
-<a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic push<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic ignored "-Wunused-local-<b><a href="CppTypedef.html">typedef</a></b>s"<br/>
+<a href="CppInclude.html">#include</a> "coordinat<a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic pop<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>

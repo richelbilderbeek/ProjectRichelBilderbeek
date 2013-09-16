@@ -5225,7 +5225,7 @@ const std::vector<std::string> c2h::Info::ToHtml() const
     v.push_back("<ul>");
     v.push_back(R"(  <li><img src="PicLubuntu.png" alt="Lubuntu"/> <a href="ProjectBrainweaver_0_33.png">View a screenshot of 'Brainweaver' (version 0.33)(png)</a></li>");
     v.push_back(R"(  <li><img src="PicWine.png" alt="Wine"/> <a href=\"ProjectBrainweaver_0_28Wine.png">View a screenshot of 'Brainweaver' (version 0.28)(png)</a></li>");
-    v.push_back(R"(  <li><img src="PicWindows.png" alt="Windows"/> <a href="ProjectBrainweaverExe_0_36.zip">Download the 'Brainweaver' windows executable (version 0.36)(zip)</a></li>");
+    v.push_back(R"(  <li><img src="PicWindows.png" alt="Windows"/> <a href="ProjectBrainweaverExe_0_37.zip">Download the 'Brainweaver' windows executable (version 0.37)(zip)</a></li>");
     v.push_back(R"(  <li><img src="PicLubuntu.png" alt="Lubuntu"/> <a href="ProjectBrainweaver20130725.mp4">View Brainweaver being tested by libcvautomation (mp4)</a></li>");
     v.push_back("</ul>");
     v.push_back("<p>&nbsp;</p>");

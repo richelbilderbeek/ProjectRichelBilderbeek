@@ -70,11 +70,11 @@
 <table summary="ToolTestExerciseWebsite.pro" border = "1"><tr><td><code>
 QT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; += core<br/>
 QT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -= gui<br/>
-CONFIG&nbsp;&nbsp; += console<br/>
-CONFIG&nbsp;&nbsp; -= app_bundle<br/>
-TEMPLATE = app<br/>
+<a href="CppQmakeConfig.htm">CONFIG</a>&nbsp;&nbsp; += console<br/>
+<a href="CppQmakeConfig.htm">CONFIG</a>&nbsp;&nbsp; -= app_bundle<br/>
+<a href="CppQmakeTemplate.htm">TEMPLATE</a> = app<br/>
 <br/>
-<a href="CppLIBS.htm">LIBS</a> += \<br/>
+<a href="CppQmakeLibs.htm">LIBS</a> += \<br/>
 &nbsp;&nbsp;<a href="CppFilesystem.htm">-lboost_filesystem</a> \<br/>
 &nbsp;&nbsp;<a href="CppProgram_options.htm">-lboost_program_options</a> \<br/>
 &nbsp;&nbsp;<a href="CppBoostSignals.htm">-lboost_signals</a> \<br/>
@@ -82,10 +82,10 @@ TEMPLATE = app<br/>
 &nbsp;&nbsp;<a href="CppWt.htm">-lwt</a> \<br/>
 &nbsp;&nbsp;<a href="CppWt.htm">-lwt</a>http<br/>
 <br/>
-<a href="CppQMAKE_CXXFLAGS.htm">QMAKE_CXXFLAGS</a> += -std=<a href="Cpp0x.htm">c++11</a> <a href="CppWall.htm">-Wall</a> <a href="CppWextra.htm">-Wextra</a><br/>
+<a href="CppQmakeQmake_cxxflags.htm">QMAKE_CXXFLAGS</a> += -std=<a href="Cpp0x.htm">c++11</a> <a href="CppWall.htm">-Wall</a> <a href="CppWextra.htm">-Wextra</a><br/>
 <br/>
 <br/>
-<a href="CppINCLUDEPATH.htm">INCLUDEPATH</a> += \<br/>
+<a href="CppQmakeIncludepath.htm">INCLUDEPATH</a> += \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppAbout.htm">CppAbout</a> \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppExercise.htm">CppExercise</a> \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppMultipleChoiceQuestion.htm">CppMultipleChoiceQuestion</a> \<br/>
@@ -103,7 +103,7 @@ TEMPLATE = app<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppWtQuestionDialog.htm">CppWtQuestionDialog</a><br/>
 <br/>
 <br/>
-<a href="CppSOURCES.htm">SOURCES</a> += wt<a href="CppMain.htm">main</a>.cpp \<br/>
+<a href="CppQmakeSources.htm">SOURCES</a> += wt<a href="CppMain.htm">main</a>.cpp \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppAbout.htm">CppAbout</a>/<a href="CppAbout.htm">about</a>.cpp \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppExercise.htm">CppExercise</a>/<a href="CppExercise.htm">exercise</a>.cpp \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppMultipleChoiceQuestion.htm">CppMultipleChoiceQuestion</a>/<a href="CppMultipleChoiceQuestion.htm">multiplechoicequestion</a>.cpp \<br/>
@@ -122,7 +122,7 @@ TEMPLATE = app<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;wt<a href="ToolTestExercise.htm">testexercise</a><a href="CppMain.htm">main</a>dialog.cpp \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;wt<a href="ToolTestExercise.htm">testexercise</a>menudialog.cpp<br/>
 <br/>
-<a href="CppHEADERS.htm">HEADERS</a>&nbsp;&nbsp;+= \<br/>
+<a href="CppQmakeHeaders.htm">HEADERS</a>&nbsp;&nbsp;+= \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppAbout.htm">CppAbout</a>/<a href="CppAbout.htm">about</a>.h \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppExercise.htm">CppExercise</a>/<a href="CppExercise.htm">exercise</a>.h \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppMultipleChoiceQuestion.htm">CppMultipleChoiceQuestion</a>/<a href="CppMultipleChoiceQuestion.htm">multiplechoicequestion</a>.h \<br/>
@@ -142,7 +142,7 @@ TEMPLATE = app<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;wt<a href="ToolTestExercise.htm">testexercise</a><a href="CppMain.htm">main</a>dialog.h \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;wt<a href="ToolTestExercise.htm">testexercise</a>menudialog.h<br/>
 <br/>
-<a href="CppRESOURCES.htm">RESOURCES</a> += \<br/>
+<a href="CppQmakeResources.htm">RESOURCES</a> += \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="ToolTestExercise.htm">ToolTestExercise</a>.qrc<br/>
 </code></td></tr></table>
 <!-- end of the code -->
@@ -157,7 +157,7 @@ TEMPLATE = app<br/>
 <table summary="testexercisemenudialog.h" border = "1"><tr><td><code>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">/*</a><br/>
-<a href="ToolTestExercise.htm">TestExercise</a>, <a href="Tools.htm">tool</a> to test the <a href="CppExercise.htm">Exercise</a> <b><a href="CppClass.htm">class</a></b><br/>
+<a href="ToolTestExercise.html">TestExercise</a>, <a href="Tools.htm">tool</a> to test the <a href="CppExercise.html">Exercise</a> <b><a href="CppClass.html">class</a></b><br/>
 Copyright (C) 2011 Richel Bilderbeek<br/>
 <br/>
 This program is free software: you can redistribute it and/or modify<br/>
@@ -173,37 +173,37 @@ You should have received a copy of the GNU General Public License<br/>
 along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">*/</a><br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="ToolTestExercise.htm">ToolTestExercise</a>.htm<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="ToolTestExercise.html">ToolTestExercise</a>.html<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppIfndef.htm">#ifndef</a> TESTEXERCISEMENUDIALOG_H<br/>
-<a href="CppDefine.htm">#define</a> TESTEXERCISEMENUDIALOG_H<br/>
+<a href="CppIfndef.html">#ifndef</a> TESTEXERCISEMENUDIALOG_H<br/>
+<a href="CppDefine.html">#define</a> TESTEXERCISEMENUDIALOG_H<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppAbout.htm">about</a>.h"<br/>
+<a href="CppInclude.html">#include</a> "<a href="CppAbout.html">about</a><a href="CppHeaderFile.htm">.h</a>"<br/>
 <br/>
-<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
+<b><a href="CppNamespace.html">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
 <br/>
 <a href="CppComment.htm">///</a>The logic behind the menu dialog<br/>
-<b><a href="CppStruct.htm">struct</a></b> <a href="ToolTestExercise.htm">TestExercise</a>MenuDialog<br/>
+<b><a href="CppStruct.html">struct</a></b> <a href="ToolTestExercise.html">TestExercise</a>MenuDialog<br/>
 {<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Obtain the <a href="CppAbout.htm">about</a> information<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Obtain the <a href="CppAbout.html">about</a> information<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/\note<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>/This is a non-<b><a href="CppStatic.htm">static</a></b> <a href="CppMemberFunction.htm">member function</a>, to ensure users of <b><a href="CppThis.htm">this</a></b> <b><a href="CppClass.htm">class</a></b><br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>/call <a href="ToolTestExercise.htm">TestExercise</a>MenuDialog its <a href="CppConstructor.htm">constructor</a>: <b><a href="CppThis.htm">this</a></b> is where<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/This is a non-<b><a href="CppStatic.html">static</a></b> <a href="CppMemberFunction.html">member function</a>, to ensure users of <b><a href="CppThis.htm">this</a></b> <b><a href="CppClass.html">class</a></b><br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/call <a href="ToolTestExercise.html">TestExercise</a>MenuDialog its <a href="CppConstructor.html">constructor</a>: <b><a href="CppThis.htm">this</a></b> is where<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/the resources needed are created<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppAbout.htm">About</a> GetAbout() <b><a href="CppConst.htm">const</a></b>;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppAbout.html">About</a> GetAbout() <b><a href="CppConst.html">const</a></b>;<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Obtain <b><a href="CppThis.htm">this</a></b> <b><a href="CppClass.htm">class</a></b> its <a href="CppVersion.htm">version</a><br/>
-&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> Get<a href="CppVersion.htm">Version</a>();<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Obtain <b><a href="CppThis.htm">this</a></b> <b><a href="CppClass.html">class</a></b> its <a href="CppVersion.html">version</a><br/>
+&nbsp;&nbsp;<b><a href="CppStatic.html">static</a></b> <b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a> Get<a href="CppVersion.html">Version</a>();<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Obtain <b><a href="CppThis.htm">this</a></b> <b><a href="CppClass.htm">class</a></b> its <a href="CppVersion.htm">version</a> history<br/>
-&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; Get<a href="CppVersion.htm">Version</a>History();<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Obtain <b><a href="CppThis.htm">this</a></b> <b><a href="CppClass.html">class</a></b> its <a href="CppVersion.html">version</a> history<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.html">static</a></b> <b><a href="CppConst.html">const</a></b> <a href="CppVector.html">std::vector</a>&lt;<a href="CppString.html">std::string</a>&gt; Get<a href="CppVersion.html">Version</a>History();<br/>
 };<br/>
 <br/>
-} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.html">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
 <br/>
-<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> TESTEXERCISEMENUDIALOG_H<br/>
+<a href="CppEndif.html">#endif</a> <a href="CppComment.htm">//</a> TESTEXERCISEMENUDIALOG_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -217,7 +217,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <table summary="testexercisemenudialog.cpp" border = "1"><tr><td><code>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">/*</a><br/>
-<a href="ToolTestExercise.htm">TestExercise</a>, <a href="Tools.htm">tool</a> to test the <a href="CppExercise.htm">Exercise</a> <b><a href="CppClass.htm">class</a></b><br/>
+<a href="ToolTestExercise.html">TestExercise</a>, <a href="Tools.htm">tool</a> to test the <a href="CppExercise.html">Exercise</a> <b><a href="CppClass.html">class</a></b><br/>
 Copyright (C) 2011 Richel Bilderbeek<br/>
 <br/>
 This program is free software: you can redistribute it and/or modify<br/>
@@ -233,53 +233,53 @@ You should have received a copy of the GNU General Public License<br/>
 along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">*/</a><br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="ToolTestExercise.htm">ToolTestExercise</a>.htm<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="ToolTestExercise.html">ToolTestExercise</a>.html<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
-<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
-<a href="CppInclude.htm">#include</a> "<a href="ToolTestExercise.htm">testexercise</a>menudialog.h"<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic push<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.html">-Weffc++</a>"<br/>
+<a href="CppInclude.html">#include</a> "<a href="ToolTestExercise.html">testexercise</a>menudialog<a href="CppHeaderFile.htm">.h</a>"<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppExercise.htm">exercise</a>.h"<br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppMultipleChoiceQuestion.htm">multiplechoicequestion</a>.h"<br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppMultipleChoiceQuestionDialog.htm">multiplechoicequestiondialog</a>.h"<br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppOpenQuestion.htm">openquestion</a>.h"<br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppOpenQuestionDialog.htm">openquestiondialog</a>.h"<br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppQuestion.htm">question</a>.h"<br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppQuestionDialog.htm">questiondialog</a>.h"<br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppTrace.htm">trace</a>.h"<br/>
-<a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
+<a href="CppInclude.html">#include</a> "<a href="CppExercise.html">exercise</a><a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "<a href="CppMultipleChoiceQuestion.html">multiplechoicequestion</a><a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "<a href="CppMultipleChoiceQuestionDialog.html">multiplechoicequestiondialog</a><a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "<a href="CppOpenQuestion.html">openquestion</a><a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "<a href="CppOpenQuestionDialog.html">openquestiondialog</a><a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "<a href="CppQuestion.html">question</a><a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "<a href="CppQuestionDialog.html">questiondialog</a><a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "<a href="CppTrace.html">trace</a><a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic pop<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppAbout.htm">About</a> <a href="CppRibi.htm">ribi</a>::<a href="ToolTestExercise.htm">TestExercise</a>MenuDialog::GetAbout() <b><a href="CppConst.htm">const</a></b><br/>
+<b><a href="CppConst.html">const</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppAbout.html">About</a> <a href="CppRibi.htm">ribi</a>::<a href="ToolTestExercise.html">TestExercise</a>MenuDialog::GetAbout() <b><a href="CppConst.html">const</a></b><br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppAbout.htm">About</a> a(<br/>
+&nbsp;&nbsp;<a href="CppAbout.html">About</a> a(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;"Richel Bilderbeek",<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;"<a href="ToolTestExercise.htm">TestExercise</a>",<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;"<a href="Tools.htm">tool</a> to test the <a href="CppExercise.htm">Exercise</a> <b><a href="CppClass.htm">class</a></b>",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"<a href="ToolTestExercise.html">TestExercise</a>",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"<a href="Tools.htm">tool</a> to test the <a href="CppExercise.html">Exercise</a> <b><a href="CppClass.html">class</a></b>",<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;"the 2nd of October 2011",<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;"2011",<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;"http://www.richelbilderbeek.nl/<a href="ToolTestExercise.htm">ToolTestExercise</a>.htm",<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;Get<a href="CppVersion.htm">Version</a>(),<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;Get<a href="CppVersion.htm">Version</a>History());<br/>
-&nbsp;&nbsp;a.<a href="CppAdd.htm">Add</a><a href="CppLibrary.htm">Library</a>("<a href="CppExercise.htm">Exercise</a> <a href="CppVersion.htm">version</a>: " <a href="CppOperatorPlus.htm">+</a> <a href="CppExercise.htm">Exercise</a>::Get<a href="CppVersion.htm">Version</a>());<br/>
-&nbsp;&nbsp;a.<a href="CppAdd.htm">Add</a><a href="CppLibrary.htm">Library</a>("<a href="CppMultipleChoiceQuestion.htm">MultipleChoiceQuestion</a> <a href="CppVersion.htm">version</a>: " <a href="CppOperatorPlus.htm">+</a> <a href="CppMultipleChoiceQuestion.htm">MultipleChoiceQuestion</a>::Get<a href="CppVersion.htm">Version</a>());<br/>
-&nbsp;&nbsp;a.<a href="CppAdd.htm">Add</a><a href="CppLibrary.htm">Library</a>("<a href="CppMultipleChoiceQuestionDialog.htm">MultipleChoiceQuestionDialog</a> <a href="CppVersion.htm">version</a>: " <a href="CppOperatorPlus.htm">+</a> <a href="CppMultipleChoiceQuestionDialog.htm">MultipleChoiceQuestionDialog</a>::Get<a href="CppVersion.htm">Version</a>());<br/>
-&nbsp;&nbsp;a.<a href="CppAdd.htm">Add</a><a href="CppLibrary.htm">Library</a>("<a href="CppOpenQuestion.htm">OpenQuestion</a> <a href="CppVersion.htm">version</a>: " <a href="CppOperatorPlus.htm">+</a> <a href="CppOpenQuestion.htm">OpenQuestion</a>::Get<a href="CppVersion.htm">Version</a>());<br/>
-&nbsp;&nbsp;a.<a href="CppAdd.htm">Add</a><a href="CppLibrary.htm">Library</a>("<a href="CppOpenQuestionDialog.htm">OpenQuestionDialog</a> <a href="CppVersion.htm">version</a>: " <a href="CppOperatorPlus.htm">+</a> <a href="CppOpenQuestionDialog.htm">OpenQuestionDialog</a>::Get<a href="CppVersion.htm">Version</a>());<br/>
-&nbsp;&nbsp;a.<a href="CppAdd.htm">Add</a><a href="CppLibrary.htm">Library</a>("<a href="CppQuestion.htm">Question</a> <a href="CppVersion.htm">version</a>: " <a href="CppOperatorPlus.htm">+</a> <a href="CppQuestion.htm">Question</a>::Get<a href="CppVersion.htm">Version</a>());<br/>
-&nbsp;&nbsp;a.<a href="CppAdd.htm">Add</a><a href="CppLibrary.htm">Library</a>("<a href="CppQuestionDialog.htm">QuestionDialog</a> <a href="CppVersion.htm">version</a>: " <a href="CppOperatorPlus.htm">+</a> <a href="CppQuestionDialog.htm">QuestionDialog</a>::Get<a href="CppVersion.htm">Version</a>());<br/>
-&nbsp;&nbsp;a.<a href="CppAdd.htm">Add</a><a href="CppLibrary.htm">Library</a>("<a href="CppTrace.htm">Trace</a> <a href="CppVersion.htm">version</a>: " <a href="CppOperatorPlus.htm">+</a> <a href="CppTrace.htm">Trace</a>::Get<a href="CppVersion.htm">Version</a>());<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> a;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"http://www.richelbilderbeek.nl/<a href="ToolTestExercise.html">ToolTestExercise</a>.html",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Get<a href="CppVersion.html">Version</a>(),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Get<a href="CppVersion.html">Version</a>History());<br/>
+&nbsp;&nbsp;a.<a href="CppAdd.htm">Add</a><a href="CppLibrary.html">Library</a>("<a href="CppExercise.html">Exercise</a> <a href="CppVersion.html">version</a>: " <a href="CppOperatorPlus.htm">+</a> <a href="CppExercise.html">Exercise</a>::Get<a href="CppVersion.html">Version</a>());<br/>
+&nbsp;&nbsp;a.<a href="CppAdd.htm">Add</a><a href="CppLibrary.html">Library</a>("<a href="CppMultipleChoiceQuestion.html">MultipleChoiceQuestion</a> <a href="CppVersion.html">version</a>: " <a href="CppOperatorPlus.htm">+</a> <a href="CppMultipleChoiceQuestion.html">MultipleChoiceQuestion</a>::Get<a href="CppVersion.html">Version</a>());<br/>
+&nbsp;&nbsp;a.<a href="CppAdd.htm">Add</a><a href="CppLibrary.html">Library</a>("<a href="CppMultipleChoiceQuestionDialog.html">MultipleChoiceQuestionDialog</a> <a href="CppVersion.html">version</a>: " <a href="CppOperatorPlus.htm">+</a> <a href="CppMultipleChoiceQuestionDialog.html">MultipleChoiceQuestionDialog</a>::Get<a href="CppVersion.html">Version</a>());<br/>
+&nbsp;&nbsp;a.<a href="CppAdd.htm">Add</a><a href="CppLibrary.html">Library</a>("<a href="CppOpenQuestion.html">OpenQuestion</a> <a href="CppVersion.html">version</a>: " <a href="CppOperatorPlus.htm">+</a> <a href="CppOpenQuestion.html">OpenQuestion</a>::Get<a href="CppVersion.html">Version</a>());<br/>
+&nbsp;&nbsp;a.<a href="CppAdd.htm">Add</a><a href="CppLibrary.html">Library</a>("<a href="CppOpenQuestionDialog.html">OpenQuestionDialog</a> <a href="CppVersion.html">version</a>: " <a href="CppOperatorPlus.htm">+</a> <a href="CppOpenQuestionDialog.html">OpenQuestionDialog</a>::Get<a href="CppVersion.html">Version</a>());<br/>
+&nbsp;&nbsp;a.<a href="CppAdd.htm">Add</a><a href="CppLibrary.html">Library</a>("<a href="CppQuestion.html">Question</a> <a href="CppVersion.html">version</a>: " <a href="CppOperatorPlus.htm">+</a> <a href="CppQuestion.html">Question</a>::Get<a href="CppVersion.html">Version</a>());<br/>
+&nbsp;&nbsp;a.<a href="CppAdd.htm">Add</a><a href="CppLibrary.html">Library</a>("<a href="CppQuestionDialog.html">QuestionDialog</a> <a href="CppVersion.html">version</a>: " <a href="CppOperatorPlus.htm">+</a> <a href="CppQuestionDialog.html">QuestionDialog</a>::Get<a href="CppVersion.html">Version</a>());<br/>
+&nbsp;&nbsp;a.<a href="CppAdd.htm">Add</a><a href="CppLibrary.html">Library</a>("<a href="CppTrace.html">Trace</a> <a href="CppVersion.html">version</a>: " <a href="CppOperatorPlus.htm">+</a> <a href="CppTrace.html">Trace</a>::Get<a href="CppVersion.html">Version</a>());<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> a;<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppRibi.htm">ribi</a>::<a href="ToolTestExercise.htm">TestExercise</a>MenuDialog::Get<a href="CppVersion.htm">Version</a>()<br/>
+<b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a> <a href="CppRibi.htm">ribi</a>::<a href="ToolTestExercise.html">TestExercise</a>MenuDialog::Get<a href="CppVersion.html">Version</a>()<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> "1.0";<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> "1.0";<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm">ribi</a>::<a href="ToolTestExercise.htm">TestExercise</a>MenuDialog::Get<a href="CppVersion.htm">Version</a>History()<br/>
+<b><a href="CppConst.html">const</a></b> <a href="CppVector.html">std::vector</a>&lt;<a href="CppString.html">std::string</a>&gt; <a href="CppRibi.htm">ribi</a>::<a href="ToolTestExercise.html">TestExercise</a>MenuDialog::Get<a href="CppVersion.html">Version</a>History()<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> {<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;"2011-09-26: <a href="CppVersion.htm">Version</a> 1.0: initial <a href="CppVersion.htm">version</a>"<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"2011-09-26: <a href="CppVersion.html">Version</a> 1.0: initial <a href="CppVersion.html">version</a>"<br/>
 &nbsp;&nbsp;};<br/>
 }<br/>
 </code></td></tr></table>
@@ -295,7 +295,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <table summary="wtmain.cpp" border = "1"><tr><td><code>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">/*</a><br/>
-<a href="ToolTestExercise.htm">TestExercise</a>, <a href="Tools.htm">tool</a> to test the <a href="CppExercise.htm">Exercise</a> <b><a href="CppClass.htm">class</a></b><br/>
+<a href="ToolTestExercise.html">TestExercise</a>, <a href="Tools.htm">tool</a> to test the <a href="CppExercise.html">Exercise</a> <b><a href="CppClass.html">class</a></b><br/>
 Copyright (C) 2011 Richel Bilderbeek<br/>
 <br/>
 This program is free software: you can redistribute it and/or modify<br/>
@@ -311,38 +311,38 @@ You should have received a copy of the GNU General Public License<br/>
 along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">*/</a><br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="ToolTestExercise.htm">ToolTestExercise</a>.htm<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="ToolTestExercise.html">ToolTestExercise</a>.html<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWApplication.htm">WApplication</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWEnvironment.htm">WEnvironment</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWApplication.html">WApplication</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWEnvironment.html">WEnvironment</a>&gt;<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppTrace.htm">trace</a>.h"<br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppWtAutoConfig.htm">wtautoconfig</a>.h"<br/>
-<a href="CppInclude.htm">#include</a> "wt<a href="ToolTestExercise.htm">testexercise</a>menudialog.h"<br/>
+<a href="CppInclude.html">#include</a> "<a href="CppTrace.html">trace</a><a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "<a href="CppWtAutoConfig.html">wtautoconfig</a><a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "wt<a href="ToolTestExercise.html">testexercise</a>menudialog<a href="CppHeaderFile.htm">.h</a>"<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppStruct.htm">struct</a></b> <a href="CppWt.htm">Wt</a><a href="CppApplication.htm">Application</a> : <b><a href="CppPublic.htm">public</a></b> <a href="CppWApplication.htm">Wt::WApplication</a><br/>
+<b><a href="CppStruct.html">struct</a></b> <a href="CppWt.htm">Wt</a><a href="CppApplication.html">Application</a> : <b><a href="CppPublic.html">public</a></b> <a href="CppWApplication.html">Wt::WApplication</a><br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppWt.htm">Wt</a><a href="CppApplication.htm">Application</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppWEnvironment.htm">Wt::WEnvironment</a>&amp; env)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;: <a href="CppWApplication.htm">Wt::WApplication</a>(env)<br/>
+&nbsp;&nbsp;<a href="CppWt.htm">Wt</a><a href="CppApplication.html">Application</a>(<b><a href="CppConst.html">const</a></b> <a href="CppWEnvironment.html">Wt::WEnvironment</a>&amp; env)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;: <a href="CppWApplication.html">Wt::WApplication</a>(env)<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;setTitle("<a href="ToolTestExercise.htm">TestExercise</a>");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;setTitle("<a href="ToolTestExercise.html">TestExercise</a>");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;useStyleSheet("wt.css");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;root()-&gt;addWidget(<b><a href="CppNew.htm">new</a></b> <a href="CppWt.htm">Wt</a><a href="ToolTestExercise.htm">TestExercise</a>MenuDialog);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;root()-&gt;addWidget(<b><a href="CppNew.htm">new</a></b> <a href="CppWt.htm">Wt</a><a href="ToolTestExercise.html">TestExercise</a>MenuDialog);<br/>
 &nbsp;&nbsp;}<br/>
 };<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppWApplication.htm">Wt::WApplication</a> *create<a href="CppApplication.htm">Application</a>(<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppWEnvironment.htm">Wt::WEnvironment</a>&amp; env)<br/>
+<a href="CppWApplication.html">Wt::WApplication</a> *create<a href="CppApplication.html">Application</a>(<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppWEnvironment.html">Wt::WEnvironment</a>&amp; env)<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <b><a href="CppNew.htm">new</a></b> <a href="CppWt.htm">Wt</a><a href="CppApplication.htm">Application</a>(env);<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> <b><a href="CppNew.htm">new</a></b> <a href="CppWt.htm">Wt</a><a href="CppApplication.html">Application</a>(env);<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>(<b><a href="CppInt.htm">int</a></b> <a href="CppArgc.htm">argc</a>, <b><a href="CppChar.htm">char</a></b> **<a href="CppArgc.htm">argv</a>)<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a>(<b><a href="CppInt.htm">int</a></b> <a href="CppArgc.htm">argc</a>, <b><a href="CppChar.htm">char</a></b> **<a href="CppArgc.htm">argv</a>)<br/>
 {<br/>
-&nbsp;&nbsp;{ START_<a href="CppTRACE.htm">TRACE</a>(); }<br/>
-&nbsp;&nbsp;<a href="CppWtAutoConfig.htm">WtAutoConfig</a> a(<a href="CppArgc.htm">argc</a>,<a href="CppArgc.htm">argv</a>,create<a href="CppApplication.htm">Application</a>);<br/>
-&nbsp;&nbsp;<a href="CppWtAutoConfig.htm">WtAutoConfig</a>::SaveDefaultStylesheet();<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> a.Run();<br/>
+&nbsp;&nbsp;{ START_<a href="CppTRACE.html">TRACE</a>(); }<br/>
+&nbsp;&nbsp;<a href="CppWtAutoConfig.html">WtAutoConfig</a> a(<a href="CppArgc.htm">argc</a>,<a href="CppArgc.htm">argv</a>,create<a href="CppApplication.html">Application</a>);<br/>
+&nbsp;&nbsp;<a href="CppWtAutoConfig.html">WtAutoConfig</a>::SaveDefaultStylesheet();<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> a.Run();<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 </code></td></tr></table>
@@ -358,7 +358,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <table summary="wttestexercisemaindialog.h" border = "1"><tr><td><code>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">/*</a><br/>
-<a href="ToolTestExercise.htm">TestExercise</a>, <a href="Tools.htm">tool</a> to test the <a href="CppExercise.htm">Exercise</a> <b><a href="CppClass.htm">class</a></b><br/>
+<a href="ToolTestExercise.html">TestExercise</a>, <a href="Tools.htm">tool</a> to test the <a href="CppExercise.html">Exercise</a> <b><a href="CppClass.html">class</a></b><br/>
 Copyright (C) 2011 Richel Bilderbeek<br/>
 <br/>
 This program is free software: you can redistribute it and/or modify<br/>
@@ -374,43 +374,43 @@ You should have received a copy of the GNU General Public License<br/>
 along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">*/</a><br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="ToolTestExercise.htm">ToolTestExercise</a>.htm<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="ToolTestExercise.html">ToolTestExercise</a>.html<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppIfndef.htm">#ifndef</a> WTTESTEXERCISEMAINDIALOG_H<br/>
-<a href="CppDefine.htm">#define</a> WTTESTEXERCISEMAINDIALOG_H<br/>
+<a href="CppIfndef.html">#ifndef</a> WTTESTEXERCISEMAINDIALOG_H<br/>
+<a href="CppDefine.html">#define</a> WTTESTEXERCISEMAINDIALOG_H<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppShared_ptr.htm">shared_ptr</a>.hpp&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppVectorH.html">vector</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppBoost.html">boost</a>/<a href="CppShared_ptr.html">shared_ptr</a><a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWContainerWidget.htm">WContainerWidget</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWContainerWidget.html">WContainerWidget</a>&gt;<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <br/>
-<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
+<b><a href="CppNamespace.html">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
 <br/>
-<b><a href="CppStruct.htm">struct</a></b> <a href="CppWtExercise.htm">WtExercise</a>;<br/>
+<b><a href="CppStruct.html">struct</a></b> <a href="CppWtExercise.html">WtExercise</a>;<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppStruct.htm">struct</a></b> <a href="CppWt.htm">Wt</a><a href="ToolTestExercise.htm">TestExercise</a>MainDialog : <b><a href="CppPublic.htm">public</a></b> <a href="CppWContainerWidget.htm">Wt::WContainerWidget</a><br/>
+<b><a href="CppStruct.html">struct</a></b> <a href="CppWt.htm">Wt</a><a href="ToolTestExercise.html">TestExercise</a>MainDialog : <b><a href="CppPublic.html">public</a></b> <a href="CppWContainerWidget.html">Wt::WContainerWidget</a><br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppWt.htm">Wt</a><a href="ToolTestExercise.htm">TestExercise</a>MainDialog();<br/>
+&nbsp;&nbsp;<a href="CppWt.htm">Wt</a><a href="ToolTestExercise.html">TestExercise</a>MainDialog();<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppPrivate.htm">private</a></b>:<br/>
-&nbsp;&nbsp;<b><a href="CppStruct.htm">struct</a></b> Ui<br/>
+&nbsp;&nbsp;<b><a href="CppPrivate.html">private</a></b>:<br/>
+&nbsp;&nbsp;<b><a href="CppStruct.html">struct</a></b> Ui<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;Ui();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppWTextArea.htm">Wt::WTextArea</a> * <b><a href="CppConst.htm">const</a></b> m_area_input;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppWPushButton.htm">Wt::WPushButton</a> * <b><a href="CppConst.htm">const</a></b> m_button_submit;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppWLineEdit.htm">Wt::WLineEdit</a> * <b><a href="CppConst.htm">const</a></b> m_edit_wait_correct;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppWLineEdit.htm">Wt::WLineEdit</a> * <b><a href="CppConst.htm">const</a></b> m_edit_wait_incorrect;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppWLabel.htm">Wt::WLabel</a> * <b><a href="CppConst.htm">const</a></b> m_label_status;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppWtExercise.htm">WtExercise</a> * <b><a href="CppConst.htm">const</a></b> m_exercise_dialog;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppWTextArea.html">Wt::WTextArea</a> * <b><a href="CppConst.html">const</a></b> m_area_input;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppWPushButton.html">Wt::WPushButton</a> * <b><a href="CppConst.html">const</a></b> m_button_submit;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppWLineEdit.html">Wt::WLineEdit</a> * <b><a href="CppConst.html">const</a></b> m_edit_wait_correct;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppWLineEdit.html">Wt::WLineEdit</a> * <b><a href="CppConst.html">const</a></b> m_edit_wait_incorrect;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppWLabel.html">Wt::WLabel</a> * <b><a href="CppConst.html">const</a></b> m_label_status;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppWtExercise.html">WtExercise</a> * <b><a href="CppConst.html">const</a></b> m_exercise_dialog;<br/>
 &nbsp;&nbsp;} ui;<br/>
 <br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> OnSubmit();<br/>
 };<br/>
 <br/>
-} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.html">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
 <br/>
-<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> WTTESTEXERCISEMAINDIALOG_H<br/>
+<a href="CppEndif.html">#endif</a> <a href="CppComment.htm">//</a> WTTESTEXERCISEMAINDIALOG_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -424,7 +424,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <table summary="wttestexercisemaindialog.cpp" border = "1"><tr><td><code>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">/*</a><br/>
-<a href="ToolTestExercise.htm">TestExercise</a>, <a href="Tools.htm">tool</a> to test the <a href="CppExercise.htm">Exercise</a> <b><a href="CppClass.htm">class</a></b><br/>
+<a href="ToolTestExercise.html">TestExercise</a>, <a href="Tools.htm">tool</a> to test the <a href="CppExercise.html">Exercise</a> <b><a href="CppClass.html">class</a></b><br/>
 Copyright (C) 2011 Richel Bilderbeek<br/>
 <br/>
 This program is free software: you can redistribute it and/or modify<br/>
@@ -440,62 +440,63 @@ You should have received a copy of the GNU General Public License<br/>
 along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">*/</a><br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="ToolTestExercise.htm">ToolTestExercise</a>.htm<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="ToolTestExercise.html">ToolTestExercise</a>.html<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppCstdioH.htm">cstdio</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppFstreamH.htm">fstream</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppCstdioH.html">cstdio</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppFstreamH.html">fstream</a>&gt;<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppBOOST_FOREACH.htm">foreach</a>.hpp&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppLexical_cast.htm">lexical_cast</a>.hpp&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/numeric/con<a href="CppVersion.htm">version</a>/cast.hpp&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppBoost.html">boost</a>/<a href="CppBOOST_FOREACH.html">foreach</a><a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppBoost.html">boost</a>/<a href="CppLexical_cast.html">lexical_cast</a><a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppBoost.html">boost</a>/numeric/con<a href="CppVersion.html">version</a>/cast<a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWBreak.htm">WBreak</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWLabel.htm">WLabel</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWLineEdit.htm">WLineEdit</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWPushButton.htm">WPushButton</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWTextArea.htm">WTextArea</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWBreak.html">WBreak</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWLabel.html">WLabel</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWLineEdit.html">WLineEdit</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWPushButton.html">WPushButton</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWTextArea.html">WTextArea</a>&gt;<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppExercise.htm">exercise</a>.h"<br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppMultipleChoiceQuestion.htm">multiplechoicequestion</a>.h"<br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppMultipleChoiceQuestionDialog.htm">multiplechoicequestiondialog</a>.h"<br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppOpenQuestion.htm">openquestion</a>.h"<br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppOpenQuestionDialog.htm">openquestiondialog</a>.h"<br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppQuestionDialog.htm">questiondialog</a>.h"<br/>
-<a href="CppComment.htm">//</a><a href="CppInclude.htm">#include</a> "<a href="CppTrace.htm">trace</a>.h"<br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppWtAboutDialog.htm">wtaboutdialog</a>.h"<br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppWtMultipleChoiceQuestionDialog.htm">wtmultiplechoicequestiondialog</a>.h"<br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppWtOpenQuestionDialog.htm">wtopenquestiondialog</a>.h"<br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppWtExercise.htm">wtexercise</a>.h"<br/>
-<a href="CppInclude.htm">#include</a> "wt<a href="ToolTestExercise.htm">testexercise</a>maindialog.h"<br/>
+<a href="CppInclude.html">#include</a> "<a href="CppExercise.html">exercise</a><a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "<a href="CppMultipleChoiceQuestion.html">multiplechoicequestion</a><a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "<a href="CppMultipleChoiceQuestionDialog.html">multiplechoicequestiondialog</a><a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "<a href="CppOpenQuestion.html">openquestion</a><a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "<a href="CppOpenQuestionDialog.html">openquestiondialog</a><a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "<a href="CppQuestionDialog.html">questiondialog</a><a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppComment.htm">//</a><a href="CppInclude.html">#include</a> "<a href="CppTrace.html">trace</a><a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "<a href="CppWtAboutDialog.html">wtaboutdialog</a><a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "<a href="CppWtMultipleChoiceQuestionDialog.html">wtmultiplechoicequestiondialog</a><a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "<a href="CppWtOpenQuestionDialog.html">wtopenquestiondialog</a><a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "<a href="CppWtExercise.html">wtexercise</a><a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "wt<a href="ToolTestExercise.html">testexercise</a>maindialog<a href="CppHeaderFile.htm">.h</a>"<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppRibi.htm">ribi</a>::<a href="CppWt.htm">Wt</a><a href="ToolTestExercise.htm">TestExercise</a>MainDialog::<a href="CppUi.htm">Ui</a>::Ui()<br/>
-&nbsp;&nbsp;: m_area_input(<b><a href="CppNew.htm">new</a></b> <a href="CppWTextArea.htm">Wt::WTextArea</a>),<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;m_button_submit(<b><a href="CppNew.htm">new</a></b> <a href="CppWPushButton.htm">Wt::WPushButton</a>),<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;m_edit_wait_correct(<b><a href="CppNew.htm">new</a></b> <a href="CppWLineEdit.htm">Wt::WLineEdit</a>),<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;m_edit_wait_incorrect(<b><a href="CppNew.htm">new</a></b> <a href="CppWLineEdit.htm">Wt::WLineEdit</a>),<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;m_label_status(<b><a href="CppNew.htm">new</a></b> <a href="CppWLabel.htm">Wt::WLabel</a>),<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;m_exercise_dialog(<b><a href="CppNew.htm">new</a></b> <a href="CppWtExercise.htm">WtExercise</a>)<br/>
+<a href="CppRibi.htm">ribi</a>::<a href="CppWt.htm">Wt</a><a href="ToolTestExercise.html">TestExercise</a>MainDialog::<a href="CppUi.htm">Ui</a>::Ui()<br/>
+&nbsp;&nbsp;: m_area_input(<b><a href="CppNew.htm">new</a></b> <a href="CppWTextArea.html">Wt::WTextArea</a>),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_button_submit(<b><a href="CppNew.htm">new</a></b> <a href="CppWPushButton.html">Wt::WPushButton</a>),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_edit_wait_correct(<b><a href="CppNew.htm">new</a></b> <a href="CppWLineEdit.html">Wt::WLineEdit</a>),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_edit_wait_incorrect(<b><a href="CppNew.htm">new</a></b> <a href="CppWLineEdit.html">Wt::WLineEdit</a>),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_label_status(<b><a href="CppNew.htm">new</a></b> <a href="CppWLabel.html">Wt::WLabel</a>),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_exercise_dialog(<b><a href="CppNew.htm">new</a></b> <a href="CppWtExercise.html">WtExercise</a>)<br/>
 {<br/>
 <br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppRibi.htm">ribi</a>::<a href="CppWt.htm">Wt</a><a href="ToolTestExercise.htm">TestExercise</a>MainDialog::<a href="CppWt.htm">Wt</a><a href="ToolTestExercise.htm">TestExercise</a>MainDialog()<br/>
+<a href="CppRibi.htm">ribi</a>::<a href="CppWt.htm">Wt</a><a href="ToolTestExercise.html">TestExercise</a>MainDialog::<a href="CppWt.htm">Wt</a><a href="ToolTestExercise.html">TestExercise</a>MainDialog()<br/>
+&nbsp;&nbsp;: ui{}<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;addWidget(<b><a href="CppNew.htm">new</a></b> <a href="CppWLabel.htm">Wt::WLabel</a>("Waiting <a href="CppTime.htm">time</a> correct (msecs)"));<br/>
+&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;addWidget(<b><a href="CppNew.htm">new</a></b> <a href="CppWLabel.html">Wt::WLabel</a>("Waiting <a href="CppTime.htm">time</a> correct (msecs)"));<br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;addWidget(ui.m_edit_wait_correct);<br/>
-&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;addWidget(<b><a href="CppNew.htm">new</a></b> <a href="CppWBreak.htm">Wt::WBreak</a>);<br/>
-&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;addWidget(<b><a href="CppNew.htm">new</a></b> <a href="CppWLabel.htm">Wt::WLabel</a>("Waiting <a href="CppTime.htm">time</a> incorrect (msecs)"));<br/>
+&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;addWidget(<b><a href="CppNew.htm">new</a></b> <a href="CppWBreak.html">Wt::WBreak</a>);<br/>
+&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;addWidget(<b><a href="CppNew.htm">new</a></b> <a href="CppWLabel.html">Wt::WLabel</a>("Waiting <a href="CppTime.htm">time</a> incorrect (msecs)"));<br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;addWidget(ui.m_edit_wait_incorrect);<br/>
-&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;addWidget(<b><a href="CppNew.htm">new</a></b> <a href="CppWBreak.htm">Wt::WBreak</a>);<br/>
-&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;addWidget(<b><a href="CppNew.htm">new</a></b> <a href="CppWBreak.htm">Wt::WBreak</a>);<br/>
+&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;addWidget(<b><a href="CppNew.htm">new</a></b> <a href="CppWBreak.html">Wt::WBreak</a>);<br/>
+&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;addWidget(<b><a href="CppNew.htm">new</a></b> <a href="CppWBreak.html">Wt::WBreak</a>);<br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;addWidget(ui.m_area_input);<br/>
-&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;addWidget(<b><a href="CppNew.htm">new</a></b> <a href="CppWBreak.htm">Wt::WBreak</a>);<br/>
+&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;addWidget(<b><a href="CppNew.htm">new</a></b> <a href="CppWBreak.html">Wt::WBreak</a>);<br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;addWidget(ui.m_button_submit);<br/>
-&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;addWidget(<b><a href="CppNew.htm">new</a></b> <a href="CppWBreak.htm">Wt::WBreak</a>);<br/>
+&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;addWidget(<b><a href="CppNew.htm">new</a></b> <a href="CppWBreak.html">Wt::WBreak</a>);<br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;addWidget(ui.m_exercise_dialog);<br/>
 <br/>
 &nbsp;&nbsp;ui.m_button_submit-&gt;setText("Submit");<br/>
-&nbsp;&nbsp;ui.m_button_submit-&gt;clicked().connect(<b><a href="CppThis.htm">this</a></b>,&amp;<a href="CppRibi.htm">ribi</a>::<a href="CppWt.htm">Wt</a><a href="ToolTestExercise.htm">TestExercise</a>MainDialog::OnSubmit);<br/>
+&nbsp;&nbsp;ui.m_button_submit-&gt;clicked().connect(<b><a href="CppThis.htm">this</a></b>,&amp;<a href="CppRibi.htm">ribi</a>::<a href="CppWt.htm">Wt</a><a href="ToolTestExercise.html">TestExercise</a>MainDialog::OnSubmit);<br/>
 <br/>
 &nbsp;&nbsp;ui.m_edit_wait_correct-&gt;setText("1000");<br/>
 &nbsp;&nbsp;ui.m_edit_wait_incorrect-&gt;setText("5000");<br/>
@@ -504,73 +505,73 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;ui.m_area_input-&gt;setText(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;"-,1+1=?,2/two/Two\n"<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;"-,1+1=?,2,1,3,4\n"<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;"<a href="ToolTestExercise.htm">ToolTestExercise</a><a href="CppQuestion.htm">Question</a>.png,The solution of <b><a href="CppThis.htm">this</a></b> equation is:,2/two/Two\n"<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;"<a href="ToolTestExercise.htm">ToolTestExercise</a><a href="CppQuestion.htm">Question</a>.png,The solution of <b><a href="CppThis.htm">this</a></b> equation is:,2,1,3,4");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"<a href="ToolTestExercise.html">ToolTestExercise</a><a href="CppQuestion.html">Question</a>.png,The solution of <b><a href="CppThis.htm">this</a></b> equation is:,2/two/Two\n"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"<a href="ToolTestExercise.html">ToolTestExercise</a><a href="CppQuestion.html">Question</a>.png,The solution of <b><a href="CppThis.htm">this</a></b> equation is:,2,1,3,4");<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppWt.htm">Wt</a><a href="ToolTestExercise.htm">TestExercise</a>MainDialog::OnSubmit()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppWt.htm">Wt</a><a href="ToolTestExercise.html">TestExercise</a>MainDialog::OnSubmit()<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Test input<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> s <a href="CppOperatorAssign.htm">=</a> ui.m_edit_wait_correct-&gt;text().toUTF8();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a> s <a href="CppOperatorAssign.htm">=</a> ui.m_edit_wait_correct-&gt;text().toUTF8();<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppTry.htm">try</a></b><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> i <a href="CppOperatorAssign.htm">=</a> <a href="CppLexical_cast.htm">boost::lexical_cast</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(s);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> i <a href="CppOperatorAssign.htm">=</a> <a href="CppLexical_cast.html">boost::lexical_cast</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(s);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (i &lt; 0)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ui.m_button_submit-&gt;setText("Waiting <a href="CppTime.htm">time</a> correct must be a positive <a href="CppInt.htm">integer</a>");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ui.m_button_submit-&gt;setText("Waiting <a href="CppTime.htm">time</a> correct must be a positive <a href="CppInt.html">integer</a>");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b>;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCatch.htm">catch</a></b> (<a href="CppBad_lexical_cast.htm">boost::bad_lexical_cast</a>&amp;)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCatch.html">catch</a></b> (<a href="CppBad_lexical_cast.html">boost::bad_lexical_cast</a>&amp;)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ui.m_button_submit-&gt;setText("Waiting <a href="CppTime.htm">time</a> correct must be an <a href="CppInt.htm">integer</a>");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ui.m_button_submit-&gt;setText("Waiting <a href="CppTime.htm">time</a> correct must be an <a href="CppInt.html">integer</a>");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b>;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> s <a href="CppOperatorAssign.htm">=</a> ui.m_edit_wait_incorrect-&gt;text().toUTF8();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a> s <a href="CppOperatorAssign.htm">=</a> ui.m_edit_wait_incorrect-&gt;text().toUTF8();<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppTry.htm">try</a></b><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> i <a href="CppOperatorAssign.htm">=</a> <a href="CppLexical_cast.htm">boost::lexical_cast</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(s);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> i <a href="CppOperatorAssign.htm">=</a> <a href="CppLexical_cast.html">boost::lexical_cast</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(s);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (i &lt; 0)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ui.m_button_submit-&gt;setText("Waiting <a href="CppTime.htm">time</a> incorrect must be a positive <a href="CppInt.htm">integer</a>");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ui.m_button_submit-&gt;setText("Waiting <a href="CppTime.htm">time</a> incorrect must be a positive <a href="CppInt.html">integer</a>");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b>;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCatch.htm">catch</a></b> (<a href="CppBad_lexical_cast.htm">boost::bad_lexical_cast</a>&amp;)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCatch.html">catch</a></b> (<a href="CppBad_lexical_cast.html">boost::bad_lexical_cast</a>&amp;)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ui.m_button_submit-&gt;setText("Waiting <a href="CppTime.htm">time</a> incorrect must be an <a href="CppInt.htm">integer</a>");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ui.m_button_submit-&gt;setText("Waiting <a href="CppTime.htm">time</a> incorrect must be an <a href="CppInt.html">integer</a>");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b>;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;ui.m_button_submit-&gt;setText("Submit");<br/>
 <br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Process valid input<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> filename <a href="CppOperatorAssign.htm">=</a> "tmp.txt";<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a> filename <a href="CppOperatorAssign.htm">=</a> "tmp.txt";<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Save text to file<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOfstream.htm">std::ofstream</a> f(filename.c_str());<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(ui.m_area_input);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;f <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> ui.m_area_input-&gt;text().toUTF8();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOfstream.html">std::ofstream</a> f(filename.c_str());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(ui.m_area_input);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;f <a href="CppOperatorStreamOut.html">&lt;&lt;</a> ui.m_area_input-&gt;text().toUTF8();<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>Read the <a href="CppWtExercise.htm">WtExercise</a> from file<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(ui.m_exercise_dialog);<br/>
-&nbsp;&nbsp;ui.m_exercise_dialog-&gt;Set<a href="CppQuestion.htm">Question</a>s(filename.c_str());<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Read the <a href="CppWtExercise.html">WtExercise</a> from file<br/>
+&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(ui.m_exercise_dialog);<br/>
+&nbsp;&nbsp;ui.m_exercise_dialog-&gt;Set<a href="CppQuestion.html">Question</a>s(filename.c_str());<br/>
 &nbsp;&nbsp;ui.m_exercise_dialog-&gt;SetWaiting<a href="CppTime.htm">Time</a>Correct(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppLexical_cast.htm">boost::lexical_cast</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(ui.m_edit_wait_correct-&gt;text().toUTF8()));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppLexical_cast.html">boost::lexical_cast</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(ui.m_edit_wait_correct-&gt;text().toUTF8()));<br/>
 &nbsp;&nbsp;ui.m_exercise_dialog-&gt;SetWaiting<a href="CppTime.htm">Time</a>Incorrect(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppLexical_cast.htm">boost::lexical_cast</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(ui.m_edit_wait_incorrect-&gt;text().toUTF8()));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppLexical_cast.html">boost::lexical_cast</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(ui.m_edit_wait_incorrect-&gt;text().toUTF8()));<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Remove the file<br/>
-&nbsp;&nbsp;<a href="CppRemove.htm">std::remove</a>(filename.c_str());<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>Display info <a href="CppAbout.htm">about</a> the <a href="CppWtExercise.htm">WtExercise</a><br/>
+&nbsp;&nbsp;<a href="CppRemove.html">std::remove</a>(filename.c_str());<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Display info <a href="CppAbout.html">about</a> the <a href="CppWtExercise.html">WtExercise</a><br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> s<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <a href="CppString.htm">std::string</a>("Loaded ")<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> <a href="CppLexical_cast.htm">boost::lexical_cast</a>&lt;<a href="CppString.htm">std::string</a>&gt;(ui.m_exercise_dialog-&gt;Get<a href="CppExercise.htm">Exercise</a>()-&gt;GetNumberOf<a href="CppQuestion.htm">Question</a>s())<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> <a href="CppString.htm">std::string</a>(" <a href="CppQuestion.htm">question</a>s");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a> s<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <a href="CppString.html">std::string</a>("Loaded ")<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> <a href="CppLexical_cast.html">boost::lexical_cast</a>&lt;<a href="CppString.html">std::string</a>&gt;(ui.m_exercise_dialog-&gt;Get<a href="CppExercise.html">Exercise</a>()-&gt;GetNumberOf<a href="CppQuestion.html">Question</a>s())<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> <a href="CppString.html">std::string</a>(" <a href="CppQuestion.html">question</a>s");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;ui.m_label_status-&gt;setText(s.c_str());<br/>
 &nbsp;&nbsp;}<br/>
 }<br/>
@@ -588,7 +589,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <table summary="wttestexercisemenudialog.h" border = "1"><tr><td><code>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">/*</a><br/>
-<a href="ToolTestExercise.htm">TestExercise</a>, <a href="Tools.htm">tool</a> to test the <a href="CppExercise.htm">Exercise</a> <b><a href="CppClass.htm">class</a></b><br/>
+<a href="ToolTestExercise.html">TestExercise</a>, <a href="Tools.htm">tool</a> to test the <a href="CppExercise.html">Exercise</a> <b><a href="CppClass.html">class</a></b><br/>
 Copyright (C) 2011 Richel Bilderbeek<br/>
 <br/>
 This program is free software: you can redistribute it and/or modify<br/>
@@ -604,34 +605,34 @@ You should have received a copy of the GNU General Public License<br/>
 along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">*/</a><br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="ToolTestExercise.htm">ToolTestExercise</a>.htm<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="ToolTestExercise.html">ToolTestExercise</a>.html<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppIfndef.htm">#ifndef</a> WTTESTEXERCISEMENUDIALOG_H<br/>
-<a href="CppDefine.htm">#define</a> WTTESTEXERCISEMENUDIALOG_H<br/>
+<a href="CppIfndef.html">#ifndef</a> WTTESTEXERCISEMENUDIALOG_H<br/>
+<a href="CppDefine.html">#define</a> WTTESTEXERCISEMENUDIALOG_H<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppScoped_ptr.htm">scoped_ptr</a>.hpp&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppBoost.html">boost</a>/<a href="CppScoped_ptr.html">scoped_ptr</a><a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWContainerWidget.htm">WContainerWidget</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWContainerWidget.html">WContainerWidget</a>&gt;<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <br/>
-<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
+<b><a href="CppNamespace.html">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
 <br/>
-<b><a href="CppStruct.htm">struct</a></b> <a href="ToolTestExercise.htm">TestExercise</a>MenuDialog;<br/>
+<b><a href="CppStruct.html">struct</a></b> <a href="ToolTestExercise.html">TestExercise</a>MenuDialog;<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppStruct.htm">struct</a></b> <a href="CppWt.htm">Wt</a><a href="ToolTestExercise.htm">TestExercise</a>MenuDialog : <b><a href="CppPublic.htm">public</a></b> <a href="CppWContainerWidget.htm">Wt::WContainerWidget</a><br/>
+<b><a href="CppStruct.html">struct</a></b> <a href="CppWt.htm">Wt</a><a href="ToolTestExercise.html">TestExercise</a>MenuDialog : <b><a href="CppPublic.html">public</a></b> <a href="CppWContainerWidget.html">Wt::WContainerWidget</a><br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppWt.htm">Wt</a><a href="ToolTestExercise.htm">TestExercise</a>MenuDialog();<br/>
-&nbsp;&nbsp;<b><a href="CppPrivate.htm">private</a></b>:<br/>
-&nbsp;&nbsp;<a href="CppWWidget.htm">Wt::WWidget</a> * CreateNew<a href="CppAbout.htm">About</a>Dialog() <b><a href="CppConst.htm">const</a></b>;<br/>
-&nbsp;&nbsp;<a href="CppWWidget.htm">Wt::WWidget</a> * CreateNewMainDialog() <b><a href="CppConst.htm">const</a></b>;<br/>
-&nbsp;&nbsp;<a href="CppWWidget.htm">Wt::WWidget</a> * CreateNewWelcomeDialog() <b><a href="CppConst.htm">const</a></b>;<br/>
+&nbsp;&nbsp;<a href="CppWt.htm">Wt</a><a href="ToolTestExercise.html">TestExercise</a>MenuDialog();<br/>
+&nbsp;&nbsp;<b><a href="CppPrivate.html">private</a></b>:<br/>
+&nbsp;&nbsp;<a href="CppWWidget.html">Wt::WWidget</a> * CreateNew<a href="CppAbout.html">About</a>Dialog() <b><a href="CppConst.html">const</a></b>;<br/>
+&nbsp;&nbsp;<a href="CppWWidget.html">Wt::WWidget</a> * CreateNewMainDialog() <b><a href="CppConst.html">const</a></b>;<br/>
+&nbsp;&nbsp;<a href="CppWWidget.html">Wt::WWidget</a> * CreateNewWelcomeDialog() <b><a href="CppConst.html">const</a></b>;<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppScoped_ptr.htm">boost::scoped_ptr</a>&lt;<a href="ToolTestExercise.htm">TestExercise</a>MenuDialog&gt; m_dialog;<br/>
+&nbsp;&nbsp;<a href="CppScoped_ptr.html">boost::scoped_ptr</a>&lt;<a href="ToolTestExercise.html">TestExercise</a>MenuDialog&gt; m_dialog;<br/>
 };<br/>
 <br/>
-} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.html">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
 <br/>
-<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> WTTESTEXERCISEMENUDIALOG_H<br/>
+<a href="CppEndif.html">#endif</a> <a href="CppComment.htm">//</a> WTTESTEXERCISEMENUDIALOG_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -645,7 +646,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <table summary="wttestexercisemenudialog.cpp" border = "1"><tr><td><code>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">/*</a><br/>
-<a href="ToolTestExercise.htm">TestExercise</a>, <a href="Tools.htm">tool</a> to test the <a href="CppExercise.htm">Exercise</a> <b><a href="CppClass.htm">class</a></b><br/>
+<a href="ToolTestExercise.html">TestExercise</a>, <a href="Tools.htm">tool</a> to test the <a href="CppExercise.html">Exercise</a> <b><a href="CppClass.html">class</a></b><br/>
 Copyright (C) 2011 Richel Bilderbeek<br/>
 <br/>
 This program is free software: you can redistribute it and/or modify<br/>
@@ -661,128 +662,132 @@ You should have received a copy of the GNU General Public License<br/>
 along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">*/</a><br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="ToolTestExercise.htm">ToolTestExercise</a>.htm<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="ToolTestExercise.html">ToolTestExercise</a>.html<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic push<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.html">-Weffc++</a>"<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppCassertH.html">cassert</a>&gt;<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/filesystem.hpp&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppBOOST_FOREACH.htm">foreach</a>.hpp&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppBoost.html">boost</a>/filesystem<a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppBoost.html">boost</a>/<a href="CppBOOST_FOREACH.html">foreach</a><a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWBreak.htm">WBreak</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWContainerWidget.htm">WContainerWidget</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWGroupBox.htm">WGroupBox</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWImage.htm">WImage</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWLabel.htm">WLabel</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWStackedWidget.htm">WStackedWidget</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWMenu.htm">WMenu</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWMenuItem.htm">WMenuItem</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWBreak.html">WBreak</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWContainerWidget.html">WContainerWidget</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWGroupBox.html">WGroupBox</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWImage.html">WImage</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWLabel.html">WLabel</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWStackedWidget.html">WStackedWidget</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWMenu.html">WMenu</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWMenuItem.html">WMenuItem</a>&gt;<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppInclude.htm">#include</a> "<a href="ToolTestExercise.htm">testexercise</a>menudialog.h"<br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppWtAboutDialog.htm">wtaboutdialog</a>.h"<br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppWtAutoConfig.htm">wtautoconfig</a>.h"<br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppWtExercise.htm">wtexercise</a>.h"<br/>
-<a href="CppInclude.htm">#include</a> "wt<a href="ToolTestExercise.htm">testexercise</a>maindialog.h"<br/>
-<a href="CppInclude.htm">#include</a> "wt<a href="ToolTestExercise.htm">testexercise</a>menudialog.h"<br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppWtMultipleChoiceQuestionDialog.htm">wtmultiplechoicequestiondialog</a>.h"<br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppWtOpenQuestionDialog.htm">wtopenquestiondialog</a>.h"<br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppWtQuestionDialog.htm">wtquestiondialog</a>.h"<br/>
+<a href="CppInclude.html">#include</a> "<a href="ToolTestExercise.html">testexercise</a>menudialog<a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "<a href="CppWtAboutDialog.html">wtaboutdialog</a><a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "<a href="CppWtAutoConfig.html">wtautoconfig</a><a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "<a href="CppWtExercise.html">wtexercise</a><a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "wt<a href="ToolTestExercise.html">testexercise</a>maindialog<a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "wt<a href="ToolTestExercise.html">testexercise</a>menudialog<a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "<a href="CppWtMultipleChoiceQuestionDialog.html">wtmultiplechoicequestiondialog</a><a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "<a href="CppWtOpenQuestionDialog.html">wtopenquestiondialog</a><a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "<a href="CppWtQuestionDialog.html">wtquestiondialog</a><a href="CppHeaderFile.htm">.h</a>"<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppQFile.htm">QFile</a>&gt;<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppRibi.htm">ribi</a>::<a href="CppWt.htm">Wt</a><a href="ToolTestExercise.htm">TestExercise</a>MenuDialog::<a href="CppWt.htm">Wt</a><a href="ToolTestExercise.htm">TestExercise</a>MenuDialog()<br/>
-&nbsp;&nbsp;: m_dialog(<b><a href="CppNew.htm">new</a></b> <a href="ToolTestExercise.htm">TestExercise</a>MenuDialog)<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppQFile.html">QFile</a>&gt;<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic pop<br/>
+<br/>
+<br/>
+<a href="CppRibi.htm">ribi</a>::<a href="CppWt.htm">Wt</a><a href="ToolTestExercise.html">TestExercise</a>MenuDialog::<a href="CppWt.htm">Wt</a><a href="ToolTestExercise.html">TestExercise</a>MenuDialog()<br/>
+&nbsp;&nbsp;: m_dialog(<b><a href="CppNew.htm">new</a></b> <a href="ToolTestExercise.html">TestExercise</a>MenuDialog)<br/>
 {<br/>
  {<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; image_names;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;image_names.push_back("<a href="ToolTestExercise.htm">ToolTestExercise</a>Welcome.png");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;image_names.push_back("<a href="ToolTestExercise.htm">ToolTestExercise</a><a href="CppQuestion.htm">Question</a>.png");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;image_names.push_back("<a href="ToolTestExercise.htm">ToolTestExercise</a><a href="CppQuestion.htm">Question</a>mark.png");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppVector.html">std::vector</a>&lt;<a href="CppString.html">std::string</a>&gt; image_names;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;image_names.push_back("<a href="ToolTestExercise.html">ToolTestExercise</a>Welcome.png");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;image_names.push_back("<a href="ToolTestExercise.html">ToolTestExercise</a><a href="CppQuestion.html">Question</a>.png");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;image_names.push_back("<a href="ToolTestExercise.html">ToolTestExercise</a><a href="CppQuestion.html">Question</a>mark.png");<br/>
 <br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBOOST_FOREACH.htm">BOOST_FOREACH</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; filename,image_names)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBOOST_FOREACH.html">BOOST_FOREACH</a>(<b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a>&amp; filename,image_names)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (!(<a href="CppQFile.htm">QFile</a>::exists(filename.c_str())))<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (!(<a href="CppQFile.html">QFile</a>::exists(filename.c_str())))<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQFile.htm">QFile</a> f( (<a href="CppString.htm">std::string</a>(":/images/") <a href="CppOperatorPlus.htm">+</a> filename).c_str() );<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQFile.html">QFile</a> f( (<a href="CppString.html">std::string</a>(":/images/") <a href="CppOperatorPlus.htm">+</a> filename).c_str() );<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;f.copy(filename.c_str());<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (!<a href="CppFilesystem.htm">boost::filesystem</a>::exists(filename.c_str()))<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (!<a href="CppFilesystem.html">boost::filesystem</a>::exists(filename.c_str()))<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCerr.htm">std::cerr</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "File not found: " <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> filename <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n';<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCerr.html">std::cerr</a> <a href="CppOperatorStreamOut.html">&lt;&lt;</a> "File not found: " <a href="CppOperatorStreamOut.html">&lt;&lt;</a> filename <a href="CppOperatorStreamOut.html">&lt;&lt;</a> '\n';<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppFilesystem.htm">boost::filesystem</a>::exists(filename.c_str()));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(<a href="CppFilesystem.html">boost::filesystem</a>::exists(filename.c_str()));<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;setContentAlignment(<a href="CppWt.htm">Wt</a>::AlignCenter);<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppWLabel.htm">Wt::WLabel</a> * <b><a href="CppConst.htm">const</a></b> title <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppWLabel.htm">Wt::WLabel</a>("<a href="ToolTestExercise.htm">TestExercise</a>");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppWLabel.html">Wt::WLabel</a> * <b><a href="CppConst.html">const</a></b> title <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppWLabel.html">Wt::WLabel</a>("<a href="ToolTestExercise.html">TestExercise</a>");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;title-&gt;setStyleClass("title");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;addWidget(title);<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Menu<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppWStackedWidget.htm">Wt::WStackedWidget</a> * <b><a href="CppConst.htm">const</a></b> contents <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppWStackedWidget.htm">Wt::WStackedWidget</a>;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppWMenu.htm">Wt::WMenu</a> * <b><a href="CppConst.htm">const</a></b> menu <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppWMenu.htm">Wt::WMenu</a>(contents,<a href="CppWt.htm">Wt</a>::Horizontal);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppWStackedWidget.html">Wt::WStackedWidget</a> * <b><a href="CppConst.html">const</a></b> contents <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppWStackedWidget.html">Wt::WStackedWidget</a>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppWMenu.html">Wt::WMenu</a> * <b><a href="CppConst.html">const</a></b> menu <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppWMenu.html">Wt::WMenu</a>(contents,<a href="CppWt.htm">Wt</a>::Horizontal);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;menu-&gt;setStyleClass("menu");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppWMenuItem.htm">Wt::WMenuItem</a> * <b><a href="CppConst.htm">const</a></b> item <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppWMenuItem.htm">Wt::WMenuItem</a>(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppWMenuItem.html">Wt::WMenuItem</a> * <b><a href="CppConst.html">const</a></b> item <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppWMenuItem.html">Wt::WMenuItem</a>(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Welcome",<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CreateNewWelcomeDialog());<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;menu-&gt;addItem(item);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppWMenuItem.htm">Wt::WMenuItem</a> * <b><a href="CppConst.htm">const</a></b> item <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppWMenuItem.htm">Wt::WMenuItem</a>(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppWMenuItem.html">Wt::WMenuItem</a> * <b><a href="CppConst.html">const</a></b> item <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppWMenuItem.html">Wt::WMenuItem</a>(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Start",<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CreateNewMainDialog());<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;menu-&gt;addItem(item);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppWMenuItem.htm">Wt::WMenuItem</a> * <b><a href="CppConst.htm">const</a></b> item <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppWMenuItem.htm">Wt::WMenuItem</a>(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"<a href="CppAbout.htm">About</a>",<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CreateNew<a href="CppAbout.htm">About</a>Dialog());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppWMenuItem.html">Wt::WMenuItem</a> * <b><a href="CppConst.html">const</a></b> item <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppWMenuItem.html">Wt::WMenuItem</a>(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"<a href="CppAbout.html">About</a>",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CreateNew<a href="CppAbout.html">About</a>Dialog());<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;menu-&gt;addItem(item);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Display menu on top<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;addWidget(menu);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;addWidget(<b><a href="CppNew.htm">new</a></b> <a href="CppWBreak.htm">Wt::WBreak</a>);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;addWidget(<b><a href="CppNew.htm">new</a></b> <a href="CppWBreak.html">Wt::WBreak</a>);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Display contents below menu<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;addWidget(contents);<br/>
 &nbsp;&nbsp;}<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppWWidget.htm">Wt::WWidget</a> * <a href="CppRibi.htm">ribi</a>::<a href="CppWt.htm">Wt</a><a href="ToolTestExercise.htm">TestExercise</a>MenuDialog::CreateNew<a href="CppAbout.htm">About</a>Dialog() <b><a href="CppConst.htm">const</a></b><br/>
+<a href="CppWWidget.html">Wt::WWidget</a> * <a href="CppRibi.htm">ribi</a>::<a href="CppWt.htm">Wt</a><a href="ToolTestExercise.html">TestExercise</a>MenuDialog::CreateNew<a href="CppAbout.html">About</a>Dialog() <b><a href="CppConst.html">const</a></b><br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppAbout.htm">About</a> a <a href="CppOperatorAssign.htm">=</a> m_dialog-&gt;GetAbout();<br/>
-&nbsp;&nbsp;a.<a href="CppAdd.htm">Add</a><a href="CppLibrary.htm">Library</a>("<a href="CppWtAutoConfig.htm">WtAutoConfig</a> <a href="CppVersion.htm">version</a>: " <a href="CppOperatorPlus.htm">+</a> <a href="CppWtAutoConfig.htm">WtAutoConfig</a>::Get<a href="CppVersion.htm">Version</a>());<br/>
-&nbsp;&nbsp;a.<a href="CppAdd.htm">Add</a><a href="CppLibrary.htm">Library</a>("<a href="CppWtExercise.htm">WtExercise</a> <a href="CppVersion.htm">version</a>: " <a href="CppOperatorPlus.htm">+</a> <a href="CppWtExercise.htm">WtExercise</a>::Get<a href="CppVersion.htm">Version</a>());<br/>
-&nbsp;&nbsp;a.<a href="CppAdd.htm">Add</a><a href="CppLibrary.htm">Library</a>("<a href="CppWtMultipleChoiceQuestionDialog.htm">WtMultipleChoiceQuestionDialog</a> <a href="CppVersion.htm">version</a>: " <a href="CppOperatorPlus.htm">+</a> <a href="CppWtMultipleChoiceQuestionDialog.htm">WtMultipleChoiceQuestionDialog</a>::Get<a href="CppVersion.htm">Version</a>());<br/>
-&nbsp;&nbsp;a.<a href="CppAdd.htm">Add</a><a href="CppLibrary.htm">Library</a>("<a href="CppWtOpenQuestionDialog.htm">WtOpenQuestionDialog</a> <a href="CppVersion.htm">version</a>: " <a href="CppOperatorPlus.htm">+</a> <a href="CppWtOpenQuestionDialog.htm">WtOpenQuestionDialog</a>::Get<a href="CppVersion.htm">Version</a>());<br/>
-&nbsp;&nbsp;a.<a href="CppAdd.htm">Add</a><a href="CppLibrary.htm">Library</a>("<a href="CppWt.htm">Wt</a><a href="CppQuestionDialog.htm">QuestionDialog</a> <a href="CppVersion.htm">version</a>: " <a href="CppOperatorPlus.htm">+</a> <a href="CppWt.htm">Wt</a><a href="CppQuestionDialog.htm">QuestionDialog</a>::Get<a href="CppVersion.htm">Version</a>());<br/>
-&nbsp;&nbsp;<a href="CppWtAboutDialog.htm">WtAboutDialog</a> * <b><a href="CppConst.htm">const</a></b> d <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppWtAboutDialog.htm">WtAboutDialog</a>(a,<b><a href="CppFalse.htm">false</a></b>);<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(d);<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> d;<br/>
+&nbsp;&nbsp;<a href="CppAbout.html">About</a> a <a href="CppOperatorAssign.htm">=</a> m_dialog-&gt;GetAbout();<br/>
+&nbsp;&nbsp;a.<a href="CppAdd.htm">Add</a><a href="CppLibrary.html">Library</a>("<a href="CppWtAutoConfig.html">WtAutoConfig</a> <a href="CppVersion.html">version</a>: " <a href="CppOperatorPlus.htm">+</a> <a href="CppWtAutoConfig.html">WtAutoConfig</a>::Get<a href="CppVersion.html">Version</a>());<br/>
+&nbsp;&nbsp;a.<a href="CppAdd.htm">Add</a><a href="CppLibrary.html">Library</a>("<a href="CppWtExercise.html">WtExercise</a> <a href="CppVersion.html">version</a>: " <a href="CppOperatorPlus.htm">+</a> <a href="CppWtExercise.html">WtExercise</a>::Get<a href="CppVersion.html">Version</a>());<br/>
+&nbsp;&nbsp;a.<a href="CppAdd.htm">Add</a><a href="CppLibrary.html">Library</a>("<a href="CppWtMultipleChoiceQuestionDialog.html">WtMultipleChoiceQuestionDialog</a> <a href="CppVersion.html">version</a>: " <a href="CppOperatorPlus.htm">+</a> <a href="CppWtMultipleChoiceQuestionDialog.html">WtMultipleChoiceQuestionDialog</a>::Get<a href="CppVersion.html">Version</a>());<br/>
+&nbsp;&nbsp;a.<a href="CppAdd.htm">Add</a><a href="CppLibrary.html">Library</a>("<a href="CppWtOpenQuestionDialog.html">WtOpenQuestionDialog</a> <a href="CppVersion.html">version</a>: " <a href="CppOperatorPlus.htm">+</a> <a href="CppWtOpenQuestionDialog.html">WtOpenQuestionDialog</a>::Get<a href="CppVersion.html">Version</a>());<br/>
+&nbsp;&nbsp;a.<a href="CppAdd.htm">Add</a><a href="CppLibrary.html">Library</a>("<a href="CppWt.htm">Wt</a><a href="CppQuestionDialog.html">QuestionDialog</a> <a href="CppVersion.html">version</a>: " <a href="CppOperatorPlus.htm">+</a> <a href="CppWt.htm">Wt</a><a href="CppQuestionDialog.html">QuestionDialog</a>::Get<a href="CppVersion.html">Version</a>());<br/>
+&nbsp;&nbsp;<a href="CppWtAboutDialog.html">WtAboutDialog</a> * <b><a href="CppConst.html">const</a></b> d <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppWtAboutDialog.html">WtAboutDialog</a>(a,<b><a href="CppFalse.html">false</a></b>);<br/>
+&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(d);<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> d;<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppWWidget.htm">Wt::WWidget</a> * <a href="CppRibi.htm">ribi</a>::<a href="CppWt.htm">Wt</a><a href="ToolTestExercise.htm">TestExercise</a>MenuDialog::CreateNewMainDialog() <b><a href="CppConst.htm">const</a></b><br/>
+<a href="CppWWidget.html">Wt::WWidget</a> * <a href="CppRibi.htm">ribi</a>::<a href="CppWt.htm">Wt</a><a href="ToolTestExercise.html">TestExercise</a>MenuDialog::CreateNewMainDialog() <b><a href="CppConst.html">const</a></b><br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppWt.htm">Wt</a><a href="ToolTestExercise.htm">TestExercise</a>MainDialog * <b><a href="CppConst.htm">const</a></b> d <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppWt.htm">Wt</a><a href="ToolTestExercise.htm">TestExercise</a>MainDialog;<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(d);<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> d;<br/>
+&nbsp;&nbsp;<a href="CppWt.htm">Wt</a><a href="ToolTestExercise.html">TestExercise</a>MainDialog * <b><a href="CppConst.html">const</a></b> d <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppWt.htm">Wt</a><a href="ToolTestExercise.html">TestExercise</a>MainDialog;<br/>
+&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(d);<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> d;<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppWWidget.htm">Wt::WWidget</a> * <a href="CppRibi.htm">ribi</a>::<a href="CppWt.htm">Wt</a><a href="ToolTestExercise.htm">TestExercise</a>MenuDialog::CreateNewWelcomeDialog() <b><a href="CppConst.htm">const</a></b><br/>
+<a href="CppWWidget.html">Wt::WWidget</a> * <a href="CppRibi.htm">ribi</a>::<a href="CppWt.htm">Wt</a><a href="ToolTestExercise.html">TestExercise</a>MenuDialog::CreateNewWelcomeDialog() <b><a href="CppConst.html">const</a></b><br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppWContainerWidget.htm">Wt::WContainerWidget</a> * dialog <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppWContainerWidget.htm">Wt::WContainerWidget</a>;<br/>
+&nbsp;&nbsp;<a href="CppWContainerWidget.html">Wt::WContainerWidget</a> * dialog <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppWContainerWidget.html">Wt::WContainerWidget</a>;<br/>
 &nbsp;&nbsp;dialog-&gt;setContentAlignment(<a href="CppWt.htm">Wt</a>::AlignCenter);<br/>
-&nbsp;&nbsp;dialog-&gt;addWidget(<b><a href="CppNew.htm">new</a></b> <a href="CppWBreak.htm">Wt::WBreak</a>);<br/>
-&nbsp;&nbsp;<b><a href="CppNew.htm">new</a></b> <a href="CppWLabel.htm">Wt::WLabel</a>("Welcome to <a href="ToolTestExercise.htm">TestExercise</a>",dialog);<br/>
-&nbsp;&nbsp;<b><a href="CppNew.htm">new</a></b> <a href="CppWBreak.htm">Wt::WBreak</a>(dialog);<br/>
-&nbsp;&nbsp;<b><a href="CppNew.htm">new</a></b> <a href="CppWBreak.htm">Wt::WBreak</a>(dialog);<br/>
-&nbsp;&nbsp;<b><a href="CppNew.htm">new</a></b> <a href="CppWLabel.htm">Wt::WLabel</a>("<a href="ToolTestExercise.htm">TestExercise</a> tests the <a href="CppExercise.htm">Exercise</a> <b><a href="CppClass.htm">classes</a></b>",dialog);<br/>
-&nbsp;&nbsp;<b><a href="CppNew.htm">new</a></b> <a href="CppWBreak.htm">Wt::WBreak</a>(dialog);<br/>
-&nbsp;&nbsp;<b><a href="CppNew.htm">new</a></b> <a href="CppWBreak.htm">Wt::WBreak</a>(dialog);<br/>
-&nbsp;&nbsp; <a href="CppWGroupBox.htm">Wt::WGroupBox</a> * <b><a href="CppConst.htm">const</a></b> box <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppWGroupBox.htm">Wt::WGroupBox</a>("Explanation",dialog);<br/>
-&nbsp;&nbsp;box-&gt;addWidget(<b><a href="CppNew.htm">new</a></b> <a href="CppWImage.htm">Wt::WImage</a>("<a href="ToolTestExercise.htm">ToolTestExercise</a>Welcome.png"));<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> dialog;<br/>
+&nbsp;&nbsp;dialog-&gt;addWidget(<b><a href="CppNew.htm">new</a></b> <a href="CppWBreak.html">Wt::WBreak</a>);<br/>
+&nbsp;&nbsp;<b><a href="CppNew.htm">new</a></b> <a href="CppWLabel.html">Wt::WLabel</a>("Welcome to <a href="ToolTestExercise.html">TestExercise</a>",dialog);<br/>
+&nbsp;&nbsp;<b><a href="CppNew.htm">new</a></b> <a href="CppWBreak.html">Wt::WBreak</a>(dialog);<br/>
+&nbsp;&nbsp;<b><a href="CppNew.htm">new</a></b> <a href="CppWBreak.html">Wt::WBreak</a>(dialog);<br/>
+&nbsp;&nbsp;<b><a href="CppNew.htm">new</a></b> <a href="CppWLabel.html">Wt::WLabel</a>("<a href="ToolTestExercise.html">TestExercise</a> tests the <a href="CppExercise.html">Exercise</a> <b><a href="CppClass.html">classes</a></b>",dialog);<br/>
+&nbsp;&nbsp;<b><a href="CppNew.htm">new</a></b> <a href="CppWBreak.html">Wt::WBreak</a>(dialog);<br/>
+&nbsp;&nbsp;<b><a href="CppNew.htm">new</a></b> <a href="CppWBreak.html">Wt::WBreak</a>(dialog);<br/>
+&nbsp;&nbsp; <a href="CppWGroupBox.html">Wt::WGroupBox</a> * <b><a href="CppConst.html">const</a></b> box <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppWGroupBox.html">Wt::WGroupBox</a>("Explanation",dialog);<br/>
+&nbsp;&nbsp;box-&gt;addWidget(<b><a href="CppNew.htm">new</a></b> <a href="CppWImage.html">Wt::WImage</a>("<a href="ToolTestExercise.html">ToolTestExercise</a>Welcome.png"));<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> dialog;<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 </code></td></tr></table>

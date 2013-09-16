@@ -89,10 +89,10 @@ and <a href="CppBoostArray.htm">boost::array</a>.</p>
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="CppArrayExample1.pro" border = "1"><tr><td><code>
-TEMPLATE = app<br/>
-CONFIG += console<br/>
-CONFIG -= qt<br/>
-<a href="CppSOURCES.htm">SOURCES</a> += <a href="CppMain.htm">main</a>.cpp<br/>
+<a href="CppQmakeTemplate.htm">TEMPLATE</a> = app<br/>
+<a href="CppQmakeConfig.htm">CONFIG</a> += console<br/>
+<a href="CppQmakeConfig.htm">CONFIG</a> -= qt<br/>
+<a href="CppQmakeSources.htm">SOURCES</a> += <a href="CppMain.htm">main</a>.cpp<br/>
 <br/>
 #<br/>
 #<br/>
@@ -100,15 +100,15 @@ CONFIG -= qt<br/>
 #<br/>
 #<br/>
 <br/>
-CONFIG(debug, debug|release) {<br/>
+<a href="CppQmakeConfig.htm">CONFIG</a>(debug, debug|release) {<br/>
 &nbsp;&nbsp;message(Debug mode)<br/>
 }<br/>
 <br/>
-CONFIG(release, debug|release) {<br/>
+<a href="CppQmakeConfig.htm">CONFIG</a>(release, debug|release) {<br/>
 &nbsp;&nbsp;message(Release mode)<br/>
 <br/>
 &nbsp;&nbsp;#Remove all <a href="CppAssert.htm">assert</a>s and <a href="CppTRACE.htm">TRACE</a><br/>
-&nbsp;&nbsp;DEFINES += NDEBUG N<a href="CppTRACE.htm">TRACE</a>_BILDERBIKKEL<br/>
+&nbsp;&nbsp;<a href="CppQmakeDefines.htm">DEFINES</a> += NDEBUG N<a href="CppTRACE.htm">TRACE</a>_BILDERBIKKEL<br/>
 }<br/>
 <br/>
 #<br/>
@@ -123,7 +123,7 @@ CONFIG(release, debug|release) {<br/>
 #<br/>
 #<br/>
 <br/>
-<a href="CppQMAKE_CXXFLAGS.htm">QMAKE_CXXFLAGS</a> += -std=<a href="Cpp11.htm">c++11</a> <a href="CppWall.htm">-Wall</a> <a href="CppWextra.htm">-Wextra</a> <a href="CppWeffcpp.htm">-Weffc++</a> <a href="CppWerror.htm">-Werror</a><br/>
+<a href="CppQmakeQmake_cxxflags.htm">QMAKE_CXXFLAGS</a> += -std=<a href="Cpp11.htm">c++11</a> <a href="CppWall.htm">-Wall</a> <a href="CppWextra.htm">-Wextra</a> <a href="CppWeffcpp.htm">-Weffc++</a> <a href="CppWerror.htm">-Werror</a><br/>
 <br/>
 #<br/>
 #<br/>
@@ -137,7 +137,7 @@ unix {<br/>
 <br/>
 win32 {<br/>
 &nbsp;&nbsp;message(Windows: add Boost to include path)<br/>
-&nbsp;&nbsp;<a href="CppINCLUDEPATH.htm">INCLUDEPATH</a> += \<br/>
+&nbsp;&nbsp;<a href="CppQmakeIncludepath.htm">INCLUDEPATH</a> += \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../../<a href="Projects.htm">Projects</a>/<a href="CppLibrary.htm">Libraries</a>/boost_1_54_0<br/>
 }<br/>
 </code></td></tr></table>
@@ -151,64 +151,64 @@ win32 {<br/>
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="main.cpp" border = "1"><tr><td><code>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppArrayH.htm">array</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppArray.htm">array</a>.hpp&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppTr1.htm">tr1</a>/<a href="CppArray.htm">array</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppArrayH.html">array</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppCassertH.html">cassert</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppBoost.html">boost</a>/<a href="CppArray.html">array</a><a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppTr1.htm">tr1</a>/<a href="CppArray.html">array</a>&gt;<br/>
 <br/>
-<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a>()<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>Statically allocated plain <a href="CppArray.htm">array</a><br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Statically allocated plain <a href="CppArray.html">array</a><br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> w[3] <a href="CppOperatorAssign.htm">=</a> { 0,1 }; <a href="CppComment.htm">//</a>Does <a href="CppCompile.htm">compile</a>: too few elements is not checked in assignment<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x[3] <a href="CppOperatorAssign.htm">=</a> { 0,1,2,3 }; <a href="CppComment.htm">//</a>Does not <a href="CppCompile.htm">compile</a>: too m<a href="CppAny.htm">any</a> elements is checked in assignment<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> w[3] <a href="CppOperatorAssign.htm">=</a> { 0,1 }; <a href="CppComment.htm">//</a>Does <a href="CppCompile.html">compile</a>: too few elements is not checked in assignment<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> x[3] <a href="CppOperatorAssign.htm">=</a> { 0,1,2,3 }; <a href="CppComment.htm">//</a>Does not <a href="CppCompile.html">compile</a>: too m<a href="CppAny.htm">any</a> elements is checked in assignment<br/>
 <br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> v[3] { 0,1,2 };<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> v[3] { 0,1,2 };<br/>
 <br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppStatic_assert.htm">static_assert</a></b>(<b><a href="CppSizeof.htm">sizeof</a></b>(v) <a href="CppOperatorDivide.htm">/</a> <b><a href="CppSizeof.htm">sizeof</a></b>(<b><a href="CppInt.htm">int</a></b>) <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 3,"");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(v[1] <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 1);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppStatic_assert.html">static_assert</a></b>(<b><a href="CppSizeof.html">sizeof</a></b>(v) <a href="CppOperatorDivide.htm">/</a> <b><a href="CppSizeof.html">sizeof</a></b>(<b><a href="CppInt.htm">int</a></b>) <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 3,"");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(v[1] <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 1);<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>Dynamically allocated plain <a href="CppArray.htm">array</a><br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Dynamically allocated plain <a href="CppArray.html">array</a><br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> * <b><a href="CppConst.htm">const</a></b> v { <b><a href="CppNew.htm">new</a></b> <b><a href="CppInt.htm">int</a></b>(3) }; <a href="CppComment.htm">//</a>Cannot initialize directly<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> * <b><a href="CppConst.html">const</a></b> v { <b><a href="CppNew.htm">new</a></b> <b><a href="CppInt.htm">int</a></b>(3) }; <a href="CppComment.htm">//</a>Cannot <a href="CppInitialize.html">initialize</a> directly<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;v[0] <a href="CppOperatorAssign.htm">=</a> 0; v[1] <a href="CppOperatorAssign.htm">=</a> 1; v[2] <a href="CppOperatorAssign.htm">=</a> 2;<br/>
 <br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppStatic_assert.htm">static_assert</a></b>(<b><a href="CppSizeof.htm">sizeof</a></b>(v) <a href="CppOperatorDivide.htm">/</a> <b><a href="CppSizeof.htm">sizeof</a></b>(<b><a href="CppInt.htm">int</a></b>) <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 1,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppStatic_assert.html">static_assert</a></b>(<b><a href="CppSizeof.html">sizeof</a></b>(v) <a href="CppOperatorDivide.htm">/</a> <b><a href="CppSizeof.html">sizeof</a></b>(<b><a href="CppInt.htm">int</a></b>) <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 1,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"WARNING: you might have expected <b><a href="CppThis.htm">this</a></b> to be 3");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<b><a href="CppSizeof.htm">sizeof</a></b>(v) <a href="CppOperatorDivide.htm">/</a> <b><a href="CppSizeof.htm">sizeof</a></b>(<b><a href="CppInt.htm">int</a></b>) <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 1<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "WARNING: you might have expected <b><a href="CppThis.htm">this</a></b> to be 3");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(<b><a href="CppSizeof.html">sizeof</a></b>(v) <a href="CppOperatorDivide.htm">/</a> <b><a href="CppSizeof.html">sizeof</a></b>(<b><a href="CppInt.htm">int</a></b>) <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 1<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorLogicalAnd.html">&amp;&amp;</a> "WARNING: you might have expected <b><a href="CppThis.htm">this</a></b> to be 3");<br/>
 <br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(v[1] <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 1);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(v[1] <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 1);<br/>
 <br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppDelete.htm">delete</a></b>[] v; <a href="CppComment.htm">//</a>Do not forget to free <a href="CppMemory.htm">memory</a> with right syntax<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppDelete.html">delete</a></b>[] v; <a href="CppComment.htm">//</a>Do not forget to free <a href="CppMemory.html">memory</a> with right syntax<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppTr1Array.htm">std::tr1::array</a><br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppTr1Array.html">std::tr1::array</a><br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppConst.htm">const</a></b> <a href="CppTr1Array.htm">std::tr1::array</a>&lt;<b><a href="CppInt.htm">int</a></b>,3&gt; w <a href="CppOperatorAssign.htm">=</a> { 0,1 }; <a href="CppComment.htm">//</a>Does <a href="CppCompile.htm">compile</a>: too few elements is not checked in assignment<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppConst.htm">const</a></b> <a href="CppTr1Array.htm">std::tr1::array</a>&lt;<b><a href="CppInt.htm">int</a></b>,3&gt; x <a href="CppOperatorAssign.htm">=</a> { 0,1,2,3 }; <a href="CppComment.htm">//</a>Does not <a href="CppCompile.htm">compile</a>: too m<a href="CppAny.htm">any</a> elements is checked in assignment<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppTr1Array.htm">std::tr1::array</a>&lt;<b><a href="CppInt.htm">int</a></b>,3&gt; v { 0,1,2 }; <a href="CppComment.htm">//</a>Note the <b><a href="CppDouble.htm">double</a></b> braces<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppStatic_assert.htm">static_assert</a></b>(v.size() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 3,""); <a href="CppComment.htm">//</a>Not allowed<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(v[1] <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 1);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppConst.html">const</a></b> <a href="CppTr1Array.html">std::tr1::array</a>&lt;<b><a href="CppInt.htm">int</a></b>,3&gt; w <a href="CppOperatorAssign.htm">=</a> { 0,1 }; <a href="CppComment.htm">//</a>Does <a href="CppCompile.html">compile</a>: too few elements is not checked in assignment<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppConst.html">const</a></b> <a href="CppTr1Array.html">std::tr1::array</a>&lt;<b><a href="CppInt.htm">int</a></b>,3&gt; x <a href="CppOperatorAssign.htm">=</a> { 0,1,2,3 }; <a href="CppComment.htm">//</a>Does not <a href="CppCompile.html">compile</a>: too m<a href="CppAny.htm">any</a> elements is checked in assignment<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppTr1Array.html">std::tr1::array</a>&lt;<b><a href="CppInt.htm">int</a></b>,3&gt; v { 0,1,2 }; <a href="CppComment.htm">//</a>Note the <b><a href="CppDouble.html">double</a></b> braces<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppStatic_assert.html">static_assert</a></b>(v.size() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 3,""); <a href="CppComment.htm">//</a>Not allowed<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(v[1] <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 1);<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppStdArray.htm">std::array</a><br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppStdArray.html">std::array</a><br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppConst.htm">const</a></b> <a href="CppStdArray.htm">std::array</a>&lt;<b><a href="CppInt.htm">int</a></b>,3&gt; w <a href="CppOperatorAssign.htm">=</a> { 0,1 }; <a href="CppComment.htm">//</a>Does <a href="CppCompile.htm">compile</a>: too few elements is not checked in assignment<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppConst.htm">const</a></b> <a href="CppStdArray.htm">std::array</a>&lt;<b><a href="CppInt.htm">int</a></b>,3&gt; x <a href="CppOperatorAssign.htm">=</a> { 0,1,2,3 }; <a href="CppComment.htm">//</a>Does not <a href="CppCompile.htm">compile</a>: too m<a href="CppAny.htm">any</a> elements is checked in assignment<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppConst.html">const</a></b> <a href="CppStdArray.html">std::array</a>&lt;<b><a href="CppInt.htm">int</a></b>,3&gt; w <a href="CppOperatorAssign.htm">=</a> { 0,1 }; <a href="CppComment.htm">//</a>Does <a href="CppCompile.html">compile</a>: too few elements is not checked in assignment<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppConst.html">const</a></b> <a href="CppStdArray.html">std::array</a>&lt;<b><a href="CppInt.htm">int</a></b>,3&gt; x <a href="CppOperatorAssign.htm">=</a> { 0,1,2,3 }; <a href="CppComment.htm">//</a>Does not <a href="CppCompile.html">compile</a>: too m<a href="CppAny.htm">any</a> elements is checked in assignment<br/>
 <br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdArray.htm">std::array</a>&lt;<b><a href="CppInt.htm">int</a></b>,3&gt; v { 0,1,2 }; <a href="CppComment.htm">//</a>Note the <b><a href="CppDouble.htm">double</a></b> braces<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppStatic_assert.htm">static_assert</a></b>(v.size() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 3,"");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(v[1] <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 1);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppStdArray.html">std::array</a>&lt;<b><a href="CppInt.htm">int</a></b>,3&gt; v { 0,1,2 }; <a href="CppComment.htm">//</a>Note the <b><a href="CppDouble.html">double</a></b> braces<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppStatic_assert.html">static_assert</a></b>(v.size() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 3,"");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(v[1] <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 1);<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppBoostArray.htm">boost::array</a><br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppBoostArray.html">boost::array</a><br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppConst.htm">const</a></b> <a href="CppBoostArray.htm">boost::array</a>&lt;<b><a href="CppInt.htm">int</a></b>,3&gt; w <a href="CppOperatorAssign.htm">=</a> { 0,1 }; <a href="CppComment.htm">//</a>Does <a href="CppCompile.htm">compile</a>: to few elements is not checked in assignment<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppConst.htm">const</a></b> <a href="CppBoostArray.htm">boost::array</a>&lt;<b><a href="CppInt.htm">int</a></b>,3&gt; x <a href="CppOperatorAssign.htm">=</a> { 0,1,2,3 }; <a href="CppComment.htm">//</a>Does not <a href="CppCompile.htm">compile</a>: too m<a href="CppAny.htm">any</a> elements is checked in assignment<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppConst.html">const</a></b> <a href="CppBoostArray.html">boost::array</a>&lt;<b><a href="CppInt.htm">int</a></b>,3&gt; w <a href="CppOperatorAssign.htm">=</a> { 0,1 }; <a href="CppComment.htm">//</a>Does <a href="CppCompile.html">compile</a>: to few elements is not checked in assignment<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppConst.html">const</a></b> <a href="CppBoostArray.html">boost::array</a>&lt;<b><a href="CppInt.htm">int</a></b>,3&gt; x <a href="CppOperatorAssign.htm">=</a> { 0,1,2,3 }; <a href="CppComment.htm">//</a>Does not <a href="CppCompile.html">compile</a>: too m<a href="CppAny.htm">any</a> elements is checked in assignment<br/>
 <br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostArray.htm">boost::array</a>&lt;<b><a href="CppInt.htm">int</a></b>,3&gt; v { 0,1,2 }; <a href="CppComment.htm">//</a>Note the <b><a href="CppDouble.htm">double</a></b> braces<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppBoostArray.html">boost::array</a>&lt;<b><a href="CppInt.htm">int</a></b>,3&gt; v { 0,1,2 }; <a href="CppComment.htm">//</a>Note the <b><a href="CppDouble.html">double</a></b> braces<br/>
 <br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppStatic_assert.htm">static_assert</a></b>(v.size() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 3,""); <a href="CppComment.htm">//</a>Not allowed<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(v.size() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 3);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(v[1] <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 1);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppStatic_assert.html">static_assert</a></b>(v.size() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 3,""); <a href="CppComment.htm">//</a>Not allowed<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(v.size() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 3);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(v[1] <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 1);<br/>
 &nbsp;&nbsp;}<br/>
 }<br/>
 </code></td></tr></table>

@@ -37,78 +37,78 @@
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="euclideanvector.h" border = "1"><tr><td><code>
-<a href="CppIfndef.htm">#ifndef</a> EUCLIDEANVECTOR_H<br/>
-<a href="CppDefine.htm">#define</a> EUCLIDEANVECTOR_H<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppUtilityH.htm">utility</a>&gt;<br/>
+<a href="CppIfndef.html">#ifndef</a> EUCLIDEANVECTOR_H<br/>
+<a href="CppDefine.html">#define</a> EUCLIDEANVECTOR_H<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppCassertH.html">cassert</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppUtilityH.html">utility</a>&gt;<br/>
 <br/>
 <a href="CppComment.htm">//</a>A Euclidean vector<br/>
-<b><a href="CppTemplate.htm">template</a></b> &lt;<b><a href="CppClass.htm">class</a></b> T&gt;<br/>
-<b><a href="CppStruct.htm">struct</a></b> EuclideanVector<br/>
+<b><a href="CppTemplate.html">template</a></b> &lt;<b><a href="CppClass.html">class</a></b> T&gt;<br/>
+<b><a href="CppStruct.html">struct</a></b> EuclideanVector<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppExplicit.htm">explicit</a></b> EuclideanVector(<b><a href="CppConst.htm">const</a></b> T&amp; <a href="CppAny.htm">any</a>_x, <b><a href="CppConst.htm">const</a></b> T&amp; <a href="CppAny.htm">any</a>_y)<br/>
+&nbsp;&nbsp;<b><a href="CppExplicit.html">explicit</a></b> EuclideanVector(<b><a href="CppConst.html">const</a></b> T&amp; <a href="CppAny.htm">any</a>_x, <b><a href="CppConst.html">const</a></b> T&amp; <a href="CppAny.htm">any</a>_y)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;: x { <a href="CppAny.htm">any</a>_x }, y { <a href="CppAny.htm">any</a>_y }<br/>
 &nbsp;&nbsp;{<br/>
 <br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<b><a href="CppExplicit.htm">explicit</a></b> EuclideanVector(<b><a href="CppConst.htm">const</a></b> <a href="CppPair.htm">std::pair</a>&lt;T,T&gt;&amp; p)<br/>
+&nbsp;&nbsp;<b><a href="CppExplicit.html">explicit</a></b> EuclideanVector(<b><a href="CppConst.html">const</a></b> <a href="CppPair.html">std::pair</a>&lt;T,T&gt;&amp; p)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;: x { p.first }, y { p.second }<br/>
 &nbsp;&nbsp;{<br/>
 <br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<b><a href="CppExplicit.htm">explicit</a></b> EuclideanVector(<b><a href="CppConst.htm">const</a></b> EuclideanVector&lt;T&gt;&amp; rhs)<br/>
+&nbsp;&nbsp;<b><a href="CppExplicit.html">explicit</a></b> EuclideanVector(<b><a href="CppConst.html">const</a></b> EuclideanVector&lt;T&gt;&amp; rhs)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;: x { rhs.x }, y { rhs.y }<br/>
 &nbsp;&nbsp;{<br/>
 <br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;EuclideanVector&amp; <b><a href="CppOperatorPlus.htm">operator+</a></b>=(<b><a href="CppConst.htm">const</a></b> EuclideanVector&amp; rhs)<br/>
+&nbsp;&nbsp;EuclideanVector&amp; <b><a href="CppOperatorPlus.html">operator+</a></b>=(<b><a href="CppConst.html">const</a></b> EuclideanVector&amp; rhs)<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;x <a href="CppOperatorPlus.htm">+</a><a href="CppOperatorAssign.htm">=</a> rhs.x;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;y <a href="CppOperatorPlus.htm">+</a><a href="CppOperatorAssign.htm">=</a> rhs.y;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> *<b><a href="CppThis.htm">this</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> *<b><a href="CppThis.htm">this</a></b>;<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;EuclideanVector&amp; <b><a href="CppOperatorMultiply.htm">operator*</a></b>=(<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> f)<br/>
+&nbsp;&nbsp;EuclideanVector&amp; <b><a href="CppOperatorMultiply.html">operator*</a></b>=(<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> f)<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;x<a href="CppOperatorMultiplyAssign.htm">*=</a>f;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;y<a href="CppOperatorMultiplyAssign.htm">*=</a>f;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> *<b><a href="CppThis.htm">this</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> *<b><a href="CppThis.htm">this</a></b>;<br/>
 &nbsp;&nbsp;}<br/>
 <br/>
 &nbsp;&nbsp;T x;<br/>
 &nbsp;&nbsp;T y;<br/>
 };<br/>
 <br/>
-<b><a href="CppTemplate.htm">template</a></b> &lt;<b><a href="CppClass.htm">class</a></b> T&gt;<br/>
-<b><a href="CppBool.htm">bool</a></b> <b><a href="CppOperatorEqual.htm">operator==</a></b>(<b><a href="CppConst.htm">const</a></b> EuclideanVector&lt;T&gt;&amp; lhs, <b><a href="CppConst.htm">const</a></b> EuclideanVector&lt;T&gt;&amp; rhs)<br/>
+<b><a href="CppTemplate.html">template</a></b> &lt;<b><a href="CppClass.html">class</a></b> T&gt;<br/>
+<b><a href="CppBool.htm">bool</a></b> <b><a href="CppOperatorEqual.html">operator==</a></b>(<b><a href="CppConst.html">const</a></b> EuclideanVector&lt;T&gt;&amp; lhs, <b><a href="CppConst.html">const</a></b> EuclideanVector&lt;T&gt;&amp; rhs)<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> lhs.x <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> rhs.x <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> lhs.y <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> rhs.y;<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> lhs.x <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> rhs.x <a href="CppOperatorLogicalAnd.html">&amp;&amp;</a> lhs.y <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> rhs.y;<br/>
 }<br/>
 <br/>
-<b><a href="CppTemplate.htm">template</a></b> &lt;<b><a href="CppClass.htm">class</a></b> T&gt;<br/>
-<b><a href="CppBool.htm">bool</a></b> <b><a href="CppOperatorNotEqual.htm">operator!=</a></b>(<b><a href="CppConst.htm">const</a></b> EuclideanVector&lt;T&gt;&amp; lhs, <b><a href="CppConst.htm">const</a></b> EuclideanVector&lt;T&gt;&amp; rhs)<br/>
+<b><a href="CppTemplate.html">template</a></b> &lt;<b><a href="CppClass.html">class</a></b> T&gt;<br/>
+<b><a href="CppBool.htm">bool</a></b> <b><a href="CppOperatorNotEqual.html">operator!=</a></b>(<b><a href="CppConst.html">const</a></b> EuclideanVector&lt;T&gt;&amp; lhs, <b><a href="CppConst.html">const</a></b> EuclideanVector&lt;T&gt;&amp; rhs)<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> !(lhs <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> rhs);<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> !(lhs <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> rhs);<br/>
 }<br/>
 <br/>
-<b><a href="CppTemplate.htm">template</a></b> &lt;<b><a href="CppClass.htm">class</a></b> T&gt;<br/>
-<b><a href="CppConst.htm">const</a></b> EuclideanVector&lt;T&gt; <b><a href="CppOperatorPlus.htm">operator+</a></b>(<b><a href="CppConst.htm">const</a></b> EuclideanVector&lt;T&gt;&amp; lhs, <b><a href="CppConst.htm">const</a></b> EuclideanVector&lt;T&gt;&amp; rhs)<br/>
+<b><a href="CppTemplate.html">template</a></b> &lt;<b><a href="CppClass.html">class</a></b> T&gt;<br/>
+<b><a href="CppConst.html">const</a></b> EuclideanVector&lt;T&gt; <b><a href="CppOperatorPlus.html">operator+</a></b>(<b><a href="CppConst.html">const</a></b> EuclideanVector&lt;T&gt;&amp; lhs, <b><a href="CppConst.html">const</a></b> EuclideanVector&lt;T&gt;&amp; rhs)<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> EuclideanVector&lt;T&gt;(lhs.x <a href="CppOperatorPlus.htm">+</a> rhs.x, lhs.y <a href="CppOperatorPlus.htm">+</a> rhs.y);<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> EuclideanVector&lt;T&gt;(lhs.x <a href="CppOperatorPlus.htm">+</a> rhs.x, lhs.y <a href="CppOperatorPlus.htm">+</a> rhs.y);<br/>
 }<br/>
 <br/>
-<b><a href="CppTemplate.htm">template</a></b> &lt;<b><a href="CppClass.htm">class</a></b> T, <b><a href="CppClass.htm">class</a></b> U, <b><a href="CppClass.htm">class</a></b> V&gt;<br/>
-<b><a href="CppConst.htm">const</a></b> EuclideanVector&lt;T&gt; <b><a href="CppOperatorDivide.htm">operator/</a></b>(<b><a href="CppConst.htm">const</a></b> EuclideanVector&lt;U&gt;&amp; lhs, <b><a href="CppConst.htm">const</a></b> V&amp; rhs)<br/>
+<b><a href="CppTemplate.html">template</a></b> &lt;<b><a href="CppClass.html">class</a></b> T, <b><a href="CppClass.html">class</a></b> U, <b><a href="CppClass.html">class</a></b> V&gt;<br/>
+<b><a href="CppConst.html">const</a></b> EuclideanVector&lt;T&gt; <b><a href="CppOperatorDivide.html">operator/</a></b>(<b><a href="CppConst.html">const</a></b> EuclideanVector&lt;U&gt;&amp; lhs, <b><a href="CppConst.html">const</a></b> V&amp; rhs)<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
-&nbsp;&nbsp;{ <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x <a href="CppOperatorAssign.htm">=</a> <b><a href="CppInt.htm">int</a></b> {}; <a href="CppAssert.htm">assert</a>(x <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 0); }<br/>
-&nbsp;&nbsp;{ <b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> x <a href="CppOperatorAssign.htm">=</a> <b><a href="CppDouble.htm">double</a></b> {}; <a href="CppAssert.htm">assert</a>(x <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 0.0); }<br/>
-&nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> EuclideanVector&lt;T&gt;(lhs.x <a href="CppOperatorDivide.htm">/</a> rhs, lhs.y <a href="CppOperatorDivide.htm">/</a> rhs);<br/>
+&nbsp;&nbsp;<a href="CppIfndef.html">#ifndef</a> <a href="CppNDEBUG.html">NDEBUG</a><br/>
+&nbsp;&nbsp;{ <b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> x <a href="CppOperatorAssign.htm">=</a> <b><a href="CppInt.htm">int</a></b> {}; <a href="CppAssert.html">assert</a>(x <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 0); }<br/>
+&nbsp;&nbsp;{ <b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> x <a href="CppOperatorAssign.htm">=</a> <b><a href="CppDouble.html">double</a></b> {}; <a href="CppAssert.html">assert</a>(x <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 0.0); }<br/>
+&nbsp;&nbsp;<a href="CppEndif.html">#endif</a><br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> EuclideanVector&lt;T&gt;(lhs.x <a href="CppOperatorDivide.htm">/</a> rhs, lhs.y <a href="CppOperatorDivide.htm">/</a> rhs);<br/>
 }<br/>
 <br/>
 <br/>
 <br/>
-<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> EUCLIDEANVECTOR_H<br/>
+<a href="CppEndif.html">#endif</a> <a href="CppComment.htm">//</a> EUCLIDEANVECTOR_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -120,7 +120,7 @@
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="euclideanvector.cpp" border = "1"><tr><td><code>
-<a href="CppInclude.htm">#include</a> "euclideanvector.h"<br/>
+<a href="CppInclude.html">#include</a> "euclideanvector<a href="CppHeaderFile.htm">.h</a>"<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>

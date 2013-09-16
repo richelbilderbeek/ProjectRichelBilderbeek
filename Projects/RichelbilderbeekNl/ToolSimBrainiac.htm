@@ -77,40 +77,40 @@ and <a href="CppBoost.htm">Boost</a> libraries.</p>
 <table summary="ProjectSimBrainiac.cpp" border = "1"><tr><td><code>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> &lt;vcl.h&gt;<br/>
-<a href="CppPragma.htm">#pragma</a> hdrstop<br/>
+<a href="CppInclude.html">#include</a> &lt;vcl<a href="CppHeaderFile.htm">.h</a>&gt;<br/>
+<a href="CppPragma.html">#pragma</a> hdrstop<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-USEFORM("UnitFormSimBrainiacMain.cpp", FormSimBrainiacMain);<br/>
-USEFORM("UnitFormSimBrainiacMenu.cpp", FormSimBrainiacMenu);<br/>
-USEFORM("UnitFormSimBrainiacGraph.cpp", FormSimBrainiacGraph);<br/>
-USEFORM("UnitFormSimBrainiacManual.cpp", FormSimBrainiacManual);<br/>
-USEFORM("UnitFormSimBrainiac<a href="CppAbout.htm">About</a>.cpp", FormSimBrainiac<a href="CppAbout.htm">About</a>);<br/>
+USEFORM("UnitFormSimBrainiacMain<a href="CppImplementationFile.html">.cpp</a>", FormSimBrainiacMain);<br/>
+USEFORM("UnitFormSimBrainiacMenu<a href="CppImplementationFile.html">.cpp</a>", FormSimBrainiacMenu);<br/>
+USEFORM("UnitFormSimBrainiacGraph<a href="CppImplementationFile.html">.cpp</a>", FormSimBrainiacGraph);<br/>
+USEFORM("UnitFormSimBrainiacManual<a href="CppImplementationFile.html">.cpp</a>", FormSimBrainiacManual);<br/>
+USEFORM("UnitFormSimBrainiac<a href="CppAbout.html">About</a><a href="CppImplementationFile.html">.cpp</a>", FormSimBrainiac<a href="CppAbout.html">About</a>);<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, <b><a href="CppInt.htm">int</a></b>)<br/>
 {<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppTry.htm">try</a></b><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppApplication.htm">Application</a>-&gt;<a href="CppInitialize.htm">Initialize</a>();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppApplication.htm">Application</a>-&gt;Title <a href="CppOperatorAssign.htm">=</a> "SimBrainiac";<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppApplication.htm">Application</a>-&gt;CreateForm(__classid(TFormSimBrainiacMenu), &amp;FormSimBrainiacMenu);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppApplication.htm">Application</a>-&gt;Run();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppApplication.html">Application</a>-&gt;<a href="CppInitialize.html">Initialize</a>();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppApplication.html">Application</a>-&gt;Title <a href="CppOperatorAssign.htm">=</a> "SimBrainiac";<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppApplication.html">Application</a>-&gt;CreateForm(__classid(TFormSimBrainiacMenu), &amp;FormSimBrainiacMenu);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppApplication.html">Application</a>-&gt;Run();<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCatch.htm">catch</a></b> (<a href="CppException.htm">Exception</a> &amp;<a href="CppException.htm">exception</a>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCatch.html">catch</a></b> (<a href="CppException.html">Exception</a> &amp;<a href="CppException.html">exception</a>)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppApplication.htm">Application</a>-&gt;Show<a href="CppException.htm">Exception</a>(&amp;<a href="CppException.htm">exception</a>);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppApplication.html">Application</a>-&gt;Show<a href="CppException.html">Exception</a>(&amp;<a href="CppException.html">exception</a>);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCatch.htm">catch</a></b> (...)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCatch.html">catch</a></b> (...)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b><a href="CppTry.htm">try</a></b><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b><a href="CppThrow.htm">throw</a></b> <a href="CppException.htm">Exception</a>("");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b><a href="CppThrow.html">throw</a></b> <a href="CppException.html">Exception</a>("");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b><a href="CppCatch.htm">catch</a></b> (<a href="CppException.htm">Exception</a> &amp;<a href="CppException.htm">exception</a>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b><a href="CppCatch.html">catch</a></b> (<a href="CppException.html">Exception</a> &amp;<a href="CppException.html">exception</a>)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppApplication.htm">Application</a>-&gt;Show<a href="CppException.htm">Exception</a>(&amp;<a href="CppException.htm">exception</a>);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppApplication.html">Application</a>-&gt;Show<a href="CppException.html">Exception</a>(&amp;<a href="CppException.html">exception</a>);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> 0;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> 0;<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 </code></td></tr></table>
@@ -144,18 +144,18 @@ WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, <b><a href="CppInt.htm">int</a></b>)
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">//</a> From http://www.richelbilderbeek.nl<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppIfndef.htm">#ifndef</a> UnitBrainiacH<br/>
-<a href="CppDefine.htm">#define</a> UnitBrainiacH<br/>
+<a href="CppIfndef.html">#ifndef</a> UnitBrainiacH<br/>
+<a href="CppDefine.html">#define</a> UnitBrainiacH<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <br/>
-<b><a href="CppStruct.htm">struct</a></b> Brainiac<br/>
+<b><a href="CppStruct.html">struct</a></b> Brainiac<br/>
 {<br/>
-&nbsp;&nbsp;Brainiac(<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> <a href="CppAny.htm">any</a>PcorrectAnswer <a href="CppOperatorAssign.htm">=</a> 0.5, <b><a href="CppDouble.htm">double</a></b> <a href="CppAny.htm">any</a>Phas<a href="CppQuestion.htm">Question</a> <a href="CppOperatorAssign.htm">=</a> 0.5);<br/>
-&nbsp;&nbsp;<b><a href="CppDouble.htm">double</a></b> pCorrectAnswer;<br/>
-&nbsp;&nbsp;<b><a href="CppDouble.htm">double</a></b> pHas<a href="CppQuestion.htm">Question</a>;<br/>
+&nbsp;&nbsp;Brainiac(<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> <a href="CppAny.htm">any</a>PcorrectAnswer <a href="CppOperatorAssign.htm">=</a> 0.5, <b><a href="CppDouble.html">double</a></b> <a href="CppAny.htm">any</a>Phas<a href="CppQuestion.html">Question</a> <a href="CppOperatorAssign.htm">=</a> 0.5);<br/>
+&nbsp;&nbsp;<b><a href="CppDouble.html">double</a></b> pCorrectAnswer;<br/>
+&nbsp;&nbsp;<b><a href="CppDouble.html">double</a></b> pHas<a href="CppQuestion.html">Question</a>;<br/>
 };<br/>
 <br/>
-<a href="CppEndif.htm">#endif</a><br/>
+<a href="CppEndif.html">#endif</a><br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -187,27 +187,27 @@ WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, <b><a href="CppInt.htm">int</a></b>)
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">//</a> From http://www.richelbilderbeek.nl<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppCassertH.html">cassert</a>&gt;<br/>
 <br/>
-<a href="CppPragma.htm">#pragma</a> hdrstop<br/>
+<a href="CppPragma.html">#pragma</a> hdrstop<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> "UnitBrainiac.h"<br/>
+<a href="CppInclude.html">#include</a> "UnitBrainiac<a href="CppHeaderFile.htm">.h</a>"<br/>
 <br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-Brainiac::Brainiac(<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> <a href="CppAny.htm">any</a>PcorrectAnswer, <b><a href="CppDouble.htm">double</a></b> <a href="CppAny.htm">any</a>Phas<a href="CppQuestion.htm">Question</a>)<br/>
+Brainiac::Brainiac(<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> <a href="CppAny.htm">any</a>PcorrectAnswer, <b><a href="CppDouble.html">double</a></b> <a href="CppAny.htm">any</a>Phas<a href="CppQuestion.html">Question</a>)<br/>
 &nbsp;&nbsp;: pCorrectAnswer(<a href="CppAny.htm">any</a>PcorrectAnswer),<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;pHas<a href="CppQuestion.htm">Question</a>(<a href="CppAny.htm">any</a>Phas<a href="CppQuestion.htm">Question</a>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;pHas<a href="CppQuestion.html">Question</a>(<a href="CppAny.htm">any</a>Phas<a href="CppQuestion.html">Question</a>)<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(pCorrectAnswer <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 0.0);<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(pCorrectAnswer &lt;&nbsp;&nbsp;1.0);<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(pHas<a href="CppQuestion.htm">Question</a>&nbsp;&nbsp; <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 0.0);<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(pHas<a href="CppQuestion.htm">Question</a>&nbsp;&nbsp; &lt;&nbsp;&nbsp;1.0);<br/>
+&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(pCorrectAnswer <a href="CppOperatorGreaterEqual.html">&gt;=</a> 0.0);<br/>
+&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(pCorrectAnswer &lt;&nbsp;&nbsp;1.0);<br/>
+&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(pHas<a href="CppQuestion.html">Question</a>&nbsp;&nbsp; <a href="CppOperatorGreaterEqual.html">&gt;=</a> 0.0);<br/>
+&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(pHas<a href="CppQuestion.html">Question</a>&nbsp;&nbsp; &lt;&nbsp;&nbsp;1.0);<br/>
 <br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <br/>
 <br/>
-<a href="CppPragma.htm">#pragma</a> package(smart_init)<br/>
+<a href="CppPragma.html">#pragma</a> package(smart_init)<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -239,21 +239,21 @@ Brainiac::Brainiac(<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">//</a> From http://www.richelbilderbeek.nl<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppIfndef.htm">#ifndef</a> UnitFormSimBrainiac<a href="CppAbout.htm">About</a>H<br/>
-<a href="CppDefine.htm">#define</a> UnitFormSimBrainiac<a href="CppAbout.htm">About</a>H<br/>
+<a href="CppIfndef.html">#ifndef</a> UnitFormSimBrainiac<a href="CppAbout.html">About</a>H<br/>
+<a href="CppDefine.html">#define</a> UnitFormSimBrainiac<a href="CppAbout.html">About</a>H<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppClass.htm">Classes</a>.hpp&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;Controls.hpp&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;StdCtrls.hpp&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;Forms.hpp&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;ComCtrls.hpp&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;ExtCtrls.hpp&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;Graphics.hpp&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppClass.html">Classes</a><a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;Controls<a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;StdCtrls<a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;Forms<a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;ComCtrls<a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;ExtCtrls<a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;Graphics<a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppClass.htm">class</a></b> TFormSimBrainiac<a href="CppAbout.htm">About</a> : <b><a href="CppPublic.htm">public</a></b> TForm<br/>
+<b><a href="CppClass.html">class</a></b> TFormSimBrainiac<a href="CppAbout.html">About</a> : <b><a href="CppPublic.html">public</a></b> TForm<br/>
 {<br/>
-__published:	<a href="CppComment.htm">//</a> IDE-managed <a href="CppComponent.htm">Component</a>s<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppTImage.htm">TImage</a> *Image1;<br/>
+__published:	<a href="CppComment.htm">//</a> IDE-managed <a href="CppComponent.html">Component</a>s<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppTImage.html">TImage</a> *Image1;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TRichEdit *RichEdit1;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TPanel *PanelTop;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TPanel *PanelTopRight;<br/>
@@ -263,14 +263,14 @@ __published:	<a href="CppComment.htm">//</a> IDE-managed <a href="CppComponent.h
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TPanel *Panel4;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TPanel *Panel5;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TPanel *Panel6;<br/>
-<b><a href="CppPrivate.htm">private</a></b>:	<a href="CppComment.htm">//</a> User <a href="CppDeclaration.htm">declaration</a>s<br/>
-<b><a href="CppPublic.htm">public</a></b>:		<a href="CppComment.htm">//</a> User <a href="CppDeclaration.htm">declaration</a>s<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;__fastcall TFormSimBrainiac<a href="CppAbout.htm">About</a>(T<a href="CppComponent.htm">Component</a>* Owner);<br/>
+<b><a href="CppPrivate.html">private</a></b>:	<a href="CppComment.htm">//</a> User <a href="CppDeclaration.html">declaration</a>s<br/>
+<b><a href="CppPublic.html">public</a></b>:		<a href="CppComment.htm">//</a> User <a href="CppDeclaration.html">declaration</a>s<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;__fastcall TFormSimBrainiac<a href="CppAbout.html">About</a>(T<a href="CppComponent.html">Component</a>* Owner);<br/>
 };<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppExtern.htm">extern</a></b> PACKAGE TFormSimBrainiac<a href="CppAbout.htm">About</a> *FormSimBrainiac<a href="CppAbout.htm">About</a>;<br/>
+<b><a href="CppExtern.html">extern</a></b> PACKAGE TFormSimBrainiac<a href="CppAbout.html">About</a> *FormSimBrainiac<a href="CppAbout.html">About</a>;<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppEndif.htm">#endif</a><br/>
+<a href="CppEndif.html">#endif</a><br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -302,16 +302,16 @@ __published:	<a href="CppComment.htm">//</a> IDE-managed <a href="CppComponent.h
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">//</a> From http://www.richelbilderbeek.nl<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppInclude.htm">#include</a> &lt;vcl.h&gt;<br/>
-<a href="CppPragma.htm">#pragma</a> hdrstop<br/>
+<a href="CppInclude.html">#include</a> &lt;vcl<a href="CppHeaderFile.htm">.h</a>&gt;<br/>
+<a href="CppPragma.html">#pragma</a> hdrstop<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> "UnitFormSimBrainiac<a href="CppAbout.htm">About</a>.h"<br/>
+<a href="CppInclude.html">#include</a> "UnitFormSimBrainiac<a href="CppAbout.html">About</a><a href="CppHeaderFile.htm">.h</a>"<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppPragma.htm">#pragma</a> package(smart_init)<br/>
-<a href="CppPragma.htm">#pragma</a> resource "*.dfm"<br/>
-TFormSimBrainiac<a href="CppAbout.htm">About</a> *FormSimBrainiac<a href="CppAbout.htm">About</a>;<br/>
+<a href="CppPragma.html">#pragma</a> package(smart_init)<br/>
+<a href="CppPragma.html">#pragma</a> resource "*.dfm"<br/>
+TFormSimBrainiac<a href="CppAbout.html">About</a> *FormSimBrainiac<a href="CppAbout.html">About</a>;<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-__fastcall TFormSimBrainiac<a href="CppAbout.htm">About</a>::TFormSimBrainiac<a href="CppAbout.htm">About</a>(T<a href="CppComponent.htm">Component</a>* Owner)<br/>
+__fastcall TFormSimBrainiac<a href="CppAbout.html">About</a>::TFormSimBrainiac<a href="CppAbout.html">About</a>(T<a href="CppComponent.html">Component</a>* Owner)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: TForm(Owner)<br/>
 {<br/>
 }<br/>
@@ -347,39 +347,39 @@ __fastcall TFormSimBrainiac<a href="CppAbout.htm">About</a>::TFormSimBrainiac<a 
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">//</a> From http://www.richelbilderbeek.nl<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppIfndef.htm">#ifndef</a> UnitFormSimBrainiacGraphH<br/>
-<a href="CppDefine.htm">#define</a> UnitFormSimBrainiacGraphH<br/>
+<a href="CppIfndef.html">#ifndef</a> UnitFormSimBrainiacGraphH<br/>
+<a href="CppDefine.html">#define</a> UnitFormSimBrainiacGraphH<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppClass.htm">Classes</a>.hpp&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;Controls.hpp&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;StdCtrls.hpp&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;Forms.hpp&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;Chart.hpp&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;ExtCtrls.hpp&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;Series.hpp&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;TeEngine.hpp&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;TeeProcs.hpp&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppClass.html">Classes</a><a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;Controls<a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;StdCtrls<a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;Forms<a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;Chart<a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;ExtCtrls<a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;Series<a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;TeEngine<a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;TeeProcs<a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> "UnitBrainiac.h"<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppVectorH.html">vector</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> "UnitBrainiac<a href="CppHeaderFile.htm">.h</a>"<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppClass.htm">class</a></b> TFormSimBrainiacGraph : <b><a href="CppPublic.htm">public</a></b> TForm<br/>
+<b><a href="CppClass.html">class</a></b> TFormSimBrainiacGraph : <b><a href="CppPublic.html">public</a></b> TForm<br/>
 {<br/>
-__published:	<a href="CppComment.htm">//</a> IDE-managed <a href="CppComponent.htm">Component</a>s<br/>
+__published:	<a href="CppComment.htm">//</a> IDE-managed <a href="CppComponent.html">Component</a>s<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TChart *Chart1;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TChart *Chart2;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TLineSeries *Series1;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TLineSeries *<a href="CppPoint.htm">Point</a>Series1;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TLineSeries *<a href="CppPoint.html">Point</a>Series1;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> __fastcall FormResize(TObject *Sender);<br/>
-<b><a href="CppPrivate.htm">private</a></b>:	<a href="CppComment.htm">//</a> User <a href="CppDeclaration.htm">declaration</a>s<br/>
-<b><a href="CppPublic.htm">public</a></b>:		<a href="CppComment.htm">//</a> User <a href="CppDeclaration.htm">declaration</a>s<br/>
-&nbsp;&nbsp;__fastcall TFormSimBrainiacGraph(T<a href="CppComponent.htm">Component</a>* Owner);<br/>
-&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> Plot(<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;Brainiac&gt;&amp; brainiacs);<br/>
+<b><a href="CppPrivate.html">private</a></b>:	<a href="CppComment.htm">//</a> User <a href="CppDeclaration.html">declaration</a>s<br/>
+<b><a href="CppPublic.html">public</a></b>:		<a href="CppComment.htm">//</a> User <a href="CppDeclaration.html">declaration</a>s<br/>
+&nbsp;&nbsp;__fastcall TFormSimBrainiacGraph(T<a href="CppComponent.html">Component</a>* Owner);<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> Plot(<b><a href="CppConst.html">const</a></b> <a href="CppVector.html">std::vector</a>&lt;Brainiac&gt;&amp; brainiacs);<br/>
 };<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppExtern.htm">extern</a></b> PACKAGE TFormSimBrainiacGraph *FormSimBrainiacGraph;<br/>
+<b><a href="CppExtern.html">extern</a></b> PACKAGE TFormSimBrainiacGraph *FormSimBrainiacGraph;<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppEndif.htm">#endif</a><br/>
+<a href="CppEndif.html">#endif</a><br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -411,70 +411,70 @@ __published:	<a href="CppComment.htm">//</a> IDE-managed <a href="CppComponent.h
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">//</a> From http://www.richelbilderbeek.nl<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppSetH.htm">set</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppNumericH.htm">numeric</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;vcl.h&gt;<br/>
-<a href="CppPragma.htm">#pragma</a> hdrstop<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppSetH.html">set</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppNumericH.html">numeric</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;vcl<a href="CppHeaderFile.htm">.h</a>&gt;<br/>
+<a href="CppPragma.html">#pragma</a> hdrstop<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> "UnitFormSimBrainiacGraph.h"<br/>
+<a href="CppInclude.html">#include</a> "UnitFormSimBrainiacGraph<a href="CppHeaderFile.htm">.h</a>"<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppPragma.htm">#pragma</a> package(smart_init)<br/>
-<a href="CppPragma.htm">#pragma</a> resource "*.dfm"<br/>
+<a href="CppPragma.html">#pragma</a> package(smart_init)<br/>
+<a href="CppPragma.html">#pragma</a> resource "*.dfm"<br/>
 TFormSimBrainiacGraph *FormSimBrainiacGraph;<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-__fastcall TFormSimBrainiacGraph::TFormSimBrainiacGraph(T<a href="CppComponent.htm">Component</a>* Owner)<br/>
+__fastcall TFormSimBrainiacGraph::TFormSimBrainiacGraph(T<a href="CppComponent.html">Component</a>* Owner)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: TForm(Owner)<br/>
 {<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppVoid.htm">void</a></b> TFormSimBrainiacGraph::Plot(<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;Brainiac&gt;&amp; brainiacs)<br/>
+<b><a href="CppVoid.htm">void</a></b> TFormSimBrainiacGraph::Plot(<b><a href="CppConst.html">const</a></b> <a href="CppVector.html">std::vector</a>&lt;Brainiac&gt;&amp; brainiacs)<br/>
 {<br/>
 &nbsp;&nbsp;Chart1-&gt;Series[0]-&gt;Clear();<br/>
 &nbsp;&nbsp;Chart2-&gt;Series[0]-&gt;Clear();<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppSet.htm">std::set</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; setPcorrectAnswers;<br/>
-&nbsp;&nbsp;<a href="CppSet.htm">std::set</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; setPhas<a href="CppQuestion.htm">Question</a>;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> nBrainiacs <a href="CppOperatorAssign.htm">=</a> brainiacs.size();<br/>
+&nbsp;&nbsp;<a href="CppSet.html">std::set</a>&lt;<b><a href="CppDouble.html">double</a></b>&gt; setPcorrectAnswers;<br/>
+&nbsp;&nbsp;<a href="CppSet.html">std::set</a>&lt;<b><a href="CppDouble.html">double</a></b>&gt; setPhas<a href="CppQuestion.html">Question</a>;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> nBrainiacs <a href="CppOperatorAssign.htm">=</a> brainiacs.size();<br/>
 &nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> i=0; i<a href="CppOperatorNotEqual.htm">!=</a>nBrainiacs; <a href="CppOperatorPlus.htm">+</a>+i)<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;setPcorrectAnswers.insert(brainiacs[i].pCorrectAnswer);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;setPhas<a href="CppQuestion.htm">Question</a>.insert(brainiacs[i].pHas<a href="CppQuestion.htm">Question</a>);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;setPhas<a href="CppQuestion.html">Question</a>.insert(brainiacs[i].pHas<a href="CppQuestion.html">Question</a>);<br/>
 &nbsp;&nbsp;}<br/>
 <br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>For every pCorrectAnswer<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppSet.htm">std::set</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;::const_iterator b <a href="CppOperatorAssign.htm">=</a> setPcorrectAnswers.end();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<a href="CppSet.htm">std::set</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;::const_iterator a <a href="CppOperatorAssign.htm">=</a> setPcorrectAnswers.begin(); a<a href="CppOperatorNotEqual.htm">!=</a>b; <a href="CppOperatorPlus.htm">+</a>+a)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppSet.html">std::set</a>&lt;<b><a href="CppDouble.html">double</a></b>&gt;::const_iterator b <a href="CppOperatorAssign.htm">=</a> setPcorrectAnswers.end();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<a href="CppSet.html">std::set</a>&lt;<b><a href="CppDouble.html">double</a></b>&gt;::const_iterator a <a href="CppOperatorAssign.htm">=</a> setPcorrectAnswers.begin(); a<a href="CppOperatorNotEqual.htm">!=</a>b; <a href="CppOperatorPlus.htm">+</a>+a)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; relIndex;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppVector.html">std::vector</a>&lt;<b><a href="CppDouble.html">double</a></b>&gt; relIndex;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> i=0; i<a href="CppOperatorNotEqual.htm">!=</a>nBrainiacs; <a href="CppOperatorPlus.htm">+</a>+i)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (brainiacs[i].pCorrectAnswer <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> *a)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;relIndex.push_back(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(i) <a href="CppOperatorDivide.htm">/</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(nBrainiacs ) );<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppStatic_cast.html">static_cast</a></b>&lt;<b><a href="CppDouble.html">double</a></b>&gt;(i) <a href="CppOperatorDivide.htm">/</a> <b><a href="CppStatic_cast.html">static_cast</a></b>&lt;<b><a href="CppDouble.html">double</a></b>&gt;(nBrainiacs ) );<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> average<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <a href="CppAccumulate.htm">std::accumulate</a>(relIndex.begin(), relIndex.end(), 0.0)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorDivide.htm">/</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(relIndex.size());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> average<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <a href="CppAccumulate.html">std::accumulate</a>(relIndex.begin(), relIndex.end(), 0.0)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorDivide.htm">/</a> <b><a href="CppStatic_cast.html">static_cast</a></b>&lt;<b><a href="CppDouble.html">double</a></b>&gt;(relIndex.size());<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Chart1-&gt;Series[0]-&gt;<a href="CppAdd.htm">Add</a>XY(*a,average);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;}<br/>
 <br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>For every pHas<a href="CppQuestion.htm">Question</a><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppSet.htm">std::set</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;::const_iterator b <a href="CppOperatorAssign.htm">=</a> setPhas<a href="CppQuestion.htm">Question</a>.end();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<a href="CppSet.htm">std::set</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;::const_iterator a <a href="CppOperatorAssign.htm">=</a> setPhas<a href="CppQuestion.htm">Question</a>.begin(); a<a href="CppOperatorNotEqual.htm">!=</a>b; <a href="CppOperatorPlus.htm">+</a>+a)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>For every pHas<a href="CppQuestion.html">Question</a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppSet.html">std::set</a>&lt;<b><a href="CppDouble.html">double</a></b>&gt;::const_iterator b <a href="CppOperatorAssign.htm">=</a> setPhas<a href="CppQuestion.html">Question</a>.end();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<a href="CppSet.html">std::set</a>&lt;<b><a href="CppDouble.html">double</a></b>&gt;::const_iterator a <a href="CppOperatorAssign.htm">=</a> setPhas<a href="CppQuestion.html">Question</a>.begin(); a<a href="CppOperatorNotEqual.htm">!=</a>b; <a href="CppOperatorPlus.htm">+</a>+a)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; relIndex;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppVector.html">std::vector</a>&lt;<b><a href="CppDouble.html">double</a></b>&gt; relIndex;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> i=0; i<a href="CppOperatorNotEqual.htm">!=</a>nBrainiacs; <a href="CppOperatorPlus.htm">+</a>+i)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (brainiacs[i].pHas<a href="CppQuestion.htm">Question</a> <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> *a)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (brainiacs[i].pHas<a href="CppQuestion.html">Question</a> <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> *a)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;relIndex.push_back(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(i) <a href="CppOperatorDivide.htm">/</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(nBrainiacs ) );<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppStatic_cast.html">static_cast</a></b>&lt;<b><a href="CppDouble.html">double</a></b>&gt;(i) <a href="CppOperatorDivide.htm">/</a> <b><a href="CppStatic_cast.html">static_cast</a></b>&lt;<b><a href="CppDouble.html">double</a></b>&gt;(nBrainiacs ) );<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> average<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <a href="CppAccumulate.htm">std::accumulate</a>(relIndex.begin(), relIndex.end(), 0.0)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorDivide.htm">/</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(relIndex.size());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> average<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <a href="CppAccumulate.html">std::accumulate</a>(relIndex.begin(), relIndex.end(), 0.0)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorDivide.htm">/</a> <b><a href="CppStatic_cast.html">static_cast</a></b>&lt;<b><a href="CppDouble.html">double</a></b>&gt;(relIndex.size());<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Chart2-&gt;Series[0]-&gt;<a href="CppAdd.htm">Add</a>XY(*a,average);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;}<br/>
@@ -520,112 +520,112 @@ __fastcall TFormSimBrainiacGraph::TFormSimBrainiacGraph(T<a href="CppComponent.h
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">//</a> From http://www.richelbilderbeek.nl<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppIfndef.htm">#ifndef</a> UnitFormSimBrainiacMainH<br/>
-<a href="CppDefine.htm">#define</a> UnitFormSimBrainiacMainH<br/>
+<a href="CppIfndef.html">#ifndef</a> UnitFormSimBrainiacMainH<br/>
+<a href="CppDefine.html">#define</a> UnitFormSimBrainiacMainH<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppClass.htm">Classes</a>.hpp&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;Controls.hpp&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;StdCtrls.hpp&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;Forms.hpp&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;ExtCtrls.hpp&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;Graphics.hpp&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppClass.html">Classes</a><a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;Controls<a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;StdCtrls<a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;Forms<a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;ExtCtrls<a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;Graphics<a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppMemoryH.htm">memory</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> "UnitBrainiac.h"<br/>
-<a href="CppInclude.htm">#include</a> "UnitSimBrainiac.h"<br/>
-<b><a href="CppClass.htm">class</a></b> TFormSimBrainiacGraph;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppMemoryH.html">memory</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> "UnitBrainiac<a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "UnitSimBrainiac<a href="CppHeaderFile.htm">.h</a>"<br/>
+<b><a href="CppClass.html">class</a></b> TFormSimBrainiacGraph;<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppClass.htm">class</a></b> TFormSimBrainiacMain : <b><a href="CppPublic.htm">public</a></b> TForm<br/>
+<b><a href="CppClass.html">class</a></b> TFormSimBrainiacMain : <b><a href="CppPublic.html">public</a></b> TForm<br/>
 {<br/>
-__published:	<a href="CppComment.htm">//</a> IDE-managed <a href="CppComponent.htm">Component</a>s<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppTImage.htm">TImage</a> *ImageBuffer;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppTImage.htm">TImage</a> *ImageBrainiac;<br/>
+__published:	<a href="CppComment.htm">//</a> IDE-managed <a href="CppComponent.html">Component</a>s<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppTImage.html">TImage</a> *ImageBuffer;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppTImage.html">TImage</a> *ImageBrainiac;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;T<a href="CppTime.htm">Time</a>r *<a href="CppTime.htm">Time</a>rMain;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> __fastcall <a href="CppTime.htm">Time</a>rMain<a href="CppTime.htm">Time</a>r(TObject *Sender);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> __fastcall FormResize(TObject *Sender);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> __fastcall FormKeyDown(TObject *Sender, WORD &amp;Key,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TShift<a href="CppState.htm">State</a> Shift);<br/>
-<b><a href="CppPrivate.htm">private</a></b>:	<a href="CppComment.htm">//</a> User <a href="CppDeclaration.htm">declaration</a>s<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TShift<a href="CppState.html">State</a> Shift);<br/>
+<b><a href="CppPrivate.html">private</a></b>:	<a href="CppComment.htm">//</a> User <a href="CppDeclaration.html">declaration</a>s<br/>
 &nbsp;&nbsp;SimBrainiac mSim;<br/>
 &nbsp;&nbsp;<b><a href="CppBool.htm">bool</a></b> mUseGrey;<br/>
 &nbsp;&nbsp;<b><a href="CppBool.htm">bool</a></b> mDrawBrainiacs;<br/>
-&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> DrawBrainiac(<b><a href="CppConst.htm">const</a></b> Brainiac&amp; b) <b><a href="CppConst.htm">const</a></b>;<br/>
-&nbsp;&nbsp;<a href="CppAuto_ptr.htm">std::auto_ptr</a>&lt;TFormSimBrainiacGraph&gt; mFormGraph;<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> DrawBrainiac(<b><a href="CppConst.html">const</a></b> Brainiac&amp; b) <b><a href="CppConst.html">const</a></b>;<br/>
+&nbsp;&nbsp;<a href="CppAuto_ptr.html">std::auto_ptr</a>&lt;TFormSimBrainiacGraph&gt; mFormGraph;<br/>
 &nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> mNcols, mNrows;<br/>
 <br/>
-<b><a href="CppPublic.htm">public</a></b>:		<a href="CppComment.htm">//</a> User <a href="CppDeclaration.htm">declaration</a>s<br/>
-&nbsp;&nbsp;__fastcall TFormSimBrainiacMain(T<a href="CppComponent.htm">Component</a>* Owner,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> nBrainiacs,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> nCorrectAnswerLevels,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> nHas<a href="CppQuestion.htm">Question</a>Levels);<br/>
+<b><a href="CppPublic.html">public</a></b>:		<a href="CppComment.htm">//</a> User <a href="CppDeclaration.html">declaration</a>s<br/>
+&nbsp;&nbsp;__fastcall TFormSimBrainiacMain(T<a href="CppComponent.html">Component</a>* Owner,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> nBrainiacs,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> nCorrectAnswerLevels,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> nHas<a href="CppQuestion.html">Question</a>Levels);<br/>
 };<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppExtern.htm">extern</a></b> PACKAGE TFormSimBrainiacMain *FormSimBrainiacMain;<br/>
+<b><a href="CppExtern.html">extern</a></b> PACKAGE TFormSimBrainiacMain *FormSimBrainiacMain;<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/Cpp<a href="CppDrawGlobe.htm">DrawGlobe</a>.htm<br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppDrawGlobe.htm">DrawGlobe</a>(<br/>
-&nbsp;&nbsp;<a href="CppTImage.htm">TImage</a> * <b><a href="CppConst.htm">const</a></b> image,<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> rMax,<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> gMax,<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> bMax);<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/Cpp<a href="CppDrawGlobe.html">DrawGlobe</a>.html<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppDrawGlobe.html">DrawGlobe</a>(<br/>
+&nbsp;&nbsp;<a href="CppTImage.html">TImage</a> * <b><a href="CppConst.html">const</a></b> image,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppUnsigned.html">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> rMax,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppUnsigned.html">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> gMax,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppUnsigned.html">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> bMax);<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">//</a>Set a pixel's RGB values<br/>
 <a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl<br/>
 <b><a href="CppVoid.htm">void</a></b> SetPixel(<br/>
-&nbsp;&nbsp;<a href="CppTImage.htm">TImage</a> * <b><a href="CppConst.htm">const</a></b> image,<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x,<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> y,<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> red,<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> green,<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> blue);<br/>
+&nbsp;&nbsp;<a href="CppTImage.html">TImage</a> * <b><a href="CppConst.html">const</a></b> image,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> x,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> y,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppUnsigned.html">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> red,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppUnsigned.html">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> green,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppUnsigned.html">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> blue);<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">//</a>Set a line of pixels' RGB values<br/>
 <a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl<br/>
 <b><a href="CppVoid.htm">void</a></b> SetPixel(<br/>
-&nbsp;&nbsp;<a href="CppTImage.htm">TImage</a> * <b><a href="CppConst.htm">const</a></b> image,<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x1,<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x2,<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> y,<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> red,<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> green,<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> blue);<br/>
+&nbsp;&nbsp;<a href="CppTImage.html">TImage</a> * <b><a href="CppConst.html">const</a></b> image,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> x1,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> x2,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> y,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppUnsigned.html">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> red,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppUnsigned.html">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> green,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppUnsigned.html">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> blue);<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">//</a>Set a square of pixels' RGB values<br/>
 <a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl<br/>
 <b><a href="CppVoid.htm">void</a></b> SetPixel(<br/>
-&nbsp;&nbsp;<a href="CppTImage.htm">TImage</a> * <b><a href="CppConst.htm">const</a></b> image,<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x1,<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> y1,<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x2,<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> y2,<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> red,<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> green,<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> blue);<br/>
+&nbsp;&nbsp;<a href="CppTImage.html">TImage</a> * <b><a href="CppConst.html">const</a></b> image,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> x1,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> y1,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> x2,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> y2,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppUnsigned.html">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> red,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppUnsigned.html">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> green,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppUnsigned.html">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> blue);<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="CppRainbow.htm">CppRainbow</a>.htm<br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRainbow.htm">Rainbow</a>(<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> x,<br/>
-&nbsp;&nbsp;<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b>&amp; r,<br/>
-&nbsp;&nbsp;<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b>&amp; g,<br/>
-&nbsp;&nbsp;<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b>&amp; b);<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="CppRainbow.html">CppRainbow</a>.html<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRainbow.html">Rainbow</a>(<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> x,<br/>
+&nbsp;&nbsp;<b><a href="CppUnsigned.html">unsigned</a></b> <b><a href="CppChar.htm">char</a></b>&amp; r,<br/>
+&nbsp;&nbsp;<b><a href="CppUnsigned.html">unsigned</a></b> <b><a href="CppChar.htm">char</a></b>&amp; g,<br/>
+&nbsp;&nbsp;<b><a href="CppUnsigned.html">unsigned</a></b> <b><a href="CppChar.htm">char</a></b>&amp; b);<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="CppRainbow.htm">CppRainbow</a>.htm<br/>
-<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> GetRed(<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> x);<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="CppRainbow.html">CppRainbow</a>.html<br/>
+<b><a href="CppConst.html">const</a></b> <b><a href="CppUnsigned.html">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> GetRed(<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> x);<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="CppRainbow.htm">CppRainbow</a>.htm<br/>
-<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> GetGreen(<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> x);<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="CppRainbow.html">CppRainbow</a>.html<br/>
+<b><a href="CppConst.html">const</a></b> <b><a href="CppUnsigned.html">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> GetGreen(<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> x);<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="CppRainbow.htm">CppRainbow</a>.htm<br/>
-<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> GetBlue(<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> x);<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="CppRainbow.html">CppRainbow</a>.html<br/>
+<b><a href="CppConst.html">const</a></b> <b><a href="CppUnsigned.html">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> GetBlue(<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> x);<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/Cpp<a href="CppPaint.htm">Paint</a>.htm<br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppPaint.htm">Paint</a>Vcl(<a href="CppTImage.htm">TImage</a> * <b><a href="CppConst.htm">const</a></b> image,<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> red,<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> green,<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> blue&nbsp;&nbsp;);<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/Cpp<a href="CppPaint.html">Paint</a>.html<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppPaint.html">Paint</a>Vcl(<a href="CppTImage.html">TImage</a> * <b><a href="CppConst.html">const</a></b> image,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppUnsigned.html">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> red,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppUnsigned.html">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> green,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppUnsigned.html">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> blue&nbsp;&nbsp;);<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <br/>
-<a href="CppEndif.htm">#endif</a><br/>
+<a href="CppEndif.html">#endif</a><br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -657,34 +657,34 @@ __published:	<a href="CppComment.htm">//</a> IDE-managed <a href="CppComponent.h
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">//</a> From http://www.richelbilderbeek.nl<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;&nbsp;&nbsp; <a href="CppComment.htm">//</a>For <a href="CppAssert.htm">assert</a><br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppCmathH.htm">cmath</a>&gt;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppComment.htm">//</a>For <a href="CppSqrt.htm">std::sqrt</a><br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppAlgorithmH.htm">algorithm</a>&gt; <a href="CppComment.htm">//</a>For <a href="CppMin.htm">std::min</a><br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> "UnitBrainiac.h"<br/>
-<a href="CppInclude.htm">#include</a> &lt;ExtCtrls.hpp&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;vcl.h&gt;<br/>
-<a href="CppPragma.htm">#pragma</a> hdrstop<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppCassertH.html">cassert</a>&gt;&nbsp;&nbsp; <a href="CppComment.htm">//</a>For <a href="CppAssert.html">assert</a><br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppCmathH.html">cmath</a>&gt;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppComment.htm">//</a>For <a href="CppSqrt.html">std::sqrt</a><br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppAlgorithmH.html">algorithm</a>&gt; <a href="CppComment.htm">//</a>For <a href="CppMin.html">std::min</a><br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppVectorH.html">vector</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> "UnitBrainiac<a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> &lt;ExtCtrls<a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;vcl<a href="CppHeaderFile.htm">.h</a>&gt;<br/>
+<a href="CppPragma.html">#pragma</a> hdrstop<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> "UnitFormSimBrainiacMain.h"<br/>
-<a href="CppInclude.htm">#include</a> "UnitFormSimBrainiacGraph.h"<br/>
+<a href="CppInclude.html">#include</a> "UnitFormSimBrainiacMain<a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "UnitFormSimBrainiacGraph<a href="CppHeaderFile.htm">.h</a>"<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppPragma.htm">#pragma</a> package(smart_init)<br/>
-<a href="CppPragma.htm">#pragma</a> resource "*.dfm"<br/>
+<a href="CppPragma.html">#pragma</a> package(smart_init)<br/>
+<a href="CppPragma.html">#pragma</a> resource "*.dfm"<br/>
 TFormSimBrainiacMain *FormSimBrainiacMain;<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 __fastcall TFormSimBrainiacMain::TFormSimBrainiacMain(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;T<a href="CppComponent.htm">Component</a>* Owner,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> nBrainiacs,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> nCorrectAnswerLevels,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> nHas<a href="CppQuestion.htm">Question</a>Levels)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;T<a href="CppComponent.html">Component</a>* Owner,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> nBrainiacs,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> nCorrectAnswerLevels,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> nHas<a href="CppQuestion.html">Question</a>Levels)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;: TForm(Owner),<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mSim(SimBrainiac(GetBrainiacs(nBrainiacs,nCorrectAnswerLevels,nHas<a href="CppQuestion.htm">Question</a>Levels))),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mSim(SimBrainiac(GetBrainiacs(nBrainiacs,nCorrectAnswerLevels,nHas<a href="CppQuestion.html">Question</a>Levels))),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mUseGrey(<b><a href="CppTrue.htm">true</a></b>),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mDrawBrainiacs(<b><a href="CppTrue.htm">true</a></b>),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mFormGraph(<b><a href="CppNew.htm">new</a></b> TFormSimBrainiacGraph(0)),<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mNrows(<b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(<a href="CppSqrt.htm">std::sqrt</a>( <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(nBrainiacs))) <a href="CppOperatorPlus.htm">+</a> 1),<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mNcols(<b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(<a href="CppSqrt.htm">std::sqrt</a>( <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(nBrainiacs))) <a href="CppOperatorPlus.htm">+</a> 1)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mNrows(<b><a href="CppStatic_cast.html">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(<a href="CppSqrt.html">std::sqrt</a>( <b><a href="CppStatic_cast.html">static_cast</a></b>&lt;<b><a href="CppDouble.html">double</a></b>&gt;(nBrainiacs))) <a href="CppOperatorPlus.htm">+</a> 1),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mNcols(<b><a href="CppStatic_cast.html">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(<a href="CppSqrt.html">std::sqrt</a>( <b><a href="CppStatic_cast.html">static_cast</a></b>&lt;<b><a href="CppDouble.html">double</a></b>&gt;(nBrainiacs))) <a href="CppOperatorPlus.htm">+</a> 1)<br/>
 {<br/>
 &nbsp;&nbsp;OnResize(0);<br/>
 &nbsp;&nbsp;<a href="CppTime.htm">Time</a>rMain<a href="CppTime.htm">Time</a>r(0);<br/>
@@ -692,14 +692,14 @@ __fastcall TFormSimBrainiacMain::TFormSimBrainiacMain(<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <b><a href="CppVoid.htm">void</a></b> __fastcall TFormSimBrainiacMain::<a href="CppTime.htm">Time</a>rMain<a href="CppTime.htm">Time</a>r(TObject *Sender)<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (mDrawBrainiacs <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <b><a href="CppFalse.htm">false</a></b>)<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (mDrawBrainiacs <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <b><a href="CppFalse.html">false</a></b>)<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppTime.htm">Time</a>rMain-&gt;Enabled <a href="CppOperatorAssign.htm">=</a> <b><a href="CppFalse.htm">false</a></b>;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppWhile.htm">while</a></b> (mDrawBrainiacs<a href="CppOperatorEqual.htm">==</a><b><a href="CppFalse.htm">false</a></b>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppTime.htm">Time</a>rMain-&gt;Enabled <a href="CppOperatorAssign.htm">=</a> <b><a href="CppFalse.html">false</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppWhile.html">while</a></b> (mDrawBrainiacs<a href="CppOperatorEqual.htm">==</a><b><a href="CppFalse.html">false</a></b>)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mSim.Tick();<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mFormGraph-&gt;Plot(mSim.GetBrainiacs());<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppApplication.htm">Application</a>-&gt;ProcessMessages();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppApplication.html">Application</a>-&gt;ProcessMessages();<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;}<br/>
 <br/>
@@ -707,20 +707,20 @@ __fastcall TFormSimBrainiacMain::TFormSimBrainiacMain(<br/>
 &nbsp;&nbsp;mSim.Tick();<br/>
 &nbsp;&nbsp;mFormGraph-&gt;Plot(mSim.GetBrainiacs());<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;Brainiac&gt;&amp; v <a href="CppOperatorAssign.htm">=</a> mSim.GetBrainiacs();<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> size <a href="CppOperatorAssign.htm">=</a> v.size();<br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (size<a href="CppOperatorEqual.htm">==</a>0) <b><a href="CppReturn.htm">return</a></b>;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> dX <a href="CppOperatorAssign.htm">=</a> ImageBrainiac-&gt;Picture-&gt;Graphic-&gt;Width;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> dY <a href="CppOperatorAssign.htm">=</a> ImageBrainiac-&gt;Picture-&gt;Graphic-&gt;Height;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppVector.html">std::vector</a>&lt;Brainiac&gt;&amp; v <a href="CppOperatorAssign.htm">=</a> mSim.GetBrainiacs();<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> size <a href="CppOperatorAssign.htm">=</a> v.size();<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (size<a href="CppOperatorEqual.htm">==</a>0) <b><a href="CppReturn.html">return</a></b>;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> dX <a href="CppOperatorAssign.htm">=</a> ImageBrainiac-&gt;Picture-&gt;Graphic-&gt;Width;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> dY <a href="CppOperatorAssign.htm">=</a> ImageBrainiac-&gt;Picture-&gt;Graphic-&gt;Height;<br/>
 <br/>
 &nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> i=0; i<a href="CppOperatorNotEqual.htm">!=</a>size; <a href="CppOperatorPlus.htm">+</a>+i)<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> indexX <a href="CppOperatorAssign.htm">=</a> i <a href="CppOperatorModulus.htm">%</a> mNcols;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> indexY <a href="CppOperatorAssign.htm">=</a> i <a href="CppOperatorDivide.htm">/</a> mNcols;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(indexX &lt; mNcols);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(indexY &lt; mNrows);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x <a href="CppOperatorAssign.htm">=</a> dX * indexX;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> y <a href="CppOperatorAssign.htm">=</a> dY * indexY;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> indexX <a href="CppOperatorAssign.htm">=</a> i <a href="CppOperatorModulus.htm">%</a> mNcols;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> indexY <a href="CppOperatorAssign.htm">=</a> i <a href="CppOperatorDivide.htm">/</a> mNcols;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(indexX &lt; mNcols);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(indexY &lt; mNrows);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> x <a href="CppOperatorAssign.htm">=</a> dX * indexX;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> y <a href="CppOperatorAssign.htm">=</a> dY * indexY;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;DrawBrainiac(v[i]);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;ImageBuffer-&gt;Canvas-&gt;Draw(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;x,y,<br/>
@@ -731,53 +731,53 @@ __fastcall TFormSimBrainiacMain::TFormSimBrainiacMain(<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <b><a href="CppVoid.htm">void</a></b> __fastcall TFormSimBrainiacMain::FormResize(TObject *Sender)<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> width&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> ClientWidth&nbsp;&nbsp;<a href="CppOperatorDivide.htm">/</a> mNrows;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> height <a href="CppOperatorAssign.htm">=</a> ClientHeight <a href="CppOperatorDivide.htm">/</a> mNcols;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> width&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> ClientWidth&nbsp;&nbsp;<a href="CppOperatorDivide.htm">/</a> mNrows;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> height <a href="CppOperatorAssign.htm">=</a> ClientHeight <a href="CppOperatorDivide.htm">/</a> mNcols;<br/>
 &nbsp;&nbsp;ImageBrainiac-&gt;Picture-&gt;Bitmap-&gt;Width&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> width;<br/>
 &nbsp;&nbsp;ImageBrainiac-&gt;Picture-&gt;Bitmap-&gt;Height <a href="CppOperatorAssign.htm">=</a> height;<br/>
 &nbsp;&nbsp;ImageBuffer-&gt;Picture-&gt;Bitmap-&gt;Width&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> ClientWidth;<br/>
 &nbsp;&nbsp;ImageBuffer-&gt;Picture-&gt;Bitmap-&gt;Height <a href="CppOperatorAssign.htm">=</a> ClientHeight;<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppPaint.htm">Paint</a>Vcl(ImageBuffer,255,255,255);<br/>
-&nbsp;&nbsp;<a href="CppPaint.htm">Paint</a>Vcl(ImageBrainiac,255,255,255);<br/>
+&nbsp;&nbsp;<a href="CppPaint.html">Paint</a>Vcl(ImageBuffer,255,255,255);<br/>
+&nbsp;&nbsp;<a href="CppPaint.html">Paint</a>Vcl(ImageBrainiac,255,255,255);<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppDrawGlobe.htm">DrawGlobe</a>(ImageBrainiac,255,255,255);<br/>
+&nbsp;&nbsp;<a href="CppDrawGlobe.html">DrawGlobe</a>(ImageBrainiac,255,255,255);<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <b><a href="CppVoid.htm">void</a></b> TFormSimBrainiacMain::DrawBrainiac(<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Brainiac&amp; brainiac) <b><a href="CppConst.htm">const</a></b><br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> Brainiac&amp; brainiac) <b><a href="CppConst.html">const</a></b><br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(brainiac.pCorrectAnswer <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 0.0 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> brainiac.pCorrectAnswer &lt; 1.0);<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(brainiac.pHas<a href="CppQuestion.htm">Question</a> <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 0.0 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> brainiac.pHas<a href="CppQuestion.htm">Question</a> &lt; 1.0);<br/>
+&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(brainiac.pCorrectAnswer <a href="CppOperatorGreaterEqual.html">&gt;=</a> 0.0 <a href="CppOperatorLogicalAnd.html">&amp;&amp;</a> brainiac.pCorrectAnswer &lt; 1.0);<br/>
+&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(brainiac.pHas<a href="CppQuestion.html">Question</a> <a href="CppOperatorGreaterEqual.html">&gt;=</a> 0.0 <a href="CppOperatorLogicalAnd.html">&amp;&amp;</a> brainiac.pHas<a href="CppQuestion.html">Question</a> &lt; 1.0);<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Assumes that 'image' already contains a globe!<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> width&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> ImageBrainiac-&gt;Picture-&gt;Bitmap-&gt;Width;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> height <a href="CppOperatorAssign.htm">=</a> ImageBrainiac-&gt;Picture-&gt;Bitmap-&gt;Height;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> midX <a href="CppOperatorAssign.htm">=</a> width&nbsp;&nbsp;<a href="CppOperatorDivide.htm">/</a> 2;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> midY <a href="CppOperatorAssign.htm">=</a> height <a href="CppOperatorDivide.htm">/</a> 2;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> midX2 <a href="CppOperatorAssign.htm">=</a> midX <a href="CppOperatorDivide.htm">/</a> 2;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> midY2 <a href="CppOperatorAssign.htm">=</a> midY <a href="CppOperatorDivide.htm">/</a> 2;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> greyCorrectAnswer<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b>&gt;(<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> width&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> ImageBrainiac-&gt;Picture-&gt;Bitmap-&gt;Width;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> height <a href="CppOperatorAssign.htm">=</a> ImageBrainiac-&gt;Picture-&gt;Bitmap-&gt;Height;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> midX <a href="CppOperatorAssign.htm">=</a> width&nbsp;&nbsp;<a href="CppOperatorDivide.htm">/</a> 2;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> midY <a href="CppOperatorAssign.htm">=</a> height <a href="CppOperatorDivide.htm">/</a> 2;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> midX2 <a href="CppOperatorAssign.htm">=</a> midX <a href="CppOperatorDivide.htm">/</a> 2;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> midY2 <a href="CppOperatorAssign.htm">=</a> midY <a href="CppOperatorDivide.htm">/</a> 2;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppUnsigned.html">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> greyCorrectAnswer<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.html">static_cast</a></b>&lt;<b><a href="CppUnsigned.html">unsigned</a></b> <b><a href="CppChar.htm">char</a></b>&gt;(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.0 <a href="CppOperatorPlus.htm">+</a> (brainiac.pCorrectAnswer * 254.0)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;);<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> greyHas<a href="CppQuestion.htm">Question</a><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b>&gt;(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.0 <a href="CppOperatorPlus.htm">+</a> (brainiac.pHas<a href="CppQuestion.htm">Question</a> * 254.0)<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppUnsigned.html">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> greyHas<a href="CppQuestion.html">Question</a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.html">static_cast</a></b>&lt;<b><a href="CppUnsigned.html">unsigned</a></b> <b><a href="CppChar.htm">char</a></b>&gt;(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.0 <a href="CppOperatorPlus.htm">+</a> (brainiac.pHas<a href="CppQuestion.html">Question</a> * 254.0)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;);<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x1 <a href="CppOperatorAssign.htm">=</a> midX-midX2;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> y1 <a href="CppOperatorAssign.htm">=</a> midY-midY2;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x2 <a href="CppOperatorAssign.htm">=</a> midX+midX2;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> y2 <a href="CppOperatorAssign.htm">=</a> midY+midY2;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> x1 <a href="CppOperatorAssign.htm">=</a> midX-midX2;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> y1 <a href="CppOperatorAssign.htm">=</a> midY-midY2;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> x2 <a href="CppOperatorAssign.htm">=</a> midX+midX2;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> y2 <a href="CppOperatorAssign.htm">=</a> midY+midY2;<br/>
 &nbsp;&nbsp;<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(x1 <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 0);<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(x1 &lt; width);<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(y1 <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 0);<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(y1 &lt; height);<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(x2 <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 0);<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(x2 &lt; width);<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(y2 <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 0);<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(y2 &lt; height);<br/>
+&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(x1 <a href="CppOperatorGreaterEqual.html">&gt;=</a> 0);<br/>
+&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(x1 &lt; width);<br/>
+&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(y1 <a href="CppOperatorGreaterEqual.html">&gt;=</a> 0);<br/>
+&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(y1 &lt; height);<br/>
+&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(x2 <a href="CppOperatorGreaterEqual.html">&gt;=</a> 0);<br/>
+&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(x2 &lt; width);<br/>
+&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(y2 <a href="CppOperatorGreaterEqual.html">&gt;=</a> 0);<br/>
+&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(y2 &lt; height);<br/>
 <br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (mUseGrey<a href="CppOperatorEqual.htm">==</a><b><a href="CppTrue.htm">true</a></b>)<br/>
 &nbsp;&nbsp;{<br/>
@@ -788,26 +788,26 @@ __fastcall TFormSimBrainiacMain::TFormSimBrainiacMain(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;midX,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;midY,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;greyCorrectAnswer,greyCorrectAnswer,greyCorrectAnswer);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppRainbow.htm">Rainbow</a>(brainiac.pHas<a href="CppQuestion.htm">Question</a>,r,g,b);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppRainbow.html">Rainbow</a>(brainiac.pHas<a href="CppQuestion.html">Question</a>,r,g,b);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;SetPixel(ImageBrainiac,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;midX,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;midY,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;x2,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;y2,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;greyHas<a href="CppQuestion.htm">Question</a>,greyHas<a href="CppQuestion.htm">Question</a>,greyHas<a href="CppQuestion.htm">Question</a>);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;greyHas<a href="CppQuestion.html">Question</a>,greyHas<a href="CppQuestion.html">Question</a>,greyHas<a href="CppQuestion.html">Question</a>);<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;<b><a href="CppElse.htm">else</a></b><br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppRainbow.htm">Rainbow</a><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> r,g,b;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppRainbow.htm">Rainbow</a>(brainiac.pCorrectAnswer,r,g,b);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppRainbow.html">Rainbow</a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppUnsigned.html">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> r,g,b;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppRainbow.html">Rainbow</a>(brainiac.pCorrectAnswer,r,g,b);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;SetPixel(ImageBrainiac,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;x1,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;y1,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;midX,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;midY,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;r,g,b);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppRainbow.htm">Rainbow</a>(brainiac.pHas<a href="CppQuestion.htm">Question</a>,r,g,b);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppRainbow.html">Rainbow</a>(brainiac.pHas<a href="CppQuestion.html">Question</a>,r,g,b);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;SetPixel(ImageBrainiac,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;midX,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;midY,<br/>
@@ -817,40 +817,40 @@ __fastcall TFormSimBrainiacMain::TFormSimBrainiacMain(<br/>
 &nbsp;&nbsp;}<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/Cpp<a href="CppDrawGlobe.htm">DrawGlobe</a>.htm<br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppDrawGlobe.htm">DrawGlobe</a>(<br/>
-&nbsp;&nbsp;<a href="CppTImage.htm">TImage</a> * <b><a href="CppConst.htm">const</a></b> image,<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> rMax,<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> gMax,<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> bMax)<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/Cpp<a href="CppDrawGlobe.html">DrawGlobe</a>.html<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppDrawGlobe.html">DrawGlobe</a>(<br/>
+&nbsp;&nbsp;<a href="CppTImage.html">TImage</a> * <b><a href="CppConst.html">const</a></b> image,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppUnsigned.html">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> rMax,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppUnsigned.html">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> gMax,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppUnsigned.html">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> bMax)<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(image<a href="CppOperatorNotEqual.htm">!=</a>0);<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> width&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> image-&gt;Picture-&gt;Bitmap-&gt;Width;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> height <a href="CppOperatorAssign.htm">=</a> image-&gt;Picture-&gt;Bitmap-&gt;Height;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> midX <a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(width ) <a href="CppOperatorDivide.htm">/</a> 2.0;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> midY <a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(height) <a href="CppOperatorDivide.htm">/</a> 2.0;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> maxDist <a href="CppOperatorAssign.htm">=</a> <a href="CppMin.htm">std::min</a>(midX,midY);<br/>
+&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(image<a href="CppOperatorNotEqual.htm">!=</a>0);<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> width&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> image-&gt;Picture-&gt;Bitmap-&gt;Width;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> height <a href="CppOperatorAssign.htm">=</a> image-&gt;Picture-&gt;Bitmap-&gt;Height;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> midX <a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.html">static_cast</a></b>&lt;<b><a href="CppDouble.html">double</a></b>&gt;(width ) <a href="CppOperatorDivide.htm">/</a> 2.0;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> midY <a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.html">static_cast</a></b>&lt;<b><a href="CppDouble.html">double</a></b>&gt;(height) <a href="CppOperatorDivide.htm">/</a> 2.0;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> maxDist <a href="CppOperatorAssign.htm">=</a> <a href="CppMin.html">std::min</a>(midX,midY);<br/>
 &nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> y=0; y<a href="CppOperatorNotEqual.htm">!=</a>height; <a href="CppOperatorPlus.htm">+</a>+y)<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> * <b><a href="CppConst.htm">const</a></b> line<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> *&gt;(image-&gt;Picture-&gt;Bitmap-&gt;ScanLine[y]);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> yD <a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(y);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppUnsigned.html">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> * <b><a href="CppConst.html">const</a></b> line<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.html">static_cast</a></b>&lt;<b><a href="CppUnsigned.html">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> *&gt;(image-&gt;Picture-&gt;Bitmap-&gt;ScanLine[y]);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> yD <a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.html">static_cast</a></b>&lt;<b><a href="CppDouble.html">double</a></b>&gt;(y);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> x=0; x<a href="CppOperatorNotEqual.htm">!=</a>width; <a href="CppOperatorPlus.htm">+</a>+x)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> xD <a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(x);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> dist <a href="CppOperatorAssign.htm">=</a> <a href="CppSqrt.htm">std::sqrt</a>( ((xD <a href="CppOperatorMinus.htm">-</a> midX) * (xD <a href="CppOperatorMinus.htm">-</a> midX)) <a href="CppOperatorPlus.htm">+</a> ((yD <a href="CppOperatorMinus.htm">-</a> midY) * (yD <a href="CppOperatorMinus.htm">-</a> midY)) );<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (dist <a href="CppOperatorLessEqual.htm">&lt;=</a> maxDist)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> xD <a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.html">static_cast</a></b>&lt;<b><a href="CppDouble.html">double</a></b>&gt;(x);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> dist <a href="CppOperatorAssign.htm">=</a> <a href="CppSqrt.html">std::sqrt</a>( ((xD <a href="CppOperatorMinus.htm">-</a> midX) * (xD <a href="CppOperatorMinus.htm">-</a> midX)) <a href="CppOperatorPlus.htm">+</a> ((yD <a href="CppOperatorMinus.htm">-</a> midY) * (yD <a href="CppOperatorMinus.htm">-</a> midY)) );<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (dist <a href="CppOperatorLessEqual.html">&lt;=</a> maxDist)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> relDist <a href="CppOperatorAssign.htm">=</a> dist <a href="CppOperatorDivide.htm">/</a> maxDist;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> r <a href="CppOperatorAssign.htm">=</a> relDist * <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(rMax);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> g <a href="CppOperatorAssign.htm">=</a> relDist * <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(gMax);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> b <a href="CppOperatorAssign.htm">=</a> relDist * <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(bMax);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>( r <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 0);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>( r &lt; 256);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>( g <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 0);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>( g &lt; 256);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>( b <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 0);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>( b &lt; 256);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> relDist <a href="CppOperatorAssign.htm">=</a> dist <a href="CppOperatorDivide.htm">/</a> maxDist;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> r <a href="CppOperatorAssign.htm">=</a> relDist * <b><a href="CppStatic_cast.html">static_cast</a></b>&lt;<b><a href="CppDouble.html">double</a></b>&gt;(rMax);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> g <a href="CppOperatorAssign.htm">=</a> relDist * <b><a href="CppStatic_cast.html">static_cast</a></b>&lt;<b><a href="CppDouble.html">double</a></b>&gt;(gMax);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> b <a href="CppOperatorAssign.htm">=</a> relDist * <b><a href="CppStatic_cast.html">static_cast</a></b>&lt;<b><a href="CppDouble.html">double</a></b>&gt;(bMax);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.html">assert</a>( r <a href="CppOperatorGreaterEqual.html">&gt;=</a> 0);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.html">assert</a>( r &lt; 256);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.html">assert</a>( g <a href="CppOperatorGreaterEqual.html">&gt;=</a> 0);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.html">assert</a>( g &lt; 256);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.html">assert</a>( b <a href="CppOperatorGreaterEqual.html">&gt;=</a> 0);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.html">assert</a>( b &lt; 256);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;line[x*3+2] <a href="CppOperatorAssign.htm">=</a> (r <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 0 ? 1 : r); <a href="CppComment.htm">//</a>Never use a zero <b><a href="CppFor.htm">for</a></b> red<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;line[x*3+1] <a href="CppOperatorAssign.htm">=</a> (g <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 0 ? 1 : g); <a href="CppComment.htm">//</a>Never use a zero <b><a href="CppFor.htm">for</a></b> green<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;line[x*3+0] <a href="CppOperatorAssign.htm">=</a> (b <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 0 ? 1 : b); <a href="CppComment.htm">//</a>Never use a zero <b><a href="CppFor.htm">for</a></b> blue<br/>
@@ -868,23 +868,23 @@ __fastcall TFormSimBrainiacMain::TFormSimBrainiacMain(<br/>
 <a href="CppComment.htm">//</a>Set a pixel's RGB values<br/>
 <a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl<br/>
 <b><a href="CppVoid.htm">void</a></b> SetPixel(<br/>
-&nbsp;&nbsp;<a href="CppTImage.htm">TImage</a> * <b><a href="CppConst.htm">const</a></b> image,<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x,<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> y,<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> red,<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> green,<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> blue)<br/>
+&nbsp;&nbsp;<a href="CppTImage.html">TImage</a> * <b><a href="CppConst.html">const</a></b> image,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> x,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> y,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppUnsigned.html">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> red,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppUnsigned.html">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> green,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppUnsigned.html">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> blue)<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(image<a href="CppOperatorNotEqual.htm">!=</a>0 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "Image is <a href="CppNULL.htm">NULL</a>");<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(image-&gt;Picture-&gt;Bitmap<a href="CppOperatorNotEqual.htm">!=</a>0 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "Bitmap is <a href="CppNULL.htm">NULL</a>");<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(image-&gt;Picture-&gt;Bitmap-&gt;PixelFormat <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> pf24bit <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "Bitmap must be 24 bit");<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>( x <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 0 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "x coordinat is below zero");<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>( y <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 0 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "y coordinat is below zero");<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>( x &lt; image-&gt;Picture-&gt;Bitmap-&gt;Width&nbsp;&nbsp;<a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "x coordinat is beyond image width");<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>( y &lt; image-&gt;Picture-&gt;Bitmap-&gt;Height <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "y coordinat is beyond image height");<br/>
+&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(image<a href="CppOperatorNotEqual.htm">!=</a>0 <a href="CppOperatorLogicalAnd.html">&amp;&amp;</a> "Image is <a href="CppNULL.htm">NULL</a>");<br/>
+&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(image-&gt;Picture-&gt;Bitmap<a href="CppOperatorNotEqual.htm">!=</a>0 <a href="CppOperatorLogicalAnd.html">&amp;&amp;</a> "Bitmap is <a href="CppNULL.htm">NULL</a>");<br/>
+&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(image-&gt;Picture-&gt;Bitmap-&gt;PixelFormat <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> pf24bit <a href="CppOperatorLogicalAnd.html">&amp;&amp;</a> "Bitmap must be 24 bit");<br/>
+&nbsp;&nbsp;<a href="CppAssert.html">assert</a>( x <a href="CppOperatorGreaterEqual.html">&gt;=</a> 0 <a href="CppOperatorLogicalAnd.html">&amp;&amp;</a> "x coordinat is below zero");<br/>
+&nbsp;&nbsp;<a href="CppAssert.html">assert</a>( y <a href="CppOperatorGreaterEqual.html">&gt;=</a> 0 <a href="CppOperatorLogicalAnd.html">&amp;&amp;</a> "y coordinat is below zero");<br/>
+&nbsp;&nbsp;<a href="CppAssert.html">assert</a>( x &lt; image-&gt;Picture-&gt;Bitmap-&gt;Width&nbsp;&nbsp;<a href="CppOperatorLogicalAnd.html">&amp;&amp;</a> "x coordinat is beyond image width");<br/>
+&nbsp;&nbsp;<a href="CppAssert.html">assert</a>( y &lt; image-&gt;Picture-&gt;Bitmap-&gt;Height <a href="CppOperatorLogicalAnd.html">&amp;&amp;</a> "y coordinat is beyond image height");<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> * <b><a href="CppConst.htm">const</a></b> line<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> *&gt;(image-&gt;Picture-&gt;Bitmap-&gt;ScanLine[y]);<br/>
+&nbsp;&nbsp;<b><a href="CppUnsigned.html">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> * <b><a href="CppConst.html">const</a></b> line<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.html">static_cast</a></b>&lt;<b><a href="CppUnsigned.html">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> *&gt;(image-&gt;Picture-&gt;Bitmap-&gt;ScanLine[y]);<br/>
 <br/>
 &nbsp;&nbsp;line[x*3+2] <a href="CppOperatorAssign.htm">=</a> red;<br/>
 &nbsp;&nbsp;line[x*3+1] <a href="CppOperatorAssign.htm">=</a> green;<br/>
@@ -894,26 +894,26 @@ __fastcall TFormSimBrainiacMain::TFormSimBrainiacMain(<br/>
 <a href="CppComment.htm">//</a>Set a line of pixels' RGB values<br/>
 <a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl<br/>
 <b><a href="CppVoid.htm">void</a></b> SetPixel(<br/>
-&nbsp;&nbsp;<a href="CppTImage.htm">TImage</a> * <b><a href="CppConst.htm">const</a></b> image,<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x1,<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x2,<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> y,<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> red,<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> green,<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> blue)<br/>
+&nbsp;&nbsp;<a href="CppTImage.html">TImage</a> * <b><a href="CppConst.html">const</a></b> image,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> x1,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> x2,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> y,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppUnsigned.html">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> red,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppUnsigned.html">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> green,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppUnsigned.html">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> blue)<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(image<a href="CppOperatorNotEqual.htm">!=</a>0 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "Image is <a href="CppNULL.htm">NULL</a>");<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(image-&gt;Picture-&gt;Bitmap<a href="CppOperatorNotEqual.htm">!=</a>0 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "Bitmap is <a href="CppNULL.htm">NULL</a>");<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(image-&gt;Picture-&gt;Bitmap-&gt;PixelFormat <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> pf24bit <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "Bitmap must be 24 bit");<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>( x1 <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 0 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "x1 coordinat is below zero");<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>( x2 <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 0 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "x2 coordinat is below zero");<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>( y <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 0 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "y coordinat is below zero");<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>( x1 &lt; image-&gt;Picture-&gt;Bitmap-&gt;Width&nbsp;&nbsp;<a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "x1 coordinat is beyond image width");<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>( x2 <a href="CppOperatorLessEqual.htm">&lt;=</a> image-&gt;Picture-&gt;Bitmap-&gt;Width&nbsp;&nbsp;<a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "x2 coordinat is beyond image width");<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>( y &lt; image-&gt;Picture-&gt;Bitmap-&gt;Height <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "y coordinat is beyond image height");<br/>
+&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(image<a href="CppOperatorNotEqual.htm">!=</a>0 <a href="CppOperatorLogicalAnd.html">&amp;&amp;</a> "Image is <a href="CppNULL.htm">NULL</a>");<br/>
+&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(image-&gt;Picture-&gt;Bitmap<a href="CppOperatorNotEqual.htm">!=</a>0 <a href="CppOperatorLogicalAnd.html">&amp;&amp;</a> "Bitmap is <a href="CppNULL.htm">NULL</a>");<br/>
+&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(image-&gt;Picture-&gt;Bitmap-&gt;PixelFormat <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> pf24bit <a href="CppOperatorLogicalAnd.html">&amp;&amp;</a> "Bitmap must be 24 bit");<br/>
+&nbsp;&nbsp;<a href="CppAssert.html">assert</a>( x1 <a href="CppOperatorGreaterEqual.html">&gt;=</a> 0 <a href="CppOperatorLogicalAnd.html">&amp;&amp;</a> "x1 coordinat is below zero");<br/>
+&nbsp;&nbsp;<a href="CppAssert.html">assert</a>( x2 <a href="CppOperatorGreaterEqual.html">&gt;=</a> 0 <a href="CppOperatorLogicalAnd.html">&amp;&amp;</a> "x2 coordinat is below zero");<br/>
+&nbsp;&nbsp;<a href="CppAssert.html">assert</a>( y <a href="CppOperatorGreaterEqual.html">&gt;=</a> 0 <a href="CppOperatorLogicalAnd.html">&amp;&amp;</a> "y coordinat is below zero");<br/>
+&nbsp;&nbsp;<a href="CppAssert.html">assert</a>( x1 &lt; image-&gt;Picture-&gt;Bitmap-&gt;Width&nbsp;&nbsp;<a href="CppOperatorLogicalAnd.html">&amp;&amp;</a> "x1 coordinat is beyond image width");<br/>
+&nbsp;&nbsp;<a href="CppAssert.html">assert</a>( x2 <a href="CppOperatorLessEqual.html">&lt;=</a> image-&gt;Picture-&gt;Bitmap-&gt;Width&nbsp;&nbsp;<a href="CppOperatorLogicalAnd.html">&amp;&amp;</a> "x2 coordinat is beyond image width");<br/>
+&nbsp;&nbsp;<a href="CppAssert.html">assert</a>( y &lt; image-&gt;Picture-&gt;Bitmap-&gt;Height <a href="CppOperatorLogicalAnd.html">&amp;&amp;</a> "y coordinat is beyond image height");<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> * <b><a href="CppConst.htm">const</a></b> myLine<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> *&gt;(image-&gt;Picture-&gt;Bitmap-&gt;ScanLine[y]);<br/>
+&nbsp;&nbsp;<b><a href="CppUnsigned.html">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> * <b><a href="CppConst.html">const</a></b> myLine<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.html">static_cast</a></b>&lt;<b><a href="CppUnsigned.html">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> *&gt;(image-&gt;Picture-&gt;Bitmap-&gt;ScanLine[y]);<br/>
 &nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> x=x1; x<a href="CppOperatorNotEqual.htm">!=</a>x2; <a href="CppOperatorPlus.htm">+</a>+x)<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;myLine[x*3+2] <a href="CppOperatorAssign.htm">=</a> red;<br/>
@@ -925,14 +925,14 @@ __fastcall TFormSimBrainiacMain::TFormSimBrainiacMain(<br/>
 <a href="CppComment.htm">//</a>Set a square of pixels' RGB values<br/>
 <a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl<br/>
 <b><a href="CppVoid.htm">void</a></b> SetPixel(<br/>
-&nbsp;&nbsp;<a href="CppTImage.htm">TImage</a> * <b><a href="CppConst.htm">const</a></b> image,<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x1,<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> y1,<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x2,<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> y2,<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> red,<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> green,<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> blue)<br/>
+&nbsp;&nbsp;<a href="CppTImage.html">TImage</a> * <b><a href="CppConst.html">const</a></b> image,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> x1,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> y1,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> x2,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> y2,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppUnsigned.html">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> red,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppUnsigned.html">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> green,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppUnsigned.html">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> blue)<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> y=y1; y<a href="CppOperatorNotEqual.htm">!=</a>y2; <a href="CppOperatorPlus.htm">+</a>+y)<br/>
 &nbsp;&nbsp;{<br/>
@@ -941,87 +941,87 @@ __fastcall TFormSimBrainiacMain::TFormSimBrainiacMain(<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppCmathH.htm">cmath</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppAlgorithmH.htm">algorithm</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppCassertH.html">cassert</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppCmathH.html">cmath</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppAlgorithmH.html">algorithm</a>&gt;<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="CppRainbow.htm">CppRainbow</a>.htm<br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRainbow.htm">Rainbow</a>(<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> x, <br/>
-&nbsp;&nbsp;<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b>&amp; r, <br/>
-&nbsp;&nbsp;<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b>&amp; g,<br/>
-&nbsp;&nbsp;<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b>&amp; b)<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="CppRainbow.html">CppRainbow</a>.html<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRainbow.html">Rainbow</a>(<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> x, <br/>
+&nbsp;&nbsp;<b><a href="CppUnsigned.html">unsigned</a></b> <b><a href="CppChar.htm">char</a></b>&amp; r, <br/>
+&nbsp;&nbsp;<b><a href="CppUnsigned.html">unsigned</a></b> <b><a href="CppChar.htm">char</a></b>&amp; g,<br/>
+&nbsp;&nbsp;<b><a href="CppUnsigned.html">unsigned</a></b> <b><a href="CppChar.htm">char</a></b>&amp; b)<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> r0 <a href="CppOperatorAssign.htm">=</a> GetRed(x);<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> g0 <a href="CppOperatorAssign.htm">=</a> GetGreen(x);<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> b0 <a href="CppOperatorAssign.htm">=</a> GetBlue(x);<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> max <a href="CppOperatorAssign.htm">=</a> <a href="CppMax.htm">std::max</a>(r0, <a href="CppMax.htm">std::max</a>(g0,b0));<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(max<a href="CppOperatorNotEqual.htm">!=</a>0);<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> r0 <a href="CppOperatorAssign.htm">=</a> GetRed(x);<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> g0 <a href="CppOperatorAssign.htm">=</a> GetGreen(x);<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> b0 <a href="CppOperatorAssign.htm">=</a> GetBlue(x);<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> max <a href="CppOperatorAssign.htm">=</a> <a href="CppMax.html">std::max</a>(r0, <a href="CppMax.html">std::max</a>(g0,b0));<br/>
+&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(max<a href="CppOperatorNotEqual.htm">!=</a>0);<br/>
 <br/>
-&nbsp;&nbsp;r <a href="CppOperatorAssign.htm">=</a> 255.0 * <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(r0) <a href="CppOperatorDivide.htm">/</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(max);<br/>
-&nbsp;&nbsp;g <a href="CppOperatorAssign.htm">=</a> 255.0 * <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(g0) <a href="CppOperatorDivide.htm">/</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(max);<br/>
-&nbsp;&nbsp;b <a href="CppOperatorAssign.htm">=</a> 255.0 * <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(b0) <a href="CppOperatorDivide.htm">/</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(max);<br/>
+&nbsp;&nbsp;r <a href="CppOperatorAssign.htm">=</a> 255.0 * <b><a href="CppStatic_cast.html">static_cast</a></b>&lt;<b><a href="CppDouble.html">double</a></b>&gt;(r0) <a href="CppOperatorDivide.htm">/</a> <b><a href="CppStatic_cast.html">static_cast</a></b>&lt;<b><a href="CppDouble.html">double</a></b>&gt;(max);<br/>
+&nbsp;&nbsp;g <a href="CppOperatorAssign.htm">=</a> 255.0 * <b><a href="CppStatic_cast.html">static_cast</a></b>&lt;<b><a href="CppDouble.html">double</a></b>&gt;(g0) <a href="CppOperatorDivide.htm">/</a> <b><a href="CppStatic_cast.html">static_cast</a></b>&lt;<b><a href="CppDouble.html">double</a></b>&gt;(max);<br/>
+&nbsp;&nbsp;b <a href="CppOperatorAssign.htm">=</a> 255.0 * <b><a href="CppStatic_cast.html">static_cast</a></b>&lt;<b><a href="CppDouble.html">double</a></b>&gt;(b0) <a href="CppOperatorDivide.htm">/</a> <b><a href="CppStatic_cast.html">static_cast</a></b>&lt;<b><a href="CppDouble.html">double</a></b>&gt;(max);<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="CppRainbow.htm">CppRainbow</a>.htm<br/>
-<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> GetRed(<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> x)<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="CppRainbow.html">CppRainbow</a>.html<br/>
+<b><a href="CppConst.html">const</a></b> <b><a href="CppUnsigned.html">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> GetRed(<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> x)<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>( x <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 0.0 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> x &lt; 1.0);<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> f <a href="CppOperatorAssign.htm">=</a> <a href="CppMax.htm">std::max</a>(0.0,<br/>
+&nbsp;&nbsp;<a href="CppAssert.html">assert</a>( x <a href="CppOperatorGreaterEqual.html">&gt;=</a> 0.0 <a href="CppOperatorLogicalAnd.html">&amp;&amp;</a> x &lt; 1.0);<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> f <a href="CppOperatorAssign.htm">=</a> <a href="CppMax.html">std::max</a>(0.0,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;(x &lt; 0.5<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;?&nbsp;&nbsp;<a href="CppCos.htm">std::cos</a>(x * 1.5 * <a href="CppM_PI.htm">M_PI</a>)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;: <a href="CppOperatorMinus.htm">-</a><a href="CppSin.htm">std::sin</a>(x * 1.5 * <a href="CppM_PI.htm">M_PI</a>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;?&nbsp;&nbsp;<a href="CppCos.html">std::cos</a>(x * 1.5 * <a href="CppM_PI.htm">M_PI</a>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;: <a href="CppOperatorMinus.htm">-</a><a href="CppSin.html">std::sin</a>(x * 1.5 * <a href="CppM_PI.htm">M_PI</a>)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;) );<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>( f <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 0.0);<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>( f <a href="CppOperatorLessEqual.htm">&lt;=</a> 1.0);<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> y <a href="CppOperatorAssign.htm">=</a> 255.0 * f;<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>( <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(y) &lt; 256 );<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b>&gt;(y);<br/>
+&nbsp;&nbsp;<a href="CppAssert.html">assert</a>( f <a href="CppOperatorGreaterEqual.html">&gt;=</a> 0.0);<br/>
+&nbsp;&nbsp;<a href="CppAssert.html">assert</a>( f <a href="CppOperatorLessEqual.html">&lt;=</a> 1.0);<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> y <a href="CppOperatorAssign.htm">=</a> 255.0 * f;<br/>
+&nbsp;&nbsp;<a href="CppAssert.html">assert</a>( <b><a href="CppStatic_cast.html">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(y) &lt; 256 );<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> <b><a href="CppStatic_cast.html">static_cast</a></b>&lt;<b><a href="CppUnsigned.html">unsigned</a></b> <b><a href="CppChar.htm">char</a></b>&gt;(y);<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="CppRainbow.htm">CppRainbow</a>.htm<br/>
-<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> GetGreen(<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> x)<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="CppRainbow.html">CppRainbow</a>.html<br/>
+<b><a href="CppConst.html">const</a></b> <b><a href="CppUnsigned.html">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> GetGreen(<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> x)<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>( x <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 0.0 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> x &lt; 1.0);<br/>
+&nbsp;&nbsp;<a href="CppAssert.html">assert</a>( x <a href="CppOperatorGreaterEqual.html">&gt;=</a> 0.0 <a href="CppOperatorLogicalAnd.html">&amp;&amp;</a> x &lt; 1.0);<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> f <a href="CppOperatorAssign.htm">=</a> <a href="CppMax.htm">std::max</a>(0.0, <a href="CppSin.htm">std::sin</a>( x * 1.5 * <a href="CppM_PI.htm">M_PI</a> ) );<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>( f <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 0.0);<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>( f <a href="CppOperatorLessEqual.htm">&lt;=</a> 1.0);<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> y <a href="CppOperatorAssign.htm">=</a> 255.0 * f;<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>( <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(y) &lt; 256 );<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b>&gt;(y);<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> f <a href="CppOperatorAssign.htm">=</a> <a href="CppMax.html">std::max</a>(0.0, <a href="CppSin.html">std::sin</a>( x * 1.5 * <a href="CppM_PI.htm">M_PI</a> ) );<br/>
+&nbsp;&nbsp;<a href="CppAssert.html">assert</a>( f <a href="CppOperatorGreaterEqual.html">&gt;=</a> 0.0);<br/>
+&nbsp;&nbsp;<a href="CppAssert.html">assert</a>( f <a href="CppOperatorLessEqual.html">&lt;=</a> 1.0);<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> y <a href="CppOperatorAssign.htm">=</a> 255.0 * f;<br/>
+&nbsp;&nbsp;<a href="CppAssert.html">assert</a>( <b><a href="CppStatic_cast.html">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(y) &lt; 256 );<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> <b><a href="CppStatic_cast.html">static_cast</a></b>&lt;<b><a href="CppUnsigned.html">unsigned</a></b> <b><a href="CppChar.htm">char</a></b>&gt;(y);<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="CppRainbow.htm">CppRainbow</a>.htm<br/>
-<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> GetBlue(<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> x)<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="CppRainbow.html">CppRainbow</a>.html<br/>
+<b><a href="CppConst.html">const</a></b> <b><a href="CppUnsigned.html">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> GetBlue(<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> x)<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>( x <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 0.0 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> x &lt; 1.0);<br/>
+&nbsp;&nbsp;<a href="CppAssert.html">assert</a>( x <a href="CppOperatorGreaterEqual.html">&gt;=</a> 0.0 <a href="CppOperatorLogicalAnd.html">&amp;&amp;</a> x &lt; 1.0);<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> f <a href="CppOperatorAssign.htm">=</a> <a href="CppMax.htm">std::max</a>(0.0, <a href="CppOperatorMinus.htm">-</a><a href="CppCos.htm">std::cos</a>( x * 1.5 * <a href="CppM_PI.htm">M_PI</a> ) );<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> f <a href="CppOperatorAssign.htm">=</a> <a href="CppMax.html">std::max</a>(0.0, <a href="CppOperatorMinus.htm">-</a><a href="CppCos.html">std::cos</a>( x * 1.5 * <a href="CppM_PI.htm">M_PI</a> ) );<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>( f <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 0.0);<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>( f <a href="CppOperatorLessEqual.htm">&lt;=</a> 1.0);<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> y <a href="CppOperatorAssign.htm">=</a> 255.0 * f;<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>( <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(y) &lt; 256 );<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b>&gt;(y);<br/>
+&nbsp;&nbsp;<a href="CppAssert.html">assert</a>( f <a href="CppOperatorGreaterEqual.html">&gt;=</a> 0.0);<br/>
+&nbsp;&nbsp;<a href="CppAssert.html">assert</a>( f <a href="CppOperatorLessEqual.html">&lt;=</a> 1.0);<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> y <a href="CppOperatorAssign.htm">=</a> 255.0 * f;<br/>
+&nbsp;&nbsp;<a href="CppAssert.html">assert</a>( <b><a href="CppStatic_cast.html">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(y) &lt; 256 );<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> <b><a href="CppStatic_cast.html">static_cast</a></b>&lt;<b><a href="CppUnsigned.html">unsigned</a></b> <b><a href="CppChar.htm">char</a></b>&gt;(y);<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/Cpp<a href="CppPaint.htm">Paint</a>.htm<br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppPaint.htm">Paint</a>Vcl(<a href="CppTImage.htm">TImage</a> * <b><a href="CppConst.htm">const</a></b> image,<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> red,<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> green,<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> blue&nbsp;&nbsp;)<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/Cpp<a href="CppPaint.html">Paint</a>.html<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppPaint.html">Paint</a>Vcl(<a href="CppTImage.html">TImage</a> * <b><a href="CppConst.html">const</a></b> image,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppUnsigned.html">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> red,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppUnsigned.html">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> green,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppUnsigned.html">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> blue&nbsp;&nbsp;)<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(image<a href="CppOperatorNotEqual.htm">!=</a>0);<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(image-&gt;Picture-&gt;Bitmap <a href="CppOperatorNotEqual.htm">!=</a> 0);<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(image-&gt;Picture-&gt;Bitmap-&gt;PixelFormat <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> pf24bit);<br/>
+&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(image<a href="CppOperatorNotEqual.htm">!=</a>0);<br/>
+&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(image-&gt;Picture-&gt;Bitmap <a href="CppOperatorNotEqual.htm">!=</a> 0);<br/>
+&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(image-&gt;Picture-&gt;Bitmap-&gt;PixelFormat <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> pf24bit);<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> maxx <a href="CppOperatorAssign.htm">=</a> image-&gt;Picture-&gt;Bitmap-&gt;Width;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> maxy <a href="CppOperatorAssign.htm">=</a> image-&gt;Picture-&gt;Bitmap-&gt;Height;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> maxx <a href="CppOperatorAssign.htm">=</a> image-&gt;Picture-&gt;Bitmap-&gt;Width;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> maxy <a href="CppOperatorAssign.htm">=</a> image-&gt;Picture-&gt;Bitmap-&gt;Height;<br/>
 &nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> y <a href="CppOperatorAssign.htm">=</a> 0; y <a href="CppOperatorNotEqual.htm">!=</a> maxy; <a href="CppOperatorPlus.htm">+</a>+y)<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> * <b><a href="CppConst.htm">const</a></b> myLine<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b>*&gt;(image-&gt;Picture-&gt;Bitmap-&gt;ScanLine[y]);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppUnsigned.html">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> * <b><a href="CppConst.html">const</a></b> myLine<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.html">static_cast</a></b>&lt;<b><a href="CppUnsigned.html">unsigned</a></b> <b><a href="CppChar.htm">char</a></b>*&gt;(image-&gt;Picture-&gt;Bitmap-&gt;ScanLine[y]);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> x <a href="CppOperatorAssign.htm">=</a> 0; x <a href="CppOperatorNotEqual.htm">!=</a> maxx; <a href="CppOperatorPlus.htm">+</a>+x)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;myLine[x*3+2] <a href="CppOperatorAssign.htm">=</a> red&nbsp;&nbsp;; <a href="CppComment.htm">//</a>Red<br/>
@@ -1033,7 +1033,7 @@ __fastcall TFormSimBrainiacMain::TFormSimBrainiacMain(<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <br/>
 <b><a href="CppVoid.htm">void</a></b> __fastcall TFormSimBrainiacMain::FormKeyDown(TObject *Sender,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;WORD &amp;Key, TShift<a href="CppState.htm">State</a> Shift)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;WORD &amp;Key, TShift<a href="CppState.html">State</a> Shift)<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (Key <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> VK_F1 <a href="CppOperatorLogicalOr.htm">||</a> Key <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 'c' <a href="CppOperatorLogicalOr.htm">||</a> Key <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 'C') mUseGrey <a href="CppOperatorAssign.htm">=</a> !mUseGrey;<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (Key <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> VK_F2 <a href="CppOperatorLogicalOr.htm">||</a> Key <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 'g' <a href="CppOperatorLogicalOr.htm">||</a> Key <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 'G') mFormGraph-&gt;Visible <a href="CppOperatorAssign.htm">=</a> !mFormGraph-&gt;Visible;<br/>
@@ -1044,7 +1044,7 @@ __fastcall TFormSimBrainiacMain::TFormSimBrainiacMain(<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (Key <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> VK_ADD <a href="CppOperatorLogicalOr.htm">||</a> Key <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> VK_F12)<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppTime.htm">Time</a>rMain-&gt;Enabled <a href="CppOperatorAssign.htm">=</a> <b><a href="CppFalse.htm">false</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppTime.htm">Time</a>rMain-&gt;Enabled <a href="CppOperatorAssign.htm">=</a> <b><a href="CppFalse.html">false</a></b>;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppTime.htm">Time</a>rMain-&gt;Interval <a href="CppOperatorMinus.htm">-</a><a href="CppOperatorAssign.htm">=</a> 100;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (<a href="CppTime.htm">Time</a>rMain-&gt;Interval &lt; 1) <a href="CppTime.htm">Time</a>rMain-&gt;Interval <a href="CppOperatorAssign.htm">=</a> 1;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppTime.htm">Time</a>rMain-&gt;Enabled <a href="CppOperatorAssign.htm">=</a> <b><a href="CppTrue.htm">true</a></b>;<br/>
@@ -1052,7 +1052,7 @@ __fastcall TFormSimBrainiacMain::TFormSimBrainiacMain(<br/>
 <br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (Key <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> VK_SUBTRACT <a href="CppOperatorLogicalOr.htm">||</a> Key <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> VK_F11)<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppTime.htm">Time</a>rMain-&gt;Enabled <a href="CppOperatorAssign.htm">=</a> <b><a href="CppFalse.htm">false</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppTime.htm">Time</a>rMain-&gt;Enabled <a href="CppOperatorAssign.htm">=</a> <b><a href="CppFalse.html">false</a></b>;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppTime.htm">Time</a>rMain-&gt;Interval <a href="CppOperatorPlus.htm">+</a><a href="CppOperatorAssign.htm">=</a> 100;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppTime.htm">Time</a>rMain-&gt;Enabled <a href="CppOperatorAssign.htm">=</a> <b><a href="CppTrue.htm">true</a></b>;<br/>
 &nbsp;&nbsp;}<br/>
@@ -1089,18 +1089,18 @@ __fastcall TFormSimBrainiacMain::TFormSimBrainiacMain(<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">//</a> From http://www.richelbilderbeek.nl<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppIfndef.htm">#ifndef</a> UnitFormSimBrainiacManualH<br/>
-<a href="CppDefine.htm">#define</a> UnitFormSimBrainiacManualH<br/>
+<a href="CppIfndef.html">#ifndef</a> UnitFormSimBrainiacManualH<br/>
+<a href="CppDefine.html">#define</a> UnitFormSimBrainiacManualH<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppClass.htm">Classes</a>.hpp&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;Controls.hpp&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;StdCtrls.hpp&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;Forms.hpp&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;ComCtrls.hpp&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppClass.html">Classes</a><a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;Controls<a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;StdCtrls<a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;Forms<a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;ComCtrls<a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppClass.htm">class</a></b> TFormSimBrainiacManual : <b><a href="CppPublic.htm">public</a></b> TForm<br/>
+<b><a href="CppClass.html">class</a></b> TFormSimBrainiacManual : <b><a href="CppPublic.html">public</a></b> TForm<br/>
 {<br/>
-__published:	<a href="CppComment.htm">//</a> IDE-managed <a href="CppComponent.htm">Component</a>s<br/>
+__published:	<a href="CppComment.htm">//</a> IDE-managed <a href="CppComponent.html">Component</a>s<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TPageControl *PageControl1;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TTabSheet *TabSheetGeneral;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TTabSheet *TabSheetControls;<br/>
@@ -1112,14 +1112,14 @@ __published:	<a href="CppComment.htm">//</a> IDE-managed <a href="CppComponent.h
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TRichEdit *RichEdit3;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TTabSheet *TabSheetMenu;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TRichEdit *RichEdit4;<br/>
-<b><a href="CppPrivate.htm">private</a></b>:	<a href="CppComment.htm">//</a> User <a href="CppDeclaration.htm">declaration</a>s<br/>
-<b><a href="CppPublic.htm">public</a></b>:		<a href="CppComment.htm">//</a> User <a href="CppDeclaration.htm">declaration</a>s<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;__fastcall TFormSimBrainiacManual(T<a href="CppComponent.htm">Component</a>* Owner);<br/>
+<b><a href="CppPrivate.html">private</a></b>:	<a href="CppComment.htm">//</a> User <a href="CppDeclaration.html">declaration</a>s<br/>
+<b><a href="CppPublic.html">public</a></b>:		<a href="CppComment.htm">//</a> User <a href="CppDeclaration.html">declaration</a>s<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;__fastcall TFormSimBrainiacManual(T<a href="CppComponent.html">Component</a>* Owner);<br/>
 };<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppExtern.htm">extern</a></b> PACKAGE TFormSimBrainiacManual *FormSimBrainiacManual;<br/>
+<b><a href="CppExtern.html">extern</a></b> PACKAGE TFormSimBrainiacManual *FormSimBrainiacManual;<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppEndif.htm">#endif</a><br/>
+<a href="CppEndif.html">#endif</a><br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -1151,16 +1151,16 @@ __published:	<a href="CppComment.htm">//</a> IDE-managed <a href="CppComponent.h
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">//</a> From http://www.richelbilderbeek.nl<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppInclude.htm">#include</a> &lt;vcl.h&gt;<br/>
-<a href="CppPragma.htm">#pragma</a> hdrstop<br/>
+<a href="CppInclude.html">#include</a> &lt;vcl<a href="CppHeaderFile.htm">.h</a>&gt;<br/>
+<a href="CppPragma.html">#pragma</a> hdrstop<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> "UnitFormSimBrainiacManual.h"<br/>
+<a href="CppInclude.html">#include</a> "UnitFormSimBrainiacManual<a href="CppHeaderFile.htm">.h</a>"<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppPragma.htm">#pragma</a> package(smart_init)<br/>
-<a href="CppPragma.htm">#pragma</a> resource "*.dfm"<br/>
+<a href="CppPragma.html">#pragma</a> package(smart_init)<br/>
+<a href="CppPragma.html">#pragma</a> resource "*.dfm"<br/>
 TFormSimBrainiacManual *FormSimBrainiacManual;<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-__fastcall TFormSimBrainiacManual::TFormSimBrainiacManual(T<a href="CppComponent.htm">Component</a>* Owner)<br/>
+__fastcall TFormSimBrainiacManual::TFormSimBrainiacManual(T<a href="CppComponent.html">Component</a>* Owner)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: TForm(Owner)<br/>
 {<br/>
 }<br/>
@@ -1196,52 +1196,52 @@ __fastcall TFormSimBrainiacManual::TFormSimBrainiacManual(T<a href="CppComponent
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">//</a> From http://www.richelbilderbeek.nl<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppIfndef.htm">#ifndef</a> UnitFormSimBrainiacMenuH<br/>
-<a href="CppDefine.htm">#define</a> UnitFormSimBrainiacMenuH<br/>
+<a href="CppIfndef.html">#ifndef</a> UnitFormSimBrainiacMenuH<br/>
+<a href="CppDefine.html">#define</a> UnitFormSimBrainiacMenuH<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppClass.htm">Classes</a>.hpp&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;Controls.hpp&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;StdCtrls.hpp&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;Forms.hpp&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;ExtCtrls.hpp&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;Graphics.hpp&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppClass.html">Classes</a><a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;Controls<a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;StdCtrls<a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;Forms<a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;ExtCtrls<a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;Graphics<a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppClass.htm">class</a></b> TFormSimBrainiacMenu : <b><a href="CppPublic.htm">public</a></b> TForm<br/>
+<b><a href="CppClass.html">class</a></b> TFormSimBrainiacMenu : <b><a href="CppPublic.html">public</a></b> TForm<br/>
 {<br/>
-__published:	<a href="CppComment.htm">//</a> IDE-managed <a href="CppComponent.htm">Component</a>s<br/>
+__published:	<a href="CppComment.htm">//</a> IDE-managed <a href="CppComponent.html">Component</a>s<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TButton *ButtonStart;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TPanel *PanelNcorrect<a href="CppQuestion.htm">Question</a>Levels;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TPanel *PanelNhas<a href="CppQuestion.htm">Question</a>Levels;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppTImage.htm">TImage</a> *ImageNcorrect<a href="CppQuestion.htm">Question</a>LevelsUp;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppTImage.htm">TImage</a> *ImageNhas<a href="CppQuestion.htm">Question</a>LevelsUp;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppTImage.htm">TImage</a> *ImageNhas<a href="CppQuestion.htm">Question</a>LevelsDown;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppTImage.htm">TImage</a> *Image1;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TPanel *PanelNcorrect<a href="CppQuestion.html">Question</a>Levels;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TPanel *PanelNhas<a href="CppQuestion.html">Question</a>Levels;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppTImage.html">TImage</a> *ImageNcorrect<a href="CppQuestion.html">Question</a>LevelsUp;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppTImage.html">TImage</a> *ImageNhas<a href="CppQuestion.html">Question</a>LevelsUp;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppTImage.html">TImage</a> *ImageNhas<a href="CppQuestion.html">Question</a>LevelsDown;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppTImage.html">TImage</a> *Image1;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TButton *ButtonManual;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TButton *Button<a href="CppAbout.htm">About</a>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TButton *Button<a href="CppAbout.html">About</a>;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TButton *ButtonQuit;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TPanel *PanelNbrainiacs;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppTImage.htm">TImage</a> *ImageNbrainiacsPlus;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppTImage.htm">TImage</a> *ImageNbrainiacsMinus;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppTImage.html">TImage</a> *ImageNbrainiacsPlus;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppTImage.html">TImage</a> *ImageNbrainiacsMinus;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> __fastcall ButtonStartClick(TObject *Sender);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> __fastcall ImageNcorrect<a href="CppQuestion.htm">Question</a>LevelsDownClick(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> __fastcall ImageNcorrect<a href="CppQuestion.html">Question</a>LevelsDownClick(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TObject *Sender);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> __fastcall ImageNcorrect<a href="CppQuestion.htm">Question</a>LevelsUpClick(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> __fastcall ImageNcorrect<a href="CppQuestion.html">Question</a>LevelsUpClick(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TObject *Sender);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> __fastcall ImageNhas<a href="CppQuestion.htm">Question</a>LevelsDownClick(TObject *Sender);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> __fastcall ImageNhas<a href="CppQuestion.htm">Question</a>LevelsUpClick(TObject *Sender);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> __fastcall ImageNhas<a href="CppQuestion.html">Question</a>LevelsDownClick(TObject *Sender);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> __fastcall ImageNhas<a href="CppQuestion.html">Question</a>LevelsUpClick(TObject *Sender);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> __fastcall ButtonQuitClick(TObject *Sender);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> __fastcall Button<a href="CppAbout.htm">About</a>Click(TObject *Sender);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> __fastcall Button<a href="CppAbout.html">About</a>Click(TObject *Sender);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> __fastcall ButtonManualClick(TObject *Sender);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> __fastcall ImageNbrainiacsMinusClick(TObject *Sender);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> __fastcall ImageNbrainiacsPlusClick(TObject *Sender);<br/>
-<b><a href="CppPrivate.htm">private</a></b>:	<a href="CppComment.htm">//</a> User <a href="CppDeclaration.htm">declaration</a>s<br/>
-<b><a href="CppPublic.htm">public</a></b>:		<a href="CppComment.htm">//</a> User <a href="CppDeclaration.htm">declaration</a>s<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;__fastcall TFormSimBrainiacMenu(T<a href="CppComponent.htm">Component</a>* Owner);<br/>
+<b><a href="CppPrivate.html">private</a></b>:	<a href="CppComment.htm">//</a> User <a href="CppDeclaration.html">declaration</a>s<br/>
+<b><a href="CppPublic.html">public</a></b>:		<a href="CppComment.htm">//</a> User <a href="CppDeclaration.html">declaration</a>s<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;__fastcall TFormSimBrainiacMenu(T<a href="CppComponent.html">Component</a>* Owner);<br/>
 };<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppExtern.htm">extern</a></b> PACKAGE TFormSimBrainiacMenu *FormSimBrainiacMenu;<br/>
+<b><a href="CppExtern.html">extern</a></b> PACKAGE TFormSimBrainiacMenu *FormSimBrainiacMenu;<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppEndif.htm">#endif</a><br/>
+<a href="CppEndif.html">#endif</a><br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -1273,20 +1273,20 @@ __published:	<a href="CppComment.htm">//</a> IDE-managed <a href="CppComponent.h
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">//</a> From http://www.richelbilderbeek.nl<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppMemoryH.htm">memory</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;vcl.h&gt;<br/>
-<a href="CppPragma.htm">#pragma</a> hdrstop<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppMemoryH.html">memory</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;vcl<a href="CppHeaderFile.htm">.h</a>&gt;<br/>
+<a href="CppPragma.html">#pragma</a> hdrstop<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> "UnitFormSimBrainiacMenu.h"<br/>
-<a href="CppInclude.htm">#include</a> "UnitFormSimBrainiacMain.h"<br/>
-<a href="CppInclude.htm">#include</a> "UnitFormSimBrainiac<a href="CppAbout.htm">About</a>.h"<br/>
-<a href="CppInclude.htm">#include</a> "UnitFormSimBrainiacManual.h"<br/>
+<a href="CppInclude.html">#include</a> "UnitFormSimBrainiacMenu<a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "UnitFormSimBrainiacMain<a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "UnitFormSimBrainiac<a href="CppAbout.html">About</a><a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "UnitFormSimBrainiacManual<a href="CppHeaderFile.htm">.h</a>"<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppPragma.htm">#pragma</a> package(smart_init)<br/>
-<a href="CppPragma.htm">#pragma</a> resource "*.dfm"<br/>
+<a href="CppPragma.html">#pragma</a> package(smart_init)<br/>
+<a href="CppPragma.html">#pragma</a> resource "*.dfm"<br/>
 TFormSimBrainiacMenu *FormSimBrainiacMenu;<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-__fastcall TFormSimBrainiacMenu::TFormSimBrainiacMenu(T<a href="CppComponent.htm">Component</a>* Owner)<br/>
+__fastcall TFormSimBrainiacMenu::TFormSimBrainiacMenu(T<a href="CppComponent.html">Component</a>* Owner)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: TForm(Owner)<br/>
 {<br/>
 <br/>
@@ -1295,44 +1295,44 @@ __fastcall TFormSimBrainiacMenu::TFormSimBrainiacMenu(T<a href="CppComponent.htm
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <b><a href="CppVoid.htm">void</a></b> __fastcall TFormSimBrainiacMenu::ButtonStartClick(TObject *Sender)<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppAuto_ptr.htm">std::auto_ptr</a>&lt;TFormSimBrainiacMain&gt; f(<b><a href="CppNew.htm">new</a></b> TFormSimBrainiacMain(<br/>
+&nbsp;&nbsp;<a href="CppAuto_ptr.html">std::auto_ptr</a>&lt;TFormSimBrainiacMain&gt; f(<b><a href="CppNew.htm">new</a></b> TFormSimBrainiacMain(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;0,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;PanelNbrainiacs-&gt;Caption.<a href="CppToInt.htm">ToInt</a>(),<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;PanelNcorrect<a href="CppQuestion.htm">Question</a>Levels-&gt;Caption.<a href="CppToInt.htm">ToInt</a>(),<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;PanelNhas<a href="CppQuestion.htm">Question</a>Levels-&gt;Caption.<a href="CppToInt.htm">ToInt</a>()<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;PanelNbrainiacs-&gt;Caption.<a href="CppToInt.html">ToInt</a>(),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;PanelNcorrect<a href="CppQuestion.html">Question</a>Levels-&gt;Caption.<a href="CppToInt.html">ToInt</a>(),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;PanelNhas<a href="CppQuestion.html">Question</a>Levels-&gt;Caption.<a href="CppToInt.html">ToInt</a>()<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;));<br/>
 &nbsp;&nbsp;f-&gt;ShowModal();<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppVoid.htm">void</a></b> __fastcall TFormSimBrainiacMenu::ImageNcorrect<a href="CppQuestion.htm">Question</a>LevelsDownClick(<br/>
+<b><a href="CppVoid.htm">void</a></b> __fastcall TFormSimBrainiacMenu::ImageNcorrect<a href="CppQuestion.html">Question</a>LevelsDownClick(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TObject *Sender)<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> n <a href="CppOperatorAssign.htm">=</a> PanelNcorrect<a href="CppQuestion.htm">Question</a>Levels-&gt;Caption.<a href="CppToInt.htm">ToInt</a>();<br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (n &gt; 1) PanelNcorrect<a href="CppQuestion.htm">Question</a>Levels-&gt;Caption <a href="CppOperatorAssign.htm">=</a> <a href="CppIntToStr.htm">IntToStr</a>(n-1);<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> n <a href="CppOperatorAssign.htm">=</a> PanelNcorrect<a href="CppQuestion.html">Question</a>Levels-&gt;Caption.<a href="CppToInt.html">ToInt</a>();<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (n &gt; 1) PanelNcorrect<a href="CppQuestion.html">Question</a>Levels-&gt;Caption <a href="CppOperatorAssign.htm">=</a> <a href="CppIntToStr.html">IntToStr</a>(n-1);<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> __fastcall TFormSimBrainiacMenu::ImageNcorrect<a href="CppQuestion.htm">Question</a>LevelsUpClick(<br/>
+<b><a href="CppVoid.htm">void</a></b> __fastcall TFormSimBrainiacMenu::ImageNcorrect<a href="CppQuestion.html">Question</a>LevelsUpClick(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TObject *Sender)<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> n <a href="CppOperatorAssign.htm">=</a> PanelNcorrect<a href="CppQuestion.htm">Question</a>Levels-&gt;Caption.<a href="CppToInt.htm">ToInt</a>();<br/>
-&nbsp;&nbsp;PanelNcorrect<a href="CppQuestion.htm">Question</a>Levels-&gt;Caption <a href="CppOperatorAssign.htm">=</a> <a href="CppIntToStr.htm">IntToStr</a>(n+1);<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> n <a href="CppOperatorAssign.htm">=</a> PanelNcorrect<a href="CppQuestion.html">Question</a>Levels-&gt;Caption.<a href="CppToInt.html">ToInt</a>();<br/>
+&nbsp;&nbsp;PanelNcorrect<a href="CppQuestion.html">Question</a>Levels-&gt;Caption <a href="CppOperatorAssign.htm">=</a> <a href="CppIntToStr.html">IntToStr</a>(n+1);<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> __fastcall TFormSimBrainiacMenu::ImageNhas<a href="CppQuestion.htm">Question</a>LevelsDownClick(<br/>
+<b><a href="CppVoid.htm">void</a></b> __fastcall TFormSimBrainiacMenu::ImageNhas<a href="CppQuestion.html">Question</a>LevelsDownClick(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TObject *Sender)<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> n <a href="CppOperatorAssign.htm">=</a> PanelNhas<a href="CppQuestion.htm">Question</a>Levels-&gt;Caption.<a href="CppToInt.htm">ToInt</a>();<br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (n &gt; 1) PanelNhas<a href="CppQuestion.htm">Question</a>Levels-&gt;Caption <a href="CppOperatorAssign.htm">=</a> <a href="CppIntToStr.htm">IntToStr</a>(n-1);<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> n <a href="CppOperatorAssign.htm">=</a> PanelNhas<a href="CppQuestion.html">Question</a>Levels-&gt;Caption.<a href="CppToInt.html">ToInt</a>();<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (n &gt; 1) PanelNhas<a href="CppQuestion.html">Question</a>Levels-&gt;Caption <a href="CppOperatorAssign.htm">=</a> <a href="CppIntToStr.html">IntToStr</a>(n-1);<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> __fastcall TFormSimBrainiacMenu::ImageNhas<a href="CppQuestion.htm">Question</a>LevelsUpClick(<br/>
+<b><a href="CppVoid.htm">void</a></b> __fastcall TFormSimBrainiacMenu::ImageNhas<a href="CppQuestion.html">Question</a>LevelsUpClick(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TObject *Sender)<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> n <a href="CppOperatorAssign.htm">=</a> PanelNhas<a href="CppQuestion.htm">Question</a>Levels-&gt;Caption.<a href="CppToInt.htm">ToInt</a>();<br/>
-&nbsp;&nbsp;PanelNhas<a href="CppQuestion.htm">Question</a>Levels-&gt;Caption <a href="CppOperatorAssign.htm">=</a> <a href="CppIntToStr.htm">IntToStr</a>(n+1);<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> n <a href="CppOperatorAssign.htm">=</a> PanelNhas<a href="CppQuestion.html">Question</a>Levels-&gt;Caption.<a href="CppToInt.html">ToInt</a>();<br/>
+&nbsp;&nbsp;PanelNhas<a href="CppQuestion.html">Question</a>Levels-&gt;Caption <a href="CppOperatorAssign.htm">=</a> <a href="CppIntToStr.html">IntToStr</a>(n+1);<br/>
 <br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
@@ -1343,16 +1343,16 @@ __fastcall TFormSimBrainiacMenu::TFormSimBrainiacMenu(T<a href="CppComponent.htm
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> __fastcall TFormSimBrainiacMenu::Button<a href="CppAbout.htm">About</a>Click(TObject *Sender)<br/>
+<b><a href="CppVoid.htm">void</a></b> __fastcall TFormSimBrainiacMenu::Button<a href="CppAbout.html">About</a>Click(TObject *Sender)<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppAuto_ptr.htm">std::auto_ptr</a>&lt;TFormSimBrainiac<a href="CppAbout.htm">About</a>&gt; f(<b><a href="CppNew.htm">new</a></b> TFormSimBrainiac<a href="CppAbout.htm">About</a>(0));<br/>
+&nbsp;&nbsp;<a href="CppAuto_ptr.html">std::auto_ptr</a>&lt;TFormSimBrainiac<a href="CppAbout.html">About</a>&gt; f(<b><a href="CppNew.htm">new</a></b> TFormSimBrainiac<a href="CppAbout.html">About</a>(0));<br/>
 &nbsp;&nbsp;f-&gt;ShowModal();<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <br/>
 <b><a href="CppVoid.htm">void</a></b> __fastcall TFormSimBrainiacMenu::ButtonManualClick(TObject *Sender)<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppAuto_ptr.htm">std::auto_ptr</a>&lt;TFormSimBrainiacManual&gt; f(<b><a href="CppNew.htm">new</a></b> TFormSimBrainiacManual(0));<br/>
+&nbsp;&nbsp;<a href="CppAuto_ptr.html">std::auto_ptr</a>&lt;TFormSimBrainiacManual&gt; f(<b><a href="CppNew.htm">new</a></b> TFormSimBrainiacManual(0));<br/>
 &nbsp;&nbsp;f-&gt;ShowModal();<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
@@ -1360,18 +1360,18 @@ __fastcall TFormSimBrainiacMenu::TFormSimBrainiacMenu(T<a href="CppComponent.htm
 <b><a href="CppVoid.htm">void</a></b> __fastcall TFormSimBrainiacMenu::ImageNbrainiacsMinusClick(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TObject *Sender)<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> n <a href="CppOperatorAssign.htm">=</a> PanelNbrainiacs-&gt;Caption.<a href="CppToInt.htm">ToInt</a>();<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> n <a href="CppOperatorAssign.htm">=</a> PanelNbrainiacs-&gt;Caption.<a href="CppToInt.html">ToInt</a>();<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (n &gt; 100)<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;PanelNbrainiacs-&gt;Caption <a href="CppOperatorAssign.htm">=</a> <a href="CppIntToStr.htm">IntToStr</a>(n-100);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;PanelNbrainiacs-&gt;Caption <a href="CppOperatorAssign.htm">=</a> <a href="CppIntToStr.html">IntToStr</a>(n-100);<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;<b><a href="CppElse.htm">else</a></b> <b><a href="CppIf.htm">if</a></b> (n &gt; 10)<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;PanelNbrainiacs-&gt;Caption <a href="CppOperatorAssign.htm">=</a> <a href="CppIntToStr.htm">IntToStr</a>(n-10);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;PanelNbrainiacs-&gt;Caption <a href="CppOperatorAssign.htm">=</a> <a href="CppIntToStr.html">IntToStr</a>(n-10);<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;<b><a href="CppElse.htm">else</a></b> <b><a href="CppIf.htm">if</a></b> (n &gt; 1)<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;PanelNbrainiacs-&gt;Caption <a href="CppOperatorAssign.htm">=</a> <a href="CppIntToStr.htm">IntToStr</a>(n-1);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;PanelNbrainiacs-&gt;Caption <a href="CppOperatorAssign.htm">=</a> <a href="CppIntToStr.html">IntToStr</a>(n-1);<br/>
 &nbsp;&nbsp;}<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
@@ -1379,18 +1379,18 @@ __fastcall TFormSimBrainiacMenu::TFormSimBrainiacMenu(T<a href="CppComponent.htm
 <b><a href="CppVoid.htm">void</a></b> __fastcall TFormSimBrainiacMenu::ImageNbrainiacsPlusClick(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TObject *Sender)<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> n <a href="CppOperatorAssign.htm">=</a> PanelNbrainiacs-&gt;Caption.<a href="CppToInt.htm">ToInt</a>();<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> n <a href="CppOperatorAssign.htm">=</a> PanelNbrainiacs-&gt;Caption.<a href="CppToInt.html">ToInt</a>();<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (n &gt; 100)<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;PanelNbrainiacs-&gt;Caption <a href="CppOperatorAssign.htm">=</a> <a href="CppIntToStr.htm">IntToStr</a>(n+100);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;PanelNbrainiacs-&gt;Caption <a href="CppOperatorAssign.htm">=</a> <a href="CppIntToStr.html">IntToStr</a>(n+100);<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;<b><a href="CppElse.htm">else</a></b> <b><a href="CppIf.htm">if</a></b> (n &gt; 10)<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;PanelNbrainiacs-&gt;Caption <a href="CppOperatorAssign.htm">=</a> <a href="CppIntToStr.htm">IntToStr</a>(n+10);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;PanelNbrainiacs-&gt;Caption <a href="CppOperatorAssign.htm">=</a> <a href="CppIntToStr.html">IntToStr</a>(n+10);<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;<b><a href="CppElse.htm">else</a></b><br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;PanelNbrainiacs-&gt;Caption <a href="CppOperatorAssign.htm">=</a> <a href="CppIntToStr.htm">IntToStr</a>(n+1);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;PanelNbrainiacs-&gt;Caption <a href="CppOperatorAssign.htm">=</a> <a href="CppIntToStr.html">IntToStr</a>(n+1);<br/>
 &nbsp;&nbsp;}<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
@@ -1425,33 +1425,33 @@ __fastcall TFormSimBrainiacMenu::TFormSimBrainiacMenu(T<a href="CppComponent.htm
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">//</a> From http://www.richelbilderbeek.nl<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppIfndef.htm">#ifndef</a> UnitSimBrainiacH<br/>
-<a href="CppDefine.htm">#define</a> UnitSimBrainiacH<br/>
+<a href="CppIfndef.html">#ifndef</a> UnitSimBrainiacH<br/>
+<a href="CppDefine.html">#define</a> UnitSimBrainiacH<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> "UnitBrainiac.h"<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppVectorH.html">vector</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> "UnitBrainiac<a href="CppHeaderFile.htm">.h</a>"<br/>
 <br/>
-<a href="CppVector.htm">std::vector</a>&lt;Brainiac&gt; GetBrainiacs(<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> nBrainiacs <a href="CppOperatorAssign.htm">=</a> 100,<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> nCorrectAnswerLevels <a href="CppOperatorAssign.htm">=</a> 10,<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> nHas<a href="CppQuestion.htm">Question</a>Levels <a href="CppOperatorAssign.htm">=</a> 10);<br/>
+<a href="CppVector.html">std::vector</a>&lt;Brainiac&gt; GetBrainiacs(<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> nBrainiacs <a href="CppOperatorAssign.htm">=</a> 100,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> nCorrectAnswerLevels <a href="CppOperatorAssign.htm">=</a> 10,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> nHas<a href="CppQuestion.html">Question</a>Levels <a href="CppOperatorAssign.htm">=</a> 10);<br/>
 <br/>
-<b><a href="CppStruct.htm">struct</a></b> SimBrainiac<br/>
+<b><a href="CppStruct.html">struct</a></b> SimBrainiac<br/>
 {<br/>
-&nbsp;&nbsp;SimBrainiac(<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;Brainiac&gt;&amp; brainiacs <a href="CppOperatorAssign.htm">=</a> ::GetBrainiacs());<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;Brainiac&gt;&amp; GetBrainiacs() <b><a href="CppConst.htm">const</a></b>;<br/>
+&nbsp;&nbsp;SimBrainiac(<b><a href="CppConst.html">const</a></b> <a href="CppVector.html">std::vector</a>&lt;Brainiac&gt;&amp; brainiacs <a href="CppOperatorAssign.htm">=</a> ::GetBrainiacs());<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppVector.html">std::vector</a>&lt;Brainiac&gt;&amp; GetBrainiacs() <b><a href="CppConst.html">const</a></b>;<br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> Tick(); <a href="CppComment.htm">//</a>Go to next <a href="CppTime.htm">time</a> step<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppPrivate.htm">private</a></b>:<br/>
-&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;Brainiac&gt; mBrainiacs;<br/>
+&nbsp;&nbsp;<b><a href="CppPrivate.html">private</a></b>:<br/>
+&nbsp;&nbsp;<a href="CppVector.html">std::vector</a>&lt;Brainiac&gt; mBrainiacs;<br/>
 <br/>
 };<br/>
 <br/>
-<a href="CppComment.htm">//</a>From htpp:<a href="CppComment.htm">//</a>www.richelbilderbeek.nl/Cpp<a href="CppGetRandomUniform.htm">GetRandomUniform</a>.htm<br/>
-<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> <a href="CppGetRandomUniform.htm">GetRandomUniform</a>();<br/>
+<a href="CppComment.htm">//</a>From htpp:<a href="CppComment.htm">//</a>www.richelbilderbeek.nl/Cpp<a href="CppGetRandomUniform.html">GetRandomUniform</a>.html<br/>
+<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> <a href="CppGetRandomUniform.html">GetRandomUniform</a>();<br/>
 <br/>
 <br/>
-<a href="CppEndif.htm">#endif</a><br/>
+<a href="CppEndif.html">#endif</a><br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -1483,59 +1483,59 @@ __fastcall TFormSimBrainiacMenu::TFormSimBrainiacMenu(T<a href="CppComponent.htm
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">//</a> From http://www.richelbilderbeek.nl<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppAlgorithmH.htm">algorithm</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppAlgorithmH.html">algorithm</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppCassertH.html">cassert</a>&gt;<br/>
 <br/>
-<a href="CppPragma.htm">#pragma</a> hdrstop<br/>
+<a href="CppPragma.html">#pragma</a> hdrstop<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> "UnitSimBrainiac.h"<br/>
+<a href="CppInclude.html">#include</a> "UnitSimBrainiac<a href="CppHeaderFile.htm">.h</a>"<br/>
 <br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppVector.htm">std::vector</a>&lt;Brainiac&gt; GetBrainiacs(<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> nBrainiacs,<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> nCorrectAnswerLevels,<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> nHas<a href="CppQuestion.htm">Question</a>Levels)<br/>
+<a href="CppVector.html">std::vector</a>&lt;Brainiac&gt; GetBrainiacs(<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> nBrainiacs,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> nCorrectAnswerLevels,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> nHas<a href="CppQuestion.html">Question</a>Levels)<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(nBrainiacs &gt; 0);<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(nCorrectAnswerLevels &gt; 0);<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(nHas<a href="CppQuestion.htm">Question</a>Levels &gt; 0);<br/>
+&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(nBrainiacs &gt; 0);<br/>
+&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(nCorrectAnswerLevels &gt; 0);<br/>
+&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(nHas<a href="CppQuestion.html">Question</a>Levels &gt; 0);<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;Brainiac&gt; brainiacs;<br/>
+&nbsp;&nbsp;<a href="CppVector.html">std::vector</a>&lt;Brainiac&gt; brainiacs;<br/>
 &nbsp;&nbsp;brainiacs.reserve(nBrainiacs);<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> dCorrectAnswer <a href="CppOperatorAssign.htm">=</a> 1.0 <a href="CppOperatorDivide.htm">/</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(nCorrectAnswerLevels <a href="CppOperatorPlus.htm">+</a> 1);<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> dHas<a href="CppQuestion.htm">Question</a>&nbsp;&nbsp; <a href="CppOperatorAssign.htm">=</a> 1.0 <a href="CppOperatorDivide.htm">/</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(nHas<a href="CppQuestion.htm">Question</a>Levels&nbsp;&nbsp; <a href="CppOperatorPlus.htm">+</a> 1);<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> dCorrectAnswer <a href="CppOperatorAssign.htm">=</a> 1.0 <a href="CppOperatorDivide.htm">/</a> <b><a href="CppStatic_cast.html">static_cast</a></b>&lt;<b><a href="CppDouble.html">double</a></b>&gt;(nCorrectAnswerLevels <a href="CppOperatorPlus.htm">+</a> 1);<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> dHas<a href="CppQuestion.html">Question</a>&nbsp;&nbsp; <a href="CppOperatorAssign.htm">=</a> 1.0 <a href="CppOperatorDivide.htm">/</a> <b><a href="CppStatic_cast.html">static_cast</a></b>&lt;<b><a href="CppDouble.html">double</a></b>&gt;(nHas<a href="CppQuestion.html">Question</a>Levels&nbsp;&nbsp; <a href="CppOperatorPlus.htm">+</a> 1);<br/>
 <br/>
 &nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> i=0; i<a href="CppOperatorNotEqual.htm">!=</a>nBrainiacs; <a href="CppOperatorPlus.htm">+</a>+i)<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> correctAnswerLevel <a href="CppOperatorAssign.htm">=</a> <a href="CppRand.htm">std::rand</a>() <a href="CppOperatorModulus.htm">%</a> nCorrectAnswerLevels;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> has<a href="CppQuestion.htm">Question</a>Level&nbsp;&nbsp; <a href="CppOperatorAssign.htm">=</a> <a href="CppRand.htm">std::rand</a>() <a href="CppOperatorModulus.htm">%</a> nHas<a href="CppQuestion.htm">Question</a>Levels;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> pCorrectAnswer <a href="CppOperatorAssign.htm">=</a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> correctAnswerLevel <a href="CppOperatorAssign.htm">=</a> <a href="CppRand.html">std::rand</a>() <a href="CppOperatorModulus.htm">%</a> nCorrectAnswerLevels;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> has<a href="CppQuestion.html">Question</a>Level&nbsp;&nbsp; <a href="CppOperatorAssign.htm">=</a> <a href="CppRand.html">std::rand</a>() <a href="CppOperatorModulus.htm">%</a> nHas<a href="CppQuestion.html">Question</a>Levels;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> pCorrectAnswer <a href="CppOperatorAssign.htm">=</a><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;dCorrectAnswer<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> (<b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(correctAnswerLevel) * dCorrectAnswer);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> pHas<a href="CppQuestion.htm">Question</a> <a href="CppOperatorAssign.htm">=</a><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;dHas<a href="CppQuestion.htm">Question</a><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> (<b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(has<a href="CppQuestion.htm">Question</a>Level) * dHas<a href="CppQuestion.htm">Question</a>);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(pCorrectAnswer <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 0.0);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(pCorrectAnswer &lt; 1.0);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(pHas<a href="CppQuestion.htm">Question</a> <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 0.0);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(pHas<a href="CppQuestion.htm">Question</a> &lt; 1.0);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;brainiacs.push_back(Brainiac(pCorrectAnswer,pHas<a href="CppQuestion.htm">Question</a>) );<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> (<b><a href="CppStatic_cast.html">static_cast</a></b>&lt;<b><a href="CppDouble.html">double</a></b>&gt;(correctAnswerLevel) * dCorrectAnswer);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> pHas<a href="CppQuestion.html">Question</a> <a href="CppOperatorAssign.htm">=</a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;dHas<a href="CppQuestion.html">Question</a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> (<b><a href="CppStatic_cast.html">static_cast</a></b>&lt;<b><a href="CppDouble.html">double</a></b>&gt;(has<a href="CppQuestion.html">Question</a>Level) * dHas<a href="CppQuestion.html">Question</a>);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(pCorrectAnswer <a href="CppOperatorGreaterEqual.html">&gt;=</a> 0.0);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(pCorrectAnswer &lt; 1.0);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(pHas<a href="CppQuestion.html">Question</a> <a href="CppOperatorGreaterEqual.html">&gt;=</a> 0.0);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(pHas<a href="CppQuestion.html">Question</a> &lt; 1.0);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;brainiacs.push_back(Brainiac(pCorrectAnswer,pHas<a href="CppQuestion.html">Question</a>) );<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(nBrainiacs <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(brainiacs.size()));<br/>
-&nbsp;&nbsp;<a href="CppRandom_shuffle.htm">std::random_shuffle</a>(brainiacs.begin(), brainiacs.end() );<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> brainiacs;<br/>
+&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(nBrainiacs <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.html">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(brainiacs.size()));<br/>
+&nbsp;&nbsp;<a href="CppRandom_shuffle.html">std::random_shuffle</a>(brainiacs.begin(), brainiacs.end() );<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> brainiacs;<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-SimBrainiac::SimBrainiac(<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;Brainiac&gt;&amp; brainiacs)<br/>
+SimBrainiac::SimBrainiac(<b><a href="CppConst.html">const</a></b> <a href="CppVector.html">std::vector</a>&lt;Brainiac&gt;&amp; brainiacs)<br/>
 &nbsp;&nbsp;: mBrainiacs(brainiacs)<br/>
 {<br/>
 <br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;Brainiac&gt;&amp; SimBrainiac::GetBrainiacs() <b><a href="CppConst.htm">const</a></b><br/>
+<b><a href="CppConst.html">const</a></b> <a href="CppVector.html">std::vector</a>&lt;Brainiac&gt;&amp; SimBrainiac::GetBrainiacs() <b><a href="CppConst.html">const</a></b><br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> mBrainiacs;<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> mBrainiacs;<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">//</a>Go to next <a href="CppTime.htm">time</a> step<br/>
@@ -1544,29 +1544,29 @@ SimBrainiac::SimBrainiac(<b><a href="CppConst.htm">const</a></b> <a href="CppVec
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Lowest index&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> loser<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Highest index <a href="CppOperatorAssign.htm">=</a> brainiac<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Every tick it is possible <b><a href="CppFor.htm">for</a></b> the loser to become the brainiac<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> size <a href="CppOperatorAssign.htm">=</a> mBrainiacs.size();<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> size <a href="CppOperatorAssign.htm">=</a> mBrainiacs.size();<br/>
 <br/>
 &nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> i=0; i<a href="CppOperatorNotEqual.htm">!=</a>size-1; <a href="CppOperatorPlus.htm">+</a>+i)<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>i has <a href="CppQuestion.htm">question</a>?<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (<a href="CppGetRandomUniform.htm">GetRandomUniform</a>() &gt; mBrainiacs[i].pHas<a href="CppQuestion.htm">Question</a>) <b><a href="CppContinue.htm">continue</a></b>;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>i has a <a href="CppQuestion.htm">question</a>...<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>i has <a href="CppQuestion.html">question</a>?<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (<a href="CppGetRandomUniform.html">GetRandomUniform</a>() &gt; mBrainiacs[i].pHas<a href="CppQuestion.html">Question</a>) <b><a href="CppContinue.html">continue</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>i has a <a href="CppQuestion.html">question</a>...<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Will i's opponent know the answer<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (<a href="CppGetRandomUniform.htm">GetRandomUniform</a>() &lt; mBrainiacs[i <a href="CppOperatorPlus.htm">+</a> 1].pCorrectAnswer) <b><a href="CppContinue.htm">continue</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (<a href="CppGetRandomUniform.html">GetRandomUniform</a>() &lt; mBrainiacs[i <a href="CppOperatorPlus.htm">+</a> 1].pCorrectAnswer) <b><a href="CppContinue.html">continue</a></b>;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Nope, swap i and its opponent<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppSwap.htm">std::swap</a>(mBrainiacs[i], mBrainiacs[i+1]);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppSwap.html">std::swap</a>(mBrainiacs[i], mBrainiacs[i+1]);<br/>
 &nbsp;&nbsp;}<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">//</a>From htpp:<a href="CppComment.htm">//</a>www.richelbilderbeek.nl/Cpp<a href="CppGetRandomUniform.htm">GetRandomUniform</a>.htm<br/>
-<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> <a href="CppGetRandomUniform.htm">GetRandomUniform</a>()<br/>
+<a href="CppComment.htm">//</a>From htpp:<a href="CppComment.htm">//</a>www.richelbilderbeek.nl/Cpp<a href="CppGetRandomUniform.html">GetRandomUniform</a>.html<br/>
+<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> <a href="CppGetRandomUniform.html">GetRandomUniform</a>()<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(<a href="CppRand.htm">std::rand</a>())/<b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(<a href="CppRAND_MAX.htm">RAND_MAX</a>);<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> <b><a href="CppStatic_cast.html">static_cast</a></b>&lt;<b><a href="CppDouble.html">double</a></b>&gt;(<a href="CppRand.html">std::rand</a>())/<b><a href="CppStatic_cast.html">static_cast</a></b>&lt;<b><a href="CppDouble.html">double</a></b>&gt;(<a href="CppRAND_MAX.html">RAND_MAX</a>);<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <br/>
 <br/>
-<a href="CppPragma.htm">#pragma</a> package(smart_init)<br/>
+<a href="CppPragma.html">#pragma</a> package(smart_init)<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>

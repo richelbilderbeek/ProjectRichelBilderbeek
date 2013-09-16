@@ -242,10 +242,10 @@ reports a <a href="CppMemoryLeak.htm">memory leak</a> we put in on purpose.</p>
 QT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; += core<br/>
 QT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -= gui<br/>
 TARGET = Cpp<a href="CppValgrind.htm">Valgrind</a>Example3<br/>
-CONFIG&nbsp;&nbsp; += console<br/>
-CONFIG&nbsp;&nbsp; -= app_bundle<br/>
-TEMPLATE = app<br/>
-<a href="CppSOURCES.htm">SOURCES</a> += <a href="CppMain.htm">main</a>.cpp<br/>
+<a href="CppQmakeConfig.htm">CONFIG</a>&nbsp;&nbsp; += console<br/>
+<a href="CppQmakeConfig.htm">CONFIG</a>&nbsp;&nbsp; -= app_bundle<br/>
+<a href="CppQmakeTemplate.htm">TEMPLATE</a> = app<br/>
+<a href="CppQmakeSources.htm">SOURCES</a> += <a href="CppMain.htm">main</a>.cpp<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -260,16 +260,16 @@ TEMPLATE = app<br/>
 <b><a href="CppVoid.htm">void</a></b> Good()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> * p <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <b><a href="CppInt.htm">int</a></b>[10];<br/>
-&nbsp;&nbsp;<b><a href="CppDelete.htm">delete</a></b>[] p;<br/>
+&nbsp;&nbsp;<b><a href="CppDelete.html">delete</a></b>[] p;<br/>
 }<br/>
 <br/>
 <b><a href="CppVoid.htm">void</a></b> Bad()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> * p <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <b><a href="CppInt.htm">int</a></b>[10];<br/>
-&nbsp;&nbsp;<b><a href="CppDelete.htm">delete</a></b> p; <a href="CppComment.htm">//</a>Bad: <a href="CppMemory.htm">memory</a> leak, should call <b><a href="CppDelete.htm">delete</a></b>[]<br/>
+&nbsp;&nbsp;<b><a href="CppDelete.html">delete</a></b> p; <a href="CppComment.htm">//</a>Bad: <a href="CppMemory.html">memory</a> leak, should call <b><a href="CppDelete.html">delete</a></b>[]<br/>
 }<br/>
 <br/>
-<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a>()<br/>
 {<br/>
 &nbsp;&nbsp;Good();<br/>
 &nbsp;&nbsp;Bad();<br/>

@@ -67,10 +67,10 @@
 <!-- start of code -->
 <table summary="ToolTestQtKeyboardFriendlyGraphicsView.pro" border = "1"><tr><td><code>
 QT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; += core gui<br/>
-<a href="CppQMAKE_CXXFLAGS.htm">QMAKE_CXXFLAGS</a> += -std=<a href="Cpp11.htm">c++11</a> <a href="CppWall.htm">-Wall</a> <a href="CppWextra.htm">-Wextra</a> <a href="CppWerror.htm">-Werror</a><br/>
-TEMPLATE = app<br/>
+<a href="CppQmakeQmake_cxxflags.htm">QMAKE_CXXFLAGS</a> += -std=<a href="Cpp11.htm">c++11</a> <a href="CppWall.htm">-Wall</a> <a href="CppWextra.htm">-Wextra</a> <a href="CppWerror.htm">-Werror</a><br/>
+<a href="CppQmakeTemplate.htm">TEMPLATE</a> = app<br/>
 <br/>
-<a href="CppINCLUDEPATH.htm">INCLUDEPATH</a> += \<br/>
+<a href="CppQmakeIncludepath.htm">INCLUDEPATH</a> += \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppAbout.htm">CppAbout</a> \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppQtAboutDialog.htm">CppQtAboutDialog</a> \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppQtArrowItem.htm">CppQtArrowItem</a> \<br/>
@@ -85,7 +85,7 @@ TEMPLATE = app<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppQtRoundedTextRectItem.htm">CppQtRoundedTextRectItem</a> \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppTrace.htm">CppTrace</a><br/>
 <br/>
-<a href="CppSOURCES.htm">SOURCES</a> += \<br/>
+<a href="CppQmakeSources.htm">SOURCES</a> += \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppAbout.htm">CppAbout</a>/<a href="CppAbout.htm">about</a>.cpp \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppQtAboutDialog.htm">CppQtAboutDialog</a>/<a href="CppQtAboutDialog.htm">qtaboutdialog</a>.cpp \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppQtArrowItem.htm">CppQtArrowItem</a>/<a href="CppQtArrowItem.htm">qtarrowitem</a>.cpp \<br/>
@@ -103,7 +103,7 @@ TEMPLATE = app<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;test<a href="CppQtKeyboardFriendlyGraphicsView.htm">qtkeyboardfriendlygraphicsview</a>menudialog.cpp \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppQtRoundedEditRectItem.htm">CppQtRoundedEditRectItem</a>/<a href="CppQtRoundedEditRectItem.htm">qtroundededitrectitem</a>.cpp<br/>
 <br/>
-<a href="CppHEADERS.htm">HEADERS</a> += \<br/>
+<a href="CppQmakeHeaders.htm">HEADERS</a> += \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppAbout.htm">CppAbout</a>/<a href="CppAbout.htm">about</a>.h \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppQtAboutDialog.htm">CppQtAboutDialog</a>/<a href="CppQtAboutDialog.htm">qtaboutdialog</a>.h \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppQtArrowItem.htm">CppQtArrowItem</a>/<a href="CppQtArrowItem.htm">qtarrowitem</a>.h \<br/>
@@ -142,7 +142,7 @@ OTHER_FILES += \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;qttest<a href="CppQtKeyboardFriendlyGraphicsView.htm">qtkeyboardfriendlygraphicsview</a>menudialog.ui \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppQtAboutDialog.htm">CppQtAboutDialog</a>/<a href="CppQtAboutDialog.htm">qtaboutdialog</a>.ui<br/>
 <br/>
-<a href="CppRESOURCES.htm">RESOURCES</a> += \<br/>
+<a href="CppQmakeResources.htm">RESOURCES</a> += \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="ToolTestQtKeyboardFriendlyGraphicsView.htm">ToolTestQtKeyboardFriendlyGraphicsView</a>.qrc<br/>
 </code></td></tr></table>
 <!-- end of the code -->
@@ -155,25 +155,25 @@ OTHER_FILES += \<br/>
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="qtmain.cpp" border = "1"><tr><td><code>
-<a href="CppIfdef.htm">#ifdef</a> _WIN32<br/>
-<a href="CppComment.htm">//</a>See http://www.richelbilderbeek.nl/Cpp<a href="CppCompile.htm">Compile</a>ErrorSwprintfHasNotBeenDeclared.htm<br/>
-<a href="CppUndef.htm">#undef</a> __STRICT_ANSI__<br/>
-<a href="CppEndif.htm">#endif</a><br/>
+<a href="CppIfdef.html">#ifdef</a> _WIN32<br/>
+<a href="CppComment.htm">//</a>See http://www.richelbilderbeek.nl/Cpp<a href="CppCompile.html">Compile</a>ErrorSwprintfHasNotBeenDeclared.html<br/>
+<a href="CppUndef.html">#undef</a> __STRICT_ANSI__<br/>
+<a href="CppEndif.html">#endif</a><br/>
 <br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppQApplication.htm">QApplication</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppQDesktopWidget.htm">QDesktopWidget</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> "qttestkeyboard<b><a href="CppFriend.htm">friend</a></b>lygraphicsviewmenudialog.h"<br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppTrace.htm">trace</a>.h"<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppQApplication.html">QApplication</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppQDesktopWidget.html">QDesktopWidget</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> "qttestkeyboard<b><a href="CppFriend.html">friend</a></b>lygraphicsviewmenudialog<a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "<a href="CppTrace.html">trace</a><a href="CppHeaderFile.htm">.h</a>"<br/>
 <br/>
-<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>(<b><a href="CppInt.htm">int</a></b> <a href="CppArgc.htm">argc</a>, <b><a href="CppChar.htm">char</a></b> *<a href="CppArgc.htm">argv</a>[])<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a>(<b><a href="CppInt.htm">int</a></b> <a href="CppArgc.htm">argc</a>, <b><a href="CppChar.htm">char</a></b> *<a href="CppArgc.htm">argv</a>[])<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppQApplication.htm">QApplication</a> a(<a href="CppArgc.htm">argc</a>, <a href="CppArgc.htm">argv</a>);<br/>
+&nbsp;&nbsp;<a href="CppQApplication.html">QApplication</a> a(<a href="CppArgc.htm">argc</a>, <a href="CppArgc.htm">argv</a>);<br/>
 <br/>
-&nbsp;&nbsp;START_<a href="CppTRACE.htm">TRACE</a>();<br/>
+&nbsp;&nbsp;START_<a href="CppTRACE.html">TRACE</a>();<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppQt.htm">Qt</a>TestKeyboardFriendlyGraphicsViewMenuDialog d;<br/>
 &nbsp;&nbsp;d.show();<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> a.exec();<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> a.exec();<br/>
 }<br/>
 </code></td></tr></table>
 <!-- end of the code -->
@@ -188,7 +188,7 @@ OTHER_FILES += \<br/>
 <table summary="qttestqtkeyboardfriendlygraphicsviewmenudialog.h" border = "1"><tr><td><code>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">/*</a><br/>
-TestKeyboardFriendlyGraphicsView, tests <a href="CppQtKeyboardFriendlyGraphicsView.htm">QtKeyboardFriendlyGraphicsView</a><br/>
+TestKeyboardFriendlyGraphicsView, tests <a href="CppQtKeyboardFriendlyGraphicsView.html">QtKeyboardFriendlyGraphicsView</a><br/>
 Copyright (C) 2012&nbsp;&nbsp;Richel Bilderbeek<br/>
 <br/>
 This program is free software: you can redistribute it and/or modify<br/>
@@ -204,41 +204,43 @@ You should have received a copy of the GNU General Public License<br/>
 along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">*/</a><br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="Tools.htm">Tool</a>TestKeyboardFriendlyGraphicsView.htm<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="Tools.htm">Tool</a>TestKeyboardFriendlyGraphicsView.html<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppIfndef.htm">#ifndef</a> QTTESTKEYBOARDFRIENDLYGRAPHICSVIEWMENUDIALOG_H<br/>
-<a href="CppDefine.htm">#define</a> QTTESTKEYBOARDFRIENDLYGRAPHICSVIEWMENUDIALOG_H<br/>
+<a href="CppIfndef.html">#ifndef</a> QTTESTKEYBOARDFRIENDLYGRAPHICSVIEWMENUDIALOG_H<br/>
+<a href="CppDefine.html">#define</a> QTTESTKEYBOARDFRIENDLYGRAPHICSVIEWMENUDIALOG_H<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppQtHideAndShowDialog.htm">qthideandshowdialog</a>.h"<br/>
+<a href="CppInclude.html">#include</a> "<a href="CppQtHideAndShowDialog.html">qthideandshowdialog</a><a href="CppHeaderFile.htm">.h</a>"<br/>
 <br/>
-<b><a href="CppNamespace.htm">namespace</a></b> Ui {<br/>
-<b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a>TestKeyboardFriendlyGraphicsViewMenuDialog;<br/>
+<b><a href="CppNamespace.html">namespace</a></b> Ui {<br/>
+<b><a href="CppClass.html">class</a></b> <a href="CppQt.htm">Qt</a>TestKeyboardFriendlyGraphicsViewMenuDialog;<br/>
 }<br/>
 <br/>
-<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
+<b><a href="CppNamespace.html">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
 <br/>
-<b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a>TestKeyboardFriendlyGraphicsViewMenuDialog : <b><a href="CppPublic.htm">public</a></b> <a href="CppQtHideAndShowDialog.htm">QtHideAndShowDialog</a><br/>
+<b><a href="CppClass.html">class</a></b> <a href="CppQt.htm">Qt</a>TestKeyboardFriendlyGraphicsViewMenuDialog : <b><a href="CppPublic.html">public</a></b> <a href="CppQtHideAndShowDialog.html">QtHideAndShowDialog</a><br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppQ_OBJECT.htm">Q_OBJECT</a><br/>
+&nbsp;&nbsp;<a href="CppQ_OBJECT.html">Q_OBJECT</a><br/>
 &nbsp;&nbsp;<br/>
-<b><a href="CppPublic.htm">public</a></b>:<br/>
-&nbsp;&nbsp;<b><a href="CppExplicit.htm">explicit</a></b> <a href="CppQt.htm">Qt</a>TestKeyboardFriendlyGraphicsViewMenuDialog(<a href="CppQWidget.htm">QWidget</a> *parent <a href="CppOperatorAssign.htm">=</a> 0);<br/>
+<b><a href="CppPublic.html">public</a></b>:<br/>
+&nbsp;&nbsp;<b><a href="CppExplicit.html">explicit</a></b> <a href="CppQt.htm">Qt</a>TestKeyboardFriendlyGraphicsViewMenuDialog(<a href="CppQWidget.html">QWidget</a> *parent <a href="CppOperatorAssign.htm">=</a> 0);<br/>
+&nbsp;&nbsp;<a href="CppQt.htm">Qt</a>TestKeyboardFriendlyGraphicsViewMenuDialog(<b><a href="CppConst.html">const</a></b> <a href="CppQt.htm">Qt</a>TestKeyboardFriendlyGraphicsViewMenuDialog&amp;) <a href="CppOperatorAssign.htm">=</a> <b><a href="CppDelete.html">delete</a></b>;<br/>
+&nbsp;&nbsp;<a href="CppQt.htm">Qt</a>TestKeyboardFriendlyGraphicsViewMenuDialog&amp; <b><a href="CppOperator.html">operator</a></b>=(<b><a href="CppConst.html">const</a></b> <a href="CppQt.htm">Qt</a>TestKeyboardFriendlyGraphicsViewMenuDialog&amp;) <a href="CppOperatorAssign.htm">=</a> <b><a href="CppDelete.html">delete</a></b>;<br/>
 &nbsp;&nbsp;~<a href="CppQt.htm">Qt</a>TestKeyboardFriendlyGraphicsViewMenuDialog();<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> Show<a href="CppAbout.htm">About</a>();<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> Show<a href="CppAbout.html">About</a>();<br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> Quit();<br/>
 <br/>
-<b><a href="CppPrivate.htm">private</a></b> <b><a href="CppSlots.htm">slots</a></b>:<br/>
-&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> keyPressEvent(<a href="CppQKeyEvent.htm">QKeyEvent</a>* e);<br/>
+<b><a href="CppPrivate.html">private</a></b> <b><a href="CppSlots.html">slots</a></b>:<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> keyPressEvent(<a href="CppQKeyEvent.html">QKeyEvent</a>* e);<br/>
 <br/>
 <br/>
-<b><a href="CppPrivate.htm">private</a></b>:<br/>
+<b><a href="CppPrivate.html">private</a></b>:<br/>
 &nbsp;&nbsp;<a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a>TestKeyboardFriendlyGraphicsViewMenuDialog *ui;<br/>
 };<br/>
 <br/>
-} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.html">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
 <br/>
-<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> TESTKEYBOARDFRIENDLYGRAPHICSVIEWMENUDIALOG_H<br/>
+<a href="CppEndif.html">#endif</a> <a href="CppComment.htm">//</a> TESTKEYBOARDFRIENDLYGRAPHICSVIEWMENUDIALOG_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -252,7 +254,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <table summary="qttestqtkeyboardfriendlygraphicsviewmenudialog.cpp" border = "1"><tr><td><code>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">/*</a><br/>
-TestKeyboardFriendlyGraphicsView, tests <a href="CppQtKeyboardFriendlyGraphicsView.htm">QtKeyboardFriendlyGraphicsView</a><br/>
+TestKeyboardFriendlyGraphicsView, tests <a href="CppQtKeyboardFriendlyGraphicsView.html">QtKeyboardFriendlyGraphicsView</a><br/>
 Copyright (C) 2012&nbsp;&nbsp;Richel Bilderbeek<br/>
 <br/>
 This program is free software: you can redistribute it and/or modify<br/>
@@ -268,74 +270,73 @@ You should have received a copy of the GNU General Public License<br/>
 along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">*/</a><br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="Tools.htm">Tool</a>TestKeyboardFriendlyGraphicsView.htm<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="Tools.htm">Tool</a>TestKeyboardFriendlyGraphicsView.html<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
-<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-<b><a href="CppTypedef.htm">typedef</a></b>s"<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic push<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.html">-Weffc++</a>"<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic ignored "-Wunused-local-<b><a href="CppTypedef.html">typedef</a></b>s"<br/>
+<a href="CppInclude.html">#include</a> "qttest<a href="CppQtKeyboardFriendlyGraphicsView.html">qtkeyboardfriendlygraphicsview</a>menudialog<a href="CppHeaderFile.htm">.h</a>"<br/>
 <br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppQDesktopWidget.html">QDesktopWidget</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppQKeyEvent.html">QKeyEvent</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> "<a href="CppAbout.html">about</a><a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "<a href="CppQtAboutDialog.html">qtaboutdialog</a><a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "<a href="CppQtArrowItem.html">qtarrowitem</a><a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "<a href="CppQtDisplayPosItem.html">qtdisplaypositem</a><a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "<a href="CppQtLeftRightRectItem.html">qtleftrightrectitem</a><a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "<a href="CppQtPathArrowItem.html">qtpatharrowitem</a><a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "<a href="CppQtQuadBezierArrowItem.html">qtquadbezierarrowitem</a><a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "<a href="CppQtRoundedRectItem.html">qtroundedrectitem</a><a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "<a href="CppQtRoundedTextRectItem.html">qtroundedtextrectitem</a><a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "qttest<a href="CppQtKeyboardFriendlyGraphicsView.html">qtkeyboardfriendlygraphicsview</a><a href="CppWidget.html">widget</a><a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "test<a href="CppQtKeyboardFriendlyGraphicsView.html">qtkeyboardfriendlygraphicsview</a>menudialog<a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "ui_qttest<a href="CppQtKeyboardFriendlyGraphicsView.html">qtkeyboardfriendlygraphicsview</a>menudialog<a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic pop<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> "qttest<a href="CppQtKeyboardFriendlyGraphicsView.htm">qtkeyboardfriendlygraphicsview</a>menudialog.h"<br/>
-<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppQDesktopWidget.htm">QDesktopWidget</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppQKeyEvent.htm">QKeyEvent</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppAbout.htm">about</a>.h"<br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppQtAboutDialog.htm">qtaboutdialog</a>.h"<br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppQtArrowItem.htm">qtarrowitem</a>.h"<br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppQtDisplayPosItem.htm">qtdisplaypositem</a>.h"<br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppQtLeftRightRectItem.htm">qtleftrightrectitem</a>.h"<br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppQtPathArrowItem.htm">qtpatharrowitem</a>.h"<br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppQtQuadBezierArrowItem.htm">qtquadbezierarrowitem</a>.h"<br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppQtRoundedRectItem.htm">qtroundedrectitem</a>.h"<br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppQtRoundedTextRectItem.htm">qtroundedtextrectitem</a>.h"<br/>
-<a href="CppInclude.htm">#include</a> "qttest<a href="CppQtKeyboardFriendlyGraphicsView.htm">qtkeyboardfriendlygraphicsview</a><a href="CppWidget.htm">widget</a>.h"<br/>
-<a href="CppInclude.htm">#include</a> "test<a href="CppQtKeyboardFriendlyGraphicsView.htm">qtkeyboardfriendlygraphicsview</a>menudialog.h"<br/>
-<a href="CppInclude.htm">#include</a> "ui_qttest<a href="CppQtKeyboardFriendlyGraphicsView.htm">qtkeyboardfriendlygraphicsview</a>menudialog.h"<br/>
-<a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
-<br/>
-<a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>TestKeyboardFriendlyGraphicsViewMenuDialog::<a href="CppQt.htm">Qt</a>TestKeyboardFriendlyGraphicsViewMenuDialog(<a href="CppQWidget.htm">QWidget</a> *parent) :<br/>
-&nbsp;&nbsp;<a href="CppQtHideAndShowDialog.htm">QtHideAndShowDialog</a>(parent),<br/>
+<a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>TestKeyboardFriendlyGraphicsViewMenuDialog::<a href="CppQt.htm">Qt</a>TestKeyboardFriendlyGraphicsViewMenuDialog(<a href="CppQWidget.html">QWidget</a> *parent) :<br/>
+&nbsp;&nbsp;<a href="CppQtHideAndShowDialog.html">QtHideAndShowDialog</a>(parent),<br/>
 &nbsp;&nbsp;ui(<b><a href="CppNew.htm">new</a></b> <a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a>TestKeyboardFriendlyGraphicsViewMenuDialog)<br/>
 {<br/>
 &nbsp;&nbsp;ui-&gt;setupUi(<b><a href="CppThis.htm">this</a></b>);<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppTypedef.htm">typedef</a></b> <a href="CppQt.htm">Qt</a>TestKeyboardFriendlyGraphicsView<a href="CppWidget.htm">Widget</a> <a href="CppWidget.htm">Widget</a>;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppWidget.htm">Widget</a> * <b><a href="CppConst.htm">const</a></b> <a href="CppWidget.htm">widget</a> <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppWidget.htm">Widget</a>;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppWidget.htm">widget</a>-&gt;m_signal_request_about.connect(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBind.htm">boost::bind</a>(&amp;<a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>TestKeyboardFriendlyGraphicsViewMenuDialog::Show<a href="CppAbout.htm">About</a>,<b><a href="CppThis.htm">this</a></b>));<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppWidget.htm">widget</a>-&gt;m_signal_request_quit.connect(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBind.htm">boost::bind</a>(&amp;<a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>TestKeyboardFriendlyGraphicsViewMenuDialog::Quit,<b><a href="CppThis.htm">this</a></b>));<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;ui-&gt;layout-&gt;addWidget(<a href="CppWidget.htm">widget</a>,0,0);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppTypedef.html">typedef</a></b> <a href="CppQt.htm">Qt</a>TestKeyboardFriendlyGraphicsView<a href="CppWidget.html">Widget</a> <a href="CppWidget.html">Widget</a>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppWidget.html">Widget</a> * <b><a href="CppConst.html">const</a></b> <a href="CppWidget.html">widget</a> <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppWidget.html">Widget</a>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppWidget.html">widget</a>-&gt;m_signal_request_about.connect(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBind.html">boost::bind</a>(&amp;<a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>TestKeyboardFriendlyGraphicsViewMenuDialog::Show<a href="CppAbout.html">About</a>,<b><a href="CppThis.htm">this</a></b>));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppWidget.html">widget</a>-&gt;m_signal_request_quit.connect(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBind.html">boost::bind</a>(&amp;<a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>TestKeyboardFriendlyGraphicsViewMenuDialog::Quit,<b><a href="CppThis.htm">this</a></b>));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;ui-&gt;layout-&gt;addWidget(<a href="CppWidget.html">widget</a>,0,0);<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Make <b><a href="CppThis.htm">this</a></b> dialog big and centered<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppQRect.htm">QRect</a> rect <a href="CppOperatorAssign.htm">=</a> <a href="CppQDesktopWidget.htm">QDesktopWidget</a>().<a href="CppGeometry.htm">geometry</a>();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppQRect.html">QRect</a> rect <a href="CppOperatorAssign.htm">=</a> <a href="CppQDesktopWidget.html">QDesktopWidget</a>().<a href="CppGeometry.html">geometry</a>();<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;setGeometry(rect.adjusted(64,64,-64,-64));<br/>
 &nbsp;&nbsp;}<br/>
 }<br/>
 <br/>
 <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>TestKeyboardFriendlyGraphicsViewMenuDialog::~<a href="CppQt.htm">Qt</a>TestKeyboardFriendlyGraphicsViewMenuDialog()<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppDelete.htm">delete</a></b> ui;<br/>
+&nbsp;&nbsp;<b><a href="CppDelete.html">delete</a></b> ui;<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>TestKeyboardFriendlyGraphicsViewMenuDialog::keyPressEvent(<a href="CppQKeyEvent.htm">QKeyEvent</a>* e)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>TestKeyboardFriendlyGraphicsViewMenuDialog::keyPressEvent(<a href="CppQKeyEvent.html">QKeyEvent</a>* e)<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (e-&gt;key()&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <a href="CppQt.htm">Qt</a>::Key_Escape) close();<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>TestKeyboardFriendlyGraphicsViewMenuDialog::Show<a href="CppAbout.htm">About</a>()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>TestKeyboardFriendlyGraphicsViewMenuDialog::Show<a href="CppAbout.html">About</a>()<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppAbout.htm">About</a> <a href="CppAbout.htm">about</a> <a href="CppOperatorAssign.htm">=</a> TestKeyboardFriendlyGraphicsViewMenuDialog::GetAbout();<br/>
-&nbsp;&nbsp;<a href="CppAbout.htm">about</a>.<a href="CppAdd.htm">Add</a><a href="CppLibrary.htm">Library</a>("<a href="CppQtArrowItem.htm">QtArrowItem</a> <a href="CppVersion.htm">version</a>: " <a href="CppOperatorPlus.htm">+</a> <a href="CppQtArrowItem.htm">QtArrowItem</a>::Get<a href="CppVersion.htm">Version</a>());<br/>
-&nbsp;&nbsp;<a href="CppAbout.htm">about</a>.<a href="CppAdd.htm">Add</a><a href="CppLibrary.htm">Library</a>("<a href="CppQtHideAndShowDialog.htm">QtHideAndShowDialog</a> <a href="CppVersion.htm">version</a>: " <a href="CppOperatorPlus.htm">+</a> <a href="CppQtHideAndShowDialog.htm">QtHideAndShowDialog</a>::Get<a href="CppVersion.htm">Version</a>());<br/>
-&nbsp;&nbsp;<a href="CppAbout.htm">about</a>.<a href="CppAdd.htm">Add</a><a href="CppLibrary.htm">Library</a>("<a href="CppQt.htm">Qt</a>DisplayPosItem <a href="CppVersion.htm">version</a>: " <a href="CppOperatorPlus.htm">+</a> <a href="CppQt.htm">Qt</a>DisplayPosItem::Get<a href="CppVersion.htm">Version</a>());<br/>
-&nbsp;&nbsp;<a href="CppAbout.htm">about</a>.<a href="CppAdd.htm">Add</a><a href="CppLibrary.htm">Library</a>("<a href="CppQtKeyboardFriendlyGraphicsView.htm">QtKeyboardFriendlyGraphicsView</a> <a href="CppVersion.htm">version</a>: " <a href="CppOperatorPlus.htm">+</a> <a href="CppQtKeyboardFriendlyGraphicsView.htm">QtKeyboardFriendlyGraphicsView</a>::Get<a href="CppVersion.htm">Version</a>());<br/>
-&nbsp;&nbsp;<a href="CppAbout.htm">about</a>.<a href="CppAdd.htm">Add</a><a href="CppLibrary.htm">Library</a>("<a href="CppQt.htm">Qt</a>LeftRightRectItem <a href="CppVersion.htm">version</a>: " <a href="CppOperatorPlus.htm">+</a> <a href="CppQt.htm">Qt</a>LeftRightRectItem::Get<a href="CppVersion.htm">Version</a>());<br/>
-&nbsp;&nbsp;<a href="CppAbout.htm">about</a>.<a href="CppAdd.htm">Add</a><a href="CppLibrary.htm">Library</a>("<a href="CppQt.htm">Qt</a>PathArrowItem <a href="CppVersion.htm">version</a>: " <a href="CppOperatorPlus.htm">+</a> <a href="CppQt.htm">Qt</a>PathArrowItem::Get<a href="CppVersion.htm">Version</a>());<br/>
-&nbsp;&nbsp;<a href="CppAbout.htm">about</a>.<a href="CppAdd.htm">Add</a><a href="CppLibrary.htm">Library</a>("<a href="CppQt.htm">Qt</a>QuadBezierArrowItem <a href="CppVersion.htm">version</a>: " <a href="CppOperatorPlus.htm">+</a> <a href="CppQt.htm">Qt</a>QuadBezierArrowItem::Get<a href="CppVersion.htm">Version</a>());<br/>
-&nbsp;&nbsp;<a href="CppAbout.htm">about</a>.<a href="CppAdd.htm">Add</a><a href="CppLibrary.htm">Library</a>("<a href="CppQtRoundedRectItem.htm">QtRoundedRectItem</a> <a href="CppVersion.htm">version</a>: " <a href="CppOperatorPlus.htm">+</a> <a href="CppQtRoundedRectItem.htm">QtRoundedRectItem</a>::Get<a href="CppVersion.htm">Version</a>());<br/>
-&nbsp;&nbsp;<a href="CppAbout.htm">about</a>.<a href="CppAdd.htm">Add</a><a href="CppLibrary.htm">Library</a>("<a href="CppQt.htm">Qt</a>RoundedTextRectItem <a href="CppVersion.htm">version</a>: " <a href="CppOperatorPlus.htm">+</a> <a href="CppQt.htm">Qt</a>RoundedTextRectItem::Get<a href="CppVersion.htm">Version</a>());<br/>
-&nbsp;&nbsp;<a href="CppQtAboutDialog.htm">QtAboutDialog</a> d(<a href="CppAbout.htm">about</a>);<br/>
+&nbsp;&nbsp;<a href="CppAbout.html">About</a> <a href="CppAbout.html">about</a> <a href="CppOperatorAssign.htm">=</a> TestKeyboardFriendlyGraphicsViewMenuDialog::GetAbout();<br/>
+&nbsp;&nbsp;<a href="CppAbout.html">about</a>.<a href="CppAdd.htm">Add</a><a href="CppLibrary.html">Library</a>("<a href="CppQtArrowItem.html">QtArrowItem</a> <a href="CppVersion.html">version</a>: " <a href="CppOperatorPlus.htm">+</a> <a href="CppQtArrowItem.html">QtArrowItem</a>::Get<a href="CppVersion.html">Version</a>());<br/>
+&nbsp;&nbsp;<a href="CppAbout.html">about</a>.<a href="CppAdd.htm">Add</a><a href="CppLibrary.html">Library</a>("<a href="CppQtHideAndShowDialog.html">QtHideAndShowDialog</a> <a href="CppVersion.html">version</a>: " <a href="CppOperatorPlus.htm">+</a> <a href="CppQtHideAndShowDialog.html">QtHideAndShowDialog</a>::Get<a href="CppVersion.html">Version</a>());<br/>
+&nbsp;&nbsp;<a href="CppAbout.html">about</a>.<a href="CppAdd.htm">Add</a><a href="CppLibrary.html">Library</a>("<a href="CppQt.htm">Qt</a>DisplayPosItem <a href="CppVersion.html">version</a>: " <a href="CppOperatorPlus.htm">+</a> <a href="CppQt.htm">Qt</a>DisplayPosItem::Get<a href="CppVersion.html">Version</a>());<br/>
+&nbsp;&nbsp;<a href="CppAbout.html">about</a>.<a href="CppAdd.htm">Add</a><a href="CppLibrary.html">Library</a>("<a href="CppQtKeyboardFriendlyGraphicsView.html">QtKeyboardFriendlyGraphicsView</a> <a href="CppVersion.html">version</a>: " <a href="CppOperatorPlus.htm">+</a> <a href="CppQtKeyboardFriendlyGraphicsView.html">QtKeyboardFriendlyGraphicsView</a>::Get<a href="CppVersion.html">Version</a>());<br/>
+&nbsp;&nbsp;<a href="CppAbout.html">about</a>.<a href="CppAdd.htm">Add</a><a href="CppLibrary.html">Library</a>("<a href="CppQt.htm">Qt</a>LeftRightRectItem <a href="CppVersion.html">version</a>: " <a href="CppOperatorPlus.htm">+</a> <a href="CppQt.htm">Qt</a>LeftRightRectItem::Get<a href="CppVersion.html">Version</a>());<br/>
+&nbsp;&nbsp;<a href="CppAbout.html">about</a>.<a href="CppAdd.htm">Add</a><a href="CppLibrary.html">Library</a>("<a href="CppQt.htm">Qt</a>PathArrowItem <a href="CppVersion.html">version</a>: " <a href="CppOperatorPlus.htm">+</a> <a href="CppQt.htm">Qt</a>PathArrowItem::Get<a href="CppVersion.html">Version</a>());<br/>
+&nbsp;&nbsp;<a href="CppAbout.html">about</a>.<a href="CppAdd.htm">Add</a><a href="CppLibrary.html">Library</a>("<a href="CppQt.htm">Qt</a>QuadBezierArrowItem <a href="CppVersion.html">version</a>: " <a href="CppOperatorPlus.htm">+</a> <a href="CppQt.htm">Qt</a>QuadBezierArrowItem::Get<a href="CppVersion.html">Version</a>());<br/>
+&nbsp;&nbsp;<a href="CppAbout.html">about</a>.<a href="CppAdd.htm">Add</a><a href="CppLibrary.html">Library</a>("<a href="CppQtRoundedRectItem.html">QtRoundedRectItem</a> <a href="CppVersion.html">version</a>: " <a href="CppOperatorPlus.htm">+</a> <a href="CppQtRoundedRectItem.html">QtRoundedRectItem</a>::Get<a href="CppVersion.html">Version</a>());<br/>
+&nbsp;&nbsp;<a href="CppAbout.html">about</a>.<a href="CppAdd.htm">Add</a><a href="CppLibrary.html">Library</a>("<a href="CppQt.htm">Qt</a>RoundedTextRectItem <a href="CppVersion.html">version</a>: " <a href="CppOperatorPlus.htm">+</a> <a href="CppQt.htm">Qt</a>RoundedTextRectItem::Get<a href="CppVersion.html">Version</a>());<br/>
+&nbsp;&nbsp;<a href="CppQtAboutDialog.html">QtAboutDialog</a> d(<a href="CppAbout.html">about</a>);<br/>
 &nbsp;&nbsp;d.setWindowIcon(<b><a href="CppThis.htm">this</a></b>-&gt;windowIcon());<br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;hide();<br/>
 &nbsp;&nbsp;d.exec();<br/>
@@ -359,7 +360,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <table summary="qttestqtkeyboardfriendlygraphicsviewwidget.h" border = "1"><tr><td><code>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">/*</a><br/>
-TestKeyboardFriendlyGraphicsView, tests <a href="CppQtKeyboardFriendlyGraphicsView.htm">QtKeyboardFriendlyGraphicsView</a><br/>
+TestKeyboardFriendlyGraphicsView, tests <a href="CppQtKeyboardFriendlyGraphicsView.html">QtKeyboardFriendlyGraphicsView</a><br/>
 Copyright (C) 2012&nbsp;&nbsp;Richel Bilderbeek<br/>
 <br/>
 This program is free software: you can redistribute it and/or modify<br/>
@@ -375,47 +376,47 @@ You should have received a copy of the GNU General Public License<br/>
 along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">*/</a><br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="Tools.htm">Tool</a>TestKeyboardFriendlyGraphicsView.htm<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="Tools.htm">Tool</a>TestKeyboardFriendlyGraphicsView.html<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppIfndef.htm">#ifndef</a> QTTESTKEYBOARDFRIENDLYGRAPHICSVIEWWIDGET_H<br/>
-<a href="CppDefine.htm">#define</a> QTTESTKEYBOARDFRIENDLYGRAPHICSVIEWWIDGET_H<br/>
+<a href="CppIfndef.html">#ifndef</a> QTTESTKEYBOARDFRIENDLYGRAPHICSVIEWWIDGET_H<br/>
+<a href="CppDefine.html">#define</a> QTTESTKEYBOARDFRIENDLYGRAPHICSVIEWWIDGET_H<br/>
 <br/>
-<a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
-<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-<b><a href="CppTypedef.htm">typedef</a></b>s"<br/>
-<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-but-set-parameter"<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppSignals2.htm">signals2</a>.hpp&gt;<br/>
-<a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic push<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic ignored "-Wunused-local-<b><a href="CppTypedef.html">typedef</a></b>s"<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic ignored "-Wunused-but-set-parameter"<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppBoost.html">boost</a>/<a href="CppSignals2.html">signals2</a><a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic pop<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppQtKeyboardFriendlyGraphicsView.htm">qtkeyboardfriendlygraphicsview</a>.h"<br/>
+<a href="CppInclude.html">#include</a> "<a href="CppQtKeyboardFriendlyGraphicsView.html">qtkeyboardfriendlygraphicsview</a><a href="CppHeaderFile.htm">.h</a>"<br/>
 <br/>
-<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
+<b><a href="CppNamespace.html">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
 <br/>
-<a href="CppComment.htm">///</a><a href="CppQt.htm">Qt</a>TestKeyboardFriendlyGraphicsView<a href="CppWidget.htm">Widget</a> displays my <a href="CppWidget.htm">widget</a>s and their relations<br/>
-<b><a href="CppStruct.htm">struct</a></b> <a href="CppQt.htm">Qt</a>TestKeyboardFriendlyGraphicsView<a href="CppWidget.htm">Widget</a> : <b><a href="CppPublic.htm">public</a></b> <a href="CppQtKeyboardFriendlyGraphicsView.htm">QtKeyboardFriendlyGraphicsView</a><br/>
+<a href="CppComment.htm">///</a><a href="CppQt.htm">Qt</a>TestKeyboardFriendlyGraphicsView<a href="CppWidget.html">Widget</a> displays my <a href="CppWidget.html">widget</a>s and their relations<br/>
+<b><a href="CppStruct.html">struct</a></b> <a href="CppQt.htm">Qt</a>TestKeyboardFriendlyGraphicsView<a href="CppWidget.html">Widget</a> : <b><a href="CppPublic.html">public</a></b> <a href="CppQtKeyboardFriendlyGraphicsView.html">QtKeyboardFriendlyGraphicsView</a><br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppTypedef.htm">typedef</a></b> <a href="CppQt.htm">Qt</a>TestKeyboardFriendlyGraphicsView<a href="CppWidget.htm">Widget</a> This;<br/>
+&nbsp;&nbsp;<b><a href="CppTypedef.html">typedef</a></b> <a href="CppQt.htm">Qt</a>TestKeyboardFriendlyGraphicsView<a href="CppWidget.html">Widget</a> This;<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppQt.htm">Qt</a>TestKeyboardFriendlyGraphicsView<a href="CppWidget.htm">Widget</a>();<br/>
+&nbsp;&nbsp;<a href="CppQt.htm">Qt</a>TestKeyboardFriendlyGraphicsView<a href="CppWidget.html">Widget</a>();<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>/<a href="CppSignal.htm">Signal</a> <a href="CppEmit.htm">emitted</a> when the user wants to see the <a href="CppAbout.htm">about</a> screen<br/>
-&nbsp;&nbsp;<a href="CppBoostSignal.htm">boost::signals2::signal</a>&lt;<b><a href="CppVoid.htm">void</a></b>()&gt; m_signal_request_about;<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/<a href="CppSignal.html">Signal</a> <a href="CppEmit.html">emitted</a> when the user wants to see the <a href="CppAbout.html">about</a> screen<br/>
+&nbsp;&nbsp;<a href="CppBoostSignal.html">boost::signals2::signal</a>&lt;<b><a href="CppVoid.htm">void</a></b>()&gt; m_signal_request_about;<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>/<a href="CppSignal.htm">Signal</a> <a href="CppEmit.htm">emitted</a> when the user wants to quit<br/>
-&nbsp;&nbsp;<a href="CppBoostSignal.htm">boost::signals2::signal</a>&lt;<b><a href="CppVoid.htm">void</a></b>()&gt; m_signal_request_quit;<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/<a href="CppSignal.html">Signal</a> <a href="CppEmit.html">emitted</a> when the user wants to quit<br/>
+&nbsp;&nbsp;<a href="CppBoostSignal.html">boost::signals2::signal</a>&lt;<b><a href="CppVoid.htm">void</a></b>()&gt; m_signal_request_quit;<br/>
 <br/>
-<b><a href="CppProtected.htm">protected</a></b>:<br/>
+<b><a href="CppProtected.html">protected</a></b>:<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> keyPressEvent(<a href="CppQKeyEvent.htm">QKeyEvent</a> *event);<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> keyPressEvent(<a href="CppQKeyEvent.html">QKeyEvent</a> *event);<br/>
 <br/>
-<b><a href="CppPrivate.htm">private</a></b>:<br/>
+<b><a href="CppPrivate.html">private</a></b>:<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/Update the view<br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> DoUpdateScene();<br/>
 };<br/>
 <br/>
-} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.html">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
 <br/>
-<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> QTTESTKEYBOARDFRIENDLYGRAPHICSVIEWWIDGET_H<br/>
+<a href="CppEndif.html">#endif</a> <a href="CppComment.htm">//</a> QTTESTKEYBOARDFRIENDLYGRAPHICSVIEWWIDGET_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -429,7 +430,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <table summary="qttestqtkeyboardfriendlygraphicsviewwidget.cpp" border = "1"><tr><td><code>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">/*</a><br/>
-TestKeyboardFriendlyGraphicsView, tests <a href="CppQtKeyboardFriendlyGraphicsView.htm">QtKeyboardFriendlyGraphicsView</a><br/>
+TestKeyboardFriendlyGraphicsView, tests <a href="CppQtKeyboardFriendlyGraphicsView.html">QtKeyboardFriendlyGraphicsView</a><br/>
 Copyright (C) 2012&nbsp;&nbsp;Richel Bilderbeek<br/>
 <br/>
 This program is free software: you can redistribute it and/or modify<br/>
@@ -445,49 +446,50 @@ You should have received a copy of the GNU General Public License<br/>
 along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">*/</a><br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="Tools.htm">Tool</a>TestKeyboardFriendlyGraphicsView.htm<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="Tools.htm">Tool</a>TestKeyboardFriendlyGraphicsView.html<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic push<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.html">-Weffc++</a>"<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic ignored "-Wunused-local-<b><a href="CppTypedef.html">typedef</a></b>s"<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic ignored "-Wunused-but-set-parameter"<br/>
+<a href="CppInclude.html">#include</a> "qttest<a href="CppQtKeyboardFriendlyGraphicsView.html">qtkeyboardfriendlygraphicsview</a><a href="CppWidget.html">widget</a><a href="CppHeaderFile.htm">.h</a>"<br/>
 <br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppBoost.html">boost</a>/<a href="CppArray.html">array</a><a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppBoost.html">boost</a>/lambda/lambda<a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppBoost.html">boost</a>/<a href="CppLexical_cast.html">lexical_cast</a><a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppBoost.html">boost</a>/math/constants/constants<a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
 <br/>
-<a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
-<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-<b><a href="CppTypedef.htm">typedef</a></b>s"<br/>
-<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-but-set-parameter"<br/>
-<a href="CppInclude.htm">#include</a> "qttest<a href="CppQtKeyboardFriendlyGraphicsView.htm">qtkeyboardfriendlygraphicsview</a><a href="CppWidget.htm">widget</a>.h"<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppQKeyEvent.html">QKeyEvent</a>&gt;<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppArray.htm">array</a>.hpp&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/lambda/lambda.hpp&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppLexical_cast.htm">lexical_cast</a>.hpp&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/math/constants/constants.hpp&gt;<br/>
-<a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
+<a href="CppInclude.html">#include</a> "<a href="CppQtArrowItem.html">qtarrowitem</a><a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "<a href="CppQtDisplayPosItem.html">qtdisplaypositem</a><a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "<a href="CppQtLeftRightRectItem.html">qtleftrightrectitem</a><a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "<a href="CppQtRoundedRectItem.html">qtroundedrectitem</a><a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "<a href="CppQtPathArrowItem.html">qtpatharrowitem</a><a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "<a href="CppQtRoundedEditRectItem.html">qtroundededitrectitem</a><a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "<a href="CppQtRoundedTextRectItem.html">qtroundedtextrectitem</a><a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "<a href="CppQtQuadBezierArrowItem.html">qtquadbezierarrowitem</a><a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic pop<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppQKeyEvent.htm">QKeyEvent</a>&gt;<br/>
-<br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppQtArrowItem.htm">qtarrowitem</a>.h"<br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppQtDisplayPosItem.htm">qtdisplaypositem</a>.h"<br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppQtLeftRightRectItem.htm">qtleftrightrectitem</a>.h"<br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppQtRoundedRectItem.htm">qtroundedrectitem</a>.h"<br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppQtPathArrowItem.htm">qtpatharrowitem</a>.h"<br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppQtRoundedEditRectItem.htm">qtroundededitrectitem</a>.h"<br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppQtRoundedTextRectItem.htm">qtroundedtextrectitem</a>.h"<br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppQtQuadBezierArrowItem.htm">qtquadbezierarrowitem</a>.h"<br/>
-<br/>
-<a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>TestKeyboardFriendlyGraphicsView<a href="CppWidget.htm">Widget</a>::<a href="CppQt.htm">Qt</a>TestKeyboardFriendlyGraphicsView<a href="CppWidget.htm">Widget</a>()<br/>
+<a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>TestKeyboardFriendlyGraphicsView<a href="CppWidget.html">Widget</a>::<a href="CppQt.htm">Qt</a>TestKeyboardFriendlyGraphicsView<a href="CppWidget.html">Widget</a>()<br/>
+&nbsp;&nbsp;: m_signal_request_about{},<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_signal_request_quit{}<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> pi <a href="CppOperatorAssign.htm">=</a> <a href="CppBoost.htm">boost</a>::math::constants::pi&lt;<b><a href="CppDouble.htm">double</a></b>&gt;();<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> pi <a href="CppOperatorAssign.htm">=</a> <a href="CppBoost.html">boost</a>::math::constants::pi&lt;<b><a href="CppDouble.html">double</a></b>&gt;();<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Legend<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> midx <a href="CppOperatorAssign.htm">=</a> 0.0;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> midy <a href="CppOperatorAssign.htm">=</a> 0.0;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> ray <a href="CppOperatorAssign.htm">=</a> 100.0;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQGraphicsEllipseItem.htm">QGraphicsEllipseItem</a> * <b><a href="CppConst.htm">const</a></b> circle <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppQGraphicsEllipseItem.htm">QGraphicsEllipseItem</a>(midx <a href="CppOperatorMinus.htm">-</a> ray, midy <a href="CppOperatorMinus.htm">-</a> ray,2.0 * ray,2.0 * ray);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> midx <a href="CppOperatorAssign.htm">=</a> 0.0;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> midy <a href="CppOperatorAssign.htm">=</a> 0.0;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> ray <a href="CppOperatorAssign.htm">=</a> 100.0;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQGraphicsEllipseItem.html">QGraphicsEllipseItem</a> * <b><a href="CppConst.html">const</a></b> circle <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppQGraphicsEllipseItem.html">QGraphicsEllipseItem</a>(midx <a href="CppOperatorMinus.htm">-</a> ray, midy <a href="CppOperatorMinus.htm">-</a> ray,2.0 * ray,2.0 * ray);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;scene()-&gt;addItem(circle);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQGraphicsTextItem.htm">QGraphicsTextItem</a> * <b><a href="CppConst.htm">const</a></b> item <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppQGraphicsTextItem.htm">QGraphicsTextItem</a>("ESC: Quit");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQGraphicsTextItem.html">QGraphicsTextItem</a> * <b><a href="CppConst.html">const</a></b> item <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppQGraphicsTextItem.html">QGraphicsTextItem</a>("ESC: Quit");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;scene()-&gt;addItem(item);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;item-&gt;setPos(midx <a href="CppOperatorPlus.htm">+</a> 0.0 <a href="CppOperatorMinus.htm">-</a> item-&gt;boundingRect().center().x(),midy <a href="CppOperatorMinus.htm">-</a> 20.0 <a href="CppOperatorMinus.htm">-</a> item-&gt;boundingRect().center().y());<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQGraphicsTextItem.htm">QGraphicsTextItem</a> * <b><a href="CppConst.htm">const</a></b> item <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppQGraphicsTextItem.htm">QGraphicsTextItem</a>("a: <a href="CppAbout.htm">about</a>");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQGraphicsTextItem.html">QGraphicsTextItem</a> * <b><a href="CppConst.html">const</a></b> item <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppQGraphicsTextItem.html">QGraphicsTextItem</a>("a: <a href="CppAbout.html">about</a>");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;scene()-&gt;addItem(item);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;item-&gt;setPos(midx <a href="CppOperatorPlus.htm">+</a> 0.0 <a href="CppOperatorMinus.htm">-</a> item-&gt;boundingRect().center().x(),midy <a href="CppOperatorPlus.htm">+</a> 20.0 <a href="CppOperatorMinus.htm">-</a> item-&gt;boundingRect().center().y());<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
@@ -495,70 +497,70 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;}<br/>
 <br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppQGraphicsRectItem.htm">QGraphicsRectItem</a>s<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppTypedef.htm">typedef</a></b> <a href="CppQGraphicsRectItem.htm">QGraphicsRectItem</a> Item;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> midx <a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;&nbsp;&nbsp;0.0;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> midy <a href="CppOperatorAssign.htm">=</a> <a href="CppOperatorMinus.htm">-</a>200.0;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> n <a href="CppOperatorAssign.htm">=</a> 3;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> ray <a href="CppOperatorAssign.htm">=</a> 100.0;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQGraphicsTextItem.htm">QGraphicsTextItem</a> * <b><a href="CppConst.htm">const</a></b> text <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppQGraphicsTextItem.htm">QGraphicsTextItem</a>("<a href="CppQGraphicsRectItem.htm">QGraphicsRectItem</a>");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppQGraphicsRectItem.html">QGraphicsRectItem</a>s<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppTypedef.html">typedef</a></b> <a href="CppQGraphicsRectItem.html">QGraphicsRectItem</a> Item;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> midx <a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;&nbsp;&nbsp;0.0;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> midy <a href="CppOperatorAssign.htm">=</a> <a href="CppOperatorMinus.htm">-</a>200.0;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> n <a href="CppOperatorAssign.htm">=</a> 3;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> ray <a href="CppOperatorAssign.htm">=</a> 100.0;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQGraphicsTextItem.html">QGraphicsTextItem</a> * <b><a href="CppConst.html">const</a></b> text <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppQGraphicsTextItem.html">QGraphicsTextItem</a>("<a href="CppQGraphicsRectItem.html">QGraphicsRectItem</a>");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;text-&gt;setPos(midx <a href="CppOperatorMinus.htm">-</a> text-&gt;boundingRect().center().x(),midy <a href="CppOperatorMinus.htm">-</a> text-&gt;boundingRect().center().y());<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;scene()-&gt;addItem(text);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQGraphicsEllipseItem.htm">QGraphicsEllipseItem</a> * <b><a href="CppConst.htm">const</a></b> circle <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppQGraphicsEllipseItem.htm">QGraphicsEllipseItem</a>(midx <a href="CppOperatorMinus.htm">-</a> ray, midy <a href="CppOperatorMinus.htm">-</a> ray,2.0 * ray,2.0 * ray);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQGraphicsEllipseItem.html">QGraphicsEllipseItem</a> * <b><a href="CppConst.html">const</a></b> circle <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppQGraphicsEllipseItem.html">QGraphicsEllipseItem</a>(midx <a href="CppOperatorMinus.htm">-</a> ray, midy <a href="CppOperatorMinus.htm">-</a> ray,2.0 * ray,2.0 * ray);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;scene()-&gt;addItem(circle);<br/>
 <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> i=0; i<a href="CppOperatorNotEqual.htm">!=</a>n; <a href="CppOperatorPlus.htm">+</a>+i)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> angle <a href="CppOperatorAssign.htm">=</a> 2.0 * pi * <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(i) <a href="CppOperatorDivide.htm">/</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(n);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> x <a href="CppOperatorAssign.htm">=</a> midx <a href="CppOperatorPlus.htm">+</a> (<a href="CppSin.htm">std::sin</a>(angle) * 0.5 * ray);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> y <a href="CppOperatorAssign.htm">=</a> midy <a href="CppOperatorMinus.htm">-</a> (<a href="CppCos.htm">std::cos</a>(angle) * 0.5 * ray);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Item * <b><a href="CppConst.htm">const</a></b> item <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> Item;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> angle <a href="CppOperatorAssign.htm">=</a> 2.0 * pi * <b><a href="CppStatic_cast.html">static_cast</a></b>&lt;<b><a href="CppDouble.html">double</a></b>&gt;(i) <a href="CppOperatorDivide.htm">/</a> <b><a href="CppStatic_cast.html">static_cast</a></b>&lt;<b><a href="CppDouble.html">double</a></b>&gt;(n);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> x <a href="CppOperatorAssign.htm">=</a> midx <a href="CppOperatorPlus.htm">+</a> (<a href="CppSin.html">std::sin</a>(angle) * 0.5 * ray);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> y <a href="CppOperatorAssign.htm">=</a> midy <a href="CppOperatorMinus.htm">-</a> (<a href="CppCos.html">std::cos</a>(angle) * 0.5 * ray);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Item * <b><a href="CppConst.html">const</a></b> item <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> Item;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;item-&gt;setPos(x,y);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;item-&gt;setRect(-16.0,-16.0,32.0,32.0);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;item-&gt;setFlags(<a href="CppQGraphicsItem.htm">QGraphicsItem</a>::ItemIsFocusable | <a href="CppQGraphicsItem.htm">QGraphicsItem</a>::ItemIsMovable | <a href="CppQGraphicsItem.htm">QGraphicsItem</a>::ItemIsSelectable);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;item-&gt;setFlags(<a href="CppQGraphicsItem.html">QGraphicsItem</a>::ItemIsFocusable | <a href="CppQGraphicsItem.html">QGraphicsItem</a>::ItemIsMovable | <a href="CppQGraphicsItem.html">QGraphicsItem</a>::ItemIsSelectable);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;scene()-&gt;addItem(item);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppQtRoundedRectItem.htm">QtRoundedRectItem</a><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppTypedef.htm">typedef</a></b> <a href="CppQtRoundedRectItem.htm">QtRoundedRectItem</a> Item;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> midx <a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp; 0.0;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> midy <a href="CppOperatorAssign.htm">=</a> 200.0;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> n <a href="CppOperatorAssign.htm">=</a> 3;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> ray <a href="CppOperatorAssign.htm">=</a> 100.0;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQGraphicsTextItem.htm">QGraphicsTextItem</a> * <b><a href="CppConst.htm">const</a></b> text <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppQGraphicsTextItem.htm">QGraphicsTextItem</a>("<a href="CppQtRoundedRectItem.htm">QtRoundedRectItem</a>");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppQtRoundedRectItem.html">QtRoundedRectItem</a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppTypedef.html">typedef</a></b> <a href="CppQtRoundedRectItem.html">QtRoundedRectItem</a> Item;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> midx <a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp; 0.0;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> midy <a href="CppOperatorAssign.htm">=</a> 200.0;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> n <a href="CppOperatorAssign.htm">=</a> 3;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> ray <a href="CppOperatorAssign.htm">=</a> 100.0;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQGraphicsTextItem.html">QGraphicsTextItem</a> * <b><a href="CppConst.html">const</a></b> text <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppQGraphicsTextItem.html">QGraphicsTextItem</a>("<a href="CppQtRoundedRectItem.html">QtRoundedRectItem</a>");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;text-&gt;setPos(midx <a href="CppOperatorMinus.htm">-</a> text-&gt;boundingRect().center().x(),midy <a href="CppOperatorMinus.htm">-</a> text-&gt;boundingRect().center().y());<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;scene()-&gt;addItem(text);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQGraphicsEllipseItem.htm">QGraphicsEllipseItem</a> * <b><a href="CppConst.htm">const</a></b> circle <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppQGraphicsEllipseItem.htm">QGraphicsEllipseItem</a>(midx <a href="CppOperatorMinus.htm">-</a> ray, midy <a href="CppOperatorMinus.htm">-</a> ray,2.0 * ray,2.0 * ray);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQGraphicsEllipseItem.html">QGraphicsEllipseItem</a> * <b><a href="CppConst.html">const</a></b> circle <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppQGraphicsEllipseItem.html">QGraphicsEllipseItem</a>(midx <a href="CppOperatorMinus.htm">-</a> ray, midy <a href="CppOperatorMinus.htm">-</a> ray,2.0 * ray,2.0 * ray);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;scene()-&gt;addItem(circle);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> i=0; i<a href="CppOperatorNotEqual.htm">!=</a>n; <a href="CppOperatorPlus.htm">+</a>+i)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> angle <a href="CppOperatorAssign.htm">=</a> 2.0 * pi * <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(i) <a href="CppOperatorDivide.htm">/</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(n);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> x <a href="CppOperatorAssign.htm">=</a> midx <a href="CppOperatorPlus.htm">+</a> (<a href="CppSin.htm">std::sin</a>(angle) * 0.5 * ray);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> y <a href="CppOperatorAssign.htm">=</a> midy <a href="CppOperatorMinus.htm">-</a> (<a href="CppCos.htm">std::cos</a>(angle) * 0.5 * ray);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Item * <b><a href="CppConst.htm">const</a></b> item <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> Item;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> angle <a href="CppOperatorAssign.htm">=</a> 2.0 * pi * <b><a href="CppStatic_cast.html">static_cast</a></b>&lt;<b><a href="CppDouble.html">double</a></b>&gt;(i) <a href="CppOperatorDivide.htm">/</a> <b><a href="CppStatic_cast.html">static_cast</a></b>&lt;<b><a href="CppDouble.html">double</a></b>&gt;(n);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> x <a href="CppOperatorAssign.htm">=</a> midx <a href="CppOperatorPlus.htm">+</a> (<a href="CppSin.html">std::sin</a>(angle) * 0.5 * ray);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> y <a href="CppOperatorAssign.htm">=</a> midy <a href="CppOperatorMinus.htm">-</a> (<a href="CppCos.html">std::cos</a>(angle) * 0.5 * ray);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Item * <b><a href="CppConst.html">const</a></b> item <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> Item;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;item-&gt;setPos(x,y);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;scene()-&gt;addItem(item);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppQt.htm">Qt</a>RoundedTextRectItem<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppTypedef.htm">typedef</a></b> <a href="CppQt.htm">Qt</a>RoundedTextRectItem Item;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> midx <a href="CppOperatorAssign.htm">=</a> 174.0;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> midy <a href="CppOperatorAssign.htm">=</a> 300.0;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> n <a href="CppOperatorAssign.htm">=</a> 3;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> ray <a href="CppOperatorAssign.htm">=</a> 100.0;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQGraphicsTextItem.htm">QGraphicsTextItem</a> * <b><a href="CppConst.htm">const</a></b> text <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppQGraphicsTextItem.htm">QGraphicsTextItem</a>("<a href="CppQt.htm">Qt</a>RoundedTextRectItem");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppTypedef.html">typedef</a></b> <a href="CppQt.htm">Qt</a>RoundedTextRectItem Item;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> midx <a href="CppOperatorAssign.htm">=</a> 174.0;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> midy <a href="CppOperatorAssign.htm">=</a> 300.0;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> n <a href="CppOperatorAssign.htm">=</a> 3;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> ray <a href="CppOperatorAssign.htm">=</a> 100.0;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQGraphicsTextItem.html">QGraphicsTextItem</a> * <b><a href="CppConst.html">const</a></b> text <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppQGraphicsTextItem.html">QGraphicsTextItem</a>("<a href="CppQt.htm">Qt</a>RoundedTextRectItem");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;text-&gt;setPos(midx <a href="CppOperatorMinus.htm">-</a> text-&gt;boundingRect().center().x(),midy <a href="CppOperatorMinus.htm">-</a> text-&gt;boundingRect().center().y());<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;scene()-&gt;addItem(text);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQGraphicsEllipseItem.htm">QGraphicsEllipseItem</a> * <b><a href="CppConst.htm">const</a></b> circle <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppQGraphicsEllipseItem.htm">QGraphicsEllipseItem</a>(midx <a href="CppOperatorMinus.htm">-</a> ray, midy <a href="CppOperatorMinus.htm">-</a> ray,2.0 * ray,2.0 * ray);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQGraphicsEllipseItem.html">QGraphicsEllipseItem</a> * <b><a href="CppConst.html">const</a></b> circle <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppQGraphicsEllipseItem.html">QGraphicsEllipseItem</a>(midx <a href="CppOperatorMinus.htm">-</a> ray, midy <a href="CppOperatorMinus.htm">-</a> ray,2.0 * ray,2.0 * ray);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;scene()-&gt;addItem(circle);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> i=0; i<a href="CppOperatorNotEqual.htm">!=</a>n; <a href="CppOperatorPlus.htm">+</a>+i)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> angle <a href="CppOperatorAssign.htm">=</a> 2.0 * pi * <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(i) <a href="CppOperatorDivide.htm">/</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(n);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> x <a href="CppOperatorAssign.htm">=</a> midx <a href="CppOperatorPlus.htm">+</a> (<a href="CppSin.htm">std::sin</a>(angle) * 0.5 * ray);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> y <a href="CppOperatorAssign.htm">=</a> midy <a href="CppOperatorMinus.htm">-</a> (<a href="CppCos.htm">std::cos</a>(angle) * 0.5 * ray);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Item * <b><a href="CppConst.htm">const</a></b> item <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> Item;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> angle <a href="CppOperatorAssign.htm">=</a> 2.0 * pi * <b><a href="CppStatic_cast.html">static_cast</a></b>&lt;<b><a href="CppDouble.html">double</a></b>&gt;(i) <a href="CppOperatorDivide.htm">/</a> <b><a href="CppStatic_cast.html">static_cast</a></b>&lt;<b><a href="CppDouble.html">double</a></b>&gt;(n);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> x <a href="CppOperatorAssign.htm">=</a> midx <a href="CppOperatorPlus.htm">+</a> (<a href="CppSin.html">std::sin</a>(angle) * 0.5 * ray);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> y <a href="CppOperatorAssign.htm">=</a> midy <a href="CppOperatorMinus.htm">-</a> (<a href="CppCos.html">std::cos</a>(angle) * 0.5 * ray);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Item * <b><a href="CppConst.html">const</a></b> item <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> Item;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;item-&gt;setPos(x,y);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>item-&gt;setRect(-16.0,-16.0,32.0,32.0);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;scene()-&gt;addItem(item);<br/>
@@ -566,22 +568,22 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppQt.htm">Qt</a>LeftRightRectItem<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppTypedef.htm">typedef</a></b> <a href="CppQt.htm">Qt</a>LeftRightRectItem Item;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> midx <a href="CppOperatorAssign.htm">=</a> 174.0;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> midy <a href="CppOperatorAssign.htm">=</a> 100.0;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> n <a href="CppOperatorAssign.htm">=</a> 3;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> ray <a href="CppOperatorAssign.htm">=</a> 100.0;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQGraphicsTextItem.htm">QGraphicsTextItem</a> * <b><a href="CppConst.htm">const</a></b> text <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppQGraphicsTextItem.htm">QGraphicsTextItem</a>("<a href="CppQt.htm">Qt</a>LeftRightRectItem");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppTypedef.html">typedef</a></b> <a href="CppQt.htm">Qt</a>LeftRightRectItem Item;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> midx <a href="CppOperatorAssign.htm">=</a> 174.0;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> midy <a href="CppOperatorAssign.htm">=</a> 100.0;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> n <a href="CppOperatorAssign.htm">=</a> 3;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> ray <a href="CppOperatorAssign.htm">=</a> 100.0;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQGraphicsTextItem.html">QGraphicsTextItem</a> * <b><a href="CppConst.html">const</a></b> text <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppQGraphicsTextItem.html">QGraphicsTextItem</a>("<a href="CppQt.htm">Qt</a>LeftRightRectItem");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;text-&gt;setPos(midx <a href="CppOperatorMinus.htm">-</a> text-&gt;boundingRect().center().x(),midy <a href="CppOperatorMinus.htm">-</a> text-&gt;boundingRect().center().y());<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;scene()-&gt;addItem(text);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQGraphicsEllipseItem.htm">QGraphicsEllipseItem</a> * <b><a href="CppConst.htm">const</a></b> circle <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppQGraphicsEllipseItem.htm">QGraphicsEllipseItem</a>(midx <a href="CppOperatorMinus.htm">-</a> ray, midy <a href="CppOperatorMinus.htm">-</a> ray,2.0 * ray,2.0 * ray);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQGraphicsEllipseItem.html">QGraphicsEllipseItem</a> * <b><a href="CppConst.html">const</a></b> circle <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppQGraphicsEllipseItem.html">QGraphicsEllipseItem</a>(midx <a href="CppOperatorMinus.htm">-</a> ray, midy <a href="CppOperatorMinus.htm">-</a> ray,2.0 * ray,2.0 * ray);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;scene()-&gt;addItem(circle);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> i=0; i<a href="CppOperatorNotEqual.htm">!=</a>n; <a href="CppOperatorPlus.htm">+</a>+i)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> angle <a href="CppOperatorAssign.htm">=</a> 2.0 * pi * <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(i) <a href="CppOperatorDivide.htm">/</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(n);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> x <a href="CppOperatorAssign.htm">=</a> midx <a href="CppOperatorPlus.htm">+</a> (<a href="CppSin.htm">std::sin</a>(angle) * 0.5 * ray);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> y <a href="CppOperatorAssign.htm">=</a> midy <a href="CppOperatorMinus.htm">-</a> (<a href="CppCos.htm">std::cos</a>(angle) * 0.5 * ray);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Item * <b><a href="CppConst.htm">const</a></b> item <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> Item;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> angle <a href="CppOperatorAssign.htm">=</a> 2.0 * pi * <b><a href="CppStatic_cast.html">static_cast</a></b>&lt;<b><a href="CppDouble.html">double</a></b>&gt;(i) <a href="CppOperatorDivide.htm">/</a> <b><a href="CppStatic_cast.html">static_cast</a></b>&lt;<b><a href="CppDouble.html">double</a></b>&gt;(n);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> x <a href="CppOperatorAssign.htm">=</a> midx <a href="CppOperatorPlus.htm">+</a> (<a href="CppSin.html">std::sin</a>(angle) * 0.5 * ray);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> y <a href="CppOperatorAssign.htm">=</a> midy <a href="CppOperatorMinus.htm">-</a> (<a href="CppCos.html">std::cos</a>(angle) * 0.5 * ray);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Item * <b><a href="CppConst.html">const</a></b> item <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> Item;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;item-&gt;setPos(x,y);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>item-&gt;setRect(-16.0,-16.0,32.0,32.0);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;scene()-&gt;addItem(item);<br/>
@@ -589,22 +591,22 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppQt.htm">Qt</a>DisplayPosItem<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppTypedef.htm">typedef</a></b> <a href="CppQt.htm">Qt</a>DisplayPosItem Item;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> midx <a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;174.0;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> midy <a href="CppOperatorAssign.htm">=</a> <a href="CppOperatorMinus.htm">-</a>100.0;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> n <a href="CppOperatorAssign.htm">=</a> 3;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> ray <a href="CppOperatorAssign.htm">=</a> 100.0;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQGraphicsTextItem.htm">QGraphicsTextItem</a> * <b><a href="CppConst.htm">const</a></b> text <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppQGraphicsTextItem.htm">QGraphicsTextItem</a>("<a href="CppQt.htm">Qt</a>DisplayPosItem");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppTypedef.html">typedef</a></b> <a href="CppQt.htm">Qt</a>DisplayPosItem Item;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> midx <a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;174.0;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> midy <a href="CppOperatorAssign.htm">=</a> <a href="CppOperatorMinus.htm">-</a>100.0;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> n <a href="CppOperatorAssign.htm">=</a> 3;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> ray <a href="CppOperatorAssign.htm">=</a> 100.0;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQGraphicsTextItem.html">QGraphicsTextItem</a> * <b><a href="CppConst.html">const</a></b> text <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppQGraphicsTextItem.html">QGraphicsTextItem</a>("<a href="CppQt.htm">Qt</a>DisplayPosItem");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;text-&gt;setPos(midx <a href="CppOperatorMinus.htm">-</a> text-&gt;boundingRect().center().x(),midy <a href="CppOperatorMinus.htm">-</a> text-&gt;boundingRect().center().y());<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;scene()-&gt;addItem(text);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQGraphicsEllipseItem.htm">QGraphicsEllipseItem</a> * <b><a href="CppConst.htm">const</a></b> circle <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppQGraphicsEllipseItem.htm">QGraphicsEllipseItem</a>(midx <a href="CppOperatorMinus.htm">-</a> ray, midy <a href="CppOperatorMinus.htm">-</a> ray,2.0 * ray,2.0 * ray);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQGraphicsEllipseItem.html">QGraphicsEllipseItem</a> * <b><a href="CppConst.html">const</a></b> circle <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppQGraphicsEllipseItem.html">QGraphicsEllipseItem</a>(midx <a href="CppOperatorMinus.htm">-</a> ray, midy <a href="CppOperatorMinus.htm">-</a> ray,2.0 * ray,2.0 * ray);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;scene()-&gt;addItem(circle);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> i=0; i<a href="CppOperatorNotEqual.htm">!=</a>n; <a href="CppOperatorPlus.htm">+</a>+i)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> angle <a href="CppOperatorAssign.htm">=</a> 2.0 * pi * <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(i) <a href="CppOperatorDivide.htm">/</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(n);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> x <a href="CppOperatorAssign.htm">=</a> midx <a href="CppOperatorPlus.htm">+</a> (<a href="CppSin.htm">std::sin</a>(angle) * 0.5 * ray);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> y <a href="CppOperatorAssign.htm">=</a> midy <a href="CppOperatorMinus.htm">-</a> (<a href="CppCos.htm">std::cos</a>(angle) * 0.5 * ray);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Item * <b><a href="CppConst.htm">const</a></b> item <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> Item;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> angle <a href="CppOperatorAssign.htm">=</a> 2.0 * pi * <b><a href="CppStatic_cast.html">static_cast</a></b>&lt;<b><a href="CppDouble.html">double</a></b>&gt;(i) <a href="CppOperatorDivide.htm">/</a> <b><a href="CppStatic_cast.html">static_cast</a></b>&lt;<b><a href="CppDouble.html">double</a></b>&gt;(n);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> x <a href="CppOperatorAssign.htm">=</a> midx <a href="CppOperatorPlus.htm">+</a> (<a href="CppSin.html">std::sin</a>(angle) * 0.5 * ray);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> y <a href="CppOperatorAssign.htm">=</a> midy <a href="CppOperatorMinus.htm">-</a> (<a href="CppCos.html">std::cos</a>(angle) * 0.5 * ray);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Item * <b><a href="CppConst.html">const</a></b> item <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> Item;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;item-&gt;setPos(x <a href="CppOperatorMinus.htm">-</a> item-&gt;boundingRect().center().x(),y <a href="CppOperatorMinus.htm">-</a> item-&gt;boundingRect().center().y());<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>item-&gt;setPos(x,y);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>item-&gt;setRect(-16.0,-16.0,32.0,32.0);<br/>
@@ -613,120 +615,120 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppQt.htm">Qt</a>QuadBezierArrow<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppTypedef.htm">typedef</a></b> <a href="CppQt.htm">Qt</a>QuadBezierArrowItem Item;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> midx <a href="CppOperatorAssign.htm">=</a> <a href="CppOperatorMinus.htm">-</a>174.0;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> midy <a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;100.0;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> n <a href="CppOperatorAssign.htm">=</a> 3;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> ray <a href="CppOperatorAssign.htm">=</a> 100.0;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQGraphicsTextItem.htm">QGraphicsTextItem</a> * <b><a href="CppConst.htm">const</a></b> text <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppQGraphicsTextItem.htm">QGraphicsTextItem</a>("<a href="CppQt.htm">Qt</a>QuadBezierArrowItem");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppTypedef.html">typedef</a></b> <a href="CppQt.htm">Qt</a>QuadBezierArrowItem Item;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> midx <a href="CppOperatorAssign.htm">=</a> <a href="CppOperatorMinus.htm">-</a>174.0;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> midy <a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;100.0;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> n <a href="CppOperatorAssign.htm">=</a> 3;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> ray <a href="CppOperatorAssign.htm">=</a> 100.0;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQGraphicsTextItem.html">QGraphicsTextItem</a> * <b><a href="CppConst.html">const</a></b> text <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppQGraphicsTextItem.html">QGraphicsTextItem</a>("<a href="CppQt.htm">Qt</a>QuadBezierArrowItem");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;text-&gt;setPos(midx <a href="CppOperatorMinus.htm">-</a> text-&gt;boundingRect().center().x(),midy <a href="CppOperatorMinus.htm">-</a> text-&gt;boundingRect().center().y());<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;scene()-&gt;addItem(text);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQGraphicsEllipseItem.htm">QGraphicsEllipseItem</a> * <b><a href="CppConst.htm">const</a></b> circle <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppQGraphicsEllipseItem.htm">QGraphicsEllipseItem</a>(midx <a href="CppOperatorMinus.htm">-</a> ray, midy <a href="CppOperatorMinus.htm">-</a> ray,2.0 * ray,2.0 * ray);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQGraphicsEllipseItem.html">QGraphicsEllipseItem</a> * <b><a href="CppConst.html">const</a></b> circle <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppQGraphicsEllipseItem.html">QGraphicsEllipseItem</a>(midx <a href="CppOperatorMinus.htm">-</a> ray, midy <a href="CppOperatorMinus.htm">-</a> ray,2.0 * ray,2.0 * ray);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;scene()-&gt;addItem(circle);<br/>
 <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> i=0; i<a href="CppOperatorNotEqual.htm">!=</a>n; <a href="CppOperatorPlus.htm">+</a>+i)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> angle <a href="CppOperatorAssign.htm">=</a> 2.0 * pi * <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(i) <a href="CppOperatorDivide.htm">/</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(n);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBoostArray.htm">boost::array</a>&lt;<a href="CppQGraphicsItem.htm">QGraphicsItem</a> *,3&gt; v;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;v.assign(<b><a href="CppNullptr.htm">nullptr</a></b>); <a href="CppAssert.htm">assert</a>(v[0] <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <b><a href="CppNullptr.htm">nullptr</a></b> <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> v[1] <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <b><a href="CppNullptr.htm">nullptr</a></b> <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> v[2] <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <b><a href="CppNullptr.htm">nullptr</a></b>);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> angle <a href="CppOperatorAssign.htm">=</a> 2.0 * pi * <b><a href="CppStatic_cast.html">static_cast</a></b>&lt;<b><a href="CppDouble.html">double</a></b>&gt;(i) <a href="CppOperatorDivide.htm">/</a> <b><a href="CppStatic_cast.html">static_cast</a></b>&lt;<b><a href="CppDouble.html">double</a></b>&gt;(n);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBoostArray.html">boost::array</a>&lt;<a href="CppQGraphicsItem.html">QGraphicsItem</a> *,3&gt; v;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;v.assign(<b><a href="CppNullptr.html">nullptr</a></b>); <a href="CppAssert.html">assert</a>(v[0] <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <b><a href="CppNullptr.html">nullptr</a></b> <a href="CppOperatorLogicalAnd.html">&amp;&amp;</a> v[1] <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <b><a href="CppNullptr.html">nullptr</a></b> <a href="CppOperatorLogicalAnd.html">&amp;&amp;</a> v[2] <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <b><a href="CppNullptr.html">nullptr</a></b>);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> j=0; j<a href="CppOperatorNotEqual.htm">!=</a>3; <a href="CppOperatorPlus.htm">+</a>+j)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> sub_ray <a href="CppOperatorAssign.htm">=</a> 90.0;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> sub_angle <a href="CppOperatorAssign.htm">=</a> angle <a href="CppOperatorPlus.htm">+</a> (2.0 * 2.0 * pi * <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(j <a href="CppOperatorPlus.htm">+</a> 1) <a href="CppOperatorDivide.htm">/</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;( (3 <a href="CppOperatorPlus.htm">+</a> 2) * n));<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> x <a href="CppOperatorAssign.htm">=</a> midx <a href="CppOperatorPlus.htm">+</a> <a href="CppSin.htm">std::sin</a>(sub_angle) * sub_ray;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> y <a href="CppOperatorAssign.htm">=</a> midy <a href="CppOperatorMinus.htm">-</a> <a href="CppCos.htm">std::cos</a>(sub_angle) * sub_ray;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQtRoundedRectItem.htm">QtRoundedRectItem</a> * <b><a href="CppConst.htm">const</a></b> item <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppQtRoundedRectItem.htm">QtRoundedRectItem</a>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> sub_ray <a href="CppOperatorAssign.htm">=</a> 90.0;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> sub_angle <a href="CppOperatorAssign.htm">=</a> angle <a href="CppOperatorPlus.htm">+</a> (2.0 * 2.0 * pi * <b><a href="CppStatic_cast.html">static_cast</a></b>&lt;<b><a href="CppDouble.html">double</a></b>&gt;(j <a href="CppOperatorPlus.htm">+</a> 1) <a href="CppOperatorDivide.htm">/</a> <b><a href="CppStatic_cast.html">static_cast</a></b>&lt;<b><a href="CppDouble.html">double</a></b>&gt;( (3 <a href="CppOperatorPlus.htm">+</a> 2) * n));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> x <a href="CppOperatorAssign.htm">=</a> midx <a href="CppOperatorPlus.htm">+</a> <a href="CppSin.html">std::sin</a>(sub_angle) * sub_ray;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> y <a href="CppOperatorAssign.htm">=</a> midy <a href="CppOperatorMinus.htm">-</a> <a href="CppCos.html">std::cos</a>(sub_angle) * sub_ray;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQtRoundedRectItem.html">QtRoundedRectItem</a> * <b><a href="CppConst.html">const</a></b> item <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppQtRoundedRectItem.html">QtRoundedRectItem</a>;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;item-&gt;setPos(x,y);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;item-&gt;SetRoundedRect(<a href="CppQRect.htm">QRect</a>F(-4.0,-4.0,8.0,8.0),1.0,1.0);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;item-&gt;SetRoundedRect(<a href="CppQRect.html">QRect</a>F(-4.0,-4.0,8.0,8.0),1.0,1.0);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;scene()-&gt;addItem(item);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;v[j] <a href="CppOperatorAssign.htm">=</a> item;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(v[0] <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> v[1] <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> v[2]);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Item * <b><a href="CppConst.htm">const</a></b> item <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> Item(v[0],<b><a href="CppFalse.htm">false</a></b>,v[1],<b><a href="CppTrue.htm">true</a></b>,v[2]);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(v[0] <a href="CppOperatorLogicalAnd.html">&amp;&amp;</a> v[1] <a href="CppOperatorLogicalAnd.html">&amp;&amp;</a> v[2]);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Item * <b><a href="CppConst.html">const</a></b> item <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> Item(v[0],<b><a href="CppFalse.html">false</a></b>,v[1],<b><a href="CppTrue.htm">true</a></b>,v[2]);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;scene()-&gt;addItem(item);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppQtArrowItem.htm">QtArrowItem</a><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppTypedef.htm">typedef</a></b> <a href="CppQtArrowItem.htm">QtArrowItem</a> Item;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> midx <a href="CppOperatorAssign.htm">=</a> <a href="CppOperatorMinus.htm">-</a>174.0;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> midy <a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;300.0;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> n <a href="CppOperatorAssign.htm">=</a> 3;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> ray <a href="CppOperatorAssign.htm">=</a> 100.0;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQGraphicsTextItem.htm">QGraphicsTextItem</a> * <b><a href="CppConst.htm">const</a></b> text <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppQGraphicsTextItem.htm">QGraphicsTextItem</a>("<a href="CppQtArrowItem.htm">QtArrowItem</a>");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppQtArrowItem.html">QtArrowItem</a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppTypedef.html">typedef</a></b> <a href="CppQtArrowItem.html">QtArrowItem</a> Item;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> midx <a href="CppOperatorAssign.htm">=</a> <a href="CppOperatorMinus.htm">-</a>174.0;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> midy <a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;300.0;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> n <a href="CppOperatorAssign.htm">=</a> 3;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> ray <a href="CppOperatorAssign.htm">=</a> 100.0;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQGraphicsTextItem.html">QGraphicsTextItem</a> * <b><a href="CppConst.html">const</a></b> text <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppQGraphicsTextItem.html">QGraphicsTextItem</a>("<a href="CppQtArrowItem.html">QtArrowItem</a>");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;text-&gt;setPos(midx <a href="CppOperatorMinus.htm">-</a> text-&gt;boundingRect().center().x(),midy <a href="CppOperatorMinus.htm">-</a> text-&gt;boundingRect().center().y());<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;scene()-&gt;addItem(text);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQGraphicsEllipseItem.htm">QGraphicsEllipseItem</a> * <b><a href="CppConst.htm">const</a></b> circle <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppQGraphicsEllipseItem.htm">QGraphicsEllipseItem</a>(midx <a href="CppOperatorMinus.htm">-</a> ray, midy <a href="CppOperatorMinus.htm">-</a> ray,2.0 * ray,2.0 * ray);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQGraphicsEllipseItem.html">QGraphicsEllipseItem</a> * <b><a href="CppConst.html">const</a></b> circle <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppQGraphicsEllipseItem.html">QGraphicsEllipseItem</a>(midx <a href="CppOperatorMinus.htm">-</a> ray, midy <a href="CppOperatorMinus.htm">-</a> ray,2.0 * ray,2.0 * ray);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;scene()-&gt;addItem(circle);<br/>
 <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> i=0; i<a href="CppOperatorNotEqual.htm">!=</a>n; <a href="CppOperatorPlus.htm">+</a>+i)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> angle <a href="CppOperatorAssign.htm">=</a> 2.0 * pi * <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(i) <a href="CppOperatorDivide.htm">/</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(n);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> x1 <a href="CppOperatorAssign.htm">=</a> midx <a href="CppOperatorPlus.htm">+</a> <a href="CppSin.htm">std::sin</a>(angle) * 0.5 * ray;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> y1 <a href="CppOperatorAssign.htm">=</a> midy <a href="CppOperatorMinus.htm">-</a> <a href="CppCos.htm">std::cos</a>(angle) * 0.5 * ray;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> x2 <a href="CppOperatorAssign.htm">=</a> midx <a href="CppOperatorPlus.htm">+</a> <a href="CppSin.htm">std::sin</a>(angle) * 0.9 * ray;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> y2 <a href="CppOperatorAssign.htm">=</a> midy <a href="CppOperatorMinus.htm">-</a> <a href="CppCos.htm">std::cos</a>(angle) * 0.9 * ray;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Item * <b><a href="CppConst.htm">const</a></b> item <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> Item(x1,y1,<b><a href="CppFalse.htm">false</a></b>,x2,y2,<b><a href="CppTrue.htm">true</a></b>);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;item-&gt;m_signal_item_requests_scene_update.connect(<a href="CppBind.htm">boost::bind</a>(&amp;This::DoUpdateScene,<b><a href="CppThis.htm">this</a></b>));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> angle <a href="CppOperatorAssign.htm">=</a> 2.0 * pi * <b><a href="CppStatic_cast.html">static_cast</a></b>&lt;<b><a href="CppDouble.html">double</a></b>&gt;(i) <a href="CppOperatorDivide.htm">/</a> <b><a href="CppStatic_cast.html">static_cast</a></b>&lt;<b><a href="CppDouble.html">double</a></b>&gt;(n);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> x1 <a href="CppOperatorAssign.htm">=</a> midx <a href="CppOperatorPlus.htm">+</a> <a href="CppSin.html">std::sin</a>(angle) * 0.5 * ray;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> y1 <a href="CppOperatorAssign.htm">=</a> midy <a href="CppOperatorMinus.htm">-</a> <a href="CppCos.html">std::cos</a>(angle) * 0.5 * ray;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> x2 <a href="CppOperatorAssign.htm">=</a> midx <a href="CppOperatorPlus.htm">+</a> <a href="CppSin.html">std::sin</a>(angle) * 0.9 * ray;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> y2 <a href="CppOperatorAssign.htm">=</a> midy <a href="CppOperatorMinus.htm">-</a> <a href="CppCos.html">std::cos</a>(angle) * 0.9 * ray;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Item * <b><a href="CppConst.html">const</a></b> item <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> Item(x1,y1,<b><a href="CppFalse.html">false</a></b>,x2,y2,<b><a href="CppTrue.htm">true</a></b>);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;item-&gt;m_signal_item_requests_scene_update.connect(<a href="CppBind.html">boost::bind</a>(&amp;This::DoUpdateScene,<b><a href="CppThis.htm">this</a></b>));<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;scene()-&gt;addItem(item);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppQt.htm">Qt</a>PathArrowItem<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppTypedef.htm">typedef</a></b> <a href="CppQt.htm">Qt</a>PathArrowItem Item;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> midx <a href="CppOperatorAssign.htm">=</a> <a href="CppOperatorMinus.htm">-</a>348.0;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> midy <a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;200.0;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> n <a href="CppOperatorAssign.htm">=</a> 3;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> ray <a href="CppOperatorAssign.htm">=</a> 100.0;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQGraphicsTextItem.htm">QGraphicsTextItem</a> * <b><a href="CppConst.htm">const</a></b> text <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppQGraphicsTextItem.htm">QGraphicsTextItem</a>("<a href="CppQt.htm">Qt</a>PathArrowItem");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppTypedef.html">typedef</a></b> <a href="CppQt.htm">Qt</a>PathArrowItem Item;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> midx <a href="CppOperatorAssign.htm">=</a> <a href="CppOperatorMinus.htm">-</a>348.0;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> midy <a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;200.0;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> n <a href="CppOperatorAssign.htm">=</a> 3;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> ray <a href="CppOperatorAssign.htm">=</a> 100.0;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQGraphicsTextItem.html">QGraphicsTextItem</a> * <b><a href="CppConst.html">const</a></b> text <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppQGraphicsTextItem.html">QGraphicsTextItem</a>("<a href="CppQt.htm">Qt</a>PathArrowItem");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;text-&gt;setPos(midx <a href="CppOperatorMinus.htm">-</a> text-&gt;boundingRect().center().x(),midy <a href="CppOperatorMinus.htm">-</a> text-&gt;boundingRect().center().y());<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;scene()-&gt;addItem(text);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQGraphicsEllipseItem.htm">QGraphicsEllipseItem</a> * <b><a href="CppConst.htm">const</a></b> circle <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppQGraphicsEllipseItem.htm">QGraphicsEllipseItem</a>(midx <a href="CppOperatorMinus.htm">-</a> ray, midy <a href="CppOperatorMinus.htm">-</a> ray,2.0 * ray,2.0 * ray);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQGraphicsEllipseItem.html">QGraphicsEllipseItem</a> * <b><a href="CppConst.html">const</a></b> circle <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppQGraphicsEllipseItem.html">QGraphicsEllipseItem</a>(midx <a href="CppOperatorMinus.htm">-</a> ray, midy <a href="CppOperatorMinus.htm">-</a> ray,2.0 * ray,2.0 * ray);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;scene()-&gt;addItem(circle);<br/>
 <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> i=0; i<a href="CppOperatorNotEqual.htm">!=</a>n; <a href="CppOperatorPlus.htm">+</a>+i)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> angle <a href="CppOperatorAssign.htm">=</a> 2.0 * pi * <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(i) <a href="CppOperatorDivide.htm">/</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(n);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> x1 <a href="CppOperatorAssign.htm">=</a> midx <a href="CppOperatorPlus.htm">+</a> <a href="CppSin.htm">std::sin</a>(angle) * 0.5 * ray;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> y1 <a href="CppOperatorAssign.htm">=</a> midy <a href="CppOperatorMinus.htm">-</a> <a href="CppCos.htm">std::cos</a>(angle) * 0.5 * ray;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> angle <a href="CppOperatorAssign.htm">=</a> 2.0 * pi * <b><a href="CppStatic_cast.html">static_cast</a></b>&lt;<b><a href="CppDouble.html">double</a></b>&gt;(i) <a href="CppOperatorDivide.htm">/</a> <b><a href="CppStatic_cast.html">static_cast</a></b>&lt;<b><a href="CppDouble.html">double</a></b>&gt;(n);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> x1 <a href="CppOperatorAssign.htm">=</a> midx <a href="CppOperatorPlus.htm">+</a> <a href="CppSin.html">std::sin</a>(angle) * 0.5 * ray;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> y1 <a href="CppOperatorAssign.htm">=</a> midy <a href="CppOperatorMinus.htm">-</a> <a href="CppCos.html">std::cos</a>(angle) * 0.5 * ray;<br/>
 <br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> x_mid <a href="CppOperatorAssign.htm">=</a> midx <a href="CppOperatorPlus.htm">+</a> <a href="CppSin.htm">std::sin</a>(angle <a href="CppOperatorPlus.htm">+</a> 0.1) * 0.7 * ray;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> y_mid <a href="CppOperatorAssign.htm">=</a> midy <a href="CppOperatorMinus.htm">-</a> <a href="CppCos.htm">std::cos</a>(angle <a href="CppOperatorPlus.htm">+</a> 0.1) * 0.7 * ray;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> x_mid <a href="CppOperatorAssign.htm">=</a> midx <a href="CppOperatorPlus.htm">+</a> <a href="CppSin.html">std::sin</a>(angle <a href="CppOperatorPlus.htm">+</a> 0.1) * 0.7 * ray;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> y_mid <a href="CppOperatorAssign.htm">=</a> midy <a href="CppOperatorMinus.htm">-</a> <a href="CppCos.html">std::cos</a>(angle <a href="CppOperatorPlus.htm">+</a> 0.1) * 0.7 * ray;<br/>
 <br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> x2 <a href="CppOperatorAssign.htm">=</a> midx <a href="CppOperatorPlus.htm">+</a> <a href="CppSin.htm">std::sin</a>(angle) * 0.9 * ray;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> y2 <a href="CppOperatorAssign.htm">=</a> midy <a href="CppOperatorMinus.htm">-</a> <a href="CppCos.htm">std::cos</a>(angle) * 0.9 * ray;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Item * <b><a href="CppConst.htm">const</a></b> item <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> Item(<a href="CppQPointF.htm">QPointF</a>(x1,y1),<b><a href="CppFalse.htm">false</a></b>, { <a href="CppQPointF.htm">QPointF</a>(x_mid,y_mid) },<b><a href="CppTrue.htm">true</a></b>,<a href="CppQPointF.htm">QPointF</a>(x2,y2));<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;item-&gt;m_signal_item_requests_scene_update.connect(<a href="CppBind.htm">boost::bind</a>(&amp;This::DoUpdateScene,<b><a href="CppThis.htm">this</a></b>));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> x2 <a href="CppOperatorAssign.htm">=</a> midx <a href="CppOperatorPlus.htm">+</a> <a href="CppSin.html">std::sin</a>(angle) * 0.9 * ray;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> y2 <a href="CppOperatorAssign.htm">=</a> midy <a href="CppOperatorMinus.htm">-</a> <a href="CppCos.html">std::cos</a>(angle) * 0.9 * ray;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Item * <b><a href="CppConst.html">const</a></b> item <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> Item(<a href="CppQPointF.html">QPointF</a>(x1,y1),<b><a href="CppFalse.html">false</a></b>, { <a href="CppQPointF.html">QPointF</a>(x_mid,y_mid) },<b><a href="CppTrue.htm">true</a></b>,<a href="CppQPointF.html">QPointF</a>(x2,y2));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;item-&gt;m_signal_item_requests_scene_update.connect(<a href="CppBind.html">boost::bind</a>(&amp;This::DoUpdateScene,<b><a href="CppThis.htm">this</a></b>));<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;scene()-&gt;addItem(item);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;}<br/>
 <br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppQt.htm">Qt</a>RoundedEditRectItem<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppTypedef.htm">typedef</a></b> <a href="CppQt.htm">Qt</a>RoundedEditRectItem Item;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> midx <a href="CppOperatorAssign.htm">=</a> 2.0 * 174.0;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> midy <a href="CppOperatorAssign.htm">=</a> 0.0;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> n <a href="CppOperatorAssign.htm">=</a> 3;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> ray <a href="CppOperatorAssign.htm">=</a> 100.0;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQGraphicsTextItem.htm">QGraphicsTextItem</a> * <b><a href="CppConst.htm">const</a></b> text <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppQGraphicsTextItem.htm">QGraphicsTextItem</a>("<a href="CppQt.htm">Qt</a>RoundedEditRectItem");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppTypedef.html">typedef</a></b> <a href="CppQt.htm">Qt</a>RoundedEditRectItem Item;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> midx <a href="CppOperatorAssign.htm">=</a> 2.0 * 174.0;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> midy <a href="CppOperatorAssign.htm">=</a> 0.0;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> n <a href="CppOperatorAssign.htm">=</a> 3;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> ray <a href="CppOperatorAssign.htm">=</a> 100.0;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQGraphicsTextItem.html">QGraphicsTextItem</a> * <b><a href="CppConst.html">const</a></b> text <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppQGraphicsTextItem.html">QGraphicsTextItem</a>("<a href="CppQt.htm">Qt</a>RoundedEditRectItem");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;text-&gt;setPos(midx <a href="CppOperatorMinus.htm">-</a> text-&gt;boundingRect().center().x(),midy <a href="CppOperatorMinus.htm">-</a> text-&gt;boundingRect().center().y());<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;scene()-&gt;addItem(text);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQGraphicsEllipseItem.htm">QGraphicsEllipseItem</a> * <b><a href="CppConst.htm">const</a></b> circle <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppQGraphicsEllipseItem.htm">QGraphicsEllipseItem</a>(midx <a href="CppOperatorMinus.htm">-</a> ray, midy <a href="CppOperatorMinus.htm">-</a> ray,2.0 * ray,2.0 * ray);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQGraphicsEllipseItem.html">QGraphicsEllipseItem</a> * <b><a href="CppConst.html">const</a></b> circle <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppQGraphicsEllipseItem.html">QGraphicsEllipseItem</a>(midx <a href="CppOperatorMinus.htm">-</a> ray, midy <a href="CppOperatorMinus.htm">-</a> ray,2.0 * ray,2.0 * ray);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;scene()-&gt;addItem(circle);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> i=0; i<a href="CppOperatorNotEqual.htm">!=</a>n; <a href="CppOperatorPlus.htm">+</a>+i)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> angle <a href="CppOperatorAssign.htm">=</a> 2.0 * pi * <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(i) <a href="CppOperatorDivide.htm">/</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(n);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> x <a href="CppOperatorAssign.htm">=</a> midx <a href="CppOperatorPlus.htm">+</a> (<a href="CppSin.htm">std::sin</a>(angle) * 0.5 * ray);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> y <a href="CppOperatorAssign.htm">=</a> midy <a href="CppOperatorMinus.htm">-</a> (<a href="CppCos.htm">std::cos</a>(angle) * 0.5 * ray);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Item * <b><a href="CppConst.htm">const</a></b> item <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> Item;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> angle <a href="CppOperatorAssign.htm">=</a> 2.0 * pi * <b><a href="CppStatic_cast.html">static_cast</a></b>&lt;<b><a href="CppDouble.html">double</a></b>&gt;(i) <a href="CppOperatorDivide.htm">/</a> <b><a href="CppStatic_cast.html">static_cast</a></b>&lt;<b><a href="CppDouble.html">double</a></b>&gt;(n);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> x <a href="CppOperatorAssign.htm">=</a> midx <a href="CppOperatorPlus.htm">+</a> (<a href="CppSin.html">std::sin</a>(angle) * 0.5 * ray);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> y <a href="CppOperatorAssign.htm">=</a> midy <a href="CppOperatorMinus.htm">-</a> (<a href="CppCos.html">std::cos</a>(angle) * 0.5 * ray);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Item * <b><a href="CppConst.html">const</a></b> item <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> Item;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;item-&gt;setPos(x,y);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; text;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppVector.html">std::vector</a>&lt;<a href="CppString.html">std::string</a>&gt; text;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;text.push_back("* *");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> j=0; j<a href="CppOperatorNotEqual.htm">!=</a>i; <a href="CppOperatorPlus.htm">+</a>+j)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> s <a href="CppOperatorAssign.htm">=</a> <a href="CppString.htm">std::string</a>(j+2,'*') <a href="CppOperatorPlus.htm">+</a> <a href="CppString.htm">std::string</a>(" *");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a> s <a href="CppOperatorAssign.htm">=</a> <a href="CppString.html">std::string</a>(j+2,'*') <a href="CppOperatorPlus.htm">+</a> <a href="CppString.html">std::string</a>(" *");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;text.push_back(s);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 <br/>
@@ -739,24 +741,24 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>TestKeyboardFriendlyGraphicsView<a href="CppWidget.htm">Widget</a>::DoUpdateScene()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>TestKeyboardFriendlyGraphicsView<a href="CppWidget.html">Widget</a>::DoUpdateScene()<br/>
 {<br/>
 &nbsp;&nbsp;scene()-&gt;update();<br/>
 }<br/>
 <br/>
-<a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
-<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-but-set-parameter"<br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>TestKeyboardFriendlyGraphicsView<a href="CppWidget.htm">Widget</a>::keyPressEvent(<a href="CppQKeyEvent.htm">QKeyEvent</a> *event)<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic push<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic ignored "-Wunused-but-set-parameter"<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>TestKeyboardFriendlyGraphicsView<a href="CppWidget.html">Widget</a>::keyPressEvent(<a href="CppQKeyEvent.html">QKeyEvent</a> *event)<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppSwitch.htm">switch</a></b> (event-&gt;key())<br/>
+&nbsp;&nbsp;<b><a href="CppSwitch.html">switch</a></b> (event-&gt;key())<br/>
 &nbsp;&nbsp;{<br/>
 <br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> <a href="CppQt.htm">Qt</a>::Key_Escape: m_signal_request_quit(); <b><a href="CppBreak.htm">break</a></b>;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> <a href="CppQt.htm">Qt</a>::Key_A&nbsp;&nbsp;&nbsp;&nbsp; : m_signal_request_about(); <b><a href="CppBreak.htm">break</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> <a href="CppQt.htm">Qt</a>::Key_Escape: m_signal_request_quit(); <b><a href="CppBreak.html">break</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> <a href="CppQt.htm">Qt</a>::Key_A&nbsp;&nbsp;&nbsp;&nbsp; : m_signal_request_about(); <b><a href="CppBreak.html">break</a></b>;<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<a href="CppQtKeyboardFriendlyGraphicsView.htm">QtKeyboardFriendlyGraphicsView</a>::keyPressEvent(event);<br/>
+&nbsp;&nbsp;<a href="CppQtKeyboardFriendlyGraphicsView.html">QtKeyboardFriendlyGraphicsView</a>::keyPressEvent(event);<br/>
 }<br/>
-<a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic pop<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -770,7 +772,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <table summary="testqtkeyboardfriendlygraphicsviewmenudialog.h" border = "1"><tr><td><code>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">/*</a><br/>
-TestKeyboardFriendlyGraphicsView, tests <a href="CppQtKeyboardFriendlyGraphicsView.htm">QtKeyboardFriendlyGraphicsView</a><br/>
+TestKeyboardFriendlyGraphicsView, tests <a href="CppQtKeyboardFriendlyGraphicsView.html">QtKeyboardFriendlyGraphicsView</a><br/>
 Copyright (C) 2012&nbsp;&nbsp;Richel Bilderbeek<br/>
 <br/>
 This program is free software: you can redistribute it and/or modify<br/>
@@ -786,30 +788,30 @@ You should have received a copy of the GNU General Public License<br/>
 along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">*/</a><br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="Tools.htm">Tool</a>TestKeyboardFriendlyGraphicsView.htm<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="Tools.htm">Tool</a>TestKeyboardFriendlyGraphicsView.html<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppIfndef.htm">#ifndef</a> TESTKEYBOARDFRIENDLYGRAPHICSVIEWMENUDIALOG_H<br/>
-<a href="CppDefine.htm">#define</a> TESTKEYBOARDFRIENDLYGRAPHICSVIEWMENUDIALOG_H<br/>
+<a href="CppIfndef.html">#ifndef</a> TESTKEYBOARDFRIENDLYGRAPHICSVIEWMENUDIALOG_H<br/>
+<a href="CppDefine.html">#define</a> TESTKEYBOARDFRIENDLYGRAPHICSVIEWMENUDIALOG_H<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppStringH.htm">string</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppStringH.html">string</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppVectorH.html">vector</a>&gt;<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppAbout.htm">about</a>.h"<br/>
+<a href="CppInclude.html">#include</a> "<a href="CppAbout.html">about</a><a href="CppHeaderFile.htm">.h</a>"<br/>
 <br/>
-<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
+<b><a href="CppNamespace.html">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
 <br/>
 <a href="CppComment.htm">///</a>GUI independent TestKeyboardFriendlyGraphicsView menu dialog<br/>
-<b><a href="CppStruct.htm">struct</a></b> TestKeyboardFriendlyGraphicsViewMenuDialog<br/>
+<b><a href="CppStruct.html">struct</a></b> TestKeyboardFriendlyGraphicsViewMenuDialog<br/>
 {<br/>
 &nbsp;&nbsp;TestKeyboardFriendlyGraphicsViewMenuDialog() {}<br/>
-&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppAbout.htm">About</a> GetAbout();<br/>
-&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> Get<a href="CppVersion.htm">Version</a>();<br/>
-&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; Get<a href="CppVersion.htm">Version</a>History();<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.html">static</a></b> <b><a href="CppConst.html">const</a></b> <a href="CppAbout.html">About</a> GetAbout();<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.html">static</a></b> <b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a> Get<a href="CppVersion.html">Version</a>();<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.html">static</a></b> <b><a href="CppConst.html">const</a></b> <a href="CppVector.html">std::vector</a>&lt;<a href="CppString.html">std::string</a>&gt; Get<a href="CppVersion.html">Version</a>History();<br/>
 };<br/>
 <br/>
-} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.html">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
 <br/>
-<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> TESTKEYBOARDFRIENDLYGRAPHICSVIEWMENUDIALOG_H<br/>
+<a href="CppEndif.html">#endif</a> <a href="CppComment.htm">//</a> TESTKEYBOARDFRIENDLYGRAPHICSVIEWMENUDIALOG_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -823,7 +825,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <table summary="testqtkeyboardfriendlygraphicsviewmenudialog.cpp" border = "1"><tr><td><code>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">/*</a><br/>
-TestKeyboardFriendlyGraphicsView, tests <a href="CppQtKeyboardFriendlyGraphicsView.htm">QtKeyboardFriendlyGraphicsView</a><br/>
+TestKeyboardFriendlyGraphicsView, tests <a href="CppQtKeyboardFriendlyGraphicsView.html">QtKeyboardFriendlyGraphicsView</a><br/>
 Copyright (C) 2012&nbsp;&nbsp;Richel Bilderbeek<br/>
 <br/>
 This program is free software: you can redistribute it and/or modify<br/>
@@ -839,42 +841,42 @@ You should have received a copy of the GNU General Public License<br/>
 along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">*/</a><br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="Tools.htm">Tool</a>TestKeyboardFriendlyGraphicsView.htm<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="Tools.htm">Tool</a>TestKeyboardFriendlyGraphicsView.html<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <br/>
 <br/>
-<a href="CppInclude.htm">#include</a> "test<a href="CppQtKeyboardFriendlyGraphicsView.htm">qtkeyboardfriendlygraphicsview</a>menudialog.h"<br/>
+<a href="CppInclude.html">#include</a> "test<a href="CppQtKeyboardFriendlyGraphicsView.html">qtkeyboardfriendlygraphicsview</a>menudialog<a href="CppHeaderFile.htm">.h</a>"<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppTrace.htm">trace</a>.h"<br/>
+<a href="CppInclude.html">#include</a> "<a href="CppTrace.html">trace</a><a href="CppHeaderFile.htm">.h</a>"<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppAbout.htm">About</a> <a href="CppRibi.htm">ribi</a>::TestKeyboardFriendlyGraphicsViewMenuDialog::GetAbout()<br/>
+<b><a href="CppConst.html">const</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppAbout.html">About</a> <a href="CppRibi.htm">ribi</a>::TestKeyboardFriendlyGraphicsViewMenuDialog::GetAbout()<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppAbout.htm">About</a> a(<br/>
+&nbsp;&nbsp;<a href="CppAbout.html">About</a> a(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;"Richel Bilderbeek",<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;"TestKeyboardFriendlyGraphicsView",<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;"tests <a href="CppQtKeyboardFriendlyGraphicsView.htm">QtKeyboardFriendlyGraphicsView</a>",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"tests <a href="CppQtKeyboardFriendlyGraphicsView.html">QtKeyboardFriendlyGraphicsView</a>",<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;"the 19th of December 2012",<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;"2012",<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;"http://www.richelbilderbeek.nl/<a href="Tools.htm">Tool</a>TestKeyboardFriendlyGraphicsView.htm",<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;Get<a href="CppVersion.htm">Version</a>(),<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;Get<a href="CppVersion.htm">Version</a>History());<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>a.<a href="CppAdd.htm">Add</a><a href="CppLibrary.htm">Library</a>("ProFile <a href="CppVersion.htm">version</a>: " <a href="CppOperatorPlus.htm">+</a> ProFile::Get<a href="CppVersion.htm">Version</a>());<br/>
-&nbsp;&nbsp;a.<a href="CppAdd.htm">Add</a><a href="CppLibrary.htm">Library</a>("<a href="CppTrace.htm">Trace</a> <a href="CppVersion.htm">version</a>: " <a href="CppOperatorPlus.htm">+</a> <a href="CppTrace.htm">Trace</a>::Get<a href="CppVersion.htm">Version</a>());<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> a;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"http://www.richelbilderbeek.nl/<a href="Tools.htm">Tool</a>TestKeyboardFriendlyGraphicsView.html",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Get<a href="CppVersion.html">Version</a>(),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Get<a href="CppVersion.html">Version</a>History());<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>a.<a href="CppAdd.htm">Add</a><a href="CppLibrary.html">Library</a>("ProFile <a href="CppVersion.html">version</a>: " <a href="CppOperatorPlus.htm">+</a> ProFile::Get<a href="CppVersion.html">Version</a>());<br/>
+&nbsp;&nbsp;a.<a href="CppAdd.htm">Add</a><a href="CppLibrary.html">Library</a>("<a href="CppTrace.html">Trace</a> <a href="CppVersion.html">version</a>: " <a href="CppOperatorPlus.htm">+</a> <a href="CppTrace.html">Trace</a>::Get<a href="CppVersion.html">Version</a>());<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> a;<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppRibi.htm">ribi</a>::TestKeyboardFriendlyGraphicsViewMenuDialog::Get<a href="CppVersion.htm">Version</a>()<br/>
+<b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a> <a href="CppRibi.htm">ribi</a>::TestKeyboardFriendlyGraphicsViewMenuDialog::Get<a href="CppVersion.html">Version</a>()<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> "0.3";<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> "0.3";<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm">ribi</a>::TestKeyboardFriendlyGraphicsViewMenuDialog::Get<a href="CppVersion.htm">Version</a>History()<br/>
+<b><a href="CppConst.html">const</a></b> <a href="CppVector.html">std::vector</a>&lt;<a href="CppString.html">std::string</a>&gt; <a href="CppRibi.htm">ribi</a>::TestKeyboardFriendlyGraphicsViewMenuDialog::Get<a href="CppVersion.html">Version</a>History()<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v;<br/>
-&nbsp;&nbsp;v.push_back("2012-12-13: <a href="CppVersion.htm">version</a> 0.1: initial <a href="CppVersion.htm">version</a>");<br/>
-&nbsp;&nbsp;v.push_back("2012-12-17: <a href="CppVersion.htm">version</a> 0.2: initial release, added <a href="CppAbout.htm">about</a> sceen, adding items, showing help");<br/>
-&nbsp;&nbsp;v.push_back("2012-12-19: <a href="CppVersion.htm">version</a> 0.3: improved looks, added <a href="CppQtArrowItem.htm">QtArrowItem</a>, <a href="CppQt.htm">Qt</a>PathArrowItem, <a href="CppQt.htm">Qt</a>RoundedTextRect");<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
+&nbsp;&nbsp;<a href="CppVector.html">std::vector</a>&lt;<a href="CppString.html">std::string</a>&gt; v;<br/>
+&nbsp;&nbsp;v.push_back("2012-12-13: <a href="CppVersion.html">version</a> 0.1: initial <a href="CppVersion.html">version</a>");<br/>
+&nbsp;&nbsp;v.push_back("2012-12-17: <a href="CppVersion.html">version</a> 0.2: initial release, added <a href="CppAbout.html">about</a> sceen, adding items, showing help");<br/>
+&nbsp;&nbsp;v.push_back("2012-12-19: <a href="CppVersion.html">version</a> 0.3: improved looks, added <a href="CppQtArrowItem.html">QtArrowItem</a>, <a href="CppQt.htm">Qt</a>PathArrowItem, <a href="CppQt.htm">Qt</a>RoundedTextRect");<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> v;<br/>
 }<br/>
 </code></td></tr></table>
 <!-- end of the code -->

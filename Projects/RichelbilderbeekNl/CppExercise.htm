@@ -42,7 +42,7 @@ exercise.</p>
 <table summary="exercise.h" border = "1"><tr><td><code>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">/*</a><br/>
-<a href="CppExercise.htm">Exercise</a>, a collection of <a href="CppQuestion.htm">Question</a>s<br/>
+<a href="CppExercise.html">Exercise</a>, a collection of <a href="CppQuestion.html">Question</a>s<br/>
 Copyright (C) 2011 Richel Bilderbeek<br/>
 <br/>
 This program is free software: you can redistribute it and/or modify<br/>
@@ -58,61 +58,61 @@ You should have received a copy of the GNU General Public License<br/>
 along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">*/</a><br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="CppExercise.htm">CppExercise</a>.htm<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="CppExercise.html">CppExercise</a>.html<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppIfndef.htm">#ifndef</a> EXERCISE_H<br/>
-<a href="CppDefine.htm">#define</a> EXERCISE_H<br/>
+<a href="CppIfndef.html">#ifndef</a> EXERCISE_H<br/>
+<a href="CppDefine.html">#define</a> EXERCISE_H<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppStringH.htm">string</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppStringH.html">string</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppVectorH.html">vector</a>&gt;<br/>
 <br/>
-<a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
-<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppShared_ptr.htm">shared_ptr</a>.hpp&gt;<br/>
-<a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic push<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.html">-Weffc++</a>"<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppBoost.html">boost</a>/<a href="CppShared_ptr.html">shared_ptr</a><a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic pop<br/>
 <br/>
-<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
+<b><a href="CppNamespace.html">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
 <br/>
-<a href="CppComment.htm">///</a>A <a href="CppExercise.htm">Exercise</a> is a collection of <a href="CppQuestion.htm">question</a>s<br/>
-<b><a href="CppStruct.htm">struct</a></b> <a href="CppExercise.htm">Exercise</a><br/>
+<a href="CppComment.htm">///</a>A <a href="CppExercise.html">Exercise</a> is a collection of <a href="CppQuestion.html">question</a>s<br/>
+<b><a href="CppStruct.html">struct</a></b> <a href="CppExercise.html">Exercise</a><br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppConstructor.htm">Construct</a> a <a href="CppExercise.htm">Exercise</a> from file<br/>
-&nbsp;&nbsp;<b><a href="CppExplicit.htm">explicit</a></b> <a href="CppExercise.htm">Exercise</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; filename);<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppConstructor.html">Construct</a> a <a href="CppExercise.html">Exercise</a> from file<br/>
+&nbsp;&nbsp;<b><a href="CppExplicit.html">explicit</a></b> <a href="CppExercise.html">Exercise</a>(<b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a>&amp; filename);<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Read the current <a href="CppQuestion.htm">question</a><br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> GetCurrent<a href="CppQuestion.htm">Question</a>() <b><a href="CppConst.htm">const</a></b>;<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Read the current <a href="CppQuestion.html">question</a><br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a> GetCurrent<a href="CppQuestion.html">Question</a>() <b><a href="CppConst.html">const</a></b>;<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Get the number of <a href="CppQuestion.htm">question</a>s<br/>
-&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> GetNumberOf<a href="CppQuestion.htm">Question</a>s() <b><a href="CppConst.htm">const</a></b>;<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Get the number of <a href="CppQuestion.html">question</a>s<br/>
+&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> GetNumberOf<a href="CppQuestion.html">Question</a>s() <b><a href="CppConst.html">const</a></b>;<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Obtain <b><a href="CppThis.htm">this</a></b> <b><a href="CppClass.htm">class</a></b> its <a href="CppVersion.htm">version</a><br/>
-&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> Get<a href="CppVersion.htm">Version</a>();<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Obtain <b><a href="CppThis.htm">this</a></b> <b><a href="CppClass.html">class</a></b> its <a href="CppVersion.html">version</a><br/>
+&nbsp;&nbsp;<b><a href="CppStatic.html">static</a></b> <b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a> Get<a href="CppVersion.html">Version</a>();<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Obtain <b><a href="CppThis.htm">this</a></b> <b><a href="CppClass.htm">class</a></b> its <a href="CppVersion.htm">version</a> history<br/>
-&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; Get<a href="CppVersion.htm">Version</a>History();<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Obtain <b><a href="CppThis.htm">this</a></b> <b><a href="CppClass.html">class</a></b> its <a href="CppVersion.html">version</a> history<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.html">static</a></b> <b><a href="CppConst.html">const</a></b> <a href="CppVector.html">std::vector</a>&lt;<a href="CppString.html">std::string</a>&gt; Get<a href="CppVersion.html">Version</a>History();<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Go to the next <a href="CppQuestion.htm">question</a><br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Go to the next <a href="CppQuestion.html">question</a><br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> Next();<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppPrivate.htm">private</a></b>:<br/>
-&nbsp;&nbsp;<b><a href="CppFriend.htm">friend</a></b> <b><a href="CppVoid.htm">void</a></b> <a href="CppChecked_delete.htm">boost::checked_delete</a>&lt;&gt;(<a href="CppExercise.htm">Exercise</a> *);<br/>
-&nbsp;&nbsp;~<a href="CppExercise.htm">Exercise</a>() {}<br/>
+&nbsp;&nbsp;<b><a href="CppPrivate.html">private</a></b>:<br/>
+&nbsp;&nbsp;<b><a href="CppFriend.html">friend</a></b> <b><a href="CppVoid.htm">void</a></b> <a href="CppChecked_delete.html">boost::checked_delete</a>&lt;&gt;(<a href="CppExercise.html">Exercise</a> *);<br/>
+&nbsp;&nbsp;~<a href="CppExercise.html">Exercise</a>() {}<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>/An <a href="CppIterator.htm">iterator</a> <a href="CppPointer.htm">point</a>ing to the current <a href="CppQuestion.htm">question</a><br/>
-&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt;::<a href="CppIterator.htm">iterator</a> m_current;<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/An <a href="CppIterator.html">iterator</a> <a href="CppPointer.html">point</a>ing to the current <a href="CppQuestion.html">question</a><br/>
+&nbsp;&nbsp;<a href="CppVector.html">std::vector</a>&lt;<a href="CppString.html">std::string</a>&gt;::<a href="CppIterator.html">iterator</a> m_current;<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>/The <a href="CppQuestion.htm">question</a>s<br/>
-&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; m_<a href="CppQuestion.htm">question</a>s;<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/The <a href="CppQuestion.html">question</a>s<br/>
+&nbsp;&nbsp;<a href="CppVector.html">std::vector</a>&lt;<a href="CppString.html">std::string</a>&gt; m_<a href="CppQuestion.html">question</a>s;<br/>
 <br/>
 <br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>/<a href="CppFileToVector.htm">FileToVector</a> reads a file and <a href="CppConvert.htm">converts</a> it to a <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt;<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>/From http://www.richelbilderbeek.nl/Cpp<a href="CppFileToVector.htm">FileToVector</a>.htm<br/>
-&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppFileToVector.htm">FileToVector</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; filename);<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/<a href="CppFileToVector.html">FileToVector</a> reads a file and <a href="CppConvert.html">converts</a> it to a <a href="CppVector.html">std::vector</a>&lt;<a href="CppString.html">std::string</a>&gt;<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/From http://www.richelbilderbeek.nl/Cpp<a href="CppFileToVector.html">FileToVector</a>.html<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.html">static</a></b> <b><a href="CppConst.html">const</a></b> <a href="CppVector.html">std::vector</a>&lt;<a href="CppString.html">std::string</a>&gt; <a href="CppFileToVector.html">FileToVector</a>(<b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a>&amp; filename);<br/>
 };<br/>
 <br/>
-} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.html">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
 <br/>
-<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> EXERCISE_H<br/>
+<a href="CppEndif.html">#endif</a> <a href="CppComment.htm">//</a> EXERCISE_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -126,7 +126,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <table summary="exercise.cpp" border = "1"><tr><td><code>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">/*</a><br/>
-<a href="CppExercise.htm">Exercise</a>, a collection of <a href="CppQuestion.htm">Question</a>s<br/>
+<a href="CppExercise.html">Exercise</a>, a collection of <a href="CppQuestion.html">Question</a>s<br/>
 Copyright (C) 2011 Richel Bilderbeek<br/>
 <br/>
 This program is free software: you can redistribute it and/or modify<br/>
@@ -142,113 +142,113 @@ You should have received a copy of the GNU General Public License<br/>
 along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">*/</a><br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="CppExercise.htm">CppExercise</a>.htm<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="CppExercise.html">CppExercise</a>.html<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
-<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppExercise.htm">exercise</a>.h"<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic push<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.html">-Weffc++</a>"<br/>
+<a href="CppInclude.html">#include</a> "<a href="CppExercise.html">exercise</a><a href="CppHeaderFile.htm">.h</a>"<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppFstreamH.htm">fstream</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppStdexceptH.htm">stdexcept</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppFstreamH.html">fstream</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppStdexceptH.html">stdexcept</a>&gt;<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppBOOST_FOREACH.htm">foreach</a>.hpp&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/numeric/con<a href="CppVersion.htm">version</a>/cast.hpp&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppBoost.html">boost</a>/<a href="CppBOOST_FOREACH.html">foreach</a><a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppBoost.html">boost</a>/numeric/con<a href="CppVersion.html">version</a>/cast<a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppMultipleChoiceQuestion.htm">multiplechoicequestion</a>.h"<br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppMultipleChoiceQuestionDialog.htm">multiplechoicequestiondialog</a>.h"<br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppOpenQuestion.htm">openquestion</a>.h"<br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppOpenQuestionDialog.htm">openquestiondialog</a>.h"<br/>
-<a href="CppComment.htm">//</a><a href="CppInclude.htm">#include</a> "<a href="CppTrace.htm">trace</a>.h"<br/>
+<a href="CppInclude.html">#include</a> "<a href="CppMultipleChoiceQuestion.html">multiplechoicequestion</a><a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "<a href="CppMultipleChoiceQuestionDialog.html">multiplechoicequestiondialog</a><a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "<a href="CppOpenQuestion.html">openquestion</a><a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "<a href="CppOpenQuestionDialog.html">openquestiondialog</a><a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppComment.htm">//</a><a href="CppInclude.html">#include</a> "<a href="CppTrace.html">trace</a><a href="CppHeaderFile.htm">.h</a>"<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppQFile.htm">QFile</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppQFile.html">QFile</a>&gt;<br/>
 <br/>
-<a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic pop<br/>
 <br/>
-<a href="CppRibi.htm">ribi</a>::<a href="CppExercise.htm">Exercise</a>::<a href="CppExercise.htm">Exercise</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; filename)<br/>
+<a href="CppRibi.htm">ribi</a>::<a href="CppExercise.html">Exercise</a>::<a href="CppExercise.html">Exercise</a>(<b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a>&amp; filename)<br/>
 &nbsp;&nbsp;: m_current{},<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;m_<a href="CppQuestion.htm">question</a>s{}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_<a href="CppQuestion.html">question</a>s{}<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppQFile.htm">QFile</a>::exists(filename.c_str()));<br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (!<a href="CppQFile.htm">QFile</a>::exists(filename.c_str()))<br/>
+&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(<a href="CppQFile.html">QFile</a>::exists(filename.c_str()));<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (!<a href="CppQFile.html">QFile</a>::exists(filename.c_str()))<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThrow.htm">throw</a></b> <a href="CppLogic_error.htm">std::logic_error</a>("File does not exist");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThrow.html">throw</a></b> <a href="CppLogic_error.html">std::logic_error</a>("File does not exist");<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v <a href="CppOperatorAssign.htm">=</a> <a href="CppFileToVector.htm">FileToVector</a>(filename);<br/>
-&nbsp;&nbsp;m_<a href="CppQuestion.htm">question</a>s.reserve(v.size());<br/>
-&nbsp;&nbsp;<a href="CppBOOST_FOREACH.htm">BOOST_FOREACH</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; s,v)<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppVector.html">std::vector</a>&lt;<a href="CppString.html">std::string</a>&gt; v <a href="CppOperatorAssign.htm">=</a> <a href="CppFileToVector.html">FileToVector</a>(filename);<br/>
+&nbsp;&nbsp;m_<a href="CppQuestion.html">question</a>s.reserve(v.size());<br/>
+&nbsp;&nbsp;<a href="CppBOOST_FOREACH.html">BOOST_FOREACH</a>(<b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a>&amp; s,v)<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppTry.htm">try</a></b><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppQuestionDialog.htm">QuestionDialog</a>&gt; tmp(<b><a href="CppNew.htm">new</a></b> <a href="CppOpenQuestionDialog.htm">OpenQuestionDialog</a>(s));<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;m_<a href="CppQuestion.htm">question</a>s.push_back(s);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppContinue.htm">continue</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBoostShared_ptr.html">boost::shared_ptr</a>&lt;<a href="CppQuestionDialog.html">QuestionDialog</a>&gt; tmp(<b><a href="CppNew.htm">new</a></b> <a href="CppOpenQuestionDialog.html">OpenQuestionDialog</a>(s));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;m_<a href="CppQuestion.html">question</a>s.push_back(s);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppContinue.html">continue</a></b>;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCatch.htm">catch</a></b> (<a href="CppStdException.htm">std::exception</a>&amp;)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCatch.html">catch</a></b> (<a href="CppStdException.html">std::exception</a>&amp;)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>No problem<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppTry.htm">try</a></b><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppQuestionDialog.htm">QuestionDialog</a>&gt; tmp(<b><a href="CppNew.htm">new</a></b> <a href="CppMultipleChoiceQuestionDialog.htm">MultipleChoiceQuestionDialog</a>(s));<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;m_<a href="CppQuestion.htm">question</a>s.push_back(s);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppContinue.htm">continue</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBoostShared_ptr.html">boost::shared_ptr</a>&lt;<a href="CppQuestionDialog.html">QuestionDialog</a>&gt; tmp(<b><a href="CppNew.htm">new</a></b> <a href="CppMultipleChoiceQuestionDialog.html">MultipleChoiceQuestionDialog</a>(s));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;m_<a href="CppQuestion.html">question</a>s.push_back(s);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppContinue.html">continue</a></b>;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCatch.htm">catch</a></b> (<a href="CppStdException.htm">std::exception</a>&amp;)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCatch.html">catch</a></b> (<a href="CppStdException.html">std::exception</a>&amp;)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>No problem<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;}<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>Shuffle the <a href="CppQuestion.htm">question</a>s at start<br/>
-&nbsp;&nbsp;<a href="CppRandom_shuffle.htm">std::random_shuffle</a>(m_<a href="CppQuestion.htm">question</a>s.begin(),m_<a href="CppQuestion.htm">question</a>s.end());<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Shuffle the <a href="CppQuestion.html">question</a>s at start<br/>
+&nbsp;&nbsp;<a href="CppRandom_shuffle.html">std::random_shuffle</a>(m_<a href="CppQuestion.html">question</a>s.begin(),m_<a href="CppQuestion.html">question</a>s.end());<br/>
 <br/>
-&nbsp;&nbsp;m_current <a href="CppOperatorAssign.htm">=</a> m_<a href="CppQuestion.htm">question</a>s.begin();<br/>
+&nbsp;&nbsp;m_current <a href="CppOperatorAssign.htm">=</a> m_<a href="CppQuestion.html">question</a>s.begin();<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm">ribi</a>::<a href="CppExercise.htm">Exercise</a>::<a href="CppFileToVector.htm">FileToVector</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; filename)<br/>
+<b><a href="CppConst.html">const</a></b> <a href="CppVector.html">std::vector</a>&lt;<a href="CppString.html">std::string</a>&gt; <a href="CppRibi.htm">ribi</a>::<a href="CppExercise.html">Exercise</a>::<a href="CppFileToVector.html">FileToVector</a>(<b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a>&amp; filename)<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppQFile.htm">QFile</a>::exists(filename.c_str()));<br/>
-&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v;<br/>
-&nbsp;&nbsp;<a href="CppIfstream.htm">std::ifstream</a> in(filename.c_str());<br/>
-&nbsp;&nbsp;<a href="CppString.htm">std::string</a> s;<br/>
+&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(<a href="CppQFile.html">QFile</a>::exists(filename.c_str()));<br/>
+&nbsp;&nbsp;<a href="CppVector.html">std::vector</a>&lt;<a href="CppString.html">std::string</a>&gt; v;<br/>
+&nbsp;&nbsp;<a href="CppIfstream.html">std::ifstream</a> in(filename.c_str());<br/>
+&nbsp;&nbsp;<a href="CppString.html">std::string</a> s;<br/>
 &nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> i=0; !in.eof(); <a href="CppOperatorPlus.htm">+</a>+i)<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppGetline.htm">std::getline</a>(in,s);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppGetline.html">std::getline</a>(in,s);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;v.push_back(s);<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> v;<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppRibi.htm">ribi</a>::<a href="CppExercise.htm">Exercise</a>::GetCurrent<a href="CppQuestion.htm">Question</a>() <b><a href="CppConst.htm">const</a></b><br/>
+<b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a> <a href="CppRibi.htm">ribi</a>::<a href="CppExercise.html">Exercise</a>::GetCurrent<a href="CppQuestion.html">Question</a>() <b><a href="CppConst.html">const</a></b><br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> *m_current;<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> *m_current;<br/>
 }<br/>
 <br/>
-<b><a href="CppInt.htm">int</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppExercise.htm">Exercise</a>::GetNumberOf<a href="CppQuestion.htm">Question</a>s() <b><a href="CppConst.htm">const</a></b><br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppExercise.html">Exercise</a>::GetNumberOf<a href="CppQuestion.html">Question</a>s() <b><a href="CppConst.html">const</a></b><br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <a href="CppNumeric_cast.htm">boost::numeric_cast</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(m_<a href="CppQuestion.htm">question</a>s.size());<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> <a href="CppNumeric_cast.html">boost::numeric_cast</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(m_<a href="CppQuestion.html">question</a>s.size());<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppRibi.htm">ribi</a>::<a href="CppExercise.htm">Exercise</a>::Get<a href="CppVersion.htm">Version</a>()<br/>
+<b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a> <a href="CppRibi.htm">ribi</a>::<a href="CppExercise.html">Exercise</a>::Get<a href="CppVersion.html">Version</a>()<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> "1.1";<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> "1.1";<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm">ribi</a>::<a href="CppExercise.htm">Exercise</a>::Get<a href="CppVersion.htm">Version</a>History()<br/>
+<b><a href="CppConst.html">const</a></b> <a href="CppVector.html">std::vector</a>&lt;<a href="CppString.html">std::string</a>&gt; <a href="CppRibi.htm">ribi</a>::<a href="CppExercise.html">Exercise</a>::Get<a href="CppVersion.html">Version</a>History()<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v;<br/>
-&nbsp;&nbsp;v.push_back("2011-09-26: <a href="CppVersion.htm">Version</a> 1.0: initial <a href="CppVersion.htm">version</a>");<br/>
-&nbsp;&nbsp;v.push_back("2011-10-30: <a href="CppVersion.htm">Version</a> 1.1: shuffle <a href="CppQuestion.htm">question</a>s at start");<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
+&nbsp;&nbsp;<a href="CppVector.html">std::vector</a>&lt;<a href="CppString.html">std::string</a>&gt; v;<br/>
+&nbsp;&nbsp;v.push_back("2011-09-26: <a href="CppVersion.html">Version</a> 1.0: initial <a href="CppVersion.html">version</a>");<br/>
+&nbsp;&nbsp;v.push_back("2011-10-30: <a href="CppVersion.html">Version</a> 1.1: shuffle <a href="CppQuestion.html">question</a>s at start");<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> v;<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppExercise.htm">Exercise</a>::Next()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppExercise.html">Exercise</a>::Next()<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a>+m_current;<br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (m_current <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> m_<a href="CppQuestion.htm">question</a>s.end())<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (m_current <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> m_<a href="CppQuestion.html">question</a>s.end())<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppRandom_shuffle.htm">std::random_shuffle</a>(m_<a href="CppQuestion.htm">question</a>s.begin(),m_<a href="CppQuestion.htm">question</a>s.end());<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;m_current <a href="CppOperatorAssign.htm">=</a> m_<a href="CppQuestion.htm">question</a>s.begin();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppRandom_shuffle.html">std::random_shuffle</a>(m_<a href="CppQuestion.html">question</a>s.begin(),m_<a href="CppQuestion.html">question</a>s.end());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_current <a href="CppOperatorAssign.htm">=</a> m_<a href="CppQuestion.html">question</a>s.begin();<br/>
 &nbsp;&nbsp;}<br/>
 }<br/>
 </code></td></tr></table>

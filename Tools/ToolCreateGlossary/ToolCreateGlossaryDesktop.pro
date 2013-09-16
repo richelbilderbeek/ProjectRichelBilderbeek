@@ -6,7 +6,6 @@ INCLUDEPATH += \
     ../../Classes/CppQtAboutDialog \
     ../../Classes/CppTrace
 
-CONFIG   += console
 CONFIG   -= app_bundle
 TEMPLATE = app
 

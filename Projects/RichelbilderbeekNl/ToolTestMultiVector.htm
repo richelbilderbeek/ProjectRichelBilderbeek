@@ -87,14 +87,14 @@ the <a href="CppMultiVector.htm">MultiVector</a> <a href="CppClass.htm">class</a
 <table summary="ToolTestMultiVector.pro" border = "1"><tr><td><code>
 QT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; += core<br/>
 QT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -= gui<br/>
-<a href="CppQMAKE_CXXFLAGS.htm">QMAKE_CXXFLAGS</a> += -std=<a href="Cpp11.htm">c++11</a> <a href="CppWall.htm">-Wall</a> <a href="CppWextra.htm">-Wextra</a><br/>
-CONFIG&nbsp;&nbsp; += console<br/>
-CONFIG&nbsp;&nbsp; -= app_bundle<br/>
-TEMPLATE = app<br/>
-<a href="CppINCLUDEPATH.htm">INCLUDEPATH</a> += \<br/>
+<a href="CppQmakeQmake_cxxflags.htm">QMAKE_CXXFLAGS</a> += -std=<a href="Cpp11.htm">c++11</a> <a href="CppWall.htm">-Wall</a> <a href="CppWextra.htm">-Wextra</a><br/>
+<a href="CppQmakeConfig.htm">CONFIG</a>&nbsp;&nbsp; += console<br/>
+<a href="CppQmakeConfig.htm">CONFIG</a>&nbsp;&nbsp; -= app_bundle<br/>
+<a href="CppQmakeTemplate.htm">TEMPLATE</a> = app<br/>
+<a href="CppQmakeIncludepath.htm">INCLUDEPATH</a> += \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppMultiVector.htm">CppMultiVector</a><br/>
-<a href="CppSOURCES.htm">SOURCES</a> += <a href="CppMain.htm">main</a>.cpp<br/>
-<a href="CppHEADERS.htm">HEADERS</a> += \<br/>
+<a href="CppQmakeSources.htm">SOURCES</a> += <a href="CppMain.htm">main</a>.cpp<br/>
+<a href="CppQmakeHeaders.htm">HEADERS</a> += \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppMultiVector.htm">CppMultiVector</a>/<a href="CppMultiVector.htm">multivector</a>.h<br/>
 </code></td></tr></table>
 <!-- end of the code -->
@@ -109,7 +109,7 @@ TEMPLATE = app<br/>
 <table summary="main.cpp" border = "1"><tr><td><code>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">/*</a><br/>
-<a href="ToolTestMultiVector.htm">TestMultiVector</a>, tests the <a href="CppMultiVector.htm">MultiVector</a> <b><a href="CppClass.htm">class</a></b><br/>
+<a href="ToolTestMultiVector.html">TestMultiVector</a>, tests the <a href="CppMultiVector.html">MultiVector</a> <b><a href="CppClass.html">class</a></b><br/>
 Copyright (C) 2011&nbsp;&nbsp;Richel Bilderbeek<br/>
 <br/>
 This program is free software: you can redistribute it and/or modify<br/>
@@ -125,42 +125,42 @@ You should have received a copy of the GNU General Public License<br/>
 along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">*/</a><br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="Tools.htm">Tool</a><a href="ToolTestMultiVector.htm">TestMultiVector</a>.htm<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="Tools.htm">Tool</a><a href="ToolTestMultiVector.html">TestMultiVector</a>.html<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppMultiVector.htm">multivector</a>.h"<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppCassertH.html">cassert</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> "<a href="CppMultiVector.html">multivector</a><a href="CppHeaderFile.htm">.h</a>"<br/>
 <br/>
-<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a>()<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppRibi.htm">ribi</a>::<a href="CppMultiVector.htm">MultiVector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt; x;<br/>
+&nbsp;&nbsp;<a href="CppRibi.htm">ribi</a>::<a href="CppMultiVector.html">MultiVector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt; x;<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>1 dimensional<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="Cpp11.htm">C++11</a> <a href="CppInitialize.htm">initialization</a><br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="Cpp11.html">C++11</a> <a href="CppInitialize.html">initialization</a><br/>
 &nbsp;&nbsp;x.Store( { 0 }, 0);<br/>
 &nbsp;&nbsp;x.Store( { 1 }, 1);<br/>
 &nbsp;&nbsp;x.Store( { 2 }, 2);<br/>
 &nbsp;&nbsp;x.Store( { 3 }, 3);<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(x.Retrieve( { 0 } ) <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;0);<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(x.Retrieve( { 1 } ) <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;1);<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(x.Retrieve( { 2 } ) <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;2);<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(x.Retrieve( { 3 } ) <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;3);<br/>
+&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(x.Retrieve( { 0 } ) <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;0);<br/>
+&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(x.Retrieve( { 1 } ) <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;1);<br/>
+&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(x.Retrieve( { 2 } ) <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;2);<br/>
+&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(x.Retrieve( { 3 } ) <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;3);<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>2 dimensional;<br/>
 &nbsp;&nbsp;x.Store( { 0,0 }, 0);<br/>
 &nbsp;&nbsp;x.Store( { 1,1 }, 1);<br/>
 &nbsp;&nbsp;x.Store( { 2,2 }, 4);<br/>
 &nbsp;&nbsp;x.Store( { 3,3 }, 9);<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(x.Retrieve( { 0,0 } ) <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;0);<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(x.Retrieve( { 1,1 } ) <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;1);<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(x.Retrieve( { 2,2 } ) <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;4);<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(x.Retrieve( { 3,3 } ) <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;9);<br/>
+&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(x.Retrieve( { 0,0 } ) <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;0);<br/>
+&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(x.Retrieve( { 1,1 } ) <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;1);<br/>
+&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(x.Retrieve( { 2,2 } ) <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;4);<br/>
+&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(x.Retrieve( { 3,3 } ) <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;9);<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>3 dimensional;<br/>
 &nbsp;&nbsp;x.Store( { 0,0,0 },&nbsp;&nbsp;0);<br/>
 &nbsp;&nbsp;x.Store( { 1,1,1 },&nbsp;&nbsp;1);<br/>
 &nbsp;&nbsp;x.Store( { 2,2,2 },&nbsp;&nbsp;8);<br/>
 &nbsp;&nbsp;x.Store( { 3,3,3 }, 27);<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(x.Retrieve( { 0,0,0 } ) <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp; 0);<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(x.Retrieve( { 1,1,1 } ) <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp; 1);<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(x.Retrieve( { 2,2,2 } ) <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp; 8);<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(x.Retrieve( { 3,3,3 } ) <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;27);<br/>
+&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(x.Retrieve( { 0,0,0 } ) <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp; 0);<br/>
+&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(x.Retrieve( { 1,1,1 } ) <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp; 1);<br/>
+&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(x.Retrieve( { 2,2,2 } ) <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp; 8);<br/>
+&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(x.Retrieve( { 3,3,3 } ) <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;27);<br/>
 }<br/>
 </code></td></tr></table>
 <!-- end of the code -->

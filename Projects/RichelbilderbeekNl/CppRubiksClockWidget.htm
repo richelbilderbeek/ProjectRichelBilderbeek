@@ -42,7 +42,7 @@
 <table summary="rubiksclockdial.h" border = "1"><tr><td><code>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">/*</a><br/>
-<a href="CppRubiksClock.htm">RubiksClock</a><a href="CppDial.htm">Dial</a>, <b><a href="CppClass.htm">class</a></b> <b><a href="CppFor.htm">for</a></b> displaying a Rubik's Clock <a href="CppDial.htm">Dial</a><br/>
+<a href="CppRubiksClock.html">RubiksClock</a><a href="CppDial.htm">Dial</a>, <b><a href="CppClass.html">class</a></b> <b><a href="CppFor.htm">for</a></b> displaying a Rubik's Clock <a href="CppDial.htm">Dial</a><br/>
 Copyright (C) 2011 Richel Bilderbeek<br/>
 <br/>
 This program is free software: you can redistribute it and/or modify<br/>
@@ -58,89 +58,89 @@ You should have received a copy of the GNU General Public License<br/>
 along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">*/</a><br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="CppRubiksClockWidget.htm">CppRubiksClockWidget</a>.htm<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="CppRubiksClockWidget.html">CppRubiksClockWidget</a>.html<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppIfndef.htm">#ifndef</a> RUBIKSCLOCKDIAL_H<br/>
-<a href="CppDefine.htm">#define</a> RUBIKSCLOCKDIAL_H<br/>
+<a href="CppIfndef.html">#ifndef</a> RUBIKSCLOCKDIAL_H<br/>
+<a href="CppDefine.html">#define</a> RUBIKSCLOCKDIAL_H<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppIosfwdH.htm">iosfwd</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppStringH.htm">string</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppIosfwdH.html">iosfwd</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppStringH.html">string</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppVectorH.html">vector</a>&gt;<br/>
 <br/>
-<a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
-<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-<b><a href="CppTypedef.htm">typedef</a></b>s"<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/checked_delete.hpp&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppSignals2.htm">signals2</a>.hpp&gt;<br/>
-<a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic push<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.html">-Weffc++</a>"<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic ignored "-Wunused-local-<b><a href="CppTypedef.html">typedef</a></b>s"<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppBoost.html">boost</a>/checked_delete<a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppBoost.html">boost</a>/<a href="CppSignals2.html">signals2</a><a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
+<a href="CppInclude.html">#include</a> "<a href="CppWidget.html">widget</a><a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic pop<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppWidget.htm">widget</a>.h"<br/>
+<b><a href="CppNamespace.html">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
 <br/>
-<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a> {<br/>
+<b><a href="CppStruct.html">struct</a></b> <a href="CppDial.htm">Dial</a>;<br/>
 <br/>
-<b><a href="CppStruct.htm">struct</a></b> <a href="CppDial.htm">Dial</a>;<br/>
-<br/>
-<a href="CppComment.htm">///</a><a href="CppRubiksClock.htm">RubiksClock</a><a href="CppDial.htm">Dial</a> is a <b><a href="CppClass.htm">class</a></b> to display a Rubik's Clock <a href="CppDial.htm">Dial</a><br/>
-<b><a href="CppStruct.htm">struct</a></b> <a href="CppRubiksClock.htm">RubiksClock</a><a href="CppDial.htm">Dial</a> : <b><a href="CppPublic.htm">public</a></b> <a href="CppWidget.htm">Widget</a><br/>
+<a href="CppComment.htm">///</a><a href="CppRubiksClock.html">RubiksClock</a><a href="CppDial.htm">Dial</a> is a <b><a href="CppClass.html">class</a></b> to display a Rubik's Clock <a href="CppDial.htm">Dial</a><br/>
+<b><a href="CppStruct.html">struct</a></b> <a href="CppRubiksClock.html">RubiksClock</a><a href="CppDial.htm">Dial</a> : <b><a href="CppPublic.html">public</a></b> <a href="CppWidget.html">Widget</a><br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppExplicit.htm">explicit</a></b> <a href="CppRubiksClock.htm">RubiksClock</a><a href="CppDial.htm">Dial</a>(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> <a href="CppTime.htm">time</a>,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> y,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> width,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> height,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> red,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> green,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> blue);<br/>
+&nbsp;&nbsp;<b><a href="CppExplicit.html">explicit</a></b> <a href="CppRubiksClock.html">RubiksClock</a><a href="CppDial.htm">Dial</a>(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> <a href="CppTime.htm">time</a>,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> x,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> y,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> width,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> height,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppUnsigned.html">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> red,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppUnsigned.html">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> green,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppUnsigned.html">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> blue);<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Obtain a read-and-write <a href="CppPointer.htm">pointer</a>t to the <a href="CppDial.htm">Dial</a><br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppDial.htm">Dial</a> * GetDial() { <b><a href="CppReturn.htm">return</a></b> m_dial.get(); }<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Obtain a read-and-write <a href="CppPointer.html">pointer</a>t to the <a href="CppDial.htm">Dial</a><br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppDial.htm">Dial</a> * GetDial() { <b><a href="CppReturn.html">return</a></b> m_dial.get(); }<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Obtain a read-only <a href="CppPointer.htm">pointer</a>t to the <a href="CppDial.htm">Dial</a><br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppDial.htm">Dial</a> * GetDial() <b><a href="CppConst.htm">const</a></b> { <b><a href="CppReturn.htm">return</a></b> m_dial.get(); }<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Obtain a read-only <a href="CppPointer.html">pointer</a>t to the <a href="CppDial.htm">Dial</a><br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppDial.htm">Dial</a> * GetDial() <b><a href="CppConst.html">const</a></b> { <b><a href="CppReturn.html">return</a></b> m_dial.get(); }<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> <a href="CppGetTime.htm">GetTime</a>() <b><a href="CppConst.htm">const</a></b> { <b><a href="CppReturn.htm">return</a></b> m_<a href="CppTime.htm">time</a> <a href="CppOperatorModulus.htm">%</a> 12; }<br/>
+&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> <a href="CppGetTime.html">GetTime</a>() <b><a href="CppConst.html">const</a></b> { <b><a href="CppReturn.html">return</a></b> m_<a href="CppTime.htm">time</a> <a href="CppOperatorModulus.htm">%</a> 12; }<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Obtain <b><a href="CppThis.htm">this</a></b> <b><a href="CppClass.htm">class</a></b> its <a href="CppVersion.htm">version</a><br/>
-&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> Get<a href="CppVersion.htm">Version</a>();<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Obtain <b><a href="CppThis.htm">this</a></b> <b><a href="CppClass.html">class</a></b> its <a href="CppVersion.html">version</a><br/>
+&nbsp;&nbsp;<b><a href="CppStatic.html">static</a></b> <b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a> Get<a href="CppVersion.html">Version</a>();<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Obtain <b><a href="CppThis.htm">this</a></b> <b><a href="CppClass.htm">class</a></b> its <a href="CppVersion.htm">version</a> history<br/>
-&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; Get<a href="CppVersion.htm">Version</a>History();<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Obtain <b><a href="CppThis.htm">this</a></b> <b><a href="CppClass.html">class</a></b> its <a href="CppVersion.html">version</a> history<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.html">static</a></b> <b><a href="CppConst.html">const</a></b> <a href="CppVector.html">std::vector</a>&lt;<a href="CppString.html">std::string</a>&gt; Get<a href="CppVersion.html">Version</a>History();<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/Turn the dials n_positions_clockwise clockwise,<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/negative values are also allowed<br/>
-&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> Turn(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> n_positions_clockwise);<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> Turn(<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> n_positions_clockwise);<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppPrivate.htm">private</a></b>:<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppDialWidget.htm">DialWidget</a> can only be deleted by <a href="CppBoost.htm">Boost</a> <a href="CppSmartPointer.htm">smart pointer</a>s<br/>
-&nbsp;&nbsp;<b><a href="CppVirtual.htm">virtual</a></b> ~<a href="CppRubiksClock.htm">RubiksClock</a><a href="CppDial.htm">Dial</a>() {}<br/>
-&nbsp;&nbsp;<b><a href="CppFriend.htm">friend</a></b> <b><a href="CppVoid.htm">void</a></b> <a href="CppChecked_delete.htm">boost::checked_delete</a>&lt;&gt;(<a href="CppRubiksClock.htm">RubiksClock</a><a href="CppDial.htm">Dial</a>*);<br/>
+&nbsp;&nbsp;<b><a href="CppPrivate.html">private</a></b>:<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppDialWidget.html">DialWidget</a> can only be deleted by <a href="CppBoost.html">Boost</a> <a href="CppSmartPointer.html">smart pointer</a>s<br/>
+&nbsp;&nbsp;<b><a href="CppVirtual.html">virtual</a></b> ~<a href="CppRubiksClock.html">RubiksClock</a><a href="CppDial.htm">Dial</a>() {}<br/>
+&nbsp;&nbsp;<b><a href="CppFriend.html">friend</a></b> <b><a href="CppVoid.htm">void</a></b> <a href="CppChecked_delete.html">boost::checked_delete</a>&lt;&gt;(<a href="CppRubiksClock.html">RubiksClock</a><a href="CppDial.htm">Dial</a>*);<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppScoped_ptr.htm">boost::scoped_ptr</a>&lt;<a href="CppDial.htm">Dial</a>&gt; m_dial;<br/>
+&nbsp;&nbsp;<a href="CppScoped_ptr.html">boost::scoped_ptr</a>&lt;<a href="CppDial.htm">Dial</a>&gt; m_dial;<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Denotes the <a href="CppTime.htm">time</a> shown by the <a href="CppDial.htm">dial</a> as in a clock<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Denotes the <a href="CppTime.htm">time</a> shown by the <a href="CppDial<a href="CppHeaderFile.htm">.h</a>tm">dial</a> as in a clock<br/>
 &nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> m_<a href="CppTime.htm">time</a>;<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppFriend.htm">friend</a></b> <a href="CppOstream.htm">std::ostream</a>&amp; <b><a href="CppOperatorStreamOut.htm">operator&lt;&lt;</a></b>(<a href="CppOstream.htm">std::ostream</a>&amp; os, <b><a href="CppConst.htm">const</a></b> <a href="CppRubiksClock.htm">RubiksClock</a><a href="CppDial.htm">Dial</a>&amp; <a href="CppWidget.htm">widget</a>);<br/>
+&nbsp;&nbsp;<b><a href="CppFriend.html">friend</a></b> <a href="CppOstream.html">std::ostream</a>&amp; <b><a href="CppOperatorStreamOut.html">operator&lt;&lt;</a></b>(<a href="CppOstream.html">std::ostream</a>&amp; os, <b><a href="CppConst.html">const</a></b> <a href="CppRubiksClock.html">RubiksClock</a><a href="CppDial.htm">Dial</a>&amp; <a href="CppWidget.html">widget</a>);<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppPublic.htm">public</a></b>:<br/>
+&nbsp;&nbsp;<b><a href="CppPublic.html">public</a></b>:<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/Obtain the angle in radians between two deltas<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/12 o'clock is 0.0 * pi<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppOperatorDivide.htm">/</a> 3 o'clock is 0.5 * pi<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppOperatorDivide.htm">/</a> 6 o'clock is 1.0 * pi<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppOperatorDivide.htm">/</a> 9 o'clock is 1.5 * pi<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>From www.richelbilderbeek.nl/Cpp<a href="CppGetAngle.htm">GetAngle</a>.htm<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppStatic.htm">static</a></b> <b><a href="CppDouble.htm">double</a></b> <a href="CppGetAngle.htm">GetAngle</a>(<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> dX, <b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> dY);<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>From www.richelbilderbeek.nl/Cpp<a href="CppGetAngle.html">GetAngle</a>.html<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppStatic.html">static</a></b> <b><a href="CppDouble.html">double</a></b> <a href="CppGetAngle.html">GetAngle</a>(<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> dX, <b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> dY);<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>From www.richelbilderbeek.nl/Cpp<a href="CppGetDistance.htm">GetDistance</a>.htm<br/>
-&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppDouble.htm">double</a></b> <a href="CppGetDistance.htm">GetDistance</a>(<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> dX, <b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> dY);<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>From www.richelbilderbeek.nl/Cpp<a href="CppGetDistance.html">GetDistance</a>.html<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.html">static</a></b> <b><a href="CppDouble.html">double</a></b> <a href="CppGetDistance.html">GetDistance</a>(<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> dX, <b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> dY);<br/>
 };<br/>
 <br/>
-<a href="CppOstream.htm">std::ostream</a>&amp; <b><a href="CppOperatorStreamOut.htm">operator&lt;&lt;</a></b>(<a href="CppOstream.htm">std::ostream</a>&amp; os, <b><a href="CppConst.htm">const</a></b> <a href="CppRubiksClock.htm">RubiksClock</a><a href="CppDial.htm">Dial</a>&amp; <a href="CppWidget.htm">widget</a>);<br/>
+<a href="CppOstream.html">std::ostream</a>&amp; <b><a href="CppOperatorStreamOut.html">operator&lt;&lt;</a></b>(<a href="CppOstream.html">std::ostream</a>&amp; os, <b><a href="CppConst.html">const</a></b> <a href="CppRubiksClock.html">RubiksClock</a><a href="CppDial.htm">Dial</a>&amp; <a href="CppWidget.html">widget</a>);<br/>
 <br/>
-} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a><br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.html">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
 <br/>
-<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> RUBIKSCLOCKDIAL_H<br/>
+<a href="CppEndif.html">#endif</a> <a href="CppComment.htm">//</a> RUBIKSCLOCKDIAL_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -154,7 +154,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <table summary="rubiksclockdial.cpp" border = "1"><tr><td><code>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">/*</a><br/>
-<a href="CppRubiksClock.htm">RubiksClock</a><a href="CppDial.htm">Dial</a>, <b><a href="CppClass.htm">class</a></b> <b><a href="CppFor.htm">for</a></b> displaying a Rubik's Clock <a href="CppDial.htm">Dial</a><br/>
+<a href="CppRubiksClock.html">RubiksClock</a><a href="CppDial.htm">Dial</a>, <b><a href="CppClass.html">class</a></b> <b><a href="CppFor.htm">for</a></b> displaying a Rubik's Clock <a href="CppDial.htm">Dial</a><br/>
 Copyright (C) 2011 Richel Bilderbeek<br/>
 <br/>
 This program is free software: you can redistribute it and/or modify<br/>
@@ -170,33 +170,34 @@ You should have received a copy of the GNU General Public License<br/>
 along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">*/</a><br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="CppRubiksClockWidget.htm">CppRubiksClockWidget</a>.htm<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="CppRubiksClockWidget.html">CppRubiksClockWidget</a>.html<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
-<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-<b><a href="CppTypedef.htm">typedef</a></b>s"<br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppRubiksClock.htm">rubiksclock</a><a href="CppDial.htm">dial</a>.h"<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic push<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.html">-Weffc++</a>"<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic ignored "-Wunused-local-<b><a href="CppTypedef.html">typedef</a></b>s"<br/>
+<a href="CppInclude.html">#include</a> "<a href="CppRubiksClock.html">rubiksclock</a><a href="CppDial<a href="CppHeaderFile.htm">.h</a>tm">dial</a><a href="CppHeaderFile.htm">.h</a>"<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppCmathH.htm">cmath</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppIostreamH.htm">iostream</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppCassertH.html">cassert</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppCmathH.html">cmath</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppIostreamH.html">iostream</a>&gt;<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/numeric/con<a href="CppVersion.htm">version</a>/cast.hpp&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppBoost.html">boost</a>/numeric/con<a href="CppVersion.html">version</a>/cast<a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppDial.htm">dial</a>.h"<br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppRectangle.htm">rectangle</a>.h"<br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppTrace.htm">trace</a>.h"<br/>
+<a href="CppInclude.html">#include</a> "<a href="CppDial<a href="CppHeaderFile.htm">.h</a>tm">dial</a><a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "<a href="CppRectangle.html">rectangle</a><a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "<a href="CppTrace.html">trace</a><a href="CppHeaderFile.htm">.h</a>"<br/>
 <br/>
-<a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic pop<br/>
 <br/>
-<a href="CppRibi.htm\">ribi</a>::<a href="CppRubiksClock.htm">RubiksClock</a><a href="CppDial.htm">Dial</a>::<a href="CppRubiksClock.htm">RubiksClock</a><a href="CppDial.htm">Dial</a>(<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> <a href="CppTime.htm">time</a>,<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x,<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> y,<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> width,<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> height,<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> red,<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> green,<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> blue)<br/>
+<a href="CppRibi.htm">ribi</a>::<a href="CppRubiksClock.html">RubiksClock</a><a href="CppDial.htm">Dial</a>::<a href="CppRubiksClock.html">RubiksClock</a><a href="CppDial.htm">Dial</a>(<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> <a href="CppTime.htm">time</a>,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> x,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> y,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> width,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> height,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppUnsigned.html">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> red,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppUnsigned.html">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> green,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppUnsigned.html">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> blue)<br/>
 &nbsp;&nbsp;: m_dial(<b><a href="CppNew.htm">new</a></b> <a href="CppDial.htm">Dial</a>(0.0,red,green,blue)),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;m_<a href="CppTime.htm">time</a>(<a href="CppTime.htm">time</a> <a href="CppOperatorPlus.htm">+</a> 1)<br/>
 {<br/>
@@ -204,19 +205,19 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;Turn(-1);<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppRibi.htm\">ribi</a>::<a href="CppRubiksClock.htm">RubiksClock</a><a href="CppDial.htm">Dial</a>::Get<a href="CppVersion.htm">Version</a>()<br/>
+<b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a> <a href="CppRibi.htm">ribi</a>::<a href="CppRubiksClock.html">RubiksClock</a><a href="CppDial.htm">Dial</a>::Get<a href="CppVersion.html">Version</a>()<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> "1.0";<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> "1.0";<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm\">ribi</a>::<a href="CppRubiksClock.htm">RubiksClock</a><a href="CppDial.htm">Dial</a>::Get<a href="CppVersion.htm">Version</a>History()<br/>
+<b><a href="CppConst.html">const</a></b> <a href="CppVector.html">std::vector</a>&lt;<a href="CppString.html">std::string</a>&gt; <a href="CppRibi.htm">ribi</a>::<a href="CppRubiksClock.html">RubiksClock</a><a href="CppDial.htm">Dial</a>::Get<a href="CppVersion.html">Version</a>History()<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> {<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;"2011-09-08: <a href="CppVersion.htm">Version</a> 1.0: initial <a href="CppVersion.htm">version</a>"<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"2011-09-08: <a href="CppVersion.html">Version</a> 1.0: initial <a href="CppVersion.html">version</a>"<br/>
 &nbsp;&nbsp;};<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppRubiksClock.htm">RubiksClock</a><a href="CppDial.htm">Dial</a>::Turn(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> n_positions_clockwise)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppRubiksClock.html">RubiksClock</a><a href="CppDial.htm">Dial</a>::Turn(<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> n_positions_clockwise)<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (n_positions_clockwise <a href="CppOperatorModulus.htm">%</a> 12 <a href="CppOperatorNotEqual.htm">!=</a> 0)<br/>
 &nbsp;&nbsp;{<br/>
@@ -224,20 +225,20 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;m_<a href="CppTime.htm">time</a> <a href="CppOperatorModulus.htm">%</a><a href="CppOperatorAssign.htm">=</a> 12;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;m_<a href="CppTime.htm">time</a> <a href="CppOperatorPlus.htm">+</a><a href="CppOperatorAssign.htm">=</a> 12;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;m_<a href="CppTime.htm">time</a> <a href="CppOperatorModulus.htm">%</a><a href="CppOperatorAssign.htm">=</a> 12;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(m_<a href="CppTime.htm">time</a> <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 0);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(m_<a href="CppTime.htm">time</a> &lt; 12);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;m_dial-&gt;SetPosition(<a href="CppNumeric_cast.htm">boost::numeric_cast</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(m_<a href="CppTime.htm">time</a>) <a href="CppOperatorDivide.htm">/</a> 12.0);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(m_<a href="CppTime.htm">time</a> <a href="CppOperatorGreaterEqual.html">&gt;=</a> 0);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(m_<a href="CppTime.htm">time</a> &lt; 12);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_dial-&gt;SetPosition(<a href="CppNumeric_cast.html">boost::numeric_cast</a>&lt;<b><a href="CppDouble.html">double</a></b>&gt;(m_<a href="CppTime.htm">time</a>) <a href="CppOperatorDivide.htm">/</a> 12.0);<br/>
 &nbsp;&nbsp;}<br/>
 }<br/>
 <br/>
-<a href="CppOstream.htm">std::ostream</a>&amp; <a href="CppRibi.htm\">ribi</a>::<b><a href="CppOperatorStreamOut.htm">operator&lt;&lt;</a></b>(<a href="CppOstream.htm">std::ostream</a>&amp; os, <b><a href="CppConst.htm">const</a></b> <a href="CppRubiksClock.htm">RubiksClock</a><a href="CppDial.htm">Dial</a>&amp; <a href="CppWidget.htm">widget</a>)<br/>
+<a href="CppOstream.html">std::ostream</a>&amp; <a href="CppRibi.htm">ribi</a>::<b><a href="CppOperatorStreamOut.html">operator&lt;&lt;</a></b>(<a href="CppOstream.html">std::ostream</a>&amp; os, <b><a href="CppConst.html">const</a></b> <a href="CppRubiksClock.html">RubiksClock</a><a href="CppDial.htm">Dial</a>&amp; <a href="CppWidget.html">widget</a>)<br/>
 {<br/>
 &nbsp;&nbsp;os<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "&lt;<a href="CppRubiksClock.htm">RubiksClock</a><a href="CppDial.htm">Dial</a>&gt;"<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> *<a href="CppWidget.htm">widget</a>.m_dial<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppWidget.htm">widget</a>.GetGeometry()<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "&lt;/<a href="CppRubiksClock.htm">RubiksClock</a><a href="CppDial.htm">Dial</a>&gt;";<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> os;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "&lt;<a href="CppRubiksClock.html">RubiksClock</a><a href="CppDial.htm">Dial</a>&gt;"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> *<a href="CppWidget.html">widget</a>.m_dial<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> <a href="CppWidget.html">widget</a>.GetGeometry()<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "&lt;/<a href="CppRubiksClock.html">RubiksClock</a><a href="CppDial.htm">Dial</a>&gt;";<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> os;<br/>
 }<br/>
 </code></td></tr></table>
 <!-- end of the code -->
@@ -252,7 +253,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <table summary="rubiksclockdialwidget.h" border = "1"><tr><td><code>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">/*</a><br/>
-<a href="CppRubiksClock.htm">RubiksClock</a><a href="CppDialWidget.htm">DialWidget</a>, <b><a href="CppClass.htm">class</a></b> <b><a href="CppFor.htm">for</a></b> displaying a <a href="CppRubiksClock.htm">RubiksClock</a><a href="CppDial.htm">Dial</a><br/>
+<a href="CppRubiksClock.html">RubiksClock</a><a href="CppDialWidget.html">DialWidget</a>, <b><a href="CppClass.html">class</a></b> <b><a href="CppFor.htm">for</a></b> displaying a <a href="CppRubiksClock.html">RubiksClock</a><a href="CppDial.htm">Dial</a><br/>
 Copyright (C) 2011 Richel Bilderbeek<br/>
 <br/>
 This program is free software: you can redistribute it and/or modify<br/>
@@ -268,73 +269,73 @@ You should have received a copy of the GNU General Public License<br/>
 along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">*/</a><br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="CppRubiksClock.htm">CppRubiksClock</a><a href="CppDialWidget.htm">DialWidget</a>.htm<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="CppRubiksClock.html">CppRubiksClock</a><a href="CppDialWidget.html">DialWidget</a>.html<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppIfndef.htm">#ifndef</a> RUBIKSCLOCKDIALWIDGET_H<br/>
-<a href="CppDefine.htm">#define</a> RUBIKSCLOCKDIALWIDGET_H<br/>
+<a href="CppIfndef.html">#ifndef</a> RUBIKSCLOCKDIALWIDGET_H<br/>
+<a href="CppDefine.html">#define</a> RUBIKSCLOCKDIALWIDGET_H<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppIosfwdH.htm">iosfwd</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppStringH.htm">string</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppIosfwdH.html">iosfwd</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppStringH.html">string</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppVectorH.html">vector</a>&gt;<br/>
 <br/>
-<a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
-<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-<b><a href="CppTypedef.htm">typedef</a></b>s"<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/checked_delete.hpp&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppSignals2.htm">signals2</a>.hpp&gt;<br/>
-<a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic push<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.html">-Weffc++</a>"<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic ignored "-Wunused-local-<b><a href="CppTypedef.html">typedef</a></b>s"<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppBoost.html">boost</a>/checked_delete<a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppBoost.html">boost</a>/<a href="CppSignals2.html">signals2</a><a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
+<a href="CppInclude.html">#include</a> "<a href="CppWidget.html">widget</a><a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic pop<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppWidget.htm">widget</a>.h"<br/>
+<b><a href="CppNamespace.html">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
 <br/>
-<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a> {<br/>
+<b><a href="CppStruct.html">struct</a></b> <a href="CppRubiksClock.html">RubiksClock</a><a href="CppDial.htm">Dial</a>;<br/>
 <br/>
-<b><a href="CppStruct.htm">struct</a></b> <a href="CppRubiksClock.htm">RubiksClock</a><a href="CppDial.htm">Dial</a>;<br/>
-<br/>
-<a href="CppComment.htm">///</a><a href="CppRubiksClock.htm">RubiksClock</a><a href="CppDialWidget.htm">DialWidget</a> is a <b><a href="CppClass.htm">class</a></b> to display a <a href="CppRubiksClock.htm">RubiksClock</a><a href="CppDial.htm">Dial</a><br/>
-<b><a href="CppStruct.htm">struct</a></b> <a href="CppRubiksClock.htm">RubiksClock</a><a href="CppDialWidget.htm">DialWidget</a> : <b><a href="CppPublic.htm">public</a></b> <a href="CppWidget.htm">Widget</a><br/>
+<a href="CppComment.htm">///</a><a href="CppRubiksClock.html">RubiksClock</a><a href="CppDialWidget.html">DialWidget</a> is a <b><a href="CppClass.html">class</a></b> to display a <a href="CppRubiksClock.html">RubiksClock</a><a href="CppDial.htm">Dial</a><br/>
+<b><a href="CppStruct.html">struct</a></b> <a href="CppRubiksClock.html">RubiksClock</a><a href="CppDialWidget.html">DialWidget</a> : <b><a href="CppPublic.html">public</a></b> <a href="CppWidget.html">Widget</a><br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppExplicit.htm">explicit</a></b> <a href="CppRubiksClock.htm">RubiksClock</a><a href="CppDialWidget.htm">DialWidget</a>(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> position,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> y,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> width,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> height,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> red,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> green,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> blue);<br/>
+&nbsp;&nbsp;<b><a href="CppExplicit.html">explicit</a></b> <a href="CppRubiksClock.html">RubiksClock</a><a href="CppDialWidget.html">DialWidget</a>(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> position,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> x,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> y,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> width,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> height,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppUnsigned.html">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> red,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppUnsigned.html">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> green,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppUnsigned.html">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> blue);<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Obtain a read-and-write <a href="CppPointer.htm">pointer</a>t to the <a href="CppRubiksClock.htm">RubiksClock</a><a href="CppDial.htm">Dial</a><br/>
-&nbsp;&nbsp;<a href="CppRubiksClock.htm">RubiksClock</a><a href="CppDial.htm">Dial</a> * Get<a href="CppRubiksClock.htm">RubiksClock</a><a href="CppDial.htm">Dial</a>() { <b><a href="CppReturn.htm">return</a></b> m_dial.get(); }<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Obtain a read-and-write <a href="CppPointer.html">pointer</a>t to the <a href="CppRubiksClock.html">RubiksClock</a><a href="CppDial.htm">Dial</a><br/>
+&nbsp;&nbsp;<a href="CppRubiksClock.html">RubiksClock</a><a href="CppDial.htm">Dial</a> * Get<a href="CppRubiksClock.html">RubiksClock</a><a href="CppDial.htm">Dial</a>() { <b><a href="CppReturn.html">return</a></b> m_dial.get(); }<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Obtain a read-only <a href="CppPointer.htm">pointer</a>t to the <a href="CppRubiksClock.htm">RubiksClock</a><a href="CppDial.htm">Dial</a><br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppRubiksClock.htm">RubiksClock</a><a href="CppDial.htm">Dial</a> * Get<a href="CppRubiksClock.htm">RubiksClock</a><a href="CppDial.htm">Dial</a>() <b><a href="CppConst.htm">const</a></b> { <b><a href="CppReturn.htm">return</a></b> m_dial.get(); }<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Obtain a read-only <a href="CppPointer.html">pointer</a>t to the <a href="CppRubiksClock.html">RubiksClock</a><a href="CppDial.htm">Dial</a><br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppRubiksClock.html">RubiksClock</a><a href="CppDial.htm">Dial</a> * Get<a href="CppRubiksClock.html">RubiksClock</a><a href="CppDial.htm">Dial</a>() <b><a href="CppConst.html">const</a></b> { <b><a href="CppReturn.html">return</a></b> m_dial.get(); }<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Obtain <b><a href="CppThis.htm">this</a></b> <b><a href="CppClass.htm">class</a></b> its <a href="CppVersion.htm">version</a><br/>
-&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> Get<a href="CppVersion.htm">Version</a>();<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Obtain <b><a href="CppThis.htm">this</a></b> <b><a href="CppClass.html">class</a></b> its <a href="CppVersion.html">version</a><br/>
+&nbsp;&nbsp;<b><a href="CppStatic.html">static</a></b> <b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a> Get<a href="CppVersion.html">Version</a>();<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Obtain <b><a href="CppThis.htm">this</a></b> <b><a href="CppClass.htm">class</a></b> its <a href="CppVersion.htm">version</a> history<br/>
-&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; Get<a href="CppVersion.htm">Version</a>History();<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Obtain <b><a href="CppThis.htm">this</a></b> <b><a href="CppClass.html">class</a></b> its <a href="CppVersion.html">version</a> history<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.html">static</a></b> <b><a href="CppConst.html">const</a></b> <a href="CppVector.html">std::vector</a>&lt;<a href="CppString.html">std::string</a>&gt; Get<a href="CppVersion.html">Version</a>History();<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Is the <a href="CppDial.htm">dial</a> clicked?<br/>
-&nbsp;&nbsp;<b><a href="CppBool.htm">bool</a></b> IsClicked(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x, <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> y) <b><a href="CppConst.htm">const</a></b>;<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Is the <a href="CppDial<a href="CppHeaderFile.htm">.h</a>tm">dial</a> clicked?<br/>
+&nbsp;&nbsp;<b><a href="CppBool.htm">bool</a></b> IsClicked(<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> x, <b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> y) <b><a href="CppConst.html">const</a></b>;<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppPrivate.htm">private</a></b>:<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppRubiksClock.htm">RubiksClock</a><a href="CppDialWidget.htm">DialWidget</a> can only be deleted by <a href="CppBoost.htm">Boost</a> <a href="CppSmartPointer.htm">smart pointer</a>s<br/>
-&nbsp;&nbsp;<b><a href="CppVirtual.htm">virtual</a></b> ~<a href="CppRubiksClock.htm">RubiksClock</a><a href="CppDialWidget.htm">DialWidget</a>() {}<br/>
-&nbsp;&nbsp;<b><a href="CppFriend.htm">friend</a></b> <b><a href="CppVoid.htm">void</a></b> <a href="CppChecked_delete.htm">boost::checked_delete</a>&lt;&gt;(<a href="CppRubiksClock.htm">RubiksClock</a><a href="CppDialWidget.htm">DialWidget</a>*);<br/>
+&nbsp;&nbsp;<b><a href="CppPrivate.html">private</a></b>:<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppRubiksClock.html">RubiksClock</a><a href="CppDialWidget.html">DialWidget</a> can only be deleted by <a href="CppBoost.html">Boost</a> <a href="CppSmartPointer.html">smart pointer</a>s<br/>
+&nbsp;&nbsp;<b><a href="CppVirtual.html">virtual</a></b> ~<a href="CppRubiksClock.html">RubiksClock</a><a href="CppDialWidget.html">DialWidget</a>() {}<br/>
+&nbsp;&nbsp;<b><a href="CppFriend.html">friend</a></b> <b><a href="CppVoid.htm">void</a></b> <a href="CppChecked_delete.html">boost::checked_delete</a>&lt;&gt;(<a href="CppRubiksClock.html">RubiksClock</a><a href="CppDialWidget.html">DialWidget</a>*);<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppScoped_ptr.htm">boost::scoped_ptr</a>&lt;<a href="CppRubiksClock.htm">RubiksClock</a><a href="CppDial.htm">Dial</a>&gt; m_dial;<br/>
+&nbsp;&nbsp;<a href="CppScoped_ptr.html">boost::scoped_ptr</a>&lt;<a href="CppRubiksClock.html">RubiksClock</a><a href="CppDial.htm">Dial</a>&gt; m_dial;<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppDouble.htm">double</a></b> <a href="CppGetDistance.htm">GetDistance</a>(<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> dX, <b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> dY);<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.html">static</a></b> <b><a href="CppDouble.html">double</a></b> <a href="CppGetDistance.html">GetDistance</a>(<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> dX, <b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> dY);<br/>
 <br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppFriend.htm">friend</a></b> <a href="CppOstream.htm">std::ostream</a>&amp; <b><a href="CppOperatorStreamOut.htm">operator&lt;&lt;</a></b>(<a href="CppOstream.htm">std::ostream</a>&amp; os, <b><a href="CppConst.htm">const</a></b> <a href="CppRubiksClock.htm">RubiksClock</a><a href="CppDialWidget.htm">DialWidget</a>&amp; <a href="CppWidget.htm">widget</a>);<br/>
+&nbsp;&nbsp;<b><a href="CppFriend.html">friend</a></b> <a href="CppOstream.html">std::ostream</a>&amp; <b><a href="CppOperatorStreamOut.html">operator&lt;&lt;</a></b>(<a href="CppOstream.html">std::ostream</a>&amp; os, <b><a href="CppConst.html">const</a></b> <a href="CppRubiksClock.html">RubiksClock</a><a href="CppDialWidget.html">DialWidget</a>&amp; <a href="CppWidget.html">widget</a>);<br/>
 };<br/>
 <br/>
-<a href="CppOstream.htm">std::ostream</a>&amp; <b><a href="CppOperatorStreamOut.htm">operator&lt;&lt;</a></b>(<a href="CppOstream.htm">std::ostream</a>&amp; os, <b><a href="CppConst.htm">const</a></b> <a href="CppRubiksClock.htm">RubiksClock</a><a href="CppDialWidget.htm">DialWidget</a>&amp; <a href="CppWidget.htm">widget</a>);<br/>
+<a href="CppOstream.html">std::ostream</a>&amp; <b><a href="CppOperatorStreamOut.html">operator&lt;&lt;</a></b>(<a href="CppOstream.html">std::ostream</a>&amp; os, <b><a href="CppConst.html">const</a></b> <a href="CppRubiksClock.html">RubiksClock</a><a href="CppDialWidget.html">DialWidget</a>&amp; <a href="CppWidget.html">widget</a>);<br/>
 <br/>
-} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a><br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.html">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
 <br/>
-<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> RUBIKSCLOCKDIALWIDGET_H<br/>
+<a href="CppEndif.html">#endif</a> <a href="CppComment.htm">//</a> RUBIKSCLOCKDIALWIDGET_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -348,7 +349,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <table summary="rubiksclockdialwidget.cpp" border = "1"><tr><td><code>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">/*</a><br/>
-<a href="CppRubiksClock.htm">RubiksClock</a><a href="CppDialWidget.htm">DialWidget</a>, <b><a href="CppClass.htm">class</a></b> <b><a href="CppFor.htm">for</a></b> displaying a <a href="CppRubiksClock.htm">RubiksClock</a><a href="CppDial.htm">Dial</a><br/>
+<a href="CppRubiksClock.html">RubiksClock</a><a href="CppDialWidget.html">DialWidget</a>, <b><a href="CppClass.html">class</a></b> <b><a href="CppFor.htm">for</a></b> displaying a <a href="CppRubiksClock.html">RubiksClock</a><a href="CppDial.htm">Dial</a><br/>
 Copyright (C) 2011 Richel Bilderbeek<br/>
 <br/>
 This program is free software: you can redistribute it and/or modify<br/>
@@ -364,79 +365,80 @@ You should have received a copy of the GNU General Public License<br/>
 along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">*/</a><br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="CppRubiksClock.htm">CppRubiksClock</a><a href="CppDialWidget.htm">DialWidget</a>.htm<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="CppRubiksClock.html">CppRubiksClock</a><a href="CppDialWidget.html">DialWidget</a>.html<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
-<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-<b><a href="CppTypedef.htm">typedef</a></b>s"<br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppRubiksClock.htm">rubiksclock</a><a href="CppDialWidget.htm">dialwidget</a>.h"<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic push<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.html">-Weffc++</a>"<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic ignored "-Wunused-local-<b><a href="CppTypedef.html">typedef</a></b>s"<br/>
+<a href="CppInclude.html">#include</a> "<a href="CppRubiksClock.html">rubiksclock</a><a href="CppDialWidget.html">dialwidget</a><a href="CppHeaderFile.htm">.h</a>"<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppCmathH.htm">cmath</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppCassertH.html">cassert</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppCmathH.html">cmath</a>&gt;<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppIostreamH.htm">iostream</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppIostreamH.html">iostream</a>&gt;<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/numeric/con<a href="CppVersion.htm">version</a>/cast.hpp&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppBoost.html">boost</a>/numeric/con<a href="CppVersion.html">version</a>/cast<a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppDial.htm">dial</a>.h"<br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppRubiksClock.htm">rubiksclock</a><a href="CppDial.htm">dial</a>.h"<br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppRectangle.htm">rectangle</a>.h"<br/>
-<a href="CppComment.htm">//</a><a href="CppInclude.htm">#include</a> "<a href="CppTrace.htm">trace</a>.h"<br/>
+<a href="CppInclude.html">#include</a> "<a href="CppDial<a href="CppHeaderFile.htm">.h</a>tm">dial</a><a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "<a href="CppRubiksClock.html">rubiksclock</a><a href="CppDial<a href="CppHeaderFile.htm">.h</a>tm">dial</a><a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "<a href="CppRectangle.html">rectangle</a><a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppComment.htm">//</a><a href="CppInclude.html">#include</a> "<a href="CppTrace.html">trace</a><a href="CppHeaderFile.htm">.h</a>"<br/>
 <br/>
-<a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic pop<br/>
 <br/>
-<a href="CppRibi.htm\">ribi</a>::<a href="CppRubiksClock.htm">RubiksClock</a><a href="CppDialWidget.htm">DialWidget</a>::<a href="CppRubiksClock.htm">RubiksClock</a><a href="CppDialWidget.htm">DialWidget</a>(<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> position,<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x,<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> y,<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> width,<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> height,<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> red,<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> green,<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> blue)<br/>
-&nbsp;&nbsp;: m_dial(<b><a href="CppNew.htm">new</a></b> <a href="CppRubiksClock.htm">RubiksClock</a><a href="CppDial.htm">Dial</a>(position,x,y,width,height,red,green,blue))<br/>
+<a href="CppRibi.htm">ribi</a>::<a href="CppRubiksClock.html">RubiksClock</a><a href="CppDialWidget.html">DialWidget</a>::<a href="CppRubiksClock.html">RubiksClock</a><a href="CppDialWidget.html">DialWidget</a>(<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> position,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> x,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> y,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> width,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> height,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppUnsigned.html">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> red,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppUnsigned.html">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> green,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppUnsigned.html">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> blue)<br/>
+&nbsp;&nbsp;: m_dial(<b><a href="CppNew.htm">new</a></b> <a href="CppRubiksClock.html">RubiksClock</a><a href="CppDial.htm">Dial</a>(position,x,y,width,height,red,green,blue))<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;SetGeometry(Rect(x,y,width,height));<br/>
 }<br/>
 <br/>
-<b><a href="CppDouble.htm">double</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppRubiksClock.htm">RubiksClock</a><a href="CppDialWidget.htm">DialWidget</a>::<a href="CppGetDistance.htm">GetDistance</a>(<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> dX, <b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> dY)<br/>
+<b><a href="CppDouble.html">double</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppRubiksClock.html">RubiksClock</a><a href="CppDialWidget.html">DialWidget</a>::<a href="CppGetDistance.html">GetDistance</a>(<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> dX, <b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> dY)<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <a href="CppSqrt.htm">std::sqrt</a>( (dX * dX) <a href="CppOperatorPlus.htm">+</a> (dY * dY) );<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> <a href="CppSqrt.html">std::sqrt</a>( (dX * dX) <a href="CppOperatorPlus.htm">+</a> (dY * dY) );<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppRibi.htm\">ribi</a>::<a href="CppRubiksClock.htm">RubiksClock</a><a href="CppDialWidget.htm">DialWidget</a>::Get<a href="CppVersion.htm">Version</a>()<br/>
+<b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a> <a href="CppRibi.htm">ribi</a>::<a href="CppRubiksClock.html">RubiksClock</a><a href="CppDialWidget.html">DialWidget</a>::Get<a href="CppVersion.html">Version</a>()<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> "1.0";<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> "1.0";<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm\">ribi</a>::<a href="CppRubiksClock.htm">RubiksClock</a><a href="CppDialWidget.htm">DialWidget</a>::Get<a href="CppVersion.htm">Version</a>History()<br/>
+<b><a href="CppConst.html">const</a></b> <a href="CppVector.html">std::vector</a>&lt;<a href="CppString.html">std::string</a>&gt; <a href="CppRibi.htm">ribi</a>::<a href="CppRubiksClock.html">RubiksClock</a><a href="CppDialWidget.html">DialWidget</a>::Get<a href="CppVersion.html">Version</a>History()<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> {<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;"2011-09-08: <a href="CppVersion.htm">Version</a> 1.0: initial <a href="CppVersion.htm">version</a>"<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"2011-09-08: <a href="CppVersion.html">Version</a> 1.0: initial <a href="CppVersion.html">version</a>"<br/>
 &nbsp;&nbsp;};<br/>
 }<br/>
 <br/>
-<b><a href="CppBool.htm">bool</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppRubiksClock.htm">RubiksClock</a><a href="CppDialWidget.htm">DialWidget</a>::IsClicked(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x, <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> y) <b><a href="CppConst.htm">const</a></b><br/>
+<b><a href="CppBool.htm">bool</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppRubiksClock.html">RubiksClock</a><a href="CppDialWidget.html">DialWidget</a>::IsClicked(<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> x, <b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> y) <b><a href="CppConst.html">const</a></b><br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> <a href="CppWidget.htm">widget</a>_midx<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <a href="CppNumeric_cast.htm">boost::numeric_cast</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(GetGeometry().GetX())<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> (<a href="CppNumeric_cast.htm">boost::numeric_cast</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(<b><a href="CppThis.htm">this</a></b>-&gt;GetGeometry().GetWidth()) <a href="CppOperatorDivide.htm">/</a> 2.0);<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> <a href="CppWidget.htm">widget</a>_midy<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <a href="CppNumeric_cast.htm">boost::numeric_cast</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(GetGeometry().GetY())<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> (<a href="CppNumeric_cast.htm">boost::numeric_cast</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(<b><a href="CppThis.htm">this</a></b>-&gt;GetGeometry().GetHeight()) <a href="CppOperatorDivide.htm">/</a> 2.0);<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> x_d <a href="CppOperatorAssign.htm">=</a> <a href="CppNumeric_cast.htm">boost::numeric_cast</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(x);<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> y_d <a href="CppOperatorAssign.htm">=</a> <a href="CppNumeric_cast.htm">boost::numeric_cast</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(y);<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <a href="CppGetDistance.htm">GetDistance</a>(x_d <a href="CppOperatorMinus.htm">-</a> <a href="CppWidget.htm">widget</a>_midx, y_d <a href="CppOperatorMinus.htm">-</a> <a href="CppWidget.htm">widget</a>_midy)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&lt; (<a href="CppNumeric_cast.htm">boost::numeric_cast</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(<b><a href="CppThis.htm">this</a></b>-&gt;GetGeometry().GetWidth()) <a href="CppOperatorDivide.htm">/</a> 2.0);<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> <a href="CppWidget.html">widget</a>_midx<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <a href="CppNumeric_cast.html">boost::numeric_cast</a>&lt;<b><a href="CppDouble.html">double</a></b>&gt;(GetGeometry().GetX())<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> (<a href="CppNumeric_cast.html">boost::numeric_cast</a>&lt;<b><a href="CppDouble.html">double</a></b>&gt;(<b><a href="CppThis.htm">this</a></b>-&gt;GetGeometry().GetWidth()) <a href="CppOperatorDivide.htm">/</a> 2.0);<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> <a href="CppWidget.html">widget</a>_midy<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <a href="CppNumeric_cast.html">boost::numeric_cast</a>&lt;<b><a href="CppDouble.html">double</a></b>&gt;(GetGeometry().GetY())<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> (<a href="CppNumeric_cast.html">boost::numeric_cast</a>&lt;<b><a href="CppDouble.html">double</a></b>&gt;(<b><a href="CppThis.htm">this</a></b>-&gt;GetGeometry().GetHeight()) <a href="CppOperatorDivide.htm">/</a> 2.0);<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> x_d <a href="CppOperatorAssign.htm">=</a> <a href="CppNumeric_cast.html">boost::numeric_cast</a>&lt;<b><a href="CppDouble.html">double</a></b>&gt;(x);<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> y_d <a href="CppOperatorAssign.htm">=</a> <a href="CppNumeric_cast.html">boost::numeric_cast</a>&lt;<b><a href="CppDouble.html">double</a></b>&gt;(y);<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> <a href="CppGetDistance.html">GetDistance</a>(x_d <a href="CppOperatorMinus.htm">-</a> <a href="CppWidget.html">widget</a>_midx, y_d <a href="CppOperatorMinus.htm">-</a> <a href="CppWidget.html">widget</a>_midy)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt; (<a href="CppNumeric_cast.html">boost::numeric_cast</a>&lt;<b><a href="CppDouble.html">double</a></b>&gt;(<b><a href="CppThis.htm">this</a></b>-&gt;GetGeometry().GetWidth()) <a href="CppOperatorDivide.htm">/</a> 2.0);<br/>
 }<br/>
 <br/>
-<a href="CppOstream.htm">std::ostream</a>&amp; <a href="CppRibi.htm\">ribi</a>::<b><a href="CppOperatorStreamOut.htm">operator&lt;&lt;</a></b>(<a href="CppOstream.htm">std::ostream</a>&amp; os, <b><a href="CppConst.htm">const</a></b> <a href="CppRubiksClock.htm">RubiksClock</a><a href="CppDialWidget.htm">DialWidget</a>&amp; <a href="CppWidget.htm">widget</a>)<br/>
+<a href="CppOstream.html">std::ostream</a>&amp; <a href="CppRibi.htm">ribi</a>::<b><a href="CppOperatorStreamOut.html">operator&lt;&lt;</a></b>(<a href="CppOstream.html">std::ostream</a>&amp; os, <b><a href="CppConst.html">const</a></b> <a href="CppRubiksClock.html">RubiksClock</a><a href="CppDialWidget.html">DialWidget</a>&amp; <a href="CppWidget.html">widget</a>)<br/>
 {<br/>
 &nbsp;&nbsp;os<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "&lt;<a href="CppRubiksClock.htm">RubiksClock</a><a href="CppDialWidget.htm">DialWidget</a>&gt;"<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> *<a href="CppWidget.htm">widget</a>.m_dial<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppWidget.htm">widget</a>.GetGeometry()<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "&lt;/<a href="CppRubiksClock.htm">RubiksClock</a><a href="CppDialWidget.htm">DialWidget</a>&gt;";<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> os;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "&lt;<a href="CppRubiksClock.html">RubiksClock</a><a href="CppDialWidget.html">DialWidget</a>&gt;"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> *<a href="CppWidget.html">widget</a>.m_dial<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> <a href="CppWidget.html">widget</a>.GetGeometry()<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "&lt;/<a href="CppRubiksClock.html">RubiksClock</a><a href="CppDialWidget.html">DialWidget</a>&gt;";<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> os;<br/>
 }<br/>
 </code></td></tr></table>
 <!-- end of the code -->
@@ -451,7 +453,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <table summary="rubiksclockwidget.h" border = "1"><tr><td><code>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">/*</a><br/>
-<a href="CppRubiksClockWidget.htm">RubiksClockWidget</a>, <b><a href="CppClass.htm">class</a></b> <b><a href="CppFor.htm">for</a></b> displaying a <a href="CppRubiksClock.htm">RubiksClock</a><br/>
+<a href="CppRubiksClockWidget.html">RubiksClockWidget</a>, <b><a href="CppClass.html">class</a></b> <b><a href="CppFor.htm">for</a></b> displaying a <a href="CppRubiksClock.html">RubiksClock</a><br/>
 Copyright (C) 2011 Richel Bilderbeek<br/>
 <br/>
 This program is free software: you can redistribute it and/or modify<br/>
@@ -467,83 +469,83 @@ You should have received a copy of the GNU General Public License<br/>
 along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">*/</a><br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="CppRubiksClockWidget.htm">CppRubiksClockWidget</a>.htm<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="CppRubiksClockWidget.html">CppRubiksClockWidget</a>.html<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppIfndef.htm">#ifndef</a> RUBIKSCLOCKWIDGET_H<br/>
-<a href="CppDefine.htm">#define</a> RUBIKSCLOCKWIDGET_H<br/>
+<a href="CppIfndef.html">#ifndef</a> RUBIKSCLOCKWIDGET_H<br/>
+<a href="CppDefine.html">#define</a> RUBIKSCLOCKWIDGET_H<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppIosfwdH.htm">iosfwd</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppStringH.htm">string</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppIosfwdH.html">iosfwd</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppStringH.html">string</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppVectorH.html">vector</a>&gt;<br/>
 <br/>
-<a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
-<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-<b><a href="CppTypedef.htm">typedef</a></b>s"<br/>
-<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-but-set-parameter"<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/checked_delete.hpp&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppSignals2.htm">signals2</a>.hpp&gt;<br/>
-<a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic push<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.html">-Weffc++</a>"<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic ignored "-Wunused-local-<b><a href="CppTypedef.html">typedef</a></b>s"<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic ignored "-Wunused-but-set-parameter"<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppBoost.html">boost</a>/checked_delete<a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppBoost.html">boost</a>/<a href="CppSignals2.html">signals2</a><a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
+<a href="CppInclude.html">#include</a> "<a href="CppWidget.html">widget</a><a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic pop<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppWidget.htm">widget</a>.h"<br/>
+<b><a href="CppNamespace.html">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
 <br/>
-<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a> {<br/>
+<b><a href="CppStruct.html">struct</a></b> <a href="CppRubiksClock.html">RubiksClock</a>;<br/>
 <br/>
-<b><a href="CppStruct.htm">struct</a></b> <a href="CppRubiksClock.htm">RubiksClock</a>;<br/>
-<br/>
-<a href="CppComment.htm">///</a><a href="CppRubiksClockWidget.htm">RubiksClockWidget</a> is a <b><a href="CppClass.htm">class</a></b> to display a <a href="CppRubiksClock.htm">RubiksClock</a><br/>
-<b><a href="CppStruct.htm">struct</a></b> <a href="CppRubiksClockWidget.htm">RubiksClockWidget</a> : <b><a href="CppPublic.htm">public</a></b> <a href="CppWidget.htm">Widget</a><br/>
+<a href="CppComment.htm">///</a><a href="CppRubiksClockWidget.html">RubiksClockWidget</a> is a <b><a href="CppClass.html">class</a></b> to display a <a href="CppRubiksClock.html">RubiksClock</a><br/>
+<b><a href="CppStruct.html">struct</a></b> <a href="CppRubiksClockWidget.html">RubiksClockWidget</a> : <b><a href="CppPublic.html">public</a></b> <a href="CppWidget.html">Widget</a><br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppExplicit.htm">explicit</a></b> <a href="CppRubiksClockWidget.htm">RubiksClockWidget</a>(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x <a href="CppOperatorAssign.htm">=</a> 0,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> y <a href="CppOperatorAssign.htm">=</a> 0,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> width <a href="CppOperatorAssign.htm">=</a> 192,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> height <a href="CppOperatorAssign.htm">=</a> 192);<br/>
+&nbsp;&nbsp;<b><a href="CppExplicit.html">explicit</a></b> <a href="CppRubiksClockWidget.html">RubiksClockWidget</a>(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> x <a href="CppOperatorAssign.htm">=</a> 0,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> y <a href="CppOperatorAssign.htm">=</a> 0,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> width <a href="CppOperatorAssign.htm">=</a> 192,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> height <a href="CppOperatorAssign.htm">=</a> 192);<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Click on the <a href="CppRubiksClock.htm">RubiksClock</a> by the left mouse button or another<br/>
-&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> Click(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x, <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> y,<b><a href="CppConst.htm">const</a></b> <b><a href="CppBool.htm">bool</a></b> button_left);<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Click on the <a href="CppRubiksClock.html">RubiksClock</a> by the left mouse button or another<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> Click(<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> x, <b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> y,<b><a href="CppConst.html">const</a></b> <b><a href="CppBool.htm">bool</a></b> button_left);<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/Flip the Rubik's Clock and display the other side<br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> Flip();<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Does the <a href="CppWidget.htm">widget</a> display the front side?<br/>
-&nbsp;&nbsp;<b><a href="CppBool.htm">bool</a></b> GetDisplayFront() <b><a href="CppConst.htm">const</a></b> { <b><a href="CppReturn.htm">return</a></b> m_display_front; }<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Does the <a href="CppWidget.html">widget</a> display the front side?<br/>
+&nbsp;&nbsp;<b><a href="CppBool.htm">bool</a></b> GetDisplayFront() <b><a href="CppConst.html">const</a></b> { <b><a href="CppReturn.html">return</a></b> m_display_front; }<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Obtain a read-and-write <a href="CppPointer.htm">pointer</a>t to the <a href="CppRubiksClock.htm">RubiksClock</a><br/>
-&nbsp;&nbsp;<a href="CppRubiksClock.htm">RubiksClock</a> * Get<a href="CppRubiksClock.htm">RubiksClock</a>() { <b><a href="CppReturn.htm">return</a></b> m_clock.get(); }<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Obtain a read-and-write <a href="CppPointer.html">pointer</a>t to the <a href="CppRubiksClock.html">RubiksClock</a><br/>
+&nbsp;&nbsp;<a href="CppRubiksClock.html">RubiksClock</a> * Get<a href="CppRubiksClock.html">RubiksClock</a>() { <b><a href="CppReturn.html">return</a></b> m_clock.get(); }<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Obtain a read-only <a href="CppPointer.htm">pointer</a>t to the <a href="CppRubiksClock.htm">RubiksClock</a><br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppRubiksClock.htm">RubiksClock</a> * Get<a href="CppRubiksClock.htm">RubiksClock</a>() <b><a href="CppConst.htm">const</a></b> { <b><a href="CppReturn.htm">return</a></b> m_clock.get(); }<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Obtain a read-only <a href="CppPointer.html">pointer</a>t to the <a href="CppRubiksClock.html">RubiksClock</a><br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppRubiksClock.html">RubiksClock</a> * Get<a href="CppRubiksClock.html">RubiksClock</a>() <b><a href="CppConst.html">const</a></b> { <b><a href="CppReturn.html">return</a></b> m_clock.get(); }<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Obtain <b><a href="CppThis.htm">this</a></b> <b><a href="CppClass.htm">class</a></b> its <a href="CppVersion.htm">version</a><br/>
-&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> Get<a href="CppVersion.htm">Version</a>();<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Obtain <b><a href="CppThis.htm">this</a></b> <b><a href="CppClass.html">class</a></b> its <a href="CppVersion.html">version</a><br/>
+&nbsp;&nbsp;<b><a href="CppStatic.html">static</a></b> <b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a> Get<a href="CppVersion.html">Version</a>();<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Obtain <b><a href="CppThis.htm">this</a></b> <b><a href="CppClass.htm">class</a></b> its <a href="CppVersion.htm">version</a> history<br/>
-&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; Get<a href="CppVersion.htm">Version</a>History();<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Obtain <b><a href="CppThis.htm">this</a></b> <b><a href="CppClass.html">class</a></b> its <a href="CppVersion.html">version</a> history<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.html">static</a></b> <b><a href="CppConst.html">const</a></b> <a href="CppVector.html">std::vector</a>&lt;<a href="CppString.html">std::string</a>&gt; Get<a href="CppVersion.html">Version</a>History();<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/Respond to a change in the clock<br/>
-&nbsp;&nbsp;<b><a href="CppMutable.htm">mutable</a></b> <a href="CppBoostSignal.htm">boost::signals2::signal</a>&lt;<b><a href="CppVoid.htm">void</a></b> ()&gt; m_signal_<a href="CppWidget.htm">widget</a>_flipped;<br/>
+&nbsp;&nbsp;<b><a href="CppMutable.html">mutable</a></b> <a href="CppBoostSignal.html">boost::signals2::signal</a>&lt;<b><a href="CppVoid.htm">void</a></b> ()&gt; m_signal_<a href="CppWidget.html">widget</a>_flipped;<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppPrivate.htm">private</a></b>:<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppRubiksClockWidget.htm">RubiksClockWidget</a> can only be deleted by <a href="CppBoost.htm">Boost</a> <a href="CppSmartPointer.htm">smart pointer</a>s<br/>
-&nbsp;&nbsp;<b><a href="CppVirtual.htm">virtual</a></b> ~<a href="CppRubiksClockWidget.htm">RubiksClockWidget</a>() {}<br/>
-&nbsp;&nbsp;<b><a href="CppFriend.htm">friend</a></b> <b><a href="CppVoid.htm">void</a></b> <a href="CppChecked_delete.htm">boost::checked_delete</a>&lt;&gt;(<a href="CppRubiksClockWidget.htm">RubiksClockWidget</a>*);<br/>
+&nbsp;&nbsp;<b><a href="CppPrivate.html">private</a></b>:<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppRubiksClockWidget.html">RubiksClockWidget</a> can only be deleted by <a href="CppBoost.html">Boost</a> <a href="CppSmartPointer.html">smart pointer</a>s<br/>
+&nbsp;&nbsp;<b><a href="CppVirtual.html">virtual</a></b> ~<a href="CppRubiksClockWidget.html">RubiksClockWidget</a>() {}<br/>
+&nbsp;&nbsp;<b><a href="CppFriend.html">friend</a></b> <b><a href="CppVoid.htm">void</a></b> <a href="CppChecked_delete.html">boost::checked_delete</a>&lt;&gt;(<a href="CppRubiksClockWidget.html">RubiksClockWidget</a>*);<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>/The <a href="CppRubiksClock.htm">RubiksClock</a><br/>
-&nbsp;&nbsp;<a href="CppScoped_ptr.htm">boost::scoped_ptr</a>&lt;<a href="CppRubiksClock.htm">RubiksClock</a>&gt; m_clock;<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/The <a href="CppRubiksClock.html">RubiksClock</a><br/>
+&nbsp;&nbsp;<a href="CppScoped_ptr.html">boost::scoped_ptr</a>&lt;<a href="CppRubiksClock.html">RubiksClock</a>&gt; m_clock;<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Does <b><a href="CppThis.htm">this</a></b> <a href="CppWidget.htm">widget</a> display the front or the back side?<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Does <b><a href="CppThis.htm">this</a></b> <a href="CppWidget.html">widget</a> display the front or the back side?<br/>
 &nbsp;&nbsp;<b><a href="CppBool.htm">bool</a></b> m_display_front;<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Respond to a change in <a href="CppGeometry.htm">geometry</a><br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Respond to a change in <a href="CppGeometry.html">geometry</a><br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> OnResize();<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppFriend.htm">friend</a></b> <a href="CppOstream.htm">std::ostream</a>&amp; <b><a href="CppOperatorStreamOut.htm">operator&lt;&lt;</a></b>(<a href="CppOstream.htm">std::ostream</a>&amp; os, <b><a href="CppConst.htm">const</a></b> <a href="CppRubiksClockWidget.htm">RubiksClockWidget</a>&amp; <a href="CppWidget.htm">widget</a>);<br/>
+&nbsp;&nbsp;<b><a href="CppFriend.html">friend</a></b> <a href="CppOstream.html">std::ostream</a>&amp; <b><a href="CppOperatorStreamOut.html">operator&lt;&lt;</a></b>(<a href="CppOstream.html">std::ostream</a>&amp; os, <b><a href="CppConst.html">const</a></b> <a href="CppRubiksClockWidget.html">RubiksClockWidget</a>&amp; <a href="CppWidget.html">widget</a>);<br/>
 };<br/>
 <br/>
-<a href="CppOstream.htm">std::ostream</a>&amp; <b><a href="CppOperatorStreamOut.htm">operator&lt;&lt;</a></b>(<a href="CppOstream.htm">std::ostream</a>&amp; os, <b><a href="CppConst.htm">const</a></b> <a href="CppRubiksClockWidget.htm">RubiksClockWidget</a>&amp; <a href="CppWidget.htm">widget</a>);<br/>
+<a href="CppOstream.html">std::ostream</a>&amp; <b><a href="CppOperatorStreamOut.html">operator&lt;&lt;</a></b>(<a href="CppOstream.html">std::ostream</a>&amp; os, <b><a href="CppConst.html">const</a></b> <a href="CppRubiksClockWidget.html">RubiksClockWidget</a>&amp; <a href="CppWidget.html">widget</a>);<br/>
 <br/>
-} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a><br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.html">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
 <br/>
-<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> RUBIKSCLOCKWIDGET_H<br/>
+<a href="CppEndif.html">#endif</a> <a href="CppComment.htm">//</a> RUBIKSCLOCKWIDGET_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -557,7 +559,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <table summary="rubiksclockwidget.cpp" border = "1"><tr><td><code>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">/*</a><br/>
-<a href="CppRubiksClockWidget.htm">RubiksClockWidget</a>, <b><a href="CppClass.htm">class</a></b> <b><a href="CppFor.htm">for</a></b> displaying a <a href="CppRubiksClock.htm">RubiksClock</a><br/>
+<a href="CppRubiksClockWidget.html">RubiksClockWidget</a>, <b><a href="CppClass.html">class</a></b> <b><a href="CppFor.htm">for</a></b> displaying a <a href="CppRubiksClock.html">RubiksClock</a><br/>
 Copyright (C) 2011 Richel Bilderbeek<br/>
 <br/>
 This program is free software: you can redistribute it and/or modify<br/>
@@ -573,51 +575,53 @@ You should have received a copy of the GNU General Public License<br/>
 along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">*/</a><br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="CppRubiksClockWidget.htm">CppRubiksClockWidget</a>.htm<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="CppRubiksClockWidget.html">CppRubiksClockWidget</a>.html<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
-<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-<b><a href="CppTypedef.htm">typedef</a></b>s"<br/>
-<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-but-set-parameter"<br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppRubiksClockWidget.htm">rubiksclockwidget</a>.h"<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic push<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.html">-Weffc++</a>"<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic ignored "-Wunused-local-<b><a href="CppTypedef.html">typedef</a></b>s"<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic ignored "-Wunused-but-set-parameter"<br/>
+<a href="CppInclude.html">#include</a> "<a href="CppRubiksClockWidget.html">rubiksclockwidget</a><a href="CppHeaderFile.htm">.h</a>"<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppCmathH.htm">cmath</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppCassertH.html">cassert</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppCmathH.html">cmath</a>&gt;<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppIostreamH.htm">iostream</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppIostreamH.html">iostream</a>&gt;<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/numeric/con<a href="CppVersion.htm">version</a>/cast.hpp&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppBoost.html">boost</a>/numeric/con<a href="CppVersion.html">version</a>/cast<a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppDial.htm">dial</a>.h"<br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppRubiksClock.htm">rubiksclock</a>.h"<br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppRubiksClock.htm">rubiksclock</a><a href="CppDial.htm">dial</a>.h"<br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppRubiksClock.htm">rubiksclock</a><a href="CppDialWidget.htm">dialwidget</a>.h"<br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppRectangle.htm">rectangle</a>.h"<br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppToggleButton.htm">togglebutton</a>.h"<br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppToggleButtonWidget.htm">togglebuttonwidget</a>.h"<br/>
-<a href="CppComment.htm">//</a><a href="CppInclude.htm">#include</a> "<a href="CppTrace.htm">trace</a>.h"<br/>
+<a href="CppInclude.html">#include</a> "<a href="CppDial<a href="CppHeaderFile.htm">.h</a>tm">dial</a><a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "<a href="CppRubiksClock.html">rubiksclock</a><a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "<a href="CppRubiksClock.html">rubiksclock</a><a href="CppDial<a href="CppHeaderFile.htm">.h</a>tm">dial</a><a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "<a href="CppRubiksClock.html">rubiksclock</a><a href="CppDialWidget.html">dialwidget</a><a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "<a href="CppRectangle.html">rectangle</a><a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "<a href="CppToggleButton.html">togglebutton</a><a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "<a href="CppToggleButtonWidget.html">togglebuttonwidget</a><a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppComment.htm">//</a><a href="CppInclude.html">#include</a> "<a href="CppTrace.html">trace</a><a href="CppHeaderFile.htm">.h</a>"<br/>
 <br/>
-<a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic pop<br/>
 <br/>
-<a href="CppRibi.htm\">ribi</a>::<a href="CppRubiksClockWidget.htm">RubiksClockWidget</a>::<a href="CppRubiksClockWidget.htm">RubiksClockWidget</a>(<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x,<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> y,<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> width,<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> height)<br/>
-&nbsp;&nbsp;: m_clock(<b><a href="CppNew.htm">new</a></b> <a href="CppRubiksClock.htm">RubiksClock</a>()),<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;m_display_front(<b><a href="CppTrue.htm">true</a></b>)<br/>
+<a href="CppRibi.htm">ribi</a>::<a href="CppRubiksClockWidget.html">RubiksClockWidget</a>::<a href="CppRubiksClockWidget.html">RubiksClockWidget</a>(<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> x,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> y,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> width,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> height)<br/>
+&nbsp;&nbsp;: m_signal_<a href="CppWidget.html">widget</a>_flipped{},<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_clock{<b><a href="CppNew.htm">new</a></b> <a href="CppRubiksClock.html">RubiksClock</a>},<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_display_front{<b><a href="CppTrue.htm">true</a></b>}<br/>
 {<br/>
-&nbsp;&nbsp;m_signal_<a href="CppGeometry.htm">geometry</a>_changed.connect(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBind.htm">boost::bind</a>(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;<a href="CppRibi.htm\">ribi</a>::<a href="CppRubiksClockWidget.htm">RubiksClockWidget</a>::OnResize,<br/>
+&nbsp;&nbsp;m_signal_<a href="CppGeometry.html">geometry</a>_changed.connect(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBind.html">boost::bind</a>(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;<a href="CppRibi.htm">ribi</a>::<a href="CppRubiksClockWidget.html">RubiksClockWidget</a>::OnResize,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>));<br/>
 <br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;SetGeometry(Rect(x,y,width,height));<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppRubiksClockWidget.htm">RubiksClockWidget</a>::Click(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x,<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> y,<b><a href="CppConst.htm">const</a></b> <b><a href="CppBool.htm">bool</a></b> button_left)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppRubiksClockWidget.html">RubiksClockWidget</a>::Click(<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> x,<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> y,<b><a href="CppConst.html">const</a></b> <b><a href="CppBool.htm">bool</a></b> button_left)<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppRubiksClock.htm">RubiksClock</a>::<a href="CppTime.htm">Time</a>s&amp; <a href="CppTime.htm">time</a>s <a href="CppOperatorAssign.htm">=</a> (m_display_front ? m_clock-&gt;GetFront<a href="CppTime.htm">Time</a>s() : m_clock-&gt;GetBack<a href="CppTime.htm">Time</a>s());<br/>
-&nbsp;&nbsp;<a href="CppRubiksClock.htm">RubiksClock</a>::Pegs&amp; pegs <a href="CppOperatorAssign.htm">=</a> m_clock-&gt;GetFrontPegs();<br/>
+&nbsp;&nbsp;<a href="CppRubiksClock.html">RubiksClock</a>::<a href="CppTime.htm">Time</a>s&amp; <a href="CppTime.htm">time</a>s <a href="CppOperatorAssign.htm">=</a> (m_display_front ? m_clock-&gt;GetFront<a href="CppTime.htm">Time</a>s() : m_clock-&gt;GetBack<a href="CppTime.htm">Time</a>s());<br/>
+&nbsp;&nbsp;<a href="CppRubiksClock.html">RubiksClock</a>::Pegs&amp; pegs <a href="CppOperatorAssign.htm">=</a> m_clock-&gt;GetFrontPegs();<br/>
 <br/>
 &nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> i=0; i<a href="CppOperatorNotEqual.htm">!=</a>2; <a href="CppOperatorPlus.htm">+</a>+i)<br/>
 &nbsp;&nbsp;{<br/>
@@ -629,16 +633,16 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;m_clock-&gt;TurnWheel(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;i<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;? (j ? <a href="CppRubiksClock.htm">RubiksClock</a>::bottomRight : <a href="CppRubiksClock.htm">RubiksClock</a>::topRight)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: (j ? <a href="CppRubiksClock.htm">RubiksClock</a>::bottomLeft : <a href="CppRubiksClock.htm">RubiksClock</a>::topLeft),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;? (j ? <a href="CppRubiksClock.html">RubiksClock</a>::bottomRight : <a href="CppRubiksClock.html">RubiksClock</a>::topRight)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: (j ? <a href="CppRubiksClock.html">RubiksClock</a>::bottomLeft : <a href="CppRubiksClock.html">RubiksClock</a>::topLeft),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;button_left ? 1 : <a href="CppOperatorMinus.htm">-</a>1);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppElse.htm">else</a></b><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;m_clock-&gt;TurnWheel(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;i<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;? (j ? <a href="CppRubiksClock.htm">RubiksClock</a>::bottomLeft : <a href="CppRubiksClock.htm">RubiksClock</a>::topLeft)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: (j ? <a href="CppRubiksClock.htm">RubiksClock</a>::bottomRight : <a href="CppRubiksClock.htm">RubiksClock</a>::topRight),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;? (j ? <a href="CppRubiksClock.html">RubiksClock</a>::bottomLeft : <a href="CppRubiksClock.html">RubiksClock</a>::topLeft)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: (j ? <a href="CppRubiksClock.html">RubiksClock</a>::bottomRight : <a href="CppRubiksClock.html">RubiksClock</a>::topRight),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;button_left ? 1 : <a href="CppOperatorMinus.htm">-</a>1);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
@@ -646,46 +650,46 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;m_clock-&gt;TogglePeg(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;i<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;? (j ? <a href="CppRubiksClock.htm">RubiksClock</a>::bottomRight : <a href="CppRubiksClock.htm">RubiksClock</a>::topRight)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: (j ? <a href="CppRubiksClock.htm">RubiksClock</a>::bottomLeft : <a href="CppRubiksClock.htm">RubiksClock</a>::topLeft));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;? (j ? <a href="CppRubiksClock.html">RubiksClock</a>::bottomRight : <a href="CppRubiksClock.html">RubiksClock</a>::topRight)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: (j ? <a href="CppRubiksClock.html">RubiksClock</a>::bottomLeft : <a href="CppRubiksClock.html">RubiksClock</a>::topLeft));<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;}<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppRubiksClockWidget.htm">RubiksClockWidget</a>::Flip()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppRubiksClockWidget.html">RubiksClockWidget</a>::Flip()<br/>
 {<br/>
 &nbsp;&nbsp;m_display_front <a href="CppOperatorAssign.htm">=</a> !m_display_front;<br/>
-&nbsp;&nbsp;m_signal_<a href="CppWidget.htm">widget</a>_flipped();<br/>
+&nbsp;&nbsp;m_signal_<a href="CppWidget.html">widget</a>_flipped();<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppRibi.htm\">ribi</a>::<a href="CppRubiksClockWidget.htm">RubiksClockWidget</a>::Get<a href="CppVersion.htm">Version</a>()<br/>
+<b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a> <a href="CppRibi.htm">ribi</a>::<a href="CppRubiksClockWidget.html">RubiksClockWidget</a>::Get<a href="CppVersion.html">Version</a>()<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> "1.2";<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> "1.2";<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm\">ribi</a>::<a href="CppRubiksClockWidget.htm">RubiksClockWidget</a>::Get<a href="CppVersion.htm">Version</a>History()<br/>
+<b><a href="CppConst.html">const</a></b> <a href="CppVector.html">std::vector</a>&lt;<a href="CppString.html">std::string</a>&gt; <a href="CppRibi.htm">ribi</a>::<a href="CppRubiksClockWidget.html">RubiksClockWidget</a>::Get<a href="CppVersion.html">Version</a>History()<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> {<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;"2011-09-01: <a href="CppVersion.htm">Version</a> 1.0: initial <a href="CppVersion.htm">version</a>",<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;"2011-09-09: <a href="CppVersion.htm">Version</a> 1.1: use of geometries",<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;"2011-09-15: <a href="CppVersion.htm">Version</a> 1.2: allow flipping the clock"<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"2011-09-01: <a href="CppVersion.html">Version</a> 1.0: initial <a href="CppVersion.html">version</a>",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"2011-09-09: <a href="CppVersion.html">Version</a> 1.1: use of geometries",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"2011-09-15: <a href="CppVersion.html">Version</a> 1.2: allow flipping the clock"<br/>
 &nbsp;&nbsp;};<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppRubiksClockWidget.htm">RubiksClockWidget</a>::OnResize()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppRubiksClockWidget.html">RubiksClockWidget</a>::OnResize()<br/>
 {<br/>
 &nbsp;&nbsp;m_clock-&gt;SetGeometry(<b><a href="CppThis.htm">this</a></b>-&gt;GetGeometry());<br/>
 }<br/>
 <br/>
-<a href="CppOstream.htm">std::ostream</a>&amp; <a href="CppRibi.htm\">ribi</a>::<b><a href="CppOperatorStreamOut.htm">operator&lt;&lt;</a></b>(<a href="CppOstream.htm">std::ostream</a>&amp; os, <b><a href="CppConst.htm">const</a></b> <a href="CppRubiksClockWidget.htm">RubiksClockWidget</a>&amp; <a href="CppWidget.htm">widget</a>)<br/>
+<a href="CppOstream.html">std::ostream</a>&amp; <a href="CppRibi.htm">ribi</a>::<b><a href="CppOperatorStreamOut.html">operator&lt;&lt;</a></b>(<a href="CppOstream.html">std::ostream</a>&amp; os, <b><a href="CppConst.html">const</a></b> <a href="CppRubiksClockWidget.html">RubiksClockWidget</a>&amp; <a href="CppWidget.html">widget</a>)<br/>
 {<br/>
 &nbsp;&nbsp;os<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "&lt;<a href="CppRubiksClockWidget.htm">RubiksClockWidget</a>&gt;"<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> *<a href="CppWidget.htm">widget</a>.m_clock<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppWidget.htm">widget</a>.GetGeometry()<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "&lt;/<a href="CppRubiksClockWidget.htm">RubiksClockWidget</a>&gt;";<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> os;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "&lt;<a href="CppRubiksClockWidget.html">RubiksClockWidget</a>&gt;"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> *<a href="CppWidget.html">widget</a>.m_clock<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> <a href="CppWidget.html">widget</a>.GetGeometry()<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "&lt;/<a href="CppRubiksClockWidget.html">RubiksClockWidget</a>&gt;";<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> os;<br/>
 }<br/>
 </code></td></tr></table>
 <!-- end of the code -->

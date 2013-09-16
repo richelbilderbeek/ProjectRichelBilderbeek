@@ -43,7 +43,7 @@
 <table summary="qttogglebuttonwidget.h" border = "1"><tr><td><code>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">/*</a><br/>
-<a href="CppQtToggleButton.htm">QtToggleButton</a><a href="CppWidget.htm">Widget</a>, <a href="CppQt.htm">Qt</a> <a href="CppWidget.htm">widget</a> <b><a href="CppFor.htm">for</a></b> displaying the <a href="CppToggleButton.htm">ToggleButton</a><a href="CppWidget.htm">Widget</a> <b><a href="CppClass.htm">class</a></b><br/>
+<a href="CppQtToggleButton.html">QtToggleButton</a><a href="CppWidget.html">Widget</a>, <a href="CppQt.htm">Qt</a> <a href="CppWidget.html">widget</a> <b><a href="CppFor.htm">for</a></b> displaying the <a href="CppToggleButton.html">ToggleButton</a><a href="CppWidget.html">Widget</a> <b><a href="CppClass.html">class</a></b><br/>
 Copyright (C) 2011 Richel Bilderbeek<br/>
 <br/>
 This program is free software: you can redistribute it and/or modify<br/>
@@ -59,86 +59,86 @@ You should have received a copy of the GNU General Public License<br/>
 along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">*/</a><br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="CppQtToggleButtonWidget.htm">CppQtToggleButtonWidget</a>.htm<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="CppQtToggleButtonWidget.html">CppQtToggleButtonWidget</a>.html<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppIfndef.htm">#ifndef</a> QTTOGGLEBUTTONWIDGET_H<br/>
-<a href="CppDefine.htm">#define</a> QTTOGGLEBUTTONWIDGET_H<br/>
+<a href="CppIfndef.html">#ifndef</a> QTTOGGLEBUTTONWIDGET_H<br/>
+<a href="CppDefine.html">#define</a> QTTOGGLEBUTTONWIDGET_H<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppStringH.htm">string</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppStringH.html">string</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppVectorH.html">vector</a>&gt;<br/>
 <br/>
 <br/>
-<a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
-<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-<b><a href="CppTypedef.htm">typedef</a></b>s"<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppSignals2.htm">signals2</a>.hpp&gt;<br/>
-<a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic push<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.html">-Weffc++</a>"<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic ignored "-Wunused-local-<b><a href="CppTypedef.html">typedef</a></b>s"<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppBoost.html">boost</a>/<a href="CppSignals2.html">signals2</a><a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppQWidget.html">QWidget</a>&gt;<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic pop<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppQWidget.htm">QWidget</a>&gt;<br/>
+<b><a href="CppNamespace.html">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
 <br/>
-<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a> {<br/>
+<b><a href="CppStruct.html">struct</a></b> <a href="CppToggleButton.html">ToggleButton</a>;<br/>
+<b><a href="CppStruct.html">struct</a></b> <a href="CppToggleButton.html">ToggleButton</a><a href="CppWidget.html">Widget</a>;<br/>
 <br/>
-<b><a href="CppStruct.htm">struct</a></b> <a href="CppToggleButton.htm">ToggleButton</a>;<br/>
-<b><a href="CppStruct.htm">struct</a></b> <a href="CppToggleButton.htm">ToggleButton</a><a href="CppWidget.htm">Widget</a>;<br/>
-<br/>
-<a href="CppComment.htm">///</a><a href="CppQtToggleButton.htm">QtToggleButton</a><a href="CppWidget.htm">Widget</a> displays a <a href="CppToggleButton.htm">ToggleButton</a><br/>
-<b><a href="CppStruct.htm">struct</a></b> <a href="CppQtToggleButton.htm">QtToggleButton</a><a href="CppWidget.htm">Widget</a> : <b><a href="CppPublic.htm">public</a></b> <a href="CppQWidget.htm">QWidget</a><br/>
+<a href="CppComment.htm">///</a><a href="CppQtToggleButton.html">QtToggleButton</a><a href="CppWidget.html">Widget</a> displays a <a href="CppToggleButton.html">ToggleButton</a><br/>
+<b><a href="CppStruct.html">struct</a></b> <a href="CppQtToggleButton.html">QtToggleButton</a><a href="CppWidget.html">Widget</a> : <b><a href="CppPublic.html">public</a></b> <a href="CppQWidget.html">QWidget</a><br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>/A <a href="CppQtToggleButton.htm">QtToggleButton</a><a href="CppWidget.htm">Widget</a> is created by its toggle state and its color<br/>
-&nbsp;&nbsp;<a href="CppQtToggleButton.htm">QtToggleButton</a><a href="CppWidget.htm">Widget</a>(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppBool.htm">bool</a></b> toggled <a href="CppOperatorAssign.htm">=</a> <b><a href="CppFalse.htm">false</a></b>,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> red <a href="CppOperatorAssign.htm">=</a> 255,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> green <a href="CppOperatorAssign.htm">=</a> 255,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> blue <a href="CppOperatorAssign.htm">=</a> 255);<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/A <a href="CppQtToggleButton.html">QtToggleButton</a><a href="CppWidget.html">Widget</a> is created by its toggle state and its color<br/>
+&nbsp;&nbsp;<a href="CppQtToggleButton.html">QtToggleButton</a><a href="CppWidget.html">Widget</a>(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppBool.htm">bool</a></b> toggled <a href="CppOperatorAssign.htm">=</a> <b><a href="CppFalse.html">false</a></b>,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppUnsigned.html">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> red <a href="CppOperatorAssign.htm">=</a> 255,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppUnsigned.html">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> green <a href="CppOperatorAssign.htm">=</a> 255,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppUnsigned.html">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> blue <a href="CppOperatorAssign.htm">=</a> 255);<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Obtain a read-only <a href="CppPointer.htm">pointer</a> to the <a href="CppToggleButton.htm">ToggleButton</a><br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppToggleButton.htm">ToggleButton</a><a href="CppWidget.htm">Widget</a> * Get<a href="CppWidget.htm">Widget</a>() <b><a href="CppConst.htm">const</a></b> { <b><a href="CppReturn.htm">return</a></b> m_<a href="CppWidget.htm">widget</a>.get(); }<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Obtain a read-only <a href="CppPointer.html">pointer</a> to the <a href="CppToggleButton.html">ToggleButton</a><br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppToggleButton.html">ToggleButton</a><a href="CppWidget.html">Widget</a> * Get<a href="CppWidget.html">Widget</a>() <b><a href="CppConst.html">const</a></b> { <b><a href="CppReturn.html">return</a></b> m_<a href="CppWidget.html">widget</a>.get(); }<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Obtain a read-and-write <a href="CppPointer.htm">pointer</a> to the <a href="CppToggleButton.htm">ToggleButton</a><br/>
-&nbsp;&nbsp;<a href="CppToggleButton.htm">ToggleButton</a><a href="CppWidget.htm">Widget</a> * Get<a href="CppWidget.htm">Widget</a>() { <b><a href="CppReturn.htm">return</a></b> m_<a href="CppWidget.htm">widget</a>.get(); }<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Obtain a read-and-write <a href="CppPointer.html">pointer</a> to the <a href="CppToggleButton.html">ToggleButton</a><br/>
+&nbsp;&nbsp;<a href="CppToggleButton.html">ToggleButton</a><a href="CppWidget.html">Widget</a> * Get<a href="CppWidget.html">Widget</a>() { <b><a href="CppReturn.html">return</a></b> m_<a href="CppWidget.html">widget</a>.get(); }<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>/<a href="CppSignal.htm">Signal</a> that is <a href="CppEmit.htm">emitted</a> when a <a href="CppQtToggleButton.htm">QtToggleButton</a><a href="CppWidget.htm">Widget</a> is toggled<br/>
-&nbsp;&nbsp;<b><a href="CppMutable.htm">mutable</a></b> <a href="CppBoostSignal.htm">boost::signals2::signal</a>&lt;<b><a href="CppVoid.htm">void</a></b> ()&gt; m_signal_toggled;<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/<a href="CppSignal.html">Signal</a> that is <a href="CppEmit.html">emitted</a> when a <a href="CppQtToggleButton.html">QtToggleButton</a><a href="CppWidget.html">Widget</a> is toggled<br/>
+&nbsp;&nbsp;<b><a href="CppMutable.html">mutable</a></b> <a href="CppBoostSignal.html">boost::signals2::signal</a>&lt;<b><a href="CppVoid.htm">void</a></b> ()&gt; m_signal_toggled;<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Obtain the <a href="CppQtToggleButton.htm">QtToggleButton</a><a href="CppWidget.htm">Widget</a> its <a href="CppVersion.htm">version</a><br/>
-&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> Get<a href="CppVersion.htm">Version</a>();<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Obtain the <a href="CppQtToggleButton.html">QtToggleButton</a><a href="CppWidget.html">Widget</a> its <a href="CppVersion.html">version</a><br/>
+&nbsp;&nbsp;<b><a href="CppStatic.html">static</a></b> <b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a> Get<a href="CppVersion.html">Version</a>();<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Obtain the <a href="CppQtToggleButton.htm">QtToggleButton</a><a href="CppWidget.htm">Widget</a> its <a href="CppVersion.htm">version</a> history<br/>
-&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; Get<a href="CppVersion.htm">Version</a>History();<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Obtain the <a href="CppQtToggleButton.html">QtToggleButton</a><a href="CppWidget.html">Widget</a> its <a href="CppVersion.html">version</a> history<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.html">static</a></b> <b><a href="CppConst.html">const</a></b> <a href="CppVector.html">std::vector</a>&lt;<a href="CppString.html">std::string</a>&gt; Get<a href="CppVersion.html">Version</a>History();<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Draw a <a href="CppToggleButton.htm">ToggleButton</a> from a <a href="CppToggleButton.htm">ToggleButton</a><br/>
-&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppVoid.htm">void</a></b> Draw<a href="CppToggleButton.htm">ToggleButton</a>(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQPainter.htm">QPainter</a>&amp; painter,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> left, <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> top,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> width, <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> height,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppToggleButton.htm">ToggleButton</a> * <b><a href="CppConst.htm">const</a></b> toggle_button);<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Draw a <a href="CppToggleButton.html">ToggleButton</a> from a <a href="CppToggleButton.html">ToggleButton</a><br/>
+&nbsp;&nbsp;<b><a href="CppStatic.html">static</a></b> <b><a href="CppVoid.htm">void</a></b> Draw<a href="CppToggleButton.html">ToggleButton</a>(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQPainter.html">QPainter</a>&amp; painter,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> left, <b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> top,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> width, <b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> height,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppToggleButton.html">ToggleButton</a> * <b><a href="CppConst.html">const</a></b> toggle_button);<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Draw a <a href="CppToggleButton.htm">ToggleButton</a> from a <a href="CppToggleButton.htm">ToggleButton</a><a href="CppWidget.htm">Widget</a><br/>
-&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppVoid.htm">void</a></b> Draw<a href="CppToggleButton.htm">ToggleButton</a>(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQPainter.htm">QPainter</a>&amp; painter,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppToggleButton.htm">ToggleButton</a><a href="CppWidget.htm">Widget</a> * <b><a href="CppConst.htm">const</a></b> <a href="CppWidget.htm">widget</a>);<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Draw a <a href="CppToggleButton.html">ToggleButton</a> from a <a href="CppToggleButton.html">ToggleButton</a><a href="CppWidget.html">Widget</a><br/>
+&nbsp;&nbsp;<b><a href="CppStatic.html">static</a></b> <b><a href="CppVoid.htm">void</a></b> Draw<a href="CppToggleButton.html">ToggleButton</a>(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQPainter.html">QPainter</a>&amp; painter,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppToggleButton.html">ToggleButton</a><a href="CppWidget.html">Widget</a> * <b><a href="CppConst.html">const</a></b> <a href="CppWidget.html">widget</a>);<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppProtected.htm">protected</a></b>:<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>/<a href="CppPaint.htm">Paint</a> the <a href="CppQtToggleButton.htm">QtToggleButton</a><a href="CppWidget.htm">Widget</a><br/>
-&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> paintEvent(<a href="CppQPaintEvent.htm">QPaintEvent</a> * event);<br/>
+&nbsp;&nbsp;<b><a href="CppProtected.html">protected</a></b>:<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/<a href="CppPaint.html">Paint</a> the <a href="CppQtToggleButton.html">QtToggleButton</a><a href="CppWidget.html">Widget</a><br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> paintEvent(<a href="CppQPaintEvent.html">QPaintEvent</a> * event);<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Resize the <a href="CppQtToggleButton.htm">QtToggleButton</a><a href="CppWidget.htm">Widget</a><br/>
-&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> resizeEvent(<a href="CppQResizeEvent.htm">QResizeEvent</a> *);<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Resize the <a href="CppQtToggleButton.html">QtToggleButton</a><a href="CppWidget.html">Widget</a><br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> resizeEvent(<a href="CppQResizeEvent.html">QResizeEvent</a> *);<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppPrivate.htm">private</a></b>:<br/>
+&nbsp;&nbsp;<b><a href="CppPrivate.html">private</a></b>:<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>/The <a href="CppToggleButton.htm">ToggleButton</a><br/>
-&nbsp;&nbsp;<a href="CppScoped_ptr.htm">boost::scoped_ptr</a>&lt;<a href="CppToggleButton.htm">ToggleButton</a><a href="CppWidget.htm">Widget</a>&gt; m_<a href="CppWidget.htm">widget</a>;<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/The <a href="CppToggleButton.html">ToggleButton</a><br/>
+&nbsp;&nbsp;<a href="CppScoped_ptr.html">boost::scoped_ptr</a>&lt;<a href="CppToggleButton.html">ToggleButton</a><a href="CppWidget.html">Widget</a>&gt; m_<a href="CppWidget.html">widget</a>;<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Repaint the <a href="CppQtToggleButton.htm">QtToggleButton</a><a href="CppWidget.htm">Widget</a><br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Repaint the <a href="CppQtToggleButton.html">QtToggleButton</a><a href="CppWidget.html">Widget</a><br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> DoRepaint();<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/Respond to mouse click<br/>
-&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> mousePressEvent(<a href="CppQMouseEvent.htm">QMouseEvent</a> * e);<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> mousePressEvent(<a href="CppQMouseEvent.html">QMouseEvent</a> * e);<br/>
 };<br/>
 <br/>
-} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a><br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.html">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
 <br/>
-<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> QTTOGGLEBUTTONWIDGET_H<br/>
+<a href="CppEndif.html">#endif</a> <a href="CppComment.htm">//</a> QTTOGGLEBUTTONWIDGET_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -152,7 +152,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <table summary="qttogglebuttonwidget.cpp" border = "1"><tr><td><code>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">/*</a><br/>
-<a href="CppQtToggleButton.htm">QtToggleButton</a><a href="CppWidget.htm">Widget</a>, <a href="CppQt.htm">Qt</a> <a href="CppWidget.htm">widget</a> <b><a href="CppFor.htm">for</a></b> displaying the <a href="CppToggleButton.htm">ToggleButton</a><a href="CppWidget.htm">Widget</a> <b><a href="CppClass.htm">class</a></b><br/>
+<a href="CppQtToggleButton.html">QtToggleButton</a><a href="CppWidget.html">Widget</a>, <a href="CppQt.htm">Qt</a> <a href="CppWidget.html">widget</a> <b><a href="CppFor.htm">for</a></b> displaying the <a href="CppToggleButton.html">ToggleButton</a><a href="CppWidget.html">Widget</a> <b><a href="CppClass.html">class</a></b><br/>
 Copyright (C) 2011 Richel Bilderbeek<br/>
 <br/>
 This program is free software: you can redistribute it and/or modify<br/>
@@ -168,65 +168,65 @@ You should have received a copy of the GNU General Public License<br/>
 along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">*/</a><br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="CppQtToggleButtonWidget.htm">CppQtToggleButtonWidget</a>.htm<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="CppQtToggleButtonWidget.html">CppQtToggleButtonWidget</a>.html<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic push<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.html">-Weffc++</a>"<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic ignored "-Wunused-local-<b><a href="CppTypedef.html">typedef</a></b>s"<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic ignored "-Wunused-but-set-parameter"<br/>
+<a href="CppInclude.html">#include</a> "<a href="CppQtToggleButtonWidget.html">qttogglebuttonwidget</a><a href="CppHeaderFile.htm">.h</a>"<br/>
 <br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppIostreamH.html">iostream</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppBoost.html">boost</a>/bind<a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppBoost.html">boost</a>/numeric/con<a href="CppVersion.html">version</a>/cast<a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
 <br/>
-<a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
-<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-<b><a href="CppTypedef.htm">typedef</a></b>s"<br/>
-<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-but-set-parameter"<br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppQtToggleButtonWidget.htm">qttogglebuttonwidget</a>.h"<br/>
+<a href="CppInclude.html">#include</a> &lt;QBrush&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppQMouseEvent.html">QMouseEvent</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppQPainter.html">QPainter</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;QPen&gt;<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppIostreamH.htm">iostream</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/bind.hpp&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/numeric/con<a href="CppVersion.htm">version</a>/cast.hpp&gt;<br/>
+<a href="CppInclude.html">#include</a> "<a href="CppToggleButton.html">togglebutton</a><a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "<a href="CppToggleButtonWidget.html">togglebuttonwidget</a><a href="CppHeaderFile.htm">.h</a>"<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> &lt;QBrush&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppQMouseEvent.htm">QMouseEvent</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppQPainter.htm">QPainter</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;QPen&gt;<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic pop<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppToggleButton.htm">togglebutton</a>.h"<br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppToggleButtonWidget.htm">togglebuttonwidget</a>.h"<br/>
-<br/>
-<a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
-<br/>
-<a href="CppRibi.htm\">ribi</a>::<a href="CppQtToggleButton.htm">QtToggleButton</a><a href="CppWidget.htm">Widget</a>::<a href="CppQtToggleButton.htm">QtToggleButton</a><a href="CppWidget.htm">Widget</a>(<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppBool.htm">bool</a></b> toggled,<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> red,<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> green,<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> blue)<br/>
-&nbsp;&nbsp;: m_<a href="CppWidget.htm">widget</a>(<b><a href="CppNew.htm">new</a></b> <a href="CppToggleButton.htm">ToggleButton</a><a href="CppWidget.htm">Widget</a>(toggled,red,green,blue))<br/>
+<a href="CppRibi.htm">ribi</a>::<a href="CppQtToggleButton.html">QtToggleButton</a><a href="CppWidget.html">Widget</a>::<a href="CppQtToggleButton.html">QtToggleButton</a><a href="CppWidget.html">Widget</a>(<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppBool.htm">bool</a></b> toggled,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppUnsigned.html">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> red,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppUnsigned.html">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> green,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppUnsigned.html">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> blue)<br/>
+&nbsp;&nbsp;: m_signal_toggled{},<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_<a href="CppWidget.html">widget</a>(<b><a href="CppNew.htm">new</a></b> <a href="CppToggleButton.html">ToggleButton</a><a href="CppWidget.html">Widget</a>(toggled,red,green,blue))<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(m_<a href="CppWidget.htm">widget</a>);<br/>
-&nbsp;&nbsp;m_<a href="CppWidget.htm">widget</a>-&gt;Get<a href="CppToggleButton.htm">ToggleButton</a>()-&gt;m_signal_toggled.connect(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBind.htm">boost::bind</a>(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;<a href="CppRibi.htm\">ribi</a>::<a href="CppQtToggleButton.htm">QtToggleButton</a><a href="CppWidget.htm">Widget</a>::DoRepaint,<br/>
+&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(m_<a href="CppWidget.html">widget</a>);<br/>
+&nbsp;&nbsp;m_<a href="CppWidget.html">widget</a>-&gt;Get<a href="CppToggleButton.html">ToggleButton</a>()-&gt;m_signal_toggled.connect(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBind.html">boost::bind</a>(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;<a href="CppRibi.htm">ribi</a>::<a href="CppQtToggleButton.html">QtToggleButton</a><a href="CppWidget.html">Widget</a>::DoRepaint,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>));<br/>
-&nbsp;&nbsp;m_<a href="CppWidget.htm">widget</a>-&gt;Get<a href="CppToggleButton.htm">ToggleButton</a>()-&gt;m_signal_color_changed.connect(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBind.htm">boost::bind</a>(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;<a href="CppRibi.htm\">ribi</a>::<a href="CppQtToggleButton.htm">QtToggleButton</a><a href="CppWidget.htm">Widget</a>::DoRepaint,<br/>
+&nbsp;&nbsp;m_<a href="CppWidget.html">widget</a>-&gt;Get<a href="CppToggleButton.html">ToggleButton</a>()-&gt;m_signal_color_changed.connect(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBind.html">boost::bind</a>(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;<a href="CppRibi.htm">ribi</a>::<a href="CppQtToggleButton.html">QtToggleButton</a><a href="CppWidget.html">Widget</a>::DoRepaint,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>));<br/>
 <br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;resize(200,100);<br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;update();<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQtToggleButton.htm">QtToggleButton</a><a href="CppWidget.htm">Widget</a>::DoRepaint()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQtToggleButton.html">QtToggleButton</a><a href="CppWidget.html">Widget</a>::DoRepaint()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;update();<br/>
 &nbsp;&nbsp;m_signal_toggled();<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQtToggleButton.htm">QtToggleButton</a><a href="CppWidget.htm">Widget</a>::Draw<a href="CppToggleButton.htm">ToggleButton</a>(<br/>
-&nbsp;&nbsp;<a href="CppQPainter.htm">QPainter</a>&amp; painter,<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> left, <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> top,<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> width, <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> height,<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppToggleButton.htm">ToggleButton</a> * <b><a href="CppConst.htm">const</a></b> button)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQtToggleButton.html">QtToggleButton</a><a href="CppWidget.html">Widget</a>::Draw<a href="CppToggleButton.html">ToggleButton</a>(<br/>
+&nbsp;&nbsp;<a href="CppQPainter.html">QPainter</a>&amp; painter,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> left, <b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> top,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> width, <b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> height,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppToggleButton.html">ToggleButton</a> * <b><a href="CppConst.html">const</a></b> button)<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> maxx <a href="CppOperatorAssign.htm">=</a> width <a href="CppOperatorMinus.htm">-</a> 1;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> maxy <a href="CppOperatorAssign.htm">=</a> height <a href="CppOperatorMinus.htm">-</a>1;<br/>
-&nbsp;&nbsp;painter.setBrush(<a href="CppQColor.htm">QColor</a>(<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> maxx <a href="CppOperatorAssign.htm">=</a> width <a href="CppOperatorMinus.htm">-</a> 1;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> maxy <a href="CppOperatorAssign.htm">=</a> height <a href="CppOperatorMinus.htm">-</a>1;<br/>
+&nbsp;&nbsp;painter.setBrush(<a href="CppQColor.html">QColor</a>(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;button-&gt;GetRed(),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;button-&gt;GetGreen(),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;button-&gt;GetBlue()));<br/>
@@ -256,46 +256,46 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;top <a href="CppOperatorPlus.htm">+</a> (maxy * 2 <a href="CppOperatorDivide.htm">/</a> 3));<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQtToggleButton.htm">QtToggleButton</a><a href="CppWidget.htm">Widget</a>::Draw<a href="CppToggleButton.htm">ToggleButton</a>(<br/>
-&nbsp;&nbsp;<a href="CppQPainter.htm">QPainter</a>&amp; painter,<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppToggleButton.htm">ToggleButton</a><a href="CppWidget.htm">Widget</a> * <b><a href="CppConst.htm">const</a></b> <a href="CppWidget.htm">widget</a>)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQtToggleButton.html">QtToggleButton</a><a href="CppWidget.html">Widget</a>::Draw<a href="CppToggleButton.html">ToggleButton</a>(<br/>
+&nbsp;&nbsp;<a href="CppQPainter.html">QPainter</a>&amp; painter,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppToggleButton.html">ToggleButton</a><a href="CppWidget.html">Widget</a> * <b><a href="CppConst.html">const</a></b> <a href="CppWidget.html">widget</a>)<br/>
 {<br/>
-&nbsp;&nbsp;Draw<a href="CppToggleButton.htm">ToggleButton</a>(<br/>
+&nbsp;&nbsp;Draw<a href="CppToggleButton.html">ToggleButton</a>(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;painter,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppWidget.htm">widget</a>-&gt;GetGeometry().GetX(),<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppWidget.htm">widget</a>-&gt;GetGeometry().GetY(),<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppWidget.htm">widget</a>-&gt;GetGeometry().GetWidth(),<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppWidget.htm">widget</a>-&gt;GetGeometry().GetHeight(),<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppWidget.htm">widget</a>-&gt;Get<a href="CppToggleButton.htm">ToggleButton</a>());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppWidget.html">widget</a>-&gt;GetGeometry().GetX(),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppWidget.html">widget</a>-&gt;GetGeometry().GetY(),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppWidget.html">widget</a>-&gt;GetGeometry().GetWidth(),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppWidget.html">widget</a>-&gt;GetGeometry().GetHeight(),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppWidget.html">widget</a>-&gt;Get<a href="CppToggleButton.html">ToggleButton</a>());<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppRibi.htm\">ribi</a>::<a href="CppQtToggleButton.htm">QtToggleButton</a><a href="CppWidget.htm">Widget</a>::Get<a href="CppVersion.htm">Version</a>()<br/>
+<b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a> <a href="CppRibi.htm">ribi</a>::<a href="CppQtToggleButton.html">QtToggleButton</a><a href="CppWidget.html">Widget</a>::Get<a href="CppVersion.html">Version</a>()<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> "1.0";<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> "1.0";<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm\">ribi</a>::<a href="CppQtToggleButton.htm">QtToggleButton</a><a href="CppWidget.htm">Widget</a>::Get<a href="CppVersion.htm">Version</a>History()<br/>
+<b><a href="CppConst.html">const</a></b> <a href="CppVector.html">std::vector</a>&lt;<a href="CppString.html">std::string</a>&gt; <a href="CppRibi.htm">ribi</a>::<a href="CppQtToggleButton.html">QtToggleButton</a><a href="CppWidget.html">Widget</a>::Get<a href="CppVersion.html">Version</a>History()<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> {<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;"2011-06-16: <a href="CppVersion.htm">version</a> 1.0: initial <a href="CppVersion.htm">version</a>"<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"2011-06-16: <a href="CppVersion.html">version</a> 1.0: initial <a href="CppVersion.html">version</a>"<br/>
 &nbsp;&nbsp;};<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQtToggleButton.htm">QtToggleButton</a><a href="CppWidget.htm">Widget</a>::mousePressEvent(<a href="CppQMouseEvent.htm">QMouseEvent</a> * e)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQtToggleButton.html">QtToggleButton</a><a href="CppWidget.html">Widget</a>::mousePressEvent(<a href="CppQMouseEvent.html">QMouseEvent</a> * e)<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>m_<a href="CppWidget.htm">widget</a> its observers <b><a href="CppFor.htm">for</a></b> a repaint<br/>
-&nbsp;&nbsp;m_<a href="CppWidget.htm">widget</a>-&gt;Click(e-&gt;x(),e-&gt;y());<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>m_<a href="CppWidget.html">widget</a> its observers <b><a href="CppFor.htm">for</a></b> a repaint<br/>
+&nbsp;&nbsp;m_<a href="CppWidget.html">widget</a>-&gt;Click(e-&gt;x(),e-&gt;y());<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQtToggleButton.htm">QtToggleButton</a><a href="CppWidget.htm">Widget</a>::paintEvent(<a href="CppQPaintEvent.htm">QPaintEvent</a> *)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQtToggleButton.html">QtToggleButton</a><a href="CppWidget.html">Widget</a>::paintEvent(<a href="CppQPaintEvent.html">QPaintEvent</a> *)<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppQPainter.htm">QPainter</a> painter(<b><a href="CppThis.htm">this</a></b>);<br/>
-&nbsp;&nbsp;Draw<a href="CppToggleButton.htm">ToggleButton</a>(painter,m_<a href="CppWidget.htm">widget</a>.get());<br/>
+&nbsp;&nbsp;<a href="CppQPainter.html">QPainter</a> painter(<b><a href="CppThis.htm">this</a></b>);<br/>
+&nbsp;&nbsp;Draw<a href="CppToggleButton.html">ToggleButton</a>(painter,m_<a href="CppWidget.html">widget</a>.get());<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQtToggleButton.htm">QtToggleButton</a><a href="CppWidget.htm">Widget</a>::resizeEvent(<a href="CppQResizeEvent.htm">QResizeEvent</a> *)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQtToggleButton.html">QtToggleButton</a><a href="CppWidget.html">Widget</a>::resizeEvent(<a href="CppQResizeEvent.html">QResizeEvent</a> *)<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;m_<a href="CppWidget.htm">widget</a>-&gt;SetGeometry(Rect(0,0,<b><a href="CppThis.htm">this</a></b>-&gt;width(),<b><a href="CppThis.htm">this</a></b>-&gt;height()));<br/>
+&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;m_<a href="CppWidget.html">widget</a>-&gt;SetGeometry(Rect(0,0,<b><a href="CppThis.htm">this</a></b>-&gt;width(),<b><a href="CppThis.htm">this</a></b>-&gt;height()));<br/>
 &nbsp;&nbsp;repaint();<br/>
 }<br/>
 </code></td></tr></table>

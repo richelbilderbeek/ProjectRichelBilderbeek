@@ -61,12 +61,12 @@
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="CppMultimapExample1.pro" border = "1"><tr><td><code>
-TEMPLATE = app<br/>
-CONFIG += console<br/>
-CONFIG -= app_bundle<br/>
-CONFIG -= qt<br/>
-<a href="CppQMAKE_CXXFLAGS.htm">QMAKE_CXXFLAGS</a> += -std=<a href="Cpp11.htm">c++11</a> <a href="CppWall.htm">-Wall</a> <a href="CppWextra.htm">-Wextra</a> <a href="CppWeffcpp.htm">-Weffc++</a> <a href="CppWextra.htm">-Wextra</a><br/>
-<a href="CppSOURCES.htm">SOURCES</a> += <a href="CppMain.htm">main</a>.cpp<br/>
+<a href="CppQmakeTemplate.htm">TEMPLATE</a> = app<br/>
+<a href="CppQmakeConfig.htm">CONFIG</a> += console<br/>
+<a href="CppQmakeConfig.htm">CONFIG</a> -= app_bundle<br/>
+<a href="CppQmakeConfig.htm">CONFIG</a> -= qt<br/>
+<a href="CppQmakeQmake_cxxflags.htm">QMAKE_CXXFLAGS</a> += -std=<a href="Cpp11.htm">c++11</a> <a href="CppWall.htm">-Wall</a> <a href="CppWextra.htm">-Wextra</a> <a href="CppWeffcpp.htm">-Weffc++</a> <a href="CppWextra.htm">-Wextra</a><br/>
+<a href="CppQmakeSources.htm">SOURCES</a> += <a href="CppMain.htm">main</a>.cpp<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -78,32 +78,32 @@ CONFIG -= qt<br/>
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="main.cpp" border = "1"><tr><td><code>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppIostreamH.htm">iostream</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppMapH.htm">map</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppStringH.htm">string</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppIostreamH.html">iostream</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppMapH.html">map</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppStringH.html">string</a>&gt;<br/>
 <br/>
-<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a>()<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppTypedef.htm">typedef</a></b> <a href="CppMultimap.htm">std::multimap</a>&lt;<a href="CppString.htm">std::string</a>,<b><a href="CppInt.htm">int</a></b>&gt; <a href="CppContainer.htm">Container</a>;<br/>
-&nbsp;&nbsp;<b><a href="CppTypedef.htm">typedef</a></b> <a href="CppContainer.htm">Container</a>::const_iterator <a href="CppIterator.htm">Iterator</a>;<br/>
+&nbsp;&nbsp;<b><a href="CppTypedef.html">typedef</a></b> <a href="CppMultimap.html">std::multimap</a>&lt;<a href="CppString.html">std::string</a>,<b><a href="CppInt.htm">int</a></b>&gt; <a href="CppContainer.html">Container</a>;<br/>
+&nbsp;&nbsp;<b><a href="CppTypedef.html">typedef</a></b> <a href="CppContainer.html">Container</a>::const_iterator <a href="CppIterator.html">Iterator</a>;<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppContainer.htm">Container</a> <a href="CppQuestion.htm">question</a>s;<br/>
+&nbsp;&nbsp;<a href="CppContainer.html">Container</a> <a href="CppQuestion.html">question</a>s;<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppQuestion.htm">question</a>s.insert(<a href="CppMake_pair.htm">std::make_pair</a>("A prime number between 5 and 10",7));<br/>
-&nbsp;&nbsp;<a href="CppQuestion.htm">question</a>s.insert(<a href="CppMake_pair.htm">std::make_pair</a>("A prime number between 10 and 15",11));<br/>
-&nbsp;&nbsp;<a href="CppQuestion.htm">question</a>s.insert(<a href="CppMake_pair.htm">std::make_pair</a>("A prime number between 10 and 15",13));<br/>
-&nbsp;&nbsp;<a href="CppQuestion.htm">question</a>s.insert(<a href="CppMake_pair.htm">std::make_pair</a>("A prime number between 10 and 20",11));<br/>
-&nbsp;&nbsp;<a href="CppQuestion.htm">question</a>s.insert(<a href="CppMake_pair.htm">std::make_pair</a>("A prime number between 10 and 20",13));<br/>
-&nbsp;&nbsp;<a href="CppQuestion.htm">question</a>s.insert(<a href="CppMake_pair.htm">std::make_pair</a>("A prime number between 10 and 20",17));<br/>
-&nbsp;&nbsp;<a href="CppQuestion.htm">question</a>s.insert(<a href="CppMake_pair.htm">std::make_pair</a>("A prime number between 10 and 20",19));<br/>
-&nbsp;&nbsp;<a href="CppQuestion.htm">question</a>s.insert(<a href="CppMake_pair.htm">std::make_pair</a>("A prime number between 20 and 25",23));<br/>
+&nbsp;&nbsp;<a href="CppQuestion.html">question</a>s.insert(<a href="CppMake_pair.html">std::make_pair</a>("A prime number between 5 and 10",7));<br/>
+&nbsp;&nbsp;<a href="CppQuestion.html">question</a>s.insert(<a href="CppMake_pair.html">std::make_pair</a>("A prime number between 10 and 15",11));<br/>
+&nbsp;&nbsp;<a href="CppQuestion.html">question</a>s.insert(<a href="CppMake_pair.html">std::make_pair</a>("A prime number between 10 and 15",13));<br/>
+&nbsp;&nbsp;<a href="CppQuestion.html">question</a>s.insert(<a href="CppMake_pair.html">std::make_pair</a>("A prime number between 10 and 20",11));<br/>
+&nbsp;&nbsp;<a href="CppQuestion.html">question</a>s.insert(<a href="CppMake_pair.html">std::make_pair</a>("A prime number between 10 and 20",13));<br/>
+&nbsp;&nbsp;<a href="CppQuestion.html">question</a>s.insert(<a href="CppMake_pair.html">std::make_pair</a>("A prime number between 10 and 20",17));<br/>
+&nbsp;&nbsp;<a href="CppQuestion.html">question</a>s.insert(<a href="CppMake_pair.html">std::make_pair</a>("A prime number between 10 and 20",19));<br/>
+&nbsp;&nbsp;<a href="CppQuestion.html">question</a>s.insert(<a href="CppMake_pair.html">std::make_pair</a>("A prime number between 20 and 25",23));<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppPair.htm">std::pair</a>&lt;<a href="CppIterator.htm">Iterator</a>,<a href="CppIterator.htm">Iterator</a>&gt; answers<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <a href="CppQuestion.htm">question</a>s.equal_range("A prime number between 10 and 20");<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppPair.html">std::pair</a>&lt;<a href="CppIterator.html">Iterator</a>,<a href="CppIterator.html">Iterator</a>&gt; answers<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <a href="CppQuestion.html">question</a>s.equal_range("A prime number between 10 and 20");<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<a href="CppIterator.htm">Iterator</a> i <a href="CppOperatorAssign.htm">=</a> answers.first; i<a href="CppOperatorNotEqual.htm">!=</a> answers.second; <a href="CppOperatorPlus.htm">+</a>+i)<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<a href="CppIterator.html">Iterator</a> i <a href="CppOperatorAssign.htm">=</a> answers.first; i<a href="CppOperatorNotEqual.htm">!=</a> answers.second; <a href="CppOperatorPlus.htm">+</a>+i)<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> i-&gt;second <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n';<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCout.html">std::cout</a> <a href="CppOperatorStreamOut.html">&lt;&lt;</a> i-&gt;second <a href="CppOperatorStreamOut.html">&lt;&lt;</a> '\n';<br/>
 &nbsp;&nbsp;}<br/>
 }<br/>
 </code></td></tr></table>

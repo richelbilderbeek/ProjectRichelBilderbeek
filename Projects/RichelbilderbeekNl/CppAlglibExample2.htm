@@ -61,14 +61,14 @@
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="CppAlglibExample2.pro" border = "1"><tr><td><code>
-TEMPLATE = app<br/>
-CONFIG += console<br/>
-CONFIG -= app_bundle<br/>
-CONFIG -= qt<br/>
+<a href="CppQmakeTemplate.htm">TEMPLATE</a> = app<br/>
+<a href="CppQmakeConfig.htm">CONFIG</a> += console<br/>
+<a href="CppQmakeConfig.htm">CONFIG</a> -= app_bundle<br/>
+<a href="CppQmakeConfig.htm">CONFIG</a> -= qt<br/>
 <br/>
 <br/>
-<a href="CppSOURCES.htm">SOURCES</a> += <a href="CppMain.htm">main</a>.cpp<br/>
-<a href="CppHEADERS.htm">HEADERS</a> +=<br/>
+<a href="CppQmakeSources.htm">SOURCES</a> += <a href="CppMain.htm">main</a>.cpp<br/>
+<a href="CppQmakeHeaders.htm">HEADERS</a> +=<br/>
 <br/>
 <br/>
 #<br/>
@@ -77,15 +77,15 @@ CONFIG -= qt<br/>
 #<br/>
 #<br/>
 <br/>
-CONFIG(debug, debug|release) {<br/>
+<a href="CppQmakeConfig.htm">CONFIG</a>(debug, debug|release) {<br/>
 &nbsp;&nbsp;message(Debug mode)<br/>
 }<br/>
 <br/>
-CONFIG(release, debug|release) {<br/>
+<a href="CppQmakeConfig.htm">CONFIG</a>(release, debug|release) {<br/>
 &nbsp;&nbsp;message(Release mode)<br/>
 <br/>
 &nbsp;&nbsp;#Remove all <a href="CppAssert.htm">assert</a>s and <a href="CppTRACE.htm">TRACE</a><br/>
-&nbsp;&nbsp;DEFINES += NDEBUG N<a href="CppTRACE.htm">TRACE</a>_BILDERBIKKEL<br/>
+&nbsp;&nbsp;<a href="CppQmakeDefines.htm">DEFINES</a> += NDEBUG N<a href="CppTRACE.htm">TRACE</a>_BILDERBIKKEL<br/>
 }<br/>
 <br/>
 #<br/>
@@ -99,10 +99,10 @@ CONFIG(release, debug|release) {<br/>
 # Compiler flags<br/>
 #<br/>
 #<br/>
-<a href="CppQMAKE_CXXFLAGS.htm">QMAKE_CXXFLAGS</a> += -std=<a href="Cpp11.htm">c++11</a> <a href="CppWall.htm">-Wall</a> <a href="CppWextra.htm">-Wextra</a><br/>
+<a href="CppQmakeQmake_cxxflags.htm">QMAKE_CXXFLAGS</a> += -std=<a href="Cpp11.htm">c++11</a> <a href="CppWall.htm">-Wall</a> <a href="CppWextra.htm">-Wextra</a><br/>
 <br/>
 unix {<br/>
-&nbsp;&nbsp;<a href="CppQMAKE_CXXFLAGS.htm">QMAKE_CXXFLAGS</a> += <a href="CppWerror.htm">-Werror</a><br/>
+&nbsp;&nbsp;<a href="CppQmakeQmake_cxxflags.htm">QMAKE_CXXFLAGS</a> += <a href="CppWerror.htm">-Werror</a><br/>
 }<br/>
 <br/>
 #<br/>
@@ -117,7 +117,7 @@ unix {<br/>
 <br/>
 win32 {<br/>
 &nbsp;&nbsp;message(Windows: add Boost to include path)<br/>
-&nbsp;&nbsp;<a href="CppINCLUDEPATH.htm">INCLUDEPATH</a> += \<br/>
+&nbsp;&nbsp;<a href="CppQmakeIncludepath.htm">INCLUDEPATH</a> += \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;E:/<a href="Projects.htm">Projects</a>/<a href="CppLibrary.htm">Libraries</a>/boost_1_54_0<br/>
 }<br/>
 <br/>
@@ -134,9 +134,9 @@ unix {<br/>
 <br/>
 win32 {<br/>
 &nbsp;&nbsp;message(Windows: alglib: include path)<br/>
-&nbsp;&nbsp;<a href="CppINCLUDEPATH.htm">INCLUDEPATH</a> += ../../<a href="CppLibrary.htm">Libraries</a>/alglib-3.8.0/src<br/>
+&nbsp;&nbsp;<a href="CppQmakeIncludepath.htm">INCLUDEPATH</a> += ../../<a href="CppLibrary.htm">Libraries</a>/alglib-3.8.0/src<br/>
 <br/>
-<a href="CppSOURCES.htm">SOURCES</a> += \<br/>
+<a href="CppQmakeSources.htm">SOURCES</a> += \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/alglib-3.8.0/src/statistics.cpp \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/alglib-3.8.0/src/specialfunctions.cpp \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/alglib-3.8.0/src/solvers.cpp \<br/>
@@ -151,7 +151,7 @@ win32 {<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/alglib-3.8.0/src/alglibmisc.cpp \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/alglib-3.8.0/src/alglibinternal.cpp<br/>
 <br/>
-<a href="CppHEADERS.htm">HEADERS</a> += \<br/>
+<a href="CppQmakeHeaders.htm">HEADERS</a> += \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/alglib-3.8.0/src/statistics.h \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/alglib-3.8.0/src/specialfunctions.h \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/alglib-3.8.0/src/solvers.h \<br/>
@@ -177,45 +177,45 @@ win32 {<br/>
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="main.cpp" border = "1"><tr><td><code>
-<a href="CppComment.htm">///</a>Adapted from http://www.alglib.net/translator/man/manual.cpp.html#lsfit_d_lin%20example<br/>
+<a href="CppComment.htm">///</a>Adapted from http://www.alglib.net/translator/man/manual<a href="CppImplementationFile.html">.cpp</a>.htmll#lsfit_d_lin%20example<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppIostreamH.htm">iostream</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> "interpolation.h"<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppCassertH.html">cassert</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppIostreamH.html">iostream</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> "interpolation<a href="CppHeaderFile.htm">.h</a>"<br/>
 <br/>
 <a href="CppComment.htm">///</a>Result should be {a,b}, as a linear trendline has the equation<br/>
 <a href="CppComment.htm">///</a>y <a href="CppOperatorAssign.htm">=</a> a.x <a href="CppOperatorPlus.htm">+</a> b, but I could not find out how to obtain b<br/>
-<a href="CppPair.htm">std::pair</a>&lt;<b><a href="CppDouble.htm">double</a></b>,<b><a href="CppDouble.htm">double</a></b>&gt; FitLinear(<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;&amp; xs,<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;&amp; ys)<br/>
+<a href="CppPair.html">std::pair</a>&lt;<b><a href="CppDouble.html">double</a></b>,<b><a href="CppDouble.html">double</a></b>&gt; FitLinear(<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppVector.html">std::vector</a>&lt;<b><a href="CppDouble.html">double</a></b>&gt;&amp; xs,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppVector.html">std::vector</a>&lt;<b><a href="CppDouble.html">double</a></b>&gt;&amp; ys)<br/>
 {<br/>
-&nbsp;&nbsp;alglib::real_1d_<a href="CppArray.htm">array</a> y;<br/>
+&nbsp;&nbsp;alglib::real_1d_<a href="CppArray.html">array</a> y;<br/>
 &nbsp;&nbsp;y.setcontent(ys.size(), &amp;ys[0]);<br/>
 <br/>
-&nbsp;&nbsp;alglib::real_2d_<a href="CppArray.htm">array</a> f<a href="CppMatrix.htm">matrix</a>;<br/>
-&nbsp;&nbsp;f<a href="CppMatrix.htm">matrix</a>.setcontent(xs.size(),1,&amp;xs[0]);<br/>
+&nbsp;&nbsp;alglib::real_2d_<a href="CppArray.html">array</a> f<a href="CppMatrix.html">matrix</a>;<br/>
+&nbsp;&nbsp;f<a href="CppMatrix.html">matrix</a>.setcontent(xs.size(),1,&amp;xs[0]);<br/>
 <br/>
 &nbsp;&nbsp;alglib::ae_int_t info;<br/>
-&nbsp;&nbsp;alglib::real_1d_<a href="CppArray.htm">array</a> c;<br/>
+&nbsp;&nbsp;alglib::real_1d_<a href="CppArray.html">array</a> c;<br/>
 &nbsp;&nbsp;alglib::lsfitreport rep;<br/>
 <br/>
-&nbsp;&nbsp;alglib::lsfitlinear(y, f<a href="CppMatrix.htm">matrix</a>, info, c, rep);<br/>
+&nbsp;&nbsp;alglib::lsfitlinear(y, f<a href="CppMatrix.html">matrix</a>, info, c, rep);<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(info <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 1 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "task is solved successfully");<br/>
+&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(info <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 1 <a href="CppOperatorLogicalAnd.html">&amp;&amp;</a> "task is solved successfully");<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/Result should be {a,b}, as a linear trendline has the equation<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/y <a href="CppOperatorAssign.htm">=</a> a.x <a href="CppOperatorPlus.htm">+</a> b, but I could not find out how to obtain b<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <a href="CppMake_pair.htm">std::make_pair</a>(c[0],c[0]);<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> <a href="CppMake_pair.html">std::make_pair</a>(c[0],c[0]);<br/>
 }<br/>
 <br/>
-<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a>()<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; x { 0.606531,0.670320,0.740818,0.818731,0.904837,1.000000,1.105171,1.221403,1.349859,1.491825,1.648721 };<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; y { 1.133719, 1.306522, 1.504604, 1.554663, 1.884638, 2.072436, 2.257285, 2.534068, 2.622017, 2.897713, 3.219371 };<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppPair.htm">std::pair</a>&lt;<b><a href="CppDouble.htm">double</a></b>,<b><a href="CppDouble.htm">double</a></b>&gt; p <a href="CppOperatorAssign.htm">=</a> FitLinear(x,y);<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppVector.html">std::vector</a>&lt;<b><a href="CppDouble.html">double</a></b>&gt; x { 0.606531,0.670320,0.740818,0.818731,0.904837,1.000000,1.105171,1.221403,1.349859,1.491825,1.648721 };<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppVector.html">std::vector</a>&lt;<b><a href="CppDouble.html">double</a></b>&gt; y { 1.133719, 1.306522, 1.504604, 1.554663, 1.884638, 2.072436, 2.257285, 2.534068, 2.622017, 2.897713, 3.219371 };<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppPair.html">std::pair</a>&lt;<b><a href="CppDouble.html">double</a></b>,<b><a href="CppDouble.html">double</a></b>&gt; p <a href="CppOperatorAssign.htm">=</a> FitLinear(x,y);<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(p.first &gt; 1.98650 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> p.first &lt; 1.98651);<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(p.second &gt; 1.98650 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> p.second &lt; 1.98651);<br/>
+&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(p.first &gt; 1.98650 <a href="CppOperatorLogicalAnd.html">&amp;&amp;</a> p.first &lt; 1.98651);<br/>
+&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(p.second &gt; 1.98650 <a href="CppOperatorLogicalAnd.html">&amp;&amp;</a> p.second &lt; 1.98651);<br/>
 }<br/>
 </code></td></tr></table>
 <!-- end of the code -->

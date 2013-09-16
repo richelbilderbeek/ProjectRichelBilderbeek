@@ -69,25 +69,25 @@
 <table summary="GameXeNonZeroConsole.pro" border = "1"><tr><td><code>
 QT += core<br/>
 QT -= gui<br/>
-TEMPLATE = app<br/>
-<a href="CppQMAKE_CXXFLAGS.htm">QMAKE_CXXFLAGS</a> += -std=<a href="Cpp11.htm">c++11</a> <a href="CppWall.htm">-Wall</a> <a href="CppWextra.htm">-Wextra</a><br/>
+<a href="CppQmakeTemplate.htm">TEMPLATE</a> = app<br/>
+<a href="CppQmakeQmake_cxxflags.htm">QMAKE_CXXFLAGS</a> += -std=<a href="Cpp11.htm">c++11</a> <a href="CppWall.htm">-Wall</a> <a href="CppWextra.htm">-Wextra</a><br/>
 <br/>
 unix {<br/>
-&nbsp;&nbsp;<a href="CppQMAKE_CXXFLAGS.htm">QMAKE_CXXFLAGS</a> += <a href="CppWerror.htm">-Werror</a><br/>
+&nbsp;&nbsp;<a href="CppQmakeQmake_cxxflags.htm">QMAKE_CXXFLAGS</a> += <a href="CppWerror.htm">-Werror</a><br/>
 }<br/>
 <br/>
-<a href="CppINCLUDEPATH.htm">INCLUDEPATH</a> += \<br/>
+<a href="CppQmakeIncludepath.htm">INCLUDEPATH</a> += \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppAbout.htm">CppAbout</a> \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppTrace.htm">CppTrace</a><br/>
 <br/>
-<a href="CppSOURCES.htm">SOURCES</a> += \<br/>
+<a href="CppQmakeSources.htm">SOURCES</a> += \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppAbout.htm">CppAbout</a>/<a href="CppAbout.htm">about</a>.cpp \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppMain.htm">main</a>.cpp \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;gamexenonzerosprite.cpp \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;gamexenonzerodialog.cpp \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;gamexenonzeroarea.cpp<br/>
 <br/>
-<a href="CppHEADERS.htm">HEADERS</a> += \<br/>
+<a href="CppQmakeHeaders.htm">HEADERS</a> += \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppAbout.htm">CppAbout</a>/<a href="CppAbout.htm">about</a>.h \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;gamexenonzerosprite.h \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;gamexenonzerodialog.h \<br/>
@@ -100,15 +100,15 @@ unix {<br/>
 #<br/>
 #<br/>
 <br/>
-CONFIG(debug, debug|release) {<br/>
+<a href="CppQmakeConfig.htm">CONFIG</a>(debug, debug|release) {<br/>
 &nbsp;&nbsp;message(Debug mode)<br/>
 }<br/>
 <br/>
-CONFIG(release, debug|release) {<br/>
+<a href="CppQmakeConfig.htm">CONFIG</a>(release, debug|release) {<br/>
 &nbsp;&nbsp;message(Release mode)<br/>
 <br/>
 &nbsp;&nbsp;#Remove all <a href="CppAssert.htm">assert</a>s and <a href="CppTRACE.htm">TRACE</a><br/>
-&nbsp;&nbsp;DEFINES += NDEBUG N<a href="CppTRACE.htm">TRACE</a>_BILDERBIKKEL<br/>
+&nbsp;&nbsp;<a href="CppQmakeDefines.htm">DEFINES</a> += NDEBUG N<a href="CppTRACE.htm">TRACE</a>_BILDERBIKKEL<br/>
 }<br/>
 <br/>
 #<br/>
@@ -122,13 +122,13 @@ CONFIG(release, debug|release) {<br/>
 # Compiler flags<br/>
 #<br/>
 #<br/>
-<a href="CppQMAKE_CXXFLAGS.htm">QMAKE_CXXFLAGS</a> += -std=<a href="Cpp11.htm">c++11</a> <a href="CppWall.htm">-Wall</a> <a href="CppWextra.htm">-Wextra</a><br/>
+<a href="CppQmakeQmake_cxxflags.htm">QMAKE_CXXFLAGS</a> += -std=<a href="Cpp11.htm">c++11</a> <a href="CppWall.htm">-Wall</a> <a href="CppWextra.htm">-Wextra</a><br/>
 <br/>
 <br/>
 unix {<br/>
 &nbsp;&nbsp;message(Unix)<br/>
 &nbsp;&nbsp;#Strict error handling<br/>
-&nbsp;&nbsp;<a href="CppQMAKE_CXXFLAGS.htm">QMAKE_CXXFLAGS</a> += <a href="CppWerror.htm">-Werror</a><br/>
+&nbsp;&nbsp;<a href="CppQmakeQmake_cxxflags.htm">QMAKE_CXXFLAGS</a> += <a href="CppWerror.htm">-Werror</a><br/>
 }<br/>
 <br/>
 #<br/>
@@ -138,14 +138,14 @@ unix {<br/>
 #<br/>
 <br/>
 unix {<br/>
-&nbsp;&nbsp;message(Unix: Boost already in <a href="CppINCLUDEPATH.htm">INCLUDEPATH</a>)<br/>
+&nbsp;&nbsp;message(Unix: Boost already in <a href="CppQmakeIncludepath.htm">INCLUDEPATH</a>)<br/>
 &nbsp;&nbsp;#Don't link to Boost when crosscompiling is desired<br/>
 }<br/>
 <br/>
 win32 {<br/>
-&nbsp;&nbsp;message(Windows: add Boost to <a href="CppINCLUDEPATH.htm">INCLUDEPATH</a>)<br/>
+&nbsp;&nbsp;message(Windows: add Boost to <a href="CppQmakeIncludepath.htm">INCLUDEPATH</a>)<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppINCLUDEPATH.htm">INCLUDEPATH</a> += \<br/>
+&nbsp;&nbsp;<a href="CppQmakeIncludepath.htm">INCLUDEPATH</a> += \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/boost_1_54_0<br/>
 <br/>
 &nbsp;&nbsp;#Don't link to Boost when crosscompiling is desired<br/>
@@ -166,14 +166,14 @@ OTHER_FILES += \<br/>
 <table summary="GameXeNonZeroDesktop.pro" border = "1"><tr><td><code>
 QT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; += core gui<br/>
 greaterThan(QT_MAJOR_VERSION, 4): QT += <a href="CppWidget.htm">widget</a>s<br/>
-TEMPLATE = app<br/>
+<a href="CppQmakeTemplate.htm">TEMPLATE</a> = app<br/>
 <br/>
-<a href="CppINCLUDEPATH.htm">INCLUDEPATH</a> += \<br/>
+<a href="CppQmakeIncludepath.htm">INCLUDEPATH</a> += \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppAbout.htm">CppAbout</a> \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppQtAboutDialog.htm">CppQtAboutDialog</a> \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppTrace.htm">CppTrace</a><br/>
 <br/>
-<a href="CppSOURCES.htm">SOURCES</a> += \<br/>
+<a href="CppQmakeSources.htm">SOURCES</a> += \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppAbout.htm">CppAbout</a>/<a href="CppAbout.htm">about</a>.cpp \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppQtAboutDialog.htm">CppQtAboutDialog</a>/<a href="CppQtAboutDialog.htm">qtaboutdialog</a>.cpp \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppQtHideAndShowDialog.htm">CppQtHideAndShowDialog</a>/<a href="CppQtHideAndShowDialog.htm">qthideandshowdialog</a>.cpp \<br/>
@@ -183,7 +183,7 @@ TEMPLATE = app<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;qt<a href="CppMain.htm">main</a>.cpp \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;qtxenonzero<a href="CppMain.htm">main</a>dialog.cpp<br/>
 <br/>
-<a href="CppHEADERS.htm">HEADERS</a> += \<br/>
+<a href="CppQmakeHeaders.htm">HEADERS</a> += \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppAbout.htm">CppAbout</a>/<a href="CppAbout.htm">about</a>.h \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppQtAboutDialog.htm">CppQtAboutDialog</a>/<a href="CppQtAboutDialog.htm">qtaboutdialog</a>.h \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppQtHideAndShowDialog.htm">CppQtHideAndShowDialog</a>/<a href="CppQtHideAndShowDialog.htm">qthideandshowdialog</a>.h \<br/>
@@ -204,7 +204,7 @@ OTHER_FILES += \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppQtAboutDialog.htm">CppQtAboutDialog</a>/<a href="CppQtAboutDialog.htm">qtaboutdialog</a>.ui \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;qtxenonzero<a href="CppMain.htm">main</a>dialog.ui<br/>
 <br/>
-<a href="CppRESOURCES.htm">RESOURCES</a> += \<br/>
+<a href="CppQmakeResources.htm">RESOURCES</a> += \<br/>
 <br/>
 #<br/>
 #<br/>
@@ -212,15 +212,15 @@ OTHER_FILES += \<br/>
 #<br/>
 #<br/>
 <br/>
-CONFIG(debug, debug|release) {<br/>
+<a href="CppQmakeConfig.htm">CONFIG</a>(debug, debug|release) {<br/>
 &nbsp;&nbsp;message(Debug mode)<br/>
 }<br/>
 <br/>
-CONFIG(release, debug|release) {<br/>
+<a href="CppQmakeConfig.htm">CONFIG</a>(release, debug|release) {<br/>
 &nbsp;&nbsp;message(Release mode)<br/>
 <br/>
 &nbsp;&nbsp;#Remove all <a href="CppAssert.htm">assert</a>s and <a href="CppTRACE.htm">TRACE</a><br/>
-&nbsp;&nbsp;DEFINES += NDEBUG N<a href="CppTRACE.htm">TRACE</a>_BILDERBIKKEL<br/>
+&nbsp;&nbsp;<a href="CppQmakeDefines.htm">DEFINES</a> += NDEBUG N<a href="CppTRACE.htm">TRACE</a>_BILDERBIKKEL<br/>
 }<br/>
 <br/>
 #<br/>
@@ -234,10 +234,10 @@ CONFIG(release, debug|release) {<br/>
 # Compiler flags<br/>
 #<br/>
 #<br/>
-<a href="CppQMAKE_CXXFLAGS.htm">QMAKE_CXXFLAGS</a> += -std=<a href="Cpp11.htm">c++11</a> <a href="CppWall.htm">-Wall</a> <a href="CppWextra.htm">-Wextra</a><br/>
+<a href="CppQmakeQmake_cxxflags.htm">QMAKE_CXXFLAGS</a> += -std=<a href="Cpp11.htm">c++11</a> <a href="CppWall.htm">-Wall</a> <a href="CppWextra.htm">-Wextra</a><br/>
 <br/>
 unix {<br/>
-&nbsp;&nbsp;<a href="CppQMAKE_CXXFLAGS.htm">QMAKE_CXXFLAGS</a> += <a href="CppWerror.htm">-Werror</a><br/>
+&nbsp;&nbsp;<a href="CppQmakeQmake_cxxflags.htm">QMAKE_CXXFLAGS</a> += <a href="CppWerror.htm">-Werror</a><br/>
 }<br/>
 <br/>
 #<br/>
@@ -252,7 +252,7 @@ unix {<br/>
 <br/>
 win32 {<br/>
 &nbsp;&nbsp;message(Windows: add Boost to include path)<br/>
-&nbsp;&nbsp;<a href="CppINCLUDEPATH.htm">INCLUDEPATH</a> += \<br/>
+&nbsp;&nbsp;<a href="CppQmakeIncludepath.htm">INCLUDEPATH</a> += \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/boost_1_54_0<br/>
 }<br/>
 </code></td></tr></table>
@@ -266,54 +266,54 @@ win32 {<br/>
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="gamexenonzeroarea.h" border = "1"><tr><td><code>
-<a href="CppIfndef.htm">#ifndef</a> GAMEXENONZEROAREA_H<br/>
-<a href="CppDefine.htm">#define</a> GAMEXENONZEROAREA_H<br/>
+<a href="CppIfndef.html">#ifndef</a> GAMEXENONZEROAREA_H<br/>
+<a href="CppDefine.html">#define</a> GAMEXENONZEROAREA_H<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppStringH.htm">string</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/checked_delete.hpp&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppStringH.html">string</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppVectorH.html">vector</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppBoost.html">boost</a>/checked_delete<a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
 <br/>
-<b><a href="CppNamespace.htm">namespace</a></b> xnz {<br/>
+<b><a href="CppNamespace.html">namespace</a></b> xnz {<br/>
 <br/>
-<b><a href="CppStruct.htm">struct</a></b> Area<br/>
+<b><a href="CppStruct.html">struct</a></b> Area<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppTypedef.htm">typedef</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppContainer.htm">Container</a>;<br/>
-&nbsp;&nbsp;<b><a href="CppTypedef.htm">typedef</a></b> <a href="CppContainer.htm">Container</a> Graphic;<br/>
-&nbsp;&nbsp;<b><a href="CppTypedef.htm">typedef</a></b> <a href="CppContainer.htm">Container</a>::const_iterator Const<a href="CppIterator.htm">Iterator</a>;<br/>
-&nbsp;&nbsp;<b><a href="CppTypedef.htm">typedef</a></b> <a href="CppContainer.htm">Container</a>::<a href="CppIterator.htm">iterator</a> <a href="CppIterator.htm">Iterator</a>;<br/>
+&nbsp;&nbsp;<b><a href="CppTypedef.html">typedef</a></b> <a href="CppVector.html">std::vector</a>&lt;<a href="CppString.html">std::string</a>&gt; <a href="CppContainer.html">Container</a>;<br/>
+&nbsp;&nbsp;<b><a href="CppTypedef.html">typedef</a></b> <a href="CppContainer.html">Container</a> Graphic;<br/>
+&nbsp;&nbsp;<b><a href="CppTypedef.html">typedef</a></b> <a href="CppContainer.html">Container</a>::const_iterator Const<a href="CppIterator.html">Iterator</a>;<br/>
+&nbsp;&nbsp;<b><a href="CppTypedef.html">typedef</a></b> <a href="CppContainer.html">Container</a>::<a href="CppIterator.html">iterator</a> <a href="CppIterator.html">Iterator</a>;<br/>
 <br/>
-&nbsp;&nbsp;Area(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> width,<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> height);<br/>
+&nbsp;&nbsp;Area(<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> width,<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> height);<br/>
 <br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> DrawEdge();<br/>
-&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> DrawLife(<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> fraction);<br/>
-&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> Draw(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x, <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> y, <b><a href="CppConst.htm">const</a></b> <a href="CppContainer.htm">Container</a>&amp; graphic);<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> DrawLife(<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> fraction);<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> Draw(<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> x, <b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> y, <b><a href="CppConst.html">const</a></b> <a href="CppContainer.html">Container</a>&amp; graphic);<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/Get the area<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppContainer.htm">Container</a>&amp; GetArea() <b><a href="CppConst.htm">const</a></b> { <b><a href="CppReturn.htm">return</a></b> mArea; }<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppContainer.html">Container</a>&amp; GetArea() <b><a href="CppConst.html">const</a></b> { <b><a href="CppReturn.html">return</a></b> mArea; }<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Get the area's height in <a href="CppChar.htm">character</a>s<br/>
-&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> GetHeight() <b><a href="CppConst.htm">const</a></b> { <b><a href="CppReturn.htm">return</a></b> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(mArea.size()); }<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Get the area's height in <a href="CppChar.html">character</a>s<br/>
+&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> GetHeight() <b><a href="CppConst.html">const</a></b> { <b><a href="CppReturn.html">return</a></b> <b><a href="CppStatic_cast.html">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(mArea.size()); }<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Get the area's width in <a href="CppChar.htm">character</a>s<br/>
-&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> GetWidth() <b><a href="CppConst.htm">const</a></b> { <b><a href="CppReturn.htm">return</a></b> mArea.empty() ? 0 : <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(mArea[0].size()); }<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Get the area's width in <a href="CppChar.html">character</a>s<br/>
+&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> GetWidth() <b><a href="CppConst.html">const</a></b> { <b><a href="CppReturn.html">return</a></b> mArea.empty() ? 0 : <b><a href="CppStatic_cast.html">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(mArea[0].size()); }<br/>
 <br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppPrivate.htm">private</a></b>:<br/>
+&nbsp;&nbsp;<b><a href="CppPrivate.html">private</a></b>:<br/>
 &nbsp;&nbsp;~Area() {}<br/>
-&nbsp;&nbsp;<b><a href="CppFriend.htm">friend</a></b> <b><a href="CppVoid.htm">void</a></b> <a href="CppChecked_delete.htm">boost::checked_delete</a>&lt;&gt;(Area* x);<br/>
+&nbsp;&nbsp;<b><a href="CppFriend.html">friend</a></b> <b><a href="CppVoid.htm">void</a></b> <a href="CppChecked_delete.html">boost::checked_delete</a>&lt;&gt;(Area* x);<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; mArea;<br/>
+&nbsp;&nbsp;<a href="CppVector.html">std::vector</a>&lt;<a href="CppString.html">std::string</a>&gt; mArea;<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppInt.htm">int</a></b> GetInRange(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x, <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> min, <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> max);<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.html">static</a></b> <b><a href="CppInt.htm">int</a></b> GetInRange(<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> x, <b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> min, <b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> max);<br/>
 <br/>
 };<br/>
 <br/>
-<a href="CppOstream.htm">std::ostream</a>&amp; <b><a href="CppOperatorStreamOut.htm">operator&lt;&lt;</a></b>(<a href="CppOstream.htm">std::ostream</a>&amp; os, <b><a href="CppConst.htm">const</a></b> Area&amp; a);<br/>
+<a href="CppOstream.html">std::ostream</a>&amp; <b><a href="CppOperatorStreamOut.html">operator&lt;&lt;</a></b>(<a href="CppOstream.html">std::ostream</a>&amp; os, <b><a href="CppConst.html">const</a></b> Area&amp; a);<br/>
 <br/>
 <br/>
-} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> xnz<br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.html">namespace</a></b> xnz<br/>
 <br/>
-<a href="CppEndif.htm">#endif</a><br/>
+<a href="CppEndif.html">#endif</a><br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -325,22 +325,22 @@ win32 {<br/>
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="gamexenonzeroarea.cpp" border = "1"><tr><td><code>
-<a href="CppInclude.htm">#include</a> "gamexenonzeroarea.h"<br/>
+<a href="CppInclude.html">#include</a> "gamexenonzeroarea<a href="CppHeaderFile.htm">.h</a>"<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppIostreamH.htm">iostream</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppIteratorH.htm">iterator</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppCassertH.html">cassert</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppIostreamH.html">iostream</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppIteratorH.html">iterator</a>&gt;<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> "gamexenonzerosprite.h"<br/>
+<a href="CppInclude.html">#include</a> "gamexenonzerosprite<a href="CppHeaderFile.htm">.h</a>"<br/>
 <br/>
 <br/>
-<b><a href="CppNamespace.htm">namespace</a></b> xnz {<br/>
+<b><a href="CppNamespace.html">namespace</a></b> xnz {<br/>
 <br/>
-Area::Area(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> width,<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> height)<br/>
-&nbsp;&nbsp;: mArea(height,<a href="CppString.htm">std::string</a>(width,' '))<br/>
+Area::Area(<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> width,<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> height)<br/>
+&nbsp;&nbsp;: mArea(height,<a href="CppString.html">std::string</a>(width,' '))<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(width &gt; 0);<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(height &gt; 0);<br/>
+&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(width &gt; 0);<br/>
+&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(height &gt; 0);<br/>
 <br/>
 &nbsp;&nbsp;DrawEdge();<br/>
 <br/>
@@ -353,88 +353,88 @@ Area::Area(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</
 &nbsp;&nbsp;Sprite::mMaxx <a href="CppOperatorAssign.htm">=</a> GetWidth() <a href="CppOperatorMinus.htm">-</a> 1;<br/>
 &nbsp;&nbsp;Sprite::mMaxy <a href="CppOperatorAssign.htm">=</a> GetHeight() <a href="CppOperatorMinus.htm">-</a> 1;<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> edge <a href="CppOperatorAssign.htm">=</a> <a href="CppString.htm">std::string</a>(GetWidth(),'*');<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> nonEdge <a href="CppOperatorAssign.htm">=</a> "*" <a href="CppOperatorPlus.htm">+</a> <a href="CppString.htm">std::string</a>(GetWidth()-2,' ') <a href="CppOperatorPlus.htm">+</a> "*";<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a> edge <a href="CppOperatorAssign.htm">=</a> <a href="CppString.html">std::string</a>(GetWidth(),'*');<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a> nonEdge <a href="CppOperatorAssign.htm">=</a> "*" <a href="CppOperatorPlus.htm">+</a> <a href="CppString.html">std::string</a>(GetWidth()-2,' ') <a href="CppOperatorPlus.htm">+</a> "*";<br/>
 &nbsp;&nbsp;mArea[0] <a href="CppOperatorAssign.htm">=</a> edge;<br/>
 &nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> i=0; i<a href="CppOperatorNotEqual.htm">!=</a>GetHeight()-2; <a href="CppOperatorPlus.htm">+</a>+i) mArea[1+i] <a href="CppOperatorAssign.htm">=</a> nonEdge;<br/>
 &nbsp;&nbsp;mArea[GetHeight() <a href="CppOperatorMinus.htm">-</a> 1] <a href="CppOperatorAssign.htm">=</a> edge;<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> Area::DrawLife(<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> fraction)<br/>
+<b><a href="CppVoid.htm">void</a></b> Area::DrawLife(<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> fraction)<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x <a href="CppOperatorAssign.htm">=</a> GetWidth() <a href="CppOperatorMinus.htm">-</a> 2 <a href="CppOperatorMinus.htm">-</a> 3;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> y <a href="CppOperatorAssign.htm">=</a> 2;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> height <a href="CppOperatorAssign.htm">=</a> GetHeight() <a href="CppOperatorDivide.htm">/</a> 2;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> x <a href="CppOperatorAssign.htm">=</a> GetWidth() <a href="CppOperatorMinus.htm">-</a> 2 <a href="CppOperatorMinus.htm">-</a> 3;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> y <a href="CppOperatorAssign.htm">=</a> 2;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> height <a href="CppOperatorAssign.htm">=</a> GetHeight() <a href="CppOperatorDivide.htm">/</a> 2;<br/>
 <br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>The edges<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> s <a href="CppOperatorAssign.htm">=</a> "[-]";<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCopy.htm">std::copy</a>( s.begin(), s.end(), mArea[y].begin() <a href="CppOperatorPlus.htm">+</a> x);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCopy.htm">std::copy</a>( s.begin(), s.end(), mArea[y+height].begin() <a href="CppOperatorPlus.htm">+</a> x);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a> s <a href="CppOperatorAssign.htm">=</a> "[-]";<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCopy.html">std::copy</a>( s.begin(), s.end(), mArea[y].begin() <a href="CppOperatorPlus.htm">+</a> x);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCopy.html">std::copy</a>( s.begin(), s.end(), mArea[y+height].begin() <a href="CppOperatorPlus.htm">+</a> x);<br/>
 &nbsp;&nbsp;}<br/>
 <br/>
 &nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> i=1; i<a href="CppOperatorNotEqual.htm">!=</a>height; <a href="CppOperatorPlus.htm">+</a>+i) <a href="CppComment.htm">//</a>Not the edges<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> f<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> 1.0 <a href="CppOperatorMinus.htm">-</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(i)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorDivide.htm">/</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(height);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> s <a href="CppOperatorAssign.htm">=</a> (f &gt; fraction ? "[ ]" : "[*]");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCopy.htm">std::copy</a>( s.begin(), s.end(), mArea[y+i].begin() <a href="CppOperatorPlus.htm">+</a> x);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> f<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> 1.0 <a href="CppOperatorMinus.htm">-</a> <b><a href="CppStatic_cast.html">static_cast</a></b>&lt;<b><a href="CppDouble.html">double</a></b>&gt;(i)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorDivide.htm">/</a> <b><a href="CppStatic_cast.html">static_cast</a></b>&lt;<b><a href="CppDouble.html">double</a></b>&gt;(height);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a> s <a href="CppOperatorAssign.htm">=</a> (f &gt; fraction ? "[ ]" : "[*]");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCopy.html">std::copy</a>( s.begin(), s.end(), mArea[y+i].begin() <a href="CppOperatorPlus.htm">+</a> x);<br/>
 &nbsp;&nbsp;}<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> Area::Draw(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x, <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> y, <b><a href="CppConst.htm">const</a></b> <a href="CppContainer.htm">Container</a>&amp; g)<br/>
+<b><a href="CppVoid.htm">void</a></b> Area::Draw(<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> x, <b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> y, <b><a href="CppConst.html">const</a></b> <a href="CppContainer.html">Container</a>&amp; g)<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> graphicHeight <a href="CppOperatorAssign.htm">=</a> g.size();<br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (graphicHeight <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 0) <b><a href="CppReturn.htm">return</a></b>;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> graphicWidth <a href="CppOperatorAssign.htm">=</a> g[0].size();<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> graphicHeight <a href="CppOperatorAssign.htm">=</a> g.size();<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (graphicHeight <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 0) <b><a href="CppReturn.html">return</a></b>;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> graphicWidth <a href="CppOperatorAssign.htm">=</a> g[0].size();<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> areaWidth <a href="CppOperatorAssign.htm">=</a> <b><a href="CppThis.htm">this</a></b>-&gt;GetWidth();<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> areaHeight <a href="CppOperatorAssign.htm">=</a> <b><a href="CppThis.htm">this</a></b>-&gt;GetHeight();<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> areaWidth <a href="CppOperatorAssign.htm">=</a> <b><a href="CppThis.htm">this</a></b>-&gt;GetWidth();<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> areaHeight <a href="CppOperatorAssign.htm">=</a> <b><a href="CppThis.htm">this</a></b>-&gt;GetHeight();<br/>
 <br/>
 &nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> j=0; j<a href="CppOperatorNotEqual.htm">!=</a>graphicHeight; <a href="CppOperatorPlus.htm">+</a>+j)<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (y+j&lt;0 <a href="CppOperatorLogicalOr.htm">||</a> y+j<a href="CppOperatorGreaterEqual.htm">&gt;=</a>areaHeight) <b><a href="CppContinue.htm">continue</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (y+j&lt;0 <a href="CppOperatorLogicalOr.htm">||</a> y+j<a href="CppOperatorGreaterEqual.html">&gt;=</a>areaHeight) <b><a href="CppContinue.html">continue</a></b>;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> i=0; i<a href="CppOperatorNotEqual.htm">!=</a>graphicWidth; <a href="CppOperatorPlus.htm">+</a>+i)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (x+i &lt; 0 <a href="CppOperatorLogicalOr.htm">||</a> x+i<a href="CppOperatorGreaterEqual.htm">&gt;=</a>areaWidth) <b><a href="CppContinue.htm">continue</a></b>;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(y+j<a href="CppOperatorGreaterEqual.htm">&gt;=</a>0);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(y+j &lt; <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(mArea.size() ) );<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(x+i<a href="CppOperatorGreaterEqual.htm">&gt;=</a>0);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(x+i &lt; <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(mArea[0].size() ) );<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (x+i &lt; 0 <a href="CppOperatorLogicalOr.htm">||</a> x+i<a href="CppOperatorGreaterEqual.html">&gt;=</a>areaWidth) <b><a href="CppContinue.html">continue</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(y+j<a href="CppOperatorGreaterEqual.html">&gt;=</a>0);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(y+j &lt; <b><a href="CppStatic_cast.html">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(mArea.size() ) );<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(x+i<a href="CppOperatorGreaterEqual.html">&gt;=</a>0);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(x+i &lt; <b><a href="CppStatic_cast.html">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(mArea[0].size() ) );<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mArea[y+j][x+i] <a href="CppOperatorAssign.htm">=</a> g[j][i];<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;}<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppOperatorDivide.htm">/</a>*<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppIterator.htm">Iterator</a> begin <a href="CppOperatorAssign.htm">=</a> &amp;mArea[ GetInRange(x,0,mArea.size()) ];<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppIterator.htm">Iterator</a> end&nbsp;&nbsp; <a href="CppOperatorAssign.htm">=</a> &amp;mArea[ GetInRange(x,0,mArea.size()) ];<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(begin <a href="CppOperatorGreaterEqual.htm">&gt;=</a> mArea.begin() );<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(begin <a href="CppOperatorLessEqual.htm">&lt;=</a> mArea.end() );<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(end <a href="CppOperatorGreaterEqual.htm">&gt;=</a> mArea.begin() );<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(end <a href="CppOperatorLessEqual.htm">&lt;=</a> mArea.end() );<br/>
-&nbsp;&nbsp;<a href="CppFor_each.htm">std::for_each</a>(<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppIterator.html">Iterator</a> begin <a href="CppOperatorAssign.htm">=</a> &amp;mArea[ GetInRange(x,0,mArea.size()) ];<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppIterator.html">Iterator</a> end&nbsp;&nbsp; <a href="CppOperatorAssign.htm">=</a> &amp;mArea[ GetInRange(x,0,mArea.size()) ];<br/>
+&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(begin <a href="CppOperatorGreaterEqual.html">&gt;=</a> mArea.begin() );<br/>
+&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(begin <a href="CppOperatorLessEqual.html">&lt;=</a> mArea.end() );<br/>
+&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(end <a href="CppOperatorGreaterEqual.html">&gt;=</a> mArea.begin() );<br/>
+&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(end <a href="CppOperatorLessEqual.html">&lt;=</a> mArea.end() );<br/>
+&nbsp;&nbsp;<a href="CppFor_each.html">std::for_each</a>(<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">*/</a><br/>
 }<br/>
 <br/>
-<a href="CppOstream.htm">std::ostream</a>&amp; <b><a href="CppOperatorStreamOut.htm">operator&lt;&lt;</a></b>(<a href="CppOstream.htm">std::ostream</a>&amp; os, <b><a href="CppConst.htm">const</a></b> Area&amp; a)<br/>
+<a href="CppOstream.html">std::ostream</a>&amp; <b><a href="CppOperatorStreamOut.html">operator&lt;&lt;</a></b>(<a href="CppOstream.html">std::ostream</a>&amp; os, <b><a href="CppConst.html">const</a></b> Area&amp; a)<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Area::<a href="CppContainer.htm">Container</a>&amp; v <a href="CppOperatorAssign.htm">=</a> a.GetArea();<br/>
-&nbsp;&nbsp;<a href="CppCopy.htm">std::copy</a>(<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> Area::<a href="CppContainer.html">Container</a>&amp; v <a href="CppOperatorAssign.htm">=</a> a.GetArea();<br/>
+&nbsp;&nbsp;<a href="CppCopy.html">std::copy</a>(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;v.begin(),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;v.end(),<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOstream_iterator.htm">std::ostream_iterator</a>&lt;<a href="CppString.htm">std::string</a>&gt;(os,"\n"));<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> os;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOstream_iterator.html">std::ostream_iterator</a>&lt;<a href="CppString.html">std::string</a>&gt;(os,"\n"));<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> os;<br/>
 }<br/>
 <br/>
-<b><a href="CppInt.htm">int</a></b> Area::GetInRange(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x, <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> min, <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> max)<br/>
+<b><a href="CppInt.htm">int</a></b> Area::GetInRange(<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> x, <b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> min, <b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> max)<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (x &lt; min) <b><a href="CppReturn.htm">return</a></b> min;<br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (x &gt; max) <b><a href="CppReturn.htm">return</a></b> max;<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> x;<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (x &lt; min) <b><a href="CppReturn.html">return</a></b> min;<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (x &gt; max) <b><a href="CppReturn.html">return</a></b> max;<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> x;<br/>
 }<br/>
 <br/>
-} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> xnz<br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.html">namespace</a></b> xnz<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -446,85 +446,85 @@ Area::Area(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="gamexenonzerodialog.h" border = "1"><tr><td><code>
-<a href="CppIfndef.htm">#ifndef</a> GAMEXENONZERODIALOG_H<br/>
-<a href="CppDefine.htm">#define</a> GAMEXENONZERODIALOG_H<br/>
+<a href="CppIfndef.html">#ifndef</a> GAMEXENONZERODIALOG_H<br/>
+<a href="CppDefine.html">#define</a> GAMEXENONZERODIALOG_H<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppIosfwdH.htm">iosfwd</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppStringH.htm">string</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppShared_ptr.htm">shared_ptr</a>.hpp&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppIosfwdH.html">iosfwd</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppVectorH.html">vector</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppStringH.html">string</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppBoost.html">boost</a>/<a href="CppShared_ptr.html">shared_ptr</a><a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> "gamexenonzerofwd.h"<br/>
-<a href="CppInclude.htm">#include</a> "gamexenonzeroarea.h"<br/>
+<a href="CppInclude.html">#include</a> "gamexenonzerofwd<a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "gamexenonzeroarea<a href="CppHeaderFile.htm">.h</a>"<br/>
 <br/>
-<b><a href="CppNamespace.htm">namespace</a></b> xnz {<br/>
+<b><a href="CppNamespace.html">namespace</a></b> xnz {<br/>
 <br/>
 <br/>
-<b><a href="CppStruct.htm">struct</a></b> Dialog<br/>
+<b><a href="CppStruct.html">struct</a></b> Dialog<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppEnumClass.htm">enum class</a></b> Input { up, right, down, left, space, shoot };<br/>
+&nbsp;&nbsp;<b><a href="CppEnumClass.html">enum class</a></b> Input { up, right, down, left, space, shoot };<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppTypedef.htm">typedef</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Sprite&gt; SpritePtr;<br/>
-&nbsp;&nbsp;<b><a href="CppTypedef.htm">typedef</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Sprite&gt; &gt; Sprite<a href="CppContainer.htm">Container</a>;<br/>
-&nbsp;&nbsp;<b><a href="CppTypedef.htm">typedef</a></b> Sprite<a href="CppContainer.htm">Container</a>::<a href="CppIterator.htm">iterator</a> <a href="CppIterator.htm">Iterator</a>;<br/>
-&nbsp;&nbsp;<b><a href="CppTypedef.htm">typedef</a></b> Sprite<a href="CppContainer.htm">Container</a>::const_iterator Const<a href="CppIterator.htm">Iterator</a>;<br/>
+&nbsp;&nbsp;<b><a href="CppTypedef.html">typedef</a></b> <a href="CppBoostShared_ptr.html">boost::shared_ptr</a>&lt;Sprite&gt; SpritePtr;<br/>
+&nbsp;&nbsp;<b><a href="CppTypedef.html">typedef</a></b> <a href="CppVector.html">std::vector</a>&lt;<a href="CppBoostShared_ptr.html">boost::shared_ptr</a>&lt;Sprite&gt; &gt; Sprite<a href="CppContainer.html">Container</a>;<br/>
+&nbsp;&nbsp;<b><a href="CppTypedef.html">typedef</a></b> Sprite<a href="CppContainer.html">Container</a>::<a href="CppIterator.html">iterator</a> <a href="CppIterator.html">Iterator</a>;<br/>
+&nbsp;&nbsp;<b><a href="CppTypedef.html">typedef</a></b> Sprite<a href="CppContainer.html">Container</a>::const_iterator Const<a href="CppIterator.html">Iterator</a>;<br/>
 <br/>
 &nbsp;&nbsp;Dialog();<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> Area&gt; ProcessInput(<b><a href="CppConst.htm">const</a></b> Input input);<br/>
-&nbsp;&nbsp;<b><a href="CppBool.htm">bool</a></b> IsGameOver() <b><a href="CppConst.htm">const</a></b>;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppBoostShared_ptr.html">boost::shared_ptr</a>&lt;<b><a href="CppConst.html">const</a></b> Area&gt; ProcessInput(<b><a href="CppConst.html">const</a></b> Input input);<br/>
+&nbsp;&nbsp;<b><a href="CppBool.htm">bool</a></b> IsGameOver() <b><a href="CppConst.html">const</a></b>;<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppPrivate.htm">private</a></b>:<br/>
+&nbsp;&nbsp;<b><a href="CppPrivate.html">private</a></b>:<br/>
 <br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> DrawSprites();<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> xnz::Area&gt; GetArea() <b><a href="CppConst.htm">const</a></b> { <b><a href="CppReturn.htm">return</a></b> mArea; }<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppBoostShared_ptr.html">boost::shared_ptr</a>&lt;<b><a href="CppConst.html">const</a></b> xnz::Area&gt; GetArea() <b><a href="CppConst.html">const</a></b> { <b><a href="CppReturn.html">return</a></b> mArea; }<br/>
 <br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> MoveSprites();<br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> LetSpritesInteract();<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;xnz::Area&gt; mArea;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppBoostShared_ptr.html">boost::shared_ptr</a>&lt;xnz::Area&gt; mArea;<br/>
 <br/>
-&nbsp;&nbsp;Sprite<a href="CppContainer.htm">Container</a> mSprites;<br/>
-&nbsp;&nbsp;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;SpritePlayer&gt; mSpritePlayer;<br/>
+&nbsp;&nbsp;Sprite<a href="CppContainer.html">Container</a> mSprites;<br/>
+&nbsp;&nbsp;<a href="CppBoostShared_ptr.html">boost::shared_ptr</a>&lt;SpritePlayer&gt; mSpritePlayer;<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppFriend.htm">friend</a></b> <a href="CppOstream.htm">std::ostream</a>&amp; <b><a href="CppOperatorStreamOut.htm">operator&lt;&lt;</a></b>(<a href="CppOstream.htm">std::ostream</a>&amp; os, <b><a href="CppConst.htm">const</a></b> Dialog&amp; s);<br/>
+&nbsp;&nbsp;<b><a href="CppFriend.html">friend</a></b> <a href="CppOstream.html">std::ostream</a>&amp; <b><a href="CppOperatorStreamOut.html">operator&lt;&lt;</a></b>(<a href="CppOstream.html">std::ostream</a>&amp; os, <b><a href="CppConst.html">const</a></b> Dialog&amp; s);<br/>
 };<br/>
 <br/>
 <br/>
-<a href="CppOstream.htm">std::ostream</a>&amp; <b><a href="CppOperatorStreamOut.htm">operator&lt;&lt;</a></b>(<a href="CppOstream.htm">std::ostream</a>&amp; os, <b><a href="CppConst.htm">const</a></b> Dialog&amp; s);<br/>
+<a href="CppOstream.html">std::ostream</a>&amp; <b><a href="CppOperatorStreamOut.html">operator&lt;&lt;</a></b>(<a href="CppOstream.html">std::ostream</a>&amp; os, <b><a href="CppConst.html">const</a></b> Dialog&amp; s);<br/>
 <br/>
-<a href="CppComment.htm">//</a><b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> AskUserInput();<br/>
+<a href="CppComment.htm">//</a><b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a> AskUserInput();<br/>
 <br/>
-<b><a href="CppStruct.htm">struct</a></b> SpriteMover : <b><a href="CppPublic.htm">public</a></b> <a href="CppUnary_function.htm">std::unary_function</a>&lt;<b><a href="CppVoid.htm">void</a></b>,Sprite&gt;<br/>
+<b><a href="CppStruct.html">struct</a></b> SpriteMover : <b><a href="CppPublic.html">public</a></b> <a href="CppUnary_function.html">std::unary_function</a>&lt;<b><a href="CppVoid.htm">void</a></b>,Sprite&gt;<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> <b><a href="CppOperatorFunctionCall.htm">operator()</a></b>(<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Sprite&gt;&amp; s) <b><a href="CppConst.htm">const</a></b>;<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> <b><a href="CppOperatorFunctionCall.html">operator()</a></b>(<a href="CppBoostShared_ptr.html">boost::shared_ptr</a>&lt;Sprite&gt;&amp; s) <b><a href="CppConst.html">const</a></b>;<br/>
 };<br/>
 <br/>
 <a href="CppComment.htm">/*</a><br/>
-<b><a href="CppStruct.htm">struct</a></b> SpriteDrawer : <b><a href="CppPublic.htm">public</a></b> <a href="CppUnary_function.htm">std::unary_function</a>&lt;<b><a href="CppVoid.htm">void</a></b>,Sprite&gt;<br/>
+<b><a href="CppStruct.html">struct</a></b> SpriteDrawer : <b><a href="CppPublic.html">public</a></b> <a href="CppUnary_function.html">std::unary_function</a>&lt;<b><a href="CppVoid.htm">void</a></b>,Sprite&gt;<br/>
 {<br/>
 &nbsp;&nbsp;SpriteDrawer(Area&amp; area) : mArea(area) {}<br/>
-&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> <b><a href="CppOperatorFunctionCall.htm">operator()</a></b>(<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Sprite&gt;&amp; s) <b><a href="CppConst.htm">const</a></b>;<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> <b><a href="CppOperatorFunctionCall.html">operator()</a></b>(<a href="CppBoostShared_ptr.html">boost::shared_ptr</a>&lt;Sprite&gt;&amp; s) <b><a href="CppConst.html">const</a></b>;<br/>
 &nbsp;&nbsp;Area&amp; mArea;<br/>
 };<br/>
 <a href="CppComment.htm">*/</a><br/>
 <br/>
-<b><a href="CppStruct.htm">struct</a></b> SpriteIsDead : <b><a href="CppPublic.htm">public</a></b> <a href="CppUnary_function.htm">std::unary_function</a>&lt;<b><a href="CppBool.htm">bool</a></b>,Sprite&gt;<br/>
+<b><a href="CppStruct.html">struct</a></b> SpriteIsDead : <b><a href="CppPublic.html">public</a></b> <a href="CppUnary_function.html">std::unary_function</a>&lt;<b><a href="CppBool.htm">bool</a></b>,Sprite&gt;<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppBool.htm">bool</a></b> <b><a href="CppOperatorFunctionCall.htm">operator()</a></b>(<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Sprite&gt;&amp; s) <b><a href="CppConst.htm">const</a></b>;<br/>
+&nbsp;&nbsp;<b><a href="CppBool.htm">bool</a></b> <b><a href="CppOperatorFunctionCall.html">operator()</a></b>(<a href="CppBoostShared_ptr.html">boost::shared_ptr</a>&lt;Sprite&gt;&amp; s) <b><a href="CppConst.html">const</a></b>;<br/>
 };<br/>
 <br/>
-<b><a href="CppStruct.htm">struct</a></b> SpriteShoot : <b><a href="CppPublic.htm">public</a></b> <a href="CppUnary_function.htm">std::unary_function</a>&lt;<b><a href="CppVoid.htm">void</a></b>,Sprite&gt;<br/>
+<b><a href="CppStruct.html">struct</a></b> SpriteShoot : <b><a href="CppPublic.html">public</a></b> <a href="CppUnary_function.html">std::unary_function</a>&lt;<b><a href="CppVoid.htm">void</a></b>,Sprite&gt;<br/>
 {<br/>
-&nbsp;&nbsp;SpriteShoot(Dialog::Sprite<a href="CppContainer.htm">Container</a>&amp; tempSprites) : mTempSprites(tempSprites) {}<br/>
-&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> <b><a href="CppOperatorFunctionCall.htm">operator()</a></b>(<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Sprite&gt;&amp; s) <b><a href="CppConst.htm">const</a></b>;<br/>
-&nbsp;&nbsp;Dialog::Sprite<a href="CppContainer.htm">Container</a>&amp; mTempSprites;<br/>
+&nbsp;&nbsp;SpriteShoot(Dialog::Sprite<a href="CppContainer.html">Container</a>&amp; tempSprites) : mTempSprites(tempSprites) {}<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> <b><a href="CppOperatorFunctionCall.html">operator()</a></b>(<a href="CppBoostShared_ptr.html">boost::shared_ptr</a>&lt;Sprite&gt;&amp; s) <b><a href="CppConst.html">const</a></b>;<br/>
+&nbsp;&nbsp;Dialog::Sprite<a href="CppContainer.html">Container</a>&amp; mTempSprites;<br/>
 };<br/>
 <br/>
-} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> xnz<br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.html">namespace</a></b> xnz<br/>
 <br/>
-<a href="CppEndif.htm">#endif</a><br/>
+<a href="CppEndif.html">#endif</a><br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -536,45 +536,45 @@ Area::Area(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="gamexenonzerodialog.cpp" border = "1"><tr><td><code>
-<a href="CppInclude.htm">#include</a> "gamexenonzerodialog.h"<br/>
+<a href="CppInclude.html">#include</a> "gamexenonzerodialog<a href="CppHeaderFile.htm">.h</a>"<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppStringH.htm">string</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppIostreamH.htm">iostream</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppIteratorH.htm">iterator</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppAlgorithmH.htm">algorithm</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppNumericH.htm">numeric</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppFunctionalH.htm">functional</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppStringH.html">string</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppIostreamH.html">iostream</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppIteratorH.html">iterator</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppAlgorithmH.html">algorithm</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppNumericH.html">numeric</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppFunctionalH.html">functional</a>&gt;<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppCassertH.html">cassert</a>&gt;<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> "gamexenonzerosprite.h"<br/>
+<a href="CppInclude.html">#include</a> "gamexenonzerosprite<a href="CppHeaderFile.htm">.h</a>"<br/>
 <br/>
-<b><a href="CppNamespace.htm">namespace</a></b> xnz {<br/>
+<b><a href="CppNamespace.html">namespace</a></b> xnz {<br/>
 <br/>
 Dialog::Dialog()<br/>
 &nbsp;&nbsp;: mArea(<b><a href="CppNew.htm">new</a></b> Area(78,23)),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;mSpritePlayer(<b><a href="CppNew.htm">new</a></b> SpritePlayer(78/2-2,23-1-4))<br/>
 {<br/>
-&nbsp;&nbsp;mSprites.push_back( <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Sprite&gt;(<b><a href="CppNew.htm">new</a></b> SpriteEnemyMedium(35, 1)));<br/>
-&nbsp;&nbsp;mSprites.push_back( <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Sprite&gt;(<b><a href="CppNew.htm">new</a></b> SpriteEnemySmall(20, 6)));<br/>
-&nbsp;&nbsp;mSprites.push_back( <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Sprite&gt;(<b><a href="CppNew.htm">new</a></b> SpriteEnemySmall(30, 8)));<br/>
-&nbsp;&nbsp;mSprites.push_back( <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Sprite&gt;(<b><a href="CppNew.htm">new</a></b> SpriteEnemySmall(40,10)));<br/>
-&nbsp;&nbsp;mSprites.push_back( <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Sprite&gt;(<b><a href="CppNew.htm">new</a></b> SpriteEnemySmall(50,12)));<br/>
-&nbsp;&nbsp;mSprites.push_back( <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Sprite&gt;(<b><a href="CppNew.htm">new</a></b> SpriteEnemySmall(60,14)));<br/>
-&nbsp;&nbsp;mSprites.push_back( <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Sprite&gt;(<b><a href="CppNew.htm">new</a></b> SpriteEnemySmall(70,16)));<br/>
+&nbsp;&nbsp;mSprites.push_back( <a href="CppBoostShared_ptr.html">boost::shared_ptr</a>&lt;Sprite&gt;(<b><a href="CppNew.htm">new</a></b> SpriteEnemyMedium(35, 1)));<br/>
+&nbsp;&nbsp;mSprites.push_back( <a href="CppBoostShared_ptr.html">boost::shared_ptr</a>&lt;Sprite&gt;(<b><a href="CppNew.htm">new</a></b> SpriteEnemySmall(20, 6)));<br/>
+&nbsp;&nbsp;mSprites.push_back( <a href="CppBoostShared_ptr.html">boost::shared_ptr</a>&lt;Sprite&gt;(<b><a href="CppNew.htm">new</a></b> SpriteEnemySmall(30, 8)));<br/>
+&nbsp;&nbsp;mSprites.push_back( <a href="CppBoostShared_ptr.html">boost::shared_ptr</a>&lt;Sprite&gt;(<b><a href="CppNew.htm">new</a></b> SpriteEnemySmall(40,10)));<br/>
+&nbsp;&nbsp;mSprites.push_back( <a href="CppBoostShared_ptr.html">boost::shared_ptr</a>&lt;Sprite&gt;(<b><a href="CppNew.htm">new</a></b> SpriteEnemySmall(50,12)));<br/>
+&nbsp;&nbsp;mSprites.push_back( <a href="CppBoostShared_ptr.html">boost::shared_ptr</a>&lt;Sprite&gt;(<b><a href="CppNew.htm">new</a></b> SpriteEnemySmall(60,14)));<br/>
+&nbsp;&nbsp;mSprites.push_back( <a href="CppBoostShared_ptr.html">boost::shared_ptr</a>&lt;Sprite&gt;(<b><a href="CppNew.htm">new</a></b> SpriteEnemySmall(70,16)));<br/>
 <br/>
 &nbsp;&nbsp;DrawSprites();<br/>
 }<br/>
 <br/>
-<b><a href="CppBool.htm">bool</a></b> Dialog::IsGameOver() <b><a href="CppConst.htm">const</a></b><br/>
+<b><a href="CppBool.htm">bool</a></b> Dialog::IsGameOver() <b><a href="CppConst.html">const</a></b><br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> (mSpritePlayer-&gt;GetHealth() <a href="CppOperatorLessEqual.htm">&lt;=</a> 0);<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> (mSpritePlayer-&gt;GetHealth() <a href="CppOperatorLessEqual.html">&lt;=</a> 0);<br/>
 }<br/>
 <br/>
 <a href="CppComment.htm">/*</a><br/>
 <b><a href="CppVoid.htm">void</a></b> xnzDialog::AskUserInputAndProcess()<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> userInput <a href="CppOperatorAssign.htm">=</a> AskUserInput();<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a> userInput <a href="CppOperatorAssign.htm">=</a> AskUserInput();<br/>
 <br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(userInput <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> "a") { mSpritePlayer-&gt;Move(-1, 0); }<br/>
 &nbsp;&nbsp;<b><a href="CppElse.htm">else</a></b> <b><a href="CppIf.htm">if</a></b> (userInput <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> "d") { mSpritePlayer-&gt;Move( 1, 0); }<br/>
@@ -582,9 +582,9 @@ Dialog::Dialog()<br/>
 &nbsp;&nbsp;<b><a href="CppElse.htm">else</a></b> <b><a href="CppIf.htm">if</a></b> (userInput <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> "s") { mSpritePlayer-&gt;Move( 0, 1); }<br/>
 &nbsp;&nbsp;<b><a href="CppElse.htm">else</a></b> <b><a href="CppIf.htm">if</a></b> (userInput <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> "x")<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;Sprite<a href="CppContainer.htm">Container</a> tempSprites;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Sprite<a href="CppContainer.html">Container</a> tempSprites;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;mSpritePlayer-&gt;Shoot(tempSprites);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCopy.htm">std::copy</a>(tempSprites.begin(),tempSprites.end(),<a href="CppBack_inserter.htm">std::back_inserter</a>(mSprites));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCopy.html">std::copy</a>(tempSprites.begin(),tempSprites.end(),<a href="CppBack_inserter.html">std::back_inserter</a>(mSprites));<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;<b><a href="CppElse.htm">else</a></b> <b><a href="CppIf.htm">if</a></b> (userInput <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> "q")<br/>
 &nbsp;&nbsp;{<br/>
@@ -601,48 +601,48 @@ Dialog::Dialog()<br/>
 }<br/>
 <a href="CppComment.htm">*/</a><br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> Area&gt; Dialog::ProcessInput(<b><a href="CppConst.htm">const</a></b> Dialog::Input input)<br/>
+<b><a href="CppConst.html">const</a></b> <a href="CppBoostShared_ptr.html">boost::shared_ptr</a>&lt;<b><a href="CppConst.html">const</a></b> Area&gt; Dialog::ProcessInput(<b><a href="CppConst.html">const</a></b> Dialog::Input input)<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppSwitch.htm">switch</a></b> (input)<br/>
+&nbsp;&nbsp;<b><a href="CppSwitch.html">switch</a></b> (input)<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> Input::up:<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mSpritePlayer-&gt;Move( 0,-1);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppBreak.htm">break</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppBreak.html">break</a></b>;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> Input::right:<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mSpritePlayer-&gt;Move( 1, 0);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppBreak.htm">break</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppBreak.html">break</a></b>;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> Input::down:<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mSpritePlayer-&gt;Move( 0,-1);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppBreak.htm">break</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppBreak.html">break</a></b>;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> Input::left:<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mSpritePlayer-&gt;Move(-1, 0);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppBreak.htm">break</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppBreak.html">break</a></b>;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> Input::shoot:<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Sprite<a href="CppContainer.htm">Container</a> tempSprites;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Sprite<a href="CppContainer.html">Container</a> tempSprites;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mSpritePlayer-&gt;Shoot(tempSprites);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCopy.htm">std::copy</a>(tempSprites.begin(),tempSprites.end(),<a href="CppBack_inserter.htm">std::back_inserter</a>(mSprites));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCopy.html">std::copy</a>(tempSprites.begin(),tempSprites.end(),<a href="CppBack_inserter.html">std::back_inserter</a>(mSprites));<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> Input::space:<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppBreak.htm">break</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppBreak.html">break</a></b>;<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;MoveSprites();<br/>
 &nbsp;&nbsp;LetSpritesInteract();<br/>
 &nbsp;&nbsp;DrawSprites();<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> GetArea();<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> GetArea();<br/>
 }<br/>
 <br/>
 <b><a href="CppVoid.htm">void</a></b> Dialog::MoveSprites()<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppFor_each.htm">std::for_each</a>(mSprites.begin(),mSprites.end(),SpriteMover());<br/>
+&nbsp;&nbsp;<a href="CppFor_each.html">std::for_each</a>(mSprites.begin(),mSprites.end(),SpriteMover());<br/>
 }<br/>
 <br/>
 <b><a href="CppVoid.htm">void</a></b> Dialog::LetSpritesInteract()<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Let player interact with all non-player sprites<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppIterator.htm">Iterator</a> j <a href="CppOperatorAssign.htm">=</a> mSprites.end();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b>(<a href="CppIterator.htm">Iterator</a> i <a href="CppOperatorAssign.htm">=</a> mSprites.begin(); i<a href="CppOperatorNotEqual.htm">!=</a>j; <a href="CppOperatorPlus.htm">+</a>+i)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppIterator.html">Iterator</a> j <a href="CppOperatorAssign.htm">=</a> mSprites.end();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b>(<a href="CppIterator.html">Iterator</a> i <a href="CppOperatorAssign.htm">=</a> mSprites.begin(); i<a href="CppOperatorNotEqual.htm">!=</a>j; <a href="CppOperatorPlus.htm">+</a>+i)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (IsCollision(mSpritePlayer,*i)<a href="CppOperatorEqual.htm">==</a><b><a href="CppTrue.htm">true</a></b>)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
@@ -655,12 +655,12 @@ Dialog::Dialog()<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Let all non-player sprites interact with all non-player sprites<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppIterator.htm">Iterator</a> end <a href="CppOperatorAssign.htm">=</a> mSprites.end();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b>(<a href="CppIterator.htm">Iterator</a> i <a href="CppOperatorAssign.htm">=</a> mSprites.begin(); i<a href="CppOperatorNotEqual.htm">!=</a>end; <a href="CppOperatorPlus.htm">+</a>+i)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppIterator.html">Iterator</a> end <a href="CppOperatorAssign.htm">=</a> mSprites.end();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b>(<a href="CppIterator.html">Iterator</a> i <a href="CppOperatorAssign.htm">=</a> mSprites.begin(); i<a href="CppOperatorNotEqual.htm">!=</a>end; <a href="CppOperatorPlus.htm">+</a>+i)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b>(<a href="CppIterator.htm">Iterator</a> j <a href="CppOperatorAssign.htm">=</a> i <a href="CppOperatorPlus.htm">+</a> 1 ; j<a href="CppOperatorNotEqual.htm">!=</a>end; <a href="CppOperatorPlus.htm">+</a>+j)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b>(<a href="CppIterator.html">Iterator</a> j <a href="CppOperatorAssign.htm">=</a> i <a href="CppOperatorPlus.htm">+</a> 1 ; j<a href="CppOperatorNotEqual.htm">!=</a>end; <a href="CppOperatorPlus.htm">+</a>+j)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(i<a href="CppOperatorNotEqual.htm">!=</a>j);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(i<a href="CppOperatorNotEqual.htm">!=</a>j);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (IsCollision(*i,*j)<a href="CppOperatorEqual.htm">==</a><b><a href="CppTrue.htm">true</a></b>)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(*i)-&gt;ChangeHealth(-1);<br/>
@@ -674,14 +674,14 @@ Dialog::Dialog()<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Erase-remove from Meyers, Effective <a href="CppStl.htm">STL</a>, Item 32<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;mSprites.erase(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppRemove_if.htm">std::remove_if</a>( mSprites.begin(),mSprites.end(), SpriteIsDead()),mSprites.end());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppRemove_if.html">std::remove_if</a>( mSprites.begin(),mSprites.end(), SpriteIsDead()),mSprites.end());<br/>
 &nbsp;&nbsp;}<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Let the enemies shoot<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;Sprite<a href="CppContainer.htm">Container</a> tempSprites;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppFor_each.htm">std::for_each</a>(mSprites.begin(),mSprites.end(), SpriteShoot(tempSprites));<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCopy.htm">std::copy</a>(tempSprites.begin(),tempSprites.end(),<a href="CppBack_inserter.htm">std::back_inserter</a>(mSprites));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Sprite<a href="CppContainer.html">Container</a> tempSprites;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppFor_each.html">std::for_each</a>(mSprites.begin(),mSprites.end(), SpriteShoot(tempSprites));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCopy.html">std::copy</a>(tempSprites.begin(),tempSprites.end(),<a href="CppBack_inserter.html">std::back_inserter</a>(mSprites));<br/>
 &nbsp;&nbsp;}<br/>
 <br/>
 }<br/>
@@ -701,48 +701,48 @@ Dialog::Dialog()<br/>
 &nbsp;&nbsp;}<br/>
 <br/>
 &nbsp;&nbsp;mArea-&gt;DrawLife(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(mSpritePlayer-&gt;GetHealth())<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorDivide.htm">/</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(mSpritePlayer-&gt;GetMaxHealth() ) );<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppStatic_cast.html">static_cast</a></b>&lt;<b><a href="CppDouble.html">double</a></b>&gt;(mSpritePlayer-&gt;GetHealth())<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorDivide.htm">/</a> <b><a href="CppStatic_cast.html">static_cast</a></b>&lt;<b><a href="CppDouble.html">double</a></b>&gt;(mSpritePlayer-&gt;GetMaxHealth() ) );<br/>
 }<br/>
 <br/>
 <a href="CppComment.htm">/*</a><br/>
-<b><a href="CppVoid.htm">void</a></b> SpriteDrawer::<b><a href="CppOperatorFunctionCall.htm">operator()</a></b>(<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Sprite&gt;&amp; s) <b><a href="CppConst.htm">const</a></b><br/>
+<b><a href="CppVoid.htm">void</a></b> SpriteDrawer::<b><a href="CppOperatorFunctionCall.html">operator()</a></b>(<a href="CppBoostShared_ptr.html">boost::shared_ptr</a>&lt;Sprite&gt;&amp; s) <b><a href="CppConst.html">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;mArea-&gt;Draw(s-&gt;GetX(), s-&gt;GetY(), s-&gt;GetGraphic());<br/>
 }<br/>
 <a href="CppComment.htm">*/</a><br/>
 <br/>
 <a href="CppComment.htm">/*</a><br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> AskUserInput()<br/>
+<b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a> AskUserInput()<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppString.htm">std::string</a> s;<br/>
-&nbsp;&nbsp;<a href="CppGetline.htm">std::getline</a>(<a href="CppCin.htm">std::cin</a>,s);<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> s;<br/>
+&nbsp;&nbsp;<a href="CppString.html">std::string</a> s;<br/>
+&nbsp;&nbsp;<a href="CppGetline.html">std::getline</a>(<a href="CppCin.html">std::cin</a>,s);<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> s;<br/>
 }<br/>
 <a href="CppComment.htm">*/</a><br/>
 <br/>
-<a href="CppOstream.htm">std::ostream</a>&amp; <b><a href="CppOperatorStreamOut.htm">operator&lt;&lt;</a></b>(<a href="CppOstream.htm">std::ostream</a>&amp; os, <b><a href="CppConst.htm">const</a></b> Dialog&amp; s)<br/>
+<a href="CppOstream.html">std::ostream</a>&amp; <b><a href="CppOperatorStreamOut.html">operator&lt;&lt;</a></b>(<a href="CppOstream.html">std::ostream</a>&amp; os, <b><a href="CppConst.html">const</a></b> Dialog&amp; s)<br/>
 {<br/>
-&nbsp;&nbsp;os <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> s.GetArea();<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> os;<br/>
+&nbsp;&nbsp;os <a href="CppOperatorStreamOut.html">&lt;&lt;</a> s.GetArea();<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> os;<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> SpriteMover::<b><a href="CppOperatorFunctionCall.htm">operator()</a></b>(<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Sprite&gt;&amp; s) <b><a href="CppConst.htm">const</a></b><br/>
+<b><a href="CppVoid.htm">void</a></b> SpriteMover::<b><a href="CppOperatorFunctionCall.html">operator()</a></b>(<a href="CppBoostShared_ptr.html">boost::shared_ptr</a>&lt;Sprite&gt;&amp; s) <b><a href="CppConst.html">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;s-&gt;Move();<br/>
 }<br/>
 <br/>
-<b><a href="CppBool.htm">bool</a></b> SpriteIsDead::<b><a href="CppOperatorFunctionCall.htm">operator()</a></b>(<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Sprite&gt;&amp; s) <b><a href="CppConst.htm">const</a></b><br/>
+<b><a href="CppBool.htm">bool</a></b> SpriteIsDead::<b><a href="CppOperatorFunctionCall.html">operator()</a></b>(<a href="CppBoostShared_ptr.html">boost::shared_ptr</a>&lt;Sprite&gt;&amp; s) <b><a href="CppConst.html">const</a></b><br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> s-&gt;IsDead();<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> s-&gt;IsDead();<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> SpriteShoot::<b><a href="CppOperatorFunctionCall.htm">operator()</a></b>(<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Sprite&gt;&amp; s) <b><a href="CppConst.htm">const</a></b><br/>
+<b><a href="CppVoid.htm">void</a></b> SpriteShoot::<b><a href="CppOperatorFunctionCall.html">operator()</a></b>(<a href="CppBoostShared_ptr.html">boost::shared_ptr</a>&lt;Sprite&gt;&amp; s) <b><a href="CppConst.html">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;s-&gt;Shoot(mTempSprites);<br/>
 }<br/>
 <br/>
-} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> xnz<br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.html">namespace</a></b> xnz<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -754,18 +754,18 @@ Dialog::Dialog()<br/>
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="gamexenonzerofwd.h" border = "1"><tr><td><code>
-<a href="CppIfndef.htm">#ifndef</a> GAMEXENONZEROFWD_H<br/>
-<a href="CppDefine.htm">#define</a> GAMEXENONZEROFWD_H<br/>
+<a href="CppIfndef.html">#ifndef</a> GAMEXENONZEROFWD_H<br/>
+<a href="CppDefine.html">#define</a> GAMEXENONZEROFWD_H<br/>
 <br/>
-<b><a href="CppNamespace.htm">namespace</a></b> xnz<br/>
+<b><a href="CppNamespace.html">namespace</a></b> xnz<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppStruct.htm">struct</a></b> Area;<br/>
-&nbsp;&nbsp;<b><a href="CppStruct.htm">struct</a></b> Dialog;<br/>
-&nbsp;&nbsp;<b><a href="CppStruct.htm">struct</a></b> Sprite;<br/>
-&nbsp;&nbsp;<b><a href="CppStruct.htm">struct</a></b> SpritePlayer;<br/>
+&nbsp;&nbsp;<b><a href="CppStruct.html">struct</a></b> Area;<br/>
+&nbsp;&nbsp;<b><a href="CppStruct.html">struct</a></b> Dialog;<br/>
+&nbsp;&nbsp;<b><a href="CppStruct.html">struct</a></b> Sprite;<br/>
+&nbsp;&nbsp;<b><a href="CppStruct.html">struct</a></b> SpritePlayer;<br/>
 }<br/>
 <br/>
-<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> GAMEXENONZEROFWD_H<br/>
+<a href="CppEndif.html">#endif</a> <a href="CppComment.htm">//</a> GAMEXENONZEROFWD_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -777,14 +777,14 @@ Dialog::Dialog()<br/>
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="gamexenonzerosprite.h" border = "1"><tr><td><code>
-<a href="CppIfndef.htm">#ifndef</a> GAMEXENONZEROSPRITE_H<br/>
-<a href="CppDefine.htm">#define</a> GAMEXENONZEROSPRITE_H<br/>
+<a href="CppIfndef.html">#ifndef</a> GAMEXENONZEROSPRITE_H<br/>
+<a href="CppDefine.html">#define</a> GAMEXENONZEROSPRITE_H<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppStringH.htm">string</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppShared_ptr.htm">shared_ptr</a>.hpp&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppVectorH.html">vector</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppStringH.html">string</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppBoost.html">boost</a>/<a href="CppShared_ptr.html">shared_ptr</a><a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
 <br/>
-<b><a href="CppEnumClass.htm">enum class</a></b> EnumSprite<br/>
+<b><a href="CppEnumClass.html">enum class</a></b> EnumSprite<br/>
 {<br/>
 &nbsp;&nbsp;spritePlayer,<br/>
 &nbsp;&nbsp;spriteMissile,<br/>
@@ -792,46 +792,46 @@ Dialog::Dialog()<br/>
 &nbsp;&nbsp;spriteEnemyMedium<br/>
 };<br/>
 <br/>
-<b><a href="CppNamespace.htm">namespace</a></b> xnz {<br/>
+<b><a href="CppNamespace.html">namespace</a></b> xnz {<br/>
 <br/>
-<b><a href="CppStruct.htm">struct</a></b> Sprite<br/>
+<b><a href="CppStruct.html">struct</a></b> Sprite<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppTypedef.htm">typedef</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; Graphic;<br/>
+&nbsp;&nbsp;<b><a href="CppTypedef.html">typedef</a></b> <a href="CppVector.html">std::vector</a>&lt;<a href="CppString.html">std::string</a>&gt; Graphic;<br/>
 <br/>
 &nbsp;&nbsp;Sprite(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> y,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Graphic&amp; graphic,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> health);<br/>
-&nbsp;&nbsp;<b><a href="CppVirtual.htm">virtual</a></b> ~Sprite() {}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> x,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> y,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> Graphic&amp; graphic,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> health);<br/>
+&nbsp;&nbsp;<b><a href="CppVirtual.html">virtual</a></b> ~Sprite() {}<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Graphic&amp; GetGraphic() <b><a href="CppConst.htm">const</a></b> { <b><a href="CppReturn.htm">return</a></b> mGraphic; }<br/>
-&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> GetX() <b><a href="CppConst.htm">const</a></b> { <b><a href="CppReturn.htm">return</a></b> mX; }<br/>
-&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> GetY() <b><a href="CppConst.htm">const</a></b> { <b><a href="CppReturn.htm">return</a></b> mY; }<br/>
-&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> GetHealth() <b><a href="CppConst.htm">const</a></b> { <b><a href="CppReturn.htm">return</a></b> mHealth; }<br/>
-&nbsp;&nbsp;<b><a href="CppBool.htm">bool</a></b> IsSpriteBodyRel(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x, <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> y) <b><a href="CppConst.htm">const</a></b>;<br/>
-&nbsp;&nbsp;<b><a href="CppBool.htm">bool</a></b> IsSpriteBodyAbs(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x, <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> y) <b><a href="CppConst.htm">const</a></b>;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppPair.htm">std::pair</a>&lt;<b><a href="CppInt.htm">int</a></b>,<b><a href="CppInt.htm">int</a></b>&gt; &gt; GetSpriteBodyAbs() <b><a href="CppConst.htm">const</a></b>;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> Graphic&amp; GetGraphic() <b><a href="CppConst.html">const</a></b> { <b><a href="CppReturn.html">return</a></b> mGraphic; }<br/>
+&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> GetX() <b><a href="CppConst.html">const</a></b> { <b><a href="CppReturn.html">return</a></b> mX; }<br/>
+&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> GetY() <b><a href="CppConst.html">const</a></b> { <b><a href="CppReturn.html">return</a></b> mY; }<br/>
+&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> GetHealth() <b><a href="CppConst.html">const</a></b> { <b><a href="CppReturn.html">return</a></b> mHealth; }<br/>
+&nbsp;&nbsp;<b><a href="CppBool.htm">bool</a></b> IsSpriteBodyRel(<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> x, <b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> y) <b><a href="CppConst.html">const</a></b>;<br/>
+&nbsp;&nbsp;<b><a href="CppBool.htm">bool</a></b> IsSpriteBodyAbs(<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> x, <b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> y) <b><a href="CppConst.html">const</a></b>;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppVector.html">std::vector</a>&lt;<a href="CppPair.html">std::pair</a>&lt;<b><a href="CppInt.htm">int</a></b>,<b><a href="CppInt.htm">int</a></b>&gt; &gt; GetSpriteBodyAbs() <b><a href="CppConst.html">const</a></b>;<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> ChangeHealth(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> delta) { mHealth<a href="CppOperatorPlusAssign.htm">+=</a>delta; }<br/>
-&nbsp;&nbsp;<b><a href="CppBool.htm">bool</a></b> IsDead() <b><a href="CppConst.htm">const</a></b> { <b><a href="CppReturn.htm">return</a></b> mHealth <a href="CppOperatorLessEqual.htm">&lt;=</a> 0; }<br/>
-&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> ChangeX(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> dx);<br/>
-&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> ChangeY(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> dy);<br/>
-&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> GetWidth() <b><a href="CppConst.htm">const</a></b>;<br/>
-&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> GetHeight() <b><a href="CppConst.htm">const</a></b>;<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> ChangeHealth(<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> delta) { mHealth<a href="CppOperatorPlusAssign.htm">+=</a>delta; }<br/>
+&nbsp;&nbsp;<b><a href="CppBool.htm">bool</a></b> IsDead() <b><a href="CppConst.html">const</a></b> { <b><a href="CppReturn.html">return</a></b> mHealth <a href="CppOperatorLessEqual.html">&lt;=</a> 0; }<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> ChangeX(<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> dx);<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> ChangeY(<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> dy);<br/>
+&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> GetWidth() <b><a href="CppConst.html">const</a></b>;<br/>
+&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> GetHeight() <b><a href="CppConst.html">const</a></b>;<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> SetGraphic(<b><a href="CppConst.htm">const</a></b> Graphic&amp; g) { mGraphic <a href="CppOperatorAssign.htm">=</a> g; }<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> SetGraphic(<b><a href="CppConst.html">const</a></b> Graphic&amp; g) { mGraphic <a href="CppOperatorAssign.htm">=</a> g; }<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppVirtual.htm">virtual</a></b> EnumSprite GetSprite() <b><a href="CppConst.htm">const</a></b> <a href="CppOperatorAssign.htm">=</a> 0;<br/>
-&nbsp;&nbsp;<b><a href="CppVirtual.htm">virtual</a></b> <b><a href="CppVoid.htm">void</a></b> Move() <a href="CppOperatorAssign.htm">=</a> 0;<br/>
-&nbsp;&nbsp;<b><a href="CppVirtual.htm">virtual</a></b> <b><a href="CppVoid.htm">void</a></b> Shoot(<a href="CppVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Sprite&gt; &gt;&amp; <b><a href="CppNew.htm">new</a></b>Sprites)&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> 0;<br/>
+&nbsp;&nbsp;<b><a href="CppVirtual.html">virtual</a></b> EnumSprite GetSprite() <b><a href="CppConst.html">const</a></b> <a href="CppOperatorAssign.htm">=</a> 0;<br/>
+&nbsp;&nbsp;<b><a href="CppVirtual.html">virtual</a></b> <b><a href="CppVoid.htm">void</a></b> Move() <a href="CppOperatorAssign.htm">=</a> 0;<br/>
+&nbsp;&nbsp;<b><a href="CppVirtual.html">virtual</a></b> <b><a href="CppVoid.htm">void</a></b> Shoot(<a href="CppVector.html">std::vector</a>&lt;<a href="CppBoostShared_ptr.html">boost::shared_ptr</a>&lt;Sprite&gt; &gt;&amp; <b><a href="CppNew.htm">new</a></b>Sprites)&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> 0;<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppInt.htm">int</a></b> mMinx;<br/>
-&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppInt.htm">int</a></b> mMiny;<br/>
-&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppInt.htm">int</a></b> mMaxx;<br/>
-&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppInt.htm">int</a></b> mMaxy;<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.html">static</a></b> <b><a href="CppInt.htm">int</a></b> mMinx;<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.html">static</a></b> <b><a href="CppInt.htm">int</a></b> mMiny;<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.html">static</a></b> <b><a href="CppInt.htm">int</a></b> mMaxx;<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.html">static</a></b> <b><a href="CppInt.htm">int</a></b> mMaxy;<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppPrivate.htm">private</a></b>:<br/>
+&nbsp;&nbsp;<b><a href="CppPrivate.html">private</a></b>:<br/>
 &nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> mX;<br/>
 &nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> mY;<br/>
 &nbsp;&nbsp;Graphic mGraphic;<br/>
@@ -839,80 +839,80 @@ Dialog::Dialog()<br/>
 <br/>
 };<br/>
 <br/>
-<b><a href="CppStruct.htm">struct</a></b> SpritePlayer : <b><a href="CppPublic.htm">public</a></b> Sprite<br/>
+<b><a href="CppStruct.html">struct</a></b> SpritePlayer : <b><a href="CppPublic.html">public</a></b> Sprite<br/>
 {<br/>
-&nbsp;&nbsp;SpritePlayer(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x, <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> y);<br/>
+&nbsp;&nbsp;SpritePlayer(<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> x, <b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> y);<br/>
 <br/>
-&nbsp;&nbsp;EnumSprite GetSprite() <b><a href="CppConst.htm">const</a></b> { <b><a href="CppReturn.htm">return</a></b> EnumSprite::spritePlayer; }<br/>
+&nbsp;&nbsp;EnumSprite GetSprite() <b><a href="CppConst.html">const</a></b> { <b><a href="CppReturn.html">return</a></b> EnumSprite::spritePlayer; }<br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> Move() {}<br/>
-&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> Move(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> dx, <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> dy);<br/>
-&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> Shoot(<a href="CppVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Sprite&gt; &gt;&amp; <b><a href="CppNew.htm">new</a></b>Sprites);<br/>
-&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> GetMaxHealth() <b><a href="CppConst.htm">const</a></b> { <b><a href="CppReturn.htm">return</a></b> 100; }<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> Move(<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> dx, <b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> dy);<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> Shoot(<a href="CppVector.html">std::vector</a>&lt;<a href="CppBoostShared_ptr.html">boost::shared_ptr</a>&lt;Sprite&gt; &gt;&amp; <b><a href="CppNew.htm">new</a></b>Sprites);<br/>
+&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> GetMaxHealth() <b><a href="CppConst.html">const</a></b> { <b><a href="CppReturn.html">return</a></b> 100; }<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppPrivate.htm">private</a></b>:<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Graphic GetPlayerGraphic() <b><a href="CppConst.htm">const</a></b>;<br/>
-<br/>
-};<br/>
-<br/>
-<b><a href="CppStruct.htm">struct</a></b> SpriteMissile : <b><a href="CppPublic.htm">public</a></b> Sprite<br/>
-{<br/>
-&nbsp;&nbsp;SpriteMissile(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x, <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> y, <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> dx, <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> dy, <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> size <a href="CppOperatorAssign.htm">=</a> 1);<br/>
-<br/>
-&nbsp;&nbsp;EnumSprite GetSprite() <b><a href="CppConst.htm">const</a></b> { <b><a href="CppReturn.htm">return</a></b> EnumSprite::spriteMissile; }<br/>
-&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> Move();<br/>
-&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> Shoot(<a href="CppVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Sprite&gt; &gt;&amp; <a href="CppOperatorDivide.htm">/</a>* <b><a href="CppNew.htm">new</a></b>Sprites <a href="CppComment.htm">*/</a>) { <a href="CppOperatorDivide.htm">/</a>* A rocket cannot shoot<a href="CppComment.htm">*/</a> }<br/>
-<br/>
-&nbsp;&nbsp;<b><a href="CppPrivate.htm">private</a></b>:<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Graphic GetMissileGraphic(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> size) <b><a href="CppConst.htm">const</a></b>;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> mDx;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> mDy;<br/>
+&nbsp;&nbsp;<b><a href="CppPrivate.html">private</a></b>:<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> Graphic GetPlayerGraphic() <b><a href="CppConst.html">const</a></b>;<br/>
 <br/>
 };<br/>
 <br/>
-<b><a href="CppStruct.htm">struct</a></b> SpriteEnemySmall : <b><a href="CppPublic.htm">public</a></b> Sprite<br/>
+<b><a href="CppStruct.html">struct</a></b> SpriteMissile : <b><a href="CppPublic.html">public</a></b> Sprite<br/>
 {<br/>
-&nbsp;&nbsp;SpriteEnemySmall(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x, <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> y);<br/>
+&nbsp;&nbsp;SpriteMissile(<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> x, <b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> y, <b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> dx, <b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> dy, <b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> size <a href="CppOperatorAssign.htm">=</a> 1);<br/>
 <br/>
-&nbsp;&nbsp;EnumSprite GetSprite() <b><a href="CppConst.htm">const</a></b> { <b><a href="CppReturn.htm">return</a></b> EnumSprite::spriteEnemySmall; }<br/>
+&nbsp;&nbsp;EnumSprite GetSprite() <b><a href="CppConst.html">const</a></b> { <b><a href="CppReturn.html">return</a></b> EnumSprite::spriteMissile; }<br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> Move();<br/>
-&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> Shoot(<a href="CppVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Sprite&gt; &gt;&amp; <b><a href="CppNew.htm">new</a></b>Sprites);<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> Shoot(<a href="CppVector.html">std::vector</a>&lt;<a href="CppBoostShared_ptr.html">boost::shared_ptr</a>&lt;Sprite&gt; &gt;&amp; <a href="CppOperatorDivide.htm">/</a>* <b><a href="CppNew.htm">new</a></b>Sprites <a href="CppComment.htm">*/</a>) { <a href="CppOperatorDivide.htm">/</a>* A rocket cannot shoot<a href="CppComment.htm">*/</a> }<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppPrivate.htm">private</a></b>:<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Sprite::Graphic GetSpriteEnemySmallGraphic() <b><a href="CppConst.htm">const</a></b>;<br/>
+&nbsp;&nbsp;<b><a href="CppPrivate.html">private</a></b>:<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> Graphic GetMissileGraphic(<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> size) <b><a href="CppConst.html">const</a></b>;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> mDx;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> mDy;<br/>
+<br/>
+};<br/>
+<br/>
+<b><a href="CppStruct.html">struct</a></b> SpriteEnemySmall : <b><a href="CppPublic.html">public</a></b> Sprite<br/>
+{<br/>
+&nbsp;&nbsp;SpriteEnemySmall(<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> x, <b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> y);<br/>
+<br/>
+&nbsp;&nbsp;EnumSprite GetSprite() <b><a href="CppConst.html">const</a></b> { <b><a href="CppReturn.html">return</a></b> EnumSprite::spriteEnemySmall; }<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> Move();<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> Shoot(<a href="CppVector.html">std::vector</a>&lt;<a href="CppBoostShared_ptr.html">boost::shared_ptr</a>&lt;Sprite&gt; &gt;&amp; <b><a href="CppNew.htm">new</a></b>Sprites);<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppPrivate.html">private</a></b>:<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> Sprite::Graphic GetSpriteEnemySmallGraphic() <b><a href="CppConst.html">const</a></b>;<br/>
 &nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> mDx;<br/>
 &nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> m<a href="CppTime.htm">Time</a>r;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> m<a href="CppTime.htm">Time</a>Shoot;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> m<a href="CppTime.htm">Time</a>Shoot;<br/>
 <br/>
 };<br/>
 <br/>
-<b><a href="CppStruct.htm">struct</a></b> SpriteEnemyMedium : <b><a href="CppPublic.htm">public</a></b> Sprite<br/>
+<b><a href="CppStruct.html">struct</a></b> SpriteEnemyMedium : <b><a href="CppPublic.html">public</a></b> Sprite<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppEnum.htm">enum</a></b> EnumTurretDirection { turretDownLeft, turretDown, turretDownRight };<br/>
-&nbsp;&nbsp;SpriteEnemyMedium(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x, <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> y);<br/>
+&nbsp;&nbsp;SpriteEnemyMedium(<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> x, <b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> y);<br/>
 <br/>
-&nbsp;&nbsp;EnumSprite GetSprite() <b><a href="CppConst.htm">const</a></b> { <b><a href="CppReturn.htm">return</a></b> EnumSprite::spriteEnemyMedium; }<br/>
+&nbsp;&nbsp;EnumSprite GetSprite() <b><a href="CppConst.html">const</a></b> { <b><a href="CppReturn.html">return</a></b> EnumSprite::spriteEnemyMedium; }<br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> Move();<br/>
-&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> Shoot(<a href="CppVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Sprite&gt; &gt;&amp; <b><a href="CppNew.htm">new</a></b>Sprites);<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> Shoot(<a href="CppVector.html">std::vector</a>&lt;<a href="CppBoostShared_ptr.html">boost::shared_ptr</a>&lt;Sprite&gt; &gt;&amp; <b><a href="CppNew.htm">new</a></b>Sprites);<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppPrivate.htm">private</a></b>:<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Sprite::Graphic GetSpriteShootDown() <b><a href="CppConst.htm">const</a></b>;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Sprite::Graphic GetSpriteShootDownLeft() <b><a href="CppConst.htm">const</a></b>;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Sprite::Graphic GetSpriteShootDownRight() <b><a href="CppConst.htm">const</a></b>;<br/>
+&nbsp;&nbsp;<b><a href="CppPrivate.html">private</a></b>:<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> Sprite::Graphic GetSpriteShootDown() <b><a href="CppConst.html">const</a></b>;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> Sprite::Graphic GetSpriteShootDownLeft() <b><a href="CppConst.html">const</a></b>;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> Sprite::Graphic GetSpriteShootDownRight() <b><a href="CppConst.html">const</a></b>;<br/>
 <br/>
 &nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> m<a href="CppTime.htm">Time</a>r;<br/>
 &nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> mDx;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> m<a href="CppTime.htm">Time</a>Shoot;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> m<a href="CppTime.htm">Time</a>Shoot;<br/>
 &nbsp;&nbsp;EnumTurretDirection mTurretDirection;<br/>
 <br/>
 };<br/>
 <br/>
 <b><a href="CppBool.htm">bool</a></b> IsCollision(<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Sprite&gt;&amp; s1,<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Sprite&gt;&amp; s2);<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppBoostShared_ptr.html">boost::shared_ptr</a>&lt;Sprite&gt;&amp; s1,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppBoostShared_ptr.html">boost::shared_ptr</a>&lt;Sprite&gt;&amp; s2);<br/>
 <br/>
-} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> xnz<br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.html">namespace</a></b> xnz<br/>
 <br/>
-<a href="CppEndif.htm">#endif</a><br/>
+<a href="CppEndif.html">#endif</a><br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -924,11 +924,11 @@ Dialog::Dialog()<br/>
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="gamexenonzerosprite.cpp" border = "1"><tr><td><code>
-<a href="CppInclude.htm">#include</a> "gamexenonzerosprite.h"<br/>
+<a href="CppInclude.html">#include</a> "gamexenonzerosprite<a href="CppHeaderFile.htm">.h</a>"<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppCassertH.html">cassert</a>&gt;<br/>
 <br/>
-<b><a href="CppNamespace.htm">namespace</a></b> xnz {<br/>
+<b><a href="CppNamespace.html">namespace</a></b> xnz {<br/>
 <br/>
 <br/>
 <b><a href="CppInt.htm">int</a></b> Sprite::mMinx <a href="CppOperatorAssign.htm">=</a> 1;<br/>
@@ -937,52 +937,52 @@ Dialog::Dialog()<br/>
 <b><a href="CppInt.htm">int</a></b> Sprite::mMaxy <a href="CppOperatorAssign.htm">=</a> 0;<br/>
 <br/>
 Sprite::Sprite(<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x,<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> y,<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Graphic&amp; graphic,<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> health)<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> x,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> y,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> Graphic&amp; graphic,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> health)<br/>
 &nbsp;&nbsp;: mX(x),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;mY(y),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;mGraphic(graphic),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;mHealth(health)<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>( x <a href="CppOperatorGreaterEqual.htm">&gt;=</a> mMinx);<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>( x &lt;&nbsp;&nbsp;mMaxx);<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>( y <a href="CppOperatorGreaterEqual.htm">&gt;=</a> mMiny);<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>( y &lt;&nbsp;&nbsp;mMaxy);<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(mGraphic.size() &gt; 0);<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(mHealth &gt; 0);<br/>
+&nbsp;&nbsp;<a href="CppAssert.html">assert</a>( x <a href="CppOperatorGreaterEqual.html">&gt;=</a> mMinx);<br/>
+&nbsp;&nbsp;<a href="CppAssert.html">assert</a>( x &lt;&nbsp;&nbsp;mMaxx);<br/>
+&nbsp;&nbsp;<a href="CppAssert.html">assert</a>( y <a href="CppOperatorGreaterEqual.html">&gt;=</a> mMiny);<br/>
+&nbsp;&nbsp;<a href="CppAssert.html">assert</a>( y &lt;&nbsp;&nbsp;mMaxy);<br/>
+&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(mGraphic.size() &gt; 0);<br/>
+&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(mHealth &gt; 0);<br/>
 <br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> Sprite::ChangeX(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> dx)<br/>
+<b><a href="CppVoid.htm">void</a></b> Sprite::ChangeX(<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> dx)<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppAssert.htm">assert</a>( x <a href="CppOperatorGreaterEqual.htm">&gt;=</a> mMinx);<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppAssert.htm">assert</a>( x &lt;&nbsp;&nbsp;mMaxx);<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppAssert.html">assert</a>( x <a href="CppOperatorGreaterEqual.html">&gt;=</a> mMinx);<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppAssert.html">assert</a>( x &lt;&nbsp;&nbsp;mMaxx);<br/>
 &nbsp;&nbsp;mX <a href="CppOperatorPlus.htm">+</a><a href="CppOperatorAssign.htm">=</a> dx;<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> Sprite::ChangeY(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> dy)<br/>
+<b><a href="CppVoid.htm">void</a></b> Sprite::ChangeY(<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> dy)<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppAssert.htm">assert</a>( y <a href="CppOperatorGreaterEqual.htm">&gt;=</a> mMiny);<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppAssert.htm">assert</a>( y &lt;&nbsp;&nbsp;mMaxy);<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppAssert.html">assert</a>( y <a href="CppOperatorGreaterEqual.html">&gt;=</a> mMiny);<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppAssert.html">assert</a>( y &lt;&nbsp;&nbsp;mMaxy);<br/>
 &nbsp;&nbsp;mY <a href="CppOperatorPlus.htm">+</a><a href="CppOperatorAssign.htm">=</a> dy;<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> SpritePlayer::Move(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> dx, <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> dy)<br/>
+<b><a href="CppVoid.htm">void</a></b> SpritePlayer::Move(<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> dx, <b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> dy)<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(mMaxx <a href="CppOperatorNotEqual.htm">!=</a> 0);<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(mMaxy <a href="CppOperatorNotEqual.htm">!=</a> 0);<br/>
+&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(mMaxx <a href="CppOperatorNotEqual.htm">!=</a> 0);<br/>
+&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(mMaxy <a href="CppOperatorNotEqual.htm">!=</a> 0);<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Move in x direction<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;ChangeX(dx);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppWhile.htm">while</a></b> ( <b><a href="CppThis.htm">this</a></b>-&gt;GetX() &lt; mMinx)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppWhile.html">while</a></b> ( <b><a href="CppThis.htm">this</a></b>-&gt;GetX() &lt; mMinx)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;ChangeX(1);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;ChangeHealth(-1);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppWhile.htm">while</a></b> ( <b><a href="CppThis.htm">this</a></b>-&gt;GetX() <a href="CppOperatorPlus.htm">+</a> <b><a href="CppThis.htm">this</a></b>-&gt;GetWidth() &gt; mMaxx)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppWhile.html">while</a></b> ( <b><a href="CppThis.htm">this</a></b>-&gt;GetX() <a href="CppOperatorPlus.htm">+</a> <b><a href="CppThis.htm">this</a></b>-&gt;GetWidth() &gt; mMaxx)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;ChangeX(-1);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;ChangeHealth(-1);<br/>
@@ -991,12 +991,12 @@ Sprite::Sprite(<br/>
 <br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;ChangeY(dy);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppWhile.htm">while</a></b> ( <b><a href="CppThis.htm">this</a></b>-&gt;GetY() &lt; mMiny)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppWhile.html">while</a></b> ( <b><a href="CppThis.htm">this</a></b>-&gt;GetY() &lt; mMiny)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;ChangeY(1);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;ChangeHealth(-1);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppWhile.htm">while</a></b> ( <b><a href="CppThis.htm">this</a></b>-&gt;GetY() <a href="CppOperatorPlus.htm">+</a> <b><a href="CppThis.htm">this</a></b>-&gt;GetHeight() &gt; mMaxy)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppWhile.html">while</a></b> ( <b><a href="CppThis.htm">this</a></b>-&gt;GetY() <a href="CppOperatorPlus.htm">+</a> <b><a href="CppThis.htm">this</a></b>-&gt;GetHeight() &gt; mMaxy)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;ChangeY(-1);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;ChangeHealth(-1);<br/>
@@ -1004,51 +1004,51 @@ Sprite::Sprite(<br/>
 &nbsp;&nbsp;}<br/>
 }<br/>
 <br/>
-<b><a href="CppInt.htm">int</a></b> Sprite::GetWidth() <b><a href="CppConst.htm">const</a></b><br/>
+<b><a href="CppInt.htm">int</a></b> Sprite::GetWidth() <b><a href="CppConst.html">const</a></b><br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(mGraphic.size() &gt; 0);<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> mGraphic[0].size();<br/>
+&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(mGraphic.size() &gt; 0);<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> mGraphic[0].size();<br/>
 }<br/>
 <br/>
-<b><a href="CppInt.htm">int</a></b> Sprite::GetHeight() <b><a href="CppConst.htm">const</a></b><br/>
+<b><a href="CppInt.htm">int</a></b> Sprite::GetHeight() <b><a href="CppConst.html">const</a></b><br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> mGraphic.size();<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> mGraphic.size();<br/>
 }<br/>
 <br/>
-<b><a href="CppBool.htm">bool</a></b> Sprite::IsSpriteBodyAbs(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x, <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> y) <b><a href="CppConst.htm">const</a></b><br/>
+<b><a href="CppBool.htm">bool</a></b> Sprite::IsSpriteBodyAbs(<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> x, <b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> y) <b><a href="CppConst.html">const</a></b><br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <b><a href="CppThis.htm">this</a></b>-&gt;IsSpriteBodyRel(x <a href="CppOperatorMinus.htm">-</a> GetX(), y <a href="CppOperatorMinus.htm">-</a> GetY() );<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> <b><a href="CppThis.htm">this</a></b>-&gt;IsSpriteBodyRel(x <a href="CppOperatorMinus.htm">-</a> GetX(), y <a href="CppOperatorMinus.htm">-</a> GetY() );<br/>
 }<br/>
 <br/>
-<b><a href="CppBool.htm">bool</a></b> Sprite::IsSpriteBodyRel(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x, <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> y) <b><a href="CppConst.htm">const</a></b><br/>
+<b><a href="CppBool.htm">bool</a></b> Sprite::IsSpriteBodyRel(<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> x, <b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> y) <b><a href="CppConst.html">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> ( x &lt; 0<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorLogicalOr.htm">||</a> y &lt; 0<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorLogicalOr.htm">||</a> x <a href="CppOperatorGreaterEqual.htm">&gt;=</a> <b><a href="CppThis.htm">this</a></b>-&gt;GetWidth()<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorLogicalOr.htm">||</a> y <a href="CppOperatorGreaterEqual.htm">&gt;=</a> <b><a href="CppThis.htm">this</a></b>-&gt;GetHeight()<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorLogicalOr.htm">||</a> x <a href="CppOperatorGreaterEqual.html">&gt;=</a> <b><a href="CppThis.htm">this</a></b>-&gt;GetWidth()<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorLogicalOr.htm">||</a> y <a href="CppOperatorGreaterEqual.html">&gt;=</a> <b><a href="CppThis.htm">this</a></b>-&gt;GetHeight()<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorLogicalOr.htm">||</a> mGraphic[y][x] <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> ' '<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <b><a href="CppFalse.htm">false</a></b>;<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <b><a href="CppTrue.htm">true</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> <b><a href="CppFalse.html">false</a></b>;<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> <b><a href="CppTrue.htm">true</a></b>;<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppPair.htm">std::pair</a>&lt;<b><a href="CppInt.htm">int</a></b>,<b><a href="CppInt.htm">int</a></b>&gt; &gt; Sprite::GetSpriteBodyAbs() <b><a href="CppConst.htm">const</a></b><br/>
+<b><a href="CppConst.html">const</a></b> <a href="CppVector.html">std::vector</a>&lt;<a href="CppPair.html">std::pair</a>&lt;<b><a href="CppInt.htm">int</a></b>,<b><a href="CppInt.htm">int</a></b>&gt; &gt; Sprite::GetSpriteBodyAbs() <b><a href="CppConst.html">const</a></b><br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppPair.htm">std::pair</a>&lt;<b><a href="CppInt.htm">int</a></b>,<b><a href="CppInt.htm">int</a></b>&gt; &gt; v;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> maxx <a href="CppOperatorAssign.htm">=</a> GetX() <a href="CppOperatorPlus.htm">+</a> GetWidth();<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> maxy <a href="CppOperatorAssign.htm">=</a> GetY() <a href="CppOperatorPlus.htm">+</a> GetHeight();<br/>
+&nbsp;&nbsp;<a href="CppVector.html">std::vector</a>&lt;<a href="CppPair.html">std::pair</a>&lt;<b><a href="CppInt.htm">int</a></b>,<b><a href="CppInt.htm">int</a></b>&gt; &gt; v;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> maxx <a href="CppOperatorAssign.htm">=</a> GetX() <a href="CppOperatorPlus.htm">+</a> GetWidth();<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> maxy <a href="CppOperatorAssign.htm">=</a> GetY() <a href="CppOperatorPlus.htm">+</a> GetHeight();<br/>
 &nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> y=GetY(); y<a href="CppOperatorNotEqual.htm">!=</a>maxy; <a href="CppOperatorPlus.htm">+</a>+y)<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> x=GetX(); x<a href="CppOperatorNotEqual.htm">!=</a>maxx; <a href="CppOperatorPlus.htm">+</a>+x)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (IsSpriteBodyAbs(x,y)<a href="CppOperatorEqual.htm">==</a><b><a href="CppTrue.htm">true</a></b>)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;v.push_back(<a href="CppMake_pair.htm">std::make_pair</a>(x,y) );<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;v.push_back(<a href="CppMake_pair.html">std::make_pair</a>(x,y) );<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> v;<br/>
 }<br/>
 <br/>
-SpritePlayer::SpritePlayer(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x, <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> y)<br/>
+SpritePlayer::SpritePlayer(<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> x, <b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> y)<br/>
 &nbsp;&nbsp;: Sprite(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;x,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;y,<br/>
@@ -1058,35 +1058,35 @@ SpritePlayer::SpritePlayer(<b><a href="CppConst.htm">const</a></b> <b><a href="C
 <br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> Sprite::Graphic SpritePlayer::GetPlayerGraphic() <b><a href="CppConst.htm">const</a></b><br/>
+<b><a href="CppConst.html">const</a></b> Sprite::Graphic SpritePlayer::GetPlayerGraphic() <b><a href="CppConst.html">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;Sprite::Graphic g(4);<br/>
 &nbsp;&nbsp;g[0] <a href="CppOperatorAssign.htm">=</a> " |&nbsp;&nbsp;| ";<br/>
 &nbsp;&nbsp;g[1] <a href="CppOperatorAssign.htm">=</a> " |/\\| ";<br/>
 &nbsp;&nbsp;g[2] <a href="CppOperatorAssign.htm">=</a> " <a href="CppComment.htm">//</a>\\\\ ";<br/>
 &nbsp;&nbsp;g[3] <a href="CppOperatorAssign.htm">=</a> "/_\\/_\\";<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> g;<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> g;<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> SpritePlayer::Shoot(<a href="CppVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Sprite&gt; &gt;&amp; <b><a href="CppNew.htm">new</a></b>Sprites)<br/>
+<b><a href="CppVoid.htm">void</a></b> SpritePlayer::Shoot(<a href="CppVector.html">std::vector</a>&lt;<a href="CppBoostShared_ptr.html">boost::shared_ptr</a>&lt;Sprite&gt; &gt;&amp; <b><a href="CppNew.htm">new</a></b>Sprites)<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> missileY&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> GetY();<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> missileX1 <a href="CppOperatorAssign.htm">=</a> GetX() <a href="CppOperatorPlus.htm">+</a> 1;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> missileX2 <a href="CppOperatorAssign.htm">=</a> GetX() <a href="CppOperatorPlus.htm">+</a> 4;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> dx <a href="CppOperatorAssign.htm">=</a> 0;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> dy <a href="CppOperatorAssign.htm">=</a> <a href="CppOperatorMinus.htm">-</a>1;<br/>
-&nbsp;&nbsp;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Sprite&gt; missile1(<b><a href="CppNew.htm">new</a></b> SpriteMissile(missileX1,missileY,dx,dy));<br/>
-&nbsp;&nbsp;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Sprite&gt; missile2(<b><a href="CppNew.htm">new</a></b> SpriteMissile(missileX2,missileY,dx,dy));<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> missileY&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> GetY();<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> missileX1 <a href="CppOperatorAssign.htm">=</a> GetX() <a href="CppOperatorPlus.htm">+</a> 1;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> missileX2 <a href="CppOperatorAssign.htm">=</a> GetX() <a href="CppOperatorPlus.htm">+</a> 4;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> dx <a href="CppOperatorAssign.htm">=</a> 0;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> dy <a href="CppOperatorAssign.htm">=</a> <a href="CppOperatorMinus.htm">-</a>1;<br/>
+&nbsp;&nbsp;<a href="CppBoostShared_ptr.html">boost::shared_ptr</a>&lt;Sprite&gt; missile1(<b><a href="CppNew.htm">new</a></b> SpriteMissile(missileX1,missileY,dx,dy));<br/>
+&nbsp;&nbsp;<a href="CppBoostShared_ptr.html">boost::shared_ptr</a>&lt;Sprite&gt; missile2(<b><a href="CppNew.htm">new</a></b> SpriteMissile(missileX2,missileY,dx,dy));<br/>
 &nbsp;&nbsp;<b><a href="CppNew.htm">new</a></b>Sprites.push_back(missile1);<br/>
 &nbsp;&nbsp;<b><a href="CppNew.htm">new</a></b>Sprites.push_back(missile2);<br/>
 }<br/>
 <br/>
 SpriteMissile::SpriteMissile(<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x,<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> y,<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> dx,<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> dy,<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> size)<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> x,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> y,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> dx,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> dy,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> size)<br/>
 &nbsp;&nbsp;: Sprite(x,y,GetMissileGraphic(size),size*size),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;mDx(dx),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;mDy(dy)<br/>
@@ -1094,25 +1094,25 @@ SpriteMissile::SpriteMissile(<br/>
 <br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> Sprite::Graphic SpriteMissile::GetMissileGraphic(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> size) <b><a href="CppConst.htm">const</a></b><br/>
+<b><a href="CppConst.html">const</a></b> Sprite::Graphic SpriteMissile::GetMissileGraphic(<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> size) <b><a href="CppConst.html">const</a></b><br/>
 {<br/>
-&nbsp;&nbsp;Sprite::Graphic g(size,<a href="CppString.htm">std::string</a>(size,'*'));<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> g;<br/>
+&nbsp;&nbsp;Sprite::Graphic g(size,<a href="CppString.html">std::string</a>(size,'*'));<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> g;<br/>
 }<br/>
 <br/>
 <b><a href="CppVoid.htm">void</a></b> SpriteMissile::Move()<br/>
 {<br/>
 &nbsp;&nbsp;ChangeX(mDx);<br/>
 &nbsp;&nbsp;ChangeY(mDy);<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x <a href="CppOperatorAssign.htm">=</a> GetX();<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> y <a href="CppOperatorAssign.htm">=</a> GetY();<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> x <a href="CppOperatorAssign.htm">=</a> GetX();<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> y <a href="CppOperatorAssign.htm">=</a> GetY();<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> ( x &lt; mMinx <a href="CppOperatorLogicalOr.htm">||</a> x &gt; mMaxx <a href="CppOperatorLogicalOr.htm">||</a> y &lt; mMiny <a href="CppOperatorLogicalOr.htm">||</a> y &gt; mMaxy)<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;ChangeHealth( <a href="CppOperatorMinus.htm">-</a>GetHealth() <a href="CppOperatorMinus.htm">-</a> 1 );<br/>
 &nbsp;&nbsp;}<br/>
 }<br/>
 <br/>
-SpriteEnemySmall::SpriteEnemySmall(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x, <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> y)<br/>
+SpriteEnemySmall::SpriteEnemySmall(<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> x, <b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> y)<br/>
 &nbsp;&nbsp;: Sprite(x,y,GetSpriteEnemySmallGraphic(),1),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;mDx(1),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;m<a href="CppTime.htm">Time</a>r(0),<br/>
@@ -1121,58 +1121,58 @@ SpriteEnemySmall::SpriteEnemySmall(<b><a href="CppConst.htm">const</a></b> <b><a
 <br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> Sprite::Graphic SpriteEnemySmall::GetSpriteEnemySmallGraphic() <b><a href="CppConst.htm">const</a></b><br/>
+<b><a href="CppConst.html">const</a></b> Sprite::Graphic SpriteEnemySmall::GetSpriteEnemySmallGraphic() <b><a href="CppConst.html">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;Sprite::Graphic g(2);<br/>
 &nbsp;&nbsp;g[0] <a href="CppOperatorAssign.htm">=</a> "<a href="CppComment.htm">/*</a>\\<a href="CppComment.htm">/*</a>\\";<br/>
 &nbsp;&nbsp;g[1] <a href="CppOperatorAssign.htm">=</a> "[]&nbsp;&nbsp;[]";<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> g;<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> g;<br/>
 <br/>
 }<br/>
 <br/>
 <b><a href="CppVoid.htm">void</a></b> SpriteEnemySmall::Move()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;ChangeX(mDx);<br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (<b><a href="CppThis.htm">this</a></b>-&gt;GetX() <a href="CppOperatorPlus.htm">+</a> <b><a href="CppThis.htm">this</a></b>-&gt;GetWidth() <a href="CppOperatorGreaterEqual.htm">&gt;=</a> <b><a href="CppThis.htm">this</a></b>-&gt;mMaxx)<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (<b><a href="CppThis.htm">this</a></b>-&gt;GetX() <a href="CppOperatorPlus.htm">+</a> <b><a href="CppThis.htm">this</a></b>-&gt;GetWidth() <a href="CppOperatorGreaterEqual.html">&gt;=</a> <b><a href="CppThis.htm">this</a></b>-&gt;mMaxx)<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;mDx <a href="CppOperatorAssign.htm">=</a> <a href="CppOperatorMinus.htm">-</a>mDx;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;ChangeX(mDx);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(! (<b><a href="CppThis.htm">this</a></b>-&gt;GetX() <a href="CppOperatorPlus.htm">+</a> <b><a href="CppThis.htm">this</a></b>-&gt;GetWidth() <a href="CppOperatorGreaterEqual.htm">&gt;=</a> <b><a href="CppThis.htm">this</a></b>-&gt;mMaxx) );<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(! (<b><a href="CppThis.htm">this</a></b>-&gt;GetX() <a href="CppOperatorPlus.htm">+</a> <b><a href="CppThis.htm">this</a></b>-&gt;GetWidth() <a href="CppOperatorGreaterEqual.html">&gt;=</a> <b><a href="CppThis.htm">this</a></b>-&gt;mMaxx) );<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<b><a href="CppElse.htm">else</a></b> <b><a href="CppIf.htm">if</a></b> (<b><a href="CppThis.htm">this</a></b>-&gt;GetX() <a href="CppOperatorLessEqual.htm">&lt;=</a> <b><a href="CppThis.htm">this</a></b>-&gt;mMinx)<br/>
+&nbsp;&nbsp;<b><a href="CppElse.htm">else</a></b> <b><a href="CppIf.htm">if</a></b> (<b><a href="CppThis.htm">this</a></b>-&gt;GetX() <a href="CppOperatorLessEqual.html">&lt;=</a> <b><a href="CppThis.htm">this</a></b>-&gt;mMinx)<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;mDx <a href="CppOperatorAssign.htm">=</a> <a href="CppOperatorMinus.htm">-</a>mDx;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;ChangeX(mDx);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!(<b><a href="CppThis.htm">this</a></b>-&gt;GetX() <a href="CppOperatorLessEqual.htm">&lt;=</a> <b><a href="CppThis.htm">this</a></b>-&gt;mMinx));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(!(<b><a href="CppThis.htm">this</a></b>-&gt;GetX() <a href="CppOperatorLessEqual.html">&lt;=</a> <b><a href="CppThis.htm">this</a></b>-&gt;mMinx));<br/>
 &nbsp;&nbsp;}<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> SpriteEnemySmall::Shoot(<a href="CppVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Sprite&gt; &gt;&amp; <b><a href="CppNew.htm">new</a></b>Sprites)<br/>
+<b><a href="CppVoid.htm">void</a></b> SpriteEnemySmall::Shoot(<a href="CppVector.html">std::vector</a>&lt;<a href="CppBoostShared_ptr.html">boost::shared_ptr</a>&lt;Sprite&gt; &gt;&amp; <b><a href="CppNew.htm">new</a></b>Sprites)<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a>+m<a href="CppTime.htm">Time</a>r;<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (m<a href="CppTime.htm">Time</a>r <a href="CppOperatorModulus.htm">%</a> m<a href="CppTime.htm">Time</a>Shoot <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 0)<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> missileY&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> GetY() <a href="CppOperatorPlus.htm">+</a> 2;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> missileX1 <a href="CppOperatorAssign.htm">=</a> GetX() <a href="CppOperatorPlus.htm">+</a> 0;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> missileX2 <a href="CppOperatorAssign.htm">=</a> GetX() <a href="CppOperatorPlus.htm">+</a> 5;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> dx <a href="CppOperatorAssign.htm">=</a> 0;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> dy <a href="CppOperatorAssign.htm">=</a> 1;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Sprite&gt; missile1(<b><a href="CppNew.htm">new</a></b> SpriteMissile(missileX1,missileY,dx,dy));<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Sprite&gt; missile2(<b><a href="CppNew.htm">new</a></b> SpriteMissile(missileX2,missileY,dx,dy));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> missileY&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> GetY() <a href="CppOperatorPlus.htm">+</a> 2;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> missileX1 <a href="CppOperatorAssign.htm">=</a> GetX() <a href="CppOperatorPlus.htm">+</a> 0;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> missileX2 <a href="CppOperatorAssign.htm">=</a> GetX() <a href="CppOperatorPlus.htm">+</a> 5;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> dx <a href="CppOperatorAssign.htm">=</a> 0;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> dy <a href="CppOperatorAssign.htm">=</a> 1;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBoostShared_ptr.html">boost::shared_ptr</a>&lt;Sprite&gt; missile1(<b><a href="CppNew.htm">new</a></b> SpriteMissile(missileX1,missileY,dx,dy));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBoostShared_ptr.html">boost::shared_ptr</a>&lt;Sprite&gt; missile2(<b><a href="CppNew.htm">new</a></b> SpriteMissile(missileX2,missileY,dx,dy));<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppNew.htm">new</a></b>Sprites.push_back(missile1);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppNew.htm">new</a></b>Sprites.push_back(missile2);<br/>
 &nbsp;&nbsp;}<br/>
 }<br/>
 <br/>
-SpriteEnemyMedium::SpriteEnemyMedium(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x, <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> y)<br/>
+SpriteEnemyMedium::SpriteEnemyMedium(<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> x, <b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> y)<br/>
 &nbsp;&nbsp;: Sprite(x,y,GetSpriteShootDown(),10),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;m<a href="CppTime.htm">Time</a>Shoot(2)<br/>
 {<br/>
 <br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> Sprite::Graphic SpriteEnemyMedium::GetSpriteShootDownLeft() <b><a href="CppConst.htm">const</a></b><br/>
+<b><a href="CppConst.html">const</a></b> Sprite::Graphic SpriteEnemyMedium::GetSpriteShootDownLeft() <b><a href="CppConst.html">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;Sprite::Graphic g(7);<br/>
 &nbsp;&nbsp;g[0] <a href="CppOperatorAssign.htm">=</a> "&nbsp;&nbsp;<a href="CppOperatorDivide.htm">/</a>----\\&nbsp;&nbsp;";<br/>
@@ -1182,11 +1182,11 @@ SpriteEnemyMedium::SpriteEnemyMedium(<b><a href="CppConst.htm">const</a></b> <b>
 &nbsp;&nbsp;g[4] <a href="CppOperatorAssign.htm">=</a> "&nbsp;&nbsp;x[[]]x&nbsp;&nbsp;";<br/>
 &nbsp;&nbsp;g[5] <a href="CppOperatorAssign.htm">=</a> "&nbsp;&nbsp;[[]]&nbsp;&nbsp;&nbsp;&nbsp;";<br/>
 &nbsp;&nbsp;g[6] <a href="CppOperatorAssign.htm">=</a> " [[]]&nbsp;&nbsp;&nbsp;&nbsp; ";<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> g;<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> g;<br/>
 <br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> Sprite::Graphic SpriteEnemyMedium::GetSpriteShootDown() <b><a href="CppConst.htm">const</a></b><br/>
+<b><a href="CppConst.html">const</a></b> Sprite::Graphic SpriteEnemyMedium::GetSpriteShootDown() <b><a href="CppConst.html">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;Sprite::Graphic g(7);<br/>
 &nbsp;&nbsp;g[0] <a href="CppOperatorAssign.htm">=</a> "&nbsp;&nbsp;<a href="CppOperatorDivide.htm">/</a>----\\&nbsp;&nbsp;";<br/>
@@ -1197,11 +1197,11 @@ SpriteEnemyMedium::SpriteEnemyMedium(<b><a href="CppConst.htm">const</a></b> <b>
 &nbsp;&nbsp;g[5] <a href="CppOperatorAssign.htm">=</a> "&nbsp;&nbsp; [[]]&nbsp;&nbsp; ";<br/>
 &nbsp;&nbsp;g[6] <a href="CppOperatorAssign.htm">=</a> "&nbsp;&nbsp; [[]]&nbsp;&nbsp; ";<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> g;<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> g;<br/>
 <br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> Sprite::Graphic SpriteEnemyMedium::GetSpriteShootDownRight() <b><a href="CppConst.htm">const</a></b><br/>
+<b><a href="CppConst.html">const</a></b> Sprite::Graphic SpriteEnemyMedium::GetSpriteShootDownRight() <b><a href="CppConst.html">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;Sprite::Graphic g(7);<br/>
 &nbsp;&nbsp;g[0] <a href="CppOperatorAssign.htm">=</a> "&nbsp;&nbsp;<a href="CppOperatorDivide.htm">/</a>----\\&nbsp;&nbsp;";<br/>
@@ -1211,7 +1211,7 @@ SpriteEnemyMedium::SpriteEnemyMedium(<b><a href="CppConst.htm">const</a></b> <b>
 &nbsp;&nbsp;g[4] <a href="CppOperatorAssign.htm">=</a> "&nbsp;&nbsp;x[[]]x&nbsp;&nbsp;";<br/>
 &nbsp;&nbsp;g[5] <a href="CppOperatorAssign.htm">=</a> "&nbsp;&nbsp;&nbsp;&nbsp;[[]]&nbsp;&nbsp;";<br/>
 &nbsp;&nbsp;g[6] <a href="CppOperatorAssign.htm">=</a> "&nbsp;&nbsp;&nbsp;&nbsp; [[]] ";<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> g;<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> g;<br/>
 <br/>
 }<br/>
 <br/>
@@ -1220,52 +1220,52 @@ SpriteEnemyMedium::SpriteEnemyMedium(<b><a href="CppConst.htm">const</a></b> <b>
 <br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> SpriteEnemyMedium::Shoot(<a href="CppVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Sprite&gt; &gt;&amp; <b><a href="CppNew.htm">new</a></b>Sprites)<br/>
+<b><a href="CppVoid.htm">void</a></b> SpriteEnemyMedium::Shoot(<a href="CppVector.html">std::vector</a>&lt;<a href="CppBoostShared_ptr.html">boost::shared_ptr</a>&lt;Sprite&gt; &gt;&amp; <b><a href="CppNew.htm">new</a></b>Sprites)<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a>+m<a href="CppTime.htm">Time</a>r;<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (m<a href="CppTime.htm">Time</a>r <a href="CppOperatorModulus.htm">%</a> m<a href="CppTime.htm">Time</a>Shoot <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 0)<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> missileY <a href="CppOperatorAssign.htm">=</a> GetY() <a href="CppOperatorPlus.htm">+</a> GetHeight();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> missileX <a href="CppOperatorAssign.htm">=</a> GetX()<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> missileY <a href="CppOperatorAssign.htm">=</a> GetY() <a href="CppOperatorPlus.htm">+</a> GetHeight();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> missileX <a href="CppOperatorAssign.htm">=</a> GetX()<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> (GetWidth() <a href="CppOperatorDivide.htm">/</a> 2)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> (mTurretDirection <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> turretDownLeft&nbsp;&nbsp;? <a href="CppOperatorMinus.htm">-</a>2 : 0)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> (mTurretDirection <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> turretDownRight ?&nbsp;&nbsp;2 : 0);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> dx <a href="CppOperatorAssign.htm">=</a> 0<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> dx <a href="CppOperatorAssign.htm">=</a> 0<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> (mTurretDirection <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> turretDownLeft&nbsp;&nbsp;? <a href="CppOperatorMinus.htm">-</a>1 : 0)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> (mTurretDirection <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> turretDownRight ?&nbsp;&nbsp;1 : 0);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> dy <a href="CppOperatorAssign.htm">=</a> 1;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Sprite&gt; missile(<b><a href="CppNew.htm">new</a></b> SpriteMissile(missileX,missileY,dx,dy,2));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> dy <a href="CppOperatorAssign.htm">=</a> 1;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBoostShared_ptr.html">boost::shared_ptr</a>&lt;Sprite&gt; missile(<b><a href="CppNew.htm">new</a></b> SpriteMissile(missileX,missileY,dx,dy,2));<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppNew.htm">new</a></b>Sprites.push_back(missile);<br/>
 <br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;<b><a href="CppElse.htm">else</a></b><br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;mTurretDirection <a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;EnumTurretDirection&gt;(<a href="CppRand.htm">std::rand</a>() <a href="CppOperatorModulus.htm">%</a> 3);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppSwitch.htm">switch</a></b>(mTurretDirection)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;mTurretDirection <a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.html">static_cast</a></b>&lt;EnumTurretDirection&gt;(<a href="CppRand.html">std::rand</a>() <a href="CppOperatorModulus.htm">%</a> 3);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppSwitch.html">switch</a></b>(mTurretDirection)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> turretDownLeft:&nbsp;&nbsp;SetGraphic(GetSpriteShootDownLeft()); <b><a href="CppBreak.htm">break</a></b>;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> turretDown:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SetGraphic(GetSpriteShootDown()); <b><a href="CppBreak.htm">break</a></b>;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> turretDownRight: SetGraphic(GetSpriteShootDownRight()); <b><a href="CppBreak.htm">break</a></b>;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppDefault.htm">default</a></b>: <a href="CppAssert.htm">assert</a>(!"Should not get here");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> turretDownLeft:&nbsp;&nbsp;SetGraphic(GetSpriteShootDownLeft()); <b><a href="CppBreak.html">break</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> turretDown:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SetGraphic(GetSpriteShootDown()); <b><a href="CppBreak.html">break</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> turretDownRight: SetGraphic(GetSpriteShootDownRight()); <b><a href="CppBreak.html">break</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppDefault.html">default</a></b>: <a href="CppAssert.html">assert</a>(!"Should not get here");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;}<br/>
 }<br/>
 <br/>
 <b><a href="CppBool.htm">bool</a></b> IsCollision(<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Sprite&gt;&amp; s1,<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Sprite&gt;&amp; s2)<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppBoostShared_ptr.html">boost::shared_ptr</a>&lt;Sprite&gt;&amp; s1,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppBoostShared_ptr.html">boost::shared_ptr</a>&lt;Sprite&gt;&amp; s2)<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppPair.htm">std::pair</a>&lt;<b><a href="CppInt.htm">int</a></b>,<b><a href="CppInt.htm">int</a></b>&gt; &gt; body1 <a href="CppOperatorAssign.htm">=</a> s1-&gt;GetSpriteBodyAbs();<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppPair.htm">std::pair</a>&lt;<b><a href="CppInt.htm">int</a></b>,<b><a href="CppInt.htm">int</a></b>&gt; &gt; body2 <a href="CppOperatorAssign.htm">=</a> s2-&gt;GetSpriteBodyAbs();<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppPair.htm">std::pair</a>&lt;<b><a href="CppInt.htm">int</a></b>,<b><a href="CppInt.htm">int</a></b>&gt; &gt;::const_iterator j <a href="CppOperatorAssign.htm">=</a> body1.end();<br/>
-&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<a href="CppVector.htm">std::vector</a>&lt;<a href="CppPair.htm">std::pair</a>&lt;<b><a href="CppInt.htm">int</a></b>,<b><a href="CppInt.htm">int</a></b>&gt; &gt;::const_iterator i <a href="CppOperatorAssign.htm">=</a> body1.begin(); i<a href="CppOperatorNotEqual.htm">!=</a>j; <a href="CppOperatorPlus.htm">+</a>+i)<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppVector.html">std::vector</a>&lt;<a href="CppPair.html">std::pair</a>&lt;<b><a href="CppInt.htm">int</a></b>,<b><a href="CppInt.htm">int</a></b>&gt; &gt; body1 <a href="CppOperatorAssign.htm">=</a> s1-&gt;GetSpriteBodyAbs();<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppVector.html">std::vector</a>&lt;<a href="CppPair.html">std::pair</a>&lt;<b><a href="CppInt.htm">int</a></b>,<b><a href="CppInt.htm">int</a></b>&gt; &gt; body2 <a href="CppOperatorAssign.htm">=</a> s2-&gt;GetSpriteBodyAbs();<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppVector.html">std::vector</a>&lt;<a href="CppPair.html">std::pair</a>&lt;<b><a href="CppInt.htm">int</a></b>,<b><a href="CppInt.htm">int</a></b>&gt; &gt;::const_iterator j <a href="CppOperatorAssign.htm">=</a> body1.end();<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<a href="CppVector.html">std::vector</a>&lt;<a href="CppPair.html">std::pair</a>&lt;<b><a href="CppInt.htm">int</a></b>,<b><a href="CppInt.htm">int</a></b>&gt; &gt;::const_iterator i <a href="CppOperatorAssign.htm">=</a> body1.begin(); i<a href="CppOperatorNotEqual.htm">!=</a>j; <a href="CppOperatorPlus.htm">+</a>+i)<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> ( <a href="CppFind.htm">std::find</a>(body2.begin(),body2.end(), *i) <a href="CppOperatorNotEqual.htm">!=</a> body2.end() ) <b><a href="CppReturn.htm">return</a></b> <b><a href="CppTrue.htm">true</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> ( <a href="CppFind.html">std::find</a>(body2.begin(),body2.end(), *i) <a href="CppOperatorNotEqual.htm">!=</a> body2.end() ) <b><a href="CppReturn.html">return</a></b> <b><a href="CppTrue.htm">true</a></b>;<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <b><a href="CppFalse.htm">false</a></b>;<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> <b><a href="CppFalse.html">false</a></b>;<br/>
 }<br/>
 <br/>
-} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> xnz<br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.html">namespace</a></b> xnz<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -1277,28 +1277,28 @@ SpriteEnemyMedium::SpriteEnemyMedium(<b><a href="CppConst.htm">const</a></b> <b>
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="main.cpp" border = "1"><tr><td><code>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppStringH.htm">string</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppIostreamH.htm">iostream</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppStringH.html">string</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppIostreamH.html">iostream</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppCassertH.html">cassert</a>&gt;<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> "gamexenonzerodialog.h"<br/>
+<a href="CppInclude.html">#include</a> "gamexenonzerodialog<a href="CppHeaderFile.htm">.h</a>"<br/>
 <br/>
-<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a>()<br/>
 {<br/>
 <br/>
 &nbsp;&nbsp;xenon_zero::XeNonZero s;<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppWhile.htm">while</a></b>(!s.IsGameOver())<br/>
+&nbsp;&nbsp;<b><a href="CppWhile.html">while</a></b>(!s.IsGameOver())<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> s <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppEndl.htm">std::endl</a>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCout.html">std::cout</a> <a href="CppOperatorStreamOut.html">&lt;&lt;</a> s <a href="CppOperatorStreamOut.html">&lt;&lt;</a> <a href="CppEndl.html">std::endl</a>;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;s.AskUserInputAndProcess();<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;s.DrawSprites();<br/>
 &nbsp;&nbsp;}<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "GAME OVER!" <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppEndl.htm">std::endl</a>;<br/>
-&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "Press <a href="CppAny.htm">any</a> key to quit." <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppEndl.htm">std::endl</a>;<br/>
-&nbsp;&nbsp;<a href="CppString.htm">std::string</a> temp;<br/>
-&nbsp;&nbsp;<a href="CppGetline.htm">std::getline</a>(<a href="CppCin.htm">std::cin</a>,temp);<br/>
+&nbsp;&nbsp;<a href="CppCout.html">std::cout</a> <a href="CppOperatorStreamOut.html">&lt;&lt;</a> "GAME OVER!" <a href="CppOperatorStreamOut.html">&lt;&lt;</a> <a href="CppEndl.html">std::endl</a>;<br/>
+&nbsp;&nbsp;<a href="CppCout.html">std::cout</a> <a href="CppOperatorStreamOut.html">&lt;&lt;</a> "Press <a href="CppAny.htm">any</a> key to quit." <a href="CppOperatorStreamOut.html">&lt;&lt;</a> <a href="CppEndl.html">std::endl</a>;<br/>
+&nbsp;&nbsp;<a href="CppString.html">std::string</a> temp;<br/>
+&nbsp;&nbsp;<a href="CppGetline.html">std::getline</a>(<a href="CppCin.html">std::cin</a>,temp);<br/>
 }<br/>
 </code></td></tr></table>
 <!-- end of the code -->
@@ -1311,15 +1311,15 @@ SpriteEnemyMedium::SpriteEnemyMedium(<b><a href="CppConst.htm">const</a></b> <b>
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="qtmain.cpp" border = "1"><tr><td><code>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppQApplication.htm">QApplication</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> "qtxenonzeromaindialog.h"<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppQApplication.html">QApplication</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> "qtxenonzeromaindialog<a href="CppHeaderFile.htm">.h</a>"<br/>
 <br/>
-<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>(<b><a href="CppInt.htm">int</a></b> <a href="CppArgc.htm">argc</a>, <b><a href="CppChar.htm">char</a></b> *<a href="CppArgc.htm">argv</a>[])<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a>(<b><a href="CppInt.htm">int</a></b> <a href="CppArgc.htm">argc</a>, <b><a href="CppChar.htm">char</a></b> *<a href="CppArgc.htm">argv</a>[])<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppQApplication.htm">QApplication</a> a(<a href="CppArgc.htm">argc</a>, <a href="CppArgc.htm">argv</a>);<br/>
+&nbsp;&nbsp;<a href="CppQApplication.html">QApplication</a> a(<a href="CppArgc.htm">argc</a>, <a href="CppArgc.htm">argv</a>);<br/>
 &nbsp;&nbsp;<a href="CppQt.htm">Qt</a>XeNonZeroMainDialog d;<br/>
 &nbsp;&nbsp;d.show();<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> a.exec();<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> a.exec();<br/>
 }<br/>
 </code></td></tr></table>
 <!-- end of the code -->
@@ -1332,27 +1332,27 @@ SpriteEnemyMedium::SpriteEnemyMedium(<b><a href="CppConst.htm">const</a></b> <b>
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="qtxenonzeromaindialog.h" border = "1"><tr><td><code>
-<a href="CppIfndef.htm">#ifndef</a> QTXENONZEROMAINDIALOG_H<br/>
-<a href="CppDefine.htm">#define</a> QTXENONZEROMAINDIALOG_H<br/>
+<a href="CppIfndef.html">#ifndef</a> QTXENONZEROMAINDIALOG_H<br/>
+<a href="CppDefine.html">#define</a> QTXENONZEROMAINDIALOG_H<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppShared_ptr.htm">shared_ptr</a>.hpp&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppQDialog.htm">QDialog</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppBoost.html">boost</a>/<a href="CppShared_ptr.html">shared_ptr</a><a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppQDialog.html">QDialog</a>&gt;<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> "gamexenonzerofwd.h"<br/>
+<a href="CppInclude.html">#include</a> "gamexenonzerofwd<a href="CppHeaderFile.htm">.h</a>"<br/>
 <br/>
-<b><a href="CppNamespace.htm">namespace</a></b> Ui {<br/>
-&nbsp;&nbsp;<b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a>XeNonZeroMainDialog;<br/>
+<b><a href="CppNamespace.html">namespace</a></b> Ui {<br/>
+&nbsp;&nbsp;<b><a href="CppClass.html">class</a></b> <a href="CppQt.htm">Qt</a>XeNonZeroMainDialog;<br/>
 }<br/>
 <br/>
-<b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a>XeNonZeroMainDialog : <b><a href="CppPublic.htm">public</a></b> <a href="CppQDialog.htm">QDialog</a><br/>
+<b><a href="CppClass.html">class</a></b> <a href="CppQt.htm">Qt</a>XeNonZeroMainDialog : <b><a href="CppPublic.html">public</a></b> <a href="CppQDialog.html">QDialog</a><br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppQ_OBJECT.htm">Q_OBJECT</a><br/>
+&nbsp;&nbsp;<a href="CppQ_OBJECT.html">Q_OBJECT</a><br/>
 &nbsp;&nbsp;<br/>
-<b><a href="CppPublic.htm">public</a></b>:<br/>
-&nbsp;&nbsp;<b><a href="CppExplicit.htm">explicit</a></b> <a href="CppQt.htm">Qt</a>XeNonZeroMainDialog(<a href="CppQWidget.htm">QWidget</a> *parent <a href="CppOperatorAssign.htm">=</a> 0);<br/>
+<b><a href="CppPublic.html">public</a></b>:<br/>
+&nbsp;&nbsp;<b><a href="CppExplicit.html">explicit</a></b> <a href="CppQt.htm">Qt</a>XeNonZeroMainDialog(<a href="CppQWidget.html">QWidget</a> *parent <a href="CppOperatorAssign.htm">=</a> 0);<br/>
 &nbsp;&nbsp;~<a href="CppQt.htm">Qt</a>XeNonZeroMainDialog();<br/>
 &nbsp;&nbsp;<br/>
-<b><a href="CppPrivate.htm">private</a></b> <b><a href="CppSlots.htm">slots</a></b>:<br/>
+<b><a href="CppPrivate.html">private</a></b> <b><a href="CppSlots.html">slots</a></b>:<br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> on_button_a_clicked();<br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> on_button_d_clicked();<br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> on_button_e_clicked();<br/>
@@ -1360,15 +1360,15 @@ SpriteEnemyMedium::SpriteEnemyMedium(<b><a href="CppConst.htm">const</a></b> <b>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> on_button_space_clicked();<br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> on_button_w_clicked();<br/>
 <br/>
-<b><a href="CppPrivate.htm">private</a></b>:<br/>
+<b><a href="CppPrivate.html">private</a></b>:<br/>
 &nbsp;&nbsp;<a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a>XeNonZeroMainDialog *ui;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;xnz::Dialog&gt; m_dialog;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppBoostShared_ptr.html">boost::shared_ptr</a>&lt;xnz::Dialog&gt; m_dialog;<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/Displays the dialog<br/>
-&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> Display(<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> xnz::Area&gt; area);<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> Display(<b><a href="CppConst.html">const</a></b> <a href="CppBoostShared_ptr.html">boost::shared_ptr</a>&lt;<b><a href="CppConst.html">const</a></b> xnz::Area&gt; area);<br/>
 };<br/>
 <br/>
-<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> QTXENONZEROMAINDIALOG_H<br/>
+<a href="CppEndif.html">#endif</a> <a href="CppComment.htm">//</a> QTXENONZEROMAINDIALOG_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -1380,71 +1380,71 @@ SpriteEnemyMedium::SpriteEnemyMedium(<b><a href="CppConst.htm">const</a></b> <b>
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="qtxenonzeromaindialog.cpp" border = "1"><tr><td><code>
-<a href="CppInclude.htm">#include</a> "qtxenonzeromaindialog.h"<br/>
+<a href="CppInclude.html">#include</a> "qtxenonzeromaindialog<a href="CppHeaderFile.htm">.h</a>"<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppCassertH.html">cassert</a>&gt;<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> "gamexenonzerodialog.h"<br/>
-<a href="CppInclude.htm">#include</a> "ui_qtxenonzeromaindialog.h"<br/>
+<a href="CppInclude.html">#include</a> "gamexenonzerodialog<a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "ui_qtxenonzeromaindialog<a href="CppHeaderFile.htm">.h</a>"<br/>
 <br/>
-<a href="CppQt.htm">Qt</a>XeNonZeroMainDialog::<a href="CppQt.htm">Qt</a>XeNonZeroMainDialog(<a href="CppQWidget.htm">QWidget</a> *parent) :<br/>
-&nbsp;&nbsp;<a href="CppQDialog.htm">QDialog</a>(parent),<br/>
+<a href="CppQt.htm">Qt</a>XeNonZeroMainDialog::<a href="CppQt.htm">Qt</a>XeNonZeroMainDialog(<a href="CppQWidget.html">QWidget</a> *parent) :<br/>
+&nbsp;&nbsp;<a href="CppQDialog.html">QDialog</a>(parent),<br/>
 &nbsp;&nbsp;ui(<b><a href="CppNew.htm">new</a></b> <a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a>XeNonZeroMainDialog),<br/>
 &nbsp;&nbsp;m_dialog(<b><a href="CppNew.htm">new</a></b> xnz::Dialog)<br/>
 {<br/>
 &nbsp;&nbsp;ui-&gt;setupUi(<b><a href="CppThis.htm">this</a></b>);<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(m_dialog);<br/>
+&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(m_dialog);<br/>
 &nbsp;&nbsp;on_button_space_clicked();<br/>
 }<br/>
 <br/>
 <a href="CppQt.htm">Qt</a>XeNonZeroMainDialog::~<a href="CppQt.htm">Qt</a>XeNonZeroMainDialog()<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppDelete.htm">delete</a></b> ui;<br/>
+&nbsp;&nbsp;<b><a href="CppDelete.html">delete</a></b> ui;<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a>XeNonZeroMainDialog::Display(<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> xnz::Area&gt; area)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a>XeNonZeroMainDialog::Display(<b><a href="CppConst.html">const</a></b> <a href="CppBoostShared_ptr.html">boost::shared_ptr</a>&lt;<b><a href="CppConst.html">const</a></b> xnz::Area&gt; area)<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(area);<br/>
-&nbsp;&nbsp;<a href="CppString.htm">std::string</a> text;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppAuto.htm">auto</a></b> v <a href="CppOperatorAssign.htm">=</a> area-&gt;GetArea();<br/>
-&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppConst.htm">const</a></b> <b><a href="CppAuto.htm">auto</a></b> s: v) { text <a href="CppOperatorPlus.htm">+</a><a href="CppOperatorAssign.htm">=</a> s <a href="CppOperatorPlus.htm">+</a> "\n"; }<br/>
+&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(area);<br/>
+&nbsp;&nbsp;<a href="CppString.html">std::string</a> text;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppAuto.htm">auto</a></b> v <a href="CppOperatorAssign.htm">=</a> area-&gt;GetArea();<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppConst.html">const</a></b> <b><a href="CppAuto.htm">auto</a></b> s: v) { text <a href="CppOperatorPlus.htm">+</a><a href="CppOperatorAssign.htm">=</a> s <a href="CppOperatorPlus.htm">+</a> "\n"; }<br/>
 &nbsp;&nbsp;ui-&gt;text-&gt;setPlainText(text.c_str());<br/>
 }<br/>
 <br/>
 <b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a>XeNonZeroMainDialog::on_button_a_clicked()<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(m_dialog);<br/>
+&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(m_dialog);<br/>
 &nbsp;&nbsp;Display(m_dialog-&gt;ProcessInput(xnz::Dialog::Input::left));<br/>
 }<br/>
 <br/>
 <b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a>XeNonZeroMainDialog::on_button_d_clicked()<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(m_dialog);<br/>
+&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(m_dialog);<br/>
 &nbsp;&nbsp;Display(m_dialog-&gt;ProcessInput(xnz::Dialog::Input::right));<br/>
 }<br/>
 <br/>
 <b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a>XeNonZeroMainDialog::on_button_e_clicked()<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(m_dialog);<br/>
+&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(m_dialog);<br/>
 &nbsp;&nbsp;Display(m_dialog-&gt;ProcessInput(xnz::Dialog::Input::shoot));<br/>
 <br/>
 }<br/>
 <br/>
 <b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a>XeNonZeroMainDialog::on_button_s_clicked()<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(m_dialog);<br/>
+&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(m_dialog);<br/>
 &nbsp;&nbsp;Display(m_dialog-&gt;ProcessInput(xnz::Dialog::Input::down));<br/>
 }<br/>
 <br/>
 <b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a>XeNonZeroMainDialog::on_button_space_clicked()<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(m_dialog);<br/>
+&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(m_dialog);<br/>
 &nbsp;&nbsp;Display(m_dialog-&gt;ProcessInput(xnz::Dialog::Input::space));<br/>
 }<br/>
 <br/>
 <b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a>XeNonZeroMainDialog::on_button_w_clicked()<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(m_dialog);<br/>
+&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(m_dialog);<br/>
 &nbsp;&nbsp;Display(m_dialog-&gt;ProcessInput(xnz::Dialog::Input::up));<br/>
 }<br/>
 </code></td></tr></table>

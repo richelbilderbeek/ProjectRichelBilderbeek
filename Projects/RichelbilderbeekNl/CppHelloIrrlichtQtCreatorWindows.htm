@@ -61,16 +61,16 @@
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="CppHelloIrrlichtQtCreatorWindows.pro" border = "1"><tr><td><code>
-TEMPLATE = app<br/>
-CONFIG += console<br/>
-CONFIG -= app_bundle<br/>
-CONFIG -= qt<br/>
+<a href="CppQmakeTemplate.htm">TEMPLATE</a> = app<br/>
+<a href="CppQmakeConfig.htm">CONFIG</a> += console<br/>
+<a href="CppQmakeConfig.htm">CONFIG</a> -= app_bundle<br/>
+<a href="CppQmakeConfig.htm">CONFIG</a> -= qt<br/>
 <br/>
-<a href="CppSOURCES.htm">SOURCES</a> += <a href="CppMain.htm">main</a>.cpp<br/>
+<a href="CppQmakeSources.htm">SOURCES</a> += <a href="CppMain.htm">main</a>.cpp<br/>
 <br/>
-<a href="CppINCLUDEPATH.htm">INCLUDEPATH</a> += ../../<a href="CppLibrary.htm">Libraries</a>/irrlicht-1.8/include<br/>
-<a href="CppLIBS.htm">LIBS</a> += -L../../<a href="CppLibrary.htm">Libraries</a>/irrlicht-1.8/lib/Win32-gcc/ -lirrlicht<br/>
-<a href="CppLIBS.htm">LIBS</a> += -L../../<a href="CppLibrary.htm">Libraries</a>/irrlicht-1.8/bin/Win32-gcc<br/>
+<a href="CppQmakeIncludepath.htm">INCLUDEPATH</a> += ../../<a href="CppLibrary.htm">Libraries</a>/irrlicht-1.8/include<br/>
+<a href="CppQmakeLibs.htm">LIBS</a> += -L../../<a href="CppLibrary.htm">Libraries</a>/irrlicht-1.8/lib/Win32-gcc/ -lirrlicht<br/>
+<a href="CppQmakeLibs.htm">LIBS</a> += -L../../<a href="CppLibrary.htm">Libraries</a>/irrlicht-1.8/bin/Win32-gcc<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -82,16 +82,16 @@ CONFIG -= qt<br/>
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="main.cpp" border = "1"><tr><td><code>
-<a href="CppInclude.htm">#include</a> "irrlicht.h"<br/>
+<a href="CppInclude.html">#include</a> "irrlicht<a href="CppHeaderFile.htm">.h</a>"<br/>
 <br/>
-<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a>()<br/>
 {<br/>
-&nbsp;&nbsp;irr::IrrlichtDevice * <b><a href="CppConst.htm">const</a></b> device <a href="CppOperatorAssign.htm">=</a> irr::createDevice(irr::video::EDT_SOFTWARE);<br/>
+&nbsp;&nbsp;irr::IrrlichtDevice * <b><a href="CppConst.html">const</a></b> device <a href="CppOperatorAssign.htm">=</a> irr::createDevice(irr::video::EDT_SOFTWARE);<br/>
 <br/>
 &nbsp;&nbsp;device-&gt;setWindowCaption(L"HelloIrrlicht");<br/>
 <br/>
-&nbsp;&nbsp;irr::video::IVideoDriver * <b><a href="CppConst.htm">const</a></b> driver <a href="CppOperatorAssign.htm">=</a> device-&gt;getVideoDriver();<br/>
-&nbsp;&nbsp;irr::scene::ISceneManager * <b><a href="CppConst.htm">const</a></b> scene_manager <a href="CppOperatorAssign.htm">=</a> device-&gt;getSceneManager();<br/>
+&nbsp;&nbsp;irr::video::IVideoDriver * <b><a href="CppConst.html">const</a></b> driver <a href="CppOperatorAssign.htm">=</a> device-&gt;getVideoDriver();<br/>
+&nbsp;&nbsp;irr::scene::ISceneManager * <b><a href="CppConst.html">const</a></b> scene_manager <a href="CppOperatorAssign.htm">=</a> device-&gt;getSceneManager();<br/>
 &nbsp;&nbsp;irr::gui::IGUIEnvironment * gui_environment <a href="CppOperatorAssign.htm">=</a> device-&gt;getGUIEnvironment();<br/>
 <br/>
 &nbsp;&nbsp;gui_environment-&gt;addStaticText(<br/>
@@ -99,7 +99,7 @@ CONFIG -= qt<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;irr::core::rect&lt;<b><a href="CppInt.htm">int</a></b>&gt;(320-32,240-8,320+32,240+8),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppTrue.htm">true</a></b>);<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppWhile.htm">while</a></b>(device-&gt;run())<br/>
+&nbsp;&nbsp;<b><a href="CppWhile.html">while</a></b>(device-&gt;run())<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;driver-&gt;beginScene(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppTrue.htm">true</a></b>,<br/>

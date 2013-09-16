@@ -106,13 +106,13 @@ in 2012 it was ported to <a href="CppQtCreator.htm">Qt Creator</a>.</p>
 QT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; += core gui<br/>
 greaterThan(QT_MAJOR_VERSION, 4): QT += <a href="CppWidget.htm">widget</a>s<br/>
 <br/>
-TEMPLATE = app<br/>
+<a href="CppQmakeTemplate.htm">TEMPLATE</a> = app<br/>
 <br/>
-<a href="CppINCLUDEPATH.htm">INCLUDEPATH</a> += \<br/>
+<a href="CppQmakeIncludepath.htm">INCLUDEPATH</a> += \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppAbout.htm">CppAbout</a> \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppQtAboutDialog.htm">CppQtAboutDialog</a><br/>
 <br/>
-<a href="CppSOURCES.htm">SOURCES</a> += \<br/>
+<a href="CppQmakeSources.htm">SOURCES</a> += \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppAbout.htm">CppAbout</a>/<a href="CppAbout.htm">about</a>.cpp \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppQtAboutDialog.htm">CppQtAboutDialog</a>/<a href="CppQtAboutDialog.htm">qtaboutdialog</a>.cpp \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="GameDasWahreSchlagerfest.htm">daswahreschlagerfest</a>menudialog.cpp \<br/>
@@ -122,7 +122,7 @@ TEMPLATE = app<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;qt<a href="GameDasWahreSchlagerfest.htm">daswahreschlagerfest</a><a href="CppWidget.htm">widget</a>.cpp \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;qt<a href="CppMain.htm">main</a>.cpp<br/>
 <br/>
-<a href="CppHEADERS.htm">HEADERS</a>&nbsp;&nbsp;+= \<br/>
+<a href="CppQmakeHeaders.htm">HEADERS</a>&nbsp;&nbsp;+= \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppAbout.htm">CppAbout</a>/<a href="CppAbout.htm">about</a>.h \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppQtAboutDialog.htm">CppQtAboutDialog</a>/<a href="CppQtAboutDialog.htm">qtaboutdialog</a>.h \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="GameDasWahreSchlagerfest.htm">daswahreschlagerfest</a><a href="CppWidget.htm">widget</a>.h \<br/>
@@ -140,7 +140,7 @@ OTHER_FILES += \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppAbout.htm">CppAbout</a>/Licence.txt \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppQtAboutDialog.htm">CppQtAboutDialog</a>/Licence.txt<br/>
 <br/>
-<a href="CppRESOURCES.htm">RESOURCES</a> += \<br/>
+<a href="CppQmakeResources.htm">RESOURCES</a> += \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="GameDasWahreSchlagerfest.htm">GameDasWahreSchlagerfest</a>.qrc<br/>
 <br/>
 #<br/>
@@ -149,15 +149,15 @@ OTHER_FILES += \<br/>
 #<br/>
 #<br/>
 <br/>
-CONFIG(debug, debug|release) {<br/>
+<a href="CppQmakeConfig.htm">CONFIG</a>(debug, debug|release) {<br/>
 &nbsp;&nbsp;message(Debug mode)<br/>
 }<br/>
 <br/>
-CONFIG(release, debug|release) {<br/>
+<a href="CppQmakeConfig.htm">CONFIG</a>(release, debug|release) {<br/>
 &nbsp;&nbsp;message(Release mode)<br/>
 <br/>
 &nbsp;&nbsp;#Remove all <a href="CppAssert.htm">assert</a>s and <a href="CppTRACE.htm">TRACE</a><br/>
-&nbsp;&nbsp;DEFINES += NDEBUG N<a href="CppTRACE.htm">TRACE</a>_BILDERBIKKEL<br/>
+&nbsp;&nbsp;<a href="CppQmakeDefines.htm">DEFINES</a> += NDEBUG N<a href="CppTRACE.htm">TRACE</a>_BILDERBIKKEL<br/>
 }<br/>
 <br/>
 #<br/>
@@ -171,10 +171,10 @@ CONFIG(release, debug|release) {<br/>
 # Compiler flags<br/>
 #<br/>
 #<br/>
-<a href="CppQMAKE_CXXFLAGS.htm">QMAKE_CXXFLAGS</a> += -std=<a href="Cpp11.htm">c++11</a> <a href="CppWall.htm">-Wall</a> <a href="CppWextra.htm">-Wextra</a><br/>
+<a href="CppQmakeQmake_cxxflags.htm">QMAKE_CXXFLAGS</a> += -std=<a href="Cpp11.htm">c++11</a> <a href="CppWall.htm">-Wall</a> <a href="CppWextra.htm">-Wextra</a><br/>
 <br/>
 unix {<br/>
-&nbsp;&nbsp;<a href="CppQMAKE_CXXFLAGS.htm">QMAKE_CXXFLAGS</a> += <a href="CppWerror.htm">-Werror</a><br/>
+&nbsp;&nbsp;<a href="CppQmakeQmake_cxxflags.htm">QMAKE_CXXFLAGS</a> += <a href="CppWerror.htm">-Werror</a><br/>
 }<br/>
 <br/>
 #<br/>
@@ -184,7 +184,7 @@ unix {<br/>
 #<br/>
 <br/>
 win32 {<br/>
-&nbsp;&nbsp;<a href="CppINCLUDEPATH.htm">INCLUDEPATH</a> += \<br/>
+&nbsp;&nbsp;<a href="CppQmakeIncludepath.htm">INCLUDEPATH</a> += \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/boost_1_54_0<br/>
 }<br/>
 </code></td></tr></table>
@@ -200,7 +200,7 @@ win32 {<br/>
 <table summary="daswahreschlagerfestmenudialog.h" border = "1"><tr><td><code>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">/*</a><br/>
-<a href="GameDasWahreSchlagerfest.htm">Das Wahre Schlagerfest</a>, a simple game<br/>
+<a href="GameDasWahreSchlagerfest.html">Das Wahre Schlagerfest</a>, a simple game<br/>
 Copyright (C) 2003-2012 Richel Bilderbeek<br/>
 <br/>
 This program is free software: you can redistribute it and/or modify<br/>
@@ -216,36 +216,36 @@ You should have received a copy of the GNU General Public License<br/>
 along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">*/</a><br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="GameDasWahreSchlagerfest.htm">GameDasWahreSchlagerfest</a>.htm<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="GameDasWahreSchlagerfest.html">GameDasWahreSchlagerfest</a>.html<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppIfndef.htm">#ifndef</a> DASWAHRESCHLAGERFESTMENUDIALOG_H<br/>
-<a href="CppDefine.htm">#define</a> DASWAHRESCHLAGERFESTMENUDIALOG_H<br/>
+<a href="CppIfndef.html">#ifndef</a> DASWAHRESCHLAGERFESTMENUDIALOG_H<br/>
+<a href="CppDefine.html">#define</a> DASWAHRESCHLAGERFESTMENUDIALOG_H<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppStringH.htm">string</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppStringH.html">string</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppVectorH.html">vector</a>&gt;<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppAbout.htm">about</a>.h"<br/>
+<a href="CppInclude.html">#include</a> "<a href="CppAbout.html">about</a><a href="CppHeaderFile.htm">.h</a>"<br/>
 <br/>
-<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
+<b><a href="CppNamespace.html">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
 <br/>
-<b><a href="CppStruct.htm">struct</a></b> DasWahreSchlagerfestMenuDialog<br/>
+<b><a href="CppStruct.html">struct</a></b> DasWahreSchlagerfestMenuDialog<br/>
 {<br/>
 &nbsp;&nbsp;DasWahreSchlagerfestMenuDialog();<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Obtain the <a href="CppAbout.htm">About</a> information of <b><a href="CppThis.htm">this</a></b> <b><a href="CppClass.htm">class</a></b><br/>
-&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppAbout.htm">About</a> GetAbout();<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Obtain the <a href="CppAbout.html">About</a> information of <b><a href="CppThis.htm">this</a></b> <b><a href="CppClass.html">class</a></b><br/>
+&nbsp;&nbsp;<b><a href="CppStatic.html">static</a></b> <b><a href="CppConst.html">const</a></b> <a href="CppAbout.html">About</a> GetAbout();<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Obtain the <a href="CppVersion.htm">version</a> of <b><a href="CppThis.htm">this</a></b> <b><a href="CppClass.htm">class</a></b><br/>
-&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> Get<a href="CppVersion.htm">Version</a>();<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Obtain the <a href="CppVersion.html">version</a> of <b><a href="CppThis.htm">this</a></b> <b><a href="CppClass.html">class</a></b><br/>
+&nbsp;&nbsp;<b><a href="CppStatic.html">static</a></b> <b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a> Get<a href="CppVersion.html">Version</a>();<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Obtain the <a href="CppVersion.htm">version</a> history of <b><a href="CppThis.htm">this</a></b> <b><a href="CppClass.htm">class</a></b><br/>
-&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; Get<a href="CppVersion.htm">Version</a>History();<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Obtain the <a href="CppVersion.html">version</a> history of <b><a href="CppThis.htm">this</a></b> <b><a href="CppClass.html">class</a></b><br/>
+&nbsp;&nbsp;<b><a href="CppStatic.html">static</a></b> <b><a href="CppConst.html">const</a></b> <a href="CppVector.html">std::vector</a>&lt;<a href="CppString.html">std::string</a>&gt; Get<a href="CppVersion.html">Version</a>History();<br/>
 <br/>
 };<br/>
 <br/>
-} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.html">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
 <br/>
-<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> DASWAHRESCHLAGERFESTMENUDIALOG_H<br/>
+<a href="CppEndif.html">#endif</a> <a href="CppComment.htm">//</a> DASWAHRESCHLAGERFESTMENUDIALOG_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -259,7 +259,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <table summary="daswahreschlagerfestmenudialog.cpp" border = "1"><tr><td><code>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">/*</a><br/>
-<a href="GameDasWahreSchlagerfest.htm">Das Wahre Schlagerfest</a>, a simple game<br/>
+<a href="GameDasWahreSchlagerfest.html">Das Wahre Schlagerfest</a>, a simple game<br/>
 Copyright (C) 2003-2012 Richel Bilderbeek<br/>
 <br/>
 This program is free software: you can redistribute it and/or modify<br/>
@@ -275,40 +275,40 @@ You should have received a copy of the GNU General Public License<br/>
 along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">*/</a><br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="GameDasWahreSchlagerfest.htm">GameDasWahreSchlagerfest</a>.htm<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="GameDasWahreSchlagerfest.html">GameDasWahreSchlagerfest</a>.html<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppInclude.htm">#include</a> "<a href="GameDasWahreSchlagerfest.htm">daswahreschlagerfest</a>menudialog.h"<br/>
+<a href="CppInclude.html">#include</a> "<a href="GameDasWahreSchlagerfest.html">daswahreschlagerfest</a>menudialog<a href="CppHeaderFile.htm">.h</a>"<br/>
 <br/>
 <a href="CppRibi.htm">ribi</a>::DasWahreSchlagerfestMenuDialog::DasWahreSchlagerfestMenuDialog()<br/>
 {<br/>
 <br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppAbout.htm">About</a> <a href="CppRibi.htm">ribi</a>::DasWahreSchlagerfestMenuDialog::GetAbout()<br/>
+<b><a href="CppConst.html">const</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppAbout.html">About</a> <a href="CppRibi.htm">ribi</a>::DasWahreSchlagerfestMenuDialog::GetAbout()<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <a href="CppAbout.htm">About</a>(<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> <a href="CppAbout.html">About</a>(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;"Richel Bilderbeek",<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;"<a href="GameDasWahreSchlagerfest.htm">Das Wahre Schlagerfest</a>",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"<a href="GameDasWahreSchlagerfest.html">Das Wahre Schlagerfest</a>",<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;"a simple game",<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;"the 9th of August 2012",<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;"2003-2012",<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;"http://www.richelbilderbeek.nl/<a href="GameDasWahreSchlagerfest.htm">GameDasWahreSchlagerfest</a>.htm",<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;Get<a href="CppVersion.htm">Version</a>(),<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;Get<a href="CppVersion.htm">Version</a>History());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"http://www.richelbilderbeek.nl/<a href="GameDasWahreSchlagerfest.html">GameDasWahreSchlagerfest</a>.html",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Get<a href="CppVersion.html">Version</a>(),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Get<a href="CppVersion.html">Version</a>History());<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppRibi.htm">ribi</a>::DasWahreSchlagerfestMenuDialog::Get<a href="CppVersion.htm">Version</a>()<br/>
+<b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a> <a href="CppRibi.htm">ribi</a>::DasWahreSchlagerfestMenuDialog::Get<a href="CppVersion.html">Version</a>()<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> "2.2";<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> "2.2";<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm">ribi</a>::DasWahreSchlagerfestMenuDialog::Get<a href="CppVersion.htm">Version</a>History()<br/>
+<b><a href="CppConst.html">const</a></b> <a href="CppVector.html">std::vector</a>&lt;<a href="CppString.html">std::string</a>&gt; <a href="CppRibi.htm">ribi</a>::DasWahreSchlagerfestMenuDialog::Get<a href="CppVersion.html">Version</a>History()<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> {<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;"2003-09-30: <a href="CppVersion.htm">version</a> 1.1: <a href="CppWindows.htm">Windows</a>-only <a href="CppVersion.htm">version</a>",<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;"2012-07-21: <a href="CppVersion.htm">version</a> 2.0: ported to cross-platform",<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;"2012-07-29: <a href="CppVersion.htm">version</a> 2.1: changed graphics to old-school",<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;"2012-08-09: <a href="CppVersion.htm">version</a> 2.2: changed graphics, changed <b><a href="CppNew.htm">new</a></b> tile selection (rendering the eat-it all tile) obsolete"<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"2003-09-30: <a href="CppVersion.html">version</a> 1.1: <a href="CppWindows.html">Windows</a>-only <a href="CppVersion.html">version</a>",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"2012-07-21: <a href="CppVersion.html">version</a> 2.0: ported to cross-platform",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"2012-07-29: <a href="CppVersion.html">version</a> 2.1: changed graphics to old-school",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"2012-08-09: <a href="CppVersion.html">version</a> 2.2: changed graphics, changed <b><a href="CppNew.htm">new</a></b> tile selection (rendering the eat-it all tile) obsolete"<br/>
 &nbsp;&nbsp;};<br/>
 }<br/>
 </code></td></tr></table>
@@ -324,7 +324,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <table summary="daswahreschlagerfestwidget.h" border = "1"><tr><td><code>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">/*</a><br/>
-<a href="GameDasWahreSchlagerfest.htm">Das Wahre Schlagerfest</a>, a simple game<br/>
+<a href="GameDasWahreSchlagerfest.html">Das Wahre Schlagerfest</a>, a simple game<br/>
 Copyright (C) 2003-2012 Richel Bilderbeek<br/>
 <br/>
 This program is free software: you can redistribute it and/or modify<br/>
@@ -340,55 +340,61 @@ You should have received a copy of the GNU General Public License<br/>
 along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">*/</a><br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="GameDasWahreSchlagerfest.htm">GameDasWahreSchlagerfest</a>.htm<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="GameDasWahreSchlagerfest.html">GameDasWahreSchlagerfest</a>.html<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppIfndef.htm">#ifndef</a> DASWAHRESCHLAGERFESTWIDGET_H<br/>
-<a href="CppDefine.htm">#define</a> DASWAHRESCHLAGERFESTWIDGET_H<br/>
+<a href="CppIfndef.html">#ifndef</a> DASWAHRESCHLAGERFESTWIDGET_H<br/>
+<a href="CppDefine.html">#define</a> DASWAHRESCHLAGERFESTWIDGET_H<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppVectorH.html">vector</a>&gt;<br/>
 <br/>
-<a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
-<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-<b><a href="CppTypedef.htm">typedef</a></b>s"<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppSignals2.htm">signals2</a>.hpp&gt;<br/>
-<a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic push<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.html">-Weffc++</a>"<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic ignored "-Wunused-local-<b><a href="CppTypedef.html">typedef</a></b>s"<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppBoost.html">boost</a>/<a href="CppSignals2.html">signals2</a><a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic pop<br/>
 <br/>
-<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
+<b><a href="CppNamespace.html">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
 <br/>
-<a href="CppComment.htm">///</a>DasWahreSchlagerfest<a href="CppWidget.htm">Widget</a> contains the game logic of <a href="GameDasWahreSchlagerfest.htm">Das Wahre Schlagerfest</a><br/>
-<b><a href="CppStruct.htm">struct</a></b> DasWahreSchlagerfest<a href="CppWidget.htm">Widget</a><br/>
+<a href="CppComment.htm">///</a>DasWahreSchlagerfest<a href="CppWidget.html">Widget</a> contains the game logic of <a href="GameDasWahreSchlagerfest.html">Das Wahre Schlagerfest</a><br/>
+<b><a href="CppStruct.html">struct</a></b> DasWahreSchlagerfest<a href="CppWidget.html">Widget</a><br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppEnumClass.htm">enum class</a></b> Key { up, right, down, left };<br/>
-&nbsp;&nbsp;<b><a href="CppEnumClass.htm">enum class</a></b> Tile { empty, beer, bratwurst, richel };<br/>
-&nbsp;&nbsp;<b><a href="CppStruct.htm">struct</a></b> Cursor { <b><a href="CppInt.htm">int</a></b> x; <b><a href="CppInt.htm">int</a></b> y; Tile tile; };<br/>
+&nbsp;&nbsp;<b><a href="CppEnumClass.html">enum class</a></b> Key { up, right, down, left };<br/>
+&nbsp;&nbsp;<b><a href="CppEnumClass.html">enum class</a></b> Tile { empty, beer, bratwurst, richel };<br/>
+&nbsp;&nbsp;<b><a href="CppStruct.html">struct</a></b> Cursor<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Cursor(<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> <a href="CppAny.htm">any</a>_x, <b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> <a href="CppAny.htm">any</a>_y, <b><a href="CppConst.html">const</a></b> Tile <a href="CppAny.htm">any</a>_tile)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: x(<a href="CppAny.htm">any</a>_x), y(<a href="CppAny.htm">any</a>_y), tile(<a href="CppAny.htm">any</a>_tile) {}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> x; <b><a href="CppInt.htm">int</a></b> y; Tile tile;<br/>
+&nbsp;&nbsp;};<br/>
 <br/>
-&nbsp;&nbsp;DasWahreSchlagerfest<a href="CppWidget.htm">Widget</a>(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> width <a href="CppOperatorAssign.htm">=</a> 9, <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> height <a href="CppOperatorAssign.htm">=</a> 5);<br/>
+&nbsp;&nbsp;DasWahreSchlagerfest<a href="CppWidget.html">Widget</a>(<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> width <a href="CppOperatorAssign.htm">=</a> 9, <b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> height <a href="CppOperatorAssign.htm">=</a> 5);<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/Obtain the cursor<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Cursor&amp; GetCursor() <b><a href="CppConst.htm">const</a></b> { <b><a href="CppReturn.htm">return</a></b> m_cursor; }<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> Cursor&amp; GetCursor() <b><a href="CppConst.html">const</a></b> { <b><a href="CppReturn.html">return</a></b> m_cursor; }<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/Obtain the Y-X ordered tiles, without the cursor<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppVector.htm">std::vector</a>&lt;Tile&gt; &gt;&amp; GetTiles() <b><a href="CppConst.htm">const</a></b> { <b><a href="CppReturn.htm">return</a></b> m_v; }<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppVector.html">std::vector</a>&lt;<a href="CppVector.html">std::vector</a>&lt;Tile&gt; &gt;&amp; GetTiles() <b><a href="CppConst.html">const</a></b> { <b><a href="CppReturn.html">return</a></b> m_v; }<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/Respond to the user pressing a key<br/>
-&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> PressKey(<b><a href="CppConst.htm">const</a></b> Key key);<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> PressKey(<b><a href="CppConst.html">const</a></b> Key key);<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>/<a href="CppSignal.htm">Signal</a> <a href="CppEmit.htm">emitted</a> when the <a href="CppWidget.htm">widget</a> is changed<br/>
-&nbsp;&nbsp;<a href="CppBoostSignal.htm">boost::signals2::signal</a>&lt;<b><a href="CppVoid.htm">void</a></b> ()&gt; m_signal_changed;<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/<a href="CppSignal.html">Signal</a> <a href="CppEmit.html">emitted</a> when the <a href="CppWidget.html">widget</a> is changed<br/>
+&nbsp;&nbsp;<a href="CppBoostSignal.html">boost::signals2::signal</a>&lt;<b><a href="CppVoid.htm">void</a></b> ()&gt; m_signal_changed;<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppPrivate.htm">private</a></b>:<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>/The Y-X ordered tiles<br/>
-&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppVector.htm">std::vector</a>&lt;Tile&gt; &gt; m_v;<br/>
-<br/>
+&nbsp;&nbsp;<b><a href="CppPrivate.html">private</a></b>:<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/The cursor<br/>
 &nbsp;&nbsp;Cursor m_cursor;<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/The Y-X ordered tiles<br/>
+&nbsp;&nbsp;<a href="CppVector.html">std::vector</a>&lt;<a href="CppVector.html">std::vector</a>&lt;Tile&gt; &gt; m_v;<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Check <b><a href="CppFor.htm">for</a></b> three in a rows<br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> CheckThree();<br/>
 };<br/>
 <br/>
-} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.html">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
 <br/>
-<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> DASWAHRESCHLAGERFESTWIDGET_H<br/>
+<a href="CppEndif.html">#endif</a> <a href="CppComment.htm">//</a> DASWAHRESCHLAGERFESTWIDGET_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -402,7 +408,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <table summary="daswahreschlagerfestwidget.cpp" border = "1"><tr><td><code>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">/*</a><br/>
-<a href="GameDasWahreSchlagerfest.htm">Das Wahre Schlagerfest</a>, a simple game<br/>
+<a href="GameDasWahreSchlagerfest.html">Das Wahre Schlagerfest</a>, a simple game<br/>
 Copyright (C) 2003-2012 Richel Bilderbeek<br/>
 <br/>
 This program is free software: you can redistribute it and/or modify<br/>
@@ -418,63 +424,60 @@ You should have received a copy of the GNU General Public License<br/>
 along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">*/</a><br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="GameDasWahreSchlagerfest.htm">GameDasWahreSchlagerfest</a>.htm<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="GameDasWahreSchlagerfest.html">GameDasWahreSchlagerfest</a>.html<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic push<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic ignored "-Wunused-local-<b><a href="CppTypedef.html">typedef</a></b>s"<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic ignored "-Wunused-but-set-parameter"<br/>
+<a href="CppInclude.html">#include</a> "<a href="GameDasWahreSchlagerfest.html">daswahreschlagerfest</a><a href="CppWidget.html">widget</a><a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic pop<br/>
 <br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppNumericH.html">numeric</a>&gt;<br/>
 <br/>
-<a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
-<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-<b><a href="CppTypedef.htm">typedef</a></b>s"<br/>
-<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-but-set-parameter"<br/>
-<a href="CppInclude.htm">#include</a> "<a href="GameDasWahreSchlagerfest.htm">daswahreschlagerfest</a><a href="CppWidget.htm">widget</a>.h"<br/>
-<a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
-<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppNumericH.htm">numeric</a>&gt;<br/>
-<br/>
-<a href="CppRibi.htm">ribi</a>::DasWahreSchlagerfest<a href="CppWidget.htm">Widget</a>::DasWahreSchlagerfest<a href="CppWidget.htm">Widget</a>(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> width, <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> height)<br/>
-&nbsp;&nbsp;: m_v(height,<a href="CppVector.htm">std::vector</a>&lt;Tile&gt;(width,Tile::empty))<br/>
+<a href="CppRibi.htm">ribi</a>::DasWahreSchlagerfest<a href="CppWidget.html">Widget</a>::DasWahreSchlagerfest<a href="CppWidget.html">Widget</a>(<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> width, <b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> height)<br/>
+&nbsp;&nbsp;: m_signal_changed{},<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_cursor{Cursor(width <a href="CppOperatorDivide.htm">/</a> 2,0,Tile::beer)},<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_v(height,<a href="CppVector.html">std::vector</a>&lt;Tile&gt;(width,Tile::empty))<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(height <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(m_v.size()));<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(width <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(m_v[0].size()));<br/>
-&nbsp;&nbsp;m_cursor.x <a href="CppOperatorAssign.htm">=</a> width <a href="CppOperatorDivide.htm">/</a> 2;<br/>
-&nbsp;&nbsp;m_cursor.y <a href="CppOperatorAssign.htm">=</a> 0;<br/>
-&nbsp;&nbsp;m_cursor.tile <a href="CppOperatorAssign.htm">=</a> Tile::beer;<br/>
+&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(height <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.html">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(m_v.size()));<br/>
+&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(width <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.html">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(m_v[0].size()));<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::DasWahreSchlagerfest<a href="CppWidget.htm">Widget</a>::CheckThree()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::DasWahreSchlagerfest<a href="CppWidget.html">Widget</a>::CheckThree()<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!m_v.empty());<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!m_v[0].empty());<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> height <a href="CppOperatorAssign.htm">=</a> m_v.size();<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> width <a href="CppOperatorAssign.htm">=</a> m_v[0].size();<br/>
-&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppBool.htm">bool</a></b>&gt; &gt; w(height,<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppBool.htm">bool</a></b>&gt;(width,<b><a href="CppFalse.htm">false</a></b>));<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(w.size() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> m_v.size());<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(w[0].size() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> m_v[0].size());<br/>
-&nbsp;&nbsp;<b><a href="CppBool.htm">bool</a></b> found <a href="CppOperatorAssign.htm">=</a> <b><a href="CppFalse.htm">false</a></b>;<br/>
+&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(!m_v.empty());<br/>
+&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(!m_v[0].empty());<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> height <a href="CppOperatorAssign.htm">=</a> m_v.size();<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> width <a href="CppOperatorAssign.htm">=</a> m_v[0].size();<br/>
+&nbsp;&nbsp;<a href="CppVector.html">std::vector</a>&lt;<a href="CppVector.html">std::vector</a>&lt;<b><a href="CppBool.htm">bool</a></b>&gt; &gt; w(height,<a href="CppVector.html">std::vector</a>&lt;<b><a href="CppBool.htm">bool</a></b>&gt;(width,<b><a href="CppFalse.html">false</a></b>));<br/>
+&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(w.size() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> m_v.size());<br/>
+&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(w[0].size() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> m_v[0].size());<br/>
+&nbsp;&nbsp;<b><a href="CppBool.htm">bool</a></b> found <a href="CppOperatorAssign.htm">=</a> <b><a href="CppFalse.html">false</a></b>;<br/>
 &nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> y=0; y<a href="CppOperatorNotEqual.htm">!=</a>height; <a href="CppOperatorPlus.htm">+</a>+y)<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> x=0; x<a href="CppOperatorNotEqual.htm">!=</a>width; <a href="CppOperatorPlus.htm">+</a>+x)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (m_v[y][x] <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> Tile::empty) <b><a href="CppContinue.htm">continue</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (m_v[y][x] <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> Tile::empty) <b><a href="CppContinue.html">continue</a></b>;<br/>
 <br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (x &lt; width-2 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> m_v[y][x] <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> m_v[y][x+1] <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> m_v[y][x+1] <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> m_v[y][x+2])<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (x &lt; width-2 <a href="CppOperatorLogicalAnd.html">&amp;&amp;</a> m_v[y][x] <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> m_v[y][x+1] <a href="CppOperatorLogicalAnd.html">&amp;&amp;</a> m_v[y][x+1] <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> m_v[y][x+2])<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;w[y][x] <a href="CppOperatorAssign.htm">=</a> <b><a href="CppTrue.htm">true</a></b>; w[y][x+1] <a href="CppOperatorAssign.htm">=</a> <b><a href="CppTrue.htm">true</a></b>; w[y][x+2] <a href="CppOperatorAssign.htm">=</a> <b><a href="CppTrue.htm">true</a></b>; found <a href="CppOperatorAssign.htm">=</a> <b><a href="CppTrue.htm">true</a></b>;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (y &lt; height <a href="CppOperatorMinus.htm">-</a> 2 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> m_v[y][x] <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> m_v[y+1][x] <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> m_v[y+1][x] <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> m_v[y+2][x])<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (y &lt; height <a href="CppOperatorMinus.htm">-</a> 2 <a href="CppOperatorLogicalAnd.html">&amp;&amp;</a> m_v[y][x] <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> m_v[y+1][x] <a href="CppOperatorLogicalAnd.html">&amp;&amp;</a> m_v[y+1][x] <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> m_v[y+2][x])<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;w[y][x] <a href="CppOperatorAssign.htm">=</a> <b><a href="CppTrue.htm">true</a></b>; w[y+1][x] <a href="CppOperatorAssign.htm">=</a> <b><a href="CppTrue.htm">true</a></b>; w[y+2][x] <a href="CppOperatorAssign.htm">=</a> <b><a href="CppTrue.htm">true</a></b>; found <a href="CppOperatorAssign.htm">=</a> <b><a href="CppTrue.htm">true</a></b>;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (x &lt; width <a href="CppOperatorMinus.htm">-</a>2 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> y &lt; height <a href="CppOperatorMinus.htm">-</a>2 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> m_v[y][x] <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> m_v[y+1][x+1] <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> m_v[y+1][x+1] <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> m_v[y+2][x+2])<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (x &lt; width <a href="CppOperatorMinus.htm">-</a>2 <a href="CppOperatorLogicalAnd.html">&amp;&amp;</a> y &lt; height <a href="CppOperatorMinus.htm">-</a>2 <a href="CppOperatorLogicalAnd.html">&amp;&amp;</a> m_v[y][x] <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> m_v[y+1][x+1] <a href="CppOperatorLogicalAnd.html">&amp;&amp;</a> m_v[y+1][x+1] <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> m_v[y+2][x+2])<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;w[y][x] <a href="CppOperatorAssign.htm">=</a> <b><a href="CppTrue.htm">true</a></b>; w[y+1][x+1] <a href="CppOperatorAssign.htm">=</a> <b><a href="CppTrue.htm">true</a></b>; w[y+2][x+2] <a href="CppOperatorAssign.htm">=</a> <b><a href="CppTrue.htm">true</a></b>; found <a href="CppOperatorAssign.htm">=</a> <b><a href="CppTrue.htm">true</a></b>;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (x &lt; width <a href="CppOperatorMinus.htm">-</a>2 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> y &gt; 2 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> m_v[y][x] <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> m_v[y-1][x+1] <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> m_v[y-1][x+1] <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> m_v[y-2][x+2])<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (x &lt; width <a href="CppOperatorMinus.htm">-</a>2 <a href="CppOperatorLogicalAnd.html">&amp;&amp;</a> y &gt; 2 <a href="CppOperatorLogicalAnd.html">&amp;&amp;</a> m_v[y][x] <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> m_v[y-1][x+1] <a href="CppOperatorLogicalAnd.html">&amp;&amp;</a> m_v[y-1][x+1] <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> m_v[y-2][x+2])<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;w[y][x] <a href="CppOperatorAssign.htm">=</a> <b><a href="CppTrue.htm">true</a></b>; w[y-1][x+1] <a href="CppOperatorAssign.htm">=</a> <b><a href="CppTrue.htm">true</a></b>; w[y-2][x+2] <a href="CppOperatorAssign.htm">=</a> <b><a href="CppTrue.htm">true</a></b>; found <a href="CppOperatorAssign.htm">=</a> <b><a href="CppTrue.htm">true</a></b>;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (!found) <b><a href="CppReturn.htm">return</a></b>;<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (!found) <b><a href="CppReturn.html">return</a></b>;<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Remove the tiles<br/>
 &nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> y=0; y<a href="CppOperatorNotEqual.htm">!=</a>height; <a href="CppOperatorPlus.htm">+</a>+y)<br/>
 &nbsp;&nbsp;{<br/>
@@ -487,16 +490,16 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Make the tiles fall down<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppBool.htm">bool</a></b> found <a href="CppOperatorAssign.htm">=</a> <b><a href="CppTrue.htm">true</a></b>;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppWhile.htm">while</a></b> (found)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppWhile.html">while</a></b> (found)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;found <a href="CppOperatorAssign.htm">=</a> <b><a href="CppFalse.htm">false</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;found <a href="CppOperatorAssign.htm">=</a> <b><a href="CppFalse.html">false</a></b>;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> y=0; y<a href="CppOperatorNotEqual.htm">!=</a>height-1; <a href="CppOperatorPlus.htm">+</a>+y)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> x=0; x<a href="CppOperatorNotEqual.htm">!=</a>width; <a href="CppOperatorPlus.htm">+</a>+x)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (m_v[y][x] <a href="CppOperatorNotEqual.htm">!=</a> Tile::empty <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> m_v[y+1][x] <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> Tile::empty)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (m_v[y][x] <a href="CppOperatorNotEqual.htm">!=</a> Tile::empty <a href="CppOperatorLogicalAnd.html">&amp;&amp;</a> m_v[y+1][x] <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> Tile::empty)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppSwap.htm">std::swap</a>(m_v[y][x],m_v[y+1][x]);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppSwap.html">std::swap</a>(m_v[y][x],m_v[y+1][x]);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;found <a href="CppOperatorAssign.htm">=</a> <b><a href="CppTrue.htm">true</a></b>;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
@@ -504,32 +507,32 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Check <b><a href="CppIf.htm">if</a></b> all tile have fallen down<br/>
-&nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
+&nbsp;&nbsp;<a href="CppIfndef.html">#ifndef</a> <a href="CppNDEBUG.html">NDEBUG</a><br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> y=0; y<a href="CppOperatorNotEqual.htm">!=</a>height-1; <a href="CppOperatorPlus.htm">+</a>+y)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> x=0; x<a href="CppOperatorNotEqual.htm">!=</a>width; <a href="CppOperatorPlus.htm">+</a>+x)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (m_v[y][x] <a href="CppOperatorNotEqual.htm">!=</a> Tile::empty) <a href="CppAssert.htm">assert</a>(m_v[y+1][x] <a href="CppOperatorNotEqual.htm">!=</a> Tile::empty <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "Assume no empty space beneath tile");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (m_v[y][x] <a href="CppOperatorNotEqual.htm">!=</a> Tile::empty) <a href="CppAssert.html">assert</a>(m_v[y+1][x] <a href="CppOperatorNotEqual.htm">!=</a> Tile::empty <a href="CppOperatorLogicalAnd.html">&amp;&amp;</a> "Assume no empty space beneath tile");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
+&nbsp;&nbsp;<a href="CppEndif.html">#endif</a><br/>
 &nbsp;&nbsp;CheckThree();<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::DasWahreSchlagerfest<a href="CppWidget.htm">Widget</a>::PressKey(<b><a href="CppConst.htm">const</a></b> <a href="CppRibi.htm">ribi</a>::DasWahreSchlagerfest<a href="CppWidget.htm">Widget</a>::Key key)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::DasWahreSchlagerfest<a href="CppWidget.html">Widget</a>::PressKey(<b><a href="CppConst.html">const</a></b> <a href="CppRibi.htm">ribi</a>::DasWahreSchlagerfest<a href="CppWidget.html">Widget</a>::Key key)<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppSwitch.htm">switch</a></b> (key)<br/>
+&nbsp;&nbsp;<b><a href="CppSwitch.html">switch</a></b> (key)<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> Key::up:<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>No use<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppBreak.htm">break</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppBreak.html">break</a></b>;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> Key::right:<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (m_cursor.x <a href="CppOperatorPlus.htm">+</a> 1 &lt; <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(m_v[m_cursor.y].size()))<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (m_cursor.x <a href="CppOperatorPlus.htm">+</a> 1 &lt; <b><a href="CppStatic_cast.html">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(m_v[m_cursor.y].size()))<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (m_cursor.tile <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> Tile::richel)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
@@ -545,10 +548,10 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppBreak.htm">break</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppBreak.html">break</a></b>;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> Key::down:<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (m_cursor.y <a href="CppOperatorPlus.htm">+</a> 1 <a href="CppOperatorNotEqual.htm">!=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(m_v.size()))<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (m_cursor.y <a href="CppOperatorPlus.htm">+</a> 1 <a href="CppOperatorNotEqual.htm">!=</a> <b><a href="CppStatic_cast.html">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(m_v.size()))<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (m_cursor.tile <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> Tile::richel)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
@@ -556,16 +559,16 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a>+m_cursor.y;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;m_v[m_cursor.y][m_cursor.x] <a href="CppOperatorAssign.htm">=</a> Tile::empty;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;m_signal_changed();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b>;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppElse.htm">else</a></b> <b><a href="CppIf.htm">if</a></b> (m_v[m_cursor.y+1][m_cursor.x] <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> Tile::empty)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a>+m_cursor.y;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;m_signal_changed();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b>;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (m_cursor.y <a href="CppOperatorPlus.htm">+</a> 1 <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(m_v.size()) <a href="CppOperatorLogicalOr.htm">||</a> m_v[m_cursor.y+1][m_cursor.x] <a href="CppOperatorNotEqual.htm">!=</a> Tile::empty)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (m_cursor.y <a href="CppOperatorPlus.htm">+</a> 1 <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.html">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(m_v.size()) <a href="CppOperatorLogicalOr.htm">||</a> m_v[m_cursor.y+1][m_cursor.x] <a href="CppOperatorNotEqual.htm">!=</a> Tile::empty)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Place non-Richel block<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (m_cursor.tile <a href="CppOperatorNotEqual.htm">!=</a> Tile::richel)<br/>
@@ -575,37 +578,37 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CheckThree();<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Place cursor<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;m_cursor.x <a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(m_v[0].size()) <a href="CppOperatorDivide.htm">/</a> 2;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;m_cursor.x <a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.html">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(m_v[0].size()) <a href="CppOperatorDivide.htm">/</a> 2;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;m_cursor.y <a href="CppOperatorAssign.htm">=</a> 0;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppWhile.htm">while</a></b> (m_v[m_cursor.y+1][m_cursor.x] <a href="CppOperatorNotEqual.htm">!=</a> Tile::empty)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppWhile.html">while</a></b> (m_v[m_cursor.y+1][m_cursor.x] <a href="CppOperatorNotEqual.htm">!=</a> Tile::empty)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Look <b><a href="CppFor.htm">for</a></b> another spot<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;m_cursor.x <a href="CppOperatorAssign.htm">=</a> <a href="CppRand.htm">std::rand</a>() <a href="CppOperatorModulus.htm">%</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(m_v[0].size());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;m_cursor.x <a href="CppOperatorAssign.htm">=</a> <a href="CppRand.html">std::rand</a>() <a href="CppOperatorModulus.htm">%</a> <b><a href="CppStatic_cast.html">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(m_v[0].size());<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (m_v[m_cursor.y+1][m_cursor.x] <a href="CppOperatorNotEqual.htm">!=</a> Tile::empty)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!"Impossible since <a href="CppVersion.htm">version</a> 2.2");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(!"Impossible since <a href="CppVersion.html">version</a> 2.2");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;m_cursor.tile <a href="CppOperatorAssign.htm">=</a> Tile::richel;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppElse.htm">else</a></b><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>New<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (<a href="CppAccumulate.htm">std::accumulate</a>(m_v.begin(),m_v.end(),0,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[](<b><a href="CppInt.htm">int</a></b>&amp; sum, <b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;Tile&gt;&amp; w)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{ <b><a href="CppReturn.htm">return</a></b> sum <a href="CppOperatorPlus.htm">+</a> <a href="CppCount.htm">std::count</a>(w.begin(),w.end(),Tile::beer); }<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (<a href="CppAccumulate.html">std::accumulate</a>(m_v.begin(),m_v.end(),0,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[](<b><a href="CppInt.htm">int</a></b>&amp; sum, <b><a href="CppConst.html">const</a></b> <a href="CppVector.html">std::vector</a>&lt;Tile&gt;&amp; w)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{ <b><a href="CppReturn.html">return</a></b> sum <a href="CppOperatorPlus.htm">+</a> <a href="CppCount.html">std::count</a>(w.begin(),w.end(),Tile::beer); }<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;) &gt; 5) { m_cursor.tile <a href="CppOperatorAssign.htm">=</a> Tile::beer; }<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppElse.htm">else</a></b> <b><a href="CppIf.htm">if</a></b> (<a href="CppAccumulate.htm">std::accumulate</a>(m_v.begin(),m_v.end(),0,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[](<b><a href="CppInt.htm">int</a></b>&amp; sum, <b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;Tile&gt;&amp; w)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{ <b><a href="CppReturn.htm">return</a></b> sum <a href="CppOperatorPlus.htm">+</a> <a href="CppCount.htm">std::count</a>(w.begin(),w.end(),Tile::bratwurst); }<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppElse.htm">else</a></b> <b><a href="CppIf.htm">if</a></b> (<a href="CppAccumulate.html">std::accumulate</a>(m_v.begin(),m_v.end(),0,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[](<b><a href="CppInt.htm">int</a></b>&amp; sum, <b><a href="CppConst.html">const</a></b> <a href="CppVector.html">std::vector</a>&lt;Tile&gt;&amp; w)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{ <b><a href="CppReturn.html">return</a></b> sum <a href="CppOperatorPlus.htm">+</a> <a href="CppCount.html">std::count</a>(w.begin(),w.end(),Tile::bratwurst); }<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;) &gt; 5) { m_cursor.tile <a href="CppOperatorAssign.htm">=</a> Tile::bratwurst; }<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppElse.htm">else</a></b> m_cursor.tile <a href="CppOperatorAssign.htm">=</a> (<a href="CppRand.htm">std::rand</a>() <a href="CppOperatorStreamIn.htm">&gt;&gt;</a> 4) <a href="CppOperatorModulus.htm">%</a> 2 ? Tile::beer : Tile::bratwurst;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppElse.htm">else</a></b> m_cursor.tile <a href="CppOperatorAssign.htm">=</a> (<a href="CppRand.html">std::rand</a>() <a href="CppOperatorStreamIn.html">&gt;&gt;</a> 4) <a href="CppOperatorModulus.htm">%</a> 2 ? Tile::beer : Tile::bratwurst;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;m_signal_changed();<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppBreak.htm">break</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppBreak.html">break</a></b>;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> Key::left:<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (m_cursor.x &gt; 0)<br/>
@@ -624,7 +627,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppBreak.htm">break</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppBreak.html">break</a></b>;<br/>
 &nbsp;&nbsp;}<br/>
 }<br/>
 </code></td></tr></table>
@@ -640,7 +643,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <table summary="qtdaswahreschlagerfestmaindialog.h" border = "1"><tr><td><code>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">/*</a><br/>
-<a href="GameDasWahreSchlagerfest.htm">Das Wahre Schlagerfest</a>, a simple game<br/>
+<a href="GameDasWahreSchlagerfest.html">Das Wahre Schlagerfest</a>, a simple game<br/>
 Copyright (C) 2003-2012 Richel Bilderbeek<br/>
 <br/>
 This program is free software: you can redistribute it and/or modify<br/>
@@ -656,34 +659,39 @@ You should have received a copy of the GNU General Public License<br/>
 along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">*/</a><br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="GameDasWahreSchlagerfest.htm">GameDasWahreSchlagerfest</a>.htm<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="GameDasWahreSchlagerfest.html">GameDasWahreSchlagerfest</a>.html<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppIfndef.htm">#ifndef</a> QTDASWAHRESCHLAGERFESTMAINDIALOG_H<br/>
-<a href="CppDefine.htm">#define</a> QTDASWAHRESCHLAGERFESTMAINDIALOG_H<br/>
+<a href="CppIfndef.html">#ifndef</a> QTDASWAHRESCHLAGERFESTMAINDIALOG_H<br/>
+<a href="CppDefine.html">#define</a> QTDASWAHRESCHLAGERFESTMAINDIALOG_H<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppQDialog.htm">QDialog</a>&gt;<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic push<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.html">-Weffc++</a>"<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppQDialog.html">QDialog</a>&gt;<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic pop<br/>
 <br/>
-<b><a href="CppNamespace.htm">namespace</a></b> Ui {<br/>
-<b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a>DasWahreSchlagerfestMainDialog;<br/>
+<b><a href="CppNamespace.html">namespace</a></b> Ui {<br/>
+<b><a href="CppClass.html">class</a></b> <a href="CppQt.htm">Qt</a>DasWahreSchlagerfestMainDialog;<br/>
 }<br/>
 <br/>
-<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
+<b><a href="CppNamespace.html">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
 <br/>
-<b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a>DasWahreSchlagerfestMainDialog : <b><a href="CppPublic.htm">public</a></b> <a href="CppQDialog.htm">QDialog</a><br/>
+<b><a href="CppClass.html">class</a></b> <a href="CppQt.htm">Qt</a>DasWahreSchlagerfestMainDialog : <b><a href="CppPublic.html">public</a></b> <a href="CppQDialog.html">QDialog</a><br/>
 {<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQ_OBJECT.htm">Q_OBJECT</a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQ_OBJECT.html">Q_OBJECT</a><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<br/>
-<b><a href="CppPublic.htm">public</a></b>:<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppExplicit.htm">explicit</a></b> <a href="CppQt.htm">Qt</a>DasWahreSchlagerfestMainDialog(<a href="CppQWidget.htm">QWidget</a> *parent <a href="CppOperatorAssign.htm">=</a> 0);<br/>
+<b><a href="CppPublic.html">public</a></b>:<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppExplicit.html">explicit</a></b> <a href="CppQt.htm">Qt</a>DasWahreSchlagerfestMainDialog(<a href="CppQWidget.html">QWidget</a> *parent <a href="CppOperatorAssign.htm">=</a> 0);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQt.htm">Qt</a>DasWahreSchlagerfestMainDialog(<b><a href="CppConst.html">const</a></b> <a href="CppQt.htm">Qt</a>DasWahreSchlagerfestMainDialog&amp;) <a href="CppOperatorAssign.htm">=</a> <b><a href="CppDelete.html">delete</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQt.htm">Qt</a>DasWahreSchlagerfestMainDialog&amp; <b><a href="CppOperator.html">operator</a></b>=(<b><a href="CppConst.html">const</a></b> <a href="CppQt.htm">Qt</a>DasWahreSchlagerfestMainDialog&amp;) <a href="CppOperatorAssign.htm">=</a> <b><a href="CppDelete.html">delete</a></b>;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;~<a href="CppQt.htm">Qt</a>DasWahreSchlagerfestMainDialog();<br/>
 <br/>
-<b><a href="CppPrivate.htm">private</a></b>:<br/>
+<b><a href="CppPrivate.html">private</a></b>:<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a>DasWahreSchlagerfestMainDialog *ui;<br/>
 };<br/>
 <br/>
-} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.html">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
 <br/>
-<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> QTDASWAHRESCHLAGERFESTMAINDIALOG_H<br/>
+<a href="CppEndif.html">#endif</a> <a href="CppComment.htm">//</a> QTDASWAHRESCHLAGERFESTMAINDIALOG_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -697,7 +705,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <table summary="qtdaswahreschlagerfestmaindialog.cpp" border = "1"><tr><td><code>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">/*</a><br/>
-<a href="GameDasWahreSchlagerfest.htm">Das Wahre Schlagerfest</a>, a simple game<br/>
+<a href="GameDasWahreSchlagerfest.html">Das Wahre Schlagerfest</a>, a simple game<br/>
 Copyright (C) 2003-2012 Richel Bilderbeek<br/>
 <br/>
 This program is free software: you can redistribute it and/or modify<br/>
@@ -713,18 +721,19 @@ You should have received a copy of the GNU General Public License<br/>
 along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">*/</a><br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="GameDasWahreSchlagerfest.htm">GameDasWahreSchlagerfest</a>.htm<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="GameDasWahreSchlagerfest.html">GameDasWahreSchlagerfest</a>.html<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic push<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.html">-Weffc++</a>"<br/>
+<a href="CppInclude.html">#include</a> "qt<a href="GameDasWahreSchlagerfest.html">daswahreschlagerfest</a>maindialog<a href="CppHeaderFile.htm">.h</a>"<br/>
 <br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppQKeyEvent.html">QKeyEvent</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> "qt<a href="GameDasWahreSchlagerfest.html">daswahreschlagerfest</a><a href="CppWidget.html">widget</a><a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "ui_qt<a href="GameDasWahreSchlagerfest.html">daswahreschlagerfest</a>maindialog<a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic pop<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> "qt<a href="GameDasWahreSchlagerfest.htm">daswahreschlagerfest</a>maindialog.h"<br/>
-<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppQKeyEvent.htm">QKeyEvent</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> "qt<a href="GameDasWahreSchlagerfest.htm">daswahreschlagerfest</a><a href="CppWidget.htm">widget</a>.h"<br/>
-<a href="CppInclude.htm">#include</a> "ui_qt<a href="GameDasWahreSchlagerfest.htm">daswahreschlagerfest</a>maindialog.h"<br/>
-<br/>
-<a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>DasWahreSchlagerfestMainDialog::<a href="CppQt.htm">Qt</a>DasWahreSchlagerfestMainDialog(<a href="CppQWidget.htm">QWidget</a> *parent) :<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQDialog.htm">QDialog</a>(parent),<br/>
+<a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>DasWahreSchlagerfestMainDialog::<a href="CppQt.htm">Qt</a>DasWahreSchlagerfestMainDialog(<a href="CppQWidget.html">QWidget</a> *parent) :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQDialog.html">QDialog</a>(parent),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;ui(<b><a href="CppNew.htm">new</a></b> <a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a>DasWahreSchlagerfestMainDialog)<br/>
 {<br/>
 &nbsp;&nbsp;ui-&gt;setupUi(<b><a href="CppThis.htm">this</a></b>);<br/>
@@ -732,7 +741,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <br/>
 <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>DasWahreSchlagerfestMainDialog::~<a href="CppQt.htm">Qt</a>DasWahreSchlagerfestMainDialog()<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppDelete.htm">delete</a></b> ui;<br/>
+&nbsp;&nbsp;<b><a href="CppDelete.html">delete</a></b> ui;<br/>
 }<br/>
 </code></td></tr></table>
 <!-- end of the code -->
@@ -747,7 +756,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <table summary="qtdaswahreschlagerfestmenudialog.h" border = "1"><tr><td><code>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">/*</a><br/>
-<a href="GameDasWahreSchlagerfest.htm">Das Wahre Schlagerfest</a>, a simple game<br/>
+<a href="GameDasWahreSchlagerfest.html">Das Wahre Schlagerfest</a>, a simple game<br/>
 Copyright (C) 2003-2012 Richel Bilderbeek<br/>
 <br/>
 This program is free software: you can redistribute it and/or modify<br/>
@@ -763,41 +772,46 @@ You should have received a copy of the GNU General Public License<br/>
 along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">*/</a><br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="GameDasWahreSchlagerfest.htm">GameDasWahreSchlagerfest</a>.htm<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="GameDasWahreSchlagerfest.html">GameDasWahreSchlagerfest</a>.html<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppIfndef.htm">#ifndef</a> QTDASWAHRESCHLAGERFESTMENUDIALOG_H<br/>
-<a href="CppDefine.htm">#define</a> QTDASWAHRESCHLAGERFESTMENUDIALOG_H<br/>
+<a href="CppIfndef.html">#ifndef</a> QTDASWAHRESCHLAGERFESTMENUDIALOG_H<br/>
+<a href="CppDefine.html">#define</a> QTDASWAHRESCHLAGERFESTMENUDIALOG_H<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppQDialog.htm">QDialog</a>&gt;<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic push<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.html">-Weffc++</a>"<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppQDialog.html">QDialog</a>&gt;<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic pop<br/>
 <br/>
-<b><a href="CppNamespace.htm">namespace</a></b> Ui {<br/>
-<b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a>DasWahreSchlagerfestMenuDialog;<br/>
+<b><a href="CppNamespace.html">namespace</a></b> Ui {<br/>
+<b><a href="CppClass.html">class</a></b> <a href="CppQt.htm">Qt</a>DasWahreSchlagerfestMenuDialog;<br/>
 }<br/>
 <br/>
-<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
+<b><a href="CppNamespace.html">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
 <br/>
-<b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a>DasWahreSchlagerfestMenuDialog : <b><a href="CppPublic.htm">public</a></b> <a href="CppQDialog.htm">QDialog</a><br/>
+<b><a href="CppClass.html">class</a></b> <a href="CppQt.htm">Qt</a>DasWahreSchlagerfestMenuDialog : <b><a href="CppPublic.html">public</a></b> <a href="CppQDialog.html">QDialog</a><br/>
 {<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQ_OBJECT.htm">Q_OBJECT</a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQ_OBJECT.html">Q_OBJECT</a><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<br/>
-<b><a href="CppPublic.htm">public</a></b>:<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppExplicit.htm">explicit</a></b> <a href="CppQt.htm">Qt</a>DasWahreSchlagerfestMenuDialog(<a href="CppQWidget.htm">QWidget</a> *parent <a href="CppOperatorAssign.htm">=</a> 0);<br/>
+<b><a href="CppPublic.html">public</a></b>:<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppExplicit.html">explicit</a></b> <a href="CppQt.htm">Qt</a>DasWahreSchlagerfestMenuDialog(<a href="CppQWidget.html">QWidget</a> *parent <a href="CppOperatorAssign.htm">=</a> 0);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQt.htm">Qt</a>DasWahreSchlagerfestMenuDialog(<b><a href="CppConst.html">const</a></b> <a href="CppQt.htm">Qt</a>DasWahreSchlagerfestMenuDialog&amp;) <a href="CppOperatorAssign.htm">=</a> <b><a href="CppDelete.html">delete</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQt.htm">Qt</a>DasWahreSchlagerfestMenuDialog&amp; <b><a href="CppOperator.html">operator</a></b>=(<b><a href="CppConst.html">const</a></b> <a href="CppQt.htm">Qt</a>DasWahreSchlagerfestMenuDialog&amp;) <a href="CppOperatorAssign.htm">=</a> <b><a href="CppDelete.html">delete</a></b>;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;~<a href="CppQt.htm">Qt</a>DasWahreSchlagerfestMenuDialog();<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<br/>
-<b><a href="CppPrivate.htm">private</a></b> <b><a href="CppSlots.htm">slots</a></b>:<br/>
+<b><a href="CppPrivate.html">private</a></b> <b><a href="CppSlots.html">slots</a></b>:<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> on_button_start_clicked();<br/>
 <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> on_button_about_clicked();<br/>
 <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> on_button_quit_clicked();<br/>
 <br/>
-<b><a href="CppPrivate.htm">private</a></b>:<br/>
+<b><a href="CppPrivate.html">private</a></b>:<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a>DasWahreSchlagerfestMenuDialog *ui;<br/>
 };<br/>
 <br/>
-} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.html">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
 <br/>
-<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> QTDASWAHRESCHLAGERFESTMENUDIALOG_H<br/>
+<a href="CppEndif.html">#endif</a> <a href="CppComment.htm">//</a> QTDASWAHRESCHLAGERFESTMENUDIALOG_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -811,7 +825,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <table summary="qtdaswahreschlagerfestmenudialog.cpp" border = "1"><tr><td><code>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">/*</a><br/>
-<a href="GameDasWahreSchlagerfest.htm">Das Wahre Schlagerfest</a>, a simple game<br/>
+<a href="GameDasWahreSchlagerfest.html">Das Wahre Schlagerfest</a>, a simple game<br/>
 Copyright (C) 2003-2012 Richel Bilderbeek<br/>
 <br/>
 This program is free software: you can redistribute it and/or modify<br/>
@@ -827,19 +841,20 @@ You should have received a copy of the GNU General Public License<br/>
 along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">*/</a><br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="GameDasWahreSchlagerfest.htm">GameDasWahreSchlagerfest</a>.htm<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="GameDasWahreSchlagerfest.html">GameDasWahreSchlagerfest</a>.html<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic push<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.html">-Weffc++</a>"<br/>
+<a href="CppInclude.html">#include</a> "qt<a href="GameDasWahreSchlagerfest.html">daswahreschlagerfest</a>menudialog<a href="CppHeaderFile.htm">.h</a>"<br/>
 <br/>
+<a href="CppInclude.html">#include</a> "<a href="GameDasWahreSchlagerfest.html">daswahreschlagerfest</a>menudialog<a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "<a href="CppQtAboutDialog.html">qtaboutdialog</a><a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "qt<a href="GameDasWahreSchlagerfest.html">daswahreschlagerfest</a>maindialog<a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "ui_qt<a href="GameDasWahreSchlagerfest.html">daswahreschlagerfest</a>menudialog<a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic pop<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> "qt<a href="GameDasWahreSchlagerfest.htm">daswahreschlagerfest</a>menudialog.h"<br/>
-<br/>
-<a href="CppInclude.htm">#include</a> "<a href="GameDasWahreSchlagerfest.htm">daswahreschlagerfest</a>menudialog.h"<br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppQtAboutDialog.htm">qtaboutdialog</a>.h"<br/>
-<a href="CppInclude.htm">#include</a> "qt<a href="GameDasWahreSchlagerfest.htm">daswahreschlagerfest</a>maindialog.h"<br/>
-<a href="CppInclude.htm">#include</a> "ui_qt<a href="GameDasWahreSchlagerfest.htm">daswahreschlagerfest</a>menudialog.h"<br/>
-<br/>
-<a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>DasWahreSchlagerfestMenuDialog::<a href="CppQt.htm">Qt</a>DasWahreSchlagerfestMenuDialog(<a href="CppQWidget.htm">QWidget</a> *parent) :<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQDialog.htm">QDialog</a>(parent),<br/>
+<a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>DasWahreSchlagerfestMenuDialog::<a href="CppQt.htm">Qt</a>DasWahreSchlagerfestMenuDialog(<a href="CppQWidget.html">QWidget</a> *parent) :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQDialog.html">QDialog</a>(parent),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;ui(<b><a href="CppNew.htm">new</a></b> <a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a>DasWahreSchlagerfestMenuDialog)<br/>
 {<br/>
 &nbsp;&nbsp;ui-&gt;setupUi(<b><a href="CppThis.htm">this</a></b>);<br/>
@@ -847,7 +862,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <br/>
 <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>DasWahreSchlagerfestMenuDialog::~<a href="CppQt.htm">Qt</a>DasWahreSchlagerfestMenuDialog()<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppDelete.htm">delete</a></b> ui;<br/>
+&nbsp;&nbsp;<b><a href="CppDelete.html">delete</a></b> ui;<br/>
 }<br/>
 <br/>
 <b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>DasWahreSchlagerfestMenuDialog::on_button_start_clicked()<br/>
@@ -860,7 +875,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <br/>
 <b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>DasWahreSchlagerfestMenuDialog::on_button_about_clicked()<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppQtAboutDialog.htm">QtAboutDialog</a> d(DasWahreSchlagerfestMenuDialog::GetAbout());<br/>
+&nbsp;&nbsp;<a href="CppQtAboutDialog.html">QtAboutDialog</a> d(DasWahreSchlagerfestMenuDialog::GetAbout());<br/>
 &nbsp;&nbsp;d.setWindowIcon(<b><a href="CppThis.htm">this</a></b>-&gt;windowIcon());<br/>
 &nbsp;&nbsp;d.setStyleSheet(<b><a href="CppThis.htm">this</a></b>-&gt;styleSheet());<br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;hide();<br/>
@@ -885,7 +900,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <table summary="qtdaswahreschlagerfestwidget.h" border = "1"><tr><td><code>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">/*</a><br/>
-<a href="GameDasWahreSchlagerfest.htm">Das Wahre Schlagerfest</a>, a simple game<br/>
+<a href="GameDasWahreSchlagerfest.html">Das Wahre Schlagerfest</a>, a simple game<br/>
 Copyright (C) 2003-2012 Richel Bilderbeek<br/>
 <br/>
 This program is free software: you can redistribute it and/or modify<br/>
@@ -901,51 +916,54 @@ You should have received a copy of the GNU General Public License<br/>
 along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">*/</a><br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="GameDasWahreSchlagerfest.htm">GameDasWahreSchlagerfest</a>.htm<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="GameDasWahreSchlagerfest.html">GameDasWahreSchlagerfest</a>.html<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppIfndef.htm">#ifndef</a> QTDASWAHRESCHLAGERFESTWIDGET_H<br/>
-<a href="CppDefine.htm">#define</a> QTDASWAHRESCHLAGERFESTWIDGET_H<br/>
+<a href="CppIfndef.html">#ifndef</a> QTDASWAHRESCHLAGERFESTWIDGET_H<br/>
+<a href="CppDefine.html">#define</a> QTDASWAHRESCHLAGERFESTWIDGET_H<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppShared_ptr.htm">shared_ptr</a>.hpp&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppQWidget.htm">QWidget</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> "<a href="GameDasWahreSchlagerfest.htm">daswahreschlagerfest</a><a href="CppWidget.htm">widget</a>.h"<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic push<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.html">-Weffc++</a>"<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppBoost.html">boost</a>/<a href="CppShared_ptr.html">shared_ptr</a><a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppQWidget.html">QWidget</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> "<a href="GameDasWahreSchlagerfest.html">daswahreschlagerfest</a><a href="CppWidget.html">widget</a><a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic pop<br/>
 <br/>
-<b><a href="CppStruct.htm">struct</a></b> DasWahreSchlagerfest<a href="CppWidget.htm">Widget</a>;<br/>
-<b><a href="CppNamespace.htm">namespace</a></b> Ui {<br/>
-<b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a>DasWahreSchlagerfest<a href="CppWidget.htm">Widget</a>;<br/>
+<b><a href="CppStruct.html">struct</a></b> DasWahreSchlagerfest<a href="CppWidget.html">Widget</a>;<br/>
+<b><a href="CppNamespace.html">namespace</a></b> Ui {<br/>
+&nbsp;&nbsp;<b><a href="CppClass.html">class</a></b> <a href="CppQt.htm">Qt</a>DasWahreSchlagerfest<a href="CppWidget.html">Widget</a>;<br/>
 }<br/>
 <br/>
-<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
+<b><a href="CppNamespace.html">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
 <br/>
-<b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a>DasWahreSchlagerfest<a href="CppWidget.htm">Widget</a> : <b><a href="CppPublic.htm">public</a></b> <a href="CppQWidget.htm">QWidget</a><br/>
+<b><a href="CppClass.html">class</a></b> <a href="CppQt.htm">Qt</a>DasWahreSchlagerfest<a href="CppWidget.html">Widget</a> : <b><a href="CppPublic.html">public</a></b> <a href="CppQWidget.html">QWidget</a><br/>
 {<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQ_OBJECT.htm">Q_OBJECT</a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQ_OBJECT.html">Q_OBJECT</a><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<br/>
-<b><a href="CppPublic.htm">public</a></b>:<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppExplicit.htm">explicit</a></b> <a href="CppQt.htm">Qt</a>DasWahreSchlagerfest<a href="CppWidget.htm">Widget</a>(<a href="CppQWidget.htm">QWidget</a> *parent <a href="CppOperatorAssign.htm">=</a> 0);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;~<a href="CppQt.htm">Qt</a>DasWahreSchlagerfest<a href="CppWidget.htm">Widget</a>();<br/>
+<b><a href="CppPublic.html">public</a></b>:<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppExplicit.html">explicit</a></b> <a href="CppQt.htm">Qt</a>DasWahreSchlagerfest<a href="CppWidget.html">Widget</a>(<a href="CppQWidget.html">QWidget</a> *parent <a href="CppOperatorAssign.htm">=</a> 0);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;~<a href="CppQt.htm">Qt</a>DasWahreSchlagerfest<a href="CppWidget.html">Widget</a>();<br/>
 <br/>
-<b><a href="CppProtected.htm">protected</a></b>:<br/>
-&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> keyPressEvent(<a href="CppQKeyEvent.htm">QKeyEvent</a> *);<br/>
-&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> paintEvent(<a href="CppQPaintEvent.htm">QPaintEvent</a> *);<br/>
+<b><a href="CppProtected.html">protected</a></b>:<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> keyPressEvent(<a href="CppQKeyEvent.html">QKeyEvent</a> *);<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> paintEvent(<a href="CppQPaintEvent.html">QPaintEvent</a> *);<br/>
 <br/>
-<b><a href="CppPrivate.htm">private</a></b>:<br/>
-&nbsp;&nbsp;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;DasWahreSchlagerfest<a href="CppWidget.htm">Widget</a>&gt; m_<a href="CppWidget.htm">widget</a>;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppQPixmap.htm">QPixmap</a> m_beer;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppQPixmap.htm">QPixmap</a> m_bratwurst;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppQPixmap.htm">QPixmap</a> m_empty;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppQPixmap.htm">QPixmap</a> m_richel;<br/>
+<b><a href="CppPrivate.html">private</a></b>:<br/>
+&nbsp;&nbsp;<a href="CppBoostShared_ptr.html">boost::shared_ptr</a>&lt;DasWahreSchlagerfest<a href="CppWidget.html">Widget</a>&gt; m_<a href="CppWidget.html">widget</a>;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppQPixmap.html">QPixmap</a> m_beer;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppQPixmap.html">QPixmap</a> m_bratwurst;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppQPixmap.html">QPixmap</a> m_empty;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppQPixmap.html">QPixmap</a> m_richel;<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/Obtain the pixmap <b><a href="CppFor.htm">for</a></b> <b><a href="CppThis.htm">this</a></b> tile<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppQPixmap.htm">QPixmap</a>&amp; GetPixmap(<b><a href="CppConst.htm">const</a></b> DasWahreSchlagerfest<a href="CppWidget.htm">Widget</a>::Tile&amp; tile) <b><a href="CppConst.htm">const</a></b>;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppQPixmap.html">QPixmap</a>&amp; GetPixmap(<b><a href="CppConst.html">const</a></b> DasWahreSchlagerfest<a href="CppWidget.html">Widget</a>::Tile&amp; tile) <b><a href="CppConst.html">const</a></b>;<br/>
 <br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> OnChange();<br/>
 };<br/>
 <br/>
-} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.html">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
 <br/>
 <br/>
-<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> QTDASWAHRESCHLAGERFESTWIDGET_H<br/>
+<a href="CppEndif.html">#endif</a> <a href="CppComment.htm">//</a> QTDASWAHRESCHLAGERFESTWIDGET_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -959,7 +977,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <table summary="qtdaswahreschlagerfestwidget.cpp" border = "1"><tr><td><code>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">/*</a><br/>
-<a href="GameDasWahreSchlagerfest.htm">Das Wahre Schlagerfest</a>, a simple game<br/>
+<a href="GameDasWahreSchlagerfest.html">Das Wahre Schlagerfest</a>, a simple game<br/>
 Copyright (C) 2003-2012 Richel Bilderbeek<br/>
 <br/>
 This program is free software: you can redistribute it and/or modify<br/>
@@ -975,79 +993,80 @@ You should have received a copy of the GNU General Public License<br/>
 along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">*/</a><br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="GameDasWahreSchlagerfest.htm">GameDasWahreSchlagerfest</a>.htm<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="GameDasWahreSchlagerfest.html">GameDasWahreSchlagerfest</a>.html<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic push<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.html">-Weffc++</a>"<br/>
+<a href="CppInclude.html">#include</a> "qt<a href="GameDasWahreSchlagerfest.html">daswahreschlagerfest</a><a href="CppWidget.html">widget</a><a href="CppHeaderFile.htm">.h</a>"<br/>
 <br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppQKeyEvent.html">QKeyEvent</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppQPainter.html">QPainter</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppQPixmap.html">QPixmap</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> "<a href="GameDasWahreSchlagerfest.html">daswahreschlagerfest</a><a href="CppWidget.html">widget</a><a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic pop<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> "qt<a href="GameDasWahreSchlagerfest.htm">daswahreschlagerfest</a><a href="CppWidget.htm">widget</a>.h"<br/>
-<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppQKeyEvent.htm">QKeyEvent</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppQPainter.htm">QPainter</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppQPixmap.htm">QPixmap</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> "<a href="GameDasWahreSchlagerfest.htm">daswahreschlagerfest</a><a href="CppWidget.htm">widget</a>.h"<br/>
-<br/>
-<a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>DasWahreSchlagerfest<a href="CppWidget.htm">Widget</a>::<a href="CppQt.htm">Qt</a>DasWahreSchlagerfest<a href="CppWidget.htm">Widget</a>(<a href="CppQWidget.htm">QWidget</a> *parent) :<br/>
-&nbsp;&nbsp;<a href="CppQWidget.htm">QWidget</a>(parent),<br/>
-&nbsp;&nbsp;m_<a href="CppWidget.htm">widget</a>(<b><a href="CppNew.htm">new</a></b> DasWahreSchlagerfest<a href="CppWidget.htm">Widget</a>),<br/>
-&nbsp;&nbsp;m_beer(":/images/<a href="GameDasWahreSchlagerfest.htm">GameDasWahreSchlagerfest</a>Beer.png"),<br/>
-&nbsp;&nbsp;m_bratwurst(":/images/<a href="GameDasWahreSchlagerfest.htm">GameDasWahreSchlagerfest</a>Bratwurst.png"),<br/>
-&nbsp;&nbsp;m_empty(":/images/<a href="GameDasWahreSchlagerfest.htm">GameDasWahreSchlagerfest</a>Smiley.png"),<br/>
-&nbsp;&nbsp;m_richel(":/images/<a href="GameDasWahreSchlagerfest.htm">GameDasWahreSchlagerfest</a>Richel.png")<br/>
+<a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>DasWahreSchlagerfest<a href="CppWidget.html">Widget</a>::<a href="CppQt.htm">Qt</a>DasWahreSchlagerfest<a href="CppWidget.html">Widget</a>(<a href="CppQWidget.html">QWidget</a> *parent) :<br/>
+&nbsp;&nbsp;<a href="CppQWidget.html">QWidget</a>(parent),<br/>
+&nbsp;&nbsp;m_<a href="CppWidget.html">widget</a>(<b><a href="CppNew.htm">new</a></b> DasWahreSchlagerfest<a href="CppWidget.html">Widget</a>),<br/>
+&nbsp;&nbsp;m_beer(":/images/<a href="GameDasWahreSchlagerfest.html">GameDasWahreSchlagerfest</a>Beer.png"),<br/>
+&nbsp;&nbsp;m_bratwurst(":/images/<a href="GameDasWahreSchlagerfest.html">GameDasWahreSchlagerfest</a>Bratwurst.png"),<br/>
+&nbsp;&nbsp;m_empty(":/images/<a href="GameDasWahreSchlagerfest.html">GameDasWahreSchlagerfest</a>Smiley.png"),<br/>
+&nbsp;&nbsp;m_richel(":/images/<a href="GameDasWahreSchlagerfest.html">GameDasWahreSchlagerfest</a>Richel.png")<br/>
 <br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(m_beer.width() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 102);<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(m_bratwurst.width() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 102);<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(m_empty.width() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 102);<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(m_richel.width() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 102);<br/>
+&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(m_beer.width() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 102);<br/>
+&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(m_bratwurst.width() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 102);<br/>
+&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(m_empty.width() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 102);<br/>
+&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(m_richel.width() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 102);<br/>
 <br/>
-&nbsp;&nbsp;m_<a href="CppWidget.htm">widget</a>-&gt;m_signal_changed.connect(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBind.htm">boost::bind</a>(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;<a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>DasWahreSchlagerfest<a href="CppWidget.htm">Widget</a>::OnChange,<br/>
+&nbsp;&nbsp;m_<a href="CppWidget.html">widget</a>-&gt;m_signal_changed.connect(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBind.html">boost::bind</a>(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;<a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>DasWahreSchlagerfest<a href="CppWidget.html">Widget</a>::OnChange,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>));<br/>
 }<br/>
 <br/>
-<a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>DasWahreSchlagerfest<a href="CppWidget.htm">Widget</a>::~<a href="CppQt.htm">Qt</a>DasWahreSchlagerfest<a href="CppWidget.htm">Widget</a>()<br/>
+<a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>DasWahreSchlagerfest<a href="CppWidget.html">Widget</a>::~<a href="CppQt.htm">Qt</a>DasWahreSchlagerfest<a href="CppWidget.html">Widget</a>()<br/>
 {<br/>
 <br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>DasWahreSchlagerfest<a href="CppWidget.htm">Widget</a>::keyPressEvent(<a href="CppQKeyEvent.htm">QKeyEvent</a> * e)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>DasWahreSchlagerfest<a href="CppWidget.html">Widget</a>::keyPressEvent(<a href="CppQKeyEvent.html">QKeyEvent</a> * e)<br/>
 {<br/>
-&nbsp;&nbsp;DasWahreSchlagerfest<a href="CppWidget.htm">Widget</a>::Key key;<br/>
-&nbsp;&nbsp;<b><a href="CppSwitch.htm">switch</a></b> (e-&gt;key())<br/>
+&nbsp;&nbsp;DasWahreSchlagerfest<a href="CppWidget.html">Widget</a>::Key key;<br/>
+&nbsp;&nbsp;<b><a href="CppSwitch.html">switch</a></b> (e-&gt;key())<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> <a href="CppQt.htm">Qt</a>::Key_Up:&nbsp;&nbsp;&nbsp;&nbsp;key <a href="CppOperatorAssign.htm">=</a> DasWahreSchlagerfest<a href="CppWidget.htm">Widget</a>::Key::up; <b><a href="CppBreak.htm">break</a></b>;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> <a href="CppQt.htm">Qt</a>::Key_Right: key <a href="CppOperatorAssign.htm">=</a> DasWahreSchlagerfest<a href="CppWidget.htm">Widget</a>::Key::right; <b><a href="CppBreak.htm">break</a></b>;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> <a href="CppQt.htm">Qt</a>::Key_Down:&nbsp;&nbsp;key <a href="CppOperatorAssign.htm">=</a> DasWahreSchlagerfest<a href="CppWidget.htm">Widget</a>::Key::down; <b><a href="CppBreak.htm">break</a></b>;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> <a href="CppQt.htm">Qt</a>::Key_Left:&nbsp;&nbsp;key <a href="CppOperatorAssign.htm">=</a> DasWahreSchlagerfest<a href="CppWidget.htm">Widget</a>::Key::left; <b><a href="CppBreak.htm">break</a></b>;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppDefault.htm">default</a></b>: <b><a href="CppReturn.htm">return</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> <a href="CppQt.htm">Qt</a>::Key_Up:&nbsp;&nbsp;&nbsp;&nbsp;key <a href="CppOperatorAssign.htm">=</a> DasWahreSchlagerfest<a href="CppWidget.html">Widget</a>::Key::up; <b><a href="CppBreak.html">break</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> <a href="CppQt.htm">Qt</a>::Key_Right: key <a href="CppOperatorAssign.htm">=</a> DasWahreSchlagerfest<a href="CppWidget.html">Widget</a>::Key::right; <b><a href="CppBreak.html">break</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> <a href="CppQt.htm">Qt</a>::Key_Down:&nbsp;&nbsp;key <a href="CppOperatorAssign.htm">=</a> DasWahreSchlagerfest<a href="CppWidget.html">Widget</a>::Key::down; <b><a href="CppBreak.html">break</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> <a href="CppQt.htm">Qt</a>::Key_Left:&nbsp;&nbsp;key <a href="CppOperatorAssign.htm">=</a> DasWahreSchlagerfest<a href="CppWidget.html">Widget</a>::Key::left; <b><a href="CppBreak.html">break</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppDefault.html">default</a></b>: <b><a href="CppReturn.html">return</a></b>;<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;m_<a href="CppWidget.htm">widget</a>-&gt;PressKey(key);<br/>
+&nbsp;&nbsp;m_<a href="CppWidget.html">widget</a>-&gt;PressKey(key);<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>DasWahreSchlagerfest<a href="CppWidget.htm">Widget</a>::paintEvent(<a href="CppQPaintEvent.htm">QPaintEvent</a> *)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>DasWahreSchlagerfest<a href="CppWidget.html">Widget</a>::paintEvent(<a href="CppQPaintEvent.html">QPaintEvent</a> *)<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppQPainter.htm">QPainter</a> painter(<b><a href="CppThis.htm">this</a></b>);<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppVector.htm">std::vector</a>&lt;DasWahreSchlagerfest<a href="CppWidget.htm">Widget</a>::Tile&gt; &gt; &amp; v <a href="CppOperatorAssign.htm">=</a> m_<a href="CppWidget.htm">widget</a>-&gt;GetTiles();<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!v.empty());<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> maxy <a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(v.size()&nbsp;&nbsp; );<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> maxx <a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(v[0].size());<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> block_width&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(width() ) <a href="CppOperatorDivide.htm">/</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(maxx);<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> block_height <a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(height()) <a href="CppOperatorDivide.htm">/</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(maxy);<br/>
+&nbsp;&nbsp;<a href="CppQPainter.html">QPainter</a> painter(<b><a href="CppThis.htm">this</a></b>);<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppVector.html">std::vector</a>&lt;<a href="CppVector.html">std::vector</a>&lt;DasWahreSchlagerfest<a href="CppWidget.html">Widget</a>::Tile&gt; &gt; &amp; v <a href="CppOperatorAssign.htm">=</a> m_<a href="CppWidget.html">widget</a>-&gt;GetTiles();<br/>
+&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(!v.empty());<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> maxy <a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.html">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(v.size()&nbsp;&nbsp; );<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> maxx <a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.html">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(v[0].size());<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> block_width&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.html">static_cast</a></b>&lt;<b><a href="CppDouble.html">double</a></b>&gt;(width() ) <a href="CppOperatorDivide.htm">/</a> <b><a href="CppStatic_cast.html">static_cast</a></b>&lt;<b><a href="CppDouble.html">double</a></b>&gt;(maxx);<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> block_height <a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.html">static_cast</a></b>&lt;<b><a href="CppDouble.html">double</a></b>&gt;(height()) <a href="CppOperatorDivide.htm">/</a> <b><a href="CppStatic_cast.html">static_cast</a></b>&lt;<b><a href="CppDouble.html">double</a></b>&gt;(maxy);<br/>
 <br/>
 &nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> y=0; y<a href="CppOperatorNotEqual.htm">!=</a>maxy; <a href="CppOperatorPlus.htm">+</a>+y)<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(y &lt; <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(v.size()));<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;DasWahreSchlagerfest<a href="CppWidget.htm">Widget</a>::Tile&gt;&amp; line <a href="CppOperatorAssign.htm">=</a> v[y];<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(maxx <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(line.size()));<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> y1 <a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(block_height * <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(y&nbsp;&nbsp;));<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> y2 <a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(block_height * <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(y+1));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(y &lt; <b><a href="CppStatic_cast.html">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(v.size()));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppVector.html">std::vector</a>&lt;DasWahreSchlagerfest<a href="CppWidget.html">Widget</a>::Tile&gt;&amp; line <a href="CppOperatorAssign.htm">=</a> v[y];<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(maxx <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.html">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(line.size()));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> y1 <a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.html">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(block_height * <b><a href="CppStatic_cast.html">static_cast</a></b>&lt;<b><a href="CppDouble.html">double</a></b>&gt;(y&nbsp;&nbsp;));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> y2 <a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.html">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(block_height * <b><a href="CppStatic_cast.html">static_cast</a></b>&lt;<b><a href="CppDouble.html">double</a></b>&gt;(y+1));<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> x=0; x<a href="CppOperatorNotEqual.htm">!=</a>maxx; <a href="CppOperatorPlus.htm">+</a>+x)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(x &lt; <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(line.size()));<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppQPixmap.htm">QPixmap</a>&amp; pixmap <a href="CppOperatorAssign.htm">=</a> GetPixmap(line[x]);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x1 <a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(block_width * <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(x&nbsp;&nbsp;));<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x2 <a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(block_width * <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(x+1));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(x &lt; <b><a href="CppStatic_cast.html">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(line.size()));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppQPixmap.html">QPixmap</a>&amp; pixmap <a href="CppOperatorAssign.htm">=</a> GetPixmap(line[x]);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> x1 <a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.html">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(block_width * <b><a href="CppStatic_cast.html">static_cast</a></b>&lt;<b><a href="CppDouble.html">double</a></b>&gt;(x&nbsp;&nbsp;));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> x2 <a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.html">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(block_width * <b><a href="CppStatic_cast.html">static_cast</a></b>&lt;<b><a href="CppDouble.html">double</a></b>&gt;(x+1));<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>painter.drawPixmap(x1,y1,x2,y2,*pixmap);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>painter.drawPixmap(x1,y1,x2,y2,*pixmap);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;painter.drawPixmap(x1,y1,block_width,block_height,pixmap);<br/>
@@ -1055,10 +1074,10 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Draw cursor<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> DasWahreSchlagerfest<a href="CppWidget.htm">Widget</a>::Cursor cursor <a href="CppOperatorAssign.htm">=</a> m_<a href="CppWidget.htm">widget</a>-&gt;GetCursor();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x <a href="CppOperatorAssign.htm">=</a> cursor.x * block_width;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> y <a href="CppOperatorAssign.htm">=</a> cursor.y * block_height;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppQPixmap.htm">QPixmap</a>&amp; pixmap <a href="CppOperatorAssign.htm">=</a> GetPixmap(cursor.tile);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> DasWahreSchlagerfest<a href="CppWidget.html">Widget</a>::Cursor cursor <a href="CppOperatorAssign.htm">=</a> m_<a href="CppWidget.html">widget</a>-&gt;GetCursor();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> x <a href="CppOperatorAssign.htm">=</a> cursor.x * block_width;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> y <a href="CppOperatorAssign.htm">=</a> cursor.y * block_height;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppQPixmap.html">QPixmap</a>&amp; pixmap <a href="CppOperatorAssign.htm">=</a> GetPixmap(cursor.tile);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;painter.drawPixmap(x,y,block_width,block_height,pixmap);<br/>
 <br/>
 &nbsp;&nbsp;}<br/>
@@ -1068,20 +1087,20 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <br/>
 <br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppQPixmap.htm">QPixmap</a>&amp; <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>DasWahreSchlagerfest<a href="CppWidget.htm">Widget</a>::GetPixmap(<b><a href="CppConst.htm">const</a></b> DasWahreSchlagerfest<a href="CppWidget.htm">Widget</a>::Tile&amp; tile) <b><a href="CppConst.htm">const</a></b><br/>
+<b><a href="CppConst.html">const</a></b> <a href="CppQPixmap.html">QPixmap</a>&amp; <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>DasWahreSchlagerfest<a href="CppWidget.html">Widget</a>::GetPixmap(<b><a href="CppConst.html">const</a></b> DasWahreSchlagerfest<a href="CppWidget.html">Widget</a>::Tile&amp; tile) <b><a href="CppConst.html">const</a></b><br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppSwitch.htm">switch</a></b> (tile)<br/>
+&nbsp;&nbsp;<b><a href="CppSwitch.html">switch</a></b> (tile)<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> DasWahreSchlagerfest<a href="CppWidget.htm">Widget</a>::Tile::beer&nbsp;&nbsp;&nbsp;&nbsp; : <b><a href="CppReturn.htm">return</a></b> m_beer;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> DasWahreSchlagerfest<a href="CppWidget.htm">Widget</a>::Tile::bratwurst: <b><a href="CppReturn.htm">return</a></b> m_bratwurst;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> DasWahreSchlagerfest<a href="CppWidget.htm">Widget</a>::Tile::empty&nbsp;&nbsp;&nbsp;&nbsp;: <b><a href="CppReturn.htm">return</a></b> m_empty;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> DasWahreSchlagerfest<a href="CppWidget.htm">Widget</a>::Tile::richel&nbsp;&nbsp; : <b><a href="CppReturn.htm">return</a></b> m_richel;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> DasWahreSchlagerfest<a href="CppWidget.html">Widget</a>::Tile::beer&nbsp;&nbsp;&nbsp;&nbsp; : <b><a href="CppReturn.html">return</a></b> m_beer;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> DasWahreSchlagerfest<a href="CppWidget.html">Widget</a>::Tile::bratwurst: <b><a href="CppReturn.html">return</a></b> m_bratwurst;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> DasWahreSchlagerfest<a href="CppWidget.html">Widget</a>::Tile::empty&nbsp;&nbsp;&nbsp;&nbsp;: <b><a href="CppReturn.html">return</a></b> m_empty;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> DasWahreSchlagerfest<a href="CppWidget.html">Widget</a>::Tile::richel&nbsp;&nbsp; : <b><a href="CppReturn.html">return</a></b> m_richel;<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!"Should not get here");<br/>
-&nbsp;&nbsp;<b><a href="CppThrow.htm">throw</a></b> <a href="CppLogic_error.htm">std::logic_error</a>("<a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>DasWahreSchlagerfest<a href="CppWidget.htm">Widget</a>::GetPixmap");<br/>
+&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(!"Should not get here");<br/>
+&nbsp;&nbsp;<b><a href="CppThrow.html">throw</a></b> <a href="CppLogic_error.html">std::logic_error</a>("<a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>DasWahreSchlagerfest<a href="CppWidget.html">Widget</a>::GetPixmap");<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>DasWahreSchlagerfest<a href="CppWidget.htm">Widget</a>::OnChange()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>DasWahreSchlagerfest<a href="CppWidget.html">Widget</a>::OnChange()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;repaint();<br/>
 }<br/>
@@ -1098,7 +1117,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <table summary="qtmain.cpp" border = "1"><tr><td><code>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">/*</a><br/>
-<a href="GameDasWahreSchlagerfest.htm">Das Wahre Schlagerfest</a>, a simple game<br/>
+<a href="GameDasWahreSchlagerfest.html">Das Wahre Schlagerfest</a>, a simple game<br/>
 Copyright (C) 2003-2012 Richel Bilderbeek<br/>
 <br/>
 This program is free software: you can redistribute it and/or modify<br/>
@@ -1114,17 +1133,17 @@ You should have received a copy of the GNU General Public License<br/>
 along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">*/</a><br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="GameDasWahreSchlagerfest.htm">GameDasWahreSchlagerfest</a>.htm<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="GameDasWahreSchlagerfest.html">GameDasWahreSchlagerfest</a>.html<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppQApplication.htm">QApplication</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> "qt<a href="GameDasWahreSchlagerfest.htm">daswahreschlagerfest</a>menudialog.h"<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppQApplication.html">QApplication</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> "qt<a href="GameDasWahreSchlagerfest.html">daswahreschlagerfest</a>menudialog<a href="CppHeaderFile.htm">.h</a>"<br/>
 <br/>
-<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>(<b><a href="CppInt.htm">int</a></b> <a href="CppArgc.htm">argc</a>, <b><a href="CppChar.htm">char</a></b> *<a href="CppArgc.htm">argv</a>[])<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a>(<b><a href="CppInt.htm">int</a></b> <a href="CppArgc.htm">argc</a>, <b><a href="CppChar.htm">char</a></b> *<a href="CppArgc.htm">argv</a>[])<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppQApplication.htm">QApplication</a> a(<a href="CppArgc.htm">argc</a>, <a href="CppArgc.htm">argv</a>);<br/>
+&nbsp;&nbsp;<a href="CppQApplication.html">QApplication</a> a(<a href="CppArgc.htm">argc</a>, <a href="CppArgc.htm">argv</a>);<br/>
 &nbsp;&nbsp;<a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>DasWahreSchlagerfestMenuDialog w;<br/>
 &nbsp;&nbsp;w.show();<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> a.exec();<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> a.exec();<br/>
 }<br/>
 </code></td></tr></table>
 <!-- end of the code -->

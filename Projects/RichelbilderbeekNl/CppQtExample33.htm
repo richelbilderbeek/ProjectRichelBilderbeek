@@ -73,17 +73,17 @@
 QT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; += core gui<br/>
 greaterThan(QT_MAJOR_VERSION, 4): QT += <a href="CppWidget.htm">widget</a>s<br/>
 <br/>
-<a href="CppQMAKE_CXXFLAGS.htm">QMAKE_CXXFLAGS</a> += -std=<a href="Cpp11.htm">c++11</a> <a href="CppWextra.htm">-Wextra</a> <a href="CppWerror.htm">-Werror</a><br/>
+<a href="CppQmakeQmake_cxxflags.htm">QMAKE_CXXFLAGS</a> += -std=<a href="Cpp11.htm">c++11</a> <a href="CppWextra.htm">-Wextra</a> <a href="CppWerror.htm">-Werror</a><br/>
 <br/>
-TEMPLATE = app<br/>
+<a href="CppQmakeTemplate.htm">TEMPLATE</a> = app<br/>
 <br/>
-<a href="CppSOURCES.htm">SOURCES</a> += \<br/>
+<a href="CppQmakeSources.htm">SOURCES</a> += \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;qt<a href="CppMain.htm">main</a>.cpp \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;dialog.cpp \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;qtarrows<a href="CppWidget.htm">widget</a>.cpp \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQtArrowItem.htm">qtarrowitem</a>.cpp<br/>
 <br/>
-<a href="CppHEADERS.htm">HEADERS</a> += \<br/>
+<a href="CppQmakeHeaders.htm">HEADERS</a> += \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;dialog.h \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;qtarrows<a href="CppWidget.htm">widget</a>.h \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQtArrowItem.htm">qtarrowitem</a>.h<br/>
@@ -100,28 +100,28 @@ TEMPLATE = app<br/>
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="dialog.h" border = "1"><tr><td><code>
-<a href="CppIfndef.htm">#ifndef</a> DIALOG_H<br/>
-<a href="CppDefine.htm">#define</a> DIALOG_H<br/>
+<a href="CppIfndef.html">#ifndef</a> DIALOG_H<br/>
+<a href="CppDefine.html">#define</a> DIALOG_H<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppQDialog.htm">QDialog</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppQDialog.html">QDialog</a>&gt;<br/>
 <br/>
-<b><a href="CppNamespace.htm">namespace</a></b> Ui {<br/>
-<b><a href="CppClass.htm">class</a></b> Dialog;<br/>
+<b><a href="CppNamespace.html">namespace</a></b> Ui {<br/>
+<b><a href="CppClass.html">class</a></b> Dialog;<br/>
 }<br/>
 <br/>
-<b><a href="CppClass.htm">class</a></b> Dialog : <b><a href="CppPublic.htm">public</a></b> <a href="CppQDialog.htm">QDialog</a><br/>
+<b><a href="CppClass.html">class</a></b> Dialog : <b><a href="CppPublic.html">public</a></b> <a href="CppQDialog.html">QDialog</a><br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppQ_OBJECT.htm">Q_OBJECT</a><br/>
+&nbsp;&nbsp;<a href="CppQ_OBJECT.html">Q_OBJECT</a><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<br/>
-<b><a href="CppPublic.htm">public</a></b>:<br/>
-&nbsp;&nbsp;<b><a href="CppExplicit.htm">explicit</a></b> Dialog(<a href="CppQWidget.htm">QWidget</a> *parent <a href="CppOperatorAssign.htm">=</a> 0);<br/>
+<b><a href="CppPublic.html">public</a></b>:<br/>
+&nbsp;&nbsp;<b><a href="CppExplicit.html">explicit</a></b> Dialog(<a href="CppQWidget.html">QWidget</a> *parent <a href="CppOperatorAssign.htm">=</a> 0);<br/>
 &nbsp;&nbsp;~Dialog();<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<br/>
-<b><a href="CppPrivate.htm">private</a></b>:<br/>
+<b><a href="CppPrivate.html">private</a></b>:<br/>
 &nbsp;&nbsp;<a href="CppUi.htm">Ui</a>::Dialog *ui;<br/>
 };<br/>
 <br/>
-<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> DIALOG_H<br/>
+<a href="CppEndif.html">#endif</a> <a href="CppComment.htm">//</a> DIALOG_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -133,21 +133,21 @@ TEMPLATE = app<br/>
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="dialog.cpp" border = "1"><tr><td><code>
-<a href="CppInclude.htm">#include</a> "qtarrows<a href="CppWidget.htm">widget</a>.h"<br/>
-<a href="CppInclude.htm">#include</a> "dialog.h"<br/>
-<a href="CppInclude.htm">#include</a> "ui_dialog.h"<br/>
+<a href="CppInclude.html">#include</a> "qtarrows<a href="CppWidget.html">widget</a><a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "dialog<a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "ui_dialog<a href="CppHeaderFile.htm">.h</a>"<br/>
 <br/>
-Dialog::Dialog(<a href="CppQWidget.htm">QWidget</a> *parent) :<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQDialog.htm">QDialog</a>(parent),<br/>
+Dialog::Dialog(<a href="CppQWidget.html">QWidget</a> *parent) :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQDialog.html">QDialog</a>(parent),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;ui(<b><a href="CppNew.htm">new</a></b> <a href="CppUi.htm">Ui</a>::Dialog)<br/>
 {<br/>
 &nbsp;&nbsp;ui-&gt;setupUi(<b><a href="CppThis.htm">this</a></b>);<br/>
-&nbsp;&nbsp;ui-&gt;layout-&gt;addWidget(<b><a href="CppNew.htm">new</a></b> <a href="CppQt.htm">Qt</a>Arrows<a href="CppWidget.htm">Widget</a>);<br/>
+&nbsp;&nbsp;ui-&gt;layout-&gt;addWidget(<b><a href="CppNew.htm">new</a></b> <a href="CppQt.htm">Qt</a>Arrows<a href="CppWidget.html">Widget</a>);<br/>
 }<br/>
 <br/>
 Dialog::~Dialog()<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppDelete.htm">delete</a></b> ui;<br/>
+&nbsp;&nbsp;<b><a href="CppDelete.html">delete</a></b> ui;<br/>
 }<br/>
 </code></td></tr></table>
 <!-- end of the code -->
@@ -160,52 +160,52 @@ Dialog::~Dialog()<br/>
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="qtarrowitem.h" border = "1"><tr><td><code>
-<a href="CppIfndef.htm">#ifndef</a> QTARROWITEM_H<br/>
-<a href="CppDefine.htm">#define</a> QTARROWITEM_H<br/>
+<a href="CppIfndef.html">#ifndef</a> QTARROWITEM_H<br/>
+<a href="CppDefine.html">#define</a> QTARROWITEM_H<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppQGraphicsLineItem.htm">QGraphicsLineItem</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppQGraphicsLineItem.html">QGraphicsLineItem</a>&gt;<br/>
 <br/>
-<b><a href="CppStruct.htm">struct</a></b> <a href="CppQtArrowItem.htm">QtArrowItem</a> : <b><a href="CppPublic.htm">public</a></b> <a href="CppQGraphicsLineItem.htm">QGraphicsLineItem</a><br/>
+<b><a href="CppStruct.html">struct</a></b> <a href="CppQtArrowItem.html">QtArrowItem</a> : <b><a href="CppPublic.html">public</a></b> <a href="CppQGraphicsLineItem.html">QGraphicsLineItem</a><br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppQtArrowItem.htm">QtArrowItem</a>(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> x1,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> y1,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppBool.htm">bool</a></b> tail,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> x2,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> y2,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppBool.htm">bool</a></b> head,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQGraphicsItem.htm">QGraphicsItem</a> *parent <a href="CppOperatorAssign.htm">=</a> 0);<br/>
+&nbsp;&nbsp;<a href="CppQtArrowItem.html">QtArrowItem</a>(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> x1,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> y1,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppBool.htm">bool</a></b> tail,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> x2,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> y2,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppBool.htm">bool</a></b> head,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQGraphicsItem.html">QGraphicsItem</a> *parent <a href="CppOperatorAssign.htm">=</a> 0);<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppProtected.htm">protected</a></b>:<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>/<a href="CppPaint.htm">Paint</a> a <a href="CppQt.htm">Qt</a>TextPositionItem<br/>
-&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> paint(<a href="CppQPainter.htm">QPainter</a> *painter, <b><a href="CppConst.htm">const</a></b> <a href="CppQStyleOptionGraphicsItem.htm">QStyleOptionGraphicsItem</a> *, <a href="CppQWidget.htm">QWidget</a> *);<br/>
+&nbsp;&nbsp;<b><a href="CppProtected.html">protected</a></b>:<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/<a href="CppPaint.html">Paint</a> a <a href="CppQt.htm">Qt</a>TextPositionItem<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> paint(<a href="CppQPainter.html">QPainter</a> *painter, <b><a href="CppConst.html">const</a></b> <a href="CppQStyleOptionGraphicsItem.html">QStyleOptionGraphicsItem</a> *, <a href="CppQWidget.html">QWidget</a> *);<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>/The <a href="CppRectangle.htm">rectangle</a> that containg the item, used <b><a href="CppFor.htm">for</a></b> rough calculations like<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/The <a href="CppRectangle.html">rectangle</a> that containg the item, used <b><a href="CppFor.htm">for</a></b> rough calculations like<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/collision detection<br/>
-&nbsp;&nbsp;<a href="CppQRect.htm">QRect</a>F boundingRect() <b><a href="CppConst.htm">const</a></b>;<br/>
+&nbsp;&nbsp;<a href="CppQRect.html">QRect</a>F boundingRect() <b><a href="CppConst.html">const</a></b>;<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>/More precise <a href="CppShape.htm">shape</a> compared to boundingRect<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/More precise <a href="CppShape.html">shape</a> compared to boundingRect<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/In <b><a href="CppThis.htm">this</a></b> example, it is redefined to ease selecting those thin lines<br/>
-&nbsp;&nbsp;<a href="CppQPainterPath.htm">QPainterPath</a> <a href="CppShape.htm">shape</a>() <b><a href="CppConst.htm">const</a></b>;<br/>
+&nbsp;&nbsp;<a href="CppQPainterPath.html">QPainterPath</a> <a href="CppShape.html">shape</a>() <b><a href="CppConst.html">const</a></b>;<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppPrivate.htm">private</a></b>:<br/>
+&nbsp;&nbsp;<b><a href="CppPrivate.html">private</a></b>:<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/Show arrow at head<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppBool.htm">bool</a></b> m_head;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppBool.htm">bool</a></b> m_head;<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/Show arrow at tail<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppBool.htm">bool</a></b> m_tail;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppBool.htm">bool</a></b> m_tail;<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/Obtain the angle in radians between two deltas<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/12 o'clock is 0.0 * pi<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppOperatorDivide.htm">/</a> 3 o'clock is 0.5 * pi<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppOperatorDivide.htm">/</a> 6 o'clock is 1.0 * pi<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppOperatorDivide.htm">/</a> 9 o'clock is 1.5 * pi<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>From www.richelbilderbeek.nl/Cpp<a href="CppGetAngle.htm">GetAngle</a>.htm<br/>
-&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppDouble.htm">double</a></b> <a href="CppGetAngle.htm">GetAngle</a>(<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> dx, <b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> dy);<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>From www.richelbilderbeek.nl/Cpp<a href="CppGetAngle.html">GetAngle</a>.html<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.html">static</a></b> <b><a href="CppDouble.html">double</a></b> <a href="CppGetAngle.html">GetAngle</a>(<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> dx, <b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> dy);<br/>
 <br/>
 };<br/>
 <br/>
-<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> QTARROWITEM_H<br/>
+<a href="CppEndif.html">#endif</a> <a href="CppComment.htm">//</a> QTARROWITEM_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -217,54 +217,54 @@ Dialog::~Dialog()<br/>
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="qtarrowitem.cpp" border = "1"><tr><td><code>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppCmathH.htm">cmath</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppQPainter.htm">QPainter</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppQtArrowItem.htm">qtarrowitem</a>.h"<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppCmathH.html">cmath</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppQPainter.html">QPainter</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> "<a href="CppQtArrowItem.html">qtarrowitem</a><a href="CppHeaderFile.htm">.h</a>"<br/>
 <br/>
-<a href="CppQtArrowItem.htm">QtArrowItem</a>::<a href="CppQtArrowItem.htm">QtArrowItem</a>(<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> x1,<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> y1,<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppBool.htm">bool</a></b> tail,<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> x2,<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> y2,<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppBool.htm">bool</a></b> head,<br/>
-&nbsp;&nbsp;<a href="CppQGraphicsItem.htm">QGraphicsItem</a> *parent)<br/>
-&nbsp;&nbsp;: <a href="CppQGraphicsLineItem.htm">QGraphicsLineItem</a>(x1,y1,x2,y2,parent),<br/>
+<a href="CppQtArrowItem.html">QtArrowItem</a>::<a href="CppQtArrowItem.html">QtArrowItem</a>(<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> x1,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> y1,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppBool.htm">bool</a></b> tail,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> x2,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> y2,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppBool.htm">bool</a></b> head,<br/>
+&nbsp;&nbsp;<a href="CppQGraphicsItem.html">QGraphicsItem</a> *parent)<br/>
+&nbsp;&nbsp;: <a href="CppQGraphicsLineItem.html">QGraphicsLineItem</a>(x1,y1,x2,y2,parent),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;m_head(head),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;m_tail(tail)<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;setFlag(<a href="CppQGraphicsItem.htm">QGraphicsItem</a>::ItemIsMovable);<br/>
-&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;setFlag(<a href="CppQGraphicsItem.htm">QGraphicsItem</a>::ItemIsSelectable);<br/>
+&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;setFlag(<a href="CppQGraphicsItem.html">QGraphicsItem</a>::ItemIsMovable);<br/>
+&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;setFlag(<a href="CppQGraphicsItem.html">QGraphicsItem</a>::ItemIsSelectable);<br/>
 }<br/>
 <br/>
-<b><a href="CppDouble.htm">double</a></b> <a href="CppQtArrowItem.htm">QtArrowItem</a>::<a href="CppGetAngle.htm">GetAngle</a>(<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> dx, <b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> dy)<br/>
+<b><a href="CppDouble.html">double</a></b> <a href="CppQtArrowItem.html">QtArrowItem</a>::<a href="CppGetAngle.html">GetAngle</a>(<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> dx, <b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> dy)<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <a href="CppM_PI.htm">M_PI</a> <a href="CppOperatorMinus.htm">-</a> (<a href="CppAtan.htm">std::atan</a>(dx/dy));<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> <a href="CppM_PI.htm">M_PI</a> <a href="CppOperatorMinus.htm">-</a> (<a href="CppAtan.html">std::atan</a>(dx/dy));<br/>
 }<br/>
 <br/>
-<a href="CppQPainterPath.htm">QPainterPath</a> <a href="CppQtArrowItem.htm">QtArrowItem</a>::<a href="CppShape.htm">shape</a>() <b><a href="CppConst.htm">const</a></b><br/>
+<a href="CppQPainterPath.html">QPainterPath</a> <a href="CppQtArrowItem.html">QtArrowItem</a>::<a href="CppShape.html">shape</a>() <b><a href="CppConst.html">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Thanks to norobro <b><a href="CppFor.htm">for</a></b> posting <b><a href="CppThis.htm">this</a></b> code at <br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>http://www.qtcentre.org/<a href="CppThread.htm">thread</a>s/49201-<a href="CppIncrease.htm">Increase</a>-margin-<b><a href="CppFor.htm">for</a></b>-detecting-<a href="Tools.htm">tool</a>tip-events-of-<a href="CppQGraphicsLineItem.htm">QGraphicsLineItem</a><br/>
-&nbsp;&nbsp;<a href="CppQPainterPath.htm">QPainterPath</a> path;<br/>
-&nbsp;&nbsp;<a href="CppQPainterPath.htm">QPainterPath</a>Stroker stroker;<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>http://www.qtcentre.org/<a href="CppThread.html">thread</a>s/49201-<a href="CppIncrease.html">Increase</a>-margin-<b><a href="CppFor.htm">for</a></b>-detecting-<a href="Tools.htm">tool</a>tip-events-of-<a href="CppQGraphicsLineItem.html">QGraphicsLineItem</a><br/>
+&nbsp;&nbsp;<a href="CppQPainterPath.html">QPainterPath</a> path;<br/>
+&nbsp;&nbsp;<a href="CppQPainterPath.html">QPainterPath</a>Stroker stroker;<br/>
 &nbsp;&nbsp;path.moveTo(line().p1());<br/>
 &nbsp;&nbsp;path.lineTo(line().p2());<br/>
 &nbsp;&nbsp;stroker.setWidth(10);<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> stroker.createStroke(path);<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> stroker.createStroke(path);<br/>
 }<br/>
 <br/>
-<a href="CppQRect.htm">QRect</a>F <a href="CppQtArrowItem.htm">QtArrowItem</a>::boundingRect() <b><a href="CppConst.htm">const</a></b><br/>
+<a href="CppQRect.html">QRect</a>F <a href="CppQtArrowItem.html">QtArrowItem</a>::boundingRect() <b><a href="CppConst.html">const</a></b><br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <a href="CppShape.htm">shape</a>().boundingRect();<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> <a href="CppShape.html">shape</a>().boundingRect();<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppQtArrowItem.htm">QtArrowItem</a>::paint(<a href="CppQPainter.htm">QPainter</a> *painter, <b><a href="CppConst.htm">const</a></b> <a href="CppQStyleOptionGraphicsItem.htm">QStyleOptionGraphicsItem</a> *, <a href="CppQWidget.htm">QWidget</a> *)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppQtArrowItem.html">QtArrowItem</a>::paint(<a href="CppQPainter.html">QPainter</a> *painter, <b><a href="CppConst.html">const</a></b> <a href="CppQStyleOptionGraphicsItem.html">QStyleOptionGraphicsItem</a> *, <a href="CppQWidget.html">QWidget</a> *)<br/>
 {<br/>
-&nbsp;&nbsp;painter-&gt;setRenderH<b><a href="CppInt.htm">int</a></b>(<a href="CppQPainter.htm">QPainter</a>::Antialiasing);<br/>
+&nbsp;&nbsp;painter-&gt;setRenderH<b><a href="CppInt.htm">int</a></b>(<a href="CppQPainter.html">QPainter</a>::Antialiasing);<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (<b><a href="CppThis.htm">this</a></b>-&gt;isSelected())<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppQColor.htm">QColor</a> color(255,0,0);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppQColor.html">QColor</a> color(255,0,0);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;QPen pen;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;pen.setColor(color);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;pen.setWidth(3);<br/>
@@ -276,7 +276,7 @@ Dialog::~Dialog()<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;<b><a href="CppElse.htm">else</a></b><br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppQColor.htm">QColor</a> color(0,0,0);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppQColor.html">QColor</a> color(0,0,0);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;QPen pen;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;pen.setColor(color);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;pen.setWidth(1);<br/>
@@ -289,34 +289,34 @@ Dialog::~Dialog()<br/>
 &nbsp;&nbsp;painter-&gt;drawLine(<b><a href="CppThis.htm">this</a></b>-&gt;line());<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>The angle from tail to head<br/>
-&nbsp;&nbsp;<b><a href="CppDouble.htm">double</a></b> angle <a href="CppOperatorAssign.htm">=</a> <a href="CppGetAngle.htm">GetAngle</a>(line().dx(),line().dy());<br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (line().dy() <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 0.0) angle <a href="CppOperatorAssign.htm">=</a> (1.0 * <a href="CppM_PI.htm">M_PI</a>) <a href="CppOperatorPlus.htm">+</a> angle;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> sz <a href="CppOperatorAssign.htm">=</a> 10.0; <a href="CppComment.htm">//</a>pixels<br/>
+&nbsp;&nbsp;<b><a href="CppDouble.html">double</a></b> angle <a href="CppOperatorAssign.htm">=</a> <a href="CppGetAngle.html">GetAngle</a>(line().dx(),line().dy());<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (line().dy() <a href="CppOperatorGreaterEqual.html">&gt;=</a> 0.0) angle <a href="CppOperatorAssign.htm">=</a> (1.0 * <a href="CppM_PI.htm">M_PI</a>) <a href="CppOperatorPlus.htm">+</a> angle;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> sz <a href="CppOperatorAssign.htm">=</a> 10.0; <a href="CppComment.htm">//</a>pixels<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppQPointF.htm">QPointF</a> p0 <a href="CppOperatorAssign.htm">=</a> <b><a href="CppThis.htm">this</a></b>-&gt;line().p1();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppQPointF.htm">QPointF</a> p1<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> p0 <a href="CppOperatorPlus.htm">+</a> <a href="CppQPointF.htm">QPointF</a>(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppSin.htm">std::sin</a>(angle <a href="CppOperatorPlus.htm">+</a> <a href="CppM_PI.htm">M_PI</a> <a href="CppOperatorPlus.htm">+</a> (<a href="CppM_PI.htm">M_PI</a> * 0.1)) * sz,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorMinus.htm">-</a><a href="CppCos.htm">std::cos</a>(angle <a href="CppOperatorPlus.htm">+</a> <a href="CppM_PI.htm">M_PI</a> <a href="CppOperatorPlus.htm">+</a> (<a href="CppM_PI.htm">M_PI</a> * 0.1)) * sz);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppQPointF.htm">QPointF</a> p2<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> p0 <a href="CppOperatorPlus.htm">+</a> <a href="CppQPointF.htm">QPointF</a>(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppSin.htm">std::sin</a>(angle <a href="CppOperatorPlus.htm">+</a> <a href="CppM_PI.htm">M_PI</a> <a href="CppOperatorMinus.htm">-</a> (<a href="CppM_PI.htm">M_PI</a> * 0.1)) * sz,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorMinus.htm">-</a><a href="CppCos.htm">std::cos</a>(angle <a href="CppOperatorPlus.htm">+</a> <a href="CppM_PI.htm">M_PI</a> <a href="CppOperatorMinus.htm">-</a> (<a href="CppM_PI.htm">M_PI</a> * 0.1)) * sz);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;painter-&gt;drawPolygon(QPolygonF() <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> p0 <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> p1 <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> p2);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppQPointF.html">QPointF</a> p0 <a href="CppOperatorAssign.htm">=</a> <b><a href="CppThis.htm">this</a></b>-&gt;line().p1();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppQPointF.html">QPointF</a> p1<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> p0 <a href="CppOperatorPlus.htm">+</a> <a href="CppQPointF.html">QPointF</a>(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppSin.html">std::sin</a>(angle <a href="CppOperatorPlus.htm">+</a> <a href="CppM_PI.htm">M_PI</a> <a href="CppOperatorPlus.htm">+</a> (<a href="CppM_PI.htm">M_PI</a> * 0.1)) * sz,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorMinus.htm">-</a><a href="CppCos.html">std::cos</a>(angle <a href="CppOperatorPlus.htm">+</a> <a href="CppM_PI.htm">M_PI</a> <a href="CppOperatorPlus.htm">+</a> (<a href="CppM_PI.htm">M_PI</a> * 0.1)) * sz);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppQPointF.html">QPointF</a> p2<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> p0 <a href="CppOperatorPlus.htm">+</a> <a href="CppQPointF.html">QPointF</a>(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppSin.html">std::sin</a>(angle <a href="CppOperatorPlus.htm">+</a> <a href="CppM_PI.htm">M_PI</a> <a href="CppOperatorMinus.htm">-</a> (<a href="CppM_PI.htm">M_PI</a> * 0.1)) * sz,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorMinus.htm">-</a><a href="CppCos.html">std::cos</a>(angle <a href="CppOperatorPlus.htm">+</a> <a href="CppM_PI.htm">M_PI</a> <a href="CppOperatorMinus.htm">-</a> (<a href="CppM_PI.htm">M_PI</a> * 0.1)) * sz);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;painter-&gt;drawPolygon(QPolygonF() <a href="CppOperatorStreamOut.html">&lt;&lt;</a> p0 <a href="CppOperatorStreamOut.html">&lt;&lt;</a> p1 <a href="CppOperatorStreamOut.html">&lt;&lt;</a> p2);<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppQPointF.htm">QPointF</a> p0 <a href="CppOperatorAssign.htm">=</a> <b><a href="CppThis.htm">this</a></b>-&gt;line().p2();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppQPointF.html">QPointF</a> p0 <a href="CppOperatorAssign.htm">=</a> <b><a href="CppThis.htm">this</a></b>-&gt;line().p2();<br/>
 <br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppQPointF.htm">QPointF</a> p1<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> p0 <a href="CppOperatorPlus.htm">+</a> <a href="CppQPointF.htm">QPointF</a>(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppSin.htm">std::sin</a>(angle <a href="CppOperatorPlus.htm">+</a>&nbsp;&nbsp;0.0 <a href="CppOperatorPlus.htm">+</a> (<a href="CppM_PI.htm">M_PI</a> * 0.1)) * sz,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorMinus.htm">-</a><a href="CppCos.htm">std::cos</a>(angle <a href="CppOperatorPlus.htm">+</a>&nbsp;&nbsp;0.0 <a href="CppOperatorPlus.htm">+</a> (<a href="CppM_PI.htm">M_PI</a> * 0.1)) * sz);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppQPointF.htm">QPointF</a> p2<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> p0 <a href="CppOperatorPlus.htm">+</a> <a href="CppQPointF.htm">QPointF</a>(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppSin.htm">std::sin</a>(angle <a href="CppOperatorPlus.htm">+</a>&nbsp;&nbsp;0.0 <a href="CppOperatorMinus.htm">-</a> (<a href="CppM_PI.htm">M_PI</a> * 0.1)) * sz,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorMinus.htm">-</a><a href="CppCos.htm">std::cos</a>(angle <a href="CppOperatorPlus.htm">+</a>&nbsp;&nbsp;0.0 <a href="CppOperatorMinus.htm">-</a> (<a href="CppM_PI.htm">M_PI</a> * 0.1)) * sz);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppQPointF.html">QPointF</a> p1<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> p0 <a href="CppOperatorPlus.htm">+</a> <a href="CppQPointF.html">QPointF</a>(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppSin.html">std::sin</a>(angle <a href="CppOperatorPlus.htm">+</a>&nbsp;&nbsp;0.0 <a href="CppOperatorPlus.htm">+</a> (<a href="CppM_PI.htm">M_PI</a> * 0.1)) * sz,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorMinus.htm">-</a><a href="CppCos.html">std::cos</a>(angle <a href="CppOperatorPlus.htm">+</a>&nbsp;&nbsp;0.0 <a href="CppOperatorPlus.htm">+</a> (<a href="CppM_PI.htm">M_PI</a> * 0.1)) * sz);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppQPointF.html">QPointF</a> p2<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> p0 <a href="CppOperatorPlus.htm">+</a> <a href="CppQPointF.html">QPointF</a>(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppSin.html">std::sin</a>(angle <a href="CppOperatorPlus.htm">+</a>&nbsp;&nbsp;0.0 <a href="CppOperatorMinus.htm">-</a> (<a href="CppM_PI.htm">M_PI</a> * 0.1)) * sz,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorMinus.htm">-</a><a href="CppCos.html">std::cos</a>(angle <a href="CppOperatorPlus.htm">+</a>&nbsp;&nbsp;0.0 <a href="CppOperatorMinus.htm">-</a> (<a href="CppM_PI.htm">M_PI</a> * 0.1)) * sz);<br/>
 <br/>
-&nbsp;&nbsp;&nbsp;&nbsp;painter-&gt;drawPolygon(QPolygonF() <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> p0 <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> p1 <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> p2);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;painter-&gt;drawPolygon(QPolygonF() <a href="CppOperatorStreamOut.html">&lt;&lt;</a> p0 <a href="CppOperatorStreamOut.html">&lt;&lt;</a> p1 <a href="CppOperatorStreamOut.html">&lt;&lt;</a> p2);<br/>
 &nbsp;&nbsp;}<br/>
 }<br/>
 </code></td></tr></table>
@@ -330,17 +330,17 @@ Dialog::~Dialog()<br/>
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="qtarrowswidget.h" border = "1"><tr><td><code>
-<a href="CppIfndef.htm">#ifndef</a> QTARROWSWIDGET_H<br/>
-<a href="CppDefine.htm">#define</a> QTARROWSWIDGET_H<br/>
+<a href="CppIfndef.html">#ifndef</a> QTARROWSWIDGET_H<br/>
+<a href="CppDefine.html">#define</a> QTARROWSWIDGET_H<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppQGraphicsView.htm">QGraphicsView</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppQGraphicsView.html">QGraphicsView</a>&gt;<br/>
 <br/>
-<b><a href="CppStruct.htm">struct</a></b> <a href="CppQt.htm">Qt</a>Arrows<a href="CppWidget.htm">Widget</a> : <b><a href="CppPublic.htm">public</a></b> <a href="CppQGraphicsView.htm">QGraphicsView</a><br/>
+<b><a href="CppStruct.html">struct</a></b> <a href="CppQt.htm">Qt</a>Arrows<a href="CppWidget.html">Widget</a> : <b><a href="CppPublic.html">public</a></b> <a href="CppQGraphicsView.html">QGraphicsView</a><br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppQt.htm">Qt</a>Arrows<a href="CppWidget.htm">Widget</a>();<br/>
+&nbsp;&nbsp;<a href="CppQt.htm">Qt</a>Arrows<a href="CppWidget.html">Widget</a>();<br/>
 };<br/>
 <br/>
-<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> QTARROWSWIDGET_H<br/>
+<a href="CppEndif.html">#endif</a> <a href="CppComment.htm">//</a> QTARROWSWIDGET_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -352,31 +352,31 @@ Dialog::~Dialog()<br/>
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="qtarrowswidget.cpp" border = "1"><tr><td><code>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppQGraphicsScene.htm">QGraphicsScene</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppQGraphicsPixmapItem.htm">QGraphicsPixmapItem</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppQtArrowItem.htm">qtarrowitem</a>.h"<br/>
-<a href="CppInclude.htm">#include</a> "qtarrows<a href="CppWidget.htm">widget</a>.h"<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppCassertH.html">cassert</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppQGraphicsScene.html">QGraphicsScene</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppQGraphicsPixmapItem.html">QGraphicsPixmapItem</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> "<a href="CppQtArrowItem.html">qtarrowitem</a><a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "qtarrows<a href="CppWidget.html">widget</a><a href="CppHeaderFile.htm">.h</a>"<br/>
 <br/>
-<a href="CppQt.htm">Qt</a>Arrows<a href="CppWidget.htm">Widget</a>::<a href="CppQt.htm">Qt</a>Arrows<a href="CppWidget.htm">Widget</a>()<br/>
+<a href="CppQt.htm">Qt</a>Arrows<a href="CppWidget.html">Widget</a>::<a href="CppQt.htm">Qt</a>Arrows<a href="CppWidget.html">Widget</a>()<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppQGraphicsScene.htm">QGraphicsScene</a> * <b><a href="CppConst.htm">const</a></b> scene <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppQGraphicsScene.htm">QGraphicsScene</a>(<b><a href="CppThis.htm">this</a></b>);<br/>
+&nbsp;&nbsp;<a href="CppQGraphicsScene.html">QGraphicsScene</a> * <b><a href="CppConst.html">const</a></b> scene <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppQGraphicsScene.html">QGraphicsScene</a>(<b><a href="CppThis.htm">this</a></b>);<br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;setScene(scene);<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> n_arrows <a href="CppOperatorAssign.htm">=</a> 16;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> n_arrows <a href="CppOperatorAssign.htm">=</a> 16;<br/>
 &nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> i=0; i<a href="CppOperatorNotEqual.htm">!=</a>n_arrows; <a href="CppOperatorPlus.htm">+</a>+i)<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> angle <a href="CppOperatorAssign.htm">=</a> 2.0 * <a href="CppM_PI.htm">M_PI</a> * (<b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(i) <a href="CppOperatorDivide.htm">/</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(n_arrows));<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> x1 <a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;<a href="CppSin.htm">std::sin</a>(angle) * 100.0;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> y1 <a href="CppOperatorAssign.htm">=</a> <a href="CppOperatorMinus.htm">-</a><a href="CppCos.htm">std::cos</a>(angle) * 100.0;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppBool.htm">bool</a></b> tail <a href="CppOperatorAssign.htm">=</a> (<a href="CppRand.htm">std::rand</a>() <a href="CppOperatorStreamIn.htm">&gt;&gt;</a> 4) <a href="CppOperatorModulus.htm">%</a> 2;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> x2 <a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;<a href="CppSin.htm">std::sin</a>(angle) * 200.0;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> y2 <a href="CppOperatorAssign.htm">=</a> <a href="CppOperatorMinus.htm">-</a><a href="CppCos.htm">std::cos</a>(angle) * 200.0;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> x2 <a href="CppOperatorAssign.htm">=</a> ((<b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(<a href="CppRand.htm">std::rand</a>()) <a href="CppOperatorDivide.htm">/</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(<a href="CppRAND_MAX.htm">RAND_MAX</a>)) * 600.0) <a href="CppOperatorMinus.htm">-</a> 300.0;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> y2 <a href="CppOperatorAssign.htm">=</a> ((<b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(<a href="CppRand.htm">std::rand</a>()) <a href="CppOperatorDivide.htm">/</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(<a href="CppRAND_MAX.htm">RAND_MAX</a>)) * 400.0) <a href="CppOperatorMinus.htm">-</a> 200.0;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppBool.htm">bool</a></b> head <a href="CppOperatorAssign.htm">=</a> (<a href="CppRand.htm">std::rand</a>() <a href="CppOperatorStreamIn.htm">&gt;&gt;</a> 4) <a href="CppOperatorModulus.htm">%</a> 2;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> angle <a href="CppOperatorAssign.htm">=</a> 2.0 * <a href="CppM_PI.htm">M_PI</a> * (<b><a href="CppStatic_cast.html">static_cast</a></b>&lt;<b><a href="CppDouble.html">double</a></b>&gt;(i) <a href="CppOperatorDivide.htm">/</a> <b><a href="CppStatic_cast.html">static_cast</a></b>&lt;<b><a href="CppDouble.html">double</a></b>&gt;(n_arrows));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> x1 <a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;<a href="CppSin.html">std::sin</a>(angle) * 100.0;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> y1 <a href="CppOperatorAssign.htm">=</a> <a href="CppOperatorMinus.htm">-</a><a href="CppCos.html">std::cos</a>(angle) * 100.0;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppBool.htm">bool</a></b> tail <a href="CppOperatorAssign.htm">=</a> (<a href="CppRand.html">std::rand</a>() <a href="CppOperatorStreamIn.html">&gt;&gt;</a> 4) <a href="CppOperatorModulus.htm">%</a> 2;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> x2 <a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;<a href="CppSin.html">std::sin</a>(angle) * 200.0;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> y2 <a href="CppOperatorAssign.htm">=</a> <a href="CppOperatorMinus.htm">-</a><a href="CppCos.html">std::cos</a>(angle) * 200.0;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> x2 <a href="CppOperatorAssign.htm">=</a> ((<b><a href="CppStatic_cast.html">static_cast</a></b>&lt;<b><a href="CppDouble.html">double</a></b>&gt;(<a href="CppRand.html">std::rand</a>()) <a href="CppOperatorDivide.htm">/</a> <b><a href="CppStatic_cast.html">static_cast</a></b>&lt;<b><a href="CppDouble.html">double</a></b>&gt;(<a href="CppRAND_MAX.html">RAND_MAX</a>)) * 600.0) <a href="CppOperatorMinus.htm">-</a> 300.0;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> y2 <a href="CppOperatorAssign.htm">=</a> ((<b><a href="CppStatic_cast.html">static_cast</a></b>&lt;<b><a href="CppDouble.html">double</a></b>&gt;(<a href="CppRand.html">std::rand</a>()) <a href="CppOperatorDivide.htm">/</a> <b><a href="CppStatic_cast.html">static_cast</a></b>&lt;<b><a href="CppDouble.html">double</a></b>&gt;(<a href="CppRAND_MAX.html">RAND_MAX</a>)) * 400.0) <a href="CppOperatorMinus.htm">-</a> 200.0;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppBool.htm">bool</a></b> head <a href="CppOperatorAssign.htm">=</a> (<a href="CppRand.html">std::rand</a>() <a href="CppOperatorStreamIn.html">&gt;&gt;</a> 4) <a href="CppOperatorModulus.htm">%</a> 2;<br/>
 <br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQtArrowItem.htm">QtArrowItem</a> * item <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppQtArrowItem.htm">QtArrowItem</a>(x1,y1,tail,x2,y2,head);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQtArrowItem.html">QtArrowItem</a> * item <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppQtArrowItem.html">QtArrowItem</a>(x1,y1,tail,x2,y2,head);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;scene-&gt;addItem(item);<br/>
 &nbsp;&nbsp;}<br/>
 }<br/>
@@ -391,22 +391,22 @@ Dialog::~Dialog()<br/>
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="qtmain.cpp" border = "1"><tr><td><code>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppQApplication.htm">QApplication</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppQDesktopWidget.htm">QDesktopWidget</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> "dialog.h"<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppQApplication.html">QApplication</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppQDesktopWidget.html">QDesktopWidget</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> "dialog<a href="CppHeaderFile.htm">.h</a>"<br/>
 <br/>
-<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>(<b><a href="CppInt.htm">int</a></b> <a href="CppArgc.htm">argc</a>, <b><a href="CppChar.htm">char</a></b> *<a href="CppArgc.htm">argv</a>[])<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a>(<b><a href="CppInt.htm">int</a></b> <a href="CppArgc.htm">argc</a>, <b><a href="CppChar.htm">char</a></b> *<a href="CppArgc.htm">argv</a>[])<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppQApplication.htm">QApplication</a> a(<a href="CppArgc.htm">argc</a>, <a href="CppArgc.htm">argv</a>);<br/>
+&nbsp;&nbsp;<a href="CppQApplication.html">QApplication</a> a(<a href="CppArgc.htm">argc</a>, <a href="CppArgc.htm">argv</a>);<br/>
 &nbsp;&nbsp;Dialog w;<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Resize the dialog and put it in the screen center<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;w.setGeometry(0,0,600,400);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppQRect.htm">QRect</a> screen <a href="CppOperatorAssign.htm">=</a> <a href="CppQApplication.htm">QApplication</a>::desktop()-&gt;screenGeometry();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppQRect.html">QRect</a> screen <a href="CppOperatorAssign.htm">=</a> <a href="CppQApplication.html">QApplication</a>::desktop()-&gt;screenGeometry();<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;w.move( screen.center() <a href="CppOperatorMinus.htm">-</a> w.rect().center() );<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;w.show();<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> a.exec();<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> a.exec();<br/>
 }<br/>
 </code></td></tr></table>
 <!-- end of the code -->

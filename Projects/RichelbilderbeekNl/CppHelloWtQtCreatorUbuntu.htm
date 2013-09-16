@@ -70,12 +70,12 @@
 <table summary="CppHelloWtQtCreatorUbuntu.pro" border = "1"><tr><td><code>
 QT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; += core<br/>
 QT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -= gui<br/>
-<a href="CppLIBS.htm">LIBS</a> += <a href="CppWt.htm">-lwt</a> <a href="CppWt.htm">-lwt</a>http <a href="CppBoostSignals.htm">-lboost_signals</a><br/>
-<a href="CppQMAKE_CXXFLAGS.htm">QMAKE_CXXFLAGS</a> += -DNDEBUG<br/>
-CONFIG&nbsp;&nbsp; += console<br/>
-CONFIG&nbsp;&nbsp; -= app_bundle<br/>
-TEMPLATE = app<br/>
-<a href="CppSOURCES.htm">SOURCES</a> += <a href="CppMain.htm">main</a>.cpp<br/>
+<a href="CppQmakeLibs.htm">LIBS</a> += <a href="CppWt.htm">-lwt</a> <a href="CppWt.htm">-lwt</a>http <a href="CppBoostSignals.htm">-lboost_signals</a><br/>
+<a href="CppQmakeQmake_cxxflags.htm">QMAKE_CXXFLAGS</a> += -DNDEBUG<br/>
+<a href="CppQmakeConfig.htm">CONFIG</a>&nbsp;&nbsp; += console<br/>
+<a href="CppQmakeConfig.htm">CONFIG</a>&nbsp;&nbsp; -= app_bundle<br/>
+<a href="CppQmakeTemplate.htm">TEMPLATE</a> = app<br/>
+<a href="CppQmakeSources.htm">SOURCES</a> += <a href="CppMain.htm">main</a>.cpp<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -93,100 +93,100 @@ TEMPLATE = app<br/>
  * See the LICENSE file <b><a href="CppFor.htm">for</a></b> terms of use.<br/>
  <a href="CppComment.htm">*/</a><br/>
 <br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWApplication.htm">WApplication</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWBreak.htm">WBreak</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWContainerWidget.htm">WContainerWidget</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWLineEdit.htm">WLineEdit</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWPushButton.htm">WPushButton</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWText.htm">WText</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWApplication.html">WApplication</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWBreak.html">WBreak</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWContainerWidget.html">WContainerWidget</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWLineEdit.html">WLineEdit</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWPushButton.html">WPushButton</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWText.html">WText</a>&gt;<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppVersion.htm">version</a>.hpp&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppBoost.html">boost</a>/<a href="CppVersion.html">version</a><a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
 <br/>
-<b><a href="CppUsing.htm">using</a></b> <b><a href="CppNamespace.htm">namespace</a></b> <a href="CppWt.htm">Wt</a>;<br/>
+<b><a href="CppUsing.html">using</a></b> <b><a href="CppNamespace.html">namespace</a></b> <a href="CppWt.htm">Wt</a>;<br/>
 <br/>
 <a href="CppComment.htm">/*</a><br/>
- * A simple hello world <a href="CppApplication.htm">application</a> <b><a href="CppClass.htm">class</a></b> which demonstrates how to react<br/>
+ * A simple hello world <a href="CppApplication.html">application</a> <b><a href="CppClass.html">class</a></b> which demonstrates how to react<br/>
  * to events, read input, and give feed-back.<br/>
  <a href="CppComment.htm">*/</a><br/>
-<b><a href="CppClass.htm">class</a></b> Hello<a href="CppApplication.htm">Application</a> : <b><a href="CppPublic.htm">public</a></b> <a href="CppWApplication.htm">WApplication</a><br/>
+<b><a href="CppClass.html">class</a></b> Hello<a href="CppApplication.html">Application</a> : <b><a href="CppPublic.html">public</a></b> <a href="CppWApplication.html">WApplication</a><br/>
 {<br/>
-<b><a href="CppPublic.htm">public</a></b>:<br/>
-&nbsp;&nbsp;Hello<a href="CppApplication.htm">Application</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppWEnvironment.htm">WEnvironment</a>&amp; env);<br/>
+<b><a href="CppPublic.html">public</a></b>:<br/>
+&nbsp;&nbsp;Hello<a href="CppApplication.html">Application</a>(<b><a href="CppConst.html">const</a></b> <a href="CppWEnvironment.html">WEnvironment</a>&amp; env);<br/>
 <br/>
-<b><a href="CppPrivate.htm">private</a></b>:<br/>
-&nbsp;&nbsp;<a href="CppWLineEdit.htm">WLineEdit</a> *nameEdit_;<br/>
-&nbsp;&nbsp;<a href="CppWText.htm">WText</a> *greeting_;<br/>
+<b><a href="CppPrivate.html">private</a></b>:<br/>
+&nbsp;&nbsp;<a href="CppWLineEdit.html">WLineEdit</a> *nameEdit_;<br/>
+&nbsp;&nbsp;<a href="CppWText.html">WText</a> *greeting_;<br/>
 <br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> greet();<br/>
 };<br/>
 <br/>
 <a href="CppComment.htm">/*</a><br/>
- * The env argument contains information <a href="CppAbout.htm">about</a> the <b><a href="CppNew.htm">new</a></b> session, and<br/>
- * the initial request. It must be passed to the <a href="CppWApplication.htm">WApplication</a><br/>
- * <a href="CppConstructor.htm">constructor</a> so it is typically also an argument <b><a href="CppFor.htm">for</a></b> your custom<br/>
- * <a href="CppApplication.htm">application</a> <a href="CppConstructor.htm">constructor</a>.<br/>
+ * The env argument contains information <a href="CppAbout.html">about</a> the <b><a href="CppNew.htm">new</a></b> session, and<br/>
+ * the initial request. It must be passed to the <a href="CppWApplication.html">WApplication</a><br/>
+ * <a href="CppConstructor.html">constructor</a> so it is typically also an argument <b><a href="CppFor.htm">for</a></b> your custom<br/>
+ * <a href="CppApplication.html">application</a> <a href="CppConstructor.html">constructor</a>.<br/>
 <a href="CppComment.htm">*/</a><br/>
-Hello<a href="CppApplication.htm">Application</a>::Hello<a href="CppApplication.htm">Application</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppWEnvironment.htm">WEnvironment</a>&amp; env)<br/>
-&nbsp;&nbsp;: <a href="CppWApplication.htm">WApplication</a>(env)<br/>
+Hello<a href="CppApplication.html">Application</a>::Hello<a href="CppApplication.html">Application</a>(<b><a href="CppConst.html">const</a></b> <a href="CppWEnvironment.html">WEnvironment</a>&amp; env)<br/>
+&nbsp;&nbsp;: <a href="CppWApplication.html">WApplication</a>(env)<br/>
 {<br/>
-&nbsp;&nbsp;setTitle("<a href="CppHelloWorld.htm">Hello world</a>");&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppComment.htm">//</a> <a href="CppApplication.htm">application</a> title<br/>
+&nbsp;&nbsp;setTitle("<a href="CppHelloWorld.html">Hello world</a>");&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppComment.htm">//</a> <a href="CppApplication.html">application</a> title<br/>
 <br/>
-&nbsp;&nbsp;root()-&gt;addWidget(<b><a href="CppNew.htm">new</a></b> <a href="CppWText.htm">WText</a>("Your name, please ? "));&nbsp;&nbsp;<a href="CppComment.htm">//</a> show some text<br/>
-&nbsp;&nbsp;nameEdit_ <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppWLineEdit.htm">WLineEdit</a>(root());&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppComment.htm">//</a> allow text input<br/>
+&nbsp;&nbsp;root()-&gt;addWidget(<b><a href="CppNew.htm">new</a></b> <a href="CppWText.html">WText</a>("Your name, please ? "));&nbsp;&nbsp;<a href="CppComment.htm">//</a> show some text<br/>
+&nbsp;&nbsp;nameEdit_ <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppWLineEdit.html">WLineEdit</a>(root());&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppComment.htm">//</a> allow text input<br/>
 &nbsp;&nbsp;nameEdit_-&gt;setFocus();&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppComment.htm">//</a> give focus<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppWPushButton.htm">WPushButton</a> *b <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppWPushButton.htm">WPushButton</a>("Greet me.", root()); <a href="CppComment.htm">//</a> create a button<br/>
+&nbsp;&nbsp;<a href="CppWPushButton.html">WPushButton</a> *b <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppWPushButton.html">WPushButton</a>("Greet me.", root()); <a href="CppComment.htm">//</a> create a button<br/>
 &nbsp;&nbsp;b-&gt;setMargin(5, Left);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppComment.htm">//</a> add 5 pixels margin<br/>
 <br/>
-&nbsp;&nbsp;root()-&gt;addWidget(<b><a href="CppNew.htm">new</a></b> <a href="CppWBreak.htm">WBreak</a>());&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppComment.htm">//</a> insert a line <b><a href="CppBreak.htm">break</a></b><br/>
+&nbsp;&nbsp;root()-&gt;addWidget(<b><a href="CppNew.htm">new</a></b> <a href="CppWBreak.html">WBreak</a>());&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppComment.htm">//</a> insert a line <b><a href="CppBreak.html">break</a></b><br/>
 <br/>
-&nbsp;&nbsp;greeting_ <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppWText.htm">WText</a>(root());&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppComment.htm">//</a> empty text<br/>
+&nbsp;&nbsp;greeting_ <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppWText.html">WText</a>(root());&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppComment.htm">//</a> empty text<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppOperatorDivide.htm">/</a>*<br/>
-&nbsp;&nbsp; * Connect <b><a href="CppQtSignals.htm">signals</a></b> with <b><a href="CppSlots.htm">slots</a></b><br/>
+&nbsp;&nbsp; * Connect <b><a href="CppQtSignals.html">signals</a></b> with <b><a href="CppSlots.html">slots</a></b><br/>
 &nbsp;&nbsp; *<br/>
 &nbsp;&nbsp; * <a href="CppOperatorMinus.htm">-</a> simple <a href="CppWt.htm">Wt</a>-way<br/>
 &nbsp;&nbsp; <a href="CppComment.htm">*/</a><br/>
-&nbsp;&nbsp;b-&gt;clicked().connect(<b><a href="CppThis.htm">this</a></b>, &amp;Hello<a href="CppApplication.htm">Application</a>::greet);<br/>
+&nbsp;&nbsp;b-&gt;clicked().connect(<b><a href="CppThis.htm">this</a></b>, &amp;Hello<a href="CppApplication.html">Application</a>::greet);<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppOperatorDivide.htm">/</a>*<br/>
-&nbsp;&nbsp; * <a href="CppOperatorMinus.htm">-</a> <b><a href="CppUsing.htm">using</a></b> an arbitrary <a href="CppFunction.htm">function</a> object (binding values with <a href="CppBind.htm">boost::bind</a>())<br/>
+&nbsp;&nbsp; * <a href="CppOperatorMinus.htm">-</a> <b><a href="CppUsing.html">using</a></b> an arbitrary <a href="CppFunction.html">function</a> object (binding values with <a href="CppBind.html">boost::bind</a>())<br/>
 &nbsp;&nbsp; <a href="CppComment.htm">*/</a><br/>
 &nbsp;&nbsp;nameEdit_-&gt;enterPressed().connect<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;(<a href="CppBind.htm">boost::bind</a>(&amp;Hello<a href="CppApplication.htm">Application</a>::greet, <b><a href="CppThis.htm">this</a></b>));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;(<a href="CppBind.html">boost::bind</a>(&amp;Hello<a href="CppApplication.html">Application</a>::greet, <b><a href="CppThis.htm">this</a></b>));<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> Hello<a href="CppApplication.htm">Application</a>::greet()<br/>
+<b><a href="CppVoid.htm">void</a></b> Hello<a href="CppApplication.html">Application</a>::greet()<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppOperatorDivide.htm">/</a>*<br/>
-&nbsp;&nbsp; * Update the text, <b><a href="CppUsing.htm">using</a></b> text input into the nameEdit_ field.<br/>
+&nbsp;&nbsp; * Update the text, <b><a href="CppUsing.html">using</a></b> text input into the nameEdit_ field.<br/>
 &nbsp;&nbsp; <a href="CppComment.htm">*/</a><br/>
 &nbsp;&nbsp;greeting_-&gt;setText("Hello there, " <a href="CppOperatorPlus.htm">+</a> nameEdit_-&gt;text());<br/>
 }<br/>
 <br/>
-<a href="CppWApplication.htm">WApplication</a> *create<a href="CppApplication.htm">Application</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppWEnvironment.htm">WEnvironment</a>&amp; env)<br/>
+<a href="CppWApplication.html">WApplication</a> *create<a href="CppApplication.html">Application</a>(<b><a href="CppConst.html">const</a></b> <a href="CppWEnvironment.html">WEnvironment</a>&amp; env)<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppOperatorDivide.htm">/</a>*<br/>
 &nbsp;&nbsp; * You could read information from the environment to decide whether<br/>
-&nbsp;&nbsp; * the user has permission to start a <b><a href="CppNew.htm">new</a></b> <a href="CppApplication.htm">application</a><br/>
+&nbsp;&nbsp; * the user has permission to start a <b><a href="CppNew.htm">new</a></b> <a href="CppApplication.html">application</a><br/>
 &nbsp;&nbsp; <a href="CppComment.htm">*/</a><br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <b><a href="CppNew.htm">new</a></b> Hello<a href="CppApplication.htm">Application</a>(env);<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> <b><a href="CppNew.htm">new</a></b> Hello<a href="CppApplication.html">Application</a>(env);<br/>
 }<br/>
 <br/>
-<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>(<b><a href="CppInt.htm">int</a></b> <a href="CppArgc.htm">argc</a>, <b><a href="CppChar.htm">char</a></b> **<a href="CppArgc.htm">argv</a>)<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a>(<b><a href="CppInt.htm">int</a></b> <a href="CppArgc.htm">argc</a>, <b><a href="CppChar.htm">char</a></b> **<a href="CppArgc.htm">argv</a>)<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppOperatorDivide.htm">/</a>*<br/>
-&nbsp;&nbsp; * Your <a href="CppMain.htm">main</a> method may set up some shared resources, but should then<br/>
-&nbsp;&nbsp; * start the server <a href="CppApplication.htm">application</a> (FastCGI or httpd) that starts listening<br/>
-&nbsp;&nbsp; * <b><a href="CppFor.htm">for</a></b> requests, and handles all of the <a href="CppApplication.htm">application</a> life cycles.<br/>
+&nbsp;&nbsp; * Your <a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a> <a href="CppMemberFunction.html">member function</a> may set up some shared resources, but should then<br/>
+&nbsp;&nbsp; * start the server <a href="CppApplication.html">application</a> (FastCGI or httpd) that starts listening<br/>
+&nbsp;&nbsp; * <b><a href="CppFor.htm">for</a></b> requests, and handles all of the <a href="CppApplication.html">application</a> life cycles.<br/>
 &nbsp;&nbsp; *<br/>
-&nbsp;&nbsp; * The last argument to WRun specifies the <a href="CppFunction.htm">function</a> that will instantiate<br/>
-&nbsp;&nbsp; * <b><a href="CppNew.htm">new</a></b> <a href="CppApplication.htm">application</a> objects. That <a href="CppFunction.htm">function</a> is executed when a <b><a href="CppNew.htm">new</a></b> user surfs<br/>
-&nbsp;&nbsp; * to the <a href="CppWt.htm">Wt</a> <a href="CppApplication.htm">application</a>, and after the <a href="CppLibrary.htm">library</a> has negotiated browser<br/>
-&nbsp;&nbsp; * support. The <a href="CppFunction.htm">function</a> should <b><a href="CppReturn.htm">return</a></b> a newly instantiated <a href="CppApplication.htm">application</a><br/>
+&nbsp;&nbsp; * The last argument to WRun specifies the <a href="CppFunction.html">function</a> that will instantiate<br/>
+&nbsp;&nbsp; * <b><a href="CppNew.htm">new</a></b> <a href="CppApplication.html">application</a> objects. That <a href="CppFunction.html">function</a> is executed when a <b><a href="CppNew.htm">new</a></b> user surfs<br/>
+&nbsp;&nbsp; * to the <a href="CppWt.htm">Wt</a> <a href="CppApplication.html">application</a>, and after the <a href="CppLibrary.html">library</a> has negotiated browser<br/>
+&nbsp;&nbsp; * support. The <a href="CppFunction.html">function</a> should <b><a href="CppReturn.html">return</a></b> a newly instantiated <a href="CppApplication.html">application</a><br/>
 &nbsp;&nbsp; * object.<br/>
 &nbsp;&nbsp; <a href="CppComment.htm">*/</a><br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> WRun(<a href="CppArgc.htm">argc</a>, <a href="CppArgc.htm">argv</a>, &amp;create<a href="CppApplication.htm">Application</a>);<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> WRun(<a href="CppArgc.htm">argc</a>, <a href="CppArgc.htm">argv</a>, &amp;create<a href="CppApplication.html">Application</a>);<br/>
 }<br/>
 </code></td></tr></table>
 <!-- end of the code -->

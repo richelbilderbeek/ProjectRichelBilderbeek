@@ -43,7 +43,7 @@ for <a href="CppOpenQuestionDialog.htm">OpenQuestionDialog</a>.</p>
 <table summary="qtopenquestiondialog.h" border = "1"><tr><td><code>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">/*</a><br/>
-<a href="CppQtOpenQuestionDialog.htm">QtOpenQuestionDialog</a>, <a href="CppQt.htm">Qt</a> dialog <b><a href="CppFor.htm">for</a></b> <a href="CppOpenQuestionDialog.htm">OpenQuestionDialog</a><br/>
+<a href="CppQtOpenQuestionDialog.html">QtOpenQuestionDialog</a>, <a href="CppQt.htm">Qt</a> dialog <b><a href="CppFor.htm">for</a></b> <a href="CppOpenQuestionDialog.html">OpenQuestionDialog</a><br/>
 Copyright (C) 2011-2013 Richel Bilderbeek<br/>
 <br/>
 This program is free software: you can redistribute it and/or modify<br/>
@@ -59,60 +59,62 @@ You should have received a copy of the GNU General Public License<br/>
 along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">*/</a><br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="CppQtOpenQuestionDialog.htm">CppQtOpenQuestionDialog</a>.htm<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="CppQtOpenQuestionDialog.html">CppQtOpenQuestionDialog</a>.html<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppIfndef.htm">#ifndef</a> QTOPENQUESTIONDIALOG_H<br/>
-<a href="CppDefine.htm">#define</a> QTOPENQUESTIONDIALOG_H<br/>
+<a href="CppIfndef.html">#ifndef</a> QTOPENQUESTIONDIALOG_H<br/>
+<a href="CppDefine.html">#define</a> QTOPENQUESTIONDIALOG_H<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppScoped_ptr.htm">scoped_ptr</a>.hpp&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppShared_ptr.htm">shared_ptr</a>.hpp&gt;<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic push<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.html">-Weffc++</a>"<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppBoost.html">boost</a>/<a href="CppScoped_ptr.html">scoped_ptr</a><a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppBoost.html">boost</a>/<a href="CppShared_ptr.html">shared_ptr</a><a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppQDialog.htm">QDialog</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppQDialog.html">QDialog</a>&gt;<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppQuestionDialog.htm">questiondialog</a>.h"<br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppQtQuestionDialog.htm">qtquestiondialog</a>.h"<br/>
+<a href="CppInclude.html">#include</a> "<a href="CppQuestionDialog.html">questiondialog</a><a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "<a href="CppQtQuestionDialog.html">qtquestiondialog</a><a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic pop<br/>
 <br/>
-<b><a href="CppNamespace.htm">namespace</a></b> Ui {<br/>
-<b><a href="CppClass.htm">class</a></b> <a href="CppQtOpenQuestionDialog.htm">QtOpenQuestionDialog</a>;<br/>
+<b><a href="CppNamespace.html">namespace</a></b> Ui {<br/>
+&nbsp;&nbsp;<b><a href="CppClass.html">class</a></b> <a href="CppQtOpenQuestionDialog.html">QtOpenQuestionDialog</a>;<br/>
 }<br/>
 <br/>
-<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
+<b><a href="CppNamespace.html">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
 <br/>
-<b><a href="CppStruct.htm">struct</a></b> <a href="CppQuestion.htm">Question</a>;<br/>
-<b><a href="CppStruct.htm">struct</a></b> <a href="CppOpenQuestion.htm">OpenQuestion</a>;<br/>
-<b><a href="CppStruct.htm">struct</a></b> <a href="CppOpenQuestionDialog.htm">OpenQuestionDialog</a>;<br/>
+<b><a href="CppStruct.html">struct</a></b> <a href="CppQuestion.html">Question</a>;<br/>
+<b><a href="CppStruct.html">struct</a></b> <a href="CppOpenQuestion.html">OpenQuestion</a>;<br/>
+<b><a href="CppStruct.html">struct</a></b> <a href="CppOpenQuestionDialog.html">OpenQuestionDialog</a>;<br/>
 <br/>
-<b><a href="CppClass.htm">class</a></b> <a href="CppQtOpenQuestionDialog.htm">QtOpenQuestionDialog</a> : <b><a href="CppPublic.htm">public</a></b> <a href="CppQt.htm">Qt</a><a href="CppQuestionDialog.htm">QuestionDialog</a><br/>
+<b><a href="CppClass.html">class</a></b> <a href="CppQtOpenQuestionDialog.html">QtOpenQuestionDialog</a> : <b><a href="CppPublic.html">public</a></b> <a href="CppQt.htm">Qt</a><a href="CppQuestionDialog.html">QuestionDialog</a><br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppQ_OBJECT.htm">Q_OBJECT</a><br/>
+&nbsp;&nbsp;<a href="CppQ_OBJECT.html">Q_OBJECT</a><br/>
 <br/>
-<b><a href="CppPublic.htm">public</a></b>:<br/>
-&nbsp;&nbsp;<b><a href="CppExplicit.htm">explicit</a></b> <a href="CppQtOpenQuestionDialog.htm">QtOpenQuestionDialog</a>(<a href="CppQWidget.htm">QWidget</a> *parent <a href="CppOperatorAssign.htm">=</a> 0);<br/>
+<b><a href="CppPublic.html">public</a></b>:<br/>
+&nbsp;&nbsp;<b><a href="CppExplicit.html">explicit</a></b> <a href="CppQtOpenQuestionDialog.html">QtOpenQuestionDialog</a>(<a href="CppQWidget.html">QWidget</a> *parent <a href="CppOperatorAssign.htm">=</a> 0);<br/>
+&nbsp;&nbsp;<b><a href="CppExplicit.html">explicit</a></b> <a href="CppQtOpenQuestionDialog.html">QtOpenQuestionDialog</a>(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppBoostShared_ptr.html">boost::shared_ptr</a>&lt;<a href="CppQuestionDialog.html">QuestionDialog</a>&gt;&amp; dialog,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQWidget.html">QWidget</a> *parent <a href="CppOperatorAssign.htm">=</a> 0);<br/>
+&nbsp;&nbsp;<a href="CppQtOpenQuestionDialog.html">QtOpenQuestionDialog</a>(<b><a href="CppConst.html">const</a></b> <a href="CppQtOpenQuestionDialog.html">QtOpenQuestionDialog</a>&amp;) <a href="CppOperatorAssign.htm">=</a> <b><a href="CppDelete.html">delete</a></b>;<br/>
+&nbsp;&nbsp;<a href="CppQtOpenQuestionDialog.html">QtOpenQuestionDialog</a>&amp; <b><a href="CppOperator.html">operator</a></b>=(<b><a href="CppConst.html">const</a></b> <a href="CppQtOpenQuestionDialog.html">QtOpenQuestionDialog</a>&amp;) <a href="CppOperatorAssign.htm">=</a> <b><a href="CppDelete.html">delete</a></b>;<br/>
+&nbsp;&nbsp;~<a href="CppQtOpenQuestionDialog.html">QtOpenQuestionDialog</a>();<br/>
 <br/>
+&nbsp;&nbsp;<b><a href="CppStatic.html">static</a></b> <b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a> Get<a href="CppVersion.html">Version</a>();<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.html">static</a></b> <b><a href="CppConst.html">const</a></b> <a href="CppVector.html">std::vector</a>&lt;<a href="CppString.html">std::string</a>&gt; Get<a href="CppVersion.html">Version</a>History();<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppQtOpenQuestionDialog.htm">QtOpenQuestionDialog</a>(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppQuestionDialog.htm">QuestionDialog</a>&gt;&amp; dialog,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQWidget.htm">QWidget</a> *parent <a href="CppOperatorAssign.htm">=</a> 0);<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Set the <a href="CppQuestion.html">Question</a><br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> Set<a href="CppQuestion.html">Question</a>(<b><a href="CppConst.html">const</a></b> <a href="CppBoostShared_ptr.html">boost::shared_ptr</a>&lt;<a href="CppQuestion.html">Question</a>&gt;&amp; <a href="CppQuestion.html">question</a>);<br/>
 <br/>
-&nbsp;&nbsp;~<a href="CppQtOpenQuestionDialog.htm">QtOpenQuestionDialog</a>();<br/>
-<br/>
-&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> Get<a href="CppVersion.htm">Version</a>();<br/>
-&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; Get<a href="CppVersion.htm">Version</a>History();<br/>
-<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Set the <a href="CppQuestion.htm">Question</a><br/>
-&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> Set<a href="CppQuestion.htm">Question</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppQuestion.htm">Question</a>&gt;&amp; <a href="CppQuestion.htm">question</a>);<br/>
-<br/>
-<b><a href="CppPrivate.htm">private</a></b> <b><a href="CppSlots.htm">slots</a></b>:<br/>
+<b><a href="CppPrivate.html">private</a></b> <b><a href="CppSlots.html">slots</a></b>:<br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> on_button_submit_clicked();<br/>
 <br/>
-<b><a href="CppPrivate.htm">private</a></b>:<br/>
-&nbsp;&nbsp;<a href="CppUi.htm">Ui</a>::<a href="CppQtOpenQuestionDialog.htm">QtOpenQuestionDialog</a> *ui;<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppScoped_ptr.htm">boost::scoped_ptr</a>&lt;<a href="CppOpenQuestionDialog.htm">OpenQuestionDialog</a>&gt; m_dialog;<br/>
+<b><a href="CppPrivate.html">private</a></b>:<br/>
+&nbsp;&nbsp;<a href="CppUi.htm">Ui</a>::<a href="CppQtOpenQuestionDialog.html">QtOpenQuestionDialog</a> *ui;<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppScoped_ptr.html">boost::scoped_ptr</a>&lt;<a href="CppOpenQuestionDialog.html">OpenQuestionDialog</a>&gt; m_dialog;<br/>
 };<br/>
 <br/>
-} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.html">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
 <br/>
-<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> QTOPENQUESTIONDIALOG_H<br/>
+<a href="CppEndif.html">#endif</a> <a href="CppComment.htm">//</a> QTOPENQUESTIONDIALOG_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -126,7 +128,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <table summary="qtopenquestiondialog.cpp" border = "1"><tr><td><code>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">/*</a><br/>
-<a href="CppQtOpenQuestionDialog.htm">QtOpenQuestionDialog</a>, <a href="CppQt.htm">Qt</a> dialog <b><a href="CppFor.htm">for</a></b> <a href="CppOpenQuestionDialog.htm">OpenQuestionDialog</a><br/>
+<a href="CppQtOpenQuestionDialog.html">QtOpenQuestionDialog</a>, <a href="CppQt.htm">Qt</a> dialog <b><a href="CppFor.htm">for</a></b> <a href="CppOpenQuestionDialog.html">OpenQuestionDialog</a><br/>
 Copyright (C) 2011-2013 Richel Bilderbeek<br/>
 <br/>
 This program is free software: you can redistribute it and/or modify<br/>
@@ -142,88 +144,89 @@ You should have received a copy of the GNU General Public License<br/>
 along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">*/</a><br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="CppQtOpenQuestionDialog.htm">CppQtOpenQuestionDialog</a>.htm<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="CppQtOpenQuestionDialog.html">CppQtOpenQuestionDialog</a>.html<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic push<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.html">-Weffc++</a>"<br/>
+<a href="CppInclude.html">#include</a> "<a href="CppQtOpenQuestionDialog.html">qtopenquestiondialog</a><a href="CppHeaderFile.htm">.h</a>"<br/>
 <br/>
+<a href="CppInclude.html">#include</a> "<a href="CppOpenQuestion.html">openquestion</a><a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "<a href="CppOpenQuestionDialog.html">openquestiondialog</a><a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppComment.htm">//</a><a href="CppInclude.html">#include</a> "<a href="CppTrace.html">trace</a><a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "ui_<a href="CppQtOpenQuestionDialog.html">qtopenquestiondialog</a><a href="CppHeaderFile.htm">.h</a>"<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppQtOpenQuestionDialog.htm">qtopenquestiondialog</a>.h"<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppQFile.html">QFile</a>&gt;<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic pop<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppOpenQuestion.htm">openquestion</a>.h"<br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppOpenQuestionDialog.htm">openquestiondialog</a>.h"<br/>
-<a href="CppComment.htm">//</a><a href="CppInclude.htm">#include</a> "<a href="CppTrace.htm">trace</a>.h"<br/>
-<a href="CppInclude.htm">#include</a> "ui_<a href="CppQtOpenQuestionDialog.htm">qtopenquestiondialog</a>.h"<br/>
-<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppQFile.htm">QFile</a>&gt;<br/>
-<br/>
-<a href="CppRibi.htm">ribi</a>::<a href="CppQtOpenQuestionDialog.htm">QtOpenQuestionDialog</a>::<a href="CppQtOpenQuestionDialog.htm">QtOpenQuestionDialog</a>(<a href="CppQWidget.htm">QWidget</a> *parent)<br/>
-&nbsp;&nbsp;: <a href="CppQt.htm">Qt</a><a href="CppQuestionDialog.htm">QuestionDialog</a>(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppQuestionDialog.htm">QuestionDialog</a>&gt;(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppNew.htm">new</a></b> <a href="CppOpenQuestionDialog.htm">OpenQuestionDialog</a>(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppOpenQuestion.htm">OpenQuestion</a>&gt;(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppNew.htm">new</a></b> <a href="CppOpenQuestion.htm">OpenQuestion</a>("*","*",{"*"} )))),<br/>
+<a href="CppRibi.htm">ribi</a>::<a href="CppQtOpenQuestionDialog.html">QtOpenQuestionDialog</a>::<a href="CppQtOpenQuestionDialog.html">QtOpenQuestionDialog</a>(<a href="CppQWidget.html">QWidget</a> *parent)<br/>
+&nbsp;&nbsp;: <a href="CppQt.htm">Qt</a><a href="CppQuestionDialog.html">QuestionDialog</a>(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBoostShared_ptr.html">boost::shared_ptr</a>&lt;<a href="CppQuestionDialog.html">QuestionDialog</a>&gt;(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppNew.htm">new</a></b> <a href="CppOpenQuestionDialog.html">OpenQuestionDialog</a>(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBoostShared_ptr.html">boost::shared_ptr</a>&lt;<a href="CppOpenQuestion.html">OpenQuestion</a>&gt;(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppNew.htm">new</a></b> <a href="CppOpenQuestion.html">OpenQuestion</a>("*","*",{"*"} )))),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;parent),<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;ui(<b><a href="CppNew.htm">new</a></b> <a href="CppUi.htm">Ui</a>::<a href="CppQtOpenQuestionDialog.htm">QtOpenQuestionDialog</a>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;ui(<b><a href="CppNew.htm">new</a></b> <a href="CppUi.htm">Ui</a>::<a href="CppQtOpenQuestionDialog.html">QtOpenQuestionDialog</a>)<br/>
 {<br/>
 &nbsp;&nbsp;ui-&gt;setupUi(<b><a href="CppThis.htm">this</a></b>);<br/>
 }<br/>
 <br/>
-<a href="CppRibi.htm">ribi</a>::<a href="CppQtOpenQuestionDialog.htm">QtOpenQuestionDialog</a>::<a href="CppQtOpenQuestionDialog.htm">QtOpenQuestionDialog</a>(<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppQuestionDialog.htm">QuestionDialog</a>&gt;&amp; dialog,<br/>
-&nbsp;&nbsp;<a href="CppQWidget.htm">QWidget</a> *parent)<br/>
-&nbsp;&nbsp;: <a href="CppQt.htm">Qt</a><a href="CppQuestionDialog.htm">QuestionDialog</a>(dialog,parent),<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;ui(<b><a href="CppNew.htm">new</a></b> <a href="CppUi.htm">Ui</a>::<a href="CppQtOpenQuestionDialog.htm">QtOpenQuestionDialog</a>)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>m_dialog(<b><a href="CppNew.htm">new</a></b> <a href="CppOpenQuestionDialog.htm">OpenQuestionDialog</a>(<a href="CppQuestion.htm">question</a>))<br/>
+<a href="CppRibi.htm">ribi</a>::<a href="CppQtOpenQuestionDialog.html">QtOpenQuestionDialog</a>::<a href="CppQtOpenQuestionDialog.html">QtOpenQuestionDialog</a>(<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppBoostShared_ptr.html">boost::shared_ptr</a>&lt;<a href="CppQuestionDialog.html">QuestionDialog</a>&gt;&amp; dialog,<br/>
+&nbsp;&nbsp;<a href="CppQWidget.html">QWidget</a> *parent)<br/>
+&nbsp;&nbsp;: <a href="CppQt.htm">Qt</a><a href="CppQuestionDialog.html">QuestionDialog</a>(dialog,parent),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;ui(<b><a href="CppNew.htm">new</a></b> <a href="CppUi.htm">Ui</a>::<a href="CppQtOpenQuestionDialog.html">QtOpenQuestionDialog</a>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>m_dialog(<b><a href="CppNew.htm">new</a></b> <a href="CppOpenQuestionDialog.html">OpenQuestionDialog</a>(<a href="CppQuestion.html">question</a>))<br/>
 {<br/>
 &nbsp;&nbsp;ui-&gt;setupUi(<b><a href="CppThis.htm">this</a></b>);<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(dialog);<br/>
-&nbsp;&nbsp;Set<a href="CppQuestion.htm">Question</a>(dialog-&gt;Get<a href="CppQuestion.htm">Question</a>());<br/>
+&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(dialog);<br/>
+&nbsp;&nbsp;Set<a href="CppQuestion.html">Question</a>(dialog-&gt;Get<a href="CppQuestion.html">Question</a>());<br/>
 }<br/>
 <br/>
-<a href="CppRibi.htm">ribi</a>::<a href="CppQtOpenQuestionDialog.htm">QtOpenQuestionDialog</a>::~<a href="CppQtOpenQuestionDialog.htm">QtOpenQuestionDialog</a>()<br/>
+<a href="CppRibi.htm">ribi</a>::<a href="CppQtOpenQuestionDialog.html">QtOpenQuestionDialog</a>::~<a href="CppQtOpenQuestionDialog.html">QtOpenQuestionDialog</a>()<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppDelete.htm">delete</a></b> ui;<br/>
+&nbsp;&nbsp;<b><a href="CppDelete.html">delete</a></b> ui;<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppRibi.htm">ribi</a>::<a href="CppQtOpenQuestionDialog.htm">QtOpenQuestionDialog</a>::Get<a href="CppVersion.htm">Version</a>()<br/>
+<b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a> <a href="CppRibi.htm">ribi</a>::<a href="CppQtOpenQuestionDialog.html">QtOpenQuestionDialog</a>::Get<a href="CppVersion.html">Version</a>()<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> "1.0";<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> "1.0";<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm">ribi</a>::<a href="CppQtOpenQuestionDialog.htm">QtOpenQuestionDialog</a>::Get<a href="CppVersion.htm">Version</a>History()<br/>
+<b><a href="CppConst.html">const</a></b> <a href="CppVector.html">std::vector</a>&lt;<a href="CppString.html">std::string</a>&gt; <a href="CppRibi.htm">ribi</a>::<a href="CppQtOpenQuestionDialog.html">QtOpenQuestionDialog</a>::Get<a href="CppVersion.html">Version</a>History()<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v;<br/>
-&nbsp;&nbsp;v.push_back("2011-06-28: <a href="CppVersion.htm">version</a> 1.0: initial <a href="CppVersion.htm">version</a>");<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
+&nbsp;&nbsp;<a href="CppVector.html">std::vector</a>&lt;<a href="CppString.html">std::string</a>&gt; v;<br/>
+&nbsp;&nbsp;v.push_back("2011-06-28: <a href="CppVersion.html">version</a> 1.0: initial <a href="CppVersion.html">version</a>");<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> v;<br/>
 }<br/>
 <br/>
-<a href="CppComment.htm">///</a>Set the <a href="CppQuestion.htm">Question</a><br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQtOpenQuestionDialog.htm">QtOpenQuestionDialog</a>::Set<a href="CppQuestion.htm">Question</a>(<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppQuestion.htm">Question</a>&gt;&amp; <a href="CppQuestion.htm">question</a>)<br/>
+<a href="CppComment.htm">///</a>Set the <a href="CppQuestion.html">Question</a><br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQtOpenQuestionDialog.html">QtOpenQuestionDialog</a>::Set<a href="CppQuestion.html">Question</a>(<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppBoostShared_ptr.html">boost::shared_ptr</a>&lt;<a href="CppQuestion.html">Question</a>&gt;&amp; <a href="CppQuestion.html">question</a>)<br/>
 {<br/>
-&nbsp;&nbsp;m_dialog-&gt;Set<a href="CppQuestion.htm">Question</a>(<a href="CppQuestion.htm">question</a>);<br/>
+&nbsp;&nbsp;m_dialog-&gt;Set<a href="CppQuestion.html">Question</a>(<a href="CppQuestion.html">question</a>);<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (<a href="CppQFile.htm">QFile</a>::exists(<a href="CppQuestion.htm">question</a>-&gt;GetFilename().c_str()))<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (<a href="CppQFile.html">QFile</a>::exists(<a href="CppQuestion.html">question</a>-&gt;GetFilename().c_str()))<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;ui-&gt;image-&gt;setPixmap(<a href="CppQPixmap.htm">QPixmap</a>(<a href="CppQuestion.htm">question</a>-&gt;GetFilename().c_str()));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;ui-&gt;image-&gt;setPixmap(<a href="CppQPixmap.html">QPixmap</a>(<a href="CppQuestion.html">question</a>-&gt;GetFilename().c_str()));<br/>
 &nbsp;&nbsp;}<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppOpenQuestion.htm">OpenQuestion</a> * <b><a href="CppConst.htm">const</a></b> q<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <b><a href="CppDynamic_cast.htm">dynamic_cast</a></b>&lt;<b><a href="CppConst.htm">const</a></b> <a href="CppOpenQuestion.htm">OpenQuestion</a> *&gt;(<a href="CppQuestion.htm">question</a>.get());<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(q);<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppOpenQuestion.html">OpenQuestion</a> * <b><a href="CppConst.html">const</a></b> q<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <b><a href="CppDynamic_cast.html">dynamic_cast</a></b>&lt;<b><a href="CppConst.html">const</a></b> <a href="CppOpenQuestion.html">OpenQuestion</a> *&gt;(<a href="CppQuestion.html">question</a>.get());<br/>
+&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(q);<br/>
 <br/>
-&nbsp;&nbsp;ui-&gt;stackedWidget-&gt;setCurrent<a href="CppWidget.htm">Widget</a>(ui-&gt;page_<a href="CppQuestion.htm">question</a>);<br/>
-&nbsp;&nbsp;ui-&gt;label_<a href="CppQuestion.htm">question</a>-&gt;setText(<a href="CppQuestion.htm">question</a>-&gt;Get<a href="CppQuestion.htm">Question</a>().c_str());<br/>
-&nbsp;&nbsp;ui-&gt;label_<a href="CppQuestion.htm">question</a>_again-&gt;setText(<a href="CppQuestion.htm">question</a>-&gt;Get<a href="CppQuestion.htm">Question</a>().c_str());<br/>
+&nbsp;&nbsp;ui-&gt;stackedWidget-&gt;setCurrent<a href="CppWidget.html">Widget</a>(ui-&gt;page_<a href="CppQuestion.html">question</a>);<br/>
+&nbsp;&nbsp;ui-&gt;label_<a href="CppQuestion.html">question</a>-&gt;setText(<a href="CppQuestion.html">question</a>-&gt;Get<a href="CppQuestion.html">Question</a>().c_str());<br/>
+&nbsp;&nbsp;ui-&gt;label_<a href="CppQuestion.html">question</a>_again-&gt;setText(<a href="CppQuestion.html">question</a>-&gt;Get<a href="CppQuestion.html">Question</a>().c_str());<br/>
 &nbsp;&nbsp;ui-&gt;label_answer-&gt;setText(q-&gt;GetAnswers()[0].c_str());<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQtOpenQuestionDialog.htm">QtOpenQuestionDialog</a>::on_button_submit_clicked()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQtOpenQuestionDialog.html">QtOpenQuestionDialog</a>::on_button_submit_clicked()<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(m_dialog-&gt;CanSubmit());<br/>
+&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(m_dialog-&gt;CanSubmit());<br/>
 &nbsp;&nbsp;m_dialog-&gt;Submit(<b><a href="CppThis.htm">this</a></b>-&gt;ui-&gt;edit_answer-&gt;text().toStdString());<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppBool.htm">bool</a></b> is_correct <a href="CppOperatorAssign.htm">=</a> m_dialog-&gt;IsAnswerCorrect();<br/>
-&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;ui-&gt;stackedWidget-&gt;setCurrent<a href="CppWidget.htm">Widget</a>(is_correct<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppBool.htm">bool</a></b> is_correct <a href="CppOperatorAssign.htm">=</a> m_dialog-&gt;IsAnswerCorrect();<br/>
+&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;ui-&gt;stackedWidget-&gt;setCurrent<a href="CppWidget.html">Widget</a>(is_correct<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;? ui-&gt;page_correct<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;: ui-&gt;page_incorrect);<br/>
 <br/>

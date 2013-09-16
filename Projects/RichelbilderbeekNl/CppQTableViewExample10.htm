@@ -77,15 +77,15 @@
 <table summary="CppQTableViewExample10.pro" border = "1"><tr><td><code>
 QT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; += core gui<br/>
 greaterThan(QT_MAJOR_VERSION, 4): QT += <a href="CppWidget.htm">widget</a>s<br/>
-TEMPLATE = app<br/>
-<a href="CppQMAKE_CXXFLAGS.htm">QMAKE_CXXFLAGS</a> += -std=<a href="Cpp11.htm">c++11</a> <a href="CppWextra.htm">-Wextra</a> <a href="CppWall.htm">-Wall</a> <a href="CppWerror.htm">-Werror</a><br/>
-<a href="CppSOURCES.htm">SOURCES</a> += \<br/>
+<a href="CppQmakeTemplate.htm">TEMPLATE</a> = app<br/>
+<a href="CppQmakeQmake_cxxflags.htm">QMAKE_CXXFLAGS</a> += -std=<a href="Cpp11.htm">c++11</a> <a href="CppWextra.htm">-Wextra</a> <a href="CppWall.htm">-Wall</a> <a href="CppWerror.htm">-Werror</a><br/>
+<a href="CppQmakeSources.htm">SOURCES</a> += \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;qtdialog.cpp \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;qt<a href="CppMain.htm">main</a>.cpp \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;mymodel.cpp \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;mydata.cpp<br/>
 <br/>
-<a href="CppHEADERS.htm">HEADERS</a>&nbsp;&nbsp;+= qtdialog.h \<br/>
+<a href="CppQmakeHeaders.htm">HEADERS</a>&nbsp;&nbsp;+= qtdialog.h \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;mymodel.h \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;mydata.h<br/>
 <br/>
@@ -101,31 +101,31 @@ TEMPLATE = app<br/>
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="mydata.h" border = "1"><tr><td><code>
-<a href="CppIfndef.htm">#ifndef</a> MYDATA_H<br/>
-<a href="CppDefine.htm">#define</a> MYDATA_H<br/>
+<a href="CppIfndef.html">#ifndef</a> MYDATA_H<br/>
+<a href="CppDefine.html">#define</a> MYDATA_H<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppStringH.htm">string</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppTupleH.htm">tuple</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppStringH.html">string</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppTupleH.html">tuple</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppVectorH.html">vector</a>&gt;<br/>
 <br/>
-<b><a href="CppStruct.htm">struct</a></b> MyData<br/>
+<b><a href="CppStruct.html">struct</a></b> MyData<br/>
 {<br/>
 &nbsp;&nbsp;MyData();<br/>
-&nbsp;&nbsp;<b><a href="CppBool.htm">bool</a></b> GetNo(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> row) <b><a href="CppConst.htm">const</a></b> { <b><a href="CppReturn.htm">return</a></b> <a href="CppStdGet.htm">std::get</a>&lt;0&gt;(m_data[row]); };<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; Get<a href="CppQuestion.htm">Question</a>(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> row) <b><a href="CppConst.htm">const</a></b> { <b><a href="CppReturn.htm">return</a></b> <a href="CppStdGet.htm">std::get</a>&lt;2&gt;(m_data[row]); };<br/>
-&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> GetRowCount() <b><a href="CppConst.htm">const</a></b> { <b><a href="CppReturn.htm">return</a></b> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(m_data.size()); }<br/>
-&nbsp;&nbsp;<b><a href="CppBool.htm">bool</a></b> GetYes(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> row) <b><a href="CppConst.htm">const</a></b> { <b><a href="CppReturn.htm">return</a></b> <a href="CppStdGet.htm">std::get</a>&lt;1&gt;(m_data[row]); };<br/>
-&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> SetNo(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> row, <b><a href="CppConst.htm">const</a></b> <b><a href="CppBool.htm">bool</a></b> yes_no) { <a href="CppStdGet.htm">std::get</a>&lt;0&gt;(m_data[row]) <a href="CppOperatorAssign.htm">=</a> yes_no; }<br/>
-&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> Set<a href="CppQuestion.htm">Question</a>(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> row, <b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; <a href="CppQuestion.htm">question</a>)&nbsp;&nbsp;{ <a href="CppStdGet.htm">std::get</a>&lt;2&gt;(m_data[row]) <a href="CppOperatorAssign.htm">=</a> <a href="CppQuestion.htm">question</a>; }<br/>
-&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> SetYes(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> row, <b><a href="CppConst.htm">const</a></b> <b><a href="CppBool.htm">bool</a></b> yes_no) { <a href="CppStdGet.htm">std::get</a>&lt;1&gt;(m_data[row]) <a href="CppOperatorAssign.htm">=</a> yes_no; }<br/>
+&nbsp;&nbsp;<b><a href="CppBool.htm">bool</a></b> GetNo(<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> row) <b><a href="CppConst.html">const</a></b> { <b><a href="CppReturn.html">return</a></b> <a href="CppStdGet.html">std::get</a>&lt;0&gt;(m_data[row]); };<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a>&amp; Get<a href="CppQuestion.html">Question</a>(<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> row) <b><a href="CppConst.html">const</a></b> { <b><a href="CppReturn.html">return</a></b> <a href="CppStdGet.html">std::get</a>&lt;2&gt;(m_data[row]); };<br/>
+&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> GetRowCount() <b><a href="CppConst.html">const</a></b> { <b><a href="CppReturn.html">return</a></b> <b><a href="CppStatic_cast.html">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(m_data.size()); }<br/>
+&nbsp;&nbsp;<b><a href="CppBool.htm">bool</a></b> GetYes(<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> row) <b><a href="CppConst.html">const</a></b> { <b><a href="CppReturn.html">return</a></b> <a href="CppStdGet.html">std::get</a>&lt;1&gt;(m_data[row]); };<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> SetNo(<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> row, <b><a href="CppConst.html">const</a></b> <b><a href="CppBool.htm">bool</a></b> yes_no) { <a href="CppStdGet.html">std::get</a>&lt;0&gt;(m_data[row]) <a href="CppOperatorAssign.htm">=</a> yes_no; }<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> Set<a href="CppQuestion.html">Question</a>(<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> row, <b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a>&amp; <a href="CppQuestion.html">question</a>)&nbsp;&nbsp;{ <a href="CppStdGet.html">std::get</a>&lt;2&gt;(m_data[row]) <a href="CppOperatorAssign.htm">=</a> <a href="CppQuestion.html">question</a>; }<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> SetYes(<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> row, <b><a href="CppConst.html">const</a></b> <b><a href="CppBool.htm">bool</a></b> yes_no) { <a href="CppStdGet.html">std::get</a>&lt;1&gt;(m_data[row]) <a href="CppOperatorAssign.htm">=</a> yes_no; }<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppPrivate.htm">private</a></b>:<br/>
-&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppStdTuple.htm">std::tuple</a>&lt;<b><a href="CppBool.htm">bool</a></b>,<b><a href="CppBool.htm">bool</a></b>,<a href="CppString.htm">std::string</a>&gt; &gt; m_data;<br/>
+&nbsp;&nbsp;<b><a href="CppPrivate.html">private</a></b>:<br/>
+&nbsp;&nbsp;<a href="CppVector.html">std::vector</a>&lt;<a href="CppStdTuple.html">std::tuple</a>&lt;<b><a href="CppBool.htm">bool</a></b>,<b><a href="CppBool.htm">bool</a></b>,<a href="CppString.html">std::string</a>&gt; &gt; m_data;<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppStdTuple.htm">std::tuple</a>&lt;<b><a href="CppBool.htm">bool</a></b>,<b><a href="CppBool.htm">bool</a></b>,<a href="CppString.htm">std::string</a>&gt; &gt; CreateData();<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.html">static</a></b> <b><a href="CppConst.html">const</a></b> <a href="CppVector.html">std::vector</a>&lt;<a href="CppStdTuple.html">std::tuple</a>&lt;<b><a href="CppBool.htm">bool</a></b>,<b><a href="CppBool.htm">bool</a></b>,<a href="CppString.html">std::string</a>&gt; &gt; CreateData();<br/>
 };<br/>
 <br/>
-<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> MYDATA_H<br/>
+<a href="CppEndif.html">#endif</a> <a href="CppComment.htm">//</a> MYDATA_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -137,21 +137,21 @@ TEMPLATE = app<br/>
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="mydata.cpp" border = "1"><tr><td><code>
-<a href="CppInclude.htm">#include</a> "mydata.h"<br/>
+<a href="CppInclude.html">#include</a> "mydata<a href="CppHeaderFile.htm">.h</a>"<br/>
 <br/>
 MyData::MyData()<br/>
 &nbsp;&nbsp;: m_data(CreateData())<br/>
 {<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppStdTuple.htm">std::tuple</a>&lt;<b><a href="CppBool.htm">bool</a></b>,<b><a href="CppBool.htm">bool</a></b>,<a href="CppString.htm">std::string</a>&gt; &gt; MyData::CreateData()<br/>
+<b><a href="CppConst.html">const</a></b> <a href="CppVector.html">std::vector</a>&lt;<a href="CppStdTuple.html">std::tuple</a>&lt;<b><a href="CppBool.htm">bool</a></b>,<b><a href="CppBool.htm">bool</a></b>,<a href="CppString.html">std::string</a>&gt; &gt; MyData::CreateData()<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b><br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b><br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStd.htm">std</a>::<a href="CppMake.htm">make</a>_<a href="CppTuple.htm">tuple</a>(<b><a href="CppFalse.htm">false</a></b>,<b><a href="CppFalse.htm">false</a></b>,"<a href="CppQuestion.htm">Question</a> A"),<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStd.htm">std</a>::<a href="CppMake.htm">make</a>_<a href="CppTuple.htm">tuple</a>(<b><a href="CppFalse.htm">false</a></b>,<b><a href="CppTrue.htm">true</a></b> ,"<a href="CppQuestion.htm">Question</a> B"),<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStd.htm">std</a>::<a href="CppMake.htm">make</a>_<a href="CppTuple.htm">tuple</a>(<b><a href="CppTrue.htm">true</a></b> ,<b><a href="CppFalse.htm">false</a></b>,"<a href="CppQuestion.htm">Question</a> C"),<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStd.htm">std</a>::<a href="CppMake.htm">make</a>_<a href="CppTuple.htm">tuple</a>(<b><a href="CppTrue.htm">true</a></b> ,<b><a href="CppTrue.htm">true</a></b> ,"<a href="CppQuestion.htm">Question</a> D"),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStd.htm">std</a>::<a href="CppMake.htm">make</a>_<a href="CppTuple.html">tuple</a>(<b><a href="CppFalse.html">false</a></b>,<b><a href="CppFalse.html">false</a></b>,"<a href="CppQuestion.html">Question</a> A"),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStd.htm">std</a>::<a href="CppMake.htm">make</a>_<a href="CppTuple.html">tuple</a>(<b><a href="CppFalse.html">false</a></b>,<b><a href="CppTrue.htm">true</a></b> ,"<a href="CppQuestion.html">Question</a> B"),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStd.htm">std</a>::<a href="CppMake.htm">make</a>_<a href="CppTuple.html">tuple</a>(<b><a href="CppTrue.htm">true</a></b> ,<b><a href="CppFalse.html">false</a></b>,"<a href="CppQuestion.html">Question</a> C"),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStd.htm">std</a>::<a href="CppMake.htm">make</a>_<a href="CppTuple.html">tuple</a>(<b><a href="CppTrue.htm">true</a></b> ,<b><a href="CppTrue.htm">true</a></b> ,"<a href="CppQuestion.html">Question</a> D"),<br/>
 &nbsp;&nbsp;};<br/>
 }<br/>
 </code></td></tr></table>
@@ -165,31 +165,31 @@ MyData::MyData()<br/>
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="mymodel.h" border = "1"><tr><td><code>
-<a href="CppIfndef.htm">#ifndef</a> MYMODEL_H<br/>
-<a href="CppDefine.htm">#define</a> MYMODEL_H<br/>
+<a href="CppIfndef.html">#ifndef</a> MYMODEL_H<br/>
+<a href="CppDefine.html">#define</a> MYMODEL_H<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> &lt;QAbstractTableModel&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppShared_ptr.htm">shared_ptr</a>.hpp&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;QAbstractTableModel&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppBoost.html">boost</a>/<a href="CppShared_ptr.html">shared_ptr</a><a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
 <br/>
-<b><a href="CppStruct.htm">struct</a></b> MyData;<br/>
+<b><a href="CppStruct.html">struct</a></b> MyData;<br/>
 <br/>
-<b><a href="CppStruct.htm">struct</a></b> MyModel : <b><a href="CppPublic.htm">public</a></b> QAbstractTableModel<br/>
+<b><a href="CppStruct.html">struct</a></b> MyModel : <b><a href="CppPublic.html">public</a></b> QAbstractTableModel<br/>
 {<br/>
-&nbsp;&nbsp;MyModel(<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;MyData&gt; data, <a href="CppQObject.htm">QObject</a> *parent <a href="CppOperatorAssign.htm">=</a> 0);<br/>
+&nbsp;&nbsp;MyModel(<b><a href="CppConst.html">const</a></b> <a href="CppBoostShared_ptr.html">boost::shared_ptr</a>&lt;MyData&gt; data, <a href="CppQObject.html">QObject</a> *parent <a href="CppOperatorAssign.htm">=</a> 0);<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> columnCount(<b><a href="CppConst.htm">const</a></b> <a href="CppQModelIndex.htm">QModelIndex</a> &amp;parent) <b><a href="CppConst.htm">const</a></b>;<br/>
-&nbsp;&nbsp;QVariant data(<b><a href="CppConst.htm">const</a></b> <a href="CppQModelIndex.htm">QModelIndex</a> &amp;index, <b><a href="CppInt.htm">int</a></b> role) <b><a href="CppConst.htm">const</a></b>;<br/>
-&nbsp;&nbsp;<a href="CppQt.htm">Qt</a>::ItemFlags flags(<b><a href="CppConst.htm">const</a></b> <a href="CppQModelIndex.htm">QModelIndex</a> &amp;index) <b><a href="CppConst.htm">const</a></b>;<br/>
-&nbsp;&nbsp;QVariant headerData(<b><a href="CppInt.htm">int</a></b> section, <a href="CppQt.htm">Qt</a>::Orientation orientation, <b><a href="CppInt.htm">int</a></b> role) <b><a href="CppConst.htm">const</a></b>;<br/>
+&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> columnCount(<b><a href="CppConst.html">const</a></b> <a href="CppQModelIndex.html">QModelIndex</a> &amp;parent) <b><a href="CppConst.html">const</a></b>;<br/>
+&nbsp;&nbsp;QVariant data(<b><a href="CppConst.html">const</a></b> <a href="CppQModelIndex.html">QModelIndex</a> &amp;index, <b><a href="CppInt.htm">int</a></b> role) <b><a href="CppConst.html">const</a></b>;<br/>
+&nbsp;&nbsp;<a href="CppQt.htm">Qt</a>::ItemFlags flags(<b><a href="CppConst.html">const</a></b> <a href="CppQModelIndex.html">QModelIndex</a> &amp;index) <b><a href="CppConst.html">const</a></b>;<br/>
+&nbsp;&nbsp;QVariant headerData(<b><a href="CppInt.htm">int</a></b> section, <a href="CppQt.htm">Qt</a>::Orientation orientation, <b><a href="CppInt.htm">int</a></b> role) <b><a href="CppConst.html">const</a></b>;<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> rowCount(<b><a href="CppConst.htm">const</a></b> <a href="CppQModelIndex.htm">QModelIndex</a> &amp;parent) <b><a href="CppConst.htm">const</a></b>;<br/>
-&nbsp;&nbsp;<b><a href="CppBool.htm">bool</a></b> setData(<b><a href="CppConst.htm">const</a></b> <a href="CppQModelIndex.htm">QModelIndex</a> &amp;index, <b><a href="CppConst.htm">const</a></b> QVariant &amp;value, <b><a href="CppInt.htm">int</a></b> role);<br/>
+&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> rowCount(<b><a href="CppConst.html">const</a></b> <a href="CppQModelIndex.html">QModelIndex</a> &amp;parent) <b><a href="CppConst.html">const</a></b>;<br/>
+&nbsp;&nbsp;<b><a href="CppBool.htm">bool</a></b> setData(<b><a href="CppConst.html">const</a></b> <a href="CppQModelIndex.html">QModelIndex</a> &amp;index, <b><a href="CppConst.html">const</a></b> QVariant &amp;value, <b><a href="CppInt.htm">int</a></b> role);<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppPrivate.htm">private</a></b>:<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;MyData&gt; m_data;<br/>
+&nbsp;&nbsp;<b><a href="CppPrivate.html">private</a></b>:<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppBoostShared_ptr.html">boost::shared_ptr</a>&lt;MyData&gt; m_data;<br/>
 };<br/>
 <br/>
-<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> MYMODEL_H<br/>
+<a href="CppEndif.html">#endif</a> <a href="CppComment.htm">//</a> MYMODEL_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -201,96 +201,96 @@ MyData::MyData()<br/>
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="mymodel.cpp" border = "1"><tr><td><code>
-<a href="CppInclude.htm">#include</a> "mymodel.h"<br/>
+<a href="CppInclude.html">#include</a> "mymodel<a href="CppHeaderFile.htm">.h</a>"<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppQStandardItem.htm">QStandardItem</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> "mydata.h"<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppCassertH.html">cassert</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppQStandardItem.html">QStandardItem</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> "mydata<a href="CppHeaderFile.htm">.h</a>"<br/>
 <br/>
-MyModel::MyModel(<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;MyData&gt; data, <a href="CppQObject.htm">QObject</a> *parent)<br/>
+MyModel::MyModel(<b><a href="CppConst.html">const</a></b> <a href="CppBoostShared_ptr.html">boost::shared_ptr</a>&lt;MyData&gt; data, <a href="CppQObject.html">QObject</a> *parent)<br/>
 &nbsp;&nbsp;: QAbstractTableModel(parent),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;m_data(data)<br/>
 {<br/>
 <br/>
 }<br/>
 <br/>
-<b><a href="CppInt.htm">int</a></b> MyModel::columnCount(<b><a href="CppConst.htm">const</a></b> <a href="CppQModelIndex.htm">QModelIndex</a> &amp;) <b><a href="CppConst.htm">const</a></b><br/>
+<b><a href="CppInt.htm">int</a></b> MyModel::columnCount(<b><a href="CppConst.html">const</a></b> <a href="CppQModelIndex.html">QModelIndex</a> &amp;) <b><a href="CppConst.html">const</a></b><br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> 3;<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> 3;<br/>
 }<br/>
 <br/>
-QVariant MyModel::data(<b><a href="CppConst.htm">const</a></b> <a href="CppQModelIndex.htm">QModelIndex</a> &amp;index, <b><a href="CppInt.htm">int</a></b> role) <b><a href="CppConst.htm">const</a></b><br/>
+QVariant MyModel::data(<b><a href="CppConst.html">const</a></b> <a href="CppQModelIndex.html">QModelIndex</a> &amp;index, <b><a href="CppInt.htm">int</a></b> role) <b><a href="CppConst.html">const</a></b><br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppSwitch.htm">switch</a></b> (index.column())<br/>
+&nbsp;&nbsp;<b><a href="CppSwitch.html">switch</a></b> (index.column())<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> 0:<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (role <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <a href="CppQt.htm">Qt</a>::DisplayRole <a href="CppOperatorLogicalOr.htm">||</a> role <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <a href="CppQt.htm">Qt</a>::Check<a href="CppState.htm">State</a>Role)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> m_data-&gt;GetYes(index.row()) ? <a href="CppQt.htm">Qt</a>::Checked : <a href="CppQt.htm">Qt</a>::Unchecked;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (role <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <a href="CppQt.htm">Qt</a>::DisplayRole <a href="CppOperatorLogicalOr.htm">||</a> role <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <a href="CppQt.htm">Qt</a>::Check<a href="CppState.html">State</a>Role)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> m_data-&gt;GetYes(index.row()) ? <a href="CppQt.htm">Qt</a>::Checked : <a href="CppQt.htm">Qt</a>::Unchecked;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> 1:<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (role <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <a href="CppQt.htm">Qt</a>::DisplayRole <a href="CppOperatorLogicalOr.htm">||</a> role <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <a href="CppQt.htm">Qt</a>::Check<a href="CppState.htm">State</a>Role)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> m_data-&gt;GetNo(index.row()) ? <a href="CppQt.htm">Qt</a>::Checked : <a href="CppQt.htm">Qt</a>::Unchecked;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (role <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <a href="CppQt.htm">Qt</a>::DisplayRole <a href="CppOperatorLogicalOr.htm">||</a> role <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <a href="CppQt.htm">Qt</a>::Check<a href="CppState.html">State</a>Role)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> m_data-&gt;GetNo(index.row()) ? <a href="CppQt.htm">Qt</a>::Checked : <a href="CppQt.htm">Qt</a>::Unchecked;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> 2:<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (role <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <a href="CppQt.htm">Qt</a>::DisplayRole <a href="CppOperatorLogicalOr.htm">||</a> role <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <a href="CppQt.htm">Qt</a>::EditRole)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> m_data-&gt;Get<a href="CppQuestion.htm">Question</a>(index.row()).c_str();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> m_data-&gt;Get<a href="CppQuestion.html">Question</a>(index.row()).c_str();<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> QVariant();<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> QVariant();<br/>
 }<br/>
 <br/>
-<a href="CppQt.htm">Qt</a>::ItemFlags MyModel::flags(<b><a href="CppConst.htm">const</a></b> <a href="CppQModelIndex.htm">QModelIndex</a> &amp;index) <b><a href="CppConst.htm">const</a></b><br/>
+<a href="CppQt.htm">Qt</a>::ItemFlags MyModel::flags(<b><a href="CppConst.html">const</a></b> <a href="CppQModelIndex.html">QModelIndex</a> &amp;index) <b><a href="CppConst.html">const</a></b><br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppSwitch.htm">switch</a></b> (index.column())<br/>
+&nbsp;&nbsp;<b><a href="CppSwitch.html">switch</a></b> (index.column())<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> 0:<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> 1:<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <a href="CppQt.htm">Qt</a>::ItemIsEnabled | <a href="CppQt.htm">Qt</a>::ItemIsSelectable | <a href="CppQt.htm">Qt</a>::ItemIsUserCheckable;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> <a href="CppQt.htm">Qt</a>::ItemIsEnabled | <a href="CppQt.htm">Qt</a>::ItemIsSelectable | <a href="CppQt.htm">Qt</a>::ItemIsUserCheckable;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> 2:<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <a href="CppQt.htm">Qt</a>::ItemIsEnabled | <a href="CppQt.htm">Qt</a>::ItemIsSelectable | <a href="CppQt.htm">Qt</a>::ItemIsEditable;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> <a href="CppQt.htm">Qt</a>::ItemIsEnabled | <a href="CppQt.htm">Qt</a>::ItemIsSelectable | <a href="CppQt.htm">Qt</a>::ItemIsEditable;<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <a href="CppQt.htm">Qt</a>::NoItemFlags;<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> <a href="CppQt.htm">Qt</a>::NoItemFlags;<br/>
 }<br/>
 <br/>
-QVariant MyModel::headerData(<b><a href="CppInt.htm">int</a></b> section, <a href="CppQt.htm">Qt</a>::Orientation orientation, <b><a href="CppInt.htm">int</a></b> <a href="CppOperatorDivide.htm">/</a>*role<a href="CppComment.htm">*/</a>) <b><a href="CppConst.htm">const</a></b><br/>
+QVariant MyModel::headerData(<b><a href="CppInt.htm">int</a></b> section, <a href="CppQt.htm">Qt</a>::Orientation orientation, <b><a href="CppInt.htm">int</a></b> <a href="CppOperatorDivide.htm">/</a>*role<a href="CppComment.htm">*/</a>) <b><a href="CppConst.html">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (orientation <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <a href="CppQt.htm">Qt</a>::Horizontal)<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppSwitch.htm">switch</a></b> (section)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppSwitch.html">switch</a></b> (section)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> 0: <b><a href="CppReturn.htm">return</a></b> "Y";<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> 1: <b><a href="CppReturn.htm">return</a></b> "N";<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> 2: <b><a href="CppReturn.htm">return</a></b> "<a href="CppQuestion.htm">Question</a>";<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppDefault.htm">default</a></b>: <a href="CppAssert.htm">assert</a>(!"Should not get here");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> 0: <b><a href="CppReturn.html">return</a></b> "Y";<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> 1: <b><a href="CppReturn.html">return</a></b> "N";<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> 2: <b><a href="CppReturn.html">return</a></b> "<a href="CppQuestion.html">Question</a>";<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppDefault.html">default</a></b>: <a href="CppAssert.html">assert</a>(!"Should not get here");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;<b><a href="CppElse.htm">else</a></b><br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> section;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> section;<br/>
 &nbsp;&nbsp;}<br/>
 }<br/>
 <br/>
-<b><a href="CppInt.htm">int</a></b> MyModel::rowCount(<b><a href="CppConst.htm">const</a></b> <a href="CppQModelIndex.htm">QModelIndex</a> &amp;) <b><a href="CppConst.htm">const</a></b><br/>
+<b><a href="CppInt.htm">int</a></b> MyModel::rowCount(<b><a href="CppConst.html">const</a></b> <a href="CppQModelIndex.html">QModelIndex</a> &amp;) <b><a href="CppConst.html">const</a></b><br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> m_data-&gt;GetRowCount();<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> m_data-&gt;GetRowCount();<br/>
 }<br/>
 <br/>
-<b><a href="CppBool.htm">bool</a></b> MyModel::setData(<b><a href="CppConst.htm">const</a></b> <a href="CppQModelIndex.htm">QModelIndex</a> &amp;index, <b><a href="CppConst.htm">const</a></b> QVariant &amp;value, <b><a href="CppInt.htm">int</a></b> role)<br/>
+<b><a href="CppBool.htm">bool</a></b> MyModel::setData(<b><a href="CppConst.html">const</a></b> <a href="CppQModelIndex.html">QModelIndex</a> &amp;index, <b><a href="CppConst.html">const</a></b> QVariant &amp;value, <b><a href="CppInt.htm">int</a></b> role)<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppSwitch.htm">switch</a></b> (index.column())<br/>
+&nbsp;&nbsp;<b><a href="CppSwitch.html">switch</a></b> (index.column())<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> 0:<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (role <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <a href="CppQt.htm">Qt</a>::Check<a href="CppState.htm">State</a>Role)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (role <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <a href="CppQt.htm">Qt</a>::Check<a href="CppState.html">State</a>Role)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;m_data-&gt;SetYes(index.row(),value.toInt() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <a href="CppQt.htm">Qt</a>::Checked);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppBreak.htm">break</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppBreak.html">break</a></b>;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> 1:<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (role <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <a href="CppQt.htm">Qt</a>::Check<a href="CppState.htm">State</a>Role)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (role <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <a href="CppQt.htm">Qt</a>::Check<a href="CppState.html">State</a>Role)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;m_data-&gt;SetNo(index.row(),value.toInt() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <a href="CppQt.htm">Qt</a>::Checked);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppBreak.htm">break</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppBreak.html">break</a></b>;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> 2:<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (role <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <a href="CppQt.htm">Qt</a>::EditRole)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;m_data-&gt;Set<a href="CppQuestion.htm">Question</a>(index.row(),value.toString().toStdString());<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppBreak.htm">break</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;m_data-&gt;Set<a href="CppQuestion.html">Question</a>(index.row(),value.toString().toStdString());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppBreak.html">break</a></b>;<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;<b><a href="CppEmit.htm">emit</a></b> dataChanged(index,index);<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <b><a href="CppTrue.htm">true</a></b>;<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> <b><a href="CppTrue.htm">true</a></b>;<br/>
 }<br/>
 </code></td></tr></table>
 <!-- end of the code -->
@@ -303,36 +303,36 @@ QVariant MyModel::headerData(<b><a href="CppInt.htm">int</a></b> section, <a hre
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="qtdialog.h" border = "1"><tr><td><code>
-<a href="CppIfndef.htm">#ifndef</a> QTDIALOG_H<br/>
-<a href="CppDefine.htm">#define</a> QTDIALOG_H<br/>
+<a href="CppIfndef.html">#ifndef</a> QTDIALOG_H<br/>
+<a href="CppDefine.html">#define</a> QTDIALOG_H<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppShared_ptr.htm">shared_ptr</a>.hpp&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppQDialog.htm">QDialog</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppBoost.html">boost</a>/<a href="CppShared_ptr.html">shared_ptr</a><a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppQDialog.html">QDialog</a>&gt;<br/>
 <br/>
-<b><a href="CppStruct.htm">struct</a></b> MyData;<br/>
+<b><a href="CppStruct.html">struct</a></b> MyData;<br/>
 <br/>
-<b><a href="CppNamespace.htm">namespace</a></b> Ui {<br/>
-&nbsp;&nbsp;<b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a>Dialog;<br/>
+<b><a href="CppNamespace.html">namespace</a></b> Ui {<br/>
+&nbsp;&nbsp;<b><a href="CppClass.html">class</a></b> <a href="CppQt.htm">Qt</a>Dialog;<br/>
 }<br/>
 <br/>
-<b><a href="CppStruct.htm">struct</a></b> <a href="CppQStandardItemModel.htm">QStandardItemModel</a>;<br/>
+<b><a href="CppStruct.html">struct</a></b> <a href="CppQStandardItemModel.html">QStandardItemModel</a>;<br/>
 <br/>
-<b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a>Dialog : <b><a href="CppPublic.htm">public</a></b> <a href="CppQDialog.htm">QDialog</a><br/>
+<b><a href="CppClass.html">class</a></b> <a href="CppQt.htm">Qt</a>Dialog : <b><a href="CppPublic.html">public</a></b> <a href="CppQDialog.html">QDialog</a><br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppQ_OBJECT.htm">Q_OBJECT</a><br/>
+&nbsp;&nbsp;<a href="CppQ_OBJECT.html">Q_OBJECT</a><br/>
 &nbsp;&nbsp;<br/>
-<b><a href="CppPublic.htm">public</a></b>:<br/>
-&nbsp;&nbsp;<b><a href="CppExplicit.htm">explicit</a></b> <a href="CppQt.htm">Qt</a>Dialog(<a href="CppQWidget.htm">QWidget</a> *parent <a href="CppOperatorAssign.htm">=</a> 0);<br/>
+<b><a href="CppPublic.html">public</a></b>:<br/>
+&nbsp;&nbsp;<b><a href="CppExplicit.html">explicit</a></b> <a href="CppQt.htm">Qt</a>Dialog(<a href="CppQWidget.html">QWidget</a> *parent <a href="CppOperatorAssign.htm">=</a> 0);<br/>
 &nbsp;&nbsp;~<a href="CppQt.htm">Qt</a>Dialog();<br/>
 &nbsp;&nbsp;<br/>
-<b><a href="CppPrivate.htm">private</a></b> <b><a href="CppSlots.htm">slots</a></b>:<br/>
+<b><a href="CppPrivate.html">private</a></b> <b><a href="CppSlots.html">slots</a></b>:<br/>
 <br/>
-<b><a href="CppPrivate.htm">private</a></b>:<br/>
+<b><a href="CppPrivate.html">private</a></b>:<br/>
 &nbsp;&nbsp;<a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a>Dialog *ui;<br/>
-&nbsp;&nbsp;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;MyData&gt; m_data;<br/>
+&nbsp;&nbsp;<a href="CppBoostShared_ptr.html">boost::shared_ptr</a>&lt;MyData&gt; m_data;<br/>
 };<br/>
 <br/>
-<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> QTDIALOG_H<br/>
+<a href="CppEndif.html">#endif</a> <a href="CppComment.htm">//</a> QTDIALOG_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -344,28 +344,28 @@ QVariant MyModel::headerData(<b><a href="CppInt.htm">int</a></b> section, <a hre
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="qtdialog.cpp" border = "1"><tr><td><code>
-<a href="CppInclude.htm">#include</a> "qtdialog.h"<br/>
+<a href="CppInclude.html">#include</a> "qtdialog<a href="CppHeaderFile.htm">.h</a>"<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppCassertH.html">cassert</a>&gt;<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> "mydata.h"<br/>
-<a href="CppInclude.htm">#include</a> "mymodel.h"<br/>
-<a href="CppInclude.htm">#include</a> "ui_qtdialog.h"<br/>
+<a href="CppInclude.html">#include</a> "mydata<a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "mymodel<a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "ui_qtdialog<a href="CppHeaderFile.htm">.h</a>"<br/>
 <br/>
-<a href="CppQt.htm">Qt</a>Dialog::<a href="CppQt.htm">Qt</a>Dialog(<a href="CppQWidget.htm">QWidget</a> *parent) :<br/>
-&nbsp;&nbsp;<a href="CppQDialog.htm">QDialog</a>(parent),<br/>
+<a href="CppQt.htm">Qt</a>Dialog::<a href="CppQt.htm">Qt</a>Dialog(<a href="CppQWidget.html">QWidget</a> *parent) :<br/>
+&nbsp;&nbsp;<a href="CppQDialog.html">QDialog</a>(parent),<br/>
 &nbsp;&nbsp;ui(<b><a href="CppNew.htm">new</a></b> <a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a>Dialog),<br/>
 &nbsp;&nbsp;m_data(<b><a href="CppNew.htm">new</a></b> MyData)<br/>
 {<br/>
 &nbsp;&nbsp;ui-&gt;setupUi(<b><a href="CppThis.htm">this</a></b>);<br/>
 <br/>
-&nbsp;&nbsp;MyModel * <b><a href="CppConst.htm">const</a></b> model <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> MyModel(m_data,<b><a href="CppThis.htm">this</a></b>);<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!ui-&gt;table_1-&gt;model());<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!ui-&gt;table_2-&gt;model());<br/>
+&nbsp;&nbsp;MyModel * <b><a href="CppConst.html">const</a></b> model <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> MyModel(m_data,<b><a href="CppThis.htm">this</a></b>);<br/>
+&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(!ui-&gt;table_1-&gt;model());<br/>
+&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(!ui-&gt;table_2-&gt;model());<br/>
 &nbsp;&nbsp;ui-&gt;table_1-&gt;setModel(model);<br/>
 &nbsp;&nbsp;ui-&gt;table_2-&gt;setModel(model);<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(ui-&gt;table_1-&gt;model());<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(ui-&gt;table_2-&gt;model());<br/>
+&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(ui-&gt;table_1-&gt;model());<br/>
+&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(ui-&gt;table_2-&gt;model());<br/>
 <br/>
 <br/>
 &nbsp;&nbsp;ui-&gt;table_1-&gt;setColumnWidth(0, 24);<br/>
@@ -378,7 +378,7 @@ QVariant MyModel::headerData(<b><a href="CppInt.htm">int</a></b> section, <a hre
 <br/>
 <a href="CppQt.htm">Qt</a>Dialog::~<a href="CppQt.htm">Qt</a>Dialog()<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppDelete.htm">delete</a></b> ui;<br/>
+&nbsp;&nbsp;<b><a href="CppDelete.html">delete</a></b> ui;<br/>
 }<br/>
 </code></td></tr></table>
 <!-- end of the code -->
@@ -391,15 +391,15 @@ QVariant MyModel::headerData(<b><a href="CppInt.htm">int</a></b> section, <a hre
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="qtmain.cpp" border = "1"><tr><td><code>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppQApplication.htm">QApplication</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> "qtdialog.h"<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppQApplication.html">QApplication</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> "qtdialog<a href="CppHeaderFile.htm">.h</a>"<br/>
 <br/>
-<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>(<b><a href="CppInt.htm">int</a></b> <a href="CppArgc.htm">argc</a>, <b><a href="CppChar.htm">char</a></b> *<a href="CppArgc.htm">argv</a>[])<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a>(<b><a href="CppInt.htm">int</a></b> <a href="CppArgc.htm">argc</a>, <b><a href="CppChar.htm">char</a></b> *<a href="CppArgc.htm">argv</a>[])<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppQApplication.htm">QApplication</a> a(<a href="CppArgc.htm">argc</a>, <a href="CppArgc.htm">argv</a>);<br/>
+&nbsp;&nbsp;<a href="CppQApplication.html">QApplication</a> a(<a href="CppArgc.htm">argc</a>, <a href="CppArgc.htm">argv</a>);<br/>
 &nbsp;&nbsp;<a href="CppQt.htm">Qt</a>Dialog w;<br/>
 &nbsp;&nbsp;w.show();<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> a.exec();<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> a.exec();<br/>
 }<br/>
 </code></td></tr></table>
 <!-- end of the code -->

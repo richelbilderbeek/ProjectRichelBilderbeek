@@ -1,0 +1,310 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>HelloBulletQtCreatorWindows</title>
+  <meta name="description" content="C++ HelloBulletQtCreatorWindows"/>
+  <meta name="keywords" content="C++ HelloBulletQtCreatorWindows code snippet"/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a>) <a href="CppHelloBulletQtCreatorWindows.htm">HelloBulletQtCreatorWindows</a></h1>
+<p>&nbsp;</p>
+<!-- No CodeToHtmlInfo about this class with page name CppHelloBulletQtCreatorWindows-->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Technical facts</h2>
+<p>&nbsp;</p>
+<p><a href="CppOs.htm">Operating system(s) or programming environment(s)</a></p>
+<ul>
+  <li><img src="PicLubuntu.png" alt="Lubuntu"/> <a href="CppLubuntu.htm">Lubuntu</a> 13.04 (raring)</li>
+</ul>
+<p><a href="CppIde.htm">IDE(s)</a>:</p>
+<ul>
+  <li><img src="PicQtCreator.png" alt="Qt Creator"/> <a href="CppQtCreator.htm">Qt Creator</a> unknown</li>
+</ul>
+<p><a href="CppQtProjectType.htm">Project type</a>:</p>
+<ul>
+  <li><img src="PicConsole.png" alt="console"/> <a href="CppConsoleApplication.htm">Console application</a></li>
+</ul>
+<p><a href="CppStandard.htm">C++ standard</a>:</p>
+<ul>
+  <li><img src="PicCpp11.png" alt="C++11"/> <a href="Cpp11.htm">C++11</a></li>
+</ul>
+<p><a href="CppCompiler.htm">Compiler(s)</a>:</p>
+<ul>
+  <li><a href="CppGpp.htm">G++</a> 4.7.3</li>
+</ul>
+<p><a href="CppLibrary.htm">Libraries</a> used:</p>
+<ul>
+  <li><img src="PicStl.png" alt="STL"/> <a href="CppStl.htm">STL</a>: GNU ISO C++ Library, version 4.7.3</li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><a href="CppQtProjectFile.htm">Qt project file</a>: CppHelloBulletQtCreatorWindows.pro</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="CppHelloBulletQtCreatorWindows.pro" border = "1"><tr><td><code>
+<a href="CppQmakeTemplate.htm">TEMPLATE</a> = app<br/>
+<a href="CppQmakeConfig.htm">CONFIG</a> += console<br/>
+<a href="CppQmakeConfig.htm">CONFIG</a> -= app_bundle<br/>
+<a href="CppQmakeConfig.htm">CONFIG</a> -= qt<br/>
+<br/>
+<a href="CppQmakeSources.htm">SOURCES</a> += <a href="CppMain.htm">main</a>.cpp<br/>
+<br/>
+#<a href="CppQmakeDefines.htm">DEFINES</a> += B3_USE_CLEW<br/>
+<a href="CppQmakeQmake_cxxflags.htm">QMAKE_CXXFLAGS</a> += -std=<a href="Cpp11.htm">c++11</a><br/>
+<br/>
+<a href="CppQmakeIncludepath.htm">INCLUDEPATH</a> += \<br/>
+&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/bullet3/src<br/>
+<br/>
+<a href="CppQmakeHeaders.htm">HEADERS</a> += ../../<a href="CppLibrary.htm">Libraries</a>/bullet3/src/Bullet3Common/b3AlignedAllocator.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ../../<a href="CppLibrary.htm">Libraries</a>/bullet3/src/Bullet3Common/b3AlignedObjectArray.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ../../<a href="CppLibrary.htm">Libraries</a>/bullet3/src/Bullet3Common/b3CommandLineArgs.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ../../<a href="CppLibrary.htm">Libraries</a>/bullet3/src/Bullet3Common/b3HashMap.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ../../<a href="CppLibrary.htm">Libraries</a>/bullet3/src/Bullet3Common/b3Logging.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ../../<a href="CppLibrary.htm">Libraries</a>/bullet3/src/Bullet3Common/b3Matrix3x3.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ../../<a href="CppLibrary.htm">Libraries</a>/bullet3/src/Bullet3Common/b3MinMax.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ../../<a href="CppLibrary.htm">Libraries</a>/bullet3/src/Bullet3Common/b3PoolAllocator.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ../../<a href="CppLibrary.htm">Libraries</a>/bullet3/src/Bullet3Common/b3QuadWord.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ../../<a href="CppLibrary.htm">Libraries</a>/bullet3/src/Bullet3Common/b3Quaternion.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ../../<a href="CppLibrary.htm">Libraries</a>/bullet3/src/Bullet3Common/b3Random.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ../../<a href="CppLibrary.htm">Libraries</a>/bullet3/src/Bullet3Common/b3Scalar.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ../../<a href="CppLibrary.htm">Libraries</a>/bullet3/src/Bullet3Common/b3StackAlloc.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ../../<a href="CppLibrary.htm">Libraries</a>/bullet3/src/Bullet3Common/b3Transform.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ../../<a href="CppLibrary.htm">Libraries</a>/bullet3/src/Bullet3Common/b3TransformUtil.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ../../<a href="CppLibrary.htm">Libraries</a>/bullet3/src/Bullet3Common/b3Vector3.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ../../<a href="CppLibrary.htm">Libraries</a>/bullet3/src/Bullet3Dynamics/b3CpuRigidBodyPipeline.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ../../<a href="CppLibrary.htm">Libraries</a>/bullet3/src/Bullet3Geometry/b3AabbUtil.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ../../<a href="CppLibrary.htm">Libraries</a>/bullet3/src/Bullet3Geometry/b3ConvexHullComputer.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ../../<a href="CppLibrary.htm">Libraries</a>/bullet3/src/Bullet3Geometry/b3GeometryUtil.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ../../<a href="CppLibrary.htm">Libraries</a>/bullet3/src/Bullet3Geometry/b3GrahamScan2dConvexHull.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; clew/clew.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ../../<a href="CppLibrary.htm">Libraries</a>/bullet3/src/Bullet3Collision/BroadPhaseCollision/b3BroadphaseCallback.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ../../<a href="CppLibrary.htm">Libraries</a>/bullet3/src/Bullet3Collision/BroadPhaseCollision/b3DynamicBvh.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ../../<a href="CppLibrary.htm">Libraries</a>/bullet3/src/Bullet3Collision/BroadPhaseCollision/b3DynamicBvhBroadphase.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ../../<a href="CppLibrary.htm">Libraries</a>/bullet3/src/Bullet3Collision/BroadPhaseCollision/b3OverlappingPair.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ../../<a href="CppLibrary.htm">Libraries</a>/bullet3/src/Bullet3Collision/BroadPhaseCollision/b3OverlappingPairCache.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ../../<a href="CppLibrary.htm">Libraries</a>/bullet3/src/Bullet3Collision/NarrowPhaseCollision/b3Config.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ../../<a href="CppLibrary.htm">Libraries</a>/bullet3/src/Bullet3Collision/NarrowPhaseCollision/b3Contact4.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ../../<a href="CppLibrary.htm">Libraries</a>/bullet3/src/Bullet3Collision/NarrowPhaseCollision/b3ConvexUtility.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ../../<a href="CppLibrary.htm">Libraries</a>/bullet3/src/Bullet3Collision/NarrowPhaseCollision/b3CpuNarrowPhase.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ../../<a href="CppLibrary.htm">Libraries</a>/bullet3/src/Bullet3Collision/NarrowPhaseCollision/b3RaycastInfo.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ../../<a href="CppLibrary.htm">Libraries</a>/bullet3/src/Bullet3Collision/NarrowPhaseCollision/b3RigidBodyCL.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ../../<a href="CppLibrary.htm">Libraries</a>/bullet3/src/Bullet3Common/shared/b3Float4.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ../../<a href="CppLibrary.htm">Libraries</a>/bullet3/src/Bullet3Common/shared/b3Int2.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ../../<a href="CppLibrary.htm">Libraries</a>/bullet3/src/Bullet3Common/shared/b3Int4.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ../../<a href="CppLibrary.htm">Libraries</a>/bullet3/src/Bullet3Common/shared/b3Mat3x3.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ../../<a href="CppLibrary.htm">Libraries</a>/bullet3/src/Bullet3Common/shared/b3PlatformDefinitions.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ../../<a href="CppLibrary.htm">Libraries</a>/bullet3/src/Bullet3Common/shared/b3Quat.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ../../<a href="CppLibrary.htm">Libraries</a>/bullet3/src/Bullet3Dynamics/ConstraintSolver/b3ContactSolverInfo.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ../../<a href="CppLibrary.htm">Libraries</a>/bullet3/src/Bullet3Dynamics/ConstraintSolver/b3FixedConstraint.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ../../<a href="CppLibrary.htm">Libraries</a>/bullet3/src/Bullet3Dynamics/ConstraintSolver/b3Generic6DofConstraint.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ../../<a href="CppLibrary.htm">Libraries</a>/bullet3/src/Bullet3Dynamics/ConstraintSolver/b3JacobianEntry.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ../../<a href="CppLibrary.htm">Libraries</a>/bullet3/src/Bullet3Dynamics/ConstraintSolver/b3PgsJacobiSolver.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ../../<a href="CppLibrary.htm">Libraries</a>/bullet3/src/Bullet3Dynamics/ConstraintSolver/b3Point2PointConstraint.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ../../<a href="CppLibrary.htm">Libraries</a>/bullet3/src/Bullet3Dynamics/ConstraintSolver/b3SolverBody.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ../../<a href="CppLibrary.htm">Libraries</a>/bullet3/src/Bullet3Dynamics/ConstraintSolver/b3SolverConstraint.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ../../<a href="CppLibrary.htm">Libraries</a>/bullet3/src/Bullet3Dynamics/ConstraintSolver/b3TypedConstraint.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ../../<a href="CppLibrary.htm">Libraries</a>/bullet3/src/Bullet3Dynamics/shared/b3ContactConstraint4.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ../../<a href="CppLibrary.htm">Libraries</a>/bullet3/src/Bullet3Dynamics/shared/b3Inertia.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ../../<a href="CppLibrary.htm">Libraries</a>/bullet3/src/Bullet3Dynamics/shared/b3IntegrateTransforms.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ../../<a href="CppLibrary.htm">Libraries</a>/bullet3/src/Bullet3OpenCL/BroadphaseCollision/b3GpuSapBroadphase.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ../../<a href="CppLibrary.htm">Libraries</a>/bullet3/src/Bullet3OpenCL/BroadphaseCollision/b3SapAabb.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ../../<a href="CppLibrary.htm">Libraries</a>/bullet3/src/Bullet3OpenCL/Initialize/b3OpenCLInclude.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ../../<a href="CppLibrary.htm">Libraries</a>/bullet3/src/Bullet3OpenCL/Initialize/b3OpenCLUtils.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ../../<a href="CppLibrary.htm">Libraries</a>/bullet3/src/Bullet3OpenCL/NarrowphaseCollision/b3BvhInfo.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ../../<a href="CppLibrary.htm">Libraries</a>/bullet3/src/Bullet3OpenCL/NarrowphaseCollision/b3ContactCache.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ../../<a href="CppLibrary.htm">Libraries</a>/bullet3/src/Bullet3OpenCL/NarrowphaseCollision/b3ConvexHullContact.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ../../<a href="CppLibrary.htm">Libraries</a>/bullet3/src/Bullet3OpenCL/NarrowphaseCollision/b3ConvexPolyhedronCL.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ../../<a href="CppLibrary.htm">Libraries</a>/bullet3/src/Bullet3OpenCL/NarrowphaseCollision/b3GjkEpa.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ../../<a href="CppLibrary.htm">Libraries</a>/bullet3/src/Bullet3OpenCL/NarrowphaseCollision/b3GjkPairDetector.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ../../<a href="CppLibrary.htm">Libraries</a>/bullet3/src/Bullet3OpenCL/NarrowphaseCollision/b3OptimizedBvh.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ../../<a href="CppLibrary.htm">Libraries</a>/bullet3/src/Bullet3OpenCL/NarrowphaseCollision/b3QuantizedBvh.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ../../<a href="CppLibrary.htm">Libraries</a>/bullet3/src/Bullet3OpenCL/NarrowphaseCollision/b3StridingMeshInterface.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ../../<a href="CppLibrary.htm">Libraries</a>/bullet3/src/Bullet3OpenCL/NarrowphaseCollision/b3SupportMappings.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ../../<a href="CppLibrary.htm">Libraries</a>/bullet3/src/Bullet3OpenCL/NarrowphaseCollision/b3TriangleCallback.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ../../<a href="CppLibrary.htm">Libraries</a>/bullet3/src/Bullet3OpenCL/NarrowphaseCollision/b3TriangleIndexVertexArray.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ../../<a href="CppLibrary.htm">Libraries</a>/bullet3/src/Bullet3OpenCL/NarrowphaseCollision/b3VectorFloat4.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ../../<a href="CppLibrary.htm">Libraries</a>/bullet3/src/Bullet3OpenCL/NarrowphaseCollision/b3VoronoiSimplexSolver.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ../../<a href="CppLibrary.htm">Libraries</a>/bullet3/src/Bullet3OpenCL/ParallelPrimitives/b3BoundSearchCL.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ../../<a href="CppLibrary.htm">Libraries</a>/bullet3/src/Bullet3OpenCL/ParallelPrimitives/b3BufferInfoCL.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ../../<a href="CppLibrary.htm">Libraries</a>/bullet3/src/Bullet3OpenCL/ParallelPrimitives/b3FillCL.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ../../<a href="CppLibrary.htm">Libraries</a>/bullet3/src/Bullet3OpenCL/ParallelPrimitives/b3LauncherCL.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ../../<a href="CppLibrary.htm">Libraries</a>/bullet3/src/Bullet3OpenCL/ParallelPrimitives/b3OpenCLArray.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ../../<a href="CppLibrary.htm">Libraries</a>/bullet3/src/Bullet3OpenCL/ParallelPrimitives/b3PrefixScanCL.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ../../<a href="CppLibrary.htm">Libraries</a>/bullet3/src/Bullet3OpenCL/ParallelPrimitives/b3PrefixScanFloat4CL.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ../../<a href="CppLibrary.htm">Libraries</a>/bullet3/src/Bullet3OpenCL/ParallelPrimitives/b3RadixSort32CL.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ../../<a href="CppLibrary.htm">Libraries</a>/bullet3/src/Bullet3OpenCL/Raycast/b3GpuRaycast.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ../../<a href="CppLibrary.htm">Libraries</a>/bullet3/src/Bullet3OpenCL/RigidBody/b3GpuBatchingPgsSolver.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ../../<a href="CppLibrary.htm">Libraries</a>/bullet3/src/Bullet3OpenCL/RigidBody/b3GpuConstraint4.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ../../<a href="CppLibrary.htm">Libraries</a>/bullet3/src/Bullet3OpenCL/RigidBody/b3GpuGenericConstraint.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ../../<a href="CppLibrary.htm">Libraries</a>/bullet3/src/Bullet3OpenCL/RigidBody/b3GpuNarrowPhase.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ../../<a href="CppLibrary.htm">Libraries</a>/bullet3/src/Bullet3OpenCL/RigidBody/b3GpuNarrowPhaseInternalData.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ../../<a href="CppLibrary.htm">Libraries</a>/bullet3/src/Bullet3OpenCL/RigidBody/b3GpuPgsJacobiSolver.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ../../<a href="CppLibrary.htm">Libraries</a>/bullet3/src/Bullet3OpenCL/RigidBody/b3GpuRigidBodyPipeline.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ../../<a href="CppLibrary.htm">Libraries</a>/bullet3/src/Bullet3OpenCL/RigidBody/b3GpuRigidBodyPipelineInternalData.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ../../<a href="CppLibrary.htm">Libraries</a>/bullet3/src/Bullet3OpenCL/RigidBody/b3GpuSolverBody.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ../../<a href="CppLibrary.htm">Libraries</a>/bullet3/src/Bullet3OpenCL/RigidBody/b3GpuSolverConstraint.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ../../<a href="CppLibrary.htm">Libraries</a>/bullet3/src/Bullet3OpenCL/RigidBody/b3Solver.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ../../<a href="CppLibrary.htm">Libraries</a>/bullet3/src/Bullet3Serialize/Bullet2FileLoader/b3BulletFile.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ../../<a href="CppLibrary.htm">Libraries</a>/bullet3/src/Bullet3Serialize/Bullet2FileLoader/b3Chunk.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ../../<a href="CppLibrary.htm">Libraries</a>/bullet3/src/Bullet3Serialize/Bullet2FileLoader/b3Common.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ../../<a href="CppLibrary.htm">Libraries</a>/bullet3/src/Bullet3Serialize/Bullet2FileLoader/b3Defines.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ../../<a href="CppLibrary.htm">Libraries</a>/bullet3/src/Bullet3Serialize/Bullet2FileLoader/b3DNA.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ../../<a href="CppLibrary.htm">Libraries</a>/bullet3/src/Bullet3Serialize/Bullet2FileLoader/b3File.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ../../<a href="CppLibrary.htm">Libraries</a>/bullet3/src/Bullet3Serialize/Bullet2FileLoader/b3Serializer.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ../../<a href="CppLibrary.htm">Libraries</a>/bullet3/src/Bullet3Collision/BroadPhaseCollision/shared/b3Aabb.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ../../<a href="CppLibrary.htm">Libraries</a>/bullet3/src/Bullet3Collision/NarrowPhaseCollision/shared/b3Collidable.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ../../<a href="CppLibrary.htm">Libraries</a>/bullet3/src/Bullet3Collision/NarrowPhaseCollision/shared/b3CollidableData.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ../../<a href="CppLibrary.htm">Libraries</a>/bullet3/src/Bullet3Collision/NarrowPhaseCollision/shared/b3Contact4Data.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ../../<a href="CppLibrary.htm">Libraries</a>/bullet3/src/Bullet3Collision/NarrowPhaseCollision/shared/b3ContactConvexConvexSAT.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ../../<a href="CppLibrary.htm">Libraries</a>/bullet3/src/Bullet3Collision/NarrowPhaseCollision/shared/b3ContactSphereSphere.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ../../<a href="CppLibrary.htm">Libraries</a>/bullet3/src/Bullet3Collision/NarrowPhaseCollision/shared/b3ConvexPolyhedronData.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ../../<a href="CppLibrary.htm">Libraries</a>/bullet3/src/Bullet3Collision/NarrowPhaseCollision/shared/b3FindSeparatingAxis.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ../../<a href="CppLibrary.htm">Libraries</a>/bullet3/src/Bullet3Collision/NarrowPhaseCollision/shared/b3ReduceContacts.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ../../<a href="CppLibrary.htm">Libraries</a>/bullet3/src/Bullet3Collision/NarrowPhaseCollision/shared/b3RigidBodyData.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ../../<a href="CppLibrary.htm">Libraries</a>/bullet3/src/Bullet3Collision/NarrowPhaseCollision/shared/b3UpdateAabbs.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ../../<a href="CppLibrary.htm">Libraries</a>/bullet3/src/Bullet3OpenCL/BroadphaseCollision/kernels/sapFastKernels.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ../../<a href="CppLibrary.htm">Libraries</a>/bullet3/src/Bullet3OpenCL/BroadphaseCollision/kernels/sapKernels.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ../../<a href="CppLibrary.htm">Libraries</a>/bullet3/src/Bullet3OpenCL/NarrowphaseCollision/kernels/bvhTraversal.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ../../<a href="CppLibrary.htm">Libraries</a>/bullet3/src/Bullet3OpenCL/NarrowphaseCollision/kernels/primitiveContacts.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ../../<a href="CppLibrary.htm">Libraries</a>/bullet3/src/Bullet3OpenCL/NarrowphaseCollision/kernels/satClipHullContacts.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ../../<a href="CppLibrary.htm">Libraries</a>/bullet3/src/Bullet3OpenCL/NarrowphaseCollision/kernels/satKernels.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ../../<a href="CppLibrary.htm">Libraries</a>/bullet3/src/Bullet3OpenCL/ParallelPrimitives/kernels/BoundSearchKernelsCL.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ../../<a href="CppLibrary.htm">Libraries</a>/bullet3/src/Bullet3OpenCL/ParallelPrimitives/kernels/CopyKernelsCL.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ../../<a href="CppLibrary.htm">Libraries</a>/bullet3/src/Bullet3OpenCL/ParallelPrimitives/kernels/FillKernelsCL.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ../../<a href="CppLibrary.htm">Libraries</a>/bullet3/src/Bullet3OpenCL/ParallelPrimitives/kernels/PrefixScanKernelsCL.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ../../<a href="CppLibrary.htm">Libraries</a>/bullet3/src/Bullet3OpenCL/ParallelPrimitives/kernels/PrefixScanKernelsFloat4CL.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ../../<a href="CppLibrary.htm">Libraries</a>/bullet3/src/Bullet3OpenCL/ParallelPrimitives/kernels/RadixSort32KernelsCL.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ../../<a href="CppLibrary.htm">Libraries</a>/bullet3/src/Bullet3OpenCL/Raycast/kernels/rayCastKernels.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ../../<a href="CppLibrary.htm">Libraries</a>/bullet3/src/Bullet3OpenCL/RigidBody/kernels/batchingKernels.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ../../<a href="CppLibrary.htm">Libraries</a>/bullet3/src/Bullet3OpenCL/RigidBody/kernels/batchingKernelsNew.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ../../<a href="CppLibrary.htm">Libraries</a>/bullet3/src/Bullet3OpenCL/RigidBody/kernels/integrateKernel.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ../../<a href="CppLibrary.htm">Libraries</a>/bullet3/src/Bullet3OpenCL/RigidBody/kernels/jointSolver.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ../../<a href="CppLibrary.htm">Libraries</a>/bullet3/src/Bullet3OpenCL/RigidBody/kernels/solveContact.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ../../<a href="CppLibrary.htm">Libraries</a>/bullet3/src/Bullet3OpenCL/RigidBody/kernels/solveFriction.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ../../<a href="CppLibrary.htm">Libraries</a>/bullet3/src/Bullet3OpenCL/RigidBody/kernels/solverSetup.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ../../<a href="CppLibrary.htm">Libraries</a>/bullet3/src/Bullet3OpenCL/RigidBody/kernels/solverSetup2.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ../../<a href="CppLibrary.htm">Libraries</a>/bullet3/src/Bullet3OpenCL/RigidBody/kernels/solverUtils.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ../../<a href="CppLibrary.htm">Libraries</a>/bullet3/src/Bullet3OpenCL/RigidBody/kernels/updateAabbsKernel.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ../../<a href="CppLibrary.htm">Libraries</a>/bullet3/src/Bullet3Serialize/Bullet2FileLoader/autogenerated/bullet2.h<br/>
+<br/>
+<a href="CppQmakeSources.htm">SOURCES</a> += ../../<a href="CppLibrary.htm">Libraries</a>/bullet3/src/Bullet3Common/b3AlignedAllocator.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ../../<a href="CppLibrary.htm">Libraries</a>/bullet3/src/Bullet3Common/b3Logging.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ../../<a href="CppLibrary.htm">Libraries</a>/bullet3/src/Bullet3Common/b3Vector3.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ../../<a href="CppLibrary.htm">Libraries</a>/bullet3/src/Bullet3Dynamics/b3CpuRigidBodyPipeline.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ../../<a href="CppLibrary.htm">Libraries</a>/bullet3/src/Bullet3Geometry/b3ConvexHullComputer.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ../../<a href="CppLibrary.htm">Libraries</a>/bullet3/src/Bullet3Geometry/b3GeometryUtil.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ../../<a href="CppLibrary.htm">Libraries</a>/bullet3/src/clew/clew.c \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ../../<a href="CppLibrary.htm">Libraries</a>/bullet3/src/Bullet3Collision/BroadPhaseCollision/b3DynamicBvh.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ../../<a href="CppLibrary.htm">Libraries</a>/bullet3/src/Bullet3Collision/BroadPhaseCollision/b3DynamicBvhBroadphase.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ../../<a href="CppLibrary.htm">Libraries</a>/bullet3/src/Bullet3Collision/BroadPhaseCollision/b3OverlappingPairCache.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ../../<a href="CppLibrary.htm">Libraries</a>/bullet3/src/Bullet3Collision/NarrowPhaseCollision/b3ConvexUtility.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ../../<a href="CppLibrary.htm">Libraries</a>/bullet3/src/Bullet3Collision/NarrowPhaseCollision/b3CpuNarrowPhase.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ../../<a href="CppLibrary.htm">Libraries</a>/bullet3/src/Bullet3Dynamics/ConstraintSolver/b3FixedConstraint.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ../../<a href="CppLibrary.htm">Libraries</a>/bullet3/src/Bullet3Dynamics/ConstraintSolver/b3Generic6DofConstraint.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ../../<a href="CppLibrary.htm">Libraries</a>/bullet3/src/Bullet3Dynamics/ConstraintSolver/b3PgsJacobiSolver.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ../../<a href="CppLibrary.htm">Libraries</a>/bullet3/src/Bullet3Dynamics/ConstraintSolver/b3Point2PointConstraint.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ../../<a href="CppLibrary.htm">Libraries</a>/bullet3/src/Bullet3Dynamics/ConstraintSolver/b3TypedConstraint.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ../../<a href="CppLibrary.htm">Libraries</a>/bullet3/src/Bullet3OpenCL/BroadphaseCollision/b3GpuSapBroadphase.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ../../<a href="CppLibrary.htm">Libraries</a>/bullet3/src/Bullet3OpenCL/Initialize/b3OpenCLUtils.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ../../<a href="CppLibrary.htm">Libraries</a>/bullet3/src/Bullet3OpenCL/NarrowphaseCollision/b3ContactCache.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ../../<a href="CppLibrary.htm">Libraries</a>/bullet3/src/Bullet3OpenCL/NarrowphaseCollision/b3ConvexHullContact.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ../../<a href="CppLibrary.htm">Libraries</a>/bullet3/src/Bullet3OpenCL/NarrowphaseCollision/b3GjkEpa.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ../../<a href="CppLibrary.htm">Libraries</a>/bullet3/src/Bullet3OpenCL/NarrowphaseCollision/b3GjkPairDetector.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ../../<a href="CppLibrary.htm">Libraries</a>/bullet3/src/Bullet3OpenCL/NarrowphaseCollision/b3OptimizedBvh.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ../../<a href="CppLibrary.htm">Libraries</a>/bullet3/src/Bullet3OpenCL/NarrowphaseCollision/b3QuantizedBvh.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ../../<a href="CppLibrary.htm">Libraries</a>/bullet3/src/Bullet3OpenCL/NarrowphaseCollision/b3StridingMeshInterface.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ../../<a href="CppLibrary.htm">Libraries</a>/bullet3/src/Bullet3OpenCL/NarrowphaseCollision/b3TriangleCallback.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ../../<a href="CppLibrary.htm">Libraries</a>/bullet3/src/Bullet3OpenCL/NarrowphaseCollision/b3TriangleIndexVertexArray.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ../../<a href="CppLibrary.htm">Libraries</a>/bullet3/src/Bullet3OpenCL/NarrowphaseCollision/b3VoronoiSimplexSolver.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ../../<a href="CppLibrary.htm">Libraries</a>/bullet3/src/Bullet3OpenCL/ParallelPrimitives/b3BoundSearchCL.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ../../<a href="CppLibrary.htm">Libraries</a>/bullet3/src/Bullet3OpenCL/ParallelPrimitives/b3FillCL.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ../../<a href="CppLibrary.htm">Libraries</a>/bullet3/src/Bullet3OpenCL/ParallelPrimitives/b3PrefixScanCL.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ../../<a href="CppLibrary.htm">Libraries</a>/bullet3/src/Bullet3OpenCL/ParallelPrimitives/b3PrefixScanFloat4CL.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ../../<a href="CppLibrary.htm">Libraries</a>/bullet3/src/Bullet3OpenCL/ParallelPrimitives/b3RadixSort32CL.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ../../<a href="CppLibrary.htm">Libraries</a>/bullet3/src/Bullet3OpenCL/Raycast/b3GpuRaycast.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ../../<a href="CppLibrary.htm">Libraries</a>/bullet3/src/Bullet3OpenCL/RigidBody/b3GpuBatchingPgsSolver.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ../../<a href="CppLibrary.htm">Libraries</a>/bullet3/src/Bullet3OpenCL/RigidBody/b3GpuGenericConstraint.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ../../<a href="CppLibrary.htm">Libraries</a>/bullet3/src/Bullet3OpenCL/RigidBody/b3GpuNarrowPhase.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ../../<a href="CppLibrary.htm">Libraries</a>/bullet3/src/Bullet3OpenCL/RigidBody/b3GpuPgsJacobiSolver.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ../../<a href="CppLibrary.htm">Libraries</a>/bullet3/src/Bullet3OpenCL/RigidBody/b3GpuRigidBodyPipeline.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ../../<a href="CppLibrary.htm">Libraries</a>/bullet3/src/Bullet3OpenCL/RigidBody/b3Solver.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ../../<a href="CppLibrary.htm">Libraries</a>/bullet3/src/Bullet3Serialize/Bullet2FileLoader/b3BulletFile.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ../../<a href="CppLibrary.htm">Libraries</a>/bullet3/src/Bullet3Serialize/Bullet2FileLoader/b3Chunk.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ../../<a href="CppLibrary.htm">Libraries</a>/bullet3/src/Bullet3Serialize/Bullet2FileLoader/b3DNA.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ../../<a href="CppLibrary.htm">Libraries</a>/bullet3/src/Bullet3Serialize/Bullet2FileLoader/b3File.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ../../<a href="CppLibrary.htm">Libraries</a>/bullet3/src/Bullet3Serialize/Bullet2FileLoader/b3Serializer.cpp<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>main.cpp</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="main.cpp" border = "1"><tr><td><code>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a>()<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Placeholder, project does not <a href="CppCompile.html">compile</a><br/>
+}<br/>
+<br/>
+<br/>
+<a href="CppComment.htm">/*</a> <a href="CppCompile.html">Compile</a> output without '<a href="CppQmakeDefines.html">DEFINES</a> <a href="CppOperatorPlus.htm">+</a><a href="CppOperatorAssign.htm">=</a> B3_USE_CLEW' (warnings removed):<br/>
+<br/>
+In file included from ..\..\<a href="CppLibrary.html">Libraries</a>\bullet3\src\Bullet3OpenCL\<a href="CppInitialize.html">Initialize</a>\b3OpenCLUtils<a href="CppHeaderFile.htm">.h</a>:22:0,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; from ..\..\<a href="CppLibrary.html">Libraries</a>\bullet3\src\Bullet3OpenCL\<a href="CppInitialize.html">Initialize</a>\b3OpenCLUtils<a href="CppImplementationFile.html">.cpp</a>:30:<br/>
+..\..\<a href="CppLibrary.html">Libraries</a>\bullet3\src\Bullet3OpenCL\<a href="CppInitialize.html">Initialize</a>\b3OpenCLInclude<a href="CppHeaderFile.htm">.h</a>:34:19: fatal error: CL/cl<a href="CppHeaderFile.htm">.h</a>: No such file or directory<br/>
+ <a href="CppInclude.html">#include</a> &lt;CL/cl<a href="CppHeaderFile.htm">.h</a>&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ^<br/>
+<a href="CppComment.htm">*/</a><br/>
+<br/>
+<a href="CppComment.htm">/*</a> <a href="CppCompile.html">Compile</a> output with '<a href="CppQmakeDefines.html">DEFINES</a> <a href="CppOperatorPlus.htm">+</a><a href="CppOperatorAssign.htm">=</a> B3_USE_CLEW' (warnings removed):<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ^<br/>
+..\..\<a href="CppLibrary.html">Libraries</a>\bullet3\src\Bullet3OpenCL\<a href="CppInitialize.html">Initialize</a>\b3OpenCLUtils<a href="CppImplementationFile.html">.cpp</a>: In <a href="CppFunction.html">function</a> '_cl_program* b3OpenCLUtils_<a href="CppCompile.html">compile</a>CLProgramFromString(cl_context, cl_device_id, <b><a href="CppConst.html">const</a></b> <b><a href="CppChar.htm">char</a></b>*, cl_int*, <b><a href="CppConst.html">const</a></b> <b><a href="CppChar.htm">char</a></b>*, <b><a href="CppConst.html">const</a></b> <b><a href="CppChar.htm">char</a></b>*, <b><a href="CppBool.htm">bool</a></b>)':<br/>
+..\..\<a href="CppLibrary.html">Libraries</a>\bullet3\src\Bullet3OpenCL\<a href="CppInitialize.html">Initialize</a>\b3OpenCLUtils<a href="CppImplementationFile.html">.cpp</a>:640:38: error: cannot <a href="CppConvert.html">convert</a> '<b><a href="CppConst.html">const</a></b> <b><a href="CppChar.htm">char</a></b>*' to 'LPCWSTR {aka <b><a href="CppConst.html">const</a></b> <b><a href="CppWchar_t.html">wchar_t</a></b>*}' <b><a href="CppFor.htm">for</a></b> argument '1' to 'WINBOOL CreateDirectoryW(LPCWSTR, LPSECURITY_ATTRIBUTES)'<br/>
+&nbsp;&nbsp; CreateDirectory(sCachedBinaryPath,0);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;^<br/>
+..\..\<a href="CppLibrary.html">Libraries</a>\bullet3\src\Bullet3OpenCL\<a href="CppInitialize.html">Initialize</a>\b3OpenCLUtils<a href="CppImplementationFile.html">.cpp</a>:643:110: error: cannot <a href="CppConvert.html">convert</a> '<b><a href="CppChar.htm">char</a></b>*' to 'LPCWSTR {aka <b><a href="CppConst.html">const</a></b> <b><a href="CppWchar_t.html">wchar_t</a></b>*}' <b><a href="CppFor.htm">for</a></b> argument '1' to '<b><a href="CppVoid.htm">void</a></b>* CreateFileW(LPCWSTR, DWORD, DWORD, LPSECURITY_ATTRIBUTES, DWORD, DWORD, HANDLE)'<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;HANDLE binaryFileHandle <a href="CppOperatorAssign.htm">=</a> CreateFile(binaryFileName,GENERIC_READ,0,0,OPEN_EXISTING,<a href="CppCfile<a href="CppHeaderFile.htm">.h</a>tm">FILE</a>_ATTRIBUTE_NORMAL,0);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;^<br/>
+..\..\<a href="CppLibrary.html">Libraries</a>\bullet3\src\Bullet3OpenCL\<a href="CppInitialize.html">Initialize</a>\b3OpenCLUtils<a href="CppImplementationFile.html">.cpp</a>:681:114: error: cannot <a href="CppConvert.html">convert</a> '<b><a href="CppConst.html">const</a></b> <b><a href="CppChar.htm">char</a></b>*' to 'LPCWSTR {aka <b><a href="CppConst.html">const</a></b> <b><a href="CppWchar_t.html">wchar_t</a></b>*}' <b><a href="CppFor.htm">for</a></b> argument '1' to '<b><a href="CppVoid.htm">void</a></b>* CreateFileW(LPCWSTR, DWORD, DWORD, LPSECURITY_ATTRIBUTES, DWORD, DWORD, HANDLE)'<br/>
+&nbsp;&nbsp;&nbsp;&nbsp; HANDLE srcFileHandle <a href="CppOperatorAssign.htm">=</a> CreateFile(clFileNameForCaching,GENERIC_READ,0,0,OPEN_EXISTING,<a href="CppCfile<a href="CppHeaderFile.htm">.h</a>tm">FILE</a>_ATTRIBUTE_NORMAL,0);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;^<br/>
+..\..\<a href="CppLibrary.html">Libraries</a>\bullet3\src\Bullet3OpenCL\<a href="CppInitialize.html">Initialize</a>\b3OpenCLUtils<a href="CppImplementationFile.html">.cpp</a>:690:105: error: cannot <a href="CppConvert.html">convert</a> '<b><a href="CppChar.htm">char</a></b>*' to 'LPCWSTR {aka <b><a href="CppConst.html">const</a></b> <b><a href="CppWchar_t.html">wchar_t</a></b>*}' <b><a href="CppFor.htm">for</a></b> argument '1' to '<b><a href="CppVoid.htm">void</a></b>* CreateFileW(LPCWSTR, DWORD, DWORD, LPSECURITY_ATTRIBUTES, DWORD, DWORD, HANDLE)'<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; srcFileHandle <a href="CppOperatorAssign.htm">=</a> CreateFile(relativeFileName,GENERIC_READ,0,0,OPEN_EXISTING,<a href="CppCfile<a href="CppHeaderFile.htm">.h</a>tm">FILE</a>_ATTRIBUTE_NORMAL,0);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ^<br/>
+<a href="CppComment.htm">*/</a><br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+<p>This page has been created by the <a href="Tools.htm">tool</a> <a href="ToolCodeToHtml.htm">CodeToHtml</a></p>
+</body>
+</html>

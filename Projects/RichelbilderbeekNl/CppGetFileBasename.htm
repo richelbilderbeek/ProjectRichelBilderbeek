@@ -61,30 +61,30 @@
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="CppGetFileBasename.pro" border = "1"><tr><td><code>
-TEMPLATE = app<br/>
-CONFIG += console<br/>
-CONFIG -= app_bundle<br/>
-CONFIG -= qt<br/>
-<a href="CppQMAKE_CXXFLAGS.htm">QMAKE_CXXFLAGS</a> += -std=<a href="Cpp11.htm">c++11</a> <a href="CppWall.htm">-Wall</a> <a href="CppWextra.htm">-Wextra</a> <a href="CppWerror.htm">-Werror</a><br/>
-<a href="CppSOURCES.htm">SOURCES</a> += <a href="CppMain.htm">main</a>.cpp<br/>
+<a href="CppQmakeTemplate.htm">TEMPLATE</a> = app<br/>
+<a href="CppQmakeConfig.htm">CONFIG</a> += console<br/>
+<a href="CppQmakeConfig.htm">CONFIG</a> -= app_bundle<br/>
+<a href="CppQmakeConfig.htm">CONFIG</a> -= qt<br/>
+<a href="CppQmakeQmake_cxxflags.htm">QMAKE_CXXFLAGS</a> += -std=<a href="Cpp11.htm">c++11</a> <a href="CppWall.htm">-Wall</a> <a href="CppWextra.htm">-Wextra</a> <a href="CppWerror.htm">-Werror</a><br/>
+<a href="CppQmakeSources.htm">SOURCES</a> += <a href="CppMain.htm">main</a>.cpp<br/>
 <br/>
 win32 {<br/>
 &nbsp;&nbsp;#message(Native Windows dynamic link to Boost)<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppINCLUDEPATH.htm">INCLUDEPATH</a> += \<br/>
+&nbsp;&nbsp;<a href="CppQmakeIncludepath.htm">INCLUDEPATH</a> += \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/boost_1_54_0<br/>
 <br/>
 &nbsp;&nbsp;#Don't link to Boost when crosscompiling is desired<br/>
 <br/>
 &nbsp;&nbsp;debug {<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppLIBS.htm">LIBS</a> += ../../<a href="CppLibrary.htm">Libraries</a>/boost_1_54_0/stage/lib/libboost_filesystem-mgw48-mt-d-1_54.a<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppLIBS.htm">LIBS</a> += ../../<a href="CppLibrary.htm">Libraries</a>/boost_1_54_0/stage/lib/libboost_regex-mgw48-mt-d-1_54.a<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppLIBS.htm">LIBS</a> += ../../<a href="CppLibrary.htm">Libraries</a>/boost_1_54_0/stage/lib/libboost_system-mgw48-mt-d-1_54.a<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQmakeLibs.htm">LIBS</a> += ../../<a href="CppLibrary.htm">Libraries</a>/boost_1_54_0/stage/lib/libboost_filesystem-mgw48-mt-d-1_54.a<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQmakeLibs.htm">LIBS</a> += ../../<a href="CppLibrary.htm">Libraries</a>/boost_1_54_0/stage/lib/libboost_regex-mgw48-mt-d-1_54.a<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQmakeLibs.htm">LIBS</a> += ../../<a href="CppLibrary.htm">Libraries</a>/boost_1_54_0/stage/lib/libboost_system-mgw48-mt-d-1_54.a<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;release {<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppLIBS.htm">LIBS</a> += ../../<a href="CppLibrary.htm">Libraries</a>/boost_1_54_0/stage/lib/libboost_filesystem-mgw48-mt-1_54.a<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppLIBS.htm">LIBS</a> += ../../<a href="CppLibrary.htm">Libraries</a>/boost_1_54_0/stage/lib/libboost_regex-mgw48-mt-1_54.a<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppLIBS.htm">LIBS</a> += ../../<a href="CppLibrary.htm">Libraries</a>/boost_1_54_0/stage/lib/libboost_system-mgw48-mt-1_54.a<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQmakeLibs.htm">LIBS</a> += ../../<a href="CppLibrary.htm">Libraries</a>/boost_1_54_0/stage/lib/libboost_filesystem-mgw48-mt-1_54.a<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQmakeLibs.htm">LIBS</a> += ../../<a href="CppLibrary.htm">Libraries</a>/boost_1_54_0/stage/lib/libboost_regex-mgw48-mt-1_54.a<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQmakeLibs.htm">LIBS</a> += ../../<a href="CppLibrary.htm">Libraries</a>/boost_1_54_0/stage/lib/libboost_system-mgw48-mt-1_54.a<br/>
 &nbsp;&nbsp;}<br/>
 }<br/>
 </code></td></tr></table>
@@ -98,59 +98,59 @@ win32 {<br/>
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="main.cpp" border = "1"><tr><td><code>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppCassertH.html">cassert</a>&gt;<br/>
 <br/>
-<a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
-<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-<b><a href="CppTypedef.htm">typedef</a></b>s"<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/filesystem.hpp&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppBoostXpressive.htm">xpressive</a>/<a href="CppBoostXpressive.htm">xpressive</a>.hpp&gt;<br/>
-<a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic push<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic ignored "-Wunused-local-<b><a href="CppTypedef.html">typedef</a></b>s"<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppBoost.html">boost</a>/filesystem<a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppBoost.html">boost</a>/<a href="CppBoostXpressive.html">xpressive</a>/<a href="CppBoostXpressive.html">xpressive</a><a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic pop<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> GetFileBasename<a href="CppBoost.htm">Boost</a>Filesystem(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; filename)<br/>
+<b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a> GetFileBasename<a href="CppBoost.html">Boost</a>Filesystem(<b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a>&amp; filename)<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <a href="CppFilesystem.htm">boost::filesystem</a>::basename(filename);<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> <a href="CppFilesystem.html">boost::filesystem</a>::basename(filename);<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> GetFileBasename<a href="CppBoost.htm">Boost</a><a href="CppBoostXpressive.htm">Xpressive</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; filename)<br/>
+<b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a> GetFileBasename<a href="CppBoost.html">Boost</a><a href="CppBoostXpressive.html">Xpressive</a>(<b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a>&amp; filename)<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostXpressive.htm">boost::xpressive</a>::s<a href="CppRegex.htm">regex</a> rex<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <a href="CppBoostXpressive.htm">boost::xpressive</a>::s<a href="CppRegex.htm">regex</a>::<a href="CppCompile.htm">compile</a>(<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppBoostXpressive.html">boost::xpressive</a>::s<a href="CppRegex.html">regex</a> rex<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <a href="CppBoostXpressive.html">boost::xpressive</a>::s<a href="CppRegex.html">regex</a>::<a href="CppCompile.html">compile</a>(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"((.*)(/|\\\\))?([A-Za-z]*)((\\.)([A-Za-z]*))?" );<br/>
-&nbsp;&nbsp;<a href="CppBoostXpressive.htm">boost::xpressive</a>::smatch what;<br/>
+&nbsp;&nbsp;<a href="CppBoostXpressive.html">boost::xpressive</a>::smatch what;<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b>( <a href="CppBoostXpressive.htm">boost::xpressive</a>::<a href="CppRegex.htm">regex</a>_match( filename, what, rex ) )<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b>( <a href="CppBoostXpressive.html">boost::xpressive</a>::<a href="CppRegex.html">regex</a>_match( filename, what, rex ) )<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> what[4];<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> what[4];<br/>
 &nbsp;&nbsp;}<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> "";<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> "";<br/>
 }<br/>
 <br/>
-<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a>()<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Tests <b><a href="CppFor.htm">for</a></b> easy copy-paste<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(GetFileBasename<a href="CppBoost.htm">Boost</a><a href="CppBoostXpressive.htm">Xpressive</a>("") <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <a href="CppString.htm">std::string</a>(""));<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(GetFileBasename<a href="CppBoost.htm">Boost</a><a href="CppBoostXpressive.htm">Xpressive</a>("tmp.txt") <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <a href="CppString.htm">std::string</a>("tmp"));<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(GetFileBasename<a href="CppBoost.htm">Boost</a><a href="CppBoostXpressive.htm">Xpressive</a>("tmp") <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <a href="CppString.htm">std::string</a>("tmp"));<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(GetFileBasename<a href="CppBoost.htm">Boost</a><a href="CppBoostXpressive.htm">Xpressive</a>("MyFolder/tmp") <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <a href="CppString.htm">std::string</a>("tmp"));<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(GetFileBasename<a href="CppBoost.htm">Boost</a><a href="CppBoostXpressive.htm">Xpressive</a>("MyFolder/tmp.txt") <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <a href="CppString.htm">std::string</a>("tmp"));<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(GetFileBasename<a href="CppBoost.htm">Boost</a><a href="CppBoostXpressive.htm">Xpressive</a>("MyFolder\\tmp.txt") <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <a href="CppString.htm">std::string</a>("tmp"));<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(GetFileBasename<a href="CppBoost.htm">Boost</a><a href="CppBoostXpressive.htm">Xpressive</a>("MyFolder/MyFolder/tmp") <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <a href="CppString.htm">std::string</a>("tmp"));<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(GetFileBasename<a href="CppBoost.htm">Boost</a><a href="CppBoostXpressive.htm">Xpressive</a>("MyFolder/MyFolder/tmp.txt") <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <a href="CppString.htm">std::string</a>("tmp"));<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(GetFileBasename<a href="CppBoost.htm">Boost</a><a href="CppBoostXpressive.htm">Xpressive</a>("MyFolder/MyFolder\\tmp.txt") <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <a href="CppString.htm">std::string</a>("tmp"));<br/>
+&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(GetFileBasename<a href="CppBoost.html">Boost</a><a href="CppBoostXpressive.html">Xpressive</a>("") <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <a href="CppString.html">std::string</a>(""));<br/>
+&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(GetFileBasename<a href="CppBoost.html">Boost</a><a href="CppBoostXpressive.html">Xpressive</a>("tmp.txt") <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <a href="CppString.html">std::string</a>("tmp"));<br/>
+&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(GetFileBasename<a href="CppBoost.html">Boost</a><a href="CppBoostXpressive.html">Xpressive</a>("tmp") <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <a href="CppString.html">std::string</a>("tmp"));<br/>
+&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(GetFileBasename<a href="CppBoost.html">Boost</a><a href="CppBoostXpressive.html">Xpressive</a>("MyFolder/tmp") <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <a href="CppString.html">std::string</a>("tmp"));<br/>
+&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(GetFileBasename<a href="CppBoost.html">Boost</a><a href="CppBoostXpressive.html">Xpressive</a>("MyFolder/tmp.txt") <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <a href="CppString.html">std::string</a>("tmp"));<br/>
+&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(GetFileBasename<a href="CppBoost.html">Boost</a><a href="CppBoostXpressive.html">Xpressive</a>("MyFolder\\tmp.txt") <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <a href="CppString.html">std::string</a>("tmp"));<br/>
+&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(GetFileBasename<a href="CppBoost.html">Boost</a><a href="CppBoostXpressive.html">Xpressive</a>("MyFolder/MyFolder/tmp") <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <a href="CppString.html">std::string</a>("tmp"));<br/>
+&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(GetFileBasename<a href="CppBoost.html">Boost</a><a href="CppBoostXpressive.html">Xpressive</a>("MyFolder/MyFolder/tmp.txt") <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <a href="CppString.html">std::string</a>("tmp"));<br/>
+&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(GetFileBasename<a href="CppBoost.html">Boost</a><a href="CppBoostXpressive.html">Xpressive</a>("MyFolder/MyFolder\\tmp.txt") <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <a href="CppString.html">std::string</a>("tmp"));<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Same tests again...<br/>
-&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppAuto.htm">auto</a></b> f: {GetFileBasename<a href="CppBoost.htm">Boost</a>Filesystem, GetFileBasename<a href="CppBoost.htm">Boost</a><a href="CppBoostXpressive.htm">Xpressive</a> } )<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppAuto.htm">auto</a></b> f: {GetFileBasename<a href="CppBoost.html">Boost</a>Filesystem, GetFileBasename<a href="CppBoost.html">Boost</a><a href="CppBoostXpressive.html">Xpressive</a> } )<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(f("") <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <a href="CppString.htm">std::string</a>(""));<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(f("tmp.txt") <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <a href="CppString.htm">std::string</a>("tmp"));<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(f("tmp") <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <a href="CppString.htm">std::string</a>("tmp"));<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(f("MyFolder/tmp") <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <a href="CppString.htm">std::string</a>("tmp"));<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(f("MyFolder/tmp.txt") <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <a href="CppString.htm">std::string</a>("tmp"));<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(f("MyFolder\\tmp.txt") <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <a href="CppString.htm">std::string</a>("tmp"));<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(f("MyFolder/MyFolder/tmp") <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <a href="CppString.htm">std::string</a>("tmp"));<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(f("MyFolder/MyFolder/tmp.txt") <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <a href="CppString.htm">std::string</a>("tmp"));<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(f("MyFolder/MyFolder\\tmp.txt") <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <a href="CppString.htm">std::string</a>("tmp"));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(f("") <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <a href="CppString.html">std::string</a>(""));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(f("tmp.txt") <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <a href="CppString.html">std::string</a>("tmp"));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(f("tmp") <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <a href="CppString.html">std::string</a>("tmp"));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(f("MyFolder/tmp") <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <a href="CppString.html">std::string</a>("tmp"));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(f("MyFolder/tmp.txt") <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <a href="CppString.html">std::string</a>("tmp"));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(f("MyFolder\\tmp.txt") <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <a href="CppString.html">std::string</a>("tmp"));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(f("MyFolder/MyFolder/tmp") <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <a href="CppString.html">std::string</a>("tmp"));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(f("MyFolder/MyFolder/tmp.txt") <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <a href="CppString.html">std::string</a>("tmp"));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(f("MyFolder/MyFolder\\tmp.txt") <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <a href="CppString.html">std::string</a>("tmp"));<br/>
 &nbsp;&nbsp;}<br/>
 }<br/>
 </code></td></tr></table>

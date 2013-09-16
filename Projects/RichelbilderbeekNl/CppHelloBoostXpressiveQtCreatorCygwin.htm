@@ -68,11 +68,11 @@
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="CppHelloBoostXpressiveQtCreatorCygwin.pro" border = "1"><tr><td><code>
-TEMPLATE = app<br/>
-CONFIG += console<br/>
-CONFIG -= app_bundle<br/>
-CONFIG -= qt<br/>
-<a href="CppSOURCES.htm">SOURCES</a> += <a href="CppMain.htm">main</a>.cpp<br/>
+<a href="CppQmakeTemplate.htm">TEMPLATE</a> = app<br/>
+<a href="CppQmakeConfig.htm">CONFIG</a> += console<br/>
+<a href="CppQmakeConfig.htm">CONFIG</a> -= app_bundle<br/>
+<a href="CppQmakeConfig.htm">CONFIG</a> -= qt<br/>
+<a href="CppQmakeSources.htm">SOURCES</a> += <a href="CppMain.htm">main</a>.cpp<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -84,22 +84,22 @@ CONFIG -= qt<br/>
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="main.cpp" border = "1"><tr><td><code>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppIostreamH.htm">iostream</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppBoostXpressive.htm">xpressive</a>/<a href="CppBoostXpressive.htm">xpressive</a>.hpp&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppIostreamH.html">iostream</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppBoost.html">boost</a>/<a href="CppBoostXpressive.html">xpressive</a>/<a href="CppBoostXpressive.html">xpressive</a><a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
 <br/>
-<a href="CppComment.htm">///</a>Example adapted from http://www.<a href="CppBoost.htm">boost</a>.org/doc/libs/1_54_0/doc/html/<a href="CppBoostXpressive.htm">xpressive</a>/user_s_guide.html<br/>
-<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
+<a href="CppComment.htm">///</a>Example adapted from http://www.<a href="CppBoost.html">boost</a>.org/doc/libs/1_54_0/doc/html/<a href="CppBoostXpressive.html">xpressive</a>/user_s_guide.htmll<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a>()<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> hello( "hello world!" );<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a> hello( "hello world!" );<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostXpressive.htm">boost::xpressive</a>::s<a href="CppRegex.htm">regex</a> rex <a href="CppOperatorAssign.htm">=</a> <a href="CppBoostXpressive.htm">boost::xpressive</a>::s<a href="CppRegex.htm">regex</a>::<a href="CppCompile.htm">compile</a>( "(\\w+) (\\w+)!" );<br/>
-&nbsp;&nbsp;<a href="CppBoostXpressive.htm">boost::xpressive</a>::smatch what;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppBoostXpressive.html">boost::xpressive</a>::s<a href="CppRegex.html">regex</a> rex <a href="CppOperatorAssign.htm">=</a> <a href="CppBoostXpressive.html">boost::xpressive</a>::s<a href="CppRegex.html">regex</a>::<a href="CppCompile.html">compile</a>( "(\\w+) (\\w+)!" );<br/>
+&nbsp;&nbsp;<a href="CppBoostXpressive.html">boost::xpressive</a>::smatch what;<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b>( <a href="CppBoostXpressive.htm">boost::xpressive</a>::<a href="CppRegex.htm">regex</a>_match( hello, what, rex ) )<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b>( <a href="CppBoostXpressive.html">boost::xpressive</a>::<a href="CppRegex.html">regex</a>_match( hello, what, rex ) )<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> what[0] <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n'; <a href="CppComment.htm">//</a> whole match<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> what[1] <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n'; <a href="CppComment.htm">//</a> first capture<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> what[2] <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n'; <a href="CppComment.htm">//</a> second capture<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCout.html">std::cout</a> <a href="CppOperatorStreamOut.html">&lt;&lt;</a> what[0] <a href="CppOperatorStreamOut.html">&lt;&lt;</a> '\n'; <a href="CppComment.htm">//</a> whole match<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCout.html">std::cout</a> <a href="CppOperatorStreamOut.html">&lt;&lt;</a> what[1] <a href="CppOperatorStreamOut.html">&lt;&lt;</a> '\n'; <a href="CppComment.htm">//</a> first capture<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCout.html">std::cout</a> <a href="CppOperatorStreamOut.html">&lt;&lt;</a> what[2] <a href="CppOperatorStreamOut.html">&lt;&lt;</a> '\n'; <a href="CppComment.htm">//</a> second capture<br/>
 &nbsp;&nbsp;}<br/>
 }<br/>
 </code></td></tr></table>

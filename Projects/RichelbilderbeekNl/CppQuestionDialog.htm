@@ -40,7 +40,7 @@
 <table summary="questiondialog.h" border = "1"><tr><td><code>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">/*</a><br/>
-<a href="CppQuestionDialog.htm">QuestionDialog</a>, dialog <b><a href="CppFor.htm">for</a></b> <a href="CppQuestion.htm">Question</a><br/>
+<a href="CppQuestionDialog.html">QuestionDialog</a>, dialog <b><a href="CppFor.htm">for</a></b> <a href="CppQuestion.html">Question</a><br/>
 Copyright (C) 2011-2013 Richel Bilderbeek<br/>
 <br/>
 This program is free software: you can redistribute it and/or modify<br/>
@@ -56,69 +56,72 @@ You should have received a copy of the GNU General Public License<br/>
 along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">*/</a><br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="CppQtQuestionDialog.htm">CppQtQuestionDialog</a>.htm<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="CppQtQuestionDialog.html">CppQtQuestionDialog</a>.html<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppIfndef.htm">#ifndef</a> QUESTIONDIALOG_H<br/>
-<a href="CppDefine.htm">#define</a> QUESTIONDIALOG_H<br/>
+<a href="CppIfndef.html">#ifndef</a> QUESTIONDIALOG_H<br/>
+<a href="CppDefine.html">#define</a> QUESTIONDIALOG_H<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/checked_delete.hpp&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppShared_ptr.htm">shared_ptr</a>.hpp&gt;<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic push<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.html">-Weffc++</a>"<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppBoost.html">boost</a>/checked_delete<a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppBoost.html">boost</a>/<a href="CppShared_ptr.html">shared_ptr</a><a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic pop<br/>
 <br/>
-<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a> {<br/>
+<b><a href="CppNamespace.html">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
 <br/>
-<b><a href="CppStruct.htm">struct</a></b> <a href="CppQuestion.htm">Question</a>;<br/>
+<b><a href="CppStruct.html">struct</a></b> <a href="CppQuestion.html">Question</a>;<br/>
 <br/>
-<a href="CppComment.htm">///</a>Dialog <b><a href="CppFor.htm">for</a></b> an <a href="CppQuestion.htm">Question</a><br/>
-<b><a href="CppStruct.htm">struct</a></b> <a href="CppQuestionDialog.htm">QuestionDialog</a><br/>
+<a href="CppComment.htm">///</a>Dialog <b><a href="CppFor.htm">for</a></b> an <a href="CppQuestion.html">Question</a><br/>
+<b><a href="CppStruct.html">struct</a></b> <a href="CppQuestionDialog.html">QuestionDialog</a><br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppExplicit.htm">explicit</a></b> <a href="CppQuestionDialog.htm">QuestionDialog</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppQuestion.htm">Question</a>&gt;&amp; <a href="CppQuestion.htm">question</a>);<br/>
+&nbsp;&nbsp;<b><a href="CppExplicit.html">explicit</a></b> <a href="CppQuestionDialog.html">QuestionDialog</a>(<b><a href="CppConst.html">const</a></b> <a href="CppBoostShared_ptr.html">boost::shared_ptr</a>&lt;<a href="CppQuestion.html">Question</a>&gt; <a href="CppQuestion.html">question</a>);<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/Check <b><a href="CppIf.htm">if</a></b> an answer can be submitted<br/>
-&nbsp;&nbsp;<b><a href="CppBool.htm">bool</a></b> CanSubmit() <b><a href="CppConst.htm">const</a></b> { <b><a href="CppReturn.htm">return</a></b> !m_has_submitted; }<br/>
+&nbsp;&nbsp;<b><a href="CppBool.htm">bool</a></b> CanSubmit() <b><a href="CppConst.html">const</a></b> { <b><a href="CppReturn.html">return</a></b> !m_has_submitted; }<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/Get all possible correct answers<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; GetCorrectAnswers() <b><a href="CppConst.htm">const</a></b>;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppVector.html">std::vector</a>&lt;<a href="CppString.html">std::string</a>&gt; GetCorrectAnswers() <b><a href="CppConst.html">const</a></b>;<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Obtain the <a href="CppQuestion.htm">question</a><br/>
-&nbsp;&nbsp;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppQuestion.htm">Question</a>&gt; Get<a href="CppQuestion.htm">Question</a>() <b><a href="CppConst.htm">const</a></b> { <b><a href="CppReturn.htm">return</a></b> m_<a href="CppQuestion.htm">question</a>; }<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Obtain the <a href="CppQuestion.html">question</a><br/>
+&nbsp;&nbsp;<a href="CppBoostShared_ptr.html">boost::shared_ptr</a>&lt;<a href="CppQuestion.html">Question</a>&gt; Get<a href="CppQuestion.html">Question</a>() <b><a href="CppConst.html">const</a></b> { <b><a href="CppReturn.html">return</a></b> m_<a href="CppQuestion.html">question</a>; }<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Obtain the <a href="CppVersion.htm">version</a><br/>
-&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> Get<a href="CppVersion.htm">Version</a>();<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Obtain the <a href="CppVersion.html">version</a><br/>
+&nbsp;&nbsp;<b><a href="CppStatic.html">static</a></b> <b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a> Get<a href="CppVersion.html">Version</a>();<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Obtain the <a href="CppVersion.htm">version</a> history<br/>
-&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; Get<a href="CppVersion.htm">Version</a>History();<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Obtain the <a href="CppVersion.html">version</a> history<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.html">static</a></b> <b><a href="CppConst.html">const</a></b> <a href="CppVector.html">std::vector</a>&lt;<a href="CppString.html">std::string</a>&gt; Get<a href="CppVersion.html">Version</a>History();<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/Check <b><a href="CppIf.htm">if</a></b> an answer has been submitted<br/>
-&nbsp;&nbsp;<b><a href="CppBool.htm">bool</a></b> HasSubmitted() <b><a href="CppConst.htm">const</a></b> { <b><a href="CppReturn.htm">return</a></b> m_has_submitted; }<br/>
+&nbsp;&nbsp;<b><a href="CppBool.htm">bool</a></b> HasSubmitted() <b><a href="CppConst.html">const</a></b> { <b><a href="CppReturn.html">return</a></b> m_has_submitted; }<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/See <b><a href="CppIf.htm">if</a></b> the submitted answer is correct<br/>
-&nbsp;&nbsp;<b><a href="CppBool.htm">bool</a></b> IsAnswerCorrect() <b><a href="CppConst.htm">const</a></b>;<br/>
+&nbsp;&nbsp;<b><a href="CppBool.htm">bool</a></b> IsAnswerCorrect() <b><a href="CppConst.html">const</a></b>;<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>/(Re)set the <a href="CppQuestion.htm">Question</a><br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppVoid.htm">void</a></b> Set<a href="CppQuestion.htm">Question</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppQuestion.htm">Question</a> * <b><a href="CppConst.htm">const</a></b> <a href="CppQuestion.htm">question</a>);<br/>
-&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> Set<a href="CppQuestion.htm">Question</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppQuestion.htm">Question</a>&gt;&amp; <a href="CppQuestion.htm">question</a>);<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/(Re)set the <a href="CppQuestion.html">Question</a><br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppVoid.htm">void</a></b> Set<a href="CppQuestion.html">Question</a>(<b><a href="CppConst.html">const</a></b> <a href="CppQuestion.html">Question</a> * <b><a href="CppConst.html">const</a></b> <a href="CppQuestion.html">question</a>);<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> Set<a href="CppQuestion.html">Question</a>(<b><a href="CppConst.html">const</a></b> <a href="CppBoostShared_ptr.html">boost::shared_ptr</a>&lt;<a href="CppQuestion.html">Question</a>&gt; <a href="CppQuestion.html">question</a>);<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/Submit an answer<br/>
-&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> Submit(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; s);<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> Submit(<b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a>&amp; s);<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppProtected.htm">protected</a></b>:<br/>
-&nbsp;&nbsp;<b><a href="CppVirtual.htm">virtual</a></b> ~<a href="CppQuestionDialog.htm">QuestionDialog</a>() {}<br/>
-&nbsp;&nbsp;<b><a href="CppFriend.htm">friend</a></b> <b><a href="CppVoid.htm">void</a></b> <a href="CppChecked_delete.htm">boost::checked_delete</a>&lt;&gt;(<a href="CppQuestionDialog.htm">QuestionDialog</a>*);<br/>
+&nbsp;&nbsp;<b><a href="CppProtected.html">protected</a></b>:<br/>
+&nbsp;&nbsp;<b><a href="CppVirtual.html">virtual</a></b> ~<a href="CppQuestionDialog.html">QuestionDialog</a>() {}<br/>
+&nbsp;&nbsp;<b><a href="CppFriend.html">friend</a></b> <b><a href="CppVoid.htm">void</a></b> <a href="CppChecked_delete.html">boost::checked_delete</a>&lt;&gt;(<a href="CppQuestionDialog.html">QuestionDialog</a>*);<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppPrivate.htm">private</a></b>:<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>/The <a href="CppQuestion.htm">question</a><br/>
-&nbsp;&nbsp;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppQuestion.htm">Question</a>&gt; m_<a href="CppQuestion.htm">question</a>;<br/>
-<br/>
+&nbsp;&nbsp;<b><a href="CppPrivate.html">private</a></b>:<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/Has the user already submitted an answer?<br/>
 &nbsp;&nbsp;<b><a href="CppBool.htm">bool</a></b> m_has_submitted;<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/Was the submitted answer correct?<br/>
 &nbsp;&nbsp;<b><a href="CppBool.htm">bool</a></b> m_is_correct;<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/The <a href="CppQuestion.html">question</a><br/>
+&nbsp;&nbsp;<a href="CppBoostShared_ptr.html">boost::shared_ptr</a>&lt;<a href="CppQuestion.html">Question</a>&gt; m_<a href="CppQuestion.html">question</a>;<br/>
 };<br/>
 <br/>
-} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a><br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.html">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
 <br/>
-<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> OPENQUESTIONDIALOG_H<br/>
+<a href="CppEndif.html">#endif</a> <a href="CppComment.htm">//</a> OPENQUESTIONDIALOG_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -132,7 +135,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <table summary="questiondialog.cpp" border = "1"><tr><td><code>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">/*</a><br/>
-<a href="CppQuestionDialog.htm">QuestionDialog</a>, dialog <b><a href="CppFor.htm">for</a></b> <a href="CppQuestion.htm">Question</a><br/>
+<a href="CppQuestionDialog.html">QuestionDialog</a>, dialog <b><a href="CppFor.htm">for</a></b> <a href="CppQuestion.html">Question</a><br/>
 Copyright (C) 2011-2013 Richel Bilderbeek<br/>
 <br/>
 This program is free software: you can redistribute it and/or modify<br/>
@@ -148,66 +151,66 @@ You should have received a copy of the GNU General Public License<br/>
 along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">*/</a><br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="CppQtQuestionDialog.htm">CppQtQuestionDialog</a>.htm<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="CppQtQuestionDialog.html">CppQtQuestionDialog</a>.html<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic push<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.html">-Weffc++</a>"<br/>
+<a href="CppInclude.html">#include</a> "<a href="CppQuestionDialog.html">questiondialog</a><a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppCassertH.html">cassert</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> "<a href="CppQuestion.html">question</a><a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic pop<br/>
 <br/>
-<br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppQuestionDialog.htm">questiondialog</a>.h"<br/>
-<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
-<br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppQuestion.htm">question</a>.h"<br/>
-<br/>
-<a href="CppRibi.htm\">ribi</a>::<a href="CppQuestionDialog.htm">QuestionDialog</a>::<a href="CppQuestionDialog.htm">QuestionDialog</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppQuestion.htm">Question</a>&gt;&amp; <a href="CppQuestion.htm">question</a>)<br/>
-&nbsp;&nbsp;: m_has_submitted(<b><a href="CppFalse.htm">false</a></b>),<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;m_is_correct(<b><a href="CppFalse.htm">false</a></b>)<br/>
+<a href="CppRibi.htm">ribi</a>::<a href="CppQuestionDialog.html">QuestionDialog</a>::<a href="CppQuestionDialog.html">QuestionDialog</a>(<b><a href="CppConst.html">const</a></b> <a href="CppBoostShared_ptr.html">boost::shared_ptr</a>&lt;<a href="CppQuestion.html">Question</a>&gt; <a href="CppQuestion.html">question</a>)<br/>
+&nbsp;&nbsp;: m_has_submitted(<b><a href="CppFalse.html">false</a></b>),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_is_correct(<b><a href="CppFalse.html">false</a></b>),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_<a href="CppQuestion.html">question</a>{}<br/>
 {<br/>
-&nbsp;&nbsp;Set<a href="CppQuestion.htm">Question</a>(<a href="CppQuestion.htm">question</a>);<br/>
+&nbsp;&nbsp;Set<a href="CppQuestion.html">Question</a>(<a href="CppQuestion.html">question</a>);<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (<a href="CppQuestion.htm">question</a>)<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (<a href="CppQuestion.html">question</a>)<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(CanSubmit());<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!HasSubmitted());<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(Get<a href="CppQuestion.htm">Question</a>());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(CanSubmit());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(!HasSubmitted());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(Get<a href="CppQuestion.html">Question</a>());<br/>
 &nbsp;&nbsp;}<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppRibi.htm\">ribi</a>::<a href="CppQuestionDialog.htm">QuestionDialog</a>::Get<a href="CppVersion.htm">Version</a>()<br/>
+<b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a> <a href="CppRibi.htm">ribi</a>::<a href="CppQuestionDialog.html">QuestionDialog</a>::Get<a href="CppVersion.html">Version</a>()<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> "1.0";<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> "1.0";<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm\">ribi</a>::<a href="CppQuestionDialog.htm">QuestionDialog</a>::Get<a href="CppVersion.htm">Version</a>History()<br/>
+<b><a href="CppConst.html">const</a></b> <a href="CppVector.html">std::vector</a>&lt;<a href="CppString.html">std::string</a>&gt; <a href="CppRibi.htm">ribi</a>::<a href="CppQuestionDialog.html">QuestionDialog</a>::Get<a href="CppVersion.html">Version</a>History()<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v;<br/>
-&nbsp;&nbsp;v.push_back("2011-06-29: <a href="CppVersion.htm">version</a> 1.0: initial <a href="CppVersion.htm">version</a>");<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"2011-06-29: <a href="CppVersion.html">version</a> 1.0: initial <a href="CppVersion.html">version</a>"<br/>
+&nbsp;&nbsp;};<br/>
 }<br/>
 <br/>
-<b><a href="CppBool.htm">bool</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQuestionDialog.htm">QuestionDialog</a>::IsAnswerCorrect() <b><a href="CppConst.htm">const</a></b><br/>
+<b><a href="CppBool.htm">bool</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQuestionDialog.html">QuestionDialog</a>::IsAnswerCorrect() <b><a href="CppConst.html">const</a></b><br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(HasSubmitted());<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> m_is_correct;<br/>
+&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(HasSubmitted());<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> m_is_correct;<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQuestionDialog.htm">QuestionDialog</a>::Set<a href="CppQuestion.htm">Question</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppQuestion.htm">Question</a>&gt;&amp; <a href="CppQuestion.htm">question</a>)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQuestionDialog.html">QuestionDialog</a>::Set<a href="CppQuestion.html">Question</a>(<b><a href="CppConst.html">const</a></b> <a href="CppBoostShared_ptr.html">boost::shared_ptr</a>&lt;<a href="CppQuestion.html">Question</a>&gt; <a href="CppQuestion.html">question</a>)<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppQuestion.htm">question</a>);<br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (<a href="CppQuestion.htm">question</a> <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> <a href="CppQuestion.htm">question</a>.get() <a href="CppOperatorNotEqual.htm">!=</a> m_<a href="CppQuestion.htm">question</a>.get())<br/>
+&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(<a href="CppQuestion.html">question</a>);<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (<a href="CppQuestion.html">question</a> <a href="CppOperatorLogicalAnd.html">&amp;&amp;</a> <a href="CppQuestion.html">question</a>.get() <a href="CppOperatorNotEqual.htm">!=</a> m_<a href="CppQuestion.html">question</a>.get())<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;m_<a href="CppQuestion.htm">question</a> <a href="CppOperatorAssign.htm">=</a> <a href="CppQuestion.htm">question</a>;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;m_has_submitted <a href="CppOperatorAssign.htm">=</a> <b><a href="CppFalse.htm">false</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_<a href="CppQuestion.html">question</a> <a href="CppOperatorAssign.htm">=</a> <a href="CppQuestion.html">question</a>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_has_submitted <a href="CppOperatorAssign.htm">=</a> <b><a href="CppFalse.html">false</a></b>;<br/>
 &nbsp;&nbsp;}<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQuestionDialog.htm">QuestionDialog</a>::Submit(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; s)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQuestionDialog.html">QuestionDialog</a>::Submit(<b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a>&amp; s)<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(CanSubmit());<br/>
+&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(CanSubmit());<br/>
 <br/>
-&nbsp;&nbsp;m_is_correct <a href="CppOperatorAssign.htm">=</a> m_<a href="CppQuestion.htm">question</a>-&gt;IsCorrect(s);<br/>
+&nbsp;&nbsp;m_is_correct <a href="CppOperatorAssign.htm">=</a> m_<a href="CppQuestion.html">question</a>-&gt;IsCorrect(s);<br/>
 <br/>
 &nbsp;&nbsp;m_has_submitted <a href="CppOperatorAssign.htm">=</a> <b><a href="CppTrue.htm">true</a></b>;<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!CanSubmit());<br/>
+&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(!CanSubmit());<br/>
 }<br/>
 </code></td></tr></table>
 <!-- end of the code -->

@@ -68,10 +68,10 @@
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="CppHelloBoostUblasQtCreatorLubuntu.pro" border = "1"><tr><td><code>
-TEMPLATE = app<br/>
-CONFIG += console<br/>
-CONFIG -= qt<br/>
-<a href="CppSOURCES.htm">SOURCES</a> += <a href="CppMain.htm">main</a>.cpp<br/>
+<a href="CppQmakeTemplate.htm">TEMPLATE</a> = app<br/>
+<a href="CppQmakeConfig.htm">CONFIG</a> += console<br/>
+<a href="CppQmakeConfig.htm">CONFIG</a> -= qt<br/>
+<a href="CppQmakeSources.htm">SOURCES</a> += <a href="CppMain.htm">main</a>.cpp<br/>
 <br/>
 </code></td></tr></table>
 <!-- end of the code -->
@@ -84,18 +84,18 @@ CONFIG -= qt<br/>
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="main.cpp" border = "1"><tr><td><code>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppIostreamH.htm">iostream</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/numeric/<a href="CppUblas.htm">ublas</a>/<a href="CppMatrix.htm">matrix</a>.hpp&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/numeric/<a href="CppUblas.htm">ublas</a>/io.hpp&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppIostreamH.html">iostream</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppBoost.html">boost</a>/numeric/<a href="CppUblas.html">ublas</a>/<a href="CppMatrix.html">matrix</a><a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppBoost.html">boost</a>/numeric/<a href="CppUblas.html">ublas</a>/io<a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
 <br/>
-<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a>()<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> n_cols <a href="CppOperatorAssign.htm">=</a> 2;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> n_rows <a href="CppOperatorAssign.htm">=</a> 3;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> n_cols <a href="CppOperatorAssign.htm">=</a> 2;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> n_rows <a href="CppOperatorAssign.htm">=</a> 3;<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppUblasMatrix.htm">boost::numeric::ublas::matrix</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt; m(n_rows,n_cols);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(n_rows <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(m.size1()));<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(n_cols <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(m.size2()));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppUblasMatrix.html">boost::numeric::ublas::matrix</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt; m(n_rows,n_cols);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(n_rows <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.html">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(m.size1()));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(n_cols <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.html">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(m.size2()));<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> y <a href="CppOperatorAssign.htm">=</a> 0; y <a href="CppOperatorNotEqual.htm">!=</a> n_rows; <a href="CppOperatorPlus.htm">+</a>+y)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> x <a href="CppOperatorAssign.htm">=</a> 0; x <a href="CppOperatorNotEqual.htm">!=</a> n_cols; <a href="CppOperatorPlus.htm">+</a>+x)<br/>
@@ -103,15 +103,15 @@ CONFIG -= qt<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;m(y,x) <a href="CppOperatorAssign.htm">=</a> (y * 10) <a href="CppOperatorPlus.htm">+</a> x;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> m <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppEndl.htm">std::endl</a>;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(m(0,0) <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;0); <a href="CppAssert.htm">assert</a>(m(0,1) <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;1);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(m(1,0) <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 10); <a href="CppAssert.htm">assert</a>(m(1,1) <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 11);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(m(2,0) <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 20); <a href="CppAssert.htm">assert</a>(m(2,1) <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 21);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCout.html">std::cout</a> <a href="CppOperatorStreamOut.html">&lt;&lt;</a> m <a href="CppOperatorStreamOut.html">&lt;&lt;</a> <a href="CppEndl.html">std::endl</a>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(m(0,0) <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;0); <a href="CppAssert.html">assert</a>(m(0,1) <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;1);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(m(1,0) <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 10); <a href="CppAssert.html">assert</a>(m(1,1) <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 11);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(m(2,0) <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 20); <a href="CppAssert.html">assert</a>(m(2,1) <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 21);<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppUblasMatrix.htm">boost::numeric::ublas::matrix</a>&lt;<b><a href="CppInt.htm">int</a></b>,<a href="CppUblas.htm">boost::numeric::ublas</a>::column_major&gt; m(n_cols,n_rows);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(n_cols <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(m.size1()));<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(n_rows <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(m.size2()));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppUblasMatrix.html">boost::numeric::ublas::matrix</a>&lt;<b><a href="CppInt.htm">int</a></b>,<a href="CppUblas.html">boost::numeric::ublas</a>::column_major&gt; m(n_cols,n_rows);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(n_cols <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.html">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(m.size1()));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(n_rows <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.html">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(m.size2()));<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> x <a href="CppOperatorAssign.htm">=</a> 0; x <a href="CppOperatorNotEqual.htm">!=</a> n_cols; <a href="CppOperatorPlus.htm">+</a>+x)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> y <a href="CppOperatorAssign.htm">=</a> 0; y <a href="CppOperatorNotEqual.htm">!=</a> n_rows; <a href="CppOperatorPlus.htm">+</a>+y)<br/>
@@ -119,10 +119,10 @@ CONFIG -= qt<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;m(x,y) <a href="CppOperatorAssign.htm">=</a> (y * 10) <a href="CppOperatorPlus.htm">+</a> x;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> m <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppEndl.htm">std::endl</a>;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(m(0,0) <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;0); <a href="CppAssert.htm">assert</a>(m(1,0) <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;1);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(m(0,1) <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 10); <a href="CppAssert.htm">assert</a>(m(1,1) <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 11);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(m(0,2) <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 20); <a href="CppAssert.htm">assert</a>(m(1,2) <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 21);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCout.html">std::cout</a> <a href="CppOperatorStreamOut.html">&lt;&lt;</a> m <a href="CppOperatorStreamOut.html">&lt;&lt;</a> <a href="CppEndl.html">std::endl</a>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(m(0,0) <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;0); <a href="CppAssert.html">assert</a>(m(1,0) <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;1);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(m(0,1) <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 10); <a href="CppAssert.html">assert</a>(m(1,1) <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 11);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(m(0,2) <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 20); <a href="CppAssert.html">assert</a>(m(1,2) <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 21);<br/>
 &nbsp;&nbsp;}<br/>
 }<br/>
 <br/>

@@ -106,10 +106,10 @@
 QT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; += core gui<br/>
 greaterThan(QT_MAJOR_VERSION, 4): QT += <a href="CppWidget.htm">widget</a>s<br/>
 <br/>
-TEMPLATE = app<br/>
-<a href="CppSOURCES.htm">SOURCES</a> += <a href="CppMain.htm">main</a>.cpp<br/>
+<a href="CppQmakeTemplate.htm">TEMPLATE</a> = app<br/>
+<a href="CppQmakeSources.htm">SOURCES</a> += <a href="CppMain.htm">main</a>.cpp<br/>
 <br/>
-<a href="CppRESOURCES.htm">RESOURCES</a> += \<br/>
+<a href="CppQmakeResources.htm">RESOURCES</a> += \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;MyResources.qrc<br/>
 </code></td></tr></table>
 <!-- end of the code -->
@@ -122,35 +122,35 @@ TEMPLATE = app<br/>
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="main.cpp" border = "1"><tr><td><code>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppShared_ptr.htm">shared_ptr</a>.hpp&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppQApplication.htm">QApplication</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppQDialog.htm">QDialog</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppQLabel.htm">QLabel</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppQVBoxLayout.htm">QVBoxLayout</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppCassertH.html">cassert</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppBoost.html">boost</a>/<a href="CppShared_ptr.html">shared_ptr</a><a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppQApplication.html">QApplication</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppQDialog.html">QDialog</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppQLabel.html">QLabel</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppQVBoxLayout.html">QVBoxLayout</a>&gt;<br/>
 <br/>
-<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>(<b><a href="CppInt.htm">int</a></b> <a href="CppArgc.htm">argc</a>, <b><a href="CppChar.htm">char</a></b> *<a href="CppArgc.htm">argv</a>[])<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a>(<b><a href="CppInt.htm">int</a></b> <a href="CppArgc.htm">argc</a>, <b><a href="CppChar.htm">char</a></b> *<a href="CppArgc.htm">argv</a>[])<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppQApplication.htm">QApplication</a> a(<a href="CppArgc.htm">argc</a>, <a href="CppArgc.htm">argv</a>);<br/>
+&nbsp;&nbsp;<a href="CppQApplication.html">QApplication</a> a(<a href="CppArgc.htm">argc</a>, <a href="CppArgc.htm">argv</a>);<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Load the resource in a pixmap<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppQPixmap.htm">QPixmap</a> pixmap(":/MyImages/BeerSmall.bmp");<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!pixmap.isNull() <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "Assume bitmap is found");<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppQPixmap.html">QPixmap</a> pixmap(":/MyImages/BeerSmall.bmp");<br/>
+&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(!pixmap.isNull() <a href="CppOperatorLogicalAnd.html">&amp;&amp;</a> "Assume bitmap is found");<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Put the pixmap in a label<br/>
-&nbsp;&nbsp;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppQLabel.htm">QLabel</a>&gt; label(<b><a href="CppNew.htm">new</a></b> <a href="CppQLabel.htm">QLabel</a>);<br/>
+&nbsp;&nbsp;<a href="CppBoostShared_ptr.html">boost::shared_ptr</a>&lt;<a href="CppQLabel.html">QLabel</a>&gt; label(<b><a href="CppNew.htm">new</a></b> <a href="CppQLabel.html">QLabel</a>);<br/>
 &nbsp;&nbsp;label-&gt;setPixmap(pixmap);<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppAdd.htm">Add</a> label in a layout<br/>
-&nbsp;&nbsp;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppQVBoxLayout.htm">QVBoxLayout</a>&gt; layout(<b><a href="CppNew.htm">new</a></b> <a href="CppQVBoxLayout.htm">QVBoxLayout</a>);<br/>
+&nbsp;&nbsp;<a href="CppBoostShared_ptr.html">boost::shared_ptr</a>&lt;<a href="CppQVBoxLayout.html">QVBoxLayout</a>&gt; layout(<b><a href="CppNew.htm">new</a></b> <a href="CppQVBoxLayout.html">QVBoxLayout</a>);<br/>
 &nbsp;&nbsp;layout-&gt;addWidget( label.get() );<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Create and show a window<br/>
-&nbsp;&nbsp;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppQDialog.htm">QDialog</a>&gt; dialog(<b><a href="CppNew.htm">new</a></b> <a href="CppQDialog.htm">QDialog</a>);<br/>
+&nbsp;&nbsp;<a href="CppBoostShared_ptr.html">boost::shared_ptr</a>&lt;<a href="CppQDialog.html">QDialog</a>&gt; dialog(<b><a href="CppNew.htm">new</a></b> <a href="CppQDialog.html">QDialog</a>);<br/>
 &nbsp;&nbsp;dialog-&gt;setLayout(layout.get());<br/>
 &nbsp;&nbsp;dialog-&gt;show();<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> a.exec();<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> a.exec();<br/>
 }<br/>
 </code></td></tr></table>
 <!-- end of the code -->

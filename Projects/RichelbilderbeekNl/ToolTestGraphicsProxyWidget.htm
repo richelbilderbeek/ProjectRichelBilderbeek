@@ -69,19 +69,19 @@
 QT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; += core gui<br/>
 greaterThan(QT_MAJOR_VERSION, 4): QT += <a href="CppWidget.htm">widget</a>s<br/>
 <br/>
-<a href="CppQMAKE_CXXFLAGS.htm">QMAKE_CXXFLAGS</a> += -std=<a href="Cpp11.htm">c++11</a> <a href="CppWall.htm">-Wall</a> <a href="CppWextra.htm">-Wextra</a><br/>
+<a href="CppQmakeQmake_cxxflags.htm">QMAKE_CXXFLAGS</a> += -std=<a href="Cpp11.htm">c++11</a> <a href="CppWall.htm">-Wall</a> <a href="CppWextra.htm">-Wextra</a><br/>
 <br/>
-TEMPLATE = app<br/>
+<a href="CppQmakeTemplate.htm">TEMPLATE</a> = app<br/>
 <br/>
 <br/>
-<a href="CppSOURCES.htm">SOURCES</a> += \<br/>
+<a href="CppQmakeSources.htm">SOURCES</a> += \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppMain.htm">main</a>.cpp \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;tooltestgraphicsproxy<a href="CppWidget.htm">widget</a><a href="CppMain.htm">main</a>dialog.cpp \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;qttestgraphicsproxy<a href="CppWidget.htm">widget</a>.cpp \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;qttestgraphicsproxyitem.cpp \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;somedialog.cpp<br/>
 <br/>
-<a href="CppHEADERS.htm">HEADERS</a>&nbsp;&nbsp;+= tooltestgraphicsproxy<a href="CppWidget.htm">widget</a><a href="CppMain.htm">main</a>dialog.h \<br/>
+<a href="CppQmakeHeaders.htm">HEADERS</a>&nbsp;&nbsp;+= tooltestgraphicsproxy<a href="CppWidget.htm">widget</a><a href="CppMain.htm">main</a>dialog.h \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;qttestgraphicsproxy<a href="CppWidget.htm">widget</a>.h \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;qttestgraphicsproxyitem.h \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;somedialog.h<br/>
@@ -99,16 +99,16 @@ TEMPLATE = app<br/>
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="main.cpp" border = "1"><tr><td><code>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppQApplication.htm">QApplication</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> "<a href="Tools.htm">tool</a>testgraphicsproxy<a href="CppWidget.htm">widget</a>maindialog.h"<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppQApplication.html">QApplication</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> "<a href="Tools.htm">tool</a>testgraphicsproxy<a href="CppWidget.html">widget</a>maindialog<a href="CppHeaderFile.htm">.h</a>"<br/>
 <br/>
-<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>(<b><a href="CppInt.htm">int</a></b> <a href="CppArgc.htm">argc</a>, <b><a href="CppChar.htm">char</a></b> *<a href="CppArgc.htm">argv</a>[])<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a>(<b><a href="CppInt.htm">int</a></b> <a href="CppArgc.htm">argc</a>, <b><a href="CppChar.htm">char</a></b> *<a href="CppArgc.htm">argv</a>[])<br/>
 {<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQApplication.htm">QApplication</a> a(<a href="CppArgc.htm">argc</a>, <a href="CppArgc.htm">argv</a>);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="Tools.htm">Tool</a>TestGraphicsProxy<a href="CppWidget.htm">Widget</a>MainDialog w;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQApplication.html">QApplication</a> a(<a href="CppArgc.htm">argc</a>, <a href="CppArgc.htm">argv</a>);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="Tools.htm">Tool</a>TestGraphicsProxy<a href="CppWidget.html">Widget</a>MainDialog w;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;w.show();<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> a.exec();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> a.exec();<br/>
 }<br/>
 </code></td></tr></table>
 <!-- end of the code -->
@@ -121,44 +121,44 @@ TEMPLATE = app<br/>
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="qttestgraphicsproxyitem.h" border = "1"><tr><td><code>
-<a href="CppIfndef.htm">#ifndef</a> QTBOUNCINGBALL_H<br/>
-<a href="CppDefine.htm">#define</a> QTBOUNCINGBALL_H<br/>
+<a href="CppIfndef.html">#ifndef</a> QTBOUNCINGBALL_H<br/>
+<a href="CppDefine.html">#define</a> QTBOUNCINGBALL_H<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppQGraphicsItem.htm">QGraphicsItem</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppQGraphicsProxyWidget.htm">QGraphicsProxyWidget</a>&gt;<br/>
-<b><a href="CppStruct.htm">struct</a></b> <a href="CppQGraphicsScene.htm">QGraphicsScene</a>;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppQGraphicsItem.html">QGraphicsItem</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppQGraphicsProxyWidget.html">QGraphicsProxyWidget</a>&gt;<br/>
+<b><a href="CppStruct.html">struct</a></b> <a href="CppQGraphicsScene.html">QGraphicsScene</a>;<br/>
 <br/>
-<b><a href="CppStruct.htm">struct</a></b> <a href="CppQt.htm">Qt</a>TestGraphicsProxyItem : <b><a href="CppPublic.htm">public</a></b> <a href="CppQGraphicsProxyWidget.htm">QGraphicsProxyWidget</a><br/>
+<b><a href="CppStruct.html">struct</a></b> <a href="CppQt.htm">Qt</a>TestGraphicsProxyItem : <b><a href="CppPublic.html">public</a></b> <a href="CppQGraphicsProxyWidget.html">QGraphicsProxyWidget</a><br/>
 {<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppQt.htm">Qt</a>TestGraphicsProxyItem(<a href="CppQGraphicsItem.htm">QGraphicsItem</a> *parent, <a href="CppQt.htm">Qt</a>::WindowFlags wFlags);<br/>
+&nbsp;&nbsp;<a href="CppQt.htm">Qt</a>TestGraphicsProxyItem(<a href="CppQGraphicsItem.html">QGraphicsItem</a> *parent, <a href="CppQt.htm">Qt</a>::WindowFlags wFlags);<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppOperatorDivide.htm">/</a>*<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/Make the balls move<br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> advance(<b><a href="CppInt.htm">int</a></b> phase);<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Thanks <a href="CppCompiler.htm">compiler</a> <b><a href="CppFor.htm">for</a></b> reminding me to add <b><a href="CppThis.htm">this</a></b> <a href="CppMemberFunction.htm">member function</a>!<br/>
-&nbsp;&nbsp;<a href="CppQRect.htm">QRect</a>F boundingRect() <b><a href="CppConst.htm">const</a></b>;<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Thanks <a href="CppCompiler.html">compiler</a> <b><a href="CppFor.htm">for</a></b> reminding me to add <b><a href="CppThis.htm">this</a></b> <a href="CppMemberFunction.html">member function</a>!<br/>
+&nbsp;&nbsp;<a href="CppQRect.html">QRect</a>F boundingRect() <b><a href="CppConst.html">const</a></b>;<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>/The real collision <a href="CppShape.htm">shape</a><br/>
-&nbsp;&nbsp;<a href="CppQPainterPath.htm">QPainterPath</a> <a href="CppShape.htm">shape</a>() <b><a href="CppConst.htm">const</a></b>;<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/The real collision <a href="CppShape.html">shape</a><br/>
+&nbsp;&nbsp;<a href="CppQPainterPath.html">QPainterPath</a> <a href="CppShape.html">shape</a>() <b><a href="CppConst.html">const</a></b>;<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Thanks <a href="CppCompiler.htm">compiler</a> <b><a href="CppFor.htm">for</a></b> reminding me to add <b><a href="CppThis.htm">this</a></b> <a href="CppMemberFunction.htm">member function</a>!<br/>
-&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> paint(<a href="CppQPainter.htm">QPainter</a> *painter, <b><a href="CppConst.htm">const</a></b> <a href="CppQStyleOptionGraphicsItem.htm">QStyleOptionGraphicsItem</a> *option, <a href="CppQWidget.htm">QWidget</a> *<a href="CppWidget.htm">widget</a>);<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Thanks <a href="CppCompiler.html">compiler</a> <b><a href="CppFor.htm">for</a></b> reminding me to add <b><a href="CppThis.htm">this</a></b> <a href="CppMemberFunction.html">member function</a>!<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> paint(<a href="CppQPainter.html">QPainter</a> *painter, <b><a href="CppConst.html">const</a></b> <a href="CppQStyleOptionGraphicsItem.html">QStyleOptionGraphicsItem</a> *option, <a href="CppQWidget.html">QWidget</a> *<a href="CppWidget.html">widget</a>);<br/>
 <br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppPrivate.htm">private</a></b>:<br/>
+&nbsp;&nbsp;<b><a href="CppPrivate.html">private</a></b>:<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/Use simplified physics in <b><a href="CppThis.htm">this</a></b> example<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/Horizontal speed (delta x)<br/>
-&nbsp;&nbsp;<b><a href="CppDouble.htm">double</a></b> m_dx;<br/>
+&nbsp;&nbsp;<b><a href="CppDouble.html">double</a></b> m_dx;<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/Use simplified physics in <b><a href="CppThis.htm">this</a></b> example<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/Vertical speed (delta y)<br/>
-&nbsp;&nbsp;<b><a href="CppDouble.htm">double</a></b> m_dy;<br/>
+&nbsp;&nbsp;<b><a href="CppDouble.html">double</a></b> m_dy;<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">*/</a><br/>
 };<br/>
 <br/>
-<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> QTBOUNCINGBALL_H<br/>
+<a href="CppEndif.html">#endif</a> <a href="CppComment.htm">//</a> QTBOUNCINGBALL_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -170,16 +170,16 @@ TEMPLATE = app<br/>
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="qttestgraphicsproxyitem.cpp" border = "1"><tr><td><code>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppCmathH.htm">cmath</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppQGraphicsItem.htm">QGraphicsItem</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppQGraphicsScene.htm">QGraphicsScene</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppQList.htm">QList</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppQPainter.htm">QPainter</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> "qttestgraphicsproxyitem.h"<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppCassertH.html">cassert</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppCmathH.html">cmath</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppQGraphicsItem.html">QGraphicsItem</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppQGraphicsScene.html">QGraphicsScene</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppQList.html">QList</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppQPainter.html">QPainter</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> "qttestgraphicsproxyitem<a href="CppHeaderFile.htm">.h</a>"<br/>
 <br/>
-<a href="CppQt.htm">Qt</a>TestGraphicsProxyItem::<a href="CppQt.htm">Qt</a>TestGraphicsProxyItem(<a href="CppQGraphicsItem.htm">QGraphicsItem</a> *parent, <a href="CppQt.htm">Qt</a>::WindowFlags wFlags)<br/>
- : <a href="CppQGraphicsProxyWidget.htm">QGraphicsProxyWidget</a>(parent,wFlags)<br/>
+<a href="CppQt.htm">Qt</a>TestGraphicsProxyItem::<a href="CppQt.htm">Qt</a>TestGraphicsProxyItem(<a href="CppQGraphicsItem.html">QGraphicsItem</a> *parent, <a href="CppQt.htm">Qt</a>::WindowFlags wFlags)<br/>
+ : <a href="CppQGraphicsProxyWidget.html">QGraphicsProxyWidget</a>(parent,wFlags)<br/>
 {<br/>
 <br/>
 }<br/>
@@ -187,39 +187,39 @@ TEMPLATE = app<br/>
 <a href="CppComment.htm">/*</a><br/>
 <b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a>TestGraphicsProxy::advance(<b><a href="CppInt.htm">int</a></b> phase)<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (x() <a href="CppOperatorPlus.htm">+</a> m_dx <a href="CppOperatorPlus.htm">+</a> (boundingRect().width() * 0.5) &gt; m_scene-&gt;width()) m_dx <a href="CppOperatorAssign.htm">=</a> <a href="CppOperatorMinus.htm">-</a><a href="CppAbs.htm">std::abs</a>(m_dx);<br/>
-&nbsp;&nbsp;<b><a href="CppElse.htm">else</a></b> <b><a href="CppIf.htm">if</a></b> (x() <a href="CppOperatorPlus.htm">+</a> m_dx <a href="CppOperatorMinus.htm">-</a> (boundingRect().width() * 0.5) &lt; 0.0) m_dx <a href="CppOperatorAssign.htm">=</a> <a href="CppAbs.htm">std::abs</a>(m_dx);<br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (y() <a href="CppOperatorPlus.htm">+</a> m_dy <a href="CppOperatorPlus.htm">+</a> (boundingRect().height() * 0.5) &gt; m_scene-&gt;height()) m_dy <a href="CppOperatorAssign.htm">=</a> <a href="CppOperatorMinus.htm">-</a><a href="CppAbs.htm">std::abs</a>(m_dy);<br/>
-&nbsp;&nbsp;<b><a href="CppElse.htm">else</a></b> <b><a href="CppIf.htm">if</a></b> (y() <a href="CppOperatorPlus.htm">+</a> m_dy <a href="CppOperatorMinus.htm">-</a> (boundingRect().width() * 0.5) &lt; 0.0) m_dy <a href="CppOperatorAssign.htm">=</a> <a href="CppAbs.htm">std::abs</a>(m_dy);<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (x() <a href="CppOperatorPlus.htm">+</a> m_dx <a href="CppOperatorPlus.htm">+</a> (boundingRect().width() * 0.5) &gt; m_scene-&gt;width()) m_dx <a href="CppOperatorAssign.htm">=</a> <a href="CppOperatorMinus.htm">-</a><a href="CppAbs.html">std::abs</a>(m_dx);<br/>
+&nbsp;&nbsp;<b><a href="CppElse.htm">else</a></b> <b><a href="CppIf.htm">if</a></b> (x() <a href="CppOperatorPlus.htm">+</a> m_dx <a href="CppOperatorMinus.htm">-</a> (boundingRect().width() * 0.5) &lt; 0.0) m_dx <a href="CppOperatorAssign.htm">=</a> <a href="CppAbs.html">std::abs</a>(m_dx);<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (y() <a href="CppOperatorPlus.htm">+</a> m_dy <a href="CppOperatorPlus.htm">+</a> (boundingRect()<a href="CppHeaderFile.htm">.h</a>eight() * 0.5) &gt; m_scene-&gt;height()) m_dy <a href="CppOperatorAssign.htm">=</a> <a href="CppOperatorMinus.htm">-</a><a href="CppAbs.html">std::abs</a>(m_dy);<br/>
+&nbsp;&nbsp;<b><a href="CppElse.htm">else</a></b> <b><a href="CppIf.htm">if</a></b> (y() <a href="CppOperatorPlus.htm">+</a> m_dy <a href="CppOperatorMinus.htm">-</a> (boundingRect().width() * 0.5) &lt; 0.0) m_dy <a href="CppOperatorAssign.htm">=</a> <a href="CppAbs.html">std::abs</a>(m_dy);<br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;setPos(x() <a href="CppOperatorPlus.htm">+</a> m_dx, y() <a href="CppOperatorPlus.htm">+</a> m_dy);<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Respond to collision with other item<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppQList.htm">QList</a>&lt;<a href="CppQGraphicsItem.htm">QGraphicsItem</a> *&gt; others <a href="CppOperatorAssign.htm">=</a> collidingItems();<br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (others.isEmpty()) <b><a href="CppReturn.htm">return</a></b>;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppQGraphicsItem.htm">QGraphicsItem</a> * <b><a href="CppConst.htm">const</a></b> other <a href="CppOperatorAssign.htm">=</a> others[0];<br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (<b><a href="CppThis.htm">this</a></b>-&gt;x() &lt; other-&gt;x()) m_dx <a href="CppOperatorAssign.htm">=</a> <a href="CppOperatorMinus.htm">-</a><a href="CppAbs.htm">std::abs</a>(m_dx);<br/>
-&nbsp;&nbsp;<b><a href="CppElse.htm">else</a></b> <b><a href="CppIf.htm">if</a></b> (<b><a href="CppThis.htm">this</a></b>-&gt;x() &gt; other-&gt;x()) m_dx <a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;<a href="CppAbs.htm">std::abs</a>(m_dx);<br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (<b><a href="CppThis.htm">this</a></b>-&gt;y() &lt; other-&gt;y()) m_dy <a href="CppOperatorAssign.htm">=</a> <a href="CppOperatorMinus.htm">-</a><a href="CppAbs.htm">std::abs</a>(m_dy);<br/>
-&nbsp;&nbsp;<b><a href="CppElse.htm">else</a></b> <b><a href="CppIf.htm">if</a></b> (<b><a href="CppThis.htm">this</a></b>-&gt;y() &gt; other-&gt;y()) m_dy <a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;<a href="CppAbs.htm">std::abs</a>(m_dy);<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppQList.html">QList</a>&lt;<a href="CppQGraphicsItem.html">QGraphicsItem</a> *&gt; others <a href="CppOperatorAssign.htm">=</a> collidingItems();<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (others.isEmpty()) <b><a href="CppReturn.html">return</a></b>;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppQGraphicsItem.html">QGraphicsItem</a> * <b><a href="CppConst.html">const</a></b> other <a href="CppOperatorAssign.htm">=</a> others[0];<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (<b><a href="CppThis.htm">this</a></b>-&gt;x() &lt; other-&gt;x()) m_dx <a href="CppOperatorAssign.htm">=</a> <a href="CppOperatorMinus.htm">-</a><a href="CppAbs.html">std::abs</a>(m_dx);<br/>
+&nbsp;&nbsp;<b><a href="CppElse.htm">else</a></b> <b><a href="CppIf.htm">if</a></b> (<b><a href="CppThis.htm">this</a></b>-&gt;x() &gt; other-&gt;x()) m_dx <a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;<a href="CppAbs.html">std::abs</a>(m_dx);<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (<b><a href="CppThis.htm">this</a></b>-&gt;y() &lt; other-&gt;y()) m_dy <a href="CppOperatorAssign.htm">=</a> <a href="CppOperatorMinus.htm">-</a><a href="CppAbs.html">std::abs</a>(m_dy);<br/>
+&nbsp;&nbsp;<b><a href="CppElse.htm">else</a></b> <b><a href="CppIf.htm">if</a></b> (<b><a href="CppThis.htm">this</a></b>-&gt;y() &gt; other-&gt;y()) m_dy <a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;<a href="CppAbs.html">std::abs</a>(m_dy);<br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;setPos(x() <a href="CppOperatorPlus.htm">+</a> m_dx, y() <a href="CppOperatorPlus.htm">+</a> m_dy);<br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;setPos(x() <a href="CppOperatorPlus.htm">+</a> m_dx, y() <a href="CppOperatorPlus.htm">+</a> m_dy);<br/>
 <br/>
 }<br/>
 <br/>
-<a href="CppQRect.htm">QRect</a>F <a href="CppQt.htm">Qt</a>TestGraphicsProxy::boundingRect() <b><a href="CppConst.htm">const</a></b><br/>
+<a href="CppQRect.html">QRect</a>F <a href="CppQt.htm">Qt</a>TestGraphicsProxy::boundingRect() <b><a href="CppConst.html">const</a></b><br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <a href="CppQRect.htm">QRect</a>F(-16.0,-16.0,32.0,32.0);<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> <a href="CppQRect.html">QRect</a>F(-16.0,-16.0,32.0,32.0);<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a>TestGraphicsProxy::paint(<a href="CppQPainter.htm">QPainter</a> *painter, <b><a href="CppConst.htm">const</a></b> <a href="CppQStyleOptionGraphicsItem.htm">QStyleOptionGraphicsItem</a> *option, <a href="CppQWidget.htm">QWidget</a> *<a href="CppWidget.htm">widget</a>)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a>TestGraphicsProxy::paint(<a href="CppQPainter.html">QPainter</a> *painter, <b><a href="CppConst.html">const</a></b> <a href="CppQStyleOptionGraphicsItem.html">QStyleOptionGraphicsItem</a> *option, <a href="CppQWidget.html">QWidget</a> *<a href="CppWidget.html">widget</a>)<br/>
 {<br/>
 &nbsp;&nbsp;painter-&gt;drawEllipse(<b><a href="CppThis.htm">this</a></b>-&gt;boundingRect());<br/>
 }<br/>
 <br/>
-<a href="CppQPainterPath.htm">QPainterPath</a> <a href="CppQt.htm">Qt</a>TestGraphicsProxy::<a href="CppShape.htm">shape</a>() <b><a href="CppConst.htm">const</a></b><br/>
+<a href="CppQPainterPath.html">QPainterPath</a> <a href="CppQt.htm">Qt</a>TestGraphicsProxy::<a href="CppShape.html">shape</a>() <b><a href="CppConst.html">const</a></b><br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppQPainterPath.htm">QPainterPath</a> p;<br/>
+&nbsp;&nbsp;<a href="CppQPainterPath.html">QPainterPath</a> p;<br/>
 &nbsp;&nbsp;p.addEllipse(boundingRect());<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> p;<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> p;<br/>
 }<br/>
 <a href="CppComment.htm">*/</a><br/>
 </code></td></tr></table>
@@ -233,31 +233,31 @@ TEMPLATE = app<br/>
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="qttestgraphicsproxywidget.h" border = "1"><tr><td><code>
-<a href="CppIfndef.htm">#ifndef</a> QTBOUNCINGBALLSWIDGET_H<br/>
-<a href="CppDefine.htm">#define</a> QTBOUNCINGBALLSWIDGET_H<br/>
+<a href="CppIfndef.html">#ifndef</a> QTBOUNCINGBALLSWIDGET_H<br/>
+<a href="CppDefine.html">#define</a> QTBOUNCINGBALLSWIDGET_H<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppQGraphicsView.htm">QGraphicsView</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppQGraphicsView.html">QGraphicsView</a>&gt;<br/>
 <br/>
-<b><a href="CppStruct.htm">struct</a></b> <a href="CppQGraphicsScene.htm">QGraphicsScene</a>;<br/>
-<b><a href="CppStruct.htm">struct</a></b> SomeDialog;<br/>
+<b><a href="CppStruct.html">struct</a></b> <a href="CppQGraphicsScene.html">QGraphicsScene</a>;<br/>
+<b><a href="CppStruct.html">struct</a></b> SomeDialog;<br/>
 <br/>
-<b><a href="CppStruct.htm">struct</a></b> <a href="CppQt.htm">Qt</a>TestGraphicsProxy<a href="CppWidget.htm">Widget</a> : <b><a href="CppPublic.htm">public</a></b> <a href="CppQGraphicsView.htm">QGraphicsView</a><br/>
+<b><a href="CppStruct.html">struct</a></b> <a href="CppQt.htm">Qt</a>TestGraphicsProxy<a href="CppWidget.html">Widget</a> : <b><a href="CppPublic.html">public</a></b> <a href="CppQGraphicsView.html">QGraphicsView</a><br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppQt.htm">Qt</a>TestGraphicsProxy<a href="CppWidget.htm">Widget</a>(<a href="CppQWidget.htm">QWidget</a> *parent <a href="CppOperatorAssign.htm">=</a> 0);<br/>
+&nbsp;&nbsp;<a href="CppQt.htm">Qt</a>TestGraphicsProxy<a href="CppWidget.html">Widget</a>(<a href="CppQWidget.html">QWidget</a> *parent <a href="CppOperatorAssign.htm">=</a> 0);<br/>
 <br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppProtected.htm">protected</a></b>:<br/>
-&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> resizeEvent(<a href="CppQResizeEvent.htm">QResizeEvent</a> *event);<br/>
+&nbsp;&nbsp;<b><a href="CppProtected.html">protected</a></b>:<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> resizeEvent(<a href="CppQResizeEvent.html">QResizeEvent</a> *event);<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppPrivate.htm">private</a></b>:<br/>
-&nbsp;&nbsp;<a href="CppQGraphicsScene.htm">QGraphicsScene</a> * <b><a href="CppConst.htm">const</a></b> m_scene;<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>Proxies of the added <a href="CppWidget.htm">widget</a>s<br/>
-&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppQGraphicsProxyWidget.htm">QGraphicsProxyWidget</a> *&gt; m_proxies;<br/>
-&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;SomeDialog *&gt; m_dialogs;<br/>
+&nbsp;&nbsp;<b><a href="CppPrivate.html">private</a></b>:<br/>
+&nbsp;&nbsp;<a href="CppQGraphicsScene.html">QGraphicsScene</a> * <b><a href="CppConst.html">const</a></b> m_scene;<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Proxies of the added <a href="CppWidget.html">widget</a>s<br/>
+&nbsp;&nbsp;<a href="CppVector.html">std::vector</a>&lt;<a href="CppQGraphicsProxyWidget.html">QGraphicsProxyWidget</a> *&gt; m_proxies;<br/>
+&nbsp;&nbsp;<a href="CppVector.html">std::vector</a>&lt;SomeDialog *&gt; m_dialogs;<br/>
 <br/>
 };<br/>
 <br/>
-<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> QTBOUNCINGBALLSWIDGET_H<br/>
+<a href="CppEndif.html">#endif</a> <a href="CppComment.htm">//</a> QTBOUNCINGBALLSWIDGET_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -269,49 +269,49 @@ TEMPLATE = app<br/>
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="qttestgraphicsproxywidget.cpp" border = "1"><tr><td><code>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppQTimer.htm">QTimer</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppQGraphicsScene.htm">QGraphicsScene</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> "qttestgraphicsproxyitem.h"<br/>
-<a href="CppInclude.htm">#include</a> "qttestgraphicsproxy<a href="CppWidget.htm">widget</a>.h"<br/>
-<a href="CppInclude.htm">#include</a> "somedialog.h"<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppCassertH.html">cassert</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppQTimer.html">QTimer</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppQGraphicsScene.html">QGraphicsScene</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> "qttestgraphicsproxyitem<a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "qttestgraphicsproxy<a href="CppWidget.html">widget</a><a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "somedialog<a href="CppHeaderFile.htm">.h</a>"<br/>
 <br/>
 <br/>
-<a href="CppQt.htm">Qt</a>TestGraphicsProxy<a href="CppWidget.htm">Widget</a>::<a href="CppQt.htm">Qt</a>TestGraphicsProxy<a href="CppWidget.htm">Widget</a>(<a href="CppQWidget.htm">QWidget</a> *parent)<br/>
-&nbsp;&nbsp;: <a href="CppQGraphicsView.htm">QGraphicsView</a>(parent),<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;m_scene(<b><a href="CppNew.htm">new</a></b> <a href="CppQGraphicsScene.htm">QGraphicsScene</a>(<b><a href="CppThis.htm">this</a></b>-&gt;rect(),<b><a href="CppThis.htm">this</a></b>))<br/>
+<a href="CppQt.htm">Qt</a>TestGraphicsProxy<a href="CppWidget.html">Widget</a>::<a href="CppQt.htm">Qt</a>TestGraphicsProxy<a href="CppWidget.html">Widget</a>(<a href="CppQWidget.html">QWidget</a> *parent)<br/>
+&nbsp;&nbsp;: <a href="CppQGraphicsView.html">QGraphicsView</a>(parent),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_scene(<b><a href="CppNew.htm">new</a></b> <a href="CppQGraphicsScene.html">QGraphicsScene</a>(<b><a href="CppThis.htm">this</a></b>-&gt;rect(),<b><a href="CppThis.htm">this</a></b>))<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;setScene(m_scene);<br/>
 <br/>
 &nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> i=0; i<a href="CppOperatorNotEqual.htm">!=</a>3; <a href="CppOperatorPlus.htm">+</a>+i)<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppQt.htm">Qt</a>TestGraphicsProxyItem * <b><a href="CppConst.htm">const</a></b> item <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppQt.htm">Qt</a>TestGraphicsProxyItem(0,0);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>item-&gt;set<a href="CppWidget.htm">Widget</a>(<b><a href="CppNew.htm">new</a></b> SomeDialog);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppQt.htm">Qt</a>TestGraphicsProxyItem * <b><a href="CppConst.html">const</a></b> item <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppQt.htm">Qt</a>TestGraphicsProxyItem(0,0);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>item-&gt;set<a href="CppWidget.html">Widget</a>(<b><a href="CppNew.htm">new</a></b> SomeDialog);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>m_scene-&gt;addItem(item);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;SomeDialog * <b><a href="CppConst.htm">const</a></b> dialog <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> SomeDialog; <a href="CppComment.htm">//</a><a href="CppAdd.htm">Add</a>ing '<b><a href="CppThis.htm">this</a></b>' as parent results in an error!<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;SomeDialog * <b><a href="CppConst.html">const</a></b> dialog <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> SomeDialog; <a href="CppComment.htm">//</a><a href="CppAdd.htm">Add</a>ing '<b><a href="CppThis.htm">this</a></b>' as parent results in an error!<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>m_dialogs.push_back(dialog);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQGraphicsProxyWidget.htm">QGraphicsProxyWidget</a> * <b><a href="CppConst.htm">const</a></b> proxy <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppQGraphicsProxyWidget.htm">QGraphicsProxyWidget</a>(0,<a href="CppQt.htm">Qt</a>::Window);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;proxy-&gt;set<a href="CppWidget.htm">Widget</a>(dialog);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQGraphicsProxyWidget.html">QGraphicsProxyWidget</a> * <b><a href="CppConst.html">const</a></b> proxy <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppQGraphicsProxyWidget.html">QGraphicsProxyWidget</a>(0,<a href="CppQt.htm">Qt</a>::Window);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;proxy-&gt;set<a href="CppWidget.html">Widget</a>(dialog);<br/>
 <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>MUST DO THIS?<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;proxy-&gt;setCacheMode(<a href="CppQGraphicsItem.htm">QGraphicsItem</a>::DeviceCoordinateCache);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;proxy-&gt;setCacheMode(<a href="CppQGraphicsItem.html">QGraphicsItem</a>::DeviceCoordinateCache);<br/>
 <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>m_scene-&gt;addWidget(dialog);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;m_scene-&gt;addItem(proxy);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(proxy);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(proxy);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;proxy-&gt;setPos((i+1) * 100, (i+1)* 100);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;proxy-&gt;setRotation( proxy-&gt;rotation() <a href="CppOperatorPlus.htm">+</a> ((<b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(i)+1.0) * 10.0));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;proxy-&gt;setRotation( proxy-&gt;rotation() <a href="CppOperatorPlus.htm">+</a> ((<b><a href="CppStatic_cast.html">static_cast</a></b>&lt;<b><a href="CppDouble.html">double</a></b>&gt;(i)+1.0) * 10.0));<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>m_proxies.push_back(proxy);<br/>
 <br/>
 <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>item-&gt;setPos(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>&nbsp;&nbsp;<b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;((i <a href="CppOperatorMinus.htm">-</a> 1) * 32) <a href="CppOperatorPlus.htm">+</a> (0.5 * <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(width())),<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>&nbsp;&nbsp;<b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;((i <a href="CppOperatorMinus.htm">-</a> 1) * 32) <a href="CppOperatorPlus.htm">+</a> (0.5 * <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(height())));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>&nbsp;&nbsp;<b><a href="CppStatic_cast.html">static_cast</a></b>&lt;<b><a href="CppDouble.html">double</a></b>&gt;((i <a href="CppOperatorMinus.htm">-</a> 1) * 32) <a href="CppOperatorPlus.htm">+</a> (0.5 * <b><a href="CppStatic_cast.html">static_cast</a></b>&lt;<b><a href="CppDouble.html">double</a></b>&gt;(width())),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>&nbsp;&nbsp;<b><a href="CppStatic_cast.html">static_cast</a></b>&lt;<b><a href="CppDouble.html">double</a></b>&gt;((i <a href="CppOperatorMinus.htm">-</a> 1) * 32) <a href="CppOperatorPlus.htm">+</a> (0.5 * <b><a href="CppStatic_cast.html">static_cast</a></b>&lt;<b><a href="CppDouble.html">double</a></b>&gt;(height())));<br/>
 &nbsp;&nbsp;}<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>{<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>&nbsp;&nbsp;<a href="CppQTimer.htm">QTimer</a> * <b><a href="CppConst.htm">const</a></b> <a href="CppTime.htm">time</a>r <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppQTimer.htm">QTimer</a>(<b><a href="CppThis.htm">this</a></b>);<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>&nbsp;&nbsp;<a href="CppQObject.htm">QObject</a>::connect(<a href="CppTime.htm">time</a>r,<a href="CppSignalMacro.htm">SIGNAL</a>(<a href="CppTime.htm">time</a>out()),m_scene,<a href="CppSLOT.htm">SLOT</a>(advance()));<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>&nbsp;&nbsp;<a href="CppQTimer.html">QTimer</a> * <b><a href="CppConst.html">const</a></b> <a href="CppTime.htm">time</a>r <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppQTimer.html">QTimer</a>(<b><a href="CppThis.htm">this</a></b>);<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>&nbsp;&nbsp;<a href="CppQObject.html">QObject</a>::connect(<a href="CppTime.htm">time</a>r,<a href="CppSignalMacro.html">SIGNAL</a>(<a href="CppTime.htm">time</a>out()),m_scene,<a href="CppSLOT.htm">SLOT</a>(advance()));<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>&nbsp;&nbsp;<a href="CppTime.htm">time</a>r-&gt;setInterval(20);<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>&nbsp;&nbsp;<a href="CppTime.htm">time</a>r-&gt;start();<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>}<br/>
@@ -322,7 +322,7 @@ TEMPLATE = app<br/>
 }<br/>
 <br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a>TestGraphicsProxy<a href="CppWidget.htm">Widget</a>::resizeEvent(<a href="CppQResizeEvent.htm">QResizeEvent</a> *)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a>TestGraphicsProxy<a href="CppWidget.html">Widget</a>::resizeEvent(<a href="CppQResizeEvent.html">QResizeEvent</a> *)<br/>
 {<br/>
 &nbsp;&nbsp;m_scene-&gt;setSceneRect(<b><a href="CppThis.htm">this</a></b>-&gt;rect());<br/>
 }<br/>
@@ -337,28 +337,28 @@ TEMPLATE = app<br/>
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="somedialog.h" border = "1"><tr><td><code>
-<a href="CppIfndef.htm">#ifndef</a> SOMEDIALOG_H<br/>
-<a href="CppDefine.htm">#define</a> SOMEDIALOG_H<br/>
+<a href="CppIfndef.html">#ifndef</a> SOMEDIALOG_H<br/>
+<a href="CppDefine.html">#define</a> SOMEDIALOG_H<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppQDialog.htm">QDialog</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppQDialog.html">QDialog</a>&gt;<br/>
 <br/>
-<b><a href="CppNamespace.htm">namespace</a></b> Ui {<br/>
-<b><a href="CppClass.htm">class</a></b> SomeDialog;<br/>
+<b><a href="CppNamespace.html">namespace</a></b> Ui {<br/>
+<b><a href="CppClass.html">class</a></b> SomeDialog;<br/>
 }<br/>
 <br/>
-<b><a href="CppClass.htm">class</a></b> SomeDialog : <b><a href="CppPublic.htm">public</a></b> <a href="CppQDialog.htm">QDialog</a><br/>
+<b><a href="CppClass.html">class</a></b> SomeDialog : <b><a href="CppPublic.html">public</a></b> <a href="CppQDialog.html">QDialog</a><br/>
 {<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQ_OBJECT.htm">Q_OBJECT</a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQ_OBJECT.html">Q_OBJECT</a><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<br/>
-<b><a href="CppPublic.htm">public</a></b>:<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppExplicit.htm">explicit</a></b> SomeDialog(<a href="CppQWidget.htm">QWidget</a> *parent <a href="CppOperatorAssign.htm">=</a> 0);<br/>
+<b><a href="CppPublic.html">public</a></b>:<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppExplicit.html">explicit</a></b> SomeDialog(<a href="CppQWidget.html">QWidget</a> *parent <a href="CppOperatorAssign.htm">=</a> 0);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;~SomeDialog();<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<br/>
-<b><a href="CppPrivate.htm">private</a></b>:<br/>
+<b><a href="CppPrivate.html">private</a></b>:<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppUi.htm">Ui</a>::SomeDialog *ui;<br/>
 };<br/>
 <br/>
-<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> SOMEDIALOG_H<br/>
+<a href="CppEndif.html">#endif</a> <a href="CppComment.htm">//</a> SOMEDIALOG_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -370,11 +370,11 @@ TEMPLATE = app<br/>
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="somedialog.cpp" border = "1"><tr><td><code>
-<a href="CppInclude.htm">#include</a> "somedialog.h"<br/>
-<a href="CppInclude.htm">#include</a> "ui_somedialog.h"<br/>
+<a href="CppInclude.html">#include</a> "somedialog<a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "ui_somedialog<a href="CppHeaderFile.htm">.h</a>"<br/>
 <br/>
-SomeDialog::SomeDialog(<a href="CppQWidget.htm">QWidget</a> *parent) :<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQDialog.htm">QDialog</a>(parent),<br/>
+SomeDialog::SomeDialog(<a href="CppQWidget.html">QWidget</a> *parent) :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQDialog.html">QDialog</a>(parent),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;ui(<b><a href="CppNew.htm">new</a></b> <a href="CppUi.htm">Ui</a>::SomeDialog)<br/>
 {<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;ui-&gt;setupUi(<b><a href="CppThis.htm">this</a></b>);<br/>
@@ -382,7 +382,7 @@ SomeDialog::SomeDialog(<a href="CppQWidget.htm">QWidget</a> *parent) :<br/>
 <br/>
 SomeDialog::~SomeDialog()<br/>
 {<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppDelete.htm">delete</a></b> ui;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppDelete.html">delete</a></b> ui;<br/>
 }<br/>
 </code></td></tr></table>
 <!-- end of the code -->
@@ -395,28 +395,28 @@ SomeDialog::~SomeDialog()<br/>
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="tooltestgraphicsproxywidgetmaindialog.h" border = "1"><tr><td><code>
-<a href="CppIfndef.htm">#ifndef</a> TOOLTESTGRAPHICSPROXYWIDGETMAINDIALOG_H<br/>
-<a href="CppDefine.htm">#define</a> TOOLTESTGRAPHICSPROXYWIDGETMAINDIALOG_H<br/>
+<a href="CppIfndef.html">#ifndef</a> TOOLTESTGRAPHICSPROXYWIDGETMAINDIALOG_H<br/>
+<a href="CppDefine.html">#define</a> TOOLTESTGRAPHICSPROXYWIDGETMAINDIALOG_H<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppQDialog.htm">QDialog</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppQDialog.html">QDialog</a>&gt;<br/>
 <br/>
-<b><a href="CppNamespace.htm">namespace</a></b> Ui {<br/>
-<b><a href="CppClass.htm">class</a></b> <a href="Tools.htm">Tool</a>TestGraphicsProxy<a href="CppWidget.htm">Widget</a>MainDialog;<br/>
+<b><a href="CppNamespace.html">namespace</a></b> Ui {<br/>
+<b><a href="CppClass.html">class</a></b> <a href="Tools.htm">Tool</a>TestGraphicsProxy<a href="CppWidget.html">Widget</a>MainDialog;<br/>
 }<br/>
 <br/>
-<b><a href="CppClass.htm">class</a></b> <a href="Tools.htm">Tool</a>TestGraphicsProxy<a href="CppWidget.htm">Widget</a>MainDialog : <b><a href="CppPublic.htm">public</a></b> <a href="CppQDialog.htm">QDialog</a><br/>
+<b><a href="CppClass.html">class</a></b> <a href="Tools.htm">Tool</a>TestGraphicsProxy<a href="CppWidget.html">Widget</a>MainDialog : <b><a href="CppPublic.html">public</a></b> <a href="CppQDialog.html">QDialog</a><br/>
 {<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQ_OBJECT.htm">Q_OBJECT</a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQ_OBJECT.html">Q_OBJECT</a><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<br/>
-<b><a href="CppPublic.htm">public</a></b>:<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppExplicit.htm">explicit</a></b> <a href="Tools.htm">Tool</a>TestGraphicsProxy<a href="CppWidget.htm">Widget</a>MainDialog(<a href="CppQWidget.htm">QWidget</a> *parent <a href="CppOperatorAssign.htm">=</a> 0);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;~<a href="Tools.htm">Tool</a>TestGraphicsProxy<a href="CppWidget.htm">Widget</a>MainDialog();<br/>
+<b><a href="CppPublic.html">public</a></b>:<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppExplicit.html">explicit</a></b> <a href="Tools.htm">Tool</a>TestGraphicsProxy<a href="CppWidget.html">Widget</a>MainDialog(<a href="CppQWidget.html">QWidget</a> *parent <a href="CppOperatorAssign.htm">=</a> 0);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;~<a href="Tools.htm">Tool</a>TestGraphicsProxy<a href="CppWidget.html">Widget</a>MainDialog();<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<br/>
-<b><a href="CppPrivate.htm">private</a></b>:<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppUi.htm">Ui</a>::<a href="Tools.htm">Tool</a>TestGraphicsProxy<a href="CppWidget.htm">Widget</a>MainDialog *ui;<br/>
+<b><a href="CppPrivate.html">private</a></b>:<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppUi.htm">Ui</a>::<a href="Tools.htm">Tool</a>TestGraphicsProxy<a href="CppWidget.html">Widget</a>MainDialog *ui;<br/>
 };<br/>
 <br/>
-<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> TOOLTESTGRAPHICSPROXYWIDGETMAINDIALOG_H<br/>
+<a href="CppEndif.html">#endif</a> <a href="CppComment.htm">//</a> TOOLTESTGRAPHICSPROXYWIDGETMAINDIALOG_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -428,21 +428,21 @@ SomeDialog::~SomeDialog()<br/>
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="tooltestgraphicsproxywidgetmaindialog.cpp" border = "1"><tr><td><code>
-<a href="CppInclude.htm">#include</a> "qttestgraphicsproxy<a href="CppWidget.htm">widget</a>.h"<br/>
-<a href="CppInclude.htm">#include</a> "<a href="Tools.htm">tool</a>testgraphicsproxy<a href="CppWidget.htm">widget</a>maindialog.h"<br/>
-<a href="CppInclude.htm">#include</a> "ui_<a href="Tools.htm">tool</a>testgraphicsproxy<a href="CppWidget.htm">widget</a>maindialog.h"<br/>
+<a href="CppInclude.html">#include</a> "qttestgraphicsproxy<a href="CppWidget.html">widget</a><a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "<a href="Tools.htm">tool</a>testgraphicsproxy<a href="CppWidget.html">widget</a>maindialog<a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "ui_<a href="Tools.htm">tool</a>testgraphicsproxy<a href="CppWidget.html">widget</a>maindialog<a href="CppHeaderFile.htm">.h</a>"<br/>
 <br/>
-<a href="Tools.htm">Tool</a>TestGraphicsProxy<a href="CppWidget.htm">Widget</a>MainDialog::<a href="Tools.htm">Tool</a>TestGraphicsProxy<a href="CppWidget.htm">Widget</a>MainDialog(<a href="CppQWidget.htm">QWidget</a> *parent) :<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQDialog.htm">QDialog</a>(parent),<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;ui(<b><a href="CppNew.htm">new</a></b> <a href="CppUi.htm">Ui</a>::<a href="Tools.htm">Tool</a>TestGraphicsProxy<a href="CppWidget.htm">Widget</a>MainDialog)<br/>
+<a href="Tools.htm">Tool</a>TestGraphicsProxy<a href="CppWidget.html">Widget</a>MainDialog::<a href="Tools.htm">Tool</a>TestGraphicsProxy<a href="CppWidget.html">Widget</a>MainDialog(<a href="CppQWidget.html">QWidget</a> *parent) :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQDialog.html">QDialog</a>(parent),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;ui(<b><a href="CppNew.htm">new</a></b> <a href="CppUi.htm">Ui</a>::<a href="Tools.htm">Tool</a>TestGraphicsProxy<a href="CppWidget.html">Widget</a>MainDialog)<br/>
 {<br/>
 &nbsp;&nbsp;ui-&gt;setupUi(<b><a href="CppThis.htm">this</a></b>);<br/>
-&nbsp;&nbsp;ui-&gt;layout-&gt;addWidget(<b><a href="CppNew.htm">new</a></b> <a href="CppQt.htm">Qt</a>TestGraphicsProxy<a href="CppWidget.htm">Widget</a>(<b><a href="CppThis.htm">this</a></b>));<br/>
+&nbsp;&nbsp;ui-&gt;layout-&gt;addWidget(<b><a href="CppNew.htm">new</a></b> <a href="CppQt.htm">Qt</a>TestGraphicsProxy<a href="CppWidget.html">Widget</a>(<b><a href="CppThis.htm">this</a></b>));<br/>
 }<br/>
 <br/>
-<a href="Tools.htm">Tool</a>TestGraphicsProxy<a href="CppWidget.htm">Widget</a>MainDialog::~<a href="Tools.htm">Tool</a>TestGraphicsProxy<a href="CppWidget.htm">Widget</a>MainDialog()<br/>
+<a href="Tools.htm">Tool</a>TestGraphicsProxy<a href="CppWidget.html">Widget</a>MainDialog::~<a href="Tools.htm">Tool</a>TestGraphicsProxy<a href="CppWidget.html">Widget</a>MainDialog()<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppDelete.htm">delete</a></b> ui;<br/>
+&nbsp;&nbsp;<b><a href="CppDelete.html">delete</a></b> ui;<br/>
 }<br/>
 </code></td></tr></table>
 <!-- end of the code -->

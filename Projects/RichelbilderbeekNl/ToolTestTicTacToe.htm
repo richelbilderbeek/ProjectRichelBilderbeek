@@ -95,15 +95,15 @@
 <!-- start of code -->
 <table summary="ToolTestTicTacToeQt.pro" border = "1"><tr><td><code>
 QT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; += core gui<br/>
-TEMPLATE = app<br/>
-<a href="CppSOURCES.htm">SOURCES</a> += \<br/>
+<a href="CppQmakeTemplate.htm">TEMPLATE</a> = app<br/>
+<a href="CppQmakeSources.htm">SOURCES</a> += \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;qt<a href="CppMain.htm">main</a>.cpp\<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;qtdialog<a href="CppMain.htm">main</a>.cpp \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;qtdialog<a href="CppAbout.htm">about</a>.cpp \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;qtdialogwhatsnew.cpp \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppTicTacToe.htm">CppTicTacToe</a>/<a href="CppTicTacToe.htm">tictactoe</a>.cpp \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppQtTicTacToeWidget.htm">CppQtTicTacToeWidget</a>/<a href="CppQtTicTacToeWidget.htm">qttictactoewidget</a>.cpp<br/>
-<a href="CppHEADERS.htm">HEADERS</a>&nbsp;&nbsp;+= \<br/>
+<a href="CppQmakeHeaders.htm">HEADERS</a>&nbsp;&nbsp;+= \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;qtdialog<a href="CppMain.htm">main</a>.h \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;qtdialog<a href="CppAbout.htm">about</a>.h \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;qtdialogwhatsnew.h \<br/>
@@ -113,7 +113,7 @@ TEMPLATE = app<br/>
 <a href="CppFORMS.htm">FORMS</a> += qtdialog<a href="CppMain.htm">main</a>.ui \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;qtdialog<a href="CppAbout.htm">about</a>.ui \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;qtdialogwhatsnew.ui<br/>
-<a href="CppRESOURCES.htm">RESOURCES</a> += qtresources.qrc<br/>
+<a href="CppQmakeResources.htm">RESOURCES</a> += qtresources.qrc<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -127,17 +127,17 @@ TEMPLATE = app<br/>
 <table summary="ToolTestTicTacToeWt.pro" border = "1"><tr><td><code>
 QT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; += core<br/>
 QT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -= gui<br/>
-<a href="CppLIBS.htm">LIBS</a> += -L/usr/lib <a href="CppWt.htm">-lwt</a>&nbsp;&nbsp;<a href="CppWt.htm">-lwt</a>http<br/>
+<a href="CppQmakeLibs.htm">LIBS</a> += -L/usr/lib <a href="CppWt.htm">-lwt</a>&nbsp;&nbsp;<a href="CppWt.htm">-lwt</a>http<br/>
 #<a href="CppWt.htm">-lwt</a>ext<br/>
-<a href="CppQMAKE_CXXFLAGS.htm">QMAKE_CXXFLAGS</a> += -DNDEBUG<br/>
-CONFIG&nbsp;&nbsp; += console<br/>
-CONFIG&nbsp;&nbsp; -= app_bundle<br/>
-TEMPLATE = app<br/>
-<a href="CppSOURCES.htm">SOURCES</a> +=&nbsp;&nbsp;\&nbsp;&nbsp;<br/>
+<a href="CppQmakeQmake_cxxflags.htm">QMAKE_CXXFLAGS</a> += -DNDEBUG<br/>
+<a href="CppQmakeConfig.htm">CONFIG</a>&nbsp;&nbsp; += console<br/>
+<a href="CppQmakeConfig.htm">CONFIG</a>&nbsp;&nbsp; -= app_bundle<br/>
+<a href="CppQmakeTemplate.htm">TEMPLATE</a> = app<br/>
+<a href="CppQmakeSources.htm">SOURCES</a> +=&nbsp;&nbsp;\&nbsp;&nbsp;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;wt<a href="CppMain.htm">main</a>.cpp \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppTicTacToe.htm">CppTicTacToe</a>/<a href="CppTicTacToe.htm">tictactoe</a>.cpp \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppWtTicTacToeWidget.htm">CppWtTicTacToeWidget</a>/<a href="CppWtTicTacToeWidget.htm">wttictactoewidget</a>.cpp<br/>
-<a href="CppHEADERS.htm">HEADERS</a>&nbsp;&nbsp;+=&nbsp;&nbsp;\<br/>
+<a href="CppQmakeHeaders.htm">HEADERS</a>&nbsp;&nbsp;+=&nbsp;&nbsp;\<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppTicTacToe.htm">CppTicTacToe</a>/<a href="CppTicTacToe.htm">tictactoe</a>.h \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppWtTicTacToeWidget.htm">CppWtTicTacToeWidget</a>/<a href="CppWtTicTacToeWidget.htm">wttictactoewidget</a>.h<br/>
 </code></td></tr></table>
@@ -153,7 +153,7 @@ TEMPLATE = app<br/>
 <table summary="qtdialogabout.h" border = "1"><tr><td><code>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">/*</a><br/>
-<a href="ToolTestTicTacToe.htm">TestTicTacToe</a>, <a href="Tools.htm">tool</a> to test the <a href="CppTicTacToe.htm">TicTacToe</a> <b><a href="CppClass.htm">class</a></b><br/>
+<a href="ToolTestTicTacToe.html">TestTicTacToe</a>, <a href="Tools.htm">tool</a> to test the <a href="CppTicTacToe.html">TicTacToe</a> <b><a href="CppClass.html">class</a></b><br/>
 Copyright (C) 2010 Richel Bilderbeek<br/>
 <br/>
 This program is free software: you can redistribute it and/or modify<br/>
@@ -169,42 +169,42 @@ You should have received a copy of the GNU General Public License<br/>
 along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">*/</a><br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="ToolTestTicTacToe.htm">ToolTestTicTacToe</a>.htm<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="ToolTestTicTacToe.html">ToolTestTicTacToe</a>.html<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppIfndef.htm">#ifndef</a> DIALOGABOUT_H<br/>
-<a href="CppDefine.htm">#define</a> DIALOGABOUT_H<br/>
+<a href="CppIfndef.html">#ifndef</a> DIALOGABOUT_H<br/>
+<a href="CppDefine.html">#define</a> DIALOGABOUT_H<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppStringH.htm">string</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppStringH.html">string</a>&gt;<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppQDialog.htm">QDialog</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppQDialog.html">QDialog</a>&gt;<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppNamespace.htm">namespace</a></b> Ui {<br/>
-&nbsp;&nbsp;<b><a href="CppClass.htm">class</a></b> Dialog<a href="CppAbout.htm">About</a>;<br/>
+<b><a href="CppNamespace.html">namespace</a></b> Ui {<br/>
+&nbsp;&nbsp;<b><a href="CppClass.html">class</a></b> Dialog<a href="CppAbout.html">About</a>;<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppClass.htm">class</a></b> Dialog<a href="CppAbout.htm">About</a> : <b><a href="CppPublic.htm">public</a></b> <a href="CppQDialog.htm">QDialog</a><br/>
+<b><a href="CppClass.html">class</a></b> Dialog<a href="CppAbout.html">About</a> : <b><a href="CppPublic.html">public</a></b> <a href="CppQDialog.html">QDialog</a><br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppQ_OBJECT.htm">Q_OBJECT</a><br/>
+&nbsp;&nbsp;<a href="CppQ_OBJECT.html">Q_OBJECT</a><br/>
 <br/>
-<b><a href="CppPublic.htm">public</a></b>:<br/>
-&nbsp;&nbsp;<b><a href="CppExplicit.htm">explicit</a></b> Dialog<a href="CppAbout.htm">About</a>(<a href="CppQWidget.htm">QWidget</a> *parent <a href="CppOperatorAssign.htm">=</a> 0);<br/>
-&nbsp;&nbsp;~Dialog<a href="CppAbout.htm">About</a>();<br/>
+<b><a href="CppPublic.html">public</a></b>:<br/>
+&nbsp;&nbsp;<b><a href="CppExplicit.html">explicit</a></b> Dialog<a href="CppAbout.html">About</a>(<a href="CppQWidget.html">QWidget</a> *parent <a href="CppOperatorAssign.htm">=</a> 0);<br/>
+&nbsp;&nbsp;~Dialog<a href="CppAbout.html">About</a>();<br/>
 <br/>
-<b><a href="CppProtected.htm">protected</a></b>:<br/>
-&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> changeEvent(<a href="CppQEvent.htm">QEvent</a> *e);<br/>
+<b><a href="CppProtected.html">protected</a></b>:<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> changeEvent(<a href="CppQEvent.html">QEvent</a> *e);<br/>
 <br/>
-<b><a href="CppPrivate.htm">private</a></b>:<br/>
-&nbsp;&nbsp;<a href="CppUi.htm">Ui</a>::Dialog<a href="CppAbout.htm">About</a> *ui;<br/>
+<b><a href="CppPrivate.html">private</a></b>:<br/>
+&nbsp;&nbsp;<a href="CppUi.htm">Ui</a>::Dialog<a href="CppAbout.html">About</a> *ui;<br/>
 <br/>
-<b><a href="CppPrivate.htm">private</a></b> <b><a href="CppSlots.htm">slots</a></b>:<br/>
+<b><a href="CppPrivate.html">private</a></b> <b><a href="CppSlots.html">slots</a></b>:<br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> onWhatsNew();<br/>
 };<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">///</a><a href="CppGetBoostVersion.htm">GetBoostVersion</a> <a href="CppReturn.htm">returns</a> the <a href="CppVersion.htm">version</a> of the current <a href="CppBoost.htm">Boost</a> <a href="CppLibrary.htm">library</a>.<br/>
-<a href="CppComment.htm">///</a>From http://www.richelbilderbeek.nl/Cpp<a href="CppGetBoostVersion.htm">GetBoostVersion</a>.htm<br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppGetBoostVersion.htm">GetBoostVersion</a>();<br/>
+<a href="CppComment.htm">///</a><a href="CppGetBoostVersion.html">GetBoostVersion</a> <a href="CppReturn.html">returns</a> the <a href="CppVersion.html">version</a> of the current <a href="CppBoost.html">Boost</a> <a href="CppLibrary.html">library</a>.<br/>
+<a href="CppComment.htm">///</a>From http://www.richelbilderbeek.nl/Cpp<a href="CppGetBoostVersion.html">GetBoostVersion</a>.html<br/>
+<b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a> <a href="CppGetBoostVersion.html">GetBoostVersion</a>();<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> DIALOGABOUT_H<br/>
+<a href="CppEndif.html">#endif</a> <a href="CppComment.htm">//</a> DIALOGABOUT_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -218,7 +218,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <table summary="qtdialogabout.cpp" border = "1"><tr><td><code>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">/*</a><br/>
-<a href="ToolTestTicTacToe.htm">TestTicTacToe</a>, <a href="Tools.htm">tool</a> to test the <a href="CppTicTacToe.htm">TicTacToe</a> <b><a href="CppClass.htm">class</a></b><br/>
+<a href="ToolTestTicTacToe.html">TestTicTacToe</a>, <a href="Tools.htm">tool</a> to test the <a href="CppTicTacToe.html">TicTacToe</a> <b><a href="CppClass.html">class</a></b><br/>
 Copyright (C) 2010 Richel Bilderbeek<br/>
 <br/>
 This program is free software: you can redistribute it and/or modify<br/>
@@ -234,78 +234,78 @@ You should have received a copy of the GNU General Public License<br/>
 along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">*/</a><br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="ToolTestTicTacToe.htm">ToolTestTicTacToe</a>.htm<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="ToolTestTicTacToe.html">ToolTestTicTacToe</a>.html<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppAlgorithmH.htm">algorithm</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppStringH.htm">string</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppAlgorithmH.html">algorithm</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppStringH.html">string</a>&gt;<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppVersion.htm">version</a>.hpp&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppBoost.html">boost</a>/<a href="CppVersion.html">version</a><a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppInclude.htm">#include</a> "qtdialog<a href="CppAbout.htm">about</a>.h"<br/>
-<a href="CppInclude.htm">#include</a> "qtdialogmain.h"<br/>
-<a href="CppInclude.htm">#include</a> "qtdialogwhatsnew.h"<br/>
-<a href="CppInclude.htm">#include</a> "ui_qtdialog<a href="CppAbout.htm">about</a>.h"<br/>
-<a href="CppInclude.htm">#include</a> "../../<a href="CppClass.htm">Classes</a>/<a href="CppQtTicTacToeWidget.htm">CppQtTicTacToeWidget</a>/<a href="CppQtTicTacToeWidget.htm">qttictactoewidget</a>.h"<br/>
-<a href="CppInclude.htm">#include</a> "../../<a href="CppClass.htm">Classes</a>/<a href="CppTicTacToe.htm">CppTicTacToe</a>/<a href="CppTicTacToe.htm">tictactoe</a>.h"<br/>
+<a href="CppInclude.html">#include</a> "qtdialog<a href="CppAbout.html">about</a><a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "qtdialogmain<a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "qtdialogwhatsnew<a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "ui_qtdialog<a href="CppAbout.html">about</a><a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "../../<a href="CppClass.html">Classes</a>/<a href="CppQtTicTacToeWidget.html">CppQtTicTacToeWidget</a>/<a href="CppQtTicTacToeWidget.html">qttictactoewidget</a><a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "../../<a href="CppClass.html">Classes</a>/<a href="CppTicTacToe.html">CppTicTacToe</a>/<a href="CppTicTacToe.html">tictactoe</a><a href="CppHeaderFile.htm">.h</a>"<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-Dialog<a href="CppAbout.htm">About</a>::Dialog<a href="CppAbout.htm">About</a>(<a href="CppQWidget.htm">QWidget</a> *parent) :<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQDialog.htm">QDialog</a>(parent),<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;ui(<b><a href="CppNew.htm">new</a></b> <a href="CppUi.htm">Ui</a>::Dialog<a href="CppAbout.htm">About</a>)<br/>
+Dialog<a href="CppAbout.html">About</a>::Dialog<a href="CppAbout.html">About</a>(<a href="CppQWidget.html">QWidget</a> *parent) :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQDialog.html">QDialog</a>(parent),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;ui(<b><a href="CppNew.htm">new</a></b> <a href="CppUi.htm">Ui</a>::Dialog<a href="CppAbout.html">About</a>)<br/>
 {<br/>
 &nbsp;&nbsp;ui-&gt;setupUi(<b><a href="CppThis.htm">this</a></b>);<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppQObject.htm">QObject</a>::connect(ui-&gt;button_whats_new,<a href="CppSignalMacro.htm">SIGNAL</a>(clicked()),<br/>
+&nbsp;&nbsp;<a href="CppQObject.html">QObject</a>::connect(ui-&gt;button_whats_new,<a href="CppSignalMacro.html">SIGNAL</a>(clicked()),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>,<a href="CppSLOT.htm">SLOT</a>(onWhatsNew()));<br/>
-&nbsp;&nbsp;<a href="CppQObject.htm">QObject</a>::connect(ui-&gt;button_about_qt,<a href="CppSignalMacro.htm">SIGNAL</a>(clicked()),<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;qApp,<a href="CppSLOT.htm">SLOT</a>(<a href="CppAbout.htm">about</a><a href="CppQt.htm">Qt</a>()));<br/>
+&nbsp;&nbsp;<a href="CppQObject.html">QObject</a>::connect(ui-&gt;button_about_qt,<a href="CppSignalMacro.html">SIGNAL</a>(clicked()),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;qApp,<a href="CppSLOT.htm">SLOT</a>(<a href="CppAbout.html">about</a><a href="CppQt.htm">Qt</a>()));<br/>
 <br/>
 &nbsp;&nbsp;ui-&gt;label_title-&gt;setText(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQString.htm">QString</a>("<a href="ToolTestTicTacToe.htm">TestTicTacToe</a> <a href="CppVersion.htm">version</a> ")<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> <a href="CppQString.htm">QString</a>(DialogMain::Get<a href="CppVersion.htm">Version</a>().c_str()));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQString.html">QString</a>("<a href="ToolTestTicTacToe.html">TestTicTacToe</a> <a href="CppVersion.html">version</a> ")<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> <a href="CppQString.html">QString</a>(DialogMain::Get<a href="CppVersion.html">Version</a>().c_str()));<br/>
 <br/>
 <br/>
-&nbsp;&nbsp;ui-&gt;label_<a href="CppBoost.htm">boost</a>_<a href="CppVersion.htm">version</a>-&gt;setText(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQString.htm">QString</a>("<a href="CppBoost.htm">Boost</a> <a href="CppVersion.htm">version</a>: ")<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> <a href="CppQString.htm">QString</a>(<a href="CppGetBoostVersion.htm">GetBoostVersion</a>().c_str()));<br/>
-&nbsp;&nbsp;ui-&gt;label_<a href="CppTicTacToe.htm">tictactoe</a>_<a href="CppVersion.htm">version</a>-&gt;setText(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQString.htm">QString</a>("<a href="CppTicTacToe.htm">TicTacToe</a> <a href="CppVersion.htm">version</a>: ")<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> <a href="CppQString.htm">QString</a>(<a href="CppTicTacToe.htm">TicTacToe</a>::Get<a href="CppVersion.htm">Version</a>().c_str()));<br/>
-&nbsp;&nbsp;ui-&gt;label_<a href="CppTicTacToe.htm">tictactoe</a><a href="CppWidget.htm">widget</a>_<a href="CppVersion.htm">version</a>-&gt;setText(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQString.htm">QString</a>("<a href="CppQtTicTacToeWidget.htm">QtTicTacToeWidget</a> <a href="CppVersion.htm">version</a>: ")<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> <a href="CppQString.htm">QString</a>(<a href="CppQtTicTacToeWidget.htm">QtTicTacToeWidget</a>::Get<a href="CppVersion.htm">Version</a>().c_str()));<br/>
+&nbsp;&nbsp;ui-&gt;label_<a href="CppBoost.html">boost</a>_<a href="CppVersion.html">version</a>-&gt;setText(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQString.html">QString</a>("<a href="CppBoost.html">Boost</a> <a href="CppVersion.html">version</a>: ")<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> <a href="CppQString.html">QString</a>(<a href="CppGetBoostVersion.html">GetBoostVersion</a>().c_str()));<br/>
+&nbsp;&nbsp;ui-&gt;label_<a href="CppTicTacToe.html">tictactoe</a>_<a href="CppVersion.html">version</a>-&gt;setText(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQString.html">QString</a>("<a href="CppTicTacToe.html">TicTacToe</a> <a href="CppVersion.html">version</a>: ")<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> <a href="CppQString.html">QString</a>(<a href="CppTicTacToe.html">TicTacToe</a>::Get<a href="CppVersion.html">Version</a>().c_str()));<br/>
+&nbsp;&nbsp;ui-&gt;label_<a href="CppTicTacToe.html">tictactoe</a><a href="CppWidget.html">widget</a>_<a href="CppVersion.html">version</a>-&gt;setText(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQString.html">QString</a>("<a href="CppQtTicTacToeWidget.html">QtTicTacToeWidget</a> <a href="CppVersion.html">version</a>: ")<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> <a href="CppQString.html">QString</a>(<a href="CppQtTicTacToeWidget.html">QtTicTacToeWidget</a>::Get<a href="CppVersion.html">Version</a>().c_str()));<br/>
 <br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-Dialog<a href="CppAbout.htm">About</a>::~Dialog<a href="CppAbout.htm">About</a>()<br/>
+Dialog<a href="CppAbout.html">About</a>::~Dialog<a href="CppAbout.html">About</a>()<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppDelete.htm">delete</a></b> ui;<br/>
+&nbsp;&nbsp;<b><a href="CppDelete.html">delete</a></b> ui;<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppVoid.htm">void</a></b> Dialog<a href="CppAbout.htm">About</a>::changeEvent(<a href="CppQEvent.htm">QEvent</a> *e)<br/>
+<b><a href="CppVoid.htm">void</a></b> Dialog<a href="CppAbout.html">About</a>::changeEvent(<a href="CppQEvent.html">QEvent</a> *e)<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppQDialog.htm">QDialog</a>::changeEvent(e);<br/>
-&nbsp;&nbsp;<b><a href="CppSwitch.htm">switch</a></b> (e-&gt;type()) {<br/>
-&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> <a href="CppQEvent.htm">QEvent</a>::LanguageChange:<br/>
+&nbsp;&nbsp;<a href="CppQDialog.html">QDialog</a>::changeEvent(e);<br/>
+&nbsp;&nbsp;<b><a href="CppSwitch.html">switch</a></b> (e-&gt;type()) {<br/>
+&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> <a href="CppQEvent.html">QEvent</a>::LanguageChange:<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;ui-&gt;retranslateUi(<b><a href="CppThis.htm">this</a></b>);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppBreak.htm">break</a></b>;<br/>
-&nbsp;&nbsp;<b><a href="CppDefault.htm">default</a></b>:<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppBreak.htm">break</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppBreak.html">break</a></b>;<br/>
+&nbsp;&nbsp;<b><a href="CppDefault.html">default</a></b>:<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppBreak.html">break</a></b>;<br/>
 &nbsp;&nbsp;}<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppVoid.htm">void</a></b> Dialog<a href="CppAbout.htm">About</a>::onWhatsNew()<br/>
+<b><a href="CppVoid.htm">void</a></b> Dialog<a href="CppAbout.html">About</a>::onWhatsNew()<br/>
 {<br/>
 &nbsp;&nbsp;DialogWhatsNew d;<br/>
 &nbsp;&nbsp;d.exec();<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">///</a><a href="CppGetBoostVersion.htm">GetBoostVersion</a> <a href="CppReturn.htm">returns</a> the <a href="CppVersion.htm">version</a> of the current <a href="CppBoost.htm">Boost</a> <a href="CppLibrary.htm">library</a>.<br/>
-<a href="CppComment.htm">///</a>From http://www.richelbilderbeek.nl/Cpp<a href="CppGetBoostVersion.htm">GetBoostVersion</a>.htm<br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppGetBoostVersion.htm">GetBoostVersion</a>()<br/>
+<a href="CppComment.htm">///</a><a href="CppGetBoostVersion.html">GetBoostVersion</a> <a href="CppReturn.html">returns</a> the <a href="CppVersion.html">version</a> of the current <a href="CppBoost.html">Boost</a> <a href="CppLibrary.html">library</a>.<br/>
+<a href="CppComment.htm">///</a>From http://www.richelbilderbeek.nl/Cpp<a href="CppGetBoostVersion.html">GetBoostVersion</a>.html<br/>
+<b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a> <a href="CppGetBoostVersion.html">GetBoostVersion</a>()<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppString.htm">std::string</a> s <a href="CppOperatorAssign.htm">=</a> BOOST_LIB_VERSION;<br/>
-&nbsp;&nbsp;<a href="CppReplace.htm">std::replace</a>(s.begin(),s.end(),'_','.');<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> s;<br/>
+&nbsp;&nbsp;<a href="CppString.html">std::string</a> s <a href="CppOperatorAssign.htm">=</a> BOOST_LIB_VERSION;<br/>
+&nbsp;&nbsp;<a href="CppReplace.html">std::replace</a>(s.begin(),s.end(),'_','.');<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> s;<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 </code></td></tr></table>
@@ -321,7 +321,7 @@ Dialog<a href="CppAbout.htm">About</a>::~Dialog<a href="CppAbout.htm">About</a>(
 <table summary="qtdialogmain.h" border = "1"><tr><td><code>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">/*</a><br/>
-<a href="ToolTestTicTacToe.htm">TestTicTacToe</a>, <a href="Tools.htm">tool</a> to test the <a href="CppTicTacToe.htm">TicTacToe</a> <b><a href="CppClass.htm">class</a></b><br/>
+<a href="ToolTestTicTacToe.html">TestTicTacToe</a>, <a href="Tools.htm">tool</a> to test the <a href="CppTicTacToe.html">TicTacToe</a> <b><a href="CppClass.html">class</a></b><br/>
 Copyright (C) 2010 Richel Bilderbeek<br/>
 <br/>
 This program is free software: you can redistribute it and/or modify<br/>
@@ -337,51 +337,51 @@ You should have received a copy of the GNU General Public License<br/>
 along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">*/</a><br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="ToolTestTicTacToe.htm">ToolTestTicTacToe</a>.htm<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="ToolTestTicTacToe.html">ToolTestTicTacToe</a>.html<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppIfndef.htm">#ifndef</a> DIALOGMAIN_H<br/>
-<a href="CppDefine.htm">#define</a> DIALOGMAIN_H<br/>
+<a href="CppIfndef.html">#ifndef</a> DIALOGMAIN_H<br/>
+<a href="CppDefine.html">#define</a> DIALOGMAIN_H<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppStringH.htm">string</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppStringH.html">string</a>&gt;<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppQDialog.htm">QDialog</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppQDialog.html">QDialog</a>&gt;<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppStruct.htm">struct</a></b> <a href="CppQTableWidget.htm">QTableWidget</a>;<br/>
-<b><a href="CppStruct.htm">struct</a></b> <a href="CppQtTicTacToeWidget.htm">QtTicTacToeWidget</a>;<br/>
-<b><a href="CppNamespace.htm">namespace</a></b> Ui {<br/>
-&nbsp;&nbsp;<b><a href="CppClass.htm">class</a></b> DialogMain;<br/>
+<b><a href="CppStruct.html">struct</a></b> <a href="CppQTableWidget.html">QTableWidget</a>;<br/>
+<b><a href="CppStruct.html">struct</a></b> <a href="CppQtTicTacToeWidget.html">QtTicTacToeWidget</a>;<br/>
+<b><a href="CppNamespace.html">namespace</a></b> Ui {<br/>
+&nbsp;&nbsp;<b><a href="CppClass.html">class</a></b> DialogMain;<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppClass.htm">class</a></b> DialogMain : <b><a href="CppPublic.htm">public</a></b> <a href="CppQDialog.htm">QDialog</a><br/>
+<b><a href="CppClass.html">class</a></b> DialogMain : <b><a href="CppPublic.html">public</a></b> <a href="CppQDialog.html">QDialog</a><br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppQ_OBJECT.htm">Q_OBJECT</a><br/>
+&nbsp;&nbsp;<a href="CppQ_OBJECT.html">Q_OBJECT</a><br/>
 <br/>
-<b><a href="CppPublic.htm">public</a></b>:<br/>
-&nbsp;&nbsp;<b><a href="CppExplicit.htm">explicit</a></b> DialogMain(<a href="CppQWidget.htm">QWidget</a> *parent <a href="CppOperatorAssign.htm">=</a> 0);<br/>
+<b><a href="CppPublic.html">public</a></b>:<br/>
+&nbsp;&nbsp;<b><a href="CppExplicit.html">explicit</a></b> DialogMain(<a href="CppQWidget.html">QWidget</a> *parent <a href="CppOperatorAssign.htm">=</a> 0);<br/>
 &nbsp;&nbsp;~DialogMain();<br/>
-<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> Get<a href="CppVersion.htm">Version</a>();<br/>
-<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; Get<a href="CppVersion.htm">Version</a>History();<br/>
+<b><a href="CppStatic.html">static</a></b> <b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a> Get<a href="CppVersion.html">Version</a>();<br/>
+<b><a href="CppStatic.html">static</a></b> <b><a href="CppConst.html">const</a></b> <a href="CppVector.html">std::vector</a>&lt;<a href="CppString.html">std::string</a>&gt; Get<a href="CppVersion.html">Version</a>History();<br/>
 <br/>
-<b><a href="CppProtected.htm">protected</a></b>:<br/>
-&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> changeEvent(<a href="CppQEvent.htm">QEvent</a> *e);<br/>
-<b><a href="CppPrivate.htm">private</a></b>:<br/>
+<b><a href="CppProtected.html">protected</a></b>:<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> changeEvent(<a href="CppQEvent.html">QEvent</a> *e);<br/>
+<b><a href="CppPrivate.html">private</a></b>:<br/>
 &nbsp;&nbsp;<a href="CppUi.htm">Ui</a>::DialogMain *ui;<br/>
-&nbsp;&nbsp;<a href="CppQtTicTacToeWidget.htm">QtTicTacToeWidget</a> * m_<a href="CppTicTacToe.htm">tictactoe</a><a href="CppWidget.htm">widget</a>;<br/>
-&nbsp;&nbsp;<a href="CppQTimer.htm">QTimer</a> * m_<a href="CppTime.htm">time</a>r;<br/>
+&nbsp;&nbsp;<a href="CppQtTicTacToeWidget.html">QtTicTacToeWidget</a> * m_<a href="CppTicTacToe.html">tictactoe</a><a href="CppWidget.html">widget</a>;<br/>
+&nbsp;&nbsp;<a href="CppQTimer.html">QTimer</a> * m_<a href="CppTime.htm">time</a>r;<br/>
 <br/>
-<b><a href="CppPrivate.htm">private</a></b> <b><a href="CppSlots.htm">slots</a></b>:<br/>
-&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> On<a href="CppAbout.htm">About</a>();<br/>
+<b><a href="CppPrivate.html">private</a></b> <b><a href="CppSlots.html">slots</a></b>:<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> On<a href="CppAbout.html">About</a>();<br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> OnPlay();<br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> OnRestart();<br/>
-&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> On<a href="CppState.htm">State</a>Change();<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> On<a href="CppState.html">State</a>Change();<br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> OnTick();<br/>
 };<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">///</a><a href="CppSetReadOnlyTableWidget.htm">SetReadOnlyTableWidget</a> <a href="CppMake.htm">make</a>s the <a href="CppQTableWidget.htm">QTableWidget</a> read-only.<br/>
-<a href="CppComment.htm">///</a>From http://www.richelbilderbeek.nl/Cpp<a href="CppSetReadOnlyTableWidget.htm">SetReadOnlyTableWidget</a>.htm<br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppSetReadOnlyTableWidget.htm">SetReadOnlyTableWidget</a>(<a href="CppQTableWidget.htm">QTableWidget</a> * <b><a href="CppConst.htm">const</a></b> t);<br/>
+<a href="CppComment.htm">///</a><a href="CppSetReadOnlyTableWidget.html">SetReadOnlyTableWidget</a> <a href="CppMake.htm">make</a>s the <a href="CppQTableWidget.html">QTableWidget</a> read-only.<br/>
+<a href="CppComment.htm">///</a>From http://www.richelbilderbeek.nl/Cpp<a href="CppSetReadOnlyTableWidget.html">SetReadOnlyTableWidget</a>.html<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppSetReadOnlyTableWidget.html">SetReadOnlyTableWidget</a>(<a href="CppQTableWidget.html">QTableWidget</a> * <b><a href="CppConst.html">const</a></b> t);<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> DIALOGMAIN_H<br/>
+<a href="CppEndif.html">#endif</a> <a href="CppComment.htm">//</a> DIALOGMAIN_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -395,7 +395,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <table summary="qtdialogmain.cpp" border = "1"><tr><td><code>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">/*</a><br/>
-<a href="ToolTestTicTacToe.htm">TestTicTacToe</a>, <a href="Tools.htm">tool</a> to test the <a href="CppTicTacToe.htm">TicTacToe</a> <b><a href="CppClass.htm">class</a></b><br/>
+<a href="ToolTestTicTacToe.html">TestTicTacToe</a>, <a href="Tools.htm">tool</a> to test the <a href="CppTicTacToe.html">TicTacToe</a> <b><a href="CppClass.html">class</a></b><br/>
 Copyright (C) 2010 Richel Bilderbeek<br/>
 <br/>
 This program is free software: you can redistribute it and/or modify<br/>
@@ -411,50 +411,50 @@ You should have received a copy of the GNU General Public License<br/>
 along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">*/</a><br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="ToolTestTicTacToe.htm">ToolTestTicTacToe</a>.htm<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="ToolTestTicTacToe.html">ToolTestTicTacToe</a>.html<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppCassertH.html">cassert</a>&gt;<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppLexical_cast.htm">lexical_cast</a>.hpp&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/numeric/con<a href="CppVersion.htm">version</a>/cast.hpp&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppBoost.html">boost</a>/<a href="CppLexical_cast.html">lexical_cast</a><a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppBoost.html">boost</a>/numeric/con<a href="CppVersion.html">version</a>/cast<a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppQDesktopWidget.htm">QDesktopWidget</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppQTimer.htm">QTimer</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppQDesktopWidget.html">QDesktopWidget</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppQTimer.html">QTimer</a>&gt;<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppInclude.htm">#include</a> "qtdialog<a href="CppAbout.htm">about</a>.h"<br/>
-<a href="CppInclude.htm">#include</a> "qtdialogmain.h"<br/>
-<a href="CppInclude.htm">#include</a> "../../<a href="CppClass.htm">Classes</a>/<a href="CppQtTicTacToeWidget.htm">CppQtTicTacToeWidget</a>/<a href="CppQtTicTacToeWidget.htm">qttictactoewidget</a>.h"<br/>
-<a href="CppInclude.htm">#include</a> "../../<a href="CppClass.htm">Classes</a>/<a href="CppTicTacToe.htm">CppTicTacToe</a>/<a href="CppTicTacToe.htm">tictactoe</a>.h"<br/>
-<a href="CppInclude.htm">#include</a> "ui_qtdialogmain.h"<br/>
+<a href="CppInclude.html">#include</a> "qtdialog<a href="CppAbout.html">about</a><a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "qtdialogmain<a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "../../<a href="CppClass.html">Classes</a>/<a href="CppQtTicTacToeWidget.html">CppQtTicTacToeWidget</a>/<a href="CppQtTicTacToeWidget.html">qttictactoewidget</a><a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "../../<a href="CppClass.html">Classes</a>/<a href="CppTicTacToe.html">CppTicTacToe</a>/<a href="CppTicTacToe.html">tictactoe</a><a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "ui_qtdialogmain<a href="CppHeaderFile.htm">.h</a>"<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-DialogMain::DialogMain(<a href="CppQWidget.htm">QWidget</a> *parent) :<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQDialog.htm">QDialog</a>(parent, <a href="CppQt.htm">Qt</a>::Window),<br/>
+DialogMain::DialogMain(<a href="CppQWidget.html">QWidget</a> *parent) :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQDialog.html">QDialog</a>(parent, <a href="CppQt.htm">Qt</a>::Window),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;ui(<b><a href="CppNew.htm">new</a></b> <a href="CppUi.htm">Ui</a>::DialogMain),<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;m_<a href="CppTicTacToe.htm">tictactoe</a><a href="CppWidget.htm">widget</a>(<b><a href="CppNew.htm">new</a></b> <a href="CppQtTicTacToeWidget.htm">QtTicTacToeWidget</a>),<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;m_<a href="CppTime.htm">time</a>r(<b><a href="CppNew.htm">new</a></b> <a href="CppQTimer.htm">QTimer</a>( <b><a href="CppThis.htm">this</a></b>))<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_<a href="CppTicTacToe.html">tictactoe</a><a href="CppWidget.html">widget</a>(<b><a href="CppNew.htm">new</a></b> <a href="CppQtTicTacToeWidget.html">QtTicTacToeWidget</a>),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_<a href="CppTime.htm">time</a>r(<b><a href="CppNew.htm">new</a></b> <a href="CppQTimer.html">QTimer</a>( <b><a href="CppThis.htm">this</a></b>))<br/>
 {<br/>
 &nbsp;&nbsp;ui-&gt;setupUi(<b><a href="CppThis.htm">this</a></b>);<br/>
-&nbsp;&nbsp;ui-&gt;layout_top-&gt;addWidget(m_<a href="CppTicTacToe.htm">tictactoe</a><a href="CppWidget.htm">widget</a>);<br/>
+&nbsp;&nbsp;ui-&gt;layout_top-&gt;addWidget(m_<a href="CppTicTacToe.html">tictactoe</a><a href="CppWidget.html">widget</a>);<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppQObject.htm">QObject</a>::connect(ui-&gt;button_about,<a href="CppSignalMacro.htm">SIGNAL</a>(clicked()),<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>,<a href="CppSLOT.htm">SLOT</a>(On<a href="CppAbout.htm">About</a>()));<br/>
-&nbsp;&nbsp;<a href="CppQObject.htm">QObject</a>::connect(ui-&gt;button_<b><a href="CppAuto.htm">auto</a></b>_play,<a href="CppSignalMacro.htm">SIGNAL</a>(clicked()),<br/>
+&nbsp;&nbsp;<a href="CppQObject.html">QObject</a>::connect(ui-&gt;button_about,<a href="CppSignalMacro.html">SIGNAL</a>(clicked()),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>,<a href="CppSLOT.htm">SLOT</a>(On<a href="CppAbout.html">About</a>()));<br/>
+&nbsp;&nbsp;<a href="CppQObject.html">QObject</a>::connect(ui-&gt;button_<b><a href="CppAuto.htm">auto</a></b>_play,<a href="CppSignalMacro.html">SIGNAL</a>(clicked()),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>,<a href="CppSLOT.htm">SLOT</a>(OnPlay()));<br/>
-&nbsp;&nbsp;<a href="CppQObject.htm">QObject</a>::connect(ui-&gt;button_restart,<a href="CppSignalMacro.htm">SIGNAL</a>(clicked()),<br/>
+&nbsp;&nbsp;<a href="CppQObject.html">QObject</a>::connect(ui-&gt;button_restart,<a href="CppSignalMacro.html">SIGNAL</a>(clicked()),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>,<a href="CppSLOT.htm">SLOT</a>(OnRestart()));<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppQObject.htm">QObject</a>::connect(m_<a href="CppTicTacToe.htm">tictactoe</a><a href="CppWidget.htm">widget</a>,<a href="CppSignalMacro.htm">SIGNAL</a>(stateChanged()),<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>,<a href="CppSLOT.htm">SLOT</a>(On<a href="CppState.htm">State</a>Change()));<br/>
-&nbsp;&nbsp;<a href="CppQObject.htm">QObject</a>::connect(m_<a href="CppTicTacToe.htm">tictactoe</a><a href="CppWidget.htm">widget</a>,<a href="CppSignalMacro.htm">SIGNAL</a>(hasWinner()),<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>,<a href="CppSLOT.htm">SLOT</a>(On<a href="CppState.htm">State</a>Change()));<br/>
+&nbsp;&nbsp;<a href="CppQObject.html">QObject</a>::connect(m_<a href="CppTicTacToe.html">tictactoe</a><a href="CppWidget.html">widget</a>,<a href="CppSignalMacro.html">SIGNAL</a>(stateChanged()),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>,<a href="CppSLOT.htm">SLOT</a>(On<a href="CppState.html">State</a>Change()));<br/>
+&nbsp;&nbsp;<a href="CppQObject.html">QObject</a>::connect(m_<a href="CppTicTacToe.html">tictactoe</a><a href="CppWidget.html">widget</a>,<a href="CppSignalMacro.html">SIGNAL</a>(hasWinner()),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>,<a href="CppSLOT.htm">SLOT</a>(On<a href="CppState.html">State</a>Change()));<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppQObject.htm">QObject</a>::connect(<b><a href="CppThis.htm">this</a></b>-&gt;m_<a href="CppTime.htm">time</a>r,<a href="CppSignalMacro.htm">SIGNAL</a>(<a href="CppTime.htm">time</a>out()),<br/>
+&nbsp;&nbsp;<a href="CppQObject.html">QObject</a>::connect(<b><a href="CppThis.htm">this</a></b>-&gt;m_<a href="CppTime.htm">time</a>r,<a href="CppSignalMacro.html">SIGNAL</a>(<a href="CppTime.htm">time</a>out()),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>,<a href="CppSLOT.htm">SLOT</a>(OnTick()));<br/>
 <br/>
 &nbsp;&nbsp;m_<a href="CppTime.htm">time</a>r-&gt;setInterval(50);<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Put the dialog in the screen center<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppQRect.htm">QRect</a> screen <a href="CppOperatorAssign.htm">=</a> <a href="CppQApplication.htm">QApplication</a>::desktop()-&gt;screenGeometry();<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppQRect.html">QRect</a> screen <a href="CppOperatorAssign.htm">=</a> <a href="CppQApplication.html">QApplication</a>::desktop()-&gt;screenGeometry();<br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;move( screen.center() <a href="CppOperatorMinus.htm">-</a> <b><a href="CppThis.htm">this</a></b>-&gt;rect().center() );<br/>
 <br/>
 <br/>
@@ -462,114 +462,114 @@ DialogMain::DialogMain(<a href="CppQWidget.htm">QWidget</a> *parent) :<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Check empty board state<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppTicTacToe.htm">TicTacToe</a> t;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> s <a href="CppOperatorAssign.htm">=</a> t.<a href="CppGetSum.htm">GetSum</a>marized<a href="CppState.htm">State</a>();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppTicTacToe.htm">TicTacToe</a> u(s);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(u <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> s);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppTicTacToe.html">TicTacToe</a> t;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> s <a href="CppOperatorAssign.htm">=</a> t.<a href="CppGetSum.html">GetSum</a>marized<a href="CppState.html">State</a>();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppTicTacToe.html">TicTacToe</a> u(s);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(u <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> s);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Check one-move states<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> i=0; i<a href="CppOperatorNotEqual.htm">!=</a>9; <a href="CppOperatorPlus.htm">+</a>+i)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppTicTacToe.htm">TicTacToe</a> t;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppTicTacToe.html">TicTacToe</a> t;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;t.DoMove(i/3,i%3);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> s <a href="CppOperatorAssign.htm">=</a> t.<a href="CppGetSum.htm">GetSum</a>marized<a href="CppState.htm">State</a>();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppTicTacToe.htm">TicTacToe</a> u(s);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(u <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> s);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> s <a href="CppOperatorAssign.htm">=</a> t.<a href="CppGetSum.html">GetSum</a>marized<a href="CppState.html">State</a>();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppTicTacToe.html">TicTacToe</a> u(s);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(u <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> s);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Check two-move states<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> i=0; i<a href="CppOperatorNotEqual.htm">!=</a>8; <a href="CppOperatorPlus.htm">+</a>+i)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppTicTacToe.htm">TicTacToe</a> t;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppTicTacToe.html">TicTacToe</a> t;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;t.DoMove(i/3,i%3);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;t.DoMove(i/3,(i+1)%3);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> s <a href="CppOperatorAssign.htm">=</a> t.<a href="CppGetSum.htm">GetSum</a>marized<a href="CppState.htm">State</a>();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppTicTacToe.htm">TicTacToe</a> u(s);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(u <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> s);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> s <a href="CppOperatorAssign.htm">=</a> t.<a href="CppGetSum.html">GetSum</a>marized<a href="CppState.html">State</a>();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppTicTacToe.html">TicTacToe</a> u(s);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(u <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> s);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Check draw detection<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppTicTacToe.htm">TicTacToe</a> t;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(t.GetCurrentPlayer() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <a href="CppTicTacToe.htm">TicTacToe</a>::player1);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(t.GetCurrentTurn()&nbsp;&nbsp; <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 0);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppTicTacToe.html">TicTacToe</a> t;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(t.GetCurrentPlayer() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <a href="CppTicTacToe.html">TicTacToe</a>::player1);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(t.GetCurrentTurn()&nbsp;&nbsp; <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 0);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;t.DoMove(1,1);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(t.GetCurrentPlayer() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <a href="CppTicTacToe.htm">TicTacToe</a>::player2);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(t.GetCurrentTurn()&nbsp;&nbsp; <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 1);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(t.GetCurrentPlayer() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <a href="CppTicTacToe.html">TicTacToe</a>::player2);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(t.GetCurrentTurn()&nbsp;&nbsp; <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 1);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;t.DoMove(0,0);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(t.GetCurrentPlayer() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <a href="CppTicTacToe.htm">TicTacToe</a>::player1);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(t.GetCurrentTurn()&nbsp;&nbsp; <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 2);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(t.GetCurrentPlayer() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <a href="CppTicTacToe.html">TicTacToe</a>::player1);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(t.GetCurrentTurn()&nbsp;&nbsp; <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 2);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;t.DoMove(1,2);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(t.GetCurrentPlayer() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <a href="CppTicTacToe.htm">TicTacToe</a>::player2);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(t.GetCurrentTurn()&nbsp;&nbsp; <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 3);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(t.GetCurrentPlayer() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <a href="CppTicTacToe.html">TicTacToe</a>::player2);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(t.GetCurrentTurn()&nbsp;&nbsp; <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 3);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;t.DoMove(1,0);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(t.GetCurrentPlayer() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <a href="CppTicTacToe.htm">TicTacToe</a>::player1);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(t.GetCurrentTurn()&nbsp;&nbsp; <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 4);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(t.GetCurrentPlayer() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <a href="CppTicTacToe.html">TicTacToe</a>::player1);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(t.GetCurrentTurn()&nbsp;&nbsp; <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 4);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;t.DoMove(2,0);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(t.GetCurrentPlayer() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <a href="CppTicTacToe.htm">TicTacToe</a>::player2);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(t.GetCurrentTurn()&nbsp;&nbsp; <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 5);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(t.GetCurrentPlayer() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <a href="CppTicTacToe.html">TicTacToe</a>::player2);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(t.GetCurrentTurn()&nbsp;&nbsp; <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 5);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;t.DoMove(0,2);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(t.GetCurrentPlayer() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <a href="CppTicTacToe.htm">TicTacToe</a>::player1);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(t.GetCurrentTurn()&nbsp;&nbsp; <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 6);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(t.GetCurrentPlayer() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <a href="CppTicTacToe.html">TicTacToe</a>::player1);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(t.GetCurrentTurn()&nbsp;&nbsp; <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 6);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;t.DoMove(0,1);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(t.GetCurrentPlayer() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <a href="CppTicTacToe.htm">TicTacToe</a>::player2);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(t.GetCurrentTurn()&nbsp;&nbsp; <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 7);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(t.GetCurrentPlayer() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <a href="CppTicTacToe.html">TicTacToe</a>::player2);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(t.GetCurrentTurn()&nbsp;&nbsp; <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 7);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;t.DoMove(2,1);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(t.GetCurrentPlayer() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <a href="CppTicTacToe.htm">TicTacToe</a>::player1);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(t.GetCurrentTurn()&nbsp;&nbsp; <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 8);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(t.GetCurrentPlayer() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <a href="CppTicTacToe.html">TicTacToe</a>::player1);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(t.GetCurrentTurn()&nbsp;&nbsp; <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 8);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;t.DoMove(2,2);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(t.GetCurrentPlayer() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <a href="CppTicTacToe.htm">TicTacToe</a>::player2);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(t.GetCurrentTurn()&nbsp;&nbsp; <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 9);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(t.GetWinner() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <a href="CppTicTacToe.htm">TicTacToe</a>::draw);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(t.GetCurrentPlayer() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <a href="CppTicTacToe.html">TicTacToe</a>::player2);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(t.GetCurrentTurn()&nbsp;&nbsp; <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 9);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(t.GetWinner() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <a href="CppTicTacToe.html">TicTacToe</a>::draw);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Check player1 wins horizontally detection<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppTicTacToe.htm">TicTacToe</a> t;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(t.GetWinner() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <a href="CppTicTacToe.htm">TicTacToe</a>::no_winner);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppTicTacToe.html">TicTacToe</a> t;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(t.GetWinner() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <a href="CppTicTacToe.html">TicTacToe</a>::no_winner);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;t.DoMove(0,0);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(t.GetWinner() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <a href="CppTicTacToe.htm">TicTacToe</a>::no_winner);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(t.GetWinner() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <a href="CppTicTacToe.html">TicTacToe</a>::no_winner);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;t.DoMove(1,0);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(t.GetWinner() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <a href="CppTicTacToe.htm">TicTacToe</a>::no_winner);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(t.GetWinner() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <a href="CppTicTacToe.html">TicTacToe</a>::no_winner);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;t.DoMove(0,1);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(t.GetWinner() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <a href="CppTicTacToe.htm">TicTacToe</a>::no_winner);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(t.GetWinner() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <a href="CppTicTacToe.html">TicTacToe</a>::no_winner);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;t.DoMove(1,1);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(t.GetWinner() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <a href="CppTicTacToe.htm">TicTacToe</a>::no_winner);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(t.GetWinner() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <a href="CppTicTacToe.html">TicTacToe</a>::no_winner);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;t.DoMove(0,2);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(t.GetWinner() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <a href="CppTicTacToe.htm">TicTacToe</a>::player1);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(t.GetWinner() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <a href="CppTicTacToe.html">TicTacToe</a>::player1);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Check player2 wins vertically detection<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppTicTacToe.htm">TicTacToe</a> t;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(t.GetWinner() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <a href="CppTicTacToe.htm">TicTacToe</a>::no_winner);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppTicTacToe.html">TicTacToe</a> t;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(t.GetWinner() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <a href="CppTicTacToe.html">TicTacToe</a>::no_winner);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;t.DoMove(0,0);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(t.GetWinner() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <a href="CppTicTacToe.htm">TicTacToe</a>::no_winner);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(t.GetWinner() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <a href="CppTicTacToe.html">TicTacToe</a>::no_winner);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;t.DoMove(1,0);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(t.GetWinner() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <a href="CppTicTacToe.htm">TicTacToe</a>::no_winner);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(t.GetWinner() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <a href="CppTicTacToe.html">TicTacToe</a>::no_winner);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;t.DoMove(0,1);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(t.GetWinner() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <a href="CppTicTacToe.htm">TicTacToe</a>::no_winner);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(t.GetWinner() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <a href="CppTicTacToe.html">TicTacToe</a>::no_winner);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;t.DoMove(1,1);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(t.GetWinner() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <a href="CppTicTacToe.htm">TicTacToe</a>::no_winner);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(t.GetWinner() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <a href="CppTicTacToe.html">TicTacToe</a>::no_winner);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;t.DoMove(2,2);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(t.GetWinner() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <a href="CppTicTacToe.htm">TicTacToe</a>::no_winner);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(t.GetWinner() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <a href="CppTicTacToe.html">TicTacToe</a>::no_winner);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;t.DoMove(1,2);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(t.GetWinner() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <a href="CppTicTacToe.htm">TicTacToe</a>::player2);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(t.GetWinner() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <a href="CppTicTacToe.html">TicTacToe</a>::player2);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Check player1 wins diagonally detection<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppTicTacToe.htm">TicTacToe</a> t;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(t.GetWinner() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <a href="CppTicTacToe.htm">TicTacToe</a>::no_winner);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppTicTacToe.html">TicTacToe</a> t;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(t.GetWinner() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <a href="CppTicTacToe.html">TicTacToe</a>::no_winner);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;t.DoMove(0,0);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(t.GetWinner() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <a href="CppTicTacToe.htm">TicTacToe</a>::no_winner);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(t.GetWinner() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <a href="CppTicTacToe.html">TicTacToe</a>::no_winner);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;t.DoMove(1,0);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(t.GetWinner() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <a href="CppTicTacToe.htm">TicTacToe</a>::no_winner);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(t.GetWinner() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <a href="CppTicTacToe.html">TicTacToe</a>::no_winner);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;t.DoMove(1,1);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(t.GetWinner() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <a href="CppTicTacToe.htm">TicTacToe</a>::no_winner);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(t.GetWinner() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <a href="CppTicTacToe.html">TicTacToe</a>::no_winner);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;t.DoMove(1,2);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(t.GetWinner() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <a href="CppTicTacToe.htm">TicTacToe</a>::no_winner);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(t.GetWinner() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <a href="CppTicTacToe.html">TicTacToe</a>::no_winner);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;t.DoMove(2,2);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(t.GetWinner() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <a href="CppTicTacToe.htm">TicTacToe</a>::player1);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(t.GetWinner() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <a href="CppTicTacToe.html">TicTacToe</a>::player1);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Check no-winner detection<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppTicTacToe.htm">TicTacToe</a> t;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppTicTacToe.html">TicTacToe</a> t;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;t.DoMove(1,1);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;t.DoMove(0,0);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;t.DoMove(1,2);<br/>
@@ -579,14 +579,14 @@ DialogMain::DialogMain(<a href="CppQWidget.htm">QWidget</a> *parent) :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;t.DoMove(0,1);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;t.DoMove(2,1);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>t.DoMove(2,2); <a href="CppComment.htm">//</a>Final move to <a href="CppMake.htm">make</a> a draw<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(t.GetWinner() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <a href="CppTicTacToe.htm">TicTacToe</a>::no_winner);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(t.GetWinner() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <a href="CppTicTacToe.html">TicTacToe</a>::no_winner);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Check CanDoMove<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> i=0; i<a href="CppOperatorNotEqual.htm">!=</a>9; <a href="CppOperatorPlus.htm">+</a>+i)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppTicTacToe.htm">TicTacToe</a> t;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppTicTacToe.html">TicTacToe</a> t;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;t.DoMove(i/3,i%3);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(t.CanDoMove(i/3,i%3)<a href="CppOperatorEqual.htm">==</a><b><a href="CppFalse.htm">false</a></b>);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(t.CanDoMove(i/3,i%3)<a href="CppOperatorEqual.htm">==</a><b><a href="CppFalse.html">false</a></b>);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Check all states<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>59049 <a href="CppOperatorAssign.htm">=</a> 3^10<br/>
@@ -594,10 +594,10 @@ DialogMain::DialogMain(<a href="CppQWidget.htm">QWidget</a> *parent) :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppTry.htm">try</a></b><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppTicTacToe.htm">TicTacToe</a> t(i);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(t.<a href="CppGetSum.htm">GetSum</a>marized<a href="CppState.htm">State</a>() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> i);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppTicTacToe.html">TicTacToe</a> t(i);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(t.<a href="CppGetSum.html">GetSum</a>marized<a href="CppState.html">State</a>() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> i);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCatch.htm">catch</a></b> (<a href="CppStdException.htm">std::exception</a>&amp;)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCatch.html">catch</a></b> (<a href="CppStdException.html">std::exception</a>&amp;)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>No problem<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
@@ -607,41 +607,41 @@ DialogMain::DialogMain(<a href="CppQWidget.htm">QWidget</a> *parent) :<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 DialogMain::~DialogMain()<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppDelete.htm">delete</a></b> ui;<br/>
+&nbsp;&nbsp;<b><a href="CppDelete.html">delete</a></b> ui;<br/>
 &nbsp;&nbsp;m_<a href="CppTime.htm">time</a>r-&gt;stop();<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppVoid.htm">void</a></b> DialogMain::changeEvent(<a href="CppQEvent.htm">QEvent</a> *e)<br/>
+<b><a href="CppVoid.htm">void</a></b> DialogMain::changeEvent(<a href="CppQEvent.html">QEvent</a> *e)<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppQDialog.htm">QDialog</a>::changeEvent(e);<br/>
-&nbsp;&nbsp;<b><a href="CppSwitch.htm">switch</a></b> (e-&gt;type()) {<br/>
-&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> <a href="CppQEvent.htm">QEvent</a>::LanguageChange:<br/>
+&nbsp;&nbsp;<a href="CppQDialog.html">QDialog</a>::changeEvent(e);<br/>
+&nbsp;&nbsp;<b><a href="CppSwitch.html">switch</a></b> (e-&gt;type()) {<br/>
+&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> <a href="CppQEvent.html">QEvent</a>::LanguageChange:<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;ui-&gt;retranslateUi(<b><a href="CppThis.htm">this</a></b>);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppBreak.htm">break</a></b>;<br/>
-&nbsp;&nbsp;<b><a href="CppDefault.htm">default</a></b>:<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppBreak.htm">break</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppBreak.html">break</a></b>;<br/>
+&nbsp;&nbsp;<b><a href="CppDefault.html">default</a></b>:<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppBreak.html">break</a></b>;<br/>
 &nbsp;&nbsp;}<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> DialogMain::Get<a href="CppVersion.htm">Version</a>()<br/>
+<b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a> DialogMain::Get<a href="CppVersion.html">Version</a>()<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> "1.2";<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> "1.2";<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; DialogMain::Get<a href="CppVersion.htm">Version</a>History()<br/>
+<b><a href="CppConst.html">const</a></b> <a href="CppVector.html">std::vector</a>&lt;<a href="CppString.html">std::string</a>&gt; DialogMain::Get<a href="CppVersion.html">Version</a>History()<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v;<br/>
-&nbsp;&nbsp;v.push_back("YYYY-MM-DD: <a href="CppVersion.htm">version</a> X.Y: [description]");<br/>
-&nbsp;&nbsp;v.push_back("2010-09-17: <a href="CppVersion.htm">version</a> 1.0: initial <a href="CppVersion.htm">version</a>, use of QTable as board");<br/>
-&nbsp;&nbsp;v.push_back("2010-09-22: <a href="CppVersion.htm">version</a> 1.1: use of <a href="CppTicTacToe.htm">TicTacToe</a><a href="CppWidget.htm">Widget</a>");<br/>
-&nbsp;&nbsp;v.push_back("2011-01-06: <a href="CppVersion.htm">version</a> 1.2: merge with <a href="CppWt.htm">Wt</a> <a href="CppApplication.htm">application</a>");<br/>
-&nbsp;&nbsp;v.push_back("2011-01-06: <a href="CppVersion.htm">version</a> 1.3: moved <a href="CppTicTacToe.htm">TicTacToe</a> and <a href="CppQtTicTacToeWidget.htm">QtTicTacToeWidget</a> to different folders");<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
+&nbsp;&nbsp;<a href="CppVector.html">std::vector</a>&lt;<a href="CppString.html">std::string</a>&gt; v;<br/>
+&nbsp;&nbsp;v.push_back("YYYY-MM-DD: <a href="CppVersion.html">version</a> X.Y: [description]");<br/>
+&nbsp;&nbsp;v.push_back("2010-09-17: <a href="CppVersion.html">version</a> 1.0: initial <a href="CppVersion.html">version</a>, use of QTable as board");<br/>
+&nbsp;&nbsp;v.push_back("2010-09-22: <a href="CppVersion.html">version</a> 1.1: use of <a href="CppTicTacToe.html">TicTacToe</a><a href="CppWidget.html">Widget</a>");<br/>
+&nbsp;&nbsp;v.push_back("2011-01-06: <a href="CppVersion.html">version</a> 1.2: merge with <a href="CppWt.htm">Wt</a> <a href="CppApplication.html">application</a>");<br/>
+&nbsp;&nbsp;v.push_back("2011-01-06: <a href="CppVersion.html">version</a> 1.3: moved <a href="CppTicTacToe.html">TicTacToe</a> and <a href="CppQtTicTacToeWidget.html">QtTicTacToeWidget</a> to different folders");<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> v;<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppVoid.htm">void</a></b> DialogMain::On<a href="CppAbout.htm">About</a>()<br/>
+<b><a href="CppVoid.htm">void</a></b> DialogMain::On<a href="CppAbout.html">About</a>()<br/>
 {<br/>
-&nbsp;&nbsp;Dialog<a href="CppAbout.htm">About</a> d;<br/>
+&nbsp;&nbsp;Dialog<a href="CppAbout.html">About</a> d;<br/>
 &nbsp;&nbsp;d.exec();<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
@@ -661,66 +661,66 @@ DialogMain::~DialogMain()<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <b><a href="CppVoid.htm">void</a></b> DialogMain::OnRestart()<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;m_<a href="CppTicTacToe.htm">tictactoe</a><a href="CppWidget.htm">widget</a>-&gt;Restart();<br/>
+&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;m_<a href="CppTicTacToe.html">tictactoe</a><a href="CppWidget.html">widget</a>-&gt;Restart();<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <b><a href="CppVoid.htm">void</a></b> DialogMain::OnTick()<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (m_<a href="CppTicTacToe.htm">tictactoe</a><a href="CppWidget.htm">widget</a>-&gt;Get<a href="CppTicTacToe.htm">TicTacToe</a>()-&gt;GetWinner() <a href="CppOperatorNotEqual.htm">!=</a> <a href="CppTicTacToe.htm">TicTacToe</a>::no_winner)<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (m_<a href="CppTicTacToe.html">tictactoe</a><a href="CppWidget.html">widget</a>-&gt;Get<a href="CppTicTacToe.html">TicTacToe</a>()-&gt;GetWinner() <a href="CppOperatorNotEqual.htm">!=</a> <a href="CppTicTacToe.html">TicTacToe</a>::no_winner)<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;OnRestart();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b>;<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppQRect.htm">QRect</a> r <a href="CppOperatorAssign.htm">=</a> m_<a href="CppTicTacToe.htm">tictactoe</a><a href="CppWidget.htm">widget</a>-&gt;<a href="CppGeometry.htm">geometry</a>();<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x <a href="CppOperatorAssign.htm">=</a> r.left() <a href="CppOperatorPlus.htm">+</a> (<a href="CppRand.htm">std::rand</a>() <a href="CppOperatorModulus.htm">%</a> r.width());<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> y <a href="CppOperatorAssign.htm">=</a> r.top()&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> (<a href="CppRand.htm">std::rand</a>() <a href="CppOperatorModulus.htm">%</a> r.height());<br/>
-&nbsp;&nbsp;<a href="CppQPoint.htm">QPoint</a> pos(x,y);<br/>
-&nbsp;&nbsp;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppQMouseEvent.htm">QMouseEvent</a>&gt; e(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppNew.htm">new</a></b> <a href="CppQMouseEvent.htm">QMouseEvent</a>(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQEvent.htm">QEvent</a>::MouseButtonPress,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppQRect.html">QRect</a> r <a href="CppOperatorAssign.htm">=</a> m_<a href="CppTicTacToe.html">tictactoe</a><a href="CppWidget.html">widget</a>-&gt;<a href="CppGeometry.html">geometry</a>();<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> x <a href="CppOperatorAssign.htm">=</a> r.left() <a href="CppOperatorPlus.htm">+</a> (<a href="CppRand.html">std::rand</a>() <a href="CppOperatorModulus.htm">%</a> r.width());<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> y <a href="CppOperatorAssign.htm">=</a> r.top()&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> (<a href="CppRand.html">std::rand</a>() <a href="CppOperatorModulus.htm">%</a> r<a href="CppHeaderFile.htm">.h</a>eight());<br/>
+&nbsp;&nbsp;<a href="CppQPoint.html">QPoint</a> pos(x,y);<br/>
+&nbsp;&nbsp;<a href="CppBoostShared_ptr.html">boost::shared_ptr</a>&lt;<a href="CppQMouseEvent.html">QMouseEvent</a>&gt; e(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppNew.htm">new</a></b> <a href="CppQMouseEvent.html">QMouseEvent</a>(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQEvent.html">QEvent</a>::MouseButtonPress,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pos,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQt.htm">Qt</a>::LeftButton,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQt.htm">Qt</a>::LeftButton,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQt.htm">Qt</a>::NoModifier));<br/>
-&nbsp;&nbsp;m_<a href="CppTicTacToe.htm">tictactoe</a><a href="CppWidget.htm">widget</a>-&gt;mousePressEvent(e.get());<br/>
+&nbsp;&nbsp;m_<a href="CppTicTacToe.html">tictactoe</a><a href="CppWidget.html">widget</a>-&gt;mousePressEvent(e.get());<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppVoid.htm">void</a></b> DialogMain::On<a href="CppState.htm">State</a>Change()<br/>
+<b><a href="CppVoid.htm">void</a></b> DialogMain::On<a href="CppState.html">State</a>Change()<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Give feedback<br/>
 &nbsp;&nbsp;ui-&gt;text-&gt;clear();<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Determine game state<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppString.htm">std::string</a> s <a href="CppOperatorAssign.htm">=</a> "Winner: ";<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppSwitch.htm">switch</a></b> (m_<a href="CppTicTacToe.htm">tictactoe</a><a href="CppWidget.htm">widget</a>-&gt;Get<a href="CppTicTacToe.htm">TicTacToe</a>()-&gt;GetWinner())<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppString.html">std::string</a> s <a href="CppOperatorAssign.htm">=</a> "Winner: ";<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppSwitch.html">switch</a></b> (m_<a href="CppTicTacToe.html">tictactoe</a><a href="CppWidget.html">widget</a>-&gt;Get<a href="CppTicTacToe.html">TicTacToe</a>()-&gt;GetWinner())<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> <a href="CppTicTacToe.htm">TicTacToe</a>::no_winner:<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> <a href="CppTicTacToe.html">TicTacToe</a>::no_winner:<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;s<a href="CppOperatorPlusAssign.htm">+=</a>"none";<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppBreak.htm">break</a></b>;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> <a href="CppTicTacToe.htm">TicTacToe</a>::player1: s<a href="CppOperatorPlusAssign.htm">+=</a>"player 1 ('X')";<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppBreak.htm">break</a></b>;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> <a href="CppTicTacToe.htm">TicTacToe</a>::player2:<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppBreak.html">break</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> <a href="CppTicTacToe.html">TicTacToe</a>::player1: s<a href="CppOperatorPlusAssign.htm">+=</a>"player 1 ('X')";<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppBreak.html">break</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> <a href="CppTicTacToe.html">TicTacToe</a>::player2:<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;s<a href="CppOperatorPlusAssign.htm">+=</a>"player 2 ('O')";<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppBreak.htm">break</a></b>;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> <a href="CppTicTacToe.htm">TicTacToe</a>::draw:<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppBreak.html">break</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> <a href="CppTicTacToe.html">TicTacToe</a>::draw:<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;s<a href="CppOperatorPlusAssign.htm">+=</a>"draw";<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppBreak.htm">break</a></b>;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppDefault.htm">default</a></b>: <a href="CppAssert.htm">assert</a>(!"Should not get here");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppBreak.html">break</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppDefault.html">default</a></b>: <a href="CppAssert.html">assert</a>(!"Should not get here");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;ui-&gt;text-&gt;appendPlainText(s.c_str());<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppString.htm">std::string</a> s <a href="CppOperatorAssign.htm">=</a> "Current active player: ";<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppSwitch.htm">switch</a></b> (m_<a href="CppTicTacToe.htm">tictactoe</a><a href="CppWidget.htm">widget</a>-&gt;Get<a href="CppTicTacToe.htm">TicTacToe</a>()-&gt;GetCurrentPlayer())<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppString.html">std::string</a> s <a href="CppOperatorAssign.htm">=</a> "Current active player: ";<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppSwitch.html">switch</a></b> (m_<a href="CppTicTacToe.html">tictactoe</a><a href="CppWidget.html">widget</a>-&gt;Get<a href="CppTicTacToe.html">TicTacToe</a>()-&gt;GetCurrentPlayer())<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> <a href="CppTicTacToe.htm">TicTacToe</a>::player1: s<a href="CppOperatorPlusAssign.htm">+=</a>"player 1 ('X')"; <b><a href="CppBreak.htm">break</a></b>;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> <a href="CppTicTacToe.htm">TicTacToe</a>::player2: s<a href="CppOperatorPlusAssign.htm">+=</a>"player 2 ('O')"; <b><a href="CppBreak.htm">break</a></b>;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppDefault.htm">default</a></b>: <a href="CppAssert.htm">assert</a>(!"Should not get here");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> <a href="CppTicTacToe.html">TicTacToe</a>::player1: s<a href="CppOperatorPlusAssign.htm">+=</a>"player 1 ('X')"; <b><a href="CppBreak.html">break</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> <a href="CppTicTacToe.html">TicTacToe</a>::player2: s<a href="CppOperatorPlusAssign.htm">+=</a>"player 2 ('O')"; <b><a href="CppBreak.html">break</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppDefault.html">default</a></b>: <a href="CppAssert.html">assert</a>(!"Should not get here");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;ui-&gt;text-&gt;appendPlainText(s.c_str());<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;ui-&gt;text-&gt;appendPlainText("Summarized state: "<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> <a href="CppQString.htm">QString</a>::number(m_<a href="CppTicTacToe.htm">tictactoe</a><a href="CppWidget.htm">widget</a>-&gt;Get<a href="CppTicTacToe.htm">TicTacToe</a>()-&gt;<a href="CppGetSum.htm">GetSum</a>marized<a href="CppState.htm">State</a>()));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> <a href="CppQString.html">QString</a>::number(m_<a href="CppTicTacToe.html">tictactoe</a><a href="CppWidget.html">widget</a>-&gt;Get<a href="CppTicTacToe.html">TicTacToe</a>()-&gt;<a href="CppGetSum.html">GetSum</a>marized<a href="CppState.html">State</a>()));<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 </code></td></tr></table>
@@ -736,7 +736,7 @@ DialogMain::~DialogMain()<br/>
 <table summary="qtdialogwhatsnew.h" border = "1"><tr><td><code>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">/*</a><br/>
-<a href="ToolTestTicTacToe.htm">TestTicTacToe</a>, <a href="Tools.htm">tool</a> to test the <a href="CppTicTacToe.htm">TicTacToe</a> <b><a href="CppClass.htm">class</a></b><br/>
+<a href="ToolTestTicTacToe.html">TestTicTacToe</a>, <a href="Tools.htm">tool</a> to test the <a href="CppTicTacToe.html">TicTacToe</a> <b><a href="CppClass.html">class</a></b><br/>
 Copyright (C) 2010 Richel Bilderbeek<br/>
 <br/>
 This program is free software: you can redistribute it and/or modify<br/>
@@ -752,33 +752,33 @@ You should have received a copy of the GNU General Public License<br/>
 along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">*/</a><br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="ToolTestTicTacToe.htm">ToolTestTicTacToe</a>.htm<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="ToolTestTicTacToe.html">ToolTestTicTacToe</a>.html<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppIfndef.htm">#ifndef</a> DIALOGWHATSNEW_H<br/>
-<a href="CppDefine.htm">#define</a> DIALOGWHATSNEW_H<br/>
+<a href="CppIfndef.html">#ifndef</a> DIALOGWHATSNEW_H<br/>
+<a href="CppDefine.html">#define</a> DIALOGWHATSNEW_H<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppQDialog.htm">QDialog</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppQDialog.html">QDialog</a>&gt;<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppNamespace.htm">namespace</a></b> Ui {<br/>
-&nbsp;&nbsp;<b><a href="CppClass.htm">class</a></b> DialogWhatsNew;<br/>
+<b><a href="CppNamespace.html">namespace</a></b> Ui {<br/>
+&nbsp;&nbsp;<b><a href="CppClass.html">class</a></b> DialogWhatsNew;<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppClass.htm">class</a></b> DialogWhatsNew : <b><a href="CppPublic.htm">public</a></b> <a href="CppQDialog.htm">QDialog</a><br/>
+<b><a href="CppClass.html">class</a></b> DialogWhatsNew : <b><a href="CppPublic.html">public</a></b> <a href="CppQDialog.html">QDialog</a><br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppQ_OBJECT.htm">Q_OBJECT</a><br/>
+&nbsp;&nbsp;<a href="CppQ_OBJECT.html">Q_OBJECT</a><br/>
 <br/>
-<b><a href="CppPublic.htm">public</a></b>:<br/>
-&nbsp;&nbsp;<b><a href="CppExplicit.htm">explicit</a></b> DialogWhatsNew(<a href="CppQWidget.htm">QWidget</a> *parent <a href="CppOperatorAssign.htm">=</a> 0);<br/>
+<b><a href="CppPublic.html">public</a></b>:<br/>
+&nbsp;&nbsp;<b><a href="CppExplicit.html">explicit</a></b> DialogWhatsNew(<a href="CppQWidget.html">QWidget</a> *parent <a href="CppOperatorAssign.htm">=</a> 0);<br/>
 &nbsp;&nbsp;~DialogWhatsNew();<br/>
 <br/>
-<b><a href="CppProtected.htm">protected</a></b>:<br/>
-&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> changeEvent(<a href="CppQEvent.htm">QEvent</a> *e);<br/>
+<b><a href="CppProtected.html">protected</a></b>:<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> changeEvent(<a href="CppQEvent.html">QEvent</a> *e);<br/>
 <br/>
-<b><a href="CppPrivate.htm">private</a></b>:<br/>
+<b><a href="CppPrivate.html">private</a></b>:<br/>
 &nbsp;&nbsp;<a href="CppUi.htm">Ui</a>::DialogWhatsNew *ui;<br/>
 };<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> DIALOGWHATSNEW_H<br/>
+<a href="CppEndif.html">#endif</a> <a href="CppComment.htm">//</a> DIALOGWHATSNEW_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -792,7 +792,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <table summary="qtdialogwhatsnew.cpp" border = "1"><tr><td><code>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">/*</a><br/>
-<a href="ToolTestTicTacToe.htm">TestTicTacToe</a>, <a href="Tools.htm">tool</a> to test the <a href="CppTicTacToe.htm">TicTacToe</a> <b><a href="CppClass.htm">class</a></b><br/>
+<a href="ToolTestTicTacToe.html">TestTicTacToe</a>, <a href="Tools.htm">tool</a> to test the <a href="CppTicTacToe.html">TicTacToe</a> <b><a href="CppClass.html">class</a></b><br/>
 Copyright (C) 2010 Richel Bilderbeek<br/>
 <br/>
 This program is free software: you can redistribute it and/or modify<br/>
@@ -808,25 +808,25 @@ You should have received a copy of the GNU General Public License<br/>
 along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">*/</a><br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="ToolTestTicTacToe.htm">ToolTestTicTacToe</a>.htm<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="ToolTestTicTacToe.html">ToolTestTicTacToe</a>.html<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppStringH.htm">string</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppStringH.html">string</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppVectorH.html">vector</a>&gt;<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppBOOST_FOREACH.htm">foreach</a>.hpp&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppBoost.html">boost</a>/<a href="CppBOOST_FOREACH.html">foreach</a><a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppInclude.htm">#include</a> "qtdialogmain.h"<br/>
-<a href="CppInclude.htm">#include</a> "qtdialogwhatsnew.h"<br/>
-<a href="CppInclude.htm">#include</a> "ui_qtdialogwhatsnew.h"<br/>
+<a href="CppInclude.html">#include</a> "qtdialogmain<a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "qtdialogwhatsnew<a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "ui_qtdialogwhatsnew<a href="CppHeaderFile.htm">.h</a>"<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-DialogWhatsNew::DialogWhatsNew(<a href="CppQWidget.htm">QWidget</a> *parent) :<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQDialog.htm">QDialog</a>(parent),<br/>
+DialogWhatsNew::DialogWhatsNew(<a href="CppQWidget.html">QWidget</a> *parent) :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQDialog.html">QDialog</a>(parent),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;ui(<b><a href="CppNew.htm">new</a></b> <a href="CppUi.htm">Ui</a>::DialogWhatsNew)<br/>
 {<br/>
 &nbsp;&nbsp;ui-&gt;setupUi(<b><a href="CppThis.htm">this</a></b>);<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v <a href="CppOperatorAssign.htm">=</a> DialogMain::Get<a href="CppVersion.htm">Version</a>History();<br/>
-&nbsp;&nbsp;<a href="CppBOOST_FOREACH.htm">BOOST_FOREACH</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; s,v)<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppVector.html">std::vector</a>&lt;<a href="CppString.html">std::string</a>&gt; v <a href="CppOperatorAssign.htm">=</a> DialogMain::Get<a href="CppVersion.html">Version</a>History();<br/>
+&nbsp;&nbsp;<a href="CppBOOST_FOREACH.html">BOOST_FOREACH</a>(<b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a>&amp; s,v)<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;ui-&gt;plainTextEdit-&gt;appendPlainText(s.c_str());<br/>
 &nbsp;&nbsp;}<br/>
@@ -834,18 +834,18 @@ DialogWhatsNew::DialogWhatsNew(<a href="CppQWidget.htm">QWidget</a> *parent) :<b
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 DialogWhatsNew::~DialogWhatsNew()<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppDelete.htm">delete</a></b> ui;<br/>
+&nbsp;&nbsp;<b><a href="CppDelete.html">delete</a></b> ui;<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppVoid.htm">void</a></b> DialogWhatsNew::changeEvent(<a href="CppQEvent.htm">QEvent</a> *e)<br/>
+<b><a href="CppVoid.htm">void</a></b> DialogWhatsNew::changeEvent(<a href="CppQEvent.html">QEvent</a> *e)<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppQDialog.htm">QDialog</a>::changeEvent(e);<br/>
-&nbsp;&nbsp;<b><a href="CppSwitch.htm">switch</a></b> (e-&gt;type()) {<br/>
-&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> <a href="CppQEvent.htm">QEvent</a>::LanguageChange:<br/>
+&nbsp;&nbsp;<a href="CppQDialog.html">QDialog</a>::changeEvent(e);<br/>
+&nbsp;&nbsp;<b><a href="CppSwitch.html">switch</a></b> (e-&gt;type()) {<br/>
+&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> <a href="CppQEvent.html">QEvent</a>::LanguageChange:<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;ui-&gt;retranslateUi(<b><a href="CppThis.htm">this</a></b>);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppBreak.htm">break</a></b>;<br/>
-&nbsp;&nbsp;<b><a href="CppDefault.htm">default</a></b>:<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppBreak.htm">break</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppBreak.html">break</a></b>;<br/>
+&nbsp;&nbsp;<b><a href="CppDefault.html">default</a></b>:<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppBreak.html">break</a></b>;<br/>
 &nbsp;&nbsp;}<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
@@ -862,7 +862,7 @@ DialogWhatsNew::~DialogWhatsNew()<br/>
 <table summary="qtmain.cpp" border = "1"><tr><td><code>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">/*</a><br/>
-<a href="ToolTestTicTacToe.htm">TestTicTacToe</a>, <a href="Tools.htm">tool</a> to test the <a href="CppTicTacToe.htm">TicTacToe</a> <b><a href="CppClass.htm">class</a></b><br/>
+<a href="ToolTestTicTacToe.html">TestTicTacToe</a>, <a href="Tools.htm">tool</a> to test the <a href="CppTicTacToe.html">TicTacToe</a> <b><a href="CppClass.html">class</a></b><br/>
 Copyright (C) 2010 Richel Bilderbeek<br/>
 <br/>
 This program is free software: you can redistribute it and/or modify<br/>
@@ -878,17 +878,17 @@ You should have received a copy of the GNU General Public License<br/>
 along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">*/</a><br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="ToolTestTicTacToe.htm">ToolTestTicTacToe</a>.htm<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="ToolTestTicTacToe.html">ToolTestTicTacToe</a>.html<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppQApplication.htm">QApplication</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> "qtdialogmain.h"<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppQApplication.html">QApplication</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> "qtdialogmain<a href="CppHeaderFile.htm">.h</a>"<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>(<b><a href="CppInt.htm">int</a></b> <a href="CppArgc.htm">argc</a>, <b><a href="CppChar.htm">char</a></b> *<a href="CppArgc.htm">argv</a>[])<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a>(<b><a href="CppInt.htm">int</a></b> <a href="CppArgc.htm">argc</a>, <b><a href="CppChar.htm">char</a></b> *<a href="CppArgc.htm">argv</a>[])<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppQApplication.htm">QApplication</a> a(<a href="CppArgc.htm">argc</a>, <a href="CppArgc.htm">argv</a>);<br/>
+&nbsp;&nbsp;<a href="CppQApplication.html">QApplication</a> a(<a href="CppArgc.htm">argc</a>, <a href="CppArgc.htm">argv</a>);<br/>
 &nbsp;&nbsp;DialogMain w;<br/>
 &nbsp;&nbsp;w.show();<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> a.exec();<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> a.exec();<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 </code></td></tr></table>
@@ -904,7 +904,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <table summary="wtmain.cpp" border = "1"><tr><td><code>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">/*</a><br/>
-<a href="ToolTestTicTacToe.htm">TestTicTacToe</a>, <a href="Tools.htm">tool</a> to test the <a href="CppTicTacToe.htm">TicTacToe</a> <b><a href="CppClass.htm">class</a></b><br/>
+<a href="ToolTestTicTacToe.html">TestTicTacToe</a>, <a href="Tools.htm">tool</a> to test the <a href="CppTicTacToe.html">TicTacToe</a> <b><a href="CppClass.html">class</a></b><br/>
 Copyright (C) 2010 Richel Bilderbeek<br/>
 <br/>
 This program is free software: you can redistribute it and/or modify<br/>
@@ -920,114 +920,114 @@ You should have received a copy of the GNU General Public License<br/>
 along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">*/</a><br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="ToolTestTicTacToe.htm">ToolTestTicTacToe</a>.htm<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="ToolTestTicTacToe.html">ToolTestTicTacToe</a>.html<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppStringH.htm">string</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppStringH.html">string</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppVectorH.html">vector</a>&gt;<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWApplication.htm">WApplication</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWBreak.htm">WBreak</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWContainerWidget.htm">WContainerWidget</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWEnvironment.htm">WEnvironment</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWEvent.htm">WEvent</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWPushButton.htm">WPushButton</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWMessageBox.htm">WMessageBox</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWApplication.html">WApplication</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWBreak.html">WBreak</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWContainerWidget.html">WContainerWidget</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWEnvironment.html">WEnvironment</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWEvent.html">WEvent</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWPushButton.html">WPushButton</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppWt.htm">Wt</a>/<a href="CppWMessageBox.html">WMessageBox</a>&gt;<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppInclude.htm">#include</a> "../../<a href="CppClass.htm">Classes</a>/<a href="CppWtTicTacToeWidget.htm">CppWtTicTacToeWidget</a>/<a href="CppWtTicTacToeWidget.htm">wttictactoewidget</a>.h"<br/>
+<a href="CppInclude.html">#include</a> "../../<a href="CppClass.html">Classes</a>/<a href="CppWtTicTacToeWidget.html">CppWtTicTacToeWidget</a>/<a href="CppWtTicTacToeWidget.html">wttictactoewidget</a><a href="CppHeaderFile.htm">.h</a>"<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppStruct.htm">struct</a></b> <a href="CppWt.htm">Wt</a><a href="CppTicTacToe.htm">TicTacToe</a>Dialog : <b><a href="CppPublic.htm">public</a></b> <a href="CppWContainerWidget.htm">Wt::WContainerWidget</a><br/>
+<b><a href="CppStruct.html">struct</a></b> <a href="CppWt.htm">Wt</a><a href="CppTicTacToe.html">TicTacToe</a>Dialog : <b><a href="CppPublic.html">public</a></b> <a href="CppWContainerWidget.html">Wt::WContainerWidget</a><br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppWt.htm">Wt</a><a href="CppTicTacToe.htm">TicTacToe</a>Dialog()<br/>
-&nbsp;&nbsp;: m_button_about(<b><a href="CppNew.htm">new</a></b> <a href="CppWPushButton.htm">Wt::WPushButton</a>),<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;m_button_restart(<b><a href="CppNew.htm">new</a></b> <a href="CppWPushButton.htm">Wt::WPushButton</a>),<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;m_<a href="CppTicTacToe.htm">tictactoe</a>(<b><a href="CppNew.htm">new</a></b> <a href="CppWtTicTacToeWidget.htm">WtTicTacToeWidget</a>)<br/>
+&nbsp;&nbsp;<a href="CppWt.htm">Wt</a><a href="CppTicTacToe.html">TicTacToe</a>Dialog()<br/>
+&nbsp;&nbsp;: m_button_about(<b><a href="CppNew.htm">new</a></b> <a href="CppWPushButton.html">Wt::WPushButton</a>),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_button_restart(<b><a href="CppNew.htm">new</a></b> <a href="CppWPushButton.html">Wt::WPushButton</a>),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_<a href="CppTicTacToe.html">tictactoe</a>(<b><a href="CppNew.htm">new</a></b> <a href="CppWtTicTacToeWidget.html">WtTicTacToeWidget</a>)<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;addWidget(m_<a href="CppTicTacToe.htm">tictactoe</a>);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;addWidget(<b><a href="CppNew.htm">new</a></b> <a href="CppWBreak.htm">Wt::WBreak</a>(<b><a href="CppThis.htm">this</a></b>));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;addWidget(m_<a href="CppTicTacToe.html">tictactoe</a>);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;addWidget(<b><a href="CppNew.htm">new</a></b> <a href="CppWBreak.html">Wt::WBreak</a>(<b><a href="CppThis.htm">this</a></b>));<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;addWidget(m_button_restart);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;addWidget(m_button_about);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;m_button_about-&gt;setText("<a href="CppAbout.htm">About</a>");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_button_about-&gt;setText("<a href="CppAbout.html">About</a>");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;m_button_restart-&gt;setText("Restart");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;m_<a href="CppTicTacToe.htm">tictactoe</a>-&gt;m_signal_state_changed.connect(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBind.htm">boost::bind</a>(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;<a href="CppWt.htm">Wt</a><a href="CppTicTacToe.htm">TicTacToe</a>Dialog::On<a href="CppState.htm">State</a>Changed,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_<a href="CppTicTacToe.html">tictactoe</a>-&gt;m_signal_state_changed.connect(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBind.html">boost::bind</a>(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;<a href="CppWt.htm">Wt</a><a href="CppTicTacToe.html">TicTacToe</a>Dialog::On<a href="CppState.html">State</a>Changed,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>));<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;m_button_about-&gt;clicked().connect(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>,&amp;<a href="CppWt.htm">Wt</a><a href="CppTicTacToe.htm">TicTacToe</a>Dialog::On<a href="CppAbout.htm">About</a>);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>,&amp;<a href="CppWt.htm">Wt</a><a href="CppTicTacToe.html">TicTacToe</a>Dialog::On<a href="CppAbout.html">About</a>);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;m_button_restart-&gt;clicked().connect(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>,&amp;<a href="CppWt.htm">Wt</a><a href="CppTicTacToe.htm">TicTacToe</a>Dialog::OnRestart);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>,&amp;<a href="CppWt.htm">Wt</a><a href="CppTicTacToe.html">TicTacToe</a>Dialog::OnRestart);<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> Get<a href="CppVersion.htm">Version</a>()<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a> Get<a href="CppVersion.html">Version</a>()<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> "1.2";<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> "1.2";<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; Get<a href="CppVersion.htm">Version</a>History()<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.html">static</a></b> <b><a href="CppConst.html">const</a></b> <a href="CppVector.html">std::vector</a>&lt;<a href="CppString.html">std::string</a>&gt; Get<a href="CppVersion.html">Version</a>History()<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("YYYY-MM-DD: <a href="CppVersion.htm">version</a> X.Y: [description]");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("2011-01-06: <a href="CppVersion.htm">version</a> 1.2: initial <a href="CppVersion.htm">version</a>");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppVector.html">std::vector</a>&lt;<a href="CppString.html">std::string</a>&gt; v;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("YYYY-MM-DD: <a href="CppVersion.html">version</a> X.Y: [description]");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("2011-01-06: <a href="CppVersion.html">version</a> 1.2: initial <a href="CppVersion.html">version</a>");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> v;<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<b><a href="CppPrivate.htm">private</a></b>:<br/>
-&nbsp;&nbsp;<a href="CppWPushButton.htm">Wt::WPushButton</a> * <b><a href="CppConst.htm">const</a></b> m_button_about;<br/>
-&nbsp;&nbsp;<a href="CppWPushButton.htm">Wt::WPushButton</a> * <b><a href="CppConst.htm">const</a></b> m_button_restart;<br/>
-&nbsp;&nbsp;<a href="CppWtTicTacToeWidget.htm">WtTicTacToeWidget</a> * <b><a href="CppConst.htm">const</a></b> m_<a href="CppTicTacToe.htm">tictactoe</a>;<br/>
-&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> On<a href="CppAbout.htm">About</a>()<br/>
+&nbsp;&nbsp;<b><a href="CppPrivate.html">private</a></b>:<br/>
+&nbsp;&nbsp;<a href="CppWPushButton.html">Wt::WPushButton</a> * <b><a href="CppConst.html">const</a></b> m_button_about;<br/>
+&nbsp;&nbsp;<a href="CppWPushButton.html">Wt::WPushButton</a> * <b><a href="CppConst.html">const</a></b> m_button_restart;<br/>
+&nbsp;&nbsp;<a href="CppWtTicTacToeWidget.html">WtTicTacToeWidget</a> * <b><a href="CppConst.html">const</a></b> m_<a href="CppTicTacToe.html">tictactoe</a>;<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> On<a href="CppAbout.html">About</a>()<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppWMessageBox.htm">Wt::WMessageBox</a>::show(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppWString.htm">Wt::WString</a>("<a href="ToolTestTicTacToe.htm">ToolTestTicTacToe</a> (C) 2010 Richel Bilderbeek"),<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppWString.htm">Wt::WString</a>("From http://www.richelbilderbeek.nl/<a href="ToolTestTicTacToe.htm">ToolTestTicTacToe</a>.htm"),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppWMessageBox.html">Wt::WMessageBox</a>::show(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppWString.html">Wt::WString</a>("<a href="ToolTestTicTacToe.html">ToolTestTicTacToe</a> (C) 2010 Richel Bilderbeek"),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppWString.html">Wt::WString</a>("From http://www.richelbilderbeek.nl/<a href="ToolTestTicTacToe.html">ToolTestTicTacToe</a>.html"),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppWt.htm">Wt</a>::Ok);<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> OnRestart()<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;m_<a href="CppTicTacToe.htm">tictactoe</a>-&gt;Restart();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_<a href="CppTicTacToe.html">tictactoe</a>-&gt;Restart();<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> On<a href="CppState.htm">State</a>Changed()<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> On<a href="CppState.html">State</a>Changed()<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppSwitch.htm">switch</a></b> (m_<a href="CppTicTacToe.htm">tictactoe</a>-&gt;Get<a href="CppState.htm">State</a>())<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppSwitch.html">switch</a></b> (m_<a href="CppTicTacToe.html">tictactoe</a>-&gt;Get<a href="CppState.html">State</a>())<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> <a href="CppTicTacToe.htm">TicTacToe</a>::player1:<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> <a href="CppTicTacToe.html">TicTacToe</a>::player1:<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;m_button_restart-&gt;setText("Player 1 has won. Click to restart");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppBreak.htm">break</a></b>;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> <a href="CppTicTacToe.htm">TicTacToe</a>::player2:<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppBreak.html">break</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> <a href="CppTicTacToe.html">TicTacToe</a>::player2:<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;m_button_restart-&gt;setText("Player 2 has won. Click to restart");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppBreak.htm">break</a></b>;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> <a href="CppTicTacToe.htm">TicTacToe</a>::draw:<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppBreak.html">break</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> <a href="CppTicTacToe.html">TicTacToe</a>::draw:<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;m_button_restart-&gt;setText("Draw. Click to restart");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppBreak.htm">break</a></b>;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> <a href="CppTicTacToe.htm">TicTacToe</a>::no_winner:<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppBreak.html">break</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> <a href="CppTicTacToe.html">TicTacToe</a>::no_winner:<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;m_button_restart-&gt;setText("Restart");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppBreak.htm">break</a></b>;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppDefault.htm">default</a></b>:<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!"Should not get here");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppBreak.htm">break</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppBreak.html">break</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppDefault.html">default</a></b>:<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(!"Should not get here");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppBreak.html">break</a></b>;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;}<br/>
 };<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppStruct.htm">struct</a></b> <a href="CppWt.htm">Wt</a><a href="CppApplication.htm">Application</a> : <b><a href="CppPublic.htm">public</a></b> <a href="CppWApplication.htm">Wt::WApplication</a><br/>
+<b><a href="CppStruct.html">struct</a></b> <a href="CppWt.htm">Wt</a><a href="CppApplication.html">Application</a> : <b><a href="CppPublic.html">public</a></b> <a href="CppWApplication.html">Wt::WApplication</a><br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppWt.htm">Wt</a><a href="CppApplication.htm">Application</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppWEnvironment.htm">Wt::WEnvironment</a>&amp; env)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;: <a href="CppWApplication.htm">Wt::WApplication</a>(env),<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;m_dialog(<b><a href="CppNew.htm">new</a></b> <a href="CppWt.htm">Wt</a><a href="CppTicTacToe.htm">TicTacToe</a>Dialog)<br/>
+&nbsp;&nbsp;<a href="CppWt.htm">Wt</a><a href="CppApplication.html">Application</a>(<b><a href="CppConst.html">const</a></b> <a href="CppWEnvironment.html">Wt::WEnvironment</a>&amp; env)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;: <a href="CppWApplication.html">Wt::WApplication</a>(env),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_dialog(<b><a href="CppNew.htm">new</a></b> <a href="CppWt.htm">Wt</a><a href="CppTicTacToe.html">TicTacToe</a>Dialog)<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;setTitle("<a href="ToolTestTicTacToe.htm">ToolTestTicTacToe</a>");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;setTitle("<a href="ToolTestTicTacToe.html">ToolTestTicTacToe</a>");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;root()-&gt;addWidget(m_dialog);<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<b><a href="CppPrivate.htm">private</a></b>:<br/>
-&nbsp;&nbsp;<a href="CppWt.htm">Wt</a><a href="CppTicTacToe.htm">TicTacToe</a>Dialog * <b><a href="CppConst.htm">const</a></b> m_dialog;<br/>
+&nbsp;&nbsp;<b><a href="CppPrivate.html">private</a></b>:<br/>
+&nbsp;&nbsp;<a href="CppWt.htm">Wt</a><a href="CppTicTacToe.html">TicTacToe</a>Dialog * <b><a href="CppConst.html">const</a></b> m_dialog;<br/>
 };<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppWApplication.htm">Wt::WApplication</a> *create<a href="CppApplication.htm">Application</a>(<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppWEnvironment.htm">Wt::WEnvironment</a>&amp; env)<br/>
+<a href="CppWApplication.html">Wt::WApplication</a> *create<a href="CppApplication.html">Application</a>(<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppWEnvironment.html">Wt::WEnvironment</a>&amp; env)<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <b><a href="CppNew.htm">new</a></b> <a href="CppWt.htm">Wt</a><a href="CppApplication.htm">Application</a>(env);<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> <b><a href="CppNew.htm">new</a></b> <a href="CppWt.htm">Wt</a><a href="CppApplication.html">Application</a>(env);<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>(<b><a href="CppInt.htm">int</a></b> <a href="CppArgc.htm">argc</a>, <b><a href="CppChar.htm">char</a></b> **<a href="CppArgc.htm">argv</a>)<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a>(<b><a href="CppInt.htm">int</a></b> <a href="CppArgc.htm">argc</a>, <b><a href="CppChar.htm">char</a></b> **<a href="CppArgc.htm">argv</a>)<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> WRun(<a href="CppArgc.htm">argc</a>, <a href="CppArgc.htm">argv</a>, &amp;create<a href="CppApplication.htm">Application</a>);<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> WRun(<a href="CppArgc.htm">argc</a>, <a href="CppArgc.htm">argv</a>, &amp;create<a href="CppApplication.html">Application</a>);<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 </code></td></tr></table>

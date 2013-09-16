@@ -72,13 +72,13 @@
 <table summary="CppHelloBoostRegexQtCreatorLubuntuToWindows.pro" border = "1"><tr><td><code>
 QT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; += core<br/>
 QT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -= gui<br/>
-CONFIG&nbsp;&nbsp; += console<br/>
-CONFIG&nbsp;&nbsp; -= app_bundle<br/>
-TEMPLATE = app<br/>
-<a href="CppSOURCES.htm">SOURCES</a> += <a href="CppMain.htm">main</a>.cpp<br/>
+<a href="CppQmakeConfig.htm">CONFIG</a>&nbsp;&nbsp; += console<br/>
+<a href="CppQmakeConfig.htm">CONFIG</a>&nbsp;&nbsp; -= app_bundle<br/>
+<a href="CppQmakeTemplate.htm">TEMPLATE</a> = app<br/>
+<a href="CppQmakeSources.htm">SOURCES</a> += <a href="CppMain.htm">main</a>.cpp<br/>
 <br/>
-<a href="CppLIBS.htm">LIBS</a> += -L../../<a href="CppLibrary.htm">Libraries</a>/mxe/usr/i686-pc-mingw32/lib<br/>
-<a href="CppLIBS.htm">LIBS</a> += <a href="CppRegex.htm">-lboost_regex</a><br/>
+<a href="CppQmakeLibs.htm">LIBS</a> += -L../../<a href="CppLibrary.htm">Libraries</a>/mxe/usr/i686-pc-mingw32/lib<br/>
+<a href="CppQmakeLibs.htm">LIBS</a> += <a href="CppRegex.htm">-lboost_regex</a><br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -90,15 +90,15 @@ TEMPLATE = app<br/>
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="main.cpp" border = "1"><tr><td><code>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppIostreamH.htm">iostream</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppRegex.htm">regex</a>.hpp&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppIostreamH.html">iostream</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppBoost.html">boost</a>/<a href="CppRegex.html">regex</a><a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
 <br/>
 <br/>
-<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a>()<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppString.htm">std::string</a> s <a href="CppOperatorAssign.htm">=</a> "<a href="CppHelloWorld.htm">Hello World</a>";<br/>
-&nbsp;&nbsp;s <a href="CppOperatorAssign.htm">=</a> boost::regex_replace(s,<a href="CppBoostRegex.htm">boost::regex</a>("World"),<a href="CppString.htm">std::string</a>("<a href="CppBoost.htm">Boost</a>"));<br/>
-&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> s <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n';<br/>
+&nbsp;&nbsp;<a href="CppString.html">std::string</a> s <a href="CppOperatorAssign.htm">=</a> "<a href="CppHelloWorld.html">Hello World</a>";<br/>
+&nbsp;&nbsp;s <a href="CppOperatorAssign.htm">=</a> boost::regex_replace(s,<a href="CppBoostRegex.html">boost::regex</a>("World"),<a href="CppString.html">std::string</a>("<a href="CppBoost.html">Boost</a>"));<br/>
+&nbsp;&nbsp;<a href="CppCout.html">std::cout</a> <a href="CppOperatorStreamOut.html">&lt;&lt;</a> s <a href="CppOperatorStreamOut.html">&lt;&lt;</a> '\n';<br/>
 }<br/>
 </code></td></tr></table>
 <!-- end of the code -->

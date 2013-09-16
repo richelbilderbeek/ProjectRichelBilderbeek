@@ -61,12 +61,12 @@
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="CppHostClassExample3.pro" border = "1"><tr><td><code>
-TEMPLATE = app<br/>
-CONFIG += console<br/>
-CONFIG -= app_bundle<br/>
-CONFIG -= qt<br/>
-<a href="CppQMAKE_CXXFLAGS.htm">QMAKE_CXXFLAGS</a> += -std=<a href="Cpp11.htm">c++11</a> <a href="CppWall.htm">-Wall</a> <a href="CppWextra.htm">-Wextra</a> <a href="CppWerror.htm">-Werror</a><br/>
-<a href="CppSOURCES.htm">SOURCES</a> += <a href="CppMain.htm">main</a>.cpp<br/>
+<a href="CppQmakeTemplate.htm">TEMPLATE</a> = app<br/>
+<a href="CppQmakeConfig.htm">CONFIG</a> += console<br/>
+<a href="CppQmakeConfig.htm">CONFIG</a> -= app_bundle<br/>
+<a href="CppQmakeConfig.htm">CONFIG</a> -= qt<br/>
+<a href="CppQmakeQmake_cxxflags.htm">QMAKE_CXXFLAGS</a> += -std=<a href="Cpp11.htm">c++11</a> <a href="CppWall.htm">-Wall</a> <a href="CppWextra.htm">-Wextra</a> <a href="CppWerror.htm">-Werror</a><br/>
+<a href="CppQmakeSources.htm">SOURCES</a> += <a href="CppMain.htm">main</a>.cpp<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -78,84 +78,84 @@ CONFIG -= qt<br/>
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="main.cpp" border = "1"><tr><td><code>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppFstreamH.htm">fstream</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppIostreamH.htm">iostream</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppStringH.htm">string</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppCassertH.html">cassert</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppFstreamH.html">fstream</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppIostreamH.html">iostream</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppStringH.html">string</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppVectorH.html">vector</a>&gt;<br/>
 <br/>
-<b><a href="CppTemplate.htm">template</a></b> &lt;<b><a href="CppClass.htm">class</a></b> T&gt;<br/>
-<b><a href="CppStruct.htm">struct</a></b> CheckPolicyNotEmpty<br/>
+<b><a href="CppTemplate.html">template</a></b> &lt;<b><a href="CppClass.html">class</a></b> T&gt;<br/>
+<b><a href="CppStruct.html">struct</a></b> CheckPolicyNotEmpty<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> Check(<b><a href="CppConst.htm">const</a></b> T&amp; s)<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> Check(<b><a href="CppConst.html">const</a></b> T&amp; s)<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!s.empty() <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "Object must not be empty");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(!s.empty() <a href="CppOperatorLogicalAnd.html">&amp;&amp;</a> "Object must not be empty");<br/>
 &nbsp;&nbsp;}<br/>
 <br/>
-<b><a href="CppProtected.htm">protected</a></b>:<br/>
+<b><a href="CppProtected.html">protected</a></b>:<br/>
 &nbsp;&nbsp;~CheckPolicyNotEmpty()<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a> The <a href="CppDestructor.htm">destructor</a> of a policy <b><a href="CppClass.htm">class</a></b> should be <b><a href="CppProtected.htm">protected</a></b> and non-<b><a href="CppVirtual.htm">virtual</a></b>:<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a> * <a href="CppHerbSutter.htm">Herb Sutter</a>, <a href="CppAndreiAlexandrescu.htm">Andrei Alexandrescu</a>. <a href="Cpp.htm">C++</a> coding standards: 101 rules,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a> The <a href="CppDestructor.html">destructor</a> of a policy <b><a href="CppClass.html">class</a></b> should be <b><a href="CppProtected.html">protected</a></b> and non-<b><a href="CppVirtual.html">virtual</a></b>:<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a> * <a href="CppHerbSutter.html">Herb Sutter</a>, <a href="CppAndreiAlexandrescu.html">Andrei Alexandrescu</a>. <a href="Cpp.htm">C++</a> coding standards: 101 rules,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>&nbsp;&nbsp; guidelines, and best practices. ISBN: 0-32-111358-6. Item 50: 'Make<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>&nbsp;&nbsp; <a href="CppBaseClass.htm">base class</a> <a href="CppDestructor.htm">destructor</a>s <b><a href="CppPublic.htm">public</a></b> and <b><a href="CppVirtual.htm">virtual</a></b>, or <b><a href="CppProtected.htm">protected</a></b> and non<b><a href="CppVirtual.htm">virtual</a></b>'<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a> * <a href="CppAndreiAlexandrescu.htm">Andrei Alexandrescu</a>. Modern <a href="Cpp.htm">C++</a> Design. 2001. ISBN: 0201704315.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>&nbsp;&nbsp; <a href="CppBaseClass.html">base class</a> <a href="CppDestructor.html">destructor</a>s <b><a href="CppPublic.html">public</a></b> and <b><a href="CppVirtual.html">virtual</a></b>, or <b><a href="CppProtected.html">protected</a></b> and non<b><a href="CppVirtual.html">virtual</a></b>'<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a> * <a href="CppAndreiAlexandrescu.html">Andrei Alexandrescu</a>. Modern <a href="Cpp.htm">C++</a> Design. 2001. ISBN: 0201704315.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>&nbsp;&nbsp; Page 13. Section 1.7: 'The lightweight, effective solution that<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>&nbsp;&nbsp; policies should use is to define a non<b><a href="CppVirtual.htm">virtual</a></b> <b><a href="CppProtected.htm">protected</a></b> <a href="CppDestructor.htm">destructor</a>'<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>&nbsp;&nbsp; policies should use is to define a non<b><a href="CppVirtual.html">virtual</a></b> <b><a href="CppProtected.html">protected</a></b> <a href="CppDestructor.html">destructor</a>'<br/>
 &nbsp;&nbsp;}<br/>
 };<br/>
 <br/>
-<b><a href="CppTemplate.htm">template</a></b> &lt;<b><a href="CppClass.htm">class</a></b> T&gt;<br/>
-<b><a href="CppStruct.htm">struct</a></b> CheckPolicyNotNull<br/>
+<b><a href="CppTemplate.html">template</a></b> &lt;<b><a href="CppClass.html">class</a></b> T&gt;<br/>
+<b><a href="CppStruct.html">struct</a></b> CheckPolicyNotNull<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> Check(<b><a href="CppConst.htm">const</a></b> T&amp; p)<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> Check(<b><a href="CppConst.html">const</a></b> T&amp; p)<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(p <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "<a href="CppPointer.htm">Pointer</a> must not be null");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(p <a href="CppOperatorLogicalAnd.html">&amp;&amp;</a> "<a href="CppPointer.html">Pointer</a> must not be null");<br/>
 &nbsp;&nbsp;}<br/>
 <br/>
-<b><a href="CppProtected.htm">protected</a></b>:<br/>
+<b><a href="CppProtected.html">protected</a></b>:<br/>
 &nbsp;&nbsp;~CheckPolicyNotNull()<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a> The <a href="CppDestructor.htm">destructor</a> of a policy <b><a href="CppClass.htm">class</a></b> should be <b><a href="CppProtected.htm">protected</a></b> and non-<b><a href="CppVirtual.htm">virtual</a></b>:<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a> * <a href="CppHerbSutter.htm">Herb Sutter</a>, <a href="CppAndreiAlexandrescu.htm">Andrei Alexandrescu</a>. <a href="Cpp.htm">C++</a> coding standards: 101 rules,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a> The <a href="CppDestructor.html">destructor</a> of a policy <b><a href="CppClass.html">class</a></b> should be <b><a href="CppProtected.html">protected</a></b> and non-<b><a href="CppVirtual.html">virtual</a></b>:<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a> * <a href="CppHerbSutter.html">Herb Sutter</a>, <a href="CppAndreiAlexandrescu.html">Andrei Alexandrescu</a>. <a href="Cpp.htm">C++</a> coding standards: 101 rules,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>&nbsp;&nbsp; guidelines, and best practices. ISBN: 0-32-111358-6. Item 50: 'Make<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>&nbsp;&nbsp; <a href="CppBaseClass.htm">base class</a> <a href="CppDestructor.htm">destructor</a>s <b><a href="CppPublic.htm">public</a></b> and <b><a href="CppVirtual.htm">virtual</a></b>, or <b><a href="CppProtected.htm">protected</a></b> and non<b><a href="CppVirtual.htm">virtual</a></b>'<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a> * <a href="CppAndreiAlexandrescu.htm">Andrei Alexandrescu</a>. Modern <a href="Cpp.htm">C++</a> Design. 2001. ISBN: 0201704315.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>&nbsp;&nbsp; <a href="CppBaseClass.html">base class</a> <a href="CppDestructor.html">destructor</a>s <b><a href="CppPublic.html">public</a></b> and <b><a href="CppVirtual.html">virtual</a></b>, or <b><a href="CppProtected.html">protected</a></b> and non<b><a href="CppVirtual.html">virtual</a></b>'<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a> * <a href="CppAndreiAlexandrescu.html">Andrei Alexandrescu</a>. Modern <a href="Cpp.htm">C++</a> Design. 2001. ISBN: 0201704315.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>&nbsp;&nbsp; Page 13. Section 1.7: 'The lightweight, effective solution that<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>&nbsp;&nbsp; policies should use is to define a non<b><a href="CppVirtual.htm">virtual</a></b> <b><a href="CppProtected.htm">protected</a></b> <a href="CppDestructor.htm">destructor</a>'<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>&nbsp;&nbsp; policies should use is to define a non<b><a href="CppVirtual.html">virtual</a></b> <b><a href="CppProtected.html">protected</a></b> <a href="CppDestructor.html">destructor</a>'<br/>
 &nbsp;&nbsp;}<br/>
 };<br/>
 <br/>
-<a href="CppComment.htm">///</a>Manager keeps a <a href="CppVector.htm">std::vector</a> in a valid state<br/>
-<b><a href="CppTemplate.htm">template</a></b> &lt;<b><a href="CppClass.htm">class</a></b> T, <b><a href="CppTypename.htm">typename</a></b> CheckPolicy&gt;<br/>
-<b><a href="CppStruct.htm">struct</a></b> Manager : <b><a href="CppPublic.htm">public</a></b> CheckPolicy<br/>
+<a href="CppComment.htm">///</a>Manager keeps a <a href="CppVector.html">std::vector</a> in a valid state<br/>
+<b><a href="CppTemplate.html">template</a></b> &lt;<b><a href="CppClass.html">class</a></b> T, <b><a href="CppTypename.html">typename</a></b> CheckPolicy&gt;<br/>
+<b><a href="CppStruct.html">struct</a></b> Manager : <b><a href="CppPublic.html">public</a></b> CheckPolicy<br/>
 {<br/>
-&nbsp;&nbsp;Manager(<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;T&gt;&amp; v) : m_v(v) { CheckAll(); }<br/>
+&nbsp;&nbsp;Manager(<b><a href="CppConst.html">const</a></b> <a href="CppVector.html">std::vector</a>&lt;T&gt;&amp; v) : m_v(v) { CheckAll(); }<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppPrivate.htm">private</a></b>:<br/>
-&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;T&gt; m_v;<br/>
+&nbsp;&nbsp;<b><a href="CppPrivate.html">private</a></b>:<br/>
+&nbsp;&nbsp;<a href="CppVector.html">std::vector</a>&lt;T&gt; m_v;<br/>
 <br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> CheckAll()<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppConst.htm">const</a></b> T&amp; t: m_v) <b><a href="CppThis.htm">this</a></b>-&gt;Check(t);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppConst.html">const</a></b> T&amp; t: m_v) <b><a href="CppThis.htm">this</a></b>-&gt;Check(t);<br/>
 &nbsp;&nbsp;}<br/>
 };<br/>
 <br/>
-<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a>()<br/>
 {<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b> *&gt; v<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppVector.html">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b> *&gt; v<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> { <b><a href="CppNew.htm">new</a></b> <b><a href="CppInt.htm">int</a></b>, <b><a href="CppNew.htm">new</a></b> <b><a href="CppInt.htm">int</a></b>, <b><a href="CppNew.htm">new</a></b> <b><a href="CppInt.htm">int</a></b> };<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b> *&gt; v<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> { <b><a href="CppNew.htm">new</a></b> <b><a href="CppInt.htm">int</a></b>, <b><a href="CppNew.htm">new</a></b> <b><a href="CppInt.htm">int</a></b>, <b><a href="CppNullptr.htm">nullptr</a></b> }; <a href="CppComment.htm">//</a><b><a href="CppNullptr.htm">nullptr</a></b> will be detected<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Manager&lt;<b><a href="CppInt.htm">int</a></b> *, CheckPolicyNotNull&lt;<b><a href="CppInt.htm">int</a></b> *&gt; &gt; <a href="CppPointer.htm">pointer</a>s( v );<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> * p: v) <b><a href="CppDelete.htm">delete</a></b> p;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppConst.html">const</a></b> <a href="CppVector.html">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b> *&gt; v<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> { <b><a href="CppNew.htm">new</a></b> <b><a href="CppInt.htm">int</a></b>, <b><a href="CppNew.htm">new</a></b> <b><a href="CppInt.htm">int</a></b>, <b><a href="CppNullptr.html">nullptr</a></b> }; <a href="CppComment.htm">//</a><b><a href="CppNullptr.html">nullptr</a></b> will be detected<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> Manager&lt;<b><a href="CppInt.htm">int</a></b> *, CheckPolicyNotNull&lt;<b><a href="CppInt.htm">int</a></b> *&gt; &gt; <a href="CppPointer.html">pointer</a>s( v );<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> * p: v) <b><a href="CppDelete.html">delete</a></b> p;<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Manager&lt;<a href="CppString.htm">std::string</a>, CheckPolicyNotEmpty&lt;<a href="CppString.htm">std::string</a>&gt; &gt; strings(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> Manager&lt;<a href="CppString.html">std::string</a>, CheckPolicyNotEmpty&lt;<a href="CppString.html">std::string</a>&gt; &gt; strings(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{ "1", "12", "123" } );<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppConst.htm">const</a></b> Manager&lt;<a href="CppString.htm">std::string</a>, CheckPolicyNotEmpty&lt;<a href="CppString.htm">std::string</a>&gt; &gt; strings(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>&nbsp;&nbsp;{ "1", "12", "" } ); <a href="CppComment.htm">//</a>empty <a href="CppString.htm">std::string</a> will be detected<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppConst.html">const</a></b> Manager&lt;<a href="CppString.html">std::string</a>, CheckPolicyNotEmpty&lt;<a href="CppString.html">std::string</a>&gt; &gt; strings(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>&nbsp;&nbsp;{ "1", "12", "" } ); <a href="CppComment.htm">//</a>empty <a href="CppString.html">std::string</a> will be detected<br/>
 &nbsp;&nbsp;}<br/>
 }<br/>
 </code></td></tr></table>

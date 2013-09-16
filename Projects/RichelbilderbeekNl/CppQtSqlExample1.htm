@@ -70,10 +70,10 @@
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="CppQtSqlExample1.pro" border = "1"><tr><td><code>
-TEMPLATE = app<br/>
-CONFIG += console qt<br/>
+<a href="CppQmakeTemplate.htm">TEMPLATE</a> = app<br/>
+<a href="CppQmakeConfig.htm">CONFIG</a> += console qt<br/>
 QT += sql<br/>
-<a href="CppSOURCES.htm">SOURCES</a> += <a href="CppMain.htm">main</a>.cpp<br/>
+<a href="CppQmakeSources.htm">SOURCES</a> += <a href="CppMain.htm">main</a>.cpp<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -85,33 +85,33 @@ QT += sql<br/>
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="main.cpp" border = "1"><tr><td><code>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppIostreamH.htm">iostream</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppQt.htm">Qt</a>Sql&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppCassertH.html">cassert</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppIostreamH.html">iostream</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppQt.htm">Qt</a>Sql&gt;<br/>
 <br/>
-<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a>()<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Create a database<br/>
 &nbsp;&nbsp;QSqlDatabase db <a href="CppOperatorAssign.htm">=</a> QSqlDatabase::addDatabase("QSQLITE"); <a href="CppComment.htm">//</a>Choose from QSQLITE QODBC3 QODBC<br/>
 &nbsp;&nbsp;db.setDatabaseName("MY_DATABASE");<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppBool.htm">bool</a></b> ok <a href="CppOperatorAssign.htm">=</a> db.open();<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(ok);<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppBool.htm">bool</a></b> ok <a href="CppOperatorAssign.htm">=</a> db.open();<br/>
+&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(ok);<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Delete the table 'PEOPLE' from a possible previous session<br/>
 &nbsp;&nbsp;QSqlQuery("DROP TABLE PEOPLE");<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(db.tables().empty() <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "There must be zero tables at startup");<br/>
+&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(db.tables().empty() <a href="CppOperatorLogicalAnd.html">&amp;&amp;</a> "There must be zero tables at startup");<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Creata a 'PEOPLE' table<br/>
 &nbsp;&nbsp;QSqlQuery("CREATE TABLE PEOPLE (ID INT PRIMARY KEY NOT <a href="CppNULL.htm">NULL</a>, NAME TEXT NOT <a href="CppNULL.htm">NULL</a>)");<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(db.tables().size() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 1 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "Table PEOPLE must have been created");<br/>
+&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(db.tables().size() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 1 <a href="CppOperatorLogicalAnd.html">&amp;&amp;</a> "Table PEOPLE must have been created");<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Check that table is empty<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;QSqlQuery query("SELECT * FROM PEOPLE");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Using QSqlQuery::size is not supported by all drivers, so count the number of rows manually<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> size <a href="CppOperatorAssign.htm">=</a> 0;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppWhile.htm">while</a></b> (query.next()) { <a href="CppOperatorPlus.htm">+</a>+size; }<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(size <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 0 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "Table PEOPLE must be empty directly after its creation");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppWhile.html">while</a></b> (query.next()) { <a href="CppOperatorPlus.htm">+</a>+size; }<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(size <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 0 <a href="CppOperatorLogicalAnd.html">&amp;&amp;</a> "Table PEOPLE must be empty directly after its creation");<br/>
 &nbsp;&nbsp;}<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Insert people<br/>
@@ -124,20 +124,20 @@ QT += sql<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;QSqlQuery query("SELECT * FROM PEOPLE");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Using QSqlQuery::size is not supported by all drivers, so count the number of rows manually<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> size <a href="CppOperatorAssign.htm">=</a> 0;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppWhile.htm">while</a></b> (query.next()) { <a href="CppOperatorPlus.htm">+</a>+size; }<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(size <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 3 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "Table PEOPLE must contain three persons");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppWhile.html">while</a></b> (query.next()) { <a href="CppOperatorPlus.htm">+</a>+size; }<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(size <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 3 <a href="CppOperatorLogicalAnd.html">&amp;&amp;</a> "Table PEOPLE must contain three persons");<br/>
 &nbsp;&nbsp;}<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Display content of PEOPLE on screen<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;QSqlQuery query("SELECT * FROM PEOPLE");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "#\tID\tNAME\n";<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCout.html">std::cout</a> <a href="CppOperatorStreamOut.html">&lt;&lt;</a> "#\tID\tNAME\n";<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> index <a href="CppOperatorAssign.htm">=</a> 0;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppWhile.htm">while</a></b> (query.next())<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppWhile.html">while</a></b> (query.next())<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> id <a href="CppOperatorAssign.htm">=</a> query.value(0).toInt();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> name <a href="CppOperatorAssign.htm">=</a> query.value(1).toString().toStdString();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> index <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\t' <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> id <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\t' <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> name <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n';<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> id <a href="CppOperatorAssign.htm">=</a> query.value(0).toInt();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a> name <a href="CppOperatorAssign.htm">=</a> query.value(1).toString().toStdString();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCout.html">std::cout</a> <a href="CppOperatorStreamOut.html">&lt;&lt;</a> index <a href="CppOperatorStreamOut.html">&lt;&lt;</a> '\t' <a href="CppOperatorStreamOut.html">&lt;&lt;</a> id <a href="CppOperatorStreamOut.html">&lt;&lt;</a> '\t' <a href="CppOperatorStreamOut.html">&lt;&lt;</a> name <a href="CppOperatorStreamOut.html">&lt;&lt;</a> '\n';<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a>+index;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;}<br/>

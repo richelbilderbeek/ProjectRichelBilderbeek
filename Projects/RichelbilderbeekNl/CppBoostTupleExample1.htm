@@ -71,11 +71,11 @@
 <table summary="CppBoostTupleExample1.pro" border = "1"><tr><td><code>
 QT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; += core<br/>
 QT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -= gui<br/>
-<a href="CppQMAKE_CXXFLAGS.htm">QMAKE_CXXFLAGS</a> += -std=<a href="Cpp11.htm">c++11</a> #Not needed with Boost<br/>
-CONFIG&nbsp;&nbsp; += console<br/>
-CONFIG&nbsp;&nbsp; -= app_bundle<br/>
-TEMPLATE = app<br/>
-<a href="CppSOURCES.htm">SOURCES</a> += <a href="CppMain.htm">main</a>.cpp<br/>
+<a href="CppQmakeQmake_cxxflags.htm">QMAKE_CXXFLAGS</a> += -std=<a href="Cpp11.htm">c++11</a> #Not needed with Boost<br/>
+<a href="CppQmakeConfig.htm">CONFIG</a>&nbsp;&nbsp; += console<br/>
+<a href="CppQmakeConfig.htm">CONFIG</a>&nbsp;&nbsp; -= app_bundle<br/>
+<a href="CppQmakeTemplate.htm">TEMPLATE</a> = app<br/>
+<a href="CppQmakeSources.htm">SOURCES</a> += <a href="CppMain.htm">main</a>.cpp<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -87,33 +87,33 @@ TEMPLATE = app<br/>
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="main.cpp" border = "1"><tr><td><code>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppStringH.htm">string</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppTuple.htm">tuple</a>/<a href="CppTuple.htm">tuple</a>.hpp&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppCassertH.html">cassert</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppStringH.html">string</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppBoost.html">boost</a>/<a href="CppTuple.html">tuple</a>/<a href="CppTuple.html">tuple</a><a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
 <br/>
-<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a>()<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppTypedef.htm">typedef</a></b> <a href="CppBoostTuple.htm">boost::tuple</a>&lt;<b><a href="CppInt.htm">int</a></b>,<b><a href="CppDouble.htm">double</a></b>,<a href="CppString.htm">std::string</a>&gt; Tuple;<br/>
+&nbsp;&nbsp;<b><a href="CppTypedef.html">typedef</a></b> <a href="CppBoostTuple.html">boost::tuple</a>&lt;<b><a href="CppInt.htm">int</a></b>,<b><a href="CppDouble.html">double</a></b>,<a href="CppString.html">std::string</a>&gt; Tuple;<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppStatic_assert.htm">static_assert</a></b>(<a href="CppBoostTuple.htm">boost::tuple</a>s::length&lt;Tuple&gt;::value <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 3,"Tuple has size 3");<br/>
-&nbsp;&nbsp;<b><a href="CppStatic_assert.htm">static_assert</a></b>(<a href="CppIs_same.htm">std::is_same</a>&lt;<a href="CppBoostTuple.htm">boost::tuple</a>s::element&lt;0,Tuple&gt;::type,<b><a href="CppInt.htm">int</a></b>&gt;(),"First element is <b><a href="CppInt.htm">int</a></b>");<br/>
-&nbsp;&nbsp;<b><a href="CppStatic_assert.htm">static_assert</a></b>(<a href="CppIs_same.htm">std::is_same</a>&lt;<a href="CppBoostTuple.htm">boost::tuple</a>s::element&lt;1,Tuple&gt;::type,<b><a href="CppDouble.htm">double</a></b>&gt;(),"Second element is <b><a href="CppDouble.htm">double</a></b>");<br/>
-&nbsp;&nbsp;<b><a href="CppStatic_assert.htm">static_assert</a></b>(<a href="CppIs_same.htm">std::is_same</a>&lt;<a href="CppBoostTuple.htm">boost::tuple</a>s::element&lt;2,Tuple&gt;::type,<a href="CppString.htm">std::string</a>&gt;(),"Third element is <a href="CppString.htm">std::string</a>");<br/>
+&nbsp;&nbsp;<b><a href="CppStatic_assert.html">static_assert</a></b>(<a href="CppBoostTuple.html">boost::tuple</a>s::length&lt;Tuple&gt;::value <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 3,"Tuple has size 3");<br/>
+&nbsp;&nbsp;<b><a href="CppStatic_assert.html">static_assert</a></b>(<a href="CppIs_same.html">std::is_same</a>&lt;<a href="CppBoostTuple.html">boost::tuple</a>s::element&lt;0,Tuple&gt;::type,<b><a href="CppInt.htm">int</a></b>&gt;(),"First element is <b><a href="CppInt.htm">int</a></b>");<br/>
+&nbsp;&nbsp;<b><a href="CppStatic_assert.html">static_assert</a></b>(<a href="CppIs_same.html">std::is_same</a>&lt;<a href="CppBoostTuple.html">boost::tuple</a>s::element&lt;1,Tuple&gt;::type,<b><a href="CppDouble.html">double</a></b>&gt;(),"Second element is <b><a href="CppDouble.html">double</a></b>");<br/>
+&nbsp;&nbsp;<b><a href="CppStatic_assert.html">static_assert</a></b>(<a href="CppIs_same.html">std::is_same</a>&lt;<a href="CppBoostTuple.html">boost::tuple</a>s::element&lt;2,Tuple&gt;::type,<a href="CppString.html">std::string</a>&gt;(),"Third element is <a href="CppString.html">std::string</a>");<br/>
 <br/>
-&nbsp;&nbsp;Tuple t <a href="CppOperatorAssign.htm">=</a> <a href="CppMake_tuple.htm">boost::tuples::make_tuple</a>(123,3.14159,"Bilderbikkel");<br/>
+&nbsp;&nbsp;Tuple t <a href="CppOperatorAssign.htm">=</a> <a href="CppMake_tuple.html">boost::tuples::make_tuple</a>(123,3.14159,"Bilderbikkel");<br/>
 <br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x1 <a href="CppOperatorAssign.htm">=</a> <a href="CppBoostGet.htm">boost::get</a>&lt;0&gt;(t);<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> x2 <a href="CppOperatorAssign.htm">=</a> <a href="CppBoostGet.htm">boost::get</a>&lt;1&gt;(t);<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> x3 <a href="CppOperatorAssign.htm">=</a> <a href="CppBoostGet.htm">boost::get</a>&lt;2&gt;(t);<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> x1 <a href="CppOperatorAssign.htm">=</a> <a href="CppBoostGet.html">boost::get</a>&lt;0&gt;(t);<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> x2 <a href="CppOperatorAssign.htm">=</a> <a href="CppBoostGet.html">boost::get</a>&lt;1&gt;(t);<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a> x3 <a href="CppOperatorAssign.htm">=</a> <a href="CppBoostGet.html">boost::get</a>&lt;2&gt;(t);<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppBoostGet.htm">boost::get</a>&lt;0&gt;(t) <a href="CppOperatorAssign.htm">=</a> x1 <a href="CppOperatorPlus.htm">+</a> 1;<br/>
-&nbsp;&nbsp;<a href="CppBoostGet.htm">boost::get</a>&lt;1&gt;(t) <a href="CppOperatorAssign.htm">=</a> x2 <a href="CppOperatorPlus.htm">+</a> 1.0;<br/>
-&nbsp;&nbsp;<a href="CppBoostGet.htm">boost::get</a>&lt;2&gt;(t) <a href="CppOperatorAssign.htm">=</a> x3 <a href="CppOperatorPlus.htm">+</a> " was here";<br/>
+&nbsp;&nbsp;<a href="CppBoostGet.html">boost::get</a>&lt;0&gt;(t) <a href="CppOperatorAssign.htm">=</a> x1 <a href="CppOperatorPlus.htm">+</a> 1;<br/>
+&nbsp;&nbsp;<a href="CppBoostGet.html">boost::get</a>&lt;1&gt;(t) <a href="CppOperatorAssign.htm">=</a> x2 <a href="CppOperatorPlus.htm">+</a> 1.0;<br/>
+&nbsp;&nbsp;<a href="CppBoostGet.html">boost::get</a>&lt;2&gt;(t) <a href="CppOperatorAssign.htm">=</a> x3 <a href="CppOperatorPlus.htm">+</a> " was here";<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppBoostGet.htm">boost::get</a>&lt;0&gt;(t) <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 124);<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppBoostGet.htm">boost::get</a>&lt;1&gt;(t) <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 4.14159);<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppBoostGet.htm">boost::get</a>&lt;2&gt;(t) <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> "Bilderbikkel was here");<br/>
+&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(<a href="CppBoostGet.html">boost::get</a>&lt;0&gt;(t) <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 124);<br/>
+&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(<a href="CppBoostGet.html">boost::get</a>&lt;1&gt;(t) <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 4.14159);<br/>
+&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(<a href="CppBoostGet.html">boost::get</a>&lt;2&gt;(t) <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> "Bilderbikkel was here");<br/>
 <br/>
 }<br/>
 </code></td></tr></table>

@@ -61,21 +61,21 @@
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="CppRpiExample3.pro" border = "1"><tr><td><code>
-TEMPLATE = app<br/>
-CONFIG += console<br/>
-CONFIG -= qt<br/>
-#<a href="CppQMAKE_CXXFLAGS.htm">QMAKE_CXXFLAGS</a> += -std=<a href="Cpp0x.htm">c++11</a><br/>
+<a href="CppQmakeTemplate.htm">TEMPLATE</a> = app<br/>
+<a href="CppQmakeConfig.htm">CONFIG</a> += console<br/>
+<a href="CppQmakeConfig.htm">CONFIG</a> -= qt<br/>
+#<a href="CppQmakeQmake_cxxflags.htm">QMAKE_CXXFLAGS</a> += -std=<a href="Cpp0x.htm">c++11</a><br/>
 <br/>
 #QMAKE_CXX = gcc<br/>
-#<a href="CppQMAKE_CXXFLAGS.htm">QMAKE_CXXFLAGS</a> = -x c<br/>
+#<a href="CppQmakeQmake_cxxflags.htm">QMAKE_CXXFLAGS</a> = -x c<br/>
 <br/>
-<a href="CppINCLUDEPATH.htm">INCLUDEPATH</a> += \<br/>
+<a href="CppQmakeIncludepath.htm">INCLUDEPATH</a> += \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/Arduino/hardware/arduino/cores/arduino \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/Arduino/hardware/arduino/variants/standard \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/avr-libc-1.8.0/include<br/>
 <br/>
 <br/>
-<a href="CppSOURCES.htm">SOURCES</a> += \<br/>
+<a href="CppQmakeSources.htm">SOURCES</a> += \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/Arduino/hardware/arduino/cores/arduino/<a href="CppMain.htm">main</a>.cpp \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;my<a href="CppMain.htm">main</a>.cpp \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/Arduino/hardware/arduino/cores/arduino/wiring_digital.c<br/>
@@ -90,7 +90,7 @@ CONFIG -= qt<br/>
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="mymain.cpp" border = "1"><tr><td><code>
-<a href="CppInclude.htm">#include</a> &lt;Arduino.h&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;Arduino<a href="CppHeaderFile.htm">.h</a>&gt;<br/>
 <br/>
 <b><a href="CppVoid.htm">void</a></b> init() {}<br/>
 <br/>

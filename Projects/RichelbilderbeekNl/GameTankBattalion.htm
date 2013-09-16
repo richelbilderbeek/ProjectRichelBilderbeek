@@ -68,17 +68,17 @@
 <table summary="GameTankBattalion.pro" border = "1"><tr><td><code>
 QT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; += core gui<br/>
 greaterThan(QT_MAJOR_VERSION, 4): QT += <a href="CppWidget.htm">widget</a>s<br/>
-TEMPLATE = app<br/>
-<a href="CppSOURCES.htm">SOURCES</a> += <a href="CppMain.htm">main</a>.cpp\<br/>
+<a href="CppQmakeTemplate.htm">TEMPLATE</a> = app<br/>
+<a href="CppQmakeSources.htm">SOURCES</a> += <a href="CppMain.htm">main</a>.cpp\<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;dialoggame.cpp \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;qtgame<a href="CppWidget.htm">widget</a>.cpp \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;tankbattalion.cpp<br/>
-<a href="CppHEADERS.htm">HEADERS</a>&nbsp;&nbsp;+= dialoggame.h \<br/>
+<a href="CppQmakeHeaders.htm">HEADERS</a>&nbsp;&nbsp;+= dialoggame.h \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;qtgame<a href="CppWidget.htm">widget</a>.h \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;tankbattalion.h<br/>
 <a href="CppFORMS.htm">FORMS</a>&nbsp;&nbsp;&nbsp;&nbsp;+= dialoggame.ui<br/>
 <br/>
-<a href="CppRESOURCES.htm">RESOURCES</a> += \<br/>
+<a href="CppQmakeResources.htm">RESOURCES</a> += \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;qtresources.qrc<br/>
 </code></td></tr></table>
 <!-- end of the code -->
@@ -91,35 +91,35 @@ TEMPLATE = app<br/>
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="dialoggame.h" border = "1"><tr><td><code>
-<a href="CppIfndef.htm">#ifndef</a> DIALOGGAME_H<br/>
-<a href="CppDefine.htm">#define</a> DIALOGGAME_H<br/>
+<a href="CppIfndef.html">#ifndef</a> DIALOGGAME_H<br/>
+<a href="CppDefine.html">#define</a> DIALOGGAME_H<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppShared_ptr.htm">shared_ptr</a>.hpp&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppBoost.html">boost</a>/<a href="CppShared_ptr.html">shared_ptr</a><a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppQDialog.htm">QDialog</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppQDialog.html">QDialog</a>&gt;<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppNamespace.htm">namespace</a></b> Ui {<br/>
-&nbsp;&nbsp;<b><a href="CppClass.htm">class</a></b> DialogGame;<br/>
+<b><a href="CppNamespace.html">namespace</a></b> Ui {<br/>
+&nbsp;&nbsp;<b><a href="CppClass.html">class</a></b> DialogGame;<br/>
 }<br/>
-<b><a href="CppStruct.htm">struct</a></b> <a href="CppQt.htm">Qt</a>Game<a href="CppWidget.htm">Widget</a>;<br/>
+<b><a href="CppStruct.html">struct</a></b> <a href="CppQt.htm">Qt</a>Game<a href="CppWidget.html">Widget</a>;<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppClass.htm">class</a></b> DialogGame : <b><a href="CppPublic.htm">public</a></b> <a href="CppQDialog.htm">QDialog</a><br/>
+<b><a href="CppClass.html">class</a></b> DialogGame : <b><a href="CppPublic.html">public</a></b> <a href="CppQDialog.html">QDialog</a><br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppQ_OBJECT.htm">Q_OBJECT</a><br/>
+&nbsp;&nbsp;<a href="CppQ_OBJECT.html">Q_OBJECT</a><br/>
 <br/>
-<b><a href="CppPublic.htm">public</a></b>:<br/>
-&nbsp;&nbsp;<b><a href="CppExplicit.htm">explicit</a></b> DialogGame(<a href="CppQWidget.htm">QWidget</a> *parent <a href="CppOperatorAssign.htm">=</a> 0);<br/>
+<b><a href="CppPublic.html">public</a></b>:<br/>
+&nbsp;&nbsp;<b><a href="CppExplicit.html">explicit</a></b> DialogGame(<a href="CppQWidget.html">QWidget</a> *parent <a href="CppOperatorAssign.htm">=</a> 0);<br/>
 &nbsp;&nbsp;~DialogGame();<br/>
 <br/>
-<b><a href="CppProtected.htm">protected</a></b>:<br/>
-&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> changeEvent(<a href="CppQEvent.htm">QEvent</a> *e);<br/>
+<b><a href="CppProtected.html">protected</a></b>:<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> changeEvent(<a href="CppQEvent.html">QEvent</a> *e);<br/>
 <br/>
-<b><a href="CppPrivate.htm">private</a></b>:<br/>
-&nbsp;&nbsp;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppQt.htm">Qt</a>Game<a href="CppWidget.htm">Widget</a>&gt; m_game;<br/>
+<b><a href="CppPrivate.html">private</a></b>:<br/>
+&nbsp;&nbsp;<a href="CppBoostShared_ptr.html">boost::shared_ptr</a>&lt;<a href="CppQt.htm">Qt</a>Game<a href="CppWidget.html">Widget</a>&gt; m_game;<br/>
 &nbsp;&nbsp;<a href="CppUi.htm">Ui</a>::DialogGame *ui;<br/>
 };<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> DIALOGGAME_H<br/>
+<a href="CppEndif.html">#endif</a> <a href="CppComment.htm">//</a> DIALOGGAME_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -132,13 +132,13 @@ TEMPLATE = app<br/>
 <!-- start of code -->
 <table summary="dialoggame.cpp" border = "1"><tr><td><code>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppInclude.htm">#include</a> "dialoggame.h"<br/>
-<a href="CppInclude.htm">#include</a> "qtgame<a href="CppWidget.htm">widget</a>.h"<br/>
-<a href="CppInclude.htm">#include</a> "ui_dialoggame.h"<br/>
+<a href="CppInclude.html">#include</a> "dialoggame<a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "qtgame<a href="CppWidget.html">widget</a><a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "ui_dialoggame<a href="CppHeaderFile.htm">.h</a>"<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-DialogGame::DialogGame(<a href="CppQWidget.htm">QWidget</a> *parent)<br/>
-&nbsp;&nbsp;: <a href="CppQDialog.htm">QDialog</a>(parent),<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;m_game(<b><a href="CppNew.htm">new</a></b> <a href="CppQt.htm">Qt</a>Game<a href="CppWidget.htm">Widget</a>),<br/>
+DialogGame::DialogGame(<a href="CppQWidget.html">QWidget</a> *parent)<br/>
+&nbsp;&nbsp;: <a href="CppQDialog.html">QDialog</a>(parent),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_game(<b><a href="CppNew.htm">new</a></b> <a href="CppQt.htm">Qt</a>Game<a href="CppWidget.html">Widget</a>),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;ui(<b><a href="CppNew.htm">new</a></b> <a href="CppUi.htm">Ui</a>::DialogGame)<br/>
 {<br/>
 &nbsp;&nbsp;ui-&gt;setupUi(<b><a href="CppThis.htm">this</a></b>);<br/>
@@ -147,18 +147,18 @@ DialogGame::DialogGame(<a href="CppQWidget.htm">QWidget</a> *parent)<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 DialogGame::~DialogGame()<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppDelete.htm">delete</a></b> ui;<br/>
+&nbsp;&nbsp;<b><a href="CppDelete.html">delete</a></b> ui;<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppVoid.htm">void</a></b> DialogGame::changeEvent(<a href="CppQEvent.htm">QEvent</a> *e)<br/>
+<b><a href="CppVoid.htm">void</a></b> DialogGame::changeEvent(<a href="CppQEvent.html">QEvent</a> *e)<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppQDialog.htm">QDialog</a>::changeEvent(e);<br/>
-&nbsp;&nbsp;<b><a href="CppSwitch.htm">switch</a></b> (e-&gt;type()) {<br/>
-&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> <a href="CppQEvent.htm">QEvent</a>::LanguageChange:<br/>
+&nbsp;&nbsp;<a href="CppQDialog.html">QDialog</a>::changeEvent(e);<br/>
+&nbsp;&nbsp;<b><a href="CppSwitch.html">switch</a></b> (e-&gt;type()) {<br/>
+&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> <a href="CppQEvent.html">QEvent</a>::LanguageChange:<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;ui-&gt;retranslateUi(<b><a href="CppThis.htm">this</a></b>);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppBreak.htm">break</a></b>;<br/>
-&nbsp;&nbsp;<b><a href="CppDefault.htm">default</a></b>:<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppBreak.htm">break</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppBreak.html">break</a></b>;<br/>
+&nbsp;&nbsp;<b><a href="CppDefault.html">default</a></b>:<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppBreak.html">break</a></b>;<br/>
 &nbsp;&nbsp;}<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
@@ -174,17 +174,17 @@ DialogGame::~DialogGame()<br/>
 <!-- start of code -->
 <table summary="main.cpp" border = "1"><tr><td><code>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppQApplication.htm">QApplication</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> "dialoggame.h"<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppQApplication.html">QApplication</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> "dialoggame<a href="CppHeaderFile.htm">.h</a>"<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <br/>
-<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>(<b><a href="CppInt.htm">int</a></b> <a href="CppArgc.htm">argc</a>, <b><a href="CppChar.htm">char</a></b> *<a href="CppArgc.htm">argv</a>[])<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a>(<b><a href="CppInt.htm">int</a></b> <a href="CppArgc.htm">argc</a>, <b><a href="CppChar.htm">char</a></b> *<a href="CppArgc.htm">argv</a>[])<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppQApplication.htm">QApplication</a> a(<a href="CppArgc.htm">argc</a>, <a href="CppArgc.htm">argv</a>);<br/>
+&nbsp;&nbsp;<a href="CppQApplication.html">QApplication</a> a(<a href="CppArgc.htm">argc</a>, <a href="CppArgc.htm">argv</a>);<br/>
 &nbsp;&nbsp;DialogGame w;<br/>
 &nbsp;&nbsp;w.show();<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> a.exec();<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> a.exec();<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 </code></td></tr></table>
@@ -198,39 +198,39 @@ DialogGame::~DialogGame()<br/>
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="qtgamewidget.h" border = "1"><tr><td><code>
-<a href="CppIfndef.htm">#ifndef</a> QTGAMEWIDGET_H<br/>
-<a href="CppDefine.htm">#define</a> QTGAMEWIDGET_H<br/>
+<a href="CppIfndef.html">#ifndef</a> QTGAMEWIDGET_H<br/>
+<a href="CppDefine.html">#define</a> QTGAMEWIDGET_H<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppMapH.htm">map</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppMapH.html">map</a>&gt;<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppShared_ptr.htm">shared_ptr</a>.hpp&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppBoost.html">boost</a>/<a href="CppShared_ptr.html">shared_ptr</a><a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppQWidget.htm">QWidget</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppQWidget.html">QWidget</a>&gt;<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppInclude.htm">#include</a> "tankbattalion.h"<br/>
+<a href="CppInclude.html">#include</a> "tankbattalion<a href="CppHeaderFile.htm">.h</a>"<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppQt.htm">Qt</a><br/>
+<b><a href="CppNamespace.html">namespace</a></b> <a href="CppQt.htm">Qt</a><br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppStruct.htm">struct</a></b> <a href="CppQImage.htm">QImage</a>;<br/>
+&nbsp;&nbsp;<b><a href="CppStruct.html">struct</a></b> <a href="CppQImage.html">QImage</a>;<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a>Game<a href="CppWidget.htm">Widget</a> : <b><a href="CppPublic.htm">public</a></b> <a href="CppQWidget.htm">QWidget</a><br/>
+<b><a href="CppClass.html">class</a></b> <a href="CppQt.htm">Qt</a>Game<a href="CppWidget.html">Widget</a> : <b><a href="CppPublic.html">public</a></b> <a href="CppQWidget.html">QWidget</a><br/>
 {<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQ_OBJECT.htm">Q_OBJECT</a><br/>
-<b><a href="CppPublic.htm">public</a></b>:<br/>
-&nbsp;&nbsp;<b><a href="CppTypedef.htm">typedef</a></b> <a href="CppMap.htm">std::map</a>&lt;TankBattalion::SpriteType,<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppQImage.htm">QImage</a>&gt; &gt; SpriteMap;<br/>
-&nbsp;&nbsp;<b><a href="CppExplicit.htm">explicit</a></b> <a href="CppQt.htm">Qt</a>Game<a href="CppWidget.htm">Widget</a>(<a href="CppQWidget.htm">QWidget</a> *parent <a href="CppOperatorAssign.htm">=</a> 0);<br/>
-<b><a href="CppProtected.htm">protected</a></b>:<br/>
-&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> paintEvent(<a href="CppQPaintEvent.htm">QPaintEvent</a> *);<br/>
-<b><a href="CppQtSignals.htm">signals</a></b>:<br/>
-<b><a href="CppPublic.htm">public</a></b> <b><a href="CppSlots.htm">slots</a></b>:<br/>
-<b><a href="CppPrivate.htm">private</a></b>:<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> SpriteMap CreateSprites() <b><a href="CppConst.htm">const</a></b>;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppQImage.htm">QImage</a>&gt; GetImage(<b><a href="CppConst.htm">const</a></b> TankBattalion::SpriteType&amp; s) <b><a href="CppConst.htm">const</a></b>;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> SpriteMap m_sprites;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQ_OBJECT.html">Q_OBJECT</a><br/>
+<b><a href="CppPublic.html">public</a></b>:<br/>
+&nbsp;&nbsp;<b><a href="CppTypedef.html">typedef</a></b> <a href="CppMap.html">std::map</a>&lt;TankBattalion::SpriteType,<a href="CppBoostShared_ptr.html">boost::shared_ptr</a>&lt;<a href="CppQImage.html">QImage</a>&gt; &gt; SpriteMap;<br/>
+&nbsp;&nbsp;<b><a href="CppExplicit.html">explicit</a></b> <a href="CppQt.htm">Qt</a>Game<a href="CppWidget.html">Widget</a>(<a href="CppQWidget.html">QWidget</a> *parent <a href="CppOperatorAssign.htm">=</a> 0);<br/>
+<b><a href="CppProtected.html">protected</a></b>:<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> paintEvent(<a href="CppQPaintEvent.html">QPaintEvent</a> *);<br/>
+<b><a href="CppQtSignals.html">signals</a></b>:<br/>
+<b><a href="CppPublic.html">public</a></b> <b><a href="CppSlots.html">slots</a></b>:<br/>
+<b><a href="CppPrivate.html">private</a></b>:<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> SpriteMap CreateSprites() <b><a href="CppConst.html">const</a></b>;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppBoostShared_ptr.html">boost::shared_ptr</a>&lt;<a href="CppQImage.html">QImage</a>&gt; GetImage(<b><a href="CppConst.html">const</a></b> TankBattalion::SpriteType&amp; s) <b><a href="CppConst.html">const</a></b>;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> SpriteMap m_sprites;<br/>
 };<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> QTGAMEWIDGET_H<br/>
+<a href="CppEndif.html">#endif</a> <a href="CppComment.htm">//</a> QTGAMEWIDGET_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -243,49 +243,49 @@ DialogGame::~DialogGame()<br/>
 <!-- start of code -->
 <table summary="qtgamewidget.cpp" border = "1"><tr><td><code>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppCassertH.html">cassert</a>&gt;<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppQImage.htm">QImage</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppQPainter.htm">QPainter</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppQImage.html">QImage</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppQPainter.html">QPainter</a>&gt;<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppInclude.htm">#include</a> "qtgame<a href="CppWidget.htm">widget</a>.h"<br/>
+<a href="CppInclude.html">#include</a> "qtgame<a href="CppWidget.html">widget</a><a href="CppHeaderFile.htm">.h</a>"<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppQt.htm">Qt</a>Game<a href="CppWidget.htm">Widget</a>::<a href="CppQt.htm">Qt</a>Game<a href="CppWidget.htm">Widget</a>(<a href="CppQWidget.htm">QWidget</a> *parent)<br/>
- : <a href="CppQWidget.htm">QWidget</a>(parent),<br/>
+<a href="CppQt.htm">Qt</a>Game<a href="CppWidget.html">Widget</a>::<a href="CppQt.htm">Qt</a>Game<a href="CppWidget.html">Widget</a>(<a href="CppQWidget.html">QWidget</a> *parent)<br/>
+ : <a href="CppQWidget.html">QWidget</a>(parent),<br/>
 &nbsp;&nbsp; m_sprites(CreateSprites())<br/>
 {<br/>
 <br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppQt.htm">Qt</a>Game<a href="CppWidget.htm">Widget</a>::SpriteMap <a href="CppQt.htm">Qt</a>Game<a href="CppWidget.htm">Widget</a>::CreateSprites() <b><a href="CppConst.htm">const</a></b><br/>
+<b><a href="CppConst.html">const</a></b> <a href="CppQt.htm">Qt</a>Game<a href="CppWidget.html">Widget</a>::SpriteMap <a href="CppQt.htm">Qt</a>Game<a href="CppWidget.html">Widget</a>::CreateSprites() <b><a href="CppConst.html">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;SpriteMap m;<br/>
-&nbsp;&nbsp;m[TankBattalion::arena] <a href="CppOperatorAssign.htm">=</a> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppQImage.htm">QImage</a>&gt;(<b><a href="CppNew.htm">new</a></b> <a href="CppQImage.htm">QImage</a>(":/images/Arena.png"));<br/>
-&nbsp;&nbsp;m[TankBattalion::player_down] <a href="CppOperatorAssign.htm">=</a> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppQImage.htm">QImage</a>&gt;(<b><a href="CppNew.htm">new</a></b> <a href="CppQImage.htm">QImage</a>(":/images/PlayerDown.png"));<br/>
-&nbsp;&nbsp;m[TankBattalion::player_left] <a href="CppOperatorAssign.htm">=</a> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppQImage.htm">QImage</a>&gt;(<b><a href="CppNew.htm">new</a></b> <a href="CppQImage.htm">QImage</a>(":/images/PlayerLeft.png"));<br/>
-&nbsp;&nbsp;m[TankBattalion::player_right] <a href="CppOperatorAssign.htm">=</a> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppQImage.htm">QImage</a>&gt;(<b><a href="CppNew.htm">new</a></b> <a href="CppQImage.htm">QImage</a>(":/images/PlayerRight.png"));<br/>
-&nbsp;&nbsp;m[TankBattalion::player_up] <a href="CppOperatorAssign.htm">=</a> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppQImage.htm">QImage</a>&gt;(<b><a href="CppNew.htm">new</a></b> <a href="CppQImage.htm">QImage</a>(":/images/PlayerUp.png"));<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> m;<br/>
+&nbsp;&nbsp;m[TankBattalion::arena] <a href="CppOperatorAssign.htm">=</a> <a href="CppBoostShared_ptr.html">boost::shared_ptr</a>&lt;<a href="CppQImage.html">QImage</a>&gt;(<b><a href="CppNew.htm">new</a></b> <a href="CppQImage.html">QImage</a>(":/images/Arena.png"));<br/>
+&nbsp;&nbsp;m[TankBattalion::player_down] <a href="CppOperatorAssign.htm">=</a> <a href="CppBoostShared_ptr.html">boost::shared_ptr</a>&lt;<a href="CppQImage.html">QImage</a>&gt;(<b><a href="CppNew.htm">new</a></b> <a href="CppQImage.html">QImage</a>(":/images/PlayerDown.png"));<br/>
+&nbsp;&nbsp;m[TankBattalion::player_left] <a href="CppOperatorAssign.htm">=</a> <a href="CppBoostShared_ptr.html">boost::shared_ptr</a>&lt;<a href="CppQImage.html">QImage</a>&gt;(<b><a href="CppNew.htm">new</a></b> <a href="CppQImage.html">QImage</a>(":/images/PlayerLeft.png"));<br/>
+&nbsp;&nbsp;m[TankBattalion::player_right] <a href="CppOperatorAssign.htm">=</a> <a href="CppBoostShared_ptr.html">boost::shared_ptr</a>&lt;<a href="CppQImage.html">QImage</a>&gt;(<b><a href="CppNew.htm">new</a></b> <a href="CppQImage.html">QImage</a>(":/images/PlayerRight.png"));<br/>
+&nbsp;&nbsp;m[TankBattalion::player_up] <a href="CppOperatorAssign.htm">=</a> <a href="CppBoostShared_ptr.html">boost::shared_ptr</a>&lt;<a href="CppQImage.html">QImage</a>&gt;(<b><a href="CppNew.htm">new</a></b> <a href="CppQImage.html">QImage</a>(":/images/PlayerUp.png"));<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> m;<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppQImage.htm">QImage</a>&gt; <a href="CppQt.htm">Qt</a>Game<a href="CppWidget.htm">Widget</a>::GetImage(<b><a href="CppConst.htm">const</a></b> TankBattalion::SpriteType&amp; s) <b><a href="CppConst.htm">const</a></b><br/>
+<b><a href="CppConst.html">const</a></b> <a href="CppBoostShared_ptr.html">boost::shared_ptr</a>&lt;<a href="CppQImage.html">QImage</a>&gt; <a href="CppQt.htm">Qt</a>Game<a href="CppWidget.html">Widget</a>::GetImage(<b><a href="CppConst.html">const</a></b> TankBattalion::SpriteType&amp; s) <b><a href="CppConst.html">const</a></b><br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> SpriteMap::const_iterator i<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> SpriteMap::const_iterator i<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> m_sprites.find(s);<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(i<a href="CppOperatorNotEqual.htm">!=</a>m_sprites.end());<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> i-&gt;second;<br/>
+&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(i<a href="CppOperatorNotEqual.htm">!=</a>m_sprites.end());<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> i-&gt;second;<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a>Game<a href="CppWidget.htm">Widget</a>::paintEvent(<a href="CppQPaintEvent.htm">QPaintEvent</a> *)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a>Game<a href="CppWidget.html">Widget</a>::paintEvent(<a href="CppQPaintEvent.html">QPaintEvent</a> *)<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppQPainter.htm">QPainter</a> painter(<b><a href="CppThis.htm">this</a></b>);<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> width <a href="CppOperatorAssign.htm">=</a> <b><a href="CppThis.htm">this</a></b>-&gt;width();<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> height <a href="CppOperatorAssign.htm">=</a> <b><a href="CppThis.htm">this</a></b>-&gt;height();<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> scale_x<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(width)<br/>
+&nbsp;&nbsp;<a href="CppQPainter.html">QPainter</a> painter(<b><a href="CppThis.htm">this</a></b>);<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> width <a href="CppOperatorAssign.htm">=</a> <b><a href="CppThis.htm">this</a></b>-&gt;width();<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> height <a href="CppOperatorAssign.htm">=</a> <b><a href="CppThis.htm">this</a></b>-&gt;height();<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> scale_x<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.html">static_cast</a></b>&lt;<b><a href="CppDouble.html">double</a></b>&gt;(width)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorDivide.htm">/</a> TankBattalion::GetArenaWidth();<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> scale_y<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(height)<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> scale_y<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.html">static_cast</a></b>&lt;<b><a href="CppDouble.html">double</a></b>&gt;(height)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorDivide.htm">/</a> TankBattalion::GetArenaHeight();<br/>
 &nbsp;&nbsp;painter.setBackgroundMode(<a href="CppQt.htm">Qt</a>::TransparentMode);<br/>
 &nbsp;&nbsp;painter.drawImage(<br/>
@@ -293,7 +293,7 @@ DialogGame::~DialogGame()<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;*GetImage(TankBattalion::arena).get());<br/>
 <br/>
 &nbsp;&nbsp;painter.drawImage(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQRect.htm">QRect</a>(0,0,scale_x * 16.0, scale_y * 16.0),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQRect.html">QRect</a>(0,0,scale_x * 16.0, scale_y * 16.0),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;*GetImage(TankBattalion::player_left).get());<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
@@ -309,10 +309,10 @@ DialogGame::~DialogGame()<br/>
 <!-- start of code -->
 <table summary="tankbattalion.h" border = "1"><tr><td><code>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppIfndef.htm">#ifndef</a> TANKBATTALION_H<br/>
-<a href="CppDefine.htm">#define</a> TANKBATTALION_H<br/>
+<a href="CppIfndef.html">#ifndef</a> TANKBATTALION_H<br/>
+<a href="CppDefine.html">#define</a> TANKBATTALION_H<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppStruct.htm">struct</a></b> TankBattalion<br/>
+<b><a href="CppStruct.html">struct</a></b> TankBattalion<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppEnum.htm">enum</a></b> SpriteType<br/>
 &nbsp;&nbsp;{<br/>
@@ -322,10 +322,10 @@ DialogGame::~DialogGame()<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;player_right,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;player_up<br/>
 &nbsp;&nbsp;};<br/>
-&nbsp;&nbsp;<b><a href="CppStruct.htm">struct</a></b> Sprite<br/>
+&nbsp;&nbsp;<b><a href="CppStruct.html">struct</a></b> Sprite<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppDouble.htm">double</a></b> x;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppDouble.htm">double</a></b> y;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppDouble.html">double</a></b> x;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppDouble.html">double</a></b> y;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;TankBattalion::SpriteType type;<br/>
 &nbsp;&nbsp;};<br/>
 <br/>
@@ -338,14 +338,14 @@ DialogGame::~DialogGame()<br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> PressKeyUp();<br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> Tick();<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppInt.htm">int</a></b> GetArenaHeight() { <b><a href="CppReturn.htm">return</a></b> 176; }<br/>
-&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppInt.htm">int</a></b> GetArenaWidth()&nbsp;&nbsp;{ <b><a href="CppReturn.htm">return</a></b> 168; }<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.html">static</a></b> <b><a href="CppInt.htm">int</a></b> GetArenaHeight() { <b><a href="CppReturn.html">return</a></b> 176; }<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.html">static</a></b> <b><a href="CppInt.htm">int</a></b> GetArenaWidth()&nbsp;&nbsp;{ <b><a href="CppReturn.html">return</a></b> 168; }<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppPrivate.htm">private</a></b>:<br/>
+&nbsp;&nbsp;<b><a href="CppPrivate.html">private</a></b>:<br/>
 <br/>
 };<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> TANKBATTALION_H<br/>
+<a href="CppEndif.html">#endif</a> <a href="CppComment.htm">//</a> TANKBATTALION_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -358,7 +358,7 @@ DialogGame::~DialogGame()<br/>
 <!-- start of code -->
 <table summary="tankbattalion.cpp" border = "1"><tr><td><code>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppInclude.htm">#include</a> "tankbattalion.h"<br/>
+<a href="CppInclude.html">#include</a> "tankbattalion<a href="CppHeaderFile.htm">.h</a>"<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 TankBattalion::TankBattalion()<br/>
 {<br/>

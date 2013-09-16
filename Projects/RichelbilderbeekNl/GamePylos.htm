@@ -99,17 +99,17 @@ QT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; += core gui<br/>
 greaterThan(QT_MAJOR_VERSION, 4): QT += <a href="CppWidget.htm">widget</a>s<br/>
 <br/>
 <br/>
-<a href="CppQMAKE_CXXFLAGS.htm">QMAKE_CXXFLAGS</a> += -std=<a href="Cpp11.htm">c++11</a> <a href="CppWall.htm">-Wall</a> <a href="CppWextra.htm">-Wextra</a> <a href="CppWerror.htm">-Werror</a><br/>
-TEMPLATE = app<br/>
+<a href="CppQmakeQmake_cxxflags.htm">QMAKE_CXXFLAGS</a> += -std=<a href="Cpp11.htm">c++11</a> <a href="CppWall.htm">-Wall</a> <a href="CppWextra.htm">-Wextra</a> <a href="CppWerror.htm">-Werror</a><br/>
+<a href="CppQmakeTemplate.htm">TEMPLATE</a> = app<br/>
 <br/>
-<a href="CppINCLUDEPATH.htm">INCLUDEPATH</a> += \<br/>
+<a href="CppQmakeIncludepath.htm">INCLUDEPATH</a> += \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppAbout.htm">CppAbout</a> \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppPylos.htm">CppPylos</a> \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppQtAboutDialog.htm">CppQtAboutDialog</a> \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppQtPylos.htm">CppQtPylos</a> \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppTrace.htm">CppTrace</a><br/>
 <br/>
-<a href="CppSOURCES.htm">SOURCES</a> += \<br/>
+<a href="CppQmakeSources.htm">SOURCES</a> += \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;qt<a href="CppMain.htm">main</a>.cpp \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;qt<a href="CppPylos.htm">pylos</a>wondialog.cpp \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;qt<a href="CppPylos.htm">pylos</a>menudialog.cpp \<br/>
@@ -132,7 +132,7 @@ TEMPLATE = app<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppAbout.htm">CppAbout</a>/<a href="CppAbout.htm">about</a>.cpp \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppPylos.htm">pylos</a>menudialog.cpp<br/>
 <br/>
-<a href="CppHEADERS.htm">HEADERS</a>&nbsp;&nbsp;+= \<br/>
+<a href="CppQmakeHeaders.htm">HEADERS</a>&nbsp;&nbsp;+= \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;qt<a href="CppPylos.htm">pylos</a>wondialog.h \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;qt<a href="CppPylos.htm">pylos</a>menudialog.h \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;qt<a href="CppPylos.htm">pylos</a><a href="CppMain.htm">main</a>dialog.h \<br/>
@@ -163,7 +163,7 @@ TEMPLATE = app<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;qt<a href="CppPylos.htm">pylos</a>instructionsdialog.ui \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppQtAboutDialog.htm">CppQtAboutDialog</a>/<a href="CppQtAboutDialog.htm">qtaboutdialog</a>.ui<br/>
 <br/>
-<a href="CppRESOURCES.htm">RESOURCES</a> += \<br/>
+<a href="CppQmakeResources.htm">RESOURCES</a> += \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="GamePylos.htm">GamePylos</a>.qrc<br/>
 <br/>
 OTHER_FILES += \<br/>
@@ -179,19 +179,19 @@ OTHER_FILES += \<br/>
 #<br/>
 #<br/>
 <br/>
-CONFIG(debug, debug|release) {<br/>
+<a href="CppQmakeConfig.htm">CONFIG</a>(debug, debug|release) {<br/>
 &nbsp;&nbsp;message(Debug mode)<br/>
 }<br/>
 <br/>
-CONFIG(release, debug|release) {<br/>
+<a href="CppQmakeConfig.htm">CONFIG</a>(release, debug|release) {<br/>
 &nbsp;&nbsp;message(Release mode)<br/>
 <br/>
 &nbsp;&nbsp;#Remove all <a href="CppAssert.htm">assert</a>s and <a href="CppTRACE.htm">TRACE</a><br/>
-&nbsp;&nbsp;DEFINES += NDEBUG N<a href="CppTRACE.htm">TRACE</a>_BILDERBIKKEL<br/>
+&nbsp;&nbsp;<a href="CppQmakeDefines.htm">DEFINES</a> += NDEBUG N<a href="CppTRACE.htm">TRACE</a>_BILDERBIKKEL<br/>
 }<br/>
 <br/>
 win32 {<br/>
-&nbsp;&nbsp;<a href="CppINCLUDEPATH.htm">INCLUDEPATH</a>+= ../../<a href="CppLibrary.htm">Libraries</a>/boost_1_54_0<br/>
+&nbsp;&nbsp;<a href="CppQmakeIncludepath.htm">INCLUDEPATH</a>+= ../../<a href="CppLibrary.htm">Libraries</a>/boost_1_54_0<br/>
 }<br/>
 </code></td></tr></table>
 <!-- end of the code -->
@@ -206,7 +206,7 @@ win32 {<br/>
 <table summary="pylosmenudialog.h" border = "1"><tr><td><code>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">/*</a><br/>
-<a href="CppPylos.htm">Pylos</a>, <a href="CppPylos.htm">Pylos</a>/Pyraos game<br/>
+<a href="CppPylos.html">Pylos</a>, <a href="CppPylos.html">Pylos</a>/Pyraos game<br/>
 Copyright (C) 2010-2012 Richel Bilderbeek<br/>
 <br/>
 This program is free software: you can redistribute it and/or modify<br/>
@@ -222,37 +222,37 @@ You should have received a copy of the GNU General Public License<br/>
 along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">*/</a><br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="GamePylos.htm">GamePylos</a>.htm<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="GamePylos.html">GamePylos</a>.html<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppIfndef.htm">#ifndef</a> PYLOSMENUDIALOG_H<br/>
-<a href="CppDefine.htm">#define</a> PYLOSMENUDIALOG_H<br/>
+<a href="CppIfndef.html">#ifndef</a> PYLOSMENUDIALOG_H<br/>
+<a href="CppDefine.html">#define</a> PYLOSMENUDIALOG_H<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppStringH.htm">string</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppStringH.html">string</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppVectorH.html">vector</a>&gt;<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppAbout.htm">about</a>.h"<br/>
+<a href="CppInclude.html">#include</a> "<a href="CppAbout.html">about</a><a href="CppHeaderFile.htm">.h</a>"<br/>
 <br/>
-<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a> {<br/>
+<b><a href="CppNamespace.html">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
 <br/>
-<a href="CppComment.htm">///</a><a href="CppPylos.htm">Pylos</a>MenuDialog contains the <a href="GameBeerWanter.htm">BeerWanter</a> menu dialog<br/>
-<b><a href="CppStruct.htm">struct</a></b> <a href="CppPylos.htm">Pylos</a>MenuDialog<br/>
+<a href="CppComment.htm">///</a><a href="CppPylos.html">Pylos</a>MenuDialog contains the <a href="GameBeerWanter.html">BeerWanter</a> menu dialog<br/>
+<b><a href="CppStruct.html">struct</a></b> <a href="CppPylos.html">Pylos</a>MenuDialog<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Obtain <b><a href="CppThis.htm">this</a></b> <b><a href="CppClass.htm">class</a></b> its <a href="CppAbout.htm">about</a> information<br/>
-&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppAbout.htm">About</a> GetAbout();<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Obtain <b><a href="CppThis.htm">this</a></b> <b><a href="CppClass.html">class</a></b> its <a href="CppAbout.html">about</a> information<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.html">static</a></b> <b><a href="CppConst.html">const</a></b> <a href="CppAbout.html">About</a> GetAbout();<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Obtain <b><a href="CppThis.htm">this</a></b> <b><a href="CppClass.htm">class</a></b> its <a href="CppVersion.htm">version</a><br/>
-&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> Get<a href="CppVersion.htm">Version</a>();<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Obtain <b><a href="CppThis.htm">this</a></b> <b><a href="CppClass.html">class</a></b> its <a href="CppVersion.html">version</a><br/>
+&nbsp;&nbsp;<b><a href="CppStatic.html">static</a></b> <b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a> Get<a href="CppVersion.html">Version</a>();<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Obtain <b><a href="CppThis.htm">this</a></b> <b><a href="CppClass.htm">class</a></b> its <a href="CppVersion.htm">version</a> history<br/>
-&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; Get<a href="CppVersion.htm">Version</a>History();<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Obtain <b><a href="CppThis.htm">this</a></b> <b><a href="CppClass.html">class</a></b> its <a href="CppVersion.html">version</a> history<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.html">static</a></b> <b><a href="CppConst.html">const</a></b> <a href="CppVector.html">std::vector</a>&lt;<a href="CppString.html">std::string</a>&gt; Get<a href="CppVersion.html">Version</a>History();<br/>
 };<br/>
 <br/>
-<a href="CppComment.htm">///</a>From http://www.richelbilderbeek.nl/Cpp<a href="CppIntToStr.htm">IntToStr</a>.htm<br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppIntToStr.htm">IntToStr</a>(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x);<br/>
+<a href="CppComment.htm">///</a>From http://www.richelbilderbeek.nl/Cpp<a href="CppIntToStr.html">IntToStr</a>.html<br/>
+<b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a> <a href="CppIntToStr.html">IntToStr</a>(<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> x);<br/>
 <br/>
-} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a><br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.html">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
 <br/>
-<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> PYLOSMENUDIALOG_H<br/>
+<a href="CppEndif.html">#endif</a> <a href="CppComment.htm">//</a> PYLOSMENUDIALOG_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -266,7 +266,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <table summary="pylosmenudialog.cpp" border = "1"><tr><td><code>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">/*</a><br/>
-<a href="CppPylos.htm">Pylos</a>, <a href="CppPylos.htm">Pylos</a>/Pyraos game<br/>
+<a href="CppPylos.html">Pylos</a>, <a href="CppPylos.html">Pylos</a>/Pyraos game<br/>
 Copyright (C) 2010-2012 Richel Bilderbeek<br/>
 <br/>
 This program is free software: you can redistribute it and/or modify<br/>
@@ -282,53 +282,51 @@ You should have received a copy of the GNU General Public License<br/>
 along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">*/</a><br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="GamePylos.htm">GamePylos</a>.htm<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="GamePylos.html">GamePylos</a>.html<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppInclude.html">#include</a> "<a href="CppPylos.html">pylos</a>menudialog<a href="CppHeaderFile.htm">.h</a>"<br/>
 <br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppCstdlibH.html">cstdlib</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppIostreamH.html">iostream</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppSstreamH.html">sstream</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppStdexceptH.html">stdexcept</a>&gt;<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppPylos.htm">pylos</a>menudialog.h"<br/>
+<a href="CppInclude.html">#include</a> "<a href="CppPylos.html">pylos</a>board<a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "<a href="CppPylos.html">pylos</a>coordinat<a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "<a href="CppPylos.html">pylos</a>currentmovestate<a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "<a href="CppPylos.html">pylos</a>game<a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "<a href="CppPylos.html">pylos</a>move<a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "<a href="CppPylos.html">pylos</a>player<a href="CppHeaderFile.htm">.h</a>"<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppCstdlibH.htm">cstdlib</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppIostreamH.htm">iostream</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppSstreamH.htm">sstream</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppStdexceptH.htm">stdexcept</a>&gt;<br/>
-<br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppPylos.htm">pylos</a>board.h"<br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppPylos.htm">pylos</a>coordinat.h"<br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppPylos.htm">pylos</a>currentmovestate.h"<br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppPylos.htm">pylos</a>game.h"<br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppPylos.htm">pylos</a>move.h"<br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppPylos.htm">pylos</a>player.h"<br/>
-<br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppAbout.htm">About</a> <a href="CppRibi.htm\">ribi</a>::<a href="CppPylos.htm">Pylos</a>MenuDialog::GetAbout()<br/>
+<b><a href="CppConst.html">const</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppAbout.html">About</a> <a href="CppRibi.htm">ribi</a>::<a href="CppPylos.html">Pylos</a>MenuDialog::GetAbout()<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppAbout.htm">About</a> a(<br/>
+&nbsp;&nbsp;<a href="CppAbout.html">About</a> a(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;"Richel Bilderbeek",<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;"<a href="CppPylos.htm">Pylos</a>",<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;"<a href="CppPylos.htm">Pylos</a>/Pyraos game",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"<a href="CppPylos.html">Pylos</a>",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"<a href="CppPylos.html">Pylos</a>/Pyraos game",<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;"the 28th of May 2012",<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;"2010-2012",<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;"http://www.richelbilderbeek.nl/<a href="GamePylos.htm">GamePylos</a>.htm",<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;Get<a href="CppVersion.htm">Version</a>(),<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;Get<a href="CppVersion.htm">Version</a>History());<br/>
-&nbsp;&nbsp;a.<a href="CppAdd.htm">Add</a><a href="CppLibrary.htm">Library</a>("<a href="CppPylos.htm">Pylos</a>::Board <a href="CppVersion.htm">version</a>: " <a href="CppOperatorPlus.htm">+</a> <a href="CppPylos.htm">Pylos</a>::Board::Get<a href="CppVersion.htm">Version</a>());<br/>
-&nbsp;&nbsp;a.<a href="CppAdd.htm">Add</a><a href="CppLibrary.htm">Library</a>("<a href="CppPylos.htm">Pylos</a>::Coordinat <a href="CppVersion.htm">version</a>: " <a href="CppOperatorPlus.htm">+</a> <a href="CppPylos.htm">Pylos</a>::Coordinat::Get<a href="CppVersion.htm">Version</a>());<br/>
-&nbsp;&nbsp;a.<a href="CppAdd.htm">Add</a><a href="CppLibrary.htm">Library</a>("<a href="CppPylos.htm">Pylos</a>::CurrentMove<a href="CppState.htm">State</a> <a href="CppVersion.htm">version</a>: " <a href="CppOperatorPlus.htm">+</a> <a href="CppPylos.htm">Pylos</a>::CurrentMove<a href="CppState.htm">State</a>::Get<a href="CppVersion.htm">Version</a>());<br/>
-&nbsp;&nbsp;a.<a href="CppAdd.htm">Add</a><a href="CppLibrary.htm">Library</a>("<a href="CppPylos.htm">Pylos</a>::Game <a href="CppVersion.htm">version</a>: " <a href="CppOperatorPlus.htm">+</a> <a href="CppPylos.htm">Pylos</a>::Game::Get<a href="CppVersion.htm">Version</a>());<br/>
-&nbsp;&nbsp;a.<a href="CppAdd.htm">Add</a><a href="CppLibrary.htm">Library</a>("<a href="CppPylos.htm">Pylos</a>::Move <a href="CppVersion.htm">version</a>: " <a href="CppOperatorPlus.htm">+</a> <a href="CppPylos.htm">Pylos</a>::Move::Get<a href="CppVersion.htm">Version</a>());<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> a;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"http://www.richelbilderbeek.nl/<a href="GamePylos.html">GamePylos</a>.html",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Get<a href="CppVersion.html">Version</a>(),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Get<a href="CppVersion.html">Version</a>History());<br/>
+&nbsp;&nbsp;a.<a href="CppAdd.htm">Add</a><a href="CppLibrary.html">Library</a>("<a href="CppPylos.html">Pylos</a>::Board <a href="CppVersion.html">version</a>: " <a href="CppOperatorPlus.htm">+</a> <a href="CppPylos.html">Pylos</a>::Board::Get<a href="CppVersion.html">Version</a>());<br/>
+&nbsp;&nbsp;a.<a href="CppAdd.htm">Add</a><a href="CppLibrary.html">Library</a>("<a href="CppPylos.html">Pylos</a>::Coordinat <a href="CppVersion.html">version</a>: " <a href="CppOperatorPlus.htm">+</a> <a href="CppPylos.html">Pylos</a>::Coordinat::Get<a href="CppVersion.html">Version</a>());<br/>
+&nbsp;&nbsp;a.<a href="CppAdd.htm">Add</a><a href="CppLibrary.html">Library</a>("<a href="CppPylos.html">Pylos</a>::CurrentMove<a href="CppState.html">State</a> <a href="CppVersion.html">version</a>: " <a href="CppOperatorPlus.htm">+</a> <a href="CppPylos.html">Pylos</a>::CurrentMove<a href="CppState.html">State</a>::Get<a href="CppVersion.html">Version</a>());<br/>
+&nbsp;&nbsp;a.<a href="CppAdd.htm">Add</a><a href="CppLibrary.html">Library</a>("<a href="CppPylos.html">Pylos</a>::Game <a href="CppVersion.html">version</a>: " <a href="CppOperatorPlus.htm">+</a> <a href="CppPylos.html">Pylos</a>::Game::Get<a href="CppVersion.html">Version</a>());<br/>
+&nbsp;&nbsp;a.<a href="CppAdd.htm">Add</a><a href="CppLibrary.html">Library</a>("<a href="CppPylos.html">Pylos</a>::Move <a href="CppVersion.html">version</a>: " <a href="CppOperatorPlus.htm">+</a> <a href="CppPylos.html">Pylos</a>::Move::Get<a href="CppVersion.html">Version</a>());<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> a;<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppRibi.htm\">ribi</a>::<a href="CppPylos.htm">Pylos</a>MenuDialog::Get<a href="CppVersion.htm">Version</a>()<br/>
+<b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a> <a href="CppRibi.htm">ribi</a>::<a href="CppPylos.html">Pylos</a>MenuDialog::Get<a href="CppVersion.html">Version</a>()<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> "2.0";<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> "2.0";<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm\">ribi</a>::<a href="CppPylos.htm">Pylos</a>MenuDialog::Get<a href="CppVersion.htm">Version</a>History()<br/>
+<b><a href="CppConst.html">const</a></b> <a href="CppVector.html">std::vector</a>&lt;<a href="CppString.html">std::string</a>&gt; <a href="CppRibi.htm">ribi</a>::<a href="CppPylos.html">Pylos</a>MenuDialog::Get<a href="CppVersion.html">Version</a>History()<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> {<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;"2010-09-22: <a href="CppVersion.htm">version</a> 1.0: initial release <a href="CppVersion.htm">version</a>",<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;"2012-05-28: <a href="CppVersion.htm">version</a> 2.0: improved <a href="CppVersion.htm">version</a> to work with <a href="ProjectRichelBilderbeek.htm">ProjectRichelBilderbeek</a>"<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"2010-09-22: <a href="CppVersion.html">version</a> 1.0: initial release <a href="CppVersion.html">version</a>",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"2012-05-28: <a href="CppVersion.html">version</a> 2.0: improved <a href="CppVersion.html">version</a> to work with <a href="ProjectRichelBilderbeek.html">ProjectRichelBilderbeek</a>"<br/>
 &nbsp;&nbsp;};<br/>
 }<br/>
 </code></td></tr></table>
@@ -344,7 +342,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <table summary="qtmain.cpp" border = "1"><tr><td><code>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">/*</a><br/>
-<a href="CppPylos.htm">Pylos</a>, <a href="CppPylos.htm">Pylos</a>/Pyraos game<br/>
+<a href="CppPylos.html">Pylos</a>, <a href="CppPylos.html">Pylos</a>/Pyraos game<br/>
 Copyright (C) 2010-2012 Richel Bilderbeek<br/>
 <br/>
 This program is free software: you can redistribute it and/or modify<br/>
@@ -360,21 +358,21 @@ You should have received a copy of the GNU General Public License<br/>
 along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">*/</a><br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="GamePylos.htm">GamePylos</a>.htm<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="GamePylos.html">GamePylos</a>.html<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppQApplication.htm">QApplication</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppQApplication.html">QApplication</a>&gt;<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> "qt<a href="CppPylos.htm">pylos</a>menudialog.h"<br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppTrace.htm">trace</a>.h"<br/>
+<a href="CppInclude.html">#include</a> "qt<a href="CppPylos.html">pylos</a>menudialog<a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "<a href="CppTrace.html">trace</a><a href="CppHeaderFile.htm">.h</a>"<br/>
 <br/>
-<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>(<b><a href="CppInt.htm">int</a></b> <a href="CppArgc.htm">argc</a>, <b><a href="CppChar.htm">char</a></b> *<a href="CppArgc.htm">argv</a>[])<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a>(<b><a href="CppInt.htm">int</a></b> <a href="CppArgc.htm">argc</a>, <b><a href="CppChar.htm">char</a></b> *<a href="CppArgc.htm">argv</a>[])<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppQApplication.htm">QApplication</a> a(<a href="CppArgc.htm">argc</a>, <a href="CppArgc.htm">argv</a>);<br/>
-&nbsp;&nbsp;START_<a href="CppTRACE.htm">TRACE</a>();<br/>
+&nbsp;&nbsp;<a href="CppQApplication.html">QApplication</a> a(<a href="CppArgc.htm">argc</a>, <a href="CppArgc.htm">argv</a>);<br/>
+&nbsp;&nbsp;START_<a href="CppTRACE.html">TRACE</a>();<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppPylos.htm">Pylos</a>MenuDialog w;<br/>
+&nbsp;&nbsp;<a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppPylos.html">Pylos</a>MenuDialog w;<br/>
 &nbsp;&nbsp;w.show();<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> a.exec();<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> a.exec();<br/>
 }<br/>
 </code></td></tr></table>
 <!-- end of the code -->
@@ -389,7 +387,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <table summary="qtpylosinstructionsdialog.h" border = "1"><tr><td><code>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">/*</a><br/>
-<a href="CppPylos.htm">Pylos</a>, <a href="CppPylos.htm">Pylos</a>/Pyraos game<br/>
+<a href="CppPylos.html">Pylos</a>, <a href="CppPylos.html">Pylos</a>/Pyraos game<br/>
 Copyright (C) 2010-2012 Richel Bilderbeek<br/>
 <br/>
 This program is free software: you can redistribute it and/or modify<br/>
@@ -405,34 +403,39 @@ You should have received a copy of the GNU General Public License<br/>
 along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">*/</a><br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="GamePylos.htm">GamePylos</a>.htm<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="GamePylos.html">GamePylos</a>.html<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppIfndef.htm">#ifndef</a> QTPYLOSINSTRUCTIONSDIALOG<br/>
-<a href="CppDefine.htm">#define</a> QTPYLOSINSTRUCTIONSDIALOG<br/>
+<a href="CppIfndef.html">#ifndef</a> QTPYLOSINSTRUCTIONSDIALOG<br/>
+<a href="CppDefine.html">#define</a> QTPYLOSINSTRUCTIONSDIALOG<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppQDialog.htm">QDialog</a>&gt;<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic push<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.html">-Weffc++</a>"<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppQDialog.html">QDialog</a>&gt;<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic pop<br/>
 <br/>
-<b><a href="CppNamespace.htm">namespace</a></b> Ui {<br/>
-&nbsp;&nbsp;<b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a><a href="CppPylos.htm">Pylos</a>InstructionsDialog;<br/>
+<b><a href="CppNamespace.html">namespace</a></b> Ui {<br/>
+&nbsp;&nbsp;<b><a href="CppClass.html">class</a></b> <a href="CppQt.htm">Qt</a><a href="CppPylos.html">Pylos</a>InstructionsDialog;<br/>
 }<br/>
 <br/>
-<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a> {<br/>
+<b><a href="CppNamespace.html">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
 <br/>
-<b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a><a href="CppPylos.htm">Pylos</a>InstructionsDialog : <b><a href="CppPublic.htm">public</a></b> <a href="CppQDialog.htm">QDialog</a><br/>
+<b><a href="CppClass.html">class</a></b> <a href="CppQt.htm">Qt</a><a href="CppPylos.html">Pylos</a>InstructionsDialog : <b><a href="CppPublic.html">public</a></b> <a href="CppQDialog.html">QDialog</a><br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppQ_OBJECT.htm">Q_OBJECT</a><br/>
+&nbsp;&nbsp;<a href="CppQ_OBJECT.html">Q_OBJECT</a><br/>
 <br/>
-<b><a href="CppPublic.htm">public</a></b>:<br/>
-&nbsp;&nbsp;<b><a href="CppExplicit.htm">explicit</a></b> <a href="CppQt.htm">Qt</a><a href="CppPylos.htm">Pylos</a>InstructionsDialog(<a href="CppQWidget.htm">QWidget</a> *parent <a href="CppOperatorAssign.htm">=</a> 0);<br/>
-&nbsp;&nbsp;~<a href="CppQt.htm">Qt</a><a href="CppPylos.htm">Pylos</a>InstructionsDialog();<br/>
+<b><a href="CppPublic.html">public</a></b>:<br/>
+&nbsp;&nbsp;<b><a href="CppExplicit.html">explicit</a></b> <a href="CppQt.htm">Qt</a><a href="CppPylos.html">Pylos</a>InstructionsDialog(<a href="CppQWidget.html">QWidget</a> *parent <a href="CppOperatorAssign.htm">=</a> 0);<br/>
+&nbsp;&nbsp;<a href="CppQt.htm">Qt</a><a href="CppPylos.html">Pylos</a>InstructionsDialog(<b><a href="CppConst.html">const</a></b> <a href="CppQt.htm">Qt</a><a href="CppPylos.html">Pylos</a>InstructionsDialog&amp;) <a href="CppOperatorAssign.htm">=</a> <b><a href="CppDelete.html">delete</a></b>;<br/>
+&nbsp;&nbsp;<a href="CppQt.htm">Qt</a><a href="CppPylos.html">Pylos</a>InstructionsDialog&amp; <b><a href="CppOperator.html">operator</a></b>=(<b><a href="CppConst.html">const</a></b> <a href="CppQt.htm">Qt</a><a href="CppPylos.html">Pylos</a>InstructionsDialog&amp;) <a href="CppOperatorAssign.htm">=</a> <b><a href="CppDelete.html">delete</a></b>;<br/>
+&nbsp;&nbsp;~<a href="CppQt.htm">Qt</a><a href="CppPylos.html">Pylos</a>InstructionsDialog();<br/>
 <br/>
-<b><a href="CppPrivate.htm">private</a></b>:<br/>
-&nbsp;&nbsp;<a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a><a href="CppPylos.htm">Pylos</a>InstructionsDialog *ui;<br/>
+<b><a href="CppPrivate.html">private</a></b>:<br/>
+&nbsp;&nbsp;<a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a><a href="CppPylos.html">Pylos</a>InstructionsDialog *ui;<br/>
 };<br/>
 <br/>
-} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a><br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.html">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
 <br/>
-<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> QTPYLOSINSTRUCTIONSDIALOG<br/>
+<a href="CppEndif.html">#endif</a> <a href="CppComment.htm">//</a> QTPYLOSINSTRUCTIONSDIALOG<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -446,7 +449,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <table summary="qtpylosinstructionsdialog.cpp" border = "1"><tr><td><code>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">/*</a><br/>
-<a href="CppPylos.htm">Pylos</a>, <a href="CppPylos.htm">Pylos</a>/Pyraos game<br/>
+<a href="CppPylos.html">Pylos</a>, <a href="CppPylos.html">Pylos</a>/Pyraos game<br/>
 Copyright (C) 2010-2012 Richel Bilderbeek<br/>
 <br/>
 This program is free software: you can redistribute it and/or modify<br/>
@@ -462,23 +465,24 @@ You should have received a copy of the GNU General Public License<br/>
 along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">*/</a><br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="GamePylos.htm">GamePylos</a>.htm<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="GamePylos.html">GamePylos</a>.html<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic push<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.html">-Weffc++</a>"<br/>
+<a href="CppInclude.html">#include</a> "qt<a href="CppPylos.html">pylos</a>instructionsdialog<a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "ui_qt<a href="CppPylos.html">pylos</a>instructionsdialog<a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic pop<br/>
 <br/>
-<br/>
-<a href="CppInclude.htm">#include</a> "qt<a href="CppPylos.htm">pylos</a>instructionsdialog.h"<br/>
-<a href="CppInclude.htm">#include</a> "ui_qt<a href="CppPylos.htm">pylos</a>instructionsdialog.h"<br/>
-<br/>
-<a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppPylos.htm">Pylos</a>InstructionsDialog::<a href="CppQt.htm">Qt</a><a href="CppPylos.htm">Pylos</a>InstructionsDialog(<a href="CppQWidget.htm">QWidget</a> *parent) :<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQDialog.htm">QDialog</a>(parent),<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;ui(<b><a href="CppNew.htm">new</a></b> <a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a><a href="CppPylos.htm">Pylos</a>InstructionsDialog)<br/>
+<a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppPylos.html">Pylos</a>InstructionsDialog::<a href="CppQt.htm">Qt</a><a href="CppPylos.html">Pylos</a>InstructionsDialog(<a href="CppQWidget.html">QWidget</a> *parent) :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQDialog.html">QDialog</a>(parent),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;ui(<b><a href="CppNew.htm">new</a></b> <a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a><a href="CppPylos.html">Pylos</a>InstructionsDialog)<br/>
 {<br/>
 &nbsp;&nbsp;ui-&gt;setupUi(<b><a href="CppThis.htm">this</a></b>);<br/>
 }<br/>
 <br/>
-<a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppPylos.htm">Pylos</a>InstructionsDialog::~<a href="CppQt.htm">Qt</a><a href="CppPylos.htm">Pylos</a>InstructionsDialog()<br/>
+<a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppPylos.html">Pylos</a>InstructionsDialog::~<a href="CppQt.htm">Qt</a><a href="CppPylos.html">Pylos</a>InstructionsDialog()<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppDelete.htm">delete</a></b> ui;<br/>
+&nbsp;&nbsp;<b><a href="CppDelete.html">delete</a></b> ui;<br/>
 }<br/>
 </code></td></tr></table>
 <!-- end of the code -->
@@ -493,7 +497,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <table summary="qtpylosmaindialog.h" border = "1"><tr><td><code>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">/*</a><br/>
-<a href="CppPylos.htm">Pylos</a>, <a href="CppPylos.htm">Pylos</a>/Pyraos game<br/>
+<a href="CppPylos.html">Pylos</a>, <a href="CppPylos.html">Pylos</a>/Pyraos game<br/>
 Copyright (C) 2010-2012 Richel Bilderbeek<br/>
 <br/>
 This program is free software: you can redistribute it and/or modify<br/>
@@ -509,50 +513,55 @@ You should have received a copy of the GNU General Public License<br/>
 along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">*/</a><br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="GamePylos.htm">GamePylos</a>.htm<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="GamePylos.html">GamePylos</a>.html<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppIfndef.htm">#ifndef</a> QTPYLOSMAINDIALOG<br/>
-<a href="CppDefine.htm">#define</a> QTPYLOSMAINDIALOG<br/>
+<a href="CppIfndef.html">#ifndef</a> QTPYLOSMAINDIALOG<br/>
+<a href="CppDefine.html">#define</a> QTPYLOSMAINDIALOG<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppStringH.htm">string</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppStringH.html">string</a>&gt;<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppQDialog.htm">QDialog</a>&gt;<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic push<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.html">-Weffc++</a>"<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppQDialog.html">QDialog</a>&gt;<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> "qt<a href="CppPylos.htm">pylos</a>game<a href="CppWidget.htm">widget</a>.h"<br/>
+<a href="CppInclude.html">#include</a> "qt<a href="CppPylos.html">pylos</a>game<a href="CppWidget.html">widget</a><a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic pop<br/>
 <br/>
-<b><a href="CppNamespace.htm">namespace</a></b> Ui {<br/>
-&nbsp;&nbsp;<b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a><a href="CppPylos.htm">Pylos</a>MainDialog;<br/>
+<b><a href="CppNamespace.html">namespace</a></b> Ui {<br/>
+&nbsp;&nbsp;<b><a href="CppClass.html">class</a></b> <a href="CppQt.htm">Qt</a><a href="CppPylos.html">Pylos</a>MainDialog;<br/>
 }<br/>
 <br/>
-<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a> {<br/>
+<b><a href="CppNamespace.html">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
 <br/>
-<b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a><a href="CppPylos.htm">Pylos</a>MainDialog : <b><a href="CppPublic.htm">public</a></b> <a href="CppQDialog.htm">QDialog</a><br/>
+<b><a href="CppClass.html">class</a></b> <a href="CppQt.htm">Qt</a><a href="CppPylos.html">Pylos</a>MainDialog : <b><a href="CppPublic.html">public</a></b> <a href="CppQDialog.html">QDialog</a><br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppQ_OBJECT.htm">Q_OBJECT</a><br/>
+&nbsp;&nbsp;<a href="CppQ_OBJECT.html">Q_OBJECT</a><br/>
 <br/>
-<b><a href="CppPublic.htm">public</a></b>:<br/>
-&nbsp;&nbsp;<b><a href="CppExplicit.htm">explicit</a></b> <a href="CppQt.htm">Qt</a><a href="CppPylos.htm">Pylos</a>MainDialog(<br/>
-&nbsp;&nbsp;<a href="CppQt.htm">Qt</a><a href="CppPylos.htm">Pylos</a>Game<a href="CppWidget.htm">Widget</a> * <b><a href="CppConst.htm">const</a></b> <a href="CppPylos.htm">pylos</a>_<a href="CppWidget.htm">widget</a> <a href="CppOperatorAssign.htm">=</a> 0,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQWidget.htm">QWidget</a> *parent <a href="CppOperatorAssign.htm">=</a> 0);<br/>
-&nbsp;&nbsp;~<a href="CppQt.htm">Qt</a><a href="CppPylos.htm">Pylos</a>MainDialog();<br/>
+<b><a href="CppPublic.html">public</a></b>:<br/>
+&nbsp;&nbsp;<b><a href="CppExplicit.html">explicit</a></b> <a href="CppQt.htm">Qt</a><a href="CppPylos.html">Pylos</a>MainDialog(<br/>
+&nbsp;&nbsp;<a href="CppQt.htm">Qt</a><a href="CppPylos.html">Pylos</a>Game<a href="CppWidget.html">Widget</a> * <b><a href="CppConst.html">const</a></b> <a href="CppPylos.html">pylos</a>_<a href="CppWidget.html">widget</a> <a href="CppOperatorAssign.htm">=</a> 0,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQWidget.html">QWidget</a> *parent <a href="CppOperatorAssign.htm">=</a> 0);<br/>
+&nbsp;&nbsp;<a href="CppQt.htm">Qt</a><a href="CppPylos.html">Pylos</a>MainDialog(<b><a href="CppConst.html">const</a></b> <a href="CppQt.htm">Qt</a><a href="CppPylos.html">Pylos</a>MainDialog&amp;) <a href="CppOperatorAssign.htm">=</a> <b><a href="CppDelete.html">delete</a></b>;<br/>
+&nbsp;&nbsp;<a href="CppQt.htm">Qt</a><a href="CppPylos.html">Pylos</a>MainDialog&amp; <b><a href="CppOperator.html">operator</a></b>=(<b><a href="CppConst.html">const</a></b> <a href="CppQt.htm">Qt</a><a href="CppPylos.html">Pylos</a>MainDialog&amp;) <a href="CppOperatorAssign.htm">=</a> <b><a href="CppDelete.html">delete</a></b>;<br/>
+&nbsp;&nbsp;~<a href="CppQt.htm">Qt</a><a href="CppPylos.html">Pylos</a>MainDialog();<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Obtain <b><a href="CppThis.htm">this</a></b> <b><a href="CppClass.htm">class</a></b> its <a href="CppVersion.htm">version</a><br/>
-&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> Get<a href="CppVersion.htm">Version</a>();<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Obtain <b><a href="CppThis.htm">this</a></b> <b><a href="CppClass.html">class</a></b> its <a href="CppVersion.html">version</a><br/>
+&nbsp;&nbsp;<b><a href="CppStatic.html">static</a></b> <b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a> Get<a href="CppVersion.html">Version</a>();<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Obtain <b><a href="CppThis.htm">this</a></b> <b><a href="CppClass.htm">class</a></b> its <a href="CppVersion.htm">version</a> history<br/>
-&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; Get<a href="CppVersion.htm">Version</a>History();<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Obtain <b><a href="CppThis.htm">this</a></b> <b><a href="CppClass.html">class</a></b> its <a href="CppVersion.html">version</a> history<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.html">static</a></b> <b><a href="CppConst.html">const</a></b> <a href="CppVector.html">std::vector</a>&lt;<a href="CppString.html">std::string</a>&gt; Get<a href="CppVersion.html">Version</a>History();<br/>
 <br/>
-<b><a href="CppPrivate.htm">private</a></b>:<br/>
-&nbsp;&nbsp;<a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a><a href="CppPylos.htm">Pylos</a>MainDialog *ui;<br/>
-&nbsp;&nbsp;<a href="CppQt.htm">Qt</a><a href="CppPylos.htm">Pylos</a>Game<a href="CppWidget.htm">Widget</a> * <b><a href="CppConst.htm">const</a></b> m_<a href="CppPylos.htm">pylos</a>_<a href="CppWidget.htm">widget</a>;<br/>
+<b><a href="CppPrivate.html">private</a></b>:<br/>
+&nbsp;&nbsp;<a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a><a href="CppPylos.html">Pylos</a>MainDialog *ui;<br/>
+&nbsp;&nbsp;<a href="CppQt.htm">Qt</a><a href="CppPylos.html">Pylos</a>Game<a href="CppWidget.html">Widget</a> * <b><a href="CppConst.html">const</a></b> m_<a href="CppPylos.html">pylos</a>_<a href="CppWidget.html">widget</a>;<br/>
 <br/>
-<b><a href="CppPrivate.htm">private</a></b> <b><a href="CppSlots.htm">slots</a></b>:<br/>
+<b><a href="CppPrivate.html">private</a></b> <b><a href="CppSlots.html">slots</a></b>:<br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> OnWinner();<br/>
 };<br/>
 <br/>
-} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a><br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.html">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
 <br/>
-<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> QTPYLOSMAINDIALOG<br/>
+<a href="CppEndif.html">#endif</a> <a href="CppComment.htm">//</a> QTPYLOSMAINDIALOG<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -566,7 +575,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <table summary="qtpylosmaindialog.cpp" border = "1"><tr><td><code>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">/*</a><br/>
-<a href="CppPylos.htm">Pylos</a>, <a href="CppPylos.htm">Pylos</a>/Pyraos game<br/>
+<a href="CppPylos.html">Pylos</a>, <a href="CppPylos.html">Pylos</a>/Pyraos game<br/>
 Copyright (C) 2010-2012 Richel Bilderbeek<br/>
 <br/>
 This program is free software: you can redistribute it and/or modify<br/>
@@ -582,64 +591,65 @@ You should have received a copy of the GNU General Public License<br/>
 along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">*/</a><br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="GamePylos.htm">GamePylos</a>.htm<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="GamePylos.html">GamePylos</a>.html<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic push<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.html">-Weffc++</a>"<br/>
+<a href="CppInclude.html">#include</a> "qt<a href="CppPylos.html">pylos</a>maindialog<a href="CppHeaderFile.htm">.h</a>"<br/>
 <br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppQDesktopWidget.html">QDesktopWidget</a>&gt;<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> "qt<a href="CppPylos.htm">pylos</a>maindialog.h"<br/>
+<a href="CppInclude.html">#include</a> "<a href="CppPylos.html">pylos</a>game<a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "qt<a href="CppPylos.html">pylos</a>wondialog<a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "ui_qt<a href="CppPylos.html">pylos</a>maindialog<a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic pop<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppQDesktopWidget.htm">QDesktopWidget</a>&gt;<br/>
-<br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppPylos.htm">pylos</a>game.h"<br/>
-<a href="CppInclude.htm">#include</a> "qt<a href="CppPylos.htm">pylos</a>wondialog.h"<br/>
-<a href="CppInclude.htm">#include</a> "ui_qt<a href="CppPylos.htm">pylos</a>maindialog.h"<br/>
-<br/>
-<a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppPylos.htm">Pylos</a>MainDialog::<a href="CppQt.htm">Qt</a><a href="CppPylos.htm">Pylos</a>MainDialog(<br/>
-&nbsp;&nbsp;<a href="CppQt.htm">Qt</a><a href="CppPylos.htm">Pylos</a>Game<a href="CppWidget.htm">Widget</a> * <b><a href="CppConst.htm">const</a></b> <a href="CppPylos.htm">pylos</a>_<a href="CppWidget.htm">widget</a>,<br/>
-&nbsp;&nbsp;<a href="CppQWidget.htm">QWidget</a> *parent) :<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQDialog.htm">QDialog</a>(parent, <a href="CppQt.htm">Qt</a>::Window),<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;ui(<b><a href="CppNew.htm">new</a></b> <a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a><a href="CppPylos.htm">Pylos</a>MainDialog),<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;m_<a href="CppPylos.htm">pylos</a>_<a href="CppWidget.htm">widget</a>(<a href="CppPylos.htm">pylos</a>_<a href="CppWidget.htm">widget</a> ? <a href="CppPylos.htm">pylos</a>_<a href="CppWidget.htm">widget</a> : <b><a href="CppNew.htm">new</a></b> <a href="CppQt.htm">Qt</a><a href="CppPylos.htm">Pylos</a>Game<a href="CppWidget.htm">Widget</a>)<br/>
+<a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppPylos.html">Pylos</a>MainDialog::<a href="CppQt.htm">Qt</a><a href="CppPylos.html">Pylos</a>MainDialog(<br/>
+&nbsp;&nbsp;<a href="CppQt.htm">Qt</a><a href="CppPylos.html">Pylos</a>Game<a href="CppWidget.html">Widget</a> * <b><a href="CppConst.html">const</a></b> <a href="CppPylos.html">pylos</a>_<a href="CppWidget.html">widget</a>,<br/>
+&nbsp;&nbsp;<a href="CppQWidget.html">QWidget</a> *parent) :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQDialog.html">QDialog</a>(parent, <a href="CppQt.htm">Qt</a>::Window),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;ui(<b><a href="CppNew.htm">new</a></b> <a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a><a href="CppPylos.html">Pylos</a>MainDialog),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_<a href="CppPylos.html">pylos</a>_<a href="CppWidget.html">widget</a>(<a href="CppPylos.html">pylos</a>_<a href="CppWidget.html">widget</a> ? <a href="CppPylos.html">pylos</a>_<a href="CppWidget.html">widget</a> : <b><a href="CppNew.htm">new</a></b> <a href="CppQt.htm">Qt</a><a href="CppPylos.html">Pylos</a>Game<a href="CppWidget.html">Widget</a>)<br/>
 {<br/>
 &nbsp;&nbsp;ui-&gt;setupUi(<b><a href="CppThis.htm">this</a></b>);<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Connect<br/>
-&nbsp;&nbsp;<a href="CppQObject.htm">QObject</a>::connect(m_<a href="CppPylos.htm">pylos</a>_<a href="CppWidget.htm">widget</a>,<a href="CppSignalMacro.htm">SIGNAL</a>(HasWinner()),<br/>
+&nbsp;&nbsp;<a href="CppQObject.html">QObject</a>::connect(m_<a href="CppPylos.html">pylos</a>_<a href="CppWidget.html">widget</a>,<a href="CppSignalMacro.html">SIGNAL</a>(HasWinner()),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>,<a href="CppSLOT.htm">SLOT</a>(OnWinner()));<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>Place <a href="CppWidget.htm">widget</a><br/>
-&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;layout()-&gt;addWidget(m_<a href="CppPylos.htm">pylos</a>_<a href="CppWidget.htm">widget</a>);<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Place <a href="CppWidget.html">widget</a><br/>
+&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;layout()-&gt;addWidget(m_<a href="CppPylos.html">pylos</a>_<a href="CppWidget.html">widget</a>);<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Put the dialog in the screen center<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppQRect.htm">QRect</a> screen <a href="CppOperatorAssign.htm">=</a> <a href="CppQApplication.htm">QApplication</a>::desktop()-&gt;screenGeometry();<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppQRect.html">QRect</a> screen <a href="CppOperatorAssign.htm">=</a> <a href="CppQApplication.html">QApplication</a>::desktop()-&gt;screenGeometry();<br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;setGeometry(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;0,0,256,256);<br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;move( screen.center() <a href="CppOperatorMinus.htm">-</a> <b><a href="CppThis.htm">this</a></b>-&gt;rect().center() );<br/>
 }<br/>
 <br/>
-<a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppPylos.htm">Pylos</a>MainDialog::~<a href="CppQt.htm">Qt</a><a href="CppPylos.htm">Pylos</a>MainDialog()<br/>
+<a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppPylos.html">Pylos</a>MainDialog::~<a href="CppQt.htm">Qt</a><a href="CppPylos.html">Pylos</a>MainDialog()<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppDelete.htm">delete</a></b> ui;<br/>
-&nbsp;&nbsp;<b><a href="CppDelete.htm">delete</a></b> m_<a href="CppPylos.htm">pylos</a>_<a href="CppWidget.htm">widget</a>;<br/>
+&nbsp;&nbsp;<b><a href="CppDelete.html">delete</a></b> ui;<br/>
+&nbsp;&nbsp;<b><a href="CppDelete.html">delete</a></b> m_<a href="CppPylos.html">pylos</a>_<a href="CppWidget.html">widget</a>;<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppPylos.htm">Pylos</a>MainDialog::Get<a href="CppVersion.htm">Version</a>()<br/>
+<b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppPylos.html">Pylos</a>MainDialog::Get<a href="CppVersion.html">Version</a>()<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> "2.0";<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> "2.0";<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppPylos.htm">Pylos</a>MainDialog::Get<a href="CppVersion.htm">Version</a>History()<br/>
+<b><a href="CppConst.html">const</a></b> <a href="CppVector.html">std::vector</a>&lt;<a href="CppString.html">std::string</a>&gt; <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppPylos.html">Pylos</a>MainDialog::Get<a href="CppVersion.html">Version</a>History()<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v;<br/>
-&nbsp;&nbsp;v.push_back("2010-09-22: <a href="CppVersion.htm">version</a> 1.0: initial release <a href="CppVersion.htm">version</a>");<br/>
-&nbsp;&nbsp;v.push_back("2012-05-28: <a href="CppVersion.htm">version</a> 2.0: improved <a href="CppVersion.htm">version</a> to work with <a href="ProjectRichelBilderbeek.htm">ProjectRichelBilderbeek</a>");<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
+&nbsp;&nbsp;<a href="CppVector.html">std::vector</a>&lt;<a href="CppString.html">std::string</a>&gt; v;<br/>
+&nbsp;&nbsp;v.push_back("2010-09-22: <a href="CppVersion.html">version</a> 1.0: initial release <a href="CppVersion.html">version</a>");<br/>
+&nbsp;&nbsp;v.push_back("2012-05-28: <a href="CppVersion.html">version</a> 2.0: improved <a href="CppVersion.html">version</a> to work with <a href="ProjectRichelBilderbeek.html">ProjectRichelBilderbeek</a>");<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> v;<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppPylos.htm">Pylos</a>MainDialog::OnWinner()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppPylos.html">Pylos</a>MainDialog::OnWinner()<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppQt.htm">Qt</a><a href="CppPylos.htm">Pylos</a>WonDialog d;<br/>
-&nbsp;&nbsp;d.SetWinner(m_<a href="CppPylos.htm">pylos</a>_<a href="CppWidget.htm">widget</a>-&gt;Get<a href="CppPylos.htm">Pylos</a>()-&gt;GetWinner());<br/>
+&nbsp;&nbsp;<a href="CppQt.htm">Qt</a><a href="CppPylos.html">Pylos</a>WonDialog d;<br/>
+&nbsp;&nbsp;d.SetWinner(m_<a href="CppPylos.html">pylos</a>_<a href="CppWidget.html">widget</a>-&gt;Get<a href="CppPylos.html">Pylos</a>()-&gt;GetWinner());<br/>
 &nbsp;&nbsp;d.exec();<br/>
 &nbsp;&nbsp;close();<br/>
 }<br/>
@@ -656,7 +666,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <table summary="qtpylosmenudialog.h" border = "1"><tr><td><code>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">/*</a><br/>
-<a href="CppPylos.htm">Pylos</a>, <a href="CppPylos.htm">Pylos</a>/Pyraos game<br/>
+<a href="CppPylos.html">Pylos</a>, <a href="CppPylos.html">Pylos</a>/Pyraos game<br/>
 Copyright (C) 2010-2012 Richel Bilderbeek<br/>
 <br/>
 This program is free software: you can redistribute it and/or modify<br/>
@@ -672,46 +682,51 @@ You should have received a copy of the GNU General Public License<br/>
 along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">*/</a><br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="GamePylos.htm">GamePylos</a>.htm<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="GamePylos.html">GamePylos</a>.html<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppIfndef.htm">#ifndef</a> QTPYLOSMENUDIALOG<br/>
-<a href="CppDefine.htm">#define</a> QTPYLOSMENUDIALOG<br/>
+<a href="CppIfndef.html">#ifndef</a> QTPYLOSMENUDIALOG<br/>
+<a href="CppDefine.html">#define</a> QTPYLOSMENUDIALOG<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppQDialog.htm">QDialog</a>&gt;<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic push<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.html">-Weffc++</a>"<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppQDialog.html">QDialog</a>&gt;<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic pop<br/>
 <br/>
-<b><a href="CppNamespace.htm">namespace</a></b> Ui {<br/>
-&nbsp;&nbsp;<b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a><a href="CppPylos.htm">Pylos</a>MenuDialog;<br/>
+<b><a href="CppNamespace.html">namespace</a></b> Ui {<br/>
+&nbsp;&nbsp;<b><a href="CppClass.html">class</a></b> <a href="CppQt.htm">Qt</a><a href="CppPylos.html">Pylos</a>MenuDialog;<br/>
 }<br/>
 <br/>
-<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a> {<br/>
+<b><a href="CppNamespace.html">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
 <br/>
-<b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a><a href="CppPylos.htm">Pylos</a>MenuDialog : <b><a href="CppPublic.htm">public</a></b> <a href="CppQDialog.htm">QDialog</a><br/>
+<b><a href="CppClass.html">class</a></b> <a href="CppQt.htm">Qt</a><a href="CppPylos.html">Pylos</a>MenuDialog : <b><a href="CppPublic.html">public</a></b> <a href="CppQDialog.html">QDialog</a><br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppQ_OBJECT.htm">Q_OBJECT</a><br/>
+&nbsp;&nbsp;<a href="CppQ_OBJECT.html">Q_OBJECT</a><br/>
 <br/>
-<b><a href="CppPublic.htm">public</a></b>:<br/>
-&nbsp;&nbsp;<b><a href="CppExplicit.htm">explicit</a></b> <a href="CppQt.htm">Qt</a><a href="CppPylos.htm">Pylos</a>MenuDialog(<a href="CppQWidget.htm">QWidget</a> *parent <a href="CppOperatorAssign.htm">=</a> 0);<br/>
-&nbsp;&nbsp;~<a href="CppQt.htm">Qt</a><a href="CppPylos.htm">Pylos</a>MenuDialog();<br/>
+<b><a href="CppPublic.html">public</a></b>:<br/>
+&nbsp;&nbsp;<b><a href="CppExplicit.html">explicit</a></b> <a href="CppQt.htm">Qt</a><a href="CppPylos.html">Pylos</a>MenuDialog(<a href="CppQWidget.html">QWidget</a> *parent <a href="CppOperatorAssign.htm">=</a> 0);<br/>
+&nbsp;&nbsp;<a href="CppQt.htm">Qt</a><a href="CppPylos.html">Pylos</a>MenuDialog(<b><a href="CppConst.html">const</a></b> <a href="CppQt.htm">Qt</a><a href="CppPylos.html">Pylos</a>MenuDialog&amp;) <a href="CppOperatorAssign.htm">=</a> <b><a href="CppDelete.html">delete</a></b>;<br/>
+&nbsp;&nbsp;<a href="CppQt.htm">Qt</a><a href="CppPylos.html">Pylos</a>MenuDialog&amp; <b><a href="CppOperator.html">operator</a></b>=(<b><a href="CppConst.html">const</a></b> <a href="CppQt.htm">Qt</a><a href="CppPylos.html">Pylos</a>MenuDialog&amp;) <a href="CppOperatorAssign.htm">=</a> <b><a href="CppDelete.html">delete</a></b>;<br/>
+&nbsp;&nbsp;~<a href="CppQt.htm">Qt</a><a href="CppPylos.html">Pylos</a>MenuDialog();<br/>
 <br/>
-<b><a href="CppProtected.htm">protected</a></b>:<br/>
-&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> mousePressEvent(<a href="CppQMouseEvent.htm">QMouseEvent</a> *);<br/>
-&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> mouseMoveEvent(<a href="CppQMouseEvent.htm">QMouseEvent</a> * e);<br/>
+<b><a href="CppProtected.html">protected</a></b>:<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> mousePressEvent(<a href="CppQMouseEvent.html">QMouseEvent</a> *);<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> mouseMoveEvent(<a href="CppQMouseEvent.html">QMouseEvent</a> * e);<br/>
 <br/>
-<b><a href="CppPrivate.htm">private</a></b>:<br/>
-&nbsp;&nbsp;<a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a><a href="CppPylos.htm">Pylos</a>MenuDialog *ui;<br/>
+<b><a href="CppPrivate.html">private</a></b>:<br/>
+&nbsp;&nbsp;<a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a><a href="CppPylos.html">Pylos</a>MenuDialog *ui;<br/>
 &nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> m_selected;<br/>
 &nbsp;&nbsp;<b><a href="CppBool.htm">bool</a></b> m_type_basic;<br/>
 &nbsp;&nbsp;<b><a href="CppBool.htm">bool</a></b> m_theme_bw;<br/>
 <br/>
-<b><a href="CppPrivate.htm">private</a></b> <b><a href="CppSlots.htm">slots</a></b>:<br/>
+<b><a href="CppPrivate.html">private</a></b> <b><a href="CppSlots.html">slots</a></b>:<br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> OnStart();<br/>
-&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> On<a href="CppAbout.htm">About</a>();<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> On<a href="CppAbout.html">About</a>();<br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> OnInstructions();<br/>
 };<br/>
 <br/>
-} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a><br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.html">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
 <br/>
-<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> QTPYLOSMENUDIALOG<br/>
+<a href="CppEndif.html">#endif</a> <a href="CppComment.htm">//</a> QTPYLOSMENUDIALOG<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -725,7 +740,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <table summary="qtpylosmenudialog.cpp" border = "1"><tr><td><code>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">/*</a><br/>
-<a href="CppPylos.htm">Pylos</a>, <a href="CppPylos.htm">Pylos</a>/Pyraos game<br/>
+<a href="CppPylos.html">Pylos</a>, <a href="CppPylos.html">Pylos</a>/Pyraos game<br/>
 Copyright (C) 2010-2012 Richel Bilderbeek<br/>
 <br/>
 This program is free software: you can redistribute it and/or modify<br/>
@@ -741,57 +756,58 @@ You should have received a copy of the GNU General Public License<br/>
 along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">*/</a><br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="GamePylos.htm">GamePylos</a>.htm<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="GamePylos.html">GamePylos</a>.html<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic push<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.html">-Weffc++</a>"<br/>
+<a href="CppInclude.html">#include</a> "qt<a href="CppPylos.html">pylos</a>menudialog<a href="CppHeaderFile.htm">.h</a>"<br/>
 <br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppIostreamH.html">iostream</a>&gt;<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> "qt<a href="CppPylos.htm">pylos</a>menudialog.h"<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppQMouseEvent.html">QMouseEvent</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppQPainter.html">QPainter</a>&gt;<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppIostreamH.htm">iostream</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> "<a href="CppPylos.html">pylos</a>menudialog<a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "<a href="CppQtAboutDialog.html">qtaboutdialog</a><a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "qt<a href="CppPylos.html">pylos</a>board<a href="CppWidget.html">widget</a><a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "qt<a href="CppPylos.html">pylos</a>instructionsdialog<a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "qt<a href="CppPylos.html">pylos</a>maindialog<a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "qt<a href="CppPylos.html">pylos</a>sprites<a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "qt<a href="CppPylos.html">pylos</a><a href="CppWidget.html">widget</a><a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "ui_qt<a href="CppPylos.html">pylos</a>menudialog<a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic pop<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppQMouseEvent.htm">QMouseEvent</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppQPainter.htm">QPainter</a>&gt;<br/>
-<br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppPylos.htm">pylos</a>menudialog.h"<br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppQtAboutDialog.htm">qtaboutdialog</a>.h"<br/>
-<a href="CppInclude.htm">#include</a> "qt<a href="CppPylos.htm">pylos</a>board<a href="CppWidget.htm">widget</a>.h"<br/>
-<a href="CppInclude.htm">#include</a> "qt<a href="CppPylos.htm">pylos</a>instructionsdialog.h"<br/>
-<a href="CppInclude.htm">#include</a> "qt<a href="CppPylos.htm">pylos</a>maindialog.h"<br/>
-<a href="CppInclude.htm">#include</a> "qt<a href="CppPylos.htm">pylos</a>sprites.h"<br/>
-<a href="CppInclude.htm">#include</a> "qt<a href="CppPylos.htm">pylos</a><a href="CppWidget.htm">widget</a>.h"<br/>
-<a href="CppInclude.htm">#include</a> "ui_qt<a href="CppPylos.htm">pylos</a>menudialog.h"<br/>
-<br/>
-<a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppPylos.htm">Pylos</a>MenuDialog::<a href="CppQt.htm">Qt</a><a href="CppPylos.htm">Pylos</a>MenuDialog(<a href="CppQWidget.htm">QWidget</a> *parent) :<br/>
-&nbsp;&nbsp;<a href="CppQDialog.htm">QDialog</a>(parent),<br/>
-&nbsp;&nbsp;ui(<b><a href="CppNew.htm">new</a></b> <a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a><a href="CppPylos.htm">Pylos</a>MenuDialog),<br/>
+<a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppPylos.html">Pylos</a>MenuDialog::<a href="CppQt.htm">Qt</a><a href="CppPylos.html">Pylos</a>MenuDialog(<a href="CppQWidget.html">QWidget</a> *parent) :<br/>
+&nbsp;&nbsp;<a href="CppQDialog.html">QDialog</a>(parent),<br/>
+&nbsp;&nbsp;ui(<b><a href="CppNew.htm">new</a></b> <a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a><a href="CppPylos.html">Pylos</a>MenuDialog),<br/>
 &nbsp;&nbsp;m_selected(-1),<br/>
 &nbsp;&nbsp;m_type_basic(<b><a href="CppTrue.htm">true</a></b>),<br/>
-&nbsp;&nbsp;m_theme_bw(<b><a href="CppFalse.htm">false</a></b>)<br/>
+&nbsp;&nbsp;m_theme_bw(<b><a href="CppFalse.html">false</a></b>)<br/>
 {<br/>
 &nbsp;&nbsp;ui-&gt;setupUi(<b><a href="CppThis.htm">this</a></b>);<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Generate sprites when needed<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppPylos.htm">Pylos</a>::<a href="CppQt.htm">Qt</a>Sprites s(256,256);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppPylos.html">Pylos</a>::<a href="CppQt.htm">Qt</a>Sprites s(256,256);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorDivide.htm">/</a>*<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;s.Get(<a href="CppPylos.htm">Pylos</a>::<a href="CppQt.htm">Qt</a>Sprites::board_hole).save("sprite_hole.png");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;s.Get(<a href="CppPylos.htm">Pylos</a>::<a href="CppQt.htm">Qt</a>Sprites::player1).save("sprite_player1.png");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;s.Get(<a href="CppPylos.htm">Pylos</a>::<a href="CppQt.htm">Qt</a>Sprites::player2).save("sprite_player2.png");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;s.Get(<a href="CppPylos.htm">Pylos</a>::<a href="CppQt.htm">Qt</a>Sprites::player1_remove).save("sprite_player1_remove.png");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;s.Get(<a href="CppPylos.htm">Pylos</a>::<a href="CppQt.htm">Qt</a>Sprites::player2_remove).save("sprite_player2_remove.png");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;s.Get(<a href="CppPylos.htm">Pylos</a>::<a href="CppQt.htm">Qt</a>Sprites::player1_select).save("sprite_player1_select.png");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;s.Get(<a href="CppPylos.htm">Pylos</a>::<a href="CppQt.htm">Qt</a>Sprites::player2_select).save("sprite_player2_select.png");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;s.Get(<a href="CppPylos.html">Pylos</a>::<a href="CppQt.htm">Qt</a>Sprites::board_hole).save("sprite_hole.png");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;s.Get(<a href="CppPylos.html">Pylos</a>::<a href="CppQt.htm">Qt</a>Sprites::player1).save("sprite_player1.png");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;s.Get(<a href="CppPylos.html">Pylos</a>::<a href="CppQt.htm">Qt</a>Sprites::player2).save("sprite_player2.png");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;s.Get(<a href="CppPylos.html">Pylos</a>::<a href="CppQt.htm">Qt</a>Sprites::player1_remove).save("sprite_player1_remove.png");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;s.Get(<a href="CppPylos.html">Pylos</a>::<a href="CppQt.htm">Qt</a>Sprites::player2_remove).save("sprite_player2_remove.png");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;s.Get(<a href="CppPylos.html">Pylos</a>::<a href="CppQt.htm">Qt</a>Sprites::player1_select).save("sprite_player1_select.png");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;s.Get(<a href="CppPylos.html">Pylos</a>::<a href="CppQt.htm">Qt</a>Sprites::player2_select).save("sprite_player2_select.png");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">*/</a><br/>
 &nbsp;&nbsp;}<br/>
 <br/>
 }<br/>
 <br/>
-<a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppPylos.htm">Pylos</a>MenuDialog::~<a href="CppQt.htm">Qt</a><a href="CppPylos.htm">Pylos</a>MenuDialog()<br/>
+<a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppPylos.html">Pylos</a>MenuDialog::~<a href="CppQt.htm">Qt</a><a href="CppPylos.html">Pylos</a>MenuDialog()<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppDelete.htm">delete</a></b> ui;<br/>
+&nbsp;&nbsp;<b><a href="CppDelete.html">delete</a></b> ui;<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppPylos.htm">Pylos</a>MenuDialog::mousePressEvent(<a href="CppQMouseEvent.htm">QMouseEvent</a> *)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppPylos.html">Pylos</a>MenuDialog::mousePressEvent(<a href="CppQMouseEvent.html">QMouseEvent</a> *)<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (ui-&gt;label_theme-&gt;underMouse())<br/>
 &nbsp;&nbsp;{<br/>
@@ -800,7 +816,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ui-&gt;label_theme-&gt;setText("Theme: black &amp; white");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppElse.htm">else</a></b><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ui-&gt;label_theme-&gt;setText("Theme: red &amp; blue");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b>;<br/>
 &nbsp;&nbsp;}<br/>
 <br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (ui-&gt;label_type-&gt;underMouse())<br/>
@@ -810,19 +826,19 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ui-&gt;label_type-&gt;setText("Game type: basic");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppElse.htm">else</a></b><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ui-&gt;label_type-&gt;setText("Game type: advanced");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b>;<br/>
 &nbsp;&nbsp;}<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppSwitch.htm">switch</a></b> (m_selected)<br/>
+&nbsp;&nbsp;<b><a href="CppSwitch.html">switch</a></b> (m_selected)<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> 0: OnStart(); <b><a href="CppReturn.htm">return</a></b>;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> 1: OnInstructions(); <b><a href="CppReturn.htm">return</a></b>;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> 2: On<a href="CppAbout.htm">About</a>(); <b><a href="CppReturn.htm">return</a></b>;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> 3: <b><a href="CppThis.htm">this</a></b>-&gt;close(); <b><a href="CppReturn.htm">return</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> 0: OnStart(); <b><a href="CppReturn.html">return</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> 1: OnInstructions(); <b><a href="CppReturn.html">return</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> 2: On<a href="CppAbout.html">About</a>(); <b><a href="CppReturn.html">return</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> 3: <b><a href="CppThis.htm">this</a></b>-&gt;close(); <b><a href="CppReturn.html">return</a></b>;<br/>
 &nbsp;&nbsp;}<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppPylos.htm">Pylos</a>MenuDialog::mouseMoveEvent(<a href="CppQMouseEvent.htm">QMouseEvent</a> *)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppPylos.html">Pylos</a>MenuDialog::mouseMoveEvent(<a href="CppQMouseEvent.html">QMouseEvent</a> *)<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ui-&gt;label_start-&gt;underMouse()<br/>
@@ -854,50 +870,50 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;m_selected <a href="CppOperatorAssign.htm">=</a> <a href="CppOperatorMinus.htm">-</a>1;<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;ui-&gt;label_start_left-&gt;setPixmap(<a href="CppQPixmap.htm">QPixmap</a>( m_selected <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 0<br/>
+&nbsp;&nbsp;ui-&gt;label_start_left-&gt;setPixmap(<a href="CppQPixmap.html">QPixmap</a>( m_selected <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 0<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;? ":/images/sprite_player1.png" : ":/images/sprite_hole.png"));<br/>
-&nbsp;&nbsp;ui-&gt;label_start_right-&gt;setPixmap(<a href="CppQPixmap.htm">QPixmap</a>( m_selected <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 0<br/>
+&nbsp;&nbsp;ui-&gt;label_start_right-&gt;setPixmap(<a href="CppQPixmap.html">QPixmap</a>( m_selected <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 0<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;? ":/images/sprite_player2.png" : ":/images/sprite_hole.png"));<br/>
 <br/>
-&nbsp;&nbsp;ui-&gt;label_instructions_left-&gt;setPixmap(<a href="CppQPixmap.htm">QPixmap</a>( m_selected <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 1<br/>
+&nbsp;&nbsp;ui-&gt;label_instructions_left-&gt;setPixmap(<a href="CppQPixmap.html">QPixmap</a>( m_selected <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 1<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;? ":/images/sprite_player1.png" : ":/images/sprite_hole.png"));<br/>
-&nbsp;&nbsp;ui-&gt;label_instructions_right-&gt;setPixmap(<a href="CppQPixmap.htm">QPixmap</a>( m_selected <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 1<br/>
+&nbsp;&nbsp;ui-&gt;label_instructions_right-&gt;setPixmap(<a href="CppQPixmap.html">QPixmap</a>( m_selected <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 1<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;? ":/images/sprite_player2.png" : ":/images/sprite_hole.png"));<br/>
 <br/>
-&nbsp;&nbsp;ui-&gt;label_about_left-&gt;setPixmap(<a href="CppQPixmap.htm">QPixmap</a>( m_selected <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 2<br/>
+&nbsp;&nbsp;ui-&gt;label_about_left-&gt;setPixmap(<a href="CppQPixmap.html">QPixmap</a>( m_selected <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 2<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;? ":/images/sprite_player1.png" : ":/images/sprite_hole.png"));<br/>
-&nbsp;&nbsp;ui-&gt;label_about_right-&gt;setPixmap(<a href="CppQPixmap.htm">QPixmap</a>( m_selected <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 2<br/>
+&nbsp;&nbsp;ui-&gt;label_about_right-&gt;setPixmap(<a href="CppQPixmap.html">QPixmap</a>( m_selected <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 2<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;? ":/images/sprite_player2.png" : ":/images/sprite_hole.png"));<br/>
 <br/>
-&nbsp;&nbsp;ui-&gt;label_quit_left-&gt;setPixmap(<a href="CppQPixmap.htm">QPixmap</a>( m_selected <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 3<br/>
+&nbsp;&nbsp;ui-&gt;label_quit_left-&gt;setPixmap(<a href="CppQPixmap.html">QPixmap</a>( m_selected <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 3<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;? ":/images/sprite_player1.png" : ":/images/sprite_hole.png"));<br/>
-&nbsp;&nbsp;ui-&gt;label_quit_right-&gt;setPixmap(<a href="CppQPixmap.htm">QPixmap</a>( m_selected <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 3<br/>
+&nbsp;&nbsp;ui-&gt;label_quit_right-&gt;setPixmap(<a href="CppQPixmap.html">QPixmap</a>( m_selected <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 3<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;? ":/images/sprite_player2.png" : ":/images/sprite_hole.png"));<br/>
 &nbsp;&nbsp;repaint();<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppPylos.htm">Pylos</a>MenuDialog::On<a href="CppAbout.htm">About</a>()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppPylos.html">Pylos</a>MenuDialog::On<a href="CppAbout.html">About</a>()<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppAbout.htm">About</a> a <a href="CppOperatorAssign.htm">=</a> <a href="CppPylos.htm">Pylos</a>MenuDialog::GetAbout();<br/>
-&nbsp;&nbsp;a.<a href="CppAdd.htm">Add</a><a href="CppLibrary.htm">Library</a>("<a href="CppQt.htm">Qt</a><a href="CppPylos.htm">Pylos</a>BoardWidget <a href="CppVersion.htm">version</a>: " <a href="CppOperatorPlus.htm">+</a> <a href="CppQt.htm">Qt</a><a href="CppPylos.htm">Pylos</a>BoardWidget::Get<a href="CppVersion.htm">Version</a>());<br/>
-&nbsp;&nbsp;a.<a href="CppAdd.htm">Add</a><a href="CppLibrary.htm">Library</a>("<a href="CppQt.htm">Qt</a><a href="CppPylos.htm">Pylos</a>Game<a href="CppWidget.htm">Widget</a> <a href="CppVersion.htm">version</a>: " <a href="CppOperatorPlus.htm">+</a> <a href="CppQt.htm">Qt</a><a href="CppPylos.htm">Pylos</a>Game<a href="CppWidget.htm">Widget</a>::Get<a href="CppVersion.htm">Version</a>());<br/>
-&nbsp;&nbsp;a.<a href="CppAdd.htm">Add</a><a href="CppLibrary.htm">Library</a>("<a href="CppPylos.htm">Pylos</a>::<a href="CppQt.htm">Qt</a>Sprites <a href="CppVersion.htm">version</a>: " <a href="CppOperatorPlus.htm">+</a> <a href="CppPylos.htm">Pylos</a>::<a href="CppQt.htm">Qt</a>Sprites::Get<a href="CppVersion.htm">Version</a>());<br/>
-&nbsp;&nbsp;a.<a href="CppAdd.htm">Add</a><a href="CppLibrary.htm">Library</a>("<a href="CppQt.htm">Qt</a><a href="CppPylosWidget.htm">PylosWidget</a> <a href="CppVersion.htm">version</a>: " <a href="CppOperatorPlus.htm">+</a> <a href="CppQt.htm">Qt</a><a href="CppPylosWidget.htm">PylosWidget</a>::Get<a href="CppVersion.htm">Version</a>());<br/>
-&nbsp;&nbsp;<a href="CppQtAboutDialog.htm">QtAboutDialog</a> d(a);<br/>
+&nbsp;&nbsp;<a href="CppAbout.html">About</a> a <a href="CppOperatorAssign.htm">=</a> <a href="CppPylos.html">Pylos</a>MenuDialog::GetAbout();<br/>
+&nbsp;&nbsp;a.<a href="CppAdd.htm">Add</a><a href="CppLibrary.html">Library</a>("<a href="CppQt.htm">Qt</a><a href="CppPylos.html">Pylos</a>BoardWidget <a href="CppVersion.html">version</a>: " <a href="CppOperatorPlus.htm">+</a> <a href="CppQt.htm">Qt</a><a href="CppPylos.html">Pylos</a>BoardWidget::Get<a href="CppVersion.html">Version</a>());<br/>
+&nbsp;&nbsp;a.<a href="CppAdd.htm">Add</a><a href="CppLibrary.html">Library</a>("<a href="CppQt.htm">Qt</a><a href="CppPylos.html">Pylos</a>Game<a href="CppWidget.html">Widget</a> <a href="CppVersion.html">version</a>: " <a href="CppOperatorPlus.htm">+</a> <a href="CppQt.htm">Qt</a><a href="CppPylos.html">Pylos</a>Game<a href="CppWidget.html">Widget</a>::Get<a href="CppVersion.html">Version</a>());<br/>
+&nbsp;&nbsp;a.<a href="CppAdd.htm">Add</a><a href="CppLibrary.html">Library</a>("<a href="CppPylos.html">Pylos</a>::<a href="CppQt.htm">Qt</a>Sprites <a href="CppVersion.html">version</a>: " <a href="CppOperatorPlus.htm">+</a> <a href="CppPylos.html">Pylos</a>::<a href="CppQt.htm">Qt</a>Sprites::Get<a href="CppVersion.html">Version</a>());<br/>
+&nbsp;&nbsp;a.<a href="CppAdd.htm">Add</a><a href="CppLibrary.html">Library</a>("<a href="CppQt.htm">Qt</a><a href="CppPylosWidget.html">PylosWidget</a> <a href="CppVersion.html">version</a>: " <a href="CppOperatorPlus.htm">+</a> <a href="CppQt.htm">Qt</a><a href="CppPylosWidget.html">PylosWidget</a>::Get<a href="CppVersion.html">Version</a>());<br/>
+&nbsp;&nbsp;<a href="CppQtAboutDialog.html">QtAboutDialog</a> d(a);<br/>
 <br/>
 &nbsp;&nbsp;d.exec();<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppPylos.htm">Pylos</a>MenuDialog::OnInstructions()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppPylos.html">Pylos</a>MenuDialog::OnInstructions()<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppQt.htm">Qt</a><a href="CppPylos.htm">Pylos</a>InstructionsDialog d;<br/>
+&nbsp;&nbsp;<a href="CppQt.htm">Qt</a><a href="CppPylos.html">Pylos</a>InstructionsDialog d;<br/>
 &nbsp;&nbsp;d.exec();<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppPylos.htm">Pylos</a>MenuDialog::OnStart()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppPylos.html">Pylos</a>MenuDialog::OnStart()<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppQt.htm">Qt</a><a href="CppPylos.htm">Pylos</a>Game<a href="CppWidget.htm">Widget</a> * <b><a href="CppConst.htm">const</a></b> p <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppQt.htm">Qt</a><a href="CppPylos.htm">Pylos</a>Game<a href="CppWidget.htm">Widget</a>();<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(p);<br/>
+&nbsp;&nbsp;<a href="CppQt.htm">Qt</a><a href="CppPylos.html">Pylos</a>Game<a href="CppWidget.html">Widget</a> * <b><a href="CppConst.html">const</a></b> p <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppQt.htm">Qt</a><a href="CppPylos.html">Pylos</a>Game<a href="CppWidget.html">Widget</a>();<br/>
+&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(p);<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Set the game type<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (m_type_basic) p-&gt;StartBasic();<br/>
 &nbsp;&nbsp;<b><a href="CppElse.htm">else</a></b> p-&gt;StartAdvanced();<br/>
@@ -906,7 +922,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppElse.htm">else</a></b> p-&gt;SetColorSchemeRedBlue();<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Create the game dialog<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>note: p is deleted by DialogMain<br/>
-&nbsp;&nbsp;<a href="CppQt.htm">Qt</a><a href="CppPylos.htm">Pylos</a>MainDialog d(p);<br/>
+&nbsp;&nbsp;<a href="CppQt.htm">Qt</a><a href="CppPylos.html">Pylos</a>MainDialog d(p);<br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;hide();<br/>
 &nbsp;&nbsp;d.exec();<br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;show();<br/>
@@ -924,7 +940,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <table summary="qtpyloswondialog.h" border = "1"><tr><td><code>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">/*</a><br/>
-<a href="CppPylos.htm">Pylos</a>, <a href="CppPylos.htm">Pylos</a>/Pyraos game<br/>
+<a href="CppPylos.html">Pylos</a>, <a href="CppPylos.html">Pylos</a>/Pyraos game<br/>
 Copyright (C) 2010-2012 Richel Bilderbeek<br/>
 <br/>
 This program is free software: you can redistribute it and/or modify<br/>
@@ -940,37 +956,42 @@ You should have received a copy of the GNU General Public License<br/>
 along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">*/</a><br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="GamePylos.htm">GamePylos</a>.htm<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="GamePylos.html">GamePylos</a>.html<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppIfndef.htm">#ifndef</a> QTPYLOSWONDIALOG<br/>
-<a href="CppDefine.htm">#define</a> QTPYLOSWONDIALOG<br/>
+<a href="CppIfndef.html">#ifndef</a> QTPYLOSWONDIALOG<br/>
+<a href="CppDefine.html">#define</a> QTPYLOSWONDIALOG<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppQDialog.htm">QDialog</a>&gt;<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic push<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.html">-Weffc++</a>"<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppQDialog.html">QDialog</a>&gt;<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppPylos.htm">pylos</a>winner.h"<br/>
+<a href="CppInclude.html">#include</a> "<a href="CppPylos.html">pylos</a>winner<a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic pop<br/>
 <br/>
-<b><a href="CppNamespace.htm">namespace</a></b> Ui {<br/>
-&nbsp;&nbsp;<b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a><a href="CppPylos.htm">Pylos</a>WonDialog;<br/>
+<b><a href="CppNamespace.html">namespace</a></b> Ui {<br/>
+&nbsp;&nbsp;<b><a href="CppClass.html">class</a></b> <a href="CppQt.htm">Qt</a><a href="CppPylos.html">Pylos</a>WonDialog;<br/>
 }<br/>
 <br/>
-<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a> {<br/>
+<b><a href="CppNamespace.html">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
 <br/>
-<b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a><a href="CppPylos.htm">Pylos</a>WonDialog : <b><a href="CppPublic.htm">public</a></b> <a href="CppQDialog.htm">QDialog</a><br/>
+<b><a href="CppClass.html">class</a></b> <a href="CppQt.htm">Qt</a><a href="CppPylos.html">Pylos</a>WonDialog : <b><a href="CppPublic.html">public</a></b> <a href="CppQDialog.html">QDialog</a><br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppQ_OBJECT.htm">Q_OBJECT</a><br/>
+&nbsp;&nbsp;<a href="CppQ_OBJECT.html">Q_OBJECT</a><br/>
 <br/>
-<b><a href="CppPublic.htm">public</a></b>:<br/>
-&nbsp;&nbsp;<b><a href="CppExplicit.htm">explicit</a></b> <a href="CppQt.htm">Qt</a><a href="CppPylos.htm">Pylos</a>WonDialog(<a href="CppQWidget.htm">QWidget</a> *parent <a href="CppOperatorAssign.htm">=</a> 0);<br/>
-&nbsp;&nbsp;~<a href="CppQt.htm">Qt</a><a href="CppPylos.htm">Pylos</a>WonDialog();<br/>
-&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> SetWinner(<b><a href="CppConst.htm">const</a></b> <a href="CppPylos.htm">Pylos</a>::Winner winner);<br/>
+<b><a href="CppPublic.html">public</a></b>:<br/>
+&nbsp;&nbsp;<b><a href="CppExplicit.html">explicit</a></b> <a href="CppQt.htm">Qt</a><a href="CppPylos.html">Pylos</a>WonDialog(<a href="CppQWidget.html">QWidget</a> *parent <a href="CppOperatorAssign.htm">=</a> 0);<br/>
+&nbsp;&nbsp;<a href="CppQt.htm">Qt</a><a href="CppPylos.html">Pylos</a>WonDialog(<b><a href="CppConst.html">const</a></b> <a href="CppQt.htm">Qt</a><a href="CppPylos.html">Pylos</a>WonDialog&amp;) <a href="CppOperatorAssign.htm">=</a> <b><a href="CppDelete.html">delete</a></b>;<br/>
+&nbsp;&nbsp;<a href="CppQt.htm">Qt</a><a href="CppPylos.html">Pylos</a>WonDialog&amp; <b><a href="CppOperator.html">operator</a></b>=(<b><a href="CppConst.html">const</a></b> <a href="CppQt.htm">Qt</a><a href="CppPylos.html">Pylos</a>WonDialog&amp;) <a href="CppOperatorAssign.htm">=</a> <b><a href="CppDelete.html">delete</a></b>;<br/>
+&nbsp;&nbsp;~<a href="CppQt.htm">Qt</a><a href="CppPylos.html">Pylos</a>WonDialog();<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> SetWinner(<b><a href="CppConst.html">const</a></b> <a href="CppPylos.html">Pylos</a>::Winner winner);<br/>
 <br/>
-<b><a href="CppPrivate.htm">private</a></b>:<br/>
-&nbsp;&nbsp;<a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a><a href="CppPylos.htm">Pylos</a>WonDialog *ui;<br/>
+<b><a href="CppPrivate.html">private</a></b>:<br/>
+&nbsp;&nbsp;<a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a><a href="CppPylos.html">Pylos</a>WonDialog *ui;<br/>
 };<br/>
 <br/>
-} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm\">ribi</a><br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.html">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
 <br/>
-<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> QTPYLOSWONDIALOG<br/>
+<a href="CppEndif.html">#endif</a> <a href="CppComment.htm">//</a> QTPYLOSWONDIALOG<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -984,7 +1005,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <table summary="qtpyloswondialog.cpp" border = "1"><tr><td><code>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">/*</a><br/>
-<a href="CppPylos.htm">Pylos</a>, <a href="CppPylos.htm">Pylos</a>/Pyraos game<br/>
+<a href="CppPylos.html">Pylos</a>, <a href="CppPylos.html">Pylos</a>/Pyraos game<br/>
 Copyright (C) 2010-2012 Richel Bilderbeek<br/>
 <br/>
 This program is free software: you can redistribute it and/or modify<br/>
@@ -1000,35 +1021,36 @@ You should have received a copy of the GNU General Public License<br/>
 along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">*/</a><br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="GamePylos.htm">GamePylos</a>.htm<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="GamePylos.html">GamePylos</a>.html<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic push<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.html">-Weffc++</a>"<br/>
+<a href="CppInclude.html">#include</a> "qt<a href="CppPylos.html">pylos</a>wondialog<a href="CppHeaderFile.htm">.h</a>"<br/>
 <br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppCassertH.html">cassert</a>&gt;<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> "qt<a href="CppPylos.htm">pylos</a>wondialog.h"<br/>
+<a href="CppInclude.html">#include</a> "ui_qt<a href="CppPylos.html">pylos</a>wondialog<a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "<a href="CppPylos.html">pylos</a>winner<a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic pop<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
-<br/>
-<a href="CppInclude.htm">#include</a> "ui_qt<a href="CppPylos.htm">pylos</a>wondialog.h"<br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppPylos.htm">pylos</a>winner.h"<br/>
-<br/>
-<a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppPylos.htm">Pylos</a>WonDialog::<a href="CppQt.htm">Qt</a><a href="CppPylos.htm">Pylos</a>WonDialog(<a href="CppQWidget.htm">QWidget</a> *parent) :<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQDialog.htm">QDialog</a>(parent),<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;ui(<b><a href="CppNew.htm">new</a></b> <a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a><a href="CppPylos.htm">Pylos</a>WonDialog)<br/>
+<a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppPylos.html">Pylos</a>WonDialog::<a href="CppQt.htm">Qt</a><a href="CppPylos.html">Pylos</a>WonDialog(<a href="CppQWidget.html">QWidget</a> *parent) :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQDialog.html">QDialog</a>(parent),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;ui(<b><a href="CppNew.htm">new</a></b> <a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a><a href="CppPylos.html">Pylos</a>WonDialog)<br/>
 {<br/>
 &nbsp;&nbsp;ui-&gt;setupUi(<b><a href="CppThis.htm">this</a></b>);<br/>
 }<br/>
 <br/>
-<a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppPylos.htm">Pylos</a>WonDialog::~<a href="CppQt.htm">Qt</a><a href="CppPylos.htm">Pylos</a>WonDialog()<br/>
+<a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppPylos.html">Pylos</a>WonDialog::~<a href="CppQt.htm">Qt</a><a href="CppPylos.html">Pylos</a>WonDialog()<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppDelete.htm">delete</a></b> ui;<br/>
+&nbsp;&nbsp;<b><a href="CppDelete.html">delete</a></b> ui;<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm\">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppPylos.htm">Pylos</a>WonDialog::SetWinner(<b><a href="CppConst.htm">const</a></b> <a href="CppPylos.htm">Pylos</a>::Winner winner)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppPylos.html">Pylos</a>WonDialog::SetWinner(<b><a href="CppConst.html">const</a></b> <a href="CppPylos.html">Pylos</a>::Winner winner)<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (winner <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <a href="CppPylos.htm">Pylos</a>::Winner::player1)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;ui-&gt;label_sprite-&gt;setPixmap(<a href="CppQPixmap.htm">QPixmap</a>(":/images/sprite_player1.png"));<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (winner <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <a href="CppPylos.html">Pylos</a>::Winner::player1)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;ui-&gt;label_sprite-&gt;setPixmap(<a href="CppQPixmap.html">QPixmap</a>(":/images/sprite_player1.png"));<br/>
 &nbsp;&nbsp;<b><a href="CppElse.htm">else</a></b><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;ui-&gt;label_sprite-&gt;setPixmap(<a href="CppQPixmap.htm">QPixmap</a>(":/images/sprite_player2.png"));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;ui-&gt;label_sprite-&gt;setPixmap(<a href="CppQPixmap.html">QPixmap</a>(":/images/sprite_player2.png"));<br/>
 }<br/>
 </code></td></tr></table>
 <!-- end of the code -->

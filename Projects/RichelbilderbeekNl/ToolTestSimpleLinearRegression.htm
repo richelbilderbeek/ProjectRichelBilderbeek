@@ -67,19 +67,19 @@
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="ToolTestSimpleLinearRegressionConsole.pro" border = "1"><tr><td><code>
-TEMPLATE = app<br/>
-CONFIG += console<br/>
-CONFIG -= app_bundle<br/>
-CONFIG -= qt<br/>
+<a href="CppQmakeTemplate.htm">TEMPLATE</a> = app<br/>
+<a href="CppQmakeConfig.htm">CONFIG</a> += console<br/>
+<a href="CppQmakeConfig.htm">CONFIG</a> -= app_bundle<br/>
+<a href="CppQmakeConfig.htm">CONFIG</a> -= qt<br/>
 <br/>
-<a href="CppINCLUDEPATH.htm">INCLUDEPATH</a> += \<br/>
+<a href="CppQmakeIncludepath.htm">INCLUDEPATH</a> += \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppAbout.htm">CppAbout</a> \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/CppApproximator \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/CppCanvas \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/CppSimpleLinearRegression \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppTrace.htm">CppTrace</a><br/>
 <br/>
-<a href="CppSOURCES.htm">SOURCES</a> += \<br/>
+<a href="CppQmakeSources.htm">SOURCES</a> += \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppMain.htm">main</a>.cpp \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/CppApproximator/approximator.cpp \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/CppApproximator/exceptionnoextrapolation.cpp \<br/>
@@ -88,7 +88,7 @@ CONFIG -= qt<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppAbout.htm">CppAbout</a>/<a href="CppAbout.htm">about</a>.cpp \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/CppSimpleLinearRegression/simplelinearregression.cpp<br/>
 <br/>
-<a href="CppHEADERS.htm">HEADERS</a> += \<br/>
+<a href="CppQmakeHeaders.htm">HEADERS</a> += \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/CppApproximator/approximator.h \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/CppApproximator/exceptionnoextrapolation.h \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppTrace.htm">CppTrace</a>/<a href="CppTrace.htm">trace</a>.h \<br/>
@@ -109,15 +109,15 @@ OTHER_FILES += \<br/>
 #<br/>
 #<br/>
 <br/>
-CONFIG(debug, debug|release) {<br/>
+<a href="CppQmakeConfig.htm">CONFIG</a>(debug, debug|release) {<br/>
 &nbsp;&nbsp;message(Debug mode)<br/>
 }<br/>
 <br/>
-CONFIG(release, debug|release) {<br/>
+<a href="CppQmakeConfig.htm">CONFIG</a>(release, debug|release) {<br/>
 &nbsp;&nbsp;message(Release mode)<br/>
 <br/>
 &nbsp;&nbsp;#Remove all <a href="CppAssert.htm">assert</a>s and <a href="CppTRACE.htm">TRACE</a><br/>
-&nbsp;&nbsp;DEFINES += NDEBUG N<a href="CppTRACE.htm">TRACE</a>_BILDERBIKKEL<br/>
+&nbsp;&nbsp;<a href="CppQmakeDefines.htm">DEFINES</a> += NDEBUG N<a href="CppTRACE.htm">TRACE</a>_BILDERBIKKEL<br/>
 }<br/>
 <br/>
 #<br/>
@@ -131,7 +131,7 @@ CONFIG(release, debug|release) {<br/>
 # Compiler flags<br/>
 #<br/>
 #<br/>
-<a href="CppQMAKE_CXXFLAGS.htm">QMAKE_CXXFLAGS</a> += -std=<a href="Cpp11.htm">c++11</a> <a href="CppWall.htm">-Wall</a> <a href="CppWextra.htm">-Wextra</a> <a href="CppWeffcpp.htm">-Weffc++</a> <a href="CppWerror.htm">-Werror</a><br/>
+<a href="CppQmakeQmake_cxxflags.htm">QMAKE_CXXFLAGS</a> += -std=<a href="Cpp11.htm">c++11</a> <a href="CppWall.htm">-Wall</a> <a href="CppWextra.htm">-Wextra</a> <a href="CppWeffcpp.htm">-Weffc++</a> <a href="CppWerror.htm">-Werror</a><br/>
 <br/>
 #<br/>
 #<br/>
@@ -140,7 +140,7 @@ CONFIG(release, debug|release) {<br/>
 #<br/>
 <br/>
 win32 {<br/>
-&nbsp;&nbsp;<a href="CppINCLUDEPATH.htm">INCLUDEPATH</a> += \<br/>
+&nbsp;&nbsp;<a href="CppQmakeIncludepath.htm">INCLUDEPATH</a> += \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/boost_1_54_0<br/>
 }<br/>
 </code></td></tr></table>
@@ -160,7 +160,7 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += <a href="CppWidget.htm">widget</a>s<br/>
 # undefined reference to `_imp___ZNK8QWebView8settingsEv'<br/>
 #greaterThan(QT_MAJOR_VERSION, 4): QT += webkit<a href="CppWidget.htm">widget</a>s<br/>
 <br/>
-TEMPLATE = app<br/>
+<a href="CppQmakeTemplate.htm">TEMPLATE</a> = app<br/>
 <br/>
 #<br/>
 #<br/>
@@ -168,7 +168,7 @@ TEMPLATE = app<br/>
 #<br/>
 #<br/>
 <br/>
-<a href="CppINCLUDEPATH.htm">INCLUDEPATH</a> += \<br/>
+<a href="CppQmakeIncludepath.htm">INCLUDEPATH</a> += \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppAbout.htm">CppAbout</a> \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/CppApproximator \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppQtAboutDialog.htm">CppQtAboutDialog</a> \<br/>
@@ -176,7 +176,7 @@ TEMPLATE = app<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/CppSimpleLinearRegression \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppTrace.htm">CppTrace</a><br/>
 <br/>
-<a href="CppSOURCES.htm">SOURCES</a> += \<br/>
+<a href="CppQmakeSources.htm">SOURCES</a> += \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppAbout.htm">CppAbout</a>/<a href="CppAbout.htm">about</a>.cpp \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppQtAboutDialog.htm">CppQtAboutDialog</a>/<a href="CppQtAboutDialog.htm">qtaboutdialog</a>.cpp \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppQtHideAndShowDialog.htm">CppQtHideAndShowDialog</a>/<a href="CppQtHideAndShowDialog.htm">qthideandshowdialog</a>.cpp \<br/>
@@ -187,7 +187,7 @@ TEMPLATE = app<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/CppApproximator/exceptionnoextrapolation.cpp \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/CppSimpleLinearRegression/simplelinearregression.cpp<br/>
 <br/>
-<a href="CppHEADERS.htm">HEADERS</a> += \<br/>
+<a href="CppQmakeHeaders.htm">HEADERS</a> += \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppAbout.htm">CppAbout</a>/<a href="CppAbout.htm">about</a>.h \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppQtAboutDialog.htm">CppQtAboutDialog</a>/<a href="CppQtAboutDialog.htm">qtaboutdialog</a>.h \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppQtHideAndShowDialog.htm">CppQtHideAndShowDialog</a>/<a href="CppQtHideAndShowDialog.htm">qthideandshowdialog</a>.h \<br/>
@@ -209,7 +209,7 @@ OTHER_FILES += \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;Licence.txt \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/CppSimpleLinearRegression/Licence.txt<br/>
 <br/>
-<a href="CppRESOURCES.htm">RESOURCES</a> += \<br/>
+<a href="CppQmakeResources.htm">RESOURCES</a> += \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;ToolTestSimpleLinearRegression.qrc<br/>
 <br/>
 #<br/>
@@ -218,15 +218,15 @@ OTHER_FILES += \<br/>
 #<br/>
 #<br/>
 <br/>
-CONFIG(debug, debug|release) {<br/>
+<a href="CppQmakeConfig.htm">CONFIG</a>(debug, debug|release) {<br/>
 &nbsp;&nbsp;message(Debug mode)<br/>
 }<br/>
 <br/>
-CONFIG(release, debug|release) {<br/>
+<a href="CppQmakeConfig.htm">CONFIG</a>(release, debug|release) {<br/>
 &nbsp;&nbsp;message(Release mode)<br/>
 <br/>
 &nbsp;&nbsp;#Remove all <a href="CppAssert.htm">assert</a>s and <a href="CppTRACE.htm">TRACE</a><br/>
-&nbsp;&nbsp;DEFINES += NDEBUG N<a href="CppTRACE.htm">TRACE</a>_BILDERBIKKEL<br/>
+&nbsp;&nbsp;<a href="CppQmakeDefines.htm">DEFINES</a> += NDEBUG N<a href="CppTRACE.htm">TRACE</a>_BILDERBIKKEL<br/>
 }<br/>
 <br/>
 #<br/>
@@ -242,7 +242,7 @@ CONFIG(release, debug|release) {<br/>
 #<br/>
 <br/>
 #Cannot add <a href="CppWeffcpp.htm">-Weffc++</a> due to use of Qt resources<br/>
-<a href="CppQMAKE_CXXFLAGS.htm">QMAKE_CXXFLAGS</a> += -std=<a href="Cpp11.htm">c++11</a> <a href="CppWall.htm">-Wall</a> <a href="CppWextra.htm">-Wextra</a>&nbsp;&nbsp;<a href="CppWerror.htm">-Werror</a><br/>
+<a href="CppQmakeQmake_cxxflags.htm">QMAKE_CXXFLAGS</a> += -std=<a href="Cpp11.htm">c++11</a> <a href="CppWall.htm">-Wall</a> <a href="CppWextra.htm">-Wextra</a>&nbsp;&nbsp;<a href="CppWerror.htm">-Werror</a><br/>
 <br/>
 #<br/>
 #<br/>
@@ -255,7 +255,7 @@ unix {<br/>
 }<br/>
 <br/>
 win32 {<br/>
-&nbsp;&nbsp;<a href="CppINCLUDEPATH.htm">INCLUDEPATH</a> += \<br/>
+&nbsp;&nbsp;<a href="CppQmakeIncludepath.htm">INCLUDEPATH</a> += \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/boost_1_54_0<br/>
 }<br/>
 <br/>
@@ -269,14 +269,14 @@ unix {<br/>
 <br/>
 &nbsp;&nbsp;exists(/usr/include/qwt-qt4) {<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;message(Linux: Qwt: use qwt-qt4)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppINCLUDEPATH.htm">INCLUDEPATH</a> += /usr/include/qwt-qt4<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppLIBS.htm">LIBS</a> += <a href="CppQwt.htm">-lqwt-qt4</a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQmakeIncludepath.htm">INCLUDEPATH</a> += /usr/include/qwt-qt4<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQmakeLibs.htm">LIBS</a> += <a href="CppQwt.htm">-lqwt-qt4</a><br/>
 &nbsp;&nbsp;}<br/>
 <br/>
 &nbsp;&nbsp;exists(/usr/include/qwt) {<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;message(Linux: Qwt: link to qwt)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppINCLUDEPATH.htm">INCLUDEPATH</a> += /usr/include/qwt<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppLIBS.htm">LIBS</a> += -lqwt<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQmakeIncludepath.htm">INCLUDEPATH</a> += /usr/include/qwt<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQmakeLibs.htm">LIBS</a> += -lqwt<br/>
 &nbsp;&nbsp;}<br/>
 <br/>
 }<br/>
@@ -285,17 +285,17 @@ win32 {<br/>
 <br/>
 &nbsp;&nbsp;exists (../../<a href="CppLibrary.htm">Libraries</a>/qwt-6.1.0/src) {<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;message(Windows: Qwt: link dynamically)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppINCLUDEPATH.htm">INCLUDEPATH</a>+= ../../<a href="CppLibrary.htm">Libraries</a>/qwt-6.1.0/src<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppLIBS.htm">LIBS</a>+= -L../../<a href="CppLibrary.htm">Libraries</a>/qwt-6.1.0/lib<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQmakeIncludepath.htm">INCLUDEPATH</a>+= ../../<a href="CppLibrary.htm">Libraries</a>/qwt-6.1.0/src<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQmakeLibs.htm">LIBS</a>+= -L../../<a href="CppLibrary.htm">Libraries</a>/qwt-6.1.0/lib<br/>
 <br/>
-&nbsp;&nbsp;&nbsp;&nbsp;CONFIG(release, debug|release) {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQmakeConfig.htm">CONFIG</a>(release, debug|release) {<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;message(Windows: Qwt: Linking to qwt)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppLIBS.htm">LIBS</a> += -lqwt<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQmakeLibs.htm">LIBS</a> += -lqwt<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 <br/>
-&nbsp;&nbsp;&nbsp;&nbsp;CONFIG(debug, debug|release) {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQmakeConfig.htm">CONFIG</a>(debug, debug|release) {<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;message(Windows: Qwt: Linking to qwtd)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppLIBS.htm">LIBS</a> += -lqwtd<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQmakeLibs.htm">LIBS</a> += -lqwtd<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;}<br/>
 }<br/>
@@ -310,85 +310,85 @@ win32 {<br/>
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="main.cpp" border = "1"><tr><td><code>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppAlgorithmH.htm">algorithm</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppIostreamH.htm">iostream</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppCmathH.htm">cmath</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppAlgorithmH.html">algorithm</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppCassertH.html">cassert</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppIostreamH.html">iostream</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppCmathH.html">cmath</a>&gt;<br/>
 <br/>
-<a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
-<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppUnits.htm">boost/units</a>/systems/si.hpp&gt;<br/>
-<a href="CppInclude.htm">#include</a> "simplelinearregression.h"<br/>
-<a href="CppInclude.htm">#include</a> "canvas.h"<br/>
-<a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic push<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.html">-Weffc++</a>"<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppUnits.html">boost/units</a>/systems/si<a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
+<a href="CppInclude.html">#include</a> "simplelinearregression<a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "canvas<a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic pop<br/>
 <br/>
-<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a>()<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>Let <a href="CppBoost.htm">Boost</a>.Units check <b><a href="CppFor.htm">for</a></b> compiling<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Let <a href="CppBoost.html">Boost</a>.Units check <b><a href="CppFor.htm">for</a></b> compiling<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppTypedef.htm">typedef</a></b> <a href="CppUnits.htm">boost::units</a>::quantity&lt;<a href="CppUnits.htm">boost::units</a>::si::<a href="CppTime.htm">time</a>&gt; <a href="CppTime.htm">Time</a>;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppTypedef.htm">typedef</a></b> <a href="CppUnits.htm">boost::units</a>::quantity&lt;<a href="CppUnits.htm">boost::units</a>::si::length&gt; Distance;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppTypedef.htm">typedef</a></b> <a href="CppUnits.htm">boost::units</a>::quantity&lt;<a href="CppUnits.htm">boost::units</a>::si::velocity&gt; Velocity;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppTime.htm">Time</a>&gt; xs<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppTypedef.html">typedef</a></b> <a href="CppUnits.html">boost::units</a>::quantity&lt;<a href="CppUnits.html">boost::units</a>::si::<a href="CppTime.htm">time</a>&gt; <a href="CppTime.htm">Time</a>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppTypedef.html">typedef</a></b> <a href="CppUnits.html">boost::units</a>::quantity&lt;<a href="CppUnits.html">boost::units</a>::si::length&gt; Distance;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppTypedef.html">typedef</a></b> <a href="CppUnits.html">boost::units</a>::quantity&lt;<a href="CppUnits.html">boost::units</a>::si::velocity&gt; Velocity;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppVector.html">std::vector</a>&lt;<a href="CppTime.htm">Time</a>&gt; xs<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppTime.htm">Time</a>(1.0 * <a href="CppUnits.htm">boost::units</a>::si::second),<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppTime.htm">Time</a>(2.0 * <a href="CppUnits.htm">boost::units</a>::si::second),<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppTime.htm">Time</a>(3.0 * <a href="CppUnits.htm">boost::units</a>::si::second)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppTime.htm">Time</a>(1.0 * <a href="CppUnits.html">boost::units</a>::si::second),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppTime.htm">Time</a>(2.0 * <a href="CppUnits.html">boost::units</a>::si::second),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppTime.htm">Time</a>(3.0 * <a href="CppUnits.html">boost::units</a>::si::second)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;};<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;Distance&gt; ys<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppVector.html">std::vector</a>&lt;Distance&gt; ys<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Distance(2.0 * <a href="CppUnits.htm">boost::units</a>::si::meter),<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Distance(3.0 * <a href="CppUnits.htm">boost::units</a>::si::meter),<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Distance(4.0 * <a href="CppUnits.htm">boost::units</a>::si::meter)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Distance(2.0 * <a href="CppUnits.html">boost::units</a>::si::meter),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Distance(3.0 * <a href="CppUnits.html">boost::units</a>::si::meter),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Distance(4.0 * <a href="CppUnits.html">boost::units</a>::si::meter)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;};<br/>
 <br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Velocity expected_slope(1.0 * <a href="CppUnits.htm">boost::units</a>::si::meter <a href="CppOperatorDivide.htm">/</a> <a href="CppUnits.htm">boost::units</a>::si::second);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Distance expected_offset(1.0 * <a href="CppUnits.htm">boost::units</a>::si::meter);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> Velocity expected_slope(1.0 * <a href="CppUnits.html">boost::units</a>::si::meter <a href="CppOperatorDivide.htm">/</a> <a href="CppUnits.html">boost::units</a>::si::second);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> Distance expected_offset(1.0 * <a href="CppUnits.html">boost::units</a>::si::meter);<br/>
 <br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppPair.htm">std::pair</a>&lt;Velocity,Distance&gt; p<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppPair.html">std::pair</a>&lt;Velocity,Distance&gt; p<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <a href="CppRibi.htm">ribi</a>::SimpleLinearRegression::CalculateBestFit(xs,ys);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Velocity slope(p.first);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Distance offset(p.second);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppAbs.htm">std::abs</a>( Velocity(slope <a href="CppOperatorMinus.htm">-</a> expected_slope).value() )<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt; Velocity(0.0001 * <a href="CppUnits.htm">boost::units</a>::si::meter <a href="CppOperatorDivide.htm">/</a> <a href="CppUnits.htm">boost::units</a>::si::second).value() );<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppAbs.htm">std::abs</a>( Distance(offset <a href="CppOperatorMinus.htm">-</a> expected_offset).value() )<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt; Distance(0.0001 * <a href="CppUnits.htm">boost::units</a>::si::meter).value() );<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> Velocity slope(p.first);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> Distance offset(p.second);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(<a href="CppAbs.html">std::abs</a>( Velocity(slope <a href="CppOperatorMinus.htm">-</a> expected_slope).value() )<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt; Velocity(0.0001 * <a href="CppUnits.html">boost::units</a>::si::meter <a href="CppOperatorDivide.htm">/</a> <a href="CppUnits.html">boost::units</a>::si::second).value() );<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(<a href="CppAbs.html">std::abs</a>( Distance(offset <a href="CppOperatorMinus.htm">-</a> expected_offset).value() )<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt; Distance(0.0001 * <a href="CppUnits.html">boost::units</a>::si::meter).value() );<br/>
 <br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> i=1; i<a href="CppOperatorNotEqual.htm">!=</a>5; <a href="CppOperatorPlus.htm">+</a>+i) <a href="CppComment.htm">//</a>Human-based counting, following the Ansombe's Quartet indices<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; xs<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppVector.html">std::vector</a>&lt;<b><a href="CppDouble.html">double</a></b>&gt; xs<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <a href="CppRibi.htm">ribi</a>::SimpleLinearRegression::GetAnscombesQuartetX(i);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; ys<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppVector.html">std::vector</a>&lt;<b><a href="CppDouble.html">double</a></b>&gt; ys<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <a href="CppRibi.htm">ribi</a>::SimpleLinearRegression::GetAnscombesQuartetY(i);<br/>
 <br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppPair.htm">std::pair</a>&lt;<b><a href="CppDouble.htm">double</a></b>,<b><a href="CppDouble.htm">double</a></b>&gt; p<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppPair.html">std::pair</a>&lt;<b><a href="CppDouble.html">double</a></b>,<b><a href="CppDouble.html">double</a></b>&gt; p<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <a href="CppRibi.htm">ribi</a>::SimpleLinearRegression::CalculateBestFit(xs,ys);<br/>
 <br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> expected_regression_line_a <a href="CppOperatorAssign.htm">=</a> 0.500; <a href="CppComment.htm">//</a>to 3 decimal places<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> expected_regression_line_b <a href="CppOperatorAssign.htm">=</a> 3.00;&nbsp;&nbsp;<a href="CppComment.htm">//</a>to 2 decimal places<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> expected_regression_line_a <a href="CppOperatorAssign.htm">=</a> 0.500; <a href="CppComment.htm">//</a>to 3 decimal places<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> expected_regression_line_b <a href="CppOperatorAssign.htm">=</a> 3.00;&nbsp;&nbsp;<a href="CppComment.htm">//</a>to 2 decimal places<br/>
 <br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> e <a href="CppOperatorAssign.htm">=</a> 0.01;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(expected_regression_line_a <a href="CppOperatorMinus.htm">-</a> e &lt; p.first&nbsp;&nbsp;<a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> expected_regression_line_a <a href="CppOperatorPlus.htm">+</a> e &gt; p.first);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(expected_regression_line_b <a href="CppOperatorMinus.htm">-</a> e &lt; p.second <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> expected_regression_line_b <a href="CppOperatorPlus.htm">+</a> e &gt; p.second);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> e <a href="CppOperatorAssign.htm">=</a> 0.01;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(expected_regression_line_a <a href="CppOperatorMinus.htm">-</a> e &lt; p.first&nbsp;&nbsp;<a href="CppOperatorLogicalAnd.html">&amp;&amp;</a> expected_regression_line_a <a href="CppOperatorPlus.htm">+</a> e &gt; p.first);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(expected_regression_line_b <a href="CppOperatorMinus.htm">-</a> e &lt; p.second <a href="CppOperatorLogicalAnd.html">&amp;&amp;</a> expected_regression_line_b <a href="CppOperatorPlus.htm">+</a> e &gt; p.second);<br/>
 <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Plot the values<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> max_x <a href="CppOperatorAssign.htm">=</a> 78;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> max_y <a href="CppOperatorAssign.htm">=</a> 20;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> max_x <a href="CppOperatorAssign.htm">=</a> 78;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> max_y <a href="CppOperatorAssign.htm">=</a> 20;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppRibi.htm">ribi</a>::Canvas c(max_x,max_y,<a href="CppRibi.htm">ribi</a>::Canvas::ColorSystem::invert,<a href="CppRibi.htm">ribi</a>::Canvas::CoordinatSystem::graph);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;c.DrawLine(0.0,0.0,max_x,0.0);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;c.DrawLine(0.0,0.0,0.0,max_y);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(xs.size() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> ys.size());<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> ray <a href="CppOperatorAssign.htm">=</a> 1.0;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> max_x_co <a href="CppOperatorAssign.htm">=</a> ray <a href="CppOperatorPlus.htm">+</a> *<a href="CppMax_element.htm">std::max_element</a>(xs.begin(),xs.end());<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> stretch_x <a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(max_x) <a href="CppOperatorDivide.htm">/</a> max_x_co;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> max_y_co <a href="CppOperatorAssign.htm">=</a> ray <a href="CppOperatorPlus.htm">+</a> *<a href="CppMax_element.htm">std::max_element</a>(ys.begin(),ys.end());<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> stretch_y <a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(max_y) <a href="CppOperatorDivide.htm">/</a> max_y_co;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(xs.size() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> ys.size());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> ray <a href="CppOperatorAssign.htm">=</a> 1.0;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> max_x_co <a href="CppOperatorAssign.htm">=</a> ray <a href="CppOperatorPlus.htm">+</a> *<a href="CppMax_element.html">std::max_element</a>(xs.begin(),xs.end());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> stretch_x <a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.html">static_cast</a></b>&lt;<b><a href="CppDouble.html">double</a></b>&gt;(max_x) <a href="CppOperatorDivide.htm">/</a> max_x_co;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> max_y_co <a href="CppOperatorAssign.htm">=</a> ray <a href="CppOperatorPlus.htm">+</a> *<a href="CppMax_element.html">std::max_element</a>(ys.begin(),ys.end());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> stretch_y <a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.html">static_cast</a></b>&lt;<b><a href="CppDouble.html">double</a></b>&gt;(max_y) <a href="CppOperatorDivide.htm">/</a> max_y_co;<br/>
 <br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppSize_t.htm">std::size_t</a> n_values <a href="CppOperatorAssign.htm">=</a> xs.size();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<a href="CppSize_t.htm">std::size_t</a> i=0; i<a href="CppOperatorNotEqual.htm">!=</a>n_values; <a href="CppOperatorPlus.htm">+</a>+i)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppSize_t.html">std::size_t</a> n_values <a href="CppOperatorAssign.htm">=</a> xs.size();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<a href="CppSize_t.html">std::size_t</a> i=0; i<a href="CppOperatorNotEqual.htm">!=</a>n_values; <a href="CppOperatorPlus.htm">+</a>+i)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>c.DrawDot(xs[i] * stretch_x,ys[i] * stretch_y);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;c.DrawCircle(xs[i] * stretch_x,ys[i] * stretch_y,ray);<br/>
@@ -396,21 +396,21 @@ win32 {<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;c.DrawLine(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;stretch_x * 0.0,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;stretch_y * p.second,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;stretch_x * <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(max_x),<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;stretch_y * (p.second <a href="CppOperatorPlus.htm">+</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(max_x) * p.first)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;stretch_x * <b><a href="CppStatic_cast.html">static_cast</a></b>&lt;<b><a href="CppDouble.html">double</a></b>&gt;(max_x),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;stretch_y * (p.second <a href="CppOperatorPlus.htm">+</a> <b><a href="CppStatic_cast.html">static_cast</a></b>&lt;<b><a href="CppDouble.html">double</a></b>&gt;(max_x) * p.first)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> c <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppEndl.htm">std::endl</a>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCout.html">std::cout</a> <a href="CppOperatorStreamOut.html">&lt;&lt;</a> c <a href="CppOperatorStreamOut.html">&lt;&lt;</a> <a href="CppEndl.html">std::endl</a>;<br/>
 &nbsp;&nbsp;}<br/>
 }<br/>
 <br/>
 <a href="CppComment.htm">/*</a> Screen output<br/>
 <br/>
-<a href="CppTRACE.htm">TRACE</a> '"Starting SimpleLinearRegression::Test"' line 155 in fi<br/>
+<a href="CppTRACE.html">TRACE</a> '"Starting SimpleLinearRegression::Test"' line 155 in fi<br/>
 le '../<a href="Tools.htm">Tool</a>TestSimpleLinearRegression/<a href="Tools.htm">tool</a>testsimplelinearregressionmaindialog.c<br/>
 pp': 'Starting SimpleLinearRegression::Test'<br/>
-<a href="CppTRACE.htm">TRACE</a> '"Finished SimpleLinearRegression::Test successfully"' l<br/>
+<a href="CppTRACE.html">TRACE</a> '"Finished SimpleLinearRegression::Test successfully"' l<br/>
 ine 200 in file '../<a href="Tools.htm">Tool</a>TestSimpleLinearRegression/<a href="Tools.htm">tool</a>testsimplelinearregressio<br/>
-nmaindialog.cpp': 'Finished SimpleLinearRegression::Test succe<br/>
+nmaindialog<a href="CppImplementationFile.html">.cpp</a>': 'Finished SimpleLinearRegression::Test succe<br/>
 ssfully'<br/>
 .&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorMinus.htm">-</a>o.<br/>
 :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;s-<a href="CppOperatorPlus.htm">+</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`&nbsp;&nbsp;&nbsp;&nbsp;`<br/>
@@ -512,7 +512,7 @@ Press &lt;RETURN&gt; to close <b><a href="CppThis.htm">this</a></b> window...<br
 <table summary="qtmain.cpp" border = "1"><tr><td><code>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">/*</a><br/>
-<a href="Tools.htm">Tool</a>TestSimpleLinearRegression, tests the SimpleLinearRegression <b><a href="CppClass.htm">class</a></b><br/>
+<a href="Tools.htm">Tool</a>TestSimpleLinearRegression, tests the SimpleLinearRegression <b><a href="CppClass.html">class</a></b><br/>
 Copyright (C) 2013&nbsp;&nbsp;Richel Bilderbeek<br/>
 <br/>
 This program is free software: you can redistribute it and/or modify<br/>
@@ -528,23 +528,23 @@ You should have received a copy of the GNU General Public License<br/>
 along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">*/</a><br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="Tools.htm">Tool</a>TestSimpleLinearRegression.htm<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="Tools.htm">Tool</a>TestSimpleLinearRegression.html<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
-<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppQApplication.htm">QApplication</a>&gt;<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic push<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.html">-Weffc++</a>"<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppQApplication.html">QApplication</a>&gt;<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> "qt<a href="Tools.htm">tool</a>testsimplelinearregressionmenudialog.h"<br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppTrace.htm">trace</a>.h"<br/>
-<a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
+<a href="CppInclude.html">#include</a> "qt<a href="Tools.htm">tool</a>testsimplelinearregressionmenudialog<a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "<a href="CppTrace.html">trace</a><a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic pop<br/>
 <br/>
-<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>(<b><a href="CppInt.htm">int</a></b> <a href="CppArgc.htm">argc</a>, <b><a href="CppChar.htm">char</a></b> *<a href="CppArgc.htm">argv</a>[])<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a>(<b><a href="CppInt.htm">int</a></b> <a href="CppArgc.htm">argc</a>, <b><a href="CppChar.htm">char</a></b> *<a href="CppArgc.htm">argv</a>[])<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppQApplication.htm">QApplication</a> a(<a href="CppArgc.htm">argc</a>, <a href="CppArgc.htm">argv</a>);<br/>
-&nbsp;&nbsp;START_<a href="CppTRACE.htm">TRACE</a>();<br/>
+&nbsp;&nbsp;<a href="CppQApplication.html">QApplication</a> a(<a href="CppArgc.htm">argc</a>, <a href="CppArgc.htm">argv</a>);<br/>
+&nbsp;&nbsp;START_<a href="CppTRACE.html">TRACE</a>();<br/>
 &nbsp;&nbsp;<a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="Tools.htm">Tool</a>TestSimpleLinearRegressionMenuDialog d;<br/>
 &nbsp;&nbsp;d.show();<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> a.exec();<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> a.exec();<br/>
 }<br/>
 </code></td></tr></table>
 <!-- end of the code -->
@@ -557,56 +557,56 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="qttooltestsimplelinearregressionmaindialog.h" border = "1"><tr><td><code>
-<a href="CppIfndef.htm">#ifndef</a> QTTOOLTESTAPPROXIMATORMAINDIALOG_H<br/>
-<a href="CppDefine.htm">#define</a> QTTOOLTESTAPPROXIMATORMAINDIALOG_H<br/>
+<a href="CppIfndef.html">#ifndef</a> QTTOOLTESTAPPROXIMATORMAINDIALOG_H<br/>
+<a href="CppDefine.html">#define</a> QTTOOLTESTAPPROXIMATORMAINDIALOG_H<br/>
 <br/>
-<a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
-<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppShared_ptr.htm">shared_ptr</a>.hpp&gt;<br/>
-<a href="CppInclude.htm">#include</a> "approximator.h"<br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppQtHideAndShowDialog.htm">qthideandshowdialog</a>.h"<br/>
-<a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic push<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.html">-Weffc++</a>"<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppBoost.html">boost</a>/<a href="CppShared_ptr.html">shared_ptr</a><a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
+<a href="CppInclude.html">#include</a> "approximator<a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "<a href="CppQtHideAndShowDialog.html">qthideandshowdialog</a><a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic pop<br/>
 <br/>
-<b><a href="CppStruct.htm">struct</a></b> QwtPlot;<br/>
-<b><a href="CppStruct.htm">struct</a></b> QwtPlotCurve;<br/>
+<b><a href="CppStruct.html">struct</a></b> QwtPlot;<br/>
+<b><a href="CppStruct.html">struct</a></b> QwtPlotCurve;<br/>
 <br/>
-<b><a href="CppNamespace.htm">namespace</a></b> Ui {<br/>
-&nbsp;&nbsp;<b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a><a href="Tools.htm">Tool</a>TestSimpleLinearRegressionMainDialog;<br/>
+<b><a href="CppNamespace.html">namespace</a></b> Ui {<br/>
+&nbsp;&nbsp;<b><a href="CppClass.html">class</a></b> <a href="CppQt.htm">Qt</a><a href="Tools.htm">Tool</a>TestSimpleLinearRegressionMainDialog;<br/>
 }<br/>
 <br/>
-<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
+<b><a href="CppNamespace.html">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
 <br/>
-<b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a><a href="Tools.htm">Tool</a>TestSimpleLinearRegressionMainDialog : <b><a href="CppPublic.htm">public</a></b> <a href="CppQtHideAndShowDialog.htm">QtHideAndShowDialog</a><br/>
+<b><a href="CppClass.html">class</a></b> <a href="CppQt.htm">Qt</a><a href="Tools.htm">Tool</a>TestSimpleLinearRegressionMainDialog : <b><a href="CppPublic.html">public</a></b> <a href="CppQtHideAndShowDialog.html">QtHideAndShowDialog</a><br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppQ_OBJECT.htm">Q_OBJECT</a><br/>
+&nbsp;&nbsp;<a href="CppQ_OBJECT.html">Q_OBJECT</a><br/>
 &nbsp;&nbsp;<br/>
-<b><a href="CppPublic.htm">public</a></b>:<br/>
-&nbsp;&nbsp;<b><a href="CppExplicit.htm">explicit</a></b> <a href="CppQt.htm">Qt</a><a href="Tools.htm">Tool</a>TestSimpleLinearRegressionMainDialog(<a href="CppQWidget.htm">QWidget</a> *parent <a href="CppOperatorAssign.htm">=</a> 0);<br/>
+<b><a href="CppPublic.html">public</a></b>:<br/>
+&nbsp;&nbsp;<b><a href="CppExplicit.html">explicit</a></b> <a href="CppQt.htm">Qt</a><a href="Tools.htm">Tool</a>TestSimpleLinearRegressionMainDialog(<a href="CppQWidget.html">QWidget</a> *parent <a href="CppOperatorAssign.htm">=</a> 0);<br/>
 &nbsp;&nbsp;~<a href="CppQt.htm">Qt</a><a href="Tools.htm">Tool</a>TestSimpleLinearRegressionMainDialog();<br/>
 &nbsp;&nbsp;<br/>
-<b><a href="CppPrivate.htm">private</a></b> <b><a href="CppSlots.htm">slots</a></b>:<br/>
+<b><a href="CppPrivate.html">private</a></b> <b><a href="CppSlots.html">slots</a></b>:<br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> on_button_clicked();<br/>
 <br/>
-<b><a href="CppPrivate.htm">private</a></b>:<br/>
+<b><a href="CppPrivate.html">private</a></b>:<br/>
 &nbsp;&nbsp;<a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a><a href="Tools.htm">Tool</a>TestSimpleLinearRegressionMainDialog *ui;<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;QwtPlotCurve&gt; m_curve_approximation;<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;QwtPlotCurve&gt; m_curve_values;<br/>
-&nbsp;&nbsp;QwtPlotCurve * <b><a href="CppConst.htm">const</a></b> m_curve_approximation;<br/>
-&nbsp;&nbsp;QwtPlotCurve * <b><a href="CppConst.htm">const</a></b> m_curve_values;<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppConst.html">const</a></b> <a href="CppBoostShared_ptr.html">boost::shared_ptr</a>&lt;QwtPlotCurve&gt; m_curve_approximation;<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppConst.html">const</a></b> <a href="CppBoostShared_ptr.html">boost::shared_ptr</a>&lt;QwtPlotCurve&gt; m_curve_values;<br/>
+&nbsp;&nbsp;QwtPlotCurve * <b><a href="CppConst.html">const</a></b> m_curve_approximation;<br/>
+&nbsp;&nbsp;QwtPlotCurve * <b><a href="CppConst.html">const</a></b> m_curve_values;<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/Contains the plot<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;QwtPlot&gt; m_plot;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppBoostShared_ptr.html">boost::shared_ptr</a>&lt;QwtPlot&gt; m_plot;<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; m_xs;<br/>
-&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; m_ys;<br/>
+&nbsp;&nbsp;<a href="CppVector.html">std::vector</a>&lt;<b><a href="CppDouble.html">double</a></b>&gt; m_xs;<br/>
+&nbsp;&nbsp;<a href="CppVector.html">std::vector</a>&lt;<b><a href="CppDouble.html">double</a></b>&gt; m_ys;<br/>
 <br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> Plot();<br/>
 };<br/>
 <br/>
-} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.html">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
 <br/>
-<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> QTTOOLTESTAPPROXIMATORMAINDIALOG_H<br/>
+<a href="CppEndif.html">#endif</a> <a href="CppComment.htm">//</a> QTTOOLTESTAPPROXIMATORMAINDIALOG_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -618,30 +618,30 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="qttooltestsimplelinearregressionmaindialog.cpp" border = "1"><tr><td><code>
-<a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
-<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
-<a href="CppInclude.htm">#include</a> "qt<a href="Tools.htm">tool</a>testsimplelinearregressionmaindialog.h"<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic push<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.html">-Weffc++</a>"<br/>
+<a href="CppInclude.html">#include</a> "qt<a href="Tools.htm">tool</a>testsimplelinearregressionmaindialog<a href="CppHeaderFile.htm">.h</a>"<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppSstreamH.htm">sstream</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppCassertH.html">cassert</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppSstreamH.html">sstream</a>&gt;<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> &lt;qwt_legend.h&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;qwt_plot.h&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;qwt_plot_curve.h&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;qwt_plot_grid.h&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;qwt_plot_zoomer.h&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;qwt_legend<a href="CppHeaderFile.htm">.h</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;qwt_plot<a href="CppHeaderFile.htm">.h</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;qwt_plot_curve<a href="CppHeaderFile.htm">.h</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;qwt_plot_grid<a href="CppHeaderFile.htm">.h</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;qwt_plot_zoomer<a href="CppHeaderFile.htm">.h</a>&gt;<br/>
 <br/>
-<a href="CppPreIf.htm">#if</a> QWT_VERSION <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 0x060000<br/>
-<a href="CppInclude.htm">#include</a> &lt;qwt_<a href="CppPointer.htm">point</a>_data.h&gt;<br/>
-<a href="CppEndif.htm">#endif</a><br/>
+<a href="CppPreIf.htm">#if</a> QWT_VERSION <a href="CppOperatorGreaterEqual.html">&gt;=</a> 0x060000<br/>
+<a href="CppInclude.html">#include</a> &lt;qwt_<a href="CppPointer.html">point</a>_data<a href="CppHeaderFile.htm">.h</a>&gt;<br/>
+<a href="CppEndif.html">#endif</a><br/>
 <br/>
-<a href="CppInclude.htm">#include</a> "simplelinearregression.h"<br/>
-<a href="CppInclude.htm">#include</a> "ui_qt<a href="Tools.htm">tool</a>testsimplelinearregressionmaindialog.h"<br/>
+<a href="CppInclude.html">#include</a> "simplelinearregression<a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "ui_qt<a href="Tools.htm">tool</a>testsimplelinearregressionmaindialog<a href="CppHeaderFile.htm">.h</a>"<br/>
 <br/>
-<a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic pop<br/>
 <br/>
-<a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="Tools.htm">Tool</a>TestSimpleLinearRegressionMainDialog::<a href="CppQt.htm">Qt</a><a href="Tools.htm">Tool</a>TestSimpleLinearRegressionMainDialog(<a href="CppQWidget.htm">QWidget</a> *parent) :<br/>
-&nbsp;&nbsp;<a href="CppQtHideAndShowDialog.htm">QtHideAndShowDialog</a>(parent),<br/>
+<a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="Tools.htm">Tool</a>TestSimpleLinearRegressionMainDialog::<a href="CppQt.htm">Qt</a><a href="Tools.htm">Tool</a>TestSimpleLinearRegressionMainDialog(<a href="CppQWidget.html">QWidget</a> *parent) :<br/>
+&nbsp;&nbsp;<a href="CppQtHideAndShowDialog.html">QtHideAndShowDialog</a>(parent),<br/>
 &nbsp;&nbsp;ui(<b><a href="CppNew.htm">new</a></b> <a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a><a href="Tools.htm">Tool</a>TestSimpleLinearRegressionMainDialog),<br/>
 &nbsp;&nbsp;m_curve_approximation(<b><a href="CppNew.htm">new</a></b> QwtPlotCurve),<br/>
 &nbsp;&nbsp;m_curve_values(<b><a href="CppNew.htm">new</a></b> QwtPlotCurve),<br/>
@@ -652,33 +652,33 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;ui-&gt;setupUi(<b><a href="CppThis.htm">this</a></b>);<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Set up the plot<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(m_plot);<br/>
+&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(m_plot);<br/>
 &nbsp;&nbsp;m_plot-&gt;setTitle("SimpleLinearRegression");<br/>
 &nbsp;&nbsp;m_plot-&gt;setAxisTitle(QwtPlot::xBottom,"X");<br/>
 &nbsp;&nbsp;m_plot-&gt;setAxisTitle(QwtPlot::yLeft,"Y");<br/>
-&nbsp;&nbsp;<a href="CppIfdef.htm">#ifdef</a> _WIN32<br/>
-&nbsp;&nbsp;m_plot-&gt;setCanvasBackground(QBrush(<a href="CppQColor.htm">QColor</a>(255,255,255)));<br/>
-&nbsp;&nbsp;<a href="CppPreElse.htm">#else</a><br/>
-&nbsp;&nbsp;plot-&gt;setCanvasBackground(<a href="CppQColor.htm">QColor</a>(255,255,255));<br/>
-&nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
+&nbsp;&nbsp;<a href="CppIfdef.html">#ifdef</a> _WIN32<br/>
+&nbsp;&nbsp;m_plot-&gt;setCanvasBackground(QBrush(<a href="CppQColor.html">QColor</a>(255,255,255)));<br/>
+&nbsp;&nbsp;<a href="CppPreElse.html">#else</a><br/>
+&nbsp;&nbsp;plot-&gt;setCanvasBackground(<a href="CppQColor.html">QColor</a>(255,255,255));<br/>
+&nbsp;&nbsp;<a href="CppEndif.html">#endif</a><br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Create plots<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(m_curve_values);<br/>
-&nbsp;&nbsp;m_curve_values-&gt;setTitle("<a href="CppPoint.htm">Point</a>s");<br/>
+&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(m_curve_values);<br/>
+&nbsp;&nbsp;m_curve_values-&gt;setTitle("<a href="CppPoint.html">Point</a>s");<br/>
 &nbsp;&nbsp;m_curve_values-&gt;attach(m_plot.get());<br/>
 &nbsp;&nbsp;m_curve_values-&gt;setStyle(QwtPlotCurve::Dots);<br/>
-&nbsp;&nbsp;m_curve_values-&gt;setPen(QPen(<a href="CppQColor.htm">QColor</a>(255,0,0),5));<br/>
+&nbsp;&nbsp;m_curve_values-&gt;setPen(QPen(<a href="CppQColor.html">QColor</a>(255,0,0),5));<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(m_curve_approximation);<br/>
+&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(m_curve_approximation);<br/>
 &nbsp;&nbsp;m_curve_approximation-&gt;setTitle("Trendline");<br/>
 &nbsp;&nbsp;m_curve_approximation-&gt;attach(m_plot.get());<br/>
 &nbsp;&nbsp;m_curve_approximation-&gt;setStyle(QwtPlotCurve::Dots);<br/>
-&nbsp;&nbsp;m_curve_approximation-&gt;setPen(QPen(<a href="CppQColor.htm">QColor</a>(0,0,255),3));<br/>
+&nbsp;&nbsp;m_curve_approximation-&gt;setPen(QPen(<a href="CppQColor.html">QColor</a>(0,0,255),3));<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppAdd.htm">Add</a> grid<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;QwtPlotGrid * <b><a href="CppConst.htm">const</a></b> grid <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> QwtPlotGrid;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;grid-&gt;setPen(QPen(<a href="CppQColor.htm">QColor</a>(128,128,128)));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;QwtPlotGrid * <b><a href="CppConst.html">const</a></b> grid <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> QwtPlotGrid;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;grid-&gt;setPen(QPen(<a href="CppQColor.html">QColor</a>(128,128,128)));<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;grid-&gt;attach(m_plot.get());<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppAdd.htm">Add</a> zoomer<br/>
@@ -687,56 +687,56 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a> legend<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;QwtLegend * <b><a href="CppConst.htm">const</a></b> legend <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> QwtLegend;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;QwtLegend * <b><a href="CppConst.html">const</a></b> legend <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> QwtLegend;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;legend-&gt;setFrameStyle(QFrame::Box|QFrame::Sunken);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;m_plot-&gt;insertLegend(legend, QwtPlot::RightLegend);<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(ui-&gt;verticalLayout-&gt;layout());<br/>
+&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(ui-&gt;verticalLayout-&gt;layout());<br/>
 &nbsp;&nbsp;ui-&gt;verticalLayout-&gt;layout()-&gt;addWidget(m_plot.get());<br/>
 <br/>
 &nbsp;&nbsp;m_plot-&gt;setAxisScale(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;QwtPlot::xBottom,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(ui-&gt;box_int_x-&gt;minimum()),<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(ui-&gt;box_int_x-&gt;maximum())<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppStatic_cast.html">static_cast</a></b>&lt;<b><a href="CppDouble.html">double</a></b>&gt;(ui-&gt;box_int_x-&gt;minimum()),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppStatic_cast.html">static_cast</a></b>&lt;<b><a href="CppDouble.html">double</a></b>&gt;(ui-&gt;box_int_x-&gt;maximum())<br/>
 &nbsp;&nbsp;);<br/>
 &nbsp;&nbsp;m_plot-&gt;setAxisScale(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;QwtPlot::yLeft,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(ui-&gt;box_<b><a href="CppDouble.htm">double</a></b>_y-&gt;minimum()),<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(ui-&gt;box_<b><a href="CppDouble.htm">double</a></b>_y-&gt;maximum())<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppStatic_cast.html">static_cast</a></b>&lt;<b><a href="CppDouble.html">double</a></b>&gt;(ui-&gt;box_<b><a href="CppDouble.html">double</a></b>_y-&gt;minimum()),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppStatic_cast.html">static_cast</a></b>&lt;<b><a href="CppDouble.html">double</a></b>&gt;(ui-&gt;box_<b><a href="CppDouble.html">double</a></b>_y-&gt;maximum())<br/>
 &nbsp;&nbsp;);<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppAdd.htm">Add</a> some nice testing values<br/>
 &nbsp;&nbsp;ui-&gt;box_int_x-&gt;setValue(ui-&gt;box_int_x-&gt;minimum() <a href="CppOperatorDivide.htm">/</a> 2);<br/>
-&nbsp;&nbsp;ui-&gt;box_<b><a href="CppDouble.htm">double</a></b>_y-&gt;setValue(ui-&gt;box_<b><a href="CppDouble.htm">double</a></b>_y-&gt;maximum() <a href="CppOperatorDivide.htm">/</a> 2.0);<br/>
+&nbsp;&nbsp;ui-&gt;box_<b><a href="CppDouble.html">double</a></b>_y-&gt;setValue(ui-&gt;box_<b><a href="CppDouble.html">double</a></b>_y-&gt;maximum() <a href="CppOperatorDivide.htm">/</a> 2.0);<br/>
 &nbsp;&nbsp;on_button_clicked();<br/>
 <br/>
 &nbsp;&nbsp;ui-&gt;box_int_x-&gt;setValue(ui-&gt;box_int_x-&gt;minimum() <a href="CppOperatorDivide.htm">/</a> 4);<br/>
-&nbsp;&nbsp;ui-&gt;box_<b><a href="CppDouble.htm">double</a></b>_y-&gt;setValue(ui-&gt;box_<b><a href="CppDouble.htm">double</a></b>_y-&gt;minimum() <a href="CppOperatorDivide.htm">/</a> 2.0);<br/>
+&nbsp;&nbsp;ui-&gt;box_<b><a href="CppDouble.html">double</a></b>_y-&gt;setValue(ui-&gt;box_<b><a href="CppDouble.html">double</a></b>_y-&gt;minimum() <a href="CppOperatorDivide.htm">/</a> 2.0);<br/>
 &nbsp;&nbsp;on_button_clicked();<br/>
 <br/>
 &nbsp;&nbsp;ui-&gt;box_int_x-&gt;setValue(ui-&gt;box_int_x-&gt;maximum() <a href="CppOperatorDivide.htm">/</a> 4);<br/>
-&nbsp;&nbsp;ui-&gt;box_<b><a href="CppDouble.htm">double</a></b>_y-&gt;setValue(ui-&gt;box_<b><a href="CppDouble.htm">double</a></b>_y-&gt;maximum() <a href="CppOperatorDivide.htm">/</a> 2.0);<br/>
+&nbsp;&nbsp;ui-&gt;box_<b><a href="CppDouble.html">double</a></b>_y-&gt;setValue(ui-&gt;box_<b><a href="CppDouble.html">double</a></b>_y-&gt;maximum() <a href="CppOperatorDivide.htm">/</a> 2.0);<br/>
 &nbsp;&nbsp;on_button_clicked();<br/>
 <br/>
 &nbsp;&nbsp;ui-&gt;box_int_x-&gt;setValue(ui-&gt;box_int_x-&gt;maximum() <a href="CppOperatorDivide.htm">/</a> 2);<br/>
-&nbsp;&nbsp;ui-&gt;box_<b><a href="CppDouble.htm">double</a></b>_y-&gt;setValue(ui-&gt;box_<b><a href="CppDouble.htm">double</a></b>_y-&gt;minimum() <a href="CppOperatorDivide.htm">/</a> 2.0);<br/>
+&nbsp;&nbsp;ui-&gt;box_<b><a href="CppDouble.html">double</a></b>_y-&gt;setValue(ui-&gt;box_<b><a href="CppDouble.html">double</a></b>_y-&gt;minimum() <a href="CppOperatorDivide.htm">/</a> 2.0);<br/>
 &nbsp;&nbsp;on_button_clicked();<br/>
 <br/>
 &nbsp;&nbsp;ui-&gt;box_int_x-&gt;setValue(0);<br/>
-&nbsp;&nbsp;ui-&gt;box_<b><a href="CppDouble.htm">double</a></b>_y-&gt;setValue(0.0);<br/>
+&nbsp;&nbsp;ui-&gt;box_<b><a href="CppDouble.html">double</a></b>_y-&gt;setValue(0.0);<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>_FUNC();<br/>
+&nbsp;&nbsp;<a href="CppTRACE.html">TRACE</a>_FUNC();<br/>
 }<br/>
 <br/>
 <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="Tools.htm">Tool</a>TestSimpleLinearRegressionMainDialog::~<a href="CppQt.htm">Qt</a><a href="Tools.htm">Tool</a>TestSimpleLinearRegressionMainDialog()<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppDelete.htm">delete</a></b> ui;<br/>
+&nbsp;&nbsp;<b><a href="CppDelete.html">delete</a></b> ui;<br/>
 }<br/>
 <br/>
 <b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="Tools.htm">Tool</a>TestSimpleLinearRegressionMainDialog::on_button_clicked()<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x <a href="CppOperatorAssign.htm">=</a> ui-&gt;box_int_x-&gt;value();<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> y <a href="CppOperatorAssign.htm">=</a> ui-&gt;box_<b><a href="CppDouble.htm">double</a></b>_y-&gt;value();<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> x <a href="CppOperatorAssign.htm">=</a> ui-&gt;box_int_x-&gt;value();<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> y <a href="CppOperatorAssign.htm">=</a> ui-&gt;box_<b><a href="CppDouble.html">double</a></b>_y-&gt;value();<br/>
 &nbsp;&nbsp;m_xs.push_back(x);<br/>
 &nbsp;&nbsp;m_ys.push_back(y);<br/>
 &nbsp;&nbsp;Plot();<br/>
@@ -746,44 +746,44 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Plot values<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppPreIf.htm">#if</a> QWT_VERSION <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 0x060000<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;m_curve_values-&gt;setData(<b><a href="CppNew.htm">new</a></b> Qwt<a href="CppPoint.htm">Point</a><a href="CppArray.htm">Array</a>Data(&amp;m_xs[0],&amp;m_ys[0],m_xs.size()));<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppPreElse.htm">#else</a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppPreIf.htm">#if</a> QWT_VERSION <a href="CppOperatorGreaterEqual.html">&gt;=</a> 0x060000<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_curve_values-&gt;setData(<b><a href="CppNew.htm">new</a></b> Qwt<a href="CppPoint.html">Point</a><a href="CppArray.html">Array</a>Data(&amp;m_xs[0],&amp;m_ys[0],m_xs.size()));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppPreElse.html">#else</a><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;m_curve_values-&gt;setData(&amp;m_xs[0],&amp;m_y[0],m_xs.size());<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppEndif.html">#endif</a><br/>
 &nbsp;&nbsp;}<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> min_x <a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(ui-&gt;box_int_x-&gt;minimum());<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> max_x <a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(ui-&gt;box_int_x-&gt;maximum());<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> min_x <a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.html">static_cast</a></b>&lt;<b><a href="CppDouble.html">double</a></b>&gt;(ui-&gt;box_int_x-&gt;minimum());<br/>
+&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> max_x <a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.html">static_cast</a></b>&lt;<b><a href="CppDouble.html">double</a></b>&gt;(ui-&gt;box_int_x-&gt;maximum());<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Plot approximation<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppPair.htm">std::pair</a>&lt;<b><a href="CppDouble.htm">double</a></b>,<b><a href="CppDouble.htm">double</a></b>&gt; p<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppPair.html">std::pair</a>&lt;<b><a href="CppDouble.html">double</a></b>,<b><a href="CppDouble.html">double</a></b>&gt; p<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> SimpleLinearRegression::CalculateBestFit(m_xs,m_ys);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> slope <a href="CppOperatorAssign.htm">=</a> p.first;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> intercept <a href="CppOperatorAssign.htm">=</a> p.second;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> slope <a href="CppOperatorAssign.htm">=</a> p.first;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> intercept <a href="CppOperatorAssign.htm">=</a> p.second;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStringstream.htm">std::stringstream</a> s;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;s <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "y <a href="CppOperatorAssign.htm">=</a> " <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> slope <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> ".x" <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> (intercept <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 0.0 ? "+":"") <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> intercept;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStringstream.html">std::stringstream</a> s;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;s <a href="CppOperatorStreamOut.html">&lt;&lt;</a> "y <a href="CppOperatorAssign.htm">=</a> " <a href="CppOperatorStreamOut.html">&lt;&lt;</a> slope <a href="CppOperatorStreamOut.html">&lt;&lt;</a> ".x" <a href="CppOperatorStreamOut.html">&lt;&lt;</a> (intercept <a href="CppOperatorGreaterEqual.html">&gt;=</a> 0.0 ? "+":"") <a href="CppOperatorStreamOut.html">&lt;&lt;</a> intercept;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;setWindowTitle(s.str().c_str());<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; xs;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; ys;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppDouble.htm">double</a></b> t=min_x; t &lt; max_x; t<a href="CppOperatorPlusAssign.htm">+=</a>0.5)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppVector.html">std::vector</a>&lt;<b><a href="CppDouble.html">double</a></b>&gt; xs;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppVector.html">std::vector</a>&lt;<b><a href="CppDouble.html">double</a></b>&gt; ys;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppDouble.html">double</a></b> t=min_x; t &lt; max_x; t<a href="CppOperatorPlusAssign.htm">+=</a>0.5)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> x <a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(t);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> y <a href="CppOperatorAssign.htm">=</a> intercept <a href="CppOperatorPlus.htm">+</a> (slope * x);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> x <a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.html">static_cast</a></b>&lt;<b><a href="CppDouble.html">double</a></b>&gt;(t);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> y <a href="CppOperatorAssign.htm">=</a> intercept <a href="CppOperatorPlus.htm">+</a> (slope * x);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ys.push_back(y);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;xs.push_back(x);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(m_curve_approximation);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppPreIf.htm">#if</a> QWT_VERSION <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 0x060000<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;m_curve_approximation-&gt;setData(<b><a href="CppNew.htm">new</a></b> Qwt<a href="CppPoint.htm">Point</a><a href="CppArray.htm">Array</a>Data(&amp;xs[0],&amp;ys[0],xs.size()));<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppPreElse.htm">#else</a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(m_curve_approximation);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppPreIf.htm">#if</a> QWT_VERSION <a href="CppOperatorGreaterEqual.html">&gt;=</a> 0x060000<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_curve_approximation-&gt;setData(<b><a href="CppNew.htm">new</a></b> Qwt<a href="CppPoint.html">Point</a><a href="CppArray.html">Array</a>Data(&amp;xs[0],&amp;ys[0],xs.size()));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppPreElse.html">#else</a><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;m_curve_approximation-&gt;setData(&amp;xs[0],&amp;y[0],xs.size());<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppEndif.html">#endif</a><br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(m_plot);<br/>
+&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(m_plot);<br/>
 &nbsp;&nbsp;m_plot-&gt;replot();<br/>
 }<br/>
 </code></td></tr></table>
@@ -797,47 +797,47 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="qttooltestsimplelinearregressionmenudialog.h" border = "1"><tr><td><code>
-<a href="CppIfndef.htm">#ifndef</a> QTTOOLTESTAPPROXIMATORMENUDIALOG_H<br/>
-<a href="CppDefine.htm">#define</a> QTTOOLTESTAPPROXIMATORMENUDIALOG_H<br/>
+<a href="CppIfndef.html">#ifndef</a> QTTOOLTESTAPPROXIMATORMENUDIALOG_H<br/>
+<a href="CppDefine.html">#define</a> QTTOOLTESTAPPROXIMATORMENUDIALOG_H<br/>
 <br/>
-<a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
-<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppQtHideAndShowDialog.htm">qthideandshowdialog</a>.h"<br/>
-<a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic push<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.html">-Weffc++</a>"<br/>
+<a href="CppInclude.html">#include</a> "<a href="CppQtHideAndShowDialog.html">qthideandshowdialog</a><a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic pop<br/>
 <br/>
-<b><a href="CppNamespace.htm">namespace</a></b> Ui {<br/>
-&nbsp;&nbsp;<b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a><a href="Tools.htm">Tool</a>TestSimpleLinearRegressionMenuDialog;<br/>
+<b><a href="CppNamespace.html">namespace</a></b> Ui {<br/>
+&nbsp;&nbsp;<b><a href="CppClass.html">class</a></b> <a href="CppQt.htm">Qt</a><a href="Tools.htm">Tool</a>TestSimpleLinearRegressionMenuDialog;<br/>
 }<br/>
 <br/>
-<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
+<b><a href="CppNamespace.html">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
 <br/>
-<b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a><a href="Tools.htm">Tool</a>TestSimpleLinearRegressionMenuDialog : <b><a href="CppPublic.htm">public</a></b> <a href="CppQtHideAndShowDialog.htm">QtHideAndShowDialog</a><br/>
+<b><a href="CppClass.html">class</a></b> <a href="CppQt.htm">Qt</a><a href="Tools.htm">Tool</a>TestSimpleLinearRegressionMenuDialog : <b><a href="CppPublic.html">public</a></b> <a href="CppQtHideAndShowDialog.html">QtHideAndShowDialog</a><br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppQ_OBJECT.htm">Q_OBJECT</a><br/>
+&nbsp;&nbsp;<a href="CppQ_OBJECT.html">Q_OBJECT</a><br/>
 <br/>
-<b><a href="CppPublic.htm">public</a></b>:<br/>
-&nbsp;&nbsp;<b><a href="CppExplicit.htm">explicit</a></b> <a href="CppQt.htm">Qt</a><a href="Tools.htm">Tool</a>TestSimpleLinearRegressionMenuDialog(<a href="CppQWidget.htm">QWidget</a> *parent <a href="CppOperatorAssign.htm">=</a> 0);<br/>
+<b><a href="CppPublic.html">public</a></b>:<br/>
+&nbsp;&nbsp;<b><a href="CppExplicit.html">explicit</a></b> <a href="CppQt.htm">Qt</a><a href="Tools.htm">Tool</a>TestSimpleLinearRegressionMenuDialog(<a href="CppQWidget.html">QWidget</a> *parent <a href="CppOperatorAssign.htm">=</a> 0);<br/>
 &nbsp;&nbsp;~<a href="CppQt.htm">Qt</a><a href="Tools.htm">Tool</a>TestSimpleLinearRegressionMenuDialog();<br/>
 <br/>
-<b><a href="CppProtected.htm">protected</a></b>:<br/>
-&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> keyPressEvent(<a href="CppQKeyEvent.htm">QKeyEvent</a> * event);<br/>
+<b><a href="CppProtected.html">protected</a></b>:<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> keyPressEvent(<a href="CppQKeyEvent.html">QKeyEvent</a> * event);<br/>
 <br/>
-<b><a href="CppPrivate.htm">private</a></b>:<br/>
+<b><a href="CppPrivate.html">private</a></b>:<br/>
 &nbsp;&nbsp;<a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a><a href="Tools.htm">Tool</a>TestSimpleLinearRegressionMenuDialog *ui;<br/>
 <br/>
-<b><a href="CppPrivate.htm">private</a></b> <b><a href="CppSlots.htm">slots</a></b>:<br/>
+<b><a href="CppPrivate.html">private</a></b> <b><a href="CppSlots.html">slots</a></b>:<br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> on_button_about_clicked();<br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> on_button_quit_clicked();<br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> on_button_start_clicked();<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
-&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppVoid.htm">void</a></b> Test();<br/>
-&nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
+&nbsp;&nbsp;<a href="CppIfndef.html">#ifndef</a> <a href="CppNDEBUG.html">NDEBUG</a><br/>
+&nbsp;&nbsp;<b><a href="CppStatic.html">static</a></b> <b><a href="CppVoid.htm">void</a></b> Test();<br/>
+&nbsp;&nbsp;<a href="CppEndif.html">#endif</a><br/>
 };<br/>
 <br/>
-} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.html">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
 <br/>
-<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> QTTOOLTESTAPPROXIMATORMENUDIALOG_H<br/>
+<a href="CppEndif.html">#endif</a> <a href="CppComment.htm">//</a> QTTOOLTESTAPPROXIMATORMENUDIALOG_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -849,50 +849,50 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="qttooltestsimplelinearregressionmenudialog.cpp" border = "1"><tr><td><code>
-<a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
-<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
-<a href="CppInclude.htm">#include</a> "qt<a href="Tools.htm">tool</a>testsimplelinearregressionmenudialog.h"<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic push<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.html">-Weffc++</a>"<br/>
+<a href="CppInclude.html">#include</a> "qt<a href="Tools.htm">tool</a>testsimplelinearregressionmenudialog<a href="CppHeaderFile.htm">.h</a>"<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppUnits.htm">boost/units</a>/systems/si.hpp&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppUnits.html">boost/units</a>/systems/si<a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppQDesktopWidget.htm">QDesktopWidget</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppQKeyEvent.htm">QKeyEvent</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppQDesktopWidget.html">QDesktopWidget</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppQKeyEvent.html">QKeyEvent</a>&gt;<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> "simplelinearregression.h"<br/>
-<a href="CppInclude.htm">#include</a> "<a href="Tools.htm">tool</a>testsimplelinearregressionmenudialog.h"<br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppQtAboutDialog.htm">qtaboutdialog</a>.h"<br/>
-<a href="CppInclude.htm">#include</a> "qt<a href="Tools.htm">tool</a>testsimplelinearregressionmaindialog.h"<br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppQtHideAndShowDialog.htm">qthideandshowdialog</a>.h"<br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppTrace.htm">trace</a>.h"<br/>
-<a href="CppInclude.htm">#include</a> "ui_qt<a href="Tools.htm">tool</a>testsimplelinearregressionmenudialog.h"<br/>
+<a href="CppInclude.html">#include</a> "simplelinearregression<a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "<a href="Tools.htm">tool</a>testsimplelinearregressionmenudialog<a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "<a href="CppQtAboutDialog.html">qtaboutdialog</a><a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "qt<a href="Tools.htm">tool</a>testsimplelinearregressionmaindialog<a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "<a href="CppQtHideAndShowDialog.html">qthideandshowdialog</a><a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "<a href="CppTrace.html">trace</a><a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.html">#include</a> "ui_qt<a href="Tools.htm">tool</a>testsimplelinearregressionmenudialog<a href="CppHeaderFile.htm">.h</a>"<br/>
 <br/>
-<a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic pop<br/>
 <br/>
-<a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="Tools.htm">Tool</a>TestSimpleLinearRegressionMenuDialog::<a href="CppQt.htm">Qt</a><a href="Tools.htm">Tool</a>TestSimpleLinearRegressionMenuDialog(<a href="CppQWidget.htm">QWidget</a> *parent) :<br/>
-&nbsp;&nbsp;<a href="CppQtHideAndShowDialog.htm">QtHideAndShowDialog</a>(parent),<br/>
+<a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="Tools.htm">Tool</a>TestSimpleLinearRegressionMenuDialog::<a href="CppQt.htm">Qt</a><a href="Tools.htm">Tool</a>TestSimpleLinearRegressionMenuDialog(<a href="CppQWidget.html">QWidget</a> *parent) :<br/>
+&nbsp;&nbsp;<a href="CppQtHideAndShowDialog.html">QtHideAndShowDialog</a>(parent),<br/>
 &nbsp;&nbsp;ui(<b><a href="CppNew.htm">new</a></b> <a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a><a href="Tools.htm">Tool</a>TestSimpleLinearRegressionMenuDialog)<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
+&nbsp;&nbsp;<a href="CppIfndef.html">#ifndef</a> <a href="CppNDEBUG.html">NDEBUG</a><br/>
 &nbsp;&nbsp;Test();<br/>
-&nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
+&nbsp;&nbsp;<a href="CppEndif.html">#endif</a><br/>
 &nbsp;&nbsp;ui-&gt;setupUi(<b><a href="CppThis.htm">this</a></b>);<br/>
 }<br/>
 <br/>
 <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="Tools.htm">Tool</a>TestSimpleLinearRegressionMenuDialog::~<a href="CppQt.htm">Qt</a><a href="Tools.htm">Tool</a>TestSimpleLinearRegressionMenuDialog()<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppDelete.htm">delete</a></b> ui;<br/>
+&nbsp;&nbsp;<b><a href="CppDelete.html">delete</a></b> ui;<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="Tools.htm">Tool</a>TestSimpleLinearRegressionMenuDialog::keyPressEvent(<a href="CppQKeyEvent.htm">QKeyEvent</a> * event)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="Tools.htm">Tool</a>TestSimpleLinearRegressionMenuDialog::keyPressEvent(<a href="CppQKeyEvent.html">QKeyEvent</a> * event)<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (event-&gt;key() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <a href="CppQt.htm">Qt</a>::Key_Escape) { close(); <b><a href="CppReturn.htm">return</a></b>; }<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (event-&gt;key() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <a href="CppQt.htm">Qt</a>::Key_Escape) { close(); <b><a href="CppReturn.html">return</a></b>; }<br/>
 }<br/>
 <br/>
 <b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="Tools.htm">Tool</a>TestSimpleLinearRegressionMenuDialog::on_button_about_clicked()<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppAbout.htm">About</a> a <a href="CppOperatorAssign.htm">=</a> <a href="Tools.htm">Tool</a>TestSimpleLinearRegressionMenuDialog::GetAbout();<br/>
-&nbsp;&nbsp;a.<a href="CppAdd.htm">Add</a><a href="CppLibrary.htm">Library</a>("<a href="CppQtHideAndShowDialog.htm">QtHideAndShowDialog</a> <a href="CppVersion.htm">version</a>: " <a href="CppOperatorPlus.htm">+</a> <a href="CppQtHideAndShowDialog.htm">QtHideAndShowDialog</a>::Get<a href="CppVersion.htm">Version</a>());<br/>
-&nbsp;&nbsp;<a href="CppQtAboutDialog.htm">QtAboutDialog</a> d(a);<br/>
+&nbsp;&nbsp;<a href="CppAbout.html">About</a> a <a href="CppOperatorAssign.htm">=</a> <a href="Tools.htm">Tool</a>TestSimpleLinearRegressionMenuDialog::GetAbout();<br/>
+&nbsp;&nbsp;a.<a href="CppAdd.htm">Add</a><a href="CppLibrary.html">Library</a>("<a href="CppQtHideAndShowDialog.html">QtHideAndShowDialog</a> <a href="CppVersion.html">version</a>: " <a href="CppOperatorPlus.htm">+</a> <a href="CppQtHideAndShowDialog.html">QtHideAndShowDialog</a>::Get<a href="CppVersion.html">Version</a>());<br/>
+&nbsp;&nbsp;<a href="CppQtAboutDialog.html">QtAboutDialog</a> d(a);<br/>
 &nbsp;&nbsp;d.setWindowIcon(<b><a href="CppThis.htm">this</a></b>-&gt;windowIcon());<br/>
 &nbsp;&nbsp;d.setStyleSheet(<b><a href="CppThis.htm">this</a></b>-&gt;styleSheet());<br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;hide();<br/>
@@ -913,53 +913,53 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;ShowChild(&amp;d);<br/>
 }<br/>
 <br/>
-<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
+<a href="CppIfndef.html">#ifndef</a> <a href="CppNDEBUG.html">NDEBUG</a><br/>
 <b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="Tools.htm">Tool</a>TestSimpleLinearRegressionMenuDialog::Test()<br/>
 {<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppBool.htm">bool</a></b> is_tested <a href="CppOperatorAssign.htm">=</a> <b><a href="CppFalse.htm">false</a></b>;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (is_tested) <b><a href="CppReturn.htm">return</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppStatic.html">static</a></b> <b><a href="CppBool.htm">bool</a></b> is_tested <a href="CppOperatorAssign.htm">=</a> <b><a href="CppFalse.html">false</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (is_tested) <b><a href="CppReturn.html">return</a></b>;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;is_tested <a href="CppOperatorAssign.htm">=</a> <b><a href="CppTrue.htm">true</a></b>;<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("Starting <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="Tools.htm">Tool</a>TestSimpleLinearRegressionMenuDialog::Test");<br/>
+&nbsp;&nbsp;<a href="CppTRACE.html">TRACE</a>("Starting <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="Tools.htm">Tool</a>TestSimpleLinearRegressionMenuDialog::Test");<br/>
 &nbsp;&nbsp;<a href="CppQt.htm">Qt</a><a href="Tools.htm">Tool</a>TestSimpleLinearRegressionMainDialog();<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>Let <a href="CppBoost.htm">Boost</a>.Units check <b><a href="CppFor.htm">for</a></b> compiling<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Let <a href="CppBoost.html">Boost</a>.Units check <b><a href="CppFor.htm">for</a></b> compiling<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppTypedef.htm">typedef</a></b> <a href="CppUnits.htm">boost::units</a>::quantity&lt;<a href="CppUnits.htm">boost::units</a>::si::<a href="CppTime.htm">time</a>&gt; <a href="CppTime.htm">Time</a>;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppTypedef.htm">typedef</a></b> <a href="CppUnits.htm">boost::units</a>::quantity&lt;<a href="CppUnits.htm">boost::units</a>::si::length&gt; Distance;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppTypedef.htm">typedef</a></b> <a href="CppUnits.htm">boost::units</a>::quantity&lt;<a href="CppUnits.htm">boost::units</a>::si::velocity&gt; Velocity;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppTime.htm">Time</a>&gt; xs<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppTypedef.html">typedef</a></b> <a href="CppUnits.html">boost::units</a>::quantity&lt;<a href="CppUnits.html">boost::units</a>::si::<a href="CppTime.htm">time</a>&gt; <a href="CppTime.htm">Time</a>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppTypedef.html">typedef</a></b> <a href="CppUnits.html">boost::units</a>::quantity&lt;<a href="CppUnits.html">boost::units</a>::si::length&gt; Distance;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppTypedef.html">typedef</a></b> <a href="CppUnits.html">boost::units</a>::quantity&lt;<a href="CppUnits.html">boost::units</a>::si::velocity&gt; Velocity;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppVector.html">std::vector</a>&lt;<a href="CppTime.htm">Time</a>&gt; xs<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppTime.htm">Time</a>(1.0 * <a href="CppUnits.htm">boost::units</a>::si::second),<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppTime.htm">Time</a>(2.0 * <a href="CppUnits.htm">boost::units</a>::si::second),<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppTime.htm">Time</a>(3.0 * <a href="CppUnits.htm">boost::units</a>::si::second)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppTime.htm">Time</a>(1.0 * <a href="CppUnits.html">boost::units</a>::si::second),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppTime.htm">Time</a>(2.0 * <a href="CppUnits.html">boost::units</a>::si::second),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppTime.htm">Time</a>(3.0 * <a href="CppUnits.html">boost::units</a>::si::second)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;};<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;Distance&gt; ys<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppVector.html">std::vector</a>&lt;Distance&gt; ys<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Distance(2.0 * <a href="CppUnits.htm">boost::units</a>::si::meter),<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Distance(3.0 * <a href="CppUnits.htm">boost::units</a>::si::meter),<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Distance(4.0 * <a href="CppUnits.htm">boost::units</a>::si::meter)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Distance(2.0 * <a href="CppUnits.html">boost::units</a>::si::meter),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Distance(3.0 * <a href="CppUnits.html">boost::units</a>::si::meter),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Distance(4.0 * <a href="CppUnits.html">boost::units</a>::si::meter)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;};<br/>
 <br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Velocity expected_slope(1.0 * <a href="CppUnits.htm">boost::units</a>::si::meter <a href="CppOperatorDivide.htm">/</a> <a href="CppUnits.htm">boost::units</a>::si::second);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Distance expected_offset(1.0 * <a href="CppUnits.htm">boost::units</a>::si::meter);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> Velocity expected_slope(1.0 * <a href="CppUnits.html">boost::units</a>::si::meter <a href="CppOperatorDivide.htm">/</a> <a href="CppUnits.html">boost::units</a>::si::second);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> Distance expected_offset(1.0 * <a href="CppUnits.html">boost::units</a>::si::meter);<br/>
 <br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppPair.htm">std::pair</a>&lt;Velocity,Distance&gt; p<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppPair.html">std::pair</a>&lt;Velocity,Distance&gt; p<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> SimpleLinearRegression::CalculateBestFit(xs,ys);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Velocity slope(p.first);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Distance offset(p.second);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppAbs.htm">std::abs</a>( Velocity(slope <a href="CppOperatorMinus.htm">-</a> expected_slope).value() )<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt; Velocity(0.0001 * <a href="CppUnits.htm">boost::units</a>::si::meter <a href="CppOperatorDivide.htm">/</a> <a href="CppUnits.htm">boost::units</a>::si::second).value() );<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppAbs.htm">std::abs</a>( Distance(offset <a href="CppOperatorMinus.htm">-</a> expected_offset).value() )<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt; Distance(0.0001 * <a href="CppUnits.htm">boost::units</a>::si::meter).value() );<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> Velocity slope(p.first);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> Distance offset(p.second);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(<a href="CppAbs.html">std::abs</a>( Velocity(slope <a href="CppOperatorMinus.htm">-</a> expected_slope).value() )<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt; Velocity(0.0001 * <a href="CppUnits.html">boost::units</a>::si::meter <a href="CppOperatorDivide.htm">/</a> <a href="CppUnits.html">boost::units</a>::si::second).value() );<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(<a href="CppAbs.html">std::abs</a>( Distance(offset <a href="CppOperatorMinus.htm">-</a> expected_offset).value() )<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt; Distance(0.0001 * <a href="CppUnits.html">boost::units</a>::si::meter).value() );<br/>
 <br/>
 &nbsp;&nbsp;}<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("Finished <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="Tools.htm">Tool</a>TestSimpleLinearRegressionMenuDialog::Test successfully");<br/>
+&nbsp;&nbsp;<a href="CppTRACE.html">TRACE</a>("Finished <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="Tools.htm">Tool</a>TestSimpleLinearRegressionMenuDialog::Test successfully");<br/>
 }<br/>
-<a href="CppEndif.htm">#endif</a><br/>
+<a href="CppEndif.html">#endif</a><br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -971,30 +971,30 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="tooltestsimplelinearregressionmenudialog.h" border = "1"><tr><td><code>
-<a href="CppIfndef.htm">#ifndef</a> TOOLTESTAPPROXIMATORMENUDIALOG_H<br/>
-<a href="CppDefine.htm">#define</a> TOOLTESTAPPROXIMATORMENUDIALOG_H<br/>
+<a href="CppIfndef.html">#ifndef</a> TOOLTESTAPPROXIMATORMENUDIALOG_H<br/>
+<a href="CppDefine.html">#define</a> TOOLTESTAPPROXIMATORMENUDIALOG_H<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppStringH.htm">string</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppStringH.html">string</a>&gt;<br/>
+<a href="CppInclude.html">#include</a> &lt;<a href="CppVectorH.html">vector</a>&gt;<br/>
 <br/>
-<a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
-<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppAbout.htm">about</a>.h"<br/>
-<a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic push<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.html">-Weffc++</a>"<br/>
+<a href="CppInclude.html">#include</a> "<a href="CppAbout.html">about</a><a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic pop<br/>
 <br/>
-<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
+<b><a href="CppNamespace.html">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
 <br/>
 <a href="CppComment.htm">///</a>GUI independent <a href="Tools.htm">Tool</a>TestSimpleLinearRegression menu dialog<br/>
-<b><a href="CppStruct.htm">struct</a></b> <a href="Tools.htm">Tool</a>TestSimpleLinearRegressionMenuDialog<br/>
+<b><a href="CppStruct.html">struct</a></b> <a href="Tools.htm">Tool</a>TestSimpleLinearRegressionMenuDialog<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppAbout.htm">About</a> GetAbout();<br/>
-&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> Get<a href="CppVersion.htm">Version</a>();<br/>
-&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; Get<a href="CppVersion.htm">Version</a>History();<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.html">static</a></b> <b><a href="CppConst.html">const</a></b> <a href="CppAbout.html">About</a> GetAbout();<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.html">static</a></b> <b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a> Get<a href="CppVersion.html">Version</a>();<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.html">static</a></b> <b><a href="CppConst.html">const</a></b> <a href="CppVector.html">std::vector</a>&lt;<a href="CppString.html">std::string</a>&gt; Get<a href="CppVersion.html">Version</a>History();<br/>
 };<br/>
 <br/>
-} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.html">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
 <br/>
-<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> TOOLTESTAPPROXIMATORMENUDIALOG_H<br/>
+<a href="CppEndif.html">#endif</a> <a href="CppComment.htm">//</a> TOOLTESTAPPROXIMATORMENUDIALOG_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -1006,38 +1006,38 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="tooltestsimplelinearregressionmenudialog.cpp" border = "1"><tr><td><code>
-<a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
-<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
-<a href="CppInclude.htm">#include</a> "<a href="Tools.htm">tool</a>testsimplelinearregressionmenudialog.h"<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic push<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.html">-Weffc++</a>"<br/>
+<a href="CppInclude.html">#include</a> "<a href="Tools.htm">tool</a>testsimplelinearregressionmenudialog<a href="CppHeaderFile.htm">.h</a>"<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppTrace.htm">trace</a>.h"<br/>
-<a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
+<a href="CppInclude.html">#include</a> "<a href="CppTrace.html">trace</a><a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppPragma.html">#pragma</a> GCC diagnostic pop<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppAbout.htm">About</a> <a href="CppRibi.htm">ribi</a>::<a href="Tools.htm">Tool</a>TestSimpleLinearRegressionMenuDialog::GetAbout()<br/>
+<b><a href="CppConst.html">const</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppAbout.html">About</a> <a href="CppRibi.htm">ribi</a>::<a href="Tools.htm">Tool</a>TestSimpleLinearRegressionMenuDialog::GetAbout()<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppAbout.htm">About</a> a(<br/>
+&nbsp;&nbsp;<a href="CppAbout.html">About</a> a(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;"Richel Bilderbeek",<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;"<a href="Tools.htm">Tool</a>TestSimpleLinearRegression",<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;"tests a simple linear regression",<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;"the 28th of August 2013",<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;"2013",<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;"http://www.richelbilderbeek.nl/<a href="Tools.htm">Tool</a>TestSimpleLinearRegression.htm",<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;Get<a href="CppVersion.htm">Version</a>(),<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;Get<a href="CppVersion.htm">Version</a>History());<br/>
-&nbsp;&nbsp;a.<a href="CppAdd.htm">Add</a><a href="CppLibrary.htm">Library</a>("<a href="CppTrace.htm">Trace</a> <a href="CppVersion.htm">version</a>: " <a href="CppOperatorPlus.htm">+</a> <a href="CppTrace.htm">Trace</a>::Get<a href="CppVersion.htm">Version</a>());<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> a;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"http://www.richelbilderbeek.nl/<a href="Tools.htm">Tool</a>TestSimpleLinearRegression.html",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Get<a href="CppVersion.html">Version</a>(),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Get<a href="CppVersion.html">Version</a>History());<br/>
+&nbsp;&nbsp;a.<a href="CppAdd.htm">Add</a><a href="CppLibrary.html">Library</a>("<a href="CppTrace.html">Trace</a> <a href="CppVersion.html">version</a>: " <a href="CppOperatorPlus.htm">+</a> <a href="CppTrace.html">Trace</a>::Get<a href="CppVersion.html">Version</a>());<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> a;<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppRibi.htm">ribi</a>::<a href="Tools.htm">Tool</a>TestSimpleLinearRegressionMenuDialog::Get<a href="CppVersion.htm">Version</a>()<br/>
+<b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a> <a href="CppRibi.htm">ribi</a>::<a href="Tools.htm">Tool</a>TestSimpleLinearRegressionMenuDialog::Get<a href="CppVersion.html">Version</a>()<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> "1.1";<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> "1.1";<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm">ribi</a>::<a href="Tools.htm">Tool</a>TestSimpleLinearRegressionMenuDialog::Get<a href="CppVersion.htm">Version</a>History()<br/>
+<b><a href="CppConst.html">const</a></b> <a href="CppVector.html">std::vector</a>&lt;<a href="CppString.html">std::string</a>&gt; <a href="CppRibi.htm">ribi</a>::<a href="Tools.htm">Tool</a>TestSimpleLinearRegressionMenuDialog::Get<a href="CppVersion.html">Version</a>History()<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> {<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;"2013-08-27: <a href="CppVersion.htm">version</a> 1.0: initial <a href="CppVersion.htm">version</a>",<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;"2013-08-28: <a href="CppVersion.htm">version</a> 1.1: isolated and <b><a href="CppTemplate.htm">template</a></b>d SimpleLinearRegression <b><a href="CppClass.htm">class</a></b>"<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"2013-08-27: <a href="CppVersion.html">version</a> 1.0: initial <a href="CppVersion.html">version</a>",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"2013-08-28: <a href="CppVersion.html">version</a> 1.1: isolated and <b><a href="CppTemplate.html">template</a></b>d SimpleLinearRegression <b><a href="CppClass.html">class</a></b>"<br/>
 &nbsp;&nbsp;};<br/>
 }<br/>
 </code></td></tr></table>
