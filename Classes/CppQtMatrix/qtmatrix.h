@@ -19,10 +19,10 @@ namespace ribi {
 struct QtMatrix
 {
   ///Obtain the version of this class
-  static const std::string GetVersion();
+  static const std::string GetVersion() noexcept;
 
   ///Obtain the version history of this class
-  static const std::vector<std::string> GetVersionHistory();
+  static const std::vector<std::string> GetVersionHistory() noexcept;
 
   ///Write a uBLAS matrix of doubles to a QTableWidget
   static void MatrixToTable(const boost::numeric::ublas::matrix<double>& m, QTableWidget * const table);
@@ -34,7 +34,7 @@ struct QtMatrix
   static void StrVectorToTable(const std::vector<std::string>& v, QTableWidget * const table);
 
   ///Test these functions
-  static void Test();
+  static void Test() noexcept;
 
   ///Convert a QTableWidget to a uBLAS matrix of doubles
   static const boost::numeric::ublas::matrix<double> ToMatrix(const QTableWidget * const table);

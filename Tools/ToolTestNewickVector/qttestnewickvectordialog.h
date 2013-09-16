@@ -42,12 +42,12 @@ class QtTestNewickVectorDialog : public QDialog
 
 public:
   ///QtTestNewickVectorDialog constructor performs most Newick tests
-  explicit QtTestNewickVectorDialog(QWidget *parent = 0);
+  explicit QtTestNewickVectorDialog(QWidget *parent = 0) noexcept;
   QtTestNewickVectorDialog(const QtTestNewickVectorDialog&) = delete;
   QtTestNewickVectorDialog& operator=(const QtTestNewickVectorDialog&) = delete;
-  ~QtTestNewickVectorDialog();
-  static const std::string GetVersion();
-  static const std::vector<std::string> GetVersionHistory();
+  ~QtTestNewickVectorDialog() noexcept;
+  static const std::string GetVersion() noexcept;
+  static const std::vector<std::string> GetVersionHistory() noexcept;
 protected:
   
 
@@ -59,13 +59,13 @@ private:
 
 
 private slots:
-  void on_box_compare_clicked();
-  void on_box_show_calculation_clicked();
-  void on_button_calculate_clicked();
-  void on_button_about_clicked();
-  void on_button_demo_clicked();
-  void OnAnyChange();
-  void OnDemoTick();
+  void on_box_compare_clicked() noexcept;
+  void on_box_show_calculation_clicked() noexcept;
+  void on_button_calculate_clicked() noexcept;
+  void on_button_about_clicked() noexcept;
+  void on_button_demo_clicked() noexcept;
+  void OnAnyChange() noexcept;
+  void OnDemoTick() noexcept;
 
   //static bool Match(const std::vector<int>& lhs, const std::vector<int>& rhs);
 };

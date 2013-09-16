@@ -39,23 +39,23 @@ class QtTestEncrangerDialog : public QDialog
   Q_OBJECT
 
 public:
-  explicit QtTestEncrangerDialog(QWidget *parent = 0);
+  explicit QtTestEncrangerDialog(QWidget *parent = 0) noexcept;
   QtTestEncrangerDialog(const QtTestEncrangerDialog&) = delete;
   QtTestEncrangerDialog& operator=(const QtTestEncrangerDialog&) = delete;
-  ~QtTestEncrangerDialog();
+  ~QtTestEncrangerDialog() noexcept;
 
 protected:
 
 private:
   Ui::QtTestEncrangerDialog *ui;
-  static const std::string GetVersion();
-  static const std::vector<std::string> GetVersionHistory();
+  static const std::string GetVersion() noexcept;
+  static const std::vector<std::string> GetVersionHistory() noexcept;
   TestEncrangerDialog * const m_dialog;
 
 private slots:
-  void on_button_about_clicked();
-  void on_button_deencrypt_clicked();
-  void on_button_encrypt_clicked();
+  void on_button_about_clicked() noexcept;
+  void on_button_deencrypt_clicked() noexcept;
+  void on_button_encrypt_clicked() noexcept;
 };
 
 } //~namespace ribi

@@ -34,7 +34,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #pragma GCC diagnostic pop
 
-ribi::MysteryMachine::MysteryMachine()
+ribi::MysteryMachine::MysteryMachine() noexcept
   : m_dial_back(new DialWidget),
     m_dial_front(new DialWidget),
     m_led_front_1(new LedWidget(0,0,32,32,1.0,255,  0,  0)),
@@ -59,12 +59,12 @@ ribi::MysteryMachine::MysteryMachine()
   Update();
 }
 
-const std::string ribi::MysteryMachine::GetVersion()
+const std::string ribi::MysteryMachine::GetVersion() noexcept
 {
   return "1.1";
 }
 
-const std::vector<std::string> ribi::MysteryMachine::GetVersionHistory()
+const std::vector<std::string> ribi::MysteryMachine::GetVersionHistory() noexcept
 {
   return {
     "2011-04-10: Version 1.0: initial version",
@@ -72,7 +72,7 @@ const std::vector<std::string> ribi::MysteryMachine::GetVersionHistory()
   };
 }
 
-void ribi::MysteryMachine::Update()
+void ribi::MysteryMachine::Update() noexcept
 {
   const int back = static_cast<int>(GetDialBack()->GetDial()->GetPosition() * 16.0) % 3;
   const int front = static_cast<int>(GetDialFront()->GetDial()->GetPosition() * 16.0) % 3;
@@ -96,7 +96,7 @@ void ribi::MysteryMachine::Update()
   m_led_top_back->GetLed()->SetIntensity(  top == 2 ? 1.0 : 0.0);
 }
 
-std::ostream& ribi::operator<<(std::ostream& os, const MysteryMachine& machine)
+std::ostream& ribi::operator<<(std::ostream& os, const MysteryMachine& machine) noexcept
 {
   os
     << "<MysteryMachine>"

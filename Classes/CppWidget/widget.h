@@ -39,23 +39,23 @@ namespace ribi {
 ///GUI indepedent widget class, modeled after the Qt and Wt architure
 struct Widget
 {
-  const Rect& GetGeometry() const { return m_geometry; }
-  Rect& GetGeometry() { return m_geometry; }
+  const Rect& GetGeometry() const noexcept { return m_geometry; }
+  Rect& GetGeometry() noexcept { return m_geometry; }
 
   ///SetGeometry resizes the Widget and emits an OnResize signal
-  void SetGeometry(const Rect& geometry);
+  void SetGeometry(const Rect& geometry) noexcept;
 
   ///Obtain the version of this class
-  static const std::string GetVersion();
+  static const std::string GetVersion() noexcept;
 
   ///Obtain the version history of this class
-  static const std::vector<std::string> GetVersionHistory();
+  static const std::vector<std::string> GetVersionHistory() noexcept;
 
   ///Respond to a change in size
   mutable boost::signals2::signal<void ()> m_signal_geometry_changed;
 
   protected:
-  virtual ~Widget() {}
+  virtual ~Widget() noexcept {}
   friend void boost::checked_delete<>(Widget*);
 
   private:

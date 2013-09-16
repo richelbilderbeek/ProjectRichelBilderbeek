@@ -38,16 +38,21 @@ ribi::ConnectThree::ConnectThree(
   : m_area(n_cols, std::vector<int>(n_rows,no_player)),
     m_player(ConnectThree::player1)
 {
+  #ifndef NDEBUG
+  Test();
+  #endif
   Restart();
   //assert(m_is_player_human.size() == 3);
   assert(player1 == 0);
   assert(player2 == 1);
   assert(player3 == 2);
+  assert(n_rows > 1); //Sure, a 2x2 board is useless, but should work
+  assert(n_cols > 1); //Sure, a 2x2 board is useless, but should work
   assert(GetCols() == n_cols);
   assert(GetRows() == n_rows);
 }
 
-bool ribi::ConnectThree::CanDoMove(const int x, const int y) const
+bool ribi::ConnectThree::CanDoMove(const int x, const int y) const noexcept
 {
   return (
        x >= 0
@@ -57,7 +62,7 @@ bool ribi::ConnectThree::CanDoMove(const int x, const int y) const
     && m_area[x][y] == no_player);
 }
 
-bool ribi::ConnectThree::CanDoMove(const Move& p) const
+bool ribi::ConnectThree::CanDoMove(const Move& p) const noexcept
 {
   return CanDoMove(
     boost::tuples::get<0>(p),
@@ -86,23 +91,22 @@ void ribi::ConnectThree::DoMove(const Move& p)
     boost::tuples::get<1>(p));
 }
 
-const std::string ribi::ConnectThree::GetVersion()
+const std::string ribi::ConnectThree::GetVersion() noexcept
 {
   return "1.1";
 }
 
-const std::vector<std::string> ribi::ConnectThree::GetVersionHistory()
+const std::vector<std::string> ribi::ConnectThree::GetVersionHistory() noexcept
 {
-  std::vector<std::string> v;
-  v.push_back("2010-12-28: version 0.1: initial seperation of game logic from GUI");
-  v.push_back("2011-01-09: version 0.2: converted square values to enum constant, fixed small constructor bug");
-  v.push_back("2011-01-11: version 1.0: added that the game can end in a draw. First tested and debugged version");
-  v.push_back("2011-04-19: version 1.1: added Restart method, removed m_is_player_human");
-  return v;
+  return {
+    "2010-12-28: version 0.1: initial seperation of game logic from GUI",
+    "2011-01-09: version 0.2: converted square values to enum constant, fixed small constructor bug",
+    "2011-01-11: version 1.0: added that the game can end in a draw. First tested and debugged version",
+    "2011-04-19: version 1.1: added Restart method, removed m_is_player_human"
+  };
 }
 
-///GetWinner returns the index of the winner.
-int ribi::ConnectThree::GetWinner() const
+int ribi::ConnectThree::GetWinner() const noexcept
 {
   const int n_rows = GetRows();
   for (int y=0; y!=n_rows; ++y)
@@ -131,6 +135,7 @@ int ribi::ConnectThree::GetWinner() const
   {
     const Move m1 = MakeRandomMove();
     const Move m2 = CreateInvalidMove();
+    assert(!CanDoMove(m2));
     if ( m1.get<0>() == m2.get<0>()
       && m1.get<1>() == m2.get<1>()
       && m1.get<2>() == m2.get<2>())
@@ -146,7 +151,7 @@ int ribi::ConnectThree::GetWinner() const
 //  return !IsHuman(GetActivePlayer());
 //}
 
-bool ribi::ConnectThree::IsInvalidMove(const Move& p) const
+bool ribi::ConnectThree::IsInvalidMove(const Move& p) noexcept
 {
   const Move q = CreateInvalidMove();
   return
@@ -157,7 +162,8 @@ bool ribi::ConnectThree::IsInvalidMove(const Move& p) const
 
 ///SuggestMove suggests a good move. If the game is a draw,
 ///it returns an invalid move.
-const ribi::ConnectThree::Move ribi::ConnectThree::SuggestMove(const std::bitset<3>& is_player_human) const
+const ribi::ConnectThree::Move ribi::ConnectThree::SuggestMove(
+  const std::bitset<3>& is_player_human) const noexcept
 {
   if (CanDoMove(CheckTwoHorizontalOwn())) return CheckTwoHorizontalOwn();
   if (CanDoMove(CheckTwoVerticalOwn()  )) return CheckTwoVerticalOwn();
@@ -167,7 +173,7 @@ const ribi::ConnectThree::Move ribi::ConnectThree::SuggestMove(const std::bitset
   return MakeRandomMove();
 }
 
-const ribi::ConnectThree::Move ribi::ConnectThree::CheckTwoHorizontalOwn() const
+const ribi::ConnectThree::Move ribi::ConnectThree::CheckTwoHorizontalOwn() const noexcept
 {
   const int n_rows = GetRows();
   for (int y=0; y!=n_rows; ++y)
@@ -206,15 +212,18 @@ const ribi::ConnectThree::Move ribi::ConnectThree::CheckTwoHorizontalOwn() const
       }
     }
   }
+  assert(!CanDoMove(CreateInvalidMove()));
   return CreateInvalidMove();
 }
 
-const ribi::ConnectThree::Move ribi::ConnectThree::CheckTwoVerticalOwn() const
+const ribi::ConnectThree::Move ribi::ConnectThree::CheckTwoVerticalOwn() const noexcept
 {
   const int n_rows = GetRows();
+  assert(n_rows > 1);
   for (int y=0; y!=n_rows-1; ++y) //-1 to prevent out of range
   {
     const int n_cols = GetCols();
+    assert(n_cols > 1);
     for (int x=0; x!=n_cols; ++x)
     {
       //Two consequtive selfs?
@@ -251,10 +260,12 @@ const ribi::ConnectThree::Move ribi::ConnectThree::CheckTwoVerticalOwn() const
       }
     }
   }
+  assert(!CanDoMove(CreateInvalidMove()));
   return CreateInvalidMove();
 }
 
-const ribi::ConnectThree::Move ribi::ConnectThree::CheckTwoOther(const std::bitset<3>& is_player_human) const
+const ribi::ConnectThree::Move ribi::ConnectThree::CheckTwoOther(
+  const std::bitset<3>& is_player_human) const noexcept
 {
   const Moves moves(GetAllPossibleMoves());
 
@@ -316,10 +327,9 @@ const ribi::ConnectThree::Move ribi::ConnectThree::CheckTwoOther(const std::bits
   }
 }
 
-const ribi::ConnectThree::Move ribi::ConnectThree::CreateInvalidMove() const
+const ribi::ConnectThree::Move ribi::ConnectThree::CreateInvalidMove() noexcept
 {
   ribi::ConnectThree::Move p(-1,-1,ConnectThree::no_player);
-  assert(!CanDoMove(p));
   return p;
 }
 
@@ -328,7 +338,7 @@ const ribi::ConnectThree::Move ribi::ConnectThree::CreateInvalidMove() const
 ///* boost::get<1>: y coordinat
 ///* boost::get<2>: player that would dislike this move
 const ribi::ConnectThree::Moves
-  ribi::ConnectThree::GetAllPossibleMoves() const
+  ribi::ConnectThree::GetAllPossibleMoves() const noexcept
 {
   ribi::ConnectThree::Moves v(GetTwoHorizontalOtherMoves());
   const ribi::ConnectThree::Moves w(GetTwoVerticalOtherMoves());
@@ -336,7 +346,7 @@ const ribi::ConnectThree::Moves
   return v;
 }
 
-const ribi::ConnectThree::Moves ribi::ConnectThree::GetTwoHorizontalOtherMoves() const
+const ribi::ConnectThree::Moves ribi::ConnectThree::GetTwoHorizontalOtherMoves() const noexcept
 {
   const int n_rows = GetRows();
   Moves moves;
@@ -380,7 +390,7 @@ const ribi::ConnectThree::Moves ribi::ConnectThree::GetTwoHorizontalOtherMoves()
 }
 
 //A X B C (x is focus of for loop)
-const ribi::ConnectThree::Moves ribi::ConnectThree::GetTwoVerticalOtherMoves() const
+const ribi::ConnectThree::Moves ribi::ConnectThree::GetTwoVerticalOtherMoves() const noexcept
 {
   const int n_rows = GetRows();
   ribi::ConnectThree::Moves v;
@@ -420,7 +430,7 @@ const ribi::ConnectThree::Moves ribi::ConnectThree::GetTwoVerticalOtherMoves() c
   return v;
 }
 
-const ribi::ConnectThree::Move ribi::ConnectThree::CheckTwoDiagonally() const
+const ribi::ConnectThree::Move ribi::ConnectThree::CheckTwoDiagonally() const noexcept
 {
   ribi::ConnectThree::Moves v;
 
@@ -453,7 +463,8 @@ const ribi::ConnectThree::Move ribi::ConnectThree::CheckTwoDiagonally() const
   return m;
 }
 
-const ribi::ConnectThree::Move ribi::ConnectThree::CheckOneOther(const std::bitset<3>& is_player_human) const
+const ribi::ConnectThree::Move ribi::ConnectThree::CheckOneOther(
+  const std::bitset<3>& is_player_human) const noexcept
 {
   ribi::ConnectThree::Moves v;
 
@@ -560,7 +571,7 @@ const ribi::ConnectThree::Move ribi::ConnectThree::CheckOneOther(const std::bits
   }
 }
 
-const ribi::ConnectThree::Move ribi::ConnectThree::MakeRandomMove() const
+const ribi::ConnectThree::Move ribi::ConnectThree::MakeRandomMove() const noexcept
 {
   std::vector<boost::tuple<int,int,int> > v;
   const int n_cols = GetCols();
@@ -581,18 +592,20 @@ const ribi::ConnectThree::Move ribi::ConnectThree::MakeRandomMove() const
   }
   if (v.empty())
   {
+    assert(!CanDoMove(CreateInvalidMove()));
     return this->CreateInvalidMove();
   }
   const int index = std::rand() % v.size();
   return v[index];
 }
 
-int ribi::ConnectThree::GetCols() const
+int ribi::ConnectThree::GetCols() const noexcept
 {
+  assert(!m_area.empty());
   return m_area.size();
 }
 
-int ribi::ConnectThree::GetNextPlayer(const int player) const
+int ribi::ConnectThree::GetNextPlayer(const int player) const noexcept
 {
   assert(player!=no_player);
   switch (player)
@@ -605,27 +618,89 @@ int ribi::ConnectThree::GetNextPlayer(const int player) const
   return no_player;
 }
 
-int ribi::ConnectThree::GetNextPlayer() const
+int ribi::ConnectThree::GetNextPlayer() const noexcept
 {
   return GetNextPlayer(m_player);
 }
 
 //From http://www.richelbilderbeek.nl/CppGetRandomUniform.htm
-double ribi::ConnectThree::GetRandomUniform()
+double ribi::ConnectThree::GetRandomUniform() noexcept
 {
   return static_cast<double>(std::rand())/static_cast<double>(RAND_MAX);
 }
 
-int ribi::ConnectThree::GetRows() const
+int ribi::ConnectThree::GetRows() const noexcept
 {
   assert(!m_area.empty());
   return m_area[0].size();
 }
 
-void ribi::ConnectThree::Restart()
+void ribi::ConnectThree::Restart() noexcept
 {
   m_area = std::vector<std::vector<int> >(GetCols(),
     std::vector<int>(GetRows(),no_player));
   m_player = ribi::ConnectThree::player1;
 }
 
+#ifndef NDEBUG
+void ribi::ConnectThree::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  //Can a 2x2 game be played without exceptions thrown
+  const int n_rows = 2;
+  const int n_cols = 2;
+  ConnectThree c(n_cols,n_rows);
+  std::bitset<3> is_player_human;
+  is_player_human[0] = true;
+  is_player_human[1] = true;
+  is_player_human[2] = true;
+  assert(c.GetCols() == n_cols);
+  assert(c.GetRows() == n_rows);
+  assert(c.GetActivePlayer() == ConnectThree::player1);
+  assert( c.CanDoMove(0,0));
+  assert( c.CanDoMove(0,1));
+  assert( c.CanDoMove(1,0));
+  assert( c.CanDoMove(1,1));
+  assert(!c.IsInvalidMove(Move(0,0)));
+  assert( c.IsInvalidMove(Move(0,n_rows)));
+  assert( c.IsInvalidMove(Move(n_rows,0)));
+  assert(!IsInvalidMove( c.SuggestMove(is_player_human))); //No moves left
+  assert(c.GetWinner() == ConnectThree::no_player); //No winner yet
+  c.DoMove(0,0);
+  assert(c.GetActivePlayer() == ConnectThree::player2);
+  assert(!c.CanDoMove(0,0));
+  assert( c.CanDoMove(0,1));
+  assert( c.CanDoMove(1,0));
+  assert( c.CanDoMove(1,1));
+  assert(!IsInvalidMove(c.SuggestMove(is_player_human))); //No moves left
+  assert(c.GetWinner() == ConnectThree::no_player); //No winner yet
+  c.DoMove(0,1);
+  assert(c.GetActivePlayer() == ConnectThree::player3);
+  assert(!c.CanDoMove(0,0));
+  assert(!c.CanDoMove(0,1));
+  assert( c.CanDoMove(1,0));
+  assert( c.CanDoMove(1,1));
+  assert(!IsInvalidMove(c.SuggestMove(is_player_human))); //No moves left
+  assert(c.GetWinner() == ConnectThree::no_player); //No winner yet
+  c.DoMove(1,0);
+  assert(c.GetActivePlayer() == ConnectThree::player1);
+  assert(!c.CanDoMove(0,0));
+  assert(!c.CanDoMove(0,1));
+  assert(!c.CanDoMove(1,0));
+  assert( c.CanDoMove(1,1));
+  assert(!IsInvalidMove(c.SuggestMove(is_player_human))); //No moves left
+  assert(c.GetWinner() == ConnectThree::no_player); //No winner yet
+  c.DoMove(1,1);
+  assert(c.GetActivePlayer() == ConnectThree::player2);
+  assert(!c.CanDoMove(0,0));
+  assert(!c.CanDoMove(0,1));
+  assert(!c.CanDoMove(1,0));
+  assert(!c.CanDoMove(1,1));
+  assert( IsInvalidMove(c.SuggestMove(is_player_human))); //No moves left
+  assert(c.GetWinner() == ConnectThree::draw);
+}
+#endif

@@ -217,12 +217,12 @@ const std::pair<ribi::BinaryNewickVector,ribi::BinaryNewickVector> ribi::BinaryN
   return p;
 }
 
-const std::string ribi::BinaryNewickVector::GetVersion()
+const std::string ribi::BinaryNewickVector::GetVersion() noexcept
 {
   return "3.1";
 }
 
-const std::vector<std::string> ribi::BinaryNewickVector::GetVersionHistory()
+const std::vector<std::string> ribi::BinaryNewickVector::GetVersionHistory() noexcept
 {
   std::vector<std::string> v;
   v.push_back("2009-06-01: Version 1.0: Initial version");
@@ -324,7 +324,7 @@ const ribi::BinaryNewickVector ribi::BinaryNewickVector::LoseBrackets(const int 
 
 bool ribi::BinaryNewickVector::NewickCompare(
   const std::vector<int>& lhs,
-  const std::vector<int>& rhs)
+  const std::vector<int>& rhs) noexcept
 {
   const int l_sz = lhs.size();
   const int r_sz = rhs.size();
@@ -346,7 +346,7 @@ bool ribi::BinaryNewickVector::NewickCompare(
   return false;
 }
 
-int ribi::BinaryNewickVector::Size() const
+int ribi::BinaryNewickVector::Size() const noexcept
 {
   return boost::numeric_cast<int>(m_v.size());
 }
@@ -421,9 +421,13 @@ const ribi::BinaryNewickVector ribi::BinaryNewickVector::TermIsOne(const int i) 
   return BinaryNewickVector(std::vector<int>());
 }
 
-void ribi::BinaryNewickVector::Test()
+void ribi::BinaryNewickVector::Test() noexcept
 {
-
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
   //Check that well-formed Newicks are confirmed valid
   {
     const std::vector<std::string> v = Newick::CreateValidNewicks();
@@ -507,13 +511,13 @@ void ribi::BinaryNewickVector::Test()
   }
 }
 
-const std::string ribi::BinaryNewickVector::ToStr() const
+const std::string ribi::BinaryNewickVector::ToStr() const noexcept
 {
   assert(Newick::IsNewick(m_v));
   return Newick::NewickToString(m_v);
 }
 
-bool ribi::operator<(const BinaryNewickVector& lhs, const BinaryNewickVector& rhs)
+bool ribi::operator<(const BinaryNewickVector& lhs, const BinaryNewickVector& rhs) noexcept
 {
   //return lhs.v < rhs.v;
   return ribi::BinaryNewickVector::NewickCompare(lhs.Peek(),rhs.Peek());

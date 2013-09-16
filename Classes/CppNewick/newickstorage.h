@@ -179,7 +179,7 @@ void NewickStorage<T>::CleanUp()
     #endif
     m[i] = std::map<T,double>(); //Clear
   }
-} //~CleanUp
+}
 
 
 

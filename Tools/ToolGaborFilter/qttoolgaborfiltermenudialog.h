@@ -20,7 +20,7 @@ public:
     explicit QtToolGaborFilterMenuDialog(QWidget *parent = 0);
     QtToolGaborFilterMenuDialog(const QtToolGaborFilterMenuDialog&) = delete;
     QtToolGaborFilterMenuDialog& operator=(const QtToolGaborFilterMenuDialog&) = delete;
-    ~QtToolGaborFilterMenuDialog();
+    ~QtToolGaborFilterMenuDialog() noexcept;
     
 private slots:
     void on_button_start_clicked();

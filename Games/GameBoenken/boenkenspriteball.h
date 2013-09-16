@@ -43,15 +43,15 @@ struct SpriteBall : public SpriteMoving
     const unsigned char r =   0,
     const unsigned char g = 255,
     const unsigned char b =   0);
-  void Move();
+  void Move() noexcept;
   static void SetGoalPoles(const double goal_y_top,const double goal_y_bottom);
-  static std::pair<int,int> GetScore();
-  static void ResetScore() { m_score_left = 0; m_score_right = 0; }
-  static int CountBalls() { return sm_n_balls; }
+  static std::pair<int,int> GetScore() noexcept;
+  static void ResetScore() noexcept { m_score_left = 0; m_score_right = 0; }
+  static int CountBalls() noexcept { return sm_n_balls; }
 
   private:
   ///Ensure SpriteBall can only be deleted by boost::checked_delete
-  ~SpriteBall();
+  ~SpriteBall() noexcept;
   friend void boost::checked_delete<>(SpriteBall* x);
 
   static double m_goal_y_top;

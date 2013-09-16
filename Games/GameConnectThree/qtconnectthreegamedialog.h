@@ -51,7 +51,7 @@ public:
     const std::bitset<3>& is_player_human = std::bitset<3>(true));
   QtConnectThreeGameDialog(const QtConnectThreeGameDialog&) = delete;
   QtConnectThreeGameDialog& operator=(const QtConnectThreeGameDialog&) = delete;
-  ~QtConnectThreeGameDialog();
+  ~QtConnectThreeGameDialog() noexcept;
 
   boost::signals2::signal<void ()> m_signal_close;
 

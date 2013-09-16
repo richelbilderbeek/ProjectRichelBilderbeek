@@ -37,7 +37,7 @@ public:
   explicit QtTestQtRoundedEditRectItemMenuDialog(QWidget *parent = 0);
   QtTestQtRoundedEditRectItemMenuDialog(const QtTestQtRoundedEditRectItemMenuDialog&) = delete;
   QtTestQtRoundedEditRectItemMenuDialog& operator=(const QtTestQtRoundedEditRectItemMenuDialog&) = delete;
-  ~QtTestQtRoundedEditRectItemMenuDialog();
+  ~QtTestQtRoundedEditRectItemMenuDialog() noexcept;
 
 protected:
   

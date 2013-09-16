@@ -37,22 +37,22 @@ class QtTestDialMainDialog : public QDialog
   Q_OBJECT
 
 public:
-  explicit QtTestDialMainDialog(QWidget *parent = 0);
+  explicit QtTestDialMainDialog(QWidget *parent = 0) noexcept;
   QtTestDialMainDialog(const QtTestDialMainDialog&) = delete;
   QtTestDialMainDialog& operator=(const QtTestDialMainDialog&) = delete;
-  ~QtTestDialMainDialog();
+  ~QtTestDialMainDialog() noexcept;
 
 protected:
   
 
 private slots:
-  void on_dial_color_valueChanged(int value);
+  void on_dial_color_valueChanged(int value) noexcept;
 
 private:
   Ui::QtTestDialMainDialog *ui;
 
-  void DisplayDialColor();
-  void DisplayDialValue();
+  void DisplayDialColor() noexcept;
+  void DisplayDialValue() noexcept;
 };
 
 } //~namespace ribi

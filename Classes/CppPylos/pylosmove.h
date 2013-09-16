@@ -50,15 +50,15 @@ struct Move
   Move(const std::string& s);
 
   ///Obtain this class its version
-  static const std::string GetVersion();
+  static const std::string GetVersion() noexcept;
 
   ///Obtain this class its version history
-  static const std::vector<std::string> GetVersionHistory();
+  static const std::vector<std::string> GetVersionHistory() noexcept;
 
   ///Test if this Move is valid
-  bool IsValid() const;
+  bool IsValid() const noexcept;
 
-  const std::string ToStr() const;
+  const std::string ToStr() const noexcept;
 
   ///What m_move is, depends on its size:
   ///m_move.size() == 1: placement at m_move[0]
@@ -69,13 +69,13 @@ struct Move
   private:
   #ifndef NDEBUG
   ///Test this class
-  static void Test();
+  static void Test() noexcept;
   #endif
 
 };
 
-bool operator==(const Move& lhs, const Move& rhs);
-std::ostream& operator<<(std::ostream& os, const Move& m);
+bool operator==(const Move& lhs, const Move& rhs) noexcept;
+std::ostream& operator<<(std::ostream& os, const Move& m) noexcept;
 
 } //~namespace Pylos
 

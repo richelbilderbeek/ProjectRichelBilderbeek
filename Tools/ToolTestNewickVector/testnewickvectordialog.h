@@ -32,15 +32,15 @@ struct NewickVector;
 
 struct TestNewickVectorDialog
 {
-  TestNewickVectorDialog();
-  void AutoCalculate();
-  void Calculate();
-  void SetAnalyseCalculation(const bool b);
-  void SetCompareToTwoDigitNewick(const bool b);
+  TestNewickVectorDialog() noexcept;
+  void AutoCalculate() noexcept;
+  void Calculate() noexcept;
+  void SetAnalyseCalculation(const bool b) noexcept;
+  void SetCompareToTwoDigitNewick(const bool b) noexcept;
   void SetMaxComplexity(const std::string& s);
   void SetNewick(const std::string& s);
   void SetTheta(const std::string& s);
-  const std::vector<std::string>& GetText() const { return m_text; }
+  const std::vector<std::string>& GetText() const noexcept { return m_text; }
 
   private:
   //Input
@@ -60,20 +60,22 @@ struct TestNewickVectorDialog
 
   std::vector<std::string> m_text;
 
-  void Analyse();
-  void AnalyseArity();
-  void AnalyseCalculation();
-  void AnalyseRootBranches();
-  void AnalyseSimplerNewicks();
-  bool CheckMaxComplexity();
-  bool CheckNewick();
-  bool CheckTheta();
+  void Analyse() noexcept;
+  void AnalyseArity() noexcept;
+  void AnalyseCalculation() noexcept;
+  void AnalyseRootBranches() noexcept;
+  void AnalyseSimplerNewicks() noexcept;
+  bool CheckMaxComplexity() noexcept;
+  bool CheckNewick() noexcept;
+
+  ///Check if theta is valid
+  bool CheckTheta() noexcept;
 
   public:
 
-  static const About GetAbout();
-  static const std::string GetVersion();
-  static const std::vector<std::string> GetVersionHistory();
+  static const About GetAbout() noexcept;
+  static const std::string GetVersion() noexcept;
+  static const std::vector<std::string> GetVersionHistory() noexcept;
 
 };
 

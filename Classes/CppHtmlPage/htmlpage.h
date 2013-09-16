@@ -31,16 +31,16 @@ struct HtmlPage
   explicit HtmlPage(const std::string& filename);
 
   ///Obtain the filename of the HTML page
-  const std::string& GetFilename() const { return m_filename; }
+  const std::string& GetFilename() const noexcept { return m_filename; }
 
   ///Obtain the title of the HTML page
-  const std::string& GetTitle() const { return m_title; }
+  const std::string& GetTitle() const noexcept { return m_title; }
 
   ///Obtain the version of this class
-  static const std::string GetVersion();
+  static const std::string GetVersion() noexcept;
 
   ///Obtain the version history of this class
-  static const std::vector<std::string> GetVersionHistory();
+  static const std::vector<std::string> GetVersionHistory() noexcept;
 
   private:
   ///The filename of the HTML page
@@ -60,11 +60,11 @@ struct HtmlPage
   static const std::string ReplaceAll(
     std::string s,
     const std::string& replaceWhat,
-    const std::string& replaceWithWhat);
+    const std::string& replaceWithWhat) noexcept;
 
 };
 
-bool operator<(const HtmlPage& lhs, const HtmlPage& rhs);
+bool operator<(const HtmlPage& lhs, const HtmlPage& rhs) noexcept;
 
 } //~namespace ribi
 

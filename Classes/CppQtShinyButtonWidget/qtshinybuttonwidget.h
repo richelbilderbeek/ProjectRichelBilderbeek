@@ -76,10 +76,10 @@ struct QtShinyButtonWidget : public QWidget
   mutable boost::signals2::signal<void ()> m_signal_changed;
 
   ///Obtain the QtShinyButtonWidget its version
-  static const std::string GetVersion();
+  static const std::string GetVersion() noexcept;
 
   ///Obtain the QtShinyButtonWidget its version history
-  static const std::vector<std::string> GetVersionHistory();
+  static const std::vector<std::string> GetVersionHistory() noexcept;
 
   protected:
   ///Respond to mouse clicks

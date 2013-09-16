@@ -112,19 +112,19 @@ ribi::Pylos::Move::Move(const std::string& s)
   assert(s.size() == 34);
 }
 
-const std::string ribi::Pylos::Move::GetVersion()
+const std::string ribi::Pylos::Move::GetVersion() noexcept
 {
   return "2.0";
 }
 
-const std::vector<std::string> ribi::Pylos::Move::GetVersionHistory()
+const std::vector<std::string> ribi::Pylos::Move::GetVersionHistory() noexcept
 {
   return {
     "2012-05-05: version 2.0: initial release version"
   };
 }
 
-bool ribi::Pylos::Move::IsValid() const
+bool ribi::Pylos::Move::IsValid() const noexcept
 {
   return
        m_move.size() >= 1
@@ -133,7 +133,7 @@ bool ribi::Pylos::Move::IsValid() const
 }
 
 #ifndef NDEBUG
-void ribi::Pylos::Move::Test()
+void ribi::Pylos::Move::Test() noexcept
 {
   static bool tested = false;
   if (tested) return;
@@ -180,7 +180,7 @@ void ribi::Pylos::Move::Test()
 }
 #endif
 
-const std::string ribi::Pylos::Move::ToStr() const
+const std::string ribi::Pylos::Move::ToStr() const noexcept
 {
   #ifndef NDEBUG
   if (!(m_move.size() == 1 || m_move.size() == 2)) TRACE(m_move.size());
@@ -206,13 +206,13 @@ const std::string ribi::Pylos::Move::ToStr() const
   return s;
 }
 
-bool ribi::Pylos::operator==(const Move& lhs, const Move& rhs)
+bool ribi::Pylos::operator==(const Move& lhs, const Move& rhs) noexcept
 {
   return lhs.m_move == rhs.m_move
     && lhs.m_remove == rhs.m_remove;
 }
 
-std::ostream& ribi::Pylos::operator<<(std::ostream& os, const Move& m)
+std::ostream& ribi::Pylos::operator<<(std::ostream& os, const Move& m) noexcept
 {
   os << m.ToStr();
   return os;

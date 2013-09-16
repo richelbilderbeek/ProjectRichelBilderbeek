@@ -30,7 +30,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "multialphafilter.h"
 #include "multiintegerstateobserver.h"
 
-const ribi::About ribi::StateObserverMenuDialog::GetAbout()
+const ribi::About ribi::StateObserverMenuDialog::GetAbout() noexcept
 {
   About a(
     "Richel Bilderbeek",
@@ -53,17 +53,17 @@ const ribi::About ribi::StateObserverMenuDialog::GetAbout()
   return a;
 }
 
-const std::string ribi::StateObserverMenuDialog::GetVersion()
+const std::string ribi::StateObserverMenuDialog::GetVersion() noexcept
 {
   return "1.2";
 }
 
-const std::vector<std::string> ribi::StateObserverMenuDialog::GetVersionHistory()
+const std::vector<std::string> ribi::StateObserverMenuDialog::GetVersionHistory() noexcept
 {
-  std::vector<std::string> v;
-  v.push_back("2013-05-25: version 1.0: initial version");
-  v.push_back("2013-06-04: version 1.1: added more state observers, allow plotting of subset of state observers");
-  v.push_back("2013-06-17: version 1.1: improved menu screen");
-  v.push_back("2013-07-12: version 1.2: transitioned to Qt5 and Boost 1.54.0");
-  return v;
+  return {
+    "2013-05-25: version 1.0: initial version",
+    "2013-06-04: version 1.1: added more state observers, allow plotting of subset of state observers",
+    "2013-06-17: version 1.1: improved menu screen",
+    "2013-07-12: version 1.2: transitioned to Qt5 and Boost 1.54.0",
+  };
 }

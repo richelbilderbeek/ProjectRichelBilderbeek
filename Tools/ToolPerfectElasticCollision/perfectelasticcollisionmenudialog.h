@@ -32,9 +32,9 @@ namespace ribi {
 ///PerfectElasticCollisionMenuDialog contains the PerfectElasticCollision menu dialog
 struct PerfectElasticCollisionMenuDialog
 {
-  static const About GetAbout();
-  static const std::string GetVersion();
-  static const std::vector<std::string> GetVersionHistory();
+  static const About GetAbout() noexcept;
+  static const std::string GetVersion() noexcept;
+  static const std::vector<std::string> GetVersionHistory() noexcept;
 };
 //---------------------------------------------------------------------------
 ///From http://www.richelbilderbeek.nl/CppIntToStr.htm

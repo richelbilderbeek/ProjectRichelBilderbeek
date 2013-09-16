@@ -30,9 +30,9 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "ui_qttestdialmenudialog.h"
 #pragma GCC diagnostic pop
 
-ribi::QtTestDialMenuDialog::QtTestDialMenuDialog(QWidget *parent) :
-  QDialog(parent),
-  ui(new Ui::QtTestDialMenuDialog)
+ribi::QtTestDialMenuDialog::QtTestDialMenuDialog(QWidget *parent) noexcept
+ : QDialog(parent),
+   ui(new Ui::QtTestDialMenuDialog)
 {
   ui->setupUi(this);
   #ifndef NDEBUG
@@ -40,12 +40,12 @@ ribi::QtTestDialMenuDialog::QtTestDialMenuDialog(QWidget *parent) :
   #endif
 }
 
-ribi::QtTestDialMenuDialog::~QtTestDialMenuDialog()
+ribi::QtTestDialMenuDialog::~QtTestDialMenuDialog() noexcept
 {
   delete ui;
 }
 
-void ribi::QtTestDialMenuDialog::on_button_start_clicked()
+void ribi::QtTestDialMenuDialog::on_button_start_clicked() noexcept
 {
   hide();
   QtTestDialMainDialog d;
@@ -53,7 +53,7 @@ void ribi::QtTestDialMenuDialog::on_button_start_clicked()
   show();
 }
 
-void ribi::QtTestDialMenuDialog::on_button_about_clicked()
+void ribi::QtTestDialMenuDialog::on_button_about_clicked() noexcept
 {
   hide();
   About a = TestDialMenuDialog::GetAbout();
@@ -63,12 +63,12 @@ void ribi::QtTestDialMenuDialog::on_button_about_clicked()
   show();
 }
 
-void ribi::QtTestDialMenuDialog::on_button_quit_clicked()
+void ribi::QtTestDialMenuDialog::on_button_quit_clicked() noexcept
 {
   close();
 }
 
-void ribi::QtTestDialMenuDialog::Test()
+void ribi::QtTestDialMenuDialog::Test() noexcept
 {
   {
     static bool is_tested = false;

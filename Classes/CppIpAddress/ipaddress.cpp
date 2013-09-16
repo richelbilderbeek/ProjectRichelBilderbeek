@@ -39,12 +39,12 @@ ribi::IpAddress::IpAddress(const std::string& ip_address)
   }
 }
 
-const std::string ribi::IpAddress::GetVersion()
+const std::string ribi::IpAddress::GetVersion() noexcept
 {
   return "1.1";
 }
 
-const std::vector<std::string> ribi::IpAddress::GetVersionHistory()
+const std::vector<std::string> ribi::IpAddress::GetVersionHistory() noexcept
 {
   return {
     "2011-06-08: version 1.0: initial version",
@@ -52,18 +52,18 @@ const std::vector<std::string> ribi::IpAddress::GetVersionHistory()
   };
 }
 
-ribi::SafeIpAddress::SafeIpAddress(const std::string& ip_address)
+ribi::SafeIpAddress::SafeIpAddress(const std::string& ip_address) noexcept
   : m_ip_address(ip_address)
 {
 
 }
 
-bool ribi::operator==(const IpAddress& lhs,const IpAddress& rhs)
+bool ribi::operator==(const IpAddress& lhs,const IpAddress& rhs) noexcept
 {
   return lhs.Get() == rhs.Get();
 }
 
-bool ribi::operator==(const SafeIpAddress& lhs,const SafeIpAddress& rhs)
+bool ribi::operator==(const SafeIpAddress& lhs,const SafeIpAddress& rhs) noexcept
 {
   return lhs.Get() == rhs.Get();
 }

@@ -45,7 +45,7 @@ public:
     QWidget *parent = 0);
   QtRegexTesterMainDialog(const QtRegexTesterMainDialog&) = delete;
   QtRegexTesterMainDialog& operator=(const QtRegexTesterMainDialog&) = delete;
-  ~QtRegexTesterMainDialog();
+  ~QtRegexTesterMainDialog() noexcept;
 
 protected:
 

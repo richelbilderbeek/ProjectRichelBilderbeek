@@ -45,21 +45,21 @@ struct NewickVector
   const BigInteger CalcNumOfCombinations() const;
   const BigInteger CalcNumOfSymmetries() const;
   double CalcProbabilitySimpleNewick(const double theta) const;
-  bool Empty() const { return m_v.empty(); }
-  const std::vector<int>& Peek() const { return m_v; }
+  bool Empty() const noexcept { return m_v.empty(); }
+  const std::vector<int>& Peek() const noexcept { return m_v; }
   const std::vector<NewickVector> GetSimplerNewicks() const;
   const std::pair<NewickVector,NewickVector> GetRootBranches() const;
   bool IsSimple() const;
   const std::string ToStr() const;
-  static const std::string GetVersion();
-  static const std::vector<std::string> GetVersionHistory();
-  int Size() const;
+  static const std::string GetVersion() noexcept;
+  static const std::vector<std::string> GetVersionHistory() noexcept;
+  int Size() const noexcept;
   const NewickVector TermIsNotOne(const int i) const;
   const NewickVector TermIsOne(const int i) const;
 
 
   private:
-  std::vector<int> m_v;
+  const std::vector<int> m_v; //2013-09-16: made const, perhaps won't compile due to copying now?
 
   int FindPosAfter(const std::vector<int>& v,const int x, const int index) const;
   int FindPosBefore(const std::vector<int>& v,const int x, const int index) const;
@@ -73,7 +73,7 @@ struct NewickVector
     NewickStorage<NewickVector>& storage);
 
   #ifndef NDEBUG
-  static void Test();
+  static void Test() noexcept;
   #endif
 
   public:
@@ -86,7 +86,7 @@ struct NewickVector
 
   static bool NewickCompare(
     const std::vector<int>& lhs,
-    const std::vector<int>& rhs);
+    const std::vector<int>& rhs) noexcept;
 
 };
 

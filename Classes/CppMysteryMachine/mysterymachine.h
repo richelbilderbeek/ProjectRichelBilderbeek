@@ -41,39 +41,39 @@ struct ToggleButtonWidget;
 ///MysteryMachine contains the logic behind my Mystery Machine
 struct MysteryMachine
 {
-  MysteryMachine();
+  MysteryMachine() noexcept;
   MysteryMachine(const MysteryMachine&);
   MysteryMachine& operator=(const MysteryMachine&);
 
-  DialWidget * GetDialBack() { return m_dial_back.get(); }
-  DialWidget * GetDialFront() { return m_dial_front.get(); }
-  LedWidget * GetLedBack1() { return m_led_back_1.get(); }
-  LedWidget * GetLedBack2() { return m_led_back_2.get(); }
-  LedWidget * GetLedBack3() { return m_led_back_3.get(); }
-  LedWidget * GetLedFront1() { return m_led_front_1.get(); }
-  LedWidget * GetLedFront2() { return m_led_front_2.get(); }
-  LedWidget * GetLedFront3() { return m_led_front_3.get(); }
-  LedWidget * GetLedTopFront() { return m_led_top_front.get();  }
-  LedWidget * GetLedTopMiddle() { return m_led_top_middle.get(); }
-  LedWidget * GetLedTopBack() { return m_led_top_back.get();   }
-  ToggleButtonWidget * GetToggleButton() { return m_toggle_button.get(); }
+  DialWidget * GetDialBack() noexcept { return m_dial_back.get(); }
+  DialWidget * GetDialFront() noexcept { return m_dial_front.get(); }
+  LedWidget * GetLedBack1() noexcept { return m_led_back_1.get(); }
+  LedWidget * GetLedBack2() noexcept { return m_led_back_2.get(); }
+  LedWidget * GetLedBack3() noexcept { return m_led_back_3.get(); }
+  LedWidget * GetLedFront1() noexcept { return m_led_front_1.get(); }
+  LedWidget * GetLedFront2() noexcept { return m_led_front_2.get(); }
+  LedWidget * GetLedFront3() noexcept { return m_led_front_3.get(); }
+  LedWidget * GetLedTopFront() noexcept { return m_led_top_front.get();  }
+  LedWidget * GetLedTopMiddle() noexcept { return m_led_top_middle.get(); }
+  LedWidget * GetLedTopBack() noexcept { return m_led_top_back.get();   }
+  ToggleButtonWidget * GetToggleButton() noexcept { return m_toggle_button.get(); }
 
 
-  const DialWidget * GetDialBack() const { return m_dial_back.get(); }
-  const DialWidget * GetDialFront() const { return m_dial_front.get(); }
-  const LedWidget * GetLedBack1() const { return m_led_back_1.get(); }
-  const LedWidget * GetLedBack2() const { return m_led_back_2.get(); }
-  const LedWidget * GetLedBack3() const { return m_led_back_3.get(); }
-  const LedWidget * GetLedFront1() const { return m_led_front_1.get(); }
-  const LedWidget * GetLedFront2() const { return m_led_front_2.get(); }
-  const LedWidget * GetLedFront3() const { return m_led_front_3.get(); }
-  const LedWidget * GetLedTopFront() const  { return m_led_top_front.get();  }
-  const LedWidget * GetLedTopMiddle() const { return m_led_top_middle.get(); }
-  const LedWidget * GetLedTopBack() const   { return m_led_top_back.get();   }
-  const ToggleButtonWidget * GetToggleButton() const { return m_toggle_button.get(); }
+  const DialWidget * GetDialBack() const noexcept { return m_dial_back.get(); }
+  const DialWidget * GetDialFront() const noexcept { return m_dial_front.get(); }
+  const LedWidget * GetLedBack1() const noexcept { return m_led_back_1.get(); }
+  const LedWidget * GetLedBack2() const noexcept { return m_led_back_2.get(); }
+  const LedWidget * GetLedBack3() const noexcept { return m_led_back_3.get(); }
+  const LedWidget * GetLedFront1() const noexcept { return m_led_front_1.get(); }
+  const LedWidget * GetLedFront2() const noexcept { return m_led_front_2.get(); }
+  const LedWidget * GetLedFront3() const noexcept { return m_led_front_3.get(); }
+  const LedWidget * GetLedTopFront() const noexcept  { return m_led_top_front.get();  }
+  const LedWidget * GetLedTopMiddle() const noexcept { return m_led_top_middle.get(); }
+  const LedWidget * GetLedTopBack() const noexcept   { return m_led_top_back.get();   }
+  const ToggleButtonWidget * GetToggleButton() const noexcept { return m_toggle_button.get(); }
 
   private:
-  virtual ~MysteryMachine() {}
+  virtual ~MysteryMachine() noexcept {}
   friend void boost::checked_delete<>(MysteryMachine*);
 
   boost::scoped_ptr<DialWidget> m_dial_back;
@@ -89,16 +89,16 @@ struct MysteryMachine
   boost::scoped_ptr<LedWidget> m_led_top_back;
   boost::scoped_ptr<ToggleButtonWidget> m_toggle_button;
 
-  void Update();
+  void Update() noexcept;
 
-  friend std::ostream& operator<<(std::ostream& os, const MysteryMachine& machine);
+  friend std::ostream& operator<<(std::ostream& os, const MysteryMachine& machine) noexcept;
 
   public:
-  static const std::string GetVersion();
-  static const std::vector<std::string> GetVersionHistory();
+  static const std::string GetVersion() noexcept;
+  static const std::vector<std::string> GetVersionHistory() noexcept;
 };
 
-std::ostream& operator<<(std::ostream& os, const MysteryMachine& machine);
+std::ostream& operator<<(std::ostream& os, const MysteryMachine& machine) noexcept;
 
 } //~namespace ribi
 

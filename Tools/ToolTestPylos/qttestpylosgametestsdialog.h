@@ -41,7 +41,7 @@ public:
   explicit QtTestPylosGameTestsDialog(QWidget *parent = 0);
   QtTestPylosGameTestsDialog(const QtTestPylosGameTestsDialog&) = delete;
   QtTestPylosGameTestsDialog& operator=(const QtTestPylosGameTestsDialog&) = delete;
-  ~QtTestPylosGameTestsDialog();
+  ~QtTestPylosGameTestsDialog() noexcept;
 
 protected:
   

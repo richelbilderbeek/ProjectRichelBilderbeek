@@ -49,15 +49,15 @@ struct GaborFilter
   mutable boost::signals2::signal<void ()> m_signal_changed;
 
   ///Get the GaborFilter its angle
-  double GetAngle()  const { return m_angle;  }
+  double GetAngle() const noexcept { return m_angle;  }
 
   ///Get the GaborFilter its frequency
-  double GetFrequency()  const { return m_frequency;  }
+  double GetFrequency() const noexcept { return m_frequency;  }
 
-  double GetMax() const { return 1.0; }
+  double GetMax() const noexcept { return 1.0; }
 
   ///Get the GaborFilter its sigma
-  double GetSigma()  const { return m_sigma;  }
+  double GetSigma() const noexcept { return m_sigma;  }
 
 
   ///The Gabor funtion
@@ -71,7 +71,7 @@ struct GaborFilter
     const double x, const double y) const;
 
   ///Set the GaborFilter its angle
-  void SetAngle(const double angle);
+  void SetAngle(const double angle) noexcept;
 
   ///Set the GaborFilter its frequency
   void SetFrequency(const double frequency);
@@ -84,7 +84,7 @@ struct GaborFilter
 
   private:
   ///GaborFilter can only be deleted by Boost smart pointers
-  virtual ~GaborFilter() {}
+  virtual ~GaborFilter() noexcept {}
   ///GaborFilter can only be deleted by Boost smart pointers
   //Herb Sutter. Exceptional C++ style. 2005. ISBN: 0-201-76042-8. Item 8: 'Befriending templates'.
   friend void boost::checked_delete<>(GaborFilter*);
@@ -100,13 +100,13 @@ struct GaborFilter
 
   public:
   ///Obtain this class its version
-  static const std::string GetVersion();
+  static const std::string GetVersion() noexcept;
 
   ///Obtain this class its version history
-  static const std::vector<std::string> GetVersionHistory();
+  static const std::vector<std::string> GetVersionHistory() noexcept;
 };
 
-std::ostream& operator<<(std::ostream& os, const GaborFilter& g);
+std::ostream& operator<<(std::ostream& os, const GaborFilter& g) noexcept;
 
 } //~namespace ribi
 

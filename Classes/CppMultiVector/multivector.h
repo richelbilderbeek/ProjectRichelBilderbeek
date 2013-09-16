@@ -140,7 +140,7 @@ struct MultiVector
     return v;
   }
 
-}; //~MultiVector
+};
 
 } //~namespace ribi
 

@@ -37,7 +37,7 @@ public:
   explicit QtTestQtCreatorProFileMenuDialog(QWidget *parent = 0);
   QtTestQtCreatorProFileMenuDialog(const QtTestQtCreatorProFileMenuDialog&) = delete;
   QtTestQtCreatorProFileMenuDialog& operator=(const QtTestQtCreatorProFileMenuDialog&) = delete;
-  ~QtTestQtCreatorProFileMenuDialog();
+  ~QtTestQtCreatorProFileMenuDialog() noexcept;
 
 private slots:
   void on_button_start_clicked();

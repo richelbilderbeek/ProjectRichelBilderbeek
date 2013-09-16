@@ -53,7 +53,7 @@ ribi::DialWidget::DialWidget(
   this->SetGeometry(Rect(x,y,width,height));
 }
 
-void ribi::DialWidget::Click(const int x,const int y)
+void ribi::DialWidget::Click(const int x,const int y) noexcept
 {
   if (!IsClicked(x,y)) return;
   const int midx = GetGeometry().GetX() + (GetGeometry().GetWidth()  / 2);
@@ -68,12 +68,12 @@ void ribi::DialWidget::Click(const int x,const int y)
   m_dial->SetPosition(position);
 }
 
-const std::string ribi::DialWidget::GetVersion()
+const std::string ribi::DialWidget::GetVersion() noexcept
 {
   return "2.4";
 }
 
-const std::vector<std::string> ribi::DialWidget::GetVersionHistory()
+const std::vector<std::string> ribi::DialWidget::GetVersionHistory() noexcept
 {
   return {
     "2011-07-03: Version 1.0: initial version",
@@ -85,17 +85,17 @@ const std::vector<std::string> ribi::DialWidget::GetVersionHistory()
   };
 }
 
-double ribi::DialWidget::GetAngle(const double dx, const double dy)
+double ribi::DialWidget::GetAngle(const double dx, const double dy) noexcept
 {
   return Dial::GetAngle(dx,dy);
 }
 
-double ribi::DialWidget::GetDistance(const double dx, const double dy)
+double ribi::DialWidget::GetDistance(const double dx, const double dy) noexcept
 {
   return Dial::GetDistance(dx,dy);
 }
 
-bool ribi::DialWidget::IsClicked(const int x, const int y) const
+bool ribi::DialWidget::IsClicked(const int x, const int y) const noexcept
 {
   const double widget_midx
     = boost::numeric_cast<double>(GetGeometry().GetX())
@@ -109,7 +109,7 @@ bool ribi::DialWidget::IsClicked(const int x, const int y) const
     < (boost::numeric_cast<double>(this->GetGeometry().GetWidth()) / 2.0);
 }
 
-void ribi::DialWidget::Test()
+void ribi::DialWidget::Test() noexcept
 {
   {
     static bool is_tested = false;
@@ -121,7 +121,7 @@ void ribi::DialWidget::Test()
   }
 }
 
-std::ostream& ribi::operator<<(std::ostream& os, const DialWidget& widget)
+std::ostream& ribi::operator<<(std::ostream& os, const DialWidget& widget) noexcept
 {
   os
     << "<DialWidget>"

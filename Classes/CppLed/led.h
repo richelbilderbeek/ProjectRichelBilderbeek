@@ -79,10 +79,7 @@ struct Led
   void SetRed(const unsigned char red);
 
   private:
-  ///Led can only be deleted by Boost smart pointers
-  virtual ~Led() {}
-  ///Led can only be deleted by Boost smart pointers
-  //Herb Sutter. Exceptional C++ style. 2005. ISBN: 0-201-76042-8. Item 8: 'Befriending templates'.
+  virtual ~Led() noexcept {}
   friend void boost::checked_delete<>(Led*);
 
   ///m_intensity has range [0.0,1.0]
@@ -101,10 +98,10 @@ struct Led
 
   public:
   ///Obtain this class its version
-  static const std::string GetVersion();
+  static const std::string GetVersion() noexcept;
 
   ///Obtain this class its version history
-  static const std::vector<std::string> GetVersionHistory();
+  static const std::vector<std::string> GetVersionHistory() noexcept;
 };
 
 std::ostream& operator<<(std::ostream& os, const Led& led);

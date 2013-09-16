@@ -29,7 +29,7 @@ ribi::ShapeWidget::ShapeWidget(
   this->SetGeometry(Rect(x,y,width,height));
 }
 
-ribi::ShapeWidget * ribi::ShapeWidget::Clone() const
+ribi::ShapeWidget * ribi::ShapeWidget::Clone() const noexcept
 {
   ShapeWidget * const w = new ShapeWidget(
     this->GetShape()->GetNumberOfCorners(),
@@ -45,12 +45,12 @@ ribi::ShapeWidget * ribi::ShapeWidget::Clone() const
   return w;
 }
 
-const std::string ribi::ShapeWidget::GetVersion()
+const std::string ribi::ShapeWidget::GetVersion() noexcept
 {
   return "2.0";
 }
 
-const std::vector<std::string> ribi::ShapeWidget::GetVersionHistory()
+const std::vector<std::string> ribi::ShapeWidget::GetVersionHistory() noexcept
 {
   return {
     "2011-07-13: Version 1.0: initial version",
@@ -59,7 +59,7 @@ const std::vector<std::string> ribi::ShapeWidget::GetVersionHistory()
   };
 }
 
-bool ribi::operator==(const ShapeWidget& lhs,const ShapeWidget& rhs)
+bool ribi::operator==(const ShapeWidget& lhs,const ShapeWidget& rhs) noexcept
 {
   return  lhs.GetGeometry() ==  rhs.GetGeometry()
     &&   *lhs.GetShape()    == *rhs.GetShape();

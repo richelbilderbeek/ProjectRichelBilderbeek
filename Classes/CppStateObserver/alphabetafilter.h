@@ -27,10 +27,10 @@ struct AlphaBetaFilter : public FloatingPointStateObserver
   void Update(const double measurement);
 
   ///Obtain the version of this class
-  static const std::string GetVersion();
+  static const std::string GetVersion() noexcept;
 
   ///Obtain the version history of this class
-  static const std::vector<std::string> GetVersionHistory();
+  static const std::vector<std::string> GetVersionHistory() noexcept;
 
   private:
   const double m_alpha;

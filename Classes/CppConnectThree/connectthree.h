@@ -49,42 +49,50 @@ struct ConnectThree
     const int n_cols = 16,
     const int n_rows = 12);
 
-  bool CanDoMove(const int x, const int y) const;
+  bool CanDoMove(const int x, const int y) const noexcept;
   void DoMove(const int x, const int y);
   void DoMove(const Move& p);
-  int GetActivePlayer() const { return m_player; }
-  int GetCols() const;
-  int GetRows() const;
+  int GetActivePlayer() const noexcept { return m_player; }
+  int GetCols() const noexcept;
+  int GetRows() const noexcept;
   int GetSquare(const int x, const int y) const { return m_area[x][y]; }
-  static const std::string GetVersion();
-  static const std::vector<std::string> GetVersionHistory();
-  int GetWinner() const;
-  bool IsInvalidMove(const Move& p) const;
-  const Move SuggestMove(const std::bitset<3>& is_player_human) const;
-  void Restart();
+  static const std::string GetVersion() noexcept;
+  static const std::vector<std::string> GetVersionHistory() noexcept;
+
+  ///GetWinner returns the index of the winner.
+  ///Returns draw if the board is full without a winner
+  ///Returns no_player if there are still free squares
+  int GetWinner() const noexcept;
+  static bool IsInvalidMove(const Move& p) noexcept;
+  const Move SuggestMove(const std::bitset<3>& is_player_human) const noexcept;
+  void Restart() noexcept;
 
 private:
-  ~ConnectThree() {}
+  ~ConnectThree() noexcept {}
   friend void boost::checked_delete<>(ConnectThree*);
 
   //X-Y-ordered 2D std::vector
   std::vector<std::vector<int> > m_area;
   int m_player;
 
-  bool CanDoMove(const Move& p) const;
-  const Move CheckOneOther(const std::bitset<3>& is_player_human) const;
-  const Move CheckTwoDiagonally() const;
-  const Move CheckTwoHorizontalOwn() const;
-  const Move CheckTwoOther(const std::bitset<3>& is_player_human) const;
-  const Move CheckTwoVerticalOwn() const;
-  const Move CreateInvalidMove() const;
-  const Moves GetAllPossibleMoves() const;
-  int GetNextPlayer() const;
-  int GetNextPlayer(const int player) const;
-  static double GetRandomUniform();
-  const Moves GetTwoHorizontalOtherMoves() const;
-  const Moves GetTwoVerticalOtherMoves() const;
-  const Move MakeRandomMove() const;
+  bool CanDoMove(const Move& p) const noexcept;
+  const Move CheckOneOther(const std::bitset<3>& is_player_human) const noexcept;
+  const Move CheckTwoDiagonally() const noexcept;
+  const Move CheckTwoHorizontalOwn() const noexcept;
+  const Move CheckTwoOther(const std::bitset<3>& is_player_human) const noexcept;
+  const Move CheckTwoVerticalOwn() const noexcept;
+  static const Move CreateInvalidMove() noexcept;
+  const Moves GetAllPossibleMoves() const noexcept;
+  int GetNextPlayer() const noexcept;
+  int GetNextPlayer(const int player) const noexcept;
+  static double GetRandomUniform() noexcept;
+  const Moves GetTwoHorizontalOtherMoves() const noexcept;
+  const Moves GetTwoVerticalOtherMoves() const noexcept;
+  const Move MakeRandomMove() const noexcept;
+
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
 
 };
 

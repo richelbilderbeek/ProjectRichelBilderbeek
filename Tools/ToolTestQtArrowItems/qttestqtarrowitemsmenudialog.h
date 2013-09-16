@@ -40,7 +40,7 @@ public:
   explicit QtTestQtArrowItemsMenuDialog(QWidget *parent = 0);
   QtTestQtArrowItemsMenuDialog(const QtTestQtArrowItemsMenuDialog&) = delete;
   QtTestQtArrowItemsMenuDialog& operator=(const QtTestQtArrowItemsMenuDialog&) = delete;
-  ~QtTestQtArrowItemsMenuDialog();
+  ~QtTestQtArrowItemsMenuDialog() noexcept;
 
 protected:
   

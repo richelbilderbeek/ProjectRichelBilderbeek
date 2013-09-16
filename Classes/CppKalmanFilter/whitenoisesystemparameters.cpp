@@ -32,12 +32,12 @@ ribi::kalman::WhiteNoiseSystemParameters::WhiteNoiseSystemParameters(
   #endif
 }
 
-const std::string ribi::kalman::WhiteNoiseSystemParameters::GetVersion()
+const std::string ribi::kalman::WhiteNoiseSystemParameters::GetVersion() noexcept
 {
   return "1.0";
 }
 
-const std::vector<std::string> ribi::kalman::WhiteNoiseSystemParameters::GetVersionHistory()
+const std::vector<std::string> ribi::kalman::WhiteNoiseSystemParameters::GetVersionHistory() noexcept
 {
   return {
     "2013-04-28: version 1.0: initial version"
@@ -45,7 +45,7 @@ const std::vector<std::string> ribi::kalman::WhiteNoiseSystemParameters::GetVers
 }
 
 bool ribi::kalman::WhiteNoiseSystemParameters::IsAboutEqual(
-  const WhiteNoiseSystemParameters& lhs, const WhiteNoiseSystemParameters& rhs)
+  const WhiteNoiseSystemParameters& lhs, const WhiteNoiseSystemParameters& rhs) noexcept
 {
   return
        Matrix::MatricesAreAboutEqual(lhs.GetControl(),rhs.GetControl())

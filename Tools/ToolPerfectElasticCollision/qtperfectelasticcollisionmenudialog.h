@@ -40,7 +40,7 @@ public:
   explicit QtPerfectElasticCollisionMenuDialog(QWidget *parent = 0);
   QtPerfectElasticCollisionMenuDialog(const QtPerfectElasticCollisionMenuDialog&) = delete;
   QtPerfectElasticCollisionMenuDialog& operator=(const QtPerfectElasticCollisionMenuDialog&) = delete;
-  ~QtPerfectElasticCollisionMenuDialog();
+  ~QtPerfectElasticCollisionMenuDialog() noexcept;
 
 private slots:
 

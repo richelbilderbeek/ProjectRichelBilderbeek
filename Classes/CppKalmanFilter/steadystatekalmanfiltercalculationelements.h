@@ -29,7 +29,7 @@ struct SteadyStateKalmanFilterCalculationElements : public KalmanFilterCalculati
 
   private:
   ///Can only be deleted by boost::checked_delete
-  ~SteadyStateKalmanFilterCalculationElements() {}
+  ~SteadyStateKalmanFilterCalculationElements() noexcept {}
   friend void boost::checked_delete<>(SteadyStateKalmanFilterCalculationElements*);
 
 };

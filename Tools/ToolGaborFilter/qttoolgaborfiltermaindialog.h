@@ -18,7 +18,7 @@ public:
     explicit QtToolGaborFilterMainDialog(QWidget *parent = 0);
     QtToolGaborFilterMainDialog(const QtToolGaborFilterMainDialog&) = delete;
     QtToolGaborFilterMainDialog& operator=(const QtToolGaborFilterMainDialog&) = delete;
-    ~QtToolGaborFilterMainDialog();
+    ~QtToolGaborFilterMainDialog() noexcept;
     
 private slots:
     void on_dial_angle_sliderMoved(int position);

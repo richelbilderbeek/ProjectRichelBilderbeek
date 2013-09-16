@@ -81,7 +81,7 @@ ribi::Music::Note::Note(const std::string& s, const std::pair<int,int>& length)
 ribi::Music::Note::Note(
   const Letter letter,
   const Accidental accidental,
-  const std::pair<int,int>& length)
+  const std::pair<int,int>& length) noexcept
   : m_accidental(accidental),
     m_length(length),
     m_letter(letter)
@@ -93,7 +93,7 @@ ribi::Music::Note::Note(
 
 }
 
-const std::vector<ribi::Music::Note> ribi::Music::Note::GetAllNotes()
+const std::vector<ribi::Music::Note> ribi::Music::Note::GetAllNotes() noexcept
 {
   std::vector<Note> v;
   for (int i=0; i!=12; ++i)
@@ -103,19 +103,20 @@ const std::vector<ribi::Music::Note> ribi::Music::Note::GetAllNotes()
   return v;
 }
 
-const std::string ribi::Music::Note::GetVersion()
+const std::string ribi::Music::Note::GetVersion() noexcept
 {
   return "1.0";
 }
 
-const std::vector<std::string> ribi::Music::Note::GetVersionHistory()
+const std::vector<std::string> ribi::Music::Note::GetVersionHistory() noexcept
 {
   return {
     "2012-08-10: version 1.0: initial version"
   };
 }
 
-void ribi::Music::Note::Test()
+#ifndef NDEBUG
+void ribi::Music::Note::Test() noexcept
 {
   //Test exactly once
   {
@@ -129,10 +130,10 @@ void ribi::Music::Note::Test()
     assert(Note(0).ToInt() == 0);
     assert(Note(0).ToStr() == "C");
   }
-
 }
+#endif
 
-int ribi::Music::Note::ToInt() const
+int ribi::Music::Note::ToInt() const noexcept
 {
   int x = 0;
   switch (m_letter)
@@ -157,7 +158,7 @@ int ribi::Music::Note::ToInt() const
   return x;
 }
 
-const std::string ribi::Music::Note::ToStr() const
+const std::string ribi::Music::Note::ToStr() const noexcept
 {
   std::string s;
   switch (m_letter)
@@ -179,12 +180,12 @@ const std::string ribi::Music::Note::ToStr() const
   return s;
 }
 
-bool ribi::Music::operator==(const Note& lhs, const Note& rhs)
+bool ribi::Music::operator==(const Note& lhs, const Note& rhs) noexcept
 {
   return lhs.ToInt() == rhs.ToInt();
 }
 
-bool ribi::Music::operator<(const Note& lhs, const Note& rhs)
+bool ribi::Music::operator<(const Note& lhs, const Note& rhs) noexcept
 {
   return lhs.ToInt() < rhs.ToInt();
 }

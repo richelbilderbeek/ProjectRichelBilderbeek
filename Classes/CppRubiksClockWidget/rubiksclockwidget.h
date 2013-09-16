@@ -51,29 +51,29 @@ struct RubiksClockWidget : public Widget
   void Click(const int x, const int y,const bool button_left);
 
   ///Flip the Rubik's Clock and display the other side
-  void Flip();
+  void Flip() noexcept;
 
   ///Does the widget display the front side?
-  bool GetDisplayFront() const { return m_display_front; }
+  bool GetDisplayFront() const noexcept { return m_display_front; }
 
   ///Obtain a read-and-write pointert to the RubiksClock
-  RubiksClock * GetRubiksClock() { return m_clock.get(); }
+  RubiksClock * GetRubiksClock() noexcept { return m_clock.get(); }
 
   ///Obtain a read-only pointert to the RubiksClock
-  const RubiksClock * GetRubiksClock() const { return m_clock.get(); }
+  const RubiksClock * GetRubiksClock() const noexcept { return m_clock.get(); }
 
   ///Obtain this class its version
-  static const std::string GetVersion();
+  static const std::string GetVersion() noexcept;
 
   ///Obtain this class its version history
-  static const std::vector<std::string> GetVersionHistory();
+  static const std::vector<std::string> GetVersionHistory() noexcept;
 
   ///Respond to a change in the clock
   mutable boost::signals2::signal<void ()> m_signal_widget_flipped;
 
   private:
   //RubiksClockWidget can only be deleted by Boost smart pointers
-  virtual ~RubiksClockWidget() {}
+  virtual ~RubiksClockWidget() noexcept {}
   friend void boost::checked_delete<>(RubiksClockWidget*);
 
   ///The RubiksClock
@@ -85,10 +85,10 @@ struct RubiksClockWidget : public Widget
   ///Respond to a change in geometry
   void OnResize();
 
-  friend std::ostream& operator<<(std::ostream& os, const RubiksClockWidget& widget);
+  friend std::ostream& operator<<(std::ostream& os, const RubiksClockWidget& widget) noexcept;
 };
 
-std::ostream& operator<<(std::ostream& os, const RubiksClockWidget& widget);
+std::ostream& operator<<(std::ostream& os, const RubiksClockWidget& widget) noexcept;
 
 } //~namespace ribi
 

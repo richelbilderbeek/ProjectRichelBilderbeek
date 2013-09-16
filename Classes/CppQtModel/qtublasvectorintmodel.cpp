@@ -32,7 +32,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #pragma GCC diagnostic pop
 
-ribi::QtUblasVectorIntModel::QtUblasVectorIntModel(QObject *parent)
+ribi::QtUblasVectorIntModel::QtUblasVectorIntModel(QObject *parent) noexcept
   : QAbstractTableModel(parent),
     m_data{},
     m_header_horizontal_text{},
@@ -49,7 +49,7 @@ ribi::QtUblasVectorIntModel::QtUblasVectorIntModel(QObject *parent)
   assert(this->IsValid());
 }
 
-int ribi::QtUblasVectorIntModel::columnCount(const QModelIndex &) const
+int ribi::QtUblasVectorIntModel::columnCount(const QModelIndex &) const noexcept
 {
   return rowCount() > 0 ? 1 : 0;
 }
@@ -88,7 +88,7 @@ QVariant ribi::QtUblasVectorIntModel::data(const QModelIndex &index, int role) c
   return QString(s.c_str());
 }
 
-Qt::ItemFlags ribi::QtUblasVectorIntModel::flags(const QModelIndex &) const
+Qt::ItemFlags ribi::QtUblasVectorIntModel::flags(const QModelIndex &) const noexcept
 {
   return
     Qt::ItemIsSelectable
@@ -98,12 +98,12 @@ Qt::ItemFlags ribi::QtUblasVectorIntModel::flags(const QModelIndex &) const
   | Qt::ItemIsEnabled;
 }
 
-const std::string ribi::QtUblasVectorIntModel::GetVersion()
+const std::string ribi::QtUblasVectorIntModel::GetVersion() noexcept
 {
   return "1.2";
 }
 
-const std::vector<std::string> ribi::QtUblasVectorIntModel::GetVersionHistory()
+const std::vector<std::string> ribi::QtUblasVectorIntModel::GetVersionHistory() noexcept
 {
   return {
     "2013-06-27: version 1.0: initial version",
@@ -137,7 +137,7 @@ QVariant ribi::QtUblasVectorIntModel::headerData(int section, Qt::Orientation or
 }
 
 #ifndef NDEBUG
-bool ribi::QtUblasVectorIntModel::IsValid() const
+bool ribi::QtUblasVectorIntModel::IsValid() const noexcept
 {
   if (m_range_min >= m_range_max)
   {
@@ -217,7 +217,7 @@ bool ribi::QtUblasVectorIntModel::removeRows(int row, int count, const QModelInd
   return true;
 }
 
-int ribi::QtUblasVectorIntModel::rowCount(const QModelIndex &) const
+int ribi::QtUblasVectorIntModel::rowCount(const QModelIndex &) const noexcept
 {
   assert(m_data.size() == m_header_vertical_text.size());
   return boost::numeric_cast<int>(m_data.size());
@@ -422,7 +422,7 @@ void ribi::QtUblasVectorIntModel::SetRawData(const boost::numeric::ublas::vector
 }
 
 #ifndef NDEBUG
-void ribi::QtUblasVectorIntModel::Test()
+void ribi::QtUblasVectorIntModel::Test() noexcept
 {
   {
     static bool is_tested = false;

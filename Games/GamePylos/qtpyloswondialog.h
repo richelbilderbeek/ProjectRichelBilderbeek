@@ -42,7 +42,7 @@ public:
   explicit QtPylosWonDialog(QWidget *parent = 0);
   QtPylosWonDialog(const QtPylosWonDialog&) = delete;
   QtPylosWonDialog& operator=(const QtPylosWonDialog&) = delete;
-  ~QtPylosWonDialog();
+  ~QtPylosWonDialog() noexcept;
   void SetWinner(const Pylos::Winner winner);
 
 private:

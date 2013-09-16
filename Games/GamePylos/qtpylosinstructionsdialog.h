@@ -40,7 +40,7 @@ public:
   explicit QtPylosInstructionsDialog(QWidget *parent = 0);
   QtPylosInstructionsDialog(const QtPylosInstructionsDialog&) = delete;
   QtPylosInstructionsDialog& operator=(const QtPylosInstructionsDialog&) = delete;
-  ~QtPylosInstructionsDialog();
+  ~QtPylosInstructionsDialog() noexcept;
 
 private:
   Ui::QtPylosInstructionsDialog *ui;

@@ -53,10 +53,10 @@ public:
     QWidget *parent = 0);
   QtOpenQuestionDialog(const QtOpenQuestionDialog&) = delete;
   QtOpenQuestionDialog& operator=(const QtOpenQuestionDialog&) = delete;
-  ~QtOpenQuestionDialog();
+  ~QtOpenQuestionDialog() noexcept;
 
-  static const std::string GetVersion();
-  static const std::vector<std::string> GetVersionHistory();
+  static const std::string GetVersion() noexcept;
+  static const std::vector<std::string> GetVersionHistory() noexcept;
 
   ///Set the Question
   void SetQuestion(const boost::shared_ptr<Question>& question);

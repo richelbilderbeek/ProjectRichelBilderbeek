@@ -32,16 +32,16 @@ namespace ribi {
 
 struct QtStdVectorStringModel: public QAbstractTableModel
 {
-  explicit QtStdVectorStringModel(QObject *parent = 0);
+  explicit QtStdVectorStringModel(QObject *parent = 0) noexcept;
 
   ///Reading the raw data
-  const std::vector<std::string>& GetRawData() const { return m_data; }
+  const std::vector<std::string>& GetRawData() const noexcept { return m_data; }
 
   ///Obtain the version of this class
-  static const std::string GetVersion();
+  static const std::string GetVersion() noexcept;
 
   ///Obtain the version history of this class
-  static const std::vector<std::string> GetVersionHistory();
+  static const std::vector<std::string> GetVersionHistory() noexcept;
 
   ///Writing the raw data
   void SetRawData(const std::vector<std::string>& data);
@@ -60,13 +60,13 @@ struct QtStdVectorStringModel: public QAbstractTableModel
   std::vector<std::string> m_header_vertical_text;
 
   ///Must be defined from ABC
-  int columnCount(const QModelIndex &parent = QModelIndex()) const;
+  int columnCount(const QModelIndex &parent = QModelIndex()) const noexcept;
 
   ///Must be defined from ABC
   QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const;
 
   ///These flags are needed to allow editing
-  Qt::ItemFlags flags(const QModelIndex &index) const;
+  Qt::ItemFlags flags(const QModelIndex &index) const noexcept;
 
   ///Redefined from ABC
   QVariant headerData(int section, Qt::Orientation orientation, int role) const;
@@ -78,7 +78,7 @@ struct QtStdVectorStringModel: public QAbstractTableModel
   bool removeRows(int row, int count, const QModelIndex &parent);
 
   ///Must be defined from ABC
-  int rowCount(const QModelIndex &parent = QModelIndex()) const;
+  int rowCount(const QModelIndex &parent = QModelIndex()) const noexcept;
 
   ///Needed for editable data
   bool setData(const QModelIndex &index, const QVariant &value, int role = Qt::EditRole);

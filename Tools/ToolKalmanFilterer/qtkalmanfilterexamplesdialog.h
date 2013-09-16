@@ -27,7 +27,7 @@ public:
   QtKalmanFilterExamplesDialog& operator=(const QtKalmanFilterExamplesDialog&) = delete;
 
   explicit QtKalmanFilterExamplesDialog(QWidget *parent = 0);
-  ~QtKalmanFilterExamplesDialog();
+  ~QtKalmanFilterExamplesDialog() noexcept;
 
   ///Click one of the examples
   void EmitExample(const int n) const;

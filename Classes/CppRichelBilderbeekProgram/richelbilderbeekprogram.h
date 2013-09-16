@@ -37,7 +37,7 @@ namespace RichelBilderbeek {
 ///RichelBilderbeek::Program is the base class for program information
 struct Program
 {
-  virtual ~Program() {}
+  virtual ~Program() noexcept {}
 
   ///Create a std::vector with all different Program instances in it
   static const boost::shared_ptr<Program> CreateProgram(const ProgramType type);
@@ -82,10 +82,10 @@ struct Program
   virtual const std::string GetUrl() const = 0;
 
   ///Obtain the version of this class
-  static const std::string GetVersion();
+  static const std::string GetVersion() noexcept;
 
   ///Obtain the version history of this class
-  static const std::vector<std::string> GetVersionHistory();
+  static const std::vector<std::string> GetVersionHistory() noexcept;
 
   private:
   ///Get the base of a filename
@@ -95,7 +95,7 @@ struct Program
 ///RichelBilderbeek::ProgramClass is the base class for all class demonstration programs
 struct ProgramClass : public RichelBilderbeek::Program
 {
-  virtual ~ProgramClass() {}
+  virtual ~ProgramClass() noexcept {}
 
   ///The type of program its name, e.g. 'game'
   const std::string GetTypeName() const { return "class"; }
@@ -103,7 +103,7 @@ struct ProgramClass : public RichelBilderbeek::Program
 
 struct ProgramGame : public RichelBilderbeek::Program
 {
-  virtual ~ProgramGame() {}
+  virtual ~ProgramGame() noexcept {}
 
   ///The type of program its name, e.g. 'game'
   const std::string GetTypeName() const { return "game"; }
@@ -111,7 +111,7 @@ struct ProgramGame : public RichelBilderbeek::Program
 
 struct ProgramProject : public RichelBilderbeek::Program
 {
-  virtual ~ProgramProject() {}
+  virtual ~ProgramProject() noexcept {}
 
   ///The type of program its name, e.g. 'game'
   const std::string GetTypeName() const { return "project"; }
@@ -119,7 +119,7 @@ struct ProgramProject : public RichelBilderbeek::Program
 
 struct ProgramTool : public RichelBilderbeek::Program
 {
-  virtual ~ProgramTool() {}
+  virtual ~ProgramTool() noexcept {}
 
   ///The type of program its name, e.g. 'game'
   const std::string GetTypeName() const { return "tool"; }

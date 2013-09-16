@@ -45,7 +45,7 @@ public:
   QtBeerWanterMainDialog& operator=(const QtBeerWanterMainDialog&) = delete;
 
   explicit QtBeerWanterMainDialog(QWidget *parent = 0);
-  ~QtBeerWanterMainDialog();
+  ~QtBeerWanterMainDialog() noexcept;
 private:
   Ui::QtBeerWanterMainDialog *ui;
   boost::shared_ptr<QtBeerWanterWidget> m_widget;

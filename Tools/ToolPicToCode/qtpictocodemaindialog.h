@@ -45,7 +45,7 @@ public:
   explicit QtPicToCodeMainDialog(QWidget *parent = 0);
   QtPicToCodeMainDialog(const QtPicToCodeMainDialog&) = delete;
   QtPicToCodeMainDialog& operator=(const QtPicToCodeMainDialog&) = delete;
-  ~QtPicToCodeMainDialog();
+  ~QtPicToCodeMainDialog() noexcept;
 
 private:
   Ui::QtPicToCodeMainDialog *ui;

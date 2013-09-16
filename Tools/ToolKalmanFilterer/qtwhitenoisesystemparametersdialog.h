@@ -41,7 +41,7 @@ public:
   explicit QtWhiteNoiseSystemParametersDialog(
     const boost::shared_ptr<QtKalmanFilterExperimentModel> model,
     QWidget *parent = 0);
-  ~QtWhiteNoiseSystemParametersDialog();
+  ~QtWhiteNoiseSystemParametersDialog() noexcept;
 
   ///Read the lag (in timesteps) from the dialog
   int GetLag() const;

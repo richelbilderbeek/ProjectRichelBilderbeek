@@ -38,7 +38,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #pragma GCC diagnostic pop
 
-ribi::Pylos::Board::Board()
+ribi::Pylos::Board::Board() noexcept
   : m_board(CreateEmptyBoard())
 {
   #ifndef NDEBUG
@@ -260,17 +260,17 @@ int ribi::Pylos::Board::Count(const PositionState state) const
   return Count(v,state);
 }
 
-const boost::shared_ptr<ribi::Pylos::Board> ribi::Pylos::Board::CreateAdvancedBoard()
+const boost::shared_ptr<ribi::Pylos::Board> ribi::Pylos::Board::CreateAdvancedBoard() noexcept
 {
   return boost::shared_ptr<Board>(new BoardAdvanced);
 }
 
-const boost::shared_ptr<ribi::Pylos::Board> ribi::Pylos::Board::CreateBasicBoard()
+const boost::shared_ptr<ribi::Pylos::Board> ribi::Pylos::Board::CreateBasicBoard() noexcept
 {
   return boost::shared_ptr<Board>(new BoardBasic);
 }
 
-const std::vector<ribi::Pylos::Board::Layer> ribi::Pylos::Board::CreateEmptyBoard() const
+const std::vector<ribi::Pylos::Board::Layer> ribi::Pylos::Board::CreateEmptyBoard() const noexcept
 {
   std::vector<Layer> v;
   v.push_back(CreateLayer(4));
@@ -282,6 +282,7 @@ const std::vector<ribi::Pylos::Board::Layer> ribi::Pylos::Board::CreateEmptyBoar
 
 const ribi::Pylos::Board::Layer ribi::Pylos::Board::CreateLayer(const int sz) const
 {
+  assert(sz > 1);
   return std::vector<std::vector<PositionState> > (
     sz,std::vector<PositionState>(sz,PositionState::empty));
 }
@@ -319,16 +320,20 @@ void ribi::Pylos::Board::Do(const Pylos::Move& m, const Player player)
   }
 }
 
-ribi::Pylos::PositionState ribi::Pylos::Board::Get(const Coordinat& c) const
+ribi::Pylos::PositionState ribi::Pylos::Board::Get(const Coordinat& c) const noexcept
 {
-  #ifndef NDEBUG
-  if (!c.IsValid()) TRACE(c);
-  #endif
+  //Just checking, a constructed Coordinat should pass all asserts
   assert(c.IsValid());
+  assert(c.IsValid());
+  assert(c.GetLayer() < static_cast<int>(m_board.size()));
+  assert(m_board.empty());
+  assert(c.GetX() < static_cast<int>(m_board[c.GetLayer()].size()));
+  assert(m_board[c.GetLayer()].empty());
+  assert(c.GetY() < static_cast<int>(m_board[c.GetLayer()][c.GetX()].size()));
   return m_board[c.GetLayer()][c.GetX()][c.GetY()];
 }
 
-const std::vector<ribi::Pylos::Move> ribi::Pylos::Board::GetAllPossibleMoves(const Player& player) const
+const std::vector<ribi::Pylos::Move> ribi::Pylos::Board::GetAllPossibleMoves(const Player& player) const noexcept
 {
   const std::vector<Coordinat> v = Pylos::GetAllCoordinats();
   std::vector<Move> w;
@@ -405,19 +410,19 @@ int ribi::Pylos::Board::GetLayerSize(const int layer) const
   return boost::numeric_cast<int>(m_board[layer].size());
 }
 
-const std::string ribi::Pylos::Board::GetVersion()
+const std::string ribi::Pylos::Board::GetVersion() noexcept
 {
   return "2.0";
 }
 
-const std::vector<std::string> ribi::Pylos::Board::GetVersionHistory()
+const std::vector<std::string> ribi::Pylos::Board::GetVersionHistory() noexcept
 {
   std::vector<std::string> v;
   v.push_back("2012-05-05: version 2.0: initial release version");
   return v;
 }
 
-ribi::Pylos::Winner ribi::Pylos::Board::GetWinner() const
+ribi::Pylos::Winner ribi::Pylos::Board::GetWinner() const noexcept
 {
   if (Get(Coordinat(3,0,0)) != PositionState::empty)
   {
@@ -990,7 +995,7 @@ void ribi::Pylos::Board::Transfer(
   Set(to,player,must_remove);
 }
 
-bool ribi::Pylos::operator==(const Board& lhs, const Board& rhs)
+bool ribi::Pylos::operator==(const Board& lhs, const Board& rhs) noexcept
 {
   //Determine if types are equal
   if (typeid(lhs)!=typeid(rhs)) return false;
@@ -998,24 +1003,24 @@ bool ribi::Pylos::operator==(const Board& lhs, const Board& rhs)
   return lhs.m_board == rhs.m_board;
 }
 
-bool ribi::Pylos::operator!=(const Board& lhs, const Board& rhs)
+bool ribi::Pylos::operator!=(const Board& lhs, const Board& rhs) noexcept
 {
   return !(lhs==rhs);
 }
 
-std::ostream& ribi::Pylos::operator<<(std::ostream& os,const Board& p)
+std::ostream& ribi::Pylos::operator<<(std::ostream& os,const Board& p) noexcept
 {
   os << p.ToStr();
   return os;
 }
 
-ribi::Pylos::BoardAdvanced::BoardAdvanced()
+ribi::Pylos::BoardAdvanced::BoardAdvanced() noexcept
   : Board()
 {
 
 }
 
-boost::shared_ptr<ribi::Pylos::Board> ribi::Pylos::BoardAdvanced::Clone() const
+boost::shared_ptr<ribi::Pylos::Board> ribi::Pylos::BoardAdvanced::Clone() const noexcept
 {
   BoardAdvanced * const p = new BoardAdvanced;
   p->m_board = m_board;
@@ -1084,13 +1089,13 @@ void ribi::Pylos::BoardAdvanced::Set(
 
 }
 
-ribi::Pylos::BoardBasic::BoardBasic()
+ribi::Pylos::BoardBasic::BoardBasic() noexcept
   : Board()
 {
 
 }
 
-boost::shared_ptr<ribi::Pylos::Board> ribi::Pylos::BoardBasic::Clone() const
+boost::shared_ptr<ribi::Pylos::Board> ribi::Pylos::BoardBasic::Clone() const noexcept
 {
   BoardBasic * const p = new BoardBasic;
   p->m_board = m_board;

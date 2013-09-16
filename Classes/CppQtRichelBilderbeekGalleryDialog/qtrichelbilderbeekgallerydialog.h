@@ -45,13 +45,13 @@ public:
   explicit QtRichelBilderbeekGalleryDialog(QWidget *parent = 0);
   QtRichelBilderbeekGalleryDialog(const QtRichelBilderbeekGalleryDialog&) = delete;
   QtRichelBilderbeekGalleryDialog& operator=(const QtRichelBilderbeekGalleryDialog&) = delete;
-  ~QtRichelBilderbeekGalleryDialog();
+  ~QtRichelBilderbeekGalleryDialog() noexcept;
 
   ///Obtain the version of this class
-  static const std::string GetVersion();
+  static const std::string GetVersion() noexcept;
 
   ///Obtain the version history of this class
-  static const std::vector<std::string> GetVersionHistory();
+  static const std::vector<std::string> GetVersionHistory() noexcept;
 
 protected:
   void keyPressEvent(QKeyEvent* e);

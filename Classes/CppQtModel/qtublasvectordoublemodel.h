@@ -28,23 +28,23 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/numeric/ublas/vector.hpp>
-#pragma GCC diagnostic pop
 #include <QAbstractTableModel>
+#pragma GCC diagnostic pop
 
 namespace ribi {
 
 struct QtUblasVectorDoubleModel: public QAbstractTableModel
 {
-  explicit QtUblasVectorDoubleModel(QObject *parent = 0);
+  explicit QtUblasVectorDoubleModel(QObject *parent = 0) noexcept;
 
   ///Working with the raw data
-  const boost::numeric::ublas::vector<double>& GetRawData() const { return m_data; }
+  const boost::numeric::ublas::vector<double>& GetRawData() const noexcept{ return m_data; }
 
   ///Obtain the version of this class
-  static const std::string GetVersion();
+  static const std::string GetVersion() noexcept;
 
   ///Obtain the version history of this class
-  static const std::vector<std::string> GetVersionHistory();
+  static const std::vector<std::string> GetVersionHistory() noexcept;
 
   ///Set the header text
   void SetHeaderData(const std::string& title, const std::vector<std::string>& header_text);
@@ -63,13 +63,13 @@ struct QtUblasVectorDoubleModel: public QAbstractTableModel
   std::vector<std::string> m_header_vertical_text;
 
   ///Must be defined from ABC
-  int columnCount(const QModelIndex &parent = QModelIndex()) const;
+  int columnCount(const QModelIndex &parent = QModelIndex()) const noexcept;
 
   ///Must be defined from ABC
   QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const;
 
   ///These flags are needed to allow editing
-  Qt::ItemFlags flags(const QModelIndex &index) const;
+  Qt::ItemFlags flags(const QModelIndex &index) const noexcept;
 
   ///Redefined from ABC
   QVariant headerData(int section, Qt::Orientation orientation, int role) const;
@@ -84,7 +84,7 @@ struct QtUblasVectorDoubleModel: public QAbstractTableModel
   bool removeRows(int row, int count, const QModelIndex &parent);
 
   ///Must be defined from ABC
-  int rowCount(const QModelIndex &parent = QModelIndex()) const;
+  int rowCount(const QModelIndex &parent = QModelIndex()) const noexcept;
 
   ///Needed for editable data
   bool setData(const QModelIndex &index, const QVariant &value, int role = Qt::EditRole);
@@ -94,7 +94,7 @@ struct QtUblasVectorDoubleModel: public QAbstractTableModel
 
   #ifndef NDEBUG
   ///Test this class
-  static void Test();
+  static void Test() noexcept;
   #endif
 
 };

@@ -46,7 +46,8 @@ ribi::MultipleChoiceQuestionDialog::MultipleChoiceQuestionDialog(const std::stri
   assert(GetQuestion());
 }
 
-boost::shared_ptr<ribi::MultipleChoiceQuestion> ribi::MultipleChoiceQuestionDialog::CreateDefaultQuestion()
+boost::shared_ptr<ribi::MultipleChoiceQuestion>
+  ribi::MultipleChoiceQuestionDialog::CreateDefaultQuestion() noexcept
 {
   return boost::shared_ptr<MultipleChoiceQuestion>(
     new MultipleChoiceQuestion(
@@ -58,12 +59,12 @@ boost::shared_ptr<ribi::MultipleChoiceQuestion> ribi::MultipleChoiceQuestionDial
   );
 }
 
-const std::string ribi::MultipleChoiceQuestionDialog::GetVersion()
+const std::string ribi::MultipleChoiceQuestionDialog::GetVersion() noexcept
 {
   return "1.0";
 }
 
-const std::vector<std::string> ribi::MultipleChoiceQuestionDialog::GetVersionHistory()
+const std::vector<std::string> ribi::MultipleChoiceQuestionDialog::GetVersionHistory() noexcept
 {
   return {
     "2011-06-29: version 1.0: initial version"

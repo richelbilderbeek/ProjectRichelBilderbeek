@@ -41,7 +41,7 @@ public:
   explicit QtRubiksClockMenuDialog(QWidget *parent = 0);
   QtRubiksClockMenuDialog(const QtRubiksClockMenuDialog&) = delete;
   QtRubiksClockMenuDialog& operator=(const QtRubiksClockMenuDialog&) = delete;
-  ~QtRubiksClockMenuDialog();
+  ~QtRubiksClockMenuDialog() noexcept;
 
 protected:
   void keyPressEvent(QKeyEvent *);

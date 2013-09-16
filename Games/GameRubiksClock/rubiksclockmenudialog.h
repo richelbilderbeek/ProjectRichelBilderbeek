@@ -32,9 +32,9 @@ namespace ribi {
 ///The GUI independent version of WtRubiksClockMenuDialog
 struct RubiksClockMenuDialog
 {
-  static const std::vector<std::string> GetVersionHistory();
-  static const std::string GetVersion();
-  static const About GetAbout();
+  static const std::vector<std::string> GetVersionHistory() noexcept;
+  static const std::string GetVersion() noexcept;
+  static const About GetAbout() noexcept;
 };
 
 } //~namespace ribi

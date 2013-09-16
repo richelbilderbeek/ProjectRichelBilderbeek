@@ -29,7 +29,7 @@ public:
   QtSteadyStateKalmanFilterCalculationDialog& operator=(const QtSteadyStateKalmanFilterCalculationDialog&) = delete;
 
   explicit QtSteadyStateKalmanFilterCalculationDialog(QWidget *parent = 0);
-  ~QtSteadyStateKalmanFilterCalculationDialog();
+  ~QtSteadyStateKalmanFilterCalculationDialog() noexcept;
 
   ///Obtain the Kalman filter type as an enum
   KalmanFilterType GetType() const { return KalmanFilterType::steady_state; }

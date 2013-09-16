@@ -35,18 +35,17 @@ struct OpenQuestion;
 struct OpenQuestionDialog : public QuestionDialog
 {
   explicit OpenQuestionDialog(const std::string& question);
-
   explicit OpenQuestionDialog(const boost::shared_ptr<Question>& question);
 
   ///Obtain the version
-  static const std::string GetVersion();
+  static const std::string GetVersion() noexcept;
 
   ///Obtain the version history
-  static const std::vector<std::string> GetVersionHistory();
+  static const std::vector<std::string> GetVersionHistory() noexcept;
 
   private:
   friend void boost::checked_delete<>(OpenQuestionDialog*);
-  ~OpenQuestionDialog() {}
+  ~OpenQuestionDialog() noexcept {}
 };
 
 } //~namespace ribi

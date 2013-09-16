@@ -49,35 +49,32 @@ struct LedWidget;
 ///user interface of the display of a MysteryMachine
 struct MysteryMachineWidget : public Widget
 {
-  explicit MysteryMachineWidget(const Rect& geometry
-    = Rect(0,0,200,400));
+  explicit MysteryMachineWidget(const Rect& geometry = Rect(0,0,200,400)) noexcept;
 
   ///Respond to the user clicking on the MysteryMachineWidget
-  void Click(const int x, const int y);
+  void Click(const int x, const int y) noexcept;
 
   const MysteryMachine * GetMachine() const { return m_machine.get(); }
 
   ///Obtain the version of this class
-  static const std::string GetVersion();
+  static const std::string GetVersion() noexcept;
 
   ///Obtain the version history of this class
-  static const std::vector<std::string> GetVersionHistory();
+  static const std::vector<std::string> GetVersionHistory() noexcept;
 
   private:
-  ///MysteryMachineWidget can only be deleted by Boost smart pointers
-  virtual ~MysteryMachineWidget() {}
-  ///MysteryMachineWidget can only be deleted by Boost smart pointers
+  virtual ~MysteryMachineWidget() noexcept {}
   friend void boost::checked_delete<>(MysteryMachineWidget*);
 
   boost::scoped_ptr<MysteryMachine> m_machine;
 
   ///Respond to a change in geometry
-  void OnResize();
+  void OnResize() noexcept;
 
-  friend std::ostream& operator<<(std::ostream& os, const MysteryMachineWidget& widget);
+  friend std::ostream& operator<<(std::ostream& os, const MysteryMachineWidget& widget) noexcept;
 };
 
-std::ostream& operator<<(std::ostream& os, const MysteryMachineWidget& widget);
+std::ostream& operator<<(std::ostream& os, const MysteryMachineWidget& widget) noexcept;
 
 } //~namespace ribi
 

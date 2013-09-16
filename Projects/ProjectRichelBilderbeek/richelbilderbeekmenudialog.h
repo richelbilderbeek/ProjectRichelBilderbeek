@@ -44,13 +44,13 @@ struct MenuDialog
   const std::vector<boost::shared_ptr<Program> >& GetPrograms() const { return m_programs; }
 
   ///Obtain the version of this class
-  static const std::string GetVersion();
+  static const std::string GetVersion() noexcept;
 
   ///Obtain the version history of this class
-  static const std::vector<std::string> GetVersionHistory();
+  static const std::vector<std::string> GetVersionHistory() noexcept;
 
   ///Obtain the About information of this class
-  static const About GetAbout();
+  static const About GetAbout() noexcept;
 
   ///Every Program by Richel Bilderbeek
   const std::vector<boost::shared_ptr<Program> > m_programs;

@@ -47,9 +47,9 @@ struct GalleryMenuDialog
   static const std::vector<std::string> CreateHtmlToolGallery();
 
 
-  static const About GetAbout();
-  static const std::string GetVersion();
-  static const std::vector<std::string> GetVersionHistory();
+  static const About GetAbout() noexcept;
+  static const std::string GetVersion() noexcept;
+  static const std::vector<std::string> GetVersionHistory() noexcept;
 
   ///Test this class
   static void Test();

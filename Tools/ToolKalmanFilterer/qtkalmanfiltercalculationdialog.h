@@ -28,7 +28,7 @@ public:
   QtKalmanFilterCalculationDialog& operator=(const QtKalmanFilterCalculationDialog&) = delete;
 
   explicit QtKalmanFilterCalculationDialog(QWidget *parent = 0);
-  virtual ~QtKalmanFilterCalculationDialog();
+  virtual ~QtKalmanFilterCalculationDialog() noexcept;
 
   ///Obtain the Kalman filter type as an enum
   virtual KalmanFilterType GetType() const = 0;

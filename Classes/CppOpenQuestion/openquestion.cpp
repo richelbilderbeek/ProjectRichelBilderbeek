@@ -52,7 +52,7 @@ ribi::OpenQuestion::OpenQuestion(
   //assert(!correct_answers.empty() && "Correct answer must not be empty");
 }
 
-ribi::Question * ribi::OpenQuestion::Clone() const
+ribi::Question * ribi::OpenQuestion::Clone() const noexcept
 {
   return new OpenQuestion(
     this->GetFilename(),
@@ -76,17 +76,17 @@ const std::vector<std::string> ribi::OpenQuestion::ExtractAnswers(const std::str
   return w;
 }
 
-const std::vector<std::string>& ribi::OpenQuestion::GetAnswers() const
+const std::vector<std::string>& ribi::OpenQuestion::GetAnswers() const noexcept
 {
   return this->Question::GetAnswers();
 }
 
-const std::string ribi::OpenQuestion::GetVersion()
+const std::string ribi::OpenQuestion::GetVersion() noexcept
 {
   return "1.1";
 }
 
-const std::vector<std::string> ribi::OpenQuestion::GetVersionHistory()
+const std::vector<std::string> ribi::OpenQuestion::GetVersionHistory() noexcept
 {
   return {
     "2011-06-27: version 1.0: initial version",
@@ -96,7 +96,7 @@ const std::vector<std::string> ribi::OpenQuestion::GetVersionHistory()
 
 const std::vector<std::string> ribi::OpenQuestion::SeperateString(
   const std::string& input,
-  const char seperator)
+  const char seperator) noexcept
 {
   std::vector<std::string> v;
   boost::algorithm::split(v,input,

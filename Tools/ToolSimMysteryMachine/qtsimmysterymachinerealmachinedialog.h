@@ -37,10 +37,10 @@ class QtSimMysteryMachineRealMachineDialog : public QDialog
     Q_OBJECT
 
 public:
-    explicit QtSimMysteryMachineRealMachineDialog(QWidget *parent = 0);
+    explicit QtSimMysteryMachineRealMachineDialog(QWidget *parent = 0) noexcept;
     QtSimMysteryMachineRealMachineDialog(const QtSimMysteryMachineRealMachineDialog&) = delete;
     QtSimMysteryMachineRealMachineDialog& operator=(const QtSimMysteryMachineRealMachineDialog&) = delete;
-    ~QtSimMysteryMachineRealMachineDialog();
+    ~QtSimMysteryMachineRealMachineDialog() noexcept;
 
 private:
     Ui::QtSimMysteryMachineRealMachineDialog *ui;

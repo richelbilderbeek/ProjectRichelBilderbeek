@@ -31,7 +31,7 @@ public:
   QtFixedLagSmootherKalmanFilterCalculationDialog operator=(const QtFixedLagSmootherKalmanFilterCalculationDialog&) = delete;
 
   explicit QtFixedLagSmootherKalmanFilterCalculationDialog(QWidget *parent = 0);
-  ~QtFixedLagSmootherKalmanFilterCalculationDialog();
+  ~QtFixedLagSmootherKalmanFilterCalculationDialog() noexcept;
 
   ///Obtain the Kalman filter type as an enum
   KalmanFilterType GetType() const { return KalmanFilterType::fixed_lag_smoother; }

@@ -37,7 +37,7 @@ boost::shared_ptr<ribi::Music::Scale> ribi::Music::Scale::CreateScale(
   return *i;
 }
 
-std::vector<boost::shared_ptr<ribi::Music::Scale> > ribi::Music::Scale::CreateScales(const Note root)
+std::vector<boost::shared_ptr<ribi::Music::Scale> > ribi::Music::Scale::CreateScales(const Note root) noexcept
 {
   return
   {
@@ -53,7 +53,7 @@ std::vector<boost::shared_ptr<ribi::Music::Scale> > ribi::Music::Scale::CreateSc
   };
 }
 
-bool ribi::Music::Scale::Fits(const boost::shared_ptr<Chord>& chord) const
+bool ribi::Music::Scale::Fits(const boost::shared_ptr<Chord>& chord) const noexcept
 {
   const std::vector<Note> notes_chord = chord->GetNotes();
   const std::vector<Note> notes_scale = this->GetNotes();
@@ -71,7 +71,7 @@ bool ribi::Music::Scale::Fits(const boost::shared_ptr<Chord>& chord) const
 }
 
 
-const std::vector<ribi::Music::Note> ribi::Music::Scale::GetNotes() const
+const std::vector<ribi::Music::Note> ribi::Music::Scale::GetNotes() const noexcept
 {
   std::vector<Note> notes;
   Note cur = m_root;
@@ -86,12 +86,12 @@ const std::vector<ribi::Music::Note> ribi::Music::Scale::GetNotes() const
   return notes;
 }
 
-const std::string ribi::Music::Scale::GetVersion()
+const std::string ribi::Music::Scale::GetVersion() noexcept
 {
   return "1.1";
 }
 
-const std::vector<std::string> ribi::Music::Scale::GetVersionHistory()
+const std::vector<std::string> ribi::Music::Scale::GetVersionHistory() noexcept
 {
   return {
     "2012-08-10: version 1.0: initial version with five different scales",
@@ -99,7 +99,7 @@ const std::vector<std::string> ribi::Music::Scale::GetVersionHistory()
   };
 }
 
-void ribi::Music::Scale::Test()
+void ribi::Music::Scale::Test() noexcept
 {
   {
     static bool is_tested = false;
@@ -108,7 +108,7 @@ void ribi::Music::Scale::Test()
   }
 }
 
-ribi::Music::ScaleBlues::ScaleBlues(const Note root)
+ribi::Music::ScaleBlues::ScaleBlues(const Note root) noexcept
   : Scale(root, {3,2,1,1,3} )
 {
 
@@ -116,26 +116,26 @@ ribi::Music::ScaleBlues::ScaleBlues(const Note root)
 
 //C-D-Eb-F-G-Ab-B
 // 2 1  2 2 1  3
-ribi::Music::ScaleHarmonicMinor::ScaleHarmonicMinor(const Note root)
+ribi::Music::ScaleHarmonicMinor::ScaleHarmonicMinor(const Note root) noexcept
   : Scale(root, {2,1,2,2,1,3} )
 {
 
 }
 
-ribi::Music::ScaleHexatonic::ScaleHexatonic(const Note root)
+ribi::Music::ScaleHexatonic::ScaleHexatonic(const Note root) noexcept
   : Scale(root, {2,2,2,2,2} )
 {
 
 }
 
-ribi::Music::ScaleHyperMajor::ScaleHyperMajor(const Note root)
+ribi::Music::ScaleHyperMajor::ScaleHyperMajor(const Note root) noexcept
   : Scale(root, {1,3,1,3,1} )
 {
 
 }
 
 
-ribi::Music::ScaleMajor::ScaleMajor(const Note root)
+ribi::Music::ScaleMajor::ScaleMajor(const Note root) noexcept
   : Scale(root, {2,2,1,2,2,2} )
 {
 
@@ -143,7 +143,7 @@ ribi::Music::ScaleMajor::ScaleMajor(const Note root)
 
 //C-D-E-G-A
 // 2 2 3 2
-ribi::Music::ScaleMajorPentatonic::ScaleMajorPentatonic(const Note root)
+ribi::Music::ScaleMajorPentatonic::ScaleMajorPentatonic(const Note root) noexcept
   : Scale(root, {2,2,3,2} )
 {
 
@@ -151,19 +151,19 @@ ribi::Music::ScaleMajorPentatonic::ScaleMajorPentatonic(const Note root)
 
 //C-Eb-F-G_Bb
 // 3  2 2 3
-ribi::Music::ScaleMinorPentatonic::ScaleMinorPentatonic(const Note root)
+ribi::Music::ScaleMinorPentatonic::ScaleMinorPentatonic(const Note root) noexcept
   : Scale(root, {3,2,2,3} )
 {
 
 }
 
-ribi::Music::ScaleMollDurDominant::ScaleMollDurDominant(const Note root)
+ribi::Music::ScaleMollDurDominant::ScaleMollDurDominant(const Note root) noexcept
   : Scale(root, {2,2,1,2,1,3} )
 {
 
 }
 
-ribi::Music::ScaleMollDurSubdominant::ScaleMollDurSubdominant(const Note root)
+ribi::Music::ScaleMollDurSubdominant::ScaleMollDurSubdominant(const Note root) noexcept
   : Scale(root, {2,2,1,2,1,2} )
 {
 

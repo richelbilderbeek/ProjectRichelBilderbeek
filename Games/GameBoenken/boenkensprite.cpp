@@ -63,23 +63,22 @@ QRect ribi::Boenken::Sprite::rect() const
   return QRect(m_x,m_y,m_size,m_size);
 }
 
-const QPixmap& ribi::Boenken::Sprite::pixmap() const
+const QPixmap& ribi::Boenken::Sprite::pixmap() const noexcept
 {
   return m_pixmap;
 }
 
 void ribi::Boenken::Sprite::Draw(QPainter& painter) const
 {
-  //Draw the globe
   painter.drawPixmap(this->rect(),this->pixmap());
 }
 
-const std::string ribi::Boenken::Sprite::GetVersion()
+const std::string ribi::Boenken::Sprite::GetVersion() noexcept
 {
   return "1.1";
 }
 
-const std::vector<std::string> ribi::Boenken::Sprite::GetVersionHistory()
+const std::vector<std::string> ribi::Boenken::Sprite::GetVersionHistory() noexcept
 {
   return
   {
@@ -96,7 +95,7 @@ void ribi::Boenken::Sprite::setArenaSize(const int width, const int height)
 }
 
 #ifndef NDEBUG
-void ribi::Boenken::Sprite::Test()
+void ribi::Boenken::Sprite::Test() noexcept
 {
   {
     static bool is_tested = false;
@@ -217,7 +216,7 @@ QPixmap ribi::Boenken::Sprite::DrawGlobe(
   return pixmap;
 }
 
-double ribi::Boenken::Sprite::GetAngle(const double dx, const double dy)
+double ribi::Boenken::Sprite::GetAngle(const double dx, const double dy) noexcept
 {
   const double pi = boost::math::constants::pi<double>();
   return pi - std::atan2(dx,dy);
@@ -229,7 +228,7 @@ void ribi::Boenken::Sprite::DoPerfectElasticCollision(
   double& angle1,
   double& speed1,
   double& angle2,
-  double& speed2)
+  double& speed2) noexcept
 {
   const double pi = boost::math::constants::pi<double>();
   //The length of the impulse of player 1 (assumes both players have equal mass!)

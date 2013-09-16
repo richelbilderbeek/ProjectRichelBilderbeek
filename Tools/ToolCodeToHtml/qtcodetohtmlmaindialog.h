@@ -50,7 +50,7 @@ public:
   explicit QtCodeToHtmlMainDialog(QWidget *parent = 0);
   QtCodeToHtmlMainDialog(const QtCodeToHtmlMainDialog&) = delete;
   QtCodeToHtmlMainDialog& operator=(const QtCodeToHtmlMainDialog&) = delete;
-  ~QtCodeToHtmlMainDialog();
+  ~QtCodeToHtmlMainDialog() noexcept;
 
 protected:
   void keyPressEvent(QKeyEvent *);

@@ -200,7 +200,7 @@ const std::set<std::string> ribi::QtCreatorProFileZipScript::ExtractFilenames(
   return filenames;
 }
 
-const ribi::About ribi::QtCreatorProFileZipScript::GetAbout()
+const ribi::About ribi::QtCreatorProFileZipScript::GetAbout() noexcept
 {
   ribi::About a(
     "Richel Bilderbeek",
@@ -265,17 +265,17 @@ const std::vector<std::string> ribi::QtCreatorProFileZipScript::GetProFilesInFol
   return w;
 }
 
-const std::string ribi::QtCreatorProFileZipScript::GetVersion()
+const std::string ribi::QtCreatorProFileZipScript::GetVersion() noexcept
 {
   return "1.0";
 }
 
-const std::vector<std::string> ribi::QtCreatorProFileZipScript::GetVersionHistory()
+const std::vector<std::string> ribi::QtCreatorProFileZipScript::GetVersionHistory() noexcept
 {
-  std::vector<std::string> v;
-  v.push_back("2013-05-19: version 1.0: initial version");
-  v.push_back("2013-08-19: version 1.1: replaced Boost.Regex by Boost.Xpressive");
-  return v;
+  return {
+    "2013-05-19: version 1.0: initial version",
+    "2013-08-19: version 1.1: replaced Boost.Regex by Boost.Xpressive"
+  };
 }
 
 bool ribi::QtCreatorProFileZipScript::IsRegularFile(const std::string& filename)
@@ -307,7 +307,7 @@ const boost::shared_ptr<ribi::QtCreatorProFileZipScript> ribi::QtCreatorProFileZ
 
 
 #ifndef NDEBUG
-void ribi::QtCreatorProFileZipScript::Test()
+void ribi::QtCreatorProFileZipScript::Test() noexcept
 {
   {
     static bool is_tested = false;
@@ -363,7 +363,7 @@ void ribi::QtCreatorProFileZipScript::Test()
 }
 #endif
 
-std::ostream& ribi::operator<<(std::ostream& os,const QtCreatorProFileZipScript& script)
+std::ostream& ribi::operator<<(std::ostream& os,const QtCreatorProFileZipScript& script) noexcept
 {
   //using ribi::QtCreatorProFileZipScript::GetPath;
   assert(script.GetProFileName().size() > 6);

@@ -43,7 +43,7 @@ public:
   explicit QtMaziakGameOverDialog(QWidget *parent = 0);
   QtMaziakGameOverDialog(const QtMaziakGameOverDialog&) = delete;
   QtMaziakGameOverDialog& operator=(const QtMaziakGameOverDialog&) = delete;
-  ~QtMaziakGameOverDialog();
+  ~QtMaziakGameOverDialog() noexcept;
 
 protected:
   void paintEvent(QPaintEvent*);

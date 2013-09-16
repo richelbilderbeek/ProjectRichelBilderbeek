@@ -40,7 +40,7 @@ public:
   explicit QtCodeToHtmlMenuDialog(QWidget *parent = 0);
   QtCodeToHtmlMenuDialog(const QtCodeToHtmlMenuDialog&) = delete;
   QtCodeToHtmlMenuDialog& operator=(const QtCodeToHtmlMenuDialog&) = delete;
-  ~QtCodeToHtmlMenuDialog();
+  ~QtCodeToHtmlMenuDialog() noexcept;
 
 protected:
   void keyPressEvent(QKeyEvent * event);

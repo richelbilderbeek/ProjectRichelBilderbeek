@@ -40,7 +40,7 @@ public:
   explicit QtTicTacToeMenuDialog(QWidget *parent = 0);
   QtTicTacToeMenuDialog(const QtTicTacToeMenuDialog&) = delete;
   QtTicTacToeMenuDialog& operator=(const QtTicTacToeMenuDialog&) = delete;
-  ~QtTicTacToeMenuDialog();
+  ~QtTicTacToeMenuDialog() noexcept;
 
 private:
   Ui::QtTicTacToeMenuDialog *ui;

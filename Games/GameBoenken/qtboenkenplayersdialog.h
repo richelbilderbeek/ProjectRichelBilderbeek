@@ -45,7 +45,7 @@ public:
   explicit QtBoenkenPlayersDialog(QWidget *parent = 0);
   QtBoenkenPlayersDialog(const QtBoenkenPlayersDialog&) = delete;
   QtBoenkenPlayersDialog& operator=(const QtBoenkenPlayersDialog&) = delete;
-  ~QtBoenkenPlayersDialog();
+  ~QtBoenkenPlayersDialog() noexcept;
 
 private:
   Ui::QtBoenkenPlayersDialog *ui;

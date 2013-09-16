@@ -40,7 +40,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic pop
 
 ribi::MysteryMachineWidget::MysteryMachineWidget(
-  const Rect& geometry)
+  const Rect& geometry) noexcept
   : m_machine(new MysteryMachine)
 
 {
@@ -50,7 +50,7 @@ ribi::MysteryMachineWidget::MysteryMachineWidget(
 }
 
 ///Respond to the user clicking on the MysteryMachineWidget
-void ribi::MysteryMachineWidget::Click(const int x, const int y)
+void ribi::MysteryMachineWidget::Click(const int x, const int y) noexcept
 {
   if (m_machine->GetDialBack()->IsClicked(x,y))
   {
@@ -66,12 +66,12 @@ void ribi::MysteryMachineWidget::Click(const int x, const int y)
   }
 }
 
-const std::string ribi::MysteryMachineWidget::GetVersion()
+const std::string ribi::MysteryMachineWidget::GetVersion() noexcept
 {
   return "1.1";
 }
 
-const std::vector<std::string> ribi::MysteryMachineWidget::GetVersionHistory()
+const std::vector<std::string> ribi::MysteryMachineWidget::GetVersionHistory() noexcept
 {
   return {
     "2011-07-03: version 1.0: initial version",
@@ -84,7 +84,7 @@ const std::vector<std::string> ribi::MysteryMachineWidget::GetVersionHistory()
 //  m_signal_mysterymachine_changed();
 //}
 
-void ribi::MysteryMachineWidget::OnResize()
+void ribi::MysteryMachineWidget::OnResize() noexcept
 {
   const double w = boost::numeric_cast<double>(GetGeometry().GetWidth());
   const double h = boost::numeric_cast<double>(GetGeometry().GetHeight());
@@ -122,7 +122,7 @@ void ribi::MysteryMachineWidget::OnResize()
   //m_signal_mysterymachine_changed();
 }
 
-std::ostream& ribi::operator<<(std::ostream& os, const MysteryMachineWidget& widget)
+std::ostream& ribi::operator<<(std::ostream& os, const MysteryMachineWidget& widget) noexcept
 {
   os
     << "<MysteryMachineWidget>"

@@ -16,7 +16,7 @@ struct QtRoundedRectItem : public QGraphicsRectItem
 {
   QtRoundedRectItem(QGraphicsItem *parent = 0);
 
-  virtual ~QtRoundedRectItem() {}
+  virtual ~QtRoundedRectItem() noexcept {}
 
   ///Get the pen by which the contour is drawn
   const QPen& GetContourPen() const { return m_contour_pen; }
@@ -31,10 +31,10 @@ struct QtRoundedRectItem : public QGraphicsRectItem
   double GetRadiusY() const { return m_radius_y; }
 
   ///Obtain the version of this class
-  static const std::string GetVersion();
+  static const std::string GetVersion() noexcept;
 
   ///Obtain the version history of this class
-  static const std::vector<std::string> GetVersionHistory();
+  static const std::vector<std::string> GetVersionHistory() noexcept;
 
   ///Set the pen by which the contours are normally drawn
   ///Default value: QPen(Qt::DashLine)

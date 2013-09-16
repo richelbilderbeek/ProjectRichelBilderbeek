@@ -223,7 +223,6 @@ CONFIG(release, debug|release) {
 #
 #
 
-#Cannot add -Weffc++ because use of Qt resources
 QMAKE_CXXFLAGS += -std=c++11 -Wall -Wextra -Weffc++ -Werror
 
 #

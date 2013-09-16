@@ -46,14 +46,16 @@ struct BinaryNewickVector
   const BigInteger CalcNumOfSymmetries() const;
   double CalcProbabilitySimpleNewick(const double theta) const;
   bool Empty() const { return m_v.empty(); }
-  const std::vector<int>& Peek() const { return m_v; }
+
+  ///Peek at the implementation
+  const std::vector<int>& Peek() const noexcept { return m_v; }
   const std::vector<BinaryNewickVector> GetSimplerNewicks() const;
   const std::pair<BinaryNewickVector,BinaryNewickVector> GetRootBranches() const;
   bool IsSimple() const;
-  const std::string ToStr() const;
-  static const std::string GetVersion();
-  static const std::vector<std::string> GetVersionHistory();
-  int Size() const;
+  const std::string ToStr() const noexcept;
+  static const std::string GetVersion() noexcept;
+  static const std::vector<std::string> GetVersionHistory() noexcept;
+  int Size() const noexcept;
 
 
   private:
@@ -77,17 +79,17 @@ struct BinaryNewickVector
     const std::string& newick_str,
     const double theta);
 
-  static void Test();
+  static void Test() noexcept;
 
   static bool NewickCompare(
     const std::vector<int>& lhs,
-    const std::vector<int>& rhs);
+    const std::vector<int>& rhs) noexcept;
 
 };
 
 bool operator<(
   const BinaryNewickVector& lhs,
-  const BinaryNewickVector& rhs);
+  const BinaryNewickVector& rhs) noexcept;
 
 } //~namespace ribi
 

@@ -42,7 +42,7 @@ public:
   explicit QtKalmanFilterDialog(
     const boost::shared_ptr<QtKalmanFilterExperimentModel> model,
     QWidget *parent = 0);
-  ~QtKalmanFilterDialog();
+  ~QtKalmanFilterDialog() noexcept;
 
   ///Obtain the Kalman filter type the user works on
   KalmanFilterType GetKalmanFilterType() const;

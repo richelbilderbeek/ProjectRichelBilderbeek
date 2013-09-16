@@ -37,45 +37,44 @@ struct IpAddress
   explicit IpAddress(const std::string& ip_address);
 
   ///IpAddress is a base class, so its destructor must be virtual
-  virtual ~IpAddress()  {}
+  virtual ~IpAddress() noexcept {}
 
   ///Get the IP address as a std::string
-  const std::string& Get() const { return m_ip_address; }
+  const std::string& Get() const noexcept { return m_ip_address; }
 
   ///Obtain the IpAddress version
-  static const std::string GetVersion();
+  static const std::string GetVersion() noexcept;
 
   ///Obtain the IpAddress version history
-  static const std::vector<std::string> GetVersionHistory();
+  static const std::vector<std::string> GetVersionHistory() noexcept;
 
   private:
   ///The std::string guaranteed to hold a valid IP address
   std::string m_ip_address;
 };
 
-///SafeIpAddress guarantees to contain a valid IP address
-///and only be of a complete type
+///SafeIpAddress contains a valid or invalid IP address
 struct SafeIpAddress //: public IpAddress
 {
-  ///SafeIpAddress constructor throws an exception when
+  ///SafeIpAddress constructor does not throw an exception
   ///ip_address is not a valid IP address
-  SafeIpAddress(const std::string& ip_address);
+  SafeIpAddress(const std::string& ip_address) noexcept;
   SafeIpAddress(const SafeIpAddress&) = delete;
   SafeIpAddress& operator=(const SafeIpAddress&) = delete;
 
   ///Get the possibe IP address as a std::string
-  const std::string& Get() const { return m_ip_address; }
+  const std::string& Get() const noexcept { return m_ip_address; }
 
   private:
-  ~SafeIpAddress()  {}
+  ~SafeIpAddress() noexcept {}
   friend void boost::checked_delete<>(SafeIpAddress*);
 
   ///The std::string that might hold a valid IP address
   std::string m_ip_address;
 };
 
-bool operator==(const IpAddress& lhs,const IpAddress& rhs);
-bool operator==(const SafeIpAddress& lhs,const SafeIpAddress& rhs);
+bool operator==(const IpAddress& lhs,const IpAddress& rhs) noexcept;
+bool operator==(const SafeIpAddress& lhs,const SafeIpAddress& rhs) noexcept;
 
 } //~namespace ribi
 

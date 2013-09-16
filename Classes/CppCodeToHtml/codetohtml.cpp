@@ -137,20 +137,31 @@ void c2h::Test()
   }
   //Test for correct replacements
   {
-    const std::vector<std::pair<std::string,std::string> > v = {
-      { "C++ Builder", "<a href=\"CppBuilder.htm\">C++ Builder</a>" },
-      { "C++11", "<a href=\"Cpp11.htm\">C++11</a>" },
-      { "C++0x", "<a href=\"Cpp0x.htm\">C++0x</a>" },
-      { "C++", "<a href=\"Cpp.htm\">C++</a>" },
-      { "++", "<a href=\"CppOperatorIncrement.htm\">++</a>" },
-      { "--", "<a href=\"CppOperatorDecrement.htm\">--</a>" }
+    const std::vector<std::pair<std::string,std::string> > v {
+      { "C++ Builder", R"(<a href="CppBuilder.htm">C++ Builder</a>)" },
+      { "BeerWanter", R"(<a href="GameBeerWanter.htm">BeerWanter</a>)" },
+      { "int main()", R"(<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>())" },
+      { "boenken", R"(<a href="GameBoenken.htm">boenken</a>)" },
+      { "; ++i)", R"(; <a href="CppOperatorIncrement.htm">++</a>i))" },
+      { "C++11", R"(<a href="Cpp11.htm">C++11</a>)" },
+      { "C++0x", R"(<a href="Cpp0x.htm">C++0x</a>)" },
+      { "C++", R"(<a href="Cpp.htm">C++</a>)" },
+      { "++", R"(<a href="CppOperatorIncrement.htm">++</a>)" },
+      { "--", R"(<a href="CppOperatorDecrement.htm">--</a>)" }
     };
     std::for_each(v.begin(),v.end(),
       [](const std::pair<std::string,std::string>& p)
       {
         const std::string& s = p.first;
         const std::string t = Content::MultiReplace(s,Content::GetReplacementsCpp().Get());
-        assert(t == p.second);
+        const std::string expected = p.second;
+        if (t != expected)
+        {
+          TRACE("ERROR");
+          TRACE(expected);
+          TRACE(t);
+        }
+        assert(t == expected);
       }
     );
   }
@@ -488,12 +499,12 @@ const std::vector<std::string> c2h::FilterFiles(const std::vector<std::string>& 
   return v;
 }
 
-bool c2h::IsFolder(const std::string& filename)
+bool c2h::IsFolder(const std::string& filename) noexcept
 {
   return QDir(filename.c_str()).exists();
 }
 
-bool c2h::IsRegularFile(const std::string& filename)
+bool c2h::IsRegularFile(const std::string& filename) noexcept
 {
   return !QDir(filename.c_str()).exists() && QFile::exists(filename.c_str());
 }

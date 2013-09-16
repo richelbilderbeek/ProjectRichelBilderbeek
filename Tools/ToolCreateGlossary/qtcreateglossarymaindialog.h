@@ -40,7 +40,7 @@ public:
   explicit QtCreateGlossaryMainDialog(QWidget *parent = 0);
   QtCreateGlossaryMainDialog(const QtCreateGlossaryMainDialog&) = delete;
   QtCreateGlossaryMainDialog& operator=(const QtCreateGlossaryMainDialog&) = delete;
-  ~QtCreateGlossaryMainDialog();
+  ~QtCreateGlossaryMainDialog() noexcept;
 
 private slots:
   void create_glossary();

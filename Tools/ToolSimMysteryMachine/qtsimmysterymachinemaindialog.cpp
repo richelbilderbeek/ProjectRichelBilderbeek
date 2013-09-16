@@ -39,7 +39,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "ui_qtsimmysterymachinemaindialog.h"
 #pragma GCC diagnostic pop
 
-ribi::QtSimMysteryMachineMainDialog::QtSimMysteryMachineMainDialog(QWidget *parent)
+ribi::QtSimMysteryMachineMainDialog::QtSimMysteryMachineMainDialog(QWidget *parent) noexcept
  : QDialog(parent),
    ui(new Ui::QtSimMysteryMachineMainDialog),
    m_machine(new QtMysteryMachineWidget)

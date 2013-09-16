@@ -46,7 +46,7 @@ struct KalmanFilterExample
 
   private:
   ///Can only be deleted by boost::checked_delete
-  ~KalmanFilterExample() {}
+  ~KalmanFilterExample() noexcept {}
   ///Can only be deleted by smart pointers: boost::checked_delete and std::unique_ptr
   friend void boost::checked_delete<>(KalmanFilterExample*);
   friend void boost::checked_delete<>(const KalmanFilterExample*);

@@ -12,10 +12,7 @@ namespace ribi {
 ///The estimates it gives will be int
 struct IntegerStateObserver
 {
-  ///ABC must have public virtual destructor
-  // * Herb Sutter, Andrei Alexandrescu. C++ coding standards: 101 rules, guidelines, and best practices.
-  //   ISBN: 0-32-111358-6. Item 50: 'Make base class destructors public and virtual, or protected and nonvirtual'
-  virtual ~IntegerStateObserver() {}
+  virtual ~IntegerStateObserver() noexcept {}
 
   ///Get the current state estimate
   virtual int64_t GetEstimate() const = 0;
@@ -24,10 +21,10 @@ struct IntegerStateObserver
   virtual void Update(const int64_t measurement) = 0;
 
   ///Obtain the version of this class
-  static const std::string GetVersion();
+  static const std::string GetVersion() noexcept;
 
   ///Obtain the version history of this class
-  static const std::vector<std::string> GetVersionHistory();
+  static const std::vector<std::string> GetVersionHistory() noexcept;
 };
 
 } //~namespace ribi

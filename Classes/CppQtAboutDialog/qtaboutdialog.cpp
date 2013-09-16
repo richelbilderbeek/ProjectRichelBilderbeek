@@ -32,7 +32,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #pragma GCC diagnostic pop
 
-ribi::QtAboutDialog::QtAboutDialog(const ribi::About& about)
+ribi::QtAboutDialog::QtAboutDialog(const ribi::About& about) noexcept
   : ui(new Ui::QtAboutDialog)
 {
   ui->setupUi(this);
@@ -111,17 +111,17 @@ ribi::QtAboutDialog::QtAboutDialog(const ribi::About& about)
   ui->text_whatsnew->moveCursor(QTextCursor::Start);
 }
 
-ribi::QtAboutDialog::~QtAboutDialog()
+ribi::QtAboutDialog::~QtAboutDialog() noexcept
 {
   delete ui;
 }
 
-const std::string ribi::QtAboutDialog::GetVersion()
+const std::string ribi::QtAboutDialog::GetVersion() noexcept
 {
-  return "1.7";
+  return "1.8";
 }
 
-const std::vector<std::string> ribi::QtAboutDialog::GetVersionHistory()
+const std::vector<std::string> ribi::QtAboutDialog::GetVersionHistory() noexcept
 {
   return {
     "2011-01-11: version 1.0: initial version of QtAboutDialog",
@@ -132,6 +132,7 @@ const std::vector<std::string> ribi::QtAboutDialog::GetVersionHistory()
     "2012-01-27: version 1.5: abandoned use of BOOST_FOREACH, due to run-time errors",
     "2013-09-05: version 1.6: transition to namespace ribi"
     "2013-09-10: version 1.7: explicitly disabled copying, compiles with -Weffc++"
+    "2013-09-16: version 1.8: noexcept"
   };
 }
 

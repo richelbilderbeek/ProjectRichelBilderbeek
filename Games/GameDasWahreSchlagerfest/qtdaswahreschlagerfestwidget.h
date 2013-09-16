@@ -41,7 +41,7 @@ class QtDasWahreSchlagerfestWidget : public QWidget
     
 public:
     explicit QtDasWahreSchlagerfestWidget(QWidget *parent = 0);
-    ~QtDasWahreSchlagerfestWidget();
+    ~QtDasWahreSchlagerfestWidget() noexcept;
 
 protected:
   void keyPressEvent(QKeyEvent *);

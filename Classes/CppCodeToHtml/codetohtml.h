@@ -97,11 +97,11 @@ namespace c2h {
 
   ///Returns if the name is a folder name
   ///From http://www.richelbilderbeek.nl/CppIsFolder.htm
-  bool IsFolder(const std::string& filename);
+  bool IsFolder(const std::string& filename) noexcept;
 
   ///Determines if a filename is a regular file
   ///From http://www.richelbilderbeek.nl/CppIsRegularFile.htm
-  bool IsRegularFile(const std::string& filename);
+  bool IsRegularFile(const std::string& filename) noexcept;
 
   #ifndef _WIN32
   ///Check if the tool 'tidy' is installed

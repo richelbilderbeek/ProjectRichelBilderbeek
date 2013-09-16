@@ -40,8 +40,8 @@ struct SpriteMoving : public Sprite
     const unsigned char g,
     const unsigned char b);
 
-  double CalcImpulseAngle() const;
-  double CalcImpulseSpeed() const;
+  double CalcImpulseAngle() const noexcept;
+  double CalcImpulseSpeed() const noexcept;
   virtual void Draw(QPainter& painter) const;
   virtual void Move() = 0;
   void Move(const double dx, const double dy) { m_dx += dx; m_dy += dy; }
@@ -51,7 +51,7 @@ struct SpriteMoving : public Sprite
   static void Collision(SpriteMoving * const p1, SpriteMoving * const p2);
 
   ///Debugging purposes
-  static int CountMovingSprites() { return sm_n_moving_sprites; }
+  static int CountMovingSprites() noexcept { return sm_n_moving_sprites; }
 
   protected:
   double m_dx;
@@ -61,7 +61,7 @@ struct SpriteMoving : public Sprite
 
   //private:
   //Ensure SpriteMoving can only be deleted by boost::checked_delete
-  virtual ~SpriteMoving()
+  virtual ~SpriteMoving() noexcept
   {
     --sm_n_moving_sprites;
   }

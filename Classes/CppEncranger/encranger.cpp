@@ -117,7 +117,7 @@ const std::vector<int> ribi::Encranger::CreateTable(const int key, const unsigne
   return v;
 }
 
-const std::vector<char> ribi::Encranger::CreateCharacters() const
+const std::vector<char> ribi::Encranger::CreateCharacters() const noexcept
 {
   std::vector<char> v;
   //Uppercase
@@ -223,12 +223,12 @@ const std::vector<char> ribi::Encranger::CreateCharacters() const
   return v;
 }
 
-const std::string ribi::Encranger::GetVersion()
+const std::string ribi::Encranger::GetVersion() noexcept
 {
   return "1.1";
 }
 
-const std::vector<std::string> ribi::Encranger::GetVersionHistory()
+const std::vector<std::string> ribi::Encranger::GetVersionHistory() noexcept
 {
   return {
     "2010-01-05: version 1.0: initial version",

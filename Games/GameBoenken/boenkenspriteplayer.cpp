@@ -66,7 +66,7 @@ ribi::Boenken::SpritePlayer::SpritePlayer(
   //  << this->getY() << ")\n";
 }
 
-ribi::Boenken::SpritePlayer::~SpritePlayer()
+ribi::Boenken::SpritePlayer::~SpritePlayer() noexcept
 {
   //std::clog << "The " << ms_n_players
   //  << "th player is destroyed\n";
@@ -74,7 +74,7 @@ ribi::Boenken::SpritePlayer::~SpritePlayer()
   assert(ms_n_players >= 0);
 }
 
-void ribi::Boenken::SpritePlayer::Move()
+void ribi::Boenken::SpritePlayer::Move() noexcept
 {
   ///Move the sprite
   m_x += m_dx;
@@ -118,13 +118,13 @@ void ribi::Boenken::SpritePlayer::Move()
 }
 
 
-void ribi::Boenken::SpritePlayer::Accelerate()
+void ribi::Boenken::SpritePlayer::Accelerate() noexcept
 {
   m_dx += (std::sin(m_angle) * m_acceleration);
   m_dy -= (std::cos(m_angle) * m_acceleration);
 }
 
-void ribi::Boenken::SpritePlayer::TurnRight()
+void ribi::Boenken::SpritePlayer::TurnRight() noexcept
 {
   m_angle+=m_turnspeed;
 }

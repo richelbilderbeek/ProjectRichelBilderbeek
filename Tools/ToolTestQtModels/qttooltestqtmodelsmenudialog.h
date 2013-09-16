@@ -37,7 +37,7 @@ public:
   explicit QtToolTestQtModelsMenuDialog(QWidget *parent = 0);
   QtToolTestQtModelsMenuDialog(const QtToolTestQtModelsMenuDialog&) = delete;
   QtToolTestQtModelsMenuDialog& operator=(const QtToolTestQtModelsMenuDialog&) = delete;
-  ~QtToolTestQtModelsMenuDialog();
+  ~QtToolTestQtModelsMenuDialog() noexcept;
 
 protected:
   

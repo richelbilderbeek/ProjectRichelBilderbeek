@@ -42,16 +42,16 @@ struct OpenQuestion : public Question
     const std::vector<std::string>& answers);
 
   ///Create a copy of the Question, depending on the derived class its type
-  Question * Clone() const;
+  Question * Clone() const noexcept;
 
-  const std::vector<std::string>& GetAnswers() const;
+  const std::vector<std::string>& GetAnswers() const noexcept;
 
-  static const std::string GetVersion();
-  static const std::vector<std::string> GetVersionHistory();
+  static const std::string GetVersion() noexcept;
+  static const std::vector<std::string> GetVersionHistory() noexcept;
 
   private:
   friend void boost::checked_delete<>(OpenQuestion *);
-  ~OpenQuestion() {}
+  ~OpenQuestion() noexcept {}
 
   ///The wrong answers are at indices 2 to SeperateString(input,',').size()
   static const std::vector<std::string> ExtractAnswers(
@@ -61,7 +61,7 @@ struct OpenQuestion : public Question
   //From http://www.richelbilderbeek.nl/CppSeperateString.htm
   static const std::vector<std::string> SeperateString(
     const std::string& input,
-    const char seperator);
+    const char seperator) noexcept;
 
 };
 

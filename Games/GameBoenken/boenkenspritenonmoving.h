@@ -61,7 +61,7 @@ struct SpriteNonMoving : public Sprite
 
   private:
   ///Ensure SpriteNonMoving can only be deleted by boost::checked_delete
-  virtual ~SpriteNonMoving() {}
+  virtual ~SpriteNonMoving() noexcept {}
   friend void boost::checked_delete<>(SpriteNonMoving* x);
 };
 

@@ -55,7 +55,7 @@ public:
   );
   QtBoenkenMainDialog(const QtBoenkenMainDialog&) = delete;
   QtBoenkenMainDialog& operator=(const QtBoenkenMainDialog&) = delete;
-  ~QtBoenkenMainDialog();
+  ~QtBoenkenMainDialog() noexcept;
 
 protected:
   void paintEvent(QPaintEvent*);

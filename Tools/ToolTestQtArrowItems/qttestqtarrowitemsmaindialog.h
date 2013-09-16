@@ -47,7 +47,7 @@ public:
   explicit QtTestQtArrowItemsMainDialog(QWidget *parent = 0);
   QtTestQtArrowItemsMainDialog(const QtTestQtArrowItemsMainDialog&) = delete;
   QtTestQtArrowItemsMainDialog& operator=(const QtTestQtArrowItemsMainDialog&) = delete;
-  ~QtTestQtArrowItemsMainDialog();
+  ~QtTestQtArrowItemsMainDialog() noexcept;
 
 protected:
   void keyPressEvent(QKeyEvent *);

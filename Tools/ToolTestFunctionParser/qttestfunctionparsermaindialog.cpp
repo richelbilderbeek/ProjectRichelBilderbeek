@@ -30,9 +30,9 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "ui_qttestfunctionparsermaindialog.h"
 #pragma GCC diagnostic pop
 
-ribi::QtTestFunctionParserMainDialog::QtTestFunctionParserMainDialog(QWidget *parent) :
-  QtHideAndShowDialog(parent),
-  ui(new Ui::QtTestFunctionParserMainDialog)
+ribi::QtTestFunctionParserMainDialog::QtTestFunctionParserMainDialog(QWidget *parent) noexcept
+  : QtHideAndShowDialog(parent),
+    ui(new Ui::QtTestFunctionParserMainDialog)
 {
   ui->setupUi(this);
 
@@ -41,22 +41,22 @@ ribi::QtTestFunctionParserMainDialog::QtTestFunctionParserMainDialog(QWidget *pa
   Parse();
 }
 
-ribi::QtTestFunctionParserMainDialog::~QtTestFunctionParserMainDialog()
+ribi::QtTestFunctionParserMainDialog::~QtTestFunctionParserMainDialog() noexcept
 {
   delete ui;
 }
 
-void ribi::QtTestFunctionParserMainDialog::on_edit_value_textChanged(QString )
+void ribi::QtTestFunctionParserMainDialog::on_edit_value_textChanged(QString ) noexcept
 {
   Parse();
 }
 
-void ribi::QtTestFunctionParserMainDialog::on_edit_function_textChanged(QString )
+void ribi::QtTestFunctionParserMainDialog::on_edit_function_textChanged(QString ) noexcept
 {
   Parse();
 }
 
-void ribi::QtTestFunctionParserMainDialog::Parse()
+void ribi::QtTestFunctionParserMainDialog::Parse() noexcept
 {
  FunctionParser f;
 

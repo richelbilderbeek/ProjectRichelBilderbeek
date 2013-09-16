@@ -19,7 +19,7 @@ struct KalmanFilter
 {
   KalmanFilter(const KalmanFilter&) = delete;
   KalmanFilter& operator=(const KalmanFilter&) = delete;
-  virtual ~KalmanFilter() {}
+  virtual ~KalmanFilter() noexcept {}
 
   ///Obtain the Kalman filter type as an enum
   virtual KalmanFilterType GetType() const = 0;
@@ -31,10 +31,10 @@ struct KalmanFilter
   virtual const boost::shared_ptr<const KalmanFilterParameters> GetParameters() const = 0;
 
   ///Obtain the version of this class
-  static const std::string GetVersion();
+  static const std::string GetVersion() noexcept;
 
   ///Obtain the version history of this class
-  static const std::vector<std::string> GetVersionHistory();
+  static const std::vector<std::string> GetVersionHistory() noexcept;
 
   virtual void SupplyMeasurementAndInput(
     const boost::numeric::ublas::vector<double>& measurements,

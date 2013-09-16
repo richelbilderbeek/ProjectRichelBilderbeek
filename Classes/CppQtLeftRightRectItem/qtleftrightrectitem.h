@@ -40,10 +40,10 @@ struct QtLeftRightRectItem : public QGraphicsRectItem
   QtLeftRightRectItem(QGraphicsItem* parent = 0);
 
   ///Obtain the version of this class
-  static const std::string GetVersion();
+  static const std::string GetVersion() noexcept;
 
   ///Obtain the version history of this class
-  static const std::vector<std::string> GetVersionHistory();
+  static const std::vector<std::string> GetVersionHistory() noexcept;
 
   ///Signal to request a scene update, because this item has moved/changed
   boost::signals2::signal<void ()> m_signal_request_scene_update;

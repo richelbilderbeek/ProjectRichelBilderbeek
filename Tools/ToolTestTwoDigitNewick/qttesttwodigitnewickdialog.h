@@ -41,8 +41,8 @@ public:
   QtTestTwoDigitNewickDialog(const QtTestTwoDigitNewickDialog&) = delete;
   QtTestTwoDigitNewickDialog& operator=(const QtTestTwoDigitNewickDialog&) = delete;
   ~QtTestTwoDigitNewickDialog();
-  static const std::string GetVersion();
-  static const std::vector<std::string> GetVersionHistory();
+  static const std::string GetVersion() noexcept;
+  static const std::vector<std::string> GetVersionHistory() noexcept;
 
 protected:
 

@@ -29,11 +29,11 @@ public:
     const int n_rows = 12);
 
   void DoComputerTurn();
-  int GetActivePlayer() const;
-  static const std::string GetVersion();
-  static const std::vector<std::string> GetVersionHistory();
-  int GetWinner() const;
-  bool IsComputerTurn() const;
+  int GetActivePlayer() const noexcept;
+  static const std::string GetVersion() noexcept;
+  static const std::vector<std::string> GetVersionHistory() noexcept;
+  int GetWinner() const noexcept;
+  bool IsComputerTurn() const noexcept;
 
   ///m_signal_valid_move is emitted on a valid move,
   ///causing the game to be terminated or let
@@ -56,7 +56,7 @@ protected:
   const QImage m_player2;
   const QImage m_player3;
   const QImage m_empty;
-  const QImage& GetImage(const int sprite) const;
+  const QImage& GetImage(const int sprite) const noexcept;
 
   static const int m_sprite_width;
   static const int m_sprite_height;

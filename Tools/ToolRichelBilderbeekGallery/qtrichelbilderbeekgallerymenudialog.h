@@ -37,7 +37,7 @@ public:
   explicit QtRichelBilderbeekGalleryMenuDialog(QWidget *parent = 0);
   QtRichelBilderbeekGalleryMenuDialog(const QtRichelBilderbeekGalleryMenuDialog&) = delete;
   QtRichelBilderbeekGalleryMenuDialog& operator=(const QtRichelBilderbeekGalleryMenuDialog&) = delete;
-  ~QtRichelBilderbeekGalleryMenuDialog();
+  ~QtRichelBilderbeekGalleryMenuDialog() noexcept;
 
 protected:
   void keyPressEvent(QKeyEvent* e);

@@ -44,17 +44,16 @@ class QtAboutDialog : public QDialog
   Q_OBJECT
 
 public:
+  explicit QtAboutDialog(const ribi::About& about) noexcept;
   QtAboutDialog(const QtAboutDialog&) = delete;
   QtAboutDialog& operator=(const QtAboutDialog&) = delete;
-
-  explicit QtAboutDialog(const ribi::About& about);
-  ~QtAboutDialog();
+  ~QtAboutDialog() noexcept;
 
   ///Obtain the version of this class
-  static const std::string GetVersion();
+  static const std::string GetVersion() noexcept;
 
   ///Obtain the version history of this class
-  static const std::vector<std::string> GetVersionHistory();
+  static const std::vector<std::string> GetVersionHistory() noexcept;
 
 private:
   Ui::QtAboutDialog *ui;

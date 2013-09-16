@@ -37,10 +37,10 @@ struct HometrainerMenuDialog
   const About GetAbout() const;
 
   ///Obtain the version
-  static const std::string GetVersion();
+  static const std::string GetVersion() noexcept;
 
   ///Obtain the version history
-  static const std::vector<std::string> GetVersionHistory();
+  static const std::vector<std::string> GetVersionHistory() noexcept;
 };
 
 } //~namespace ribi

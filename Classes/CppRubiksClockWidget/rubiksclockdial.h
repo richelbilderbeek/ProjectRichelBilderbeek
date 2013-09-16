@@ -54,23 +54,23 @@ struct RubiksClockDial : public Widget
   //Dial * GetDial() { return m_dial.get(); }
 
   ///Obtain a read-only pointert to the Dial
-  const Dial * GetDial() const { return m_dial.get(); }
+  const Dial * GetDial() const noexcept { return m_dial.get(); }
 
-  int GetTime() const { return m_time % 12; }
+  int GetTime() const noexcept { return m_time % 12; }
 
   ///Obtain this class its version
-  static const std::string GetVersion();
+  static const std::string GetVersion() noexcept;
 
   ///Obtain this class its version history
-  static const std::vector<std::string> GetVersionHistory();
+  static const std::vector<std::string> GetVersionHistory() noexcept;
 
   ///Turn the dials n_positions_clockwise clockwise,
   ///negative values are also allowed
-  void Turn(const int n_positions_clockwise);
+  void Turn(const int n_positions_clockwise) noexcept;
 
   private:
   //DialWidget can only be deleted by Boost smart pointers
-  virtual ~RubiksClockDial() {}
+  virtual ~RubiksClockDial() noexcept {}
   friend void boost::checked_delete<>(RubiksClockDial*);
 
   boost::scoped_ptr<Dial> m_dial;
@@ -78,7 +78,7 @@ struct RubiksClockDial : public Widget
   ///Denotes the time shown by the dial as in a clock
   int m_time;
 
-  friend std::ostream& operator<<(std::ostream& os, const RubiksClockDial& widget);
+  friend std::ostream& operator<<(std::ostream& os, const RubiksClockDial& widget) noexcept;
 
   public:
 
@@ -91,10 +91,10 @@ struct RubiksClockDial : public Widget
   //static double GetAngle(const double dX, const double dY);
 
   //From www.richelbilderbeek.nl/CppGetDistance.htm
-  static double GetDistance(const double dX, const double dY);
+  static double GetDistance(const double dX, const double dY) noexcept;
 };
 
-std::ostream& operator<<(std::ostream& os, const RubiksClockDial& widget);
+std::ostream& operator<<(std::ostream& os, const RubiksClockDial& widget) noexcept;
 
 } //~namespace ribi
 

@@ -40,7 +40,7 @@ public:
     explicit QtDasWahreSchlagerfestMainDialog(QWidget *parent = 0);
     QtDasWahreSchlagerfestMainDialog(const QtDasWahreSchlagerfestMainDialog&) = delete;
     QtDasWahreSchlagerfestMainDialog& operator=(const QtDasWahreSchlagerfestMainDialog&) = delete;
-    ~QtDasWahreSchlagerfestMainDialog();
+    ~QtDasWahreSchlagerfestMainDialog() noexcept;
 
 private:
     Ui::QtDasWahreSchlagerfestMainDialog *ui;

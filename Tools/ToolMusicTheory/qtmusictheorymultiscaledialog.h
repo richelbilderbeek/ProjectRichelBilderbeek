@@ -40,7 +40,7 @@ public:
   explicit QtMusicTheoryMultiScaleDialog(QWidget *parent = 0);
   QtMusicTheoryMultiScaleDialog(const QtMusicTheoryMultiScaleDialog&) = delete;
   QtMusicTheoryMultiScaleDialog& operator=(const QtMusicTheoryMultiScaleDialog&) = delete;
-  ~QtMusicTheoryMultiScaleDialog();
+  ~QtMusicTheoryMultiScaleDialog() noexcept;
 
   void resizeEvent(QResizeEvent *);
     

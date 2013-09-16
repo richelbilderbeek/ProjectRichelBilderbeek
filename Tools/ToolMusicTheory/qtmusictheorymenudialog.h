@@ -40,7 +40,7 @@ public:
   explicit QtMusicTheoryMenuDialog(QWidget *parent = 0);
   QtMusicTheoryMenuDialog(const QtMusicTheoryMenuDialog&) = delete;
   QtMusicTheoryMenuDialog& operator=(const QtMusicTheoryMenuDialog&) = delete;
-  ~QtMusicTheoryMenuDialog();
+  ~QtMusicTheoryMenuDialog() noexcept;
 
 private:
   Ui::QtMusicTheoryMenuDialog *ui;

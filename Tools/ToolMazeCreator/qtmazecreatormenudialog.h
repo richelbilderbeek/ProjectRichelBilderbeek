@@ -41,7 +41,7 @@ public:
   explicit QtMazeCreatorMenuDialog(QWidget *parent = 0);
   QtMazeCreatorMenuDialog(const QtMazeCreatorMenuDialog&) = delete;
   QtMazeCreatorMenuDialog& operator=(const QtMazeCreatorMenuDialog&) = delete;
-  ~QtMazeCreatorMenuDialog();
+  ~QtMazeCreatorMenuDialog() noexcept;
 
 private slots:
 

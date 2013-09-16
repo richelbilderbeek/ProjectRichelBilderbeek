@@ -44,12 +44,12 @@ ribi::kalman::LaggedWhiteNoiseSystem::LaggedWhiteNoiseSystem(
   assert(lag == boost::numeric_cast<int>(m_measuments.size()));
 }
 
-const std::string ribi::kalman::LaggedWhiteNoiseSystem::GetVersion()
+const std::string ribi::kalman::LaggedWhiteNoiseSystem::GetVersion() noexcept
 {
   return "1.0";
 }
 
-const std::vector<std::string> ribi::kalman::LaggedWhiteNoiseSystem::GetVersionHistory()
+const std::vector<std::string> ribi::kalman::LaggedWhiteNoiseSystem::GetVersionHistory() noexcept
 {
   return {
     "2013-05-03: version 1.0: initial version"
@@ -61,7 +61,7 @@ void ribi::kalman::LaggedWhiteNoiseSystem::GoToNextState(const boost::numeric::u
   m_system->GoToNextState(input);
 }
 
-const boost::numeric::ublas::vector<double> ribi::kalman::LaggedWhiteNoiseSystem::Measure() const
+const boost::numeric::ublas::vector<double> ribi::kalman::LaggedWhiteNoiseSystem::Measure() const noexcept
 {
   assert(m_parameters->GetLag() == boost::numeric_cast<int>(m_measuments.size()));
   m_measuments.push(m_system->Measure());
@@ -74,13 +74,13 @@ const boost::numeric::ublas::vector<double> ribi::kalman::LaggedWhiteNoiseSystem
   return result;
 }
 
-const boost::numeric::ublas::vector<double>& ribi::kalman::LaggedWhiteNoiseSystem::PeekAtRealState() const
+const boost::numeric::ublas::vector<double>& ribi::kalman::LaggedWhiteNoiseSystem::PeekAtRealState() const noexcept
 {
   return m_system->PeekAtRealState();
 }
 
 #ifndef NDEBUG
-void ribi::kalman::LaggedWhiteNoiseSystem::Test()
+void ribi::kalman::LaggedWhiteNoiseSystem::Test() noexcept
 {
   {
     static bool is_tested = false;

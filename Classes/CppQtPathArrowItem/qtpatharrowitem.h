@@ -46,13 +46,13 @@ struct QtPathArrowItem : public QGraphicsItem
     const QPointF& head_pos,
     QGraphicsItem *parent = 0);
 
-  virtual ~QtPathArrowItem() {}
+  virtual ~QtPathArrowItem() noexcept {}
 
   ///Obtain the version of this class
-  static const std::string GetVersion();
+  static const std::string GetVersion() noexcept;
 
   ///Obtain the version history of this class
-  static const std::vector<std::string> GetVersionHistory();
+  static const std::vector<std::string> GetVersionHistory() noexcept;
 
   ///Is there an arrow at the 'to' point (x2,y2)?
   bool HasHead() const { return m_head; }

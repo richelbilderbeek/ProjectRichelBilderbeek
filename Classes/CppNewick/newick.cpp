@@ -80,8 +80,8 @@ Out Copy_if(In first, In last, Out res, Pred Pr)
 //From http://www.richelbilderbeek.nl/CppFunctorIncrease.htm
 struct Increase //: public std::unary_function<void,int>
 {
-  explicit Increase(const int& initValue = 0) : mValue(initValue) {}
-  void operator()(int& anything)
+  explicit Increase(const int& initValue = 0) noexcept : mValue(initValue) {}
+  void operator()(int& anything) noexcept
   {
     anything = mValue;
     ++mValue;
@@ -542,7 +542,7 @@ void ribi::Newick::CheckNewick(const std::vector<int>& v)
   }
 }
 
-const std::vector<std::string> ribi::Newick::CreateInvalidNewicks()
+const std::vector<std::string> ribi::Newick::CreateInvalidNewicks() noexcept
 {
   std::vector<std::string> v;
   v.push_back("");
@@ -662,7 +662,7 @@ const std::vector<int> ribi::Newick::CreateRandomBinaryNewickVector(const int n,
   return v;
 }
 
-const std::vector<std::string> ribi::Newick::CreateValidBinaryNewicks()
+const std::vector<std::string> ribi::Newick::CreateValidBinaryNewicks() noexcept
 {
   std::vector<std::string> v;
   v.push_back("(1,2)");
@@ -689,7 +689,7 @@ const std::vector<std::string> ribi::Newick::CreateValidBinaryNewicks()
   return v;
 }
 
-const std::vector<std::string> ribi::Newick::CreateValidTrinaryNewicks()
+const std::vector<std::string> ribi::Newick::CreateValidTrinaryNewicks() noexcept
 {
   //#ifdef __GXX_EXPERIMENTAL_CXX0X__
   ///\note
@@ -729,7 +729,7 @@ const std::vector<std::string> ribi::Newick::CreateValidTrinaryNewicks()
   #endif
 }
 
-const std::vector<std::string> ribi::Newick::CreateValidNewicks()
+const std::vector<std::string> ribi::Newick::CreateValidNewicks() noexcept
 {
   std::vector<std::string> v;
   {
@@ -753,7 +753,7 @@ const std::vector<std::string> ribi::Newick::CreateValidNewicks()
   return v;
 }
 
-const std::vector<std::string> ribi::Newick::CreateValidUnaryNewicks()
+const std::vector<std::string> ribi::Newick::CreateValidUnaryNewicks() noexcept
 {
   std::vector<std::string> v;
   v.push_back("(1)");
@@ -802,14 +802,14 @@ const std::string ribi::Newick::DumbNewickToString(const std::vector<int>& v)
   return s;
 }
 
-const std::vector<int> ribi::Newick::Factorial(const std::vector<int>& v_original)
+const std::vector<int> ribi::Newick::Factorial(const std::vector<int>& v_original) noexcept
 {
   std::vector<int> v(v_original);
   std::transform(v.begin(),v.end(),v.begin(),std::ptr_fun<int,int>(Factorial));
   return v;
 }
 
-int ribi::Newick::Factorial(const int n)
+int ribi::Newick::Factorial(const int n) noexcept
 {
   assert(n>=0);
   int result = 1;
@@ -820,7 +820,7 @@ int ribi::Newick::Factorial(const int n)
   return result;
 }
 
-const BigInteger ribi::Newick::FactorialBigInt(const int n)
+const BigInteger ribi::Newick::FactorialBigInt(const int n) noexcept
 {
   assert(n>=0);
   BigInteger result = 1;
@@ -833,9 +833,12 @@ const BigInteger ribi::Newick::FactorialBigInt(const int n)
 
 int ribi::Newick::FindPosAfter(const std::vector<int>& v,const int x, const int index)
 {
+  assert(!v.empty());
   const int sz = v.size();
   for (int i=index+1; i!=sz; ++i)
   {
+    assert(i >= 0);
+    assert(i < sz);
     if (v[i]==x) return i;
   }
   return sz;
@@ -867,6 +870,7 @@ const std::vector<int> ribi::Newick::GetDepth(const std::vector<int>& n)
 
 const std::vector<int> ribi::Newick::GetFactorialTerms(const int n)
 {
+  assert(n > 0);
   std::vector<int> v(n);
   std::for_each(v.begin(), v.end(),Increase(1));
   assert(std::count(v.begin(),v.end(),0)==0);
@@ -1712,12 +1716,12 @@ const std::vector<std::pair<std::vector<int>,int> >
   return v;
 }
 
-const std::string ribi::Newick::GetVersion()
+const std::string ribi::Newick::GetVersion() noexcept
 {
   return "1.1";
 }
 
-const std::vector<std::string> ribi::Newick::GetVersionHistory()
+const std::vector<std::string> ribi::Newick::GetVersionHistory() noexcept
 {
   return {
     "20xx-xx-xx: Version 1.0: initial version",
@@ -1725,7 +1729,7 @@ const std::vector<std::string> ribi::Newick::GetVersionHistory()
   };
 }
 
-void ribi::Newick::InspectInvalidNewick(std::ostream& os, const std::vector<int>& v)
+void ribi::Newick::InspectInvalidNewick(std::ostream& os, const std::vector<int>& v) noexcept
 {
   os << "InspectInvalidNewick on: "
     << DumbNewickToString(v) << '\n';
@@ -1739,7 +1743,7 @@ void ribi::Newick::InspectInvalidNewick(std::ostream& os, const std::vector<int>
   }
 }
 
-bool ribi::Newick::IsNewick(const std::string& s)
+bool ribi::Newick::IsNewick(const std::string& s) noexcept
 {
   try
   {
@@ -1781,7 +1785,7 @@ bool ribi::Newick::IsBinaryNewick(std::vector<int> v)
   }
 }
 
-bool ribi::Newick::IsNewick(const std::vector<int>& v)
+bool ribi::Newick::IsNewick(const std::vector<int>& v) noexcept
 {
   try
   {

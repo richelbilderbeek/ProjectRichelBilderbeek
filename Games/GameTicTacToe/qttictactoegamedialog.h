@@ -45,7 +45,7 @@ public:
   explicit QtTicTacToeGameDialog(QWidget *parent = 0);
   QtTicTacToeGameDialog(const QtTicTacToeGameDialog&) = delete;
   QtTicTacToeGameDialog& operator=(const QtTicTacToeGameDialog&) = delete;
-  ~QtTicTacToeGameDialog();
+  ~QtTicTacToeGameDialog() noexcept;
   static const std::string GetVersion() { return "1.2"; }
 
 private:

@@ -5,16 +5,16 @@
 template <class Length>
 struct Coordinat
 {
-  explicit Coordinat(const Length& x, const Length& y);
+  explicit Coordinat(const Length& x, const Length& y) noexcept;
 
-  const Length& GetX() const { return m_x; }
-  const Length& GetY() const { return m_y; }
+  const Length& GetX() const noexcept { return m_x; }
+  const Length& GetY() const noexcept { return m_y; }
 
   ///Test this class
-  static void Test();
+  static void Test() noexcept;
 
-  void Translate(const Length& dx, const Length& dy);
-  void Translate(const Coordinat& delta);
+  void Translate(const Length& dx, const Length& dy) noexcept;
+  void Translate(const Coordinat& delta) noexcept;
 
   private:
   Length m_x;
@@ -24,7 +24,7 @@ struct Coordinat
 
 
 template <class Length>
-Coordinat<Length>::Coordinat(const Length& x, const Length& y)
+Coordinat<Length>::Coordinat(const Length& x, const Length& y) noexcept
   : m_x { x },
     m_y { y }
 {
@@ -34,7 +34,7 @@ Coordinat<Length>::Coordinat(const Length& x, const Length& y)
 }
 
 template <class Length>
-void Coordinat<Length>::Test()
+void Coordinat<Length>::Test() noexcept
 {
   {
     static bool is_tested { false };
@@ -44,13 +44,13 @@ void Coordinat<Length>::Test()
 }
 
 template <class Length>
-void Coordinat<Length>::Translate(const Coordinat& delta)
+void Coordinat<Length>::Translate(const Coordinat& delta) noexcept
 {
   Translate(delta.GetX(),delta.GetY());
 }
 
 template <class Length>
-void Coordinat<Length>::Translate(const Length& dx, const Length& dy)
+void Coordinat<Length>::Translate(const Length& dx, const Length& dy) noexcept
 {
   m_x += dx;
   m_y += dy;

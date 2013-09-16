@@ -27,7 +27,7 @@ struct ModelFunctionParser
   private:
   const boost::shared_ptr<FunctionParser> m_parser;
 
-  static double MyRand(const double * const max);
+  static double MyRand(const double * const max) noexcept;
 };
 
 } //~namespace ribi

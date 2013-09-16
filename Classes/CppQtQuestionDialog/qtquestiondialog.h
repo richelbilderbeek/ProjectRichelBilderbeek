@@ -39,7 +39,7 @@ struct QtQuestionDialog : public QDialog
 {
   explicit QtQuestionDialog(QWidget *parent = 0);
 
-  virtual ~QtQuestionDialog() {}
+  virtual ~QtQuestionDialog() noexcept {}
 
   QtQuestionDialog(
     const boost::shared_ptr<QuestionDialog>& dialog,
@@ -49,10 +49,10 @@ struct QtQuestionDialog : public QDialog
   const QuestionDialog * GetDialog() const { return m_dialog.get(); }
 
   ///Obtain the version of this class
-  static const std::string GetVersion();
+  static const std::string GetVersion() noexcept;
 
   ///Obtain the version history of this class
-  static const std::vector<std::string> GetVersionHistory();
+  static const std::vector<std::string> GetVersionHistory() noexcept;
 
   ///This signal is emitted when the client submits an answer, where
   ///the boolean indicates if a correct answer was given

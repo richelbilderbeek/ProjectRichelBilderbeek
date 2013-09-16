@@ -40,7 +40,7 @@ public:
   explicit QtAsciiArterMenuDialog(QWidget *parent = 0);
   QtAsciiArterMenuDialog(const QtAsciiArterMenuDialog&) = delete;
   QtAsciiArterMenuDialog& operator=(const QtAsciiArterMenuDialog&) = delete;
-  ~QtAsciiArterMenuDialog();
+  ~QtAsciiArterMenuDialog() noexcept;
 
 protected:
   void keyPressEvent(QKeyEvent *);

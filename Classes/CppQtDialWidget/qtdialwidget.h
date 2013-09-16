@@ -69,8 +69,8 @@ private:
   void OnDialChanged();
 
 public:
-  static const std::string GetVersion();
-  static const std::vector<std::string> GetVersionHistory();
+  static const std::string GetVersion() noexcept;
+  static const std::vector<std::string> GetVersionHistory() noexcept;
 };
 
 } //~namespace ribi

@@ -37,7 +37,7 @@ ribi::ToggleButton::ToggleButton(
   const bool pressed,
   const unsigned char red,
   const unsigned char green,
-  const unsigned char blue)
+  const unsigned char blue) noexcept
   : m_signal_color_changed{},
     m_signal_toggled{},
     m_pressed(pressed),
@@ -48,12 +48,12 @@ ribi::ToggleButton::ToggleButton(
 
 }
 
-const std::string ribi::ToggleButton::GetVersion()
+const std::string ribi::ToggleButton::GetVersion() noexcept
 {
   return "1.2";
 }
 
-const std::vector<std::string> ribi::ToggleButton::GetVersionHistory()
+const std::vector<std::string> ribi::ToggleButton::GetVersionHistory() noexcept
 {
   return {
     "2011-04-11: Version 1.0: initial version",
@@ -62,12 +62,12 @@ const std::vector<std::string> ribi::ToggleButton::GetVersionHistory()
   };
 }
 
-void ribi::ToggleButton::Press()
+void ribi::ToggleButton::Press() noexcept
 {
   if (!m_pressed) { Toggle(); }
 }
 
-void ribi::ToggleButton::Release()
+void ribi::ToggleButton::Release() noexcept
 {
   if (m_pressed) { Toggle(); }
 }
@@ -75,7 +75,7 @@ void ribi::ToggleButton::Release()
 void ribi::ToggleButton::SetColor(
   const unsigned char red,
   const unsigned char green,
-  const unsigned char blue)
+  const unsigned char blue) noexcept
 {
   if (red != m_red || green != m_green || blue != m_blue)
   {
@@ -86,13 +86,13 @@ void ribi::ToggleButton::SetColor(
   }
 }
 
-void ribi::ToggleButton::Toggle()
+void ribi::ToggleButton::Toggle() noexcept
 {
   m_pressed = !m_pressed;
   m_signal_toggled();
 }
 
-std::ostream& ribi::operator<<(std::ostream& os, const ToggleButton& button)
+std::ostream& ribi::operator<<(std::ostream& os, const ToggleButton& button) noexcept
 {
   os
     << "<ToggleButton>"

@@ -198,6 +198,8 @@ int ribi::NewickVector::FindPosAfter(const std::vector<int>& v,const int x, cons
   const int sz = v.size();
   for (int i=index; i!=sz; ++i)
   {
+    assert(i >= 0);
+    assert(i < sz);
     if (v[i]==x) return i;
   }
   return sz;
@@ -208,6 +210,11 @@ int ribi::NewickVector::FindPosBefore(const std::vector<int>& v,const int x, con
 
   for (int i=index; i!=-1; --i)
   {
+    #ifndef NDEBUG
+    const int sz = static_cast<int>(v.size());
+    assert(i >= 0);
+    assert(i < sz);
+    #endif
     if (v[i]==x) return i;
   }
   return -1;
@@ -229,12 +236,12 @@ const std::pair<ribi::NewickVector,ribi::NewickVector> ribi::NewickVector::GetRo
   return p;
 }
 
-const std::string ribi::NewickVector::GetVersion()
+const std::string ribi::NewickVector::GetVersion() noexcept
 {
   return "2.1";
 }
 
-const std::vector<std::string> ribi::NewickVector::GetVersionHistory()
+const std::vector<std::string> ribi::NewickVector::GetVersionHistory() noexcept
 {
   return {
     "2009-06-01: Version 1.0: Initial version",
@@ -329,7 +336,7 @@ const ribi::NewickVector ribi::NewickVector::LoseBrackets(const int x, const int
 
 bool ribi::NewickVector::NewickCompare(
   const std::vector<int>& lhs,
-  const std::vector<int>& rhs)
+  const std::vector<int>& rhs) noexcept
 {
   const int l_sz = lhs.size();
   const int r_sz = rhs.size();
@@ -427,7 +434,7 @@ const ribi::NewickVector ribi::NewickVector::TermIsOne(const int i) const
 }
 
 #ifndef NDEBUG
-void ribi::NewickVector::Test()
+void ribi::NewickVector::Test() noexcept
 {
   {
     bool is_tested = false;

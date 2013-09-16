@@ -51,27 +51,27 @@ struct ShapeWidget : public Widget
     const unsigned char blue = 255);
 
   ///Make a deep copy of ShapeWidget
-  ShapeWidget * Clone() const;
+  ShapeWidget * Clone() const noexcept;
 
   ///Obtain a read-only pointert to the Shape
-  const Shape * GetShape() const { return m_shape.get(); }
+  const Shape * GetShape() const noexcept { return m_shape.get(); }
 
 
   private:
   //ShapeWidget can only be deleted by Boost smart pointers
-  virtual ~ShapeWidget() {}
+  virtual ~ShapeWidget() noexcept {}
   friend void boost::checked_delete<>(ShapeWidget*);
-  friend bool operator==(const ShapeWidget& lhs,const ShapeWidget& rhs);
+  friend bool operator==(const ShapeWidget& lhs,const ShapeWidget& rhs) noexcept;
 
   ///The Shape
   boost::scoped_ptr<Shape> m_shape;
 
   public:
-  static const std::string GetVersion();
-  static const std::vector<std::string> GetVersionHistory();
+  static const std::string GetVersion() noexcept;
+  static const std::vector<std::string> GetVersionHistory() noexcept;
 };
 
-bool operator==(const ShapeWidget& lhs,const ShapeWidget& rhs);
+bool operator==(const ShapeWidget& lhs,const ShapeWidget& rhs) noexcept;
 
 } //~namespace ribi
 

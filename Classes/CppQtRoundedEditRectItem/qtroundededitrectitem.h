@@ -36,7 +36,7 @@ struct QtRoundedEditRectItem : public QtRoundedRectItem
     const QFont& font = QFont("monospace",9),
     QGraphicsItem* parent = 0);
 
-  virtual ~QtRoundedEditRectItem() {}
+  virtual ~QtRoundedEditRectItem() noexcept {}
 
   ///Get the font by which the text is drawn
   const QFont& GetFont() const { return m_font; }
@@ -45,10 +45,10 @@ struct QtRoundedEditRectItem : public QtRoundedRectItem
   const std::vector<std::string>& GetText() const { return m_text; }
 
   ///Obtain the version of this class
-  static const std::string GetVersion();
+  static const std::string GetVersion() noexcept;
 
   ///Obtain the version history of this class
-  static const std::vector<std::string> GetVersionHistory();
+  static const std::vector<std::string> GetVersionHistory() noexcept;
 
   ///Set the font by which the text is drawn
   void SetFont(const QFont& font);

@@ -44,30 +44,30 @@ void ribi::QtConnectThreeWidget::DoComputerTurn()
   this->update();
 }
 
-int ribi::QtConnectThreeWidget::GetActivePlayer() const
+int ribi::QtConnectThreeWidget::GetActivePlayer() const noexcept
 {
   return m_widget->GetGame()->GetActivePlayer();
 }
 
-const std::string ribi::QtConnectThreeWidget::GetVersion()
+const std::string ribi::QtConnectThreeWidget::GetVersion() noexcept
 {
   return "2.0";
 }
 
-const std::vector<std::string> ribi::QtConnectThreeWidget::GetVersionHistory()
+const std::vector<std::string> ribi::QtConnectThreeWidget::GetVersionHistory() noexcept
 {
-  std::vector<std::string> v;
-  v.push_back("2011-01-10: version 1.0: initial version");
-  v.push_back("2011-04-20: version 2.0: Moved logic to ConnectThreeWidget");
-  return v;
+  return {
+    "2011-01-10: version 1.0: initial version",
+    "2011-04-20: version 2.0: Moved logic to ConnectThreeWidget"
+  };
 }
 
-int ribi::QtConnectThreeWidget::GetWinner() const
+int ribi::QtConnectThreeWidget::GetWinner() const noexcept
 {
   return m_widget->GetGame()->GetWinner();
 }
 
-bool ribi::QtConnectThreeWidget::IsComputerTurn() const
+bool ribi::QtConnectThreeWidget::IsComputerTurn() const noexcept
 {
   return m_widget->IsComputerTurn();
 }
@@ -106,7 +106,7 @@ void ribi::QtConnectThreeWidget::paintEvent(QPaintEvent *)
   }
 }
 
-const QImage& ribi::QtConnectThreeWidget::GetImage(const int sprite) const
+const QImage& ribi::QtConnectThreeWidget::GetImage(const int sprite) const noexcept
 {
   switch (sprite)
   {

@@ -25,6 +25,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <algorithm>
 #include <cassert>
 #include <iostream>
+#include <set>
 
 #include "trace.h"
 #pragma GCC diagnostic pop
@@ -96,16 +97,29 @@ CodeToHtmlReplacements::CodeToHtmlReplacements(
 
   {
     ///Check nested processed input
+    const std::set<std::string> skip {
+      "$",
+      "<",
+      ">",
+      "&",
+      "[AMPERSAND]",
+      "[DOLLAR]",
+      "[GREATER_THAN]",
+      "[LESS_THAN]"
+    };
     const auto end = m_replacements.end();
     for (auto i=m_replacements.begin();i!=end;++i)
     {
       const std::string s = (*i).second;
       //if (s.find("any")!=std::string::npos) { std::clog << "any_ found!\n"; }
+      if (skip.count(s) == 1) continue;
+      assert(skip.count(s) == 0);
       for (auto j=m_replacements.begin();j!=end;++j)
       {
         if (i==j) continue;
         const std::string t = (*j).first;
-        //if (t == "any") { std::clog << "any found!\n"; }
+        if (skip.count(t) == 1) continue;
+        assert(skip.count(t) == 0);
         if (s.find(t) != std::string::npos)
         {
           std::cerr << "Error: "

@@ -47,7 +47,7 @@ public:
   explicit QtMazeCreatorMainDialog(QWidget *parent = 0);
   QtMazeCreatorMainDialog(const QtMazeCreatorMainDialog&) = delete;
   QtMazeCreatorMainDialog& operator=(const QtMazeCreatorMainDialog&) = delete;
-  ~QtMazeCreatorMainDialog();
+  ~QtMazeCreatorMainDialog() noexcept;
 
   //From http://www.richelbilderbeek.nl/CppCreateMaze.htm
   static const std::vector<std::vector<int> > CreateMaze(const int size);

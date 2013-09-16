@@ -39,7 +39,7 @@ struct QtRoundedTextRectItem : public QtRoundedRectItem
   ///ABC must have public virtual destructor
   // * Herb Sutter, Andrei Alexandrescu. C++ coding standards: 101 rules, guidelines, and best practices.
   //   ISBN: 0-32-111358-6. Item 50: 'Make base class destructors public and virtual, or protected and nonvirtual'
-  virtual ~QtRoundedTextRectItem() {}
+  virtual ~QtRoundedTextRectItem() noexcept {}
 
   ///Get the font by which the text is drawn
   const QFont& GetFont() const { return m_font; }
@@ -48,10 +48,10 @@ struct QtRoundedTextRectItem : public QtRoundedRectItem
   const std::string& GetText() const { return m_text; }
 
   ///Obtain the version of this class
-  static const std::string GetVersion();
+  static const std::string GetVersion() noexcept;
 
   ///Obtain the version history of this class
-  static const std::vector<std::string> GetVersionHistory();
+  static const std::vector<std::string> GetVersionHistory() noexcept;
 
   ///Set the font by which the text is drawn
   void SetFont(const QFont& font);

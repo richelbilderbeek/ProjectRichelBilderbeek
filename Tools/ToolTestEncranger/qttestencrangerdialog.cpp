@@ -34,7 +34,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "testencrangerdialog.h"
 #pragma GCC diagnostic pop
 
-ribi::QtTestEncrangerDialog::QtTestEncrangerDialog(QWidget *parent) :
+ribi::QtTestEncrangerDialog::QtTestEncrangerDialog(QWidget *parent) noexcept :
     QDialog(parent),
     ui(new Ui::QtTestEncrangerDialog),
     m_dialog(new TestEncrangerDialog)
@@ -42,13 +42,13 @@ ribi::QtTestEncrangerDialog::QtTestEncrangerDialog(QWidget *parent) :
   ui->setupUi(this);
 }
 
-ribi::QtTestEncrangerDialog::~QtTestEncrangerDialog()
+ribi::QtTestEncrangerDialog::~QtTestEncrangerDialog() noexcept
 {
   delete ui;
   delete m_dialog;
 }
 
-void ribi::QtTestEncrangerDialog::on_button_encrypt_clicked()
+void ribi::QtTestEncrangerDialog::on_button_encrypt_clicked() noexcept
 {
   try
   {
@@ -72,7 +72,7 @@ void ribi::QtTestEncrangerDialog::on_button_encrypt_clicked()
   ui->edit_encrypted_text->setText(m_dialog->GetEncryptedText().c_str());
 }
 
-void ribi::QtTestEncrangerDialog::on_button_deencrypt_clicked()
+void ribi::QtTestEncrangerDialog::on_button_deencrypt_clicked() noexcept
 {
   try
   {
@@ -96,7 +96,7 @@ void ribi::QtTestEncrangerDialog::on_button_deencrypt_clicked()
   ui->edit_plaintext->setText(m_dialog->GetPlainText().c_str());
 }
 
-void ribi::QtTestEncrangerDialog::on_button_about_clicked()
+void ribi::QtTestEncrangerDialog::on_button_about_clicked() noexcept
 {
   About a = TestEncrangerDialog::GetAbout();
   QtAboutDialog d(a);

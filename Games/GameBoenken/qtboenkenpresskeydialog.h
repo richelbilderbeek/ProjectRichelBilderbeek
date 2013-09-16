@@ -44,7 +44,7 @@ public:
   explicit QtBoenkenPressKeyDialog(QWidget *parent = 0);
   QtBoenkenPressKeyDialog(const QtBoenkenPressKeyDialog&) = delete;
   QtBoenkenPressKeyDialog& operator=(const QtBoenkenPressKeyDialog&) = delete;
-  ~QtBoenkenPressKeyDialog();
+  ~QtBoenkenPressKeyDialog() noexcept;
   int GetKey() const { return m_key; }
 
 protected:

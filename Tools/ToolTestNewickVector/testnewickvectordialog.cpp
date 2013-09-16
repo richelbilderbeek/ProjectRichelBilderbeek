@@ -33,7 +33,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #pragma GCC diagnostic pop
 
-ribi::TestNewickVectorDialog::TestNewickVectorDialog()
+ribi::TestNewickVectorDialog::TestNewickVectorDialog() noexcept
   : m_analyse_calculation{false},
     m_compare{false},
     m_max_complexity_str{},
@@ -53,7 +53,7 @@ ribi::TestNewickVectorDialog::TestNewickVectorDialog()
   #endif
 }
 
-void ribi::TestNewickVectorDialog::Analyse()
+void ribi::TestNewickVectorDialog::Analyse() noexcept
 {
   //Store the data
   m_newick.reset(new NewickVector(m_newick_str));
@@ -85,7 +85,7 @@ void ribi::TestNewickVectorDialog::Analyse()
   m_text.push_back(std::string("Denominator: ") + boost::lexical_cast<std::string>(m_denominator));
 }
 
-void ribi::TestNewickVectorDialog::AnalyseArity()
+void ribi::TestNewickVectorDialog::AnalyseArity() noexcept
 {
   //Check if simple Newick
   if (Newick::IsSimple(m_newick->Peek()))
@@ -118,7 +118,7 @@ void ribi::TestNewickVectorDialog::AnalyseArity()
   }
 }
 
-void ribi::TestNewickVectorDialog::AnalyseCalculation()
+void ribi::TestNewickVectorDialog::AnalyseCalculation() noexcept
 {
   if (!m_analyse_calculation) return;
 
@@ -250,7 +250,7 @@ void ribi::TestNewickVectorDialog::AnalyseCalculation()
   m_text.push_back(std::string(80,'-'));
 }
 
-void ribi::TestNewickVectorDialog::AnalyseRootBranches()
+void ribi::TestNewickVectorDialog::AnalyseRootBranches() noexcept
 {
   if(!Newick::IsUnaryNewick(m_newick->Peek()))
   {
@@ -274,7 +274,7 @@ void ribi::TestNewickVectorDialog::AnalyseRootBranches()
   }
 }
 
-void ribi::TestNewickVectorDialog::AnalyseSimplerNewicks()
+void ribi::TestNewickVectorDialog::AnalyseSimplerNewicks() noexcept
 {
   typedef std::pair<std::vector<int>,int> NewickFrequencyPair;
   const std::vector<NewickFrequencyPair> simpler
@@ -306,7 +306,7 @@ void ribi::TestNewickVectorDialog::AnalyseSimplerNewicks()
   m_text.push_back(text.c_str());
 }
 
-void ribi::TestNewickVectorDialog::AutoCalculate()
+void ribi::TestNewickVectorDialog::AutoCalculate() noexcept
 {
   m_text.resize(0);
 
@@ -325,7 +325,7 @@ void ribi::TestNewickVectorDialog::AutoCalculate()
   Analyse();
 }
 
-void ribi::TestNewickVectorDialog::Calculate()
+void ribi::TestNewickVectorDialog::Calculate() noexcept
 {
   m_text.resize(0);
   if (!CheckNewick()) return;
@@ -334,7 +334,7 @@ void ribi::TestNewickVectorDialog::Calculate()
 
 }
 
-bool ribi::TestNewickVectorDialog::CheckMaxComplexity()
+bool ribi::TestNewickVectorDialog::CheckMaxComplexity() noexcept
 {
   try
   {
@@ -349,7 +349,7 @@ bool ribi::TestNewickVectorDialog::CheckMaxComplexity()
   return true;
 }
 
-bool ribi::TestNewickVectorDialog::CheckNewick()
+bool ribi::TestNewickVectorDialog::CheckNewick() noexcept
 {
   if (!Newick::IsNewick(m_newick_str))
   {
@@ -370,9 +370,8 @@ bool ribi::TestNewickVectorDialog::CheckNewick()
   return true;
 }
 
-bool ribi::TestNewickVectorDialog::CheckTheta()
+bool ribi::TestNewickVectorDialog::CheckTheta() noexcept
 {
-  //Check if theta is valid
   try
   {
     boost::lexical_cast<double>(m_theta_str);
@@ -386,7 +385,7 @@ bool ribi::TestNewickVectorDialog::CheckTheta()
   return true;
 }
 
-const ribi::About ribi::TestNewickVectorDialog::GetAbout()
+const ribi::About ribi::TestNewickVectorDialog::GetAbout() noexcept
 {
   About about(
     "Richel Bilderbeek",
@@ -403,12 +402,12 @@ const ribi::About ribi::TestNewickVectorDialog::GetAbout()
   return about;
 }
 
-const std::string ribi::TestNewickVectorDialog::GetVersion()
+const std::string ribi::TestNewickVectorDialog::GetVersion() noexcept
 {
   return "3.2";
 }
 
-const std::vector<std::string> ribi::TestNewickVectorDialog::GetVersionHistory()
+const std::vector<std::string> ribi::TestNewickVectorDialog::GetVersionHistory() noexcept
 {
   return {
     "2011-02-20: Version 1.0: initial version",
@@ -419,12 +418,12 @@ const std::vector<std::string> ribi::TestNewickVectorDialog::GetVersionHistory()
   };
 }
 
-void ribi::TestNewickVectorDialog::SetAnalyseCalculation(const bool b)
+void ribi::TestNewickVectorDialog::SetAnalyseCalculation(const bool b) noexcept
 {
   m_analyse_calculation = b;
 }
 
-void ribi::TestNewickVectorDialog::SetCompareToTwoDigitNewick(const bool b)
+void ribi::TestNewickVectorDialog::SetCompareToTwoDigitNewick(const bool b) noexcept
 {
   m_compare = b;
 }

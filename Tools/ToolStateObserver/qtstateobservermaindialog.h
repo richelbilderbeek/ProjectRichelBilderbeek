@@ -30,22 +30,22 @@ public:
   QtStateObserverMainDialog(const QtStateObserverMainDialog&) = delete;
   QtStateObserverMainDialog& operator=(const QtStateObserverMainDialog&) = delete;
 
-  explicit QtStateObserverMainDialog(QWidget *parent = 0);
-  ~QtStateObserverMainDialog();
+  explicit QtStateObserverMainDialog(QWidget *parent = 0) noexcept;
+  ~QtStateObserverMainDialog() noexcept;
   
 private slots:
-  const boost::shared_ptr<AlphaFilter> CreateAlphaFilter() const;
-  const boost::shared_ptr<AlphaBetaFilter> CreateAlphaBetaFilter() const;
-  const boost::shared_ptr<AlphaBetaGammaFilter> CreateAlphaBetaGammaFilter() const;
-  const boost::shared_ptr<IntegerAlphaFilter> CreateLsqFilter() const;
-  const boost::shared_ptr<IntegerSymmetricalAlphaFilter> CreateSlsqFilter() const;
-  const boost::shared_ptr<MultiAlphaFilter> CreateMultiAlphaFilter() const;
-  const boost::shared_ptr<MultiIntegerStateObserver> CreateMiso() const;
-  double CreateDt() const { return 1.0; }
+  const boost::shared_ptr<AlphaFilter> CreateAlphaFilter() const noexcept;
+  const boost::shared_ptr<AlphaBetaFilter> CreateAlphaBetaFilter() const noexcept;
+  const boost::shared_ptr<AlphaBetaGammaFilter> CreateAlphaBetaGammaFilter() const noexcept;
+  const boost::shared_ptr<IntegerAlphaFilter> CreateLsqFilter() const noexcept;
+  const boost::shared_ptr<IntegerSymmetricalAlphaFilter> CreateSlsqFilter() const noexcept;
+  const boost::shared_ptr<MultiAlphaFilter> CreateMultiAlphaFilter() const noexcept;
+  const boost::shared_ptr<MultiIntegerStateObserver> CreateMiso() const noexcept;
+  double CreateDt() const noexcept { return 1.0; }
 
-  void Run();
+  void Run() noexcept;
 
-  void on_button_rerun_clicked();
+  void on_button_rerun_clicked() noexcept;
 
 
 private:

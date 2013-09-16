@@ -73,10 +73,16 @@ ribi::Exercise::Exercise(const std::string& filename)
     }
   }
 
+  if (m_questions.empty())
+  {
+    throw std::runtime_error("No questions found in loading the Exercise");
+  }
+  assert(!m_questions.empty());
+
   //Shuffle the questions at start
   std::random_shuffle(m_questions.begin(),m_questions.end());
-
   m_current = m_questions.begin();
+  assert(m_current != m_questions.end());
 }
 
 const std::vector<std::string> ribi::Exercise::FileToVector(const std::string& filename)
@@ -93,30 +99,32 @@ const std::vector<std::string> ribi::Exercise::FileToVector(const std::string& f
   return v;
 }
 
-const std::string ribi::Exercise::GetCurrentQuestion() const
+const std::string ribi::Exercise::GetCurrentQuestion() const noexcept
 {
+  assert(m_current != m_questions.end());
   return *m_current;
 }
 
-int ribi::Exercise::GetNumberOfQuestions() const
+int ribi::Exercise::GetNumberOfQuestions() const noexcept
 {
+  assert(!m_questions.empty());
   return boost::numeric_cast<int>(m_questions.size());
 }
 
-const std::string ribi::Exercise::GetVersion()
+const std::string ribi::Exercise::GetVersion() noexcept
 {
   return "1.1";
 }
 
-const std::vector<std::string> ribi::Exercise::GetVersionHistory()
+const std::vector<std::string> ribi::Exercise::GetVersionHistory() noexcept
 {
-  std::vector<std::string> v;
-  v.push_back("2011-09-26: Version 1.0: initial version");
-  v.push_back("2011-10-30: Version 1.1: shuffle questions at start");
-  return v;
+  return {
+    "2011-09-26: Version 1.0: initial version",
+    "2011-10-30: Version 1.1: shuffle questions at start"
+  };
 }
 
-void ribi::Exercise::Next()
+void ribi::Exercise::Next() noexcept
 {
   ++m_current;
   if (m_current == m_questions.end())

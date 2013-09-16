@@ -39,7 +39,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #pragma GCC diagnostic pop
 
-ribi::QtSimMysteryMachineMenuDialog::QtSimMysteryMachineMenuDialog(QWidget *parent) :
+ribi::QtSimMysteryMachineMenuDialog::QtSimMysteryMachineMenuDialog(QWidget *parent) noexcept :
     QDialog(parent),
     ui(new Ui::QtSimMysteryMachineMenuDialog)
 {
@@ -60,12 +60,12 @@ ribi::QtSimMysteryMachineMenuDialog::QtSimMysteryMachineMenuDialog(QWidget *pare
   */
 }
 
-ribi::QtSimMysteryMachineMenuDialog::~QtSimMysteryMachineMenuDialog()
+ribi::QtSimMysteryMachineMenuDialog::~QtSimMysteryMachineMenuDialog() noexcept
 {
   delete ui;
 }
 
-void ribi::QtSimMysteryMachineMenuDialog::on_button_start_clicked()
+void ribi::QtSimMysteryMachineMenuDialog::on_button_start_clicked() noexcept
 {
   this->hide();
   QtSimMysteryMachineMainDialog d;
@@ -73,7 +73,7 @@ void ribi::QtSimMysteryMachineMenuDialog::on_button_start_clicked()
   this->show();
 }
 
-void ribi::QtSimMysteryMachineMenuDialog::on_button_about_clicked()
+void ribi::QtSimMysteryMachineMenuDialog::on_button_about_clicked() noexcept
 {
   this->hide();
   About a = SimMysteryMachineMenuDialog::GetAbout();
@@ -88,12 +88,12 @@ void ribi::QtSimMysteryMachineMenuDialog::on_button_about_clicked()
   this->show();
 }
 
-void ribi::QtSimMysteryMachineMenuDialog::on_button_quit_clicked()
+void ribi::QtSimMysteryMachineMenuDialog::on_button_quit_clicked() noexcept
 {
   this->close();
 }
 
-void ribi::QtSimMysteryMachineMenuDialog::on_button_instructions_clicked()
+void ribi::QtSimMysteryMachineMenuDialog::on_button_instructions_clicked() noexcept
 {
   this->hide();
   QtSimMysteryMachineInstructionsDialog d;
@@ -101,7 +101,7 @@ void ribi::QtSimMysteryMachineMenuDialog::on_button_instructions_clicked()
   this->show();
 }
 
-void ribi::QtSimMysteryMachineMenuDialog::on_button_real_clicked()
+void ribi::QtSimMysteryMachineMenuDialog::on_button_real_clicked() noexcept
 {
   this->hide();
   QtSimMysteryMachineRealMachineDialog d;

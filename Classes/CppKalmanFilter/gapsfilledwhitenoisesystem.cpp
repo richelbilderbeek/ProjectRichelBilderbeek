@@ -37,12 +37,12 @@ ribi::kalman::GapsFilledWhiteNoiseSystem::GapsFilledWhiteNoiseSystem(
   #endif
 }
 
-const std::string ribi::kalman::GapsFilledWhiteNoiseSystem::GetVersion()
+const std::string ribi::kalman::GapsFilledWhiteNoiseSystem::GetVersion() noexcept
 {
   return "1.0";
 }
 
-const std::vector<std::string> ribi::kalman::GapsFilledWhiteNoiseSystem::GetVersionHistory()
+const std::vector<std::string> ribi::kalman::GapsFilledWhiteNoiseSystem::GetVersionHistory() noexcept
 {
   return {
     "2013-06-25: version 1.0: initial version"
@@ -104,13 +104,14 @@ const boost::numeric::ublas::vector<double> ribi::kalman::GapsFilledWhiteNoiseSy
   return m_last_measument;
 }
 
-const boost::numeric::ublas::vector<double>& ribi::kalman::GapsFilledWhiteNoiseSystem::PeekAtRealState() const
+const boost::numeric::ublas::vector<double>&
+  ribi::kalman::GapsFilledWhiteNoiseSystem::PeekAtRealState() const noexcept
 {
   return this->GetCurrentState();
 }
 
 #ifndef NDEBUG
-void ribi::kalman::GapsFilledWhiteNoiseSystem::Test()
+void ribi::kalman::GapsFilledWhiteNoiseSystem::Test() noexcept
 {
   {
     static bool is_tested = false;

@@ -20,7 +20,7 @@ public:
   explicit QtRubiksClockMainDialog(QWidget *parent = 0);
   QtRubiksClockMainDialog(const QtRubiksClockMainDialog&) = delete;
   QtRubiksClockMainDialog& operator=(const QtRubiksClockMainDialog&) = delete;
-  ~QtRubiksClockMainDialog();
+  ~QtRubiksClockMainDialog() noexcept;
   
 private slots:
   void keyPressEvent(QKeyEvent *);

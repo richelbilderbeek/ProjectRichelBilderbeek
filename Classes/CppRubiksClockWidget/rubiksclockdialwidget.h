@@ -57,17 +57,17 @@ struct RubiksClockDialWidget : public Widget
   const RubiksClockDial * GetRubiksClockDial() const { return m_dial.get(); }
 
   ///Obtain this class its version
-  static const std::string GetVersion();
+  static const std::string GetVersion() noexcept;
 
   ///Obtain this class its version history
-  static const std::vector<std::string> GetVersionHistory();
+  static const std::vector<std::string> GetVersionHistory() noexcept;
 
   ///Is the dial clicked?
   bool IsClicked(const int x, const int y) const;
 
   private:
   //RubiksClockDialWidget can only be deleted by Boost smart pointers
-  virtual ~RubiksClockDialWidget() {}
+  virtual ~RubiksClockDialWidget() noexcept {}
   friend void boost::checked_delete<>(RubiksClockDialWidget*);
 
   boost::scoped_ptr<RubiksClockDial> m_dial;

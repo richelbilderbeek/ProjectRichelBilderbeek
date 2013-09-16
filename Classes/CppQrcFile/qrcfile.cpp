@@ -73,7 +73,7 @@ ribi::QrcFile::QrcFile(const std::string& filename)
   }
 }
 
-bool ribi::QrcFile::FileExists(const std::string& filename)
+bool ribi::QrcFile::FileExists(const std::string& filename) noexcept
 {
   std::fstream f;
   f.open(filename.c_str(),std::ios::in);
@@ -94,7 +94,7 @@ const std::vector<std::string> ribi::QrcFile::FileToVector(const std::string& fi
   return v;
 }
 
-const ribi::About ribi::QrcFile::GetAbout()
+const ribi::About ribi::QrcFile::GetAbout() noexcept
 {
   About a(
     "Richel Bilderbeek",
@@ -108,20 +108,21 @@ const ribi::About ribi::QrcFile::GetAbout()
   return a;
 }
 
-const std::string ribi::QrcFile::GetVersion()
+const std::string ribi::QrcFile::GetVersion() noexcept
 {
   return "1.1";
 }
 
-const std::vector<std::string> ribi::QrcFile::GetVersionHistory()
+const std::vector<std::string> ribi::QrcFile::GetVersionHistory() noexcept
 {
-  std::vector<std::string> v;
-  v.push_back("2012-06-13: version 1.0: initial version");
-  v.push_back("2013-08-19: version 1.1: replaced Boost.Regex by Boost.Xpressive");
-  return v;
+  return {
+    "2012-06-13: version 1.0: initial version",
+    "2013-08-19: version 1.1: replaced Boost.Regex by Boost.Xpressive"
+  };
 }
 
-void ribi::QrcFile::Test()
+#ifndef NDEBUG
+void ribi::QrcFile::Test() noexcept
 {
   ///Test exactly once
   {
@@ -162,8 +163,9 @@ void ribi::QrcFile::Test()
     //assert(!p.GetFiles().count("RCC"));
   }
 }
+#endif
 
-std::ostream& ribi::operator<<(std::ostream& os,const QrcFile& f)
+std::ostream& ribi::operator<<(std::ostream& os,const QrcFile& f) noexcept
 {
   std::for_each(f.m_files.begin(),f.m_files.end(),
     [&os](const std::string& s)

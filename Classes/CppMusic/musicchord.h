@@ -23,39 +23,39 @@ struct Chord
     const std::string& postfix,
     const std::vector<int>& intervals);
 
-  virtual ~Chord() {}
+  virtual ~Chord() noexcept {}
 
   ///Count the number of notes two chords share
   static int CountSameNotes(const boost::shared_ptr<Chord>& lhs, const boost::shared_ptr<Chord>& rhs);
 
   ///A Factory method: create all Chords
-  static std::vector<boost::shared_ptr<Chord> > CreateAllChords();
+  static std::vector<boost::shared_ptr<Chord> > CreateAllChords() noexcept;
 
   ///A Factory method: create all Chords from a root
-  static std::vector<boost::shared_ptr<Chord> > CreateChords(const Note root);
+  static std::vector<boost::shared_ptr<Chord> > CreateChords(const Note root) noexcept;
 
   ///A Factory method: create a Chord from its name (which includes its root)
-  static boost::shared_ptr<Chord> CreateChord(const std::string& chord_name);
+  static boost::shared_ptr<Chord> CreateChord(const std::string& chord_name) noexcept;
 
   ///Obtain the Chord its name
   ///For example, 'C' (for C major) or 'D#m'
-  virtual const std::string GetName() const = 0;
+  virtual const std::string GetName() const noexcept = 0;
 
   ///Obtain a Chord its Notes
   ///For example, the chord C major will returnn {C,E,G}
-  const std::vector<Note> GetNotes() const;
+  const std::vector<Note> GetNotes() const noexcept;
 
   ///Obtain the version of this class
-  static const std::string GetVersion();
+  static const std::string GetVersion() noexcept;
 
   ///Obtain the version history of this class
-  static const std::vector<std::string> GetVersionHistory();
+  static const std::vector<std::string> GetVersionHistory() noexcept;
 
   ///Test this class
-  static void Test();
+  static void Test() noexcept;
 
   ///Return the Chord as a music notation string
-  const std::string ToStr() const;
+  const std::string ToStr() const noexcept;
 
   private:
 
@@ -73,10 +73,10 @@ struct Chord
 struct ChordAug : public Chord
 {
   ///Create the Chord from its root
-  ChordAug(const Note root);
+  ChordAug(const Note root) noexcept;
 
   ///Obtain the Scale its name
-  const std::string GetName() const { return "aug"; }
+  const std::string GetName() const noexcept { return "aug"; }
 };
 
 ///The dim chord
@@ -84,10 +84,10 @@ struct ChordAug : public Chord
 struct ChordDim : public Chord
 {
   ///Create the Chord from its root
-  ChordDim(const Note root);
+  ChordDim(const Note root) noexcept;
 
   ///Obtain the Scale its name
-  const std::string GetName() const { return "dim"; }
+  const std::string GetName() const noexcept { return "dim"; }
 };
 
 ///The major chord
@@ -95,10 +95,10 @@ struct ChordDim : public Chord
 struct ChordMajor : public Chord
 {
   ///Create the Chords from its root
-  ChordMajor(const Note root);
+  ChordMajor(const Note root) noexcept;
 
   ///Obtain the Scale its name
-  const std::string GetName() const { return "major"; }
+  const std::string GetName() const noexcept { return "major"; }
 };
 
 ///The minor chord
@@ -106,10 +106,10 @@ struct ChordMajor : public Chord
 struct ChordMinor : public Chord
 {
   ///Create the Chord from its root
-  ChordMinor(const Note root);
+  ChordMinor(const Note root) noexcept;
 
   ///Obtain the Scale its name
-  const std::string GetName() const { return "minor"; }
+  const std::string GetName() const noexcept { return "minor"; }
 };
 
 ///The 6 chord
@@ -117,10 +117,10 @@ struct ChordMinor : public Chord
 struct Chord6 : public Chord
 {
   ///Create the Chord from its root
-  Chord6(const Note root);
+  Chord6(const Note root) noexcept;
 
   ///Obtain the Scale its name
-  const std::string GetName() const { return "6"; }
+  const std::string GetName() const noexcept { return "6"; }
 };
 
 ///The minor 6 chord
@@ -128,10 +128,10 @@ struct Chord6 : public Chord
 struct ChordMinor6 : public Chord
 {
   ///Create the Chord from its root
-  ChordMinor6(const Note root);
+  ChordMinor6(const Note root) noexcept;
 
   ///Obtain the Scale its name
-  const std::string GetName() const { return "m6"; }
+  const std::string GetName() const noexcept { return "m6"; }
 };
 
 ///The 7 chord
@@ -139,10 +139,10 @@ struct ChordMinor6 : public Chord
 struct Chord7 : public Chord
 {
   ///Create the Chord from its root
-  Chord7(const Note root);
+  Chord7(const Note root) noexcept;
 
   ///Obtain the Scale its name
-  const std::string GetName() const { return "7"; }
+  const std::string GetName() const noexcept { return "7"; }
 };
 
 ///The minor 7 chord
@@ -150,10 +150,10 @@ struct Chord7 : public Chord
 struct ChordMinor7 : public Chord
 {
   ///Create the Chord from its root
-  ChordMinor7(const Note root);
+  ChordMinor7(const Note root) noexcept;
 
   ///Obtain the Scale its name
-  const std::string GetName() const { return "m7"; }
+  const std::string GetName() const noexcept { return "m7"; }
 };
 
 } //~namespace Music

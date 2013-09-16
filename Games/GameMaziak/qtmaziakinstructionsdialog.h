@@ -40,7 +40,7 @@ public:
     explicit QtMaziakInstructionsDialog(QWidget *parent = 0);
     QtMaziakInstructionsDialog(const QtMaziakInstructionsDialog&) = delete;
     QtMaziakInstructionsDialog& operator=(const QtMaziakInstructionsDialog&) = delete;
-    ~QtMaziakInstructionsDialog();
+    ~QtMaziakInstructionsDialog() noexcept;
 
 private:
     Ui::QtMaziakInstructionsDialog *ui;

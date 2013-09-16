@@ -45,10 +45,10 @@ struct Question
   const std::string& GetQuestion() const { return m_question; }
 
   ///Obtain the version
-  static const std::string GetVersion();
+  static const std::string GetVersion() noexcept;
 
   ///Obtain the version history
-  static const std::vector<std::string> GetVersionHistory();
+  static const std::vector<std::string> GetVersionHistory() noexcept;
 
   protected:
   //Made constructor private, because one cannot make a Question, only
@@ -58,7 +58,7 @@ struct Question
     const std::string& question,
     const std::vector<std::string>& answers);
 
-  virtual ~Question() {}
+  virtual ~Question() noexcept {}
   friend void boost::checked_delete<>(Question *);
 
   ///Obtain the answer(s)

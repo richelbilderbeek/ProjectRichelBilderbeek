@@ -34,18 +34,18 @@ class QtTestFunctionParserMainDialog : public QtHideAndShowDialog
   Q_OBJECT
 
 public:
-  explicit QtTestFunctionParserMainDialog(QWidget *parent = 0);
+  explicit QtTestFunctionParserMainDialog(QWidget *parent = 0) noexcept;
   QtTestFunctionParserMainDialog(const QtTestFunctionParserMainDialog&) = delete;
   QtTestFunctionParserMainDialog& operator=(const QtTestFunctionParserMainDialog&) = delete;
-  ~QtTestFunctionParserMainDialog();
+  ~QtTestFunctionParserMainDialog() noexcept;
 
 private slots:
-  void on_edit_value_textChanged(QString );
-  void on_edit_function_textChanged(QString );
+  void on_edit_value_textChanged(QString ) noexcept;
+  void on_edit_function_textChanged(QString ) noexcept;
 
 private:
   Ui::QtTestFunctionParserMainDialog *ui;
-  void Parse();
+  void Parse() noexcept;
 };
 
 } //~namespace ribi

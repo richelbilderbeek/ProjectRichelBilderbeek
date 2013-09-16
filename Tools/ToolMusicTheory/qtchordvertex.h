@@ -40,10 +40,10 @@ struct QtChordVertex : public QGraphicsItem
   QRectF boundingRect() const;
 
   ///Obtain this class its version number
-  static const std::string GetVersion();
+  static const std::string GetVersion() noexcept;
 
   ///Obtain this class its version history
-  static const std::vector<std::string> GetVersionHistory();
+  static const std::vector<std::string> GetVersionHistory() noexcept;
 
   //Thanks compiler, for reminding me to define this
   void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget = 0);

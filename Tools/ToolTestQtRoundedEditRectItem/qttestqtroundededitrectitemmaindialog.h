@@ -36,7 +36,7 @@ public:
   explicit QtTestQtRoundedEditRectItemMainDialog(QWidget *parent = 0);
   QtTestQtRoundedEditRectItemMainDialog(const QtTestQtRoundedEditRectItemMainDialog&) = delete;
   QtTestQtRoundedEditRectItemMainDialog& operator=(const QtTestQtRoundedEditRectItemMainDialog&) = delete;
-  ~QtTestQtRoundedEditRectItemMainDialog();
+  ~QtTestQtRoundedEditRectItemMainDialog() noexcept;
 protected:
   void keyPressEvent(QKeyEvent * event);
 

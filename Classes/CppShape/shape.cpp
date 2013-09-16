@@ -50,12 +50,12 @@ ribi::Shape::Shape(
   #endif
 }
 
-const std::string ribi::Shape::GetVersion()
+const std::string ribi::Shape::GetVersion() noexcept
 {
   return "2.1";
 }
 
-const std::vector<std::string> ribi::Shape::GetVersionHistory()
+const std::vector<std::string> ribi::Shape::GetVersionHistory() noexcept
 {
   return {
     "2011-07-13: Version 1.0: initial version",
@@ -70,7 +70,7 @@ void ribi::Shape::SetNumberOfCorners(const int n_corners)
   m_n_corners = n_corners;
 }
 
-void ribi::Shape::SetRotation(const double rotation)
+void ribi::Shape::SetRotation(const double rotation) noexcept
 {
   if (m_rotation != rotation)
   {
@@ -79,19 +79,19 @@ void ribi::Shape::SetRotation(const double rotation)
   }
 }
 
-double ribi::Shape::GetAngle(const double dx, const double dy)
+double ribi::Shape::GetAngle(const double dx, const double dy) noexcept
 {
   const double pi = boost::math::constants::pi<double>();
   return pi - std::atan2(dx,dy);
 }
 
-double ribi::Shape::GetDistance(const double dX, const double dY)
+double ribi::Shape::GetDistance(const double dX, const double dY) noexcept
 {
   return std::sqrt( (dX * dX) + (dY * dY) );
 }
 
 #ifndef NDEBUG
-void ribi::Shape::Test()
+void ribi::Shape::Test() noexcept
 {
   {
     static bool is_tested = false;
@@ -165,7 +165,7 @@ void ribi::Shape::Test()
 }
 #endif
 
-bool ribi::operator==(const Shape& lhs, const Shape& rhs)
+bool ribi::operator==(const Shape& lhs, const Shape& rhs) noexcept
 {
   return lhs.m_blue == rhs.m_blue
     &&   lhs.m_green == rhs.m_green

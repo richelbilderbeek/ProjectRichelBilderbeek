@@ -141,38 +141,38 @@ boost::shared_ptr<ribi::Pylos::Game> ribi::Pylos::Game::CreateBasicGame()
   return boost::shared_ptr<Game>(new Game(board));
 }
 
-const std::vector<ribi::Pylos::Move> ribi::Pylos::Game::GetAllPossibleMoves() const
+const std::vector<ribi::Pylos::Move> ribi::Pylos::Game::GetAllPossibleMoves() const noexcept
 {
   return m_board->GetAllPossibleMoves(m_current_player);
 }
 
-ribi::Pylos::Player ribi::Pylos::Game::GetCurrentTurn() const
+ribi::Pylos::Player ribi::Pylos::Game::GetCurrentTurn() const noexcept
 {
   return m_current_player;
 }
 
-const std::string ribi::Pylos::Game::GetVersion()
+const std::string ribi::Pylos::Game::GetVersion() noexcept
 {
   return "2.0";
 }
 
-const std::vector<std::string> ribi::Pylos::Game::GetVersionHistory()
+const std::vector<std::string> ribi::Pylos::Game::GetVersionHistory() noexcept
 {
-  std::vector<std::string> v;
-  v.push_back("2010-09-19: version 0.1: initial version");
-  v.push_back("2010-09-21: version 0.2: use of Coordinat");
-  v.push_back("2010-09-21: version 0.3: added Move");
-  v.push_back("2010-09-22: version 1.0: fixed bug in Coordinat, added move history");
-  v.push_back("2012-05-05: version 2.0: major achitectural rewrite");
-  return v;
+  return {
+    "2010-09-19: version 0.1: initial version",
+    "2010-09-21: version 0.2: use of Coordinat",
+    "2010-09-21: version 0.3: added Move",
+    "2010-09-22: version 1.0: fixed bug in Coordinat, added move history",
+    "2012-05-05: version 2.0: major achitectural rewrite"
+  };
 }
 
-ribi::Pylos::Winner ribi::Pylos::Game::GetWinner() const
+ribi::Pylos::Winner ribi::Pylos::Game::GetWinner() const noexcept
 {
   return m_board->GetWinner();
 }
 
-ribi::Pylos::MustRemoveState ribi::Pylos::Game::GetMustRemove() const
+ribi::Pylos::MustRemoveState ribi::Pylos::Game::GetMustRemove() const noexcept
 {
   return m_current_move->GetMustRemove();
 }

@@ -80,10 +80,10 @@ public:
   int GetLayerSize(const int layer) const;
 
   ///Obtain this class its version
-  static const std::string GetVersion();
+  static const std::string GetVersion() noexcept;
 
   ///Obtain this class its version history
-  static const std::vector<std::string> GetVersionHistory();
+  static const std::vector<std::string> GetVersionHistory() noexcept;
 
   ///Return the possible winner
   Pylos::Winner GetWinner() const;

@@ -21,7 +21,7 @@ public:
   explicit QtPicToCodeMenuDialog(QWidget *parent = 0);
   QtPicToCodeMenuDialog(const QtPicToCodeMenuDialog&) = delete;
   QtPicToCodeMenuDialog& operator=(const QtPicToCodeMenuDialog&) = delete;
-  ~QtPicToCodeMenuDialog();
+  ~QtPicToCodeMenuDialog() noexcept;
 
 protected:
 

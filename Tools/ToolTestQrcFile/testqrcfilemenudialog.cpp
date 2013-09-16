@@ -31,7 +31,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #pragma GCC diagnostic pop
 
-const ribi::About ribi::TestQrcFileMenuDialog::GetAbout()
+const ribi::About ribi::TestQrcFileMenuDialog::GetAbout() noexcept
 {
   About a(
     "Richel Bilderbeek",
@@ -48,12 +48,12 @@ const ribi::About ribi::TestQrcFileMenuDialog::GetAbout()
   return a;
 }
 
-const std::string ribi::TestQrcFileMenuDialog::GetVersion()
+const std::string ribi::TestQrcFileMenuDialog::GetVersion() noexcept
 {
   return "1.1";
 }
 
-const std::vector<std::string> ribi::TestQrcFileMenuDialog::GetVersionHistory()
+const std::vector<std::string> ribi::TestQrcFileMenuDialog::GetVersionHistory() noexcept
 {
   return {
     "2012-06-13: version 1.0: initial version",
@@ -61,7 +61,8 @@ const std::vector<std::string> ribi::TestQrcFileMenuDialog::GetVersionHistory()
   };
 }
 
-void ribi::TestQrcFileMenuDialog::Test()
+#ifndef NDEBUG
+void ribi::TestQrcFileMenuDialog::Test() noexcept
 {
   //Test exactly once
   {
@@ -69,13 +70,11 @@ void ribi::TestQrcFileMenuDialog::Test()
     if (is_tested) return;
     is_tested = true;
   }
-
-  QrcFile::Test();
-
   assert(QFile::exists("../ToolTestQrcFile/ToolTestQrcFile.qrc"));
   {
     QrcFile f("../ToolTestQrcFile/ToolTestQrcFile.qrc");
     assert(f.GetFiles().count("R.png"));
   }
 }
+#endif
 

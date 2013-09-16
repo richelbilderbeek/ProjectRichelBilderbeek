@@ -38,7 +38,7 @@ public:
   explicit QtRandomCodeMainDialog(QWidget *parent = 0);
   QtRandomCodeMainDialog(const QtRandomCodeMainDialog&) = delete;
   QtRandomCodeMainDialog& operator=(const QtRandomCodeMainDialog&) = delete;
-  ~QtRandomCodeMainDialog();
+  ~QtRandomCodeMainDialog() noexcept;
 
 protected:
   

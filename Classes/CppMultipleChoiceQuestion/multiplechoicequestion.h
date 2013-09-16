@@ -42,26 +42,26 @@ struct MultipleChoiceQuestion : public Question
     const std::vector<std::string>& wrong_answers);
 
   ///Create a copy of the Question, depending on the derived class its type
-  Question * Clone() const;
+  Question * Clone() const noexcept;
 
   ///Obtain the only correct answer
-  const std::string& GetAnswer() const;
+  const std::string& GetAnswer() const noexcept;
 
   ///Obtain the possible options to be chosen in a random order
-  const std::vector<std::string>& GetOptions() const;
+  const std::vector<std::string>& GetOptions() const noexcept;
 
   ///Obtain the version
-  static const std::string GetVersion();
+  static const std::string GetVersion() noexcept;
 
   ///Obtain the version history
-  static const std::vector<std::string> GetVersionHistory();
+  static const std::vector<std::string> GetVersionHistory() noexcept;
 
   ///Obtain the wrong answers
-  const std::vector<std::string>& GetWrongAnswers() const { return m_wrong_answers; }
+  const std::vector<std::string>& GetWrongAnswers() const noexcept { return m_wrong_answers; }
 
   private:
   friend void boost::checked_delete<>(MultipleChoiceQuestion *);
-  ~MultipleChoiceQuestion() {}
+  ~MultipleChoiceQuestion() noexcept {}
 
   ///All the wrong answers
   const std::vector<std::string> m_wrong_answers;
@@ -73,7 +73,7 @@ struct MultipleChoiceQuestion : public Question
   ///Create the possible options to be chosen in a random order
   static const std::vector<std::string> CreateOptions(
     const std::vector<std::string>& wrong_answers,
-    const std::string& answer);
+    const std::string& answer) noexcept;
 
   ///The options (correct + wrong answers) are at indices 2 to SeperateString(input,',').size()
   static const std::vector<std::string> ExtractOptions(
@@ -87,7 +87,7 @@ struct MultipleChoiceQuestion : public Question
   //From http://www.richelbilderbeek.nl/CppSeperateString.htm
   static const std::vector<std::string> SeperateString(
     const std::string& input,
-    const char seperator);
+    const char seperator) noexcept;
 
 };
 

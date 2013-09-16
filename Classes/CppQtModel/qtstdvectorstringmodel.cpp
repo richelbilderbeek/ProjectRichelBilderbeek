@@ -30,7 +30,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #pragma GCC diagnostic pop
 
-ribi::QtStdVectorStringModel::QtStdVectorStringModel(QObject *parent)
+ribi::QtStdVectorStringModel::QtStdVectorStringModel(QObject *parent) noexcept
   : QAbstractTableModel(parent),
     m_data{},
     m_header_horizontal_text{},
@@ -39,7 +39,7 @@ ribi::QtStdVectorStringModel::QtStdVectorStringModel(QObject *parent)
 
 }
 
-int ribi::QtStdVectorStringModel::columnCount(const QModelIndex &) const
+int ribi::QtStdVectorStringModel::columnCount(const QModelIndex &) const noexcept
 {
   return rowCount() > 0 ? 1 : 0;
 }
@@ -64,7 +64,7 @@ QVariant ribi::QtStdVectorStringModel::data(const QModelIndex &index, int role) 
   return QString(m_data[row].c_str());
 }
 
-Qt::ItemFlags ribi::QtStdVectorStringModel::flags(const QModelIndex &) const
+Qt::ItemFlags ribi::QtStdVectorStringModel::flags(const QModelIndex &) const noexcept
 {
   return
     Qt::ItemIsSelectable
@@ -74,12 +74,12 @@ Qt::ItemFlags ribi::QtStdVectorStringModel::flags(const QModelIndex &) const
   | Qt::ItemIsEnabled;
 }
 
-const std::string ribi::QtStdVectorStringModel::GetVersion()
+const std::string ribi::QtStdVectorStringModel::GetVersion() noexcept
 {
   return "1.2";
 }
 
-const std::vector<std::string> ribi::QtStdVectorStringModel::GetVersionHistory()
+const std::vector<std::string> ribi::QtStdVectorStringModel::GetVersionHistory() noexcept
 {
   return {
     "2013-05-15: version 1.0: initial version",
@@ -154,7 +154,7 @@ bool ribi::QtStdVectorStringModel::removeRows(int row, int count, const QModelIn
   return true;
 }
 
-int ribi::QtStdVectorStringModel::rowCount(const QModelIndex &) const
+int ribi::QtStdVectorStringModel::rowCount(const QModelIndex &) const noexcept
 {
   return boost::numeric_cast<int>(m_data.size());
 }

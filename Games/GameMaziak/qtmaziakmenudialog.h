@@ -44,7 +44,7 @@ public:
   explicit QtMaziakMenuDialog(QWidget *parent = 0);
   QtMaziakMenuDialog(const QtMaziakMenuDialog&) = delete;
   QtMaziakMenuDialog& operator=(const QtMaziakMenuDialog&) = delete;
-  ~QtMaziakMenuDialog();
+  ~QtMaziakMenuDialog() noexcept;
 
 private:
   Ui::QtMaziakMenuDialog *ui;

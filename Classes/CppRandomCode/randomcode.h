@@ -32,8 +32,8 @@ struct RandomCode
   static const std::vector<std::string> CreateRandomCode();
   static const std::vector<std::string> GetAbout();
   static const std::vector<std::string> GetLicence();
-  static const std::string GetVersion();
-  static const std::vector<std::string> GetVersionHistory();
+  static const std::string GetVersion() noexcept;
+  static const std::vector<std::string> GetVersionHistory() noexcept;
   private:
   static const std::string CreateRandomLine(const unsigned int length);
   static const std::string CreateRandomString();

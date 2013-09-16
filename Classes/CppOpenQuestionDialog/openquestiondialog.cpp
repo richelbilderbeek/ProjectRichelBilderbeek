@@ -42,12 +42,12 @@ ribi::OpenQuestionDialog::OpenQuestionDialog(const boost::shared_ptr<Question>& 
   assert(GetQuestion());
 }
 
-const std::string ribi::OpenQuestionDialog::GetVersion()
+const std::string ribi::OpenQuestionDialog::GetVersion() noexcept
 {
   return "1.0";
 }
 
-const std::vector<std::string> ribi::OpenQuestionDialog::GetVersionHistory()
+const std::vector<std::string> ribi::OpenQuestionDialog::GetVersionHistory() noexcept
 {
   std::vector<std::string> v;
   v.push_back("2011-06-29: version 1.0: initial version");

@@ -51,35 +51,35 @@ struct DialWidget : public Widget
     const unsigned char blue = 255);
 
   ///Click on the Dial
-  void Click(const int x, const int y);
+  void Click(const int x, const int y) noexcept;
 
   ///Obtain a read-and-write pointert to the Dial
-  Dial * GetDial() { return m_dial.get(); }
+  Dial * GetDial() noexcept { return m_dial.get(); }
 
   ///Obtain a read-only pointert to the Dial
-  const Dial * GetDial() const { return m_dial.get(); }
+  const Dial * GetDial() const noexcept { return m_dial.get(); }
 
   ///Obtain this class its version
-  static const std::string GetVersion();
+  static const std::string GetVersion() noexcept;
 
   ///Obtain this class its version history
-  static const std::vector<std::string> GetVersionHistory();
+  static const std::vector<std::string> GetVersionHistory() noexcept;
 
   ///Is the dial clicked?
-  bool IsClicked(const int x, const int y) const;
+  bool IsClicked(const int x, const int y) const noexcept;
 
   private:
 
   ///Test this class
-  static void Test();
+  static void Test() noexcept;
 
   //DialWidget can only be deleted by Boost smart pointers
-  virtual ~DialWidget() {}
+  virtual ~DialWidget() noexcept {}
   friend void boost::checked_delete<>(DialWidget*);
 
   boost::scoped_ptr<Dial> m_dial;
 
-  friend std::ostream& operator<<(std::ostream& os, const DialWidget& widget);
+  friend std::ostream& operator<<(std::ostream& os, const DialWidget& widget) noexcept;
 
   public:
 
@@ -89,11 +89,11 @@ struct DialWidget : public Widget
   /// 6 o'clock is 1.0 * pi
   /// 9 o'clock is 1.5 * pi
   //From www.richelbilderbeek.nl/CppGetAngle.htm
-  static double GetAngle(const double dx, const double dy);
-  static double GetDistance(const double dx, const double dy);
+  static double GetAngle(const double dx, const double dy) noexcept;
+  static double GetDistance(const double dx, const double dy) noexcept;
 };
 
-std::ostream& operator<<(std::ostream& os, const DialWidget& widget);
+std::ostream& operator<<(std::ostream& os, const DialWidget& widget) noexcept;
 
 } //~namespace ribi
 

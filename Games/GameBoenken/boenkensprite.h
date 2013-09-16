@@ -54,22 +54,22 @@ struct Sprite
   ///The globe part of the Sprite
   const QPixmap m_pixmap;
 
-  double getX() const { return m_x; }
-  double getY() const { return m_y; }
+  double getX() const noexcept { return m_x; }
+  double getY() const noexcept { return m_y; }
 
   ///The x,y,w,h of the sprite
   QRect rect() const;
 
-  const QPixmap& pixmap() const;
+  const QPixmap& pixmap() const noexcept;
 
   ///Every sprite must be drawn to the screen
   virtual void Draw(QPainter& painter) const;
 
   ///Obtain the version of this class
-  static const std::string GetVersion();
+  static const std::string GetVersion() noexcept;
 
   ///Obtain the version history of this class
-  static const std::vector<std::string> GetVersionHistory();
+  static const std::vector<std::string> GetVersionHistory() noexcept;
 
   ///Sets the arena size,
   ///that is Sprite::m_maxx and Sprite::m_maxy.
@@ -91,7 +91,7 @@ struct Sprite
 
   //private:
   //Ensure Sprite can only be deleted by boost::checked_delete
-  virtual ~Sprite() {}
+  virtual ~Sprite() noexcept {}
   //friend void boost::checked_delete<>(Sprite* x);
 
   ///Draws a globe with a nice 3D effect\n
@@ -109,7 +109,7 @@ struct Sprite
   /// 6 o'clock is 1.0 * pi
   /// 9 o'clock is 1.5 * pi
   //From www.richelbilderbeek.nl/CppGetAngle.htm
-  static double GetAngle(const double dx, const double dy);
+  static double GetAngle(const double dx, const double dy) noexcept;
 
   ///DoPerfectElasticCollision calculates the impulses after a
   ///collision.
@@ -119,12 +119,12 @@ struct Sprite
     double& angle1,
     double& speed1,
     double& angle2,
-    double& speed2);
+    double& speed2) noexcept;
 
   private:
   #ifndef NDEBUG
   ///Test this class
-  static void Test();
+  static void Test() noexcept;
   #endif
 
 };

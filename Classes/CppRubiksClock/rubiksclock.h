@@ -93,10 +93,10 @@ struct RubiksClock
   Pegs& GetFrontPegs();
 
   ///Obtain this class its version
-  static const std::string GetVersion();
+  static const std::string GetVersion() noexcept;
 
   ///Obtain this class its version history
-  static const std::vector<std::string> GetVersionHistory();
+  static const std::vector<std::string> GetVersionHistory() noexcept;
 
   ///Respond to a change in the clock
   mutable boost::signals2::signal<void ()> m_signal_clock_changed;

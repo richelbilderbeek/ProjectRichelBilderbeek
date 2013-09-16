@@ -39,8 +39,8 @@ struct AsciiArter
     const std::vector<std::vector<double> >& image,
     const int width) const;
 
-  static const std::string GetVersion();
-  static const std::vector<std::string> GetVersionHistory();
+  static const std::string GetVersion() noexcept;
+  static const std::vector<std::string> GetVersionHistory() noexcept;
 
   private:
   static const std::vector<char> m_gradient;

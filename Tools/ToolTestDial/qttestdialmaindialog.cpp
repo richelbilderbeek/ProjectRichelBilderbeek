@@ -34,8 +34,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "ui_qttestdialmaindialog.h"
 #pragma GCC diagnostic pop
 
-ribi::QtTestDialMainDialog::QtTestDialMainDialog(QWidget *parent) :
-    QDialog(parent),
+ribi::QtTestDialMainDialog::QtTestDialMainDialog(QWidget *parent) noexcept
+  : QDialog(parent),
     ui(new Ui::QtTestDialMainDialog)
 {
   ui->setupUi(this);
@@ -54,12 +54,12 @@ ribi::QtTestDialMainDialog::QtTestDialMainDialog(QWidget *parent) :
   DisplayDialValue();
 }
 
-ribi::QtTestDialMainDialog::~QtTestDialMainDialog()
+ribi::QtTestDialMainDialog::~QtTestDialMainDialog() noexcept
 {
   delete ui;
 }
 
-void ribi::QtTestDialMainDialog::DisplayDialColor()
+void ribi::QtTestDialMainDialog::DisplayDialColor() noexcept
 {
   //Check
   const unsigned char r = ui->dial->GetWidget()->GetDial()->GetRed();
@@ -77,7 +77,7 @@ void ribi::QtTestDialMainDialog::DisplayDialColor()
   ui->label_color->setText(text.c_str());
 }
 
-void ribi::QtTestDialMainDialog::DisplayDialValue()
+void ribi::QtTestDialMainDialog::DisplayDialValue() noexcept
 {
   const std::string s
     = std::string("Dial angle: ")
@@ -85,7 +85,7 @@ void ribi::QtTestDialMainDialog::DisplayDialValue()
   ui->label_angle->setText(s.c_str());
 }
 
-void ribi::QtTestDialMainDialog::on_dial_color_valueChanged(int /* value */)
+void ribi::QtTestDialMainDialog::on_dial_color_valueChanged(int /* value */) noexcept
 {
   //Set the color
   const double min = boost::numeric_cast<double>(ui->dial_color->minimum());

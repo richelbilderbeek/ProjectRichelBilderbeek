@@ -27,35 +27,37 @@ struct StandardKalmanFilterParameters : public KalmanFilterParameters
   );
 
   ///Obtain the (estimated) measurement noise ('R')
-  const boost::numeric::ublas::matrix<double>& GetEstimatedMeasurementNoise() const
+  const boost::numeric::ublas::matrix<double>& GetEstimatedMeasurementNoise() const noexcept
     { return m_estimated_measurement_noise; }
 
   ///P: The initial estimation error covariance estimate
-  const boost::numeric::ublas::matrix<double>& GetInitialCovarianceEstimate() const
+  const boost::numeric::ublas::matrix<double>& GetInitialCovarianceEstimate() const noexcept
     { return m_initial_covariance_estimate; }
 
   ///Obtain the process noise covariance ('Q')
-  const boost::numeric::ublas::matrix<double>& GetEstimatedProcessNoiseCovariance() const
+  const boost::numeric::ublas::matrix<double>& GetEstimatedProcessNoiseCovariance() const noexcept
     { return m_estimated_process_noise_covariance; }
 
   ///Obtain the Kalman filter type as an enum
-  KalmanFilterType GetType() const { return KalmanFilterType::standard; }
+  KalmanFilterType GetType() const noexcept { return KalmanFilterType::standard; }
 
   ///Check if two parameter sets are equal with a fuzzy compare
-  static bool IsAboutEqual(const StandardKalmanFilterParameters& lhs, const StandardKalmanFilterParameters& rhs);
+  static bool IsAboutEqual(
+    const StandardKalmanFilterParameters& lhs,
+    const StandardKalmanFilterParameters& rhs) noexcept;
 
   ///Obtain the version of this class
-  static const std::string GetVersion();
+  static const std::string GetVersion() noexcept;
 
   ///Obtain the version history of this class
-  static const std::vector<std::string> GetVersionHistory();
+  static const std::vector<std::string> GetVersionHistory() noexcept;
 
   ///Check if this parameter set has a certain type of KalmanFilterParameter
-  static bool HasParameterType(const KalmanFilterParameterType type);
+  static bool HasParameterType(const KalmanFilterParameterType type) noexcept;
 
   private:
   ///Can only be deleted by boost::checked_delete
-  ~StandardKalmanFilterParameters() {}
+  ~StandardKalmanFilterParameters() noexcept {}
   friend void boost::checked_delete<>(StandardKalmanFilterParameters*);
 
   ///R: Estimated measurement noise

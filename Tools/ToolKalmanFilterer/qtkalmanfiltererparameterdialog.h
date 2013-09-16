@@ -31,7 +31,7 @@ public:
     QAbstractTableModel * const model,
     QWidget *parent = 0);
 
-  ~QtKalmanFiltererParameterDialog();
+  ~QtKalmanFiltererParameterDialog() noexcept;
 
   ///Convert the table and its content to HTML
   const std::string ToHtml() const;

@@ -40,7 +40,7 @@ public:
   explicit QtTestQrcFileMenuDialog(QWidget *parent = 0);
   QtTestQrcFileMenuDialog(const QtTestQrcFileMenuDialog&) = delete;
   QtTestQrcFileMenuDialog& operator=(const QtTestQrcFileMenuDialog&) = delete;
-  ~QtTestQrcFileMenuDialog();
+  ~QtTestQrcFileMenuDialog() noexcept;
 
 private slots:
   void on_button_start_clicked();

@@ -37,7 +37,7 @@ public:
   explicit QtSitemapGeneratorMainDialog(QWidget *parent = 0);
   QtSitemapGeneratorMainDialog(const QtSitemapGeneratorMainDialog&);
   QtSitemapGeneratorMainDialog& operator=(const QtSitemapGeneratorMainDialog&);
-  ~QtSitemapGeneratorMainDialog();
+  ~QtSitemapGeneratorMainDialog() noexcept;
 
 protected:
   void keyPressEvent(QKeyEvent * e);

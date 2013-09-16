@@ -35,7 +35,7 @@ ribi::ConnectThreeWidget::ConnectThreeWidget(
   : m_game(new ConnectThree(n_cols,n_rows)),
     m_is_player_human(is_player_human)
 {
-
+  assert(m_game);
 }
 
 void ribi::ConnectThreeWidget::DoMove(const int x,const int y)
@@ -43,7 +43,7 @@ void ribi::ConnectThreeWidget::DoMove(const int x,const int y)
   m_game->DoMove(x,y);
 }
 
-const ribi::ConnectThree * ribi::ConnectThreeWidget::GetGame() const
+const ribi::ConnectThree * ribi::ConnectThreeWidget::GetGame() const noexcept
 {
   return m_game.get();
 }
@@ -53,19 +53,19 @@ const ribi::ConnectThree * ribi::ConnectThreeWidget::GetGame() const
 //  return m_game.get();
 //}
 
-const std::string ribi::ConnectThreeWidget::GetVersion()
+const std::string ribi::ConnectThreeWidget::GetVersion() noexcept
 {
   return "1.0";
 }
 
-const std::vector<std::string> ribi::ConnectThreeWidget::GetVersionHistory()
+const std::vector<std::string> ribi::ConnectThreeWidget::GetVersionHistory() noexcept
 {
-  std::vector<std::string> v;
-  v.push_back("2011-04-20: version 1.0: initial version");
-  return v;
+  return {
+    "2011-04-20: version 1.0: initial version"
+  };
 }
 
-bool ribi::ConnectThreeWidget::IsComputerTurn() const
+bool ribi::ConnectThreeWidget::IsComputerTurn() const noexcept
 {
   assert(m_game);
   return !IsHuman(m_game->GetActivePlayer());
@@ -113,7 +113,3 @@ void ribi::ConnectThreeWidget::Tick()
     m_game->DoMove(m.get<0>(),m.get<1>());
   }
 }
-
-
-
-

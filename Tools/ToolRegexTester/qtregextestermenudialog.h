@@ -40,7 +40,7 @@ public:
   explicit QtRegexTesterMenuDialog(QWidget *parent = 0);
   QtRegexTesterMenuDialog(const QtRegexTesterMenuDialog&) = delete;
   QtRegexTesterMenuDialog& operator=(const QtRegexTesterMenuDialog&) = delete;
-  ~QtRegexTesterMenuDialog();
+  ~QtRegexTesterMenuDialog() noexcept;
 
 private:
   Ui::QtRegexTesterMenuDialog *ui;

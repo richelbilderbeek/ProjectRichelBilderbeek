@@ -40,7 +40,7 @@ public:
   explicit QtTestQrcFileMainDialog(QWidget *parent = 0);
   QtTestQrcFileMainDialog(const QtTestQrcFileMainDialog&) = delete;
   QtTestQrcFileMainDialog& operator=(const QtTestQrcFileMainDialog&) = delete;
-  ~QtTestQrcFileMainDialog();
+  ~QtTestQrcFileMainDialog() noexcept;
 
 private slots:
   void on_edit_textChanged(const QString &arg1);
@@ -50,7 +50,7 @@ private:
 
   ///Determines if a filename is a regular file
   ///From http://www.richelbilderbeek.nl/CppIsRegularFile.htm
-  static bool IsRegularFile(const std::string& filename);
+  static bool IsRegularFile(const std::string& filename) noexcept;
 
 };
 

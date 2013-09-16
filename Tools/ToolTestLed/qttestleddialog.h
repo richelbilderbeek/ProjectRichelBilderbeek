@@ -38,10 +38,10 @@ class QtTestLedDialog : public QDialog
   Q_OBJECT
 
 public:
-  explicit QtTestLedDialog(QWidget *parent = 0);
+  explicit QtTestLedDialog(QWidget *parent = 0) noexcept;
   QtTestLedDialog(const QtTestLedDialog&) = delete;
   QtTestLedDialog& operator=(const QtTestLedDialog&) = delete;
-  ~QtTestLedDialog();
+  ~QtTestLedDialog() noexcept;
 
 protected:
   
@@ -50,8 +50,8 @@ private:
   Ui::QtTestLedDialog *ui;
 
 private slots:
-    void on_button_about_clicked();
-    void on_slider_valueChanged(int value);
+    void on_button_about_clicked() noexcept;
+    void on_slider_valueChanged(int value) noexcept;
 };
 
 } //~namespace ribi

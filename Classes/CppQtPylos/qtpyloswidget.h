@@ -49,7 +49,7 @@ class QtPylosWidget : public QWidget
   Q_OBJECT
 public:
   QtPylosWidget();
-  virtual ~QtPylosWidget() {}
+  virtual ~QtPylosWidget() noexcept {}
   ///mouseMoveEvent is public, because
   ///TestPylos must be able to make virtual mouse movements.
   void mouseMoveEvent(QMouseEvent * e);
@@ -93,10 +93,10 @@ public:
   const Pylos::Coordinat& GetSelector() const { return m_select; }
 
   ///Obtain this class its version
-  static const std::string GetVersion();
+  static const std::string GetVersion() noexcept;
 
   ///Obtain this class its version history
-  static const std::vector<std::string> GetVersionHistory();
+  static const std::vector<std::string> GetVersionHistory() noexcept;
 
   ///Return the possible winner
   virtual Pylos::Winner GetWinner() const = 0;

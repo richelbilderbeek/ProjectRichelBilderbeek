@@ -53,7 +53,7 @@ ribi::Boenken::SpriteBall::SpriteBall(
   //  << this->getY() << ")\n";
 }
 
-ribi::Boenken::SpriteBall::~SpriteBall()
+ribi::Boenken::SpriteBall::~SpriteBall() noexcept
 {
   --sm_n_balls;
   assert(sm_n_balls >= 0);
@@ -70,7 +70,7 @@ void ribi::Boenken::SpriteBall::SetGoalPoles(
     && "Assume the top pole is on top");
 }
 
-void ribi::Boenken::SpriteBall::Move()
+void ribi::Boenken::SpriteBall::Move() noexcept
 {
   const double maxx = this->m_maxx - this->m_size;
   const double maxy = this->m_maxy - this->m_size;
@@ -129,7 +129,7 @@ void ribi::Boenken::SpriteBall::Move()
   m_dy *= m_friction;
 }
 
-std::pair<int,int> ribi::Boenken::SpriteBall::GetScore()
+std::pair<int,int> ribi::Boenken::SpriteBall::GetScore() noexcept
 {
   return std::make_pair(m_score_left,m_score_right);
 }

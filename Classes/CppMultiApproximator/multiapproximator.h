@@ -43,14 +43,20 @@ struct MultiApproximator
   typedef typename Container::const_iterator Iterator;
   typedef typename std::pair<Iterator,Iterator> Range;
 
-  explicit MultiApproximator(const Container& container = Container());
+  explicit MultiApproximator(const Container& container = Container()) noexcept;
 
-  void Add(const Key& key, const Value& value);
+  ///Add a (key,value) pair. Because keys do not need to be unique,
+  ///this will always succeed
+  void Add(const Key& key, const Value& value) noexcept;
 
+  ///Approximates a value from a key
+  ///Will throw a std::logic_error if there is no data in the MultiApproximator
+  ///Will throw ExceptionNoExtrapolation if the key is beyond the range
+  ///of the keys stored in MultiApproxitor
   const Value Approximate(const Key& key) const;
 
   ///Obtain the container
-  const Container& GetContainer() const { return m_m; }
+  const Container& GetContainer() const noexcept{ return m_m; }
 
   ///Get the heighest key value
   const Key GetMax() const;
@@ -62,10 +68,10 @@ struct MultiApproximator
   const Value GetValue(const Key& key) const;
 
   ///Obtain the version of this class
-  static const std::string GetVersion();
+  static const std::string GetVersion() noexcept;
 
   ///Obtain the version history of this class
-  static const std::vector<std::string> GetVersionHistory();
+  static const std::vector<std::string> GetVersionHistory() noexcept;
 
   private:
   ///The container to store the std::pair<Key,Value> in
@@ -73,7 +79,7 @@ struct MultiApproximator
 
   #ifndef NDEBUG
   ///Test this class
-  static void Test();
+  static void Test() noexcept;
   #endif
 
   //template <class AnyKey, class AnyValue, class AnyContainer>
@@ -83,9 +89,11 @@ struct MultiApproximator
 
 };
 
+
+///Convert a std::multimap to a std::map
 template <class Key, class Value>
 const std::map<Key,Value> MultimapToMap(
-  const std::multimap<Key,Value> m);
+  const std::multimap<Key,Value> m) noexcept;
 
 ///Convert to a (non-multi)Approximator
 ///This probably gain runtime speed, when will no data added anymore
@@ -96,11 +104,11 @@ template <
   class Container
   >
 const Approximator<Key,Value,Container> ToApproximator(
-  const MultiApproximator<Key,Value,MultiContainer>& m);
+  const MultiApproximator<Key,Value,MultiContainer>& m) noexcept;
 
 
 template <class Key, class Value, class Container>
-MultiApproximator<Key,Value,Container>::MultiApproximator(const Container& container)
+MultiApproximator<Key,Value,Container>::MultiApproximator(const Container& container) noexcept
   : m_m { container }
 {
   static_assert(!std::is_integral<Key>(),
@@ -113,7 +121,7 @@ MultiApproximator<Key,Value,Container>::MultiApproximator(const Container& conta
 }
 
 template <class Key, class Value, class Container>
-void MultiApproximator<Key,Value,Container>::Add(const Key& key, const Value& value)
+void MultiApproximator<Key,Value,Container>::Add(const Key& key, const Value& value) noexcept
 {
   m_m.insert(std::make_pair(key,value));
 }
@@ -121,8 +129,12 @@ void MultiApproximator<Key,Value,Container>::Add(const Key& key, const Value& va
 template <class Key, class Value, class Container>
 const Value MultiApproximator<Key,Value,Container>::Approximate(const Key& key) const
 {
-  assert(!m_m.empty() && "Cannot approximate without data");
-
+  if (m_m.empty())
+  {
+    throw std::logic_error(
+      "MultiApproximator<Key,Value,Container>::Approximate: "
+      "cannot approximate without data");
+  }
   //Must the average be calculated?
   if (m_m.find(key) != m_m.end()) return GetValue(key);
 
@@ -198,14 +210,14 @@ const Value MultiApproximator<Key,Value,Container>::GetValue(const Key& key) con
 }
 
 template <class Key, class Value, class Container>
-const std::string MultiApproximator<Key,Value,Container>::GetVersion()
+const std::string MultiApproximator<Key,Value,Container>::GetVersion() noexcept
 {
   return "1.1";
 }
 
 ///Obtain the version history of this class
 template <class Key, class Value, class Container>
-const std::vector<std::string> MultiApproximator<Key,Value,Container>::GetVersionHistory()
+const std::vector<std::string> MultiApproximator<Key,Value,Container>::GetVersionHistory() noexcept
 {
   return {
     "2013-08-23: version 1.0: initial version",
@@ -215,9 +227,10 @@ const std::vector<std::string> MultiApproximator<Key,Value,Container>::GetVersio
 
 template <class Key, class Value>
 const std::map<Key,Value> MultimapToMap(
-  const std::multimap<Key,Value> m)
+  const std::multimap<Key,Value> m) noexcept
 {
   std::map<Key,Value> n;
+  if (m.empty()) return n;
   const auto end = m.end();
   for (auto begin = m.begin(); begin != end; )
   {
@@ -253,7 +266,7 @@ const std::map<Key,Value> MultimapToMap(
 
 #ifndef NDEBUG
 template <class Key, class Value, class Container>
-void MultiApproximator<Key,Value,Container>::Test()
+void MultiApproximator<Key,Value,Container>::Test() noexcept
 {
   {
     static bool is_tested = false;
@@ -352,7 +365,7 @@ template <
   class Container
   >
 const Approximator<Key,Value,Container> ToApproximator(
-  const MultiApproximator<Key,Value,MultiContainer>& multi_approximator)
+  const MultiApproximator<Key,Value,MultiContainer>& multi_approximator) noexcept
 {
   const MultiContainer m = multi_approximator.GetContainer();
   const Container n = MultimapToMap(m);

@@ -89,10 +89,10 @@ struct QtCreatorProFile
   const std::set<std::string>& GetTemplate() const { return m_template; }
 
   ///Obtain this class its version
-  static const std::string GetVersion();
+  static const std::string GetVersion() noexcept;
 
   ///Obtain this class its version history
-  static const std::vector<std::string> GetVersionHistory();
+  static const std::vector<std::string> GetVersionHistory() noexcept;
 
   ///Set the CONFIG
   void SetConfig(const std::set<std::string>& s) { m_config = s; }
@@ -138,7 +138,7 @@ struct QtCreatorProFile
 
   private:
   ///Be sure the class is correctly deleted
-  ~QtCreatorProFile() {}
+  ~QtCreatorProFile() noexcept {}
   friend void boost::checked_delete<>(QtCreatorProFile* x);
 
   ///The items at CONFIG

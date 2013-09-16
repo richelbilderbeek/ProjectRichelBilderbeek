@@ -42,13 +42,10 @@ public:
   explicit QtTestPylosRandomPlayDialog(QWidget *parent = 0);
   QtTestPylosRandomPlayDialog(const QtTestPylosRandomPlayDialog&) = delete;
   QtTestPylosRandomPlayDialog& operator=(const QtTestPylosRandomPlayDialog&) = delete;
-  ~QtTestPylosRandomPlayDialog();
+  ~QtTestPylosRandomPlayDialog() noexcept;
     
 private slots:
-
     void on_button_start_clicked();
-
-
     void on_edit_n_games_textChanged(const QString &arg1);
 
 private:

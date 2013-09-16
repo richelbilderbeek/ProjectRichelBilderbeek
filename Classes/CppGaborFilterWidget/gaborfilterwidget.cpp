@@ -42,19 +42,19 @@ ribi::GaborFilterWidget::GaborFilterWidget(
   this->SetGeometry(Rect(x,y,width,height));
 }
 
-const std::string ribi::GaborFilterWidget::GetVersion()
+const std::string ribi::GaborFilterWidget::GetVersion() noexcept
 {
   return "1.0";
 }
 
-const std::vector<std::string> ribi::GaborFilterWidget::GetVersionHistory()
+const std::vector<std::string> ribi::GaborFilterWidget::GetVersionHistory() noexcept
 {
   return {
     "2012-07-09: version 1.0: initial version"
   };
 }
 
-std::ostream& ribi::operator<<(std::ostream& os, const GaborFilterWidget& widget)
+std::ostream& ribi::operator<<(std::ostream& os, const GaborFilterWidget& widget) noexcept
 {
   os
     << "<GaborFilterWidget>"

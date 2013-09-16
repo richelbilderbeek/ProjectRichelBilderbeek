@@ -47,7 +47,7 @@ public:
   explicit QtAsciiArterMainDialog(QWidget *parent = 0);
   QtAsciiArterMainDialog(const QtAsciiArterMainDialog&) = delete;
   QtAsciiArterMainDialog& operator=(const QtAsciiArterMainDialog&) = delete;
-  ~QtAsciiArterMainDialog();
+  ~QtAsciiArterMainDialog() noexcept;
 
 protected:
   void keyPressEvent(QKeyEvent *);

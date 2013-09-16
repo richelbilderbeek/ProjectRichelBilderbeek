@@ -37,7 +37,7 @@ public:
   explicit QtTestQtCreatorProFileMainDialog(QWidget *parent = 0);
   QtTestQtCreatorProFileMainDialog(const QtTestQtCreatorProFileMainDialog&) = delete;
   QtTestQtCreatorProFileMainDialog& operator=(const QtTestQtCreatorProFileMainDialog&) = delete;
-  ~QtTestQtCreatorProFileMainDialog();
+  ~QtTestQtCreatorProFileMainDialog() noexcept;
 
 private slots:
   void on_button_select_clicked();

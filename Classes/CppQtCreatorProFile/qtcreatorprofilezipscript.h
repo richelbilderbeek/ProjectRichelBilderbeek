@@ -47,7 +47,7 @@ struct QtCreatorProFileZipScript
   static const std::string CreateScript(const std::string& source_folder);
 
   ///Obtain this class its About information
-  static const About GetAbout();
+  static const About GetAbout() noexcept;
 
   ///Obtain all filenames
   const std::set<std::string>& GetFilenames() const { return m_filenames; }
@@ -57,10 +57,10 @@ struct QtCreatorProFileZipScript
   const std::string& GetProFileName() const { return m_pro_file_name; }
 
   ///Obtain this class its version
-  static const std::string GetVersion();
+  static const std::string GetVersion() noexcept;
 
   ///Obtain this class its version history
-  static const std::vector<std::string> GetVersionHistory();
+  static const std::vector<std::string> GetVersionHistory() noexcept;
 
   static const boost::shared_ptr<QtCreatorProFileZipScript> Merge(
     const std::vector<boost::shared_ptr<const QtCreatorProFileZipScript> >& v);
@@ -75,7 +75,7 @@ struct QtCreatorProFileZipScript
     const std::string& pro_file_name);
 
   ///Be sure the class is correctly deleted
-  ~QtCreatorProFileZipScript() {}
+  ~QtCreatorProFileZipScript() noexcept {}
   friend void boost::checked_delete<>(QtCreatorProFileZipScript* x);
 
   ///All the files used by the QtCreatorProFile
@@ -109,14 +109,14 @@ struct QtCreatorProFileZipScript
 
   #ifndef NDEBUG
   ///Test this class
-  static void Test();
+  static void Test() noexcept;
   #endif
 
-  friend std::ostream& operator<<(std::ostream& os,const QtCreatorProFileZipScript& script);
+  friend std::ostream& operator<<(std::ostream& os,const QtCreatorProFileZipScript& script) noexcept;
 };
 
 ///Write the script to a stream
-std::ostream& operator<<(std::ostream& os,const QtCreatorProFileZipScript& script);
+std::ostream& operator<<(std::ostream& os,const QtCreatorProFileZipScript& script) noexcept;
 
 } //~namespace ribi
 

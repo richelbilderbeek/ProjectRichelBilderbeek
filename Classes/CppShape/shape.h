@@ -48,35 +48,35 @@ struct Shape
     const unsigned char blue = 255);
 
   ///Get the blueness of the Shape its color
-  unsigned char GetBlue() const { return m_blue; }
+  unsigned char GetBlue() const noexcept { return m_blue; }
 
   ///Get the greenness of the Shape its color
-  unsigned char GetGreen() const { return m_green; }
+  unsigned char GetGreen() const noexcept { return m_green; }
 
   ///Get the number of corners of the Shape
-  double GetNumberOfCorners() const { return m_n_corners; }
+  double GetNumberOfCorners() const noexcept { return m_n_corners; }
 
   ///Get the redness of the Shape its color
-  unsigned char GetRed() const { return m_red; }
+  unsigned char GetRed() const noexcept { return m_red; }
 
   ///Get the rotation of the Shape
-  double GetRotation() const { return m_rotation; }
+  double GetRotation() const noexcept { return m_rotation; }
 
   ///Set the number of corners of the Shape
   void SetNumberOfCorners(const int n_corners);
 
   ///Set the rotation of the Shape
-  void SetRotation(const double rotation);
+  void SetRotation(const double rotation) noexcept;
 
   ///The signal emitted when the Shape position is changed
   mutable boost::signals2::signal<void ()> m_signal_changed;
 
   private:
   //Shape can only be deleted by Boost smart pointers
-  virtual ~Shape() {}
+  virtual ~Shape() noexcept {}
   friend void boost::checked_delete<>(Shape*);
 
-  friend bool operator==(const Shape& lhs, const Shape& rhs);
+  friend bool operator==(const Shape& lhs, const Shape& rhs) noexcept;
 
   ///The shape its blueness
   unsigned char m_blue;
@@ -100,7 +100,7 @@ struct Shape
 
   #ifndef NDEBUG
   ///Test this class
-  static void Test();
+  static void Test() noexcept;
   #endif
 
   public:
@@ -110,16 +110,16 @@ struct Shape
   /// 6 o'clock is 1.0 * pi
   /// 9 o'clock is 1.5 * pi
   //From www.richelbilderbeek.nl/CppGetAngle.htm
-  static double GetAngle(const double dx, const double dy);
+  static double GetAngle(const double dx, const double dy) noexcept;
 
   //From www.richelbilderbeek.nl/CppGetDistance.htm
-  static double GetDistance(const double dX, const double dY);
-  static const std::string GetVersion();
-  static const std::vector<std::string> GetVersionHistory();
+  static double GetDistance(const double dX, const double dY) noexcept;
+  static const std::string GetVersion() noexcept;
+  static const std::vector<std::string> GetVersionHistory() noexcept;
 
 };
 
-bool operator==(const Shape& lhs, const Shape& rhs);
+bool operator==(const Shape& lhs, const Shape& rhs) noexcept;
 
 } //~namespace ribi
 

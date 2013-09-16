@@ -43,9 +43,9 @@ struct TestEncrangerDialog
   void SetKey(const int i);
   void SetPlainText(const std::string& s);
 
-  static const About GetAbout();
-  static const std::string GetVersion();
-  static const std::vector<std::string> GetVersionHistory();
+  static const About GetAbout() noexcept;
+  static const std::string GetVersion() noexcept;
+  static const std::vector<std::string> GetVersionHistory() noexcept;
 
   private:
   boost::scoped_ptr<Encranger> m_encranger;

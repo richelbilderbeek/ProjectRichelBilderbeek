@@ -49,10 +49,10 @@ struct QtExercise : public QDialog
   const Exercise * GetExercise() const;
 
   ///Obtain this class its version
-  static const std::string GetVersion();
+  static const std::string GetVersion() noexcept;
 
   ///Obtain this class its version history
-  static const std::vector<std::string> GetVersionHistory();
+  static const std::vector<std::string> GetVersionHistory() noexcept;
 
   ///Set the questions
   void SetQuestions(const std::string& filename);

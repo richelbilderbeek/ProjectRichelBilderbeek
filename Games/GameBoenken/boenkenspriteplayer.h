@@ -44,17 +44,17 @@ struct SpritePlayer : public Boenken::SpriteMoving
     const unsigned char g,
     const unsigned char b);
 
-  void Accelerate();
+  void Accelerate() noexcept;
   void Draw(QPainter& painter) const;
-  void Move();
-  void TurnRight();
+  void Move() noexcept;
+  void TurnRight() noexcept;
 
   ///The SpritePlayer's ID
   const int m_id;
 
   private:
   ///Ensure SpritePlayer can only be deleted by boost::checked_delete
-  ~SpritePlayer();
+  ~SpritePlayer() noexcept;
   friend void boost::checked_delete<>(SpritePlayer* x);
 
   double m_angle;

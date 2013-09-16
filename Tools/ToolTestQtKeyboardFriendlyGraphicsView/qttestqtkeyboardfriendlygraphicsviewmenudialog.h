@@ -37,7 +37,7 @@ public:
   explicit QtTestKeyboardFriendlyGraphicsViewMenuDialog(QWidget *parent = 0);
   QtTestKeyboardFriendlyGraphicsViewMenuDialog(const QtTestKeyboardFriendlyGraphicsViewMenuDialog&) = delete;
   QtTestKeyboardFriendlyGraphicsViewMenuDialog& operator=(const QtTestKeyboardFriendlyGraphicsViewMenuDialog&) = delete;
-  ~QtTestKeyboardFriendlyGraphicsViewMenuDialog();
+  ~QtTestKeyboardFriendlyGraphicsViewMenuDialog() noexcept;
 
   void ShowAbout();
   void Quit();

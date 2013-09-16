@@ -28,7 +28,7 @@ public:
   QtStandardKalmanFilterCalculationDialog operator=(const QtStandardKalmanFilterCalculationDialog&) = delete;
 
   explicit QtStandardKalmanFilterCalculationDialog(QWidget *parent = 0);
-  ~QtStandardKalmanFilterCalculationDialog();
+  ~QtStandardKalmanFilterCalculationDialog() noexcept;
 
   ///Obtain the Kalman filter type as an enum
   KalmanFilterType GetType() const { return KalmanFilterType::standard; }

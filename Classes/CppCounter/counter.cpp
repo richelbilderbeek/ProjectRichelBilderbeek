@@ -18,16 +18,14 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/CppCounter.htm
 //---------------------------------------------------------------------------
-
-
 #include "counter.h"
 
-const std::string ribi::Counter::GetVersion()
+const std::string ribi::Counter::GetVersion() noexcept
 {
   return "1.0";
 }
 
-const std::vector<std::string> ribi::Counter::GetVersionHistory()
+const std::vector<std::string> ribi::Counter::GetVersionHistory() noexcept
 {
   return {
     "2011-08-20: Version 1.0: initial version"

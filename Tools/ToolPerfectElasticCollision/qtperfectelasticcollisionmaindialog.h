@@ -40,7 +40,7 @@ public:
   explicit QtPerfectElasticCollisionMainDialog(QWidget *parent = 0);
   QtPerfectElasticCollisionMainDialog(const QtPerfectElasticCollisionMainDialog&) = delete;
   QtPerfectElasticCollisionMainDialog& operator=(const QtPerfectElasticCollisionMainDialog&) = delete;
-  ~QtPerfectElasticCollisionMainDialog();
+  ~QtPerfectElasticCollisionMainDialog() noexcept;
 
 protected:
   void paintEvent(QPaintEvent*);

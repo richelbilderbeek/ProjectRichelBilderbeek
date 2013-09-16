@@ -10,19 +10,19 @@
 
 #pragma GCC diagnostic pop
 
-ribi::QtStateObserverMenuDialog::QtStateObserverMenuDialog(QWidget *parent) :
+ribi::QtStateObserverMenuDialog::QtStateObserverMenuDialog(QWidget *parent) noexcept :
   QtHideAndShowDialog(parent),
   ui(new Ui::QtStateObserverMenuDialog)
 {
   ui->setupUi(this);
 }
 
-ribi::QtStateObserverMenuDialog::~QtStateObserverMenuDialog()
+ribi::QtStateObserverMenuDialog::~QtStateObserverMenuDialog() noexcept
 {
   delete ui;
 }
 
-void ribi::QtStateObserverMenuDialog::on_button_start_clicked()
+void ribi::QtStateObserverMenuDialog::on_button_start_clicked() noexcept
 {
   QtStateObserverMainDialog d;
   d.setStyleSheet(this->styleSheet());
@@ -30,7 +30,7 @@ void ribi::QtStateObserverMenuDialog::on_button_start_clicked()
   this->ShowChild(&d);
 }
 
-void ribi::QtStateObserverMenuDialog::on_button_about_clicked()
+void ribi::QtStateObserverMenuDialog::on_button_about_clicked() noexcept
 {
   this->hide();
   About a = StateObserverMenuDialog::GetAbout();
@@ -42,7 +42,7 @@ void ribi::QtStateObserverMenuDialog::on_button_about_clicked()
   this->show();
 }
 
-void ribi::QtStateObserverMenuDialog::on_button_quit_clicked()
+void ribi::QtStateObserverMenuDialog::on_button_quit_clicked() noexcept
 {
   close();
 }

@@ -24,14 +24,14 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "ui_qtsimmysterymachinerealmachinedialog.h"
 #pragma GCC diagnostic pop
 
-ribi::QtSimMysteryMachineRealMachineDialog::QtSimMysteryMachineRealMachineDialog(QWidget *parent) :
+ribi::QtSimMysteryMachineRealMachineDialog::QtSimMysteryMachineRealMachineDialog(QWidget *parent) noexcept :
     QDialog(parent),
     ui(new Ui::QtSimMysteryMachineRealMachineDialog)
 {
     ui->setupUi(this);
 }
 
-ribi::QtSimMysteryMachineRealMachineDialog::~QtSimMysteryMachineRealMachineDialog()
+ribi::QtSimMysteryMachineRealMachineDialog::~QtSimMysteryMachineRealMachineDialog() noexcept
 {
     delete ui;
 }

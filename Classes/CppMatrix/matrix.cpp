@@ -81,7 +81,7 @@ const std::vector<boost::numeric::ublas::matrix<double> > ribi::Matrix::Chop(
 const boost::numeric::ublas::matrix<double> ribi::Matrix::CreateMatrix(
   const std::size_t n_rows,
   const std::size_t n_cols,
-  const std::vector<double>& v)
+  const std::vector<double>& v) noexcept
 {
   assert(n_rows * n_cols == v.size());
   boost::numeric::ublas::matrix<double> m(n_rows,n_cols);
@@ -95,7 +95,8 @@ const boost::numeric::ublas::matrix<double> ribi::Matrix::CreateMatrix(
   return m;
 }
 
-const boost::numeric::ublas::matrix<double> ribi::Matrix::CreateRandomMatrix(const std::size_t n_rows, const std::size_t n_cols)
+const boost::numeric::ublas::matrix<double> ribi::Matrix::CreateRandomMatrix(
+  const std::size_t n_rows, const std::size_t n_cols) noexcept
 {
   boost::numeric::ublas::matrix<double> m(n_rows,n_cols);
   for (std::size_t row=0; row!=n_rows; ++row)
@@ -108,31 +109,34 @@ const boost::numeric::ublas::matrix<double> ribi::Matrix::CreateRandomMatrix(con
   return m;
 }
 
-const boost::numeric::ublas::vector<double> ribi::Matrix::CreateVector(const std::vector<double>& v)
+const boost::numeric::ublas::vector<double> ribi::Matrix::CreateVector(
+  const std::vector<double>& v) noexcept
 {
   boost::numeric::ublas::vector<double> w(v.size());
   std::copy(v.begin(),v.end(),w.begin());
   return w;
 }
 
-const boost::numeric::ublas::vector<int> ribi::Matrix::CreateVectorInt(const std::vector<int>& v)
+const boost::numeric::ublas::vector<int> ribi::Matrix::CreateVectorInt(
+  const std::vector<int>& v) noexcept
 {
   boost::numeric::ublas::vector<int> w(v.size());
   std::copy(v.begin(),v.end(),w.begin());
   return w;
 }
 
-const std::string ribi::Matrix::GetVersion()
+const std::string ribi::Matrix::GetVersion() noexcept
 {
-  return "1.2";
+  return "1.3";
 }
 
-const std::vector<std::string> ribi::Matrix::GetVersionHistory()
+const std::vector<std::string> ribi::Matrix::GetVersionHistory() noexcept
 {
   return {
     "2013-04-28: version 1.0: initial version",
     "2013-06-11: version 1.1: fixed bugs in MatricesAreEqual and MatricesAreAboutEqual",
     "2013-06-27: version 1.2: added tests, renamed VectorsAreEqual to VectorsDoubleAreEqual and VectorsIntAreEqual"
+    "2013-09-16: version 1.3: noexcept"
   };
 }
 
@@ -268,7 +272,7 @@ const boost::numeric::ublas::matrix<double> ribi::Matrix::Inverse(
 }
 
 
-bool ribi::Matrix::IsAboutEqual(const double a, const double b)
+bool ribi::Matrix::IsAboutEqual(const double a, const double b) noexcept
 {
   const double epsilon = 0.000001; //Rounding error
   return a - epsilon < b && a + epsilon > b;
@@ -293,7 +297,7 @@ const boost::numeric::ublas::matrix<double> ribi::Matrix::Power(
 
 bool ribi::Matrix::MatricesAreAboutEqual(
   const boost::numeric::ublas::matrix<double>& a,
-  const boost::numeric::ublas::matrix<double>& b)
+  const boost::numeric::ublas::matrix<double>& b) noexcept
 {
   if (a.size1() != b.size1()) return false;
   if (a.size2() != b.size2()) return false;
@@ -316,7 +320,7 @@ bool ribi::Matrix::MatricesAreAboutEqual(
 
 bool ribi::Matrix::MatricesAreEqual(
   const boost::numeric::ublas::matrix<double>& a,
-  const boost::numeric::ublas::matrix<double>& b)
+  const boost::numeric::ublas::matrix<double>& b) noexcept
 {
   if ( a.size1() != b.size1()
     || a.size2() != b.size2()) return false;
@@ -339,7 +343,7 @@ bool ribi::Matrix::MatricesAreEqual(
 
 bool ribi::Matrix::MatrixIsAboutEqual(
   const boost::numeric::ublas::matrix<double>& a,
-  const boost::numeric::ublas::matrix<double>& b)
+  const boost::numeric::ublas::matrix<double>& b) noexcept
 {
   TRACE("Deprecated naming");
   return MatricesAreAboutEqual(a,b);
@@ -474,7 +478,7 @@ const boost::numeric::ublas::vector<double> ribi::Matrix::SimplifyVectorOfVector
 
 
 #ifndef NDEBUG
-void ribi::Matrix::Test()
+void ribi::Matrix::Test() noexcept
 {
   {
     static bool is_tested = false;
@@ -918,7 +922,7 @@ const boost::numeric::ublas::matrix<double> ribi::Matrix::Unchop(
 
 bool ribi::Matrix::VectorIsAboutEqual(
   const boost::numeric::ublas::vector<double>& a,
-  const boost::numeric::ublas::vector<double>& b)
+  const boost::numeric::ublas::vector<double>& b) noexcept
 {
   TRACE("Deprecated naming");
   return VectorsAreAboutEqual(a,b);
@@ -926,7 +930,7 @@ bool ribi::Matrix::VectorIsAboutEqual(
 
 bool ribi::Matrix::VectorsAreAboutEqual(
   const boost::numeric::ublas::vector<double>& a,
-  const boost::numeric::ublas::vector<double>& b)
+  const boost::numeric::ublas::vector<double>& b) noexcept
 {
   if (a.size() != b.size()) return false;
   return std::equal(a.begin(),a.end(),b.begin(),&ribi::Matrix::IsAboutEqual);
@@ -934,7 +938,7 @@ bool ribi::Matrix::VectorsAreAboutEqual(
 
 bool ribi::Matrix::VectorsDoubleAreEqual(
   const boost::numeric::ublas::vector<double>& a,
-  const boost::numeric::ublas::vector<double>& b)
+  const boost::numeric::ublas::vector<double>& b) noexcept
 {
   if (a.size() != b.size()) return false;
   return std::equal(a.begin(),a.end(),b.begin());
@@ -942,7 +946,7 @@ bool ribi::Matrix::VectorsDoubleAreEqual(
 
 bool ribi::Matrix::VectorsIntAreEqual(
   const boost::numeric::ublas::vector<int>& a,
-  const boost::numeric::ublas::vector<int>& b)
+  const boost::numeric::ublas::vector<int>& b) noexcept
 {
   if (a.size() != b.size()) return false;
   return std::equal(a.begin(),a.end(),b.begin());

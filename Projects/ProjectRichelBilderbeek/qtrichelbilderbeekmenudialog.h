@@ -43,9 +43,9 @@ public:
   explicit QtRichelBilderbeekMenuDialog(QWidget *parent = 0);
   QtRichelBilderbeekMenuDialog(const QtRichelBilderbeekMenuDialog&) = delete;
   QtRichelBilderbeekMenuDialog& operator=(const QtRichelBilderbeekMenuDialog&) = delete;
-  ~QtRichelBilderbeekMenuDialog();
+  ~QtRichelBilderbeekMenuDialog() noexcept;
 
-  static const About GetAbout();
+  static const About GetAbout() noexcept;
 
 private slots:
   void OnAbout();

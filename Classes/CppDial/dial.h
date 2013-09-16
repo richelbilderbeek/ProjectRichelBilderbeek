@@ -63,10 +63,10 @@ struct Dial
   unsigned char GetRed() const { return m_red; }
 
   ///Obtain this class its version
-  static const std::string GetVersion();
+  static const std::string GetVersion() noexcept;
 
   ///Obtain this class its version history
-  static const std::vector<std::string> GetVersionHistory();
+  static const std::vector<std::string> GetVersionHistory() noexcept;
 
   ///Set the blue the Dial
   void SetBlue(const int b);
@@ -91,7 +91,7 @@ struct Dial
 
   private:
   //Dial can only be deleted by Boost smart pointers
-  virtual ~Dial() {}
+  virtual ~Dial() noexcept {}
   friend void boost::checked_delete<>(Dial*);
 
   unsigned char m_blue;

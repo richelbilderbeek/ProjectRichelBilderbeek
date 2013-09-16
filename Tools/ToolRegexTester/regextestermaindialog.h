@@ -35,31 +35,31 @@ namespace ribi {
 ///RegexTesterMainDialog is a Strategy Design Pattern
 struct RegexTesterMainDialog
 {
-  RegexTesterMainDialog() {}
+  RegexTesterMainDialog() noexcept {}
   RegexTesterMainDialog(const RegexTesterMainDialog&) = delete;
   RegexTesterMainDialog& operator=(const RegexTesterMainDialog&) = delete;
-  virtual ~RegexTesterMainDialog() {}
+  virtual ~RegexTesterMainDialog() noexcept {}
 
   ///Clone this class
-  virtual const boost::shared_ptr<RegexTesterMainDialog> Clone() const = 0;
+  virtual const boost::shared_ptr<RegexTesterMainDialog> Clone() const noexcept = 0;
 
   ///Get an example format used to replace regex matches
-  virtual const std::string GetExampleFormat() const = 0;
+  virtual const std::string GetExampleFormat() const noexcept = 0;
 
   ///Get an example line to apply a regex on
-  virtual const std::string GetExampleLine() const
+  virtual const std::string GetExampleLine() const noexcept
   {
     return "Both '1234 AB' and '9999 ZZ' are valid Dutch zip codes";
   }
 
   ///Get an example regex
-  virtual const std::string GetExampleRegex() const = 0;
+  virtual const std::string GetExampleRegex() const noexcept = 0;
 
   ///Is the regex valid?
-  virtual bool GetRegexValid(const std::string& regex_str) const = 0;
+  virtual bool GetRegexValid(const std::string& regex_str) const noexcept = 0;
 
   ///Does the regex match the whole line?
-  virtual bool GetRegexMatchLine(const std::string& line, const std::string& regex_str) const = 0;
+  virtual bool GetRegexMatchLine(const std::string& line, const std::string& regex_str) const noexcept = 0;
 
   ///Get all regex matches withing a line
   //From http://www.richelbilderbeek.nl/CppGetRegexMatches.htm
@@ -74,10 +74,10 @@ struct RegexTesterMainDialog
     const std::string& format_str) const = 0;
 
   ///Obtain a description of the used implementation
-  virtual const std::string GetUsedImplementation() const = 0;
+  virtual const std::string GetUsedImplementation() const noexcept = 0;
 
-  static const std::vector<std::string> GetTestRegexes();
-  static const std::vector<std::string> GetTestStrings();
+  static const std::vector<std::string> GetTestRegexes() noexcept;
+  static const std::vector<std::string> GetTestStrings() noexcept;
 
 };
 

@@ -72,8 +72,8 @@ struct SortedBinaryNewickVector
     const std::string& newick_str,
     const double theta);
 
-  static const std::string GetVersion();
-  static const std::vector<std::string> GetVersionHistory();
+  static const std::string GetVersion() noexcept;
+  static const std::vector<std::string> GetVersionHistory() noexcept;
 
   static bool NewickCompare(
     const std::vector<int>& lhs,

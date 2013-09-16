@@ -39,7 +39,7 @@ public:
   QtBeerWanterMenuDialog& operator=(const QtBeerWanterMenuDialog&) = delete;
 
   explicit QtBeerWanterMenuDialog(QWidget *parent = 0);
-  ~QtBeerWanterMenuDialog();
+  ~QtBeerWanterMenuDialog() noexcept;
 
 private slots:
 

@@ -45,7 +45,7 @@ public:
     QWidget *parent = 0);
   QtShowWinnerDialog(const QtShowWinnerDialog&) = delete;
   QtShowWinnerDialog& operator=(const QtShowWinnerDialog&) = delete;
-  ~QtShowWinnerDialog();
+  ~QtShowWinnerDialog() noexcept;
 
 protected:
   void keyPressEvent(QKeyEvent *);

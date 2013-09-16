@@ -98,18 +98,18 @@ void ribi::RubiksClockWidget::Click(const int x,const int y,const bool button_le
   }
 }
 
-void ribi::RubiksClockWidget::Flip()
+void ribi::RubiksClockWidget::Flip() noexcept
 {
   m_display_front = !m_display_front;
   m_signal_widget_flipped();
 }
 
-const std::string ribi::RubiksClockWidget::GetVersion()
+const std::string ribi::RubiksClockWidget::GetVersion() noexcept
 {
   return "1.2";
 }
 
-const std::vector<std::string> ribi::RubiksClockWidget::GetVersionHistory()
+const std::vector<std::string> ribi::RubiksClockWidget::GetVersionHistory() noexcept
 {
   return {
     "2011-09-01: Version 1.0: initial version",
@@ -123,7 +123,7 @@ void ribi::RubiksClockWidget::OnResize()
   m_clock->SetGeometry(this->GetGeometry());
 }
 
-std::ostream& ribi::operator<<(std::ostream& os, const RubiksClockWidget& widget)
+std::ostream& ribi::operator<<(std::ostream& os, const RubiksClockWidget& widget) noexcept
 {
   os
     << "<RubiksClockWidget>"

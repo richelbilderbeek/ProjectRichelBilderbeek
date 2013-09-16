@@ -49,32 +49,34 @@ struct Matrix
   static const boost::numeric::ublas::matrix<double> CreateMatrix(
     const std::size_t n_rows,
     const std::size_t n_cols,
-    const std::vector<double>& v);
+    const std::vector<double>& v) noexcept;
 
   ///Create a random-filled matrix
   static const boost::numeric::ublas::matrix<double> CreateRandomMatrix(
-    const std::size_t n_rows, const std::size_t n_cols);
+    const std::size_t n_rows, const std::size_t n_cols) noexcept;
 
   ///Create a uBLAS vector from a std::vector,
   ///used for easy initialization
-  static const boost::numeric::ublas::vector<double> CreateVector(const std::vector<double>& v);
+  static const boost::numeric::ublas::vector<double> CreateVector(
+    const std::vector<double>& v) noexcept;
 
   ///Create a uBLAS vector from a std::vector,
   ///used for easy initialization
-  static const boost::numeric::ublas::vector<int> CreateVectorInt(const std::vector<int>& v);
+  static const boost::numeric::ublas::vector<int> CreateVectorInt(
+    const std::vector<int>& v) noexcept;
 
   ///Obtain the version of this class
-  static const std::string GetVersion();
+  static const std::string GetVersion() noexcept;
 
   ///Obtain the version history of this class
-  static const std::vector<std::string> GetVersionHistory();
+  static const std::vector<std::string> GetVersionHistory() noexcept;
 
   ///Calculate the inverse of a matrix
   static const boost::numeric::ublas::matrix<double> Inverse(
     const boost::numeric::ublas::matrix<double>& m);
 
   ///Check if two doubles are about equal
-  static bool IsAboutEqual(const double a, const double b);
+  static bool IsAboutEqual(const double a, const double b) noexcept;
 
   ///Check if two matrices are equal
   ///This is only suitable to test for exact copies.
@@ -82,17 +84,17 @@ struct Matrix
   ///small difference between the matrix elements.
   static bool MatricesAreEqual(
     const boost::numeric::ublas::matrix<double>& a,
-    const boost::numeric::ublas::matrix<double>& b);
+    const boost::numeric::ublas::matrix<double>& b) noexcept;
 
   ///Check if two matrices are about equal
   static bool MatricesAreAboutEqual(
     const boost::numeric::ublas::matrix<double>& a,
-    const boost::numeric::ublas::matrix<double>& b);
+    const boost::numeric::ublas::matrix<double>& b) noexcept;
 
   ///Check if two matrices are about equal
   static bool MatrixIsAboutEqual(
     const boost::numeric::ublas::matrix<double>& a,
-    const boost::numeric::ublas::matrix<double>& b);
+    const boost::numeric::ublas::matrix<double>& b) noexcept;
 
   ///Calculates the matrix product a * b * c
   static const boost::numeric::ublas::matrix<double> MultiProd(
@@ -155,7 +157,7 @@ struct Matrix
 
   #ifndef NDEBUG
   ///Test these functions
-  static void Test();
+  static void Test() noexcept;
   #endif
 
   ///Unchop merges the 4 std::vector of sub-matrices produced by Chop
@@ -165,12 +167,12 @@ struct Matrix
   ///Check if two vectors are about equal
   static bool VectorsAreAboutEqual(
     const boost::numeric::ublas::vector<double>& a,
-    const boost::numeric::ublas::vector<double>& b);
+    const boost::numeric::ublas::vector<double>& b) noexcept;
 
   ///Check if two vectors are about equal
   static bool VectorIsAboutEqual(
     const boost::numeric::ublas::vector<double>& a,
-    const boost::numeric::ublas::vector<double>& b);
+    const boost::numeric::ublas::vector<double>& b) noexcept;
 
   ///Check if two vector are equal
   ///This is only suitable to test for exact copies.
@@ -178,12 +180,12 @@ struct Matrix
   ///small difference between the vector elements.
   static bool VectorsDoubleAreEqual(
     const boost::numeric::ublas::vector<double>& a,
-    const boost::numeric::ublas::vector<double>& b);
+    const boost::numeric::ublas::vector<double>& b) noexcept;
 
   ///Check if two vector are equal
   static bool VectorsIntAreEqual(
     const boost::numeric::ublas::vector<int>& a,
-    const boost::numeric::ublas::vector<int>& b);
+    const boost::numeric::ublas::vector<int>& b) noexcept;
 };
 
 } //~namespace ribi

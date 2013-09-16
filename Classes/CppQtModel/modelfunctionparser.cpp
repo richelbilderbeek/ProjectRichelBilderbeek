@@ -44,7 +44,7 @@ double ribi::ModelFunctionParser::Evaluate(const double x) const
   return y;
 }
 
-double ribi::ModelFunctionParser::MyRand(const double * const max)
+double ribi::ModelFunctionParser::MyRand(const double * const max) noexcept
 {
   assert(max);
   return (*max) * static_cast<double>(std::rand()) / static_cast<double>(RAND_MAX);

@@ -47,7 +47,7 @@ struct QtQuadBezierArrowItem : public QGraphicsItem
     const QGraphicsItem* const to,
     QGraphicsItem* parent = 0);
 
-  virtual ~QtQuadBezierArrowItem() {}
+  virtual ~QtQuadBezierArrowItem() noexcept {}
 
   ///Get the QPen used to indicate that the arrow has focus
   const QPen& GetFocusPen() const { return m_focus_pen; }
@@ -73,10 +73,10 @@ struct QtQuadBezierArrowItem : public QGraphicsItem
   const QGraphicsItem* GetToItem() const { return m_to; }
 
   ///Obtain the version of this class
-  static const std::string GetVersion();
+  static const std::string GetVersion() noexcept;
 
   ///Obtain the version history of this class
-  static const std::vector<std::string> GetVersionHistory();
+  static const std::vector<std::string> GetVersionHistory() noexcept;
 
   ///Is there an arrow at the 'to' point (x2,y2)?
   bool HasHead() const { return m_head; }

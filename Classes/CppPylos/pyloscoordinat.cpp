@@ -62,14 +62,14 @@ ribi::Pylos::Coordinat::Coordinat(const std::string& s)
   assert(IsValid(m_layer,m_x,m_y));
 }
 
-bool ribi::Pylos::Coordinat::IsValid(const int layer, const int x, const int y)
+bool ribi::Pylos::Coordinat::IsValid(const int layer, const int x, const int y) noexcept
 {
   return layer >= 0 && layer < 4
     && x >= 0 && x < 4-layer
     && y >= 0 && y < 4-layer;
 }
 
-const std::vector<ribi::Pylos::Coordinat> ribi::Pylos::GetAllCoordinats()
+const std::vector<ribi::Pylos::Coordinat> ribi::Pylos::GetAllCoordinats() noexcept
 {
   std::vector<Coordinat> v;
   for (int z=0; z!=4; ++z)
@@ -86,24 +86,24 @@ const std::vector<ribi::Pylos::Coordinat> ribi::Pylos::GetAllCoordinats()
   return v;
 }
 
-const std::string ribi::Pylos::Coordinat::GetVersion()
+const std::string ribi::Pylos::Coordinat::GetVersion() noexcept
 {
   return "2.0";
 }
 
-const std::vector<std::string> ribi::Pylos::Coordinat::GetVersionHistory()
+const std::vector<std::string> ribi::Pylos::Coordinat::GetVersionHistory() noexcept
 {
   return {
     "2012-05-05: version 2.0: initial release version"
   };
 }
 
-bool ribi::Pylos::Coordinat::IsValid() const
+bool ribi::Pylos::Coordinat::IsValid() const noexcept
 {
   return IsValid(m_layer,m_x,m_y);
 }
 
-const std::string ribi::Pylos::Coordinat::ToStr() const
+const std::string ribi::Pylos::Coordinat::ToStr() const noexcept
 {
   return std::string("(")
     + boost::lexical_cast<std::string>(m_layer)
@@ -172,7 +172,7 @@ const std::vector<std::vector<ribi::Pylos::Coordinat> > ribi::Pylos::GetLines(
   return v;
 }
 
-const ribi::Pylos::Coordinat ribi::Pylos::GetRandomCoordinat()
+const ribi::Pylos::Coordinat ribi::Pylos::GetRandomCoordinat() noexcept
 {
   const int layer = ( std::rand() >> 4) % 4;
   const int x = ( std::rand() >> 4) % (4 - layer);
@@ -187,9 +187,12 @@ const std::vector<std::vector<ribi::Pylos::Coordinat> > ribi::Pylos::GetSquares(
   typedef std::vector<Coordinat> Square;
   std::vector<Square> v;
   const int layer = c.GetLayer();
+  assert(layer >= 0);
+  assert(layer < 4);
   const int x = c.GetX();
   const int y = c.GetY();
   const int sz = 4 - layer;
+
 
   if (x > 0 && y > 0)
   {
@@ -231,7 +234,7 @@ const std::vector<std::vector<ribi::Pylos::Coordinat> > ribi::Pylos::GetSquares(
 }
 
 #ifndef NDEBUG
-void ribi::Pylos::Coordinat::Test()
+void ribi::Pylos::Coordinat::Test() noexcept
 {
   static bool tested = false;
   if (tested) return;
@@ -319,19 +322,19 @@ void ribi::Pylos::Coordinat::Test()
 }
 #endif
 
-bool ribi::Pylos::operator==(const Coordinat& lhs, const Coordinat& rhs)
+bool ribi::Pylos::operator==(const Coordinat& lhs, const Coordinat& rhs) noexcept
 {
   return lhs.GetLayer() == rhs.GetLayer()
     && lhs.GetX() == rhs.GetX()
     && lhs.GetY() == rhs.GetY();
 }
 
-bool ribi::Pylos::operator!=(const Coordinat& lhs, const Coordinat& rhs)
+bool ribi::Pylos::operator!=(const Coordinat& lhs, const Coordinat& rhs) noexcept
 {
   return !(lhs == rhs);
 }
 
-std::ostream& ribi::Pylos::operator<<(std::ostream& os,const Coordinat& c)
+std::ostream& ribi::Pylos::operator<<(std::ostream& os,const Coordinat& c) noexcept
 {
   os << c.ToStr();
   return os;

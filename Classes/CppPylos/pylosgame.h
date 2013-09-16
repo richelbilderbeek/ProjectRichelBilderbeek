@@ -93,37 +93,37 @@ struct Game
   void Do(const Move& m);
 
   ///GetAllPossibleMoves returns all moves valid for the active player
-  const std::vector<Move> GetAllPossibleMoves() const;
+  const std::vector<Move> GetAllPossibleMoves() const noexcept;
 
   ///GetBoard returns the board.
-  const boost::shared_ptr<Board>& GetBoard() const { return m_board; }
+  const boost::shared_ptr<Board>& GetBoard() const noexcept { return m_board; }
 
   ///Obtain the current move's state
-  const boost::shared_ptr<CurrentMoveState> GetCurrentMove() const { return m_current_move; }
+  const boost::shared_ptr<CurrentMoveState> GetCurrentMove() const noexcept { return m_current_move; }
 
   ///GetCurrentTurn returns whose turn it is now
-  Player GetCurrentTurn() const;
+  Player GetCurrentTurn() const noexcept;
 
-  const std::vector<Pylos::Move>& GetMoveHistory() const
+  const std::vector<Pylos::Move>& GetMoveHistory() const noexcept
   {
     return m_move_history;
   }
 
   ///MustRemove returns whether the current player
   ///must remove one or two marbles
-  MustRemoveState GetMustRemove() const;
+  MustRemoveState GetMustRemove() const noexcept;
 
   ///Obtain this class its version
-  static const std::string GetVersion();
+  static const std::string GetVersion() noexcept;
 
   ///Obtain this class its version history
-  static const std::vector<std::string> GetVersionHistory();
+  static const std::vector<std::string> GetVersionHistory() noexcept;
 
   ///GetWinner returns the winner.
-  Winner GetWinner() const;
+  Winner GetWinner() const noexcept;
 
   ///IsValid returns if the current Pylos game is valid
-  bool IsValid() const;
+  //bool IsValid() const; //?Not used?
 
   ///Load loads a game in Pylos notation
   //void Load(const std::string& s) = 0;

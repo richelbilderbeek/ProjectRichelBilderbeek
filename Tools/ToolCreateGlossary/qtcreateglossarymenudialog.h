@@ -40,7 +40,7 @@ public:
   explicit QtCreateGlossaryMenuDialog(QWidget *parent = 0);
   QtCreateGlossaryMenuDialog(const QtCreateGlossaryMenuDialog&) = delete;
   QtCreateGlossaryMenuDialog& operator=(const QtCreateGlossaryMenuDialog&) = delete;
-  ~QtCreateGlossaryMenuDialog();
+  ~QtCreateGlossaryMenuDialog() noexcept;
 
 private:
   Ui::QtCreateGlossaryMenuDialog *ui;

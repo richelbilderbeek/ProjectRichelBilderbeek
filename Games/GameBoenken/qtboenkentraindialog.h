@@ -42,7 +42,7 @@ public:
   explicit QtBoenkenTrainDialog(QWidget *parent = 0);
   QtBoenkenTrainDialog(const QtBoenkenTrainDialog&) = delete;
   QtBoenkenTrainDialog& operator=(const QtBoenkenTrainDialog&) = delete;
-  ~QtBoenkenTrainDialog();
+  ~QtBoenkenTrainDialog() noexcept;
 
 private:
   Ui::QtBoenkenTrainDialog *ui;

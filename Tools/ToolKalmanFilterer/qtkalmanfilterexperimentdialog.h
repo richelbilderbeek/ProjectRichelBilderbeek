@@ -43,7 +43,7 @@ public:
   explicit QtKalmanFilterExperimentDialog(
     const boost::shared_ptr<QtKalmanFilterExperimentModel> model,
     QWidget *parent = 0);
-  ~QtKalmanFilterExperimentDialog();
+  ~QtKalmanFilterExperimentDialog() noexcept;
 
   ///Click on an example
   void ClickExample(const int i);

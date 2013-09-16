@@ -40,7 +40,7 @@ public:
   explicit QtPylosMenuDialog(QWidget *parent = 0);
   QtPylosMenuDialog(const QtPylosMenuDialog&) = delete;
   QtPylosMenuDialog& operator=(const QtPylosMenuDialog&) = delete;
-  ~QtPylosMenuDialog();
+  ~QtPylosMenuDialog() noexcept;
 
 protected:
   void mousePressEvent(QMouseEvent *);

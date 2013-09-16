@@ -37,21 +37,21 @@ class QtTestDialMenuDialog : public QDialog
   Q_OBJECT
 
 public:
-  explicit QtTestDialMenuDialog(QWidget *parent = 0);
+  explicit QtTestDialMenuDialog(QWidget *parent = 0) noexcept;
   QtTestDialMenuDialog(const QtTestDialMenuDialog&) = delete;
   QtTestDialMenuDialog& operator=(const QtTestDialMenuDialog&) = delete;
-  ~QtTestDialMenuDialog();
+  ~QtTestDialMenuDialog() noexcept;
 
 private slots:
-  void on_button_start_clicked();
-  void on_button_about_clicked();
-  void on_button_quit_clicked();
+  void on_button_start_clicked() noexcept;
+  void on_button_about_clicked() noexcept;
+  void on_button_quit_clicked() noexcept;
 
 private:
   Ui::QtTestDialMenuDialog *ui;
 
   ///Test this class
-  void Test();
+  void Test() noexcept;
 };
 
 } //~namespace ribi

@@ -51,7 +51,7 @@ public:
   explicit QtBoenkenControlsDialog(QWidget *parent = 0);
   QtBoenkenControlsDialog(const QtBoenkenControlsDialog&) = delete;
   QtBoenkenControlsDialog& operator=(const QtBoenkenControlsDialog&) = delete;
-  ~QtBoenkenControlsDialog();
+  ~QtBoenkenControlsDialog() noexcept;
 
   Boenken::Controls GetControls() const;
 

@@ -25,22 +25,22 @@ struct LaggedWhiteNoiseSystem : public WhiteNoiseSystem
     { return m_parameters; }
 
   ///Obtain the type as an enum
-  WhiteNoiseSystemType GetType() const { return WhiteNoiseSystemType::lagged; }
+  WhiteNoiseSystemType GetType() const noexcept { return WhiteNoiseSystemType::lagged; }
 
   ///Obtain the version of this class
-  static const std::string GetVersion();
+  static const std::string GetVersion() noexcept;
 
   ///Obtain the version history of this class
-  static const std::vector<std::string> GetVersionHistory();
+  static const std::vector<std::string> GetVersionHistory() noexcept;
 
   ///Update reality, that is, let the real system (i.e. reality) go to its next state
   void GoToNextState(const boost::numeric::ublas::vector<double>& input);
 
   ///Measure a value from this system with normally distributed noise
-  const boost::numeric::ublas::vector<double> Measure() const;
+  const boost::numeric::ublas::vector<double> Measure() const noexcept;
 
   ///Peek what the real value is
-  const boost::numeric::ublas::vector<double>& PeekAtRealState() const;
+  const boost::numeric::ublas::vector<double>& PeekAtRealState() const noexcept;
 
   private:
   ///LaggedWhiteNoiseSystem must be created with a LaggedWhiteNoiseSystemFactory
@@ -48,7 +48,7 @@ struct LaggedWhiteNoiseSystem : public WhiteNoiseSystem
   friend class LaggedWhiteNoiseSystemFactory;
 
   ///Can only be deleted by boost::checked_delete
-  ~LaggedWhiteNoiseSystem() {}
+  ~LaggedWhiteNoiseSystem() noexcept {}
   friend void boost::checked_delete<>(LaggedWhiteNoiseSystem*);
 
   ///The front one is the one that can be read,
@@ -63,7 +63,7 @@ struct LaggedWhiteNoiseSystem : public WhiteNoiseSystem
 
   #ifndef NDEBUG
   ///Test this class
-  static void Test();
+  static void Test() noexcept;
   #endif
 };
 

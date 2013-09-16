@@ -40,7 +40,7 @@ public:
     explicit QtSimMysteryMachineInstructionsDialog(QWidget *parent = 0);
     QtSimMysteryMachineInstructionsDialog(const QtSimMysteryMachineInstructionsDialog&) = delete;
     QtSimMysteryMachineInstructionsDialog& operator=(const QtSimMysteryMachineInstructionsDialog&) = delete;
-    ~QtSimMysteryMachineInstructionsDialog();
+    ~QtSimMysteryMachineInstructionsDialog() noexcept;
 
 private:
     Ui::QtSimMysteryMachineInstructionsDialog *ui;

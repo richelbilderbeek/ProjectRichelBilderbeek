@@ -18,16 +18,14 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/CppHtmlPage.htm
 //---------------------------------------------------------------------------
-
-
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include "htmlpage.h"
 
 #include <fstream>
 #include <iostream>
 
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Weffc++"
-#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/algorithm/string.hpp>
 #include <boost/xpressive/xpressive.hpp>
 #include <QFile>
@@ -79,12 +77,12 @@ const std::vector<std::string> ribi::HtmlPage::FileToVector(const std::string& f
   return v;
 }
 
-const std::string ribi::HtmlPage::GetVersion()
+const std::string ribi::HtmlPage::GetVersion() noexcept
 {
   return "1.2";
 }
 
-const std::vector<std::string> ribi::HtmlPage::GetVersionHistory()
+const std::vector<std::string> ribi::HtmlPage::GetVersionHistory() noexcept
 {
   return {
     "2011-xx-xx: version 1.0: initial version",
@@ -96,7 +94,7 @@ const std::vector<std::string> ribi::HtmlPage::GetVersionHistory()
 const std::string ribi::HtmlPage::ReplaceAll(
   std::string s,
   const std::string& replaceWhat,
-  const std::string& replaceWithWhat)
+  const std::string& replaceWithWhat) noexcept
 {
   while(1)
   {
@@ -107,7 +105,7 @@ const std::string ribi::HtmlPage::ReplaceAll(
   return s;
 }
 
-bool ribi::operator<(const HtmlPage& lhs, const HtmlPage& rhs)
+bool ribi::operator<(const HtmlPage& lhs, const HtmlPage& rhs) noexcept
 {
   //Case insensitive compare
   return boost::algorithm::to_lower_copy(lhs.GetTitle())

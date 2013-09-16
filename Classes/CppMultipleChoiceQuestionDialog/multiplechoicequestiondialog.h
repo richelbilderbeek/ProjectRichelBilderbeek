@@ -40,18 +40,18 @@ struct MultipleChoiceQuestionDialog : public QuestionDialog
   explicit MultipleChoiceQuestionDialog(const std::string& question);
 
   ///Obtain the version
-  static const std::string GetVersion();
+  static const std::string GetVersion() noexcept;
 
   ///Obtain the version history
-  static const std::vector<std::string> GetVersionHistory();
+  static const std::vector<std::string> GetVersionHistory() noexcept;
 
   private:
   friend void boost::checked_delete<>(MultipleChoiceQuestionDialog *);
-  ~MultipleChoiceQuestionDialog() {}
+  ~MultipleChoiceQuestionDialog() noexcept {}
 
   ///Create a default Question
   //static MultipleChoiceQuestion * CreateDefaultQuestion();
-  static boost::shared_ptr<MultipleChoiceQuestion> CreateDefaultQuestion();
+  static boost::shared_ptr<MultipleChoiceQuestion> CreateDefaultQuestion() noexcept;
 };
 
 } //~namespace ribi

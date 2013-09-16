@@ -52,12 +52,12 @@ ribi::Boenken::SpriteMoving::SpriteMoving(
   ++sm_n_moving_sprites;
 }
 
-double ribi::Boenken::SpriteMoving::CalcImpulseAngle() const
+double ribi::Boenken::SpriteMoving::CalcImpulseAngle() const noexcept
 {
   return GetAngle(m_dx,m_dy);
 }
 
-double ribi::Boenken::SpriteMoving::CalcImpulseSpeed() const
+double ribi::Boenken::SpriteMoving::CalcImpulseSpeed() const noexcept
 {
   return std::sqrt( (m_dx * m_dx) + (m_dy * m_dy) );
 }

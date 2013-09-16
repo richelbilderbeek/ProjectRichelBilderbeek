@@ -37,7 +37,7 @@ public:
   explicit QtCreateQtProjectZipFileMenuDialog(QWidget *parent = 0);
   QtCreateQtProjectZipFileMenuDialog(const QtCreateQtProjectZipFileMenuDialog&) = delete;
   QtCreateQtProjectZipFileMenuDialog& operator=(const QtCreateQtProjectZipFileMenuDialog&) = delete;
-  ~QtCreateQtProjectZipFileMenuDialog();
+  ~QtCreateQtProjectZipFileMenuDialog() noexcept;
 
 protected:
   void keyPressEvent(QKeyEvent *);

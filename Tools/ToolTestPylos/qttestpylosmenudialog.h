@@ -40,7 +40,7 @@ public:
   explicit QtTestPylosMenuDialog(QWidget *parent = 0);
   QtTestPylosMenuDialog(const QtTestPylosMenuDialog&) = delete;
   QtTestPylosMenuDialog& operator=(const QtTestPylosMenuDialog&) = delete;
-  ~QtTestPylosMenuDialog();
+  ~QtTestPylosMenuDialog() noexcept;
 
 private slots:
   void on_button_test_board_clicked();

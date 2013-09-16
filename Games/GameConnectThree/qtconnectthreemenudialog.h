@@ -46,7 +46,7 @@ public:
   explicit QtConnectThreeMenuDialog(QWidget *parent = 0);
   QtConnectThreeMenuDialog(const QtConnectThreeMenuDialog&) = delete;
   QtConnectThreeMenuDialog& operator=(const QtConnectThreeMenuDialog&) = delete;
-  ~QtConnectThreeMenuDialog();
+  ~QtConnectThreeMenuDialog() noexcept;
 
 private:
   Ui::QtConnectThreeMenuDialog *ui;

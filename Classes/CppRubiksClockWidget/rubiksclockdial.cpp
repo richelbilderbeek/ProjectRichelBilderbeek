@@ -47,23 +47,24 @@ ribi::RubiksClockDial::RubiksClockDial(
   : m_dial(new Dial(0.0,red,green,blue)),
     m_time(time + 1)
 {
+  assert(m_dial);
   this->SetGeometry(Rect(x,y,width,height));
   this->Turn(-1);
 }
 
-const std::string ribi::RubiksClockDial::GetVersion()
+const std::string ribi::RubiksClockDial::GetVersion() noexcept
 {
   return "1.0";
 }
 
-const std::vector<std::string> ribi::RubiksClockDial::GetVersionHistory()
+const std::vector<std::string> ribi::RubiksClockDial::GetVersionHistory() noexcept
 {
   return {
     "2011-09-08: Version 1.0: initial version"
   };
 }
 
-void ribi::RubiksClockDial::Turn(const int n_positions_clockwise)
+void ribi::RubiksClockDial::Turn(const int n_positions_clockwise) noexcept
 {
   if (n_positions_clockwise % 12 != 0)
   {
@@ -77,7 +78,7 @@ void ribi::RubiksClockDial::Turn(const int n_positions_clockwise)
   }
 }
 
-std::ostream& ribi::operator<<(std::ostream& os, const RubiksClockDial& widget)
+std::ostream& ribi::operator<<(std::ostream& os, const RubiksClockDial& widget) noexcept
 {
   os
     << "<RubiksClockDial>"

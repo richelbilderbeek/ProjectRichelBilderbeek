@@ -37,7 +37,7 @@ public:
   explicit QtCreateQtProjectZipFileMainDialog(QWidget *parent = 0);
   QtCreateQtProjectZipFileMainDialog(const QtCreateQtProjectZipFileMainDialog&) = delete;
   QtCreateQtProjectZipFileMainDialog& operator=(const QtCreateQtProjectZipFileMainDialog&) = delete;
-  ~QtCreateQtProjectZipFileMainDialog();
+  ~QtCreateQtProjectZipFileMainDialog() noexcept;
 
 
 private slots:

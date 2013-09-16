@@ -100,7 +100,7 @@ double ribi::ManyDigitNewick::CalculateProbability(
   return i.GetProbability();
 }
 
-bool ribi::ManyDigitNewick::Empty() const
+bool ribi::ManyDigitNewick::Empty() const noexcept
 {
   return m_derivatives.empty();
 }
@@ -111,7 +111,8 @@ double ribi::ManyDigitNewick::GetDenominator() const
   return m_denominator;
 }
 
-const std::vector<ribi::ManyDigitNewickDerivative>& ribi::ManyDigitNewick::GetDerivatives() const
+const std::vector<ribi::ManyDigitNewickDerivative>&
+  ribi::ManyDigitNewick::GetDerivatives() const noexcept
 {
   return m_derivatives;
 }
@@ -138,12 +139,12 @@ int ribi::ManyDigitNewick::GetSumTermsAboveZero() const
   return m_sum_terms_above_zero;
 }
 
-const std::string ribi::ManyDigitNewick::GetVersion()
+const std::string ribi::ManyDigitNewick::GetVersion() noexcept
 {
   return "1.1";
 }
 
-const std::vector<std::string> ribi::ManyDigitNewick::GetVersionHistory()
+const std::vector<std::string> ribi::ManyDigitNewick::GetVersionHistory() noexcept
 {
   return {
     "2010-08-22: version 1.0: initial version",
@@ -161,7 +162,7 @@ bool ribi::ManyDigitNewick::IsComplete() const
     && m_sum_terms_above_one  >= 0);
 }
 
-bool ribi::ManyDigitNewick::IsProbabilityKnown() const
+bool ribi::ManyDigitNewick::IsProbabilityKnown() const noexcept
 {
   return m_probability >= 0.0;
 }
@@ -181,7 +182,7 @@ void ribi::ManyDigitNewick::SetTheta(const double theta)
 
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
-void ribi::ManyDigitNewick::Test()
+void ribi::ManyDigitNewick::Test() noexcept
 {
   const double theta = 10.0;
   ribi::ManyDigitNewick::SetTheta(theta);

@@ -38,7 +38,7 @@ struct FixedLagSmootherKalmanFilterCalculationElements : public KalmanFilterCalc
   boost::shared_ptr<const StandardKalmanFilterCalculationElements> m_standard_calculation;
 
   ///Can only be deleted by boost::checked_delete
-  ~FixedLagSmootherKalmanFilterCalculationElements() {}
+  ~FixedLagSmootherKalmanFilterCalculationElements() noexcept {}
   friend void boost::checked_delete<>(FixedLagSmootherKalmanFilterCalculationElements*);
 
 };

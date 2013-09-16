@@ -42,7 +42,7 @@ ribi::About::About(
     const std::string years,
     const std::string url,
     const std::string version,
-    const std::vector<std::string>& version_history)
+    const std::vector<std::string>& version_history) noexcept
   : m_author { author },
     m_file_title(file_title),
     m_file_description(file_description),
@@ -65,13 +65,13 @@ ribi::About::About(
     + std::string(" (GNU ISO C++ library)"));
 }
 
-void ribi::About::AddLibrary(const std::string& s)
+void ribi::About::AddLibrary(const std::string& s) noexcept
 {
   m_libraries.push_back(s);
   std::sort(m_libraries.begin(),m_libraries.end());
 }
 
-const std::vector<std::string> ribi::About::CreateAboutText() const
+const std::vector<std::string> ribi::About::CreateAboutText() const noexcept
 {
   const std::vector<std::string> v
   {
@@ -86,7 +86,7 @@ const std::vector<std::string> ribi::About::CreateAboutText() const
   return v;
 }
 
-const std::vector<std::string> ribi::About::CreateLibrariesUsedText() const
+const std::vector<std::string> ribi::About::CreateLibrariesUsedText() const noexcept
 {
   std::vector<std::string> v;
   v.push_back("Libraries and classes used: ");
@@ -97,7 +97,7 @@ const std::vector<std::string> ribi::About::CreateLibrariesUsedText() const
   return v;
 }
 
-const std::vector<std::string> ribi::About::CreateLicenceText() const
+const std::vector<std::string> ribi::About::CreateLicenceText() const noexcept
 {
   std::vector<std::string> v {
     m_file_title + std::string(", ") + m_file_description,
@@ -118,7 +118,7 @@ const std::vector<std::string> ribi::About::CreateLicenceText() const
   return v;
 }
 
-const std::vector<std::string> ribi::About::CreateVersionHistory() const
+const std::vector<std::string> ribi::About::CreateVersionHistory() const noexcept
 {
   std::vector<std::string> v;
   v.push_back("Version history:");
@@ -130,12 +130,12 @@ const std::vector<std::string> ribi::About::CreateVersionHistory() const
   return v;
 }
 
-const std::string ribi::About::GetAboutVersion()
+const std::string ribi::About::GetAboutVersion() noexcept
 {
-  return "1.6";
+  return "1.7";
 }
 
-const std::vector<std::string> ribi::About::GetAboutVersionHistory()
+const std::vector<std::string> ribi::About::GetAboutVersionHistory() noexcept
 {
   return {
     "2011-01-07: version 1.0: initial version",
@@ -145,22 +145,23 @@ const std::vector<std::string> ribi::About::GetAboutVersionHistory()
     "2012-01-26: version 1.4: removed BOOST_FOREACH",
     "2013-04-29: version 1.5: added #ifdefs for GCC 4.4.0"
     "2013-09-05: version 1.6: transition to namespace ribi"
+    "2013-09-16: version 1.7: noexcept added"
   };
 }
 
-const std::string ribi::About::GetBoostVersion()
+const std::string ribi::About::GetBoostVersion() noexcept
 {
   std::string s = BOOST_LIB_VERSION;
   std::replace(s.begin(),s.end(),'_','.');
   return s;
 }
 
-const std::string ribi::About::GetStlVersion()
+const std::string ribi::About::GetStlVersion() noexcept
 {
   return boost::lexical_cast<std::string>(__VERSION__);
 }
 
-std::ostream& ribi::operator<<(std::ostream& os,const About& a)
+std::ostream& ribi::operator<<(std::ostream& os,const About& a) noexcept
 {
   {
     const std::vector<std::string> v = a.CreateAboutText();

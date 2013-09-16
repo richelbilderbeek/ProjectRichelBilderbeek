@@ -28,7 +28,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #pragma GCC diagnostic pop
 
-ribi::Pylos::CurrentMoveState::CurrentMoveState()
+ribi::Pylos::CurrentMoveState::CurrentMoveState() noexcept
   : m_current_move{},
     m_must_remove(MustRemoveState::no)
 {
@@ -40,12 +40,12 @@ ribi::Pylos::CurrentMoveState::CurrentMoveState()
   //assert(IsRemoveUnknown());
 }
 
-const std::string ribi::Pylos::CurrentMoveState::GetVersion()
+const std::string ribi::Pylos::CurrentMoveState::GetVersion() noexcept
 {
   return "2.0";
 }
 
-const std::vector<std::string> ribi::Pylos::CurrentMoveState::GetVersionHistory()
+const std::vector<std::string> ribi::Pylos::CurrentMoveState::GetVersionHistory() noexcept
 {
   return {
     "2012-05-05: version 2.0: initial release version"
@@ -70,12 +70,12 @@ bool ribi::Pylos::CurrentMoveState::IsMoveUnknown() const
   return m_current_move.m_move.size() == 0;
 }
 
-ribi::Pylos::MustRemoveState ribi::Pylos::CurrentMoveState::GetMustRemove() const
+ribi::Pylos::MustRemoveState ribi::Pylos::CurrentMoveState::GetMustRemove() const noexcept
 {
   return m_must_remove;
 }
 
-void ribi::Pylos::CurrentMoveState::Restart()
+void ribi::Pylos::CurrentMoveState::Restart() noexcept
 {
   m_must_remove = MustRemoveState::no;
   m_current_move = Move();
@@ -123,7 +123,7 @@ void ribi::Pylos::CurrentMoveState::SetRemove(const std::vector<Coordinat>& v)
 }
 
 #ifndef NDEBUG
-void ribi::Pylos::CurrentMoveState::Test()
+void ribi::Pylos::CurrentMoveState::Test() noexcept
 {
   static bool tested = false;
   if (tested) return;
@@ -148,7 +148,7 @@ void ribi::Pylos::CurrentMoveState::Test()
 }
 #endif
 
-bool ribi::Pylos::operator==(const CurrentMoveState& lhs, const CurrentMoveState& rhs)
+bool ribi::Pylos::operator==(const CurrentMoveState& lhs, const CurrentMoveState& rhs) noexcept
 {
   return lhs.GetMustRemove() == rhs.GetMustRemove()
     && lhs.GetMove() == rhs.GetMove();

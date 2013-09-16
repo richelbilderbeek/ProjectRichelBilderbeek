@@ -37,22 +37,19 @@ struct QrcFile
   explicit QrcFile(const std::string& filename);
 
   ///Obtain this class its About information
-  static const ribi::About GetAbout();
+  static const ribi::About GetAbout() noexcept;
 
   ///Obtain the items between <file> and </file>
-  const std::set<std::string>& GetFiles() const { return m_files; }
+  const std::set<std::string>& GetFiles() const noexcept { return m_files; }
 
   ///Get the project file its file name
-  const std::string& GetQrcFilename() const { return m_qrc_filename; }
+  const std::string& GetQrcFilename() const noexcept { return m_qrc_filename; }
 
   ///Obtain this class its version
-  static const std::string GetVersion();
+  static const std::string GetVersion() noexcept;
 
   ///Obtain this class its version history
-  static const std::vector<std::string> GetVersionHistory();
-
-  ///Test QrcFile
-  static void Test();
+  static const std::vector<std::string> GetVersionHistory() noexcept;
 
   private:
   ///The items between <file> and </file>
@@ -63,16 +60,21 @@ struct QrcFile
 
   ///FileExists checks if a certain file exists
   ///From http://www.richelbilderbeek.nl/CppFileExists.htm
-  static bool FileExists(const std::string& filename);
+  static bool FileExists(const std::string& filename) noexcept;
 
   ///FileToVector reads a file and converts it to a std::vector<std::string>
   ///From http://www.richelbilderbeek.nl/CppFileToVector.htm
   static const std::vector<std::string> FileToVector(const std::string& filename);
 
-  friend std::ostream& operator<<(std::ostream& os, const QrcFile& f);
+  #ifndef NDEBUG
+  ///Test QrcFile
+  static void Test() noexcept;
+  #endif
+
+  friend std::ostream& operator<<(std::ostream& os, const QrcFile& f) noexcept;
 };
 
-std::ostream& operator<<(std::ostream& os, const QrcFile& f);
+std::ostream& operator<<(std::ostream& os, const QrcFile& f) noexcept;
 
 } //~namespace ribi
 

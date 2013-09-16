@@ -44,7 +44,7 @@ public:
   explicit QtKalmanFiltererMainDialog(
     const boost::shared_ptr<QtKalmanFilterExperimentModel> model,
     QWidget *parent = 0);
-  ~QtKalmanFiltererMainDialog();
+  ~QtKalmanFiltererMainDialog() noexcept;
 
   ///Get the dialog to set the experiment its parameters
   const QtKalmanFilterExperimentDialog * GetExperimentDialog() const { return m_experiment_dialog; }

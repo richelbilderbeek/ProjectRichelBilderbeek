@@ -34,8 +34,8 @@ struct Encranger
   //From http://www.richelbilderbeek.nl/CppIncrease.htm
   struct Increase : public std::unary_function<void,int>
   {
-    explicit Increase(const int init_x = 0) : m_x(init_x) {}
-    void operator()(int& x)
+    explicit Increase(const int init_x = 0) noexcept : m_x(init_x) {}
+    void operator()(int& x) noexcept
     {
       x = m_x;
       ++m_x;
@@ -51,10 +51,10 @@ struct Encranger
   const std::string Deencrypt(std::string s) const;
 
   ///Obtain this class its version
-  static const std::string GetVersion();
+  static const std::string GetVersion() noexcept;
 
   ///Obtain this class its version history
-  static const std::vector<std::string> GetVersionHistory();
+  static const std::vector<std::string> GetVersionHistory() noexcept;
 
   private:
 
@@ -66,7 +66,7 @@ struct Encranger
   int GetIndex(const char c) const;
 
   const std::vector<int> CreateTable(const int key, const unsigned int sz) const;
-  const std::vector<char> CreateCharacters() const;
+  const std::vector<char> CreateCharacters() const noexcept;
 
 };
 

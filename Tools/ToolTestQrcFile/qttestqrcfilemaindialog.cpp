@@ -46,7 +46,7 @@ ribi::QtTestQrcFileMainDialog::~QtTestQrcFileMainDialog()
   delete ui;
 }
 
-bool ribi::QtTestQrcFileMainDialog::IsRegularFile(const std::string& filename)
+bool ribi::QtTestQrcFileMainDialog::IsRegularFile(const std::string& filename) noexcept
 {
   std::fstream f;
   f.open(filename.c_str(),std::ios::in);

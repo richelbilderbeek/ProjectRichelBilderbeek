@@ -83,7 +83,7 @@ struct KalmanFilterExperiment
 
   private:
   ///Can only be deleted by boost::checked_delete
-  ~KalmanFilterExperiment() {}
+  ~KalmanFilterExperiment() noexcept {}
   friend void boost::checked_delete<>(KalmanFilterExperiment*);
 
   static const std::vector<boost::numeric::ublas::vector<double> > ParseInput(

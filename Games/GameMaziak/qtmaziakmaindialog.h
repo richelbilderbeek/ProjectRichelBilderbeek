@@ -54,7 +54,7 @@ public:
   explicit QtMaziakMainDialog(QWidget *parent = 0, const int maze_size = 0);
   QtMaziakMainDialog(const QtMaziakMainDialog&) = delete;
   QtMaziakMainDialog& operator=(const QtMaziakMainDialog&) = delete;
-  ~QtMaziakMainDialog();
+  ~QtMaziakMainDialog() noexcept;
 
 private:
   Ui::QtMaziakMainDialog *ui;

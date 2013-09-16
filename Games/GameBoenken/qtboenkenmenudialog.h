@@ -59,7 +59,7 @@ public:
   explicit QtBoenkenMenuDialog(QWidget *parent = 0);
   QtBoenkenMenuDialog(const QtBoenkenMenuDialog&) = delete;
   QtBoenkenMenuDialog& operator=(const QtBoenkenMenuDialog&) = delete;
-  ~QtBoenkenMenuDialog();
+  ~QtBoenkenMenuDialog() noexcept;
 
 private:
   Ui::QtBoenkenMenuDialog *ui;

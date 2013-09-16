@@ -32,7 +32,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #pragma GCC diagnostic pop
 
-ribi::QtUblasMatrixDoubleModel::QtUblasMatrixDoubleModel(QObject *parent)
+ribi::QtUblasMatrixDoubleModel::QtUblasMatrixDoubleModel(QObject *parent) noexcept
   : QAbstractTableModel(parent),
     m_data{},
     m_header_horizontal_text{},
@@ -41,7 +41,7 @@ ribi::QtUblasMatrixDoubleModel::QtUblasMatrixDoubleModel(QObject *parent)
 
 }
 
-int ribi::QtUblasMatrixDoubleModel::columnCount(const QModelIndex &) const
+int ribi::QtUblasMatrixDoubleModel::columnCount(const QModelIndex &) const noexcept
 {
   return m_data.size2();
 }
@@ -68,7 +68,7 @@ QVariant ribi::QtUblasMatrixDoubleModel::data(const QModelIndex &index, int role
   #endif
 }
 
-Qt::ItemFlags ribi::QtUblasMatrixDoubleModel::flags(const QModelIndex &) const
+Qt::ItemFlags ribi::QtUblasMatrixDoubleModel::flags(const QModelIndex &) const noexcept
 {
   return
     Qt::ItemIsSelectable
@@ -78,12 +78,12 @@ Qt::ItemFlags ribi::QtUblasMatrixDoubleModel::flags(const QModelIndex &) const
   | Qt::ItemIsEnabled;
 }
 
-const std::string ribi::QtUblasMatrixDoubleModel::GetVersion()
+const std::string ribi::QtUblasMatrixDoubleModel::GetVersion() noexcept
 {
   return "1.3";
 }
 
-const std::vector<std::string> ribi::QtUblasMatrixDoubleModel::GetVersionHistory()
+const std::vector<std::string> ribi::QtUblasMatrixDoubleModel::GetVersionHistory() noexcept
 {
   return {
     "2013-05-15: version 1.0: initial version",
@@ -239,7 +239,7 @@ bool ribi::QtUblasMatrixDoubleModel::removeRows(int row, int count, const QModel
   return true;
 }
 
-int ribi::QtUblasMatrixDoubleModel::rowCount(const QModelIndex &) const
+int ribi::QtUblasMatrixDoubleModel::rowCount(const QModelIndex &) const noexcept
 {
   return m_data.size1();
 }

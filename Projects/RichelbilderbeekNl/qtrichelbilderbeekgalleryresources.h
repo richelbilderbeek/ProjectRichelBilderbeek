@@ -48,10 +48,10 @@ struct QtResources
   const std::string GetYellow() const { return "PicYellow.png"; }
 
   ///Obtain this class its version
-  static const std::string GetVersion();
+  static const std::string GetVersion() noexcept;
 
   ///Obtain this class its version history
-  static const std::vector<std::string> GetVersionHistory();
+  static const std::vector<std::string> GetVersionHistory() noexcept;
 
   const std::string GetWeb() const { return "PicWeb.png"; }
   const std::string GetWindows() const { return "PicWindows.png"; }

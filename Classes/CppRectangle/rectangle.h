@@ -95,35 +95,34 @@ struct Rect
     const int any_x = 0,
     const int any_y = 0,
     const int any_w = 0,
-    const int any_h = 0)
-  : x(any_x), y(any_y), w(any_w), h(any_h) {}
+    const int any_h = 0);
 
   ///Obtain the x coordinat of the rectangle its bottom side
-  int GetBottom() const { return y + h; }
+  int GetBottom() const noexcept { return y + h; }
 
   ///Obtain the y coordinat of the rectangle its right side
-  int GetRight() const { return x + w; }
+  int GetRight() const noexcept { return x + w; }
 
   ///Obtain the rectangle its height
-  int GetHeight() const { return h; }
+  int GetHeight() const noexcept { return h; }
 
   ///Obtain this class its version
-  static const std::string GetVersion();
+  static const std::string GetVersion() noexcept;
 
   ///Obtain this class its version history
-  static const std::vector<std::string> GetVersionHistory();
+  static const std::vector<std::string> GetVersionHistory() noexcept;
 
   ///Obtain the rectangle its width
-  int GetWidth() const { return w; }
+  int GetWidth() const noexcept { return w; }
 
 
   ///Obtain the x coordinat of the rectangle its left side
-  int GetX() const { return x; }
+  int GetX() const noexcept { return x; }
 
   ///Obtain the y coordinat of the rectangle its top side
-  int GetY() const { return y; }
+  int GetY() const noexcept { return y; }
 
-  bool IsIn(const int any_x, const int any_y) const
+  bool IsIn(const int any_x, const int any_y) const noexcept
   {
     return any_x > x && any_y > y && any_x < GetRight() && any_y < GetBottom();
   }
@@ -134,13 +133,13 @@ struct Rect
   int w;
   int h;
 
-  friend bool operator==(const Rect& lhs, const Rect& rhs);
-  friend std::ostream& operator<<(std::ostream& os,const Rect& rect);
+  friend bool operator==(const Rect& lhs, const Rect& rhs) noexcept;
+  friend std::ostream& operator<<(std::ostream& os,const Rect& rect) noexcept;
 };
 
-std::ostream& operator<<(std::ostream& os,const Rect& rect);
-bool operator==(const Rect& lhs, const Rect& rhs);
-bool operator!=(const Rect& lhs, const Rect& rhs);
+std::ostream& operator<<(std::ostream& os,const Rect& rect) noexcept;
+bool operator==(const Rect& lhs, const Rect& rhs) noexcept;
+bool operator!=(const Rect& lhs, const Rect& rhs) noexcept;
 
 } //~namespace ribi
 

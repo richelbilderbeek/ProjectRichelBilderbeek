@@ -148,7 +148,7 @@ namespace Newick
   ///CreateInvalidNewicks creates std::strings
   ///that cannot and must not be converted to a Newick
   ///From http://www.richelbilderbeek.nl/CppCreateInvalidNewicks.htm
-  const std::vector<std::string> CreateInvalidNewicks();
+  const std::vector<std::string> CreateInvalidNewicks() noexcept;
 
   ///CreateRandomNewick creates an unsorted Newick string,
   ///with n values, with each value e [0,max>.
@@ -164,20 +164,20 @@ namespace Newick
   ///CreateValidBinaryNewicks creates std::strings
   ///that can be converted to a BinaryNewickVector.
   ///From http://www.richelbilderbeek.nl/CppCreateValidBinaryNewicks.htm
-  const std::vector<std::string> CreateValidBinaryNewicks();
+  const std::vector<std::string> CreateValidBinaryNewicks() noexcept;
 
   ///CreateValidNewicks creates std::strings
   ///that are valid newicks.
   ///From http://www.richelbilderbeek.nl/CppCreateValidNewicks.htm
-  const std::vector<std::string> CreateValidNewicks();
+  const std::vector<std::string> CreateValidNewicks() noexcept;
 
   ///CreateValidTrinaryNewicks creates std::strings
   ///that can be converted to a TrinaryNewickVector.
   ///From http://www.richelbilderbeek.nl/CppCreateValidTinaryNewicks.htm
-  const std::vector<std::string> CreateValidTrinaryNewicks();
+  const std::vector<std::string> CreateValidTrinaryNewicks() noexcept;
 
   ///CreateValidUnaryNewicks creates unary Newick std::strings
-  const std::vector<std::string> CreateValidUnaryNewicks();
+  const std::vector<std::string> CreateValidUnaryNewicks() noexcept;
 
 
   ///DumbNewickToString converts a Newick std::vector<int> to a
@@ -188,16 +188,16 @@ namespace Newick
 
   ///Factorial calculates the factorial of all std::vector elements.
   ///From http://www.richelbilderbeek.nl/CppFactorial.htm
-  const std::vector<int> Factorial(const std::vector<int>& v_original);
+  const std::vector<int> Factorial(const std::vector<int>& v_original) noexcept;
 
   ///FactorialBigInt returns the factorial of an integer
   ///as a BigInteger.
   ///From http://www.richelbilderbeek.nl/CppFactorialBigInt.htm
-  const BigInteger FactorialBigInt(const int n);
+  const BigInteger FactorialBigInt(const int n) noexcept;
 
   ///Factorial calculates the factorial of a value.
   ///From http://www.richelbilderbeek.nl/CppFactorial.htm
-  int Factorial(const int n);
+  int Factorial(const int n) noexcept;
 
   int FindPosAfter(const std::vector<int>& v,const int index,const int value);
   int FindPosBefore(const std::vector<int>& v,const int index,const int value);
@@ -266,13 +266,13 @@ namespace Newick
   const std::vector<std::pair<std::vector<int>,int> >
     GetSimplerBinaryNewicksFrequencyPairs(
     const std::vector<int>& n);
-  const std::string GetVersion();
-  const std::vector<std::string> GetVersionHistory();
+  const std::string GetVersion() noexcept;
+  const std::vector<std::string> GetVersionHistory() noexcept;
 
   ///InspectInvalidNewick writes the cause of the Newick invalidity
   ///to the std::ostream.
   ///From http://www.richelbilderbeek.nl/CppInspectInvalidNewick.htm
-  void InspectInvalidNewick(std::ostream& os, const std::vector<int>& v);
+  void InspectInvalidNewick(std::ostream& os, const std::vector<int>& v) noexcept;
 
   ///IsBinaryNewick checks if a Newick is a binary tree,
   ///that is: each node splits in two (not more) branches
@@ -289,12 +289,12 @@ namespace Newick
   ///IsNewick returns true if a std::string is a valid Newick
   ///and false otherwise.
   ///From http://www.richelbilderbeek.nl/CppIsNewick.htm
-  bool IsNewick(const std::string& s);
+  bool IsNewick(const std::string& s) noexcept;
 
   ///IsNewick returns true if a std::vector<int> is a valid Newick
   ///and false otherwise.
   ///From http://www.richelbilderbeek.nl/CppIsNewick.htm
-  bool IsNewick(const std::vector<int>& v);
+  bool IsNewick(const std::vector<int>& v) noexcept;
 
   ///IsSimple returns true if the Newick std::vector contains
   ///leaves only. For example, the Newick '(1,2,3)' is simple,
@@ -533,7 +533,7 @@ namespace Newick
 //#endif
 
 
-};
+} //~namespace Newick
 
 } //~namespace ribi
 

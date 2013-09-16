@@ -53,11 +53,12 @@ ribi::MultipleChoiceQuestion::MultipleChoiceQuestion(
   //assert(FileExists(filename) == true && "File must exists");
   //assert(!question.empty() && "MultipleChoiceQuestion must not be empty");
   //assert(!correct_answer.empty() && "Correct answer must not be empty");
+  assert(!m_answers.empty() && "There must be a correct answer");
   assert(!wrong_answers.empty() && "Wrong answers must not be empty");
   assert(wrong_answers.size() <= 5 && "There is a maximum of five wrong answers");
 }
 
-ribi::Question * ribi::MultipleChoiceQuestion::Clone() const
+ribi::Question * ribi::MultipleChoiceQuestion::Clone() const noexcept
 {
   return new MultipleChoiceQuestion(
     this->GetFilename(),
@@ -66,7 +67,7 @@ ribi::Question * ribi::MultipleChoiceQuestion::Clone() const
     this->GetWrongAnswers());
 }
 
-const std::string& ribi::MultipleChoiceQuestion::GetAnswer() const
+const std::string& ribi::MultipleChoiceQuestion::GetAnswer() const noexcept
 {
   assert(!m_answers.empty());
   return m_answers[0];
@@ -74,7 +75,7 @@ const std::string& ribi::MultipleChoiceQuestion::GetAnswer() const
 
 const std::vector<std::string> ribi::MultipleChoiceQuestion::CreateOptions(
   const std::vector<std::string>& wrong_answers,
-  const std::string& answer)
+  const std::string& answer) noexcept
 {
   std::vector<std::string> v = wrong_answers;
   v.push_back(answer);
@@ -99,17 +100,17 @@ const std::vector<std::string> ribi::MultipleChoiceQuestion::ExtractWrongAnswers
   return w;
 }
 
-const std::vector<std::string>& ribi::MultipleChoiceQuestion::GetOptions() const
+const std::vector<std::string>& ribi::MultipleChoiceQuestion::GetOptions() const noexcept
 {
   return m_options;
 }
 
-const std::string ribi::MultipleChoiceQuestion::GetVersion()
+const std::string ribi::MultipleChoiceQuestion::GetVersion() noexcept
 {
   return "1.1";
 }
 
-const std::vector<std::string> ribi::MultipleChoiceQuestion::GetVersionHistory()
+const std::vector<std::string> ribi::MultipleChoiceQuestion::GetVersionHistory() noexcept
 {
   return {
     "2011-06-27: version 1.0: initial version",
@@ -119,7 +120,7 @@ const std::vector<std::string> ribi::MultipleChoiceQuestion::GetVersionHistory()
 
 const std::vector<std::string> ribi::MultipleChoiceQuestion::SeperateString(
   const std::string& input,
-  const char seperator)
+  const char seperator) noexcept
 {
   std::vector<std::string> v;
   boost::algorithm::split(v,input,

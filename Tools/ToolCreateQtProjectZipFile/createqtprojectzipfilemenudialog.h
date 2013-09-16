@@ -34,13 +34,13 @@ namespace CreateQtProjectZipFile {
 struct MenuDialog
 {
   ///Obtain this class its About information
-  static const About GetAbout();
+  static const About GetAbout() noexcept;
 
   ///Obtain this class its version
-  static const std::string GetVersion();
+  static const std::string GetVersion() noexcept;
 
   ///Obtain this class its version history
-  static const std::vector<std::string> GetVersionHistory();
+  static const std::vector<std::string> GetVersionHistory() noexcept;
 };
 
 } //~namespace CreateQtProjectZipFile

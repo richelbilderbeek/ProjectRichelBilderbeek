@@ -46,10 +46,10 @@ struct QuestionDialog
   boost::shared_ptr<Question> GetQuestion() const { return m_question; }
 
   ///Obtain the version
-  static const std::string GetVersion();
+  static const std::string GetVersion() noexcept;
 
   ///Obtain the version history
-  static const std::vector<std::string> GetVersionHistory();
+  static const std::vector<std::string> GetVersionHistory() noexcept;
 
   ///Check if an answer has been submitted
   bool HasSubmitted() const { return m_has_submitted; }
@@ -65,7 +65,7 @@ struct QuestionDialog
   void Submit(const std::string& s);
 
   protected:
-  virtual ~QuestionDialog() {}
+  virtual ~QuestionDialog() noexcept {}
   friend void boost::checked_delete<>(QuestionDialog*);
 
   private:

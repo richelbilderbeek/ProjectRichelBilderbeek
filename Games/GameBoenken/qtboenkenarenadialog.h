@@ -45,7 +45,7 @@ public:
   explicit QtBoenkenArenaDialog(QWidget *parent = 0);
   QtBoenkenArenaDialog(const QtBoenkenArenaDialog&) = delete;
   QtBoenkenArenaDialog& operator=(const QtBoenkenArenaDialog&) = delete;
-  ~QtBoenkenArenaDialog();
+  ~QtBoenkenArenaDialog() noexcept;
 
   const std::pair<int,int> GetScreenSize() const;
   int GetNballs() const;
