@@ -23,6 +23,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "qtrichelbilderbeekgalleryresources.h"
 
 #include <cassert>
+#include <fstream>
 
 #include <QFile>
 
@@ -105,12 +106,12 @@ ribi::RichelBilderbeek::QtResources::QtResources()
   }
 }
 
-const std::string ribi::RichelBilderbeek::QtResources::GetVersion()
+const std::string ribi::RichelBilderbeek::QtResources::GetVersion() noexcept
 {
   return "1.0";
 }
 
-const std::vector<std::string> ribi::RichelBilderbeek::QtResources::GetVersionHistory()
+const std::vector<std::string> ribi::RichelBilderbeek::QtResources::GetVersionHistory() noexcept
 {
   std::vector<std::string> v;
   v.push_back("2012-02-19: Version 1.0: initial version");

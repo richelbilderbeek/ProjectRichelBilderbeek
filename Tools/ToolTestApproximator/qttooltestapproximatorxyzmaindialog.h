@@ -22,15 +22,16 @@ class QtToolTestApproximatorXyzMainDialog : public QtHideAndShowDialog
   Q_OBJECT
   
 public:
-  explicit QtToolTestApproximatorXyzMainDialog(QWidget *parent = 0);
-  ~QtToolTestApproximatorXyzMainDialog();
+  explicit QtToolTestApproximatorXyzMainDialog(QWidget *parent = 0) noexcept;
+  QtToolTestApproximatorXyzMainDialog(const QtToolTestApproximatorXyzMainDialog&) = delete;
+  QtToolTestApproximatorXyzMainDialog& operator=(const QtToolTestApproximatorXyzMainDialog&) = delete;
+  ~QtToolTestApproximatorXyzMainDialog() noexcept;
   
 private slots:
-  void on_button_clicked();
-
-  void on_box_int_x_valueChanged(int arg1);
-  void on_box_double_y_valueChanged(double arg1);
-  void on_box_int_z_valueChanged(int arg1);
+  void on_button_clicked() noexcept;
+  void on_box_int_x_valueChanged(int arg1) noexcept;
+  void on_box_double_y_valueChanged(double arg1) noexcept;
+  void on_box_int_z_valueChanged(int arg1) noexcept;
 
 private:
   Ui::QtToolTestApproximatorXyzMainDialog *ui;
@@ -43,16 +44,16 @@ private:
   typedef std::array<std::tuple<QwtPlotCurve *,QwtPlotCurve *,boost::shared_ptr<QwtPlot>>,m_n_curves> Data;
   Data m_data;
 
-  static Data CreateData();
+  static Data CreateData() noexcept;
 
   ///The line curve containing the continuous approximation
-  QwtPlotCurve * GetCurveApproximation(const int i);
+  QwtPlotCurve * GetCurveApproximation(const int i) noexcept;
 
   ///The dotted curve containing the raw data points
-  QwtPlotCurve * GetCurveValues(const int i);
-  const boost::shared_ptr<QwtPlot> GetPlot(const int i);
+  QwtPlotCurve * GetCurveValues(const int i) noexcept;
+  const boost::shared_ptr<QwtPlot> GetPlot(const int i) noexcept;
 
-  void Plot();
+  void Plot() noexcept;
 };
 
 } //~namespace ribi

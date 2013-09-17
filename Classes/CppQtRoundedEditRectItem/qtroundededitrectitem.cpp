@@ -101,12 +101,12 @@ const QRectF ribi::QtRoundedEditRectItem::GetTextRect(const std::vector<std::str
   return QRectF(-0.5 * width,-0.5 * height, width, height).adjusted(-0.0,-0.0,0.0,0.0);
 }
 
-const std::string ribi::QtRoundedEditRectItem::GetVersion()
+const std::string ribi::QtRoundedEditRectItem::GetVersion() noexcept
 {
   return "1.0";
 }
 
-const std::vector<std::string> ribi::QtRoundedEditRectItem::GetVersionHistory()
+const std::vector<std::string> ribi::QtRoundedEditRectItem::GetVersionHistory() noexcept
 {
   return {
     "2012-12-19: version 1.0: initial version"

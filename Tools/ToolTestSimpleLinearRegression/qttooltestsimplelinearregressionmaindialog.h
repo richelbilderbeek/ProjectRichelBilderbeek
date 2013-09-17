@@ -22,11 +22,13 @@ class QtToolTestSimpleLinearRegressionMainDialog : public QtHideAndShowDialog
   Q_OBJECT
   
 public:
-  explicit QtToolTestSimpleLinearRegressionMainDialog(QWidget *parent = 0);
-  ~QtToolTestSimpleLinearRegressionMainDialog();
+  explicit QtToolTestSimpleLinearRegressionMainDialog(QWidget *parent = 0) noexcept;
+  QtToolTestSimpleLinearRegressionMainDialog(const QtToolTestSimpleLinearRegressionMainDialog&) = delete;
+  QtToolTestSimpleLinearRegressionMainDialog& operator=(const QtToolTestSimpleLinearRegressionMainDialog&) = delete;
+  ~QtToolTestSimpleLinearRegressionMainDialog() noexcept;
   
 private slots:
-  void on_button_clicked();
+  void on_button_clicked() noexcept;
 
 private:
   Ui::QtToolTestSimpleLinearRegressionMainDialog *ui;
@@ -42,7 +44,7 @@ private:
   std::vector<double> m_xs;
   std::vector<double> m_ys;
 
-  void Plot();
+  void Plot() noexcept;
 };
 
 } //~namespace ribi

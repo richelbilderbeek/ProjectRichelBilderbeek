@@ -150,12 +150,12 @@ void ribi::QtRubiksClockWidget::DrawRubiksClock(
     widget->GetDisplayFront());
 }
 
-const std::string ribi::QtRubiksClockWidget::GetVersion()
+const std::string ribi::QtRubiksClockWidget::GetVersion() noexcept
 {
   return "1.0";
 }
 
-const std::vector<std::string> ribi::QtRubiksClockWidget::GetVersionHistory()
+const std::vector<std::string> ribi::QtRubiksClockWidget::GetVersionHistory() noexcept
 {
   std::vector<std::string> v;
   v.push_back("YYYY-MM-DD: version X.Y: [description]");

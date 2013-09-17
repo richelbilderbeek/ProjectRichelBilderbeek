@@ -21,6 +21,10 @@ const std::vector<std::pair<ribi::kalman::WhiteNoiseSystemParameterType,ribi::ka
 bool ribi::kalman::KalmanFilterExperimentParameter::CanConvertToKalmanFilterParameter(
   const KalmanFilterExperimentParameterType parameter)
 {
+  #ifndef NDEBUG
+  Test();
+  #endif
+
   const auto j = m_map_kalman_filter.end();
   for (auto i = m_map_kalman_filter.begin(); i!=j ;++i)
   {
@@ -33,6 +37,10 @@ bool ribi::kalman::KalmanFilterExperimentParameter::CanConvertToKalmanFilterPara
 bool ribi::kalman::KalmanFilterExperimentParameter::CanConvertToWhiteNoiseSystemParameter(
   const KalmanFilterExperimentParameterType parameter)
 {
+  #ifndef NDEBUG
+  Test();
+  #endif
+
   const auto j = m_map_white_noise_system.end();
   for (auto i = m_map_white_noise_system.begin(); i!=j ;++i)
   {
@@ -44,6 +52,10 @@ bool ribi::kalman::KalmanFilterExperimentParameter::CanConvertToWhiteNoiseSystem
 ribi::kalman::KalmanFilterExperimentParameterType ribi::kalman::KalmanFilterExperimentParameter::ConvertToKalmanFilterExperimentParameter(
   const KalmanFilterParameterType parameter)
 {
+  #ifndef NDEBUG
+  Test();
+  #endif
+
   const auto j = m_map_kalman_filter.end();
   for (auto i = m_map_kalman_filter.begin(); i!=j ;++i)
   {
@@ -58,6 +70,10 @@ ribi::kalman::KalmanFilterExperimentParameterType ribi::kalman::KalmanFilterExpe
 ribi::kalman::KalmanFilterExperimentParameterType ribi::kalman::KalmanFilterExperimentParameter::ConvertToKalmanFilterExperimentParameter(
   const WhiteNoiseSystemParameterType parameter)
 {
+  #ifndef NDEBUG
+  Test();
+  #endif
+
   const auto j = m_map_white_noise_system.end();
   for (auto i = m_map_white_noise_system.begin(); i!=j ;++i)
   {
@@ -71,6 +87,10 @@ ribi::kalman::KalmanFilterExperimentParameterType ribi::kalman::KalmanFilterExpe
 ribi::kalman::KalmanFilterParameterType ribi::kalman::KalmanFilterExperimentParameter::ConvertToKalmanFilterParameter(
   const KalmanFilterExperimentParameterType parameter)
 {
+  #ifndef NDEBUG
+  Test();
+  #endif
+
   assert(CanConvertToKalmanFilterParameter(parameter));
   const auto j = m_map_kalman_filter.end();
   for (auto i = m_map_kalman_filter.begin(); i!=j ;++i)
@@ -85,6 +105,9 @@ ribi::kalman::KalmanFilterParameterType ribi::kalman::KalmanFilterExperimentPara
 ribi::kalman::WhiteNoiseSystemParameterType ribi::kalman::KalmanFilterExperimentParameter::ConvertToWhiteNoiseSystemParameter(
   const KalmanFilterExperimentParameterType parameter)
 {
+  #ifndef NDEBUG
+  Test();
+  #endif
   assert(CanConvertToWhiteNoiseSystemParameter(parameter));
   const auto j = m_map_white_noise_system.end();
   for (auto i = m_map_white_noise_system.begin(); i!=j ;++i)
@@ -99,10 +122,6 @@ ribi::kalman::WhiteNoiseSystemParameterType ribi::kalman::KalmanFilterExperiment
 const std::vector<std::pair<ribi::kalman::KalmanFilterParameterType,ribi::kalman::KalmanFilterExperimentParameterType> >
   ribi::kalman::KalmanFilterExperimentParameter::CreateMapKalmanFilter()
 {
-  #ifndef NDEBUG
-  Test();
-  #endif
-
   std::vector<std::pair<KalmanFilterParameterType,KalmanFilterExperimentParameterType> > v;
   v.push_back(std::make_pair(
     KalmanFilterParameterType::control,
@@ -143,9 +162,6 @@ const std::vector<std::pair<ribi::kalman::KalmanFilterParameterType,ribi::kalman
 const std::vector<std::pair<ribi::kalman::WhiteNoiseSystemParameterType,ribi::kalman::KalmanFilterExperimentParameterType> >
   ribi::kalman::KalmanFilterExperimentParameter::CreateMapWhiteNoiseSystem()
 {
-  #ifndef NDEBUG
-  Test();
-  #endif
   std::vector<std::pair<WhiteNoiseSystemParameterType,KalmanFilterExperimentParameterType> > v;
   v.push_back(std::make_pair(
     WhiteNoiseSystemParameterType::control,
@@ -177,6 +193,9 @@ const std::vector<std::pair<ribi::kalman::WhiteNoiseSystemParameterType,ribi::ka
 
 const std::vector<ribi::kalman::KalmanFilterExperimentParameterType> ribi::kalman::KalmanFilterExperimentParameter::GetAll()
 {
+  #ifndef NDEBUG
+  Test();
+  #endif
   const std::vector<KalmanFilterExperimentParameterType> v
     =
     {
@@ -202,6 +221,9 @@ const std::vector<ribi::kalman::KalmanFilterExperimentParameterType> ribi::kalma
 }
 bool ribi::kalman::KalmanFilterExperimentParameter::IsDouble(const KalmanFilterExperimentParameterType type)
 {
+  #ifndef NDEBUG
+  Test();
+  #endif
   switch (type)
   {
     case KalmanFilterExperimentParameterType::control:                            return true;
@@ -228,6 +250,9 @@ bool ribi::kalman::KalmanFilterExperimentParameter::IsDouble(const KalmanFilterE
 
 bool ribi::kalman::KalmanFilterExperimentParameter::IsFunction(const KalmanFilterExperimentParameterType type)
 {
+  #ifndef NDEBUG
+  Test();
+  #endif
   switch (type)
   {
     case KalmanFilterExperimentParameterType::control:                            return false;
@@ -254,6 +279,9 @@ bool ribi::kalman::KalmanFilterExperimentParameter::IsFunction(const KalmanFilte
 
 bool ribi::kalman::KalmanFilterExperimentParameter::IsInt(const KalmanFilterExperimentParameterType type)
 {
+  #ifndef NDEBUG
+  Test();
+  #endif
   switch (type)
   {
     case KalmanFilterExperimentParameterType::control:                            return false;
@@ -280,6 +308,9 @@ bool ribi::kalman::KalmanFilterExperimentParameter::IsInt(const KalmanFilterExpe
 
 bool ribi::kalman::KalmanFilterExperimentParameter::IsString(const KalmanFilterExperimentParameterType type)
 {
+  #ifndef NDEBUG
+  Test();
+  #endif
   switch (type)
   {
     case KalmanFilterExperimentParameterType::control:                            return false;
@@ -440,6 +471,9 @@ void ribi::kalman::KalmanFilterExperimentParameter::Test()
 
 const std::string ribi::kalman::KalmanFilterExperimentParameter::ToDescription(const KalmanFilterExperimentParameterType type)
 {
+  #ifndef NDEBUG
+  Test();
+  #endif
   //Check for the subset
   if (CanConvertToKalmanFilterParameter(type))
   {
@@ -465,6 +499,9 @@ const std::string ribi::kalman::KalmanFilterExperimentParameter::ToDescription(c
 
 const std::string ribi::kalman::KalmanFilterExperimentParameter::ToName(const KalmanFilterExperimentParameterType type)
 {
+  #ifndef NDEBUG
+  Test();
+  #endif
   //Check for the subset
   if (CanConvertToKalmanFilterParameter(type))
   {
@@ -490,6 +527,9 @@ const std::string ribi::kalman::KalmanFilterExperimentParameter::ToName(const Ka
 
 const std::string ribi::kalman::KalmanFilterExperimentParameter::ToSymbol(const KalmanFilterExperimentParameterType type)
 {
+  #ifndef NDEBUG
+  Test();
+  #endif
   //Check for the subset
   if (CanConvertToKalmanFilterParameter(type))
   {

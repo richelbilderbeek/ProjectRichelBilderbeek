@@ -44,12 +44,12 @@ ribi::QtLeftRightRectItem::QtLeftRightRectItem(QGraphicsItem* parent)
   this->setRect(-16.0,-16.0,32.0,32.0);
 }
 
-const std::string ribi::QtLeftRightRectItem::GetVersion()
+const std::string ribi::QtLeftRightRectItem::GetVersion() noexcept
 {
   return "1.1";
 }
 
-const std::vector<std::string> ribi::QtLeftRightRectItem::GetVersionHistory()
+const std::vector<std::string> ribi::QtLeftRightRectItem::GetVersionHistory() noexcept
 {
   std::vector<std::string> v;
   v.push_back("2012-12-19: version 1.0: initial version");

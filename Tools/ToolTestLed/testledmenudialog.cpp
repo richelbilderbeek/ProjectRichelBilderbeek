@@ -23,7 +23,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "led.h"
 #include "ledwidget.h"
 
-const ribi::About ribi::TestLedMenuDialog::GetAbout()
+const ribi::About ribi::TestLedMenuDialog::GetAbout() noexcept
 {
   About a(
     "Richel Bilderbeek",
@@ -39,12 +39,12 @@ const ribi::About ribi::TestLedMenuDialog::GetAbout()
   return a;
 }
 
-const std::string ribi::TestLedMenuDialog::GetVersion()
+const std::string ribi::TestLedMenuDialog::GetVersion() noexcept
 {
   return "1.3";
 }
 
-const std::vector<std::string> ribi::TestLedMenuDialog::GetVersionHistory()
+const std::vector<std::string> ribi::TestLedMenuDialog::GetVersionHistory() noexcept
 {
   return {
     "2011-04-10: Version 1.0: initial version, web version not yet working",

@@ -8,19 +8,19 @@
 
 #pragma GCC diagnostic pop
 
-ribi::QtAlphaFilterDialog::QtAlphaFilterDialog(QWidget *parent) :
-  QDialog(parent),
-  ui(new Ui::QtAlphaFilterDialog)
+ribi::QtAlphaFilterDialog::QtAlphaFilterDialog(QWidget *parent) noexcept
+  : QDialog(parent),
+    ui(new Ui::QtAlphaFilterDialog)
 {
   ui->setupUi(this);
 }
 
-ribi::QtAlphaFilterDialog::~QtAlphaFilterDialog()
+ribi::QtAlphaFilterDialog::~QtAlphaFilterDialog() noexcept
 {
   delete ui;
 }
 
-boost::shared_ptr<ribi::AlphaFilter> ribi::QtAlphaFilterDialog::Create() const
+boost::shared_ptr<ribi::AlphaFilter> ribi::QtAlphaFilterDialog::Create() const noexcept
 {
   const double alpha  = ui->box_alpha->value();
   const double dt =  ui->box_dt->value();

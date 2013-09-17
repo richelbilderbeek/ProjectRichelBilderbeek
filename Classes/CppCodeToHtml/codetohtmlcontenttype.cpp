@@ -18,17 +18,14 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolCodeToHtml.htm
 //---------------------------------------------------------------------------
-
-
 #include "codetohtmlcontenttype.h"
 
 #include <cassert>
 #include <stdexcept>
 
-
 namespace c2h {
 
-bool CanStrToContentType(const std::string& s)
+bool CanStrToContentType(const std::string& s) noexcept
 {
   try
   {
@@ -47,39 +44,51 @@ const std::string ContentTypeToStr(const ContentType t)
   {
     case ContentType::code_snippet: return "code_snippet";
     case ContentType::cpp: return "cpp";
+    case ContentType::pri: return "pri";
     case ContentType::pro: return "pro";
     case ContentType::py: return "py";
     case ContentType::sh: return "sh";
     case ContentType::txt: return "txt";
     case ContentType::other: return "other";
+    case ContentType::n_types:
+      assert(!"Should not use ContentType::n_types");
+      throw std::logic_error("Must not use ContentType::n_types");
   }
   assert(!"Should not get here");
   throw std::logic_error("c2h::ContentTypeToStr");
 }
 
-const std::vector<ContentType> GetAllContentTypes()
+const std::vector<ContentType> GetAllContentTypes() noexcept
 {
-  return
-  {
+  const std::vector<ContentType> v {
     ContentType::code_snippet,
     ContentType::cpp,
+    ContentType::pri,
     ContentType::pro,
     ContentType::py,
     ContentType::sh,
     ContentType::txt,
     ContentType::other
   };
+  assert(static_cast<int>(v.size()) == static_cast<int>(ContentType::n_types));
+  return v;
 }
 
 ContentType StrToContentType(const std::string& s)
 {
   if (s == "code_snippet") return ContentType::code_snippet;
   if (s == "cpp") return ContentType::cpp;
+  if (s == "pri") return ContentType::pri;
   if (s == "pro") return ContentType::pro;
   if (s == "py") return ContentType::py;
   if (s == "sh") return ContentType::sh;
   if (s == "txt") return ContentType::txt;
   if (s == "other") return ContentType::other;
+  if (s == "n_types")
+  {
+    assert(!"Should not use ContentType::n_types");
+    throw std::logic_error("Must not use ContentType::n_types");
+  }
   throw std::logic_error("Invalid string in StrToContentType");
 }
 

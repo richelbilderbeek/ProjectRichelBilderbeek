@@ -86,12 +86,12 @@ ribi::QtTestTwoDigitNewickDialog::~QtTestTwoDigitNewickDialog()
   delete ui;
 }
 
-const std::string ribi::QtTestTwoDigitNewickDialog::GetVersion()
+const std::string ribi::QtTestTwoDigitNewickDialog::GetVersion() noexcept
 {
   return "2.2";
 }
 
-const std::vector<std::string> ribi::QtTestTwoDigitNewickDialog::GetVersionHistory()
+const std::vector<std::string> ribi::QtTestTwoDigitNewickDialog::GetVersionHistory() noexcept
 {
   std::vector<std::string> v;
   v.push_back("2010-08-22: version 0.1: initial version, only simple Newicks");

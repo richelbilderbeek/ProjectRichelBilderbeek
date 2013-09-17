@@ -40,12 +40,12 @@ const std::string ribi::RichelBilderbeek::ProgramStatusToStr(const ProgramStatus
   throw std::logic_error("RichelBilderbeek::ProgramStatusToStr");
 }
 
-const std::string ribi::RichelBilderbeek::ProgramStatusVersion::GetVersion()
+const std::string ribi::RichelBilderbeek::ProgramStatusVersion::GetVersion() noexcept
 {
   return "1.0";
 }
 
-const std::vector<std::string> ribi::RichelBilderbeek::ProgramStatusVersion::GetVersionHistory()
+const std::vector<std::string> ribi::RichelBilderbeek::ProgramStatusVersion::GetVersionHistory() noexcept
 {
   return {
     "2012-02-19: Version 1.0: initial version"

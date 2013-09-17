@@ -134,7 +134,9 @@ void ribi::QtMaziakMenuDialog::keyPressEvent(QKeyEvent * event)
     case Qt::Key_S: onStart(); break;
     case Qt::Key_I: onInstructions(); break;
     case Qt::Key_A: onAbout(); break;
-    case Qt::Key_Q: close(); break;
+    case Qt::Key_Q:
+    case Qt::Key_Escape:
+      close(); return;
     default:
       break;
   }

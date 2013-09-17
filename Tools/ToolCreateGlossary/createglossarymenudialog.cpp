@@ -24,7 +24,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include "htmlpage.h"
 
-const ribi::About ribi::CreateGlossaryMenuDialog::GetAbout()
+const ribi::About ribi::CreateGlossaryMenuDialog::GetAbout() noexcept
 {
   About a(
     "Richel Bilderbeek",
@@ -39,12 +39,12 @@ const ribi::About ribi::CreateGlossaryMenuDialog::GetAbout()
   return a;
 }
 
-const std::string ribi::CreateGlossaryMenuDialog::GetVersion()
+const std::string ribi::CreateGlossaryMenuDialog::GetVersion() noexcept
 {
   return "1.2";
 }
 
-const std::vector<std::string> ribi::CreateGlossaryMenuDialog::GetVersionHistory()
+const std::vector<std::string> ribi::CreateGlossaryMenuDialog::GetVersionHistory() noexcept
 {
   std::vector<std::string> v;
   v.push_back("2011-xx-xx: version 1.0: initial version");

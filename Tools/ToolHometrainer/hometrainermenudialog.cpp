@@ -60,12 +60,12 @@ const ribi::About ribi::HometrainerMenuDialog::GetAbout() const
   return a;
 }
 
-const std::string ribi::HometrainerMenuDialog::GetVersion()
+const std::string ribi::HometrainerMenuDialog::GetVersion() noexcept
 {
   return "2.0";
 }
 
-const std::vector<std::string> ribi::HometrainerMenuDialog::GetVersionHistory()
+const std::vector<std::string> ribi::HometrainerMenuDialog::GetVersionHistory() noexcept
 {
   return {
     "2009-xx-xx: Version 0.9: initial version (called HomeTrainer)",

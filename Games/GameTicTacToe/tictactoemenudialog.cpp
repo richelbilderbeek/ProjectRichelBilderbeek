@@ -24,7 +24,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "tictactoe.h"
 #pragma GCC diagnostic pop
 
-const ribi::About ribi::TicTacToeMenuDialog::GetAbout()
+const ribi::About ribi::TicTacToeMenuDialog::GetAbout() noexcept
 {
   About a(
     "Richel Bilderbeek",
@@ -39,12 +39,12 @@ const ribi::About ribi::TicTacToeMenuDialog::GetAbout()
   return a;
 }
 
-const std::string ribi::TicTacToeMenuDialog::GetVersion()
+const std::string ribi::TicTacToeMenuDialog::GetVersion() noexcept
 {
   return "1.5";
 }
 
-const std::vector<std::string> ribi::TicTacToeMenuDialog::GetVersionHistory()
+const std::vector<std::string> ribi::TicTacToeMenuDialog::GetVersionHistory() noexcept
 {
   return {
     "2010-09-24: Version 1.0: initial version",

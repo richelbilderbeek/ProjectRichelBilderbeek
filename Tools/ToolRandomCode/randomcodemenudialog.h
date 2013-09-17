@@ -31,7 +31,7 @@ namespace ribi {
 
 struct RandomCodeMenuDialog
 {
-  static About GetAbout();
+  static About GetAbout() noexcept;
   static const std::string GetVersion() noexcept;
   static const std::vector<std::string> GetVersionHistory() noexcept;
 };

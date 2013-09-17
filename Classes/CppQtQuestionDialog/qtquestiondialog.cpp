@@ -44,12 +44,12 @@ ribi::QtQuestionDialog::QtQuestionDialog(
   assert(m_dialog);
 }
 
-const std::string ribi::QtQuestionDialog::GetVersion()
+const std::string ribi::QtQuestionDialog::GetVersion() noexcept
 {
   return "1.0";
 }
 
-const std::vector<std::string> ribi::QtQuestionDialog::GetVersionHistory()
+const std::vector<std::string> ribi::QtQuestionDialog::GetVersionHistory() noexcept
 {
   std::vector<std::string> v;
   v.push_back("2011-06-30: version 1.0: initial version");

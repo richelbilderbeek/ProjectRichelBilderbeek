@@ -110,12 +110,12 @@ const ribi::Exercise * ribi::QtExercise::GetExercise() const
   return m_exercise.get();
 }
 
-const std::string ribi::QtExercise::GetVersion()
+const std::string ribi::QtExercise::GetVersion() noexcept
 {
   return "1.0";
 }
 
-const std::vector<std::string> ribi::QtExercise::GetVersionHistory()
+const std::vector<std::string> ribi::QtExercise::GetVersionHistory() noexcept
 {
   return {
     "2012-12-23: Version 1.0: initial version"

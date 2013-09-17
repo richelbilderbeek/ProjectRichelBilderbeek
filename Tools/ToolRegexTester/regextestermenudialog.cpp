@@ -22,7 +22,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #include "regextestermenudialog.h"
 
-const ribi::About ribi::RegexTesterMenuDialog::GetAbout()
+const ribi::About ribi::RegexTesterMenuDialog::GetAbout() noexcept
 {
   About a(
     "Richel Bilderbeek",
@@ -36,12 +36,12 @@ const ribi::About ribi::RegexTesterMenuDialog::GetAbout()
   return a;
 }
 
-const std::string ribi::RegexTesterMenuDialog::GetVersion()
+const std::string ribi::RegexTesterMenuDialog::GetVersion() noexcept
 {
   return "1.7";
 }
 
-const std::vector<std::string> ribi::RegexTesterMenuDialog::GetVersionHistory()
+const std::vector<std::string> ribi::RegexTesterMenuDialog::GetVersionHistory() noexcept
 {
   std::vector<std::string> v;
   v.push_back("2010-08-19: Version 1.3: Qt GUI application");

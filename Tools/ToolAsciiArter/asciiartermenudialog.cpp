@@ -25,7 +25,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "asciiarter.h"
 #pragma GCC diagnostic pop
 
-const ribi::About ribi::AsciiArterMenuDialog::GetAbout()
+const ribi::About ribi::AsciiArterMenuDialog::GetAbout() noexcept
 {
   About a(
     "Richel Bilderbeek",
@@ -40,12 +40,12 @@ const ribi::About ribi::AsciiArterMenuDialog::GetAbout()
   return a;
 }
 
-const std::string ribi::AsciiArterMenuDialog::GetVersion()
+const std::string ribi::AsciiArterMenuDialog::GetVersion() noexcept
 {
   return "5.2";
 }
 
-const std::vector<std::string> ribi::AsciiArterMenuDialog::GetVersionHistory()
+const std::vector<std::string> ribi::AsciiArterMenuDialog::GetVersionHistory() noexcept
 {
   return {
     "2006-12-13: Version 1.0: initial C++ Builder version, called 'AsciiArter'",

@@ -93,7 +93,7 @@ const std::vector<std::string> ribi::QtCreatorProFile::FileToVector(const std::s
   return v;
 }
 
-const ribi::About ribi::QtCreatorProFile::GetAbout()
+const ribi::About ribi::QtCreatorProFile::GetAbout() noexcept
 {
   ribi::About a(
     "Richel Bilderbeek",
@@ -107,12 +107,12 @@ const ribi::About ribi::QtCreatorProFile::GetAbout()
   return a;
 }
 
-const std::string ribi::QtCreatorProFile::GetVersion()
+const std::string ribi::QtCreatorProFile::GetVersion() noexcept
 {
   return "2.1";
 }
 
-const std::vector<std::string> ribi::QtCreatorProFile::GetVersionHistory()
+const std::vector<std::string> ribi::QtCreatorProFile::GetVersionHistory() noexcept
 {
   return {
     "2010-12-19: version 1.0: initial version",

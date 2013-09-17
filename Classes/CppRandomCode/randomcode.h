@@ -22,6 +22,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #ifndef RANDOMCODE_H
 #define RANDOMCODE_H
 
+#include "about.h"
 #include <string>
 #include <vector>
 
@@ -29,14 +30,13 @@ namespace ribi {
 
 struct RandomCode
 {
-  static const std::vector<std::string> CreateRandomCode();
-  static const std::vector<std::string> GetAbout();
-  static const std::vector<std::string> GetLicence();
+  static const std::vector<std::string> CreateRandomCode() noexcept;
+  static const About GetAbout() noexcept;
   static const std::string GetVersion() noexcept;
   static const std::vector<std::string> GetVersionHistory() noexcept;
   private:
-  static const std::string CreateRandomLine(const unsigned int length);
-  static const std::string CreateRandomString();
+  static const std::string CreateRandomLine(const unsigned int length) noexcept;
+  static const std::string CreateRandomString() noexcept;
 };
 
 } //~namespace ribi

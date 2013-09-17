@@ -36,6 +36,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 struct CodeToHtmlReplacements
 {
   CodeToHtmlReplacements(const std::vector<std::pair<std::string,std::string> >& replacements);
+  CodeToHtmlReplacements(const CodeToHtmlReplacements&) = delete;
+  CodeToHtmlReplacements& operator=(const CodeToHtmlReplacements&) = delete;
 
   const std::vector<std::pair<std::string,std::string> >& Get() const { return m_replacements; }
 

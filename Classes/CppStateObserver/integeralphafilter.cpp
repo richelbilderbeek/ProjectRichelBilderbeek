@@ -18,12 +18,12 @@ void ribi::IntegerAlphaFilter::Update(const int64_t measurement)
   m_value_active += ((measurement - m_value_active) >> m_alpha);
 }
 
-const std::string ribi::IntegerAlphaFilter::GetVersion()
+const std::string ribi::IntegerAlphaFilter::GetVersion() noexcept
 {
   return "1.1";
 }
 
-const std::vector<std::string> ribi::IntegerAlphaFilter::GetVersionHistory()
+const std::vector<std::string> ribi::IntegerAlphaFilter::GetVersionHistory() noexcept
 {
   std::vector<std::string> v;
   v.push_back("2013-06-04: version 1.0: initial version");

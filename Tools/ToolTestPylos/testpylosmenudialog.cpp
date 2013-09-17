@@ -22,7 +22,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #include "testpylosmenudialog.h"
 //---------------------------------------------------------------------------
-const ribi::About ribi::TestPylosMenuDialog::GetAbout()
+const ribi::About ribi::TestPylosMenuDialog::GetAbout() noexcept
 {
   About a(
     "Richel Bilderbeek",
@@ -37,12 +37,12 @@ const ribi::About ribi::TestPylosMenuDialog::GetAbout()
   return a;
 }
 //---------------------------------------------------------------------------
-const std::string ribi::TestPylosMenuDialog::GetVersion()
+const std::string ribi::TestPylosMenuDialog::GetVersion() noexcept
 {
   return "2.0";
 }
 //---------------------------------------------------------------------------
-const std::vector<std::string> ribi::TestPylosMenuDialog::GetVersionHistory()
+const std::vector<std::string> ribi::TestPylosMenuDialog::GetVersionHistory() noexcept
 {
   std::vector<std::string> v;
   v.push_back("2010-09-19: version 0.1: initial version: cannot move marbles, cannot switch to advanced game, winner can be requested clumsily (by clicking next to the Pylos widget)");

@@ -1,7 +1,7 @@
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #include "tooltestsimplelinearregressionmenudialog.h"
-
+#include "simplelinearregression.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
 
@@ -17,6 +17,7 @@ const ribi::About ribi::ToolTestSimpleLinearRegressionMenuDialog::GetAbout()
     GetVersion(),
     GetVersionHistory());
   a.AddLibrary("Trace version: " + Trace::GetVersion());
+  a.AddLibrary("SimpleLinearRegression version: " + SimpleLinearRegression::GetVersion());
   return a;
 }
 

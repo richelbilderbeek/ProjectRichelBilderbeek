@@ -44,49 +44,49 @@ struct QtCreatorProFile
   QtCreatorProFile& operator=(const QtCreatorProFile&) = delete;
 
   ///Obtain this class its About information
-  static const ribi::About GetAbout();
+  static const ribi::About GetAbout() noexcept;
 
   ///Obtain the CONFIG
-  const std::set<std::string>& GetConfig() const { return m_config; }
+  const std::set<std::string>& GetConfig() const noexcept { return m_config; }
 
   ///Obtain the DEFINES
-  const std::set<std::string>& GetDefines() const { return m_defines; }
+  const std::set<std::string>& GetDefines() const noexcept { return m_defines; }
 
   ///Obtain the FORMS
-  const std::set<std::string>& GetForms() const { return m_forms; }
+  const std::set<std::string>& GetForms() const noexcept { return m_forms; }
 
   ///Obtain the HEADERS
-  const std::set<std::string>& GetHeaders() const { return m_headers; }
+  const std::set<std::string>& GetHeaders() const noexcept { return m_headers; }
 
   ///Obtain the INCLUDEPATH
-  const std::set<std::string>& GetIncludepath() const { return m_includepath; }
+  const std::set<std::string>& GetIncludepath() const noexcept { return m_includepath; }
 
   ///Obtain the LIBS
-  const std::set<std::string>& GetLibs() const { return m_libs; }
+  const std::set<std::string>& GetLibs() const noexcept { return m_libs; }
 
   ///Obtain the OTHER_FILES
-  const std::set<std::string>& GetOtherFiles() const { return m_other_files; }
+  const std::set<std::string>& GetOtherFiles() const noexcept { return m_other_files; }
 
   ///Get the project file its file name
-  const std::string& GetQtCreatorProFilename() const { return m_pro_filename; }
+  const std::string& GetQtCreatorProFilename() const noexcept { return m_pro_filename; }
 
   ///Obtain the QMAKE_CXXFLAGS
-  const std::set<std::string>& GetQmakeCxxflags() const { return m_qmake_cxxflags; }
+  const std::set<std::string>& GetQmakeCxxflags() const noexcept { return m_qmake_cxxflags; }
 
   ///Obtain the QT
-  const std::set<std::string>& GetQt() const { return m_qt; }
+  const std::set<std::string>& GetQt() const noexcept { return m_qt; }
 
   ///Obtain the RESOURCES
-  const std::set<std::string>& GetResources() const { return m_resources; }
+  const std::set<std::string>& GetResources() const noexcept { return m_resources; }
 
   ///Obtain the SOURCES
-  const std::set<std::string>& GetSources() const  { return m_sources; }
+  const std::set<std::string>& GetSources() const noexcept { return m_sources; }
 
   ///Obtain the TARGET
-  const std::set<std::string>& GetTarget() const { return m_target; }
+  const std::set<std::string>& GetTarget() const noexcept { return m_target; }
 
   ///Obtain the TEMPLATE
-  const std::set<std::string>& GetTemplate() const { return m_template; }
+  const std::set<std::string>& GetTemplate() const noexcept { return m_template; }
 
   ///Obtain this class its version
   static const std::string GetVersion() noexcept;

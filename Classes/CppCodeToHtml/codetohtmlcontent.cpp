@@ -38,12 +38,9 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #define PROGRAM_HANGS
 
-const CodeToHtmlReplacements c2h::Content::m_replacements_cpp
-  = c2h::Content::CreateCppReplacements();
-const CodeToHtmlReplacements c2h::Content::m_replacements_pro
-  = c2h::Content::CreateProReplacements();
-const CodeToHtmlReplacements c2h::Content::m_replacements_txt
-  = CodeToHtmlReplacements(std::vector<std::pair<std::string,std::string> >());
+std::unique_ptr<const CodeToHtmlReplacements> c2h::Content::m_replacements_cpp {};
+std::unique_ptr<const CodeToHtmlReplacements> c2h::Content::m_replacements_pro {};
+std::unique_ptr<const CodeToHtmlReplacements> c2h::Content::m_replacements_txt {};
 
 c2h::Content::Content(
   const std::string& filename,
@@ -75,6 +72,11 @@ c2h::ContentType c2h::Content::DeduceContentType(const std::string& filename)
   boost::xpressive::smatch what;
 
   if( boost::xpressive::regex_match( filename, what,
+    boost::xpressive::sregex::compile( ".*\\.(pri)\\>") ) )
+  {
+    return ContentType::pri;
+  }
+  if( boost::xpressive::regex_match( filename, what,
     boost::xpressive::sregex::compile( ".*\\.(pro)\\>") ) )
   {
     return ContentType::pro;
@@ -102,6 +104,41 @@ c2h::ContentType c2h::Content::DeduceContentType(const std::string& filename)
   return ContentType::other;
 }
 
+const CodeToHtmlReplacements& c2h::Content::GetReplacementsCpp()
+{
+  if (!m_replacements_cpp)
+  {
+    m_replacements_cpp.reset(
+      new CodeToHtmlReplacements(
+        c2h::Content::CreateCppReplacements()));
+  }
+  assert(m_replacements_cpp);
+  return *m_replacements_cpp;
+}
+
+const CodeToHtmlReplacements& c2h::Content::GetReplacementsPro()
+{
+  if (!m_replacements_pro)
+  {
+    m_replacements_pro.reset(
+      new CodeToHtmlReplacements(
+        c2h::Content::CreateProReplacements()));
+  }
+  assert(m_replacements_pro);
+  return *m_replacements_pro;
+}
+const CodeToHtmlReplacements& c2h::Content::GetReplacementsTxt()
+{
+  if (!m_replacements_txt)
+  {
+    m_replacements_txt.reset(
+      new CodeToHtmlReplacements(
+        std::vector<std::pair<std::string,std::string> >()));
+  }
+  assert(m_replacements_txt);
+  return *m_replacements_txt;
+}
+
 const std::vector<std::string> c2h::Content::ToHtml() const
 {
   std::vector<std::string> v;
@@ -116,7 +153,8 @@ const std::vector<std::string> c2h::Content::ToHtml() const
       v.push_back("<!-- start of code -->");
       v.push_back("<table summary=\"" + m_filename + "\" border = \"1\"><tr><td><code>");
       //v.push_back("<table border = \"1\"><tr><td><code>");
-      const auto r = m_replacements_cpp.Get();
+      assert(m_replacements_cpp);
+      const auto r = m_replacements_cpp->Get();
       std::transform(m_contents.begin(),m_contents.end(),
         std::back_inserter(v),
         [this,r](const std::string& s)
@@ -137,8 +175,8 @@ const std::vector<std::string> c2h::Content::ToHtml() const
       v.push_back("<!-- start of code -->");
       v.push_back("<table summary=\"" + m_filename + "\" border = \"1\"><tr><td><code>");
       //v.push_back("<table border = \"1\"><tr><td><code>");
-
-      const auto r = m_replacements_pro.Get();
+      assert(m_replacements_pro);
+      const auto r = m_replacements_pro->Get();
       std::transform(m_contents.begin(),m_contents.end(),
         std::back_inserter(v),
         [this,r](const std::string& s)
@@ -146,9 +184,25 @@ const std::vector<std::string> c2h::Content::ToHtml() const
           return c2h::Content::MultiReplace(s,r) + "<br/>";
         }
       );
-      //const std::vector<std::string> w = MultiReplace(m_contents,m_replacements_pro.m_all_replacements);
-      //std::copy(w.begin(),w.end(),std::back_inserter(v));
-
+    }
+    break;
+    case ContentType::pri:
+    {
+      v.push_back(
+        std::string("<h2>")
+        + m_filename + std::string("</h2>"));
+      v.push_back("<p>&nbsp;</p>");
+      v.push_back("<!-- start of code -->");
+      v.push_back("<table summary=\"" + m_filename + "\" border = \"1\"><tr><td><code>");
+      assert(m_replacements_pro);
+      const auto r = m_replacements_pro->Get();
+      std::transform(m_contents.begin(),m_contents.end(),
+        std::back_inserter(v),
+        [this,r](const std::string& s)
+        {
+          return c2h::Content::MultiReplace(s,r) + "<br/>";
+        }
+      );
     }
     break;
     case ContentType::py:
@@ -161,7 +215,8 @@ const std::vector<std::string> c2h::Content::ToHtml() const
       v.push_back("<!-- start of code -->");
       v.push_back("<table summary=\"" + m_filename + "\" border = \"1\"><tr><td><code>");
       //v.push_back("<table border = \"1\"><tr><td><code>");
-      const auto r = m_replacements_txt.Get();
+      assert(m_replacements_txt);
+      const auto r = m_replacements_txt->Get();
       std::transform(m_contents.begin(),m_contents.end(),
         std::back_inserter(v),
         [this,r](const std::string& s)
@@ -175,6 +230,9 @@ const std::vector<std::string> c2h::Content::ToHtml() const
     break;
     case ContentType::other:
       return v;
+    case ContentType::n_types:
+      assert(!"Should not use ContentType::n_types");
+      throw std::logic_error("Must not use ContentType::n_types");
   }
   //Remove empty lines
   while (v.back() == "<br/>") v.pop_back();
@@ -251,6 +309,9 @@ void c2h::Content::Test()
   assert(DeduceContentType("pro.py" ) == ContentType::py);
   assert(DeduceContentType("c.xyz"  ) == ContentType::other);
 
+  assert(!GetReplacementsCpp().Get().empty());
+  assert(!GetReplacementsPro().Get().empty());
+  assert(!GetReplacementsTxt().Get().empty());
 
   TRACE("Finished c2h::Content::Test successfully");
 }

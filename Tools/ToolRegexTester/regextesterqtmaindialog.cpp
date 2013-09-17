@@ -26,7 +26,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "trace.h"
 #pragma GCC diagnostic pop
 
-const boost::shared_ptr<ribi::RegexTesterMainDialog> ribi::RegexTesterQtMainDialog::Clone() const
+const boost::shared_ptr<ribi::RegexTesterMainDialog> ribi::RegexTesterQtMainDialog::Clone() const noexcept
 {
   boost::shared_ptr<RegexTesterMainDialog> d(
     new RegexTesterQtMainDialog);
@@ -65,7 +65,7 @@ const std::vector<std::string> ribi::RegexTesterQtMainDialog::GetRegexMatches(
 
 bool ribi::RegexTesterQtMainDialog::GetRegexMatchLine(
   const std::string& /* line */,
-  const std::string& /* regex_str */) const
+  const std::string& /* regex_str */) const noexcept
 {
   assert(!"Qt does not have a regex match algorithm");
   //if (!GetRegexValid(regex_str)) return false;
@@ -85,7 +85,7 @@ const std::string ribi::RegexTesterQtMainDialog::GetRegexReplace(
 
 
 bool ribi::RegexTesterQtMainDialog::GetRegexValid(
-  const std::string& /* regex_str */) const
+  const std::string& /* regex_str */) const noexcept
 {
   assert(!"TODO");
   //try { const boost::regex regex_temp(regex_str); }

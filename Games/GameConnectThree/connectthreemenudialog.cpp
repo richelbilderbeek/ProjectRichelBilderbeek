@@ -29,7 +29,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <cassert>
 #pragma GCC diagnostic pop
 
-const ribi::About ribi::ConnectThreeMenuDialog::GetAbout()
+const ribi::About ribi::ConnectThreeMenuDialog::GetAbout() noexcept
 {
   About a(
     "Richel Bilderbeek",
@@ -46,12 +46,12 @@ const ribi::About ribi::ConnectThreeMenuDialog::GetAbout()
   return a;
 }
 
-const std::string ribi::ConnectThreeMenuDialog::GetVersion()
+const std::string ribi::ConnectThreeMenuDialog::GetVersion() noexcept
 {
   return "6.5";
 }
 
-const std::vector<std::string> ribi::ConnectThreeMenuDialog::GetVersionHistory()
+const std::vector<std::string> ribi::ConnectThreeMenuDialog::GetVersionHistory() noexcept
 {
   std::vector<std::string> v;
   v.push_back("2007-xx-xx: version 1.0: initial version as part of K3OpEenRij");

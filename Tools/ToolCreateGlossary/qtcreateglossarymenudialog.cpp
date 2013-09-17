@@ -29,8 +29,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "createglossarymaindialog.h"
 #pragma GCC diagnostic pop
 
-ribi::QtCreateGlossaryMenuDialog::QtCreateGlossaryMenuDialog(QWidget *parent) :
-    QDialog(parent),
+ribi::QtCreateGlossaryMenuDialog::QtCreateGlossaryMenuDialog(QWidget *parent)
+  : QDialog(parent),
     ui(new Ui::QtCreateGlossaryMenuDialog)
 {
   ui->setupUi(this);

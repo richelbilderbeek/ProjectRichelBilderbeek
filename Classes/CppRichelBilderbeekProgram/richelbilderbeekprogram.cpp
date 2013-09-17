@@ -237,12 +237,12 @@ const std::string ribi::RichelBilderbeek::Program::GetFilenameWeb() const
   return GetFilenameBase() + "Web.png";
 }
 
-const std::string ribi::RichelBilderbeek::Program::GetVersion()
+const std::string ribi::RichelBilderbeek::Program::GetVersion() noexcept
 {
   return "1.0";
 }
 
-const std::vector<std::string> ribi::RichelBilderbeek::Program::GetVersionHistory()
+const std::vector<std::string> ribi::RichelBilderbeek::Program::GetVersionHistory() noexcept
 {
   return {
     "2012-02-19: Version 1.0: initial version"

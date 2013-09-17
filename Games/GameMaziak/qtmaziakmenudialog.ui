@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Maziak (C) 2007 Richel Bilderbeek</string>
+   <string>Maziak</string>
   </property>
   <property name="windowIcon">
    <iconset resource="gamemaziak.qrc">

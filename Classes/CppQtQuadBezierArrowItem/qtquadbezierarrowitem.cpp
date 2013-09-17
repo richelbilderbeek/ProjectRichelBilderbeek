@@ -353,12 +353,12 @@ const QPointF ribi::QtQuadBezierArrowItem::GetTail() const
   }
 }
 
-const std::string ribi::QtQuadBezierArrowItem::GetVersion()
+const std::string ribi::QtQuadBezierArrowItem::GetVersion() noexcept
 {
   return "1.4";
 }
 
-const std::vector<std::string> ribi::QtQuadBezierArrowItem::GetVersionHistory()
+const std::vector<std::string> ribi::QtQuadBezierArrowItem::GetVersionHistory() noexcept
 {
   std::vector<std::string> v;
   v.push_back("2012-12-07: version 1.0: initial version");

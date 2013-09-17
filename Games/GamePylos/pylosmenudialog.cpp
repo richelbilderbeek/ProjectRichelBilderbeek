@@ -32,7 +32,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "pylosmove.h"
 #include "pylosplayer.h"
 
-const ribi::About ribi::PylosMenuDialog::GetAbout()
+const ribi::About ribi::PylosMenuDialog::GetAbout() noexcept
 {
   About a(
     "Richel Bilderbeek",
@@ -51,12 +51,12 @@ const ribi::About ribi::PylosMenuDialog::GetAbout()
   return a;
 }
 
-const std::string ribi::PylosMenuDialog::GetVersion()
+const std::string ribi::PylosMenuDialog::GetVersion() noexcept
 {
   return "2.0";
 }
 
-const std::vector<std::string> ribi::PylosMenuDialog::GetVersionHistory()
+const std::vector<std::string> ribi::PylosMenuDialog::GetVersionHistory() noexcept
 {
   return {
     "2010-09-22: version 1.0: initial release version",

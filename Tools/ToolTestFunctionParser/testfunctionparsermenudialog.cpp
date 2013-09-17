@@ -20,7 +20,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #include "testfunctionparsermenudialog.h"
 
-const ribi::About ribi::TestFunctionParserMenuDialog::GetAbout()
+const ribi::About ribi::TestFunctionParserMenuDialog::GetAbout() noexcept
 {
   About a(
     "Richel Bilderbeek",
@@ -39,12 +39,12 @@ const ribi::About ribi::TestFunctionParserMenuDialog::GetAbout()
   return a;
 }
 
-const std::string ribi::TestFunctionParserMenuDialog::GetVersion()
+const std::string ribi::TestFunctionParserMenuDialog::GetVersion() noexcept
 {
   return "2.3";
 }
 
-const std::vector<std::string> ribi::TestFunctionParserMenuDialog::GetVersionHistory()
+const std::vector<std::string> ribi::TestFunctionParserMenuDialog::GetVersionHistory() noexcept
 {
   return {
     "2010-02-02: Version 1.0: initial C++ Builder desktop version",

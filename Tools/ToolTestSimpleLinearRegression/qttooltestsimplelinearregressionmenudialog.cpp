@@ -17,9 +17,10 @@
 
 #pragma GCC diagnostic pop
 
-ribi::QtToolTestSimpleLinearRegressionMenuDialog::QtToolTestSimpleLinearRegressionMenuDialog(QWidget *parent) :
-  QtHideAndShowDialog(parent),
-  ui(new Ui::QtToolTestSimpleLinearRegressionMenuDialog)
+ribi::QtToolTestSimpleLinearRegressionMenuDialog::QtToolTestSimpleLinearRegressionMenuDialog(
+  QWidget *parent) noexcept
+  : QtHideAndShowDialog(parent),
+    ui(new Ui::QtToolTestSimpleLinearRegressionMenuDialog)
 {
   #ifndef NDEBUG
   Test();
@@ -27,17 +28,18 @@ ribi::QtToolTestSimpleLinearRegressionMenuDialog::QtToolTestSimpleLinearRegressi
   ui->setupUi(this);
 }
 
-ribi::QtToolTestSimpleLinearRegressionMenuDialog::~QtToolTestSimpleLinearRegressionMenuDialog()
+ribi::QtToolTestSimpleLinearRegressionMenuDialog::~QtToolTestSimpleLinearRegressionMenuDialog() noexcept
 {
   delete ui;
 }
 
-void ribi::QtToolTestSimpleLinearRegressionMenuDialog::keyPressEvent(QKeyEvent * event)
+void ribi::QtToolTestSimpleLinearRegressionMenuDialog::keyPressEvent(
+  QKeyEvent * event) noexcept
 {
   if (event->key() == Qt::Key_Escape) { close(); return; }
 }
 
-void ribi::QtToolTestSimpleLinearRegressionMenuDialog::on_button_about_clicked()
+void ribi::QtToolTestSimpleLinearRegressionMenuDialog::on_button_about_clicked() noexcept
 {
   About a = ToolTestSimpleLinearRegressionMenuDialog::GetAbout();
   a.AddLibrary("QtHideAndShowDialog version: " + QtHideAndShowDialog::GetVersion());
@@ -49,12 +51,12 @@ void ribi::QtToolTestSimpleLinearRegressionMenuDialog::on_button_about_clicked()
   this->show();
 }
 
-void ribi::QtToolTestSimpleLinearRegressionMenuDialog::on_button_quit_clicked()
+void ribi::QtToolTestSimpleLinearRegressionMenuDialog::on_button_quit_clicked() noexcept
 {
   close();
 }
 
-void ribi::QtToolTestSimpleLinearRegressionMenuDialog::on_button_start_clicked()
+void ribi::QtToolTestSimpleLinearRegressionMenuDialog::on_button_start_clicked() noexcept
 {
   QtToolTestSimpleLinearRegressionMainDialog d;
   d.setWindowIcon(this->windowIcon());
@@ -63,7 +65,7 @@ void ribi::QtToolTestSimpleLinearRegressionMenuDialog::on_button_start_clicked()
 }
 
 #ifndef NDEBUG
-void ribi::QtToolTestSimpleLinearRegressionMenuDialog::Test()
+void ribi::QtToolTestSimpleLinearRegressionMenuDialog::Test() noexcept
 {
   {
     static bool is_tested = false;

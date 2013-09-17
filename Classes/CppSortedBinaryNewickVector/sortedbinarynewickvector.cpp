@@ -146,12 +146,12 @@ int ribi::SortedBinaryNewickVector::FindPosBefore(const std::vector<int>& v,cons
   return -1;
 }
 
-const std::string ribi::SortedBinaryNewickVector::GetVersion()
+const std::string ribi::SortedBinaryNewickVector::GetVersion() noexcept
 {
   return "3.0";
 }
 
-const std::vector<std::string> ribi::SortedBinaryNewickVector::GetVersionHistory()
+const std::vector<std::string> ribi::SortedBinaryNewickVector::GetVersionHistory() noexcept
 {
   return {
     "2011-03-11: Version 3.0: initial versioning, following BinaryNewickVector"

@@ -17,23 +17,25 @@ class QtToolTestApproximatorMenuDialog : public QtHideAndShowDialog
   Q_OBJECT
 
 public:
-  explicit QtToolTestApproximatorMenuDialog(QWidget *parent = 0);
-  ~QtToolTestApproximatorMenuDialog();
+  explicit QtToolTestApproximatorMenuDialog(QWidget *parent = 0) noexcept;
+  QtToolTestApproximatorMenuDialog(const QtToolTestApproximatorMenuDialog&) = delete;
+  QtToolTestApproximatorMenuDialog& operator=(const QtToolTestApproximatorMenuDialog&) = delete;
+  ~QtToolTestApproximatorMenuDialog() noexcept;
 
 protected:
-  void keyPressEvent(QKeyEvent * event);
+  void keyPressEvent(QKeyEvent * event) noexcept;
 
 private:
   Ui::QtToolTestApproximatorMenuDialog *ui;
 
 private slots:
-  void on_button_about_clicked();
-  void on_button_quit_clicked();
-  void on_button_start_xy_clicked();
-  void on_button_start_xyz_clicked();
+  void on_button_about_clicked() noexcept;
+  void on_button_quit_clicked() noexcept;
+  void on_button_start_xy_clicked() noexcept;
+  void on_button_start_xyz_clicked() noexcept;
 
   #ifndef NDEBUG
-  static void Test();
+  static void Test() noexcept;
   #endif
 };
 

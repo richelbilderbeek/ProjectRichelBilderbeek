@@ -14,7 +14,7 @@
 
 #pragma GCC diagnostic pop
 
-ribi::QtToolTestApproximatorMenuDialog::QtToolTestApproximatorMenuDialog(QWidget *parent) :
+ribi::QtToolTestApproximatorMenuDialog::QtToolTestApproximatorMenuDialog(QWidget *parent) noexcept :
   QtHideAndShowDialog(parent),
   ui(new Ui::QtToolTestApproximatorMenuDialog)
 {
@@ -24,17 +24,17 @@ ribi::QtToolTestApproximatorMenuDialog::QtToolTestApproximatorMenuDialog(QWidget
   ui->setupUi(this);
 }
 
-ribi::QtToolTestApproximatorMenuDialog::~QtToolTestApproximatorMenuDialog()
+ribi::QtToolTestApproximatorMenuDialog::~QtToolTestApproximatorMenuDialog() noexcept
 {
   delete ui;
 }
 
-void ribi::QtToolTestApproximatorMenuDialog::keyPressEvent(QKeyEvent * event)
+void ribi::QtToolTestApproximatorMenuDialog::keyPressEvent(QKeyEvent * event) noexcept
 {
   if (event->key() == Qt::Key_Escape) { close(); return; }
 }
 
-void ribi::QtToolTestApproximatorMenuDialog::on_button_about_clicked()
+void ribi::QtToolTestApproximatorMenuDialog::on_button_about_clicked() noexcept
 {
   About a = ToolTestApproximatorMenuDialog::GetAbout();
   a.AddLibrary("QtHideAndShowDialog version: " + QtHideAndShowDialog::GetVersion());
@@ -46,25 +46,25 @@ void ribi::QtToolTestApproximatorMenuDialog::on_button_about_clicked()
   this->show();
 }
 
-void ribi::QtToolTestApproximatorMenuDialog::on_button_quit_clicked()
+void ribi::QtToolTestApproximatorMenuDialog::on_button_quit_clicked() noexcept
 {
   close();
 }
 
-void ribi::QtToolTestApproximatorMenuDialog::on_button_start_xy_clicked()
+void ribi::QtToolTestApproximatorMenuDialog::on_button_start_xy_clicked() noexcept
 {
   QtToolTestApproximatorXyMainDialog d;
   ShowChild(&d);
 }
 
-void ribi::QtToolTestApproximatorMenuDialog::on_button_start_xyz_clicked()
+void ribi::QtToolTestApproximatorMenuDialog::on_button_start_xyz_clicked() noexcept
 {
   //QtToolTestApproximatorXyzMainDialog d;
   //ShowChild(&d);
 }
 
 #ifndef NDEBUG
-void ribi::QtToolTestApproximatorMenuDialog::Test()
+void ribi::QtToolTestApproximatorMenuDialog::Test() noexcept
 {
   {
     static bool is_tested = false;

@@ -31,7 +31,7 @@ namespace ribi {
 ///GUI independent CodeToHtml menu dialog
 struct CodeToHtmlMenuDialog
 {
-  static const ribi::About GetAbout();
+  static const ribi::About GetAbout() noexcept;
   static const std::string GetVersion() noexcept;
   static const std::vector<std::string> GetVersionHistory() noexcept;
 };

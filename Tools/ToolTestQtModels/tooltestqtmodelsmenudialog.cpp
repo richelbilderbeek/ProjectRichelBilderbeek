@@ -24,7 +24,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include "trace.h"
 
-const ribi::About ribi::ToolTestQtModelsMenuDialog::GetAbout()
+const ribi::About ribi::ToolTestQtModelsMenuDialog::GetAbout() noexcept
 {
   About a(
     "Richel Bilderbeek",
@@ -39,12 +39,12 @@ const ribi::About ribi::ToolTestQtModelsMenuDialog::GetAbout()
   return a;
 }
 
-const std::string ribi::ToolTestQtModelsMenuDialog::GetVersion()
+const std::string ribi::ToolTestQtModelsMenuDialog::GetVersion() noexcept
 {
   return "1.1";
 }
 
-const std::vector<std::string> ribi::ToolTestQtModelsMenuDialog::GetVersionHistory()
+const std::vector<std::string> ribi::ToolTestQtModelsMenuDialog::GetVersionHistory() noexcept
 {
   std::vector<std::string> v;
   v.push_back("2013-05-15: version 1.0: initial version");

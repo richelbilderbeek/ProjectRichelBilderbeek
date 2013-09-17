@@ -24,7 +24,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #include "trace.h"
 
-const std::vector<std::pair<std::string,std::string> > c2h::Content::CreateCppReplacements()
+const std::vector<std::pair<std::string,std::string> > c2h::Content::CreateCppReplacements() noexcept
 {
   std::vector<std::pair<std::string,std::string> > v { Content::CreateProReplacements() };
   const std::vector<std::pair<std::string,std::string> > w
@@ -439,7 +439,8 @@ const std::vector<std::pair<std::string,std::string> > c2h::Content::CreateCppRe
     { "AskUserForDouble","<a href=\"C$ppA$skU$serF$orD$ouble.htm\">A$skU$serF$orD$ouble</a>" },
     { "GetCurrentFolder","<a href=\"CppG$etCurrentFolder.htm\">G$etCurrentFolder</a>" },
     { "GetDistancesPath","<a href=\"CppG$etDistancesPath.htm\">G$etDistancesPath</a>" },
-    { "GetFilesInFolder","<a href=\"CppG$etFilesInFolder.htm\">G$etFilesInFolder</a>" },
+    { "GetFilesInFolder","<a href=\"CppG$etF$ilesI$nF$older.htm\">G$etF$ilesI$nF$older</a>" },
+    { "QtCreatorProFile","<a href=\"CppQ$tC$reatorP$roF$ile.htm\">Q$tC$reatorP$roF$ile</a>" },
     { "QtDisplayPosItem","<a href=\"CppQ$tD$isplayP$osI$tem.htm\">Q$tD$isplayP$osI$tem</a>" },
     { "RemoveDuplicates","<a href=\"CppRem$oveDuplicates.htm\">Rem$oveDuplicates</a>" },
     { "TestServerPusher","<a href=\"T$oolT$estS$erverP$usher.htm\">T$estS$erverP$usher</a>" },
@@ -1588,6 +1589,7 @@ const std::vector<std::pair<std::string,std::string> > c2h::Content::CreateCppRe
     { "Carbide","<a href=\"CppC$arbideC$pp.htm\">C$arbide</a>" },
     { "Compile","<a href=\"CppC$ompile.htm\">C$ompile</a>" },
     { "Convert","<a href=\"CppC$onvert.htm\">C$onvert</a>" },
+    { "Copy_if","<a href=\"CppC$opy_i$f.htm\">C$opy_i$f</a>" },
     { "Counter","<a href=\"C$ppC$ounter.htm\">C$ounter</a>" },
     { "Emitted","<a href=\"CppE$mit.htm\">E$mitted</a>" },
     { "GetMean","<a href=\"CppG$etMean.htm\">G$etMean</a>" },

@@ -55,7 +55,7 @@ private:
   Ui::QtTestNewickVectorDialog *ui;
   QTimer * m_timer;
   boost::scoped_ptr<TestNewickVectorDialog> m_dialog;
-  void Display();
+  void Display() noexcept;
 
 
 private slots:

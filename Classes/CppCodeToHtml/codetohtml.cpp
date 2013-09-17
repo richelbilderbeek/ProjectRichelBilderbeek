@@ -175,6 +175,8 @@ void c2h::Test()
         "c.pro",
         "d.pro",
         "e.pro",
+        "a.pri",
+        "b.pri",
         "a.h",
         "a.cpp",
         "b.h",
@@ -491,6 +493,7 @@ const std::vector<std::string> c2h::FilterFiles(const std::vector<std::string>& 
         || ext == ".cpp"
         || ext == ".h"
         || ext == ".hpp"
+        || ext == ".pri"
         || ext == ".pro"
         || ext == ".py"
         || ext == ".sh";
@@ -520,6 +523,7 @@ const std::vector<std::string> c2h::SortFiles(std::vector<std::string> files)
       const std::string lhs_ext = GetExtension(lhs);
       const std::string rhs_ext = GetExtension(rhs);
       static const std::string pro(".pro");
+      static const std::string pri(".pri");
       static const std::string sh(".sh");
       static const std::string h(".h");
       static const std::string cpp(".cpp");
@@ -536,16 +540,36 @@ const std::vector<std::string> c2h::SortFiles(std::vector<std::string> files)
           return lhs_base < rhs_base;
         }
       }
+
+      //.pri files then
+      if (lhs_ext == pri)
+      {
+        if (rhs_ext == pro) //.pro first
+        {
+          return false;
+        }
+        if (rhs_ext == pri) //sort .pri files
+        {
+          return lhs_base < rhs_base;
+        }
+        if (rhs_ext != pri) //else .pri is second
+        {
+          return true;
+        }
+      }
+
+
       //Headers then
       if (lhs_ext == h && rhs_ext == cpp && lhs_base == rhs_base)
       {
         return true;
       }
-      //Pro before unit files
-      if ( (lhs_ext == h || lhs_ext == cpp) && rhs_ext == pro)
+      //Pri before unit files
+      if ( (lhs_ext == h || lhs_ext == cpp) && rhs_ext == pri)
       {
         return false;
       }
+
       //Unit files before script files
       if ( (lhs_ext == h || lhs_ext == cpp) && rhs_ext == sh)
       {

@@ -22,7 +22,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include "dial.h"
 
-const ribi::About ribi::TestDialMenuDialog::GetAbout()
+const ribi::About ribi::TestDialMenuDialog::GetAbout() noexcept
 {
   About a(
     "Richel Bilderbeek",
@@ -37,12 +37,12 @@ const ribi::About ribi::TestDialMenuDialog::GetAbout()
   return a;
 }
 
-const std::string ribi::TestDialMenuDialog::GetVersion()
+const std::string ribi::TestDialMenuDialog::GetVersion() noexcept
 {
   return "2.1";
 }
 
-const std::vector<std::string> ribi::TestDialMenuDialog::GetVersionHistory()
+const std::vector<std::string> ribi::TestDialMenuDialog::GetVersionHistory() noexcept
 {
   return {
     "2011-04-11: Version 1.0: initial version, web version not yet working",

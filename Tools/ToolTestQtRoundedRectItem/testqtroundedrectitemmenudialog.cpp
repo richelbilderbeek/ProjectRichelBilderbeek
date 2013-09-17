@@ -2,7 +2,7 @@
 
 #include "trace.h"
 
-const ribi::About ribi::TestQtRoundedRectItemMenuDialog::GetAbout()
+const ribi::About ribi::TestQtRoundedRectItemMenuDialog::GetAbout() noexcept
 {
   About a(
     "Richel Bilderbeek",
@@ -18,12 +18,12 @@ const ribi::About ribi::TestQtRoundedRectItemMenuDialog::GetAbout()
   return a;
 }
 
-const std::string ribi::TestQtRoundedRectItemMenuDialog::GetVersion()
+const std::string ribi::TestQtRoundedRectItemMenuDialog::GetVersion() noexcept
 {
   return "1.1";
 }
 
-const std::vector<std::string> ribi::TestQtRoundedRectItemMenuDialog::GetVersionHistory()
+const std::vector<std::string> ribi::TestQtRoundedRectItemMenuDialog::GetVersionHistory() noexcept
 {
   std::vector<std::string> v;
   v.push_back("2012-12-21: version 1.0: initial version");

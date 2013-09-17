@@ -26,7 +26,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "qtcreatorprofile.h"
 #pragma GCC diagnostic pop
 
-const ribi::About ribi::TestQtCreatorProFileMenuDialog::GetAbout()
+const ribi::About ribi::TestQtCreatorProFileMenuDialog::GetAbout() noexcept
 {
   About a(
     "Richel Bilderbeek",
@@ -42,12 +42,12 @@ const ribi::About ribi::TestQtCreatorProFileMenuDialog::GetAbout()
   return a;
 }
 
-const std::string ribi::TestQtCreatorProFileMenuDialog::GetVersion()
+const std::string ribi::TestQtCreatorProFileMenuDialog::GetVersion() noexcept
 {
   return "1.2";
 }
 
-const std::vector<std::string> ribi::TestQtCreatorProFileMenuDialog::GetVersionHistory()
+const std::vector<std::string> ribi::TestQtCreatorProFileMenuDialog::GetVersionHistory() noexcept
 {
   return {
     "2010-xx-xx: version 1.0: initial version, called TestProFile",

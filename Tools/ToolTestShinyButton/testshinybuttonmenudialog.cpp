@@ -26,7 +26,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "shinybuttonwidget.h"
 #include "trace.h"
 
-const ribi::About ribi::TestShinyButtonMenuDialog::GetAbout()
+const ribi::About ribi::TestShinyButtonMenuDialog::GetAbout() noexcept
 {
   About a(
     "Richel Bilderbeek",
@@ -46,12 +46,12 @@ const ribi::About ribi::TestShinyButtonMenuDialog::GetAbout()
   return a;
 }
 
-const std::string ribi::TestShinyButtonMenuDialog::GetVersion()
+const std::string ribi::TestShinyButtonMenuDialog::GetVersion() noexcept
 {
   return "2.0";
 }
 
-const std::vector<std::string> ribi::TestShinyButtonMenuDialog::GetVersionHistory()
+const std::vector<std::string> ribi::TestShinyButtonMenuDialog::GetVersionHistory() noexcept
 {
   return {
     "2011-06-16: Version 1.0: initial version, desktop version not yet working",

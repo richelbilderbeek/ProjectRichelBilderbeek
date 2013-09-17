@@ -88,6 +88,8 @@ const std::vector<std::string> c2h::Info::ToHtml() const
   }
   else if (m_page_name == "CppArrayExample1")
   {
+    v.push_back("<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>");
+    v.push_back("<p>&nbsp;</p>");
     v.push_back("<h1>(<a href=\"Cpp.htm\">C++</a>) <a href=\"CppArrayExample1.htm\">array/std::array/boost::array example 1: comparison</a></h1>");
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<p><a href=\"CppArrayExample1.htm\">array/std::array/boost::array example 1: comparison</a> is a comparison between");
@@ -152,6 +154,8 @@ const std::vector<std::string> c2h::Info::ToHtml() const
   }
   else if (m_page_name == "CppBinaryNewickVector")
   {
+    v.push_back("<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>");
+    v.push_back("<p>&nbsp;</p>");
     v.push_back("<p><a href=\"CppBinaryNewickVector.htm\">BinaryNewickVector</a> is a <a href=\"CppDataType.htm\">data type</a> ");
     v.push_back("for storing phylogenies in the <a href=\"CppNewick.htm\">Newick</a> format.</p>");
     v.push_back("<p>&nbsp;</p>");
@@ -228,6 +232,8 @@ const std::vector<std::string> c2h::Info::ToHtml() const
   }
   else if (m_page_name == "CppChess")
   {
+    v.push_back("<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>");
+    v.push_back("<p>&nbsp;</p>");
     v.push_back("<p><a href=\"CppChess.htm\">Chess</a> has many chess <a href=\"CppClass.htm\">classes</a></p>");
   }
   else if (m_page_name == "CppCompileErrorParseErrorAtBOOST_JOIN")
@@ -242,16 +248,22 @@ const std::vector<std::string> c2h::Info::ToHtml() const
   }
   else if (m_page_name == "CppConnectThree")
   {
+    v.push_back("<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>");
+    v.push_back("<p>&nbsp;</p>");
     v.push_back("<p><a href=\"CppConnectThree.htm\">ConnectThree</a> is a <a href=\"CppClass.htm\">class</a>");
     v.push_back("for a <a href=\"GameConnectThree.htm\">ConnectThree game</a>.</p>");
   }
   else if (m_page_name == "CppConnectThreeWidget")
   {
+    v.push_back("<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>");
+    v.push_back("<p>&nbsp;</p>");
     v.push_back("<p><a href=\"CppConnectThreeWidget.htm\">ConnectThreeWidget</a> is a <a href=\"CppWidget.htm\">widget</a>");
     v.push_back("for a <a href=\"GameConnectThree.htm\">ConnectThree game</a>.</p>");
   }
   else if (m_page_name == "CppCopy_if")
   {
+    v.push_back("<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>");
+    v.push_back("<p>&nbsp;</p>");
     v.push_back("<p><a href=\"CppCopy_if.htm\">copy_if</a> is an <a href=\"CppAlgorithm.htm\">algorithm</a> that was dropped ");
     v.push_back("from the <a href=\"Cpp98.htm\">C++98</a> <a href=\"CppStl.htm\">STL</a> by accident, but added to the");
     v.push_back("<a href=\"Cpp11.htm\">C++11</a> <a href=\"CppStl.htm\">STL</a>.</p>");
@@ -346,11 +358,15 @@ const std::vector<std::string> c2h::Info::ToHtml() const
   }
   else if (m_page_name == "CppCounter")
   {
+    v.push_back("<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>");
+    v.push_back("<p>&nbsp;</p>");
     v.push_back("<p><a href=\"CppCounter.htm\">Counter</a> is a <a href=\"CppClass.htm\">class</a>");
     v.push_back("for tallying.</p>");
   }
   else if (m_page_name == "CppDial")
   {
+    v.push_back("<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>");
+    v.push_back("<p>&nbsp;</p>");
     v.push_back("<p><a href=\"CppDial.htm\">Dial</a> is a <a href=\"CppClass.htm\">class</a> for a dial.</p>");
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<p><a href=\"CppDial.htm\">Dial</a> is displayed by ");
@@ -361,10 +377,14 @@ const std::vector<std::string> c2h::Info::ToHtml() const
   }
   else if (m_page_name == "CppDialWidget")
   {
+    v.push_back("<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>");
+    v.push_back("<p>&nbsp;</p>");
     v.push_back("<p><a href=\"CppDialWidget.htm\">DialWidget</a> is a <a href=\"CppDial.htm\">Dial</a> <a href=\"CppWidget.htm\">widget</a>.</p>");
   }
   else if (m_page_name == "CppEncranger")
   {
+    v.push_back("<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>");
+    v.push_back("<p>&nbsp;</p>");
     v.push_back("<p><a href=\"CppEncranger.htm\">Encranger</a> is one of my own");
     v.push_back("<a href=\"CppCryptography.htm\">cryptography</a> <a href=\"CppClass.htm\">classes</a>.</p>");
     v.push_back("<p>&nbsp;</p>");
@@ -376,12 +396,16 @@ const std::vector<std::string> c2h::Info::ToHtml() const
   }
   else if (m_page_name == "CppExercise")
   {
+    v.push_back("<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>");
+    v.push_back("<p>&nbsp;</p>");
     v.push_back("<p><a href=\"CppExercise.htm\">Exercise</a> is a");
     v.push_back("<a href=\"CppClass.htm\">class</a> for an");
     v.push_back("exercise.</p>");
   }
   else if (m_page_name == "CppFuzzy_equal_to")
   {
+    v.push_back("<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>");
+    v.push_back("<p>&nbsp;</p>");
     v.push_back("<p><a href=\"CppFuzzy_equal_to.htm\">fuzzy_equal_to</a> is a <a href=\"CppPredicate.htm\">predicate</a> ");
     v.push_back("to test two <a href=\"CppDouble.htm\">doubles</a> for equality with a certain tolerance. ");
     v.push_back("A tolerance of 0.0 denotes that an exact match is requested. Note that the value of 0.0 cannot");
@@ -389,18 +413,24 @@ const std::vector<std::string> c2h::Info::ToHtml() const
   }
   else if (m_page_name == "CppGaborFilter")
   {
+    v.push_back("<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>");
+    v.push_back("<p>&nbsp;</p>");
     v.push_back("<p><a href=\"CppGaborFilter.htm\">GaborFilter</a> is a");
     v.push_back("<a href=\"CppClass.htm\">class</a> for a");
     v.push_back("Gabor filter.</p>");
   }
   else if (m_page_name == "CppGaborFilterWidget")
   {
+    v.push_back("<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>");
+    v.push_back("<p>&nbsp;</p>");
     v.push_back("<p><a href=\"CppGaborFilterWidget.htm\">GaborFilterWidget</a> is a");
     v.push_back("<a href=\"CppClass.htm\">class</a> for a");
     v.push_back("<a href=\"CppGaborFilter.htm\">Gabor filter</a> <a href=\"CppWidget.htm\">widget</a>.</p>");
   }
   else if (m_page_name == "CppGetExtension")
   {
+    v.push_back("<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>");
+    v.push_back("<p>&nbsp;</p>");
     v.push_back("<p><a href=\"CppGetExtension.htm\">GetExtension</a> is a <a href=\"CppFileIo.htm\">file I/O</a> <a href=\"CppString.htm\">std::string</a> <a href=\"CppCodeSnippets.htm\">code snippet</a> to get a filename's extension.</p>");
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<p>Thanks goes to Curtis Krauskopf, who supported me to improve the (terrible and error-prone) STL version GetExtension.</p>");
@@ -411,6 +441,8 @@ const std::vector<std::string> c2h::Info::ToHtml() const
   }
   else if (m_page_name == "CppGetFilesInFolder")
   {
+    v.push_back("<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>");
+    v.push_back("<p>&nbsp;</p>");
     v.push_back("<p><a href=\"CppGetFilesInFolder.htm\">GetFilesInFolder</a> is a <a href=\"CppFileIo.htm\">file I/O</a> <a href=\"CppCodeSnippets.htm\">code snippet</a> to obtain all filenames in a folder.</p>");
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<ul>");
@@ -419,6 +451,8 @@ const std::vector<std::string> c2h::Info::ToHtml() const
   }
   else if (m_page_name == "CppGetPath")
   {
+    v.push_back("<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>");
+    v.push_back("<p>&nbsp;</p>");
     v.push_back("<p><a href=\"CppGetPath.htm\">GetPath</a> is a <a href=\"CppFileIo.htm\">file I/O</a> <a href=\"CppString.htm\">std::string</a> <a href=\"CppCodeSnippets.htm\">code snippet</a> to get a filename's path.</p>");
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<ul>");
@@ -427,6 +461,8 @@ const std::vector<std::string> c2h::Info::ToHtml() const
   }
   else if (m_page_name == "CppGetRegexMatches")
   {
+    v.push_back("<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>");
+    v.push_back("<p>&nbsp;</p>");
     v.push_back("<p><a href=\"CppGetRegexMatches.htm\">GetRegexMatches</a> is a <a href=\"CppRegex.htm\">Regex</a> <a href=\"CppCodeSnippets.htm\">code snippet</a> to obtain");
     v.push_back("all <a href=\"CppString.htm\">std::strings</a> in a <a href=\"CppString.htm\">std::string</a> that satisfy a regular expression.</p>");
     v.push_back("<p>&nbsp;</p>");
@@ -438,6 +474,8 @@ const std::vector<std::string> c2h::Info::ToHtml() const
   }
   else if (m_page_name == "CppGetTxtFilesInFolder")
   {
+    v.push_back("<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>");
+    v.push_back("<p>&nbsp;</p>");
     v.push_back("<p><a href=\"CppGetTxtFilesInFolder.htm\">GetFilesInFolder</a> is a <a href=\"CppFileIo.htm\">file I/O</a> <a href=\"CppCodeSnippets.htm\">code snippet</a> to obtain all text filenames in a folder.</p>");
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<ul>");
@@ -446,6 +484,8 @@ const std::vector<std::string> c2h::Info::ToHtml() const
   }
   else if (m_page_name == "CppGnuplotInterface")
   {
+    v.push_back("<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>");
+    v.push_back("<p>&nbsp;</p>");
     v.push_back("<p><a href=\"CppGnuplotInterface.htm\">GnuplotInterface</a> is a <a href=\"CppClass.htm\">class</a> ");
     v.push_back("that enables the user to easily plot values in <a href=\"CppGnuplot.htm\">Gnuplot</a>. It handles ");
     v.push_back("both the connection to <a href=\"CppGnuplot.htm\">Gnuplot</a> and performs the window management as well. ");
@@ -1401,6 +1441,8 @@ const std::vector<std::string> c2h::Info::ToHtml() const
   }
   else if (m_page_name == "CppIsRegularFile")
   {
+    v.push_back("<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>");
+    v.push_back("<p>&nbsp;</p>");
     v.push_back("<p><a href=\"CppIsRegularFile.htm\">IsRegularFile</a> is a <a href=\"CppFileIo.htm\">file I/O</a>  <a href=\"CppCodeSnippets.htm\">code snippet</a> to determine if a filename is a regular file.</p>");
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<ul>");
@@ -1409,6 +1451,8 @@ const std::vector<std::string> c2h::Info::ToHtml() const
   }
   else if (m_page_name == "CppLibcvautomationExample1")
   {
+    v.push_back("<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>");
+    v.push_back("<p>&nbsp;</p>");
     v.push_back("<p><a href=\"CppLibcvautomationExample1.htm\">libcvautomation example 1: using an example</a> is a");
     v.push_back("<a href=\"CppLibcvautomation.htm\">libcvautomation</a> example.</p>");
     v.push_back("<p>&nbsp;</p>");
@@ -1432,6 +1476,8 @@ const std::vector<std::string> c2h::Info::ToHtml() const
   }
   else if (m_page_name == "CppLibcvautomationExample2")
   {
+    v.push_back("<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>");
+    v.push_back("<p>&nbsp;</p>");
     v.push_back("<p><a href=\"CppLibcvautomationExample2.htm\">libcvautomation example 2: Qt Creator project around example (using C)</a> is a");
     v.push_back("<a href=\"CppLibcvautomation.htm\">libcvautomation</a> example of a <a href=\"CppQtCreator.htm\">Qt Creator</a> project around");
     v.push_back("an example supplied by Bradlee Speice (the author of libcvautomation). Note that the project is set to compile C code, instead of C++.</p>");
@@ -1442,6 +1488,8 @@ const std::vector<std::string> c2h::Info::ToHtml() const
   }
   else if (m_page_name == "CppLibcvautomationExample3")
   {
+    v.push_back("<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>");
+    v.push_back("<p>&nbsp;</p>");
     v.push_back("<p><a href=\"CppLibcvautomationExample3.htm\">libcvautomation example 3: Qt Creator project around example</a> is a");
     v.push_back("<a href=\"CppLibcvautomation.htm\">libcvautomation</a> example of a <a href=\"CppQtCreator.htm\">Qt Creator</a> project around");
     v.push_back("an example supplied by Bradlee Speice (the author of libcvautomation). This example uses C++, but does not compile cleanly and uses tabs.</p>");
@@ -1452,6 +1500,8 @@ const std::vector<std::string> c2h::Info::ToHtml() const
   }
   else if (m_page_name == "CppLibcvautomationExample4")
   {
+    v.push_back("<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>");
+    v.push_back("<p>&nbsp;</p>");
     v.push_back("<p><a href=\"CppLibcvautomationExample4.htm\">libcvautomation example 4: Qt Creator project around adapted example</a> is a");
     v.push_back("<a href=\"CppLibcvautomation.htm\">libcvautomation</a> example of a <a href=\"CppQtCreator.htm\">Qt Creator</a> project around");
     v.push_back("an example supplied by Bradlee Speice (the author of libcvautomation). This example uses C++ and compiles cleanly and has the tabs replaced by spaces.</p>");
@@ -1462,6 +1512,8 @@ const std::vector<std::string> c2h::Info::ToHtml() const
   }
   else if (m_page_name == "CppLibcvautomationExample5")
   {
+    v.push_back("<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>");
+    v.push_back("<p>&nbsp;</p>");
     v.push_back("<p><a href=\"CppLibcvautomationExample5.htm\">libcvautomation example 5: basic Qt GUI</a> is a");
     v.push_back("<a href=\"CppLibcvautomation.htm\">libcvautomation</a> example of a <a href=\"CppQtCreator.htm\">Qt Creator</a> project with");
     v.push_back("a basic GUI to give commands.</p>");
@@ -1473,6 +1525,8 @@ const std::vector<std::string> c2h::Info::ToHtml() const
   }
   else if (m_page_name == "CppLibcvautomationExample6")
   {
+    v.push_back("<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>");
+    v.push_back("<p>&nbsp;</p>");
     v.push_back("<p><a href=\"CppLibcvautomationExample6.htm\">libcvautomation example 6: test a simple Qt desktop application</a> is a");
     v.push_back("<a href=\"CppLibcvautomation.htm\">libcvautomation</a> example with a simple Qt desktop application and a ");
     v.push_back("<a href=\"CppLibcvautomation.htm\">libcvautomation</a> test script. The application is called from the script, and has three");
@@ -1489,6 +1543,8 @@ const std::vector<std::string> c2h::Info::ToHtml() const
   }
   else if (m_page_name == "CppLibcvautomationExample7")
   {
+    v.push_back("<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>");
+    v.push_back("<p>&nbsp;</p>");
     v.push_back("<p><a href=\"CppLibcvautomationExample7.htm\">libcvautomation example 7: test a simple Qt desktop application by sending keys</a> is a");
     v.push_back("<a href=\"CppLibcvautomation.htm\">libcvautomation</a> example with a simple Qt desktop application and a ");
     v.push_back("<a href=\"CppLibcvautomation.htm\">libcvautomation</a> test script. The application is called from the script, and has three");
@@ -1501,6 +1557,8 @@ const std::vector<std::string> c2h::Info::ToHtml() const
   }
   else if (m_page_name == "CppHtmlPage")
   {
+    v.push_back("<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>");
+    v.push_back("<p>&nbsp;</p>");
     v.push_back("<p><a href=\"CppHtmlPage.htm\">HtmlPage</a> is a <a href=\"CppClass.htm\">class</a>");
     v.push_back("for processing an HTML page.</p>");
   }
@@ -1516,16 +1574,22 @@ const std::vector<std::string> c2h::Info::ToHtml() const
   }
   else if (m_page_name == "CppIpAddress")
   {
+    v.push_back("<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>");
+    v.push_back("<p>&nbsp;</p>");
     v.push_back("<p><a href=\"CppIpAddress.htm\">IpAddress</a> is a <a href=\"CppClass.htm\">class</a>");
     v.push_back("for containing an IP address.</p>");
   }
   else if (m_page_name == "CppIrcBot")
   {
+    v.push_back("<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>");
+    v.push_back("<p>&nbsp;</p>");
     v.push_back("<p><a href=\"CppIrcBot.htm\">IrcBot</a> is a <a href=\"CppClass.htm\">class</a>");
     v.push_back("for an IRC bot. Its default name is 'lambda'.</p>");
   }
   else if (m_page_name == "CppKalmanFilter")
   {
+    v.push_back("<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>");
+    v.push_back("<p>&nbsp;</p>");
     v.push_back("<p>The <a href=\"CppKalmanFilter.htm\">Kalman filter</a> is a way to do predictions from noisy measurements. For a (far) more precise");
     v.push_back("definition, see [1].</p>");
     v.push_back("<p>&nbsp;</p>");
@@ -1568,21 +1632,29 @@ const std::vector<std::string> c2h::Info::ToHtml() const
   }
   else if (m_page_name == "CppLazy_init")
   {
+    v.push_back("<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>");
+    v.push_back("<p>&nbsp;</p>");
     v.push_back("<p><a href=\"CppLazy_init.htm\">Lazy_init</a> is a <a href=\"CppClass.htm\">class</a></p>");
     v.push_back("<p>with lazy initialization.</p>");
   }
   else if (m_page_name == "CppLed")
   {
+    v.push_back("<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>");
+    v.push_back("<p>&nbsp;</p>");
     v.push_back("<p><a href=\"CppLed.htm\">Led</a> is a <a href=\"CppClass.htm\">class</a> for an LED light.</p>");
     v.push_back("<p>&nbsp;</p>");
-     v.push_back("<p><a href=\"CppLed.htm\">Led</a> is used in the <a href=\"Tools.htm\">tool</a> <a href=\"ToolTestLed.htm\">TestLed</a>.</p>");
+    v.push_back("<p><a href=\"CppLed.htm\">Led</a> is used in the <a href=\"Tools.htm\">tool</a> <a href=\"ToolTestLed.htm\">TestLed</a>.</p>");
   }
   else if (m_page_name == "CppLedWidget")
   {
+    v.push_back("<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>");
+    v.push_back("<p>&nbsp;</p>");
     v.push_back("<p><a href=\"CppLedWidget.htm\">LedWidget</a> is a <a href=\"CppLed.htm\">Led</a> <a href=\"CppWidget.htm\">widget</a>.</p>");
   }
   else if (m_page_name == "CppLinkErrorCannotFindLgstapp")
   {
+    v.push_back("<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>");
+    v.push_back("<p>&nbsp;</p>");
     v.push_back("<p><a href=\"CppLinkErrorCannotFindLgstapp.htm\">cannot find -lgstapp-0.10</a> is a");
     v.push_back("<a href=\"CppLinkError.htm\">link error</a>.</p>");
     v.push_back("<p>&nbsp;</p>");
@@ -1617,6 +1689,8 @@ const std::vector<std::string> c2h::Info::ToHtml() const
   }
   else if (m_page_name == "CppLinkErrorUndefinedReferenceToWebCore")
   {
+    v.push_back("<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>");
+    v.push_back("<p>&nbsp;</p>");
     v.push_back("<p><a href=\"CppLinkErrorUndefinedReferenceToWebCore.htm\">CppLinkErrorUndefinedReferenceToWebCore</a> is a");
     v.push_back("<a href=\"CppLinkError.htm\">link error</a>.</p>");
     v.push_back("<p>&nbsp;</p>");
@@ -1626,6 +1700,8 @@ const std::vector<std::string> c2h::Info::ToHtml() const
   }
   else if (m_page_name == "CppLoopReader")
   {
+    v.push_back("<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>");
+    v.push_back("<p>&nbsp;</p>");
     v.push_back("<p><a href=\"CppLoopReader.htm\">LoopReader</a> is a");
     v.push_back("<a href=\"CppTemplateClass.htm\">template class</a> to iterate");
     v.push_back("through a <a href=\"CppContainer.htm\">container</a>. If the <a href=\"CppContainer.htm\">container</a>'s end is");
@@ -1634,10 +1710,14 @@ const std::vector<std::string> c2h::Info::ToHtml() const
   }
   else if (m_page_name == "CppManyDigitNewick")
   {
+    v.push_back("<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>");
+    v.push_back("<p>&nbsp;</p>");
     v.push_back("<p>A <a href=\"CppNewick.htm\">Newick</a> <a href=\"CppClass.htm\">class</a>.</p>");
   }
   else if (m_page_name == "CppMatrix")
   {
+    v.push_back("<p><img src=\"PicBoost.png\" alt=\"Boost\"/><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>");
+    v.push_back("<p>&nbsp;</p>");
     v.push_back("A <a href=\"CppMatrix.htm\">matrix</a> is a two-dimensional <a href=\"CppContainer.htm\">container</a> (that is a <a href=\"CppContainer.htm\">container</a> in which two values are needed to retrieve an element). For one-dimensional containers, <a href=\"CppContainer.htm\">go to the container page</a>.</p>");
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<p>There exists no std::matrix (yet).</p>");
@@ -1828,6 +1908,8 @@ const std::vector<std::string> c2h::Info::ToHtml() const
   }
   else if (m_page_name == "CppMemcheckExample1")
   {
+    v.push_back("<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>");
+    v.push_back("<p>&nbsp;</p>");
     v.push_back("<p><a href=\"CppMemcheckExample1.htm\">memcheck example 1: Hello World</a> is a <a href=\"CppMemcheck.htm\">memcheck</a> example shows how ");
     v.push_back("to check a <a href=\"CppHelloWorld.htm\">Hello world</a>");
     v.push_back("program for, among others, <a href=\"CppMemoryLeak.htm\">memory leaks</a>.</p>");
@@ -1971,6 +2053,8 @@ const std::vector<std::string> c2h::Info::ToHtml() const
   }
   else if (m_page_name == "CppMemcheckExample2")
   {
+    v.push_back("<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>");
+    v.push_back("<p>&nbsp;</p>");
     v.push_back("<p><a href=\"CppMemcheckExample2.htm\">memcheck example 2: a small memory leak</a> is a ");
     v.push_back("<a href=\"CppMemcheck.htm\">memcheck</a> example that shows how <a href=\"CppMemcheck.htm\">memcheck</a>");
     v.push_back("reports a <a href=\"CppMemoryLeak.htm\">memory leak</a> we put in on purpose.</p>");
@@ -2117,6 +2201,8 @@ const std::vector<std::string> c2h::Info::ToHtml() const
   }
   else if (m_page_name == "CppMemcheckExample3")
   {
+    v.push_back("<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>");
+    v.push_back("<p>&nbsp;</p>");
     v.push_back("<p><a href=\"CppMemcheckExample3.htm\">memcheck example 3: deleting an array the wrong way</a> is a ");
     v.push_back("<a href=\"CppMemcheck.htm\">memcheck</a> example shows how <a href=\"CppMemcheck.htm\">memcheck</a>");
     v.push_back("reports a <a href=\"CppMemoryLeak.htm\">memory leak</a> we put in on purpose.</p>");
@@ -2292,6 +2378,8 @@ const std::vector<std::string> c2h::Info::ToHtml() const
   }
   else if (m_page_name == "CppMemcheckExample4")
   {
+    v.push_back("<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>");
+    v.push_back("<p>&nbsp;</p>");
     v.push_back("<a href=\"CppMemcheckExample4.htm\">memcheck example 4: Hello Qt</a> is a <a href=\"CppMemcheck.htm\">memcheck</a> example ");
     v.push_back("that tests a <a href=\"CppHelloQtQtCreatorUbuntu.htm\">'Hello Qt' program using Qt Creator under Ubuntu</a> for possible problems.</p>");
     v.push_back("<p>&nbsp;</p>");
@@ -2312,6 +2400,8 @@ const std::vector<std::string> c2h::Info::ToHtml() const
   }
   else if (m_page_name == "CppMemcheckExample5")
   {
+    v.push_back("<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>");
+    v.push_back("<p>&nbsp;</p>");
     v.push_back("<a href=\"CppMemcheckExample4.htm\">memcheck example 4: Hello Qt</a> is a <a href=\"CppMemcheck.htm\">memcheck</a> example ");
     v.push_back("that tests a <a href=\"CppHelloQtQtCreatorUbuntu.htm\">'Hello Qt' program using Qt Creator under Ubuntu</a> for possible problems.</p>");
     v.push_back("<p>&nbsp;</p>");
@@ -2332,6 +2422,8 @@ const std::vector<std::string> c2h::Info::ToHtml() const
   }
   else if (m_page_name == "CppMemcheckExample6")
   {
+    v.push_back("<p><img src=\"PicWt.png\" alt=\"Wt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>");
+    v.push_back("<p>&nbsp;</p>");
     v.push_back("<p><a href=\"CppMemcheckExample6.htm\">memcheck example 6: how to stop a Wt server</a> is a ");
     v.push_back("<a href=\"CppMemcheck.htm\">memcheck</a> example that tests how to stop a <a href=\"CppWt.htm\">Wt</a> server cleanly.</p>");
     v.push_back("<p>&nbsp;</p>");
@@ -2352,16 +2444,22 @@ const std::vector<std::string> c2h::Info::ToHtml() const
   }
   else if (m_page_name == "CppMultipleChoiceQuestion")
   {
+    v.push_back("<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>");
+    v.push_back("<p>&nbsp;</p>");
     v.push_back("<p><a href=\"CppMultipleChoiceQuestion.htm\">MultipleChoiceQuestion</a> is a <a href=\"CppClass.htm\">class</a> ");
     v.push_back("for a multiple choice <a href=\"CppQuestion.htm\">question</a>.</p>");
   }
   else if (m_page_name == "CppMultipleChoiceQuestionDialog")
   {
+    v.push_back("<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>");
+    v.push_back("<p>&nbsp;</p>");
     v.push_back("<p><a href=\"CppMultipleChoiceQuestionDialog.htm\">MultipleChoiceQuestionDialog</a> is a dialog ");
     v.push_back("for <a href=\"CppMultipleChoiceQuestion.htm\">MultipleChoiceQuestion</a>.</p>");
   }
   else if (m_page_name == "CppMultiVector")
   {
+    v.push_back("<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>");
+    v.push_back("<p>&nbsp;</p>");
     v.push_back("<p><a href=\"CppMultiVector.htm\">MultiVector</a> is a <a href=\"CppContainer.htm\">container</a> ");
     v.push_back("<a href=\"CppClass.htm\">class</a> to store elements at indices of any dimensionality.</p>");
     v.push_back("<p>&nbsp;</p>");
@@ -2370,16 +2468,22 @@ const std::vector<std::string> c2h::Info::ToHtml() const
   }
   else if (m_page_name == "CppMusicChord")
   {
+    v.push_back("<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>");
+    v.push_back("<p>&nbsp;</p>");
     v.push_back("<p><a href=\"CppMusicChord.htm\">MusicChord</a> is a <a href=\"CppClass.htm\">class</a> ");
     v.push_back("for a music chord.</p>");
   }
   else if (m_page_name == "CppMusicNote")
   {
+    v.push_back("<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>");
+    v.push_back("<p>&nbsp;</p>");
     v.push_back("<p><a href=\"CppMusicNote.htm\">MusicChord</a> is a <a href=\"CppClass.htm\">class</a> ");
     v.push_back("for a music note.</p>");
   }
   else if (m_page_name == "CppMxeExample4")
   {
+    v.push_back("<p><img src=\"PicBoost.png\" alt=\"Boost\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>");
+    v.push_back("<p>&nbsp;</p>");
     v.push_back("<p><a href=\"CppMxeExample4.htm\">MXE example 4: Hello Boost</a> is an <a href=\"CppMxe.htm\">MXE</a> example");
     v.push_back("to <a href=\"CppCrossCompile.htm\">cross-compile</a> a <a href=\"CppHelloBoost.htm\">Hello Boost</a> program from");
     v.push_back("<a href=\"CppLinux.htm\">GNU/Linux</a> to <a href=\"CppWindows.htm\">Windows</a>.</p>");
@@ -2390,6 +2494,8 @@ const std::vector<std::string> c2h::Info::ToHtml() const
   }
   else if (m_page_name == "CppMxeExample5")
   {
+    v.push_back("<p><img src=\"PicBoost.png\" alt=\"Boost\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>");
+    v.push_back("<p>&nbsp;</p>");
     v.push_back("<p><a href=\"CppMxeExample5.htm\">MXE example 5: Hello Boost.Regex</a> is an <a href=\"CppMxe.htm\">MXE</a> example");
     v.push_back("to <a href=\"CppCrossCompile.htm\">cross-compile</a> a <a href=\"CppHelloBoost.htm\">Hello Boost</a> program from");
     v.push_back("<a href=\"CppLinux.htm\">GNU/Linux</a> to <a href=\"CppWindows.htm\">Windows</a>.</p>");
@@ -2402,6 +2508,8 @@ const std::vector<std::string> c2h::Info::ToHtml() const
   }
   else if (m_page_name == "CppMysteryMachine")
   {
+    v.push_back("<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>");
+    v.push_back("<p>&nbsp;</p>");
     v.push_back("<p><a href=\"CppMysteryMachine.htm\">MysteryMachine</a> is a <a href=\"CppClass.htm\">class</a> to simulate");
     v.push_back("my mystery machine.</p>");
     v.push_back("<p>&nbsp;</p>");
@@ -2410,10 +2518,14 @@ const std::vector<std::string> c2h::Info::ToHtml() const
   }
   else if (m_page_name == "CppMysteryMachineWidget")
   {
+    v.push_back("<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>");
+    v.push_back("<p>&nbsp;</p>");
     v.push_back("<p><a href=\"CppMysteryMachineWidget.htm\">MysteryMachineWidget</a> is a <a href=\"CppMysteryMachineWidget.htm\">MysteryMachineWidget</a> <a href=\"CppWidget.htm\">widget</a>.</p>");
   }
   else if (m_page_name == "CppNewick")
   {
+    v.push_back("<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>");
+    v.push_back("<p>&nbsp;</p>");
     v.push_back("<p>A <a href=\"CppNewick.htm\">Newick</a> is a way to write down a phylogeny as a <a href=\"CppString.htm\">std::string</a>. This page shows how to check this <a href=\"CppString.htm\">std::string</a> and how to store a <a href=\"CppNewick.htm\">Newick</a> more efficiently.</p>");
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<p>Because personally, I only work with <a href=\"CppNewick.htm\">Newicks</a> in the form '(((A,B),(C,D)),E)', these algorithms will so as well.</p>");
@@ -2444,20 +2556,35 @@ const std::vector<std::string> c2h::Info::ToHtml() const
   }
   else if (m_page_name == "CppNewickVector")
   {
+    v.push_back("<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>");
+    v.push_back("<p>&nbsp;</p>");
     v.push_back("<p><a href=\"CppNewickVector.htm\">NewickVector</a> is a <a href=\"CppNewick.htm\">Newick</a> <a href=\"CppClass.htm\">class</a>.</p>");
   }
   else if (m_page_name == "CppOpenQuestion")
   {
+    v.push_back("<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>");
+    v.push_back("<p>&nbsp;</p>");
     v.push_back("<p><a href=\"CppOpenQuestion.htm\">OpenQuestion</a> is a <a href=\"CppClass.htm\">class</a> for an open <a href=\"CppQuestion.htm\">question</a>.</p>");
   }
   else if (m_page_name == "CppOpenQuestionDialog")
   {
+    v.push_back("<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>");
+    v.push_back("<p>&nbsp;</p>");
     v.push_back("<p><a href=\"CppOpenQuestionDialog.htm\">OpenQuestionDialog</a> is a dialog for <a href=\"CppOpenQuestion.htm\">OpenQuestion</a>.</p>");
   }
+  else if (m_page_name == "CppPredicateExample1")
+  {
+    v.push_back("<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>");
+
+    //In the example below, it is shown how to replace negative values by zero. The predicate is if an integer is less then zero.
+  }
+
   else if (m_page_name == "CppPreprocessorSwitchGccVersion")
   {
+    v.push_back("<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>");
+    v.push_back("<p>&nbsp;</p>");
     v.push_back("<p><a href=\"CppPreprocessorSwitchGccVersion.htm\">CppPreprocessorSwitchGccVersion</a> displays");
-    v.push_back("how to switch on teh <a href=\"CppGcc.htm\">GCC</a> version.</p>");
+    v.push_back("how to switch on the <a href=\"CppGcc.htm\">GCC</a> version.</p>");
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<ul>");
     v.push_back("  <li><a href=\"CppPreprocessorSwitchGccVersion.zip\">Download the Qt Creator project 'CppPreprocessorSwitchGccVersion' (zip)</a></li>");
@@ -2465,6 +2592,8 @@ const std::vector<std::string> c2h::Info::ToHtml() const
   }
   else if (m_page_name == "CppPrimeExpert")
   {
+    v.push_back("<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>");
+    v.push_back("<p>&nbsp;</p>");
     v.push_back("<p><a href=\"CppPrimeExpert.htm\">PrimeExpert</a> is a <a href=\"CppClass.htm\">class</a> with only one important");
     v.push_back("<a href=\"CppMemberFunction.htm\">member function</a> called <a href=\"CppIsPrime.htm\">IsPrime</a>,");
     v.push_back("which calculates whether a number is prime.</p>");
@@ -2480,6 +2609,8 @@ const std::vector<std::string> c2h::Info::ToHtml() const
 
   else if (m_page_name == "CppPylos")
   {
+    v.push_back("<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>");
+    v.push_back("<p>&nbsp;</p>");
     v.push_back("<p>The <a href=\"CppPylos.htm\">Pylos</a> <a href=\"CppClass.htm\">classes</a> are used for the");
     v.push_back("<a href=\"Games.htm\">game</a> <a href=\"GamePylos.htm\">Pylos</a> (also called 'Pyraos').</p>");
     v.push_back("<p>&nbsp;</p>");
@@ -2487,6 +2618,8 @@ const std::vector<std::string> c2h::Info::ToHtml() const
   }
   else if (m_page_name == "CppQFileExample1")
   {
+    v.push_back("<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>");
+    v.push_back("<p>&nbsp;</p>");
     v.push_back("<p><a href=\"CppQFileExample1.htm\">QFile example 1: copying file and checking if the copy exists</a> is a");
     v.push_back("<a href=\"CppQFile.htm\">QFile</a> example.</p>");
     v.push_back("<p>&nbsp;</p>");
@@ -2496,6 +2629,8 @@ const std::vector<std::string> c2h::Info::ToHtml() const
   }
   else if (m_page_name == "CppQFileDialogExample1")
   {
+    v.push_back("<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>");
+    v.push_back("<p>&nbsp;</p>");
     v.push_back("<p><a href=\"CppQFileDialogExample1.htm\">QFileDialog example 1: crafting a QFileDialog to select a file</a> is a");
     v.push_back("<a href=\"CppQFileDialog.htm\">QFileDialog</a> example.</p>");
     v.push_back("<p>&nbsp;</p>");
@@ -2506,6 +2641,8 @@ const std::vector<std::string> c2h::Info::ToHtml() const
   }
   else if (m_page_name == "CppQFileDialogExample2")
   {
+    v.push_back("<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>");
+    v.push_back("<p>&nbsp;</p>");
     v.push_back("<p><a href=\"CppQFileDialogExample2.htm\">QFileDialog example 2: using QFileDialog::getOpenFileNames</a> is a");
     v.push_back("<a href=\"CppQFileDialog.htm\">QFileDialog</a> example.</p>");
     v.push_back("<p>&nbsp;</p>");
@@ -2516,6 +2653,8 @@ const std::vector<std::string> c2h::Info::ToHtml() const
   }
   else if (m_page_name == "CppQFileDialogExample3")
   {
+    v.push_back("<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>");
+    v.push_back("<p>&nbsp;</p>");
     v.push_back("<p><a href=\"CppQFileDialogExample3.htm\">QFileDialog example 3: compare class and convenience function from GUI</a> is a");
     v.push_back("<a href=\"CppQFileDialog.htm\">QFileDialog</a> example.</p>");
     v.push_back("<p>&nbsp;</p>");
@@ -2526,6 +2665,8 @@ const std::vector<std::string> c2h::Info::ToHtml() const
   }
   else if (m_page_name == "CppQFileDialogExample4")
   {
+    v.push_back("<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>");
+    v.push_back("<p>&nbsp;</p>");
     v.push_back("<p><a href=\"CppQFileDialogExample4.htm\">QFileDialog example 4: crafting a QFileDialog to save a file</a> is a");
     v.push_back("<a href=\"CppQFileDialog.htm\">QFileDialog</a> example.</p>");
     v.push_back("<p>&nbsp;</p>");
@@ -2537,6 +2678,8 @@ const std::vector<std::string> c2h::Info::ToHtml() const
 
   else if (m_page_name == "CppQmakeErrorUnknownModulesInQtLocationSensors")
   {
+    v.push_back("<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>");
+    v.push_back("<p>&nbsp;</p>");
     v.push_back("<p><a href=\"CppQmakeErrorUnknownModulesInQtLocationSensors.htm\">Unknown module(s) in QT: location sensors</a> is a");
     v.push_back("<a href=\"CppQmakeError.htm\">qmake error</a>.</p>");
     v.push_back("<p>&nbsp;</p>");
@@ -2552,6 +2695,8 @@ const std::vector<std::string> c2h::Info::ToHtml() const
   }
   else if (m_page_name == "CppQPrintDialogExample1")
   {
+    v.push_back("<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>");
+    v.push_back("<p>&nbsp;</p>");
     v.push_back("<p><a href=\"CppQPrintDialogExample1.htm\">QPrintDialog example 1</a> is a");
     v.push_back("<a href=\"CppQPrintDialog.htm\">QPrintDialog</a> example.</p>");
     v.push_back("<p>&nbsp;</p>");
@@ -2562,12 +2707,16 @@ const std::vector<std::string> c2h::Info::ToHtml() const
   }
   else if (m_page_name == "CppQrcFile")
   {
+    v.push_back("<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>");
+    v.push_back("<p>&nbsp;</p>");
     v.push_back("<p><a href=\"CppQrcFile.htm\">QrcFile</a> is a");
     v.push_back("<a href=\"CppClass.htm\">class</a> for a <a href=\"CppQt.htm\">Qt</a>");
     v.push_back("resources file.</p>");
   }
   else if (m_page_name == "CppQSqlTableModelExample1")
   {
+    v.push_back("<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>");
+    v.push_back("<p>&nbsp;</p>");
     v.push_back("<p><a href=\"CppQSqlTableModelExample1.htm\">QSqlTableModel example 1</a> is a");
     v.push_back("<a href=\"CppQSqlTableModel.htm\">QSqlTableModel</a> example.</p>");
     v.push_back("<p>&nbsp;</p>");
@@ -2578,6 +2727,8 @@ const std::vector<std::string> c2h::Info::ToHtml() const
   }
   else if (m_page_name == "CppQSqlTableModelExample2")
   {
+    v.push_back("<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>");
+    v.push_back("<p>&nbsp;</p>");
     v.push_back("<p><a href=\"CppQSqlTableModelExample2.htm\">QSqlTableModel example 2</a> is a");
     v.push_back("<a href=\"CppQSqlTableModel.htm\">QSqlTableModel</a> example.</p>");
     v.push_back("<p>&nbsp;</p>");
@@ -2588,6 +2739,8 @@ const std::vector<std::string> c2h::Info::ToHtml() const
   }
   else if (m_page_name == "CppQSqlTableModelExample3")
   {
+    v.push_back("<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>");
+    v.push_back("<p>&nbsp;</p>");
     v.push_back("<p><a href=\"CppQSqlTableModelExample3.htm\">QSqlTableModel example 3</a> is a");
     v.push_back("<a href=\"CppQSqlTableModel.htm\">QSqlTableModel</a> example.</p>");
     v.push_back("<p>&nbsp;</p>");
@@ -3585,7 +3738,7 @@ const std::vector<std::string> c2h::Info::ToHtml() const
   }
   else if (m_page_name == "CppRandomCode")
   {
-    v.push_back("<p><img src=\"PicStl.png\" alt=\"Stl\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>");
+    v.push_back("<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>");
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<p><a href=\"CppRandomCode.htm\">RandomCode</a> is a <a href=\"CppClass.htm\">class</a>");
     v.push_back("to generate random <a href=\"Cpp.htm\">C++</a> code.</p>");
@@ -4095,6 +4248,8 @@ const std::vector<std::string> c2h::Info::ToHtml() const
   }
   else if (m_page_name == "GameAminoAcidFighter")
   {
+    v.push_back("<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>");
+    v.push_back("<p>&nbsp;</p>");
     v.push_back("<p><a href=\"GameAminoAcidFighter.htm\">Amino Acid Fighter</a> started as a Quickbasic <a href=\"Games.htm\">game</a> in 2000. Later I ported it to C++, but have not yet finished it and lost the code as well!</p>");
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<p><a href=\"GameAminoAcidFighter.htm\">Amino Acid Fighter</a> is a <a href=\"Games.htm\">game</a> in which amino acids do battle to a maximum of four players.</p>");
@@ -4115,6 +4270,8 @@ const std::vector<std::string> c2h::Info::ToHtml() const
   }
   else if (m_page_name == "GameBeerGetter")
   {
+    v.push_back("<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>");
+    v.push_back("<p>&nbsp;</p>");
     v.push_back("<p><a href=\"GameBeerGetter.htm\">BeerGetter</a> is a simple <a href=\"Games.htm\">game</a>. Work in progress..</p>");
     v.push_back("<ul>");
     v.push_back("  <li><a href=\"GameBeerGetterScreenshot.png\">View a screenshot of 'BeerGetter'</a></li>");
@@ -4265,6 +4422,8 @@ const std::vector<std::string> c2h::Info::ToHtml() const
   }
   else if (m_page_name == "GameBinnenVolley")
   {
+    v.push_back("<p><img src=\"PicVcl.png\" alt=\"VCL\"/><img src=\"PicCppBuilder.png\" alt=\"C++ Builder\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>");
+    v.push_back("<p>&nbsp;</p>");
     v.push_back("<p><a href=\"GameBinnenVolley.htm\">BinnenVolley</a> is a two-player Dutch <a href=\"Games.htm\">game</a> similar to <a href=\"http://en.wikipedia.org/wiki/Arcade_Volleyball\">Arcade Volleyball</a>.</p>");
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<p><a href=\"GameBinnenVolley.htm\">BinnenVolley</a> is programmed in <a href=\"Cpp.htm\">C++</a> using the IDE <a href=\"CppBuilder.htm\">C++ Builder</a> 6.0. It uses the <a href=\"CppVcl.htm\">VCL</a> and <a href=\"CppBoost.htm\">Boost</a> library. The beta version (0.9) is released at the 18th of February of 2010.</p>");
@@ -4288,14 +4447,14 @@ const std::vector<std::string> c2h::Info::ToHtml() const
   }
   else if (m_page_name == "GameBoenken")
   {
+    v.push_back("<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>");
+    v.push_back("<p>&nbsp;</p>");
     v.push_back("<p><a href=\"GameBoenken.htm\">Boenken</a> is <a href=\"Games.htm\">game</a> that is a crossing-over between soccer and billiards and can be played with twenty players. The <a href=\"Games.htm\">game</a>'s name is Dutch, translating it to English would yield something like 'Bonking' (but if I would call the <a href=\"Games.htm\">game</a> like that, my website would attract other people). 'Boenk' is the phonetic word of the sound two colliding Dutch snooker balls make.</p>");
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<p><a href=\"GameBoenken.htm\">Boenken</a> can be played with twenty players at the same time (on the same single keyboard). Who said that video <a href=\"Games.htm\">games</a> could not be cosy?</p>");
     v.push_back("<p>&nbsp;</p>");
-    v.push_back("<p>At first, <a href=\"GameBoenken.htm\">Boenken</a> was programmed in <a href=\"Cpp.htm\">C++</a> using the IDE ");
+    v.push_back("<p>Before version 3.0, <a href=\"GameBoenken.htm\">Boenken</a> was called <a href=\"GameBoenkenVcl.htm\">BoenkenVcl</a> and was programmed in <a href=\"Cpp.htm\">C++</a> using the IDE ");
     v.push_back("<a href=\"CppBuilder.htm\">C++ Builder</a> 6.0, with use of the <a href=\"CppVcl.htm\">VCL</a> and <a href=\"CppBoost.htm\">Boost</a> <a href=\"CppLibrary.htm\">libraries</a>.");
-    v.push_back("At version 3.0, <a href=\"GameBoenken.htm\">Boenken</a> was ported to <a href=\"CppQtCreator.htm\">Qt Creator</a> to make use of the cross-platform");
-    v.push_back("<a href=\"CppQt.htm\">Qt</a> <a href=\"CppLibrary.htm\">library</a>.</p>");
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<p>The <a href=\"Games.htm\">game</a> relies heavily on the function <a href=\"CppDoPerfectElasticCollision.htm\">DoPerfectElasticCollision</a>.</p>");
     v.push_back("<p>&nbsp;</p>");
@@ -4305,14 +4464,10 @@ const std::vector<std::string> c2h::Info::ToHtml() const
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<h2>Downloads</h2>");
     v.push_back("<p>&nbsp;</p>");
-    v.push_back("<p>Version 2.0 of <a href=\"GameBoenken.htm\">Boenken</a> is a finished Windows release. Version 3.0 of <a href=\"GameBoenken.htm\">Boenken</a> is a cross-platform beta version.</p>");
-    v.push_back("<p>&nbsp;</p>");
     v.push_back("<ul>");
     v.push_back("  <li><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/> <a href=\"GameBoenken_4_1.png\">View a screenshot of 'Boenken' (version 4.1)(png)</a></li>");
     v.push_back("  <li><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/> <a href=\"GameBoenkenMenu_4_1.png\">View a screenshot of the 'Boenken' menu screen (version 4.1)(png)</a></li>");
     v.push_back("  <li><img src=\"PicWindows.png\" alt=\"Windows\"/> <a href=\"GameBoenkenExe_4_1.zip\">Download a Windows executable of 'Boenken' (version 4.1)(zip)</a></li>");
-    v.push_back("  <li><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/> <a href=\"GameBoenkenSource_4_1.zip\">Download the Qt Creator source code of 'Boenken' (version 4.1)(zip)</a></li>");
-    v.push_back("  <li><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/> <a href=\"GameBoenkenSource_4_1.htm\">View the Qt Creator source code of 'Boenken' as web page (version 4.1)(htm)</a></li>");
     v.push_back("</ul>");
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<p>&nbsp;</p>");
@@ -4322,28 +4477,41 @@ const std::vector<std::string> c2h::Info::ToHtml() const
     v.push_back("<h2>Older downloads</h2>");
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<ul>");
-    v.push_back("  <li><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/> <a href=\"GameBoenkenSource_4_0.zip\">Download the Qt Creator source code of 'Boenken' (version 4.0)(zip)</a></li>");
-    v.push_back("  <li><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/> <a href=\"GameBoenkenSource_3_1.zip\">Download the Qt Creator source code of 'Boenken' (version 3.1)(zip)</a></li>");
-    v.push_back("  <li><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/> <a href=\"GameBoenkenSource_3_1.htm\">View the Qt Creator source code of 'Boenken' as web page (version 3.1)(htm)</a></li>");
     v.push_back("  <li><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicUbuntu.png\" alt=\"Ubuntu\"/> <a href=\"GameBoenken_3_1.png\">View a screenshot of 'Boenken' (version 3.1)(png)</a></li>");
     v.push_back("  <li><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicUbuntu.png\" alt=\"Ubuntu\"/> <a href=\"GameBoenkenMenu_3_1.png\">View a screenshot of the 'Boenken' menu screen (version 3.1)(png)</a></li>");
     v.push_back("  <li><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicUbuntu.png\" alt=\"Ubuntu\"/> <a href=\"GameBoenken_3_0.png\">View a screenshot of 'Boenken' (version 3.0)(png)</a></li>");
-    v.push_back("  <li><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/> <a href=\"GameBoenkenSource_3_0.zip\">Download the Qt Creator source code of 'Boenken' (version 3.0)(zip)</a></li>");
-    v.push_back("  <li><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/> <a href=\"GameBoenkenSource_3_0.htm\">View the Qt Creator source code of 'Boenken' as web page (version 3.0)(htm)</a></li>");
-    v.push_back("  <li><img src=\"PicWindows.png\" alt=\"Windows\"/> <a href=\"GameBoenkenExe_2_0.zip\">Download a Windows executable of 'Boenken' (version 2.0)(zip)</a></li>");
+    v.push_back("  <li>Older: <a href=\"GameBoenkenVcl.htm\">BoenkenVcl</a></li>");
+    v.push_back("</ul>");
+  }
+  else if (m_page_name == "GameBoenkenVcl")
+  {
+    v.push_back("<p><img src=\"PicVcl.png\" alt=\"VCL\"/><img src=\"PicCppBuilder.png\" alt=\"C++ Builder\"/><img src=\"PicWindows.png\" alt=\"Windows\"/></p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p><a href=\"GameBoenkenVcl.htm\">BoenkenVcl)</a> is <a href=\"Games.htm\">game</a> that is a crossing-over between soccer and billiards and can be played with twenty players. The <a href=\"Games.htm\">game</a>'s name is Dutch, translating it to English would yield something like 'Bonking' (but if I would call the <a href=\"Games.htm\">game</a> like that, my website would attract other people). 'Boenk' is the phonetic word of the sound two colliding Dutch snooker balls make.</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p><a href=\"GameBoenkenVcl.htm\">BoenkenVcl</a> can be played with twenty players at the same time (on the same single keyboard). Who said that video <a href=\"Games.htm\">games</a> could not be cosy?</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("Since version 3.0, <a href=\"GameBoenkenVcl.htm\">BoenkenVcl</a> was renamed <a href=\"GameBoenken.htm\">Boenken</a> and ported to <a href=\"CppQtCreator.htm\">Qt Creator</a> to make use of the cross-platform");
+    v.push_back("<a href=\"CppQt.htm\">Qt</a> <a href=\"CppLibrary.htm\">library</a>.</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<h2>Downloads</h2>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<ul>");
+    v.push_back("  <li>Newer: <a href=\"GameBoenken.htm\">Boenken</a></li>");
     v.push_back("  <li><img src=\"PicWindows.png\" alt=\"Windows\"/> <a href=\"GameBoenkenMenu_2_0.png\">View a screenshot of the menu of 'Boenken' (version 2.0)(png)</a></li>");
-    v.push_back("  <li><img src=\"PicCppBuilder.png\" alt=\"C++ Builder\"/> <a href=\"GameBoenkenSource_2_0.zip\">Download the C++ Builder source code of 'Boenken' (version 2.0)(zip)</a></li>");
-    v.push_back("  <li><img src=\"PicCppBuilder.png\" alt=\"C++ Builder\"/> <a href=\"GameBoenkenSource_2_0.htm\">View the C++ Builder source code of 'Boenken' as web page (version 2.0)(htm)</a></li>");
     v.push_back("  <li><img src=\"PicWindows.png\" alt=\"Windows\"/> <a href=\"GameBoenken_2_0.png\">View a screenshot of 'Boenken' (version 2.0)(png)</a></li>");
     v.push_back("  <li><img src=\"PicWindows.png\" alt=\"Windows\"/> <a href=\"GameBoenken_1_0.png\">View a screenshot of 'Boenken' (version 1.0)(png)</a></li>");
     v.push_back("  <li><img src=\"PicWindows.png\" alt=\"Windows\"/> <a href=\"GameBoenkenMenu_1_0.png\">View a screenshot of the menu of 'Boenken' (version 1.0)(png)</a></li>");
-    v.push_back("  <li><img src=\"PicWindows.png\" alt=\"Windows\"/> <a href=\"GameBoenkenExe_1_0.rar\">Download a Windows executable of 'Boenken' (version 1.0)(rar)</a></li>");
-    v.push_back("  <li><img src=\"PicCppBuilder.png\" alt=\"C++ Builder\"/> <a href=\"GameBoenkenSource_1_0.rar\">Download the source code of 'Boenken' (version 1.0)(rar)</a></li>");
-    v.push_back("  <li><img src=\"PicCppBuilder.png\" alt=\"C++ Builder\"/> <a href=\"GameBoenkenSource_1_0.htm\">View the source code of 'Boenken' as web page (version 1.0)(htm)</a></li>");
     v.push_back("</ul>");
   }
   else if (m_page_name == "GameConnectThree")
   {
+    v.push_back("<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>");
+    v.push_back("<p>&nbsp;</p>");
     v.push_back("<p><a href=\"GameConnectThree.htm\">ConnectThree</a> is a turn-based tic-tac-toe-like <a href=\"Games.htm\">game</a>. ");
     v.push_back("It can be played by one, two or three players.</p>");
     v.push_back("<p>&nbsp;</p>");
@@ -4385,6 +4553,8 @@ const std::vector<std::string> c2h::Info::ToHtml() const
   }
   else if (m_page_name == "GameCorridor")
   {
+    v.push_back("<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>");
+    v.push_back("<p>&nbsp;</p>");
     v.push_back("<p><a href=\"GameCorridor.htm\">Corridor</a> is a <a href=\"Games.htm\">game</a> written by Or Dvory (also known as gnudles) in 2007 ");
     v.push_back("and ported by me to a <a href=\"CppQtCreator.htm\">Qt Creator</a> project on the 17th September 2010.</p>");
     v.push_back("<p>&nbsp;</p>");
@@ -4401,13 +4571,14 @@ const std::vector<std::string> c2h::Info::ToHtml() const
   }
   else if (m_page_name == "GameDasWahreSchlagerfest")
   {
+    v.push_back("<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>");
+    v.push_back("<p>&nbsp;</p>");
     v.push_back("<p><a href=\"GameDasWahreSchlagerfest.htm\">Das Wahre Schlagerfest</a> is a <a href=\"Games.htm\">game</a> that was programmed on the 30th September 2003 during a 'Spass programmieren' session.");
     v.push_back("It is the one <a href=\"Games.htm\">game</a> that can be played on a theme party with theme 'Germany', or as a substitute for the Oktoberfest. ");
     v.push_back("If you want a beer or bratwurst, you can just go fetching one without fear of losing the <a href=\"Games.htm\">game</a>!</p>");
     v.push_back("<p>&nbsp;</p>");
-    v.push_back("<p>Initially, <a href=\"GameDasWahreSchlagerfest.htm\">Das Wahre Schlagerfest</a> was programmed ");
-    v.push_back("in <a href=\"Cpp.htm\">C++</a> using the <a href=\"CppBuilder.htm\">C++ Builder</a> 6.0 <a href=\"CppIde.htm\">IDE</a>, for a Windows-only version, but");
-    v.push_back("in 2012 it was ported to <a href=\"CppQtCreator.htm\">Qt Creator</a>.</p>");
+    v.push_back("<p>Before version 2.0, <a href=\"GameDasWahreSchlagerfest.htm\">Das Wahre Schlagerfest</a> was called <a href=\"GameDasWahreSchlagerfestVcl.htm\">Das Wahre Schlagerfest (VCL)</a> and programmed");
+    v.push_back("in <a href=\"Cpp.htm\">C++</a> using the <a href=\"CppBuilder.htm\">C++ Builder</a> 6.0 <a href=\"CppIde.htm\">IDE</a>.</p>");
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<p>&nbsp;</p>");
@@ -4419,7 +4590,6 @@ const std::vector<std::string> c2h::Info::ToHtml() const
     v.push_back("  <li><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/> <a href=\"GameDasWahreSchlagerfest_2_2.png\">View a screenshot of 'Das Wahre Schlagerfest' (version 2.2)(png)</a></li>");
     v.push_back("  <li><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/> <a href=\"GameDasWahreSchlagerfest_2_2_menu.png\">View a screenshot of 'Das Wahre Schlagerfest' its menu screen (version 2.2)(png)</a></li>");
     v.push_back("  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/> <a href=\"GameDasWahreSchlagerfestExe_2_2.zip\">Download a windows executable of 'Das Wahre Schlagerfest' (version 2.2)(zip)</a></li>");
-    v.push_back("  <li><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/> <a href=\"GameDasWahreSchlagerfestSource_2_2.zip\">Download the source code of 'Das Wahre Schlagerfest' (version 2.2)(zip)</a></li>");
     v.push_back("</ul>");
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<p>&nbsp;</p>");
@@ -4429,12 +4599,31 @@ const std::vector<std::string> c2h::Info::ToHtml() const
     v.push_back("<h2>Older downloads</h2>");
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<ul>");
-    v.push_back("  <li><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/> <a href=\"GameDasWahreSchlagerfestSource_2_1.zip\">Download the source code of 'Das Wahre Schlagerfest' (version 2.1)(zip)</a></li>");
     v.push_back("  <li><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/> <a href=\"GameDasWahreSchlagerfest_2_1.png\">View a screenshot of 'Das Wahre Schlagerfest' (version 2.1)(png)</a></li>");
     v.push_back("  <li><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/> <a href=\"GameDasWahreSchlagerfest_2_0.png\">View a screenshot of 'Das Wahre Schlagerfest' (version 2.0)(png)</a></li>");
-    v.push_back("  <li><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/> <a href=\"GameDasWahreSchlagerfestSource_2_0.zip\">Download the source code of 'Das Wahre Schlagerfest' (version 2.0)(zip)</a></li>");
+    v.push_back("  <li>Older: <a href=\"GameDasWahreSchlagerfestVcl.htm\">Das Wahre SchlagerfestVcl</a></li>");
+    v.push_back("</ul>");
+  }
+  else if (m_page_name == "GameDasWahreSchlagerfestVcl")
+  {
+    v.push_back("<p><img src=\"PicVcl.png\" alt=\"VCL\"/><img src=\"PicCppBuilder.png\" alt=\"C++ Builder\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p><a href=\"GameDasWahreSchlagerfestVcl.htm\">Das Wahre Schlagerfest (VCL)</a> is a <a href=\"Games.htm\">game</a> that was programmed on the 30th September 2003 during a 'Spass programmieren' session.");
+    v.push_back("It is the one <a href=\"Games.htm\">game</a> that can be played on a theme party with theme 'Germany', or as a substitute for the Oktoberfest. ");
+    v.push_back("If you want a beer or bratwurst, you can just go fetching one without fear of losing the <a href=\"Games.htm\">game</a>!</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("in 2012, <a href=\"GameDasWahreSchlagerfestVcl.htm\">Das Wahre Schlagerfest (VCL)</a> was renamed to <a href=\"GameDasWahreSchlagerfest.htm\">Das Wahre Schlagerfest</a> ported");
+    v.push_back("to <a href=\"CppQtCreator.htm\">Qt Creator</a>.</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<h2>Downloads</h2>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<ul>");
+    v.push_back("  <li>Newer: <a href=\"GameDasWahreSchlagerfest.htm\">Das Wahre Schlagerfest</a></li>");
     v.push_back("  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicCppBuilder.png\" alt=\"C++ Builder\"/> <a href=\"GameDasWahreSchlagerfestSource_1_0.zip\">Download the source code of 'Das Wahre Schlagerfest' (version 1.0)(zip)</a></li>");
-    v.push_back("  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicCppBuilder.png\" alt=\"C++ Builder\"/> <a href=\"GameDasWahreSchlagerfestSource_1_0.htm\">View the C++ Builder source code of 'Das Wahre Schlagerfest' as a web page (version 1.0)(htm)</a></li>");
     v.push_back("  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicCppBuilder.png\" alt=\"C++ Builder\"/> <a href=\"GameDasWahreSchlagerfest_1_0.png\">View a screenshot of 'Das Wahre Schlagerfest' (version 1.0)(png)</a></li>");
     v.push_back("  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicCppBuilder.png\" alt=\"C++ Builder\"/> <a href=\"GameDasWahreSchlagerfestExe_1_0.zip\">Download a windows executable of 'Das Wahre Schlagerfest' (version 1.0)(zip)</a></li>");
     v.push_back("</ul>");
@@ -4451,6 +4640,8 @@ const std::vector<std::string> c2h::Info::ToHtml() const
 
   else if (m_page_name == "GameEverythingToPiecesShooter")
   {
+    v.push_back("<p><img src=\"PicVcl.png\" alt=\"VCL\"/><img src=\"PicCppBuilder.png\" alt=\"C++ Builder\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>");
+    v.push_back("<p>&nbsp;</p>");
     v.push_back("<p><a href=\"GameEverythingToPiecesShooter.htm\">EverythingToPiecesShooter</a> is a <a href=\"Games.htm\">game</a> made by Joost van den Bogaart in the year 2005, released under the GPL 3.0.</p>");
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<p><a href=\"GameEverythingToPiecesShooter.htm\">EverythingToPiecesShooter</a> is programmed in <a href=\"Cpp.htm\">C++</a> using the IDE <a href=\"CppBuilder.htm\">C++ Builder</a> 6.0. It uses the <a href=\"CppVcl.htm\">VCL</a> and <a href=\"CppBoost.htm\">Boost</a> libraries.</p>");
@@ -4464,9 +4655,10 @@ const std::vector<std::string> c2h::Info::ToHtml() const
     v.push_back("  <li>...</li>");
     v.push_back("</ul>");
   }
-
   else if (m_page_name == "GameK3OpEenRij")
   {
+    v.push_back("<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>");
+    v.push_back("<p>&nbsp;</p>");
     v.push_back("<p><a href=\"GameK3OpEenRij.htm\">K3-Op-Een-Rij</a> is a <a href=\"Games.htm\">game</a> that is tribute to the Flemisch girlyband K3. ");
     v.push_back("<a href=\"GameK3OpEenRij.htm\">K3-Op-Een-Rij</a> is a turn-based tic-tac-toe-like <a href=\"Games.htm\">game</a>. ");
     v.push_back("It can be played by one, two or three players. The <a href=\"Games.htm\">game</a> is designed for this band's typical audience.</p>");
@@ -4492,9 +4684,6 @@ const std::vector<std::string> c2h::Info::ToHtml() const
     v.push_back("  <li><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"GameK3OpEenRij_5_1Windows.png\">View a screenshot of 'K3-Op-Een-Rij' (version 5.1)(png)</a></li>");
     v.push_back("  <li><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicUbuntu.png\" alt=\"Ubuntu\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"GameK3OpEenRij_5_0.png\">View a screenshot of 'K3-Op-Een-Rij' (version 5.0)(png)</a></li>");
     v.push_back("  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"GameK3OpEenRijDesktopExe_6_0.zip\">Download the 'K3-Op-Een-Rij' Windows executable (version 6.0)(zip)</a></li>");
-    v.push_back("  <li><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicUbuntu.png\" alt=\"Ubuntu\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"GameK3OpEenRijSource_6_0.zip\">Download the 'K3-Op-Een-Rij' source code (version 6.0)(zip)</a></li>");
-    v.push_back("  <li><img src=\"PicCppBuilder.png\" alt=\"C++ Builder\"/><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"GameK3OpEenRijSource_4_0.zip\">Download the 'K3-Op-Een-Rij' source code (version 4.0)(zip)</a></li> ");
-    v.push_back("  <li><img src=\"PicCppBuilder.png\" alt=\"C++ Builder\"/><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"GameK3OpEenRijSource_4_0.htm\">View the 'K3-Op-Een-Rij' source code as a web page (desktop application)(version 4.0)(htm)</a></li> ");
     v.push_back("</ol>");
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<p>&nbsp;</p>");
@@ -4504,17 +4693,53 @@ const std::vector<std::string> c2h::Info::ToHtml() const
     v.push_back("<h2>Older downloads</h2>");
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<ol>");
-    v.push_back("  <li><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicUbuntu.png\" alt=\"Ubuntu\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"GameK3OpEenRijSource_5_0.zip\">Download the 'K3-Op-Een-Rij' source code (version 5.0)(zip)</a></li>");
-    v.push_back("  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"GameK3OpEenRijDesktopExe_5_1.zip\">Download the 'K3-Op-Een-Rij' Windows executable (version 5.1)(zip)</a></li>");
     v.push_back("  <li><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"GameK3OpEenRij_5_1Lubuntu.png\">View a screenshot of 'K3-Op-Een-Rij' (version 5.1)(png)</a></li>");
     v.push_back("  <li><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicUbuntu.png\" alt=\"Ubuntu\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"GameK3OpEenRijMenu_5_0.png\">View a screenshot of the 'K3-Op-Een-Rij' menu (version 5.0)(png)</a></li>");
+    v.push_back("  <li>Older: <a href=\"GameK3OpEenRijVcl.htm\">K3-Op-Een-Rij (VCL)</a></li>");
+    v.push_back("</ol>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<h2>External links</h2>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<ul>");
+    v.push_back("  <li><a href=\"http://www.k3.be/\">The official K3 website (Dutch)</a></li>");
+    v.push_back("  <li><a href=\"http://en.wikipedia.org/wiki/K3_%28band%29\">The K3 wikipedia page (English)</a></li>");
+    v.push_back("  <li><a href=\"http://nl.wikipedia.org/wiki/K3\">The K3 wikipedia page (Dutch)</a></li>");
+    v.push_back("</ul>");
+  }
+  else if (m_page_name == "GameK3OpEenRijVcl")
+  {
+    v.push_back("<p><img src=\"PicVcl.png\" alt=\"VCL\"/><img src=\"PicCppBuilder.png\" alt=\"C++ Builder\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p><a href=\"GameK3OpEenRijVcl.htm\">K3-Op-Een-Rij (VCL)</a> is a <a href=\"Games.htm\">game</a> that is tribute to the Flemisch girlyband K3.");
+    v.push_back("<a href=\"GameK3OpEenRij.htm\">K3-Op-Een-Rij</a> is a turn-based tic-tac-toe-like <a href=\"Games.htm\">game</a>.");
+    v.push_back("It can be played by one, two or three players. The <a href=\"Games.htm\">game</a> is designed for this band's typical audience.</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<h2>Downloads</h2>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<ol>");
+    v.push_back("  <li>Newer: <a href=\"GameK3OpEenRij.htm\">K3-Op-Een-Rij</a></li>");
+    v.push_back("  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"GameK3OpEenRijDesktopExe_6_0.zip\">Download the 'K3-Op-Een-Rij' Windows executable (version 6.0)(zip)</a></li>");
     v.push_back("  <li><img src=\"PicCppBuilder.png\" alt=\"C++ Builder\"/><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"GameK3OpEenRij_4_0.png\">View a screenshot of 'K3-Op-Een-Rij' (version 4.0)(png)</a></li>");
     v.push_back("  <li><img src=\"PicCppBuilder.png\" alt=\"C++ Builder\"/><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"GameK3OpEenRijMenu_4_0.png\">View a screenshot of the 'K3-Op-Een-Rij' menu (version 4.0)(png)</a></li>");
-    v.push_back("  <li><img src=\"PicCppBuilder.png\" alt=\"C++ Builder\"/><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"GameK3OpEenRijExe_4_0.zip\">Download the 'K3-Op-Een-Rij' Windows executable (version 4.0)(zip)</a></li>");
+    v.push_back("</ol>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<h2>Older downloads</h2>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<ol>");
     v.push_back("  <li><a href=\"GameK3OpEenRijSprites_4_0.zip\">Download the 'K3-Op-Een-Rij' sprites (version 4.0)(zip)</a></li>");
     v.push_back("  <li><a href=\"GameK3OpEenRij_3_0.png\">View a screenshot of 'K3-Op-Een-Rij' (version 3.0)(png)</a></li>");
-    v.push_back("  <li><a href=\"GameK3OpEenRijExe_3_0.zip\">Download the 'K3-Op-Een-Rij' Windows executable (version 3.0)(zip)</a></li>");
-    v.push_back("  <li><a href=\"GameK3OpEenRijSource_3_0.zip\">Download the 'K3-Op-Een-Rij' source code (version 3.0)(zip)</a></li>");
     v.push_back("</ol>");
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<p>&nbsp;</p>");
@@ -4531,6 +4756,8 @@ const std::vector<std::string> c2h::Info::ToHtml() const
   }
   else if (m_page_name == "GameKnokfighter")
   {
+    v.push_back("<p><img src=\"PicVcl.png\" alt=\"VCL\"/><img src=\"PicCppBuilder.png\" alt=\"C++ Builder\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>");
+    v.push_back("<p>&nbsp;</p>");
     v.push_back("<p><a href=\"GameKnokfighter.htm\">Knokfighter</a> is a <a href=\"Games.htm\">game</a> programmed by me and Joost van den Bogaart.</p>");
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<p>We tried to make a Double Dragon clone with ourselves as the heroes.</p>");
@@ -4555,6 +4782,8 @@ const std::vector<std::string> c2h::Info::ToHtml() const
   }
   else if (m_page_name == "GameMartianCafeTuinemaTycoon")
   {
+    v.push_back("<p><img src=\"PicVcl.png\" alt=\"VCL\"/><img src=\"PicCppBuilder.png\" alt=\"C++ Builder\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>");
+    v.push_back("<p>&nbsp;</p>");
     v.push_back("<p><a href=\"GameMartianCafeTuinemaTycoon.htm\">Martian Cafe Tuinema Tycoon</a> is a <a href=\"Games.htm\">game</a> made by Joost van den Bogaart in the year 2005, released under the GPL 3.0.</p>");
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<p><a href=\"GameMartianCafeTuinemaTycoon.htm\">Martian Cafe Tuinema Tycoon</a> is programmed in <a href=\"Cpp.htm\">C++</a> using the IDE <a href=\"CppBuilder.htm\">C++ Builder</a> 6.0. It uses the <a href=\"CppVcl.htm\">VCL</a> and <a href=\"CppBoost.htm\">Boost</a> libraries.</p>");
@@ -4585,34 +4814,8 @@ const std::vector<std::string> c2h::Info::ToHtml() const
     v.push_back("  <li><a href=\"GameMaziak_2_0.png\">View a screenshot of 'Maziak' (v.2.0)(png)</a></li>");
     v.push_back("  <li><a href=\"GameMaziakMenu_2_0.png\">View a screenshot of the 'Maziak' menu screen (v.2.0)(png)</a></li>");
     v.push_back("  <li><a href=\"GameMaziakInstructions_2_0.png\">View a screenshot of the 'Maziak' instructions screen (v.2.0)(png)</a></li>");
-    v.push_back("  <li><a href=\"GameMaziakExe_1_4.zip\">Download the 'Maziak' Windows executable (v.1.4)(zip)</a></li>");
-    v.push_back("  <li><a href=\"GameMaziakSource_2_0.zip\">Download the 'Maziak' source code (v.2.0)(zip)</a></li>");
-    v.push_back("  <li><a href=\"GameMaziakSource_1_4.htm\">View the C++ Builder source code of 'Maziak' as a web page (v.1.4)(htm)</a></li>");
     v.push_back("  <li><a href=\"GameMaziakSprites_2_0.zip\">Download the 'Maziak' (png) sprites (v.2.0)(zip)</a></li>");
-    v.push_back("</ol>");
-    v.push_back("<p>&nbsp;</p>");
-    v.push_back("<p>&nbsp;</p>");
-    v.push_back("<p>&nbsp;</p>");
-    v.push_back("<p>&nbsp;</p>");
-    v.push_back("<p>&nbsp;</p>");
-    v.push_back("<h2>Older downloads</h2>");
-    v.push_back("<p>&nbsp;</p>");
-    v.push_back("<p>Version 1.0 of the <a href=\"Games.htm\">game</a> relies heavily on the function <a href=\"CppDrawGlobe.htm\">DrawGlobe</a>.</p>");
-    v.push_back("<p>&nbsp;</p>");
-    v.push_back("<ol>");
-    v.push_back("  <li><a href=\"GameMaziakSprites_1_4.zip\">Download the 'Maziak' (bmp) sprites (v.1.4)(zip)</a></li>");
-    v.push_back("  <li><a href=\"GameMaziak_1_3.png\">View a screenshot of 'Maziak' (v.1.3)(png)</a></li>");
-    v.push_back("  <li><a href=\"GameMaziakMenu_1_3.png\">View a screenshot of the 'Maziak' menu screen (v.1.3)(png)</a></li>");
-    v.push_back("  <li><a href=\"GameMaziakInstructions_1_3.png\">View a screenshot of the 'Maziak' instructions screen (v.1.3)(png)</a></li>");
-    v.push_back("  <li><a href=\"GameMaziakSprites_1_3.zip\">Download the 'Maziak' (bmp) sprites (v.1.3)(zip)</a></li>");
-    v.push_back("  <li><a href=\"GameMaziak_1_2.png\">View a screenshot of 'Maziak' (v.1.2)(png)</a></li>");
-    v.push_back("  <li><a href=\"GameMaziakMenu_1_2.png\">View a screenshot of the 'Maziak' menu screen (v.1.2)(png)</a></li>");
-    v.push_back("  <li><a href=\"GameMaziakSprites_1_2.zip\">Download the 'Maziak' (bmp) sprites (v.1.2)(zip)</a></li>");
-    v.push_back("  <li><a href=\"GameMaziak_1_1.png\">View a screenshot of 'Maziak' (v.1.1)(png)</a></li>");
-    v.push_back("  <li><a href=\"GameMaziakMenu_1_1.png\">View a screenshot of the 'Maziak' menu screen (v.1.1)(png)</a></li>");
-    v.push_back("  <li><a href=\"GameMaziakSprites_1_1.zip\">Download the 'Maziak' (bmp) sprites (v.1.1)(zip)</a></li>");
-    v.push_back("  <li><a href=\"GameMaziak_1_0.png\">View a screenshot of 'Maziak' (v.1.0)(png)</a></li>");
-    v.push_back("  <li><a href=\"GameMaziakMenu_1_0.png\">View a screenshot of the 'Maziak' menu screen (v.1.0)(png)</a></li>");
+    v.push_back("  <li>Older: <a href=\"GameMaziakVcl.htm\">Maziak (VCL)</a></li>");
     v.push_back("</ol>");
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<p>&nbsp;</p>");
@@ -4637,14 +4840,49 @@ const std::vector<std::string> c2h::Info::ToHtml() const
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<p>&nbsp;</p>");
-    v.push_back("<h2>Source code</h2>");
+    v.push_back("<h2>External links</h2>");
     v.push_back("<p>&nbsp;</p>");
-    v.push_back("<p><a href=\"GameMaziak.htm\">Maziak</a> version 1.0 to and including 1.4 (that run only on Windows) are programmed in <a href=\"Cpp.htm\">C++</a> using the <a href=\"CppBuilder.htm\">C++ Builder</a> 6.0 <a href=\"CppIde.htm\">IDE</a>. It uses the <a href=\"CppStl.htm\">STL</a>, <a href=\"CppVcl.htm\">VCL</a> and <a href=\"CppBoost.htm\">Boost</a> <a href=\"CppLibrary.htm\">libraries</a>. <a href=\"GameMaziak.htm\">Maziak</a> relies heavily on the functions <a href=\"CppCreateMaze.htm\">CreateMaze</a>, <a href=\"CppSolveMaze.htm\">SolveMaze</a>, <a href=\"CppCountDeadEnds.htm\">CountDeadEnds</a> and <a href=\"CppSetPixel.htm\">SetPixel</a>.</p>");
+    v.push_back("<ul>");
+    v.push_back("  <li><a href=\"http://en.wikipedia.org/wiki/Maziacs\">View the WikiPedia page on the original Maziacs</a></li>");
+    v.push_back("  <li><a href=\"http://www.youtube.com/watch?v=MQE3VK1Bdh4\">View a YouTube video of the original Maziacs on the Sinclair ZX Spectrum</a></li>");
+    v.push_back("  <li><a href=\"http://www.classic-retro-games.com/Mazogs-%28and-Maziacs%29_124.html\">Another Maziacs PC clone</a></li>");
+    v.push_back("</ul>");
+  }
+  else if (m_page_name == "GameMaziakVcl")
+  {
+    v.push_back("<p><img src=\"PicVcl.png\" alt=\"VCL\"/><img src=\"PicCppBuilder.png\" alt=\"C++ Builder\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>");
     v.push_back("<p>&nbsp;</p>");
-    v.push_back("<p><a href=\"GameMaziak.htm\">Maziak</a> version 2.0 and further are programmed in <a href=\"Cpp.htm\">C++</a> using the <a href=\"CppQtCreator.htm\">Qt Creator</a> 2.0.0 <a href=\"CppIde.htm\">IDE</a>. It uses the <a href=\"CppStl.htm\">STL</a>, <a href=\"CppQt.htm\">Qt</a> and <a href=\"CppBoost.htm\">Boost</a> <a href=\"CppLibrary.htm\">libraries</a>. <a href=\"GameMaziak.htm\">Maziak</a> relies heavily on the functions <a href=\"CppCreateMaze.htm\">CreateMaze</a>, <a href=\"CppSolveMaze.htm\">SolveMaze</a> and <a href=\"CppCountDeadEnds.htm\">CountDeadEnds</a>.</p>");
+    v.push_back("<p>Maziak is a simple maze retro <a href=\"Games.htm\">game</a> (and a clone of the Sinclair ZX Spectrum/MSX <a href=\"Games.htm\">game</a> Maziak/Maziacs/Mazoggs), in which you have to find a maze's exit. But there are also enemies in the maze that can be beaten by a sword. There are also prisoners, that temporarily show the way to the exit upon freeing them.</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<h2>Downloads</h2>");
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<ol>");
-    v.push_back("  <li><a href=\"GameMaziakSource_1_4.htm\">View the C++ Builder source code of Maziak version 1.4 as a web page</a></li>");
+    v.push_back("  <li>Newer: <a href=\"GameMaziak.htm\">Maziak</a></li>");
+    v.push_back("  <li><a href=\"GameMaziak_1_3.png\">View a screenshot of 'Maziak' (v.1.3)(png)</a></li>");
+    v.push_back("  <li><a href=\"GameMaziakInstructions_1_3.png\">View a screenshot of the 'Maziak' instructions screen (v.1.3)(png)</a></li>");
+    v.push_back("  <li><a href=\"GameMaziakMenu_1_3.png\">View a screenshot of the 'Maziak' menu screen (v.1.3)(png)</a></li>");
+    v.push_back("  <li><a href=\"GameMaziakSprites_1_4.zip\">Download the 'Maziak' (bmp) sprites (v.1.4)(zip)</a></li>");
+    v.push_back("  <li><a href=\"GameMaziakExe_1_4.zip\">Download the 'Maziak' Windows executable (v.1.4)(zip)</a></li>");
+    v.push_back("</ol>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<h2>Older downloads</h2>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<ol>");
+    v.push_back("  <li><a href=\"GameMaziakSprites_1_3.zip\">Download the 'Maziak' (bmp) sprites (v.1.3)(zip)</a></li>");
+    v.push_back("  <li><a href=\"GameMaziak_1_2.png\">View a screenshot of 'Maziak' (v.1.2)(png)</a></li>");
+    v.push_back("  <li><a href=\"GameMaziakMenu_1_2.png\">View a screenshot of the 'Maziak' menu screen (v.1.2)(png)</a></li>");
+    v.push_back("  <li><a href=\"GameMaziak_1_1.png\">View a screenshot of 'Maziak' (v.1.1)(png)</a></li>");
+    v.push_back("  <li><a href=\"GameMaziakMenu_1_1.png\">View a screenshot of the 'Maziak' menu screen (v.1.1)(png)</a></li>");
+    v.push_back("  <li><a href=\"GameMaziak_1_0.png\">View a screenshot of 'Maziak' (v.1.0)(png)</a></li>");
+    v.push_back("  <li><a href=\"GameMaziakMenu_1_0.png\">View a screenshot of the 'Maziak' menu screen (v.1.0)(png)</a></li>");
     v.push_back("</ol>");
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<p>&nbsp;</p>");
@@ -4658,9 +4896,10 @@ const std::vector<std::string> c2h::Info::ToHtml() const
     v.push_back("  <li><a href=\"http://www.youtube.com/watch?v=MQE3VK1Bdh4\">View a YouTube video of the original Maziacs on the Sinclair ZX Spectrum</a></li>");
     v.push_back("  <li><a href=\"http://www.classic-retro-games.com/Mazogs-%28and-Maziacs%29_124.html\">Another Maziacs PC clone</a></li>");
     v.push_back("</ul>");
-  }
-  else if (m_page_name == "GameMetZnDrieen")
+  }  else if (m_page_name == "GameMetZnDrieen")
   {
+    v.push_back("<p><img src=\"PicVcl.png\" alt=\"VCL\"/><img src=\"PicCppBuilder.png\" alt=\"C++ Builder\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>");
+    v.push_back("<p>&nbsp;</p>");
     v.push_back("<p><a href=\"GameMetZnDrieen.htm\">Met Z'n Drieen</a> is a Dutch turn-based tic-tac-toe-like <a href=\"Games.htm\">game</a>. It can be played by one, two or three players. The <a href=\"Games.htm\">game</a> is in the Dutch language.</p>");
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<p><a href=\"GameMetZnDrieen.htm\">Met Z'n Drieen</a> is programmed in <a href=\"Cpp.htm\">C++</a> using the IDE <a href=\"CppBuilder.htm\">C++ Builder</a> 6.0. It uses the <a href=\"CppVcl.htm\">VCL</a> and <a href=\"CppBoost.htm\">Boost</a> library. The current version number is 1.3.</p>");
@@ -4703,6 +4942,8 @@ const std::vector<std::string> c2h::Info::ToHtml() const
   }
   else if (m_page_name == "GamePokeVolley")
   {
+    v.push_back("<p><img src=\"PicVcl.png\" alt=\"VCL\"/><img src=\"PicCppBuilder.png\" alt=\"C++ Builder\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>");
+    v.push_back("<p>&nbsp;</p>");
     v.push_back("<p><a href=\"GamePokeVolley.htm\">PokeVolley</a> is a <a href=\"Games.htm\">game</a> similar to <a href=\"http://en.wikipedia.org/wiki/Arcade_Volleyball\">Arcade Volleyball</a> with Pokemon graphics. It was born and its first version programmed at the 24th of September of 2005 during a session of 'Fun Programming' with Joost van den Bogaart.</p>");
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<p><a href=\"GamePokeVolley.htm\">PokeVolley</a> is programmed in <a href=\"Cpp.htm\">C++</a> using the IDE <a href=\"CppBuilder.htm\">C++ Builder</a> 6.0. It uses the <a href=\"CppVcl.htm\">VCL</a> and <a href=\"CppBoost.htm\">Boost</a> libraries.</p>");
@@ -4751,6 +4992,8 @@ const std::vector<std::string> c2h::Info::ToHtml() const
   }
   else if (m_page_name == "GamePublicToiletManager5")
   {
+    v.push_back("<p><img src=\"PicVcl.png\" alt=\"VCL\"/><img src=\"PicCppBuilder.png\" alt=\"C++ Builder\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>");
+    v.push_back("<p>&nbsp;</p>");
     v.push_back("<p><a href=\"GamePublicToiletManager5.htm\">Public Toilet Manager 5 - The New Art Project</a> is a <a href=\"Games.htm\">game</a> made by Joost van den Bogaart, released under the GPL 3.0.</p>");
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<p><a href=\"GamePublicToiletManager5.htm\">Public Toilet Manager 5 - The New Art Project</a> is programmed in <a href=\"Cpp.htm\">C++</a> using the IDE <a href=\"CppBuilder.htm\">C++ Builder</a> 6.0. It uses the <a href=\"CppVcl.htm\">VCL</a> library.</p>");
@@ -4802,9 +5045,11 @@ const std::vector<std::string> c2h::Info::ToHtml() const
   }
   else if (m_page_name == "GameReversi")
   {
+    v.push_back("<p><img src=\"PicVcl.png\" alt=\"VCL\"/><img src=\"PicCppBuilder.png\" alt=\"C++ Builder\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>");
+    v.push_back("<p>&nbsp;</p>");
     v.push_back("<p>I first programmed Reversi around the age of eighteen in QBasic. At the 24th of September 2007 in three hours time, I've programmed it in C++. Most of it is in STL, except for the graphical user interface, so it will be easily ported to any other graphics library.</p>");
     v.push_back("<p>&nbsp;</p>");
-    v.push_back("<p>At the 30th March of 2008, I got an assignment to program a console version of Reversi. It can be found at my <a href=\"GameReversiConsole.htm\">Reversi Console</a> page. It made me improve the Reversi class also used in this version.</p>");
+    v.push_back("<p>On the 30th March of 2008, I got an assignment to program a console version of Reversi. It can be found at my <a href=\"GameReversiConsole.htm\">Reversi Console</a> page. It made me improve the Reversi class also used in this version.</p>");
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<p><a href=\"GameReversi.htm\">Reversi</a> is programmed in <a href=\"Cpp.htm\">C++</a> using the IDE <a href=\"CppBuilder.htm\">C++ Builder</a> 6.0. It uses the <a href=\"CppVcl.htm\">VCL</a> and <a href=\"CppBoost.htm\">Boost</a> libraries.</p>");
     v.push_back("<p>&nbsp;</p>");
@@ -4823,7 +5068,9 @@ const std::vector<std::string> c2h::Info::ToHtml() const
   }
   else if (m_page_name == "GameReversiConsole")
   {
-    v.push_back("<p>At the 30th March of 2008 I got an assignment to make a Console version of Reversi. Using and improving the same Reversi class as in my <a href=\"GameReversi.htm\">Reversi game with GUI of 2007</a> and using some of my <a href=\"CppCodeSnippets.htm\">code snippets</a> I finished the assignment in 64 minutes. View the source code to see what is possible in 64 minutes.</p>");
+    v.push_back("<p><img src=\"PicVcl.png\" alt=\"VCL\"/><img src=\"PicCppBuilder.png\" alt=\"C++ Builder\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p>On the 30th March of 2008 I got an assignment to make a Console version of Reversi. Using and improving the same Reversi class as in my <a href=\"GameReversi.htm\">Reversi game with GUI of 2007</a> and using some of my <a href=\"CppCodeSnippets.htm\">code snippets</a> I finished the assignment in 64 minutes. View the source code to see what is possible in 64 minutes.</p>");
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<p><a href=\"GameReversiConsole.htm\">Reversi Console</a> is programmed in <a href=\"Cpp.htm\">C++</a> using the IDE <a href=\"CppBuilder.htm\">C++ Builder</a> 6.0. It uses the <a href=\"CppBoost.htm\">Boost</a> libraries.</p>");
     v.push_back("<p>&nbsp;</p>");
@@ -4842,7 +5089,7 @@ const std::vector<std::string> c2h::Info::ToHtml() const
   }
   else if (m_page_name == "GameRubiksClock")
   {
-    v.push_back("<p>Simulates a Rubik's Clock.</p>");
+    v.push_back("<p><a href=\"GameRubiksClock.htm\">Rubik's Clock</a> is a Rubik's Clock <a href=\"Games.htm\">game</a>.</p>");
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<p>&nbsp;</p>");
@@ -4854,22 +5101,25 @@ const std::vector<std::string> c2h::Info::ToHtml() const
     v.push_back("  <li><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"GameRubiksClockDesktop_2_2.png\">View a screenshot of 'Rubik's Clock' (version 2.2)(png)</a></li>");
     v.push_back("  <li><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"GameRubiksClock_2_1.png\">View a screenshot of 'Rubik's Clock' (version 2.1)(png)</a></li>");
     v.push_back("  <li><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"GameRubiksClockDesktopExe_2_2.zip\">Download a Windows executable of 'Rubik's Clock' (version 2.2)(zip)</a></li>");
-    v.push_back("  <li><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"GameRubiksClockSource_2_2.zip\">Download the source code of 'Rubik's Clock' (version 2.2)(zip)</a></li>");
+    v.push_back("  <li>Older: <a href=\"GameRubiksClockVcl.htm\">Rubik's Clock (VCL)</a></li>");
     v.push_back("</ul>");
+  }
+  else if (m_page_name == "GameRubiksClockVcl")
+  {
+    v.push_back("<p><img src=\"PicVcl.png\" alt=\"VCL\"/><img src=\"PicCppBuilder.png\" alt=\"C++ Builder\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p><a href=\"GameRubiksClockVcl.htm\">Rubik's Clock (VCL)</a> is a Rubik's Clock <a href=\"Games.htm\">game</a>.</p>");
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<p>&nbsp;</p>");
-    v.push_back("<h2>Older downloads</h2>");
+    v.push_back("<h2>Downloads</h2>");
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<ul>");
-    v.push_back("  <li><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"GameRubiksClockSource_2_1.zip\">Download the source code of 'Rubik's Clock' (version 2.1)(zip)</a></li>");
+    v.push_back("  <li>Newer: <a href=\"GameRubiksClock.htm\">Rubik's Clock</a></li>");
     v.push_back("  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"GameRubiksClock_1_0.png\">View a screenshot of 'Rubik's Clock' (version 1.0)(png)</a></li>");
     v.push_back("  <li><img src=\"PicCppBuilder.png\" alt=\"C++ Builder\"/><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"GameRubiksClockExe_1_0.zip\">Download a Windows executable of 'Rubik's Clock' (version 1.0)(zip)</a></li>");
-    v.push_back("  <li><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"GameRubiksClockSource_2_0.zip\">Download the source code of 'Rubik's Clock' (version 2.0)(zip)</a></li>");
-    v.push_back("  <li><img src=\"PicCppBuilder.png\" alt=\"C++ Builder\"/><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"GameRubiksClockSource_1_0.zip\">Download the source code of 'Rubik's Clock' (version 1.0)(zip)</a></li>");
-    v.push_back("  <li><img src=\"PicCppBuilder.png\" alt=\"C++ Builder\"/><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"GameRubiksClockSource_1_0.htm\">View the C++ Builder source code of 'Rubik's Clock' as a web page (version 1.0)(htm)</a></li>");
     v.push_back("</ul>");
   }
   else if (m_page_name == "GameSearchAndDestroyChess")
@@ -4897,25 +5147,7 @@ const std::vector<std::string> c2h::Info::ToHtml() const
     v.push_back("<h2>Downloads</h2>");
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<ul>");
-    v.push_back("  <li><a href=\"GameSearchAndDestroyChess_2_0.png\">View a screenshot of 'SearchAndDestroyChess' (version 2.0)(png)</a></li>");
-    v.push_back("  <li><a href=\"http://youtube.com/watch?v=p4GdAncNEvk\">View a YouTube video about the progress of 'SearchAndDestroyChess version 2.0'</a></li>");
-    v.push_back("  <li><a href=\"http://youtube.com/watch?v=MaemR0pKyJQ\">View a YouTube video about 'SearchAndDestroyChess' (version 1.0)</a></li>");
-    v.push_back("  <li><a href=\"GameSearchAndDestroyChessExe_2_0.zip\">Download the 'SearchAndDestroyChess' Windows executable (version 2.0)(zip)</a></li>");
-    v.push_back("  <li><a href=\"GameSearchAndDestroyChessSource_2_1.zip\">Download the 'SearchAndDestroyChess' source code (version 2.1)(zip)</a></li>");
-    v.push_back("  <li><a href=\"GameSearchAndDestroyChessSource_2_1.htm\">View the C++ Builder source code of 'SearchAndDestroyChess' as a web page (version 2.1)(htm)</a></li>");
-    v.push_back("</ul>");
-    v.push_back("<p>&nbsp;</p>");
-    v.push_back("<p>&nbsp;</p>");
-    v.push_back("<p>&nbsp;</p>");
-    v.push_back("<p>&nbsp;</p>");
-    v.push_back("<p>&nbsp;</p>");
-    v.push_back("<h2>Older downloads</h2>");
-    v.push_back("<p>&nbsp;</p>");
-    v.push_back("<ul>");
-    v.push_back("  <li><a href=\"GameSearchAndDestroyChessSource_2_0.zip\">Download the 'SearchAndDestroyChess' source code (version 2.0)(zip)</a></li>");
-    v.push_back("  <li><a href=\"GameSearchAndDestroyChess_1_0.png\">View a screenshot of 'SearchAndDestroyChess' (version 1.0)(png)</a></li>");
-    v.push_back("  <li><a href=\"GameSearchAndDestroyChessExe_1_0.zip\">Download the 'SearchAndDestroyChess' Windows executable (version 1.0)(zip)</a></li>");
-    v.push_back("  <li><a href=\"GameSearchAndDestroyChessSource_1_0.zip\">Download the 'SearchAndDestroyChess' source code (version 1.0)(zip)</a></li>");
+    v.push_back("  <li>Older: <a href=\"GameSearchAndDestroyChessVcl.htm\">SearchAndDestroyChess (VCL)</a></li>");
     v.push_back("</ul>");
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<p>&nbsp;</p>");
@@ -4967,8 +5199,65 @@ const std::vector<std::string> c2h::Info::ToHtml() const
     v.push_back("  <li><a href=\"GameSearchAndDestroyChessConsoleSource_1_0.htm\">View the C++ Builder source code of 'SearchAndDestroyChessConsole' as a web page (version 1.0)(htm)</a></li>");
     v.push_back("</ul>");
   }
+  else if (m_page_name == "GameSearchAndDestroyChessVcl")
+  {
+    v.push_back("<p><img src=\"PicVcl.png\" alt=\"VCL\"/><img src=\"PicCppBuilder.png\" alt=\"C++ Builder\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p><a href=\"GameSearchAndDestroyChessVcl.htm\">SearchAndDestroyChess (VCL)</a> is a variant on chess, also called <a href=\"http://en.wikipedia.org/wiki/Kriegspiel_(chess)\">Kriegspiel</a> or <a href=\"http://en.wikipedia.org/wiki/Dark_chess\">Dark Chess</a>. In <a href=\"GameSearchAndDestroyChess.htm\">SearchAndDestroyChess</a> you can only view that part of the board that is 'seen' by your pieces.</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p>There is also a console/MS-DOS version of <a href=\"GameSearchAndDestroyChess.htm\">SearchAndDestroyChess</a> called <a href=\"GameSearchAndDestroyChessConsole.htm\">SearchAndDestroyChessConsole</a>.</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p>The following special rules apply to <a href=\"GameSearchAndDestroyChess.htm\">SearchAndDestroyChess</a>:</p>");
+    v.push_back("<ul>");
+    v.push_back("  <li><p>a player cannot be in chess, nor in checkmate. Instead, if the king is captured, the capturer wins. This is because it is possible for a king to be in check without knowing it</p></li>");
+    v.push_back("  <li><p>Normal rules to en passant capture apply. But when a pawn can be captured en passant, this pawn is visible. This makes a pawn look sideways for only one turn. This is because the attacker must be able to see that he/she can make an en passant capture</p></li>");
+    v.push_back("  <li><p>Normal rules to castling apply, except that castling can take place when in chess and through attacked squares. This is because it is possible for a king to be or getting in check without knowing it</p></li>");
+    v.push_back("  <li><p>a pawn always gets promoted to a queen</p></li>");
+    v.push_back("</ul>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p><a href=\"GameSearchAndDestroyChessVcl.htm\">SearchAndDestroyChess (VCL)</a> is programmed in <a href=\"Cpp.htm\">C++</a> using the IDE <a href=\"CppBuilder.htm\">C++ Builder</a> 6.0. It uses the <a href=\"CppStl.htm\">STL</a>, <a href=\"CppVcl.htm\">VCL</a> and <a href=\"CppBoost.htm\">Boost</a> libraries.</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p>One month after putting <a href=\"GameSearchAndDestroyChess.htm\">SearchAndDestroyChess</a> online, I found out I wasn't the first to have invented this variant :-(.</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<h2>Downloads</h2>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<ul>");
+    v.push_back("  <li>Newer: <a href=\"GameSearchAndDestroyChess.htm\">SearchAndDestroyChess</a></li>");
+    v.push_back("  <li><a href=\"GameSearchAndDestroyChess_2_0.png\">View a screenshot of 'SearchAndDestroyChess' (version 2.0)(png)</a></li>");
+    v.push_back("  <li><a href=\"http://youtube.com/watch?v=p4GdAncNEvk\">View a YouTube video about the progress of 'SearchAndDestroyChess version 2.0'</a></li>");
+    v.push_back("  <li><a href=\"http://youtube.com/watch?v=MaemR0pKyJQ\">View a YouTube video about 'SearchAndDestroyChess' (version 1.0)</a></li>");
+    v.push_back("  <li><a href=\"GameSearchAndDestroyChessExe_2_0.zip\">Download the 'SearchAndDestroyChess' Windows executable (version 2.0)(zip)</a></li>");
+    v.push_back("</ul>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<h2>Older downloads</h2>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<ul>");
+    v.push_back("  <li><a href=\"GameSearchAndDestroyChess_1_0.png\">View a screenshot of 'SearchAndDestroyChess' (version 1.0)(png)</a></li>");
+    v.push_back("</ul>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<h2>External links</h2>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<ul>");
+    v.push_back("  <li><a href=\"http://en.wikipedia.org/wiki/Kriegspiel_(chess)\">Wikipedia's page about Kriegspiel</a></li>");
+    v.push_back("  <li><a href=\"http://en.wikipedia.org/wiki/Dark_chess\">Wikipedia's page about Dark Chess</a></li>");
+    v.push_back("</ul>");
+  }
   else if (m_page_name == "GameSimPredator")
   {
+    v.push_back("<p><img src=\"PicVcl.png\" alt=\"VCL\"/><img src=\"PicCppBuilder.png\" alt=\"C++ Builder\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>");
+    v.push_back("<p>&nbsp;</p>");
     v.push_back("<p><a href=\"GameSimPredator.htm\">SimPredator</a> was programmed on some evenings from the 19th of May 2006 to the 18th off July 2006 for Dr. L.P.W.G.M. van de Zande for a practical for freshmen at the university.</p>");
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<p><a href=\"GameSimPredator.htm\">SimPredator</a> is programmed in <a href=\"Cpp.htm\">C++</a> using the IDE <a href=\"CppBuilder.htm\">C++ Builder</a> 6.0. It uses the <a href=\"CppVcl.htm\">VCL</a> and <a href=\"CppBoost.htm\">Boost</a> libraries.</p>");
@@ -4989,6 +5278,8 @@ const std::vector<std::string> c2h::Info::ToHtml() const
   }
   else if (m_page_name == "GameSpaceHarry")
   {
+    v.push_back("<p><img src=\"PicVcl.png\" alt=\"VCL\"/><img src=\"PicCppBuilder.png\" alt=\"C++ Builder\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>");
+    v.push_back("<p>&nbsp;</p>");
     v.push_back("<p><a href=\"GameSpaceHarry.htm\">Space Harry</a> is a simple 'Space Harrier' clone.</p>");
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<p>Harry was one of my favorite bartenders in one of my favorite (now closed) pubs.</p>");
@@ -5076,6 +5367,31 @@ const std::vector<std::string> c2h::Info::ToHtml() const
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<p>Until now, I've only finished 'Classic Tron' and it can be viewed and downloaded. <a href=\"GameTronCollection.htm\">The Tron Collection</a> is currently at version 0.9.</p>");
     v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<h2>Downloads</h2>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<ul>");
+    v.push_back("  <li>Older: <a href=\"GameTronCollectionVcl.htm\">The Tron Collection (VCL)</a></li>");
+    v.push_back("</ul>");
+  }
+  else if (m_page_name == "GameTronCollectionVcl")
+  {
+    v.push_back("<p><img src=\"PicVcl.png\" alt=\"VCL\"/><img src=\"PicCppBuilder.png\" alt=\"C++ Builder\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p>'Tron' was one of my first cool QBASIC <a href=\"Games.htm\">games</a> I've had programmed around 1995. It took twelve years of itching before I ported it to C++.</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p><a href=\"GameTronCollection.htm\">The Tron Collection</a> consists out of three parts:</p>");
+    v.push_back("<ul>");
+    v.push_back("  <li>Classic Tron</li>");
+    v.push_back("  <li>Super Tron</li>");
+    v.push_back("  <li>Ultimate Tron</li>");
+    v.push_back("</ul>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p>Until now, I've only finished 'Classic Tron' and it can be viewed and downloaded. <a href=\"GameTronCollection.htm\">The Tron Collection</a> is currently at version 0.9.</p>");
+    v.push_back("<p>&nbsp;</p>");
     v.push_back("<p>Version 0.9 of <a href=\"GameTronCollection.htm\">The Tron Collection</a> is programmed in <a href=\"Cpp.htm\">C++</a> using the IDE <a href=\"CppBuilder.htm\">C++ Builder</a> 6.0. It uses the <a href=\"CppVcl.htm\">VCL</a> and <a href=\"CppBoost.htm\">Boost</a> <a href=\"CppLibrary.htm\">libraries</a>.</p>");
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<p>&nbsp;</p>");
@@ -5085,17 +5401,17 @@ const std::vector<std::string> c2h::Info::ToHtml() const
     v.push_back("<h2>Downloads</h2>");
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<ul>");
+    v.push_back("  <li>Newer: <a href=\"GameTronCollection.htm\">The Tron Collection</a></li>");
     v.push_back("  <li><a href=\"GameTronCollectionClassicTron_0_9.png\">View a screenshot of 'Classic Tron' (version 0.9)</a></li>");
     v.push_back("  <li><a href=\"GameTronCollectionSuperTron_0_9.png\">View a screenshot of 'Classic Tron' (version 0.9)</a></li>");
     v.push_back("  <li><a href=\"GameTronCollectionClassicTronMenu_0_9.png\">View a screenshot of the menu of 'Classic Tron' (version 0.9)</a></li>");
-    v.push_back("  <li><a href=\"GameTronCollectionClassicTronExe_0_9.rar\">Download a Windows executable of 'Classic Tron' (version 0.9)(rar)</a></li>");
     v.push_back("  <li><a href=\"GameTronCollectionClassicTronExe_0_9.zip\">Download a Windows executable of 'Classic Tron' (version 0.9)(zip)</a></li>");
-    v.push_back("  <li><a href=\"GameTronCollectionClassicTronSource_0_9.rar\">Download the source code of 'Classic Tron' (version 0.9)(rar)</a></li>");
-    v.push_back("  <li><a href=\"GameTronCollectionSource_0_9.htm\">View the source code of 'The Tron Collection' as a webpage (version 0.9)(htm)</a></li>");
     v.push_back("</ul>");
   }
   else if (m_page_name == "GameWizardBattle")
   {
+    v.push_back("<p><img src=\"PicVcl.png\" alt=\"VCL\"/><img src=\"PicCppBuilder.png\" alt=\"C++ Builder\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>");
+    v.push_back("<p>&nbsp;</p>");
     v.push_back("<p><a href=\"GameWizardBattle.htm\">Wizard Battle</a> is the first <a href=\"Games.htm\">game</a> made by Joost van den Bogaart, released under the GPL 3.0.</p>");
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<p><a href=\"GameWizardBattle.htm\">Wizard Battle</a> is programmed in <a href=\"Cpp.htm\">C++</a> using the IDE <a href=\"CppBuilder.htm\">C++ Builder</a> 6.0. It uses the <a href=\"CppVcl.htm\">VCL</a> and <a href=\"CppBoost.htm\">Boost</a> libraries.</p>");
@@ -5283,10 +5599,11 @@ const std::vector<std::string> c2h::Info::ToHtml() const
     v.push_back("  <li><a href=\"ProjectBristolReport.pdf\">Download the 'The Bristol Project' report (pdf)</a></li>");
     v.push_back("  <li><a href=\"ProjectBristolSource_1_0.zip\">Download the 'The Bristol Project' source code (zip)</a></li>");
     v.push_back("</ul>");
-
   }
   else if (m_page_name == "ProjectChrisWiley")
   {
+    v.push_back("<p><img src=\"PicVcl.png\" alt=\"VCL\"/><img src=\"PicCppBuilder.png\" alt=\"C++ Builder\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>");
+    v.push_back("<p>&nbsp;</p>");
     v.push_back("<p><a href=\"ProjectChrisWiley.htm\">The Chris Wiley Project</a> is a simulation that investigates cross-species mating for different specie densities.</p>");
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<p><a href=\"ProjectChrisWiley.htm\">The Chris Wiley Project</a> has been developed for <a href=\"http://www.nbb.cornell.edu/shaw%20lab/wiley/wiley.html\">Chris Wiley</a>.</p>");
@@ -5313,6 +5630,8 @@ const std::vector<std::string> c2h::Info::ToHtml() const
   }
   else if (m_page_name == "ProjectCrossPoll")
   {
+    v.push_back("<p><img src=\"PicVcl.png\" alt=\"VCL\"/><img src=\"PicCppBuilder.png\" alt=\"C++ Builder\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>");
+    v.push_back("<p>&nbsp;</p>");
     v.push_back("<p><a href=\"ProjectCrossPoll.htm\">CrossPoll</a> is a simulation that investigates hybridization between two crop field.</p>");
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<p><a href=\"ProjectCrossPoll.htm\">CrossPoll</a> has been developed for the <a href=\"http://www.cogem.net/\">COGEM</a>.</p>");
@@ -5446,6 +5765,8 @@ const std::vector<std::string> c2h::Info::ToHtml() const
   }
   else if (m_page_name == "ProjectMuscaDomestica")
   {
+    v.push_back("<p><img src=\"PicVcl.png\" alt=\"VCL\"/><img src=\"PicCppBuilder.png\" alt=\"C++ Builder\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>");
+    v.push_back("<p>&nbsp;</p>");
     v.push_back("<p><a href=\"ProjectMuscaDomestica.htm\">Project Musca Domestica</a> is a simulation that investigates the relationship between sexual determining systems for different dispersal scenarios.</p>");
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<p><a href=\"ProjectMuscaDomestica.htm\">Project Musca Domestica</a> has been developed in a course from the group of <a href=\"http://www.rug.nl/biologie/onderzoek/onderzoekgroepen/theoreticalbiology/index\">Theoretical Biology</a>.</p>");
@@ -6349,6 +6670,8 @@ const std::vector<std::string> c2h::Info::ToHtml() const
   }
   else if (m_page_name == "ProjectThorVeen")
   {
+    v.push_back("<p><img src=\"PicVcl.png\" alt=\"VCL\"/><img src=\"PicCppBuilder.png\" alt=\"C++ Builder\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>");
+    v.push_back("<p>&nbsp;</p>");
     v.push_back("<p><a href=\"ProjectThorVeen.htm\">The Thor Veen Project</a> is a simulation <a href=\"Projects.htm\">project</a> that investigates costless and honest signalling using the Hawk-Dove game as its base.</p>");
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<p><a href=\"ProjectThorVeen.htm\">The Thor Veen Project</a> has been developed for <a href=\"http://biosciences.exeter.ac.uk/staff/index.php?web_id=thor_veen\">Thor Veen</a>.</p>");
@@ -7086,9 +7409,6 @@ const std::vector<std::string> c2h::Info::ToHtml() const
     v.push_back("  </li>");
     v.push_back("</ul>");
   }
-
-
-
   else if (m_page_name == "ToolBarbaImage")
   {
     v.push_back("<p><a href=\"ToolBarbaImage.htm\">BarbaImage</a> is a <a href=\"Tools.htm\">tool</a> to perform operations on images. It creates a new window after each image operation, so you never loose your intermediates.</p>");
@@ -7894,13 +8214,6 @@ const std::vector<std::string> c2h::Info::ToHtml() const
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<ul>");
     v.push_back("  <li><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolHometrainer_2_0.png\">View a screenshot of 'Hometrainer' (version 2.0)(png)</a></li>");
-    v.push_back("  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolHometrainer_1_8.png\">View a screenshot of 'Hometrainer' (version 1.8)(png)</a></li>");
-    v.push_back("  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolHometrainerMenu_1_8.png\">View a screenshot of 'Hometrainer' its main menu (version 1.8)(png)</a></li>");
-    v.push_back("  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolHometrainerTestCreater_1_8.png\">View a screenshot of 'Hometrainer Test Creater' (version 1.8)(png)</a></li>");
-    v.push_back("  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolHometrainerResult_1_8.png\">View a screenshot of 'Hometrainer' its generated test result (version 1.8)(png)</a></li>");
-    v.push_back("  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolHometrainerTestScorer_1_8.png\">View a screenshot of 'Hometrainer Test Scorer' (version 1.8)(png)</a></li>");
-    v.push_back("  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolHometrainerTestScorer_1_8_2.png\">View another screenshot of 'Hometrainer Test Scorer' (version 1.8)(png)</a></li>");
-    v.push_back("  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolHometrainerCreateDoc_1_8.png\">View a screenshot of 'Hometrainer Doc Creater' (version 1.8)(png)</a></li>");
     v.push_back("</ul>");
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<p>&nbsp;</p>");
@@ -7910,10 +8223,8 @@ const std::vector<std::string> c2h::Info::ToHtml() const
     v.push_back("<h2>Hometrainer executable and source</h2>");
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<ul>");
-    v.push_back("  <li><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/> <a href=\"ToolHometrainerSource_2_0.zip\">Download the 'Hometrainer' source code (version 2.0)(zip)</a></li>");
-    v.push_back("  <li><img src=\"PicWindows.png\" alt=\"Windows\"/> <a href=\"ToolHometrainerExe_1_8.zip\">Download the 'Hometrainer' executable (version 1.8)(zip)</a></li>");
-    v.push_back("  <li><img src=\"PicCppBuilder.png\" alt=\"C++ Builder\"/> <a href=\"ToolHometrainerSource_1_8.zip\">Download the 'Hometrainer' source code (version 1.8)(zip)</a></li>");
-    v.push_back("  <li><img src=\"PicCppBuilder.png\" alt=\"C++ Builder\"/> <a href=\"ToolHometrainerSource_1_8.htm\">View the 'Hometrainer' source code as a web page (version 1.8)(htm)</a></li>");
+    v.push_back("  <li>...</li>");
+    v.push_back("  <li>Older: <a href=\"ToolHometrainerVcl.htm\">Hometrainer (VCL)</a></li>");
     v.push_back("</ul>");
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<p>&nbsp;</p>");
@@ -8001,9 +8312,144 @@ const std::vector<std::string> c2h::Info::ToHtml() const
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<p>&nbsp;</p>");
-    v.push_back("<h2>Post your feedback</h2>");
+    v.push_back("<h2>Hometrainer manual versions</h2>");
     v.push_back("<p>&nbsp;</p>");
-    v.push_back("<p>Feel encouraged to <a href=\"http://www.programmersheaven.com/download/56061/download.aspx\">post your feedback about this tool at Programmer's Heaven</a>.</p>");
+    v.push_back("<ul>");
+    v.push_back("  <li>Version X.Y: DD-MM-YYYY</li>");
+    v.push_back("  <li>Version 0.5: 23-09-2009</li>");
+    v.push_back("</ul>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<h2>Links to similar freeware programs</h2>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<ul>");
+    v.push_back("  <li><a href=\"ToolHometrainer.htm\">Hometrainer</a> (my previous version of Hometrainer)</li>");
+    v.push_back("  <li><a href=\"http://wordfox.byethost17.com/wordfox/index.php\">WordFox</a></li>");
+    v.push_back("  <li><a href=\"http://www.efkasoft.com/drillassistant/drillassistant.html\">Drill Assistant</a></li>");
+    v.push_back("  <li><a href=\"http://www.efkasoft.com/overhoor/overhoor.html\">Overhoor</a>: Dutch</li>");
+    v.push_back("  <li><a href=\"http://www.luziusschneider.com/QuizHome.htm\">Quiz</a>: for multiple-choice questions only</li>");
+    v.push_back("  <li><a href=\"http://www.questiontools.org/\">Questiontools Suite</a>: extensive test generation suite, but commercial for companies</li>");
+    v.push_back("</ul>");
+  }
+  else if (m_page_name == "ToolHometrainerVcl")
+  {
+    v.push_back("<p><a href=\"ToolHometrainerVcl.htm\">Hometrainer (VCL)</a> is <a href=\"CppDesktopApplication.htm\">desktop</a> <a href=\"Tools.htm\">tool</a> ");
+    v.push_back("to train self-made exercises with open questions and multiple choice questions, ");
+    v.push_back("with or without images. The exercises can created by use of a simple text editor (Notepad, for example). ");
+    v.push_back("<a href=\"ToolHometrainerVcl.htm\">Hometrainer (VCL)</a> can also be used for examination.</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<h2>Simple example of Hometrainer in creating exercises</h2>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p>Supply the program with a text file like shown below (note that the first line is obligatory):</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<!-- start of code -->");
+    v.push_back("<table border = \"1\"><tr><td><code>");
+    v.push_back("Hometrainer (C) 2009 Richel Bilderbeek<br/>");
+    v.push_back("Humanbody.bmp,Which line points to the liver?,1,2,3,4<br/>");
+    v.push_back("Humanbody.bmp,Which line points to the liver?,1/one/One<br/>");
+    v.push_back("Humanbody.bmp,Which organ does line 1 point to?,The liver/the liver/Liver/liver<br/>");
+    v.push_back("-,In which organ is ethanol detoxified?,The liver/the liver/Liver/liver<br/>");
+    v.push_back("</code></td></tr></table>");
+    v.push_back("<!-- end of the code -->");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p>The program will show you the image, the question and the (shuffled) answers. You have to click the right answer. Great to train yourself in nearly anything!</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<h2>Screenshots</h2>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<ul>");
+    v.push_back("  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolHometrainer_1_8.png\">View a screenshot of 'Hometrainer' (version 1.8)(png)</a></li>");
+    v.push_back("  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolHometrainerMenu_1_8.png\">View a screenshot of 'Hometrainer' its main menu (version 1.8)(png)</a></li>");
+    v.push_back("  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolHometrainerTestCreater_1_8.png\">View a screenshot of 'Hometrainer Test Creater' (version 1.8)(png)</a></li>");
+    v.push_back("  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolHometrainerResult_1_8.png\">View a screenshot of 'Hometrainer' its generated test result (version 1.8)(png)</a></li>");
+    v.push_back("  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolHometrainerTestScorer_1_8.png\">View a screenshot of 'Hometrainer Test Scorer' (version 1.8)(png)</a></li>");
+    v.push_back("  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolHometrainerTestScorer_1_8_2.png\">View another screenshot of 'Hometrainer Test Scorer' (version 1.8)(png)</a></li>");
+    v.push_back("  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolHometrainerCreateDoc_1_8.png\">View a screenshot of 'Hometrainer Doc Creater' (version 1.8)(png)</a></li>");
+    v.push_back("</ul>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<h2>Hometrainer executable and source</h2>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<ul>");
+    v.push_back("  <li>Newer: <a href=\"ToolHometrainer.htm\">Hometrainer</a></li>");
+    v.push_back("  <li><img src=\"PicWindows.png\" alt=\"Windows\"/> <a href=\"ToolHometrainerExe_1_8.zip\">Download the 'Hometrainer' executable (version 1.8)(zip)</a></li>");
+    v.push_back("</ul>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<h2>Hometrainer manual</h2>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<ul>");
+    v.push_back("  <li><a href=\"ToolHometrainerManual.doc\">Download the 'Hometrainer' manual (English)(version 0.5)(doc)</a></li>");
+    v.push_back("  <li>Download the 'Hometrainer' manual (Dutch)(doc)</li>");
+    v.push_back("</ul>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<h2>English Hometrainer exercises</h2>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<ul>");
+    v.push_back("  <li>None yet</li>");
+    v.push_back("</ul>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<h2>Dutch Hometrainer exercises</h2>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<ul>");
+    v.push_back("  <li><a href=\"ToolHometrainer_BiBb1_1_0.zip\">Nectar BB hoofdstuk 1: Vier Rijken (version 1.0)</a></li>");
+    v.push_back("  <li><a href=\"ToolHometrainer_BiBb5_1_1.zip\">Nectar BB hoofdstuk 5: Mens En Milieu (version 1.1)</a></li>");
+    v.push_back("  <li><a href=\"ToolHometrainer_BiBb6_1_0.zip\">Nectar BB hoofdstuk 6: Eten (version 1.0)</a></li>");
+    v.push_back("  <li><a href=\"ToolHometrainer_BiBk1_1_1.zip\">Nectar KB hoofdstuk 1: Vier Rijken Vergelijken (version 1.1)</a></li>");
+    v.push_back("  <li><a href=\"ToolHometrainer_BiKb6_1_2.zip\">Nectar KB hoofdstuk 6: Ademen en eten (version 1.2)</a></li>");
+    v.push_back("  <li><a href=\"ToolHometrainer_BiKb7_1_0.zip\">Nectar KB hoofdstuk 7: Bloed (version 1.2)</a></li>");
+    v.push_back("  <li><a href=\"ToolHometrainer_NaskTl1_v1_3.zip\">Nova 3TL hoofdstuk 1: Electriciteit (version 1.3)(zip)</a></li>");
+    v.push_back("  <li><a href=\"ToolHometrainer_TtBasis_1_2.zip\">Theatertechniek: Basis (version 1.2)(zip)</a></li>");
+    v.push_back("  <li><a href=\"ToolHometrainer_TtGeluid_0_9.zip\">Theatertechniek: Geluidstechniek (version 0.9)(zip)</a></li>");
+    v.push_back("  <li><a href=\"ToolHometrainer_TtLicht_0_9.zip\">Theatertechniek: Lichttechniek (version 0.9)(zip)</a></li>");
+    v.push_back("  <li><a href=\"ToolHometrainer_WijkenArnhem_1_0.zip\">Wijken van Arnhem (version 1.0)(zip)</a></li>");
+    v.push_back("</ul>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<h2>Old versions of Dutch Hometrainer exercises</h2>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<ul>");
+    v.push_back("  <li><a href=\"ToolHometrainer_BiBb5_1_0.zip\">Nectar BB hoofdstuk 5: Mens En Milieu (version 1.0)</a></li>");
+    v.push_back("  <li><a href=\"ToolHometrainer_BiKb6_0_3.zip\">Nectar KB hoofdstuk 6: Ademen en eten (version 0.3)</a></li>");
+    v.push_back("  <li><a href=\"ToolHometrainer_BiKb6_1_0.zip\">Nectar KB hoofdstuk 6: Ademen en eten (version 1.0)</a></li>");
+    v.push_back("</ul>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<h2>Older Hometrainer versions</h2>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<ul>");
+    v.push_back("  <li><img src=\"PicWindows.png\" alt=\"Windows\"/> <a href=\"ToolHometrainer_0_9.png\">View a screenshot of 'Hometrainer' (version 0.9)(png)</a></li>");
+    v.push_back("</ul>");
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<p>&nbsp;</p>");

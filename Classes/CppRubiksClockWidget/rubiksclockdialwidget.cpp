@@ -56,12 +56,12 @@ double ribi::RubiksClockDialWidget::GetDistance(const double dX, const double dY
   return std::sqrt( (dX * dX) + (dY * dY) );
 }
 
-const std::string ribi::RubiksClockDialWidget::GetVersion()
+const std::string ribi::RubiksClockDialWidget::GetVersion() noexcept
 {
   return "1.0";
 }
 
-const std::vector<std::string> ribi::RubiksClockDialWidget::GetVersionHistory()
+const std::vector<std::string> ribi::RubiksClockDialWidget::GetVersionHistory() noexcept
 {
   return {
     "2011-09-08: Version 1.0: initial version"

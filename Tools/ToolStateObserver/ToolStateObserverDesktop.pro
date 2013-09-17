@@ -106,7 +106,7 @@ CONFIG(release, debug|release) {
 #
 
 #Can't add -Weffc++ due to Qt resources
-QMAKE_CXXFLAGS += -std=c++11 -Wall -Wextra  -Werror
+QMAKE_CXXFLAGS += -std=c++11 -Wall -Wextra -Weffc++ -Werror
 
 #
 #

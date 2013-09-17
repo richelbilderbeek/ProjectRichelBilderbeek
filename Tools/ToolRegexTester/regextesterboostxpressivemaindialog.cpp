@@ -39,7 +39,7 @@ ribi::RegexTesterBoostXpressiveMainDialog::RegexTesterBoostXpressiveMainDialog()
 
 
 const boost::shared_ptr<ribi::RegexTesterMainDialog>
-  ribi::RegexTesterBoostXpressiveMainDialog::Clone() const
+  ribi::RegexTesterBoostXpressiveMainDialog::Clone() const noexcept
 {
   boost::shared_ptr<RegexTesterMainDialog> d(
     new RegexTesterBoostXpressiveMainDialog);
@@ -84,7 +84,7 @@ const std::vector<std::string>
 }
 
 bool ribi::RegexTesterBoostXpressiveMainDialog::GetRegexMatchLine(
-  const std::string& line, const std::string& regex_str) const
+  const std::string& line, const std::string& regex_str) const noexcept
 {
   if (!GetRegexValid(regex_str)) return false;
   const boost::xpressive::sregex r(
@@ -116,7 +116,7 @@ const std::string ribi::RegexTesterBoostXpressiveMainDialog::GetRegexReplace(
 }
 
 bool ribi::RegexTesterBoostXpressiveMainDialog::GetRegexValid(
-  const std::string& regex_str) const
+  const std::string& regex_str) const noexcept
 {
   try
   {
@@ -127,7 +127,7 @@ bool ribi::RegexTesterBoostXpressiveMainDialog::GetRegexValid(
 }
 
 #ifndef NDEBUG
-void ribi::RegexTesterBoostXpressiveMainDialog::Test()
+void ribi::RegexTesterBoostXpressiveMainDialog::Test() noexcept
 {
   {
     static bool is_tested = false;

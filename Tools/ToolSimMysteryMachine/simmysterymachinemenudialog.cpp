@@ -33,7 +33,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "widget.h"
 #pragma GCC diagnostic pop
 
-const ribi::About ribi::SimMysteryMachineMenuDialog::GetAbout()
+const ribi::About ribi::SimMysteryMachineMenuDialog::GetAbout() noexcept
 {
   About a(
     "Richel Bilderbeek",
@@ -57,12 +57,12 @@ const ribi::About ribi::SimMysteryMachineMenuDialog::GetAbout()
   return a;
 }
 
-const std::string ribi::SimMysteryMachineMenuDialog::GetVersion()
+const std::string ribi::SimMysteryMachineMenuDialog::GetVersion() noexcept
 {
   return "1.2";
 }
 
-const std::vector<std::string> ribi::SimMysteryMachineMenuDialog::GetVersionHistory()
+const std::vector<std::string> ribi::SimMysteryMachineMenuDialog::GetVersionHistory() noexcept
 {
   return {
     "2011-04-10: Version 1.0: initial version (web application version not working yet)",

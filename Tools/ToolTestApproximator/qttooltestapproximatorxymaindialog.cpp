@@ -18,7 +18,7 @@
 
 #pragma GCC diagnostic pop
 
-ribi::QtToolTestApproximatorXyMainDialog::QtToolTestApproximatorXyMainDialog(QWidget *parent) :
+ribi::QtToolTestApproximatorXyMainDialog::QtToolTestApproximatorXyMainDialog(QWidget *parent) noexcept :
   QtHideAndShowDialog(parent),
   ui(new Ui::QtToolTestApproximatorXyMainDialog),
   m_approximator(),
@@ -103,12 +103,12 @@ ribi::QtToolTestApproximatorXyMainDialog::QtToolTestApproximatorXyMainDialog(QWi
   ui->box_double_y->setValue(0.0);
 }
 
-ribi::QtToolTestApproximatorXyMainDialog::~QtToolTestApproximatorXyMainDialog()
+ribi::QtToolTestApproximatorXyMainDialog::~QtToolTestApproximatorXyMainDialog() noexcept
 {
   delete ui;
 }
 
-void ribi::QtToolTestApproximatorXyMainDialog::on_button_clicked()
+void ribi::QtToolTestApproximatorXyMainDialog::on_button_clicked() noexcept
 {
   const int x = ui->box_int_x->value();
   const double y = ui->box_double_y->value();
@@ -119,21 +119,21 @@ void ribi::QtToolTestApproximatorXyMainDialog::on_button_clicked()
   Plot();
 }
 
-void ribi::QtToolTestApproximatorXyMainDialog::on_box_int_x_valueChanged(int)
+void ribi::QtToolTestApproximatorXyMainDialog::on_box_int_x_valueChanged(int) noexcept
 {
   const int x = ui->box_int_x->value();
   const double y = ui->box_double_y->value();
   ui->button->setEnabled( m_approximator.CanAdd(x,y) );
 }
 
-void ribi::QtToolTestApproximatorXyMainDialog::on_box_double_y_valueChanged(double)
+void ribi::QtToolTestApproximatorXyMainDialog::on_box_double_y_valueChanged(double) noexcept
 {
   const int x = ui->box_int_x->value();
   const double y = ui->box_double_y->value();
   ui->button->setEnabled( m_approximator.CanAdd(x,y) );
 }
 
-void ribi::QtToolTestApproximatorXyMainDialog::Plot()
+void ribi::QtToolTestApproximatorXyMainDialog::Plot() noexcept
 {
   //Plot approximation
   {

@@ -3,10 +3,13 @@
 
 #include <bitset>
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include <boost/shared_ptr.hpp>
 
 #include <QImage>
 #include <QWidget>
+#pragma GCC diagnostic pop
 
 namespace ribi {
 
@@ -28,8 +31,8 @@ protected:
 
 
 private:
-  std::bitset<3> m_is_player_human;
   bool m_is_player3_kathleen; //Player 3 can be either Kathleen or Josje
+  std::bitset<3> m_is_player_human;
   const QImage m_josje;
   const QImage m_josje_grey;
   const QImage m_karen;

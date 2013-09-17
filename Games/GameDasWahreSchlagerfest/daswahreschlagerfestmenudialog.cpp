@@ -25,7 +25,7 @@ ribi::DasWahreSchlagerfestMenuDialog::DasWahreSchlagerfestMenuDialog()
 
 }
 
-const ribi::About ribi::DasWahreSchlagerfestMenuDialog::GetAbout()
+const ribi::About ribi::DasWahreSchlagerfestMenuDialog::GetAbout() noexcept
 {
   return About(
     "Richel Bilderbeek",
@@ -38,12 +38,12 @@ const ribi::About ribi::DasWahreSchlagerfestMenuDialog::GetAbout()
     GetVersionHistory());
 }
 
-const std::string ribi::DasWahreSchlagerfestMenuDialog::GetVersion()
+const std::string ribi::DasWahreSchlagerfestMenuDialog::GetVersion() noexcept
 {
   return "2.2";
 }
 
-const std::vector<std::string> ribi::DasWahreSchlagerfestMenuDialog::GetVersionHistory()
+const std::vector<std::string> ribi::DasWahreSchlagerfestMenuDialog::GetVersionHistory() noexcept
 {
   return {
     "2003-09-30: version 1.1: Windows-only version",

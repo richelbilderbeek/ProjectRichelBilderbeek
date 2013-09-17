@@ -14,7 +14,7 @@
 
 #pragma GCC diagnostic pop
 
-ribi::QtToolTestMultiApproximatorMenuDialog::QtToolTestMultiApproximatorMenuDialog(QWidget *parent) :
+ribi::QtToolTestMultiApproximatorMenuDialog::QtToolTestMultiApproximatorMenuDialog(QWidget *parent) noexcept :
   QtHideAndShowDialog(parent),
   ui(new Ui::QtToolTestMultiApproximatorMenuDialog)
 {
@@ -24,17 +24,17 @@ ribi::QtToolTestMultiApproximatorMenuDialog::QtToolTestMultiApproximatorMenuDial
   ui->setupUi(this);
 }
 
-ribi::QtToolTestMultiApproximatorMenuDialog::~QtToolTestMultiApproximatorMenuDialog()
+ribi::QtToolTestMultiApproximatorMenuDialog::~QtToolTestMultiApproximatorMenuDialog() noexcept
 {
   delete ui;
 }
 
-void ribi::QtToolTestMultiApproximatorMenuDialog::keyPressEvent(QKeyEvent * event)
+void ribi::QtToolTestMultiApproximatorMenuDialog::keyPressEvent(QKeyEvent * event) noexcept
 {
   if (event->key() == Qt::Key_Escape) { close(); return; }
 }
 
-void ribi::QtToolTestMultiApproximatorMenuDialog::on_button_about_clicked()
+void ribi::QtToolTestMultiApproximatorMenuDialog::on_button_about_clicked() noexcept
 {
   About a = ToolTestMultiApproximatorMenuDialog::GetAbout();
   a.AddLibrary("QtHideAndShowDialog version: " + QtHideAndShowDialog::GetVersion());
@@ -46,19 +46,19 @@ void ribi::QtToolTestMultiApproximatorMenuDialog::on_button_about_clicked()
   this->show();
 }
 
-void ribi::QtToolTestMultiApproximatorMenuDialog::on_button_quit_clicked()
+void ribi::QtToolTestMultiApproximatorMenuDialog::on_button_quit_clicked() noexcept
 {
   close();
 }
 
-void ribi::QtToolTestMultiApproximatorMenuDialog::on_button_start_clicked()
+void ribi::QtToolTestMultiApproximatorMenuDialog::on_button_start_clicked() noexcept
 {
   QtToolTestMultiApproximatorMainDialog d;
   ShowChild(&d);
 }
 
 #ifndef NDEBUG
-void ribi::QtToolTestMultiApproximatorMenuDialog::Test()
+void ribi::QtToolTestMultiApproximatorMenuDialog::Test() noexcept
 {
   {
     static bool is_tested = false;

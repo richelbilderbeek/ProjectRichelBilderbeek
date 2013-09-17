@@ -169,12 +169,12 @@ double ribi::AsciiArter::GetFractionGrey(
   return GetGreyness(image,x1,y1,x2,y2);
 }
 
-const std::string ribi::AsciiArter::GetVersion()
+const std::string ribi::AsciiArter::GetVersion() noexcept
 {
   return "1.0";
 }
 
-const std::vector<std::string> ribi::AsciiArter::GetVersionHistory()
+const std::vector<std::string> ribi::AsciiArter::GetVersionHistory() noexcept
 {
   return {
     "2011-03-23: Version 1.0: initial version"

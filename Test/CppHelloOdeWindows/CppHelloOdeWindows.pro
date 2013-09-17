@@ -7,6 +7,10 @@ SOURCES += main.cpp
 
 win32 {
   INCLUDEPATH += \
-    ../../Libraries/ode-0.12
+    ../../Libraries/ode-0.12/include
+
+  #Getting close!
+  LIBS += ../../Libraries/ode-0.12/lib/DebugDoubleDLL/drawstuffd.lib
+  LIBS += ../../Libraries/ode-0.12/lib/DebugDoubleDLL/ode_doubled.lib
 }
 

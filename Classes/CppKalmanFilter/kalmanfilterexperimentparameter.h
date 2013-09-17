@@ -60,11 +60,6 @@ struct KalmanFilterExperimentParameter
   ///Is this parameter a vector?
   static bool IsVector(const KalmanFilterExperimentParameterType type);
 
-  #ifndef NDEBUG
-  ///Test this class
-  static void Test();
-  #endif
-
   ///Obtain the full name of a type, e.g. 'Matrix to capture the physics of the system'
   static const std::string ToDescription(const KalmanFilterExperimentParameterType type);
 
@@ -75,6 +70,12 @@ struct KalmanFilterExperimentParameter
   static const std::string ToSymbol(const KalmanFilterExperimentParameterType type);
 
   private:
+
+  #ifndef NDEBUG
+  ///Test this class
+  static void Test();
+  #endif
+
   static const std::vector<std::pair<KalmanFilterParameterType,KalmanFilterExperimentParameterType> > m_map_kalman_filter;
   static const std::vector<std::pair<WhiteNoiseSystemParameterType,KalmanFilterExperimentParameterType> > m_map_white_noise_system;
   static const std::vector<std::pair<KalmanFilterParameterType,KalmanFilterExperimentParameterType> > CreateMapKalmanFilter();

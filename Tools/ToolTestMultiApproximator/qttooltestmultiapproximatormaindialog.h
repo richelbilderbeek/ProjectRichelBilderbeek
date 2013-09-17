@@ -23,11 +23,13 @@ class QtToolTestMultiApproximatorMainDialog : public QtHideAndShowDialog
   Q_OBJECT
   
 public:
-  explicit QtToolTestMultiApproximatorMainDialog(QWidget *parent = 0);
-  ~QtToolTestMultiApproximatorMainDialog();
+  explicit QtToolTestMultiApproximatorMainDialog(QWidget *parent = 0) noexcept;
+  QtToolTestMultiApproximatorMainDialog(const QtToolTestMultiApproximatorMainDialog&) = delete;
+  QtToolTestMultiApproximatorMainDialog& operator=(const QtToolTestMultiApproximatorMainDialog&) = delete;
+  ~QtToolTestMultiApproximatorMainDialog() noexcept;
   
 private slots:
-  void on_button_clicked();
+  void on_button_clicked() noexcept;
 
 private:
   Ui::QtToolTestMultiApproximatorMainDialog *ui;
@@ -61,7 +63,7 @@ private:
   ///Contains the plot of the (non-Multi)Approximator
   const boost::shared_ptr<QwtPlot> m_plot;
 
-  void Plot();
+  void Plot() noexcept;
 };
 
 } //~namespace ribi

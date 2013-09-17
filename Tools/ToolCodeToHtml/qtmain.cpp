@@ -18,6 +18,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolCodeToHtml.htm
 //---------------------------------------------------------------------------
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include <csignal>
 #include <iostream>
 
@@ -28,6 +30,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "qtcodetohtmlmenudialog.h"
 #include "codetohtmldialog.h"
 #include "trace.h"
+#pragma GCC diagnostic pop
 
 void OnAbort(int)
 {

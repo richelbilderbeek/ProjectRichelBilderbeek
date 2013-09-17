@@ -29,12 +29,12 @@ QtChordEdge::QtChordEdge(QGraphicsItem *parent)
 
 }
 
-const std::string QtChordEdge::GetVersion()
+const std::string QtChordEdge::GetVersion() noexcept
 {
   return "1.1";
 }
 
-const std::vector<std::string> QtChordEdge::GetVersionHistory()
+const std::vector<std::string> QtChordEdge::GetVersionHistory() noexcept
 {
   std::vector<std::string> v;
   v.push_back("2012-08-10: version 1.0: initial version");

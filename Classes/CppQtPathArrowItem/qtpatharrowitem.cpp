@@ -76,12 +76,12 @@ double ribi::QtPathArrowItem::GetAngle(const double dx, const double dy)
   return pi - (std::atan(dx/dy));
 }
 
-const std::string ribi::QtPathArrowItem::GetVersion()
+const std::string ribi::QtPathArrowItem::GetVersion() noexcept
 {
   return "1.0";
 }
 
-const std::vector<std::string> ribi::QtPathArrowItem::GetVersionHistory()
+const std::vector<std::string> ribi::QtPathArrowItem::GetVersionHistory() noexcept
 {
   std::vector<std::string> v;
   v.push_back("2012-12-01: version 1.0: initial version");

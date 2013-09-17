@@ -22,15 +22,17 @@ class QtToolTestApproximatorXyMainDialog : public QtHideAndShowDialog
   Q_OBJECT
   
 public:
-  explicit QtToolTestApproximatorXyMainDialog(QWidget *parent = 0);
-  ~QtToolTestApproximatorXyMainDialog();
+  explicit QtToolTestApproximatorXyMainDialog(QWidget *parent = 0) noexcept;
+  QtToolTestApproximatorXyMainDialog(const QtToolTestApproximatorXyMainDialog&) = delete;
+  QtToolTestApproximatorXyMainDialog& operator=(const QtToolTestApproximatorXyMainDialog&) = delete;
+  ~QtToolTestApproximatorXyMainDialog() noexcept;
   
 private slots:
-  void on_button_clicked();
+  void on_button_clicked() noexcept;
 
-  void on_box_int_x_valueChanged(int arg1);
+  void on_box_int_x_valueChanged(int arg1) noexcept;
 
-  void on_box_double_y_valueChanged(double arg1);
+  void on_box_double_y_valueChanged(double arg1) noexcept;
 
 private:
   Ui::QtToolTestApproximatorXyMainDialog *ui;
@@ -47,7 +49,7 @@ private:
   const boost::shared_ptr<QwtPlot> m_plot;
 
 
-  void Plot();
+  void Plot() noexcept;
 };
 
 } //~namespace ribi

@@ -515,12 +515,12 @@ void ribi::RubiksClock::Check()
   #endif
 }
 
-const std::string ribi::RubiksClock::GetVersion()
+const std::string ribi::RubiksClock::GetVersion() noexcept
 {
   return "1.0";
 }
 
-const std::vector<std::string> ribi::RubiksClock::GetVersionHistory()
+const std::vector<std::string> ribi::RubiksClock::GetVersionHistory() noexcept
 {
   std::vector<std::string> v;
   v.push_back("2011-09-08: Version 1.0: initial version");

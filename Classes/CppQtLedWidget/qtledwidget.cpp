@@ -175,12 +175,12 @@ void ribi::QtLedWidget::DrawLed(
     widget->GetLed());
 }
 
-const std::string ribi::QtLedWidget::GetVersion()
+const std::string ribi::QtLedWidget::GetVersion() noexcept
 {
   return "1.4";
 }
 
-const std::vector<std::string> ribi::QtLedWidget::GetVersionHistory()
+const std::vector<std::string> ribi::QtLedWidget::GetVersionHistory() noexcept
 {
   return {
     "2011-04-10: Version 1.0: initial version",

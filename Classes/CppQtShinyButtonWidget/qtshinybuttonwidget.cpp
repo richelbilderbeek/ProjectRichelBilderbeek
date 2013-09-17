@@ -136,12 +136,12 @@ void ribi::QtShinyButtonWidget::DoRepaint()
   m_signal_changed();
 }
 
-const std::string ribi::QtShinyButtonWidget::GetVersion()
+const std::string ribi::QtShinyButtonWidget::GetVersion() noexcept
 {
   return "1.0";
 }
 
-const std::vector<std::string> ribi::QtShinyButtonWidget::GetVersionHistory()
+const std::vector<std::string> ribi::QtShinyButtonWidget::GetVersionHistory() noexcept
 {
   std::vector<std::string> v;
   v.push_back("YYYY-MM-DD: version X.Y: [description]");

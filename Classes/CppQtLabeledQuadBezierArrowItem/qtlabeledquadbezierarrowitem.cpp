@@ -50,12 +50,12 @@ QRectF ribi::QtLabeledQuadBezierArrowItem::boundingRect() const
     .united(m_arrow->boundingRect().translated(-this->pos()));
 }
 
-const std::string ribi::QtLabeledQuadBezierArrowItem::GetVersion()
+const std::string ribi::QtLabeledQuadBezierArrowItem::GetVersion() noexcept
 {
   return "1.0";
 }
 
-const std::vector<std::string> ribi::QtLabeledQuadBezierArrowItem::GetVersionHistory()
+const std::vector<std::string> ribi::QtLabeledQuadBezierArrowItem::GetVersionHistory() noexcept
 {
   std::vector<std::string> v;
   v.push_back("2013-01-01: version 1.0: initial version");

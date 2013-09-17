@@ -60,12 +60,12 @@ void ribi::QtChordVertex::paint(QPainter *painter, const QStyleOptionGraphicsIte
     m_chord->ToStr().c_str());
 }
 
-const std::string ribi::QtChordVertex::GetVersion()
+const std::string ribi::QtChordVertex::GetVersion() noexcept
 {
   return "1.2";
 }
 
-const std::vector<std::string> ribi::QtChordVertex::GetVersionHistory()
+const std::vector<std::string> ribi::QtChordVertex::GetVersionHistory() noexcept
 {
   std::vector<std::string> v;
   v.push_back("2012-08-10: version 1.0: initial version");

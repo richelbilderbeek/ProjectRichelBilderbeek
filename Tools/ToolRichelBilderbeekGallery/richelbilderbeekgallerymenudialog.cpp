@@ -280,7 +280,7 @@ const std::vector<std::string> ribi::RichelBilderbeek::GalleryMenuDialog::Create
   return v;
 }
 
-const ribi::About ribi::RichelBilderbeek::GalleryMenuDialog::GetAbout()
+const ribi::About ribi::RichelBilderbeek::GalleryMenuDialog::GetAbout() noexcept
 {
   About a(
     "Richel Bilderbeek",
@@ -296,12 +296,12 @@ const ribi::About ribi::RichelBilderbeek::GalleryMenuDialog::GetAbout()
   return a;
 }
 
-const std::string ribi::RichelBilderbeek::GalleryMenuDialog::GetVersion()
+const std::string ribi::RichelBilderbeek::GalleryMenuDialog::GetVersion() noexcept
 {
   return "1.0";
 }
 
-const std::vector<std::string> ribi::RichelBilderbeek::GalleryMenuDialog::GetVersionHistory()
+const std::vector<std::string> ribi::RichelBilderbeek::GalleryMenuDialog::GetVersionHistory() noexcept
 {
   std::vector<std::string> v;
   v.push_back("2012-02-20: Version 1.0: initial version");

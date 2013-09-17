@@ -117,12 +117,12 @@ void ribi::QtToggleButtonWidget::DrawToggleButton(
     widget->GetToggleButton());
 }
 
-const std::string ribi::QtToggleButtonWidget::GetVersion()
+const std::string ribi::QtToggleButtonWidget::GetVersion() noexcept
 {
   return "1.0";
 }
 
-const std::vector<std::string> ribi::QtToggleButtonWidget::GetVersionHistory()
+const std::vector<std::string> ribi::QtToggleButtonWidget::GetVersionHistory() noexcept
 {
   return {
     "2011-06-16: version 1.0: initial version"

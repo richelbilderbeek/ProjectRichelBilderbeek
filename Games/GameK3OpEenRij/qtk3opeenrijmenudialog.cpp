@@ -1,3 +1,5 @@
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include "qtk3opeenrijmenudialog.h"
 
 #include "k3opeenrijmenudialog.h"
@@ -8,11 +10,12 @@
 #include "qtk3opeenrijinstructionsdialog.h"
 #include "qtk3opeenrijselectplayerwidget.h"
 #include "ui_qtk3opeenrijmenudialog.h"
+#pragma GCC diagnostic pop
 
 ribi::QtK3OpEenRijMenuDialog::QtK3OpEenRijMenuDialog(
   const boost::shared_ptr<const QtK3OpEenRijResources> resources,
-  QWidget *parent) :
-    QtHideAndShowDialog(parent),
+  QWidget *parent)  noexcept
+  : QtHideAndShowDialog(parent),
     ui(new Ui::QtK3OpEenRijMenuDialog),
     m_select(new QtK3OpEenRijSelectPlayerWidget(resources))
 {
@@ -24,25 +27,57 @@ ribi::QtK3OpEenRijMenuDialog::QtK3OpEenRijMenuDialog(
   ui->layout_horizontal->addWidget(m_select.get());
 }
 
-ribi::QtK3OpEenRijMenuDialog::~QtK3OpEenRijMenuDialog()
+ribi::QtK3OpEenRijMenuDialog::~QtK3OpEenRijMenuDialog() noexcept
 {
   delete ui;
 }
 
 #ifndef NDEBUG
-void ribi::QtK3OpEenRijMenuDialog::Test()
+void ribi::QtK3OpEenRijMenuDialog::Test() noexcept
 {
   {
     static bool is_tested = false;
     if (is_tested) return;
     is_tested = true;
   }
-  const boost::shared_ptr<const QtK3OpEenRijResources> resources(new QtK3OpEenRijResources);
-  QtConnectThreeGameDialog d(resources,nullptr,std::bitset<3>(false));
+  {
+    const boost::shared_ptr<const QtK3OpEenRijResources> resources(new QtK3OpEenRijResources);
+    QtConnectThreeGameDialog d(resources,nullptr,std::bitset<3>(false));
+  }
+  {
+    QtK3OpEenRijInstructionsDialog d;
+  }
+  {
+    About about = K3OpEenRijMenuDialog::GetAbout();
+    QtAboutDialog d(about);
+  }
 }
 #endif
 
-void ribi::QtK3OpEenRijMenuDialog::on_button_start_clicked()
+void ribi::QtK3OpEenRijMenuDialog::on_button_about_clicked() noexcept
+{
+  About about = K3OpEenRijMenuDialog::GetAbout();
+  about.AddLibrary("QtConnectThreeWidget version: " + QtConnectThreeWidget::GetVersion());
+  QtAboutDialog d(about);
+  d.setStyleSheet(this->styleSheet());
+  d.setWindowIcon(this->windowIcon());
+  this->hide();
+  d.exec();
+  this->show();
+}
+
+void ribi::QtK3OpEenRijMenuDialog::on_button_instructions_clicked() noexcept
+{
+  QtK3OpEenRijInstructionsDialog d;
+  this->ShowChild(&d);
+}
+
+void ribi::QtK3OpEenRijMenuDialog::on_button_quit_clicked() noexcept
+{
+  close();
+}
+
+void ribi::QtK3OpEenRijMenuDialog::on_button_start_clicked() noexcept
 {
   //Supply the correct resources, depending on if player 3 chose Kathleen or Josje
   const boost::shared_ptr<QtK3OpEenRijResources> resources(
@@ -58,27 +93,4 @@ void ribi::QtK3OpEenRijMenuDialog::on_button_start_clicked()
   this->hide();
   d.exec();
   this->show();
-}
-
-void ribi::QtK3OpEenRijMenuDialog::on_button_about_clicked()
-{
-  About about = K3OpEenRijMenuDialog::GetAbout();
-  about.AddLibrary("QtConnectThreeWidget version: " + QtConnectThreeWidget::GetVersion());
-  QtAboutDialog d(about);
-  d.setStyleSheet(this->styleSheet());
-  d.setWindowIcon(this->windowIcon());
-  this->hide();
-  d.exec();
-  this->show();
-}
-
-void ribi::QtK3OpEenRijMenuDialog::on_button_quit_clicked()
-{
-  close();
-}
-
-void ribi::QtK3OpEenRijMenuDialog::on_button_instructions_clicked()
-{
-  QtK3OpEenRijInstructionsDialog d;
-  this->ShowChild(&d);
 }

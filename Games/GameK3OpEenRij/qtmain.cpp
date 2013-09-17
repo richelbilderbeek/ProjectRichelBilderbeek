@@ -18,6 +18,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/GameConnectThree.htm
 //---------------------------------------------------------------------------
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include <QApplication>
 
 #include <boost/shared_ptr.hpp>
@@ -28,6 +30,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "qtk3opeenrijresources.h"
 #include "qtk3opeenrijmenudialog.h"
 #include "trace.h"
+#pragma GCC diagnostic pop
 
 const std::string CreateStyleSheet()
 {

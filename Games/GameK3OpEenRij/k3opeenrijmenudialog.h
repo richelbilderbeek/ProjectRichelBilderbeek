@@ -1,7 +1,6 @@
 #ifndef K3OPEENRIJMENUDIALOG_H
 #define K3OPEENRIJMENUDIALOG_H
 
-
 #include <string>
 #include <vector>
 #include "about.h"

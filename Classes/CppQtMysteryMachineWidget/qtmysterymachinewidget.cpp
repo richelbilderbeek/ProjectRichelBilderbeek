@@ -98,12 +98,12 @@ void ribi::QtMysteryMachineWidget::DoRepaint()
   this->repaint();
 }
 
-const std::string ribi::QtMysteryMachineWidget::GetVersion()
+const std::string ribi::QtMysteryMachineWidget::GetVersion() noexcept
 {
   return "2.0";
 }
 
-const std::vector<std::string> ribi::QtMysteryMachineWidget::GetVersionHistory()
+const std::vector<std::string> ribi::QtMysteryMachineWidget::GetVersionHistory() noexcept
 {
   return {
     "YYYY-MM-DD: version X.Y: [description]",

@@ -1,9 +1,3 @@
-int main()
-{
-  //Placeholder, project does not compile
-}
-
-
 /* Compile output without 'DEFINES += B3_USE_CLEW' (warnings removed):
 
 In file included from ..\..\Libraries\bullet3\src\Bullet3OpenCL\Initialize\b3OpenCLUtils.h:22:0,

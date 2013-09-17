@@ -22,7 +22,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #include "pictocodemenudialog.h"
 //---------------------------------------------------------------------------
-const ribi::About ribi::PicToCodeMenuDialog::GetAbout()
+const ribi::About ribi::PicToCodeMenuDialog::GetAbout() noexcept
 {
   About a(
     "Richel Bilderbeek",
@@ -37,12 +37,12 @@ const ribi::About ribi::PicToCodeMenuDialog::GetAbout()
   return a;
 }
 //---------------------------------------------------------------------------
-const std::string ribi::PicToCodeMenuDialog::GetVersion()
+const std::string ribi::PicToCodeMenuDialog::GetVersion() noexcept
 {
   return "1.3";
 }
 //---------------------------------------------------------------------------
-const std::vector<std::string> ribi::PicToCodeMenuDialog::GetVersionHistory()
+const std::vector<std::string> ribi::PicToCodeMenuDialog::GetVersionHistory() noexcept
 {
   std::vector<std::string> v;
   v.push_back("2010-10-10: version 1.0: initial version");

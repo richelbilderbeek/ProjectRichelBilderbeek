@@ -26,7 +26,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <sstream>
 #include <stdexcept>
 
-const ribi::About ribi::BeerWanterMenuDialog::GetAbout()
+const ribi::About ribi::BeerWanterMenuDialog::GetAbout() noexcept
 {
   About a(
     "Richel Bilderbeek",
@@ -41,12 +41,12 @@ const ribi::About ribi::BeerWanterMenuDialog::GetAbout()
   return a;
 }
 
-const std::string ribi::BeerWanterMenuDialog::GetVersion()
+const std::string ribi::BeerWanterMenuDialog::GetVersion() noexcept
 {
   return "7.1";
 }
 
-const std::vector<std::string> ribi::BeerWanterMenuDialog::GetVersionHistory()
+const std::vector<std::string> ribi::BeerWanterMenuDialog::GetVersionHistory() noexcept
 {
   std::vector<std::string> v;
   v.push_back("2005-11-16: version 1.0: (at that time called) 'Beerwanter 1' was programmed in C++ using the C++ Builder IDE during a 'Spass programmieren' session, which made BeerWanter a game for Windows users only.");

@@ -358,7 +358,7 @@ bool ribi::NewickVector::NewickCompare(
   return false;
 }
 
-int ribi::NewickVector::Size() const
+int ribi::NewickVector::Size() const noexcept
 {
   return boost::numeric_cast<int>(m_v.size());
 }

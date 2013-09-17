@@ -22,10 +22,9 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #ifndef QTMAZECREATORMAINDIALOG_H
 #define QTMAZECREATORMAINDIALOG_H
 
-#include <boost/shared_ptr.hpp>
-
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
+#include <boost/shared_ptr.hpp>
 #include <QDialog>
 #pragma GCC diagnostic pop
 

@@ -26,20 +26,24 @@
 </p>
 <p>&nbsp;</p>
 <p>
-  It appears to be easy to build <a href="CppBullet.htm">Bullet</a> under <a href="CppWindows.htm">Windows</a> with 
-  <a href="CppVisualStudio.htm">Visual Studio</a> or under <a href="CppLinux.htm">Linux</a>.
-  When building <a href="CppBullet.htm">Bullet</a> under <a href="CppWindows.htm">Windows</a> 
-  with <a href="CppQtCreator.htm">Qt Creator</a>, because I could not build from a 
-  <a href="CppVisualStudio.htm">Visual Studio</a> .proj (Project) file.
+  <a href="CppBullet.htm">Bullet</a> is easy to build with <a href="CppVisualStudio.htm">Visual Studio</a>
+  under <a href="CppWindows.htm">Windows</a>. Sadly, I was not able to find one full-code tutorial on
+  their wiki that did compile. I noticed that header files often needed to be renamed from 'btX.h' to 'b3X.h',
+  so I assume the source code of the library changed, without changing the tutorials.
+</p>
+<p>
+  Due to not being able to compile even the simplest example code, I gave up on using Bullet.
 </p>
 <p>&nbsp;</p>
 <p>
-  One failed approach was to 'cd bullet3/build', 'premake4.exe gmake', 'cd gmake', 'C:\Progra~1\GnuWin32\bin\make.exe'.
+  One failed approach to build Bullet without <a href="CppVisualStudio.htm">Visual Studio</a>
+  was to 'cd bullet3/build', 'premake4.exe gmake', 'cd gmake', 'C:\Progra~1\GnuWin32\bin\make.exe'.
   This resulted in the error: ''cc' is not recognized as an internal or external command, operable program or batch file.'
 </p>
 <p>&nbsp;</p>
 <p>
-  Another failed approach was to use CMake: 'cd Libraries', 'mkdir bin', 'cd bin', 'cmake ../bullet3'.
+  Another failed approach One failed approach to build Bullet without <a href="CppVisualStudio.htm">Visual Studio</a> 
+  was to use CMake: 'cd Libraries', 'mkdir bin', 'cd bin', 'cmake ../bullet3'.
   This resulted in the error: 'CMake Error: The source directory "D:/Projects/Libraries/bullet3" does not appear 
   to contain CMakeLists.txt.'
 </p>

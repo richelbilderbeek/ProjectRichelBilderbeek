@@ -26,13 +26,13 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "trace.h"
 #pragma GCC diagnostic pop
 
-const ribi::About ribi::CodeToHtmlMenuDialog::GetAbout()
+const ribi::About ribi::CodeToHtmlMenuDialog::GetAbout() noexcept
 {
   ribi::About a {
     "Richel Bilderbeek",
     "CodeToHtml",
     "tool to convert code to heavily-linked HTML",
-    "the 19th of August 2013",
+    "the 17th of September 2013",
     "2010-2013",
     "http://www.richelbilderbeek.nl/ToolCodeToHtml.htm",
     GetVersion(),
@@ -44,12 +44,12 @@ const ribi::About ribi::CodeToHtmlMenuDialog::GetAbout()
   return a;
 }
 
-const std::string ribi::CodeToHtmlMenuDialog::GetVersion()
+const std::string ribi::CodeToHtmlMenuDialog::GetVersion() noexcept
 {
-  return "2.7";
+  return "2.8";
 }
 
-const std::vector<std::string> ribi::CodeToHtmlMenuDialog::GetVersionHistory()
+const std::vector<std::string> ribi::CodeToHtmlMenuDialog::GetVersionHistory() noexcept
 {
   const std::vector<std::string> v {
     "2010-03-14: version 1.0: programmed initial console version of CodeToHtml. Due to my switch from Windows to Ubuntu, I had to abandon MS Word as my favorite HTML editor. Then I had to write my webpages in plain HTML, but adding links to all my code snippets was tiresome. CodeToHtml automated this for me",
@@ -85,7 +85,7 @@ const std::vector<std::string> ribi::CodeToHtmlMenuDialog::GetVersionHistory()
     "2013-05-19: version 2.5: +3400 replacements, following architectural changes in QtCreatorProFile and QtCreatorProFileZipScript",
     "2013-08-19: version 2.6: replaced Boost.Filesystem and Boost.Regex by Qt and Boost.Xpressive, added tests, added +5000 lines of CodeToHtml info",
     "2013-09-05: version 2.7: transition to namespace ribi",
-    "2013-09-10: version 2.8: compile with -Weffc++, fixed bug due to this, removed recursive replacements, cleaned info"
+    "2013-09-17: version 2.8: compile with -Weffc++, fixed bug due to this, removed recursive replacements, cleaned info, do tests at run-time, added reading .pri files"
   };
   return v;
 }

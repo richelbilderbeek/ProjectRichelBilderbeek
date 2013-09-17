@@ -27,7 +27,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "trace.h"
 #pragma GCC diagnostic pop
 
-const ribi::About ribi::CreateQtProjectZipFile::MenuDialog::GetAbout()
+const ribi::About ribi::CreateQtProjectZipFile::MenuDialog::GetAbout() noexcept
 {
   About a(
     "Richel Bilderbeek",
@@ -45,12 +45,12 @@ const ribi::About ribi::CreateQtProjectZipFile::MenuDialog::GetAbout()
   return a;
 }
 
-const std::string ribi::CreateQtProjectZipFile::MenuDialog::GetVersion()
+const std::string ribi::CreateQtProjectZipFile::MenuDialog::GetVersion() noexcept
 {
   return "2.0";
 }
 
-const std::vector<std::string> ribi::CreateQtProjectZipFile::MenuDialog::GetVersionHistory()
+const std::vector<std::string> ribi::CreateQtProjectZipFile::MenuDialog::GetVersionHistory() noexcept
 {
   return {
     "2012-02-25: version 1.0: initial version",

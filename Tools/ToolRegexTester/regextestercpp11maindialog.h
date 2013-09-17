@@ -35,13 +35,13 @@ struct RegexTesterCpp11MainDialog : public RegexTesterMainDialog
   RegexTesterCpp11MainDialog() {}
 
   ///Clone this class
-  const boost::shared_ptr<RegexTesterMainDialog> Clone() const;
+  const boost::shared_ptr<RegexTesterMainDialog> Clone() const noexcept;
 
   ///Get an example format used to replace regex matches
-  const std::string GetExampleFormat() const { return "$0"; }
+  const std::string GetExampleFormat() const noexcept { return "$0"; }
 
   ///Get an example regex
-  const std::string GetExampleRegex() const { return "\\d{4} [A-Z]{2}"; }
+  const std::string GetExampleRegex() const noexcept { return "\\d{4} [A-Z]{2}"; }
 
   ///Get all regex matches withing a line
   //From http://www.richelbilderbeek.nl/CppGetRegexMatches.htm
@@ -50,7 +50,7 @@ struct RegexTesterCpp11MainDialog : public RegexTesterMainDialog
     const std::string& r) const;
 
   ///Does the regex match the whole line?
-  bool GetRegexMatchLine(const std::string& line, const std::string& regex_str) const;
+  bool GetRegexMatchLine(const std::string& line, const std::string& regex_str) const noexcept;
 
   ///Replace all regexes in a std::string following a regex and a format
   const std::string GetRegexReplace(
@@ -59,10 +59,10 @@ struct RegexTesterCpp11MainDialog : public RegexTesterMainDialog
     const std::string& format_str) const;
 
   ///Is the regex valid?
-  bool GetRegexValid(const std::string &regex_str) const;
+  bool GetRegexValid(const std::string &regex_str) const noexcept;
 
   ///Obtain a description of the used implementation
-  const std::string GetUsedImplementation() const { return "C++11"; }
+  const std::string GetUsedImplementation() const noexcept { return "C++11"; }
 
   private:
   ///Get all regex matches withing a line

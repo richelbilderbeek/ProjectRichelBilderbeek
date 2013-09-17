@@ -18,8 +18,6 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolCodeToHtml.htm
 //---------------------------------------------------------------------------
-
-
 #include "codetohtmlcontent.h"
 
 #include <string>
@@ -27,7 +25,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 ///CreateProFileReplacements creates the replacements when
 ///a Qt project file is converted to HTML
-const std::vector<std::pair<std::string,std::string> > c2h::Content::CreateProReplacements()
+const std::vector<std::pair<std::string,std::string> > c2h::Content::CreateProReplacements() noexcept
 {
   //C++11 initializer list
   return

@@ -33,7 +33,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "togglebuttonwidget.h"
 #include "trace.h"
 
-const ribi::About ribi::RubiksClockMenuDialog::GetAbout()
+const ribi::About ribi::RubiksClockMenuDialog::GetAbout() noexcept
 {
   About a(
     "Richel Bilderbeek",
@@ -58,12 +58,12 @@ const ribi::About ribi::RubiksClockMenuDialog::GetAbout()
   return a;
 }
 
-const std::string ribi::RubiksClockMenuDialog::GetVersion()
+const std::string ribi::RubiksClockMenuDialog::GetVersion() noexcept
 {
   return "2.2";
 }
 
-const std::vector<std::string> ribi::RubiksClockMenuDialog::GetVersionHistory()
+const std::vector<std::string> ribi::RubiksClockMenuDialog::GetVersionHistory() noexcept
 {
   return {
     "2007-12-19: Version 1.0: initial Windows-only version using C++ Builder",

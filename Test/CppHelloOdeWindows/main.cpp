@@ -1,6 +1,7 @@
-//From http://ode-wiki.org/wiki/index.php?title=HOWTO_simple_bouncing_sphere
+#define dSINGLE
+//D:\Projects\Libraries\ode-0.12\include\ode\common.h
 
-//Cannot build ODE under Windows with Qt Creator :(
+//From http://ode-wiki.org/wiki/index.php?title=HOWTO_simple_bouncing_sphere
 #include <ode/ode.h>
 #include <drawstuff/drawstuff.h>
 
@@ -16,6 +17,7 @@ static dJointGroupID contactgroup;
 // potentially colliding.
 static void nearCallback (void *data, dGeomID o1, dGeomID o2)
 {
+
     dBodyID b1 = dGeomGetBody(o1);
     dBodyID b2 = dGeomGetBody(o2);
     dContact contact;
@@ -56,7 +58,7 @@ static void simLoop (int pause)
     // redraw sphere at new location
     pos = dGeomGetPosition (geom);
     R = dGeomGetRotation (geom);
-    dsDrawSphere (pos,R,dGeomSphereGetRadius (geom));
+    dsDrawSphere(pos,R,dGeomSphereGetRadius (geom));
 }
 
 int main (int argc, char **argv)

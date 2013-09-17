@@ -72,12 +72,12 @@ const ribi::About ribi::TestQuestionMenuDialog::GetAbout() const
   return a;
 }
 
-const std::string ribi::TestQuestionMenuDialog::GetVersion()
+const std::string ribi::TestQuestionMenuDialog::GetVersion() noexcept
 {
   return "3.0";
 }
 
-const std::vector<std::string> ribi::TestQuestionMenuDialog::GetVersionHistory()
+const std::vector<std::string> ribi::TestQuestionMenuDialog::GetVersionHistory() noexcept
 {
   std::vector<std::string> v;
   v.push_back("2011-06-28: Version 1.0: initial version");

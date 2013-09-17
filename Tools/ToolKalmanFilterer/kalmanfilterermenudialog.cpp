@@ -15,7 +15,7 @@
 #include "standardwhitenoisesystemparameters.h"
 #pragma GCC diagnostic pop
 
-const ribi::About ribi::kalman::KalmanFiltererMenuDialog::GetAbout()
+const ribi::About ribi::kalman::KalmanFiltererMenuDialog::GetAbout() noexcept
 {
   About a(
     "Richel Bilderbeek",
@@ -42,12 +42,12 @@ const ribi::About ribi::kalman::KalmanFiltererMenuDialog::GetAbout()
   return a;
 }
 
-const std::string ribi::kalman::KalmanFiltererMenuDialog::GetVersion()
+const std::string ribi::kalman::KalmanFiltererMenuDialog::GetVersion() noexcept
 {
   return "1.15";
 }
 
-const std::vector<std::string> ribi::kalman::KalmanFiltererMenuDialog::GetVersionHistory()
+const std::vector<std::string> ribi::kalman::KalmanFiltererMenuDialog::GetVersionHistory() noexcept
 {
   const std::vector<std::string> v {
     "2013-04-28: version 1.0: initial Qt4 and Boost 1.49.0 version that started from CppKalmanFilterExample13",

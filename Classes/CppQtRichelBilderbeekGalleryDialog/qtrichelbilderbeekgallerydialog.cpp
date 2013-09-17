@@ -166,12 +166,12 @@ ribi::QtRichelBilderbeekGalleryDialog::~QtRichelBilderbeekGalleryDialog()
   delete ui;
 }
 
-const std::string ribi::QtRichelBilderbeekGalleryDialog::GetVersion()
+const std::string ribi::QtRichelBilderbeekGalleryDialog::GetVersion() noexcept
 {
   return "1.1";
 }
 
-const std::vector<std::string> ribi::QtRichelBilderbeekGalleryDialog::GetVersionHistory()
+const std::vector<std::string> ribi::QtRichelBilderbeekGalleryDialog::GetVersionHistory() noexcept
 {
   std::vector<std::string> v;
   v.push_back("2012-02-19: version 1.0: initial version of QtAboutDialog");

@@ -28,7 +28,6 @@ SOURCES += \
 
 HEADERS  += \
     ../../Classes/CppAbout/about.h \
-    ../../Classes/CppAssert/assert.h \
     ../../Classes/CppConnectThree/connectthree.h \
     ../../Classes/CppConnectThreeWidget/connectthreewidget.h \
     ../../Classes/CppQtAboutDialog/qtaboutdialog.h \
@@ -94,7 +93,7 @@ win32 {
 # Compiler flags
 #
 #
-QMAKE_CXXFLAGS += -std=c++11 -Wall -Wextra
+QMAKE_CXXFLAGS += -std=c++11 -Wall -Wextra -Weffc++
 
 
 unix {
@@ -121,30 +120,6 @@ unix {
 }
 
 win32 {
-
-
-  exists(../../Libraries/mxe/usr/i686-pc-mingw32/lib) {
-    message(Linux to Windows: Boost: linking)
-
-    LIBS += -L../../Libraries/mxe/usr/i686-pc-mingw32/lib
-    LIBS += -lboost_regex -lboost_filesystem -lboost_system
-  }
-
-  exists(../../Libraries/boost_1_54_0) {
-    message(Windows: Boost: linking)
-
-    INCLUDEPATH += \
-      ../../Libraries/boost_1_54_0
-
-    debug {
-      LIBS += ../../Libraries/boost_1_54_0/stage/lib/libboost_filesystem-mgw48-mt-d-1_54.a
-      LIBS += ../../Libraries/boost_1_54_0/stage/lib/libboost_regex-mgw48-mt-d-1_54.a
-      LIBS += ../../Libraries/boost_1_54_0/stage/lib/libboost_system-mgw48-mt-d-1_54.a
-    }
-    release {
-      LIBS += ../../Libraries/boost_1_54_0/stage/lib/libboost_filesystem-mgw48-mt-1_54.a
-      LIBS += ../../Libraries/boost_1_54_0/stage/lib/libboost_regex-mgw48-mt-1_54.a
-      LIBS += ../../Libraries/boost_1_54_0/stage/lib/libboost_system-mgw48-mt-1_54.a
-    }
-  }
+  INCLUDEPATH += \
+    ../../Libraries/boost_1_54_0
 }

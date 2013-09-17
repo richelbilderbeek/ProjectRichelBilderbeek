@@ -44,13 +44,16 @@ struct Content
     const ContentType content_type);
 
   ///Get the C++ replacements
-  static const CodeToHtmlReplacements& GetReplacementsCpp() { return m_replacements_cpp; }
+  ///Lazily create these
+  static const CodeToHtmlReplacements& GetReplacementsCpp();
 
   ///Get the .pro file replacements
-  static const CodeToHtmlReplacements& GetReplacementsPro() { return m_replacements_pro; }
+  ///Lazily create these
+  static const CodeToHtmlReplacements& GetReplacementsPro();
 
   ///Get the text file replacements
-  static const CodeToHtmlReplacements& GetReplacementsTxt() { return  m_replacements_txt; }
+  ///Lazily create these
+  static const CodeToHtmlReplacements& GetReplacementsTxt();
 
   ///Replace all instances in a std::string by the replacements
   static const std::string MultiReplace(
@@ -79,21 +82,21 @@ struct Content
   const std::string m_filename;
 
   ///The C++ replacements
-  static const CodeToHtmlReplacements m_replacements_cpp;
+  static std::unique_ptr<const CodeToHtmlReplacements> m_replacements_cpp;
 
   ///The .pro file replacements
-  static const CodeToHtmlReplacements m_replacements_pro;
+  static std::unique_ptr<const CodeToHtmlReplacements> m_replacements_pro;
 
   ///The text file replacements
-  static const CodeToHtmlReplacements m_replacements_txt;
+  static std::unique_ptr<const CodeToHtmlReplacements> m_replacements_txt;
 
   ///CreateCppReplacements creates the (many) replacements when
   ///code is converted to HTML. It uses all the replacements from a .pro file
-  static const std::vector<std::pair<std::string,std::string> > CreateCppReplacements();
+  static const std::vector<std::pair<std::string,std::string> > CreateCppReplacements() noexcept;
 
   ///CreateProFileReplacements creates the replacements when
   ///a Qt project file is converted to HTML
-  static const std::vector<std::pair<std::string,std::string> > CreateProReplacements();
+  static const std::vector<std::pair<std::string,std::string> > CreateProReplacements() noexcept;
 
   ///Deduce the content type from a filename
   static ContentType DeduceContentType(const std::string& filename);

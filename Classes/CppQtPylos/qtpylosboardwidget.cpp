@@ -89,12 +89,12 @@ int ribi::QtPylosBoardWidget::GetLayerSize(const int layer) const
   return m_board->GetLayerSize(layer);
 }
 
-const std::string ribi::QtPylosBoardWidget::GetVersion()
+const std::string ribi::QtPylosBoardWidget::GetVersion() noexcept
 {
   return "2.0";
 }
 
-const std::vector<std::string> ribi::QtPylosBoardWidget::GetVersionHistory()
+const std::vector<std::string> ribi::QtPylosBoardWidget::GetVersionHistory() noexcept
 {
   std::vector<std::string> v;
   v.push_back("2010-09-22: version 1.2: initial release version");

@@ -54,12 +54,12 @@ const ribi::About ribi::TestExerciseMenuDialog::GetAbout() const
   return a;
 }
 
-const std::string ribi::TestExerciseMenuDialog::GetVersion()
+const std::string ribi::TestExerciseMenuDialog::GetVersion() noexcept
 {
   return "1.0";
 }
 
-const std::vector<std::string> ribi::TestExerciseMenuDialog::GetVersionHistory()
+const std::vector<std::string> ribi::TestExerciseMenuDialog::GetVersionHistory() noexcept
 {
   return {
     "2011-09-26: Version 1.0: initial version"

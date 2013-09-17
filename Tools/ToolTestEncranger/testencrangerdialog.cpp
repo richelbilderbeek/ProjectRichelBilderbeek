@@ -58,7 +58,7 @@ void ribi::TestEncrangerDialog::SetPlainText(const std::string& s)
   m_plain_text = s;
 }
 
-const ribi::About ribi::TestEncrangerDialog::GetAbout()
+const ribi::About ribi::TestEncrangerDialog::GetAbout() noexcept
 {
   About a(
     "Richel Bilderbeek",
@@ -74,12 +74,12 @@ const ribi::About ribi::TestEncrangerDialog::GetAbout()
   return a;
 }
 
-const std::string ribi::TestEncrangerDialog::GetVersion()
+const std::string ribi::TestEncrangerDialog::GetVersion() noexcept
 {
   return "2.4";
 }
 
-const std::vector<std::string> ribi::TestEncrangerDialog::GetVersionHistory()
+const std::vector<std::string> ribi::TestEncrangerDialog::GetVersionHistory() noexcept
 {
   return {
     "2009-08-22: Version 1.0: initial version (then called 'Encranger') programmed in C++ Builder",

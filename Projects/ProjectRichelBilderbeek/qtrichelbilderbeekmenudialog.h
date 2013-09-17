@@ -22,10 +22,14 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #define QTRICHELBILDERBEEKMENUDIALOG_H
 
 #include <map>
+
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include <boost/function.hpp>
 #include "qthideandshowdialog.h"
 #include "richelbilderbeekprogramtype.h"
 #include "about.h"
+#pragma GCC diagnostic pop
 
 namespace Ui {
   class QtRichelBilderbeekMenuDialog;

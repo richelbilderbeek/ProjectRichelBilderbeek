@@ -23,7 +23,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include "boenkenmenudialog.h"
 
-const ribi::About ribi::Boenken::MenuDialog::GetAbout()
+const ribi::About ribi::Boenken::MenuDialog::GetAbout() noexcept
 {
   About a(
     "Richel Bilderbeek",
@@ -37,12 +37,12 @@ const ribi::About ribi::Boenken::MenuDialog::GetAbout()
   return a;
 }
 
-const std::string ribi::Boenken::MenuDialog::GetVersion()
+const std::string ribi::Boenken::MenuDialog::GetVersion() noexcept
 {
   return "4.1";
 }
 
-const std::vector<std::string> ribi::Boenken::MenuDialog::GetVersionHistory()
+const std::vector<std::string> ribi::Boenken::MenuDialog::GetVersionHistory() noexcept
 {
   return {
     "2000-xx-xx: version 0.0: wrote QBASIC version of Boenken",

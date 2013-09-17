@@ -41,12 +41,12 @@ ribi::QtDisplayPosItem::QtDisplayPosItem(QGraphicsItem *parent)
   this->update();
 }
 
-const std::string ribi::QtDisplayPosItem::GetVersion()
+const std::string ribi::QtDisplayPosItem::GetVersion() noexcept
 {
   return "1.1";
 }
 
-const std::vector<std::string> ribi::QtDisplayPosItem::GetVersionHistory()
+const std::vector<std::string> ribi::QtDisplayPosItem::GetVersionHistory() noexcept
 {
   std::vector<std::string> v;
   v.push_back("2012-12-19: version 1.0: initial version");

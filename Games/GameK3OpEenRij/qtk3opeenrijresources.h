@@ -1,9 +1,12 @@
 #ifndef QTK3OPEENRIJRESOURCES_H
 #define QTK3OPEENRIJRESOURCES_H
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include <boost/logic/tribool.hpp>
 
 #include "connectthreeresources.h"
+#pragma GCC diagnostic pop
 
 namespace ribi {
 
@@ -18,7 +21,6 @@ struct QtK3OpEenRijResources
     = boost::logic::indeterminate);
 
   private:
-
   const std::vector<std::string> CreatePlayerNames(const boost::logic::tribool is_player3_kathleen);
   const std::vector<std::string> CreatePlayerGreyNames(const boost::logic::tribool is_player3_kathleen);
 };

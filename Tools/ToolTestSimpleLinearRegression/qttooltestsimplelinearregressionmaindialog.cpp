@@ -20,14 +20,14 @@
 
 #pragma GCC diagnostic pop
 
-ribi::QtToolTestSimpleLinearRegressionMainDialog::QtToolTestSimpleLinearRegressionMainDialog(QWidget *parent) :
-  QtHideAndShowDialog(parent),
-  ui(new Ui::QtToolTestSimpleLinearRegressionMainDialog),
-  m_curve_approximation(new QwtPlotCurve),
-  m_curve_values(new QwtPlotCurve),
-  m_plot(new QwtPlot),
-  m_xs{},
-  m_ys{}
+ribi::QtToolTestSimpleLinearRegressionMainDialog::QtToolTestSimpleLinearRegressionMainDialog(QWidget *parent) noexcept
+  : QtHideAndShowDialog(parent),
+    ui(new Ui::QtToolTestSimpleLinearRegressionMainDialog),
+    m_curve_approximation(new QwtPlotCurve),
+    m_curve_values(new QwtPlotCurve),
+    m_plot(new QwtPlot),
+    m_xs{},
+    m_ys{}
 {
   ui->setupUi(this);
 
@@ -108,12 +108,12 @@ ribi::QtToolTestSimpleLinearRegressionMainDialog::QtToolTestSimpleLinearRegressi
   TRACE_FUNC();
 }
 
-ribi::QtToolTestSimpleLinearRegressionMainDialog::~QtToolTestSimpleLinearRegressionMainDialog()
+ribi::QtToolTestSimpleLinearRegressionMainDialog::~QtToolTestSimpleLinearRegressionMainDialog() noexcept
 {
   delete ui;
 }
 
-void ribi::QtToolTestSimpleLinearRegressionMainDialog::on_button_clicked()
+void ribi::QtToolTestSimpleLinearRegressionMainDialog::on_button_clicked() noexcept
 {
   const int x = ui->box_int_x->value();
   const double y = ui->box_double_y->value();
@@ -122,7 +122,7 @@ void ribi::QtToolTestSimpleLinearRegressionMainDialog::on_button_clicked()
   Plot();
 }
 
-void ribi::QtToolTestSimpleLinearRegressionMainDialog::Plot()
+void ribi::QtToolTestSimpleLinearRegressionMainDialog::Plot() noexcept
 {
   //Plot values
   {

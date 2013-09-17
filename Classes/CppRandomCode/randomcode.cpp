@@ -19,13 +19,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/CppRandomCode.htm
 //---------------------------------------------------------------------------
-
-
 #include "randomcode.h"
 
 #include <cstdlib>
 
-const std::vector<std::string> ribi::RandomCode::CreateRandomCode()
+const std::vector<std::string> ribi::RandomCode::CreateRandomCode() noexcept
 {
   std::vector<std::string> v;
   v.push_back("#include <iostream>");
@@ -44,7 +42,7 @@ const std::vector<std::string> ribi::RandomCode::CreateRandomCode()
   return v;
 }
 
-const std::string ribi::RandomCode::CreateRandomLine(const unsigned int length)
+const std::string ribi::RandomCode::CreateRandomLine(const unsigned int length) noexcept
 {
   std::string s = "  ";
   for (unsigned int i=0; i!=length; ++i)
@@ -55,7 +53,7 @@ const std::string ribi::RandomCode::CreateRandomLine(const unsigned int length)
   return s;
 }
 
-const std::string ribi::RandomCode::CreateRandomString()
+const std::string ribi::RandomCode::CreateRandomString() noexcept
 {
   switch (std::rand()%70)
   {
@@ -123,54 +121,33 @@ const std::string ribi::RandomCode::CreateRandomString()
   return " ";
 }
 
-const std::vector<std::string> ribi::RandomCode::GetAbout()
+const ribi::About ribi::RandomCode::GetAbout() noexcept
 {
-  std::vector<std::string> v;
-  v.push_back("Random Code, generates random C++ code");
-  v.push_back("Version " + GetVersion());
-  v.push_back("Copyright (C) 2007  Richel Bilderbeek");
-  v.push_back("");
-  v.push_back("Programmed by Richel Bilderbeek");
-  v.push_back("on the 23rd of December 2010");
-  v.push_back("");
-  v.push_back("From http://www.richelbilderbeek.nl/ToolRandomCode.htm");
-  v.push_back("Licenced under GPL 3.0");
-  return v;
+  const About a(
+    "Richel Bilderbeek",
+    "RandomCode",
+    "generates random c++ code",
+    "the 17th of September 2013",
+    "2007-2013",
+    "http://www.richelbilderbeek.nl/ToolRandomCode.htm",
+    GetVersion(),
+    GetVersionHistory()
+  );
+  return a;
 }
 
-const std::vector<std::string> ribi::RandomCode::GetLicence()
+const std::string ribi::RandomCode::GetVersion() noexcept
 {
-  std::vector<std::string> v;
-  v.push_back("Random Code, generates random C++ code");
-  v.push_back("Copyright (C) 2007  Richel Bilderbeek");
-  v.push_back("");
-  v.push_back("This program is free software: you can redistribute it and/or modify");
-  v.push_back("it under the terms of the GNU General Public License as published by");
-  v.push_back("the Free Software Foundation, either version 3 of the License, or");
-  v.push_back("(at your option) any later version.");
-  v.push_back("");
-  v.push_back("This program is distributed in the hope that it will be useful,");
-  v.push_back("but WITHOUT ANY WARRANTY; without even the implied warranty of");
-  v.push_back("MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the");
-  v.push_back("GNU General Public License for more details.");
-  v.push_back("\n");
-  v.push_back("You should have received a copy of the GNU General Public License");
-  v.push_back("along with this program.  If not, see <http://www.gnu.org/licenses/>.");
-  return v;
+  return "3.1";
 }
 
-const std::string ribi::RandomCode::GetVersion()
+const std::vector<std::string> ribi::RandomCode::GetVersionHistory() noexcept
 {
-  return "3.0";
-}
-
-const std::vector<std::string> ribi::RandomCode::GetVersionHistory()
-{
-  std::vector<std::string> v;
-  v.push_back("YYYY-MM-DD: Version X.Y: [description]");
-  v.push_back("2007-10-19: Version 1.0: initial version");
-  v.push_back("2010-12-23: Version 2.0: seperated code generation from user interface");
-  v.push_back("2011-01-07: Version 3.0: RandomCode can be used as desktop and web application");
-  return v;
+  return {
+    "2007-10-19: Version 1.0: initial version",
+    "2010-12-23: Version 2.0: seperated code generation from user interface",
+    "2011-01-07: Version 3.0: RandomCode can be used as desktop and web application"
+    "2013-09-17: Version 3.1: conformized versioning"
+  };
 }
 

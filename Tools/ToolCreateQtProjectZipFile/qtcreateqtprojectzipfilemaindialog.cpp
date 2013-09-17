@@ -23,6 +23,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include "qtcreateqtprojectzipfilemaindialog.h"
 
+#include <fstream>
+
 #include <boost/lexical_cast.hpp>
 
 #include <QFile>

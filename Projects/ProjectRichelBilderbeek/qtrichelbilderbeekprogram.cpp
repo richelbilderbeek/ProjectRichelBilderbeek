@@ -33,19 +33,26 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #include "qtasciiartermenudialog.h"
 #include "qtbeerwantermenudialog.h"
-#include "qtkalmanfilterermenudialog.h"
 #include "qtboenkenmenudialog.h"
 #include "qtcodetohtmlmenudialog.h"
 #include "qtconnectthreemenudialog.h"
 #include "qtcreateglossarymenudialog.h"
 #include "qtcreateqtprojectzipfilemenudialog.h"
 #include "qtdaswahreschlagerfestmenudialog.h"
+#include "qtk3opeenrijmenudialog.h"
+#include "qtk3opeenrijresources.h"
+#include "qtkalmanfilterermenudialog.h"
 #include "qtmazecreatormenudialog.h"
 #include "qtmaziakmenudialog.h"
 #include "qtmusictheorymenudialog.h"
 #include "qtperfectelasticcollisionmenudialog.h"
-#include "qtpylosmenudialog.h"
+
+#include "qttooltestapproximatormenudialog.h"
+#include "qttooltestmultiapproximatormenudialog.h"
+#include "qttooltestsimplelinearregressionmenudialog.h"
+
 #include "qtpictocodemenudialog.h"
+#include "qtpylosmenudialog.h"
 #include "qtrandomcodemenudialog.h"
 #include "qtregextestermenudialog.h"
 #include "qtrichelbilderbeekgallerymenudialog.h"
@@ -75,6 +82,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "qttictactoemenudialog.h"
 #include "qttoolgaborfiltermenudialog.h"
 #include "qttooltestqtmodelsmenudialog.h"
+
 
 #pragma GCC diagnostic pop
 
@@ -114,7 +122,12 @@ QDialog * ribi::QtRichelBilderbeekProgram::CreateQtMenuDialog(const RichelBilder
     case ProgramType::hometrainer: break;
     case ProgramType::imageRotaterClx: break;
     case ProgramType::imageRotaterVcl: break;
-    case ProgramType::k3OpEenRij: break;
+    case ProgramType::k3OpEenRij:
+    {
+      const boost::shared_ptr<const ribi::QtK3OpEenRijResources> resources(new ribi::QtK3OpEenRijResources);
+      p = new QtK3OpEenRijMenuDialog(resources);
+    }
+    break;
     case ProgramType::kalmanFilterer: p = new kalman::QtKalmanFiltererMenuDialog; break;
     case ProgramType::keySender: break;
     case ProgramType::knokfighter: break;
@@ -172,7 +185,7 @@ QDialog * ribi::QtRichelBilderbeekProgram::CreateQtMenuDialog(const RichelBilder
     case ProgramType::surfacePlotter: break;
     case ProgramType::tankBattalion: break;
     case ProgramType::testAbout: break;
-    case ProgramType::testApproximator: break;
+    case ProgramType::testApproximator: p = new QtToolTestApproximatorMenuDialog; break;
     case ProgramType::testBouncingBallsWidget: break;
     case ProgramType::testBouncingRectsWidget: break;
     case ProgramType::testBroadcastServer: break;
@@ -192,7 +205,7 @@ QDialog * ribi::QtRichelBilderbeekProgram::CreateQtMenuDialog(const RichelBilder
     case ProgramType::testLazy_init: break;
     case ProgramType::testLed: p = new QtTestLedDialog; break;
     case ProgramType::testManyDigitNewick: break;
-    case ProgramType::testMultiApproximator: break;
+    case ProgramType::testMultiApproximator: p = new QtToolTestMultiApproximatorMenuDialog;  break;
     case ProgramType::testMultipleChoiceQuestion: break;
     case ProgramType::testMultiVector: break;
     case ProgramType::testNdsmake: break;
@@ -215,7 +228,7 @@ QDialog * ribi::QtRichelBilderbeekProgram::CreateQtMenuDialog(const RichelBilder
     case ProgramType::testServerPusher: break;
     case ProgramType::testShape: p = new QtTestShapeMenuDialog; break;
     case ProgramType::testShinyButton: p = new QtTestShinyButtonMenuDialog; break;
-    case ProgramType::testSimpleLinearRegression: break;
+    case ProgramType::testSimpleLinearRegression:  p = new QtToolTestSimpleLinearRegressionMenuDialog; break;
     case ProgramType::testStopwatch: break;
     case ProgramType::testQtArrowItems: p = new QtTestQtArrowItemsMenuDialog; break;
     case ProgramType::testQtKeyboardFriendlyGraphicsView: p = new QtTestKeyboardFriendlyGraphicsViewMenuDialog; break;

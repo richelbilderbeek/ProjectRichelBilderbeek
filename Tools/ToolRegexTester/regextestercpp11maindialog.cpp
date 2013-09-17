@@ -25,7 +25,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "trace.h"
 #pragma GCC diagnostic pop
 
-const boost::shared_ptr<ribi::RegexTesterMainDialog> ribi::RegexTesterCpp11MainDialog::Clone() const
+const boost::shared_ptr<ribi::RegexTesterMainDialog>
+  ribi::RegexTesterCpp11MainDialog::Clone() const noexcept
 {
   boost::shared_ptr<RegexTesterMainDialog> d(
     new RegexTesterCpp11MainDialog);
@@ -67,7 +68,8 @@ const std::vector<std::string> ribi::RegexTesterCpp11MainDialog::GetRegexMatches
 }
 
 
-bool ribi::RegexTesterCpp11MainDialog::GetRegexMatchLine(const std::string &line, const std::string &regex_str) const
+bool ribi::RegexTesterCpp11MainDialog::GetRegexMatchLine(
+  const std::string &line, const std::string &regex_str) const noexcept
 {
   if (!GetRegexValid(regex_str)) return false;
   const std::regex r(regex_str, std::regex_constants::basic);
@@ -92,7 +94,8 @@ const std::string ribi::RegexTesterCpp11MainDialog::GetRegexReplace(
   }
 }
 
-bool ribi::RegexTesterCpp11MainDialog::GetRegexValid(const std::string &regex_str) const
+bool ribi::RegexTesterCpp11MainDialog::GetRegexValid(
+  const std::string &regex_str) const noexcept
 {
   try { const std::regex regex_temp( regex_str, std::regex_constants::basic ); }
   catch (std::regex_error& e) { return false; }

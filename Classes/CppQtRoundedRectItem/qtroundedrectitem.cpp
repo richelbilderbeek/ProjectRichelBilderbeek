@@ -28,12 +28,12 @@ ribi::QtRoundedRectItem::QtRoundedRectItem(QGraphicsItem *parent)
   this->SetRoundedRect(QRectF(-16.0,-16.0,32.0,32.0),m_radius_x,m_radius_y);
 }
 
-const std::string ribi::QtRoundedRectItem::GetVersion()
+const std::string ribi::QtRoundedRectItem::GetVersion() noexcept
 {
   return "1.2";
 }
 
-const std::vector<std::string> ribi::QtRoundedRectItem::GetVersionHistory()
+const std::vector<std::string> ribi::QtRoundedRectItem::GetVersionHistory() noexcept
 {
   std::vector<std::string> v;
   v.push_back("2012-12-13: version 1.0: initial version");

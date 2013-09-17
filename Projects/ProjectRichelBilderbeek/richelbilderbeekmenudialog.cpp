@@ -22,10 +22,12 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic ignored "-Weffc++"
 #include "richelbilderbeekmenudialog.h"
 
+#include "approximator.h"
 #include "alphabetafilter.h"
 #include "alphabetagammafilter.h"
 #include "alphafilter.h"
 #include "asciiartermenudialog.h"
+#include "beerwantermenudialog.h"
 #include "binarynewickvector.h"
 #include "codetohtmlmenudialog.h"
 #include "connectthree.h"
@@ -59,7 +61,10 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "multivector.h"
 #include "musicchord.h"
 #include "musicnote.h"
+#include "tooltestapproximatormenudialog.h"
+#include "tooltestmultiapproximatormenudialog.h"
 #include "musicscale.h"
+#include "multiapproximator.h"
 #include "mysterymachine.h"
 #include "mysterymachinewidget.h"
 #include "newick.h"
@@ -96,6 +101,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "testexercisemenudialog.h"
 #include "testfunctionparsermenudialog.h"
 #include "testledmenudialog.h"
+#include "tooltestsimplelinearregressionmenudialog.h"
 #include "testnewickvectordialog.h"
 #include "testqrcfilemenudialog.h"
 #include "testqtarrowitemsmenudialog.h"
@@ -126,39 +132,52 @@ ribi::RichelBilderbeek::MenuDialog::MenuDialog()
   #endif
 }
 
-const ribi::About ribi::RichelBilderbeek::MenuDialog::GetAbout()
+const ribi::About ribi::RichelBilderbeek::MenuDialog::GetAbout() noexcept
 {
   About a(
     "Richel Bilderbeek",
     "Project Richel Bilderbeek",
     "Richel Bilderbeek's work",
-    "the 11th of July 2013",
+    "the 17th of September 2013",
     "2010-2013",
     "http://www.richelbilderbeek.nl/ProjectRichelBilderbeek.htm",
     GetVersion(),
     GetVersionHistory());
-  a.AddLibrary("AsciiArter version: " + ribi::AsciiArterMenuDialog::GetVersion());
+  //a.AddLibrary("TestTwoDigitNewick version: " + WtTestTwoDigitNewickDialog::GetVersion());
+  a.AddLibrary("AlphaBetaFilter version: " + AlphaBetaFilter::GetVersion());
+  a.AddLibrary("AlphaBetaGammaFilter version: " + AlphaBetaGammaFilter::GetVersion());
+  a.AddLibrary("AlphaFilter version: " + AlphaFilter::GetVersion());
+  a.AddLibrary("Approximator version: " + Approximator<double,double>::GetVersion());
+  a.AddLibrary("AsciiArter version: " + AsciiArterMenuDialog::GetVersion());
+  a.AddLibrary("BeerWanter version: " + BeerWanterMenuDialog::GetVersion());
   a.AddLibrary("Big Integer Library (by Matt McCutchen) version: 2010.04.30");
   a.AddLibrary("BinaryNewickVector version: " + BinaryNewickVector::GetVersion());
-  a.AddLibrary("CodeToHtml version: " + ribi::CodeToHtmlMenuDialog::GetVersion());
+  a.AddLibrary("CodeToHtml version: " + CodeToHtmlMenuDialog::GetVersion());
   a.AddLibrary("ConnectThree version: " + ConnectThree::GetVersion());
   a.AddLibrary("ConnectThreeWidget version: " + ConnectThreeWidget::GetVersion());
   a.AddLibrary("Copy_if version: " + Copy_if_version::GetVersion());
   a.AddLibrary("Counter version: " + Counter::GetVersion());
-  a.AddLibrary("CreateQtProjectZipFile version: " + ribi::CreateQtProjectZipFile::MenuDialog::GetVersion());
+  a.AddLibrary("CreateQtProjectZipFile version: " + CreateQtProjectZipFile::MenuDialog::GetVersion());
   a.AddLibrary("Dial version: " + Dial::GetVersion());
   a.AddLibrary("DialWidget version: " + DialWidget::GetVersion());
   a.AddLibrary("Encranger version: " + Encranger::GetVersion());
   a.AddLibrary("Exercise version: " + Exercise::GetVersion());
-  a.AddLibrary("kalman::FixedLagSmootherKalmanFilter version: " + kalman::FixedLagSmootherKalmanFilter::GetVersion());
   a.AddLibrary("Fuzzy_equal_to version: " + fuzzy_equal_to::GetVersion());
   a.AddLibrary("GaborFilter version: " + GaborFilter::GetVersion());
   a.AddLibrary("GaborFilterWidget version: " + GaborFilterWidget::GetVersion());
-  a.AddLibrary("Hometrainer version: " + ribi::HometrainerMenuDialog::GetVersion());
+  a.AddLibrary("Hometrainer version: " + HometrainerMenuDialog::GetVersion());
   a.AddLibrary("HtmlPage version: " + HtmlPage::GetVersion());
   a.AddLibrary("IpAddress version: " + IpAddress::GetVersion());
+  a.AddLibrary("kalman::FixedLagSmootherKalmanFilter version: " + kalman::FixedLagSmootherKalmanFilter::GetVersion());
   a.AddLibrary("kalman::KalmanFilter version: " + kalman::KalmanFilter::GetVersion());
   a.AddLibrary("kalman::LaggedWhiteNoiseSystem version: " + kalman::LaggedWhiteNoiseSystem::GetVersion());
+  a.AddLibrary("kalman::StandardKalmanFilter version: " + kalman::StandardKalmanFilter::GetVersion());
+  a.AddLibrary("kalman::StandardKalmanFilterParameters version: " + kalman::StandardKalmanFilterParameters::GetVersion());
+  a.AddLibrary("kalman::StandardWhiteNoiseSystem version: " + kalman::StandardWhiteNoiseSystem::GetVersion());
+  a.AddLibrary("kalman::StandardWhiteNoiseSystemParameters version: " + kalman::StandardWhiteNoiseSystemParameters::GetVersion());
+  a.AddLibrary("kalman::SteadyStateKalmanFilter version: " + kalman::SteadyStateKalmanFilter::GetVersion());
+  a.AddLibrary("kalman::SteadyStateKalmanFilterParameters version: " + kalman::SteadyStateKalmanFilterParameters::GetVersion());
+  a.AddLibrary("kalman::WhiteNoiseSystem version: " + kalman::WhiteNoiseSystem::GetVersion());
   a.AddLibrary("Lazy_init version: " + Lazy_initVersion::GetVersion());
   a.AddLibrary("Led version: " + Led::GetVersion());
   a.AddLibrary("LedWidget version: " + LedWidget::GetVersion());
@@ -166,8 +185,10 @@ const ribi::About ribi::RichelBilderbeek::MenuDialog::GetAbout()
   a.AddLibrary("ManyDigitNewick version: " + ManyDigitNewick::GetVersion());
   a.AddLibrary("Matrix version: " + Matrix::GetVersion());
   a.AddLibrary("Matrix version: " + Matrix::GetVersion());
-  a.AddLibrary("MultipleChoiceQuestionDialog version: " + MultipleChoiceQuestionDialog::GetVersion());
+  a.AddLibrary("MultiAlphaFilter version: " + MultiAlphaFilter::GetVersion());
+  a.AddLibrary("MultiApproximator version: " + MultiApproximator<double,double>::GetVersion());
   a.AddLibrary("MultipleChoiceQuestion version: " + MultipleChoiceQuestion::GetVersion());
+  a.AddLibrary("MultipleChoiceQuestionDialog version: " + MultipleChoiceQuestionDialog::GetVersion());
   a.AddLibrary("MultipleVector version: " + MultiVector<int>::GetVersion());
   a.AddLibrary("Music::Chord version: " + Music::Chord::GetVersion());
   a.AddLibrary("Music::Note version: " + Music::Note::GetVersion());
@@ -176,55 +197,47 @@ const ribi::About ribi::RichelBilderbeek::MenuDialog::GetAbout()
   a.AddLibrary("MysteryMachineWidget version: " + MysteryMachineWidget::GetVersion());
   a.AddLibrary("Newick version: " + Newick::GetVersion());
   a.AddLibrary("NewickVector version: " + NewickVector::GetVersion());
-  a.AddLibrary("OpenQuestionDialog version: " + OpenQuestionDialog::GetVersion());
   a.AddLibrary("OpenQuestion version: " + OpenQuestion::GetVersion());
-  a.AddLibrary("Pylos version: " + ribi::PylosMenuDialog::GetVersion());
-  a.AddLibrary("QtCreatorProFile version: " + QtCreatorProFile::GetVersion());
+  a.AddLibrary("OpenQuestionDialog version: " + OpenQuestionDialog::GetVersion());
+  a.AddLibrary("Pylos version: " + PylosMenuDialog::GetVersion());
   a.AddLibrary("QrcFile version: " + QrcFile::GetVersion());
-  a.AddLibrary("QuestionDialog version: " + QuestionDialog::GetVersion());
+  a.AddLibrary("QtCreatorProFile version: " + QtCreatorProFile::GetVersion());
   a.AddLibrary("Question version: " + Question::GetVersion());
+  a.AddLibrary("QuestionDialog version: " + QuestionDialog::GetVersion());
   a.AddLibrary("Rainbow version: " + Rainbow::GetVersion());
   a.AddLibrary("RandomCode version: " + RandomCode::GetVersion());
   a.AddLibrary("Rectangle version: " + Rect::GetVersion());
-  a.AddLibrary("RegexTester version: " + ribi::RegexTesterMenuDialog::GetVersion());
+  a.AddLibrary("RegexTester version: " + RegexTesterMenuDialog::GetVersion());
   a.AddLibrary("RichelBilderbeekProgram version: " + RichelBilderbeek::Program::GetVersion());
   a.AddLibrary("RubiksClock (class) version: " + RubiksClock::GetVersion());
+  a.AddLibrary("RubiksClock (game) version: " + RubiksClockMenuDialog::GetVersion());
   a.AddLibrary("RubiksClockDialversion: " + RubiksClockDial::GetVersion());
   a.AddLibrary("RubiksClockDialWidget version: " + RubiksClockDialWidget::GetVersion());
-  a.AddLibrary("RubiksClock (game) version: " + ribi::RubiksClockMenuDialog::GetVersion());
   a.AddLibrary("RubiksClockWidget version: " + RubiksClockWidget::GetVersion());
   a.AddLibrary("Shape version: " + Shape::GetVersion());
   a.AddLibrary("ShapeWidget version: " + ShapeWidget::GetVersion());
   a.AddLibrary("ShinyButton version: " + ShinyButton::GetVersion());
   a.AddLibrary("ShinyButtonWidget version: " + ShinyButtonWidget::GetVersion());
-  a.AddLibrary("SimMysteryMachine version: " + ribi::SimMysteryMachineMenuDialog::GetVersion());
+  a.AddLibrary("SimMysteryMachine version: " + SimMysteryMachineMenuDialog::GetVersion());
   a.AddLibrary("SortedBinaryNewickVector version: " + SortedBinaryNewickVector::GetVersion());
-  a.AddLibrary("kalman::StandardKalmanFilterParameters version: " + kalman::StandardKalmanFilterParameters::GetVersion());
-  a.AddLibrary("AlphaFilter version: " + AlphaFilter::GetVersion());
-  a.AddLibrary("AlphaBetaFilter version: " + AlphaBetaFilter::GetVersion());
-  a.AddLibrary("AlphaBetaGammaFilter version: " + AlphaBetaGammaFilter::GetVersion());
-  a.AddLibrary("MultiAlphaFilter version: " + MultiAlphaFilter::GetVersion());
-  a.AddLibrary("StateObserver version: " + ribi::StateObserverMenuDialog::GetVersion());
-  a.AddLibrary("kalman::StandardKalmanFilter version: " + kalman::StandardKalmanFilter::GetVersion());
-  a.AddLibrary("kalman::StandardWhiteNoiseSystemParameters version: " + kalman::StandardWhiteNoiseSystemParameters::GetVersion());
-  a.AddLibrary("kalman::StandardWhiteNoiseSystem version: " + kalman::StandardWhiteNoiseSystem::GetVersion());
-  a.AddLibrary("kalman::SteadyStateKalmanFilterParameters version: " + kalman::SteadyStateKalmanFilterParameters::GetVersion());
-  a.AddLibrary("kalman::SteadyStateKalmanFilter version: " + kalman::SteadyStateKalmanFilter::GetVersion());
+  a.AddLibrary("StateObserver version: " + StateObserverMenuDialog::GetVersion());
   a.AddLibrary("Stopwatch version: " + Stopwatch::GetVersion());
-  a.AddLibrary("TestDial version: " + ribi::TestDialMenuDialog::GetVersion());
+  a.AddLibrary("TestApproximator version: " + ToolTestApproximatorMenuDialog::GetVersion());
+  a.AddLibrary("TestDial version: " + TestDialMenuDialog::GetVersion());
   a.AddLibrary("TestEncranger version: " + TestEncrangerDialog::GetVersion());
-  a.AddLibrary("TestExercise version: " + ribi::TestExerciseMenuDialog::GetVersion());
-  a.AddLibrary("TestFunctionParser version: " + ribi::TestFunctionParserMenuDialog::GetVersion());
-  a.AddLibrary("TestLed version: " + ribi::TestLedMenuDialog::GetVersion());
+  a.AddLibrary("TestExercise version: " + TestExerciseMenuDialog::GetVersion());
+  a.AddLibrary("TestFunctionParser version: " + TestFunctionParserMenuDialog::GetVersion());
+  a.AddLibrary("TestLed version: " + TestLedMenuDialog::GetVersion());
   a.AddLibrary("TestNewickVector version: " + TestNewickVectorDialog::GetVersion());
-  a.AddLibrary("TestProFile version: " + ribi::TestQtCreatorProFileMenuDialog::GetVersion());
-  a.AddLibrary("TestQrcFile version: " + ribi::TestQrcFileMenuDialog::GetVersion());
-  a.AddLibrary("TestQuestion version: " + ribi::TestQuestionMenuDialog::GetVersion());
-  a.AddLibrary("TestShape version: " + ribi::TestShapeMenuDialog::GetVersion());
-  a.AddLibrary("TestShinyButton version: " + ribi::TestShinyButtonMenuDialog::GetVersion());
-  a.AddLibrary("TestToggleButton version: " + ribi::TestToggleButtonMenuDialog::GetVersion());
-  //a.AddLibrary("TestTwoDigitNewick version: " + WtTestTwoDigitNewickDialog::GetVersion());
-  a.AddLibrary("TicTacToe (game) version: " + ribi::TicTacToeMenuDialog::GetVersion());
+  a.AddLibrary("TestProFile version: " + TestQtCreatorProFileMenuDialog::GetVersion());
+  a.AddLibrary("TestQrcFile version: " + TestQrcFileMenuDialog::GetVersion());
+  a.AddLibrary("TestQuestion version: " + TestQuestionMenuDialog::GetVersion());
+  a.AddLibrary("TestMultiApproximator version: " + ToolTestMultiApproximatorMenuDialog::GetVersion());
+  a.AddLibrary("TestShape version: " + TestShapeMenuDialog::GetVersion());
+  a.AddLibrary("TestShinyButton version: " + TestShinyButtonMenuDialog::GetVersion());
+  a.AddLibrary("TestSimpleLinearRegression version: " + ToolTestSimpleLinearRegressionMenuDialog::GetVersion());
+  a.AddLibrary("TestToggleButton version: " + TestToggleButtonMenuDialog::GetVersion());
+  a.AddLibrary("TicTacToe (game) version: " + TicTacToeMenuDialog::GetVersion());
   a.AddLibrary("TicTacToe version: " + TicTacToe::GetVersion());
   a.AddLibrary("ToggleButton version: " + ToggleButton::GetVersion());
   a.AddLibrary("ToggleButtonWidget version: " + ToggleButtonWidget::GetVersion());
@@ -232,17 +245,16 @@ const ribi::About ribi::RichelBilderbeek::MenuDialog::GetAbout()
   a.AddLibrary("Trace version: " + Trace::GetVersion());
   a.AddLibrary("TwoDigitNewick version: " + TwoDigitNewick::GetVersion());
   a.AddLibrary("Warp's FunctionParser version: 4.4.3");
-  a.AddLibrary("kalman::WhiteNoiseSystem version: " + kalman::WhiteNoiseSystem::GetVersion());
   a.AddLibrary("Widget version: " + Widget::GetVersion());
   return a;
 }
 
-const std::string ribi::RichelBilderbeek::MenuDialog::GetVersion()
+const std::string ribi::RichelBilderbeek::MenuDialog::GetVersion() noexcept
 {
-  return "1.09";
+  return "1.10";
 }
 
-const std::vector<std::string> ribi::RichelBilderbeek::MenuDialog::GetVersionHistory()
+const std::vector<std::string> ribi::RichelBilderbeek::MenuDialog::GetVersionHistory() noexcept
 {
   return {
     "2010-12-20: Version 0.1: web-application-only project called 'ProjectWtWebsite', initial setup with BeerWanter and Loose",
@@ -293,5 +305,6 @@ const std::vector<std::string> ribi::RichelBilderbeek::MenuDialog::GetVersionHis
     "2013-05-26: Version 1.07: changed the main menu, added StateObserver",
     "2013-05-29: Version 1.08: added KalmanFilterer, added About button in desktop version",
     "2013-07-11: Version 1.09: transition phase to Qt5, still supports Qt4",
+    "2013-09-17: Version 1.10: added K3OpEenRij, TestApproximator, TestMultiApproximator, TestSimpleLinearRegression, compiles with -Weffc++, added noexcept specifications, use of .pri file",
   };
 }

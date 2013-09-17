@@ -1,5 +1,5 @@
-#ifndef QTTOOLTESTAPPROXIMATORMENUDIALOG_H
-#define QTTOOLTESTAPPROXIMATORMENUDIALOG_H
+#ifndef QTTOOLTESTSIMPLELINEARREGRESSIONMENUDIALOG_H
+#define QTTOOLTESTSIMPLELINEARREGRESSIONMENUDIALOG_H
 
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
@@ -17,25 +17,27 @@ class QtToolTestSimpleLinearRegressionMenuDialog : public QtHideAndShowDialog
   Q_OBJECT
 
 public:
-  explicit QtToolTestSimpleLinearRegressionMenuDialog(QWidget *parent = 0);
-  ~QtToolTestSimpleLinearRegressionMenuDialog();
+  explicit QtToolTestSimpleLinearRegressionMenuDialog(QWidget *parent = 0) noexcept;
+  QtToolTestSimpleLinearRegressionMenuDialog(const QtToolTestSimpleLinearRegressionMenuDialog&) = delete;
+  QtToolTestSimpleLinearRegressionMenuDialog& operator=(const QtToolTestSimpleLinearRegressionMenuDialog&) = delete;
+  ~QtToolTestSimpleLinearRegressionMenuDialog() noexcept;
 
 protected:
-  void keyPressEvent(QKeyEvent * event);
+  void keyPressEvent(QKeyEvent * event) noexcept;
 
 private:
   Ui::QtToolTestSimpleLinearRegressionMenuDialog *ui;
 
 private slots:
-  void on_button_about_clicked();
-  void on_button_quit_clicked();
-  void on_button_start_clicked();
+  void on_button_about_clicked() noexcept;
+  void on_button_quit_clicked() noexcept;
+  void on_button_start_clicked() noexcept;
 
   #ifndef NDEBUG
-  static void Test();
+  static void Test() noexcept;
   #endif
 };
 
 } //~namespace ribi
 
-#endif // QTTOOLTESTAPPROXIMATORMENUDIALOG_H
+#endif // QTTOOLTESTSIMPLELINEARREGRESSIONMENUDIALOG_H

@@ -41,12 +41,12 @@ ribi::Question::Question(
   if (m_answers.empty()) throw std::logic_error("Answers must not be empty");
 }
 
-const std::string ribi::Question::GetVersion()
+const std::string ribi::Question::GetVersion() noexcept
 {
   return "1.1";
 }
 
-const std::vector<std::string> ribi::Question::GetVersionHistory()
+const std::vector<std::string> ribi::Question::GetVersionHistory() noexcept
 {
   std::vector<std::string> v;
   v.push_back("2011-06-27: version 1.0: initial version");

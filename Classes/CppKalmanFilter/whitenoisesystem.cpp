@@ -15,7 +15,7 @@ ribi::kalman::WhiteNoiseSystem::WhiteNoiseSystem(const boost::shared_ptr<const W
   assert(m_parameters);
 }
 
-double ribi::kalman::WhiteNoiseSystem::GetRandomNormal(const double mean, const double sigma)
+double ribi::kalman::WhiteNoiseSystem::GetRandomNormal(const double mean, const double sigma) noexcept
 {
   boost::normal_distribution<double> norm_dist(mean, sigma);
   static boost::lagged_fibonacci19937 engine;
@@ -23,12 +23,12 @@ double ribi::kalman::WhiteNoiseSystem::GetRandomNormal(const double mean, const 
   return value;
 }
 
-const std::string ribi::kalman::WhiteNoiseSystem::GetVersion()
+const std::string ribi::kalman::WhiteNoiseSystem::GetVersion() noexcept
 {
   return "1.0";
 }
 
-const std::vector<std::string> ribi::kalman::WhiteNoiseSystem::GetVersionHistory()
+const std::vector<std::string> ribi::kalman::WhiteNoiseSystem::GetVersionHistory() noexcept
 {
   return {
     "2013-05-03: version 1.0: initial version"

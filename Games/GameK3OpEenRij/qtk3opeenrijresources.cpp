@@ -1,6 +1,9 @@
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include "qtk3opeenrijresources.h"
 
 #include <cassert>
+#pragma GCC diagnostic pop
 
 ribi::QtK3OpEenRijResources::QtK3OpEenRijResources(
   const boost::logic::tribool is_player3_kathleen)

@@ -19,7 +19,7 @@
 
 #pragma GCC diagnostic pop
 
-ribi::QtToolTestApproximatorXyzMainDialog::QtToolTestApproximatorXyzMainDialog(QWidget *parent) :
+ribi::QtToolTestApproximatorXyzMainDialog::QtToolTestApproximatorXyzMainDialog(QWidget *parent) noexcept :
   QtHideAndShowDialog(parent),
   ui(new Ui::QtToolTestApproximatorXyzMainDialog),
   m_approximator(),
@@ -124,13 +124,13 @@ ribi::QtToolTestApproximatorXyzMainDialog::QtToolTestApproximatorXyzMainDialog(Q
   ui->box_double_y->setValue(0.0);
 }
 
-ribi::QtToolTestApproximatorXyzMainDialog::~QtToolTestApproximatorXyzMainDialog()
+ribi::QtToolTestApproximatorXyzMainDialog::~QtToolTestApproximatorXyzMainDialog() noexcept
 {
   delete ui;
 }
 
 ribi::QtToolTestApproximatorXyzMainDialog::Data
-  ribi::QtToolTestApproximatorXyzMainDialog::CreateData()
+  ribi::QtToolTestApproximatorXyzMainDialog::CreateData() noexcept
 {
   Data d;
   for (auto i=0; i!=m_n_curves; ++i)
@@ -146,21 +146,21 @@ ribi::QtToolTestApproximatorXyzMainDialog::Data
   return d;
 }
 
-QwtPlotCurve * ribi::QtToolTestApproximatorXyzMainDialog::GetCurveApproximation(const int i)
+QwtPlotCurve * ribi::QtToolTestApproximatorXyzMainDialog::GetCurveApproximation(const int i) noexcept
 {
   assert(i >= 0);
   assert(i < static_cast<int>(m_data.size()));
   return std::get<0>(m_data[i]);
 }
 
-QwtPlotCurve * ribi::QtToolTestApproximatorXyzMainDialog::GetCurveValues(const int i)
+QwtPlotCurve * ribi::QtToolTestApproximatorXyzMainDialog::GetCurveValues(const int i) noexcept
 {
   assert(i >= 0);
   assert(i < static_cast<int>(m_data.size()));
   return std::get<1>(m_data[i]);
 }
 
-const boost::shared_ptr<QwtPlot> ribi::QtToolTestApproximatorXyzMainDialog::GetPlot(const int i)
+const boost::shared_ptr<QwtPlot> ribi::QtToolTestApproximatorXyzMainDialog::GetPlot(const int i) noexcept
 {
   assert(i >= 0);
   assert(i < static_cast<int>(m_data.size()));
@@ -169,7 +169,7 @@ const boost::shared_ptr<QwtPlot> ribi::QtToolTestApproximatorXyzMainDialog::GetP
   return p;
 }
 
-void ribi::QtToolTestApproximatorXyzMainDialog::on_button_clicked()
+void ribi::QtToolTestApproximatorXyzMainDialog::on_button_clicked() noexcept
 {
   #ifdef TODO_723468346509350397
   const double x = static_cast<double>(ui->box_int_x->value());
@@ -183,7 +183,7 @@ void ribi::QtToolTestApproximatorXyzMainDialog::on_button_clicked()
   #endif
 }
 
-void ribi::QtToolTestApproximatorXyzMainDialog::on_box_int_x_valueChanged(int)
+void ribi::QtToolTestApproximatorXyzMainDialog::on_box_int_x_valueChanged(int) noexcept
 {
   #ifdef TODO_723468346509350397
   const int x = ui->box_int_x->value();
@@ -193,7 +193,7 @@ void ribi::QtToolTestApproximatorXyzMainDialog::on_box_int_x_valueChanged(int)
   #endif
 }
 
-void ribi::QtToolTestApproximatorXyzMainDialog::on_box_double_y_valueChanged(double)
+void ribi::QtToolTestApproximatorXyzMainDialog::on_box_double_y_valueChanged(double) noexcept
 {
   #ifdef TODO_723468346509350397
   const int x = ui->box_int_x->value();
@@ -203,7 +203,7 @@ void ribi::QtToolTestApproximatorXyzMainDialog::on_box_double_y_valueChanged(dou
   #endif
 }
 
-void ribi::QtToolTestApproximatorXyzMainDialog::on_box_int_z_valueChanged(int)
+void ribi::QtToolTestApproximatorXyzMainDialog::on_box_int_z_valueChanged(int) noexcept
 {
   #ifdef TODO_723468346509350397
   const int x = ui->box_int_x->value();
@@ -213,7 +213,7 @@ void ribi::QtToolTestApproximatorXyzMainDialog::on_box_int_z_valueChanged(int)
   #endif
 }
 
-void ribi::QtToolTestApproximatorXyzMainDialog::Plot()
+void ribi::QtToolTestApproximatorXyzMainDialog::Plot() noexcept
 {
   #ifdef TODO_723468346509350397
   //Plot approximation

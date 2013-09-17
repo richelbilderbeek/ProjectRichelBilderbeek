@@ -117,7 +117,7 @@ ribi::QtRichelBilderbeekMenuDialog::~QtRichelBilderbeekMenuDialog()
 }
 
 
-const ribi::About ribi::QtRichelBilderbeekMenuDialog::GetAbout()
+const ribi::About ribi::QtRichelBilderbeekMenuDialog::GetAbout() noexcept
 {
   About a = RichelBilderbeek::MenuDialog::GetAbout();
   a.AddLibrary("QtArrowItem version: " + QtArrowItem::GetVersion());

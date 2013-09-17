@@ -22,6 +22,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic ignored "-Weffc++"
 #include <QApplication>
 
+#include <iostream>
+
 #include "qtrichelbilderbeekmenudialog.h"
 #include "trace.h"
 #pragma GCC diagnostic pop

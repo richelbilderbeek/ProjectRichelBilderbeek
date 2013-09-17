@@ -33,12 +33,12 @@ ribi::kalman::StandardKalmanFilterParameters::StandardKalmanFilterParameters(
   #endif
 }
 
-const std::string ribi::kalman::StandardKalmanFilterParameters::GetVersion()
+const std::string ribi::kalman::StandardKalmanFilterParameters::GetVersion() noexcept
 {
   return "1.1";
 }
 
-const std::vector<std::string> ribi::kalman::StandardKalmanFilterParameters::GetVersionHistory()
+const std::vector<std::string> ribi::kalman::StandardKalmanFilterParameters::GetVersionHistory() noexcept
 {
   return {
     "2013-04-28: version 1.0: initial version",
@@ -46,7 +46,7 @@ const std::vector<std::string> ribi::kalman::StandardKalmanFilterParameters::Get
   };
 }
 
-bool ribi::kalman::StandardKalmanFilterParameters::HasParameterType(const KalmanFilterParameterType type)
+bool ribi::kalman::StandardKalmanFilterParameters::HasParameterType(const KalmanFilterParameterType type) noexcept
 {
   return
        type == KalmanFilterParameterType::control
@@ -58,7 +58,7 @@ bool ribi::kalman::StandardKalmanFilterParameters::HasParameterType(const Kalman
     || type == KalmanFilterParameterType::state_transition;
 }
 
-bool ribi::kalman::StandardKalmanFilterParameters::IsAboutEqual(const StandardKalmanFilterParameters& lhs, const StandardKalmanFilterParameters& rhs)
+bool ribi::kalman::StandardKalmanFilterParameters::IsAboutEqual(const StandardKalmanFilterParameters& lhs, const StandardKalmanFilterParameters& rhs) noexcept
 {
   return
        Matrix::MatricesAreAboutEqual(lhs.GetControl(),rhs.GetControl())
