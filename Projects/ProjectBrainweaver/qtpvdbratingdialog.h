@@ -25,7 +25,7 @@ class QtPvdbRatingDialog : public ribi::QtHideAndShowDialog
   explicit QtPvdbRatingDialog(const boost::shared_ptr<pvdb::File> file, QWidget* parent = 0);
   QtPvdbRatingDialog(const QtPvdbRatingDialog&) = delete;
   QtPvdbRatingDialog& operator=(const QtPvdbRatingDialog&) = delete;
-  ~QtPvdbRatingDialog();
+  ~QtPvdbRatingDialog() noexcept;
 
   bool GetBackToMenu() const { return m_back_to_menu; }
 

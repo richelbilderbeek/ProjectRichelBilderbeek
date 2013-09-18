@@ -22,7 +22,7 @@ public:
   explicit QtPvdbViewTestsDialog(QWidget* parent = 0);
   QtPvdbViewTestsDialog(const QtPvdbViewTestsDialog&) = delete;
   QtPvdbViewTestsDialog& operator=(const QtPvdbViewTestsDialog&) = delete;
-  ~QtPvdbViewTestsDialog();
+  ~QtPvdbViewTestsDialog() noexcept;
 
 protected:
   void keyPressEvent(QKeyEvent* event);

@@ -24,7 +24,7 @@ public:
   explicit QtPvdbAssessorMenuDialog(QWidget* parent = 0);
   QtPvdbAssessorMenuDialog(const QtPvdbAssessorMenuDialog&) = delete;
   QtPvdbAssessorMenuDialog& operator=(const QtPvdbAssessorMenuDialog&) = delete;
-  ~QtPvdbAssessorMenuDialog();
+  ~QtPvdbAssessorMenuDialog() noexcept;
 
 private slots:
   void keyPressEvent(QKeyEvent *);

@@ -13,7 +13,7 @@ namespace pvdb {
 ///QtPvdbDisplayConcept display a Concept
 struct QtPvdbDisplayConceptItem : public QtPvdbConceptItem
 {
-  ~QtPvdbDisplayConceptItem();
+  ~QtPvdbDisplayConceptItem() noexcept;
 
   //concept can be modified (as it is not const), but I can promise I will try to prevent this from happening
   explicit QtPvdbDisplayConceptItem(const boost::shared_ptr<ribi::pvdb::Concept>& concept);

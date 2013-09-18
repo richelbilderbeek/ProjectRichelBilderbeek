@@ -34,7 +34,7 @@ ribi::QtTestQtRoundedRectItemMainDialog::QtTestQtRoundedRectItemMainDialog(QWidg
   ui->setupUi(this);
 }
 
-ribi::QtTestQtRoundedRectItemMainDialog::~QtTestQtRoundedRectItemMainDialog()
+ribi::QtTestQtRoundedRectItemMainDialog::~QtTestQtRoundedRectItemMainDialog() noexcept
 {
   delete ui;
 }

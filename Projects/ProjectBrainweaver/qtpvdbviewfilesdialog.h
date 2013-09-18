@@ -20,7 +20,7 @@ public:
   explicit QtPvdbViewFilesDialog(QWidget* parent = 0);
   QtPvdbViewFilesDialog(const QtPvdbViewFilesDialog&) = delete;
   QtPvdbViewFilesDialog& operator=(const QtPvdbViewFilesDialog&) = delete;
-  ~QtPvdbViewFilesDialog();
+  ~QtPvdbViewFilesDialog() noexcept;
   
 private slots:
   void on_button_left_clicked();

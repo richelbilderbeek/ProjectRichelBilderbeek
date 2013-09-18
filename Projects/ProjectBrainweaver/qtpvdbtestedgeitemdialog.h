@@ -23,7 +23,7 @@ public:
   explicit QtPvdbTestEdgeItemDialog(QWidget *parent = 0);
   QtPvdbTestEdgeItemDialog(const QtPvdbTestEdgeItemDialog&) = delete;
   QtPvdbTestEdgeItemDialog& operator=(const QtPvdbTestEdgeItemDialog&) = delete;
-  ~QtPvdbTestEdgeItemDialog();
+  ~QtPvdbTestEdgeItemDialog() noexcept;
 protected:
 
   void keyPressEvent(QKeyEvent *);

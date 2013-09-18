@@ -170,7 +170,7 @@ ribi::pvdb::QtPvdbTestEdgeItemDialog::QtPvdbTestEdgeItemDialog(QWidget *parent) 
   ui->box_competency->setCurrentIndex(static_cast<int>(this->GetEdgeCurrentWay()->GetConcept()->GetExamples()->Get().at(0)->GetCompetency()));
 }
 
-ribi::pvdb::QtPvdbTestEdgeItemDialog::~QtPvdbTestEdgeItemDialog()
+ribi::pvdb::QtPvdbTestEdgeItemDialog::~QtPvdbTestEdgeItemDialog() noexcept
 {
   delete ui;
 }

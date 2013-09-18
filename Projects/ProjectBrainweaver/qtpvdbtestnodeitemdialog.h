@@ -22,7 +22,7 @@ public:
   explicit QtPvdbTestNodeItemDialog(QWidget *parent = 0);
   QtPvdbTestNodeItemDialog(const QtPvdbTestNodeItemDialog&) = delete;
   QtPvdbTestNodeItemDialog& operator=(const QtPvdbTestNodeItemDialog&) = delete;
-  ~QtPvdbTestNodeItemDialog();
+  ~QtPvdbTestNodeItemDialog() noexcept;
 
 protected:
 

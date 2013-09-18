@@ -31,7 +31,7 @@ ribi::pvdb::QtPvdbTestCreateSubConceptMapDialog::QtPvdbTestCreateSubConceptMapDi
   OnSubConceptMapChanged();
 }
 
-ribi::pvdb::QtPvdbTestCreateSubConceptMapDialog::~QtPvdbTestCreateSubConceptMapDialog()
+ribi::pvdb::QtPvdbTestCreateSubConceptMapDialog::~QtPvdbTestCreateSubConceptMapDialog() noexcept
 {
   delete ui;
 }

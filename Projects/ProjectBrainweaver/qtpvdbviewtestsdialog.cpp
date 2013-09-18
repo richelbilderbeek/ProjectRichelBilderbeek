@@ -133,7 +133,7 @@ ribi::pvdb::QtPvdbViewTestsDialog::QtPvdbViewTestsDialog(QWidget* parent)
   }
 }
 
-ribi::pvdb::QtPvdbViewTestsDialog::~QtPvdbViewTestsDialog()
+ribi::pvdb::QtPvdbViewTestsDialog::~QtPvdbViewTestsDialog() noexcept
 {
   delete ui;
 }

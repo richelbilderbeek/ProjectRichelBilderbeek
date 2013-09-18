@@ -39,7 +39,7 @@ ribi::QtTestQtCreatorProFileMainDialog::QtTestQtCreatorProFileMainDialog(QWidget
   ui->setupUi(this);
 }
 
-ribi::QtTestQtCreatorProFileMainDialog::~QtTestQtCreatorProFileMainDialog()
+ribi::QtTestQtCreatorProFileMainDialog::~QtTestQtCreatorProFileMainDialog() noexcept
 {
   delete ui;
 }

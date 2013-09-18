@@ -17,7 +17,7 @@ struct QtPvdbRateConceptItem : public QtPvdbConceptItem
   //concept will be modified
   explicit QtPvdbRateConceptItem(const boost::shared_ptr<ribi::pvdb::Concept>& concept);
 
-  virtual ~QtPvdbRateConceptItem();
+  virtual ~QtPvdbRateConceptItem() noexcept;
 
   ///Key was pressed to indicate user wants to rate the concept
   boost::signals2::signal<void(QtPvdbConceptItem*)> m_signal_request_rate_concept;

@@ -41,7 +41,7 @@ ribi::QtTestQtRoundedEditRectItemMenuDialog::QtTestQtRoundedEditRectItemMenuDial
   ui->setupUi(this);
 }
 
-ribi::QtTestQtRoundedEditRectItemMenuDialog::~QtTestQtRoundedEditRectItemMenuDialog()
+ribi::QtTestQtRoundedEditRectItemMenuDialog::~QtTestQtRoundedEditRectItemMenuDialog() noexcept
 {
   delete ui;
 }

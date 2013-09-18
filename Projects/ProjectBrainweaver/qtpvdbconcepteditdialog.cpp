@@ -82,7 +82,7 @@ ribi::pvdb::QtPvdbConceptEditDialog::QtPvdbConceptEditDialog(
     SLOT(RemoveEmptyItem(QListWidgetItem*)));
 }
 
-ribi::pvdb::QtPvdbConceptEditDialog::~QtPvdbConceptEditDialog()
+ribi::pvdb::QtPvdbConceptEditDialog::~QtPvdbConceptEditDialog() noexcept
 {
   delete ui;
 }

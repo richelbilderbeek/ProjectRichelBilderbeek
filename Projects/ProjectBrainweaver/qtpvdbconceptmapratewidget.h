@@ -17,7 +17,7 @@ struct QtPvdbConceptMapRateWidget : public QtPvdbConceptMapWidget
   QtPvdbConceptMapRateWidget(
     const boost::shared_ptr<ribi::pvdb::ConceptMap> concept_map,
     QWidget* parent = 0);
-  ~QtPvdbConceptMapRateWidget() {}
+  ~QtPvdbConceptMapRateWidget() noexcept {}
   QtPvdbConceptMapRateWidget(const QtPvdbConceptMapRateWidget& other) = delete;
   QtPvdbConceptMapRateWidget& operator=(const QtPvdbConceptMapRateWidget& other) = delete;
 

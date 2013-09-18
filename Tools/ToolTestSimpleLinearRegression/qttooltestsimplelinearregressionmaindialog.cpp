@@ -12,7 +12,9 @@
 #include <qwt_plot_zoomer.h>
 
 #if QWT_VERSION >= 0x060000
+#ifdef _WIN32
 #include <qwt_point_data.h>
+#endif
 #endif
 
 #include "simplelinearregression.h"
@@ -39,7 +41,7 @@ ribi::QtToolTestSimpleLinearRegressionMainDialog::QtToolTestSimpleLinearRegressi
   #ifdef _WIN32
   m_plot->setCanvasBackground(QBrush(QColor(255,255,255)));
   #else
-  plot->setCanvasBackground(QColor(255,255,255));
+  m_plot->setCanvasBackground(QColor(255,255,255));
   #endif
 
   //Create plots

@@ -49,7 +49,7 @@ ribi::pvdb::QtPvdbTestConceptMapRateWidgetDialog::QtPvdbTestConceptMapRateWidget
   ui->widget->layout()->addWidget(m_concept_map.get());
 }
 
-ribi::pvdb::QtPvdbTestConceptMapRateWidgetDialog::~QtPvdbTestConceptMapRateWidgetDialog()
+ribi::pvdb::QtPvdbTestConceptMapRateWidgetDialog::~QtPvdbTestConceptMapRateWidgetDialog() noexcept
 {
   delete ui;
 }

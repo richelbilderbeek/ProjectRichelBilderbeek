@@ -39,7 +39,7 @@ ribi::QtTestQtArrowItemsMenuDialog::QtTestQtArrowItemsMenuDialog(QWidget *parent
   ui->setupUi(this);
 }
 
-ribi::QtTestQtArrowItemsMenuDialog::~QtTestQtArrowItemsMenuDialog()
+ribi::QtTestQtArrowItemsMenuDialog::~QtTestQtArrowItemsMenuDialog() noexcept
 {
   delete ui;
 }

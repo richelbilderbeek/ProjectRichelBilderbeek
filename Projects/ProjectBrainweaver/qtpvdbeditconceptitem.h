@@ -15,7 +15,7 @@ struct QtPvdbEditConceptItem : public QtPvdbConceptItem
 {
   //concept will be modified
   explicit QtPvdbEditConceptItem(const boost::shared_ptr<ribi::pvdb::Concept> concept);
-
+  ~QtPvdbEditConceptItem() noexcept {}
   ///Signalled when the user wants to edit
   boost::signals2::signal<void (QtPvdbConceptItem *)> m_signal_request_edit;
 

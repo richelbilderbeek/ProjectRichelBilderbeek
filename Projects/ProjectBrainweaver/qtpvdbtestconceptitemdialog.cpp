@@ -101,7 +101,7 @@ ribi::pvdb::QtPvdbTestConceptItemDialog::QtPvdbTestConceptItemDialog(QWidget *pa
   ui->box_competency->setCurrentIndex(static_cast<int>(this->GetChosenConcept()->GetExamples()->Get().at(0)->GetCompetency()));
 }
 
-ribi::pvdb::QtPvdbTestConceptItemDialog::~QtPvdbTestConceptItemDialog()
+ribi::pvdb::QtPvdbTestConceptItemDialog::~QtPvdbTestConceptItemDialog() noexcept
 {
   delete ui;
 }

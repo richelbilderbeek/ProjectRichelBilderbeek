@@ -24,6 +24,7 @@ struct QtPvdbEdgeItem : public QtPvdbConceptMapItem
     QtPvdbNodeItem* const to);
   QtPvdbEdgeItem(const QtPvdbEdgeItem&) = delete;
   QtPvdbEdgeItem& operator=(const QtPvdbEdgeItem&) = delete;
+  ~QtPvdbEdgeItem() noexcept {}
 
   QRectF boundingRect() const final;
 

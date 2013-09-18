@@ -23,7 +23,7 @@ struct QtPvdbConceptMapDisplayWidget : public QtPvdbConceptMapWidget
   QtPvdbConceptMapDisplayWidget(
     const boost::shared_ptr<ribi::pvdb::ConceptMap> concept_map,
     QWidget* parent = 0);
-  ~QtPvdbConceptMapDisplayWidget() {}
+  ~QtPvdbConceptMapDisplayWidget() noexcept {}
 
   #ifndef NDEBUG
   ///Creates a new derived class

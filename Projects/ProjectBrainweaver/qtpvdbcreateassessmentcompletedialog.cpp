@@ -22,7 +22,7 @@ ribi::pvdb::QtPvdbCreateAssessmentCompleteDialog::QtPvdbCreateAssessmentComplete
   ui->setupUi(this);
 }
 
-ribi::pvdb::QtPvdbCreateAssessmentCompleteDialog::~QtPvdbCreateAssessmentCompleteDialog()
+ribi::pvdb::QtPvdbCreateAssessmentCompleteDialog::~QtPvdbCreateAssessmentCompleteDialog() noexcept
 {
   delete ui;
 }

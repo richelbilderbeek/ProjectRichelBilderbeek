@@ -49,7 +49,7 @@ ribi::QtToolTestQtModelsMainDialog::QtToolTestQtModelsMainDialog(QWidget *parent
   #endif
 }
 
-ribi::QtToolTestQtModelsMainDialog::~QtToolTestQtModelsMainDialog()
+ribi::QtToolTestQtModelsMainDialog::~QtToolTestQtModelsMainDialog() noexcept
 {
   delete ui;
 }

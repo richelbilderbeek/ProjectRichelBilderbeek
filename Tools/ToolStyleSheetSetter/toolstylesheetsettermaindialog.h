@@ -16,7 +16,7 @@ public:
   explicit ToolStyleSheetSetterMainDialog(const std::string& stylesheet = "", QWidget *parent = 0);
   ToolStyleSheetSetterMainDialog(const ToolStyleSheetSetterMainDialog&) = delete;
   ToolStyleSheetSetterMainDialog& operator=(const ToolStyleSheetSetterMainDialog&) = delete;
-  ~ToolStyleSheetSetterMainDialog();
+  ~ToolStyleSheetSetterMainDialog() noexcept;
   const std::string& GetStyleSheet() const { return m_stylesheet; }
 
 protected:

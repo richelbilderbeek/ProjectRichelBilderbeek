@@ -157,7 +157,7 @@ ribi::pvdb::QtPvdbRateConceptTallyDialog::QtPvdbRateConceptTallyDialog(
   }
 }
 
-ribi::pvdb::QtPvdbRateConceptTallyDialog::~QtPvdbRateConceptTallyDialog()
+ribi::pvdb::QtPvdbRateConceptTallyDialog::~QtPvdbRateConceptTallyDialog() noexcept
 {
   delete ui;
 }

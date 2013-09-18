@@ -66,7 +66,7 @@ ribi::pvdb::QtPvdbRateConceptMapDialog::QtPvdbRateConceptMapDialog(
 
 }
 
-ribi::pvdb::QtPvdbRateConceptMapDialog::~QtPvdbRateConceptMapDialog()
+ribi::pvdb::QtPvdbRateConceptMapDialog::~QtPvdbRateConceptMapDialog() noexcept
 {
   delete ui;
 }

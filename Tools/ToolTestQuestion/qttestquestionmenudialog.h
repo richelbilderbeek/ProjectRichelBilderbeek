@@ -43,7 +43,7 @@ public:
   explicit QtTestQuestionMenuDialog(QWidget *parent = 0);
   QtTestQuestionMenuDialog(const QtTestQuestionMenuDialog&) = delete;
   QtTestQuestionMenuDialog& operator=(const QtTestQuestionMenuDialog&) = delete;
-  ~QtTestQuestionMenuDialog();
+  ~QtTestQuestionMenuDialog() noexcept;
 
 protected:
   void keyPressEvent(QKeyEvent* event);

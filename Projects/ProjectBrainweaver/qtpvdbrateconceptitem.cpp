@@ -61,7 +61,7 @@ ribi::pvdb::QtPvdbRateConceptItem::QtPvdbRateConceptItem(const boost::shared_ptr
 }
 
 
-ribi::pvdb::QtPvdbRateConceptItem::~QtPvdbRateConceptItem()
+ribi::pvdb::QtPvdbRateConceptItem::~QtPvdbRateConceptItem() noexcept
 {
   //2013-08-25
   GetConcept()->m_signal_rating_complexity_changed.disconnect(

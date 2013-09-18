@@ -186,7 +186,7 @@ ribi::QtTestQtArrowItemsMainDialog::QtTestQtArrowItemsMainDialog(QWidget *parent
   }
 }
 
-ribi::QtTestQtArrowItemsMainDialog::~QtTestQtArrowItemsMainDialog()
+ribi::QtTestQtArrowItemsMainDialog::~QtTestQtArrowItemsMainDialog() noexcept
 {
   delete ui;
 }

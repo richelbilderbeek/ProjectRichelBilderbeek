@@ -68,7 +68,7 @@ ribi::pvdb::QtPvdbRateExamplesDialog::QtPvdbRateExamplesDialog(
   }
 }
 
-ribi::pvdb::QtPvdbRateExamplesDialog::~QtPvdbRateExamplesDialog()
+ribi::pvdb::QtPvdbRateExamplesDialog::~QtPvdbRateExamplesDialog() noexcept
 {
   delete ui;
 }

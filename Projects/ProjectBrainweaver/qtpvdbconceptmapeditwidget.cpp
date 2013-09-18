@@ -82,7 +82,7 @@ ribi::pvdb::QtPvdbConceptMapEditWidget::QtPvdbConceptMapEditWidget(
   #endif
 }
 
-ribi::pvdb::QtPvdbConceptMapEditWidget::~QtPvdbConceptMapEditWidget()
+ribi::pvdb::QtPvdbConceptMapEditWidget::~QtPvdbConceptMapEditWidget() noexcept
 {
   m_tools = nullptr;
   assert(m_highlighter);

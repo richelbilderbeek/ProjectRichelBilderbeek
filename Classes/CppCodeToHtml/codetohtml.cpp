@@ -114,7 +114,7 @@ bool c2h::IsTidyInstalled()
   assert(!IsRegularFile(temp_filename_tidy));
 
   //'2>' denotes -AFAIK- 'Write to file only, no screen output'
-  const std::string command = "tidy -v 2> " + temp_filename_tidy;
+  const std::string command = "tidy -v 2> ./" + temp_filename_tidy;
   const int error = std::system(command.c_str());
   //assert(ok == 0 && "While I know I have tidy installed");
   //assert(IsRegularFile(temp_filename_tidy) && "While I know I have tidy installed");

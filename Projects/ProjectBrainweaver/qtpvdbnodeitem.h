@@ -14,7 +14,7 @@ namespace pvdb {
 ///QtPvdbNodeItem displays a Node
 struct QtPvdbNodeItem : public QtPvdbConceptMapItem
 {
-  virtual ~QtPvdbNodeItem() {}
+  virtual ~QtPvdbNodeItem() noexcept {}
 
   ///Node cannot be const as it contains a Concept that the user might want to edit
   ///concept_item contains the Stategy to display (and respond to the concept)

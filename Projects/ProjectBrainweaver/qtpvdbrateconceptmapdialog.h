@@ -24,7 +24,7 @@ public:
     QWidget* parent = 0);
   QtPvdbRateConceptMapDialog(const QtPvdbRateConceptMapDialog&) = delete;
   QtPvdbRateConceptMapDialog& operator=(const QtPvdbRateConceptMapDialog&) = delete;
-  ~QtPvdbRateConceptMapDialog();
+  ~QtPvdbRateConceptMapDialog() noexcept;
 
   QtPvdbConceptMapRateWidget * GetWidget();
 

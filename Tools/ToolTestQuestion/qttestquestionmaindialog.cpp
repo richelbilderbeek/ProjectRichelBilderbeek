@@ -56,7 +56,7 @@ ribi::QtTestQuestionMainDialog::QtTestQuestionMainDialog(QWidget *parent) :
   SetQuestion("-,1+1=,2,1,3");
 }
 
-ribi::QtTestQuestionMainDialog::~QtTestQuestionMainDialog()
+ribi::QtTestQuestionMainDialog::~QtTestQuestionMainDialog() noexcept
 {
   delete ui;
 }

@@ -33,7 +33,7 @@ QtTestQtRoundedTextRectItemMainDialog::QtTestQtRoundedTextRectItemMainDialog(QWi
   ui->setupUi(this);
 }
 
-QtTestQtRoundedTextRectItemMainDialog::~QtTestQtRoundedTextRectItemMainDialog()
+QtTestQtRoundedTextRectItemMainDialog::~QtTestQtRoundedTextRectItemMainDialog() noexcept
 {
   delete ui;
 }

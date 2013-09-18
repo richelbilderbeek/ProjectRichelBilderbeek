@@ -18,7 +18,7 @@ ribi::pvdb::QtPvdbViewFilesDialog::QtPvdbViewFilesDialog(QWidget* parent) :
   ui->setupUi(this);
 }
 
-ribi::pvdb::QtPvdbViewFilesDialog::~QtPvdbViewFilesDialog()
+ribi::pvdb::QtPvdbViewFilesDialog::~QtPvdbViewFilesDialog() noexcept
 {
   delete ui;
 }

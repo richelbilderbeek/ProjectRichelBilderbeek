@@ -28,7 +28,7 @@ public:
     QWidget* parent = 0);
   QtPvdbConceptEditDialog(const QtPvdbConceptEditDialog&) = delete;
   QtPvdbConceptEditDialog& operator=(const QtPvdbConceptEditDialog&) = delete;
-  ~QtPvdbConceptEditDialog();
+  ~QtPvdbConceptEditDialog() noexcept;
 
 protected:
   void keyPressEvent(QKeyEvent *);

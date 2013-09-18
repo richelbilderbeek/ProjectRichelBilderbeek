@@ -25,7 +25,7 @@ class QtPvdbRateConceptDialog : public ribi::QtHideAndShowDialog
     QWidget* parent = 0);
   QtPvdbRateConceptDialog(const QtPvdbRateConceptDialog&) = delete;
   QtPvdbRateConceptDialog& operator=(const QtPvdbRateConceptDialog&) = delete;
-  ~QtPvdbRateConceptDialog();
+  ~QtPvdbRateConceptDialog() noexcept;
 
   ///Set suggested values for this concept
   //void MakeSuggestions(const boost::shared_ptr<const ribi::pvdb::ConceptMap> sub_concept_map);

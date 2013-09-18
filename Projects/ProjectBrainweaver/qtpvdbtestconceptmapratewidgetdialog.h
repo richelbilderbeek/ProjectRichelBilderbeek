@@ -23,7 +23,7 @@ public:
   explicit QtPvdbTestConceptMapRateWidgetDialog(QWidget *parent = 0);
   QtPvdbTestConceptMapRateWidgetDialog(const QtPvdbTestConceptMapRateWidgetDialog&) = delete;
   QtPvdbTestConceptMapRateWidgetDialog& operator=(const QtPvdbTestConceptMapRateWidgetDialog&) = delete;
-  ~QtPvdbTestConceptMapRateWidgetDialog();
+  ~QtPvdbTestConceptMapRateWidgetDialog() noexcept;
 
 protected:
 

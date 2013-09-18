@@ -29,7 +29,7 @@ ribi::pvdb::QtPvdbStudentMenuDialog::QtPvdbStudentMenuDialog(const boost::shared
   on_edit_name_textChanged(ui->edit_name->text());
 }
 
-ribi::pvdb::QtPvdbStudentMenuDialog::~QtPvdbStudentMenuDialog()
+ribi::pvdb::QtPvdbStudentMenuDialog::~QtPvdbStudentMenuDialog() noexcept
 {
   delete ui;
 }

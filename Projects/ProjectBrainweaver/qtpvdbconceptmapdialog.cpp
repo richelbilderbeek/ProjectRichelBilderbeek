@@ -95,7 +95,7 @@ ribi::pvdb::QtPvdbConceptMapDialog::QtPvdbConceptMapDialog(
       this,boost::lambda::_1));
 }
 
-ribi::pvdb::QtPvdbConceptMapDialog::~QtPvdbConceptMapDialog()
+ribi::pvdb::QtPvdbConceptMapDialog::~QtPvdbConceptMapDialog() noexcept
 {
   delete ui;
 }

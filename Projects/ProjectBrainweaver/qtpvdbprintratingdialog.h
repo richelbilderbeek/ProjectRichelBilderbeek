@@ -29,7 +29,7 @@ public:
     QWidget *parent = 0);
   QtPvdbPrintRatingDialog(const QtPvdbPrintRatingDialog&) = delete;
   QtPvdbPrintRatingDialog& operator=(const QtPvdbPrintRatingDialog&) = delete;
-  ~QtPvdbPrintRatingDialog();
+  ~QtPvdbPrintRatingDialog() noexcept;
 
   QTableWidget * GetTableConcepts();
   QTableWidget * GetTableExamples();

@@ -24,7 +24,7 @@ public:
     QWidget* parent = 0);
   QtPvdbConceptMapWidget(const QtPvdbConceptMapWidget&) = delete;
   QtPvdbConceptMapWidget& operator=(const QtPvdbConceptMapWidget&) = delete;
-  virtual ~QtPvdbConceptMapWidget();
+  virtual ~QtPvdbConceptMapWidget() noexcept;
 
   #ifndef NDEBUG
   ///Creates a new derived class

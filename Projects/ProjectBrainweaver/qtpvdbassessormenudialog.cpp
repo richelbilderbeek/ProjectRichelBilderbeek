@@ -25,7 +25,7 @@ ribi::pvdb::QtPvdbAssessorMenuDialog::QtPvdbAssessorMenuDialog(QWidget* parent)
   ui->setupUi(this);
 }
 
-ribi::pvdb::QtPvdbAssessorMenuDialog::~QtPvdbAssessorMenuDialog()
+ribi::pvdb::QtPvdbAssessorMenuDialog::~QtPvdbAssessorMenuDialog() noexcept
 {
   delete ui;
 }

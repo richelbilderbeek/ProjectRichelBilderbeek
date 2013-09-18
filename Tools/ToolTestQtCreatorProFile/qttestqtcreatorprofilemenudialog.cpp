@@ -35,7 +35,7 @@ ribi::QtTestQtCreatorProFileMenuDialog::QtTestQtCreatorProFileMenuDialog(QWidget
   ui->setupUi(this);
 }
 
-ribi::QtTestQtCreatorProFileMenuDialog::~QtTestQtCreatorProFileMenuDialog()
+ribi::QtTestQtCreatorProFileMenuDialog::~QtTestQtCreatorProFileMenuDialog() noexcept
 {
   delete ui;
 }

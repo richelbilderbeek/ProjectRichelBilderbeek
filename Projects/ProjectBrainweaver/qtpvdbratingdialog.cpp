@@ -67,7 +67,7 @@ ribi::pvdb::QtPvdbRatingDialog::QtPvdbRatingDialog(
   }
 }
 
-ribi::pvdb::QtPvdbRatingDialog::~QtPvdbRatingDialog()
+ribi::pvdb::QtPvdbRatingDialog::~QtPvdbRatingDialog() noexcept
 {
   delete ui;
 }

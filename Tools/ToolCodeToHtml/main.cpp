@@ -66,7 +66,7 @@ int main(int argc, char* argv[])
   START_TRACE();
 
   #ifndef NDEBUG
-
+  assert(c2h::IsTidyInstalled());
   #else
   assert(1==2 && "I will be deleted");
   #endif

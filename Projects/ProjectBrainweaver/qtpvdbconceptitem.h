@@ -32,7 +32,7 @@ struct QtPvdbConceptItem : public QtRoundedEditRectItem //NEW 2013-09-15
   explicit QtPvdbConceptItem(const boost::shared_ptr<ribi::pvdb::Concept>& concept);
   QtPvdbConceptItem(const QtPvdbConceptItem& other) = delete;
   QtPvdbConceptItem& operator=(const QtPvdbConceptItem& other) = delete;
-  virtual ~QtPvdbConceptItem() {}
+  virtual ~QtPvdbConceptItem() noexcept {}
 
   ///Read the Concept
   const boost::shared_ptr<const ribi::pvdb::Concept>  GetConcept() const;

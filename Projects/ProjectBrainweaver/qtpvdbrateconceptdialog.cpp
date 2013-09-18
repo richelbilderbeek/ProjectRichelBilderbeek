@@ -106,7 +106,7 @@ ribi::pvdb::QtPvdbRateConceptDialog::QtPvdbRateConceptDialog(
 
 
 
-ribi::pvdb::QtPvdbRateConceptDialog::~QtPvdbRateConceptDialog()
+ribi::pvdb::QtPvdbRateConceptDialog::~QtPvdbRateConceptDialog() noexcept
 {
   //If user clicked OK, keep the current ratings (which are updated by the comboboxes)
   //else the user cancelled, so put back the initial ratings

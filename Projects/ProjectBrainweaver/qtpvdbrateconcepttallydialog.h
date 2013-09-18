@@ -24,7 +24,7 @@ public:
     QWidget *parent = 0);
   QtPvdbRateConceptTallyDialog(const QtPvdbRateConceptTallyDialog&) = delete;
   QtPvdbRateConceptTallyDialog& operator=(const QtPvdbRateConceptTallyDialog&) = delete;
-  ~QtPvdbRateConceptTallyDialog();
+  ~QtPvdbRateConceptTallyDialog() noexcept;
 
   static const boost::shared_ptr<ribi::pvdb::ConceptMap> CreateTestConceptMap();
 

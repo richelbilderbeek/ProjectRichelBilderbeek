@@ -48,7 +48,7 @@ ribi::QtTestQuestionMenuDialog::QtTestQuestionMenuDialog(QWidget *parent) :
   ui->setupUi(this);
 }
 
-ribi::QtTestQuestionMenuDialog::~QtTestQuestionMenuDialog()
+ribi::QtTestQuestionMenuDialog::~QtTestQuestionMenuDialog() noexcept
 {
   delete ui;
 }

@@ -59,7 +59,7 @@ ribi::pvdb::QtPvdbDisplayConceptItem::QtPvdbDisplayConceptItem(const boost::shar
     );
 }
 
-ribi::pvdb::QtPvdbDisplayConceptItem::~QtPvdbDisplayConceptItem()
+ribi::pvdb::QtPvdbDisplayConceptItem::~QtPvdbDisplayConceptItem() noexcept
 {
   GetConcept()->m_signal_examples_changed.disconnect(
       boost::bind(

@@ -21,7 +21,7 @@ class QtPvdbMenuDialog : public ribi::QtHideAndShowDialog
   explicit QtPvdbMenuDialog(QWidget* parent = 0);
   QtPvdbMenuDialog(const QtPvdbMenuDialog&) = delete;
   QtPvdbMenuDialog& operator=(const QtPvdbMenuDialog&) = delete;
-  ~QtPvdbMenuDialog();
+  ~QtPvdbMenuDialog() noexcept;
 
 
   ///Test this class and all other QDialogs

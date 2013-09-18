@@ -75,7 +75,7 @@ ribi::pvdb::QtPvdbMenuDialog::QtPvdbMenuDialog(QWidget* parent)
   #endif
 }
 
-ribi::pvdb::QtPvdbMenuDialog::~QtPvdbMenuDialog()
+ribi::pvdb::QtPvdbMenuDialog::~QtPvdbMenuDialog() noexcept
 {
   delete ui;
 }

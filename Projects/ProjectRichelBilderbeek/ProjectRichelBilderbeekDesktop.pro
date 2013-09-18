@@ -504,7 +504,6 @@ HEADERS += \
     ../../Games/GameDasWahreSchlagerfest/qtdaswahreschlagerfestmaindialog.h \
     ../../Games/GameDasWahreSchlagerfest/qtdaswahreschlagerfestmenudialog.h \
     ../../Games/GameDasWahreSchlagerfest/qtdaswahreschlagerfestwidget.h \
-    ../../Games/GameK3OpEenRij/k3opeenrijmenudialog.h \
     ../../Games/GameK3OpEenRij/qtk3opeenrijinstructionsdialog.h \
     ../../Games/GameK3OpEenRij/qtk3opeenrijmenudialog.h \
     ../../Games/GameK3OpEenRij/qtk3opeenrijresources.h \
@@ -545,10 +544,8 @@ HEADERS += \
     ../../Tools/ToolCreateQtProjectZipFile/qtcreateqtprojectzipfilemenudialog.h \
     ../../Tools/ToolGaborFilter/qttoolgaborfiltermaindialog.h \
     ../../Tools/ToolGaborFilter/qttoolgaborfiltermenudialog.h \
-    ../../Tools/ToolGaborFilter/toolgaborfiltermenudialog.h \
     ../../Tools/ToolHometrainer/hometrainermenudialog.h \
     ../../Tools/ToolHometrainer/hometrainerresources.h \
-    ../../Tools/ToolKalmanFilterer/kalmanfilterermenudialog.h \
     ../../Tools/ToolKalmanFilterer/qtcopyalltableview.h \
     ../../Tools/ToolKalmanFilterer/qtcopyalltablewidget.h \
     ../../Tools/ToolKalmanFilterer/qtfixedlagsmootherkalmanfiltercalculationdialog.h \
@@ -564,10 +561,8 @@ HEADERS += \
     ../../Tools/ToolKalmanFilterer/qtstandardkalmanfiltercalculationdialog.h \
     ../../Tools/ToolKalmanFilterer/qtsteadystatekalmanfiltercalculationdialog.h \
     ../../Tools/ToolKalmanFilterer/qtwhitenoisesystemparametersdialog.h \
-    ../../Tools/ToolMazeCreator/mazecreatormenudialog.h \
     ../../Tools/ToolMazeCreator/qtmazecreatormaindialog.h \
     ../../Tools/ToolMazeCreator/qtmazecreatormenudialog.h \
-    ../../Tools/ToolMusicTheory/musictheorymenudialog.h \
     ../../Tools/ToolMusicTheory/qtchordedge.h \
     ../../Tools/ToolMusicTheory/qtchordrelationswidget.h \
     ../../Tools/ToolMusicTheory/qtchordvertex.h \
@@ -576,11 +571,8 @@ HEADERS += \
     ../../Tools/ToolMusicTheory/qtmusictheorymultiscaledialog.h \
     ../../Tools/ToolMusicTheory/qtmusictheorysinglescaledialog.h \
     ../../Tools/ToolPause/pausemenudialog.h \
-    ../../Tools/ToolPerfectElasticCollision/perfectelasticcollisionmenudialog.h \
     ../../Tools/ToolPerfectElasticCollision/qtperfectelasticcollisionmaindialog.h \
     ../../Tools/ToolPerfectElasticCollision/qtperfectelasticcollisionmenudialog.h \
-    ../../Tools/ToolPicToCode/pictocodemaindialog.h \
-    ../../Tools/ToolPicToCode/pictocodemenudialog.h \
     ../../Tools/ToolPicToCode/qtpictocodemaindialog.h \
     ../../Tools/ToolPicToCode/qtpictocodemenudialog.h \
     ../../Tools/ToolQmakeWatcher/qtqmakewatchermaindialog.h \
@@ -589,8 +581,6 @@ HEADERS += \
     ../../Tools/ToolRandomCode/randomcodemenudialog.h \
     ../../Tools/ToolRegexTester/qtregextestermaindialog.h \
     ../../Tools/ToolRegexTester/qtregextestermenudialog.h \
-    ../../Tools/ToolRegexTester/regextesterboostregexmaindialog.h \
-    ../../Tools/ToolRegexTester/regextesterboostxpressivemaindialog.h \
     ../../Tools/ToolRegexTester/regextestercpp11maindialog.h \
     ../../Tools/ToolRegexTester/regextestermaindialog.h \
     ../../Tools/ToolRegexTester/regextestermenudialog.h \
@@ -600,7 +590,6 @@ HEADERS += \
     ../../Tools/ToolRichelBilderbeekGallery/richelbilderbeekgallerymenudialog.h \
     ../../Tools/ToolRichelbilderbeekNlSitemapGenerator/qtsitemapgeneratormaindialog.h \
     ../../Tools/ToolRichelbilderbeekNlSitemapGenerator/qtsitemapgeneratormenudialog.h \
-    ../../Tools/ToolRichelbilderbeekNlSitemapGenerator/sitemapgeneratormenudialog.h \
     ../../Tools/ToolSimMysteryMachine/qtsimmysterymachineinstructionsdialog.h \
     ../../Tools/ToolSimMysteryMachine/qtsimmysterymachinemaindialog.h \
     ../../Tools/ToolSimMysteryMachine/qtsimmysterymachinemenudialog.h \
@@ -633,57 +622,42 @@ HEADERS += \
     ../../Tools/ToolTestMultiApproximator/qttooltestmultiapproximatormenudialog.h \
     ../../Tools/ToolTestMultiApproximator/tooltestmultiapproximatormenudialog.h \
     ../../Tools/ToolTestNewickVector/qttestnewickvectordialog.h \
-    ../../Tools/ToolTestNewickVector/testnewickvectordialog.h \
     ../../Tools/ToolTestPylos/qttestpylosgametestsdialog.h \
     ../../Tools/ToolTestPylos/qttestpylosmenudialog.h \
     ../../Tools/ToolTestPylos/qttestpylosrandomplaydialog.h \
     ../../Tools/ToolTestPylos/qttestpylostestboarddialog.h \
     ../../Tools/ToolTestPylos/qttestpylostestgamedialog.h \
-    ../../Tools/ToolTestPylos/testpylosmenudialog.h \
     ../../Tools/ToolTestQrcFile/qttestqrcfilemaindialog.h \
     ../../Tools/ToolTestQrcFile/qttestqrcfilemenudialog.h \
-    ../../Tools/ToolTestQrcFile/testqrcfilemenudialog.h \
     ../../Tools/ToolTestQtArrowItems/qttestqtarrowitemsmaindialog.h \
     ../../Tools/ToolTestQtArrowItems/qttestqtarrowitemsmenudialog.h \
-    ../../Tools/ToolTestQtArrowItems/testqtarrowitemsmenudialog.h \
     ../../Tools/ToolTestQtCreatorProFile/qttestqtcreatorprofilemaindialog.h \
     ../../Tools/ToolTestQtCreatorProFile/qttestqtcreatorprofilemenudialog.h \
-    ../../Tools/ToolTestQtCreatorProFile/testqtcreatorprofilemenudialog.h \
     ../../Tools/ToolTestQtKeyboardFriendlyGraphicsView/qttestqtkeyboardfriendlygraphicsviewmenudialog.h \
     ../../Tools/ToolTestQtKeyboardFriendlyGraphicsView/qttestqtkeyboardfriendlygraphicsviewwidget.h \
-    ../../Tools/ToolTestQtKeyboardFriendlyGraphicsView/testqtkeyboardfriendlygraphicsviewmenudialog.h \
     ../../Tools/ToolTestQtModels/qttooltestqtmodelsmaindialog.h \
     ../../Tools/ToolTestQtModels/qttooltestqtmodelsmenudialog.h \
     ../../Tools/ToolTestQtModels/tooltestqtmodelsmenudialog.h \
     ../../Tools/ToolTestQtRoundedEditRectItem/qttestqtroundededitrectitemmaindialog.h \
     ../../Tools/ToolTestQtRoundedEditRectItem/qttestqtroundededitrectitemmenudialog.h \
     ../../Tools/ToolTestQtRoundedEditRectItem/qttestqtroundededitrectitemwidget.h \
-    ../../Tools/ToolTestQtRoundedEditRectItem/testqtroundededitrectitemmenudialog.h \
     ../../Tools/ToolTestQtRoundedRectItem/qttestqtroundedrectitemmaindialog.h \
     ../../Tools/ToolTestQtRoundedRectItem/qttestqtroundedrectitemmenudialog.h \
     ../../Tools/ToolTestQtRoundedRectItem/qttestqtroundedrectitemwidget.h \
-    ../../Tools/ToolTestQtRoundedRectItem/testqtroundedrectitemmenudialog.h \
     ../../Tools/ToolTestQtRoundedTextRectItem/qttestqtroundedtextrectitemmaindialog.h \
     ../../Tools/ToolTestQtRoundedTextRectItem/qttestqtroundedtextrectitemmenudialog.h \
     ../../Tools/ToolTestQtRoundedTextRectItem/qttestqtroundedtextrectitemwidget.h \
-    ../../Tools/ToolTestQtRoundedTextRectItem/testqtroundedtextrectitemmenudialog.h \
     ../../Tools/ToolTestQuestion/qttestquestionmaindialog.h \
     ../../Tools/ToolTestQuestion/qttestquestionmenudialog.h \
-    ../../Tools/ToolTestQuestion/testquestionmaindialog.h \
-    ../../Tools/ToolTestQuestion/testquestionmenudialog.h \
     ../../Tools/ToolTestShape/qttestshapemaindialog.h \
     ../../Tools/ToolTestShape/qttestshapemenudialog.h \
-    ../../Tools/ToolTestShape/testshapemaindialog.h \
-    ../../Tools/ToolTestShape/testshapemenudialog.h \
     ../../Tools/ToolTestShinyButton/qttestshinybuttonmaindialog.h \
     ../../Tools/ToolTestShinyButton/qttestshinybuttonmenudialog.h \
-    ../../Tools/ToolTestShinyButton/testshinybuttonmenudialog.h \
     ../../Tools/ToolTestSimpleLinearRegression/qttooltestsimplelinearregressionmaindialog.h \
     ../../Tools/ToolTestSimpleLinearRegression/qttooltestsimplelinearregressionmenudialog.h \
     ../../Tools/ToolTestSimpleLinearRegression/tooltestsimplelinearregressionmenudialog.h \
     ../../Tools/ToolTestToggleButton/qttesttogglebuttonmaindialog.h \
     ../../Tools/ToolTestToggleButton/qttesttogglebuttonmenudialog.h \
-    ../../Tools/ToolTestToggleButton/testtogglebuttonmenudialog.h \
     ../../Tools/ToolTestTwoDigitNewick/qttesttwodigitnewickdialog.h \
     qtrichelbilderbeekmenudialog.h \
     qtrichelbilderbeekmenuitemwidget.h \

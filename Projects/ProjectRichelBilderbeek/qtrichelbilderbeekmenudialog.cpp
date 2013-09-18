@@ -43,7 +43,6 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "qtconnectthreewidget.h"
 #include "qtdialwidget.h"
 #include "qtdisplaypositem.h"
-
 #include "qtexercise.h"
 #include "qtgaborfilterwidget.h"
 #include "qtkeyboardfriendlygraphicsview.h"
@@ -111,11 +110,10 @@ ribi::QtRichelBilderbeekMenuDialog::QtRichelBilderbeekMenuDialog(QWidget *parent
   }
 }
 
-ribi::QtRichelBilderbeekMenuDialog::~QtRichelBilderbeekMenuDialog()
+ribi::QtRichelBilderbeekMenuDialog::~QtRichelBilderbeekMenuDialog() noexcept
 {
   delete ui;
 }
-
 
 const ribi::About ribi::QtRichelBilderbeekMenuDialog::GetAbout() noexcept
 {

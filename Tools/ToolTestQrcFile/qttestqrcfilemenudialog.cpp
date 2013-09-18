@@ -35,7 +35,7 @@ ribi::QtTestQrcFileMenuDialog::QtTestQrcFileMenuDialog(QWidget *parent) :
   ui->setupUi(this);
 }
 
-ribi::QtTestQrcFileMenuDialog::~QtTestQrcFileMenuDialog()
+ribi::QtTestQrcFileMenuDialog::~QtTestQrcFileMenuDialog() noexcept
 {
   delete ui;
 }

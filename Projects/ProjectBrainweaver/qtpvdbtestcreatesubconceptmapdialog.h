@@ -22,7 +22,7 @@ public:
   explicit QtPvdbTestCreateSubConceptMapDialog(QWidget *parent = 0);
   QtPvdbTestCreateSubConceptMapDialog(const QtPvdbTestCreateSubConceptMapDialog&) = delete;
   QtPvdbTestCreateSubConceptMapDialog& operator=(const QtPvdbTestCreateSubConceptMapDialog&) = delete;
-  ~QtPvdbTestCreateSubConceptMapDialog();
+  ~QtPvdbTestCreateSubConceptMapDialog() noexcept;
 
 private slots:
   ///The user changes to another concept map

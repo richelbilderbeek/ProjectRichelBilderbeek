@@ -17,7 +17,7 @@ ToolStyleSheetSetterMainDialog::ToolStyleSheetSetterMainDialog(
   ui->stylesheet->setPlainText(m_stylesheet.c_str());
 }
 
-ToolStyleSheetSetterMainDialog::~ToolStyleSheetSetterMainDialog()
+ToolStyleSheetSetterMainDialog::~ToolStyleSheetSetterMainDialog() noexcept
 {
   delete ui;
 }

@@ -17,7 +17,7 @@ struct QtPvdbConceptMapEditWidget : public QtPvdbConceptMapWidget
   QtPvdbConceptMapEditWidget(
     const boost::shared_ptr<ribi::pvdb::ConceptMap> concept_map,
     QWidget* parent = 0);
-  ~QtPvdbConceptMapEditWidget();
+  ~QtPvdbConceptMapEditWidget() noexcept;
   QtPvdbConceptMapEditWidget(const QtPvdbConceptMapEditWidget& other) = delete;
   QtPvdbConceptMapEditWidget& operator=(const QtPvdbConceptMapEditWidget& other) = delete;
 

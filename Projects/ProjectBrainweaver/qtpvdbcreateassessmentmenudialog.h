@@ -21,7 +21,7 @@ public:
   explicit QtPvdbCreateAssessmentMenuDialog(QWidget* parent = 0);
   QtPvdbCreateAssessmentMenuDialog(const QtPvdbCreateAssessmentMenuDialog&) = delete;
   QtPvdbCreateAssessmentMenuDialog& operator=(const QtPvdbCreateAssessmentMenuDialog&) = delete;
-  ~QtPvdbCreateAssessmentMenuDialog();
+  ~QtPvdbCreateAssessmentMenuDialog() noexcept;
 
   ///Must the parent go back to the menu?
   bool GoBackToMenu() const { return m_back_to_menu; }

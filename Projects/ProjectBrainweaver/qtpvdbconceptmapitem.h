@@ -16,7 +16,7 @@ namespace pvdb {
 ///QtRoundedEditRectItem: multiple lines
 struct QtPvdbConceptMapItem : public QtRoundedEditRectItem //NEW 2013-09-15
 {
-  virtual ~QtPvdbConceptMapItem() {}
+  virtual ~QtPvdbConceptMapItem() noexcept {}
 
   virtual void DisableAll() = 0;
   virtual void EnableAll() = 0;

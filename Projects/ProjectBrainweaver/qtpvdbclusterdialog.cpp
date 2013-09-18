@@ -81,7 +81,7 @@ ribi::pvdb::QtPvdbClusterDialog::QtPvdbClusterDialog(
 }
 
 
-ribi::pvdb::QtPvdbClusterDialog::~QtPvdbClusterDialog()
+ribi::pvdb::QtPvdbClusterDialog::~QtPvdbClusterDialog() noexcept
 {
   ///WARNING: assume ui->widget is not available anymore
   //const boost::shared_ptr<pvdb::Cluster> cluster = GetWidget()->GetCluster();

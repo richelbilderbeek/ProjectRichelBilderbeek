@@ -15,7 +15,7 @@ struct QtPvdbExamplesItem : public QtRoundedEditRectItem
   QtPvdbExamplesItem(QGraphicsItem* parent = 0);
   QtPvdbExamplesItem(const QtPvdbExamplesItem&) = delete;
   QtPvdbExamplesItem& operator=(const QtPvdbExamplesItem&) = delete;
-
+  ~QtPvdbExamplesItem() noexcept {}
   ///Check the buddy item
   const QtPvdbConceptMapItem* GetBuddyItem() const { return m_item; }
 

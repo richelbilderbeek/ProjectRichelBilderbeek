@@ -23,7 +23,7 @@ public:
   explicit QtPvdbClusterDialog(const boost::shared_ptr<pvdb::File> file, QWidget* parent = 0);
   QtPvdbClusterDialog(const QtPvdbClusterDialog&) = delete;
   QtPvdbClusterDialog& operator=(const QtPvdbClusterDialog&) = delete;
-  ~QtPvdbClusterDialog();
+  ~QtPvdbClusterDialog() noexcept;
 
   ///Do some random stuff, e.g. adding some concepts with examples
   void DoRandomStuff();

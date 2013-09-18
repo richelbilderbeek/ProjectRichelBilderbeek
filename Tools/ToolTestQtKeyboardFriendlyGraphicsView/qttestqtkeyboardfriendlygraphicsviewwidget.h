@@ -37,6 +37,7 @@ struct QtTestKeyboardFriendlyGraphicsViewWidget : public QtKeyboardFriendlyGraph
   typedef QtTestKeyboardFriendlyGraphicsViewWidget This;
 
   QtTestKeyboardFriendlyGraphicsViewWidget();
+  ~QtTestKeyboardFriendlyGraphicsViewWidget() noexcept {}
 
   ///Signal emitted when the user wants to see the about screen
   boost::signals2::signal<void()> m_signal_request_about;

@@ -28,7 +28,7 @@ public:
     QWidget *parent = 0);
   QtPvdbPrintConceptMapDialog(const QtPvdbPrintConceptMapDialog&) = delete;
   QtPvdbPrintConceptMapDialog& operator=(const QtPvdbPrintConceptMapDialog&) = delete;
-  ~QtPvdbPrintConceptMapDialog();
+  ~QtPvdbPrintConceptMapDialog() noexcept;
   void Print();
 
 protected:

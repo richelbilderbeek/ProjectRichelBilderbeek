@@ -22,7 +22,7 @@ class QtPvdbCreateAssessmentCompleteDialog : public ribi::QtHideAndShowDialog
   explicit QtPvdbCreateAssessmentCompleteDialog(QWidget* parent = 0);
   QtPvdbCreateAssessmentCompleteDialog(const QtPvdbCreateAssessmentCompleteDialog&) = delete;
   QtPvdbCreateAssessmentCompleteDialog& operator=(const QtPvdbCreateAssessmentCompleteDialog&) = delete;
-  ~QtPvdbCreateAssessmentCompleteDialog();
+  ~QtPvdbCreateAssessmentCompleteDialog() noexcept;
 
   ///Get the filled in concept map focal question
   const std::string GetQuestion() const;

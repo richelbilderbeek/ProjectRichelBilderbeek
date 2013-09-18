@@ -41,7 +41,7 @@ ribi::QtTestQrcFileMainDialog::QtTestQrcFileMainDialog(QWidget *parent) :
   ui->edit->setText("Tools/ToolTestQrcFile/ToolTestQrcFile.qrc");
 }
 
-ribi::QtTestQrcFileMainDialog::~QtTestQrcFileMainDialog()
+ribi::QtTestQrcFileMainDialog::~QtTestQrcFileMainDialog() noexcept
 {
   delete ui;
 }

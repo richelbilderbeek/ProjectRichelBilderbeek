@@ -22,7 +22,7 @@ public:
   explicit QtPvdbTestConceptItemDialog(QWidget *parent = 0);
   QtPvdbTestConceptItemDialog(const QtPvdbTestConceptItemDialog&) = delete;
   QtPvdbTestConceptItemDialog& operator=(const QtPvdbTestConceptItemDialog&) = delete;
-  ~QtPvdbTestConceptItemDialog();
+  ~QtPvdbTestConceptItemDialog() noexcept;
 
 protected:
   void keyPressEvent(QKeyEvent *event);

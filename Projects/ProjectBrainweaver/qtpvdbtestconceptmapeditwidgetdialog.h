@@ -22,7 +22,7 @@ public:
   explicit QtPvdbTestConceptMapEditWidgetDialog(QWidget *parent = 0);
   QtPvdbTestConceptMapEditWidgetDialog(const QtPvdbTestConceptMapEditWidgetDialog&) = delete;
   QtPvdbTestConceptMapEditWidgetDialog& operator=(const QtPvdbTestConceptMapEditWidgetDialog&) = delete;
-  ~QtPvdbTestConceptMapEditWidgetDialog();
+  ~QtPvdbTestConceptMapEditWidgetDialog() noexcept;
 
 protected:
 

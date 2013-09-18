@@ -24,7 +24,7 @@ public:
     QWidget* parent = 0);
   QtPvdbRateExamplesDialog(const QtPvdbRateExamplesDialog&) = delete;
   QtPvdbRateExamplesDialog& operator=(const QtPvdbRateExamplesDialog&) = delete;
-  ~QtPvdbRateExamplesDialog();
+  ~QtPvdbRateExamplesDialog() noexcept;
 
 protected:
   void keyPressEvent(QKeyEvent *);
