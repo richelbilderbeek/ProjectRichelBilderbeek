@@ -37,7 +37,7 @@ ribi::QtPicToCodeMenuDialog::QtPicToCodeMenuDialog(QWidget *parent) :
   ui->setupUi(this);
 }
 
-ribi::QtPicToCodeMenuDialog::~QtPicToCodeMenuDialog()
+ribi::QtPicToCodeMenuDialog::~QtPicToCodeMenuDialog() noexcept
 {
   delete ui;
 }

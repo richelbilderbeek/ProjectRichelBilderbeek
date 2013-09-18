@@ -20,10 +20,10 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #ifndef WTTESTTOGGLEBUTTONDIALOG_H
 #define WTTESTTOGGLEBUTTONDIALOG_H
-//---------------------------------------------------------------------------
+
 #include <boost/scoped_ptr.hpp>
 #include <Wt/WContainerWidget>
-//---------------------------------------------------------------------------
+
 namespace Wt { struct WLabel; }
 
 namespace ribi {

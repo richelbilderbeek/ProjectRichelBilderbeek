@@ -20,11 +20,11 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #ifndef WTTESTTIMEDSERVERPUSHERMAINDIALOG_H
 #define WTTESTTIMEDSERVERPUSHERMAINDIALOG_H
-//---------------------------------------------------------------------------
+
 #include <Wt/WContainerWidget>
-//---------------------------------------------------------------------------
+
 #include "wttimedserverpusherclient.h"
-//---------------------------------------------------------------------------
+
 namespace Wt
 {
   struct WLineEdit;
@@ -32,7 +32,7 @@ namespace Wt
 
 namespace ribi {
 namespace ToolTestTimedServerPusher {
-//---------------------------------------------------------------------------
+
 ///TestTimedServerPusher its main dialog
 struct WtMainDialog : public Wt::WContainerWidget, WtTimedServerPusherClient
 {
@@ -50,7 +50,7 @@ struct WtMainDialog : public Wt::WContainerWidget, WtTimedServerPusherClient
   ///The server updates the page
   void OnTimedServerPush();
 };
-//---------------------------------------------------------------------------
+
 } //~namespace ToolTestTimedServerPusher
 
 } //~namespace ribi

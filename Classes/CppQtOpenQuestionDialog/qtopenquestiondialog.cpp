@@ -54,7 +54,7 @@ ribi::QtOpenQuestionDialog::QtOpenQuestionDialog(
   SetQuestion(dialog->GetQuestion());
 }
 
-ribi::QtOpenQuestionDialog::~QtOpenQuestionDialog()
+ribi::QtOpenQuestionDialog::~QtOpenQuestionDialog() noexcept
 {
   delete ui;
 }
@@ -66,14 +66,14 @@ const std::string ribi::QtOpenQuestionDialog::GetVersion() noexcept
 
 const std::vector<std::string> ribi::QtOpenQuestionDialog::GetVersionHistory() noexcept
 {
-  std::vector<std::string> v;
-  v.push_back("2011-06-28: version 1.0: initial version");
-  return v;
+  return {
+    "2011-06-28: version 1.0: initial version"
+  };
 }
 
 ///Set the Question
 void ribi::QtOpenQuestionDialog::SetQuestion(
-  const boost::shared_ptr<Question>& question)
+  const boost::shared_ptr<Question> question) noexcept
 {
   m_dialog->SetQuestion(question);
 
@@ -92,7 +92,7 @@ void ribi::QtOpenQuestionDialog::SetQuestion(
   ui->label_answer->setText(q->GetAnswers()[0].c_str());
 }
 
-void ribi::QtOpenQuestionDialog::on_button_submit_clicked()
+void ribi::QtOpenQuestionDialog::on_button_submit_clicked() noexcept
 {
   assert(m_dialog->CanSubmit());
   m_dialog->Submit(this->ui->edit_answer->text().toStdString());

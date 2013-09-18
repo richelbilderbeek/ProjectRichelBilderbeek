@@ -29,6 +29,9 @@ struct QtLabeledQuadBezierArrowItem : public QtRoundedTextRectItem
     const bool head,
     const QGraphicsItem *const to,
     QGraphicsItem *parent = 0);
+  QtLabeledQuadBezierArrowItem(const QtLabeledQuadBezierArrowItem&) = delete;
+  QtLabeledQuadBezierArrowItem& operator=(const QtLabeledQuadBezierArrowItem&) = delete;
+  ~QtLabeledQuadBezierArrowItem() noexcept {}
 
   const boost::shared_ptr<const QtQuadBezierArrowItem>  GetArrow() const { return m_arrow; }
   const boost::shared_ptr<      QtQuadBezierArrowItem>& GetArrow()       { return m_arrow; }

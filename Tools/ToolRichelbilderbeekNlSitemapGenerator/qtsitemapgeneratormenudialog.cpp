@@ -39,7 +39,7 @@ ribi::QtSitemapGeneratorMenuDialog::QtSitemapGeneratorMenuDialog(QWidget *parent
     ui->setupUi(this);
 }
 
-ribi::QtSitemapGeneratorMenuDialog::~QtSitemapGeneratorMenuDialog()
+ribi::QtSitemapGeneratorMenuDialog::~QtSitemapGeneratorMenuDialog() noexcept
 {
     delete ui;
 }

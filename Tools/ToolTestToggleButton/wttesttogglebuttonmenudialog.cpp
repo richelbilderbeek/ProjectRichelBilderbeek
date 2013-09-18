@@ -18,11 +18,13 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolTestToggleButton.htm
 //---------------------------------------------------------------------------
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include <cassert>
-//---------------------------------------------------------------------------
+
 #include <boost/filesystem.hpp>
 #include <boost/foreach.hpp>
-//---------------------------------------------------------------------------
+
 #include <Wt/WBreak>
 #include <Wt/WContainerWidget>
 #include <Wt/WGroupBox>
@@ -31,7 +33,9 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <Wt/WStackedWidget>
 #include <Wt/WMenu>
 #include <Wt/WMenuItem>
-//---------------------------------------------------------------------------
+
+#include <QFile>
+
 #include "rainbow.h"
 #include "testtogglebuttonmenudialog.h"
 #include "togglebutton.h"
@@ -41,9 +45,10 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "wtdialwidget.h"
 #include "wttesttogglebuttonmaindialog.h"
 #include "wttesttogglebuttonmenudialog.h"
-//---------------------------------------------------------------------------
-#include <QFile>
-//---------------------------------------------------------------------------
+
+#pragma GCC diagnostic pop
+
+
 ribi::WtTestToggleButtonMenuDialog::WtTestToggleButtonMenuDialog()
 {
   //Create resources
@@ -103,7 +108,7 @@ ribi::WtTestToggleButtonMenuDialog::WtTestToggleButtonMenuDialog()
     this->addWidget(contents);
   }
 }
-//---------------------------------------------------------------------------
+
 Wt::WWidget * ribi::WtTestToggleButtonMenuDialog::CreateNewAboutDialog() const
 {
   About a = TestToggleButtonMenuDialog::GetAbout();
@@ -115,14 +120,14 @@ Wt::WWidget * ribi::WtTestToggleButtonMenuDialog::CreateNewAboutDialog() const
   assert(d);
   return d;
 }
-//---------------------------------------------------------------------------
+
 Wt::WWidget * ribi::WtTestToggleButtonMenuDialog::CreateNewMainDialog() const
 {
   WtTestToggleButtonMainDialog * const d = new WtTestToggleButtonMainDialog;
   assert(d);
   return d;
 }
-//---------------------------------------------------------------------------
+
 Wt::WWidget * ribi::WtTestToggleButtonMenuDialog::CreateNewWelcomeDialog() const
 {
   Wt::WContainerWidget * dialog = new Wt::WContainerWidget;
@@ -138,4 +143,4 @@ Wt::WWidget * ribi::WtTestToggleButtonMenuDialog::CreateNewWelcomeDialog() const
   box->addWidget(new Wt::WImage("ToolTestToggleButtonWelcome.png"));
   return dialog;
 }
-//---------------------------------------------------------------------------
+

@@ -35,7 +35,7 @@ ribi::QtPylosWonDialog::QtPylosWonDialog(QWidget *parent) :
   ui->setupUi(this);
 }
 
-ribi::QtPylosWonDialog::~QtPylosWonDialog()
+ribi::QtPylosWonDialog::~QtPylosWonDialog() noexcept
 {
   delete ui;
 }

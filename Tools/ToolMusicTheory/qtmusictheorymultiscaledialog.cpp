@@ -77,7 +77,7 @@ ribi::QtMusicTheoryMultiScaleDialog::QtMusicTheoryMultiScaleDialog(QWidget *pare
   //any_change();
 }
 
-ribi::QtMusicTheoryMultiScaleDialog::~QtMusicTheoryMultiScaleDialog()
+ribi::QtMusicTheoryMultiScaleDialog::~QtMusicTheoryMultiScaleDialog() noexcept
 {
   delete ui;
 }

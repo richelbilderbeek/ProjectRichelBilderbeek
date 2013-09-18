@@ -16,7 +16,7 @@ ribi::kalman::QtKalmanFilterCalculationDialog::QtKalmanFilterCalculationDialog(Q
   ui->setupUi(this);
 }
 
-ribi::kalman::QtKalmanFilterCalculationDialog::~QtKalmanFilterCalculationDialog()
+ribi::kalman::QtKalmanFilterCalculationDialog::~QtKalmanFilterCalculationDialog() noexcept
 {
   delete ui;
 }

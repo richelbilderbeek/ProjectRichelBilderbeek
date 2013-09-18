@@ -55,8 +55,10 @@ ribi::gtst::ParticipantDialog::ParticipantDialog(
   : m_ip_address(new SafeIpAddress(ip_address->Get())),
     m_participant{},
     m_server(server),
-    m_states(new ParticipantDialogStates(this,server)),
-    m_ui{}
+    m_states(new ParticipantDialogStates(this,server))
+    #ifndef NDEBUG
+    ,m_ui{}
+    #endif
 {
   assert(m_server);
   assert(!m_participant && "Participant is obtained from Server");

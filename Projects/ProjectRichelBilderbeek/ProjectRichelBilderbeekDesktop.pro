@@ -476,13 +476,13 @@ HEADERS += \
     ../../Games/GameBeerWanter/qtbeerwanterwidget.h \
     ../../Games/GameBoenken/boenkenarenasettings.h \
     ../../Games/GameBoenken/boenkencontrols.h \
-    ../../Games/GameBoenken/boenkengame.h \
+    ../../Games/GameBoenken/qtboenkengame.h \
     ../../Games/GameBoenken/boenkenmenudialog.h \
-    ../../Games/GameBoenken/boenkensprite.h \
-    ../../Games/GameBoenken/boenkenspriteball.h \
-    ../../Games/GameBoenken/boenkenspritemoving.h \
-    ../../Games/GameBoenken/boenkenspritenonmoving.h \
-    ../../Games/GameBoenken/boenkenspriteplayer.h \
+    ../../Games/GameBoenken/qtboenkensprite.h \
+    ../../Games/GameBoenken/qtboenkenspriteball.h \
+    ../../Games/GameBoenken/qtboenkenspritemoving.h \
+    ../../Games/GameBoenken/qtboenkenspritenonmoving.h \
+    ../../Games/GameBoenken/qtboenkenspriteplayer.h \
     ../../Games/GameBoenken/qtboenkenarenadialog.h \
     ../../Games/GameBoenken/qtboenkencontrolsdialog.h \
     ../../Games/GameBoenken/qtboenkengame.h \

@@ -33,16 +33,16 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include "boenkenmenudialog.h"
 #include "boenkenarenasettings.h"
-#include "boenkengame.h"
+#include "qtboenkengame.h"
 #include "qtaboutdialog.h"
 #include "qtboenkenarenadialog.h"
 #include "qtboenkencontrolsdialog.h"
 #include "qtboenkenmaindialog.h"
 #include "qtboenkenplayersdialog.h"
-#include "boenkenspriteball.h"
-#include "boenkenspritemoving.h"
-#include "boenkenspritenonmoving.h"
-#include "boenkenspriteplayer.h"
+#include "qtboenkenspriteball.h"
+#include "qtboenkenspritemoving.h"
+#include "qtboenkenspritenonmoving.h"
+#include "qtboenkenspriteplayer.h"
 #include "ui_qtboenkenmenudialog.h"
 
 #pragma GCC diagnostic pop
@@ -68,7 +68,7 @@ ribi::QtBoenkenMenuDialog::QtBoenkenMenuDialog(QWidget *parent) :
   QObject::connect(ui->button_quit,SIGNAL(clicked()),this,SLOT(close()));
 }
 
-ribi::QtBoenkenMenuDialog::~QtBoenkenMenuDialog()
+ribi::QtBoenkenMenuDialog::~QtBoenkenMenuDialog() noexcept
 {
   delete ui;
 }

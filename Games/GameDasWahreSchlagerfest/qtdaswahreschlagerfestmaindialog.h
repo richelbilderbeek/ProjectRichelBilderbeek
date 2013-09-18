@@ -37,7 +37,7 @@ class QtDasWahreSchlagerfestMainDialog : public QDialog
     Q_OBJECT
     
 public:
-    explicit QtDasWahreSchlagerfestMainDialog(QWidget *parent = 0);
+    explicit QtDasWahreSchlagerfestMainDialog(QWidget *parent = 0) noexcept;
     QtDasWahreSchlagerfestMainDialog(const QtDasWahreSchlagerfestMainDialog&) = delete;
     QtDasWahreSchlagerfestMainDialog& operator=(const QtDasWahreSchlagerfestMainDialog&) = delete;
     ~QtDasWahreSchlagerfestMainDialog() noexcept;

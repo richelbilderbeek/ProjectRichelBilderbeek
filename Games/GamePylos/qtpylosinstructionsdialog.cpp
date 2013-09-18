@@ -31,7 +31,7 @@ ribi::QtPylosInstructionsDialog::QtPylosInstructionsDialog(QWidget *parent) :
   ui->setupUi(this);
 }
 
-ribi::QtPylosInstructionsDialog::~QtPylosInstructionsDialog()
+ribi::QtPylosInstructionsDialog::~QtPylosInstructionsDialog() noexcept
 {
   delete ui;
 }

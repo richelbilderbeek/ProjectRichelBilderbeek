@@ -22,7 +22,10 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic ignored "-Weffc++"
 #include "regextesterqtmaindialog.h"
 
+#include <stdexcept>
+
 #include <QRegExp>
+
 #include "trace.h"
 #pragma GCC diagnostic pop
 

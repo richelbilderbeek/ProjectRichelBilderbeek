@@ -206,7 +206,6 @@ SOURCES += \
     ../../Tools/ToolHometrainer/wthometrainermenudialog.cpp \
     ../../Tools/ToolHometrainer/wthometrainerstartexercisedialog.cpp \
     ../../Tools/ToolHometrainer/wtselecthometrainerfiledialog.cpp \
-#    ../../Tools/ToolRandomCode/randomcodemenudialog.cpp \
     ../../Tools/ToolRandomCode/wtrandomcodegeneratedialog.cpp \
     ../../Tools/ToolRandomCode/wtrandomcodemenudialog.cpp \
 #    ../../Tools/ToolSimMysteryMachine/simmysterymachinemenudialog.cpp \
@@ -218,7 +217,6 @@ SOURCES += \
 #    ../../Tools/ToolTestEncranger/testencrangerdialog.cpp \
     ../../Tools/ToolTestEncranger/wttestencrangermaindialog.cpp \
     ../../Tools/ToolTestEncranger/wttestencrangermenudialog.cpp \
-#    ../../Tools/ToolTestEntrance/testentrancemenudialog.cpp \
     ../../Tools/ToolTestEntrance/wttestentrancemaindialog.cpp \
     ../../Tools/ToolTestEntrance/wttestentrancemenudialog.cpp \
 #    ../../Tools/ToolTestExercise/testexercisemenudialog.cpp \
@@ -437,7 +435,6 @@ HEADERS += \
 #    ../../Tools/ToolTestFunctionParser/testfunctionparsermenudialog.h \
     ../../Tools/ToolTestFunctionParser/wttestfunctionparsermaindialog.h \
     ../../Tools/ToolTestFunctionParser/wttestfunctionparsermenudialog.h \
-#    ../../Tools/ToolTestGroupWidget/testgroupwidgetmenudialog.h \
     ../../Tools/ToolTestGroupWidget/wttestgroupwidgetmaindialog.h \
     ../../Tools/ToolTestGroupWidget/wttestgroupwidgetmenudialog.h \
 #    ../../Tools/ToolTestLed/testledmenudialog.h \
@@ -615,38 +612,6 @@ OTHER_FILES += \
     ../../Games/GamePylos/Licence.txt \
     ../../Classes/CppQtModel/Licence.txt \
     ../../Classes/CppPylos/Licence.txt
-
-
-
-#
-#
-# Type of compile
-#
-#
-
-CONFIG(debug, debug|release) {
-  message(Debug mode)
-}
-
-CONFIG(release, debug|release) {
-  message(Release mode)
-
-  #Remove all asserts and TRACE
-  DEFINES += NDEBUG NTRACE_BILDERBIKKEL
-}
-
-#
-#
-# Platform specific
-#
-#
-
-#
-#
-# Compiler flags
-#
-#
-QMAKE_CXXFLAGS += -std=c++11 -Wall -Wextra -Weffc++ -Werror
 
 #
 #

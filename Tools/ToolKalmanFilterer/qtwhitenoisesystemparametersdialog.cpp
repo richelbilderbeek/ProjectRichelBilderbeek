@@ -89,7 +89,7 @@ ribi::kalman::QtWhiteNoiseSystemParametersDialog::QtWhiteNoiseSystemParametersDi
   assert(m_model->CreateWhiteNoiseSystem() && "Obtain an empty white noise system (all components have size zero)");
 }
 
-ribi::kalman::QtWhiteNoiseSystemParametersDialog::~QtWhiteNoiseSystemParametersDialog()
+ribi::kalman::QtWhiteNoiseSystemParametersDialog::~QtWhiteNoiseSystemParametersDialog() noexcept
 {
   delete ui;
 }

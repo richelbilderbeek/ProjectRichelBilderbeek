@@ -62,7 +62,7 @@ ribi::QtPylosMenuDialog::QtPylosMenuDialog(QWidget *parent) :
 
 }
 
-ribi::QtPylosMenuDialog::~QtPylosMenuDialog()
+ribi::QtPylosMenuDialog::~QtPylosMenuDialog() noexcept
 {
   delete ui;
 }

@@ -67,7 +67,7 @@ ribi::QtMazeCreatorMainDialog::QtMazeCreatorMainDialog(QWidget *parent) :
   this->move( screen.center() - this->rect().center() );
 }
 
-ribi::QtMazeCreatorMainDialog::~QtMazeCreatorMainDialog()
+ribi::QtMazeCreatorMainDialog::~QtMazeCreatorMainDialog() noexcept
 {
   delete ui;
 }

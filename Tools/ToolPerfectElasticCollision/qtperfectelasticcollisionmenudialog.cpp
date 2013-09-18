@@ -38,7 +38,7 @@ ribi::QtPerfectElasticCollisionMenuDialog::QtPerfectElasticCollisionMenuDialog(Q
   #endif
 }
 
-ribi::QtPerfectElasticCollisionMenuDialog::~QtPerfectElasticCollisionMenuDialog()
+ribi::QtPerfectElasticCollisionMenuDialog::~QtPerfectElasticCollisionMenuDialog() noexcept
 {
   delete ui;
 }
@@ -61,7 +61,7 @@ void ribi::QtPerfectElasticCollisionMenuDialog::on_button_about_clicked()
   this->show();
 }
 
-void ribi::QtPerfectElasticCollisionMenuDialog::on_button_quit_clicked()
+void ribi::QtPerfectElasticCollisionMenuDialog::on_button_quit_clicked() noexcept
 {
   close();
 }

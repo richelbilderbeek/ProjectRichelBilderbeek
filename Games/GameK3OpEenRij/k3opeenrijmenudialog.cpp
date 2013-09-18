@@ -5,7 +5,7 @@
 #include "connectthree.h"
 #include "connectthreewidget.h"
 
-const ribi::About ribi::K3OpEenRijMenuDialog::GetAbout()
+const ribi::About ribi::K3OpEenRijMenuDialog::GetAbout() noexcept
 {
   About a(
     "Richel Bilderbeek",
@@ -22,19 +22,18 @@ const ribi::About ribi::K3OpEenRijMenuDialog::GetAbout()
   return a;
 }
 
-const std::string ribi::K3OpEenRijMenuDialog::GetVersion()
+const std::string ribi::K3OpEenRijMenuDialog::GetVersion() noexcept
 {
   return "6.0";
 }
 
-const std::vector<std::string> ribi::K3OpEenRijMenuDialog::GetVersionHistory()
+const std::vector<std::string> ribi::K3OpEenRijMenuDialog::GetVersionHistory() noexcept
 {
-  const std::vector<std::string> v {
+  return {
     "2007-01-03: version 3.0: initial C++ Builder verion",
     "2009-12-31: version 4.0: replaced Kathleen by Josje, game arena always visible, made screens smaller, removed useless JPEGs",
     "2013-08-06: version 5.0: port to Qt Creator",
     "2013-08-06: version 5.1: allow selection of both Kathleen and Josje",
     "2013-08-09: version 6.0: implemented suggestions and bugfixes from Mark Wiering's report"
   };
-  return v;
 }

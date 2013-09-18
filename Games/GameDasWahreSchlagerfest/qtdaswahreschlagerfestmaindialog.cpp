@@ -27,14 +27,14 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "ui_qtdaswahreschlagerfestmaindialog.h"
 #pragma GCC diagnostic pop
 
-ribi::QtDasWahreSchlagerfestMainDialog::QtDasWahreSchlagerfestMainDialog(QWidget *parent) :
-    QDialog(parent),
+ribi::QtDasWahreSchlagerfestMainDialog::QtDasWahreSchlagerfestMainDialog(QWidget *parent) noexcept
+  : QDialog(parent),
     ui(new Ui::QtDasWahreSchlagerfestMainDialog)
 {
   ui->setupUi(this);
 }
 
-ribi::QtDasWahreSchlagerfestMainDialog::~QtDasWahreSchlagerfestMainDialog()
+ribi::QtDasWahreSchlagerfestMainDialog::~QtDasWahreSchlagerfestMainDialog() noexcept
 {
   delete ui;
 }

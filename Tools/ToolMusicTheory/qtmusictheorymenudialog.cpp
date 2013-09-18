@@ -42,7 +42,7 @@ ribi::QtMusicTheoryMenuDialog::QtMusicTheoryMenuDialog(QWidget *parent) :
   ui->setupUi(this);
 }
 
-ribi::QtMusicTheoryMenuDialog::~QtMusicTheoryMenuDialog()
+ribi::QtMusicTheoryMenuDialog::~QtMusicTheoryMenuDialog() noexcept
 {
   delete ui;
 }

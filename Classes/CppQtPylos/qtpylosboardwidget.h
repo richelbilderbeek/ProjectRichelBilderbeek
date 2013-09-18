@@ -45,6 +45,9 @@ class QtPylosBoardWidget : public QtPylosWidget
   Q_OBJECT
 public:
   QtPylosBoardWidget();
+  QtPylosBoardWidget(const QtPylosBoardWidget&) = delete;
+  QtPylosBoardWidget& operator=(const QtPylosBoardWidget&) = delete;
+  ~QtPylosBoardWidget() noexcept {}
 
   ///CanRemove specifies if current player can remove one or
   ///two marble(s) at the requested position(s).

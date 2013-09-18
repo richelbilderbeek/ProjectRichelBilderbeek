@@ -45,6 +45,9 @@ struct GaborFilterWidget : public Widget
     const double frequency = 16.0,
     const double sigma = 8.0
   );
+  GaborFilterWidget(const GaborFilterWidget&) = delete;
+  GaborFilterWidget& operator=(const GaborFilterWidget&) = delete;
+  ~GaborFilterWidget() noexcept {}
 
   ///Obtain a read-only pointer to GaborFilter
   const GaborFilter * GetGaborFilter() const noexcept { return m_filter.get(); }

@@ -33,7 +33,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "ui_qtcodetohtmlmenudialog.h"
 #pragma GCC diagnostic pop
 
-ribi::QtCodeToHtmlMenuDialog::QtCodeToHtmlMenuDialog(QWidget *parent) :
+ribi::QtCodeToHtmlMenuDialog::QtCodeToHtmlMenuDialog(QWidget *parent) noexcept :
     QtHideAndShowDialog(parent),
     ui(new Ui::QtCodeToHtmlMenuDialog)
 {
@@ -43,17 +43,17 @@ ribi::QtCodeToHtmlMenuDialog::QtCodeToHtmlMenuDialog(QWidget *parent) :
   ui->setupUi(this);
 }
 
-ribi::QtCodeToHtmlMenuDialog::~QtCodeToHtmlMenuDialog()
+ribi::QtCodeToHtmlMenuDialog::~QtCodeToHtmlMenuDialog() noexcept
 {
   delete ui;
 }
 
-void ribi::QtCodeToHtmlMenuDialog::keyPressEvent(QKeyEvent * event)
+void ribi::QtCodeToHtmlMenuDialog::keyPressEvent(QKeyEvent * event) noexcept
 {
   if (event->key() == Qt::Key_Escape) { close(); return; }
 }
 
-void ribi::QtCodeToHtmlMenuDialog::on_button_about_clicked()
+void ribi::QtCodeToHtmlMenuDialog::on_button_about_clicked() noexcept
 {
   ribi::About a = ribi::CodeToHtmlMenuDialog::GetAbout();
   a.AddLibrary("QtHideAndShowDialog version: " + QtHideAndShowDialog::GetVersion());
@@ -65,19 +65,19 @@ void ribi::QtCodeToHtmlMenuDialog::on_button_about_clicked()
   this->show();
 }
 
-void ribi::QtCodeToHtmlMenuDialog::on_button_quit_clicked()
+void ribi::QtCodeToHtmlMenuDialog::on_button_quit_clicked() noexcept
 {
   close();
 }
 
-void ribi::QtCodeToHtmlMenuDialog::on_button_start_clicked()
+void ribi::QtCodeToHtmlMenuDialog::on_button_start_clicked() noexcept
 {
   QtCodeToHtmlMainDialog d;
   ShowChild(&d);
 }
 
 #ifndef NDEBUG
-void ribi::QtCodeToHtmlMenuDialog::Test()
+void ribi::QtCodeToHtmlMenuDialog::Test() noexcept
 {
   {
     static bool is_tested = false;

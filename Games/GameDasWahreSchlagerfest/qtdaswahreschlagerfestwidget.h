@@ -40,12 +40,11 @@ class QtDasWahreSchlagerfestWidget : public QWidget
     Q_OBJECT
     
 public:
-    explicit QtDasWahreSchlagerfestWidget(QWidget *parent = 0);
-    ~QtDasWahreSchlagerfestWidget() noexcept;
+    explicit QtDasWahreSchlagerfestWidget(QWidget *parent = 0) noexcept;
 
 protected:
-  void keyPressEvent(QKeyEvent *);
-  void paintEvent(QPaintEvent *);
+  void keyPressEvent(QKeyEvent *) noexcept;
+  void paintEvent(QPaintEvent *) noexcept;
 
 private:
   boost::shared_ptr<DasWahreSchlagerfestWidget> m_widget;
@@ -55,9 +54,9 @@ private:
   const QPixmap m_richel;
 
   ///Obtain the pixmap for this tile
-  const QPixmap& GetPixmap(const DasWahreSchlagerfestWidget::Tile& tile) const;
+  const QPixmap& GetPixmap(const DasWahreSchlagerfestWidget::Tile& tile) const noexcept;
 
-  void OnChange();
+  void OnChange() noexcept;
 };
 
 } //~namespace ribi

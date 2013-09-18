@@ -35,15 +35,13 @@ ribi::QtCreateGlossaryMainDialog::QtCreateGlossaryMainDialog(QWidget *parent) :
   QTimer::singleShot(100,this,SLOT(create_glossary()));
 }
 
-ribi::QtCreateGlossaryMainDialog::~QtCreateGlossaryMainDialog()
+ribi::QtCreateGlossaryMainDialog::~QtCreateGlossaryMainDialog() noexcept
 {
     delete ui;
 }
-
 
 void ribi::QtCreateGlossaryMainDialog::create_glossary()
 {
   CreateGlossaryMainDialog();
   ui->label->setText("Done!");
-
 }

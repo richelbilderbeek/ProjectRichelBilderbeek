@@ -53,7 +53,7 @@ ribi::QtRegexTesterMenuDialog::QtRegexTesterMenuDialog(QWidget *parent) :
   ui->setupUi(this);
 }
 
-ribi::QtRegexTesterMenuDialog::~QtRegexTesterMenuDialog()
+ribi::QtRegexTesterMenuDialog::~QtRegexTesterMenuDialog() noexcept
 {
   delete ui;
 }

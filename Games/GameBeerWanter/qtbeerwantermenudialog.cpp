@@ -36,18 +36,18 @@ ribi::QtBeerWanterMenuDialog::QtBeerWanterMenuDialog(QWidget *parent) :
   ui->setupUi(this);
 }
 
-ribi::QtBeerWanterMenuDialog::~QtBeerWanterMenuDialog()
+ribi::QtBeerWanterMenuDialog::~QtBeerWanterMenuDialog() noexcept
 {
   delete ui;
 }
 
-void ribi::QtBeerWanterMenuDialog::on_button_start_clicked()
+void ribi::QtBeerWanterMenuDialog::on_button_start_clicked() noexcept
 {
   QtBeerWanterMainDialog d;
   this->ShowChild(&d);
 }
 
-void ribi::QtBeerWanterMenuDialog::on_button_about_clicked()
+void ribi::QtBeerWanterMenuDialog::on_button_about_clicked() noexcept
 {
   this->hide();
   About a = BeerWanterMenuDialog::GetAbout();
@@ -59,7 +59,7 @@ void ribi::QtBeerWanterMenuDialog::on_button_about_clicked()
   this->show();
 }
 
-void ribi::QtBeerWanterMenuDialog::on_button_quit_clicked()
+void ribi::QtBeerWanterMenuDialog::on_button_quit_clicked() noexcept
 {
   close();
 }

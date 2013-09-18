@@ -28,19 +28,19 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "ui_qtdaswahreschlagerfestmenudialog.h"
 #pragma GCC diagnostic pop
 
-ribi::QtDasWahreSchlagerfestMenuDialog::QtDasWahreSchlagerfestMenuDialog(QWidget *parent) :
-    QDialog(parent),
+ribi::QtDasWahreSchlagerfestMenuDialog::QtDasWahreSchlagerfestMenuDialog(QWidget *parent) noexcept
+  : QDialog(parent),
     ui(new Ui::QtDasWahreSchlagerfestMenuDialog)
 {
   ui->setupUi(this);
 }
 
-ribi::QtDasWahreSchlagerfestMenuDialog::~QtDasWahreSchlagerfestMenuDialog()
+ribi::QtDasWahreSchlagerfestMenuDialog::~QtDasWahreSchlagerfestMenuDialog() noexcept
 {
   delete ui;
 }
 
-void ribi::QtDasWahreSchlagerfestMenuDialog::on_button_start_clicked()
+void ribi::QtDasWahreSchlagerfestMenuDialog::on_button_start_clicked() noexcept
 {
   QtDasWahreSchlagerfestMainDialog d;
   this->hide();
@@ -48,7 +48,7 @@ void ribi::QtDasWahreSchlagerfestMenuDialog::on_button_start_clicked()
   this->show();
 }
 
-void ribi::QtDasWahreSchlagerfestMenuDialog::on_button_about_clicked()
+void ribi::QtDasWahreSchlagerfestMenuDialog::on_button_about_clicked() noexcept
 {
   QtAboutDialog d(DasWahreSchlagerfestMenuDialog::GetAbout());
   d.setWindowIcon(this->windowIcon());
@@ -58,7 +58,7 @@ void ribi::QtDasWahreSchlagerfestMenuDialog::on_button_about_clicked()
   this->show();
 }
 
-void ribi::QtDasWahreSchlagerfestMenuDialog::on_button_quit_clicked()
+void ribi::QtDasWahreSchlagerfestMenuDialog::on_button_quit_clicked() noexcept
 {
   close();
 }

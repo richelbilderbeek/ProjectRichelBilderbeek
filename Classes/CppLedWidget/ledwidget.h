@@ -46,6 +46,9 @@ struct LedWidget : public Widget
     const unsigned char green =   0,
     const unsigned char blue  =   0
   );
+  LedWidget(const LedWidget&) = delete;
+  LedWidget& operator=(const LedWidget&) = delete;
+  ~LedWidget() noexcept {}
 
   ///Obtain a read-only pointer to Led
   const Led * GetLed() const noexcept { return m_led.get(); }

@@ -51,6 +51,9 @@ struct WtMenuItem
     assert(m_index >=0 );
     assert(m_create_dialog_function);
   }
+  WtMenuItem(const WtMenuItem&) = delete;
+  WtMenuItem& operator=(const WtMenuItem&) = delete;
+
   const std::string& GetCaption() const { return m_caption; }
   Wt::WStackedWidget * GetStack() const { return m_stack; }
   int GetIndex() const { return m_index; }

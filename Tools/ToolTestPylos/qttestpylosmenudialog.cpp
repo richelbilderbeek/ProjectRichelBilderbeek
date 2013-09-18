@@ -39,7 +39,7 @@ ribi::QtTestPylosMenuDialog::QtTestPylosMenuDialog(QWidget *parent) :
   ui->setupUi(this);
 }
 
-ribi::QtTestPylosMenuDialog::~QtTestPylosMenuDialog()
+ribi::QtTestPylosMenuDialog::~QtTestPylosMenuDialog() noexcept
 {
     delete ui;
 }

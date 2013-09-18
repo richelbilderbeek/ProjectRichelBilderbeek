@@ -28,7 +28,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 ribi::QtShowWinnerDialog::QtShowWinnerDialog(
   const std::string& filename,
   const std::string& winner_text,
-  QWidget *parent)
+  QWidget *parent) noexcept
   : QDialog(parent),
     ui(new Ui::QtShowWinnerDialog)
 {
@@ -39,12 +39,12 @@ ribi::QtShowWinnerDialog::QtShowWinnerDialog(
   this->setWindowFlags(Qt::WindowStaysOnTopHint);
 }
 
-ribi::QtShowWinnerDialog::~QtShowWinnerDialog()
+ribi::QtShowWinnerDialog::~QtShowWinnerDialog() noexcept
 {
   delete ui;
 }
 
-void ribi::QtShowWinnerDialog::keyPressEvent(QKeyEvent * e)
+void ribi::QtShowWinnerDialog::keyPressEvent(QKeyEvent * e) noexcept
 {
   if (e->key() == Qt::Key_Escape) { close(); return; }
 }

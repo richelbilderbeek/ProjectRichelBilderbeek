@@ -14,7 +14,7 @@
 
 ribi::QtK3OpEenRijMenuDialog::QtK3OpEenRijMenuDialog(
   const boost::shared_ptr<const QtK3OpEenRijResources> resources,
-  QWidget *parent)  noexcept
+  QWidget *parent) noexcept
   : QtHideAndShowDialog(parent),
     ui(new Ui::QtK3OpEenRijMenuDialog),
     m_select(new QtK3OpEenRijSelectPlayerWidget(resources))

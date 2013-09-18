@@ -49,17 +49,17 @@ ribi::QtBeerWanterMainDialog::QtBeerWanterMainDialog(QWidget *parent) :
     this,SLOT(OnShake(const int,const int)));
 }
 
-ribi::QtBeerWanterMainDialog::~QtBeerWanterMainDialog()
+ribi::QtBeerWanterMainDialog::~QtBeerWanterMainDialog() noexcept
 {
   delete ui;
 }
 
-void ribi::QtBeerWanterMainDialog::ChangeTitle(const std::string& title)
+void ribi::QtBeerWanterMainDialog::ChangeTitle(const std::string& title) noexcept
 {
   this->setWindowTitle(title.c_str());
 }
 
-void ribi::QtBeerWanterMainDialog::OnShake(const int x, const int y)
+void ribi::QtBeerWanterMainDialog::OnShake(const int x, const int y) noexcept
 {
   this->setGeometry(x,y,this->width(),this->height());
   this->repaint();

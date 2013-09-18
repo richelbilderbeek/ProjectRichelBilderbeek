@@ -49,7 +49,7 @@ ribi::QtSimMysteryMachineMainDialog::QtSimMysteryMachineMainDialog(QWidget *pare
   ui->my_layout->addWidget(m_machine.get());
 }
 
-ribi::QtSimMysteryMachineMainDialog::~QtSimMysteryMachineMainDialog()
+ribi::QtSimMysteryMachineMainDialog::~QtSimMysteryMachineMainDialog() noexcept
 {
   delete ui;
 }

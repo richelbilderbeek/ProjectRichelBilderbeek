@@ -42,17 +42,17 @@ class QtBoenkenArenaDialog : public QDialog
   Q_OBJECT
 
 public:
-  explicit QtBoenkenArenaDialog(QWidget *parent = 0);
+  explicit QtBoenkenArenaDialog(QWidget *parent = 0) noexcept;
   QtBoenkenArenaDialog(const QtBoenkenArenaDialog&) = delete;
   QtBoenkenArenaDialog& operator=(const QtBoenkenArenaDialog&) = delete;
   ~QtBoenkenArenaDialog() noexcept;
 
-  const std::pair<int,int> GetScreenSize() const;
-  int GetNballs() const;
-  int GetNobstacles() const;
-  Boenken::Formation GetFormation() const;
-  double GetFriction() const;
-  const Boenken::ArenaSettings GetSettings() const;
+  const std::pair<int,int> GetScreenSize() const noexcept;
+  int GetNballs() const noexcept;
+  int GetNobstacles() const noexcept;
+  Boenken::Formation GetFormation() const noexcept;
+  double GetFriction() const noexcept;
+  const Boenken::ArenaSettings GetSettings() const noexcept;
 
 private:
   Ui::QtBoenkenArenaDialog *ui;

@@ -22,13 +22,13 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
-#include "boenkenspritenonmoving.h"
+#include "qtboenkenspritenonmoving.h"
 
 #include <cassert>
 
 #include <boost/numeric/conversion/cast.hpp>
 #include <boost/math/constants/constants.hpp>
-#include "boenkenspritemoving.h"
+#include "qtboenkenspritemoving.h"
 #pragma GCC diagnostic pop
 
 void ribi::Boenken::SpriteNonMoving::Collision(SpriteNonMoving * const p1, SpriteMoving * const p2)

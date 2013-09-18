@@ -44,14 +44,7 @@ RESOURCES += \
 #
 #
 
-CONFIG(debug, debug|release) {
-  message(Debug mode)
-}
-
 CONFIG(release, debug|release) {
-  message(Release mode)
-
-  #Remove all asserts and TRACE
   DEFINES += NDEBUG NTRACE_BILDERBIKKEL
 }
 
@@ -66,11 +59,7 @@ CONFIG(release, debug|release) {
 # Compiler flags
 #
 #
-QMAKE_CXXFLAGS += -std=c++11 -Wall -Wextra -Weffc++
-
-unix {
-  QMAKE_CXXFLAGS += -Werror
-}
+QMAKE_CXXFLAGS += -std=c++11 -Wall -Wextra -Weffc++ -Werror
 
 #
 #

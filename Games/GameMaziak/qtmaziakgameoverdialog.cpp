@@ -44,7 +44,7 @@ ribi::QtMaziakGameOverDialog::QtMaziakGameOverDialog(QWidget *parent) :
   m_timer->start();
 }
 
-ribi::QtMaziakGameOverDialog::~QtMaziakGameOverDialog()
+ribi::QtMaziakGameOverDialog::~QtMaziakGameOverDialog() noexcept
 {
   delete ui;
 }

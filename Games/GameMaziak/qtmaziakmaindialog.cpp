@@ -175,7 +175,7 @@ ribi::QtMaziakMainDialog::QtMaziakMainDialog(QWidget *parent, const int maze_siz
   this->move( screen.center() - this->rect().center() );
 }
 
-ribi::QtMaziakMainDialog::~QtMaziakMainDialog()
+ribi::QtMaziakMainDialog::~QtMaziakMainDialog() noexcept
 {
   delete ui;
 }

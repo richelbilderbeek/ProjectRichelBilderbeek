@@ -20,7 +20,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #include <boost/lexical_cast.hpp>
 #include <boost/numeric/conversion/cast.hpp>
-//---------------------------------------------------------------------------
+
 #include <Wt/WBreak>
 #include <Wt/WButtonGroup>
 //#include <Wt/Chart/WCartesianChart>
@@ -28,20 +28,21 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <Wt/WGroupBox>
 #include <Wt/WLabel>
 #include <Wt/WRadioButton>
-//---------------------------------------------------------------------------
+
 #include "timepolldata.h"
 #include "wtaboutdialog.h"
 #include "wtserverpusher.h"
 #include "timepollwtmaindialog.h"
-//---------------------------------------------------------------------------
-//---------------------------------------------------------------------------
+
+
 ribi::ToolTimePoll::WtTimePollMainDialog::WtTimePollMainDialog()
+  : ui{}
 {
   ShowMain();
   OnServerPush();
   OnTimedServerPush();
 }
-//---------------------------------------------------------------------------
+
 void ribi::ToolTimePoll::WtTimePollMainDialog::ShowMain()
 {
   this->clear();
@@ -92,21 +93,21 @@ void ribi::ToolTimePoll::WtTimePollMainDialog::ShowMain()
     //ui.m_chart->setMinimumSize(400,400);
   }
 }
-//---------------------------------------------------------------------------
+
 ///Send the new selected radio button's index
 void ribi::ToolTimePoll::WtTimePollMainDialog::OnChangeIndex()
 {
   ToolTimePoll::Data::GetInstance()->SetIndex(ui.m_group->selectedButtonIndex());
   WtServerPusher::GetInstance()->Post();
 }
-//---------------------------------------------------------------------------
+
 void ribi::ToolTimePoll::WtTimePollMainDialog::OnServerPush()
 {
   //Only index has changed
   Data * const data = ToolTimePoll::Data::GetInstance();
   ui.m_group->setSelectedButtonIndex(data->GetIndex());
 }
-//---------------------------------------------------------------------------
+
 void ribi::ToolTimePoll::WtTimePollMainDialog::OnTimedServerPush()
 {
   Data * const data = ToolTimePoll::Data::GetInstance();
@@ -155,4 +156,4 @@ void ribi::ToolTimePoll::WtTimePollMainDialog::OnTimedServerPush()
     + "%"
     );
 }
-//---------------------------------------------------------------------------
+

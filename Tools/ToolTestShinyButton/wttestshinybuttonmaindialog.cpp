@@ -20,12 +20,12 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #include <boost/lexical_cast.hpp>
 #include <boost/numeric/conversion/cast.hpp>
-//---------------------------------------------------------------------------
+
 #include <Wt/WBreak>
 #include <Wt/WLabel>
 #include <Wt/WLineEdit>
 #include <Wt/WPushButton>
-//---------------------------------------------------------------------------
+
 #include "about.h"
 #include "dial.h"
 #include "dialwidget.h"
@@ -37,7 +37,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "wtdialwidget.h"
 #include "wtshinybuttonwidget.h"
 #include "wttestshinybuttonmaindialog.h"
-//---------------------------------------------------------------------------
+
 ribi::WtTestShinyButtonMainDialog::Ui::Ui()
   : m_dial_color(new WtDialWidget),
     m_dial_gradient(new WtDialWidget),
@@ -47,9 +47,10 @@ ribi::WtTestShinyButtonMainDialog::Ui::Ui()
 {
 
 }
-//---------------------------------------------------------------------------
+
 ribi::WtTestShinyButtonMainDialog::WtTestShinyButtonMainDialog()
-  : m_dialog(new TestShinyButtonMenuDialog)
+  : m_dialog(new TestShinyButtonMenuDialog),
+    ui{}
 {
   this->setContentAlignment(Wt::AlignCenter);
   this->addWidget(new Wt::WBreak);
@@ -90,7 +91,7 @@ ribi::WtTestShinyButtonMainDialog::WtTestShinyButtonMainDialog()
   ui.m_edit->setText("Welcome");
   OnEditChanged();
 }
-//---------------------------------------------------------------------------
+
 void ribi::WtTestShinyButtonMainDialog::OnDialChanged()
 {
   const double c = ui.m_dial_color->GetWidget()->GetDial()->GetPosition();
@@ -98,14 +99,14 @@ void ribi::WtTestShinyButtonMainDialog::OnDialChanged()
 
   ui.m_shiny_button->GetWidget()->GetShinyButton()->SetColor(c,g);
 }
-//---------------------------------------------------------------------------
+
 void ribi::WtTestShinyButtonMainDialog::OnEditChanged()
 {
   const std::string s = ui.m_edit->text().toUTF8();
 
   ui.m_shiny_button->GetWidget()->GetShinyButton()->SetText(s);
 }
-//---------------------------------------------------------------------------
+
 void ribi::WtTestShinyButtonMainDialog::OnShinyButtonColorChanged()
 {
   const double c = ui.m_shiny_button->GetWidget()->GetShinyButton()->GetColor();
@@ -119,4 +120,4 @@ void ribi::WtTestShinyButtonMainDialog::OnShinyButtonColorChanged()
     + std::string(") (color,gradient)");
   ui.m_label_color->setText(text);
 }
-//---------------------------------------------------------------------------
+

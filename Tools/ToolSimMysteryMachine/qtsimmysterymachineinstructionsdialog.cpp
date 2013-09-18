@@ -31,7 +31,7 @@ ribi::QtSimMysteryMachineInstructionsDialog::QtSimMysteryMachineInstructionsDial
   ui->setupUi(this);
 }
 
-ribi::QtSimMysteryMachineInstructionsDialog::~QtSimMysteryMachineInstructionsDialog()
+ribi::QtSimMysteryMachineInstructionsDialog::~QtSimMysteryMachineInstructionsDialog() noexcept
 {
   delete ui;
 }

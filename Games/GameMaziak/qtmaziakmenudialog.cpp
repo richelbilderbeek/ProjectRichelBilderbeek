@@ -55,7 +55,7 @@ ribi::QtMaziakMenuDialog::QtMaziakMenuDialog(QWidget *parent) :
   this->move( screen.center() - this->rect().center() );
 }
 
-ribi::QtMaziakMenuDialog::~QtMaziakMenuDialog()
+ribi::QtMaziakMenuDialog::~QtMaziakMenuDialog() noexcept
 {
   delete ui;
 }

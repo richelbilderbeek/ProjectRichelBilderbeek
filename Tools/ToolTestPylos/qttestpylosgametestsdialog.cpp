@@ -31,7 +31,7 @@ QtTestPylosGameTestsDialog::QtTestPylosGameTestsDialog(QWidget *parent) :
   ui->setupUi(this);
 }
 
-QtTestPylosGameTestsDialog::~QtTestPylosGameTestsDialog()
+QtTestPylosGameTestsDialog::~QtTestPylosGameTestsDialog() noexcept
 {
   delete ui;
 }

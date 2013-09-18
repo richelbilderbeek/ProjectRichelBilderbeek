@@ -263,6 +263,7 @@ SOURCES += \
     ../../Games/GameConnectThree/connectthreemenudialog.cpp \
     ../../Games/GameConnectThree/connectthreeresources.cpp \
     ../../Games/GameDasWahreSchlagerfest/daswahreschlagerfestmenudialog.cpp \
+    ../../Tools/ToolTestGroupWidget/testgroupwidgetmenudialog.cpp \
     ../../Games/GameDasWahreSchlagerfest/daswahreschlagerfestwidget.cpp \
     ../../Games/GameMaziak/maziakmenudialog.cpp \
     ../../Games/GamePylos/pylosmenudialog.cpp \
@@ -287,6 +288,8 @@ SOURCES += \
     ../../Tools/ToolStateObserver/stateobservermenudialog.cpp \
     ../../Tools/ToolTestApproximator/tooltestapproximatormenudialog.cpp \
     ../../Tools/ToolTestDial/testdialmenudialog.cpp \
+    ../../Tools/ToolTestEntrance/testentrancemenudialog.cpp \
+    ../../Tools/ToolRandomCode/randomcodemenudialog.cpp \
     ../../Tools/ToolTestEncranger/testencrangerdialog.cpp \
     ../../Tools/ToolTestExercise/testexercisemenudialog.cpp \
     ../../Tools/ToolTestFunctionParser/testfunctionparsermenudialog.cpp \
@@ -338,6 +341,8 @@ HEADERS += \
     ../../Classes/CppHtmlPage/htmlpage.h \
     ../../Classes/CppIpAddress/ipaddress.h \
     ../../Classes/CppKalmanFilter/fixedlagsmootherkalmanfilter.h \
+    ../../Tools/ToolTestGroupWidget/testgroupwidgetmenudialog.h \
+    ../../Tools/ToolTestEntrance/testentrancemenudialog.h \
     ../../Classes/CppKalmanFilter/fixedlagsmootherkalmanfiltercalculationelements.h \
     ../../Classes/CppKalmanFilter/fixedlagsmootherkalmanfilterfactory.h \
     ../../Classes/CppKalmanFilter/fixedlagsmootherkalmanfilterparameters.h \
@@ -417,6 +422,7 @@ HEADERS += \
     ../../Classes/CppQtCreatorProFile/qtcreatorprofile.h \
     ../../Classes/CppQtCreatorProFile/qtcreatorprofilezipscript.h \
     ../../Classes/CppQtModel/modelfunctionparser.h \
+    ../../Tools/ToolRandomCode/randomcodemenudialog.h \
     ../../Classes/CppQuestion/question.h \
     ../../Classes/CppQuestionDialog/questiondialog.h \
     ../../Classes/CppRainbow/rainbow.h \

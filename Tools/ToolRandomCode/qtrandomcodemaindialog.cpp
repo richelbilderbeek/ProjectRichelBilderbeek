@@ -53,7 +53,7 @@ ribi::QtRandomCodeMainDialog::QtRandomCodeMainDialog(QWidget *parent) :
   ui->button_generate->click();
 }
 
-ribi::QtRandomCodeMainDialog::~QtRandomCodeMainDialog()
+ribi::QtRandomCodeMainDialog::~QtRandomCodeMainDialog() noexcept
 {
   delete ui;
 }

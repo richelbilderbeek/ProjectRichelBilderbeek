@@ -41,18 +41,17 @@ class QtBeerWanterMainDialog : public QtHideAndShowDialog
   Q_OBJECT
 
 public:
+  explicit QtBeerWanterMainDialog(QWidget *parent = 0);
   QtBeerWanterMainDialog(const QtBeerWanterMainDialog&) = delete;
   QtBeerWanterMainDialog& operator=(const QtBeerWanterMainDialog&) = delete;
-
-  explicit QtBeerWanterMainDialog(QWidget *parent = 0);
   ~QtBeerWanterMainDialog() noexcept;
 private:
   Ui::QtBeerWanterMainDialog *ui;
   boost::shared_ptr<QtBeerWanterWidget> m_widget;
 
 private slots:
-  void ChangeTitle(const std::string& title);
-  void OnShake(const int x, const int y);
+  void ChangeTitle(const std::string& title) noexcept;
+  void OnShake(const int x, const int y) noexcept;
 };
 
 } //~namespace ribi

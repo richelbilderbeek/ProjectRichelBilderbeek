@@ -59,7 +59,7 @@ ribi::kalman::QtKalmanFiltererParameterDialog::QtKalmanFiltererParameterDialog(
     this,SLOT(OnModelSizeChanged()));
 }
 
-ribi::kalman::QtKalmanFiltererParameterDialog::~QtKalmanFiltererParameterDialog()
+ribi::kalman::QtKalmanFiltererParameterDialog::~QtKalmanFiltererParameterDialog() noexcept
 {
   delete ui;
 }

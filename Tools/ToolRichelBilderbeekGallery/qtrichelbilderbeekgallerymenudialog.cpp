@@ -50,7 +50,7 @@ ribi::QtRichelBilderbeekGalleryMenuDialog::QtRichelBilderbeekGalleryMenuDialog(Q
   ui->setupUi(this);
 }
 
-ribi::QtRichelBilderbeekGalleryMenuDialog::~QtRichelBilderbeekGalleryMenuDialog()
+ribi::QtRichelBilderbeekGalleryMenuDialog::~QtRichelBilderbeekGalleryMenuDialog() noexcept
 {
   delete ui;
 }

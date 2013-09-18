@@ -3,6 +3,7 @@
 
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
+#include <array>
 #include <boost/shared_ptr.hpp>
 #include "approximator.h"
 #include "qthideandshowdialog.h"

@@ -44,7 +44,7 @@ ribi::kalman::QtSteadyStateKalmanFilterCalculationDialog::QtSteadyStateKalmanFil
   );
 }
 
-ribi::kalman::QtSteadyStateKalmanFilterCalculationDialog::~QtSteadyStateKalmanFilterCalculationDialog()
+ribi::kalman::QtSteadyStateKalmanFilterCalculationDialog::~QtSteadyStateKalmanFilterCalculationDialog() noexcept
 {
   delete ui;
 }

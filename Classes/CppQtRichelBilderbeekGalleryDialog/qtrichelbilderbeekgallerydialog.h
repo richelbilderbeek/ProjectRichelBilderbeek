@@ -54,22 +54,22 @@ public:
   static const std::vector<std::string> GetVersionHistory() noexcept;
 
 protected:
-  void keyPressEvent(QKeyEvent* e);
+  void keyPressEvent(QKeyEvent* e) noexcept;
 
 
 private slots:
-  void on_table_clicked(const QModelIndex &index);
+  void on_table_clicked(const QModelIndex &index) noexcept;
 
-  void on_table_cellEntered(int row, int column);
+  void on_table_cellEntered(int row, int column) noexcept;
 
-  void on_table_entered(const QModelIndex &index);
+  void on_table_entered(const QModelIndex &index) noexcept;
 
 private:
   Ui::QtRichelBilderbeekGalleryDialog *ui;
   const std::vector<boost::shared_ptr<RichelBilderbeek::Program> > m_programs;
 
   ///Show the screenshot requested by the item in [col,row]
-  void ShowScreenshot(const int col, const int row);
+  void ShowScreenshot(const int col, const int row) noexcept;
 };
 
 } //~namespace ribi

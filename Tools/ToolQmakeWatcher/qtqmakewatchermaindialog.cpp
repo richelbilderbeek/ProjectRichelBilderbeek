@@ -59,7 +59,7 @@ QtQmakeWatcherMainDialog::QtQmakeWatcherMainDialog(QWidget *parent) :
   this->move( screen.center() - this->rect().center() );
 }
 
-QtQmakeWatcherMainDialog::~QtQmakeWatcherMainDialog()
+QtQmakeWatcherMainDialog::~QtQmakeWatcherMainDialog() noexcept
 {
   delete ui;
 }

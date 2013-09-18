@@ -665,9 +665,8 @@ void ribi::ConnectThree::Test() noexcept
   assert( c.CanDoMove(0,1));
   assert( c.CanDoMove(1,0));
   assert( c.CanDoMove(1,1));
-  assert(!c.IsInvalidMove(Move(0,0)));
-  assert( c.IsInvalidMove(Move(0,n_rows)));
-  assert( c.IsInvalidMove(Move(n_rows,0)));
+  assert(!c.CanDoMove(Move(0,n_rows)));
+  assert(!c.CanDoMove(Move(n_rows,0)));
   assert(!IsInvalidMove( c.SuggestMove(is_player_human))); //No moves left
   assert(c.GetWinner() == ConnectThree::no_player); //No winner yet
   c.DoMove(0,0);

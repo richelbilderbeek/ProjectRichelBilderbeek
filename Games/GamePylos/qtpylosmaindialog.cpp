@@ -52,7 +52,7 @@ ribi::QtPylosMainDialog::QtPylosMainDialog(
   this->move( screen.center() - this->rect().center() );
 }
 
-ribi::QtPylosMainDialog::~QtPylosMainDialog()
+ribi::QtPylosMainDialog::~QtPylosMainDialog() noexcept
 {
   delete ui;
   delete m_pylos_widget;

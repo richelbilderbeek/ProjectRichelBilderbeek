@@ -35,7 +35,7 @@ ribi::QtBoenkenPlayersDialog::QtBoenkenPlayersDialog(QWidget *parent) :
   QObject::connect(ui->button_done,SIGNAL(clicked()),this,SLOT(close()));
 }
 
-ribi::QtBoenkenPlayersDialog::~QtBoenkenPlayersDialog()
+ribi::QtBoenkenPlayersDialog::~QtBoenkenPlayersDialog() noexcept
 {
   delete ui;
 }

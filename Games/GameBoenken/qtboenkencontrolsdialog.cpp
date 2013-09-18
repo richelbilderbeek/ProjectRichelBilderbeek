@@ -51,12 +51,12 @@ ribi::QtBoenkenControlsDialog::QtBoenkenControlsDialog(QWidget *parent) :
   showKeys();
 }
 
-ribi::QtBoenkenControlsDialog::~QtBoenkenControlsDialog()
+ribi::QtBoenkenControlsDialog::~QtBoenkenControlsDialog() noexcept
 {
   delete ui;
 }
 
-void ribi::QtBoenkenControlsDialog::showKeys()
+void ribi::QtBoenkenControlsDialog::showKeys() noexcept
 {
   ui->button_accelerate_1->setText(
     boost::lexical_cast<std::string>(m_keys_accel[0]).c_str() );
@@ -69,7 +69,7 @@ void ribi::QtBoenkenControlsDialog::showKeys()
 
 }
 
-void ribi::QtBoenkenControlsDialog::onAccelerate1()
+void ribi::QtBoenkenControlsDialog::onAccelerate1() noexcept
 {
   QtBoenkenPressKeyDialog d;
   d.exec();
@@ -78,7 +78,7 @@ void ribi::QtBoenkenControlsDialog::onAccelerate1()
   showKeys();
 }
 
-void ribi::QtBoenkenControlsDialog::onAccelerate2()
+void ribi::QtBoenkenControlsDialog::onAccelerate2() noexcept
 {
   QtBoenkenPressKeyDialog d;
   d.exec();
@@ -87,7 +87,7 @@ void ribi::QtBoenkenControlsDialog::onAccelerate2()
   showKeys();
 }
 
-void ribi::QtBoenkenControlsDialog::onTurn1()
+void ribi::QtBoenkenControlsDialog::onTurn1() noexcept
 {
   QtBoenkenPressKeyDialog d;
   d.exec();
@@ -96,7 +96,7 @@ void ribi::QtBoenkenControlsDialog::onTurn1()
   showKeys();
 }
 
-void ribi::QtBoenkenControlsDialog::onTurn2()
+void ribi::QtBoenkenControlsDialog::onTurn2() noexcept
 {
   QtBoenkenPressKeyDialog d;
   d.exec();
@@ -105,17 +105,17 @@ void ribi::QtBoenkenControlsDialog::onTurn2()
   showKeys();
 }
 
-std::vector<int> ribi::QtBoenkenControlsDialog::getKeysAccel() const
+std::vector<int> ribi::QtBoenkenControlsDialog::getKeysAccel() const noexcept
 {
   return m_keys_accel;
 }
 
-std::vector<int> ribi::QtBoenkenControlsDialog::getKeysTurn() const
+std::vector<int> ribi::QtBoenkenControlsDialog::getKeysTurn() const noexcept
 {
   return m_keys_turn;
 }
 
-std::vector<std::string> ribi::QtBoenkenControlsDialog::getNames() const
+std::vector<std::string> ribi::QtBoenkenControlsDialog::getNames() const noexcept
 {
   std::vector<std::string> v;
   v.push_back(ui->edit_name1->text().toStdString());
@@ -123,7 +123,7 @@ std::vector<std::string> ribi::QtBoenkenControlsDialog::getNames() const
   return v;
 }
 
-ribi::Boenken::Controls ribi::QtBoenkenControlsDialog::GetControls() const
+ribi::Boenken::Controls ribi::QtBoenkenControlsDialog::GetControls() const noexcept
 {
   Boenken::Controls c;
   c.m_keys_accel = this->getKeysAccel();

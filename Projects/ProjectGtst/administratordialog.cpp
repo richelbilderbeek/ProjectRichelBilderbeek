@@ -37,8 +37,10 @@ ribi::gtst::AdministratorDialog::AdministratorDialog(Server * const server)
   : m_administrator{},
     m_state(0),
     m_state_logged_in(new AdministratorDialogStateLoggedIn(server,this)),
-    m_state_not_logged_in(new AdministratorDialogStateNotLoggedIn(server,this)),
-    ui{}
+    m_state_not_logged_in(new AdministratorDialogStateNotLoggedIn(server,this))
+    #ifndef NDEBUG
+    ,ui{}
+    #endif
 {
   assert(!m_state);
   assert(m_state_logged_in);

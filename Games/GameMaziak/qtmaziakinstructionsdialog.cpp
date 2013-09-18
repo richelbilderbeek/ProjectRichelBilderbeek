@@ -33,7 +33,7 @@ ribi::QtMaziakInstructionsDialog::QtMaziakInstructionsDialog(QWidget *parent) :
     ui->setupUi(this);
 }
 
-ribi::QtMaziakInstructionsDialog::~QtMaziakInstructionsDialog()
+ribi::QtMaziakInstructionsDialog::~QtMaziakInstructionsDialog() noexcept
 {
     delete ui;
 }

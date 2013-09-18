@@ -79,7 +79,7 @@ ribi::QtTestPylosTestBoardDialog::QtTestPylosTestBoardDialog(QWidget *parent) :
   UpdateLog();
 }
 
-ribi::QtTestPylosTestBoardDialog::~QtTestPylosTestBoardDialog()
+ribi::QtTestPylosTestBoardDialog::~QtTestPylosTestBoardDialog() noexcept
 {
   m_timer->stop();
   delete ui;

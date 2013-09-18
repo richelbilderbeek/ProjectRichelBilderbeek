@@ -1589,7 +1589,6 @@ const std::vector<std::pair<std::string,std::string> > c2h::Content::CreateCppRe
     { "Carbide","<a href=\"CppC$arbideC$pp.htm\">C$arbide</a>" },
     { "Compile","<a href=\"CppC$ompile.htm\">C$ompile</a>" },
     { "Convert","<a href=\"CppC$onvert.htm\">C$onvert</a>" },
-    { "Copy_if","<a href=\"CppC$opy_i$f.htm\">C$opy_i$f</a>" },
     { "Counter","<a href=\"C$ppC$ounter.htm\">C$ounter</a>" },
     { "Emitted","<a href=\"CppE$mit.htm\">E$mitted</a>" },
     { "GetMean","<a href=\"CppG$etMean.htm\">G$etMean</a>" },

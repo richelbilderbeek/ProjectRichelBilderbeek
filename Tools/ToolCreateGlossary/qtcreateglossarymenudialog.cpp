@@ -36,7 +36,7 @@ ribi::QtCreateGlossaryMenuDialog::QtCreateGlossaryMenuDialog(QWidget *parent)
   ui->setupUi(this);
 }
 
-ribi::QtCreateGlossaryMenuDialog::~QtCreateGlossaryMenuDialog()
+ribi::QtCreateGlossaryMenuDialog::~QtCreateGlossaryMenuDialog() noexcept
 {
   delete ui;
 }

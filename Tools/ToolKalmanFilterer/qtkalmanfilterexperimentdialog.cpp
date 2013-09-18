@@ -141,7 +141,7 @@ ribi::kalman::QtKalmanFilterExperimentDialog::QtKalmanFilterExperimentDialog(
   assert(IsValid());
 }
 
-ribi::kalman::QtKalmanFilterExperimentDialog::~QtKalmanFilterExperimentDialog()
+ribi::kalman::QtKalmanFilterExperimentDialog::~QtKalmanFilterExperimentDialog() noexcept
 {
   delete ui;
   delete m_examples_dialog;

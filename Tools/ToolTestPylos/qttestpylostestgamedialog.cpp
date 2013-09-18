@@ -74,7 +74,7 @@ ribi::QtTestPylosTestGameDialog::QtTestPylosTestGameDialog(QWidget *parent) :
   UpdateLog();
 }
 
-ribi::QtTestPylosTestGameDialog::~QtTestPylosTestGameDialog()
+ribi::QtTestPylosTestGameDialog::~QtTestPylosTestGameDialog() noexcept
 {
   m_timer->stop();
   delete ui;

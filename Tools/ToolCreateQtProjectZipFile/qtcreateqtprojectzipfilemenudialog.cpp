@@ -40,7 +40,7 @@ ribi::QtCreateQtProjectZipFileMenuDialog::QtCreateQtProjectZipFileMenuDialog(QWi
   #endif
 }
 
-ribi::QtCreateQtProjectZipFileMenuDialog::~QtCreateQtProjectZipFileMenuDialog()
+ribi::QtCreateQtProjectZipFileMenuDialog::~QtCreateQtProjectZipFileMenuDialog() noexcept
 {
   delete ui;
 }

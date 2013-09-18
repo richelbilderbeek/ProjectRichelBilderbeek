@@ -125,7 +125,7 @@ ribi::kalman::QtKalmanFiltererMainDialog::QtKalmanFiltererMainDialog(
   this->ui->button_start->click(); //Start the simulation
 }
 
-ribi::kalman::QtKalmanFiltererMainDialog::~QtKalmanFiltererMainDialog()
+ribi::kalman::QtKalmanFiltererMainDialog::~QtKalmanFiltererMainDialog() noexcept
 {
   delete ui;
   delete m_experiment_dialog;

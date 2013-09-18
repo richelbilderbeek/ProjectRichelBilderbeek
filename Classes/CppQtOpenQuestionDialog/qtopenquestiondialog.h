@@ -59,10 +59,10 @@ public:
   static const std::vector<std::string> GetVersionHistory() noexcept;
 
   ///Set the Question
-  void SetQuestion(const boost::shared_ptr<Question>& question);
+  void SetQuestion(const boost::shared_ptr<Question> question) noexcept;
 
 private slots:
-  void on_button_submit_clicked();
+  void on_button_submit_clicked() noexcept;
 
 private:
   Ui::QtOpenQuestionDialog *ui;

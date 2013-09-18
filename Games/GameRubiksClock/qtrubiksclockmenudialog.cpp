@@ -43,7 +43,7 @@ ribi::QtRubiksClockMenuDialog::QtRubiksClockMenuDialog(QWidget *parent) :
   ui->setupUi(this);
 }
 
-ribi::QtRubiksClockMenuDialog::~QtRubiksClockMenuDialog()
+ribi::QtRubiksClockMenuDialog::~QtRubiksClockMenuDialog() noexcept
 {
   delete ui;
 }

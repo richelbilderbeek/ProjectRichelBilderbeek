@@ -60,7 +60,7 @@ ribi::ConnectThreeResources::ConnectThreeResources(
   Create();
 }
 
-ribi::ConnectThreeResources::~ConnectThreeResources()
+ribi::ConnectThreeResources::~ConnectThreeResources() noexcept
 {
   for (const std::string filename: m_computers_filenames) { std::remove(filename.c_str()); }
   for (const std::string filename: m_players_filenames) { std::remove(filename.c_str()); }
@@ -95,8 +95,13 @@ void ribi::ConnectThreeResources::CreateFile(const std::string& s)
     const std::string filename = ":/images/" + s;
     QFile f(filename.c_str());
     f.copy(s.c_str());
-    if (!QFile::exists(s.c_str())) { TRACE(s); }
-    assert(QFile::exists(s.c_str()));
+    if (!QFile::exists(s.c_str()))
+    {
+      const std::string error = "ConnectThreeResources::CreateFile: file not found: '" + s
+        + "\', please add the file to a resource file, or correct the filename";
+      TRACE(s);
+      throw std::runtime_error(error);
+    }
   }
   if (!QFile::exists(s.c_str())) { TRACE(s); }
   assert(QFile::exists(s.c_str()));

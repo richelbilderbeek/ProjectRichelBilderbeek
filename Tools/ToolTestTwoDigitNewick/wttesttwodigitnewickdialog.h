@@ -20,16 +20,16 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #ifndef WTTESTTWODIGITNEWICKDIALOG_H
 #define WTTESTTWODIGITNEWICKDIALOG_H
-//---------------------------------------------------------------------------
+
 #include <string>
 #include <vector>
-//---------------------------------------------------------------------------
+
 #include <boost/signals2.hpp>
-//---------------------------------------------------------------------------
+
 #include <Wt/WContainerWidget>
 #include <Wt/WPushButton>
 #include <Wt/WTextArea>
-//---------------------------------------------------------------------------
+
 #include "about.h"
 
 namespace ribi {
@@ -37,6 +37,9 @@ namespace ribi {
 struct WtTestTwoDigitNewickDialog : public Wt::WContainerWidget
 {
   WtTestTwoDigitNewickDialog();
+  WtTestTwoDigitNewickDialog(const WtTestTwoDigitNewickDialog&) = delete;
+  WtTestTwoDigitNewickDialog& operator=(const WtTestTwoDigitNewickDialog&) = delete;
+
   boost::signals2::signal<void ()> m_signal_about;
   boost::signals2::signal<void ()> m_signal_any_change;
   static const About GetAbout();

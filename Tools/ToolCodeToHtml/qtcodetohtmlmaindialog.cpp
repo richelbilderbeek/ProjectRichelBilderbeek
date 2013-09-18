@@ -30,6 +30,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <cstdio>
 #include <fstream>
 #include <iostream>
+#include <stdexcept>
 #include <string>
 #include <sstream>
 #include <vector>
@@ -50,7 +51,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "ui_qtcodetohtmlmaindialog.h"
 #pragma GCC diagnostic pop
 
-ribi::QtCodeToHtmlMainDialog::QtCodeToHtmlMainDialog(QWidget *parent) :
+ribi::QtCodeToHtmlMainDialog::QtCodeToHtmlMainDialog(QWidget *parent) noexcept :
     QtHideAndShowDialog(parent),
     ui(new Ui::QtCodeToHtmlMainDialog)
 {
@@ -66,13 +67,13 @@ ribi::QtCodeToHtmlMainDialog::QtCodeToHtmlMainDialog(QWidget *parent) :
   on_tab_source_currentChanged(0);
 }
 
-ribi::QtCodeToHtmlMainDialog::~QtCodeToHtmlMainDialog()
+ribi::QtCodeToHtmlMainDialog::~QtCodeToHtmlMainDialog() noexcept
 {
   delete ui;
 }
 
 const std::vector<std::string> ribi::QtCodeToHtmlMainDialog::EditToVector(
-  const QPlainTextEdit * const edit)
+  const QPlainTextEdit * const edit) noexcept
 {
   std::vector<std::string> v;
 
@@ -99,7 +100,7 @@ const std::vector<std::string> ribi::QtCodeToHtmlMainDialog::EditToVector(
   return v;
 }
 
-c2h::PageType ribi::QtCodeToHtmlMainDialog::GetPageType() const
+c2h::PageType ribi::QtCodeToHtmlMainDialog::GetPageType() const noexcept
 {
   const std::string s = ui->box_header->currentText().toStdString();
   if (s == "C++") return c2h::PageType::cpp;
@@ -110,7 +111,7 @@ c2h::PageType ribi::QtCodeToHtmlMainDialog::GetPageType() const
   throw std::logic_error("QtCodeToHtmlMainDialog::GetPageType");
 }
 
-c2h::ContentType ribi::QtCodeToHtmlMainDialog::GetContentType() const
+c2h::ContentType ribi::QtCodeToHtmlMainDialog::GetContentType() const noexcept
 {
   const std::string s = ui->box_source->currentText().toStdString();
   if (s == "C++") return c2h::ContentType::cpp;
@@ -120,7 +121,7 @@ c2h::ContentType ribi::QtCodeToHtmlMainDialog::GetContentType() const
   throw std::logic_error("QtCodeToHtmlMainDialog::GetContentType");
 }
 
-c2h::TechInfoType ribi::QtCodeToHtmlMainDialog::GetTechInfo() const
+c2h::TechInfoType ribi::QtCodeToHtmlMainDialog::GetTechInfo() const noexcept
 {
   const std::string s = ui->box_tech_info->currentText().toStdString();
   if (s == "Auto") return c2h::TechInfoType::automatic;
@@ -130,12 +131,12 @@ c2h::TechInfoType ribi::QtCodeToHtmlMainDialog::GetTechInfo() const
   throw std::logic_error("QtCodeToHtmlMainDialog::GetTechInfo");
 }
 
-void ribi::QtCodeToHtmlMainDialog::keyPressEvent(QKeyEvent * event)
+void ribi::QtCodeToHtmlMainDialog::keyPressEvent(QKeyEvent * event) noexcept
 {
   if (event->key() == Qt::Key_Escape) { close(); return; }
 }
 
-void ribi::QtCodeToHtmlMainDialog::on_button_convert_clicked()
+void ribi::QtCodeToHtmlMainDialog::on_button_convert_clicked() noexcept
 {
   if (ui->tab_source->currentIndex() == 0)
   {
@@ -177,7 +178,7 @@ void ribi::QtCodeToHtmlMainDialog::on_button_convert_clicked()
   }
 }
 
-void ribi::QtCodeToHtmlMainDialog::Display(const std::vector<std::string>& v)
+void ribi::QtCodeToHtmlMainDialog::Display(const std::vector<std::string>& v) noexcept
 {
   QString text;
   std::for_each(v.begin(),v.end(),
@@ -193,7 +194,7 @@ void ribi::QtCodeToHtmlMainDialog::Display(const std::vector<std::string>& v)
   ui->edit_html->setPlainText(text);
 }
 
-void ribi::QtCodeToHtmlMainDialog::on_tab_source_currentChanged(int index)
+void ribi::QtCodeToHtmlMainDialog::on_tab_source_currentChanged(int index) noexcept
 {
   if (index == 0)
   {
@@ -216,7 +217,7 @@ void ribi::QtCodeToHtmlMainDialog::on_tab_source_currentChanged(int index)
   }
 }
 
-void ribi::QtCodeToHtmlMainDialog::on_edit_source_textChanged(QString )
+void ribi::QtCodeToHtmlMainDialog::on_edit_source_textChanged(QString ) noexcept
 {
   const std::string source = ui->edit_source->text().toStdString();
 
@@ -251,7 +252,7 @@ void ribi::QtCodeToHtmlMainDialog::on_edit_source_textChanged(QString )
 }
 
 #ifndef NDEBUG
-void ribi::QtCodeToHtmlMainDialog::Test()
+void ribi::QtCodeToHtmlMainDialog::Test() noexcept
 {
   {
     static bool is_tested = false;

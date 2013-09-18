@@ -48,7 +48,7 @@ public:
   explicit QtConnectThreeGameDialog(
     const boost::shared_ptr<const ConnectThreeResources> resources,
     QWidget *parent = 0,
-    const std::bitset<3>& is_player_human = std::bitset<3>(true));
+    const std::bitset<3>& is_player_human = std::bitset<3>(true)) noexcept;
   QtConnectThreeGameDialog(const QtConnectThreeGameDialog&) = delete;
   QtConnectThreeGameDialog& operator=(const QtConnectThreeGameDialog&) = delete;
   ~QtConnectThreeGameDialog() noexcept;
@@ -56,7 +56,7 @@ public:
   boost::signals2::signal<void ()> m_signal_close;
 
 public slots:
-  void DoComputerTurn();
+  void DoComputerTurn() noexcept;
 
 private:
   Ui::QtConnectThreeGameDialog *ui;
@@ -69,7 +69,7 @@ private:
   ///OnValidMove is called after a valid move. The game
   ///is either terminated, or the next player can do
   ///his/her move.
-  void OnValidMove();
+  void OnValidMove() noexcept;
 };
 
 } //~namespace ribi

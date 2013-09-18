@@ -32,7 +32,7 @@ ribi::kalman::QtKalmanFiltererMenuDialog::QtKalmanFiltererMenuDialog(QWidget *pa
   #endif
 }
 
-ribi::kalman::QtKalmanFiltererMenuDialog::~QtKalmanFiltererMenuDialog()
+ribi::kalman::QtKalmanFiltererMenuDialog::~QtKalmanFiltererMenuDialog() noexcept
 {
   delete ui;
 }

@@ -53,7 +53,7 @@ public:
   QtBoenkenControlsDialog& operator=(const QtBoenkenControlsDialog&) = delete;
   ~QtBoenkenControlsDialog() noexcept;
 
-  Boenken::Controls GetControls() const;
+  Boenken::Controls GetControls() const noexcept;
 
 private:
   Ui::QtBoenkenControlsDialog *ui;
@@ -61,15 +61,15 @@ private:
   std::vector<int> m_keys_turn;
 
 private slots:
-  void onAccelerate1();
-  void onAccelerate2();
-  void onTurn1();
-  void onTurn2();
-  void showKeys();
+  void onAccelerate1() noexcept;
+  void onAccelerate2() noexcept;
+  void onTurn1() noexcept;
+  void onTurn2() noexcept;
+  void showKeys() noexcept;
 
-  std::vector<int> getKeysAccel() const;
-  std::vector<int> getKeysTurn() const;
-  std::vector<std::string> getNames() const;
+  std::vector<int> getKeysAccel() const noexcept;
+  std::vector<int> getKeysTurn() const noexcept;
+  std::vector<std::string> getNames() const noexcept;
 };
 
 } //~namespace ribi

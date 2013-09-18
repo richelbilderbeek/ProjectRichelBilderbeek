@@ -28,14 +28,13 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "daswahreschlagerfestwidget.h"
 #pragma GCC diagnostic pop
 
-ribi::QtDasWahreSchlagerfestWidget::QtDasWahreSchlagerfestWidget(QWidget *parent) :
-  QWidget(parent),
-  m_widget(new DasWahreSchlagerfestWidget),
-  m_beer(":/images/GameDasWahreSchlagerfestBeer.png"),
-  m_bratwurst(":/images/GameDasWahreSchlagerfestBratwurst.png"),
-  m_empty(":/images/GameDasWahreSchlagerfestSmiley.png"),
-  m_richel(":/images/GameDasWahreSchlagerfestRichel.png")
-
+ribi::QtDasWahreSchlagerfestWidget::QtDasWahreSchlagerfestWidget(QWidget *parent) noexcept
+  : QWidget(parent),
+    m_widget(new DasWahreSchlagerfestWidget),
+    m_beer(":/images/GameDasWahreSchlagerfestBeer.png"),
+    m_bratwurst(":/images/GameDasWahreSchlagerfestBratwurst.png"),
+    m_empty(":/images/GameDasWahreSchlagerfestSmiley.png"),
+    m_richel(":/images/GameDasWahreSchlagerfestRichel.png")
 {
   assert(m_beer.width() == 102);
   assert(m_bratwurst.width() == 102);
@@ -48,12 +47,7 @@ ribi::QtDasWahreSchlagerfestWidget::QtDasWahreSchlagerfestWidget(QWidget *parent
         this));
 }
 
-ribi::QtDasWahreSchlagerfestWidget::~QtDasWahreSchlagerfestWidget()
-{
-
-}
-
-void ribi::QtDasWahreSchlagerfestWidget::keyPressEvent(QKeyEvent * e)
+void ribi::QtDasWahreSchlagerfestWidget::keyPressEvent(QKeyEvent * e) noexcept
 {
   DasWahreSchlagerfestWidget::Key key;
   switch (e->key())
@@ -67,7 +61,7 @@ void ribi::QtDasWahreSchlagerfestWidget::keyPressEvent(QKeyEvent * e)
   m_widget->PressKey(key);
 }
 
-void ribi::QtDasWahreSchlagerfestWidget::paintEvent(QPaintEvent *)
+void ribi::QtDasWahreSchlagerfestWidget::paintEvent(QPaintEvent *) noexcept
 {
   QPainter painter(this);
   const std::vector<std::vector<DasWahreSchlagerfestWidget::Tile> > & v = m_widget->GetTiles();
@@ -110,7 +104,7 @@ void ribi::QtDasWahreSchlagerfestWidget::paintEvent(QPaintEvent *)
 
 
 
-const QPixmap& ribi::QtDasWahreSchlagerfestWidget::GetPixmap(const DasWahreSchlagerfestWidget::Tile& tile) const
+const QPixmap& ribi::QtDasWahreSchlagerfestWidget::GetPixmap(const DasWahreSchlagerfestWidget::Tile& tile) const noexcept
 {
   switch (tile)
   {
@@ -123,7 +117,7 @@ const QPixmap& ribi::QtDasWahreSchlagerfestWidget::GetPixmap(const DasWahreSchla
   throw std::logic_error("ribi::QtDasWahreSchlagerfestWidget::GetPixmap");
 }
 
-void ribi::QtDasWahreSchlagerfestWidget::OnChange()
+void ribi::QtDasWahreSchlagerfestWidget::OnChange() noexcept
 {
   this->repaint();
 }

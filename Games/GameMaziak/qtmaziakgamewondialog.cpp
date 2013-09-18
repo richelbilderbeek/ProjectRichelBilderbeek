@@ -48,7 +48,7 @@ ribi::QtMaziakGameWonDialog::QtMaziakGameWonDialog(QWidget *parent) :
   m_timer->start();
 }
 
-ribi::QtMaziakGameWonDialog::~QtMaziakGameWonDialog()
+ribi::QtMaziakGameWonDialog::~QtMaziakGameWonDialog() noexcept
 {
   delete ui;
 }

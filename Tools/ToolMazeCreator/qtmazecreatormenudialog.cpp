@@ -36,7 +36,7 @@ ribi::QtMazeCreatorMenuDialog::QtMazeCreatorMenuDialog(QWidget *parent) :
   ui->setupUi(this);
 }
 //---------------------------------------------------------------------------
-ribi::QtMazeCreatorMenuDialog::~QtMazeCreatorMenuDialog()
+ribi::QtMazeCreatorMenuDialog::~QtMazeCreatorMenuDialog() noexcept
 {
   delete ui;
 }

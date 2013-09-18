@@ -20,12 +20,12 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #include <boost/lexical_cast.hpp>
 #include <boost/numeric/conversion/cast.hpp>
-//---------------------------------------------------------------------------
+
 #include <Wt/WBreak>
 #include <Wt/WLabel>
 #include <Wt/WPushButton>
 #include <Wt/WSlider>
-//---------------------------------------------------------------------------
+
 #include "about.h"
 #include "dial.h"
 #include "dialwidget.h"
@@ -37,19 +37,20 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "wtdialwidget.h"
 #include "wttogglebuttonwidget.h"
 #include "wttesttogglebuttonmaindialog.h"
-//---------------------------------------------------------------------------
+
 ribi::WtTestToggleButtonMainDialog::WtTestToggleButtonMainDialog()
-  : m_dialog(new TestToggleButtonMenuDialog)
+  : m_dialog(new TestToggleButtonMenuDialog),
+    ui{}
 {
   this->setContentAlignment(Wt::AlignCenter);
   ShowMain();
 }
-//---------------------------------------------------------------------------
+
 void ribi::WtTestToggleButtonMainDialog::OnAboutClick()
 {
   ShowAbout();
 }
-//---------------------------------------------------------------------------
+
 void ribi::WtTestToggleButtonMainDialog::OnDialChanged()
 {
   const double x = ui.m_dial->GetWidget()->GetDial()->GetPosition();
@@ -62,7 +63,7 @@ void ribi::WtTestToggleButtonMainDialog::OnDialChanged()
     boost::numeric_cast<int>(g * 255.0),
     boost::numeric_cast<int>(b * 255.0));
 }
-//---------------------------------------------------------------------------
+
 void ribi::WtTestToggleButtonMainDialog::OnToggleButtonColorChanged()
 {
   const unsigned char r = ui.m_toggle_button->GetWidget()->GetToggleButton()->GetRed();
@@ -79,7 +80,7 @@ void ribi::WtTestToggleButtonMainDialog::OnToggleButtonColorChanged()
     + std::string(") (RGB)");
   ui.m_label_color->setText(text);
 }
-//---------------------------------------------------------------------------
+
 void ribi::WtTestToggleButtonMainDialog::OnToggleButtonToggled()
 {
   ui.m_label_toggle->setText(
@@ -87,7 +88,7 @@ void ribi::WtTestToggleButtonMainDialog::OnToggleButtonToggled()
     + std::string(ui.m_toggle_button->GetWidget()->GetToggleButton()->IsPressed()
       ? "yes" : "no")).c_str());
 }
-//---------------------------------------------------------------------------
+
 void ribi::WtTestToggleButtonMainDialog::ShowAbout()
 {
   About a = TestToggleButtonMenuDialog::GetAbout();
@@ -99,7 +100,7 @@ void ribi::WtTestToggleButtonMainDialog::ShowAbout()
   this->clear();
   this->addWidget(d);
 }
-//---------------------------------------------------------------------------
+
 void ribi::WtTestToggleButtonMainDialog::ShowMain()
 {
   this->clear();
@@ -146,4 +147,4 @@ void ribi::WtTestToggleButtonMainDialog::ShowMain()
   OnToggleButtonToggled();
   OnToggleButtonColorChanged();
 }
-//---------------------------------------------------------------------------
+

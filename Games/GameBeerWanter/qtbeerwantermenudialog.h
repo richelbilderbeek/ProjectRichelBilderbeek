@@ -37,17 +37,14 @@ class QtBeerWanterMenuDialog : public QtHideAndShowDialog
 public:
   QtBeerWanterMenuDialog(const QtBeerWanterMenuDialog&) = delete;
   QtBeerWanterMenuDialog& operator=(const QtBeerWanterMenuDialog&) = delete;
-
   explicit QtBeerWanterMenuDialog(QWidget *parent = 0);
   ~QtBeerWanterMenuDialog() noexcept;
 
 private slots:
 
-  void on_button_start_clicked();
-
-  void on_button_about_clicked();
-
-  void on_button_quit_clicked();
+  void on_button_start_clicked() noexcept;
+  void on_button_about_clicked() noexcept;
+  void on_button_quit_clicked() noexcept;
 
 private:
   Ui::QtBeerWanterMenuDialog *ui;

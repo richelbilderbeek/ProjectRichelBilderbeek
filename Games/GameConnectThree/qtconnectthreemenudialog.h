@@ -36,6 +36,7 @@ namespace Ui {
 
 namespace ribi {
 
+struct ConnectThreeResources;
 struct QtSelectPlayerWidget;
 
 class QtConnectThreeMenuDialog : public QDialog
@@ -43,6 +44,7 @@ class QtConnectThreeMenuDialog : public QDialog
   Q_OBJECT
 
 public:
+  ///Throws an exception if the resources cannot be found
   explicit QtConnectThreeMenuDialog(QWidget *parent = 0);
   QtConnectThreeMenuDialog(const QtConnectThreeMenuDialog&) = delete;
   QtConnectThreeMenuDialog& operator=(const QtConnectThreeMenuDialog&) = delete;
@@ -50,16 +52,17 @@ public:
 
 private:
   Ui::QtConnectThreeMenuDialog *ui;
+  const boost::shared_ptr<const ConnectThreeResources> m_resources;
   boost::shared_ptr<QtSelectPlayerWidget> m_select;
 
 private slots:
 
-  void on_button_start_clicked();
-  void on_button_about_clicked();
-  void on_button_quit_clicked();
+  void on_button_start_clicked() noexcept;
+  void on_button_about_clicked() noexcept;
+  void on_button_quit_clicked() noexcept;
 
   #ifndef NDEBUG
-  static void Test();
+  static void Test() noexcept;
   #endif
 };
 

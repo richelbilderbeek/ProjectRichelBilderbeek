@@ -37,7 +37,7 @@ ribi::QtTestPylosRandomPlayDialog::QtTestPylosRandomPlayDialog(QWidget *parent) 
   ui->setupUi(this);
 }
 
-ribi::QtTestPylosRandomPlayDialog::~QtTestPylosRandomPlayDialog()
+ribi::QtTestPylosRandomPlayDialog::~QtTestPylosRandomPlayDialog() noexcept
 {
   delete ui;
 }

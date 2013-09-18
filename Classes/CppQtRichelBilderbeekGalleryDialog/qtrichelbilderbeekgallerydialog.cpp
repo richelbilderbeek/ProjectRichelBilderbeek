@@ -161,7 +161,7 @@ ribi::QtRichelBilderbeekGalleryDialog::QtRichelBilderbeekGalleryDialog(QWidget *
   }
 }
 
-ribi::QtRichelBilderbeekGalleryDialog::~QtRichelBilderbeekGalleryDialog()
+ribi::QtRichelBilderbeekGalleryDialog::~QtRichelBilderbeekGalleryDialog() noexcept
 {
   delete ui;
 }
@@ -179,12 +179,12 @@ const std::vector<std::string> ribi::QtRichelBilderbeekGalleryDialog::GetVersion
   return v;
 }
 
-void ribi::QtRichelBilderbeekGalleryDialog::keyPressEvent(QKeyEvent* e)
+void ribi::QtRichelBilderbeekGalleryDialog::keyPressEvent(QKeyEvent* e) noexcept
 {
   if (e->key()  == Qt::Key_Escape) close();
 }
 
-void ribi::QtRichelBilderbeekGalleryDialog::on_table_clicked(const QModelIndex &index)
+void ribi::QtRichelBilderbeekGalleryDialog::on_table_clicked(const QModelIndex &index) noexcept
 {
   const int row = index.row();
   if (row - 1 < 0 || row - 1 >= static_cast<int>(m_programs.size())) return;
@@ -193,12 +193,12 @@ void ribi::QtRichelBilderbeekGalleryDialog::on_table_clicked(const QModelIndex &
   ShowScreenshot(col,row);
 }
 
-void ribi::QtRichelBilderbeekGalleryDialog::on_table_cellEntered(int row, int column)
+void ribi::QtRichelBilderbeekGalleryDialog::on_table_cellEntered(int row, int column) noexcept
 {
   ShowScreenshot(column,row);
 }
 
-void ribi::QtRichelBilderbeekGalleryDialog::ShowScreenshot(const int col, const int row)
+void ribi::QtRichelBilderbeekGalleryDialog::ShowScreenshot(const int col, const int row) noexcept
 {
   const boost::shared_ptr<RichelBilderbeek::Program>& p = m_programs[row - 1];
   std::string filename;
@@ -217,7 +217,7 @@ void ribi::QtRichelBilderbeekGalleryDialog::ShowScreenshot(const int col, const 
   this->move( screen.center() - this->rect().center() );
 }
 
-void ribi::QtRichelBilderbeekGalleryDialog::on_table_entered(const QModelIndex &index)
+void ribi::QtRichelBilderbeekGalleryDialog::on_table_entered(const QModelIndex &index) noexcept
 {
   const int row = index.row();
   if (row - 1 < 0 || row - 1 >= static_cast<int>(m_programs.size())) return;

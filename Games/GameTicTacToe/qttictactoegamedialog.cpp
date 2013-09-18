@@ -49,7 +49,7 @@ ribi::QtTicTacToeGameDialog::QtTicTacToeGameDialog(QWidget *parent) :
   this->move( screen.center() - this->rect().center() );
 }
 
-ribi::QtTicTacToeGameDialog::~QtTicTacToeGameDialog()
+ribi::QtTicTacToeGameDialog::~QtTicTacToeGameDialog() noexcept
 {
   delete ui;
 }

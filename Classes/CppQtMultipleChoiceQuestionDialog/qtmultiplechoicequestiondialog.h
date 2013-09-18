@@ -67,7 +67,7 @@ public:
   static const std::vector<std::string> GetVersionHistory() noexcept;
 
 private slots:
-  void on_button_submit_clicked();
+  void on_button_submit_clicked() noexcept;
 
 private:
   Ui::QtMultipleChoiceQuestionDialog *ui;
@@ -78,7 +78,7 @@ private:
     const boost::shared_ptr<Question>& question
     //const boost::shared_ptr<MultipleChoiceQuestion>& question
     //const MultipleChoiceQuestion * const question
-    );
+    ) noexcept;
 
 };
 

@@ -44,6 +44,9 @@ class QtPylosGameWidget : public QtPylosWidget
   Q_OBJECT
 public:
   QtPylosGameWidget();
+  QtPylosGameWidget(const QtPylosGameWidget&) = delete;
+  QtPylosGameWidget& operator=(const QtPylosGameWidget&) = delete;
+  ~QtPylosGameWidget() noexcept {}
 
   ///CanRemove specifies if current player can remove one or
   ///two marble(s) at the requested position(s).

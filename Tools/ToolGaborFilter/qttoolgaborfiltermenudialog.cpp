@@ -35,7 +35,7 @@ ribi::QtToolGaborFilterMenuDialog::QtToolGaborFilterMenuDialog(QWidget *parent) 
     ui->setupUi(this);
 }
 
-ribi::QtToolGaborFilterMenuDialog::~QtToolGaborFilterMenuDialog()
+ribi::QtToolGaborFilterMenuDialog::~QtToolGaborFilterMenuDialog() noexcept
 {
     delete ui;
 }

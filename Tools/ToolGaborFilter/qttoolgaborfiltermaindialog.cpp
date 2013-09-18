@@ -40,7 +40,7 @@ QtToolGaborFilterMainDialog::QtToolGaborFilterMainDialog(QWidget *parent) :
   this->on_slider_sigma_sliderMoved(ui->slider_sigma->value());
 }
 
-QtToolGaborFilterMainDialog::~QtToolGaborFilterMainDialog()
+QtToolGaborFilterMainDialog::~QtToolGaborFilterMainDialog() noexcept
 {
   delete ui;
 }

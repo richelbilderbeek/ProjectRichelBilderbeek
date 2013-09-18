@@ -52,7 +52,7 @@ ribi::QtCreateQtProjectZipFileMainDialog::QtCreateQtProjectZipFileMainDialog(QWi
   ui->lineEdit->setText("Tools/ToolCreateQtProjectZipFile");
 }
 
-ribi::QtCreateQtProjectZipFileMainDialog::~QtCreateQtProjectZipFileMainDialog()
+ribi::QtCreateQtProjectZipFileMainDialog::~QtCreateQtProjectZipFileMainDialog() noexcept
 {
   delete ui;
 }

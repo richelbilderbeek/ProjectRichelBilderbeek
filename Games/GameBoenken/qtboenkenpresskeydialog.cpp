@@ -38,7 +38,7 @@ ribi::QtBoenkenPressKeyDialog::QtBoenkenPressKeyDialog(QWidget *parent) :
   ui->setupUi(this);
 }
 
-ribi::QtBoenkenPressKeyDialog::~QtBoenkenPressKeyDialog()
+ribi::QtBoenkenPressKeyDialog::~QtBoenkenPressKeyDialog() noexcept
 {
   delete ui;
 }

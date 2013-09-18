@@ -74,32 +74,12 @@ CONFIG(release, debug|release) {
 #
 #
 
-unix {
-  message(Unix build)
-}
-
-win32 {
-  cross_compile {
-    message(Windows cross-compile build)
-  }
-
-  cross_compile {
-    message(Native Windows build)
-  }
-}
-
 #
 #
 # Compiler flags
 #
 #
-QMAKE_CXXFLAGS += -std=c++11 -Wall -Wextra -Weffc++
-
-
-unix {
-  message(Unix)
-  QMAKE_CXXFLAGS += -Werror
-}
+QMAKE_CXXFLAGS += -std=c++11 -Wall -Wextra -Weffc++ -Werror
 
 #
 #

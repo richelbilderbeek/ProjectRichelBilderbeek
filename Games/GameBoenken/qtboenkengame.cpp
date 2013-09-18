@@ -21,18 +21,18 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
-#include "boenkengame.h"
+#include "qtboenkengame.h"
 
 #include <boost/foreach.hpp>
 
 #include <QPainter>
 
 #include "boenkenarenasettings.h"
-#include "boenkensprite.h"
-#include "boenkenspriteball.h"
-#include "boenkenspritemoving.h"
-#include "boenkenspritenonmoving.h"
-#include "boenkenspriteplayer.h"
+#include "qtboenkensprite.h"
+#include "qtboenkenspriteball.h"
+#include "qtboenkenspritemoving.h"
+#include "qtboenkenspritenonmoving.h"
+#include "qtboenkenspriteplayer.h"
 
 #pragma GCC diagnostic pop
 

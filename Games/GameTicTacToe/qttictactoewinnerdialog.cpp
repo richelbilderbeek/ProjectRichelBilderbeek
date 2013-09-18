@@ -31,7 +31,7 @@ ribi::QtTicTacToeWinnerDialog::QtTicTacToeWinnerDialog(QWidget *parent) :
   ui->setupUi(this);
 }
 
-ribi::QtTicTacToeWinnerDialog::~QtTicTacToeWinnerDialog()
+ribi::QtTicTacToeWinnerDialog::~QtTicTacToeWinnerDialog() noexcept
 {
   delete ui;
 }

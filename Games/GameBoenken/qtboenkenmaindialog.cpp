@@ -35,7 +35,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <QKeyEvent>
 #include <QPainter>
 
-#include "boenkengame.h"
+#include "qtboenkengame.h"
 #include "ui_qtboenkenmaindialog.h"
 
 #pragma GCC diagnostic pop
@@ -77,7 +77,7 @@ ribi::QtBoenkenMainDialog::QtBoenkenMainDialog(
   }
 }
 
-ribi::QtBoenkenMainDialog::~QtBoenkenMainDialog()
+ribi::QtBoenkenMainDialog::~QtBoenkenMainDialog() noexcept
 {
   m_timer->stop();
   m_timer_countdown->stop();

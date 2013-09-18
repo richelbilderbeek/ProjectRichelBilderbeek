@@ -53,7 +53,7 @@ ribi::QtPicToCodeMainDialog::QtPicToCodeMainDialog(QWidget *parent) :
   this->move( screen.center() - this->rect().center() );
 }
 
-ribi::QtPicToCodeMainDialog::~QtPicToCodeMainDialog()
+ribi::QtPicToCodeMainDialog::~QtPicToCodeMainDialog() noexcept
 {
   delete ui;
 }

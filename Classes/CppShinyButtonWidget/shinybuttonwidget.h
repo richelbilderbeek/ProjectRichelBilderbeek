@@ -40,6 +40,9 @@ struct ShinyButtonWidget : public Widget
     const double gradient,
     const std::string& text = "",
     const Rect rect = Rect(80,20));
+  ShinyButtonWidget(const ShinyButtonWidget&) = delete;
+  ShinyButtonWidget& operator=(const ShinyButtonWidget&) = delete;
+  ~ShinyButtonWidget() noexcept {}
 
   ///Obtain a read-and-write pointer to ShinyButton
   ShinyButton * GetShinyButton() { return m_button.get(); }

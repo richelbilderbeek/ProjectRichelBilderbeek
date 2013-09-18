@@ -40,7 +40,7 @@ ribi::QtRandomCodeMenuDialog::QtRandomCodeMenuDialog(QWidget *parent) :
   ui->setupUi(this);
 }
 
-ribi::QtRandomCodeMenuDialog::~QtRandomCodeMenuDialog()
+ribi::QtRandomCodeMenuDialog::~QtRandomCodeMenuDialog() noexcept
 {
   delete ui;
 }

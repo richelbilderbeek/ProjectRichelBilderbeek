@@ -48,7 +48,7 @@ ribi::kalman::QtKalmanFilterExamplesDialog::QtKalmanFilterExamplesDialog(QWidget
   }
 }
 
-ribi::kalman::QtKalmanFilterExamplesDialog::~QtKalmanFilterExamplesDialog()
+ribi::kalman::QtKalmanFilterExamplesDialog::~QtKalmanFilterExamplesDialog() noexcept
 {
   delete ui;
 }

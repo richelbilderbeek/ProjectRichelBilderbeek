@@ -78,7 +78,7 @@ ribi::kalman::QtKalmanFilterDialog::QtKalmanFilterDialog(const boost::shared_ptr
     boost::bind(&ribi::kalman::QtKalmanFilterDialog::SetKalmanFilterType,this,boost::lambda::_1));
 }
 
-ribi::kalman::QtKalmanFilterDialog::~QtKalmanFilterDialog()
+ribi::kalman::QtKalmanFilterDialog::~QtKalmanFilterDialog() noexcept
 {
   delete ui;
 }

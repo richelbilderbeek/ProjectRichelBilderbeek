@@ -36,7 +36,7 @@ ribi::QtTicTacToeMenuDialog::QtTicTacToeMenuDialog(QWidget *parent) :
   ui->setupUi(this);
 }
 
-ribi::QtTicTacToeMenuDialog::~QtTicTacToeMenuDialog()
+ribi::QtTicTacToeMenuDialog::~QtTicTacToeMenuDialog() noexcept
 {
   delete ui;
 }

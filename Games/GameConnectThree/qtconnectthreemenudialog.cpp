@@ -30,9 +30,10 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "ui_qtconnectthreemenudialog.h"
 #pragma GCC diagnostic pop
 
-ribi::QtConnectThreeMenuDialog::QtConnectThreeMenuDialog(QWidget *parent) :
-    QDialog(parent),
+ribi::QtConnectThreeMenuDialog::QtConnectThreeMenuDialog(QWidget *parent)
+  : QDialog(parent),
     ui(new Ui::QtConnectThreeMenuDialog),
+    m_resources(new QtConnectThreeResources),
     m_select(new QtSelectPlayerWidget)
 {
   #ifndef NDEBUG
@@ -43,13 +44,13 @@ ribi::QtConnectThreeMenuDialog::QtConnectThreeMenuDialog(QWidget *parent) :
   ui->layout_horizontal->addWidget(m_select.get());
 }
 
-ribi::QtConnectThreeMenuDialog::~QtConnectThreeMenuDialog()
+ribi::QtConnectThreeMenuDialog::~QtConnectThreeMenuDialog() noexcept
 {
   delete ui;
 }
 
 #ifndef NDEBUG
-void ribi::QtConnectThreeMenuDialog::Test()
+void ribi::QtConnectThreeMenuDialog::Test() noexcept
 {
   {
     static bool is_tested = false;
@@ -61,10 +62,9 @@ void ribi::QtConnectThreeMenuDialog::Test()
 }
 #endif
 
-void ribi::QtConnectThreeMenuDialog::on_button_start_clicked()
+void ribi::QtConnectThreeMenuDialog::on_button_start_clicked() noexcept
 {
-  const boost::shared_ptr<const ConnectThreeResources> resources(new QtConnectThreeResources);
-  QtConnectThreeGameDialog d(resources, nullptr,this->m_select->GetIsPlayerHuman());
+  QtConnectThreeGameDialog d(m_resources, nullptr,this->m_select->GetIsPlayerHuman());
   d.setStyleSheet(this->styleSheet());
   d.setWindowIcon(this->windowIcon());
   this->hide();
@@ -72,7 +72,7 @@ void ribi::QtConnectThreeMenuDialog::on_button_start_clicked()
   this->show();
 }
 
-void ribi::QtConnectThreeMenuDialog::on_button_about_clicked()
+void ribi::QtConnectThreeMenuDialog::on_button_about_clicked() noexcept
 {
   About about = ConnectThreeMenuDialog::GetAbout();
   about.AddLibrary("QtConnectThreeWidget version: " + QtConnectThreeWidget::GetVersion());
@@ -84,7 +84,7 @@ void ribi::QtConnectThreeMenuDialog::on_button_about_clicked()
   this->show();
 }
 
-void ribi::QtConnectThreeMenuDialog::on_button_quit_clicked()
+void ribi::QtConnectThreeMenuDialog::on_button_quit_clicked() noexcept
 {
   close();
 }

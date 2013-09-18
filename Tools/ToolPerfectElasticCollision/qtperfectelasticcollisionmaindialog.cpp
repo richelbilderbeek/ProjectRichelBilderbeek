@@ -71,7 +71,7 @@ QtPerfectElasticCollisionMainDialog::QtPerfectElasticCollisionMainDialog(QWidget
     this,SLOT(onTimer()));
 }
 
-QtPerfectElasticCollisionMainDialog::~QtPerfectElasticCollisionMainDialog()
+QtPerfectElasticCollisionMainDialog::~QtPerfectElasticCollisionMainDialog() noexcept
 {
   delete ui;
   delete m_timer;

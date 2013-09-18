@@ -61,7 +61,7 @@ ribi::QtMultipleChoiceQuestionDialog::QtMultipleChoiceQuestionDialog(
   this->SetQuestion(dialog->GetQuestion());
 }
 
-ribi::QtMultipleChoiceQuestionDialog::~QtMultipleChoiceQuestionDialog()
+ribi::QtMultipleChoiceQuestionDialog::~QtMultipleChoiceQuestionDialog() noexcept
 {
   delete ui;
 }
@@ -73,14 +73,14 @@ const std::string ribi::QtMultipleChoiceQuestionDialog::GetVersion() noexcept
 
 const std::vector<std::string> ribi::QtMultipleChoiceQuestionDialog::GetVersionHistory() noexcept
 {
-  std::vector<std::string> v;
-  v.push_back("2011-06-28: version 1.0: initial version");
-  return v;
+  return {
+    "2011-06-28: version 1.0: initial version"
+  };
 }
 
 ///Set the Question
 void ribi::QtMultipleChoiceQuestionDialog::SetQuestion(
-  const boost::shared_ptr<Question>& question)
+  const boost::shared_ptr<Question>& question) noexcept
 {
   m_dialog->SetQuestion(question);
 
@@ -120,7 +120,7 @@ void ribi::QtMultipleChoiceQuestionDialog::SetQuestion(
 
 }
 
-void ribi::QtMultipleChoiceQuestionDialog::on_button_submit_clicked()
+void ribi::QtMultipleChoiceQuestionDialog::on_button_submit_clicked() noexcept
 {
   assert(m_dialog->CanSubmit());
   const std::vector<const QRadioButton* > buttons

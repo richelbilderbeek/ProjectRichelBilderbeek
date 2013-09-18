@@ -233,7 +233,7 @@ struct ProgramBoenken : public RichelBilderbeek::ProgramGame
 struct ProgramBrainweaver : public RichelBilderbeek::ProgramProject
 {
   const std::string GetFilenameConsole() const { return ""; }
-  const std::string GetFilenameDesktop() const { return "ProjectBrainweaver_0_33.png"; }
+  const std::string GetFilenameDesktop() const { return ""; }
   const std::string GetFilenameDesktopWindowsOnly() const { return ""; }
   const std::string GetFilenameWeb() const { return ""; }
   const std::string GetName() const { return "Brainweaver"; }

@@ -32,7 +32,7 @@ ribi::QtBoenkenTrainDialog::QtBoenkenTrainDialog(QWidget *parent) :
   ui->setupUi(this);
 }
 
-ribi::QtBoenkenTrainDialog::~QtBoenkenTrainDialog()
+ribi::QtBoenkenTrainDialog::~QtBoenkenTrainDialog() noexcept
 {
   delete ui;
 }

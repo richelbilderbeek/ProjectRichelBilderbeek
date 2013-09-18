@@ -54,7 +54,7 @@ ribi::QtAsciiArterMainDialog::QtAsciiArterMainDialog(QWidget *parent)
   this->move( screen.center() - this->rect().center() );
 }
 
-ribi::QtAsciiArterMainDialog::~QtAsciiArterMainDialog()
+ribi::QtAsciiArterMainDialog::~QtAsciiArterMainDialog() noexcept
 {
   delete ui;
 }

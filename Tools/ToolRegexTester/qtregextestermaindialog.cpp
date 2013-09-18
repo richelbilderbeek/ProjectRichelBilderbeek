@@ -48,7 +48,7 @@ ribi::QtRegexTesterMainDialog::QtRegexTesterMainDialog(
   this->onAnyChange();
 }
 
-ribi::QtRegexTesterMainDialog::~QtRegexTesterMainDialog()
+ribi::QtRegexTesterMainDialog::~QtRegexTesterMainDialog() noexcept
 {
   delete ui;
 }

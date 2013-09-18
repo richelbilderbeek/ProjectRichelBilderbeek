@@ -38,7 +38,7 @@ ribi::QtAsciiArterMenuDialog::QtAsciiArterMenuDialog(QWidget *parent) :
   ui->setupUi(this);
 }
 
-ribi::QtAsciiArterMenuDialog::~QtAsciiArterMenuDialog()
+ribi::QtAsciiArterMenuDialog::~QtAsciiArterMenuDialog() noexcept
 {
   delete ui;
 }

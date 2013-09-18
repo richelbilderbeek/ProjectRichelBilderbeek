@@ -37,24 +37,24 @@ class QtCodeToHtmlMenuDialog : public QtHideAndShowDialog
   Q_OBJECT
 
 public:
-  explicit QtCodeToHtmlMenuDialog(QWidget *parent = 0);
+  explicit QtCodeToHtmlMenuDialog(QWidget *parent = 0) noexcept;
   QtCodeToHtmlMenuDialog(const QtCodeToHtmlMenuDialog&) = delete;
   QtCodeToHtmlMenuDialog& operator=(const QtCodeToHtmlMenuDialog&) = delete;
   ~QtCodeToHtmlMenuDialog() noexcept;
 
 protected:
-  void keyPressEvent(QKeyEvent * event);
+  void keyPressEvent(QKeyEvent * event) noexcept;
 
 private:
   Ui::QtCodeToHtmlMenuDialog *ui;
 
 private slots:
-  void on_button_about_clicked();
-  void on_button_quit_clicked();
-  void on_button_start_clicked();
+  void on_button_about_clicked() noexcept;
+  void on_button_quit_clicked() noexcept;
+  void on_button_start_clicked() noexcept;
 
   #ifndef NDEBUG
-  static void Test();
+  static void Test() noexcept;
   #endif
 };
 

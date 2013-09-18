@@ -42,13 +42,13 @@ public:
   explicit QtShowWinnerDialog(
     const std::string& filename,
     const std::string& winner_text,
-    QWidget *parent = 0);
+    QWidget *parent = 0) noexcept;
   QtShowWinnerDialog(const QtShowWinnerDialog&) = delete;
   QtShowWinnerDialog& operator=(const QtShowWinnerDialog&) = delete;
   ~QtShowWinnerDialog() noexcept;
 
 protected:
-  void keyPressEvent(QKeyEvent *);
+  void keyPressEvent(QKeyEvent *) noexcept;
 
 private:
   Ui::QtShowWinnerDialog *ui;

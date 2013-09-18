@@ -41,6 +41,9 @@ struct ToggleButtonWidget : public Widget
     const unsigned char green = 255,
     const unsigned char blue = 255
   );
+  ToggleButtonWidget(const ToggleButtonWidget&) = delete;
+  ToggleButtonWidget& operator=(const ToggleButtonWidget&) = delete;
+  ~ToggleButtonWidget() noexcept {}
 
   ///Obtain a read-and-write pointer to ToggleButton
   ToggleButton * GetToggleButton() { return m_button.get(); }

@@ -18,11 +18,15 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolTestShinyButton.htm
 //---------------------------------------------------------------------------
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#include "wttestshinybuttonmenudialog.h"
+
 #include <cassert>
-//---------------------------------------------------------------------------
+
 #include <boost/filesystem.hpp>
 #include <boost/foreach.hpp>
-//---------------------------------------------------------------------------
+
 #include <Wt/WBreak>
 #include <Wt/WContainerWidget>
 #include <Wt/WGroupBox>
@@ -31,7 +35,9 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <Wt/WStackedWidget>
 #include <Wt/WMenu>
 #include <Wt/WMenuItem>
-//---------------------------------------------------------------------------
+
+#include <QFile>
+
 #include "rainbow.h"
 #include "testshinybuttonmenudialog.h"
 #include "shinybutton.h"
@@ -40,10 +46,9 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "wtshinybuttonwidget.h"
 #include "wtdialwidget.h"
 #include "wttestshinybuttonmaindialog.h"
-#include "wttestshinybuttonmenudialog.h"
-//---------------------------------------------------------------------------
-#include <QFile>
-//---------------------------------------------------------------------------
+
+#pragma GCC diagnostic pop
+
 ribi::WtTestShinyButtonMenuDialog::WtTestShinyButtonMenuDialog()
 {
   //Create resources
@@ -103,7 +108,7 @@ ribi::WtTestShinyButtonMenuDialog::WtTestShinyButtonMenuDialog()
     this->addWidget(contents);
   }
 }
-//---------------------------------------------------------------------------
+
 Wt::WWidget * ribi::WtTestShinyButtonMenuDialog::CreateNewAboutDialog() const
 {
   About a = TestShinyButtonMenuDialog::GetAbout();
@@ -115,14 +120,14 @@ Wt::WWidget * ribi::WtTestShinyButtonMenuDialog::CreateNewAboutDialog() const
   assert(d);
   return d;
 }
-//---------------------------------------------------------------------------
+
 Wt::WWidget * ribi::WtTestShinyButtonMenuDialog::CreateNewMainDialog() const
 {
   WtTestShinyButtonMainDialog * const d = new WtTestShinyButtonMainDialog;
   assert(d);
   return d;
 }
-//---------------------------------------------------------------------------
+
 Wt::WWidget * ribi::WtTestShinyButtonMenuDialog::CreateNewWelcomeDialog() const
 {
   Wt::WContainerWidget * dialog = new Wt::WContainerWidget;
@@ -138,4 +143,4 @@ Wt::WWidget * ribi::WtTestShinyButtonMenuDialog::CreateNewWelcomeDialog() const
   box->addWidget(new Wt::WImage("ToolTestShinyButtonWelcome.png"));
   return dialog;
 }
-//---------------------------------------------------------------------------
+

@@ -73,7 +73,7 @@ ribi::QtMusicTheorySingleScaleDialog::QtMusicTheorySingleScaleDialog(QWidget *pa
   //any_change();
 }
 
-ribi::QtMusicTheorySingleScaleDialog::~QtMusicTheorySingleScaleDialog()
+ribi::QtMusicTheorySingleScaleDialog::~QtMusicTheorySingleScaleDialog() noexcept
 {
   delete ui;
 }

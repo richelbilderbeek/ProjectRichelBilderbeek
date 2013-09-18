@@ -38,7 +38,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 ribi::QtConnectThreeGameDialog::QtConnectThreeGameDialog(
   const boost::shared_ptr<const ConnectThreeResources> resources,
   QWidget *parent,
-  const std::bitset<3>& is_player_human)
+  const std::bitset<3>& is_player_human) noexcept
   : QDialog(parent, Qt::Window),
     m_signal_close{},
     ui(new Ui::QtConnectThreeGameDialog),
@@ -76,18 +76,18 @@ ribi::QtConnectThreeGameDialog::QtConnectThreeGameDialog(
   OnValidMove(); //Draw screen
 }
 
-ribi::QtConnectThreeGameDialog::~QtConnectThreeGameDialog()
+ribi::QtConnectThreeGameDialog::~QtConnectThreeGameDialog() noexcept
 {
   delete ui;
 }
 
-void ribi::QtConnectThreeGameDialog::DoComputerTurn()
+void ribi::QtConnectThreeGameDialog::DoComputerTurn() noexcept
 {
   this->m_board->DoComputerTurn();
   OnValidMove();
 }
 
-void ribi::QtConnectThreeGameDialog::OnValidMove()
+void ribi::QtConnectThreeGameDialog::OnValidMove() noexcept
 {
   if (m_board->GetWinner() == ConnectThree::no_player)
   {
