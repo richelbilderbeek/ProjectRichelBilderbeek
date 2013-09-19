@@ -9,6 +9,7 @@ INCLUDEPATH += \
     ../../Classes/CppConnectThreeWidget \
     ../../Classes/CppQtAboutDialog \
     ../../Classes/CppQtConnectThreeWidget \
+    ../../Classes/CppQtHideAndShowDialog \
     ../../Classes/CppTrace
 
 SOURCES += \
@@ -24,7 +25,8 @@ SOURCES += \
     qtconnectthreeresources.cpp \
     qtmain.cpp \
     qtselectplayerwidget.cpp \
-    qtshowwinnerdialog.cpp
+    qtshowwinnerdialog.cpp \
+    ../../Classes/CppQtHideAndShowDialog/qthideandshowdialog.cpp
 
 HEADERS  += \
     ../../Classes/CppAbout/about.h \
@@ -39,7 +41,8 @@ HEADERS  += \
     qtconnectthreemenudialog.h \
     qtconnectthreeresources.h \
     qtselectplayerwidget.h \
-    qtshowwinnerdialog.h
+    qtshowwinnerdialog.h \
+    ../../Classes/CppQtHideAndShowDialog/qthideandshowdialog.h
 
 FORMS    += \
     ../../Classes/CppQtAboutDialog/qtaboutdialog.ui \
@@ -77,3 +80,6 @@ win32 {
   INCLUDEPATH += \
     ../../Libraries/boost_1_54_0
 }
+
+OTHER_FILES += \
+    ../../Classes/CppQtHideAndShowDialog/Licence.txt

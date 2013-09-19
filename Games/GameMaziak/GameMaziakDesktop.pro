@@ -4,7 +4,8 @@ TEMPLATE = app
 
 INCLUDEPATH += \
     ../../Classes/CppAbout \
-    ../../Classes/CppQtAboutDialog
+    ../../Classes/CppQtAboutDialog \
+    ../../Classes/CppQtHideAndShowDialog
 
 
 SOURCES += \
@@ -16,7 +17,8 @@ SOURCES += \
     qtmaziakinstructionsdialog.cpp \
     maziakmenudialog.cpp \
     qtmaziakgameoverdialog.cpp \
-    qtmaziakgamewondialog.cpp
+    qtmaziakgamewondialog.cpp \
+    ../../Classes/CppQtHideAndShowDialog/qthideandshowdialog.cpp
 
 HEADERS  += \
     ../../Classes/CppAbout/about.h \
@@ -26,7 +28,8 @@ HEADERS  += \
     qtmaziakinstructionsdialog.h \
     maziakmenudialog.h \
     qtmaziakgameoverdialog.h \
-    qtmaziakgamewondialog.h
+    qtmaziakgamewondialog.h \
+    ../../Classes/CppQtHideAndShowDialog/qthideandshowdialog.h
 
 FORMS    += \
     ../../Classes/CppQtAboutDialog/qtaboutdialog.ui \
@@ -41,7 +44,8 @@ RESOURCES += \
 
 OTHER_FILES += \
     ../../Classes/CppAbout/Licence.txt \
-    ../../Classes/CppQtAboutDialog/Licence.txt
+    ../../Classes/CppQtAboutDialog/Licence.txt \
+    ../../Classes/CppQtHideAndShowDialog/Licence.txt
 
 #
 #

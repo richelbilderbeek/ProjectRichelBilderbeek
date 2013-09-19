@@ -3,11 +3,11 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 TEMPLATE = app
 
-QMAKE_CXXFLAGS += -std=c++11 -Wall -Wextra -Weffc++ -Werror
 
 INCLUDEPATH += \
     ../../Classes/CppAbout \
     ../../Classes/CppQtAboutDialog \
+    ../../Classes/CppQtHideAndShowDialog
 
 SOURCES += \
     ../../Classes/CppAbout/about.cpp \
@@ -21,12 +21,13 @@ SOURCES += \
     qtboenkencontrolsdialog.cpp \
     qtboenkenplayersdialog.cpp \
     qtboenkentraindialog.cpp \
-    boenkensprite.cpp \
-    boenkenspriteball.cpp \
-    boenkenspritemoving.cpp \
-    boenkenspritenonmoving.cpp \
-    boenkenspriteplayer.cpp \
-    boenkengame.cpp
+    qtboenkensprite.cpp \
+    qtboenkenspriteball.cpp \
+    qtboenkenspritemoving.cpp \
+    qtboenkenspritenonmoving.cpp \
+    qtboenkenspriteplayer.cpp \
+    qtboenkengame.cpp \
+    ../../Classes/CppQtHideAndShowDialog/qthideandshowdialog.cpp
 
 HEADERS  += \
     ../../Classes/CppAbout/about.h \
@@ -41,12 +42,13 @@ HEADERS  += \
     qtboenkentraindialog.h \
     boenkenarenasettings.h \
     boenkencontrols.h \
-    boenkensprite.h \
-    boenkenspriteball.h \
-    boenkenspritemoving.h \
-    boenkenspritenonmoving.h \
-    boenkenspriteplayer.h \
-    boenkengame.h
+    qtboenkensprite.h \
+    qtboenkenspriteball.h \
+    qtboenkenspritemoving.h \
+    qtboenkenspritenonmoving.h \
+    qtboenkenspriteplayer.h \
+    qtboenkengame.h \
+    ../../Classes/CppQtHideAndShowDialog/qthideandshowdialog.h
 
 FORMS += \
     ../../Classes/CppQtAboutDialog/qtaboutdialog.ui \
@@ -63,7 +65,25 @@ RESOURCES += \
 
 OTHER_FILES += \
     ../../Classes/CppAbout/Licence.txt \
-    ../../Classes/CppQtAboutDialog/Licence.txt
+    ../../Classes/CppQtAboutDialog/Licence.txt \
+    ../../Classes/CppQtHideAndShowDialog/Licence.txt
+
+
+#
+#
+# Type of compile
+#
+#
+
+CONFIG(release, debug|release) {
+  DEFINES += NDEBUG NTRACE_BILDERBIKKEL
+}
+
+QMAKE_CXXFLAGS += -std=c++11 -Wall -Wextra -Weffc++
+
+unix {
+  QMAKE_CXXFLAGS += -Werror
+}
 
 #
 #
