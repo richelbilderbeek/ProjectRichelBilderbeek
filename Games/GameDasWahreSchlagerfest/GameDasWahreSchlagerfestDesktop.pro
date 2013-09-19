@@ -48,18 +48,11 @@ CONFIG(release, debug|release) {
   DEFINES += NDEBUG NTRACE_BILDERBIKKEL
 }
 
-#
-#
-# Platform specific
-#
-#
+QMAKE_CXXFLAGS += -std=c++11 -Wall -Wextra -Weffc++
 
-#
-#
-# Compiler flags
-#
-#
-QMAKE_CXXFLAGS += -std=c++11 -Wall -Wextra -Weffc++ -Werror
+unix {
+  QMAKE_CXXFLAGS += -Werror
+}
 
 #
 #

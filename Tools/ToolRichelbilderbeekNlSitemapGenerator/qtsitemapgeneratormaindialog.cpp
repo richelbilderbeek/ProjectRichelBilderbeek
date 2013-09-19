@@ -30,7 +30,6 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <string>
 #include <vector>
 
-#include <boost/date_time/gregorian/gregorian.hpp>
 #include <boost/foreach.hpp>
 #include <boost/lexical_cast.hpp>
 #include <boost/xpressive/xpressive.hpp>
@@ -308,14 +307,32 @@ const std::vector<std::string> ribi::QtSitemapGeneratorMainDialog::CreateConfigX
 //From http://www.richelbilderbeek.nl/CppGetDateIso8601.htm
 const std::string ribi::QtSitemapGeneratorMainDialog::GetDateIso8601()
 {
-  const boost::gregorian::date today
-    = boost::gregorian::day_clock::local_day();
-  const std::string s
-    = boost::gregorian::to_iso_extended_string(today);
-  assert(s.size()==10);
-  assert(s[4]=='-');
-  assert(s[7]=='-');
-  return s;
+  const std::time_t t = std::time(0);
+  const std::tm * const now = std::localtime( &t );
+  std::string year;
+  {
+    std::stringstream s;
+    s << (now->tm_year + 1900);
+    year = s.str();
+  }
+  assert(year.size() == 4);
+  std::string month;
+  {
+    std::stringstream s;
+    s << (now->tm_mon + 1);
+    month = s.str();
+    if (month.size() == 1) month = std::string("0") + month;
+  }
+  assert(month.size() == 2);
+  std::string day;
+  {
+    std::stringstream s;
+    s << (now->tm_mday);
+    day = s.str();
+    if (day.size() == 1) day = std::string("0") + month;
+  }
+  assert(day.size() == 2);
+  return year + "-" + month + "-" + day;
 }
 
 //From http://www.richelbilderbeek.nl/CppFileExists.htm

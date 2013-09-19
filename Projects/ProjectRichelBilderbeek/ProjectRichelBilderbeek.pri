@@ -72,6 +72,7 @@ INCLUDEPATH += \
     ../../Games/GamePylos \
     ../../Games/GameRubiksClock \
     ../../Games/GameTicTacToe \
+    ../../Projects/RichelbilderbeekNl \
     ../../Tools/ToolAsciiArter \
     ../../Tools/ToolCodeToHtml \
     ../../Tools/ToolCreateGlossary \
@@ -113,16 +114,15 @@ INCLUDEPATH += \
     ../../Tools/ToolTestShinyButton \
     ../../Tools/ToolTestSimpleLinearRegression \
     ../../Tools/ToolTestToggleButton \
-    ../../Tools/ToolTestTwoDigitNewick \
-    ../../Projects/RichelbilderbeekNl
+    ../../Tools/ToolTestTwoDigitNewick
 
 SOURCES += \
     ../../Classes/CppAbout/about.cpp \
     ../../Classes/CppAsciiArter/asciiarter.cpp \
     ../../Classes/CppBinaryNewickVector/binarynewickvector.cpp \
+    ../../Classes/CppCodeToHtml/codetohtml.cpp \
     ../../Classes/CppCodeToHtml/codetohtmlcontent.cpp \
     ../../Classes/CppCodeToHtml/codetohtmlcontenttype.cpp \
-    ../../Classes/CppCodeToHtml/codetohtml.cpp \
     ../../Classes/CppCodeToHtml/codetohtmldialog.cpp \
     ../../Classes/CppCodeToHtml/codetohtmlfooter.cpp \
     ../../Classes/CppCodeToHtml/codetohtmlheader.cpp \
@@ -145,16 +145,16 @@ SOURCES += \
     ../../Classes/CppGaborFilterWidget/gaborfilterwidget.cpp \
     ../../Classes/CppHtmlPage/htmlpage.cpp \
     ../../Classes/CppIpAddress/ipaddress.cpp \
-    ../../Classes/CppKalmanFilter/fixedlagsmootherkalmanfiltercalculationelements.cpp \
     ../../Classes/CppKalmanFilter/fixedlagsmootherkalmanfilter.cpp \
+    ../../Classes/CppKalmanFilter/fixedlagsmootherkalmanfiltercalculationelements.cpp \
     ../../Classes/CppKalmanFilter/fixedlagsmootherkalmanfilterfactory.cpp \
     ../../Classes/CppKalmanFilter/fixedlagsmootherkalmanfilterparameters.cpp \
     ../../Classes/CppKalmanFilter/gapsfilledwhitenoisesystem.cpp \
     ../../Classes/CppKalmanFilter/gapsfilledwhitenoisesystemfactory.cpp \
     ../../Classes/CppKalmanFilter/gapsfilledwhitenoisesystemparameters.cpp \
+    ../../Classes/CppKalmanFilter/kalmanfilter.cpp \
     ../../Classes/CppKalmanFilter/kalmanfiltercalculationelements.cpp \
     ../../Classes/CppKalmanFilter/kalmanfiltercalculationelementsfactory.cpp \
-    ../../Classes/CppKalmanFilter/kalmanfilter.cpp \
     ../../Classes/CppKalmanFilter/kalmanfilterexample.cpp \
     ../../Classes/CppKalmanFilter/kalmanfilterexperiment.cpp \
     ../../Classes/CppKalmanFilter/kalmanfilterexperimentparameter.cpp \
@@ -168,15 +168,15 @@ SOURCES += \
     ../../Classes/CppKalmanFilter/laggedwhitenoisesystem.cpp \
     ../../Classes/CppKalmanFilter/laggedwhitenoisesystemfactory.cpp \
     ../../Classes/CppKalmanFilter/laggedwhitenoisesystemparameters.cpp \
-    ../../Classes/CppKalmanFilter/standardkalmanfiltercalculationelements.cpp \
     ../../Classes/CppKalmanFilter/standardkalmanfilter.cpp \
+    ../../Classes/CppKalmanFilter/standardkalmanfiltercalculationelements.cpp \
     ../../Classes/CppKalmanFilter/standardkalmanfilterfactory.cpp \
     ../../Classes/CppKalmanFilter/standardkalmanfilterparameters.cpp \
     ../../Classes/CppKalmanFilter/standardwhitenoisesystem.cpp \
     ../../Classes/CppKalmanFilter/standardwhitenoisesystemfactory.cpp \
     ../../Classes/CppKalmanFilter/standardwhitenoisesystemparameters.cpp \
-    ../../Classes/CppKalmanFilter/steadystatekalmanfiltercalculationelements.cpp \
     ../../Classes/CppKalmanFilter/steadystatekalmanfilter.cpp \
+    ../../Classes/CppKalmanFilter/steadystatekalmanfiltercalculationelements.cpp \
     ../../Classes/CppKalmanFilter/steadystatekalmanfilterfactory.cpp \
     ../../Classes/CppKalmanFilter/steadystatekalmanfilterparameters.cpp \
     ../../Classes/CppKalmanFilter/whitenoisesystem.cpp \
@@ -189,15 +189,15 @@ SOURCES += \
     ../../Classes/CppLazy_init/lazy_init.cpp \
     ../../Classes/CppLed/led.cpp \
     ../../Classes/CppLedWidget/ledwidget.cpp \
-    ../../Classes/CppManyDigitNewick/manydigitnewickcoordinat.cpp \
     ../../Classes/CppManyDigitNewick/manydigitnewick.cpp \
+    ../../Classes/CppManyDigitNewick/manydigitnewickcoordinat.cpp \
     ../../Classes/CppManyDigitNewick/manydigitnewickderivative.cpp \
     ../../Classes/CppManyDigitNewick/manydigitnewickindexer.cpp \
     ../../Classes/CppManyDigitNewick/manydigitnewickindextable.cpp \
     ../../Classes/CppManyDigitNewick/manydigitnewicks.cpp \
     ../../Classes/CppMatrix/matrix.cpp \
-    ../../Classes/CppMultipleChoiceQuestionDialog/multiplechoicequestiondialog.cpp \
     ../../Classes/CppMultipleChoiceQuestion/multiplechoicequestion.cpp \
+    ../../Classes/CppMultipleChoiceQuestionDialog/multiplechoicequestiondialog.cpp \
     ../../Classes/CppMusic/musicchord.cpp \
     ../../Classes/CppMusic/musicnote.cpp \
     ../../Classes/CppMusic/musicscale.cpp \
@@ -206,8 +206,8 @@ SOURCES += \
     ../../Classes/CppNewick/newick.cpp \
     ../../Classes/CppNewick/newickcpp98.cpp \
     ../../Classes/CppNewickVector/newickvector.cpp \
-    ../../Classes/CppOpenQuestionDialog/openquestiondialog.cpp \
     ../../Classes/CppOpenQuestion/openquestion.cpp \
+    ../../Classes/CppOpenQuestionDialog/openquestiondialog.cpp \
     ../../Classes/CppPylos/pylosboard.cpp \
     ../../Classes/CppPylos/pyloscoordinat.cpp \
     ../../Classes/CppPylos/pyloscurrentmovestate.cpp \
@@ -221,8 +221,8 @@ SOURCES += \
     ../../Classes/CppQtCreatorProFile/qtcreatorprofile.cpp \
     ../../Classes/CppQtCreatorProFile/qtcreatorprofilezipscript.cpp \
     ../../Classes/CppQtModel/modelfunctionparser.cpp \
-    ../../Classes/CppQuestionDialog/questiondialog.cpp \
     ../../Classes/CppQuestion/question.cpp \
+    ../../Classes/CppQuestionDialog/questiondialog.cpp \
     ../../Classes/CppRainbow/rainbow.cpp \
     ../../Classes/CppRandomCode/randomcode.cpp \
     ../../Classes/CppRectangle/rectangle.cpp \
@@ -326,26 +326,10 @@ SOURCES += \
     richelbilderbeekmenudialog.cpp
 
 HEADERS += \
-    ../../Tools/ToolTestToggleButton/testtogglebuttonmenudialog.h \
-    ../../Tools/ToolTestNewickVector/testnewickvectordialog.h \
-    ../../Tools/ToolTestQrcFile/testqrcfilemenudialog.h \
-    ../../Tools/ToolTestQtRoundedEditRectItem/testqtroundededitrectitemmenudialog.h \
-    ../../Tools/ToolTestQtRoundedRectItem/testqtroundedrectitemmenudialog.h \
-    ../../Tools/ToolTestQtRoundedTextRectItem/testqtroundedtextrectitemmenudialog.h \
-    ../../Tools/ToolTestQuestion/testquestionmaindialog.h \
-    ../../Tools/ToolTestQuestion/testquestionmenudialog.h \
-    ../../Tools/ToolTestShape/testshapemaindialog.h \
-    ../../Tools/ToolTestShape/testshapemenudialog.h \
-    ../../Tools/ToolTestShinyButton/testshinybuttonmenudialog.h \
-    ../../Tools/ToolTestQtArrowItems/testqtarrowitemsmenudialog.h \
-    ../../Tools/ToolTestQtCreatorProFile/testqtcreatorprofilemenudialog.h \
-    ../../Tools/ToolTestQtKeyboardFriendlyGraphicsView/testqtkeyboardfriendlygraphicsviewmenudialog.h \
     ../../Classes/CppAbout/about.h \
     ../../Classes/CppAsciiArter/asciiarter.h \
     ../../Classes/CppBinaryNewickVector/binarynewickvector.h \
     ../../Classes/CppCodeToHtml/codetohtml.h \
-    ../../Tools/ToolKalmanFilterer/kalmanfilterermenudialog.h \
-    ../../Tools/ToolMazeCreator/mazecreatormenudialog.h \
     ../../Classes/CppCodeToHtml/codetohtmlcontent.h \
     ../../Classes/CppCodeToHtml/codetohtmlcontenttype.h \
     ../../Classes/CppCodeToHtml/codetohtmlcreateemptypagedialog.h \
@@ -370,29 +354,17 @@ HEADERS += \
     ../../Classes/CppGaborFilterWidget/gaborfilterwidget.h \
     ../../Classes/CppHtmlPage/htmlpage.h \
     ../../Classes/CppIpAddress/ipaddress.h \
-    ../../Tools/ToolMusicTheory/musictheorymenudialog.h \
-    ../../Games/GameK3OpEenRij/k3opeenrijmenudialog.h \
     ../../Classes/CppKalmanFilter/fixedlagsmootherkalmanfilter.h \
-    ../../Tools/ToolGaborFilter/toolgaborfiltermenudialog.h \
-    ../../Tools/ToolTestGroupWidget/testgroupwidgetmenudialog.h \
-    ../../Tools/ToolTestEntrance/testentrancemenudialog.h \
     ../../Classes/CppKalmanFilter/fixedlagsmootherkalmanfiltercalculationelements.h \
-    ../../Tools/ToolTestPylos/testpylosmenudialog.h \
     ../../Classes/CppKalmanFilter/fixedlagsmootherkalmanfilterfactory.h \
-    ../../Tools/ToolRichelbilderbeekNlSitemapGenerator/sitemapgeneratormenudialog.h \
     ../../Classes/CppKalmanFilter/fixedlagsmootherkalmanfilterparameters.h \
     ../../Classes/CppKalmanFilter/gapsfilledwhitenoisesystem.h \
     ../../Classes/CppKalmanFilter/gapsfilledwhitenoisesystemfactory.h \
-    ../../Tools/ToolPicToCode/pictocodemaindialog.h \
-    ../../Tools/ToolPicToCode/pictocodemenudialog.h \
-    ../../Tools/ToolRegexTester/regextesterboostregexmaindialog.h \
-    ../../Tools/ToolRegexTester/regextesterboostxpressivemaindialog.h \
     ../../Classes/CppKalmanFilter/gapsfilledwhitenoisesystemparameters.h \
     ../../Classes/CppKalmanFilter/kalmanfilter.h \
     ../../Classes/CppKalmanFilter/kalmanfiltercalculationelements.h \
     ../../Classes/CppKalmanFilter/kalmanfiltercalculationelementsfactory.h \
     ../../Classes/CppKalmanFilter/kalmanfilterexample.h \
-    ../../Tools/ToolPerfectElasticCollision/perfectelasticcollisionmenudialog.h \
     ../../Classes/CppKalmanFilter/kalmanfilterexperiment.h \
     ../../Classes/CppKalmanFilter/kalmanfilterexperimentparameter.h \
     ../../Classes/CppKalmanFilter/kalmanfilterexperimentparametertype.h \
@@ -462,7 +434,6 @@ HEADERS += \
     ../../Classes/CppQtCreatorProFile/qtcreatorprofile.h \
     ../../Classes/CppQtCreatorProFile/qtcreatorprofilezipscript.h \
     ../../Classes/CppQtModel/modelfunctionparser.h \
-    ../../Tools/ToolRandomCode/randomcodemenudialog.h \
     ../../Classes/CppQuestion/question.h \
     ../../Classes/CppQuestionDialog/questiondialog.h \
     ../../Classes/CppRainbow/rainbow.h \
@@ -506,6 +477,7 @@ HEADERS += \
     ../../Games/GameBoenken/boenkenmenudialog.h \
     ../../Games/GameDasWahreSchlagerfest/daswahreschlagerfestmenudialog.h \
     ../../Games/GameDasWahreSchlagerfest/daswahreschlagerfestwidget.h \
+    ../../Games/GameK3OpEenRij/k3opeenrijmenudialog.h \
     ../../Games/GameMaziak/maziakmenudialog.h \
     ../../Games/GamePylos/pylosmenudialog.h \
     ../../Games/GameRubiksClock/rubiksclockmenudialog.h \
@@ -513,42 +485,70 @@ HEADERS += \
     ../../Tools/ToolAsciiArter/asciiartermaindialog.h \
     ../../Tools/ToolAsciiArter/asciiartermenudialog.h \
     ../../Tools/ToolCodeToHtml/codetohtmlmenudialog.h \
+    ../../Tools/ToolCreateGlossary/createglossarymaindialog.h \
     ../../Tools/ToolCreateGlossary/createglossarymenudialog.h \
     ../../Tools/ToolCreateQtProjectZipFile/createqtprojectzipfilemenudialog.h \
     ../../Tools/ToolCreateQtProjectZipFile/createqtprojectzipfilepath.h \
+    ../../Tools/ToolGaborFilter/toolgaborfiltermenudialog.h \
     ../../Tools/ToolHometrainer/hometrainermenudialog.h \
     ../../Tools/ToolHometrainer/hometrainerresources.h \
+    ../../Tools/ToolKalmanFilterer/kalmanfilterermenudialog.h \
+    ../../Tools/ToolMazeCreator/mazecreatormenudialog.h \
+    ../../Tools/ToolMusicTheory/musictheorymenudialog.h \
+    ../../Tools/ToolPerfectElasticCollision/perfectelasticcollisionmenudialog.h \
+    ../../Tools/ToolPicToCode/pictocodemaindialog.h \
+    ../../Tools/ToolPicToCode/pictocodemenudialog.h \
+    ../../Tools/ToolRandomCode/randomcodemenudialog.h \
+    ../../Tools/ToolRegexTester/regextesterboostregexmaindialog.h \
+    ../../Tools/ToolRegexTester/regextesterboostxpressivemaindialog.h \
     ../../Tools/ToolRegexTester/regextestercpp11maindialog.h \
     ../../Tools/ToolRegexTester/regextestermaindialog.h \
     ../../Tools/ToolRegexTester/regextestermenudialog.h \
     ../../Tools/ToolRegexTester/regextesterqtmaindialog.h \
     ../../Tools/ToolRegexTester/regextestertr1maindialog.h \
+    ../../Tools/ToolRichelbilderbeekNlSitemapGenerator/sitemapgeneratormenudialog.h \
     ../../Tools/ToolSimMysteryMachine/simmysterymachinemenudialog.h \
     ../../Tools/ToolStateObserver/noisefunctionparser.h \
     ../../Tools/ToolStateObserver/stateobservermenudialog.h \
     ../../Tools/ToolTestApproximator/tooltestapproximatormenudialog.h \
     ../../Tools/ToolTestDial/testdialmenudialog.h \
     ../../Tools/ToolTestEncranger/testencrangerdialog.h \
+    ../../Tools/ToolTestEntrance/testentrancemenudialog.h \
     ../../Tools/ToolTestExercise/testexercisemenudialog.h \
     ../../Tools/ToolTestFunctionParser/testfunctionparsermenudialog.h \
+    ../../Tools/ToolTestGroupWidget/testgroupwidgetmenudialog.h \
     ../../Tools/ToolTestGroupWidget/testgroupwidgetmenudialog.h \
     ../../Tools/ToolTestLed/testledmenudialog.h \
     ../../Tools/ToolTestMultiApproximator/tooltestmultiapproximatormenudialog.h \
     ../../Tools/ToolTestNewickVector/testnewickvectordialog.h \
+    ../../Tools/ToolTestNewickVector/testnewickvectordialog.h \
+    ../../Tools/ToolTestPylos/testpylosmenudialog.h \
+    ../../Tools/ToolTestQrcFile/testqrcfilemenudialog.h \
     ../../Tools/ToolTestQrcFile/testqrcfilemenudialog.h \
     ../../Tools/ToolTestQtArrowItems/testqtarrowitemsmenudialog.h \
+    ../../Tools/ToolTestQtArrowItems/testqtarrowitemsmenudialog.h \
+    ../../Tools/ToolTestQtCreatorProFile/testqtcreatorprofilemenudialog.h \
     ../../Tools/ToolTestQtCreatorProFile/testqtcreatorprofilemenudialog.h \
     ../../Tools/ToolTestQtKeyboardFriendlyGraphicsView/testqtkeyboardfriendlygraphicsviewmenudialog.h \
+    ../../Tools/ToolTestQtKeyboardFriendlyGraphicsView/testqtkeyboardfriendlygraphicsviewmenudialog.h \
     ../../Tools/ToolTestQtModels/tooltestqtmodelsmenudialog.h \
+    ../../Tools/ToolTestQtRoundedEditRectItem/testqtroundededitrectitemmenudialog.h \
     ../../Tools/ToolTestQtRoundedRectItem/testqtroundedrectitemmenudialog.h \
+    ../../Tools/ToolTestQtRoundedRectItem/testqtroundedrectitemmenudialog.h \
+    ../../Tools/ToolTestQtRoundedTextRectItem/testqtroundedtextrectitemmenudialog.h \
+    ../../Tools/ToolTestQuestion/testquestionmaindialog.h \
     ../../Tools/ToolTestQuestion/testquestionmaindialog.h \
     ../../Tools/ToolTestQuestion/testquestionmenudialog.h \
+    ../../Tools/ToolTestQuestion/testquestionmenudialog.h \
+    ../../Tools/ToolTestShape/testshapemaindialog.h \
     ../../Tools/ToolTestShape/testshapemaindialog.h \
     ../../Tools/ToolTestShape/testshapemenudialog.h \
+    ../../Tools/ToolTestShape/testshapemenudialog.h \
+    ../../Tools/ToolTestShinyButton/testshinybuttonmenudialog.h \
     ../../Tools/ToolTestShinyButton/testshinybuttonmenudialog.h \
     ../../Tools/ToolTestSimpleLinearRegression/tooltestsimplelinearregressionmenudialog.h \
     ../../Tools/ToolTestToggleButton/testtogglebuttonmenudialog.h \
-    ../../Tools/ToolCreateGlossary/createglossarymaindialog.h \
+    ../../Tools/ToolTestToggleButton/testtogglebuttonmenudialog.h \
     richelbilderbeekmenudialog.h
 
 OTHER_FILES += \
@@ -561,22 +561,22 @@ OTHER_FILES += \
     ../../Classes/CppPylos/Licence.txt \
     ../../Classes/CppQrcFile/Licence.txt \
     ../../Classes/CppQtModel/Licence.txt \
+    ../../Classes/CppSimpleLinearRegression/Licence.txt \
     ../../Classes/CppStateObserver/Licence.txt \
+    ../../Tools/ToolCreateGlossary/Licence.txt \
     ../../Tools/ToolCreateQtProjectZipFile/Licence.txt \
     ../../Tools/ToolCreateQtProjectZipFile/R.png \
     ../../Tools/ToolRegexTester/Licence.txt \
+    ../../Tools/ToolTestApproximator/Licence.txt \
     ../../Tools/ToolTestEncranger/Licence.txt \
     ../../Tools/ToolTestLed/Licence.txt \
-    ../../Tools/ToolTestQrcFile/Licence.txt \
-    ../../Tools/ToolTestQtCreatorProFile/Licence.txt \
-    ../../Tools/ToolTestSimpleLinearRegression/Licence.txt \
-    ../../Classes/CppSimpleLinearRegression/Licence.txt \
-    ../../Tools/ToolTestApproximator/Licence.txt \
     ../../Tools/ToolTestMultiApproximator/Licence.txt \
-    ../../Tools/ToolTestQtRoundedRectItem/Licence.txt \
+    ../../Tools/ToolTestQrcFile/Licence.txt \
     ../../Tools/ToolTestQtArrowItems/Licence.txt \
+    ../../Tools/ToolTestQtCreatorProFile/Licence.txt \
     ../../Tools/ToolTestQtModels/Licence.txt \
-    ../../Tools/ToolCreateGlossary/Licence.txt
+    ../../Tools/ToolTestQtRoundedRectItem/Licence.txt \
+    ../../Tools/ToolTestSimpleLinearRegression/Licence.txt
 
 #
 #
@@ -584,29 +584,15 @@ OTHER_FILES += \
 #
 #
 
-CONFIG(debug, debug|release) {
-  message(Debug mode)
-}
-
 CONFIG(release, debug|release) {
-  message(Release mode)
-
-  #Remove all asserts and TRACE
   DEFINES += NDEBUG NTRACE_BILDERBIKKEL
 }
 
-#
-#
-# Platform specific
-#
-#
+QMAKE_CXXFLAGS += -std=c++11 -Wall -Wextra -Weffc++
 
-#
-#
-# Compiler flags
-#
-#
-QMAKE_CXXFLAGS += -std=c++11 -Wall -Wextra -Weffc++ -Werror
+unix {
+  QMAKE_CXXFLAGS += -Werror
+}
 
 #
 #
@@ -637,16 +623,6 @@ SOURCES += \
 # Boost
 #
 #
-
-unix {
-  LIBS += \
-  -lboost_date_time \
-  -lboost_filesystem \
-  -lboost_program_options \
-  -lboost_regex \
-  -lboost_signals \
-  -lboost_system
-}
 
 win32 {
   INCLUDEPATH += \

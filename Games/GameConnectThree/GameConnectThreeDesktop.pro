@@ -57,47 +57,21 @@ RESOURCES += \
 #
 #
 
-CONFIG(debug, debug|release) {
-  message(Debug mode)
-}
-
 CONFIG(release, debug|release) {
-  message(Release mode)
-
-  #Remove all asserts and TRACE
   DEFINES += NDEBUG NTRACE_BILDERBIKKEL
 }
 
-#
-#
-# Platform specific
-#
-#
+QMAKE_CXXFLAGS += -std=c++11 -Wall -Wextra -Weffc++
 
-#
-#
-# Compiler flags
-#
-#
-QMAKE_CXXFLAGS += -std=c++11 -Wall -Wextra -Weffc++ -Werror
+unix {
+  QMAKE_CXXFLAGS += -Werror
+}
 
 #
 #
 # Boost
 #
 #
-
-unix {
-  message(Unix dynamic link to Boost)
-
-  LIBS += \
-  -lboost_date_time \
-  -lboost_filesystem \
-  -lboost_program_options \
-  -lboost_regex \
-  -lboost_signals \
-  -lboost_system
-}
 
 win32 {
   INCLUDEPATH += \

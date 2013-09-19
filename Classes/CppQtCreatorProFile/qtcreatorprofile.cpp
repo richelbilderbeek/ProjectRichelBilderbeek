@@ -67,13 +67,13 @@ ribi::QtCreatorProFile::QtCreatorProFile(const std::string& filename)
   #endif
 
   #ifndef NDEBUG
-  if (!IsRegularFile(filename.c_str()))
+  if (!IsRegularFile(filename))
   {
     TRACE(filename);
     TRACE("BREAK");
   }
   #endif
-  assert(IsRegularFile(filename.c_str()));
+  assert(IsRegularFile(filename));
 
   const std::vector<std::string> v = FileToVector(filename);
   Parse(v);
@@ -263,8 +263,9 @@ void ribi::QtCreatorProFile::Test()
     if (is_tested) return;
     is_tested = true;
   }
+  TRACE("Starting QtCreatorProFile::Test");
+ // TRACE("Test QtCreatorProFile::QtCreatorProFile");
   {
-    //Create a project file
     const std::string mypath = "tmp.txt";
     {
       std::ofstream f(mypath);
@@ -305,20 +306,20 @@ void ribi::QtCreatorProFile::Test()
     assert(p.GetTarget().count("ToolTestQtCreatorProFile") == 1);
     assert(p.GetTemplate().size() == 1);
     assert(p.GetTemplate().count("app"));
-    //Test operator<<
+    //TRACE("Test QtCreatorProFile::operator<<");
     {
       //std::cout << p << '\n';
       std::stringstream ss;
       ss << p << '\n';
     }
-    //Test operator==
+    //TRACE("Test QtCreatorProFile::operator==");
     {
       QtCreatorProFile q(mypath);
       assert(p == q);
     }
     std::remove(mypath.c_str());
   }
-  //Test Merge
+  //TRACE("Test QtCreatorProFile::Merge");
   {
     const std::string mypath1 = "tmp1.txt";
     const std::string mypath2 = "tmp2.txt";
@@ -431,11 +432,14 @@ void ribi::QtCreatorProFile::Test()
     }
     {
       //Create a folder
-      std::system("mkdir tmp");
+      const int mkdir_error = std::system("mkdir tmp");
+      assert(!mkdir_error);
       assert(!IsRegularFile("tmp"));
-      std::system("rmdir tmp");
+      const int rmdir_error = std::system("rmdir tmp");
+      assert(!rmdir_error);
     }
   }
+  TRACE("Finished QtCreatorProFile::Test successfully");
 }
 #endif
 std::ostream& ribi::operator<<(std::ostream& os, const boost::shared_ptr<QtCreatorProFile>& p)

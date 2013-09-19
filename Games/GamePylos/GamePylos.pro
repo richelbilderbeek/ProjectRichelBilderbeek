@@ -1,8 +1,6 @@
 QT       += core gui
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
-
-QMAKE_CXXFLAGS += -std=c++11 -Wall -Wextra -Weffc++ -Werror
 TEMPLATE = app
 
 INCLUDEPATH += \
@@ -82,17 +80,23 @@ OTHER_FILES += \
 #
 #
 
-CONFIG(debug, debug|release) {
-  message(Debug mode)
-}
-
 CONFIG(release, debug|release) {
-  message(Release mode)
-
-  #Remove all asserts and TRACE
   DEFINES += NDEBUG NTRACE_BILDERBIKKEL
 }
 
+QMAKE_CXXFLAGS += -std=c++11 -Wall -Wextra -Weffc++
+
+unix {
+  QMAKE_CXXFLAGS += -Werror
+}
+
+#
+#
+# Boost
+#
+#
+
 win32 {
-  INCLUDEPATH+= ../../Libraries/boost_1_54_0
+  INCLUDEPATH += \
+    ../../Libraries/boost_1_54_0
 }

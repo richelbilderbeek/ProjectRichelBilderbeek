@@ -134,8 +134,12 @@ ribi::HometrainerResources::HometrainerResources()
         const std::string filename = ":/images/" + s;
         QFile f(filename.c_str());
         f.copy(s.c_str());
-        if (!QFile::exists(s.c_str())) { TRACE(s); }
-        assert(QFile::exists(s.c_str()));
+        if (!QFile::exists(s.c_str()))
+        {
+          TRACE(s);
+          const std::string error = "HometrainerResources: file not found: '" + s + "\'";
+          throw std::runtime_error(error.c_str());
+        }
       }
       if (!QFile::exists(s.c_str())) { TRACE(s); }
       assert(QFile::exists(s.c_str()));

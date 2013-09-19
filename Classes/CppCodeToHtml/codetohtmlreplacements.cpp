@@ -79,7 +79,6 @@ CodeToHtmlReplacements::CodeToHtmlReplacements(
     const auto end = m_replacements.end();
     for (auto i=m_replacements.begin();i!=end;++i)
     {
-      TRACE((*i).first);
       for (auto j=m_replacements.begin();j!=end;++j)
       {
         if (i==j) continue;

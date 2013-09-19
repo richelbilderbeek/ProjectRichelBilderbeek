@@ -62,41 +62,21 @@ RESOURCES += \
 #
 #
 
-CONFIG(debug, debug|release) {
-  message(Debug mode)
-}
-
 CONFIG(release, debug|release) {
-  message(Release mode)
-
-  #Remove all asserts and TRACE
   DEFINES += NDEBUG NTRACE_BILDERBIKKEL
 }
 
-#
-#
-# Platform specific
-#
-#
+QMAKE_CXXFLAGS += -std=c++11 -Wall -Wextra -Weffc++
 
-#
-#
-# Compiler flags
-#
-#
-
-#Cannot add -Weffc++ due to use of Qt resources
-QMAKE_CXXFLAGS += -std=c++11 -Wall -Wextra  -Werror
+unix {
+  QMAKE_CXXFLAGS += -Werror
+}
 
 #
 #
 # Boost
 #
 #
-
-unix {
-  # Cannot link to the the non-header-only libraries when crosscompiling
-}
 
 win32 {
   INCLUDEPATH += \

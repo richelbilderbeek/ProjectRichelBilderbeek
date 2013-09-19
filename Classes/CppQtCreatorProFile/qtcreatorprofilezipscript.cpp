@@ -96,8 +96,10 @@ const std::string ribi::QtCreatorProFileZipScript::CreateScript(const std::strin
 
   for (const std::string& pro_filename: pro_filenames)
   {
+    const std::string full_pro_filename = source_folder + "/" + pro_filename;
+    assert(IsRegularFile(full_pro_filename));
     const boost::shared_ptr<QtCreatorProFile> pro_file(
-      new QtCreatorProFile(pro_filename));
+      new QtCreatorProFile(full_pro_filename));
     assert(pro_file);
 
     const boost::shared_ptr<QtCreatorProFileZipScript> script(
@@ -239,6 +241,8 @@ const std::string ribi::QtCreatorProFileZipScript::GetPath(const std::string& fi
   const int a = filename.rfind("\\",filename.size());
   const int b = filename.rfind("/",filename.size());
   const int i = std::max(a,b);
+  //If both cannot be found, there is no path below the current file
+  if (i == static_cast<int>(std::string::npos)) return std::string();
   assert(i < static_cast<int>(filename.size()));
   return filename.substr(0,i);
 }
@@ -349,11 +353,32 @@ void ribi::QtCreatorProFileZipScript::Test() noexcept
       assert(IsRegularFile(filename));
     }
   }
-  //GetProFiles
+  //Test that GetProFilesInFolder detects an additional .pro file
+  //being added to a folder
   {
+    const std::string tmp_pro_filename { "tmp23465278.pro" };
+
+    //If the temp file already exists, delete it
+    std::remove(tmp_pro_filename.c_str());
+
+    //Count the current number of .pro files
     const std::size_t n = GetProFilesInFolder("").size();
-    std::ofstream f("tmp23465278.pro");
+
+    //Add a .pro file
+    {
+      std::ofstream f(tmp_pro_filename.c_str());
+      f.close();
+      assert(IsRegularFile(tmp_pro_filename));
+    }
+
+    //Count the current number of .pro files again
     const std::size_t p = GetProFilesInFolder("").size();
+    #ifndef NDEBUG
+    if (n != p-1)
+    {
+      TRACE("ERROR: GetProFilesInFolder does not detect .pro files correctly");
+    }
+    #endif
     assert(n == p - 1);
     std::remove("tmp23465278.pro");
     const std::size_t q = GetProFilesInFolder("").size();
@@ -365,7 +390,6 @@ void ribi::QtCreatorProFileZipScript::Test() noexcept
 
 std::ostream& ribi::operator<<(std::ostream& os,const QtCreatorProFileZipScript& script) noexcept
 {
-  //using ribi::QtCreatorProFileZipScript::GetPath;
   assert(script.GetProFileName().size() > 6);
   assert(script.GetProFileName().substr(0,6) == std::string("../../"));
 
@@ -412,8 +436,20 @@ std::ostream& ribi::operator<<(std::ostream& os,const QtCreatorProFileZipScript&
     //std::string s = boost::filesystem::path(filename).parent_path().string();
     while (!s.empty())
     {
+      #ifndef NDEBUG
+      const std::size_t old_len = s.size();
+      #endif
       folder_names.insert(s);
       s = ribi::QtCreatorProFileZipScript::GetPath(s);
+      #ifndef NDEBUG
+      const std::size_t new_len = s.size();
+      if (new_len >= old_len)
+      {
+        TRACE("ERROR");
+        TRACE(s);
+      }
+      assert(new_len < old_len && "GetPath must shorten a path");
+      #endif
       //s = boost::filesystem::path(s).parent_path().string();
     }
   }

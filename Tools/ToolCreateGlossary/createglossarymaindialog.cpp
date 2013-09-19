@@ -41,7 +41,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 ribi::CreateGlossaryMainDialog::CreateGlossaryMainDialog()
 {
-  //std::cout << "Starting CreateGlossary version 1.1...\n\n";
+  TRACE("Start of CreateGlossaryMainDialog");
 
   CreatePage("Command-line glossary","ClGlossary.htm","Cl.*\\.htm\\>");
   CreatePage("C++ glossary","CppGlossary.htm","Cpp.*\\.htm\\>");
@@ -49,10 +49,9 @@ ribi::CreateGlossaryMainDialog::CreateGlossaryMainDialog()
   CreatePage("Levend Cluedo glossary","LevendCluedoGlossary.htm","LevendCluedo.*\\.htm\\>");
   CreatePage("Tool glossary","ToolGlossary.htm","Tool.*\\.htm\\>");
   CreatePage("Music glossary","MusicGlossary.htm","(Music|Song|Cd).*\\.htm\\>");
-  CreatePage("Sitemap","Sitemap.htm",".*\\.htm\\z");
+  CreatePage("Sitemap","Sitemap.htm",".*\\.htm\\>");
 
-  //std::cout << "Successfully created glossaries in folder "
-  //  << boost::filesystem::path(argv[0]).parent_path().string() << "\n";
+  TRACE("Finished CreateGlossaryMainDialog successfully");
 }
 
 const std::vector<std::string> ribi::CreateGlossaryMainDialog::GetFilesInFolder(const std::string& folder)

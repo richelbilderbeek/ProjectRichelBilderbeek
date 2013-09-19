@@ -55,35 +55,22 @@ OTHER_FILES += \
     ../../Classes/CppQtCreatorProFile/Licence.txt \
     ../../Classes/CppQrcFile/Licence.txt
 
+
 #
 #
 # Type of compile
 #
 #
 
-CONFIG(debug, debug|release) {
-  message(Debug mode)
-}
-
 CONFIG(release, debug|release) {
-  message(Release mode)
-
-  #Remove all asserts and TRACE
   DEFINES += NDEBUG NTRACE_BILDERBIKKEL
 }
 
-#
-#
-# Platform specific
-#
-#
+QMAKE_CXXFLAGS += -std=c++11 -Wall -Wextra -Weffc++
 
-#
-#
-# Compiler flags
-#
-#
-QMAKE_CXXFLAGS += -std=c++11 -Wall -Wextra -Weffc++ -Werror
+unix {
+  QMAKE_CXXFLAGS += -Werror
+}
 
 #
 #

@@ -54,7 +54,9 @@ struct QtExercise : public QDialog
   ///Obtain this class its version history
   static const std::vector<std::string> GetVersionHistory() noexcept;
 
-  ///Set the questions
+  ///Set the questions, read from a file
+  ///Throws std::logic_error if file does not exist
+  ///Throws std::runtime_error if file does not contain a single question
   void SetQuestions(const std::string& filename);
 
   ///Set the time the user has to wait when he/she answered correctly, in milliseconds

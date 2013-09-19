@@ -2,15 +2,6 @@ QT       += core gui
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 TEMPLATE = app
 
-QMAKE_CXXFLAGS += -std=c++11 -Wall -Wextra -Weffc++ -Werror
-
-win32 {
-  #LIBS += -L../../Libraries/mxe/usr/i686-pc-mingw32/lib
-
-  INCLUDEPATH += \
-    ../../Libraries/boost_1_54_0
-}
-
 INCLUDEPATH += \
     ../../Classes/CppAbout \
     ../../Classes/CppConnectThree \
@@ -91,3 +82,31 @@ FORMS += \
 
 RESOURCES += \
     GameK3OpEenRij.qrc
+
+
+#
+#
+# Type of compile
+#
+#
+
+CONFIG(release, debug|release) {
+  DEFINES += NDEBUG NTRACE_BILDERBIKKEL
+}
+
+QMAKE_CXXFLAGS += -std=c++11 -Wall -Wextra -Weffc++
+
+unix {
+  QMAKE_CXXFLAGS += -Werror
+}
+
+#
+#
+# Boost
+#
+#
+
+win32 {
+  INCLUDEPATH += \
+    ../../Libraries/boost_1_54_0
+}

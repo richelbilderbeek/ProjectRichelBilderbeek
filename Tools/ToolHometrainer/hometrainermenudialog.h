@@ -34,7 +34,7 @@ struct HometrainerMenuDialog
   ///This is a non-static method, to ensure users of this class
   ///call HometrainerMenuDialog its constructor: this is where
   ///the resources needed are created
-  const About GetAbout() const;
+  const About GetAbout() const noexcept;
 
   ///Obtain the version
   static const std::string GetVersion() noexcept;

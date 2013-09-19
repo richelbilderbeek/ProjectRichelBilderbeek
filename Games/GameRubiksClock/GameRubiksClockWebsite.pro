@@ -88,15 +88,14 @@ CONFIG(release, debug|release) {
 
 #
 #
-# Platform specific
+# Type of compile
 #
 #
 
-#
-#
-# Compiler flags
-#
-#
+CONFIG(release, debug|release) {
+  DEFINES += NDEBUG NTRACE_BILDERBIKKEL
+}
+
 QMAKE_CXXFLAGS += -std=c++11 -Wall -Wextra
 
 unix {
@@ -109,7 +108,9 @@ unix {
 #
 #
 
-LIBS += -lwt -lwthttp -lboost_filesystem -lboost_signals -lboost_system -lboost_program_options
+unix {
+  LIBS += -lboost_filesystem -lboost_signals -lboost_system -lboost_program_options
+}
 
 win32 {
   INCLUDEPATH += \
@@ -122,4 +123,6 @@ win32 {
 #
 #
 
-LIBS += -lwt -lwthttp
+unix {
+  LIBS += -lwt -lwthttp
+}

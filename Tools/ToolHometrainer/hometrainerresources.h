@@ -27,12 +27,14 @@ namespace ribi {
 
 struct HometrainerResources
 {
+  ///Creates the resources from the resource file
+  ///Throws a std::runtime_error if one of these is not found
   HometrainerResources();
-  const std::string GetQuestion() const { return "ToolHometrainerQuestion.png"; }
-  const std::string GetExerciseClouds() const { return "ToolHometrainerExerciseClouds.txt"; }
-  const std::string GetExerciseTest() const { return "ToolHometrainerExerciseTest.txt"; }
-  const std::string GetQuestionMark() const { return "ToolHometrainerQuestionmark.png"; }
-  const std::string GetWelcome() const { return "ToolHometrainerWelcome.png"; }
+  const std::string GetQuestion() const noexcept { return "ToolHometrainerQuestion.png"; }
+  const std::string GetExerciseClouds() const noexcept { return "ToolHometrainerExerciseClouds.txt"; }
+  const std::string GetExerciseTest() const noexcept { return "ToolHometrainerExerciseTest.txt"; }
+  const std::string GetQuestionMark() const noexcept { return "ToolHometrainerQuestionmark.png"; }
+  const std::string GetWelcome() const noexcept { return "ToolHometrainerWelcome.png"; }
 };
 
 } //~namespace ribi

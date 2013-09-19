@@ -1,10 +1,5 @@
-#ifdef _WIN32
-//See http://www.richelbilderbeek.nl/CppCompileErrorSwprintfHasNotBeenDeclared.htm
-#undef __STRICT_ANSI__
-#endif
-
-//#include own header file as first substantive line of code, from:
-// * John Lakos. Large-Scale C++ Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include "qthometrainermenudialog.h"
 
 #include <QDesktopWidget>
@@ -12,20 +7,21 @@
 #include "qtaboutdialog.h"
 #include "qthometrainermaindialog.h"
 #include "ui_qthometrainermenudialog.h"
+#pragma GCC diagnostic pop
 
-ribi::QtHometrainerMenuDialog::QtHometrainerMenuDialog(QWidget *parent) :
+ribi::QtHometrainerMenuDialog::QtHometrainerMenuDialog(QWidget *parent) noexcept :
     QtHideAndShowDialog(parent),
     ui(new Ui::QtHometrainerMenuDialog)
 {
   ui->setupUi(this);
 }
 
-ribi::QtHometrainerMenuDialog::~QtHometrainerMenuDialog()
+ribi::QtHometrainerMenuDialog::~QtHometrainerMenuDialog() noexcept
 {
   delete ui;
 }
 
-void ribi::QtHometrainerMenuDialog::on_button_about_clicked()
+void ribi::QtHometrainerMenuDialog::on_button_about_clicked() noexcept
 {
   About a = HometrainerMenuDialog().GetAbout();
   a.AddLibrary("QtHideAndShowDialog version: " + QtHideAndShowDialog::GetVersion());
@@ -37,12 +33,12 @@ void ribi::QtHometrainerMenuDialog::on_button_about_clicked()
   this->show();
 }
 
-void ribi::QtHometrainerMenuDialog::on_button_quit_clicked()
+void ribi::QtHometrainerMenuDialog::on_button_quit_clicked() noexcept
 {
   close();
 }
 
-void ribi::QtHometrainerMenuDialog::on_button_start_clicked()
+void ribi::QtHometrainerMenuDialog::on_button_start_clicked() noexcept
 {
   QtHometrainerMainDialog d;
   ShowChild(&d);

@@ -365,13 +365,11 @@ const std::vector<std::string> c2h::ConvertProject(const std::string& filename)
 
 const std::vector<std::string> c2h::FileToVector(const std::string& filename)
 {
-  TRACE_FUNC();
-  TRACE(filename);
   #ifndef NDEBUG
   if (!IsRegularFile(filename))
   {
+    TRACE("ERROR");
     TRACE(filename);
-    TRACE("BREAK");
   }
   #endif
   assert(IsRegularFile(filename));

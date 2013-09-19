@@ -3,16 +3,6 @@ QT       -= gui
 CONFIG   += console
 CONFIG   -= app_bundle
 TEMPLATE = app
-QMAKE_CXXFLAGS += -std=c++11 -Wall -Wextra -Werror
-
-LIBS += \
-    -lboost_filesystem \
-    -lboost_program_options \
-    -lboost_regex \
-    -lboost_signals \
-    -lboost_system \
-    -lwt \
-    -lwthttp
 
 INCLUDEPATH += \
     ../../Classes/CppAbout \
@@ -80,3 +70,47 @@ OTHER_FILES += \
     ../../Classes/CppQrcFile/Licence.txt \
     ../../Classes/CppQtCreatorProFile/Licence.txt
 
+
+#
+#
+# Type of compile
+#
+#
+
+CONFIG(release, debug|release) {
+  DEFINES += NDEBUG NTRACE_BILDERBIKKEL
+}
+
+QMAKE_CXXFLAGS += -std=c++11 -Wall -Wextra -Weffc++
+
+unix {
+  QMAKE_CXXFLAGS += -Werror
+}
+
+#
+#
+# Boost
+#
+#
+
+win32 {
+  INCLUDEPATH += \
+    ../../Libraries/boost_1_54_0
+}
+
+#
+#
+# Wt
+#
+#
+
+unix {
+  LIBS += \
+    -lboost_filesystem \
+    -lboost_program_options \
+    -lboost_regex \
+    -lboost_signals \
+    -lboost_system \
+    -lwt \
+    -lwthttp
+}

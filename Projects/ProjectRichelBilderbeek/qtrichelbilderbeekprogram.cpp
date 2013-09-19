@@ -105,8 +105,12 @@ QDialog * ribi::QtRichelBilderbeekProgram::CreateQtMenuDialog(const RichelBilder
     case ProgramType::codeToHtml: p = new QtCodeToHtmlMenuDialog; break;
     case ProgramType::connectThree: p = new QtConnectThreeMenuDialog; break;
     case ProgramType::corridor: break;
-    case ProgramType::createGlossary: p = new QtCreateGlossaryMenuDialog; break;
-    case ProgramType::createQtProjectZipFile: p = new QtCreateQtProjectZipFileMenuDialog; break;
+    case ProgramType::createGlossary:
+      p = new QtCreateGlossaryMenuDialog;
+      break;
+    case ProgramType::createQtProjectZipFile:
+      p = new QtCreateQtProjectZipFileMenuDialog;
+      break;
     case ProgramType::crossPoll: break;
     case ProgramType::dasWahreSchlagerfest: p = new QtDasWahreSchlagerfestMenuDialog; break;
     case ProgramType::dotMatrix: break;

@@ -37,7 +37,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #pragma GCC diagnostic pop
 
-const ribi::About ribi::HometrainerMenuDialog::GetAbout() const
+const ribi::About ribi::HometrainerMenuDialog::GetAbout() const noexcept
 {
   About a(
     "Richel Bilderbeek",

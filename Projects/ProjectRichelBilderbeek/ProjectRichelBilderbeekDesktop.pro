@@ -50,6 +50,7 @@ INCLUDEPATH += \
     ../../Games/GamePylos \
     ../../Games/GameRubiksClock \
     ../../Games/GameTicTacToe \
+    ../../Projects/RichelbilderbeekNl \
     ../../Tools/ToolAsciiArter \
     ../../Tools/ToolCodeToHtml \
     ../../Tools/ToolCreateGlossary \
@@ -91,8 +92,7 @@ INCLUDEPATH += \
     ../../Tools/ToolTestShinyButton \
     ../../Tools/ToolTestSimpleLinearRegression \
     ../../Tools/ToolTestToggleButton \
-    ../../Tools/ToolTestTwoDigitNewick \
-    ../../Projects/RichelbilderbeekNl
+    ../../Tools/ToolTestTwoDigitNewick
 
 SOURCES += \
     ../../Classes/CppQtAboutDialog/qtaboutdialog.cpp \
@@ -476,24 +476,24 @@ HEADERS += \
     ../../Games/GameBeerWanter/qtbeerwanterwidget.h \
     ../../Games/GameBoenken/boenkenarenasettings.h \
     ../../Games/GameBoenken/boenkencontrols.h \
-    ../../Games/GameBoenken/qtboenkengame.h \
     ../../Games/GameBoenken/boenkenmenudialog.h \
-    ../../Games/GameBoenken/qtboenkensprite.h \
-    ../../Games/GameBoenken/qtboenkenspriteball.h \
-    ../../Games/GameBoenken/qtboenkenspritemoving.h \
-    ../../Games/GameBoenken/qtboenkenspritenonmoving.h \
-    ../../Games/GameBoenken/qtboenkenspriteplayer.h \
     ../../Games/GameBoenken/qtboenkenarenadialog.h \
     ../../Games/GameBoenken/qtboenkencontrolsdialog.h \
+    ../../Games/GameBoenken/qtboenkengame.h \
     ../../Games/GameBoenken/qtboenkengame.h \
     ../../Games/GameBoenken/qtboenkenmaindialog.h \
     ../../Games/GameBoenken/qtboenkenmenudialog.h \
     ../../Games/GameBoenken/qtboenkenplayersdialog.h \
     ../../Games/GameBoenken/qtboenkenpresskeydialog.h \
     ../../Games/GameBoenken/qtboenkensprite.h \
+    ../../Games/GameBoenken/qtboenkensprite.h \
+    ../../Games/GameBoenken/qtboenkenspriteball.h \
     ../../Games/GameBoenken/qtboenkenspriteball.h \
     ../../Games/GameBoenken/qtboenkenspritemoving.h \
+    ../../Games/GameBoenken/qtboenkenspritemoving.h \
     ../../Games/GameBoenken/qtboenkenspritenonmoving.h \
+    ../../Games/GameBoenken/qtboenkenspritenonmoving.h \
+    ../../Games/GameBoenken/qtboenkenspriteplayer.h \
     ../../Games/GameBoenken/qtboenkenspriteplayer.h \
     ../../Games/GameBoenken/qtboenkentraindialog.h \
     ../../Games/GameConnectThree/qtconnectthreegamedialog.h \
@@ -1376,7 +1376,7 @@ OTHER_FILES += \
     ../../Tools/ToolKalmanFilterer/PicGreen.png \
     ../../Tools/ToolKalmanFilterer/PicBlack.png \
     ../../Tools/ToolKalmanFilterer/Licence.txt \
-    ../../Tools/ToolKalmanFilterer/crosscompiletowindows.sh \
+    ../../Tools/ToolKalmanFilterer/crosscompile.sh \
     ../../Classes/CppKalmanFilter/Licence.txt \
     ../../Classes/CppQtMatrix/Licence.txt \
     ../../Classes/CppQtExercise/Licence.txt \
@@ -1412,56 +1412,6 @@ OTHER_FILES += \
     ../../Tools/ToolTestSimpleLinearRegression/Licence.txt \
     ProjectRichelBilderbeek.pri \
     ../../Classes/CppApproximator/Licence.txt
-
-
-
-#
-#
-# Type of compile
-#
-#
-
-CONFIG(debug, debug|release) {
-  message(Debug mode)
-}
-
-CONFIG(release, debug|release) {
-  message(Release mode)
-
-  #Remove all asserts and TRACE
-  DEFINES += NDEBUG NTRACE_BILDERBIKKEL
-}
-
-#
-#
-# Platform specific
-#
-#
-
-#
-#
-# Compiler flags
-#
-#
-QMAKE_CXXFLAGS += -std=c++11 -Wall -Wextra -Weffc++ -Werror
-
-#
-#
-# Boost
-#
-#
-
-unix {
-  message(Unix dynamic link to Boost)
-
-  LIBS += \
-    -lboost_date_time
-}
-
-win32 {
-  INCLUDEPATH += \
-    ../../Libraries/boost_1_54_0
-}
 
 #
 #

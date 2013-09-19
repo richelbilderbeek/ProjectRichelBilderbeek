@@ -182,6 +182,13 @@ void ribi::QtRichelBilderbeekMenuDialog::Test()
     const std::vector<RichelBilderbeek::ProgramType> v = RichelBilderbeek::GetAllProgramTypes();
     for (const RichelBilderbeek::ProgramType type: v)
     {
+      #ifndef NDEBUG
+      const std::string progress
+        = boost::lexical_cast<std::string>(static_cast<int>(type))
+        + "/"
+        + boost::lexical_cast<std::string>(v.size());
+      TRACE(progress);
+      #endif
       const boost::shared_ptr<QDialog> d(
         QtRichelBilderbeekProgram::CreateQtMenuDialog(type));
     }

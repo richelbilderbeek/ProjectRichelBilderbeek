@@ -46,17 +46,19 @@ OTHER_FILES += \
 
 #
 #
-# Platform specific
+# Type of compile
 #
 #
 
-#
-#
-# Compiler flags
-#
-#
-#Cannot use -Weffc++ due to use of resources
-QMAKE_CXXFLAGS += -std=c++11 -Wall -Wextra -Weffc++ -Werror
+CONFIG(release, debug|release) {
+  DEFINES += NDEBUG NTRACE_BILDERBIKKEL
+}
+
+QMAKE_CXXFLAGS += -std=c++11 -Wall -Wextra -Weffc++
+
+unix {
+  QMAKE_CXXFLAGS += -Werror
+}
 
 #
 #
@@ -65,6 +67,6 @@ QMAKE_CXXFLAGS += -std=c++11 -Wall -Wextra -Weffc++ -Werror
 #
 
 win32 {
-  INCLUDEPATH += ../../Libraries/boost_1_54_0
+  INCLUDEPATH += \
+    ../../Libraries/boost_1_54_0
 }
-

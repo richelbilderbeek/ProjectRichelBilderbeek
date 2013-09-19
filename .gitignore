@@ -105,9 +105,6 @@ Projects/RichelbilderbeekNl/googleb5227bbf47f081ef.html
 Projects/RichelbilderbeekNl/_vti_inf.html
 Projects/RichelbilderbeekNl/sitemap.xml.gz
 Test/*.htm
-
-
-
 Games/GameBoenken/GameBoenken
 Games/GameRubiksClock/GameRubiksClockWebsite
 Games/GameCorridor/GameCorridor
@@ -210,3 +207,5 @@ Libraries/blitz-0.10/
 Libraries/gmtl-0.6.1/
 Libraries/bullet3/
 Libraries/tokamak_release/
+
+Libraries/bin/

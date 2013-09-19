@@ -14,10 +14,9 @@ class QtStateObserverMenuDialog : public QtHideAndShowDialog
   Q_OBJECT
 
 public:
+  explicit QtStateObserverMenuDialog(QWidget *parent = 0) noexcept;
   QtStateObserverMenuDialog(const QtStateObserverMenuDialog&) = delete;
   QtStateObserverMenuDialog& operator=(const QtStateObserverMenuDialog&) = delete;
-
-  explicit QtStateObserverMenuDialog(QWidget *parent = 0) noexcept;
   ~QtStateObserverMenuDialog() noexcept;
 
 private slots:

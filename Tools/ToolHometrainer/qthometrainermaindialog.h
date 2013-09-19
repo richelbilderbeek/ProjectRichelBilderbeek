@@ -14,8 +14,10 @@ class QtHometrainerMainDialog : public QtHideAndShowDialog
   Q_OBJECT
   
 public:
-  explicit QtHometrainerMainDialog(QWidget *parent = 0);
-  ~QtHometrainerMainDialog();
+  explicit QtHometrainerMainDialog(QWidget *parent = 0) noexcept;
+  QtHometrainerMainDialog(const QtHometrainerMainDialog&) = delete;
+  QtHometrainerMainDialog& operator=(const QtHometrainerMainDialog&) = delete;
+  ~QtHometrainerMainDialog() noexcept;
   
 private:
   Ui::QtHometrainerMainDialog *ui;
