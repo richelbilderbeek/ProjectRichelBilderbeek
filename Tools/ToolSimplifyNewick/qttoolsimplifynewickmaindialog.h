@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 SimplifyNewick, tool to randomly simplify Newick phylogenies
-Copyright (C) 2010-2011 Richel Bilderbeek
+Copyright (C) 2010-2013 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -18,73 +18,73 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolSimplifyNewick.htm
 //---------------------------------------------------------------------------
-#ifndef DIALOGSIMPLIFYNEWICK_H
-#define DIALOGSIMPLIFYNEWICK_H
-//---------------------------------------------------------------------------
+#ifndef QTTOOLSIMPLIFYNEWICKMAINDIALOG_H
+#define QTTOOLSIMPLIFYNEWICKMAINDIALOG_H
+
 #include <string>
 #include <vector>
-//---------------------------------------------------------------------------
+
 //#include <cln/cln.h>
 #include "about.h"
-#include "BigInteger.hh"
-//---------------------------------------------------------------------------
-#include <QDialog>
-//---------------------------------------------------------------------------
+#include "qthideandshowdialog.h"
+
 namespace Ui {
-  class DialogSimplifyNewick;
+  class QtToolSimplifyNewickMainDialog;
 }
-//---------------------------------------------------------------------------
-class DialogSimplifyNewick : public QDialog
+
+namespace ribi {
+
+class QtToolSimplifyNewickMainDialog : public QtHideAndShowDialog
 {
   Q_OBJECT
 
 public:
-  explicit DialogSimplifyNewick(QWidget *parent = 0);
-  ~DialogSimplifyNewick();
-
-protected:
-  void changeEvent(QEvent *e);
+  explicit QtToolSimplifyNewickMainDialog(QWidget *parent = 0) noexcept;
+  QtToolSimplifyNewickMainDialog(const QtToolSimplifyNewickMainDialog&) = delete;
+  QtToolSimplifyNewickMainDialog& operator=(const QtToolSimplifyNewickMainDialog&) = delete;
+  ~QtToolSimplifyNewickMainDialog() noexcept;
 
 private:
-  Ui::DialogSimplifyNewick *ui;
+  Ui::QtToolSimplifyNewickMainDialog *ui;
 
 private slots:
-  void onAbout();
-  void onEditChange();
-  void onStart();
+  void OnAnyEditChange() noexcept;
 
-  static const std::string GetVersion();
-  static const std::vector<std::string> GetVersionHistory();
+  void on_button_start_clicked() noexcept;
+  void on_edit_newick_textChanged(const QString &arg1) noexcept;
+  void on_edit_max_complexity_textChanged(const QString &arg1) noexcept;
 };
-//---------------------------------------------------------------------------
+
 ///CliToStr converts a cln::cl_I to std::string.
 ///From http://www.richelbilderbeek.nl/CppCliToStr.htm
 //const std::string CliToStr(const cln::cl_I& i);
-//---------------------------------------------------------------------------
+
 ///IntToStrWithSep converts an integer to std::string
 ///and adds thousands seperators.
 ///From http://www.richelbilderbeek.nl/CppIntToStrWithSep.htm
 //const std::string IntToStrWithSep(cln::cl_I i);
-//---------------------------------------------------------------------------
+
 ///GetMaxInt returns the highest possible value of a int.
 ///From http://www.richelbilderbeek.nl/CppGetMaxInt.htm
-int GetMaxInt();
-//---------------------------------------------------------------------------
+//int GetMaxInt();
+
 ///From http://www.richelbilderbeek.nl/CppRandomizeTimer.htm
-void RandomizeTimer();
-//---------------------------------------------------------------------------
+//void RandomizeTimer();
+
 ///SafeIntToCli converts an int to cln::cl_I safely.
 ///From http://www.richelbilderbeek.nl/CppSafeIntToCli.htm
 //const cln::cl_I SafeIntToCli(const int i);
-//---------------------------------------------------------------------------
+
 ///SimplifyNewick simplifies a Newick below a certain complexity.
 ///From http://www.richelbilderbeek.nl/CppSimplifyNewick.htm
 //const std::string SimplifyNewick(
 //  const std::string& newick, const cln::cl_I& max_complexity);
-//---------------------------------------------------------------------------
+
 ///SimplifyNewick simplifies a Newick below a certain complexity.
 ///From http://www.richelbilderbeek.nl/CppSimplifyNewick.htm
-const std::string SimplifyNewick(
-  const std::string& newick, const BigInteger& max_complexity);
-//---------------------------------------------------------------------------
-#endif // DIALOGSIMPLIFYNEWICK_H
+//const std::string SimplifyNewick(
+//  const std::string& newick, const BigInteger& max_complexity);
+
+} //~namespace ribi
+
+#endif // QTTOOLSIMPLIFYNEWICKMAINDIALOG_H

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>DialogSimplifyNewick</class>
- <widget class="QDialog" name="DialogSimplifyNewick">
+ <class>QtToolSimplifyNewickMainDialog</class>
+ <widget class="QDialog" name="QtToolSimplifyNewickMainDialog">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -17,7 +17,7 @@
    </font>
   </property>
   <property name="windowTitle">
-   <string>SimplifyNewick (C) 2010 Richel Bilderbeek</string>
+   <string>SimplifyNewick</string>
   </property>
   <property name="windowIcon">
    <iconset resource="ToolSimplifyNewick.qrc">
@@ -81,13 +81,6 @@
         </property>
        </widget>
       </item>
-      <item>
-       <widget class="QPushButton" name="button_about">
-        <property name="text">
-         <string>&amp;About</string>
-        </property>
-       </widget>
-      </item>
      </layout>
     </widget>
    </item>
@@ -98,7 +91,6 @@
  </widget>
  <tabstops>
   <tabstop>button_start</tabstop>
-  <tabstop>button_about</tabstop>
   <tabstop>text_output</tabstop>
   <tabstop>edit_newick</tabstop>
   <tabstop>edit_max_complexity</tabstop>
