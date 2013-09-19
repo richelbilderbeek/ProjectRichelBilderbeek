@@ -6640,9 +6640,7 @@ const std::vector<std::string> c2h::Info::ToHtml() const
     v.push_back("  <li><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ProjectRichelBilderbeek_1_7.png\">View a screenshot of 'ProjectRichelBilderbeek' (version 1.7)(png)</a></li>");
     v.push_back("  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ProjectRichelBilderbeek_1_10.png\">View a screenshot of 'ProjectRichelBilderbeek' (version 1.10)(png)</a></li>");
     v.push_back("  <li><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ProjectWtWebsite_0_38.png\">View a screenshot of 'ProjectRichelBilderbeek' (at that time called 'ProjectWtWebsite')(version 0.38)(png)</a></li>");
-    v.push_back("  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ProjectRichelBilderbeekExe_1_8.zip\">Download the 'ProjectRichelBilderbeek' Windows executable (version 1.8)(zip)</a></li>");
-    v.push_back("  <li><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/> <a href=\"ProjectRichelBilderbeekSource_1_8.zip\">Download the Qt creator project 'ProjectRichelBilderbeek' (version 1.8)(zip)</a></li>");
-    v.push_back("  <li><a href=\"ProjectRichelBilderbeekSloccount_1_8.txt\">View the SLOCcount of 'ProjectRichelBilderbeek' (version 1.8)(txt)</a></li>");
+    v.push_back("  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ProjectRichelBilderbeekExe_1_10.zip\">Download the 'ProjectRichelBilderbeek' Windows executable (version 1.10)(zip)</a></li>");
     v.push_back("</ul>");
     v.push_back("<p>&nbsp;</p>");
     v.push_back("<p>&nbsp;</p>");
