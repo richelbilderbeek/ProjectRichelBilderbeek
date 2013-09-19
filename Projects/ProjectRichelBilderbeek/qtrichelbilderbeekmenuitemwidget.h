@@ -35,6 +35,8 @@ struct QtRichelBilderbeekMenuItemWidget : public QtKeyboardFriendlyGraphicsView
 {
   QtRichelBilderbeekMenuItemWidget(QWidget *parent = 0);
 
+  ~QtRichelBilderbeekMenuItemWidget() noexcept {}
+
   void keyPressEvent(QKeyEvent *event);
 
   ///Emitted when the user wants to start an application

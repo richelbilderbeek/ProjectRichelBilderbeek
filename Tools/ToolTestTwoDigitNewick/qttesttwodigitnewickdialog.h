@@ -40,7 +40,7 @@ public:
   explicit QtTestTwoDigitNewickDialog(QWidget *parent = 0);
   QtTestTwoDigitNewickDialog(const QtTestTwoDigitNewickDialog&) = delete;
   QtTestTwoDigitNewickDialog& operator=(const QtTestTwoDigitNewickDialog&) = delete;
-  ~QtTestTwoDigitNewickDialog();
+  ~QtTestTwoDigitNewickDialog() noexcept;
   static const std::string GetVersion() noexcept;
   static const std::vector<std::string> GetVersionHistory() noexcept;
 

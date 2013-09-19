@@ -20,7 +20,7 @@ public:
   explicit QtTestToggleButtonMenuDialog(QWidget *parent = 0);
   QtTestToggleButtonMenuDialog(const QtTestToggleButtonMenuDialog&) = delete;
   QtTestToggleButtonMenuDialog& operator=(const QtTestToggleButtonMenuDialog&) = delete;
-  ~QtTestToggleButtonMenuDialog();
+  ~QtTestToggleButtonMenuDialog() noexcept;
 
 private slots:
   void on_button_start_clicked();

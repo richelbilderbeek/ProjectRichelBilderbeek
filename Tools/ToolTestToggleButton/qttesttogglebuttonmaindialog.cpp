@@ -46,7 +46,7 @@ ribi::QtTestToggleButtonMainDialog::QtTestToggleButtonMainDialog(QWidget *parent
   ui->toggle_button->GetWidget()->Click(1,1);
 }
 
-ribi::QtTestToggleButtonMainDialog::~QtTestToggleButtonMainDialog()
+ribi::QtTestToggleButtonMainDialog::~QtTestToggleButtonMainDialog() noexcept
 {
   delete ui;
 }

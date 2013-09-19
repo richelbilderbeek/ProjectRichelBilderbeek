@@ -38,7 +38,7 @@ ribi::QtTestToggleButtonMenuDialog::QtTestToggleButtonMenuDialog(QWidget *parent
   ui->setupUi(this);
 }
 
-ribi::QtTestToggleButtonMenuDialog::~QtTestToggleButtonMenuDialog()
+ribi::QtTestToggleButtonMenuDialog::~QtTestToggleButtonMenuDialog() noexcept
 {
   delete ui;
 }

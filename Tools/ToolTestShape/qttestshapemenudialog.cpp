@@ -43,7 +43,7 @@ ribi::QtTestShapeMenuDialog::QtTestShapeMenuDialog(QWidget *parent) :
   #endif
 }
 
-ribi::QtTestShapeMenuDialog::~QtTestShapeMenuDialog()
+ribi::QtTestShapeMenuDialog::~QtTestShapeMenuDialog() noexcept
 {
   delete ui;
 }

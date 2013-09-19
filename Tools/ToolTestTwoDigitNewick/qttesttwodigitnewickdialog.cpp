@@ -81,7 +81,7 @@ ribi::QtTestTwoDigitNewickDialog::QtTestTwoDigitNewickDialog(QWidget *parent)
   OnAnyChange();
 }
 
-ribi::QtTestTwoDigitNewickDialog::~QtTestTwoDigitNewickDialog()
+ribi::QtTestTwoDigitNewickDialog::~QtTestTwoDigitNewickDialog() noexcept
 {
   delete ui;
 }

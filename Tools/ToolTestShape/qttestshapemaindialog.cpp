@@ -57,7 +57,7 @@ ribi::QtTestShapeMainDialog::QtTestShapeMainDialog(QWidget *parent) :
   }
 }
 
-ribi::QtTestShapeMainDialog::~QtTestShapeMainDialog()
+ribi::QtTestShapeMainDialog::~QtTestShapeMainDialog() noexcept
 {
   delete ui;
 }

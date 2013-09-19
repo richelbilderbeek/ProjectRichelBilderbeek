@@ -55,7 +55,7 @@ ribi::QtTestShinyButtonMainDialog::QtTestShinyButtonMainDialog(QWidget *parent)
   on_edit_text_textChanged(QString());
 }
 
-ribi::QtTestShinyButtonMainDialog::~QtTestShinyButtonMainDialog()
+ribi::QtTestShinyButtonMainDialog::~QtTestShinyButtonMainDialog() noexcept
 {
   delete ui;
 }

@@ -49,7 +49,7 @@ ribi::QtTestShinyButtonMenuDialog::QtTestShinyButtonMenuDialog(QWidget *parent) 
     &ribi::QtTestShinyButtonMenuDialog::OnButtonQuitClicked,this));
 }
 
-ribi::QtTestShinyButtonMenuDialog::~QtTestShinyButtonMenuDialog()
+ribi::QtTestShinyButtonMenuDialog::~QtTestShinyButtonMenuDialog() noexcept
 {
   delete ui;
 }

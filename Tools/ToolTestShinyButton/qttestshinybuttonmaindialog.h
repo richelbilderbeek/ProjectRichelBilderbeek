@@ -44,7 +44,7 @@ public:
   explicit QtTestShinyButtonMainDialog(QWidget *parent = 0);
   QtTestShinyButtonMainDialog(const QtTestShinyButtonMainDialog&) = delete;
   QtTestShinyButtonMainDialog& operator=(const QtTestShinyButtonMainDialog&) = delete;
-  ~QtTestShinyButtonMainDialog();
+  ~QtTestShinyButtonMainDialog() noexcept;
 
 protected:
   

@@ -45,7 +45,7 @@ public:
   explicit QtTestShapeMainDialog(QWidget *parent = 0);
   QtTestShapeMainDialog(const QtTestShapeMainDialog&) = delete;
   QtTestShapeMainDialog& operator=(const QtTestShapeMainDialog&) = delete;
-  ~QtTestShapeMainDialog();
+  ~QtTestShapeMainDialog() noexcept;
 
 private:
   Ui::QtTestShapeMainDialog *ui;

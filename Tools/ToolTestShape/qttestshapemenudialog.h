@@ -43,7 +43,7 @@ public:
   explicit QtTestShapeMenuDialog(QWidget *parent = 0);
   QtTestShapeMenuDialog(const QtTestShapeMenuDialog&) = delete;
   QtTestShapeMenuDialog& operator=(const QtTestShapeMenuDialog&) = delete;
-  ~QtTestShapeMenuDialog();
+  ~QtTestShapeMenuDialog() noexcept;
 
 private slots:
   void on_button_start_clicked();

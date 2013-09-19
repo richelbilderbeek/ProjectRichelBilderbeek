@@ -43,7 +43,7 @@ public:
   explicit QtTestShinyButtonMenuDialog(QWidget *parent = 0);
   QtTestShinyButtonMenuDialog(const QtTestShinyButtonMenuDialog&) = delete;
   QtTestShinyButtonMenuDialog& operator=(const QtTestShinyButtonMenuDialog&) = delete;
-  ~QtTestShinyButtonMenuDialog();
+  ~QtTestShinyButtonMenuDialog() noexcept;
 
 protected:
   

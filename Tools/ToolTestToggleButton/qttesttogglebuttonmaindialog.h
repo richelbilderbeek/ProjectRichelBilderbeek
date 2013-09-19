@@ -20,7 +20,7 @@ public:
   explicit QtTestToggleButtonMainDialog(QWidget *parent = 0);
   QtTestToggleButtonMainDialog(const QtTestToggleButtonMainDialog&) = delete;
   QtTestToggleButtonMainDialog& operator=(const QtTestToggleButtonMainDialog&) = delete;
-  ~QtTestToggleButtonMainDialog();
+  ~QtTestToggleButtonMainDialog() noexcept;
 
 protected:
 

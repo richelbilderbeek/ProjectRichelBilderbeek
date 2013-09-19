@@ -40,6 +40,7 @@ struct QtExercise : public QtHideAndShowDialog
 {
   ///Construct a QtExercise without questions
   QtExercise();
+  ~QtExercise() noexcept {}
 
   ///Obtain the user its score: its number of correctly answered
   ///questions and the total number of questions answered
@@ -87,7 +88,6 @@ struct QtExercise : public QtHideAndShowDialog
 
   ///The time the user has to wait when he/she answered incorrectly, in milliseconds
   int m_waiting_time_incorrect;
-
 
   ///Displays m_dialog its current question
   void DisplayCurrentQuestion();
