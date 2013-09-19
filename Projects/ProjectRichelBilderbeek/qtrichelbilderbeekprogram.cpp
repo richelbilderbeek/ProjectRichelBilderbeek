@@ -46,7 +46,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "qtmaziakmenudialog.h"
 #include "qtmusictheorymenudialog.h"
 #include "qtperfectelasticcollisionmenudialog.h"
-
+#include "qttoolsimplifynewickmenudialog.h"
 #include "qttooltestapproximatormenudialog.h"
 #include "qttooltestmultiapproximatormenudialog.h"
 #include "qttooltestsimplelinearregressionmenudialog.h"
@@ -176,7 +176,7 @@ ribi::QtHideAndShowDialog * ribi::QtRichelBilderbeekProgram::CreateQtMenuDialog(
     case ProgramType::simBrainiac: break;
     case ProgramType::simImmuneResponse: break;
     case ProgramType::simMysteryMachine: p = new QtSimMysteryMachineMenuDialog; break;
-    case ProgramType::simplifyNewick: /* p = new QtSimplifyNewickMenuDialog; */ break;
+    case ProgramType::simplifyNewick: p = new QtToolSimplifyNewickMenuDialog; break;
     case ProgramType::simPredator: break;
     case ProgramType::simStagecraft: break;
     case ProgramType::soaSim: break;

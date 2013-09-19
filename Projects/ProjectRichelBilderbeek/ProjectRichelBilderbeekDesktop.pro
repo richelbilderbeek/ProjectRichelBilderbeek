@@ -279,7 +279,9 @@ SOURCES += \
     qtmain.cpp \
     qtrichelbilderbeekmenudialog.cpp \
     qtrichelbilderbeekmenuitemwidget.cpp \
-    qtrichelbilderbeekprogram.cpp
+    qtrichelbilderbeekprogram.cpp \
+    ../../Tools/ToolSimplifyNewick/qttoolsimplifynewickmenudialog.cpp \
+    ../../Tools/ToolSimplifyNewick/qttoolsimplifynewickmaindialog.cpp
 
 HEADERS += \
     ../../Classes/CppAbout/about.h \
@@ -662,7 +664,9 @@ HEADERS += \
     qtrichelbilderbeekmenudialog.h \
     qtrichelbilderbeekmenuitemwidget.h \
     qtrichelbilderbeekprogram.h \
-    richelbilderbeekmenudialog.h
+    richelbilderbeekmenudialog.h \
+    ../../Tools/ToolSimplifyNewick/qttoolsimplifynewickmenudialog.h \
+    ../../Tools/ToolSimplifyNewick/qttoolsimplifynewickmaindialog.h
 
 
 RESOURCES += \
@@ -717,7 +721,8 @@ RESOURCES += \
     ../../Games/GameK3OpEenRij/GameK3OpEenRij.qrc \
     ../../Tools/ToolTestApproximator/ToolTestApproximator.qrc \
     ../../Tools/ToolTestMultiApproximator/ToolTestMultiApproximator.qrc \
-    ../../Tools/ToolTestSimpleLinearRegression/ToolTestSimpleLinearRegression.qrc
+    ../../Tools/ToolTestSimpleLinearRegression/ToolTestSimpleLinearRegression.qrc \
+    ../../Tools/ToolSimplifyNewick/ToolSimplifyNewick.qrc
 
 FORMS += \
     ../../Classes/CppQtAboutDialog/qtaboutdialog.ui \
@@ -846,7 +851,9 @@ FORMS += \
     ../../Tools/ToolTestMultiApproximator/qttooltestmultiapproximatormenudialog.ui \
     ../../Tools/ToolTestMultiApproximator/qttooltestmultiapproximatormaindialog.ui \
     ../../Tools/ToolTestSimpleLinearRegression/qttooltestsimplelinearregressionmenudialog.ui \
-    ../../Tools/ToolTestSimpleLinearRegression/qttooltestsimplelinearregressionmaindialog.ui
+    ../../Tools/ToolTestSimpleLinearRegression/qttooltestsimplelinearregressionmaindialog.ui \
+    ../../Tools/ToolSimplifyNewick/qttoolsimplifynewickmenudialog.ui \
+    ../../Tools/ToolSimplifyNewick/qttoolsimplifynewickmaindialog.ui
 
 OTHER_FILES += \
     ../../Classes/CppAbout/Licence.txt \
@@ -1411,7 +1418,8 @@ OTHER_FILES += \
     ../../Tools/ToolTestSimpleLinearRegression/ToolTestSimpleLinearRegressionWelcome.png \
     ../../Tools/ToolTestSimpleLinearRegression/Licence.txt \
     ProjectRichelBilderbeek.pri \
-    ../../Classes/CppApproximator/Licence.txt
+    ../../Classes/CppApproximator/Licence.txt \
+    ../../Tools/ToolSimplifyNewick/Licence.txt
 
 #
 #

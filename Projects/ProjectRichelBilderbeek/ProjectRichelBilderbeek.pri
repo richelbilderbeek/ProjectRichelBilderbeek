@@ -89,6 +89,7 @@ INCLUDEPATH += \
     ../../Tools/ToolRichelBilderbeekGallery \
     ../../Tools/ToolRichelbilderbeekNlSitemapGenerator \
     ../../Tools/ToolSimMysteryMachine \
+    ../../Tools/ToolSimplifyNewick \
     ../../Tools/ToolStateObserver \
     ../../Tools/ToolTestApproximator \
     ../../Tools/ToolTestDial \
@@ -141,6 +142,8 @@ SOURCES += \
     ../../Classes/CppDialWidget/dialwidget.cpp \
     ../../Classes/CppEncranger/encranger.cpp \
     ../../Classes/CppExercise/exercise.cpp \
+    ../../Tools/ToolSimplifyNewick/toolsimplifynewickmenudialog.cpp \
+    ../../Tools/ToolSimplifyNewick/toolsimplifynewickmaindialog.cpp \
     ../../Classes/CppGaborFilter/gaborfilter.cpp \
     ../../Classes/CppGaborFilterWidget/gaborfilterwidget.cpp \
     ../../Classes/CppHtmlPage/htmlpage.cpp \
@@ -337,6 +340,8 @@ HEADERS += \
     ../../Classes/CppCodeToHtml/codetohtmlfooter.h \
     ../../Classes/CppCodeToHtml/codetohtmlheader.h \
     ../../Classes/CppCodeToHtml/codetohtmlinfo.h \
+    ../../Tools/ToolSimplifyNewick/toolsimplifynewickmenudialog.h \
+    ../../Tools/ToolSimplifyNewick/toolsimplifynewickmaindialog.h \
     ../../Classes/CppCodeToHtml/codetohtmlpagetype.h \
     ../../Classes/CppCodeToHtml/codetohtmlreplacements.h \
     ../../Classes/CppCodeToHtml/codetohtmltechinfo.h \

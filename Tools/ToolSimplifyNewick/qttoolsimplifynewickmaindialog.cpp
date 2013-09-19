@@ -155,7 +155,7 @@ void ribi::QtToolSimplifyNewickMainDialog::on_button_start_clicked() noexcept
   OnAnyEditChange();
 
   #ifdef NDEBUG
-  RandomizeTimer();
+  std::srand(std::time(0)); //RandomizeTimer();
   #endif
 
   const std::string s_in = ui->edit_newick->text().toStdString();

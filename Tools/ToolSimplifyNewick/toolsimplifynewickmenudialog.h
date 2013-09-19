@@ -18,8 +18,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolSimplifyNewick.htm
 //---------------------------------------------------------------------------
-#ifndef CREATEGLOSSARYMENUDIALOG_H
-#define CREATEGLOSSARYMENUDIALOG_H
+#ifndef TOOLSIMPLIFYNEWICKMENUDIALOG_H
+#define TOOLSIMPLIFYNEWICKMENUDIALOG_H
 
 #include <string>
 #include <vector>
@@ -38,4 +38,4 @@ struct ToolSimplifyNewickMenuDialog
 
 } //~namespace ribi
 
-#endif // CREATEGLOSSARYMENUDIALOG_H
+#endif // TOOLSIMPLIFYNEWICKMENUDIALOG_H

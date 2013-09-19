@@ -45,12 +45,14 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "qtdisplaypositem.h"
 #include "qtexercise.h"
 #include "qtgaborfilterwidget.h"
+#include "toolsimplifynewickmenudialog.h"
 #include "qtkeyboardfriendlygraphicsview.h"
 #include "qtlabeledquadbezierarrowitem.h"
 #include "qtledwidget.h"
 #include "qtleftrightrectitem.h"
 #include "qtmatrix.h"
 #include "qtmultiplechoicequestiondialog.h"
+#include "qttoolsimplifynewickmaindialog.h"
 #include "qtmysterymachinewidget.h"
 #include "qtopenquestiondialog.h"
 #include "qtpatharrowitem.h"
@@ -154,6 +156,7 @@ const ribi::About ribi::QtRichelBilderbeekMenuDialog::GetAbout() noexcept
   a.AddLibrary("QtToggleButtonWidget version: " + QtToggleButtonWidget::GetVersion());
   a.AddLibrary("QtUblasMatrixDoubleModel version: " + QtUblasMatrixDoubleModel::GetVersion());
   a.AddLibrary("QtUblasVectorDoubleModel version: " + QtUblasVectorDoubleModel::GetVersion());
+  a.AddLibrary("SimplifyNewick version: " + ToolSimplifyNewickMenuDialog::GetVersion());
   a.AddLibrary("TestKeyboardFriendlyGraphicsView version: " + TestKeyboardFriendlyGraphicsViewMenuDialog::GetVersion());
   a.AddLibrary("TestQtArrowItems version: " + TestQtArrowItemsMenuDialog::GetVersion());
   a.AddLibrary("TestQtModels version: " + ToolTestQtModelsMenuDialog::GetVersion());
