@@ -27,7 +27,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
-#include <QDialog>
+#include "qthideandshowdialog.h"
 
 #include "boenkencontrols.h"
 #pragma GCC diagnostic pop
@@ -43,7 +43,7 @@ namespace ribi {
 ///This dialog connects player names to their controls
 ///(but it does not connect sprites to their controllers,
 ///this is what DialogPlayers is for)
-class QtBoenkenControlsDialog : public QDialog
+class QtBoenkenControlsDialog : public QtHideAndShowDialog
 {
   Q_OBJECT
 

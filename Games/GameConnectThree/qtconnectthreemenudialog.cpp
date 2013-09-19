@@ -31,7 +31,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic pop
 
 ribi::QtConnectThreeMenuDialog::QtConnectThreeMenuDialog(QWidget *parent)
-  : QDialog(parent),
+  : QtHideAndShowDialog(parent),
     ui(new Ui::QtConnectThreeMenuDialog),
     m_resources(new QtConnectThreeResources),
     m_select(new QtSelectPlayerWidget)

@@ -101,6 +101,9 @@ ribi::QtRichelBilderbeekMenuDialog::QtRichelBilderbeekMenuDialog(QWidget *parent
     QLayout * const layout = new QVBoxLayout;
     this->setLayout(layout);
     layout->addWidget(widget);
+    widget->m_signal_show.connect(
+      boost::bind(&QtRichelBilderbeekMenuDialog::OnShow,this,boost::lambda::_1)
+    );
     widget->setFocus();
 
     QPushButton * const button = new QPushButton("&About");
@@ -168,6 +171,52 @@ void ribi::QtRichelBilderbeekMenuDialog::OnAbout()
   d.setWindowIcon(this->windowIcon());
   d.setStyleSheet(this->styleSheet());
   d.exec();
+}
+
+void ribi::QtRichelBilderbeekMenuDialog::OnShow(const std::string text)
+{
+  //Display the dialog
+  const std::vector<RichelBilderbeek::ProgramType> v = RichelBilderbeek::GetAllProgramTypes();
+  for (const RichelBilderbeek::ProgramType type: v)
+  {
+    const boost::shared_ptr<RichelBilderbeek::Program> p = RichelBilderbeek::Program::CreateProgram(type);
+    if (p->GetName() == text)
+    {
+
+      const boost::shared_ptr<QDialog> dialog(
+        QtRichelBilderbeekProgram::CreateQtMenuDialog(type));
+
+      if (!dialog)
+      {
+        TRACE("Create placeholder");
+        const boost::shared_ptr<QtHideAndShowDialog> placeholder(
+          QtRichelBilderbeekProgram::CreateQtPlaceholderDialog(type));
+        assert(placeholder);
+        this->ShowChild(placeholder.get());
+        //placeholder->exec();
+        return;
+      }
+      else
+      //if (boost::dynamic_pointer_cast<QtHideAndShowDialog>(dialog))
+      {
+        TRACE("Create QtHideAndShowDialog");
+        const boost::shared_ptr<QtHideAndShowDialog> hide_and_show_dialog(
+          boost::dynamic_pointer_cast<QtHideAndShowDialog>(dialog));
+        assert(hide_and_show_dialog);
+        //hide_and_show_dialog->exec();
+        this->ShowChild(hide_and_show_dialog.get());
+        return;
+      }
+      //Dont work with QDialog anymore: crashes program
+      //else
+      //{
+      //  TRACE("Create QDialog");
+      //  dialog->exec();
+      //  this->show();
+      //  return;
+      //}
+    }
+  }
 }
 
 #ifndef NDEBUG

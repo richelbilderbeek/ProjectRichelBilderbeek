@@ -39,9 +39,9 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "ui_qtpictocodemaindialog.h"
 #pragma GCC diagnostic pop
 
-ribi::QtPicToCodeMainDialog::QtPicToCodeMainDialog(QWidget *parent) :
-  QDialog(parent,Qt::Window),
-  ui(new Ui::QtPicToCodeMainDialog)
+ribi::QtPicToCodeMainDialog::QtPicToCodeMainDialog(QWidget *parent)
+  : QtHideAndShowDialog(parent), //Removed Qt::Window flag
+    ui(new Ui::QtPicToCodeMainDialog)
 {
   ui->setupUi(this);
   ui->edit_code->setWordWrapMode(QTextOption::NoWrap);

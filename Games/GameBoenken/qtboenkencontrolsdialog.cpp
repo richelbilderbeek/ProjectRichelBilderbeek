@@ -30,8 +30,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "ui_qtboenkencontrolsdialog.h"
 #pragma GCC diagnostic pop
 
-ribi::QtBoenkenControlsDialog::QtBoenkenControlsDialog(QWidget *parent) :
-    QDialog(parent),
+ribi::QtBoenkenControlsDialog::QtBoenkenControlsDialog(QWidget *parent)
+  : QtHideAndShowDialog(parent),
     ui(new Ui::QtBoenkenControlsDialog),
     m_keys_accel{},
     m_keys_turn{}

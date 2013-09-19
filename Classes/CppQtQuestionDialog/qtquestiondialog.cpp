@@ -27,7 +27,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 
 ribi::QtQuestionDialog::QtQuestionDialog(QWidget *parent)
-  : QDialog(parent),
+  : QtHideAndShowDialog(parent),
     m_signal_submitted{},
     m_dialog{}
 {
@@ -37,7 +37,7 @@ ribi::QtQuestionDialog::QtQuestionDialog(QWidget *parent)
 ribi::QtQuestionDialog::QtQuestionDialog(
   const boost::shared_ptr<QuestionDialog>& dialog,
   QWidget *parent)
-  : QDialog(parent),
+  : QtHideAndShowDialog(parent),
     m_signal_submitted{},
     m_dialog(dialog)
 {

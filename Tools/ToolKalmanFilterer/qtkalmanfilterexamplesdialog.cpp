@@ -27,7 +27,7 @@
 #pragma GCC diagnostic pop
 
 ribi::kalman::QtKalmanFilterExamplesDialog::QtKalmanFilterExamplesDialog(QWidget *parent)
-  : QDialog(parent),
+  : QtHideAndShowDialog(parent),
     m_signal_example{},
     ui(new Ui::QtKalmanFilterExamplesDialog)
 {

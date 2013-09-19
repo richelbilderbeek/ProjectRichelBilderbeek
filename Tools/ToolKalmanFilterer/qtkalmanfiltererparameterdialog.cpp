@@ -38,7 +38,7 @@ ribi::kalman::QtKalmanFiltererParameterDialog::QtKalmanFiltererParameterDialog(
   const std::string& parameter_description,
   QAbstractTableModel * const model,
   QWidget *parent)
-  : QDialog(parent),
+  : QtHideAndShowDialog(parent),
     ui(new Ui::QtKalmanFiltererParameterDialog)
 {
   

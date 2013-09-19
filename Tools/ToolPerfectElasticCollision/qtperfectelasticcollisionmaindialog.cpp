@@ -39,8 +39,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "ui_qtperfectelasticcollisionmaindialog.h"
 #pragma GCC diagnostic pop
 
-QtPerfectElasticCollisionMainDialog::QtPerfectElasticCollisionMainDialog(QWidget *parent) :
-    QDialog(parent),
+ribi::QtPerfectElasticCollisionMainDialog::QtPerfectElasticCollisionMainDialog(QWidget *parent)
+  : QtHideAndShowDialog(parent),
     ui(new Ui::QtPerfectElasticCollisionMainDialog),
     m_timer(new QTimer)
 {
@@ -71,13 +71,13 @@ QtPerfectElasticCollisionMainDialog::QtPerfectElasticCollisionMainDialog(QWidget
     this,SLOT(onTimer()));
 }
 
-QtPerfectElasticCollisionMainDialog::~QtPerfectElasticCollisionMainDialog() noexcept
+ribi::QtPerfectElasticCollisionMainDialog::~QtPerfectElasticCollisionMainDialog() noexcept
 {
   delete ui;
   delete m_timer;
 }
 
-void QtPerfectElasticCollisionMainDialog::paintEvent(QPaintEvent*)
+void ribi::QtPerfectElasticCollisionMainDialog::paintEvent(QPaintEvent*)
 {
   QPainter painter(this);
   assert(ui->dial_angle->minimum() == 0);
@@ -206,12 +206,12 @@ void QtPerfectElasticCollisionMainDialog::paintEvent(QPaintEvent*)
 
 }
 
-void QtPerfectElasticCollisionMainDialog::onAnyChange()
+void ribi::QtPerfectElasticCollisionMainDialog::onAnyChange()
 {
   this->update();
 }
 
-void QtPerfectElasticCollisionMainDialog::onCheck()
+void ribi::QtPerfectElasticCollisionMainDialog::onCheck()
 {
   if (ui->check_demo->isChecked())
   {
@@ -223,7 +223,7 @@ void QtPerfectElasticCollisionMainDialog::onCheck()
   }
 }
 
-void QtPerfectElasticCollisionMainDialog::onTimer()
+void ribi::QtPerfectElasticCollisionMainDialog::onTimer()
 {
   ui->dial_angle->setSliderPosition(
      (ui->dial_angle->sliderPosition() + (std::rand() % 2))
@@ -238,7 +238,7 @@ void QtPerfectElasticCollisionMainDialog::onTimer()
 }
 
 //From http://www.richelbilderbeek.nl/CppDrawGlobe.htm
-QPixmap QtPerfectElasticCollisionMainDialog::DrawGlobe(
+QPixmap ribi::QtPerfectElasticCollisionMainDialog::DrawGlobe(
   const int width,
   const int height,
   const unsigned char r,
@@ -308,7 +308,7 @@ QPixmap QtPerfectElasticCollisionMainDialog::DrawGlobe(
 
 
 //From http://www.richelbilderbeek.nl/CppPaint.htm
-void QtPerfectElasticCollisionMainDialog::Paint(
+void ribi::QtPerfectElasticCollisionMainDialog::Paint(
   QPixmap& pixmap,
   const unsigned char r,
   const unsigned char g,
@@ -339,7 +339,7 @@ void QtPerfectElasticCollisionMainDialog::Paint(
 }
 
 //From http://www.richelbilderbeek.nl/CppDoPerfectElasticCollision.htm
-void QtPerfectElasticCollisionMainDialog::DoPerfectElasticCollision(
+void ribi::QtPerfectElasticCollisionMainDialog::DoPerfectElasticCollision(
   const double angleCollision,
   double& angle1,
   double& speed1,
@@ -395,14 +395,14 @@ void QtPerfectElasticCollisionMainDialog::DoPerfectElasticCollision(
   speed2 = std::sqrt( (HdX * HdX) + (HdY * HdY) ); //Pythagoras
 }
 
-double QtPerfectElasticCollisionMainDialog::GetAngle(const double dx, const double dy)
+double ribi::QtPerfectElasticCollisionMainDialog::GetAngle(const double dx, const double dy)
 {
   const double pi = boost::math::constants::pi<double>();
   return pi - (std::atan2(dx,dy));
 }
 
 #ifndef NDEBUG
-void QtPerfectElasticCollisionMainDialog::Test()
+void ribi::QtPerfectElasticCollisionMainDialog::Test()
 {
   {
     static bool is_tested = false;

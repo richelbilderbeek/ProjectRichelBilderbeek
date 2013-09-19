@@ -97,7 +97,7 @@ ribi::QtToolTestApproximatorXyzMainDialog::QtToolTestApproximatorXyzMainDialog(Q
       static_cast<double>(ui->box_double_y->maximum())
     );
 
-    //Add to QDialog
+    //Add to dialog
     assert(ui->verticalLayout->layout());
     ui->verticalLayout->layout()->addWidget(plot.get());
   }

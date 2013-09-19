@@ -10,7 +10,7 @@
 #include <boost/numeric/ublas/matrix.hpp>
 #include <boost/numeric/ublas/vector.hpp>
 #include <boost/shared_ptr.hpp>
-#include <QDialog>
+#include "qthideandshowdialog.h"
 #include <QTableWidget>
 #pragma GCC diagnostic pop
 
@@ -30,7 +30,7 @@ namespace Ui {
 namespace ribi {
 namespace kalman {
 
-class QtWhiteNoiseSystemParametersDialog : public QDialog
+class QtWhiteNoiseSystemParametersDialog : public QtHideAndShowDialog
 {
   Q_OBJECT
   

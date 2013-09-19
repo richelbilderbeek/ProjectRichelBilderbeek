@@ -26,7 +26,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #include <boost/shared_ptr.hpp>
 
-#include <QDialog>
+#include "qthideandshowdialog.h"
 
 struct QGroupBox;
 struct QLabel;
@@ -36,7 +36,7 @@ namespace ribi {
 struct Exercise;
 
 ///A QtExercise is the Qt dialog of Exercise
-struct QtExercise : public QDialog
+struct QtExercise : public QtHideAndShowDialog
 {
   ///Construct a QtExercise without questions
   QtExercise();

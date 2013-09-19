@@ -23,7 +23,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
-#include <QDialog>
+#include "qthideandshowdialog.h"
 #pragma GCC diagnostic pop
 
 struct QKeyPressEvent;
@@ -36,7 +36,7 @@ namespace Ui {
 
 namespace ribi {
 
-class QtMaziakMenuDialog : public QDialog
+class QtMaziakMenuDialog : public QtHideAndShowDialog
 {
   Q_OBJECT
 

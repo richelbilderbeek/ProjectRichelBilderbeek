@@ -86,10 +86,10 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #pragma GCC diagnostic pop
 
-QDialog * ribi::QtRichelBilderbeekProgram::CreateQtMenuDialog(const RichelBilderbeek::ProgramType type)
+ribi::QtHideAndShowDialog * ribi::QtRichelBilderbeekProgram::CreateQtMenuDialog(const RichelBilderbeek::ProgramType type)
 {
   using namespace RichelBilderbeek;
-  QDialog *  p = nullptr;
+  QtHideAndShowDialog *  p = nullptr;
   switch (type)
   {
     case ProgramType::aminoAcidFighter: break;

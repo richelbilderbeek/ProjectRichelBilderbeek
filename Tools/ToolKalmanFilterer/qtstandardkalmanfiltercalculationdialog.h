@@ -6,7 +6,7 @@
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/numeric/ublas/matrix.hpp>
 #include <boost/numeric/ublas/vector.hpp>
-#include <QDialog>
+#include "qthideandshowdialog.h"
 #include <QTableWidget>
 #include "standardkalmanfiltercalculationelements.h"
 #include "qtkalmanfiltercalculationdialog.h"

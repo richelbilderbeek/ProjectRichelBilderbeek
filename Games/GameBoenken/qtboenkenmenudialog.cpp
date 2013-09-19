@@ -47,13 +47,12 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #pragma GCC diagnostic pop
 
-ribi::QtBoenkenMenuDialog::QtBoenkenMenuDialog(QWidget *parent) :
-  QDialog(parent),
-  ui(new Ui::QtBoenkenMenuDialog),
-  m_controls(new QtBoenkenControlsDialog),
-  m_players( new QtBoenkenPlayersDialog),
-  m_arena(new QtBoenkenArenaDialog)
-
+ribi::QtBoenkenMenuDialog::QtBoenkenMenuDialog(QWidget *parent)
+  : QtHideAndShowDialog(parent),
+    ui(new Ui::QtBoenkenMenuDialog),
+    m_controls(new QtBoenkenControlsDialog),
+    m_players( new QtBoenkenPlayersDialog),
+    m_arena(new QtBoenkenArenaDialog)
 {
   ui->setupUi(this);
   #ifndef NDEBUG

@@ -24,14 +24,14 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "ui_qttestpylosgametestsdialog.h"
 #pragma GCC diagnostic pop
 
-QtTestPylosGameTestsDialog::QtTestPylosGameTestsDialog(QWidget *parent) :
-    QDialog(parent),
+ribi::QtTestPylosGameTestsDialog::QtTestPylosGameTestsDialog(QWidget *parent)
+  : QtHideAndShowDialog(parent),
     ui(new Ui::QtTestPylosGameTestsDialog)
 {
   ui->setupUi(this);
 }
 
-QtTestPylosGameTestsDialog::~QtTestPylosGameTestsDialog() noexcept
+ribi::QtTestPylosGameTestsDialog::~QtTestPylosGameTestsDialog() noexcept
 {
   delete ui;
 }

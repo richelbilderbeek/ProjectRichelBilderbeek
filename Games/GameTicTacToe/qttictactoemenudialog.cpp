@@ -30,7 +30,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic pop
 
 ribi::QtTicTacToeMenuDialog::QtTicTacToeMenuDialog(QWidget *parent) :
-    QDialog(parent),
+    QtHideAndShowDialog(parent),
     ui(new Ui::QtTicTacToeMenuDialog)
 {
   ui->setupUi(this);

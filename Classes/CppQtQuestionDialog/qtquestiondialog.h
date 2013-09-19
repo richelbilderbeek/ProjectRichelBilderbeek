@@ -26,7 +26,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/shared_ptr.hpp>
 #include <boost/signals2.hpp>
-#include <QDialog>
+#include "qthideandshowdialog.h"
 #pragma GCC diagnostic pop
 
 namespace ribi {
@@ -35,7 +35,7 @@ struct Question;
 struct QuestionDialog;
 
 ///Qt dialog for QuestionDialog
-struct QtQuestionDialog : public QDialog
+struct QtQuestionDialog : public QtHideAndShowDialog
 {
   explicit QtQuestionDialog(QWidget *parent = 0);
 

@@ -10,7 +10,7 @@
 #pragma GCC diagnostic pop
 
 ribi::kalman::QtKalmanFilterCalculationDialog::QtKalmanFilterCalculationDialog(QWidget *parent) :
-  QDialog(parent),
+  QtHideAndShowDialog(parent),
   ui(new Ui::QtKalmanFilterCalculationDialog)
 {
   ui->setupUi(this);

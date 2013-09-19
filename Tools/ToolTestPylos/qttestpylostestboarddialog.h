@@ -25,7 +25,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic ignored "-Weffc++"
 #include <boost/shared_ptr.hpp>
 
-#include <QDialog>
+#include "qthideandshowdialog.h"
 
 #include "pylosmove.h"
 #include "pylosboard.h"
@@ -40,7 +40,7 @@ namespace Ui {
 
 namespace ribi {
 
-class QtTestPylosTestBoardDialog : public QDialog
+class QtTestPylosTestBoardDialog : public QtHideAndShowDialog
 {
   Q_OBJECT
 

@@ -50,7 +50,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic pop
 
 ribi::QtRichelBilderbeekMenuItemWidget::QtRichelBilderbeekMenuItemWidget(QWidget *parent)
-  : QtKeyboardFriendlyGraphicsView(parent)
+  : QtKeyboardFriendlyGraphicsView(parent),
+    m_signal_show{}
 {
   assert(scene());
   scene()->clear();
@@ -144,43 +145,7 @@ void ribi::QtRichelBilderbeekMenuItemWidget::keyPressEvent(QKeyEvent *event)
       QtRoundedTextRectItem * const text_item = dynamic_cast<QtRoundedTextRectItem*>(item);
       assert(text_item);
       const std::string text = text_item->GetText();
-
-      //Display the dialog
-      const std::vector<RichelBilderbeek::ProgramType> v = RichelBilderbeek::GetAllProgramTypes();
-      for (const RichelBilderbeek::ProgramType type: v)
-      {
-        const boost::shared_ptr<RichelBilderbeek::Program> p = RichelBilderbeek::Program::CreateProgram(type);
-        if (p->GetName() == text)
-        {
-          const boost::shared_ptr<QDialog> dialog(
-            QtRichelBilderbeekProgram::CreateQtMenuDialog(type));
-          if (!dialog)
-          {
-            const boost::shared_ptr<QtHideAndShowDialog> placeholder(
-              QtRichelBilderbeekProgram::CreateQtPlaceholderDialog(type));
-            assert(placeholder);
-            //this->ShowChild(placeholder.get());
-            placeholder->exec();
-            return;
-          }
-          else if (boost::dynamic_pointer_cast<QtHideAndShowDialog>(dialog))
-          {
-            const boost::shared_ptr<QtHideAndShowDialog> hide_and_show_dialog(
-              boost::dynamic_pointer_cast<QtHideAndShowDialog>(dialog));
-            assert(hide_and_show_dialog);
-            hide_and_show_dialog->exec();
-            //this->ShowChild(hide_and_show_dialog.get());
-            return;
-          }
-          else
-          {
-            dialog->exec();
-            this->show();
-            return;
-          }
-        }
-      }
-
+      m_signal_show(text);
     }
     return;
   }

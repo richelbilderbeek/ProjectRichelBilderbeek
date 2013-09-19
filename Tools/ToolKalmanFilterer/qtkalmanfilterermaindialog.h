@@ -10,7 +10,7 @@
 #include <boost/numeric/ublas/matrix.hpp>
 #include <boost/numeric/ublas/vector.hpp>
 
-#include <QDialog>
+#include "qthideandshowdialog.h"
 #include <QTableWidget>
 
 #include "qwt_plot.h"

@@ -49,7 +49,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #endif
 
 ribi::QtTestPylosTestBoardDialog::QtTestPylosTestBoardDialog(QWidget *parent) :
-  QDialog(parent),
+  QtHideAndShowDialog(parent),
   ui(new Ui::QtTestPylosTestBoardDialog),
   m_widget(new QtPylosBoardWidget),
   m_timer(new QTimer(this))

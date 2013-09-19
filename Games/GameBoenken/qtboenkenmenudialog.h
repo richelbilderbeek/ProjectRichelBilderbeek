@@ -27,7 +27,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #include <boost/shared_ptr.hpp>
-#include <QDialog>
+#include "qthideandshowdialog.h"
 #pragma GCC diagnostic pop
 
 namespace Ui {
@@ -51,7 +51,7 @@ namespace Boenken
 ///QtBoenkenMenuDialog
 ///
 ///Gathers all options to start a game
-class QtBoenkenMenuDialog : public QDialog
+class QtBoenkenMenuDialog : public QtHideAndShowDialog
 {
   Q_OBJECT
 

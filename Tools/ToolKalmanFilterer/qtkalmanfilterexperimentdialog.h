@@ -8,7 +8,7 @@
 
 #include <boost/shared_ptr.hpp>
 
-#include <QDialog>
+#include "qthideandshowdialog.h"
 #include <QTableWidget>
 
 #include "qwt_plot.h"
@@ -32,7 +32,7 @@ namespace kalman {
 
 ///QtKalmanFilterExperimentDialog is a Facade for
 ///the KalmanFilterExperiment parameters
-class QtKalmanFilterExperimentDialog : public QDialog
+class QtKalmanFilterExperimentDialog : public QtHideAndShowDialog
 {
   Q_OBJECT
   

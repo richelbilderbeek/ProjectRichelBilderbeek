@@ -38,7 +38,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic pop
 
 ribi::QtPylosMenuDialog::QtPylosMenuDialog(QWidget *parent) :
-  QDialog(parent),
+  QtHideAndShowDialog(parent),
   ui(new Ui::QtPylosMenuDialog),
   m_selected(-1),
   m_type_basic(true),

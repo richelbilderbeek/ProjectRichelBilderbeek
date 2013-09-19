@@ -42,8 +42,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #pragma GCC diagnostic pop
 
-ribi::QtMaziakMainDialog::QtMaziakMainDialog(QWidget *parent, const int maze_size) :
-    QDialog(parent,Qt::Window),
+ribi::QtMaziakMainDialog::QtMaziakMainDialog(QWidget *parent, const int maze_size)
+  : QtHideAndShowDialog(parent), //Removed Qt::Window flag
     ui(new Ui::QtMaziakMainDialog),
     //Floor
     m_pixmap_empty(new QPixmap(":/images/Empty.png")),

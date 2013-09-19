@@ -30,7 +30,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic pop
 
 ribi::QtTestShinyButtonMenuDialog::QtTestShinyButtonMenuDialog(QWidget *parent) :
-    QDialog(parent),
+    QtHideAndShowDialog(parent),
     ui(new Ui::QtTestShinyButtonMenuDialog),
     m_button_start(new QtShinyButtonWidget(0.25,0.25,"Start")),
     m_button_about(new QtShinyButtonWidget(0.50,0.25,"About")),

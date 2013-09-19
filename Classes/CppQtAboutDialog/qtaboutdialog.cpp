@@ -118,7 +118,7 @@ ribi::QtAboutDialog::~QtAboutDialog() noexcept
 
 const std::string ribi::QtAboutDialog::GetVersion() noexcept
 {
-  return "1.8";
+  return "1.9";
 }
 
 const std::vector<std::string> ribi::QtAboutDialog::GetVersionHistory() noexcept
@@ -132,7 +132,8 @@ const std::vector<std::string> ribi::QtAboutDialog::GetVersionHistory() noexcept
     "2012-01-27: version 1.5: abandoned use of BOOST_FOREACH, due to run-time errors",
     "2013-09-05: version 1.6: transition to namespace ribi"
     "2013-09-10: version 1.7: explicitly disabled copying, compiles with -Weffc++"
-    "2013-09-16: version 1.8: noexcept"
+    "2013-09-16: version 1.8: noexcept",
+    "2013-09-19: version 1.9: derive from QtHideAndShowDialog"
   };
 }
 

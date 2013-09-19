@@ -24,16 +24,18 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
-#include <QDialog>
+#include "qthideandshowdialog.h"
 #pragma GCC diagnostic pop
 
 namespace Ui {
   class QtTestPylosGameTestsDialog;
 }
 
+namespace ribi {
+
 ///DialogTests shows some of the more elaborate tests that
 ///are performed on the Pylos class
-class QtTestPylosGameTestsDialog : public QDialog
+class QtTestPylosGameTestsDialog : public QtHideAndShowDialog
 {
   Q_OBJECT
 
@@ -43,11 +45,10 @@ public:
   QtTestPylosGameTestsDialog& operator=(const QtTestPylosGameTestsDialog&) = delete;
   ~QtTestPylosGameTestsDialog() noexcept;
 
-protected:
-  
-
 private:
   Ui::QtTestPylosGameTestsDialog *ui;
 };
+
+} //~namespace ribi
 
 #endif // QTTESTPYLOSGAMETESTSDIALOG_H

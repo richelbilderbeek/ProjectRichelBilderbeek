@@ -50,7 +50,7 @@
 ribi::kalman::QtKalmanFilterExperimentDialog::QtKalmanFilterExperimentDialog(
   const boost::shared_ptr<QtKalmanFilterExperimentModel> model,
   QWidget *parent)
-  : QDialog(parent),
+  : QtHideAndShowDialog(parent),
     ui(new Ui::QtKalmanFilterExperimentDialog),
     m_examples_dialog{new QtKalmanFilterExamplesDialog},
     m_filter_dialog{new QtKalmanFilterDialog(model)},

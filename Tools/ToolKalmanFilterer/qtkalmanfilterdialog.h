@@ -7,7 +7,7 @@
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
-#include <QDialog>
+#include "qthideandshowdialog.h"
 #include <QTableWidget>
 #include <boost/shared_ptr.hpp>
 #include <boost/numeric/ublas/matrix.hpp>
@@ -31,7 +31,7 @@ namespace kalman {
 
 ///QtKalmanFilterDialog is a Facade of multiple QtKalmanFiltererParameterDialog instances
 ///with the KalmanFilterType as its primary State
-class QtKalmanFilterDialog : public QDialog
+class QtKalmanFilterDialog : public QtHideAndShowDialog
 {
   Q_OBJECT
   

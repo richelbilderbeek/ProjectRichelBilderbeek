@@ -28,7 +28,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic ignored "-Weffc++"
 #include <boost/shared_ptr.hpp>
 
-#include <QDialog>
+#include "qthideandshowdialog.h"
 #include <QPixmap>
 #include <QTimer>
 #pragma GCC diagnostic pop
@@ -43,7 +43,7 @@ namespace Boenken { struct Game; }
 boost::shared_ptr<Boenken::Game> CreateNoBoenken();
 
 ///QtBoenkenMainDialog displays Boenken and handles user events
-class QtBoenkenMainDialog : public QDialog
+class QtBoenkenMainDialog : public QtHideAndShowDialog
 {
   Q_OBJECT
 

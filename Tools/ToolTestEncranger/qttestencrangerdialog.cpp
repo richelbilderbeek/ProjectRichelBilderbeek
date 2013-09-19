@@ -35,7 +35,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic pop
 
 ribi::QtTestEncrangerDialog::QtTestEncrangerDialog(QWidget *parent) noexcept :
-    QDialog(parent),
+    QtHideAndShowDialog(parent),
     ui(new Ui::QtTestEncrangerDialog),
     m_dialog(new TestEncrangerDialog)
 {

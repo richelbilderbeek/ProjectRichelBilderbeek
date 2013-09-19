@@ -3,14 +3,16 @@
 
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
-#include <QDialog>
+#include "qthideandshowdialog.h"
 #pragma GCC diagnostic pop
 
 namespace Ui {
-class QtToolGaborFilterMainDialog;
+  class QtToolGaborFilterMainDialog;
 }
 
-class QtToolGaborFilterMainDialog : public QDialog
+namespace ribi {
+
+class QtToolGaborFilterMainDialog : public QtHideAndShowDialog
 {
     Q_OBJECT
     
@@ -21,14 +23,14 @@ public:
     ~QtToolGaborFilterMainDialog() noexcept;
     
 private slots:
-    void on_dial_angle_sliderMoved(int position);
-
-    void on_slider_frequency_sliderMoved(int position);
-
-    void on_slider_sigma_sliderMoved(int position);
+    void on_dial_angle_sliderMoved(int position) noexcept;
+    void on_slider_frequency_sliderMoved(int position) noexcept;
+    void on_slider_sigma_sliderMoved(int position) noexcept;
 
 private:
     Ui::QtToolGaborFilterMainDialog *ui;
 };
+
+} //~namespace ribi
 
 #endif // QTTOOLGABORFILTERMAINDIALOG_H

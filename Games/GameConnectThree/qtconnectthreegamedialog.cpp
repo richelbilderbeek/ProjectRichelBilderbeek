@@ -39,7 +39,7 @@ ribi::QtConnectThreeGameDialog::QtConnectThreeGameDialog(
   const boost::shared_ptr<const ConnectThreeResources> resources,
   QWidget *parent,
   const std::bitset<3>& is_player_human) noexcept
-  : QDialog(parent, Qt::Window),
+  : QtHideAndShowDialog(parent), //Removed Qt::Window flag
     m_signal_close{},
     ui(new Ui::QtConnectThreeGameDialog),
     m_board(

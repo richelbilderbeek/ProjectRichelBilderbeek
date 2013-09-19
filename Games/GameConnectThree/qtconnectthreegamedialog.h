@@ -27,7 +27,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/signals2.hpp>
-#include <QDialog>
+#include "qthideandshowdialog.h"
 #pragma GCC diagnostic pop
 
 
@@ -40,7 +40,7 @@ namespace ribi {
 struct QtConnectThreeWidget;
 struct ConnectThreeResources;
 
-class QtConnectThreeGameDialog : public QDialog
+class QtConnectThreeGameDialog : public QtHideAndShowDialog
 {
   Q_OBJECT
 

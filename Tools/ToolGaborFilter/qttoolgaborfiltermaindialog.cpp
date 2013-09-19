@@ -30,9 +30,9 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #pragma GCC diagnostic pop
 
-QtToolGaborFilterMainDialog::QtToolGaborFilterMainDialog(QWidget *parent) :
-  QDialog(parent),
-  ui(new Ui::QtToolGaborFilterMainDialog)
+ribi::QtToolGaborFilterMainDialog::QtToolGaborFilterMainDialog(QWidget *parent)
+  : QtHideAndShowDialog(parent),
+    ui(new Ui::QtToolGaborFilterMainDialog)
 {
   ui->setupUi(this);
   this->on_dial_angle_sliderMoved(ui->dial_angle->value());
@@ -40,12 +40,12 @@ QtToolGaborFilterMainDialog::QtToolGaborFilterMainDialog(QWidget *parent) :
   this->on_slider_sigma_sliderMoved(ui->slider_sigma->value());
 }
 
-QtToolGaborFilterMainDialog::~QtToolGaborFilterMainDialog() noexcept
+ribi::QtToolGaborFilterMainDialog::~QtToolGaborFilterMainDialog() noexcept
 {
   delete ui;
 }
 
-void QtToolGaborFilterMainDialog::on_dial_angle_sliderMoved(int position)
+void ribi::QtToolGaborFilterMainDialog::on_dial_angle_sliderMoved(int position) noexcept
 {
   const double pi = boost::math::constants::pi<double>();
   const double angle = 2.0 * pi * static_cast<double>(position)
@@ -55,7 +55,7 @@ void QtToolGaborFilterMainDialog::on_dial_angle_sliderMoved(int position)
   ui->label_angle->setText(s.substr(0,4).c_str());
 }
 
-void QtToolGaborFilterMainDialog::on_slider_frequency_sliderMoved(int position)
+void ribi::QtToolGaborFilterMainDialog::on_slider_frequency_sliderMoved(int position) noexcept
 {
   const double frequency = 64.0 * static_cast<double>(position) / static_cast<double>(ui->slider_frequency->maximum());
   ui->gaborfilterwidget->GetWidget()->GetGaborFilter()->SetFrequency(frequency);
@@ -64,7 +64,7 @@ void QtToolGaborFilterMainDialog::on_slider_frequency_sliderMoved(int position)
 
 }
 
-void QtToolGaborFilterMainDialog::on_slider_sigma_sliderMoved(int position)
+void ribi::QtToolGaborFilterMainDialog::on_slider_sigma_sliderMoved(int position) noexcept
 {
   const double suggest = ui->gaborfilterwidget->GetWidget()->GetGaborFilter()->SuggestSigma(2.0,2.0);
   const double sigma = 2.0 * suggest * static_cast<double>(position) / static_cast<double>(ui->slider_sigma->maximum());

@@ -34,7 +34,7 @@
 ribi::kalman::QtWhiteNoiseSystemParametersDialog::QtWhiteNoiseSystemParametersDialog(
   const boost::shared_ptr<QtKalmanFilterExperimentModel> model,
   QWidget *parent)
-  : QDialog(parent),
+  : QtHideAndShowDialog(parent),
     ui(new Ui::QtWhiteNoiseSystemParametersDialog),
     m_model{model},
     m_parameters{}

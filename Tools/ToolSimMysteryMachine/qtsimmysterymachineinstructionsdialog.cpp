@@ -25,7 +25,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic pop
 
 ribi::QtSimMysteryMachineInstructionsDialog::QtSimMysteryMachineInstructionsDialog(QWidget *parent) :
-    QDialog(parent),
+    QtHideAndShowDialog(parent),
     ui(new Ui::QtSimMysteryMachineInstructionsDialog)
 {
   ui->setupUi(this);

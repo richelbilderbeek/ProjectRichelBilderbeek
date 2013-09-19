@@ -39,8 +39,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #pragma GCC diagnostic pop
 
-QtQmakeWatcherMainDialog::QtQmakeWatcherMainDialog(QWidget *parent) :
-    QDialog(parent, Qt::Window),
+ribi::QtQmakeWatcherMainDialog::QtQmakeWatcherMainDialog(QWidget *parent)
+  : QtHideAndShowDialog(parent), //Removed Qt::Window flag
     ui(new Ui::QtQmakeWatcherMainDialog)
 {
   ui->setupUi(this);
@@ -59,12 +59,12 @@ QtQmakeWatcherMainDialog::QtQmakeWatcherMainDialog(QWidget *parent) :
   this->move( screen.center() - this->rect().center() );
 }
 
-QtQmakeWatcherMainDialog::~QtQmakeWatcherMainDialog() noexcept
+ribi::QtQmakeWatcherMainDialog::~QtQmakeWatcherMainDialog() noexcept
 {
   delete ui;
 }
 
-const std::vector<std::string> QtQmakeWatcherMainDialog::FileToVector(const std::string& fileName)
+const std::vector<std::string> ribi::QtQmakeWatcherMainDialog::FileToVector(const std::string& fileName)
 {
 
   assert(QFile::exists(fileName.c_str()));
@@ -80,7 +80,7 @@ const std::vector<std::string> QtQmakeWatcherMainDialog::FileToVector(const std:
 }
 
 
-void QtQmakeWatcherMainDialog::OnQmake()
+void ribi::QtQmakeWatcherMainDialog::OnQmake() noexcept
 {
   //Save text to file
   {

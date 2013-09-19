@@ -21,16 +21,25 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #ifndef QTRICHELBILDERBEEKMENUITEMWIDGET_H
 #define QTRICHELBILDERBEEKMENUITEMWIDGET_H
 
+#include <boost/signals2.hpp>
 #include "qtkeyboardfriendlygraphicsview.h"
 
 namespace ribi {
 
 ///The widget holding the items
+///Its purpose is:
+/// - obtain and display all applications' names
+/// - allow a user to select one
+/// - emit m_signal_show with the name of the application the user selected
 struct QtRichelBilderbeekMenuItemWidget : public QtKeyboardFriendlyGraphicsView
 {
   QtRichelBilderbeekMenuItemWidget(QWidget *parent = 0);
 
   void keyPressEvent(QKeyEvent *event);
+
+  ///Emitted when the user wants to start an application
+  ///The string passed is the text on the item
+  boost::signals2::signal<void(const std::string)> m_signal_show;
 };
 
 } //~namespace ribi

@@ -31,8 +31,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 ribi::QtPylosMainDialog::QtPylosMainDialog(
   QtPylosGameWidget * const pylos_widget,
-  QWidget *parent) :
-    QDialog(parent, Qt::Window),
+  QWidget *parent)
+  : QtHideAndShowDialog(parent), //Removed Qt::Window flag
     ui(new Ui::QtPylosMainDialog),
     m_pylos_widget(pylos_widget ? pylos_widget : new QtPylosGameWidget)
 {
@@ -65,10 +65,10 @@ const std::string ribi::QtPylosMainDialog::GetVersion() noexcept
 
 const std::vector<std::string> ribi::QtPylosMainDialog::GetVersionHistory() noexcept
 {
-  std::vector<std::string> v;
-  v.push_back("2010-09-22: version 1.0: initial release version");
-  v.push_back("2012-05-28: version 2.0: improved version to work with ProjectRichelBilderbeek");
-  return v;
+  return {
+    "2010-09-22: version 1.0: initial release version",
+    "2012-05-28: version 2.0: improved version to work with ProjectRichelBilderbeek"
+  };
 }
 
 void ribi::QtPylosMainDialog::OnWinner()

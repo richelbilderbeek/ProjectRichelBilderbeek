@@ -29,7 +29,6 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <boost/scoped_ptr.hpp>
 
 #include <QDesktopWidget>
-#include <QDialog>
 #include <QKeyEvent>
 #include <QPainter>
 #include <QMouseEvent>
@@ -44,7 +43,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic pop
 
 ribi::QtMaziakMenuDialog::QtMaziakMenuDialog(QWidget *parent) :
-    QDialog(parent),
+    QtHideAndShowDialog(parent),
     ui(new Ui::QtMaziakMenuDialog),
     m_difficulty(easy)
 {

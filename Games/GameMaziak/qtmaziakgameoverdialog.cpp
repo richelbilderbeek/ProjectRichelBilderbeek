@@ -33,7 +33,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic pop
 
 ribi::QtMaziakGameOverDialog::QtMaziakGameOverDialog(QWidget *parent) :
-  QDialog(parent),
+  QtHideAndShowDialog(parent),
   ui(new Ui::QtMaziakGameOverDialog),
   m_timer(new QTimer),
   m_allow_close(false)

@@ -45,7 +45,7 @@ ribi::QtBoenkenMainDialog::QtBoenkenMainDialog(
   QWidget *parent,
   boost::shared_ptr<Boenken::Game> boenken,
   bool is_training)
-  : QDialog(parent),
+  : QtHideAndShowDialog(parent),
     ui(new Ui::QtBoenkenMainDialog),
     m_background(new QPixmap),
     m_timer(new QTimer),

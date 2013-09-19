@@ -26,7 +26,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
-#include <QDialog>
+#include "qthideandshowdialog.h"
 
 #include "about.h"
 
@@ -39,7 +39,7 @@ namespace Ui {
 namespace ribi {
 
 ///An About dialog
-class QtAboutDialog : public QDialog
+class QtAboutDialog : public QtHideAndShowDialog
 {
   Q_OBJECT
 

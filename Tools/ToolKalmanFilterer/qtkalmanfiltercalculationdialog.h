@@ -6,7 +6,7 @@
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/numeric/ublas/matrix.hpp>
 #include <boost/numeric/ublas/vector.hpp>
-#include <QDialog>
+#include "qthideandshowdialog.h"
 #include <QTableWidget>
 #pragma GCC diagnostic pop
 
@@ -19,7 +19,7 @@ namespace Ui {
 namespace ribi {
 namespace kalman {
 
-class QtKalmanFilterCalculationDialog : public QDialog
+class QtKalmanFilterCalculationDialog : public QtHideAndShowDialog
 {
   Q_OBJECT
   

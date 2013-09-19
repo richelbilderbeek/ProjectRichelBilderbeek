@@ -25,7 +25,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
-#include <QDialog>
+#include "qthideandshowdialog.h"
 #include "pictocodemaindialog.h"
 #pragma GCC diagnostic pop
 
@@ -37,7 +37,7 @@ struct QImage;
 
 namespace ribi {
 
-class QtPicToCodeMainDialog : public QDialog
+class QtPicToCodeMainDialog : public QtHideAndShowDialog
 {
   Q_OBJECT
 

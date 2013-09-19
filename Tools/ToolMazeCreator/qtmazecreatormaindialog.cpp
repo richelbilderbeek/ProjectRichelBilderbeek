@@ -38,7 +38,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic pop
 
 ribi::QtMazeCreatorMainDialog::QtMazeCreatorMainDialog(QWidget *parent) :
-    QDialog(parent,Qt::Window),
+    QtHideAndShowDialog(parent), //Removed Qt::Window flag
     ui(new Ui::QtMazeCreatorMainDialog),
     m_scene(new QGraphicsScene),
     m_background(new QGraphicsPixmapItem),

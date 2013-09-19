@@ -23,7 +23,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
-#include <QDialog>
+#include "qthideandshowdialog.h"
 #pragma GCC diagnostic pop
 
 struct QTimer;
@@ -32,7 +32,9 @@ namespace Ui {
   class QtPerfectElasticCollisionMainDialog;
 }
 
-class QtPerfectElasticCollisionMainDialog : public QDialog
+namespace ribi {
+
+class QtPerfectElasticCollisionMainDialog : public QtHideAndShowDialog
 {
   Q_OBJECT
 
@@ -93,6 +95,6 @@ private slots:
   #endif
 };
 
-
+} //~namespace ribi
 
 #endif // QTPERFECTELASTICCOLLISIONMAINDIALOG_H

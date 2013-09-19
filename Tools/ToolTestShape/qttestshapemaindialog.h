@@ -25,7 +25,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic ignored "-Weffc++"
 #include <boost/scoped_ptr.hpp>
 #include <boost/shared_ptr.hpp>
-#include <QDialog>
+#include "qthideandshowdialog.h"
 #pragma GCC diagnostic pop
 
 namespace Ui {
@@ -37,7 +37,7 @@ namespace ribi {
 struct TestShapeMainDialog;
 struct QtShapeWidget;
 
-class QtTestShapeMainDialog : public QDialog
+class QtTestShapeMainDialog : public QtHideAndShowDialog
 {
   Q_OBJECT
 

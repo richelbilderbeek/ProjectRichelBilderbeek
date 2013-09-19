@@ -44,8 +44,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "ui_qttesttwodigitnewickdialog.h"
 #pragma GCC diagnostic pop
 
-ribi::QtTestTwoDigitNewickDialog::QtTestTwoDigitNewickDialog(QWidget *parent) :
-    QDialog(parent,Qt::Window),
+ribi::QtTestTwoDigitNewickDialog::QtTestTwoDigitNewickDialog(QWidget *parent)
+  : QtHideAndShowDialog(parent), //Removed Qt::Window flag
     ui(new Ui::QtTestTwoDigitNewickDialog)
 {
   ui->setupUi(this);

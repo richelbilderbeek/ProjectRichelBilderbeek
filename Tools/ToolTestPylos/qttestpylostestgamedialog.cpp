@@ -44,7 +44,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic pop
 
 ribi::QtTestPylosTestGameDialog::QtTestPylosTestGameDialog(QWidget *parent) :
-  QDialog(parent),
+  QtHideAndShowDialog(parent),
   ui(new Ui::QtTestPylosTestGameDialog),
   m_widget(new QtPylosGameWidget),
   m_timer(new QTimer(this))

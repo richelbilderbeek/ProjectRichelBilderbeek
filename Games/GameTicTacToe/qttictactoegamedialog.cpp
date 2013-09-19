@@ -33,8 +33,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #pragma GCC diagnostic pop
 
-ribi::QtTicTacToeGameDialog::QtTicTacToeGameDialog(QWidget *parent) :
-    QDialog(parent, Qt::Window),
+ribi::QtTicTacToeGameDialog::QtTicTacToeGameDialog(QWidget *parent)
+  : QtHideAndShowDialog(parent), //Removed Qt::Window flag
     ui(new Ui::QtTicTacToeGameDialog),
     m_tictactoe(new QtTicTacToeWidget)
 {

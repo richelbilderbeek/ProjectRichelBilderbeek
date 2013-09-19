@@ -24,7 +24,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
-#include <QDialog>
+#include "qthideandshowdialog.h"
 #include "boenkenarenasettings.h"
 #pragma GCC diagnostic pop
 
@@ -37,7 +37,7 @@ namespace ribi {
 ///QtBoenkenArenaDialog
 ///
 ///Dialog to setup up the arena
-class QtBoenkenArenaDialog : public QDialog
+class QtBoenkenArenaDialog : public QtHideAndShowDialog
 {
   Q_OBJECT
 

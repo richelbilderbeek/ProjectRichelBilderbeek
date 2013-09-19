@@ -24,7 +24,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #include <boost/shared_ptr.hpp>
-#include <QDialog>
+#include "qthideandshowdialog.h"
 #pragma GCC diagnostic pop
 
 struct QLabel;
@@ -39,7 +39,7 @@ namespace ribi {
 
 struct QtPylosGameWidget;
 
-class QtTestPylosTestGameDialog : public QDialog
+class QtTestPylosTestGameDialog : public QtHideAndShowDialog
 {
   Q_OBJECT
 

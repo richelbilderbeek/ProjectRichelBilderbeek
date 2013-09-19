@@ -7,7 +7,7 @@
 #include <boost/numeric/ublas/matrix.hpp>
 #include <boost/numeric/ublas/vector.hpp>
 
-#include <QDialog>
+#include "qthideandshowdialog.h"
 #include <QTableWidget>
 #pragma GCC diagnostic pop
 

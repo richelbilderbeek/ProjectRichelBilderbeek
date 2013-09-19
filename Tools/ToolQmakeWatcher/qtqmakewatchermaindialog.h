@@ -26,14 +26,16 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
-#include <QDialog>
+#include "qthideandshowdialog.h"
 #pragma GCC diagnostic pop
 
 namespace Ui {
   class QtQmakeWatcherMainDialog;
 }
 
-class QtQmakeWatcherMainDialog : public QDialog
+namespace ribi {
+
+class QtQmakeWatcherMainDialog : public QtHideAndShowDialog
 {
   Q_OBJECT
 
@@ -44,17 +46,18 @@ public:
   ~QtQmakeWatcherMainDialog() noexcept;
 
 protected:
-  
 
 private:
   Ui::QtQmakeWatcherMainDialog *ui;
 
 private slots:
-  void OnQmake();
+  void OnQmake() noexcept;
 
   //From http://www.richelbilderbeek.nl/CppFileToVector.htm
   static const std::vector<std::string> FileToVector(const std::string& fileName);
 
 };
+
+} //~namespace ribi
 
 #endif // QTQMAKEWATCHERMAINDIALOG_H

@@ -36,7 +36,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic pop
 
 ribi::QtMaziakGameWonDialog::QtMaziakGameWonDialog(QWidget *parent) :
-  QDialog(parent),
+  QtHideAndShowDialog(parent),
   ui(new Ui::QtMaziakGameWonDialog),
   m_timer(new QTimer),
   m_allow_close(false)

@@ -29,7 +29,7 @@ ribi::QtShowWinnerDialog::QtShowWinnerDialog(
   const std::string& filename,
   const std::string& winner_text,
   QWidget *parent) noexcept
-  : QDialog(parent),
+  : QtHideAndShowDialog(parent),
     ui(new Ui::QtShowWinnerDialog)
 {
   ui->setupUi(this);
