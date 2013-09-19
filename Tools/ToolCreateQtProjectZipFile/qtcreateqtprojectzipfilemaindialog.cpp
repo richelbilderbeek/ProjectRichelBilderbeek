@@ -40,7 +40,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #pragma GCC diagnostic pop
 
-ribi::QtCreateQtProjectZipFileMainDialog::QtCreateQtProjectZipFileMainDialog(QWidget *parent) :
+ribi::QtCreateQtProjectZipFileMainDialog::QtCreateQtProjectZipFileMainDialog(QWidget *parent) noexcept :
   QtHideAndShowDialog(parent),
   ui(new Ui::QtCreateQtProjectZipFileMainDialog)
 {
@@ -49,6 +49,7 @@ ribi::QtCreateQtProjectZipFileMainDialog::QtCreateQtProjectZipFileMainDialog(QWi
   Test();
   #endif
 
+  TRACE("QtCreateQtProjectZipFileMainDialog::QtCreateQtProjectZipFileMainDialog");
   ui->lineEdit->setText("Tools/ToolCreateQtProjectZipFile");
 }
 
@@ -57,7 +58,7 @@ ribi::QtCreateQtProjectZipFileMainDialog::~QtCreateQtProjectZipFileMainDialog() 
   delete ui;
 }
 
-void ribi::QtCreateQtProjectZipFileMainDialog::CreateScript(const std::string source_folder)
+void ribi::QtCreateQtProjectZipFileMainDialog::CreateScript(const std::string source_folder) noexcept
 {
   /*
   std::stringstream s;
@@ -92,22 +93,23 @@ void ribi::QtCreateQtProjectZipFileMainDialog::CreateScript(const std::string so
     ui->text->setPlainText( s.str().c_str() );
   }
   */
+
   ui->text->setPlainText(QtCreatorProFileZipScript::CreateScript(source_folder).c_str());
 }
 
-bool ribi::QtCreateQtProjectZipFileMainDialog::IsRegularFile(const std::string& filename)
+bool ribi::QtCreateQtProjectZipFileMainDialog::IsRegularFile(const std::string& filename) noexcept
 {
   std::fstream f;
   f.open(filename.c_str(),std::ios::in);
   return f.is_open();
 }
 
-void ribi::QtCreateQtProjectZipFileMainDialog::keyPressEvent(QKeyEvent * event)
+void ribi::QtCreateQtProjectZipFileMainDialog::keyPressEvent(QKeyEvent * event) noexcept
 {
   if (event->key() == Qt::Key_Escape) { close(); return; }
 }
 
-void ribi::QtCreateQtProjectZipFileMainDialog::on_lineEdit_textChanged(const QString &arg1)
+void ribi::QtCreateQtProjectZipFileMainDialog::on_lineEdit_textChanged(const QString &arg1) noexcept
 {
   const std::string source_folder = "../../" + arg1.toStdString();
 
@@ -121,13 +123,14 @@ void ribi::QtCreateQtProjectZipFileMainDialog::on_lineEdit_textChanged(const QSt
 }
 
 #ifndef NDEBUG
-void ribi::QtCreateQtProjectZipFileMainDialog::Test()
+void ribi::QtCreateQtProjectZipFileMainDialog::Test() noexcept
 {
   {
     static bool is_tested = false;
     if (is_tested) return;
     is_tested = true;
   }
+  TRACE("Starting ribi::QtCreateQtProjectZipFileMainDialog::Test");
   //Test basic functions on this project with going two folders down
   const std::vector<std::string> pro_filenames
     =
@@ -151,17 +154,19 @@ void ribi::QtCreateQtProjectZipFileMainDialog::Test()
   for (const std::string& pro_filename: pro_filenames)
   {
     if (!IsRegularFile(pro_filename)) continue;
+    //TRACE(pro_filename);
     const boost::shared_ptr<const QtCreatorProFile> pro_file(
       new QtCreatorProFile(pro_filename));
     assert(pro_file);
-
+    assert(IsRegularFile(pro_filename));
     const boost::shared_ptr<const QtCreatorProFileZipScript> script(
       new QtCreatorProFileZipScript(pro_file));
-
+    assert(script);
     std::stringstream s;
-    s << *script;
+    s << (*script);
     assert(!s.str().empty());
   }
+  TRACE("Finished ribi::QtCreateQtProjectZipFileMainDialog::Test successfully");
 }
 #endif
 

@@ -30,7 +30,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "ui_qtcreateqtprojectzipfilemenudialog.h"
 #pragma GCC diagnostic pop
 
-ribi::QtCreateQtProjectZipFileMenuDialog::QtCreateQtProjectZipFileMenuDialog(QWidget *parent) :
+ribi::QtCreateQtProjectZipFileMenuDialog::QtCreateQtProjectZipFileMenuDialog(QWidget *parent) noexcept :
   QtHideAndShowDialog(parent),
   ui(new Ui::QtCreateQtProjectZipFileMenuDialog)
 {
@@ -45,18 +45,18 @@ ribi::QtCreateQtProjectZipFileMenuDialog::~QtCreateQtProjectZipFileMenuDialog() 
   delete ui;
 }
 
-void ribi::QtCreateQtProjectZipFileMenuDialog::keyPressEvent(QKeyEvent * event)
+void ribi::QtCreateQtProjectZipFileMenuDialog::keyPressEvent(QKeyEvent * event) noexcept
 {
   if (event->key() == Qt::Key_Escape) { close(); return; }
 }
 
-void ribi::QtCreateQtProjectZipFileMenuDialog::on_button_start_clicked()
+void ribi::QtCreateQtProjectZipFileMenuDialog::on_button_start_clicked() noexcept
 {
   QtCreateQtProjectZipFileMainDialog d;
   this->ShowChild(&d);
 }
 
-void ribi::QtCreateQtProjectZipFileMenuDialog::on_button_about_clicked()
+void ribi::QtCreateQtProjectZipFileMenuDialog::on_button_about_clicked() noexcept
 {
   this->hide();
   About a = CreateQtProjectZipFile::MenuDialog::GetAbout();
@@ -68,13 +68,13 @@ void ribi::QtCreateQtProjectZipFileMenuDialog::on_button_about_clicked()
   this->show();
 }
 
-void ribi::QtCreateQtProjectZipFileMenuDialog::on_button_quit_clicked()
+void ribi::QtCreateQtProjectZipFileMenuDialog::on_button_quit_clicked() noexcept
 {
   close();
 }
 
 #ifndef NDEBUG
-void ribi::QtCreateQtProjectZipFileMenuDialog::Test()
+void ribi::QtCreateQtProjectZipFileMenuDialog::Test() noexcept
 {
   {
     static bool is_tested = false;
