@@ -1,5 +1,7 @@
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include "qtpvdbconceptmapdialog.h"
 
 #include <cassert>
@@ -48,7 +50,7 @@ void ribi::pvdb::QtPvdbConceptMapDialog::Test()
     {
   #endif
 
-  typedef std::vector<boost::shared_ptr<ribi::pvdb::Edge> > Edges;
+  //typedef std::vector<boost::shared_ptr<ribi::pvdb::Edge> > Edges;
   typedef std::vector<boost::shared_ptr<ribi::pvdb::Node> > Nodes;
 
   //If this dialog is fed with a file with only a focal question, it will create a one-node concept map

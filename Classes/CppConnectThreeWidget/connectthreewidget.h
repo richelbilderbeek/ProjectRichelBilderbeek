@@ -60,6 +60,7 @@ struct ConnectThreeWidget
   private:
   ~ConnectThreeWidget() noexcept {}
   friend void boost::checked_delete<>(ConnectThreeWidget*);
+  friend void boost::checked_delete<>(const ConnectThreeWidget*);
 
   boost::scoped_ptr<ConnectThree> m_game;
   std::bitset<3> m_is_player_human;

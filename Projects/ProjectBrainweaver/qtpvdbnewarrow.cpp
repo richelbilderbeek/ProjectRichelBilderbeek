@@ -1,5 +1,7 @@
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include "qtpvdbnewarrow.h"
 
 #include <string>
@@ -32,7 +34,7 @@ GetLineLineIntersections(
   > line2)
 {
   typedef boost::geometry::model::d2::point_xy<T> Point;
-  typedef boost::geometry::model::linestring<Point> Line;
+  //typedef boost::geometry::model::linestring<Point> Line;
   std::vector<Point> points;
   boost::geometry::intersection(line1,line2,points);
   assert(points.empty() || points.size() == 1);
@@ -66,7 +68,7 @@ GetLineRectIntersections(
 {
   typedef boost::geometry::model::d2::point_xy<T> Point;
   typedef boost::geometry::model::linestring<Point> Line;
-  typedef boost::geometry::model::box<Point> Rect;
+  //typedef boost::geometry::model::box<Point> Rect;
 
   const Point p0 = Point(rect.min_corner().x(), rect.min_corner().y());
   const Point p1 = Point(rect.max_corner().x(), rect.min_corner().y());

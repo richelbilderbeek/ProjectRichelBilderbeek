@@ -84,6 +84,7 @@ INCLUDEPATH += \
     ../../Tools/ToolMusicTheory \
     ../../Tools/ToolPerfectElasticCollision \
     ../../Tools/ToolPicToCode \
+    ../../Tools/ToolQmakeWatcher \
     ../../Tools/ToolRandomCode \
     ../../Tools/ToolRegexTester \
     ../../Tools/ToolRichelBilderbeekGallery \
@@ -326,7 +327,9 @@ SOURCES += \
     ../../Tools/ToolTestShinyButton/testshinybuttonmenudialog.cpp \
     ../../Tools/ToolTestSimpleLinearRegression/tooltestsimplelinearregressionmenudialog.cpp \
     ../../Tools/ToolTestToggleButton/testtogglebuttonmenudialog.cpp \
-    richelbilderbeekmenudialog.cpp
+    richelbilderbeekmenudialog.cpp \
+    ../../Classes/CppRichelBilderbeekProgram/richelbilderbeekprogramtypes.cpp \
+    ../../Tools/ToolQmakeWatcher/qmakewatchermenudialog.cpp
 
 HEADERS += \
     ../../Classes/CppAbout/about.h \
@@ -554,7 +557,9 @@ HEADERS += \
     ../../Tools/ToolTestSimpleLinearRegression/tooltestsimplelinearregressionmenudialog.h \
     ../../Tools/ToolTestToggleButton/testtogglebuttonmenudialog.h \
     ../../Tools/ToolTestToggleButton/testtogglebuttonmenudialog.h \
-    richelbilderbeekmenudialog.h
+    richelbilderbeekmenudialog.h \
+    ../../Classes/CppRichelBilderbeekProgram/richelbilderbeekprogramtypes.h \
+    ../../Tools/ToolQmakeWatcher/qmakewatchermenudialog.h
 
 OTHER_FILES += \
     ../../Classes/CppGaborFilter/Licence.txt \
@@ -581,7 +586,8 @@ OTHER_FILES += \
     ../../Tools/ToolTestQtCreatorProFile/Licence.txt \
     ../../Tools/ToolTestQtModels/Licence.txt \
     ../../Tools/ToolTestQtRoundedRectItem/Licence.txt \
-    ../../Tools/ToolTestSimpleLinearRegression/Licence.txt
+    ../../Tools/ToolTestSimpleLinearRegression/Licence.txt \
+    ../../Tools/ToolQmakeWatcher/Licence.txt
 
 #
 #

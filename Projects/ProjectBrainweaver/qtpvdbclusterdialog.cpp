@@ -1,5 +1,7 @@
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include "qtpvdbclusterdialog.h"
 
 #include <fstream>
@@ -339,8 +341,8 @@ void ribi::pvdb::QtPvdbClusterDialog::Test()
     std::for_each(v.begin(),v.end(),
       [](const boost::shared_ptr<pvdb::File> & file)
       {
-        const bool had_cluster = file->GetCluster();
-        const bool had_concept_map = file->GetConceptMap();
+        const bool had_cluster = file->GetCluster().get(); //.get() needed for crosscompiler
+        const bool had_concept_map = file->GetConceptMap().get(); //.get() needed for crosscompiler
 
         boost::shared_ptr<QtPvdbClusterDialog> d(new QtPvdbClusterDialog(file));
 

@@ -30,22 +30,25 @@ namespace RichelBilderbeek {
 
 struct QtResources
 {
+  ///Creates all resources needed
+  ///Will throw a std::logic_error, as these must be supplied in the
+  ///Qt resource file
   QtResources();
-  const std::string GetBackground() const { return "RichelbilderbeekNlBackground.png"; }
-  const std::string GetBep() const { return "ProjectWtWebsiteBep.png"; }
-  const std::string GetBlack() const { return "PicBlack.png"; }
-  const std::string GetCl() const { return "PicCl.png"; }
-  //const std::string GetCppBuilder() const { return "PicCppBuilder.png"; }
-  const std::string GetDesktop() const { return "PicDesktop.png"; }
-  const std::string GetGreen() const { return "PicGreen.png"; }
-  //const std::string GetLinux() const { return "PicLinux.png"; }
-  //const std::string GetLinuxMacWindows() const { return "PicLinuxMacWindows.png"; }
-  //const std::string GetMac() const { return "PicMac.png"; }
-  const std::string GetOrange() const { return "PicOrange.png"; }
-  //const std::string GetQt() const { return "PicQt.png"; }
-  //const std::string GetR() const { return "PicR.png"; }
-  const std::string GetRed() const { return "PicRed.png"; }
-  const std::string GetYellow() const { return "PicYellow.png"; }
+  const std::string GetBackground() const noexcept { return "RichelbilderbeekNlBackground.png"; }
+  const std::string GetBep() const noexcept { return "ProjectWtWebsiteBep.png"; }
+  const std::string GetBlack() const noexcept { return "PicBlack.png"; }
+  const std::string GetCl() const noexcept { return "PicCl.png"; }
+  //const std::string GetCppBuilder() const noexcept { return "PicCppBuilder.png"; }
+  const std::string GetDesktop() const noexcept { return "PicDesktop.png"; }
+  const std::string GetGreen() const noexcept { return "PicGreen.png"; }
+  //const std::string GetLinux() const noexcept { return "PicLinux.png"; }
+  //const std::string GetLinuxMacWindows() const noexcept { return "PicLinuxMacWindows.png"; }
+  //const std::string GetMac() const noexcept { return "PicMac.png"; }
+  const std::string GetOrange() const noexcept { return "PicOrange.png"; }
+  //const std::string GetQt() const noexcept { return "PicQt.png"; }
+  //const std::string GetR() const noexcept { return "PicR.png"; }
+  const std::string GetRed() const noexcept { return "PicRed.png"; }
+  const std::string GetYellow() const noexcept { return "PicYellow.png"; }
 
   ///Obtain this class its version
   static const std::string GetVersion() noexcept;
@@ -53,13 +56,12 @@ struct QtResources
   ///Obtain this class its version history
   static const std::vector<std::string> GetVersionHistory() noexcept;
 
-  const std::string GetWeb() const { return "PicWeb.png"; }
-  const std::string GetWindows() const { return "PicWindows.png"; }
-  const std::vector<std::string> GetFilenames() const;
+  const std::string GetWeb() const noexcept { return "PicWeb.png"; }
+  const std::string GetWindows() const noexcept { return "PicWindows.png"; }
 
   ///Determines if a filename is a regular file
   ///From http://www.richelbilderbeek.nl/CppIsRegularFile.htm
-  static bool IsRegularFile(const std::string& filename);
+  static bool IsRegularFile(const std::string& filename) noexcept;
 
 };
 

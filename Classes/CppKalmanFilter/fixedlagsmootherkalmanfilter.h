@@ -111,6 +111,7 @@ struct FixedLagSmootherKalmanFilter : public KalmanFilter
   ///Can only be deleted by boost::checked_delete
   ~FixedLagSmootherKalmanFilter() noexcept {}
   friend void boost::checked_delete<>(FixedLagSmootherKalmanFilter*);
+  friend void boost::checked_delete<>(const FixedLagSmootherKalmanFilter*);
 
   ///The Kalman filter last calculation elements
   const boost::shared_ptr<KalmanFilterCalculationElements> m_last_calculation;

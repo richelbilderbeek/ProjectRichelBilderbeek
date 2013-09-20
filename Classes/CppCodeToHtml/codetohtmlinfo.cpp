@@ -136,6 +136,22 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "  <li><a href=\"CppAssertExample2.zip\">Download the Qt Creator project 'CppAssertExample2' (zip)</a></li>",
         "</ul>",
       }
+    },{ "CppBimapExample1",
+      {
+        R"(<p><a href="CppBimapExample1.htm">boost::bimap example 1: find</a> is a <a href="CppBimap.htm">boost::bimap</a> example.</p>)",
+        R"(<p>&nbsp;</p>)",
+        R"(<ul>)",
+        R"(  <li><a href="CppBimapExample1.zip">Download the Qt Creator project 'CppBimapExample1' (zip)</a></li>)",
+        R"(</ul>)",
+      }
+    },{ "CppBimapExample2",
+      {
+        R"(<p><a href="CppBimapExample2.htm">boost::bimap example 2: copy</a> is a <a href="CppBimap.htm">boost::bimap</a> example.</p>)",
+        R"(<p>&nbsp;</p>)",
+        R"(<ul>)",
+        R"(  <li><a href="CppBimapExample2.zip">Download the Qt Creator project 'CppBimapExample1' (zip)</a></li>)",
+        R"(</ul>)",
+      }
     },{ "CppBinaryNewickVector",
       {
         "<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",

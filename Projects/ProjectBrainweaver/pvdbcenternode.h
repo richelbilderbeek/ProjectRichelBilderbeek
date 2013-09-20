@@ -3,6 +3,7 @@
 
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include "pvdbnode.h"
 #include "pvdbfwd.h"
 #pragma GCC diagnostic pop

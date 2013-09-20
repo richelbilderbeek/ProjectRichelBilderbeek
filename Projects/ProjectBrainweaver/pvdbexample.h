@@ -5,13 +5,13 @@
 
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/shared_ptr.hpp>
 #include <boost/signals2.hpp>
 #include "pvdbcompetency.h"
 #pragma GCC diagnostic pop
 
 namespace ribi {
-
 namespace pvdb {
 
 struct ExampleFactory;
@@ -121,7 +121,6 @@ bool operator>(const boost::shared_ptr<pvdb::Example>& lhs,const boost::shared_p
 bool operator>(const boost::shared_ptr<pvdb::Example>& lhs,const boost::shared_ptr<const pvdb::Example>& rhs);
 
 } //~namespace pvdb
-
 } //~namespace ribi
 
 #endif // PVDBEXAMPLE_H

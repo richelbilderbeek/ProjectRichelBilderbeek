@@ -24,9 +24,9 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <vector>
 
 namespace ribi {
-
 namespace RichelBilderbeek {
 
+///ProgramTypes works with ProgramType
 enum class ProgramType
 {
   aminoAcidFighter,
@@ -187,10 +187,7 @@ enum class ProgramType
   n_types //Used for debugging
 };
 
-std::vector<ProgramType> GetAllProgramTypes();
-
 } //~namespace RichelBilderbeek {
-
 } //~namespace ribi
 
 #endif // RICHELBILDERBEEKPROGRAMTYPE_H

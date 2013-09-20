@@ -1,13 +1,15 @@
 #ifndef PVDBEXAMPLES_H
 #define PVDBEXAMPLES_H
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/shared_ptr.hpp>
 #include <boost/signals2.hpp>
-
 #include "pvdbfwd.h"
+#pragma GCC diagnostic pop
 
 namespace ribi {
-
 namespace pvdb {
 
 ///Container of Example instances
@@ -28,7 +30,7 @@ struct Examples
   ///Something of one of the examples was changed
   mutable boost::signals2::signal<void(const Examples*)> m_signal_examples_changed;
 private:
-  ~Examples() {}
+  ~Examples() noexcept {}
 
   std::vector<boost::shared_ptr<pvdb::Example> > m_v;
 
@@ -68,7 +70,6 @@ bool operator>=(const boost::shared_ptr<ribi::pvdb::Examples>& lhs, const boost:
 bool operator>=(const boost::shared_ptr<ribi::pvdb::Examples>& lhs, boost::shared_ptr<const pvdb::Examples>& rhs) = delete;
 
 } //~namespace pvdb
-
 } //~namespace ribi
 
 #endif // PVDBEXAMPLES_H

@@ -45,14 +45,12 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "qtdisplaypositem.h"
 #include "qtexercise.h"
 #include "qtgaborfilterwidget.h"
-#include "toolsimplifynewickmenudialog.h"
 #include "qtkeyboardfriendlygraphicsview.h"
 #include "qtlabeledquadbezierarrowitem.h"
 #include "qtledwidget.h"
 #include "qtleftrightrectitem.h"
 #include "qtmatrix.h"
 #include "qtmultiplechoicequestiondialog.h"
-#include "qttoolsimplifynewickmaindialog.h"
 #include "qtmysterymachinewidget.h"
 #include "qtopenquestiondialog.h"
 #include "qtpatharrowitem.h"
@@ -71,13 +69,16 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "qtstdvectorstringmodel.h"
 #include "qttictactoewidget.h"
 #include "qttogglebuttonwidget.h"
+#include "qttoolsimplifynewickmaindialog.h"
 #include "qtublasmatrixdoublemodel.h"
 #include "qtublasvectordoublemodel.h"
 #include "richelbilderbeekmenudialog.h"
 #include "richelbilderbeekprogram.h"
+#include "richelbilderbeekprogramtypes.h"
 #include "testqtarrowitemsmenudialog.h"
 #include "testqtkeyboardfriendlygraphicsviewmenudialog.h"
 #include "testtogglebuttonmenudialog.h"
+#include "toolsimplifynewickmenudialog.h"
 #include "tooltestqtmodelsmenudialog.h"
 #include "trace.h"
 #include "ui_qtrichelbilderbeekmenudialog.h"
@@ -179,11 +180,11 @@ void ribi::QtRichelBilderbeekMenuDialog::OnAbout()
 void ribi::QtRichelBilderbeekMenuDialog::OnShow(const std::string text)
 {
   //Display the dialog
-  const std::vector<RichelBilderbeek::ProgramType> v = RichelBilderbeek::GetAllProgramTypes();
+  const std::vector<RichelBilderbeek::ProgramType> v = RichelBilderbeek::ProgramTypes::GetAll();
   for (const RichelBilderbeek::ProgramType type: v)
   {
     const boost::shared_ptr<RichelBilderbeek::Program> p = RichelBilderbeek::Program::CreateProgram(type);
-    if (p->GetName() == text)
+    if (p->GetScreenName() == text)
     {
 
       const boost::shared_ptr<QDialog> dialog(
@@ -231,7 +232,7 @@ void ribi::QtRichelBilderbeekMenuDialog::Test()
     is_tested = true;
   }
   {
-    const std::vector<RichelBilderbeek::ProgramType> v = RichelBilderbeek::GetAllProgramTypes();
+    const std::vector<RichelBilderbeek::ProgramType> v = RichelBilderbeek::ProgramTypes::GetAll();
     for (const RichelBilderbeek::ProgramType type: v)
     {
       #ifndef NDEBUG

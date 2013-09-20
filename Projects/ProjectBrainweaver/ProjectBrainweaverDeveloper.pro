@@ -9,12 +9,6 @@ QMAKE_LFLAGS_DEBUG += -pg
 QMAKE_CXXFLAGS += -pg
 QMAKE_LFLAGS += -pg
 
-QMAKE_CXXFLAGS += -std=c++11 -Wall -Wextra -Weffc++
-
-unix {
-  QMAKE_CXXFLAGS += -Werror
-}
-
 INCLUDEPATH += \
   ../../Classes/CppAbout \
   ../../Classes/CppFuzzy_equal_to \
@@ -308,11 +302,11 @@ OTHER_FILES += \
     BrainweaverTest.py
 
 RESOURCES += \
-    Brainweaver.qrc \
     ../../Tools/ToolStyleSheetSetter/ToolStyleSheetSetter.qrc \
     ../../Tools/ToolTestQtArrowItems/ToolTestQtArrowItems.qrc \
     ../../Tools/ToolTestQtRoundedEditRectItem/ToolTestQtRoundedEditRectItem.qrc \
-    ../../Tools/ToolTestQtRoundedTextRectItem/ToolTestQtRoundedTextRectItem.qrc
+    ../../Tools/ToolTestQtRoundedTextRectItem/ToolTestQtRoundedTextRectItem.qrc \
+    Brainweaver.qrc
 
 #
 #
@@ -320,15 +314,14 @@ RESOURCES += \
 #
 #
 
-CONFIG(debug, debug|release) {
-  message(Debug mode)
+CONFIG(release, debug|release) {
+  DEFINES += NDEBUG NTRACE_BILDERBIKKEL
 }
 
-CONFIG(release, debug|release) {
-  message(Release mode)
+QMAKE_CXXFLAGS += -std=c++11 -Wall -Wextra -Weffc++ -Werror
 
-  #Remove all asserts and TRACE
-  DEFINES += NDEBUG NTRACE_BILDERBIKKEL
+unix {
+  QMAKE_CXXFLAGS += -Werror
 }
 
 #
@@ -337,4 +330,7 @@ CONFIG(release, debug|release) {
 #
 #
 
-# Do not link to the Boost libraries, as I cannot figure out how the crosscompiler detects these
+win32 {
+  INCLUDEPATH += \
+    ../../Libraries/boost_1_54_0
+}

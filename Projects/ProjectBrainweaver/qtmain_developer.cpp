@@ -1,5 +1,7 @@
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include <iostream>
 
 #include <boost/lexical_cast.hpp>
@@ -134,7 +136,7 @@ int main(int argc, char *argv[])
     }
   }
   d.show();
-  a.exec();
+  return a.exec();
 }
 
 ///TODO

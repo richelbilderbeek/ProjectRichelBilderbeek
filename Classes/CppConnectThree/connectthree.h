@@ -70,6 +70,7 @@ struct ConnectThree
 private:
   ~ConnectThree() noexcept {}
   friend void boost::checked_delete<>(ConnectThree*);
+  friend void boost::checked_delete<>(const ConnectThree*);
 
   //X-Y-ordered 2D std::vector
   std::vector<std::vector<int> > m_area;

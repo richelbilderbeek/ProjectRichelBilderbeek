@@ -1,13 +1,16 @@
 #ifndef QTPVDBRATECONCEPT_H
 #define QTPVDBRATECONCEPT_H
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include <boost/shared_ptr.hpp>
 #include "qtpvdbconceptitem.h"
-
 #include "pvdbfwd.h"
+#pragma GCC diagnostic pop
 
 namespace ribi {
-
 namespace pvdb {
 
 ///QtPvdbRateConcept display a Concept that is (1) a node (2) is unmovable (3) has focus on

@@ -83,11 +83,9 @@ struct GaborFilter
   double SuggestSigma(const double width, const double height) const;
 
   private:
-  ///GaborFilter can only be deleted by Boost smart pointers
   virtual ~GaborFilter() noexcept {}
-  ///GaborFilter can only be deleted by Boost smart pointers
-  //Herb Sutter. Exceptional C++ style. 2005. ISBN: 0-201-76042-8. Item 8: 'Befriending templates'.
   friend void boost::checked_delete<>(GaborFilter*);
+  friend void boost::checked_delete<>(const GaborFilter*);
 
   ///Angle of the filter in radians
   double m_angle;

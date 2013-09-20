@@ -1,5 +1,7 @@
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include "qtpvdbconceptmapeditwidget.h"
 
 #ifdef COMPILER_SUPPORTS_THREADS_20130507

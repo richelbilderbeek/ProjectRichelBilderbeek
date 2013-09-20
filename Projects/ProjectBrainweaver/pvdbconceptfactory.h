@@ -4,15 +4,18 @@
 #include <array>
 #include <vector>
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/array.hpp>
 #include <boost/shared_ptr.hpp>
 
 #include "pvdbcompetency.h"
 
 #include "pvdbfwd.h"
+#pragma GCC diagnostic pop
 
 namespace ribi {
-
 namespace pvdb {
 
 ///Creates ribi::pvdb::Concepts
@@ -48,7 +51,6 @@ struct ConceptFactory
 };
 
 } //~namespace pvdb
-
 } //~namespace ribi
 
 #endif // PVDBCONCEPTFACTORY_H
