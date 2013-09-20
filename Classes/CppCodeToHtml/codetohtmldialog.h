@@ -24,11 +24,15 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <string>
 #include <vector>
 
+#include <boost/scoped_ptr.hpp>
+
 #include "codetohtmlcontenttype.h"
 #include "codetohtmlpagetype.h"
 #include "codetohtmltechinfotype.h"
 
 namespace c2h {
+
+struct Info;
 
 ///CodeToHtmlDialog is the GUI independent UI of CodeToHtml
 struct Dialog
@@ -42,11 +46,11 @@ struct Dialog
   ///Convert a source (which can be a project file or code snippet text to an HTML page
   const std::vector<std::string> ToHtml() const;
 
-
   private:
+  const ContentType m_content_type;
+  const boost::scoped_ptr<const Info> m_info;
   const PageType m_page_type;
   const std::string m_source;
-  const ContentType m_content_type;
   const TechInfoType m_tech_info;
 
   #ifndef NDEBUG

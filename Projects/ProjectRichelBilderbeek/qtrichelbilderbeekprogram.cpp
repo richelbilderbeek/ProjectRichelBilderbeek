@@ -50,7 +50,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "qttooltestapproximatormenudialog.h"
 #include "qttooltestmultiapproximatormenudialog.h"
 #include "qttooltestsimplelinearregressionmenudialog.h"
-
+#include "qtqmakewatchermenudialog.h"
 #include "qtpictocodemenudialog.h"
 #include "qtpylosmenudialog.h"
 #include "qtrandomcodemenudialog.h"
@@ -160,7 +160,7 @@ ribi::QtHideAndShowDialog * ribi::QtRichelBilderbeekProgram::CreateQtMenuDialog(
     case ProgramType::pong: break;
     case ProgramType::primeExpert: break;
     case ProgramType::pylos: p = new QtPylosMenuDialog; break;
-    case ProgramType::qmakeWatcher: break;
+    case ProgramType::qmakeWatcher: new QtQmakeWatcherMenuDialog; break;
     case ProgramType::quadraticSolver: break;
     case ProgramType::rampal: break;
     case ProgramType::rasper: break;
@@ -274,11 +274,11 @@ ribi::QtHideAndShowDialog * ribi::QtRichelBilderbeekProgram::CreateQtPlaceholder
   const boost::shared_ptr<RichelBilderbeek::Program> p = RichelBilderbeek::Program::CreateProgram(type);
   assert(p);
   {
-    const std::string title = p->GetName() + "(placeholder)";
+    const std::string title = p->GetScreenName() + "(placeholder)";
     d->setWindowTitle(title.c_str());
   }
   {
-    QLabel * const label = new QLabel((p->GetName() + "(placeholder)").c_str());
+    QLabel * const label = new QLabel((p->GetScreenName() + "(placeholder)").c_str());
     label->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
     layout->addWidget(label);
   }

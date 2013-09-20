@@ -45,6 +45,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #include "codetohtmlversion.h"
 #include "codetohtml.h"
+#include "codetohtmlinfo.h"
 #include "codetohtmldialog.h"
 #include "qtaboutdialog.h"
 #include "trace.h"

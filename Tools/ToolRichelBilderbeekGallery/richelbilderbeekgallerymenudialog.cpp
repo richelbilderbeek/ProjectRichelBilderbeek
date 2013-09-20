@@ -333,7 +333,7 @@ const std::vector<std::string> ribi::RichelBilderbeek::GalleryMenuDialog::ToHtml
       = "<h2 style=\"border:5px solid;background-color:#BBBBBB\">&nbsp;<br/><a href=\""
       + p.GetUrl()
       + "\">"
-      + p.GetName()
+      + p.GetScreenName()
       + "</a><br/>&nbsp;</h2>";
     v.push_back(s);
   }
@@ -344,7 +344,7 @@ const std::vector<std::string> ribi::RichelBilderbeek::GalleryMenuDialog::ToHtml
       = "<p><img src=\""
       + p.GetFilenameDesktopWindowsOnly()
       + "\" alt=\""
-      + p.GetName()
+      + p.GetScreenName()
       + "\"/></p>";
       //+ "\" width=\"383\" height=\"400\"/></p>"
     v.push_back(s);
@@ -356,7 +356,7 @@ const std::vector<std::string> ribi::RichelBilderbeek::GalleryMenuDialog::ToHtml
       = "<p><img src=\""
       + p.GetFilenameDesktop()
       + "\" alt=\""
-      + p.GetName()
+      + p.GetScreenName()
       + "\"/></p>";
       //+ "\" width=\"383\" height=\"400\"/></p>"
     v.push_back(s);
@@ -368,7 +368,7 @@ const std::vector<std::string> ribi::RichelBilderbeek::GalleryMenuDialog::ToHtml
       = "<p><img src=\""
       + p.GetFilenameWeb()
       + "\" alt=\""
-      + p.GetName()
+      + p.GetScreenName()
       + "\"/></p>";
       //+ "\" width=\"383\" height=\"400\"/></p>"
     v.push_back(s);

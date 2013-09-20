@@ -1,5 +1,7 @@
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include "qtpvdbmenudialog.h"
 
 #include <boost/lexical_cast.hpp>
@@ -80,19 +82,19 @@ ribi::pvdb::QtPvdbMenuDialog::~QtPvdbMenuDialog() noexcept
   delete ui;
 }
 
-void ribi::pvdb::QtPvdbMenuDialog::keyPressEvent(QKeyEvent* e)
+void ribi::pvdb::QtPvdbMenuDialog::keyPressEvent(QKeyEvent* e) noexcept
 {
   assert(e);
   if (e->key()  == Qt::Key_Escape) { close(); return; }
 }
 
-void ribi::pvdb::QtPvdbMenuDialog::on_button_assessor_clicked()
+void ribi::pvdb::QtPvdbMenuDialog::on_button_assessor_clicked() noexcept
 {
   QtPvdbAssessorMenuDialog d;
   if (m_show_child_dialogs_modal) { this->ShowChild(&d); } else { d.close(); } //For testing
 }
 
-void ribi::pvdb::QtPvdbMenuDialog::on_button_rate_concept_clicked()
+void ribi::pvdb::QtPvdbMenuDialog::on_button_rate_concept_clicked() noexcept
 {
   //Obtain an empty file
   const boost::shared_ptr<pvdb::File> file = pvdb::FileFactory::Create();
@@ -115,7 +117,7 @@ void ribi::pvdb::QtPvdbMenuDialog::on_button_rate_concept_clicked()
   if (m_show_child_dialogs_modal) { this->ShowChild(d.get()); } else { d->close(); } //For testing
 }
 
-void ribi::pvdb::QtPvdbMenuDialog::on_button_rate_concept_map_clicked()
+void ribi::pvdb::QtPvdbMenuDialog::on_button_rate_concept_map_clicked() noexcept
 {
   TRACE("***");
   const boost::shared_ptr<pvdb::File> file = pvdb::FileFactory::Create();
@@ -126,14 +128,14 @@ void ribi::pvdb::QtPvdbMenuDialog::on_button_rate_concept_map_clicked()
   if (m_show_child_dialogs_modal) { this->ShowChild(&d); } else { d.close(); }
 }
 
-void ribi::pvdb::QtPvdbMenuDialog::on_button_rate_examples_clicked()
+void ribi::pvdb::QtPvdbMenuDialog::on_button_rate_examples_clicked() noexcept
 {
   const boost::shared_ptr<ribi::pvdb::Concept> concept = ribi::pvdb::ConceptFactory::GetTests().at(4);
   boost::shared_ptr<QtPvdbRateExamplesDialog> d(new QtPvdbRateExamplesDialog(concept));
   if (m_show_child_dialogs_modal) { this->ShowChild(d.get()); } else { d->close(); } //For testing
 }
 
-void ribi::pvdb::QtPvdbMenuDialog::on_button_rating_clicked()
+void ribi::pvdb::QtPvdbMenuDialog::on_button_rating_clicked() noexcept
 {
   const boost::shared_ptr<pvdb::File> file = pvdb::FileFactory::GetTests().at(4);
   assert(file);
@@ -141,7 +143,7 @@ void ribi::pvdb::QtPvdbMenuDialog::on_button_rating_clicked()
   if (m_show_child_dialogs_modal) { this->ShowChild(&d); } else { d.close(); }
 }
 
-void ribi::pvdb::QtPvdbMenuDialog::on_button_student_clicked()
+void ribi::pvdb::QtPvdbMenuDialog::on_button_student_clicked() noexcept
 {
   if (!m_show_child_dialogs_modal) return;
 
@@ -169,7 +171,7 @@ void ribi::pvdb::QtPvdbMenuDialog::on_button_student_clicked()
 
 }
 
-void ribi::pvdb::QtPvdbMenuDialog::on_button_test_cluster_clicked()
+void ribi::pvdb::QtPvdbMenuDialog::on_button_test_cluster_clicked() noexcept
 {
   const boost::shared_ptr<pvdb::File> file = pvdb::FileFactory::Create();
   assert(!file->GetCluster());
@@ -195,7 +197,7 @@ void ribi::pvdb::QtPvdbMenuDialog::on_button_test_cluster_clicked()
   if (m_show_child_dialogs_modal) { this->ShowChild(&d); } else { d.close(); }
 }
 
-void ribi::pvdb::QtPvdbMenuDialog::on_button_overview_clicked()
+void ribi::pvdb::QtPvdbMenuDialog::on_button_overview_clicked() noexcept
 {
   const QString old_title = this->windowTitle();
   this->setWindowTitle("Loading, please wait...");
@@ -203,7 +205,7 @@ void ribi::pvdb::QtPvdbMenuDialog::on_button_overview_clicked()
   if (m_show_child_dialogs_modal) { this->ShowChild(&d); } else { d.close(); }
 }
 
-void ribi::pvdb::QtPvdbMenuDialog::on_button_about_clicked()
+void ribi::pvdb::QtPvdbMenuDialog::on_button_about_clicked() noexcept
 {
   const auto d = QtPvdbAboutDialog::Get();
   if (m_show_child_dialogs_modal)
@@ -218,7 +220,7 @@ void ribi::pvdb::QtPvdbMenuDialog::on_button_about_clicked()
   }
 }
 
-void ribi::pvdb::QtPvdbMenuDialog::on_button_test_conceptmap_clicked()
+void ribi::pvdb::QtPvdbMenuDialog::on_button_test_conceptmap_clicked() noexcept
 {
   const boost::shared_ptr<pvdb::File> file = pvdb::FileFactory::Create();
   const boost::shared_ptr<ribi::pvdb::ConceptMap> concept_map
@@ -231,7 +233,7 @@ void ribi::pvdb::QtPvdbMenuDialog::on_button_test_conceptmap_clicked()
   if (m_show_child_dialogs_modal) { this->ShowChild(&d); } else { d.close(); }
 }
 
-void ribi::pvdb::QtPvdbMenuDialog::on_button_test_conceptedit_clicked()
+void ribi::pvdb::QtPvdbMenuDialog::on_button_test_conceptedit_clicked() noexcept
 {
   const auto concepts = ribi::pvdb::ConceptFactory::GetTests();
   boost::shared_ptr<ribi::pvdb::Concept>  concept = concepts[ std::rand() % concepts.size() ];
@@ -244,13 +246,13 @@ void ribi::pvdb::QtPvdbMenuDialog::on_button_test_conceptedit_clicked()
   if (m_show_child_dialogs_modal) { this->ShowChild(&d); } else { d.close(); }
 }
 
-void ribi::pvdb::QtPvdbMenuDialog::on_button_view_files_clicked()
+void ribi::pvdb::QtPvdbMenuDialog::on_button_view_files_clicked() noexcept
 {
   QtPvdbViewFilesDialog d;
   if (m_show_child_dialogs_modal) { this->ShowChild(&d); } else { d.close(); }
 }
 
-void ribi::pvdb::QtPvdbMenuDialog::on_button_view_test_concept_maps_clicked()
+void ribi::pvdb::QtPvdbMenuDialog::on_button_view_test_concept_maps_clicked() noexcept
 {
   QtPvdbViewTestsDialog d;
   if (m_show_child_dialogs_modal) { this->ShowChild(&d); } else { d.close(); }
@@ -258,7 +260,7 @@ void ribi::pvdb::QtPvdbMenuDialog::on_button_view_test_concept_maps_clicked()
 
 
 #ifndef NDEBUG
-void ribi::pvdb::QtPvdbMenuDialog::Test()
+void ribi::pvdb::QtPvdbMenuDialog::Test() noexcept
 {
   {
     static bool is_tested = false;
@@ -480,56 +482,56 @@ void ribi::pvdb::QtPvdbMenuDialog::Test()
 }
 #endif
 
-void ribi::pvdb::QtPvdbMenuDialog::on_button_test_conceptitem_clicked()
+void ribi::pvdb::QtPvdbMenuDialog::on_button_test_conceptitem_clicked() noexcept
 {
   QtPvdbTestConceptItemDialog d;
   if (m_show_child_dialogs_modal) { this->ShowChild(&d); } else { d.close(); }
 }
 
-void ribi::pvdb::QtPvdbMenuDialog::on_button_test_node_item_clicked()
+void ribi::pvdb::QtPvdbMenuDialog::on_button_test_node_item_clicked() noexcept
 {
   QtPvdbTestNodeItemDialog d;
   if (m_show_child_dialogs_modal) { this->ShowChild(&d); } else { d.close(); }
 }
 
 
-void ribi::pvdb::QtPvdbMenuDialog::on_button_test_qtroundedtextrectitem_clicked()
+void ribi::pvdb::QtPvdbMenuDialog::on_button_test_qtroundedtextrectitem_clicked() noexcept
 {
   QtTestQtRoundedTextRectItemMenuDialog d;
   if (m_show_child_dialogs_modal) { this->ShowChild(&d); } else { d.close(); }
 }
 
-void ribi::pvdb::QtPvdbMenuDialog::on_button_test_qtroundededitrectitem_clicked()
+void ribi::pvdb::QtPvdbMenuDialog::on_button_test_qtroundededitrectitem_clicked() noexcept
 {
   QtTestQtRoundedEditRectItemMenuDialog d;
   if (m_show_child_dialogs_modal) { this->ShowChild(&d); } else { d.close(); }
 }
 
-void ribi::pvdb::QtPvdbMenuDialog::on_button_test_edge_item_clicked()
+void ribi::pvdb::QtPvdbMenuDialog::on_button_test_edge_item_clicked() noexcept
 {
   QtPvdbTestEdgeItemDialog d;
   if (m_show_child_dialogs_modal) { this->ShowChild(&d); } else { d.close(); }
 }
 
-void ribi::pvdb::QtPvdbMenuDialog::on_button_test_arrowitems_clicked()
+void ribi::pvdb::QtPvdbMenuDialog::on_button_test_arrowitems_clicked() noexcept
 {
   QtTestQtArrowItemsMenuDialog d;
   if (m_show_child_dialogs_modal) { this->ShowChild(&d); } else { d.close(); }
 }
 
-void ribi::pvdb::QtPvdbMenuDialog::on_button_test_qtconceptmapeditwidget_clicked()
+void ribi::pvdb::QtPvdbMenuDialog::on_button_test_qtconceptmapeditwidget_clicked() noexcept
 {
   QtPvdbTestConceptMapEditWidgetDialog d;
   if (m_show_child_dialogs_modal) { this->ShowChild(&d); } else { d.close(); }
 }
 
-void ribi::pvdb::QtPvdbMenuDialog::on_button_test_qtconceptmapratewidget_clicked()
+void ribi::pvdb::QtPvdbMenuDialog::on_button_test_qtconceptmapratewidget_clicked() noexcept
 {
   QtPvdbTestConceptMapRateWidgetDialog d;
   if (m_show_child_dialogs_modal) { this->ShowChild(&d); } else { d.close(); }
 }
 
-void ribi::pvdb::QtPvdbMenuDialog::on_button_create_test_files_clicked()
+void ribi::pvdb::QtPvdbMenuDialog::on_button_create_test_files_clicked() noexcept
 {
   //Obtain the human student concept maps
   {
@@ -566,20 +568,20 @@ void ribi::pvdb::QtPvdbMenuDialog::on_button_create_test_files_clicked()
   }
 }
 
-void ribi::pvdb::QtPvdbMenuDialog::on_button_modify_stylesheet_clicked()
+void ribi::pvdb::QtPvdbMenuDialog::on_button_modify_stylesheet_clicked() noexcept
 {
   ToolStyleSheetSetterMainDialog d(qApp->styleSheet().toStdString());
   if (m_show_child_dialogs_modal) { this->ShowChild(&d); } else { d.close(); }
   qApp->setStyleSheet(d.GetStyleSheet().c_str());
 }
 
-void ribi::pvdb::QtPvdbMenuDialog::on_button_test_qtconceptmapdisplaywidget_clicked()
+void ribi::pvdb::QtPvdbMenuDialog::on_button_test_qtconceptmapdisplaywidget_clicked() noexcept
 {
   QtPvdbTestConceptMapDisplayWidgetDialog d;
   if (m_show_child_dialogs_modal) { this->ShowChild(&d); } else { d.close(); }
 }
 
-void ribi::pvdb::QtPvdbMenuDialog::on_button_print_concept_map_clicked()
+void ribi::pvdb::QtPvdbMenuDialog::on_button_print_concept_map_clicked() noexcept
 {
   on_button_create_test_files_clicked();
   const std::string filename = "1." + pvdb::File::GetFilenameExtension();
@@ -590,7 +592,7 @@ void ribi::pvdb::QtPvdbMenuDialog::on_button_print_concept_map_clicked()
   if (m_show_child_dialogs_modal) { this->ShowChild(&d); } else { d.close(); }
 }
 
-void ribi::pvdb::QtPvdbMenuDialog::on_button_print_rating_clicked()
+void ribi::pvdb::QtPvdbMenuDialog::on_button_print_rating_clicked() noexcept
 {
   on_button_create_test_files_clicked();
   const std::string filename = "1." + pvdb::File::GetFilenameExtension();
@@ -601,7 +603,7 @@ void ribi::pvdb::QtPvdbMenuDialog::on_button_print_rating_clicked()
   if (m_show_child_dialogs_modal) { this->ShowChild(&d); } else { d.close(); }
 }
 
-void ribi::pvdb::QtPvdbMenuDialog::on_button_rate_concept_auto_clicked()
+void ribi::pvdb::QtPvdbMenuDialog::on_button_rate_concept_auto_clicked() noexcept
 {
 
   const boost::shared_ptr<ribi::pvdb::ConceptMap> concept_map
@@ -611,7 +613,7 @@ void ribi::pvdb::QtPvdbMenuDialog::on_button_rate_concept_auto_clicked()
   if (m_show_child_dialogs_modal) { this->ShowChild(d.get()); } else { d->close(); }
 }
 
-void ribi::pvdb::QtPvdbMenuDialog::on_button_test_create_sub_concept_map_clicked()
+void ribi::pvdb::QtPvdbMenuDialog::on_button_test_create_sub_concept_map_clicked() noexcept
 {
   QtPvdbTestCreateSubConceptMapDialog d;
   if (m_show_child_dialogs_modal) { this->ShowChild(&d); } else { d.close(); }

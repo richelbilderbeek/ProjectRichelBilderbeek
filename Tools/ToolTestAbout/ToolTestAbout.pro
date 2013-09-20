@@ -1,7 +1,6 @@
 QT       += core gui
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
-QMAKE_CXXFLAGS += -std=c++11 -Wall -Wextra -Werror
 
 RESOURCES += \
     ToolTestAbout.qrc
@@ -11,20 +10,39 @@ TEMPLATE = app
 INCLUDEPATH += \
     ../../Classes/CppAbout \
     ../../Classes/CppQtAboutDialog \
+    ../../Classes/CppQtHideAndShowDialog \
     ../../Classes/CppTrace
 
 SOURCES += main.cpp\
         qttestaboutmaindialog.cpp \
     ../../Classes/CppQtAboutDialog/qtaboutdialog.cpp \
-    ../../Classes/CppAbout/about.cpp
+    ../../Classes/CppAbout/about.cpp \
+    ../../Classes/CppQtHideAndShowDialog/qthideandshowdialog.cpp
 
 HEADERS  += qttestaboutmaindialog.h \
     ../../Classes/CppQtAboutDialog/qtaboutdialog.h \
     ../../Classes/CppAbout/about.h \
-    ../../Classes/CppTrace/trace.h
+    ../../Classes/CppTrace/trace.h \
+    ../../Classes/CppQtHideAndShowDialog/qthideandshowdialog.h
 
 FORMS    += qttestaboutmaindialog.ui \
     ../../Classes/CppQtAboutDialog/qtaboutdialog.ui
+
+#
+#
+# Type of compile
+#
+#
+
+CONFIG(release, debug|release) {
+  DEFINES += NDEBUG NTRACE_BILDERBIKKEL
+}
+
+QMAKE_CXXFLAGS += -std=c++11 -Wall -Wextra -Weffc++
+
+unix {
+  QMAKE_CXXFLAGS += -Werror
+}
 
 #
 #
@@ -33,10 +51,9 @@ FORMS    += qttestaboutmaindialog.ui \
 #
 
 win32 {
-
-  message(Windows: add Boost to includepath)
-
   INCLUDEPATH += \
     ../../Libraries/boost_1_54_0
 }
 
+OTHER_FILES += \
+    ../../Classes/CppQtHideAndShowDialog/Licence.txt

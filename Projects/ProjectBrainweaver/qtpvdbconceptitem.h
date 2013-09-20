@@ -6,6 +6,8 @@
 
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include <QBrush>
 #include <QGraphicsItem>
 #include <QPen>
@@ -15,7 +17,6 @@
 
 #include "pvdbfwd.h"
 
-//#include "qtroundedtextrectitem.h"
 #include "qtroundededitrectitem.h"
 #pragma GCC diagnostic pop
 
@@ -35,17 +36,17 @@ struct QtPvdbConceptItem : public QtRoundedEditRectItem //NEW 2013-09-15
   virtual ~QtPvdbConceptItem() noexcept {}
 
   ///Read the Concept
-  const boost::shared_ptr<const ribi::pvdb::Concept>  GetConcept() const;
-  const boost::shared_ptr<      ribi::pvdb::Concept>& GetConcept() { return m_concept; }
+  const boost::shared_ptr<const ribi::pvdb::Concept>  GetConcept() const noexcept;
+  const boost::shared_ptr<      ribi::pvdb::Concept>& GetConcept() noexcept { return m_concept; }
 
   ///Get he brush by which the indicator is filled
-  const QBrush& GetIndicatorBrush() const { return m_indicator_brush; }
+  const QBrush& GetIndicatorBrush() const noexcept { return m_indicator_brush; }
 
   ///The pen by which the indicator is drawn
-  const QPen& GetIndicatorPen() const { return m_indicator_pen; }
+  const QPen& GetIndicatorPen() const noexcept { return m_indicator_pen; }
 
   ///Get the (un-word-wrapped) name (the text written on the concept-item)
-  const std::string GetName() const;
+  const std::string GetName() const noexcept;
 
   //Move hove
   virtual void hoverStartEvent(QGraphicsSceneHoverEvent *) final;
@@ -74,7 +75,6 @@ struct QtPvdbConceptItem : public QtRoundedEditRectItem //NEW 2013-09-15
 
   ///Set the position
   void SetPos(const double x, const double y);
-
 
   ///Increase the sensitive area
   ///Add final to be sure that the shape is not set smaller

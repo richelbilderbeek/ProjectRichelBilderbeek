@@ -1,3 +1,6 @@
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include "pvdbconcept.h"
 
 #include <boost/lexical_cast.hpp>
@@ -9,6 +12,7 @@
 #include "pvdbexamples.h"
 #include "pvdbexamplesfactory.h"
 #include "trace.h"
+#pragma GCC diagnostic pop
 
 ribi::pvdb::Concept::Concept(
   const std::string& name,

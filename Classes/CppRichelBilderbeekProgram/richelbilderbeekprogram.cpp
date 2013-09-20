@@ -18,14 +18,19 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ProjectRichelBilderbeekProgram.htm
 //---------------------------------------------------------------------------
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include "richelbilderbeekprogram.h"
 
 #include <iostream>
 #include <stdexcept>
 
+#include "richelbilderbeekprogramtypes.h"
 #include "richelbilderbeekprogramstatus.h"
+#pragma GCC diagnostic pop
 
-const boost::shared_ptr<ribi::RichelBilderbeek::Program> ribi::RichelBilderbeek::Program::CreateProgram(const ProgramType type)
+const boost::shared_ptr<ribi::RichelBilderbeek::Program> ribi::RichelBilderbeek::Program::CreateProgram(const ProgramType type) noexcept
 {
   boost::shared_ptr<Program> p;
   switch (type)
@@ -192,9 +197,19 @@ const boost::shared_ptr<ribi::RichelBilderbeek::Program> ribi::RichelBilderbeek:
   return p;
 }
 
-const std::vector<boost::shared_ptr<ribi::RichelBilderbeek::Program> > ribi::RichelBilderbeek::Program::GetAllPrograms()
+const std::string ribi::RichelBilderbeek::Program::GetName() const noexcept
 {
-  const std::vector<ProgramType> types = GetAllProgramTypes();
+  return ribi::RichelBilderbeek::ProgramTypes::ProgramTypeToEnumName(this->GetType());
+}
+
+const std::string ribi::RichelBilderbeek::Program::GetScreenName() const noexcept
+{
+  return ribi::RichelBilderbeek::ProgramTypes::ProgramTypeToScreenName(this->GetType());
+}
+
+const std::vector<boost::shared_ptr<ribi::RichelBilderbeek::Program> > ribi::RichelBilderbeek::Program::GetAllPrograms() noexcept
+{
+  const std::vector<ProgramType> types = ProgramTypes::GetAll();
   std::vector<boost::shared_ptr<Program> > v;
 
   for (const ProgramType type: types)
@@ -210,29 +225,29 @@ const std::vector<boost::shared_ptr<ribi::RichelBilderbeek::Program> > ribi::Ric
   return v;
 }
 
-const std::string ribi::RichelBilderbeek::Program::GetFilenameBase() const
+const std::string ribi::RichelBilderbeek::Program::GetFilenameBase() const noexcept
 {
   std::string s = this->GetTypeName();
   s[0] = std::toupper(s[0]);
-  return s + GetName();
+  return s + GetScreenName();
 }
 
-const std::string ribi::RichelBilderbeek::Program::GetFilenameConsole() const
+const std::string ribi::RichelBilderbeek::Program::GetFilenameConsole() const noexcept
 {
   return GetFilenameBase() + "Console.png";
 }
 
-const std::string ribi::RichelBilderbeek::Program::GetFilenameDesktop() const
+const std::string ribi::RichelBilderbeek::Program::GetFilenameDesktop() const noexcept
 {
   return GetFilenameBase() + "Desktop.png";
 }
 
-const std::string ribi::RichelBilderbeek::Program::GetFilenameDesktopWindowsOnly() const
+const std::string ribi::RichelBilderbeek::Program::GetFilenameDesktopWindowsOnly() const noexcept
 {
   return GetFilenameBase() + "DesktopWindowsOnly.png";
 }
 
-const std::string ribi::RichelBilderbeek::Program::GetFilenameWeb() const
+const std::string ribi::RichelBilderbeek::Program::GetFilenameWeb() const noexcept
 {
   return GetFilenameBase() + "Web.png";
 }
@@ -249,24 +264,24 @@ const std::vector<std::string> ribi::RichelBilderbeek::Program::GetVersionHistor
   };
 }
 
-std::ostream& ribi::RichelBilderbeek::operator<<(std::ostream& os, const Program * const p)
+std::ostream& ribi::RichelBilderbeek::operator<<(std::ostream& os, const Program& p) noexcept
 {
-  const std::string name = p->GetName();
+  const std::string name = p.GetName();
 
   os << name;
 
-  if (name.size() < 10) os << '\t';
+  if (name.size() < 10) { os << '\t'; }
 
   os
-     << '\t' << p->GetTypeName()
-     << '\t' << ProgramStatusToStr(p->GetStatusConsole())
-     << '\t' << ProgramStatusToStr(p->GetStatusDesktopWindowsOnly())
-     << '\t' << ProgramStatusToStr(p->GetStatusDesktop())
-     << '\t' << ProgramStatusToStr(p->GetStatusWebApplication());
+     << '\t' << p.GetTypeName()
+     << '\t' << ProgramStatusToStr(p.GetStatusConsole())
+     << '\t' << ProgramStatusToStr(p.GetStatusDesktopWindowsOnly())
+     << '\t' << ProgramStatusToStr(p.GetStatusDesktop())
+     << '\t' << ProgramStatusToStr(p.GetStatusWebApplication());
    return os;
 }
 
-bool ribi::RichelBilderbeek::operator<(const Program& lhs, const Program& rhs)
+bool ribi::RichelBilderbeek::operator<(const Program& lhs, const Program& rhs) noexcept
 {
   if (lhs.GetTypeName() < rhs.GetTypeName()) return true;
   if (lhs.GetTypeName() > rhs.GetTypeName()) return false;

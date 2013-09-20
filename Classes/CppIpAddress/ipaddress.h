@@ -68,6 +68,7 @@ struct SafeIpAddress //: public IpAddress
   private:
   ~SafeIpAddress() noexcept {}
   friend void boost::checked_delete<>(SafeIpAddress*);
+  friend void boost::checked_delete<>(const SafeIpAddress*);
 
   ///The std::string that might hold a valid IP address
   std::string m_ip_address;

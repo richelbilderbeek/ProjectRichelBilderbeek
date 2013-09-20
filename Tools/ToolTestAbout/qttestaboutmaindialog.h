@@ -21,7 +21,10 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #ifndef QTTESTABOUTMAINDIALOG_H
 #define QTTESTABOUTMAINDIALOG_H
 
-#include <QDialog>
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#include "qthideandshowdialog.h"
+#pragma GCC diagnostic pop
 
 namespace Ui {
   class QtTestAboutMainDialog;
@@ -29,27 +32,28 @@ namespace Ui {
 
 namespace ribi {
 
-class QtTestAboutMainDialog : public QDialog
+class QtTestAboutMainDialog : public QtHideAndShowDialog
 {
   Q_OBJECT
 
 public:
-  explicit QtTestAboutMainDialog(QWidget *parent = 0);
-  ~QtTestAboutMainDialog();
+  explicit QtTestAboutMainDialog(QWidget *parent = 0) noexcept;
+  QtTestAboutMainDialog(const QtTestAboutMainDialog&) = delete;
+  QtTestAboutMainDialog& operator=(const QtTestAboutMainDialog&) = delete;
+  ~QtTestAboutMainDialog() noexcept;
 
 private slots:
-  void on_button_about_clicked();
-
-  void on_button_quit_clicked();
+  void on_button_about_clicked() noexcept;
+  void on_button_quit_clicked() noexcept;
 
 private:
   Ui::QtTestAboutMainDialog *ui;
 
   ///Obtain this class its version
-  static const std::string GetVersion();
+  static const std::string GetVersion() noexcept;
 
   ///Obtain this class its version history
-  static const std::vector<std::string> GetVersionHistory();
+  static const std::vector<std::string> GetVersionHistory() noexcept;
 };
 
 } //~namespace ribi

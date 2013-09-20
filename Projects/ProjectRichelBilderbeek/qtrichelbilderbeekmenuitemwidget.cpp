@@ -45,6 +45,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "about.h"
 #include "qtaboutdialog.h"
 #include "qtroundedtextrectitem.h"
+#include "richelbilderbeekprogramtypes.h"
 #include "testqtroundedtextrectitemmenudialog.h"
 
 #pragma GCC diagnostic pop
@@ -56,9 +57,11 @@ ribi::QtRichelBilderbeekMenuItemWidget::QtRichelBilderbeekMenuItemWidget(QWidget
   assert(scene());
   scene()->clear();
 
-  const std::vector<RichelBilderbeek::ProgramType> program_types = RichelBilderbeek::GetAllProgramTypes();
+  const std::vector<RichelBilderbeek::ProgramType> program_types {
+    RichelBilderbeek::ProgramTypes::GetAll()
+  };
   const int n_program_types = boost::numeric_cast<int>(program_types.size());
-  const int n_cols = 4;
+  const int n_cols = 5;
   const int n_rows = n_program_types / n_cols;
   for (int i = 0; i!=n_program_types; ++i)
   {
@@ -75,7 +78,7 @@ ribi::QtRichelBilderbeekMenuItemWidget::QtRichelBilderbeekMenuItemWidget(QWidget
     const boost::shared_ptr<RichelBilderbeek::Program> p
       = RichelBilderbeek::Program::CreateProgram(
         program_types[i]);
-    const std::string s = p->GetName();
+    const std::string s = p->GetScreenName();
 
     item->SetText(s);
     item->setPos(x,y);

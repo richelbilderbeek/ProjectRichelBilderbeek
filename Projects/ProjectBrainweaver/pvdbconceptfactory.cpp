@@ -1,3 +1,6 @@
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include "pvdbconceptfactory.h"
 
 #include "pvdbcompetency.h"
@@ -6,6 +9,7 @@
 #include "pvdbexamples.h"
 #include "pvdbexamplefactory.h"
 #include "pvdbexamplesfactory.h"
+#pragma GCC diagnostic push
 
 const boost::shared_ptr<ribi::pvdb::Concept> ribi::pvdb::ConceptFactory::Create(
   const std::string& name,

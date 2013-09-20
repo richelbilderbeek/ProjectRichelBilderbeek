@@ -24,8 +24,8 @@ public:
 
   ///Get the item being highlighted
   ///Returns nullptr if no item is highlighted
-        QtPvdbNodeItem* GetItem()       { return m_item; }
-  const QtPvdbNodeItem* GetItem() const { return m_item; }
+        QtPvdbNodeItem* GetItem()       noexcept { return m_item; }
+  const QtPvdbNodeItem* GetItem() const noexcept { return m_item; }
 
   ///Set the item to highlight.
   ///If set with a nullptr, highlighting the current item stops

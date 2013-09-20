@@ -1,5 +1,7 @@
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include "qtpvdbdisplayconceptitem.h"
 
 #include <cstdlib>
@@ -94,7 +96,7 @@ ribi::pvdb::QtPvdbDisplayConceptItem::~QtPvdbDisplayConceptItem() noexcept
 }
 
 #ifndef NDEBUG
-void ribi::pvdb::QtPvdbDisplayConceptItem::Test()
+void ribi::pvdb::QtPvdbDisplayConceptItem::Test() noexcept
 {
   {
     static bool is_tested = false;
@@ -107,7 +109,7 @@ void ribi::pvdb::QtPvdbDisplayConceptItem::Test()
 #endif
 
 
-void ribi::pvdb::QtPvdbDisplayConceptItem::UpdateBrushesAndPens()
+void ribi::pvdb::QtPvdbDisplayConceptItem::UpdateBrushesAndPens() noexcept
 {
   //TRACE("Start of void ribi::pvdb::QtPvdbDisplayConceptItem::UpdateBrushesAndPens()");
   assert(GetConcept());

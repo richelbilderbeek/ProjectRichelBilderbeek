@@ -25,40 +25,40 @@ class QtPvdbMenuDialog : public ribi::QtHideAndShowDialog
 
 
   ///Test this class and all other QDialogs
-  static void Test();
+  static void Test() noexcept;
 
 public slots:
-  void on_button_about_clicked();
-  void on_button_assessor_clicked();
-  void on_button_create_test_files_clicked();
-  void on_button_modify_stylesheet_clicked();
-  void on_button_overview_clicked();
-  void on_button_print_concept_map_clicked();
-  void on_button_print_rating_clicked();
-  void on_button_rate_concept_auto_clicked();
-  void on_button_rate_concept_clicked();
-  void on_button_rate_concept_map_clicked();
-  void on_button_rate_examples_clicked();
-  void on_button_rating_clicked();
-  void on_button_student_clicked();
-  void on_button_test_arrowitems_clicked();
-  void on_button_test_cluster_clicked();
-  void on_button_test_conceptedit_clicked();
-  void on_button_test_conceptitem_clicked();
-  void on_button_test_conceptmap_clicked();
-  void on_button_test_create_sub_concept_map_clicked();
-  void on_button_test_edge_item_clicked();
-  void on_button_test_node_item_clicked();
-  void on_button_test_qtconceptmapdisplaywidget_clicked();
-  void on_button_test_qtconceptmapeditwidget_clicked();
-  void on_button_test_qtconceptmapratewidget_clicked();
-  void on_button_test_qtroundededitrectitem_clicked();
-  void on_button_test_qtroundedtextrectitem_clicked();
-  void on_button_view_files_clicked();
-  void on_button_view_test_concept_maps_clicked();
+  void on_button_about_clicked() noexcept;
+  void on_button_assessor_clicked() noexcept;
+  void on_button_create_test_files_clicked() noexcept;
+  void on_button_modify_stylesheet_clicked() noexcept;
+  void on_button_overview_clicked() noexcept;
+  void on_button_print_concept_map_clicked() noexcept;
+  void on_button_print_rating_clicked() noexcept;
+  void on_button_rate_concept_auto_clicked() noexcept;
+  void on_button_rate_concept_clicked() noexcept;
+  void on_button_rate_concept_map_clicked() noexcept;
+  void on_button_rate_examples_clicked() noexcept;
+  void on_button_rating_clicked() noexcept;
+  void on_button_student_clicked() noexcept;
+  void on_button_test_arrowitems_clicked() noexcept;
+  void on_button_test_cluster_clicked() noexcept;
+  void on_button_test_conceptedit_clicked() noexcept;
+  void on_button_test_conceptitem_clicked() noexcept;
+  void on_button_test_conceptmap_clicked() noexcept;
+  void on_button_test_create_sub_concept_map_clicked() noexcept;
+  void on_button_test_edge_item_clicked() noexcept;
+  void on_button_test_node_item_clicked() noexcept;
+  void on_button_test_qtconceptmapdisplaywidget_clicked() noexcept;
+  void on_button_test_qtconceptmapeditwidget_clicked() noexcept;
+  void on_button_test_qtconceptmapratewidget_clicked() noexcept;
+  void on_button_test_qtroundededitrectitem_clicked() noexcept;
+  void on_button_test_qtroundedtextrectitem_clicked() noexcept;
+  void on_button_view_files_clicked() noexcept;
+  void on_button_view_test_concept_maps_clicked() noexcept;
 
 private slots:
-  void keyPressEvent(QKeyEvent* e);
+  void keyPressEvent(QKeyEvent* e) noexcept;
 
 private:
   Ui::QtPvdbMenuDialog *ui;

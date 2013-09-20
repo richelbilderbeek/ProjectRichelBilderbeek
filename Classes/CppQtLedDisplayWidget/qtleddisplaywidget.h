@@ -24,11 +24,14 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <string>
 #include <vector>
 
+
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include <boost/scoped_ptr.hpp>
-
 #include <QWidget>
-
 #include "ledwidget.h" //Needed by MOC
+#include "led.h" //Needed by MOC
+#pragma GCC diagnostic pop
 
 namespace ribi {
 
@@ -41,6 +44,8 @@ public:
   explicit QtLedDisplayWidget(
     QWidget *parent = 0,
     LedWidget * const widget = 0);
+  QtLedDisplayWidget(const QtLedDisplayWidget&) = delete;
+  QtLedDisplayWidget& operator=(const QtLedDisplayWidget&) = delete;
   void SetLed(const LedWidget * const led);
 protected:
   void paintEvent(QPaintEvent *);

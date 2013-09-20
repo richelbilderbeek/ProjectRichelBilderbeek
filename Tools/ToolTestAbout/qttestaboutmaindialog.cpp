@@ -18,38 +18,40 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolTestAbout.htm
 //---------------------------------------------------------------------------
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include "qtaboutdialog.h"
 #include "qttestaboutmaindialog.h"
 #include "ui_qttestaboutmaindialog.h"
+#pragma GCC diagnostic pop
 
-ribi::QtTestAboutMainDialog::QtTestAboutMainDialog(QWidget *parent) :
-  QDialog(parent),
-  ui(new Ui::QtTestAboutMainDialog)
+ribi::QtTestAboutMainDialog::QtTestAboutMainDialog(QWidget *parent) noexcept
+  : QtHideAndShowDialog(parent),
+    ui(new Ui::QtTestAboutMainDialog)
 {
   ui->setupUi(this);
 }
 
-ribi::QtTestAboutMainDialog::~QtTestAboutMainDialog()
+ribi::QtTestAboutMainDialog::~QtTestAboutMainDialog() noexcept
 {
   delete ui;
 }
 
-const std::string ribi::QtTestAboutMainDialog::GetVersion()
+const std::string ribi::QtTestAboutMainDialog::GetVersion() noexcept
 {
   return "1.2";
 }
 
-const std::vector<std::string> ribi::QtTestAboutMainDialog::GetVersionHistory()
+const std::vector<std::string> ribi::QtTestAboutMainDialog::GetVersionHistory() noexcept
 {
-  const std::vector<std::string> v {
+  return {
     "2012-01-25: Version 1.0: initial version in Qt4 and C++98",
     "2013-07-12: Version 1.1: transitioned to Qt5 and C++11"
     "2013-09-05: version 1.2: transition to namespace ribi"
   };
-  return v;
 }
 
-void ribi::QtTestAboutMainDialog::on_button_about_clicked()
+void ribi::QtTestAboutMainDialog::on_button_about_clicked() noexcept
 {
   ribi::About a(
     "Richel Bilderbeek",
@@ -69,7 +71,7 @@ void ribi::QtTestAboutMainDialog::on_button_about_clicked()
   this->show();
 }
 
-void ribi::QtTestAboutMainDialog::on_button_quit_clicked()
+void ribi::QtTestAboutMainDialog::on_button_quit_clicked() noexcept
 {
   close();
 }

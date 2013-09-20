@@ -1,3 +1,5 @@
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include "gamexenonzerodialog.h"
 
 #include <string>
@@ -10,12 +12,14 @@
 #include <cassert>
 
 #include "gamexenonzerosprite.h"
+#pragma GCC diagnostic pop
 
 namespace xnz {
 
 Dialog::Dialog()
   : mArea(new Area(78,23)),
-    mSpritePlayer(new SpritePlayer(78/2-2,23-1-4))
+    mSpritePlayer(new SpritePlayer(78/2-2,23-1-4)),
+    mSprites{}
 {
   mSprites.push_back( boost::shared_ptr<Sprite>(new SpriteEnemyMedium(35, 1)));
   mSprites.push_back( boost::shared_ptr<Sprite>(new SpriteEnemySmall(20, 6)));

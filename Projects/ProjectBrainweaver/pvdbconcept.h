@@ -6,11 +6,10 @@
 
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/shared_ptr.hpp>
 #include <boost/signals2.hpp>
-
 #include <QRegExp>
-
 #include "pvdbfwd.h"
 #pragma GCC diagnostic pop
 

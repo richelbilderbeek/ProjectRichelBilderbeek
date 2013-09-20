@@ -76,6 +76,7 @@ struct DialWidget : public Widget
   //DialWidget can only be deleted by Boost smart pointers
   virtual ~DialWidget() noexcept {}
   friend void boost::checked_delete<>(DialWidget*);
+  friend void boost::checked_delete<>(const DialWidget*);
 
   boost::scoped_ptr<Dial> m_dial;
 

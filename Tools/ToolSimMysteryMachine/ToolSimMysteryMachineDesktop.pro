@@ -1,7 +1,6 @@
 QT       += core gui
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 TEMPLATE = app
-QMAKE_CXXFLAGS += -std=c++11 -Wall -Wextra -Weffc++ -Werror
 
 INCLUDEPATH += \
     ../../Classes/CppAbout \
@@ -13,6 +12,7 @@ INCLUDEPATH += \
     ../../Classes/CppMysteryMachineWidget \
     ../../Classes/CppQtAboutDialog \
     ../../Classes/CppQtDialWidget \
+    ../../Classes/CppQtHideAndShowDialog \
     ../../Classes/CppQtLedWidget \
     ../../Classes/CppQtMysteryMachineWidget \
     ../../Classes/CppQtToggleButtonWidget \
@@ -44,7 +44,8 @@ SOURCES += qtmain.cpp \
     qtsimmysterymachinemaindialog.cpp \
     qtsimmysterymachinemenudialog.cpp \
     qtsimmysterymachinerealmachinedialog.cpp \
-    simmysterymachinemenudialog.cpp
+    simmysterymachinemenudialog.cpp \
+    ../../Classes/CppQtHideAndShowDialog/qthideandshowdialog.cpp
 
 HEADERS  += \
     ../../Classes/CppAbout/about.h \
@@ -68,7 +69,8 @@ HEADERS  += \
     qtsimmysterymachinemaindialog.h \
     qtsimmysterymachinemenudialog.h \
     qtsimmysterymachinerealmachinedialog.h \
-    simmysterymachinemenudialog.h
+    simmysterymachinemenudialog.h \
+    ../../Classes/CppQtHideAndShowDialog/qthideandshowdialog.h
 
 FORMS    += \
     ../../Classes/CppQtAboutDialog/qtaboutdialog.ui \
@@ -86,15 +88,14 @@ RESOURCES += \
 #
 #
 
-CONFIG(debug, debug|release) {
-  message(Debug mode)
+CONFIG(release, debug|release) {
+  DEFINES += NDEBUG NTRACE_BILDERBIKKEL
 }
 
-CONFIG(release, debug|release) {
-  message(Release mode)
+QMAKE_CXXFLAGS += -std=c++11 -Wall -Wextra -Weffc++
 
-  #Remove all asserts and TRACE
-  DEFINES += NDEBUG NTRACE_BILDERBIKKEL
+unix {
+  QMAKE_CXXFLAGS += -Werror
 }
 
 #
@@ -105,3 +106,6 @@ CONFIG(release, debug|release) {
 win32 {
   INCLUDEPATH += ../../Libraries/boost_1_54_0
 }
+
+OTHER_FILES += \
+    ../../Classes/CppQtHideAndShowDialog/Licence.txt

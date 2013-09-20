@@ -43,14 +43,17 @@ c2h::Dialog::Dialog(
   const std::string& source,
   const ContentType content_type,
   const TechInfoType tech_info)
-  : m_page_type(page_type),
-    m_source(source),
+  :
     m_content_type(content_type),
+    m_info { new Info },
+    m_page_type(page_type),
+    m_source(source),
     m_tech_info(tech_info)
 {
   #ifndef NDEBUG
   Test();
   #endif
+  assert(m_info);
 
   //Check source
   assert( (IsFolder(source) || IsRegularFile(source))
@@ -120,8 +123,7 @@ const std::vector<std::string> c2h::Dialog::ToHtml() const
   }
   //Text about this page (if known)
   {
-    Info info(m_source);
-    const std::vector<std::string> w = info.ToHtml();
+    const std::vector<std::string> w = m_info->ToHtml(m_source);
     std::copy(w.begin(),w.end(),std::back_inserter(v));
   }
   //Technical info

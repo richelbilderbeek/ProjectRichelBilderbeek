@@ -56,8 +56,9 @@ struct Exercise
   void Next() noexcept;
 
   private:
-  friend void boost::checked_delete<>(Exercise *);
   ~Exercise() noexcept {}
+  friend void boost::checked_delete<>(Exercise *);
+  friend void boost::checked_delete<>(const Exercise *);
 
   ///An iterator pointing to the current question
   std::vector<std::string>::iterator m_current;

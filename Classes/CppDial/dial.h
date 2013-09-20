@@ -93,6 +93,7 @@ struct Dial
   //Dial can only be deleted by Boost smart pointers
   virtual ~Dial() noexcept {}
   friend void boost::checked_delete<>(Dial*);
+  friend void boost::checked_delete<>(const Dial*);
 
   unsigned char m_blue;
   unsigned char m_green;

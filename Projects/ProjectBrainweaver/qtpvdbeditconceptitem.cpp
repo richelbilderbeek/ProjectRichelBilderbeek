@@ -1,5 +1,7 @@
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include "qtpvdbeditconceptitem.h"
 
 #include <QKeyEvent>
@@ -34,7 +36,7 @@ ribi::pvdb::QtPvdbEditConceptItem::QtPvdbEditConceptItem(const boost::shared_ptr
 }
 
 
-void ribi::pvdb::QtPvdbEditConceptItem::keyPressEvent(QKeyEvent *event)
+void ribi::pvdb::QtPvdbEditConceptItem::keyPressEvent(QKeyEvent *event) noexcept
 {
   switch (event->key())
   {
@@ -47,7 +49,7 @@ void ribi::pvdb::QtPvdbEditConceptItem::keyPressEvent(QKeyEvent *event)
 }
 
 #ifndef NDEBUG
-void ribi::pvdb::QtPvdbEditConceptItem::Test()
+void ribi::pvdb::QtPvdbEditConceptItem::Test() noexcept
 {
   {
     static bool is_tested = false;

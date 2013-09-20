@@ -11,7 +11,8 @@ namespace ribi {
 
 namespace pvdb {
 
-///Class to create PvdB instances
+///Factory class to create ConceptMaps
+///ConceptMapFactory is the only class using the ConceptMap constructor
 struct ConceptMapFactory
 {
   //Create an empty-as-can-get ConceptMap

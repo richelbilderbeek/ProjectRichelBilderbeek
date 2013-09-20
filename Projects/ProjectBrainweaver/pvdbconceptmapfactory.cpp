@@ -1,3 +1,6 @@
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include "pvdbconceptmapfactory.h"
 
 #include <cassert>
@@ -15,6 +18,7 @@
 #include "pvdbnode.h"
 #include "pvdbnodefactory.h"
 #include "trace.h"
+#pragma GCC diagnostic pop
 
 const boost::shared_ptr<ribi::pvdb::ConceptMap> ribi::pvdb::ConceptMapFactory::Create(
   const std::vector<boost::shared_ptr<ribi::pvdb::Node> >& nodes,

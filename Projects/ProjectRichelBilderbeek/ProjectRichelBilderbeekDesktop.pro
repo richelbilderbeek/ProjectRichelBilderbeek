@@ -281,7 +281,8 @@ SOURCES += \
     qtrichelbilderbeekmenuitemwidget.cpp \
     qtrichelbilderbeekprogram.cpp \
     ../../Tools/ToolSimplifyNewick/qttoolsimplifynewickmenudialog.cpp \
-    ../../Tools/ToolSimplifyNewick/qttoolsimplifynewickmaindialog.cpp
+    ../../Tools/ToolSimplifyNewick/qttoolsimplifynewickmaindialog.cpp \
+    ../../Tools/ToolQmakeWatcher/qtqmakewatchermenudialog.cpp
 
 HEADERS += \
     ../../Classes/CppAbout/about.h \
@@ -666,7 +667,8 @@ HEADERS += \
     qtrichelbilderbeekprogram.h \
     richelbilderbeekmenudialog.h \
     ../../Tools/ToolSimplifyNewick/qttoolsimplifynewickmenudialog.h \
-    ../../Tools/ToolSimplifyNewick/qttoolsimplifynewickmaindialog.h
+    ../../Tools/ToolSimplifyNewick/qttoolsimplifynewickmaindialog.h \
+    ../../Tools/ToolQmakeWatcher/qtqmakewatchermenudialog.h
 
 
 RESOURCES += \
@@ -853,7 +855,8 @@ FORMS += \
     ../../Tools/ToolTestSimpleLinearRegression/qttooltestsimplelinearregressionmenudialog.ui \
     ../../Tools/ToolTestSimpleLinearRegression/qttooltestsimplelinearregressionmaindialog.ui \
     ../../Tools/ToolSimplifyNewick/qttoolsimplifynewickmenudialog.ui \
-    ../../Tools/ToolSimplifyNewick/qttoolsimplifynewickmaindialog.ui
+    ../../Tools/ToolSimplifyNewick/qttoolsimplifynewickmaindialog.ui \
+    ../../Tools/ToolQmakeWatcher/qtqmakewatchermenudialog.ui
 
 OTHER_FILES += \
     ../../Classes/CppAbout/Licence.txt \

@@ -1,6 +1,9 @@
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include "gamexenonzerosprite.h"
 
 #include <cassert>
+#pragma GCC diagnostic pop
 
 namespace xnz {
 
@@ -241,7 +244,10 @@ void SpriteEnemySmall::Shoot(std::vector<boost::shared_ptr<Sprite> >& newSprites
 
 SpriteEnemyMedium::SpriteEnemyMedium(const int x, const int y)
   : Sprite(x,y,GetSpriteShootDown(),10),
-    mTimeShoot(2)
+    mDx{0},
+    mTimer{},
+    mTimeShoot(2),
+    mTurretDirection{turretDown}
 {
 
 }

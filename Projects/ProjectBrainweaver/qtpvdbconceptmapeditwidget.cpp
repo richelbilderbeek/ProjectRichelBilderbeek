@@ -1,10 +1,13 @@
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include "qtpvdbconceptmapeditwidget.h"
+
+#include <boost/lambda/lambda.hpp>
 
 #include <QGraphicsItem>
 #include <QKeyEvent>
-#include <boost/lambda/lambda.hpp>
 
 #include "pvdbconceptfactory.h"
 #include "pvdbconcept.h"

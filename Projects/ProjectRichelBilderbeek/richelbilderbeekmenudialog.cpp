@@ -111,6 +111,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "testshinybuttonmenudialog.h"
 #include "testtogglebuttonmenudialog.h"
 #include "tictactoe.h"
+#include "qmakewatchermenudialog.h"
 #include "tictactoemenudialog.h"
 #include "togglebutton.h"
 #include "togglebuttonwidget.h"
@@ -200,6 +201,7 @@ const ribi::About ribi::RichelBilderbeek::MenuDialog::GetAbout() noexcept
   a.AddLibrary("OpenQuestion version: " + OpenQuestion::GetVersion());
   a.AddLibrary("OpenQuestionDialog version: " + OpenQuestionDialog::GetVersion());
   a.AddLibrary("Pylos version: " + PylosMenuDialog::GetVersion());
+  a.AddLibrary("QmakeWatcher version: " + QmakeWatcherMenuDialog::GetVersion());
   a.AddLibrary("QrcFile version: " + QrcFile::GetVersion());
   a.AddLibrary("QtCreatorProFile version: " + QtCreatorProFile::GetVersion());
   a.AddLibrary("Question version: " + Question::GetVersion());

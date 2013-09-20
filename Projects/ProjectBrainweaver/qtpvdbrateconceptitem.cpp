@@ -1,5 +1,7 @@
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include "qtpvdbrateconceptitem.h"
 
 #include <cstdlib>
@@ -229,7 +231,10 @@ void ribi::pvdb::QtPvdbRateConceptItem::UpdateBrushesAndPens()
     //TRACE(std::rand()); //GOOD: Detects infinite recursion
     //this->update();
     this->m_signal_item_has_updated(this); //Obligatory
+    #pragma GCC diagnostic push
+    #pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
     this->m_signal_request_scene_update(); //Obligatory
+    #pragma GCC diagnostic pop
   }
 
   #ifdef USE_BEFORE_20130729

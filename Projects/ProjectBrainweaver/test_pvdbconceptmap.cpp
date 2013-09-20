@@ -1,5 +1,7 @@
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include "pvdbconceptmap.h"
 
 #include <sstream>
@@ -45,7 +47,7 @@ void ribi::pvdb::ConceptMap::Test()
     {
   #endif
   TRACE("Started ribi::pvdb::ConceptMap::Test");
-  typedef std::vector<boost::shared_ptr<ribi::pvdb::Edge> > Edges;
+  //typedef std::vector<boost::shared_ptr<ribi::pvdb::Edge> > Edges;
   typedef std::vector<boost::shared_ptr<ribi::pvdb::Node> > Nodes;
 
   //Brute force tests

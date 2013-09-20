@@ -64,7 +64,14 @@ ribi::RichelBilderbeek::QtResources::QtResources()
           const std::string filename = ":/images/" + s;
           QFile f(filename.c_str());
           f.copy(s.c_str());
-          if (!QFile::exists(s.c_str())) { TRACE(s); }
+          if (!QFile::exists(s.c_str()))
+          {
+            TRACE("ERROR: FILE NOT FOUND:");
+            TRACE(s);
+            TRACE("SOLUTION: add file to /Projects/RichelbilderbeekNl/qtrichelbilderbeekgalleryresources.qrc");
+            const std::string error { "QtResources::QtResources: file not found: '" + s + '\'' };
+            throw std::logic_error(s.c_str());
+          }
           assert(QFile::exists(s.c_str()));
         }
         if (!QFile::exists(s.c_str())) { TRACE(s); }
@@ -113,12 +120,13 @@ const std::string ribi::RichelBilderbeek::QtResources::GetVersion() noexcept
 
 const std::vector<std::string> ribi::RichelBilderbeek::QtResources::GetVersionHistory() noexcept
 {
-  std::vector<std::string> v;
-  v.push_back("2012-02-19: Version 1.0: initial version");
-  return v;
+  return {
+    "2012-02-19: Version 1.0: initial version",
+    "2013-09-20: Version 1.1: correct use of noexcept",
+  };
 }
 
-bool ribi::RichelBilderbeek::QtResources::IsRegularFile(const std::string& filename)
+bool ribi::RichelBilderbeek::QtResources::IsRegularFile(const std::string& filename) noexcept
 {
   std::fstream f;
   f.open(filename.c_str(),std::ios::in);

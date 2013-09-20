@@ -1,26 +1,29 @@
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include "qtxenonzeromaindialog.h"
 
 #include <cassert>
 
 #include "gamexenonzerodialog.h"
 #include "ui_qtxenonzeromaindialog.h"
+#pragma GCC diagnostic pop
 
-QtXeNonZeroMainDialog::QtXeNonZeroMainDialog(QWidget *parent) :
-  QDialog(parent),
-  ui(new Ui::QtXeNonZeroMainDialog),
-  m_dialog(new xnz::Dialog)
+ribi::QtXeNonZeroMainDialog::QtXeNonZeroMainDialog(QWidget *parent)
+  : QtHideAndShowDialog(parent),
+    ui(new Ui::QtXeNonZeroMainDialog),
+    m_dialog(new xnz::Dialog)
 {
   ui->setupUi(this);
   assert(m_dialog);
   on_button_space_clicked();
 }
 
-QtXeNonZeroMainDialog::~QtXeNonZeroMainDialog()
+ribi::QtXeNonZeroMainDialog::~QtXeNonZeroMainDialog()
 {
   delete ui;
 }
 
-void QtXeNonZeroMainDialog::Display(const boost::shared_ptr<const xnz::Area> area)
+void ribi::QtXeNonZeroMainDialog::Display(const boost::shared_ptr<const xnz::Area> area)
 {
   assert(area);
   std::string text;
@@ -29,38 +32,38 @@ void QtXeNonZeroMainDialog::Display(const boost::shared_ptr<const xnz::Area> are
   ui->text->setPlainText(text.c_str());
 }
 
-void QtXeNonZeroMainDialog::on_button_a_clicked()
+void ribi::QtXeNonZeroMainDialog::on_button_a_clicked()
 {
   assert(m_dialog);
   Display(m_dialog->ProcessInput(xnz::Dialog::Input::left));
 }
 
-void QtXeNonZeroMainDialog::on_button_d_clicked()
+void ribi::QtXeNonZeroMainDialog::on_button_d_clicked()
 {
   assert(m_dialog);
   Display(m_dialog->ProcessInput(xnz::Dialog::Input::right));
 }
 
-void QtXeNonZeroMainDialog::on_button_e_clicked()
+void ribi::QtXeNonZeroMainDialog::on_button_e_clicked()
 {
   assert(m_dialog);
   Display(m_dialog->ProcessInput(xnz::Dialog::Input::shoot));
 
 }
 
-void QtXeNonZeroMainDialog::on_button_s_clicked()
+void ribi::QtXeNonZeroMainDialog::on_button_s_clicked()
 {
   assert(m_dialog);
   Display(m_dialog->ProcessInput(xnz::Dialog::Input::down));
 }
 
-void QtXeNonZeroMainDialog::on_button_space_clicked()
+void ribi::QtXeNonZeroMainDialog::on_button_space_clicked()
 {
   assert(m_dialog);
   Display(m_dialog->ProcessInput(xnz::Dialog::Input::space));
 }
 
-void QtXeNonZeroMainDialog::on_button_w_clicked()
+void ribi::QtXeNonZeroMainDialog::on_button_w_clicked()
 {
   assert(m_dialog);
   Display(m_dialog->ProcessInput(xnz::Dialog::Input::up));

@@ -1,13 +1,16 @@
 #ifndef PVDBEDGE_H
 #define PVDBEDGE_H
 
-
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/shared_ptr.hpp>
 #include <boost/signals2.hpp>
-
 #include "pvdbfwd.h"
-namespace ribi {
+#pragma GCC diagnostic pop
 
+
+namespace ribi {
 namespace pvdb {
 
 struct EdgeFactory;
@@ -153,7 +156,6 @@ bool IsEqual(const pvdb::Edge& lhs, const pvdb::Edge& rhs);
 ///      Indices are only used when saving and loading
 
 } //~namespace pvdb
-
 } //~namespace ribi
 
 #endif // PVDBEDGE_H
