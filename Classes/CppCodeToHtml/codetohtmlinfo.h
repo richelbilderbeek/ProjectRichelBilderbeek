@@ -21,26 +21,48 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #ifndef CODETOHTMLINFO_H
 #define CODETOHTMLINFO_H
 
+#include <map>
 #include <string>
 #include <vector>
+#include <boost/checked_delete.hpp>
+#include <boost/scoped_ptr.hpp>
 
 #include "codetohtml.h"
 
 namespace c2h {
 
 ///Defines the info of the resulting HTML page
+///Info is a heavy class due to the map connecting a page name and its info
 struct Info
 {
-  explicit Info(const std::string& source);
+  explicit Info();
+  Info(const Info&) = delete;
+  Info& operator=(const Info&) = delete;
 
-  const std::vector<std::string> ToHtml() const;
+  static const std::string GetVersion() noexcept;
+  static const std::vector<std::string> GetVersionHistory() noexcept;
+
+  const std::vector<std::string> ToHtml(const std::string page_name) const;
 
   private:
-  const std::string m_page_name;
+  ~Info() noexcept {}
+  friend void boost::checked_delete<>(Info*);
+  friend void boost::checked_delete<>(const Info*);
+
+  ///For every page name (the key), contains the HTML info (the value)
+  const std::map<std::string,std::vector<std::string> > m_page_info;
+
+  ///The name of the page, extracted from the .pro filename or folder name
+  //const std::string m_page_name;
+
+  ///Create, for every page name (the key), cthe HTML info (the value)
+  static const std::map<std::string,std::vector<std::string> > CreatePageInfo();
 
   #ifndef NDEBUG
   static void Test();
   #endif
+
+
 };
 
 } //~namespace CodeToHtml
