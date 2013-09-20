@@ -66,7 +66,9 @@ int main(int argc, char* argv[])
   START_TRACE();
 
   #ifndef NDEBUG
+  #ifndef _WIN32
   assert(c2h::IsTidyInstalled());
+  #endif
   #else
   assert(1==2 && "I will be deleted");
   #endif

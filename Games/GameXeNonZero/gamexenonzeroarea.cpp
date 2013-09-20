@@ -4,8 +4,10 @@
 #include <iostream>
 #include <iterator>
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include "gamexenonzerosprite.h"
-
+#pragma GCC diagnostic pop
 
 namespace xnz {
 

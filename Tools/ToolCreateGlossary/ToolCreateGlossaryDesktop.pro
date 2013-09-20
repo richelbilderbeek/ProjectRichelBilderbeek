@@ -4,6 +4,7 @@ INCLUDEPATH += \
     ../../Classes/CppAbout \
     ../../Classes/CppHtmlPage \
     ../../Classes/CppQtAboutDialog \
+    ../../Classes/CppQtHideAndShowDialog \
     ../../Classes/CppTrace
 
 CONFIG   -= app_bundle
@@ -13,6 +14,7 @@ SOURCES += \
     ../../Classes/CppAbout/about.cpp \
     ../../Classes/CppHtmlPage/htmlpage.cpp \
     ../../Classes/CppQtAboutDialog/qtaboutdialog.cpp \
+    ../../Classes/CppQtHideAndShowDialog/qthideandshowdialog.cpp \
     createglossarymaindialog.cpp \
     createglossarymenudialog.cpp \
     qtcreateglossarymaindialog.cpp \
@@ -23,6 +25,7 @@ HEADERS += \
     ../../Classes/CppAbout/about.h \
     ../../Classes/CppHtmlPage/htmlpage.h \
     ../../Classes/CppQtAboutDialog/qtaboutdialog.h \
+    ../../Classes/CppQtHideAndShowDialog/qthideandshowdialog.h \
     ../../Classes/CppTrace/trace.h \
     createglossarymaindialog.h \
     createglossarymenudialog.h \
@@ -37,6 +40,7 @@ FORMS += \
 OTHER_FILES += \
     ../../Classes/CppAbout/Licence.txt \
     ../../Classes/CppQtAboutDialog/Licence.txt \
+    ../../Classes/CppQtHideAndShowDialog/Licence.txt \
     ../../Classes/CppTrace/Licence.txt \
     Licence.txt
 
@@ -49,29 +53,11 @@ RESOURCES += \
 #
 #
 
-CONFIG(debug, debug|release) {
-  message(Debug mode)
-}
-
 CONFIG(release, debug|release) {
-  message(Release mode)
-
-  #Remove all asserts and TRACE
   DEFINES += NDEBUG NTRACE_BILDERBIKKEL
 }
 
-#
-#
-# Platform specific
-#
-#
-
-#
-#
-# Compiler flags
-#
-#
-QMAKE_CXXFLAGS += -std=c++11 -Wall -Wextra
+QMAKE_CXXFLAGS += -std=c++11 -Wall -Wextra -Weffc++
 
 unix {
   QMAKE_CXXFLAGS += -Werror

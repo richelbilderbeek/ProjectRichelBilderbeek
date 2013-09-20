@@ -3,7 +3,10 @@
 
 #include <vector>
 #include <string>
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include <boost/shared_ptr.hpp>
+#pragma GCC diagnostic pop
 
 enum class EnumSprite
 {
@@ -120,8 +123,8 @@ struct SpriteEnemyMedium : public Sprite
   const Sprite::Graphic GetSpriteShootDownLeft() const;
   const Sprite::Graphic GetSpriteShootDownRight() const;
 
-  int mTimer;
   int mDx;
+  int mTimer;
   const int mTimeShoot;
   EnumTurretDirection mTurretDirection;
 

@@ -37,8 +37,8 @@ struct Dialog
 
   const boost::shared_ptr<xnz::Area> mArea;
 
-  SpriteContainer mSprites;
   boost::shared_ptr<SpritePlayer> mSpritePlayer;
+  SpriteContainer mSprites;
 
   friend std::ostream& operator<<(std::ostream& os, const Dialog& s);
 };

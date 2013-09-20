@@ -1,22 +1,29 @@
 #ifndef QTXENONZEROMAINDIALOG_H
 #define QTXENONZEROMAINDIALOG_H
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include <boost/shared_ptr.hpp>
-#include <QDialog>
+#include "qthideandshowdialog.h"
 
 #include "gamexenonzerofwd.h"
+#pragma GCC diagnostic pop
 
 namespace Ui {
   class QtXeNonZeroMainDialog;
 }
 
-class QtXeNonZeroMainDialog : public QDialog
+namespace ribi {
+
+class QtXeNonZeroMainDialog : public QtHideAndShowDialog
 {
   Q_OBJECT
   
 public:
   explicit QtXeNonZeroMainDialog(QWidget *parent = 0);
-  ~QtXeNonZeroMainDialog();
+  QtXeNonZeroMainDialog(const QtXeNonZeroMainDialog&) = delete;
+  QtXeNonZeroMainDialog operator=(const QtXeNonZeroMainDialog&) = delete;
+  ~QtXeNonZeroMainDialog() noexcept;
   
 private slots:
   void on_button_a_clicked();
@@ -33,5 +40,7 @@ private:
   ///Displays the dialog
   void Display(const boost::shared_ptr<const xnz::Area> area);
 };
+
+} //~namespace ribi
 
 #endif // QTXENONZEROMAINDIALOG_H

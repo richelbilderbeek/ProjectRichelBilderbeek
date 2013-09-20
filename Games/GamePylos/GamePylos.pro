@@ -7,6 +7,7 @@ INCLUDEPATH += \
     ../../Classes/CppAbout \
     ../../Classes/CppPylos \
     ../../Classes/CppQtAboutDialog \
+    ../../Classes/CppQtHideAndShowDialog \
     ../../Classes/CppQtPylos \
     ../../Classes/CppTrace
 
@@ -31,7 +32,8 @@ SOURCES += \
     ../../Classes/CppPylos/pylosboard.cpp \
     ../../Classes/CppQtAboutDialog/qtaboutdialog.cpp \
     ../../Classes/CppAbout/about.cpp \
-    pylosmenudialog.cpp
+    pylosmenudialog.cpp \
+    ../../Classes/CppQtHideAndShowDialog/qthideandshowdialog.cpp
 
 HEADERS  += \
     qtpyloswondialog.h \
@@ -55,7 +57,8 @@ HEADERS  += \
     ../../Classes/CppQtAboutDialog/qtaboutdialog.h \
     ../../Classes/CppAbout/about.h \
     pylosmenudialog.h \
-    ../../Classes/CppTrace/trace.h
+    ../../Classes/CppTrace/trace.h \
+    ../../Classes/CppQtHideAndShowDialog/qthideandshowdialog.h
 
 FORMS    += \
     qtpyloswondialog.ui \
@@ -72,7 +75,8 @@ OTHER_FILES += \
     ../../Classes/CppPylos/Licence.txt \
     ../../Classes/CppQtAboutDialog/Licence.txt \
     ../../Classes/CppAbout/Licence.txt \
-    ../../Classes/CppTrace/Licence.txt
+    ../../Classes/CppTrace/Licence.txt \
+    ../../Classes/CppQtHideAndShowDialog/Licence.txt
 
 #
 #

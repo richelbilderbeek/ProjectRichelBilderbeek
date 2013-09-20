@@ -6,34 +6,39 @@ TEMPLATE = app
 INCLUDEPATH += \
     ../../Classes/CppAbout \
     ../../Classes/CppQtAboutDialog \
+    ../../Classes/CppQtHideAndShowDialog \
     ../../Classes/CppQtTicTacToeWidget \
     ../../Classes/CppTicTacToe
 
-SOURCES += qtmain.cpp\
-    qttictactoegamedialog.cpp \
-    qttictactoewinnerdialog.cpp \
-    qttictactoemenudialog.cpp \
+SOURCES += \
+    ../../Classes/CppAbout/about.cpp \
+    ../../Classes/CppQtAboutDialog/qtaboutdialog.cpp \
+    ../../Classes/CppQtHideAndShowDialog/qthideandshowdialog.cpp \
     ../../Classes/CppQtTicTacToeWidget/qttictactoewidget.cpp \
     ../../Classes/CppTicTacToe/tictactoe.cpp \
-    tictactoemenudialog.cpp \
-    ../../Classes/CppAbout/about.cpp \
-    ../../Classes/CppQtAboutDialog/qtaboutdialog.cpp
+    qtmain.cpp \
+    qttictactoegamedialog.cpp \
+    qttictactoemenudialog.cpp \
+    qttictactoewinnerdialog.cpp \
+    tictactoemenudialog.cpp
 
 HEADERS  += \
-    qttictactoegamedialog.h \
-    qttictactoewinnerdialog.h \
-    qttictactoemenudialog.h \
+    ../../Classes/CppAbout/about.h \
+    ../../Classes/CppQtAboutDialog/qtaboutdialog.h \
+    ../../Classes/CppQtHideAndShowDialog/qthideandshowdialog.h \
     ../../Classes/CppQtTicTacToeWidget/qttictactoewidget.h \
     ../../Classes/CppTicTacToe/tictactoe.h \
-    tictactoemenudialog.h \
-    ../../Classes/CppAbout/about.h \
-    ../../Classes/CppQtAboutDialog/qtaboutdialog.h
+    qttictactoegamedialog.h \
+    qttictactoemenudialog.h \
+    qttictactoewinnerdialog.h \
+    tictactoemenudialog.h
 
 FORMS    += \
+    ../../Classes/CppQtAboutDialog/qtaboutdialog.ui \
     qttictactoegamedialog.ui \
-    qttictactoewinnerdialog.ui \
     qttictactoemenudialog.ui \
-    ../../Classes/CppQtAboutDialog/qtaboutdialog.ui
+    qttictactoewinnerdialog.ui
+
 RESOURCES += GameTicTacToe.qrc
 
 #
@@ -62,3 +67,6 @@ win32 {
   INCLUDEPATH += \
     ../../Libraries/boost_1_54_0
 }
+
+OTHER_FILES += \
+    ../../Classes/CppQtHideAndShowDialog/Licence.txt

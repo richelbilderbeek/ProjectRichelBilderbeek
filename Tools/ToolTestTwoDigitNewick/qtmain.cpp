@@ -21,11 +21,14 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <iomanip>
 #include <iostream>
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include <QApplication>
 
 #include "newick.h"
 #include "qttesttwodigitnewickdialog.h"
 #include "twodigitnewick.h"
+#pragma GCC diagnostic pop
 
 int main(int argc, char* argv[])
 {
