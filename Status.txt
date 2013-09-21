@@ -410,8 +410,14 @@ GameTronCollection
 GameTronCollection.exe
 GameXeNonZeroDesktop.exe
 GetTxtFilesInFolder
+ProjectRichelBilderbeekConsole
+ProjectRichelBilderbeekConsole.exe
+ProjectRichelBilderbeekDesktop
+ProjectRichelBilderbeekDesktop.exe
 ToolAsciiArterDesktop
 ToolAsciiArterDesktop.exe
+ToolCodeToHtmlDesktop
+ToolCodeToHtmlDesktop.exe
 ToolCreateGlossaryDesktop
 ToolCreateGlossaryDesktop.exe
 ToolFakeEvy
