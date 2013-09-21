@@ -63,14 +63,14 @@ ribi::pvdb::QtPvdbConceptItem::QtPvdbConceptItem(
   this->SetName(m_concept->GetName());
 }
 
-const boost::shared_ptr<const ribi::pvdb::Concept> ribi::pvdb::QtPvdbConceptItem::GetConcept() const
+const boost::shared_ptr<const ribi::pvdb::Concept> ribi::pvdb::QtPvdbConceptItem::GetConcept() const noexcept
 {
   boost::shared_ptr<const ribi::pvdb::Concept> p(m_concept);
   assert(p);
   return p;
 }
 
-const std::string ribi::pvdb::QtPvdbConceptItem::GetName() const
+const std::string ribi::pvdb::QtPvdbConceptItem::GetName() const noexcept
 {
   return Unwordwrap(this->GetText());
 }

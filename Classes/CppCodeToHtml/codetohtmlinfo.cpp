@@ -24,6 +24,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #include <cassert>
 
+#include <boost/lexical_cast.hpp>
+
 #include "trace.h"
 
 
@@ -43,8 +45,12 @@ c2h::Info::Info()
 
 const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo()
 {
-  return
-  {
+  //Do not create this map from a single huge initializer list: the compiler will choke on it after about 5000 lines
+  typedef std::string Key;
+  typedef std::vector<std::string> Value;
+  typedef std::pair<Key,Value> Pair;
+  std::vector<Pair> m;
+  m.push_back(
     {
       "CppAbcFile",
       {
@@ -54,7 +60,10 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<a href=\"CppClass.htm\">class</a> for an ABC music",
         "notation file.</p>"
       }
-    },{ "CppAbout",
+    }
+  );
+  m.push_back(
+    { "CppAbout",
       {
         "<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicWindows.png\" alt=\"Windows\"/></p>",
         "<p>&nbsp;</p>",
@@ -62,15 +71,21 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<a href=\"CppClass.htm\">class</a> to display information",
         "about a program.</p>"
       }
-    },{ "CppApproximation",
+    }
+  );
+  m.push_back(
+    { "CppApproximation",
       {
         "<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicWindows.png\" alt=\"Windows\"/></p>",
         "<p>&nbsp;</p>",
         "<p><a href=\"CppApproximation.htm\">Approximation</a> is a",
         "<a href=\"CppClass.htm\">class</a> to do a linear",
-        "interpolation.</p>",
+        "interpolation.</p>"
       }
-    },{ "CppArrayExample1",
+    }
+  );
+  m.push_back(
+    { "CppArrayExample1",
       {
         "<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
@@ -101,18 +116,24 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "  <tr><td>Initialization at creation checked against too many elements</td><td>Yes</td><td>N/A</td><td>Yes</td><td>Yes</td><td>Yes</td></tr>",
         "  <tr><td>Size requestable at compile-time</td><td>Yes</td><td>No</td><td>No</td><td>Yes</td><td>No</td></tr>",
         "  <tr><td>Size requestable at run-time</td><td>Yes</td><td>No</td><td>Yes</td><td>Yes</td><td>Yes</td></tr>",
-        "</table>",
+        "</table>"
       }
-    },{ "CppAsciiArter",
+    }
+  );
+  m.push_back(
+    { "CppAsciiArter",
       {
         "<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicWindows.png\" alt=\"Windows\"/></p>",
         "<p>&nbsp;</p>",
         "<p><a href=\"CppAsciiArter.htm\">AsciiArter</a> is a",
         "GUI-independent <a href=\"CppClass.htm\">class</a> to",
         "<a href=\"CppConvert.htm\">convert</a> images to",
-        "<a href=\"CppAsciiArt.htm\">ASCII art</a>.</p>",
+        "<a href=\"CppAsciiArt.htm\">ASCII art</a>.</p>"
       }
-    },{ "CppAssertExample1",
+    }
+  );
+  m.push_back(
+    { "CppAssertExample1",
       {
         "<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicWindows.png\" alt=\"Windows\"/></p>",
         "<p>&nbsp;</p>",
@@ -124,9 +145,12 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<p>&nbsp;</p>",
         "<ul>",
         "  <li><a href=\"CppAssertExample1.zip\">Download the Qt Creator project 'CppAssertExample1' (zip)</a></li>",
-        "</ul>",
+        "</ul>"
       }
-    },{ "CppAssertExample2",
+    }
+  );
+  m.push_back(
+    { "CppAssertExample2",
       {
         "<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicWindows.png\" alt=\"Windows\"/></p>",
         "<p>&nbsp;</p>",
@@ -134,25 +158,34 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<p>&nbsp;</p>",
         "<ul>",
         "  <li><a href=\"CppAssertExample2.zip\">Download the Qt Creator project 'CppAssertExample2' (zip)</a></li>",
-        "</ul>",
+        "</ul>"
       }
-    },{ "CppBimapExample1",
+    }
+  );
+  m.push_back(
+    { "CppBimapExample1",
       {
         R"(<p><a href="CppBimapExample1.htm">boost::bimap example 1: find</a> is a <a href="CppBimap.htm">boost::bimap</a> example.</p>)",
         R"(<p>&nbsp;</p>)",
         R"(<ul>)",
         R"(  <li><a href="CppBimapExample1.zip">Download the Qt Creator project 'CppBimapExample1' (zip)</a></li>)",
-        R"(</ul>)",
+        R"(</ul>)"
       }
-    },{ "CppBimapExample2",
+    }
+  );
+  m.push_back(
+    { "CppBimapExample2",
       {
         R"(<p><a href="CppBimapExample2.htm">boost::bimap example 2: copy</a> is a <a href="CppBimap.htm">boost::bimap</a> example.</p>)",
         R"(<p>&nbsp;</p>)",
         R"(<ul>)",
         R"(  <li><a href="CppBimapExample2.zip">Download the Qt Creator project 'CppBimapExample1' (zip)</a></li>)",
-        R"(</ul>)",
+        R"(</ul>)"
       }
-    },{ "CppBinaryNewickVector",
+    }
+  );
+  m.push_back(
+    { "CppBinaryNewickVector",
       {
         "<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
@@ -163,7 +196,10 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "is a GUI to test and experiment with <a href=\"CppBinaryNewickVector.htm\">BinaryNewickVector</a>.</p>",
         "<p>&nbsp;</p>",
       }
-    },{ "CppBoostFormatExample1",
+    }
+  );
+  m.push_back(
+    { "CppBoostFormatExample1",
       {
         "<p><img src=\"PicBoost.png\" alt=\"Boost\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
@@ -171,9 +207,12 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<p>&nbsp;</p>",
         "<ul>",
         "  <li><a href=\"CppBoostFormatExample1.zip\">Download the Qt Creator project 'CppBoostFormatExample1' (zip)</a></li>",
-        "</ul>",
+        "</ul>"
       }
-    },{ "CppBoostFormatExample2",
+    }
+  );
+  m.push_back(
+    { "CppBoostFormatExample2",
       {
         "<p><img src=\"PicBoost.png\" alt=\"Boost\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
@@ -181,9 +220,12 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<p>&nbsp;</p>",
         "<ul>",
         "  <li><a href=\"CppBoostFormatExample2.zip\">Download the Qt Creator project 'CppBoostFormatExample2' (zip)</a></li>",
-        "</ul>",
+        "</ul>"
       }
-    },{ "CppBoostRegexExample1",
+    }
+  );
+  m.push_back(
+    { "CppBoostRegexExample1",
       {
         "<p><img src=\"PicBoost.png\" alt=\"Boost\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
@@ -194,9 +236,12 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<ul>",
         "  <li><a href=\"CppBoostRegexExample1.zip\">Download the Qt Creator project 'CppBoostRegexExample1' (zip)</a></li>",
         "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/> <a href=\"CppBoostRegexExample1Exe.zip\">Download the 'CppBoostRegexExample1' Windows executable (zip)</a></li>",
-        "</ul>",
+        "</ul>"
       }
-    },{ "CppBoostRegexExample2",
+    }
+  );
+  m.push_back(
+    { "CppBoostRegexExample2",
       {
         "<p><img src=\"PicBoost.png\" alt=\"Boost\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
@@ -206,9 +251,12 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<p>&nbsp;</p>",
         "<ul>",
         "  <li><a href=\"CppBoostRegexExample2.zip\">Download the Qt Creator project 'CppBoostRegexExample2' (zip)</a></li>",
-        "</ul>",
+        "</ul>"
       }
-    },{ "CppBoostRegexExample3",
+    }
+  );
+  m.push_back(
+    { "CppBoostRegexExample3",
       {
         "<p><img src=\"PicBoost.png\" alt=\"Boost\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
@@ -218,9 +266,12 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<p>&nbsp;</p>",
         "<ul>",
         "  <li><a href=\"CppBoostRegexExample3.zip\">Download the Qt Creator project 'CppBoostRegexExample3' (zip)</a></li>",
-        "</ul>",
+        "</ul>"
       }
-    },{ "CppBoostTupleExample1",
+    }
+  );
+  m.push_back(
+    { "CppBoostTupleExample1",
       {
         "<p><img src=\"PicBoost.png\" alt=\"Boost\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
@@ -228,15 +279,21 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<p>&nbsp;</p>",
         "<ul>",
         "  <li><a href=\"CppBoostTupleExample1.zip\">Download the Qt Creator project 'CppBoostTupleExample1' (zip)</a></li>",
-        "</ul>",
+        "</ul>"
       }
-    },{ "CppChess",
+    }
+  );
+  m.push_back(
+    { "CppChess",
       {
         "<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
-        "<p><a href=\"CppChess.htm\">Chess</a> has many chess <a href=\"CppClass.htm\">classes</a></p>",
+        "<p><a href=\"CppChess.htm\">Chess</a> has many chess <a href=\"CppClass.htm\">classes</a></p>"
       }
-    },{ "CppCompileErrorParseErrorAtBOOST_JOIN",
+    }
+  );
+  m.push_back(
+    { "CppCompileErrorParseErrorAtBOOST_JOIN",
       {
         "<p><img src=\"PicBoost.png\" alt=\"Boost\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
@@ -244,23 +301,32 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<p>&nbsp;</p>",
         "<ul>",
         "  <li><a href=\"CppCompileErrorParseErrorAtBOOST_JOIN.zip\">Download the Qt Creator project 'CppCompileErrorParseErrorAtBOOST_JOIN' (zip)</a></li>",
-        "</ul>",
+        "</ul>"
       }
-    },{ "CppConnectThree",
+    }
+  );
+  m.push_back(
+    { "CppConnectThree",
       {
         "<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
         "<p><a href=\"CppConnectThree.htm\">ConnectThree</a> is a <a href=\"CppClass.htm\">class</a>",
-        "for a <a href=\"GameConnectThree.htm\">ConnectThree game</a>.</p>",
+        "for a <a href=\"GameConnectThree.htm\">ConnectThree game</a>.</p>"
       }
-    },{ "CppConnectThreeWidget",
+    }
+  );
+  m.push_back(
+    { "CppConnectThreeWidget",
       {
         "<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
         "<p><a href=\"CppConnectThreeWidget.htm\">ConnectThreeWidget</a> is a <a href=\"CppWidget.htm\">widget</a>",
-        "for a <a href=\"GameConnectThree.htm\">ConnectThree game</a>.</p>",
+        "for a <a href=\"GameConnectThree.htm\">ConnectThree game</a>.</p>"
       }
-    },{ "CppCopy_if",
+    }
+  );
+  m.push_back(
+    { "CppCopy_if",
       {
         "<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
@@ -353,17 +419,22 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<ol>",
         "  <li><a href=\"CppBjarneStroustrup.htm\">Bjarne Stroustrup</a>. The C++ Programming Language (3rd edition). 1997. ISBN: 0-201-88954-4. Chapter 18.12.1: 'Prefer algorithms to loops.</li>",
         "  <li><a href=\"CppScottMeyers.htm\">Scott Meyers</a>. Effective STL. ISBN: 0-201-74962-9. Item 43: 'Prefer algorithm calls over hand-written loops'</li>",
-        "</ol>",
-        "",
+        "</ol>"
       }
-    },{ "CppCounter",
+    }
+  );
+  m.push_back(
+    { "CppCounter",
       {
         "<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
         "<p><a href=\"CppCounter.htm\">Counter</a> is a <a href=\"CppClass.htm\">class</a>",
-        "for tallying.</p>",
+        "for tallying.</p>"
       }
-    },{ "CppDial",
+    }
+  );
+  m.push_back(
+    { "CppDial",
       {
         "<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
@@ -373,15 +444,21 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<a href=\"CppQtDialWidget.htm\">QtDialWidget</a> and <a href=\"CppWtDialWidget.htm\">WtDialWidget</a>.</p>",
         "<p>&nbsp;</p>",
         "<p><a href=\"CppDial.htm\">Dial</a> is used in (among others) the <a href=\"Tools.htm\">tool</a>",
-        "<a href=\"ToolTestDial.htm\">TestDial</a>.</p>",
+        "<a href=\"ToolTestDial.htm\">TestDial</a>.</p>"
       }
-    },{ "CppDialWidget",
+    }
+  );
+  m.push_back(
+    { "CppDialWidget",
       {
         "<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
-        "<p><a href=\"CppDialWidget.htm\">DialWidget</a> is a <a href=\"CppDial.htm\">Dial</a> <a href=\"CppWidget.htm\">widget</a>.</p>",
+        "<p><a href=\"CppDialWidget.htm\">DialWidget</a> is a <a href=\"CppDial.htm\">Dial</a> <a href=\"CppWidget.htm\">widget</a>.</p>"
       }
-    },{ "CppEncranger",
+    }
+  );
+  m.push_back(
+    { "CppEncranger",
       {
         "<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
@@ -392,42 +469,57 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<ul>",
         "  <li><a href=\"ToolTestEncranger.htm\">TestEncranger</a></li>",
         "  <li><a href=\"ProjectWtWebsite.htm\">ProjectWtWebsite</a></li>",
-        "</ul>",
+        "</ul>"
       }
-    },{ "CppExercise",
+    }
+  );
+  m.push_back(
+    { "CppExercise",
       {
         "<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
         "<p><a href=\"CppExercise.htm\">Exercise</a> is a",
         "<a href=\"CppClass.htm\">class</a> for an",
-        "exercise.</p>",
+        "exercise.</p>"
       }
-    },{ "CppFuzzy_equal_to",
+    }
+  );
+  m.push_back(
+    { "CppFuzzy_equal_to",
       {
         "<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
         "<p><a href=\"CppFuzzy_equal_to.htm\">fuzzy_equal_to</a> is a <a href=\"CppPredicate.htm\">predicate</a> ",
         "to test two <a href=\"CppDouble.htm\">doubles</a> for equality with a certain tolerance. ",
         "A tolerance of 0.0 denotes that an exact match is requested. Note that the value of 0.0 cannot",
-        "be compared fuzzily.</p>",
+        "be compared fuzzily.</p>"
       }
-    },{ "CppGaborFilter",
+    }
+  );
+  m.push_back(
+    { "CppGaborFilter",
       {
         "<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
         "<p><a href=\"CppGaborFilter.htm\">GaborFilter</a> is a",
         "<a href=\"CppClass.htm\">class</a> for a",
-        "Gabor filter.</p>",
+        "Gabor filter.</p>"
       }
-    },{ "CppGaborFilterWidget",
+    }
+  );
+  m.push_back(
+    { "CppGaborFilterWidget",
       {
         "<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
         "<p><a href=\"CppGaborFilterWidget.htm\">GaborFilterWidget</a> is a",
         "<a href=\"CppClass.htm\">class</a> for a",
-        "<a href=\"CppGaborFilter.htm\">Gabor filter</a> <a href=\"CppWidget.htm\">widget</a>.</p>",
+        "<a href=\"CppGaborFilter.htm\">Gabor filter</a> <a href=\"CppWidget.htm\">widget</a>.</p>"
       }
-    },{ "CppGetExtension",
+    }
+  );
+  m.push_back(
+    { "CppGetExtension",
       {
         "<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
@@ -437,9 +529,12 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<p>&nbsp;</p>",
         "<ul>",
         "  <li><a href=\"CppGetExtension.zip\">Download the Qt Creator project 'CppGetExtension' (zip)</a></li>",
-        "</ul>",
+        "</ul>"
       }
-    },{ "CppGetFilesInFolder",
+    }
+  );
+  m.push_back(
+    { "CppGetFilesInFolder",
       {
         "<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
@@ -447,9 +542,12 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<p>&nbsp;</p>",
         "<ul>",
         "  <li><a href=\"CppGetFilesInFolder.zip\">Download the Qt Creator project 'CppGetFilesInFolder' (zip)</a></li>",
-        "</ul>",
+        "</ul>"
       }
-    },{ "CppGetPath",
+    }
+  );
+  m.push_back(
+    { "CppGetPath",
       {
         "<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
@@ -457,9 +555,12 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<p>&nbsp;</p>",
         "<ul>",
         "  <li><a href=\"CppGetPath.zip\">Download the Qt Creator project 'CppGetPath' (zip)</a></li>",
-        "</ul>",
+        "</ul>"
       }
-    },{ "CppGetRegexMatches",
+    }
+  );
+  m.push_back(
+    { "CppGetRegexMatches",
       {
         "<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
@@ -470,9 +571,12 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<p>&nbsp;</p>",
         "<ul>",
         "  <li><a href=\"CppGetRegexMatches.zip\">Download the Qt Creator project 'GetRegexMatches' (zip)</a></li>",
-        "</ul>",
+        "</ul>"
       }
-    },{ "CppGetTxtFilesInFolder",
+    }
+  );
+  m.push_back(
+    { "CppGetTxtFilesInFolder",
       {
         "<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
@@ -480,9 +584,12 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<p>&nbsp;</p>",
         "<ul>",
         "  <li><a href=\"CppGetTxtFilesInFolder.zip\">Download the Qt Creator project 'CppGetTxtFilesInFolder' (zip)</a></li>",
-        "</ul>",
+        "</ul>"
       }
-    },{ "CppGnuplotInterface",
+    }
+  );
+  m.push_back(
+    { "CppGnuplotInterface",
       {
         "<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
@@ -518,9 +625,12 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "  <li><a href=\"CppCompileError_popenIsNotAmemberOfStd.htm\">_popen is not a member of std</a></li>",
         "  <li><a href=\"CppCompileErrorCLK_TCKwasNotDeclaredInThisScope.htm\">CLK_TCK was not declared in this scope</a></li>",
         "  <li><a href=\"CppCompileErrorDuplicateSymbol.htm\">Duplicate symbol Gnuplot::SetLineStyles()</a></li>",
-        "</ul>",
+        "</ul>"
       }
-    },{ "CppGprofQtCreatorExample1",
+    }
+  );
+  m.push_back(
+    { "CppGprofQtCreatorExample1",
       {
         "<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
@@ -572,9 +682,12 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "</code></td></tr></table>",
         "<!-- end of the code -->",
         "<p>&nbsp;</p>",
-        "<p>Conclusion: as expected, SortVector (a QuickSort) is by far the quickest <a href=\"CppSort.htm\">sorting</a> <a href=\"CppAlgorithm.htm\">algorithm</a>.</p>",
+        "<p>Conclusion: as expected, SortVector (a QuickSort) is by far the quickest <a href=\"CppSort.htm\">sorting</a> <a href=\"CppAlgorithm.htm\">algorithm</a>.</p>"
       }
-    },{ "CppGprofQtCreatorExample2",
+    }
+  );
+  m.push_back(
+    { "CppGprofQtCreatorExample2",
       {
         "<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
@@ -636,9 +749,12 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "</code></td></tr></table>",
         "<!-- end of the code -->",
         "<p>&nbsp;</p>",
-        "<p>Conclusion: as expected, SortVector (a QuickSort) is by far the quickest <a href=\"CppSort.htm\">sorting</a> <a href=\"CppAlgorithm.htm\">algorithm</a>.</p>",
+        "<p>Conclusion: as expected, SortVector (a QuickSort) is by far the quickest <a href=\"CppSort.htm\">sorting</a> <a href=\"CppAlgorithm.htm\">algorithm</a>.</p>"
       }
-    },{ "CppHeaderFileExample1",
+    }
+  );
+  m.push_back(
+    { "CppHeaderFileExample1",
       {
         R"(<a href="CppHeaderFileExample1.htm">Header file example 1</a> shows what does and what does not belong in a header file [1].</p>)",
         R"(<p>&nbsp;</p>)",
@@ -655,10 +771,13 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         R"(<ol>)",
         R"(  <li><!--  1 --> <a href="CppJohnLakos.htm">John Lakos</a>. Large-Scale C++ Software Design. 1996. ISBN: 0-201-63362-0. Chapter 1.1.3, figure 1-3, page 28</li>)",
         R"(</ol>)",
-        R"(<p>&nbsp;</p>)",
+        R"(<p>&nbsp;</p>)"
 
       }
-    },{ "CppHelloBoostLexical_CastQtCreatorCygwin",
+    }
+  );
+  m.push_back(
+    { "CppHelloBoostLexical_CastQtCreatorCygwin",
       {
         "<p><img src=\"PicBoost.png\" alt=\"Boost\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicCygwin.png\" alt=\"Cygwin\"/></p>",
         "<p>&nbsp;</p>",
@@ -666,9 +785,12 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<p>&nbsp;</p>",
         "<ul>",
         "  <li><a href=\"CppHelloBoostLexical_CastQtCreatorCygwin.zip\">Download the Qt Creator project 'CppHelloBoostLexical_CastQtCreatorCygwin' (zip)</a></li>",
-        "</ul>",
+        "</ul>"
       }
-    },{ "CppHelloBoostLexical_CastQtCreatorLubuntu",
+    }
+  );
+  m.push_back(
+    { "CppHelloBoostLexical_CastQtCreatorLubuntu",
       {
         "<p><img src=\"PicBoost.png\" alt=\"Boost\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
@@ -676,9 +798,12 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<p>&nbsp;</p>",
         "<ul>",
         "  <li><a href=\"CppHelloBoostLexical_CastQtCreatorLubuntu.zip\">Download the Qt Creator project 'CppHelloBoostLexical_CastQtCreatorLubuntu' (zip)</a></li>",
-        "</ul>",
+        "</ul>"
       }
-    },{ "CppHelloBoostLexical_CastQtCreatorLubuntuToWindows",
+    }
+  );
+  m.push_back(
+    { "CppHelloBoostLexical_CastQtCreatorLubuntuToWindows",
       {
         "<p><img src=\"PicBoost.png\" alt=\"Boost\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicTo.png\" alt=\"To\"/><img src=\"PicWindows.png\" alt=\"Windows\"/></p>",
         "<p>&nbsp;</p>",
@@ -686,9 +811,12 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<p>&nbsp;</p>",
         "<ul>",
         "  <li><a href=\"CppHelloBoostLexical_CastQtCreatorLubuntuToWindows.zip\">Download the Qt Creator project 'CppHelloBoostLexical_CastQtCreatorLubuntuToWindows' (zip)</a></li>",
-        "</ul>",
+        "</ul>"
       }
-    },{ "CppHelloBoostLexical_CastQtCreatorSliTaz",
+    }
+  );
+  m.push_back(
+    { "CppHelloBoostLexical_CastQtCreatorSliTaz",
       {
         "<p><img src=\"PicBoost.png\" alt=\"Boost\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicSliTaz.png\" alt=\"SliTaz\"/></p>",
         "<p>&nbsp;</p>",
@@ -696,9 +824,12 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<p>&nbsp;</p>",
         "<ul>",
         "  <li><a href=\"CppHelloBoostLexical_CastQtCreatorSliTaz.zip\">Download the Qt Creator project 'CppHelloBoostLexical_CastQtCreatorSliTaz' (zip)</a></li>",
-        "</ul>",
+        "</ul>"
       }
-    },{ "CppHelloBoostLexical_CastQt4QtCreatorLubuntuToWindows",
+    }
+  );
+  m.push_back(
+    { "CppHelloBoostLexical_CastQt4QtCreatorLubuntuToWindows",
       {
         "<p><img src=\"PicBoost.png\" alt=\"Boost\"/><img src=\"PicQt4.png\" alt=\"Qt4\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicTo.png\" alt=\"To\"/><img src=\"PicWindows.png\" alt=\"Windows\"/></p>",
         "<p>&nbsp;</p>",
@@ -706,9 +837,12 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<p>&nbsp;</p>",
         "<ul>",
         "  <li><a href=\"CppHelloBoostLexical_CastQt4QtCreatorLubuntuToWindows.zip\">Download the Qt Creator project 'CppHelloBoostLexical_CastQt4QtCreatorLubuntuToWindows' (zip)</a></li>",
-        "</ul>",
+        "</ul>"
       }
-    },{ "CppHelloBoostLexical_CastQt5QtCreatorLubuntuToWindows",
+    }
+  );
+  m.push_back(
+    { "CppHelloBoostLexical_CastQt5QtCreatorLubuntuToWindows",
       {
         "<p><img src=\"PicBoost.png\" alt=\"Boost\"/><img src=\"PicQt5.png\" alt=\"Qt5\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicTo.png\" alt=\"To\"/><img src=\"PicWindows.png\" alt=\"Windows\"/></p>",
         "<p>&nbsp;</p>",
@@ -716,9 +850,12 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<p>&nbsp;</p>",
         "<ul>",
         "  <li><a href=\"CppHelloBoostLexical_CastQt5QtCreatorLubuntuToWindows.zip\">Download the Qt Creator project 'CppHelloBoostLexical_CastQt5QtCreatorLubuntuToWindows' (zip)</a></li>",
-        "</ul>",
+        "</ul>"
       }
-    },{ "CppHelloBoostLexical_CastQtCreatorWindows",
+    }
+  );
+  m.push_back(
+    { "CppHelloBoostLexical_CastQtCreatorWindows",
       {
         "<p><img src=\"PicBoost.png\" alt=\"Boost\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicWindows.png\" alt=\"Windows\"/></p>",
         "<p>&nbsp;</p>",
@@ -726,9 +863,12 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<p>&nbsp;</p>",
         "<ul>",
         "  <li><a href=\"CppHelloBoostLexical_CastQtCreatorWindows.zip\">Download the Qt Creator project 'CppHelloBoostLexical_CastQtCreatorWindows' (zip)</a></li>",
-        "</ul>",
+        "</ul>"
       }
-    },{ "CppHelloBoostQtCreatorLubuntu",
+    }
+  );
+  m.push_back(
+    { "CppHelloBoostQtCreatorLubuntu",
       {
         "<p><img src=\"PicBoost.png\" alt=\"Boost\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
@@ -739,9 +879,12 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<p>&nbsp;</p>",
         "<ul>",
         "  <li><a href=\"CppHelloBoostQtCreatorLubuntu.zip\">Download the Qt Creator project 'CppHelloBoostQtCreatorLubuntu' (zip)</a></li>",
-        "</ul>",
+        "</ul>"
       }
-    },{ "CppHelloBoostRegexQtCreatorCygwin",
+    }
+  );
+  m.push_back(
+    { "CppHelloBoostRegexQtCreatorCygwin",
       {
         "<p><img src=\"PicBoost.png\" alt=\"Boost\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicCygwin.png\" alt=\"Cygwin\"/></p>",
         "<p>&nbsp;</p>",
@@ -749,9 +892,12 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<p>&nbsp;</p>",
         "<ul>",
         "  <li><a href=\"CppHelloBoostRegexQtCreatorCygwin.zip\">Download the Qt Creator project 'CppHelloBoostRegexQtCreatorCygwin' (zip)</a></li>",
-        "</ul>",
+        "</ul>"
       }
-    },{ "CppHelloBoostRegexQtCreatorLubuntu",
+    }
+  );
+  m.push_back(
+    { "CppHelloBoostRegexQtCreatorLubuntu",
       {
         "<p><img src=\"PicBoost.png\" alt=\"Boost\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
@@ -759,9 +905,12 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<p>&nbsp;</p>",
         "<ul>",
         "  <li><a href=\"CppHelloBoostRegexQtCreatorLubuntu.zip\">Download the Qt Creator project 'CppHelloBoostRegexQtCreatorLubuntu' (zip)</a></li>",
-        "</ul>",
+        "</ul>"
       }
-    },{ "CppHelloBoostRegexQtCreatorLubuntuToWindows",
+    }
+  );
+  m.push_back(
+    { "CppHelloBoostRegexQtCreatorLubuntuToWindows",
       {
         "<p><img src=\"PicBoost.png\" alt=\"Boost\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicTo.png\" alt=\"To\"/><img src=\"PicWindows.png\" alt=\"Windows\"/></p>",
         "<p>&nbsp;</p>",
@@ -769,9 +918,12 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<p>&nbsp;</p>",
         "<ul>",
         "  <li><a href=\"CppHelloBoostRegexQtCreatorLubuntuToWindows.zip\">Download the Qt Creator project 'CppHelloBoostRegexQtCreatorLubuntuToWindows' (zip)</a></li>",
-        "</ul>",
+        "</ul>"
       }
-    },{ "CppHelloBoostRegexQtCreatorSliTaz",
+    }
+  );
+  m.push_back(
+    { "CppHelloBoostRegexQtCreatorSliTaz",
       {
         "<p><img src=\"PicBoost.png\" alt=\"Boost\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicSliTaz.png\" alt=\"SliTaz\"/></p>",
         "<p>&nbsp;</p>",
@@ -779,9 +931,12 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<p>&nbsp;</p>",
         "<ul>",
         "  <li><a href=\"CppHelloBoostRegexQtCreatorSliTaz.zip\">Download the Qt Creator project 'CppHelloBoostRegexQtCreatorSliTaz' (zip)</a></li>",
-        "</ul>",
+        "</ul>"
       }
-    },{ "CppHelloBoostRegexQt4QtCreatorLubuntuToWindows",
+    }
+  );
+  m.push_back(
+    { "CppHelloBoostRegexQt4QtCreatorLubuntuToWindows",
       {
         "<p><img src=\"PicBoost.png\" alt=\"Boost\"/><img src=\"PicQt4.png\" alt=\"Qt4\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicTo.png\" alt=\"To\"/><img src=\"PicWindows.png\" alt=\"Windows\"/></p>",
         "<p>&nbsp;</p>",
@@ -789,9 +944,12 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<p>&nbsp;</p>",
         "<ul>",
         "  <li><a href=\"CppHelloBoostRegexQt4QtCreatorLubuntuToWindows.zip\">Download the Qt Creator project 'CppHelloBoostRegexQt4QtCreatorLubuntuToWindows' (zip)</a></li>",
-        "</ul>",
+        "</ul>"
       }
-    },{ "CppHelloBoostRegexQt5QtCreatorLubuntuToWindows",
+    }
+  );
+  m.push_back(
+    { "CppHelloBoostRegexQt5QtCreatorLubuntuToWindows",
       {
         "<p><img src=\"PicBoost.png\" alt=\"Boost\"/><img src=\"PicQt5.png\" alt=\"Qt5\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicTo.png\" alt=\"To\"/><img src=\"PicWindows.png\" alt=\"Windows\"/></p>",
         "<p>&nbsp;</p>",
@@ -799,9 +957,12 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<p>&nbsp;</p>",
         "<ul>",
         "  <li><a href=\"CppHelloBoostRegexQt5QtCreatorLubuntuToWindows.zip\">Download the Qt Creator project 'CppHelloBoostRegexQt5QtCreatorLubuntuToWindows' (zip)</a></li>",
-        "</ul>",
+        "</ul>"
       }
-    },{ "CppHelloBoostRegexQtCreatorWindows",
+    }
+  );
+  m.push_back(
+    { "CppHelloBoostRegexQtCreatorWindows",
       {
         "<p><img src=\"PicBoost.png\" alt=\"Boost\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicWindows.png\" alt=\"Windows\"/></p>",
         "<p>&nbsp;</p>",
@@ -809,9 +970,12 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<p>&nbsp;</p>",
         "<ul>",
         "  <li><a href=\"CppHelloBoostRegexQtCreatorWindows.zip\">Download the Qt Creator project 'CppHelloBoostRegexQtCreatorWindows' (zip)</a></li>",
-        "</ul>",
+        "</ul>"
       }
-    },{ "CppHelloBoostSignalsQtCreatorCygwin",
+    }
+  );
+  m.push_back(
+    { "CppHelloBoostSignalsQtCreatorCygwin",
       {
         "<p><img src=\"PicBoost.png\" alt=\"Boost\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicCygwin.png\" alt=\"Cygwin\"/></p>",
         "<p>&nbsp;</p>",
@@ -819,9 +983,12 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<p>&nbsp;</p>",
         "<ul>",
         "  <li><a href=\"CppHelloBoostSignalsQtCreatorCygwin.zip\">Download the Qt Creator project 'CppHelloBoostSignalsQtCreatorCygwin' (zip)</a></li>",
-        "</ul>",
+        "</ul>"
       }
-    },{ "CppHelloBoostSignalsQtCreatorLubuntu",
+    }
+  );
+  m.push_back(
+    { "CppHelloBoostSignalsQtCreatorLubuntu",
       {
         "<p><img src=\"PicBoost.png\" alt=\"Boost\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
@@ -829,9 +996,12 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<p>&nbsp;</p>",
         "<ul>",
         "  <li><a href=\"CppHelloBoostSignalsQtCreatorLubuntu.zip\">Download the Qt Creator project 'CppHelloBoostSignalsQtCreatorLubuntu' (zip)</a></li>",
-        "</ul>",
+        "</ul>"
       }
-    },{ "CppHelloBoostSignalsQtCreatorLubuntuToWindows",
+    }
+  );
+  m.push_back(
+    { "CppHelloBoostSignalsQtCreatorLubuntuToWindows",
       {
         "<p><img src=\"PicBoost.png\" alt=\"Boost\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicTo.png\" alt=\"To\"/><img src=\"PicWindows.png\" alt=\"Windows\"/></p>",
         "<p>&nbsp;</p>",
@@ -839,9 +1009,12 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<p>&nbsp;</p>",
         "<ul>",
         "  <li><a href=\"CppHelloBoostSignalsQtCreatorLubuntuToWindows.zip\">Download the Qt Creator project 'CppHelloBoostSignalsQtCreatorLubuntuToWindows' (zip)</a></li>",
-        "</ul>",
+        "</ul>"
       }
-    },{ "CppHelloBoostSignalsQtCreatorSliTaz",
+    }
+  );
+  m.push_back(
+    { "CppHelloBoostSignalsQtCreatorSliTaz",
       {
         "<p><img src=\"PicBoost.png\" alt=\"Boost\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicSliTaz.png\" alt=\"SliTaz\"/></p>",
         "<p>&nbsp;</p>",
@@ -849,9 +1022,12 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<p>&nbsp;</p>",
         "<ul>",
         "  <li><a href=\"CppHelloBoostSignalsQtCreatorSliTaz.zip\">Download the Qt Creator project 'CppHelloBoostSignalsQtCreatorSliTaz' (zip)</a></li>",
-        "</ul>",
+        "</ul>"
       }
-    },{ "CppHelloBoostSignalsQt4QtCreatorLubuntuToWindows",
+    }
+  );
+  m.push_back(
+    { "CppHelloBoostSignalsQt4QtCreatorLubuntuToWindows",
       {
         "<p><img src=\"PicBoost.png\" alt=\"Boost\"/><img src=\"PicQt4.png\" alt=\"Qt4\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicTo.png\" alt=\"To\"/><img src=\"PicWindows.png\" alt=\"Windows\"/></p>",
         "<p>&nbsp;</p>",
@@ -859,9 +1035,12 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<p>&nbsp;</p>",
         "<ul>",
         "  <li><a href=\"CppHelloBoostSignalsQt4QtCreatorLubuntuToWindows.zip\">Download the Qt Creator project 'CppHelloBoostSignalsQt4QtCreatorLubuntuToWindows' (zip)</a></li>",
-        "</ul>",
+        "</ul>"
       }
-    },{ "CppHelloBoostSignalsQt5QtCreatorLubuntuToWindows",
+    }
+  );
+  m.push_back(
+    { "CppHelloBoostSignalsQt5QtCreatorLubuntuToWindows",
       {
         "<p><img src=\"PicBoost.png\" alt=\"Boost\"/><img src=\"PicQt5.png\" alt=\"Qt5\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicTo.png\" alt=\"To\"/><img src=\"PicWindows.png\" alt=\"Windows\"/></p>",
         "<p>&nbsp;</p>",
@@ -869,9 +1048,12 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<p>&nbsp;</p>",
         "<ul>",
         "  <li><a href=\"CppHelloBoostSignalsQt5QtCreatorLubuntuToWindows.zip\">Download the Qt Creator project 'CppHelloBoostSignalsQt5QtCreatorLubuntuToWindows' (zip)</a></li>",
-        "</ul>",
+        "</ul>"
       }
-    },{ "CppHelloBoostSignalsQtCreatorWindows",
+    }
+  );
+  m.push_back(
+    { "CppHelloBoostSignalsQtCreatorWindows",
       {
         "<p><img src=\"PicBoost.png\" alt=\"Boost\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicWindows.png\" alt=\"Windows\"/></p>",
         "<p>&nbsp;</p>",
@@ -879,9 +1061,12 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<p>&nbsp;</p>",
         "<ul>",
         "  <li><a href=\"CppHelloBoostSignalsQtCreatorWindows.zip\">Download the Qt Creator project 'CppHelloBoostSignalsQtCreatorWindows' (zip)</a></li>",
-        "</ul>",
+        "</ul>"
       }
-    },{ "CppHelloBoostUblasQtCreatorCygwin",
+    }
+  );
+  m.push_back(
+    { "CppHelloBoostUblasQtCreatorCygwin",
       {
         "<p><img src=\"PicBoost.png\" alt=\"Boost\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicCygwin.png\" alt=\"Cygwin\"/></p>",
         "<p>&nbsp;</p>",
@@ -889,9 +1074,12 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<p>&nbsp;</p>",
         "<ul>",
         "  <li><a href=\"CppHelloBoostUblasQtCreatorCygwin.zip\">Download the Qt Creator project 'CppHelloBoostUblasQtCreatorCygwin' (zip)</a></li>",
-        "</ul>",
+        "</ul>"
       }
-    },{ "CppHelloBoostUblasQtCreatorLubuntu",
+    }
+  );
+  m.push_back(
+    { "CppHelloBoostUblasQtCreatorLubuntu",
       {
         "<p><img src=\"PicBoost.png\" alt=\"Boost\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
@@ -899,9 +1087,12 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<p>&nbsp;</p>",
         "<ul>",
         "  <li><a href=\"CppHelloBoostUblasQtCreatorLubuntu.zip\">Download the Qt Creator project 'CppHelloBoostUblasQtCreatorLubuntu' (zip)</a></li>",
-        "</ul>",
+        "</ul>"
       }
-    },{ "CppHelloBoostUblasQtCreatorLubuntuToWindows",
+    }
+  );
+  m.push_back(
+    { "CppHelloBoostUblasQtCreatorLubuntuToWindows",
       {
         "<p><img src=\"PicBoost.png\" alt=\"Boost\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicTo.png\" alt=\"To\"/><img src=\"PicWindows.png\" alt=\"Windows\"/></p>",
         "<p>&nbsp;</p>",
@@ -909,9 +1100,12 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<p>&nbsp;</p>",
         "<ul>",
         "  <li><a href=\"CppHelloBoostUblasQtCreatorLubuntuToWindows.zip\">Download the Qt Creator project 'CppHelloBoostUblasQtCreatorLubuntuToWindows' (zip)</a></li>",
-        "</ul>",
+        "</ul>"
       }
-    },{ "CppHelloBoostUblasQtCreatorSliTaz",
+    }
+  );
+  m.push_back(
+    { "CppHelloBoostUblasQtCreatorSliTaz",
       {
         "<p><img src=\"PicBoost.png\" alt=\"Boost\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicSliTaz.png\" alt=\"SliTaz\"/></p>",
         "<p>&nbsp;</p>",
@@ -919,19 +1113,25 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<p>&nbsp;</p>",
         "<ul>",
         "  <li><a href=\"CppHelloBoostUblasQtCreatorSliTaz.zip\">Download the Qt Creator project 'CppHelloBoostUblasQtCreatorSliTaz' (zip)</a></li>",
-        "</ul>",
+        "</ul>"
       }
-    },{ "CppHelloBoostUblasQt4QtCreatorLubuntuToWindows",
+    }
+  );
+  m.push_back(
+    { "CppHelloBoostUblasQt4QtCreatorLubuntuToWindows",
       {
         "<p><img src=\"PicBoost.png\" alt=\"Boost\"/><img src=\"PicQt4.png\" alt=\"Qt4\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicTo.png\" alt=\"To\"/><img src=\"PicWindows.png\" alt=\"Windows\"/></p>",
         "<p>&nbsp;</p>",
         "<p><a href=\"CppHelloBoostUblasQt4QtCreatorLubuntuToWindows.htm\">Hello Boost.uBLAS using Qt4 under Qt Creator under Lubuntu, crosscompiled to Windows</a> is <p><a href=\"CppHelloBoostUblas.htm\">Hello Boost.uBLAS</a> program.",
         "<p>&nbsp;</p>",
-        "<ul>",
+        "<ul>"
         "  <li><a href=\"CppHelloBoostUblasQt4QtCreatorLubuntuToWindows.zip\">Download the Qt Creator project 'CppHelloBoostUblasQt4QtCreatorLubuntuToWindows' (zip)</a></li>",
-        "</ul>",
+        "</ul>"
       }
-    },{ "CppHelloBoostUblasQt5QtCreatorLubuntuToWindows",
+    }
+  );
+  m.push_back(
+    { "CppHelloBoostUblasQt5QtCreatorLubuntuToWindows",
       {
         "<p><img src=\"PicBoost.png\" alt=\"Boost\"/><img src=\"PicQt5.png\" alt=\"Qt5\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicTo.png\" alt=\"To\"/><img src=\"PicWindows.png\" alt=\"Windows\"/></p>",
         "<p>&nbsp;</p>",
@@ -939,9 +1139,12 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<p>&nbsp;</p>",
         "<ul>",
         "  <li><a href=\"CppHelloBoostUblasQt5QtCreatorLubuntuToWindows.zip\">Download the Qt Creator project 'CppHelloBoostUblasQt5QtCreatorLubuntuToWindows' (zip)</a></li>",
-        "</ul>",
+        "</ul>"
       }
-    },{ "CppHelloBoostUblasQtCreatorWindows",
+    }
+  );
+  m.push_back(
+    { "CppHelloBoostUblasQtCreatorWindows",
       {
         "<p><img src=\"PicBoost.png\" alt=\"Boost\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicWindows.png\" alt=\"Windows\"/></p>",
         "<p>&nbsp;</p>",
@@ -949,9 +1152,12 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<p>&nbsp;</p>",
         "<ul>",
         "  <li><a href=\"CppHelloBoostUblasQtCreatorWindows.zip\">Download the Qt Creator project 'CppHelloBoostUblasQtCreatorWindows' (zip)</a></li>",
-        "</ul>",
+        "</ul>"
       }
-    },{ "CppHelloBoostXpressiveQtCreatorCygwin",
+    }
+  );
+  m.push_back(
+    { "CppHelloBoostXpressiveQtCreatorCygwin",
       {
         "<p><img src=\"PicBoost.png\" alt=\"Boost\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicCygwin.png\" alt=\"Cygwin\"/></p>",
         "<p>&nbsp;</p>",
@@ -959,9 +1165,12 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<p>&nbsp;</p>",
         "<ul>",
         "  <li><a href=\"CppHelloBoostXpressiveQtCreatorCygwin.zip\">Download the Qt Creator project 'CppHelloBoostXpressiveQtCreatorCygwin' (zip)</a></li>",
-        "</ul>",
+        "</ul>"
       }
-    },{ "CppHelloBoostXpressiveQtCreatorLubuntu",
+    }
+  );
+  m.push_back(
+    { "CppHelloBoostXpressiveQtCreatorLubuntu",
       {
         "<p><img src=\"PicBoost.png\" alt=\"Boost\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
@@ -969,9 +1178,12 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<p>&nbsp;</p>",
         "<ul>",
         "  <li><a href=\"CppHelloBoostXpressiveQtCreatorLubuntu.zip\">Download the Qt Creator project 'CppHelloBoostXpressiveQtCreatorLubuntu' (zip)</a></li>",
-        "</ul>",
+        "</ul>"
       }
-    },{ "CppHelloBoostXpressiveQtCreatorLubuntuToWindows",
+    }
+  );
+  m.push_back(
+    { "CppHelloBoostXpressiveQtCreatorLubuntuToWindows",
       {
         "<p><img src=\"PicBoost.png\" alt=\"Boost\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicTo.png\" alt=\"To\"/><img src=\"PicWindows.png\" alt=\"Windows\"/></p>",
         "<p>&nbsp;</p>",
@@ -979,9 +1191,12 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<p>&nbsp;</p>",
         "<ul>",
         "  <li><a href=\"CppHelloBoostXpressiveQtCreatorLubuntuToWindows.zip\">Download the Qt Creator project 'CppHelloBoostXpressiveQtCreatorLubuntuToWindows' (zip)</a></li>",
-        "</ul>",
+        "</ul>"
       }
-    },{ "CppHelloBoostXpressiveQtCreatorSliTaz",
+    }
+  );
+  m.push_back(
+    { "CppHelloBoostXpressiveQtCreatorSliTaz",
       {
         "<p><img src=\"PicBoost.png\" alt=\"Boost\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicSliTaz.png\" alt=\"SliTaz\"/></p>",
         "<p>&nbsp;</p>",
@@ -989,9 +1204,12 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<p>&nbsp;</p>",
         "<ul>",
         "  <li><a href=\"CppHelloBoostXpressiveQtCreatorSliTaz.zip\">Download the Qt Creator project 'CppHelloBoostXpressiveQtCreatorSliTaz' (zip)</a></li>",
-        "</ul>",
+        "</ul>"
       }
-    },{ "CppHelloBoostXpressiveQt4QtCreatorLubuntuToWindows",
+    }
+  );
+  m.push_back(
+    { "CppHelloBoostXpressiveQt4QtCreatorLubuntuToWindows",
       {
         "<p><img src=\"PicBoost.png\" alt=\"Boost\"/><img src=\"PicQt4.png\" alt=\"Qt4\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicTo.png\" alt=\"To\"/><img src=\"PicWindows.png\" alt=\"Windows\"/></p>",
         "<p>&nbsp;</p>",
@@ -999,9 +1217,12 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<p>&nbsp;</p>",
         "<ul>",
         "  <li><a href=\"CppHelloBoostXpressiveQt4QtCreatorLubuntuToWindows.zip\">Download the Qt Creator project 'CppHelloBoostXpressiveQt4QtCreatorLubuntuToWindows' (zip)</a></li>",
-        "</ul>",
+        "</ul>"
       }
-    },{ "CppHelloBoostXpressiveQt5QtCreatorLubuntuToWindows",
+    }
+  );
+  m.push_back(
+    { "CppHelloBoostXpressiveQt5QtCreatorLubuntuToWindows",
       {
         "<p><img src=\"PicBoost.png\" alt=\"Boost\"/><img src=\"PicQt5.png\" alt=\"Qt5\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicTo.png\" alt=\"To\"/><img src=\"PicWindows.png\" alt=\"Windows\"/></p>",
         "<p>&nbsp;</p>",
@@ -1009,9 +1230,12 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<p>&nbsp;</p>",
         "<ul>",
         "  <li><a href=\"CppHelloBoostXpressiveQt5QtCreatorLubuntuToWindows.zip\">Download the Qt Creator project 'CppHelloBoostXpressiveQt5QtCreatorLubuntuToWindows' (zip)</a></li>",
-        "</ul>",
+        "</ul>"
       }
-    },{ "CppHelloBoostXpressiveQtCreatorWindows",
+    }
+  );
+  m.push_back(
+    { "CppHelloBoostXpressiveQtCreatorWindows",
       {
         "<p><img src=\"PicBoost.png\" alt=\"Boost\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicWindows.png\" alt=\"Windows\"/></p>",
         "<p>&nbsp;</p>",
@@ -1019,9 +1243,12 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<p>&nbsp;</p>",
         "<ul>",
         "  <li><a href=\"CppHelloBoostXpressiveQtCreatorWindows.zip\">Download the Qt Creator project 'CppHelloBoostXpressiveQtCreatorWindows' (zip)</a></li>",
-        "</ul>",
+        "</ul>"
       }
-    },{ "CppHelloCpp0xQtCreatorLubuntu",
+    }
+  );
+  m.push_back(
+    { "CppHelloCpp0xQtCreatorLubuntu",
       {
         "<p><img src=\"PicCpp0x.png\" alt=\"C++0x\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
@@ -1030,9 +1257,12 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<p>&nbsp;</p>",
         "<ul>",
         "  <li><a href=\"CppHelloCpp0xQtCreatorLubuntu.zip\">Download the Qt Creator project 'CppHelloCpp0xQtCreatorLubuntu' (zip)</a></li>",
-        "</ul>",
+        "</ul>"
       }
-    },{ "CppHelloCpp0xQtCreatorSliTaz",
+    }
+  );
+  m.push_back(
+    { "CppHelloCpp0xQtCreatorSliTaz",
       {
         "<p><img src=\"PicCpp0x.png\" alt=\"C++0x\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicSliTaz.png\" alt=\"SliTaz\"/></p>",
         "<p>&nbsp;</p>",
@@ -1041,9 +1271,12 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<p>&nbsp;</p>",
         "<ul>",
         "  <li><a href=\"CppHelloCpp0xQtCreatorSliTaz.zip\">Download the Qt Creator project 'CppHelloCpp0xQtCreatorSliTaz' (zip)</a></li>",
-        "</ul>",
+        "</ul>"
       }
-    },{ "CppHelloCpp11QtCreatorCygwin",
+    }
+  );
+  m.push_back(
+    { "CppHelloCpp11QtCreatorCygwin",
       {
         "<p><img src=\"PicCpp11.png\" alt=\"C++11\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicCygwin.png\" alt=\"Cygwin\"/></p>",
         "<p>&nbsp;</p>",
@@ -1051,9 +1284,12 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<p>&nbsp;</p>",
         "<ul>",
         "  <li><a href=\"CppHelloCpp11QtCreatorCygwin.zip\">Download the Qt Creator project 'CppHelloCpp11QtCreatorCygwin' (zip)</a></li>",
-        "</ul>",
+        "</ul>"
       }
-    },{ "CppHelloCpp11QtCreatorLubuntu",
+    }
+  );
+  m.push_back(
+    { "CppHelloCpp11QtCreatorLubuntu",
       {
         "<p><img src=\"PicCpp11.png\" alt=\"C++11\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
@@ -1061,9 +1297,12 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<p>&nbsp;</p>",
         "<ul>",
         "  <li><a href=\"CppHelloCpp11QtCreatorLubuntu.zip\">Download the Qt Creator project 'CppHelloCpp11QtCreatorLubuntu' (zip)</a></li>",
-        "</ul>",
+        "</ul>"
       }
-    },{ "CppHelloCpp11QtCreatorLubuntuToWindows",
+    }
+  );
+  m.push_back(
+    { "CppHelloCpp11QtCreatorLubuntuToWindows",
       {
         "<p><img src=\"PicCpp11.png\" alt=\"C++11\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicTo.png\" alt=\"To\"/><img src=\"PicWindows.png\" alt=\"Windows\"/></p>",
         "<p>&nbsp;</p>",
@@ -1071,9 +1310,12 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<p>&nbsp;</p>",
         "<ul>",
         "  <li><a href=\"CppHelloCpp11QtCreatorLubuntuToWindows.zip\">Download the Qt Creator project 'CppHelloCpp11QtCreatorLubuntuToWindows' (zip)</a></li>",
-        "</ul>",
+        "</ul>"
       }
-    },{ "CppHelloCpp11QtCreatorSliTaz",
+    }
+  );
+  m.push_back(
+    { "CppHelloCpp11QtCreatorSliTaz",
       {
         "<p><img src=\"PicCpp11.png\" alt=\"C++11\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicSliTaz.png\" alt=\"SliTaz\"/></p>",
         "<p>&nbsp;</p>",
@@ -1081,9 +1323,12 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<p>&nbsp;</p>",
         "<ul>",
         "  <li><a href=\"CppHelloCpp11QtCreatorSliTaz.zip\">Download the Qt Creator project 'CppHelloCpp11QtCreatorSliTaz' (zip)</a></li>",
-        "</ul>",
+        "</ul>"
       }
-    },{ "CppHelloCpp11Qt4QtCreatorLubuntuToWindows",
+    }
+  );
+  m.push_back(
+    { "CppHelloCpp11Qt4QtCreatorLubuntuToWindows",
       {
         "<p><img src=\"PicCpp11.png\" alt=\"C++11\"/><img src=\"PicQt4.png\" alt=\"Qt4\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicTo.png\" alt=\"To\"/><img src=\"PicWindows.png\" alt=\"Windows\"/></p>",
         "<p>&nbsp;</p>",
@@ -1091,9 +1336,12 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<p>&nbsp;</p>",
         "<ul>",
         "  <li><a href=\"CppHelloCpp11Qt4QtCreatorLubuntuToWindows.zip\">Download the Qt Creator project 'CppHelloCpp11Qt4QtCreatorLubuntuToWindows' (zip)</a></li>",
-        "</ul>",
+        "</ul>"
       }
-    },{ "CppHelloCpp11Qt5QtCreatorLubuntuToWindows",
+    }
+  );
+  m.push_back(
+    { "CppHelloCpp11Qt5QtCreatorLubuntuToWindows",
       {
         "<p><img src=\"PicCpp11.png\" alt=\"C++11\"/><img src=\"PicQt5.png\" alt=\"Qt5\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicTo.png\" alt=\"To\"/><img src=\"PicWindows.png\" alt=\"Windows\"/></p>",
         "<p>&nbsp;</p>",
@@ -1101,9 +1349,12 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<p>&nbsp;</p>",
         "<ul>",
         "  <li><a href=\"CppHelloCpp11Qt5QtCreatorLubuntuToWindows.zip\">Download the Qt Creator project 'CppHelloCpp11Qt5QtCreatorLubuntuToWindows' (zip)</a></li>",
-        "</ul>",
+        "</ul>"
       }
-    },{ "CppHelloCpp11QtCreatorWindows",
+    }
+  );
+  m.push_back(
+    { "CppHelloCpp11QtCreatorWindows",
       {
         "<p><img src=\"PicCpp11.png\" alt=\"C++11\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicWindows.png\" alt=\"Windows\"/></p>",
         "<p>&nbsp;</p>",
@@ -1111,9 +1362,12 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<p>&nbsp;</p>",
         "<ul>",
         "  <li><a href=\"CppHelloCpp11QtCreatorWindows.zip\">Download the Qt Creator project 'CppHelloCpp11QtCreatorWindows' (zip)</a></li>",
-        "</ul>",
+        "</ul>"
       }
-    },{ "CppHelloQtQtCreatorCygwin",
+    }
+  );
+  m.push_back(
+    { "CppHelloQtQtCreatorCygwin",
       {
         "<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicCygwin.png\" alt=\"Cygwin\"/></p>",
         "<p>&nbsp;</p>",
@@ -1121,9 +1375,12 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<p>&nbsp;</p>",
         "<ul>",
         "  <li><a href=\"CppHelloQtQtCreatorCygwin.zip\">Download the Qt Creator project 'CppHelloQtQtCreatorCygwin' (zip)</a></li>",
-        "</ul>",
+        "</ul>"
       }
-    },{ "CppHelloQtQtCreatorLubuntu",
+    }
+  );
+  m.push_back(
+    { "CppHelloQtQtCreatorLubuntu",
       {
         "<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
@@ -1131,9 +1388,12 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<p>&nbsp;</p>",
         "<ul>",
         "  <li><a href=\"CppHelloQtQtCreatorLubuntu.zip\">Download the Qt Creator project 'CppHelloQtQtCreatorLubuntu' (zip)</a></li>",
-        "</ul>",
+        "</ul>"
       }
-    },{ "CppHelloQtQtCreatorLubuntuToWindows",
+    }
+  );
+  m.push_back(
+    { "CppHelloQtQtCreatorLubuntuToWindows",
       {
         "<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicTo.png\" alt=\"To\"/><img src=\"PicWindows.png\" alt=\"Windows\"/></p>",
         "<p>&nbsp;</p>",
@@ -1141,9 +1401,12 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<p>&nbsp;</p>",
         "<ul>",
         "  <li><a href=\"CppHelloQtQtCreatorLubuntuToWindows.zip\">Download the Qt Creator project 'CppHelloQtQtCreatorLubuntuToWindows' (zip)</a></li>",
-        "</ul>",
+        "</ul>"
       }
-    },{ "CppHelloQtQtCreatorSliTaz",
+    }
+  );
+  m.push_back(
+    { "CppHelloQtQtCreatorSliTaz",
       {
         "<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicSliTaz.png\" alt=\"SliTaz\"/></p>",
         "<p>&nbsp;</p>",
@@ -1151,9 +1414,12 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<p>&nbsp;</p>",
         "<ul>",
         "  <li><a href=\"CppHelloQtQtCreatorSliTaz.zip\">Download the Qt Creator project 'CppHelloQtQtCreatorSliTaz' (zip)</a></li>",
-        "</ul>",
+        "</ul>"
       }
-    },{ "CppHelloQtQt4QtCreatorLubuntuToWindows",
+    }
+  );
+  m.push_back(
+    { "CppHelloQtQt4QtCreatorLubuntuToWindows",
       {
         "<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQt4.png\" alt=\"Qt4\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicTo.png\" alt=\"To\"/><img src=\"PicWindows.png\" alt=\"Windows\"/></p>",
         "<p>&nbsp;</p>",
@@ -1161,9 +1427,12 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<p>&nbsp;</p>",
         "<ul>",
         "  <li><a href=\"CppHelloQtQt4QtCreatorLubuntuToWindows.zip\">Download the Qt Creator project 'CppHelloQtQt4QtCreatorLubuntuToWindows' (zip)</a></li>",
-        "</ul>",
+        "</ul>"
       }
-    },{ "CppHelloQtQt5QtCreatorLubuntuToWindows",
+    }
+  );
+  m.push_back(
+    { "CppHelloQtQt5QtCreatorLubuntuToWindows",
       {
         "<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQt5.png\" alt=\"Qt5\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicTo.png\" alt=\"To\"/><img src=\"PicWindows.png\" alt=\"Windows\"/></p>",
         "<p>&nbsp;</p>",
@@ -1171,9 +1440,12 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<p>&nbsp;</p>",
         "<ul>",
         "  <li><a href=\"CppHelloQtQt5QtCreatorLubuntuToWindows.zip\">Download the Qt Creator project 'CppHelloQtQt5QtCreatorLubuntuToWindows' (zip)</a></li>",
-        "</ul>",
+        "</ul>"
       }
-    },{ "CppHelloQtQtCreatorWindows",
+    }
+  );
+  m.push_back(
+    { "CppHelloQtQtCreatorWindows",
       {
         "<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicWindows.png\" alt=\"Windows\"/></p>",
         "<p>&nbsp;</p>",
@@ -1181,10 +1453,13 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<p>&nbsp;</p>",
         "<ul>",
         "  <li><a href=\"CppHelloQtQtCreatorWindows.zip\">Download the Qt Creator project 'CppHelloQtQtCreatorWindows' (zip)</a></li>",
-        "</ul>",
+        "</ul>"
       }
 
-    },{ "CppHelloQwtQtCreatorCygwin",
+    }
+  );
+  m.push_back(
+    { "CppHelloQwtQtCreatorCygwin",
       {
         "<p><img src=\"PicQwt.png\" alt=\"Qwt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicCygwin.png\" alt=\"Cygwin\"/></p>",
         "<p>&nbsp;</p>",
@@ -1192,9 +1467,12 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<p>&nbsp;</p>",
         "<ul>",
         "  <li><a href=\"CppHelloQwtQtCreatorCygwin.zip\">Download the Qt Creator project 'CppHelloQwtQtCreatorCygwin' (zip)</a></li>",
-        "</ul>",
+        "</ul>"
       }
-    },{ "CppHelloQwtQtCreatorLubuntu",
+    }
+  );
+  m.push_back(
+    { "CppHelloQwtQtCreatorLubuntu",
       {
         "<p><img src=\"PicQwt.png\" alt=\"Qwt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
@@ -1202,9 +1480,12 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<p>&nbsp;</p>",
         "<ul>",
         "  <li><a href=\"CppHelloQwtQtCreatorLubuntu.zip\">Download the Qt Creator project 'CppHelloQwtQtCreatorLubuntu' (zip)</a></li>",
-        "</ul>",
+        "</ul>"
       }
-    },{ "CppHelloQwtQtCreatorLubuntuToWindows",
+    }
+  );
+  m.push_back(
+    { "CppHelloQwtQtCreatorLubuntuToWindows",
       {
         "<p><img src=\"PicQwt.png\" alt=\"Qwt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicTo.png\" alt=\"To\"/><img src=\"PicWindows.png\" alt=\"Windows\"/></p>",
         "<p>&nbsp;</p>",
@@ -1212,9 +1493,12 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<p>&nbsp;</p>",
         "<ul>",
         "  <li><a href=\"CppHelloQwtQtCreatorLubuntuToWindows.zip\">Download the Qt Creator project 'CppHelloQwtQtCreatorLubuntuToWindows' (zip)</a></li>",
-        "</ul>",
+        "</ul>"
       }
-    },{ "CppHelloQwtQtCreatorSliTaz",
+    }
+  );
+  m.push_back(
+    { "CppHelloQwtQtCreatorSliTaz",
       {
         "<p><img src=\"PicQwt.png\" alt=\"Qwt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicSliTaz.png\" alt=\"SliTaz\"/></p>",
         "<p>&nbsp;</p>",
@@ -1222,9 +1506,12 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<p>&nbsp;</p>",
         "<ul>",
         "  <li><a href=\"CppHelloQwtQtCreatorSliTaz.zip\">Download the Qt Creator project 'CppHelloQwtQtCreatorSliTaz' (zip)</a></li>",
-        "</ul>",
+        "</ul>"
       }
-    },{ "CppHelloQwtQt4QtCreatorLubuntuToWindows",
+    }
+  );
+  m.push_back(
+    { "CppHelloQwtQt4QtCreatorLubuntuToWindows",
       {
         "<p><img src=\"PicQwt.png\" alt=\"Qwt\"/><img src=\"PicQt4.png\" alt=\"Qt4\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicTo.png\" alt=\"To\"/><img src=\"PicWindows.png\" alt=\"Windows\"/></p>",
         "<p>&nbsp;</p>",
@@ -1232,9 +1519,12 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<p>&nbsp;</p>",
         "<ul>",
         "  <li><a href=\"CppHelloQwtQt4QtCreatorLubuntuToWindows.zip\">Download the Qt Creator project 'CppHelloQwtQt4QtCreatorLubuntuToWindows' (zip)</a></li>",
-        "</ul>",
+        "</ul>"
       }
-    },{ "CppHelloQwtQt5QtCreatorLubuntuToWindows",
+    }
+  );
+  m.push_back(
+    { "CppHelloQwtQt5QtCreatorLubuntuToWindows",
       {
         "<p><img src=\"PicQwt.png\" alt=\"Qwt\"/><img src=\"PicQt5.png\" alt=\"Qt5\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicTo.png\" alt=\"To\"/><img src=\"PicWindows.png\" alt=\"Windows\"/></p>",
         "<p>&nbsp;</p>",
@@ -1242,9 +1532,12 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<p>&nbsp;</p>",
         "<ul>",
         "  <li><a href=\"CppHelloQwtQt5QtCreatorLubuntuToWindows.zip\">Download the Qt Creator project 'CppHelloQwtQt5QtCreatorLubuntuToWindows' (zip)</a></li>",
-        "</ul>",
+        "</ul>"
       }
-    },{ "CppHelloQwtQtCreatorWindows",
+    }
+  );
+  m.push_back(
+    { "CppHelloQwtQtCreatorWindows",
       {
         "<p><img src=\"PicQwt.png\" alt=\"Qwt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicWindows.png\" alt=\"Windows\"/></p>",
         "<p>&nbsp;</p>",
@@ -1252,9 +1545,12 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<p>&nbsp;</p>",
         "<ul>",
         "  <li><a href=\"CppHelloQwtQtCreatorWindows.zip\">Download the Qt Creator project 'CppHelloQwtQtCreatorWindows' (zip)</a></li>",
-        "</ul>",
+        "</ul>"
       }
-    },{ "CppHelloWorld64QtCreatorLubuntu",
+    }
+  );
+  m.push_back(
+    { "CppHelloWorld64QtCreatorLubuntu",
       {
         "<p><a href=\"CppHelloWorl64QtCreatorLubuntu.htm\">Hello World (64-bit) using Qt Creator under Lubuntu</a> is a",
         "<a href=\"CppHelloWorld64.htm\">Hello World (64-bit)</a> program using the <a href=\"CppQtCreator.htm\">Qt Creator</a> <a href=\"CppIde.htm\">IDE</a> under",
@@ -1269,9 +1565,12 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<table border = \"1\"><tr><td><code>",
         "/usr/include/c++/4.5/iostream:39: error: bits/c++config.h: No such file or directory<br/>",
         "</code></td></tr></table>",
-        "<!-- end of the code -->",
+        "<!-- end of the code -->"
       }
-    },{ "CppHelloWorldQtCreatorCygwin",
+    }
+  );
+  m.push_back(
+    { "CppHelloWorldQtCreatorCygwin",
       {
         "<p><a href=\"CppHelloWorldQtCreatorCygwin.htm\">Hello World using Qt Creator under Cygwin</a> is <a href=\"CppHelloWorld.htm\">Hello World</a> program",
         "using the <a href=\"CppQtCreator.htm\">Qt Creator</a>",
@@ -1279,9 +1578,12 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<p>&nbsp;</p>",
         "<ul>",
         "  <li><a href=\"CppHelloWorldQtCreatorCygwin.zip\">Download the Qt Creator project 'CppHelloWorldQtCreatorCygwin' (zip)</a></li>",
-        "</ul>",
+        "</ul>"
       }
-    },{ "CppHelloWorldQtCreatorLubuntu",
+    }
+  );
+  m.push_back(
+    { "CppHelloWorldQtCreatorLubuntu",
       {
         "<p><a href=\"CppHelloWorldQtCreatorLubuntu.htm\">Hello World using Qt Creator under Lubuntu</a> is <a href=\"CppHelloWorld.htm\">Hello World</a> program",
         "using the <a href=\"CppQtCreator.htm\">Qt Creator</a>",
@@ -1289,9 +1591,12 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<p>&nbsp;</p>",
         "<ul>",
         "  <li><a href=\"CppHelloWorldQtCreatorLubuntu.zip\">Download the Qt Creator project 'CppHelloWorldQtCreatorLubuntu' (zip)</a></li>",
-        "</ul>",
+        "</ul>"
       }
-    },{ "CppHelloWorldQtCreatorLubuntuToWindows",
+    }
+  );
+  m.push_back(
+    { "CppHelloWorldQtCreatorLubuntuToWindows",
       {
         "<p><img src=\"PicCpp98.png\" alt=\"C++98\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicTo.png\" alt=\"to\"/><img src=\"PicWindows.png\" alt=\"Windows\"/></p>",
         "<p>&nbsp;</p>",
@@ -1302,9 +1607,12 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<p>&nbsp;</p>",
         "<ul>",
         "  <li><a href=\"CppHelloWorldQtCreatorLubuntuToWindows.zip\">Download the Qt Creator project 'CppHelloWorldQtCreatorLubuntuToWindows' (zip)</a></li>",
-        "</ul>",
+        "</ul>"
       }
-    },{ "CppHelloWorldQtCreatorSliTaz",
+    }
+  );
+  m.push_back(
+    { "CppHelloWorldQtCreatorSliTaz",
       {
         "<p><a href=\"CppHelloWorldQtCreatorSliTaz.htm\">Hello World using Qt Creator under SliTaz</a> is <a href=\"CppHelloWorld.htm\">Hello World</a> program",
         "using the <a href=\"CppQtCreator.htm\">Qt Creator</a>",
@@ -1312,9 +1620,12 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<p>&nbsp;</p>",
         "<ul>",
         "  <li><a href=\"CppHelloWorldQtCreatorSliTaz.zip\">Download the Qt Creator project 'CppHelloWorldQtCreatorSliTaz' (zip)</a></li>",
-        "</ul>",
+        "</ul>"
       }
-    },{ "CppHelloWorldQtCreatorUbuntu",
+    }
+  );
+  m.push_back(
+    { "CppHelloWorldQtCreatorUbuntu",
       {
         "<p><a href=\"CppHelloWorldQtCreatorUbuntu.htm\">Hello World using Qt Creator under Ubuntu</a> is <a href=\"CppHelloWorld.htm\">Hello World</a> program",
         "using the <a href=\"CppQtCreator.htm\">Qt Creator</a>",
@@ -1322,9 +1633,12 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<p>&nbsp;</p>",
         "<ul>",
         "  <li><a href=\"CppHelloWorldQtCreatorUbuntu.zip\">Download the Qt Creator project 'CppHelloWorldQtCreatorUbuntu' (zip)</a></li>",
-        "</ul>",
+        "</ul>"
       }
-    },{ "CppHelloWorldQtCreatorWindows",
+    }
+  );
+  m.push_back(
+    { "CppHelloWorldQtCreatorWindows",
       {
         "<p><a href=\"CppHelloWorldQtCreatorWindows.htm\">Hello World using Qt Creator under Windows</a> is <a href=\"CppHelloWorld.htm\">Hello World</a> program",
         "using the <a href=\"CppQtCreator.htm\">Qt Creator</a>",
@@ -1332,9 +1646,12 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<p>&nbsp;</p>",
         "<ul>",
         "  <li><a href=\"CppHelloWorldQtCreatorWindows.zip\">Download the Qt Creator project 'CppHelloWorldQtCreatorWindows' (zip)</a></li>",
-        "</ul>",
+        "</ul>"
       }
-    },{ "CppHelloQwtQtCreatorLubuntu",
+    }
+  );
+  m.push_back(
+    { "CppHelloQwtQtCreatorLubuntu",
       {
 
         "<p><a href=\"CppHelloQwtQtCreatorLubuntu.htm\">'Hello Qwt' using Qt Creator under Lubuntu</a> is a <a href=\"CppHelloQwt.htm\">Hello Qwt</a>",
@@ -1344,9 +1661,12 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<ul>",
         "  <li><a href=\"CppHelloQwtQtCreatorLubuntu.png\">View a screenshot of 'CppHelloQwtQtCreatorLubuntu' (png)</a></li>",
         "  <li><a href=\"CppHelloQwtQtCreatorLubuntu.zip\">Download the Qt Creator project 'CppHelloQwtQtCreatorLubuntu' (zip)</a></li>",
-        "</ul>",
+        "</ul>"
       }
-    },{ "CppHelloQwtQtCreatorUbuntu",
+    }
+  );
+  m.push_back(
+    { "CppHelloQwtQtCreatorUbuntu",
       {
 
         "<p><a href=\"CppHelloQwtQtCreatorUbuntu.htm\">'Hello Qwt' using Qt Creator under Ubuntu</a> is a <a href=\"CppHelloQwt.htm\">Hello Qwt</a>",
@@ -1356,9 +1676,12 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<ul>",
         "  <li><a href=\"CppHelloQwtQtCreatorUbuntu.png\">View a screenshot of 'CppHelloQwtQtCreatorUbuntu' (png)</a></li>",
         "  <li><a href=\"CppHelloQwtQtCreatorUbuntu.zip\">Download the Qt Creator project 'CppHelloQwtQtCreatorUbuntu' (zip)</a></li>",
-        "</ul>",
+        "</ul>"
       }
-    },{ "CppHelloQwtQtCreatorWindows",
+    }
+  );
+  m.push_back(
+    { "CppHelloQwtQtCreatorWindows",
       {
         "<p><a href=\"CppHelloQwtQtCreatorWindows.htm\">'Hello Qwt' using Qt Creator under Windows</a> is a <a href=\"CppHelloQwt.htm\">Hello Qwt</a>",
         "program using the <a href=\"CppQtCreator.htm\">Qt Creator</a> <a href=\"CppIde.htm\">IDE</a> under",
@@ -1367,9 +1690,12 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<ul>",
         "  <li><a href=\"CppHelloQwtQtCreatorWindows.png\">View a screenshot of 'CppHelloQwtQtCreatorWindows' (png)</a></li>",
         "  <li><a href=\"CppHelloQwtQtCreatorWindows.zip\">Download the Qt Creator project 'CppHelloQwtQtCreatorWindows' (zip)</a></li>",
-        "</ul>",
+        "</ul>"
       }
-    },{ "CppHelloWorldQtCreatorCygwin",
+    }
+  );
+  m.push_back(
+    { "CppHelloWorldQtCreatorCygwin",
       {
         "<p><img src=\"PicCpp98.png\" alt=\"C++98\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicCygwin.png\" alt=\"Cygwin\"/></p>",
         "<p>&nbsp;</p>",
@@ -1377,9 +1703,12 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<p>&nbsp;</p>",
         "<ul>",
         "  <li><a href=\"CppHelloWorldQtCreatorCygwin.zip\">Download the Qt Creator project 'CppHelloWorldQtCreatorCygwin' (zip)</a></li>",
-        "</ul>",
+        "</ul>"
       }
-    },{ "CppHelloWorldQtCreatorLubuntu",
+    }
+  );
+  m.push_back(
+    { "CppHelloWorldQtCreatorLubuntu",
       {
         "<p><img src=\"PicCpp98.png\" alt=\"C++98\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
@@ -1387,9 +1716,12 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<p>&nbsp;</p>",
         "<ul>",
         "  <li><a href=\"CppHelloWorldQtCreatorLubuntu.zip\">Download the Qt Creator project 'CppHelloWorldQtCreatorLubuntu' (zip)</a></li>",
-        "</ul>",
+        "</ul>"
       }
-    },{ "CppHelloWorldQtCreatorLubuntuToWindows",
+    }
+  );
+  m.push_back(
+    { "CppHelloWorldQtCreatorLubuntuToWindows",
       {
         "<p><img src=\"PicCpp98.png\" alt=\"C++98\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicTo.png\" alt=\"To\"/><img src=\"PicWindows.png\" alt=\"Windows\"/></p>",
         "<p>&nbsp;</p>",
@@ -1397,9 +1729,12 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<p>&nbsp;</p>",
         "<ul>",
         "  <li><a href=\"CppHelloWorldQtCreatorLubuntuToWindows.zip\">Download the Qt Creator project 'CppHelloWorldQtCreatorLubuntuToWindows' (zip)</a></li>",
-        "</ul>",
+        "</ul>"
       }
-    },{ "CppHelloWorldQtCreatorSliTaz",
+    }
+  );
+  m.push_back(
+    { "CppHelloWorldQtCreatorSliTaz",
       {
         "<p><img src=\"PicCpp98.png\" alt=\"C++98\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicSliTaz.png\" alt=\"SliTaz\"/></p>",
         "<p>&nbsp;</p>",
@@ -1407,9 +1742,12 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<p>&nbsp;</p>",
         "<ul>",
         "  <li><a href=\"CppHelloWorldQtCreatorSliTaz.zip\">Download the Qt Creator project 'CppHelloWorldQtCreatorSliTaz' (zip)</a></li>",
-        "</ul>",
+        "</ul>"
       }
-    },{ "CppHelloWorldQt4QtCreatorLubuntuToWindows",
+    }
+  );
+  m.push_back(
+    { "CppHelloWorldQt4QtCreatorLubuntuToWindows",
       {
         "<p><img src=\"PicCpp98.png\" alt=\"C++98\"/><img src=\"PicQt4.png\" alt=\"Qt4\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicTo.png\" alt=\"To\"/><img src=\"PicWindows.png\" alt=\"Windows\"/></p>",
         "<p>&nbsp;</p>",
@@ -1417,9 +1755,12 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<p>&nbsp;</p>",
         "<ul>",
         "  <li><a href=\"CppHelloWorldQt4QtCreatorLubuntuToWindows.zip\">Download the Qt Creator project 'CppHelloWorldQt4QtCreatorLubuntuToWindows' (zip)</a></li>",
-        "</ul>",
+        "</ul>"
       }
-    },{ "CppHelloWorldQt5QtCreatorLubuntuToWindows",
+    }
+  );
+  m.push_back(
+    { "CppHelloWorldQt5QtCreatorLubuntuToWindows",
       {
         "<p><img src=\"PicCpp98.png\" alt=\"C++98\"/><img src=\"PicQt5.png\" alt=\"Qt5\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicTo.png\" alt=\"To\"/><img src=\"PicWindows.png\" alt=\"Windows\"/></p>",
         "<p>&nbsp;</p>",
@@ -1427,9 +1768,12 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<p>&nbsp;</p>",
         "<ul>",
         "  <li><a href=\"CppHelloWorldQt5QtCreatorLubuntuToWindows.zip\">Download the Qt Creator project 'CppHelloWorldQt5QtCreatorLubuntuToWindows' (zip)</a></li>",
-        "</ul>",
+        "</ul>"
       }
-    },{ "CppHelloWorldQtCreatorWindows",
+    }
+  );
+  m.push_back(
+    { "CppHelloWorldQtCreatorWindows",
       {
         "<p><img src=\"PicCpp98.png\" alt=\"C++98\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicWindows.png\" alt=\"Windows\"/></p>",
         "<p>&nbsp;</p>",
@@ -1437,9 +1781,12 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<p>&nbsp;</p>",
         "<ul>",
         "  <li><a href=\"CppHelloWorldQtCreatorWindows.zip\">Download the Qt Creator project 'CppHelloWorldQtCreatorWindows' (zip)</a></li>",
-        "</ul>",
+        "</ul>"
       }
-    },{ "CppIsRegularFile",
+    }
+  );
+  m.push_back(
+    { "CppIsRegularFile",
       {
         "<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
@@ -1447,9 +1794,12 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<p>&nbsp;</p>",
         "<ul>",
         "  <li><a href=\"CppIsRegularFile.zip\">Download the Qt Creator project 'CppIsRegularFile' (zip)</a></li>",
-        "</ul>",
+        "</ul>"
       }
-    },{ "CppLibcvautomationExample1",
+    }
+  );
+  m.push_back(
+    { "CppLibcvautomationExample1",
       {
         "<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
@@ -1472,9 +1822,12 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "./cva-input -s \"mouseclick\"<br/>",
         "./cva-input -s \"mouselocation\"<br/>",
         "</code></td></tr></table>",
-        "<!-- end of the code -->",
+        "<!-- end of the code -->"
       }
-    },{ "CppLibcvautomationExample2",
+    }
+  );
+  m.push_back(
+    { "CppLibcvautomationExample2",
       {
         "<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
@@ -1484,9 +1837,12 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<p>&nbsp;</p>",
         "<ul>",
         "  <li><a href=\"CppLibcvautomationExample2.zip\">Download the Qt Creator project 'CppLibcvautomationExample2' (zip)</a></li>",
-        "</ul>",
+        "</ul>"
       }
-    },{ "CppLibcvautomationExample3",
+    }
+  );
+  m.push_back(
+    { "CppLibcvautomationExample3",
       {
         "<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
@@ -1496,9 +1852,12 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<p>&nbsp;</p>",
         "<ul>",
         "  <li><a href=\"CppLibcvautomationExample3.zip\">Download the Qt Creator project 'CppLibcvautomationExample3' (zip)</a></li>",
-        "</ul>",
+        "</ul>"
       }
-    },{ "CppLibcvautomationExample4",
+    }
+  );
+  m.push_back(
+    { "CppLibcvautomationExample4",
       {
         "<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
@@ -1508,9 +1867,12 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<p>&nbsp;</p>",
         "<ul>",
         "  <li><a href=\"CppLibcvautomationExample4.zip\">Download the Qt Creator project 'CppLibcvautomationExample4' (zip)</a></li>",
-        "</ul>",
+        "</ul>"
       }
-    },{ "CppLibcvautomationExample5",
+    }
+  );
+  m.push_back(
+    { "CppLibcvautomationExample5",
       {
         "<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
@@ -1521,9 +1883,12 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<ul>",
         "  <li><a href=\"CppLibcvautomationExample5.png\">View a screenshot of 'CppLibcvautomationExample5' (png)</a></li>",
         "  <li><a href=\"CppLibcvautomationExample5.zip\">Download the Qt Creator project 'CppLibcvautomationExample5' (zip)</a></li>",
-        "</ul>",
+        "</ul>"
       }
-    },{ "CppLibcvautomationExample6",
+    }
+  );
+  m.push_back(
+    { "CppLibcvautomationExample6",
       {
         "<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
@@ -1539,9 +1904,12 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<ul>",
         "  <li><a href=\"CppLibcvautomationExample6.png\">View a screenshot of 'CppLibcvautomationExample6' (png)</a></li>",
         "  <li><a href=\"CppLibcvautomationExample6.zip\">Download the Qt Creator project 'CppLibcvautomationExample6' (zip)</a></li>",
-        "</ul>",
+        "</ul>"
       }
-    },{ "CppLibcvautomationExample7",
+    }
+  );
+  m.push_back(
+    { "CppLibcvautomationExample7",
       {
         "<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
@@ -1553,16 +1921,22 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<p>&nbsp;</p>",
         "<ul>",
         "  <li><a href=\"CppLibcvautomationExample7.zip\">Download the Qt Creator project 'CppLibcvautomationExample7' (zip)</a></li>",
-        "</ul>",
+        "</ul>"
       }
-    },{ "CppHtmlPage",
+    }
+  );
+  m.push_back(
+    { "CppHtmlPage",
       {
         "<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
         "<p><a href=\"CppHtmlPage.htm\">HtmlPage</a> is a <a href=\"CppClass.htm\">class</a>",
-        "for processing an HTML page.</p>",
+        "for processing an HTML page.</p>"
       }
-    },{ "CppIfExample1",
+    }
+  );
+  m.push_back(
+    { "CppIfExample1",
       {
         "<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicWindows.png\" alt=\"Windows\"/></p>",
         "<p>&nbsp;</p>",
@@ -1570,23 +1944,32 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<p>&nbsp;</p>",
         "<ul>",
         "  <li><a href=\"CppIfExample1.zip\">Download the Qt Creator project 'CppIfExample1' (zip)</a></li>",
-        "</ul>",
+        "</ul>"
       }
-    },{ "CppIpAddress",
+    }
+  );
+  m.push_back(
+    { "CppIpAddress",
       {
         "<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
         "<p><a href=\"CppIpAddress.htm\">IpAddress</a> is a <a href=\"CppClass.htm\">class</a>",
-        "for containing an IP address.</p>",
+        "for containing an IP address.</p>"
       }
-    },{ "CppIrcBot",
+    }
+  );
+  m.push_back(
+    { "CppIrcBot",
       {
         "<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
         "<p><a href=\"CppIrcBot.htm\">IrcBot</a> is a <a href=\"CppClass.htm\">class</a>",
-        "for an IRC bot. Its default name is 'lambda'.</p>",
+        "for an IRC bot. Its default name is 'lambda'.</p>"
       }
-    },{ "CppKalmanFilter",
+    }
+  );
+  m.push_back(
+    { "CppKalmanFilter",
       {
         "<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
@@ -1628,30 +2011,42 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "  <li><a href=\"https://en.wikipedia.org/wiki/Kalman_filter\">Wikipedia page about the Kalman filter</a></li>",
         "  <li><a href=\"http://academic.csuohio.edu/simond/estimation\">Kalman filter examples (in Matlab)</a></li>",
         "  <li><a href=\"http://greg.czerniak.info/guides/kalman1/\">Kalman filter tutorial by Greg Czerniak</a></li>",
-        "</ol>",
+        "</ol>"
       }
-    },{ "CppLazy_init",
+    }
+  );
+  m.push_back(
+    { "CppLazy_init",
       {
         "<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
         "<p><a href=\"CppLazy_init.htm\">Lazy_init</a> is a <a href=\"CppClass.htm\">class</a></p>",
-        "<p>with lazy initialization.</p>",
+        "<p>with lazy initialization.</p>"
       }
-    },{ "CppLed",
+    }
+  );
+  m.push_back(
+    { "CppLed",
       {
         "<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
         "<p><a href=\"CppLed.htm\">Led</a> is a <a href=\"CppClass.htm\">class</a> for an LED light.</p>",
         "<p>&nbsp;</p>",
-        "<p><a href=\"CppLed.htm\">Led</a> is used in the <a href=\"Tools.htm\">tool</a> <a href=\"ToolTestLed.htm\">TestLed</a>.</p>",
+        "<p><a href=\"CppLed.htm\">Led</a> is used in the <a href=\"Tools.htm\">tool</a> <a href=\"ToolTestLed.htm\">TestLed</a>.</p>"
       }
-    },{ "CppLedWidget",
+    }
+  );
+  m.push_back(
+    { "CppLedWidget",
       {
         "<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
-        "<p><a href=\"CppLedWidget.htm\">LedWidget</a> is a <a href=\"CppLed.htm\">Led</a> <a href=\"CppWidget.htm\">widget</a>.</p>",
+        "<p><a href=\"CppLedWidget.htm\">LedWidget</a> is a <a href=\"CppLed.htm\">Led</a> <a href=\"CppWidget.htm\">widget</a>.</p>"
       }
-    },{ "CppLinkErrorCannotFindLgstapp",
+    }
+  );
+  m.push_back(
+    { "CppLinkErrorCannotFindLgstapp",
       {
         "<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
@@ -1680,14 +2075,12 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "sudo apt-get install libgstreamer-plugins-base1.0-dev <br/>",
         "sudo apt-get install libgstreamer-plugins-base0.10-dev <br/>",
         "</code></td></tr></table>",
-        "<!-- end of the code -->",
-        "<p>&nbsp;</p>",
-        "<p>&nbsp;</p>",
-        "<p>&nbsp;</p>",
-        "<p>&nbsp;</p>",
-        "<p>&nbsp;</p>",
+        "<!-- end of the code -->"
       }
-    },{ "CppLinkErrorUndefinedReferenceToWebCore",
+    }
+  );
+  m.push_back(
+    { "CppLinkErrorUndefinedReferenceToWebCore",
       {
         "<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
@@ -1696,9 +2089,12 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<p>&nbsp;</p>",
         "<ul>",
         "  <li><a href=\"CppLinkErrorUndefinedReferenceToWebCore.zip\">Download the Qt Creator project 'CppLinkErrorUndefinedReferenceToWebCore' (zip)</a></li>",
-        "</ul>",
+        "</ul>"
       }
-    },{ "CppLoopReader",
+    }
+  );
+  m.push_back(
+    { "CppLoopReader",
       {
         "<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
@@ -1706,15 +2102,21 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<a href=\"CppTemplateClass.htm\">template class</a> to iterate",
         "through a <a href=\"CppContainer.htm\">container</a>. If the <a href=\"CppContainer.htm\">container</a>'s end is",
         "reached, however, <a href=\"CppLoopReader.htm\">LoopReader</a> starts reading",
-        "from the beginning again.</p>",
+        "from the beginning again.</p>"
       }
-    },{ "CppManyDigitNewick",
+    }
+  );
+  m.push_back(
+    { "CppManyDigitNewick",
       {
         "<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
-        "<p>A <a href=\"CppNewick.htm\">Newick</a> <a href=\"CppClass.htm\">class</a>.</p>",
+        "<p>A <a href=\"CppNewick.htm\">Newick</a> <a href=\"CppClass.htm\">class</a>.</p>"
       }
-    },{ "CppMatrix",
+    }
+  );
+  m.push_back(
+    { "CppMatrix",
       {
         "<p><img src=\"PicBoost.png\" alt=\"Boost\"/><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
@@ -1904,9 +2306,12 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<p>&nbsp;</p>",
         "<ol>",
         "  <li><a href=\"http://en.wikipedia.org/wiki/Matrix_%28mathematics%29\">Wikipedia page about matrices</a></li>",
-        "</ol>",
+        "</ol>"
       }
-    },{ "CppMemcheckExample1",
+    }
+  );
+  m.push_back(
+    { "CppMemcheckExample1",
       {
         "<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
@@ -2048,10 +2453,12 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "</code></td></tr></table>",
         "<!-- end of the code -->",
         "<p>&nbsp;</p>",
-        "<p>Zero errors, excellent!</p>",
-        "",
+        "<p>Zero errors, excellent!</p>"
       }
-    },{ "CppMemcheckExample2",
+    }
+  );
+  m.push_back(
+    { "CppMemcheckExample2",
       {
         "<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
@@ -2196,10 +2603,12 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<!-- end of the code -->",
         "<p>&nbsp;</p>",
         "<p><a href=\"CppValgrind.htm\">valgrind</a> did detect the <a href=\"CppMemoryLeak.htm\">memory leak</a> in ",
-        "<a href=\"CppMain.htm\">main</a>, but does not report exactly which line caused this.</p>",
-        "",
+        "<a href=\"CppMain.htm\">main</a>, but does not report exactly which line caused this.</p>"
       }
-    },{ "CppMemcheckExample3",
+    }
+  );
+  m.push_back(
+    { "CppMemcheckExample3",
       {
         "<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
@@ -2373,10 +2782,12 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<!-- end of the code -->",
         "<p>&nbsp;</p>",
         "<p><a href=\"CppValgrind.htm\">valgrind</a> did detect the <a href=\"CppMemoryLeak.htm\">memory leak</a> in ",
-        "<a href=\"CppMain.htm\">main</a>, but does not report exactly which line caused this.</p>",
-        "",
+        "<a href=\"CppMain.htm\">main</a>, but does not report exactly which line caused this.</p>"
       }
-    },{ "CppMemcheckExample4",
+    }
+  );
+  m.push_back(
+    { "CppMemcheckExample4",
       {
         "<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
@@ -2395,10 +2806,12 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<h2><a href=\"CppMemcheckExample4.txt\">valgrind_memcheck.txt</a></h2>",
         "<p>&nbsp;</p>",
         "<p><a href=\"CppValgrind.htm\">valgrind</a> finds a lot of problems! Because the output is too big to display here, you can",
-        "<a href=\"CppMemcheckExample4.txt\">view valgrind_memcheck.txt here</a>.</p>",
-        "",
+        "<a href=\"CppMemcheckExample4.txt\">view valgrind_memcheck.txt here</a>.</p>"
       }
-    },{ "CppMemcheckExample5",
+    }
+  );
+  m.push_back(
+    { "CppMemcheckExample5",
       {
         "<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
@@ -2417,10 +2830,12 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<h2><a href=\"CppMemcheckExample4.txt\">valgrind_memcheck.txt</a></h2>",
         "<p>&nbsp;</p>",
         "<p><a href=\"CppValgrind.htm\">valgrind</a> finds a lot of problems! Because the output is too big to display here, you can",
-        "<a href=\"CppMemcheckExample4.txt\">view valgrind_memcheck.txt here</a>.</p>",
-        "",
+        "<a href=\"CppMemcheckExample4.txt\">view valgrind_memcheck.txt here</a>.</p>"
       }
-    },{ "CppMemcheckExample6",
+    }
+  );
+  m.push_back(
+    { "CppMemcheckExample6",
       {
         "<p><img src=\"PicWt.png\" alt=\"Wt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
@@ -2440,23 +2855,32 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<p>This web application creates four buttons, that each use a different way to let <a href=\"CppMain.htm\">main</a> ",
         "<a href=\"CppReturn.htm\">return</a>. Of these four buttons, two are disabled: these call methods that do not cause",
         "the application to terminate (yet). When starting the web application from command line, pressing CTRL-C ",
-        "is another option to cleanly terminate it.</p>",
+        "is another option to cleanly terminate it.</p>"
       }
-    },{ "CppMultipleChoiceQuestion",
+    }
+  );
+  m.push_back(
+    { "CppMultipleChoiceQuestion",
       {
         "<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
         "<p><a href=\"CppMultipleChoiceQuestion.htm\">MultipleChoiceQuestion</a> is a <a href=\"CppClass.htm\">class</a> ",
-        "for a multiple choice <a href=\"CppQuestion.htm\">question</a>.</p>",
+        "for a multiple choice <a href=\"CppQuestion.htm\">question</a>.</p>"
       }
-    },{ "CppMultipleChoiceQuestionDialog",
+    }
+  );
+  m.push_back(
+    { "CppMultipleChoiceQuestionDialog",
       {
         "<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
         "<p><a href=\"CppMultipleChoiceQuestionDialog.htm\">MultipleChoiceQuestionDialog</a> is a dialog ",
-        "for <a href=\"CppMultipleChoiceQuestion.htm\">MultipleChoiceQuestion</a>.</p>",
+        "for <a href=\"CppMultipleChoiceQuestion.htm\">MultipleChoiceQuestion</a>.</p>"
       }
-    },{ "CppMultiVector",
+    }
+  );
+  m.push_back(
+    { "CppMultiVector",
       {
         "<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
@@ -2464,23 +2888,32 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<a href=\"CppClass.htm\">class</a> to store elements at indices of any dimensionality.</p>",
         "<p>&nbsp;</p>",
         "<p><a href=\"CppMultiVector.htm\">MultiVector</a> is demonstrated/tested with the ",
-        "<a href=\"Tools.htm\">tool</a> <a href=\"ToolTestMultiVector.htm\">TestMultiVector</a>.</p>",
+        "<a href=\"Tools.htm\">tool</a> <a href=\"ToolTestMultiVector.htm\">TestMultiVector</a>.</p>"
       }
-    },{ "CppMusicChord",
+    }
+  );
+  m.push_back(
+    { "CppMusicChord",
       {
         "<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
         "<p><a href=\"CppMusicChord.htm\">MusicChord</a> is a <a href=\"CppClass.htm\">class</a> ",
         "for a music chord.</p>",
       }
-    },{ "CppMusicNote",
+    }
+  );
+  m.push_back(
+    { "CppMusicNote",
       {
         "<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
         "<p><a href=\"CppMusicNote.htm\">MusicChord</a> is a <a href=\"CppClass.htm\">class</a> ",
-        "for a music note.</p>",
+        "for a music note.</p>"
       }
-    },{ "CppMxeExample4",
+    }
+  );
+  m.push_back(
+    { "CppMxeExample4",
       {
         "<p><img src=\"PicBoost.png\" alt=\"Boost\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
@@ -2490,9 +2923,12 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<p>&nbsp;</p>",
         "<ul>",
         "  <li><a href=\"CppMxeExample4.zip\">Download the Qt Creator project 'CppMxeExample4' (zip)</a></li>",
-        "</ul>",
+        "</ul>"
       }
-    },{ "CppMxeExample5",
+    }
+  );
+  m.push_back(
+    { "CppMxeExample5",
       {
         "<p><img src=\"PicBoost.png\" alt=\"Boost\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
@@ -2504,9 +2940,12 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<p>&nbsp;</p>",
         "<ul>",
         "  <li><a href=\"CppMxeExample5.zip\">Download the Qt Creator project 'CppMxeExample5' (zip)</a></li>",
-        "</ul>",
+        "</ul>"
       }
-    },{ "CppMysteryMachine",
+    }
+  );
+  m.push_back(
+    { "CppMysteryMachine",
       {
         "<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
@@ -2514,15 +2953,21 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "my mystery machine.</p>",
         "<p>&nbsp;</p>",
         "<p><a href=\"CppMysteryMachine.htm\">MysteryMachine</a> is used in the  ",
-        "<a href=\"Tools.htm\">tool</a> <a href=\"ToolSimMysteryMachine.htm\">SimMysteryMachine</a>.</p>",
+        "<a href=\"Tools.htm\">tool</a> <a href=\"ToolSimMysteryMachine.htm\">SimMysteryMachine</a>.</p>"
       }
-    },{ "CppMysteryMachineWidget",
+    }
+  );
+  m.push_back(
+    { "CppMysteryMachineWidget",
       {
         "<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
-        "<p><a href=\"CppMysteryMachineWidget.htm\">MysteryMachineWidget</a> is a <a href=\"CppMysteryMachineWidget.htm\">MysteryMachineWidget</a> <a href=\"CppWidget.htm\">widget</a>.</p>",
+        "<p><a href=\"CppMysteryMachineWidget.htm\">MysteryMachineWidget</a> is a <a href=\"CppMysteryMachineWidget.htm\">MysteryMachineWidget</a> <a href=\"CppWidget.htm\">widget</a>.</p>"
       }
-    },{ "CppNewick",
+    }
+  );
+  m.push_back(
+    { "CppNewick",
       {
         "<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
@@ -2552,34 +2997,49 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "  <li><a href=\"CppNewickToString.htm\">NewickToString</a></li>",
         "  <li><a href=\"CppBinaryNewickVector.htm\">BinaryNewickVector</a></li>",
         "  <li><a href=\"CppStringToNewick.htm\">StringToNewick</a></li>",
-        "</ol>",
+        "</ol>"
       }
-    },{ "CppNewickVector",
+    }
+  );
+  m.push_back(
+    { "CppNewickVector",
       {
         "<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
-        "<p><a href=\"CppNewickVector.htm\">NewickVector</a> is a <a href=\"CppNewick.htm\">Newick</a> <a href=\"CppClass.htm\">class</a>.</p>",
+        "<p><a href=\"CppNewickVector.htm\">NewickVector</a> is a <a href=\"CppNewick.htm\">Newick</a> <a href=\"CppClass.htm\">class</a>.</p>"
       }
-    },{ "CppOpenQuestion",
+    }
+  );
+  m.push_back(
+    { "CppOpenQuestion",
       {
         "<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
-        "<p><a href=\"CppOpenQuestion.htm\">OpenQuestion</a> is a <a href=\"CppClass.htm\">class</a> for an open <a href=\"CppQuestion.htm\">question</a>.</p>",
+        "<p><a href=\"CppOpenQuestion.htm\">OpenQuestion</a> is a <a href=\"CppClass.htm\">class</a> for an open <a href=\"CppQuestion.htm\">question</a>.</p>"
       }
-    },{ "CppOpenQuestionDialog",
+    }
+  );
+  m.push_back(
+    { "CppOpenQuestionDialog",
       {
         "<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
-        "<p><a href=\"CppOpenQuestionDialog.htm\">OpenQuestionDialog</a> is a dialog for <a href=\"CppOpenQuestion.htm\">OpenQuestion</a>.</p>",
+        "<p><a href=\"CppOpenQuestionDialog.htm\">OpenQuestionDialog</a> is a dialog for <a href=\"CppOpenQuestion.htm\">OpenQuestion</a>.</p>"
       }
-    },{ "CppPredicateExample1",
+    }
+  );
+  m.push_back(
+    { "CppPredicateExample1",
       {
-        "<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
+        "<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>"
 
-    //In the example below, it is shown how to replace negative values by zero. The predicate is if an integer is less then zero.
+        //In the example below, it is shown how to replace negative values by zero. The predicate is if an integer is less then zero.
       }
 
-    },{ "CppPreprocessorSwitchGccVersion",
+    }
+  );
+  m.push_back(
+    { "CppPreprocessorSwitchGccVersion",
       {
         "<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
@@ -2588,9 +3048,12 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<p>&nbsp;</p>",
         "<ul>",
         "  <li><a href=\"CppPreprocessorSwitchGccVersion.zip\">Download the Qt Creator project 'CppPreprocessorSwitchGccVersion' (zip)</a></li>",
-        "</ul>",
+        "</ul>"
       }
-    },{ "CppPrimeExpert",
+    }
+  );
+  m.push_back(
+    { "CppPrimeExpert",
       {
         "<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
@@ -2604,19 +3067,25 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "maintains a <a href=\"CppVector.htm\">std::vector</a> of known primes (but of known primes only).</p>",
         "<p>&nbsp;</p>",
         "<p><a href=\"CppPrimeExpert.htm\">PrimeExpert</a> can be tested using the <a href=\"Tools.htm\">tool</a> ",
-        "<a href=\"ToolTestPrimeExpert.htm\">TestPrimeExpert</a>.</p>",
+        "<a href=\"ToolTestPrimeExpert.htm\">TestPrimeExpert</a>.</p>"
       }
 
-    },{ "CppPylos",
+    }
+  );
+  m.push_back(
+    { "CppPylos",
       {
         "<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
         "<p>The <a href=\"CppPylos.htm\">Pylos</a> <a href=\"CppClass.htm\">classes</a> are used for the",
         "<a href=\"Games.htm\">game</a> <a href=\"GamePylos.htm\">Pylos</a> (also called 'Pyraos').</p>",
         "<p>&nbsp;</p>",
-        "<p>The <a href=\"CppPylos.htm\">Pylos</a> <a href=\"CppClass.htm\">classes</a> are tested by <a href=\"ToolTestPylos.htm\">TestPylos page</a>.</p>",
+        "<p>The <a href=\"CppPylos.htm\">Pylos</a> <a href=\"CppClass.htm\">classes</a> are tested by <a href=\"ToolTestPylos.htm\">TestPylos page</a>.</p>"
       }
-    },{ "CppQFileExample1",
+    }
+  );
+  m.push_back(
+    { "CppQFileExample1",
       {
         "<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
@@ -2625,9 +3094,12 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<p>&nbsp;</p>",
         "<ul>",
         "  <li><a href=\"CppQFileExample1.zip\">Download the Qt Creator project 'CppQFileExample1' (zip)</a></li>",
-        "</ul>",
+        "</ul>"
       }
-    },{ "CppQFileDialogExample1",
+    }
+  );
+  m.push_back(
+    { "CppQFileDialogExample1",
       {
         "<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
@@ -2637,9 +3109,12 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<ul>",
         "  <li><a href=\"CppQFileDialogExample1.png\">View a screenshot of 'CppQFileDialogExample1' (png)</a></li>",
         "  <li><a href=\"CppQFileDialogExample1.zip\">Download the Qt Creator project 'CppQFileDialogExample1' (zip)</a></li>",
-        "</ul>",
+        "</ul>"
       }
-    },{ "CppQFileDialogExample2",
+    }
+  );
+  m.push_back(
+    { "CppQFileDialogExample2",
       {
         "<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
@@ -2649,9 +3124,12 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<ul>",
         "  <li><a href=\"CppQFileDialogExample2.png\">View a screenshot of 'CppQFileDialogExample2' (png)</a></li>",
         "  <li><a href=\"CppQFileDialogExample2.zip\">Download the Qt Creator project 'CppQFileDialogExample2' (zip)</a></li>",
-        "</ul>",
+        "</ul>"
       }
-    },{ "CppQFileDialogExample3",
+    }
+  );
+  m.push_back(
+    { "CppQFileDialogExample3",
       {
         "<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
@@ -2661,9 +3139,12 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<ul>",
         "  <li><a href=\"CppQFileDialogExample3.png\">View a screenshot of 'CppQFileDialogExample3' (png)</a></li>",
         "  <li><a href=\"CppQFileDialogExample3.zip\">Download the Qt Creator project 'CppQFileDialogExample3' (zip)</a></li>",
-        "</ul>",
+        "</ul>"
       }
-    },{ "CppQFileDialogExample4",
+    }
+  );
+  m.push_back(
+    { "CppQFileDialogExample4",
       {
         "<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
@@ -2673,10 +3154,13 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<ul>",
         "  <li><a href=\"CppQFileDialogExample4.png\">View a screenshot of 'CppQFileDialogExample4' (png)</a></li>",
         "  <li><a href=\"CppQFileDialogExample4.zip\">Download the Qt Creator project 'CppQFileDialogExample4' (zip)</a></li>",
-        "</ul>",
+        "</ul>"
       }
 
-    },{ "CppQmakeErrorUnknownModulesInQtLocationSensors",
+    }
+  );
+  m.push_back(
+    { "CppQmakeErrorUnknownModulesInQtLocationSensors",
       {
         "<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
@@ -2691,9 +3175,12 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<p>&nbsp;</p>",
         "<ul>",
         "  <li><a href=\"CppQmakeErrorUnknownModulesInQtLocationSensors.htm\">Download the Qt Creator project 'CppQmakeErrorUnknownModulesInQtLocationSensors' (zip)</a></li>",
-        "</ul>",
+        "</ul>"
       }
-    },{ "CppQPrintDialogExample1",
+    }
+  );
+  m.push_back(
+    { "CppQPrintDialogExample1",
       {
         "<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
@@ -2703,17 +3190,23 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<ul>",
         "  <li><a href=\"CppQPrintDialogExample1.png\">View a screenshot of 'CppQPrintDialogExample1' (png)</a></li>",
         "  <li><a href=\"CppQPrintDialogExample1.zip\">Download the Qt Creator project 'CppQPrintDialogExample1' (zip)</a></li>",
-        "</ul>",
+        "</ul>"
       }
-    },{ "CppQrcFile",
+    }
+  );
+  m.push_back(
+    { "CppQrcFile",
       {
         "<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
         "<p><a href=\"CppQrcFile.htm\">QrcFile</a> is a",
         "<a href=\"CppClass.htm\">class</a> for a <a href=\"CppQt.htm\">Qt</a>",
-        "resources file.</p>",
+        "resources file.</p>"
       }
-    },{ "CppQSqlTableModelExample1",
+    }
+  );
+  m.push_back(
+    { "CppQSqlTableModelExample1",
       {
         "<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
@@ -2723,9 +3216,12 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<ul>",
         "  <li><a href=\"CppQSqlTableModelExample1.png\">View a screenshot of 'CppQSqlTableModelExample1' (png)</a></li>",
         "  <li><a href=\"CppQSqlTableModelExample1.zip\">Download the Qt Creator project 'CppQSqlTableModelExample1' (zip)</a></li>",
-        "</ul>",
+        "</ul>"
       }
-    },{ "CppQSqlTableModelExample2",
+    }
+  );
+  m.push_back(
+    { "CppQSqlTableModelExample2",
       {
         "<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
@@ -2735,9 +3231,12 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<ul>",
         "  <li><a href=\"CppQSqlTableModelExample2.png\">View a screenshot of 'CppQSqlTableModelExample2' (png)</a></li>",
         "  <li><a href=\"CppQSqlTableModelExample2.zip\">Download the Qt Creator project 'CppQSqlTableModelExample2' (zip)</a></li>",
-        "</ul>",
+        "</ul>"
       }
-    },{ "CppQSqlTableModelExample3",
+    }
+  );
+  m.push_back(
+    { "CppQSqlTableModelExample3",
       {
         "<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
@@ -2747,9 +3246,12 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<ul>",
         "  <li><a href=\"CppQSqlTableModelExample3.png\">View a screenshot of 'CppQSqlTableModelExample3' (png)</a></li>",
         "  <li><a href=\"CppQSqlTableModelExample3.zip\">Download the Qt Creator project 'CppQSqlTableModelExample3' (zip)</a></li>",
-        "</ul>",
+        "</ul>"
       }
-    },{ "CppQTableViewExample1",
+    }
+  );
+  m.push_back(
+    { "CppQTableViewExample1",
       {
         "<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
@@ -2759,9 +3261,12 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<ul>",
         "  <li><a href=\"CppQTableViewExample1.png\">View a screenshot of 'QTableViewExample1' (png)</a></li>",
         "  <li><a href=\"CppQTableViewExample1.zip\">Download the Qt Creator project 'QTableViewExample1' (zip)</a></li>",
-        "</ul>",
+        "</ul>"
       }
-    },{ "CppQTableViewExample2",
+    }
+  );
+  m.push_back(
+    { "CppQTableViewExample2",
       {
         "<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
@@ -2771,9 +3276,12 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<ul>",
         "  <li><a href=\"CppQTableViewExample2.png\">View a screenshot of 'QTableViewExample2' (png)</a></li>",
         "  <li><a href=\"CppQTableViewExample2.zip\">Download the Qt Creator project 'QTableViewExample2' (zip)</a></li>",
-        "</ul>",
+        "</ul>"
       }
-    },{ "CppQTableViewExample3",
+    }
+  );
+  m.push_back(
+    { "CppQTableViewExample3",
       {
         "<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
@@ -2783,9 +3291,12 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<ul>",
         "  <li><a href=\"CppQTableViewExample3.png\">View a screenshot of 'QTableViewExample3' (png)</a></li>",
         "  <li><a href=\"CppQTableViewExample3.zip\">Download the Qt Creator project 'QTableViewExample3' (zip)</a></li>",
-        "</ul>",
+        "</ul>"
       }
-    },{ "CppQTableViewExample4",
+    }
+  );
+  m.push_back(
+    { "CppQTableViewExample4",
       {
         "<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
@@ -2795,9 +3306,12 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<ul>",
         "  <li><a href=\"CppQTableViewExample4.png\">View a screenshot of 'QTableViewExample4' (png)</a></li>",
         "  <li><a href=\"CppQTableViewExample4.zip\">Download the Qt Creator project 'QTableViewExample4' (zip)</a></li>",
-        "</ul>",
+        "</ul>"
       }
-    },{ "CppQTableViewExample5",
+    }
+  );
+  m.push_back(
+    { "CppQTableViewExample5",
       {
         "<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
@@ -2807,9 +3321,12 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<ul>",
         "  <li><a href=\"CppQTableViewExample5.png\">View a screenshot of 'QTableViewExample5' (png)</a></li>",
         "  <li><a href=\"CppQTableViewExample5.zip\">Download the Qt Creator project 'QTableViewExample5' (zip)</a></li>",
-        "</ul>",
+        "</ul>"
       }
-    },{ "CppQTableViewExample6",
+    }
+  );
+  m.push_back(
+    { "CppQTableViewExample6",
       {
         "<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
@@ -2822,9 +3339,12 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<ul>",
         "  <li><a href=\"CppQTableViewExample6.png\">View a screenshot of 'QTableViewExample6' (png)</a></li>",
         "  <li><a href=\"CppQTableViewExample6.zip\">Download the Qt Creator project 'QTableViewExample6' (zip)</a></li>",
-        "</ul>",
+        "</ul>"
       }
-    },{ "CppQTableViewExample7",
+    }
+  );
+  m.push_back(
+    { "CppQTableViewExample7",
       {
         "<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
@@ -2834,9 +3354,12 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<ul>",
         "  <li><a href=\"CppQTableViewExample7.png\">View a screenshot of 'QTableViewExample7' (png)</a></li>",
         "  <li><a href=\"CppQTableViewExample7.zip\">Download the Qt Creator project 'QTableViewExample7' (zip)</a></li>",
-        "</ul>",
+        "</ul>"
       }
-    },{ "CppQTableViewExample8",
+    }
+  );
+  m.push_back(
+    { "CppQTableViewExample8",
       {
         "<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
@@ -2846,9 +3369,12 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<ul>",
         "  <li><a href=\"CppQTableViewExample8.png\">View a screenshot of 'QTableViewExample8' (png)</a></li>",
         "  <li><a href=\"CppQTableViewExample8.zip\">Download the Qt Creator project 'QTableViewExample8' (zip)</a></li>",
-        "</ul>",
+        "</ul>"
       }
-    },{ "CppQTableViewExample9",
+    }
+  );
+  m.push_back(
+    { "CppQTableViewExample9",
       {
         "<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
@@ -2858,9 +3384,12 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<ul>",
         "  <li><a href=\"CppQTableViewExample9.png\">View a screenshot of 'QTableViewExample9' (png)</a></li>",
         "  <li><a href=\"CppQTableViewExample9.zip\">Download the Qt Creator project 'QTableViewExample9' (zip)</a></li>",
-        "</ul>",
+        "</ul>"
       }
-    },{ "CppQTableViewExample10",
+    }
+  );
+  m.push_back(
+    { "CppQTableViewExample10",
       {
         "<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
@@ -2870,11 +3399,14 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<ul>",
         "  <li><a href=\"CppQTableViewExample10.png\">View a screenshot of 'QTableViewExample10' (png)</a></li>",
         "  <li><a href=\"CppQTableViewExample10.zip\">Download the Qt Creator project 'QTableViewExample10' (zip)</a></li>",
-        "</ul>",
+        "</ul>"
       }
-    },{ "CppQTableWidgetExample1",
+    }
+  );
+  m.push_back(
+    { "CppQTableWidgetExample1",
       {
-        "<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
+        R"(<p><img src="PicQt.png" alt="Qt"/><img src="PicQtCreator.png" alt="Qt Creator"/><img src="PicLubuntu.png" alt="Lubuntu"/></p>)",
         "<p>&nbsp;</p>",
         "<p><a href=\"CppQTableWidgetExample1.htm\">QTableWidget example 1: display text</a> is a",
         "<a href=\"CppQTableWidget.htm\">QTableWidget</a> example.</p>",
@@ -2882,9 +3414,12 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<ul>",
         "  <li><a href=\"CppQTableWidgetExample1.png\">View a screenshot of 'QTableWidgetExample1' (png)</a></li>",
         "  <li><a href=\"CppQTableWidgetExample1.zip\">Download the Qt Creator project 'QTableWidgetExample1' (zip)</a></li>",
-        "</ul>",
+        "</ul>"
       }
-    },{ "CppQTableWidgetExample2",
+    }
+  );
+  m.push_back(
+    { "CppQTableWidgetExample2",
       {
         "<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
@@ -2894,9 +3429,12 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<ul>",
         "  <li><a href=\"CppQTableWidgetExample1.png\">View a screenshot of 'QTableWidgetExample1' (png)</a></li>",
         "  <li><a href=\"CppQTableWidgetExample1.zip\">Download the Qt Creator project 'QTableWidgetExample1' (zip)</a></li>",
-        "</ul>",
+        "</ul>"
       }
-    },{ "CppQTableWidgetExample3",
+    }
+  );
+  m.push_back(
+    { "CppQTableWidgetExample3",
       {
         "<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
@@ -2906,37 +3444,52 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<ul>",
         "  <li><a href=\"CppQTableWidgetExample3.png\">View a screenshot of 'QTableWidgetExample3' (png)</a></li>",
         "  <li><a href=\"CppQTableWidgetExample3.zip\">Download the Qt Creator project 'QTableWidgetExample3' (zip)</a></li>",
-        "</ul>",
+        "</ul>"
       }
-    },{ "CppQtAboutDialog",
+    }
+  );
+  m.push_back(
+    { "CppQtAboutDialog",
       {
         "<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
         "<p><a href=\"CppQtAboutDialog.htm\">QtAboutDialog</a> is a <a href=\"CppQt.htm\">Qt</a> dialog",
-        "<a href=\"CppClass.htm\">class</a> to display an <a href=\"CppAbout.htm\">About</a>.</p>",
+        "<a href=\"CppClass.htm\">class</a> to display an <a href=\"CppAbout.htm\">About</a>.</p>"
       }
-    },{ "QtArrowItem",
+    }
+  );
+  m.push_back(
+    { "QtArrowItem",
       {
         "<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
         "<p><a href=\"CppQtArrowItem.htm\">QtArrowItem</a> is a <a href=\"CppQt.htm\">Qt</a> ",
-        "<a href=\"CppQGraphicsItem.htm\">QGraphicsItem</a> <a href=\"CppClass.htm\">class</a> that displays a straight arrow.</p>",
+        "<a href=\"CppQGraphicsItem.htm\">QGraphicsItem</a> <a href=\"CppClass.htm\">class</a> that displays a straight arrow.</p>"
       }
-    },{ "CppQtChess",
+    }
+  );
+  m.push_back(
+    { "CppQtChess",
       {
         "<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
-        "<p><a href=\"CppQtChess.htm\">QtChess</a> has many <a href=\"CppQt.htm\">Qt</a> <a href=\"CppChess.htm\">chess</a> <a href=\"CppClass.htm\">classes</a></p>",
+        "<p><a href=\"CppQtChess.htm\">QtChess</a> has many <a href=\"CppQt.htm\">Qt</a> <a href=\"CppChess.htm\">chess</a> <a href=\"CppClass.htm\">classes</a></p>"
       }
-    },{ "CppQtConnectThreeWidget",
+    }
+  );
+  m.push_back(
+    { "CppQtConnectThreeWidget",
       {
         "<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
         "<p><a href=\"CppQtConnectThreeWidget.htm\">QtConnectThreeWidget</a> is a <a href=\"CppQt.htm\">Qt</a> <a href=\"CppWidget.htm\">widget</a>",
         "<a href=\"CppClass.htm\">class</a> for a responsive connect-three game. <a href=\"CppQtConnectThreeWidget.htm\">QtConnectThreeWidget</a> is",
-        "used in, among others, the <a href=\"Games.htm\">game</a> <a href=\"GameConnectThree.htm\">ConnectThree</a>.</p>",
+        "used in, among others, the <a href=\"Games.htm\">game</a> <a href=\"GameConnectThree.htm\">ConnectThree</a>.</p>"
       }
-    },{ "CppQtCreator_5_1",
+    }
+  );
+  m.push_back(
+    { "CppQtCreator_5_1",
       {
         "<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
@@ -2946,9 +3499,12 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<ul>",
         "  <li><a href=\"CppQtCreator_5_1.png\">View a screenshot of 'CppQtCreator_5_1' (png)</a></li>",
         "  <li><a href=\"CppQtCreator_5_1.zip\">Download the Qt Creator project 'CppQtCreator_5_1' (zip)</a></li>",
-        "</ul>",
+        "</ul>"
       }
-    },{ "CppQtCreatorProFile",
+    }
+  );
+  m.push_back(
+    { "CppQtCreatorProFile",
       {
         "<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
@@ -2956,9 +3512,12 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<a href=\"CppClass.htm\">class</a>.</p>",
         "<p>&nbsp;</p>",
         "<p><a href=\"CppQtCreatorProFile.htm\">QtCreatorProFile</a> is tested by the <a href=\"Tools.htm\">tool</a> ",
-        "<a href=\"ToolTestQtCreatorProFile.htm\">TestQtCreatorProFile</a>.</p>",
+        "<a href=\"ToolTestQtCreatorProFile.htm\">TestQtCreatorProFile</a>.</p>"
       }
-    },{ "CppQtDialWidget",
+    }
+  );
+  m.push_back(
+    { "CppQtDialWidget",
       {
         "<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
@@ -2966,16 +3525,22 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<a href=\"CppClass.htm\">class</a> to display an <a href=\"CppDial.htm\">Dial</a>.</p>",
         "<p>&nbsp;</p>",
         "<p><a href=\"CppQtDialWidget.htm\">QtDialWidget</a> is used in the <a href=\"Tools.htm\">tool</a> ",
-        "<a href=\"ToolTestDial.htm\">TestDial</a>.</p>",
+        "<a href=\"ToolTestDial.htm\">TestDial</a>.</p>"
       }
-    },{ "CppQtDisplayPosItem",
+    }
+  );
+  m.push_back(
+    { "CppQtDisplayPosItem",
       {
         "<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
         "<p><a href=\"CppQtDisplayPosItem.htm\">QtDisplayPosItem</a> is a <a href=\"CppQt.htm\">Qt</a> ",
-        "<a href=\"CppQGraphicsItem.htm\">QGraphicsItem</a> <a href=\"CppClass.htm\">class</a> that displays its position.</p>",
+        "<a href=\"CppQGraphicsItem.htm\">QGraphicsItem</a> <a href=\"CppClass.htm\">class</a> that displays its position.</p>"
       }
-    },{ "CppQtExample1",
+    }
+  );
+  m.push_back(
+    { "CppQtExample1",
       {
         "<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicUbuntu.png\" alt=\"Ubuntu\"/></p>",
         "<p>&nbsp;</p>",
@@ -2983,9 +3548,12 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<p>&nbsp;</p>",
         "<ul>",
         "  <li><a href=\"CppQtExample1.zip\">Download the Qt Creator project file 'CppQtExample1' (zip)</a></li>",
-        "</ul>",
+        "</ul>"
       }
-    },{ "CppQtExample2",
+    }
+  );
+  m.push_back(
+    { "CppQtExample2",
       {
         "<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicUbuntu.png\" alt=\"Ubuntu\"/></p>",
         "<p>&nbsp;</p>",
@@ -2993,9 +3561,12 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<p>&nbsp;</p>",
         "<ul>",
         "  <li><a href=\"CppQtExample2.zip\">Download the Qt Creator project file 'CppQtExample2' (zip)</a></li>",
-        "</ul>",
+        "</ul>"
       }
-    },{ "CppQtExample3",
+    }
+  );
+  m.push_back(
+    { "CppQtExample3",
       {
         "<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicUbuntu.png\" alt=\"Ubuntu\"/></p>",
         "<p>&nbsp;</p>",
@@ -3003,9 +3574,12 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<p>&nbsp;</p>",
         "<ul>",
         "  <li><a href=\"CppQtExample3.zip\">Download the Qt Creator project file 'CppQtExample3' (zip)</a></li>",
-        "</ul>",
+        "</ul>"
       }
-    },{ "CppQtExample4",
+    }
+  );
+  m.push_back(
+    { "CppQtExample4",
       {
         "<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicUbuntu.png\" alt=\"Ubuntu\"/></p>",
         "<p>&nbsp;</p>",
@@ -3013,9 +3587,12 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<p>&nbsp;</p>",
         "<ul>",
         "  <li><a href=\"CppQtExample4.zip\">Download the Qt Creator project file 'CppQtExample4' (zip)</a></li>",
-        "</ul>",
+        "</ul>"
       }
-    },{ "CppQtExample5",
+    }
+  );
+  m.push_back(
+    { "CppQtExample5",
       {
         "<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicUbuntu.png\" alt=\"Ubuntu\"/></p>",
         "<p>&nbsp;</p>",
@@ -3024,9 +3601,12 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<p>&nbsp;</p>",
         "<ul>",
         "  <li><a href=\"CppQtExample5.zip\">Download the Qt Creator project file 'CppQtExample5' (zip)</a></li>",
-        "</ul>",
+        "</ul>"
       }
-    },{ "CppQtExample6",
+    }
+  );
+  m.push_back(
+    { "CppQtExample6",
       {
         "<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicUbuntu.png\" alt=\"Ubuntu\"/></p>",
         "<p>&nbsp;</p>",
@@ -3035,9 +3615,12 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<p>&nbsp;</p>",
         "<ul>",
         "  <li><a href=\"CppQtExample6.zip\">Download the Qt Creator project file 'CppQtExample6' (zip)</a></li>",
-        "</ul>",
+        "</ul>"
       }
-    },{ "CppQtExample7",
+    }
+  );
+  m.push_back(
+    { "CppQtExample7",
       {
         "<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicUbuntu.png\" alt=\"Ubuntu\"/></p>",
         "<p>&nbsp;</p>",
@@ -3045,9 +3628,12 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<p>&nbsp;</p>",
         "<ul>",
         "  <li><a href=\"CppQtExample7.zip\">Download the Qt Creator project file 'CppQtExample7' (zip)</a></li>",
-        "</ul>",
+        "</ul>"
       }
-    },{ "CppQtExample8",
+    }
+  );
+  m.push_back(
+    { "CppQtExample8",
       {
         "<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicUbuntu.png\" alt=\"Ubuntu\"/></p>",
         "<p>&nbsp;</p>",
@@ -3055,9 +3641,12 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<p>&nbsp;</p>",
         "<ul>",
         "  <li><a href=\"CppQtExample8.zip\">Download the Qt Creator project file 'CppQtExample8' (zip)</a></li>",
-        "</ul>",
+        "</ul>"
       }
-    },{ "CppQtExample9",
+    }
+  );
+  m.push_back(
+    { "CppQtExample9",
       {
         "<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicUbuntu.png\" alt=\"Ubuntu\"/></p>",
         "<p>&nbsp;</p>",
@@ -3067,9 +3656,12 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<p>&nbsp;</p>",
         "<ul>",
         "  <li><a href=\"CppQtExample9.zip\">Download the Qt Creator project file 'QtExample9' (zip)</a></li>",
-        "</ul>",
+        "</ul>"
       }
-    },{ "CppQtExample10",
+    }
+  );
+  m.push_back(
+    { "CppQtExample10",
       {
         "<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicUbuntu.png\" alt=\"Ubuntu\"/></p>",
         "<p>&nbsp;</p>",
@@ -3077,9 +3669,12 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<p>&nbsp;</p>",
         "<ul>",
         "  <li><a href=\"CppQtExample10.zip\">Download the Qt Project of 'QtExample10' (zip)</a></li>",
-        "</ul>",
+        "</ul>"
       }
-    },{ "CppQtExample11",
+    }
+  );
+  m.push_back(
+    { "CppQtExample11",
       {
         "<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicUbuntu.png\" alt=\"Ubuntu\"/></p>",
         "<p>&nbsp;</p>",
@@ -3087,9 +3682,12 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<p>&nbsp;</p>",
         "<ul>",
         "  <li><a href=\"CppQtExample11.zip\">Download the Qt Project of 'QtExample11' (zip)</a></li>",
-        "</ul>",
+        "</ul>"
       }
-    },{ "CppQtExample12",
+    }
+  );
+  m.push_back(
+    { "CppQtExample12",
       {
         "<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicUbuntu.png\" alt=\"Ubuntu\"/></p>",
         "<p>&nbsp;</p>",
@@ -3097,9 +3695,12 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<p>&nbsp;</p>",
         "<ul>",
         "  <li><a href=\"CppQtExample12.zip\">Download the Qt Project of 'QtExample12' (zip)</a></li>",
-        "</ul>",
+        "</ul>"
       }
-    },{ "CppQtExample13",
+    }
+  );
+  m.push_back(
+    { "CppQtExample13",
       {
         "<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicUbuntu.png\" alt=\"Ubuntu\"/></p>",
         "<p>&nbsp;</p>",
@@ -3107,9 +3708,12 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<p>&nbsp;</p>",
         "<ul>",
         "  <li><a href=\"CppQtExample13.zip\">Download the Qt Project of 'QtExample13' (zip)</a></li>",
-        "</ul>",
+        "</ul>"
       }
-    },{ "CppQtExample14",
+    }
+  );
+  m.push_back(
+    { "CppQtExample14",
       {
         "<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicUbuntu.png\" alt=\"Ubuntu\"/></p>",
         "<p>&nbsp;</p>",
@@ -3117,9 +3721,12 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<p>&nbsp;</p>",
         "<ul>",
         "  <li><a href=\"CppQtExample14.zip\">Download the Qt Project of 'QtExample14' (zip)</a></li>",
-        "</ul>",
+        "</ul>"
       }
-    },{ "CppQtExample15",
+    }
+  );
+  m.push_back(
+    { "CppQtExample15",
       {
         "<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicUbuntu.png\" alt=\"Ubuntu\"/></p>",
         "<p>&nbsp;</p>",
@@ -3127,9 +3734,12 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<p>&nbsp;</p>",
         "<ul>",
         "  <li><a href=\"CppQtExample15.zip\">Download the Qt Project of 'QtExample15' (zip)</a></li>",
-        "</ul>",
+        "</ul>"
       }
-    },{ "CppQtExample16",
+    }
+  );
+  m.push_back(
+    { "CppQtExample16",
       {
         "<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicUbuntu.png\" alt=\"Ubuntu\"/></p>",
         "<p>&nbsp;</p>",
@@ -3167,9 +3777,12 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "  <li><a href=\"CppQtExample16_9.png\">View screenshot</a></li>",
         "  <li>Copy-paste the example code below</li>",
         "  <li><a href=\"CppQtExample16.png\">View final screenshot</a></li>",
-        "</ol>",
+        "</ol>"
       }
-    },{ "CppQtExample17",
+    }
+  );
+  m.push_back(
+    { "CppQtExample17",
       {
         "<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicUbuntu.png\" alt=\"Ubuntu\"/></p>",
         "<p>&nbsp;</p>",
@@ -3177,9 +3790,12 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<p>&nbsp;</p>",
         "<ul>",
         "  <li><a href=\"CppQtExample17.zip\">Download the Qt Project of 'QtExample17' (zip)</a></li>",
-        "</ul>",
+        "</ul>"
       }
-    },{ "CppQtExample18",
+    }
+  );
+  m.push_back(
+    { "CppQtExample18",
       {
         "<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicUbuntu.png\" alt=\"Ubuntu\"/></p>",
         "<p>&nbsp;</p>",
@@ -3187,9 +3803,12 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<p>&nbsp;</p>",
         "<ul>",
         "  <li><a href=\"CppQtExample18.zip\">Download the Qt Project of 'QtExample18' (zip)</a></li>",
-        "</ul>",
+        "</ul>"
       }
-    },{ "CppQtExample19",
+    }
+  );
+  m.push_back(
+    { "CppQtExample19",
       {
         "<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicUbuntu.png\" alt=\"Ubuntu\"/></p>",
         "<p>&nbsp;</p>",
@@ -3197,9 +3816,12 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<p>&nbsp;</p>",
         "<ul>",
         "  <li><a href=\"CppQtExample19.zip\">Download the Qt Project of 'QtExample19' (zip)</a></li>",
-        "</ul>",
+        "</ul>"
       }
-    },{ "CppQtExample20",
+    }
+  );
+  m.push_back(
+    { "CppQtExample20",
       {
         "<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicUbuntu.png\" alt=\"Ubuntu\"/></p>",
         "<p>&nbsp;</p>",
@@ -3209,9 +3831,12 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "  <li><a href=\"CppQtExample20.zip\">Download the 'CppQtExample20' source code (zip)</a></li>",
         "  <li><a href=\"CppQtExample20.png\">View a screenshot of 'CppQtExample20' (desktop)(png)</a></li>",
         "  <li><a href=\"CppQtExample20Simulator.png\">View a screenshot of 'CppQtExample20' (mobile simulator)(png)</a></li>",
-        "</ul>",
+        "</ul>"
       }
-    },{ "CppQtExample21",
+    }
+  );
+  m.push_back(
+    { "CppQtExample21",
       {
         "<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicUbuntu.png\" alt=\"Ubuntu\"/></p>",
         "<p>&nbsp;</p>",
@@ -3222,9 +3847,12 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<ul>",
         "  <li><a href=\"CppQtExample21.zip\">Download the 'CppQtExample21' source code (zip)</a></li>",
         "  <li><a href=\"CppQtExample21.png\">View a screenshot of 'CppQtExample21' (png)</a></li>",
-        "</ul>",
+        "</ul>"
       }
-    },{ "CppQtExample22",
+    }
+  );
+  m.push_back(
+    { "CppQtExample22",
       {
         "<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicUbuntu.png\" alt=\"Ubuntu\"/></p>",
         "<p>&nbsp;</p>",
@@ -3233,9 +3861,12 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<ul>",
         "  <li><a href=\"CppQtExample22.zip\">Download the 'CppQtExample22' source code (zip)</a></li>",
         "  <li><a href=\"CppQtExample22.png\">View a screenshot of 'CppQtExample22' (png)</a></li>",
-        "</ul>",
+        "</ul>"
       }
-    },{ "CppQtExample23",
+    }
+  );
+  m.push_back(
+    { "CppQtExample23",
       {
         "<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicUbuntu.png\" alt=\"Ubuntu\"/></p>",
         "<p>&nbsp;</p>",
@@ -3244,9 +3875,12 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<ul>",
         "  <li><a href=\"CppQtExample23.zip\">Download the 'CppQtExample23' source code (zip)</a></li>",
         "  <li><a href=\"CppQtExample23.png\">View a screenshot of 'CppQtExample23' (png)</a></li>",
-        "</ul>",
+        "</ul>"
       }
-    },{ "CppQtExample24",
+    }
+  );
+  m.push_back(
+    { "CppQtExample24",
       {
         "<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicUbuntu.png\" alt=\"Ubuntu\"/></p>",
         "<p>&nbsp;</p>",
@@ -3265,15 +3899,21 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<ul>",
         "  <li><a href=\"CppQtExample24.zip\">Download the source code for Qt example 24 (zip)</a></li>",
         "  <li><a href=\"CppQtExample24.png\">View a screenshot of Qt example 24 (png)</a></li>",
-        "</ul>",
+        "</ul>"
       }
-    },{ "CppQtExample25",
+    }
+  );
+  m.push_back(
+    { "CppQtExample25",
       {
         "<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicUbuntu.png\" alt=\"Ubuntu\"/></p>",
         "<p>&nbsp;</p>",
-        "<p><a href=\"CppQtExample25.htm\">Qt example 25: a transparent widget</a> shows a transparent sketch widget.</p>",
+        "<p><a href=\"CppQtExample25.htm\">Qt example 25: a transparent widget</a> shows a transparent sketch widget.</p>"
       }
-    },{ "CppQtExample26",
+    }
+  );
+  m.push_back(
+    { "CppQtExample26",
       {
         "<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicUbuntu.png\" alt=\"Ubuntu\"/></p>",
         "<p>&nbsp;</p>",
@@ -3293,9 +3933,12 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<ul>",
         "  <li><a href=\"CppQtExample26.zip\">Download the source code for Qt example 26 (zip)</a></li>",
         "  <li><a href=\"CppQtExample26.png\">View a screenshot of Qt example 26 (png)</a></li>",
-        "</ul>",
+        "</ul>"
       }
-    },{ "CppQtExample27",
+    }
+  );
+  m.push_back(
+    { "CppQtExample27",
       {
         "<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
@@ -3312,9 +3955,12 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<ul>",
         "  <li><a href=\"CppQtExample27.zip\">Download the source code for Qt example 27 (zip)</a></li>",
         "  <li><a href=\"CppQtExample27.png\">View a screenshot of Qt example 27 (png)</a></li>",
-        "</ul>",
+        "</ul>"
       }
-    },{ "CppQtExample28",
+    }
+  );
+  m.push_back(
+    { "CppQtExample28",
       {
         "<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
@@ -3331,9 +3977,12 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<ul>",
         "  <li><a href=\"CppQtExample28.zip\">Download the source code for Qt example 28 (zip)</a></li>",
         "  <li><a href=\"CppQtExample28.png\">View a screenshot of Qt example 28 (png)</a></li>",
-        "</ul>",
+        "</ul>"
       }
-    },{ "CppQtExample29",
+    }
+  );
+  m.push_back(
+    { "CppQtExample29",
       {
         "<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
@@ -3350,39 +3999,54 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<ul>",
         "  <li><a href=\"CppQtExample29.zip\">Download the source code for Qt example 29 (zip)</a></li>",
         "  <li><a href=\"CppQtExample29.png\">View a screenshot of Qt example 29 (png)</a></li>",
-        "</ul>",
+        "</ul>"
       }
-    },{ "CppQtExample30",
+    }
+  );
+  m.push_back(
+    { "CppQtExample30",
       {
         "<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
         "<p><a href=\"CppQtExample30.htm\">Qt example 30: controlling program flow with a Singleton</a> is a <a href=\"CppQtExample.htm\">Qt Example</a>",
-        "that uses <a href=\"CppSingleton.htm\">Singleton</a> to produce dialogs until it is told to quit.</p>",
+        "that uses <a href=\"CppSingleton.htm\">Singleton</a> to produce dialogs until it is told to quit.</p>"
       }
-    },{ "CppQtExample31",
+    }
+  );
+  m.push_back(
+    { "CppQtExample31",
       {
         "<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
         "<p><a href=\"CppQtExample31.htm\">Qt example 31: moveable thin lines</a> is a <a href=\"CppQtExample.htm\">Qt example</a> to create some lines that are moveable. Note",
         "that because the lines are one pixel thin, it is difficult to really move them!",
-        "<a href=\"CppQtExample32.htm\">QtExample32</a> solves this problem.</p>",
+        "<a href=\"CppQtExample32.htm\">QtExample32</a> solves this problem.</p>"
       }
-    },{ "CppQtExample32",
+    }
+  );
+  m.push_back(
+    { "CppQtExample32",
       {
         "<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
         "<p><a href=\"CppQtExample32.htm\">Qt example 32: moveable and selectable thin lines</a> is a",
         "<a href=\"CppQtExample.htm\">Qt example</a> to create some lines that are moveable, yet",
-        "selectable easy.</p>",
+        "selectable easy.</p>"
       }
-    },{ "CppQtExample33",
+    }
+  );
+  m.push_back(
+    { "CppQtExample33",
       {
         "<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
         "<p><a href=\"CppQtExample33.htm\">Qt example 33: moveable and selectable arrows</a> is a",
-        "<a href=\"CppQtExample.htm\">Qt example</a> to create some arrows that are (easily) selectable and moveable.</p>",
+        "<a href=\"CppQtExample.htm\">Qt example</a> to create some arrows that are (easily) selectable and moveable.</p>"
       }
-    },{ "CppQtExample34",
+    }
+  );
+  m.push_back(
+    { "CppQtExample34",
       {
         "<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
@@ -3393,164 +4057,232 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "Or, when having selected an arrow, press 2,F2,the plus sign of 'h' to have the head arrowhead added or removed.</p>",
         "<p>&nbsp;</p>",
         "<p>What I liked, is that it is possible to select multiple items while holding CTRL (which is standard",
-        "GUI behavior) and edit these all at the same time using a key press!</p>",
+        "GUI behavior) and edit these all at the same time using a key press!</p>"
       }
-    },{ "CppQtExample35",
+    }
+  );
+  m.push_back(
+    { "CppQtExample35",
       {
         "<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
         "<p><a href=\"CppQtExample35.htm\">Qt example 35: arrows with an angle</a> is a ",
         "<a href=\"CppQtExample.htm\">Qt example</a> elaborates on <a href=\"CppQtExample34.htm\">Qt example 34: moveable, selectable and editable arrows</a>,",
-        "but has arrows with an angle in them instead.</p>",
+        "but has arrows with an angle in them instead.</p>"
       }
-    },{ "CppQtExample36",
+    }
+  );
+  m.push_back(
+    { "CppQtExample36",
       {
         "<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
         "<p><a href=\"CppQtExample36.htm\">Qt example 36: arrows with multiple midpoints</a> is a ",
         "<a href=\"CppQtExample.htm\">Qt example</a> elaborates on <a href=\"CppQtExample34.htm\">Qt example 34: moveable, selectable and editable arrows</a>,",
-        "but has arrows with an angle in them instead.</p>",
+        "but has arrows with an angle in them instead.</p>"
       }
-    },{ "CppQtExercise",
+    }
+  );
+  m.push_back(
+    { "CppQtExercise",
       {
         "<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
         "<p><a href=\"CppQtExercise.htm\">QtExercise</a> is a <a href=\"CppQt.htm\">Qt</a>",
-        "<a href=\"CppClass.htm\">class</a> to display an <a href=\"CppExercise.htm\">Exercise</a>.</p>",
+        "<a href=\"CppClass.htm\">class</a> to display an <a href=\"CppExercise.htm\">Exercise</a>.</p>"
       }
-    },{ "CppQtGaborFilterWidget",
+    }
+  );
+  m.push_back(
+    { "CppQtGaborFilterWidget",
       {
         "<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
         "<p><a href=\"CppQtGaborFilterWidget.htm\">QtGaborFilterWidget</a> is a",
         "<a href=\"CppQt.htm\">Qt</a> <a href=\"CppClass.htm\">class</a> to",
-        "display a <a href=\"CppGaborFilterWidget.htm\">GaborFilterWidget</a>.</p>",
+        "display a <a href=\"CppGaborFilterWidget.htm\">GaborFilterWidget</a>.</p>"
       }
-    },{ "CppQtHideAndShowDialog",
+    }
+  );
+  m.push_back(
+    { "CppQtHideAndShowDialog",
       {
         "<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
         "<p><a href=\"CppQtHideAndShowDialog.htm\">QtHideAndShowDialog</a> is a <a href=\"CppQt.htm\">Qt</a>",
-        "<a href=\"CppClass.htm\">class</a> to allow a dialog display a new modal dialog, with the parent hiding.</p>",
+        "<a href=\"CppClass.htm\">class</a> to allow a dialog display a new modal dialog, with the parent hiding.</p>"
       }
-    },{ "CppQtKeyboardFriendlyGraphicsView",
+    }
+  );
+  m.push_back(
+    { "CppQtKeyboardFriendlyGraphicsView",
       {
         "<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
         "<p><a href=\"CppQtKeyboardFriendlyGraphicsView.htm\">QtKeyboardFriendlyGraphicsView</a> is a <a href=\"CppQt.htm\">Qt</a>",
-        "<a href=\"CppClass.htm\">class</a> for a keyboard friendly QGraphicsView.</p>",
+        "<a href=\"CppClass.htm\">class</a> for a keyboard friendly QGraphicsView.</p>"
       }
-    },{ "CppQtLabeledQuadBezierArrowItem",
+    }
+  );
+  m.push_back(
+    { "CppQtLabeledQuadBezierArrowItem",
       {
         "<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
         "<p><a href=\"CppQtArrowItem.htm\">QtArrowItem</a> is a <a href=\"CppQt.htm\">Qt</a> ",
-        "<a href=\"CppQGraphicsItem.htm\">QGraphicsItem</a> <a href=\"CppClass.htm\">class</a> that displays a curved arrow.</p>",
+        "<a href=\"CppQGraphicsItem.htm\">QGraphicsItem</a> <a href=\"CppClass.htm\">class</a> that displays a curved arrow.</p>"
       }
-    },{ "CppQtLedDisplayWidget",
+    }
+  );
+  m.push_back(
+    { "CppQtLedDisplayWidget",
       {
         "<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
         "<p><a href=\"CppQtLedWidget.htm\">QtLedWidget</a> is a <a href=\"CppQt.htm\">Qt</a> ",
         "<a href=\"CppClass.htm\">class</a> to display an <a href=\"CppLed.htm\">Led</a>.</p>",
         "<p>&nbsp;</p>",
-        "<p><a href=\"CppQtLedWidget.htm\">QtLedWidget</a> is used in the <a href=\"Tools.htm\">tool</a> <a href=\"ToolTestLed.htm\">TestLed</a>.</p>",
+        "<p><a href=\"CppQtLedWidget.htm\">QtLedWidget</a> is used in the <a href=\"Tools.htm\">tool</a>",
+        "<a href=\"ToolTestLed.htm\">TestLed</a>.</p>"
       }
-    },{ "CppQtLedWidget",
+    }
+  );
+  m.push_back(
+    { "CppQtLedWidget",
       {
         "<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
         "<p><a href=\"CppQtLedWidget.htm\">QtLedWidget</a> is a <a href=\"CppQt.htm\">Qt</a> ",
         "<a href=\"CppClass.htm\">class</a> to display an <a href=\"CppLed.htm\">Led</a>.</p>",
         "<p>&nbsp;</p>",
-        "<p><a href=\"CppQtLedWidget.htm\">QtLedWidget</a> is used in the <a href=\"Tools.htm\">tool</a> <a href=\"ToolTestLed.htm\">TestLed</a>.</p>",
+        "<p><a href=\"CppQtLedWidget.htm\">QtLedWidget</a> is used in the <a href=\"Tools.htm\">tool</a>",
+        "<a href=\"ToolTestLed.htm\">TestLed</a>.</p>"
       }
-    },{ "CppQtLeftRightRectItem",
+    }
+  );
+  m.push_back(
+    { "CppQtLeftRightRectItem",
       {
         "<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
         "<p><a href=\"CppQtLeftRightRectItem.htm\">QtLeftRightRectItem</a> is a <a href=\"CppQt.htm\">Qt</a> ",
-        "<a href=\"CppQGraphicsItem.htm\">QGraphicsItem</a> <a href=\"CppClass.htm\">class</a> that has a left and right focus.</p>",
+        "<a href=\"CppQGraphicsItem.htm\">QGraphicsItem</a> <a href=\"CppClass.htm\">class</a> that has a left and right focus.</p>"
       }
-    },{ "CppQtMatrix",
+    }
+  );
+  m.push_back(
+    { "CppQtMatrix",
       {
         "<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
         "<p><a href=\"CppQtMatrix.htm\">QtMatrix</a> is a <a href=\"CppQt.htm\">Qt</a>",
-        "<a href=\"CppClass.htm\">class</a> to display an <a href=\"CppMatrix.htm\">Matrix</a>.</p>",
+        "<a href=\"CppClass.htm\">class</a> to display an <a href=\"CppMatrix.htm\">Matrix</a>.</p>"
       }
-    },{ "CppQtModel",
+    }
+  );
+  m.push_back(
+    { "CppQtModel",
       {
         "<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
         "<p><a href=\"CppQtModel.htm\">QtModel</a> are some <a href=\"CppQt.htm\">Qt</a>",
-        "model <a href=\"CppClass.htm\">classes</a>.</p>",
+        "model <a href=\"CppClass.htm\">classes</a>.</p>"
       }
-    },{ "CppQtMultipleChoiceQuestionDialog",
+    }
+  );
+  m.push_back(
+    { "CppQtMultipleChoiceQuestionDialog",
       {
         "<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
         "<p><a href=\"CppQtMultipleChoiceQuestionDialog.htm\">QtMultipleChoiceQuestionDialog</a> is a ",
-        "<a href=\"CppQt.htm\">Qt</a> dialog for <a href=\"CppMultipleChoiceQuestion.htm\">MultipleChoiceQuestion</a>.</p>",
+        "<a href=\"CppQt.htm\">Qt</a> dialog for <a href=\"CppMultipleChoiceQuestion.htm\">MultipleChoiceQuestion</a>.</p>"
       }
-    },{ "CppQtMysteryMachineWidget",
+    }
+  );
+  m.push_back(
+    { "CppQtMysteryMachineWidget",
       {
         "<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
         "<p><a href=\"CppQtMysteryMachineWidget.htm\">QtMysteryMachineWidget</a> is a <a href=\"CppQt.htm\">Qt</a> ",
-        "<a href=\"CppClass.htm\">class</a> to display an <a href=\"CppMysteryMachineWidget.htm\">CppMysteryMachineWidget</a>.</p>",
+        "<a href=\"CppClass.htm\">class</a> to display an <a href=\"CppMysteryMachineWidget.htm\">CppMysteryMachineWidget</a>.</p>"
       }
-    },{ "CppQtOpenQuestionDialog",
+    }
+  );
+  m.push_back(
+    { "CppQtOpenQuestionDialog",
       {
         "<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
         "<p><a href=\"CppQtOpenQuestionDialog.htm\">QtOpenQuestionDialog</a> is a <a href=\"CppQt.htm\">Qt</a> dialog ",
-        "for <a href=\"CppOpenQuestionDialog.htm\">OpenQuestionDialog</a>.</p>",
+        "for <a href=\"CppOpenQuestionDialog.htm\">OpenQuestionDialog</a>.</p>"
       }
-    },{ "CppQtPathArrowItem",
+    }
+  );
+  m.push_back(
+    { "CppQtPathArrowItem",
       {
         "<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
         "<p><a href=\"CppQtPathArrowItem.htm\">QtPathArrowItem</a> is a <a href=\"CppQt.htm\">Qt</a> ",
-        "<a href=\"CppQGraphicsItem.htm\">QGraphicsItem</a> <a href=\"CppClass.htm\">class</a> that displays an arrow that can have a multiple straight-line body.</p>",
+        "<a href=\"CppQGraphicsItem.htm\">QGraphicsItem</a> <a href=\"CppClass.htm\">class</a> that displays an arrow that can have a multiple straight-line body.</p>"
       }
-    },{ "CppQtPylos",
+    }
+  );
+  m.push_back(
+    { "CppQtPylos",
       {
         "<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
         "<p><a href=\"CppQtPylos.htm\">CppQtPylos</a> is a <a href=\"CppQt.htm\">Qt</a>",
-        "<a href=\"CppClass.htm\">class</a> for displaying a Pylos game.</p>",
+        "<a href=\"CppClass.htm\">class</a> for displaying a Pylos game.</p>"
       }
-    },{ "CppQtQuadBezierArrowItem",
+    }
+  );
+  m.push_back(
+    { "CppQtQuadBezierArrowItem",
       {
         "<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
         "<p><a href=\"CppQtQuadBezierArrowItem.htm\">QtQuadBezierArrowItem</a> is a <a href=\"CppQGraphicsItem.htm\">QGraphicsItem</a> for displaying a arrow that has a quadratic Bezier curve as its body.</p>",
         "<p>&nbsp;</p>",
-        "<p>For the math, see <a href=\"CppQGraphicsPathItemExample5.htm\">QGraphicsPathItem example 5: Bezier quadratic lines with arrow heads</a>.</p>",
+        "<p>For the math, see <a href=\"CppQGraphicsPathItemExample5.htm\">QGraphicsPathItem example 5: Bezier quadratic lines with arrow heads</a>.</p>"
       }
-    },{ "CppQtQuestionDialog",
+    }
+  );
+  m.push_back(
+    { "CppQtQuestionDialog",
       {
         "<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
         "<p><a href=\"CppQtQuestionDialog.htm\">QtQuestionDialog</a> is a <a href=\"CppQt.htm\">Qt</a> dialog for",
-        "<a href=\"CppQuestionDialog.htm\">QuestionDialog</a>.</p>",
+        "<a href=\"CppQuestionDialog.htm\">QuestionDialog</a>.</p>"
       }
-    },{ "CppQtRichelBilderbeekGalleryDialog",
+    }
+  );
+  m.push_back(
+    { "CppQtRichelBilderbeekGalleryDialog",
       {
         "<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
         "<p><a href=\"CppQtRichelBilderbeekGalleryDialog.htm\">QtRichelBilderbeekGalleryDialog</a> is a <a href=\"CppQt.htm\">Qt</a> dialog for",
-        "displaying the status of all ProjectRichelBilderbeek programs.</p>",
+        "displaying the status of all ProjectRichelBilderbeek programs.</p>"
       }
-    },{ "CppQtRichelBilderbeekProgram",
+    }
+  );
+  m.push_back(
+    { "CppQtRichelBilderbeekProgram",
       {
         "<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
         "<p><a href=\"CppQtRichelBilderbeekProgram.htm\">QtRichelBilderbeekProgram</a> is a <a href=\"CppQt.htm\">Qt</a>",
-        "<a href=\"CppClass.htm\">class</a> for a ProjectRichelBilderbeek class.</p>",
+        "<a href=\"CppClass.htm\">class</a> for a ProjectRichelBilderbeek class.</p>"
       }
-    },{ "CppQTreeViewExample1",
+    }
+  );
+  m.push_back(
+    { "CppQTreeViewExample1",
       {
         "<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
@@ -3560,9 +4292,12 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<ul>",
         "  <li><a href=\"CppQTreeViewExample1.png\">View a screenshot of 'CppQTreeViewExample1' (png)</a></li>",
         "  <li><a href=\"CppQTreeViewExample1.zip\">Download the Qt Creator project 'CppQTreeViewExample1' (zip)</a></li>",
-        "</ul>",
+        "</ul>"
       }
-    },{ "CppQTreeViewExample2",
+    }
+  );
+  m.push_back(
+    { "CppQTreeViewExample2",
       {
         "<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
@@ -3572,9 +4307,12 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<ul>",
         "  <li><a href=\"CppQTreeViewExample2.png\">View a screenshot of 'CppQTreeViewExample2' (png)</a></li>",
         "  <li><a href=\"CppQTreeViewExample2.zip\">Download the Qt Creator project 'CppQTreeViewExample2' (zip)</a></li>",
-        "</ul>",
+        "</ul>"
       }
-    },{ "CppQTreeViewExample3",
+    }
+  );
+  m.push_back(
+    { "CppQTreeViewExample3",
       {
         "<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
@@ -3584,9 +4322,12 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<ul>",
         "  <li><a href=\"CppQTreeViewExample3.png\">View a screenshot of 'CppQTreeViewExample3' (png)</a></li>",
         "  <li><a href=\"CppQTreeViewExample3.zip\">Download the Qt Creator project 'CppQTreeViewExample3' (zip)</a></li>",
-        "</ul>",
+        "</ul>"
       }
-    },{ "CppQTreeViewExample4",
+    }
+  );
+  m.push_back(
+    { "CppQTreeViewExample4",
       {
         "<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
@@ -3596,65 +4337,92 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<ul>",
         "  <li><a href=\"CppQTreeViewExample4.png\">View a screenshot of 'CppQTreeViewExample4' (png)</a></li>",
         "  <li><a href=\"CppQTreeViewExample4.zip\">Download the Qt Creator project 'CppQTreeViewExample4' (zip)</a></li>",
-        "</ul>",
+        "</ul>"
       }
-    },{ "CppQtRoundedEditRectItem",
+    }
+  );
+  m.push_back(
+    { "CppQtRoundedEditRectItem",
       {
         "<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
         "<p><a href=\"CppQtRoundedEditRectItem.htm\">QtRoundedEditRectItem</a> is a <a href=\"CppQt.htm\">Qt</a> ",
-        "<a href=\"CppQGraphicsItem.htm\">QGraphicsItem</a> <a href=\"CppClass.htm\">class</a> that displays a rounded rectangle with editable text.</p>",
+        "<a href=\"CppQGraphicsItem.htm\">QGraphicsItem</a> <a href=\"CppClass.htm\">class</a> that displays a rounded rectangle with editable text.</p>"
       }
-    },{ "CppQtRoundedRectItem",
+    }
+  );
+  m.push_back(
+    { "CppQtRoundedRectItem",
       {
         "<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
         "<p><a href=\"CppQtRoundedEditRectItem.htm\">QtRoundedEditRectItem</a> is a <a href=\"CppQt.htm\">Qt</a> ",
-        "<a href=\"CppQGraphicsItem.htm\">QGraphicsItem</a> <a href=\"CppClass.htm\">class</a> that displays a rounded rectangle.</p>",
+        "<a href=\"CppQGraphicsItem.htm\">QGraphicsItem</a> <a href=\"CppClass.htm\">class</a> that displays a rounded rectangle.</p>"
       }
-    },{ "CppQtRoundedTextRectItem",
+    }
+  );
+  m.push_back(
+    { "CppQtRoundedTextRectItem",
       {
         "<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
         "<p><a href=\"CppQtRoundedEditRectItem.htm\">QtRoundedEditRectItem</a> is a <a href=\"CppQt.htm\">Qt</a> ",
-        "<a href=\"CppQGraphicsItem.htm\">QGraphicsItem</a> <a href=\"CppClass.htm\">class</a> that displays a rounded rectangle with text.</p>",
+        "<a href=\"CppQGraphicsItem.htm\">QGraphicsItem</a> <a href=\"CppClass.htm\">class</a> that displays a rounded rectangle with text.</p>"
       }
-    },{ "CppQtRubiksClockWidget",
+    }
+  );
+  m.push_back(
+    { "CppQtRubiksClockWidget",
       {
         "<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
         "<p><a href=\"CppQtRubiksClockWidget.htm\">QtRubiksClockWidget</a> is a <a href=\"CppQt.htm\">Qt</a>",
-        "<a href=\"CppClass.htm\">class</a> for displaying a Rubik's Clock.</p>",
+        "<a href=\"CppClass.htm\">class</a> for displaying a Rubik's Clock.</p>"
       }
-    },{ "CppQtScopedDisable",
+    }
+  );
+  m.push_back(
+    { "CppQtScopedDisable",
       {
         "<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
         "<p><a href=\"CppQtScopedDisable.htm\">QtScopedDisable</a> is a <a href=\"CppQt.htm\">Qt</a>",
-        "<a href=\"CppClass.htm\">class</a> for disabling a Qt class within a certain scope.</p>",
+        "<a href=\"CppClass.htm\">class</a> for disabling a Qt class within a certain scope.</p>"
       }
-    },{ "CppQtShapeWidget",
+    }
+  );
+  m.push_back(
+    { "CppQtShapeWidget",
       {
         "<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
         "<p><a href=\"CppQtShapeWidget.htm\">QtShapeWidget</a> is a <a href=\"CppQt.htm\">Qt</a> <a href=\"CppWidget.htm\">widget</a>",
-        "<a href=\"CppClass.htm\">class</a> to display an <a href=\"CppShapeWidget.htm\">ShapeWidget</a>.</p>",
+        "<a href=\"CppClass.htm\">class</a> to display an <a href=\"CppShapeWidget.htm\">ShapeWidget</a>.</p>"
       }
-    },{ "CppQtShinyButtonWidget",
+    }
+  );
+  m.push_back(
+    { "CppQtShinyButtonWidget",
       {
         "<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
         "<p><a href=\"CppQtShinyButtonWidget.htm\">QtShinyButtonWidget</a> is a <a href=\"CppQt.htm\">Qt</a>",
-        "<a href=\"CppClass.htm\">class</a> for displaying a shiny button.</p>",
+        "<a href=\"CppClass.htm\">class</a> for displaying a shiny button.</p>"
       }
-    },{ "CppQtSprites",
+    }
+  );
+  m.push_back(
+    { "CppQtSprites",
       {
         "<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
         "<p><a href=\"CppQtSprites.htm\">QtSprites</a> is a <a href=\"CppClass.htm\">class</a>",
-        "containing sprites.</p>",
+        "containing sprites.</p>"
       }
-    },{ "CppQtSqlExample1",
+    }
+  );
+  m.push_back(
+    { "CppQtSqlExample1",
       {
         "<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
@@ -3664,23 +4432,32 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<ul>",
         "  <li><a href=\"CppQtSqlExample1.png\">View a screenshot of 'CppQtSqlExample1' (png)</a></li>",
         "  <li><a href=\"CppQtSqlExample1.zip\">Download the Qt Creator project 'CppQtSqlExample1' (zip)</a></li>",
-        "</ul>",
+        "</ul>"
       }
-    },{ "CppQtStateObserver",
+    }
+  );
+  m.push_back(
+    { "CppQtStateObserver",
       {
         "<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
         "<p><a href=\"CppQtStateObserver.htm\">QtStateObserver</a> is a <a href=\"CppQt.htm\">Qt</a>",
-        "<a href=\"CppClass.htm\">class</a> for displaying a state observer.</p>",
+        "<a href=\"CppClass.htm\">class</a> for displaying a state observer.</p>"
       }
-    },{ "CppQtSurfacePlotWidget",
+    }
+  );
+  m.push_back(
+    { "CppQtSurfacePlotWidget",
       {
         "<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
         "<p><a href=\"CppQtSurfacePlotWidget.htm\">QtSurfacePlotWidget</a> is a <a href=\"CppQt.htm\">Qt</a>",
-        "<a href=\"CppClass.htm\">class</a> for displaying a surface plot.</p>",
+        "<a href=\"CppClass.htm\">class</a> for displaying a surface plot.</p>"
       }
-    },{ "CppQtTicTacToeWidget",
+    }
+  );
+  m.push_back(
+    { "CppQtTicTacToeWidget",
       {
         "<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
@@ -3691,24 +4468,36 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<ul>",
         "  <li><a href=\"GameTicTacToe.htm\">(Game) TicTacToe</a></li>",
         "  <li><a href=\"ToolTestTicTacToe.htm\">(Tool) TestTicTacToe</a></li>",
-        "</ul>",
+        "</ul>"
       }
-    },{ "CppQtToggleButtonWidget",
+    }
+  );
+  m.push_back(
+    { "CppQtToggleButtonWidget",
       {
         "<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
         "<p><a href=\"CppQtToggleButtonWidget.htm\">QtToggleButtonWidget</a> is a <a href=\"CppQt.htm\">Qt</a> <a href=\"CppWidget.htm\">widget</a>",
-        "<a href=\"CppClass.htm\">class</a> to display an <a href=\"CppToggleButtonWidget.htm\">ToggleButtonWidget</a>.</p>",
+        "<a href=\"CppClass.htm\">class</a> to display an <a href=\"CppToggleButtonWidget.htm\">ToggleButtonWidget</a>.</p>"
       }
-    },{ "CppQuestion",
+    }
+  );
+  m.push_back(
+    { "CppQuestion",
       {
-        "<p><a href=\"CppQuestion.htm\">Question</a> is a <a href=\"CppClass.htm\">class</a> for a question.</p>",
+        "<p><a href=\"CppQuestion.htm\">Question</a> is a <a href=\"CppClass.htm\">class</a> for a question.</p>"
       }
-    },{ "CppQuestionDialog",
+    }
+  );
+  m.push_back(
+    { "CppQuestionDialog",
       {
-        "<p><a href=\"CppQuestionDialog.htm\">QuestionDialog</a> is a dialog for <a href=\"CppQuestion.htm\">Question</a>.</p>",
+        "<p><a href=\"CppQuestionDialog.htm\">QuestionDialog</a> is a dialog for <a href=\"CppQuestion.htm\">Question</a>.</p>"
       }
-    },{ "CppQWebViewExample1",
+    }
+  );
+  m.push_back(
+    { "CppQWebViewExample1",
       {
         "<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
@@ -3723,10 +4512,12 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<ul>",
         "  <li><img src=\"PicGreen.png\" alt=\"OK\"/> <a href=\"CppQmakeErrorUnknownModulesInQtLocationSensors.htm\">Unknown module(s) in QT: location sensors</a></li>",
         "  <li><img src=\"PicGreen.png\" alt=\"OK\"/> <a href=\"CppLinkErrorCannotFindLgstapp.htm\">cannot find -lgstapp-0.10</a></li>",
-        "</ul>",
-        "<p>&nbsp;</p>",
+        "</ul>"
       }
-    },{ "CppRainbow",
+    }
+  );
+  m.push_back(
+    { "CppRainbow",
       {
         "<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
@@ -3734,9 +4525,12 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<p>&nbsp;</p>",
         "<ul>",
         "  <li><a href=\"CppRainbow.png\">View a picture of the gradient created by the Rainbow function (upper row)</a></li>",
-        "</ul>",
+        "</ul>"
       }
-    },{ "CppRandomCode",
+    }
+  );
+  m.push_back(
+    { "CppRandomCode",
       {
         "<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
@@ -3744,37 +4538,52 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "to generate random <a href=\"Cpp.htm\">C++</a> code.</p>",
         "<p>&nbsp;</p>",
         "<p><a href=\"CppRandomCode.htm\">RandomCode</a> is used by the <a href=\"Tools.htm\">tool</a>",
-        "<a href=\"ToolRandomCode.htm\">RandomCode</a>.</p>",
+        "<a href=\"ToolRandomCode.htm\">RandomCode</a>.</p>"
       }
-    },{ "CppRaspberryPi",
+    }
+  );
+  m.push_back(
+    { "CppRaspberryPi",
       {
         "<p><img src=\"PicRpi.png\" alt=\"RPi\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
-        "<p><a href=\"CppRaspberryPi.htm\">RaspberryPi</a> is a collection of <a href=\"CppClass.htm\">class</a> for working with a Raspberry Pi.</p>",
+        "<p><a href=\"CppRaspberryPi.htm\">RaspberryPi</a> is a collection of <a href=\"CppClass.htm\">class</a> for working with a Raspberry Pi.</p>"
       }
-    },{ "CppRectangle",
+    }
+  );
+  m.push_back(
+    { "CppRectangle",
       {
         "<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
-        "<p><a href=\"CppRectangle.htm\">Rectangle</a> is a <a href=\"CppClass.htm\">class</a> for a rectangle.</p>",
+        "<p><a href=\"CppRectangle.htm\">Rectangle</a> is a <a href=\"CppClass.htm\">class</a> for a rectangle.</p>"
       }
-    },{ "CppRefExample2",
+    }
+  );
+  m.push_back(
+    { "CppRefExample2",
       {
         "<p><a href=\"CppRefExample2.htm\">Boost.Ref example 2: putting references in a vector</a> is a <a href=\"CppRef.htm\">Boost.Ref</a> example showing",
         "how to put references in a std::vector and how the values stay in sync.</p>",
         "<p>&nbsp;</p>",
         "<ul>",
         "  <li><a href=\"CppRefExample2.zip\">Download the Qt Creator project 'CppRefExample2' (zip)</a></li>",
-        "</ul>",
+        "</ul>"
       }
-    },{ "CppRichelBilderbeekProgram",
+    }
+  );
+  m.push_back(
+    { "CppRichelBilderbeekProgram",
       {
         "<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
         "<p><a href=\"CppRichelBilderbeekProgram.htm\">RichelBilderbeekProgram</a> is a",
-        "<a href=\"CppClass.htm\">class</a> for a ProjectRichelBilderbeek class.</p>",
+        "<a href=\"CppClass.htm\">class</a> for a ProjectRichelBilderbeek class.</p>"
       }
-    },{ "CppRpiExample1",
+    }
+  );
+  m.push_back(
+    { "CppRpiExample1",
       {
         "<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicRaspbian.png\" alt=\"Raspbian\"/></p>",
         "<p>&nbsp;</p>",
@@ -3783,9 +4592,12 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<p>&nbsp;</p>",
         "<ul>",
         "  <li><a href=\"CppRpiExample1.zip\">Download the Qt Creator project 'CppRpiExample1' (zip)</a></li>",
-        "</ul>",
+        "</ul>"
       }
-    },{ "CppRpiExample2",
+    }
+  );
+  m.push_back(
+    { "CppRpiExample2",
       {
         "<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicRaspbian.png\" alt=\"Raspbian\"/></p>",
         "<p>&nbsp;</p>",
@@ -3794,21 +4606,30 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<p>&nbsp;</p>",
         "<ul>",
         "  <li><a href=\"CppRpiExample2.zip\">Download the Qt Creator project 'CppRpiExample2' (zip)</a></li>",
-        "</ul>",
+        "</ul>"
       }
-    },{ "CppRubiksClock",
+    }
+  );
+  m.push_back(
+    { "CppRubiksClock",
       {
         "<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
-        "<p><a href=\"CppRubiksClock.htm\">RubiksClock</a> is a <a href=\"CppClass.htm\">class</a> for a Rubik's Clock.</p>",
+        "<p><a href=\"CppRubiksClock.htm\">RubiksClock</a> is a <a href=\"CppClass.htm\">class</a> for a Rubik's Clock.</p>"
       }
-    },{ "CppRubiksClockWidget",
+    }
+  );
+  m.push_back(
+    { "CppRubiksClockWidget",
       {
         "<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
-        "<p><a href=\"CppRubiksClockWidget.htm\">RubiksClockWidget</a> is a <a href=\"CppWidget.htm\">widget</a> <a href=\"CppClass.htm\">class</a> for a <a href=\"CppRubiksClock.htm\">RubiksClock</a>.</p>",
+        "<p><a href=\"CppRubiksClockWidget.htm\">RubiksClockWidget</a> is a <a href=\"CppWidget.htm\">widget</a> <a href=\"CppClass.htm\">class</a> for a <a href=\"CppRubiksClock.htm\">RubiksClock</a>.</p>"
       }
-    },{ "CppRuntimeErrorAssertionFailedXpressiveDetailDynamicParse_charset201",
+    }
+  );
+  m.push_back(
+    { "CppRuntimeErrorAssertionFailedXpressiveDetailDynamicParse_charset201",
       {
         "<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
@@ -3826,9 +4647,12 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<br/>",
         "Expression: begin != end<br/>",
         "</code></td></tr></table>",
-        "<!-- end of the code -->",
+        "<!-- end of the code -->"
       }
-    },{ "CppSeperateString",
+    }
+  );
+  m.push_back(
+    { "CppSeperateString",
       {
         "<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
@@ -3848,45 +4672,66 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<p>&nbsp;</p>",
         "<ul>",
         "  <li><a href=\"CppSeperateString.zip\">Download the Qt Creator project 'CppSeperateString' (zip)</a></li>",
-        "</ul>",
+        "</ul>"
       }
-    },{ "CppShape",
+    }
+  );
+  m.push_back(
+    { "CppShape",
       {
         "<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
-        "<p><a href=\"CppShape.htm\">Shape</a> is a <a href=\"CppClass.htm\">class</a> for a shape.</p>",
+        "<p><a href=\"CppShape.htm\">Shape</a> is a <a href=\"CppClass.htm\">class</a> for a shape.</p>"
       }
-    },{ "CppShapeWidget",
+    }
+  );
+  m.push_back(
+    { "CppShapeWidget",
       {
         "<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
-        "<p><a href=\"CppShapeWidget.htm\">ShapeWidget</a> is a <a href=\"CppWidget.htm\">widget</a> <a href=\"CppClass.htm\">class</a> for a <a href=\"CppShape.htm\">Shape</a>.</p>",
+        "<p><a href=\"CppShapeWidget.htm\">ShapeWidget</a> is a <a href=\"CppWidget.htm\">widget</a> <a href=\"CppClass.htm\">class</a> for a <a href=\"CppShape.htm\">Shape</a>.</p>"
       }
-    },{ "CppShinyButton",
+    }
+  );
+  m.push_back(
+    { "CppShinyButton",
       {
         "<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
-        "<p><a href=\"CppShinyButton.htm\">ShinyButton</a> is a <a href=\"CppClass.htm\">class</a> for a shiny button.</p>",
+        "<p><a href=\"CppShinyButton.htm\">ShinyButton</a> is a <a href=\"CppClass.htm\">class</a> for a shiny button.</p>"
       }
-    },{ "CppShinyButtonWidget",
+    }
+  );
+  m.push_back(
+    { "CppShinyButtonWidget",
       {
         "<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
-        "<p><a href=\"CppShinyButtonWidget.htm\">ShinyButtonWidget</a> is a <a href=\"CppClass.htm\">class</a> for a shiny button widget.</p>",
+        "<p><a href=\"CppShinyButtonWidget.htm\">ShinyButtonWidget</a> is a <a href=\"CppClass.htm\">class</a> for a shiny button widget.</p>"
       }
-    },{ "CppSortedBinaryNewickVector",
+    }
+  );
+  m.push_back(
+    { "CppSortedBinaryNewickVector",
       {
         "<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
-        "<p><a href=\"CppSortedBinaryNewickVector.htm\">SortedBinaryNewickVector</a> is a <a href=\"CppNewick.htm\">Newick</a> <a href=\"CppClass.htm\">class</a>.</p>",
+        "<p><a href=\"CppSortedBinaryNewickVector.htm\">SortedBinaryNewickVector</a> is a <a href=\"CppNewick.htm\">Newick</a> <a href=\"CppClass.htm\">class</a>.</p>"
       }
-    },{ "CppStateObserver",
+    }
+  );
+  m.push_back(
+    { "CppStateObserver",
       {
         "<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
-        "<p><a href=\"CppStateObserver.htm\">StateObserver</a> is a <a href=\"CppClass.htm\">class</a> for state observer.</p>",
+        "<p><a href=\"CppStateObserver.htm\">StateObserver</a> is a <a href=\"CppClass.htm\">class</a> for state observer.</p>"
       }
-    },{ "CppStdTupleExample1",
+    }
+  );
+  m.push_back(
+    { "CppStdTupleExample1",
       {
         "<p><img src=\"PicCpp11.png\" alt=\"C++11\"/><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
@@ -3894,24 +4739,33 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<p>&nbsp;</p>",
         "<ul>",
         "  <li><a href=\"CppStdTupleExample1.zip\">Download the Qt Creator project 'CppStdTupleExample1' (zip)</a></li>",
-        "</ul>",
+        "</ul>"
       }
-    },{ "CppStopwatch",
+    }
+  );
+  m.push_back(
+    { "CppStopwatch",
       {
         "<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
         "<p><a href=\"CppStopwatch.htm\">Stopwatch</a> is a <a href=\"CppClass.htm\">class</a> to do time measurements.</p>",
         "<p>&nbsp;</p>",
         "<p>The <a href=\"Tools.htm\">tool</a><a href=\"ToolTestStopwatch.htm\">TestStopwatch</a> tests and manages ",
-        "<a href=\"CppStopwatch.htm\">Stopwatch</a>.</p>",
+        "<a href=\"CppStopwatch.htm\">Stopwatch</a>.</p>"
       }
-    },{ "CppSurvey",
+    }
+  );
+  m.push_back(
+    { "CppSurvey",
       {
         "<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
-        "<p><a href=\"CppSurvey.htm\">Survey</a> is a <a href=\"CppClass.htm\">class</a> for a survey.</p>",
+        "<p><a href=\"CppSurvey.htm\">Survey</a> is a <a href=\"CppClass.htm\">class</a> for a survey.</p>"
       }
-    },{ "CppTemplateClassExample1",
+    }
+  );
+  m.push_back(
+    { "CppTemplateClassExample1",
       {
         "<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicWindows.png\" alt=\"Windows\"/></p>",
         "<p>&nbsp;</p>",
@@ -3920,9 +4774,12 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<p>&nbsp;</p>",
         "<ul>",
         "  <li><a href=\"CppTemplateClassExample1.zip\">Download the Qt Creator project 'CppTemplateClassExample1' (zip)</a></li>",
-        "</ul>",
+        "</ul>"
       }
-    },{ "CppTemplateClassExample2",
+    }
+  );
+  m.push_back(
+    { "CppTemplateClassExample2",
       {
         "<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicWindows.png\" alt=\"Windows\"/></p>",
         "<p>&nbsp;</p>",
@@ -3931,9 +4788,12 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<p>&nbsp;</p>",
         "<ul>",
         "  <li><a href=\"CppTemplateClassExample2.zip\">Download the Qt Creator project 'CppTemplateClassExample2' (zip)</a></li>",
-        "</ul>",
+        "</ul>"
       }
-    },{ "CppTicTacToe",
+    }
+  );
+  m.push_back(
+    { "CppTicTacToe",
       {
         "<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
@@ -3944,34 +4804,49 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<ul>",
         "  <li><a href=\"ProjectWtWebsite.htm\">ProjectWtWebsite</a></li>",
         "  <li><a href=\"ToolTestTicTacToe.htm\">TestTicTacToe</a></li>",
-        "</ul>",
+        "</ul>"
       }
-    },{ "CppToggleButton",
+    }
+  );
+  m.push_back(
+    { "CppToggleButton",
       {
         "<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
-        "<p><a href=\"CppToggleButton.htm\">ToggleButton</a> is a <a href=\"CppClass.htm\">class</a> for a toggle button.</p>",
+        "<p><a href=\"CppToggleButton.htm\">ToggleButton</a> is a <a href=\"CppClass.htm\">class</a> for a toggle button.</p>"
       }
-    },{ "CppToggleButtonWidget",
+    }
+  );
+  m.push_back(
+    { "CppToggleButtonWidget",
       {
         "<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
-        "<p><a href=\"CppToggleButtonWidget.htm\">ToggleButtonWidget</a> is a <a href=\"CppWidget.htm\">widget</a> <a href=\"CppClass.htm\">class</a> for a <a href=\"CppToggleButton.htm\">ToggleButton</a>.</p>",
+        "<p><a href=\"CppToggleButtonWidget.htm\">ToggleButtonWidget</a> is a <a href=\"CppWidget.htm\">widget</a> <a href=\"CppClass.htm\">class</a> for a <a href=\"CppToggleButton.htm\">ToggleButton</a>.</p>"
       }
-    },{ "CppTrace",
+    }
+  );
+  m.push_back(
+    { "CppTrace",
       {
         "<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
         "<p><a href=\"CppTrace.htm\">To trace</a> something (for example, the value of a <a href=\"CppVariable.htm\">variable</a>),",
-        "denotes displaying it while <a href=\"CppDebug.htm\">debugging</a>.</p>",
+        "denotes displaying it while <a href=\"CppDebug.htm\">debugging</a>.</p>"
       }
-    },{ "CppTwoDigitNewick",
+    }
+  );
+  m.push_back(
+    { "CppTwoDigitNewick",
       {
         "<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
-        "<p><a href=\"CppTwoDigitNewick.htm\">TwoDigitNewick</a> is a <a href=\"CppNewick.htm\">Newick</a> <a href=\"CppClass.htm\">class</a>.</p>",
+        "<p><a href=\"CppTwoDigitNewick.htm\">TwoDigitNewick</a> is a <a href=\"CppNewick.htm\">Newick</a> <a href=\"CppClass.htm\">class</a>.</p>"
       }
-    },{ "CppUblasMatrixExample1",
+    }
+  );
+  m.push_back(
+    { "CppUblasMatrixExample1",
       {
         "<p><img src=\"PicBoost.png\" alt=\"Boost\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
@@ -3980,15 +4855,21 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<p>&nbsp;</p>",
         "<ul>",
         "  <li><a href=\"CppUblasMatrixExample1.zip\">Download the Qt Creator project 'CppUblasMatrixExample1' (zip)</a></li>",
-        "</ul>",
+        "</ul>"
       }
-    },{ "CppVirtualBastard",
+    }
+  );
+  m.push_back(
+   { "CppVirtualBastard",
       {
         "<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
-        "<p><a href=\"CppVirtualBastard.htm\">VirtualBastard</a> is a class to do GUI testing.</p>",
+        "<p><a href=\"CppVirtualBastard.htm\">VirtualBastard</a> is a class to do GUI testing.</p>"
       }
-    },{ "CppWidget",
+    }
+  );
+  m.push_back(
+    { "CppWidget",
       {
         "<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
@@ -4009,9 +4890,12 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "</ul>",
         "<p>&nbsp;</p>",
         "<p>Similar <a href=\"CppWidget.htm\">widget</a> <a href=\"CppClass.htm\">classes</a> are ",
-        "<a href=\"CppQWidget.htm\">QWidget</a> and <a href=\"CppWWidget.htm\">Wt::WWidget</a>.</p>",
+        "<a href=\"CppQWidget.htm\">QWidget</a> and <a href=\"CppWWidget.htm\">Wt::WWidget</a>.</p>"
       }
-    },{ "CppWilcoxonsSignedRankTest",
+    }
+  );
+  m.push_back(
+    { "CppWilcoxonsSignedRankTest",
       {
         "<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
@@ -4025,31 +4909,35 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<p>&nbsp;</p>",
         "<ol>",
         "  <li>David Heath. An introduction to experimental design and statistics for biology. 1995. ISBN: 1-85728-132-2 PB.</li>",
-        "</ol>",
-        "<p>&nbsp;</p>",
-        "<p>&nbsp;</p>",
-        "<p>&nbsp;</p>",
-        "<p>&nbsp;</p>",
-        "<p>&nbsp;</p>",
+        "</ol>"
       }
-    },{ "CppWtAboutDialog",
+    }
+  );
+  m.push_back(
+    { "CppWtAboutDialog",
       {
         "<p><img src=\"PicWt.png\" alt=\"Wt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
         "<p><a href=\"CppWtAboutDialog.htm\">WtAboutDialog</a> is a <a href=\"CppClass.htm\">class</a> for",
         "a <a href=\"CppWt.htm\">Wt</a> dialog displaying the <a href=\"CppAbout.htm\">About</a> <a href=\"CppClass.htm\">class</a>.</p>",
         "<p>&nbsp;</p>",
-        "<p><a href=\"CppWtAboutDialog.htm\">WtAboutDialog</a> is used in nearly all my web applications.</p>",
+        "<p><a href=\"CppWtAboutDialog.htm\">WtAboutDialog</a> is used in nearly all my web applications.</p>"
       }
-    },{ "CppWtAutoConfig",
+    }
+  );
+  m.push_back(
+    { "CppWtAutoConfig",
       {
         "<p><img src=\"PicWt.png\" alt=\"Wt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
         "<p><a href=\"CppWtAutoConfig.htm\">WtAutoConfig</a> is a <a href=\"CppWt.htm\">Wt</a> <a href=\"CppClass.htm\">class</a>",
         "that allows to start a <a href=\"CppWt.htm\">Wt</a> application without the need of a user giving ",
-        "command-line parameters. It is a fine starting point for a <a href=\"CppWt.htm\">Wt</a> application.</p>",
+        "command-line parameters. It is a fine starting point for a <a href=\"CppWt.htm\">Wt</a> application.</p>"
       }
-    },{ "CppWtBroadcastServer",
+    }
+  );
+  m.push_back(
+    { "CppWtBroadcastServer",
       {
         "<p><img src=\"PicWt.png\" alt=\"Wt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
@@ -4057,23 +4945,32 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "by <a href=\"CppWtServerPusher.htm\">WtServerPusher</a> and <a href=\"CppWtTimedServerPusher.htm\">WtTimedServerPusher</a>.</p>",
         "<p>&nbsp;</p>",
         "<p><a href=\"CppWtBroadcastServerClient.htm\">WtBroadcastServerClient</a> has been abandoned, because it served two tasks. It is split up into and replaced",
-        "by <a href=\"CppWtServerPusherClient.htm\">WtServerPusherClient</a> and <a href=\"CppWtTimedServerPusherClient.htm\">WtTimedServerPusherClient</a>.</p>",
+        "by <a href=\"CppWtServerPusherClient.htm\">WtServerPusherClient</a> and <a href=\"CppWtTimedServerPusherClient.htm\">WtTimedServerPusherClient</a>.</p>"
       }
-    },{ "CppWtChess",
+    }
+  );
+  m.push_back(
+    { "CppWtChess",
       {
         "<p><img src=\"PicWt.png\" alt=\"Wt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
         "<p><a href=\"CppWtChess.htm\">CppWtChess</a> is a <a href=\"CppWt.htm\">Wt</a> ",
-        "<a href=\"CppClass.htm\">class</a> to display a chess game.</p>",
+        "<a href=\"CppClass.htm\">class</a> to display a chess game.</p>"
       }
-    },{ "CppWtConnectThreeWidget",
+    }
+  );
+  m.push_back(
+    { "CppWtConnectThreeWidget",
       {
         "<p><img src=\"PicWt.png\" alt=\"Wt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
         "<p><a href=\"CppWtConnectThreeWidget.htm\">WtConnectThreeWidget</a> is a <a href=\"CppWt.htm\">Wt</a> ",
-        "<a href=\"CppWidget.htm\">widget</a> <a href=\"CppClass.htm\">class</a> to display an <a href=\"CppConnectThreeWidget.htm\">ConnectThreeWidget</a>.</p>",
+        "<a href=\"CppWidget.htm\">widget</a> <a href=\"CppClass.htm\">class</a> to display an <a href=\"CppConnectThreeWidget.htm\">ConnectThreeWidget</a>.</p>"
       }
-    },{ "CppWtDialWidget",
+    }
+  );
+  m.push_back(
+    { "CppWtDialWidget",
       {
         "<p><img src=\"PicWt.png\" alt=\"Wt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
@@ -4081,37 +4978,52 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<a href=\"CppWidget.htm\">widget</a> <a href=\"CppClass.htm\">class</a> to display an <a href=\"CppDialWidget.htm\">DialWidget</a>.</p>",
         "<p>&nbsp;</p>",
         "<p><a href=\"CppWtDialWidget.htm\">WtDialWidget</a> is used in the <a href=\"Tools.htm\">tool</a> ",
-        "<a href=\"ToolTestDial.htm\">TestDial</a>.</p>",
+        "<a href=\"ToolTestDial.htm\">TestDial</a>.</p>"
       }
-    },{ "CppWtEntrance",
+    }
+  );
+  m.push_back(
+    { "CppWtEntrance",
       {
         "<p><img src=\"PicWt.png\" alt=\"Wt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
         "<p><a href=\"CppWtEntrance.htm\">WtEntrance</a> is a <a href=\"CppWt.htm\">Wt</a> ",
-        "<a href=\"CppClass.htm\">class</a> to manage user logins.</p>",
+        "<a href=\"CppClass.htm\">class</a> to manage user logins.</p>"
       }
-    },{ "CppWtExercise",
+    }
+  );
+  m.push_back(
+    { "CppWtExercise",
       {
         "<p><img src=\"PicWt.png\" alt=\"Wt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
         "<p><a href=\"CppWtChess.htm\">CppWtChess</a> is a <a href=\"CppWt.htm\">Wt</a> ",
-        "<a href=\"CppClass.htm\">class</a> to display an exercise.</p>",
+        "<a href=\"CppClass.htm\">class</a> to display an exercise.</p>"
       }
-    },{ "CppWtGroupWidget",
+    }
+  );
+  m.push_back(
+    { "CppWtGroupWidget",
       {
         "<p><img src=\"PicWt.png\" alt=\"Wt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
         "<p><a href=\"CppWtGroupWidget.htm\">WtGroupWidget</a> is a <a href=\"CppWt.htm\">Wt</a> ",
-        "<a href=\"CppWidget.htm\">widget</a> <a href=\"CppClass.htm\">class</a> to display an <a href=\"CppGroupWidget.htm\">GroupWidget</a>.</p>",
+        "<a href=\"CppWidget.htm\">widget</a> <a href=\"CppClass.htm\">class</a> to display an <a href=\"CppGroupWidget.htm\">GroupWidget</a>.</p>"
       }
-    },{ "CppWtLedDisplayWidget",
+    }
+  );
+  m.push_back(
+    { "CppWtLedDisplayWidget",
       {
         "<p><img src=\"PicWt.png\" alt=\"Wt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
         "<p><a href=\"CppWtLedDisplayWidget.htm\">WtLedDisplayWidget</a> is a <a href=\"CppWt.htm\">Wt</a> ",
-        "<a href=\"CppWidget.htm\">widget</a> <a href=\"CppClass.htm\">class</a> to display an <a href=\"CppLedWidget.htm\">CppLedWidget</a>.</p>",
+        "<a href=\"CppWidget.htm\">widget</a> <a href=\"CppClass.htm\">class</a> to display an <a href=\"CppLedWidget.htm\">CppLedWidget</a>.</p>"
       }
-    },{ "CppWtLedWidget",
+    }
+  );
+  m.push_back(
+    { "CppWtLedWidget",
       {
         "<p><img src=\"PicWt.png\" alt=\"Wt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
@@ -4119,58 +5031,82 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<a href=\"CppClass.htm\">class</a> to display an <a href=\"CppLed.htm\">Led</a>.</p>",
         "<p>&nbsp;</p>",
         "<p><a href=\"CppWtLedWidget.htm\">WtLedWidget</a> is used in the <a href=\"Tools.htm\">tool</a> ",
-        "<a href=\"ToolTestLed.htm\">TestLed</a>.</p>",
+        "<a href=\"ToolTestLed.htm\">TestLed</a>.</p>"
       }
-    },{ "CppWtMultipleChoiceQuestionDialog",
+    }
+  );
+  m.push_back(
+    { "CppWtMultipleChoiceQuestionDialog",
       {
         "<p><img src=\"PicWt.png\" alt=\"Wt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
         "<p><a href=\"CppWtMultipleChoiceQuestionDialog.htm\">WtMultipleChoiceQuestionDialog</a> is a <a href=\"CppWt.htm\">Wt</a> dialog ",
-        "for <a href=\"CppMultipleChoiceQuestion.htm\">MultipleChoiceQuestion</a>.</p>",
+        "for <a href=\"CppMultipleChoiceQuestion.htm\">MultipleChoiceQuestion</a>.</p>"
       }
-    },{ "CppWtMysteryMachineWidget",
+    }
+  );
+  m.push_back(
+    { "CppWtMysteryMachineWidget",
       {
         "<p><img src=\"PicWt.png\" alt=\"Wt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
         "<p><a href=\"CppWtMysteryMachineWidget.htm\">WtMysteryMachineWidget</a> is a <a href=\"CppWt.htm\">Wt</a> ",
-        "<a href=\"CppWidget.htm\">widget</a> <a href=\"CppClass.htm\">class</a> to display an <a href=\"CppMysteryMachineWidget.htm\">MysteryMachineWidget</a>.</p>",
+        "<a href=\"CppWidget.htm\">widget</a> <a href=\"CppClass.htm\">class</a> to display an <a href=\"CppMysteryMachineWidget.htm\">MysteryMachineWidget</a>.</p>"
       }
-    },{ "CppWtOpenQuestionDialog",
+    }
+  );
+  m.push_back(
+    { "CppWtOpenQuestionDialog",
       {
         "<p><img src=\"PicWt.png\" alt=\"Wt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
         "<p><a href=\"CppWtOpenQuestionDialog.htm\">WtOpenQuestionDialog</a> is a <a href=\"CppWt.htm\">Wt</a> dialog ",
-        "for <a href=\"CppOpenQuestionDialog.htm\">OpenQuestionDialog</a>.</p>",
+        "for <a href=\"CppOpenQuestionDialog.htm\">OpenQuestionDialog</a>.</p>"
       }
-    },{ "CppWtQuestionDialog",
+    }
+  );
+  m.push_back(
+    { "CppWtQuestionDialog",
       {
         "<p><img src=\"PicWt.png\" alt=\"Wt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
         "<p><a href=\"CppWtQuestionDialog.htm\">WtQuestionDialog</a> is a <a href=\"CppWt.htm\">Wt</a> dialog ",
-        "for <a href=\"CppQuestionDialog.htm\">QuestionDialog</a>.</p>",
+        "for <a href=\"CppQuestionDialog.htm\">QuestionDialog</a>.</p>"
       }
-    },{ "CppWtRichelBilderbeekGallery",
+    }
+  );
+  m.push_back(
+    { "CppWtRichelBilderbeekGallery",
       {
         "<p><img src=\"PicWt.png\" alt=\"Wt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
         "<p><a href=\"CppWtRichelBilderbeekGallery.htm\">WtRichelBilderbeekGallery</a> is a <a href=\"CppWt.htm\">Wt</a> ",
-        "<a href=\"CppClass.htm\">class</a> to display a gallery with all ProjectRichelBilderbeek programs' statuses.</p>",
+        "<a href=\"CppClass.htm\">class</a> to display a gallery with all ProjectRichelBilderbeek programs' statuses.</p>"
       }
-    },{ "CppWtRubiksClockWidget",
+    }
+  );
+  m.push_back(
+    { "CppWtRubiksClockWidget",
       {
         "<p><img src=\"PicWt.png\" alt=\"Wt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
         "<p><a href=\"CppWtRubiksClockWidget.htm\">WtRubiksClockWidget</a> is a <a href=\"CppWt.htm\">Wt</a> ",
-        "<a href=\"CppWidget.htm\">widget</a> <a href=\"CppClass.htm\">class</a> to display an <a href=\"CppRubiksClockWidget.htm\">RubiksClockWidget</a>.</p>",
+        "<a href=\"CppWidget.htm\">widget</a> <a href=\"CppClass.htm\">class</a> to display an <a href=\"CppRubiksClockWidget.htm\">RubiksClockWidget</a>.</p>"
       }
-    },{ "CppWtSafeTimer",
+    }
+  );
+  m.push_back(
+    { "CppWtSafeTimer",
       {
         "<p><img src=\"PicWt.png\" alt=\"Wt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
         "<p><a href=\"CppWtSafeTimer.htm\">WtSafeTimer</a> is a <a href=\"CppForwardDeclaration.htm\">forward-declaration</a>-safe ",
-        "<a href=\"CppWTimer.htm\">Wt::WTimer</a>.</p>",
+        "<a href=\"CppWTimer.htm\">Wt::WTimer</a>.</p>"
       }
-    },{ "CppWtSelectFileDialog",
+    }
+  );
+  m.push_back(
+    { "CppWtSelectFileDialog",
       {
         "<p><img src=\"PicWt.png\" alt=\"Wt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
@@ -4179,30 +5115,42 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "computer, the <a href=\"CppWFileUpload.htm\">Wt::WFileUpload</a> <a href=\"CppClass.htm\">class</a> might be convenient.</p>",
         "<p>&nbsp;</p>",
         "<p><a href=\"ToolTestSelectFileDialog.htm\">TestSelectFileDialog</a> is a <a href=\"Tools.htm\">tool</a> to test ",
-        "the <a href=\"CppWtSelectFileDialog.htm\">WtSelectFileDialog</a> <a href=\"CppClass.htm\">class</a>.</p>",
+        "the <a href=\"CppWtSelectFileDialog.htm\">WtSelectFileDialog</a> <a href=\"CppClass.htm\">class</a>.</p>"
       }
-    },{ "CppWtServerPusher",
+    }
+  );
+  m.push_back(
+    { "CppWtServerPusher",
       {
         "<p><img src=\"PicWt.png\" alt=\"Wt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
         "<p><a href=\"CppWtShapeGroupWidget.htm\">WtShapeGroupWidget</a> is a <a href=\"CppWt.htm\">Wt</a> ",
-        "<a href=\"CppClass.htm\">class</a> used for notifying all clients from different IP addresses.</p>",
+        "<a href=\"CppClass.htm\">class</a> used for notifying all clients from different IP addresses.</p>"
       }
-    },{ "CppWtShapeGroupWidget",
+    }
+  );
+  m.push_back(
+    { "CppWtShapeGroupWidget",
       {
         "<p><img src=\"PicWt.png\" alt=\"Wt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
         "<p><a href=\"CppWtShapeGroupWidget.htm\">WtShapeGroupWidget</a> is a <a href=\"CppWt.htm\">Wt</a> ",
-        "<a href=\"CppWidget.htm\">widget</a> <a href=\"CppClass.htm\">class</a> to display an <a href=\"CppShapeGroupWidget.htm\">ShapeGroupWidget</a>.</p>",
+        "<a href=\"CppWidget.htm\">widget</a> <a href=\"CppClass.htm\">class</a> to display an <a href=\"CppShapeGroupWidget.htm\">ShapeGroupWidget</a>.</p>"
       }
-    },{ "CppWtShapeWidget",
+    }
+  );
+  m.push_back(
+    { "CppWtShapeWidget",
       {
         "<p><img src=\"PicWt.png\" alt=\"Wt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
         "<p><a href=\"CppWtShapeWidget.htm\">WtShapeWidget</a> is a <a href=\"CppWt.htm\">Wt</a> ",
-        "<a href=\"CppWidget.htm\">widget</a> <a href=\"CppClass.htm\">class</a> to display an <a href=\"CppShapeWidget.htm\">ShapeWidget</a>.</p>",
+        "<a href=\"CppWidget.htm\">widget</a> <a href=\"CppClass.htm\">class</a> to display an <a href=\"CppShapeWidget.htm\">ShapeWidget</a>.</p>"
       }
-    },{ "CppWtTicTacToeWidget",
+    }
+  );
+  m.push_back(
+    { "CppWtTicTacToeWidget",
       {
         "<p><img src=\"PicWt.png\" alt=\"Wt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
@@ -4213,30 +5161,42 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<ul>",
         "  <li><a href=\"GameTicTacToe.htm\">(Game) TicTacToe</a></li>",
         "  <li><a href=\"ToolTestTicTacToe.htm\">(Tool) TestTicTacToe</a></li>",
-        "</ul>",
+        "</ul>"
       }
-    },{ "CppWtTimedServerPusher",
+    }
+  );
+  m.push_back(
+    { "CppWtTimedServerPusher",
       {
         "<p><img src=\"PicWt.png\" alt=\"Wt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
         "<p><a href=\"CppWtShapeGroupWidget.htm\">WtShapeGroupWidget</a> is a <a href=\"CppWt.htm\">Wt</a> ",
-        "<a href=\"CppClass.htm\">class</a> used for notifying all clients from different IP addresses.</p>",
+        "<a href=\"CppClass.htm\">class</a> used for notifying all clients from different IP addresses.</p>"
       }
-    },{ "CppWtToggleButtonWidget",
+    }
+  );
+  m.push_back(
+    { "CppWtToggleButtonWidget",
       {
         "<p><img src=\"PicWt.png\" alt=\"Wt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
         "<p><a href=\"CppWtToggleButtonWidget.htm\">WtToggleButtonWidget</a> is a <a href=\"CppWt.htm\">Wt</a> ",
-        "<a href=\"CppWidget.htm\">widget</a> <a href=\"CppClass.htm\">class</a> to display an <a href=\"CppToggleButtonWidget.htm\">ToggleButtonWidget</a>.</p>",
+        "<a href=\"CppWidget.htm\">widget</a> <a href=\"CppClass.htm\">class</a> to display an <a href=\"CppToggleButtonWidget.htm\">ToggleButtonWidget</a>.</p>"
       }
-    },{ "CppWtWidgetsWidget",
+    }
+  );
+  m.push_back(
+    { "CppWtWidgetsWidget",
       {
         "<p><img src=\"PicWt.png\" alt=\"Wt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
         "<p><a href=\"CppWtWidgetsWidget.htm\">WtWidgetsWidget</a> is a <a href=\"CppWt.htm\">Wt</a> ",
-        "<a href=\"CppWidget.htm\">widget</a> <a href=\"CppClass.htm\">class</a> to display an <a href=\"CppWidgetsWidget.htm\">WidgetsWidget</a>.</p>",
+        "<a href=\"CppWidget.htm\">widget</a> <a href=\"CppClass.htm\">class</a> to display an <a href=\"CppWidgetsWidget.htm\">WidgetsWidget</a>.</p>"
       }
-    },{ "CppYodaConditionExample1",
+    }
+  );
+  m.push_back(
+    { "CppYodaConditionExample1",
       {
         "<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicWindows.png\" alt=\"Windows\"/></p>",
         "<p>&nbsp;</p>",
@@ -4244,9 +5204,12 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<p>&nbsp;</p>",
         "<ul>",
         "  <li><a href=\"CppYodaConditionExample1.zip\">Download the Qt Creator project 'CppYodaConditionExample1' (zip)</a></li>",
-        "</ul>",
+        "</ul>"
       }
-    },{ "GameAminoAcidFighter",
+    }
+  );
+  m.push_back(
+    { "GameAminoAcidFighter",
       {
         "<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
@@ -4266,18 +5229,24 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "  <li><a href=\"GameAminoAcidFighter_0_9.png\">View a screenshot of 'Amino Acid Fighter' (version 0.9)(png)</a></li>",
         "  <li><a href=\"GameAminoAcidFighterMenu_0_9.png\">View a screenshot of the 'Amino Acid Fighter' menu screen (version 0.9)(png)</a></li>",
         "  <li><a href=\"GameAminoAcidFighter.wav\">Download the WAV with the theme music of 'Amino Acid Fighter'</a></li>",
-        "</ul>",
+        "</ul>"
       }
-    },{ "GameBeerGetter",
+    }
+  );
+  m.push_back(
+    { "GameBeerGetter",
       {
         "<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
         "<p><a href=\"GameBeerGetter.htm\">BeerGetter</a> is a simple <a href=\"Games.htm\">game</a>. Work in progress..</p>",
         "<ul>",
         "  <li><a href=\"GameBeerGetterScreenshot.png\">View a screenshot of 'BeerGetter'</a></li>",
-        "</ul>",
+        "</ul>"
       }
-    },{ "GameBeerWanter",
+    }
+  );
+  m.push_back(
+    { "GameBeerWanter",
       {
         "<img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicNds.png\" alt=\"NDS\"/><img src=\"PicUbuntu.png\" alt=\"Ubuntu\"/><img src=\"PicWindows.png\" alt=\"Windows\"/>",
         "<p>&nbsp;</p>",
@@ -4328,10 +5297,12 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "    <img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicUbuntu.png\" alt=\"Ubuntu\"/><img src=\"PicSpacer.png\" alt=\" \"/><img src=\"PicSpacer.png\" alt=\" \"/>",
         "    <a href=\"GameBeerWanter4.png\">View a screenshot of 'BeerWanter' (version 4.0)</a>",
         "  </li>",
-        "</ul>",
-        "<p>&nbsp;</p>",
+        "</ul>"
       }
-    },{ "GameBeerWanterVcl",
+    }
+  );
+  m.push_back(
+    { "GameBeerWanterVcl",
       {
         "<img src=\"PicCppBuilder.png\" alt=\"C++ Builder\"/><img src=\"PicWindows.png\" alt=\"Windows\"/>",
         "<p>&nbsp;</p>",
@@ -4357,9 +5328,12 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "  </li>",
         "</ul>",
         "<p>&nbsp;</p>",
-        "<p>The source code of BeerWanter 1.0 and 2.0 has been lost (but was very simular to version 3.0).</p>",
+        "<p>The source code of BeerWanter 1.0 and 2.0 has been lost (but was very simular to version 3.0).</p>"
       }
-    },{ "GameBillysGarden",
+    }
+  );
+  m.push_back(
+    { "GameBillysGarden",
       {
         "<img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/>",
         "<p>&nbsp;</p>",
@@ -4386,9 +5360,12 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<p>&nbsp;</p>",
         "<ul>",
         "  <li><a href=\"http://www.youtube.com/watch?v=isjCc7CiSfM\">YouTube video of 'Athletic Land'</a></li>",
-        "</ul>",
+        "</ul>"
       }
-    },{ "GameBillysGardenVcl",
+    }
+  );
+  m.push_back(
+    { "GameBillysGardenVcl",
       {
         "<img src=\"PicCppBuilder.png\" alt=\"C++ Builder\"/><img src=\"PicWindows.png\" alt=\"Windows\"/>",
         "<p>&nbsp;</p>",
@@ -4418,9 +5395,12 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<p>&nbsp;</p>",
         "<ul>",
         "  <li><a href=\"http://www.youtube.com/watch?v=isjCc7CiSfM\">YouTube video of 'Athletic Land'</a></li>",
-        "</ul>",
+        "</ul>"
       }
-    },{ "GameBinnenVolley",
+    }
+  );
+  m.push_back(
+    { "GameBinnenVolley",
       {
         "<p><img src=\"PicVcl.png\" alt=\"VCL\"/><img src=\"PicCppBuilder.png\" alt=\"C++ Builder\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
@@ -4443,9 +5423,12 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "  <li><a href=\"GameBinnenVolleySprites.zip\">Download the 'BinnenVolley' (.bmp) sprites (v.0.9)(zip)</a></li>",
         "<!--  <li><a href=\"GameBinnenVolleyCdFront.png\">View the CD artwork of 'BinnenVolley' (front)(png)</a></li> -->",
         "<!--  <li><a href=\"GameBinnenVolleyCdBack.png\">View the CD artwork of 'BinnenVolley' (back)(png)</a></li> -->",
-        "</ul>",
+        "</ul>"
       }
-    },{ "GameBoenken",
+    }
+  );
+  m.push_back(
+    { "GameBoenken",
       {
         "<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
@@ -4481,9 +5464,12 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "  <li><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicUbuntu.png\" alt=\"Ubuntu\"/> <a href=\"GameBoenkenMenu_3_1.png\">View a screenshot of the 'Boenken' menu screen (version 3.1)(png)</a></li>",
         "  <li><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicUbuntu.png\" alt=\"Ubuntu\"/> <a href=\"GameBoenken_3_0.png\">View a screenshot of 'Boenken' (version 3.0)(png)</a></li>",
         "  <li>Older: <a href=\"GameBoenkenVcl.htm\">BoenkenVcl</a></li>",
-        "</ul>",
+        "</ul>"
       }
-    },{ "GameBoenkenVcl",
+    }
+  );
+  m.push_back(
+    { "GameBoenkenVcl",
       {
         "<p><img src=\"PicVcl.png\" alt=\"VCL\"/><img src=\"PicCppBuilder.png\" alt=\"C++ Builder\"/><img src=\"PicWindows.png\" alt=\"Windows\"/></p>",
         "<p>&nbsp;</p>",
@@ -4506,9 +5492,12 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/> <a href=\"GameBoenken_2_0.png\">View a screenshot of 'Boenken' (version 2.0)(png)</a></li>",
         "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/> <a href=\"GameBoenken_1_0.png\">View a screenshot of 'Boenken' (version 1.0)(png)</a></li>",
         "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/> <a href=\"GameBoenkenMenu_1_0.png\">View a screenshot of the menu of 'Boenken' (version 1.0)(png)</a></li>",
-        "</ul>",
+        "</ul>"
       }
-    },{ "GameConnectThree",
+    }
+  );
+  m.push_back(
+    { "GameConnectThree",
       {
         "<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
@@ -4549,9 +5538,12 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "  <li><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicUbuntu.png\" alt=\"Ubuntu\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"GameConnectThreeMenu_5_0.png\">View a screenshot of the 'ConnectThree' menu (version 5.0)(png)</a></li>",
         "  <li><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicUbuntu.png\" alt=\"Ubuntu\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"GameConnectThreeSource_5_1.zip\">Download the 'ConnectThree' source code (version 5.1)(zip)</a></li>",
         "  <li><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicUbuntu.png\" alt=\"Ubuntu\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"GameConnectThreeSource_5_0.zip\">Download the 'ConnectThree' source code (version 5.0)(zip)</a></li>",
-        "</ul>",
+        "</ul>"
       }
-    },{ "GameCorridor",
+    }
+  );
+  m.push_back(
+    { "GameCorridor",
       {
         "<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
@@ -4567,9 +5559,12 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<ul>",
         "  <li><a href=\"GameCorridor.png\">View a screenshot of 'Corridor' (png)</a></li>",
         "  <li><a href=\"GameCorridor.zip\">Download the source code of 'Corridor' (zip)</a></li>",
-        "</ul>",
+        "</ul>"
       }
-    },{ "GameDasWahreSchlagerfest",
+    }
+  );
+  m.push_back(
+    { "GameDasWahreSchlagerfest",
       {
         "<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
@@ -4602,9 +5597,12 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "  <li><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/> <a href=\"GameDasWahreSchlagerfest_2_1.png\">View a screenshot of 'Das Wahre Schlagerfest' (version 2.1)(png)</a></li>",
         "  <li><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/> <a href=\"GameDasWahreSchlagerfest_2_0.png\">View a screenshot of 'Das Wahre Schlagerfest' (version 2.0)(png)</a></li>",
         "  <li>Older: <a href=\"GameDasWahreSchlagerfestVcl.htm\">Das Wahre SchlagerfestVcl</a></li>",
-        "</ul>",
+        "</ul>"
       }
-    },{ "GameDasWahreSchlagerfestVcl",
+    }
+  );
+  m.push_back(
+    { "GameDasWahreSchlagerfestVcl",
       {
         "<p><img src=\"PicVcl.png\" alt=\"VCL\"/><img src=\"PicCppBuilder.png\" alt=\"C++ Builder\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
@@ -4626,19 +5624,24 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicCppBuilder.png\" alt=\"C++ Builder\"/> <a href=\"GameDasWahreSchlagerfestSource_1_0.zip\">Download the source code of 'Das Wahre Schlagerfest' (version 1.0)(zip)</a></li>",
         "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicCppBuilder.png\" alt=\"C++ Builder\"/> <a href=\"GameDasWahreSchlagerfest_1_0.png\">View a screenshot of 'Das Wahre Schlagerfest' (version 1.0)(png)</a></li>",
         "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicCppBuilder.png\" alt=\"C++ Builder\"/> <a href=\"GameDasWahreSchlagerfestExe_1_0.zip\">Download a windows executable of 'Das Wahre Schlagerfest' (version 1.0)(zip)</a></li>",
-        "</ul>",
+        "</ul>"
       }
-    },{ "GameEukaryote",
+    }
+  );
+  m.push_back(
+    { "GameEukaryote",
       {
         "<p><a href=\"GameEukaryote.htm\">Eukaryote</a> is a top-view strategy <a href=\"Games.htm\">game</a> in which the ",
         "units are cells and organelles. Check out the presentation...</p>",
         "<p>&nbsp;</p>",
         "<ul>",
         "  <li><a href=\"GameEukaryote.ppt\">View the powerpoint presentation of 'Eukaryote'</a></li>",
-        "</ul>",
+        "</ul>"
       }
-
-    },{ "GameEverythingToPiecesShooter",
+    }
+  );
+  m.push_back(
+    { "GameEverythingToPiecesShooter",
       {
         "<p><img src=\"PicVcl.png\" alt=\"VCL\"/><img src=\"PicCppBuilder.png\" alt=\"C++ Builder\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
@@ -4653,9 +5656,12 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<p>&nbsp;</p>",
         "<ul>",
         "  <li>...</li>",
-        "</ul>",
+        "</ul>"
       }
-    },{ "GameK3OpEenRij",
+    }
+  );
+  m.push_back(
+    { "GameK3OpEenRij",
       {
         "<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
@@ -4708,9 +5714,12 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "  <li><a href=\"http://www.k3.be/\">The official K3 website (Dutch)</a></li>",
         "  <li><a href=\"http://en.wikipedia.org/wiki/K3_%28band%29\">The K3 wikipedia page (English)</a></li>",
         "  <li><a href=\"http://nl.wikipedia.org/wiki/K3\">The K3 wikipedia page (Dutch)</a></li>",
-        "</ul>",
+        "</ul>"
       }
-    },{ "GameK3OpEenRijVcl",
+    }
+  );
+  m.push_back(
+    { "GameK3OpEenRijVcl",
       {
         "<p><img src=\"PicVcl.png\" alt=\"VCL\"/><img src=\"PicCppBuilder.png\" alt=\"C++ Builder\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
@@ -4752,9 +5761,12 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "  <li><a href=\"http://www.k3.be/\">The official K3 website (Dutch)</a></li>",
         "  <li><a href=\"http://en.wikipedia.org/wiki/K3_%28band%29\">The K3 wikipedia page (English)</a></li>",
         "  <li><a href=\"http://nl.wikipedia.org/wiki/K3\">The K3 wikipedia page (Dutch)</a></li>",
-        "</ul>",
+        "</ul>"
       }
-    },{ "GameKnokfighter",
+    }
+  );
+  m.push_back(
+    { "GameKnokfighter",
       {
         "<p><img src=\"PicVcl.png\" alt=\"VCL\"/><img src=\"PicCppBuilder.png\" alt=\"C++ Builder\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
@@ -4778,9 +5790,12 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "  <li><a href=\"GameKnokfighterExeNoResources_1_0.zip\">Download the 'Knokfighter' Windows executable (without resources)(version 1.0)(zip)</a></li>",
         "  <li><a href=\"GameKnokfighterSource_1_0.zip\">Download the 'Knokfighter' source code (without resources)(version 1.0)(zip)</a></li>",
         "  <li><a href=\"GameKnokfighterSource_1_0.htm\">View the C++ Builder source code of 'Knokfighter' as a web page (version 1.0)(htm)</a></li>",
-        "</ul>",
+        "</ul>"
       }
-    },{ "GameMartianCafeTuinemaTycoon",
+    }
+  );
+  m.push_back(
+    { "GameMartianCafeTuinemaTycoon",
       {
         "<p><img src=\"PicVcl.png\" alt=\"VCL\"/><img src=\"PicCppBuilder.png\" alt=\"C++ Builder\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
@@ -4798,9 +5813,12 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "  <li><a href=\"GameMartianCafeTuinemaTycoonExe_1_0.zip\">Download the 'Martian Cafe Tuinema Tycoon' Windows executable (version 1.0)(zip)</a></li>",
         "  <li><a href=\"GameMartianCafeTuinemaTycoonSource_1_0.zip\">Download the 'Martian Cafe Tuinema Tycoon' source code (version 1.0)(zip)</a></li>",
         "  <li><a href=\"GameMartianCafeTuinemaTycoonSource_1_0.htm\">View the C++ Builder source code of 'Martian Cafe Tuinema Tycoon' as a web page (version 1.0)(htm)</a></li>",
-        "</ul>",
+        "</ul>"
       }
-    },{ "GameMaziak",
+    }
+  );
+  m.push_back(
+    { "GameMaziak",
       {
         "<p>Maziak is a simple maze retro <a href=\"Games.htm\">game</a> (and a clone of the Sinclair ZX Spectrum/MSX <a href=\"Games.htm\">game</a> Maziak/Maziacs/Mazoggs), in which you have to find a maze's exit. But there are also enemies in the maze that can be beaten by a sword. There are also prisoners, that temporarily show the way to the exit upon freeing them.</p>",
         "<p>&nbsp;</p>",
@@ -4846,9 +5864,12 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "  <li><a href=\"http://en.wikipedia.org/wiki/Maziacs\">View the WikiPedia page on the original Maziacs</a></li>",
         "  <li><a href=\"http://www.youtube.com/watch?v=MQE3VK1Bdh4\">View a YouTube video of the original Maziacs on the Sinclair ZX Spectrum</a></li>",
         "  <li><a href=\"http://www.classic-retro-games.com/Mazogs-%28and-Maziacs%29_124.html\">Another Maziacs PC clone</a></li>",
-        "</ul>",
+        "</ul>"
       }
-    },{ "GameMaziakVcl",
+    }
+  );
+  m.push_back(
+    { "GameMaziakVcl",
       {
         "<p><img src=\"PicVcl.png\" alt=\"VCL\"/><img src=\"PicCppBuilder.png\" alt=\"C++ Builder\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
@@ -4895,8 +5916,12 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "  <li><a href=\"http://en.wikipedia.org/wiki/Maziacs\">View the WikiPedia page on the original Maziacs</a></li>",
         "  <li><a href=\"http://www.youtube.com/watch?v=MQE3VK1Bdh4\">View a YouTube video of the original Maziacs on the Sinclair ZX Spectrum</a></li>",
         "  <li><a href=\"http://www.classic-retro-games.com/Mazogs-%28and-Maziacs%29_124.html\">Another Maziacs PC clone</a></li>",
-        "</ul>",
-      }    },{ "GameMetZnDrieen",
+        "</ul>"
+      }
+    }
+  );
+  m.push_back(
+    { "GameMetZnDrieen",
       {
         "<p><img src=\"PicVcl.png\" alt=\"VCL\"/><img src=\"PicCppBuilder.png\" alt=\"C++ Builder\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
@@ -4938,9 +5963,12 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "  <li><a href=\"GameMetZnDrieenSource_1_1.zip\">Download the 'Met Z'n Drieen' source code (v.1.1)(zip)</a></li>",
         "  <li><a href=\"GameMetZnDrieenExe_1_0.zip\">Download the 'Met Z'n Drieen' Windows executable (v.1.0)(zip)</a></li>",
         "  <li><a href=\"GameMetZnDrieenSource_1_0.zip\">Download the 'Met Z'n Drieen' source code (v.1.0)(zip)</a></li>",
-        "</ul>",
+        "</ul>"
       }
-    },{ "GamePokeVolley",
+    }
+  );
+  m.push_back(
+    { "GamePokeVolley",
       {
         "<p><img src=\"PicVcl.png\" alt=\"VCL\"/><img src=\"PicCppBuilder.png\" alt=\"C++ Builder\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
@@ -4988,9 +6016,12 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "  <tr> <td><p>Right</p></td> <td><p>D</p></td> <td><p>Key right</p></td> </tr>",
         "  <tr> <td><p>Up/jump</p></td> <td><p>W</p></td> <td><p>Key up</p></td> </tr>",
         "  <tr> <td><p>Down</p></td> <td><p>S</p></td> <td><p>Key down</p></td> </tr>",
-        "</table>",
+        "</table>"
       }
-    },{ "GamePublicToiletManager5",
+    }
+  );
+  m.push_back(
+    { "GamePublicToiletManager5",
       {
         "<p><img src=\"PicVcl.png\" alt=\"VCL\"/><img src=\"PicCppBuilder.png\" alt=\"C++ Builder\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
@@ -5009,9 +6040,12 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "  <li><a href=\"GamePublicToiletManagerExe_5_0.zip\">Download the 'Public Toilet Manager 5' Windows executable (zip)</a></li>",
         "  <li><a href=\"GamePublicToiletManagerSource_5_0.zip\">Download the 'Public Toilet Manager 5' source code (without resources)(zip)</a></li>",
         "  <li><a href=\"GamePublicToiletManagerResources_5_0.zip\">Download the 'Public Toilet Manager 5' resources (zip)</a></li>",
-        "</ul>",
+        "</ul>"
       }
-    },{ "GamePylos",
+    }
+  );
+  m.push_back(
+    { "GamePylos",
       {
         "<p><a href=\"GamePylos.htm\">Pylos</a> is the computer <a href=\"Games.htm\">game</a> of the board <a href=\"Games.htm\">game</a> called 'Pylos' or 'Pyraos'.",
         "<p>&nbsp;</p>",
@@ -5041,9 +6075,12 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<p>&nbsp;</p>",
         "<p>If a player places his/her last marble, he/she has lost the <a href=\"Games.htm\">game</a>. This is true, except when this last marble ",
         "enables the player to remove one or two marbles. The <a href=\"Games.htm\">game</a> does not allow the player to remove these marbles,",
-        "but states the victory of the other player.</p>",
+        "but states the victory of the other player.</p>"
       }
-    },{ "GameReversi",
+    }
+  );
+  m.push_back(
+    { "GameReversi",
       {
         "<p><img src=\"PicVcl.png\" alt=\"VCL\"/><img src=\"PicCppBuilder.png\" alt=\"C++ Builder\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
@@ -5064,9 +6101,12 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "  <li><a href=\"GameReversiExe_1_0.zip\">Download the 'Reversi' Windows executable (zip)(version 1.0)</a></li>",
         "  <li><a href=\"GameReversiSource_1_0.zip\">Download the 'Reversi' source code (zip)(version 1.0)</a></li>",
         "  <li><a href=\"GameReversiSource_1_0.htm\">View the C++ Builder source code of 'Reversi' as a web page (htm)(version 1.0)</a></li>",
-        "</ul>",
+        "</ul>"
       }
-    },{ "GameReversiConsole",
+    }
+  );
+  m.push_back(
+    { "GameReversiConsole",
       {
         "<p><img src=\"PicVcl.png\" alt=\"VCL\"/><img src=\"PicCppBuilder.png\" alt=\"C++ Builder\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
@@ -5085,9 +6125,12 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "  <li><a href=\"GameReversiConsoleExe_1_0.zip\">Download the 'Reversi Console' Windows executable (version 1.0)(zip)</a></li>",
         "  <li><a href=\"GameReversiConsoleSource_1_0.zip\">Download the 'Reversi Console' source code (version 1.0)(zip)</a></li>",
         "  <li><a href=\"GameReversiConsoleSource_1_0.htm\">View the C++ Builder source code of 'Reversi Console' as a web page (version 1.0)(htm)</a></li>",
-        "</ul>",
+        "</ul>"
       }
-    },{ "GameRubiksClock",
+    }
+  );
+  m.push_back(
+    { "GameRubiksClock",
       {
         "<p><a href=\"GameRubiksClock.htm\">Rubik's Clock</a> is a Rubik's Clock <a href=\"Games.htm\">game</a>.</p>",
         "<p>&nbsp;</p>",
@@ -5102,9 +6145,12 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "  <li><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"GameRubiksClock_2_1.png\">View a screenshot of 'Rubik's Clock' (version 2.1)(png)</a></li>",
         "  <li><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"GameRubiksClockDesktopExe_2_2.zip\">Download a Windows executable of 'Rubik's Clock' (version 2.2)(zip)</a></li>",
         "  <li>Older: <a href=\"GameRubiksClockVcl.htm\">Rubik's Clock (VCL)</a></li>",
-        "</ul>",
+        "</ul>"
       }
-    },{ "GameRubiksClockVcl",
+    }
+  );
+  m.push_back(
+    { "GameRubiksClockVcl",
       {
         "<p><img src=\"PicVcl.png\" alt=\"VCL\"/><img src=\"PicCppBuilder.png\" alt=\"C++ Builder\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
@@ -5120,9 +6166,12 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "  <li>Newer: <a href=\"GameRubiksClock.htm\">Rubik's Clock</a></li>",
         "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"GameRubiksClock_1_0.png\">View a screenshot of 'Rubik's Clock' (version 1.0)(png)</a></li>",
         "  <li><img src=\"PicCppBuilder.png\" alt=\"C++ Builder\"/><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"GameRubiksClockExe_1_0.zip\">Download a Windows executable of 'Rubik's Clock' (version 1.0)(zip)</a></li>",
-        "</ul>",
+        "</ul>"
       }
-    },{ "GameSearchAndDestroyChess",
+    }
+  );
+  m.push_back(
+    { "GameSearchAndDestroyChess",
       {
         "<p><a href=\"GameSearchAndDestroyChess.htm\">SearchAndDestroyChess</a> is a variant on chess, also called <a href=\"http://en.wikipedia.org/wiki/Kriegspiel_(chess)\">Kriegspiel</a> or <a href=\"http://en.wikipedia.org/wiki/Dark_chess\">Dark Chess</a>. In <a href=\"GameSearchAndDestroyChess.htm\">SearchAndDestroyChess</a> you can only view that part of the board that is 'seen' by your pieces.</p>",
         "<p>&nbsp;</p>",
@@ -5159,9 +6208,12 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<ul>",
         "  <li><a href=\"http://en.wikipedia.org/wiki/Kriegspiel_(chess)\">Wikipedia's page about Kriegspiel</a></li>",
         "  <li><a href=\"http://en.wikipedia.org/wiki/Dark_chess\">Wikipedia's page about Dark Chess</a></li>",
-        "</ul>",
+        "</ul>"
       }
-    },{ "GameSearchAndDestroyChessConsole",
+    }
+  );
+  m.push_back(
+    { "GameSearchAndDestroyChessConsole",
       {
         "<p><a href=\"GameSearchAndDestroyChess.htm\">SearchAndDestroyChessConsole</a> is a special kind of chess <a href=\"Games.htm\">game</a>. The difference with a regular chess <a href=\"Games.htm\">game</a> is, that is <a href=\"GameSearchAndDestroyChess.htm\">SearchAndDestroyChessConsole</a> you can only view that part of the board that is 'seen' by your pieces.</p>",
         "<p>&nbsp;</p>",
@@ -5197,9 +6249,12 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "  <li><a href=\"GameSearchAndDestroyChessConsoleExe_1_0.zip\">Download the 'SearchAndDestroyChessConsole' Windows executable (version 1.0)(zip)</a></li>",
         "  <li><a href=\"GameSearchAndDestroyChessConsoleSource_1_0.zip\">Download the 'SearchAndDestroyChessConsole' source code (version 1.0)(zip)</a></li>",
         "  <li><a href=\"GameSearchAndDestroyChessConsoleSource_1_0.htm\">View the C++ Builder source code of 'SearchAndDestroyChessConsole' as a web page (version 1.0)(htm)</a></li>",
-        "</ul>",
+        "</ul>"
       }
-    },{ "GameSearchAndDestroyChessVcl",
+    }
+  );
+  m.push_back(
+    { "GameSearchAndDestroyChessVcl",
       {
         "<p><img src=\"PicVcl.png\" alt=\"VCL\"/><img src=\"PicCppBuilder.png\" alt=\"C++ Builder\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
@@ -5252,9 +6307,12 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<ul>",
         "  <li><a href=\"http://en.wikipedia.org/wiki/Kriegspiel_(chess)\">Wikipedia's page about Kriegspiel</a></li>",
         "  <li><a href=\"http://en.wikipedia.org/wiki/Dark_chess\">Wikipedia's page about Dark Chess</a></li>",
-        "</ul>",
+        "</ul>"
       }
-    },{ "GameSimPredator",
+    }
+  );
+  m.push_back(
+    { "GameSimPredator",
       {
         "<p><img src=\"PicVcl.png\" alt=\"VCL\"/><img src=\"PicCppBuilder.png\" alt=\"C++ Builder\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
@@ -5274,9 +6332,12 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "  <li><a href=\"GameSimPredatorExe_1_0.zip\">Download the 'SimPredator' Windows executable (version 1.0)(zip)</a></li>",
         "  <li><a href=\"GameSimPredatorSource_1_0.zip\">Download the 'SimPredator' source code (version 1.0)(zip)</a></li>",
         "  <li><a href=\"GameSimPredatorSource_1_0.htm\">View the C++ Builder source code of 'SimPredator' as a web page (version 1.0)(htm)</a></li>",
-        "</ul>",
+        "</ul>"
       }
-    },{ "GameSpaceHarry",
+    }
+  );
+  m.push_back(
+    { "GameSpaceHarry",
       {
         "<p><img src=\"PicVcl.png\" alt=\"VCL\"/><img src=\"PicCppBuilder.png\" alt=\"C++ Builder\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
@@ -5311,9 +6372,12 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "  <li>Arrows: move Harry</li>",
         "  <li>Space: fire</li>",
         "  <li>F1: toggle transparency mode</li>",
-        "</ul>",
+        "</ul>"
       }
-    },{ "GameTicTacToe",
+    }
+  );
+  m.push_back(
+    { "GameTicTacToe",
       {
         "<p><a href=\"GameTicTacToe.htm\">TicTacToe</a> is a simple tic-tac-toe <a href=\"Games.htm\">game</a>.</p>",
         "<p>&nbsp;</p>",
@@ -5352,9 +6416,12 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "  <li><a href=\"GameTicTacToe_1_0.png\">View a screenshot of 'TicTacToe' (version 1.0)(png)</a></li>",
         "  <li><a href=\"GameTicTacToeMenu_1_0.png\">View a screenshot of the menu of 'TicTacToe' (version 1.0)(png)</a></li>",
         "  <li><a href=\"GameTicTacToeSource_1_0.zip\">Download the Qt Creator source code of 'TicTacToe' (version 1.0)(zip)</a></li>",
-        "</ul>",
+        "</ul>"
       }
-    },{ "GameTronCollection",
+    }
+  );
+  m.push_back(
+    { "GameTronCollection",
       {
         "<p>'Tron' was one of my first cool QBASIC <a href=\"Games.htm\">games</a> I've had programmed around 1995. It took twelve years of itching before I ported it to C++.</p>",
         "<p>&nbsp;</p>",
@@ -5375,9 +6442,12 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<p>&nbsp;</p>",
         "<ul>",
         "  <li>Older: <a href=\"GameTronCollectionVcl.htm\">The Tron Collection (VCL)</a></li>",
-        "</ul>",
+        "</ul>"
       }
-    },{ "GameTronCollectionVcl",
+    }
+  );
+  m.push_back(
+    { "GameTronCollectionVcl",
       {
         "<p><img src=\"PicVcl.png\" alt=\"VCL\"/><img src=\"PicCppBuilder.png\" alt=\"C++ Builder\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
@@ -5406,9 +6476,12 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "  <li><a href=\"GameTronCollectionSuperTron_0_9.png\">View a screenshot of 'Classic Tron' (version 0.9)</a></li>",
         "  <li><a href=\"GameTronCollectionClassicTronMenu_0_9.png\">View a screenshot of the menu of 'Classic Tron' (version 0.9)</a></li>",
         "  <li><a href=\"GameTronCollectionClassicTronExe_0_9.zip\">Download a Windows executable of 'Classic Tron' (version 0.9)(zip)</a></li>",
-        "</ul>",
+        "</ul>"
       }
-    },{ "GameWizardBattle",
+    }
+  );
+  m.push_back(
+    { "GameWizardBattle",
       {
         "<p><img src=\"PicVcl.png\" alt=\"VCL\"/><img src=\"PicCppBuilder.png\" alt=\"C++ Builder\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
@@ -5427,9 +6500,12 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "  <li><a href=\"GameWizardBattleExe_1_0.zip\">Download the 'Wizard Battle' Windows executable (version 1.0)(zip)</a></li>",
         "  <li><a href=\"GameWizardBattleSource_1_0.zip\">Download the 'Wizard Battle' source code (version 1.0)(zip)</a></li>",
         "  <li><a href=\"GameWizardBattleResources_1_0.zip\">Download the 'Wizard Battle' resources (version 1.0)(zip)</a></li>",
-        "</ul>",
+        "</ul>"
       }
-    },{ "GameZork",
+    }
+  );
+  m.push_back(
+    { "GameZork",
       {
         "<p><a href=\"GameZork.htm\">Zork</a> (also named as 'Dungeon') is a text adventure <a href=\"Games.htm\">game</a> written by ",
         "Tim Anderson, Marc Blank, Bruce Daniels, and Dave Lebling in 1980.",
@@ -5508,9 +6584,12 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<p>&nbsp;</p>",
         "<h2><a href=\"CppLicence.htm\">Licence</a></h2>",
         "<p>&nbsp;</p>",
-        "<p>Zork's copyright is held by <a href=\"http://www.activision.com\">Activision</a>.</p>",
+        "<p>Zork's copyright is held by <a href=\"http://www.activision.com\">Activision</a>.</p>"
       }
-    },{ "ProjectBochum",
+    }
+  );
+  m.push_back(
+    { "ProjectBochum",
       {
         "<p><a href=\"ProjectBochum.htm\">The Bochum Project</a> was my second student project. It took place at the <a href=\"http://www.neuroinformatik.ruhr-uni-bochum.de/top.html\">Institut fuer Neuroinformatik</a> at the <a href=\"http://www.ruhr-uni-bochum.de/\">Ruhr Universitaet Bochum</a> in Germany.</p>",
         "<p>&nbsp;</p>",
@@ -5538,10 +6617,12 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "  <li><a href=\"ProjectBochumExperimentalSetup.png\">View the 'The Bochum Project' experimental setup (png)</a></li>",
         "  <li><a href=\"ProjectBochumGaborFiltersTestResultsMatrixMultiplication.png\">View the 'The Bochum Project' test results from matrix multiplication (png)</a></li>",
         "  <li><a href=\"ProjectBochumGaborFiltersTestResultsOpenCV.png\">View the 'The Bochum Project' test results from OpenCV (png)</a></li>",
-        "</ul>",
-
+        "</ul>"
       }
-    },{ "ProjectBrainweaver",
+    }
+  );
+  m.push_back(
+    { "ProjectBrainweaver",
       {
         "<p><a href=\"ProjectBrainweaver.htm\">Brainweaver</a> (formerly: <a href=\"ProjectVanDenBogaart.htm\">Project Van Den Bogaart</a>) is an open source concept mapping program with two additions:</p>",
         "<ol>",
@@ -5573,9 +6654,12 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<p>&nbsp;</p>",
         "<ul>",
         "  <li><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/> <a href=\"ProjectBrainweaver_0_28.png\">View a screenshot of 'Brainweaver' (version 0.28)(png)</a></li>",
-        "</ul>",
+        "</ul>"
       }
-    },{ "ProjectBristol",
+    }
+  );
+  m.push_back(
+    { "ProjectBristol",
       {
         "<p><a href=\"ProjectBristol.htm\">The Bristol Project</a> was my third student project. It took place at the <a href=\"http://www.bristol.ac.uk/biology/\">School of Biological Sciences</a> at the <a href=\"http://www.bristol.ac.uk/\">University of Bristol</a> in the UK.</p>",
         "<p>&nbsp;</p>",
@@ -5598,9 +6682,12 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<ul>",
         "  <li><a href=\"ProjectBristolReport.pdf\">Download the 'The Bristol Project' report (pdf)</a></li>",
         "  <li><a href=\"ProjectBristolSource_1_0.zip\">Download the 'The Bristol Project' source code (zip)</a></li>",
-        "</ul>",
+        "</ul>"
       }
-    },{ "ProjectChrisWiley",
+    }
+  );
+  m.push_back(
+    { "ProjectChrisWiley",
       {
         "<p><img src=\"PicVcl.png\" alt=\"VCL\"/><img src=\"PicCppBuilder.png\" alt=\"C++ Builder\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
@@ -5626,9 +6713,12 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "  <li><a href=\"ProjectChrisWiley_1_0.png\">View a screenshot of 'The Chris Wiley Project' (png)</a></li>",
         "  <li><a href=\"ProjectChrisWileyExe_1_0.zip\">Download the 'The Chris Wiley Project' Windows executable (zip)</a></li>",
         "  <li><a href=\"ProjectChrisWileySource_1_0.zip\">Download the 'The Chris Wiley Project' source code (zip)</a></li>",
-        "</ul>",
+        "</ul>"
       }
-    },{ "ProjectCrossPoll",
+    }
+  );
+  m.push_back(
+    { "ProjectCrossPoll",
       {
         "<p><img src=\"PicVcl.png\" alt=\"VCL\"/><img src=\"PicCppBuilder.png\" alt=\"C++ Builder\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
@@ -5679,9 +6769,12 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "see the documentation for details.<br/>",
         "Please credit this data as \"generated using David A. Wheeler's 'SLOCCount'.\"<br/>",
         "</code></td></tr></table>",
-        "<!-- end of the code -->",
+        "<!-- end of the code -->"
       }
-    },{ "ProjectGtst",
+    }
+  );
+  m.push_back(
+    { "ProjectGtst",
       {
         "<p>&nbsp;</p>",
         "<p>&nbsp;</p>",
@@ -5760,10 +6853,12 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<ul>",
         "  <li><a href=\"http://www.iew.uzh.ch/ztree/index.php\">z-Tree</a>: closed source</li>",
         "<!--  <li><a href=\"http://en.wikipedia.org/wiki/Amazon_Mechanical_Turk\">Amazon Mechanical Turk</a>:</li> -->",
-        "</ul>",
-
+        "</ul>"
       }
-    },{ "ProjectMuscaDomestica",
+    }
+  );
+  m.push_back(
+    { "ProjectMuscaDomestica",
       {
         "<p><img src=\"PicVcl.png\" alt=\"VCL\"/><img src=\"PicCppBuilder.png\" alt=\"C++ Builder\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
@@ -5792,9 +6887,12 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "  <li><a href=\"ProjectMuscaDomestica_1_0.png\">View a screenshot of 'Project Musca Domestica' (png)</a></li>",
         "  <li><a href=\"ProjectMuscaDomesticaExe_1_0.zip\">Download the 'Project Musca Domestica' Windows executable (zip)</a></li>",
         "  <li><a href=\"ProjectMuscaDomesticaSource_1_0.zip\">Download the 'Project Musca Domestica' source code (zip)</a></li>",
-        "</ul>",
+        "</ul>"
       }
-    },{ "ProjectNewickVector",
+    }
+  );
+  m.push_back(
+    { "ProjectNewickVector",
       {
         "<p>&nbsp;</p>",
         "<p>&nbsp;</p>",
@@ -6397,10 +7495,12 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; = 0.018382411239554104 (hand-calculated)<br/>",
         "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; = 0.018382411239554104 (calculated at once by NewickVector)<br/>",
         "</code></td></tr></table>",
-        "<!-- end of the code -->",
-
+        "<!-- end of the code -->"
       }
-    },{ "ProjectRampalEtienne",
+    }
+  );
+  m.push_back(
+    { "ProjectRampalEtienne",
       {
         "<p>&nbsp;</p>",
         "<p>&nbsp;</p>",
@@ -6612,10 +7712,13 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<p>&nbsp;</p>",
         "<h2>References</h2>",
         "<p>&nbsp;</p>",
-        "<p>[1] I will not give the reference yet.</p>",
+        "<p>[1] I will not give the reference yet.</p>"
 
       }
-    },{ "ProjectRichelBilderbeek",
+    }
+  );
+  m.push_back(
+    { "ProjectRichelBilderbeek",
       {
         "<p><a href=\"ProjectRichelBilderbeek.htm\">ProjectRichelBilderbeek</a> is a <a href=\"Projects.htm\">project</a> to",
         "display all my programs as:</p>",
@@ -6666,10 +7769,13 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "  <li><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/> <a href=\"ProjectRichelBilderbeekSource_1_2.zip\">Download the 'ProjectRichelBilderbeek' source code (version 1.2)(zip)</a></li>",
         "  <li><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/> <a href=\"ProjectRichelBilderbeekSource_1_1.zip\">Download the 'ProjectRichelBilderbeek' source code (version 1.1)(zip)</a></li>",
         "  <li><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/> <a href=\"ProjectRichelBilderbeekSource_1_0.zip\">Download the 'ProjectRichelBilderbeek' source code (version 1.0)(zip)</a></li>",
-        "</ul>",
+        "</ul>"
 
       }
-    },{ "ProjectThorVeen",
+    }
+  );
+  m.push_back(
+    { "ProjectThorVeen",
       {
         "<p><img src=\"PicVcl.png\" alt=\"VCL\"/><img src=\"PicCppBuilder.png\" alt=\"C++ Builder\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
@@ -6697,9 +7803,12 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "  <li><a href=\"ProjectThorVeen_0_9.png\">View a screenshot of 'The Thor Veen Project' (version 0.9)(png)</a></li>",
         "  <li><a href=\"ProjectThorVeenExe_0_9.zip\">Download the 'The Thor Veen Project' Windows executable (version 0.9)(zip)</a></li>",
         "  <li><a href=\"ProjectThorVeenSource_0_9.zip\">Download the 'The Thor Veen Project' source code (version 0.9)(zip)</a></li>",
-        "</ul>",
+        "</ul>"
       }
-    },{ "ProjectTwoDigitNewick",
+    }
+  );
+  m.push_back(
+    { "ProjectTwoDigitNewick",
       {
         "<p>&nbsp;</p>",
         "<p>&nbsp;</p>",
@@ -7249,10 +8358,12 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "  <tr><td>TestProjectRampal_Endversion2</td> <td>((1,(1,(((((2,(1,((1,1),((1,1),1)))),1),((((1,((1,(1,(38,4))),((2,3),(1,3)))),1),(1,3)),(1,1))),1),1))),1)</td> <td>16742</td> <td>-</td></tr>",
         "  <tr><td>TestTwoDigitNewickRelease</td> <td>((1,(1,(((((2,(1,((1,1),((1,1),1)))),1),((((1,((1,(1,(38,4))),((2,3),(1,3)))),1),(1,3)),(1,1))),1),1))),1)</td> <td>26</td> <td>643,9230769231</td></tr>",
         "  <tr><td>Average_speed_improvement</td> <td></td> <td></td> <td>176,2204639336</td></tr><p>&nbsp;</p>",
-        "</table>",
-
+        "</table>"
       }
-    },{ "ProjectVanDenBogaart",
+    }
+  );
+  m.push_back(
+    { "ProjectVanDenBogaart",
       {
         "<p><a href=\"ProjectProjectVanDenBogaart.htm\">Project Van Den Bogaart</a> is the former name of the <a href=\"ProjectBrainweaver.htm\">Brainweaver</a> <a href=\"Projects.htm\">project</a>.</p>",
         "<p>&nbsp;</p>",
@@ -7303,9 +8414,12 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "  <li><a href=\"ProjectVanDenBogaart_0_6.png\">View a screenshot of 'Project Van Den Bogaart' (version 0.6)(png)</a></li>",
         "  <li><a href=\"ProjectVanDenBogaart_0_5.png\">View a screenshot of 'Project Van Den Bogaart' (version 0.5)(png)</a></li>",
         "  <li><a href=\"ProjectVanDenBogaart_0_4.png\">View a screenshot of 'Project Van Den Bogaart' (version 0.4)(png)</a></li>",
-        "</ul>",
+        "</ul>"
       }
-    },{ "ProjectWtWebsite",
+    }
+  );
+  m.push_back(
+    { "ProjectWtWebsite",
       {
         "<p><a href=\"ProjectWtWebsite.htm\">WtWebsite</a> is a <a href=\"Projects.htm\">project</a> to",
         "display all my programs as a <a href=\"CppWt.htm\">Wt</a> dynamic website.</p>",
@@ -7335,9 +8449,12 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "  <li><a href=\"ProjectWtWebsite_0_3.png\">View a screenshot of 'WtWebsite' (version 0.3)(png)</a></li>",
         "  <li><a href=\"ProjectWtWebsite_0_2.png\">View a screenshot of 'WtWebsite' (version 0.2)(png)</a></li>",
         "  <li><a href=\"ProjectWtWebsite_0_1.png\">View a screenshot of 'WtWebsite' (version 0.1)(png)</a></li>",
-        "</ul>",
+        "</ul>"
       }
-    },{ "ToolAsciiArter",
+    }
+  );
+  m.push_back(
+    { "ToolAsciiArter",
       {
         "<p><a href=\"ToolAsciiArter.htm\">AsciiArter</a> is a <a href=\"Tools.htm\">tool</a> to convert images to <a href=\"CppAsciiArt.htm\">ASCII art</a>.</p>",
         "<p>&nbsp;</p>",
@@ -7381,9 +8498,12 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "    <img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicUbuntu.png\" alt=\"Ubuntu\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/><img src=\"PicSpacer.png\" alt=\" \"/> ",
         "    <a href=\"ToolTestAsciiArter_4_0.png\">View a screenshot of 'AsciiArter' (version 4.0)(png)</a>",
         "  </li>",
-        "</ul>",
+        "</ul>"
       }
-    },{ "ToolAsciiArterVcl",
+    }
+  );
+  m.push_back(
+    { "ToolAsciiArterVcl",
       {
         "<p><a href=\"ToolAsciiArterVcl.htm\">AsciiArterVcl</a> is a <a href=\"Tools.htm\">tool</a> to convert images to <a href=\"CppAsciiArt.htm\">ASCII art</a>.</p>",
         "<p>&nbsp;</p>",
@@ -7408,9 +8528,12 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "    <img src=\"PicCppBuilder.png\" alt=\"C++ Builder\"/><img src=\"PicWindows.png\" alt=\"Windows\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/><img src=\"PicSpacer.png\" alt=\" \"/> ",
         "    <a href=\"ToolAsciiArterVclSource_1_0.zip\">Download the 'AsciiArterVcl' source code (version 1.0)(zip)</a>",
         "  </li>",
-        "</ul>",
+        "</ul>"
       }
-    },{ "ToolBarbaImage",
+    }
+  );
+  m.push_back(
+    { "ToolBarbaImage",
       {
         "<p><a href=\"ToolBarbaImage.htm\">BarbaImage</a> is a <a href=\"Tools.htm\">tool</a> to perform operations on images. It creates a new window after each image operation, so you never loose your intermediates.</p>",
         "<p>&nbsp;</p>",
@@ -7437,9 +8560,12 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "  <li><a href=\"ToolBarbaImageExe_1_2.zip\">Download the 'BarbaImage' Windows executable (version 1.2)(zip)</a></li>",
         "  <li><a href=\"ToolBarbaImageSource_1_2.zip\">Download the 'BarbaImage' source code (version 1.2)(zip)</a></li>",
         "  <li><a href=\"ToolBarbaImageExe_1_0.zip\">Download the 'BarbaImage' Windows executable (version 1.0)(zip)</a></li>",
-        "</ul>",
+        "</ul>"
       }
-    },{ "ToolCallstackCounter",
+    }
+  );
+  m.push_back(
+    { "ToolCallstackCounter",
       {
         "<p><a href=\"ToolCallstackCounter.htm\">CallstackCounter</a> is a <a href=\"Cpp.htm\">C++</a> <a href=\"Tools.htm\">tool</a> <a href=\"CppClass.htm\">class</a> to track the size of the call stack.</p>",
         "<p>&nbsp;</p>",
@@ -7464,9 +8590,12 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<ul>",
         "  <li><a href=\"ToolCallstackCounterSource_1_0.zip\">Download the 'CallstackCounter' source code (version 1.0)(zip)</a></li>",
         "  <li><a href=\"ToolCallstackCounterSource_1_0.htm\">View the C++ Builder source code of 'CallstackCounter' as a web page (version 1.0)(htm)</a></li>",
-        "</ul>",
+        "</ul>"
       }
-    },{ "ToolCnd",
+    }
+  );
+  m.push_back(
+    { "ToolCnd",
       {
         "<p><a href=\"ToolCnd.htm\">Color Number Determinator</a> is one of my first self-written tool. It shows the color of a certain red, green and blue value.</p>",
         "<p>&nbsp;</p>",
@@ -7474,9 +8603,12 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "  <li><a href=\"ToolCndScreenshot.png\">View a screenshot of 'Color Number Determinator' (png)</a></li>",
         "  <li><a href=\"ToolCndSource.rar\">Download the 'Color Number Determinator' source code (rar)</a></li>",
         "  <li><a href=\"ToolCndExe.rar\">Download the 'Color Number Determinator' Windows executable (rar)</a></li>",
-        "</ul>",
+        "</ul>"
       }
-    },{ "ToolCodeToHtml",
+    }
+  );
+  m.push_back(
+    { "ToolCodeToHtml",
       {
         "<p><a href=\"ToolCodeToHtml.htm\">CodeToHtml</a> is a <a href=\"Tools.htm\">tool</a> to convert plain ",
         "<a href=\"Cpp.htm\">C++</a> code to its heavily-linked HTML counterpart for my website.</p>",
@@ -7596,9 +8728,12 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "  <li><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolCodeToHtml_1_6.png\">View a screenshot of 'CodeToHtml' (version 1.6)(png)</a></li>",
         "  <li><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolCodeToHtml_1_5.png\">View a screenshot of 'CodeToHtml' (version 1.5)(png)</a></li>",
         "  <li><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolCodeToHtml_1_4.png\">View a screenshot of 'CodeToHtml' (version 1.4)(png)</a></li>",
-        "</ul>",
+        "</ul>"
       }
-    },{ "ToolCombinator",
+    }
+  );
+  m.push_back(
+    { "ToolCombinator",
       {
         "<p>If you have a set of numbers, what are the subsets which have the sum of x?</p>",
         "<p>&nbsp;</p>",
@@ -7608,9 +8743,12 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "  <li><a href=\"ToolCombinatorScreenshot.png\">View a screenshot of 'Combinator'</a></li>",
         "  <li><a href=\"ToolCombinatorExe.rar\">Download the 'Combinator' Windows executable</a></li>",
         "  <li><a href=\"ToolCombinatorSource.rar\">Download the 'Combinator' source code</a></li>",
-        "</ul>",
+        "</ul>"
       }
-    },{ "ToolCoutChildWindows",
+    }
+  );
+  m.push_back(
+    { "ToolCoutChildWindows",
       {
         "<p><a href=\"ToolCoutChildWindows.htm\">CoutChildWindows</a> shows all (child)windows' text.</p>",
         "<p>&nbsp;</p>",
@@ -7623,14 +8761,20 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "  <li><a href=\"ToolCoutChildWindowsScreenshot.png\">View a screenshot of 'CoutChildWindows'</a></li>",
         "  <li><a href=\"ToolCoutChildWindowsExe.zip\">Download the 'CoutChildWindows' Windows executable (zip)</a></li>",
         "  <li><a href=\"ToolCoutChildWindowsSource.zip\">Download the 'CoutChildWindows' source code (zip)</a></li>",
-        "</ul>",
+        "</ul>"
       }
-    },{ "ToolCreateGlossary",
+    }
+  );
+  m.push_back(
+    { "ToolCreateGlossary",
       {
         "<p><a href=\"ToolCreateGlossary.htm\">CreateGlossary</a> is a <a href=\"Tools.htm\">tool</a> to generate",
-        "the glossaries of this website.",
+        "the glossaries of this website."
       }
-    },{ "ToolCreateQtProjectZipFile",
+    }
+  );
+  m.push_back(
+    { "ToolCreateQtProjectZipFile",
       {
         "<p><a href=\"ToolCreateQtProjectZipFile.htm\">CreateQtProjectZipFile</a> is a <a href=\"Tools.htm\">tool</a> to generate",
         "a .sh script from a <a href=\"CppQtCreator.htm\">Qt Creator</a> project file. This script will zip the entire project.",
@@ -7658,9 +8802,12 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "  <li><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolCreateQtProjectZipFileSource_1_2.htm\">View the 'CreateQtProjectZipFile' source code as web page (version 1.2)(htm)</a></li>",
         "  <li><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolCreateQtProjectZipFileSource_1_2.zip\">Download the 'CreateQtProjectZipFile' source code (version 1.2)(zip)</a></li>",
         "  <li><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolCreateQtProjectZipFileSource_1_0.zip\">Download the 'CreateQtProjectZipFile' source code (version 1.0)(zip)</a></li>",
-        "</ul>",
+        "</ul>"
       }
-    },{ "ToolDotMatrix",
+    }
+  );
+  m.push_back(
+    { "ToolDotMatrix",
       {
         "<p><a href=\"ToolDotMatrix.htm\">DotMatrix</a> is a <a href=\"Tools.htm\">tool</a> to display text as dot-matrix ",
         "characters (5 (width) x 7 (height) pixels, without spacer pixels), like on your microwave display.</p>",
@@ -7673,9 +8820,12 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "  <li><a href=\"ToolDotMatrix_1_0.png\">View a screenshot of 'DotMatrix'</a></li>",
         "  <li><a href=\"ToolDotMatrixExe.zip\">Download the 'DotMatrix' Windows executable (zip)</a></li>",
         "  <li><a href=\"ToolDotMatrixSource.zip\">Download the 'DotMatrix' source code (zip)</a></li>",
-        "</ul>",
+        "</ul>"
       }
-    },{ "ToolEmptyTextLinesRemover",
+    }
+  );
+  m.push_back(
+    { "ToolEmptyTextLinesRemover",
       {
         "<p>I've noticed that when I copy code from my page, I get a lot of added extra empty",
         "lines when pasting. So, I've written <a href=\"ToolEmptyTextLinesRemover.htm\">Empty Text Lines Remover</a>. I wanted to",
@@ -7686,9 +8836,12 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "  <li><a href=\"ToolEmptyTextLinesRemoverScreenshot.png\">View a screenshot of 'Empty Text Lines Remover'</a></li>",
         "  <li><a href=\"ToolEmptyTextLinesRemoverSource.rar\">Download the 'Empty Text Lines Remover' source code</a></li>",
         "  <li><a href=\"ToolEmptyTextLinesRemoverExe.rar\">Download the 'Empty Text Lines Remover' Windows executable</a></li>",
-        "</ul>",
+        "</ul>"
       }
-    },{ "ToolEncrypter",
+    }
+  );
+  m.push_back(
+    { "ToolEncrypter",
       {
         "<p>Using <a href=\"CppCryptography.htm\">my simple cryptography algorithms</a> I made two console",
         "applications and a single GUI shell.</p>",
@@ -7700,9 +8853,12 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "  <li><a href=\"ToolEncrypterScreenshot.png\">View a screenshot of the Encrypter GUI shell</a></p>",
         "  <li><a href=\"ToolEncrypterSource.rar\">Download the Encrypter source code</a></p>",
         "  <li><a href=\"ToolEncrypterExe.rar\">Download the Encrypter Windows executables</a></p>",
-        "</ul>",
+        "</ul>"
       }
-    },{ "ToolFilterOperationer",
+    }
+  );
+  m.push_back(
+    { "ToolFilterOperationer",
       {
         "<p><a href=\"ToolFilterOperationer.htm\">FilterOperationer</a> demonstrates <a href=\"CppDoFilterOperation.htm\">DoFilterOperation</a>.</p>",
         "<p>&nbsp;</p>",
@@ -7716,9 +8872,12 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "  <li><a href=\"ToolFilterOperationerSource.zip\">Download the 'FilterOperationer' source code (zip)</a></li>",
         "  <li><a href=\"ToolFilterOperationerExe.rar\">Download the 'FilterOperationer' Windows executable (rar)</a></li>",
         "  <li><a href=\"ToolFilterOperationerExe.zip\">Download the 'FilterOperationer' Windows executable (zip)</a></li>",
-        "</ul>",
+        "</ul>"
       }
-    },{ "ToolFryskLeareLieder",
+    }
+  );
+  m.push_back(
+    { "ToolFryskLeareLieder",
       {
         "<p><a href=\"ToolFryskLeareLieder.htm\">Frysk Leare Lieder</a> is a <a href=\"Tools.htm\">tool</a> programmed on the 10th February 2007 to practice my Frysian (a language spoken in the Northwest of Holland). This first version contains only seven verbs, but for me it is still very tough! As my Frysian knowledge increase, I will improve it and add more words to it.</p>",
         "<p>&nbsp;</p>",
@@ -7735,9 +8894,12 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "  <li><a href=\"ToolFryskLeareLiederExe_1_0.zip\">Download the 'Frysk Leare Lieder' Windows executable (version 1.0)(zip)</a></li>",
         "  <li><a href=\"ToolFryskLeareLiederSource_1_0.zip\">Download the 'Frysk Leare Lieder' source code (version 1.0)(zip)</a></li>",
         "  <li><a href=\"ToolFryskLeareLiederSource_1_0.htm\">View the C++ Builder source code of 'Frysk Leare Lieder' as a web page (version 1.0)(htm)</a></li>",
-        "</ul>",
+        "</ul>"
       }
-    },{ "ToolFunctionPlotter",
+    }
+  );
+  m.push_back(
+    { "ToolFunctionPlotter",
       {
         "<p><a href=\"ToolFunctionPlotter.htm\">FunctionPlotter</a> is a demonstration tool of <a href=\"http://warp.povusers.org/FunctionParser\">Warp's FunctionParser class</a>:</p>",
         "<p>The user can input a function in the for 'y=f(x)' and a range for x. <a href=\"ToolFunctionPlotter.htm\">FunctionPlotter</a> then plots the values of y.</p>",
@@ -7775,7 +8937,10 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "  <li><a href=\"http://warp.povusers.org/FunctionParser\">Homepage of Warp's FunctionParser class</a></li>",
         "</ul>",
       }
-    },{ "ToolGaborFilter",
+    }
+  );
+  m.push_back(
+    { "ToolGaborFilter",
       {
         "<p><a href=\"ToolGaborFilter.htm\">GaborFilter</a> is a <a href=\"Tools.htm\">tool</a> to perform Gabor filtering on bitmap images.</p>",
         "<p>&nbsp;</p>",
@@ -8088,9 +9253,12 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<p>&nbsp;</p>",
         "<ul>",
         "  <li><a href=\"http://en.wikipedia.org/wiki/Gabor_filter\">Wikipedia page about Gabor filters</a></li>",
-        "</ul>",
+        "</ul>"
       }
-    },{ "ToolTestGnuplotInterface",
+    }
+  );
+  m.push_back(
+    { "ToolTestGnuplotInterface",
       {
         "<p><a href=\"CppGnuplotInterface.htm\">GnuplotInterface</a> is a <a href=\"CppClass.htm\">class</a> ",
         "that enables the user to easily plot values in <a href=\"CppGnuplot.htm\">Gnuplot</a>. It handles ",
@@ -8124,9 +9292,12 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "  <li><a href=\"CppCompileError_popenIsNotAmemberOfStd.htm\">_popen is not a member of std</a></li>",
         "  <li><a href=\"CppCompileErrorCLK_TCKwasNotDeclaredInThisScope.htm\">CLK_TCK was not declared in this scope</a></li>",
         "  <li><a href=\"CppCompileErrorDuplicateSymbol.htm\">Duplicate symbol Gnuplot::SetLineStyles()</a></li>",
-        "</ul>",
+        "</ul>"
       }
-    },{ "ToolGrayCoder",
+    }
+  );
+  m.push_back(
+    { "ToolGrayCoder",
       {
 
         "<p><a href=\"ToolGrayCoder.htm\">GrayCoder</a> is a <a href=\"Tools.htm\">tool</a> to convert integer values to Gray codes and",
@@ -8146,9 +9317,12 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<p>&nbsp;</p>",
         "<ul>",
         "  <li><a href=\"http://en.wikipedia.org/wiki/Gray_code\">Wikipedia s page about Gray Codes</a></li>",
-        "</ul>",
+        "</ul>"
       }
-    },{ "ToolHaaifsKiller",
+    }
+  );
+  m.push_back(
+    { "ToolHaaifsKiller",
       {
         "<p><a href=\"ToolHaaifsKiller.htm\">HaaifsKiller</a> is an anti-<a href=\"http://www.hyves.nl/\">Hyves</a>-<a href=\"Tools.htm\">tool</a> that can be",
         "used by system administrators: it hides itself after five seconds, after which it automatically minimizes webbrowsers that are used to view <a href=\"http://www.hyves.nl/\">Hyves</a>.</p>",
@@ -8164,7 +9338,10 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "  <li><a href=\"ToolHaaifsKillerSource.zip\">Download the 'HaaifsKiller' source code (v. 1.0)(zip)</a></li>",
         "</ul>",
       }
-    },{ "ToolHistogramEqualizationer", //|| m_page_name == "CppHistogramEqualizationer",
+    }
+  );
+  m.push_back(
+    { "ToolHistogramEqualizationer", //|| m_page_name == "CppHistogramEqualizationer",
       {
         "<p><a href=\"Tools.htm\">Tool</a> to perform a <a href=\"CppDoHistogramEqualization.htm\">histogram equalization</a> on an image.</p>",
         "<p>&nbsp;</p>",
@@ -8180,7 +9357,10 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "  <li><a href=\"CppHistogramEqualizationerSource.zip\">Download the 'HistogramEqualizationer' source code (zip)</a></li>",
         "</ul>",
       }
-    },{ "ToolHometrainer",
+    }
+  );
+  m.push_back(
+    { "ToolHometrainer",
       {
         "<p><a href=\"ToolHometrainer.htm\">Hometrainer</a> is <a href=\"CppDesktopApplication.htm\">desktop</a> <a href=\"Tools.htm\">tool</a> ",
         "to train self-made exercises with open questions and multiple choice questions, ",
@@ -8335,7 +9515,10 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "  <li><a href=\"http://www.questiontools.org/\">Questiontools Suite</a>: extensive test generation suite, but commercial for companies</li>",
         "</ul>",
       }
-    },{ "ToolHometrainerVcl",
+    }
+  );
+  m.push_back(
+    { "ToolHometrainerVcl",
       {
         "<p><a href=\"ToolHometrainerVcl.htm\">Hometrainer (VCL)</a> is <a href=\"CppDesktopApplication.htm\">desktop</a> <a href=\"Tools.htm\">tool</a> ",
         "to train self-made exercises with open questions and multiple choice questions, ",
@@ -8478,7 +9661,10 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "  <li><a href=\"http://www.questiontools.org/\">Questiontools Suite</a>: extensive test generation suite, but commercial for companies</li>",
         "</ul>",
       }
-    },{ "ToolImageRotater",
+    }
+  );
+  m.push_back(
+    { "ToolImageRotater",
       {
         "<p>Finally, after 17 years of trying once-in-a-while, I've managed to create a simple tool",
         "to rotate an image under any angle. The heart of the code is in the function <a",
@@ -8500,7 +9686,10 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<p>&nbsp;</p>",
         "<p>And, yes, the spelling error is intended: I wanted to Dutchify the name of the program.</p>",
       }
-    },{ "ToolItsBelcampo",
+    }
+  );
+  m.push_back(
+    { "ToolItsBelcampo",
       {
         "<p>A simple tool that converts It's Learning email adresses to Belcampo email adresses (as used in GroupWise).</p>",
         "<p>&nbsp;</p>",
@@ -8509,7 +9698,10 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<p>* <a href=\"ToolItsBelcampoExe.rar\">Download the 'It's Belcampo' Windows executable (rar)</a>.</p>",
         "<p>* <a href=\"ToolItsBelcampoExe.zip\">Download the 'It's Belcampo' Windows executable (zip)</a>.</p>",
       }
-    },{ "ToolKalmanFilterer",
+    }
+  );
+  m.push_back(
+    { "ToolKalmanFilterer",
       {
         "<p><a href=\"ToolKalmanFilterer.htm\">KalmanFilterer</a> is a <a href=\"Tools.htm\">tool</a> to learn to work",
         "with <a href=\"CppKalmanFilter.htm\">Kalman filters</a>.</p>",
@@ -8556,7 +9748,10 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "  <li><a href=\"http://greg.czerniak.info/guides/kalman1/\">Kalman filter tutorial by Greg Czerniak</a></li>",
         "</ol>",
       }
-    },{ "ToolKeySender",
+    }
+  );
+  m.push_back(
+    { "ToolKeySender",
       {
         "<p><a href=\"ToolKeySender.htm\">KeySender</a> is a demonstration tool of ",
         "<a href=\"http://www.codeproject.com/KB/cpp/sendkeys_cpp_Article.aspx\">Lallous' CSendKey class</a> ",
@@ -8580,7 +9775,10 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "  <li><a href=\"http://www.codeproject.com/Articles/6819/SendKeys-in-C\">Lallous' article about his CSendKey class</a></li>",
         "</ul>",
       }
-    },{ "ToolKTouchLectureCreator",
+    }
+  );
+  m.push_back(
+    { "ToolKTouchLectureCreator",
       {
         "<p><a href=\"ToolKTouchLectureCreator.htm\">KTouchLectureCreator</a> is a <a href=\"Tools.htm\">tool</a> to create random ",
         "KTouch lectures for a C++ programmer.</p>",
@@ -8607,7 +9805,10 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "  <li><a href=\"http://ktouch.sourceforge.net\">KTouch homepage</a></li>",
         "</ul>",
       }
-    },{ "ToolLearyCircumplex",
+    }
+  );
+  m.push_back(
+    { "ToolLearyCircumplex",
       {
         "<p><a href=\"ToolLearyCircumplex.htm\">LearyCircumplex</a> is a <a href=\"Tools.htm\">tool</a> to ",
         "generate an image of a Leary circumplex (also called 'Interpersonal circumplex' or 'Leary circle' or ",
@@ -8629,7 +9830,10 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "  <li><a href=\"http://en.wikipedia.org/wiki/Interpersonal_Circumplex\">Wikipedia's page on 'Interpersonal Circumplex'</a></li>",
         "</ul>",
       }
-    },{ "ToolLogisticGrowthSimulator",
+    }
+  );
+  m.push_back(
+    { "ToolLogisticGrowthSimulator",
       {
         "<p><a href=\"ToolLogisticGrowthSimulator.htm\">Logistic Growth Simulator</a> shows population",
         "sizes in time for the logistic growth equation. On the press of a button, it also",
@@ -8641,7 +9845,10 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "  <li><a href=\"ToolLogisticGrowthSimulatorSource_1_0.zip\"> Download the 'Logistic Growth Simulator' source code (version 1.0)(zip)</a></li>",
         "</ul>",
       }
-    },{ "ToolLoose",
+    }
+  );
+  m.push_back(
+    { "ToolLoose",
       {
         "<p><a href=\"ToolLoose.htm\">Loose</a> is a <a href=\"Tools.htm\">tool</a> to redirect any email adress name ",
         "to the limited number of email addresses an email host has. In its current demonstrational form, ",
@@ -8670,7 +9877,10 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "  <li><a href=\"ToolLooseSource_1_0.zip\">Download the 'Loose' Qt Creator project (version 1.0)(zip)</a></li>",
         "</ul>",
       }
-    },{ "ToolMazeCreator",
+    }
+  );
+  m.push_back(
+    { "ToolMazeCreator",
       {
         "<p><a href=\"ToolMazeCreator.htm\">MazeCreator</a> is a <a href=\"Cpp.htm\">C++</a> <a href=\"Tools.htm\">tool</a> to demonstrate <a href=\"CppCreateMaze.htm\">my simple maze generation algorithm</a>.</p>",
         "<p>&nbsp;</p>",
@@ -8682,7 +9892,10 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "  <li><img src=\"PicCppBuilder.png\" alt=\"C++ Builder\"/> <a href=\"ToolMazeCreatorSource_1_0.zip\">Download the C++ Builder 'Maze Creator' source code (v. 1.0)(zip)</a></li>",
         "</ul>",
       }
-    },{ "ToolMorpher",
+    }
+  );
+  m.push_back(
+    { "ToolMorpher",
       {
         "<p><a href=\"ToolMorpher.htm\">Morpher</a> is a <a href=\"Tools.htm\">tool</a> to generate intermediate images between two",
         "images, <a href=\"ToolMorpherExample.png\">as shown in this example</a>.</p>",
@@ -8694,7 +9907,10 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "  <li><a href=\"ToolMorpherSource_1_0.zip\">Download the 'Morpher' source code (version 1.0)(zip)</a></li>",
         "</ul>",
       }
-    },{ "ToolMultiEncranger",
+    }
+  );
+  m.push_back(
+    { "ToolMultiEncranger",
       {
         "<p><a href=\"ToolMultiEncranger.htm\">MultiEncranger</a> is a multi-line version of ",
         "<a href=\"ToolTestEncranger.htm\">Encranger</a>. For more information, <a href=\"ToolTestEncranger.htm\">go to the",
@@ -8713,7 +9929,10 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "  <li><a href=\"ToolMultiEncrangerSource_1_0.htm\">View the 'MultiEncranger' source code as a web page (version 1.0)(htm)</a></li>",
         "</ul>",
       }
-    },{ "ToolMusicTheory",
+    }
+  );
+  m.push_back(
+    { "ToolMusicTheory",
       {
         "<p><a href=\"ToolMusicTheory.htm\">MusicTheory</a> is a <a href=\"Tools.htm\">tool</a> to visualize my music theory.</p>",
         "<p>&nbsp;</p>",
@@ -8741,7 +9960,10 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "  <li><img src=\"PicDesktop.png\" alt=\"Desktop\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolMusicTheorySource_1_1.zip\">Download the 'MusicTheory' source code (version 1.1)(zip)</a></li>",
         "</ul>",
       }
-    },{ "ToolNdsmake",
+    }
+  );
+  m.push_back(
+    { "ToolNdsmake",
       {
         "<p><a href=\"ToolNdsmake.htm\">ndsmake</a> is a <a href=\"Tools.htm\">tool</a> ",
         "to generate an <a href=\"CppNds.htm\">NDS</a> <a href=\"CppMakefile.htm\">makefile</a> ",
@@ -8799,7 +10021,10 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "  <li>Support debugging from Qt Creator IDE</li>",
         "</ul>",
       }
-    },{ "ToolPaperRockScissors", // || m_page_name == "CppPaperRockScissors",
+    }
+  );
+  m.push_back(
+    { "ToolPaperRockScissors", // || m_page_name == "CppPaperRockScissors",
       {
         "<p>This simulation shows pure paper-rock-scissors players competing on a",
         "two-dimensional grid (a donut-shaped world). Each time step, a random pixel is",
@@ -8813,7 +10038,10 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "  <li><a href=\"ToolPaperRockScissorsSource.zip\">Download the 'ToolPaperRockScissors' source code (zip)</a>.</p>",
         "</ul>",
       }
-    },{ "ToolPause",
+    }
+  );
+  m.push_back(
+    { "ToolPause",
       {
         "<p><a href=\"ToolPause.htm\">Pause</a> is a <a href=\"Tools.htm\">tool</a> whose purpose it is to do nothing.</p>",
         "<p>&nbsp;</p>",
@@ -8842,7 +10070,10 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "  <li>V 1.0: 2010-08-18: initial version</li>",
         "</ul>",
       }
-    },{ "ToolPerfectElasticCollision",
+    }
+  );
+  m.push_back(
+    { "ToolPerfectElasticCollision",
       {
         "<p><a href=\"ToolPerfectElasticCollision.htm\">PerfectElasticCollision</a> is a <a href=\"Tools.htm\">tool</a> to investigate the impulses of a perfect elastic collision.</p>",
         "<p>&nbsp;</p>",
@@ -8863,7 +10094,10 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<p>The <a href=\"CppWindows.htm\">Windows</a> executable of version 1.0 is created following ",
         "<a href=\"CppQtCrosscompileToWindowsExample15.htm\">how to cross-compile a Qt Creator project from Ubuntu to a windows executable: example 15: MinGW cross-compiling environment</a>.</p>",
       }
-    },{ "ToolPicToCode",
+    }
+  );
+  m.push_back(
+    { "ToolPicToCode",
       {
         "<p><a href=\"ToolPicToCode.htm\">PicToCode</a> is a <a href=\"Tools.htm\">tool</a> to convert pictures to ",
         "<a href=\"Cpp.htm\">C++</a> code.</p>",
@@ -8893,7 +10127,10 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "  <li><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolPicToCodeSource_1_0.zip\">Download the 'PicToCode' source code (version 1.0)(zip)</a></li>",
         "</ul>",
       }
-    },{ "ToolPixelator",
+    }
+  );
+  m.push_back(
+    { "ToolPixelator",
       {
         "<p><a href=\"ToolPixelator.htm\">Pixelator</a> is a <a href=\"Tools.htm\">tool</a> to 'pixelate' images. ",
         "It relies heavily on the <a href=\"CppPixelate.htm\">Pixelate</a> <a href=\"CppFunction.htm\">function</a>.</p>",
@@ -8905,7 +10142,10 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "</ul>",
 
       }
-    },{ "ToolQuadraticSolver", // || m_page_name == "CppQuadraticSolver",
+    }
+  );
+  m.push_back(
+    { "ToolQuadraticSolver", // || m_page_name == "CppQuadraticSolver",
       {
         "<p><a href=\"ToolQuadraticSolver.htm\">QuadraticSolver</a> is a (console) <a href=\"Tools.htm\">tool</a> to solve quadratic equations.</p>",
         "<p>&nbsp;</p>",
@@ -8933,7 +10173,10 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "  <li><a href=\"http://www.perpetualpc.net/quadsolv_c.html\">PerpetualPC showing how NOT to do it</a></li>",
         "</ul>",
       }
-    },{ "ToolRandomCode",
+    }
+  );
+  m.push_back(
+    { "ToolRandomCode",
       {
         "<p>A simple tool that creates random C++ code. I wrote it for the forums I visited: when",
         "somebody was begging for code ('Coult u pleaz gimme code 4 peer2peer programm?'), I",
@@ -8974,7 +10217,10 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "  <li><a href=\"ToolRandomCodeSource_1_0.zip\">Download the 'Random Code' source code (version 1.0)(zip)</a></li>",
         "</ul>",
       }
-    },{ "ToolRasper",
+    }
+  );
+  m.push_back(
+    { "ToolRasper",
       {
         "<p><a href=\"ToolRasper.htm\">Rasper</a> is a web application <a href=\"Tools.htm\">tool</a> to toggle the ",
         "<a href=\"CppRpi.htm\">Raspberry Pi</a> its GPIO ports.</p>",
@@ -9001,7 +10247,10 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "  <li><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/> <a href=\"ToolRasperSource_0_1.zip\">Download the 'Rasper' source code (version 0.1)(zip)</a></li>",
         "</ul>",
       }
-    },{ "ToolRectFitter",
+    }
+  );
+  m.push_back(
+    { "ToolRectFitter",
       {
         "<p><a href=\"ToolRectFitter.htm\">RectFitter</a> is a <a href=\"Tools.htm\">tool</a> to demonstrate how to fit rectangles within a rectangle.</p>",
         "<p>&nbsp;</p>",
@@ -9025,7 +10274,10 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "  <li>Version 1.0: 2008-12-02: initial version</li>",
         "</ul>",
       }
-    },{ "ToolRefrigeratorPuzzleSolver",
+    }
+  );
+  m.push_back(
+    { "ToolRefrigeratorPuzzleSolver",
       {
         "<!-- start of code -->",
         "<table border = \"1\"><tr><td><code>",
@@ -9084,7 +10336,10 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "  <li>David Harel. Computers Ltd.: What They Really Can't Do. 2000. ISBN-10: 0198505558.</li>",
         "</ol>",
       }
-    },{ "ToolRegexTester",
+    }
+  );
+  m.push_back(
+    { "ToolRegexTester",
       {
         "<p><a href=\"ToolRegexTester.htm\">RegexTester</a> is a <a href=\"Tools.htm\">tool</a> to test regular expressions ",
         "(using its <a href=\"CppGui.htm\">GUI</a>) and to demonstrate how to use the ",
@@ -9122,7 +10377,10 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "  <li><a href=\"ToolRegexTesterSource_1_0.zip\">Download the 'RegexTester' source code (version 1.0)(zip)</a></li>",
         "</ul>",
       }
-    },{ "ToolRichelbilderbeekNlSitemapGenerator",
+    }
+  );
+  m.push_back(
+    { "ToolRichelbilderbeekNlSitemapGenerator",
       {
         "<p><a href=\"ToolRichelbilderbeekNlSitemapGenerator.htm\">RichelbilderbeekNlSitemapGenerator</a> is a <a href=\"Tools.htm\">tool</a> to generate the sitemap of my site.</p>",
         "<p>&nbsp;</p>",
@@ -9164,7 +10422,10 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "  <li><a href=\"ToolRichelbilderbeekNlSitemapGeneratorSource_1_0.zip\">Download the 'RichelbilderbeekNlSitemapGenerator' source code (v. 1.0)(zip)</a></li>",
         "</ul>",
       }
-    },{ "ToolSecretMessage",
+    }
+  );
+  m.push_back(
+    { "ToolSecretMessage",
       {
         "<p><a href=\"ToolSecretMessage.htm\">SecretMessage</a> is a <a href=\"Tools.htm\">tool</a> to add a secret message to a 24-bit bitmap. These secret messages can also be extracted again.</p>",
         "<p>&nbsp;</p>",
@@ -9192,7 +10453,10 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "</ul>",
 
       }
-    },{ "ToolSimBrainiac",
+    }
+  );
+  m.push_back(
+    { "ToolSimBrainiac",
       {
         "<!-- start of code -->",
         "<table border = \"1\"><tr><td><code>",
@@ -9233,7 +10497,10 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "  <li><a href=\"ToolSimBrainiacExe.zip\">Download the 'SimBrainiac' Windows executable (zip)</a></li>",
         "</ul>",
       }
-    },{ "ToolSimImmuneResponse",
+    }
+  );
+  m.push_back(
+    { "ToolSimImmuneResponse",
       {
         "<p><a href=\"ToolSimImmuneResponse.htm\">SimImmuneResponse</a> is an active simulation in which the user is in control of the immune system.</p>",
         "<p>&nbsp;</p>",
@@ -9253,7 +10520,10 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "  <li><a href=\"ToolSimImmuneResponseSource.zip\">Download the 'SimImmuneResponse' source code (zip)</a></li>",
         "</ul>",
       }
-    },{ "ToolSimMysteryMachine",
+    }
+  );
+  m.push_back(
+    { "ToolSimMysteryMachine",
       {
         "<p><a href=\"ToolSimMysteryMachine.htm\">SimMysteryMachine</a> is a <a href=\"Tools.htm\">tool</a> to simulate",
         "my mystery machine.</p>",
@@ -9297,7 +10567,10 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<p>The <a href=\"CppWindows.htm\">Windows</a> executable of version 1.0 is created following ",
         "<a href=\"CppQtCrosscompileToWindowsExample15.htm\">how to cross-compile a Qt Creator project from Ubuntu to a windows executable: example 15: MinGW cross-compiling environment</a>.</p>",
       }
-    },{ "ToolSimplifyNewick",
+    }
+  );
+  m.push_back(
+    { "ToolSimplifyNewick",
       {
         "<p><a href=\"ToolSimplifyNewick.htm\">SimplifyNewick</a> is a <a href=\"Tools.htm\">tool</a> to randomly simplify <a href=\"CppNewick.htm\">Newicks</a>.</p>",
         "<p>&nbsp;</p>",
@@ -9328,7 +10601,10 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "  <li><a href=\"ToolSimplifyNewick_1_0.png\">View a screenshot of 'SimplifyNewick' (version 1.0)(png)</a></li>",
         "</ul>",
       }
-    },{ "ToolSimStagecraft",
+    }
+  );
+  m.push_back(
+    { "ToolSimStagecraft",
       {
         "<p><a href=\"ToolSimStagecraft.htm\">SimStagecraft</a> is a <a href=\"Tools.htm\">tool</a> that ",
         "simulates the connecting and use of stagecraft equipment. For example, how to connect a microphone to ",
@@ -9374,7 +10650,10 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "  <li><a href=\"ToolSimStagecraftExe_1_0.zip\">Download the 'SimStagecraft' Windows executable v1.0 (zip)</a></li>",
         "</ul>",
       }
-    },{ "ToolSoaSim",
+    }
+  );
+  m.push_back(
+    { "ToolSoaSim",
       {
         "<p><a href=\"ToolSoaSim.htm\">SoaSim</a> is a simulation program to",
         "see the spread of a sexually transmitted disease in a small population.</p>",
@@ -9403,7 +10682,10 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "  <li><a href=\"ToolSoaSimAssignment.doc\">Download the 'SoaSim' assignment (doc)</a></li>",
         "</ul>",
       }
-    },{ "ToolStateObserver",
+    }
+  );
+  m.push_back(
+    { "ToolStateObserver",
       {
         "<p><a href=\"ToolStateObserver.htm\">StateObserver</a> is a <a href=\"Tools.htm\">tool</a> to examine different state observers.</p>",
         "<p>&nbsp;</p>",
@@ -9432,7 +10714,10 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "        </mrow>",
         "      </math>",
       }
-    },{ "ToolSurfacePlotter",
+    }
+  );
+  m.push_back(
+    { "ToolSurfacePlotter",
       {
         "<p><a href=\"ToolSurfacePlotter.htm\">SurfacePlotter</a> is a demonstration <a href=\"Tools.htm\">tool</a> of the <a href=\"CppSurfacePlotterTImage.htm\">SurfacePlotter class</a>.</p>",
         "<p>&nbsp;</p>",
@@ -9477,7 +10762,10 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "  <li><a href=\"http://warp.povusers.org/FunctionParser\">Homepage of Warp's FunctionParser class</a></li>",
         "</ul>",
       }
-    },{ "ToolTestBinaryNewickVector",
+    }
+  );
+  m.push_back(
+    { "ToolTestBinaryNewickVector",
       {
         "<p><a href=\"ToolTestBinaryNewickVector.htm\">TestBinaryNewickVector</a> is a <a href=\"Tools.htm\">tool</a> to test ",
         "the <a href=\"CppBinaryNewickVector.htm\">BinaryNewickVector</a> <a href=\"CppClass.htm\">class</a>.</p>",
@@ -9506,7 +10794,10 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "  <li><a href=\"ToolTestBinaryNewickVector_1_0.png\">View a screenshot of 'TestBinaryNewickVector' (version 1.0)(png)</a></li>",
         "</ul>",
       }
-    },{ "ToolTestBroadcastServer",
+    }
+  );
+  m.push_back(
+    { "ToolTestBroadcastServer",
       {
         "<p><a href=\"ToolTestBroadcastServer.htm\">TestBroadcastServer</a> is a ",
         "<a href=\"CppWebApplication.htm\">web application</a>",
@@ -9541,7 +10832,10 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "  <li><a href=\"ToolTestBroadcastServerSource_1_0.zip\">Download the 'TestBroadcastServer' source code (version 1.0)(zip)</a></li>",
         "</ul>",
       }
-    },{ "ToolTestDial",
+    }
+  );
+  m.push_back(
+    { "ToolTestDial",
       {
         "<p><a href=\"ToolTestDial.htm\">TestDial</a> is a <a href=\"Tools.htm\">tool</a> to test ",
         "the <a href=\"CppDial.htm\">Dial</a>, <a href=\"CppQtDialWidget.htm\">QtDialWidget</a> ",
@@ -9577,7 +10871,10 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "  <li><img src=\"PicUbuntu.png\" alt=\"Ubuntu\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolTestDialSource_1_0.zip\">Download the 'TestDial' source code (version 1.0)(zip)</a></li>",
         "</ul>",
       }
-    },{ "ToolTestEncranger",
+    }
+  );
+  m.push_back(
+    { "ToolTestEncranger",
       {
         "<p><a href=\"ToolTestEncranger.htm\">Encranger</a>, short for 'ENCryption by RAndom",
         "Number GeneratoR' is a   <a href=\"Tools.htm\">tool</a> to encrypt en de-encrypt",
@@ -9648,7 +10945,10 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "or 4294967296 (2^32, the maximal <a href=\"CppInt.htm\">integer</a> value) different",
         "keys, instead of the highest possible, which would be the factorial of <em>n</em>.</p>",
       }
-    },{ "ToolTestEntrance",
+    }
+  );
+  m.push_back(
+    { "ToolTestEntrance",
       {
         "<p><a href=\"ToolTestEntrance.htm\">TestEntrance</a> is a <a href=\"Tools.htm\">tool</a> to test the <a href=\"CppWtEntrance.htm\">WtEntrance</a>",
         "<a href=\"CppClass.htm\">class</a>.</p>",
@@ -9666,7 +10966,10 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "</ul>",
 
       }
-    },{ "ToolTestFunctionParser",
+    }
+  );
+  m.push_back(
+    { "ToolTestFunctionParser",
       {
         "<p><a href=\"ToolTestFunctionParser.htm\">TestFunctionParser</a> is a demonstration tool of <a ",
         "href=\"http://warp.povusers.org/FunctionParser\">Warp's FunctionParser class</a>:</p>",
@@ -9711,7 +11014,10 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "  <li><a href=\"http://warp.povusers.org/FunctionParser\">Homepage of Warp's FunctionParser class</a></li>",
         "</ul>",
       }
-    },{ "ToolTestGroupWidget",
+    }
+  );
+  m.push_back(
+    { "ToolTestGroupWidget",
       {
         "<p><a href=\"ToolTestGroupWidget.htm\">TestGroupWidget</a> is a <a href=\"Tools.htm\">tool</a> to test ",
         "the <a href=\"CppWtGroupWidget.htm\">WtGroupWidget</a> <a href=\"CppClass.htm\">classes</a>.</p>",
@@ -9727,7 +11033,10 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "  <li><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolTestGroupWidgetSource_1_3.zip\">Download the 'TestGroupWidget' source code (version 1.3)(zip)</a></li>",
         "</ul>",
       }
-    },{ "ToolTestLed",
+    }
+  );
+  m.push_back(
+    { "ToolTestLed",
       {
         "<p><a href=\"ToolTestLed.htm\">TestLed</a> is a <a href=\"Tools.htm\">tool</a> to test ",
         "the <a href=\"CppLed.htm\">Led</a>, <a href=\"CppQtLedWidget.htm\">QtLedWidget</a> ",
@@ -9751,7 +11060,10 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<p>The <a href=\"CppWindows.htm\">Windows</a> executable of version 1.0 is created following ",
         "<a href=\"CppQtCrosscompileToWindowsExample15.htm\">how to cross-compile a Qt Creator project from Ubuntu to a windows executable: example 15: MinGW cross-compiling environment</a>.</p>",
       }
-    },{ "ToolTestMultiVector",
+    }
+  );
+  m.push_back(
+    { "ToolTestMultiVector",
       {
         "<p><a href=\"ToolTestMultiVector.htm\">TestMultiVector</a> is a <a href=\"Tools.htm\">tool</a> to test ",
         "the <a href=\"CppMultiVector.htm\">MultiVector</a> <a href=\"CppClass.htm\">class</a>.</p>",
@@ -9777,7 +11089,10 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "  <li><a href=\"ToolTestMultiVectorSource_2_0.zip\">Download the 'TestMultiVector' source code (version 2.0)(zip)</a></li>",
         "</ul>",
       }
-    },{ "ToolTestNdsmake",
+    }
+  );
+  m.push_back(
+    { "ToolTestNdsmake",
       {
         "<p><a href=\"ToolTestNdsmake.htm\">TestNdsmake</a> tests the <a href=\"Tools.htm\">tool</a> ",
         "<a href=\"ToolNdsmake.htm\">ndsmake</a>. <a href=\"ToolNdsmake.htm\">ndsmake</a> is a <a href=\"Tools.htm\">tool</a>",
@@ -9807,7 +11122,10 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "  <li><a href=\"ToolTestNdsmake_1_0.png\">View a screenshot of 'TestNdsmake' (v.1.0)(png)</a></li>",
         "</ul>",
       }
-    },{ "ToolTestNeuralNet",
+    }
+  );
+  m.push_back(
+    { "ToolTestNeuralNet",
       {
         "<p><a href=\"ToolTestNeuralNet.htm\">TestNeuralNet</a> is a <a href=\"Tools.htm\">tool</a> to test the ",
         "<a href=\"CppNeuralNet.htm\">NeuralNet</a> <a href=\"CppClass.htm\">class</a>.</p>",
@@ -9827,7 +11145,10 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "  <li><a href=\"ToolTestNeuralNetSource_0_1.zip\">Download the 'TestNeuralNet' source code (version 0.1)(zip)</a></li>",
         "</ul>",
       }
-    },{ "ToolTestPrimeExpert",
+    }
+  );
+  m.push_back(
+    { "ToolTestPrimeExpert",
       {
         "<p><a href=\"ToolTestPrimeExpert.htm\">TestPrimeExpert</a> is a <a href=\"Tools.htm\">tool</a> to test ",
         "the <a href=\"CppPrimeExpert.htm\">PrimeExpert</a> <a href=\"CppClass.htm\">class</a>.</p>",
@@ -9853,7 +11174,10 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "  <li><a href=\"ToolTestPrimeExpertSource_1_0.zip\">Download the 'TestPrimeExpert' source code (version 1.0)(zip)</a></li>",
         "</ul>",
       }
-    },{ "ToolTestProFile",
+    }
+  );
+  m.push_back(
+    { "ToolTestProFile",
       {
         "<p><a href=\"ToolTestProFile.htm\">TestProFile</a> is a (very simple) <a href=\"Tools.htm\">tool</a>",
         "to test the <a href=\"CppProFile.htm\">ProFile</a> <a href=\"CppClass.htm\">class</a>.</p>",
@@ -9868,7 +11192,10 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "  <li><a href=\"ToolTestProFileSource_1_0.zip\">Download the 'TestProFile' source code (version 1.0)(zip)</a></li>",
         "</ul>",
       }
-    },{ "ToolTestPylos",
+    }
+  );
+  m.push_back(
+    { "ToolTestPylos",
       {
         "<p><a href=\"ToolTestPylos.htm\">TestPylos</a> is a <a href=\"Tools.htm\">tool</a> to test the ",
         "<a href=\"CppPylos.htm\">Pylos</a> (also called 'Pyraos') and ",
@@ -9904,11 +11231,17 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "  <li><a href=\"ToolTestPylos_0_1.png\">View a screenshot of 'TestPylos' (version 0.1)(png)</a></li>",
         "</ul>",
       }
-    },{ "ToolTestQtKeyboardFriendlyGraphicsView",
+    }
+  );
+  m.push_back(
+    { "ToolTestQtKeyboardFriendlyGraphicsView",
       {
     //TODO
       }
-    },{ "ToolTestQtModels",
+    }
+  );
+  m.push_back(
+    { "ToolTestQtModels",
       {
         "<p><a href=\"ToolTestQtModels.htm\">TestQtModels</a> is a <a href=\"Tools.htm\">tool</a> to test my model classes.</p>",
         "<p>&nbsp;</p>",
@@ -9924,7 +11257,10 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "  <li><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolTestQtModelsSource_1_0.htm\">View the 'TestQtModels' source code as web page (version 1.0)(htm)</a></li>",
         "</ul>",
       }
-    },{ "ToolTestQtRoundedRectItem",
+    }
+  );
+  m.push_back(
+    { "ToolTestQtRoundedRectItem",
       {
 
         "<p><a href=\"ToolTestQtRoundedRectItem.htm\">TestQtRoundedRectItem</a> is a <a href=\"Tools.htm\">tool</a> to",
@@ -9942,7 +11278,10 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "  <li><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolTestQtRoundedRectItemSource_1_1.htm\">View the 'TestQtRoundedRectItem' source code as web page (version 1.1)(htm)</a></li>",
         "</ul>",
       }
-    },{ "ToolTestQuestion",
+    }
+  );
+  m.push_back(
+    { "ToolTestQuestion",
       {
         "<p><a href=\"ToolTestQuestion.htm\">TestQuestion</a> is a <a href=\"Tools.htm\">tool</a> to test ",
         "many <a href=\"CppClass.htm\">classes</a> related to questions.</p>",
@@ -9972,7 +11311,10 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "  <li><img src=\"PicDesktop.png\" alt=\"Desktop\"/> <a href=\"ToolTestQuestion_0_9.png\">View a screenshot of TestQuestion (version 0.9)(png)</a></li>",
         "</ul>",
       }
-    },{ "ToolTestSelectFileDialog",
+    }
+  );
+  m.push_back(
+    { "ToolTestSelectFileDialog",
       {
         "<p><a href=\"ToolTestSelectFileDialog.htm\">TestSelectFileDialog</a> is a <a href=\"Tools.htm\">tool</a> to test ",
         "the <a href=\"CppWtSelectFileDialog.htm\">WtSelectFileDialog</a> <a href=\"CppClass.htm\">class</a>.</p>",
@@ -10000,7 +11342,10 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "  <li><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolTestSelectFileDialogSource_1_0.zip\">Download the TestSelectFileDialog source code (version 1.0)(zip)</a></li>",
         "</ul>",
       }
-    },{ "ToolTestServerPusher",
+    }
+  );
+  m.push_back(
+    { "ToolTestServerPusher",
       {
         "<p><a href=\"ToolTestServerPusher.htm\">TestServerPusher</a> is a ",
         "<a href=\"CppWebApplication.htm\">web application</a>",
@@ -10019,7 +11364,10 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "  <li><a href=\"ToolTestServerPusherSource_1_0.htm\">View the 'TestServerPusher' source code as web page (version 1.1)(htm)</a></li>",
         "</ul>",
       }
-    },{ "ToolTestShape",
+    }
+  );
+  m.push_back(
+    { "ToolTestShape",
       {
         "<p><a href=\"ToolTestShape.htm\">TestShape</a> is a <a href=\"Tools.htm\">tool</a> to tool to test the <a href=\"CppShape.htm\">Shape</a> ",
         "and <a href=\"CppShapeWidget.htm\">ShapeWidget</a> <a href=\"CppClass.htm\">classes</a>.</p>",
@@ -10046,7 +11394,10 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "  <li><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolTestShapeSource_1_0.zip\">Download the 'TestShape' source code (version 1.0)(zip)</a></li>",
         "</ul>",
       }
-    },{ "ToolTestShinyButton",
+    }
+  );
+  m.push_back(
+    { "ToolTestShinyButton",
       {
         "<p><a href=\"ToolTestShinyButton.htm\">TestShinyButton</a> is a <a href=\"Tools.htm\">tool</a> to test ",
         "the <a href=\"CppShinyButton.htm\">ShinyButton</a>, <a href=\"CppShinyButtonWidget.htm\">ShinyButtonWidget</a>, ",
@@ -10064,7 +11415,10 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "  <li><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolTestShinyButtonSource_1_0.zip\">Download the 'TestShinyButton' source code (version 1.0)(zip)</a></li>",
         "</ul>",
       }
-    },{ "ToolTestStopwatch",
+    }
+  );
+  m.push_back(
+    { "ToolTestStopwatch",
       {
         "<p><a href=\"ToolTestStopwatch.htm\">TestStopwatch</a> is a <a href=\"Tools.htm\">tool</a> to test the ",
         "<a href=\"CppStopwatch.htm\">Stopwatch</a> <a href=\"CppClass.htm\">class</a>.</p>",
@@ -10092,7 +11446,10 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<ul>",
         "</ul>",
       }
-    },{ "ToolTestTicTacToe",
+    }
+  );
+  m.push_back(
+    { "ToolTestTicTacToe",
       {
         "<p><a href=\"ToolTestTicTacToe.htm\">TestTicTacToe</a> is a <a href=\"Tools.htm\">tool</a> to test the ",
         "<a href=\"CppTicTacToe.htm\">TicTacToe</a> <a href=\"CppClass.htm\">class</a>.</p>",
@@ -10120,7 +11477,10 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "  <li><a href=\"ToolTestTicTacToe_0_1.png\">View a screenshot of 'TestTicTacToe' (version 0.1)(png)</a></li>",
         "</ul>",
       }
-    },{ "ToolTestTimedServerPusher",
+    }
+  );
+  m.push_back(
+    { "ToolTestTimedServerPusher",
       {
         "<p><a href=\"ToolTestTimedServerPusher.htm\">TestTimedServerPusher</a> is a ",
         "<a href=\"CppWebApplication.htm\">web application</a>",
@@ -10139,7 +11499,10 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "  <li><a href=\"ToolTestTimedServerPusherSource_1_0.htm\">View the 'TestTimedServerPusher' source code as web page (version 1.1)(htm)</a></li>",
         "</ul>",
       }
-    },{ "ToolTestToggleButton",
+    }
+  );
+  m.push_back(
+    { "ToolTestToggleButton",
       {
         "<p><a href=\"ToolTestToggleButton.htm\">TestToggleButton</a> is a <a href=\"Tools.htm\">tool</a> to test ",
         "the <a href=\"CppToggleButton.htm\">ToggleButton</a>, <a href=\"CppToggleButtonWidget.htm\">ToggleButtonWidget</a>, ",
@@ -10166,7 +11529,10 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "  <li><img src=\"PicUbuntu.png\" alt=\"Ubuntu\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> Download the 'TestToggleButton' source code (version 1.0)(zip)(lost)</li>",
         "</ul>",
       }
-    },{ "ToolTestTwoDigitNewick",
+    }
+  );
+  m.push_back(
+    { "ToolTestTwoDigitNewick",
       {
         "<p><a href=\"ToolTestTwoDigitNewick.htm\">TestTwoDigitNewick</a> is a demonstration <a href=\"Tools.htm\">tool</a> of the two-digit-<a href=\"CppNewick.htm\">Newick</a>.</p>",
         "<p>&nbsp;</p>",
@@ -10204,7 +11570,10 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "  <li><a href=\"ToolTestTwoDigitNewick_0_1.png\">View a 'TestTwoDigitNewick' screenshot (version 0.1)(png)</a></li>",
         "</ul>",
       }
-    },{ "ToolThresholdFilterer",
+    }
+  );
+  m.push_back(
+    { "ToolThresholdFilterer",
       {
         "<p><a href=\"ToolThresholdFilterer.htm\">ThresholdFilterer</a> is a <a href=\"Tools.htm\">tool</a> to perform threshold filter operations and demonstrates the <a href=\"CppFunction.htm\">function</a> <a href=\"CppThresholdFilter.htm\">ThresholdFilter</a>.</p>",
         "<p>&nbsp;</p>",
@@ -10222,7 +11591,10 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "  <li><a href=\"ToolThresholdFiltererSource_1_0.zip\">Download the 'ThresholdFilterer' source code (version 1.0)(zip)</a></li>",
         "</ul>",
       }
-    },{ "ToolTicTacToeLearner",
+    }
+  );
+  m.push_back(
+    { "ToolTicTacToeLearner",
       {
         "<p><a href=\"ToolTicTacToeLearner.htm\">TicTacToeLearner</a> is a <a href=\"Tools.htm\">tool</a> to demonstrate machine learning.</p>",
         "<p>&nbsp;</p>",
@@ -10262,7 +11634,10 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "  <li>V 0.3: 2010-08-16: small GUI improvements, added conditional NDEBUG</li>",
         "</ul>",
       }
-    },{ "ToolTicTacToeValuer",
+    }
+  );
+  m.push_back(
+    { "ToolTicTacToeValuer",
       {
         "<p><a href=\"ToolTicTacToeValuer.htm\">TicTacToeValuer</a> is a <a href=\"Tools.htm\">tool</a> to demonstrate machine learning.</p>",
         "<p>&nbsp;</p>",
@@ -10293,7 +11668,10 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "  <li><a href=\"ToolTicTacToeValuer_0_2.png\">View a screenshot of 'TicTacToeValuer' (version 0.2)(png)</a></li>",
         "</ul>",
       }
-    },{ "ToolTimePoll",
+    }
+  );
+  m.push_back(
+    { "ToolTimePoll",
       {
         "<p><a href=\"ToolTimePoll.htm\">TimePoll</a> is a <a href=\"CppWebApplication.htm\">web application</a> that allows to do a time poll:",
         "a poll that is determined by the time an option is selected, where every visitor can change the selected option.</p>",
@@ -10322,7 +11700,10 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "  <li><a href=\"ToolTimePoll_0_1.png\">View a screenshot of 'TimePoll' (version 0.1)(png)</a></li>",
         "</ul>",
       }
-    },{ "ToolUbuntuOneWatcher",
+    }
+  );
+  m.push_back(
+    { "ToolUbuntuOneWatcher",
       {
         "<p><a href=\"ToolUbuntuOneWatcher.htm\">UbuntuOneWatcher</a> is a <a href=\"Tools.htm\">tool</a> to view",
         "what Ubuntu One is doing.</p>",
@@ -10350,7 +11731,10 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "  <li><a href=\"http://en.wikipedia.org/wiki/Ubuntu_One\">Wikipedia page about UbuntuOne</a></li>",
         "</ul>",
       }
-    },{ "ToolVisualAbc",
+    }
+  );
+  m.push_back(
+    { "ToolVisualAbc",
       {
         "<p><a href=\"ToolVisualAbc.htm\">Visual ABC</a> is an application to work with ABC notation files:",
         "it allows to view the generated sheet music by a single click and to </p>",
@@ -10368,7 +11752,10 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "  <li><a href=\"ToolVisualAbcSource_1_0.htm\">View the 'Visual ABC' source code as web page (version 1.0)(htm)</a></li>",
         "</ul>",
       }
-    },{ "ToolWindowViewer",
+    }
+  );
+  m.push_back(
+    { "ToolWindowViewer",
       {
         "<p><a href=\"ToolWindowViewer.htm\">WindowViewer</a> is a failed attempt to capture all windows as bitmaps.</p>",
         "<p>&nbsp;</p>",
@@ -10452,10 +11839,14 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "}<br/>",
         "<br/>",
         "</code></td></tr></table>",
-        "<!-- end of the code -->",
+        "<!-- end of the code -->"
       }
     }
-  };
+  );
+
+  std::map<Key,Value> n;
+  std::copy(m.begin(),m.end(),std::inserter(n,n.begin()));
+  return n;
 }
 
 
@@ -10466,10 +11857,9 @@ const std::string c2h::Info::GetVersion() noexcept
 
 const std::vector<std::string> c2h::Info::GetVersionHistory() noexcept
 {
-  const std::vector<std::string> v {
+  return {
     "2013-09-20: version 1.0: initial versioning, added tests"
   };
-  return v;
 }
 
 #ifndef NDEBUG

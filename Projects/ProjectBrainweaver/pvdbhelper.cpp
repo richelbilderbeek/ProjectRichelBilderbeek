@@ -262,22 +262,50 @@ void ribi::pvdb::TestHelperFunctions()
     assert(std::count(v.begin(),v.end(),expected_15));
   }
   //Test Wordwrap
-  /*
+  {
+    const std::string s = "123";
+    const std::vector<std::string> expected = { "123" };
+    const std::vector<std::string> v = Wordwrap(s,11);
+    assert(v == expected);
+    assert(Unwordwrap(v) == s);
+  }
   {
     const std::string s = "1234567890 123";
-    const std::vector<std::string> expected = { "123456789", "123" };
+    const std::vector<std::string> expected = { "1234567890", "123" };
     const std::vector<std::string> v = Wordwrap(s,11);
+    if (v != expected)
+    {
+      const std::size_t sz = v.size();
+      for (std::size_t i=0; i!=sz; ++i)
+      {
+        std::cout << i << '/' << sz << ": '" << v[i] << '\'' << std::endl;
+      }
+    }
+    assert(v == expected);
+    assert(Unwordwrap(v) == s);
+  }
+  {
+    const std::string s = "1234567890  123";
+    const std::vector<std::string> expected = { "1234567890 ", "123" };
+    const std::vector<std::string> v = Wordwrap(s,11);
+    if (v != expected)
+    {
+      const std::size_t sz = v.size();
+      for (std::size_t i=0; i!=sz; ++i)
+      {
+        std::cout << i << '/' << sz << ": '" << v[i] << '\'' << std::endl;
+      }
+    }
     assert(v == expected);
     assert(Unwordwrap(v) == s);
   }
   {
     const std::string s = "123 567890 123";
-    const std::vector<std::string> expected = { "123 56789", "123" };
+    const std::vector<std::string> expected = { "123 567890", "123" };
     const std::vector<std::string> v = Wordwrap(s,11);
     assert(v == expected);
     assert(Unwordwrap(v) == s);
   }
-  */
   {
     const auto v {
       "",
@@ -455,6 +483,7 @@ const std::vector<std::string> ribi::pvdb::Wordwrap(
     {
       if (len + 1 == s.size()) break;
       const int new_len = s.find(' ',len + 1);
+      //TODO: Check for consequetive space following the space found at new_len
       //TRACE(new_len);
       if (new_len > max_len || new_len == static_cast<int>(std::string::npos)) break;
       len = new_len;
