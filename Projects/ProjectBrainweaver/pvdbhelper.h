@@ -105,8 +105,11 @@ const std::vector<std::string> SplitXml(const std::string& s);
 ///From http://www.richelbilderbeek.nl/CppStripXmlTag.htm
 const std::string StripXmlTag(const std::string& s);
 
+#ifndef NDEBUG
 ///Test the helper functions
 void TestHelperFunctions();
+#endif
+
 
 ///Undo a Wordwrap
 const std::string Unwordwrap(const std::vector<std::string>& v) noexcept;

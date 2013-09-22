@@ -31,9 +31,10 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <QFileInfoList>
 
 #include "codetohtmldialog.h"
+#include "codetohtml.h"
+#include "codetohtmlinfo.h"
 #include "codetohtmlmenudialog.h"
 #include "codetohtmltechinfotype.h"
-#include "codetohtml.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
 

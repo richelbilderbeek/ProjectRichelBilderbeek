@@ -3,9 +3,13 @@
 #include "pvdbhelper.h"
 
 #include <cassert>
+#include <iostream>
 #include <fstream>
+
+#include <boost/algorithm/string.hpp>
 #include <QFile>
 #include <QRegExp>
+
 #include "trace.h"
 #pragma GCC diagnostic pop
 
@@ -130,6 +134,7 @@ const std::string ribi::pvdb::StripXmlTag(const std::string& s)
   return text;
 }
 
+#ifndef NDEBUG
 void ribi::pvdb::TestHelperFunctions()
 {
   {
@@ -341,7 +346,28 @@ void ribi::pvdb::TestHelperFunctions()
       "1234567890 1234567890 1234567890 1234567890 1234567890 1234567890 1234567890 1234567890 1234567890 1234567890 1234567890",
       "1234567890 1234567890 1234567890 1234567890 1234567890 1234567890 1234567890 1234567890 1234567890 1234567890 1234567890 1234567890",
       "1234567890 1234567890 1234567890 1234567890 1234567890 1234567890 1234567890 1234567890 1234567890 1234567890 1234567890 1234567890 1234567890",
-      "1234567890 1234567890 1234567890 1234567890 1234567890 1234567890 1234567890 1234567890 1234567890 1234567890 1234567890 1234567890 1234567890 1234567890"
+      "1234567890 1234567890 1234567890 1234567890 1234567890 1234567890 1234567890 1234567890 1234567890 1234567890 1234567890 1234567890 1234567890 1234567890",
+      " 1",
+      "  1",
+      "  1 ",
+      "  1  ",
+      "  1 2 ",
+      "  1 23 ",
+      "  12 34  ",
+      "  12  34  ",
+      "   12   34   ",
+      "   12   34   5",
+      "   12   34   5 ",
+      "   12   34   5 6",
+      "0   12   34   5 6",
+      "0   12   34   5 6  ",
+      "                    ",
+      "                      ",
+      "                        ",
+      "                            ",
+      "                                    ",
+      "                                                    ",
+      "                                                                                     "
     };
     for (int len=20; len!=80; ++len)
     {
@@ -440,6 +466,7 @@ void ribi::pvdb::TestHelperFunctions()
   TRACE("TestHelperFunctions finished successfully");
 
 }
+#endif
 
 const std::string ribi::pvdb::Unwordwrap(
   const std::vector<std::string>& v) noexcept
@@ -459,6 +486,30 @@ const std::vector<std::string> ribi::pvdb::Wordwrap(
 {
   std::string s{s_original};
   assert(s.size() == s_original.size());
+
+  ///Replace multiple spaces with '\b ', where x is a char not in the string
+  std::string::value_type x = '\b'; //Bell
+  {
+    const std::size_t sz = s.size();
+
+    ///Replace trailing spaces
+    for (std::size_t i=0; i!=sz; ++i)
+    {
+      if (s[i] == ' ')
+        s[i] = x;
+      else
+        break;
+    }
+    ///Replace "  " by "\b "
+    for (std::size_t i=0; i!=sz-1; ++i)
+    {
+      if (s[i] == ' ' && s[i+1] == ' ')
+        s[i] = x;
+      else
+        break;
+    }
+  }
+
   std::vector<std::string> v;
 
   while (!s.empty())
@@ -483,7 +534,6 @@ const std::vector<std::string> ribi::pvdb::Wordwrap(
     {
       if (len + 1 == s.size()) break;
       const int new_len = s.find(' ',len + 1);
-      //TODO: Check for consequetive space following the space found at new_len
       //TRACE(new_len);
       if (new_len > max_len || new_len == static_cast<int>(std::string::npos)) break;
       len = new_len;
@@ -493,8 +543,8 @@ const std::vector<std::string> ribi::pvdb::Wordwrap(
     const std::string line = s.substr(0,len); //Remove space
     //TRACE(line);
     assert(!line.empty());
-    assert(line[0] != ' ');
-    assert(line[line.size() - 1] != ' ');
+    //assert(line[0] != ' '); //Allow this
+    //assert(line[line.size() - 1] != ' '); //Allow this
     v.push_back(line);
     const int new_index = len + 1; //-1 due to space
     assert(new_index < static_cast<int>(s.size()));
@@ -504,6 +554,21 @@ const std::vector<std::string> ribi::pvdb::Wordwrap(
     s = new_s;
     //TRACE(s);
   }
+
+  ///Replace bell characters by spaces again
+  for (std::string& s: v)
+  {
+    assert(x != ' ');
+    std::size_t pos = s.find(x);
+    while (pos != std::string::npos);
+    {
+      s[pos] = ' ';
+      assert(pos != s.find(x)); //To prevent infinite while loop
+      pos = s.find(x);
+    }
+    assert(s.find(x) == std::string::npos);
+  }
+
   #ifndef NDEBUG
   if (Unwordwrap(v) != s_original)
   {
