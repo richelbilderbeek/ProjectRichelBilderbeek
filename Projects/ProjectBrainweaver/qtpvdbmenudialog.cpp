@@ -71,9 +71,6 @@ ribi::pvdb::QtPvdbMenuDialog::QtPvdbMenuDialog(QWidget* parent)
   ui->setupUi(this);
   #ifndef NDEBUG
   Test();
-  #else
-  ui->widget_debug_1->setVisible(false);
-  ui->widget_debug_2->setVisible(false);
   #endif
 }
 

@@ -1,9 +1,8 @@
-#-------------------------------------------------
-#
-# Project created by QtCreator 2010-07-21T13:31:08
-#
-#-------------------------------------------------
 QT += core gui
-TARGET = QtExample9
+greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 TEMPLATE = app
 SOURCES += main.cpp
+QMAKE_CXXFLAGS += -Wall -Wextra
+unix {
+  QMAKE_CXXFLAGS += -Werror
+}

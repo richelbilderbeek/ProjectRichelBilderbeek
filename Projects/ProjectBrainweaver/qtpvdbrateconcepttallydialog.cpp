@@ -11,7 +11,6 @@
 #include <boost/numeric/conversion/cast.hpp>
 #include <QKeyEvent>
 
-
 #include "pvdbconceptfactory.h"
 #include "pvdbcenternode.h"
 #include "pvdbcenternodefactory.h"
@@ -45,6 +44,7 @@ ribi::pvdb::QtPvdbRateConceptTallyDialog::QtPvdbRateConceptTallyDialog(
   const int n_rows = static_cast<int>(m_data.size());
   const int n_cols = 4;
   ui->table->setRowCount(n_rows);
+  ui->table->setWordWrap(true); //NEW 2013-09-23
   for (int row_index=0; row_index!=n_rows; ++row_index)
   {
     const Row& row = m_data[row_index];

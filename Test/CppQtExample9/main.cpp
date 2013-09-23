@@ -1,6 +1,7 @@
 #include <cassert>
 #include <cmath>
 #include <iostream>
+
 #include <boost/shared_ptr.hpp>
 #include <boost/static_assert.hpp>
 #include <boost/timer.hpp>
