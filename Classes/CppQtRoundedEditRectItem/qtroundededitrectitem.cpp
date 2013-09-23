@@ -63,13 +63,16 @@ const QRectF ribi::QtRoundedEditRectItem::GetTextRect(const std::string& s) cons
   #ifdef _WIN32
   //adjusted(0.0,0.0,2.0,0.0) works fine for 50% of the fonts supplied by Wine under native Lubuntu
   //adjusted(0.0,0.0,3.0,0.0) works fine for 80% of the fonts supplied by Wine under native Lubuntu
-  return QRectF(-0.5 * w, -0.5 * h,w,h).adjusted(0.0,0.0,3.0,0.0);
+  return QRectF(-0.5 * w, 0.0,w,h).adjusted(0.0,0.0,3.0,0.0);
   #else
   //adjusted(0.0,0.0,2.0,-1.0) works fine for 90% of the fonts under native Lubuntu
   //adjusted(0.0,0.0,3.0,-1.0) works fine for 99% of the fonts under native Lubuntu
   //adjusted(0.0,0.0,4.0,-1.0) works fine for all the fonts I've tried under native Lubuntu
-  return QRectF(-0.5 * w, -0.5 * h,w,h).adjusted(0.0,0.0,2.0,-1.0);
+  //return QRectF(-0.5 * w,0.0,w,h).adjusted(0.0,0.0,2.0,-1.0);
+  return QRectF(-0.5 * w,0.0,w,h).adjusted(0.0,0.0,2.0,0.0);
   #endif
+
+
 }
 
 const QRectF ribi::QtRoundedEditRectItem::GetTextRect(const std::vector<std::string>& text) const

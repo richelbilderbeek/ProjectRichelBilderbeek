@@ -12,6 +12,7 @@
 #include "qtpvdbconceptmapitem.h"
 #include "pvdbconcept.h"
 #include "qtpvdbconceptitem.h"
+#include "pvdbhelper.h"
 #include "qtpvdbedgeitem.h"
 #include "qtpvdbbrushfactory.h"
 #include "trace.h"
@@ -85,14 +86,13 @@ void ribi::pvdb::QtPvdbExamplesItem::SetBuddyItem(const QtPvdbConceptMapItem* co
 
 void ribi::pvdb::QtPvdbExamplesItem::SetExamples(const boost::shared_ptr<const pvdb::Examples>& examples)
 {
-  const std::vector<boost::shared_ptr<const pvdb::Example> >& v = examples->Get();
-  std::vector<std::string> w;
-  std::transform(v.begin(),v.end(),std::back_inserter(w),
-    [](const boost::shared_ptr<const pvdb::Example>& p)
-    {
-      assert(p);
-      return p->GetText();
-    }
-  );
-  this->SetText(w);
+  std::vector<std::string> v;
+  for (const boost::shared_ptr<const pvdb::Example> example: examples->Get())
+  {
+    const std::string s { example->GetText() };
+    const std::size_t wordwrap_length = 40;
+    const std::vector<std::string> w { Wordwrap(s,wordwrap_length) };
+    std::copy(w.begin(),w.end(),std::back_inserter(v));
+  }
+  this->SetText(v);
 }
