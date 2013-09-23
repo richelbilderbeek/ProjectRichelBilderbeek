@@ -3,7 +3,20 @@
 #myqmake="i686-pc-mingw32-qmake" #Qt4
 myqmake="../../Libraries/mxe/usr/i686-pc-mingw32/qt5/bin/qmake"
 
+#Cleaning up
+rm Makefile
+rm Makefile.*
+rm -r release
+rm -r debug
+rm ui_*.h
+rm qrc_*.cpp
+rm moc_*.cpp
+rm object_script*.*
+rm *.o
+rm *_plugin_import.cpp
+
 rm *.pro.user
+
 
 for myprofile in `ls | egrep ".pro\>"`
 do
@@ -41,5 +54,7 @@ do
   rm qrc_*.cpp
   rm moc_*.cpp
   rm object_script*.*
+  rm *.o
+  rm *_plugin_import.cpp
 
 done #next .pro file

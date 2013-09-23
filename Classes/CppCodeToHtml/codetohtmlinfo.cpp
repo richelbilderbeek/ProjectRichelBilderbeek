@@ -27,6 +27,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #include <boost/lexical_cast.hpp>
 
+#include "codetohtmlheader.h"
+#include "codetohtmlfooter.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
 
@@ -670,7 +672,7 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<p>Here I show the results comparing the five functions, copied from the results file:</p>",
         "<p>&nbsp;</p>",
         "<!-- start of code -->",
-        "<table border = \"1\"><tr><td><code>",
+        "<table summary=\"Profiling result\"border = \"1\"><tr><td><code>",
         "Flat profile:<br/>",
         "<br/>",
         "&nbsp;&nbsp;%&nbsp;&nbsp; cumulative&nbsp;&nbsp; self&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;self&nbsp;&nbsp;&nbsp;&nbsp; total<br/>",
@@ -703,7 +705,7 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<a href=\"CppQtProjectFile.htm\">Qt project file</a>:</p>",
         "<p>&nbsp;</p>",
         "<!-- start of code -->",
-        "<table border = \"1\"><tr><td><code>",
+        "<table summary=\"Qt Creator project file\" border = \"1\"><tr><td><code>",
         "QMAKE_CXXFLAGS_DEBUG += -pg<br/>",
         "QMAKE_LFLAGS_DEBUG += -pg<br/>",
         "</code></td></tr></table>",
@@ -712,7 +714,7 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<p>then, for a terminal, type the following lines:</p>",
         "<p>&nbsp;</p>",
         "<!-- start of code -->",
-        "<table border = \"1\"><tr><td><code>",
+        "<table summary=\"Terminal commands needed for gprof\"border = \"1\"><tr><td><code>",
         "qmake -config debug<br/>",
         "make clean<br/>",
         "make<br/>",
@@ -724,7 +726,7 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<p>Or easier, run the script profile.sh:</p>",
         "<p>&nbsp;</p>",
         "<!-- start of code -->",
-        "<table border = \"1\"><tr><td><code>",
+        "<table summary=\"Start profiling command\" border = \"1\"><tr><td><code>",
         "./profile.sh<br/>",
         "</code></td></tr></table>",
         "<!-- end of the code -->",
@@ -738,7 +740,7 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<p>Here I show the results comparing the five functions, copied from the results file:</p>",
         "<p>&nbsp;</p>",
         "<!-- start of code -->",
-        "<table border = \"1\"><tr><td><code>",
+        "<table summary=\"Profiling result\" border = \"1\"><tr><td><code>",
         "Each sample counts as 0.01 seconds.<br/>",
         "&nbsp;&nbsp;<a href=\"CppOperatorModulus.htm\">%</a>&nbsp;&nbsp; cumulative&nbsp;&nbsp; self&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;self&nbsp;&nbsp;&nbsp;&nbsp; total&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br/>",
         " <a href=\"CppTime.htm\">time</a>&nbsp;&nbsp; seconds&nbsp;&nbsp; seconds&nbsp;&nbsp;&nbsp;&nbsp;calls&nbsp;&nbsp; s/call&nbsp;&nbsp; s/call&nbsp;&nbsp;name&nbsp;&nbsp;&nbsp;&nbsp;<br/>",
@@ -757,7 +759,7 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
   m.push_back(
     { "CppHeaderFileExample1",
       {
-        R"(<a href="CppHeaderFileExample1.htm">Header file example 1</a> shows what does and what does not belong in a header file [1].</p>)",
+        R"(<p><a href="CppHeaderFileExample1.htm">Header file example 1</a> shows what does and what does not belong in a header file [1].</p>)",
         R"(<p>&nbsp;</p>)",
         R"(<ul>)",
         R"(  <li><a href="CppHeaderFileExample1.zip">Download the Qt Creator project 'CppHeaderFileExample1' (zip)</a></li>)",
@@ -1563,7 +1565,7 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<p>Compiling the code results in the following error:</p>",
         "<p>&nbsp;</p>",
         "<!-- start of code -->",
-        "<table border = \"1\"><tr><td><code>",
+        "<table summary=\"Compile error\" border = \"1\"><tr><td><code>",
         "/usr/include/c++/4.5/iostream:39: error: bits/c++config.h: No such file or directory<br/>",
         "</code></td></tr></table>",
         "<!-- end of the code -->"
@@ -2121,7 +2123,7 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
       {
         "<p><img src=\"PicBoost.png\" alt=\"Boost\"/><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
-        "A <a href=\"CppMatrix.htm\">matrix</a> is a two-dimensional <a href=\"CppContainer.htm\">container</a> (that is a <a href=\"CppContainer.htm\">container</a> in which two values are needed to retrieve an element). For one-dimensional containers, <a href=\"CppContainer.htm\">go to the container page</a>.</p>",
+        "<p>A <a href=\"CppMatrix.htm\">matrix</a> is a two-dimensional <a href=\"CppContainer.htm\">container</a> (that is a <a href=\"CppContainer.htm\">container</a> in which two values are needed to retrieve an element). For one-dimensional containers, <a href=\"CppContainer.htm\">go to the container page</a>.</p>",
         "<p>&nbsp;</p>",
         "<p>There exists no std::matrix (yet).</p>",
         "<p>&nbsp;</p>",
@@ -2150,7 +2152,7 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<p>Below is an example of a y-x-ordered <a href=\"CppVector.htm\">std::vector</a>&lt;<a href=\"CppVector.htm\">std::vector</a>&lt;<b><a href=\"CppInt.htm\">int</a></b>&gt; &gt;.</p>",
         "<p>&nbsp;</p>",
         "<!-- start of code -->",
-        "<table border = \"1\"><tr><td><code>",
+        "<table summary=\"2D vector example\" border = \"1\"><tr><td><code>",
         "<a href=\"CppInclude.htm\">#include</a> &lt;<a href=\"CppCassertH.htm\">cassert</a>&gt;<br/>",
         "<a href=\"CppInclude.htm\">#include</a> &lt;<a href=\"CppVectorH.htm\">vector</a>&gt;<br/>",
         "<br/>",
@@ -2239,7 +2241,7 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<p><a href=\"http://www.techsoftpl.com/matrix\">Techsoft</a>'s matrix supports a x-y-ordered two-dimensional matrix.</p>",
         "<p>&nbsp;</p>",
         "<!-- start of code -->",
-        "<table border = \"1\"><tr><td><code>",
+        "<table summary=\"Techsoft matrix example\" border = \"1\"><tr><td><code>",
         "<a href=\"CppInclude.htm\">#include</a> &lt;<a href=\"CppCassertH.htm\">cassert</a>&gt;<br/>",
         "<a href=\"CppInclude.htm\">#include</a> &lt;techsoft/matrix.h&gt;<br/>",
         "<br/>",
@@ -2266,7 +2268,7 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<p>The Flood::Matrix (from the <a href=\"CppFlood.htm\">Flood</a> library) supports a x-y-ordered two-dimensional matrix.</p>",
         "<p>&nbsp;</p>",
         "<!-- start of code -->",
-        "<table border = \"1\"><tr><td><code>",
+        "<table summary=\"Flood::Matrix example\" border = \"1\"><tr><td><code>",
         "<a href=\"CppInclude.htm\">#include</a> &lt;<a href=\"CppCassertH.htm\">cassert</a>&gt;<br/>",
         "<a href=\"CppInclude.htm\">#include</a> &lt;flood/utilities/matrix.h&gt;<br/>",
         "&nbsp;<br/>",
@@ -2327,7 +2329,7 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<p><a href=\"CppValgrind.htm\">valgrind</a> can be used from command line:</p>",
         "<p>&nbsp;</p>",
         "<!-- start of code -->",
-        "<table border = \"1\"><tr><td><code>",
+        "<table summary=\"Command to start memgrind\" border = \"1\"><tr><td><code>",
         "<a href=\"CppValgrind.htm\">valgrind</a> --leak-check=full -v --show-reachable=yes --log-file=my_log_filename.txt ./my_executable_filename<br/>",
         "</code></td></tr></table>",
         "<!-- end of the code -->",
@@ -2341,7 +2343,7 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<p>I got the following output:</p>",
         "<p>&nbsp;</p>",
         "<!-- start of code -->",
-        "<table border = \"1\"><tr><td><code>",
+        "<table summary=\"memcheck result\" border = \"1\"><tr><td><code>",
         "==13471== Memcheck, a memory error detector<br/>",
         "==13471== Copyright (C) 2002-2010, and GNU GPL'd, by Julian Seward et al.<br/>",
         "==13471== Using Valgrind-3.6.1 and LibVEX; rerun with -h for copyright info<br/>",
@@ -2480,7 +2482,7 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<p>Running the script valgrind_memcheck.sh resulted in the following output file:</p>",
         "<p>&nbsp;</p>",
         "<!-- start of code -->",
-        "<table border = \"1\"><tr><td><code>",
+        "<table summary=\"memcheck result\" border = \"1\"><tr><td><code>",
         "==13939== Memcheck, a memory error detector<br/>",
         "==13939== Copyright (C) 2002-2010, and GNU GPL'd, by Julian Seward et al.<br/>",
         "==13939== Using Valgrind-3.6.1 and LibVEX; rerun with -h for copyright info<br/>",
@@ -2630,7 +2632,7 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<p>Running the script valgrind_memcheck.sh resulted in the following output file:</p>",
         "<p>&nbsp;</p>",
         "<!-- start of code -->",
-        "<table border = \"1\"><tr><td><code>",
+        "<table summary=\"memcheck result\" border = \"1\"><tr><td><code>",
         "==14146== Memcheck, a memory error detector<br/>",
         "==14146== Copyright (C) 2002-2010, and GNU GPL'd, by Julian Seward et al.<br/>",
         "==14146== Using Valgrind-3.6.1 and LibVEX; rerun with -h for copyright info<br/>",
@@ -2792,8 +2794,10 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
       {
         "<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
-        "<a href=\"CppMemcheckExample4.htm\">memcheck example 4: Hello Qt</a> is a <a href=\"CppMemcheck.htm\">memcheck</a> example ",
-        "that tests a <a href=\"CppHelloQtQtCreatorUbuntu.htm\">'Hello Qt' program using Qt Creator under Ubuntu</a> for possible problems.</p>",
+        "<p>",
+        "  <a href=\"CppMemcheckExample4.htm\">memcheck example 4: Hello Qt</a> is a <a href=\"CppMemcheck.htm\">memcheck</a> example ",
+        "  that tests a <a href=\"CppHelloQtQtCreatorUbuntu.htm\">'Hello Qt' program using Qt Creator under Ubuntu</a> for possible problems.",
+        "</p>",
         "<p>&nbsp;</p>",
         "<ul>",
         "  <li><a href=\"CppMemcheckExample4.zip\">Download the Qt Creator project 'CppMemcheckExample4' (zip)</a></li>",
@@ -2816,19 +2820,19 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
       {
         "<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
-        "<a href=\"CppMemcheckExample4.htm\">memcheck example 4: Hello Qt</a> is a <a href=\"CppMemcheck.htm\">memcheck</a> example ",
+        "<p><a href=\"CppMemcheckExample5.htm\">memcheck example 5: Hello Qt</a> is a <a href=\"CppMemcheck.htm\">memcheck</a> example ",
         "that tests a <a href=\"CppHelloQtQtCreatorUbuntu.htm\">'Hello Qt' program using Qt Creator under Ubuntu</a> for possible problems.</p>",
         "<p>&nbsp;</p>",
         "<ul>",
-        "  <li><a href=\"CppMemcheckExample4.zip\">Download the Qt Creator project 'CppMemcheckExample4' (zip)</a></li>",
-        "  <li><a href=\"CppMemcheckExample4.txt\">View the valgrind output of 'CppMemcheckExample4' (txt)</a></li>",
+        "  <li><a href=\"CppMemcheckExample5.zip\">Download the Qt Creator project 'CppMemcheckExample5' (zip)</a></li>",
+        "  <li><a href=\"CppMemcheckExample5.txt\">View the valgrind output of 'CppMemcheckExample5' (txt)</a></li>",
         "</ul>",
         "<p>&nbsp;</p>",
         "<p>&nbsp;</p>",
         "<p>&nbsp;</p>",
         "<p>&nbsp;</p>",
         "<p>&nbsp;</p>",
-        "<h2><a href=\"CppMemcheckExample4.txt\">valgrind_memcheck.txt</a></h2>",
+        "<h2><a href=\"CppMemcheckExample5.txt\">valgrind_memcheck.txt</a></h2>",
         "<p>&nbsp;</p>",
         "<p><a href=\"CppValgrind.htm\">valgrind</a> finds a lot of problems! Because the output is too big to display here, you can",
         "<a href=\"CppMemcheckExample4.txt\">view valgrind_memcheck.txt here</a>.</p>"
@@ -3571,7 +3575,11 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
       {
         "<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicUbuntu.png\" alt=\"Ubuntu\"/></p>",
         "<p>&nbsp;</p>",
-        "<p><a href=\"CppQtExample3.htm\">Qt example 3: a changing background in 2D</a></h1> is a <a href=\"CppQtExample.htm\">Qt example</a> that shows a changing background in 2D, like <a href=\"CppQtExample3.png\">this screenshot (png)</a>.</p>",
+        "<p>",
+        "  <a href=\"CppQtExample3.htm\">Qt example 3: a changing background in 2D</a>",
+        "  is a <a href=\"CppQtExample.htm\">Qt example</a> that shows a changing background in 2D,",
+        "  like <a href=\"CppQtExample3.png\">this screenshot (png)</a>.",
+        "</p>",
         "<p>&nbsp;</p>",
         "<ul>",
         "  <li><a href=\"CppQtExample3.zip\">Download the Qt Creator project file 'CppQtExample3' (zip)</a></li>",
@@ -3584,7 +3592,11 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
       {
         "<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicUbuntu.png\" alt=\"Ubuntu\"/></p>",
         "<p>&nbsp;</p>",
-        "<p><a href=\"CppQtExample4.htm\">Qt example 4: moving many sprites over a changing background in 2D</a></h1> is a <a href=\"CppQtExample.htm\">Qt example</a> that shows how to move many sprites over a changing background in 2D, like <a href=\"CppQtExample4.png\">this screenshot (png)</a>.</p>",
+        "<p>",
+        "  <a href=\"CppQtExample4.htm\">Qt example 4: moving many sprites over a changing background in 2D</a>",
+        "  is a <a href=\"CppQtExample.htm\">Qt example</a> that shows how to move many sprites over a changing",
+        "  background in 2D, like <a href=\"CppQtExample4.png\">this screenshot (png)</a>.",
+        "</p>",
         "<p>&nbsp;</p>",
         "<ul>",
         "  <li><a href=\"CppQtExample4.zip\">Download the Qt Creator project file 'CppQtExample4' (zip)</a></li>",
@@ -3597,8 +3609,12 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
       {
         "<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicUbuntu.png\" alt=\"Ubuntu\"/></p>",
         "<p>&nbsp;</p>",
-        "<p><a href=\"CppQtExample5.htm\">Qt example 5: moving many changing sprites over a changing background in 2D</a> is a ",
-        "<a href=\"CppQtExample.htm\">Qt example</a> that shows how to move many changing sprites over a changing background in 2D, like <a href=\"CppQtExample5.png\">this screenshot (png)</a>.</p>",
+        "<p>",
+        "  <a href=\"CppQtExample5.htm\">Qt example 5: moving many changing sprites over a",
+        "  changing background in 2D</a> is a",
+        "  <a href=\"CppQtExample.htm\">Qt example</a> that shows how to move many changing sprites",
+        " over a changing background in 2D, like <a href=\"CppQtExample5.png\">this screenshot (png)</a>.",
+        "</p>",
         "<p>&nbsp;</p>",
         "<ul>",
         "  <li><a href=\"CppQtExample5.zip\">Download the Qt Creator project file 'CppQtExample5' (zip)</a></li>",
@@ -3611,8 +3627,11 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
       {
         "<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicUbuntu.png\" alt=\"Ubuntu\"/></p>",
         "<p>&nbsp;</p>",
-        "<p><a href=\"CppQtExample6.htm\">Qt example 6: moving customly-drawn and partially transparent sprites over a changing background in 2D</a> is a ",
-        "<a href=\"CppQtExample.htm\">Qt example</a> that shows how to move customly-drawn and partially transparent sprites over a changing background in 2D, like <a href=\"CppQtExample6.png\">this screenshot (png)</a>.</p>",
+        "<p>",
+        "  <a href=\"CppQtExample6.htm\">Qt example 6: moving customly-drawn and partially transparent sprites over a changing background in 2D</a>",
+        "  is a <a href=\"CppQtExample.htm\">Qt example</a> that shows how to move customly-drawn",
+        "  and partially transparent sprites over a changing background in 2D, like <a href=\"CppQtExample6.png\">this screenshot (png)</a>.",
+        "</p>",
         "<p>&nbsp;</p>",
         "<ul>",
         "  <li><a href=\"CppQtExample6.zip\">Download the Qt Creator project file 'CppQtExample6' (zip)</a></li>",
@@ -5249,14 +5268,14 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
   m.push_back(
     { "GameBeerWanter",
       {
-        "<img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicNds.png\" alt=\"NDS\"/><img src=\"PicUbuntu.png\" alt=\"Ubuntu\"/><img src=\"PicWindows.png\" alt=\"Windows\"/>",
+        "<p><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicNds.png\" alt=\"NDS\"/><img src=\"PicUbuntu.png\" alt=\"Ubuntu\"/><img src=\"PicWindows.png\" alt=\"Windows\"/></p>",
         "<p>&nbsp;</p>",
         "<p><a href=\"GameBeerWanter.htm\">BeerWanter</a> is a <a href=\"Games.htm\">game</a> in which the player must click on the beer.</p>",
         "<p>&nbsp;</p>",
         R"(<p><a href="GameBeerWanter.htm">BeerWanter</a>, the successor of <a href="GameBeerWanterVcl.htm">BeerWanterVcl</a>, uses the cross-platform <a href="CppQt.htm">Qt</a> <a href="CppLibrary.htm">library</a>.)",
         R"(<p><a href="GameBeerWanterVcl.htm">BeerWanterVcl</a>, the predecessor of <a href="GameBeerWanter.htm">BeerWanter</a>, uses the Windows-only <a href="CppVcl.htm">VCL</a> <a href="CppLibrary.htm">library</a>.)",
         "<p>&nbsp;</p>",
-        "<a href=\"GameBeerWanter.htm\">BeerWanter</a> can also be deployed as a <a href=\"CppWebApplication.htm\">web application</a>.</p>",
+        "<p><a href=\"GameBeerWanter.htm\">BeerWanter</a> can also be deployed as a <a href=\"CppWebApplication.htm\">web application</a>.</p>",
         "<p>&nbsp;</p>",
         "<p>&nbsp;</p>",
         "<p>&nbsp;</p>",
@@ -5305,7 +5324,7 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
   m.push_back(
     { "GameBeerWanterVcl",
       {
-        "<img src=\"PicCppBuilder.png\" alt=\"C++ Builder\"/><img src=\"PicWindows.png\" alt=\"Windows\"/>",
+        "<p><img src=\"PicCppBuilder.png\" alt=\"C++ Builder\"/><img src=\"PicWindows.png\" alt=\"Windows\"/></p>",
         "<p>&nbsp;</p>",
         "<p><a href=\"GameBeerWanterVcl.htm\">BeerWanterVcl</a> is a <a href=\"Games.htm\">game</a> in which the player must click on the beer.</p>",
         "<p>&nbsp;</p>",
@@ -5336,7 +5355,7 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
   m.push_back(
     { "GameBillysGarden",
       {
-        "<img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/>",
+        "<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
         "<p><a href=\"GameBillysGarden.htm\">BillysGarden</a> is an unfinished <a href=\"Games.htm\">game</a> that is a PC clone of the MSX <a href=\"Games.htm\">game</a> 'Athletic Land'.</p>",
         "<p>&nbsp;</p>",
@@ -5368,7 +5387,7 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
   m.push_back(
     { "GameBillysGardenVcl",
       {
-        "<img src=\"PicCppBuilder.png\" alt=\"C++ Builder\"/><img src=\"PicWindows.png\" alt=\"Windows\"/>",
+        "<p><img src=\"PicCppBuilder.png\" alt=\"C++ Builder\"/><img src=\"PicWindows.png\" alt=\"Windows\"/></p>",
         "<p>&nbsp;</p>",
         "<p><a href=\"GameBillysGardenVcl.htm\">BillysGardenVcl</a> is an unfinished <a href=\"Games.htm\">game</a> that is a PC clone of the MSX <a href=\"Games.htm\">game</a> 'Athletic Land'.</p>",
         "<p>&nbsp;</p>",
@@ -5438,7 +5457,7 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<p><a href=\"GameBoenken.htm\">Boenken</a> can be played with twenty players at the same time (on the same single keyboard). Who said that video <a href=\"Games.htm\">games</a> could not be cosy?</p>",
         "<p>&nbsp;</p>",
         "<p>Before version 3.0, <a href=\"GameBoenken.htm\">Boenken</a> was called <a href=\"GameBoenkenVcl.htm\">BoenkenVcl</a> and was programmed in <a href=\"Cpp.htm\">C++</a> using the IDE ",
-        "<a href=\"CppBuilder.htm\">C++ Builder</a> 6.0, with use of the <a href=\"CppVcl.htm\">VCL</a> and <a href=\"CppBoost.htm\">Boost</a> <a href=\"CppLibrary.htm\">libraries</a>.",
+        "<p><a href=\"CppBuilder.htm\">C++ Builder</a> 6.0, with use of the <a href=\"CppVcl.htm\">VCL</a> and <a href=\"CppBoost.htm\">Boost</a> <a href=\"CppLibrary.htm\">libraries</a>.",
         "<p>&nbsp;</p>",
         "<p>The <a href=\"Games.htm\">game</a> relies heavily on the function <a href=\"CppDoPerfectElasticCollision.htm\">DoPerfectElasticCollision</a>.</p>",
         "<p>&nbsp;</p>",
@@ -5478,7 +5497,7 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<p>&nbsp;</p>",
         "<p><a href=\"GameBoenkenVcl.htm\">BoenkenVcl</a> can be played with twenty players at the same time (on the same single keyboard). Who said that video <a href=\"Games.htm\">games</a> could not be cosy?</p>",
         "<p>&nbsp;</p>",
-        "Since version 3.0, <a href=\"GameBoenkenVcl.htm\">BoenkenVcl</a> was renamed <a href=\"GameBoenken.htm\">Boenken</a> and ported to <a href=\"CppQtCreator.htm\">Qt Creator</a> to make use of the cross-platform",
+        "<p>Since version 3.0, <a href=\"GameBoenkenVcl.htm\">BoenkenVcl</a> was renamed <a href=\"GameBoenken.htm\">Boenken</a> and ported to <a href=\"CppQtCreator.htm\">Qt Creator</a> to make use of the cross-platform",
         "<a href=\"CppQt.htm\">Qt</a> <a href=\"CppLibrary.htm\">library</a>.</p>",
         "<p>&nbsp;</p>",
         "<p>&nbsp;</p>",
@@ -5502,7 +5521,7 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
       {
         "<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
-        "<p><a href=\"GameConnectThree.htm\">ConnectThree</a> is a turn-based tic-tac-toe-like <a href=\"Games.htm\">game</a>. ",
+        "<p><a href=\"GameConnectThree.htm\">ConnectThree</a> is a turn-based tic-tac-toe-like <a href=\"Games.htm\">game</a>.",
         "It can be played by one, two or three players.</p>",
         "<p>&nbsp;</p>",
         "<p>&nbsp;</p>",
@@ -5611,7 +5630,7 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "It is the one <a href=\"Games.htm\">game</a> that can be played on a theme party with theme 'Germany', or as a substitute for the Oktoberfest. ",
         "If you want a beer or bratwurst, you can just go fetching one without fear of losing the <a href=\"Games.htm\">game</a>!</p>",
         "<p>&nbsp;</p>",
-        "in 2012, <a href=\"GameDasWahreSchlagerfestVcl.htm\">Das Wahre Schlagerfest (VCL)</a> was renamed to <a href=\"GameDasWahreSchlagerfest.htm\">Das Wahre Schlagerfest</a> ported",
+        "<p>in 2012, <a href=\"GameDasWahreSchlagerfestVcl.htm\">Das Wahre Schlagerfest (VCL)</a> was renamed to <a href=\"GameDasWahreSchlagerfest.htm\">Das Wahre Schlagerfest</a> ported",
         "to <a href=\"CppQtCreator.htm\">Qt Creator</a>.</p>",
         "<p>&nbsp;</p>",
         "<p>&nbsp;</p>",
@@ -6011,7 +6030,7 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<p>&nbsp;</p>",
         "<h3>Controls</h3>",
         "<p>&nbsp;</p>",
-        "<table border=\"1\">",
+        "<table summary=\"Pokevolley control\" border=\"1\">",
         "  <tr> <td><p><b>Action</b></p></td> <td><p><b>Key player 1</b></p></td> <td><p><b>Key player 2</b></p></td> </tr>",
         "  <tr> <td><p>Left</p></td> <td><p>A</p></td> <td><p>Key left</p></td> </tr>",
         "  <tr> <td><p>Right</p></td> <td><p>D</p></td> <td><p>Key right</p></td> </tr>",
@@ -6517,7 +6536,7 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<p>To start the program under <a href=\"CppLinux.htm\">linux</a>, libncurses5-dev might needs to be installed (*):</p>",
         "<p>&nbsp;</p>",
         "<!-- start of code -->",
-        "<table border = \"1\"><tr><td><code>",
+        "<table summary=\"Commands to install Zork prerequisites\" border = \"1\"><tr><td><code>",
         "sudo apt-get install libncurses5-dev<br/>",
         "</code></td></tr></table>",
         "<!-- end of the code -->",
@@ -6544,7 +6563,7 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<p>John Lange agreed to share his experience compiling zork under OpenSUSE 12.1:</p>",
         "<p>&nbsp;</p>",
         "<!-- start of code -->",
-        "<table border = \"1\"><tr><td><code>",
+        "<table summary=\"How to compile Zork under OpenSUSE 12.1\" border = \"1\"><tr><td><code>",
         "[...] and also let you know that I was quite easily<br/>",
         "able to <a href=\"CppCompile.htm\">compile</a> it under OpenSUSE 12.1 with only a few minor tweaks.<br/>",
         "<br/>",
@@ -6559,7 +6578,7 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<!-- end of the code -->",
         "<p>&nbsp;</p>",
         "<!-- start of code -->",
-        "<table border = \"1\"><tr><td><code>",
+        "<table summary=\"How to compile Zork under OpenSUSE 12.1\" border = \"1\"><tr><td><code>",
         "One last thing, in <a href=\"CppLinux.htm\">Linux</a> there is a \"file end\" <a href=\"CppChar.htm\">character</a> (shows as ^Z)<br/>",
         "on the very last line of the <a href=\"CppMakefile.htm\">makefile</a> that also needs to be removed or<br/>",
         "\"<a href=\"CppMake.htm\">make</a>\" generates an error <a href=\"CppAbout.htm\">about</a> a syntax error.<br/>",
@@ -6641,10 +6660,10 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<h2>Downloads</h2>",
         "<p>&nbsp;</p>",
         "<ul>",
-        R"(  <li><img src="PicLubuntu.png" alt="Lubuntu"/> <a href="ProjectBrainweaver_0_33.png">View a screenshot of 'Brainweaver' (version 0.33)(png)</a></li>",
-        R"(  <li><img src="PicWine.png" alt="Wine"/> <a href=\"ProjectBrainweaver_0_28Wine.png">View a screenshot of 'Brainweaver' (version 0.28)(png)</a></li>",
-        R"(  <li><img src="PicWindows.png" alt="Windows"/> <a href="ProjectBrainweaverExe_0_37.zip">Download the 'Brainweaver' windows executable (version 0.37)(zip)</a></li>",
-        R"(  <li><img src="PicLubuntu.png" alt="Lubuntu"/> <a href="ProjectBrainweaver20130725.mp4">View Brainweaver being tested by libcvautomation (mp4)</a></li>",
+        R"(  <li><img src="PicLubuntu.png" alt="Lubuntu"/> <a href="ProjectBrainweaver_0_33.png">View a screenshot of 'Brainweaver' (version 0.33)(png)</a></li>)",
+        R"(  <li><img src="PicWine.png" alt="Wine"/> <a href="ProjectBrainweaver_0_28Wine.png">View a screenshot of 'Brainweaver' (version 0.28)(png)</a></li>)",
+        R"(  <li><img src="PicWindows.png" alt="Windows"/> <a href="ProjectBrainweaverExe_0_38.zip">Download the 'Brainweaver' windows executable (version 0.37)(zip)</a></li>)",
+        R"(  <li><img src="PicLubuntu.png" alt="Lubuntu"/> <a href="ProjectBrainweaver20130725.mp4">View Brainweaver being tested by libcvautomation (mp4)</a></li>)",
         "</ul>",
         "<p>&nbsp;</p>",
         "<p>&nbsp;</p>",
@@ -6754,7 +6773,7 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<p>Project code info generated using David A. Wheeler's 'SLOCCount'.</p>",
         "<p>&nbsp;</p>",
         "<!-- start of code -->",
-        "<table border = \"1\"><tr><td><code>",
+        "<table summary=\"SLOCCount\" border = \"1\"><tr><td><code>",
         "Total Physical Source Lines of Code (SLOC)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;= 23,437<br/>",
         "Development Effort Estimate, Person-Years (Person-Months) = 5.49 (65.86)<br/>",
         " (Basic COCOMO model, Person-Months = 2.4 * (KSLOC**1.05))<br/>",
@@ -6974,7 +6993,7 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<h3>#1: (1,1,(1,1))</h3>",
         "<p>&nbsp;</p>",
         "<!-- start of code -->",
-        "<table border = \"1\"><tr><td><code>",
+        "<table summary=\"TODO\" border = \"1\"><tr><td><code>",
         "N = the phylogeny = (1,1,(1,1))<br/>",
         "t = theta = 10<br/>",
         "p(N,t) = probability = SUM(c_i * p_i)<br/>",
@@ -7011,7 +7030,7 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<h3>#2: (1,(1,1,1))</h3>",
         "<p>&nbsp;</p>",
         "<!-- start of code -->",
-        "<table border = \"1\"><tr><td><code>",
+        "<table summary=\"TODO\" border = \"1\"><tr><td><code>",
         "N = the phylogeny = (1,(1,1,1))<br/>",
         "t = theta = 10<br/>",
         "p(N,t) = probability = SUM(c_i * p_i)<br/>",
@@ -7057,7 +7076,7 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<h3>#3: (1,1,(1,2))</h3>",
         "<p>&nbsp;</p>",
         "<!-- start of code -->",
-        "<table border = \"1\"><tr><td><code>",
+        "<table summary=\"TODO\" border = \"1\"><tr><td><code>",
         "N = the phylogeny = (1,1,(1,2))<br/>",
         "t = theta = 10<br/>",
         "p(N,t) = probability = SUM(c_i * p_i)<br/>",
@@ -7095,7 +7114,7 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<h3>#4: (1,1,(1,1,1))</h3>",
         "<p>&nbsp;</p>",
         "<!-- start of code -->",
-        "<table border = \"1\"><tr><td><code>",
+        "<table summary=\"TODO\" border = \"1\"><tr><td><code>",
         "N = the phylogeny = (1,1,(1,1,1))<br/>",
         "t = theta = 10<br/>",
         "p(N,t) = probability = SUM(c_i * p_i)<br/>",
@@ -7149,7 +7168,7 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<h3>#5: (2,(1,1,1))</h3>",
         "<p>&nbsp;</p>",
         "<!-- start of code -->",
-        "<table border = \"1\"><tr><td><code>",
+        "<table summary=\"TODO\" border = \"1\"><tr><td><code>",
         "N = the phylogeny = (2,(1,1,1))<br/>",
         "t = theta = 10<br/>",
         "p(N,t) = probability = SUM(c_i * p_i)<br/>",
@@ -7199,7 +7218,7 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<h3>6#: (1,1,1,(1,1))</h3>",
         "<p>&nbsp;</p>",
         "<!-- start of code -->",
-        "<table border = \"1\"><tr><td><code>",
+        "<table summary=\"TODO\" border = \"1\"><tr><td><code>",
         "N = the phylogeny = (1,1,1,(1,1))<br/>",
         "t = theta = 10<br/>",
         "p(N,t) = probability = SUM(c_i * p_i)<br/>",
@@ -7253,7 +7272,7 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<h3>7#: (1,2,(1,1))</h3>",
         "<p>&nbsp;</p>",
         "<!-- start of code -->",
-        "<table border = \"1\"><tr><td><code>",
+        "<table summary=\"TODO\" border = \"1\"><tr><td><code>",
         "N = the phylogeny = (1,2,(1,1))<br/>",
         "t = theta = 10<br/>",
         "p(N,t) = probability = SUM(c_i * p_i)<br/>",
@@ -7291,7 +7310,7 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<h3>8#: (1,(1,1,1,1))</h3>",
         "<p>&nbsp;</p>",
         "<!-- start of code -->",
-        "<table border = \"1\"><tr><td><code>",
+        "<table summary=\"TODO\" border = \"1\"><tr><td><code>",
         "N = the phylogeny = (1,(1,1,1,1))<br/>",
         "t = theta = 10<br/>",
         "p(N,t) = probability = SUM(c_i * p_i)<br/>",
@@ -7361,7 +7380,7 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<h3>9#: (1,(1,1,2))</h3>",
         "<p>&nbsp;</p>",
         "<!-- start of code -->",
-        "<table border = \"1\"><tr><td><code>",
+        "<table summary=\"TODO\" border = \"1\"><tr><td><code>",
         "N = the phylogeny = (1,(1,1,2))<br/>",
         "t = theta = 10<br/>",
         "p(N,t) = probability = SUM(c_i * p_i)<br/>",
@@ -7403,7 +7422,7 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<h3>#10: (1,(1,1,1,1,1))</h3>",
         "<p>&nbsp;</p>",
         "<!-- start of code -->",
-        "<table border = \"1\"><tr><td><code>",
+        "<table summary=\"TODO\" border = \"1\"><tr><td><code>",
         "N = the phylogeny = (1,(1,1,1,1,1))<br/>",
         "t = theta = 10<br/>",
         "p(N,t) = probability = SUM(c_i * p_i)<br/>",
@@ -7613,13 +7632,13 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<p>The relationship found (which is dependent on the computer used) between complexity and execution time is:</p>",
         "<p>&nbsp;</p>",
         "<!-- start of code -->",
-        "<table border = \"1\"><tr><td><code>",
+        "<table summary=\"TODO\" border = \"1\"><tr><td><code>",
         "T = 1.0543*C - 4.5147<br/>",
         "</code></td></tr></table>",
         "<!-- end of code -->",
         "<p>&nbsp;</p>",
         "<!-- start of code -->",
-        "<table border = \"1\"><tr><td><code>",
+        "<table summary=\"TODO\" border = \"1\"><tr><td><code>",
         "T = LOG10(time(sec))<br/>",
         "C = LOG10(complexity)<br/>",
         "</code></td></tr></table>",
@@ -7649,13 +7668,13 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<p>The relationship found (which is independent on the computer used) between complexity and memory use is:</p>",
         "<p>&nbsp;</p>",
         "<!-- start of code -->",
-        "<table border = \"1\"><tr><td><code>",
+        "<table summary=\"TODO\" border = \"1\"><tr><td><code>",
         "M = 1.0387*C + 0.6278",
         "</code></td></tr></table>",
         "<!-- end of code -->",
         "<p>&nbsp;</p>",
         "<!-- start of code -->",
-        "<table border = \"1\"><tr><td><code>",
+        "<table summary=\"TODO\" border = \"1\"><tr><td><code>",
         "M = LOG10(memory use(byte))<br/>",
         "C = LOG10(complexity)<br/>",
         "</code></td></tr></table>",
@@ -7898,7 +7917,7 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<p>&nbsp;</p>",
         "<p>The <a href=\"Projects.htm\">project</a> results of <a href=\"ProjectTwoDigitNewick.htm\">Project TwoDigitNewick</a> show that the probabilities of this and previous project match.</p>",
         "<p>&nbsp;</p>",
-        "<table border=\"1\">",
+        "<table summary=\"TODO\" border=\"1\">",
         "  <tr><th>Test name</th> <th>Probability</th> <th>Time (sec)</th> <th>Phylogeny</th> <th>Theta</th> <th>Complexity</th></tr>",
         "  <tr><td>TestProjectRampal_Endversion2</td> <td>1.82639e-308</td> <td>252</td> <td>((90,1000),100)</td> <td>10</td> <td>27000000</td></tr>",
         "  <tr><td>TestTwoDigitNewickRelease</td> <td>1.82639e-308</td> <td>964</td> <td>((90,1000),100)</td> <td>10</td> <td>27000000</td></tr>",
@@ -8171,7 +8190,7 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<p><a href=\"ProjectTwoDigitNewick.htm\">Project TwoDigitNewick</a> its <a href=\"Projects.htm\">project</a> results show that the newer version between one and two",
         "orders of magnitude faster.</p>",
         "<p>&nbsp;</p>",
-        "<table border=\"1\">",
+        "<table summary=\"TODO\" border=\"1\">",
         "  <tr><td>Light</td> <td></td> <td></td> <td>Speed_improvement</td></tr>",
         "  <tr><td>TestProjectRampal_Endversion2</td> <td>((2,2),2)</td> <td>0</td> <td>-</td></tr>",
         "  <tr><td>TestTwoDigitNewickRelease</td> <td>((2,2),2)</td> <td>0</td> <td>-</td></tr>",
@@ -8358,7 +8377,7 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "  <tr><td>TestTwoDigitNewickRelease</td> <td>((1,(1,((((((1,1),(1,(1,((1,2),1)))),1),((((1,((1,((2,1),(33,5))),((1,(2,1)),1))),1),(2,6)),1)),1),1))),(1,1))</td> <td>22</td> <td>344,7727272727</td></tr>",
         "  <tr><td>TestProjectRampal_Endversion2</td> <td>((1,(1,(((((2,(1,((1,1),((1,1),1)))),1),((((1,((1,(1,(38,4))),((2,3),(1,3)))),1),(1,3)),(1,1))),1),1))),1)</td> <td>16742</td> <td>-</td></tr>",
         "  <tr><td>TestTwoDigitNewickRelease</td> <td>((1,(1,(((((2,(1,((1,1),((1,1),1)))),1),((((1,((1,(1,(38,4))),((2,3),(1,3)))),1),(1,3)),(1,1))),1),1))),1)</td> <td>26</td> <td>643,9230769231</td></tr>",
-        "  <tr><td>Average_speed_improvement</td> <td></td> <td></td> <td>176,2204639336</td></tr><p>&nbsp;</p>",
+        "  <tr><td>Average_speed_improvement</td> <td></td> <td></td> <td>176,2204639336</td></tr>",
         "</table>"
       }
     }
@@ -8851,9 +8870,9 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "it is a better tool in all aspects.</p>",
         "<p>&nbsp;</p>",
         "<ul>",
-        "  <li><a href=\"ToolEncrypterScreenshot.png\">View a screenshot of the Encrypter GUI shell</a></p>",
-        "  <li><a href=\"ToolEncrypterSource.rar\">Download the Encrypter source code</a></p>",
-        "  <li><a href=\"ToolEncrypterExe.rar\">Download the Encrypter Windows executables</a></p>",
+        "  <li><a href=\"ToolEncrypterScreenshot.png\">View a screenshot of the Encrypter GUI shell</a></li>",
+        "  <li><a href=\"ToolEncrypterSource.rar\">Download the Encrypter source code</a></li>",
+        "  <li><a href=\"ToolEncrypterExe.rar\">Download the Encrypter Windows executables</a></li>",
         "</ul>"
       }
     }
@@ -8983,7 +9002,7 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<p>The function of a one-dimensional Gabor filter is:</p>",
         "<p>&nbsp;</p>",
         "<!-- start of code -->",
-        "<table border = \"1\"><tr><td><code>",
+        "<table summary=\"TODO\" border = \"1\"><tr><td><code>",
         "f_Gabor(x) = cos(frequency*x) * exp(-(x*x)/(sigma*sigma))<br/>",
         "</code></td></tr></table>",
         "<!-- end of the code -->",
@@ -8991,7 +9010,7 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<p>In the range [-5,5] a nice combination of values is frequency = 4.0 and sigma = 2.0:</p>",
         "<p>&nbsp;</p>",
         "<!-- start of code -->",
-        "<table border = \"1\"><tr><td><code>",
+        "<table summary=\"TODO\" border = \"1\"><tr><td><code>",
         "f_Gabor = cos(4.0*x) * exp(-(x*x)/(2.0*2.0))",
         "</code></td></tr></table>",
         "<!-- end of the code -->",
@@ -9024,7 +9043,7 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<p><a href=\"http://en.wikipedia.org/wiki/Gaussian_function\">A Gaussian function</a> has the form</p>",
         "<p>&nbsp;</p>",
         "<!-- start of code -->",
-        "<table border = \"1\"><tr><td><code>",
+        "<table summary=\"TODO\" border = \"1\"><tr><td><code>",
         "F_Gauss(x) <br/>",
         "&nbsp;&nbsp;= a * exp(-((x-b)*(x-b))/(2*c*c))<br/>",
         "</code></td></tr></table>",
@@ -9033,7 +9052,7 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<p><a href=\"http://en.wikipedia.org/wiki/Gaussian_function\">The Gaussian function</a> used in the one-dimensional Gabor filter has</p>",
         "<p>&nbsp;</p>",
         "<!-- start of code -->",
-        "<table border = \"1\"><tr><td><code>",
+        "<table summary=\"TODO\" border = \"1\"><tr><td><code>",
         "a = 1<br/>",
         "b = 0 <br/>",
         "c = sigma <br/>",
@@ -9043,7 +9062,7 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<p>which results in</p>",
         "<p>&nbsp;</p>",
         "<!-- start of code -->",
-        "<table border = \"1\"><tr><td><code>",
+        "<table summary=\"TODO\" border = \"1\"><tr><td><code>",
         "f_Gabor_part2<br/>",
         "&nbsp;&nbsp;= 1.0 * exp(-((x-0.0) * (x-0.0))/(2.0 * sigma * sigma))<br/>",
         "&nbsp;&nbsp;= exp(-(x * x)/(2.0 * sigma * sigma))<br/>",
@@ -9065,7 +9084,7 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<p>A <a href=\"http://en.wikipedia.org/wiki/Gaussian_function\">Gaussian function</a> has the form</p>",
         "<p>&nbsp;</p>",
         "<!-- start of code -->",
-        "<table border = \"1\"><tr><td><code>",
+        "<table summary=\"TODO\" border = \"1\"><tr><td><code>",
         "f_Gauss(x)<br/>",
         "&nbsp;&nbsp;= a * exp(-((x-b)*(x-b))/(2*c*c))<br/>",
         "</code></td></tr></table>",
@@ -9074,7 +9093,7 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<p>and has the <a href=\"http://en.wikipedia.org/wiki/Integral_of_a_Gaussian_function\">Gaussian integral</a> of</p>",
         "<p>&nbsp;</p>",
         "<!-- start of code -->",
-        "<table border = \"1\"><tr><td><code>",
+        "<table summary=\"TODO\" border = \"1\"><tr><td><code>",
         "F_Gauss(x) = a * c * sqrt(pi)",
         "</code></td></tr></table>",
         "<!-- end of the code -->",
@@ -9082,7 +9101,7 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<p>Because in the Gabor filter</p>",
         "<p>&nbsp;</p>",
         "<!-- start of code -->",
-        "<table border = \"1\"><tr><td><code>",
+        "<table summary=\"TODO\" border = \"1\"><tr><td><code>",
         "a = 1<br/>",
         "b = 0 <br/>",
         "c = sigma<br/>",
@@ -9092,7 +9111,7 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<p>the integral becomes</p>",
         "<p>&nbsp;</p>",
         "<!-- start of code -->",
-        "<table border = \"1\"><tr><td><code>",
+        "<table summary=\"TODO\" border = \"1\"><tr><td><code>",
         "F_Gabor_part2(x) <br/>",
         "&nbsp;&nbsp;= 1 * sigma * sqrt(pi)<br/>",
         "&nbsp;&nbsp;= sigma * sqrt(pi)<br/>",
@@ -9110,7 +9129,7 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<p>The function of a two-dimensional Gabor filter is:</p>",
         "<p>&nbsp;</p>",
         "<!-- start of code -->",
-        "<table border = \"1\"><tr><td><code>",
+        "<table summary=\"TODO\" border = \"1\"><tr><td><code>",
         "f_Gabor(x)<br/>",
         "&nbsp;&nbsp;= cos(frequency*x)<br/>",
         "&nbsp;&nbsp;* exp(-(x*x)/(sigma*sigma))<br/>",
@@ -9120,7 +9139,7 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<p>In the range [-5,5] a nice combination of values is frequency = 4.0 and sigma = 1.5:</p>",
         "<p>&nbsp;</p>",
         "<!-- start of code -->",
-        "<table border = \"1\"><tr><td><code>",
+        "<table summary=\"TODO\" border = \"1\"><tr><td><code>",
         "F_Gabor<br/>",
         "&nbsp;&nbsp;= cos(4*x) * exp(-(x*x)/(1.5*1.5)) * (1 / (1.5 * sqrt(3.14159265)))<br/>",
         "</code></td></tr></table>",
@@ -9154,7 +9173,7 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<p><a href=\"http://en.wikipedia.org/wiki/Gaussian_function\">A Gaussian function</a> has the form</p>",
         "<p>&nbsp;</p>",
         "<!-- start of code -->",
-        "<table border = \"1\"><tr><td><code>",
+        "<table summary=\"TODO\" border = \"1\"><tr><td><code>",
         "F_Gauss(x,y)<br/>",
         "&nbsp;&nbsp;= a * exp(- <br/>",
         "&nbsp;&nbsp;( ( (x-mid_x)*(x-mid_x))/(2*sigma_x * sigma_x) ) <br/>",
@@ -9165,7 +9184,7 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<p><a href=\"http://en.wikipedia.org/wiki/Gaussian_function\">The Gaussian function</a> used in the two-dimensional Gabor filter has</p>",
         "<p>&nbsp;</p>",
         "<!-- start of code -->",
-        "<table border = \"1\"><tr><td><code>",
+        "<table summary=\"TODO\" border = \"1\"><tr><td><code>",
         "a = 1<br/>",
         "sigma_x = sigma_y = sigma <br/>",
         "mid_x = midy = 0<br/>",
@@ -9175,7 +9194,7 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<p>which results in</p>",
         "<p>&nbsp;</p>",
         "<!-- start of code -->",
-        "<table border = \"1\"><tr><td><code>",
+        "<table summary=\"TODO\" border = \"1\"><tr><td><code>",
         "F_Gabor_part2(x,y) <br/>",
         "&nbsp;&nbsp;= exp(- <br/>",
         "&nbsp;&nbsp;( ( (x*x)/(2 * sigma * sigma) ) <br/>",
@@ -9215,7 +9234,7 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<p>The <a href=\"http://en.wikipedia.org/wiki/Gaussian_function\">Gaussian function</a> part (part 2, as described above) of a Gabor filter, has the following formula:</p>",
         "<p>&nbsp;</p>",
         "<!-- start of code -->",
-        "<table border = \"1\"><tr><td><code>",
+        "<table summary=\"TODO\" border = \"1\"><tr><td><code>",
         "f_Gabor_part2(x) = exp(-(x * x)/(2.0 * sigma * sigma))<br/>",
         "</code></td></tr></table>",
         "<!-- end of the code -->",
@@ -9223,7 +9242,7 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<p>Assume a filter size and halve it to obtain s (s is like a radius), then</p>",
         "<p>&nbsp;</p>",
         "<!-- start of code -->",
-        "<table border = \"1\"><tr><td><code>",
+        "<table summary=\"TODO\" border = \"1\"><tr><td><code>",
         "x = s<br/>",
         "f_Gabor_part2(x = s) <br/>",
         "&nbsp;&nbsp;= exp(-(s * s)/(2.0 * sigma * sigma))<br/>",
@@ -9240,7 +9259,7 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<p>Which, by approximation is:</p>",
         "<p>&nbsp;</p>",
         "<!-- start of code -->",
-        "<table border = \"1\"><tr><td><code>",
+        "<table summary=\"TODO\" border = \"1\"><tr><td><code>",
         "sigma = sqrt(-(s * s) / -12.46882145143674291132554261896)<br/>",
         "sigma = sqrt( (s * s) /  12.46882145143674291132554261896)<br/>",
         "</code></td></tr></table>",
@@ -9377,7 +9396,7 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<p>Supply the program with a text file like shown below (note that the first line is obligatory):</p>",
         "<p>&nbsp;</p>",
         "<!-- start of code -->",
-        "<table border = \"1\"><tr><td><code>",
+        "<table summary=\"TODO\" border = \"1\"><tr><td><code>",
         "Hometrainer (C) 2009 Richel Bilderbeek<br/>",
         "Humanbody.bmp,Which line points to the liver?,1,2,3,4<br/>",
         "Humanbody.bmp,Which line points to the liver?,1/one/One<br/>",
@@ -9535,7 +9554,7 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<p>Supply the program with a text file like shown below (note that the first line is obligatory):</p>",
         "<p>&nbsp;</p>",
         "<!-- start of code -->",
-        "<table border = \"1\"><tr><td><code>",
+        "<table summary=\"TODO\" border = \"1\"><tr><td><code>",
         "Hometrainer (C) 2009 Richel Bilderbeek<br/>",
         "Humanbody.bmp,Which line points to the liver?,1,2,3,4<br/>",
         "Humanbody.bmp,Which line points to the liver?,1/one/One<br/>",
@@ -10035,8 +10054,8 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<p>&nbsp;</p>",
         "<ul>",
         "  <li><a href=\"ToolPaperRockScissorsScreenshot.png\">View a screenshot of 'ToolPaperRockScissors' (png)</a></li>",
-        "  <li><a href=\"ToolPaperRockScissorsExe.zip\">Download the Windows executable of 'ToolPaperRockScissors' (zip)</a>.</p>",
-        "  <li><a href=\"ToolPaperRockScissorsSource.zip\">Download the 'ToolPaperRockScissors' source code (zip)</a>.</p>",
+        "  <li><a href=\"ToolPaperRockScissorsExe.zip\">Download the Windows executable of 'ToolPaperRockScissors' (zip)</a></li>",
+        "  <li><a href=\"ToolPaperRockScissorsSource.zip\">Download the 'ToolPaperRockScissors' source code (zip)</a>.</li>",
         "</ul>",
       }
     }
@@ -10281,7 +10300,7 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
     { "ToolRefrigeratorPuzzleSolver",
       {
         "<!-- start of code -->",
-        "<table border = \"1\"><tr><td><code>",
+        "<table summary=\"TODO\" border = \"1\"><tr><td><code>",
         "This type of puzzle is also called a monkey puzzle [1].<br/>",
         "</code></td></tr></table>",
         "<!-- end of the code -->",
@@ -10460,7 +10479,7 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
     { "ToolSimBrainiac",
       {
         "<!-- start of code -->",
-        "<table border = \"1\"><tr><td><code>",
+        "<table summary=\"TODO\" border = \"1\"><tr><td><code>",
         "This computerprogram has nothing to do with the TV-program 'Brainiac'<br/>",
         "</code></td></tr></table>",
         "<!-- end of the code -->",
@@ -10695,25 +10714,25 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "  <li><a href=\"ToolStateObserverExe_1_0.zip\">Download the 'StateObserver' Windows executable (version 1.0)(zip)</a></li>",
         "  <li><a href=\"ToolStateObserverSource_1_0.zip\">Download the 'StateObserver' source code (version 1.0)(zip)</a></li>",
         "</ul>",
-        "<p>&nbsp;</p>",
-        "      <math xmlns=\"http://www.w3.org/1998/Math/MathML\">",
-        "        <mrow>",
-        "          <mi>a</mi>",
-        "          <mo>&#x2062;<!-- &InvisibleTimes; --></mo>",
-        "          <msup>",
-        "            <mi>x</mi>",
-        "            <mn>2</mn>",
-        "          </msup>",
-        "          <mo>+</mo>",
-        "          <mi>b</mi>",
-        "          <mo>&#x2062;<!-- &InvisibleTimes; --></mo>",
-        "          <mi>x</mi>",
-        "          <mo>+</mo>",
-        "          <mi>c</mi>",
-        "          <mo>=</mo>",
-        "          <mi>0</mi>",
-        "        </mrow>",
-        "      </math>",
+        "<p>&nbsp;</p>"
+        //"      <math xmlns=\"http://www.w3.org/1998/Math/MathML\">",
+        //"        <mrow>",
+        //"          <mi>a</mi>",
+        //"          <mo>&#x2062;<!-- &InvisibleTimes; --></mo>",
+        //"          <msup>",
+        //"            <mi>x</mi>",
+        //"            <mn>2</mn>",
+        //"          </msup>",
+        //"          <mo>+</mo>",
+        //"          <mi>b</mi>",
+        //"          <mo>&#x2062;<!-- &InvisibleTimes; --></mo>",
+        //"          <mi>x</mi>",
+        //"          <mo>+</mo>",
+        //"          <mi>c</mi>",
+        //"          <mo>=</mo>",
+        //"          <mi>0</mi>",
+        //"        </mrow>",
+        //"      </math>"
       }
     }
   );
@@ -11089,6 +11108,7 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<ul>",
         "  <li><a href=\"ToolTestMultiVectorSource_2_0.zip\">Download the 'TestMultiVector' source code (version 2.0)(zip)</a></li>",
         "</ul>",
+        "-->"
       }
     }
   );
@@ -11122,6 +11142,7 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "  <li><a href=\"ToolTestNdsmake_1_1.png\">View a screenshot of 'TestNdsmake' (v.1.1)(png)</a></li>",
         "  <li><a href=\"ToolTestNdsmake_1_0.png\">View a screenshot of 'TestNdsmake' (v.1.0)(png)</a></li>",
         "</ul>",
+        "-->"
       }
     }
   );
@@ -11319,7 +11340,6 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
       {
         "<p><a href=\"ToolTestSelectFileDialog.htm\">TestSelectFileDialog</a> is a <a href=\"Tools.htm\">tool</a> to test ",
         "the <a href=\"CppWtSelectFileDialog.htm\">WtSelectFileDialog</a> <a href=\"CppClass.htm\">class</a>.</p>",
-        "</ul>",
         "<p>&nbsp;</p>",
         "<p>&nbsp;</p>",
         "<p>&nbsp;</p>",
@@ -11445,6 +11465,7 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<h2>Older downloads</h2>",
         "<p>&nbsp;</p>",
         "<ul>",
+        "  <li>...</li>",
         "</ul>",
       }
     }
@@ -11498,7 +11519,7 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "  <li><a href=\"ToolTestTimedServerPusher_1_0.png\">View a screenshot of 'TestTimedServerPusher' (version 1.0)(png)</a></li>",
         "  <li><a href=\"ToolTestTimedServerPusherSource_1_0.zip\">Download the 'TestTimedServerPusher' source code (version 1.2)(zip)</a></li>",
         "  <li><a href=\"ToolTestTimedServerPusherSource_1_0.htm\">View the 'TestTimedServerPusher' source code as web page (version 1.1)(htm)</a></li>",
-        "</ul>",
+        "</ul>"
       }
     }
   );
@@ -11528,7 +11549,7 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<p>&nbsp;</p>",
         "<ul>",
         "  <li><img src=\"PicUbuntu.png\" alt=\"Ubuntu\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/> Download the 'TestToggleButton' source code (version 1.0)(zip)(lost)</li>",
-        "</ul>",
+        "</ul>"
       }
     }
   );
@@ -11569,7 +11590,7 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "  <li><a href=\"ToolTestTwoDigitNewick_0_3.png\">View a 'TestTwoDigitNewick' screenshot (version 0.3)(png)</a></li>",
         "  <li><a href=\"ToolTestTwoDigitNewick_0_2.png\">View a 'TestTwoDigitNewick' screenshot (version 0.2)(png)</a></li>",
         "  <li><a href=\"ToolTestTwoDigitNewick_0_1.png\">View a 'TestTwoDigitNewick' screenshot (version 0.1)(png)</a></li>",
-        "</ul>",
+        "</ul>"
       }
     }
   );
@@ -11590,7 +11611,7 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "  <li><a href=\"ToolThresholdFilterer_1_0.png\">View a screenshot of 'ThresholdFilterer' (version 1.0)(png)</a></li>",
         "  <li><a href=\"ToolThresholdFiltererExe_1_0.zip\">Download the 'ThresholdFilterer' Windows executable (version 1.0)(zip)</a></li>",
         "  <li><a href=\"ToolThresholdFiltererSource_1_0.zip\">Download the 'ThresholdFilterer' source code (version 1.0)(zip)</a></li>",
-        "</ul>",
+        "</ul>"
       }
     }
   );
@@ -11633,7 +11654,7 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "  <li>V 0.1: 2010-08-16: initial neural network class passed the tests</li>",
         "  <li>V 0.2: 2010-08-16: neural networks are rated on playing tic-tac-toe, added minimal GUI, improved the neural network class</li>",
         "  <li>V 0.3: 2010-08-16: small GUI improvements, added conditional NDEBUG</li>",
-        "</ul>",
+        "</ul>"
       }
     }
   );
@@ -11667,7 +11688,7 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "  <li><a href=\"ToolTicTacToeValuer_0_4.png\">View a screenshot of 'TicTacToeValuer' (version 0.4)(png)</a></li>",
         "  <li><a href=\"ToolTicTacToeValuer_0_3.png\">View a screenshot of 'TicTacToeValuer' (version 0.3)(png)</a></li>",
         "  <li><a href=\"ToolTicTacToeValuer_0_2.png\">View a screenshot of 'TicTacToeValuer' (version 0.2)(png)</a></li>",
-        "</ul>",
+        "</ul>"
       }
     }
   );
@@ -11699,7 +11720,7 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "  <li><a href=\"ToolTimePoll_1_0.png\">View a screenshot of 'TimePoll' (version 1.0)(png)</a></li>",
         "  <li><a href=\"ToolTimePoll_0_2.png\">View a screenshot of 'TimePoll' (version 0.2)(png)</a></li>",
         "  <li><a href=\"ToolTimePoll_0_1.png\">View a screenshot of 'TimePoll' (version 0.1)(png)</a></li>",
-        "</ul>",
+        "</ul>"
       }
     }
   );
@@ -11730,7 +11751,7 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<ul>",
         "  <li><a href=\"https://one.ubuntu.com/dashboard\">UbuntuOne homepage</a></li>",
         "  <li><a href=\"http://en.wikipedia.org/wiki/Ubuntu_One\">Wikipedia page about UbuntuOne</a></li>",
-        "</ul>",
+        "</ul>"
       }
     }
   );
@@ -11751,7 +11772,7 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "  <li><a href=\"ToolVisualAbc_1_0.png\">View a screenshot of 'Visual ABC' (version 1.0)(png)</a></li>",
         "  <li><a href=\"ToolVisualAbcSource_1_0.zip\">Download the 'Visual ABC' source code (version 1.0)(zip)</a></li>",
         "  <li><a href=\"ToolVisualAbcSource_1_0.htm\">View the 'Visual ABC' source code as web page (version 1.0)(htm)</a></li>",
-        "</ul>",
+        "</ul>"
       }
     }
   );
@@ -11783,7 +11804,7 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<h2>Core code</h2>",
         "<p>&nbsp;</p>",
         "<!-- start of code -->",
-        "<table border = \"1\"><tr><td><code>",
+        "<table summary=\"TODO\" border = \"1\"><tr><td><code>",
         "<a href=\"CppComment.htm\">//</a><a href=\"CppVector.htm\">std::vector</a>&lt;<a href=\"CppShared_ptr.htm\">boost::shared_ptr</a>&lt;TFormImage&gt; &gt; m_v<br/>",
         "<a href=\"CppComment.htm\">//</a>TFormImage has one member, a <a href=\"CppTImage.htm\">TImage</a> called Image<br/>",
         "&nbsp;<br/>",
@@ -11888,14 +11909,34 @@ void c2h::Info::Test()
     const auto& m = t.m_page_info;
     for (auto p: m)
     {
+      std::vector<std::string> v;
+
+      //Add header
+      {
+        Header header(PageType::cpp,"");
+        const std::vector<std::string> w = header.ToHtml();
+        std::copy(w.begin(),w.end(),std::back_inserter(v));
+      }
+      //Text about this page (if known)
+      {
+        const std::vector<std::string> w = p.second;
+        std::copy(w.begin(),w.end(),std::back_inserter(v));
+      }
+      //Add footer
+      {
+        Footer footer(PageType::cpp);
+        const std::vector<std::string> w = footer.ToHtml();
+        std::copy(w.begin(),w.end(),std::back_inserter(v));
+      }
+
       assert(IsTidyInstalled());
-      if(!IsCleanHtml(p.second))
+      if(!IsCleanHtml(v))
       {
         TRACE("ERROR: invalid HTML in the following c2h::info page");
         TRACE(p.first);
         TRACE("SOLUTION: Clean HTML in c2h::Info::CreatePageInfo");
       }
-      assert(IsCleanHtml(p.second));
+      assert(IsCleanHtml(v));
     }
     #endif
     assert(!t.ToHtml("").empty());
