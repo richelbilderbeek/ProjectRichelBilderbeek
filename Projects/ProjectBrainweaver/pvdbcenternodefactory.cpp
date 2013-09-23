@@ -1,7 +1,12 @@
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include "pvdbcenternodefactory.h"
 #include "pvdbcenternode.h"
 #include "pvdbconcept.h"
 #include "pvdbconceptfactory.h"
+#pragma GCC diagnostic pop
 
 const boost::shared_ptr<ribi::pvdb::CenterNode> ribi::pvdb::CenterNodeFactory::Create(
   const boost::shared_ptr<ribi::pvdb::Concept>& concept,

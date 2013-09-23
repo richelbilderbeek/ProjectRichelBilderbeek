@@ -1,7 +1,10 @@
 #ifndef QTPVDBCONCEPTMAPDISPLAYWIDGET_H
 #define QTPVDBCONCEPTMAPDISPLAYWIDGET_H
 
-
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include <boost/shared_ptr.hpp>
 
 #include "qtpvdbconceptmapwidget.h"
@@ -10,9 +13,9 @@
 
 #include "pvdbnode.h"
 #include "pvdbedge.h"
+#pragma GCC diagnostic pop
 
 namespace ribi {
-
 namespace pvdb {
 
 ///QtPvdbConceptMapWidget for creation and editing of a ConceptMap
@@ -56,7 +59,6 @@ private:
 };
 
 } //~namespace pvdb
-
 } //~namespace ribi
 
 #endif // QTPVDBCONCEPTMAPDISPLAYWIDGET_H

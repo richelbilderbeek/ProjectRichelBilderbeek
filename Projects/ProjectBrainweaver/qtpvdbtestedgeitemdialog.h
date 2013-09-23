@@ -1,15 +1,19 @@
 #ifndef QTPVDBTESTEDGEITEMDIALOG_H
 #define QTPVDBTESTEDGEITEMDIALOG_H
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include <boost/shared_ptr.hpp>
 #include "qthideandshowdialog.h"
 
 #include "pvdbfwd.h"
+#pragma GCC diagnostic pop
 
 namespace Ui { class QtPvdbTestEdgeItemDialog; }
 
 namespace ribi {
-
 namespace pvdb {
 
 ///Tests all QtPvdbConceptItem items when being a member of a QtPvdbNodeItem,

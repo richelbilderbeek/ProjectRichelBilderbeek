@@ -2,12 +2,16 @@
 #define PVDBCENTERNODEFACTORY_H
 
 #include <string>
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include <boost/shared_ptr.hpp>
 #include "pvdbfwd.h"
 #include "pvdbcompetency.h"
+#pragma GCC diagnostic pop
 
 namespace ribi {
-
 namespace pvdb {
 
 struct CenterNodeFactory
@@ -30,7 +34,6 @@ struct CenterNodeFactory
 };
 
 } //~namespace pvdb
-
 } //~namespace ribi
 
 #endif // PVDBCENTERNODEFACTORY_H

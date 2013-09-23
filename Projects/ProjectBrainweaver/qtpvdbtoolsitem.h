@@ -4,6 +4,10 @@
 #include <string>
 #include <vector>
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include <QBrush>
 #include <QGraphicsPixmapItem>
 
@@ -13,9 +17,9 @@
 #include "pvdbnode.h"
 
 #include "pvdbfwd.h"
+#pragma GCC diagnostic pop
 
 namespace ribi {
-
 namespace pvdb {
 
 ///Tools item is a class that is displayed above a selected node or edge
@@ -60,7 +64,6 @@ struct QtPvdbToolsItem : public QGraphicsPixmapItem
 };
 
 } //~namespace pvdb
-
 } //~namespace ribi
 
 #endif // QTPVDBTOOLSITEM_H

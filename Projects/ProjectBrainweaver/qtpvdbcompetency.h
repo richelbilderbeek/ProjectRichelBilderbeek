@@ -2,14 +2,18 @@
 #define QTPVDBCOMPETENCY_H
 
 #include <map>
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include <QColor>
 #include <QIcon>
 #include "pvdbcompetency.h"
 
 #include "pvdbfwd.h"
+#pragma GCC diagnostic pop
 
 namespace ribi {
-
 namespace pvdb {
 
 ///Class to convert pvdb::Competency to QColor and vice versa
@@ -47,7 +51,6 @@ struct QtCompetency
 };
 
 } //~namespace pvdb
-
 } //~namespace ribi
 
 #endif // QTPVDBCOMPETENCY_H

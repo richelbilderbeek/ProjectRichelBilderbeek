@@ -5,9 +5,14 @@
 #include <vector>
 #include <string>
 #include <vector>
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include <boost/array.hpp>
 #include <boost/numeric/conversion/cast.hpp>
 #include <boost/shared_ptr.hpp>
+#pragma GCC diagnostic pop
 
 struct QRegExp;
 
@@ -109,6 +114,13 @@ const std::string StripXmlTag(const std::string& s);
 ///Test the helper functions
 void TestHelperFunctions();
 #endif
+
+///Undo a Wordwrap
+const std::string Unwordwrap(const std::vector<std::string>& v) noexcept;
+
+///Wordwrap the text to obtain lines of max_len characters
+///If the string _must_ be seperable by spaces; a word can have a maximum length of max_len
+const std::vector<std::string> Wordwrap(const std::string& s, const std::size_t max_len) noexcept;
 
 ///Pretty-print an XML std::string by indenting its elements
 //From http://www.richelbilderbeek.nl/CppXmlToPretty.htm

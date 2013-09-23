@@ -4,15 +4,16 @@
 
 #include <map>
 
-#include <boost/shared_ptr.hpp>
-
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
+#include <boost/shared_ptr.hpp>
+
 #include <QTreeWidget>
 
 #include "pvdbcompetency.h"
 #include "pvdbcluster.h"
-
 #include "pvdbfwd.h"
 #pragma GCC diagnostic pop
 

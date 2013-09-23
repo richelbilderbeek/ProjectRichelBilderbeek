@@ -1,12 +1,16 @@
 #ifndef QTPVDBABOUTDIALOG_H
 #define QTPVDBABOUTDIALOG_H
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include <boost/shared_ptr.hpp>
 
 #include "qtaboutdialog.h"
+#pragma GCC diagnostic pop
 
 namespace ribi {
-
 namespace pvdb {
 
 struct QtPvdbAboutDialog
@@ -16,7 +20,6 @@ struct QtPvdbAboutDialog
 };
 
 } //~namespace pvdb
-
 } //~namespace ribi
 
 #endif // QTPVDBABOUTDIALOG_H
