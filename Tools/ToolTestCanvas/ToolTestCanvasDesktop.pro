@@ -26,8 +26,8 @@ SOURCES += \
     ../../Classes/CppQtHideAndShowDialog/qthideandshowdialog.cpp \
     qtmain.cpp \
     qttooltestcanvasmaindialog.cpp \
-    tooltestcanvasmenudialog.cpp \
-    qttooltestcanvasmenudialog.cpp
+    qttooltestcanvasmenudialog.cpp \
+    tooltestcanvasmenudialog.cpp
 
 HEADERS += \
     ../../Classes/CppAbout/about.h \
@@ -49,8 +49,8 @@ OTHER_FILES += \
     ../../Classes/CppCanvas/Licence.txt \
     Licence.txt
 
-#RESOURCES += \
-#    ToolTestCanvas.qrc
+RESOURCES += \
+    ToolTestCanvas.qrc
 
 #
 #
@@ -58,31 +58,11 @@ OTHER_FILES += \
 #
 #
 
-CONFIG(debug, debug|release) {
-  message(Debug mode)
-}
-
 CONFIG(release, debug|release) {
-  message(Release mode)
-
-  #Remove all asserts and TRACE
   DEFINES += NDEBUG NTRACE_BILDERBIKKEL
 }
 
-#
-#
-# Platform specific
-#
-#
-
-#
-#
-# Compiler flags
-#
-#
-QMAKE_CXXFLAGS += -std=c++11 -Wall -Wextra
-
-  QMAKE_CXXFLAGS += -Werror
+QMAKE_CXXFLAGS += -std=c++11 -Wall -Wextra -Weffc++
 
 unix {
   message(Unix)
@@ -95,25 +75,12 @@ unix {
 #
 #
 
-unix {
-  # Cannot link to the the non-header-only libraries when crosscompiling
-}
-
 win32 {
-
-  cross_compile {
-    message(Lubuntu to Windows: Boost: link)
-  }
-
-  !cross_compile {
-    message(Native Windows: Boost: include)
-    INCLUDEPATH += \
-      ../../Libraries/boost_1_54_0
-  }
-
-
-  # Cannot link to the the non-header-only libraries when crosscompiling
+  INCLUDEPATH += \
+    ../../Libraries/boost_1_54_0
 }
+
+
 
 #
 #
@@ -156,5 +123,3 @@ win32 {
   }
 }
 
-RESOURCES += \
-    ToolTestCanvas.qrc

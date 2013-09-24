@@ -7,12 +7,16 @@ namespace Ui {
   class QtToolTestCanvasMenuDialog;
 }
 
+namespace ribi {
+
 class QtToolTestCanvasMenuDialog : public QtHideAndShowDialog
 {
   Q_OBJECT
 
 public:
   explicit QtToolTestCanvasMenuDialog(QWidget *parent = 0);
+  QtToolTestCanvasMenuDialog(const QtToolTestCanvasMenuDialog&) = delete;
+  QtToolTestCanvasMenuDialog& operator=(const QtToolTestCanvasMenuDialog&) = delete;
   ~QtToolTestCanvasMenuDialog();
 
 protected:
@@ -30,5 +34,7 @@ private slots:
   static void Test();
   #endif
 };
+
+} //~namespace ribi
 
 #endif // QTTOOLTESTCANVASMENUDIALOG_H

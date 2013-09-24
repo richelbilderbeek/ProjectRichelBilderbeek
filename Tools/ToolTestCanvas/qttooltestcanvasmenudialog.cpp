@@ -1,7 +1,8 @@
-//#include own header file as first substantive line of code, from:
-// * John Lakos. Large-Scale C++ Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110
 #include "qttooltestcanvasmenudialog.h"
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <QDesktopWidget>
 #include <QKeyEvent>
 
@@ -11,8 +12,9 @@
 #include "qthideandshowdialog.h"
 #include "trace.h"
 #include "ui_qttooltestcanvasmenudialog.h"
+#pragma GCC diagnostic pop
 
-QtToolTestCanvasMenuDialog::QtToolTestCanvasMenuDialog(
+ribi::QtToolTestCanvasMenuDialog::QtToolTestCanvasMenuDialog(
   QWidget *parent)
   : QtHideAndShowDialog(parent),
     ui(new Ui::QtToolTestCanvasMenuDialog)
@@ -23,17 +25,17 @@ QtToolTestCanvasMenuDialog::QtToolTestCanvasMenuDialog(
   ui->setupUi(this);
 }
 
-QtToolTestCanvasMenuDialog::~QtToolTestCanvasMenuDialog()
+ribi::QtToolTestCanvasMenuDialog::~QtToolTestCanvasMenuDialog() noexcept
 {
   delete ui;
 }
 
-void QtToolTestCanvasMenuDialog::keyPressEvent(QKeyEvent * event)
+void ribi::QtToolTestCanvasMenuDialog::keyPressEvent(QKeyEvent * event)
 {
   if (event->key() == Qt::Key_Escape) { close(); return; }
 }
 
-void QtToolTestCanvasMenuDialog::on_button_about_clicked()
+void ribi::QtToolTestCanvasMenuDialog::on_button_about_clicked()
 {
   About a = ToolTestCanvasMenuDialog::GetAbout();
   a.AddLibrary("QtHideAndShowDialog version: " + QtHideAndShowDialog::GetVersion());
@@ -45,12 +47,12 @@ void QtToolTestCanvasMenuDialog::on_button_about_clicked()
   this->show();
 }
 
-void QtToolTestCanvasMenuDialog::on_button_quit_clicked()
+void ribi::QtToolTestCanvasMenuDialog::on_button_quit_clicked()
 {
   close();
 }
 
-void QtToolTestCanvasMenuDialog::on_button_start_clicked()
+void ribi::QtToolTestCanvasMenuDialog::on_button_start_clicked()
 {
   QtToolTestCanvasMainDialog d;
   d.setWindowIcon(this->windowIcon());
@@ -59,15 +61,15 @@ void QtToolTestCanvasMenuDialog::on_button_start_clicked()
 }
 
 #ifndef NDEBUG
-void QtToolTestCanvasMenuDialog::Test()
+void ribi::QtToolTestCanvasMenuDialog::Test()
 {
   {
     static bool is_tested = false;
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting QtToolTestCanvasMenuDialog::Test");
+  TRACE("Starting ribi::QtToolTestCanvasMenuDialog::Test");
   QtToolTestCanvasMainDialog();
-  TRACE("Finished QtToolTestCanvasMenuDialog::Test successfully");
+  TRACE("Finished ribi::QtToolTestCanvasMenuDialog::Test successfully");
 }
 #endif

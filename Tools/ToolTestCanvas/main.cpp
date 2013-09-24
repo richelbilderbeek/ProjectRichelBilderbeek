@@ -51,7 +51,7 @@ void ShowLicence()
       << std::endl
     << std::endl
     << std::string(79,'*') << std::endl
-    << "From http://www.richelbilderbeek.nl" << std::endl
+    << "From http://www.richelbilderbeek.nl/ToolTestCanvas.htm" << std::endl
     << std::string(79,'*') << std::endl;
 }
 
@@ -65,11 +65,11 @@ int main()
 
   for (int i=0; i!=4; ++i)
   {
-    const Canvas::ColorSystem color_system
-      = i % 2 ? Canvas::ColorSystem::normal : Canvas::ColorSystem::invert;
-    const Canvas::CoordinatSystem coordinat_system
-      = i / 2 ? Canvas::CoordinatSystem::graph : Canvas::CoordinatSystem::screen;
-    Canvas c( maxx, maxy, color_system, coordinat_system);
+    const ribi::Canvas::ColorSystem color_system
+      = i % 2 ? ribi::Canvas::ColorSystem::normal : ribi::Canvas::ColorSystem::invert;
+    const ribi::Canvas::CoordinatSystem coordinat_system
+      = i / 2 ? ribi::Canvas::CoordinatSystem::graph : ribi::Canvas::CoordinatSystem::screen;
+    ribi::Canvas c( maxx, maxy, color_system, coordinat_system);
 
     //Draw smiley to Canvas
 

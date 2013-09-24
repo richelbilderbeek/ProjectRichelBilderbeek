@@ -2,7 +2,6 @@ QT       += core gui
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 TEMPLATE = app
-QMAKE_CXXFLAGS += -std=c++11 -Wall -Wextra
 
 INCLUDEPATH += \
   ../../Classes/CppAbout \
@@ -10,6 +9,7 @@ INCLUDEPATH += \
   ../../Classes/CppDialWidget \
   ../../Classes/CppQtAboutDialog \
   ../../Classes/CppQtDialWidget \
+  ../../Classes/CppQtHideAndShowDialog \
   ../../Classes/CppRainbow \
   ../../Classes/CppRectangle \
   ../../Classes/CppTrace \
@@ -26,7 +26,8 @@ SOURCES += qtmain.cpp\
     ../../Classes/CppDialWidget/dialwidget.cpp \
     ../../Classes/CppWidget/widget.cpp \
     ../../Classes/CppRectangle/rectangle.cpp \
-    ../../Classes/CppRainbow/rainbow.cpp
+    ../../Classes/CppRainbow/rainbow.cpp \
+    ../../Classes/CppQtHideAndShowDialog/qthideandshowdialog.cpp
 
 HEADERS  += \
   ../../Classes/CppAbout/about.h \
@@ -39,7 +40,8 @@ HEADERS  += \
     ../../Classes/CppDialWidget/dialwidget.h \
     ../../Classes/CppWidget/widget.h \
     ../../Classes/CppRectangle/rectangle.h \
-    ../../Classes/CppRainbow/rainbow.h
+    ../../Classes/CppRainbow/rainbow.h \
+    ../../Classes/CppQtHideAndShowDialog/qthideandshowdialog.h
 
 FORMS += \
   ../../Classes/CppQtAboutDialog/qtaboutdialog.ui \
@@ -48,3 +50,33 @@ FORMS += \
 
 RESOURCES += \
     ToolTestDial.qrc
+
+#
+#
+# Type of compile
+#
+#
+
+CONFIG(release, debug|release) {
+  DEFINES += NDEBUG NTRACE_BILDERBIKKEL
+}
+
+QMAKE_CXXFLAGS += -std=c++11 -Wall -Wextra -Weffc++
+
+unix {
+  QMAKE_CXXFLAGS += -Werror
+}
+
+#
+#
+# Boost
+#
+#
+
+win32 {
+  INCLUDEPATH += \
+    ../../Libraries/boost_1_54_0
+}
+
+OTHER_FILES += \
+    ../../Classes/CppQtHideAndShowDialog/Licence.txt

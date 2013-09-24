@@ -3,10 +3,14 @@
 #include <cassert>
 #include <sstream>
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include "canvas.h"
 #include "ui_qttooltestcanvasmaindialog.h"
+#pragma GCC diagnostic pop
 
-QtToolTestCanvasMainDialog::QtToolTestCanvasMainDialog(QWidget *parent) :
+ribi::QtToolTestCanvasMainDialog::QtToolTestCanvasMainDialog(QWidget *parent) :
   QtHideAndShowDialog(parent),
   ui(new Ui::QtToolTestCanvasMainDialog)
 {
@@ -14,22 +18,22 @@ QtToolTestCanvasMainDialog::QtToolTestCanvasMainDialog(QWidget *parent) :
   ShowCanvas();
 }
 
-QtToolTestCanvasMainDialog::~QtToolTestCanvasMainDialog()
+ribi::QtToolTestCanvasMainDialog::~QtToolTestCanvasMainDialog() noexcept
 {
   delete ui;
 }
 
-void QtToolTestCanvasMainDialog::on_box_color_system_currentIndexChanged(int )
+void ribi::QtToolTestCanvasMainDialog::on_box_color_system_currentIndexChanged(int )
 {
   ShowCanvas();
 }
 
-void QtToolTestCanvasMainDialog::on_box_coordinat_system_currentIndexChanged(int )
+void ribi::QtToolTestCanvasMainDialog::on_box_coordinat_system_currentIndexChanged(int )
 {
   ShowCanvas();
 }
 
-void QtToolTestCanvasMainDialog::ShowCanvas()
+void ribi::QtToolTestCanvasMainDialog::ShowCanvas()
 {
   const int maxx = 79; //Console is 80 chars wide
   const int maxy = 23; //Console is 80 chars high

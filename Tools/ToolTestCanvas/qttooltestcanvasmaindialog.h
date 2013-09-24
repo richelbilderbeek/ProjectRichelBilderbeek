@@ -1,12 +1,13 @@
 #ifndef QTTOOLTESTCANVASMAINDIALOG_H
 #define QTTOOLTESTCANVASMAINDIALOG_H
 
-#include <boost/shared_ptr.hpp>
 #include "qthideandshowdialog.h"
 
 namespace Ui {
   class QtToolTestCanvasMainDialog;
 }
+
+namespace ribi {
 
 class QtToolTestCanvasMainDialog : public QtHideAndShowDialog
 {
@@ -14,7 +15,9 @@ class QtToolTestCanvasMainDialog : public QtHideAndShowDialog
   
 public:
   explicit QtToolTestCanvasMainDialog(QWidget *parent = 0);
-  ~QtToolTestCanvasMainDialog();
+  QtToolTestCanvasMainDialog(const QtToolTestCanvasMainDialog&) = delete;
+  QtToolTestCanvasMainDialog& operator=(const QtToolTestCanvasMainDialog&) = delete;
+  ~QtToolTestCanvasMainDialog() noexcept;
   
 private slots:
 
@@ -26,5 +29,7 @@ private:
   Ui::QtToolTestCanvasMainDialog *ui;
   void ShowCanvas();
 };
+
+} //~namespace ribi
 
 #endif // QTTOOLTESTCANVASMAINDIALOG_H
