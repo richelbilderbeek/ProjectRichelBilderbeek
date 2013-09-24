@@ -18,11 +18,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolGaborFilter.htm
 //---------------------------------------------------------------------------
-
-
 #include "toolgaborfiltermenudialog.h"
-
-#include "qtcreatorprofile.h"
 
 const ribi::About ribi::ToolGaborFilterMenuDialog::GetAbout() noexcept
 {
@@ -46,9 +42,8 @@ const std::string ribi::ToolGaborFilterMenuDialog::GetVersion() noexcept
 
 const std::vector<std::string> ribi::ToolGaborFilterMenuDialog::GetVersionHistory() noexcept
 {
-  std::vector<std::string> v;
-  v.push_back("2010-xx-xx: version 1.0: initial Windows-only version");
-  v.push_back("2012-07-07: version 2.0: port to Qt");
-  return v;
+  return {
+    "2010-xx-xx: version 1.0: initial Windows-only version",
+    "2012-07-07: version 2.0: port to Qt"
+  };
 }
-

@@ -31,6 +31,11 @@ struct CreateGlossaryMainDialog
   ///Create all glossaries
   CreateGlossaryMainDialog();
 
+  ///Returns the path of a filename
+  ///Needed by main.cpp of ToolCreateGlossaryConsole
+  ///From http://www.richelbilderbeek.nl/CppGetPath.htm
+  static const std::string GetPath(const std::string& filename);
+
   private:
   ///Create a glossary
   static void CreatePage(
@@ -47,9 +52,6 @@ struct CreateGlossaryMainDialog
     const std::string& folder,
     const std::string& regex_str);
 
-  ///Returns the path of a filename
-  ///From http://www.richelbilderbeek.nl/CppGetPath.htm
-  static const std::string GetPath(const std::string& filename);
 };
 
 } //~namespace ribi

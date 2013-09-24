@@ -81,3 +81,10 @@ win32 {
   INCLUDEPATH += \
     ../../Libraries/boost_1_54_0
 }
+
+unix {
+  LIBS += \
+    -lboost_filesystem \
+    -lboost_program_options \
+    -lboost_system
+}

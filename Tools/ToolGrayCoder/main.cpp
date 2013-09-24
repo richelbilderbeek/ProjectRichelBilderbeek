@@ -1,4 +1,7 @@
+#include <iostream>
+
 #pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/lexical_cast.hpp>
 
@@ -11,7 +14,7 @@ int main(int argc, char * argv[])
 {
   try
   {
-    GrayCoderMainDialog d;
+    ribi::GrayCoderMainDialog d;
     if (argc == 1) throw std::exception();
     const int i = boost::lexical_cast<int>(argv[1]);
     d.SetNormalInt(i);
@@ -35,12 +38,12 @@ int main(int argc, char * argv[])
       "\n";
   }
 
-  for (const std::string&s : GrayCoderMenuDialog().GetAbout().CreateAboutText())
+  for (const std::string&s : ribi::GrayCoderMenuDialog().GetAbout().CreateAboutText())
   {
     std::cout << s << '\n';
   }
   std::cout << '\n';
-  for (const std::string&s : GrayCoderMenuDialog().GetAbout().CreateLicenceText())
+  for (const std::string&s : ribi::GrayCoderMenuDialog().GetAbout().CreateLicenceText())
   {
     std::cout << s << '\n';
   }

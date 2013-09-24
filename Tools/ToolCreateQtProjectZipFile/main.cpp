@@ -18,22 +18,21 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolCreateQtProjectZipFile.htm
 //---------------------------------------------------------------------------
-#ifdef _WIN32
-//See http://www.richelbilderbeek.nl/CppCompileErrorSwprintfHasNotBeenDeclared.htm
-#undef __STRICT_ANSI__
-#endif
-
 #include <cassert>
 #include <fstream>
 #include <iostream>
 #include <iterator>
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/program_options.hpp>
 
 #include "createqtprojectzipfilemenudialog.h"
 #include "qtcreatorprofilezipscript.h"
 #include "qtcreatorprofile.h"
 #include "trace.h"
+#pragma GCC diagnostic pop
 
 int main(int argc, char* argv[])
 {
@@ -75,13 +74,13 @@ int main(int argc, char* argv[])
 
   if (m.count("about"))
   {
-    std::cout << CreateQtProjectZipFile::MenuDialog::GetAbout() << "\n";
+    std::cout << ribi::CreateQtProjectZipFile::MenuDialog::GetAbout() << "\n";
     return 0;
   }
 
   if (m.count("version"))
   {
-    std::cout << CreateQtProjectZipFile::MenuDialog::GetVersion() << "\n";
+    std::cout << ribi::CreateQtProjectZipFile::MenuDialog::GetVersion() << "\n";
     return 0;
   }
 
@@ -105,7 +104,7 @@ int main(int argc, char* argv[])
     return 0;
   }
 
-  const std::string script = QtCreatorProFileZipScript::CreateScript(source_folder);
+  const std::string script = ribi::QtCreatorProFileZipScript::CreateScript(source_folder);
 
   std::ofstream f(target_filename.c_str());
   f << script;

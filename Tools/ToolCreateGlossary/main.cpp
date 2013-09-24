@@ -19,15 +19,14 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //From http://www.richelbilderbeek.nl/ToolCreateGlossary.htm
 //---------------------------------------------------------------------------
 #include <iostream>
-#include <boost/filesystem.hpp>
 #include "createglossarymaindialog.h"
 
 int main(int, char * argv[])
 {
   std::cout << "Working...\n\n";
-  CreateGlossaryMainDialog();
+  ribi::CreateGlossaryMainDialog();
 
   std::cout << "Successfully created glossaries in folder "
-    << boost::filesystem::path(argv[0]).parent_path().string() << "\n";
+    << ribi::CreateGlossaryMainDialog::GetPath(argv[0]) << "\n";
 }
-//---------------------------------------------------------------------------
+

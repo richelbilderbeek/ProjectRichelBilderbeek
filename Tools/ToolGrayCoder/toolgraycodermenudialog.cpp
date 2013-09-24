@@ -19,13 +19,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 // From http://www.richelbilderbeek.nl/ToolGrayCoder.htm
 //---------------------------------------------------------------------------
-//#include own header file as first substantive line of code, from:
-// * John Lakos. Large-Scale C++ Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110
 #include "toolgraycodermenudialog.h"
 
 #include "trace.h"
 
-const About GrayCoderMenuDialog::GetAbout()
+const ribi::About ribi::GrayCoderMenuDialog::GetAbout()
 {
   About a(
     "Richel Bilderbeek",
@@ -40,12 +38,12 @@ const About GrayCoderMenuDialog::GetAbout()
   return a;
 }
 
-const std::string GrayCoderMenuDialog::GetVersion()
+const std::string ribi::GrayCoderMenuDialog::GetVersion()
 {
   return "2.0";
 }
 
-const std::vector<std::string> GrayCoderMenuDialog::GetVersionHistory()
+const std::vector<std::string> ribi::GrayCoderMenuDialog::GetVersionHistory()
 {
   std::vector<std::string> v;
   v.push_back("2009-05-02: version 1.0: initial version in C++ Builder");

@@ -1,7 +1,6 @@
 QT       += core gui
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
-QMAKE_CXXFLAGS += -std=c++11 -Wall -Wextra
 TEMPLATE = app
 
 INCLUDEPATH +=  \
@@ -9,6 +8,7 @@ INCLUDEPATH +=  \
     ../../Classes/CppMusic \
     ../../Classes/CppQtCreatorProFile \
     ../../Classes/CppQtAboutDialog \
+    ../../Classes/CppQtHideAndShowDialog \
     ../../Classes/CppTrace
 
 SOURCES += \
@@ -17,6 +17,7 @@ SOURCES += \
     ../../Classes/CppMusic/musicnote.cpp \
     ../../Classes/CppMusic/musicscale.cpp \
     ../../Classes/CppQtAboutDialog/qtaboutdialog.cpp \
+    ../../Classes/CppQtHideAndShowDialog/qthideandshowdialog.cpp \
     musictheorymenudialog.cpp \
     qtchordedge.cpp \
     qtchordrelationswidget.cpp \
@@ -28,34 +29,63 @@ SOURCES += \
     qtmusictheorysinglescaledialog.cpp
 
 HEADERS  += \
-    ../../Classes/CppMusic/musicnote.h \
-    ../../Classes/CppMusic/musicchord.h \
-    ../../Classes/CppMusic/musicscale.h \
-    ../../Classes/CppTrace/trace.h \
-    qtchordrelationswidget.h \
-    qtchordedge.h \
-    qtmusictheorymenudialog.h \
-    musictheorymenudialog.h \
     ../../Classes/CppAbout/about.h \
+    ../../Classes/CppMusic/musicchord.h \
+    ../../Classes/CppMusic/musicnote.h \
+    ../../Classes/CppMusic/musicscale.h \
     ../../Classes/CppQtAboutDialog/qtaboutdialog.h \
+    ../../Classes/CppQtHideAndShowDialog/qthideandshowdialog.h \
+    ../../Classes/CppTrace/trace.h \
+    musictheorymenudialog.h \
+    qtchordedge.h \
+    qtchordrelationswidget.h \
     qtchordvertex.h \
     qtmultiscalechordrelationswidget.h \
-    qtmusictheorysinglescaledialog.h \
-    qtmusictheorymultiscaledialog.h
+    qtmusictheorymenudialog.h \
+    qtmusictheorymultiscaledialog.h \
+    qtmusictheorysinglescaledialog.h
 
 FORMS    += \
-    qtmusictheorymenudialog.ui \
     ../../Classes/CppQtAboutDialog/qtaboutdialog.ui \
-    qtmusictheorysinglescaledialog.ui \
-    qtmusictheorymultiscaledialog.ui
+    qtmusictheorymenudialog.ui \
+    qtmusictheorymultiscaledialog.ui \
+    qtmusictheorysinglescaledialog.ui
 
 OTHER_FILES += \
-    ../../Classes/CppMusic/Licence.txt \
-    ../../Classes/CppTrace/Licence.txt \
     ../../Classes/CppAbout/Licence.txt \
+    ../../Classes/CppMusic/Licence.txt \
     ../../Classes/CppQtAboutDialog/Licence.txt \
+    ../../Classes/CppQtHideAndShowDialog/Licence.txt \
+    ../../Classes/CppTrace/Licence.txt \
     crosscompiletowindows.sh
 
 RESOURCES += \
     ToolMusicTheory.qrc
 
+
+#
+#
+# Type of compile
+#
+#
+
+CONFIG(release, debug|release) {
+  DEFINES += NDEBUG NTRACE_BILDERBIKKEL
+}
+
+QMAKE_CXXFLAGS += -std=c++11 -Wall -Wextra -Weffc++
+
+unix {
+  QMAKE_CXXFLAGS += -Werror
+}
+
+#
+#
+# Boost
+#
+#
+
+win32 {
+  INCLUDEPATH += \
+    ../../Libraries/boost_1_54_0
+}

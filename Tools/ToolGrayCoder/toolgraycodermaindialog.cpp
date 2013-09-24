@@ -19,8 +19,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 // From http://www.richelbilderbeek.nl/ToolGrayCoder.htm
 //---------------------------------------------------------------------------
-//#include own header file as first substantive line of code, from:
-// * John Lakos. Large-Scale C++ Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110
 #include "toolgraycodermaindialog.h"
 
 #include <cassert>
@@ -28,7 +26,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "trace.h"
 
-GrayCoderMainDialog::GrayCoderMainDialog(const int normal_int)
+ribi::GrayCoderMainDialog::GrayCoderMainDialog(const int normal_int)
   : m_i(normal_int)
 {
   #ifndef NDEBUG
@@ -36,7 +34,7 @@ GrayCoderMainDialog::GrayCoderMainDialog(const int normal_int)
   #endif
 }
 
-int GrayCoderMainDialog::GrayToInt(int i)
+int ribi::GrayCoderMainDialog::GrayToInt(int i)
 {
   int power = 1;
   while (1)
@@ -48,7 +46,7 @@ int GrayCoderMainDialog::GrayToInt(int i)
   }
 }
 
-const std::string GrayCoderMainDialog::IntToBitString(int i)
+const std::string ribi::GrayCoderMainDialog::IntToBitString(int i)
 {
   assert( i >= 0 && "Did not bother to supply this yet");
   std::string s =(i%2 ? "1" : "0" );
@@ -61,20 +59,20 @@ const std::string GrayCoderMainDialog::IntToBitString(int i)
   return s;
 }
 
-int GrayCoderMainDialog::IntToGray(const int i)
+int ribi::GrayCoderMainDialog::IntToGray(const int i)
 {
   return (i ^ (i>>1));
 }
 
-
-void GrayCoderMainDialog::Test()
+#ifndef NDEBUG
+void ribi::GrayCoderMainDialog::Test()
 {
   {
     static bool is_tested = false;
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting GrayCoderMainDialog::Test");
+  TRACE("Starting ribi::GrayCoderMainDialog::Test");
   //IntToGray
   {
     assert(IntToGray( 0)== 0);
@@ -113,5 +111,6 @@ void GrayCoderMainDialog::Test()
     assert(GrayToInt( 9)==14);
     assert(GrayToInt( 8)==15);
   }
-  TRACE("Finished GrayCoderMainDialog::Test successfully");
+  TRACE("Finished ribi::GrayCoderMainDialog::Test successfully");
 }
+#endif

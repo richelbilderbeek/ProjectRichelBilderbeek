@@ -1,5 +1,6 @@
 QT       += core gui
-QMAKE_CXXFLAGS += -std=c++0x
+greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
+
 TEMPLATE = app
 
 INCLUDEPATH += \
@@ -8,6 +9,7 @@ INCLUDEPATH += \
     ../../Classes/CppGaborFilterWidget \
     ../../Classes/CppQtAboutDialog \
     ../../Classes/CppQtGaborFilterWidget \
+    ../../Classes/CppQtHideAndShowDialog \
     ../../Classes/CppQtSurfacePlotWidget \
     ../../Classes/CppRectangle \
     ../../Classes/CppWidget
@@ -23,7 +25,8 @@ SOURCES += qtmain.cpp \
     ../../Classes/CppQtGaborFilterWidget/qtgaborfilterwidget.cpp \
     ../../Classes/CppWidget/widget.cpp \
     ../../Classes/CppRectangle/rectangle.cpp \
-    ../../Classes/CppQtSurfacePlotWidget/qtsurfaceplotwidget.cpp
+    ../../Classes/CppQtSurfacePlotWidget/qtsurfaceplotwidget.cpp \
+    ../../Classes/CppQtHideAndShowDialog/qthideandshowdialog.cpp
 
 HEADERS  += qttoolgaborfiltermenudialog.h \
     ../../Classes/CppAbout/about.h \
@@ -35,7 +38,8 @@ HEADERS  += qttoolgaborfiltermenudialog.h \
     ../../Classes/CppQtGaborFilterWidget/qtgaborfilterwidget.h \
     ../../Classes/CppWidget/widget.h \
     ../../Classes/CppRectangle/rectangle.h \
-    ../../Classes/CppQtSurfacePlotWidget/qtsurfaceplotwidget.h
+    ../../Classes/CppQtSurfacePlotWidget/qtsurfaceplotwidget.h \
+    ../../Classes/CppQtHideAndShowDialog/qthideandshowdialog.h
 
 FORMS    += qttoolgaborfiltermenudialog.ui \
     ../../Classes/CppQtAboutDialog/qtaboutdialog.ui \
@@ -49,7 +53,35 @@ OTHER_FILES += \
     ../../Classes/CppQtGaborFilterWidget/Licence.txt \
     ../../Classes/CppWidget/Licence.txt \
     ../../Classes/CppRectangle/Licence.txt \
-    ../../Classes/CppQtSurfacePlotWidget/Licence.txt
+    ../../Classes/CppQtSurfacePlotWidget/Licence.txt \
+    ../../Classes/CppQtHideAndShowDialog/Licence.txt
 
 RESOURCES += \
     ToolGaborFilter.qrc
+
+#
+#
+# Type of compile
+#
+#
+
+CONFIG(release, debug|release) {
+  DEFINES += NDEBUG NTRACE_BILDERBIKKEL
+}
+
+QMAKE_CXXFLAGS += -std=c++11 -Wall -Wextra -Weffc++
+
+unix {
+  QMAKE_CXXFLAGS += -Werror
+}
+
+#
+#
+# Boost
+#
+#
+
+win32 {
+  INCLUDEPATH += \
+    ../../Libraries/boost_1_54_0
+}

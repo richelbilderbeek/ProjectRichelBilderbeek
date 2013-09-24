@@ -21,13 +21,19 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <algorithm>
 #include <cassert>
 #include <vector>
-//---------------------------------------------------------------------------
+
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include <QPainter>
-//---------------------------------------------------------------------------
+
 #include "qtsurfaceplotwidget.h"
-//---------------------------------------------------------------------------
+#pragma GCC diagnostic pop
+
 QtSurfacePlotWidget::QtSurfacePlotWidget(QWidget *parent)
-  : QWidget(parent)
+  : QWidget(parent),
+    m_surface{}
 {
   std::vector<std::vector<unsigned char> > v(128,std::vector<unsigned char>(128));
   for(int y=0; y!=128; ++y)
@@ -39,19 +45,19 @@ QtSurfacePlotWidget::QtSurfacePlotWidget(QWidget *parent)
   }
   SetSurfaceGrey(v);
 }
-//---------------------------------------------------------------------------
+
 const std::string QtSurfacePlotWidget::GetVersion()
 {
   return "1.0";
 }
-//---------------------------------------------------------------------------
+
 const std::vector<std::string> QtSurfacePlotWidget::GetVersionHistory()
 {
   std::vector<std::string> v;
   v.push_back("2012-07-14: version 1.0: initial version");
   return v;
 }
-//---------------------------------------------------------------------------
+
 void QtSurfacePlotWidget::SetSurfaceGrey(const std::vector<std::vector<double> >& v)
 {
   //Get the size
@@ -94,13 +100,13 @@ void QtSurfacePlotWidget::SetSurfaceGrey(const std::vector<std::vector<double> >
   }
   SetSurfaceGrey(w);
 }
-//---------------------------------------------------------------------------
+
 void QtSurfacePlotWidget::SetSurfaceGrey(const std::vector<std::vector<unsigned char> >& surface)
 {
   m_surface = surface;
   this->repaint();
 }
-//---------------------------------------------------------------------------
+
 void QtSurfacePlotWidget::paintEvent(QPaintEvent *)
 {
   QPainter painter(this);
@@ -124,9 +130,9 @@ void QtSurfacePlotWidget::paintEvent(QPaintEvent *)
   painter.drawPixmap(0,0,this->width(),this->height(),QPixmap::fromImage(image));
 
 }
-//---------------------------------------------------------------------------
+
 void QtSurfacePlotWidget::resizeEvent(QResizeEvent *)
 {
   this->repaint();
 }
-//---------------------------------------------------------------------------
+

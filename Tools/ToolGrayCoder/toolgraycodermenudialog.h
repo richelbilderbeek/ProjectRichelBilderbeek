@@ -27,6 +27,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "about.h"
 
+namespace ribi {
+
 ///GUI independent GrayCoder menu dialog
 struct GrayCoderMenuDialog
 {
@@ -34,5 +36,7 @@ struct GrayCoderMenuDialog
   static const std::string GetVersion();
   static const std::vector<std::string> GetVersionHistory();
 };
+
+} //~namespace ribi
 
 #endif // GRAYCODERMENUDIALOG_H
