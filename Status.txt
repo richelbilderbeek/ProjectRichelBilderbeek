@@ -293,6 +293,7 @@ CppQtExample31.exe
 CppQtExample32
 CppQtExample32.exe
 CppQtExample33
+CppQtExample34
 CppQtExample35
 CppQtExample3.exe
 CppQtExample4
@@ -305,6 +306,8 @@ CppQtExample7
 CppQtExample7.exe
 CppQtExample8
 CppQtExample8.exe
+CppQtExample9
+CppQtExample9.exe
 CppQTreeViewExample1
 CppQTreeViewExample1.exe
 CppQTreeViewExample2
@@ -380,6 +383,8 @@ CppVirtualExample1
 CppVirtualExample1.exe
 CppWilcoxonsSignedRankTest
 CppWilcoxonsSignedRankTest.exe
+CppWordwrap
+CppWordwrap.exe
 CppYodaConditionExample1
 CppYodaConditionExample1.exe
 GameAminoAcidFighter
@@ -401,7 +406,6 @@ GamePong
 GamePong.exe
 GamePylos
 GamePylos.exe
-GameRubiksClockWebsite
 GameTankBattalion
 GameTankBattalion.exe
 GameTicTacToeDesktop
@@ -413,6 +417,7 @@ GetTxtFilesInFolder
 ProjectBrainweaverAssessor
 ProjectBrainweaverAssessor.exe
 ProjectBrainweaverDeveloper
+ProjectBrainweaverDeveloper.exe
 ProjectBrainweaverStudent
 ProjectBrainweaverStudent.exe
 ProjectRichelBilderbeekConsole
