@@ -22,7 +22,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include <cmath>
 
-const std::vector<double> QuadraticSolverMainDialog::SolveQuadratic(
+const std::vector<double> ribi::QuadraticSolverMainDialog::SolveQuadratic(
   const double a, const double b, const double c)
 {
   if (a == 0.0)

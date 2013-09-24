@@ -18,6 +18,9 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolSurfacePlotter.htm
 //---------------------------------------------------------------------------
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <cassert>
 #include <boost/lexical_cast.hpp>
 #include <QDesktopWidget>
@@ -25,10 +28,11 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "ui_qttoolsurfaceplottermaindialog.h"
 
 #include "fparser.hh"
+#pragma GCC diagnostic pop
 
-QtToolSurfacePlotterMainDialog::QtToolSurfacePlotterMainDialog(QWidget *parent) :
-  QDialog(parent),
-  ui(new Ui::QtToolSurfacePlotterMainDialog)
+ribi::QtToolSurfacePlotterMainDialog::QtToolSurfacePlotterMainDialog(QWidget *parent)
+  : QtHideAndShowDialog(parent),
+    ui(new Ui::QtToolSurfacePlotterMainDialog)
 {
   ui->setupUi(this);
 
@@ -58,12 +62,12 @@ QtToolSurfacePlotterMainDialog::QtToolSurfacePlotterMainDialog(QWidget *parent) 
   }
 }
 
-QtToolSurfacePlotterMainDialog::~QtToolSurfacePlotterMainDialog()
+ribi::QtToolSurfacePlotterMainDialog::~QtToolSurfacePlotterMainDialog() noexcept
 {
   delete ui;
 }
 
-void QtToolSurfacePlotterMainDialog::OnAnyChange()
+void ribi::QtToolSurfacePlotterMainDialog::OnAnyChange()
 {
   try { boost::lexical_cast<double>(ui->edit_minx->text().toStdString()); }
   catch (boost::bad_lexical_cast&)
@@ -145,7 +149,7 @@ void QtToolSurfacePlotterMainDialog::OnAnyChange()
   ui->surfaceplotwidget->SetSurfaceGrey(v);
 }
 
-double QtToolSurfacePlotterMainDialog::Rescale(
+double ribi::QtToolSurfacePlotterMainDialog::Rescale(
   const double value,
   const double old_min,
   const double old_max,
@@ -166,7 +170,7 @@ double QtToolSurfacePlotterMainDialog::Rescale(
   return new_value;
 }
 
-void QtToolSurfacePlotterMainDialog::resizeEvent(QResizeEvent *)
+void ribi::QtToolSurfacePlotterMainDialog::resizeEvent(QResizeEvent *)
 {
   OnAnyChange();
 }

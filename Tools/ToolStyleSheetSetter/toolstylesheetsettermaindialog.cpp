@@ -7,7 +7,7 @@
 #include "ui_toolstylesheetsettermaindialog.h"
 #pragma GCC diagnostic pop
 
-ToolStyleSheetSetterMainDialog::ToolStyleSheetSetterMainDialog(
+ribi::ToolStyleSheetSetterMainDialog::ToolStyleSheetSetterMainDialog(
   const std::string& stylesheet, QWidget *parent)
   : QtHideAndShowDialog(parent),
     ui(new Ui::ToolStyleSheetSetterMainDialog),
@@ -17,17 +17,17 @@ ToolStyleSheetSetterMainDialog::ToolStyleSheetSetterMainDialog(
   ui->stylesheet->setPlainText(m_stylesheet.c_str());
 }
 
-ToolStyleSheetSetterMainDialog::~ToolStyleSheetSetterMainDialog() noexcept
+ribi::ToolStyleSheetSetterMainDialog::~ToolStyleSheetSetterMainDialog() noexcept
 {
   delete ui;
 }
 
-void ToolStyleSheetSetterMainDialog::keyPressEvent(QKeyEvent * event)
+void ribi::ToolStyleSheetSetterMainDialog::keyPressEvent(QKeyEvent * event)
 {
   if (event->key() == Qt::Key_Escape) { close(); return; }
 }
 
-void ToolStyleSheetSetterMainDialog::on_stylesheet_textChanged()
+void ribi::ToolStyleSheetSetterMainDialog::on_stylesheet_textChanged()
 {
   m_stylesheet = ui->stylesheet->toPlainText().toStdString();
   this->setStyleSheet(m_stylesheet.c_str());

@@ -1,19 +1,23 @@
 #ifndef QTSECRETMESSAGECREATEDIALOG_H
 #define QTSECRETMESSAGECREATEDIALOG_H
 
-#include <QDialog>
+#include "qthideandshowdialog.h"
 
 namespace Ui {
-class QtSecretMessageCreateDialog;
+  class QtSecretMessageCreateDialog;
 }
 
-class QtSecretMessageCreateDialog : public QDialog
+namespace ribi {
+
+class QtSecretMessageCreateDialog : public QtHideAndShowDialog
 {
     Q_OBJECT
     
 public:
     explicit QtSecretMessageCreateDialog(QWidget *parent = 0);
-    ~QtSecretMessageCreateDialog();
+    QtSecretMessageCreateDialog(const QtSecretMessageCreateDialog&) = delete;
+    QtSecretMessageCreateDialog& operator=(const QtSecretMessageCreateDialog&) = delete;
+    ~QtSecretMessageCreateDialog() noexcept;
     
 private slots:
 
@@ -22,5 +26,7 @@ private slots:
 private:
     Ui::QtSecretMessageCreateDialog *ui;
 };
+
+} //~namespace ribi
 
 #endif // QTSECRETMESSAGECREATEDIALOG_H

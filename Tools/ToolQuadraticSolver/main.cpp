@@ -26,6 +26,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <vector>
 
 #pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/lexical_cast.hpp>
 
@@ -73,7 +74,7 @@ int main()
     std::cout << "Please enter a value for c" << std::endl;
     const double c = AskUserForDouble();
     std::cout << "Solutions of this quadratic equations are:" << std::endl;
-    const std::vector<double> v = QuadraticSolverMainDialog::SolveQuadratic(a,b,c);
+    const std::vector<double> v = ribi::QuadraticSolverMainDialog::SolveQuadratic(a,b,c);
     std::copy(v.begin(),v.end(),std::ostream_iterator<double>(std::cout," "));
     if (v.empty()==true)
       std::cout << "None..." << std::endl;
@@ -84,12 +85,12 @@ int main()
     if (quit == "q" || quit == "Q") break;
   }
 
-  for (const std::string& s: QuadraticSolverMenuDialog::GetAbout().CreateAboutText())
+  for (const std::string& s: ribi::QuadraticSolverMenuDialog::GetAbout().CreateAboutText())
   {
     std::cout << s << '\n';
   }
   std::cout << std::endl;
-  for (const std::string& s: QuadraticSolverMenuDialog::GetAbout().CreateLicenceText())
+  for (const std::string& s: ribi::QuadraticSolverMenuDialog::GetAbout().CreateLicenceText())
   {
     std::cout << s << '\n';
   }

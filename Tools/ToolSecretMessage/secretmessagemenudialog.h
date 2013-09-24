@@ -1,13 +1,14 @@
 #ifndef SECRETMESSAGEMENUDIALOG_H
 #define SECRETMESSAGEMENUDIALOG_H
-//---------------------------------------------------------------------------
+
 #include <string>
 #include <vector>
-//---------------------------------------------------------------------------
+
 #include "about.h"
-//---------------------------------------------------------------------------
+
+namespace ribi {
 namespace SecretMessage {
-//---------------------------------------------------------------------------
+
 struct MenuDialog
 {
   ///Obtain this class its About information
@@ -19,7 +20,8 @@ struct MenuDialog
   ///Obtain this class its version history
   static const std::vector<std::string> GetVersionHistory();
 };
-//---------------------------------------------------------------------------
+
 } //~namespace SecretMessage
-//---------------------------------------------------------------------------
+} //~namespace ribi
+
 #endif // SECRETMESSAGEMENUDIALOG_H

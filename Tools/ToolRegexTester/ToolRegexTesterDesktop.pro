@@ -2,7 +2,6 @@ QT       += core gui
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 TEMPLATE = app
-QMAKE_CXXFLAGS += -std=c++11 -Wall -Wextra -Werror
 
 INCLUDEPATH += \
     ../../Classes/CppAbout \
@@ -73,34 +72,18 @@ CONFIG(release, debug|release) {
 
 #
 #
-# Platform specific
+# Type of compile
 #
 #
 
-#
-#
-# Compiler flags
-#
-#
-QMAKE_CXXFLAGS += -std=c++11 -Wall -Wextra
-
-unix {
-  message(Unix)
-  QMAKE_CXXFLAGS += -Werror
+CONFIG(release, debug|release) {
+  DEFINES += NDEBUG NTRACE_BILDERBIKKEL
 }
 
-win32 {
-  !static {
-    message(Native Windows)
-    QMAKE_CXXFLAGS += -Werror
+QMAKE_CXXFLAGS += -std=c++11 -Wall -Wextra -Weffc++
 
-  }
-
-  static {
-    message(Crosscompiling from Lubuntu to Windows)
-    #Allow the crosscompiler to emit warnings without terminating
-    QMAKE_CXXFLAGS += #-Werror
-  }
+unix {
+  QMAKE_CXXFLAGS += -Werror
 }
 
 #
@@ -109,33 +92,11 @@ win32 {
 #
 #
 
-unix {
-  message(Unix dynamic link to Boost)
-
-  LIBS += \
-  -lboost_date_time \
-  -lboost_filesystem \
-  -lboost_program_options \
-  -lboost_regex \
-  -lboost_signals \
-  -lboost_system
+win32 {
+  INCLUDEPATH += \
+    ../../Libraries/boost_1_54_0
 }
 
-win32 {
-
-  message(Windows dynamic link to Boost)
-
-  INCLUDEPATH += \
-    e:/Projects/Libraries/boost_1_54_0
-
-  debug {
-    LIBS += e:/Projects/Libraries/boost_1_54_0/stage/lib/libboost_filesystem-mgw48-mt-d-1_54.a
-    LIBS += e:/Projects/Libraries/boost_1_54_0/stage/lib/libboost_regex-mgw48-mt-d-1_54.a
-    LIBS += e:/Projects/Libraries/boost_1_54_0/stage/lib/libboost_system-mgw48-mt-d-1_54.a
-  }
-  release {
-    LIBS += e:/Projects/Libraries/boost_1_54_0/stage/lib/libboost_filesystem-mgw48-mt-1_54.a
-    LIBS += e:/Projects/Libraries/boost_1_54_0/stage/lib/libboost_regex-mgw48-mt-1_54.a
-    LIBS += e:/Projects/Libraries/boost_1_54_0/stage/lib/libboost_system-mgw48-mt-1_54.a
-  }
+unix {
+  LIBS += -lboost_regex
 }

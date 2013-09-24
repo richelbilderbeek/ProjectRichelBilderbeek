@@ -1,9 +1,7 @@
 #include "secretmessagemenudialog.h"
 #include "trace.h"
-//---------------------------------------------------------------------------
-namespace SecretMessage {
-//---------------------------------------------------------------------------
-const About MenuDialog::GetAbout()
+
+const ribi::About ribi::SecretMessage::MenuDialog::GetAbout()
 {
   About a(
     "Richel Bilderbeek",
@@ -18,18 +16,16 @@ const About MenuDialog::GetAbout()
   a.AddLibrary("Trace version: " + Trace::GetVersion());
   return a;
 }
-//---------------------------------------------------------------------------
-const std::string MenuDialog::GetVersion()
+
+const std::string ribi::SecretMessage::MenuDialog::GetVersion()
 {
   return "2.0";
 }
-//---------------------------------------------------------------------------
-const std::vector<std::string> MenuDialog::GetVersionHistory()
+
+const std::vector<std::string> ribi::SecretMessage::MenuDialog::GetVersionHistory()
 {
-  std::vector<std::string> v;
-  v.push_back("2009-01-11: version 1.0: initial Windows-only version");
-  return v;
+  return {
+    "2009-01-11: version 1.0: initial Windows-only version",
+    "2012-08-03: version 2.0: port to Qt Creator"
+  };
 }
-//---------------------------------------------------------------------------
-} //~namespace SecretMessage
-//---------------------------------------------------------------------------

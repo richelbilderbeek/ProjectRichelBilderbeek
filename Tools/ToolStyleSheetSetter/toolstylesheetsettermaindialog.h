@@ -5,10 +5,12 @@
 #include "qthideandshowdialog.h"
 
 namespace Ui {
-class ToolStyleSheetSetterMainDialog;
+  class ToolStyleSheetSetterMainDialog;
 }
 
-class ToolStyleSheetSetterMainDialog : public ribi::QtHideAndShowDialog
+namespace ribi {
+
+class ToolStyleSheetSetterMainDialog : public QtHideAndShowDialog
 {
     Q_OBJECT
     
@@ -29,5 +31,7 @@ private:
   Ui::ToolStyleSheetSetterMainDialog *ui;
   std::string m_stylesheet;
 };
+
+} //~namespace ribi
 
 #endif // TOOLSTYLESHEETSETTERMAINDIALOG_H

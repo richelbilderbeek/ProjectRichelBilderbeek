@@ -18,17 +18,20 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolRichelBilderbeekGallery.htm
 //---------------------------------------------------------------------------
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include <QApplication>
 #include "richelbilderbeekgallerymenudialog.h"
 #include "qtrichelbilderbeekgallerymenudialog.h"
 #include "trace.h"
+#pragma GCC diagnostic pop
 
 int main(int argc, char *argv[])
 {
   QApplication a(argc, argv);
   START_TRACE();
-  RichelBilderbeek::GalleryMenuDialog::Test();
-  QtRichelBilderbeekGalleryMenuDialog w;
+  ribi::RichelBilderbeek::GalleryMenuDialog::Test();
+  ribi::QtRichelBilderbeekGalleryMenuDialog w;
   w.show();
   return a.exec();
 }

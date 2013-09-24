@@ -20,11 +20,17 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #ifndef QTSURFACEPLOTWIDGET_H
 #define QTSURFACEPLOTWIDGET_H
-//---------------------------------------------------------------------------
+
 #include <vector>
-//---------------------------------------------------------------------------
+
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <QWidget>
-//---------------------------------------------------------------------------
+#pragma GCC diagnostic pop
+
+namespace ribi {
+
 struct QtSurfacePlotWidget : public QWidget
 {
   Q_OBJECT
@@ -53,5 +59,7 @@ protected:
 private:
   std::vector<std::vector<unsigned char> > m_surface;
 };
-//---------------------------------------------------------------------------
+
+} //~namespace ribi
+
 #endif //QTSURFACEPLOTWIDGET_H

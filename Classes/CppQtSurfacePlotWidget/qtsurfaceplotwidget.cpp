@@ -31,7 +31,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "qtsurfaceplotwidget.h"
 #pragma GCC diagnostic pop
 
-QtSurfacePlotWidget::QtSurfacePlotWidget(QWidget *parent)
+ribi::QtSurfacePlotWidget::QtSurfacePlotWidget(QWidget *parent)
   : QWidget(parent),
     m_surface{}
 {
@@ -46,19 +46,19 @@ QtSurfacePlotWidget::QtSurfacePlotWidget(QWidget *parent)
   SetSurfaceGrey(v);
 }
 
-const std::string QtSurfacePlotWidget::GetVersion()
+const std::string ribi::QtSurfacePlotWidget::GetVersion()
 {
   return "1.0";
 }
 
-const std::vector<std::string> QtSurfacePlotWidget::GetVersionHistory()
+const std::vector<std::string> ribi::QtSurfacePlotWidget::GetVersionHistory()
 {
-  std::vector<std::string> v;
-  v.push_back("2012-07-14: version 1.0: initial version");
-  return v;
+  return {
+    "2012-07-14: version 1.0: initial version"
+  };
 }
 
-void QtSurfacePlotWidget::SetSurfaceGrey(const std::vector<std::vector<double> >& v)
+void ribi::QtSurfacePlotWidget::SetSurfaceGrey(const std::vector<std::vector<double> >& v)
 {
   //Get the size
   const int maxx = v[0].size();
@@ -101,13 +101,13 @@ void QtSurfacePlotWidget::SetSurfaceGrey(const std::vector<std::vector<double> >
   SetSurfaceGrey(w);
 }
 
-void QtSurfacePlotWidget::SetSurfaceGrey(const std::vector<std::vector<unsigned char> >& surface)
+void ribi::QtSurfacePlotWidget::SetSurfaceGrey(const std::vector<std::vector<unsigned char> >& surface)
 {
   m_surface = surface;
   this->repaint();
 }
 
-void QtSurfacePlotWidget::paintEvent(QPaintEvent *)
+void ribi::QtSurfacePlotWidget::paintEvent(QPaintEvent *)
 {
   QPainter painter(this);
   assert(!m_surface.empty());
@@ -131,7 +131,7 @@ void QtSurfacePlotWidget::paintEvent(QPaintEvent *)
 
 }
 
-void QtSurfacePlotWidget::resizeEvent(QResizeEvent *)
+void ribi::QtSurfacePlotWidget::resizeEvent(QResizeEvent *)
 {
   this->repaint();
 }

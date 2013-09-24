@@ -22,26 +22,31 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <cstdlib>
 #include <iostream>
 #include <string>
-//---------------------------------------------------------------------------
+
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+
 #include <boost/foreach.hpp>
-//---------------------------------------------------------------------------
+
 #include <QTimer>
-//---------------------------------------------------------------------------
+
 #include "BigIntegerLibrary.hh"
-//---------------------------------------------------------------------------
+
 #include "about.h"
-#include "dialogtestbinarynewickvector.h"
+#include "qttestbinarynewickvectormaindialog.h"
 #include "newick.h"
 #include "newickstorage.h"
 #include "binarynewickvector.h"
 #include "sortedbinarynewickvector.h"
 #include "qtaboutdialog.h"
-#include "ui_dialogtestbinarynewickvector.h"
-//---------------------------------------------------------------------------
-///DialogTestBinaryNewickVector constructor performs most Newick tests
-DialogTestBinaryNewickVector::DialogTestBinaryNewickVector(QWidget *parent) :
-    QDialog(parent),
-    ui(new Ui::DialogTestBinaryNewickVector),
+#include "ui_qttestbinarynewickvectormaindialog.h"
+
+#pragma GCC diagnostic pop
+
+///QtTestBinaryNewickVectorMainDialog constructor performs most Newick tests
+ribi::QtTestBinaryNewickVectorMainDialog::QtTestBinaryNewickVectorMainDialog(QWidget *parent)
+  : QtHideAndShowDialog(parent),
+    ui(new Ui::QtTestBinaryNewickVectorMainDialog),
     m_timer(new QTimer)
 {
   ui->setupUi(this);
@@ -70,32 +75,20 @@ DialogTestBinaryNewickVector::DialogTestBinaryNewickVector(QWidget *parent) :
 
   this->OnAnyChange();
 }
-//---------------------------------------------------------------------------
-DialogTestBinaryNewickVector::~DialogTestBinaryNewickVector()
+
+ribi::QtTestBinaryNewickVectorMainDialog::~QtTestBinaryNewickVectorMainDialog() noexcept
 {
   m_timer->stop();
   delete ui;
   delete m_timer;
 }
-//---------------------------------------------------------------------------
-void DialogTestBinaryNewickVector::changeEvent(QEvent *e)
-{
-  QDialog::changeEvent(e);
-  switch (e->type()) {
-  case QEvent::LanguageChange:
-    ui->retranslateUi(this);
-    break;
-  default:
-    break;
-  }
-}
-//---------------------------------------------------------------------------
-const std::string DialogTestBinaryNewickVector::GetVersion()
+
+const std::string ribi::QtTestBinaryNewickVectorMainDialog::GetVersion() noexcept
 {
   return "3.1";
 }
-//---------------------------------------------------------------------------
-const std::vector<std::string> DialogTestBinaryNewickVector::GetVersionHistory()
+
+const std::vector<std::string> ribi::QtTestBinaryNewickVectorMainDialog::GetVersionHistory() noexcept
 {
   std::vector<std::string> v;
   v.push_back("2010-08-20: Version 1.0: initial version, tool was called TestNewickVector");
@@ -110,8 +103,8 @@ const std::vector<std::string> DialogTestBinaryNewickVector::GetVersionHistory()
   v.push_back("2011-03-08: Version 3.1: minor rewrite of algorithms");
   return v;
 }
-//---------------------------------------------------------------------------
-void DialogTestBinaryNewickVector::OnAnyChange()
+
+void ribi::QtTestBinaryNewickVectorMainDialog::OnAnyChange()
 {
   //Set the lables that everything failed
   //ui->label_valid->setText("Valid Newick: No");
@@ -277,8 +270,8 @@ void DialogTestBinaryNewickVector::OnAnyChange()
       + QString(bigIntegerToString(n_c).c_str()));
   }
 }
-//---------------------------------------------------------------------------
-void DialogTestBinaryNewickVector::OnDemoTick()
+
+void ribi::QtTestBinaryNewickVectorMainDialog::OnDemoTick()
 {
   //Get any Newick
   if ((std::rand() >> 4) % 2)
@@ -294,7 +287,7 @@ void DialogTestBinaryNewickVector::OnDemoTick()
     ui->edit_newick->setText(QString(s.c_str()));
   }
 }
-//---------------------------------------------------------------------------
+
 //#ifndef WIN32
 ///CliToStr converts a cln::cl_I to std::string.
 ///From http://www.richelbilderbeek.nl/CppCliToStr.htm
@@ -305,8 +298,8 @@ void DialogTestBinaryNewickVector::OnDemoTick()
 //  return s.str();
 //}
 //#endif
-//---------------------------------------------------------------------------
-void DialogTestBinaryNewickVector::on_button_demo_clicked()
+
+void ribi::QtTestBinaryNewickVectorMainDialog::on_button_demo_clicked()
 {
   if (m_timer->isActive())
   {
@@ -321,8 +314,8 @@ void DialogTestBinaryNewickVector::on_button_demo_clicked()
     ui->button_demo->setText("&Stop demo");
   }
 }
-//---------------------------------------------------------------------------
-void DialogTestBinaryNewickVector::on_button_about_clicked()
+
+void ribi::QtTestBinaryNewickVectorMainDialog::on_button_about_clicked()
 {
   About about(
     "Richel Bilderbeek",
@@ -339,8 +332,8 @@ void DialogTestBinaryNewickVector::on_button_about_clicked()
   QtAboutDialog d(about);
   d.exec();
 }
-//---------------------------------------------------------------------------
-void DialogTestBinaryNewickVector::on_button_calculate_clicked()
+
+void ribi::QtTestBinaryNewickVectorMainDialog::on_button_calculate_clicked()
 {
   OnAnyChange();
   const std::string s = ui->edit_newick->text().toStdString();

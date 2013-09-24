@@ -25,7 +25,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 int main(int argc, char* argv[])
 {
-  PauseMenuDialog::Execute(argc,argv);
-  const std::vector<std::string> t = PauseMenuDialog::GetAbout().CreateAboutText();
+  ribi::PauseMenuDialog::Execute(argc,argv);
+  const std::vector<std::string> t = ribi::PauseMenuDialog::GetAbout().CreateAboutText();
   std::copy(t.begin(),t.end(),std::ostream_iterator<std::string>(std::cout,"\n"));
 }

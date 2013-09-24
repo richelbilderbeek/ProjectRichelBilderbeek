@@ -18,44 +18,44 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolSurfacePlotter.htm
 //---------------------------------------------------------------------------
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include "qtaboutdialog.h"
 #include "qtsurfaceplotwidget.h"
 #include "toolsurfaceplottermenudialog.h"
 #include "qttoolsurfaceplottermaindialog.h"
 #include "qttoolsurfaceplottermenudialog.h"
 #include "ui_qttoolsurfaceplottermenudialog.h"
+#pragma GCC diagnostic pop
 
-QtToolSurfacePlotterMenuDialog::QtToolSurfacePlotterMenuDialog(QWidget *parent) :
-    QDialog(parent),
+ribi::QtToolSurfacePlotterMenuDialog::QtToolSurfacePlotterMenuDialog(QWidget *parent)
+  : QtHideAndShowDialog(parent),
     ui(new Ui::QtToolSurfacePlotterMenuDialog)
 {
     ui->setupUi(this);
 }
 
-QtToolSurfacePlotterMenuDialog::~QtToolSurfacePlotterMenuDialog()
+ribi::QtToolSurfacePlotterMenuDialog::~QtToolSurfacePlotterMenuDialog() noexcept
 {
     delete ui;
 }
 
-void QtToolSurfacePlotterMenuDialog::on_button_start_clicked()
+void ribi::QtToolSurfacePlotterMenuDialog::on_button_start_clicked()
 {
   QtToolSurfacePlotterMainDialog d;
-  this->hide();
-  d.exec();
-  this->show();
+  this->ShowChild(&d);
 }
 
-void QtToolSurfacePlotterMenuDialog::on_button_about_clicked()
+void ribi::QtToolSurfacePlotterMenuDialog::on_button_about_clicked()
 {
   About a(ToolSurfacePlotterMenuDialog::GetAbout());
   a.AddLibrary("QtSurfacePlotWidget version: " + QtSurfacePlotWidget::GetVersion());
   QtAboutDialog d(a);
-  this->hide();
-  d.exec();
-  this->show();
+  this->ShowChild(&d);
 }
 
-void QtToolSurfacePlotterMenuDialog::on_button_quit_clicked()
+void ribi::QtToolSurfacePlotterMenuDialog::on_button_quit_clicked()
 {
   this->close();
 }

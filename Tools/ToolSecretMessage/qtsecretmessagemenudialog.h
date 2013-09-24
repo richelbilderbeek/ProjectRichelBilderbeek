@@ -1,19 +1,23 @@
 #ifndef QTSECRETMESSAGEMENUDIALOG_H
 #define QTSECRETMESSAGEMENUDIALOG_H
-//---------------------------------------------------------------------------
-#include <QDialog>
-//---------------------------------------------------------------------------
+
+#include "qthideandshowdialog.h"
+
 namespace Ui {
-class QtSecretMessageMenuDialog;
+  class QtSecretMessageMenuDialog;
 }
-//---------------------------------------------------------------------------
-class QtSecretMessageMenuDialog : public QDialog
+
+namespace ribi {
+
+class QtSecretMessageMenuDialog : public QtHideAndShowDialog
 {
   Q_OBJECT
 
 public:
   explicit QtSecretMessageMenuDialog(QWidget *parent = 0);
-  ~QtSecretMessageMenuDialog();
+  QtSecretMessageMenuDialog(const QtSecretMessageMenuDialog&) = delete;
+  QtSecretMessageMenuDialog& operator=(const QtSecretMessageMenuDialog&) = delete;
+  ~QtSecretMessageMenuDialog() noexcept;
 
 private slots:
   void on_button_about_clicked();
@@ -26,5 +30,7 @@ private slots:
 private:
   Ui::QtSecretMessageMenuDialog *ui;
 };
-//---------------------------------------------------------------------------
+
+} //~namespace ribi
+
 #endif // QTSECRETMESSAGEMENUDIALOG_H

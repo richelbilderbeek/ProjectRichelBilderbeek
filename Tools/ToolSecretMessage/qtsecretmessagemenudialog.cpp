@@ -1,24 +1,27 @@
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include "qtaboutdialog.h"
 #include "qtsecretmessagecreatedialog.h"
 #include "qtsecretmessageextractdialog.h"
 #include "qtsecretmessagemenudialog.h"
 #include "secretmessagemenudialog.h"
 #include "ui_qtsecretmessagemenudialog.h"
-//---------------------------------------------------------------------------
-QtSecretMessageMenuDialog::QtSecretMessageMenuDialog(QWidget *parent) :
-  QDialog(parent),
-  ui(new Ui::QtSecretMessageMenuDialog)
+#pragma GCC diagnostic pop
+
+ribi::QtSecretMessageMenuDialog::QtSecretMessageMenuDialog(QWidget *parent)
+  : QtHideAndShowDialog(parent),
+    ui(new Ui::QtSecretMessageMenuDialog)
 {
   ui->setupUi(this);
 }
-//---------------------------------------------------------------------------
-QtSecretMessageMenuDialog::~QtSecretMessageMenuDialog()
+
+ribi::QtSecretMessageMenuDialog::~QtSecretMessageMenuDialog() noexcept
 {
   delete ui;
 }
-//---------------------------------------------------------------------------
 
-void QtSecretMessageMenuDialog::on_button_about_clicked()
+
+void ribi::QtSecretMessageMenuDialog::on_button_about_clicked()
 {
   About a = SecretMessage::MenuDialog::GetAbout();
   //a.AddLibrary("QtRichelBilderbeekGalleryDialog version: " + QtRichelBilderbeekGalleryDialog::GetVersion());
@@ -26,29 +29,23 @@ void QtSecretMessageMenuDialog::on_button_about_clicked()
   QtAboutDialog d(a);
   d.setStyleSheet(this->styleSheet());
   d.setWindowIcon(this->windowIcon());
-  this->hide();
-  d.exec();
-  this->show();
+  this->ShowChild(&d);
 }
 
-void QtSecretMessageMenuDialog::on_button_create_clicked()
+void ribi::QtSecretMessageMenuDialog::on_button_create_clicked()
 {
   QtSecretMessageCreateDialog d;
-  this->hide();
-  d.exec();
-  this->show();
+  this->ShowChild(&d);
 }
 
-void QtSecretMessageMenuDialog::on_button_extract_clicked()
+void ribi::QtSecretMessageMenuDialog::on_button_extract_clicked()
 {
   QtSecretMessageExtractDialog d;
-  this->hide();
-  d.exec();
-  this->show();
+  this->ShowChild(&d);
 }
 
 
-void QtSecretMessageMenuDialog::on_button_quit_clicked()
+void ribi::QtSecretMessageMenuDialog::on_button_quit_clicked()
 {
   close();
 }

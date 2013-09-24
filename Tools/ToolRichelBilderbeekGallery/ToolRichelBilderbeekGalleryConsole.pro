@@ -1,18 +1,10 @@
 QT       += core gui
 TEMPLATE = app
-QMAKE_CXXFLAGS += -std=c++11 -Wextra -Werror
-
-LIBS += \
-    -lboost_filesystem \
-    -lboost_program_options \
-    -lboost_regex \
-    -lboost_system
-
 
 INCLUDEPATH += \
     ../../Classes/CppAbout \
     ../../Classes/CppCodeToHtml \
-    ../../Classes/CppProFile \
+    ../../Classes/CppQtCreatorProFile \
     ../../Classes/CppRichelBilderbeekProgram \
     ../../Classes/CppTrace \
     ../../Projects/RichelbilderbeekNl
@@ -38,12 +30,10 @@ SOURCES += \
     ../../Classes/CppCodeToHtml/codetohtmlcontenttype.cpp \
     ../../Classes/CppCodeToHtml/codetohtmlcontent.cpp \
     ../../Classes/CppCodeToHtml/codetohtml.cpp \
-    ../../Classes/CppProFile/profile.cpp \
-    ../../Classes/CppQtAboutDialog/qtaboutdialog.cpp
+    ../../Classes/CppQtCreatorProFile/qtcreatorprofile.cpp
 
 HEADERS  += \
     richelbilderbeekgallerymenudialog.h \
-    ../../Classes/CppQtAboutDialog/qtaboutdialog.h \
     ../../Classes/CppAbout/about.h \
     ../../Classes/CppRichelBilderbeekProgram/richelbilderbeekprogramstatus.h \
     ../../Classes/CppRichelBilderbeekProgram/richelbilderbeekprogram.h \
@@ -61,10 +51,44 @@ HEADERS  += \
     ../../Classes/CppCodeToHtml/codetohtmlcontenttype.h \
     ../../Classes/CppCodeToHtml/codetohtmlcontent.h \
     ../../Classes/CppCodeToHtml/codetohtml.h \
-    ../../Classes/CppProFile/profile.h
+    ../../Classes/CppQtCreatorProFile/qtcreatorprofile.h
 
 RESOURCES += \
     ../../Projects/RichelbilderbeekNl/qtrichelbilderbeekgalleryresources.qrc
 
 FORMS += \
     ../../Classes/CppQtAboutDialog/qtaboutdialog.ui
+
+#
+#
+# Type of compile
+#
+#
+
+CONFIG(release, debug|release) {
+  DEFINES += NDEBUG NTRACE_BILDERBIKKEL
+}
+
+QMAKE_CXXFLAGS += -std=c++11 -Wall -Wextra -Weffc++
+
+unix {
+  QMAKE_CXXFLAGS += -Werror
+}
+
+#
+#
+# Boost
+#
+#
+
+unix {
+  LIBS += \
+    -lboost_filesystem \
+    -lboost_program_options \
+    -lboost_system
+}
+
+win32 {
+  INCLUDEPATH += \
+    ../../Libraries/boost_1_54_0
+}

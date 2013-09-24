@@ -68,9 +68,6 @@ private slots:
 ///From http://www.richelbilderbeek.nl/CppGetMaxInt.htm
 //int GetMaxInt();
 
-///From http://www.richelbilderbeek.nl/CppRandomizeTimer.htm
-//void RandomizeTimer();
-
 ///SafeIntToCli converts an int to cln::cl_I safely.
 ///From http://www.richelbilderbeek.nl/CppSafeIntToCli.htm
 //const cln::cl_I SafeIntToCli(const int i);

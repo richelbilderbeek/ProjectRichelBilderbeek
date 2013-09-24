@@ -21,19 +21,23 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #ifndef QTTOOLSURFACEPLOTTERMAINDIALOG_H
 #define QTTOOLSURFACEPLOTTERMAINDIALOG_H
 
-#include <QDialog>
+#include "qthideandshowdialog.h"
 
 namespace Ui {
-class QtToolSurfacePlotterMainDialog;
+  class QtToolSurfacePlotterMainDialog;
 }
 
-class QtToolSurfacePlotterMainDialog : public QDialog
+namespace ribi {
+
+class QtToolSurfacePlotterMainDialog : public QtHideAndShowDialog
 {
     Q_OBJECT
     
 public:
     explicit QtToolSurfacePlotterMainDialog(QWidget *parent = 0);
-    ~QtToolSurfacePlotterMainDialog();
+    QtToolSurfacePlotterMainDialog(const QtToolSurfacePlotterMainDialog&) = delete;
+    QtToolSurfacePlotterMainDialog& operator=(const QtToolSurfacePlotterMainDialog&) = delete;
+    ~QtToolSurfacePlotterMainDialog() noexcept;
     
 private slots:
     void OnAnyChange();
@@ -54,5 +58,7 @@ private:
     const double newMax);
 
 };
+
+} //~namespace ribi
 
 #endif // QTTOOLSURFACEPLOTTERMAINDIALOG_H

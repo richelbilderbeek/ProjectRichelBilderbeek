@@ -18,8 +18,9 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolRichelBilderbeekGallery.htm
 //---------------------------------------------------------------------------
-
-
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include "richelbilderbeekgallerymenudialog.h"
 
 #include <cassert>
@@ -30,8 +31,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "qtrichelbilderbeekgalleryresources.h"
 #include "richelbilderbeekprogram.h"
 #include "richelbilderbeekprogramstatus.h"
-
-
+#pragma GCC diagnostic pop
 
 const std::vector<std::string> ribi::RichelBilderbeek::GalleryMenuDialog::CreateHtmlClassGallery()
 {

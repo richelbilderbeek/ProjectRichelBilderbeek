@@ -20,27 +20,30 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #ifndef DIALOGTESTBINARYNEWICKVECTOR_H
 #define DIALOGTESTBINARYNEWICKVECTOR_H
-//---------------------------------------------------------------------------
-#include <QDialog>
-//---------------------------------------------------------------------------
+
+#include "qthideandshowdialog.h"
+
 namespace Ui {
-  class DialogTestBinaryNewickVector;
+  class QtTestBinaryNewickVectorMainDialog;
 }
-//---------------------------------------------------------------------------
-class DialogTestBinaryNewickVector : public QDialog
+
+namespace ribi {
+
+class QtTestBinaryNewickVectorMainDialog : public QtHideAndShowDialog
 {
   Q_OBJECT
 
 public:
-  explicit DialogTestBinaryNewickVector(QWidget *parent = 0);
-  ~DialogTestBinaryNewickVector();
-  static const std::string GetVersion();
-  static const std::vector<std::string> GetVersionHistory();
-protected:
-  void changeEvent(QEvent *e);
+  explicit QtTestBinaryNewickVectorMainDialog(QWidget *parent = 0);
+  QtTestBinaryNewickVectorMainDialog(const QtTestBinaryNewickVectorMainDialog&) = delete;
+  QtTestBinaryNewickVectorMainDialog& operator=(const QtTestBinaryNewickVectorMainDialog&) = delete;
+  ~QtTestBinaryNewickVectorMainDialog() noexcept;
+
+  static const std::string GetVersion() noexcept;
+  static const std::vector<std::string> GetVersionHistory() noexcept;
 
 private:
-  Ui::DialogTestBinaryNewickVector *ui;
+  Ui::QtTestBinaryNewickVectorMainDialog *ui;
   QTimer * m_timer;
 private slots:
   void on_button_calculate_clicked();
@@ -49,5 +52,7 @@ private slots:
   void OnAnyChange();
   void OnDemoTick();
 };
-//---------------------------------------------------------------------------
+
+} //~namespace ribi
+
 #endif // DIALOGTESTBINARYNEWICKVECTOR_H

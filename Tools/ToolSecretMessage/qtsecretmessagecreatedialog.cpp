@@ -1,20 +1,23 @@
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include <QFileDialog>
 #include "qtsecretmessagecreatedialog.h"
 #include "ui_qtsecretmessagecreatedialog.h"
+#pragma GCC diagnostic pop
 
-QtSecretMessageCreateDialog::QtSecretMessageCreateDialog(QWidget *parent) :
-    QDialog(parent),
+ribi::QtSecretMessageCreateDialog::QtSecretMessageCreateDialog(QWidget *parent)
+  : QtHideAndShowDialog(parent),
     ui(new Ui::QtSecretMessageCreateDialog)
 {
     ui->setupUi(this);
 }
 
-QtSecretMessageCreateDialog::~QtSecretMessageCreateDialog()
+ribi::QtSecretMessageCreateDialog::~QtSecretMessageCreateDialog() noexcept
 {
-    delete ui;
+  delete ui;
 }
 
-void QtSecretMessageCreateDialog::on_button_load_original_clicked()
+void ribi::QtSecretMessageCreateDialog::on_button_load_original_clicked()
 {
   QFileDialog::getOpenFileName(0,"Please select an image to hide a message in",QString(),"*.png,*.bmp,*.jpg,*.jpeg");
 }

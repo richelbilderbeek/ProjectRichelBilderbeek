@@ -23,6 +23,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include <vector>
 
+namespace ribi {
+
 struct QuadraticSolverMainDialog
 {
   ///Calculates all solutions from the quadratic equation,
@@ -31,5 +33,7 @@ struct QuadraticSolverMainDialog
   static const std::vector<double> SolveQuadratic(
     const double a, const double b, const double c);
 };
+
+} //~namespace ribi
 
 #endif // QUADRATICSOLVERMAINDIALOG_H

@@ -32,8 +32,6 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
-#include <boost/foreach.hpp>
-
 #include <QApplication>
 
 #include "newickvector.h"
@@ -107,7 +105,7 @@ int main(int argc, char* argv[])
   }
   //All is well
   #ifdef NDEBUG
-  RandomizeTimer();
+  std::srand(std::time(0)); //RandomizeTimer();
   #endif
 
   const std::string s_in(argv[1]);

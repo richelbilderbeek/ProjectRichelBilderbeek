@@ -18,14 +18,17 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolTestBinaryNewickVector.htm
 //---------------------------------------------------------------------------
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include <QApplication>
-#include "dialogtestbinarynewickvector.h"
-//---------------------------------------------------------------------------
+#include "qttestbinarynewickvectormaindialog.h"
+#pragma GCC diagnostic pop
+
 int main(int argc, char *argv[])
 {
   QApplication a(argc, argv);
-  DialogTestBinaryNewickVector w;
+  ribi::QtTestBinaryNewickVectorMainDialog w;
   w.show();
   return a.exec();
 }
-//---------------------------------------------------------------------------
+

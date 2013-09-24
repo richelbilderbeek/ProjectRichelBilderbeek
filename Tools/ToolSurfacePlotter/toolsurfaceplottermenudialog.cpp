@@ -20,8 +20,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #include "toolsurfaceplottermenudialog.h"
 #include "profile.h"
-//---------------------------------------------------------------------------
-const About ToolSurfacePlotterMenuDialog::GetAbout()
+
+const ribi::About ribi::ToolSurfacePlotterMenuDialog::GetAbout()
 {
   About a(
     "Richel Bilderbeek",
@@ -37,18 +37,18 @@ const About ToolSurfacePlotterMenuDialog::GetAbout()
   a.AddLibrary("Warp's FunctionParser version: 4.4.3");
   return a;
 }
-//---------------------------------------------------------------------------
-const std::string ToolSurfacePlotterMenuDialog::GetVersion()
+
+const std::string ribi::ToolSurfacePlotterMenuDialog::GetVersion()
 {
   return "2.0";
 }
-//---------------------------------------------------------------------------
-const std::vector<std::string> ToolSurfacePlotterMenuDialog::GetVersionHistory()
+
+const std::vector<std::string> ribi::ToolSurfacePlotterMenuDialog::GetVersionHistory()
 {
-  std::vector<std::string> v;
-  v.push_back("2010-02-07: version 1.0: initial Windows-only version");
-  v.push_back("2010-02-15: version 1.1: let user specify the range of x and y coordinats");
-  v.push_back("2012-07-07: version 2.0: port to Qt");
-  return v;
+  return {
+    "2010-02-07: version 1.0: initial Windows-only version",
+    "2010-02-15: version 1.1: let user specify the range of x and y coordinats",
+    "2012-07-07: version 2.0: port to Qt"
+  };
 }
-//---------------------------------------------------------------------------
+

@@ -19,19 +19,22 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolRandomCode.htm
 //---------------------------------------------------------------------------
+#include <algorithm>
 #include <ctime>
 #include <iostream>
-//---------------------------------------------------------------------------
-#include <boost/foreach.hpp>
-//---------------------------------------------------------------------------
-#include "../../Classes/CppRandomCode/randomcode.h"
-//---------------------------------------------------------------------------
-///From http://www.richelbilderbeek.nl/CppRandomizeTimer.htm
+#include <iterator>
+
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#include "randomcode.h"
+#pragma GCC diagnostic pop
+
+//From http://www.richelbilderbeek.nl/CppRandomizeTimer.htm
 void RandomizeTimer()
 {
   std::srand(std::time(0));
 }
-//---------------------------------------------------------------------------
+
 int main()
 {
   ///Randomize on timer
@@ -39,7 +42,7 @@ int main()
 
   //Create the random code
   const std::vector<std::string> v
-    = RandomCode::CreateRandomCode();
+    = ribi::RandomCode::CreateRandomCode();
 
   //Display the random code
   std::copy(

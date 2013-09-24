@@ -42,7 +42,8 @@ SOURCES += \
     ../../Classes/CppQtHideAndShowDialog/qthideandshowdialog.cpp \
     ../../Classes/CppQtCreatorProFile/qtcreatorprofilezipscript.cpp \
     ../../Classes/CppQrcFile/qrcfile.cpp \
-    ../../Classes/CppRichelBilderbeekProgram/richelbilderbeekprogramtype.cpp
+    ../../Classes/CppRichelBilderbeekProgram/richelbilderbeekprogramtype.cpp \
+    ../../Classes/CppRichelBilderbeekProgram/richelbilderbeekprogramtypes.cpp
 
 HEADERS  += qtrichelbilderbeekgallerymenudialog.h \
     ../../Classes/CppQtRichelBilderbeekGalleryDialog/qtrichelbilderbeekgallerydialog.h \
@@ -69,7 +70,8 @@ HEADERS  += qtrichelbilderbeekgallerymenudialog.h \
     ../../Classes/CppQtHideAndShowDialog/qthideandshowdialog.h \
     ../../Classes/CppQtCreatorProFile/qtcreatorprofilezipscript.h \
     ../../Classes/CppQrcFile/qrcfile.h \
-    ../../Classes/CppRichelBilderbeekProgram/richelbilderbeekprogramtype.h
+    ../../Classes/CppRichelBilderbeekProgram/richelbilderbeekprogramtype.h \
+    ../../Classes/CppRichelBilderbeekProgram/richelbilderbeekprogramtypes.h
 
 FORMS    += qtrichelbilderbeekgallerymenudialog.ui \
     ../../Classes/CppQtRichelBilderbeekGalleryDialog/qtrichelbilderbeekgallerydialog.ui \
@@ -90,14 +92,7 @@ OTHER_FILES += \
 #
 #
 
-CONFIG(debug, debug|release) {
-  message(Debug mode)
-}
-
 CONFIG(release, debug|release) {
-  message(Release mode)
-
-  #Remove all asserts and TRACE
   DEFINES += NDEBUG NTRACE_BILDERBIKKEL
 }
 
@@ -112,7 +107,7 @@ CONFIG(release, debug|release) {
 # Compiler flags
 #
 #
-QMAKE_CXXFLAGS += -std=c++11 -Wall -Wextra
+QMAKE_CXXFLAGS += -std=c++11 -Wall -Wextra -Weffc++
 
 unix {
   QMAKE_CXXFLAGS += -Werror
@@ -124,13 +119,7 @@ unix {
 #
 #
 
-unix {
-  message(Unix: Boost already in include path)
-}
-
 win32 {
-  message(Windows: add Boost to include path)
   INCLUDEPATH += \
-    E:/Projects/Libraries/boost_1_54_0
+    ../../Libraries/boost_1_54_0
 }
-

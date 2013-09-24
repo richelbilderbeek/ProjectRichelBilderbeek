@@ -20,12 +20,14 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #ifndef TOOLSURFACEPLOTTERMENUDIALOG_H
 #define TOOLSURFACEPLOTTERMENUDIALOG_H
-//---------------------------------------------------------------------------
+
 #include <string>
 #include <vector>
-//---------------------------------------------------------------------------
+
 #include "about.h"
-//---------------------------------------------------------------------------
+
+namespace ribi {
+
 ///GUI independent SurfacePlotter menu dialog
 struct ToolSurfacePlotterMenuDialog
 {
@@ -33,5 +35,7 @@ struct ToolSurfacePlotterMenuDialog
   static const std::string GetVersion();
   static const std::vector<std::string> GetVersionHistory();
 };
-//---------------------------------------------------------------------------
+
+} //namespace ribi
+
 #endif // TOOLSURFACEPLOTTERMENUDIALOG_H

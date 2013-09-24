@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>DialogTestBinaryNewickVector</class>
- <widget class="QDialog" name="DialogTestBinaryNewickVector">
+ <class>QtTestBinaryNewickVectorMainDialog</class>
+ <widget class="QDialog" name="QtTestBinaryNewickVectorMainDialog">
   <property name="geometry">
    <rect>
     <x>0</x>

@@ -1,22 +1,29 @@
 #ifndef QTSECRETMESSAGEEXTRACTDIALOG_H
 #define QTSECRETMESSAGEEXTRACTDIALOG_H
 
-#include <QDialog>
+#include "qthideandshowdialog.h"
+
 
 namespace Ui {
-class QtSecretMessageExtractDialog;
+  class QtSecretMessageExtractDialog;
 }
 
-class QtSecretMessageExtractDialog : public QDialog
+namespace ribi {
+
+class QtSecretMessageExtractDialog : public QtHideAndShowDialog
 {
     Q_OBJECT
     
 public:
     explicit QtSecretMessageExtractDialog(QWidget *parent = 0);
-    ~QtSecretMessageExtractDialog();
+    QtSecretMessageExtractDialog(const QtSecretMessageExtractDialog&) = delete;
+    QtSecretMessageExtractDialog& operator=(const QtSecretMessageExtractDialog&) = delete;
+    ~QtSecretMessageExtractDialog() noexcept;
     
 private:
     Ui::QtSecretMessageExtractDialog *ui;
 };
+
+} //~namespace ribi
 
 #endif // QTSECRETMESSAGEEXTRACTDIALOG_H

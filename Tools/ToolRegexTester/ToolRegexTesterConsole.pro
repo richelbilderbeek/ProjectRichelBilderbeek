@@ -1,10 +1,8 @@
 QT += core
 QT -= gui
-QMAKE_CXXFLAGS += -std=c++11 -Wall -Wextra -Werror
+
 TEMPLATE = app
-LIBS += \
-    -lboost_program_options \
-    -lboost_regex
+
 
 INCLUDEPATH += \
     ../../Classes/CppAbout \
@@ -16,7 +14,8 @@ SOURCES += main.cpp \
     ../../Classes/CppAbout/about.cpp \
     regextesterqtmaindialog.cpp \
     regextestercpp11maindialog.cpp \
-    regextesterboostmaindialog.cpp \
+    regextesterboostregexmaindialog.cpp \
+    regextesterboostxpressivemaindialog.cpp \
     regextestertr1maindialog.cpp
 
 HEADERS += \
@@ -25,10 +24,44 @@ HEADERS += \
     ../../Classes/CppAbout/about.h \
     regextesterqtmaindialog.h \
     regextestercpp11maindialog.h \
-    regextesterboostmaindialog.h \
+    regextesterboostregexmaindialog.h \
+    regextesterboostxpressivemaindialog.h \
     ../../Classes/CppTrace/trace.h \
     regextestertr1maindialog.h
 
 OTHER_FILES += \
     ../../Classes/CppTrace/Licence.txt \
     crosscompiletowindows.sh
+
+#
+#
+# Type of compile
+#
+#
+
+CONFIG(release, debug|release) {
+  DEFINES += NDEBUG NTRACE_BILDERBIKKEL
+}
+
+QMAKE_CXXFLAGS += -std=c++11 -Wall -Wextra -Weffc++
+
+unix {
+  QMAKE_CXXFLAGS += -Werror
+}
+
+#
+#
+# Boost
+#
+#
+
+win32 {
+  INCLUDEPATH += \
+    ../../Libraries/boost_1_54_0
+}
+
+unix {
+  LIBS += \
+    -lboost_program_options \
+    -lboost_regex
+}

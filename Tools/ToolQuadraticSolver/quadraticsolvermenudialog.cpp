@@ -18,13 +18,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 // From http://www.richelbilderbeek.nl/ToolQuadraticSolver.htm
 //---------------------------------------------------------------------------
-//#include own header file as first substantive line of code, from:
-// * John Lakos. Large-Scale C++ Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110
 #include "quadraticsolvermenudialog.h"
 
 #include "trace.h"
 
-const About QuadraticSolverMenuDialog::GetAbout()
+const ribi::About ribi::QuadraticSolverMenuDialog::GetAbout()
 {
   About a(
     "Richel Bilderbeek",
@@ -39,15 +37,16 @@ const About QuadraticSolverMenuDialog::GetAbout()
   return a;
 }
 
-const std::string QuadraticSolverMenuDialog::GetVersion()
+const std::string ribi::QuadraticSolverMenuDialog::GetVersion()
 {
   return "2.0";
 }
 
-const std::vector<std::string> QuadraticSolverMenuDialog::GetVersionHistory()
+const std::vector<std::string> ribi::QuadraticSolverMenuDialog::GetVersionHistory()
 {
-  std::vector<std::string> v;
-  v.push_back("2008-xx-xx: version 1.0: initial version in C++ Builder");
-  v.push_back("2013-08-26: version 2.0: port to Qt Creator");
+  return {
+    "2008-xx-xx: version 1.0: initial version in C++ Builder",
+    "2013-08-26: version 2.0: port to Qt Creator"
+  };
   return v;
 }
