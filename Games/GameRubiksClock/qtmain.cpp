@@ -21,10 +21,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
+#include <cassert>
+#include <iostream>
+
+#include <QApplication>
+
 #include "trace.h"
 #include "qtrubiksclockmenudialog.h"
 
-#include <QApplication>
 #pragma GCC diagnostic pop
 
 int main(int argc, char *argv[])
@@ -32,7 +36,6 @@ int main(int argc, char *argv[])
   QApplication a(argc, argv);
 
   START_TRACE();
-  //Perform tests
   #ifndef NDEBUG
   std::clog << "DEBUG mode" << std::endl;
   //QtPvdbMenuDialog::Test();
