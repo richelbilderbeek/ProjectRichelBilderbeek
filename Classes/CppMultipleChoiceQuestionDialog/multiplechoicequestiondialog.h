@@ -34,7 +34,7 @@ struct MultipleChoiceQuestion;
 struct MultipleChoiceQuestionDialog : public QuestionDialog
 {
   explicit MultipleChoiceQuestionDialog(
-    const boost::shared_ptr<MultipleChoiceQuestion>& question
+    const boost::shared_ptr<const MultipleChoiceQuestion>& question
     = CreateDefaultQuestion());
 
   explicit MultipleChoiceQuestionDialog(const std::string& question);
@@ -52,6 +52,10 @@ struct MultipleChoiceQuestionDialog : public QuestionDialog
   ///Create a default Question
   //static MultipleChoiceQuestion * CreateDefaultQuestion();
   static boost::shared_ptr<MultipleChoiceQuestion> CreateDefaultQuestion() noexcept;
+
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
 };
 
 } //~namespace ribi

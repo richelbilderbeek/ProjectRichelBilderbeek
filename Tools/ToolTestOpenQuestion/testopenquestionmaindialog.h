@@ -23,8 +23,14 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include <vector>
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/scoped_ptr.hpp>
 #include <boost/shared_ptr.hpp>
+#pragma GCC diagnostic pop
+
+namespace ribi {
 
 struct MultipleChoiceQuestion;
 struct MultipleChoiceQuestionDialog;
@@ -47,5 +53,6 @@ struct TestOpenQuestionMainDialog
   static std::vector<boost::shared_ptr<QuestionDialog> > CreateQuestions();
 };
 
+} //~namespace ribi
 
 #endif // TESTOPENQUESTIONMAINDIALOG_H

@@ -29,6 +29,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <fstream>
 #include <iostream>
 
+#include <boost/scoped_ptr.hpp>
 #include <boost/xpressive/xpressive.hpp>
 
 #include <QDir>
@@ -350,7 +351,8 @@ const std::vector<std::string> c2h::ConvertProject(const std::string& filename)
     std::for_each(files.begin(),files.end(),
       [&v](const std::string& filename)
       {
-        const std::vector<std::string> w = Content(filename,FileToVector(filename)).ToHtml();
+        const boost::scoped_ptr<const Content> content(new Content(filename,FileToVector(filename)));
+        const std::vector<std::string> w = content->ToHtml();
         std::copy(w.begin(),w.end(),std::back_inserter(v));
       }
     );

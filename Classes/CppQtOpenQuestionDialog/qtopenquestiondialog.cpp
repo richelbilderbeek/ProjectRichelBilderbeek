@@ -43,7 +43,7 @@ ribi::QtOpenQuestionDialog::QtOpenQuestionDialog(QWidget *parent)
 }
 
 ribi::QtOpenQuestionDialog::QtOpenQuestionDialog(
-  const boost::shared_ptr<QuestionDialog>& dialog,
+  const boost::shared_ptr<QuestionDialog> dialog,
   QWidget *parent)
   : QtQuestionDialog(dialog,parent),
     ui(new Ui::QtOpenQuestionDialog)
@@ -73,7 +73,7 @@ const std::vector<std::string> ribi::QtOpenQuestionDialog::GetVersionHistory() n
 
 ///Set the Question
 void ribi::QtOpenQuestionDialog::SetQuestion(
-  const boost::shared_ptr<Question> question) noexcept
+  const boost::shared_ptr<const Question> question) noexcept
 {
   m_dialog->SetQuestion(question);
 
@@ -94,7 +94,7 @@ void ribi::QtOpenQuestionDialog::SetQuestion(
 
 void ribi::QtOpenQuestionDialog::on_button_submit_clicked() noexcept
 {
-  assert(m_dialog->CanSubmit());
+  assert(!m_dialog->HasSubmitted());
   m_dialog->Submit(this->ui->edit_answer->text().toStdString());
 
   const bool is_correct = m_dialog->IsAnswerCorrect();

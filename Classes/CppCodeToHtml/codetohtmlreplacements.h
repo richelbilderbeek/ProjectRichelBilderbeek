@@ -24,6 +24,12 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <string>
 #include <vector>
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#include <boost/checked_delete.hpp>
+#pragma GCC diagnostic pop
+
 ///\brief
 ///Contains all code replacements
 ///
@@ -33,23 +39,35 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 ///-m_end_replacements: converts '[AMPERSAND]' back to '&'
 ///
 ///m_all_replacements contains all replacements as a single std::vector
-struct CodeToHtmlReplacements
+struct Replacements
 {
-  CodeToHtmlReplacements(const std::vector<std::pair<std::string,std::string> >& replacements);
-  CodeToHtmlReplacements(const CodeToHtmlReplacements&) = delete;
-  CodeToHtmlReplacements& operator=(const CodeToHtmlReplacements&) = delete;
+  Replacements(const std::vector<std::pair<std::string,std::string> >& replacements);
+  Replacements(const Replacements&) = delete;
+  Replacements& operator=(const Replacements&) = delete;
 
   const std::vector<std::pair<std::string,std::string> >& Get() const { return m_replacements; }
 
   private:
+  ~Replacements() noexcept {}
+  friend void boost::checked_delete<>(Replacements*);
+  friend void boost::checked_delete<>(const Replacements*);
+
   ///The important replacements
   const std::vector<std::pair<std::string,std::string> > m_replacements;
 
-  private:
   static const std::vector<std::pair<std::string,std::string> > CreateAllReplacements(
     const std::vector<std::pair<std::string,std::string> >& replacements);
   static const std::vector<std::pair<std::string,std::string> > CreateEndReplacements();
   static const std::vector<std::pair<std::string,std::string> > CreateInitialReplacements();
 };
+
+namespace ReplacementsDeleter
+{
+  const auto deleter
+    = [](const Replacements * const p)
+    {
+      boost::checked_delete(p);
+    };
+}
 
 #endif // CODETOHTMLREPLACEMENTS_H

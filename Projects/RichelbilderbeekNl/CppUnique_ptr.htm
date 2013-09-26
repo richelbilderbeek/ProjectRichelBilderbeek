@@ -29,53 +29,12 @@ uncopyable <a href="CppSmartPointer.htm">smart pointer</a>.</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
-<h2>Example</h2>
+<h2><a href="CppExample.htm">Example</a></h2>
 <p>&nbsp;</p>
 <ul>
-  <li><img src="PicQtCreator.png" alt="Qt Creator"/> <a href="CppUnique_ptr.zip">Download the Qt Creator project 'CppUnique_ptr' (zip)</a></li>
-  <li><img src="PicWindows.png" alt="Windows"/> <a href="CppUnique_ptrExe.zip">Download a Windows executable of 'CppUnique_ptr' (zip)</a></li>
+  <li><a href="CppUnique_ptrExample1.htm">std::unique_ptr example 1: basics</a></li>
+  <li><a href="CppUnique_ptrExample2.htm">std::unique_ptr example 2: custom deleter</a></li>
 </ul>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<!-- start of code -->
-<table border = "1"><tr><td><code>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppMemoryH.htm">memory</a>&gt;<br/>
-<br/>
-<b><a href="CppStruct.htm">struct</a></b> Test { <b><a href="CppInt.htm">int</a></b> m_x; };<br/>
-<br/>
-<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
-{<br/>
-&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppUnique_ptr.htm">std::unique_ptr</a>&lt;Test&gt; p; <a href="CppComment.htm">//</a>Uninitialized <a href="CppPointer.htm">pointer</a><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppAssert.htm">assert</a>(p);&nbsp;&nbsp;<a href="CppComment.htm">//</a>Good: uninitialized <a href="CppPointer.htm">pointer</a> is detected<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>p-&gt;m_x <a href="CppOperatorAssign.htm">=</a> 3; <a href="CppComment.htm">//</a>Bad: results in an <a href="CppAccessViolation.htm">access violation</a><br/>
-&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppUnique_ptr.htm">std::unique_ptr</a>&lt;Test&gt; p(<b><a href="CppNew.htm">new</a></b> Test);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;p-&gt;m_x <a href="CppOperatorAssign.htm">=</a> 3; <a href="CppComment.htm">//</a>OK<br/>
-&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppUnique_ptr.htm">std::unique_ptr</a>&lt;Test&gt; p;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;p.reset(<b><a href="CppNew.htm">new</a></b> Test);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;p-&gt;m_x <a href="CppOperatorAssign.htm">=</a> 3; <a href="CppComment.htm">//</a>OK<br/>
-&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppUnique_ptr.htm">std::unique_ptr</a>&lt;Test&gt; p(<b><a href="CppNew.htm">new</a></b> Test);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppUnique_ptr.htm">std::unique_ptr</a>&lt;Test&gt; q(p); <a href="CppComment.htm">//</a><a href="CppUnique_ptr.htm">std::unique_ptr</a> cannot be copied<br/>
-&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppUnique_ptr.htm">std::unique_ptr</a>&lt;Test&gt; p(<b><a href="CppNew.htm">new</a></b> Test);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppShared_ptr.htm">std::shared_ptr</a>&lt;Test&gt; q(p.release()); <a href="CppComment.htm">//</a>Transfer ownership<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!p);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(q);<br/>
-&nbsp;&nbsp;}<br/>
-}<br/>
-</code></td></tr></table>
-<!-- end of the code -->
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>

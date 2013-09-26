@@ -24,9 +24,15 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <string>
 #include <vector>
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#include <boost/scoped_ptr.hpp>
+
 #include "codetohtml.h"
 #include "codetohtmlcontenttype.h"
 #include "codetohtmlreplacements.h"
+#pragma GCC diagnostic pop
 
 namespace c2h {
 
@@ -45,15 +51,15 @@ struct Content
 
   ///Get the C++ replacements
   ///Lazily create these
-  static const CodeToHtmlReplacements& GetReplacementsCpp();
+  static const Replacements& GetReplacementsCpp();
 
   ///Get the .pro file replacements
   ///Lazily create these
-  static const CodeToHtmlReplacements& GetReplacementsPro();
+  static const Replacements& GetReplacementsPro();
 
   ///Get the text file replacements
   ///Lazily create these
-  static const CodeToHtmlReplacements& GetReplacementsTxt();
+  static const Replacements& GetReplacementsTxt();
 
   ///Replace all instances in a std::string by the replacements
   static const std::string MultiReplace(
@@ -67,6 +73,9 @@ struct Content
   //void SetContentType(const ContentType t) { m_content_type = t; }
 
   private:
+  ~Content() noexcept {}
+  friend void boost::checked_delete<>(Content*);
+  friend void boost::checked_delete<>(const Content*);
 
   ///\brief
   ///The type of content
@@ -82,13 +91,13 @@ struct Content
   const std::string m_filename;
 
   ///The C++ replacements
-  static std::unique_ptr<const CodeToHtmlReplacements> m_replacements_cpp;
+  static boost::scoped_ptr<const Replacements> m_replacements_cpp;
 
   ///The .pro file replacements
-  static std::unique_ptr<const CodeToHtmlReplacements> m_replacements_pro;
+  static boost::scoped_ptr<const Replacements> m_replacements_pro;
 
   ///The text file replacements
-  static std::unique_ptr<const CodeToHtmlReplacements> m_replacements_txt;
+  static boost::scoped_ptr<const Replacements> m_replacements_txt;
 
   ///CreateCppReplacements creates the (many) replacements when
   ///code is converted to HTML. It uses all the replacements from a .pro file

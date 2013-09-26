@@ -80,7 +80,7 @@ const std::vector<std::string> ribi::QtMultipleChoiceQuestionDialog::GetVersionH
 
 ///Set the Question
 void ribi::QtMultipleChoiceQuestionDialog::SetQuestion(
-  const boost::shared_ptr<Question>& question) noexcept
+  const boost::shared_ptr<const Question>& question) noexcept
 {
   m_dialog->SetQuestion(question);
 
@@ -122,7 +122,7 @@ void ribi::QtMultipleChoiceQuestionDialog::SetQuestion(
 
 void ribi::QtMultipleChoiceQuestionDialog::on_button_submit_clicked() noexcept
 {
-  assert(m_dialog->CanSubmit());
+  assert(!m_dialog->HasSubmitted());
   const std::vector<const QRadioButton* > buttons
     = { ui->radio_1, ui->radio_2, ui->radio_3, ui->radio_4, ui->radio_5, ui->radio_6 };
 

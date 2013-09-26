@@ -28,21 +28,28 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 namespace ribi {
 
-///Class for a question
+///Class for a question.
+///A question only knows its question and correct answers and optionally
+///an image. Derived classes need to maintain incorrect answers.
 struct Question
 {
+  explicit Question(
+    const std::string& filename,
+    const std::string& question,
+    const std::vector<std::string>& correct_answers);
+
   ///Create a copy of the Question, depending on the derived class its type
   virtual Question * Clone() const = 0;
 
-  ///Is the submitted std::string a correct answer?
-  bool IsCorrect(const std::string& s) const;
+  ///Obtain the correct answer(s)
+  const std::vector<std::string>& GetCorrectAnswers() const noexcept { return m_correct_answers; }
 
   ///Obtain the possible media filename, which will be empty
   ///if none is used
-  const std::string& GetFilename() const { return m_filename; }
+  const std::string& GetFilename() const noexcept { return m_filename; }
 
   ///Obtain the question
-  const std::string& GetQuestion() const { return m_question; }
+  const std::string& GetQuestion() const noexcept { return m_question; }
 
   ///Obtain the version
   static const std::string GetVersion() noexcept;
@@ -50,19 +57,15 @@ struct Question
   ///Obtain the version history
   static const std::vector<std::string> GetVersionHistory() noexcept;
 
+  ///Would a submitted std::string be the correct answer?
+  bool IsCorrect(const std::string& s) const noexcept;
+
   protected:
-  //Made constructor private, because one cannot make a Question, only
-  //derived classes of Question
-  explicit Question(
-    const std::string& filename,
-    const std::string& question,
-    const std::vector<std::string>& answers);
-
   virtual ~Question() noexcept {}
-  friend void boost::checked_delete<>(Question *);
 
-  ///Obtain the answer(s)
-  const std::vector<std::string>& GetAnswers() const { return m_answers; }
+  private:
+  friend void boost::checked_delete<>(Question *);
+  friend void boost::checked_delete<>(const Question *);
 
   ///Every Question might have a media filename
   const std::string m_filename;
@@ -71,7 +74,7 @@ struct Question
   const std::string m_question;
 
   ///The list of possible answers
-  const std::vector<std::string> m_answers;
+  const std::vector<std::string> m_correct_answers;
 };
 
 } //~namespace ribi

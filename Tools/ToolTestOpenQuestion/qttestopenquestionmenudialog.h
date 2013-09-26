@@ -21,13 +21,20 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #ifndef QTTESTOPENQUESTIONMENUDIALOG_H
 #define QTTESTOPENQUESTIONMENUDIALOG_H
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/scoped_ptr.hpp>
 
 #include "qthideandshowdialog.h"
+#pragma GCC diagnostic pop
 
 namespace Ui {
-class QtTestOpenQuestionMenuDialog;
+  class QtTestOpenQuestionMenuDialog;
 }
+
+namespace ribi {
+
 struct TestOpenQuestionMenuDialog;
 
 class QtTestOpenQuestionMenuDialog : public QtHideAndShowDialog
@@ -36,7 +43,9 @@ class QtTestOpenQuestionMenuDialog : public QtHideAndShowDialog
 
 public:
   explicit QtTestOpenQuestionMenuDialog(QWidget *parent = 0);
-  ~QtTestOpenQuestionMenuDialog();
+  QtTestOpenQuestionMenuDialog(const QtTestOpenQuestionMenuDialog&) = delete;
+  QtTestOpenQuestionMenuDialog& operator=(const QtTestOpenQuestionMenuDialog&) = delete;
+  ~QtTestOpenQuestionMenuDialog() noexcept;
 
 protected:
   void keyPressEvent(QKeyEvent* event);
@@ -54,5 +63,7 @@ private:
   static void Test();
   #endif
 };
+
+} //~namespace ribi
 
 #endif // QTTESTOPENQUESTIONMENUDIALOG_H

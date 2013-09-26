@@ -218,8 +218,8 @@ int main(int argc, char* argv[])
     assert( (c2h::IsFolder(source) || c2h::IsRegularFile(source))
       && "Source can be a file or a path");
 
-    c2h::Dialog c(page_type,source,content_type,tech_info);
-    const std::vector<std::string> v = c.ToHtml();
+    const boost::scoped_ptr<const c2h::Dialog> c { new const c2h::Dialog(page_type,source,content_type,tech_info) };
+    const std::vector<std::string> v = c->ToHtml();
     const std::string output_filename = c2h::GetFileBasename(source) + ".htm";
     std::ofstream f(output_filename.c_str());
     std::copy(v.begin(),v.end(),std::ostream_iterator<std::string>(f,"\n"));
@@ -237,8 +237,8 @@ int main(int argc, char* argv[])
       const std::string folder_full_path = source + "/" + folder;
       TRACE(folder);
       TRACE(folder_full_path);
-      c2h::Dialog c(page_type,folder_full_path,content_type,tech_info);
-      const std::vector<std::string> v = c.ToHtml();
+      const boost::scoped_ptr<const c2h::Dialog> c { new c2h::Dialog(page_type,folder_full_path,content_type,tech_info) };
+      const std::vector<std::string> v = c->ToHtml();
       const std::string output_filename = c2h::GetFileBasename(folder_full_path) + ".htm";
       std::ofstream f(output_filename.c_str());
       std::copy(v.begin(),v.end(),std::ostream_iterator<std::string>(f,"\n"));

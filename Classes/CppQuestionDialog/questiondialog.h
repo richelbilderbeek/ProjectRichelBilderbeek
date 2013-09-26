@@ -34,16 +34,18 @@ struct Question;
 ///Dialog for an Question
 struct QuestionDialog
 {
-  explicit QuestionDialog(const boost::shared_ptr<Question> question);
+  explicit QuestionDialog(const boost::shared_ptr<const Question> question);
 
   ///Check if an answer can be submitted
-  bool CanSubmit() const { return !m_has_submitted; }
+  ///Use !HasSubmitted instead
+  //bool CanSubmit() const { return !m_has_submitted; }
 
   ///Get all possible correct answers
-  const std::vector<std::string> GetCorrectAnswers() const;
+  //Use GetQuestion->GetCorrectAnswers()
+  //const std::vector<std::string> GetCorrectAnswers() const noexcept;
 
   ///Obtain the question
-  boost::shared_ptr<Question> GetQuestion() const { return m_question; }
+  const boost::shared_ptr<const Question> GetQuestion() const { return m_question; }
 
   ///Obtain the version
   static const std::string GetVersion() noexcept;
@@ -58,8 +60,7 @@ struct QuestionDialog
   bool IsAnswerCorrect() const;
 
   ///(Re)set the Question
-  //void SetQuestion(const Question * const question);
-  void SetQuestion(const boost::shared_ptr<Question> question);
+  void SetQuestion(const boost::shared_ptr<const Question> question);
 
   ///Submit an answer
   void Submit(const std::string& s);
@@ -67,6 +68,7 @@ struct QuestionDialog
   protected:
   virtual ~QuestionDialog() noexcept {}
   friend void boost::checked_delete<>(QuestionDialog*);
+  friend void boost::checked_delete<>(const QuestionDialog*);
 
   private:
   ///Has the user already submitted an answer?
@@ -76,7 +78,7 @@ struct QuestionDialog
   bool m_is_correct;
 
   ///The question
-  boost::shared_ptr<Question> m_question;
+  boost::shared_ptr<const Question> m_question;
 };
 
 } //~namespace ribi

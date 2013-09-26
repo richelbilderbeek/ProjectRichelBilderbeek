@@ -18,13 +18,9 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolTestOpenQuestion.htm
 //---------------------------------------------------------------------------
-#ifdef _WIN32
-//See http://www.richelbilderbeek.nl/CppCompileErrorSwprintfHasNotBeenDeclared.htm
-#undef __STRICT_ANSI__
-#endif
-
-//#include own header file as first substantive line of code, from:
-// * John Lakos. Large-Scale C++ Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include "qttestopenquestionmenudialog.h"
 
 #include <QKeyEvent>
@@ -39,8 +35,9 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "testopenquestionmenudialog.h"
 #include "trace.h"
 #include "ui_qttestopenquestionmenudialog.h"
+#pragma GCC diagnostic pop
 
-QtTestOpenQuestionMenuDialog::QtTestOpenQuestionMenuDialog(QWidget *parent) :
+ribi::QtTestOpenQuestionMenuDialog::QtTestOpenQuestionMenuDialog(QWidget *parent) :
   QtHideAndShowDialog(parent),
   ui(new Ui::QtTestOpenQuestionMenuDialog),
   m_dialog(new TestOpenQuestionMenuDialog)
@@ -51,24 +48,24 @@ QtTestOpenQuestionMenuDialog::QtTestOpenQuestionMenuDialog(QWidget *parent) :
   ui->setupUi(this);
 }
 
-QtTestOpenQuestionMenuDialog::~QtTestOpenQuestionMenuDialog()
+ribi::QtTestOpenQuestionMenuDialog::~QtTestOpenQuestionMenuDialog() noexcept
 {
   delete ui;
 }
 
-void QtTestOpenQuestionMenuDialog::keyPressEvent(QKeyEvent* event)
+void ribi::QtTestOpenQuestionMenuDialog::keyPressEvent(QKeyEvent* event)
 {
   if (event->key() == Qt::Key_Escape) close();
 }
 
-void QtTestOpenQuestionMenuDialog::on_button_start_clicked()
+void ribi::QtTestOpenQuestionMenuDialog::on_button_start_clicked()
 {
   QtTestOpenQuestionMainDialog d;
   d.setStyleSheet(this->styleSheet());
   ShowChild(&d);
 }
 
-void QtTestOpenQuestionMenuDialog::on_button_about_clicked()
+void ribi::QtTestOpenQuestionMenuDialog::on_button_about_clicked()
 {
   hide();
   About a = m_dialog->GetAbout();
@@ -81,22 +78,22 @@ void QtTestOpenQuestionMenuDialog::on_button_about_clicked()
   show();
 }
 
-void QtTestOpenQuestionMenuDialog::on_button_quit_clicked()
+void ribi::QtTestOpenQuestionMenuDialog::on_button_quit_clicked()
 {
   close();
 }
 
 #ifndef NDEBUG
-void QtTestOpenQuestionMenuDialog::Test()
+void ribi::QtTestOpenQuestionMenuDialog::Test()
 {
   {
     static bool is_tested = false;
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting QtTestOpenQuestionMenuDialog::Test");
+  TRACE("Starting ribi::QtTestOpenQuestionMenuDialog::Test");
   QtTestOpenQuestionMainDialog();
-  TRACE("Finished QtTestOpenQuestionMenuDialog::Test successfully");
+  TRACE("Finished ribi::QtTestOpenQuestionMenuDialog::Test successfully");
 }
 #endif
 

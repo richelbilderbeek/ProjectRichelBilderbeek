@@ -23,6 +23,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include "about.h"
 
+namespace ribi {
+
 ///The logic behind the menu dialog
 struct TestMultipleChoiceQuestionMenuDialog
 {
@@ -35,13 +37,15 @@ struct TestMultipleChoiceQuestionMenuDialog
   ///This is a non-static method, to ensure users of this class
   ///call TestMultipleChoiceQuestionMenuDialog its constructor: this is where
   ///the resources needed are created
-  const About GetAbout() const;
+  const About GetAbout() const noexcept;
 
   ///Obtain the version
-  static const std::string GetVersion();
+  static const std::string GetVersion() noexcept;
 
   ///Obtain the version history
-  static const std::vector<std::string> GetVersionHistory();
+  static const std::vector<std::string> GetVersionHistory() noexcept;
 };
+
+} //~namespace ribi
 
 #endif // TESTMULTIPLECHOICEQUESTIONMENUDIALOG_H

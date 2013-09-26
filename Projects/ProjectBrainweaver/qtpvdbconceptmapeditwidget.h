@@ -72,10 +72,6 @@ private:
   ///Remove all Qt and non-Qt items
   void CleanMe();
 
-  ///After the selected arrows, EdgeConcepts and Nodes are deleted
-  ///delete the unconnected leftovers that are left
-  //void DeleteLeftovers();
-
   ///Obtain the read-and-write Qt edge items
   ///The read-only Qt edge items is already supplied by QtPvdbConceptMapWidget
   const std::vector<QtPvdbEdgeItem *> GetQtEdges();

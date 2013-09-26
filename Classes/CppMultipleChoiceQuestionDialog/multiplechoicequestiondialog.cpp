@@ -21,17 +21,20 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #include "multiplechoicequestiondialog.h"
+
 #include <cassert>
+#include <boost/scoped_ptr.hpp>
+
 #include "multiplechoicequestion.h"
 #include "question.h"
+#include "trace.h"
 #pragma GCC diagnostic pop
 
 ribi::MultipleChoiceQuestionDialog::MultipleChoiceQuestionDialog(
-  const boost::shared_ptr<MultipleChoiceQuestion>& question)
+  const boost::shared_ptr<const MultipleChoiceQuestion>& question)
   //const MultipleChoiceQuestion * const question)
   : QuestionDialog(question)
 {
-  assert(CanSubmit());
   assert(!HasSubmitted());
   assert(GetQuestion());
 }
@@ -41,7 +44,9 @@ ribi::MultipleChoiceQuestionDialog::MultipleChoiceQuestionDialog(const std::stri
     boost::shared_ptr<MultipleChoiceQuestion>(new
       MultipleChoiceQuestion(question)))
 {
-  assert(CanSubmit());
+  #ifndef NDEBUG
+  Test();
+  #endif
   assert(!HasSubmitted());
   assert(GetQuestion());
 }
@@ -71,3 +76,64 @@ const std::vector<std::string> ribi::MultipleChoiceQuestionDialog::GetVersionHis
   };
 }
 
+#ifndef NDEBUG
+void ribi::MultipleChoiceQuestionDialog::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting ribi::MultipleChoiceQuestionDialog::Test");
+
+  //Test submitting correct and incorrect answers to this dialog
+  {
+    const std::vector<std::string> valid {
+      MultipleChoiceQuestion::GetValidMultipleChoiceQuestions()
+    };
+    for (const std::string& s: valid)
+    {
+      const boost::shared_ptr<const MultipleChoiceQuestion> question {
+        new MultipleChoiceQuestion(s)
+      };
+
+      //Submit correct answer to this dialog
+      {
+        boost::scoped_ptr<MultipleChoiceQuestionDialog> dialog {
+          new MultipleChoiceQuestionDialog(
+            question
+          )
+        };
+        assert(!dialog->HasSubmitted());
+
+        const std::string answer = question->GetAnswer();
+        assert(!question->GetWrongAnswers().empty());
+
+        dialog->Submit(answer);
+
+        assert(dialog->HasSubmitted());
+        assert(dialog->IsAnswerCorrect());
+      }
+      //Submit incorrect answer to this dialog
+      {
+        boost::scoped_ptr<MultipleChoiceQuestionDialog> dialog {
+          new MultipleChoiceQuestionDialog(
+            question
+          )
+        };
+        assert(!dialog->HasSubmitted());
+
+        assert(!question->GetWrongAnswers().empty());
+        const std::string wrong_answer = question->GetWrongAnswers().at(0);
+        dialog->Submit(wrong_answer);
+
+        assert(dialog->HasSubmitted());
+        assert(!dialog->IsAnswerCorrect());
+      }
+    }
+  }
+
+
+  TRACE("Finished ribi::MultipleChoiceQuestionDialog::Test successfully");
+}
+#endif

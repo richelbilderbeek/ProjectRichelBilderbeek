@@ -28,6 +28,11 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <string>
 #include <vector>
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#include <boost/scoped_ptr.hpp>
+
 #include "codetohtmlcontent.h"
 #include "codetohtmldialog.h"
 #include "codetohtmlfooter.h"
@@ -36,7 +41,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "codetohtmltechinfo.h"
 #include "codetohtmlversion.h"
 #include "trace.h"
-
+#pragma GCC diagnostic pop
 
 c2h::Dialog::Dialog(
   const PageType page_type,
@@ -58,6 +63,11 @@ c2h::Dialog::Dialog(
   //Check source
   assert( (IsFolder(source) || IsRegularFile(source))
     && "Source can be a file or a path");
+}
+
+c2h::Dialog::~Dialog() noexcept
+{
+
 }
 
 #ifndef NDEBUG
@@ -117,8 +127,8 @@ const std::vector<std::string> c2h::Dialog::ToHtml() const
 
   //Add header
   {
-    Header header(m_page_type,m_source);
-    const std::vector<std::string> w = header.ToHtml();
+    const boost::scoped_ptr<const Header> header(new Header(m_page_type,m_source));
+    const std::vector<std::string> w = header->ToHtml();
     std::copy(w.begin(),w.end(),std::back_inserter(v));
   }
   //Text about this page (if known)
@@ -152,8 +162,8 @@ const std::vector<std::string> c2h::Dialog::ToHtml() const
         assert(IsRegularFile(pro_file));
       }
 
-      TechInfo info(pro_files);
-      const std::vector<std::string> w = info.ToHtml();
+      const boost::scoped_ptr<const TechInfo> info(new TechInfo(pro_files));
+      const std::vector<std::string> w = info->ToHtml();
       std::copy(w.begin(),w.end(),std::back_inserter(v));
     }
     else
@@ -173,8 +183,8 @@ const std::vector<std::string> c2h::Dialog::ToHtml() const
 
   //Add footer
   {
-    Footer footer(m_page_type);
-    const std::vector<std::string> w = footer.ToHtml();
+    const boost::scoped_ptr<Footer> footer(new Footer(m_page_type));
+    const std::vector<std::string> w = footer->ToHtml();
     std::copy(w.begin(),w.end(),std::back_inserter(v));
   }
   #ifndef _WIN32

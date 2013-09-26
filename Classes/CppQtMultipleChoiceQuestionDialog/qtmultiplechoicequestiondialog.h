@@ -75,9 +75,7 @@ private:
 
   ///Set the Question
   void SetQuestion(
-    const boost::shared_ptr<Question>& question
-    //const boost::shared_ptr<MultipleChoiceQuestion>& question
-    //const MultipleChoiceQuestion * const question
+    const boost::shared_ptr<const Question>& question
     ) noexcept;
 
 };

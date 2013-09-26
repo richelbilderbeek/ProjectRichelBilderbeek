@@ -49,7 +49,7 @@ class QtOpenQuestionDialog : public QtQuestionDialog
 public:
   explicit QtOpenQuestionDialog(QWidget *parent = 0);
   explicit QtOpenQuestionDialog(
-    const boost::shared_ptr<QuestionDialog>& dialog,
+    const boost::shared_ptr<QuestionDialog> dialog,
     QWidget *parent = 0);
   QtOpenQuestionDialog(const QtOpenQuestionDialog&) = delete;
   QtOpenQuestionDialog& operator=(const QtOpenQuestionDialog&) = delete;
@@ -59,7 +59,7 @@ public:
   static const std::vector<std::string> GetVersionHistory() noexcept;
 
   ///Set the Question
-  void SetQuestion(const boost::shared_ptr<Question> question) noexcept;
+  void SetQuestion(const boost::shared_ptr<const Question> question) noexcept;
 
 private slots:
   void on_button_submit_clicked() noexcept;

@@ -47,6 +47,10 @@ struct Dialog
   const std::vector<std::string> ToHtml() const;
 
   private:
+  ~Dialog() noexcept;
+  friend void boost::checked_delete<>(Dialog*);
+  friend void boost::checked_delete<>(const Dialog*);
+
   const ContentType m_content_type;
   const boost::scoped_ptr<const Info> m_info;
   const PageType m_page_type;

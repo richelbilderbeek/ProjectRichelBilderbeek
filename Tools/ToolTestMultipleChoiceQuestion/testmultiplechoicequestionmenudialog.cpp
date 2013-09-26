@@ -18,31 +18,23 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolTestMultipleChoiceQuestion.htm
 //---------------------------------------------------------------------------
-#ifdef _WIN32
-//See http://www.richelbilderbeek.nl/CppCompileErrorUnableToFindNumericLiteralOperatorOperatorQ.htm
-#if !(__GNUC__ >= 4 && __GNUC_MINOR__ >= 8)
-//See http://www.richelbilderbeek.nl/CppCompileErrorSwprintfHasNotBeenDeclared.htm
-#undef __STRICT_ANSI__
-#endif
-#endif
-
-//#include own header file as first substantive line of code, from:
-// * John Lakos. Large-Scale C++ Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include "testmultiplechoicequestionmenudialog.h"
 
 #include <boost/foreach.hpp>
 
-#include "multiplechoicequestion.h"
-#include "multiplechoicequestiondialog.h"
-//#include "question.h"
-//#include "questiondialog.h"
-//#include "trace.h"
-
 #include <QFile>
 
-TestMultipleChoiceQuestionMenuDialog::TestMultipleChoiceQuestionMenuDialog()
+#include "multiplechoicequestion.h"
+#include "multiplechoicequestiondialog.h"
+#pragma GCC diagnostic pop
+
+
+ribi::TestMultipleChoiceQuestionMenuDialog::TestMultipleChoiceQuestionMenuDialog()
 {
-  const std::vector<std::string> files = { "question.png" };
+  const std::vector<std::string> files = { "Question.png" };
   BOOST_FOREACH(const std::string& filename,files)
   {
     if (!QFile::exists(filename.c_str()))
@@ -54,7 +46,7 @@ TestMultipleChoiceQuestionMenuDialog::TestMultipleChoiceQuestionMenuDialog()
   }
 }
 
-const About TestMultipleChoiceQuestionMenuDialog::GetAbout() const
+const ribi::About ribi::TestMultipleChoiceQuestionMenuDialog::GetAbout() const noexcept
 {
   About a(
     "Richel Bilderbeek",
@@ -73,15 +65,15 @@ const About TestMultipleChoiceQuestionMenuDialog::GetAbout() const
   return a;
 }
 
-const std::string TestMultipleChoiceQuestionMenuDialog::GetVersion()
+const std::string ribi::TestMultipleChoiceQuestionMenuDialog::GetVersion() noexcept
 {
   return "1.0";
 }
 
-const std::vector<std::string> TestMultipleChoiceQuestionMenuDialog::GetVersionHistory()
+const std::vector<std::string> ribi::TestMultipleChoiceQuestionMenuDialog::GetVersionHistory() noexcept
 {
-  std::vector<std::string> v;
-  v.push_back("2013-08-20: Version 1.0: initial version");
-  return v;
+  return {
+    "2013-08-20: Version 1.0: initial version"
+  };
 }
 

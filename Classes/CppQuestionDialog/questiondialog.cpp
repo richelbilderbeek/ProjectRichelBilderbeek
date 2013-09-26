@@ -25,41 +25,51 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "question.h"
 #pragma GCC diagnostic pop
 
-ribi::QuestionDialog::QuestionDialog(const boost::shared_ptr<Question> question)
+ribi::QuestionDialog::QuestionDialog(const boost::shared_ptr<const Question> question)
   : m_has_submitted(false),
     m_is_correct(false),
-    m_question{}
+    m_question{question}
 {
-  SetQuestion(question);
-
-  if (question)
-  {
-    assert(CanSubmit());
-    assert(!HasSubmitted());
-    assert(GetQuestion());
-  }
+  assert(m_question);
+  assert(!HasSubmitted());
+  assert(GetQuestion());
 }
+
+//const std::vector<std::string> ribi::QuestionDialog::GetCorrectAnswers() const noexcept
+//{
+//  return this->GetQuestion()->GetAnswers();
+//}
 
 const std::string ribi::QuestionDialog::GetVersion() noexcept
 {
-  return "1.0";
+  return "1.1";
 }
 
 const std::vector<std::string> ribi::QuestionDialog::GetVersionHistory() noexcept
 {
   return {
-    "2011-06-29: version 1.0: initial version"
+    "2011-06-29: version 1.0: initial version",
+    "2013-09-26: version 1.1: improved const-correctness, added noexcept"
   };
 }
 
 bool ribi::QuestionDialog::IsAnswerCorrect() const
 {
+  if (!HasSubmitted())
+  {
+    throw std::logic_error("Cannot only check if answer is correct, after submitting an answer");
+  }
   assert(HasSubmitted());
   return m_is_correct;
 }
 
-void ribi::QuestionDialog::SetQuestion(const boost::shared_ptr<Question> question)
+void ribi::QuestionDialog::SetQuestion(const boost::shared_ptr<const Question> question)
 {
+  if (!question)
+  {
+    throw std::logic_error("Cannot set a nullptr as a question in QuestionDialog::SetQuestion");
+  }
+
   assert(question);
   if (question && question.get() != m_question.get())
   {
@@ -70,11 +80,15 @@ void ribi::QuestionDialog::SetQuestion(const boost::shared_ptr<Question> questio
 
 void ribi::QuestionDialog::Submit(const std::string& s)
 {
-  assert(CanSubmit());
+  if (HasSubmitted())
+  {
+    throw std::logic_error("Cannot submit a second answer");
+  }
+  assert(!HasSubmitted());
 
   m_is_correct = m_question->IsCorrect(s);
 
   m_has_submitted = true;
-  assert(!CanSubmit());
+  assert(HasSubmitted());
 }
 

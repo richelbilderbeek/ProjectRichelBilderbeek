@@ -65,6 +65,14 @@ ribi::QtCodeToHtmlMainDialog::QtCodeToHtmlMainDialog(QWidget *parent) noexcept :
   const QRect scr = QApplication::desktop()->screenGeometry();
   move( scr.center() - rect().center() );
 
+
+  {
+    assert(!QApplication::instance()->arguments().empty());
+    const std::string argv0 { QApplication::instance()->arguments()[0].toStdString() };
+    const std::string path = c2h::GetPath(argv0);
+    assert(c2h::IsFolder(path));
+    this->ui->edit_source->setText(path.c_str());
+  }
   on_tab_source_currentChanged(0);
 }
 
@@ -150,12 +158,15 @@ void ribi::QtCodeToHtmlMainDialog::on_button_convert_clicked() noexcept
       std::ofstream f(source.c_str());
       std::copy(v.begin(),v.end(),std::ostream_iterator<std::string>(f,"\n"));
     }
-    c2h::Dialog d(
-      GetPageType(),
-      source,
-      GetContentType(),
-      GetTechInfo());
-    const std::vector<std::string> v = d.ToHtml();
+    const boost::scoped_ptr<const c2h::Dialog> d {
+      new c2h::Dialog(
+        GetPageType(),
+        source,
+        GetContentType(),
+        GetTechInfo()
+      )
+    };
+    const std::vector<std::string> v = d->ToHtml();
     Display(v);
     std::remove(source.c_str());
   }
@@ -169,12 +180,15 @@ void ribi::QtCodeToHtmlMainDialog::on_button_convert_clicked() noexcept
       ui->button_convert->setEnabled(false);
       return;
     }
-    c2h::Dialog d(
-      GetPageType(),
-      source,
-      GetContentType(),
-      GetTechInfo());
-    const std::vector<std::string> v = d.ToHtml();
+    const boost::scoped_ptr<const c2h::Dialog> d {
+      new c2h::Dialog(
+        GetPageType(),
+        source,
+        GetContentType(),
+        GetTechInfo()
+      )
+    };
+    const std::vector<std::string> v = d->ToHtml();
     Display(v);
   }
 }

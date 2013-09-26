@@ -30,7 +30,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "trace.h"
 #pragma GCC diagnostic pop
 
-CodeToHtmlReplacements::CodeToHtmlReplacements(
+Replacements::Replacements(
   const std::vector<std::pair<std::string,std::string> >& replacements)
   : m_replacements(CreateAllReplacements(replacements))
 {
@@ -136,7 +136,7 @@ CodeToHtmlReplacements::CodeToHtmlReplacements(
 }
 
 const std::vector<std::pair<std::string,std::string> >
-  CodeToHtmlReplacements::CreateAllReplacements(
+  Replacements::CreateAllReplacements(
     const std::vector<std::pair<std::string,std::string> >& replacements)
 {
   std::vector<std::pair<std::string,std::string> > v;
@@ -179,7 +179,7 @@ const std::vector<std::pair<std::string,std::string> >
   return v;
 }
 
-const std::vector<std::pair<std::string,std::string> > CodeToHtmlReplacements::CreateEndReplacements()
+const std::vector<std::pair<std::string,std::string> > Replacements::CreateEndReplacements()
 {
   //C++11 initializer list
   return
@@ -196,7 +196,7 @@ const std::vector<std::pair<std::string,std::string> > CodeToHtmlReplacements::C
   };
 }
 
-const std::vector<std::pair<std::string,std::string> > CodeToHtmlReplacements::CreateInitialReplacements()
+const std::vector<std::pair<std::string,std::string> > Replacements::CreateInitialReplacements()
 {
   //C++11 initializer list
   return

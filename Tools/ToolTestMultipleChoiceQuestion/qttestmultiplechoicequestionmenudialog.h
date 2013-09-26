@@ -26,8 +26,11 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "qthideandshowdialog.h"
 
 namespace Ui {
-class QtTestMultipleChoiceQuestionMenuDialog;
+  class QtTestMultipleChoiceQuestionMenuDialog;
 }
+
+namespace ribi {
+
 struct TestMultipleChoiceQuestionMenuDialog;
 
 class QtTestMultipleChoiceQuestionMenuDialog : public QtHideAndShowDialog
@@ -36,7 +39,9 @@ class QtTestMultipleChoiceQuestionMenuDialog : public QtHideAndShowDialog
 
 public:
   explicit QtTestMultipleChoiceQuestionMenuDialog(QWidget *parent = 0);
-  ~QtTestMultipleChoiceQuestionMenuDialog();
+  QtTestMultipleChoiceQuestionMenuDialog(const QtTestMultipleChoiceQuestionMenuDialog&) = delete;
+  QtTestMultipleChoiceQuestionMenuDialog& operator=(const QtTestMultipleChoiceQuestionMenuDialog&) = delete;
+  ~QtTestMultipleChoiceQuestionMenuDialog() noexcept;
 
 protected:
   void keyPressEvent(QKeyEvent* event);
@@ -54,5 +59,7 @@ private:
   static void Test();
   #endif
 };
+
+} //~namespace ribi
 
 #endif // QTTESTMULTIPLECHOICEQUESTIONMENUDIALOG_H

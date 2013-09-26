@@ -1,16 +1,5 @@
 QT       += core
 QT       -= gui
-LIBS += \
-  -lboost_filesystem \
-  -lboost_program_options \
-  -lboost_signals \
-  -lboost_system \
-  -lwt \
-  -lwthttp
-
-QMAKE_CXXFLAGS += -std=c++11 -Wall -Wextra
-
-#QMAKE_CXXFLAGS += -DNDEBUG
 
 CONFIG   += console
 CONFIG   -= app_bundle
@@ -46,7 +35,11 @@ SOURCES += wtmain.cpp \
     wttestquestionmaindialog.cpp \
     wttestquestionmenudialog.cpp \
     testquestionmenudialog.cpp \
-    testquestionmaindialog.cpp
+    testquestionmaindialog.cpp \
+    wttestopenquestionmenudialog.cpp \
+    wttestopenquestionmaindialog.cpp \
+    testopenquestionmenudialog.cpp \
+    testopenquestionmaindialog.cpp
 
 HEADERS  += \
     ../../Classes/CppAbout/about.h \
@@ -61,10 +54,56 @@ HEADERS  += \
     ../../Classes/CppWtQuestionDialog/wtquestiondialog.h \
     ../../Classes/CppQuestion/question.h \
     ../../Classes/CppQuestionDialog/questiondialog.h \
-    wttestquestionmaindialog.h \
-    wttestquestionmenudialog.h \
-    testquestionmenudialog.h \
-    testquestionmaindialog.h
+    wttestopenquestionmenudialog.h \
+    wttestopenquestionmaindialog.h \
+    testopenquestionmenudialog.h \
+    testopenquestionmaindialog.h
 
 RESOURCES += \
     ToolTestOpenQuestion.qrc
+
+#
+#
+# Type of compile
+#
+#
+
+CONFIG(release, debug|release) {
+  DEFINES += NDEBUG NTRACE_BILDERBIKKEL
+}
+
+QMAKE_CXXFLAGS += -std=c++11 -Wall -Wextra -Weffc++
+
+unix {
+  QMAKE_CXXFLAGS += -Werror
+}
+
+#
+#
+# Boost
+#
+#
+
+unix {
+  LIBS += \
+    -lboost_filesystem \
+    -lboost_signals \
+    -lboost_system
+}
+
+win32 {
+  INCLUDEPATH += \
+    ../../Projects/Libraries/boost_1_54_0
+}
+
+#
+#
+# Wt
+#
+#
+
+unix {
+  LIBS += \
+    -lwt \
+    -lwthttp
+}

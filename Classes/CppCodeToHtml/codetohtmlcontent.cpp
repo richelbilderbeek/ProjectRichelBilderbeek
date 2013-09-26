@@ -38,9 +38,9 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #define PROGRAM_HANGS
 
-std::unique_ptr<const CodeToHtmlReplacements> c2h::Content::m_replacements_cpp {};
-std::unique_ptr<const CodeToHtmlReplacements> c2h::Content::m_replacements_pro {};
-std::unique_ptr<const CodeToHtmlReplacements> c2h::Content::m_replacements_txt {};
+boost::scoped_ptr<const Replacements> c2h::Content::m_replacements_cpp {};
+boost::scoped_ptr<const Replacements> c2h::Content::m_replacements_pro {};
+boost::scoped_ptr<const Replacements> c2h::Content::m_replacements_txt {};
 
 c2h::Content::Content(
   const std::string& filename,
@@ -104,35 +104,35 @@ c2h::ContentType c2h::Content::DeduceContentType(const std::string& filename)
   return ContentType::other;
 }
 
-const CodeToHtmlReplacements& c2h::Content::GetReplacementsCpp()
+const Replacements& c2h::Content::GetReplacementsCpp()
 {
   if (!m_replacements_cpp)
   {
     m_replacements_cpp.reset(
-      new CodeToHtmlReplacements(
+      new Replacements(
         c2h::Content::CreateCppReplacements()));
   }
   assert(m_replacements_cpp);
   return *m_replacements_cpp;
 }
 
-const CodeToHtmlReplacements& c2h::Content::GetReplacementsPro()
+const Replacements& c2h::Content::GetReplacementsPro()
 {
   if (!m_replacements_pro)
   {
     m_replacements_pro.reset(
-      new CodeToHtmlReplacements(
+      new Replacements(
         c2h::Content::CreateProReplacements()));
   }
   assert(m_replacements_pro);
   return *m_replacements_pro;
 }
-const CodeToHtmlReplacements& c2h::Content::GetReplacementsTxt()
+const Replacements& c2h::Content::GetReplacementsTxt()
 {
   if (!m_replacements_txt)
   {
     m_replacements_txt.reset(
-      new CodeToHtmlReplacements(
+      new Replacements(
         std::vector<std::pair<std::string,std::string> >()));
   }
   assert(m_replacements_txt);

@@ -18,28 +18,22 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolTestOpenQuestion.htm
 //---------------------------------------------------------------------------
-#ifdef _WIN32
-//See http://www.richelbilderbeek.nl/CppCompileErrorUnableToFindNumericLiteralOperatorOperatorQ.htm
-#if !(__GNUC__ >= 4 && __GNUC_MINOR__ >= 8)
-//See http://www.richelbilderbeek.nl/CppCompileErrorSwprintfHasNotBeenDeclared.htm
-#undef __STRICT_ANSI__
-#endif
-#endif
-
-//#include own header file as first substantive line of code, from:
-// * John Lakos. Large-Scale C++ Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include "testopenquestionmaindialog.h"
 
 #include "openquestion.h"
 #include "openquestiondialog.h"
+#pragma GCC diagnostic pop
 
-TestOpenQuestionMainDialog::TestOpenQuestionMainDialog()
+ribi::TestOpenQuestionMainDialog::TestOpenQuestionMainDialog()
   : m_questions(CreateQuestions())
 {
 
 }
 
-std::vector<boost::shared_ptr<QuestionDialog> > TestOpenQuestionMainDialog::CreateQuestions()
+std::vector<boost::shared_ptr<ribi::QuestionDialog> > ribi::TestOpenQuestionMainDialog::CreateQuestions()
 {
   std::vector<boost::shared_ptr<QuestionDialog> > v;
 

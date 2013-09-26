@@ -50,6 +50,10 @@ struct TechInfo
   const std::vector<std::string> ToHtml() const;
 
   private:
+  ~TechInfo() noexcept {}
+  friend void boost::checked_delete<>(TechInfo*);
+  friend void boost::checked_delete<>(const TechInfo*);
+
   ///The application types for this project
   std::set<ApplicationType> m_application_types;
   ///The compiler used for this project

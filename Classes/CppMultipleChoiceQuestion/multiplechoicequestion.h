@@ -47,8 +47,17 @@ struct MultipleChoiceQuestion : public Question
   ///Obtain the only correct answer
   const std::string& GetAnswer() const noexcept;
 
+  ///Obtain an example multiple choice question
+  static const std::string GetExampleMultipleChoiceQuestion() noexcept { return "-,1+1=,2,0,4"; }
+
+  ///Obtain valid multiple choice question
+  static const std::vector<std::string> GetInvalidMultipleChoiceQuestions() noexcept;
+
   ///Obtain the possible options to be chosen in a random order
   const std::vector<std::string>& GetOptions() const noexcept;
+
+  ///Obtain valid multiple choice question
+  static const std::vector<std::string> GetValidMultipleChoiceQuestions() noexcept;
 
   ///Obtain the version
   static const std::string GetVersion() noexcept;
@@ -58,6 +67,9 @@ struct MultipleChoiceQuestion : public Question
 
   ///Obtain the wrong answers
   const std::vector<std::string>& GetWrongAnswers() const noexcept { return m_wrong_answers; }
+
+  ///Convert to std::string line
+  const std::string ToStr() const noexcept;
 
   private:
   friend void boost::checked_delete<>(MultipleChoiceQuestion *);
@@ -88,6 +100,10 @@ struct MultipleChoiceQuestion : public Question
   static const std::vector<std::string> SeperateString(
     const std::string& input,
     const char seperator) noexcept;
+
+  #ifndef NDEBUG
+  static void Test();
+  #endif
 
 };
 
