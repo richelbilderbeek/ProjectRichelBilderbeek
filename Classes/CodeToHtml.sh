@@ -1,5 +1,5 @@
 #!/bin/bash
-for folder in `ls | egrep "Cpp"`
+for folder in `find . | egrep "Cpp"`
 do
   echo $folder
 
