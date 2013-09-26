@@ -94,9 +94,13 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<p>&nbsp;</p>",
         "<h1>(<a href=\"Cpp.htm\">C++</a>) <a href=\"CppArrayExample1.htm\">array/std::array/boost::array example 1: comparison</a></h1>",
         "<p>&nbsp;</p>",
-        "<p><a href=\"CppArrayExample1.htm\">array/std::array/boost::array example 1: comparison</a> is a comparison between",
-        "a plain <a href=\"CppArray.htm\">array</a>, <a href=\"CppStdArray.htm\">std::array</a>, <a href=\"CppTr1Array.htm\">std::tr1::array</a> ",
-        "and <a href=\"CppBoostArray.htm\">boost::array</a>.</p>",
+        "<p>",
+        "  <a href=\"CppArrayExample1.htm\">array/std::array/boost::array example 1: comparison</a>",
+        "  is a comparison between",
+        "  a plain <a href=\"CppArray.htm\">array</a>, <a href=\"CppStdArray.htm\">std::array</a>,",
+        "  <a href=\"CppTr1Array.htm\">std::tr1::array</a> ",
+        "  and <a href=\"CppBoostArray.htm\">boost::array</a>.",
+        "</p>",
         "<p>&nbsp;</p>",
         "<ul>",
         "  <li><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/> <a href=\"CppArrayExample1.zip\">Download the Qt Creator project 'CppArrayExample1' (zip)</a></li>",
@@ -157,7 +161,10 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
       {
         "<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicWindows.png\" alt=\"Windows\"/></p>",
         "<p>&nbsp;</p>",
-        "<p><a href=\"CppAssertExample2.htm\">assert example 2: basics with informative output</a> is an <a href=\"CppAssert.htm\">assert</a> example.",
+        "<p>",
+        "  <a href=\"CppAssertExample2.htm\">assert example 2: basics with informative output</a> is an",
+        "  <a href=\"CppAssert.htm\">assert</a> example.",
+        "</p>",
         "<p>&nbsp;</p>",
         "<ul>",
         "  <li><a href=\"CppAssertExample2.zip\">Download the Qt Creator project 'CppAssertExample2' (zip)</a></li>",
@@ -168,7 +175,10 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
   m.push_back(
     { "CppBimapExample1",
       {
-        R"(<p><a href="CppBimapExample1.htm">boost::bimap example 1: find</a> is a <a href="CppBimap.htm">boost::bimap</a> example.</p>)",
+        R"(<p>)",
+        R"(<a href="CppBimapExample1.htm">boost::bimap example 1: find</a> is a)",
+        R"( <a href="CppBimap.htm">boost::bimap</a> example.)"
+        R"(</p>)",
         R"(<p>&nbsp;</p>)",
         R"(<ul>)",
         R"(  <li><a href="CppBimapExample1.zip">Download the Qt Creator project 'CppBimapExample1' (zip)</a></li>)",
@@ -206,7 +216,10 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
       {
         "<p><img src=\"PicBoost.png\" alt=\"Boost\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
-        "<p><a href=\"CppBoostFormatExample1.htm\">Boost.Format example 1</a> is a <a href=\"CppBoostFormatExample1.htm\">Boost.Format</a> example.",
+        "<p>",
+        "  <a href=\"CppBoostFormatExample1.htm\">Boost.Format example 1</a>"
+        "  is a <a href=\"CppBoostFormat.htm\">Boost.Format</a> example.",
+        "</p>",
         "<p>&nbsp;</p>",
         "<ul>",
         "  <li><a href=\"CppBoostFormatExample1.zip\">Download the Qt Creator project 'CppBoostFormatExample1' (zip)</a></li>",
@@ -219,7 +232,10 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
       {
         "<p><img src=\"PicBoost.png\" alt=\"Boost\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
-        "<p><a href=\"CppBoostFormatExample2.htm\">Boost.Format example 2</a> is a <a href=\"CppBoostFormatExample1.htm\">Boost.Format</a> example.",
+        "<p>",
+        "  <a href=\"CppBoostFormatExample2.htm\">Boost.Format example 2</a>",
+        "  is a <a href=\"CppBoostFormat.htm\">Boost.Format</a> example.",
+        "</p>",
         "<p>&nbsp;</p>",
         "<ul>",
         "  <li><a href=\"CppBoostFormatExample2.zip\">Download the Qt Creator project 'CppBoostFormatExample2' (zip)</a></li>",
@@ -232,9 +248,16 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
       {
         "<p><img src=\"PicBoost.png\" alt=\"Boost\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
-        "<p><a href=\"CppBoostRegexExample1.htm\">Boost.Regex example 1</a> is a example how to use the <a href=\"CppBoostRegex.htm\">Boost.Regex</a> <a href=\"CppLibrary.htm\">library</a>.</p>",
+        "<p>",
+        "  <a href=\"CppBoostRegexExample1.htm\">Boost.Regex example 1</a>",
+        "  is a example how to use the <a href=\"CppBoostRegex.htm\">Boost.Regex</a>",
+        "  <a href=\"CppLibrary.htm\">library</a>.",
+        "</p>",
         "<p>&nbsp;</p>",
-        "<p>The example below shows how to define a regular expression for a Dutch zip code, how to check for it and how to search for it.</p>",
+        "<p>",
+        "  The example below shows how to define a regular expression for a Dutch zip code,",
+        "  how to check for it and how to search for it.",
+        "</p>",
         "<p>&nbsp;</p>",
         "<ul>",
         "  <li><a href=\"CppBoostRegexExample1.zip\">Download the Qt Creator project 'CppBoostRegexExample1' (zip)</a></li>",
@@ -248,7 +271,11 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
       {
         "<p><img src=\"PicBoost.png\" alt=\"Boost\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
-        "<p><a href=\"CppBoostRegexExample2.htm\">Boost.Regex example 2: replace</a> is a example how to use the <a href=\"CppBoostRegex.htm\">Boost.Regex</a> <a href=\"CppLibrary.htm\">library</a>.</p>",
+        "<p>",
+        "  <a href=\"CppBoostRegexExample2.htm\">Boost.Regex example 2: replace</a>",
+        "  is a example how to use the <a href=\"CppBoostRegex.htm\">Boost.Regex</a>",
+        "  <a href=\"CppLibrary.htm\">library</a>.",
+        "</p>",
         "<p>&nbsp;</p>",
         "<p>The example below shows how to perform a replacement within a regular expression.</p>",
         "<p>&nbsp;</p>",
@@ -263,7 +290,11 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
       {
         "<p><img src=\"PicBoost.png\" alt=\"Boost\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
-        "<p><a href=\"CppBoostRegexExample3.htm\">Boost.Regex example 3</a> is a example how to use the <a href=\"CppBoostRegex.htm\">Boost.Regex</a> <a href=\"CppLibrary.htm\">library</a>.</p>",
+        "<p>",
+        "  <a href=\"CppBoostRegexExample3.htm\">Boost.Regex example 3</a>",
+        "  is an example how to use the <a href=\"CppBoostRegex.htm\">Boost.Regex</a>",
+        "  <a href=\"CppLibrary.htm\">library</a>.",
+        "</p>",
         "<p>&nbsp;</p>",
         "<p>The example below shows how to iterate through a text with a regular expression.</p>",
         "<p>&nbsp;</p>",
@@ -278,7 +309,10 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
       {
         "<p><img src=\"PicBoost.png\" alt=\"Boost\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
-        "<p><a href=\"CppBoostTupleExample1.htm\">Boost.Tuple example 1</a> is a <a href=\"CppBoostTuple.htm\">Boost.Tuple</a> example.",
+        "<p>",
+        "  <a href=\"CppBoostTupleExample1.htm\">Boost.Tuple example 1</a>",
+        "  is a <a href=\"CppBoostTuple.htm\">Boost.Tuple</a> example.",
+        "</p>",
         "<p>&nbsp;</p>",
         "<ul>",
         "  <li><a href=\"CppBoostTupleExample1.zip\">Download the Qt Creator project 'CppBoostTupleExample1' (zip)</a></li>",
@@ -292,7 +326,10 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
       {
         "<p><img src=\"PicBoost.png\" alt=\"Boost\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
-        "<p><a href=\"CppChecked_deleteExample1.htm\">boost::checked_delete example 1</a> is a <a href=\"CppChecked_delete.htm\">boost::checked_delete</a> example.",
+        "<p>",
+        "  <a href=\"CppChecked_deleteExample1.htm\">boost::checked_delete example 1</a>",
+        "  is a <a href=\"CppChecked_delete.htm\">boost::checked_delete</a> example.",
+        "</p>",
         "<p>&nbsp;</p>",
         "<ul>",
         "  <li><a href=\"CppChecked_deleteExample1.zip\">Download the Qt Creator project 'CppChecked_deleteExample1' (zip)</a></li>",
@@ -300,7 +337,6 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
       }
     }
   );
-
 
   m.push_back(
     { "CppChess",
@@ -2329,6 +2365,44 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
       }
     }
   );
+
+  m.push_back(
+    { "CppMemberFunctionExample1",
+      {
+        "<p><img src=\"PicCpp11.png\" alt=\"C++11\"/><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <a href=\"CppMemberFunctionExample1.htm\">member function example 1: Hello World</a>",
+        "  is a <a href=\"CppMemberFunction.htm\">member function</a> example.",
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+       R"(  The class 'HelloWorld' has a single <a href="CppConstMemberFunction.htm">const member function</a> called)"
+       R"(  'SayHelloWorld'. It is called in <a href="CppMain.htm">main</a>, producing the same output as)",
+       R"(  a <a href="CppHelloWorld.htm">Hello World program</a>.)"
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<ul>",
+        "  <li><a href=\"CppMemberFunctionExample1.zip\">Download the Qt Creator project 'CppMemberFunctionExample1' (zip)</a></li>",
+        "</ul>"
+      }
+    }
+  );
+  m.push_back(
+    { "CppMemberFunctionExample2",
+      {
+        "<p><img src=\"PicCpp11.png\" alt=\"C++11\"/><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
+        "<p>&nbsp;</p>",
+        "<p><a href=\"CppMemberFunctionExample2.htm\">member function example 2: pointer to member functions</a> is a <a href=\"CppMemberFunction.htm\">member function</a> example.",
+        "<p>&nbsp;</p>",
+        "<ul>",
+        "  <li><a href=\"CppMemberFunctionExample2.zip\">Download the Qt Creator project 'CppMemberFunctionExample2' (zip)</a></li>",
+        "</ul>"
+      }
+    }
+  );
+
+
   m.push_back(
     { "CppMemcheckExample1",
       {
@@ -4599,8 +4673,11 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
   m.push_back(
     { "CppRefExample2",
       {
-        "<p><a href=\"CppRefExample2.htm\">Boost.Ref example 2: putting references in a vector</a> is a <a href=\"CppRef.htm\">Boost.Ref</a> example showing",
-        "how to put references in a std::vector and how the values stay in sync.</p>",
+        "<p>",
+        "  <a href=\"CppRefExample2.htm\">Boost.Ref example 2: putting references in a vector</a> is"
+        "   a <a href=\"CppRef.htm\">Boost.Ref</a> example showing",
+        "  how to put references in a std::vector and how the values stay in sync.",
+        "</p>",
         "<p>&nbsp;</p>",
         "<ul>",
         "  <li><a href=\"CppRefExample2.zip\">Download the Qt Creator project 'CppRefExample2' (zip)</a></li>",
@@ -4772,7 +4849,10 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
       {
         "<p><img src=\"PicCpp11.png\" alt=\"C++11\"/><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
-        "<p><a href=\"CppStdFunctionExample1.htm\">std::function example 1: global functions</a> is a <a href=\"CppStdFunctionExample1.htm\">std::function</a> example.",
+        "<p>",
+        "  <a href=\"CppStdFunctionExample1.htm\">std::function example 1: global functions</a> is"
+        "  a <a href=\"CppStdFunction.htm\">std::function</a> example.",
+        "</p>",
         "<p>&nbsp;</p>",
         "<ul>",
         "  <li><a href=\"CppStdFunctionExample1.zip\">Download the Qt Creator project 'CppStdFunctionExample1' (zip)</a></li>",
@@ -4785,7 +4865,10 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
       {
         "<p><img src=\"PicCpp11.png\" alt=\"C++11\"/><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
-        "<p><a href=\"CppStdFunctionExample1.htm\">std::function example 2: member functions</a> is a <a href=\"CppStdFunctionExample1.htm\">std::function</a> example.",
+        "<p>",
+        "  <a href=\"CppStdFunctionExample2.htm\">std::function example 2: member functions</a> is",
+        "  a <a href=\"CppStdFunction.htm\">std::function</a> example.",
+        "</p>",
         "<p>&nbsp;</p>",
         "<ul>",
         "  <li><a href=\"CppStdFunctionExample2.zip\">Download the Qt Creator project 'CppStdFunctionExample2' (zip)</a></li>",
@@ -4793,6 +4876,7 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
       }
     }
   );
+
   m.push_back(
     { "CppStdTupleExample1",
       {

@@ -67,6 +67,8 @@ int main(int argc, char* argv[])
   START_TRACE();
 
   #ifndef NDEBUG
+  assert(argc > 0);
+  assert(c2h::IsRegularFile(argv[0]));
   #ifndef _WIN32
   assert(c2h::IsTidyInstalled());
   #endif

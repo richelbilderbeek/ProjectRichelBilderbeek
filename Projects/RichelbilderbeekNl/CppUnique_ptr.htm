@@ -25,6 +25,7 @@ uncopyable <a href="CppSmartPointer.htm">smart pointer</a>.</p>
 <p>&nbsp;</p>
 <p><a href="CppUnique_ptr.htm">std::unique_ptr</a> is similar to <a href="Cppscoped_ptr.htm">boost::scoped_ptr</a>. </p>
 <p>&nbsp;</p>
+<p><a href="CppUnique_ptr.htm">std::unique_ptr</a> guarantees that its value is complete when destroyed [1].</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
@@ -47,6 +48,16 @@ uncopyable <a href="CppSmartPointer.htm">smart pointer</a>.</p>
   <li><a href="CppUnique_ptr.htm">std::unique_ptr</a> is part of the official <a href="Cpp11.htm">C++11</a> <a href="CppStandard.htm">standard</a></li>
   <li><a href="CppUnique_ptr.htm">std::unique_ptr</a> has a 'release' <a href="CppMemberFunction.htm">member function</a></li>
 </ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><a href="CppReferences.htm">References</a></h2>
+<p>&nbsp;</p>
+<ol>
+  <li><!--  1 -->Working Draft, Standard for Programming Language C++. N3337. 2012-01-16. Paragraph 20.7.1.2.2: 'unique_ptr destructor [unique.ptr.single.dtor]', page 518: '1 Requires: The expression get_deleter()(get()) shall be well formed, shall have well-defined behavior, and shall not throw exceptions. [Note: The use of default_delete requires T to be a complete type. —end note]'</li>
+</ol>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
