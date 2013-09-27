@@ -1,6 +1,6 @@
 //---------------------------------------------------------------------------
 /*
-TestEncranger, tool to test the Encranger class
+ToolEncranger, tool to test the Encranger class
 Copyright (C) 2009-2011 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
@@ -16,48 +16,44 @@ You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>.
 */
 //---------------------------------------------------------------------------
-//From http://www.richelbilderbeek.nl/ToolTestEncranger.htm
+//From http://www.richelbilderbeek.nl/ToolToolEncranger.htm
 //---------------------------------------------------------------------------
-#ifndef QTTESTENCRANGERDIALOG_H
-#define QTTESTENCRANGERDIALOG_H
+#ifndef TOOLENCRANGERMAINDIALOG_H
+#define TOOLENCRANGERMAINDIALOG_H
 
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Weffc++"
-#include "qthideandshowdialog.h"
-#pragma GCC diagnostic pop
-
-namespace Ui {
-  class QtTestEncrangerDialog;
-}
+#include <string>
+#include <vector>
+#include <boost/scoped_ptr.hpp>
+#include "about.h"
+#include "encranger.h"
 
 namespace ribi {
 
-struct TestEncrangerDialog;
-
-class QtTestEncrangerDialog : public QtHideAndShowDialog
+struct ToolEncrangerMainDialog
 {
-  Q_OBJECT
+  ToolEncrangerMainDialog();
+  void Deencrypt();
+  void Encrypt();
 
-public:
-  explicit QtTestEncrangerDialog(QWidget *parent = 0) noexcept;
-  QtTestEncrangerDialog(const QtTestEncrangerDialog&) = delete;
-  QtTestEncrangerDialog& operator=(const QtTestEncrangerDialog&) = delete;
-  ~QtTestEncrangerDialog() noexcept;
+  const std::string& GetEncryptedText() const { return m_encrypted_text; }
+  int GetKey() const { return m_key; }
+  const std::string& GetPlainText() const { return m_plain_text; }
 
-protected:
+  void SetEncryptedText(const std::string& s);
+  void SetKey(const int i);
+  void SetPlainText(const std::string& s);
 
-private:
-  Ui::QtTestEncrangerDialog *ui;
+  static const About GetAbout() noexcept;
   static const std::string GetVersion() noexcept;
   static const std::vector<std::string> GetVersionHistory() noexcept;
-  TestEncrangerDialog * const m_dialog;
 
-private slots:
-  void on_button_about_clicked() noexcept;
-  void on_button_deencrypt_clicked() noexcept;
-  void on_button_encrypt_clicked() noexcept;
+  private:
+  boost::scoped_ptr<Encranger> m_encranger;
+  std::string m_encrypted_text;
+  int m_key;
+  std::string m_plain_text;
 };
 
 } //~namespace ribi
 
-#endif // QTTESTENCRANGERDIALOG_H
+#endif // TOOLENCRANGERMAINDIALOG_H

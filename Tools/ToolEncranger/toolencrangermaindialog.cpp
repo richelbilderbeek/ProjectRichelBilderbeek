@@ -1,6 +1,6 @@
 //---------------------------------------------------------------------------
 /*
-TestEncranger, tool to test the Encranger class
+ToolEncranger, tool to test the Encranger class
 Copyright (C) 2009-2011 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
@@ -16,15 +16,13 @@ You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>.
 */
 //---------------------------------------------------------------------------
-//From http://www.richelbilderbeek.nl/ToolTestEncranger.htm
+//From http://www.richelbilderbeek.nl/ToolToolEncranger.htm
 //---------------------------------------------------------------------------
-
-
-#include "testencrangerdialog.h"
+#include "toolencrangermaindialog.h"
 
 #include "loopreader.h"
 
-ribi::TestEncrangerDialog::TestEncrangerDialog()
+ribi::ToolEncrangerMainDialog::ToolEncrangerMainDialog()
   : m_encranger(new Encranger(0)), // 0 == m_key
     m_encrypted_text{},
     m_key(0),
@@ -33,40 +31,40 @@ ribi::TestEncrangerDialog::TestEncrangerDialog()
 
 }
 
-void ribi::TestEncrangerDialog::Deencrypt()
+void ribi::ToolEncrangerMainDialog::Deencrypt()
 {
   m_plain_text = m_encranger->Deencrypt(m_encrypted_text);
 }
 
-void ribi::TestEncrangerDialog::Encrypt()
+void ribi::ToolEncrangerMainDialog::Encrypt()
 {
   m_encrypted_text = m_encranger->Encrypt(m_plain_text);
 }
 
-void ribi::TestEncrangerDialog::SetEncryptedText(const std::string& s)
+void ribi::ToolEncrangerMainDialog::SetEncryptedText(const std::string& s)
 {
   m_encrypted_text = s;
 }
 
-void ribi::TestEncrangerDialog::SetKey(const int i)
+void ribi::ToolEncrangerMainDialog::SetKey(const int i)
 {
   m_encranger.reset(new Encranger(i));
 }
 
-void ribi::TestEncrangerDialog::SetPlainText(const std::string& s)
+void ribi::ToolEncrangerMainDialog::SetPlainText(const std::string& s)
 {
   m_plain_text = s;
 }
 
-const ribi::About ribi::TestEncrangerDialog::GetAbout() noexcept
+const ribi::About ribi::ToolEncrangerMainDialog::GetAbout() noexcept
 {
   About a(
     "Richel Bilderbeek",
-    "TestEncranger",
+    "ToolEncranger",
     "tool to test the Encranger class",
     "the 31st of August 2011",
     "2009-2011",
-    "http://www.richelbilderbeek.nl/ToolTestEncranger.htm",
+    "http://www.richelbilderbeek.nl/ToolToolEncranger.htm",
     GetVersion(),
     GetVersionHistory());
   a.AddLibrary("Encranger version: " + Encranger::GetVersion());
@@ -74,16 +72,16 @@ const ribi::About ribi::TestEncrangerDialog::GetAbout() noexcept
   return a;
 }
 
-const std::string ribi::TestEncrangerDialog::GetVersion() noexcept
+const std::string ribi::ToolEncrangerMainDialog::GetVersion() noexcept
 {
   return "2.4";
 }
 
-const std::vector<std::string> ribi::TestEncrangerDialog::GetVersionHistory() noexcept
+const std::vector<std::string> ribi::ToolEncrangerMainDialog::GetVersionHistory() noexcept
 {
   return {
     "2009-08-22: Version 1.0: initial version (then called 'Encranger') programmed in C++ Builder",
-    "2011-03-06: Version 2.0: port to Qt Creator, renamed application to TestEncranger",
+    "2011-03-06: Version 2.0: port to Qt Creator, renamed application to ToolEncranger",
     "2011-03-22: Version 2.1: seperated GUI from logic, added website version",
     "2011-04-25: Version 2.2: removed website version\'s Close button",
     "2011-06-22: Version 2.3: improved website version",

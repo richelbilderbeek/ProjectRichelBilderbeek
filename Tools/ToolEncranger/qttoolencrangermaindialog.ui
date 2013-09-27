@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>QtTestEncrangerDialog</class>
- <widget class="QDialog" name="QtTestEncrangerDialog">
+ <class>QtToolEncrangerMainDialog</class>
+ <widget class="QDialog" name="QtToolEncrangerMainDialog">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>614</width>
-    <height>114</height>
+    <width>566</width>
+    <height>104</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -18,6 +18,16 @@
     <normaloff>:/images/R.png</normaloff>:/images/R.png</iconset>
   </property>
   <layout class="QGridLayout" name="gridLayout">
+   <item row="1" column="3">
+    <widget class="QSpinBox" name="box_key">
+     <property name="maximum">
+      <number>999999999</number>
+     </property>
+     <property name="value">
+      <number>12345</number>
+     </property>
+    </widget>
+   </item>
    <item row="0" column="0" colspan="7">
     <widget class="QLineEdit" name="edit_plaintext">
      <property name="text">
@@ -31,7 +41,7 @@
       <string/>
      </property>
      <property name="pixmap">
-      <pixmap resource="ToolTestEncranger.qrc">:/images/ToolTestEncrangerArrowDown34x34.png</pixmap>
+      <pixmap resource="ToolEncranger.qrc">:/images/ToolEncrangerArrowDown34x34.png</pixmap>
      </property>
     </widget>
    </item>
@@ -46,13 +56,6 @@
     <widget class="QLabel" name="label_key">
      <property name="text">
       <string>Key</string>
-     </property>
-    </widget>
-   </item>
-   <item row="1" column="3">
-    <widget class="QLineEdit" name="edit_key">
-     <property name="text">
-      <string>12345</string>
      </property>
     </widget>
    </item>
@@ -76,7 +79,7 @@
       <string/>
      </property>
      <property name="pixmap">
-      <pixmap resource="ToolTestEncranger.qrc">:/images/ToolTestEncrangerArrowUp34x34.png</pixmap>
+      <pixmap resource="ToolEncranger.qrc">:/images/ToolEncrangerArrowUp34x34.png</pixmap>
      </property>
     </widget>
    </item>
@@ -87,7 +90,7 @@
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <resources>
-  <include location="ToolTestEncranger.qrc"/>
+  <include location="ToolEncranger.qrc"/>
  </resources>
  <connections/>
 </ui>

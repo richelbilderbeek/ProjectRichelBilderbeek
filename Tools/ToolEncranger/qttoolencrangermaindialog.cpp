@@ -1,6 +1,6 @@
 //---------------------------------------------------------------------------
 /*
-TestEncranger, tool to test the Encranger class
+ToolEncranger, tool to test the Encranger class
 Copyright (C) 2009-2011 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
@@ -16,12 +16,12 @@ You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>.
 */
 //---------------------------------------------------------------------------
-//From http://www.richelbilderbeek.nl/ToolTestEncranger.htm
+//From http://www.richelbilderbeek.nl/ToolToolEncranger.htm
 //---------------------------------------------------------------------------
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
-#include "qttestencrangerdialog.h"
+#include "qttoolencrangermaindialog.h"
 
 #include <algorithm>
 
@@ -30,75 +30,46 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "encranger.h"
 #include "loopreader.h"
 #include "qtaboutdialog.h"
-#include "ui_qttestencrangerdialog.h"
-#include "testencrangerdialog.h"
+#include "ui_qttoolencrangermaindialog.h"
+#include "toolencrangermaindialog.h"
 #pragma GCC diagnostic pop
 
-ribi::QtTestEncrangerDialog::QtTestEncrangerDialog(QWidget *parent) noexcept :
-    QtHideAndShowDialog(parent),
-    ui(new Ui::QtTestEncrangerDialog),
-    m_dialog(new TestEncrangerDialog)
+ribi::QtToolEncrangerMainDialog::QtToolEncrangerMainDialog(QWidget *parent) noexcept
+ :  QtHideAndShowDialog(parent),
+    ui(new Ui::QtToolEncrangerMainDialog),
+    m_dialog(new ToolEncrangerMainDialog)
 {
   ui->setupUi(this);
 }
 
-ribi::QtTestEncrangerDialog::~QtTestEncrangerDialog() noexcept
+ribi::QtToolEncrangerMainDialog::~QtToolEncrangerMainDialog() noexcept
 {
   delete ui;
   delete m_dialog;
 }
 
-void ribi::QtTestEncrangerDialog::on_button_encrypt_clicked() noexcept
+void ribi::QtToolEncrangerMainDialog::on_button_encrypt_clicked() noexcept
 {
-  try
-  {
-    boost::lexical_cast<int>(ui->edit_key->text().toStdString());
-  }
-  catch (boost::bad_lexical_cast&)
-  {
-    ui->edit_encrypted_text->setText("ERROR: Key must be a positive number");
-    return;
-  }
-  const int key = boost::lexical_cast<int>(ui->edit_key->text().toStdString());
-  if (key < 0)
-  {
-    ui->edit_encrypted_text->setText("ERROR: Key must be a positive number");
-    return;
-  }
-
+  const int key = ui->box_key->value();
+  assert(key >= 0);
   m_dialog->SetPlainText(ui->edit_plaintext->text().toStdString());
   m_dialog->SetKey(key);
   m_dialog->Encrypt();
   ui->edit_encrypted_text->setText(m_dialog->GetEncryptedText().c_str());
 }
 
-void ribi::QtTestEncrangerDialog::on_button_deencrypt_clicked() noexcept
+void ribi::QtToolEncrangerMainDialog::on_button_deencrypt_clicked() noexcept
 {
-  try
-  {
-    boost::lexical_cast<int>(ui->edit_key->text().toStdString());
-  }
-  catch (boost::bad_lexical_cast&)
-  {
-    ui->edit_encrypted_text->setText("ERROR: Key must be a positive number");
-    return;
-  }
-  const int key = boost::lexical_cast<int>(ui->edit_key->text().toStdString());
-  if (key < 0)
-  {
-    ui->edit_encrypted_text->setText("ERROR: Key must be a positive number");
-    return;
-  }
-
+  const int key = ui->box_key->value();
   m_dialog->SetEncryptedText(ui->edit_encrypted_text->text().toStdString());
   m_dialog->SetKey(key);
   m_dialog->Deencrypt();
   ui->edit_plaintext->setText(m_dialog->GetPlainText().c_str());
 }
 
-void ribi::QtTestEncrangerDialog::on_button_about_clicked() noexcept
+void ribi::QtToolEncrangerMainDialog::on_button_about_clicked() noexcept
 {
-  About a = TestEncrangerDialog::GetAbout();
+  About a = ToolEncrangerMainDialog::GetAbout();
   QtAboutDialog d(a);
   d.exec();
 }

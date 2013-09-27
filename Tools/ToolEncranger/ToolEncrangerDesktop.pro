@@ -8,7 +8,8 @@ INCLUDEPATH += \
     ../../Classes/CppEncranger \
     ../../Classes/CppLoopReader \
     ../../Classes/CppQtAboutDialog \
-    ../../Classes/CppQtHideAndShowDialog
+    ../../Classes/CppQtHideAndShowDialog \
+    ../../Classes/CppTrace
 
 SOURCES += \
     ../../Classes/CppAbout/about.cpp \
@@ -16,8 +17,8 @@ SOURCES += \
     ../../Classes/CppQtAboutDialog/qtaboutdialog.cpp \
     ../../Classes/CppQtHideAndShowDialog/qthideandshowdialog.cpp \
     qtmain.cpp \
-    qttestencrangerdialog.cpp \
-    testencrangerdialog.cpp
+    toolencrangermaindialog.cpp \
+    qttoolencrangermaindialog.cpp
 
 HEADERS  += \
     ../../Classes/CppAbout/about.h \
@@ -25,18 +26,20 @@ HEADERS  += \
     ../../Classes/CppLoopReader/loopreader.h \
     ../../Classes/CppQtAboutDialog/qtaboutdialog.h \
     ../../Classes/CppQtHideAndShowDialog/qthideandshowdialog.h \
-    qttestencrangerdialog.h \
-    testencrangerdialog.h
+    ../../Classes/CppTrace/trace.h \
+    toolencrangermaindialog.h \
+    qttoolencrangermaindialog.h
 
 FORMS    += \
     ../../Classes/CppQtAboutDialog/qtaboutdialog.ui \
-    qttestencrangerdialog.ui
+    qttoolencrangermaindialog.ui
 
 RESOURCES += \
-    ToolTestEncranger.qrc
+    ToolEncranger.qrc
 
 OTHER_FILES += \
-    ../../Classes/CppQtHideAndShowDialog/Licence.txt
+    ../../Classes/CppQtHideAndShowDialog/Licence.txt \
+    ../../Classes/CppTrace/Licence.txt
 
 #
 #
