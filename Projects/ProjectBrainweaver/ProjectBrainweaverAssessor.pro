@@ -58,6 +58,7 @@ SOURCES += \
     qtpvdbcompetency.cpp \
     qtpvdbconcepteditdialog.cpp \
     qtpvdbconceptitem.cpp \
+    qtpvdbconceptmapdialog.cpp \
     qtpvdbconceptmapdisplaywidget.cpp \
     qtpvdbconceptmapeditwidget.cpp \
     qtpvdbconceptmapitem.cpp \
@@ -86,14 +87,14 @@ SOURCES += \
     qtpvdbrateconcepttallydialog.cpp \
     pvdbcenternodefactory.cpp \
     pvdbcenternode.cpp \
-    qtpvdbfiledialog.cpp
-#    test_qtpvdbconceptmapwidget.cpp \
-#    test_qtpvdbconceptmapratewidget.cpp \
-#    test_qtpvdbconceptmapeditwidget.cpp \
-#    test_qtpvdbconceptmapdialog.cpp \
-#    test_pvdbconceptmap.cpp \
-#    test_pvdbconcept.cpp \
-#    test_pvdbcluster.cpp
+    qtpvdbfiledialog.cpp \
+    test_qtpvdbconceptmapwidget.cpp \
+    test_qtpvdbconceptmapratewidget.cpp \
+    test_qtpvdbconceptmapeditwidget.cpp \
+    test_qtpvdbconceptmapdialog.cpp \
+    test_pvdbconceptmap.cpp \
+    test_pvdbconcept.cpp \
+    test_pvdbcluster.cpp
 
 HEADERS  += \
     ../../Classes/CppAbout/about.h \
@@ -155,6 +156,7 @@ HEADERS  += \
     qtpvdbnodeitem.h \
     qtpvdbprintratingdialog.h \
     qtpvdbrateconceptdialog.h \
+    qtpvdbconceptmapdialog.h \
     qtpvdbrateconceptitem.h \
     qtpvdbrateconceptmapdialog.h \
     qtpvdbrateexamplesdialog.h \
@@ -171,6 +173,7 @@ HEADERS  += \
 FORMS    += \
     ../../Classes/CppQtAboutDialog/qtaboutdialog.ui \
     qtpvdbassessormenudialog.ui \
+    qtpvdbconceptmapdialog.ui \
     qtpvdbconcepteditdialog.ui \
     qtpvdbcreateassessmentcompletedialog.ui \
     qtpvdbcreateassessmentmenudialog.ui \

@@ -53,6 +53,7 @@ const boost::shared_ptr<ribi::RichelBilderbeek::Program> ribi::RichelBilderbeek:
     case ProgramType::crossPoll: p.reset(new ProgramCrossPoll); break;
     case ProgramType::dasWahreSchlagerfest: p.reset(new ProgramDasWahreSchlagerfest); break;
     case ProgramType::dotMatrix: p.reset(new ProgramDotMatrix); break;
+    case ProgramType::encranger: p.reset(new ProgramEncranger); break;
     case ProgramType::everythingToPiecesShooter: p.reset(new ProgramEverythingToPiecesShooter); break;
     case ProgramType::fakeEvy: p.reset(new ProgramFakeEvy); break;
     case ProgramType::filterOperationer: p.reset(new ProgramFilterOperationer); break;
@@ -131,7 +132,6 @@ const boost::shared_ptr<ribi::RichelBilderbeek::Program> ribi::RichelBilderbeek:
     case ProgramType::testCanvas: p.reset(new ProgramTestCanvas); break;
     case ProgramType::testChess: p.reset(new ProgramTestChess); break;
     case ProgramType::testDial: p.reset(new ProgramTestDial); break;
-    case ProgramType::testEncranger: p.reset(new ProgramTestEncranger); break;
     case ProgramType::testEntrance: p.reset(new ProgramTestEntrance); break;
     case ProgramType::testExercise: p.reset(new ProgramTestExercise); break;
     case ProgramType::testFunctionParser: p.reset(new ProgramTestFunctionParser); break;

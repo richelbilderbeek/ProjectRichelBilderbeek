@@ -62,7 +62,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "qtsitemapgeneratormenudialog.h"
 #include "qtstateobservermenudialog.h"
 #include "qttestdialmenudialog.h"
-#include "qttestencrangerdialog.h"
+#include "qttoolencrangerdialog.h"
 #include "qttestfunctionparsermenudialog.h"
 #include "qttestleddialog.h"
 #include "qttestpylosmenudialog.h"
@@ -197,7 +197,7 @@ ribi::QtHideAndShowDialog * ribi::QtRichelBilderbeekProgram::CreateQtMenuDialog(
     case ProgramType::testCanvas: break;
     case ProgramType::testChess: break;
     case ProgramType::testDial: p = new QtTestDialMenuDialog; break;
-    case ProgramType::testEncranger: p = new QtTestEncrangerDialog; break;
+    case ProgramType::encranger: p = new QtToolEncrangerMainDialog; break;
     case ProgramType::testEntrance: break;
     case ProgramType::testExercise: break;
     case ProgramType::testFunctionParser: p = new QtTestFunctionParserMenuDialog; break;

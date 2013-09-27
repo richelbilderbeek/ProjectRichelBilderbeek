@@ -12,7 +12,7 @@ struct QtTestQtRoundedEditRectItemWidget : public QtKeyboardFriendlyGraphicsView
 {
   QtTestQtRoundedEditRectItemWidget(QWidget *parent = 0);
 
-  void keyPressEvent(QKeyEvent *event);
+  void keyPressEvent(QKeyEvent *event) noexcept;
 
 private:
   ///Display a font

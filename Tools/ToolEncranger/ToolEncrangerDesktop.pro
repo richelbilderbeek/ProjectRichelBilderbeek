@@ -18,7 +18,9 @@ SOURCES += \
     ../../Classes/CppQtHideAndShowDialog/qthideandshowdialog.cpp \
     qtmain.cpp \
     toolencrangermaindialog.cpp \
-    qttoolencrangermaindialog.cpp
+    qttoolencrangermaindialog.cpp \
+    qttoolencrangermenudialog.cpp \
+    toolencrangermenudialog.cpp
 
 HEADERS  += \
     ../../Classes/CppAbout/about.h \
@@ -28,11 +30,14 @@ HEADERS  += \
     ../../Classes/CppQtHideAndShowDialog/qthideandshowdialog.h \
     ../../Classes/CppTrace/trace.h \
     toolencrangermaindialog.h \
-    qttoolencrangermaindialog.h
+    qttoolencrangermaindialog.h \
+    qttoolencrangermenudialog.h \
+    toolencrangermenudialog.h
 
 FORMS    += \
     ../../Classes/CppQtAboutDialog/qtaboutdialog.ui \
-    qttoolencrangermaindialog.ui
+    qttoolencrangermaindialog.ui \
+    qttoolencrangermenudialog.ui
 
 RESOURCES += \
     ToolEncranger.qrc

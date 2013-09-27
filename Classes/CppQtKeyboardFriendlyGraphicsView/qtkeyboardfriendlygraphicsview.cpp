@@ -202,13 +202,13 @@ const std::string ribi::QtKeyboardFriendlyGraphicsView::GetVersion() noexcept
 
 const std::vector<std::string> ribi::QtKeyboardFriendlyGraphicsView::GetVersionHistory() noexcept
 {
-  std::vector<std::string> v;
-  v.push_back("2012-12-13: version 1.0: initial version");
-  v.push_back("2012-12-31: version 1.1: improved moving focus");
-  return v;
+  return {
+    "2012-12-13: version 1.0: initial version",
+    "2012-12-31: version 1.1: improved moving focus"
+  };
 }
 
-void ribi::QtKeyboardFriendlyGraphicsView::keyPressEvent(QKeyEvent *event)
+void ribi::QtKeyboardFriendlyGraphicsView::keyPressEvent(QKeyEvent *event) noexcept
 {
   if (event->modifiers() & Qt::ShiftModifier)
   {

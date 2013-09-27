@@ -6,18 +6,35 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>566</width>
+    <width>406</width>
     <height>104</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>TestEncranger</string>
+   <string>Encranger</string>
   </property>
   <property name="windowIcon">
-   <iconset>
-    <normaloff>:/images/R.png</normaloff>:/images/R.png</iconset>
+   <iconset resource="ToolEncranger.qrc">
+    <normaloff>:/images/ToolEncrangerArrowDown16x16.png</normaloff>:/images/ToolEncrangerArrowDown16x16.png</iconset>
   </property>
   <layout class="QGridLayout" name="gridLayout">
+   <item row="1" column="5">
+    <widget class="QLabel" name="label_arrow_up">
+     <property name="text">
+      <string/>
+     </property>
+     <property name="pixmap">
+      <pixmap resource="ToolEncranger.qrc">:/images/ToolEncrangerArrowUp34x34.png</pixmap>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="4">
+    <widget class="QPushButton" name="button_deencrypt">
+     <property name="text">
+      <string>Deencrypt</string>
+     </property>
+    </widget>
+   </item>
    <item row="1" column="3">
     <widget class="QSpinBox" name="box_key">
      <property name="maximum">
@@ -28,10 +45,10 @@
      </property>
     </widget>
    </item>
-   <item row="0" column="0" colspan="7">
-    <widget class="QLineEdit" name="edit_plaintext">
+   <item row="1" column="1">
+    <widget class="QPushButton" name="button_encrypt">
      <property name="text">
-      <string>This is plaintext</string>
+      <string>Encrypt</string>
      </property>
     </widget>
    </item>
@@ -45,10 +62,10 @@
      </property>
     </widget>
    </item>
-   <item row="1" column="1">
-    <widget class="QPushButton" name="button_encrypt">
+   <item row="0" column="0" colspan="6">
+    <widget class="QLineEdit" name="edit_plaintext">
      <property name="text">
-      <string>Encrypt</string>
+      <string>This is plaintext</string>
      </property>
     </widget>
    </item>
@@ -59,31 +76,7 @@
      </property>
     </widget>
    </item>
-   <item row="1" column="4">
-    <widget class="QPushButton" name="button_about">
-     <property name="text">
-      <string>About</string>
-     </property>
-    </widget>
-   </item>
-   <item row="1" column="5">
-    <widget class="QPushButton" name="button_deencrypt">
-     <property name="text">
-      <string>Deencrypt</string>
-     </property>
-    </widget>
-   </item>
-   <item row="1" column="6">
-    <widget class="QLabel" name="label_arrow_up">
-     <property name="text">
-      <string/>
-     </property>
-     <property name="pixmap">
-      <pixmap resource="ToolEncranger.qrc">:/images/ToolEncrangerArrowUp34x34.png</pixmap>
-     </property>
-    </widget>
-   </item>
-   <item row="2" column="0" colspan="7">
+   <item row="2" column="0" colspan="6">
     <widget class="QLineEdit" name="edit_encrypted_text"/>
    </item>
   </layout>

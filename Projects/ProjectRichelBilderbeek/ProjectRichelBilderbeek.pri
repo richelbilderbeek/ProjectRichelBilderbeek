@@ -94,7 +94,7 @@ INCLUDEPATH += \
     ../../Tools/ToolStateObserver \
     ../../Tools/ToolTestApproximator \
     ../../Tools/ToolTestDial \
-    ../../Tools/ToolTestEncranger \
+    ../../Tools/ToolEncranger \
     ../../Tools/ToolTestExercise \
     ../../Tools/ToolTestFunctionParser \
     ../../Tools/ToolTestGroupWidget \
@@ -131,6 +131,8 @@ SOURCES += \
     ../../Classes/CppCodeToHtml/codetohtmlinfo.cpp \
     ../../Classes/CppCodeToHtml/codetohtmlpagetype.cpp \
     ../../Classes/CppCodeToHtml/codetohtmlreplacements.cpp \
+    ../../Tools/ToolEncranger/toolencrangermenudialog.cpp \
+    ../../Tools/ToolEncranger/toolencrangermaindialog.cpp \
     ../../Classes/CppCodeToHtml/codetohtmlreplacementscpp.cpp \
     ../../Classes/CppCodeToHtml/codetohtmlreplacementspro.cpp \
     ../../Classes/CppCodeToHtml/codetohtmltechinfo.cpp \
@@ -303,7 +305,6 @@ SOURCES += \
     ../../Tools/ToolStateObserver/stateobservermenudialog.cpp \
     ../../Tools/ToolTestApproximator/tooltestapproximatormenudialog.cpp \
     ../../Tools/ToolTestDial/testdialmenudialog.cpp \
-    ../../Tools/ToolTestEncranger/testencrangerdialog.cpp \
     ../../Tools/ToolTestEntrance/testentrancemenudialog.cpp \
     ../../Tools/ToolTestExercise/testexercisemenudialog.cpp \
     ../../Tools/ToolTestFunctionParser/testfunctionparsermenudialog.cpp \
@@ -345,6 +346,8 @@ HEADERS += \
     ../../Classes/CppCodeToHtml/codetohtmlinfo.h \
     ../../Tools/ToolSimplifyNewick/toolsimplifynewickmenudialog.h \
     ../../Tools/ToolSimplifyNewick/toolsimplifynewickmaindialog.h \
+    ../../Tools/ToolEncranger/toolencrangermenudialog.h \
+    ../../Tools/ToolEncranger/toolencrangermaindialog.h \
     ../../Classes/CppCodeToHtml/codetohtmlpagetype.h \
     ../../Classes/CppCodeToHtml/codetohtmlreplacements.h \
     ../../Classes/CppCodeToHtml/codetohtmltechinfo.h \
@@ -520,7 +523,6 @@ HEADERS += \
     ../../Tools/ToolStateObserver/stateobservermenudialog.h \
     ../../Tools/ToolTestApproximator/tooltestapproximatormenudialog.h \
     ../../Tools/ToolTestDial/testdialmenudialog.h \
-    ../../Tools/ToolTestEncranger/testencrangerdialog.h \
     ../../Tools/ToolTestEntrance/testentrancemenudialog.h \
     ../../Tools/ToolTestExercise/testexercisemenudialog.h \
     ../../Tools/ToolTestFunctionParser/testfunctionparsermenudialog.h \
@@ -578,7 +580,7 @@ OTHER_FILES += \
     ../../Tools/ToolCreateQtProjectZipFile/R.png \
     ../../Tools/ToolRegexTester/Licence.txt \
     ../../Tools/ToolTestApproximator/Licence.txt \
-    ../../Tools/ToolTestEncranger/Licence.txt \
+    ../../Tools/ToolEncranger/Licence.txt \
     ../../Tools/ToolTestLed/Licence.txt \
     ../../Tools/ToolTestMultiApproximator/Licence.txt \
     ../../Tools/ToolTestQrcFile/Licence.txt \

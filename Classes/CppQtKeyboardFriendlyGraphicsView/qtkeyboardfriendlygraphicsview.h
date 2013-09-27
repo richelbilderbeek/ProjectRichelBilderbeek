@@ -49,7 +49,7 @@ struct QtKeyboardFriendlyGraphicsView : public QGraphicsView
   static const std::vector<std::string> GetVersionHistory() noexcept;
 
   ///Respond to a key press
-  virtual void keyPressEvent(QKeyEvent *event);
+  virtual void keyPressEvent(QKeyEvent *event) noexcept;
 
   ///Signals which QGraphicsItem has been moved by setpos
   boost::signals2::signal<void (QGraphicsItem*)> m_signal_update;

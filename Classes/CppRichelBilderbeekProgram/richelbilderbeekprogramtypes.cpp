@@ -119,7 +119,7 @@ const boost::bimap<ribi::RichelBilderbeek::ProgramType,std::string> ribi::Richel
   m.insert(Pair(ProgramType::testCanvas,std::string("testCanvas")));
   m.insert(Pair(ProgramType::testChess,std::string("testChess")));
   m.insert(Pair(ProgramType::testDial,std::string("testDial")));
-  m.insert(Pair(ProgramType::testEncranger,std::string("testEncranger")));
+  m.insert(Pair(ProgramType::encranger,std::string("encranger")));
   m.insert(Pair(ProgramType::testEntrance,std::string("testEntrance")));
   m.insert(Pair(ProgramType::testExercise,std::string("testExercise")));
   m.insert(Pair(ProgramType::testFunctionParser,std::string("testFunctionParser")));
@@ -297,7 +297,7 @@ const boost::bimap<ribi::RichelBilderbeek::ProgramType,std::string> ribi::Richel
   m.insert(Pair(ProgramType::testCanvas,std::string("Test Canvas")));
   m.insert(Pair(ProgramType::testChess,std::string("Test Chess")));
   m.insert(Pair(ProgramType::testDial,std::string("Test Dial")));
-  m.insert(Pair(ProgramType::testEncranger,std::string("Test Encranger")));
+  m.insert(Pair(ProgramType::encranger,std::string("Test Encranger")));
   m.insert(Pair(ProgramType::testEntrance,std::string("Test Entrance")));
   m.insert(Pair(ProgramType::testExercise,std::string("Test Exercise")));
   m.insert(Pair(ProgramType::testFunctionParser,std::string("Test FunctionParser")));

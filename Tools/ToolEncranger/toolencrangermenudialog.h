@@ -29,21 +29,23 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 namespace ribi {
 
-struct ToolEncrangerMainDialog
+struct ToolEncrangerMenuDialog
 {
-  ToolEncrangerMainDialog();
+  ToolEncrangerMenuDialog();
   void Deencrypt();
   void Encrypt();
 
-  const std::string& GetEncryptedText() const noexcept { return m_encrypted_text; }
-
-  int GetKey() const noexcept { return m_key; }
-
-  const std::string& GetPlainText() const noexcept { return m_plain_text; }
+  const std::string& GetEncryptedText() const { return m_encrypted_text; }
+  int GetKey() const { return m_key; }
+  const std::string& GetPlainText() const { return m_plain_text; }
 
   void SetEncryptedText(const std::string& s);
   void SetKey(const int i);
   void SetPlainText(const std::string& s);
+
+  static const About GetAbout() noexcept;
+  static const std::string GetVersion() noexcept;
+  static const std::vector<std::string> GetVersionHistory() noexcept;
 
   private:
   boost::scoped_ptr<Encranger> m_encranger;

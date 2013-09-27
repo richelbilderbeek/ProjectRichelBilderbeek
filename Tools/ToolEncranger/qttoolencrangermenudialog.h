@@ -18,40 +18,46 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolEncranger.htm
 //---------------------------------------------------------------------------
-#ifndef TOOLENCRANGERMAINDIALOG_H
-#define TOOLENCRANGERMAINDIALOG_H
+#ifndef QTTOOLENCRANGERMENUDIALOG_H
+#define QTTOOLENCRANGERMENUDIALOG_H
 
-#include <string>
-#include <vector>
-#include <boost/scoped_ptr.hpp>
-#include "about.h"
-#include "encranger.h"
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#include "qthideandshowdialog.h"
+#pragma GCC diagnostic pop
+
+namespace Ui {
+  class QtToolEncrangerMenuDialog;
+}
 
 namespace ribi {
 
-struct ToolEncrangerMainDialog
+class QtToolEncrangerMenuDialog : public QtHideAndShowDialog
 {
-  ToolEncrangerMainDialog();
-  void Deencrypt();
-  void Encrypt();
+  Q_OBJECT
 
-  const std::string& GetEncryptedText() const noexcept { return m_encrypted_text; }
+public:
+  explicit QtToolEncrangerMenuDialog(QWidget *parent = 0) noexcept;
+  QtToolEncrangerMenuDialog(const QtToolEncrangerMenuDialog&) = delete;
+  QtToolEncrangerMenuDialog& operator=(const QtToolEncrangerMenuDialog&) = delete;
+  ~QtToolEncrangerMenuDialog() noexcept;
 
-  int GetKey() const noexcept { return m_key; }
+protected:
+  void keyPressEvent(QKeyEvent * event) noexcept;
 
-  const std::string& GetPlainText() const noexcept { return m_plain_text; }
+private:
+  Ui::QtToolEncrangerMenuDialog *ui;
 
-  void SetEncryptedText(const std::string& s);
-  void SetKey(const int i);
-  void SetPlainText(const std::string& s);
+private slots:
+  void on_button_about_clicked() noexcept;
+  void on_button_quit_clicked() noexcept;
+  void on_button_start_clicked() noexcept;
 
-  private:
-  boost::scoped_ptr<Encranger> m_encranger;
-  std::string m_encrypted_text;
-  int m_key;
-  std::string m_plain_text;
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
 };
 
 } //~namespace ribi
 
-#endif // TOOLENCRANGERMAINDIALOG_H
+#endif // QTTOOLENCRANGERMENUDIALOG_H

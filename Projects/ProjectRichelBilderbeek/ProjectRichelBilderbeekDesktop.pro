@@ -70,7 +70,7 @@ INCLUDEPATH += \
     ../../Tools/ToolStateObserver \
     ../../Tools/ToolTestApproximator \
     ../../Tools/ToolTestDial \
-    ../../Tools/ToolTestEncranger \
+    ../../Tools/ToolEncranger \
     ../../Tools/ToolTestExercise \
     ../../Tools/ToolTestFunctionParser \
     ../../Tools/ToolTestGroupWidget \
@@ -234,7 +234,6 @@ SOURCES += \
     ../../Tools/ToolTestApproximator/qttooltestapproximatorxyzmaindialog.cpp \
     ../../Tools/ToolTestDial/qttestdialmaindialog.cpp \
     ../../Tools/ToolTestDial/qttestdialmenudialog.cpp \
-    ../../Tools/ToolTestEncranger/qttestencrangerdialog.cpp \
     ../../Tools/ToolTestFunctionParser/qttestfunctionparsermaindialog.cpp \
     ../../Tools/ToolTestFunctionParser/qttestfunctionparsermenudialog.cpp \
     ../../Tools/ToolTestLed/qttestleddialog.cpp \
@@ -282,7 +281,9 @@ SOURCES += \
     qtrichelbilderbeekprogram.cpp \
     ../../Tools/ToolSimplifyNewick/qttoolsimplifynewickmenudialog.cpp \
     ../../Tools/ToolSimplifyNewick/qttoolsimplifynewickmaindialog.cpp \
-    ../../Tools/ToolQmakeWatcher/qtqmakewatchermenudialog.cpp
+    ../../Tools/ToolQmakeWatcher/qtqmakewatchermenudialog.cpp \
+    ../../Tools/ToolEncranger/qttoolencrangermenudialog.cpp \
+    ../../Tools/ToolEncranger/qttoolencrangermaindialog.cpp
 
 HEADERS += \
     ../../Classes/CppAbout/about.h \
@@ -612,8 +613,6 @@ HEADERS += \
     ../../Tools/ToolTestDial/qttestdialmaindialog.h \
     ../../Tools/ToolTestDial/qttestdialmenudialog.h \
     ../../Tools/ToolTestDial/testdialmenudialog.h \
-    ../../Tools/ToolTestEncranger/qttestencrangerdialog.h \
-    ../../Tools/ToolTestEncranger/testencrangerdialog.h \
     ../../Tools/ToolTestExercise/testexercisemenudialog.h \
     ../../Tools/ToolTestFunctionParser/qttestfunctionparsermaindialog.h \
     ../../Tools/ToolTestFunctionParser/qttestfunctionparsermenudialog.h \
@@ -668,7 +667,9 @@ HEADERS += \
     richelbilderbeekmenudialog.h \
     ../../Tools/ToolSimplifyNewick/qttoolsimplifynewickmenudialog.h \
     ../../Tools/ToolSimplifyNewick/qttoolsimplifynewickmaindialog.h \
-    ../../Tools/ToolQmakeWatcher/qtqmakewatchermenudialog.h
+    ../../Tools/ToolQmakeWatcher/qtqmakewatchermenudialog.h \
+    ../../Tools/ToolEncranger/qttoolencrangermenudialog.h \
+    ../../Tools/ToolEncranger/qttoolencrangermaindialog.h
 
 
 RESOURCES += \
@@ -702,7 +703,7 @@ RESOURCES += \
     ../../Tools/ToolTestQrcFile/ToolTestQrcFile.qrc \
     ../../Games/GameTicTacToe/GameTicTacToe.qrc \
     ../../Tools/ToolRandomCode/ToolRandomCode.qrc \
-    ../../Tools/ToolTestEncranger/ToolTestEncranger.qrc \
+    ../../Tools/ToolEncranger/ToolEncranger.qrc \
     ../../Tools/ToolTestLed/ToolTestLed.qrc \
     ../../Tools/ToolTestToggleButton/ToolTestToggleButton.qrc \
     ../../Tools/ToolCreateQtProjectZipFile/ToolCreateQtProjectZipFile.qrc \
@@ -797,7 +798,6 @@ FORMS += \
     ../../Tools/ToolTestChess/qttestchessviewresourcesdialog.ui \
     ../../Tools/ToolTestDial/qttestdialmaindialog.ui \
     ../../Tools/ToolTestDial/qttestdialmenudialog.ui \
-    ../../Tools/ToolTestEncranger/qttestencrangerdialog.ui \
     ../../Tools/ToolTestFunctionParser/qttestfunctionparsermaindialog.ui \
     ../../Tools/ToolTestFunctionParser/qttestfunctionparsermenudialog.ui \
     ../../Tools/ToolTestLed/qttestleddialog.ui \
@@ -856,7 +856,9 @@ FORMS += \
     ../../Tools/ToolTestSimpleLinearRegression/qttooltestsimplelinearregressionmaindialog.ui \
     ../../Tools/ToolSimplifyNewick/qttoolsimplifynewickmenudialog.ui \
     ../../Tools/ToolSimplifyNewick/qttoolsimplifynewickmaindialog.ui \
-    ../../Tools/ToolQmakeWatcher/qtqmakewatchermenudialog.ui
+    ../../Tools/ToolQmakeWatcher/qtqmakewatchermenudialog.ui \
+    ../../Tools/ToolEncranger/qttoolencrangermenudialog.ui \
+    ../../Tools/ToolEncranger/qttoolencrangermaindialog.ui
 
 OTHER_FILES += \
     ../../Classes/CppAbout/Licence.txt \
@@ -1146,7 +1148,7 @@ OTHER_FILES += \
     ../../Tools/ToolTestDial/ToolTestDialArchitecture.png \
     ../../Tools/ToolTestDial/ToolTestDialWelcome_2_1.png \
     ../../Tools/ToolTestDial/wt.css \
-    ../../Tools/ToolTestEncranger/Licence.txt \
+    ../../Tools/ToolEncranger/Licence.txt \
     ../../Tools/ToolTestExercise/ToolTestExerciseQuestionmark.png \
     ../../Tools/ToolTestExercise/ToolTestExerciseQuestion.png \
     ../../Tools/ToolTestExercise/ToolTestExerciseWelcomeNoLegend.png \
@@ -1307,7 +1309,7 @@ OTHER_FILES += \
     ../../Tools/ToolTestDial/ToolTestDialArchitecture.png \
     ../../Tools/ToolTestDial/ToolTestDialWelcome_2_1.png \
     ../../Tools/ToolTestDial/wt.css \
-    ../../Tools/ToolTestEncranger/Licence.txt \
+    ../../Tools/ToolEncranger/Licence.txt \
     ../../Tools/ToolTestExercise/ToolTestExerciseQuestionmark.png \
     ../../Tools/ToolTestExercise/ToolTestExerciseQuestion.png \
     ../../Tools/ToolTestExercise/ToolTestExerciseWelcomeNoLegend.png \
@@ -1422,7 +1424,13 @@ OTHER_FILES += \
     ../../Tools/ToolTestSimpleLinearRegression/Licence.txt \
     ProjectRichelBilderbeek.pri \
     ../../Classes/CppApproximator/Licence.txt \
-    ../../Tools/ToolSimplifyNewick/Licence.txt
+    ../../Tools/ToolSimplifyNewick/Licence.txt \
+    ../../Tools/ToolEncranger/ToolEncrangerWelcome.png \
+    ../../Tools/ToolEncranger/ToolEncrangerArrowUp34x34.png \
+    ../../Tools/ToolEncranger/ToolEncrangerArrowUp16x16.png \
+    ../../Tools/ToolEncranger/ToolEncrangerArrowDown34x34.png \
+    ../../Tools/ToolEncranger/ToolEncrangerArrowDown16x16.png \
+    ../../Tools/ToolEncranger/R.png
 
 #
 #

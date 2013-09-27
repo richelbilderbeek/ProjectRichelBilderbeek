@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
-ToolEncranger, tool to test the Encranger class
-Copyright (C) 2009-2011 Richel Bilderbeek
+Encranger, encryption tool
+Copyright (C) 2009-2013 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -16,7 +16,7 @@ You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>.
 */
 //---------------------------------------------------------------------------
-//From http://www.richelbilderbeek.nl/ToolToolEncranger.htm
+//From http://www.richelbilderbeek.nl/ToolEncranger.htm
 //---------------------------------------------------------------------------
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
@@ -66,11 +66,3 @@ void ribi::QtToolEncrangerMainDialog::on_button_deencrypt_clicked() noexcept
   m_dialog->Deencrypt();
   ui->edit_plaintext->setText(m_dialog->GetPlainText().c_str());
 }
-
-void ribi::QtToolEncrangerMainDialog::on_button_about_clicked() noexcept
-{
-  About a = ToolEncrangerMainDialog::GetAbout();
-  QtAboutDialog d(a);
-  d.exec();
-}
-

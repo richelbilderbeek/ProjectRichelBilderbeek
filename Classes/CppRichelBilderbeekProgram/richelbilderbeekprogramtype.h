@@ -125,7 +125,7 @@ enum class ProgramType
   testCanvas,
   testChess,
   testDial,
-  testEncranger,
+  encranger,
   testEntrance,
   testExercise,
   testFunctionParser,

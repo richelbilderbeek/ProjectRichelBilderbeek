@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
-ToolEncranger, tool to test the Encranger class
-Copyright (C) 2009-2011 Richel Bilderbeek
+Encranger, encryption tool
+Copyright (C) 2009-2013 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -16,11 +16,9 @@ You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>.
 */
 //---------------------------------------------------------------------------
-//From http://www.richelbilderbeek.nl/ToolToolEncranger.htm
+//From http://www.richelbilderbeek.nl/ToolEncranger.htm
 //---------------------------------------------------------------------------
 #include "toolencrangermaindialog.h"
-
-#include "loopreader.h"
 
 ribi::ToolEncrangerMainDialog::ToolEncrangerMainDialog()
   : m_encranger(new Encranger(0)), // 0 == m_key
@@ -54,37 +52,4 @@ void ribi::ToolEncrangerMainDialog::SetKey(const int i)
 void ribi::ToolEncrangerMainDialog::SetPlainText(const std::string& s)
 {
   m_plain_text = s;
-}
-
-const ribi::About ribi::ToolEncrangerMainDialog::GetAbout() noexcept
-{
-  About a(
-    "Richel Bilderbeek",
-    "ToolEncranger",
-    "tool to test the Encranger class",
-    "the 31st of August 2011",
-    "2009-2011",
-    "http://www.richelbilderbeek.nl/ToolToolEncranger.htm",
-    GetVersion(),
-    GetVersionHistory());
-  a.AddLibrary("Encranger version: " + Encranger::GetVersion());
-  a.AddLibrary("LoopReader version: " + LoopReader<int>::GetVersion());
-  return a;
-}
-
-const std::string ribi::ToolEncrangerMainDialog::GetVersion() noexcept
-{
-  return "2.4";
-}
-
-const std::vector<std::string> ribi::ToolEncrangerMainDialog::GetVersionHistory() noexcept
-{
-  return {
-    "2009-08-22: Version 1.0: initial version (then called 'Encranger') programmed in C++ Builder",
-    "2011-03-06: Version 2.0: port to Qt Creator, renamed application to ToolEncranger",
-    "2011-03-22: Version 2.1: seperated GUI from logic, added website version",
-    "2011-04-25: Version 2.2: removed website version\'s Close button",
-    "2011-06-22: Version 2.3: improved website version",
-    "2011-08-31: Version 2.4: added arrows and Welcome image"
-  };
 }

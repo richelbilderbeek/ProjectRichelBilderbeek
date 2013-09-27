@@ -97,7 +97,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "steadystatekalmanfilterparameters.h"
 #include "stopwatch.h"
 #include "testdialmenudialog.h"
-#include "testencrangerdialog.h"
+#include "toolencrangerdialog.h"
 #include "testexercisemenudialog.h"
 #include "testfunctionparsermenudialog.h"
 #include "testledmenudialog.h"
@@ -226,7 +226,7 @@ const ribi::About ribi::RichelBilderbeek::MenuDialog::GetAbout() noexcept
   a.AddLibrary("Stopwatch version: " + Stopwatch::GetVersion());
   a.AddLibrary("TestApproximator version: " + ToolTestApproximatorMenuDialog::GetVersion());
   a.AddLibrary("TestDial version: " + TestDialMenuDialog::GetVersion());
-  a.AddLibrary("TestEncranger version: " + TestEncrangerDialog::GetVersion());
+  a.AddLibrary("Encranger version: " + EncrangerDialog::GetVersion());
   a.AddLibrary("TestExercise version: " + TestExerciseMenuDialog::GetVersion());
   a.AddLibrary("TestFunctionParser version: " + TestFunctionParserMenuDialog::GetVersion());
   a.AddLibrary("TestLed version: " + TestLedMenuDialog::GetVersion());
@@ -270,7 +270,7 @@ const std::vector<std::string> ribi::RichelBilderbeek::MenuDialog::GetVersionHis
     "2011-01-11: Version 0.9: ConnectThree to full version",
     "2011-03-06: Version 0.10: added TestTwoDigitNewick",
     "2011-03-09: Version 0.11: replaced TestTwoDigitNewick by TestNewick",
-    "2011-03-22: Version 0.12: added TestEncranger",
+    "2011-03-22: Version 0.12: added Encranger",
     "2011-03-26: Version 0.13: replaced TestNewick by TestNewickVector",
     "2011-03-27: Version 0.14: added TestAsciiArter",
     "2011-04-13: Version 0.15: added TimePoll",
@@ -288,7 +288,7 @@ const std::vector<std::string> ribi::RichelBilderbeek::MenuDialog::GetVersionHis
     "2011-07-16: Version 0.27: removed GTST and TimePoll, added TestShape",
     "2011-07-26: Version 0.28: added TimePoll",
     "2011-08-20: Version 0.29: added TestServerPusher and TestSTimederverPusher",
-    "2011-08-31: Version 0.30: improved TestAsciiArter, TestDial, TestEncranger, TestFunctionParser and RandomCode, added GTST and TestToggleButton",
+    "2011-08-31: Version 0.30: improved TestAsciiArter, TestDial, Encranger, TestFunctionParser and RandomCode, added GTST and TestToggleButton",
     "2011-09-08: Version 0.31: improved TestLed, TestGroupWidget, added RubiksClock",
     "2011-09-16: Version 0.32: added CodeToHtml, added SimMysteryMachine, improved TestQuestion",
     "2011-09-19: Version 0.33: added TestEntrance",

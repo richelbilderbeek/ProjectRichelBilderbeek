@@ -1569,19 +1569,19 @@ struct ProgramTestDial : public RichelBilderbeek::ProgramClass
   const std::string GetUrl() const noexcept { return "ToolTestDial.htm"; }
 };
 
-struct ProgramTestEncranger : public RichelBilderbeek::ProgramClass
+struct ProgramEncranger : public RichelBilderbeek::ProgramClass
 {
   const std::string GetFilenameConsole() const noexcept { return ""; }
-  const std::string GetFilenameDesktop() const noexcept { return "ToolTestEncranger_2_0.png"; }
-  const std::string GetFilenameDesktopWindowsOnly() const noexcept { return "ToolTestEncranger_1_0.png"; }
-  const std::string GetFilenameWeb() const noexcept { return "ToolTestEncranger_2_1.png"; }
-  const std::string GetScreenName() const noexcept { return "TestEncranger"; }
+  const std::string GetFilenameDesktop() const noexcept { return "ToolEncranger_2_0.png"; }
+  const std::string GetFilenameDesktopWindowsOnly() const noexcept { return "ToolEncranger_1_0.png"; }
+  const std::string GetFilenameWeb() const noexcept { return "ToolEncranger_2_1.png"; }
+  const std::string GetScreenName() const noexcept { return "Encranger"; }
   ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::no; }
   ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::yes; }
   ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::yes; }
   ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::yes; }
-  ProgramType GetType() const noexcept { return ProgramType::testEncranger; }
-  const std::string GetUrl() const noexcept { return "ToolTestEncranger.htm"; }
+  ProgramType GetType() const noexcept { return ProgramType::encranger; }
+  const std::string GetUrl() const noexcept { return "ToolEncranger.htm"; }
 };
 
 struct ProgramTestEntrance : public RichelBilderbeek::ProgramClass

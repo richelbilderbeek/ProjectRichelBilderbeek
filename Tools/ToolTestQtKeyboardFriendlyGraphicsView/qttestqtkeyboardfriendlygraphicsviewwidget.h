@@ -47,7 +47,7 @@ struct QtTestKeyboardFriendlyGraphicsViewWidget : public QtKeyboardFriendlyGraph
 
 protected:
 
-  void keyPressEvent(QKeyEvent *event);
+  void keyPressEvent(QKeyEvent *event) noexcept;
 
 private:
 

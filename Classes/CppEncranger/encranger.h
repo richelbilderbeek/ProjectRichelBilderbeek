@@ -47,8 +47,8 @@ struct Encranger
   #pragma GCC diagnostic pop
 
   Encranger(const int key);
-  const std::string Encrypt(std::string s) const;
-  const std::string Deencrypt(std::string s) const;
+  const std::string Encrypt(std::string s) const noexcept;
+  const std::string Deencrypt(std::string s) const noexcept;
 
   ///Obtain this class its version
   static const std::string GetVersion() noexcept;
@@ -61,13 +61,17 @@ struct Encranger
   const std::vector<char> characters;
   const std::vector<int>  table;
 
-  char Encrypt(const char c, const int d) const;
-  char Deencrypt(const char c, const int d) const;
-  int GetIndex(const char c) const;
-
   const std::vector<int> CreateTable(const int key, const unsigned int sz) const;
-  const std::vector<char> CreateCharacters() const noexcept;
+  static const std::vector<int> CreateTestKeys() noexcept;
+  static const std::vector<char> CreateCharacters() noexcept;
 
+  char Encrypt(const char c, const int d) const noexcept;
+  char Deencrypt(const char c, const int d) const noexcept;
+  int GetIndex(const char c) const noexcept;
+
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
 };
 
 } //~namespace ribi

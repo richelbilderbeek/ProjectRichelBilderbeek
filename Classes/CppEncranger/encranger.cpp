@@ -18,8 +18,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 // From http://www.richelbilderbeek.nl/ToolMultiEncranger.htm
 //---------------------------------------------------------------------------
-
-
 #include "encranger.h"
 
 #include <algorithm>
@@ -29,16 +27,33 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <numeric>
 #include <vector>
 
+#include "trace.h"
 #include "loopreader.h"
 
 ribi::Encranger::Encranger(const int key)
   : characters(CreateCharacters()),
-    table(CreateTable(key,characters.size()))
+    table(CreateTable(key,CreateCharacters().size()))
 {
-
+  #ifndef NDEBUG
+  Test();
+  #endif
 }
 
-const std::string ribi::Encranger::Encrypt(std::string s) const
+const std::vector<int> ribi::Encranger::CreateTestKeys() noexcept
+{
+  std::vector<int> v;
+  v.push_back(0);
+  int i=1;
+  while (i > 0)
+  {
+    v.push_back(i);
+    i *= 2;
+  }
+  //TRACE(v.size());
+  return v;
+}
+
+const std::string ribi::Encranger::Encrypt(std::string s) const noexcept
 {
   typedef std::string::iterator StringIterator;
   typedef std::vector<int>::const_iterator LoopReaderIteratorType;
@@ -52,7 +67,7 @@ const std::string ribi::Encranger::Encrypt(std::string s) const
   return s;
 }
 
-const std::string ribi::Encranger::Deencrypt(std::string s) const
+const std::string ribi::Encranger::Deencrypt(std::string s) const noexcept
 {
   typedef std::string::iterator StringIterator;
   LoopReader<std::vector<int>::const_iterator> table_reader(table.begin(), table.end());
@@ -65,7 +80,7 @@ const std::string ribi::Encranger::Deencrypt(std::string s) const
   return s;
 }
 
-char ribi::Encranger::Encrypt(const char c, const int d) const
+char ribi::Encranger::Encrypt(const char c, const int d) const noexcept
 {
   const int i = GetIndex(c);
   const int n_chars = static_cast<int>(characters.size());
@@ -75,7 +90,7 @@ char ribi::Encranger::Encrypt(const char c, const int d) const
   return characters[i_new];
 }
 
-char ribi::Encranger::Deencrypt(const char c, const int d) const
+char ribi::Encranger::Deencrypt(const char c, const int d) const noexcept
 {
   const int i = GetIndex(c);
   const int n_chars = static_cast<int>(characters.size());
@@ -85,7 +100,7 @@ char ribi::Encranger::Deencrypt(const char c, const int d) const
   return characters[i_new];
 }
 
-int ribi::Encranger::GetIndex(const char c) const
+int ribi::Encranger::GetIndex(const char c) const noexcept
 {
   if (c == '\t' || c == '\n') return GetIndex(' ');
   const std::vector<char>::const_iterator i
@@ -96,17 +111,15 @@ int ribi::Encranger::GetIndex(const char c) const
 
 const std::vector<int> ribi::Encranger::CreateTable(const int key, const unsigned int sz) const
 {
+  if (sz == 0)
+  {
+    throw std::logic_error("Encranger::CreateTable: cannot create table of size zero");
+  }
+
   assert(sz!=0);
 
   std::vector<int> v(sz);
   std::for_each(v.begin(), v.end(), Increase() );
-
-  assert(sz > 5); //Only for these tests below
-  assert(v[0] == 0);
-  assert(v[1] == 1);
-  assert(v[2] == 2);
-  assert(v[3] == 3);
-  assert(v[4] == 4);
 
   //The key is the seed
   std::srand(key);
@@ -117,7 +130,7 @@ const std::vector<int> ribi::Encranger::CreateTable(const int key, const unsigne
   return v;
 }
 
-const std::vector<char> ribi::Encranger::CreateCharacters() const noexcept
+const std::vector<char> ribi::Encranger::CreateCharacters() noexcept
 {
   std::vector<char> v;
   //Uppercase
@@ -235,4 +248,46 @@ const std::vector<std::string> ribi::Encranger::GetVersionHistory() noexcept
     "2011-01-12: version 1.1: added version info"
   };
 }
+
+#ifndef NDEBUG
+void ribi::Encranger::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting ribi::Encranger::Test");
+  //Test Increase
+  {
+    const std::size_t sz { 5 };
+    std::vector<int> v(sz);
+    std::for_each(v.begin(), v.end(), Increase() );
+    for (std::size_t i=0; i!=sz; ++i) { assert( v[i] == static_cast<int>(i) ); }
+  }
+  {
+    const std::vector<std::string> v {
+      "abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz",
+      "a cde ghijklm opqrstuvwxyzabc efghijklmnopqrstuvwxyzabcdefghi klmnopqrstuvwxyz",
+      "a",
+      " a",
+      "a ",
+      " a ",
+      "  a  "
+    };
+    for (const std::string& s: v)
+    {
+      for (const int key: CreateTestKeys())
+      {
+        const Encranger e(key);
+        assert(e.Deencrypt(e.Encrypt(s)) == s);
+        //Test encryption with real, decryption with faker
+        const Encranger faker(key + 1);
+        assert(faker.Deencrypt(e.Encrypt(s)) != s);
+      }
+    }
+  }
+  TRACE("Finished ribi::Encranger::Test successfully");
+}
+#endif
 

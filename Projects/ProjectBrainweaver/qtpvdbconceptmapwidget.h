@@ -60,7 +60,7 @@ public:
 
 public slots:
 
-  virtual void keyPressEvent(QKeyEvent *event);
+  virtual void keyPressEvent(QKeyEvent *event) noexcept;
 
 protected:
 
