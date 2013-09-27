@@ -69,5 +69,5 @@ int main(int argc, char *argv[])
 
   ribi::pvdb::QtPvdbAssessorMenuDialog d;
   d.show();
-  a.exec();
+  return a.exec();
 }

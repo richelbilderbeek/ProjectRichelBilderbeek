@@ -24,6 +24,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "richelbilderbeekgallerymenudialog.h"
 
 #include <cassert>
+#include <boost/scoped_ptr.hpp>
 
 #include "codetohtmlfooter.h"
 #include "codetohtmlheader.h"
@@ -37,11 +38,15 @@ const std::vector<std::string> ribi::RichelBilderbeek::GalleryMenuDialog::Create
 {
   std::vector<std::string> v;
 
-  const c2h::Header h(c2h::PageType::cpp,"CppClassGallery.htm");
-  const c2h::Footer f(h.GetPageType());
+  const c2h::PageType page_type = c2h::PageType::cpp;
 
-  //Copy the header
-  v = h.ToHtml();
+  //Add header
+  {
+    const boost::scoped_ptr<const c2h::Header> h {
+      new const c2h::Header(page_type,"CppClassGallery.htm")
+    };
+    v = h->ToHtml();
+  }
 
   v.push_back("<p>My <a href=\"CppClassGallery.htm\">class gallery</a> shows the <a href=\"CppClass.htm\">classes</a> I've made.");
   v.push_back("I also have a <a href=\"GameGallery.htm\">game gallery</a>, <a href=\"ProjectGallery.htm\">project gallery</a> and <a href=\"ToolGallery.htm\">tool gallery</a>.</p>");
@@ -71,7 +76,10 @@ const std::vector<std::string> ribi::RichelBilderbeek::GalleryMenuDialog::Create
 
   //Add footer
   {
-    std::vector<std::string> w = f.ToHtml();
+    const boost::scoped_ptr<const c2h::Footer> f {
+      new c2h::Footer(page_type)
+    };
+    std::vector<std::string> w = f->ToHtml();
     std::copy(w.begin(),w.end(),std::back_inserter(v));
   }
   return v;
@@ -81,12 +89,15 @@ const std::vector<std::string> ribi::RichelBilderbeek::GalleryMenuDialog::Create
 {
   std::vector<std::string> v;
 
-  const c2h::Header h(c2h::PageType::cpp,"GameGallery.htm");
-  const c2h::Footer f(h.GetPageType());
+  const c2h::PageType page_type = c2h::PageType::cpp;
 
-  //Copy the header
-  v = h.ToHtml();
-
+  //Add header
+  {
+    const boost::scoped_ptr<const c2h::Header> h {
+      new const c2h::Header(c2h::PageType::cpp,"GameGallery.htm")
+    };
+    v = h->ToHtml();
+  }
   v.push_back("<p>My <a href=\"GameGallery.htm\">game gallery</a> shows the <a href=\"Games.htm\">games</a> I've made.");
   v.push_back("I also have a <a href=\"CppClassGallery.htm\">class gallery</a>, <a href=\"ProjectGallery.htm\">project gallery</a> and <a href=\"ToolGallery.htm\">tool gallery</a>.</p>");
   v.push_back("<p>&nbsp;</p>");
@@ -115,7 +126,10 @@ const std::vector<std::string> ribi::RichelBilderbeek::GalleryMenuDialog::Create
 
   //Add footer
   {
-    std::vector<std::string> w = f.ToHtml();
+    const boost::scoped_ptr<const c2h::Footer> f {
+      new c2h::Footer(page_type)
+    };
+    std::vector<std::string> w = f->ToHtml();
     std::copy(w.begin(),w.end(),std::back_inserter(v));
   }
   return v;
@@ -125,11 +139,16 @@ const std::vector<std::string> ribi::RichelBilderbeek::GalleryMenuDialog::Create
 {
   std::vector<std::string> v;
 
-  const c2h::Header h(c2h::PageType::cpp,"ProjectGallery.htm");
-  const c2h::Footer f(h.GetPageType());
+  const c2h::PageType page_type = c2h::PageType::cpp;
 
-  //Copy the header
-  v = h.ToHtml();
+
+  //Add header
+  {
+    const boost::scoped_ptr<const c2h::Header> h {
+      new const c2h::Header(c2h::PageType::cpp,"ProjectGallery.htm")
+    };
+    v = h->ToHtml();
+  }
 
   v.push_back("<p>My <a href=\"ProjectGallery.htm\">project gallery</a> shows the <a href=\"Projects.htm\">projects</a> I've worked on.");
   v.push_back("I also have a <a href=\"CppClassGallery.htm\">class gallery</a>, <a href=\"GameGallery.htm\">game gallery</a> and <a href=\"ToolGallery.htm\">tool gallery</a>.</p>");
@@ -159,7 +178,10 @@ const std::vector<std::string> ribi::RichelBilderbeek::GalleryMenuDialog::Create
 
   //Add footer
   {
-    std::vector<std::string> w = f.ToHtml();
+    const boost::scoped_ptr<const c2h::Footer> f {
+      new c2h::Footer(page_type)
+    };
+    std::vector<std::string> w = f->ToHtml();
     std::copy(w.begin(),w.end(),std::back_inserter(v));
   }
 
@@ -170,11 +192,16 @@ const std::vector<std::string> ribi::RichelBilderbeek::GalleryMenuDialog::Create
 {
   std::vector<std::string> v;
 
-  const c2h::Header h(c2h::PageType::cpp,"CppRichelBilderbeekStatus.htm");
-  const c2h::Footer f(h.GetPageType());
+  const c2h::PageType page_type = c2h::PageType::cpp;
 
-  //Copy the header
-  v = h.ToHtml();
+
+  //Add header
+  {
+    const boost::scoped_ptr<const c2h::Header> h {
+      new const c2h::Header(c2h::PageType::cpp,"CppRichelBilderbeekStatus.htm")
+    };
+    v = h->ToHtml();
+  }
 
   RichelBilderbeek::QtResources r;
 
@@ -228,7 +255,10 @@ const std::vector<std::string> ribi::RichelBilderbeek::GalleryMenuDialog::Create
 
   //Add footer
   {
-    std::vector<std::string> w = f.ToHtml();
+    const boost::scoped_ptr<const c2h::Footer> f {
+      new c2h::Footer(page_type)
+    };
+    std::vector<std::string> w = f->ToHtml();
     std::copy(w.begin(),w.end(),std::back_inserter(v));
   }
 
@@ -239,11 +269,16 @@ const std::vector<std::string> ribi::RichelBilderbeek::GalleryMenuDialog::Create
 {
   std::vector<std::string> v;
 
-  const c2h::Header h(c2h::PageType::cpp,"ToolGallery.htm");
-  const c2h::Footer f(h.GetPageType());
+  const c2h::PageType page_type = c2h::PageType::cpp;
 
-  //Copy the header
-  v = h.ToHtml();
+
+  //Add header
+  {
+    const boost::scoped_ptr<const c2h::Header> h {
+      new const c2h::Header(c2h::PageType::cpp,"ToolGallery.htm")
+    };
+    v = h->ToHtml();
+  }
 
   v.push_back("<p>My <a href=\"ToolGallery.htm\">tool gallery</a> shows the <a href=\"Tools.htm\">tools</a> I've made.");
   v.push_back("I also have a <a href=\"CppClassGallery.htm\">class gallery</a>, <a href=\"GameGallery.htm\">game gallery</a> and <a href=\"ProjectGallery.htm\">project gallery</a>.</p>");
@@ -273,7 +308,10 @@ const std::vector<std::string> ribi::RichelBilderbeek::GalleryMenuDialog::Create
 
   //Add footer
   {
-    std::vector<std::string> w = f.ToHtml();
+    const boost::scoped_ptr<const c2h::Footer> f {
+      new c2h::Footer(page_type)
+    };
+    std::vector<std::string> w = f->ToHtml();
     std::copy(w.begin(),w.end(),std::back_inserter(v));
   }
 
@@ -303,9 +341,9 @@ const std::string ribi::RichelBilderbeek::GalleryMenuDialog::GetVersion() noexce
 
 const std::vector<std::string> ribi::RichelBilderbeek::GalleryMenuDialog::GetVersionHistory() noexcept
 {
-  std::vector<std::string> v;
-  v.push_back("2012-02-20: Version 1.0: initial version");
-  return v;
+  return {
+    "2012-02-20: Version 1.0: initial version"
+  };
 }
 
 void ribi::RichelBilderbeek::GalleryMenuDialog::Test()
