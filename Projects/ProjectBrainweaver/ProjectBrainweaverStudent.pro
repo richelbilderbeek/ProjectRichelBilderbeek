@@ -2,17 +2,6 @@ QT       += core gui
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets printsupport
 TEMPLATE = app
 
-DEFINES += PVDB_USE_FORWARD_DECLARATIONS_248738
-#DEFINES += PVDB_KEEP_NAMESPACE_IN_CPP_FILES
-DEFINES += NTRACE_BILDERBIKKEL NTRACE NDEBUG
-QMAKE_CXXFLAGS += -std=c++11 -Wall -Wextra -Weffc++
-
-unix {
-  QMAKE_CXXFLAGS += -Werror
-}
-
-#LIBS += -lboost_date_time #Do not use Boost.date_time as crosscompiler cannot find it
-
 INCLUDEPATH += \
   ../../Classes/CppAbout \
   ../../Classes/CppFuzzy_equal_to \
@@ -89,7 +78,13 @@ SOURCES += \
     qtpvdbratedconceptwidget.cpp \
     pvdbcenternodefactory.cpp \
     pvdbcenternode.cpp \
-    qtpvdbfiledialog.cpp
+    qtpvdbfiledialog.cpp \
+    test_qtpvdbconceptmapwidget.cpp \
+    test_qtpvdbconceptmapeditwidget.cpp \
+    test_qtpvdbconceptmapdialog.cpp \
+    test_pvdbconceptmap.cpp \
+    test_pvdbconcept.cpp \
+    test_pvdbcluster.cpp
 
 HEADERS  += \
     ../../Classes/CppAbout/about.h \
@@ -188,3 +183,30 @@ OTHER_FILES += \
 
 RESOURCES += \
     Brainweaver.qrc
+
+#
+#
+# Type of compile
+#
+#
+
+CONFIG(release, debug|release) {
+  DEFINES += NDEBUG NTRACE_BILDERBIKKEL
+}
+
+QMAKE_CXXFLAGS += -std=c++11 -Wall -Wextra -Weffc++
+
+unix {
+  QMAKE_CXXFLAGS += -Werror
+}
+
+#
+#
+# Boost
+#
+#
+
+win32 {
+  INCLUDEPATH += \
+    ../../Libraries/boost_1_54_0
+}

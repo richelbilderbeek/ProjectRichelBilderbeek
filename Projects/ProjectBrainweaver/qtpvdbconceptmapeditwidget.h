@@ -43,7 +43,7 @@ struct QtPvdbConceptMapEditWidget : public QtPvdbConceptMapWidget
 
 protected:
 
-  void keyPressEvent(QKeyEvent* event);
+  void keyPressEvent(QKeyEvent* event) noexcept;
   void mouseMoveEvent(QMouseEvent * event);
   void mouseDoubleClickEvent(QMouseEvent *event);
   void mousePressEvent(QMouseEvent *event);

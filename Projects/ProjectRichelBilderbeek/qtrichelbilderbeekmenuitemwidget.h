@@ -37,7 +37,7 @@ struct QtRichelBilderbeekMenuItemWidget : public QtKeyboardFriendlyGraphicsView
 
   ~QtRichelBilderbeekMenuItemWidget() noexcept {}
 
-  void keyPressEvent(QKeyEvent *event);
+  void keyPressEvent(QKeyEvent *event) noexcept;
 
   ///Emitted when the user wants to start an application
   ///The string passed is the text on the item

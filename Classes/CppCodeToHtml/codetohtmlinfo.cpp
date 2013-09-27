@@ -55,6 +55,15 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
   std::vector<Pair> m;
   m.push_back(
     {
+      "FAIL", //Check that this fails, remove after confirmation of this
+      {
+        "<p>"
+      }
+    }
+  );
+
+  m.push_back(
+    {
       "CppAbcFile",
       {
         "<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicWindows.png\" alt=\"Windows\"/></p>",

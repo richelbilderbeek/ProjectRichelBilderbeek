@@ -80,11 +80,12 @@ int main(int argc, char *argv[])
       assert(file);
       ribi::pvdb::QtPvdbStudentMenuDialog d(file);
       d.show();
-      a.exec();
+      return a.exec();
     }
     catch (...)
     {
       //Gotta catch 'm all
     }
   }
+  return 1;
 }

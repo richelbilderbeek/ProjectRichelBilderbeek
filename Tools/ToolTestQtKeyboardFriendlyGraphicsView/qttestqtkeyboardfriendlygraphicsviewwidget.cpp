@@ -318,7 +318,7 @@ void ribi::QtTestKeyboardFriendlyGraphicsViewWidget::DoUpdateScene()
 
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
-void ribi::QtTestKeyboardFriendlyGraphicsViewWidget::keyPressEvent(QKeyEvent *event)
+void ribi::QtTestKeyboardFriendlyGraphicsViewWidget::keyPressEvent(QKeyEvent *event) noexcept
 {
   switch (event->key())
   {

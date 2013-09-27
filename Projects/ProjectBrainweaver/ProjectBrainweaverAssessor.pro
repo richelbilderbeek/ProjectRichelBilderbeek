@@ -94,7 +94,8 @@ SOURCES += \
     test_qtpvdbconceptmapdialog.cpp \
     test_pvdbconceptmap.cpp \
     test_pvdbconcept.cpp \
-    test_pvdbcluster.cpp
+    test_pvdbcluster.cpp \
+    qtpvdbprintconceptmapdialog.cpp
 
 HEADERS  += \
     ../../Classes/CppAbout/about.h \
@@ -168,7 +169,8 @@ HEADERS  += \
     qtpvdbrateconcepttallydialog.h \
     pvdbcenternodefactory.h \
     pvdbcenternode.h \
-    qtpvdbfiledialog.h
+    qtpvdbfiledialog.h \
+    qtpvdbprintconceptmapdialog.h
 
 FORMS    += \
     ../../Classes/CppQtAboutDialog/qtaboutdialog.ui \
@@ -184,7 +186,8 @@ FORMS    += \
     qtpvdbrateexamplesdialog.ui \
     qtpvdbratingdialog.ui \
     qtpvdbratedconceptwidget.ui \
-    qtpvdbrateconcepttallydialog.ui
+    qtpvdbrateconcepttallydialog.ui \
+    qtpvdbprintconceptmapdialog.ui
 
 OTHER_FILES += \
     ../../Classes/CppAbout/Licence.txt \

@@ -336,7 +336,6 @@ const std::vector<std::pair<std::string,std::string> > c2h::Content::CreateProRe
     { "QtAboutDialog","<a href=\"C$ppQ$tA$boutD$ialog.htm\">Q$tA$boutD$ialog</a>" },
     { "QtShapeWidget","<a href=\"C$ppQ$tS$hapeW$idget.htm\">Q$tS$hapeW$idget</a>" },
     { "StateObserver","<a href=\"C$ppS$tateO$bserver.htm\">S$tateO$bserver</a>" },
-    { "Encranger","<a href=\"T$oolT$estE$ncranger.htm\">T$estE$ncranger</a>" },
     { "TestNeuralNet","<a href=\"T$oolT$estN$euralNet.htm\">T$estN$euralNet</a>" },
     { "TestStopwatch","<a href=\"T$oolTestS$topwatch.htm\">TestS$topwatch</a>" },
     { "TestTicTacToe","<a href=\"T$oolT$estT$icTacToe.htm\">T$estT$icTacToe</a>" },

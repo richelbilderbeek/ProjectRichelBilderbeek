@@ -391,7 +391,7 @@ bool ribi::pvdb::QtPvdbConceptMapWidget::IsCenterNode(const QGraphicsItem* const
   return qtnode && !(item->flags() & QGraphicsItem::ItemIsMovable);
 }
 
-void ribi::pvdb::QtPvdbConceptMapWidget::keyPressEvent(QKeyEvent *event)
+void ribi::pvdb::QtPvdbConceptMapWidget::keyPressEvent(QKeyEvent *event) noexcept
 {
 
   switch (event->key())

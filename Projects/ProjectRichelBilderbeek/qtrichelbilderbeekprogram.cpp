@@ -62,7 +62,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "qtsitemapgeneratormenudialog.h"
 #include "qtstateobservermenudialog.h"
 #include "qttestdialmenudialog.h"
-#include "qttoolencrangerdialog.h"
+#include "qttoolencrangermaindialog.h"
 #include "qttestfunctionparsermenudialog.h"
 #include "qttestleddialog.h"
 #include "qttestpylosmenudialog.h"

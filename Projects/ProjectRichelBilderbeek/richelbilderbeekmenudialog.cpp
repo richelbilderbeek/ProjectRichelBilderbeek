@@ -97,7 +97,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "steadystatekalmanfilterparameters.h"
 #include "stopwatch.h"
 #include "testdialmenudialog.h"
-#include "toolencrangerdialog.h"
+#include "toolencrangermenudialog.h"
 #include "testexercisemenudialog.h"
 #include "testfunctionparsermenudialog.h"
 #include "testledmenudialog.h"
@@ -226,7 +226,7 @@ const ribi::About ribi::RichelBilderbeek::MenuDialog::GetAbout() noexcept
   a.AddLibrary("Stopwatch version: " + Stopwatch::GetVersion());
   a.AddLibrary("TestApproximator version: " + ToolTestApproximatorMenuDialog::GetVersion());
   a.AddLibrary("TestDial version: " + TestDialMenuDialog::GetVersion());
-  a.AddLibrary("Encranger version: " + EncrangerDialog::GetVersion());
+  a.AddLibrary("Encranger version: " + ToolEncrangerMenuDialog::GetVersion());
   a.AddLibrary("TestExercise version: " + TestExerciseMenuDialog::GetVersion());
   a.AddLibrary("TestFunctionParser version: " + TestFunctionParserMenuDialog::GetVersion());
   a.AddLibrary("TestLed version: " + TestLedMenuDialog::GetVersion());

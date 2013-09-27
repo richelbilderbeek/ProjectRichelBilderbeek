@@ -491,7 +491,7 @@ const std::vector<ribi::pvdb::QtPvdbNodeItem *> ribi::pvdb::QtPvdbConceptMapEdit
   return qtnodes;
 }
 
-void ribi::pvdb::QtPvdbConceptMapEditWidget::keyPressEvent(QKeyEvent* event)
+void ribi::pvdb::QtPvdbConceptMapEditWidget::keyPressEvent(QKeyEvent* event) noexcept
 {
   switch (event->key())
   {

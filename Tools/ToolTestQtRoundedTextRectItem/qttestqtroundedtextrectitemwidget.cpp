@@ -103,7 +103,7 @@ void ribi::QtTestQtRoundedTextRectItemWidget::Display(const QFont& font)
 
 }
 
-void ribi::QtTestQtRoundedTextRectItemWidget::keyPressEvent(QKeyEvent *event)
+void ribi::QtTestQtRoundedTextRectItemWidget::keyPressEvent(QKeyEvent *event) noexcept
 {
 
   switch (event->key())

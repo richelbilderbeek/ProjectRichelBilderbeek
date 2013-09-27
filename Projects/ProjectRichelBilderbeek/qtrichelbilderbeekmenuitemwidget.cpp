@@ -134,7 +134,7 @@ ribi::QtRichelBilderbeekMenuItemWidget::QtRichelBilderbeekMenuItemWidget(QWidget
   }
 }
 
-void ribi::QtRichelBilderbeekMenuItemWidget::keyPressEvent(QKeyEvent *event)
+void ribi::QtRichelBilderbeekMenuItemWidget::keyPressEvent(QKeyEvent *event) noexcept
 {
 
   switch (event->key())
