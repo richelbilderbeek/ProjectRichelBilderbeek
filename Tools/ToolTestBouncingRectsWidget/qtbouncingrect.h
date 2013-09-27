@@ -1,13 +1,18 @@
 #ifndef QTBOUNCINGRECT_H
 #define QTBOUNCINGRECT_H
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include <QGraphicsItem>
+#pragma GCC diagnostic pop
 
 struct QGraphicsScene;
 
 struct QtBouncingRect : public QGraphicsItem
 {
   QtBouncingRect(QGraphicsItem *parent, QGraphicsScene *scene);
+  QtBouncingRect(const QtBouncingRect&) = delete;
+  QtBouncingRect& operator=(const QtBouncingRect&) = delete;
 
   ///Make the balls move
   void advance(int phase);

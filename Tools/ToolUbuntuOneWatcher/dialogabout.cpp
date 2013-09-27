@@ -21,16 +21,21 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <algorithm>
 #include <cstdlib>
 #include <string>
-//---------------------------------------------------------------------------
+
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+
 #include <boost/version.hpp>
-//---------------------------------------------------------------------------
+
 #include <QFile>
-//---------------------------------------------------------------------------
+
 #include "dialogabout.h"
-#include "dialogmain.h"
+#include "qtubuntuonemaindialog.h"
 #include "dialogwhatsnew.h"
 #include "ui_dialogabout.h"
-//---------------------------------------------------------------------------
+
+#pragma GCC diagnostic pop
+
 DialogAbout::DialogAbout(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::DialogAbout)
@@ -44,37 +49,25 @@ DialogAbout::DialogAbout(QWidget *parent) :
 
   ui->label_title->setText(
     QString("UbuntuOneWatcher version ")
-    + QString(DialogMain::GetVersion().c_str()));
+    + QString(QtUbuntuOneWatcherMainDialog::GetVersion().c_str()));
 
 
   ui->label_boost_version->setText(
     QString("Boost version: ")
     + QString(GetBoostVersion().c_str()));
 }
-//---------------------------------------------------------------------------
+
 DialogAbout::~DialogAbout()
 {
   delete ui;
 }
-//---------------------------------------------------------------------------
-void DialogAbout::changeEvent(QEvent *e)
-{
-  QDialog::changeEvent(e);
-  switch (e->type()) {
-  case QEvent::LanguageChange:
-    ui->retranslateUi(this);
-    break;
-  default:
-    break;
-  }
-}
-//---------------------------------------------------------------------------
+
 void DialogAbout::onWhatsNew()
 {
   DialogWhatsNew d;
   d.exec();
 }
-//---------------------------------------------------------------------------
+
 ///GetBoostVersion returns the version of the current Boost library.
 ///From http://www.richelbilderbeek.nl/CppGetBoostVersion.htm
 const std::string GetBoostVersion()
@@ -83,4 +76,4 @@ const std::string GetBoostVersion()
   std::replace(s.begin(),s.end(),'_','.');
   return s;
 }
-//---------------------------------------------------------------------------
+

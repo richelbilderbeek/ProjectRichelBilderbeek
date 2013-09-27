@@ -20,13 +20,16 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #ifndef DIALOGWHATSNEW_H
 #define DIALOGWHATSNEW_H
-//---------------------------------------------------------------------------
+
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include <QDialog>
-//---------------------------------------------------------------------------
+#pragma GCC diagnostic pop
+
 namespace Ui {
   class DialogWhatsNew;
 }
-//---------------------------------------------------------------------------
+
 class DialogWhatsNew : public QDialog
 {
   Q_OBJECT
@@ -35,11 +38,8 @@ public:
   explicit DialogWhatsNew(QWidget *parent = 0);
   ~DialogWhatsNew();
 
-protected:
-  void changeEvent(QEvent *e);
-
 private:
   Ui::DialogWhatsNew *ui;
 };
-//---------------------------------------------------------------------------
+
 #endif // DIALOGWHATSNEW_H

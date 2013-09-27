@@ -1,13 +1,18 @@
 #include <cassert>
+
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include <QTimer>
 #include <QGraphicsScene>
 #include "qttestgraphicsproxyitem.h"
 #include "qttestgraphicsproxywidget.h"
 #include "somedialog.h"
-
+#pragma GCC diagnostic pop
 
 QtTestGraphicsProxyWidget::QtTestGraphicsProxyWidget(QWidget *parent)
   : QGraphicsView(parent),
+    m_dialogs{},
+    m_proxies{},
     m_scene(new QGraphicsScene(this->rect(),this))
 {
   this->setScene(m_scene);
@@ -37,13 +42,6 @@ QtTestGraphicsProxyWidget::QtTestGraphicsProxyWidget(QWidget *parent)
     //  static_cast<double>((i - 1) * 32) + (0.5 * static_cast<double>(width())),
     //  static_cast<double>((i - 1) * 32) + (0.5 * static_cast<double>(height())));
   }
-
-  //{
-  //  QTimer * const timer = new QTimer(this);
-  //  QObject::connect(timer,SIGNAL(timeout()),m_scene,SLOT(advance()));
-  //  timer->setInterval(20);
-  //  timer->start();
-  //}
 
   //Turn off the scrollbars, as they look ugly
   this->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);

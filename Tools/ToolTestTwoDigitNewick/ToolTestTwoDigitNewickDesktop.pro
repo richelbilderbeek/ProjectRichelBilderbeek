@@ -57,6 +57,9 @@ FORMS += \
 RESOURCES += \
     ToolTestTwoDigitNewick.qrc
 
+OTHER_FILES += \
+    ../../Classes/CppQtHideAndShowDialog/Licence.txt
+
 #
 #
 # Type of compile
@@ -67,7 +70,7 @@ CONFIG(release, debug|release) {
   DEFINES += NDEBUG NTRACE_BILDERBIKKEL
 }
 
-QMAKE_CXXFLAGS += -std=c++11 -Wall -Wextra -Weffc++ -Werror
+QMAKE_CXXFLAGS += -std=c++11 -Wall -Wextra -Weffc++
 
 unix {
   QMAKE_CXXFLAGS += -Werror
@@ -79,17 +82,10 @@ unix {
 #
 #
 
-unix {
-  LIBS += -lboost_regex
-}
-
 win32 {
   INCLUDEPATH += \
     ../../Libraries/boost_1_54_0
 }
-
-OTHER_FILES += \
-    ../../Classes/CppQtHideAndShowDialog/Licence.txt
 
 #
 #

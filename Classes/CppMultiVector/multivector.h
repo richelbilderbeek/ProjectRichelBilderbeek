@@ -37,6 +37,7 @@ namespace ribi {
 template <class T>
 struct MultiVector
 {
+  MultiVector() : m_indices{}, m_multivectors{} {}
 
   ///CanRetrieve returns if an index/coordinat can be retrieved
   bool CanRetrieve(const std::vector<int>& indices) const
@@ -133,13 +134,11 @@ struct MultiVector
 
   const std::vector<std::string> GetVersionHistory()
   {
-    std::vector<std::string> v;
-
-    v.push_back("2011-03-02: version 1.0: initial version");
-    v.push_back("2011-03-02: version 1.1: added CanRetrieve and Peek methods");
-    return v;
+    return {
+      "2011-03-02: version 1.0: initial version",
+      "2011-03-02: version 1.1: added CanRetrieve and Peek methods"
+    };
   }
-
 };
 
 } //~namespace ribi

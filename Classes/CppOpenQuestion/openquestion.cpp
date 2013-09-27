@@ -57,7 +57,8 @@ ribi::Question * ribi::OpenQuestion::Clone() const noexcept
   return new OpenQuestion(
     this->GetFilename(),
     this->GetQuestion(),
-    this->GetAnswers());
+    this->GetCorrectAnswers()
+  );
 }
 
 const std::vector<std::string> ribi::OpenQuestion::ExtractAnswers(const std::string& input)
@@ -76,10 +77,10 @@ const std::vector<std::string> ribi::OpenQuestion::ExtractAnswers(const std::str
   return w;
 }
 
-const std::vector<std::string>& ribi::OpenQuestion::GetAnswers() const noexcept
-{
-  return this->Question::GetAnswers();
-}
+//const std::vector<std::string>& ribi::OpenQuestion::GetAnswers() const noexcept
+//{
+//  this->GetCorrectAnswers()
+//}
 
 const std::string ribi::OpenQuestion::GetVersion() noexcept
 {

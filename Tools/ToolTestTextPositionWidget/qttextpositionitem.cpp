@@ -1,9 +1,13 @@
 #include <iostream>
+
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include <QCursor>
 #include <QFont>
 #include <QGraphicsSceneMouseEvent>
 #include <QPainter>
 #include "qttextpositionitem.h"
+#pragma GCC diagnostic pop
 
 QtTextPositionItem::QtTextPositionItem(
   const std::string& text,

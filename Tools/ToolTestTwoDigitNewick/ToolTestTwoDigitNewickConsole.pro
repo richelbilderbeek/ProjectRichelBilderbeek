@@ -1,8 +1,8 @@
 QT       += core gui
 CONFIG   += console
 CONFIG   -= app_bundle
+TEMPLATE = app
 
-QMAKE_CXXFLAGS += -std=c++11 -Wall -Wextra
 #Use 64 bit
 #QMAKE_CXXFLAGS += -m64
 
@@ -12,41 +12,78 @@ INCLUDEPATH += \
   ../../Classes/CppFuzzy_equal_to \
   ../../Classes/CppNewick \
   ../../Classes/CppTrace \
-  ../../Classes/CppTwoDigitNewick \
-  ../../Libraries/bigint-2010.04.30
+  ../../Classes/CppTwoDigitNewick
 
-win32:INCLUDEPATH+=../Libraries/boost_1_53_0
-
-
-#Libraries
-unix:LIBS += -lboost_regex
-#Using BigInt library by including its source
-TEMPLATE = app
 SOURCES += \
     ../../Classes/CppBinaryNewickVector/binarynewickvector.cpp \
     ../../Classes/CppNewick/newick.cpp \
-    ../../Classes/CppTwoDigitNewick/twodigitnewickindexer.cpp \
+    ../../Classes/CppNewick/newickcpp98.cpp \
     ../../Classes/CppTwoDigitNewick/twodigitnewick.cpp \
-    ../../Classes/CppTwoDigitNewick/twodigitnewicks.cpp \
-    ../../Classes/CppTwoDigitNewick/twodigitnewickindextable.cpp \
     ../../Classes/CppTwoDigitNewick/twodigitnewickderivative.cpp \
-    ../../Libraries/bigint-2010.04.30/BigInteger.cc \
+    ../../Classes/CppTwoDigitNewick/twodigitnewickindexer.cpp \
+    ../../Classes/CppTwoDigitNewick/twodigitnewickindextable.cpp \
+    ../../Classes/CppTwoDigitNewick/twodigitnewicks.cpp \
+    main.cpp
+
+HEADERS += \
+    ../../Classes/CppBinaryNewickVector/binarynewickvector.h \
+    ../../Classes/CppFuzzy_equal_to/fuzzy_equal_to.h \
+    ../../Classes/CppNewick/newick.h \
+    ../../Classes/CppNewick/newickcpp98.h \
+    ../../Classes/CppTrace/trace.h \
+    ../../Classes/CppTwoDigitNewick/twodigitnewick.h \
+    ../../Classes/CppTwoDigitNewick/twodigitnewickderivative.h \
+    ../../Classes/CppTwoDigitNewick/twodigitnewickindexer.h \
+    ../../Classes/CppTwoDigitNewick/twodigitnewickindextable.h \
+    ../../Classes/CppTwoDigitNewick/twodigitnewicks.h
+
+#
+#
+# Type of compile
+#
+#
+
+CONFIG(release, debug|release) {
+  DEFINES += NDEBUG NTRACE_BILDERBIKKEL
+}
+
+QMAKE_CXXFLAGS += -std=c++11 -Wall -Wextra -Weffc++
+
+unix {
+  QMAKE_CXXFLAGS += -Werror
+}
+
+#
+#
+# Boost
+#
+#
+
+win32 {
+  INCLUDEPATH += \
+    ../../Libraries/boost_1_54_0
+}
+
+#
+#
+# Big integer
+#
+#
+INCLUDEPATH += \
+    ../../Libraries/bigint-2010.04.30
+
+HEADERS += \
+    ../../Libraries/bigint-2010.04.30/BigIntegerAlgorithms.hh \
+    ../../Libraries/bigint-2010.04.30/BigInteger.hh \
+    ../../Libraries/bigint-2010.04.30/BigIntegerLibrary.hh \
+    ../../Libraries/bigint-2010.04.30/BigIntegerUtils.hh \
+    ../../Libraries/bigint-2010.04.30/BigUnsigned.hh \
+    ../../Libraries/bigint-2010.04.30/BigUnsignedInABase.hh \
+    ../../Libraries/bigint-2010.04.30/NumberlikeArray.hh
+
+SOURCES += \
     ../../Libraries/bigint-2010.04.30/BigIntegerAlgorithms.cc \
+    ../../Libraries/bigint-2010.04.30/BigInteger.cc \
     ../../Libraries/bigint-2010.04.30/BigIntegerUtils.cc \
     ../../Libraries/bigint-2010.04.30/BigUnsigned.cc \
-    ../../Libraries/bigint-2010.04.30/BigUnsignedInABase.cc \
-    main.cpp \
-    ../../Classes/CppNewick/newickcpp98.cpp
-HEADERS += \
-    ../../Classes/CppAssert/assert.h \
-    ../../Classes/CppBinaryNewickVector/binarynewickvector.h \
-    ../../Classes/CppNewick/newick.h \
-    ../../Classes/CppTrace/trace.h \
-    ../../Classes/CppTwoDigitNewick/twodigitnewickindexer.h \
-    ../../Classes/CppTwoDigitNewick/twodigitnewick.h \
-    ../../Classes/CppTwoDigitNewick/twodigitnewicks.h \
-    ../../Classes/CppTwoDigitNewick/twodigitnewickindextable.h \
-    ../../Classes/CppTwoDigitNewick/twodigitnewickderivative.h \
-    ../../Classes/CppNewick/newickcpp98.h \
-    ../../Classes/CppFuzzy_equal_to/fuzzy_equal_to.h
-
+    ../../Libraries/bigint-2010.04.30/BigUnsignedInABase.cc

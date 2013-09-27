@@ -1,8 +1,10 @@
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include <QTimer>
 #include <QGraphicsScene>
 #include "qtbouncingrect.h"
 #include "qtbouncingrectswidget.h"
-
+#pragma GCC diagnostic pop
 
 QtBouncingRectsWidget::QtBouncingRectsWidget(QWidget *parent)
   : QGraphicsView(parent),

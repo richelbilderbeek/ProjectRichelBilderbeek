@@ -65,7 +65,6 @@ CONFIG(release, debug|release) {
 QMAKE_CXXFLAGS += -std=c++11 -Wall -Wextra -Weffc++
 
 unix {
-  message(Unix)
   QMAKE_CXXFLAGS += -Werror
 }
 

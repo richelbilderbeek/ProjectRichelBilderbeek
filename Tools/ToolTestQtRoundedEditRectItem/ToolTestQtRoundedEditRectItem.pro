@@ -1,7 +1,6 @@
 QT       += core gui
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
-QMAKE_CXXFLAGS += -std=c++11 -Wall -Wextra -Weffc++ -Werror
 TEMPLATE = app
 
 INCLUDEPATH += \
@@ -29,30 +28,30 @@ SOURCES += \
     testqtroundededitrectitemmenudialog.cpp
 
 HEADERS += \
-    ../../Classes/CppQtRoundedEditRectItem/qtroundededitrectitem.h \
-    ../../Classes/CppQtRoundedRectItem/qtroundedrectitem.h \
-    ../../Classes/CppQtKeyboardFriendlyGraphicsView/qtkeyboardfriendlygraphicsview.h \
     ../../Classes/CppAbout/about.h \
     ../../Classes/CppQtAboutDialog/qtaboutdialog.h \
-    qttestqtroundededitrectitemwidget.h \
-    testqtroundededitrectitemmenudialog.h \
-    ../../Classes/CppTrace/trace.h \
+    ../../Classes/CppQtHideAndShowDialog/qthideandshowdialog.h \
+    ../../Classes/CppQtKeyboardFriendlyGraphicsView/qtkeyboardfriendlygraphicsview.h \
+    ../../Classes/CppQtRoundedEditRectItem/qtroundededitrectitem.h \
+    ../../Classes/CppQtRoundedRectItem/qtroundedrectitem.h \
     ../../Classes/CppQtRoundedTextRectItem/qtroundedtextrectitem.h \
-    qttestqtroundededitrectitemmenudialog.h \
+    ../../Classes/CppTrace/trace.h \
     qttestqtroundededitrectitemmaindialog.h \
-    ../../Classes/CppQtHideAndShowDialog/qthideandshowdialog.h
+    qttestqtroundededitrectitemmenudialog.h \
+    qttestqtroundededitrectitemwidget.h \
+    testqtroundededitrectitemmenudialog.h
 
 OTHER_FILES += \
-    ../../Classes/CppQtRoundedEditRectItem/Licence.txt \
-    ../../Classes/CppQtRoundedRectItem/Licence.txt \
-    ../../Classes/CppQtKeyboardFriendlyGraphicsView/Licence.txt \
-    Licence.txt \
-    crosscompiletowindows.sh \
     ../../Classes/CppAbout/Licence.txt \
     ../../Classes/CppQtAboutDialog/Licence.txt \
-    ../../Classes/CppTrace/Licence.txt \
+    ../../Classes/CppQtHideAndShowDialog/Licence.txt \
+    ../../Classes/CppQtKeyboardFriendlyGraphicsView/Licence.txt \
+    ../../Classes/CppQtRoundedEditRectItem/Licence.txt \
+    ../../Classes/CppQtRoundedRectItem/Licence.txt \
     ../../Classes/CppQtRoundedTextRectItem/Licence.txt \
-    ../../Classes/CppQtHideAndShowDialog/Licence.txt
+    ../../Classes/CppTrace/Licence.txt \
+    crosscompiletowindows.sh \
+    Licence.txt
 
 FORMS += \
     ../../Classes/CppQtAboutDialog/qtaboutdialog.ui \
@@ -61,3 +60,30 @@ FORMS += \
 
 RESOURCES += \
     ToolTestQtRoundedEditRectItem.qrc
+
+#
+#
+# Type of compile
+#
+#
+
+CONFIG(release, debug|release) {
+  DEFINES += NDEBUG NTRACE_BILDERBIKKEL
+}
+
+QMAKE_CXXFLAGS += -std=c++11 -Wall -Wextra -Weffc++
+
+unix {
+  QMAKE_CXXFLAGS += -Werror
+}
+
+#
+#
+# Boost
+#
+#
+
+win32 {
+  INCLUDEPATH += \
+    ../../Libraries/boost_1_54_0
+}

@@ -1,7 +1,10 @@
 #ifndef TOOLTESTGRAVITYWIDGETMAINDIALOG_H
 #define TOOLTESTGRAVITYWIDGETMAINDIALOG_H
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include <QDialog>
+#pragma GCC diagnostic pop
 
 namespace Ui {
   class ToolTestGravityWidgetMainDialog;
@@ -13,7 +16,9 @@ class ToolTestGravityWidgetMainDialog : public QDialog
     
 public:
   explicit ToolTestGravityWidgetMainDialog(QWidget *parent = 0);
-  ~ToolTestGravityWidgetMainDialog();
+  ToolTestGravityWidgetMainDialog(const ToolTestGravityWidgetMainDialog&) = delete;
+  ToolTestGravityWidgetMainDialog& operator=(const ToolTestGravityWidgetMainDialog&) = delete;
+  ~ToolTestGravityWidgetMainDialog() noexcept;
 
 private:
   Ui::ToolTestGravityWidgetMainDialog *ui;

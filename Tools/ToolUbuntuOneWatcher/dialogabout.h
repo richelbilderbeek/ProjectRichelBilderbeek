@@ -20,15 +20,18 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #ifndef DIALOGABOUT_H
 #define DIALOGABOUT_H
-//---------------------------------------------------------------------------
+
 #include <string>
-//---------------------------------------------------------------------------
+
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include <QDialog>
-//---------------------------------------------------------------------------
+#pragma GCC diagnostic pop
+
 namespace Ui {
   class DialogAbout;
 }
-//---------------------------------------------------------------------------
+
 class DialogAbout : public QDialog
 {
   Q_OBJECT
@@ -37,18 +40,15 @@ public:
   explicit DialogAbout(QWidget *parent = 0);
   ~DialogAbout();
 
-protected:
-  void changeEvent(QEvent *e);
-
 private:
   Ui::DialogAbout *ui;
 
 private slots:
   void onWhatsNew();
 };
-//---------------------------------------------------------------------------
+
 ///GetBoostVersion returns the version of the current Boost library.
 ///From http://www.richelbilderbeek.nl/CppGetBoostVersion.htm
 const std::string GetBoostVersion();
-//---------------------------------------------------------------------------
+
 #endif // DIALOGABOUT_H

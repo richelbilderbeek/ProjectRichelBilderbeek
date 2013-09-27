@@ -35,6 +35,9 @@ FORMS    += \
 RESOURCES += \
     ToolTestEncranger.qrc
 
+OTHER_FILES += \
+    ../../Classes/CppQtHideAndShowDialog/Licence.txt
+
 #
 #
 # Type of compile
@@ -62,5 +65,3 @@ win32 {
     ../../Libraries/boost_1_54_0
 }
 
-OTHER_FILES += \
-    ../../Classes/CppQtHideAndShowDialog/Licence.txt

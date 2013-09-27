@@ -4,52 +4,56 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 TEMPLATE = app
 
 INCLUDEPATH += \
-  ../../Classes/CppAbout \
-  ../../Classes/CppDial \
-  ../../Classes/CppDialWidget \
-  ../../Classes/CppQtAboutDialog \
-  ../../Classes/CppQtDialWidget \
-  ../../Classes/CppQtHideAndShowDialog \
-  ../../Classes/CppRainbow \
-  ../../Classes/CppRectangle \
-  ../../Classes/CppTrace \
-  ../../Classes/CppWidget
+    ../../Classes/CppAbout \
+    ../../Classes/CppDial \
+    ../../Classes/CppDialWidget \
+    ../../Classes/CppQtAboutDialog \
+    ../../Classes/CppQtDialWidget \
+    ../../Classes/CppQtHideAndShowDialog \
+    ../../Classes/CppRainbow \
+    ../../Classes/CppRectangle \
+    ../../Classes/CppTrace \
+    ../../Classes/CppWidget
 
-SOURCES += qtmain.cpp\
-  ../../Classes/CppAbout/about.cpp \
-  ../../Classes/CppQtAboutDialog/qtaboutdialog.cpp \
-  ../../Classes/CppDial/dial.cpp \
-  ../../Classes/CppQtDialWidget/qtdialwidget.cpp \
-    qttestdialmaindialog.cpp \
-    testdialmenudialog.cpp \
-    qttestdialmenudialog.cpp \
+SOURCES += \
+    ../../Classes/CppAbout/about.cpp \
+    ../../Classes/CppDial/dial.cpp \
     ../../Classes/CppDialWidget/dialwidget.cpp \
-    ../../Classes/CppWidget/widget.cpp \
-    ../../Classes/CppRectangle/rectangle.cpp \
+    ../../Classes/CppQtAboutDialog/qtaboutdialog.cpp \
+    ../../Classes/CppQtDialWidget/qtdialwidget.cpp \
+    ../../Classes/CppQtHideAndShowDialog/qthideandshowdialog.cpp \
     ../../Classes/CppRainbow/rainbow.cpp \
-    ../../Classes/CppQtHideAndShowDialog/qthideandshowdialog.cpp
+    ../../Classes/CppRectangle/rectangle.cpp \
+    ../../Classes/CppWidget/widget.cpp \
+    qtmain.cpp \
+    qttestdialmaindialog.cpp \
+    qttestdialmenudialog.cpp \
+    testdialmenudialog.cpp
 
 HEADERS  += \
-  ../../Classes/CppAbout/about.h \
-  ../../Classes/CppQtAboutDialog/qtaboutdialog.h \
-  ../../Classes/CppDial/dial.h \
-  ../../Classes/CppQtDialWidget/qtdialwidget.h \
-    qttestdialmaindialog.h \
-    testdialmenudialog.h \
-    qttestdialmenudialog.h \
+    ../../Classes/CppAbout/about.h \
+    ../../Classes/CppDial/dial.h \
     ../../Classes/CppDialWidget/dialwidget.h \
-    ../../Classes/CppWidget/widget.h \
-    ../../Classes/CppRectangle/rectangle.h \
+    ../../Classes/CppQtAboutDialog/qtaboutdialog.h \
+    ../../Classes/CppQtDialWidget/qtdialwidget.h \
+    ../../Classes/CppQtHideAndShowDialog/qthideandshowdialog.h \
     ../../Classes/CppRainbow/rainbow.h \
-    ../../Classes/CppQtHideAndShowDialog/qthideandshowdialog.h
+    ../../Classes/CppRectangle/rectangle.h \
+    ../../Classes/CppWidget/widget.h \
+    qttestdialmaindialog.h \
+    qttestdialmenudialog.h \
+    testdialmenudialog.h
 
 FORMS += \
-  ../../Classes/CppQtAboutDialog/qtaboutdialog.ui \
+    ../../Classes/CppQtAboutDialog/qtaboutdialog.ui \
     qttestdialmaindialog.ui \
     qttestdialmenudialog.ui
 
 RESOURCES += \
     ToolTestDial.qrc
+
+OTHER_FILES += \
+    ../../Classes/CppQtHideAndShowDialog/Licence.txt
 
 #
 #
@@ -78,5 +82,3 @@ win32 {
     ../../Libraries/boost_1_54_0
 }
 
-OTHER_FILES += \
-    ../../Classes/CppQtHideAndShowDialog/Licence.txt

@@ -1,9 +1,12 @@
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include "tesseracthelper.h"
 
 #include <cstdlib>
 #include <limits>
 #include <stdlib.h>
 #include <stdint.h>
+#pragma GCC diagnostic pop
 
 //Identical to UNIX nrand48
 long int Nrand48(unsigned short int xsubi[3])

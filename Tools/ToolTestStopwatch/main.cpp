@@ -21,9 +21,12 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <cstdlib>
 #include <iostream>
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include <boost/timer.hpp>
 
 #include "stopwatch.h"
+#pragma GCC diagnostic pop
 
 int main()
 {

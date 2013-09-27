@@ -44,7 +44,9 @@ struct OpenQuestion : public Question
   ///Create a copy of the Question, depending on the derived class its type
   Question * Clone() const noexcept;
 
-  const std::vector<std::string>& GetAnswers() const noexcept;
+  ///Get the correct answers
+  ///call GetCorrectAnswers instead
+  //const std::vector<std::string>& GetAnswers() const noexcept;
 
   static const std::string GetVersion() noexcept;
   static const std::vector<std::string> GetVersionHistory() noexcept;

@@ -89,7 +89,7 @@ void ribi::QtOpenQuestionDialog::SetQuestion(
   ui->stackedWidget->setCurrentWidget(ui->page_question);
   ui->label_question->setText(question->GetQuestion().c_str());
   ui->label_question_again->setText(question->GetQuestion().c_str());
-  ui->label_answer->setText(q->GetAnswers()[0].c_str());
+  ui->label_answer->setText(q->GetCorrectAnswers()[0].c_str());
 }
 
 void ribi::QtOpenQuestionDialog::on_button_submit_clicked() noexcept

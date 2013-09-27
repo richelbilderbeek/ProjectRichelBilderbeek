@@ -23,19 +23,24 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <fstream>
 #include <string>
 #include <vector>
-//---------------------------------------------------------------------------
+
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+
 #include <boost/foreach.hpp>
-//---------------------------------------------------------------------------
+
 #include <QDesktopWidget>
 #include <QFile>
-//---------------------------------------------------------------------------
-#include "dialogabout.h"
-#include "dialogmain.h"
-#include "ui_dialogmain.h"
-//---------------------------------------------------------------------------
-DialogMain::DialogMain(QWidget *parent) :
-    QDialog(parent, Qt::Window),
-    ui(new Ui::DialogMain)
+
+#include "qtaboutdialog.h"
+#include "qtubuntuonemaindialog.h"
+#include "ui_qtubuntuonemaindialog.h"
+
+#pragma GCC diagnostic pop
+
+ribi::QtUbuntuOneWatcherMainDialog::QtUbuntuOneWatcherMainDialog(QWidget *parent) :
+    QtHideAndShowDialog(parent),
+    ui(new Ui::QtUbuntuOneWatcherMainDialog)
 {
   ui->setupUi(this);
   QObject::connect(ui->button_about,SIGNAL(clicked()),
@@ -48,33 +53,21 @@ DialogMain::DialogMain(QWidget *parent) :
   this->setGeometry(0,0,screen.width() * 3 / 4, screen.height() * 3 / 4);
   this->move( screen.center() - this->rect().center() );
 }
-//---------------------------------------------------------------------------
-DialogMain::~DialogMain()
+
+ribi::QtUbuntuOneWatcherMainDialog::~QtUbuntuOneWatcherMainDialog() noexcept
 {
   delete ui;
 }
-//---------------------------------------------------------------------------
-void DialogMain::changeEvent(QEvent *e)
+
+void ribi::QtUbuntuOneWatcherMainDialog::OnAbout()
 {
-  QDialog::changeEvent(e);
-  switch (e->type()) {
-  case QEvent::LanguageChange:
-    ui->retranslateUi(this);
-    break;
-  default:
-    break;
-  }
+  //Version history
+  //* YYYY-MM-DD: version X.Y: [description]
+  //* 2010-09-26: version 1.0:  initial version
+  //QtAboutDialog
 }
-//---------------------------------------------------------------------------
-void DialogMain::OnAbout()
-{
-  DialogAbout d;
-  hide();
-  d.exec();
-  show();
-}
-//---------------------------------------------------------------------------
-void DialogMain::OnFindOut()
+
+void ribi::QtUbuntuOneWatcherMainDialog::OnFindOut()
 {
   ui->text->clear();
   //List the current state
@@ -123,9 +116,9 @@ void DialogMain::OnFindOut()
 
 
 }
-//---------------------------------------------------------------------------
+
 //From http://www.richelbilderbeek.nl/CppFileToVector.htm
-const std::vector<std::string> FileToVector(const std::string& fileName)
+const std::vector<std::string> ribi::FileToVector(const std::string& fileName)
 {
   assert(QFile::exists(fileName.c_str()));
   std::vector<std::string> myVector;
@@ -138,4 +131,4 @@ const std::vector<std::string> FileToVector(const std::string& fileName)
   }
   return myVector;
 }
-//---------------------------------------------------------------------------
+

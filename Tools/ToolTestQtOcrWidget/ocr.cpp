@@ -1,3 +1,5 @@
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include "ocr.h"
 
 #include <cassert>
@@ -8,6 +10,7 @@
 #include <QFile>
 
 #include "tesseract-3.00/api/baseapi.h"
+#pragma GCC diagnostic pop
 
 Ocr::Ocr(
   const std::string& datafile,

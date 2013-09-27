@@ -18,30 +18,17 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolUbuntuOneWatcher.htm
 //---------------------------------------------------------------------------
-#include "dialogwhatsnew.h"
-#include "ui_dialogwhatsnew.h"
-//---------------------------------------------------------------------------
-DialogWhatsNew::DialogWhatsNew(QWidget *parent) :
-    QDialog(parent),
-    ui(new Ui::DialogWhatsNew)
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#include <QApplication>
+#include "qtubuntuonemaindialog.h"
+#pragma GCC diagnostic pop
+
+int main(int argc, char *argv[])
 {
-  ui->setupUi(this);
+  QApplication a(argc, argv);
+  ribi::QtUbuntuOneWatcherMainDialog w;
+  w.show();
+  return a.exec();
 }
-//---------------------------------------------------------------------------
-DialogWhatsNew::~DialogWhatsNew()
-{
-  delete ui;
-}
-//---------------------------------------------------------------------------
-void DialogWhatsNew::changeEvent(QEvent *e)
-{
-  QDialog::changeEvent(e);
-  switch (e->type()) {
-  case QEvent::LanguageChange:
-    ui->retranslateUi(this);
-    break;
-  default:
-    break;
-  }
-}
-//---------------------------------------------------------------------------
+

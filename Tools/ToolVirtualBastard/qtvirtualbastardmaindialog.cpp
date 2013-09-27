@@ -1,3 +1,5 @@
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include "qtvirtualbastardmaindialog.h"
 
 #include <string>
@@ -13,6 +15,8 @@ extern "C"
 {
   #include "libcvautomation/libcvautomation.h"
 }
+
+#pragma GCC diagnostic pop
 
 QtVirtualBastardMainDialog::QtVirtualBastardMainDialog(QWidget *parent) :
   QDialog(parent),

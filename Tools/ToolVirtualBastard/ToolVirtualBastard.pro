@@ -30,7 +30,22 @@ FORMS    += \
     qtvirtualbastardmenudialog.ui \
     qtvirtualbastardexample1dialog.ui
 
-QMAKE_CXXFLAGS += -std=c++11 -Wall -Wextra -Werror
+QMAKE_CXXFLAGS += -std=c++11 -Wall -Wextra -Weffc++
+
+unix {
+  QMAKE_CXXFLAGS += -Werror
+}
+
+#
+#
+# Boost
+#
+#
+
+win32 {
+  INCLUDEPATH += \
+    ../../Libraries/boost_1_54_0
+}
 
 #
 #

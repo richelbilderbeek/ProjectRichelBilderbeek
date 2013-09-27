@@ -18,39 +18,45 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolUbuntuOneWatcher.htm
 //---------------------------------------------------------------------------
-#ifndef DIALOGMAIN_H
-#define DIALOGMAIN_H
-//---------------------------------------------------------------------------
+#ifndef QTTOOLUBUNTUONEWATCHERMAINDIALOG
+#define QTTOOLUBUNTUONEWATCHERMAINDIALOG
+
 #include <string>
 #include <vector>
-//---------------------------------------------------------------------------
-#include <QDialog>
-//---------------------------------------------------------------------------
+
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#include "qthideandshowdialog.h"
+#pragma GCC diagnostic pop
+
 namespace Ui {
-  class DialogMain;
+  class QtUbuntuOneWatcherMainDialog;
 }
-//---------------------------------------------------------------------------
-class DialogMain : public QDialog
+
+namespace ribi {
+
+class QtUbuntuOneWatcherMainDialog : public QtHideAndShowDialog
 {
   Q_OBJECT
 
 public:
-  explicit DialogMain(QWidget *parent = 0);
-  ~DialogMain();
+  explicit QtUbuntuOneWatcherMainDialog(QWidget *parent = 0);
+  QtUbuntuOneWatcherMainDialog(const QtUbuntuOneWatcherMainDialog&) = delete;
+  QtUbuntuOneWatcherMainDialog& operator=(const QtUbuntuOneWatcherMainDialog&) = delete;
+  ~QtUbuntuOneWatcherMainDialog() noexcept;
   static const std::string GetVersion() { return "1.0"; }
 
-protected:
-  void changeEvent(QEvent *e);
-
 private:
-  Ui::DialogMain *ui;
+  Ui::QtUbuntuOneWatcherMainDialog *ui;
 
 private slots:
   void OnAbout();
   void OnFindOut();
 };
-//---------------------------------------------------------------------------
+
 //From http://www.richelbilderbeek.nl/CppFileToVector.htm
 const std::vector<std::string> FileToVector(const std::string& fileName);
-//---------------------------------------------------------------------------
-#endif // DIALOGMAIN_H
+
+} //~namespace ribi
+
+#endif // QTTOOLUBUNTUONEWATCHERMAINDIALOG

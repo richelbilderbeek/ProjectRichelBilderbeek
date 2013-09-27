@@ -1,7 +1,10 @@
 #ifndef QTVIRTUALBASTARDMAINDIALOG_H
 #define QTVIRTUALBASTARDMAINDIALOG_H
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include <QDialog>
+#pragma GCC diagnostic pop
 
 namespace Ui {
   class QtVirtualBastardMainDialog;
@@ -13,6 +16,8 @@ class QtVirtualBastardMainDialog : public QDialog
   
 public:
   explicit QtVirtualBastardMainDialog(QWidget *parent = 0);
+  QtVirtualBastardMainDialog(const QtVirtualBastardMainDialog&) = delete;
+  QtVirtualBastardMainDialog& operator=(const QtVirtualBastardMainDialog&) = delete;
   ~QtVirtualBastardMainDialog();
   
 private slots:

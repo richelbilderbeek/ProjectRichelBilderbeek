@@ -1,3 +1,5 @@
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include "qtocrinputdialog.h"
 
 #include <algorithm>
@@ -11,6 +13,7 @@
 
 #include "qtocrwidget.h"
 #include "ui_qtocrinputdialog.h"
+#pragma GCC diagnostic pop
 
 QtOcrInputDialog::QtOcrInputDialog(
   const std::string& path,

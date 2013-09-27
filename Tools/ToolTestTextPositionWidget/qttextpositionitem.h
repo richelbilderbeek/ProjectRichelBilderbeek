@@ -1,7 +1,12 @@
 #ifndef QTTEXTPOSITIONITEM_H
 #define QTTEXTPOSITIONITEM_H
 
+#include <string>
+
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include <QGraphicsItem>
+#pragma GCC diagnostic pop
 
 struct QtTextPositionItem : public QGraphicsItem
 {
