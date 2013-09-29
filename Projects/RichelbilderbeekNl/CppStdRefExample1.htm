@@ -20,7 +20,7 @@
 <!-- Page header -->
 <h1>(<a href="Cpp.htm">C++</a>) <a href="CppStdRefExample1.htm">StdRefExample1</a></h1>
 <p>&nbsp;</p>
-<!-- No CodeToHtmlInfo about this class with page name CppStdRefExample1-->
+<!-- No CodeToHtmlInfo about this class with page name ./CppStdRefExample1-->
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
@@ -78,30 +78,30 @@
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="main.cpp" border = "1"><tr><td><code>
-<a href="CppInclude.html">#include</a> &lt;<a href="CppCassertH.html">cassert</a>&gt;<br/>
-<a href="CppInclude.html">#include</a> &lt;<a href="CppFunctionalH.html">functional</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppFunctionalH.htm">functional</a>&gt;<br/>
 <br/>
-<b><a href="CppInt.htm">int</a></b> <a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a>()<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> a <a href="CppOperatorAssign.htm">=</a> 42;<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Reference-wrap a<br/>
-&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppStdRef.html">std::ref</a>erence_wrapper&lt;<b><a href="CppInt.htm">int</a></b>&gt; b(a);<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdRef.htm">std::ref</a>erence_wrapper&lt;<b><a href="CppInt.htm">int</a></b>&gt; b(a);<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Const-reference-wrap the reference-wrap of a<br/>
-&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppStdRef.html">std::ref</a>erence_wrapper&lt;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b>&gt; c(b);<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdRef.htm">std::ref</a>erence_wrapper&lt;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b>&gt; c(b);<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>Cannot <b><a href="CppDo.htm">do</a></b> a non-<b><a href="CppConst.html">const</a></b> wrap around <b><a href="CppConst.html">const</a></b>-wrap c<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppConst.html">const</a></b> <a href="CppReference_wrapper.html">boost::reference_wrapper</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt; d(c); <a href="CppComment.htm">//</a>Won't <a href="CppCompile.html">compile</a><br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Cannot <b><a href="CppDo.htm">do</a></b> a non-<b><a href="CppConst.htm">const</a></b> wrap around <b><a href="CppConst.htm">const</a></b>-wrap c<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppConst.htm">const</a></b> <a href="CppReference_wrapper.htm">boost::reference_wrapper</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt; d(c); <a href="CppComment.htm">//</a>Won't <a href="CppCompile.htm">compile</a><br/>
 <br/>
-&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(a <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 42 <a href="CppOperatorLogicalAnd.html">&amp;&amp;</a> a <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> b <a href="CppOperatorLogicalAnd.html">&amp;&amp;</a> b <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> c);<br/>
-&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a>+a;<br/>
-&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(a <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 43 <a href="CppOperatorLogicalAnd.html">&amp;&amp;</a> a <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> b <a href="CppOperatorLogicalAnd.html">&amp;&amp;</a> b <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> c);<br/>
-&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a>+b;<br/>
-&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(a <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 44 <a href="CppOperatorLogicalAnd.html">&amp;&amp;</a> a <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> b <a href="CppOperatorLogicalAnd.html">&amp;&amp;</a> b <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> c);<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(a <a href="CppOperatorEqual.htm">==</a> 42 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> a <a href="CppOperatorEqual.htm">==</a> b <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> b <a href="CppOperatorEqual.htm">==</a> c);<br/>
+&nbsp;&nbsp;<a href="CppOperatorIncrement.htm">++</a>a;<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(a <a href="CppOperatorEqual.htm">==</a> 43 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> a <a href="CppOperatorEqual.htm">==</a> b <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> b <a href="CppOperatorEqual.htm">==</a> c);<br/>
+&nbsp;&nbsp;<a href="CppOperatorIncrement.htm">++</a>b;<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(a <a href="CppOperatorEqual.htm">==</a> 44 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> a <a href="CppOperatorEqual.htm">==</a> b <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> b <a href="CppOperatorEqual.htm">==</a> c);<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>Cannot modify a <b><a href="CppConst.html">const</a></b>-wrap<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppOperatorIncrement.htm">++</a>c; <a href="CppComment.htm">//</a>Won't <a href="CppCompile.html">compile</a><br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Cannot modify a <b><a href="CppConst.htm">const</a></b>-wrap<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppOperatorIncrement.htm">++</a>c; <a href="CppComment.htm">//</a>Won't <a href="CppCompile.htm">compile</a><br/>
 }<br/>
 </code></td></tr></table>
 <!-- end of the code -->

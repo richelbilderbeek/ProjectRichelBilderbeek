@@ -53,14 +53,6 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
   typedef std::vector<std::string> Value;
   typedef std::pair<Key,Value> Pair;
   std::vector<Pair> m;
-  m.push_back(
-    {
-      "FAIL", //Check that this fails, remove after confirmation of this
-      {
-        "<p>"
-      }
-    }
-  );
 
   m.push_back(
     {
@@ -12091,8 +12083,10 @@ void c2h::Info::Test()
 
       //Add header
       {
-        Header header(PageType::cpp,"");
-        const std::vector<std::string> w = header.ToHtml();
+        const boost::scoped_ptr<const Header> header {
+          new Header(PageType::cpp,"")
+        };
+        const std::vector<std::string> w = header->ToHtml();
         std::copy(w.begin(),w.end(),std::back_inserter(v));
       }
       //Text about this page (if known)
@@ -12102,8 +12096,10 @@ void c2h::Info::Test()
       }
       //Add footer
       {
-        Footer footer(PageType::cpp);
-        const std::vector<std::string> w = footer.ToHtml();
+        const boost::scoped_ptr<const Footer> footer{
+          new Footer(PageType::cpp)
+        };
+        const std::vector<std::string> w = footer->ToHtml();
         std::copy(w.begin(),w.end(),std::back_inserter(v));
       }
 

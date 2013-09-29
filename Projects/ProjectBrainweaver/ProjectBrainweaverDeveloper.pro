@@ -4,10 +4,10 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets printsupport
 TEMPLATE = app
 
 #For gprof
-QMAKE_CXXFLAGS_DEBUG += -pg
-QMAKE_LFLAGS_DEBUG += -pg
-QMAKE_CXXFLAGS += -pg
-QMAKE_LFLAGS += -pg
+#QMAKE_CXXFLAGS_DEBUG += -pg
+#QMAKE_LFLAGS_DEBUG += -pg
+#QMAKE_CXXFLAGS += -pg
+#QMAKE_LFLAGS += -pg
 
 INCLUDEPATH += \
   ../../Classes/CppAbout \

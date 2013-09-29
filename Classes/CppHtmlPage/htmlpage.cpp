@@ -28,44 +28,29 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include <boost/algorithm/string.hpp>
 #include <boost/xpressive/xpressive.hpp>
+
+#include <QDir>
 #include <QFile>
 #pragma GCC diagnostic pop
 
 ribi::HtmlPage::HtmlPage(const std::string& filename)
-  : m_filename(filename),
-    m_title{}
+  : m_filename{filename},
+    m_title{FindTitle(filename)}
 {
-  assert(QFile::exists(filename.c_str()));
+  #ifndef NDEBUG
+  Test();
+  #endif
+  assert(IsRegularFile(filename));
 
-  const boost::xpressive::sregex title_regex
-    = boost::xpressive::sregex::compile("<title>.*</title>");
-
-  //Copy all filenames matching the regex in the resulting std::vector
-  const std::vector<std::string> v = FileToVector(filename);
-  std::for_each(v.begin(),v.end(),
-    [this,title_regex](const std::string& s)
-    {
-      if (boost::xpressive::regex_search(s,title_regex))
-      {
-        std::string t = s;
-        //Trim leading whitespace
-        while (!std::isgraph(t[0])) t = t.substr(1,t.size() - 1);
-        //Trim trailing whitespace
-        while (!std::isgraph(t[t.size()-1])) t.resize(t.size() - 1);
-        //Extract title
-        assert(t.substr(0,7)=="<title>");
-        assert(t.substr(t.size()-8,8)=="</title>");
-        m_title = t.substr(7,t.size()-8-7);
-        m_title = ReplaceAll(m_title,"&amp;","&");
-
-      }
-    }
-  );
 }
 
 const std::vector<std::string> ribi::HtmlPage::FileToVector(const std::string& filename)
 {
-  assert(QFile::exists(filename.c_str()));
+  if(!IsRegularFile(filename))
+  {
+    throw std::runtime_error("HtmlPage needs an existing regular file to work on");
+  }
+  assert(IsRegularFile(filename));
   std::vector<std::string> v;
   std::ifstream in(filename.c_str());
   std::string s;
@@ -75,6 +60,33 @@ const std::vector<std::string> ribi::HtmlPage::FileToVector(const std::string& f
     v.push_back(s);
   }
   return v;
+}
+
+const std::string ribi::HtmlPage::FindTitle(const std::string& filename)
+{
+  const boost::xpressive::sregex title_regex
+    = boost::xpressive::sregex::compile("<title>.*</title>");
+
+  //Copy all filenames matching the regex in the resulting std::vector
+  const std::vector<std::string> v = FileToVector(filename);
+  for (const std::string s: v)
+  {
+    if (boost::xpressive::regex_search(s,title_regex))
+    {
+      std::string t = s;
+      //Trim leading whitespace
+      while (!std::isgraph(t[0])) t = t.substr(1,t.size() - 1);
+      //Trim trailing whitespace
+      while (!std::isgraph(t[t.size()-1])) t.resize(t.size() - 1);
+      //Extract title
+      assert(t.substr(0,7)=="<title>");
+      assert(t.substr(t.size()-8,8)=="</title>");
+      const std::string title = t.substr(7,t.size()-8-7);
+      const std::string title_clean = ReplaceAll(title,"&amp;","&");
+      return title_clean;
+    }
+  }
+  return {};
 }
 
 const std::string ribi::HtmlPage::GetVersion() noexcept
@@ -91,6 +103,16 @@ const std::vector<std::string> ribi::HtmlPage::GetVersionHistory() noexcept
   };
 }
 
+bool ribi::HtmlPage::IsFolder(const std::string& filename) noexcept
+{
+  return QDir(filename.c_str()).exists();
+}
+
+bool ribi::HtmlPage::IsRegularFile(const std::string& filename) noexcept
+{
+  return !QDir(filename.c_str()).exists() && QFile::exists(filename.c_str());
+}
+
 const std::string ribi::HtmlPage::ReplaceAll(
   std::string s,
   const std::string& replaceWhat,
@@ -104,6 +126,36 @@ const std::string ribi::HtmlPage::ReplaceAll(
   }
   return s;
 }
+
+#ifndef NDEBUG
+void ribi::HtmlPage::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  //Test finding
+  {
+    const std::string filename { "tmp.txt" };
+    std::ofstream file(filename);
+    file << "Nothing";
+    file.close();
+    assert(FindTitle(filename)=="");
+    std::remove(filename.c_str());
+  }
+  {
+    const std::string filename { "tmp.txt" };
+    std::ofstream file(filename);
+    file << "Nothing\n";
+    file << "<title>Something</title>\n";
+    file << "Nothing\n";
+    file.close();
+    assert(FindTitle(filename)=="Something");
+    std::remove(filename.c_str());
+  }
+}
+#endif
 
 bool ribi::operator<(const HtmlPage& lhs, const HtmlPage& rhs) noexcept
 {

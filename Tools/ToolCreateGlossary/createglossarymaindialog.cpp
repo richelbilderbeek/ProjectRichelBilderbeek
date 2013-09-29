@@ -41,6 +41,9 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 ribi::CreateGlossaryMainDialog::CreateGlossaryMainDialog()
 {
+  #ifndef NDEBUG
+  Test();
+  #endif
   TRACE("Start of CreateGlossaryMainDialog");
 
   CreatePage("Command-line glossary","ClGlossary.htm","Cl.*\\.htm\\>");
@@ -113,15 +116,26 @@ void ribi::CreateGlossaryMainDialog::CreatePage(
   const std::vector<std::string> pagenames
     = GetFilesInFolder("/home/richel/ProjectRichelBilderbeek/Projects/RichelbilderbeekNl",regex);
 
-  std::vector<HtmlPage> pages;
-  std::for_each(pagenames.begin(),pagenames.end(),
-    [&pages](const std::string& s)
+  std::vector<boost::shared_ptr<const HtmlPage> > pages;
+  for (const std::string& s: pagenames)
+  {
+    const std::string full_path
+      = std::string("/home/richel/ProjectRichelBilderbeek/")
+      + std::string("Projects/RichelbilderbeekNl/")
+      + s;
+    assert(HtmlPage::IsRegularFile(full_path));
+    boost::shared_ptr<const HtmlPage> page {
+      new HtmlPage(full_path)
+    };
+    pages.push_back(page);
+  }
+
+  std::sort(pages.begin(),pages.end(),
+    [](const boost::shared_ptr<const HtmlPage> lhs,const boost::shared_ptr<const HtmlPage> rhs)
     {
-      pages.push_back(HtmlPage("/home/richel/ProjectRichelBilderbeek/Projects/RichelbilderbeekNl/" + s));
+     return *lhs < *rhs;
     }
   );
-
-  std::sort(pages.begin(),pages.end());
 
   std::ofstream f(page_url.c_str());
 
@@ -153,31 +167,29 @@ void ribi::CreateGlossaryMainDialog::CreatePage(
     << "<p>&nbsp;</p>\n"
     << "<ul>\n";
 
-  std::for_each(pages.begin(),pages.end(),
-    [&f](const HtmlPage& p)
+  for(const boost::shared_ptr<const HtmlPage> page: pages)
+  {
+    if (page->GetTitle() == "Redirection page"
+      || page->GetTitle().empty()
+      || page->GetFilename().find("_old.htm") != std::string::npos)
     {
-      if (p.GetTitle() == "Redirection page"
-        || p.GetTitle().empty()
-        || p.GetFilename().find("_old.htm") != std::string::npos)
-      {
-        //continue;
-      }
-      else
-      {
-        std::string s
-          = "  <li><a href=\""
-          + GetPath(p.GetFilename())
-          + "\">"
-          + p.GetTitle()
-          + "</a></li>";
-
-        s = HtmlPage::ReplaceAll(s,"&","[AMPERSAND]");
-        s = HtmlPage::ReplaceAll(s,"[AMPERSAND]","&amp;");
-
-        f << s << '\n';
-      }
+      //continue;
     }
-  );
+    else
+    {
+      std::string s
+        = "  <li><a href=\""
+        + RemovePath(page->GetFilename())
+        + "\">"
+        + page->GetTitle()
+        + "</a></li>";
+
+      s = HtmlPage::ReplaceAll(s,"&","[AMPERSAND]");
+      s = HtmlPage::ReplaceAll(s,"[AMPERSAND]","&amp;");
+
+      f << s << '\n';
+    }
+  }
 
   TRACE(pagenames.size());
 
@@ -197,3 +209,41 @@ void ribi::CreateGlossaryMainDialog::CreatePage(
     << "</html>\n";
 }
 
+const std::string ribi::CreateGlossaryMainDialog::RemovePath(const std::string& filename)
+{
+  std::vector<std::size_t> v;
+  const std::size_t a = filename.rfind("\\",filename.size());
+  if (a != std::string::npos) v.push_back(a);
+  const std::size_t b = filename.rfind("/",filename.size());
+  if (b != std::string::npos) v.push_back(b);
+  if (v.empty()) return filename;
+  const std::size_t i = *std::max_element(v.begin(),v.end());
+  assert(i < filename.size());
+  const std::size_t j = i + 1;
+  assert(j < filename.size());
+  const std::string s = filename.substr(j,filename.size() - j);
+  TRACE(s);
+  return s;
+}
+
+#ifndef NDEBUG
+void ribi::CreateGlossaryMainDialog::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  assert(RemovePath("x.txt") == std::string("x.txt"));
+  assert(RemovePath("MyFolder/x.txt") == std::string("x.txt"));
+  assert(RemovePath("Another/MyFolder/x.txt") == std::string("x.txt"));
+  assert(RemovePath("Yet/Another/MyFolder/x.txt") == std::string("x.txt"));
+  assert(RemovePath("MyFolder\\x.txt") == std::string("x.txt"));
+  assert(RemovePath("Another\\MyFolder\\x.txt") == std::string("x.txt"));
+  assert(RemovePath("Yet\\Another\\MyFolder\\x.txt") == std::string("x.txt"));
+  assert(RemovePath("Another/MyFolder\\x.txt") == std::string("x.txt"));
+  assert(RemovePath("Another\\MyFolder/x.txt") == std::string("x.txt"));
+  assert(RemovePath("Yet\\Another/MyFolder\\x.txt") == std::string("x.txt"));
+  assert(RemovePath("Yet\\Another\\MyFolder/x.txt") == std::string("x.txt"));
+}
+#endif

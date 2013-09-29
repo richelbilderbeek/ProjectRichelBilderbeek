@@ -69,6 +69,7 @@ int main(int argc, char* argv[])
   #ifndef NDEBUG
   assert(argc > 0);
   assert(c2h::IsRegularFile(argv[0]));
+  assert(c2h::IsFolder(c2h::GetPath(argv[0])));
   #ifndef _WIN32
   assert(c2h::IsTidyInstalled());
   #endif
@@ -146,6 +147,7 @@ int main(int argc, char* argv[])
       return 0;
     }
   }
+  std::cout << "Page type: '" << page_type_str << "' (OK)\n";
 
   //Check content_type parameter
   {
@@ -166,6 +168,7 @@ int main(int argc, char* argv[])
       return 0;
     }
   }
+  std::cout << "Content type: '" << content_type_str << "' (OK)\n";
 
   //Check tech_info parameter
   {
@@ -186,15 +189,17 @@ int main(int argc, char* argv[])
       return 0;
     }
   }
+  std::cout << "Tech info: '" << tech_info_str << "' (OK)\n";
+  std::cout << "Source: " << source << "\n";
 
-  if (!QFile::exists(source.c_str()))
+  if (!c2h::IsFolder(source) && !c2h::IsRegularFile(source))
   {
-    std::cout << "Source: " << source << "\n";
     std::cout << "Source exists: no\n";
     std::cout << "Specify an existing file or folder\n";
     return 0;
   }
-  //std::cout << "Source exists: yes\n";
+  std::cout << "Source exists: yes\n";
+
   if (c2h::IsFolder(source))
   {
     std::cout << "Source is directory: yes\n";
@@ -212,39 +217,46 @@ int main(int argc, char* argv[])
   const c2h::ContentType content_type = c2h::StrToContentType(content_type_str);
   const c2h::TechInfoType tech_info = c2h::StrToTechInfoType(tech_info_str);
 
-  //Check for recuriveness
-  if (GetFoldersInFolder(source).empty())
+  try
   {
-    std::cout << "Non-recursive conversion\n";
-
-    assert( (c2h::IsFolder(source) || c2h::IsRegularFile(source))
-      && "Source can be a file or a path");
-
-    const boost::scoped_ptr<const c2h::Dialog> c { new const c2h::Dialog(page_type,source,content_type,tech_info) };
-    const std::vector<std::string> v = c->ToHtml();
-    const std::string output_filename = c2h::GetFileBasename(source) + ".htm";
-    std::ofstream f(output_filename.c_str());
-    std::copy(v.begin(),v.end(),std::ostream_iterator<std::string>(f,"\n"));
-  }
-  else
-  {
-    std::cout << "Recursive conversion\n";
-
-    assert( (c2h::IsFolder(source) || c2h::IsRegularFile(source))
-      && "Source can be a file or a path");
-
-    const std::vector<std::string> folders = GetFoldersInFolder(source);
-    for(const std::string& folder: folders)
+    //Check for recursiveness
+    if (GetFoldersInFolder(source).empty())
     {
-      const std::string folder_full_path = source + "/" + folder;
-      TRACE(folder);
-      TRACE(folder_full_path);
-      const boost::scoped_ptr<const c2h::Dialog> c { new c2h::Dialog(page_type,folder_full_path,content_type,tech_info) };
+      std::cout << "Non-recursive conversion\n";
+
+      assert( (c2h::IsFolder(source) || c2h::IsRegularFile(source))
+        && "Source can be a file or a path");
+
+      const boost::scoped_ptr<const c2h::Dialog> c { new const c2h::Dialog(page_type,source,content_type,tech_info) };
       const std::vector<std::string> v = c->ToHtml();
-      const std::string output_filename = c2h::GetFileBasename(folder_full_path) + ".htm";
+      const std::string output_filename = c2h::GetFileBasename(source) + ".htm";
       std::ofstream f(output_filename.c_str());
       std::copy(v.begin(),v.end(),std::ostream_iterator<std::string>(f,"\n"));
     }
+    else
+    {
+      std::cout << "Recursive conversion\n";
+
+      assert( (c2h::IsFolder(source) || c2h::IsRegularFile(source))
+        && "Source can be a file or a path");
+
+      const std::vector<std::string> folders = GetFoldersInFolder(source);
+      for(const std::string& folder: folders)
+      {
+        const std::string folder_full_path = source + "/" + folder;
+        TRACE(folder);
+        TRACE(folder_full_path);
+        const boost::scoped_ptr<const c2h::Dialog> c { new c2h::Dialog(page_type,folder_full_path,content_type,tech_info) };
+        const std::vector<std::string> v = c->ToHtml();
+        const std::string output_filename = c2h::GetFileBasename(folder_full_path) + ".htm";
+        std::ofstream f(output_filename.c_str());
+        std::copy(v.begin(),v.end(),std::ostream_iterator<std::string>(f,"\n"));
+      }
+    }
+    std::cout << "CodeToHtml succeeded" << std::endl;
   }
-  std::cout << "CodeToHtml succeeded" << std::endl;
+  catch (std::exception& e)
+  {
+    std::cout << e.what() << '\n';
+  }
 }

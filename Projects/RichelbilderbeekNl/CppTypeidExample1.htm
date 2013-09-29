@@ -20,7 +20,7 @@
 <!-- Page header -->
 <h1>(<a href="Cpp.htm">C++</a>) <a href="CppTypeidExample1.htm">TypeidExample1</a></h1>
 <p>&nbsp;</p>
-<!-- No CodeToHtmlInfo about this class with page name CppTypeidExample1-->
+<!-- No CodeToHtmlInfo about this class with page name ./CppTypeidExample1-->
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
@@ -65,8 +65,12 @@
 <a href="CppQmakeConfig.htm">CONFIG</a> += console<br/>
 <a href="CppQmakeConfig.htm">CONFIG</a> -= app_bundle<br/>
 <a href="CppQmakeConfig.htm">CONFIG</a> -= qt<br/>
-<a href="CppQmakeQmake_cxxflags.htm">QMAKE_CXXFLAGS</a> += -std=<a href="Cpp11.htm">c++11</a> <a href="CppWall.htm">-Wall</a> <a href="CppWextra.htm">-Wextra</a> <a href="CppWeffcpp.htm">-Weffc++</a> <a href="CppWerror.htm">-Werror</a><br/>
 <a href="CppQmakeSources.htm">SOURCES</a> += <a href="CppMain.htm">main</a>.cpp<br/>
+<br/>
+<a href="CppQmakeQmake_cxxflags.htm">QMAKE_CXXFLAGS</a> += -std=<a href="Cpp11.htm">c++11</a> <a href="CppWall.htm">-Wall</a> <a href="CppWextra.htm">-Wextra</a> <a href="CppWeffcpp.htm">-Weffc++</a><br/>
+unix {<br/>
+&nbsp;&nbsp;<a href="CppQmakeQmake_cxxflags.htm">QMAKE_CXXFLAGS</a> += <a href="CppWerror.htm">-Werror</a><br/>
+}<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -78,15 +82,15 @@
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="main.cpp" border = "1"><tr><td><code>
-<a href="CppInclude.html">#include</a> &lt;<a href="CppCassertH.html">cassert</a>&gt;<br/>
-<a href="CppInclude.html">#include</a> &lt;<a href="CppStringH.html">string</a>&gt;<br/>
-<a href="CppInclude.html">#include</a> &lt;<a href="CppTypeinfoH.html">typeinfo</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppStringH.htm">string</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppTypeinfoH.htm">typeinfo</a>&gt;<br/>
 <br/>
-<b><a href="CppInt.htm">int</a></b> <a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a>()<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(<a href="CppString.html">std::string</a>(<b><a href="CppTypeid.html">typeid</a></b>(<b><a href="CppInt.htm">int</a></b>).name())<a href="CppOperatorEqual.htm">==</a>"i");<br/>
-&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(<a href="CppString.html">std::string</a>(<b><a href="CppTypeid.html">typeid</a></b>(<b><a href="CppDouble.html">double</a></b>).name())<a href="CppOperatorEqual.htm">==</a>"d");<br/>
-&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(<a href="CppString.html">std::string</a>(<b><a href="CppTypeid.html">typeid</a></b>(<a href="CppString.html">std::string</a>).name())<a href="CppOperatorEqual.htm">==</a>"Ss");<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppString.htm">std::string</a>(<b><a href="CppTypeid.htm">typeid</a></b>(<b><a href="CppInt.htm">int</a></b>).name())<a href="CppOperatorEqual.htm">==</a>"i");<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppString.htm">std::string</a>(<b><a href="CppTypeid.htm">typeid</a></b>(<b><a href="CppDouble.htm">double</a></b>).name())<a href="CppOperatorEqual.htm">==</a>"d");<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppString.htm">std::string</a>(<b><a href="CppTypeid.htm">typeid</a></b>(<a href="CppString.htm">std::string</a>).name())<a href="CppOperatorEqual.htm">==</a>"Ss");<br/>
 }<br/>
 </code></td></tr></table>
 <!-- end of the code -->

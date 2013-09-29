@@ -25,6 +25,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <cstdlib>
 #include <fstream>
 #include <iterator>
+#include <stdexcept>
 #include <string>
 #include <vector>
 
@@ -61,6 +62,15 @@ c2h::Dialog::Dialog(
   assert(m_info);
 
   //Check source
+  if(!( (IsFolder(source) || IsRegularFile(source))))
+  {
+    TRACE("ERROR");
+    TRACE(source);
+    const std::string error = "Source '" + source
+      + "' is neither a folder nor a file";
+    throw std::runtime_error(error.c_str());
+  }
+
   assert( (IsFolder(source) || IsRegularFile(source))
     && "Source can be a file or a path");
 }
@@ -102,7 +112,7 @@ void c2h::Dialog::Test()
   if (IsTidyInstalled())
   {
     const std::string path = "../ToolCodeToHtml";
-    if (!IsRegularFile(path))
+    if (IsFolder(path))
     {
       Dialog d(PageType::cpp,path,ContentType::cpp,TechInfoType::automatic);
       const std::vector<std::string> v = d.ToHtml();

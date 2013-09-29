@@ -20,7 +20,7 @@
 <!-- Page header -->
 <h1>(<a href="Cpp.htm">C++</a>) <a href="CppCalculateSqrt.htm">CalculateSqrt</a></h1>
 <p>&nbsp;</p>
-<!-- No CodeToHtmlInfo about this class with page name CppCalculateSqrt-->
+<!-- No CodeToHtmlInfo about this class with page name ./CppCalculateSqrt-->
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
@@ -130,60 +130,60 @@ win32 {<br/>
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="main.cpp" border = "1"><tr><td><code>
-<a href="CppInclude.html">#include</a> &lt;<a href="CppCmathH.html">cmath</a>&gt;<br/>
-<a href="CppInclude.html">#include</a> &lt;<a href="CppIomanipH.html">iomanip</a>&gt;<br/>
-<a href="CppInclude.html">#include</a> &lt;<a href="CppIostreamH.html">iostream</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppCmathH.htm">cmath</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppIomanipH.htm">iomanip</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppIostreamH.htm">iostream</a>&gt;<br/>
 <br/>
-<a href="CppPragma.html">#pragma</a> GCC diagnostic push<br/>
-<a href="CppPragma.html">#pragma</a> GCC diagnostic ignored "-Wunused-local-<b><a href="CppTypedef.html">typedef</a></b>s"<br/>
-<a href="CppInclude.html">#include</a> &lt;<a href="CppUnits.html">boost/units</a>/unit<a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
-<a href="CppInclude.html">#include</a> &lt;<a href="CppUnits.html">boost/units</a>/systems/si<a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
-<a href="CppInclude.html">#include</a> &lt;<a href="CppUnits.html">boost/units</a>/io<a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
-<a href="CppPragma.html">#pragma</a> GCC diagnostic pop<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-<b><a href="CppTypedef.htm">typedef</a></b>s"<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppUnits.htm">boost/units</a>/unit.hpp&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppUnits.htm">boost/units</a>/systems/si.hpp&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppUnits.htm">boost/units</a>/io.hpp&gt;<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
 <br/>
 <br/>
-<b><a href="CppTemplate.html">template</a></b> &lt;<b><a href="CppClass.html">class</a></b> T&gt; T CalculateSqrt(<b><a href="CppConst.html">const</a></b> T&amp; x);<br/>
+<b><a href="CppTemplate.htm">template</a></b> &lt;<b><a href="CppClass.htm">class</a></b> T&gt; T CalculateSqrt(<b><a href="CppConst.htm">const</a></b> T&amp; x);<br/>
 <br/>
-<a href="CppComment.htm">///</a>Simple approximation <a href="CppAlgorithm.html">algorithm</a> to calculate the square root,<br/>
-<a href="CppComment.htm">///</a>instead of <b><a href="CppUsing.html">using</a></b> <a href="CppSqrt.html">std::sqrt</a><br/>
-<b><a href="CppTemplate.html">template</a></b> &lt;&gt;<br/>
-<b><a href="CppDouble.html">double</a></b> CalculateSqrt(<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b>&amp; x)<br/>
+<a href="CppComment.htm">///</a>Simple approximation <a href="CppAlgorithm.htm">algorithm</a> to calculate the square root,<br/>
+<a href="CppComment.htm">///</a>instead of <b><a href="CppUsing.htm">using</a></b> <a href="CppSqrt.htm">std::sqrt</a><br/>
+<b><a href="CppTemplate.htm">template</a></b> &lt;&gt;<br/>
+<b><a href="CppDouble.htm">double</a></b> CalculateSqrt(<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b>&amp; x)<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(x <a href="CppOperatorGreaterEqual.html">&gt;=</a> 0.0);<br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (x <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 0.0) <b><a href="CppReturn.html">return</a></b> 0.0;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> precision <a href="CppOperatorAssign.htm">=</a> 6;<br/>
-&nbsp;&nbsp;<b><a href="CppDouble.html">double</a></b> y <a href="CppOperatorAssign.htm">=</a> 0.5*x;<br/>
-&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> i=0; i<a href="CppOperatorNotEqual.htm">!=</a>precision; <a href="CppOperatorPlus.htm">+</a>+i)<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(x <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 0.0);<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (x <a href="CppOperatorEqual.htm">==</a> 0.0) <b><a href="CppReturn.htm">return</a></b> 0.0;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> precision <a href="CppOperatorAssign.htm">=</a> 6;<br/>
+&nbsp;&nbsp;<b><a href="CppDouble.htm">double</a></b> y <a href="CppOperatorAssign.htm">=</a> 0.5*x;<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> i=0; i<a href="CppOperatorNotEqual.htm">!=</a>precision; <a href="CppOperatorIncrement.htm">++</a>i)<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;y<a href="CppOperatorPlusAssign.htm">+=</a>(x/y);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;y<a href="CppOperatorMultiplyAssign.htm">*=</a>0.5;<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> y;<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> y;<br/>
 }<br/>
 <br/>
-<b><a href="CppTemplate.html">template</a></b> &lt;&gt;<br/>
-<a href="CppUnits.html">boost::units</a>::quantity&lt;<a href="CppUnits.html">boost::units</a>::si::length&gt; CalculateSqrt(<br/>
-&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppUnits.html">boost::units</a>::quantity&lt;<a href="CppUnits.html">boost::units</a>::si::length&gt;&amp; x)<br/>
+<b><a href="CppTemplate.htm">template</a></b> &lt;&gt;<br/>
+<a href="CppUnits.htm">boost::units</a>::quantity&lt;<a href="CppUnits.htm">boost::units</a>::si::length&gt; CalculateSqrt(<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppUnits.htm">boost::units</a>::quantity&lt;<a href="CppUnits.htm">boost::units</a>::si::length&gt;&amp; x)<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> CalculateSqrt(x.value()) * <a href="CppUnits.html">boost::units</a>::si::meter;<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> CalculateSqrt(x.value()) * <a href="CppUnits.htm">boost::units</a>::si::meter;<br/>
 }<br/>
 <br/>
 <br/>
 <br/>
-<b><a href="CppInt.htm">int</a></b> <a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a>()<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppCout.html">std::cout</a> <a href="CppOperatorStreamOut.html">&lt;&lt;</a> <a href="CppSetprecision.html">std::setprecision</a>(35) <a href="CppOperatorStreamOut.html">&lt;&lt;</a> <a href="CppFixed.html">std::fixed</a>;<br/>
-&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> i=0; i<a href="CppOperatorNotEqual.htm">!=</a>10; <a href="CppOperatorPlus.htm">+</a>+i)<br/>
+&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppSetprecision.htm">std::setprecision</a>(35) <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppFixed.htm">std::fixed</a>;<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> i=0; i<a href="CppOperatorNotEqual.htm">!=</a>10; <a href="CppOperatorIncrement.htm">++</a>i)<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> x <a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.html">static_cast</a></b>&lt;<b><a href="CppDouble.html">double</a></b>&gt;(i);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCout.html">std::cout</a> <a href="CppOperatorStreamOut.html">&lt;&lt;</a> <a href="CppSqrt.html">std::sqrt</a>(x) <a href="CppOperatorStreamOut.html">&lt;&lt;</a> '\t' <a href="CppOperatorStreamOut.html">&lt;&lt;</a> CalculateSqrt(x) <a href="CppOperatorStreamOut.html">&lt;&lt;</a> '\n';<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> x <a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(i);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppSqrt.htm">std::sqrt</a>(x) <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\t' <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> CalculateSqrt(x) <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n';<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<a href="CppCout.html">std::cout</a> <a href="CppOperatorStreamOut.html">&lt;&lt;</a> '\n';<br/>
-&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> i=0; i<a href="CppOperatorNotEqual.htm">!=</a>10; <a href="CppOperatorPlus.htm">+</a>+i)<br/>
+&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n';<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> i=0; i<a href="CppOperatorNotEqual.htm">!=</a>10; <a href="CppOperatorIncrement.htm">++</a>i)<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppUnits.html">boost::units</a>::quantity&lt;<a href="CppUnits.html">boost::units</a>::si::length&gt; x<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.html">static_cast</a></b>&lt;<b><a href="CppDouble.html">double</a></b>&gt;(i) * <a href="CppUnits.html">boost::units</a>::si::meter;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCout.html">std::cout</a> <a href="CppOperatorStreamOut.html">&lt;&lt;</a> <a href="CppSqrt.html">std::sqrt</a>(x.value()) <a href="CppOperatorStreamOut.html">&lt;&lt;</a> '\t' <a href="CppOperatorStreamOut.html">&lt;&lt;</a> CalculateSqrt(x) <a href="CppOperatorStreamOut.html">&lt;&lt;</a> '\n';<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppUnits.htm">boost::units</a>::quantity&lt;<a href="CppUnits.htm">boost::units</a>::si::length&gt; x<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(i) * <a href="CppUnits.htm">boost::units</a>::si::meter;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppSqrt.htm">std::sqrt</a>(x.value()) <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\t' <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> CalculateSqrt(x) <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n';<br/>
 &nbsp;&nbsp;}<br/>
 }<br/>
 <br/>

@@ -20,7 +20,7 @@
 <!-- Page header -->
 <h1>(<a href="Cpp.htm">C++</a>) <a href="CppHelloTokamakWindows.htm">HelloTokamakWindows</a></h1>
 <p>&nbsp;</p>
-<!-- No CodeToHtmlInfo about this class with page name CppHelloTokamakWindows-->
+<!-- No CodeToHtmlInfo about this class with page name ./CppHelloTokamakWindows-->
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
@@ -37,26 +37,26 @@
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="SPMath.h" border = "1"><tr><td><code>
-<a href="CppIfndef.html">#ifndef</a> SP_MATH_INCLUDED_<br/>
+<a href="CppIfndef.htm">#ifndef</a> SP_MATH_INCLUDED_<br/>
 <br/>
-<a href="CppDefine.html">#define</a> SP_MATH_INCLUDED_<br/>
+<a href="CppDefine.htm">#define</a> SP_MATH_INCLUDED_<br/>
 <br/>
-<a href="CppInclude.html">#include</a> "SPStructs.H"<br/>
+<a href="CppInclude.htm">#include</a> "SPStructs.H"<br/>
 <br/>
 <br/>
-SF3dVector Cross<a href="CppProduct.html">Product</a> (SF3dVector * u, SF3dVector * v);<br/>
+SF3dVector Cross<a href="CppProduct.htm">Product</a> (SF3dVector * u, SF3dVector * v);<br/>
 SF3dVector TurnVector ( SF3dVector v, SF3dVector angles);<br/>
 SF3dVector GetTurnedVector(SF3dVector v, SF3dVector ex, SF3dVector ey, SF3dVector ez);<br/>
 SF3dVector Normalize3dVector( SF3dVector v);<br/>
 <br/>
 <br/>
-<b><a href="CppBool.htm">bool</a></b> <a href="CppPoint.html">Point</a>InTriangle( SF2dVector <a href="CppPoint.html">Point</a>, SF2dVector Triangle[3]);<br/>
+<b><a href="CppBool.htm">bool</a></b> <a href="CppPoint.htm">Point</a>InTriangle( SF2dVector <a href="CppPoint.htm">Point</a>, SF2dVector Triangle[3]);<br/>
 <b><a href="CppBool.htm">bool</a></b> Intersect2dLines ( SF2dVector p1, SF2dVector d1,<br/>
 						SF2dVector p2, SF2dVector d2,	 	<br/>
-						SF2dVector* intersection<a href="CppPoint.html">Point</a>);<br/>
+						SF2dVector* intersection<a href="CppPoint.htm">Point</a>);<br/>
 <br/>
 <br/>
-<a href="CppEndif.html">#endif</a><br/>
+<a href="CppEndif.htm">#endif</a><br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -68,12 +68,12 @@ SF3dVector Normalize3dVector( SF3dVector v);<br/>
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="SPMath.cpp" border = "1"><tr><td><code>
-<a href="CppInclude.html">#include</a> "SPMath<a href="CppHeaderFile.htm">.h</a>"<br/>
-<a href="CppInclude.html">#include</a> &lt;math<a href="CppHeaderFile.htm">.h</a>&gt;<br/>
-<a href="CppInclude.html">#include</a> "SPStructs<a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.htm">#include</a> "SPMath.h"<br/>
+<a href="CppInclude.htm">#include</a> &lt;math.h&gt;<br/>
+<a href="CppInclude.htm">#include</a> "SPStructs.h"<br/>
 <br/>
 <br/>
-<a href="CppDefine.html">#define</a> sqr(x) (x*x)<br/>
+<a href="CppDefine.htm">#define</a> sqr(x) (x*x)<br/>
 <br/>
 SF3dVector <a href="CppAdd.htm">Add</a>F3dVectors (SF3dVector* u, SF3dVector* v)<br/>
 {<br/>
@@ -81,40 +81,40 @@ SF3dVector <a href="CppAdd.htm">Add</a>F3dVectors (SF3dVector* u, SF3dVector* v)
 	result.x <a href="CppOperatorAssign.htm">=</a> u-&gt;x <a href="CppOperatorPlus.htm">+</a> v-&gt;x;<br/>
 	result.y <a href="CppOperatorAssign.htm">=</a> u-&gt;y <a href="CppOperatorPlus.htm">+</a> v-&gt;y;<br/>
 	result.z <a href="CppOperatorAssign.htm">=</a> u-&gt;z <a href="CppOperatorPlus.htm">+</a> v-&gt;z;<br/>
-	<b><a href="CppReturn.html">return</a></b> result;<br/>
+	<b><a href="CppReturn.htm">return</a></b> result;<br/>
 }<br/>
 <b><a href="CppVoid.htm">void</a></b> <a href="CppAdd.htm">Add</a>F3dVectorToVector ( SF3dVector * Dst, SF3dVector * V2)<br/>
 {<br/>
-	Dst-&gt;x <a href="CppOperatorPlus.htm">+</a><a href="CppOperatorAssign.htm">=</a> V2-&gt;x;<br/>
-	Dst-&gt;y <a href="CppOperatorPlus.htm">+</a><a href="CppOperatorAssign.htm">=</a> V2-&gt;y;<br/>
-	Dst-&gt;z <a href="CppOperatorPlus.htm">+</a><a href="CppOperatorAssign.htm">=</a> V2-&gt;z;<br/>
+	Dst-&gt;x <a href="CppOperatorPlusAssign.htm">+=</a> V2-&gt;x;<br/>
+	Dst-&gt;y <a href="CppOperatorPlusAssign.htm">+=</a> V2-&gt;y;<br/>
+	Dst-&gt;z <a href="CppOperatorPlusAssign.htm">+=</a> V2-&gt;z;<br/>
 }<br/>
 <br/>
-GL<b><a href="CppFloat.html">float</a></b> GetF3dVectorLength( SF3dVector * v)<br/>
+GL<b><a href="CppFloat.htm">float</a></b> GetF3dVectorLength( SF3dVector * v)<br/>
 {<br/>
-	<b><a href="CppReturn.html">return</a></b> (GL<b><a href="CppFloat.html">float</a></b>)(sqrt(sqr(v-&gt;x)+sqr(v-&gt;y)+sqr(v-&gt;z)));<br/>
+	<b><a href="CppReturn.htm">return</a></b> (GL<b><a href="CppFloat.htm">float</a></b>)(sqrt(sqr(v-&gt;x)+sqr(v-&gt;y)+sqr(v-&gt;z)));<br/>
 }<br/>
 <br/>
 <br/>
 SF3dVector Normalize3dVector( SF3dVector v)<br/>
 {<br/>
 	SF3dVector res;<br/>
-	<b><a href="CppFloat.html">float</a></b> l <a href="CppOperatorAssign.htm">=</a> GetF3dVectorLength(&amp;v);<br/>
-	<b><a href="CppIf.htm">if</a></b> (l <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 0.0f) <b><a href="CppReturn.html">return</a></b> <a href="CppNULL.htm">NULL</a>_VECTOR;<br/>
+	<b><a href="CppFloat.htm">float</a></b> l <a href="CppOperatorAssign.htm">=</a> GetF3dVectorLength(&amp;v);<br/>
+	<b><a href="CppIf.htm">if</a></b> (l <a href="CppOperatorEqual.htm">==</a> 0.0f) <b><a href="CppReturn.htm">return</a></b> <a href="CppNULL.htm">NULL</a>_VECTOR;<br/>
 	res.x <a href="CppOperatorAssign.htm">=</a> v.x <a href="CppOperatorDivide.htm">/</a> l;<br/>
 	res.y <a href="CppOperatorAssign.htm">=</a> v.y <a href="CppOperatorDivide.htm">/</a> l;<br/>
 	res.z <a href="CppOperatorAssign.htm">=</a> v.z <a href="CppOperatorDivide.htm">/</a> l;<br/>
-	<b><a href="CppReturn.html">return</a></b> res;<br/>
+	<b><a href="CppReturn.htm">return</a></b> res;<br/>
 }<br/>
 <br/>
-SF3dVector Cross<a href="CppProduct.html">Product</a> (SF3dVector * u, SF3dVector * v)<br/>
+SF3dVector Cross<a href="CppProduct.htm">Product</a> (SF3dVector * u, SF3dVector * v)<br/>
 {<br/>
 	SF3dVector resVector;<br/>
 	resVector.x <a href="CppOperatorAssign.htm">=</a> u-&gt;y*v-&gt;z <a href="CppOperatorMinus.htm">-</a> u-&gt;z*v-&gt;y;<br/>
 	resVector.y <a href="CppOperatorAssign.htm">=</a> u-&gt;z*v-&gt;x <a href="CppOperatorMinus.htm">-</a> u-&gt;x*v-&gt;z;<br/>
 	resVector.z <a href="CppOperatorAssign.htm">=</a> u-&gt;x*v-&gt;y <a href="CppOperatorMinus.htm">-</a> u-&gt;y*v-&gt;x;<br/>
 <br/>
-	<b><a href="CppReturn.html">return</a></b> resVector;<br/>
+	<b><a href="CppReturn.htm">return</a></b> resVector;<br/>
 }<br/>
 <br/>
 <br/>
@@ -125,7 +125,7 @@ SF3dVector GetTurnedVector(SF3dVector v, SF3dVector ex, SF3dVector ey, SF3dVecto
 	res.y <a href="CppOperatorAssign.htm">=</a> v.x*ex.y <a href="CppOperatorPlus.htm">+</a> v.y*ey.y <a href="CppOperatorPlus.htm">+</a> v.z*ez.y;<br/>
 	res.z <a href="CppOperatorAssign.htm">=</a> v.x*ex.z <a href="CppOperatorPlus.htm">+</a> v.y*ey.z <a href="CppOperatorPlus.htm">+</a> v.z*ez.z;<br/>
 <br/>
-	<b><a href="CppReturn.html">return</a></b> res;<br/>
+	<b><a href="CppReturn.htm">return</a></b> res;<br/>
 <br/>
 }<br/>
 <br/>
@@ -143,7 +143,7 @@ Ich weiß natürlich nicht, wieweit Du "vorbelastet" bist, aber ich fang jetzt<br/
 einfach mal an.<br/>
 <br/>
 Wenn man die 3 Einheitsvektoren ex, ey und ez, die eine Basis des |R^3 sind, und<br/>
-den Anschauungsraum aufspannen, als Spalten einer <a href="CppMatrix.html">Matrix</a> betrachtet, dann sieht<br/>
+den Anschauungsraum aufspannen, als Spalten einer <a href="CppMatrix.htm">Matrix</a> betrachtet, dann sieht<br/>
 das so aus:<br/>
 <br/>
 1 0 0<br/>
@@ -173,9 +173,9 @@ Wenn man das ausrechnet, kommt das hier raus:<br/>
 &nbsp;&nbsp;&nbsp;&nbsp; cos(wX) sin(wY) sin(wZ) <a href="CppOperatorPlus.htm">+</a> sin(wX) cos(wZ) ,<br/>
 	 cos(wX) cos(wY)]<br/>
 <br/>
-In den eckigen Klammern stehn jeweils die Zeilen der <a href="CppMatrix.html">Matrix</a>.<br/>
+In den eckigen Klammern stehn jeweils die Zeilen der <a href="CppMatrix.htm">Matrix</a>.<br/>
 <br/>
-Die von Dir gesuchten Vektoren sind die Spalten der <a href="CppMatrix.html">Matrix</a>, d<a href="CppHeaderFile.htm">.h</a> ex wurde auf<br/>
+Die von Dir gesuchten Vektoren sind die Spalten der <a href="CppMatrix.htm">Matrix</a>, d.h ex wurde auf<br/>
 <br/>
 &nbsp;&nbsp;&nbsp;&nbsp; ( cos(wY) cos(wZ)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)<br/>
 X <a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;( sin(wX) sin(wY) cos(wZ) <a href="CppOperatorPlus.htm">+</a> cos(wX) sin(wZ)&nbsp;&nbsp;)<br/>
@@ -202,49 +202,49 @@ Viele Grüsse,<br/>
 <br/>
 	<a href="CppComment.htm">//</a>turn ex...<br/>
 	<a href="CppComment.htm">//</a>around z-axis:<br/>
-	ex.x <a href="CppOperatorAssign.htm">=</a> (<b><a href="CppFloat.html">float</a></b>)cos(angles.z*PIdiv180);<br/>
-	ex.y <a href="CppOperatorAssign.htm">=</a> (<b><a href="CppFloat.html">float</a></b>)sin(angles.z*PIdiv180);<br/>
+	ex.x <a href="CppOperatorAssign.htm">=</a> (<b><a href="CppFloat.htm">float</a></b>)cos(angles.z*PIdiv180);<br/>
+	ex.y <a href="CppOperatorAssign.htm">=</a> (<b><a href="CppFloat.htm">float</a></b>)sin(angles.z*PIdiv180);<br/>
 	<a href="CppComment.htm">//</a>around y-axis:<br/>
-	ex.x <a href="CppOperatorMultiplyAssign.htm">*=</a> (<b><a href="CppFloat.html">float</a></b>)cos(angles.y*PIdiv180);<br/>
-	ex.z <a href="CppOperatorAssign.htm">=</a> (<b><a href="CppFloat.html">float</a></b>)sin(angles.y*PIdiv180);<br/>
+	ex.x <a href="CppOperatorMultiplyAssign.htm">*=</a> (<b><a href="CppFloat.htm">float</a></b>)cos(angles.y*PIdiv180);<br/>
+	ex.z <a href="CppOperatorAssign.htm">=</a> (<b><a href="CppFloat.htm">float</a></b>)sin(angles.y*PIdiv180);<br/>
 <br/>
 <br/>
 	<a href="CppComment.htm">//</a>turn ey...<br/>
 	<a href="CppComment.htm">//</a>around x-axis:<br/>
-	ey.y <a href="CppOperatorAssign.htm">=</a> (<b><a href="CppFloat.html">float</a></b>)cos(angles.x*PIdiv180);<br/>
-	ey.z <a href="CppOperatorAssign.htm">=</a> (<b><a href="CppFloat.html">float</a></b>)sin(angles.x*PIdiv180);<br/>
+	ey.y <a href="CppOperatorAssign.htm">=</a> (<b><a href="CppFloat.htm">float</a></b>)cos(angles.x*PIdiv180);<br/>
+	ey.z <a href="CppOperatorAssign.htm">=</a> (<b><a href="CppFloat.htm">float</a></b>)sin(angles.x*PIdiv180);<br/>
 	<a href="CppComment.htm">//</a>around z-axis:<br/>
-	ey.y <a href="CppOperatorMultiplyAssign.htm">*=</a> (<b><a href="CppFloat.html">float</a></b>)cos(angles.z*PIdiv180);<br/>
-	ey.x <a href="CppOperatorAssign.htm">=</a> (<b><a href="CppFloat.html">float</a></b>)sin(angles.z*PIdiv180);<br/>
+	ey.y <a href="CppOperatorMultiplyAssign.htm">*=</a> (<b><a href="CppFloat.htm">float</a></b>)cos(angles.z*PIdiv180);<br/>
+	ey.x <a href="CppOperatorAssign.htm">=</a> (<b><a href="CppFloat.htm">float</a></b>)sin(angles.z*PIdiv180);<br/>
 <br/>
 	<a href="CppComment.htm">//</a>turn ez...<br/>
 	<a href="CppComment.htm">//</a>around x-axis:<br/>
-	ez.z <a href="CppOperatorAssign.htm">=</a> (<b><a href="CppFloat.html">float</a></b>)cos(angles.x*PIdiv180);<br/>
-	ez.y <a href="CppOperatorAssign.htm">=</a> (<b><a href="CppFloat.html">float</a></b>)sin(angles.x*PIdiv180);<br/>
+	ez.z <a href="CppOperatorAssign.htm">=</a> (<b><a href="CppFloat.htm">float</a></b>)cos(angles.x*PIdiv180);<br/>
+	ez.y <a href="CppOperatorAssign.htm">=</a> (<b><a href="CppFloat.htm">float</a></b>)sin(angles.x*PIdiv180);<br/>
 	<a href="CppComment.htm">//</a>around y-axis:<br/>
-	ez.x <a href="CppOperatorAssign.htm">=</a> (<b><a href="CppFloat.html">float</a></b>)sin(angles.y*PIdiv180);<br/>
-	ez.z <a href="CppOperatorMultiplyAssign.htm">*=</a> (<b><a href="CppFloat.html">float</a></b>)cos(angles.y*PIdiv180);<br/>
+	ez.x <a href="CppOperatorAssign.htm">=</a> (<b><a href="CppFloat.htm">float</a></b>)sin(angles.y*PIdiv180);<br/>
+	ez.z <a href="CppOperatorMultiplyAssign.htm">*=</a> (<b><a href="CppFloat.htm">float</a></b>)cos(angles.y*PIdiv180);<br/>
 <br/>
 <br/>
 	<a href="CppComment.htm">//</a>NOT YET COMPLETELY CODED!!<br/>
 	SF3dVector res;<br/>
-	<b><a href="CppFloat.html">float</a></b> cosy <a href="CppOperatorAssign.htm">=</a> (<b><a href="CppFloat.html">float</a></b>)cos(angles.y*PIdiv180); <br/>
-	<b><a href="CppFloat.html">float</a></b> siny <a href="CppOperatorAssign.htm">=</a> (<b><a href="CppFloat.html">float</a></b>)sin(angles.y*PIdiv180);<br/>
-	res.x <a href="CppOperatorAssign.htm">=</a> (<b><a href="CppFloat.html">float</a></b>)(v.x*cosy <a href="CppOperatorPlus.htm">+</a> v.z*siny);<br/>
+	<b><a href="CppFloat.htm">float</a></b> cosy <a href="CppOperatorAssign.htm">=</a> (<b><a href="CppFloat.htm">float</a></b>)cos(angles.y*PIdiv180); <br/>
+	<b><a href="CppFloat.htm">float</a></b> siny <a href="CppOperatorAssign.htm">=</a> (<b><a href="CppFloat.htm">float</a></b>)sin(angles.y*PIdiv180);<br/>
+	res.x <a href="CppOperatorAssign.htm">=</a> (<b><a href="CppFloat.htm">float</a></b>)(v.x*cosy <a href="CppOperatorPlus.htm">+</a> v.z*siny);<br/>
 	res.y <a href="CppOperatorAssign.htm">=</a> v.y;<br/>
-	res.z <a href="CppOperatorAssign.htm">=</a> (<b><a href="CppFloat.html">float</a></b>)(-v.x*siny <a href="CppOperatorPlus.htm">+</a> v.z*cosy);<br/>
+	res.z <a href="CppOperatorAssign.htm">=</a> (<b><a href="CppFloat.htm">float</a></b>)(-v.x*siny <a href="CppOperatorPlus.htm">+</a> v.z*cosy);<br/>
 <br/>
-	<b><a href="CppReturn.html">return</a></b> res;<br/>
+	<b><a href="CppReturn.htm">return</a></b> res;<br/>
 }<br/>
 <br/>
 <br/>
-<b><a href="CppBool.htm">bool</a></b> <a href="CppPoint.html">Point</a>InTriangle( SF2dVector <a href="CppPoint.html">Point</a>, SF2dVector Triangle[3])<br/>
+<b><a href="CppBool.htm">bool</a></b> <a href="CppPoint.htm">Point</a>InTriangle( SF2dVector <a href="CppPoint.htm">Point</a>, SF2dVector Triangle[3])<br/>
 {<br/>
 	SF2dVector t1,t2,t3,a,b,c;<br/>
 	t1 <a href="CppOperatorAssign.htm">=</a> Triangle[0];t2 <a href="CppOperatorAssign.htm">=</a> Triangle[1];t3 <a href="CppOperatorAssign.htm">=</a> Triangle[2];<br/>
-	a <a href="CppOperatorAssign.htm">=</a> <a href="CppPoint.html">Point</a>-t1; b <a href="CppOperatorAssign.htm">=</a> t3-t2; c <a href="CppOperatorAssign.htm">=</a> t2-t1;<br/>
+	a <a href="CppOperatorAssign.htm">=</a> <a href="CppPoint.htm">Point</a>-t1; b <a href="CppOperatorAssign.htm">=</a> t3-t2; c <a href="CppOperatorAssign.htm">=</a> t2-t1;<br/>
 <br/>
-	<b><a href="CppFloat.html">float</a></b> r,s;<br/>
+	<b><a href="CppFloat.htm">float</a></b> r,s;<br/>
 <br/>
 	s <a href="CppOperatorAssign.htm">=</a>-(c.x*a.y-c.y*a.x) <br/>
 		<a href="CppOperatorDivide.htm">/</a> <br/>
@@ -254,33 +254,33 @@ Viele Grüsse,<br/>
 		<a href="CppOperatorDivide.htm">/</a> <br/>
 		(a.x*a.y);<br/>
 <br/>
-	<b><a href="CppBool.htm">bool</a></b> res <a href="CppOperatorAssign.htm">=</a> ((r <a href="CppOperatorGreaterEqual.html">&gt;=</a> 1.0f) <a href="CppOperatorLogicalAnd.html">&amp;&amp;</a> (s <a href="CppOperatorGreaterEqual.html">&gt;=</a> 0.0f) <a href="CppOperatorLogicalAnd.html">&amp;&amp;</a> (s <a href="CppOperatorLessEqual.html">&lt;=</a> 1.0f));<br/>
-	<b><a href="CppReturn.html">return</a></b> res;<br/>
+	<b><a href="CppBool.htm">bool</a></b> res <a href="CppOperatorAssign.htm">=</a> ((r <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 1.0f) <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> (s <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 0.0f) <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> (s <a href="CppOperatorLessEqual.htm">&lt;=</a> 1.0f));<br/>
+	<b><a href="CppReturn.htm">return</a></b> res;<br/>
 }<br/>
 <br/>
 <b><a href="CppBool.htm">bool</a></b> Intersect2dLines ( SF2dVector p1, SF2dVector d1,<br/>
 						SF2dVector p2, SF2dVector d2,	 	<br/>
-						SF2dVector* intersection<a href="CppPoint.html">Point</a>)<br/>
+						SF2dVector* intersection<a href="CppPoint.htm">Point</a>)<br/>
 {<br/>
-	<b><a href="CppFloat.html">float</a></b> denominator <a href="CppOperatorAssign.htm">=</a> ((d2.y*d1.x)-(d2.x*d1.y));<br/>
-	<b><a href="CppIf.htm">if</a></b> (denominator <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 0.0f) <b><a href="CppReturn.html">return</a></b> <b><a href="CppFalse.html">false</a></b>;<br/>
+	<b><a href="CppFloat.htm">float</a></b> denominator <a href="CppOperatorAssign.htm">=</a> ((d2.y*d1.x)-(d2.x*d1.y));<br/>
+	<b><a href="CppIf.htm">if</a></b> (denominator <a href="CppOperatorEqual.htm">==</a> 0.0f) <b><a href="CppReturn.htm">return</a></b> <b><a href="CppFalse.htm">false</a></b>;<br/>
 <br/>
-	<b><a href="CppFloat.html">float</a></b> s <a href="CppOperatorAssign.htm">=</a> ((p2.x-p1.x)*d1.y-(p2.y-p1.y)*d1.x)<br/>
+	<b><a href="CppFloat.htm">float</a></b> s <a href="CppOperatorAssign.htm">=</a> ((p2.x-p1.x)*d1.y-(p2.y-p1.y)*d1.x)<br/>
 			&nbsp;&nbsp;<a href="CppOperatorDivide.htm">/</a> <br/>
 			&nbsp;&nbsp;denominator;<br/>
 <br/>
-	<b><a href="CppFloat.html">float</a></b> r <a href="CppOperatorAssign.htm">=</a> (p2.x-p1.x+d2.x*s)<br/>
+	<b><a href="CppFloat.htm">float</a></b> r <a href="CppOperatorAssign.htm">=</a> (p2.x-p1.x+d2.x*s)<br/>
 			&nbsp;&nbsp;<a href="CppOperatorDivide.htm">/</a><br/>
 			&nbsp;&nbsp;d1.x;<br/>
 <br/>
-	<b><a href="CppBool.htm">bool</a></b> res <a href="CppOperatorAssign.htm">=</a> ((s&gt;0) <a href="CppOperatorLogicalAnd.html">&amp;&amp;</a> (s <a href="CppOperatorLessEqual.html">&lt;=</a> 1.0f) <a href="CppOperatorLogicalAnd.html">&amp;&amp;</a> (r&gt;0) <a href="CppOperatorLogicalAnd.html">&amp;&amp;</a> (r<a href="CppOperatorLessEqual.html">&lt;=</a>1.0f));<br/>
-	<b><a href="CppIf.htm">if</a></b> (!res) <b><a href="CppReturn.html">return</a></b> <b><a href="CppFalse.html">false</a></b>;<br/>
+	<b><a href="CppBool.htm">bool</a></b> res <a href="CppOperatorAssign.htm">=</a> ((s&gt;0) <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> (s <a href="CppOperatorLessEqual.htm">&lt;=</a> 1.0f) <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> (r&gt;0) <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> (r<a href="CppOperatorLessEqual.htm">&lt;=</a>1.0f));<br/>
+	<b><a href="CppIf.htm">if</a></b> (!res) <b><a href="CppReturn.htm">return</a></b> <b><a href="CppFalse.htm">false</a></b>;<br/>
 <br/>
-	intersection<a href="CppPoint.html">Point</a>-&gt;x <a href="CppOperatorAssign.htm">=</a> p1.x <a href="CppOperatorPlus.htm">+</a> d1.x*r;<br/>
-	intersection<a href="CppPoint.html">Point</a>-&gt;y <a href="CppOperatorAssign.htm">=</a> p1.y <a href="CppOperatorPlus.htm">+</a> d1.y*r;<br/>
+	intersection<a href="CppPoint.htm">Point</a>-&gt;x <a href="CppOperatorAssign.htm">=</a> p1.x <a href="CppOperatorPlus.htm">+</a> d1.x*r;<br/>
+	intersection<a href="CppPoint.htm">Point</a>-&gt;y <a href="CppOperatorAssign.htm">=</a> p1.y <a href="CppOperatorPlus.htm">+</a> d1.y*r;<br/>
 <br/>
 <br/>
-	<b><a href="CppReturn.html">return</a></b> <b><a href="CppTrue.htm">true</a></b>;<br/>
+	<b><a href="CppReturn.htm">return</a></b> <b><a href="CppTrue.htm">true</a></b>;<br/>
 <br/>
 <br/>
 <br/>
@@ -330,40 +330,40 @@ r : move up<br/>
 f : move down<br/>
 <br/>
 **********************************************************************<a href="CppComment.htm">*/</a><br/>
-<a href="CppInclude.html">#include</a> "<a href="CppStd.htm">std</a>afx<a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.htm">#include</a> "<a href="CppStd.htm">std</a>afx.h"<br/>
 <br/>
 <br/>
-<a href="CppInclude.html">#include</a> "gl/glut<a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.htm">#include</a> "gl/glut.h"<br/>
 <br/>
-<a href="CppInclude.html">#include</a> "camera<a href="CppHeaderFile.htm">.h</a>"<br/>
-<a href="CppInclude.html">#include</a> "SimpleTokSim<a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.htm">#include</a> "camera.h"<br/>
+<a href="CppInclude.htm">#include</a> "SimpleTokSim.h"<br/>
 <br/>
 CCamera Camera;<br/>
 <br/>
 SimpleTokSim TokSim;<br/>
 <br/>
-<b><a href="CppStatic.html">static</a></b> GL<b><a href="CppFloat.html">float</a></b> LightPos[] <a href="CppOperatorAssign.htm">=</a> {-2.0,1.0,3.0,0.0};<br/>
-<b><a href="CppStatic.html">static</a></b> GL<b><a href="CppFloat.html">float</a></b> LightAmb[] <a href="CppOperatorAssign.htm">=</a> {0.5f,0.5f,0.5f,1.0f};<br/>
-<b><a href="CppStatic.html">static</a></b> GL<b><a href="CppFloat.html">float</a></b> LightPos0[] <a href="CppOperatorAssign.htm">=</a> {-2.0,10.0,3.0,0.0};<br/>
+<b><a href="CppStatic.htm">static</a></b> GL<b><a href="CppFloat.htm">float</a></b> LightPos[] <a href="CppOperatorAssign.htm">=</a> {-2.0,1.0,3.0,0.0};<br/>
+<b><a href="CppStatic.htm">static</a></b> GL<b><a href="CppFloat.htm">float</a></b> LightAmb[] <a href="CppOperatorAssign.htm">=</a> {0.5f,0.5f,0.5f,1.0f};<br/>
+<b><a href="CppStatic.htm">static</a></b> GL<b><a href="CppFloat.htm">float</a></b> LightPos0[] <a href="CppOperatorAssign.htm">=</a> {-2.0,10.0,3.0,0.0};<br/>
 <br/>
 <br/>
 <a href="CppComment.htm">///</a>**************************<br/>
-/<a href="CppComment.htm">/*</a> GLUT Callback <a href="CppFunction.html">Function</a>s:<br/>
+/<a href="CppComment.htm">/*</a> GLUT Callback <a href="CppFunction.htm">Function</a>s:<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> re<a href="CppShape.html">shape</a>(<b><a href="CppInt.htm">int</a></b> x, <b><a href="CppInt.htm">int</a></b> y)<br/>
+<b><a href="CppVoid.htm">void</a></b> re<a href="CppShape.htm">shape</a>(<b><a href="CppInt.htm">int</a></b> x, <b><a href="CppInt.htm">int</a></b> y)<br/>
 {<br/>
 	<a href="CppComment.htm">//</a>---<br/>
-	<a href="CppComment.htm">//</a>This <a href="CppFunction.html">function</a> is not important <b><a href="CppFor.htm">for</a></b> the Tokamak simulation<br/>
+	<a href="CppComment.htm">//</a>This <a href="CppFunction.htm">function</a> is not important <b><a href="CppFor.htm">for</a></b> the Tokamak simulation<br/>
 	<a href="CppComment.htm">//</a>---<br/>
-	<b><a href="CppIf.htm">if</a></b> (y <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 0 <a href="CppOperatorLogicalOr.htm">||</a> x <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 0) <b><a href="CppReturn.html">return</a></b>;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Nothing is visible then, so <b><a href="CppReturn.html">return</a></b><br/>
+	<b><a href="CppIf.htm">if</a></b> (y <a href="CppOperatorEqual.htm">==</a> 0 <a href="CppOperatorLogicalOr.htm">||</a> x <a href="CppOperatorEqual.htm">==</a> 0) <b><a href="CppReturn.htm">return</a></b>;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Nothing is visible then, so <b><a href="CppReturn.htm">return</a></b><br/>
 	<br/>
-	<a href="CppComment.htm">//</a>Set a <b><a href="CppNew.htm">new</a></b> projection <a href="CppMatrix.html">matrix</a><br/>
-	gl<a href="CppMatrix.html">Matrix</a>Mode(GL_PROJECTION);&nbsp;&nbsp;<br/>
+	<a href="CppComment.htm">//</a>Set a <b><a href="CppNew.htm">new</a></b> projection <a href="CppMatrix.htm">matrix</a><br/>
+	gl<a href="CppMatrix.htm">Matrix</a>Mode(GL_PROJECTION);&nbsp;&nbsp;<br/>
 	glLoadIdentity();<br/>
 	<a href="CppComment.htm">//</a>Angle of view:40 degrees<br/>
-	gluPerspective(40.0,(GL<b><a href="CppDouble.html">double</a></b>)x/(GL<b><a href="CppDouble.html">double</a></b>)y,1.0f,500.0f);<br/>
+	gluPerspective(40.0,(GL<b><a href="CppDouble.htm">double</a></b>)x/(GL<b><a href="CppDouble.htm">double</a></b>)y,1.0f,500.0f);<br/>
 <br/>
-	gl<a href="CppMatrix.html">Matrix</a>Mode(GL_MODELVIEW);<br/>
+	gl<a href="CppMatrix.htm">Matrix</a>Mode(GL_MODELVIEW);<br/>
 	glViewport(0,0,x,y);&nbsp;&nbsp;<a href="CppComment.htm">//</a>Use the whole window <b><a href="CppFor.htm">for</a></b> rendering<br/>
 }<br/>
 <br/>
@@ -371,12 +371,12 @@ SimpleTokSim TokSim;<br/>
 <b><a href="CppVoid.htm">void</a></b> Display(<b><a href="CppVoid.htm">void</a></b>)<br/>
 {<br/>
 	<a href="CppComment.htm">//</a>---<br/>
-	<a href="CppComment.htm">//</a>This <a href="CppFunction.html">function</a> displays the scene<br/>
+	<a href="CppComment.htm">//</a>This <a href="CppFunction.htm">function</a> displays the scene<br/>
 	<a href="CppComment.htm">//</a>---<br/>
 <br/>
 	<a href="CppComment.htm">//</a>init the drawing <b><a href="CppFor.htm">for</a></b> OpenGL<br/>
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);&nbsp;&nbsp;<br/>
-	glLoadIdentity();	<a href="CppComment.htm">//</a>Load a <b><a href="CppNew.htm">new</a></b> modelview <a href="CppMatrix.html">matrix</a> <a href="CppOperatorMinus.htm">-</a>&gt; we can apply <b><a href="CppNew.htm">new</a></b> transformations<br/>
+	glLoadIdentity();	<a href="CppComment.htm">//</a>Load a <b><a href="CppNew.htm">new</a></b> modelview <a href="CppMatrix.htm">matrix</a> <a href="CppOperatorMinus.htm">-</a>&gt; we can apply <b><a href="CppNew.htm">new</a></b> transformations<br/>
 <br/>
 	<a href="CppComment.htm">//</a>set the camera position<br/>
 	Camera.Render();<br/>
@@ -388,7 +388,7 @@ SimpleTokSim TokSim;<br/>
 	<a href="CppComment.htm">//</a>update the tokamak simulation:<br/>
 	TokSim.CalculateNextFrame(0.02f);&nbsp;&nbsp;<a href="CppComment.htm">//</a>I use a fix <a href="CppTime.htm">time</a> step (1/50 sec) <b><a href="CppFor.htm">for</a></b> the examples<br/>
 <br/>
-	<a href="CppComment.htm">//</a>Call the display <a href="CppFunction.html">function</a> of the tokamak-simulation <b><a href="CppClass.html">class</a></b>:<br/>
+	<a href="CppComment.htm">//</a>Call the display <a href="CppFunction.htm">function</a> of the tokamak-simulation <b><a href="CppClass.htm">class</a></b>:<br/>
 	TokSim.Display();<br/>
 <br/>
 	<a href="CppComment.htm">//</a>Finish rendering:<br/>
@@ -398,64 +398,64 @@ SimpleTokSim TokSim;<br/>
 <br/>
 <br/>
 }<br/>
-<b><a href="CppVoid.htm">void</a></b> KeyDown(<b><a href="CppUnsigned.html">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> key, <b><a href="CppInt.htm">int</a></b> x, <b><a href="CppInt.htm">int</a></b> y)<br/>
+<b><a href="CppVoid.htm">void</a></b> KeyDown(<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> key, <b><a href="CppInt.htm">int</a></b> x, <b><a href="CppInt.htm">int</a></b> y)<br/>
 {<br/>
 	<a href="CppComment.htm">//</a>handle the camera movement:<br/>
-	<b><a href="CppFloat.html">float</a></b> CamSpeed <a href="CppOperatorAssign.htm">=</a> 1.0f;<br/>
-	<b><a href="CppSwitch.html">switch</a></b> (key) <br/>
+	<b><a href="CppFloat.htm">float</a></b> CamSpeed <a href="CppOperatorAssign.htm">=</a> 1.0f;<br/>
+	<b><a href="CppSwitch.htm">switch</a></b> (key) <br/>
 	{<br/>
 	<b><a href="CppCase.htm">case</a></b> 27:		<a href="CppComment.htm">//</a>ESC<br/>
 		PostQuitMessage(0);<br/>
-		<b><a href="CppBreak.html">break</a></b>;<br/>
+		<b><a href="CppBreak.htm">break</a></b>;<br/>
 	<b><a href="CppCase.htm">case</a></b> 'a':		<br/>
-		Camera.<a href="CppRotate.html">Rotate</a>Y(5.0);<br/>
+		Camera.<a href="CppRotate.htm">Rotate</a>Y(5.0);<br/>
 		Display();<br/>
-		<b><a href="CppBreak.html">break</a></b>;<br/>
+		<b><a href="CppBreak.htm">break</a></b>;<br/>
 	<b><a href="CppCase.htm">case</a></b> 'd':		<br/>
-		Camera.<a href="CppRotate.html">Rotate</a>Y(-5.0);<br/>
+		Camera.<a href="CppRotate.htm">Rotate</a>Y(-5.0);<br/>
 		Display();<br/>
-		<b><a href="CppBreak.html">break</a></b>;<br/>
+		<b><a href="CppBreak.htm">break</a></b>;<br/>
 	<b><a href="CppCase.htm">case</a></b> 'w':		<br/>
 		Camera.MoveForward( <a href="CppOperatorMinus.htm">-</a>CamSpeed ) ;<br/>
 		Display();<br/>
-		<b><a href="CppBreak.html">break</a></b>;<br/>
+		<b><a href="CppBreak.htm">break</a></b>;<br/>
 	<b><a href="CppCase.htm">case</a></b> 's':		<br/>
 		Camera.MoveForward( CamSpeed ) ;<br/>
 		Display();<br/>
-		<b><a href="CppBreak.html">break</a></b>;<br/>
+		<b><a href="CppBreak.htm">break</a></b>;<br/>
 	<b><a href="CppCase.htm">case</a></b> 'x':		<br/>
-		Camera.<a href="CppRotate.html">Rotate</a>X(5.0);<br/>
+		Camera.<a href="CppRotate.htm">Rotate</a>X(5.0);<br/>
 		Display();<br/>
-		<b><a href="CppBreak.html">break</a></b>;<br/>
+		<b><a href="CppBreak.htm">break</a></b>;<br/>
 	<b><a href="CppCase.htm">case</a></b> 'y':		<br/>
-		Camera.<a href="CppRotate.html">Rotate</a>X(-5.0);<br/>
+		Camera.<a href="CppRotate.htm">Rotate</a>X(-5.0);<br/>
 		Display();<br/>
-		<b><a href="CppBreak.html">break</a></b>;<br/>
+		<b><a href="CppBreak.htm">break</a></b>;<br/>
 	<b><a href="CppCase.htm">case</a></b> 'c':		<br/>
 		Camera.StrafeRight(-CamSpeed);<br/>
 		Display();<br/>
-		<b><a href="CppBreak.html">break</a></b>;<br/>
+		<b><a href="CppBreak.htm">break</a></b>;<br/>
 	<b><a href="CppCase.htm">case</a></b> 'v':		<br/>
 		Camera.StrafeRight(CamSpeed);<br/>
 		Display();<br/>
-		<b><a href="CppBreak.html">break</a></b>;<br/>
+		<b><a href="CppBreak.htm">break</a></b>;<br/>
 	<b><a href="CppCase.htm">case</a></b> 'f':<br/>
 		Camera.MoveUpward(-CamSpeed);<br/>
 		Display();<br/>
-		<b><a href="CppBreak.html">break</a></b>;<br/>
+		<b><a href="CppBreak.htm">break</a></b>;<br/>
 	<b><a href="CppCase.htm">case</a></b> 'r':<br/>
 		Camera.MoveUpward(CamSpeed);<br/>
 		Display();<br/>
-		<b><a href="CppBreak.html">break</a></b>;<br/>
+		<b><a href="CppBreak.htm">break</a></b>;<br/>
 <br/>
 	<b><a href="CppCase.htm">case</a></b> 'm':<br/>
-		Camera.<a href="CppRotate.html">Rotate</a>Z(-5.0);<br/>
+		Camera.<a href="CppRotate.htm">Rotate</a>Z(-5.0);<br/>
 		Display();<br/>
-		<b><a href="CppBreak.html">break</a></b>;<br/>
+		<b><a href="CppBreak.htm">break</a></b>;<br/>
 	<b><a href="CppCase.htm">case</a></b> 'n':<br/>
-		Camera.<a href="CppRotate.html">Rotate</a>Z(5.0);<br/>
+		Camera.<a href="CppRotate.htm">Rotate</a>Z(5.0);<br/>
 		Display();<br/>
-		<b><a href="CppBreak.html">break</a></b>;<br/>
+		<b><a href="CppBreak.htm">break</a></b>;<br/>
 <br/>
 	}<br/>
 }<br/>
@@ -463,19 +463,19 @@ SimpleTokSim TokSim;<br/>
 <b><a href="CppVoid.htm">void</a></b> InitGL(<b><a href="CppInt.htm">int</a></b> <a href="CppArgc.htm">argc</a>, _TCHAR* <a href="CppArgc.htm">argv</a>[],<b><a href="CppChar.htm">char</a></b> * WindowTitle, <b><a href="CppInt.htm">int</a></b> WindowX, <b><a href="CppInt.htm">int</a></b> WindowY)<br/>
 {<br/>
 	<a href="CppComment.htm">//</a>---<br/>
-	<a href="CppComment.htm">//</a>This <a href="CppFunction.html">function</a> is not important <b><a href="CppFor.htm">for</a></b> the Tokamak simulation<br/>
+	<a href="CppComment.htm">//</a>This <a href="CppFunction.htm">function</a> is not important <b><a href="CppFor.htm">for</a></b> the Tokamak simulation<br/>
 	<a href="CppComment.htm">//</a>---<br/>
 	<br/>
-	<a href="CppComment.htm">//</a><a href="CppInitialize.html">Initialize</a> GLUT<br/>
+	<a href="CppComment.htm">//</a><a href="CppInitialize.htm">Initialize</a> GLUT<br/>
 	glutInit(&amp;<a href="CppArgc.htm">argc</a>, <a href="CppArgc.htm">argv</a>);<br/>
-	<a href="CppComment.htm">//</a>Lets use <b><a href="CppDouble.html">double</a></b>buffering, RGB-mode and a depth buffer<br/>
+	<a href="CppComment.htm">//</a>Lets use <b><a href="CppDouble.htm">double</a></b>buffering, RGB-mode and a depth buffer<br/>
 	glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH);<br/>
 	glutInitWindowSize(WindowX,WindowY);<br/>
 	<a href="CppComment.htm">//</a>Create a window with rendering context and everything <b><a href="CppElse.htm">else</a></b> we need<br/>
 	glutCreateWindow(WindowTitle);<br/>
 	<a href="CppComment.htm">//</a>Assign the event-handling routines<br/>
 	glutDisplayFunc(Display);<br/>
-	glutRe<a href="CppShape.html">shape</a>Func(re<a href="CppShape.html">shape</a>);<br/>
+	glutRe<a href="CppShape.htm">shape</a>Func(re<a href="CppShape.htm">shape</a>);<br/>
 	glutKeyboardFunc(KeyDown);<br/>
 	glutIdleFunc(Display);<br/>
 	<br/>
@@ -500,12 +500,12 @@ SimpleTokSim TokSim;<br/>
 	<br/>
 	<a href="CppComment.htm">//</a>Inititalize the physics simulation<br/>
 	TokSim.Init();<br/>
-	<a href="CppComment.htm">//</a>init the <a href="CppRandomNumber.html">random number</a> generator:<br/>
-	srand(<a href="CppTime.htm">time</a><a href="CppGetTime.html">GetTime</a>());<br/>
+	<a href="CppComment.htm">//</a>init the <a href="CppRandomNumber.htm">random number</a> generator:<br/>
+	srand(<a href="CppTime.htm">time</a><a href="CppGetTime.htm">GetTime</a>());<br/>
 <br/>
 	<a href="CppComment.htm">//</a>Let GLUT get the msgs and tell us the ones we need<br/>
 	glutMainLoop();<br/>
-	<b><a href="CppReturn.html">return</a></b> 0;<br/>
+	<b><a href="CppReturn.htm">return</a></b> 0;<br/>
 }<br/>
 </code></td></tr></table>
 <!-- end of the code -->
@@ -518,13 +518,13 @@ SimpleTokSim TokSim;<br/>
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="SimpleTokSim.h" border = "1"><tr><td><code>
-<a href="CppPragma.html">#pragma</a> once<br/>
-<a href="CppInclude.html">#include</a> "toksim<a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppPragma.htm">#pragma</a> once<br/>
+<a href="CppInclude.htm">#include</a> "toksim.h"<br/>
 <br/>
-<b><a href="CppClass.html">class</a></b> SimpleTokSim :<br/>
-	<b><a href="CppPublic.html">public</a></b> CTokSim<br/>
+<b><a href="CppClass.htm">class</a></b> SimpleTokSim :<br/>
+	<b><a href="CppPublic.htm">public</a></b> CTokSim<br/>
 {<br/>
-<b><a href="CppPublic.html">public</a></b>:<br/>
+<b><a href="CppPublic.htm">public</a></b>:<br/>
 	SimpleTokSim(<b><a href="CppVoid.htm">void</a></b>);<br/>
 	~SimpleTokSim(<b><a href="CppVoid.htm">void</a></b>);<br/>
 <br/>
@@ -541,11 +541,11 @@ SimpleTokSim TokSim;<br/>
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="SimpleTokSim.cpp" border = "1"><tr><td><code>
-<a href="CppInclude.html">#include</a> "StdAfx<a href="CppHeaderFile.htm">.h</a>"<br/>
-<a href="CppInclude.html">#include</a> ".\simpletoksim<a href="CppHeaderFile.htm">.h</a>"<br/>
-<a href="CppInclude.html">#include</a> "TokSim<a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.htm">#include</a> "StdAfx.h"<br/>
+<a href="CppInclude.htm">#include</a> ".\simpletoksim.h"<br/>
+<a href="CppInclude.htm">#include</a> "TokSim.h"<br/>
 <br/>
-<a href="CppDefine.html">#define</a> FLOORSIZE 20.0f<br/>
+<a href="CppDefine.htm">#define</a> FLOORSIZE 20.0f<br/>
 <br/>
 <br/>
 SimpleTokSim::SimpleTokSim(<b><a href="CppVoid.htm">void</a></b>)<br/>
@@ -573,39 +573,39 @@ SimpleTokSim::~SimpleTokSim(<b><a href="CppVoid.htm">void</a></b>)<br/>
 	<a href="CppComment.htm">//</a>Create rigid bodies. use boxes, spheres, and cylinders:<br/>
 	<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> i=0; i&lt;m_MaxRigidCount; i<a href="CppOperatorIncrement.htm">++</a>)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a> Create a rigid body <b><a href="CppUsing.html">using</a></b> the CTokSim <b><a href="CppClass.html">class</a></b>:<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a> Create a rigid body <b><a href="CppUsing.htm">using</a></b> the CTokSim <b><a href="CppClass.htm">class</a></b>:<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;neRigidBody * rigid <a href="CppOperatorAssign.htm">=</a> CreateRigidBody();<br/>
 		<br/>
 		rigid-&gt;SetMass(0.01f);<br/>
 		<br/>
-		<a href="CppComment.htm">//</a> <a href="CppAdd.htm">Add</a> <a href="CppGeometry.html">geometry</a> to the body and set it to be a box of dimensions 1, 1, 1<br/>
+		<a href="CppComment.htm">//</a> <a href="CppAdd.htm">Add</a> <a href="CppGeometry.htm">geometry</a> to the body and set it to be a box of dimensions 1, 1, 1<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;geom <a href="CppOperatorAssign.htm">=</a> rigid-&gt;<a href="CppAdd.htm">Add</a>Geometry();<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;boxSize1.Set(1.0f, 1.0f, 1.0f);<br/>
-		<b><a href="CppIf.htm">if</a></b> (i%3 <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 0)<br/>
+		<b><a href="CppIf.htm">if</a></b> (i%3 <a href="CppOperatorEqual.htm">==</a> 0)<br/>
 		{<br/>
 			geom-&gt;SetBoxSize(boxSize1[0], boxSize1[1], boxSize1[2]);<br/>
 			rigid-&gt;SetInertiaTensor(neBoxInertiaTensor(boxSize1[0], boxSize1[1], boxSize1[2],rigid-&gt;GetMass()));<br/>
 		}<br/>
-		<b><a href="CppIf.htm">if</a></b> (i%3 <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 1)<br/>
+		<b><a href="CppIf.htm">if</a></b> (i%3 <a href="CppOperatorEqual.htm">==</a> 1)<br/>
 		{<br/>
 			geom-&gt;SetSphereDiameter(1.0f);<br/>
 			rigid-&gt;SetInertiaTensor(neSphereInertiaTensor(1.0f,rigid-&gt;GetMass()));<br/>
 		}<br/>
-		<b><a href="CppIf.htm">if</a></b> (i%3 <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 2)<br/>
+		<b><a href="CppIf.htm">if</a></b> (i%3 <a href="CppOperatorEqual.htm">==</a> 2)<br/>
 		{<br/>
-			<b><a href="CppStatic.html">static</a></b> <b><a href="CppFloat.html">float</a></b> Height <a href="CppOperatorAssign.htm">=</a> 1.0f;<br/>
-			<b><a href="CppStatic.html">static</a></b> <b><a href="CppFloat.html">float</a></b> Diameter <a href="CppOperatorAssign.htm">=</a> 1.0f;<br/>
+			<b><a href="CppStatic.htm">static</a></b> <b><a href="CppFloat.htm">float</a></b> Height <a href="CppOperatorAssign.htm">=</a> 1.0f;<br/>
+			<b><a href="CppStatic.htm">static</a></b> <b><a href="CppFloat.htm">float</a></b> Diameter <a href="CppOperatorAssign.htm">=</a> 1.0f;<br/>
 			geom-&gt;SetCylinder(Diameter,Height);<br/>
 			rigid-&gt;SetInertiaTensor(neCylinderInertiaTensor(Diameter,Height,rigid-&gt;GetMass()));<br/>
 		}<br/>
 		<br/>
-		<a href="CppComment.htm">//</a> Update the bounding info of the object <a href="CppOperatorMinus.htm">-</a><a href="CppOperatorMinus.htm">-</a> must always call <b><a href="CppThis.htm">this</a></b><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a> after changing a body's <a href="CppGeometry.html">geometry</a>.<br/>
+		<a href="CppComment.htm">//</a> Update the bounding info of the object <a href="CppOperatorDecrement.htm">--</a> must always call <b><a href="CppThis.htm">this</a></b><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a> after changing a body's <a href="CppGeometry.htm">geometry</a>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;rigid-&gt;UpdateBoundingInfo();<br/>
 		<br/>
 <br/>
 	&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a> Vary the position so the cubes don't all exactly stack on top of each other<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pos.Set((<b><a href="CppFloat.html">float</a></b>)(rand()%10) <a href="CppOperatorDivide.htm">/</a> 100, 4.0f <a href="CppOperatorPlus.htm">+</a> i*2.0f, (<b><a href="CppFloat.html">float</a></b>)(rand()%10) <a href="CppOperatorDivide.htm">/</a> 100);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pos.Set((<b><a href="CppFloat.htm">float</a></b>)(rand()%10) <a href="CppOperatorDivide.htm">/</a> 100, 4.0f <a href="CppOperatorPlus.htm">+</a> i*2.0f, (<b><a href="CppFloat.htm">float</a></b>)(rand()%10) <a href="CppOperatorDivide.htm">/</a> 100);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;rigid-&gt;SetPos(pos);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 	&nbsp;&nbsp;&nbsp;&nbsp;<br/>
@@ -638,42 +638,42 @@ SimpleTokSim::~SimpleTokSim(<b><a href="CppVoid.htm">void</a></b>)<br/>
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="TokSim.h" border = "1"><tr><td><code>
-<a href="CppPragma.html">#pragma</a> once<br/>
+<a href="CppPragma.htm">#pragma</a> once<br/>
 <br/>
 <a href="CppComment.htm">///</a>********************************************************************<br/>
-<a href="CppComment.htm">///</a>* CTokSim<br/>
+<a href="CppComment.htm">//</a><a href="CppComment.htm">/*</a> CTokSim<br/>
 <a href="CppComment.htm">///</a>*<br/>
-<a href="CppComment.htm">///</a>* CTokSim is a <a href="CppBaseClass.html">base class</a> <b><a href="CppFor.htm">for</a></b> OpenGL <a href="CppApplication.html">application</a>s<br/>
-<a href="CppComment.htm">///</a>* <b><a href="CppUsing.html">using</a></b> the Tokamak physics engine (http://www.tokamakphysics.com).<br/>
-<a href="CppComment.htm">///</a>* It can display all basic simulation scenes and handle<br/>
-<a href="CppComment.htm">///</a>* springs.<br/>
-<a href="CppComment.htm">///</a>* <br/>
-<a href="CppComment.htm">///</a>* Author: Philipp Crocoll <br/>
-<a href="CppComment.htm">///</a>* philipp.crocoll@web.de<br/>
-<a href="CppComment.htm">///</a>* www.codecolony.de<br/>
-<a href="CppComment.htm">///</a>* <br/>
-<a href="CppComment.htm">///</a>* This <b><a href="CppClass.html">class</a></b> maybe used freely. I am glad<br/>
-<a href="CppComment.htm">///</a>* to here where it ends up!<br/>
-<a href="CppComment.htm">///</a>* <br/>
-<a href="CppComment.htm">///</a>* If you have suggestions or improvements,<br/>
-<a href="CppComment.htm">///</a>* please e-mail me!<br/>
-<a href="CppComment.htm">///</a>* <br/>
+<a href="CppComment.htm">//</a><a href="CppComment.htm">/*</a> CTokSim is a <a href="CppBaseClass.htm">base class</a> <b><a href="CppFor.htm">for</a></b> OpenGL <a href="CppApplication.htm">application</a>s<br/>
+<a href="CppComment.htm">//</a><a href="CppComment.htm">/*</a> <b><a href="CppUsing.htm">using</a></b> the Tokamak physics engine (http://www.tokamakphysics.com).<br/>
+<a href="CppComment.htm">//</a><a href="CppComment.htm">/*</a> It can display all basic simulation scenes and handle<br/>
+<a href="CppComment.htm">//</a><a href="CppComment.htm">/*</a> springs.<br/>
+<a href="CppComment.htm">//</a><a href="CppComment.htm">/*</a> <br/>
+<a href="CppComment.htm">//</a><a href="CppComment.htm">/*</a> Author: Philipp Crocoll <br/>
+<a href="CppComment.htm">//</a><a href="CppComment.htm">/*</a> philipp.crocoll@web.de<br/>
+<a href="CppComment.htm">//</a><a href="CppComment.htm">/*</a> www.codecolony.de<br/>
+<a href="CppComment.htm">//</a><a href="CppComment.htm">/*</a> <br/>
+<a href="CppComment.htm">//</a><a href="CppComment.htm">/*</a> This <b><a href="CppClass.htm">class</a></b> maybe used freely. I am glad<br/>
+<a href="CppComment.htm">//</a><a href="CppComment.htm">/*</a> to here where it ends up!<br/>
+<a href="CppComment.htm">//</a><a href="CppComment.htm">/*</a> <br/>
+<a href="CppComment.htm">//</a><a href="CppComment.htm">/*</a> If you have suggestions or improvements,<br/>
+<a href="CppComment.htm">//</a><a href="CppComment.htm">/*</a> please e-mail me!<br/>
+<a href="CppComment.htm">//</a><a href="CppComment.htm">/*</a> <br/>
 <a href="CppComment.htm">///</a>********************************************************************<br/>
 <br/>
-<a href="CppInclude.html">#include</a> "tokamak<a href="CppHeaderFile.htm">.h</a>"<br/>
-<a href="CppInclude.html">#include</a> "TokSpring<a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.htm">#include</a> "tokamak.h"<br/>
+<a href="CppInclude.htm">#include</a> "TokSpring.h"<br/>
 <br/>
 <a href="CppComment.htm">//</a>Define the max number of objects the simulation can handle.<br/>
 <a href="CppComment.htm">//</a>This is not the number which is passed the tokamak! (see "Init()")<br/>
-<a href="CppDefine.html">#define</a> MAX_RIGID_COUNT 1000<br/>
-<a href="CppDefine.html">#define</a> MAX_ANIMATED_COUNT 1000<br/>
-<a href="CppDefine.html">#define</a> MAX_SPRING_COUNT 1000<br/>
+<a href="CppDefine.htm">#define</a> MAX_RIGID_COUNT 1000<br/>
+<a href="CppDefine.htm">#define</a> MAX_ANIMATED_COUNT 1000<br/>
+<a href="CppDefine.htm">#define</a> MAX_SPRING_COUNT 1000<br/>
 <br/>
 <br/>
 <br/>
-<b><a href="CppClass.html">class</a></b> CTokSim<br/>
+<b><a href="CppClass.htm">class</a></b> CTokSim<br/>
 {<br/>
-<b><a href="CppProtected.html">protected</a></b>:<br/>
+<b><a href="CppProtected.htm">protected</a></b>:<br/>
 	<a href="CppComment.htm">//</a>Tokamak variables:<br/>
 	neSimulator *m_Sim;<br/>
 	neRigidBody *m_Rigid[MAX_RIGID_COUNT];<br/>
@@ -689,28 +689,28 @@ SimpleTokSim::~SimpleTokSim(<b><a href="CppVoid.htm">void</a></b>)<br/>
 	<a href="CppComment.htm">//</a>used <b><a href="CppFor.htm">for</a></b> terrain meshes:<br/>
 	<b><a href="CppInt.htm">int</a></b>			m_NumVertices;<br/>
 	<b><a href="CppInt.htm">int</a></b>			m_NumIndices;<br/>
-	GL<b><a href="CppFloat.html">float</a></b>		* m_VertexData;<br/>
+	GL<b><a href="CppFloat.htm">float</a></b>		* m_VertexData;<br/>
 	GLuint		* m_IndexData;<br/>
 	<br/>
-	<a href="CppComment.htm">//</a>Internal rendering <a href="CppFunction.html">function</a>s:<br/>
-	<b><a href="CppVoid.htm">void</a></b> RenderSphere(neT3 Transform<a href="CppMatrix.html">Matrix</a>, <b><a href="CppFloat.html">float</a></b> Diameter);<br/>
-	<b><a href="CppVoid.htm">void</a></b> RenderCylinder(neT3 Transform<a href="CppMatrix.html">Matrix</a>, <b><a href="CppFloat.html">float</a></b> Diameter, <b><a href="CppFloat.html">float</a></b> Height);<br/>
-	<b><a href="CppVoid.htm">void</a></b> RenderBox(neT3 Transform<a href="CppMatrix.html">Matrix</a>, neV3 Size);<br/>
-	<b><a href="CppVoid.htm">void</a></b> ApplyTransform(neT3 Transform<a href="CppMatrix.html">Matrix</a>);<br/>
+	<a href="CppComment.htm">//</a>Internal rendering <a href="CppFunction.htm">function</a>s:<br/>
+	<b><a href="CppVoid.htm">void</a></b> RenderSphere(neT3 Transform<a href="CppMatrix.htm">Matrix</a>, <b><a href="CppFloat.htm">float</a></b> Diameter);<br/>
+	<b><a href="CppVoid.htm">void</a></b> RenderCylinder(neT3 Transform<a href="CppMatrix.htm">Matrix</a>, <b><a href="CppFloat.htm">float</a></b> Diameter, <b><a href="CppFloat.htm">float</a></b> Height);<br/>
+	<b><a href="CppVoid.htm">void</a></b> RenderBox(neT3 Transform<a href="CppMatrix.htm">Matrix</a>, neV3 Size);<br/>
+	<b><a href="CppVoid.htm">void</a></b> ApplyTransform(neT3 Transform<a href="CppMatrix.htm">Matrix</a>);<br/>
 	<b><a href="CppVoid.htm">void</a></b> RenderGeometry(neGeometry * geom);<br/>
 	<b><a href="CppVoid.htm">void</a></b> RenderSpring(CTokSpring * spring);<br/>
 <br/>
-	<a href="CppComment.htm">//</a>Use <b><a href="CppThis.htm">this</a></b> <a href="CppFunction.html">function</a>, then the <b><a href="CppClass.html">class</a></b> will display the mesh<br/>
+	<a href="CppComment.htm">//</a>Use <b><a href="CppThis.htm">this</a></b> <a href="CppFunction.htm">function</a>, then the <b><a href="CppClass.htm">class</a></b> will display the mesh<br/>
 	<b><a href="CppVoid.htm">void</a></b> SetTerrainMesh(neTriangleMesh* Mesh);<br/>
 <br/>
-<b><a href="CppPublic.html">public</a></b>:<br/>
-	<a href="CppComment.htm">//</a><a href="CppConstructor.html">Constructor</a><br/>
+<b><a href="CppPublic.htm">public</a></b>:<br/>
+	<a href="CppComment.htm">//</a><a href="CppConstructor.htm">Constructor</a><br/>
 	CTokSim(<b><a href="CppVoid.htm">void</a></b>);<br/>
-	<a href="CppComment.htm">//</a><a href="CppDestructor.html">Destructor</a><br/>
+	<a href="CppComment.htm">//</a><a href="CppDestructor.htm">Destructor</a><br/>
 	~CTokSim(<b><a href="CppVoid.htm">void</a></b>);<br/>
 	<a href="CppComment.htm">//</a>displays the scene:<br/>
 	<b><a href="CppVoid.htm">void</a></b> Display(<b><a href="CppVoid.htm">void</a></b>);<br/>
-	<a href="CppComment.htm">//</a><a href="CppInitialize.html">Initialize</a> the <b><a href="CppClass.html">class</a></b>:<br/>
+	<a href="CppComment.htm">//</a><a href="CppInitialize.htm">Initialize</a> the <b><a href="CppClass.htm">class</a></b>:<br/>
 	<b><a href="CppVoid.htm">void</a></b> Init(<b><a href="CppInt.htm">int</a></b> MaxRigidCount, <b><a href="CppInt.htm">int</a></b> MaxAnimatedCount, neV3 gravity);<br/>
 <br/>
 	<a href="CppComment.htm">//</a>Create objects:<br/>
@@ -718,11 +718,11 @@ SimpleTokSim::~SimpleTokSim(<b><a href="CppVoid.htm">void</a></b>)<br/>
 	CTokSpring * CreateSpring(neRigidBody * rigid, neAnimatedBody * anim);<br/>
 	neRigidBody * CreateRigidBody();<br/>
 	neAnimatedBody * CreateAnimatedBody();<br/>
-	<a href="CppComment.htm">//</a><a href="CppReturn.html">returns</a> a <a href="CppPointer.html">pointer</a> to the tokamak simulator object:<br/>
+	<a href="CppComment.htm">//</a><a href="CppReturn.htm">returns</a> a <a href="CppPointer.htm">pointer</a> to the tokamak simulator object:<br/>
 	neSimulator * GetSimulator();<br/>
 	<br/>
-	<a href="CppComment.htm">//</a>calls the tokamak advance <a href="CppFunction.html">function</a>:<br/>
-	<b><a href="CppBool.htm">bool</a></b> CalculateNextFrame(<b><a href="CppFloat.html">float</a></b> d<a href="CppTime.htm">time</a>);<br/>
+	<a href="CppComment.htm">//</a>calls the tokamak advance <a href="CppFunction.htm">function</a>:<br/>
+	<b><a href="CppBool.htm">bool</a></b> CalculateNextFrame(<b><a href="CppFloat.htm">float</a></b> d<a href="CppTime.htm">time</a>);<br/>
 <br/>
 	<br/>
 };<br/>
@@ -737,17 +737,17 @@ SimpleTokSim::~SimpleTokSim(<b><a href="CppVoid.htm">void</a></b>)<br/>
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="TokSim.cpp" border = "1"><tr><td><code>
-<a href="CppInclude.html">#include</a> "StdAfx<a href="CppHeaderFile.htm">.h</a>"<br/>
-<a href="CppInclude.html">#include</a> "toksim<a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.htm">#include</a> "StdAfx.h"<br/>
+<a href="CppInclude.htm">#include</a> "toksim.h"<br/>
 <br/>
 <br/>
 <br/>
 <br/>
-<a href="CppPragma.html">#pragma</a> comment(lib, "tokamak.lib")<br/>
+<a href="CppPragma.htm">#pragma</a> comment(lib, "tokamak.lib")<br/>
 <br/>
 <br/>
 <a href="CppComment.htm">//</a>increase <b><a href="CppThis.htm">this</a></b> value to get nicer Spheres and Cylinders (needs more rendering <a href="CppTime.htm">time</a>):<br/>
-<a href="CppDefine.html">#define</a> SphereSlices 8 <br/>
+<a href="CppDefine.htm">#define</a> SphereSlices 8 <br/>
 <br/>
 <br/>
 CTokSim::CTokSim(<b><a href="CppVoid.htm">void</a></b>)<br/>
@@ -779,18 +779,18 @@ CTokSim::~CTokSim(<b><a href="CppVoid.htm">void</a></b>)<br/>
 <br/>
 	/<a href="CppComment.htm">/*</a>****<br/>
 	<a href="CppComment.htm">//</a><br/>
-	<a href="CppComment.htm">//</a> This <a href="CppFunction.html">function</a> displays all tokamak bodies, the terrain mesh and the springs<br/>
+	<a href="CppComment.htm">//</a> This <a href="CppFunction.htm">function</a> displays all tokamak bodies, the terrain mesh and the springs<br/>
 	<a href="CppComment.htm">//</a> (<b><a href="CppIf.htm">if</a></b> created via TokSim::CreateSpring).<br/>
 	<a href="CppComment.htm">//</a> The results don't look "game-like" but can be used to test<br/>
 	<a href="CppComment.htm">//</a> the physics engine (or your simulation implementation!).<br/>
 	<a href="CppComment.htm">//</a><br/>
 	/<a href="CppComment.htm">/*</a>****<br/>
 <br/>
-	<b><a href="CppStatic.html">static</a></b> GL<b><a href="CppFloat.html">float</a></b> MatAmbMesh[] <a href="CppOperatorAssign.htm">=</a> {0.3f,0.5f,0.3f,1.0f};<br/>
-	<b><a href="CppStatic.html">static</a></b> GL<b><a href="CppFloat.html">float</a></b> MatAmbAnim[] <a href="CppOperatorAssign.htm">=</a> {0.8f,0.5f,0.5f,1.0f};<br/>
-	<b><a href="CppStatic.html">static</a></b> GL<b><a href="CppFloat.html">float</a></b> MatAmbRigid[] <a href="CppOperatorAssign.htm">=</a> {0.5f,0.5f,0.8f,1.0f};<br/>
-	<b><a href="CppStatic.html">static</a></b> GL<b><a href="CppFloat.html">float</a></b> MatSpec[] <a href="CppOperatorAssign.htm">=</a> {0.0,0.0,0.0,0.0};<br/>
-	<b><a href="CppStatic.html">static</a></b> GL<b><a href="CppFloat.html">float</a></b> MatShininess[] <a href="CppOperatorAssign.htm">=</a> {0.0};<br/>
+	<b><a href="CppStatic.htm">static</a></b> GL<b><a href="CppFloat.htm">float</a></b> MatAmbMesh[] <a href="CppOperatorAssign.htm">=</a> {0.3f,0.5f,0.3f,1.0f};<br/>
+	<b><a href="CppStatic.htm">static</a></b> GL<b><a href="CppFloat.htm">float</a></b> MatAmbAnim[] <a href="CppOperatorAssign.htm">=</a> {0.8f,0.5f,0.5f,1.0f};<br/>
+	<b><a href="CppStatic.htm">static</a></b> GL<b><a href="CppFloat.htm">float</a></b> MatAmbRigid[] <a href="CppOperatorAssign.htm">=</a> {0.5f,0.5f,0.8f,1.0f};<br/>
+	<b><a href="CppStatic.htm">static</a></b> GL<b><a href="CppFloat.htm">float</a></b> MatSpec[] <a href="CppOperatorAssign.htm">=</a> {0.0,0.0,0.0,0.0};<br/>
+	<b><a href="CppStatic.htm">static</a></b> GL<b><a href="CppFloat.htm">float</a></b> MatShininess[] <a href="CppOperatorAssign.htm">=</a> {0.0};<br/>
 <br/>
 	<a href="CppComment.htm">//</a>Set general material values:<br/>
 	glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, MatSpec);<br/>
@@ -799,7 +799,7 @@ CTokSim::~CTokSim(<b><a href="CppVoid.htm">void</a></b>)<br/>
 	/<a href="CppComment.htm">/*</a>********************<br/>
 	/<a href="CppComment.htm">/*</a>* 1.) Draw the mesh:<br/>
 <br/>
-	glPush<a href="CppMatrix.html">Matrix</a>();<br/>
+	glPush<a href="CppMatrix.htm">Matrix</a>();<br/>
 <br/>
 	<a href="CppComment.htm">//</a> * a) "wireframe" without lighting<br/>
 	glDisable(GL_LIGHTING);<br/>
@@ -812,11 +812,11 @@ CTokSim::~CTokSim(<b><a href="CppVoid.htm">void</a></b>)<br/>
 	{<br/>
 		glDrawElements(	GL_TRIANGLES, <a href="CppComment.htm">//</a>mode<br/>
 				m_NumIndices,&nbsp;&nbsp;<a href="CppComment.htm">//</a>count, ie. how m<a href="CppAny.htm">any</a> indices<br/>
-				GL_UNSIGNED_INT, <a href="CppComment.htm">//</a>type of the index <a href="CppArray.html">array</a><br/>
+				GL_UNSIGNED_INT, <a href="CppComment.htm">//</a>type of the index <a href="CppArray.htm">array</a><br/>
 				m_IndexData);<br/>
 	}<br/>
 <br/>
-	<a href="CppComment.htm">//</a> * a) solid with lighting (note: there are no normals in <b><a href="CppThis.htm">this</a></b> <a href="CppVersion.html">version</a>,<br/>
+	<a href="CppComment.htm">//</a> * a) solid with lighting (note: there are no normals in <b><a href="CppThis.htm">this</a></b> <a href="CppVersion.htm">version</a>,<br/>
 	<a href="CppComment.htm">//</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;so every polygon has the same color)<br/>
 	glEnable(GL_LIGHTING);<br/>
 	<br/>
@@ -825,7 +825,7 @@ CTokSim::~CTokSim(<b><a href="CppVoid.htm">void</a></b>)<br/>
 	{<br/>
 		glDrawElements(	GL_TRIANGLES, <a href="CppComment.htm">//</a>mode<br/>
 				m_NumIndices,&nbsp;&nbsp;<a href="CppComment.htm">//</a>count, ie. how m<a href="CppAny.htm">any</a> indices<br/>
-				GL_UNSIGNED_INT, <a href="CppComment.htm">//</a>type of the index <a href="CppArray.html">array</a><br/>
+				GL_UNSIGNED_INT, <a href="CppComment.htm">//</a>type of the index <a href="CppArray.htm">array</a><br/>
 				m_IndexData);<br/>
 	}<br/>
 <br/>
@@ -839,20 +839,20 @@ CTokSim::~CTokSim(<b><a href="CppVoid.htm">void</a></b>)<br/>
 <br/>
 	<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> i <a href="CppOperatorAssign.htm">=</a> 0; i &lt; m_MaxRigidCount; i<a href="CppOperatorIncrement.htm">++</a>)<br/>
 	{<br/>
-		<b><a href="CppIf.htm">if</a></b> (m_Rigid[i] <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <a href="CppNULL.htm">NULL</a>) <b><a href="CppContinue.html">continue</a></b>;<br/>
+		<b><a href="CppIf.htm">if</a></b> (m_Rigid[i] <a href="CppOperatorEqual.htm">==</a> <a href="CppNULL.htm">NULL</a>) <b><a href="CppContinue.htm">continue</a></b>;<br/>
 		<br/>
-		glPush<a href="CppMatrix.html">Matrix</a>();<br/>
+		glPush<a href="CppMatrix.htm">Matrix</a>();<br/>
 <br/>
 		ApplyTransform(m_Rigid[i]-&gt;GetTransform());<br/>
 <br/>
-		m_Rigid[i]-&gt;Begin<a href="CppIterator.html">Iterate</a>Geometry();<br/>
+		m_Rigid[i]-&gt;Begin<a href="CppIterator.htm">Iterate</a>Geometry();<br/>
 		<b><a href="CppFor.htm">for</a></b>&nbsp;&nbsp;(<b><a href="CppInt.htm">int</a></b> geomCount=0;geomCount &lt; m_Rigid[i]-&gt;GetGeometryCount();geomCount<a href="CppOperatorIncrement.htm">++</a>)<br/>
 		{<br/>
 			neGeometry * geom <a href="CppOperatorAssign.htm">=</a> m_Rigid[i]-&gt;GetNextGeometry();<br/>
 			RenderGeometry(geom);<br/>
 			<br/>
 		}<br/>
-		glPop<a href="CppMatrix.html">Matrix</a>();<br/>
+		glPop<a href="CppMatrix.htm">Matrix</a>();<br/>
 <br/>
 	<br/>
 	}&nbsp;&nbsp;<br/>
@@ -866,40 +866,40 @@ CTokSim::~CTokSim(<b><a href="CppVoid.htm">void</a></b>)<br/>
 <br/>
 	<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> i <a href="CppOperatorAssign.htm">=</a> 0; i &lt; m_MaxAnimatedCount; i<a href="CppOperatorIncrement.htm">++</a>)<br/>
 	{<br/>
-		<b><a href="CppIf.htm">if</a></b> (m_Animated[i] <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <a href="CppNULL.htm">NULL</a>) <b><a href="CppContinue.html">continue</a></b>;<br/>
+		<b><a href="CppIf.htm">if</a></b> (m_Animated[i] <a href="CppOperatorEqual.htm">==</a> <a href="CppNULL.htm">NULL</a>) <b><a href="CppContinue.htm">continue</a></b>;<br/>
 	<br/>
-		glPush<a href="CppMatrix.html">Matrix</a>();<br/>
+		glPush<a href="CppMatrix.htm">Matrix</a>();<br/>
 <br/>
 		ApplyTransform(m_Animated[i]-&gt;GetTransform());<br/>
 <br/>
-		m_Animated[i]-&gt;Begin<a href="CppIterator.html">Iterate</a>Geometry();<br/>
+		m_Animated[i]-&gt;Begin<a href="CppIterator.htm">Iterate</a>Geometry();<br/>
 		<b><a href="CppFor.htm">for</a></b>&nbsp;&nbsp;(<b><a href="CppInt.htm">int</a></b> geomCount=0;geomCount &lt; m_Animated[i]-&gt;GetGeometryCount();geomCount<a href="CppOperatorIncrement.htm">++</a>)<br/>
 		{<br/>
 			neGeometry * geom <a href="CppOperatorAssign.htm">=</a> m_Animated[i]-&gt;GetNextGeometry();<br/>
 			RenderGeometry(geom);<br/>
 		}<br/>
-		glPop<a href="CppMatrix.html">Matrix</a>();<br/>
+		glPop<a href="CppMatrix.htm">Matrix</a>();<br/>
 	}&nbsp;&nbsp;<br/>
 <br/>
 	/<a href="CppComment.htm">/*</a>********************<br/>
 	/<a href="CppComment.htm">/*</a>* 4.) Draw the springs:<br/>
 	<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> i <a href="CppOperatorAssign.htm">=</a> 0; i &lt; m_SpringCount; i<a href="CppOperatorIncrement.htm">++</a>)<br/>
 	{<br/>
-		<b><a href="CppIf.htm">if</a></b> (m_Spring[i] <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <a href="CppNULL.htm">NULL</a>) <b><a href="CppContinue.html">continue</a></b>;<br/>
+		<b><a href="CppIf.htm">if</a></b> (m_Spring[i] <a href="CppOperatorEqual.htm">==</a> <a href="CppNULL.htm">NULL</a>) <b><a href="CppContinue.htm">continue</a></b>;<br/>
 <br/>
 		RenderSpring(m_Spring[i]);<br/>
 		<br/>
 	}&nbsp;&nbsp;<br/>
 <br/>
 	<br/>
-	glPop<a href="CppMatrix.html">Matrix</a>();<br/>
+	glPop<a href="CppMatrix.htm">Matrix</a>();<br/>
 }<br/>
 <br/>
 <b><a href="CppVoid.htm">void</a></b> CTokSim::Init(<b><a href="CppInt.htm">int</a></b> MaxRigidCount, <b><a href="CppInt.htm">int</a></b> MaxAnimatedCount, neV3 gravity)<br/>
 {<br/>
 <br/>
 	/<a href="CppComment.htm">/*</a>****<br/>
-	<a href="CppComment.htm">//</a><a href="CppInitialize.html">Initialize</a> the physics simulation.<br/>
+	<a href="CppComment.htm">//</a><a href="CppInitialize.htm">Initialize</a> the physics simulation.<br/>
 <br/>
 	m_MaxAnimatedCount <a href="CppOperatorAssign.htm">=</a> MaxAnimatedCount;<br/>
 	m_MaxRigidCount <a href="CppOperatorAssign.htm">=</a> MaxRigidCount;<br/>
@@ -921,19 +921,19 @@ CTokSim::~CTokSim(<b><a href="CppVoid.htm">void</a></b>)<br/>
 <br/>
 }<br/>
 <br/>
-<b><a href="CppBool.htm">bool</a></b> CTokSim::CalculateNextFrame(<b><a href="CppFloat.html">float</a></b> d<a href="CppTime.htm">time</a>)<br/>
+<b><a href="CppBool.htm">bool</a></b> CTokSim::CalculateNextFrame(<b><a href="CppFloat.htm">float</a></b> d<a href="CppTime.htm">time</a>)<br/>
 {<br/>
 	m_Sim-&gt;Advance(d<a href="CppTime.htm">time</a>);<br/>
 <br/>
-	<b><a href="CppReturn.html">return</a></b> <b><a href="CppTrue.htm">true</a></b>;<br/>
+	<b><a href="CppReturn.htm">return</a></b> <b><a href="CppTrue.htm">true</a></b>;<br/>
 }<br/>
 <br/>
 <b><a href="CppVoid.htm">void</a></b> CTokSim::RenderGeometry(neGeometry * geom)<br/>
 {<br/>
 	<a href="CppComment.htm">//</a>Renders boxes, spheres, or "cylinders" (which are capsules):<br/>
 	neV3 boxSize;<br/>
-	<b><a href="CppFloat.html">float</a></b> SphereDiameter;<br/>
-	<b><a href="CppFloat.html">float</a></b> CylDiameter, CylHeight;<br/>
+	<b><a href="CppFloat.htm">float</a></b> SphereDiameter;<br/>
+	<b><a href="CppFloat.htm">float</a></b> CylDiameter, CylHeight;<br/>
 	<b><a href="CppIf.htm">if</a></b> (geom-&gt;GetBoxSize(boxSize))<br/>
 	{<br/>
 		RenderBox(geom-&gt;GetTransform(),boxSize);<br/>
@@ -949,40 +949,40 @@ CTokSim::~CTokSim(<b><a href="CppVoid.htm">void</a></b>)<br/>
 }<br/>
 <br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> CTokSim::ApplyTransform(neT3 Transform<a href="CppMatrix.html">Matrix</a>)<br/>
+<b><a href="CppVoid.htm">void</a></b> CTokSim::ApplyTransform(neT3 Transform<a href="CppMatrix.htm">Matrix</a>)<br/>
 {<br/>
-	<a href="CppComment.htm">//</a>Apply a tokamak transformation <a href="CppMatrix.html">matrix</a> to opengl:<br/>
-	neT3 t <a href="CppOperatorAssign.htm">=</a> Transform<a href="CppMatrix.html">Matrix</a>;<br/>
-	GL<b><a href="CppFloat.html">float</a></b> <a href="CppMatrix.html">matrix</a>[] <a href="CppOperatorAssign.htm">=</a> { t.rot[0][0], t.rot[0][1], t.rot[0][2], 0.0f, <br/>
+	<a href="CppComment.htm">//</a>Apply a tokamak transformation <a href="CppMatrix.htm">matrix</a> to opengl:<br/>
+	neT3 t <a href="CppOperatorAssign.htm">=</a> Transform<a href="CppMatrix.htm">Matrix</a>;<br/>
+	GL<b><a href="CppFloat.htm">float</a></b> <a href="CppMatrix.htm">matrix</a>[] <a href="CppOperatorAssign.htm">=</a> { t.rot[0][0], t.rot[0][1], t.rot[0][2], 0.0f, <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;t.rot[1][0], t.rot[1][1], t.rot[1][2], 0.0f, <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;t.rot[2][0], t.rot[2][1], t.rot[2][2], 0.0f, <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;t.pos[0],t.pos[1], t.pos[2], 1.0f };<br/>
-	glMult<a href="CppMatrix.html">Matrix</a>f((GL<b><a href="CppFloat.html">float</a></b>*)&amp;<a href="CppMatrix.html">matrix</a>);<br/>
+	glMult<a href="CppMatrix.htm">Matrix</a>f((GL<b><a href="CppFloat.htm">float</a></b>*)&amp;<a href="CppMatrix.htm">matrix</a>);<br/>
 }<br/>
 <br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> CTokSim::RenderSphere(neT3 Transform<a href="CppMatrix.html">Matrix</a>, <b><a href="CppFloat.html">float</a></b> Diameter)<br/>
+<b><a href="CppVoid.htm">void</a></b> CTokSim::RenderSphere(neT3 Transform<a href="CppMatrix.htm">Matrix</a>, <b><a href="CppFloat.htm">float</a></b> Diameter)<br/>
 {<br/>
-	<a href="CppComment.htm">//</a>Renders a sphere. See the SphereSlices <a href="CppDefinition.html">definition</a> on top of <b><a href="CppThis.htm">this</a></b> file.<br/>
-	glPush<a href="CppMatrix.html">Matrix</a>();<br/>
-	ApplyTransform(Transform<a href="CppMatrix.html">Matrix</a>);<br/>
+	<a href="CppComment.htm">//</a>Renders a sphere. See the SphereSlices <a href="CppDefinition.htm">definition</a> on top of <b><a href="CppThis.htm">this</a></b> file.<br/>
+	glPush<a href="CppMatrix.htm">Matrix</a>();<br/>
+	ApplyTransform(Transform<a href="CppMatrix.htm">Matrix</a>);<br/>
 <br/>
 	glutSolidSphere(Diameter/2.0f,SphereSlices,SphereSlices);<br/>
-	glPop<a href="CppMatrix.html">Matrix</a>();<br/>
+	glPop<a href="CppMatrix.htm">Matrix</a>();<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> CTokSim::RenderCylinder(neT3 Transform<a href="CppMatrix.html">Matrix</a>, <b><a href="CppFloat.html">float</a></b> Diameter, <b><a href="CppFloat.html">float</a></b> Height)<br/>
+<b><a href="CppVoid.htm">void</a></b> CTokSim::RenderCylinder(neT3 Transform<a href="CppMatrix.htm">Matrix</a>, <b><a href="CppFloat.htm">float</a></b> Diameter, <b><a href="CppFloat.htm">float</a></b> Height)<br/>
 {<br/>
 	<a href="CppComment.htm">//</a>Tokamak cylinders are not really cylinders.<br/>
 	<a href="CppComment.htm">//</a>They have half a sphere on top and on there bottom.<br/>
 	<a href="CppComment.htm">//</a>As the half of the sphere disappears inside (normally...), we render<br/>
 	<a href="CppComment.htm">//</a>just two normal spheres.<br/>
 <br/>
-	glPush<a href="CppMatrix.html">Matrix</a>();<br/>
-	ApplyTransform(Transform<a href="CppMatrix.html">Matrix</a>);<br/>
+	glPush<a href="CppMatrix.htm">Matrix</a>();<br/>
+	ApplyTransform(Transform<a href="CppMatrix.htm">Matrix</a>);<br/>
 	<br/>
 	<a href="CppComment.htm">//</a>A gluCylinder "lies", a Tokamak Cylinder "stands", so rotated:<br/>
-	gl<a href="CppRotate.html">Rotate</a>f(90.0f,1.0f,0.0f,0.0f);<br/>
+	gl<a href="CppRotate.htm">Rotate</a>f(90.0f,1.0f,0.0f,0.0f);<br/>
 	glTranslatef(0.0f,0.0f,-Height/2.0f);<br/>
 	gluCylinder(gluNewQuadric(),Diameter/2.0f,Diameter/2.0f,Height,SphereSlices,SphereSlices);<br/>
 	glutSolidSphere(Diameter/2.0f,SphereSlices,SphereSlices);<br/>
@@ -990,19 +990,19 @@ CTokSim::~CTokSim(<b><a href="CppVoid.htm">void</a></b>)<br/>
 	glTranslatef(0.0f,0.0f,+Height);<br/>
 	glutSolidSphere(Diameter/2.0f,SphereSlices,SphereSlices);<br/>
 	<br/>
-	glPop<a href="CppMatrix.html">Matrix</a>();<br/>
+	glPop<a href="CppMatrix.htm">Matrix</a>();<br/>
 }<br/>
 <br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> CTokSim::RenderBox(neT3 Transform<a href="CppMatrix.html">Matrix</a>, neV3 Size)<br/>
+<b><a href="CppVoid.htm">void</a></b> CTokSim::RenderBox(neT3 Transform<a href="CppMatrix.htm">Matrix</a>, neV3 Size)<br/>
 {<br/>
 	<a href="CppComment.htm">//</a>Render a simple solid box:<br/>
-	glPush<a href="CppMatrix.html">Matrix</a>();<br/>
-	ApplyTransform(Transform<a href="CppMatrix.html">Matrix</a>);<br/>
+	glPush<a href="CppMatrix.htm">Matrix</a>();<br/>
+	ApplyTransform(Transform<a href="CppMatrix.htm">Matrix</a>);<br/>
 	<br/>
 	glScalef(Size[0],Size[1],Size[2]);<br/>
 	glutSolidCube(1.0f);<br/>
-	glPop<a href="CppMatrix.html">Matrix</a>();<br/>
+	glPop<a href="CppMatrix.htm">Matrix</a>();<br/>
 }<br/>
 <br/>
 <br/>
@@ -1013,19 +1013,19 @@ CTokSim::~CTokSim(<b><a href="CppVoid.htm">void</a></b>)<br/>
 	neV3 ConnPos1,ConnPos2;<br/>
 	<br/>
 	ConnPos1 <a href="CppOperatorAssign.htm">=</a> spring-&gt;GetRigid1()-&gt;GetPos();<br/>
-	<b><a href="CppIf.htm">if</a></b> (spring-&gt;GetSpringType() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> RIGID_TO_RIGID)<br/>
+	<b><a href="CppIf.htm">if</a></b> (spring-&gt;GetSpringType() <a href="CppOperatorEqual.htm">==</a> RIGID_TO_RIGID)<br/>
 		ConnPos2 <a href="CppOperatorAssign.htm">=</a> spring-&gt;GetRigid2()-&gt;GetPos();<br/>
 	<b><a href="CppElse.htm">else</a></b><br/>
 		ConnPos2 <a href="CppOperatorAssign.htm">=</a> spring-&gt;GetAnimated()-&gt;GetPos();<br/>
 <br/>
 	ConnPos1<a href="CppOperatorPlusAssign.htm">+=</a> spring-&gt;GetRigid1()-&gt;GetRotationM3()*spring-&gt;GetConnPos1();<br/>
-	<b><a href="CppIf.htm">if</a></b> (spring-&gt;GetSpringType() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> RIGID_TO_RIGID)<br/>
+	<b><a href="CppIf.htm">if</a></b> (spring-&gt;GetSpringType() <a href="CppOperatorEqual.htm">==</a> RIGID_TO_RIGID)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ConnPos2<a href="CppOperatorPlusAssign.htm">+=</a> spring-&gt;GetRigid2()-&gt;GetRotationM3()*spring-&gt;GetConnPos2();<br/>
 	<b><a href="CppElse.htm">else</a></b><br/>
 		ConnPos2<a href="CppOperatorPlusAssign.htm">+=</a> spring-&gt;GetAnimated()-&gt;GetRotationM3()*spring-&gt;GetConnPos2();<br/>
 <br/>
 	<a href="CppComment.htm">//</a>Set the color of the spring according to its length:<br/>
-	<b><a href="CppFloat.html">float</a></b> r,g,b;<br/>
+	<b><a href="CppFloat.htm">float</a></b> r,g,b;<br/>
 	r <a href="CppOperatorAssign.htm">=</a> (spring-&gt;GetCurrentLength()/spring-&gt;GetDefaultLength()-1);<br/>
 	g <a href="CppOperatorAssign.htm">=</a> 0.0f;<br/>
 	b <a href="CppOperatorAssign.htm">=</a> 1.0f-r;<br/>
@@ -1045,37 +1045,37 @@ CTokSim::~CTokSim(<b><a href="CppVoid.htm">void</a></b>)<br/>
 <br/>
 	<a href="CppComment.htm">//</a>Render the "fixation vector(s)", <b><a href="CppIf.htm">if</a></b> spring is fixed:<br/>
 	SFixationInfo fixation <a href="CppOperatorAssign.htm">=</a> spring-&gt;GetFixationInfo();<br/>
-	neV3 Fix1<a href="CppPoint.html">Point</a>;<br/>
+	neV3 Fix1<a href="CppPoint.htm">Point</a>;<br/>
 	<b><a href="CppIf.htm">if</a></b> (fixation.bFixed1)<br/>
 	{<br/>
-		Fix1<a href="CppPoint.html">Point</a> <a href="CppOperatorAssign.htm">=</a> ConnPos1 <a href="CppOperatorPlus.htm">+</a> spring-&gt;GetRigid1()-&gt;GetRotationM3()*fixation.ConnDir1*spring-&gt;GetDefaultLength()/5.0f;<br/>
+		Fix1<a href="CppPoint.htm">Point</a> <a href="CppOperatorAssign.htm">=</a> ConnPos1 <a href="CppOperatorPlus.htm">+</a> spring-&gt;GetRigid1()-&gt;GetRotationM3()*fixation.ConnDir1*spring-&gt;GetDefaultLength()/5.0f;<br/>
 <br/>
 		glColor3f(0.8f,0.8f,0.0f);<br/>
 <br/>
 		glBegin(GL_LINE_STRIP);<br/>
 <br/>
 		glVertex3f(ConnPos1[0],ConnPos1[1],ConnPos1[2]);<br/>
-		glVertex3f(Fix1<a href="CppPoint.html">Point</a>[0],Fix1<a href="CppPoint.html">Point</a>[1],Fix1<a href="CppPoint.html">Point</a>[2]);<br/>
+		glVertex3f(Fix1<a href="CppPoint.htm">Point</a>[0],Fix1<a href="CppPoint.htm">Point</a>[1],Fix1<a href="CppPoint.htm">Point</a>[2]);<br/>
 <br/>
 		glEnd();<br/>
 	}<br/>
 <br/>
-	neV3 Fix2<a href="CppPoint.html">Point</a>;<br/>
+	neV3 Fix2<a href="CppPoint.htm">Point</a>;<br/>
 	<b><a href="CppIf.htm">if</a></b> (fixation.bFixed2)<br/>
 	{<br/>
 		<br/>
-		Fix2<a href="CppPoint.html">Point</a> <a href="CppOperatorAssign.htm">=</a> ConnPos2 ;<br/>
-		<b><a href="CppIf.htm">if</a></b> (spring-&gt;GetSpringType() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> RIGID_TO_RIGID)<br/>
-			Fix2<a href="CppPoint.html">Point</a> <a href="CppOperatorPlus.htm">+</a><a href="CppOperatorAssign.htm">=</a> spring-&gt;GetRigid2()-&gt;GetRotationM3()*fixation.ConnDir2*spring-&gt;GetDefaultLength()/5.0f;<br/>
+		Fix2<a href="CppPoint.htm">Point</a> <a href="CppOperatorAssign.htm">=</a> ConnPos2 ;<br/>
+		<b><a href="CppIf.htm">if</a></b> (spring-&gt;GetSpringType() <a href="CppOperatorEqual.htm">==</a> RIGID_TO_RIGID)<br/>
+			Fix2<a href="CppPoint.htm">Point</a> <a href="CppOperatorPlusAssign.htm">+=</a> spring-&gt;GetRigid2()-&gt;GetRotationM3()*fixation.ConnDir2*spring-&gt;GetDefaultLength()/5.0f;<br/>
 		<b><a href="CppElse.htm">else</a></b><br/>
-			Fix2<a href="CppPoint.html">Point</a> <a href="CppOperatorPlus.htm">+</a><a href="CppOperatorAssign.htm">=</a> spring-&gt;GetAnimated()-&gt;GetRotationM3()*fixation.ConnDir2*spring-&gt;GetDefaultLength()/5.0f;<br/>
+			Fix2<a href="CppPoint.htm">Point</a> <a href="CppOperatorPlusAssign.htm">+=</a> spring-&gt;GetAnimated()-&gt;GetRotationM3()*fixation.ConnDir2*spring-&gt;GetDefaultLength()/5.0f;<br/>
 <br/>
 		glColor3f(0.8f,0.8f,0.0f);<br/>
 <br/>
 		glBegin(GL_LINE_STRIP);<br/>
 <br/>
 		glVertex3f(ConnPos2[0],ConnPos2[1],ConnPos2[2]);<br/>
-		glVertex3f(Fix2<a href="CppPoint.html">Point</a>[0],Fix2<a href="CppPoint.html">Point</a>[1],Fix2<a href="CppPoint.html">Point</a>[2]);<br/>
+		glVertex3f(Fix2<a href="CppPoint.htm">Point</a>[0],Fix2<a href="CppPoint.htm">Point</a>[1],Fix2<a href="CppPoint.htm">Point</a>[2]);<br/>
 <br/>
 		glEnd();<br/>
 	}<br/>
@@ -1091,15 +1091,15 @@ CTokSim::~CTokSim(<b><a href="CppVoid.htm">void</a></b>)<br/>
 <br/>
 <b><a href="CppVoid.htm">void</a></b> CTokSim::SetTerrainMesh(neTriangleMesh* Mesh)<br/>
 {<br/>
-	<a href="CppComment.htm">//</a>1.) Tell Tokamak <a href="CppAbout.html">about</a> the mesh:<br/>
+	<a href="CppComment.htm">//</a>1.) Tell Tokamak <a href="CppAbout.htm">about</a> the mesh:<br/>
 	m_Sim-&gt;SetTerrainMesh(Mesh);<br/>
 <br/>
 <br/>
-	<a href="CppComment.htm">//</a>2.) Store the Mesh as Vertex <a href="CppArray.html">Array</a><br/>
-	glEnableClient<a href="CppState.html">State</a>(GL_VERTEX_ARRAY);<br/>
+	<a href="CppComment.htm">//</a>2.) Store the Mesh as Vertex <a href="CppArray.htm">Array</a><br/>
+	glEnableClient<a href="CppState.htm">State</a>(GL_VERTEX_ARRAY);<br/>
 	m_NumVertices <a href="CppOperatorAssign.htm">=</a> Mesh-&gt;vertexCount;<br/>
 	m_NumIndices <a href="CppOperatorAssign.htm">=</a> Mesh-&gt;triangleCount*3;<br/>
-	m_VertexData <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> GL<b><a href="CppFloat.html">float</a></b>[m_NumVertices*3]; <a href="CppComment.htm">//</a>3 <a href="CppComponent.html">component</a>s per vector<br/>
+	m_VertexData <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> GL<b><a href="CppFloat.htm">float</a></b>[m_NumVertices*3]; <a href="CppComment.htm">//</a>3 <a href="CppComponent.htm">component</a>s per vector<br/>
 	m_IndexData <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> GLuint[m_NumIndices];		<br/>
 	<br/>
 	<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> i=0;i&lt;m_NumVertices;i<a href="CppOperatorIncrement.htm">++</a>)<br/>
@@ -1115,9 +1115,9 @@ CTokSim::~CTokSim(<b><a href="CppVoid.htm">void</a></b>)<br/>
 	}<br/>
 	<br/>
 <br/>
-	glVertex<a href="CppPointer.html">Pointer</a>(	3,&nbsp;&nbsp; <a href="CppComment.htm">//</a>3 <a href="CppComponent.html">component</a>s per vertex (x,y,z)<br/>
+	glVertex<a href="CppPointer.htm">Pointer</a>(	3,&nbsp;&nbsp; <a href="CppComment.htm">//</a>3 <a href="CppComponent.htm">component</a>s per vertex (x,y,z)<br/>
 						GL_FLOAT,<br/>
-						<b><a href="CppSizeof.html">sizeof</a></b>(GL<b><a href="CppFloat.html">float</a></b>)*3,<br/>
+						<b><a href="CppSizeof.htm">sizeof</a></b>(GL<b><a href="CppFloat.htm">float</a></b>)*3,<br/>
 						m_VertexData);<br/>
 <br/>
 <br/>
@@ -1125,50 +1125,50 @@ CTokSim::~CTokSim(<b><a href="CppVoid.htm">void</a></b>)<br/>
 <br/>
 CTokSpring * CTokSim::CreateSpring(neRigidBody * rigid1, neRigidBody * rigid2)<br/>
 {<br/>
-	<b><a href="CppIf.htm">if</a></b> (m_SpringCount <a href="CppOperatorGreaterEqual.html">&gt;=</a> MAX_SPRING_COUNT)<br/>
-		<b><a href="CppReturn.html">return</a></b> <a href="CppNULL.htm">NULL</a>;<br/>
+	<b><a href="CppIf.htm">if</a></b> (m_SpringCount <a href="CppOperatorGreaterEqual.htm">&gt;=</a> MAX_SPRING_COUNT)<br/>
+		<b><a href="CppReturn.htm">return</a></b> <a href="CppNULL.htm">NULL</a>;<br/>
 <br/>
 <br/>
 	m_Spring[m_SpringCount<a href="CppOperatorIncrement.htm">++</a>] <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> CTokSpring(rigid1,rigid2);<br/>
 <br/>
-	<b><a href="CppReturn.html">return</a></b> m_Spring[m_SpringCount-1];<br/>
+	<b><a href="CppReturn.htm">return</a></b> m_Spring[m_SpringCount-1];<br/>
 <br/>
 }<br/>
 <br/>
 CTokSpring * CTokSim::CreateSpring(neRigidBody * rigid, neAnimatedBody * anim)<br/>
 {<br/>
-	<b><a href="CppIf.htm">if</a></b> (m_SpringCount <a href="CppOperatorGreaterEqual.html">&gt;=</a> MAX_SPRING_COUNT)<br/>
-		<b><a href="CppReturn.html">return</a></b> <a href="CppNULL.htm">NULL</a>;<br/>
+	<b><a href="CppIf.htm">if</a></b> (m_SpringCount <a href="CppOperatorGreaterEqual.htm">&gt;=</a> MAX_SPRING_COUNT)<br/>
+		<b><a href="CppReturn.htm">return</a></b> <a href="CppNULL.htm">NULL</a>;<br/>
 <br/>
 	<br/>
 <br/>
 	m_Spring[m_SpringCount<a href="CppOperatorIncrement.htm">++</a>] <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> CTokSpring(rigid,anim);<br/>
 <br/>
-	<b><a href="CppReturn.html">return</a></b> m_Spring[m_SpringCount-1];<br/>
+	<b><a href="CppReturn.htm">return</a></b> m_Spring[m_SpringCount-1];<br/>
 }<br/>
 <br/>
 neRigidBody * CTokSim::CreateRigidBody()<br/>
 {<br/>
-	<b><a href="CppIf.htm">if</a></b> (m_RigidCount<a href="CppOperatorGreaterEqual.html">&gt;=</a> MAX_RIGID_COUNT)<br/>
-		<b><a href="CppReturn.html">return</a></b> <a href="CppNULL.htm">NULL</a>;<br/>
+	<b><a href="CppIf.htm">if</a></b> (m_RigidCount<a href="CppOperatorGreaterEqual.htm">&gt;=</a> MAX_RIGID_COUNT)<br/>
+		<b><a href="CppReturn.htm">return</a></b> <a href="CppNULL.htm">NULL</a>;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<br/>
 	neRigidBody * rigid <a href="CppOperatorAssign.htm">=</a> m_Sim-&gt;CreateRigidBody();<br/>
 	m_Rigid[m_RigidCount<a href="CppOperatorIncrement.htm">++</a>] <a href="CppOperatorAssign.htm">=</a> rigid;<br/>
-	<b><a href="CppReturn.html">return</a></b> rigid;<br/>
+	<b><a href="CppReturn.htm">return</a></b> rigid;<br/>
 }<br/>
 	<br/>
 neAnimatedBody * CTokSim::CreateAnimatedBody()<br/>
 {<br/>
-	<b><a href="CppIf.htm">if</a></b> (m_AnimatedCount<a href="CppOperatorGreaterEqual.html">&gt;=</a> MAX_ANIMATED_COUNT)<br/>
-		<b><a href="CppReturn.html">return</a></b> <a href="CppNULL.htm">NULL</a>;<br/>
+	<b><a href="CppIf.htm">if</a></b> (m_AnimatedCount<a href="CppOperatorGreaterEqual.htm">&gt;=</a> MAX_ANIMATED_COUNT)<br/>
+		<b><a href="CppReturn.htm">return</a></b> <a href="CppNULL.htm">NULL</a>;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<br/>
 	neAnimatedBody * animated <a href="CppOperatorAssign.htm">=</a> m_Sim-&gt;CreateAnimatedBody();<br/>
 	m_Animated[m_AnimatedCount<a href="CppOperatorIncrement.htm">++</a>] <a href="CppOperatorAssign.htm">=</a> animated;<br/>
-	<b><a href="CppReturn.html">return</a></b> animated;<br/>
+	<b><a href="CppReturn.htm">return</a></b> animated;<br/>
 }<br/>
 neSimulator * CTokSim::GetSimulator()<br/>
 {<br/>
-	<b><a href="CppReturn.html">return</a></b> m_Sim;<br/>
+	<b><a href="CppReturn.htm">return</a></b> m_Sim;<br/>
 }<br/>
 </code></td></tr></table>
 <!-- end of the code -->
@@ -1181,73 +1181,73 @@ neSimulator * CTokSim::GetSimulator()<br/>
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="TokSpring.h" border = "1"><tr><td><code>
-<a href="CppPragma.html">#pragma</a> once<br/>
+<a href="CppPragma.htm">#pragma</a> once<br/>
 <br/>
-<a href="CppInclude.html">#include</a> "tokamak<a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.htm">#include</a> "tokamak.h"<br/>
 <br/>
-<a href="CppComment.htm">//</a>Spring type <a href="CppDefinition.html">definition</a>:<br/>
-<b><a href="CppTypedef.html">typedef</a></b> <b><a href="CppEnum.htm">enum</a></b> <br/>
+<a href="CppComment.htm">//</a>Spring type <a href="CppDefinition.htm">definition</a>:<br/>
+<b><a href="CppTypedef.htm">typedef</a></b> <b><a href="CppEnum.htm">enum</a></b> <br/>
 {<br/>
 	RIGID_TO_RIGID,<br/>
 	RIGID_TO_ANIM<br/>
 } eSpringType;<br/>
 <br/>
-<a href="CppComment.htm">//</a>Fixation information <a href="CppDefinition.html">definition</a>:<br/>
-<b><a href="CppTypedef.html">typedef</a></b> <b><a href="CppStruct.html">struct</a></b><br/>
+<a href="CppComment.htm">//</a>Fixation information <a href="CppDefinition.htm">definition</a>:<br/>
+<b><a href="CppTypedef.htm">typedef</a></b> <b><a href="CppStruct.htm">struct</a></b><br/>
 {<br/>
 	<b><a href="CppBool.htm">bool</a></b> bFixed1, bFixed2;		<a href="CppComment.htm">//</a>indicate, <b><a href="CppIf.htm">if</a></b> the spring is fixed<br/>
 	neV3 ConnDir1, ConnDir2;	<a href="CppComment.htm">//</a>direction vector of the spring relative to the body<br/>
 	<a href="CppComment.htm">//</a>required only <b><a href="CppIf.htm">if</a></b> spring is fixed (bFixed1 or bFixed2):<br/>
-	<b><a href="CppFloat.html">float</a></b> fTangentForceFactor;<br/>
-	<b><a href="CppFloat.html">float</a></b> fTangentDamping;<br/>
-	<b><a href="CppFloat.html">float</a></b> fTorqueFactor;<br/>
-	<b><a href="CppFloat.html">float</a></b> fAngularDamping;<br/>
+	<b><a href="CppFloat.htm">float</a></b> fTangentForceFactor;<br/>
+	<b><a href="CppFloat.htm">float</a></b> fTangentDamping;<br/>
+	<b><a href="CppFloat.htm">float</a></b> fTorqueFactor;<br/>
+	<b><a href="CppFloat.htm">float</a></b> fAngularDamping;<br/>
 } SFixationInfo;<br/>
 <br/>
 <br/>
-<b><a href="CppClass.html">class</a></b> CTokSpring: <b><a href="CppPublic.html">public</a></b> neRigidBodyControllerCallback<br/>
+<b><a href="CppClass.htm">class</a></b> CTokSpring: <b><a href="CppPublic.htm">public</a></b> neRigidBodyControllerCallback<br/>
 {<br/>
-<b><a href="CppProtected.html">protected</a></b>:<br/>
+<b><a href="CppProtected.htm">protected</a></b>:<br/>
 	<a href="CppComment.htm">//</a>Which types of objects are connected with <b><a href="CppThis.htm">this</a></b> spring?<br/>
 	eSpringType m_Type;<br/>
 	<br/>
-	<a href="CppComment.htm">//</a><a href="CppPointer.html">Pointer</a>s to the bodies possibly connected:<br/>
+	<a href="CppComment.htm">//</a><a href="CppPointer.htm">Pointer</a>s to the bodies possibly connected:<br/>
 	neRigidBody * m_Rigid1, * m_Rigid2;<br/>
 	neAnimatedBody * m_Anim;<br/>
 	<a href="CppComment.htm">//</a>Position relative to the body's position: Where is the spring connected with the body?<br/>
 	neV3 m_ConnPos1, m_ConnPos2;<br/>
 <br/>
 	<a href="CppComment.htm">//</a>Spring parameters:<br/>
-	<b><a href="CppFloat.html">float</a></b> m_Length;			<a href="CppComment.htm">//</a><b><a href="CppThis.htm">this</a></b> is the length at which no force is created<br/>
-	<b><a href="CppFloat.html">float</a></b> m_SpringConst;	<a href="CppComment.htm">//</a>how "strong" the spring is<br/>
-	<b><a href="CppFloat.html">float</a></b> m_DampingFactor;&nbsp;&nbsp;<a href="CppComment.htm">//</a>used to damp the spring<br/>
+	<b><a href="CppFloat.htm">float</a></b> m_Length;			<a href="CppComment.htm">//</a><b><a href="CppThis.htm">this</a></b> is the length at which no force is created<br/>
+	<b><a href="CppFloat.htm">float</a></b> m_SpringConst;	<a href="CppComment.htm">//</a>how "strong" the spring is<br/>
+	<b><a href="CppFloat.htm">float</a></b> m_DampingFactor;&nbsp;&nbsp;<a href="CppComment.htm">//</a>used to damp the spring<br/>
 	<br/>
 	<a href="CppComment.htm">//</a>used <b><a href="CppIf.htm">if</a></b> spring is "fixed":<br/>
 	SFixationInfo m_Fixation;<br/>
 <br/>
 	neV3 m_LastForce;<br/>
-	<b><a href="CppBool.htm">bool</a></b> m_bLastForceAs<b><a href="CppSigned.html">signed</a></b>;<br/>
-	<b><a href="CppFloat.html">float</a></b> m_LastSpringLength;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>the controller callback <a href="CppFunction.html">function</a><br/>
-	<b><a href="CppVirtual.html">virtual</a></b> <b><a href="CppVoid.htm">void</a></b> RigidBodyControllerCallback(neRigidBodyController * controller, <b><a href="CppFloat.html">float</a></b> <a href="CppTime.htm">time</a>Step);<br/>
+	<b><a href="CppBool.htm">bool</a></b> m_bLastForceAs<b><a href="CppSigned.htm">signed</a></b>;<br/>
+	<b><a href="CppFloat.htm">float</a></b> m_LastSpringLength;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>the controller callback <a href="CppFunction.htm">function</a><br/>
+	<b><a href="CppVirtual.htm">virtual</a></b> <b><a href="CppVoid.htm">void</a></b> RigidBodyControllerCallback(neRigidBodyController * controller, <b><a href="CppFloat.htm">float</a></b> <a href="CppTime.htm">time</a>Step);<br/>
 <br/>
 	<a href="CppComment.htm">//</a>Init the spring:<br/>
-	<b><a href="CppVoid.htm">void</a></b> <a href="CppInitialize.html">Initialize</a>();<br/>
+	<b><a href="CppVoid.htm">void</a></b> <a href="CppInitialize.htm">Initialize</a>();<br/>
 <br/>
 	<br/>
-<b><a href="CppPublic.html">public</a></b>:<br/>
+<b><a href="CppPublic.htm">public</a></b>:<br/>
 	CTokSpring(neRigidBody * rigid1, neRigidBody * rigid2);<br/>
 	CTokSpring(neRigidBody * rigid, neAnimatedBody * anim);<br/>
 	~CTokSpring(<b><a href="CppVoid.htm">void</a></b>);<br/>
 	<br/>
-	<b><a href="CppVoid.htm">void</a></b> SetDefaultLength(<b><a href="CppFloat.html">float</a></b> length);<br/>
-	<b><a href="CppFloat.html">float</a></b> GetDefaultLength();<br/>
+	<b><a href="CppVoid.htm">void</a></b> SetDefaultLength(<b><a href="CppFloat.htm">float</a></b> length);<br/>
+	<b><a href="CppFloat.htm">float</a></b> GetDefaultLength();<br/>
 	<br/>
-	<b><a href="CppVoid.htm">void</a></b> SetSpringConst(<b><a href="CppFloat.html">float</a></b> SpringConst);<br/>
-	<b><a href="CppFloat.html">float</a></b> GetSpringConst();<br/>
+	<b><a href="CppVoid.htm">void</a></b> SetSpringConst(<b><a href="CppFloat.htm">float</a></b> SpringConst);<br/>
+	<b><a href="CppFloat.htm">float</a></b> GetSpringConst();<br/>
 	<br/>
-	<b><a href="CppVoid.htm">void</a></b> SetDampingFactor(<b><a href="CppFloat.html">float</a></b> DampingFactor);<br/>
-	<b><a href="CppFloat.html">float</a></b> GetDampingFactor();<br/>
+	<b><a href="CppVoid.htm">void</a></b> SetDampingFactor(<b><a href="CppFloat.htm">float</a></b> DampingFactor);<br/>
+	<b><a href="CppFloat.htm">float</a></b> GetDampingFactor();<br/>
 <br/>
 	<b><a href="CppVoid.htm">void</a></b> SetConnPos1(neV3 pos);<br/>
 	neV3 GetConnPos1();<br/>
@@ -1263,7 +1263,7 @@ neSimulator * CTokSim::GetSimulator()<br/>
 	neRigidBody * GetRigid2();<br/>
 	neAnimatedBody * GetAnimated();<br/>
 	<br/>
-	<b><a href="CppFloat.html">float</a></b> GetCurrentLength();<br/>
+	<b><a href="CppFloat.htm">float</a></b> GetCurrentLength();<br/>
 <br/>
 <br/>
 	<br/>
@@ -1281,10 +1281,10 @@ neSimulator * CTokSim::GetSimulator()<br/>
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="TokSpring.cpp" border = "1"><tr><td><code>
-<a href="CppInclude.html">#include</a> "StdAfx<a href="CppHeaderFile.htm">.h</a>"<br/>
-<a href="CppInclude.html">#include</a> ".\tokspring<a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.htm">#include</a> "StdAfx.h"<br/>
+<a href="CppInclude.htm">#include</a> ".\tokspring.h"<br/>
 <br/>
-<b><a href="CppTypedef.html">typedef</a></b> <b><a href="CppStruct.html">struct</a></b><br/>
+<b><a href="CppTypedef.htm">typedef</a></b> <b><a href="CppStruct.htm">struct</a></b><br/>
 {<br/>
 	neV3 Velocity, AngularVelocity;<br/>
 	neV3 Position;<br/>
@@ -1292,18 +1292,18 @@ neSimulator * CTokSim::GetSimulator()<br/>
 	<b><a href="CppBool.htm">bool</a></b> bSpringFixed;<br/>
 } BodyProperties;<br/>
 <br/>
- <b><a href="CppVoid.htm">void</a></b> CTokSpring::RigidBodyControllerCallback(neRigidBodyController * controller, <b><a href="CppFloat.html">float</a></b> <a href="CppTime.htm">time</a>Step)<br/>
+ <b><a href="CppVoid.htm">void</a></b> CTokSpring::RigidBodyControllerCallback(neRigidBodyController * controller, <b><a href="CppFloat.htm">float</a></b> <a href="CppTime.htm">time</a>Step)<br/>
  {<br/>
-	<a href="CppComment.htm">//</a>Get a <a href="CppPointer.html">pointer</a> to the rigid body we will controll here:<br/>
+	<a href="CppComment.htm">//</a>Get a <a href="CppPointer.htm">pointer</a> to the rigid body we will controll here:<br/>
 	neRigidBody * rigid <a href="CppOperatorAssign.htm">=</a> controller-&gt;GetRigidBody();<br/>
-	<a href="CppComment.htm">//</a>This <a href="CppMemberFunction.html">member function</a> will calculate a force at the connection <a href="CppPointer.html">point</a>, a "center force" and a torque:<br/>
+	<a href="CppComment.htm">//</a>This <a href="CppMemberFunction.htm">member function</a> will calculate a force at the connection <a href="CppPointer.htm">point</a>, a "center force" and a torque:<br/>
 	neV3 forceAtConnPos,centerforce,torque;<br/>
 	forceAtConnPos.SetZero();<br/>
 	torque.SetZero();<br/>
 	centerforce.SetZero();<br/>
 <br/>
-	<a href="CppComment.htm">//</a>This <a href="CppMemberFunction.html">member function</a> can be called <b><a href="CppFor.htm">for</a></b> the first or the second body which are connected by the spring.<br/>
-	<a href="CppComment.htm">//</a>Their properties will be used often, so we have a <b><a href="CppStruct.html">struct</a></b> to store them locally.<br/>
+	<a href="CppComment.htm">//</a>This <a href="CppMemberFunction.htm">member function</a> can be called <b><a href="CppFor.htm">for</a></b> the first or the second body which are connected by the spring.<br/>
+	<a href="CppComment.htm">//</a>Their properties will be used often, so we have a <b><a href="CppStruct.htm">struct</a></b> to store them locally.<br/>
 	<a href="CppComment.htm">//</a>The advantage then is, that doesn't matter <a href="CppAny.htm">any</a>more, <b><a href="CppIf.htm">if</a></b> we are controlling body1 or body2.<br/>
 	<a href="CppComment.htm">//</a>"ThisBody" is the body controlled here, "OtherBody" is the other body connected with <b><a href="CppThis.htm">this</a></b> spring.<br/>
 	BodyProperties ThisBody, OtherBody;<br/>
@@ -1318,20 +1318,20 @@ neSimulator * CTokSim::GetSimulator()<br/>
 	Body1.ConnDir <a href="CppOperatorAssign.htm">=</a> m_Rigid1-&gt;GetRotationM3()*m_Fixation.ConnDir1; <br/>
 	Body1.bSpringFixed <a href="CppOperatorAssign.htm">=</a> m_Fixation.bFixed1;<br/>
 <br/>
-	<b><a href="CppIf.htm">if</a></b> (m_Type <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> RIGID_TO_RIGID)<br/>
+	<b><a href="CppIf.htm">if</a></b> (m_Type <a href="CppOperatorEqual.htm">==</a> RIGID_TO_RIGID)<br/>
 	{<br/>
 		Body2.Position <a href="CppOperatorAssign.htm">=</a> m_Rigid2-&gt;GetPos();		<br/>
 		Body2.ConnPos.Set(Body2.Position);<br/>
-		Body2.ConnPos <a href="CppOperatorPlus.htm">+</a><a href="CppOperatorAssign.htm">=</a> m_Rigid2-&gt;GetRotationM3()*m_ConnPos2;<br/>
+		Body2.ConnPos <a href="CppOperatorPlusAssign.htm">+=</a> m_Rigid2-&gt;GetRotationM3()*m_ConnPos2;<br/>
 		Body2.Velocity <a href="CppOperatorAssign.htm">=</a> m_Rigid2-&gt;GetVelocity();<br/>
 		Body2.AngularVelocity <a href="CppOperatorAssign.htm">=</a> m_Rigid2-&gt;GetAngularVelocity();<br/>
 		Body2.ConnDir <a href="CppOperatorAssign.htm">=</a> m_Rigid2-&gt;GetRotationM3()*m_Fixation.ConnDir2; <br/>
 	} <b><a href="CppElse.htm">else</a></b><br/>
-	<b><a href="CppIf.htm">if</a></b> (m_Type <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> RIGID_TO_ANIM)<br/>
+	<b><a href="CppIf.htm">if</a></b> (m_Type <a href="CppOperatorEqual.htm">==</a> RIGID_TO_ANIM)<br/>
 	{<br/>
 		Body2.Position <a href="CppOperatorAssign.htm">=</a> m_Anim-&gt;GetPos();<br/>
 		Body2.ConnPos <a href="CppOperatorAssign.htm">=</a> Body2.Position;<br/>
-		Body2.ConnPos <a href="CppOperatorPlus.htm">+</a><a href="CppOperatorAssign.htm">=</a> m_Anim-&gt;GetRotationM3()*m_ConnPos2;<br/>
+		Body2.ConnPos <a href="CppOperatorPlusAssign.htm">+=</a> m_Anim-&gt;GetRotationM3()*m_ConnPos2;<br/>
 		Body2.Velocity.SetZero(); <a href="CppComment.htm">//</a><b><a href="CppThis.htm">this</a></b> might be wrong <b><a href="CppIf.htm">if</a></b> the user moves his anim body. <br/>
 						<a href="CppComment.htm">//</a>but <b><a href="CppThis.htm">this</a></b> <b><a href="CppCase.htm">case</a></b> is not yet supported here.<br/>
 		Body2.AngularVelocity.SetZero();<br/>
@@ -1341,7 +1341,7 @@ neSimulator * CTokSim::GetSimulator()<br/>
 	Body2.bSpringFixed <a href="CppOperatorAssign.htm">=</a> m_Fixation.bFixed2;<br/>
 <br/>
 	<a href="CppComment.htm">//</a>Assign the "ThisBody" and "OtherBody" structures:<br/>
-	<b><a href="CppIf.htm">if</a></b> (rigid <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> m_Rigid1)<br/>
+	<b><a href="CppIf.htm">if</a></b> (rigid <a href="CppOperatorEqual.htm">==</a> m_Rigid1)<br/>
 	{<br/>
 		ThisBody <a href="CppOperatorAssign.htm">=</a> Body1;<br/>
 		OtherBody <a href="CppOperatorAssign.htm">=</a> Body2;<br/>
@@ -1358,14 +1358,14 @@ neSimulator * CTokSim::GetSimulator()<br/>
 	f32 SpringLength <a href="CppOperatorAssign.htm">=</a> dist.Length();<br/>
 <br/>
 	<a href="CppComment.htm">//</a>Ready to calculate the force in the direction of the spring ("contraction/expansion force"):<br/>
-	forceAtConnPos <a href="CppOperatorMinus.htm">-</a><a href="CppOperatorAssign.htm">=</a> (m_Length-SpringLength)*m_SpringConst*dir;<br/>
+	forceAtConnPos <a href="CppOperatorMinusAssign.htm">-=</a> (m_Length-SpringLength)*m_SpringConst*dir;<br/>
 <br/>
 	<a href="CppComment.htm">//</a><a href="CppAdd.htm">Add</a> a damping force<br/>
 	<a href="CppComment.htm">//</a>only calculate in the direction of the spring <b><a href="CppIf.htm">if</a></b> fixed:	<br/>
 	<b><a href="CppIf.htm">if</a></b> ((m_Fixation.bFixed1) <a href="CppOperatorLogicalOr.htm">||</a> (m_Fixation.bFixed2))<br/>
-		forceAtConnPos <a href="CppOperatorMinus.htm">-</a><a href="CppOperatorAssign.htm">=</a> m_DampingFactor*(ThisBody.Velocity-OtherBody.Velocity).Dot(dir)*dir;<br/>
+		forceAtConnPos <a href="CppOperatorMinusAssign.htm">-=</a> m_DampingFactor*(ThisBody.Velocity-OtherBody.Velocity).Dot(dir)*dir;<br/>
 	<b><a href="CppElse.htm">else</a></b><br/>
-		forceAtConnPos <a href="CppOperatorMinus.htm">-</a><a href="CppOperatorAssign.htm">=</a> m_DampingFactor*(ThisBody.Velocity-OtherBody.Velocity);<br/>
+		forceAtConnPos <a href="CppOperatorMinusAssign.htm">-=</a> m_DampingFactor*(ThisBody.Velocity-OtherBody.Velocity);<br/>
 <br/>
 	<a href="CppComment.htm">//</a>Store the spring length:<br/>
 	m_LastSpringLength <a href="CppOperatorAssign.htm">=</a> SpringLength;<br/>
@@ -1375,9 +1375,9 @@ neSimulator * CTokSim::GetSimulator()<br/>
 	{<br/>
 		<a href="CppComment.htm">//</a>fixation at <b><a href="CppThis.htm">this</a></b> body will cause a torque<br/>
 	<br/>
-		torque <a href="CppOperatorPlus.htm">+</a><a href="CppOperatorAssign.htm">=</a> ThisBody.ConnDir.Cross(dir)*m_Fixation.fTorqueFactor;<br/>
+		torque <a href="CppOperatorPlusAssign.htm">+=</a> ThisBody.ConnDir.Cross(dir)*m_Fixation.fTorqueFactor;<br/>
 		<a href="CppComment.htm">//</a>damping torque:<br/>
-		torque <a href="CppOperatorMinus.htm">-</a><a href="CppOperatorAssign.htm">=</a> m_Fixation.fAngularDamping*(ThisBody.AngularVelocity-OtherBody.AngularVelocity);<br/>
+		torque <a href="CppOperatorMinusAssign.htm">-=</a> m_Fixation.fAngularDamping*(ThisBody.AngularVelocity-OtherBody.AngularVelocity);<br/>
 	<br/>
 	}<br/>
 <br/>
@@ -1388,7 +1388,7 @@ neSimulator * CTokSim::GetSimulator()<br/>
 		 <a href="CppComment.htm">//</a>Fixation of the spring on the other body causes a force:<br/>
 <br/>
 		neV3 planeNormal <a href="CppOperatorAssign.htm">=</a> OtherBody.ConnDir.Cross(dir);<br/>
-		centerforce <a href="CppOperatorMinus.htm">-</a><a href="CppOperatorAssign.htm">=</a> m_Fixation.fTangentForceFactor*planeNormal.Cross(dir);<br/>
+		centerforce <a href="CppOperatorMinusAssign.htm">-=</a> m_Fixation.fTangentForceFactor*planeNormal.Cross(dir);<br/>
 		<a href="CppComment.htm">//</a>damping force:<br/>
 	&nbsp;&nbsp;&nbsp;&nbsp;dampforcedir <a href="CppOperatorAssign.htm">=</a> centerforce;dampforcedir.Normalize();<br/>
 		<br/>
@@ -1398,12 +1398,12 @@ neSimulator * CTokSim::GetSimulator()<br/>
 		 <a href="CppComment.htm">//</a>Fixation of the spring on <b><a href="CppThis.htm">this</a></b> body causes also a force:<br/>
 <br/>
 		neV3 planeNormal <a href="CppOperatorAssign.htm">=</a> ThisBody.ConnDir.Cross(dir);<br/>
-		centerforce <a href="CppOperatorPlus.htm">+</a><a href="CppOperatorAssign.htm">=</a> m_Fixation.fTangentForceFactor*planeNormal.Cross(dir);<br/>
+		centerforce <a href="CppOperatorPlusAssign.htm">+=</a> m_Fixation.fTangentForceFactor*planeNormal.Cross(dir);<br/>
 		<a href="CppComment.htm">//</a>damping force:<br/>
 		dampforcedir <a href="CppOperatorAssign.htm">=</a> centerforce;dampforcedir.Normalize();<br/>
 	}<br/>
 	<b><a href="CppIf.htm">if</a></b> (m_Fixation.bFixed1 <a href="CppOperatorLogicalOr.htm">||</a> m_Fixation.bFixed2)<br/>
-		centerforce <a href="CppOperatorMinus.htm">-</a><a href="CppOperatorAssign.htm">=</a> m_Fixation.fTangentDamping*(ThisBody.Velocity-OtherBody.Velocity).Dot(dampforcedir)*dampforcedir;<br/>
+		centerforce <a href="CppOperatorMinusAssign.htm">-=</a> m_Fixation.fTangentDamping*(ThisBody.Velocity-OtherBody.Velocity).Dot(dampforcedir)*dampforcedir;<br/>
 <br/>
 <br/>
 <br/>
@@ -1414,8 +1414,8 @@ neSimulator * CTokSim::GetSimulator()<br/>
 <br/>
 	<a href="CppComment.htm">///</a>****<br/>
 	<a href="CppComment.htm">///</a>*<br/>
-	<a href="CppComment.htm">///</a>* NOTE: THESE LINES ARE NOT YET 100<a href="CppOperatorModulus.htm">%</a> CORRECT.<br/>
-	<a href="CppComment.htm">///</a>* But they still produce working springs...<br/>
+	<a href="CppComment.htm">//</a><a href="CppComment.htm">/*</a> NOTE: THESE LINES ARE NOT YET 100<a href="CppOperatorModulus.htm">%</a> CORRECT.<br/>
+	<a href="CppComment.htm">//</a><a href="CppComment.htm">/*</a> But they still produce working springs...<br/>
 	<a href="CppComment.htm">///</a>*<br/>
 	<a href="CppComment.htm">///</a>****<br/>
 	rigid-&gt;SetForce(forceAtConnPos+centerforce,ThisBody.ConnPos);<br/>
@@ -1428,30 +1428,30 @@ neSimulator * CTokSim::GetSimulator()<br/>
 <br/>
 CTokSpring::CTokSpring(neRigidBody * rigid1, neRigidBody * rigid2)<br/>
 {<br/>
-	<a href="CppComment.htm">//</a>Set <b><a href="CppDefault.html">default</a></b> values:<br/>
-	<a href="CppInitialize.html">Initialize</a>();<br/>
-	<a href="CppComment.htm">//</a>Store the <a href="CppPointer.html">pointer</a>s to the conntected bodies:<br/>
+	<a href="CppComment.htm">//</a>Set <b><a href="CppDefault.htm">default</a></b> values:<br/>
+	<a href="CppInitialize.htm">Initialize</a>();<br/>
+	<a href="CppComment.htm">//</a>Store the <a href="CppPointer.htm">pointer</a>s to the conntected bodies:<br/>
 	m_Rigid1 <a href="CppOperatorAssign.htm">=</a> rigid1;<br/>
 	m_Rigid2 <a href="CppOperatorAssign.htm">=</a> rigid2;<br/>
 	m_Anim <a href="CppOperatorAssign.htm">=</a> <a href="CppNULL.htm">NULL</a>;<br/>
 	<a href="CppComment.htm">//</a>We have a rigid-rigid spring:<br/>
 	m_Type <a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;RIGID_TO_RIGID;<br/>
-	<a href="CppComment.htm">//</a>add the controller callback <a href="CppFunction.html">function</a>:<br/>
+	<a href="CppComment.htm">//</a>add the controller callback <a href="CppFunction.htm">function</a>:<br/>
 	m_Rigid1-&gt;<a href="CppAdd.htm">Add</a>Controller(<b><a href="CppThis.htm">this</a></b>,0.0f);<br/>
 	m_Rigid2-&gt;<a href="CppAdd.htm">Add</a>Controller(<b><a href="CppThis.htm">this</a></b>,0.0f);<br/>
 }<br/>
 <br/>
 CTokSpring::CTokSpring(neRigidBody * rigid, neAnimatedBody * anim)<br/>
 {<br/>
-	<a href="CppComment.htm">//</a>Set <b><a href="CppDefault.html">default</a></b> values:<br/>
-	<a href="CppInitialize.html">Initialize</a>();<br/>
-	<a href="CppComment.htm">//</a>Store the <a href="CppPointer.html">pointer</a>s to the conntected bodies:<br/>
+	<a href="CppComment.htm">//</a>Set <b><a href="CppDefault.htm">default</a></b> values:<br/>
+	<a href="CppInitialize.htm">Initialize</a>();<br/>
+	<a href="CppComment.htm">//</a>Store the <a href="CppPointer.htm">pointer</a>s to the conntected bodies:<br/>
 	m_Rigid1 <a href="CppOperatorAssign.htm">=</a> rigid;<br/>
 	m_Rigid2 <a href="CppOperatorAssign.htm">=</a> <a href="CppNULL.htm">NULL</a>;<br/>
 	m_Anim<a href="CppOperatorAssign.htm">=</a> anim;<br/>
 	<a href="CppComment.htm">//</a>We have a rigid-anim spring:<br/>
 	m_Type <a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;RIGID_TO_ANIM;<br/>
-	<a href="CppComment.htm">//</a>add the controller callback <a href="CppFunction.html">function</a>:<br/>
+	<a href="CppComment.htm">//</a>add the controller callback <a href="CppFunction.htm">function</a>:<br/>
 	m_Rigid1-&gt;<a href="CppAdd.htm">Add</a>Controller(<b><a href="CppThis.htm">this</a></b>,0.0f);<br/>
 }<br/>
 <br/>
@@ -1459,65 +1459,65 @@ CTokSpring::~CTokSpring(<b><a href="CppVoid.htm">void</a></b>)<br/>
 {<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> CTokSpring::<a href="CppInitialize.html">Initialize</a>()<br/>
+<b><a href="CppVoid.htm">void</a></b> CTokSpring::<a href="CppInitialize.htm">Initialize</a>()<br/>
 {<br/>
-	<a href="CppComment.htm">//</a>set <b><a href="CppDefault.html">default</a></b> values:<br/>
+	<a href="CppComment.htm">//</a>set <b><a href="CppDefault.htm">default</a></b> values:<br/>
 	m_Length <a href="CppOperatorAssign.htm">=</a> 1.0f;<br/>
 	m_SpringConst <a href="CppOperatorAssign.htm">=</a> 1.0f;<br/>
 	m_DampingFactor <a href="CppOperatorAssign.htm">=</a> 0.0f;<br/>
 	m_ConnPos1.SetZero();<br/>
 	m_ConnPos2.SetZero();<br/>
-	m_Fixation.bFixed1 <a href="CppOperatorAssign.htm">=</a> <b><a href="CppFalse.html">false</a></b>;<br/>
-	m_Fixation.bFixed2 <a href="CppOperatorAssign.htm">=</a> <b><a href="CppFalse.html">false</a></b>;<br/>
-	m_bLastForceAs<b><a href="CppSigned.html">signed</a></b> <a href="CppOperatorAssign.htm">=</a> <b><a href="CppFalse.html">false</a></b>;<br/>
+	m_Fixation.bFixed1 <a href="CppOperatorAssign.htm">=</a> <b><a href="CppFalse.htm">false</a></b>;<br/>
+	m_Fixation.bFixed2 <a href="CppOperatorAssign.htm">=</a> <b><a href="CppFalse.htm">false</a></b>;<br/>
+	m_bLastForceAs<b><a href="CppSigned.htm">signed</a></b> <a href="CppOperatorAssign.htm">=</a> <b><a href="CppFalse.htm">false</a></b>;<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> CTokSpring::SetDefaultLength(<b><a href="CppFloat.html">float</a></b> length)<br/>
+<b><a href="CppVoid.htm">void</a></b> CTokSpring::SetDefaultLength(<b><a href="CppFloat.htm">float</a></b> length)<br/>
 {<br/>
 	m_Length <a href="CppOperatorAssign.htm">=</a> length;<br/>
 }<br/>
-<b><a href="CppFloat.html">float</a></b> CTokSpring::GetDefaultLength()<br/>
+<b><a href="CppFloat.htm">float</a></b> CTokSpring::GetDefaultLength()<br/>
 {<br/>
-	<b><a href="CppReturn.html">return</a></b> m_Length;<br/>
+	<b><a href="CppReturn.htm">return</a></b> m_Length;<br/>
 }<br/>
 <br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> CTokSpring::SetSpringConst(<b><a href="CppFloat.html">float</a></b> SpringConst)<br/>
+<b><a href="CppVoid.htm">void</a></b> CTokSpring::SetSpringConst(<b><a href="CppFloat.htm">float</a></b> SpringConst)<br/>
 {<br/>
 	m_SpringConst <a href="CppOperatorAssign.htm">=</a> SpringConst;<br/>
 }<br/>
-<b><a href="CppFloat.html">float</a></b> CTokSpring::GetSpringConst()<br/>
+<b><a href="CppFloat.htm">float</a></b> CTokSpring::GetSpringConst()<br/>
 {<br/>
-	<b><a href="CppReturn.html">return</a></b> m_SpringConst;<br/>
+	<b><a href="CppReturn.htm">return</a></b> m_SpringConst;<br/>
 }<br/>
 eSpringType CTokSpring::GetSpringType()<br/>
 {<br/>
-	<b><a href="CppReturn.html">return</a></b> m_Type;<br/>
+	<b><a href="CppReturn.htm">return</a></b> m_Type;<br/>
 }<br/>
 neRigidBody * CTokSpring::GetRigid1()<br/>
 {<br/>
-	<b><a href="CppReturn.html">return</a></b> m_Rigid1;<br/>
+	<b><a href="CppReturn.htm">return</a></b> m_Rigid1;<br/>
 }<br/>
 neRigidBody * CTokSpring::GetRigid2()<br/>
 {<br/>
-	<b><a href="CppReturn.html">return</a></b> m_Rigid2;<br/>
+	<b><a href="CppReturn.htm">return</a></b> m_Rigid2;<br/>
 }<br/>
 neAnimatedBody * CTokSpring::GetAnimated()<br/>
 {<br/>
-	<b><a href="CppReturn.html">return</a></b> m_Anim;<br/>
+	<b><a href="CppReturn.htm">return</a></b> m_Anim;<br/>
 }<br/>
-<b><a href="CppFloat.html">float</a></b> CTokSpring::GetCurrentLength()<br/>
+<b><a href="CppFloat.htm">float</a></b> CTokSpring::GetCurrentLength()<br/>
 {<br/>
-	<b><a href="CppReturn.html">return</a></b> m_LastSpringLength;<br/>
+	<b><a href="CppReturn.htm">return</a></b> m_LastSpringLength;<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> CTokSpring::SetDampingFactor(<b><a href="CppFloat.html">float</a></b> DampingFactor)<br/>
+<b><a href="CppVoid.htm">void</a></b> CTokSpring::SetDampingFactor(<b><a href="CppFloat.htm">float</a></b> DampingFactor)<br/>
 {<br/>
 	m_DampingFactor <a href="CppOperatorAssign.htm">=</a> DampingFactor;<br/>
 }<br/>
-<b><a href="CppFloat.html">float</a></b> CTokSpring::GetDampingFactor()<br/>
+<b><a href="CppFloat.htm">float</a></b> CTokSpring::GetDampingFactor()<br/>
 {<br/>
-	<b><a href="CppReturn.html">return</a></b> m_DampingFactor;<br/>
+	<b><a href="CppReturn.htm">return</a></b> m_DampingFactor;<br/>
 }<br/>
 <b><a href="CppVoid.htm">void</a></b> CTokSpring::SetConnPos1(neV3 pos)<br/>
 {<br/>
@@ -1526,7 +1526,7 @@ neAnimatedBody * CTokSpring::GetAnimated()<br/>
 <br/>
 neV3 CTokSpring::GetConnPos1()<br/>
 {<br/>
-	<b><a href="CppReturn.html">return</a></b> m_ConnPos1;<br/>
+	<b><a href="CppReturn.htm">return</a></b> m_ConnPos1;<br/>
 }<br/>
 <br/>
 <b><a href="CppVoid.htm">void</a></b> CTokSpring::FixSpring(SFixationInfo fixInfo)<br/>
@@ -1544,7 +1544,7 @@ neV3 CTokSpring::GetConnPos1()<br/>
 <br/>
 SFixationInfo CTokSpring::GetFixationInfo()<br/>
 {<br/>
-	<b><a href="CppReturn.html">return</a></b> m_Fixation;<br/>
+	<b><a href="CppReturn.htm">return</a></b> m_Fixation;<br/>
 }<br/>
 <br/>
 <b><a href="CppVoid.htm">void</a></b> CTokSpring::SetConnPos2(neV3 pos)<br/>
@@ -1553,7 +1553,7 @@ SFixationInfo CTokSpring::GetFixationInfo()<br/>
 }<br/>
 neV3 CTokSpring::GetConnPos2()<br/>
 {<br/>
-	<b><a href="CppReturn.html">return</a></b> m_ConnPos2;<br/>
+	<b><a href="CppReturn.htm">return</a></b> m_ConnPos2;<br/>
 }<br/>
 </code></td></tr></table>
 <!-- end of the code -->
@@ -1574,38 +1574,38 @@ neV3 CTokSpring::GetConnPos2()<br/>
 /<a href="CppComment.htm">/*</a>**************************************************************************<br/>
 <br/>
 <br/>
-<a href="CppInclude.html">#include</a> &lt;gl\glut<a href="CppHeaderFile.htm">.h</a>&gt;		<a href="CppComment.htm">//</a> Need to include it here because the GL* types are required<br/>
-<a href="CppInclude.html">#include</a> "SPMath<a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.htm">#include</a> &lt;gl\glut.h&gt;		<a href="CppComment.htm">//</a> Need to include it here because the GL* types are required<br/>
+<a href="CppInclude.htm">#include</a> "SPMath.h"<br/>
 <br/>
 <a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><br/>
 <a href="CppComment.htm">//</a>Note: All angles in degrees&nbsp;&nbsp;<a href="CppComment.htm">//</a><br/>
 <a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><br/>
 <br/>
 <br/>
-<b><a href="CppClass.html">class</a></b> CCamera<br/>
+<b><a href="CppClass.htm">class</a></b> CCamera<br/>
 {<br/>
-<b><a href="CppPrivate.html">private</a></b>:<br/>
+<b><a href="CppPrivate.htm">private</a></b>:<br/>
 	<br/>
 	SF3dVector ViewDir;<br/>
 	SF3dVector RightVector;	<br/>
 	SF3dVector UpVector;<br/>
 	SF3dVector Position;<br/>
 <br/>
-	GL<b><a href="CppFloat.html">float</a></b> <a href="CppRotate.html">Rotate</a>dX, <a href="CppRotate.html">Rotate</a>dY, <a href="CppRotate.html">Rotate</a>dZ;	<br/>
+	GL<b><a href="CppFloat.htm">float</a></b> <a href="CppRotate.htm">Rotate</a>dX, <a href="CppRotate.htm">Rotate</a>dY, <a href="CppRotate.htm">Rotate</a>dZ;	<br/>
 	<br/>
-<b><a href="CppPublic.html">public</a></b>:<br/>
+<b><a href="CppPublic.htm">public</a></b>:<br/>
 	CCamera();				<a href="CppComment.htm">//</a>inits the values (Position: (0|0|0) Target: (0|0|-1) )<br/>
-	<b><a href="CppVoid.htm">void</a></b> Render ( <b><a href="CppVoid.htm">void</a></b> );	<a href="CppComment.htm">//</a>executes some gl<a href="CppRotate.html">Rotate</a>s and a glTranslate command<br/>
-							<a href="CppComment.htm">//</a>Note: You should call glLoadIdentity before <b><a href="CppUsing.html">using</a></b> Render<br/>
+	<b><a href="CppVoid.htm">void</a></b> Render ( <b><a href="CppVoid.htm">void</a></b> );	<a href="CppComment.htm">//</a>executes some gl<a href="CppRotate.htm">Rotate</a>s and a glTranslate command<br/>
+							<a href="CppComment.htm">//</a>Note: You should call glLoadIdentity before <b><a href="CppUsing.htm">using</a></b> Render<br/>
 <br/>
 	<b><a href="CppVoid.htm">void</a></b> Move ( SF3dVector Direction );<br/>
-	<b><a href="CppVoid.htm">void</a></b> <a href="CppRotate.html">Rotate</a>X ( GL<b><a href="CppFloat.html">float</a></b> Angle );<br/>
-	<b><a href="CppVoid.htm">void</a></b> <a href="CppRotate.html">Rotate</a>Y ( GL<b><a href="CppFloat.html">float</a></b> Angle );<br/>
-	<b><a href="CppVoid.htm">void</a></b> <a href="CppRotate.html">Rotate</a>Z ( GL<b><a href="CppFloat.html">float</a></b> Angle );<br/>
+	<b><a href="CppVoid.htm">void</a></b> <a href="CppRotate.htm">Rotate</a>X ( GL<b><a href="CppFloat.htm">float</a></b> Angle );<br/>
+	<b><a href="CppVoid.htm">void</a></b> <a href="CppRotate.htm">Rotate</a>Y ( GL<b><a href="CppFloat.htm">float</a></b> Angle );<br/>
+	<b><a href="CppVoid.htm">void</a></b> <a href="CppRotate.htm">Rotate</a>Z ( GL<b><a href="CppFloat.htm">float</a></b> Angle );<br/>
 <br/>
-	<b><a href="CppVoid.htm">void</a></b> MoveForward ( GL<b><a href="CppFloat.html">float</a></b> Distance );<br/>
-	<b><a href="CppVoid.htm">void</a></b> MoveUpward ( GL<b><a href="CppFloat.html">float</a></b> Distance );<br/>
-	<b><a href="CppVoid.htm">void</a></b> StrafeRight ( GL<b><a href="CppFloat.html">float</a></b> Distance );<br/>
+	<b><a href="CppVoid.htm">void</a></b> MoveForward ( GL<b><a href="CppFloat.htm">float</a></b> Distance );<br/>
+	<b><a href="CppVoid.htm">void</a></b> MoveUpward ( GL<b><a href="CppFloat.htm">float</a></b> Distance );<br/>
+	<b><a href="CppVoid.htm">void</a></b> StrafeRight ( GL<b><a href="CppFloat.htm">float</a></b> Distance );<br/>
 <br/>
 <br/>
 };<br/>
@@ -1620,12 +1620,12 @@ neV3 CTokSpring::GetConnPos2()<br/>
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="camera.cpp" border = "1"><tr><td><code>
-<a href="CppInclude.html">#include</a> "camera<a href="CppHeaderFile.htm">.h</a>"<br/>
-<a href="CppInclude.html">#include</a> "math<a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.htm">#include</a> "camera.h"<br/>
+<a href="CppInclude.htm">#include</a> "math.h"<br/>
 <br/>
-<a href="CppDefine.html">#define</a> SQR(x) (x*x)<br/>
+<a href="CppDefine.htm">#define</a> SQR(x) (x*x)<br/>
 <br/>
-<a href="CppDefine.html">#define</a> <a href="CppNULL.htm">NULL</a>_VECTOR F3dVector(0.0f,0.0f,0.0f)<br/>
+<a href="CppDefine.htm">#define</a> <a href="CppNULL.htm">NULL</a>_VECTOR F3dVector(0.0f,0.0f,0.0f)<br/>
 <br/>
 CCamera::CCamera()<br/>
 {<br/>
@@ -1636,7 +1636,7 @@ CCamera::CCamera()<br/>
 	UpVector <a href="CppOperatorAssign.htm">=</a> F3dVector (0.0, 1.0, 0.0);<br/>
 <br/>
 	<a href="CppComment.htm">//</a>Only to be sure:<br/>
-	<a href="CppRotate.html">Rotate</a>dX <a href="CppOperatorAssign.htm">=</a> <a href="CppRotate.html">Rotate</a>dY <a href="CppOperatorAssign.htm">=</a> <a href="CppRotate.html">Rotate</a>dZ <a href="CppOperatorAssign.htm">=</a> 0.0;<br/>
+	<a href="CppRotate.htm">Rotate</a>dX <a href="CppOperatorAssign.htm">=</a> <a href="CppRotate.htm">Rotate</a>dY <a href="CppOperatorAssign.htm">=</a> <a href="CppRotate.htm">Rotate</a>dZ <a href="CppOperatorAssign.htm">=</a> 0.0;<br/>
 }<br/>
 <br/>
 <b><a href="CppVoid.htm">void</a></b> CCamera::Move (SF3dVector Direction)<br/>
@@ -1644,68 +1644,68 @@ CCamera::CCamera()<br/>
 	Position <a href="CppOperatorAssign.htm">=</a> Position <a href="CppOperatorPlus.htm">+</a> Direction;<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> CCamera::<a href="CppRotate.html">Rotate</a>X (GL<b><a href="CppFloat.html">float</a></b> Angle)<br/>
+<b><a href="CppVoid.htm">void</a></b> CCamera::<a href="CppRotate.htm">Rotate</a>X (GL<b><a href="CppFloat.htm">float</a></b> Angle)<br/>
 {<br/>
-	<a href="CppRotate.html">Rotate</a>dX <a href="CppOperatorPlus.htm">+</a><a href="CppOperatorAssign.htm">=</a> Angle;<br/>
+	<a href="CppRotate.htm">Rotate</a>dX <a href="CppOperatorPlusAssign.htm">+=</a> Angle;<br/>
 	<br/>
-	<a href="CppComment.htm">//</a><a href="CppRotate.html">Rotate</a> viewdir around the right vector:<br/>
+	<a href="CppComment.htm">//</a><a href="CppRotate.htm">Rotate</a> viewdir around the right vector:<br/>
 	ViewDir <a href="CppOperatorAssign.htm">=</a> Normalize3dVector(ViewDir*cos(Angle*PIdiv180)<br/>
 								<a href="CppOperatorPlus.htm">+</a> UpVector*sin(Angle*PIdiv180));<br/>
 <br/>
 	<a href="CppComment.htm">//</a>now compute the <b><a href="CppNew.htm">new</a></b> UpVector (by cross product)<br/>
-	UpVector <a href="CppOperatorAssign.htm">=</a> Cross<a href="CppProduct.html">Product</a>(&amp;ViewDir, &amp;RightVector)*-1;<br/>
+	UpVector <a href="CppOperatorAssign.htm">=</a> Cross<a href="CppProduct.htm">Product</a>(&amp;ViewDir, &amp;RightVector)*-1;<br/>
 <br/>
 	<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> CCamera::<a href="CppRotate.html">Rotate</a>Y (GL<b><a href="CppFloat.html">float</a></b> Angle)<br/>
+<b><a href="CppVoid.htm">void</a></b> CCamera::<a href="CppRotate.htm">Rotate</a>Y (GL<b><a href="CppFloat.htm">float</a></b> Angle)<br/>
 {<br/>
-	<a href="CppRotate.html">Rotate</a>dY <a href="CppOperatorPlus.htm">+</a><a href="CppOperatorAssign.htm">=</a> Angle;<br/>
+	<a href="CppRotate.htm">Rotate</a>dY <a href="CppOperatorPlusAssign.htm">+=</a> Angle;<br/>
 	<br/>
-	<a href="CppComment.htm">//</a><a href="CppRotate.html">Rotate</a> viewdir around the up vector:<br/>
+	<a href="CppComment.htm">//</a><a href="CppRotate.htm">Rotate</a> viewdir around the up vector:<br/>
 	ViewDir <a href="CppOperatorAssign.htm">=</a> Normalize3dVector(ViewDir*cos(Angle*PIdiv180)<br/>
 								<a href="CppOperatorMinus.htm">-</a> RightVector*sin(Angle*PIdiv180));<br/>
 <br/>
 	<a href="CppComment.htm">//</a>now compute the <b><a href="CppNew.htm">new</a></b> RightVector (by cross product)<br/>
-	RightVector <a href="CppOperatorAssign.htm">=</a> Cross<a href="CppProduct.html">Product</a>(&amp;ViewDir, &amp;UpVector);<br/>
+	RightVector <a href="CppOperatorAssign.htm">=</a> Cross<a href="CppProduct.htm">Product</a>(&amp;ViewDir, &amp;UpVector);<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> CCamera::<a href="CppRotate.html">Rotate</a>Z (GL<b><a href="CppFloat.html">float</a></b> Angle)<br/>
+<b><a href="CppVoid.htm">void</a></b> CCamera::<a href="CppRotate.htm">Rotate</a>Z (GL<b><a href="CppFloat.htm">float</a></b> Angle)<br/>
 {<br/>
-	<a href="CppRotate.html">Rotate</a>dZ <a href="CppOperatorPlus.htm">+</a><a href="CppOperatorAssign.htm">=</a> Angle;<br/>
+	<a href="CppRotate.htm">Rotate</a>dZ <a href="CppOperatorPlusAssign.htm">+=</a> Angle;<br/>
 	<br/>
-	<a href="CppComment.htm">//</a><a href="CppRotate.html">Rotate</a> viewdir around the right vector:<br/>
+	<a href="CppComment.htm">//</a><a href="CppRotate.htm">Rotate</a> viewdir around the right vector:<br/>
 	RightVector <a href="CppOperatorAssign.htm">=</a> Normalize3dVector(RightVector*cos(Angle*PIdiv180)<br/>
 								<a href="CppOperatorPlus.htm">+</a> UpVector*sin(Angle*PIdiv180));<br/>
 <br/>
 	<a href="CppComment.htm">//</a>now compute the <b><a href="CppNew.htm">new</a></b> UpVector (by cross product)<br/>
-	UpVector <a href="CppOperatorAssign.htm">=</a> Cross<a href="CppProduct.html">Product</a>(&amp;ViewDir, &amp;RightVector)*-1;<br/>
+	UpVector <a href="CppOperatorAssign.htm">=</a> Cross<a href="CppProduct.htm">Product</a>(&amp;ViewDir, &amp;RightVector)*-1;<br/>
 }<br/>
 <br/>
 <b><a href="CppVoid.htm">void</a></b> CCamera::Render( <b><a href="CppVoid.htm">void</a></b> )<br/>
 {<br/>
 <br/>
-	<a href="CppComment.htm">//</a>The <a href="CppPointer.html">point</a> at which the camera looks:<br/>
-	SF3dVector View<a href="CppPoint.html">Point</a> <a href="CppOperatorAssign.htm">=</a> Position+ViewDir;<br/>
+	<a href="CppComment.htm">//</a>The <a href="CppPointer.htm">point</a> at which the camera looks:<br/>
+	SF3dVector View<a href="CppPoint.htm">Point</a> <a href="CppOperatorAssign.htm">=</a> Position+ViewDir;<br/>
 <br/>
 	<a href="CppComment.htm">//</a>as we know the up vector, we can easily use gluLookAt:<br/>
 	gluLookAt(	Position.x,Position.y,Position.z,<br/>
-				View<a href="CppPoint.html">Point</a>.x,View<a href="CppPoint.html">Point</a>.y,View<a href="CppPoint.html">Point</a>.z,<br/>
+				View<a href="CppPoint.htm">Point</a>.x,View<a href="CppPoint.htm">Point</a>.y,View<a href="CppPoint.htm">Point</a>.z,<br/>
 				UpVector.x,UpVector.y,UpVector.z);<br/>
 <br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> CCamera::MoveForward( GL<b><a href="CppFloat.html">float</a></b> Distance )<br/>
+<b><a href="CppVoid.htm">void</a></b> CCamera::MoveForward( GL<b><a href="CppFloat.htm">float</a></b> Distance )<br/>
 {<br/>
 	Position <a href="CppOperatorAssign.htm">=</a> Position <a href="CppOperatorPlus.htm">+</a> (ViewDir*-Distance);<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> CCamera::StrafeRight ( GL<b><a href="CppFloat.html">float</a></b> Distance )<br/>
+<b><a href="CppVoid.htm">void</a></b> CCamera::StrafeRight ( GL<b><a href="CppFloat.htm">float</a></b> Distance )<br/>
 {<br/>
 	Position <a href="CppOperatorAssign.htm">=</a> Position <a href="CppOperatorPlus.htm">+</a> (RightVector*Distance);<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> CCamera::MoveUpward( GL<b><a href="CppFloat.html">float</a></b> Distance )<br/>
+<b><a href="CppVoid.htm">void</a></b> CCamera::MoveUpward( GL<b><a href="CppFloat.htm">float</a></b> Distance )<br/>
 {<br/>
 	Position <a href="CppOperatorAssign.htm">=</a> Position <a href="CppOperatorPlus.htm">+</a> (UpVector*Distance);<br/>
 }<br/>
@@ -1720,108 +1720,108 @@ CCamera::CCamera()<br/>
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="spstructs.h" border = "1"><tr><td><code>
-<a href="CppIfndef.html">#ifndef</a> SP_STRUCTS_H_INCLUDED<br/>
-<a href="CppDefine.html">#define</a> SP_STRUCTS_H_INCLUDED<br/>
+<a href="CppIfndef.htm">#ifndef</a> SP_STRUCTS_H_INCLUDED<br/>
+<a href="CppDefine.htm">#define</a> SP_STRUCTS_H_INCLUDED<br/>
 <br/>
-<a href="CppInclude.html">#include</a> "gl/glut<a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.htm">#include</a> "gl/glut.h"<br/>
 <br/>
-<a href="CppDefine.html">#define</a> PI 3.1415926535897932384626433832795<br/>
-<a href="CppDefine.html">#define</a> PIdiv180 PI/180.0f<br/>
+<a href="CppDefine.htm">#define</a> PI 3.1415926535897932384626433832795<br/>
+<a href="CppDefine.htm">#define</a> PIdiv180 PI/180.0f<br/>
 <br/>
-<a href="CppDefine.html">#define</a> <a href="CppNULL.htm">NULL</a>_VECTOR F3dVector(0.0f,0.0f,0.0f)<br/>
+<a href="CppDefine.htm">#define</a> <a href="CppNULL.htm">NULL</a>_VECTOR F3dVector(0.0f,0.0f,0.0f)<br/>
 <br/>
-<b><a href="CppStruct.html">struct</a></b> SF3dVector&nbsp;&nbsp;<a href="CppComment.htm">//</a>Float 3d-vect, normally used<br/>
+<b><a href="CppStruct.htm">struct</a></b> SF3dVector&nbsp;&nbsp;<a href="CppComment.htm">//</a>Float 3d-vect, normally used<br/>
 {<br/>
-	GL<b><a href="CppFloat.html">float</a></b> x,y,z;<br/>
+	GL<b><a href="CppFloat.htm">float</a></b> x,y,z;<br/>
 };<br/>
-<b><a href="CppStruct.html">struct</a></b> SF2dVector<br/>
+<b><a href="CppStruct.htm">struct</a></b> SF2dVector<br/>
 {<br/>
-	GL<b><a href="CppFloat.html">float</a></b> x,y;<br/>
+	GL<b><a href="CppFloat.htm">float</a></b> x,y;<br/>
 };<br/>
 <br/>
-<b><a href="CppStruct.html">struct</a></b> SF4dVector<br/>
+<b><a href="CppStruct.htm">struct</a></b> SF4dVector<br/>
 {<br/>
-	GL<b><a href="CppFloat.html">float</a></b> a[4];<br/>
+	GL<b><a href="CppFloat.htm">float</a></b> a[4];<br/>
 };<br/>
 <br/>
 <br/>
 /<a href="CppComment.htm">/*</a>*******************<br/>
 <a href="CppComment.htm">//</a> 3d-Vectors<br/>
 <a href="CppComment.htm">//</a><br/>
-SF3dVector F3dVector ( GL<b><a href="CppFloat.html">float</a></b> x, GL<b><a href="CppFloat.html">float</a></b> y, GL<b><a href="CppFloat.html">float</a></b> z );<br/>
+SF3dVector F3dVector ( GL<b><a href="CppFloat.htm">float</a></b> x, GL<b><a href="CppFloat.htm">float</a></b> y, GL<b><a href="CppFloat.htm">float</a></b> z );<br/>
 SF3dVector <a href="CppAdd.htm">Add</a>F3dVectors ( SF3dVector * u, SF3dVector * v);<br/>
-SF3dVector <b><a href="CppOperatorMultiply.html">operator*</a></b> (SF3dVector v, <b><a href="CppFloat.html">float</a></b> r);<br/>
-SF3dVector <b><a href="CppOperatorMultiply.html">operator*</a></b> (<b><a href="CppFloat.html">float</a></b> r, SF3dVector v);<br/>
-SF3dVector <b><a href="CppOperatorDivide.html">operator/</a></b> (SF3dVector v, <b><a href="CppFloat.html">float</a></b> r);<br/>
-<b><a href="CppFloat.html">float</a></b> <b><a href="CppOperatorMultiply.html">operator*</a></b> (SF3dVector v, SF3dVector u);	<a href="CppComment.htm">//</a>Scalar product<br/>
-SF3dVector <b><a href="CppOperatorPlus.html">operator+</a></b> (SF3dVector v, SF3dVector u);<br/>
-SF3dVector <b><a href="CppOperatorMinus.html">operator-</a></b> (SF3dVector v, SF3dVector u);<br/>
+SF3dVector <b><a href="CppOperatorMultiply.htm">operator*</a></b> (SF3dVector v, <b><a href="CppFloat.htm">float</a></b> r);<br/>
+SF3dVector <b><a href="CppOperatorMultiply.htm">operator*</a></b> (<b><a href="CppFloat.htm">float</a></b> r, SF3dVector v);<br/>
+SF3dVector <b><a href="CppOperatorDivide.htm">operator/</a></b> (SF3dVector v, <b><a href="CppFloat.htm">float</a></b> r);<br/>
+<b><a href="CppFloat.htm">float</a></b> <b><a href="CppOperatorMultiply.htm">operator*</a></b> (SF3dVector v, SF3dVector u);	<a href="CppComment.htm">//</a>Scalar product<br/>
+SF3dVector <b><a href="CppOperatorPlus.htm">operator+</a></b> (SF3dVector v, SF3dVector u);<br/>
+SF3dVector <b><a href="CppOperatorMinus.htm">operator-</a></b> (SF3dVector v, SF3dVector u);<br/>
 <br/>
-<b><a href="CppBool.htm">bool</a></b> <b><a href="CppOperatorEqual.html">operator==</a></b> (SF3dVector v, SF3dVector u);<br/>
-<b><a href="CppBool.htm">bool</a></b> <b><a href="CppOperatorNotEqual.html">operator!=</a></b> (SF3dVector v, SF3dVector u);<br/>
+<b><a href="CppBool.htm">bool</a></b> <b><a href="CppOperatorEqual.htm">operator==</a></b> (SF3dVector v, SF3dVector u);<br/>
+<b><a href="CppBool.htm">bool</a></b> <b><a href="CppOperatorNotEqual.htm">operator!=</a></b> (SF3dVector v, SF3dVector u);<br/>
 <br/>
-GL<b><a href="CppFloat.html">float</a></b> GetF3dVectorLength( SF3dVector * v);<br/>
+GL<b><a href="CppFloat.htm">float</a></b> GetF3dVectorLength( SF3dVector * v);<br/>
 <b><a href="CppVoid.htm">void</a></b> <a href="CppAdd.htm">Add</a>F3dVectorToVector	( SF3dVector * Dst, SF3dVector * V2);<br/>
 <br/>
 /<a href="CppComment.htm">/*</a>*******************<br/>
 <a href="CppComment.htm">//</a> 2d-Vectors<br/>
 <a href="CppComment.htm">//</a><br/>
 <br/>
-SF2dVector F2dVector ( GL<b><a href="CppFloat.html">float</a></b> x, GL<b><a href="CppFloat.html">float</a></b> y);<br/>
-SF2dVector <b><a href="CppOperatorPlus.html">operator+</a></b> (SF2dVector v, SF2dVector u);<br/>
-SF2dVector <b><a href="CppOperatorMinus.html">operator-</a></b> (SF2dVector v, SF2dVector u);<br/>
+SF2dVector F2dVector ( GL<b><a href="CppFloat.htm">float</a></b> x, GL<b><a href="CppFloat.htm">float</a></b> y);<br/>
+SF2dVector <b><a href="CppOperatorPlus.htm">operator+</a></b> (SF2dVector v, SF2dVector u);<br/>
+SF2dVector <b><a href="CppOperatorMinus.htm">operator-</a></b> (SF2dVector v, SF2dVector u);<br/>
 <br/>
 <br/>
 <br/>
-<b><a href="CppStruct.html">struct</a></b> S3dModelVertex<br/>
+<b><a href="CppStruct.htm">struct</a></b> S3dModelVertex<br/>
 {<br/>
 	SF3dVector Position;<br/>
 	SF2dVector TexCoordinates;<br/>
 	SF3dVector NormalVector; <br/>
 };<br/>
 <br/>
-<b><a href="CppStruct.html">struct</a></b> SSPMaterial<br/>
+<b><a href="CppStruct.htm">struct</a></b> SSPMaterial<br/>
 {<br/>
 <a href="CppComment.htm">//</a>not everything in use!<br/>
-	GL<b><a href="CppFloat.html">float</a></b>	m_fAmbient[4]; <br/>
-	GL<b><a href="CppFloat.html">float</a></b>	m_fDiffuse[4]; <br/>
-	GL<b><a href="CppFloat.html">float</a></b>	m_fSpecular[4];<br/>
-	GL<b><a href="CppFloat.html">float</a></b>	m_fEmissive[4];<br/>
-	GL<b><a href="CppFloat.html">float</a></b>	m_fShininess;<br/>
-	GL<b><a href="CppFloat.html">float</a></b>	m_fTransparency;<br/>
+	GL<b><a href="CppFloat.htm">float</a></b>	m_fAmbient[4]; <br/>
+	GL<b><a href="CppFloat.htm">float</a></b>	m_fDiffuse[4]; <br/>
+	GL<b><a href="CppFloat.htm">float</a></b>	m_fSpecular[4];<br/>
+	GL<b><a href="CppFloat.htm">float</a></b>	m_fEmissive[4];<br/>
+	GL<b><a href="CppFloat.htm">float</a></b>	m_fShininess;<br/>
+	GL<b><a href="CppFloat.htm">float</a></b>	m_fTransparency;<br/>
 };<br/>
 <br/>
-<b><a href="CppStruct.html">struct</a></b> SSPForce<br/>
+<b><a href="CppStruct.htm">struct</a></b> SSPForce<br/>
 {<br/>
 	SF3dVector		m_Direction;&nbsp;&nbsp;<a href="CppComment.htm">//</a>also indicates the amount<br/>
 	SF3dVector		m_Position;&nbsp;&nbsp;<a href="CppComment.htm">//</a>relative to the center of gravity<br/>
 	<b><a href="CppBool.htm">bool</a></b>			m_bInUse;&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppMake.htm">make</a> the calculations more performant by easily dropping non-used forces<br/>
 };<br/>
 <br/>
-<b><a href="CppStruct.html">struct</a></b> SSPMomentum<br/>
+<b><a href="CppStruct.htm">struct</a></b> SSPMomentum<br/>
 {<br/>
 	SF3dVector		m_Momentum;<br/>
 	SF3dVector		m_Position;<br/>
 };<br/>
 <br/>
 <a href="CppComment.htm">//</a>data structure to store on which node/plate of a track a vehicle resides.<br/>
-<b><a href="CppStruct.html">struct</a></b> SSPVehicleTrackPosition<br/>
+<b><a href="CppStruct.htm">struct</a></b> SSPVehicleTrackPosition<br/>
 {<br/>
 	<b><a href="CppInt.htm">int</a></b> m_iNodeIndex; <br/>
 	<b><a href="CppInt.htm">int</a></b> m_iPlateIndex;<br/>
 };<br/>
 <br/>
-<b><a href="CppStruct.html">struct</a></b> SSPBottom<a href="CppPoint.html">Point</a><br/>
+<b><a href="CppStruct.htm">struct</a></b> SSPBottom<a href="CppPoint.htm">Point</a><br/>
 {<br/>
-	<b><a href="CppInt.htm">int</a></b>				&nbsp;&nbsp;m_VertexIndex;&nbsp;&nbsp;<a href="CppComment.htm">//</a>in MODEL0! (which vertex is used as bottom <a href="CppPointer.html">point</a>)<br/>
+	<b><a href="CppInt.htm">int</a></b>				&nbsp;&nbsp;m_VertexIndex;&nbsp;&nbsp;<a href="CppComment.htm">//</a>in MODEL0! (which vertex is used as bottom <a href="CppPointer.htm">point</a>)<br/>
 	SF3dVector		&nbsp;&nbsp;m_TurnedPosition; <a href="CppComment.htm">//</a>vertex pos turned around center<br/>
 	SF3dVector		&nbsp;&nbsp;m_GlobalPosition; <a href="CppComment.htm">//</a>turned pos <a href="CppOperatorPlus.htm">+</a> center pos<br/>
 	SF3dVector		&nbsp;&nbsp;m_FormerGlobalPosition;&nbsp;&nbsp;<a href="CppComment.htm">//</a>one frame before<br/>
-	<b><a href="CppFloat.html">float</a></b>			&nbsp;&nbsp;m_TrackYDist;	&nbsp;&nbsp;<a href="CppComment.htm">//</a>yDist to the track<br/>
+	<b><a href="CppFloat.htm">float</a></b>			&nbsp;&nbsp;m_TrackYDist;	&nbsp;&nbsp;<a href="CppComment.htm">//</a>yDist to the track<br/>
 	SSPVehicleTrackPosition&nbsp;&nbsp;m_TrackPosition; <a href="CppComment.htm">//</a>Plate/Node<br/>
 };<br/>
 <br/>
-<a href="CppEndif.html">#endif</a><br/>
+<a href="CppEndif.htm">#endif</a><br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -1833,93 +1833,93 @@ SF2dVector <b><a href="CppOperatorMinus.html">operator-</a></b> (SF2dVector v, S
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="spstructs.cpp" border = "1"><tr><td><code>
-<a href="CppInclude.html">#include</a> "SPStructs<a href="CppHeaderFile.htm">.h</a>"<br/>
-<a href="CppInclude.html">#include</a> &lt;math<a href="CppHeaderFile.htm">.h</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> "SPStructs.h"<br/>
+<a href="CppInclude.htm">#include</a> &lt;math.h&gt;<br/>
 <br/>
-<b><a href="CppBool.htm">bool</a></b> <b><a href="CppOperatorEqual.html">operator==</a></b> (SF3dVector v, SF3dVector u)<br/>
+<b><a href="CppBool.htm">bool</a></b> <b><a href="CppOperatorEqual.htm">operator==</a></b> (SF3dVector v, SF3dVector u)<br/>
 {<br/>
-	<b><a href="CppReturn.html">return</a></b> (v.x<a href="CppOperatorEqual.htm">==</a>u.x) <a href="CppOperatorLogicalAnd.html">&amp;&amp;</a> (v.y<a href="CppOperatorEqual.htm">==</a>u.y) <a href="CppOperatorLogicalAnd.html">&amp;&amp;</a> (v.z <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> u.z);<br/>
+	<b><a href="CppReturn.htm">return</a></b> (v.x<a href="CppOperatorEqual.htm">==</a>u.x) <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> (v.y<a href="CppOperatorEqual.htm">==</a>u.y) <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> (v.z <a href="CppOperatorEqual.htm">==</a> u.z);<br/>
 }<br/>
-<b><a href="CppBool.htm">bool</a></b> <b><a href="CppOperatorNotEqual.html">operator!=</a></b> (SF3dVector v, SF3dVector u)<br/>
+<b><a href="CppBool.htm">bool</a></b> <b><a href="CppOperatorNotEqual.htm">operator!=</a></b> (SF3dVector v, SF3dVector u)<br/>
 {<br/>
-	<b><a href="CppReturn.html">return</a></b> (!(v<a href="CppOperatorEqual.htm">==</a>u));<br/>
-}<br/>
-<br/>
-<br/>
-<b><a href="CppFloat.html">float</a></b> <b><a href="CppOperatorMultiply.html">operator*</a></b> (SF3dVector v, SF3dVector u)	<a href="CppComment.htm">//</a>Scalar product<br/>
-{<br/>
-	<b><a href="CppReturn.html">return</a></b> v.x*u.x+v.y*u.y+v.z*u.z;<br/>
+	<b><a href="CppReturn.htm">return</a></b> (!(v<a href="CppOperatorEqual.htm">==</a>u));<br/>
 }<br/>
 <br/>
-SF3dVector <b><a href="CppOperatorMultiply.html">operator*</a></b> (SF3dVector v, <b><a href="CppFloat.html">float</a></b> r)<br/>
+<br/>
+<b><a href="CppFloat.htm">float</a></b> <b><a href="CppOperatorMultiply.htm">operator*</a></b> (SF3dVector v, SF3dVector u)	<a href="CppComment.htm">//</a>Scalar product<br/>
+{<br/>
+	<b><a href="CppReturn.htm">return</a></b> v.x*u.x+v.y*u.y+v.z*u.z;<br/>
+}<br/>
+<br/>
+SF3dVector <b><a href="CppOperatorMultiply.htm">operator*</a></b> (SF3dVector v, <b><a href="CppFloat.htm">float</a></b> r)<br/>
 {<br/>
 	SF3dVector res;<br/>
 	res.x <a href="CppOperatorAssign.htm">=</a> v.x*r;<br/>
 	res.y <a href="CppOperatorAssign.htm">=</a> v.y*r;<br/>
 	res.z <a href="CppOperatorAssign.htm">=</a> v.z*r;<br/>
-	<b><a href="CppReturn.html">return</a></b> res;<br/>
+	<b><a href="CppReturn.htm">return</a></b> res;<br/>
 }<br/>
-SF3dVector <b><a href="CppOperatorMultiply.html">operator*</a></b> (<b><a href="CppFloat.html">float</a></b> r, SF3dVector v)<br/>
+SF3dVector <b><a href="CppOperatorMultiply.htm">operator*</a></b> (<b><a href="CppFloat.htm">float</a></b> r, SF3dVector v)<br/>
 {<br/>
-	<b><a href="CppReturn.html">return</a></b> v*r;<br/>
+	<b><a href="CppReturn.htm">return</a></b> v*r;<br/>
 }<br/>
 <br/>
-SF3dVector <b><a href="CppOperatorDivide.html">operator/</a></b> (SF3dVector v, <b><a href="CppFloat.html">float</a></b> r)<br/>
+SF3dVector <b><a href="CppOperatorDivide.htm">operator/</a></b> (SF3dVector v, <b><a href="CppFloat.htm">float</a></b> r)<br/>
 {<br/>
-	<b><a href="CppReturn.html">return</a></b> v*(1/r);<br/>
+	<b><a href="CppReturn.htm">return</a></b> v*(1/r);<br/>
 }<br/>
 <br/>
-SF3dVector <b><a href="CppOperatorPlus.html">operator+</a></b> (SF3dVector v, SF3dVector u)<br/>
+SF3dVector <b><a href="CppOperatorPlus.htm">operator+</a></b> (SF3dVector v, SF3dVector u)<br/>
 {<br/>
 	SF3dVector res;<br/>
 	res.x <a href="CppOperatorAssign.htm">=</a> v.x+u.x;<br/>
 	res.y <a href="CppOperatorAssign.htm">=</a> v.y+u.y;<br/>
 	res.z <a href="CppOperatorAssign.htm">=</a> v.z+u.z;<br/>
-	<b><a href="CppReturn.html">return</a></b> res;<br/>
+	<b><a href="CppReturn.htm">return</a></b> res;<br/>
 }<br/>
-SF3dVector <b><a href="CppOperatorMinus.html">operator-</a></b> (SF3dVector v, SF3dVector u)<br/>
+SF3dVector <b><a href="CppOperatorMinus.htm">operator-</a></b> (SF3dVector v, SF3dVector u)<br/>
 {<br/>
 	SF3dVector res;<br/>
 	res.x <a href="CppOperatorAssign.htm">=</a> v.x-u.x;<br/>
 	res.y <a href="CppOperatorAssign.htm">=</a> v.y-u.y;<br/>
 	res.z <a href="CppOperatorAssign.htm">=</a> v.z-u.z;<br/>
-	<b><a href="CppReturn.html">return</a></b> res;<br/>
+	<b><a href="CppReturn.htm">return</a></b> res;<br/>
 }<br/>
 <br/>
 <br/>
-SF3dVector F3dVector ( GL<b><a href="CppFloat.html">float</a></b> x, GL<b><a href="CppFloat.html">float</a></b> y, GL<b><a href="CppFloat.html">float</a></b> z )<br/>
+SF3dVector F3dVector ( GL<b><a href="CppFloat.htm">float</a></b> x, GL<b><a href="CppFloat.htm">float</a></b> y, GL<b><a href="CppFloat.htm">float</a></b> z )<br/>
 {<br/>
 	SF3dVector tmp;<br/>
 	tmp.x <a href="CppOperatorAssign.htm">=</a> x;<br/>
 	tmp.y <a href="CppOperatorAssign.htm">=</a> y;<br/>
 	tmp.z <a href="CppOperatorAssign.htm">=</a> z;<br/>
-	<b><a href="CppReturn.html">return</a></b> tmp;<br/>
+	<b><a href="CppReturn.htm">return</a></b> tmp;<br/>
 }<br/>
 <br/>
 <br/>
-SF2dVector <b><a href="CppOperatorPlus.html">operator+</a></b> (SF2dVector v, SF2dVector u)<br/>
+SF2dVector <b><a href="CppOperatorPlus.htm">operator+</a></b> (SF2dVector v, SF2dVector u)<br/>
 {<br/>
 	SF2dVector res;<br/>
 	res.x <a href="CppOperatorAssign.htm">=</a> v.x+u.x;<br/>
 	res.y <a href="CppOperatorAssign.htm">=</a> v.y+u.y;<br/>
-	<b><a href="CppReturn.html">return</a></b> res;<br/>
+	<b><a href="CppReturn.htm">return</a></b> res;<br/>
 <br/>
 }<br/>
 <br/>
-SF2dVector <b><a href="CppOperatorMinus.html">operator-</a></b> (SF2dVector v, SF2dVector u)<br/>
+SF2dVector <b><a href="CppOperatorMinus.htm">operator-</a></b> (SF2dVector v, SF2dVector u)<br/>
 {<br/>
 	SF2dVector res;<br/>
 	res.x <a href="CppOperatorAssign.htm">=</a> v.x-u.x;<br/>
 	res.y <a href="CppOperatorAssign.htm">=</a> v.y-u.y;<br/>
-	<b><a href="CppReturn.html">return</a></b> res;<br/>
+	<b><a href="CppReturn.htm">return</a></b> res;<br/>
 }<br/>
 <br/>
-SF2dVector F2dVector ( GL<b><a href="CppFloat.html">float</a></b> x, GL<b><a href="CppFloat.html">float</a></b> y)<br/>
+SF2dVector F2dVector ( GL<b><a href="CppFloat.htm">float</a></b> x, GL<b><a href="CppFloat.htm">float</a></b> y)<br/>
 {<br/>
 	SF2dVector tmp;<br/>
 	tmp.x <a href="CppOperatorAssign.htm">=</a> x;<br/>
 	tmp.y <a href="CppOperatorAssign.htm">=</a> y;<br/>
-	<b><a href="CppReturn.html">return</a></b> tmp;<br/>
+	<b><a href="CppReturn.htm">return</a></b> tmp;<br/>
 }<br/>
 </code></td></tr></table>
 <!-- end of the code -->
@@ -1934,13 +1934,13 @@ SF2dVector F2dVector ( GL<b><a href="CppFloat.html">float</a></b> x, GL<b><a hre
 <table summary="stdafx.h" border = "1"><tr><td><code>
 <br/>
 <br/>
-<a href="CppPragma.html">#pragma</a> once<br/>
+<a href="CppPragma.htm">#pragma</a> once<br/>
 <br/>
 <br/>
-<a href="CppInclude.html">#include</a> &lt;<a href="CppIostreamH.html">iostream</a>&gt;<br/>
-<a href="CppInclude.html">#include</a> &lt;t<b><a href="CppChar.htm">char</a></b><a href="CppHeaderFile.htm">.h</a>&gt;<br/>
-<a href="CppInclude.html">#include</a> "gl/glut<a href="CppHeaderFile.htm">.h</a>"<br/>
-<a href="CppInclude.html">#include</a> "SPMath<a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppIostreamH.htm">iostream</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;t<b><a href="CppChar.htm">char</a></b>.h&gt;<br/>
+<a href="CppInclude.htm">#include</a> "gl/glut.h"<br/>
+<a href="CppInclude.htm">#include</a> "SPMath.h"<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -1952,11 +1952,11 @@ SF2dVector F2dVector ( GL<b><a href="CppFloat.html">float</a></b> x, GL<b><a hre
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="stdafx.cpp" border = "1"><tr><td><code>
-<a href="CppComment.htm">//</a> <a href="CppStd.htm">std</a>afx<a href="CppImplementationFile.html">.cpp</a> : Quelltextdatei, die nur die Standard-Includes einbindet<br/>
+<a href="CppComment.htm">//</a> <a href="CppStd.htm">std</a>afx<a href="CppImplementationFile.htm">.cpp</a> : Quelltextdatei, die nur die Standard-Includes einbindet<br/>
 <a href="CppComment.htm">//</a> SimpleSample.pch ist der vorcompilierte Header<br/>
 <a href="CppComment.htm">//</a> <a href="CppStd.htm">std</a>afx.obj enthält die vorcompilierte Typinformation<br/>
 <br/>
-<a href="CppInclude.html">#include</a> "<a href="CppStd.htm">std</a>afx<a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.htm">#include</a> "<a href="CppStd.htm">std</a>afx.h"<br/>
 <br/>
 <a href="CppComment.htm">//</a> TODO: Verweisen Sie auf zusätzliche Header, die in STDAFX.H <br/>
 <a href="CppComment.htm">//</a> und nicht in dieser Datei erforderlich sind.<br/>

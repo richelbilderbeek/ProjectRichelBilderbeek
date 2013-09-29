@@ -20,7 +20,7 @@
 <!-- Page header -->
 <h1>(<a href="Cpp.htm">C++</a>) <a href="CppAlglibExample1.htm">AlglibExample1</a></h1>
 <p>&nbsp;</p>
-<!-- No CodeToHtmlInfo about this class with page name CppAlglibExample1-->
+<!-- No CodeToHtmlInfo about this class with page name ./CppAlglibExample1-->
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
@@ -177,36 +177,36 @@ win32 {<br/>
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="main.cpp" border = "1"><tr><td><code>
-<a href="CppComment.htm">///</a>Adapted from http://www.alglib.net/translator/man/manual<a href="CppImplementationFile.html">.cpp</a>.htmll#lsfit_d_lin%20example<br/>
+<a href="CppComment.htm">///</a>Adapted from http://www.alglib.net/translator/man/manual<a href="CppImplementationFile.htm">.cpp</a>.html#lsfit_d_lin%20example<br/>
 <br/>
-<a href="CppInclude.html">#include</a> &lt;<a href="CppCassertH.html">cassert</a>&gt;<br/>
-<a href="CppInclude.html">#include</a> &lt;<a href="CppIostreamH.html">iostream</a>&gt;<br/>
-<a href="CppInclude.html">#include</a> "interpolation<a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppIostreamH.htm">iostream</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> "interpolation.h"<br/>
 <br/>
-<b><a href="CppInt.htm">int</a></b> <a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a>()<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a><br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a> In <b><a href="CppThis.htm">this</a></b> example we demonstrate linear fitting by f(x|a) <a href="CppOperatorAssign.htm">=</a> a*exp(0.5*x).<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a><br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a> We have:<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a> * y <a href="CppOperatorMinus.htm">-</a> vector of experimental data<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a> * f<a href="CppMatrix.html">matrix</a> <a href="CppOperatorMinus.htm">-</a>&nbsp;&nbsp;<a href="CppMatrix.html">matrix</a> of basis <a href="CppFunction.html">function</a>s calculated at sample <a href="CppPointer.html">point</a>s<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Actually, we have only one basis <a href="CppFunction.html">function</a> F0 <a href="CppOperatorAssign.htm">=</a> exp(0.5*x).<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a> * f<a href="CppMatrix.htm">matrix</a> <a href="CppOperatorMinus.htm">-</a>&nbsp;&nbsp;<a href="CppMatrix.htm">matrix</a> of basis <a href="CppFunction.htm">function</a>s calculated at sample <a href="CppPointer.htm">point</a>s<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Actually, we have only one basis <a href="CppFunction.htm">function</a> F0 <a href="CppOperatorAssign.htm">=</a> exp(0.5*x).<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a><br/>
-&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> alglib::real_2d_<a href="CppArray.html">array</a> f<a href="CppMatrix.html">matrix</a> <a href="CppOperatorAssign.htm">=</a> "[[0.606531],[0.670320],[0.740818],[0.818731],[0.904837],[1.000000],[1.105171],[1.221403],[1.349859],[1.491825],[1.648721]]";<br/>
-&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> alglib::real_1d_<a href="CppArray.html">array</a> y <a href="CppOperatorAssign.htm">=</a> "[1.133719, 1.306522, 1.504604, 1.554663, 1.884638, 2.072436, 2.257285, 2.534068, 2.622017, 2.897713, 3.219371]";<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> alglib::real_2d_<a href="CppArray.htm">array</a> f<a href="CppMatrix.htm">matrix</a> <a href="CppOperatorAssign.htm">=</a> "[[0.606531],[0.670320],[0.740818],[0.818731],[0.904837],[1.000000],[1.105171],[1.221403],[1.349859],[1.491825],[1.648721]]";<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> alglib::real_1d_<a href="CppArray.htm">array</a> y <a href="CppOperatorAssign.htm">=</a> "[1.133719, 1.306522, 1.504604, 1.554663, 1.884638, 2.072436, 2.257285, 2.534068, 2.622017, 2.897713, 3.219371]";<br/>
 &nbsp;&nbsp;alglib::ae_int_t info;<br/>
-&nbsp;&nbsp;alglib::real_1d_<a href="CppArray.html">array</a> c;<br/>
+&nbsp;&nbsp;alglib::real_1d_<a href="CppArray.htm">array</a> c;<br/>
 &nbsp;&nbsp;alglib::lsfitreport rep;<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a><br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a> Linear fitting without weights<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a><br/>
 <br/>
-&nbsp;&nbsp;alglib::lsfitlinear(y, f<a href="CppMatrix.html">matrix</a>, info, c, rep);<br/>
+&nbsp;&nbsp;alglib::lsfitlinear(y, f<a href="CppMatrix.htm">matrix</a>, info, c, rep);<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(info <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 1);<br/>
-&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(c.tostring(4) <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <a href="CppString.html">std::string</a>("[1.9865]"));<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(info <a href="CppOperatorEqual.htm">==</a> 1);<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(c.tostring(4) <a href="CppOperatorEqual.htm">==</a> <a href="CppString.htm">std::string</a>("[1.9865]"));<br/>
 }<br/>
 </code></td></tr></table>
 <!-- end of the code -->

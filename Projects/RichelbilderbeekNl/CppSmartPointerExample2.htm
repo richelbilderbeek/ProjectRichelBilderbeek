@@ -20,7 +20,7 @@
 <!-- Page header -->
 <h1>(<a href="Cpp.htm">C++</a>) <a href="CppSmartPointerExample2.htm">SmartPointerExample2</a></h1>
 <p>&nbsp;</p>
-<!-- No CodeToHtmlInfo about this class with page name CppSmartPointerExample2-->
+<!-- No CodeToHtmlInfo about this class with page name ./CppSmartPointerExample2-->
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
@@ -82,37 +82,37 @@ win32 {<br/>
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="main.cpp" border = "1"><tr><td><code>
-<a href="CppInclude.html">#include</a> &lt;<a href="CppMemoryH.html">memory</a>&gt;<br/>
-<a href="CppInclude.html">#include</a> &lt;<a href="CppBoost.html">boost</a>/<a href="CppScoped_ptr.html">scoped_ptr</a><a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
-<a href="CppInclude.html">#include</a> &lt;<a href="CppBoost.html">boost</a>/<a href="CppShared_ptr.html">shared_ptr</a><a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppMemoryH.htm">memory</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppScoped_ptr.htm">scoped_ptr</a>.hpp&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppShared_ptr.htm">shared_ptr</a>.hpp&gt;<br/>
 <br/>
-<b><a href="CppStruct.html">struct</a></b> Test { <b><a href="CppInt.htm">int</a></b> m_x; };<br/>
+<b><a href="CppStruct.htm">struct</a></b> Test { <b><a href="CppInt.htm">int</a></b> m_x; };<br/>
 <br/>
-<b><a href="CppInt.htm">int</a></b> <a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a>()<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
 {<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppShared_ptr.html">std::shared_ptr</a>&lt;Test&gt; p { <b><a href="CppNew.htm">new</a></b> Test };<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(p);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>p.reset(<b><a href="CppNullptr.html">nullptr</a></b>); <a href="CppComment.htm">//</a>Invalid: <a href="CppShared_ptr.html">std::shared_ptr</a> cannot be reset to <b><a href="CppNullptr.html">nullptr</a></b><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppAssert.html">assert</a>(!p);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppShared_ptr.htm">std::shared_ptr</a>&lt;Test&gt; p { <b><a href="CppNew.htm">new</a></b> Test };<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(p);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>p.reset(<b><a href="CppNullptr.htm">nullptr</a></b>); <a href="CppComment.htm">//</a>Invalid: <a href="CppShared_ptr.htm">std::shared_ptr</a> cannot be reset to <b><a href="CppNullptr.htm">nullptr</a></b><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppAssert.htm">assert</a>(!p);<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppUnique_ptr.html">std::unique_ptr</a>&lt;Test&gt; p { <b><a href="CppNew.htm">new</a></b> Test };<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(p);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;p.reset(<b><a href="CppNullptr.html">nullptr</a></b>); <a href="CppComment.htm">//</a>Valid: <a href="CppUnique_ptr.html">std::unique_ptr</a> can be reset to <b><a href="CppNullptr.html">nullptr</a></b><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(!p);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppUnique_ptr.htm">std::unique_ptr</a>&lt;Test&gt; p { <b><a href="CppNew.htm">new</a></b> Test };<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(p);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;p.reset(<b><a href="CppNullptr.htm">nullptr</a></b>); <a href="CppComment.htm">//</a>Valid: <a href="CppUnique_ptr.htm">std::unique_ptr</a> can be reset to <b><a href="CppNullptr.htm">nullptr</a></b><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!p);<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBoostShared_ptr.html">boost::shared_ptr</a>&lt;Test&gt; p { <b><a href="CppNew.htm">new</a></b> Test };<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(p);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>p.reset(<b><a href="CppNullptr.html">nullptr</a></b>); <a href="CppComment.htm">//</a>Invalid: <a href="CppBoostShared_ptr.html">boost::shared_ptr</a> cannot be reset to <b><a href="CppNullptr.html">nullptr</a></b><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppAssert.html">assert</a>(!p);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Test&gt; p { <b><a href="CppNew.htm">new</a></b> Test };<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(p);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>p.reset(<b><a href="CppNullptr.htm">nullptr</a></b>); <a href="CppComment.htm">//</a>Invalid: <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a> cannot be reset to <b><a href="CppNullptr.htm">nullptr</a></b><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppAssert.htm">assert</a>(!p);<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppScoped_ptr.html">boost::scoped_ptr</a>&lt;Test&gt; p { <b><a href="CppNew.htm">new</a></b> Test };<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(p);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;p.reset(<b><a href="CppNullptr.html">nullptr</a></b>); <a href="CppComment.htm">//</a>Valid: <a href="CppScoped_ptr.html">boost::scoped_ptr</a> can be reset to <b><a href="CppNullptr.html">nullptr</a></b><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(!p);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppScoped_ptr.htm">boost::scoped_ptr</a>&lt;Test&gt; p { <b><a href="CppNew.htm">new</a></b> Test };<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(p);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;p.reset(<b><a href="CppNullptr.htm">nullptr</a></b>); <a href="CppComment.htm">//</a>Valid: <a href="CppScoped_ptr.htm">boost::scoped_ptr</a> can be reset to <b><a href="CppNullptr.htm">nullptr</a></b><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!p);<br/>
 &nbsp;&nbsp;}<br/>
 }<br/>
 </code></td></tr></table>

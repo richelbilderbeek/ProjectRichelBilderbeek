@@ -20,7 +20,7 @@
 <!-- Page header -->
 <h1>(<a href="Cpp.htm">C++</a>) <a href="CppCopyUnique.htm">CopyUnique</a></h1>
 <p>&nbsp;</p>
-<!-- No CodeToHtmlInfo about this class with page name CppCopyUnique-->
+<!-- No CodeToHtmlInfo about this class with page name ./CppCopyUnique-->
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
@@ -86,77 +86,77 @@ win32 {<br/>
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="main.cpp" border = "1"><tr><td><code>
-<a href="CppInclude.html">#include</a> &lt;<a href="CppAlgorithmH.html">algorithm</a>&gt;<br/>
-<a href="CppInclude.html">#include</a> &lt;<a href="CppCassertH.html">cassert</a>&gt;<br/>
-<a href="CppInclude.html">#include</a> &lt;<a href="CppSetH.html">set</a>&gt;<br/>
-<a href="CppInclude.html">#include</a> &lt;<a href="CppVectorH.html">vector</a>&gt;<br/>
-<a href="CppInclude.html">#include</a> &lt;<a href="CppBoost.html">boost</a>/<a href="CppCircular_buffer.html">circular_buffer</a><a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppAlgorithmH.htm">algorithm</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppSetH.htm">set</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppCircular_buffer.htm">circular_buffer</a>.hpp&gt;<br/>
 <br/>
 <a href="CppComment.htm">///</a>Copies<br/>
-<b><a href="CppTemplate.html">template</a></b>&lt;<b><a href="CppClass.html">class</a></b> T&gt;<br/>
-<a href="CppSet.html">std::set</a>&lt;T&gt; CopyUnique(<b><a href="CppConst.html">const</a></b> <a href="CppVector.html">std::vector</a>&lt;T&gt;&amp; v)<br/>
+<b><a href="CppTemplate.htm">template</a></b>&lt;<b><a href="CppClass.htm">class</a></b> T&gt;<br/>
+<a href="CppSet.htm">std::set</a>&lt;T&gt; CopyUnique(<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;T&gt;&amp; v)<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppSize_t.html">std::size_t</a> sz <a href="CppOperatorAssign.htm">=</a> v.size();<br/>
-&nbsp;&nbsp;<a href="CppSet.html">std::set</a>&lt;T&gt; result;<br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (sz <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 0) { <b><a href="CppReturn.html">return</a></b> result; }<br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (sz <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 1) { result.insert(v[0]); <b><a href="CppReturn.html">return</a></b> result; }<br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (sz <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 2)<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppSize_t.htm">std::size_t</a> sz <a href="CppOperatorAssign.htm">=</a> v.size();<br/>
+&nbsp;&nbsp;<a href="CppSet.htm">std::set</a>&lt;T&gt; result;<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (sz <a href="CppOperatorEqual.htm">==</a> 0) { <b><a href="CppReturn.htm">return</a></b> result; }<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (sz <a href="CppOperatorEqual.htm">==</a> 1) { result.insert(v[0]); <b><a href="CppReturn.htm">return</a></b> result; }<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (sz <a href="CppOperatorEqual.htm">==</a> 2)<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (v[0] <a href="CppOperatorNotEqual.htm">!=</a> v[1])<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;result.insert(v[0]);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;result.insert(v[1]);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> result;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> result;<br/>
 &nbsp;&nbsp;}<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppCircular_buffer.html">boost::circular_buffer</a>&lt;T&gt; w(v.begin(),v.end());<br/>
-&nbsp;&nbsp;<a href="CppSort.html">std::sort</a>(w.begin(),w.end());<br/>
+&nbsp;&nbsp;<a href="CppCircular_buffer.htm">boost::circular_buffer</a>&lt;T&gt; w(v.begin(),v.end());<br/>
+&nbsp;&nbsp;<a href="CppSort.htm">std::sort</a>(w.begin(),w.end());<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<a href="CppSize_t.html">std::size_t</a> cnt=0; cnt<a href="CppOperatorNotEqual.htm">!=</a>sz; <a href="CppOperatorPlus.htm">+</a>+cnt)<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<a href="CppSize_t.htm">std::size_t</a> cnt=0; cnt<a href="CppOperatorNotEqual.htm">!=</a>sz; <a href="CppOperatorIncrement.htm">++</a>cnt)<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppAuto.htm">auto</a></b> i <a href="CppOperatorAssign.htm">=</a> w.begin();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppAuto.htm">auto</a></b> j <a href="CppOperatorAssign.htm">=</a> i; <a href="CppOperatorPlus.htm">+</a>+j;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppAuto.htm">auto</a></b> k <a href="CppOperatorAssign.htm">=</a> j; <a href="CppOperatorPlus.htm">+</a>+k;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (*i <a href="CppOperatorNotEqual.htm">!=</a> *j <a href="CppOperatorLogicalAnd.html">&amp;&amp;</a> *j <a href="CppOperatorNotEqual.htm">!=</a> *k) { result.insert(*j); }<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppAuto.htm">auto</a></b> j <a href="CppOperatorAssign.htm">=</a> i; <a href="CppOperatorIncrement.htm">++</a>j;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppAuto.htm">auto</a></b> k <a href="CppOperatorAssign.htm">=</a> j; <a href="CppOperatorIncrement.htm">++</a>k;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (*i <a href="CppOperatorNotEqual.htm">!=</a> *j <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> *j <a href="CppOperatorNotEqual.htm">!=</a> *k) { result.insert(*j); }<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;w.rotate( w.begin() <a href="CppOperatorPlus.htm">+</a> 1);<br/>
 &nbsp;&nbsp;}<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> result;<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> result;<br/>
 }<br/>
 <br/>
-<b><a href="CppInt.htm">int</a></b> <a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a>()<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Test CopyUnique<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppVector.html">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt; input { };<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppSet.html">std::set</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt; expected { };<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(CopyUnique(input) <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> expected);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt; input { };<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppSet.htm">std::set</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt; expected { };<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(CopyUnique(input) <a href="CppOperatorEqual.htm">==</a> expected);<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppVector.html">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt; input { 1 };<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppSet.html">std::set</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt; expected { 1 };<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(CopyUnique(input) <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> expected);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt; input { 1 };<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppSet.htm">std::set</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt; expected { 1 };<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(CopyUnique(input) <a href="CppOperatorEqual.htm">==</a> expected);<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppVector.html">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt; input { 2,1 };<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppSet.html">std::set</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt; expected { 1,2 };<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(CopyUnique(input) <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> expected);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt; input { 2,1 };<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppSet.htm">std::set</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt; expected { 1,2 };<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(CopyUnique(input) <a href="CppOperatorEqual.htm">==</a> expected);<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppVector.html">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt; input { 3,2,1 };<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppSet.html">std::set</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt; expected { 1,2,3 };<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(CopyUnique(input) <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> expected);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt; input { 3,2,1 };<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppSet.htm">std::set</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt; expected { 1,2,3 };<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(CopyUnique(input) <a href="CppOperatorEqual.htm">==</a> expected);<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppVector.html">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt; input { 9,8,7,6,5,4,3,2,1,9,7,5,3,1 };<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppSet.html">std::set</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt; expected { 2,4,6,8 };<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(CopyUnique(input) <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> expected);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt; input { 9,8,7,6,5,4,3,2,1,9,7,5,3,1 };<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppSet.htm">std::set</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt; expected { 2,4,6,8 };<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(CopyUnique(input) <a href="CppOperatorEqual.htm">==</a> expected);<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppVector.html">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt; input { 9,8,7,6,5,4,3,2,1,9,7,5,3,1 };<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppSet.html">std::set</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt; expected { 8,6,4,2 };<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(CopyUnique(input) <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> expected);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt; input { 9,8,7,6,5,4,3,2,1,9,7,5,3,1 };<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppSet.htm">std::set</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt; expected { 8,6,4,2 };<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(CopyUnique(input) <a href="CppOperatorEqual.htm">==</a> expected);<br/>
 &nbsp;&nbsp;}<br/>
 }<br/>
 </code></td></tr></table>

@@ -63,7 +63,7 @@ OTHER_FILES += \
 #
 
 CONFIG(release, debug|release) {
-  DEFINES += NDEBUG NTRACE_BILDERBIKKEL
+  #DEFINES += NDEBUG NTRACE_BILDERBIKKEL
 }
 
 QMAKE_CXXFLAGS += -std=c++11 -Wall -Wextra -Weffc++

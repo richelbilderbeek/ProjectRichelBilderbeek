@@ -20,7 +20,7 @@
 <!-- Page header -->
 <h1>(<a href="Cpp.htm">C++</a>) <a href="CppTemplateFunctionExample1.htm">TemplateFunctionExample1</a></h1>
 <p>&nbsp;</p>
-<!-- No CodeToHtmlInfo about this class with page name CppTemplateFunctionExample1-->
+<!-- No CodeToHtmlInfo about this class with page name ./CppTemplateFunctionExample1-->
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
@@ -78,29 +78,29 @@
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="main.cpp" border = "1"><tr><td><code>
-<b><a href="CppInt.htm">int</a></b> AbsInt(<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> n) { <b><a href="CppReturn.html">return</a></b> n &lt; 0 ? <a href="CppOperatorMinus.htm">-</a>n : n; }<br/>
+<b><a href="CppInt.htm">int</a></b> AbsInt(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> n) { <b><a href="CppReturn.htm">return</a></b> n &lt; 0 ? <a href="CppOperatorMinus.htm">-</a>n : n; }<br/>
 <br/>
-<b><a href="CppDouble.html">double</a></b> Abs<a href="CppDouble.html">Double</a>(<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> n) { <b><a href="CppReturn.html">return</a></b> (n &lt; 0 ? <a href="CppOperatorMinus.htm">-</a>n : n); }<br/>
+<b><a href="CppDouble.htm">double</a></b> Abs<a href="CppDouble.htm">Double</a>(<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> n) { <b><a href="CppReturn.htm">return</a></b> (n &lt; 0 ? <a href="CppOperatorMinus.htm">-</a>n : n); }<br/>
 <br/>
-<b><a href="CppTemplate.html">template</a></b> &lt;<b><a href="CppClass.html">class</a></b> T&gt;<br/>
-T Abs(<b><a href="CppConst.html">const</a></b> T n) { <b><a href="CppReturn.html">return</a></b> n &lt; 0 ? <a href="CppOperatorMinus.htm">-</a>n : n; }<br/>
+<b><a href="CppTemplate.htm">template</a></b> &lt;<b><a href="CppClass.htm">class</a></b> T&gt;<br/>
+T Abs(<b><a href="CppConst.htm">const</a></b> T n) { <b><a href="CppReturn.htm">return</a></b> n &lt; 0 ? <a href="CppOperatorMinus.htm">-</a>n : n; }<br/>
 <br/>
-<a href="CppInclude.html">#include</a> &lt;<a href="CppCassertH.html">cassert</a>&gt;<br/>
-<a href="CppInclude.html">#include</a> &lt;<a href="CppCmathH.html">cmath</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppCmathH.htm">cmath</a>&gt;<br/>
 <br/>
-<b><a href="CppInt.htm">int</a></b> <a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a>()<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> pi <a href="CppOperatorAssign.htm">=</a> <a href="CppM_PI.htm">M_PI</a>;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> pi <a href="CppOperatorAssign.htm">=</a> <a href="CppM_PI.htm">M_PI</a>;<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(AbsInt( 42) <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 42);<br/>
-&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(AbsInt(-42) <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 42);<br/>
-&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(Abs<a href="CppDouble.html">Double</a>( pi) <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> pi);<br/>
-&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(Abs<a href="CppDouble.html">Double</a>(-pi) <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> pi);<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(AbsInt( 42) <a href="CppOperatorEqual.htm">==</a> 42);<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(AbsInt(-42) <a href="CppOperatorEqual.htm">==</a> 42);<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(Abs<a href="CppDouble.htm">Double</a>( pi) <a href="CppOperatorEqual.htm">==</a> pi);<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(Abs<a href="CppDouble.htm">Double</a>(-pi) <a href="CppOperatorEqual.htm">==</a> pi);<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(Abs( 42) <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 42);<br/>
-&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(Abs(-42) <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 42);<br/>
-&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(Abs( pi) <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> pi);<br/>
-&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(Abs(-pi) <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> pi);<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(Abs( 42) <a href="CppOperatorEqual.htm">==</a> 42);<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(Abs(-42) <a href="CppOperatorEqual.htm">==</a> 42);<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(Abs( pi) <a href="CppOperatorEqual.htm">==</a> pi);<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(Abs(-pi) <a href="CppOperatorEqual.htm">==</a> pi);<br/>
 }<br/>
 </code></td></tr></table>
 <!-- end of the code -->

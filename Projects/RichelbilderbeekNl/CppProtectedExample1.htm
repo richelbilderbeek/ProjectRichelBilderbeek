@@ -20,7 +20,7 @@
 <!-- Page header -->
 <h1>(<a href="Cpp.htm">C++</a>) <a href="CppProtectedExample1.htm">ProtectedExample1</a></h1>
 <p>&nbsp;</p>
-<!-- No CodeToHtmlInfo about this class with page name CppProtectedExample1-->
+<!-- No CodeToHtmlInfo about this class with page name ./CppProtectedExample1-->
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
@@ -78,24 +78,24 @@
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="main.cpp" border = "1"><tr><td><code>
-<b><a href="CppStruct.html">struct</a></b> Base<br/>
+<b><a href="CppStruct.htm">struct</a></b> Base<br/>
 {<br/>
-&nbsp;&nbsp;Base(<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> x <a href="CppOperatorAssign.htm">=</a> 0) : m_x(x) {}<br/>
-&nbsp;&nbsp;<b><a href="CppVirtual.html">virtual</a></b> ~Base() {}<br/>
+&nbsp;&nbsp;Base(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x <a href="CppOperatorAssign.htm">=</a> 0) : m_x(x) {}<br/>
+&nbsp;&nbsp;<b><a href="CppVirtual.htm">virtual</a></b> ~Base() {}<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppProtected.html">protected</a></b>:<br/>
+&nbsp;&nbsp;<b><a href="CppProtected.htm">protected</a></b>:<br/>
 &nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> m_x;<br/>
 };<br/>
 <br/>
-<b><a href="CppStruct.html">struct</a></b> Derived : <b><a href="CppPublic.html">public</a></b> Base<br/>
+<b><a href="CppStruct.htm">struct</a></b> Derived : <b><a href="CppPublic.htm">public</a></b> Base<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> SetX(<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> x) { m_x <a href="CppOperatorAssign.htm">=</a> x; } <a href="CppComment.htm">//</a>For a derived <b><a href="CppClass.html">class</a></b>, m_x is <b><a href="CppPublic.html">public</a></b><br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> SetX(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x) { m_x <a href="CppOperatorAssign.htm">=</a> x; } <a href="CppComment.htm">//</a>For a derived <b><a href="CppClass.htm">class</a></b>, m_x is <b><a href="CppPublic.htm">public</a></b><br/>
 };<br/>
 <br/>
-<b><a href="CppInt.htm">int</a></b> <a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a>()<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
 {<br/>
 &nbsp;&nbsp;Base b;<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>b.m_x <a href="CppOperatorAssign.htm">=</a> 0; <a href="CppComment.htm">//</a>Not allowed! Only derived <b><a href="CppClass.html">classes</a></b> have access to Base::m_x<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>b.m_x <a href="CppOperatorAssign.htm">=</a> 0; <a href="CppComment.htm">//</a>Not allowed! Only derived <b><a href="CppClass.htm">classes</a></b> have access to Base::m_x<br/>
 <br/>
 &nbsp;&nbsp;Derived d;<br/>
 &nbsp;&nbsp;d.SetX(42);<br/>

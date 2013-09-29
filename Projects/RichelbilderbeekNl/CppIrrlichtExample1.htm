@@ -20,7 +20,7 @@
 <!-- Page header -->
 <h1>(<a href="Cpp.htm">C++</a>) <a href="CppIrrlichtExample1.htm">IrrlichtExample1</a></h1>
 <p>&nbsp;</p>
-<!-- No CodeToHtmlInfo about this class with page name CppIrrlichtExample1-->
+<!-- No CodeToHtmlInfo about this class with page name ./CppIrrlichtExample1-->
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
@@ -82,30 +82,30 @@
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="main.cpp" border = "1"><tr><td><code>
-<a href="CppInclude.html">#include</a> &lt;<a href="CppCassertH.html">cassert</a>&gt;<br/>
-<a href="CppInclude.html">#include</a> "irrlicht<a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> "irrlicht.h"<br/>
 <br/>
-<b><a href="CppInt.htm">int</a></b> <a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a>()<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
 {<br/>
-&nbsp;&nbsp;irr::IrrlichtDevice * <b><a href="CppConst.html">const</a></b> device <a href="CppOperatorAssign.htm">=</a> irr::createDevice(irr::video::EDT_SOFTWARE);<br/>
+&nbsp;&nbsp;irr::IrrlichtDevice * <b><a href="CppConst.htm">const</a></b> device <a href="CppOperatorAssign.htm">=</a> irr::createDevice(irr::video::EDT_SOFTWARE);<br/>
 <br/>
 &nbsp;&nbsp;device-&gt;setWindowCaption(L"HelloIrrlicht");<br/>
 <br/>
-&nbsp;&nbsp;irr::video::IVideoDriver * <b><a href="CppConst.html">const</a></b> driver <a href="CppOperatorAssign.htm">=</a> device-&gt;getVideoDriver();<br/>
-&nbsp;&nbsp;irr::scene::ISceneManager * <b><a href="CppConst.html">const</a></b> scene_manager <a href="CppOperatorAssign.htm">=</a> device-&gt;getSceneManager();<br/>
-&nbsp;&nbsp;irr::gui::IGUIEnvironment * <b><a href="CppConst.html">const</a></b> gui_environment <a href="CppOperatorAssign.htm">=</a> device-&gt;getGUIEnvironment();<br/>
-&nbsp;&nbsp;irr::scene::IAnimatedMesh * <b><a href="CppConst.html">const</a></b> mesh <a href="CppOperatorAssign.htm">=</a> scene_manager-&gt;getMesh("../../<a href="CppLibrary.html">Libraries</a>/irrlicht-1.8/media/sydney.md2");<br/>
-&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(mesh);<br/>
+&nbsp;&nbsp;irr::video::IVideoDriver * <b><a href="CppConst.htm">const</a></b> driver <a href="CppOperatorAssign.htm">=</a> device-&gt;getVideoDriver();<br/>
+&nbsp;&nbsp;irr::scene::ISceneManager * <b><a href="CppConst.htm">const</a></b> scene_manager <a href="CppOperatorAssign.htm">=</a> device-&gt;getSceneManager();<br/>
+&nbsp;&nbsp;irr::gui::IGUIEnvironment * <b><a href="CppConst.htm">const</a></b> gui_environment <a href="CppOperatorAssign.htm">=</a> device-&gt;getGUIEnvironment();<br/>
+&nbsp;&nbsp;irr::scene::IAnimatedMesh * <b><a href="CppConst.htm">const</a></b> mesh <a href="CppOperatorAssign.htm">=</a> scene_manager-&gt;getMesh("../../<a href="CppLibrary.htm">Libraries</a>/irrlicht-1.8/media/sydney.md2");<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(mesh);<br/>
 <br/>
-&nbsp;&nbsp;irr::scene::IAnimatedMeshSceneNode * <b><a href="CppConst.html">const</a></b> node <a href="CppOperatorAssign.htm">=</a> scene_manager-&gt;addAnimatedMeshSceneNode( mesh );<br/>
-&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(node);<br/>
-&nbsp;&nbsp;node-&gt;setMaterialFlag(irr::video::EMF_LIGHTING, <b><a href="CppFalse.html">false</a></b>);<br/>
+&nbsp;&nbsp;irr::scene::IAnimatedMeshSceneNode * <b><a href="CppConst.htm">const</a></b> node <a href="CppOperatorAssign.htm">=</a> scene_manager-&gt;addAnimatedMeshSceneNode( mesh );<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(node);<br/>
+&nbsp;&nbsp;node-&gt;setMaterialFlag(irr::video::EMF_LIGHTING, <b><a href="CppFalse.htm">false</a></b>);<br/>
 &nbsp;&nbsp;node-&gt;setMD2Animation(irr::scene::EMAT_STAND);<br/>
-&nbsp;&nbsp;node-&gt;setMaterialTexture( 0, driver-&gt;getTexture("../../<a href="CppLibrary.html">Libraries</a>/irrlicht-1.8/media/sydney.bmp") );<br/>
+&nbsp;&nbsp;node-&gt;setMaterialTexture( 0, driver-&gt;getTexture("../../<a href="CppLibrary.htm">Libraries</a>/irrlicht-1.8/media/sydney.bmp") );<br/>
 <br/>
 &nbsp;&nbsp;scene_manager-&gt;addCameraSceneNode(0, irr::core::vector3df(0,30,-40), irr::core::vector3df(0,5,0));<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppWhile.html">while</a></b>(device-&gt;run())<br/>
+&nbsp;&nbsp;<b><a href="CppWhile.htm">while</a></b>(device-&gt;run())<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;driver-&gt;beginScene(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppTrue.htm">true</a></b>,<br/>

@@ -20,7 +20,7 @@
 <!-- Page header -->
 <h1>(<a href="Cpp.htm">C++</a>) <a href="CppMultipleInheritanceExample1.htm">MultipleInheritanceExample1</a></h1>
 <p>&nbsp;</p>
-<!-- No CodeToHtmlInfo about this class with page name CppMultipleInheritanceExample1-->
+<!-- No CodeToHtmlInfo about this class with page name ./CppMultipleInheritanceExample1-->
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
@@ -78,73 +78,73 @@
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="main.cpp" border = "1"><tr><td><code>
-<a href="CppInclude.html">#include</a> &lt;<a href="CppCassertH.html">cassert</a>&gt;<br/>
-<a href="CppInclude.html">#include</a> &lt;<a href="CppIostreamH.html">iostream</a>&gt;<br/>
-<a href="CppInclude.html">#include</a> &lt;<a href="CppMemoryH.html">memory</a>&gt;<br/>
-<a href="CppInclude.html">#include</a> &lt;<a href="CppStringH.html">string</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppIostreamH.htm">iostream</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppMemoryH.htm">memory</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppStringH.htm">string</a>&gt;<br/>
 <br/>
-<a href="CppComment.htm">//</a><a href="CppAbstractBaseClass.html">Abstract base class</a><br/>
-<b><a href="CppStruct.html">struct</a></b> <a href="CppState.html">State</a><br/>
+<a href="CppComment.htm">//</a><a href="CppAbstractBaseClass.htm">Abstract base class</a><br/>
+<b><a href="CppStruct.htm">struct</a></b> <a href="CppState.htm">State</a><br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppVirtual.html">virtual</a></b> ~<a href="CppState.html">State</a>() {}<br/>
-&nbsp;&nbsp;<b><a href="CppVirtual.html">virtual</a></b> <b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a> ToStr() <b><a href="CppConst.html">const</a></b> <a href="CppOperatorAssign.htm">=</a> 0;<br/>
+&nbsp;&nbsp;<b><a href="CppVirtual.htm">virtual</a></b> ~<a href="CppState.htm">State</a>() {}<br/>
+&nbsp;&nbsp;<b><a href="CppVirtual.htm">virtual</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> ToStr() <b><a href="CppConst.htm">const</a></b> <a href="CppOperatorAssign.htm">=</a> 0;<br/>
 };<br/>
 <br/>
-<b><a href="CppStruct.html">struct</a></b> <a href="CppState.html">State</a>LoggedIn : <b><a href="CppPublic.html">public</a></b> <a href="CppState.html">State</a><br/>
+<b><a href="CppStruct.htm">struct</a></b> <a href="CppState.htm">State</a>LoggedIn : <b><a href="CppPublic.htm">public</a></b> <a href="CppState.htm">State</a><br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a> ToStr() <b><a href="CppConst.html">const</a></b> { <b><a href="CppReturn.html">return</a></b> "logged_in"; }<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> ToStr() <b><a href="CppConst.htm">const</a></b> { <b><a href="CppReturn.htm">return</a></b> "logged_in"; }<br/>
 };<br/>
 <br/>
-<b><a href="CppStruct.html">struct</a></b> <a href="CppState.html">State</a>NotLoggedIn : <b><a href="CppPublic.html">public</a></b> <a href="CppState.html">State</a><br/>
+<b><a href="CppStruct.htm">struct</a></b> <a href="CppState.htm">State</a>NotLoggedIn : <b><a href="CppPublic.htm">public</a></b> <a href="CppState.htm">State</a><br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a> ToStr() <b><a href="CppConst.html">const</a></b> { <b><a href="CppReturn.html">return</a></b> "not_logged_in"; }<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> ToStr() <b><a href="CppConst.htm">const</a></b> { <b><a href="CppReturn.htm">return</a></b> "not_logged_in"; }<br/>
 };<br/>
 <br/>
-<a href="CppComment.htm">//</a><a href="CppAbstractBaseClass.html">Abstract base class</a><br/>
-<b><a href="CppStruct.html">struct</a></b> Administrator : <b><a href="CppPublic.html">public</a></b> <a href="CppState.html">State</a><br/>
+<a href="CppComment.htm">//</a><a href="CppAbstractBaseClass.htm">Abstract base class</a><br/>
+<b><a href="CppStruct.htm">struct</a></b> Administrator : <b><a href="CppPublic.htm">public</a></b> <a href="CppState.htm">State</a><br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppVirtual.html">virtual</a></b> ~Administrator() {}<br/>
+&nbsp;&nbsp;<b><a href="CppVirtual.htm">virtual</a></b> ~Administrator() {}<br/>
 };<br/>
 <br/>
-<b><a href="CppStruct.html">struct</a></b> AdministratorLoggedIn : <b><a href="CppPublic.html">public</a></b> Administrator, <a href="CppState.html">State</a>LoggedIn<br/>
+<b><a href="CppStruct.htm">struct</a></b> AdministratorLoggedIn : <b><a href="CppPublic.htm">public</a></b> Administrator, <a href="CppState.htm">State</a>LoggedIn<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a> ToStr() <b><a href="CppConst.html">const</a></b> { <b><a href="CppReturn.html">return</a></b> <b><a href="CppThis.htm">this</a></b>-&gt;<a href="CppState.html">State</a>LoggedIn::ToStr(); }<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> ToStr() <b><a href="CppConst.htm">const</a></b> { <b><a href="CppReturn.htm">return</a></b> <b><a href="CppThis.htm">this</a></b>-&gt;<a href="CppState.htm">State</a>LoggedIn::ToStr(); }<br/>
 };<br/>
 <br/>
-<b><a href="CppStruct.html">struct</a></b> AdministratorNotLoggedIn : <b><a href="CppPublic.html">public</a></b> Administrator, <a href="CppState.html">State</a>NotLoggedIn<br/>
+<b><a href="CppStruct.htm">struct</a></b> AdministratorNotLoggedIn : <b><a href="CppPublic.htm">public</a></b> Administrator, <a href="CppState.htm">State</a>NotLoggedIn<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a> ToStr() <b><a href="CppConst.html">const</a></b> { <b><a href="CppReturn.html">return</a></b> <b><a href="CppThis.htm">this</a></b>-&gt;<a href="CppState.html">State</a>NotLoggedIn::ToStr(); }<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> ToStr() <b><a href="CppConst.htm">const</a></b> { <b><a href="CppReturn.htm">return</a></b> <b><a href="CppThis.htm">this</a></b>-&gt;<a href="CppState.htm">State</a>NotLoggedIn::ToStr(); }<br/>
 };<br/>
 <br/>
 <br/>
-<a href="CppComment.htm">//</a><a href="CppAbstractBaseClass.html">Abstract base class</a><br/>
-<b><a href="CppStruct.html">struct</a></b> Participant : <b><a href="CppPublic.html">public</a></b> <a href="CppState.html">State</a><br/>
+<a href="CppComment.htm">//</a><a href="CppAbstractBaseClass.htm">Abstract base class</a><br/>
+<b><a href="CppStruct.htm">struct</a></b> Participant : <b><a href="CppPublic.htm">public</a></b> <a href="CppState.htm">State</a><br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppVirtual.html">virtual</a></b> ~Participant() {}<br/>
+&nbsp;&nbsp;<b><a href="CppVirtual.htm">virtual</a></b> ~Participant() {}<br/>
 };<br/>
 <br/>
-<b><a href="CppStruct.html">struct</a></b> ParticipantLoggedIn : <b><a href="CppPublic.html">public</a></b> Participant, <a href="CppState.html">State</a>LoggedIn<br/>
+<b><a href="CppStruct.htm">struct</a></b> ParticipantLoggedIn : <b><a href="CppPublic.htm">public</a></b> Participant, <a href="CppState.htm">State</a>LoggedIn<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a> ToStr() <b><a href="CppConst.html">const</a></b> { <b><a href="CppReturn.html">return</a></b> <b><a href="CppThis.htm">this</a></b>-&gt;<a href="CppState.html">State</a>LoggedIn::ToStr(); }<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> ToStr() <b><a href="CppConst.htm">const</a></b> { <b><a href="CppReturn.htm">return</a></b> <b><a href="CppThis.htm">this</a></b>-&gt;<a href="CppState.htm">State</a>LoggedIn::ToStr(); }<br/>
 };<br/>
 <br/>
-<b><a href="CppStruct.html">struct</a></b> ParticipantNotLoggedIn : <b><a href="CppPublic.html">public</a></b> Participant, <a href="CppState.html">State</a>NotLoggedIn<br/>
+<b><a href="CppStruct.htm">struct</a></b> ParticipantNotLoggedIn : <b><a href="CppPublic.htm">public</a></b> Participant, <a href="CppState.htm">State</a>NotLoggedIn<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a> ToStr() <b><a href="CppConst.html">const</a></b> { <b><a href="CppReturn.html">return</a></b> <b><a href="CppThis.htm">this</a></b>-&gt;<a href="CppState.html">State</a>NotLoggedIn::ToStr(); }<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> ToStr() <b><a href="CppConst.htm">const</a></b> { <b><a href="CppReturn.htm">return</a></b> <b><a href="CppThis.htm">this</a></b>-&gt;<a href="CppState.htm">State</a>NotLoggedIn::ToStr(); }<br/>
 };<br/>
 <br/>
-<b><a href="CppInt.htm">int</a></b> <a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a>()<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
 {<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppShared_ptr.html">std::shared_ptr</a>&lt;Administrator&gt; a1(<b><a href="CppNew.htm">new</a></b> AdministratorLoggedIn);<br/>
-&nbsp;&nbsp;<a href="CppShared_ptr.html">std::shared_ptr</a>&lt;Administrator&gt; a2(<b><a href="CppNew.htm">new</a></b> AdministratorNotLoggedIn);<br/>
-&nbsp;&nbsp;<a href="CppShared_ptr.html">std::shared_ptr</a>&lt;Participant&gt; p1(<b><a href="CppNew.htm">new</a></b> ParticipantLoggedIn);<br/>
-&nbsp;&nbsp;<a href="CppShared_ptr.html">std::shared_ptr</a>&lt;Participant&gt; p2(<b><a href="CppNew.htm">new</a></b> ParticipantNotLoggedIn);<br/>
+&nbsp;&nbsp;<a href="CppShared_ptr.htm">std::shared_ptr</a>&lt;Administrator&gt; a1(<b><a href="CppNew.htm">new</a></b> AdministratorLoggedIn);<br/>
+&nbsp;&nbsp;<a href="CppShared_ptr.htm">std::shared_ptr</a>&lt;Administrator&gt; a2(<b><a href="CppNew.htm">new</a></b> AdministratorNotLoggedIn);<br/>
+&nbsp;&nbsp;<a href="CppShared_ptr.htm">std::shared_ptr</a>&lt;Participant&gt; p1(<b><a href="CppNew.htm">new</a></b> ParticipantLoggedIn);<br/>
+&nbsp;&nbsp;<a href="CppShared_ptr.htm">std::shared_ptr</a>&lt;Participant&gt; p2(<b><a href="CppNew.htm">new</a></b> ParticipantNotLoggedIn);<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(a1-&gt;ToStr() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> p1-&gt;ToStr());<br/>
-&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(a2-&gt;ToStr() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> p2-&gt;ToStr());<br/>
-&nbsp;&nbsp;<a href="CppCout.html">std::cout</a> <a href="CppOperatorStreamOut.html">&lt;&lt;</a> a1-&gt;ToStr() <a href="CppOperatorStreamOut.html">&lt;&lt;</a> '\n';<br/>
-&nbsp;&nbsp;<a href="CppCout.html">std::cout</a> <a href="CppOperatorStreamOut.html">&lt;&lt;</a> a2-&gt;ToStr() <a href="CppOperatorStreamOut.html">&lt;&lt;</a> '\n';<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(a1-&gt;ToStr() <a href="CppOperatorEqual.htm">==</a> p1-&gt;ToStr());<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(a2-&gt;ToStr() <a href="CppOperatorEqual.htm">==</a> p2-&gt;ToStr());<br/>
+&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> a1-&gt;ToStr() <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n';<br/>
+&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> a2-&gt;ToStr() <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n';<br/>
 }<br/>
 <br/>
 <a href="CppComment.htm">/*</a> Screen output:<br/>

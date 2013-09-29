@@ -20,7 +20,7 @@
 <!-- Page header -->
 <h1>(<a href="Cpp.htm">C++</a>) <a href="CppStatus.htm">Status</a></h1>
 <p>&nbsp;</p>
-<!-- No CodeToHtmlInfo about this class with page name CppStatus-->
+<!-- No CodeToHtmlInfo about this class with page name ./CppStatus.sh-->
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
@@ -38,28 +38,28 @@
 <!-- start of code -->
 <table summary="CppStatus.sh" border = "1"><tr><td><code>
 #!/bin/bash<br/>
-myq<a href="CppMake.htm">make</a>="../../<a href="CppLibrary.html">Libraries</a>/mxe/usr/i686-pc-mingw32/qt5/bin/q<a href="CppMake.htm">make</a>"<br/>
+myq<a href="CppMake.htm">make</a>="../../<a href="CppLibrary.htm">Libraries</a>/mxe/usr/i686-pc-mingw32/qt5/bin/q<a href="CppMake.htm">make</a>"<br/>
  <br/>
 #Cleaning up<br/>
 rm *.pro.user<br/>
-rm <a href="CppMakefile.html">Makefile</a><br/>
-rm <a href="CppMakefile.html">Makefile</a>.*<br/>
+rm <a href="CppMakefile.htm">Makefile</a><br/>
+rm <a href="CppMakefile.htm">Makefile</a>.*<br/>
 rm <a href="CppOperatorMinus.htm">-</a>r release<br/>
-rm <a href="CppOperatorMinus.htm">-</a>r <a href="CppDebug.html">debug</a><br/>
-rm ui_*<a href="CppHeaderFile.htm">.h</a><br/>
-rm qrc_*<a href="CppImplementationFile.html">.cpp</a><br/>
-rm moc_*<a href="CppImplementationFile.html">.cpp</a><br/>
+rm <a href="CppOperatorMinus.htm">-</a>r <a href="CppDebug.htm">debug</a><br/>
+rm ui_*.h<br/>
+rm qrc_*<a href="CppImplementationFile.htm">.cpp</a><br/>
+rm moc_*<a href="CppImplementationFile.htm">.cpp</a><br/>
 rm object_script*.*<br/>
  <br/>
-<b><a href="CppFor.htm">for</a></b> my<a href="CppProFile.html">profile</a> in `ls | egrep ".pro\&gt;"`<br/>
+<b><a href="CppFor.htm">for</a></b> my<a href="CppProFile.htm">profile</a> in `ls | egrep ".pro\&gt;"`<br/>
 <b><a href="CppDo.htm">do</a></b><br/>
-&nbsp;&nbsp;mytarget=`echo $my<a href="CppProFile.html">profile</a> | sed "s/\.pro<a href="CppComment.htm">//</a>"`<br/>
+&nbsp;&nbsp;mytarget=`echo $my<a href="CppProFile.htm">profile</a> | sed "s/\.pro<a href="CppComment.htm">//</a>"`<br/>
 &nbsp;&nbsp; <br/>
-&nbsp;&nbsp;$myq<a href="CppMake.htm">make</a> $my<a href="CppProFile.html">profile</a><br/>
+&nbsp;&nbsp;$myq<a href="CppMake.htm">make</a> $my<a href="CppProFile.htm">profile</a><br/>
 &nbsp;&nbsp; <br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> [ ! <a href="CppOperatorMinus.htm">-</a>e <a href="CppMakefile.html">Makefile</a> ]<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> [ ! <a href="CppOperatorMinus.htm">-</a>e <a href="CppMakefile.htm">Makefile</a> ]<br/>
 &nbsp;&nbsp;then<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;echo "FAIL: $myq<a href="CppMake.htm">make</a> $my<a href="CppProFile.html">profile</a>"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;echo "FAIL: $myq<a href="CppMake.htm">make</a> $my<a href="CppProFile.htm">profile</a>"<br/>
 &nbsp;&nbsp;fi<br/>
 &nbsp;&nbsp; <br/>
 &nbsp;&nbsp;<a href="CppMake.htm">make</a><br/>
@@ -73,13 +73,13 @@ rm object_script*.*<br/>
 &nbsp;&nbsp;fi<br/>
 &nbsp;&nbsp; <br/>
 &nbsp;&nbsp;#Cleaning up<br/>
-&nbsp;&nbsp;rm <a href="CppMakefile.html">Makefile</a><br/>
-&nbsp;&nbsp;rm <a href="CppMakefile.html">Makefile</a>.*<br/>
+&nbsp;&nbsp;rm <a href="CppMakefile.htm">Makefile</a><br/>
+&nbsp;&nbsp;rm <a href="CppMakefile.htm">Makefile</a>.*<br/>
 &nbsp;&nbsp;rm <a href="CppOperatorMinus.htm">-</a>r release<br/>
-&nbsp;&nbsp;rm <a href="CppOperatorMinus.htm">-</a>r <a href="CppDebug.html">debug</a><br/>
-&nbsp;&nbsp;rm ui_*<a href="CppHeaderFile.htm">.h</a><br/>
-&nbsp;&nbsp;rm qrc_*<a href="CppImplementationFile.html">.cpp</a><br/>
-&nbsp;&nbsp;rm moc_*<a href="CppImplementationFile.html">.cpp</a><br/>
+&nbsp;&nbsp;rm <a href="CppOperatorMinus.htm">-</a>r <a href="CppDebug.htm">debug</a><br/>
+&nbsp;&nbsp;rm ui_*.h<br/>
+&nbsp;&nbsp;rm qrc_*<a href="CppImplementationFile.htm">.cpp</a><br/>
+&nbsp;&nbsp;rm moc_*<a href="CppImplementationFile.htm">.cpp</a><br/>
 &nbsp;&nbsp;rm object_script*.*<br/>
  <br/>
 done #next .pro file<br/>

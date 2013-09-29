@@ -52,6 +52,14 @@ struct CreateGlossaryMainDialog
     const std::string& folder,
     const std::string& regex_str);
 
+  ///Removes the path of a filename
+  ///Needed by main.cpp of ToolCreateGlossaryConsole
+  ///From http://www.richelbilderbeek.nl/CppRemovePath.htm
+  static const std::string RemovePath(const std::string& filename);
+
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
 };
 
 } //~namespace ribi

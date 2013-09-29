@@ -3,9 +3,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
   <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
-  <title>boost::bimap example 1: find</title>
-  <meta name="description" content="C++ boost::bimap example 1: find"/>
-  <meta name="keywords" content="C++ boost::bimap example 1: find code snippet"/>
+  <title>BimapExample1</title>
+  <meta name="description" content="C++ BimapExample1"/>
+  <meta name="keywords" content="C++ BimapExample1 code snippet"/>
   <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
 </head>
 <!-- End of head, start of body -->
@@ -18,13 +18,9 @@
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <!-- Page header -->
-<h1>(<a href="Cpp.htm">C++</a>) <a href="CppBimapExample1.htm">boost::bimap example 1: find</a></h1>
+<h1>(<a href="Cpp.htm">C++</a>) <a href="CppBimapExample1.htm">BimapExample1</a></h1>
 <p>&nbsp;</p>
-<p><a href="CppBimapExample1.htm">boost::bimap example 1: find</a> is a <a href="CppBimap.htm">boost::bimap</a> example.</p>
-<p>&nbsp;</p>
-<ul>
-  <li><a href="CppBimapExample1.zip">Download the Qt Creator project 'CppBimapExample1' (zip)</a></li>
-</ul>
+<!-- No CodeToHtmlInfo about this class with page name ./CppBimapExample1-->
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
@@ -32,17 +28,13 @@
 <p>&nbsp;</p>
 <h2>Technical facts</h2>
 <p>&nbsp;</p>
-<p><a href="CppApplication.htm">Application type(s)</a></p>
-<ul>
-  <li><img src="PicDesktop.png" alt="Desktop"/> <a href="CppDesktopApplication.htm">Desktop application</a></li>
-</ul>
 <p><a href="CppOs.htm">Operating system(s) or programming environment(s)</a></p>
 <ul>
   <li><img src="PicLubuntu.png" alt="Lubuntu"/> <a href="CppLubuntu.htm">Lubuntu</a> 13.04 (raring)</li>
 </ul>
 <p><a href="CppIde.htm">IDE(s)</a>:</p>
 <ul>
-  <li><img src="PicQtCreator.png" alt="Qt Creator"/> <a href="CppQtCreator.htm">Qt Creator</a> 2.7.0</li>
+  <li><img src="PicQtCreator.png" alt="Qt Creator"/> <a href="CppQtCreator.htm">Qt Creator</a> unknown</li>
 </ul>
 <p><a href="CppQtProjectType.htm">Project type</a>:</p>
 <ul>
@@ -50,7 +42,7 @@
 </ul>
 <p><a href="CppStandard.htm">C++ standard</a>:</p>
 <ul>
-  <li><img src="PicCpp98.png" alt="C++98"/> <a href="Cpp98.htm">C++98</a></li>
+  <li><img src="PicCpp11.png" alt="C++11"/> <a href="Cpp11.htm">C++11</a></li>
 </ul>
 <p><a href="CppCompiler.htm">Compiler(s)</a>:</p>
 <ul>
@@ -69,12 +61,38 @@
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="CppBimapExample1.pro" border = "1"><tr><td><code>
-TEMPLATE = app<br/>
-CONFIG += console<br/>
-CONFIG -= app_bundle<br/>
-CONFIG -= qt<br/>
-#<a href="CppQMAKE_CXXFLAGS.htm">QMAKE_CXXFLAGS</a> += -std=<a href="Cpp11.htm">c++11</a><br/>
-<a href="CppSOURCES.htm">SOURCES</a> += <a href="CppMain.htm">main</a>.cpp<br/>
+<a href="CppQmakeTemplate.htm">TEMPLATE</a> = app<br/>
+<a href="CppQmakeConfig.htm">CONFIG</a> += console<br/>
+<a href="CppQmakeConfig.htm">CONFIG</a> -= app_bundle<br/>
+<a href="CppQmakeConfig.htm">CONFIG</a> -= qt<br/>
+<a href="CppQmakeSources.htm">SOURCES</a> += <a href="CppMain.htm">main</a>.cpp<br/>
+<br/>
+#<br/>
+#<br/>
+# Type of compile<br/>
+#<br/>
+#<br/>
+<br/>
+<a href="CppQmakeConfig.htm">CONFIG</a>(release, debug|release) {<br/>
+&nbsp;&nbsp;<a href="CppQmakeDefines.htm">DEFINES</a> += NDEBUG N<a href="CppTRACE.htm">TRACE</a>_BILDERBIKKEL<br/>
+}<br/>
+<br/>
+<a href="CppQmakeQmake_cxxflags.htm">QMAKE_CXXFLAGS</a> += -std=<a href="Cpp11.htm">c++11</a> <a href="CppWall.htm">-Wall</a> <a href="CppWextra.htm">-Wextra</a> <a href="CppWeffcpp.htm">-Weffc++</a> <a href="CppWerror.htm">-Werror</a><br/>
+<br/>
+unix {<br/>
+&nbsp;&nbsp;<a href="CppQmakeQmake_cxxflags.htm">QMAKE_CXXFLAGS</a> += <a href="CppWerror.htm">-Werror</a><br/>
+}<br/>
+<br/>
+#<br/>
+#<br/>
+# Boost<br/>
+#<br/>
+#<br/>
+<br/>
+win32 {<br/>
+&nbsp;&nbsp;<a href="CppQmakeIncludepath.htm">INCLUDEPATH</a> += \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/boost_1_54_0<br/>
+}<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -87,21 +105,29 @@ CONFIG -= qt<br/>
 <!-- start of code -->
 <table summary="main.cpp" border = "1"><tr><td><code>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
+<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-<b><a href="CppTypedef.htm">typedef</a></b>s"<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/bimap.hpp&gt;<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
 <br/>
 <b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppBimap.htm">boost::bimap</a>&lt;<b><a href="CppInt.htm">int</a></b>,<b><a href="CppInt.htm">int</a></b>&gt; m;<br/>
-&nbsp;&nbsp;m.insert(<a href="CppBimap.htm">boost::bimap</a>&lt;<b><a href="CppInt.htm">int</a></b>,<b><a href="CppInt.htm">int</a></b>&gt;::value_type(1, 1));<br/>
-&nbsp;&nbsp;m.insert(<a href="CppBimap.htm">boost::bimap</a>&lt;<b><a href="CppInt.htm">int</a></b>,<b><a href="CppInt.htm">int</a></b>&gt;::value_type(2, 4));<br/>
-&nbsp;&nbsp;m.insert(<a href="CppBimap.htm">boost::bimap</a>&lt;<b><a href="CppInt.htm">int</a></b>,<b><a href="CppInt.htm">int</a></b>&gt;::value_type(3, 9));<br/>
-&nbsp;&nbsp;m.insert(<a href="CppBimap.htm">boost::bimap</a>&lt;<b><a href="CppInt.htm">int</a></b>,<b><a href="CppInt.htm">int</a></b>&gt;::value_type(4,16));<br/>
-&nbsp;&nbsp;m.insert(<a href="CppBimap.htm">boost::bimap</a>&lt;<b><a href="CppInt.htm">int</a></b>,<b><a href="CppInt.htm">int</a></b>&gt;::value_type(5,25));<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(m.left.find( 0) <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> m.left.end());<br/>
+&nbsp;&nbsp;<b><a href="CppTypedef.htm">typedef</a></b> <a href="CppBimap.htm">boost::bimap</a>&lt;<b><a href="CppInt.htm">int</a></b>,<b><a href="CppInt.htm">int</a></b>&gt;::value_type Pair;<br/>
+&nbsp;&nbsp;m.insert(Pair(1, 1));<br/>
+&nbsp;&nbsp;m.insert(Pair(2, 4));<br/>
+&nbsp;&nbsp;m.insert(Pair(3, 9));<br/>
+&nbsp;&nbsp;m.insert(Pair(4,16));<br/>
+&nbsp;&nbsp;m.insert(Pair(5,25));<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(m.left.find( 0) <a href="CppOperatorEqual.htm">==</a> m.left.end());<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(m.left.find( 4) <a href="CppOperatorNotEqual.htm">!=</a> m.left.end());<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(m.left.find( 5) <a href="CppOperatorNotEqual.htm">!=</a> m.left.end());<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(m.left.find(16) <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> m.left.end());<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(m.right.find( 0) <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> m.right.end());<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(m.right.find( 5) <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> m.right.end());<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(m.left.find(16) <a href="CppOperatorEqual.htm">==</a> m.left.end());<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(m.right.find( 0) <a href="CppOperatorEqual.htm">==</a> m.right.end());<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(m.right.find( 4) <a href="CppOperatorNotEqual.htm">!=</a> m.right.end());<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(m.right.find( 5) <a href="CppOperatorEqual.htm">==</a> m.right.end());<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(m.right.find(16) <a href="CppOperatorNotEqual.htm">!=</a> m.right.end());<br/>
 }<br/>
 </code></td></tr></table>

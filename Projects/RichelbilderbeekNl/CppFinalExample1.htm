@@ -20,7 +20,7 @@
 <!-- Page header -->
 <h1>(<a href="Cpp.htm">C++</a>) <a href="CppFinalExample1.htm">FinalExample1</a></h1>
 <p>&nbsp;</p>
-<!-- No CodeToHtmlInfo about this class with page name CppFinalExample1-->
+<!-- No CodeToHtmlInfo about this class with page name ./CppFinalExample1-->
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
@@ -78,28 +78,28 @@
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="main.cpp" border = "1"><tr><td><code>
-<a href="CppInclude.html">#include</a> &lt;<a href="CppIostreamH.html">iostream</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppIostreamH.htm">iostream</a>&gt;<br/>
 <br/>
-<b><a href="CppStruct.html">struct</a></b> Animal<br/>
+<b><a href="CppStruct.htm">struct</a></b> Animal<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppVirtual.html">virtual</a></b> ~Animal() {}<br/>
-&nbsp;&nbsp;<b><a href="CppVirtual.html">virtual</a></b> <b><a href="CppVoid.htm">void</a></b> MakeSound() <b><a href="CppConst.html">const</a></b> <a href="CppOperatorAssign.htm">=</a> 0;<br/>
-&nbsp;&nbsp;<b><a href="CppVirtual.html">virtual</a></b> <b><a href="CppVoid.htm">void</a></b> Walk() <b><a href="CppConst.html">const</a></b> <a href="CppOperatorAssign.htm">=</a> 0;<br/>
+&nbsp;&nbsp;<b><a href="CppVirtual.htm">virtual</a></b> ~Animal() {}<br/>
+&nbsp;&nbsp;<b><a href="CppVirtual.htm">virtual</a></b> <b><a href="CppVoid.htm">void</a></b> MakeSound() <b><a href="CppConst.htm">const</a></b> <a href="CppOperatorAssign.htm">=</a> 0;<br/>
+&nbsp;&nbsp;<b><a href="CppVirtual.htm">virtual</a></b> <b><a href="CppVoid.htm">void</a></b> Walk() <b><a href="CppConst.htm">const</a></b> <a href="CppOperatorAssign.htm">=</a> 0;<br/>
 };<br/>
 <br/>
-<b><a href="CppStruct.html">struct</a></b> Cow : <b><a href="CppPublic.html">public</a></b> Animal<br/>
+<b><a href="CppStruct.htm">struct</a></b> Cow : <b><a href="CppPublic.htm">public</a></b> Animal<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> MakeSound() <b><a href="CppConst.html">const</a></b> <b><a href="CppFinal.html">final</a></b> { <a href="CppCout.html">std::cout</a> <a href="CppOperatorStreamOut.html">&lt;&lt;</a> "moo\n"; } <a href="CppComment.htm">//</a>MakeSound is <b><a href="CppFinal.html">final</a></b><br/>
-&nbsp;&nbsp;<b><a href="CppVirtual.html">virtual</a></b> <b><a href="CppVoid.htm">void</a></b> Walk() <b><a href="CppConst.html">const</a></b> { <a href="CppCout.html">std::cout</a> <a href="CppOperatorStreamOut.html">&lt;&lt;</a> "walk\n"; }<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> MakeSound() <b><a href="CppConst.htm">const</a></b> <b><a href="CppFinal.htm">final</a></b> { <a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "moo\n"; } <a href="CppComment.htm">//</a>MakeSound is <b><a href="CppFinal.htm">final</a></b><br/>
+&nbsp;&nbsp;<b><a href="CppVirtual.htm">virtual</a></b> <b><a href="CppVoid.htm">void</a></b> Walk() <b><a href="CppConst.htm">const</a></b> { <a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "walk\n"; }<br/>
 };<br/>
 <br/>
-<b><a href="CppStruct.html">struct</a></b> NonCow : <b><a href="CppPublic.html">public</a></b> Cow<br/>
+<b><a href="CppStruct.htm">struct</a></b> NonCow : <b><a href="CppPublic.htm">public</a></b> Cow<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppVoid.htm">void</a></b> MakeSound() <b><a href="CppConst.html">const</a></b> { <a href="CppCout.html">std::cout</a> <a href="CppOperatorStreamOut.html">&lt;&lt;</a> "MOO\n"; } <a href="CppComment.htm">//</a>will not <a href="CppCompile.html">compile</a>: Cow::MakeSound is <b><a href="CppFinal.html">final</a></b><br/>
-&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> Walk() <b><a href="CppConst.html">const</a></b> { <a href="CppCout.html">std::cout</a> <a href="CppOperatorStreamOut.html">&lt;&lt;</a> "non walk\n"; }<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppVoid.htm">void</a></b> MakeSound() <b><a href="CppConst.htm">const</a></b> { <a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "MOO\n"; } <a href="CppComment.htm">//</a>will not <a href="CppCompile.htm">compile</a>: Cow::MakeSound is <b><a href="CppFinal.htm">final</a></b><br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> Walk() <b><a href="CppConst.htm">const</a></b> { <a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "non walk\n"; }<br/>
 };<br/>
 <br/>
-<b><a href="CppInt.htm">int</a></b> <a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a>()<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
 {<br/>
 &nbsp;&nbsp;Cow cow;<br/>
 &nbsp;&nbsp;cow.MakeSound();<br/>

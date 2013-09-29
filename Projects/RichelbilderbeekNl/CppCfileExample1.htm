@@ -20,7 +20,7 @@
 <!-- Page header -->
 <h1>(<a href="Cpp.htm">C++</a>) <a href="CppCfileExample1.htm">CfileExample1</a></h1>
 <p>&nbsp;</p>
-<!-- No CodeToHtmlInfo about this class with page name CppCfileExample1-->
+<!-- No CodeToHtmlInfo about this class with page name ./CppCfileExample1-->
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
@@ -78,29 +78,29 @@
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="main.cpp" border = "1"><tr><td><code>
-<a href="CppInclude.html">#include</a> &lt;<a href="CppCassertH.html">cassert</a>&gt;<br/>
-<a href="CppInclude.html">#include</a> &lt;<a href="CppCstdioH.html">cstdio</a>&gt;<br/>
-<a href="CppInclude.html">#include</a> &lt;<a href="CppMemoryH.html">memory</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppCstdioH.htm">cstdio</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppMemoryH.htm">memory</a>&gt;<br/>
 <br/>
 <a href="CppComment.htm">//</a>THIS PROGRAM MIGHT CAUSE A RUNTIME CRASH<br/>
 <a href="CppComment.htm">//</a>IT PROBABLY CORRUPTS SOME MEMORY<br/>
 <a href="CppComment.htm">//</a>DO NOT RUN IT!<br/>
 <a href="CppComment.htm">//</a><br/>
 <a href="CppComment.htm">//</a>Sadly, I cannot remember why <b><a href="CppThis.htm">this</a></b> was so...<br/>
-<b><a href="CppInt.htm">int</a></b> <a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a>()<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Create a file to write to<br/>
-&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppUnique_ptr.html">std::unique_ptr</a>&lt;<a href="CppCfile<a href="CppHeaderFile.htm">.h</a>tm">FILE</a>&gt; my_file(<a href="CppFopen.html">std::fopen</a>("my_file.txt","w"));<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppUnique_ptr.htm">std::unique_ptr</a>&lt;<a href="CppCfile.htm">FILE</a>&gt; my_file(<a href="CppFopen.htm">std::fopen</a>("my_file.txt","w"));<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Assume the file is created successfully<br/>
-&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(my_file);<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(my_file);<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Put text at the start of the file<br/>
-&nbsp;&nbsp;<a href="CppFputs.html">std::fputs</a>("Bilderbickel",my_file.get());<br/>
+&nbsp;&nbsp;<a href="CppFputs.htm">std::fputs</a>("Bilderbickel",my_file.get());<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Go to the 9th position<br/>
-&nbsp;&nbsp;<a href="CppFseek.html">std::fseek</a>(my_file.get(),9,SEEK_SET );<br/>
+&nbsp;&nbsp;<a href="CppFseek.htm">std::fseek</a>(my_file.get(),9,SEEK_SET );<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Put text at the 9th position<br/>
-&nbsp;&nbsp;<a href="CppFputs.html">std::fputs</a> ("k",my_file.get());<br/>
+&nbsp;&nbsp;<a href="CppFputs.htm">std::fputs</a> ("k",my_file.get());<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Close the file<br/>
-&nbsp;&nbsp;<a href="CppFclose.html">std::fclose</a> (my_file.get());<br/>
+&nbsp;&nbsp;<a href="CppFclose.htm">std::fclose</a> (my_file.get());<br/>
 }<br/>
 </code></td></tr></table>
 <!-- end of the code -->

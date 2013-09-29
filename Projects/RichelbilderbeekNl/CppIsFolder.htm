@@ -20,7 +20,7 @@
 <!-- Page header -->
 <h1>(<a href="Cpp.htm">C++</a>) <a href="CppIsFolder.htm">IsFolder</a></h1>
 <p>&nbsp;</p>
-<!-- No CodeToHtmlInfo about this class with page name CppIsFolder-->
+<!-- No CodeToHtmlInfo about this class with page name ./CppIsFolder-->
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
@@ -107,53 +107,53 @@ win32 {<br/>
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="main.cpp" border = "1"><tr><td><code>
-<a href="CppInclude.html">#include</a> &lt;<a href="CppCassertH.html">cassert</a>&gt;<br/>
-<a href="CppInclude.html">#include</a> &lt;<a href="CppStringH.html">string</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppStringH.htm">string</a>&gt;<br/>
 <br/>
-<a href="CppPragma.html">#pragma</a> GCC diagnostic push<br/>
-<a href="CppPragma.html">#pragma</a> GCC diagnostic ignored "-Wunused-local-<b><a href="CppTypedef.html">typedef</a></b>s"<br/>
-<a href="CppInclude.html">#include</a> &lt;<a href="CppBoost.html">boost</a>/filesystem<a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
-<a href="CppPragma.html">#pragma</a> GCC diagnostic pop<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-<b><a href="CppTypedef.htm">typedef</a></b>s"<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/filesystem.hpp&gt;<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
 <br/>
-<a href="CppInclude.html">#include</a> &lt;<a href="CppQDir.htm">QDir</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppQDir.htm">QDir</a>&gt;<br/>
 <br/>
 <a href="CppComment.htm">///</a>Returns <b><a href="CppIf.htm">if</a></b> the name is a folder name<br/>
-<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/CppIsFolder.html<br/>
-<b><a href="CppBool.htm">bool</a></b> IsFolder<a href="CppBoost.html">Boost</a>Filesystem(<b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a>&amp; filename)<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/CppIsFolder.htm<br/>
+<b><a href="CppBool.htm">bool</a></b> IsFolder<a href="CppBoost.htm">Boost</a>Filesystem(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; filename)<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> <a href="CppFilesystem.html">boost::filesystem</a>::is_directory(filename);<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <a href="CppFilesystem.htm">boost::filesystem</a>::is_directory(filename);<br/>
 }<br/>
 <br/>
 <a href="CppComment.htm">///</a>Returns <b><a href="CppIf.htm">if</a></b> the name is a folder name<br/>
-<a href="CppComment.htm">///</a>From http://www.richelbilderbeek.nl/CppIsFolder.html<br/>
-<b><a href="CppBool.htm">bool</a></b> IsFolder<a href="CppQt.htm">Qt</a>(<b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a>&amp; filename)<br/>
+<a href="CppComment.htm">///</a>From http://www.richelbilderbeek.nl/CppIsFolder.htm<br/>
+<b><a href="CppBool.htm">bool</a></b> IsFolder<a href="CppQt.htm">Qt</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; filename)<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> <a href="CppQDir.htm">QDir</a>(filename.c_str()).exists();<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <a href="CppQDir.htm">QDir</a>(filename.c_str()).exists();<br/>
 }<br/>
 <br/>
-<b><a href="CppInt.htm">int</a></b> <a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a>(<b><a href="CppInt.htm">int</a></b>, <b><a href="CppChar.htm">char</a></b> * <a href="CppArgc.htm">argv</a>[])<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>(<b><a href="CppInt.htm">int</a></b>, <b><a href="CppChar.htm">char</a></b> * <a href="CppArgc.htm">argv</a>[])<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(!IsFolder<a href="CppBoost.html">Boost</a>Filesystem(<a href="CppArgc.htm">argv</a>[0]));<br/>
-&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(!IsFolder<a href="CppQt.htm">Qt</a>(<a href="CppArgc.htm">argv</a>[0]));<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!IsFolder<a href="CppBoost.htm">Boost</a>Filesystem(<a href="CppArgc.htm">argv</a>[0]));<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!IsFolder<a href="CppQt.htm">Qt</a>(<a href="CppArgc.htm">argv</a>[0]));<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(IsFolder<a href="CppBoost.html">Boost</a>Filesystem("../CppIsFolder"));<br/>
-&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(IsFolder<a href="CppQt.htm">Qt</a>("../CppIsFolder"));<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(IsFolder<a href="CppBoost.htm">Boost</a>Filesystem("../CppIsFolder"));<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(IsFolder<a href="CppQt.htm">Qt</a>("../CppIsFolder"));<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(!IsFolder<a href="CppBoost.html">Boost</a>Filesystem("tempfolder"));<br/>
-&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(!IsFolder<a href="CppQt.htm">Qt</a>("tempfolder"));<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!IsFolder<a href="CppBoost.htm">Boost</a>Filesystem("tempfolder"));<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!IsFolder<a href="CppQt.htm">Qt</a>("tempfolder"));<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppQDir.htm">QDir</a>().mkdir("tempfolder");<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(IsFolder<a href="CppBoost.html">Boost</a>Filesystem("tempfolder"));<br/>
-&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(IsFolder<a href="CppQt.htm">Qt</a>("tempfolder"));<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(IsFolder<a href="CppBoost.htm">Boost</a>Filesystem("tempfolder"));<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(IsFolder<a href="CppQt.htm">Qt</a>("tempfolder"));<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppQDir.htm">QDir</a>().rmdir("tempfolder");<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(!IsFolder<a href="CppBoost.html">Boost</a>Filesystem("tempfolder"));<br/>
-&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(!IsFolder<a href="CppQt.htm">Qt</a>("tempfolder"));<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!IsFolder<a href="CppBoost.htm">Boost</a>Filesystem("tempfolder"));<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!IsFolder<a href="CppQt.htm">Qt</a>("tempfolder"));<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(!IsFolder<a href="CppBoost.html">Boost</a>Filesystem(":/images/R.png"));<br/>
-&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(!IsFolder<a href="CppQt.htm">Qt</a>(":/images/R.png"));<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!IsFolder<a href="CppBoost.htm">Boost</a>Filesystem(":/images/R.png"));<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!IsFolder<a href="CppQt.htm">Qt</a>(":/images/R.png"));<br/>
 }<br/>
 </code></td></tr></table>
 <!-- end of the code -->
