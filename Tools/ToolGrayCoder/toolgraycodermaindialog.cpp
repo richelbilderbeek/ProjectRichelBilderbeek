@@ -61,11 +61,12 @@ const std::string ribi::GrayCoderMainDialog::IntToBitString(int i)
 
 int ribi::GrayCoderMainDialog::IntToGray(const int i)
 {
+  assert( i >= 0 && "Did not bother to supply this yet");
   return (i ^ (i>>1));
 }
 
 #ifndef NDEBUG
-void ribi::GrayCoderMainDialog::Test()
+void ribi::GrayCoderMainDialog::Test() noexcept
 {
   {
     static bool is_tested = false;

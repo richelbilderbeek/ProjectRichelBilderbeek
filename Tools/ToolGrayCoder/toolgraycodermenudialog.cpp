@@ -29,7 +29,7 @@ const ribi::About ribi::GrayCoderMenuDialog::GetAbout()
     "Richel Bilderbeek",
     "GrayCoder",
     "tool to convert integers to and from Gray code",
-    "the 26th of August 2013",
+    "the 30th of September 2013",
     "2009-2013",
     "http://www.richelbilderbeek.nl/ToolGrayCoder.htm",
     GetVersion(),
@@ -40,13 +40,14 @@ const ribi::About ribi::GrayCoderMenuDialog::GetAbout()
 
 const std::string ribi::GrayCoderMenuDialog::GetVersion()
 {
-  return "2.0";
+  return "2.1";
 }
 
 const std::vector<std::string> ribi::GrayCoderMenuDialog::GetVersionHistory()
 {
-  std::vector<std::string> v;
-  v.push_back("2009-05-02: version 1.0: initial version in C++ Builder");
-  v.push_back("2013-08-26: version 2.0: port to Qt Creator console application");
-  return v;
+  return {
+    "2009-05-02: version 1.0: initial version in C++ Builder",
+    "2013-08-26: version 2.0: port to Qt Creator console application",
+    "2013-09-30: version 2.1: added desktop application"
+  };
 }

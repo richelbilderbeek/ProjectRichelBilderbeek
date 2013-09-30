@@ -32,13 +32,13 @@ struct GrayCoderMainDialog
   GrayCoderMainDialog(const int normal_int = 0);
 
   ///Get the Gray code integer
-  int GetGrayInt() const { return IntToGray(m_i); }
+  int GetGrayInt() const noexcept { return IntToGray(m_i); }
 
   ///Get the Gray code integer as a std::string of zeroes and ones
   const std::string GetGrayIntAsBitStr() const { return IntToBitString(IntToGray(m_i)); }
 
   ///Get the normal integer
-  int GetNormalInt() const { return m_i; }
+  int GetNormalInt() const noexcept { return m_i; }
 
   ///Get the normal integer as a std::string of zeroes and ones
   const std::string GetNormalIntAsBitStr() const { return IntToBitString(m_i); }
@@ -68,7 +68,7 @@ struct GrayCoderMainDialog
   static int IntToGray(const int i);
 
   #ifndef NDEBUG
-  static void Test();
+  static void Test() noexcept;
   #endif
 };
 
