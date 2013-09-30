@@ -29,7 +29,6 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <QLabel>
 #include <QVBoxLayout>
 
-#include "richelbilderbeekprogram.h"
 
 #include "qtasciiartermenudialog.h"
 #include "qtbeerwantermenudialog.h"
@@ -46,13 +45,9 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "qtmaziakmenudialog.h"
 #include "qtmusictheorymenudialog.h"
 #include "qtperfectelasticcollisionmenudialog.h"
-#include "qttoolsimplifynewickmenudialog.h"
-#include "qttooltestapproximatormenudialog.h"
-#include "qttooltestmultiapproximatormenudialog.h"
-#include "qttooltestsimplelinearregressionmenudialog.h"
-#include "qtqmakewatchermenudialog.h"
 #include "qtpictocodemenudialog.h"
 #include "qtpylosmenudialog.h"
+#include "qtqmakewatchermenudialog.h"
 #include "qtrandomcodemenudialog.h"
 #include "qtregextestermenudialog.h"
 #include "qtrichelbilderbeekgallerymenudialog.h"
@@ -62,9 +57,10 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "qtsitemapgeneratormenudialog.h"
 #include "qtstateobservermenudialog.h"
 #include "qttestdialmenudialog.h"
-#include "qttoolencrangermaindialog.h"
 #include "qttestfunctionparsermenudialog.h"
 #include "qttestleddialog.h"
+#include "qttestmultiplechoicequestionmenudialog.h"
+#include "qttestopenquestionmenudialog.h"
 #include "qttestpylosmenudialog.h"
 #include "qttestqrcfilemenudialog.h"
 #include "qttestqtarrowitemsmenudialog.h"
@@ -80,9 +76,19 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "qttesttogglebuttonmaindialog.h"
 #include "qttesttogglebuttonmenudialog.h"
 #include "qttictactoemenudialog.h"
+#include "qttoolencrangermaindialog.h"
+#include "qttoolencrangermenudialog.h"
 #include "qttoolgaborfiltermenudialog.h"
+#include "qttoolgraycodermenudialog.h"
+#include "qttoolmultiencrangermaindialog.h"
+#include "qttoolmultiencrangermenudialog.h"
+#include "qttoolsimplifynewickmenudialog.h"
+#include "qttooltestapproximatormenudialog.h"
+#include "qttooltestcanvasmenudialog.h"
+#include "qttooltestmultiapproximatormenudialog.h"
 #include "qttooltestqtmodelsmenudialog.h"
-
+#include "qttooltestsimplelinearregressionmenudialog.h"
+#include "richelbilderbeekprogram.h"
 
 #pragma GCC diagnostic pop
 
@@ -105,22 +111,19 @@ ribi::QtHideAndShowDialog * ribi::QtRichelBilderbeekProgram::CreateQtMenuDialog(
     case ProgramType::codeToHtml: p = new QtCodeToHtmlMenuDialog; break;
     case ProgramType::connectThree: p = new QtConnectThreeMenuDialog; break;
     case ProgramType::corridor: break;
-    case ProgramType::createGlossary:
-      p = new QtCreateGlossaryMenuDialog;
-      break;
-    case ProgramType::createQtProjectZipFile:
-      p = new QtCreateQtProjectZipFileMenuDialog;
-      break;
+    case ProgramType::createGlossary: p = new QtCreateGlossaryMenuDialog; break;
+    case ProgramType::createQtProjectZipFile: p = new QtCreateQtProjectZipFileMenuDialog; break;
     case ProgramType::crossPoll: break;
     case ProgramType::dasWahreSchlagerfest: p = new QtDasWahreSchlagerfestMenuDialog; break;
     case ProgramType::dotMatrix: break;
+    case ProgramType::encranger: p = new QtToolEncrangerMenuDialog; break;
     case ProgramType::everythingToPiecesShooter: break;
     case ProgramType::fakeEvy: break;
     case ProgramType::filterOperationer: break;
     case ProgramType::fryskLeareLieder: break;
     case ProgramType::functionPlotter: break;
     case ProgramType::gaborFilter: p = new QtToolGaborFilterMenuDialog; break;
-    case ProgramType::grayCoder: break;
+    case ProgramType::grayCoder: p = new QtGrayCoderMenuDialog; break;
     case ProgramType::gtst: break;
     case ProgramType::histogramEqualizationer: break;
     case ProgramType::hometrainer: break;
@@ -146,7 +149,7 @@ ribi::QtHideAndShowDialog * ribi::QtRichelBilderbeekProgram::CreateQtMenuDialog(
     case ProgramType::metZnDrieen: break;
     case ProgramType::midiLessonCreator: break;
     case ProgramType::morpher: break;
-    case ProgramType::multiEncranger: break;
+    case ProgramType::multiEncranger: p = new QtToolMultiEncrangerMenuDialog; break;
     case ProgramType::muscaDomestica: break;
     case ProgramType::musicTheory: p = new QtMusicTheoryMenuDialog; break;
     case ProgramType::ndsmake: break;
@@ -194,10 +197,9 @@ ribi::QtHideAndShowDialog * ribi::QtRichelBilderbeekProgram::CreateQtMenuDialog(
     case ProgramType::testBouncingRectsWidget: break;
     case ProgramType::testBroadcastServer: break;
     case ProgramType::testBinaryNewickVector: /* p = new QtTestBinaryNewickVectorMenuDialog; */break;
-    case ProgramType::testCanvas: break;
+    case ProgramType::testCanvas: p = new QtToolTestCanvasMenuDialog; break;
     case ProgramType::testChess: break;
     case ProgramType::testDial: p = new QtTestDialMenuDialog; break;
-    case ProgramType::encranger: p = new QtToolEncrangerMainDialog; break;
     case ProgramType::testEntrance: break;
     case ProgramType::testExercise: break;
     case ProgramType::testFunctionParser: p = new QtTestFunctionParserMenuDialog; break;
@@ -209,14 +211,14 @@ ribi::QtHideAndShowDialog * ribi::QtRichelBilderbeekProgram::CreateQtMenuDialog(
     case ProgramType::testLazy_init: break;
     case ProgramType::testLed: p = new QtTestLedDialog; break;
     case ProgramType::testManyDigitNewick: break;
-    case ProgramType::testMultiApproximator: p = new QtToolTestMultiApproximatorMenuDialog;  break;
-    case ProgramType::testMultipleChoiceQuestion: break;
+    case ProgramType::testMultiApproximator: p = new QtToolTestMultiApproximatorMenuDialog; break;
+    case ProgramType::testMultipleChoiceQuestion: p = new QtTestMultipleChoiceQuestionMenuDialog; break;
     case ProgramType::testMultiVector: break;
     case ProgramType::testNdsmake: break;
     case ProgramType::testNeuralNet: /* p = new QtTestNeuralNetMenuDialog; */ break;
     case ProgramType::testNewick: break;
     case ProgramType::testNewickVector: break;
-    case ProgramType::testOpenQuestion: break;
+    case ProgramType::testOpenQuestion: p = new QtTestOpenQuestionMenuDialog;  break;
     case ProgramType::testPrimeExpert: /* p = new QtTestPrimeExpertMenuDialog; */ break;
     case ProgramType::testPylos: p = new QtTestPylosMenuDialog; break;
     case ProgramType::testQrcFile: p = new QtTestQrcFileMenuDialog; break;

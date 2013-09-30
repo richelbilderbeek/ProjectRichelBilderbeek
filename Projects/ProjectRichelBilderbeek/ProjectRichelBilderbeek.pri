@@ -3,6 +3,7 @@ INCLUDEPATH += \
     ../../Classes/CppApproximator \
     ../../Classes/CppAsciiArter \
     ../../Classes/CppBinaryNewickVector \
+    ../../Classes/CppCanvas \
     ../../Classes/CppChess \
     ../../Classes/CppChessResources \
     ../../Classes/CppCodeToHtml \
@@ -77,10 +78,13 @@ INCLUDEPATH += \
     ../../Tools/ToolCodeToHtml \
     ../../Tools/ToolCreateGlossary \
     ../../Tools/ToolCreateQtProjectZipFile \
+    ../../Tools/ToolEncranger \
     ../../Tools/ToolGaborFilter \
+    ../../Tools/ToolGrayCoder \
     ../../Tools/ToolHometrainer \
     ../../Tools/ToolKalmanFilterer \
     ../../Tools/ToolMazeCreator \
+    ../../Tools/ToolMultiEncranger \
     ../../Tools/ToolMusicTheory \
     ../../Tools/ToolPerfectElasticCollision \
     ../../Tools/ToolPicToCode \
@@ -92,15 +96,18 @@ INCLUDEPATH += \
     ../../Tools/ToolSimMysteryMachine \
     ../../Tools/ToolSimplifyNewick \
     ../../Tools/ToolStateObserver \
+    ../../Tools/ToolTestAbout \
     ../../Tools/ToolTestApproximator \
+    ../../Tools/ToolTestCanvas \
     ../../Tools/ToolTestDial \
-    ../../Tools/ToolEncranger \
     ../../Tools/ToolTestExercise \
     ../../Tools/ToolTestFunctionParser \
     ../../Tools/ToolTestGroupWidget \
     ../../Tools/ToolTestLed \
     ../../Tools/ToolTestMultiApproximator \
+    ../../Tools/ToolTestMultipleChoiceQuestion \
     ../../Tools/ToolTestNewickVector \
+    ../../Tools/ToolTestOpenQuestion \
     ../../Tools/ToolTestPylos \
     ../../Tools/ToolTestQrcFile \
     ../../Tools/ToolTestQtArrowItems \
@@ -131,8 +138,6 @@ SOURCES += \
     ../../Classes/CppCodeToHtml/codetohtmlinfo.cpp \
     ../../Classes/CppCodeToHtml/codetohtmlpagetype.cpp \
     ../../Classes/CppCodeToHtml/codetohtmlreplacements.cpp \
-    ../../Tools/ToolEncranger/toolencrangermenudialog.cpp \
-    ../../Tools/ToolEncranger/toolencrangermaindialog.cpp \
     ../../Classes/CppCodeToHtml/codetohtmlreplacementscpp.cpp \
     ../../Classes/CppCodeToHtml/codetohtmlreplacementspro.cpp \
     ../../Classes/CppCodeToHtml/codetohtmltechinfo.cpp \
@@ -145,8 +150,6 @@ SOURCES += \
     ../../Classes/CppDialWidget/dialwidget.cpp \
     ../../Classes/CppEncranger/encranger.cpp \
     ../../Classes/CppExercise/exercise.cpp \
-    ../../Tools/ToolSimplifyNewick/toolsimplifynewickmenudialog.cpp \
-    ../../Tools/ToolSimplifyNewick/toolsimplifynewickmaindialog.cpp \
     ../../Classes/CppGaborFilter/gaborfilter.cpp \
     ../../Classes/CppGaborFilterWidget/gaborfilterwidget.cpp \
     ../../Classes/CppHtmlPage/htmlpage.cpp \
@@ -235,6 +238,7 @@ SOURCES += \
     ../../Classes/CppRichelBilderbeekProgram/richelbilderbeekprogram.cpp \
     ../../Classes/CppRichelBilderbeekProgram/richelbilderbeekprogramstatus.cpp \
     ../../Classes/CppRichelBilderbeekProgram/richelbilderbeekprogramtype.cpp \
+    ../../Classes/CppRichelBilderbeekProgram/richelbilderbeekprogramtypes.cpp \
     ../../Classes/CppRubiksClock/rubiksclock.cpp \
     ../../Classes/CppRubiksClockWidget/rubiksclockdial.cpp \
     ../../Classes/CppRubiksClockWidget/rubiksclockdialwidget.cpp \
@@ -282,15 +286,21 @@ SOURCES += \
     ../../Tools/ToolCreateGlossary/createglossarymenudialog.cpp \
     ../../Tools/ToolCreateQtProjectZipFile/createqtprojectzipfilemenudialog.cpp \
     ../../Tools/ToolCreateQtProjectZipFile/createqtprojectzipfilepath.cpp \
+    ../../Tools/ToolEncranger/toolencrangermaindialog.cpp \
+    ../../Tools/ToolEncranger/toolencrangermenudialog.cpp \
     ../../Tools/ToolGaborFilter/toolgaborfiltermenudialog.cpp \
+    ../../Tools/ToolGrayCoder/toolgraycodermaindialog.cpp \
+    ../../Tools/ToolGrayCoder/toolgraycodermenudialog.cpp \
     ../../Tools/ToolHometrainer/hometrainermenudialog.cpp \
     ../../Tools/ToolHometrainer/hometrainerresources.cpp \
     ../../Tools/ToolKalmanFilterer/kalmanfilterermenudialog.cpp \
     ../../Tools/ToolMazeCreator/mazecreatormenudialog.cpp \
+    ../../Tools/ToolMultiEncranger/toolmultiencrangermenudialog.cpp \
     ../../Tools/ToolMusicTheory/musictheorymenudialog.cpp \
     ../../Tools/ToolPerfectElasticCollision/perfectelasticcollisionmenudialog.cpp \
     ../../Tools/ToolPicToCode/pictocodemaindialog.cpp \
     ../../Tools/ToolPicToCode/pictocodemenudialog.cpp \
+    ../../Tools/ToolQmakeWatcher/qmakewatchermenudialog.cpp \
     ../../Tools/ToolRandomCode/randomcodemenudialog.cpp \
     ../../Tools/ToolRegexTester/regextesterboostregexmaindialog.cpp \
     ../../Tools/ToolRegexTester/regextesterboostxpressivemaindialog.cpp \
@@ -301,9 +311,12 @@ SOURCES += \
     ../../Tools/ToolRegexTester/regextestertr1maindialog.cpp \
     ../../Tools/ToolRichelbilderbeekNlSitemapGenerator/sitemapgeneratormenudialog.cpp \
     ../../Tools/ToolSimMysteryMachine/simmysterymachinemenudialog.cpp \
+    ../../Tools/ToolSimplifyNewick/toolsimplifynewickmaindialog.cpp \
+    ../../Tools/ToolSimplifyNewick/toolsimplifynewickmenudialog.cpp \
     ../../Tools/ToolStateObserver/noisefunctionparser.cpp \
     ../../Tools/ToolStateObserver/stateobservermenudialog.cpp \
     ../../Tools/ToolTestApproximator/tooltestapproximatormenudialog.cpp \
+    ../../Tools/ToolTestCanvas/tooltestcanvasmenudialog.cpp \
     ../../Tools/ToolTestDial/testdialmenudialog.cpp \
     ../../Tools/ToolTestEntrance/testentrancemenudialog.cpp \
     ../../Tools/ToolTestExercise/testexercisemenudialog.cpp \
@@ -311,6 +324,8 @@ SOURCES += \
     ../../Tools/ToolTestGroupWidget/testgroupwidgetmenudialog.cpp \
     ../../Tools/ToolTestLed/testledmenudialog.cpp \
     ../../Tools/ToolTestMultiApproximator/tooltestmultiapproximatormenudialog.cpp \
+    ../../Tools/ToolTestMultipleChoiceQuestion/testmultiplechoicequestionmaindialog.cpp \
+    ../../Tools/ToolTestMultipleChoiceQuestion/testmultiplechoicequestionmenudialog.cpp \
     ../../Tools/ToolTestNewickVector/testnewickvectordialog.cpp \
     ../../Tools/ToolTestPylos/testpylosmenudialog.cpp \
     ../../Tools/ToolTestQrcFile/testqrcfilemenudialog.cpp \
@@ -326,17 +341,23 @@ SOURCES += \
     ../../Tools/ToolTestShape/testshapemaindialog.cpp \
     ../../Tools/ToolTestShape/testshapemenudialog.cpp \
     ../../Tools/ToolTestShinyButton/testshinybuttonmenudialog.cpp \
+    ../../Tools/ToolTestOpenQuestion/testopenquestionmenudialog.cpp \
+    ../../Tools/ToolTestOpenQuestion/testopenquestionmaindialog.cpp \
     ../../Tools/ToolTestSimpleLinearRegression/tooltestsimplelinearregressionmenudialog.cpp \
     ../../Tools/ToolTestToggleButton/testtogglebuttonmenudialog.cpp \
-    richelbilderbeekmenudialog.cpp \
-    ../../Classes/CppRichelBilderbeekProgram/richelbilderbeekprogramtypes.cpp \
-    ../../Tools/ToolQmakeWatcher/qmakewatchermenudialog.cpp
+    ../../Tools/ToolMultiEncranger/toolmultiencrangermaindialog.cpp \
+    ../../Classes/CppCanvas/canvas.cpp \
+    richelbilderbeekmenudialog.cpp
 
 HEADERS += \
     ../../Classes/CppAbout/about.h \
+    ../../Classes/CppApproximator/approximator.h \
+    ../../Classes/CppApproximator/exceptionnoextrapolation.h \
     ../../Classes/CppAsciiArter/asciiarter.h \
     ../../Classes/CppBinaryNewickVector/binarynewickvector.h \
     ../../Classes/CppCodeToHtml/codetohtml.h \
+    ../../Tools/ToolTestOpenQuestion/testopenquestionmenudialog.h \
+    ../../Tools/ToolTestOpenQuestion/testopenquestionmaindialog.h \
     ../../Classes/CppCodeToHtml/codetohtmlcontent.h \
     ../../Classes/CppCodeToHtml/codetohtmlcontenttype.h \
     ../../Classes/CppCodeToHtml/codetohtmlcreateemptypagedialog.h \
@@ -344,10 +365,6 @@ HEADERS += \
     ../../Classes/CppCodeToHtml/codetohtmlfooter.h \
     ../../Classes/CppCodeToHtml/codetohtmlheader.h \
     ../../Classes/CppCodeToHtml/codetohtmlinfo.h \
-    ../../Tools/ToolSimplifyNewick/toolsimplifynewickmenudialog.h \
-    ../../Tools/ToolSimplifyNewick/toolsimplifynewickmaindialog.h \
-    ../../Tools/ToolEncranger/toolencrangermenudialog.h \
-    ../../Tools/ToolEncranger/toolencrangermaindialog.h \
     ../../Classes/CppCodeToHtml/codetohtmlpagetype.h \
     ../../Classes/CppCodeToHtml/codetohtmlreplacements.h \
     ../../Classes/CppCodeToHtml/codetohtmltechinfo.h \
@@ -451,6 +468,7 @@ HEADERS += \
     ../../Classes/CppRandomCode/randomcode.h \
     ../../Classes/CppRectangle/rectangle.h \
     ../../Classes/CppRichelBilderbeekProgram/richelbilderbeekprogramtype.h \
+    ../../Classes/CppRichelBilderbeekProgram/richelbilderbeekprogramtypes.h \
     ../../Classes/CppRubiksClock/rubiksclock.h \
     ../../Classes/CppRubiksClockWidget/rubiksclockdial.h \
     ../../Classes/CppRubiksClockWidget/rubiksclockdialwidget.h \
@@ -500,15 +518,21 @@ HEADERS += \
     ../../Tools/ToolCreateGlossary/createglossarymenudialog.h \
     ../../Tools/ToolCreateQtProjectZipFile/createqtprojectzipfilemenudialog.h \
     ../../Tools/ToolCreateQtProjectZipFile/createqtprojectzipfilepath.h \
+    ../../Tools/ToolEncranger/toolencrangermaindialog.h \
+    ../../Tools/ToolEncranger/toolencrangermenudialog.h \
     ../../Tools/ToolGaborFilter/toolgaborfiltermenudialog.h \
+    ../../Tools/ToolGrayCoder/toolgraycodermaindialog.h \
+    ../../Tools/ToolGrayCoder/toolgraycodermenudialog.h \
     ../../Tools/ToolHometrainer/hometrainermenudialog.h \
     ../../Tools/ToolHometrainer/hometrainerresources.h \
     ../../Tools/ToolKalmanFilterer/kalmanfilterermenudialog.h \
     ../../Tools/ToolMazeCreator/mazecreatormenudialog.h \
+    ../../Tools/ToolMultiEncranger/toolmultiencrangermenudialog.h \
     ../../Tools/ToolMusicTheory/musictheorymenudialog.h \
     ../../Tools/ToolPerfectElasticCollision/perfectelasticcollisionmenudialog.h \
     ../../Tools/ToolPicToCode/pictocodemaindialog.h \
     ../../Tools/ToolPicToCode/pictocodemenudialog.h \
+    ../../Tools/ToolQmakeWatcher/qmakewatchermenudialog.h \
     ../../Tools/ToolRandomCode/randomcodemenudialog.h \
     ../../Tools/ToolRegexTester/regextesterboostregexmaindialog.h \
     ../../Tools/ToolRegexTester/regextesterboostxpressivemaindialog.h \
@@ -519,9 +543,12 @@ HEADERS += \
     ../../Tools/ToolRegexTester/regextestertr1maindialog.h \
     ../../Tools/ToolRichelbilderbeekNlSitemapGenerator/sitemapgeneratormenudialog.h \
     ../../Tools/ToolSimMysteryMachine/simmysterymachinemenudialog.h \
+    ../../Tools/ToolSimplifyNewick/toolsimplifynewickmaindialog.h \
+    ../../Tools/ToolSimplifyNewick/toolsimplifynewickmenudialog.h \
     ../../Tools/ToolStateObserver/noisefunctionparser.h \
     ../../Tools/ToolStateObserver/stateobservermenudialog.h \
     ../../Tools/ToolTestApproximator/tooltestapproximatormenudialog.h \
+    ../../Tools/ToolTestCanvas/tooltestcanvasmenudialog.h \
     ../../Tools/ToolTestDial/testdialmenudialog.h \
     ../../Tools/ToolTestEntrance/testentrancemenudialog.h \
     ../../Tools/ToolTestExercise/testexercisemenudialog.h \
@@ -530,6 +557,8 @@ HEADERS += \
     ../../Tools/ToolTestGroupWidget/testgroupwidgetmenudialog.h \
     ../../Tools/ToolTestLed/testledmenudialog.h \
     ../../Tools/ToolTestMultiApproximator/tooltestmultiapproximatormenudialog.h \
+    ../../Tools/ToolTestMultipleChoiceQuestion/testmultiplechoicequestionmaindialog.h \
+    ../../Tools/ToolTestMultipleChoiceQuestion/testmultiplechoicequestionmenudialog.h \
     ../../Tools/ToolTestNewickVector/testnewickvectordialog.h \
     ../../Tools/ToolTestNewickVector/testnewickvectordialog.h \
     ../../Tools/ToolTestPylos/testpylosmenudialog.h \
@@ -559,28 +588,88 @@ HEADERS += \
     ../../Tools/ToolTestSimpleLinearRegression/tooltestsimplelinearregressionmenudialog.h \
     ../../Tools/ToolTestToggleButton/testtogglebuttonmenudialog.h \
     ../../Tools/ToolTestToggleButton/testtogglebuttonmenudialog.h \
-    richelbilderbeekmenudialog.h \
-    ../../Classes/CppRichelBilderbeekProgram/richelbilderbeekprogramtypes.h \
-    ../../Tools/ToolQmakeWatcher/qmakewatchermenudialog.h
+    ../../Tools/ToolMultiEncranger/toolmultiencrangermaindialog.h \
+    ../../Classes/CppCanvas/canvas.h \
+    richelbilderbeekmenudialog.h
 
 OTHER_FILES += \
+    ../../Classes/CppAbout/Licence.txt \
+    ../../Classes/CppAsciiArter/Licence.txt \
+    ../../Classes/CppBinaryNewickVector/Licence.txt \
+    ../../Classes/CppChess/Licence.txt \
+    ../../Classes/CppChessResources/Licence.txt \
+    ../../Classes/CppCodeToHtml/Licence.txt \
+    ../../Classes/CppConnectThree/Licence.txt \
+    ../../Classes/CppConnectThreeWidget/Licence.txt \
+    ../../Classes/CppCopy_if/Licence.txt \
+    ../../Classes/CppCounter/Licence.txt \
+    ../../Classes/CppDial/Licence.txt \
+    ../../Classes/CppDialWidget/Licence.txt \
+    ../../Classes/CppEncranger/Licence.txt \
+    ../../Classes/CppExercise/Licence.txt \
+    ../../Classes/CppFuzzy_equal_to/Licence.txt \
+    ../../Classes/CppGaborFilter/Licence.txt \
     ../../Classes/CppGaborFilter/Licence.txt \
     ../../Classes/CppGaborFilterWidget/Licence.txt \
+    ../../Classes/CppGaborFilterWidget/Licence.txt \
     ../../Classes/CppHtmlPage/Licence.txt \
+    ../../Classes/CppHtmlPage/Licence.txt \
+    ../../Classes/CppIpAddress/Licence.txt \
     ../../Classes/CppKalmanFilter/Licence.txt \
     ../../Classes/CppMatrix/Licence.txt \
     ../../Classes/CppMusic/Licence.txt \
+    ../../Classes/CppMusic/Licence.txt \
+    ../../Classes/CppPylos/Licence.txt \
     ../../Classes/CppPylos/Licence.txt \
     ../../Classes/CppQrcFile/Licence.txt \
+    ../../Classes/CppQrcFile/Licence.txt \
+    ../../Classes/CppQtArrowItem/Licence.txt \
+    ../../Classes/CppQtChess/Licence.txt \
+    ../../Classes/CppQtConnectThreeWidget/Licence.txt \
+    ../../Classes/CppQtGaborFilterWidget/Licence.txt \
+    ../../Classes/CppQtHideAndShowDialog/Licence.txt \
+    ../../Classes/CppQtKeyboardFriendlyGraphicsView/Licence.txt \
+    ../../Classes/CppQtLabeledQuadBezierArrowItem/Licence.txt \
     ../../Classes/CppQtModel/Licence.txt \
+    ../../Classes/CppQtPathArrowItem/Licence.txt \
+    ../../Classes/CppQtPylos/Licence.txt \
+    ../../Classes/CppQtQuadBezierArrowItem/Licence.txt \
+    ../../Classes/CppQtRoundedRectItem/Licence.txt \
+    ../../Classes/CppQtRoundedTextRectItem/Licence.txt \
+    ../../Classes/CppQtRubiksClockWidget/Licence.txt \
+    ../../Classes/CppQtSprites/Licence.txt \
+    ../../Classes/CppQtTicTacToeWidget/Licence.txt \
     ../../Classes/CppSimpleLinearRegression/Licence.txt \
     ../../Classes/CppStateObserver/Licence.txt \
+    ../../Classes/CppWtAutoConfig/Licence.txt \
+    ../../Games/GameBeerWanter/Licence.txt \
+    ../../Games/GameBoenken/Licence.txt \
+    ../../Games/GameConnectThree/GameConnectThreeArchitecture_6_2.dia \
+    ../../Games/GamePylos/Licence.txt \
+    ../../Games/GameRubiksClock/Licence.txt \
+    ../../Games/GameTicTacToe/GameTicTacToeArchitecture_1_5.dia \
+    ../../Games/GameTicTacToe/Licence.txt \
+    ../../Tools/ToolAsciiArter/Licence.txt \
+    ../../Tools/ToolCodeToHtml/Licence.txt \
+    ../../Tools/ToolCreateGlossary/Licence.txt \
     ../../Tools/ToolCreateGlossary/Licence.txt \
     ../../Tools/ToolCreateQtProjectZipFile/Licence.txt \
-    ../../Tools/ToolCreateQtProjectZipFile/R.png \
-    ../../Tools/ToolRegexTester/Licence.txt \
-    ../../Tools/ToolTestApproximator/Licence.txt \
+    ../../Tools/ToolCreateQtProjectZipFile/Licence.txt \
     ../../Tools/ToolEncranger/Licence.txt \
+    ../../Tools/ToolHometrainer/Licence.txt \
+    ../../Tools/ToolHometrainer/ToolHometrainerExerciseClouds.txt \
+    ../../Tools/ToolHometrainer/ToolHometrainerExerciseTest.txt \
+    ../../Tools/ToolHometrainer/ToolHometrainerExerciseTtBasis.txt \
+    ../../Tools/ToolHometrainer/ToolHometrainerExerciseTtGeluid.txt \
+    ../../Tools/ToolHometrainer/ToolHometrainerExerciseTtLicht.txt \
+    ../../Tools/ToolHometrainer/ToolHometrainerExerciseWijkenArnhem.txt \
+    ../../Tools/ToolPerfectElasticCollision/Licence.txt \
+    ../../Tools/ToolQmakeWatcher/Licence.txt \
+    ../../Tools/ToolRandomCode/Licence.txt \
+    ../../Tools/ToolRegexTester/Licence.txt \
+    ../../Tools/ToolRegexTester/Licence.txt \
+    ../../Tools/ToolRichelbilderbeekNlSitemapGenerator/Licence.txt \
+    ../../Tools/ToolTestApproximator/Licence.txt \
     ../../Tools/ToolTestLed/Licence.txt \
     ../../Tools/ToolTestMultiApproximator/Licence.txt \
     ../../Tools/ToolTestQrcFile/Licence.txt \
@@ -588,8 +677,11 @@ OTHER_FILES += \
     ../../Tools/ToolTestQtCreatorProFile/Licence.txt \
     ../../Tools/ToolTestQtModels/Licence.txt \
     ../../Tools/ToolTestQtRoundedRectItem/Licence.txt \
+    ../../Tools/ToolTestQtRoundedRectItem/Licence.txt \
     ../../Tools/ToolTestSimpleLinearRegression/Licence.txt \
-    ../../Tools/ToolQmakeWatcher/Licence.txt
+    ../../Tools/ToolMultiEncranger/Licence.txt \
+    crosscompiletowindows.sh \
+    ../../Classes/CppCanvas/Licence.txt
 
 #
 #
