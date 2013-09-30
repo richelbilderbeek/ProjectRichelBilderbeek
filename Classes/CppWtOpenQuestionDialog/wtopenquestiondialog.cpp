@@ -75,7 +75,7 @@ const std::vector<std::string> ribi::WtOpenQuestionDialog::GetVersionHistory()
 
 ///Set the Question
 void ribi::WtOpenQuestionDialog::SetQuestion(
-  const boost::shared_ptr<Question>& question)
+  const boost::shared_ptr<const Question> question)
 {
   assert(question);
   assert(m_dialog);
@@ -125,7 +125,7 @@ void ribi::WtOpenQuestionDialog::SetQuestion(
     page->addWidget(new Wt::WBreak);
     page->addWidget(new Wt::WLabel(question->GetQuestion().c_str()));
     page->addWidget(new Wt::WBreak);
-    page->addWidget(new Wt::WLabel(q->GetAnswers()[0].c_str()));
+    page->addWidget(new Wt::WLabel(q->GetCorrectAnswers()[0].c_str()));
     page->addWidget(new Wt::WBreak);
     m_ui.m_stacked_widget->addWidget(page);
   }
@@ -135,7 +135,7 @@ void ribi::WtOpenQuestionDialog::SetQuestion(
 
 void ribi::WtOpenQuestionDialog::OnButtonSubmitClicked()
 {
-  assert(m_dialog->CanSubmit());
+  assert(!m_dialog->HasSubmitted());
 
   m_dialog->Submit(m_ui.m_edit_answer->text().toUTF8());
 

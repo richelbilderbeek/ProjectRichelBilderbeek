@@ -38,6 +38,7 @@ INCLUDEPATH += \
     ../../Tools/ToolAsciiArter \
     ../../Tools/ToolCodeToHtml \
     ../../Tools/ToolCreateQtProjectZipFile \
+    ../../Tools/ToolEncranger \
     ../../Tools/ToolHometrainer \
     ../../Tools/ToolKalmanFilterer \
     ../../Tools/ToolRandomCode \
@@ -45,7 +46,6 @@ INCLUDEPATH += \
     ../../Tools/ToolSimMysteryMachine \
     ../../Tools/ToolStateObserver \
     ../../Tools/ToolTestDial \
-    ../../Tools/ToolTestEncranger \
     ../../Tools/ToolTestEntrance \
     ../../Tools/ToolTestExercise \
     ../../Tools/ToolTestFunctionParser \
@@ -201,8 +201,8 @@ SOURCES += \
     ../../Tools/ToolSimMysteryMachine/wtsimmysterymachinemenudialog.cpp \
     ../../Tools/ToolTestDial/wttestdialmaindialog.cpp \
     ../../Tools/ToolTestDial/wttestdialmenudialog.cpp \
-    ../../Tools/ToolTestEncranger/wttestencrangermaindialog.cpp \
-    ../../Tools/ToolTestEncranger/wttestencrangermenudialog.cpp \
+    ../../Tools/ToolEncranger/wttoolencrangermaindialog.cpp \
+    ../../Tools/ToolEncranger/wttoolencrangermenudialog.cpp \
     ../../Tools/ToolTestEntrance/wttestentrancemaindialog.cpp \
     ../../Tools/ToolTestEntrance/wttestentrancemenudialog.cpp \
     ../../Tools/ToolTestExercise/wttestexercisemaindialog.cpp \
@@ -380,8 +380,8 @@ HEADERS += \
     ../../Tools/ToolSimMysteryMachine/wtsimmysterymachinemenudialog.h \
     ../../Tools/ToolTestDial/wttestdialmaindialog.h \
     ../../Tools/ToolTestDial/wttestdialmenudialog.h \
-    ../../Tools/ToolTestEncranger/wttestencrangermaindialog.h \
-    ../../Tools/ToolTestEncranger/wttestencrangermenudialog.h \
+    ../../Tools/ToolEncranger/wttoolencrangermaindialog.h \
+    ../../Tools/ToolEncranger/wttoolencrangermenudialog.h \
     ../../Tools/ToolTestEntrance/wttestentrancemaindialog.h \
     ../../Tools/ToolTestEntrance/wttestentrancemenudialog.h \
     ../../Tools/ToolTestExercise/wttestexercisemaindialog.h \
@@ -433,7 +433,7 @@ RESOURCES += \
     ../../Tools/ToolSimMysteryMachine/ToolSimMysteryMachine.qrc \
     ../../Tools/ToolStateObserver/ToolStateObserver.qrc \
     ../../Tools/ToolTestDial/ToolTestDial.qrc \
-    ../../Tools/ToolTestEncranger/ToolTestEncranger.qrc \
+    ../../Tools/ToolEncranger/ToolEncranger.qrc \
     ../../Tools/ToolTestEntrance/ToolTestEntrance.qrc \
     ../../Tools/ToolTestExercise/ToolTestExercise.qrc \
     ../../Tools/ToolTestFunctionParser/ToolTestFunctionParser.qrc \

@@ -205,12 +205,15 @@ void WtDialog::on_button_convert_clicked()
       std::ofstream f(source.c_str());
       std::copy(v.begin(),v.end(),std::ostream_iterator<std::string>(f,"\n"));
     }
-    c2h::Dialog d(
-      GetPageType(),
-      source,
-      GetContentType(),
-      GetTechInfo());
-    const std::vector<std::string> v = d.ToHtml();
+    boost::scoped_ptr<c2h::Dialog> d {
+      new c2h::Dialog(
+        GetPageType(),
+        source,
+        GetContentType(),
+        GetTechInfo()
+      )
+    };
+    const std::vector<std::string> v = d->ToHtml();
     Display(v);
     boost::filesystem::remove(source);
   }
@@ -223,12 +226,15 @@ void WtDialog::on_button_convert_clicked()
       ui.m_button_convert->setText("Source (file or folder) does not exist");
       return;
     }
-    c2h::Dialog d(
-      GetPageType(),
-      source,
-      GetContentType(),
-      GetTechInfo());
-    const std::vector<std::string> v = d.ToHtml();
+    boost::scoped_ptr<c2h::Dialog> d {
+      new c2h::Dialog(
+        GetPageType(),
+        source,
+        GetContentType(),
+        GetTechInfo()
+      )
+    };
+    const std::vector<std::string> v = d->ToHtml();
     Display(v);
   }
 }

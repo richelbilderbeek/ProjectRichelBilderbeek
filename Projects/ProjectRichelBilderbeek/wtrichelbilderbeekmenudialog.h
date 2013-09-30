@@ -119,7 +119,7 @@ struct WtMenuDialog : public Wt::WContainerWidget
   Wt::WWidget * CreateNewStatusesDialog() const;
   Wt::WWidget * CreateNewTestAsciiArterDialog() const;
   Wt::WWidget * CreateNewTestDialDialog() const;
-  Wt::WWidget * CreateNewTestEncrangerDialog() const;
+  Wt::WWidget * CreateNewEncrangerDialog() const;
   Wt::WWidget * CreateNewTestEntranceDialog() const;
   Wt::WWidget * CreateNewTestExerciseDialog() const;
   Wt::WWidget * CreateNewTestFunctionParserDialog() const;

@@ -35,7 +35,7 @@ HEADERS  += \
     wttoolencrangermenudialog.h
 
 RESOURCES += \
-    ToolEncranger.qrc
+    ToolMultiEncranger.qrc
 
 LIBS += -lwt -lwthttp -lboost_program_options -lboost_signals -lboost_system -lboost_filesystem
 

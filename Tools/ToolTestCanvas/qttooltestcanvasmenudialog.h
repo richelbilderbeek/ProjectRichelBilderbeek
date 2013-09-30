@@ -17,7 +17,7 @@ public:
   explicit QtToolTestCanvasMenuDialog(QWidget *parent = 0);
   QtToolTestCanvasMenuDialog(const QtToolTestCanvasMenuDialog&) = delete;
   QtToolTestCanvasMenuDialog& operator=(const QtToolTestCanvasMenuDialog&) = delete;
-  ~QtToolTestCanvasMenuDialog();
+  ~QtToolTestCanvasMenuDialog() noexcept;
 
 protected:
   void keyPressEvent(QKeyEvent * event);

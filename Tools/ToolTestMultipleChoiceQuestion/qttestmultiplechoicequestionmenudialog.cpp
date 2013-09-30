@@ -48,7 +48,7 @@ ribi::QtTestMultipleChoiceQuestionMenuDialog::QtTestMultipleChoiceQuestionMenuDi
   ui->setupUi(this);
 }
 
-ribi::QtTestMultipleChoiceQuestionMenuDialog::~QtTestMultipleChoiceQuestionMenuDialog()
+ribi::QtTestMultipleChoiceQuestionMenuDialog::~QtTestMultipleChoiceQuestionMenuDialog() noexcept
 {
   delete ui;
 }

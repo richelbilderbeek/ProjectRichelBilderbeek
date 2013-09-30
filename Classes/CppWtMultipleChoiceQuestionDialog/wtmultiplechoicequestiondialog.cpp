@@ -60,7 +60,7 @@ const std::vector<std::string> ribi::WtMultipleChoiceQuestionDialog::GetVersionH
 
 void ribi::WtMultipleChoiceQuestionDialog::OnButtonSubmitClicked()
 {
-  assert(m_dialog->CanSubmit());
+  assert(!m_dialog->HasSubmitted());
 
   if (std::find_if(
     m_ui.m_radio_buttons.begin(), m_ui.m_radio_buttons.end(),

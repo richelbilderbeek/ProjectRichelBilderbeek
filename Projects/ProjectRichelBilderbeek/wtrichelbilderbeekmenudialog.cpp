@@ -87,7 +87,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "wtsimmysterymachinemenudialog.h"
 #include "wtasciiartermaindialog.h"
 #include "wttestdialmenudialog.h"
-#include "wttestencrangermenudialog.h"
+#include "wttoolencrangermenudialog.h"
 #include "wttestentrancemenudialog.h"
 #include "wttestexercisemenudialog.h"
 #include "wttestfunctionparsermenudialog.h"
@@ -311,7 +311,7 @@ const std::vector<boost::shared_ptr<ribi::RichelBilderbeek::WtMenuItem> > ribi::
       new WtMenuItem("CodeToHtml"    ,s,1,&ribi::RichelBilderbeek::WtMenuDialog::CreateNewCodeToHtmlDialog)
     ),
     boost::shared_ptr<ribi::RichelBilderbeek::WtMenuItem>(
-      new WtMenuItem("Encranger"     ,s,2,&ribi::RichelBilderbeek::WtMenuDialog::CreateNewTestEncrangerDialog)
+      new WtMenuItem("Encranger"     ,s,2,&ribi::RichelBilderbeek::WtMenuDialog::CreateNewEncrangerDialog)
     ),
     boost::shared_ptr<ribi::RichelBilderbeek::WtMenuItem>(
       new WtMenuItem("Hometrainer"   ,s,3,&ribi::RichelBilderbeek::WtMenuDialog::CreateNewHometrainerDialog)
@@ -562,9 +562,9 @@ Wt::WWidget * ribi::RichelBilderbeek::WtMenuDialog::CreateNewTestDialDialog() co
   return d;
 }
 
-Wt::WWidget * ribi::RichelBilderbeek::WtMenuDialog::CreateNewTestEncrangerDialog() const
+Wt::WWidget * ribi::RichelBilderbeek::WtMenuDialog::CreateNewEncrangerDialog() const
 {
-  WtTestEncrangerMenuDialog * const d = new WtTestEncrangerMenuDialog;
+  WtEncrangerMenuDialog * const d = new WtEncrangerMenuDialog;
   assert(d);
   return d;
 }

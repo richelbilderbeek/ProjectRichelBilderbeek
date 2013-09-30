@@ -59,7 +59,7 @@ private:
   } m_ui;
 
   ///Set the Question
-  void SetQuestion(const boost::shared_ptr<Question>& question);
+  void SetQuestion(const boost::shared_ptr<const Question> question);
 
   void OnButtonSubmitClicked();
 };

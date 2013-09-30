@@ -21,7 +21,9 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #include "questiondialog.h"
+
 #include <cassert>
+#include <stdexcept>
 #include "question.h"
 #pragma GCC diagnostic pop
 
