@@ -16,24 +16,19 @@ You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>.
 */
 //---------------------------------------------------------------------------
-//From http://www.richelbilderbeek.nl/ToolEncranger.htm
+//From http://www.richelbilderbeek.nl/ToolMultiEncranger.htm
 //---------------------------------------------------------------------------
-#ifndef TOOLENCRANGERMAINDIALOG_H
-#define TOOLENCRANGERMAINDIALOG_H
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#include <QApplication>
+#include "qttoolmultiencrangermenudialog.h"
+#pragma GCC diagnostic pop
 
-#include <string>
-#include <vector>
-#include "about.h"
-
-namespace ribi {
-
-struct ToolEncrangerMenuDialog
+int main(int argc, char *argv[])
 {
-  static const About GetAbout() noexcept;
-  static const std::string GetVersion() noexcept;
-  static const std::vector<std::string> GetVersionHistory() noexcept;
-};
-
-} //~namespace ribi
-
-#endif // TOOLENCRANGERMAINDIALOG_H
+  QApplication a(argc, argv);
+  ribi::QtToolMultiEncrangerMenuDialog w;
+  w.show();
+  return a.exec();
+}

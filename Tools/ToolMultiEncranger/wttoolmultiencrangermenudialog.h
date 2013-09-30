@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
-Encranger, encryption tool
-Copyright (C) 2009-2013 Richel Bilderbeek
+Encranger, tool to test the Encranger class
+Copyright (C) 2009-2011 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -18,22 +18,23 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolEncranger.htm
 //---------------------------------------------------------------------------
-#ifndef TOOLENCRANGERMAINDIALOG_H
-#define TOOLENCRANGERMAINDIALOG_H
+#ifndef WTTESTENCRANGERMENUDIALOG_H
+#define WTTESTENCRANGERMENUDIALOG_H
 
-#include <string>
-#include <vector>
-#include "about.h"
+#include <Wt/WContainerWidget>
 
 namespace ribi {
 
-struct ToolEncrangerMenuDialog
+struct WtEncrangerMenuDialog : public Wt::WContainerWidget
 {
-  static const About GetAbout() noexcept;
-  static const std::string GetVersion() noexcept;
-  static const std::vector<std::string> GetVersionHistory() noexcept;
+  WtEncrangerMenuDialog();
+
+  private:
+  Wt::WWidget * CreateNewAboutDialog() const;
+  Wt::WWidget * CreateNewMainDialog() const;
+  Wt::WWidget * CreateNewWelcomeDialog() const;
 };
 
 } //~namespace ribi
 
-#endif // TOOLENCRANGERMAINDIALOG_H
+#endif // WTTESTENCRANGERMENUDIALOG_H

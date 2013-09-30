@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
-Encranger, encryption tool
-Copyright (C) 2009-2013 Richel Bilderbeek
+Encranger, tool to test the Encranger class
+Copyright (C) 2009-2011 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -18,22 +18,36 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolEncranger.htm
 //---------------------------------------------------------------------------
-#ifndef TOOLENCRANGERMAINDIALOG_H
-#define TOOLENCRANGERMAINDIALOG_H
+#include <Wt/WApplication>
+#include <Wt/WEnvironment>
 
-#include <string>
-#include <vector>
-#include "about.h"
+#include "wtautoconfig.h"
+#include "wttestencrangermenudialog.h"
 
-namespace ribi {
-
-struct ToolEncrangerMenuDialog
+struct WtApplication : public Wt::WApplication
 {
-  static const About GetAbout() noexcept;
-  static const std::string GetVersion() noexcept;
-  static const std::vector<std::string> GetVersionHistory() noexcept;
+  WtApplication(const Wt::WEnvironment& env)
+    : Wt::WApplication(env),
+    m_dialog(new ribi::WtEncrangerMenuDialog)
+  {
+    this->setTitle("Encranger");
+    this->useStyleSheet("wt.css");
+    root()->addWidget(m_dialog);
+  }
+  private:
+  ribi::WtEncrangerMenuDialog * const m_dialog;
 };
 
-} //~namespace ribi
+Wt::WApplication *createApplication(
+  const Wt::WEnvironment& env)
+{
+  return new WtApplication(env);
+}
 
-#endif // TOOLENCRANGERMAINDIALOG_H
+int main(int argc, char **argv)
+{
+  ribi::WtAutoConfig::SaveDefaultStylesheet();
+  ribi::WtAutoConfig a(argc,argv,createApplication);
+  return a.Run();
+}
+

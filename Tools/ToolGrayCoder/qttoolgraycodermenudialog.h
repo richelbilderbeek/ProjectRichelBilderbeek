@@ -1,5 +1,5 @@
-#ifndef QTCODETOHTMLMENUDIALOG_H
-#define QTCODETOHTMLMENUDIALOG_H
+#ifndef QTTOOLGRAYCODERMENUDIALOG_H
+#define QTTOOLGRAYCODERMENUDIALOG_H
 
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
@@ -40,4 +40,4 @@ private slots:
 
 } //~namespace ribi
 
-#endif // QTCODETOHTMLMENUDIALOG_H
+#endif // QTTOOLGRAYCODERMENUDIALOG_H

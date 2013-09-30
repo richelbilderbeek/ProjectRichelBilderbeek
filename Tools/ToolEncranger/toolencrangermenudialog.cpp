@@ -20,6 +20,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #include "toolencrangermenudialog.h"
 #include "loopreader.h"
+#include "encranger.h"
 
 const ribi::About ribi::ToolEncrangerMenuDialog::GetAbout() noexcept
 {

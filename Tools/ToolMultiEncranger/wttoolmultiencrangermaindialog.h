@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
-Encranger, encryption tool
-Copyright (C) 2009-2013 Richel Bilderbeek
+Encranger, tool to test the Encranger class
+Copyright (C) 2009-2011 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -18,22 +18,34 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolEncranger.htm
 //---------------------------------------------------------------------------
-#ifndef TOOLENCRANGERMAINDIALOG_H
-#define TOOLENCRANGERMAINDIALOG_H
+#ifndef WTTESTENCRANGERDIALOG_H
+#define WTTESTENCRANGERDIALOG_H
 
-#include <string>
-#include <vector>
-#include "about.h"
+#include <boost/scoped_ptr.hpp>
+#include <Wt/WContainerWidget>
+#include <Wt/WLineEdit>
 
 namespace ribi {
 
-struct ToolEncrangerMenuDialog
+struct ToolEncrangerMainDialog;
+
+struct WtEncrangerMainDialog : public Wt::WContainerWidget
 {
-  static const About GetAbout() noexcept;
-  static const std::string GetVersion() noexcept;
-  static const std::vector<std::string> GetVersionHistory() noexcept;
+  WtEncrangerMainDialog();
+  WtEncrangerMainDialog(const WtEncrangerMainDialog&) = delete;
+  WtEncrangerMainDialog& operator=(const WtEncrangerMainDialog&) = delete;
+
+  private:
+  boost::scoped_ptr<ToolEncrangerMainDialog> m_dialog;
+  Wt::WLineEdit * m_edit_encrypted_text;
+  Wt::WLineEdit * m_edit_key;
+  Wt::WLineEdit * m_edit_plain_text;
+
+  void OnDeencryptClick();
+  void OnEncryptClick();
+  void ShowMain();
 };
 
 } //~namespace ribi
 
-#endif // TOOLENCRANGERMAINDIALOG_H
+#endif // WTTESTENCRANGERDIALOG_H
