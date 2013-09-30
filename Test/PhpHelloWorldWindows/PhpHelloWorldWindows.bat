@@ -1,1 +1,0 @@
-php.exe PhpHelloWorldWindows.php

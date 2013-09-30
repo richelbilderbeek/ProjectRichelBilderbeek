@@ -6,6 +6,7 @@ TEMPLATE = app
 
 INCLUDEPATH += \
     ../../Classes/CppAbout \
+    ../../Classes/CppDotMatrix \
     ../../Classes/CppQtAboutDialog \
     ../../Classes/CppQtHideAndShowDialog \
     ../../Classes/CppTrace
@@ -18,7 +19,7 @@ SOURCES += \
     ../../Classes/CppQtHideAndShowDialog/qthideandshowdialog.cpp \
     ../../Classes/CppAbout/about.cpp \
     ../../Classes/CppQtAboutDialog/qtaboutdialog.cpp \
-    dotmatrix.cpp
+    ../../Classes/CppDotMatrix/dotmatrix.cpp
 
 HEADERS  += \
     tooldotmatrixmenudialog.h \
@@ -28,12 +29,18 @@ HEADERS  += \
     ../../Classes/CppAbout/about.h \
     ../../Classes/CppTrace/trace.h \
     ../../Classes/CppQtAboutDialog/qtaboutdialog.h \
-    dotmatrix.h
+    ../../Classes/CppDotMatrix/dotmatrix.h
 
 FORMS    += \
     qttooldotmatrixmaindialog.ui \
     qttooldotmatrixmenudialog.ui \
     ../../Classes/CppQtAboutDialog/qtaboutdialog.ui
+
+OTHER_FILES += \
+    ../../Classes/CppQtHideAndShowDialog/Licence.txt \
+    ../../Classes/CppAbout/Licence.txt \
+    ../../Classes/CppTrace/Licence.txt \
+    ../../Classes/CppQtAboutDialog/Licence.txt \
 
 #
 #
@@ -61,13 +68,3 @@ win32 {
   INCLUDEPATH += \
     ../../Libraries/boost_1_54_0
 }
-
-OTHER_FILES += \
-    ../../Classes/CppQtHideAndShowDialog/Licence.txt \
-    ../../Classes/CppAbout/Licence.txt \
-    ../../Classes/CppTrace/Licence.txt \
-    ../../Classes/CppQtAboutDialog/Licence.txt \
-    ../ToolDotMatrixVcl/UnitFormDotMatrix.dfm \
-    ../ToolDotMatrixVcl/UnitFormDotMatrix.ddp \
-    ../ToolDotMatrixVcl/UnitFormAbout.dfm \
-    ../ToolDotMatrixVcl/UnitFormAbout.ddp
