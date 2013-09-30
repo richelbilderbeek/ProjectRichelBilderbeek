@@ -98,7 +98,22 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += <a href="CppWidget.htm">widget</a>s<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;qtvirtualbastardmenudialog.ui \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;qtvirtualbastardexample1dialog.ui<br/>
 <br/>
-<a href="CppQmakeQmake_cxxflags.htm">QMAKE_CXXFLAGS</a> += -std=<a href="Cpp11.htm">c++11</a> <a href="CppWall.htm">-Wall</a> <a href="CppWextra.htm">-Wextra</a> <a href="CppWerror.htm">-Werror</a><br/>
+<a href="CppQmakeQmake_cxxflags.htm">QMAKE_CXXFLAGS</a> += -std=<a href="Cpp11.htm">c++11</a> <a href="CppWall.htm">-Wall</a> <a href="CppWextra.htm">-Wextra</a> <a href="CppWeffcpp.htm">-Weffc++</a><br/>
+<br/>
+unix {<br/>
+&nbsp;&nbsp;<a href="CppQmakeQmake_cxxflags.htm">QMAKE_CXXFLAGS</a> += <a href="CppWerror.htm">-Werror</a><br/>
+}<br/>
+<br/>
+#<br/>
+#<br/>
+# Boost<br/>
+#<br/>
+#<br/>
+<br/>
+win32 {<br/>
+&nbsp;&nbsp;<a href="CppQmakeIncludepath.htm">INCLUDEPATH</a> += \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/boost_1_54_0<br/>
+}<br/>
 <br/>
 #<br/>
 #<br/>
@@ -138,15 +153,18 @@ unix {<br/>
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="qtmain.cpp" border = "1"><tr><td><code>
-<a href="CppInclude.html">#include</a> "qt<b><a href="CppVirtual.html">virtual</a></b>bastardmenudialog<a href="CppHeaderFile.htm">.h</a>"<br/>
-<a href="CppInclude.html">#include</a> &lt;<a href="CppQApplication.html">QApplication</a>&gt;<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
+<a href="CppInclude.htm">#include</a> "qt<b><a href="CppVirtual.htm">virtual</a></b>bastardmenudialog.h"<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppQApplication.htm">QApplication</a>&gt;<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
 <br/>
-<b><a href="CppInt.htm">int</a></b> <a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a>(<b><a href="CppInt.htm">int</a></b> <a href="CppArgc.htm">argc</a>, <b><a href="CppChar.htm">char</a></b> *<a href="CppArgc.htm">argv</a>[])<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>(<b><a href="CppInt.htm">int</a></b> <a href="CppArgc.htm">argc</a>, <b><a href="CppChar.htm">char</a></b> *<a href="CppArgc.htm">argv</a>[])<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppQApplication.html">QApplication</a> a(<a href="CppArgc.htm">argc</a>, <a href="CppArgc.htm">argv</a>);<br/>
+&nbsp;&nbsp;<a href="CppQApplication.htm">QApplication</a> a(<a href="CppArgc.htm">argc</a>, <a href="CppArgc.htm">argv</a>);<br/>
 &nbsp;&nbsp;<a href="CppQt.htm">Qt</a>VirtualBastardMenuDialog w;<br/>
 &nbsp;&nbsp;w.show();<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> a.exec();<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> a.exec();<br/>
 }<br/>
 </code></td></tr></table>
 <!-- end of the code -->
@@ -159,28 +177,33 @@ unix {<br/>
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="qtvirtualbastardexample1dialog.h" border = "1"><tr><td><code>
-<a href="CppIfndef.html">#ifndef</a> QTVIRTUALBASTARDEXAMPLE1DIALOG_H<br/>
-<a href="CppDefine.html">#define</a> QTVIRTUALBASTARDEXAMPLE1DIALOG_H<br/>
+<a href="CppIfndef.htm">#ifndef</a> QTVIRTUALBASTARDEXAMPLE1DIALOG_H<br/>
+<a href="CppDefine.htm">#define</a> QTVIRTUALBASTARDEXAMPLE1DIALOG_H<br/>
 <br/>
-<a href="CppInclude.html">#include</a> &lt;<a href="CppQDialog.html">QDialog</a>&gt;<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppQDialog.htm">QDialog</a>&gt;<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
 <br/>
-<b><a href="CppNamespace.html">namespace</a></b> Ui {<br/>
-&nbsp;&nbsp;<b><a href="CppClass.html">class</a></b> <a href="CppQt.htm">Qt</a>VirtualBastardExample1Dialog;<br/>
+<b><a href="CppNamespace.htm">namespace</a></b> Ui {<br/>
+&nbsp;&nbsp;<b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a>VirtualBastardExample1Dialog;<br/>
 }<br/>
 <br/>
-<b><a href="CppClass.html">class</a></b> <a href="CppQt.htm">Qt</a>VirtualBastardExample1Dialog : <b><a href="CppPublic.html">public</a></b> <a href="CppQDialog.html">QDialog</a><br/>
+<b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a>VirtualBastardExample1Dialog : <b><a href="CppPublic.htm">public</a></b> <a href="CppQDialog.htm">QDialog</a><br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppQ_OBJECT.html">Q_OBJECT</a><br/>
+&nbsp;&nbsp;<a href="CppQ_OBJECT.htm">Q_OBJECT</a><br/>
 &nbsp;&nbsp;<br/>
-<b><a href="CppPublic.html">public</a></b>:<br/>
-&nbsp;&nbsp;<b><a href="CppExplicit.html">explicit</a></b> <a href="CppQt.htm">Qt</a>VirtualBastardExample1Dialog(<a href="CppQWidget.html">QWidget</a> *parent <a href="CppOperatorAssign.htm">=</a> 0);<br/>
+<b><a href="CppPublic.htm">public</a></b>:<br/>
+&nbsp;&nbsp;<b><a href="CppExplicit.htm">explicit</a></b> <a href="CppQt.htm">Qt</a>VirtualBastardExample1Dialog(<a href="CppQWidget.htm">QWidget</a> *parent <a href="CppOperatorAssign.htm">=</a> 0);<br/>
+&nbsp;&nbsp;<a href="CppQt.htm">Qt</a>VirtualBastardExample1Dialog(<b><a href="CppConst.htm">const</a></b> <a href="CppQt.htm">Qt</a>VirtualBastardExample1Dialog&amp;) <a href="CppOperatorAssign.htm">=</a> <b><a href="CppDelete.htm">delete</a></b>;<br/>
+&nbsp;&nbsp;<a href="CppQt.htm">Qt</a>VirtualBastardExample1Dialog&amp; <b><a href="CppOperator.htm">operator</a></b>=(<b><a href="CppConst.htm">const</a></b> <a href="CppQt.htm">Qt</a>VirtualBastardExample1Dialog&amp;) <a href="CppOperatorAssign.htm">=</a> <b><a href="CppDelete.htm">delete</a></b>;<br/>
 &nbsp;&nbsp;~<a href="CppQt.htm">Qt</a>VirtualBastardExample1Dialog();<br/>
 &nbsp;&nbsp;<br/>
-<b><a href="CppPrivate.html">private</a></b>:<br/>
+<b><a href="CppPrivate.htm">private</a></b>:<br/>
 &nbsp;&nbsp;<a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a>VirtualBastardExample1Dialog *ui;<br/>
 };<br/>
 <br/>
-<a href="CppEndif.html">#endif</a> <a href="CppComment.htm">//</a> QTVIRTUALBASTARDEXAMPLE1DIALOG_H<br/>
+<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> QTVIRTUALBASTARDEXAMPLE1DIALOG_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -192,11 +215,14 @@ unix {<br/>
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="qtvirtualbastardexample1dialog.cpp" border = "1"><tr><td><code>
-<a href="CppInclude.html">#include</a> "qt<b><a href="CppVirtual.html">virtual</a></b>bastardexample1dialog<a href="CppHeaderFile.htm">.h</a>"<br/>
-<a href="CppInclude.html">#include</a> "ui_qt<b><a href="CppVirtual.html">virtual</a></b>bastardexample1dialog<a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
+<a href="CppInclude.htm">#include</a> "qt<b><a href="CppVirtual.htm">virtual</a></b>bastardexample1dialog.h"<br/>
+<a href="CppInclude.htm">#include</a> "ui_qt<b><a href="CppVirtual.htm">virtual</a></b>bastardexample1dialog.h"<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
 <br/>
-<a href="CppQt.htm">Qt</a>VirtualBastardExample1Dialog::<a href="CppQt.htm">Qt</a>VirtualBastardExample1Dialog(<a href="CppQWidget.html">QWidget</a> *parent) :<br/>
-&nbsp;&nbsp;<a href="CppQDialog.html">QDialog</a>(parent),<br/>
+<a href="CppQt.htm">Qt</a>VirtualBastardExample1Dialog::<a href="CppQt.htm">Qt</a>VirtualBastardExample1Dialog(<a href="CppQWidget.htm">QWidget</a> *parent) :<br/>
+&nbsp;&nbsp;<a href="CppQDialog.htm">QDialog</a>(parent),<br/>
 &nbsp;&nbsp;ui(<b><a href="CppNew.htm">new</a></b> <a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a>VirtualBastardExample1Dialog)<br/>
 {<br/>
 &nbsp;&nbsp;ui-&gt;setupUi(<b><a href="CppThis.htm">this</a></b>);<br/>
@@ -204,7 +230,7 @@ unix {<br/>
 <br/>
 <a href="CppQt.htm">Qt</a>VirtualBastardExample1Dialog::~<a href="CppQt.htm">Qt</a>VirtualBastardExample1Dialog()<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppDelete.html">delete</a></b> ui;<br/>
+&nbsp;&nbsp;<b><a href="CppDelete.htm">delete</a></b> ui;<br/>
 }<br/>
 </code></td></tr></table>
 <!-- end of the code -->
@@ -217,24 +243,29 @@ unix {<br/>
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="qtvirtualbastardmaindialog.h" border = "1"><tr><td><code>
-<a href="CppIfndef.html">#ifndef</a> QTVIRTUALBASTARDMAINDIALOG_H<br/>
-<a href="CppDefine.html">#define</a> QTVIRTUALBASTARDMAINDIALOG_H<br/>
+<a href="CppIfndef.htm">#ifndef</a> QTVIRTUALBASTARDMAINDIALOG_H<br/>
+<a href="CppDefine.htm">#define</a> QTVIRTUALBASTARDMAINDIALOG_H<br/>
 <br/>
-<a href="CppInclude.html">#include</a> &lt;<a href="CppQDialog.html">QDialog</a>&gt;<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppQDialog.htm">QDialog</a>&gt;<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
 <br/>
-<b><a href="CppNamespace.html">namespace</a></b> Ui {<br/>
-&nbsp;&nbsp;<b><a href="CppClass.html">class</a></b> <a href="CppQt.htm">Qt</a>VirtualBastardMainDialog;<br/>
+<b><a href="CppNamespace.htm">namespace</a></b> Ui {<br/>
+&nbsp;&nbsp;<b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a>VirtualBastardMainDialog;<br/>
 }<br/>
 <br/>
-<b><a href="CppClass.html">class</a></b> <a href="CppQt.htm">Qt</a>VirtualBastardMainDialog : <b><a href="CppPublic.html">public</a></b> <a href="CppQDialog.html">QDialog</a><br/>
+<b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a>VirtualBastardMainDialog : <b><a href="CppPublic.htm">public</a></b> <a href="CppQDialog.htm">QDialog</a><br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppQ_OBJECT.html">Q_OBJECT</a><br/>
+&nbsp;&nbsp;<a href="CppQ_OBJECT.htm">Q_OBJECT</a><br/>
 &nbsp;&nbsp;<br/>
-<b><a href="CppPublic.html">public</a></b>:<br/>
-&nbsp;&nbsp;<b><a href="CppExplicit.html">explicit</a></b> <a href="CppQt.htm">Qt</a>VirtualBastardMainDialog(<a href="CppQWidget.html">QWidget</a> *parent <a href="CppOperatorAssign.htm">=</a> 0);<br/>
+<b><a href="CppPublic.htm">public</a></b>:<br/>
+&nbsp;&nbsp;<b><a href="CppExplicit.htm">explicit</a></b> <a href="CppQt.htm">Qt</a>VirtualBastardMainDialog(<a href="CppQWidget.htm">QWidget</a> *parent <a href="CppOperatorAssign.htm">=</a> 0);<br/>
+&nbsp;&nbsp;<a href="CppQt.htm">Qt</a>VirtualBastardMainDialog(<b><a href="CppConst.htm">const</a></b> <a href="CppQt.htm">Qt</a>VirtualBastardMainDialog&amp;) <a href="CppOperatorAssign.htm">=</a> <b><a href="CppDelete.htm">delete</a></b>;<br/>
+&nbsp;&nbsp;<a href="CppQt.htm">Qt</a>VirtualBastardMainDialog&amp; <b><a href="CppOperator.htm">operator</a></b>=(<b><a href="CppConst.htm">const</a></b> <a href="CppQt.htm">Qt</a>VirtualBastardMainDialog&amp;) <a href="CppOperatorAssign.htm">=</a> <b><a href="CppDelete.htm">delete</a></b>;<br/>
 &nbsp;&nbsp;~<a href="CppQt.htm">Qt</a>VirtualBastardMainDialog();<br/>
 &nbsp;&nbsp;<br/>
-<b><a href="CppPrivate.html">private</a></b> <b><a href="CppSlots.html">slots</a></b>:<br/>
+<b><a href="CppPrivate.htm">private</a></b> <b><a href="CppSlots.htm">slots</a></b>:<br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> on_button_clicked();<br/>
 <br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> on_button_set_mouse_pos_clicked();<br/>
@@ -243,16 +274,16 @@ unix {<br/>
 <br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> on_button_get_pos_clicked();<br/>
 <br/>
-<b><a href="CppPrivate.html">private</a></b>:<br/>
+<b><a href="CppPrivate.htm">private</a></b>:<br/>
 &nbsp;&nbsp;<a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a>VirtualBastardMainDialog *ui;<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/Cpp<a href="CppSeperateString.html">SeperateString</a>.html<br/>
-&nbsp;&nbsp;<b><a href="CppStatic.html">static</a></b> <b><a href="CppConst.html">const</a></b> <a href="CppVector.html">std::vector</a>&lt;<a href="CppString.html">std::string</a>&gt; <a href="CppSeperateString.html">SeperateString</a>(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a>&amp; input,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppChar.htm">char</a></b> seperator);<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/Cpp<a href="CppSeperateString.htm">SeperateString</a>.htm<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppSeperateString.htm">SeperateString</a>(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; input,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppChar.htm">char</a></b> seperator);<br/>
 };<br/>
 <br/>
-<a href="CppEndif.html">#endif</a> <a href="CppComment.htm">//</a> QTVIRTUALBASTARDMAINDIALOG_H<br/>
+<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> QTVIRTUALBASTARDMAINDIALOG_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -264,24 +295,28 @@ unix {<br/>
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="qtvirtualbastardmaindialog.cpp" border = "1"><tr><td><code>
-<a href="CppInclude.html">#include</a> "qt<b><a href="CppVirtual.html">virtual</a></b>bastardmaindialog<a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
+<a href="CppInclude.htm">#include</a> "qt<b><a href="CppVirtual.htm">virtual</a></b>bastardmaindialog.h"<br/>
 <br/>
-<a href="CppInclude.html">#include</a> &lt;<a href="CppStringH.html">string</a>&gt;<br/>
-<a href="CppInclude.html">#include</a> &lt;<a href="CppVectorH.html">vector</a>&gt;<br/>
-<a href="CppInclude.html">#include</a> &lt;<a href="CppBoost.html">boost</a>/<a href="CppAlgorithm.html">algorithm</a>/string/split<a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
-<a href="CppInclude.html">#include</a> &lt;<a href="CppBoost.html">boost</a>/<a href="CppLexical_cast.html">lexical_cast</a><a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppStringH.htm">string</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppAlgorithm.htm">algorithm</a>/string/split.hpp&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppLexical_cast.htm">lexical_cast</a>.hpp&gt;<br/>
 <br/>
-<a href="CppInclude.html">#include</a> "<b><a href="CppVirtual.html">virtual</a></b>bastard<a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.htm">#include</a> "<b><a href="CppVirtual.htm">virtual</a></b>bastard.h"<br/>
 <br/>
-<a href="CppInclude.html">#include</a> "ui_qt<b><a href="CppVirtual.html">virtual</a></b>bastardmaindialog<a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.htm">#include</a> "ui_qt<b><a href="CppVirtual.htm">virtual</a></b>bastardmaindialog.h"<br/>
 <br/>
-<b><a href="CppExtern.html">extern</a></b> "C"<br/>
+<b><a href="CppExtern.htm">extern</a></b> "C"<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppInclude.html">#include</a> "<a href="CppLibcvautomation.html">libcvautomation</a>/<a href="CppLibcvautomation.html">libcvautomation</a><a href="CppHeaderFile.htm">.h</a>"<br/>
+&nbsp;&nbsp;<a href="CppInclude.htm">#include</a> "<a href="CppLibcvautomation.htm">libcvautomation</a>/<a href="CppLibcvautomation.htm">libcvautomation</a>.h"<br/>
 }<br/>
 <br/>
-<a href="CppQt.htm">Qt</a>VirtualBastardMainDialog::<a href="CppQt.htm">Qt</a>VirtualBastardMainDialog(<a href="CppQWidget.html">QWidget</a> *parent) :<br/>
-&nbsp;&nbsp;<a href="CppQDialog.html">QDialog</a>(parent),<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
+<br/>
+<a href="CppQt.htm">Qt</a>VirtualBastardMainDialog::<a href="CppQt.htm">Qt</a>VirtualBastardMainDialog(<a href="CppQWidget.htm">QWidget</a> *parent) :<br/>
+&nbsp;&nbsp;<a href="CppQDialog.htm">QDialog</a>(parent),<br/>
 &nbsp;&nbsp;ui(<b><a href="CppNew.htm">new</a></b> <a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a>VirtualBastardMainDialog)<br/>
 {<br/>
 &nbsp;&nbsp;ui-&gt;setupUi(<b><a href="CppThis.htm">this</a></b>);<br/>
@@ -289,56 +324,56 @@ unix {<br/>
 <br/>
 <a href="CppQt.htm">Qt</a>VirtualBastardMainDialog::~<a href="CppQt.htm">Qt</a>VirtualBastardMainDialog()<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppDelete.html">delete</a></b> ui;<br/>
+&nbsp;&nbsp;<b><a href="CppDelete.htm">delete</a></b> ui;<br/>
 }<br/>
 <br/>
 <b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a>VirtualBastardMainDialog::on_button_clicked()<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppIfdef.html">#ifdef</a> OLD_SKOOL_APPROACH_THAT_WORKS<br/>
-&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a> display_location <a href="CppOperatorAssign.htm">=</a> "";<br/>
-&nbsp;&nbsp;Display * <b><a href="CppConst.html">const</a></b> display <a href="CppOperatorAssign.htm">=</a> XOpenDisplay( display_location.c_str() );<br/>
-&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(display);<br/>
-&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a> command_str <a href="CppOperatorAssign.htm">=</a> "mousexy 100 100";<br/>
-&nbsp;&nbsp;<b><a href="CppChar.htm">char</a></b> * <b><a href="CppConst.html">const</a></b> command <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <b><a href="CppChar.htm">char</a></b>[ command_str.size() <a href="CppOperatorPlus.htm">+</a> 1 ];<br/>
+&nbsp;&nbsp;<a href="CppIfdef.htm">#ifdef</a> OLD_SKOOL_APPROACH_THAT_WORKS<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> display_location <a href="CppOperatorAssign.htm">=</a> "";<br/>
+&nbsp;&nbsp;Display * <b><a href="CppConst.htm">const</a></b> display <a href="CppOperatorAssign.htm">=</a> XOpenDisplay( display_location.c_str() );<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(display);<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> command_str <a href="CppOperatorAssign.htm">=</a> "mousexy 100 100";<br/>
+&nbsp;&nbsp;<b><a href="CppChar.htm">char</a></b> * <b><a href="CppConst.htm">const</a></b> command <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <b><a href="CppChar.htm">char</a></b>[ command_str.size() <a href="CppOperatorPlus.htm">+</a> 1 ];<br/>
 &nbsp;&nbsp;strcpy(command,&amp;command_str[0]);<br/>
-&nbsp;&nbsp;xte_commandString(display,command,1,0,<a href="CppNumeric_limits.html">std::numeric_limits</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;().max(),1);<br/>
+&nbsp;&nbsp;xte_commandString(display,command,1,0,<a href="CppNumeric_limits.htm">std::numeric_limits</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;().max(),1);<br/>
 &nbsp;&nbsp;XCloseDisplay( display );<br/>
-&nbsp;&nbsp;<b><a href="CppDelete.html">delete</a></b>[] command;<br/>
-&nbsp;&nbsp;<a href="CppEndif.html">#endif</a><br/>
+&nbsp;&nbsp;<b><a href="CppDelete.htm">delete</a></b>[] command;<br/>
+&nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
 <br/>
 &nbsp;&nbsp;ui-&gt;output-&gt;clear();<br/>
-&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a> text <a href="CppOperatorAssign.htm">=</a> ui-&gt;input-&gt;toPlainText().toStdString();<br/>
-&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppVector.html">std::vector</a>&lt;<a href="CppString.html">std::string</a>&gt; lines <a href="CppOperatorAssign.htm">=</a> <a href="CppSeperateString.html">SeperateString</a>(text,'\n');<br/>
-&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a>&amp; line: lines)<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> text <a href="CppOperatorAssign.htm">=</a> ui-&gt;input-&gt;toPlainText().toStdString();<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; lines <a href="CppOperatorAssign.htm">=</a> <a href="CppSeperateString.htm">SeperateString</a>(text,'\n');<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; line: lines)<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Open a display (whatever that may be)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a> display_location <a href="CppOperatorAssign.htm">=</a> "";<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;Display * <b><a href="CppConst.html">const</a></b> display <a href="CppOperatorAssign.htm">=</a> XOpenDisplay( display_location.c_str() );<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(display);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> display_location <a href="CppOperatorAssign.htm">=</a> "";<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Display * <b><a href="CppConst.htm">const</a></b> display <a href="CppOperatorAssign.htm">=</a> XOpenDisplay( display_location.c_str() );<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(display);<br/>
 <br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppConvert.html">Convert</a> the line (with the command) to a C style string<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppChar.htm">char</a></b> * <b><a href="CppConst.html">const</a></b> command <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <b><a href="CppChar.htm">char</a></b>[ line.size() <a href="CppOperatorPlus.htm">+</a> 1 ];<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppConvert.htm">Convert</a> the line (with the command) to a C style string<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppChar.htm">char</a></b> * <b><a href="CppConst.htm">const</a></b> command <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <b><a href="CppChar.htm">char</a></b>[ line.size() <a href="CppOperatorPlus.htm">+</a> 1 ];<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;strcpy(command,&amp;line[0]);<br/>
 <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Run the command<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> cva<a href="CppPoint.html">Point</a> p <a href="CppOperatorAssign.htm">=</a> xte_commandString(display,command,1,0,<a href="CppNumeric_limits.html">std::numeric_limits</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;().max(),1);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> cva<a href="CppPoint.htm">Point</a> p <a href="CppOperatorAssign.htm">=</a> xte_commandString(display,command,1,0,<a href="CppNumeric_limits.htm">std::numeric_limits</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;().max(),1);<br/>
 <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Close the display (whatever that may be)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;XCloseDisplay( display );<br/>
 <br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Don't forget to <b><a href="CppDelete.html">delete</a></b> a C-style string :-(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppDelete.html">delete</a></b>[] command;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Don't forget to <b><a href="CppDelete.htm">delete</a></b> a C-style string :-(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppDelete.htm">delete</a></b>[] command;<br/>
 <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Give some feedback<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStringstream.html">std::stringstream</a> s;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;s <a href="CppOperatorStreamOut.html">&lt;&lt;</a> "Execute command: '" <a href="CppOperatorStreamOut.html">&lt;&lt;</a> line <a href="CppOperatorStreamOut.html">&lt;&lt;</a> "': ";<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (p.x <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <a href="CppOperatorMinus.htm">-</a>2 <a href="CppOperatorLogicalAnd.html">&amp;&amp;</a> p.y <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <a href="CppOperatorMinus.htm">-</a>2)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStringstream.htm">std::stringstream</a> s;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;s <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "Execute command: '" <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> line <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "': ";<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (p.x <a href="CppOperatorEqual.htm">==</a> <a href="CppOperatorMinus.htm">-</a>2 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> p.y <a href="CppOperatorEqual.htm">==</a> <a href="CppOperatorMinus.htm">-</a>2)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;s <a href="CppOperatorStreamOut.html">&lt;&lt;</a> "OK";<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;s <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "OK";<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppElse.htm">else</a></b><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;s <a href="CppOperatorStreamOut.html">&lt;&lt;</a> "(" <a href="CppOperatorStreamOut.html">&lt;&lt;</a> p.x <a href="CppOperatorStreamOut.html">&lt;&lt;</a> "," <a href="CppOperatorStreamOut.html">&lt;&lt;</a> p.y <a href="CppOperatorStreamOut.html">&lt;&lt;</a> ")";<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;s <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "(" <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> p.x <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "," <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> p.y <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> ")";<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;ui-&gt;output-&gt;appendPlainText(s.str().c_str());<br/>
 &nbsp;&nbsp;}<br/>
@@ -347,15 +382,15 @@ unix {<br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;show();<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.html">const</a></b> <a href="CppVector.html">std::vector</a>&lt;<a href="CppString.html">std::string</a>&gt; <a href="CppQt.htm">Qt</a>VirtualBastardMainDialog::<a href="CppSeperateString.html">SeperateString</a>(<br/>
-&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a>&amp; input,<br/>
-&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppChar.htm">char</a></b> seperator)<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppQt.htm">Qt</a>VirtualBastardMainDialog::<a href="CppSeperateString.htm">SeperateString</a>(<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; input,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppChar.htm">char</a></b> seperator)<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppVector.html">std::vector</a>&lt;<a href="CppString.html">std::string</a>&gt; v;<br/>
-&nbsp;&nbsp;<a href="CppSplit.html">boost::algorithm::split</a>(v,input,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBind2nd.html">std::bind2nd</a>(<a href="CppEqual_to.html">std::equal_to</a>&lt;<b><a href="CppChar.htm">char</a></b>&gt;(),seperator),<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBoost.html">boost</a>::<a href="CppAlgorithm.html">algorithm</a>::token_compress_on);<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> v;<br/>
+&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v;<br/>
+&nbsp;&nbsp;<a href="CppSplit.htm">boost::algorithm::split</a>(v,input,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBind2nd.htm">std::bind2nd</a>(<a href="CppEqual_to.htm">std::equal_to</a>&lt;<b><a href="CppChar.htm">char</a></b>&gt;(),seperator),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBoost.htm">boost</a>::<a href="CppAlgorithm.htm">algorithm</a>::token_compress_on);<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
 }<br/>
 <br/>
 <b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a>VirtualBastardMainDialog::on_button_set_mouse_pos_clicked()<br/>
@@ -373,12 +408,12 @@ unix {<br/>
 <br/>
 <b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a>VirtualBastardMainDialog::on_button_get_pos_clicked()<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppPair.html">std::pair</a>&lt;<b><a href="CppInt.htm">int</a></b>,<b><a href="CppInt.htm">int</a></b>&gt; pos <a href="CppOperatorAssign.htm">=</a> VirtualBastard::GetMousePos();<br/>
-&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a> text<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppPair.htm">std::pair</a>&lt;<b><a href="CppInt.htm">int</a></b>,<b><a href="CppInt.htm">int</a></b>&gt; pos <a href="CppOperatorAssign.htm">=</a> VirtualBastard::GetMousePos();<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> text<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> "("<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> <a href="CppLexical_cast.html">boost::lexical_cast</a>&lt;<a href="CppString.html">std::string</a>&gt;(pos.first)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> <a href="CppLexical_cast.htm">boost::lexical_cast</a>&lt;<a href="CppString.htm">std::string</a>&gt;(pos.first)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> ","<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> <a href="CppLexical_cast.html">boost::lexical_cast</a>&lt;<a href="CppString.html">std::string</a>&gt;(pos.second)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> <a href="CppLexical_cast.htm">boost::lexical_cast</a>&lt;<a href="CppString.htm">std::string</a>&gt;(pos.second)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> ")";<br/>
 &nbsp;&nbsp;ui-&gt;label_pos-&gt;setText(text.c_str());<br/>
 <br/>
@@ -394,33 +429,38 @@ unix {<br/>
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="qtvirtualbastardmenudialog.h" border = "1"><tr><td><code>
-<a href="CppIfndef.html">#ifndef</a> QTVIRTUALBASTARDMENUDIALOG_H<br/>
-<a href="CppDefine.html">#define</a> QTVIRTUALBASTARDMENUDIALOG_H<br/>
+<a href="CppIfndef.htm">#ifndef</a> QTVIRTUALBASTARDMENUDIALOG_H<br/>
+<a href="CppDefine.htm">#define</a> QTVIRTUALBASTARDMENUDIALOG_H<br/>
 <br/>
-<a href="CppInclude.html">#include</a> &lt;<a href="CppQDialog.html">QDialog</a>&gt;<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppQDialog.htm">QDialog</a>&gt;<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
 <br/>
-<b><a href="CppNamespace.html">namespace</a></b> Ui {<br/>
-&nbsp;&nbsp;<b><a href="CppClass.html">class</a></b> <a href="CppQt.htm">Qt</a>VirtualBastardMenuDialog;<br/>
+<b><a href="CppNamespace.htm">namespace</a></b> Ui {<br/>
+&nbsp;&nbsp;<b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a>VirtualBastardMenuDialog;<br/>
 }<br/>
 <br/>
-<b><a href="CppClass.html">class</a></b> <a href="CppQt.htm">Qt</a>VirtualBastardMenuDialog : <b><a href="CppPublic.html">public</a></b> <a href="CppQDialog.html">QDialog</a><br/>
+<b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a>VirtualBastardMenuDialog : <b><a href="CppPublic.htm">public</a></b> <a href="CppQDialog.htm">QDialog</a><br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppQ_OBJECT.html">Q_OBJECT</a><br/>
+&nbsp;&nbsp;<a href="CppQ_OBJECT.htm">Q_OBJECT</a><br/>
 &nbsp;&nbsp;<br/>
-<b><a href="CppPublic.html">public</a></b>:<br/>
-&nbsp;&nbsp;<b><a href="CppExplicit.html">explicit</a></b> <a href="CppQt.htm">Qt</a>VirtualBastardMenuDialog(<a href="CppQWidget.html">QWidget</a> *parent <a href="CppOperatorAssign.htm">=</a> 0);<br/>
+<b><a href="CppPublic.htm">public</a></b>:<br/>
+&nbsp;&nbsp;<b><a href="CppExplicit.htm">explicit</a></b> <a href="CppQt.htm">Qt</a>VirtualBastardMenuDialog(<a href="CppQWidget.htm">QWidget</a> *parent <a href="CppOperatorAssign.htm">=</a> 0);<br/>
+&nbsp;&nbsp;<a href="CppQt.htm">Qt</a>VirtualBastardMenuDialog(<b><a href="CppConst.htm">const</a></b> <a href="CppQt.htm">Qt</a>VirtualBastardMenuDialog&amp;) <a href="CppOperatorAssign.htm">=</a> <b><a href="CppDelete.htm">delete</a></b>;<br/>
+&nbsp;&nbsp;<a href="CppQt.htm">Qt</a>VirtualBastardMenuDialog&amp; <b><a href="CppOperator.htm">operator</a></b>=(<b><a href="CppConst.htm">const</a></b> <a href="CppQt.htm">Qt</a>VirtualBastardMenuDialog&amp;) <a href="CppOperatorAssign.htm">=</a> <b><a href="CppDelete.htm">delete</a></b>;<br/>
 &nbsp;&nbsp;~<a href="CppQt.htm">Qt</a>VirtualBastardMenuDialog();<br/>
 &nbsp;&nbsp;<br/>
-<b><a href="CppPrivate.html">private</a></b> <b><a href="CppSlots.html">slots</a></b>:<br/>
+<b><a href="CppPrivate.htm">private</a></b> <b><a href="CppSlots.htm">slots</a></b>:<br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> on_button_start_clicked();<br/>
 <br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> on_button_1_clicked();<br/>
 <br/>
-<b><a href="CppPrivate.html">private</a></b>:<br/>
+<b><a href="CppPrivate.htm">private</a></b>:<br/>
 &nbsp;&nbsp;<a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a>VirtualBastardMenuDialog *ui;<br/>
 };<br/>
 <br/>
-<a href="CppEndif.html">#endif</a> <a href="CppComment.htm">//</a> QTVIRTUALBASTARDMENUDIALOG_H<br/>
+<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> QTVIRTUALBASTARDMENUDIALOG_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -432,19 +472,22 @@ unix {<br/>
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="qtvirtualbastardmenudialog.cpp" border = "1"><tr><td><code>
-<a href="CppInclude.html">#include</a> "qt<b><a href="CppVirtual.html">virtual</a></b>bastardmenudialog<a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
+<a href="CppInclude.htm">#include</a> "qt<b><a href="CppVirtual.htm">virtual</a></b>bastardmenudialog.h"<br/>
 <br/>
-<a href="CppInclude.html">#include</a> &lt;<a href="CppCassertH.html">cassert</a>&gt;<br/>
-<a href="CppInclude.html">#include</a> &lt;<a href="CppFstreamH.html">fstream</a>&gt;<br/>
-<a href="CppInclude.html">#include</a> &lt;<a href="CppThreadH.html">thread</a>&gt;<br/>
-<a href="CppInclude.html">#include</a> &lt;<a href="CppQTimer.html">QTimer</a>&gt;<br/>
-<a href="CppInclude.html">#include</a> "qt<b><a href="CppVirtual.html">virtual</a></b>bastardexample1dialog<a href="CppHeaderFile.htm">.h</a>"<br/>
-<a href="CppInclude.html">#include</a> "qt<b><a href="CppVirtual.html">virtual</a></b>bastardmaindialog<a href="CppHeaderFile.htm">.h</a>"<br/>
-<a href="CppInclude.html">#include</a> "<b><a href="CppVirtual.html">virtual</a></b>bastard<a href="CppHeaderFile.htm">.h</a>"<br/>
-<a href="CppInclude.html">#include</a> "ui_qt<b><a href="CppVirtual.html">virtual</a></b>bastardmenudialog<a href="CppHeaderFile.htm">.h</a>"<br/>
-<br/>
-<a href="CppQt.htm">Qt</a>VirtualBastardMenuDialog::<a href="CppQt.htm">Qt</a>VirtualBastardMenuDialog(<a href="CppQWidget.html">QWidget</a> *parent) :<br/>
-&nbsp;&nbsp;<a href="CppQDialog.html">QDialog</a>(parent),<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppFstreamH.htm">fstream</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppThreadH.htm">thread</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppQTimer.htm">QTimer</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> "qt<b><a href="CppVirtual.htm">virtual</a></b>bastardexample1dialog.h"<br/>
+<a href="CppInclude.htm">#include</a> "qt<b><a href="CppVirtual.htm">virtual</a></b>bastardmaindialog.h"<br/>
+<a href="CppInclude.htm">#include</a> "<b><a href="CppVirtual.htm">virtual</a></b>bastard.h"<br/>
+<a href="CppInclude.htm">#include</a> "ui_qt<b><a href="CppVirtual.htm">virtual</a></b>bastardmenudialog.h"<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
+x<br/>
+<a href="CppQt.htm">Qt</a>VirtualBastardMenuDialog::<a href="CppQt.htm">Qt</a>VirtualBastardMenuDialog(<a href="CppQWidget.htm">QWidget</a> *parent) :<br/>
+&nbsp;&nbsp;<a href="CppQDialog.htm">QDialog</a>(parent),<br/>
 &nbsp;&nbsp;ui(<b><a href="CppNew.htm">new</a></b> <a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a>VirtualBastardMenuDialog)<br/>
 {<br/>
 &nbsp;&nbsp;ui-&gt;setupUi(<b><a href="CppThis.htm">this</a></b>);<br/>
@@ -452,7 +495,7 @@ unix {<br/>
 <br/>
 <a href="CppQt.htm">Qt</a>VirtualBastardMenuDialog::~<a href="CppQt.htm">Qt</a>VirtualBastardMenuDialog()<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppDelete.html">delete</a></b> ui;<br/>
+&nbsp;&nbsp;<b><a href="CppDelete.htm">delete</a></b> ui;<br/>
 }<br/>
 <br/>
 <b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a>VirtualBastardMenuDialog::on_button_start_clicked()<br/>
@@ -463,97 +506,97 @@ unix {<br/>
 <br/>
 <b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a>VirtualBastardMenuDialog::on_button_1_clicked()<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>VirtualBastard cannot work, because it needs to create a different script execution <a href="CppThread.html">thread</a><br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>VirtualBastard cannot work, because it needs to create a different script execution <a href="CppThread.htm">thread</a><br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>than from the program<br/>
-&nbsp;&nbsp;<a href="CppIfdef.html">#ifdef</a> THIS_APPROACH_8758758<br/>
-&nbsp;&nbsp;<a href="CppQt.htm">Qt</a>VirtualBastardExample1Dialog * <b><a href="CppConst.html">const</a></b> dialog <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppQt.htm">Qt</a>VirtualBastardExample1Dialog;<br/>
+&nbsp;&nbsp;<a href="CppIfdef.htm">#ifdef</a> THIS_APPROACH_8758758<br/>
+&nbsp;&nbsp;<a href="CppQt.htm">Qt</a>VirtualBastardExample1Dialog * <b><a href="CppConst.htm">const</a></b> dialog <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppQt.htm">Qt</a>VirtualBastardExample1Dialog;<br/>
 &nbsp;&nbsp;dialog-&gt;show();<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>VirtualBastard();<br/>
-&nbsp;&nbsp;<a href="CppQApplication.html">QApplication</a>::processEvents();<br/>
-&nbsp;&nbsp;<a href="CppThread.html">std::thread</a> t(<br/>
+&nbsp;&nbsp;<a href="CppQApplication.htm">QApplication</a>::processEvents();<br/>
+&nbsp;&nbsp;<a href="CppThread.htm">std::thread</a> t(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;[dialog]<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(dialog);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(dialog);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOfstream.html">std::ofstream</a> f("script.sh");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppQPoint.html">QPoint</a> tl <a href="CppOperatorAssign.htm">=</a> dialog-&gt;mapToGlobal(dialog-&gt;pos());<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;f <a href="CppOperatorStreamOut.html">&lt;&lt;</a> "#!/bin/sh" <a href="CppOperatorStreamOut.html">&lt;&lt;</a> '\n'<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "./../../<a href="CppLibrary.html">Libraries</a>/<a href="CppLibcvautomation.html">libcvautomation</a>/examples/cva-input <a href="CppOperatorMinus.htm">-</a>s \"mousexy " <a href="CppOperatorStreamOut.html">&lt;&lt;</a> tl.x()<a href="CppOperatorStreamOut.html">&lt;&lt;</a> " " <a href="CppOperatorStreamOut.html">&lt;&lt;</a> tl.y() <a href="CppOperatorStreamOut.html">&lt;&lt;</a> "\"" <a href="CppOperatorStreamOut.html">&lt;&lt;</a> '\n'<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "sleep 1" <a href="CppOperatorStreamOut.html">&lt;&lt;</a> '\n';<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOfstream.htm">std::ofstream</a> f("script.sh");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppQPoint.htm">QPoint</a> tl <a href="CppOperatorAssign.htm">=</a> dialog-&gt;mapToGlobal(dialog-&gt;pos());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;f <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "#!/bin/sh" <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n'<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "./../../<a href="CppLibrary.htm">Libraries</a>/<a href="CppLibcvautomation.htm">libcvautomation</a>/examples/cva-input <a href="CppOperatorMinus.htm">-</a>s \"mousexy " <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> tl.x()<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> " " <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> tl.y() <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "\"" <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n'<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "sleep 1" <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n';<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;f.close();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppSystem.html">std::system</a>("chmod <a href="CppOperatorPlus.htm">+</a>x script.sh");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppSystem.html">std::system</a>("./script.sh");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppSystem.htm">std::system</a>("chmod <a href="CppOperatorPlus.htm">+</a>x script.sh");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppSystem.htm">std::system</a>("./script.sh");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOfstream.html">std::ofstream</a> f("script.sh");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppQPoint.html">QPoint</a> tl <a href="CppOperatorAssign.htm">=</a> dialog-&gt;mapToGlobal(dialog-&gt;pos());<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;f <a href="CppOperatorStreamOut.html">&lt;&lt;</a> "#!/bin/sh" <a href="CppOperatorStreamOut.html">&lt;&lt;</a> '\n'<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "./../../<a href="CppLibrary.html">Libraries</a>/<a href="CppLibcvautomation.html">libcvautomation</a>/examples/cva-input <a href="CppOperatorMinus.htm">-</a>s \"mousexy "<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> tl.x() <a href="CppOperatorStreamOut.html">&lt;&lt;</a> " " <a href="CppOperatorStreamOut.html">&lt;&lt;</a> tl.y() <a href="CppOperatorStreamOut.html">&lt;&lt;</a> "\"" <a href="CppOperatorStreamOut.html">&lt;&lt;</a> '\n'<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "sleep 1" <a href="CppOperatorStreamOut.html">&lt;&lt;</a> '\n'<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "./../../<a href="CppLibrary.html">Libraries</a>/<a href="CppLibcvautomation.html">libcvautomation</a>/examples/cva-input <a href="CppOperatorMinus.htm">-</a>s \"mousexy "<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> (tl.x() <a href="CppOperatorPlus.htm">+</a> dialog-&gt;width()) <a href="CppOperatorStreamOut.html">&lt;&lt;</a> " " <a href="CppOperatorStreamOut.html">&lt;&lt;</a> tl.y() <a href="CppOperatorStreamOut.html">&lt;&lt;</a> "\"" <a href="CppOperatorStreamOut.html">&lt;&lt;</a> '\n'<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "sleep 1" <a href="CppOperatorStreamOut.html">&lt;&lt;</a> '\n'<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "./../../<a href="CppLibrary.html">Libraries</a>/<a href="CppLibcvautomation.html">libcvautomation</a>/examples/cva-input <a href="CppOperatorMinus.htm">-</a>s \"mousexy "<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> (tl.x() <a href="CppOperatorPlus.htm">+</a> dialog-&gt;width()) <a href="CppOperatorStreamOut.html">&lt;&lt;</a> " " <a href="CppOperatorStreamOut.html">&lt;&lt;</a> tl.y() <a href="CppOperatorPlus.htm">+</a> (dialog-&gt;height()) <a href="CppOperatorStreamOut.html">&lt;&lt;</a> "\"" <a href="CppOperatorStreamOut.html">&lt;&lt;</a> '\n'<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "sleep 1" <a href="CppOperatorStreamOut.html">&lt;&lt;</a> '\n'<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "./../../<a href="CppLibrary.html">Libraries</a>/<a href="CppLibcvautomation.html">libcvautomation</a>/examples/cva-input <a href="CppOperatorMinus.htm">-</a>s \"mousexy "<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> tl.x() <a href="CppOperatorStreamOut.html">&lt;&lt;</a> " " <a href="CppOperatorStreamOut.html">&lt;&lt;</a> tl.y() <a href="CppOperatorPlus.htm">+</a> (dialog-&gt;height()) <a href="CppOperatorStreamOut.html">&lt;&lt;</a> "\"" <a href="CppOperatorStreamOut.html">&lt;&lt;</a> '\n'<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOfstream.htm">std::ofstream</a> f("script.sh");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppQPoint.htm">QPoint</a> tl <a href="CppOperatorAssign.htm">=</a> dialog-&gt;mapToGlobal(dialog-&gt;pos());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;f <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "#!/bin/sh" <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n'<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "./../../<a href="CppLibrary.htm">Libraries</a>/<a href="CppLibcvautomation.htm">libcvautomation</a>/examples/cva-input <a href="CppOperatorMinus.htm">-</a>s \"mousexy "<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> tl.x() <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> " " <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> tl.y() <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "\"" <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n'<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "sleep 1" <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n'<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "./../../<a href="CppLibrary.htm">Libraries</a>/<a href="CppLibcvautomation.htm">libcvautomation</a>/examples/cva-input <a href="CppOperatorMinus.htm">-</a>s \"mousexy "<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> (tl.x() <a href="CppOperatorPlus.htm">+</a> dialog-&gt;width()) <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> " " <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> tl.y() <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "\"" <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n'<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "sleep 1" <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n'<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "./../../<a href="CppLibrary.htm">Libraries</a>/<a href="CppLibcvautomation.htm">libcvautomation</a>/examples/cva-input <a href="CppOperatorMinus.htm">-</a>s \"mousexy "<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> (tl.x() <a href="CppOperatorPlus.htm">+</a> dialog-&gt;width()) <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> " " <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> tl.y() <a href="CppOperatorPlus.htm">+</a> (dialog-&gt;height()) <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "\"" <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n'<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "sleep 1" <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n'<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "./../../<a href="CppLibrary.htm">Libraries</a>/<a href="CppLibcvautomation.htm">libcvautomation</a>/examples/cva-input <a href="CppOperatorMinus.htm">-</a>s \"mousexy "<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> tl.x() <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> " " <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> tl.y() <a href="CppOperatorPlus.htm">+</a> (dialog-&gt;height()) <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "\"" <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n'<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;f.close();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppSystem.html">std::system</a>("chmod <a href="CppOperatorPlus.htm">+</a>x script.sh");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppSystem.html">std::system</a>("./script.sh");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppSystem.htm">std::system</a>("chmod <a href="CppOperatorPlus.htm">+</a>x script.sh");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppSystem.htm">std::system</a>("./script.sh");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;);<br/>
 &nbsp;&nbsp;t.join();<br/>
 &nbsp;&nbsp;dialog-&gt;close();<br/>
-&nbsp;&nbsp;<b><a href="CppDelete.html">delete</a></b> dialog;<br/>
-&nbsp;&nbsp;<a href="CppEndif.html">#endif</a><br/>
+&nbsp;&nbsp;<b><a href="CppDelete.htm">delete</a></b> dialog;<br/>
+&nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
 <br/>
-&nbsp;&nbsp;<a href="CppIfdef.html">#ifdef</a> THIS_APPROACH_872534872<br/>
+&nbsp;&nbsp;<a href="CppIfdef.htm">#ifdef</a> THIS_APPROACH_872534872<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQt.htm">Qt</a>VirtualBastardExample1Dialog * <b><a href="CppConst.html">const</a></b> dialog <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppQt.htm">Qt</a>VirtualBastardExample1Dialog;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQt.htm">Qt</a>VirtualBastardExample1Dialog * <b><a href="CppConst.htm">const</a></b> dialog <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppQt.htm">Qt</a>VirtualBastardExample1Dialog;<br/>
 <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;VirtualBastard();<br/>
 <br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppThread.html">std::thread</a> t(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppThread.htm">std::thread</a> t(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[dialog]<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(dialog);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppPoint.html">Point</a> to the four corners of the dialog<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Do the top-left <a href="CppPointer.html">point</a> twice, because some<a href="CppTime.htm">time</a>s the first misses<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> sleep<a href="CppTime.htm">time</a> <a href="CppOperatorAssign.htm">=</a> 500; <a href="CppComment.htm">//</a>msecs<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(dialog);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppPoint.htm">Point</a> to the four corners of the dialog<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Do the top-left <a href="CppPointer.htm">point</a> twice, because some<a href="CppTime.htm">time</a>s the first misses<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> sleep<a href="CppTime.htm">time</a> <a href="CppOperatorAssign.htm">=</a> 500; <a href="CppComment.htm">//</a>msecs<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;VirtualBastard::Sleep(sleep<a href="CppTime.htm">time</a>);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;VirtualBastard();<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppQPoint.html">QPoint</a> tl <a href="CppOperatorAssign.htm">=</a> dialog-&gt;mapToGlobal(dialog-&gt;pos());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppQPoint.htm">QPoint</a> tl <a href="CppOperatorAssign.htm">=</a> dialog-&gt;mapToGlobal(dialog-&gt;pos());<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;VirtualBastard::SetMousePos(tl.x(),tl.y());<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;VirtualBastard::Sleep(sleep<a href="CppTime.htm">time</a>);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppQPoint.html">QPoint</a> tl <a href="CppOperatorAssign.htm">=</a> dialog-&gt;mapToGlobal(dialog-&gt;pos());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppQPoint.htm">QPoint</a> tl <a href="CppOperatorAssign.htm">=</a> dialog-&gt;mapToGlobal(dialog-&gt;pos());<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;VirtualBastard::SetMousePos(tl.x(),tl.y());<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;VirtualBastard::Sleep(sleep<a href="CppTime.htm">time</a>);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppQPoint.html">QPoint</a> tl <a href="CppOperatorAssign.htm">=</a> dialog-&gt;mapToGlobal(dialog-&gt;pos());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppQPoint.htm">QPoint</a> tl <a href="CppOperatorAssign.htm">=</a> dialog-&gt;mapToGlobal(dialog-&gt;pos());<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;VirtualBastard::SetMousePos(tl.x() <a href="CppOperatorPlus.htm">+</a> dialog-&gt;width(),tl.y());<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;VirtualBastard::Sleep(sleep<a href="CppTime.htm">time</a>);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppQPoint.html">QPoint</a> tl <a href="CppOperatorAssign.htm">=</a> dialog-&gt;mapToGlobal(dialog-&gt;pos());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppQPoint.htm">QPoint</a> tl <a href="CppOperatorAssign.htm">=</a> dialog-&gt;mapToGlobal(dialog-&gt;pos());<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;VirtualBastard::SetMousePos(tl.x() <a href="CppOperatorPlus.htm">+</a> dialog-&gt;width(),tl.y() <a href="CppOperatorPlus.htm">+</a> dialog-&gt;height());<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;VirtualBastard::Sleep(sleep<a href="CppTime.htm">time</a>);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppQPoint.html">QPoint</a> tl <a href="CppOperatorAssign.htm">=</a> dialog-&gt;mapToGlobal(dialog-&gt;pos());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppQPoint.htm">QPoint</a> tl <a href="CppOperatorAssign.htm">=</a> dialog-&gt;mapToGlobal(dialog-&gt;pos());<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;VirtualBastard::SetMousePos(tl.x(),tl.y() <a href="CppOperatorPlus.htm">+</a> dialog-&gt;height());<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;VirtualBastard::Sleep(sleep<a href="CppTime.htm">time</a>);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Click the checkboxes<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;dialog-&gt;close();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppDelete.html">delete</a></b> dialog;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppDelete.htm">delete</a></b> dialog;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;);<br/>
 <br/>
@@ -561,7 +604,7 @@ unix {<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;dialog-&gt;show();<br/>
 <br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<a href="CppEndif.html">#endif</a><br/>
+&nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppThis.htm">this</a></b>-&gt;show();<br/>
 <br/>
 }<br/>

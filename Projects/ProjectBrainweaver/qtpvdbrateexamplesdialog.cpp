@@ -8,6 +8,7 @@
 #include <pvdbexamplefactory.h>
 #include <pvdbexamplesfactory.h>
 #include "pvdbconcept.h"
+#include "pvdbhelper.h"
 #include "qtpvdbcompetency.h"
 #include "ui_qtpvdbrateexamplesdialog.h"
 #include "pvdbconceptfactory.h"
@@ -18,7 +19,15 @@ struct QtPvdbListWidgetItem : public QListWidgetItem
 {
   QtPvdbListWidgetItem(const boost::shared_ptr<const ribi::pvdb::Example>& example)
   {
-    this->setText(example->GetText().c_str());
+    //Wordwrap text
+    const std::string s = example->GetText();
+    const std::vector<std::string> v { ribi::pvdb::Wordwrap(s,40) };
+    //Display multi-line
+    std::string t;
+    for (const std::string& i: v) { t += i + "\n"; }
+    if (!t.empty()) t.resize(t.size() - 1);
+    this->setText(t.c_str());
+    //Icon
     this->setIcon(ribi::pvdb::QtCompetency::CompetencyToIcon(example->GetCompetency()));
   }
 };
@@ -39,18 +48,22 @@ ribi::pvdb::QtPvdbRateExamplesDialog::QtPvdbRateExamplesDialog(
   #endif
 
   //Convert the Concept to GUI elements
-  ui->label_concept_name->setText(concept->GetName().c_str());
-  ui->list->clear();
-  const auto v = concept->GetExamples()->Get();
-  std::for_each(v.begin(),v.end(),
-    [this](const boost::shared_ptr<const pvdb::Example>& example)
+  {
+    ui->label_concept_name->setText(concept->GetName().c_str());
+    ui->list->clear();
+    const auto v = concept->GetExamples()->Get();
+    const std::size_t sz = v.size();
+    for (std::size_t i=0; i!=sz; ++i)
     {
+      const boost::shared_ptr<const pvdb::Example>& example = v[i];
+      const std::string s = example->GetText();
+      //const int n_lines = ribi::pvdb::Wordwrap(s,40).size();
+      //ui->list->setRowHeight(row,ui->list->fontMetrics().height() * 2 * (n_lines + 1));
       QtPvdbListWidgetItem * const item
         = new QtPvdbListWidgetItem(example);
       ui->list->addItem(item);
     }
-  );
-
+  }
   //Align the button icons and texts to the left
   {
     const std::vector<QPushButton*> v

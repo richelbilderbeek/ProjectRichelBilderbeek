@@ -65,7 +65,7 @@
 <a href="CppQmakeConfig.htm">CONFIG</a> += console<br/>
 <a href="CppQmakeConfig.htm">CONFIG</a> -= app_bundle<br/>
 <a href="CppQmakeConfig.htm">CONFIG</a> -= qt<br/>
-<a href="CppQmakeQmake_cxxflags.htm">QMAKE_CXXFLAGS</a> += -std=<a href="Cpp11.htm">c++11</a><br/>
+<a href="CppQmakeQmake_cxxflags.htm">QMAKE_CXXFLAGS</a> += -std=<a href="Cpp11.htm">c++11</a> <a href="CppWall.htm">-Wall</a> <a href="CppWextra.htm">-Wextra</a> <a href="CppWeffcpp.htm">-Weffc++</a> <a href="CppWerror.htm">-Werror</a><br/>
 <br/>
 <a href="CppQmakeIncludepath.htm">INCLUDEPATH</a> += \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/CppIrcBot<br/>
@@ -88,18 +88,18 @@
 <!-- start of code -->
 <table summary="main.cpp" border = "1"><tr><td><code>
 <a href="CppComment.htm">//</a>Inspired by Quxbot, developed by Viderizer and Tyler Allen<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppIostreamH.htm">iostream</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppCstdioH.htm">cstdio</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> "ircbot.h"<br/>
 <br/>
-<a href="CppInclude.html">#include</a> &lt;<a href="CppIostreamH.html">iostream</a>&gt;<br/>
-<a href="CppInclude.html">#include</a> "ircbot<a href="CppHeaderFile.htm">.h</a>"<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; Respond(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; s);<br/>
 <br/>
-<b><a href="CppConst.html">const</a></b> <a href="CppVector.html">std::vector</a>&lt;<a href="CppString.html">std::string</a>&gt; Respond(<b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a>&amp; s);<br/>
-<br/>
-<b><a href="CppInt.htm">int</a></b> <a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a>()<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a> bot_name <a href="CppOperatorAssign.htm">=</a> "<b><a href="CppVoid.htm">void</a></b>hosbn";<br/>
-&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a> server_name <a href="CppOperatorAssign.htm">=</a> "irc.zeronode.net";<br/>
-&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a> channel_name <a href="CppOperatorAssign.htm">=</a> "#Hive5";<br/>
-&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> port <a href="CppOperatorAssign.htm">=</a> 6667;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> bot_name <a href="CppOperatorAssign.htm">=</a> "speaker";<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> server_name <a href="CppOperatorAssign.htm">=</a> "irc.zeronode.net";<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> channel_name <a href="CppOperatorAssign.htm">=</a> "#Hive5";<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> port <a href="CppOperatorAssign.htm">=</a> 6667;<br/>
 <br/>
 &nbsp;&nbsp;IrcBot(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;bot_name,<br/>
@@ -110,91 +110,37 @@
 &nbsp;&nbsp;);<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.html">const</a></b> <a href="CppVector.html">std::vector</a>&lt;<a href="CppString.html">std::string</a>&gt; Respond(<b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a>&amp; s)<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; Respond(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; s)<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Display the raw message to respond to<br/>
-&nbsp;&nbsp;<a href="CppCout.html">std::cout</a> <a href="CppOperatorStreamOut.html">&lt;&lt;</a> s <a href="CppOperatorStreamOut.html">&lt;&lt;</a> <a href="CppEndl.html">std::endl</a>;<br/>
+&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> s <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppEndl.htm">std::endl</a>;<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Say the message with espeak<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> cmd <a href="CppOperatorAssign.htm">=</a> "espeak \"" <a href="CppOperatorPlus.htm">+</a> s <a href="CppOperatorPlus.htm">+</a> '\"';<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppSystem.htm">std::system</a>(cmd.c_str());<br/>
+&nbsp;&nbsp;}<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Generate a response<br/>
-&nbsp;&nbsp;<a href="CppVector.html">std::vector</a>&lt;<a href="CppString.html">std::string</a>&gt; v;<br/>
+&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v;<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (s.find("JOIN") <a href="CppOperatorNotEqual.htm">!=</a> <a href="CppString.html">std::string</a>::npos)<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (s.find("JOIN") <a href="CppOperatorNotEqual.htm">!=</a> <a href="CppString.htm">std::string</a>::npos)<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Welcome message<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (s.find(":richel") <a href="CppOperatorNotEqual.htm">!=</a> <a href="CppString.html">std::string</a>::npos <a href="CppOperatorLogicalOr.htm">||</a> s.find(":Bilderbikkel") <a href="CppOperatorNotEqual.htm">!=</a> <a href="CppString.html">std::string</a>::npos)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (s.find(":richel") <a href="CppOperatorNotEqual.htm">!=</a> <a href="CppString.htm">std::string</a>::npos<br/>
+&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppOperatorLogicalOr.htm">||</a> s.find(":Bilderbikkel") <a href="CppOperatorNotEqual.htm">!=</a> <a href="CppString.htm">std::string</a>::npos<br/>
+&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppOperatorLogicalOr.htm">||</a> s.find(":bilderbikkel") <a href="CppOperatorNotEqual.htm">!=</a> <a href="CppString.htm">std::string</a>::npos<br/>
+&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppOperatorLogicalOr.htm">||</a> s.find(":<a href="CppAssert.htm">assert</a>") <a href="CppOperatorNotEqual.htm">!=</a> <a href="CppString.htm">std::string</a>::npos<br/>
+&nbsp;&nbsp;&nbsp;&nbsp; )<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("Welcome master!");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (s.find(":FSX!") <a href="CppOperatorNotEqual.htm">!=</a> <a href="CppString.html">std::string</a>::npos)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("Hi FSX!");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (s.find(":joachim") <a href="CppOperatorNotEqual.htm">!=</a> <a href="CppString.html">std::string</a>::npos)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("Yo joachim!");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (s.find(":<b><a href="CppVoid.htm">void</a></b>zero") <a href="CppOperatorNotEqual.htm">!=</a> <a href="CppString.html">std::string</a>::npos)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("Howdy <b><a href="CppVoid.htm">void</a></b>zero!");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (s.find(":winand") <a href="CppOperatorNotEqual.htm">!=</a> <a href="CppString.html">std::string</a>::npos <a href="CppOperatorLogicalOr.htm">||</a> s.find(":Winand") <a href="CppOperatorNotEqual.htm">!=</a> <a href="CppString.html">std::string</a>::npos)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("Wassup Winand!");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (s.find("ain't that so?") <a href="CppOperatorNotEqual.htm">!=</a> <a href="CppString.html">std::string</a>::npos)<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (s.find("ain't that so?") <a href="CppOperatorNotEqual.htm">!=</a> <a href="CppString.htm">std::string</a>::npos)<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;v.push_back("Yes, it is exactly like that!");<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (s.find("lambda, who <b><a href="CppDo.htm">do</a></b> you like best?") <a href="CppOperatorNotEqual.htm">!=</a> <a href="CppString.html">std::string</a>::npos)<br/>
-&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("::::::::::::::::::::::::::::::::::::::::");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("::::::::::::::::::::::::::::::::::::::::");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("::::::::::::::::+oo+so/:::::::::::::::::");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("::::::::::::::+yhdddddhy+:::::::::::::::");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("::::::::::::/sdddddddddddy+:::::::::::::");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;v.push_back(":::::::::::+ydddddddddddddds/:::::::::::");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("::::::::::/yddddddddddddddddy+::::::::::");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("::::::::::sdhhyssssyyhdddddddd+:::::::::");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;v.push_back(":::::::::oddyo<a href="CppOperatorIncrement.htm">++</a><a href="CppComment.htm">///</a><a href="CppOperatorIncrement.htm">++</a>ooossydddy::::::::-");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("::::-:::oddy<a href="CppOperatorIncrement.htm">++</a>+<a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppOperatorIncrement.htm">++</a>osddd+:::::::-");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("::::-:::sdho<a href="CppOperatorIncrement.htm">++</a><a href="CppComment.htm">///</a>:::<a href="CppComment.htm">///</a><a href="CppComment.htm">//</a><a href="CppOperatorIncrement.htm">++</a>+yddo::-:::::");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("::::<a href="CppOperatorDecrement.htm">--</a>::ydy<a href="CppOperatorIncrement.htm">++</a><a href="CppComment.htm">///</a>::::::<a href="CppComment.htm">///</a>/<a href="CppOperatorIncrement.htm">++</a>ohdy::::::::");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("::::---:hdo<a href="CppOperatorIncrement.htm">++</a><a href="CppComment.htm">//</a>::::::::<a href="CppComment.htm">///</a><a href="CppOperatorIncrement.htm">++</a>+ydy:<a href="CppOperatorDecrement.htm">--</a>:::-:");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("::::-::/hho<a href="CppOperatorIncrement.htm">++</a><a href="CppComment.htm">//</a>:::::::::<a href="CppComment.htm">//</a><a href="CppOperatorIncrement.htm">++</a>+shs::::::::");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("::::---/hho+<a href="CppComment.htm">///</a>/:::::::<a href="CppComment.htm">///</a><a href="CppOperatorIncrement.htm">++</a>+shy:::::::-");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("::::---:hhs+<a href="CppComment.htm">///</a>::::::::<a href="CppComment.htm">///</a><a href="CppOperatorIncrement.htm">++</a>oyhy::::::::");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;v.push_back(":::::::/dds<a href="CppOperatorIncrement.htm">++</a><a href="CppOperatorIncrement.htm">++</a>/:::::::<a href="CppComment.htm">//</a><a href="CppOperatorIncrement.htm">++</a>+oydy::::::::");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;v.push_back(":::::::/dhooyyhhs+:::/+osyyooshy::::::::");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;v.push_back(":::::::/hhoso+osys+<a href="CppComment.htm">//</a>oyhyssyoshs::::::::");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;v.push_back(":::::::/sdo+osyyys+<a href="CppComment.htm">//</a>oyyyysoosho/:::::::");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;v.push_back(":::::::ooy<a href="CppOperatorIncrement.htm">++</a>osshoo+<a href="CppComment.htm">//</a>osoysyo+osos:::::::");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;v.push_back(":::::::o<a href="CppOperatorIncrement.htm">++</a><a href="CppOperatorIncrement.htm">++</a>+oooo<a href="CppOperatorIncrement.htm">++</a><a href="CppComment.htm">//</a>ooooo<a href="CppOperatorIncrement.htm">++</a>+oo+o:::::::");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("<a href="CppComment.htm">///</a>/:::o+o+<a href="CppComment.htm">///</a>/<a href="CppOperatorIncrement.htm">++</a><a href="CppOperatorIncrement.htm">++</a><a href="CppComment.htm">//</a><a href="CppOperatorIncrement.htm">++</a><a href="CppOperatorIncrement.htm">++</a><a href="CppComment.htm">//</a><a href="CppOperatorIncrement.htm">++</a>+s<a href="CppOperatorIncrement.htm">++</a>:::::::");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("<a href="CppComment.htm">///</a><a href="CppComment.htm">///</a>/<a href="CppOperatorIncrement.htm">++</a>o+<a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppOperatorIncrement.htm">++</a><a href="CppComment.htm">//</a><a href="CppOperatorIncrement.htm">++</a><a href="CppComment.htm">///</a><a href="CppComment.htm">//</a><a href="CppOperatorIncrement.htm">++</a>oo+:::::::");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("<a href="CppComment.htm">///</a><a href="CppComment.htm">///</a>/<a href="CppOperatorIncrement.htm">++</a><a href="CppOperatorIncrement.htm">++</a><a href="CppComment.htm">//</a>::<a href="CppComment.htm">//</a><a href="CppOperatorIncrement.htm">++</a><a href="CppComment.htm">//</a>+o+<a href="CppComment.htm">///</a>/+ooo/:::::::");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("<a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">//</a><a href="CppOperatorIncrement.htm">++</a><a href="CppOperatorIncrement.htm">++</a>/::/<a href="CppOperatorIncrement.htm">++</a>+<a href="CppComment.htm">//</a>oo+<a href="CppComment.htm">///</a><a href="CppOperatorIncrement.htm">++</a>o+o::::::::");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("<a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">//</a><a href="CppOperatorIncrement.htm">++</a>o+<a href="CppComment.htm">///</a><a href="CppOperatorIncrement.htm">++</a>+sooso<a href="CppOperatorIncrement.htm">++</a>+/<a href="CppOperatorIncrement.htm">++</a>o+/::::::::");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("<a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a>/o<a href="CppOperatorIncrement.htm">++</a>/<a href="CppOperatorIncrement.htm">++</a><a href="CppOperatorIncrement.htm">++</a>+ooooo<a href="CppOperatorIncrement.htm">++</a><a href="CppOperatorIncrement.htm">++</a>oo/:::::::::");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("<a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a>/+o<a href="CppOperatorIncrement.htm">++</a><a href="CppOperatorIncrement.htm">++</a><a href="CppOperatorIncrement.htm">++</a><a href="CppOperatorIncrement.htm">++</a><a href="CppOperatorIncrement.htm">++</a>+oo<a href="CppOperatorIncrement.htm">++</a>+o+::::::::::");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("<a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a>/+o<a href="CppOperatorIncrement.htm">++</a><a href="CppOperatorIncrement.htm">++</a>oooooosss<a href="CppOperatorIncrement.htm">++</a>oo/::::::::::");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("<a href="CppComment.htm">///</a><a href="CppComment.htm">///</a><a href="CppComment.htm">///</a>+ooo<a href="CppOperatorIncrement.htm">++</a><a href="CppOperatorIncrement.htm">++</a>ooooooo<a href="CppOperatorIncrement.htm">++</a>+oo/::::::::::");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("<a href="CppComment.htm">///</a><a href="CppComment.htm">///</a>/+syyso<a href="CppOperatorIncrement.htm">++</a><a href="CppOperatorIncrement.htm">++</a><a href="CppOperatorIncrement.htm">++</a>+oo<a href="CppOperatorIncrement.htm">++</a><a href="CppOperatorIncrement.htm">++</a>ooo<a href="CppComment.htm">///</a>::::::::");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("<a href="CppComment.htm">///</a><a href="CppComment.htm">///</a>/syhyyooo<a href="CppOperatorIncrement.htm">++</a><a href="CppOperatorIncrement.htm">++</a>ooo<a href="CppOperatorIncrement.htm">++</a>ooossy+<a href="CppComment.htm">///</a>:<a href="CppComment.htm">///</a>::");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("<a href="CppComment.htm">///</a><a href="CppComment.htm">///</a>+yhhhhsooo<a href="CppOperatorIncrement.htm">++</a><a href="CppOperatorIncrement.htm">++</a><a href="CppOperatorIncrement.htm">++</a>+ooossshs<a href="CppComment.htm">///</a><a href="CppComment.htm">///</a>/::");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("<a href="CppOperatorIncrement.htm">++</a>/+<a href="CppComment.htm">//</a>oyhhhyosooo<a href="CppOperatorIncrement.htm">++</a><a href="CppOperatorIncrement.htm">++</a>+oosssoshss+<a href="CppComment.htm">///</a><a href="CppComment.htm">///</a>:");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("/<a href="CppOperatorIncrement.htm">++</a>+<a href="CppComment.htm">//</a>syhhyyoossooooooossysosyssyo<a href="CppComment.htm">///</a><a href="CppComment.htm">//</a>:");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("<a href="CppOperatorIncrement.htm">++</a><a href="CppOperatorIncrement.htm">++</a><a href="CppOperatorIncrement.htm">++</a>syhhyyoosyyyyssyyyysoosyssyyo<a href="CppComment.htm">///</a><a href="CppComment.htm">//</a>");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("<a href="CppOperatorIncrement.htm">++</a><a href="CppOperatorIncrement.htm">++</a><a href="CppOperatorIncrement.htm">++</a>syhyyyooosyhhhhhyyysoosysssys+<a href="CppComment.htm">///</a>/");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("<a href="CppOperatorIncrement.htm">++</a><a href="CppOperatorIncrement.htm">++</a><a href="CppOperatorIncrement.htm">++</a>syyssyooossssssssssoooshssssss<a href="CppComment.htm">///</a>/");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("<a href="CppOperatorIncrement.htm">++</a><a href="CppOperatorIncrement.htm">++</a><a href="CppOperatorIncrement.htm">++</a>syyssho+oooooooooooooosyssssss+<a href="CppComment.htm">///</a>");<br/>
-&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (s.find("kick <b><a href="CppVoid.htm">void</a></b>zero") <a href="CppOperatorNotEqual.htm">!=</a> <a href="CppString.html">std::string</a>::npos)<br/>
-&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;v.push_back("/kick <b><a href="CppVoid.htm">void</a></b>zero");<br/>
-&nbsp;&nbsp;}<br/>
-<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> v;<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
 }<br/>
 </code></td></tr></table>
 <!-- end of the code -->

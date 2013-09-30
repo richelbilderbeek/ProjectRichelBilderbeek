@@ -1,6 +1,6 @@
 //---------------------------------------------------------------------------
 /*
-TestEncranger, tool to test the Encranger class
+Encranger, tool to test the Encranger class
 Copyright (C) 2009-2011 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
@@ -16,15 +16,15 @@ You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>.
 */
 //---------------------------------------------------------------------------
-//From http://www.richelbilderbeek.nl/ToolTestEncranger.htm
+//From http://www.richelbilderbeek.nl/ToolEncranger.htm
 //---------------------------------------------------------------------------
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #include <cassert>
-//---------------------------------------------------------------------------
+
 #include <boost/filesystem.hpp>
 #include <boost/foreach.hpp>
-//---------------------------------------------------------------------------
+
 #include <Wt/WBreak>
 #include <Wt/WGroupBox>
 #include <Wt/WImage>
@@ -33,27 +33,27 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <Wt/WMenuItem>
 #include <Wt/WStackedWidget>
 #include <Wt/WWidget>
-//---------------------------------------------------------------------------
+
 #include "about.h"
-#include "testencrangerdialog.h"
+#include "toolencrangermenudialog.h"
 #include "wtautoconfig.h"
 #include "wtaboutdialog.h"
-#include "wttestencrangermaindialog.h"
-#include "wttestencrangermenudialog.h"
-//---------------------------------------------------------------------------
+#include "wttoolencrangermaindialog.h"
+#include "wttoolencrangermenudialog.h"
+
 #include <QFile>
 #pragma GCC diagnostic pop
 
-ribi::WtTestEncrangerMenuDialog::WtTestEncrangerMenuDialog()
+ribi::WtEncrangerMenuDialog::WtEncrangerMenuDialog()
 {
   //Create resources
   {
     std::vector<std::string> image_names;
-    image_names.push_back("ToolTestEncrangerArrowDown16x16.png");
-    image_names.push_back("ToolTestEncrangerArrowDown34x34.png");
-    image_names.push_back("ToolTestEncrangerArrowUp16x16.png");
-    image_names.push_back("ToolTestEncrangerArrowUp34x34.png");
-    image_names.push_back("ToolTestEncrangerWelcome.png");
+    image_names.push_back("ToolEncrangerArrowDown16x16.png");
+    image_names.push_back("ToolEncrangerArrowDown34x34.png");
+    image_names.push_back("ToolEncrangerArrowUp16x16.png");
+    image_names.push_back("ToolEncrangerArrowUp34x34.png");
+    image_names.push_back("ToolEncrangerWelcome.png");
     BOOST_FOREACH(const std::string& filename,image_names)
     {
       if (!(QFile::exists(filename.c_str())))
@@ -72,7 +72,7 @@ ribi::WtTestEncrangerMenuDialog::WtTestEncrangerMenuDialog()
   this->setContentAlignment(Wt::AlignCenter);
 
   {
-    Wt::WLabel * const title = new Wt::WLabel("TestEncranger");
+    Wt::WLabel * const title = new Wt::WLabel("Encranger");
     title->setStyleClass("title");
     this->addWidget(title);
   }
@@ -107,36 +107,36 @@ ribi::WtTestEncrangerMenuDialog::WtTestEncrangerMenuDialog()
     this->addWidget(contents);
   }
 }
-//---------------------------------------------------------------------------
-Wt::WWidget * ribi::WtTestEncrangerMenuDialog::CreateNewAboutDialog() const
+
+Wt::WWidget * ribi::WtEncrangerMenuDialog::CreateNewAboutDialog() const
 {
-  About a = TestEncrangerDialog::GetAbout();
+  About a = ToolEncrangerMenuDialog::GetAbout();
   a.AddLibrary("WtAutoConfig version: " + WtAutoConfig::GetVersion());
   WtAboutDialog * const d = new WtAboutDialog(a,false);
   assert(d);
   return d;
 }
-//---------------------------------------------------------------------------
-Wt::WWidget * ribi::WtTestEncrangerMenuDialog::CreateNewMainDialog() const
+
+Wt::WWidget * ribi::WtEncrangerMenuDialog::CreateNewMainDialog() const
 {
-  WtTestEncrangerMainDialog * const d = new WtTestEncrangerMainDialog;
+  WtEncrangerMainDialog * const d = new WtEncrangerMainDialog;
   assert(d);
   return d;
 }
-//---------------------------------------------------------------------------
-Wt::WWidget * ribi::WtTestEncrangerMenuDialog::CreateNewWelcomeDialog() const
+
+Wt::WWidget * ribi::WtEncrangerMenuDialog::CreateNewWelcomeDialog() const
 {
   Wt::WContainerWidget * dialog = new Wt::WContainerWidget;
   dialog->setContentAlignment(Wt::AlignCenter);
   dialog->addWidget(new Wt::WBreak);
-  new Wt::WLabel("Welcome to TestEncranger",dialog);
+  new Wt::WLabel("Welcome to Encranger",dialog);
   new Wt::WBreak(dialog);
   new Wt::WBreak(dialog);
-  new Wt::WLabel("TestEncranger demonstrates the Encranger encryption and de-encryption algorithm",dialog);
+  new Wt::WLabel("Encranger demonstrates the Encranger encryption and de-encryption algorithm",dialog);
   new Wt::WBreak(dialog);
   new Wt::WBreak(dialog);
   Wt::WGroupBox * const box = new Wt::WGroupBox("Explanation",dialog);
-  box->addWidget(new Wt::WImage("ToolTestEncrangerWelcome.png"));
+  box->addWidget(new Wt::WImage("ToolEncrangerWelcome.png"));
   return dialog;
 }
-//---------------------------------------------------------------------------
+

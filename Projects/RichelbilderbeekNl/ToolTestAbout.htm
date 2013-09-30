@@ -69,7 +69,6 @@
 QT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; += core gui<br/>
 greaterThan(QT_MAJOR_VERSION, 4): QT += <a href="CppWidget.htm">widget</a>s<br/>
 <br/>
-<a href="CppQmakeQmake_cxxflags.htm">QMAKE_CXXFLAGS</a> += -std=<a href="Cpp11.htm">c++11</a> <a href="CppWall.htm">-Wall</a> <a href="CppWextra.htm">-Wextra</a> <a href="CppWerror.htm">-Werror</a><br/>
 <br/>
 <a href="CppQmakeResources.htm">RESOURCES</a> += \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;ToolTest<a href="CppAbout.htm">About</a>.qrc<br/>
@@ -79,20 +78,39 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += <a href="CppWidget.htm">widget</a>s<br/>
 <a href="CppQmakeIncludepath.htm">INCLUDEPATH</a> += \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppAbout.htm">CppAbout</a> \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppQtAboutDialog.htm">CppQtAboutDialog</a> \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppQtHideAndShowDialog.htm">CppQtHideAndShowDialog</a> \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppTrace.htm">CppTrace</a><br/>
 <br/>
 <a href="CppQmakeSources.htm">SOURCES</a> += <a href="CppMain.htm">main</a>.cpp\<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;qttest<a href="CppAbout.htm">about</a><a href="CppMain.htm">main</a>dialog.cpp \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppQtAboutDialog.htm">CppQtAboutDialog</a>/<a href="CppQtAboutDialog.htm">qtaboutdialog</a>.cpp \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppAbout.htm">CppAbout</a>/<a href="CppAbout.htm">about</a>.cpp<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppAbout.htm">CppAbout</a>/<a href="CppAbout.htm">about</a>.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppQtHideAndShowDialog.htm">CppQtHideAndShowDialog</a>/<a href="CppQtHideAndShowDialog.htm">qthideandshowdialog</a>.cpp<br/>
 <br/>
 <a href="CppQmakeHeaders.htm">HEADERS</a>&nbsp;&nbsp;+= qttest<a href="CppAbout.htm">about</a><a href="CppMain.htm">main</a>dialog.h \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppQtAboutDialog.htm">CppQtAboutDialog</a>/<a href="CppQtAboutDialog.htm">qtaboutdialog</a>.h \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppAbout.htm">CppAbout</a>/<a href="CppAbout.htm">about</a>.h \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppTrace.htm">CppTrace</a>/<a href="CppTrace.htm">trace</a>.h<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppTrace.htm">CppTrace</a>/<a href="CppTrace.htm">trace</a>.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppQtHideAndShowDialog.htm">CppQtHideAndShowDialog</a>/<a href="CppQtHideAndShowDialog.htm">qthideandshowdialog</a>.h<br/>
 <br/>
 <a href="CppFORMS.htm">FORMS</a>&nbsp;&nbsp;&nbsp;&nbsp;+= qttest<a href="CppAbout.htm">about</a><a href="CppMain.htm">main</a>dialog.ui \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppQtAboutDialog.htm">CppQtAboutDialog</a>/<a href="CppQtAboutDialog.htm">qtaboutdialog</a>.ui<br/>
+<br/>
+#<br/>
+#<br/>
+# Type of compile<br/>
+#<br/>
+#<br/>
+<br/>
+<a href="CppQmakeConfig.htm">CONFIG</a>(release, debug|release) {<br/>
+&nbsp;&nbsp;<a href="CppQmakeDefines.htm">DEFINES</a> += NDEBUG N<a href="CppTRACE.htm">TRACE</a>_BILDERBIKKEL<br/>
+}<br/>
+<br/>
+<a href="CppQmakeQmake_cxxflags.htm">QMAKE_CXXFLAGS</a> += -std=<a href="Cpp11.htm">c++11</a> <a href="CppWall.htm">-Wall</a> <a href="CppWextra.htm">-Wextra</a> <a href="CppWeffcpp.htm">-Weffc++</a><br/>
+<br/>
+unix {<br/>
+&nbsp;&nbsp;<a href="CppQmakeQmake_cxxflags.htm">QMAKE_CXXFLAGS</a> += <a href="CppWerror.htm">-Werror</a><br/>
+}<br/>
 <br/>
 #<br/>
 #<br/>
@@ -101,12 +119,12 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += <a href="CppWidget.htm">widget</a>s<br/>
 #<br/>
 <br/>
 win32 {<br/>
-<br/>
-&nbsp;&nbsp;message(Windows: add Boost to includepath)<br/>
-<br/>
 &nbsp;&nbsp;<a href="CppQmakeIncludepath.htm">INCLUDEPATH</a> += \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/boost_1_54_0<br/>
 }<br/>
+<br/>
+OTHER_FILES += \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppQtHideAndShowDialog.htm">CppQtHideAndShowDialog</a>/Licence.txt<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -120,7 +138,7 @@ win32 {<br/>
 <table summary="main.cpp" border = "1"><tr><td><code>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">/*</a><br/>
-TestAbout, tests the <a href="CppAbout.html">About</a> <b><a href="CppClass.html">classes</a></b><br/>
+TestAbout, tests the <a href="CppAbout.htm">About</a> <b><a href="CppClass.htm">classes</a></b><br/>
 Copyright (C) 2012-2013 Richel Bilderbeek<br/>
 <br/>
 This program is free software: you can redistribute it and/or modify<br/>
@@ -136,17 +154,20 @@ You should have received a copy of the GNU General Public License<br/>
 along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">*/</a><br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="Tools.htm">Tool</a>TestAbout.html<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="Tools.htm">Tool</a>TestAbout.htm<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppInclude.html">#include</a> &lt;<a href="CppQApplication.html">QApplication</a>&gt;<br/>
-<a href="CppInclude.html">#include</a> "qttest<a href="CppAbout.html">about</a>maindialog<a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppQApplication.htm">QApplication</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> "qttest<a href="CppAbout.htm">about</a>maindialog.h"<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
 <br/>
-<b><a href="CppInt.htm">int</a></b> <a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a>(<b><a href="CppInt.htm">int</a></b> <a href="CppArgc.htm">argc</a>, <b><a href="CppChar.htm">char</a></b> *<a href="CppArgc.htm">argv</a>[])<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>(<b><a href="CppInt.htm">int</a></b> <a href="CppArgc.htm">argc</a>, <b><a href="CppChar.htm">char</a></b> *<a href="CppArgc.htm">argv</a>[])<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppQApplication.html">QApplication</a> a(<a href="CppArgc.htm">argc</a>, <a href="CppArgc.htm">argv</a>);<br/>
+&nbsp;&nbsp;<a href="CppQApplication.htm">QApplication</a> a(<a href="CppArgc.htm">argc</a>, <a href="CppArgc.htm">argv</a>);<br/>
 &nbsp;&nbsp;<a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>TestAboutMainDialog w;<br/>
 &nbsp;&nbsp;w.show();<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> a.exec();<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> a.exec();<br/>
 }<br/>
 </code></td></tr></table>
 <!-- end of the code -->
@@ -161,7 +182,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <table summary="qttestaboutmaindialog.h" border = "1"><tr><td><code>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">/*</a><br/>
-TestAbout, tests the <a href="CppAbout.html">About</a> <b><a href="CppClass.html">classes</a></b><br/>
+TestAbout, tests the <a href="CppAbout.htm">About</a> <b><a href="CppClass.htm">classes</a></b><br/>
 Copyright (C) 2012-2013 Richel Bilderbeek<br/>
 <br/>
 This program is free software: you can redistribute it and/or modify<br/>
@@ -177,45 +198,49 @@ You should have received a copy of the GNU General Public License<br/>
 along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">*/</a><br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="Tools.htm">Tool</a>TestAbout.html<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="Tools.htm">Tool</a>TestAbout.htm<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppIfndef.html">#ifndef</a> QTTESTABOUTMAINDIALOG_H<br/>
-<a href="CppDefine.html">#define</a> QTTESTABOUTMAINDIALOG_H<br/>
+<a href="CppIfndef.htm">#ifndef</a> QTTESTABOUTMAINDIALOG_H<br/>
+<a href="CppDefine.htm">#define</a> QTTESTABOUTMAINDIALOG_H<br/>
 <br/>
-<a href="CppInclude.html">#include</a> &lt;<a href="CppQDialog.html">QDialog</a>&gt;<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
+<a href="CppInclude.htm">#include</a> "<a href="CppQtHideAndShowDialog.htm">qthideandshowdialog</a>.h"<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
 <br/>
-<b><a href="CppNamespace.html">namespace</a></b> Ui {<br/>
-&nbsp;&nbsp;<b><a href="CppClass.html">class</a></b> <a href="CppQt.htm">Qt</a>TestAboutMainDialog;<br/>
+<b><a href="CppNamespace.htm">namespace</a></b> Ui {<br/>
+&nbsp;&nbsp;<b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a>TestAboutMainDialog;<br/>
 }<br/>
 <br/>
-<b><a href="CppNamespace.html">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
+<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
 <br/>
-<b><a href="CppClass.html">class</a></b> <a href="CppQt.htm">Qt</a>TestAboutMainDialog : <b><a href="CppPublic.html">public</a></b> <a href="CppQDialog.html">QDialog</a><br/>
+<b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a>TestAboutMainDialog : <b><a href="CppPublic.htm">public</a></b> <a href="CppQt.htm">Qt</a>HideAndShowDialog<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppQ_OBJECT.html">Q_OBJECT</a><br/>
+&nbsp;&nbsp;<a href="CppQ_OBJECT.htm">Q_OBJECT</a><br/>
 <br/>
-<b><a href="CppPublic.html">public</a></b>:<br/>
-&nbsp;&nbsp;<b><a href="CppExplicit.html">explicit</a></b> <a href="CppQt.htm">Qt</a>TestAboutMainDialog(<a href="CppQWidget.html">QWidget</a> *parent <a href="CppOperatorAssign.htm">=</a> 0);<br/>
-&nbsp;&nbsp;~<a href="CppQt.htm">Qt</a>TestAboutMainDialog();<br/>
+<b><a href="CppPublic.htm">public</a></b>:<br/>
+&nbsp;&nbsp;<b><a href="CppExplicit.htm">explicit</a></b> <a href="CppQt.htm">Qt</a>TestAboutMainDialog(<a href="CppQWidget.htm">QWidget</a> *parent <a href="CppOperatorAssign.htm">=</a> 0) <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
+&nbsp;&nbsp;<a href="CppQt.htm">Qt</a>TestAboutMainDialog(<b><a href="CppConst.htm">const</a></b> <a href="CppQt.htm">Qt</a>TestAboutMainDialog&amp;) <a href="CppOperatorAssign.htm">=</a> <b><a href="CppDelete.htm">delete</a></b>;<br/>
+&nbsp;&nbsp;<a href="CppQt.htm">Qt</a>TestAboutMainDialog&amp; <b><a href="CppOperator.htm">operator</a></b>=(<b><a href="CppConst.htm">const</a></b> <a href="CppQt.htm">Qt</a>TestAboutMainDialog&amp;) <a href="CppOperatorAssign.htm">=</a> <b><a href="CppDelete.htm">delete</a></b>;<br/>
+&nbsp;&nbsp;~<a href="CppQt.htm">Qt</a>TestAboutMainDialog() <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
 <br/>
-<b><a href="CppPrivate.html">private</a></b> <b><a href="CppSlots.html">slots</a></b>:<br/>
-&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> on_button_about_clicked();<br/>
+<b><a href="CppPrivate.htm">private</a></b> <b><a href="CppSlots.htm">slots</a></b>:<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> on_button_about_clicked() <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> on_button_quit_clicked() <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> on_button_quit_clicked();<br/>
-<br/>
-<b><a href="CppPrivate.html">private</a></b>:<br/>
+<b><a href="CppPrivate.htm">private</a></b>:<br/>
 &nbsp;&nbsp;<a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a>TestAboutMainDialog *ui;<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Obtain <b><a href="CppThis.htm">this</a></b> <b><a href="CppClass.html">class</a></b> its <a href="CppVersion.html">version</a><br/>
-&nbsp;&nbsp;<b><a href="CppStatic.html">static</a></b> <b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a> Get<a href="CppVersion.html">Version</a>();<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Obtain <b><a href="CppThis.htm">this</a></b> <b><a href="CppClass.htm">class</a></b> its <a href="CppVersion.htm">version</a><br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> Get<a href="CppVersion.htm">Version</a>() <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Obtain <b><a href="CppThis.htm">this</a></b> <b><a href="CppClass.html">class</a></b> its <a href="CppVersion.html">version</a> history<br/>
-&nbsp;&nbsp;<b><a href="CppStatic.html">static</a></b> <b><a href="CppConst.html">const</a></b> <a href="CppVector.html">std::vector</a>&lt;<a href="CppString.html">std::string</a>&gt; Get<a href="CppVersion.html">Version</a>History();<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Obtain <b><a href="CppThis.htm">this</a></b> <b><a href="CppClass.htm">class</a></b> its <a href="CppVersion.htm">version</a> history<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; Get<a href="CppVersion.htm">Version</a>History() <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
 };<br/>
 <br/>
-} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.html">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
 <br/>
-<a href="CppEndif.html">#endif</a> <a href="CppComment.htm">//</a> QTTESTABOUTMAINDIALOG_H<br/>
+<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> QTTESTABOUTMAINDIALOG_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -229,7 +254,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <table summary="qttestaboutmaindialog.cpp" border = "1"><tr><td><code>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">/*</a><br/>
-TestAbout, tests the <a href="CppAbout.html">About</a> <b><a href="CppClass.html">classes</a></b><br/>
+TestAbout, tests the <a href="CppAbout.htm">About</a> <b><a href="CppClass.htm">classes</a></b><br/>
 Copyright (C) 2012-2013 Richel Bilderbeek<br/>
 <br/>
 This program is free software: you can redistribute it and/or modify<br/>
@@ -245,52 +270,54 @@ You should have received a copy of the GNU General Public License<br/>
 along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">*/</a><br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="Tools.htm">Tool</a>TestAbout.html<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="Tools.htm">Tool</a>TestAbout.htm<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppInclude.html">#include</a> "<a href="CppQtAboutDialog.html">qtaboutdialog</a><a href="CppHeaderFile.htm">.h</a>"<br/>
-<a href="CppInclude.html">#include</a> "qttest<a href="CppAbout.html">about</a>maindialog<a href="CppHeaderFile.htm">.h</a>"<br/>
-<a href="CppInclude.html">#include</a> "ui_qttest<a href="CppAbout.html">about</a>maindialog<a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
+<a href="CppInclude.htm">#include</a> "<a href="CppQtAboutDialog.htm">qtaboutdialog</a>.h"<br/>
+<a href="CppInclude.htm">#include</a> "qttest<a href="CppAbout.htm">about</a>maindialog.h"<br/>
+<a href="CppInclude.htm">#include</a> "ui_qttest<a href="CppAbout.htm">about</a>maindialog.h"<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
 <br/>
-<a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>TestAboutMainDialog::<a href="CppQt.htm">Qt</a>TestAboutMainDialog(<a href="CppQWidget.html">QWidget</a> *parent) :<br/>
-&nbsp;&nbsp;<a href="CppQDialog.html">QDialog</a>(parent),<br/>
-&nbsp;&nbsp;ui(<b><a href="CppNew.htm">new</a></b> <a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a>TestAboutMainDialog)<br/>
+<a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>TestAboutMainDialog::<a href="CppQt.htm">Qt</a>TestAboutMainDialog(<a href="CppQWidget.htm">QWidget</a> *parent) <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
+&nbsp;&nbsp;: <a href="CppQt.htm">Qt</a>HideAndShowDialog(parent),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;ui(<b><a href="CppNew.htm">new</a></b> <a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a>TestAboutMainDialog)<br/>
 {<br/>
 &nbsp;&nbsp;ui-&gt;setupUi(<b><a href="CppThis.htm">this</a></b>);<br/>
 }<br/>
 <br/>
-<a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>TestAboutMainDialog::~<a href="CppQt.htm">Qt</a>TestAboutMainDialog()<br/>
+<a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>TestAboutMainDialog::~<a href="CppQt.htm">Qt</a>TestAboutMainDialog() <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppDelete.html">delete</a></b> ui;<br/>
+&nbsp;&nbsp;<b><a href="CppDelete.htm">delete</a></b> ui;<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>TestAboutMainDialog::Get<a href="CppVersion.html">Version</a>()<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>TestAboutMainDialog::Get<a href="CppVersion.htm">Version</a>() <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> "1.2";<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> "1.2";<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.html">const</a></b> <a href="CppVector.html">std::vector</a>&lt;<a href="CppString.html">std::string</a>&gt; <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>TestAboutMainDialog::Get<a href="CppVersion.html">Version</a>History()<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>TestAboutMainDialog::Get<a href="CppVersion.htm">Version</a>History() <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppVector.html">std::vector</a>&lt;<a href="CppString.html">std::string</a>&gt; v {<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;"2012-01-25: <a href="CppVersion.html">Version</a> 1.0: initial <a href="CppVersion.html">version</a> in <a href="CppQt.htm">Qt</a>4 and <a href="Cpp98.html">C++98</a>",<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;"2013-07-12: <a href="CppVersion.html">Version</a> 1.1: transitioned to <a href="CppQt.htm">Qt</a>5 and <a href="Cpp11.html">C++11</a>"<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;"2013-09-05: <a href="CppVersion.html">version</a> 1.2: transition to <b><a href="CppNamespace.html">namespace</a></b> <a href="CppRibi.htm">ribi</a>"<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"2012-01-25: <a href="CppVersion.htm">Version</a> 1.0: initial <a href="CppVersion.htm">version</a> in <a href="CppQt.htm">Qt</a>4 and <a href="Cpp98.htm">C++98</a>",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"2013-07-12: <a href="CppVersion.htm">Version</a> 1.1: transitioned to <a href="CppQt.htm">Qt</a>5 and <a href="Cpp11.htm">C++11</a>"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"2013-09-05: <a href="CppVersion.htm">version</a> 1.2: transition to <b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a>"<br/>
 &nbsp;&nbsp;};<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> v;<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>TestAboutMainDialog::on_button_about_clicked()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>TestAboutMainDialog::on_button_about_clicked() <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppRibi.htm">ribi</a>::<a href="CppAbout.html">About</a> a(<br/>
+&nbsp;&nbsp;<a href="CppRibi.htm">ribi</a>::<a href="CppAbout.htm">About</a> a(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;"Richel Bilderbeek",<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;"TestAbout",<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;"test the <a href="CppAbout.html">About</a> <b><a href="CppClass.html">classes</a></b>",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"test the <a href="CppAbout.htm">About</a> <b><a href="CppClass.htm">classes</a></b>",<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;"the 12th of July 2013",<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;"2012-2013",<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;"http://www.richelbilderbeek.nl/<a href="Tools.htm">Tool</a>TestAbout.html",<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;Get<a href="CppVersion.html">Version</a>(),<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;Get<a href="CppVersion.html">Version</a>History());<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>a.<a href="CppAdd.htm">Add</a><a href="CppLibrary.html">Library</a>("Some<a href="CppLibrary.html">Library</a> <a href="CppVersion.html">version</a>: X.Y");<br/>
-&nbsp;&nbsp;<a href="CppRibi.htm">ribi</a>::<a href="CppQtAboutDialog.html">QtAboutDialog</a> d(a);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"http://www.richelbilderbeek.nl/<a href="Tools.htm">Tool</a>TestAbout.htm",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Get<a href="CppVersion.htm">Version</a>(),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Get<a href="CppVersion.htm">Version</a>History());<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>a.<a href="CppAdd.htm">Add</a><a href="CppLibrary.htm">Library</a>("Some<a href="CppLibrary.htm">Library</a> <a href="CppVersion.htm">version</a>: X.Y");<br/>
+&nbsp;&nbsp;<a href="CppRibi.htm">ribi</a>::<a href="CppQtAboutDialog.htm">QtAboutDialog</a> d(a);<br/>
 &nbsp;&nbsp;d.setStyleSheet(<b><a href="CppThis.htm">this</a></b>-&gt;styleSheet());<br/>
 &nbsp;&nbsp;d.setWindowIcon(<b><a href="CppThis.htm">this</a></b>-&gt;windowIcon());<br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;hide();<br/>
@@ -298,7 +325,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;show();<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>TestAboutMainDialog::on_button_quit_clicked()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>TestAboutMainDialog::on_button_quit_clicked() <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 {<br/>
 &nbsp;&nbsp;close();<br/>
 }<br/>

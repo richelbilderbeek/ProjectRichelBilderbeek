@@ -1,6 +1,6 @@
 //---------------------------------------------------------------------------
 /*
-TestEncranger, tool to test the Encranger class
+Encranger, tool to test the Encranger class
 Copyright (C) 2009-2011 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
@@ -16,27 +16,27 @@ You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>.
 */
 //---------------------------------------------------------------------------
-//From http://www.richelbilderbeek.nl/ToolTestEncranger.htm
+//From http://www.richelbilderbeek.nl/ToolEncranger.htm
 //---------------------------------------------------------------------------
 #ifndef WTTESTENCRANGERDIALOG_H
 #define WTTESTENCRANGERDIALOG_H
-//---------------------------------------------------------------------------
+
 #include <boost/scoped_ptr.hpp>
 #include <Wt/WContainerWidget>
 #include <Wt/WLineEdit>
-//---------------------------------------------------------------------------
+
 namespace ribi {
 
-struct TestEncrangerDialog;
-//---------------------------------------------------------------------------
-struct WtTestEncrangerMainDialog : public Wt::WContainerWidget
+struct ToolEncrangerMainDialog;
+
+struct WtEncrangerMainDialog : public Wt::WContainerWidget
 {
-  WtTestEncrangerMainDialog();
-  WtTestEncrangerMainDialog(const WtTestEncrangerMainDialog&) = delete;
-  WtTestEncrangerMainDialog& operator=(const WtTestEncrangerMainDialog&) = delete;
+  WtEncrangerMainDialog();
+  WtEncrangerMainDialog(const WtEncrangerMainDialog&) = delete;
+  WtEncrangerMainDialog& operator=(const WtEncrangerMainDialog&) = delete;
 
   private:
-  boost::scoped_ptr<TestEncrangerDialog> m_dialog;
+  boost::scoped_ptr<ToolEncrangerMainDialog> m_dialog;
   Wt::WLineEdit * m_edit_encrypted_text;
   Wt::WLineEdit * m_edit_key;
   Wt::WLineEdit * m_edit_plain_text;

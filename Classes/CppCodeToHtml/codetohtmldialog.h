@@ -57,6 +57,11 @@ struct Dialog
   const std::string m_source;
   const TechInfoType m_tech_info;
 
+  ///Extract the page name, from, for example
+  /// '/home/richel/ProjectRichelBilderbeek/Tools/ToolCodeToHtml'
+  /// to 'ToolCodeToHtml'
+  static const std::string ExtractPageName(const std::string& s) noexcept;
+
   #ifndef NDEBUG
   ///Test this class
   static void Test();

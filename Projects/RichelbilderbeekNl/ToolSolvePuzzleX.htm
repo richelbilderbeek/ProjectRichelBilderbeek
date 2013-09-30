@@ -64,7 +64,7 @@
 <table summary="ToolSolvePuzzleX.pro" border = "1"><tr><td><code>
 QT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; += core<br/>
 QT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -= gui<br/>
-<a href="CppQmakeQmake_cxxflags.htm">QMAKE_CXXFLAGS</a> += -std=<a href="Cpp0x.htm">c++11</a><br/>
+<a href="CppQmakeQmake_cxxflags.htm">QMAKE_CXXFLAGS</a> += -std=<a href="Cpp0x.htm">c++0x</a><br/>
 <a href="CppQmakeConfig.htm">CONFIG</a>&nbsp;&nbsp; += console<br/>
 <a href="CppQmakeConfig.htm">CONFIG</a>&nbsp;&nbsp; -= app_bundle<br/>
 <a href="CppQmakeTemplate.htm">TEMPLATE</a> = app<br/>
@@ -99,139 +99,139 @@ You should have received a copy of the GNU General Public License<br/>
 along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">*/</a><br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="Tools.htm">Tool</a>SolvePuzzleX.html<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="Tools.htm">Tool</a>SolvePuzzleX.htm<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppInclude.html">#include</a> &lt;<a href="CppAlgorithmH.html">algorithm</a>&gt;<br/>
-<a href="CppInclude.html">#include</a> &lt;<a href="CppIteratorH.html">iterator</a>&gt;<br/>
-<a href="CppInclude.html">#include</a> &lt;<a href="CppIostreamH.html">iostream</a>&gt;<br/>
-<a href="CppInclude.html">#include</a> &lt;<a href="CppMapH.html">map</a>&gt;<br/>
-<a href="CppInclude.html">#include</a> &lt;<a href="CppVectorH.html">vector</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppAlgorithmH.htm">algorithm</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppIteratorH.htm">iterator</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppIostreamH.htm">iostream</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppMapH.htm">map</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">///</a>plus/minus A&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2<br/>
 <a href="CppComment.htm">///</a><a href="CppTime.htm">time</a>s/divided by/plus/minus plus/minus B&nbsp;&nbsp;4 * 2<br/>
 <a href="CppComment.htm">///</a><a href="CppTime.htm">time</a>s/divided by/plus/minus plus/minus C&nbsp;&nbsp;4 * 2<br/>
 <a href="CppComment.htm">///</a><a href="CppTime.htm">time</a>s/divided by/plus/minus plus/minus D&nbsp;&nbsp;4 * 2<br/>
-<a href="CppComment.htm">///</a>------------------------------------------------<a href="CppOperatorMinus.htm">-</a> *<br/>
+<a href="CppComment.htm">///</a>---------------------------------------------<a href="CppOperatorDecrement.htm">--</a><a href="CppOperatorDecrement.htm">--</a> *<br/>
 /<a href="CppComment.htm">//</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1024<br/>
 <a href="CppComment.htm">///</a>Ordering of A,B,C and D: 4! <a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;24<br/>
-<a href="CppComment.htm">///</a>------------------------------------------------<a href="CppOperatorMinus.htm">-</a> *<br/>
+<a href="CppComment.htm">///</a>---------------------------------------------<a href="CppOperatorDecrement.htm">--</a><a href="CppOperatorDecrement.htm">--</a> *<br/>
 <a href="CppComment.htm">///</a>Total possibilities&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;24,576<br/>
-<b><a href="CppStruct.html">struct</a></b> Formula<br/>
+<b><a href="CppStruct.htm">struct</a></b> Formula<br/>
 {<br/>
 &nbsp;&nbsp;Formula(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> sign_a, <b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> a,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> operation_b, <b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> sign_b, <b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> b,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> operation_c, <b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> sign_c, <b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> c,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> operation_d, <b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> sign_d, <b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> d)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> sign_a, <b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> a,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> operation_b, <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> sign_b, <b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> b,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> operation_c, <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> sign_c, <b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> c,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> operation_d, <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> sign_d, <b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> d)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; m_sign_a(sign_a), m_a(a),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;m_operation_b(operation_b), m_sign_b(sign_b), m_b(b),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;m_operation_c(operation_c), m_sign_c(sign_c), m_c(c),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;m_operation_d(operation_d), m_sign_d(sign_d), m_d(d)<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;m_value <a href="CppOperatorAssign.htm">=</a> (m_sign_a <a href="CppOperatorModulus.htm">%</a> 2 ? m_a : <a href="CppOperatorMinus.htm">-</a>m_a);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppSwitch.html">switch</a></b> (m_operation_b <a href="CppOperatorModulus.htm">%</a> 4)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppSwitch.htm">switch</a></b> (m_operation_b <a href="CppOperatorModulus.htm">%</a> 4)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> 0: m_value <a href="CppOperatorMultiplyAssign.htm">*=</a> (m_sign_b <a href="CppOperatorModulus.htm">%</a> 2 ? m_b : <a href="CppOperatorMinus.htm">-</a>m_b); <b><a href="CppBreak.html">break</a></b>;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> 1: m_value <a href="CppOperatorDivide.htm">/</a><a href="CppOperatorAssign.htm">=</a> (m_sign_b <a href="CppOperatorModulus.htm">%</a> 2 ? m_b : <a href="CppOperatorMinus.htm">-</a>m_b); <b><a href="CppBreak.html">break</a></b>;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> 2: m_value <a href="CppOperatorPlus.htm">+</a><a href="CppOperatorAssign.htm">=</a> (m_sign_b <a href="CppOperatorModulus.htm">%</a> 2 ? m_b : <a href="CppOperatorMinus.htm">-</a>m_b); <b><a href="CppBreak.html">break</a></b>;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> 3: m_value <a href="CppOperatorMinus.htm">-</a><a href="CppOperatorAssign.htm">=</a> (m_sign_b <a href="CppOperatorModulus.htm">%</a> 2 ? m_b : <a href="CppOperatorMinus.htm">-</a>m_b); <b><a href="CppBreak.html">break</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> 0: m_value <a href="CppOperatorMultiplyAssign.htm">*=</a> (m_sign_b <a href="CppOperatorModulus.htm">%</a> 2 ? m_b : <a href="CppOperatorMinus.htm">-</a>m_b); <b><a href="CppBreak.htm">break</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> 1: m_value <a href="CppOperatorDivideAssign.htm">/=</a> (m_sign_b <a href="CppOperatorModulus.htm">%</a> 2 ? m_b : <a href="CppOperatorMinus.htm">-</a>m_b); <b><a href="CppBreak.htm">break</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> 2: m_value <a href="CppOperatorPlusAssign.htm">+=</a> (m_sign_b <a href="CppOperatorModulus.htm">%</a> 2 ? m_b : <a href="CppOperatorMinus.htm">-</a>m_b); <b><a href="CppBreak.htm">break</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> 3: m_value <a href="CppOperatorMinusAssign.htm">-=</a> (m_sign_b <a href="CppOperatorModulus.htm">%</a> 2 ? m_b : <a href="CppOperatorMinus.htm">-</a>m_b); <b><a href="CppBreak.htm">break</a></b>;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppSwitch.html">switch</a></b> (m_operation_c <a href="CppOperatorModulus.htm">%</a> 4)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppSwitch.htm">switch</a></b> (m_operation_c <a href="CppOperatorModulus.htm">%</a> 4)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> 0: m_value <a href="CppOperatorMultiplyAssign.htm">*=</a> (m_sign_c <a href="CppOperatorModulus.htm">%</a> 2 ? m_c : <a href="CppOperatorMinus.htm">-</a>m_c); <b><a href="CppBreak.html">break</a></b>;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> 1: m_value <a href="CppOperatorDivide.htm">/</a><a href="CppOperatorAssign.htm">=</a> (m_sign_c <a href="CppOperatorModulus.htm">%</a> 2 ? m_c : <a href="CppOperatorMinus.htm">-</a>m_c); <b><a href="CppBreak.html">break</a></b>;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> 2: m_value <a href="CppOperatorPlus.htm">+</a><a href="CppOperatorAssign.htm">=</a> (m_sign_c <a href="CppOperatorModulus.htm">%</a> 2 ? m_c : <a href="CppOperatorMinus.htm">-</a>m_c); <b><a href="CppBreak.html">break</a></b>;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> 3: m_value <a href="CppOperatorMinus.htm">-</a><a href="CppOperatorAssign.htm">=</a> (m_sign_c <a href="CppOperatorModulus.htm">%</a> 2 ? m_c : <a href="CppOperatorMinus.htm">-</a>m_c); <b><a href="CppBreak.html">break</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> 0: m_value <a href="CppOperatorMultiplyAssign.htm">*=</a> (m_sign_c <a href="CppOperatorModulus.htm">%</a> 2 ? m_c : <a href="CppOperatorMinus.htm">-</a>m_c); <b><a href="CppBreak.htm">break</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> 1: m_value <a href="CppOperatorDivideAssign.htm">/=</a> (m_sign_c <a href="CppOperatorModulus.htm">%</a> 2 ? m_c : <a href="CppOperatorMinus.htm">-</a>m_c); <b><a href="CppBreak.htm">break</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> 2: m_value <a href="CppOperatorPlusAssign.htm">+=</a> (m_sign_c <a href="CppOperatorModulus.htm">%</a> 2 ? m_c : <a href="CppOperatorMinus.htm">-</a>m_c); <b><a href="CppBreak.htm">break</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> 3: m_value <a href="CppOperatorMinusAssign.htm">-=</a> (m_sign_c <a href="CppOperatorModulus.htm">%</a> 2 ? m_c : <a href="CppOperatorMinus.htm">-</a>m_c); <b><a href="CppBreak.htm">break</a></b>;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppSwitch.html">switch</a></b> (m_operation_d <a href="CppOperatorModulus.htm">%</a> 4)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppSwitch.htm">switch</a></b> (m_operation_d <a href="CppOperatorModulus.htm">%</a> 4)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> 0: m_value <a href="CppOperatorMultiplyAssign.htm">*=</a> (m_sign_d <a href="CppOperatorModulus.htm">%</a> 2 ? m_d : <a href="CppOperatorMinus.htm">-</a>m_d); <b><a href="CppBreak.html">break</a></b>;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> 1: m_value <a href="CppOperatorDivide.htm">/</a><a href="CppOperatorAssign.htm">=</a> (m_sign_d <a href="CppOperatorModulus.htm">%</a> 2 ? m_d : <a href="CppOperatorMinus.htm">-</a>m_d); <b><a href="CppBreak.html">break</a></b>;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> 2: m_value <a href="CppOperatorPlus.htm">+</a><a href="CppOperatorAssign.htm">=</a> (m_sign_d <a href="CppOperatorModulus.htm">%</a> 2 ? m_d : <a href="CppOperatorMinus.htm">-</a>m_d); <b><a href="CppBreak.html">break</a></b>;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> 3: m_value <a href="CppOperatorMinus.htm">-</a><a href="CppOperatorAssign.htm">=</a> (m_sign_d <a href="CppOperatorModulus.htm">%</a> 2 ? m_d : <a href="CppOperatorMinus.htm">-</a>m_d); <b><a href="CppBreak.html">break</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> 0: m_value <a href="CppOperatorMultiplyAssign.htm">*=</a> (m_sign_d <a href="CppOperatorModulus.htm">%</a> 2 ? m_d : <a href="CppOperatorMinus.htm">-</a>m_d); <b><a href="CppBreak.htm">break</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> 1: m_value <a href="CppOperatorDivideAssign.htm">/=</a> (m_sign_d <a href="CppOperatorModulus.htm">%</a> 2 ? m_d : <a href="CppOperatorMinus.htm">-</a>m_d); <b><a href="CppBreak.htm">break</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> 2: m_value <a href="CppOperatorPlusAssign.htm">+=</a> (m_sign_d <a href="CppOperatorModulus.htm">%</a> 2 ? m_d : <a href="CppOperatorMinus.htm">-</a>m_d); <b><a href="CppBreak.htm">break</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> 3: m_value <a href="CppOperatorMinusAssign.htm">-=</a> (m_sign_d <a href="CppOperatorModulus.htm">%</a> 2 ? m_d : <a href="CppOperatorMinus.htm">-</a>m_d); <b><a href="CppBreak.htm">break</a></b>;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<b><a href="CppDouble.html">double</a></b> GetValue() <b><a href="CppConst.html">const</a></b> { <b><a href="CppReturn.html">return</a></b> m_value; }<br/>
-&nbsp;&nbsp;<b><a href="CppPrivate.html">private</a></b>:<br/>
-&nbsp;&nbsp;<b><a href="CppFriend.html">friend</a></b> <a href="CppOstream.html">std::ostream</a>&amp; <b><a href="CppOperatorStreamOut.html">operator&lt;&lt;</a></b>(<a href="CppOstream.html">std::ostream</a>&amp; os, <b><a href="CppConst.html">const</a></b> Formula&amp; f);<br/>
-&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> m_sign_a;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> m_a;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> m_operation_b;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> m_sign_b;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> m_b;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> m_operation_c;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> m_sign_c;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> m_c;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> m_operation_d;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> m_sign_d;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> m_d;<br/>
-&nbsp;&nbsp;<b><a href="CppDouble.html">double</a></b> m_value;<br/>
+&nbsp;&nbsp;<b><a href="CppDouble.htm">double</a></b> GetValue() <b><a href="CppConst.htm">const</a></b> { <b><a href="CppReturn.htm">return</a></b> m_value; }<br/>
+&nbsp;&nbsp;<b><a href="CppPrivate.htm">private</a></b>:<br/>
+&nbsp;&nbsp;<b><a href="CppFriend.htm">friend</a></b> <a href="CppOstream.htm">std::ostream</a>&amp; <b><a href="CppOperatorStreamOut.htm">operator&lt;&lt;</a></b>(<a href="CppOstream.htm">std::ostream</a>&amp; os, <b><a href="CppConst.htm">const</a></b> Formula&amp; f);<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> m_sign_a;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> m_a;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> m_operation_b;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> m_sign_b;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> m_b;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> m_operation_c;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> m_sign_c;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> m_c;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> m_operation_d;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> m_sign_d;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> m_d;<br/>
+&nbsp;&nbsp;<b><a href="CppDouble.htm">double</a></b> m_value;<br/>
 };<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppOstream.html">std::ostream</a>&amp; <b><a href="CppOperatorStreamOut.html">operator&lt;&lt;</a></b>(<a href="CppOstream.html">std::ostream</a>&amp; os, <b><a href="CppConst.html">const</a></b> Formula&amp; f)<br/>
+<a href="CppOstream.htm">std::ostream</a>&amp; <b><a href="CppOperatorStreamOut.htm">operator&lt;&lt;</a></b>(<a href="CppOstream.htm">std::ostream</a>&amp; os, <b><a href="CppConst.htm">const</a></b> Formula&amp; f)<br/>
 {<br/>
 &nbsp;&nbsp;os<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> (f.m_sign_a <a href="CppOperatorModulus.htm">%</a> 2 ? " " : "-") <a href="CppOperatorStreamOut.html">&lt;&lt;</a> f.m_a;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppSwitch.html">switch</a></b> (f.m_operation_b <a href="CppOperatorModulus.htm">%</a> 4)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> (f.m_sign_a <a href="CppOperatorModulus.htm">%</a> 2 ? " " : "-") <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> f.m_a;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppSwitch.htm">switch</a></b> (f.m_operation_b <a href="CppOperatorModulus.htm">%</a> 4)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> 0: os <a href="CppOperatorStreamOut.html">&lt;&lt;</a> "*" <a href="CppOperatorStreamOut.html">&lt;&lt;</a> (f.m_sign_b <a href="CppOperatorModulus.htm">%</a> 2 ? " " : "-") <a href="CppOperatorStreamOut.html">&lt;&lt;</a> f.m_b; <b><a href="CppBreak.html">break</a></b>;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> 1: os <a href="CppOperatorStreamOut.html">&lt;&lt;</a> "/" <a href="CppOperatorStreamOut.html">&lt;&lt;</a> (f.m_sign_b <a href="CppOperatorModulus.htm">%</a> 2 ? " " : "-") <a href="CppOperatorStreamOut.html">&lt;&lt;</a> f.m_b; <b><a href="CppBreak.html">break</a></b>;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> 2: os <a href="CppOperatorStreamOut.html">&lt;&lt;</a> "+" <a href="CppOperatorStreamOut.html">&lt;&lt;</a> (f.m_sign_b <a href="CppOperatorModulus.htm">%</a> 2 ? " " : "-") <a href="CppOperatorStreamOut.html">&lt;&lt;</a> f.m_b; <b><a href="CppBreak.html">break</a></b>;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> 3: os <a href="CppOperatorStreamOut.html">&lt;&lt;</a> "-" <a href="CppOperatorStreamOut.html">&lt;&lt;</a> (f.m_sign_b <a href="CppOperatorModulus.htm">%</a> 2 ? " " : "-") <a href="CppOperatorStreamOut.html">&lt;&lt;</a> f.m_b; <b><a href="CppBreak.html">break</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> 0: os <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "*" <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> (f.m_sign_b <a href="CppOperatorModulus.htm">%</a> 2 ? " " : "-") <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> f.m_b; <b><a href="CppBreak.htm">break</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> 1: os <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "/" <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> (f.m_sign_b <a href="CppOperatorModulus.htm">%</a> 2 ? " " : "-") <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> f.m_b; <b><a href="CppBreak.htm">break</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> 2: os <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "+" <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> (f.m_sign_b <a href="CppOperatorModulus.htm">%</a> 2 ? " " : "-") <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> f.m_b; <b><a href="CppBreak.htm">break</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> 3: os <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "-" <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> (f.m_sign_b <a href="CppOperatorModulus.htm">%</a> 2 ? " " : "-") <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> f.m_b; <b><a href="CppBreak.htm">break</a></b>;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppSwitch.html">switch</a></b> (f.m_operation_c <a href="CppOperatorModulus.htm">%</a> 4)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppSwitch.htm">switch</a></b> (f.m_operation_c <a href="CppOperatorModulus.htm">%</a> 4)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> 0: os <a href="CppOperatorStreamOut.html">&lt;&lt;</a> "*" <a href="CppOperatorStreamOut.html">&lt;&lt;</a> (f.m_sign_c <a href="CppOperatorModulus.htm">%</a> 2 ? " " : "-") <a href="CppOperatorStreamOut.html">&lt;&lt;</a> f.m_c; <b><a href="CppBreak.html">break</a></b>;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> 1: os <a href="CppOperatorStreamOut.html">&lt;&lt;</a> "/" <a href="CppOperatorStreamOut.html">&lt;&lt;</a> (f.m_sign_c <a href="CppOperatorModulus.htm">%</a> 2 ? " " : "-") <a href="CppOperatorStreamOut.html">&lt;&lt;</a> f.m_c; <b><a href="CppBreak.html">break</a></b>;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> 2: os <a href="CppOperatorStreamOut.html">&lt;&lt;</a> "+" <a href="CppOperatorStreamOut.html">&lt;&lt;</a> (f.m_sign_c <a href="CppOperatorModulus.htm">%</a> 2 ? " " : "-") <a href="CppOperatorStreamOut.html">&lt;&lt;</a> f.m_c; <b><a href="CppBreak.html">break</a></b>;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> 3: os <a href="CppOperatorStreamOut.html">&lt;&lt;</a> "-" <a href="CppOperatorStreamOut.html">&lt;&lt;</a> (f.m_sign_c <a href="CppOperatorModulus.htm">%</a> 2 ? " " : "-") <a href="CppOperatorStreamOut.html">&lt;&lt;</a> f.m_c; <b><a href="CppBreak.html">break</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> 0: os <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "*" <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> (f.m_sign_c <a href="CppOperatorModulus.htm">%</a> 2 ? " " : "-") <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> f.m_c; <b><a href="CppBreak.htm">break</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> 1: os <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "/" <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> (f.m_sign_c <a href="CppOperatorModulus.htm">%</a> 2 ? " " : "-") <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> f.m_c; <b><a href="CppBreak.htm">break</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> 2: os <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "+" <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> (f.m_sign_c <a href="CppOperatorModulus.htm">%</a> 2 ? " " : "-") <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> f.m_c; <b><a href="CppBreak.htm">break</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> 3: os <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "-" <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> (f.m_sign_c <a href="CppOperatorModulus.htm">%</a> 2 ? " " : "-") <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> f.m_c; <b><a href="CppBreak.htm">break</a></b>;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppSwitch.html">switch</a></b> (f.m_operation_d <a href="CppOperatorModulus.htm">%</a> 4)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppSwitch.htm">switch</a></b> (f.m_operation_d <a href="CppOperatorModulus.htm">%</a> 4)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> 0: os <a href="CppOperatorStreamOut.html">&lt;&lt;</a> "*" <a href="CppOperatorStreamOut.html">&lt;&lt;</a> (f.m_sign_d <a href="CppOperatorModulus.htm">%</a> 2 ? " " : "-") <a href="CppOperatorStreamOut.html">&lt;&lt;</a> f.m_d; <b><a href="CppBreak.html">break</a></b>;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> 1: os <a href="CppOperatorStreamOut.html">&lt;&lt;</a> "/" <a href="CppOperatorStreamOut.html">&lt;&lt;</a> (f.m_sign_d <a href="CppOperatorModulus.htm">%</a> 2 ? " " : "-") <a href="CppOperatorStreamOut.html">&lt;&lt;</a> f.m_d; <b><a href="CppBreak.html">break</a></b>;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> 2: os <a href="CppOperatorStreamOut.html">&lt;&lt;</a> "+" <a href="CppOperatorStreamOut.html">&lt;&lt;</a> (f.m_sign_d <a href="CppOperatorModulus.htm">%</a> 2 ? " " : "-") <a href="CppOperatorStreamOut.html">&lt;&lt;</a> f.m_d; <b><a href="CppBreak.html">break</a></b>;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> 3: os <a href="CppOperatorStreamOut.html">&lt;&lt;</a> "-" <a href="CppOperatorStreamOut.html">&lt;&lt;</a> (f.m_sign_d <a href="CppOperatorModulus.htm">%</a> 2 ? " " : "-") <a href="CppOperatorStreamOut.html">&lt;&lt;</a> f.m_d; <b><a href="CppBreak.html">break</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> 0: os <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "*" <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> (f.m_sign_d <a href="CppOperatorModulus.htm">%</a> 2 ? " " : "-") <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> f.m_d; <b><a href="CppBreak.htm">break</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> 1: os <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "/" <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> (f.m_sign_d <a href="CppOperatorModulus.htm">%</a> 2 ? " " : "-") <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> f.m_d; <b><a href="CppBreak.htm">break</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> 2: os <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "+" <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> (f.m_sign_d <a href="CppOperatorModulus.htm">%</a> 2 ? " " : "-") <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> f.m_d; <b><a href="CppBreak.htm">break</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> 3: os <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "-" <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> (f.m_sign_d <a href="CppOperatorModulus.htm">%</a> 2 ? " " : "-") <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> f.m_d; <b><a href="CppBreak.htm">break</a></b>;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;os <a href="CppOperatorStreamOut.html">&lt;&lt;</a> " <a href="CppOperatorAssign.htm">=</a> " <a href="CppOperatorStreamOut.html">&lt;&lt;</a> f.GetValue();<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> os;<br/>
+&nbsp;&nbsp;os <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> " <a href="CppOperatorAssign.htm">=</a> " <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> f.GetValue();<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> os;<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppInt.htm">int</a></b> <a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a>()<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppMap.html">std::map</a>&lt;<b><a href="CppDouble.html">double</a></b>,<b><a href="CppInt.htm">int</a></b>&gt; tally;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppVector.html">std::vector</a>&lt;<b><a href="CppDouble.html">double</a></b>&gt; values <a href="CppOperatorAssign.htm">=</a> { 1.0,3.0,4.0,6.0 };<br/>
+&nbsp;&nbsp;<a href="CppMap.htm">std::map</a>&lt;<b><a href="CppDouble.htm">double</a></b>,<b><a href="CppInt.htm">int</a></b>&gt; tally;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; values <a href="CppOperatorAssign.htm">=</a> { 1.0,3.0,4.0,6.0 };<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> sign_a <a href="CppOperatorAssign.htm">=</a> 0; sign_a<a href="CppOperatorNotEqual.htm">!=</a>2; <a href="CppOperatorPlus.htm">+</a>+sign_a)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> a <a href="CppOperatorAssign.htm">=</a> 0; a<a href="CppOperatorNotEqual.htm">!=</a>4; <a href="CppOperatorPlus.htm">+</a>+a)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> operation_b <a href="CppOperatorAssign.htm">=</a> 0; operation_b<a href="CppOperatorNotEqual.htm">!=</a>4; <a href="CppOperatorPlus.htm">+</a>+operation_b)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> sign_b <a href="CppOperatorAssign.htm">=</a> 0; sign_b<a href="CppOperatorNotEqual.htm">!=</a>2; <a href="CppOperatorPlus.htm">+</a>+sign_b)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> b <a href="CppOperatorAssign.htm">=</a> 0; b<a href="CppOperatorNotEqual.htm">!=</a>4; <a href="CppOperatorPlus.htm">+</a>+b)<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> sign_a <a href="CppOperatorAssign.htm">=</a> 0; sign_a<a href="CppOperatorNotEqual.htm">!=</a>2; <a href="CppOperatorIncrement.htm">++</a>sign_a)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> a <a href="CppOperatorAssign.htm">=</a> 0; a<a href="CppOperatorNotEqual.htm">!=</a>4; <a href="CppOperatorIncrement.htm">++</a>a)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> operation_b <a href="CppOperatorAssign.htm">=</a> 0; operation_b<a href="CppOperatorNotEqual.htm">!=</a>4; <a href="CppOperatorIncrement.htm">++</a>operation_b)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> sign_b <a href="CppOperatorAssign.htm">=</a> 0; sign_b<a href="CppOperatorNotEqual.htm">!=</a>2; <a href="CppOperatorIncrement.htm">++</a>sign_b)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> b <a href="CppOperatorAssign.htm">=</a> 0; b<a href="CppOperatorNotEqual.htm">!=</a>4; <a href="CppOperatorIncrement.htm">++</a>b)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (a <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> b) <b><a href="CppContinue.html">continue</a></b>;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> operation_c <a href="CppOperatorAssign.htm">=</a> 0; operation_c<a href="CppOperatorNotEqual.htm">!=</a>4; <a href="CppOperatorPlus.htm">+</a>+operation_c)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> sign_c <a href="CppOperatorAssign.htm">=</a> 0; sign_c<a href="CppOperatorNotEqual.htm">!=</a>2; <a href="CppOperatorPlus.htm">+</a>+sign_c)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> c <a href="CppOperatorAssign.htm">=</a> 0; c<a href="CppOperatorNotEqual.htm">!=</a>4; <a href="CppOperatorPlus.htm">+</a>+c)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (a <a href="CppOperatorEqual.htm">==</a> b) <b><a href="CppContinue.htm">continue</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> operation_c <a href="CppOperatorAssign.htm">=</a> 0; operation_c<a href="CppOperatorNotEqual.htm">!=</a>4; <a href="CppOperatorIncrement.htm">++</a>operation_c)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> sign_c <a href="CppOperatorAssign.htm">=</a> 0; sign_c<a href="CppOperatorNotEqual.htm">!=</a>2; <a href="CppOperatorIncrement.htm">++</a>sign_c)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> c <a href="CppOperatorAssign.htm">=</a> 0; c<a href="CppOperatorNotEqual.htm">!=</a>4; <a href="CppOperatorIncrement.htm">++</a>c)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (a<a href="CppOperatorEqual.htm">==</a>c <a href="CppOperatorLogicalOr.htm">||</a> b <a href="CppOperatorAssign.htm">=</a>=c) <b><a href="CppContinue.html">continue</a></b>;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> operation_d <a href="CppOperatorAssign.htm">=</a> 0; operation_d<a href="CppOperatorNotEqual.htm">!=</a>4; <a href="CppOperatorPlus.htm">+</a>+operation_d)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> sign_d <a href="CppOperatorAssign.htm">=</a> 0; sign_d<a href="CppOperatorNotEqual.htm">!=</a>2; <a href="CppOperatorPlus.htm">+</a>+sign_d)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> d <a href="CppOperatorAssign.htm">=</a> 0; d<a href="CppOperatorNotEqual.htm">!=</a>4; <a href="CppOperatorPlus.htm">+</a>+d)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (a<a href="CppOperatorEqual.htm">==</a>c <a href="CppOperatorLogicalOr.htm">||</a> b <a href="CppOperatorEqual.htm">==</a>c) <b><a href="CppContinue.htm">continue</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> operation_d <a href="CppOperatorAssign.htm">=</a> 0; operation_d<a href="CppOperatorNotEqual.htm">!=</a>4; <a href="CppOperatorIncrement.htm">++</a>operation_d)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> sign_d <a href="CppOperatorAssign.htm">=</a> 0; sign_d<a href="CppOperatorNotEqual.htm">!=</a>2; <a href="CppOperatorIncrement.htm">++</a>sign_d)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> d <a href="CppOperatorAssign.htm">=</a> 0; d<a href="CppOperatorNotEqual.htm">!=</a>4; <a href="CppOperatorIncrement.htm">++</a>d)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (a<a href="CppOperatorEqual.htm">==</a>d <a href="CppOperatorLogicalOr.htm">||</a> b<a href="CppOperatorEqual.htm">==</a>d <a href="CppOperatorLogicalOr.htm">||</a> c<a href="CppOperatorEqual.htm">==</a>d) <b><a href="CppContinue.html">continue</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (a<a href="CppOperatorEqual.htm">==</a>d <a href="CppOperatorLogicalOr.htm">||</a> b<a href="CppOperatorEqual.htm">==</a>d <a href="CppOperatorLogicalOr.htm">||</a> c<a href="CppOperatorEqual.htm">==</a>d) <b><a href="CppContinue.htm">continue</a></b>;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Formula f(sign_a,values[a],<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;operation_b,sign_b,values[b],<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;operation_c,sign_c,values[c],<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;operation_d,sign_d,values[d]);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (f.GetValue() &gt; 23.9 <a href="CppOperatorLogicalAnd.html">&amp;&amp;</a> f.GetValue() &lt; 24.01) <a href="CppCout.html">std::cout</a> <a href="CppOperatorStreamOut.html">&lt;&lt;</a> f <a href="CppOperatorStreamOut.html">&lt;&lt;</a> '\n';<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a>+tally[ f.GetValue() ];<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (f.GetValue() &gt; 23.9 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> f.GetValue() &lt; 24.01) <a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> f <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n';<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorIncrement.htm">++</a>tally[ f.GetValue() ];<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<a href="CppFor_each.html">std::for_each</a>(<br/>
+&nbsp;&nbsp;<a href="CppFor_each.htm">std::for_each</a>(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;tally.begin(),tally.end(),<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;[](<b><a href="CppConst.html">const</a></b> <a href="CppPair.html">std::pair</a>&lt;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b>,<b><a href="CppInt.htm">int</a></b>&gt;&amp; p)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{ <a href="CppCout.html">std::cout</a> <a href="CppOperatorStreamOut.html">&lt;&lt;</a> p.first <a href="CppOperatorStreamOut.html">&lt;&lt;</a> " " <a href="CppOperatorStreamOut.html">&lt;&lt;</a> p.second <a href="CppOperatorStreamOut.html">&lt;&lt;</a> '\n'; }<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;[](<b><a href="CppConst.htm">const</a></b> <a href="CppPair.htm">std::pair</a>&lt;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b>,<b><a href="CppInt.htm">int</a></b>&gt;&amp; p)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{ <a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> p.first <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> " " <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> p.second <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n'; }<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;);<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>

@@ -115,15 +115,15 @@ OTHER_FILES += \<br/>
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="main.cpp" border = "1"><tr><td><code>
-<a href="CppInclude.html">#include</a> &lt;<a href="CppQApplication.html">QApplication</a>&gt;<br/>
-<a href="CppInclude.html">#include</a> "qtmidilessoncreatormaindialog<a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppQApplication.htm">QApplication</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> "qtmidilessoncreatormaindialog.h"<br/>
 <br/>
-<b><a href="CppInt.htm">int</a></b> <a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a>(<b><a href="CppInt.htm">int</a></b> <a href="CppArgc.htm">argc</a>, <b><a href="CppChar.htm">char</a></b> *<a href="CppArgc.htm">argv</a>[])<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>(<b><a href="CppInt.htm">int</a></b> <a href="CppArgc.htm">argc</a>, <b><a href="CppChar.htm">char</a></b> *<a href="CppArgc.htm">argv</a>[])<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppQApplication.html">QApplication</a> a(<a href="CppArgc.htm">argc</a>, <a href="CppArgc.htm">argv</a>);<br/>
+&nbsp;&nbsp;<a href="CppQApplication.htm">QApplication</a> a(<a href="CppArgc.htm">argc</a>, <a href="CppArgc.htm">argv</a>);<br/>
 &nbsp;&nbsp;<a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>MidiLessonCreatorMainDialog w;<br/>
 &nbsp;&nbsp;w.show();&nbsp;&nbsp;<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> a.exec();<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> a.exec();<br/>
 }<br/>
 </code></td></tr></table>
 <!-- end of the code -->
@@ -136,25 +136,25 @@ OTHER_FILES += \<br/>
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="midilessoncreatormaindialog.h" border = "1"><tr><td><code>
-<a href="CppIfndef.html">#ifndef</a> MIDILESSONCREATORMAINDIALOG_H<br/>
-<a href="CppDefine.html">#define</a> MIDILESSONCREATORMAINDIALOG_H<br/>
+<a href="CppIfndef.htm">#ifndef</a> MIDILESSONCREATORMAINDIALOG_H<br/>
+<a href="CppDefine.htm">#define</a> MIDILESSONCREATORMAINDIALOG_H<br/>
 <br/>
-<a href="CppInclude.html">#include</a> &lt;<a href="CppStringH.html">string</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppStringH.htm">string</a>&gt;<br/>
 <br/>
-<b><a href="CppNamespace.html">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
+<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
 <br/>
 <a href="CppComment.htm">///</a>Creates the Midi files as <b><a href="CppIf.htm">if</a></b> from command line<br/>
-<b><a href="CppStruct.html">struct</a></b> MidiLessonCreatorMainDialog<br/>
+<b><a href="CppStruct.htm">struct</a></b> MidiLessonCreatorMainDialog<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/Create a lesson and write it to a MIDI file<br/>
-&nbsp;&nbsp;<b><a href="CppStatic.html">static</a></b> <b><a href="CppVoid.htm">void</a></b> CreateLesson(<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> level, <b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a>&amp; midi_filename);<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppVoid.htm">void</a></b> CreateLesson(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> level, <b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; midi_filename);<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppPrivate.html">private</a></b>:<br/>
+&nbsp;&nbsp;<b><a href="CppPrivate.htm">private</a></b>:<br/>
 };<br/>
 <br/>
-} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.html">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
 <br/>
-<a href="CppEndif.html">#endif</a> <a href="CppComment.htm">//</a> MIDILESSONCREATORMAINDIALOG_H<br/>
+<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> MIDILESSONCREATORMAINDIALOG_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -166,7 +166,7 @@ OTHER_FILES += \<br/>
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="midilessoncreatormaindialog.cpp" border = "1"><tr><td><code>
-<a href="CppInclude.html">#include</a> "midilessoncreatormaindialog<a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.htm">#include</a> "midilessoncreatormaindialog.h"<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -178,32 +178,32 @@ OTHER_FILES += \<br/>
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="qtmidilessoncreatormaindialog.h" border = "1"><tr><td><code>
-<a href="CppIfndef.html">#ifndef</a> QTMIDILESSONCREATORMAINDIALOG_H<br/>
-<a href="CppDefine.html">#define</a> QTMIDILESSONCREATORMAINDIALOG_H<br/>
+<a href="CppIfndef.htm">#ifndef</a> QTMIDILESSONCREATORMAINDIALOG_H<br/>
+<a href="CppDefine.htm">#define</a> QTMIDILESSONCREATORMAINDIALOG_H<br/>
 <br/>
-<a href="CppInclude.html">#include</a> &lt;<a href="CppQDialog.html">QDialog</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppQDialog.htm">QDialog</a>&gt;<br/>
 <br/>
-<b><a href="CppNamespace.html">namespace</a></b> Ui {<br/>
-&nbsp;&nbsp;<b><a href="CppClass.html">class</a></b> <a href="CppQt.htm">Qt</a>MidiLessonCreatorMainDialog;<br/>
+<b><a href="CppNamespace.htm">namespace</a></b> Ui {<br/>
+&nbsp;&nbsp;<b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a>MidiLessonCreatorMainDialog;<br/>
 }<br/>
 <br/>
-<b><a href="CppNamespace.html">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
+<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
 <br/>
-<b><a href="CppClass.html">class</a></b> <a href="CppQt.htm">Qt</a>MidiLessonCreatorMainDialog : <b><a href="CppPublic.html">public</a></b> <a href="CppQDialog.html">QDialog</a><br/>
+<b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a>MidiLessonCreatorMainDialog : <b><a href="CppPublic.htm">public</a></b> <a href="CppQDialog.htm">QDialog</a><br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppQ_OBJECT.html">Q_OBJECT</a><br/>
+&nbsp;&nbsp;<a href="CppQ_OBJECT.htm">Q_OBJECT</a><br/>
 &nbsp;&nbsp;<br/>
-<b><a href="CppPublic.html">public</a></b>:<br/>
-&nbsp;&nbsp;<b><a href="CppExplicit.html">explicit</a></b> <a href="CppQt.htm">Qt</a>MidiLessonCreatorMainDialog(<a href="CppQWidget.html">QWidget</a> *parent <a href="CppOperatorAssign.htm">=</a> 0);<br/>
+<b><a href="CppPublic.htm">public</a></b>:<br/>
+&nbsp;&nbsp;<b><a href="CppExplicit.htm">explicit</a></b> <a href="CppQt.htm">Qt</a>MidiLessonCreatorMainDialog(<a href="CppQWidget.htm">QWidget</a> *parent <a href="CppOperatorAssign.htm">=</a> 0);<br/>
 &nbsp;&nbsp;~<a href="CppQt.htm">Qt</a>MidiLessonCreatorMainDialog();<br/>
 &nbsp;&nbsp;<br/>
-<b><a href="CppPrivate.html">private</a></b>:<br/>
+<b><a href="CppPrivate.htm">private</a></b>:<br/>
 &nbsp;&nbsp;<a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a>MidiLessonCreatorMainDialog *ui;<br/>
 };<br/>
 <br/>
-} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.html">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
 <br/>
-<a href="CppEndif.html">#endif</a> <a href="CppComment.htm">//</a> QTMIDILESSONCREATORMAINDIALOG_H<br/>
+<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> QTMIDILESSONCREATORMAINDIALOG_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -215,11 +215,11 @@ OTHER_FILES += \<br/>
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="qtmidilessoncreatormaindialog.cpp" border = "1"><tr><td><code>
-<a href="CppInclude.html">#include</a> "qtmidilessoncreatormaindialog<a href="CppHeaderFile.htm">.h</a>"<br/>
-<a href="CppInclude.html">#include</a> "ui_qtmidilessoncreatormaindialog<a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.htm">#include</a> "qtmidilessoncreatormaindialog.h"<br/>
+<a href="CppInclude.htm">#include</a> "ui_qtmidilessoncreatormaindialog.h"<br/>
 <br/>
-<a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>MidiLessonCreatorMainDialog::<a href="CppQt.htm">Qt</a>MidiLessonCreatorMainDialog(<a href="CppQWidget.html">QWidget</a> *parent)<br/>
-&nbsp;&nbsp;: <a href="CppQDialog.html">QDialog</a>(parent),<br/>
+<a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>MidiLessonCreatorMainDialog::<a href="CppQt.htm">Qt</a>MidiLessonCreatorMainDialog(<a href="CppQWidget.htm">QWidget</a> *parent)<br/>
+&nbsp;&nbsp;: <a href="CppQDialog.htm">QDialog</a>(parent),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;ui(<b><a href="CppNew.htm">new</a></b> <a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a>MidiLessonCreatorMainDialog)<br/>
 {<br/>
 &nbsp;&nbsp;ui-&gt;setupUi(<b><a href="CppThis.htm">this</a></b>);<br/>
@@ -227,7 +227,7 @@ OTHER_FILES += \<br/>
 <br/>
 <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>MidiLessonCreatorMainDialog::~<a href="CppQt.htm">Qt</a>MidiLessonCreatorMainDialog()<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppDelete.html">delete</a></b> ui;<br/>
+&nbsp;&nbsp;<b><a href="CppDelete.htm">delete</a></b> ui;<br/>
 }<br/>
 </code></td></tr></table>
 <!-- end of the code -->

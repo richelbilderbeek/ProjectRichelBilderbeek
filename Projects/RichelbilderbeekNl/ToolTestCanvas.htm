@@ -70,7 +70,11 @@
 QT += core<br/>
 QT -= gui<br/>
 <a href="CppQmakeTemplate.htm">TEMPLATE</a> = app<br/>
-<a href="CppQmakeQmake_cxxflags.htm">QMAKE_CXXFLAGS</a> += -std=<a href="Cpp11.htm">c++11</a> <a href="CppWall.htm">-Wall</a> <a href="CppWextra.htm">-Wextra</a> <a href="CppWerror.htm">-Werror</a><br/>
+<a href="CppQmakeQmake_cxxflags.htm">QMAKE_CXXFLAGS</a> += -std=<a href="Cpp11.htm">c++11</a> <a href="CppWall.htm">-Wall</a> <a href="CppWextra.htm">-Wextra</a><br/>
+<br/>
+unix {<br/>
+&nbsp;&nbsp;<a href="CppQmakeQmake_cxxflags.htm">QMAKE_CXXFLAGS</a> += <a href="CppWerror.htm">-Werror</a><br/>
+}<br/>
 <br/>
 <a href="CppQmakeIncludepath.htm">INCLUDEPATH</a> += \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppAbout.htm">CppAbout</a> \<br/>
@@ -181,8 +185,8 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += <a href="CppWidget.htm">widget</a>s<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppQtHideAndShowDialog.htm">CppQtHideAndShowDialog</a>/<a href="CppQtHideAndShowDialog.htm">qthideandshowdialog</a>.cpp \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;qt<a href="CppMain.htm">main</a>.cpp \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;qttooltestcanvas<a href="CppMain.htm">main</a>dialog.cpp \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;tooltestcanvasmenudialog.cpp \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;qttooltestcanvasmenudialog.cpp<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;qttooltestcanvasmenudialog.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;tooltestcanvasmenudialog.cpp<br/>
 <br/>
 <a href="CppQmakeHeaders.htm">HEADERS</a> += \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppAbout.htm">CppAbout</a>/<a href="CppAbout.htm">about</a>.h \<br/>
@@ -204,8 +208,8 @@ OTHER_FILES += \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/CppCanvas/Licence.txt \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;Licence.txt<br/>
 <br/>
-#<a href="CppQmakeResources.htm">RESOURCES</a> += \<br/>
-#&nbsp;&nbsp;&nbsp;&nbsp;ToolTestCanvas.qrc<br/>
+<a href="CppQmakeResources.htm">RESOURCES</a> += \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;ToolTestCanvas.qrc<br/>
 <br/>
 #<br/>
 #<br/>
@@ -213,34 +217,13 @@ OTHER_FILES += \<br/>
 #<br/>
 #<br/>
 <br/>
-<a href="CppQmakeConfig.htm">CONFIG</a>(debug, debug|release) {<br/>
-&nbsp;&nbsp;message(Debug mode)<br/>
-}<br/>
-<br/>
 <a href="CppQmakeConfig.htm">CONFIG</a>(release, debug|release) {<br/>
-&nbsp;&nbsp;message(Release mode)<br/>
-<br/>
-&nbsp;&nbsp;#Remove all <a href="CppAssert.htm">assert</a>s and <a href="CppTRACE.htm">TRACE</a><br/>
 &nbsp;&nbsp;<a href="CppQmakeDefines.htm">DEFINES</a> += NDEBUG N<a href="CppTRACE.htm">TRACE</a>_BILDERBIKKEL<br/>
 }<br/>
 <br/>
-#<br/>
-#<br/>
-# Platform specific<br/>
-#<br/>
-#<br/>
-<br/>
-#<br/>
-#<br/>
-# Compiler flags<br/>
-#<br/>
-#<br/>
-<a href="CppQmakeQmake_cxxflags.htm">QMAKE_CXXFLAGS</a> += -std=<a href="Cpp11.htm">c++11</a> <a href="CppWall.htm">-Wall</a> <a href="CppWextra.htm">-Wextra</a><br/>
-<br/>
-&nbsp;&nbsp;<a href="CppQmakeQmake_cxxflags.htm">QMAKE_CXXFLAGS</a> += <a href="CppWerror.htm">-Werror</a><br/>
+<a href="CppQmakeQmake_cxxflags.htm">QMAKE_CXXFLAGS</a> += -std=<a href="Cpp11.htm">c++11</a> <a href="CppWall.htm">-Wall</a> <a href="CppWextra.htm">-Wextra</a> <a href="CppWeffcpp.htm">-Weffc++</a><br/>
 <br/>
 unix {<br/>
-&nbsp;&nbsp;message(Unix)<br/>
 &nbsp;&nbsp;<a href="CppQmakeQmake_cxxflags.htm">QMAKE_CXXFLAGS</a> += <a href="CppWerror.htm">-Werror</a><br/>
 }<br/>
 <br/>
@@ -250,25 +233,12 @@ unix {<br/>
 #<br/>
 #<br/>
 <br/>
-unix {<br/>
-&nbsp;&nbsp;# Cannot link to the the non-header-only libraries when crosscompiling<br/>
-}<br/>
-<br/>
 win32 {<br/>
-<br/>
-&nbsp;&nbsp;cross_compile {<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;message(Lubuntu to Windows: Boost: link)<br/>
-&nbsp;&nbsp;}<br/>
-<br/>
-&nbsp;&nbsp;!cross_compile {<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;message(Native Windows: Boost: include)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQmakeIncludepath.htm">INCLUDEPATH</a> += \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/boost_1_54_0<br/>
-&nbsp;&nbsp;}<br/>
-<br/>
-<br/>
-&nbsp;&nbsp;# Cannot link to the the non-header-only libraries when crosscompiling<br/>
+&nbsp;&nbsp;<a href="CppQmakeIncludepath.htm">INCLUDEPATH</a> += \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/boost_1_54_0<br/>
 }<br/>
+<br/>
+<br/>
 <br/>
 #<br/>
 #<br/>
@@ -310,9 +280,6 @@ win32 {<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;}<br/>
 }<br/>
-<br/>
-<a href="CppQmakeResources.htm">RESOURCES</a> += \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;ToolTestCanvas.qrc<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -326,7 +293,7 @@ win32 {<br/>
 <table summary="main.cpp" border = "1"><tr><td><code>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">/*</a><br/>
-Canvas, ASCII art painting surface <b><a href="CppClass.html">class</a></b><br/>
+<a href="CppCanvas.htm">Canvas</a>, ASCII art painting surface <b><a href="CppClass.htm">class</a></b><br/>
 Copyright (C) 2008-2013&nbsp;&nbsp;Richel Bilderbeek<br/>
 <br/>
 This program is free software: you can redistribute it and/or modify<br/>
@@ -342,81 +309,81 @@ You should have received a copy of the GNU General Public License<br/>
 along with this program.&nbsp;&nbsp;If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">*/</a><br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">//</a> From http://www.richelbilderbeek.nl/CppCanvas.html<br/>
+<a href="CppComment.htm">//</a> From http://www.richelbilderbeek.nl/Cpp<a href="CppCanvas.htm">Canvas</a>.htm<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <br/>
-<a href="CppInclude.html">#include</a> &lt;<a href="CppIostreamH.html">iostream</a>&gt;<br/>
-<a href="CppInclude.html">#include</a> &lt;<a href="CppStringH.html">string</a>&gt;<br/>
-<a href="CppInclude.html">#include</a> "canvas<a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppIostreamH.htm">iostream</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppStringH.htm">string</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> "canvas.h"<br/>
 <br/>
 <b><a href="CppVoid.htm">void</a></b> ShowLicence()<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppCout.html">std::cout</a><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> <a href="CppString.html">std::string</a>(79,'*') <a href="CppOperatorStreamOut.html">&lt;&lt;</a> <a href="CppEndl.html">std::endl</a><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "Canvas, ASCII art painting surface <b><a href="CppClass.html">class</a></b>" <a href="CppOperatorStreamOut.html">&lt;&lt;</a> <a href="CppEndl.html">std::endl</a><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "Copyright (C) 2008-2013 Richel Bilderbeek" <a href="CppOperatorStreamOut.html">&lt;&lt;</a> <a href="CppEndl.html">std::endl</a><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> <a href="CppEndl.html">std::endl</a><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "This program is free software: you can redistribute it and/or modify"<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> <a href="CppEndl.html">std::endl</a><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "it under the terms of the GNU General Public License as published by"<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> <a href="CppEndl.html">std::endl</a><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "the Free Software Foundation, either version 3 of the License, or"<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> <a href="CppEndl.html">std::endl</a><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "(at your option) any later version." <a href="CppOperatorStreamOut.html">&lt;&lt;</a> <a href="CppEndl.html">std::endl</a><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> <a href="CppEndl.html">std::endl</a><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "This program is distributed in the hope that it will be useful,"<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> <a href="CppEndl.html">std::endl</a><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "but WITHOUT ANY WARRANTY; without even the implied warranty of"<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> <a href="CppEndl.html">std::endl</a><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the"<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> <a href="CppEndl.html">std::endl</a><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "GNU General Public License for more details." <a href="CppOperatorStreamOut.html">&lt;&lt;</a> <a href="CppEndl.html">std::endl</a><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "You should have received a copy of the GNU General Public License"<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> <a href="CppEndl.html">std::endl</a><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;."<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> <a href="CppEndl.html">std::endl</a><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> <a href="CppEndl.html">std::endl</a><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> <a href="CppString.html">std::string</a>(79,'*') <a href="CppOperatorStreamOut.html">&lt;&lt;</a> <a href="CppEndl.html">std::endl</a><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> "From http://www.richelbilderbeek.nl" <a href="CppOperatorStreamOut.html">&lt;&lt;</a> <a href="CppEndl.html">std::endl</a><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.html">&lt;&lt;</a> <a href="CppString.html">std::string</a>(79,'*') <a href="CppOperatorStreamOut.html">&lt;&lt;</a> <a href="CppEndl.html">std::endl</a>;<br/>
+&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppString.htm">std::string</a>(79,'*') <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppEndl.htm">std::endl</a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "<a href="CppCanvas.htm">Canvas</a>, ASCII art painting surface <b><a href="CppClass.htm">class</a></b>" <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppEndl.htm">std::endl</a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "Copyright (C) 2008-2013 Richel Bilderbeek" <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppEndl.htm">std::endl</a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppEndl.htm">std::endl</a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "This program is free software: you can redistribute it and/or modify"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppEndl.htm">std::endl</a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "it under the terms of the GNU General Public License as published by"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppEndl.htm">std::endl</a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "the Free Software Foundation, either version 3 of the License, or"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppEndl.htm">std::endl</a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "(at your option) any later version." <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppEndl.htm">std::endl</a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppEndl.htm">std::endl</a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "This program is distributed in the hope that it will be useful,"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppEndl.htm">std::endl</a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "but WITHOUT ANY WARRANTY; without even the implied warranty of"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppEndl.htm">std::endl</a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppEndl.htm">std::endl</a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "GNU General Public License for more details." <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppEndl.htm">std::endl</a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "You should have received a copy of the GNU General Public License"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppEndl.htm">std::endl</a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;."<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppEndl.htm">std::endl</a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppEndl.htm">std::endl</a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppString.htm">std::string</a>(79,'*') <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppEndl.htm">std::endl</a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "From http://www.richelbilderbeek.nl/<a href="Tools.htm">Tool</a>Test<a href="CppCanvas.htm">Canvas</a>.htm" <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppEndl.htm">std::endl</a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppString.htm">std::string</a>(79,'*') <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppEndl.htm">std::endl</a>;<br/>
 }<br/>
 <br/>
-<b><a href="CppInt.htm">int</a></b> <a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a>()<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Specify the dimensions of the canvas equal to the screen<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Coordinat (0,0) is the top-left coordinat<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Coordinat (79,23) is the bottom-right coordinat<br/>
-&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> maxx <a href="CppOperatorAssign.htm">=</a> 79;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> maxy <a href="CppOperatorAssign.htm">=</a> 23;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> maxx <a href="CppOperatorAssign.htm">=</a> 79;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> maxy <a href="CppOperatorAssign.htm">=</a> 23;<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> i=0; i<a href="CppOperatorNotEqual.htm">!=</a>4; <a href="CppOperatorPlus.htm">+</a>+i)<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> i=0; i<a href="CppOperatorNotEqual.htm">!=</a>4; <a href="CppOperatorIncrement.htm">++</a>i)<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> Canvas::ColorSystem color_system<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> i <a href="CppOperatorModulus.htm">%</a> 2 ? Canvas::ColorSystem::normal : Canvas::ColorSystem::invert;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> Canvas::CoordinatSystem coordinat_system<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> i <a href="CppOperatorDivide.htm">/</a> 2 ? Canvas::CoordinatSystem::graph : Canvas::CoordinatSystem::screen;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;Canvas c( maxx, maxy, color_system, coordinat_system);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppCanvas.htm">Canvas</a>::ColorSystem color_system<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> i <a href="CppOperatorModulus.htm">%</a> 2 ? <a href="CppRibi.htm">ribi</a>::<a href="CppCanvas.htm">Canvas</a>::ColorSystem::normal : <a href="CppRibi.htm">ribi</a>::<a href="CppCanvas.htm">Canvas</a>::ColorSystem::invert;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppCanvas.htm">Canvas</a>::CoordinatSystem coordinat_system<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> i <a href="CppOperatorDivide.htm">/</a> 2 ? <a href="CppRibi.htm">ribi</a>::<a href="CppCanvas.htm">Canvas</a>::CoordinatSystem::graph : <a href="CppRibi.htm">ribi</a>::<a href="CppCanvas.htm">Canvas</a>::CoordinatSystem::screen;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppRibi.htm">ribi</a>::<a href="CppCanvas.htm">Canvas</a> c( maxx, maxy, color_system, coordinat_system);<br/>
 <br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Draw smiley to Canvas<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Draw smiley to <a href="CppCanvas.htm">Canvas</a><br/>
 <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Determine and calculate dimensions and coordinats of smiley<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> maxxD <a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.html">static_cast</a></b>&lt;<b><a href="CppDouble.html">double</a></b>&gt;(maxx);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> maxyD <a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.html">static_cast</a></b>&lt;<b><a href="CppDouble.html">double</a></b>&gt;(maxy);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> midX&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> 0.50 * maxxD;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> midY&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> 0.50 * maxyD;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> headRay&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppOperatorAssign.htm">=</a> 0.50 * maxyD;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> eyeLeftX&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> 0.50 * maxxD <a href="CppOperatorMinus.htm">-</a> (0.35 * headRay) ;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> eyeLeftY&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> 0.50 * maxyD <a href="CppOperatorMinus.htm">-</a> (0.25 * headRay) ;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> eyeRightX&nbsp;&nbsp; <a href="CppOperatorAssign.htm">=</a> 0.50 * maxxD <a href="CppOperatorPlus.htm">+</a> (0.35 * headRay) ;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> eyeRightY&nbsp;&nbsp; <a href="CppOperatorAssign.htm">=</a> 0.50 * maxyD <a href="CppOperatorMinus.htm">-</a> (0.25 * headRay) ;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> eyeRay&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> 0.30 * headRay;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> mouthLeftX&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> 0.50 * maxxD <a href="CppOperatorMinus.htm">-</a> (0.7 * headRay) ;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> mouthMidX&nbsp;&nbsp; <a href="CppOperatorAssign.htm">=</a> 0.50 * maxxD;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> mouthRightX <a href="CppOperatorAssign.htm">=</a> 0.50 * maxxD <a href="CppOperatorPlus.htm">+</a> (0.7 * headRay) ;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> mouthLeftY&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> 0.50 * maxyD <a href="CppOperatorPlus.htm">+</a> (0.2 * headRay) ;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> mouthMidY&nbsp;&nbsp; <a href="CppOperatorAssign.htm">=</a> 0.50 * maxyD <a href="CppOperatorPlus.htm">+</a> (0.7 * headRay) ;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> mouthRightY <a href="CppOperatorAssign.htm">=</a> 0.50 * maxyD <a href="CppOperatorPlus.htm">+</a> (0.2 * headRay) ;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Draw the image on Canvas<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> maxxD <a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(maxx);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> maxyD <a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(maxy);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> midX&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> 0.50 * maxxD;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> midY&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> 0.50 * maxyD;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> headRay&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppOperatorAssign.htm">=</a> 0.50 * maxyD;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> eyeLeftX&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> 0.50 * maxxD <a href="CppOperatorMinus.htm">-</a> (0.35 * headRay) ;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> eyeLeftY&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> 0.50 * maxyD <a href="CppOperatorMinus.htm">-</a> (0.25 * headRay) ;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> eyeRightX&nbsp;&nbsp; <a href="CppOperatorAssign.htm">=</a> 0.50 * maxxD <a href="CppOperatorPlus.htm">+</a> (0.35 * headRay) ;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> eyeRightY&nbsp;&nbsp; <a href="CppOperatorAssign.htm">=</a> 0.50 * maxyD <a href="CppOperatorMinus.htm">-</a> (0.25 * headRay) ;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> eyeRay&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> 0.30 * headRay;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> mouthLeftX&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> 0.50 * maxxD <a href="CppOperatorMinus.htm">-</a> (0.7 * headRay) ;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> mouthMidX&nbsp;&nbsp; <a href="CppOperatorAssign.htm">=</a> 0.50 * maxxD;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> mouthRightX <a href="CppOperatorAssign.htm">=</a> 0.50 * maxxD <a href="CppOperatorPlus.htm">+</a> (0.7 * headRay) ;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> mouthLeftY&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> 0.50 * maxyD <a href="CppOperatorPlus.htm">+</a> (0.2 * headRay) ;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> mouthMidY&nbsp;&nbsp; <a href="CppOperatorAssign.htm">=</a> 0.50 * maxyD <a href="CppOperatorPlus.htm">+</a> (0.7 * headRay) ;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> mouthRightY <a href="CppOperatorAssign.htm">=</a> 0.50 * maxyD <a href="CppOperatorPlus.htm">+</a> (0.2 * headRay) ;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Draw the image on <a href="CppCanvas.htm">Canvas</a><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;c.DrawCircle(midX, midY, headRay);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;c.DrawCircle(eyeLeftX, eyeLeftY, eyeRay);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;c.DrawDot(eyeLeftX, eyeLeftY);<br/>
@@ -426,8 +393,8 @@ along with this program.&nbsp;&nbsp;If not, see &lt;http://www.gnu.org/licenses/
 &nbsp;&nbsp;&nbsp;&nbsp;c.DrawLine(mouthMidX, mouthMidY, mouthRightX, mouthRightY);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;c.DrawLine(mouthRightX, mouthRightY, mouthLeftX, mouthLeftY);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Display the image<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCout.html">std::cout</a> <a href="CppOperatorStreamOut.html">&lt;&lt;</a> c;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCout.html">std::cout</a> <a href="CppOperatorStreamOut.html">&lt;&lt;</a> <a href="CppEndl.html">std::endl</a>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> c;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppEndl.htm">std::endl</a>;<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;ShowLicence();<br/>
 }<br/>
@@ -444,7 +411,7 @@ along with this program.&nbsp;&nbsp;If not, see &lt;http://www.gnu.org/licenses/
 <table summary="qtmain.cpp" border = "1"><tr><td><code>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">/*</a><br/>
-<a href="Tools.htm">Tool</a>TestCanvas, tests the Canvas <b><a href="CppClass.html">class</a></b><br/>
+<a href="Tools.htm">Tool</a>Test<a href="CppCanvas.htm">Canvas</a>, tests the <a href="CppCanvas.htm">Canvas</a> <b><a href="CppClass.htm">class</a></b><br/>
 Copyright (C) 2013&nbsp;&nbsp;Richel Bilderbeek<br/>
 <br/>
 This program is free software: you can redistribute it and/or modify<br/>
@@ -460,20 +427,24 @@ You should have received a copy of the GNU General Public License<br/>
 along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">*/</a><br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="Tools.htm">Tool</a>TestCanvas.html<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="Tools.htm">Tool</a>Test<a href="CppCanvas.htm">Canvas</a>.htm<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppInclude.html">#include</a> &lt;<a href="CppQApplication.html">QApplication</a>&gt;<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-<b><a href="CppTypedef.htm">typedef</a></b>s"<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppQApplication.htm">QApplication</a>&gt;<br/>
 <br/>
-<a href="CppInclude.html">#include</a> "qt<a href="Tools.htm">tool</a>testcanvasmenudialog<a href="CppHeaderFile.htm">.h</a>"<br/>
-<a href="CppInclude.html">#include</a> "<a href="CppTrace.html">trace</a><a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.htm">#include</a> "qt<a href="Tools.htm">tool</a>testcanvasmenudialog.h"<br/>
+<a href="CppInclude.htm">#include</a> "<a href="CppTrace.htm">trace</a>.h"<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
 <br/>
-<b><a href="CppInt.htm">int</a></b> <a href="CppMain<a href="CppHeaderFile.htm">.h</a>tm">main</a>(<b><a href="CppInt.htm">int</a></b> <a href="CppArgc.htm">argc</a>, <b><a href="CppChar.htm">char</a></b> *<a href="CppArgc.htm">argv</a>[])<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>(<b><a href="CppInt.htm">int</a></b> <a href="CppArgc.htm">argc</a>, <b><a href="CppChar.htm">char</a></b> *<a href="CppArgc.htm">argv</a>[])<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppQApplication.html">QApplication</a> a(<a href="CppArgc.htm">argc</a>, <a href="CppArgc.htm">argv</a>);<br/>
-&nbsp;&nbsp;START_<a href="CppTRACE.html">TRACE</a>();<br/>
-&nbsp;&nbsp;<a href="CppQt.htm">Qt</a><a href="Tools.htm">Tool</a>TestCanvasMenuDialog d;<br/>
+&nbsp;&nbsp;<a href="CppQApplication.htm">QApplication</a> a(<a href="CppArgc.htm">argc</a>, <a href="CppArgc.htm">argv</a>);<br/>
+&nbsp;&nbsp;START_<a href="CppTRACE.htm">TRACE</a>();<br/>
+&nbsp;&nbsp;<a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="Tools.htm">Tool</a>Test<a href="CppCanvas.htm">Canvas</a>MenuDialog d;<br/>
 &nbsp;&nbsp;d.show();<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> a.exec();<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> a.exec();<br/>
 }<br/>
 </code></td></tr></table>
 <!-- end of the code -->
@@ -486,36 +457,41 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="qttooltestcanvasmaindialog.h" border = "1"><tr><td><code>
-<a href="CppIfndef.html">#ifndef</a> QTTOOLTESTCANVASMAINDIALOG_H<br/>
-<a href="CppDefine.html">#define</a> QTTOOLTESTCANVASMAINDIALOG_H<br/>
+<a href="CppIfndef.htm">#ifndef</a> QTTOOLTESTCANVASMAINDIALOG_H<br/>
+<a href="CppDefine.htm">#define</a> QTTOOLTESTCANVASMAINDIALOG_H<br/>
 <br/>
-<a href="CppInclude.html">#include</a> &lt;<a href="CppBoost.html">boost</a>/<a href="CppShared_ptr.html">shared_ptr</a><a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
-<a href="CppInclude.html">#include</a> "<a href="CppQtHideAndShowDialog.html">qthideandshowdialog</a><a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.htm">#include</a> "<a href="CppQtHideAndShowDialog.htm">qthideandshowdialog</a>.h"<br/>
 <br/>
-<b><a href="CppNamespace.html">namespace</a></b> Ui {<br/>
-&nbsp;&nbsp;<b><a href="CppClass.html">class</a></b> <a href="CppQt.htm">Qt</a><a href="Tools.htm">Tool</a>TestCanvasMainDialog;<br/>
+<b><a href="CppNamespace.htm">namespace</a></b> Ui {<br/>
+&nbsp;&nbsp;<b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a><a href="Tools.htm">Tool</a>Test<a href="CppCanvas.htm">Canvas</a>MainDialog;<br/>
 }<br/>
 <br/>
-<b><a href="CppClass.html">class</a></b> <a href="CppQt.htm">Qt</a><a href="Tools.htm">Tool</a>TestCanvasMainDialog : <b><a href="CppPublic.html">public</a></b> <a href="CppQtHideAndShowDialog.html">QtHideAndShowDialog</a><br/>
+<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
+<br/>
+<b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a><a href="Tools.htm">Tool</a>Test<a href="CppCanvas.htm">Canvas</a>MainDialog : <b><a href="CppPublic.htm">public</a></b> <a href="CppQt.htm">Qt</a>HideAndShowDialog<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppQ_OBJECT.html">Q_OBJECT</a><br/>
+&nbsp;&nbsp;<a href="CppQ_OBJECT.htm">Q_OBJECT</a><br/>
 &nbsp;&nbsp;<br/>
-<b><a href="CppPublic.html">public</a></b>:<br/>
-&nbsp;&nbsp;<b><a href="CppExplicit.html">explicit</a></b> <a href="CppQt.htm">Qt</a><a href="Tools.htm">Tool</a>TestCanvasMainDialog(<a href="CppQWidget.html">QWidget</a> *parent <a href="CppOperatorAssign.htm">=</a> 0);<br/>
-&nbsp;&nbsp;~<a href="CppQt.htm">Qt</a><a href="Tools.htm">Tool</a>TestCanvasMainDialog();<br/>
+<b><a href="CppPublic.htm">public</a></b>:<br/>
+&nbsp;&nbsp;<b><a href="CppExplicit.htm">explicit</a></b> <a href="CppQt.htm">Qt</a><a href="Tools.htm">Tool</a>Test<a href="CppCanvas.htm">Canvas</a>MainDialog(<a href="CppQWidget.htm">QWidget</a> *parent <a href="CppOperatorAssign.htm">=</a> 0);<br/>
+&nbsp;&nbsp;<a href="CppQt.htm">Qt</a><a href="Tools.htm">Tool</a>Test<a href="CppCanvas.htm">Canvas</a>MainDialog(<b><a href="CppConst.htm">const</a></b> <a href="CppQt.htm">Qt</a><a href="Tools.htm">Tool</a>Test<a href="CppCanvas.htm">Canvas</a>MainDialog&amp;) <a href="CppOperatorAssign.htm">=</a> <b><a href="CppDelete.htm">delete</a></b>;<br/>
+&nbsp;&nbsp;<a href="CppQt.htm">Qt</a><a href="Tools.htm">Tool</a>Test<a href="CppCanvas.htm">Canvas</a>MainDialog&amp; <b><a href="CppOperator.htm">operator</a></b>=(<b><a href="CppConst.htm">const</a></b> <a href="CppQt.htm">Qt</a><a href="Tools.htm">Tool</a>Test<a href="CppCanvas.htm">Canvas</a>MainDialog&amp;) <a href="CppOperatorAssign.htm">=</a> <b><a href="CppDelete.htm">delete</a></b>;<br/>
+&nbsp;&nbsp;~<a href="CppQt.htm">Qt</a><a href="Tools.htm">Tool</a>Test<a href="CppCanvas.htm">Canvas</a>MainDialog() <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
 &nbsp;&nbsp;<br/>
-<b><a href="CppPrivate.html">private</a></b> <b><a href="CppSlots.html">slots</a></b>:<br/>
+<b><a href="CppPrivate.htm">private</a></b> <b><a href="CppSlots.htm">slots</a></b>:<br/>
 <br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> on_box_color_system_currentIndexChanged(<b><a href="CppInt.htm">int</a></b> index);<br/>
 <br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> on_box_coordinat_system_currentIndexChanged(<b><a href="CppInt.htm">int</a></b> index);<br/>
 <br/>
-<b><a href="CppPrivate.html">private</a></b>:<br/>
-&nbsp;&nbsp;<a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a><a href="Tools.htm">Tool</a>TestCanvasMainDialog *ui;<br/>
-&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> ShowCanvas();<br/>
+<b><a href="CppPrivate.htm">private</a></b>:<br/>
+&nbsp;&nbsp;<a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a><a href="Tools.htm">Tool</a>Test<a href="CppCanvas.htm">Canvas</a>MainDialog *ui;<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> Show<a href="CppCanvas.htm">Canvas</a>();<br/>
 };<br/>
 <br/>
-<a href="CppEndif.html">#endif</a> <a href="CppComment.htm">//</a> QTTOOLTESTCANVASMAINDIALOG_H<br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
+<br/>
+<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> QTTOOLTESTCANVASMAINDIALOG_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -527,70 +503,74 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="qttooltestcanvasmaindialog.cpp" border = "1"><tr><td><code>
-<a href="CppInclude.html">#include</a> "qt<a href="Tools.htm">tool</a>testcanvasmaindialog<a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.htm">#include</a> "qt<a href="Tools.htm">tool</a>testcanvasmaindialog.h"<br/>
 <br/>
-<a href="CppInclude.html">#include</a> &lt;<a href="CppCassertH.html">cassert</a>&gt;<br/>
-<a href="CppInclude.html">#include</a> &lt;<a href="CppSstreamH.html">sstream</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppSstreamH.htm">sstream</a>&gt;<br/>
 <br/>
-<a href="CppInclude.html">#include</a> "canvas<a href="CppHeaderFile.htm">.h</a>"<br/>
-<a href="CppInclude.html">#include</a> "ui_qt<a href="Tools.htm">tool</a>testcanvasmaindialog<a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-<b><a href="CppTypedef.htm">typedef</a></b>s"<br/>
+<a href="CppInclude.htm">#include</a> "canvas.h"<br/>
+<a href="CppInclude.htm">#include</a> "ui_qt<a href="Tools.htm">tool</a>testcanvasmaindialog.h"<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
 <br/>
-<a href="CppQt.htm">Qt</a><a href="Tools.htm">Tool</a>TestCanvasMainDialog::<a href="CppQt.htm">Qt</a><a href="Tools.htm">Tool</a>TestCanvasMainDialog(<a href="CppQWidget.html">QWidget</a> *parent) :<br/>
-&nbsp;&nbsp;<a href="CppQtHideAndShowDialog.html">QtHideAndShowDialog</a>(parent),<br/>
-&nbsp;&nbsp;ui(<b><a href="CppNew.htm">new</a></b> <a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a><a href="Tools.htm">Tool</a>TestCanvasMainDialog)<br/>
+<a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="Tools.htm">Tool</a>Test<a href="CppCanvas.htm">Canvas</a>MainDialog::<a href="CppQt.htm">Qt</a><a href="Tools.htm">Tool</a>Test<a href="CppCanvas.htm">Canvas</a>MainDialog(<a href="CppQWidget.htm">QWidget</a> *parent) :<br/>
+&nbsp;&nbsp;<a href="CppQt.htm">Qt</a>HideAndShowDialog(parent),<br/>
+&nbsp;&nbsp;ui(<b><a href="CppNew.htm">new</a></b> <a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a><a href="Tools.htm">Tool</a>Test<a href="CppCanvas.htm">Canvas</a>MainDialog)<br/>
 {<br/>
 &nbsp;&nbsp;ui-&gt;setupUi(<b><a href="CppThis.htm">this</a></b>);<br/>
-&nbsp;&nbsp;ShowCanvas();<br/>
+&nbsp;&nbsp;Show<a href="CppCanvas.htm">Canvas</a>();<br/>
 }<br/>
 <br/>
-<a href="CppQt.htm">Qt</a><a href="Tools.htm">Tool</a>TestCanvasMainDialog::~<a href="CppQt.htm">Qt</a><a href="Tools.htm">Tool</a>TestCanvasMainDialog()<br/>
+<a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="Tools.htm">Tool</a>Test<a href="CppCanvas.htm">Canvas</a>MainDialog::~<a href="CppQt.htm">Qt</a><a href="Tools.htm">Tool</a>Test<a href="CppCanvas.htm">Canvas</a>MainDialog() <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppDelete.html">delete</a></b> ui;<br/>
+&nbsp;&nbsp;<b><a href="CppDelete.htm">delete</a></b> ui;<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a><a href="Tools.htm">Tool</a>TestCanvasMainDialog::on_box_color_system_currentIndexChanged(<b><a href="CppInt.htm">int</a></b> )<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="Tools.htm">Tool</a>Test<a href="CppCanvas.htm">Canvas</a>MainDialog::on_box_color_system_currentIndexChanged(<b><a href="CppInt.htm">int</a></b> )<br/>
 {<br/>
-&nbsp;&nbsp;ShowCanvas();<br/>
+&nbsp;&nbsp;Show<a href="CppCanvas.htm">Canvas</a>();<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a><a href="Tools.htm">Tool</a>TestCanvasMainDialog::on_box_coordinat_system_currentIndexChanged(<b><a href="CppInt.htm">int</a></b> )<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="Tools.htm">Tool</a>Test<a href="CppCanvas.htm">Canvas</a>MainDialog::on_box_coordinat_system_currentIndexChanged(<b><a href="CppInt.htm">int</a></b> )<br/>
 {<br/>
-&nbsp;&nbsp;ShowCanvas();<br/>
+&nbsp;&nbsp;Show<a href="CppCanvas.htm">Canvas</a>();<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a><a href="Tools.htm">Tool</a>TestCanvasMainDialog::ShowCanvas()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="Tools.htm">Tool</a>Test<a href="CppCanvas.htm">Canvas</a>MainDialog::Show<a href="CppCanvas.htm">Canvas</a>()<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> maxx <a href="CppOperatorAssign.htm">=</a> 79; <a href="CppComment.htm">//</a>Console is 80 <b><a href="CppChar.htm">char</a></b>s wide<br/>
-&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppInt.htm">int</a></b> maxy <a href="CppOperatorAssign.htm">=</a> 23; <a href="CppComment.htm">//</a>Console is 80 <b><a href="CppChar.htm">char</a></b>s high<br/>
-&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> Canvas::ColorSystem color_system<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> ui-&gt;box_color_system-&gt;currentIndex() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 0<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;? Canvas::ColorSystem::normal<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;: Canvas::ColorSystem::invert;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> Canvas::CoordinatSystem coordinat_system<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> ui-&gt;box_coordinat_system-&gt;currentIndex() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 0<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;? Canvas::CoordinatSystem::screen : Canvas::CoordinatSystem::graph;<br/>
-&nbsp;&nbsp;Canvas c( maxx, maxy, color_system, coordinat_system);<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> maxx <a href="CppOperatorAssign.htm">=</a> 79; <a href="CppComment.htm">//</a>Console is 80 <b><a href="CppChar.htm">char</a></b>s wide<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> maxy <a href="CppOperatorAssign.htm">=</a> 23; <a href="CppComment.htm">//</a>Console is 80 <b><a href="CppChar.htm">char</a></b>s high<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppCanvas.htm">Canvas</a>::ColorSystem color_system<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> ui-&gt;box_color_system-&gt;currentIndex() <a href="CppOperatorEqual.htm">==</a> 0<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;? <a href="CppCanvas.htm">Canvas</a>::ColorSystem::normal<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;: <a href="CppCanvas.htm">Canvas</a>::ColorSystem::invert;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppCanvas.htm">Canvas</a>::CoordinatSystem coordinat_system<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> ui-&gt;box_coordinat_system-&gt;currentIndex() <a href="CppOperatorEqual.htm">==</a> 0<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;? <a href="CppCanvas.htm">Canvas</a>::CoordinatSystem::screen : <a href="CppCanvas.htm">Canvas</a>::CoordinatSystem::graph;<br/>
+&nbsp;&nbsp;<a href="CppCanvas.htm">Canvas</a> c( maxx, maxy, color_system, coordinat_system);<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>Draw smiley to Canvas<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Draw smiley to <a href="CppCanvas.htm">Canvas</a><br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Determine and calculate dimensions and coordinats of smiley<br/>
-&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> maxxD <a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.html">static_cast</a></b>&lt;<b><a href="CppDouble.html">double</a></b>&gt;(maxx);<br/>
-&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> maxyD <a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.html">static_cast</a></b>&lt;<b><a href="CppDouble.html">double</a></b>&gt;(maxy);<br/>
-&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> midX&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> 0.50 * maxxD;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> midY&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> 0.50 * maxyD;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> headRay&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppOperatorAssign.htm">=</a> 0.50 * maxyD;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> eyeLeftX&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> 0.50 * maxxD <a href="CppOperatorMinus.htm">-</a> (0.35 * headRay) ;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> eyeLeftY&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> 0.50 * maxyD <a href="CppOperatorMinus.htm">-</a> (0.25 * headRay) ;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> eyeRightX&nbsp;&nbsp; <a href="CppOperatorAssign.htm">=</a> 0.50 * maxxD <a href="CppOperatorPlus.htm">+</a> (0.35 * headRay) ;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> eyeRightY&nbsp;&nbsp; <a href="CppOperatorAssign.htm">=</a> 0.50 * maxyD <a href="CppOperatorMinus.htm">-</a> (0.25 * headRay) ;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> eyeRay&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> 0.30 * headRay;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> mouthLeftX&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> 0.50 * maxxD <a href="CppOperatorMinus.htm">-</a> (0.7 * headRay) ;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> mouthMidX&nbsp;&nbsp; <a href="CppOperatorAssign.htm">=</a> 0.50 * maxxD;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> mouthRightX <a href="CppOperatorAssign.htm">=</a> 0.50 * maxxD <a href="CppOperatorPlus.htm">+</a> (0.7 * headRay) ;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> mouthLeftY&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> 0.50 * maxyD <a href="CppOperatorPlus.htm">+</a> (0.2 * headRay) ;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> mouthMidY&nbsp;&nbsp; <a href="CppOperatorAssign.htm">=</a> 0.50 * maxyD <a href="CppOperatorPlus.htm">+</a> (0.7 * headRay) ;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> mouthRightY <a href="CppOperatorAssign.htm">=</a> 0.50 * maxyD <a href="CppOperatorPlus.htm">+</a> (0.2 * headRay) ;<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>Draw the image on Canvas<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> maxxD <a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(maxx);<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> maxyD <a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(maxy);<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> midX&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> 0.50 * maxxD;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> midY&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> 0.50 * maxyD;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> headRay&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppOperatorAssign.htm">=</a> 0.50 * maxyD;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> eyeLeftX&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> 0.50 * maxxD <a href="CppOperatorMinus.htm">-</a> (0.35 * headRay) ;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> eyeLeftY&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> 0.50 * maxyD <a href="CppOperatorMinus.htm">-</a> (0.25 * headRay) ;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> eyeRightX&nbsp;&nbsp; <a href="CppOperatorAssign.htm">=</a> 0.50 * maxxD <a href="CppOperatorPlus.htm">+</a> (0.35 * headRay) ;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> eyeRightY&nbsp;&nbsp; <a href="CppOperatorAssign.htm">=</a> 0.50 * maxyD <a href="CppOperatorMinus.htm">-</a> (0.25 * headRay) ;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> eyeRay&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> 0.30 * headRay;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> mouthLeftX&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> 0.50 * maxxD <a href="CppOperatorMinus.htm">-</a> (0.7 * headRay) ;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> mouthMidX&nbsp;&nbsp; <a href="CppOperatorAssign.htm">=</a> 0.50 * maxxD;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> mouthRightX <a href="CppOperatorAssign.htm">=</a> 0.50 * maxxD <a href="CppOperatorPlus.htm">+</a> (0.7 * headRay) ;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> mouthLeftY&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> 0.50 * maxyD <a href="CppOperatorPlus.htm">+</a> (0.2 * headRay) ;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> mouthMidY&nbsp;&nbsp; <a href="CppOperatorAssign.htm">=</a> 0.50 * maxyD <a href="CppOperatorPlus.htm">+</a> (0.7 * headRay) ;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> mouthRightY <a href="CppOperatorAssign.htm">=</a> 0.50 * maxyD <a href="CppOperatorPlus.htm">+</a> (0.2 * headRay) ;<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Draw the image on <a href="CppCanvas.htm">Canvas</a><br/>
 &nbsp;&nbsp;c.DrawCircle(midX, midY, headRay);<br/>
 &nbsp;&nbsp;c.DrawCircle(eyeLeftX, eyeLeftY, eyeRay);<br/>
 &nbsp;&nbsp;c.DrawDot(eyeLeftX, eyeLeftY);<br/>
@@ -600,8 +580,8 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;c.DrawLine(mouthMidX, mouthMidY, mouthRightX, mouthRightY);<br/>
 &nbsp;&nbsp;c.DrawLine(mouthRightX, mouthRightY, mouthLeftX, mouthLeftY);<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Display the image<br/>
-&nbsp;&nbsp;<a href="CppStringstream.html">std::stringstream</a> s;<br/>
-&nbsp;&nbsp;s <a href="CppOperatorStreamOut.html">&lt;&lt;</a> c;<br/>
+&nbsp;&nbsp;<a href="CppStringstream.htm">std::stringstream</a> s;<br/>
+&nbsp;&nbsp;s <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> c;<br/>
 &nbsp;&nbsp;ui-&gt;text-&gt;setPlainText(s.str().c_str());<br/>
 <br/>
 }<br/>
@@ -616,40 +596,46 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="qttooltestcanvasmenudialog.h" border = "1"><tr><td><code>
-<a href="CppIfndef.html">#ifndef</a> QTTOOLTESTCANVASMENUDIALOG_H<br/>
-<a href="CppDefine.html">#define</a> QTTOOLTESTCANVASMENUDIALOG_H<br/>
+<a href="CppIfndef.htm">#ifndef</a> QTTOOLTESTCANVASMENUDIALOG_H<br/>
+<a href="CppDefine.htm">#define</a> QTTOOLTESTCANVASMENUDIALOG_H<br/>
 <br/>
-<a href="CppInclude.html">#include</a> "<a href="CppQtHideAndShowDialog.html">qthideandshowdialog</a><a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.htm">#include</a> "<a href="CppQtHideAndShowDialog.htm">qthideandshowdialog</a>.h"<br/>
 <br/>
-<b><a href="CppNamespace.html">namespace</a></b> Ui {<br/>
-&nbsp;&nbsp;<b><a href="CppClass.html">class</a></b> <a href="CppQt.htm">Qt</a><a href="Tools.htm">Tool</a>TestCanvasMenuDialog;<br/>
+<b><a href="CppNamespace.htm">namespace</a></b> Ui {<br/>
+&nbsp;&nbsp;<b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a><a href="Tools.htm">Tool</a>Test<a href="CppCanvas.htm">Canvas</a>MenuDialog;<br/>
 }<br/>
 <br/>
-<b><a href="CppClass.html">class</a></b> <a href="CppQt.htm">Qt</a><a href="Tools.htm">Tool</a>TestCanvasMenuDialog : <b><a href="CppPublic.html">public</a></b> <a href="CppQtHideAndShowDialog.html">QtHideAndShowDialog</a><br/>
+<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
+<br/>
+<b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a><a href="Tools.htm">Tool</a>Test<a href="CppCanvas.htm">Canvas</a>MenuDialog : <b><a href="CppPublic.htm">public</a></b> <a href="CppQt.htm">Qt</a>HideAndShowDialog<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppQ_OBJECT.html">Q_OBJECT</a><br/>
+&nbsp;&nbsp;<a href="CppQ_OBJECT.htm">Q_OBJECT</a><br/>
 <br/>
-<b><a href="CppPublic.html">public</a></b>:<br/>
-&nbsp;&nbsp;<b><a href="CppExplicit.html">explicit</a></b> <a href="CppQt.htm">Qt</a><a href="Tools.htm">Tool</a>TestCanvasMenuDialog(<a href="CppQWidget.html">QWidget</a> *parent <a href="CppOperatorAssign.htm">=</a> 0);<br/>
-&nbsp;&nbsp;~<a href="CppQt.htm">Qt</a><a href="Tools.htm">Tool</a>TestCanvasMenuDialog();<br/>
+<b><a href="CppPublic.htm">public</a></b>:<br/>
+&nbsp;&nbsp;<b><a href="CppExplicit.htm">explicit</a></b> <a href="CppQt.htm">Qt</a><a href="Tools.htm">Tool</a>Test<a href="CppCanvas.htm">Canvas</a>MenuDialog(<a href="CppQWidget.htm">QWidget</a> *parent <a href="CppOperatorAssign.htm">=</a> 0);<br/>
+&nbsp;&nbsp;<a href="CppQt.htm">Qt</a><a href="Tools.htm">Tool</a>Test<a href="CppCanvas.htm">Canvas</a>MenuDialog(<b><a href="CppConst.htm">const</a></b> <a href="CppQt.htm">Qt</a><a href="Tools.htm">Tool</a>Test<a href="CppCanvas.htm">Canvas</a>MenuDialog&amp;) <a href="CppOperatorAssign.htm">=</a> <b><a href="CppDelete.htm">delete</a></b>;<br/>
+&nbsp;&nbsp;<a href="CppQt.htm">Qt</a><a href="Tools.htm">Tool</a>Test<a href="CppCanvas.htm">Canvas</a>MenuDialog&amp; <b><a href="CppOperator.htm">operator</a></b>=(<b><a href="CppConst.htm">const</a></b> <a href="CppQt.htm">Qt</a><a href="Tools.htm">Tool</a>Test<a href="CppCanvas.htm">Canvas</a>MenuDialog&amp;) <a href="CppOperatorAssign.htm">=</a> <b><a href="CppDelete.htm">delete</a></b>;<br/>
+&nbsp;&nbsp;~<a href="CppQt.htm">Qt</a><a href="Tools.htm">Tool</a>Test<a href="CppCanvas.htm">Canvas</a>MenuDialog();<br/>
 <br/>
-<b><a href="CppProtected.html">protected</a></b>:<br/>
-&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> keyPressEvent(<a href="CppQKeyEvent.html">QKeyEvent</a> * event);<br/>
+<b><a href="CppProtected.htm">protected</a></b>:<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> keyPressEvent(<a href="CppQKeyEvent.htm">QKeyEvent</a> * event);<br/>
 <br/>
-<b><a href="CppPrivate.html">private</a></b>:<br/>
-&nbsp;&nbsp;<a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a><a href="Tools.htm">Tool</a>TestCanvasMenuDialog *ui;<br/>
+<b><a href="CppPrivate.htm">private</a></b>:<br/>
+&nbsp;&nbsp;<a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a><a href="Tools.htm">Tool</a>Test<a href="CppCanvas.htm">Canvas</a>MenuDialog *ui;<br/>
 <br/>
-<b><a href="CppPrivate.html">private</a></b> <b><a href="CppSlots.html">slots</a></b>:<br/>
+<b><a href="CppPrivate.htm">private</a></b> <b><a href="CppSlots.htm">slots</a></b>:<br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> on_button_about_clicked();<br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> on_button_quit_clicked();<br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> on_button_start_clicked();<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppIfndef.html">#ifndef</a> <a href="CppNDEBUG.html">NDEBUG</a><br/>
-&nbsp;&nbsp;<b><a href="CppStatic.html">static</a></b> <b><a href="CppVoid.htm">void</a></b> Test();<br/>
-&nbsp;&nbsp;<a href="CppEndif.html">#endif</a><br/>
+&nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppVoid.htm">void</a></b> Test();<br/>
+&nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
 };<br/>
 <br/>
-<a href="CppEndif.html">#endif</a> <a href="CppComment.htm">//</a> QTTOOLTESTCANVASMENUDIALOG_H<br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
+<br/>
+<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> QTTOOLTESTCANVASMENUDIALOG_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -661,46 +647,48 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="qttooltestcanvasmenudialog.cpp" border = "1"><tr><td><code>
-<a href="CppComment.htm">//</a><a href="CppInclude.html">#include</a> own <a href="CppHeaderFile.html">header file</a> as first substantive line of code, from:<br/>
-<a href="CppComment.htm">//</a> * John Lakos. Large-Scale <a href="Cpp.htm">C++</a> Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110<br/>
-<a href="CppInclude.html">#include</a> "qt<a href="Tools.htm">tool</a>testcanvasmenudialog<a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.htm">#include</a> "qt<a href="Tools.htm">tool</a>testcanvasmenudialog.h"<br/>
 <br/>
-<a href="CppInclude.html">#include</a> &lt;<a href="CppQDesktopWidget.html">QDesktopWidget</a>&gt;<br/>
-<a href="CppInclude.html">#include</a> &lt;<a href="CppQKeyEvent.html">QKeyEvent</a>&gt;<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-<b><a href="CppTypedef.htm">typedef</a></b>s"<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppQDesktopWidget.htm">QDesktopWidget</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppQKeyEvent.htm">QKeyEvent</a>&gt;<br/>
 <br/>
-<a href="CppInclude.html">#include</a> "<a href="Tools.htm">tool</a>testcanvasmenudialog<a href="CppHeaderFile.htm">.h</a>"<br/>
-<a href="CppInclude.html">#include</a> "<a href="CppQtAboutDialog.html">qtaboutdialog</a><a href="CppHeaderFile.htm">.h</a>"<br/>
-<a href="CppInclude.html">#include</a> "qt<a href="Tools.htm">tool</a>testcanvasmaindialog<a href="CppHeaderFile.htm">.h</a>"<br/>
-<a href="CppInclude.html">#include</a> "<a href="CppQtHideAndShowDialog.html">qthideandshowdialog</a><a href="CppHeaderFile.htm">.h</a>"<br/>
-<a href="CppInclude.html">#include</a> "<a href="CppTrace.html">trace</a><a href="CppHeaderFile.htm">.h</a>"<br/>
-<a href="CppInclude.html">#include</a> "ui_qt<a href="Tools.htm">tool</a>testcanvasmenudialog<a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.htm">#include</a> "<a href="Tools.htm">tool</a>testcanvasmenudialog.h"<br/>
+<a href="CppInclude.htm">#include</a> "<a href="CppQtAboutDialog.htm">qtaboutdialog</a>.h"<br/>
+<a href="CppInclude.htm">#include</a> "qt<a href="Tools.htm">tool</a>testcanvasmaindialog.h"<br/>
+<a href="CppInclude.htm">#include</a> "<a href="CppQtHideAndShowDialog.htm">qthideandshowdialog</a>.h"<br/>
+<a href="CppInclude.htm">#include</a> "<a href="CppTrace.htm">trace</a>.h"<br/>
+<a href="CppInclude.htm">#include</a> "ui_qt<a href="Tools.htm">tool</a>testcanvasmenudialog.h"<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
 <br/>
-<a href="CppQt.htm">Qt</a><a href="Tools.htm">Tool</a>TestCanvasMenuDialog::<a href="CppQt.htm">Qt</a><a href="Tools.htm">Tool</a>TestCanvasMenuDialog(<br/>
-&nbsp;&nbsp;<a href="CppQWidget.html">QWidget</a> *parent)<br/>
-&nbsp;&nbsp;: <a href="CppQtHideAndShowDialog.html">QtHideAndShowDialog</a>(parent),<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;ui(<b><a href="CppNew.htm">new</a></b> <a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a><a href="Tools.htm">Tool</a>TestCanvasMenuDialog)<br/>
+<a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="Tools.htm">Tool</a>Test<a href="CppCanvas.htm">Canvas</a>MenuDialog::<a href="CppQt.htm">Qt</a><a href="Tools.htm">Tool</a>Test<a href="CppCanvas.htm">Canvas</a>MenuDialog(<br/>
+&nbsp;&nbsp;<a href="CppQWidget.htm">QWidget</a> *parent)<br/>
+&nbsp;&nbsp;: <a href="CppQt.htm">Qt</a>HideAndShowDialog(parent),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;ui(<b><a href="CppNew.htm">new</a></b> <a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a><a href="Tools.htm">Tool</a>Test<a href="CppCanvas.htm">Canvas</a>MenuDialog)<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppIfndef.html">#ifndef</a> <a href="CppNDEBUG.html">NDEBUG</a><br/>
+&nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
 &nbsp;&nbsp;Test();<br/>
-&nbsp;&nbsp;<a href="CppEndif.html">#endif</a><br/>
+&nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
 &nbsp;&nbsp;ui-&gt;setupUi(<b><a href="CppThis.htm">this</a></b>);<br/>
 }<br/>
 <br/>
-<a href="CppQt.htm">Qt</a><a href="Tools.htm">Tool</a>TestCanvasMenuDialog::~<a href="CppQt.htm">Qt</a><a href="Tools.htm">Tool</a>TestCanvasMenuDialog()<br/>
+<a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="Tools.htm">Tool</a>Test<a href="CppCanvas.htm">Canvas</a>MenuDialog::~<a href="CppQt.htm">Qt</a><a href="Tools.htm">Tool</a>Test<a href="CppCanvas.htm">Canvas</a>MenuDialog() <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppDelete.html">delete</a></b> ui;<br/>
+&nbsp;&nbsp;<b><a href="CppDelete.htm">delete</a></b> ui;<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a><a href="Tools.htm">Tool</a>TestCanvasMenuDialog::keyPressEvent(<a href="CppQKeyEvent.html">QKeyEvent</a> * event)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="Tools.htm">Tool</a>Test<a href="CppCanvas.htm">Canvas</a>MenuDialog::keyPressEvent(<a href="CppQKeyEvent.htm">QKeyEvent</a> * event)<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (event-&gt;key() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <a href="CppQt.htm">Qt</a>::Key_Escape) { close(); <b><a href="CppReturn.html">return</a></b>; }<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (event-&gt;key() <a href="CppOperatorEqual.htm">==</a> <a href="CppQt.htm">Qt</a>::Key_Escape) { close(); <b><a href="CppReturn.htm">return</a></b>; }<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a><a href="Tools.htm">Tool</a>TestCanvasMenuDialog::on_button_about_clicked()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="Tools.htm">Tool</a>Test<a href="CppCanvas.htm">Canvas</a>MenuDialog::on_button_about_clicked()<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppAbout.html">About</a> a <a href="CppOperatorAssign.htm">=</a> <a href="Tools.htm">Tool</a>TestCanvasMenuDialog::GetAbout();<br/>
-&nbsp;&nbsp;a.<a href="CppAdd.htm">Add</a><a href="CppLibrary.html">Library</a>("<a href="CppQtHideAndShowDialog.html">QtHideAndShowDialog</a> <a href="CppVersion.html">version</a>: " <a href="CppOperatorPlus.htm">+</a> <a href="CppQtHideAndShowDialog.html">QtHideAndShowDialog</a>::Get<a href="CppVersion.html">Version</a>());<br/>
-&nbsp;&nbsp;<a href="CppQtAboutDialog.html">QtAboutDialog</a> d(a);<br/>
+&nbsp;&nbsp;<a href="CppAbout.htm">About</a> a <a href="CppOperatorAssign.htm">=</a> <a href="Tools.htm">Tool</a>Test<a href="CppCanvas.htm">Canvas</a>MenuDialog::GetAbout();<br/>
+&nbsp;&nbsp;a.<a href="CppAdd.htm">Add</a><a href="CppLibrary.htm">Library</a>("<a href="CppQt.htm">Qt</a>HideAndShowDialog <a href="CppVersion.htm">version</a>: " <a href="CppOperatorPlus.htm">+</a> <a href="CppQt.htm">Qt</a>HideAndShowDialog::Get<a href="CppVersion.htm">Version</a>());<br/>
+&nbsp;&nbsp;<a href="CppQtAboutDialog.htm">QtAboutDialog</a> d(a);<br/>
 &nbsp;&nbsp;d.setWindowIcon(<b><a href="CppThis.htm">this</a></b>-&gt;windowIcon());<br/>
 &nbsp;&nbsp;d.setStyleSheet(<b><a href="CppThis.htm">this</a></b>-&gt;styleSheet());<br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;hide();<br/>
@@ -708,32 +696,32 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;show();<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a><a href="Tools.htm">Tool</a>TestCanvasMenuDialog::on_button_quit_clicked()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="Tools.htm">Tool</a>Test<a href="CppCanvas.htm">Canvas</a>MenuDialog::on_button_quit_clicked()<br/>
 {<br/>
 &nbsp;&nbsp;close();<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a><a href="Tools.htm">Tool</a>TestCanvasMenuDialog::on_button_start_clicked()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="Tools.htm">Tool</a>Test<a href="CppCanvas.htm">Canvas</a>MenuDialog::on_button_start_clicked()<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppQt.htm">Qt</a><a href="Tools.htm">Tool</a>TestCanvasMainDialog d;<br/>
+&nbsp;&nbsp;<a href="CppQt.htm">Qt</a><a href="Tools.htm">Tool</a>Test<a href="CppCanvas.htm">Canvas</a>MainDialog d;<br/>
 &nbsp;&nbsp;d.setWindowIcon(<b><a href="CppThis.htm">this</a></b>-&gt;windowIcon());<br/>
 &nbsp;&nbsp;d.setStyleSheet(<b><a href="CppThis.htm">this</a></b>-&gt;styleSheet());<br/>
 &nbsp;&nbsp;ShowChild(&amp;d);<br/>
 }<br/>
 <br/>
-<a href="CppIfndef.html">#ifndef</a> <a href="CppNDEBUG.html">NDEBUG</a><br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a><a href="Tools.htm">Tool</a>TestCanvasMenuDialog::Test()<br/>
+<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="Tools.htm">Tool</a>Test<a href="CppCanvas.htm">Canvas</a>MenuDialog::Test()<br/>
 {<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppStatic.html">static</a></b> <b><a href="CppBool.htm">bool</a></b> is_tested <a href="CppOperatorAssign.htm">=</a> <b><a href="CppFalse.html">false</a></b>;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (is_tested) <b><a href="CppReturn.html">return</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppBool.htm">bool</a></b> is_tested <a href="CppOperatorAssign.htm">=</a> <b><a href="CppFalse.htm">false</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (is_tested) <b><a href="CppReturn.htm">return</a></b>;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;is_tested <a href="CppOperatorAssign.htm">=</a> <b><a href="CppTrue.htm">true</a></b>;<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<a href="CppTRACE.html">TRACE</a>("Starting <a href="CppQt.htm">Qt</a><a href="Tools.htm">Tool</a>TestCanvasMenuDialog::Test");<br/>
-&nbsp;&nbsp;<a href="CppQt.htm">Qt</a><a href="Tools.htm">Tool</a>TestCanvasMainDialog();<br/>
-&nbsp;&nbsp;<a href="CppTRACE.html">TRACE</a>("Finished <a href="CppQt.htm">Qt</a><a href="Tools.htm">Tool</a>TestCanvasMenuDialog::Test successfully");<br/>
+&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("Starting <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="Tools.htm">Tool</a>Test<a href="CppCanvas.htm">Canvas</a>MenuDialog::Test");<br/>
+&nbsp;&nbsp;<a href="CppQt.htm">Qt</a><a href="Tools.htm">Tool</a>Test<a href="CppCanvas.htm">Canvas</a>MainDialog();<br/>
+&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("Finished <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="Tools.htm">Tool</a>Test<a href="CppCanvas.htm">Canvas</a>MenuDialog::Test successfully");<br/>
 }<br/>
-<a href="CppEndif.html">#endif</a><br/>
+<a href="CppEndif.htm">#endif</a><br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -745,23 +733,27 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="tooltestcanvasmenudialog.h" border = "1"><tr><td><code>
-<a href="CppIfndef.html">#ifndef</a> TOOLTESTCANVASMENUDIALOG_H<br/>
-<a href="CppDefine.html">#define</a> TOOLTESTCANVASMENUDIALOG_H<br/>
+<a href="CppIfndef.htm">#ifndef</a> TOOLTESTCANVASMENUDIALOG_H<br/>
+<a href="CppDefine.htm">#define</a> TOOLTESTCANVASMENUDIALOG_H<br/>
 <br/>
-<a href="CppInclude.html">#include</a> &lt;<a href="CppStringH.html">string</a>&gt;<br/>
-<a href="CppInclude.html">#include</a> &lt;<a href="CppVectorH.html">vector</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppStringH.htm">string</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
 <br/>
-<a href="CppInclude.html">#include</a> "<a href="CppAbout.html">about</a><a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.htm">#include</a> "<a href="CppAbout.htm">about</a>.h"<br/>
 <br/>
-<a href="CppComment.htm">///</a>GUI independent <a href="Tools.htm">Tool</a>TestCanvas menu dialog<br/>
-<b><a href="CppStruct.html">struct</a></b> <a href="Tools.htm">Tool</a>TestCanvasMenuDialog<br/>
+<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
+<br/>
+<a href="CppComment.htm">///</a>GUI independent <a href="Tools.htm">Tool</a>Test<a href="CppCanvas.htm">Canvas</a> menu dialog<br/>
+<b><a href="CppStruct.htm">struct</a></b> <a href="Tools.htm">Tool</a>Test<a href="CppCanvas.htm">Canvas</a>MenuDialog<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppStatic.html">static</a></b> <b><a href="CppConst.html">const</a></b> <a href="CppAbout.html">About</a> GetAbout();<br/>
-&nbsp;&nbsp;<b><a href="CppStatic.html">static</a></b> <b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a> Get<a href="CppVersion.html">Version</a>();<br/>
-&nbsp;&nbsp;<b><a href="CppStatic.html">static</a></b> <b><a href="CppConst.html">const</a></b> <a href="CppVector.html">std::vector</a>&lt;<a href="CppString.html">std::string</a>&gt; Get<a href="CppVersion.html">Version</a>History();<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppAbout.htm">About</a> GetAbout();<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> Get<a href="CppVersion.htm">Version</a>();<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; Get<a href="CppVersion.htm">Version</a>History();<br/>
 };<br/>
 <br/>
-<a href="CppEndif.html">#endif</a> <a href="CppComment.htm">//</a> TOOLTESTCANVASMENUDIALOG_H<br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
+<br/>
+<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> TOOLTESTCANVASMENUDIALOG_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -773,39 +765,37 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="tooltestcanvasmenudialog.cpp" border = "1"><tr><td><code>
-<a href="CppComment.htm">//</a><a href="CppInclude.html">#include</a> own <a href="CppHeaderFile.html">header file</a> as first substantive line of code, from:<br/>
-<a href="CppComment.htm">//</a> * John Lakos. Large-Scale <a href="Cpp.htm">C++</a> Software Design. 1996. ISBN: 0-201-63362-0. Section 3.2, page 110<br/>
-<a href="CppInclude.html">#include</a> "<a href="Tools.htm">tool</a>testcanvasmenudialog<a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.htm">#include</a> "<a href="Tools.htm">tool</a>testcanvasmenudialog.h"<br/>
 <br/>
-<a href="CppInclude.html">#include</a> "canvas<a href="CppHeaderFile.htm">.h</a>"<br/>
-<a href="CppInclude.html">#include</a> "<a href="CppTrace.html">trace</a><a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.htm">#include</a> "canvas.h"<br/>
+<a href="CppInclude.htm">#include</a> "<a href="CppTrace.htm">trace</a>.h"<br/>
 <br/>
-<b><a href="CppConst.html">const</a></b> <a href="CppAbout.html">About</a> <a href="Tools.htm">Tool</a>TestCanvasMenuDialog::GetAbout()<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppAbout.htm">About</a> <a href="CppRibi.htm">ribi</a>::<a href="Tools.htm">Tool</a>Test<a href="CppCanvas.htm">Canvas</a>MenuDialog::GetAbout()<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppAbout.html">About</a> a(<br/>
+&nbsp;&nbsp;<a href="CppAbout.htm">About</a> a(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;"Richel Bilderbeek",<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;"<a href="Tools.htm">Tool</a>TestCanvas",<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;"tests the Canvas <b><a href="CppClass.html">class</a></b>",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"<a href="Tools.htm">Tool</a>Test<a href="CppCanvas.htm">Canvas</a>",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"tests the <a href="CppCanvas.htm">Canvas</a> <b><a href="CppClass.htm">class</a></b>",<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;"the 28th of August 2013",<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;"2013",<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;"http://www.richelbilderbeek.nl/<a href="Tools.htm">Tool</a>TestCanvas.html",<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;Get<a href="CppVersion.html">Version</a>(),<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;Get<a href="CppVersion.html">Version</a>History());<br/>
-&nbsp;&nbsp;a.<a href="CppAdd.htm">Add</a><a href="CppLibrary.html">Library</a>("Canvas <a href="CppVersion.html">version</a>: " <a href="CppOperatorPlus.htm">+</a> Canvas::Get<a href="CppVersion.html">Version</a>());<br/>
-&nbsp;&nbsp;a.<a href="CppAdd.htm">Add</a><a href="CppLibrary.html">Library</a>("<a href="CppTrace.html">Trace</a> <a href="CppVersion.html">version</a>: " <a href="CppOperatorPlus.htm">+</a> <a href="CppTrace.html">Trace</a>::Get<a href="CppVersion.html">Version</a>());<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> a;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"http://www.richelbilderbeek.nl/<a href="Tools.htm">Tool</a>Test<a href="CppCanvas.htm">Canvas</a>.htm",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Get<a href="CppVersion.htm">Version</a>(),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Get<a href="CppVersion.htm">Version</a>History());<br/>
+&nbsp;&nbsp;a.<a href="CppAdd.htm">Add</a><a href="CppLibrary.htm">Library</a>("<a href="CppCanvas.htm">Canvas</a> <a href="CppVersion.htm">version</a>: " <a href="CppOperatorPlus.htm">+</a> <a href="CppCanvas.htm">Canvas</a>::Get<a href="CppVersion.htm">Version</a>());<br/>
+&nbsp;&nbsp;a.<a href="CppAdd.htm">Add</a><a href="CppLibrary.htm">Library</a>("<a href="CppTrace.htm">Trace</a> <a href="CppVersion.htm">version</a>: " <a href="CppOperatorPlus.htm">+</a> <a href="CppTrace.htm">Trace</a>::Get<a href="CppVersion.htm">Version</a>());<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> a;<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a> <a href="Tools.htm">Tool</a>TestCanvasMenuDialog::Get<a href="CppVersion.html">Version</a>()<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppRibi.htm">ribi</a>::<a href="Tools.htm">Tool</a>Test<a href="CppCanvas.htm">Canvas</a>MenuDialog::Get<a href="CppVersion.htm">Version</a>()<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> "1.0";<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> "1.0";<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.html">const</a></b> <a href="CppVector.html">std::vector</a>&lt;<a href="CppString.html">std::string</a>&gt; <a href="Tools.htm">Tool</a>TestCanvasMenuDialog::Get<a href="CppVersion.html">Version</a>History()<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm">ribi</a>::<a href="Tools.htm">Tool</a>Test<a href="CppCanvas.htm">Canvas</a>MenuDialog::Get<a href="CppVersion.htm">Version</a>History()<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppVector.html">std::vector</a>&lt;<a href="CppString.html">std::string</a>&gt; v;<br/>
-&nbsp;&nbsp;v.push_back("2013-08-28: <a href="CppVersion.html">version</a> 1.0: initial desktop <a href="CppVersion.html">version</a>");<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> v;<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> {<br/>
+&nbsp;&nbsp;"2013-08-28: <a href="CppVersion.htm">version</a> 1.0: initial desktop <a href="CppVersion.htm">version</a>"<br/>
+&nbsp;&nbsp;};<br/>
 }<br/>
 </code></td></tr></table>
 <!-- end of the code -->

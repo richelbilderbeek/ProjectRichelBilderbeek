@@ -1,6 +1,6 @@
 //---------------------------------------------------------------------------
 /*
-TestEncranger, tool to test the Encranger class
+Encranger, tool to test the Encranger class
 Copyright (C) 2009-2011 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
@@ -16,18 +16,18 @@ You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>.
 */
 //---------------------------------------------------------------------------
-//From http://www.richelbilderbeek.nl/ToolTestEncranger.htm
+//From http://www.richelbilderbeek.nl/ToolEncranger.htm
 //---------------------------------------------------------------------------
 #ifndef WTTESTENCRANGERMENUDIALOG_H
 #define WTTESTENCRANGERMENUDIALOG_H
-//---------------------------------------------------------------------------
+
 #include <Wt/WContainerWidget>
-//---------------------------------------------------------------------------
+
 namespace ribi {
 
-struct WtTestEncrangerMenuDialog : public Wt::WContainerWidget
+struct WtEncrangerMenuDialog : public Wt::WContainerWidget
 {
-  WtTestEncrangerMenuDialog();
+  WtEncrangerMenuDialog();
 
   private:
   Wt::WWidget * CreateNewAboutDialog() const;

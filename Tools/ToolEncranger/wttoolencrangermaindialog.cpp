@@ -1,6 +1,6 @@
 //---------------------------------------------------------------------------
 /*
-TestEncranger, tool to test the Encranger class
+Encranger, tool to test the Encranger class
 Copyright (C) 2009-2011 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
@@ -16,21 +16,21 @@ You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>.
 */
 //---------------------------------------------------------------------------
-//From http://www.richelbilderbeek.nl/ToolTestEncranger.htm
+//From http://www.richelbilderbeek.nl/ToolEncranger.htm
 //---------------------------------------------------------------------------
 #include <boost/lexical_cast.hpp>
-//---------------------------------------------------------------------------
+
 #include <Wt/WBreak>
 #include <Wt/WFileUpload>
 #include <Wt/WImage>
 #include <Wt/WLabel>
 #include <Wt/WPushButton>
-//---------------------------------------------------------------------------
-#include "testencrangerdialog.h"
-#include "wttestencrangermaindialog.h"
-//---------------------------------------------------------------------------
-ribi::WtTestEncrangerMainDialog::WtTestEncrangerMainDialog()
-  : m_dialog(new TestEncrangerDialog),
+
+#include "toolencrangermaindialog.h"
+#include "wttoolencrangermaindialog.h"
+
+ribi::WtEncrangerMainDialog::WtEncrangerMainDialog()
+  : m_dialog(new ToolEncrangerMainDialog),
     m_edit_encrypted_text(0),
     m_edit_key(0),
     m_edit_plain_text(0)
@@ -39,8 +39,8 @@ ribi::WtTestEncrangerMainDialog::WtTestEncrangerMainDialog()
   this->setContentAlignment(Wt::AlignCenter);
   ShowMain();
 }
-//---------------------------------------------------------------------------
-void ribi::WtTestEncrangerMainDialog::OnDeencryptClick()
+
+void ribi::WtEncrangerMainDialog::OnDeencryptClick()
 {
   m_dialog->SetEncryptedText(m_edit_encrypted_text->text().toUTF8());
   try
@@ -55,8 +55,8 @@ void ribi::WtTestEncrangerMainDialog::OnDeencryptClick()
   m_dialog->Deencrypt();
   m_edit_plain_text->setText(m_dialog->GetPlainText().c_str());
 }
-//---------------------------------------------------------------------------
-void ribi::WtTestEncrangerMainDialog::OnEncryptClick()
+
+void ribi::WtEncrangerMainDialog::OnEncryptClick()
 {
   m_dialog->SetPlainText(m_edit_plain_text->text().toUTF8());
   try
@@ -71,8 +71,8 @@ void ribi::WtTestEncrangerMainDialog::OnEncryptClick()
   m_dialog->Encrypt();
   m_edit_encrypted_text->setText(m_dialog->GetEncryptedText().c_str());
 }
-//---------------------------------------------------------------------------
-void ribi::WtTestEncrangerMainDialog::ShowMain()
+
+void ribi::WtEncrangerMainDialog::ShowMain()
 {
   this->clear();
   this->addWidget(new Wt::WBreak);
@@ -86,32 +86,32 @@ void ribi::WtTestEncrangerMainDialog::ShowMain()
   this->addWidget(new Wt::WBreak);
   this->addWidget(new Wt::WBreak);
   //Arrow down
-  this->addWidget(new Wt::WImage("ToolTestEncrangerArrowDown16x16.png"));
+  this->addWidget(new Wt::WImage("ToolEncrangerArrowDown16x16.png"));
   //Encrypt button
   {
     Wt::WPushButton * const button = new Wt::WPushButton("Encrypt");
     button->clicked().connect(
-      this, &ribi::WtTestEncrangerMainDialog::OnEncryptClick);
+      this, &ribi::WtEncrangerMainDialog::OnEncryptClick);
     this->addWidget(button);
   }
   //Arrow down
-  this->addWidget(new Wt::WImage("ToolTestEncrangerArrowDown16x16.png"));
+  this->addWidget(new Wt::WImage("ToolEncrangerArrowDown16x16.png"));
   this->addWidget(new Wt::WLabel("Key: "));
   {
     m_edit_key = new Wt::WLineEdit("12345");
     this->addWidget(m_edit_key);
   }
   //Arrow up
-  this->addWidget(new Wt::WImage("ToolTestEncrangerArrowUp16x16.png"));
+  this->addWidget(new Wt::WImage("ToolEncrangerArrowUp16x16.png"));
   //Deencrypt button
   {
     Wt::WPushButton * const button = new Wt::WPushButton("Deencrypt");
     button->clicked().connect(
-      this, &ribi::WtTestEncrangerMainDialog::OnDeencryptClick);
+      this, &ribi::WtEncrangerMainDialog::OnDeencryptClick);
     this->addWidget(button);
   }
   //Arrow up
-  this->addWidget(new Wt::WImage("ToolTestEncrangerArrowUp16x16.png"));
+  this->addWidget(new Wt::WImage("ToolEncrangerArrowUp16x16.png"));
   this->addWidget(new Wt::WBreak);
   this->addWidget(new Wt::WBreak);
   //Encrypted text
@@ -123,4 +123,4 @@ void ribi::WtTestEncrangerMainDialog::ShowMain()
   OnEncryptClick();
 
 }
-//---------------------------------------------------------------------------
+

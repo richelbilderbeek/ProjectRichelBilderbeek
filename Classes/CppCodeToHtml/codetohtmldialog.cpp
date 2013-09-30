@@ -33,6 +33,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/scoped_ptr.hpp>
+#include <boost/xpressive/xpressive.hpp>
+#include <boost/algorithm/string.hpp>
 
 #include "codetohtmlcontent.h"
 #include "codetohtmldialog.h"
@@ -80,6 +82,84 @@ c2h::Dialog::~Dialog() noexcept
 
 }
 
+const std::string c2h::Dialog::ExtractPageName(const std::string& s) noexcept
+{
+  // /home/richel/ProjectRichelBilderbeek/Tools/ToolCodeToHtml
+  // /home/richel/ProjectRichelBilderbeek/Tools/ToolCodeToHtml/
+  // should become
+  // ToolCodeToHtml'
+
+  static const boost::xpressive::sregex r
+    = boost::xpressive::sregex::compile("[A-Za-z0-9_\\.]*");
+
+  std::vector<std::string> v;
+  boost::xpressive::sregex_iterator i(s.begin(),s.end(),r);
+  while (i != boost::xpressive::sregex_iterator())
+  {
+    v.push_back(i->str());
+    ++i;
+  }
+  //Clean up the vector: remove filenames and empty strings
+  while (1)
+  {
+    if (v.empty()) break;
+    const std::string t = boost::algorithm::trim_copy( v[ v.size() - 1] );
+    if (t.find('.') != std::string::npos || t.empty())
+    {
+      v.pop_back();
+    }
+    else break;
+  }
+
+  #ifdef REALLY_TRACE_THIS_20130929_28764723047972338294764627389
+  const std::size_t sz = v.size();
+  TRACE(sz);
+  for (std::size_t i=0; i!=sz; ++i)
+  {
+    std::stringstream s;
+    s << i << '/' << sz << ": '" << v[i] << "'";
+    TRACE(s.str());
+  }
+  #endif
+  const std::string t = v.empty() ? std::string() : v[v.size() - 1];
+
+
+  #ifdef USE_BOOST_XPRESSIVE_78263785634856349
+  static const boost::xpressive::sregex rex
+    = boost::xpressive::sregex::compile(
+      "(.*)?"          //Optional super folders
+      "(/|\\\\)?"      //(back)slash
+      "([A-Za-z0-9]*)" //Here is the booty
+      "(/|\\\\)?"      //(back)slash
+      "(([A-Za-z0-9]*)(\\.)([A-Za-z0-9]*))?" //An optional filename
+      "(/|\\\\)?"    //Perhaps possible trailing (back)slash
+      "\\>");
+
+  boost::xpressive::smatch what;
+
+  std::string t;
+  if( boost::xpressive::regex_match(s, what, rex ) )
+  {
+    const std::size_t sz = what.size();
+    for (std::size_t i=0; i!=sz; ++i)
+    {
+      std::stringstream s;
+      s << i << "/" << sz << ": '" << what[i] << "'";
+      TRACE(s.str());
+    }
+    t = what[1];
+  }
+  #endif //USE_BOOST_XPRESSIVE_78263785634856349
+
+  assert(t.find('/') == std::string::npos
+    && "A c2h::Info page must not contain a slash");
+  assert(t.find('\\') == std::string::npos
+    && "A c2h::Info page must not contain a backslash");
+
+  TRACE(t);
+  return t;
+}
+
 #ifndef NDEBUG
 void c2h::Dialog::Test()
 {
@@ -88,6 +168,47 @@ void c2h::Dialog::Test()
     if (is_tested) return;
     is_tested = true;
   }
+  assert(ExtractPageName("X") == std::string("X"));
+  assert(ExtractPageName("/X") == std::string("X"));
+  assert(ExtractPageName("/A/X") == std::string("X"));
+  assert(ExtractPageName("/A/B/X") == std::string("X"));
+  assert(ExtractPageName("/A/B/C/X") == std::string("X"));
+  assert(ExtractPageName("/X/") == std::string("X"));
+  assert(ExtractPageName("/A/X/") == std::string("X"));
+  assert(ExtractPageName("/A/B/X/") == std::string("X"));
+  assert(ExtractPageName("/A/B/C/X/") == std::string("X"));
+
+  assert(ExtractPageName("\\X") == std::string("X"));
+  assert(ExtractPageName("\\A\\X") == std::string("X"));
+  assert(ExtractPageName("\\A\\B\\X") == std::string("X"));
+  assert(ExtractPageName("\\A\\B\\C\\X") == std::string("X"));
+  assert(ExtractPageName("\\X\\") == std::string("X"));
+  assert(ExtractPageName("\\A\\X\\") == std::string("X"));
+  assert(ExtractPageName("\\A\\B\\X\\") == std::string("X"));
+  assert(ExtractPageName("\\A\\B\\C\\X\\") == std::string("X"));
+
+  assert(ExtractPageName("/X") == std::string("X"));
+  assert(ExtractPageName("/A\\X") == std::string("X"));
+  assert(ExtractPageName("/A\\B/X") == std::string("X"));
+  assert(ExtractPageName("\\A\\B/C/X") == std::string("X"));
+  assert(ExtractPageName("\\X/") == std::string("X"));
+  assert(ExtractPageName("/A\\X/") == std::string("X"));
+  assert(ExtractPageName("/A/B\\X/") == std::string("X"));
+  assert(ExtractPageName("/A/B\\C/X/") == std::string("X"));
+
+  assert(ExtractPageName("main.cpp") == std::string(""));
+  assert(ExtractPageName("/X/main.cpp") == std::string("X"));
+  assert(ExtractPageName("/A/X/main.cpp") == std::string("X"));
+  assert(ExtractPageName("/A/B/X/main.cpp") == std::string("X"));
+  assert(ExtractPageName("/A/B/C/X/main.cpp") == std::string("X"));
+  assert(ExtractPageName("/X/main.cpp/") == std::string("X"));
+  assert(ExtractPageName("/A/X/main.cpp/") == std::string("X"));
+  assert(ExtractPageName("/A/B/X/main.cpp/") == std::string("X"));
+  assert(ExtractPageName("/A/B/C/X/main.cpp/") == std::string("X"));
+
+  assert(ExtractPageName("/home/richel/ProjectRichelBilderbeek/Tools/ToolCodeToHtml")
+    == std::string("ToolCodeToHtml"));
+
   //Check if CodeToHtml creates a clean HTML file when it converts itself
   #ifndef _WIN32
   assert(IsTidyInstalled() && "While I know I have tidy installed");
@@ -143,7 +264,19 @@ const std::vector<std::string> c2h::Dialog::ToHtml() const
   }
   //Text about this page (if known)
   {
-    const std::vector<std::string> w = m_info->ToHtml(m_source);
+    //Find the page name:
+    //m_source can be something like this:
+    // /home/richel/ProjectRichelBilderbeek/Tools/ToolCodeToHtml
+    // ../ToolCodeToHtml/qtmain.cpp
+    //page_name must be
+    // ToolCodeToHtml
+    const std::string page_name = ExtractPageName(m_source);
+    assert(page_name.find('/') == std::string::npos
+      && "A c2h::Info page must not contain a slash");
+    assert(page_name.find('\\') == std::string::npos
+      && "A c2h::Info page must not contain a backslash");
+
+    const std::vector<std::string> w = m_info->ToHtml(page_name);
     std::copy(w.begin(),w.end(),std::back_inserter(v));
   }
   //Technical info

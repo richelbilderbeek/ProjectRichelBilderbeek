@@ -54,6 +54,8 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
   typedef std::pair<Key,Value> Pair;
   std::vector<Pair> m;
 
+  // sed -i "s/^.*$/       R\"\(&\)\"\,/g" tmp.txt
+
   m.push_back(
     {
       "CppAbcFile",
@@ -190,11 +192,11 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
   m.push_back(
     { "CppBimapExample2",
       {
-        R"(<p><a href="CppBimapExample2.htm">boost::bimap example 2: copy</a> is a <a href="CppBimap.htm">boost::bimap</a> example.</p>)",
-        R"(<p>&nbsp;</p>)",
-        R"(<ul>)",
-        R"(  <li><a href="CppBimapExample2.zip">Download the Qt Creator project 'CppBimapExample1' (zip)</a></li>)",
-        R"(</ul>)"
+       R"(<p><a href="CppBimapExample2.htm">boost::bimap example 2: copy</a> is a <a href="CppBimap.htm">boost::bimap</a> example.</p>)",
+       R"(<p>&nbsp;</p>)",
+       R"(<ul>)",
+       R"(  <li><a href="CppBimapExample2.zip">Download the Qt Creator project 'CppBimapExample1' (zip)</a></li>)",
+       R"(</ul>)"
       }
     }
   );
@@ -534,7 +536,91 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
       {
         "<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
-        "<p><a href=\"CppExercise.htm\">Exercise</a> is a",
+       R"(<p>)",
+       R"(  On this page you can find some exercises about correct programming, )",
+       R"(  inspired by <a href="CppHerbSutter.htm">Herb Sutter</a>'s 'Guru Of The Week' pages.)",
+       R"(</p>)",
+       R"(<p>&nbsp;</p>)",
+       R"(<p>)",
+       R"(  These <a href="CppExercise.htm">exercises</a> are suitable for experienced beginners, )",
+       R"(  that want to learn to think in the C++ way. As a side-result they will learn more )",
+       R"(  advanced concepts in a playful way. I try to work on the same difficulty )",
+       R"(  scale as <a href="CppHerbSutter.htm">Herb Sutter</a>.)",
+       R"(</p>)",
+       R"(<p>&nbsp;</p>)",
+       R"(<ul>)",
+       R"(  <li>)",
+       R"(    <img src="PicCpp98.png" alt="C++98"/><img src="PicSpacer.png" alt=" "/>)",
+       R"(    <a href="CppExerciseDivide.htm">Exercise #0: A correct Divide function</a>)",
+       R"(  </li>)",
+       R"(  <li>)",
+       R"(    <img src="PicCpp98.png" alt="C++98"/><img src="PicSpacer.png" alt=" "/>)",
+       R"(    <a href="CppExerciseFoolproofFunction.htm">Exercise #1: A foolproof function</a>)",
+       R"(  </li>)",
+       R"(  <li>)",
+       R"(    <img src="PicCpp98.png" alt="C++98"/><img src="PicSpacer.png" alt=" "/>)",
+       R"(    <a href="CppExerciseCorrectFunctionDeclarations.htm">Exercise #2: Correct function declarations</a>)",
+       R"(  </li>)",
+       R"(  <li>)",
+       R"(    <img src="PicCpp98.png" alt="C++98"/><img src="PicSpacer.png" alt=" "/>)",
+       R"(    <a href="CppExerciseDontGiveAwayYourInternals.htm">Exercise #3: Don't give away your internals</a>)",
+       R"(  </li>)",
+       R"(  <li>)",
+       R"(    <img src="PicCpp98.png" alt="C++98"/><img src="PicSpacer.png" alt=" "/>)",
+       R"(    <a href="CppExerciseReadingFromAvectorSafely.htm">Exercise #4: Reading from a std::vector safely</a>)",
+       R"(  </li>)",
+       R"(  <li>)",
+       R"(    <img src="PicCpp98.png" alt="C++98"/><img src="PicSpacer.png" alt=" "/>)",
+       R"(    <a href="CppExerciseTheManyTypesOfConst.htm">Exercise #5: The many types of const</a>)",
+       R"(  </li>)",
+       R"(  <li>)",
+       R"(    <img src="PicCpp98.png" alt="C++98"/><img src="PicSpacer.png" alt=" "/>)",
+       R"(    <a href="CppExerciseRefactoringQuadraticSolver.htm">Exercise #6: refactoring quadratic solver</a>)",
+       R"(  </li>)",
+       R"(  <li>)",
+       R"(    <img src="PicCpp98.png" alt="C++98"/><img src="PicSpacer.png" alt=" "/>)",
+       R"(    <a href="CppExerciseAddOne.htm">Exercise #7: add one</a>)",
+       R"(  </li>)",
+       R"(  <li>)",
+       R"(    <img src="PicCpp98.png" alt="C++98"/><img src="PicCppBuilder.png" alt="C++ Builder"/>)",
+       R"(    <a href="CppExerciseLibraryTrouble.htm">Exercise #8: library trouble</a>)",
+       R"(  </li>)",
+       R"(  <li>)",
+       R"(    <img src="PicCpp98.png" alt="C++98"/><img src="PicSpacer.png" alt=" "/>)",
+       R"(    <a href="CppExerciseNoForLoops.htm">Exercise #9: no for-loops</a>)",
+       R"(  </li>)",
+       R"(  <li>)",
+       R"(    <img src="PicCpp98.png" alt="C++98"/><img src="PicSpacer.png" alt=" "/>)",
+       R"(    <a href="CppExerciseReadonlyPointer.htm">Exercise #10: Obtaining a read-only (smart?) pointer</a>)",
+       R"(  </li>)",
+       R"(  <li>)",
+       R"(    <img src="PicCpp98.png" alt="C++98"/><img src="PicSpacer.png" alt=" "/>)",
+       R"(    <a href="CppExerciseReadonlyVectorOfPointers.htm">Exercise #11: Obtaining a std::vector of read-only (smart?) pointers</a>)",
+       R"(  </li>)",
+       R"(  <li>)",
+       R"(    <img src="PicCpp98.png" alt="C++98"/><img src="PicQt.png" alt="Qt"/>)",
+       R"(    <a href="CppExerciseQtHideAndShow1.htm">Exercise #12: Qt hide and show #1: intro</a>)",
+       R"(  </li>)",
+       R"(  <li>)",
+       R"(    <img src="PicCpp98.png" alt="C++98"/><img src="PicQt.png" alt="Qt"/>)",
+       R"(    <a href="CppExerciseQtHideAndShow2.htm">Exercise #13: Qt hide and show #2: the real problem</a>)",
+       R"(  </li>)",
+       R"(  <li>)",
+       R"(    <img src="PicCpp98.png" alt="C++98"/><img src="PicQt.png" alt="Qt"/>)",
+       R"(    <a href="CppExerciseQtHideAndShow3.htm">Exercise #14: Qt hide and show #3: refactoring</a>)",
+       R"(  </li>)",
+       R"(</ul>)",
+       R"(<p>&nbsp;</p>)",
+       R"(<p>&nbsp;</p>)",
+       R"(<p>&nbsp;</p>)",
+       R"(<p>&nbsp;</p>)",
+       R"(<p>&nbsp;</p>)",
+       R"(<h2>External links</h2>)",
+       R"(<p>&nbsp;</p>)",
+       R"(<ol>)",
+       R"(  <li><a href="http://www.gotw.ca/gotw/">Herb Sutter's Guru Of The Week archive</a></li>)",
+       R"(</ol>)",
+        "<p>Additionally, <a href=\"CppExercise.htm\">Exercise</a> is a",
         "<a href=\"CppClass.htm\">class</a> for an",
         "exercise.</p>"
       }
@@ -12122,6 +12208,23 @@ void c2h::Info::Test()
 
 const std::vector<std::string> c2h::Info::ToHtml(const std::string page_name) const
 {
+  //Bug:
+  // /home/richel/ProjectRichelBilderbeek/Tools/ToolCodeToHtml
+  //must be
+  // ToolCodeToHtml
+  #ifndef NDEBUG
+  if(page_name.find('/') != std::string::npos
+    || page_name.find('\\') != std::string::npos)
+  {
+    TRACE("ERROR");
+    TRACE(page_name);
+  }
+  #endif
+  assert(page_name.find('/') == std::string::npos
+    && "A c2h::Info page must not contain a slash");
+  assert(page_name.find('\\') == std::string::npos
+    && "A c2h::Info page must not contain a backslash");
+
   std::vector<std::string> v;
   {
     const std::string s
