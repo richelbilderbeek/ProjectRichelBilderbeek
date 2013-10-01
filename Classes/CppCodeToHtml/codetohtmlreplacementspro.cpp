@@ -47,12 +47,14 @@ const std::vector<std::pair<std::string,std::string> > c2h::Content::CreateProRe
     //32
     { "CppHelloQtQtCreatorUbuntuSymbian","<a href=\"C$ppH$elloQ$tQ$tC$reatorU$buntuS$ymbian.htm\">C$ppH$elloQ$tQ$tC$reatorU$buntuS$ymbian</a>" },
     //31
+
     { "CppMultipleChoiceQuestionDialog","<a href=\"C$ppM$ultipleC$hoiceQ$uestionD$ialog.htm\">C$ppM$ultipleC$hoiceQ$uestionD$ialog</a>" },
     { "CppQtLabeledQuadBezierArrowItem","<a href=\"C$ppQ$tLa$bel$edQ$uadB$ezierA$rrowI$tem.htm\">C$ppQ$tL$ab$el$edQ$uadB$ezierA$rrowI$tem</a>" },
     //30
+    { "qtkeyboardfriendlygraphicsview","<a href=\"C$ppQ$tK$eyboardF$riendlyG$raphicsV$iew.htm\">q$tk$eyboardf$riendlyg$raphicsv$iew</a>" },
     { "QtKeyboardFriendlyGraphicsView","<a href=\"C$ppQ$tK$eyboardF$riendlyG$raphicsV$iew.htm\">Q$tK$eyboardF$riendlyG$raphicsV$iew</a>" },
     { "qtmultiplechoicequestiondialog","<a href=\"C$ppQ$tM$ultipleC$hoiceQ$uestionD$ialog.htm\">q$tm$ultiplec$hoiceq$uestiond$ialog</a>" },
-    { "qtkeyboardfriendlygraphicsview","<a href=\"C$ppQ$tK$eyboardF$riendlyG$raphicsV$iew.htm\">q$tk$eyboardf$riendlyg$raphicsv$iew</a>" },
+    { "ToolTestSimpleLinearRegression","<a href=\"T$oolT$estS$impleL$inearR$egression.htm\">T$oolT$estS$impleL$inearR$egression</a>" },
     { "wtmultiplechoicequestiondialog","<a href=\"C$ppW$tM$ultipleC$hoiceQ$uestionD$ialog.htm\">w$tm$ultiplec$hoiceq$uestiond$ialog</a>" },
     //29
     { "ToolTestQtRoundedEditRectItem","<a href=\"T$oolT$estQ$tR$oundedE$ditR$ectI$tem.htm\">T$oolT$estQ$tR$oundedE$ditR$ectI$tem</a>" },
@@ -75,6 +77,7 @@ const std::vector<std::pair<std::string,std::string> > c2h::Content::CreateProRe
     { "CppHelloQtQtCreatorUbuntu","<a href=\"C$ppH$elloQ$tQ$tC$reatorU$buntu.htm\">C$ppH$elloQ$tQ$tC$reatorU$buntu</a>" },
     { "TestQtRoundedEditRectItem","<a href=\"T$oolT$estQ$tR$oundede$ditR$ectI$tem.htm\">T$estQ$tR$oundedE$ditR$ectI$tem</a>" },
     { "TestQtRoundedTextRectItem","<a href=\"T$oolT$estQ$tR$oundedT$extR$ectI$tem.htm\">T$estQ$tR$oundedT$extR$ectI$tem</a>" },       
+    { "ToolTestMultiApproximator","<a href=\"T$oolT$estM$ultiA$pproximator.htm\">T$oolT$estM$ultiA$pproximator</a>" },
     { "ToolTestQtRoundedRectItem","<a href=\"T$oolT$estQ$tR$oundedR$ectI$tem.htm\">T$oolT$estQ$tR$oundedR$ectI$tem</a>" },
     { "ToolTestTimedServerPusher","<a href=\"T$oolT$estT$imedS$erverP$usher.htm\">T$oolT$estT$imedS$erverP$usher</a>" },
     { "testqtroundededitrectitem","<a href=\"T$oolT$estQ$tR$oundedE$ditR$ectI$tem.htm\">t$estq$tr$oundede$ditr$ecti$tem</a>" },
@@ -159,10 +162,11 @@ const std::vector<std::pair<std::string,std::string> > c2h::Content::CreateProRe
     { "ProjectVanDenBogaart","<a href=\"P$rojectV$anD$enB$ogaart.htm\">P$rojectV$anD$enB$ogaart</a>" },
     { "QtConnectThreeWidget","<a href=\"C$ppQ$tC$onnectT$hreeW$idget.htm\">Q$tC$onnectT$hreeW$idget</a>" },
     { "TestQtCreatorProFile","<a href=\"T$oolT$estQ$tC$reatorP$roF$ile.htm\">T$estQ$tC$reatorP$roF$ile</a>" },
-    { "ToolTestQtArrowItems","<a href=\"T$oolT$estQ$tA$rrowI$tems.htm\">T$oolT$estQ$tA$rrowI$tems</a>" },
-    { "ToolTestToggleButton","<a href=\"T$oolT$estT$oggleB$utton.htm\">T$oolT$estT$oggleB$utton</a>" },
+    { "ToolTestApproximator","<a href=\"T$oolT$estA$pproximator.htm\">T$oolT$estA$pproximator</a>" },
     { "ToolTestNewickVector","<a href=\"T$oolT$estN$ewickV$ector.htm\">T$oolT$estN$ewickV$ector</a>" },
+    { "ToolTestQtArrowItems","<a href=\"T$oolT$estQ$tA$rrowI$tems.htm\">T$oolT$estQ$tA$rrowI$tems</a>" },
     { "ToolTestServerPusher","<a href=\"T$oolT$estS$erverP$usher.htm\">T$oolT$estS$erverP$usher</a>" },
+    { "ToolTestToggleButton","<a href=\"T$oolT$estT$oggleB$utton.htm\">T$oolT$estT$oggleB$utton</a>" },
     { "WtConnectThreeWidget","<a href=\"C$ppW$tC$onnectT$hreeW$idget.htm\">W$tC$onnectT$hreeW$idget</a>" },
     { "daswahreschlagerfest","<a href=\"G$ameD$asW$ahreS$chlagerf$est.htm\">d$asw$ahres$chlagerf$est</a>" },
     { "wttogglebuttonwidget","<a href=\"C$ppW$tT$oggleB$uttonW$idget.htm\">w$tt$oggleb$uttonw$idget</a>" },
@@ -301,6 +305,7 @@ const std::vector<std::pair<std::string,std::string> > c2h::Content::CreateProRe
     { "CppWtSafeTimer","<a href=\"C$ppW$tS$afeT$imer.htm\">C$ppW$tS$afeT$imer</a>" },
     { "DESTDIR_TARGET","<a href=\"CppQ$m$akeD$es$td$ir_target.htm\">D$ES$TD$IR_T$ARGET</a>" },
     { "GameBeerWanter","<a href=\"G$ameB$eerW$anter.htm\">G$ameB$eerW$anter</a>" },
+    { "GameK3OpEenRij","<a href=\"G$ameK$3O$pE$enR$ij.htm\">G$ameK$3O$pE$enR$ij</a>" },
     { "KalmanFilterer","<a href=\"T$oolK$almanF$ilterer.htm\">K$almanF$ilterer</a>" },
     { "MysteryMachine","<a href=\"C$ppM$ysteryM$achine.htm\">M$ysteryM$achine</a>" },
     { "QMAKE_CXXFLAGS","<a href=\"C$ppQ$m$akeQ$m$ake_c$xxf$lags.htm\">Q$M$AKE_C$XXF$LAGS</a>" },
@@ -321,7 +326,6 @@ const std::vector<std::pair<std::string,std::string> > c2h::Content::CreateProRe
     { "wttestentrance","<a href=\"T$oolT$estE$ntrance.htm\">w$tt$este$ntrance</a>" },
     { "wttogglebutton","<a href=\"C$ppW$tT$oggleB$utton.htm\">w$tt$oggleb$utton</a>" },
     { "wtserverpusher","<a href=\"C$ppW$tS$erverP$usher.htm\">w$ts$erverp$usher</a>" },
-
   //13
     { "-lboost_regex","<a href=\"C$ppR$egex.htm\">-l$b$oost_r$egex</a>" },
     { "CppAsciiArter","<a href=\"C$ppA$sciiA$rter.htm\">C$ppA$sciiA$rter</a>" },

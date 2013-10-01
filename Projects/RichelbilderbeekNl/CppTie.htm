@@ -3,9 +3,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
   <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
-  <title>boost::tuples::tie</title>
-  <meta name="description" content="C++ boost::tuples::tie"/>
-  <meta name="keywords" content="C++ boost::tuples::tie code snippet"/>
+  <title>tie</title>
+  <meta name="description" content="C++ tie"/>
+  <meta name="keywords" content="C++ C++11 tie tier std::tie boost::tie boost::tuples::tie code snippet"/>
   <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
 </head>
 <!-- End of head, start of body -->
@@ -18,29 +18,23 @@
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <!-- Page header -->
-<h1>(<a href="Cpp.htm">C++</a>) <a href="CppTie.htm">boost::tuples::tie</a></h1>
+<h1>(<a href="Cpp.htm">C++</a>) <a href="CppTie.htm">tie</a></h1>
 <p>&nbsp;</p>
-<p>Tiers are tuples, where all elements are of non-<b><a href="CppConst.htm">const</a></b> reference types. <a href="CppTie.htm">boost::tuples::tie</a> is like a <a href="CppMake_pair.htm">std::make_pair</a> for tuples.</p>
+<p>
+  <a href="CppTie.htm">Tiers</a> are <a href="CppTuple.htm">tuples</a>, 
+  where all elements are of non-<b><a href="CppConst.htm">const</a></b> 
+  reference types. 
+</p>
 <p>&nbsp;</p>
-<!-- start of code -->
-<table border = "1"><tr><td><code>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppStringH.htm">string</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/tuple/tuple.hpp&gt;<br/>
-<br/>
-<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
-{<br/>
-&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> i <a href="CppOperatorAssign.htm">=</a> 0;<br/>
-&nbsp;&nbsp;<b><a href="CppDouble.htm">double</a></b> d <a href="CppOperatorAssign.htm">=</a> 0.0;<br/>
-&nbsp;&nbsp;<a href="CppString.htm">std::string</a> s;<br/>
-&nbsp;&nbsp;<a href="CppTie.htm">boost::tuples::tie</a>(i,d,s) <a href="CppOperatorAssign.htm">=</a> <a href="CppMake_tuple.htm">boost::tuples::make_tuple</a>(1,1.1,"x");<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(i <a href="CppOperatorEqual.htm">==</a> 1);<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(d <a href="CppOperatorEqual.htm">==</a> 1.1);<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(s <a href="CppOperatorEqual.htm">==</a> "x");<br/>
-}<br/>
-<br/>
-</code></td></tr></table>
-<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><a href="CppExample.htm">Examples</a></h2>
+<p>&nbsp;</p>
+<ul>
+  <li><a href="CppTieExample.htm">tie example 1: std::tie, boost::tie and boost::tuples::tie comparison</a></li>
+</ul>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>

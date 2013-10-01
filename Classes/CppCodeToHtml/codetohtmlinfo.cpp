@@ -5093,7 +5093,6 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
       }
     }
   );
-
   m.push_back(
     { "CppUnique_ptrExample1",
       {
@@ -5112,7 +5111,6 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
       }
     }
   );
-
   m.push_back(
     { "CppUnique_ptrExample2",
       {
@@ -5133,8 +5131,82 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
       }
     }
   );
-
-
+  m.push_back(
+    { "CppVectorExample1",
+      {
+        "<p>",
+        "  <img src=\"PicCpp98.png\" alt=\"Cpp98\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicWindows.png\" alt=\"Windows\"/>",
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <a href=\"CppVectorExample1.htm\">std::vector example 1: basics</a>",
+        "  is a <a href=\"CppVector.htm\">std::vector</a> example that demonstrates",
+        "  writing to and reading from a <a href=\"CppVector.htm\">std::vector</a>",
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<ul>",
+        "  <li><a href=\"CppVectorExample1.zip\">Download the Qt Creator project 'CppVectorExample1' (zip)</a></li>",
+        "</ul>"
+      }
+    }
+  );
+  m.push_back(
+    { "CppVectorExample2",
+      {
+        "<p>",
+        "  <img src=\"PicCpp98.png\" alt=\"Cpp98\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicWindows.png\" alt=\"Windows\"/>",
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <a href=\"CppVectorExample2.htm\">std::vector example 2: erase-remove idiom</a>",
+        "  is a <a href=\"CppVector.htm\">std::vector</a> example that demonstrates",
+        "  the erase-remove idiom.",
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<ul>",
+        "  <li><a href=\"CppVectorExample2.zip\">Download the Qt Creator project 'CppVectorExample2' (zip)</a></li>",
+        "</ul>"
+      }
+    }
+  );
+  m.push_back(
+    { "CppVectorExample3",
+      {
+        "<p>",
+        "  <img src=\"PicCpp11.png\" alt=\"Cpp11\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicWindows.png\" alt=\"Windows\"/>",
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <a href=\"CppVectorExample3.htm\">std::vector example 3: C++11 emplace member function</a>",
+        "  is a <a href=\"CppVector.htm\">std::vector</a> example that demonstrates",
+        "  the <a href=\"Cpp11.htm\">C++11</a> emplace <a href=\"CppMemberFunction.htm\">member function</a>.",
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<ul>",
+        "  <li><a href=\"CppVectorExample3.zip\">Download the Qt Creator project 'CppVectorExample3' (zip)</a></li>",
+        "</ul>"
+      }
+    }
+  );
+  m.push_back(
+    { "CppVectorExample4",
+      {
+        "<p>",
+        "  <img src=\"PicCpp98.png\" alt=\"Cpp98\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicWindows.png\" alt=\"Windows\"/>",
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <a href=\"CppVectorExample4.htm\">std::vector example 4: remove an element with preserving the order</a>",
+        "  is a <a href=\"CppVector.htm\">std::vector</a> example that demonstrates",
+        "  how to remove an element with preserving the order.",
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<ul>",
+        "  <li><a href=\"CppVectorExample4.zip\">Download the Qt Creator project 'CppVectorExample4' (zip)</a></li>",
+        "</ul>"
+      }
+    }
+  );
   m.push_back(
    { "CppVirtualBastard",
       {
@@ -12122,6 +12194,13 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
     }
   );
 
+  m.push_back(
+    { "ZZZ_I_MUST_FAIL",
+      {
+        "<p><ul>This incorrect HTML should be detected in debugging"
+      }
+    }
+  );
   std::map<Key,Value> n;
   std::copy(m.begin(),m.end(),std::inserter(n,n.begin()));
   return n;
@@ -12195,6 +12274,8 @@ void c2h::Info::Test()
         TRACE("ERROR: invalid HTML in the following c2h::info page");
         TRACE(p.first);
         TRACE("SOLUTION: Clean HTML in c2h::Info::CreatePageInfo");
+
+        if (p.first == std::string("ZZZ_I_MUST_FAIL")) continue;
       }
       assert(IsCleanHtml(v));
     }
@@ -12208,18 +12289,6 @@ void c2h::Info::Test()
 
 const std::vector<std::string> c2h::Info::ToHtml(const std::string page_name) const
 {
-  //Bug:
-  // /home/richel/ProjectRichelBilderbeek/Tools/ToolCodeToHtml
-  //must be
-  // ToolCodeToHtml
-  #ifndef NDEBUG
-  if(page_name.find('/') != std::string::npos
-    || page_name.find('\\') != std::string::npos)
-  {
-    TRACE("ERROR");
-    TRACE(page_name);
-  }
-  #endif
   assert(page_name.find('/') == std::string::npos
     && "A c2h::Info page must not contain a slash");
   assert(page_name.find('\\') == std::string::npos
