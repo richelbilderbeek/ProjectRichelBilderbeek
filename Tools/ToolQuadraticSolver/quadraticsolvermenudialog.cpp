@@ -28,7 +28,7 @@ const ribi::About ribi::QuadraticSolverMenuDialog::GetAbout()
     "Richel Bilderbeek",
     "QuadraticSolver",
     "solver of quadratic equations",
-    "the 26th of August 2013",
+    "the 1st of Oktober 2013",
     "2008-2013",
     "http://www.richelbilderbeek.nl/ToolQuadraticSolver.htm",
     GetVersion(),
@@ -39,14 +39,14 @@ const ribi::About ribi::QuadraticSolverMenuDialog::GetAbout()
 
 const std::string ribi::QuadraticSolverMenuDialog::GetVersion()
 {
-  return "2.0";
+  return "2.1";
 }
 
 const std::vector<std::string> ribi::QuadraticSolverMenuDialog::GetVersionHistory()
 {
   return {
     "2008-xx-xx: version 1.0: initial version in C++ Builder",
-    "2013-08-26: version 2.0: port to Qt Creator"
+    "2013-08-26: version 2.0: port to Qt Creator, console version",
+    "2013-10-01: version 2.1: added desktop version"
   };
-  return v;
 }
