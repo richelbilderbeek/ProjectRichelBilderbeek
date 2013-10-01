@@ -18,3 +18,6 @@ greaterThan(QT_MAJOR_VERSION, 4) {
 #   sudo aptitude search location5|grep dev
 #   sudo apt-get install qtlocation5-dev
 #   sudo apt-get install qtlocation5-private-de
+
+SOURCES += \
+    main.cpp

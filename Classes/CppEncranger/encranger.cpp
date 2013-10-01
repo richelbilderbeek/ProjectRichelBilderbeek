@@ -24,6 +24,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <cassert>
 #include <functional>
 #include <iostream>
+#include <stdexcept>
 #include <numeric>
 #include <vector>
 

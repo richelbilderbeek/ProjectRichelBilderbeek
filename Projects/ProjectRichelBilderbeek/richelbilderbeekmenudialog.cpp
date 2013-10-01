@@ -253,7 +253,7 @@ const ribi::About ribi::RichelBilderbeek::MenuDialog::GetAbout() noexcept
 
 const std::string ribi::RichelBilderbeek::MenuDialog::GetVersion() noexcept
 {
-  return "1.10";
+  return "1.11";
 }
 
 const std::vector<std::string> ribi::RichelBilderbeek::MenuDialog::GetVersionHistory() noexcept

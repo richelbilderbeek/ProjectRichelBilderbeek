@@ -491,7 +491,7 @@ struct ProgramGaborFilter : public RichelBilderbeek::ProgramTool
 struct ProgramGrayCoder : public RichelBilderbeek::ProgramTool
 {
   const std::string GetFilenameConsole() const noexcept { return ""; }
-  const std::string GetFilenameDesktop() const noexcept { return ""; }
+  const std::string GetFilenameDesktop() const noexcept { return "ToolGrayCoder_2_1.png"; }
   const std::string GetFilenameDesktopWindowsOnly() const noexcept { return "ToolGrayCoder_1_0.png"; }
   const std::string GetFilenameWeb() const noexcept { return ""; }
   const std::string GetScreenName() const noexcept { return "GrayCoder"; }
@@ -1572,7 +1572,7 @@ struct ProgramTestDial : public RichelBilderbeek::ProgramClass
 struct ProgramEncranger : public RichelBilderbeek::ProgramClass
 {
   const std::string GetFilenameConsole() const noexcept { return ""; }
-  const std::string GetFilenameDesktop() const noexcept { return "ToolEncranger_2_0.png"; }
+  const std::string GetFilenameDesktop() const noexcept { return "ToolEncranger_2_5.png"; }
   const std::string GetFilenameDesktopWindowsOnly() const noexcept { return "ToolEncranger_1_0.png"; }
   const std::string GetFilenameWeb() const noexcept { return "ToolEncranger_2_1.png"; }
   const std::string GetScreenName() const noexcept { return "Encranger"; }

@@ -175,5 +175,9 @@
         <file>ToolTimePoll_4_1.png</file>
         <file>ToolUbuntuOneWatcher_1_0.png</file>
         <file>ToolVisualAbc_1_0.png</file>
+        <file>ToolEncranger_1_0.png</file>
+        <file>ToolEncranger_2_1.png</file>
+        <file>ToolEncranger_2_5.png</file>
+        <file>ToolGrayCoder_2_1.png</file>
     </qresource>
 </RCC>
