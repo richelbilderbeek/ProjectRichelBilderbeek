@@ -25,6 +25,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <string>
 #include <vector>
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#include <boost/signals2.hpp>
+#pragma GCC diagnostic pop
+
 namespace ribi {
 
 struct Canvas
@@ -48,31 +54,40 @@ struct Canvas
     const ColorSystem colorSystem = ColorSystem::normal,
     const CoordinatSystem coordinatSystem = CoordinatSystem::screen);
 
+  ///Clears the canvas
+  void Clear() noexcept;
+
   ///Draw (or actually: add) a dot on the canvas at (x,y), where
   ///(x,y) is the center of a dot with radius 1.0. It is not checked that
   ///(x,y) is in ( [0.0,GetWidth()>, [0.0,GetHeight()> )
-  void DrawDot(const double x, const double y);
+  void DrawDot(const double x, const double y) noexcept;
 
   ///Draw (or actually: add) a line on the canvas from (x1,y1) to (x2,y2),
   ///where (x1,y1) and (x2,y2) are the centers of a dot with radius 1.0 at
   ///the edges of the line
-  void DrawLine(const double x1, const double y1, const double x2, const double y2);
+  void DrawLine(const double x1, const double y1, const double x2, const double y2) noexcept;
 
   ///Draw (or actually: add) a circle on the canvas at (xMid,yMid),
   ///with radius ray
-  void DrawCircle(const double xMid, const double yMid, const double ray);
+  void DrawCircle(const double xMid, const double yMid, const double ray) noexcept;
 
   ///Obtain the height of the canvas is characters
-  int GetHeight() const { return mCanvas.size(); }
+  int GetHeight() const noexcept { return mCanvas.size(); }
 
   ///Obtain the version of this class
-  static const std::string GetVersion();
+  static const std::string GetVersion() noexcept;
 
   ///Obtain the version history of this class
-  static const std::vector<std::string> GetVersionHistory();
+  static const std::vector<std::string> GetVersionHistory() noexcept;
 
   ///Obtain the width of the canvas is characters
-  int GetWidth() const { return (GetHeight()==0 ? 0 : mCanvas[0].size() ); }
+  int GetWidth() const noexcept { return (GetHeight()==0 ? 0 : mCanvas[0].size() ); }
+
+  ///Set the color system used
+  void SetColorSystem(const ColorSystem colorSystem) noexcept;
+
+  ///Set the coordinat system used
+  void SetCoordinatSystem(const CoordinatSystem coordinatSystem) noexcept;
 
   private:
   ///The Canvas its internal data: a 2D y-x-ordered std::vector

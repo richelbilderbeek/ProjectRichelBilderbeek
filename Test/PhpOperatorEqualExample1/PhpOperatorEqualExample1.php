@@ -1,0 +1,1 @@
+<?php///Comparison taking type into accountassert( 1   ===  1 );assert("1"  === "1");///Comparison only taking value into accountassert( 1    ==  1 );assert("1"   == "1");///Comparison between different types with equal valuesassert( 1   !== "1");assert( 1    == "1");?>

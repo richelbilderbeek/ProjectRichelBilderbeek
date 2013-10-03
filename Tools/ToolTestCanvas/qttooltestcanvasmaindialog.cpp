@@ -1,21 +1,21 @@
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include "qttooltestcanvasmaindialog.h"
 
 #include <cassert>
 #include <sstream>
 
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Weffc++"
-#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include "canvas.h"
 #include "ui_qttooltestcanvasmaindialog.h"
 #pragma GCC diagnostic pop
 
 ribi::QtToolTestCanvasMainDialog::QtToolTestCanvasMainDialog(QWidget *parent) :
   QtHideAndShowDialog(parent),
-  ui(new Ui::QtToolTestCanvasMainDialog)
+  ui(new Ui::QtToolTestCanvasMainDialog),
+  m_canvas(CreateCanvas())
 {
   ui->setupUi(this);
-  ShowCanvas();
 }
 
 ribi::QtToolTestCanvasMainDialog::~QtToolTestCanvasMainDialog() noexcept
@@ -23,31 +23,11 @@ ribi::QtToolTestCanvasMainDialog::~QtToolTestCanvasMainDialog() noexcept
   delete ui;
 }
 
-void ribi::QtToolTestCanvasMainDialog::on_box_color_system_currentIndexChanged(int )
+const boost::shared_ptr<ribi::Canvas> ribi::QtToolTestCanvasMainDialog::CreateCanvas()
 {
-  ShowCanvas();
-}
-
-void ribi::QtToolTestCanvasMainDialog::on_box_coordinat_system_currentIndexChanged(int )
-{
-  ShowCanvas();
-}
-
-void ribi::QtToolTestCanvasMainDialog::ShowCanvas()
-{
-  const int maxx = 79; //Console is 80 chars wide
-  const int maxy = 23; //Console is 80 chars high
-  const Canvas::ColorSystem color_system
-    = ui->box_color_system->currentIndex() == 0
-    ? Canvas::ColorSystem::normal
-    : Canvas::ColorSystem::invert;
-  const Canvas::CoordinatSystem coordinat_system
-    = ui->box_coordinat_system->currentIndex() == 0
-    ? Canvas::CoordinatSystem::screen : Canvas::CoordinatSystem::graph;
-  Canvas c( maxx, maxy, color_system, coordinat_system);
-
-  //Draw smiley to Canvas
-
+  const int maxx = 79;
+  const int maxy = 23;
+  boost::shared_ptr<ribi::Canvas> canvas(new Canvas(maxx,maxy));
   //Determine and calculate dimensions and coordinats of smiley
   const double maxxD = static_cast<double>(maxx);
   const double maxyD = static_cast<double>(maxy);
@@ -66,17 +46,53 @@ void ribi::QtToolTestCanvasMainDialog::ShowCanvas()
   const double mouthMidY   = 0.50 * maxyD + (0.7 * headRay) ;
   const double mouthRightY = 0.50 * maxyD + (0.2 * headRay) ;
   //Draw the image on Canvas
-  c.DrawCircle(midX, midY, headRay);
-  c.DrawCircle(eyeLeftX, eyeLeftY, eyeRay);
-  c.DrawDot(eyeLeftX, eyeLeftY);
-  c.DrawCircle(eyeRightX, eyeRightY, eyeRay);
-  c.DrawDot(eyeRightX, eyeRightY);
-  c.DrawLine(mouthLeftX, mouthLeftY, mouthMidX, mouthMidY);
-  c.DrawLine(mouthMidX, mouthMidY, mouthRightX, mouthRightY);
-  c.DrawLine(mouthRightX, mouthRightY, mouthLeftX, mouthLeftY);
+  canvas->DrawCircle(midX, midY, headRay);
+  canvas->DrawCircle(eyeLeftX, eyeLeftY, eyeRay);
+  canvas->DrawDot(eyeLeftX, eyeLeftY);
+  canvas->DrawCircle(eyeRightX, eyeRightY, eyeRay);
+  canvas->DrawDot(eyeRightX, eyeRightY);
+  canvas->DrawLine(mouthLeftX, mouthLeftY, mouthMidX, mouthMidY);
+  canvas->DrawLine(mouthMidX, mouthMidY, mouthRightX, mouthRightY);
+  canvas->DrawLine(mouthRightX, mouthRightY, mouthLeftX, mouthLeftY);
+  return canvas;
+}
+
+
+void ribi::QtToolTestCanvasMainDialog::on_box_color_system_currentIndexChanged(int )
+{
+  const Canvas::ColorSystem color_system
+    = ui->box_color_system->currentIndex() == 0
+    ? Canvas::ColorSystem::normal
+    : Canvas::ColorSystem::invert;
+  this->m_canvas->SetColorSystem(color_system);
+  //Should redraw automatically
+}
+
+void ribi::QtToolTestCanvasMainDialog::on_box_coordinat_system_currentIndexChanged(int )
+{
+  const Canvas::CoordinatSystem coordinat_system
+    = ui->box_coordinat_system->currentIndex() == 0
+    ? Canvas::CoordinatSystem::screen : Canvas::CoordinatSystem::graph;
+  this->m_canvas->SetCoordinatSystem(coordinat_system);
+  //Should redraw automatically
+}
+
+void ribi::QtToolTestCanvasMainDialog::ShowCanvas()
+{
   //Display the image
   std::stringstream s;
-  s << c;
+  s << (*m_canvas);
   ui->text->setPlainText(s.str().c_str());
 
+}
+
+void ribi::QtToolTestCanvasMainDialog::on_button_dot_clicked()
+{
+   //
+}
+
+void ribi::QtToolTestCanvasMainDialog::on_button_clear_clicked()
+{
+  m_canvas->Clear();
+  //Should redraw automatically
 }

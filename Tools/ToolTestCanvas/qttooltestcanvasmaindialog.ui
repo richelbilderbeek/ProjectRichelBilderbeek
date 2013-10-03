@@ -6,75 +6,12 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>711</width>
-    <height>493</height>
+    <width>533</width>
+    <height>586</height>
    </rect>
   </property>
-  <layout class="QGridLayout" name="gridLayout">
-   <item row="0" column="3">
-    <widget class="QComboBox" name="box_coordinat_system">
-     <property name="font">
-      <font>
-       <family>Courier</family>
-      </font>
-     </property>
-     <item>
-      <property name="text">
-       <string>screen</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>graph</string>
-      </property>
-     </item>
-    </widget>
-   </item>
-   <item row="0" column="0">
-    <widget class="QLabel" name="label_color_system">
-     <property name="font">
-      <font>
-       <family>Courier</family>
-      </font>
-     </property>
-     <property name="text">
-      <string>Color system</string>
-     </property>
-    </widget>
-   </item>
-   <item row="0" column="1">
-    <widget class="QComboBox" name="box_color_system">
-     <property name="font">
-      <font>
-       <family>Courier</family>
-      </font>
-     </property>
-     <item>
-      <property name="text">
-       <string>normal</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>invert</string>
-      </property>
-     </item>
-    </widget>
-   </item>
-   <item row="0" column="4">
-    <spacer name="spacer">
-     <property name="orientation">
-      <enum>Qt::Horizontal</enum>
-     </property>
-     <property name="sizeHint" stdset="0">
-      <size>
-       <width>40</width>
-       <height>20</height>
-      </size>
-     </property>
-    </spacer>
-   </item>
-   <item row="1" column="0" colspan="5">
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
     <widget class="QPlainTextEdit" name="text">
      <property name="font">
       <font>
@@ -87,15 +24,263 @@
      </property>
     </widget>
    </item>
-   <item row="0" column="2">
-    <widget class="QLabel" name="label_coordinat_system">
-     <property name="font">
-      <font>
-       <family>Courier</family>
-      </font>
-     </property>
+   <item>
+    <layout class="QHBoxLayout" name="layout_dot">
+     <item>
+      <widget class="QPushButton" name="button_dot">
+       <property name="text">
+        <string>Draw dot</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="label_dot_x">
+       <property name="text">
+        <string>(x =</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QSpinBox" name="box_x"/>
+     </item>
+     <item>
+      <widget class="QLabel" name="label_doy_y">
+       <property name="text">
+        <string>, y=</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QSpinBox" name="box_y"/>
+     </item>
+     <item>
+      <widget class="QLabel" name="label_dot_close">
+       <property name="text">
+        <string>)</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <spacer name="horizontalSpacer">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="layout_circle">
+     <item>
+      <widget class="QPushButton" name="button_circle">
+       <property name="text">
+        <string>Draw circle</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="label_circle_x">
+       <property name="text">
+        <string>(x =</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QSpinBox" name="box_circle_x"/>
+     </item>
+     <item>
+      <widget class="QLabel" name="label_circle_y">
+       <property name="text">
+        <string>, y=</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QSpinBox" name="box_circle_y"/>
+     </item>
+     <item>
+      <widget class="QLabel" name="label_circle_r">
+       <property name="text">
+        <string>, radius=</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QSpinBox" name="box_circle_r"/>
+     </item>
+     <item>
+      <widget class="QLabel" name="label_circle_close">
+       <property name="text">
+        <string>)</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <spacer name="horizontalSpacer_2">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="layout_line">
+     <item>
+      <widget class="QPushButton" name="button_line">
+       <property name="text">
+        <string>Draw line</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="label_line_x1">
+       <property name="text">
+        <string>(x =</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QSpinBox" name="box_line_x1"/>
+     </item>
+     <item>
+      <widget class="QLabel" name="label_line_y1">
+       <property name="text">
+        <string>, y=</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QSpinBox" name="box_line_y1"/>
+     </item>
+     <item>
+      <widget class="QLabel" name="label_line_x2">
+       <property name="text">
+        <string>)-(x =</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QSpinBox" name="box_line_x2"/>
+     </item>
+     <item>
+      <widget class="QLabel" name="label_line_y2">
+       <property name="text">
+        <string>, y=</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QSpinBox" name="box_line_y2"/>
+     </item>
+     <item>
+      <widget class="QLabel" name="label_line_close">
+       <property name="text">
+        <string>)</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <spacer name="horizontalSpacer_3">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout">
+     <item>
+      <widget class="QLabel" name="label_color_system">
+       <property name="font">
+        <font>
+         <family>Courier</family>
+        </font>
+       </property>
+       <property name="text">
+        <string>Color system</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QComboBox" name="box_color_system">
+       <property name="font">
+        <font>
+         <family>Courier</family>
+        </font>
+       </property>
+       <item>
+        <property name="text">
+         <string>normal</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>invert</string>
+        </property>
+       </item>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout_2">
+     <item>
+      <widget class="QLabel" name="label_coordinat_system">
+       <property name="font">
+        <font>
+         <family>Courier</family>
+        </font>
+       </property>
+       <property name="text">
+        <string>Coordinat system</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QComboBox" name="box_coordinat_system">
+       <property name="font">
+        <font>
+         <family>Courier</family>
+        </font>
+       </property>
+       <item>
+        <property name="text">
+         <string>screen</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>graph</string>
+        </property>
+       </item>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <widget class="QPushButton" name="button_clear">
      <property name="text">
-      <string>Coordinat system</string>
+      <string>Clear</string>
      </property>
     </widget>
    </item>
