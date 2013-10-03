@@ -1,6 +1,6 @@
 //---------------------------------------------------------------------------
 /*
-TestMultipleChoiceQuestion, tool to test the MultipleChoiceQuestion and MultipleChoiceQuestionDialog classes
+TestMultipleChoiceQuestion, tests multiple choice question classes
 Copyright (C) 2013 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
@@ -23,12 +23,15 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include "testmultiplechoicequestionmenudialog.h"
 
+#include <stdexcept>
+
 #include <boost/foreach.hpp>
 
 #include <QFile>
 
 #include "multiplechoicequestion.h"
 #include "multiplechoicequestiondialog.h"
+#include "trace.h"
 #pragma GCC diagnostic pop
 
 
@@ -43,6 +46,11 @@ ribi::TestMultipleChoiceQuestionMenuDialog::TestMultipleChoiceQuestionMenuDialog
         f.copy(filename.c_str());
     }
     assert(QFile::exists(filename.c_str()));
+    if (QFile::exists(filename.c_str()))
+    {
+      const std::string s = "TestMultipleChoiceQuestionMenuDialog: file not found: " + filename;
+      throw std::logic_error(s.c_str());
+    }
   }
 }
 
@@ -59,9 +67,7 @@ const ribi::About ribi::TestMultipleChoiceQuestionMenuDialog::GetAbout() const n
     GetVersionHistory());
   a.AddLibrary("MultipleChoiceQuestion version: " + MultipleChoiceQuestion::GetVersion());
   a.AddLibrary("MultipleChoiceQuestionDialog version: " + MultipleChoiceQuestionDialog::GetVersion());
-  //a.AddLibrary("Question version: " + Question::GetVersion());
-  //a.AddLibrary("QuestionDialog version: " + QuestionDialog::GetVersion());
-  //a.AddLibrary("Trace version: " + Trace::GetVersion());
+  a.AddLibrary("Trace version: " + Trace::GetVersion());
   return a;
 }
 

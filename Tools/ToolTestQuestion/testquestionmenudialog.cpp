@@ -23,6 +23,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include "testquestionmenudialog.h"
 
+#include <stdexcept>
+
 #include <boost/foreach.hpp>
 
 #include "multiplechoicequestion.h"
@@ -48,6 +50,11 @@ ribi::TestQuestionMenuDialog::TestQuestionMenuDialog()
         f.copy(filename.c_str());
     }
     assert(QFile::exists(filename.c_str()));
+    if (!QFile::exists(filename.c_str()))
+    {
+      const std::string s = "TestQuestionMenuDialog: file not found: " + filename;
+      throw std::logic_error(s.c_str());
+    }
   }
 }
 
@@ -79,10 +86,10 @@ const std::string ribi::TestQuestionMenuDialog::GetVersion() noexcept
 
 const std::vector<std::string> ribi::TestQuestionMenuDialog::GetVersionHistory() noexcept
 {
-  std::vector<std::string> v;
-  v.push_back("2011-06-28: Version 1.0: initial version");
-  v.push_back("2011-09-16: Version 2.0: show QuestionDialog from std::string in website version");
-  v.push_back("2012-12-23: Version 2.1: finished desktop application");
-  v.push_back("2013-08-20: Version 3.0: major architectural rewrite");
-  return v;
+  return {
+    "2011-06-28: Version 1.0: initial version",
+    "2011-09-16: Version 2.0: show QuestionDialog from std::string in website version",
+    "2012-12-23: Version 2.1: finished desktop application",
+    "2013-08-20: Version 3.0: major architectural rewrite"
+  };
 }

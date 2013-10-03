@@ -6,9 +6,12 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>500</width>
-    <height>607</height>
+    <width>491</width>
+    <height>429</height>
    </rect>
+  </property>
+  <property name="windowTitle">
+   <string>TestQuestion</string>
   </property>
   <property name="windowIcon">
    <iconset resource="ToolTestQuestion.qrc">
@@ -25,8 +28,8 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>480</width>
-        <height>561</height>
+        <width>471</width>
+        <height>307</height>
        </rect>
       </property>
       <layout class="QVBoxLayout" name="verticalLayout_3"/>
@@ -34,9 +37,37 @@
     </widget>
    </item>
    <item>
+    <widget class="QLabel" name="label">
+     <property name="text">
+      <string>Open or multiple-choice question:</string>
+     </property>
+    </widget>
+   </item>
+   <item>
     <widget class="QLineEdit" name="edit_question">
      <property name="text">
       <string>-,This is multiple choice question,yes,no</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QLabel" name="label_4">
+     <property name="text">
+      <string>Examples:</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QLabel" name="label_2">
+     <property name="text">
+      <string>-,This is multiple choice question,yes,no</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QLabel" name="label_3">
+     <property name="text">
+      <string>-,This is an open question,Yes/yes/Y/y</string>
      </property>
     </widget>
    </item>

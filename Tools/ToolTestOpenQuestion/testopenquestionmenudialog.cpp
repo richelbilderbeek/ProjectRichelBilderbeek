@@ -23,20 +23,20 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include "testopenquestionmenudialog.h"
 
+#include <stdexcept>
+
 #include <boost/foreach.hpp>
 
 #include "openquestion.h"
 #include "openquestiondialog.h"
-//#include "question.h"
-//#include "questiondialog.h"
-//#include "trace.h"
+#include "trace.h"
 
 #include <QFile>
 #pragma GCC diagnostic pop
 
 ribi::TestOpenQuestionMenuDialog::TestOpenQuestionMenuDialog()
 {
-  const std::vector<std::string> files = { "question.png" };
+  const std::vector<std::string> files = { "Question.png" };
   BOOST_FOREACH(const std::string& filename,files)
   {
     if (!QFile::exists(filename.c_str()))
@@ -45,6 +45,11 @@ ribi::TestOpenQuestionMenuDialog::TestOpenQuestionMenuDialog()
         f.copy(filename.c_str());
     }
     assert(QFile::exists(filename.c_str()));
+    if (QFile::exists(filename.c_str()))
+    {
+      const std::string s = "TestOpenQuestionMenuDialog: file not found: " + filename;
+      throw std::logic_error(s.c_str());
+    }
   }
 }
 
@@ -61,9 +66,7 @@ const ribi::About ribi::TestOpenQuestionMenuDialog::GetAbout() const
     GetVersionHistory());
   a.AddLibrary("OpenQuestion version: " + OpenQuestion::GetVersion());
   a.AddLibrary("OpenQuestionDialog version: " + OpenQuestionDialog::GetVersion());
-  //a.AddLibrary("Question version: " + Question::GetVersion());
-  //a.AddLibrary("QuestionDialog version: " + QuestionDialog::GetVersion());
-  //a.AddLibrary("Trace version: " + Trace::GetVersion());
+  a.AddLibrary("Trace version: " + Trace::GetVersion());
   return a;
 }
 
@@ -74,8 +77,8 @@ const std::string ribi::TestOpenQuestionMenuDialog::GetVersion()
 
 const std::vector<std::string> ribi::TestOpenQuestionMenuDialog::GetVersionHistory()
 {
-  std::vector<std::string> v;
-  v.push_back("2013-08-20: Version 1.0: initial version");
-  return v;
+  return {
+    "2013-08-20: Version 1.0: initial version"
+  };
 }
 

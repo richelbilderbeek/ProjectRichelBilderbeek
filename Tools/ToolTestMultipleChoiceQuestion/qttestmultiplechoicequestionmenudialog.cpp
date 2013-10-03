@@ -1,6 +1,6 @@
 //---------------------------------------------------------------------------
 /*
-TestMultipleChoiceQuestion, tool to test the MultipleChoiceQuestion and MultipleChoiceQuestionDialog classes
+TestMultipleChoiceQuestion, tests multiple choice question classes
 Copyright (C) 2013 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify

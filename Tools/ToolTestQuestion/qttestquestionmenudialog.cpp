@@ -67,7 +67,6 @@ void ribi::QtTestQuestionMenuDialog::on_button_start_clicked()
 
 void ribi::QtTestQuestionMenuDialog::on_button_about_clicked()
 {
-  hide();
   About a = m_dialog->GetAbout();
   a.AddLibrary("QtHideAndShowDialog version: " + QtHideAndShowDialog::GetVersion());
   a.AddLibrary("QtOpenQuestionDialog version: " + QtOpenQuestionDialog::GetVersion());
@@ -75,8 +74,7 @@ void ribi::QtTestQuestionMenuDialog::on_button_about_clicked()
   a.AddLibrary("QtQuestionDialog version: " + QtQuestionDialog::GetVersion());
   QtAboutDialog d(a);
   d.setStyleSheet(this->styleSheet());
-  d.exec();
-  show();
+  this->ShowChild(&d);
 }
 
 void ribi::QtTestQuestionMenuDialog::on_button_quit_clicked()
