@@ -37,6 +37,9 @@
      <property name="alternatingRowColors">
       <bool>true</bool>
      </property>
+     <property name="wordWrap">
+      <bool>true</bool>
+     </property>
      <item>
       <property name="text">
        <string>A</string>

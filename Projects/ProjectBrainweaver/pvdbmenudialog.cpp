@@ -24,13 +24,13 @@ const ribi::About ribi::pvdb::MenuDialog::GetAbout()
 
 const std::string ribi::pvdb::MenuDialog::GetVersion()
 {
-  return "0.39";
+  return "0.40";
 }
 
 const std::vector<std::string> ribi::pvdb::MenuDialog::GetVersionHistory()
 {
   return {
-    "2012-06-17: Version 0.01: concept version, using 'IronHide' style",
+    "2012-06-17: Version 0.01: concept version of ProjectVanDenBogaart, using 'IronHide' style",
     "2012-10-18: Version 0.02: able to crosscompile to windows, few dialogs present",
     "2012-10-19: Version 0.03: added use of QtHideAndShowDialog, most dialogs present",
     "2012-10-24: Version 0.04: added QtPvdbClusterWidget",
@@ -58,7 +58,7 @@ const std::vector<std::string> ribi::pvdb::MenuDialog::GetVersionHistory()
     "2013-01-18: Version 0.26: calculate rating values correctly",
     "2013-01-20: Version 0.27: added graphics to menu's, using 'Dolphin' style",
     "2013-01-23: Version 0.28: allow ConceptMapEdit arrows having solitary focus, progress on printing",
-    "2013-02-12: Version 0.29: changed name to Brainweaver (formely called ProjectVanDenBogaart), progress on printing",
+    "2013-02-12: Version 0.29: changed name to Brainweaver, progress on printing",
     "2013-04-21: Version 0.30: shows sub-concepts maps in rating well, allows saving without going back to the main menu",
     "2013-05-04: Version 0.31: improved printing for student and assessor, first steps in implementing undo functionality",
     "2013-07-27: Version 0.32: first step in semi-automated rating mechanism",
@@ -68,6 +68,7 @@ const std::vector<std::string> ribi::pvdb::MenuDialog::GetVersionHistory()
     "2013-09-07: Version 0.36: placed all classes in namespace ribi::pvdb, minor changes",
     "2013-09-15: Version 0.37: minor changes, added wordwrap in concept names",
     "2013-09-21: Version 0.38: minor changes, added wordwrap in examples in concept map widgets",
-    "2013-09-29: Version 0.39: minor changes, added wordwrap in examples in rate examples dialog"
+    "2013-09-29: Version 0.39: minor changes, added wordwrap in examples in rate examples dialog",
+    "2013-10-03: Version 0.40: minor changes, added wordwrap in some more player"
   };
 }
