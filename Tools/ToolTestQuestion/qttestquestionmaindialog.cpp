@@ -35,7 +35,6 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "multiplechoicequestiondialog.h"
 #include "openquestion.h"
 #include "openquestiondialog.h"
-#include "qtaboutdialog.h"
 #include "qtmultiplechoicequestiondialog.h"
 #include "qtopenquestiondialog.h"
 #include "questiondialog.h"
@@ -124,7 +123,7 @@ void ribi::QtTestQuestionMainDialog::SetQuestion(const std::string& s)
 }
 
 #ifndef NDEBUG
-void ribi::QtTestQuestionMainDialog::Test()
+void ribi::QtTestQuestionMainDialog::Test() noexcept
 {
   {
     static bool is_tested = false;
@@ -133,11 +132,11 @@ void ribi::QtTestQuestionMainDialog::Test()
   }
   TRACE("Starting ribi::QtTestQuestionMainDialog::Test");
   QtTestQuestionMainDialog d;
-  d.SetQuestion("-,1+1=,2,1,3");
+  d.SetQuestion("-,1+1=,2,1,3"); //Multiple choice question
   assert(d.GetDialog());
   d.SetQuestion("nonsense");
   assert(!d.GetDialog());
-  d.SetQuestion("-,1+1=,2,1,3");
+  d.SetQuestion("-,1+1=,2/Two/two"); //Open question
   assert(d.GetDialog());
   d.SetQuestion("again nonsense");
   assert(!d.GetDialog());

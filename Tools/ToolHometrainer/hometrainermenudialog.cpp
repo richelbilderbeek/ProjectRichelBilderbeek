@@ -44,7 +44,7 @@ const ribi::About ribi::HometrainerMenuDialog::GetAbout() const noexcept
     "Hometrainer",
     "exercise and survey suite",
     "the 16th of October 2011",
-    "2011",
+    "2009-201x",
     "http://www.richelbilderbeek.nl/ToolHometrainer.htm",
     GetVersion(),
     GetVersionHistory());
@@ -62,7 +62,7 @@ const ribi::About ribi::HometrainerMenuDialog::GetAbout() const noexcept
 
 const std::string ribi::HometrainerMenuDialog::GetVersion() noexcept
 {
-  return "2.0";
+  return "3.0";
 }
 
 const std::vector<std::string> ribi::HometrainerMenuDialog::GetVersionHistory() noexcept
@@ -79,6 +79,7 @@ const std::vector<std::string> ribi::HometrainerMenuDialog::GetVersionHistory() 
     "2010-01-07: Version 1.7",
     "2010-01-28: Version 1.8",
     "2011-10-16: Version 2.0: initial website version, renamed 'Hometrainer 2' to 'Hometrainer'"
+    "201x-xx-xx: Version 3.0: major architectural rewrite"
   };
 }
 

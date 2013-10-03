@@ -28,9 +28,7 @@ void ribi::QtHometrainerMenuDialog::on_button_about_clicked() noexcept
   QtAboutDialog d(a);
   d.setWindowIcon(this->windowIcon());
   d.setStyleSheet(this->styleSheet());
-  this->hide();
-  d.exec();
-  this->show();
+  ShowChild(&d);
 }
 
 void ribi::QtHometrainerMenuDialog::on_button_quit_clicked() noexcept
@@ -40,7 +38,11 @@ void ribi::QtHometrainerMenuDialog::on_button_quit_clicked() noexcept
 
 void ribi::QtHometrainerMenuDialog::on_button_start_clicked() noexcept
 {
-  QtHometrainerMainDialog d;
+  const std::vector<std::string> v {
+    "-,1+1=,2,1,3",
+    "-,1+1=,2/Two/two"
+  };
+  QtHometrainerMainDialog d(v);
   ShowChild(&d);
 }
 
