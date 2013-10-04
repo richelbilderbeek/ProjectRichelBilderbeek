@@ -45,6 +45,7 @@ const std::string GetCurrentFolder(const std::string& s)
 }
 
 //From http://www.richelbilderbeek.nl/CppGetFoldersInFolder.htm
+/*
 const std::vector<std::string> GetFoldersInFolder(const std::string& folder)
 {
   //Obtain all folders
@@ -61,6 +62,7 @@ const std::vector<std::string> GetFoldersInFolder(const std::string& folder)
   }
   return v;
 }
+*/
 
 int main(int argc, char* argv[])
 {
@@ -190,7 +192,7 @@ int main(int argc, char* argv[])
     }
   }
   std::cout << "Tech info: '" << tech_info_str << "' (OK)\n";
-  std::cout << "Source: " << source << "\n";
+  std::cout << "Source: '" << source << "'\n";
 
   if (!c2h::IsFolder(source) && !c2h::IsRegularFile(source))
   {
@@ -219,40 +221,21 @@ int main(int argc, char* argv[])
 
   try
   {
-    //Check for recursiveness
-    if (GetFoldersInFolder(source).empty())
-    {
-      std::cout << "Non-recursive conversion\n";
+    assert( (c2h::IsFolder(source) || c2h::IsRegularFile(source))
+      && "Source can be a file or a path");
 
-      assert( (c2h::IsFolder(source) || c2h::IsRegularFile(source))
-        && "Source can be a file or a path");
-
-      const boost::scoped_ptr<const c2h::Dialog> c { new const c2h::Dialog(page_type,source,content_type,tech_info) };
-      const std::vector<std::string> v = c->ToHtml();
-      const std::string output_filename = c2h::GetFileBasename(source) + ".htm";
-      std::ofstream f(output_filename.c_str());
-      std::copy(v.begin(),v.end(),std::ostream_iterator<std::string>(f,"\n"));
-    }
-    else
-    {
-      std::cout << "Recursive conversion\n";
-
-      assert( (c2h::IsFolder(source) || c2h::IsRegularFile(source))
-        && "Source can be a file or a path");
-
-      const std::vector<std::string> folders = GetFoldersInFolder(source);
-      for(const std::string& folder: folders)
-      {
-        const std::string folder_full_path = source + "/" + folder;
-        TRACE(folder);
-        TRACE(folder_full_path);
-        const boost::scoped_ptr<const c2h::Dialog> c { new c2h::Dialog(page_type,folder_full_path,content_type,tech_info) };
-        const std::vector<std::string> v = c->ToHtml();
-        const std::string output_filename = c2h::GetFileBasename(folder_full_path) + ".htm";
-        std::ofstream f(output_filename.c_str());
-        std::copy(v.begin(),v.end(),std::ostream_iterator<std::string>(f,"\n"));
-      }
-    }
+    const boost::scoped_ptr<const c2h::Dialog> c {
+      new const c2h::Dialog(
+        page_type,
+        source,
+        content_type,
+        tech_info)
+    };
+    const std::vector<std::string> v = c->ToHtml();
+    const std::string output_filename = c2h::GetFileBasename(source) + ".htm";
+    std::cout << "Output written to '" << output_filename << "'\n";
+    std::ofstream f(output_filename.c_str());
+    std::copy(v.begin(),v.end(),std::ostream_iterator<std::string>(f,"\n"));
     std::cout << "CodeToHtml succeeded" << std::endl;
   }
   catch (std::exception& e)

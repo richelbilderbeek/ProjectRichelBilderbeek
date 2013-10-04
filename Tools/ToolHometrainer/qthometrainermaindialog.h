@@ -41,13 +41,22 @@ private:
   Ui::QtHometrainerMainDialog *ui;
   std::size_t m_current_question_index;
   boost::shared_ptr<QtQuestionDialog> m_dialog;
-  const std::vector<std::string> m_questions;
+  int m_n_correct;
+  int m_n_incorrect;
+  std::vector<std::string> m_questions;
 
   static boost::shared_ptr<QtQuestionDialog> CreateQtQuestionDialog(const std::string& s);
+  void DisplayScore();
+  void OnSubmitted(const bool is_correct);
+
 
   #ifndef NDEBUG
   static void Test() noexcept;
   #endif
+
+private slots:
+  void NewQuestion();
+
 };
 
 } //~namespace ribi
