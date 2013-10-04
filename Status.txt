@@ -66,6 +66,7 @@ CppGetDateIso8601
 CppGetDateIso8601.exe
 CppGetFilesInFolder
 CppGetRegexMatches
+CppGetTxtFilesInFolder
 CppGprofExample1
 CppGprofExample1.exe
 CppGprofQtCreatorExample2
@@ -167,6 +168,8 @@ CppLibcvautomationExample7
 CppLibcvautomationExample7.exe
 CppListExample1
 CppListExample1.exe
+CppMake_tupleExample1
+CppMake_tupleExample1.exe
 CppMapExample1
 CppMapExample1.exe
 CppMemberFunctionExample1
@@ -216,6 +219,7 @@ CppQFileExample1.exe
 CppQGraphicsPolygonItemExample1
 CppQGraphicsPolygonItemExample1.exe
 CppQGraphicsPolygonItemExample2.exe
+CppQmakeErrorUnknownModulesInQtLocationSensors
 CppQmakeExample1
 CppQmakeExample1.exe
 CppQPainterExample1
@@ -345,6 +349,8 @@ CppRuntimeErrorAssertionFailedXpressiveDetailDynamicParse_charset201
 CppRuntimeErrorAssertionFailedXpressiveDetailDynamicParse_charset201.exe
 CppSeperateString
 CppSeperateString.exe
+CppSetPrecisionExample1
+CppSetPrecisionExample1.exe
 CppSmartPointerExample1
 CppSmartPointerExample1.exe
 CppSmartPointerExample2
@@ -381,6 +387,8 @@ CppTemplateFunctionExample2
 CppTemplateFunctionExample2.exe
 CppTemplateFunctionExample3
 CppTemplateFunctionExample3.exe
+CppTieExample1
+CppTieExample1.exe
 CppTypeidExample1
 CppTypeidExample1.exe
 CppTypeidExample2
@@ -398,6 +406,8 @@ CppVectorExample2
 CppVectorExample2.exe
 CppVectorExample3
 CppVectorExample3.exe
+CppVectorExample4
+CppVectorExample4.exe
 CppVirtualExample1
 CppVirtualExample1.exe
 CppWilcoxonsSignedRankTest
@@ -435,19 +445,14 @@ GameTicTacToeDesktop.exe
 GameTronCollection
 GameTronCollection.exe
 GameXeNonZeroDesktop.exe
-GetTxtFilesInFolder
 ProjectBrainweaverAssessor
 ProjectBrainweaverAssessor.exe
 ProjectBrainweaverDeveloper
 ProjectBrainweaverDeveloper.exe
 ProjectBrainweaverStudent
 ProjectBrainweaverStudent.exe
-ProjectRichelBilderbeekConsole.exe
-ProjectRichelBilderbeekDesktop.exe
 ToolAsciiArterDesktop
 ToolAsciiArterDesktop.exe
-ToolCipherSaber2
-ToolCipherSaber2.exe
 ToolCodeToHtmlConsole
 ToolCodeToHtmlDesktop
 ToolCodeToHtmlDesktop.exe
@@ -458,6 +463,7 @@ ToolCreateGlossaryDesktop.exe
 ToolCreateQtProjectZipFileConsole
 ToolCreateQtProjectZipFileDesktop
 ToolCreateQtProjectZipFileDesktop.exe
+ToolEncrangerDesktop
 ToolEncrangerDesktop.exe
 ToolFakeEvy
 ToolFakeEvy.exe
@@ -478,6 +484,7 @@ ToolMazeCreator
 ToolMazeCreator.exe
 ToolMidiLessonCreator
 ToolMidiLessonCreator.exe
+ToolMultiEncrangerDesktop
 ToolMultiEncrangerDesktop.exe
 ToolMusicTheoryDesktop
 ToolMusicTheoryDesktop.exe
@@ -485,6 +492,10 @@ ToolPause
 ToolPause.exe
 ToolQmakeWatcherDesktop
 ToolQmakeWatcherDesktop.exe
+ToolQuadraticSolverConsole
+ToolQuadraticSolverConsole.exe
+ToolQuadraticSolverDesktop
+ToolQuadraticSolverDesktop.exe
 ToolRandomCodeDesktop
 ToolRandomCodeDesktopConsole
 ToolRandomCodeDesktopConsole.exe
@@ -494,8 +505,8 @@ ToolRegexTesterDesktop.exe
 ToolRichelBilderbeekGalleryDesktop
 ToolRichelBilderbeekGalleryDesktop.exe
 ToolRichelbilderbeekNlSitemapGenerator
-ToolSecretMessage
-ToolSecretMessage.exe
+ToolSecretMessageDesktop
+ToolSecretMessageDesktop.exe
 ToolSimMysteryMachineDesktop
 ToolSimMysteryMachineDesktop.exe
 ToolSimplifyNewickDesktop
@@ -518,10 +529,6 @@ ToolTestBoucingRectsWidget
 ToolTestBoucingRectsWidget.exe
 ToolTestBouncingBallsWidget
 ToolTestBouncingBallsWidget.exe
-ToolTestCanvasConsole
-ToolTestCanvasConsole.exe
-ToolTestCanvasDesktop
-ToolTestCanvasDesktop.exe
 ToolTestDialDesktop
 ToolTestDialDesktop.exe
 ToolTestGraphicsProxyWidget.exe
@@ -543,7 +550,8 @@ ToolTestQtRoundedEditRectItem
 ToolTestQtRoundedEditRectItem.exe
 ToolTestQtRoundedTextRectItem
 ToolTestQtRoundedTextRectItem.exe
-ToolTestSimpleLinearRegressionConsole.exe
+ToolTestQuestionDesktop
+ToolTestQuestionDesktop.exe
 ToolTestSimpleLinearRegressionDesktop
 ToolTestStopwatch.exe
 ToolTestTextPositionWidget

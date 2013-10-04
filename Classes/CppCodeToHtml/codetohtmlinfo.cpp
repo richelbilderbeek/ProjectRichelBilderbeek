@@ -12241,8 +12241,8 @@ void c2h::Info::Test()
   {
     const c2h::Info t;
     #ifndef _WIN32
-    const auto& m = t.m_page_info;
-    for (auto p: m)
+    const std::map<std::string,std::vector<std::string> >& m = t.m_page_info;
+    for (const std::pair<std::string,std::vector<std::string> >& p: m)
     {
       std::vector<std::string> v;
 
