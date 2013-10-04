@@ -17,6 +17,7 @@
 #include "openquestion.h"
 #include "openquestiondialog.h"
 #include "qtmultiplechoicequestiondialog.h"
+#include "hometrainermaindialog.h"
 #include "qtopenquestiondialog.h"
 #include "questiondialog.h"
 #include "trace.h"
@@ -25,28 +26,29 @@
 #pragma GCC diagnostic pop
 
 ribi::QtHometrainerMainDialog::QtHometrainerMainDialog(
-  const std::vector<std::string>& questions,
+  const boost::shared_ptr<const HometrainerMainDialog>& dialog,
+  //const std::vector<std::string>& questions,
   QWidget *parent) noexcept
   : QtHideAndShowDialog(parent),
     ui(new Ui::QtHometrainerMainDialog),
     m_current_question_index{0},
-    m_dialog{},
+    m_qtdialog{},
     m_n_correct{0},
-    m_n_incorrect{0},
-    m_questions{questions}
+    m_n_incorrect{0}
+    //m_questions{questions}
 {
   ui->setupUi(this);
   #ifndef NDEBUG
   Test();
   #endif
 
+  assert(dialog);
   assert(!m_questions.empty());
   if (m_questions.empty())
   {
     throw std::logic_error("QtHometrainerMainDialog: must have questions");
   }
   SetQuestion(m_questions[m_current_question_index]);
-  DisplayScore();
 }
 
 ribi::QtHometrainerMainDialog::~QtHometrainerMainDialog() noexcept
@@ -134,9 +136,9 @@ void ribi::QtHometrainerMainDialog::OnSubmitted(const bool is_correct)
 
 void ribi::QtHometrainerMainDialog::SetQuestion(const std::string& s)
 {
-  m_dialog = CreateQtQuestionDialog(s);
-  assert(m_dialog);
-  m_dialog->m_signal_submitted.connect(
+  m_qtdialog = CreateQtQuestionDialog(s);
+  assert(m_qtdialog);
+  m_qtdialog->m_signal_submitted.connect(
     boost::bind(&ribi::QtHometrainerMainDialog::OnSubmitted,this,boost::lambda::_1)
   );
 
@@ -145,15 +147,16 @@ void ribi::QtHometrainerMainDialog::SetQuestion(const std::string& s)
     delete ui->contents_here->layout();
   }
   assert(!ui->contents_here->layout());
-  if (m_dialog)
+  if (m_qtdialog)
   {
-    assert(m_dialog);
+    assert(m_qtdialog);
     assert(!ui->contents_here->layout());
     QLayout * const my_layout = new QVBoxLayout;
     ui->contents_here->setLayout(my_layout);
     assert(ui->contents_here->layout());
-    my_layout->addWidget(m_dialog.get());
+    my_layout->addWidget(m_qtdialog.get());
   }
+  DisplayScore();
 }
 
 #ifndef NDEBUG

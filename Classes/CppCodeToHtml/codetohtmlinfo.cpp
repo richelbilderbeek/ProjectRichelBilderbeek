@@ -24,6 +24,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "codetohtmlinfo.h"
 
 #include <cassert>
+#include <ctime>
 
 #include <boost/lexical_cast.hpp>
 
@@ -79,6 +80,36 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
       }
     }
   );
+
+
+  m.push_back(
+    { "CppAlglibExample1",
+      {
+        "<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/></p>",
+        "<p>&nbsp;</p>",
+        "<p><a href=\"CppAlglibExample1.htm\">ALGLIB example 1: linear fit</a> is an <a href=\"CppAlglib.htm\">ALGLIB</a> <a href=\"CppExample.htm\">example</a>.",
+        "<p>&nbsp;</p>",
+        "<ul>",
+        "  <li><a href=\"CppAlglibExample1.zip\">Download the Qt Creator project 'CppAlglibExample1' (zip)</a></li>",
+        "</ul>"
+      }
+    }
+  );
+
+  m.push_back(
+    { "CppAlglibExample2",
+      {
+        "<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/></p>",
+        "<p>&nbsp;</p>",
+        "<p><a href=\"CppAlglibExample2.htm\">ALGLIB example 2: linear fit</a> is an <a href=\"CppAlglib.htm\">ALGLIB</a> <a href=\"CppExample.htm\">example</a>.",
+        "<p>&nbsp;</p>",
+        "<ul>",
+        "  <li><a href=\"CppAlglibExample2.zip\">Download the Qt Creator project 'CppAlglibExample2' (zip)</a></li>",
+        "</ul>"
+      }
+    }
+  );
+
   m.push_back(
     { "CppApproximation",
       {
@@ -90,6 +121,21 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
       }
     }
   );
+
+  m.push_back(
+    { "CppArduinoExample1",
+      {
+        "<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/></p><img src=\"PicArduino.png\" alt=\"Arduino\"/>",
+        "<p>&nbsp;</p>",
+        "<p><a href=\"CppArduinoExample1.htm\">Arduino example 1</a> is an <a href=\"CppArduino.htm\">Arduino</a> <a href=\"CppExample.htm\">example</a>.",
+        "<p>&nbsp;</p>",
+        "<ul>",
+        "  <li><a href=\"CppArduinoExample1.zip\">Download the Qt Creator project 'CppArduinoExample1' (zip)</a></li>",
+        "</ul>"
+      }
+    }
+  );
+
   m.push_back(
     { "CppArrayExample1",
       {
@@ -147,7 +193,7 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
       {
         "<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicWindows.png\" alt=\"Windows\"/></p>",
         "<p>&nbsp;</p>",
-        "<p><a href=\"CppAssertExample1.htm\">assert example 1: basics</a> is an <a href=\"CppAssert.htm\">assert</a> example.",
+        "<p><a href=\"CppAssertExample1.htm\">assert example 1: basics</a> is an <a href=\"CppAssert.htm\">assert</a> <a href=\"CppExample.htm\">example</a>.",
         "<p>&nbsp;</p>",
         "<p>A division will only succeed if the denominator is unequal to zero. ",
         "In your code, you will have to take care that a division by zero never occurs. ",
@@ -166,7 +212,7 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<p>&nbsp;</p>",
         "<p>",
         "  <a href=\"CppAssertExample2.htm\">assert example 2: basics with informative output</a> is an",
-        "  <a href=\"CppAssert.htm\">assert</a> example.",
+        "  <a href=\"CppAssert.htm\">assert</a> <a href=\"CppExample.htm\">example</a>.",
         "</p>",
         "<p>&nbsp;</p>",
         "<ul>",
@@ -175,12 +221,49 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
       }
     }
   );
+
+  m.push_back(
+    { "CppAssertExample3",
+      {
+        "<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicWindows.png\" alt=\"Windows\"/></p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <a href=\"CppAssertExample3.htm\">assert example 3: a user-defined assert</a> is an",
+        "  <a href=\"CppAssert.htm\">assert</a> <a href=\"CppExample.htm\">example</a>.",
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<ul>",
+        "  <li><a href=\"CppAssertExample3.zip\">Download the Qt Creator project 'CppAssertExample3' (zip)</a></li>",
+        "</ul>"
+      }
+    }
+  );
+
+  m.push_back(
+    { "CppAutoExample1",
+      {
+        "<p><img src=\"PicCpp11.png\" alt=\"C++11\"/><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicWindows.png\" alt=\"Windows\"/></p>",
+        "<p>&nbsp;</p>",
+        "<p><a href=\"CppAutoExample1.htm\">auto example 1: basics</a> is an <a href=\"CppAuto.htm\">auto</a> <a href=\"CppExample.htm\">example</a>.",
+        "<p>&nbsp;</p>",
+        "<p>A division will only succeed if the denominator is unequal to zero. ",
+        "In your code, you will have to take care that a division by zero never occurs. ",
+        "Using <a href=\"CppAssert.htm\">assert</a>, as shown in the code below, will take you to the problem directly.",
+        "<p>&nbsp;</p>",
+        "<ul>",
+        "  <li><a href=\"CppAssertExample1.zip\">Download the Qt Creator project 'CppAssertExample1' (zip)</a></li>",
+        "</ul>"
+      }
+    }
+  );
+
+
   m.push_back(
     { "CppBimapExample1",
       {
         R"(<p>)",
         R"(<a href="CppBimapExample1.htm">boost::bimap example 1: find</a> is a)",
-        R"( <a href="CppBimap.htm">boost::bimap</a> example.)"
+        R"( <a href="CppBimap.htm">boost::bimap</a> <a href=\"CppExample.htm\">example</a>.)"
         R"(</p>)",
         R"(<p>&nbsp;</p>)",
         R"(<ul>)",
@@ -192,7 +275,7 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
   m.push_back(
     { "CppBimapExample2",
       {
-       R"(<p><a href="CppBimapExample2.htm">boost::bimap example 2: copy</a> is a <a href="CppBimap.htm">boost::bimap</a> example.</p>)",
+       R"(<p><a href="CppBimapExample2.htm">boost::bimap example 2: copy</a> is a <a href="CppBimap.htm">boost::bimap</a> <a href=\"CppExample.htm\">example</a>.</p>)",
        R"(<p>&nbsp;</p>)",
        R"(<ul>)",
        R"(  <li><a href="CppBimapExample2.zip">Download the Qt Creator project 'CppBimapExample1' (zip)</a></li>)",
@@ -221,7 +304,7 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<p>&nbsp;</p>",
         "<p>",
         "  <a href=\"CppBoostFormatExample1.htm\">Boost.Format example 1</a>"
-        "  is a <a href=\"CppBoostFormat.htm\">Boost.Format</a> example.",
+        "  is a <a href=\"CppBoostFormat.htm\">Boost.Format</a> <a href=\"CppExample.htm\">example</a>.",
         "</p>",
         "<p>&nbsp;</p>",
         "<ul>",
@@ -237,7 +320,7 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<p>&nbsp;</p>",
         "<p>",
         "  <a href=\"CppBoostFormatExample2.htm\">Boost.Format example 2</a>",
-        "  is a <a href=\"CppBoostFormat.htm\">Boost.Format</a> example.",
+        "  is a <a href=\"CppBoostFormat.htm\">Boost.Format</a> <a href=\"CppExample.htm\">example</a>.",
         "</p>",
         "<p>&nbsp;</p>",
         "<ul>",
@@ -253,12 +336,12 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<p>&nbsp;</p>",
         "<p>",
         "  <a href=\"CppBoostRegexExample1.htm\">Boost.Regex example 1</a>",
-        "  is a example how to use the <a href=\"CppBoostRegex.htm\">Boost.Regex</a>",
+        "  is an <a href=\"CppExample.htm\">example</a> how to use the <a href=\"CppBoostRegex.htm\">Boost.Regex</a>",
         "  <a href=\"CppLibrary.htm\">library</a>.",
         "</p>",
         "<p>&nbsp;</p>",
         "<p>",
-        "  The example below shows how to define a regular expression for a Dutch zip code,",
+        "  The <a href=\"CppExample.htm\">example</a> below shows how to define a regular expression for a Dutch zip code,",
         "  how to check for it and how to search for it.",
         "</p>",
         "<p>&nbsp;</p>",
@@ -276,11 +359,11 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<p>&nbsp;</p>",
         "<p>",
         "  <a href=\"CppBoostRegexExample2.htm\">Boost.Regex example 2: replace</a>",
-        "  is a example how to use the <a href=\"CppBoostRegex.htm\">Boost.Regex</a>",
+        "  is an <a href=\"CppExample.htm\">example</a> how to use the <a href=\"CppBoostRegex.htm\">Boost.Regex</a>",
         "  <a href=\"CppLibrary.htm\">library</a>.",
         "</p>",
         "<p>&nbsp;</p>",
-        "<p>The example below shows how to perform a replacement within a regular expression.</p>",
+        "<p>The <a href=\"CppExample.htm\">example</a> below shows how to perform a replacement within a regular expression.</p>",
         "<p>&nbsp;</p>",
         "<ul>",
         "  <li><a href=\"CppBoostRegexExample2.zip\">Download the Qt Creator project 'CppBoostRegexExample2' (zip)</a></li>",
@@ -295,11 +378,11 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<p>&nbsp;</p>",
         "<p>",
         "  <a href=\"CppBoostRegexExample3.htm\">Boost.Regex example 3</a>",
-        "  is an example how to use the <a href=\"CppBoostRegex.htm\">Boost.Regex</a>",
+        "  is an <a href=\"CppExample.htm\">example</a> how to use the <a href=\"CppBoostRegex.htm\">Boost.Regex</a>",
         "  <a href=\"CppLibrary.htm\">library</a>.",
         "</p>",
         "<p>&nbsp;</p>",
-        "<p>The example below shows how to iterate through a text with a regular expression.</p>",
+        "<p>The <a href=\"CppExample.htm\">example</a> below shows how to iterate through a text with a regular expression.</p>",
         "<p>&nbsp;</p>",
         "<ul>",
         "  <li><a href=\"CppBoostRegexExample3.zip\">Download the Qt Creator project 'CppBoostRegexExample3' (zip)</a></li>",
@@ -314,7 +397,7 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<p>&nbsp;</p>",
         "<p>",
         "  <a href=\"CppBoostTupleExample1.htm\">Boost.Tuple example 1</a>",
-        "  is a <a href=\"CppBoostTuple.htm\">Boost.Tuple</a> example.",
+        "  is a <a href=\"CppBoostTuple.htm\">Boost.Tuple</a> <a href=\"CppExample.htm\">example</a>.",
         "</p>",
         "<p>&nbsp;</p>",
         "<ul>",
@@ -331,7 +414,7 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<p>&nbsp;</p>",
         "<p>",
         "  <a href=\"CppChecked_deleteExample1.htm\">boost::checked_delete example 1</a>",
-        "  is a <a href=\"CppChecked_delete.htm\">boost::checked_delete</a> example.",
+        "  is a <a href=\"CppChecked_delete.htm\">boost::checked_delete</a> <a href=\"CppExample.htm\">example</a>.",
         "</p>",
         "<p>&nbsp;</p>",
         "<ul>",
@@ -777,7 +860,7 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
         "<p><a href=\"CppGprofQtCreatorExample1.htm\">Qt Creator gprof example 1: profiling a simple console application in Qt Creator, using Build Settings</a> is a",
-        "<a href=\"CppGprof.htm\">gprof</a> example that shows how to profile a simple console application in  <a href=\"CppQt.htm\">Qt Creator</a>,",
+        "<a href=\"CppGprof.htm\">gprof</a> <a href=\"CppExample.htm\">example</a> that shows how to profile a simple console application in  <a href=\"CppQt.htm\">Qt Creator</a>,",
         "using the Build Settings.</p>",
         "<p>&nbsp;</p>",
         "<ul>",
@@ -834,7 +917,7 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
         "<p><a href=\"CppGprofQtCreatorExample2.htm\">gprof example 2: profiling a simple console application in Qt Creator, using Qt project file</a> is a",
-        "<a href=\"CppGprof.htm\">gprof</a> example to  profile a simple console application under <a href=\"CppQt.htm\">Qt Creator</a>.</p>",
+        "<a href=\"CppGprof.htm\">gprof</a> <a href=\"CppExample.htm\">example</a> to  profile a simple console application under <a href=\"CppQt.htm\">Qt Creator</a>.</p>",
         "<p>&nbsp;</p>",
         "<ul>",
         "  <li><a href=\"CppGprofQtCreatorExample2.zip\">Download the Qt Project of 'CppGprofQtCreatorExample2' (zip)</a></li>",
@@ -1946,7 +2029,7 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
         "<p><a href=\"CppLibcvautomationExample1.htm\">libcvautomation example 1: using an example</a> is a",
-        "<a href=\"CppLibcvautomation.htm\">libcvautomation</a> example.</p>",
+        "<a href=\"CppLibcvautomation.htm\">libcvautomation</a> <a href=\"CppExample.htm\">example</a>.</p>",
         "<p>&nbsp;</p>",
         "<ul>",
         "  <li><a href=\"CppLibcvautomationExample1.zip\">Download the code 'CppLibcvautomationExample1' (zip)</a></li>",
@@ -2082,7 +2165,7 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
       {
         "<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicWindows.png\" alt=\"Windows\"/></p>",
         "<p>&nbsp;</p>",
-        "<p><a href=\"CppIfExample1.htm\">if example 1: basics</a> is an <a href=\"CppIf.htm\">if</a> example.",
+        "<p><a href=\"CppIfExample1.htm\">if example 1: basics</a> is an <a href=\"CppIf.htm\">if</a> <a href=\"CppExample.htm\">example</a>.",
         "<p>&nbsp;</p>",
         "<ul>",
         "  <li><a href=\"CppIfExample1.zip\">Download the Qt Creator project 'CppIfExample1' (zip)</a></li>",
@@ -2460,7 +2543,7 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<p>&nbsp;</p>",
         "<p>",
         "  <a href=\"CppMemberFunctionExample1.htm\">member function example 1: Hello World</a>",
-        "  is a <a href=\"CppMemberFunction.htm\">member function</a> example.",
+        "  is a <a href=\"CppMemberFunction.htm\">member function</a> <a href=\"CppExample.htm\">example</a>.",
         "</p>",
         "<p>&nbsp;</p>",
         "<p>",
@@ -2480,7 +2563,7 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
       {
         "<p><img src=\"PicCpp11.png\" alt=\"C++11\"/><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
-        "<p><a href=\"CppMemberFunctionExample2.htm\">member function example 2: pointer to member functions</a> is a <a href=\"CppMemberFunction.htm\">member function</a> example.",
+        "<p><a href=\"CppMemberFunctionExample2.htm\">member function example 2: pointer to member functions</a> is a <a href=\"CppMemberFunction.htm\">member function</a> <a href=\"CppExample.htm\">example</a>.",
         "<p>&nbsp;</p>",
         "<ul>",
         "  <li><a href=\"CppMemberFunctionExample2.zip\">Download the Qt Creator project 'CppMemberFunctionExample2' (zip)</a></li>",
@@ -3094,6 +3177,7 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
       }
     }
   );
+
   m.push_back(
     { "CppMxeExample4",
       {
@@ -3148,6 +3232,29 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
       }
     }
   );
+
+  m.push_back(
+    { "CppNamespaceExample1",
+      {
+        "<p><img src=\"PicBoost.png\" alt=\"Boost\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <a href=\"CppNamespaceExample1.htm\">namespace example 1: scopes</a> is a",
+        "  <a href=\"CppNamespace.htm\">namespace</a> <a href=\"CppExample.htm\">example</a>.",
+        "</p>",
+        "<p>",
+        "  In the example, three versions of the function SayHello reside in different",
+        "  <a href=\"CppNamespace.htm\">namespaces</a>: loud, soft and the <a href=\"CppGlobal.htm\">global</a>",
+        "  <a href=\"CppNamespace.htm\">namespace</a>.",
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<ul>",
+        "  <li><a href=\"CppNamespaceExample1.zip\">Download the Qt Creator project 'CppNamespaceExample1' (zip)</a></li>",
+        "</ul>"
+      }
+    }
+  );
+
   m.push_back(
     { "CppNewick",
       {
@@ -3272,7 +3379,7 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
         "<p><a href=\"CppQFileExample1.htm\">QFile example 1: copying file and checking if the copy exists</a> is a",
-        "<a href=\"CppQFile.htm\">QFile</a> example.</p>",
+        "<a href=\"CppQFile.htm\">QFile</a> <a href=\"CppExample.htm\">example</a>.</p>",
         "<p>&nbsp;</p>",
         "<ul>",
         "  <li><a href=\"CppQFileExample1.zip\">Download the Qt Creator project 'CppQFileExample1' (zip)</a></li>",
@@ -3286,7 +3393,7 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
         "<p><a href=\"CppQFileDialogExample1.htm\">QFileDialog example 1: crafting a QFileDialog to select a file</a> is a",
-        "<a href=\"CppQFileDialog.htm\">QFileDialog</a> example.</p>",
+        "<a href=\"CppQFileDialog.htm\">QFileDialog</a> <a href=\"CppExample.htm\">example</a>.</p>",
         "<p>&nbsp;</p>",
         "<ul>",
         "  <li><a href=\"CppQFileDialogExample1.png\">View a screenshot of 'CppQFileDialogExample1' (png)</a></li>",
@@ -3301,7 +3408,7 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
         "<p><a href=\"CppQFileDialogExample2.htm\">QFileDialog example 2: using QFileDialog::getOpenFileNames</a> is a",
-        "<a href=\"CppQFileDialog.htm\">QFileDialog</a> example.</p>",
+        "<a href=\"CppQFileDialog.htm\">QFileDialog</a> <a href=\"CppExample.htm\">example</a>.</p>",
         "<p>&nbsp;</p>",
         "<ul>",
         "  <li><a href=\"CppQFileDialogExample2.png\">View a screenshot of 'CppQFileDialogExample2' (png)</a></li>",
@@ -3316,7 +3423,7 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
         "<p><a href=\"CppQFileDialogExample3.htm\">QFileDialog example 3: compare class and convenience function from GUI</a> is a",
-        "<a href=\"CppQFileDialog.htm\">QFileDialog</a> example.</p>",
+        "<a href=\"CppQFileDialog.htm\">QFileDialog</a> <a href=\"CppExample.htm\">example</a>.</p>",
         "<p>&nbsp;</p>",
         "<ul>",
         "  <li><a href=\"CppQFileDialogExample3.png\">View a screenshot of 'CppQFileDialogExample3' (png)</a></li>",
@@ -3331,7 +3438,7 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
         "<p><a href=\"CppQFileDialogExample4.htm\">QFileDialog example 4: crafting a QFileDialog to save a file</a> is a",
-        "<a href=\"CppQFileDialog.htm\">QFileDialog</a> example.</p>",
+        "<a href=\"CppQFileDialog.htm\">QFileDialog</a> <a href=\"CppExample.htm\">example</a>.</p>",
         "<p>&nbsp;</p>",
         "<ul>",
         "  <li><a href=\"CppQFileDialogExample4.png\">View a screenshot of 'CppQFileDialogExample4' (png)</a></li>",
@@ -3367,7 +3474,7 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
         "<p><a href=\"CppQPrintDialogExample1.htm\">QPrintDialog example 1</a> is a",
-        "<a href=\"CppQPrintDialog.htm\">QPrintDialog</a> example.</p>",
+        "<a href=\"CppQPrintDialog.htm\">QPrintDialog</a> <a href=\"CppExample.htm\">example</a>.</p>",
         "<p>&nbsp;</p>",
         "<ul>",
         "  <li><a href=\"CppQPrintDialogExample1.png\">View a screenshot of 'CppQPrintDialogExample1' (png)</a></li>",
@@ -3393,7 +3500,7 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
         "<p><a href=\"CppQSqlTableModelExample1.htm\">QSqlTableModel example 1</a> is a",
-        "<a href=\"CppQSqlTableModel.htm\">QSqlTableModel</a> example.</p>",
+        "<a href=\"CppQSqlTableModel.htm\">QSqlTableModel</a> <a href=\"CppExample.htm\">example</a>.</p>",
         "<p>&nbsp;</p>",
         "<ul>",
         "  <li><a href=\"CppQSqlTableModelExample1.png\">View a screenshot of 'CppQSqlTableModelExample1' (png)</a></li>",
@@ -3408,7 +3515,7 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
         "<p><a href=\"CppQSqlTableModelExample2.htm\">QSqlTableModel example 2</a> is a",
-        "<a href=\"CppQSqlTableModel.htm\">QSqlTableModel</a> example.</p>",
+        "<a href=\"CppQSqlTableModel.htm\">QSqlTableModel</a> <a href=\"CppExample.htm\">example</a>.</p>",
         "<p>&nbsp;</p>",
         "<ul>",
         "  <li><a href=\"CppQSqlTableModelExample2.png\">View a screenshot of 'CppQSqlTableModelExample2' (png)</a></li>",
@@ -3423,7 +3530,7 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
         "<p><a href=\"CppQSqlTableModelExample3.htm\">QSqlTableModel example 3</a> is a",
-        "<a href=\"CppQSqlTableModel.htm\">QSqlTableModel</a> example.</p>",
+        "<a href=\"CppQSqlTableModel.htm\">QSqlTableModel</a> <a href=\"CppExample.htm\">example</a>.</p>",
         "<p>&nbsp;</p>",
         "<ul>",
         "  <li><a href=\"CppQSqlTableModelExample3.png\">View a screenshot of 'CppQSqlTableModelExample3' (png)</a></li>",
@@ -3438,7 +3545,7 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
         "<p><a href=\"CppQTableViewExample1.htm\">QTableView example 1: table with three columns, one with an X</a> is a",
-        "<a href=\"CppQTableView.htm\">QTableView</a> example.</p>",
+        "<a href=\"CppQTableView.htm\">QTableView</a> <a href=\"CppExample.htm\">example</a>.</p>",
         "<p>&nbsp;</p>",
         "<ul>",
         "  <li><a href=\"CppQTableViewExample1.png\">View a screenshot of 'QTableViewExample1' (png)</a></li>",
@@ -3453,7 +3560,7 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
         "<p><a href=\"CppQTableViewExample2.htm\">QTableView example 2: table with ten columns of checkboxes</a> is a",
-        "<a href=\"CppQTableView.htm\">QTableView</a> example.</p>",
+        "<a href=\"CppQTableView.htm\">QTableView</a> <a href=\"CppExample.htm\">example</a>.</p>",
         "<p>&nbsp;</p>",
         "<ul>",
         "  <li><a href=\"CppQTableViewExample2.png\">View a screenshot of 'QTableViewExample2' (png)</a></li>",
@@ -3468,7 +3575,7 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
         "<p><a href=\"CppQTableViewExample3.htm\">QTableView example 3: table with checkboxes and editable text</a> is a",
-        "<a href=\"CppQTableView.htm\">QTableView</a> example.</p>",
+        "<a href=\"CppQTableView.htm\">QTableView</a> <a href=\"CppExample.htm\">example</a>.</p>",
         "<p>&nbsp;</p>",
         "<ul>",
         "  <li><a href=\"CppQTableViewExample3.png\">View a screenshot of 'QTableViewExample3' (png)</a></li>",
@@ -3483,7 +3590,7 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
         "<p><a href=\"CppQTableViewExample4.htm\">QTableView example 4: custom data</a> is a",
-        "<a href=\"CppQTableView.htm\">QTableView</a> example.</p>",
+        "<a href=\"CppQTableView.htm\">QTableView</a> <a href=\"CppExample.htm\">example</a>.</p>",
         "<p>&nbsp;</p>",
         "<ul>",
         "  <li><a href=\"CppQTableViewExample4.png\">View a screenshot of 'QTableViewExample4' (png)</a></li>",
@@ -3498,7 +3605,7 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
         "<p><a href=\"CppQTableViewExample5.htm\">QTableView example 5: simple custom data</a> is a",
-        "<a href=\"CppQTableView.htm\">QTableView</a> example.</p>",
+        "<a href=\"CppQTableView.htm\">QTableView</a> <a href=\"CppExample.htm\">example</a>.</p>",
         "<p>&nbsp;</p>",
         "<ul>",
         "  <li><a href=\"CppQTableViewExample5.png\">View a screenshot of 'QTableViewExample5' (png)</a></li>",
@@ -3513,7 +3620,7 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
         "<p><a href=\"CppQTableViewExample6.htm\">QTableView example 6: two views on one model</a> is a",
-        "<a href=\"CppQTableView.htm\">QTableView</a> example.</p>",
+        "<a href=\"CppQTableView.htm\">QTableView</a> <a href=\"CppExample.htm\">example</a>.</p>",
         "<p>&nbsp;</p>",
         "<p>This was to demonstrate that if two tables must remain identical, the model/view architecture is an easy way to do so: because",
         "the two views work on the same model, they cannot be different.</p>",
@@ -3531,7 +3638,7 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
         "<p><a href=\"CppQTableViewExample7.htm\">QTableView example 7: two views on one model with a custom data type</a> is a",
-        "<a href=\"CppQTableView.htm\">QTableView</a> example.</p>",
+        "<a href=\"CppQTableView.htm\">QTableView</a> <a href=\"CppExample.htm\">example</a>.</p>",
         "<p>&nbsp;</p>",
         "<ul>",
         "  <li><a href=\"CppQTableViewExample7.png\">View a screenshot of 'QTableViewExample7' (png)</a></li>",
@@ -3546,7 +3653,7 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
         "<p><a href=\"CppQTableViewExample8.htm\">QTableView example 8: table with checkboxes and editable text using a custom model</a> is a",
-        "<a href=\"CppQTableView.htm\">QTableView</a> example.</p>",
+        "<a href=\"CppQTableView.htm\">QTableView</a> <a href=\"CppExample.htm\">example</a>.</p>",
         "<p>&nbsp;</p>",
         "<ul>",
         "  <li><a href=\"CppQTableViewExample8.png\">View a screenshot of 'QTableViewExample8' (png)</a></li>",
@@ -3561,7 +3668,7 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
         "<p><a href=\"CppQTableViewExample9.htm\">QTableView example 9: two tables with checkboxes and editable text using a custom model</a> is a",
-        "<a href=\"CppQTableView.htm\">QTableView</a> example.</p>",
+        "<a href=\"CppQTableView.htm\">QTableView</a> <a href=\"CppExample.htm\">example</a>.</p>",
         "<p>&nbsp;</p>",
         "<ul>",
         "  <li><a href=\"CppQTableViewExample9.png\">View a screenshot of 'QTableViewExample9' (png)</a></li>",
@@ -3576,7 +3683,7 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
         "<p><a href=\"CppQTableViewExample10.htm\">QTableView example 10: two tables with checkboxes and editable text using a custom model and a custom data type</a> is a",
-        "<a href=\"CppQTableView.htm\">QTableView</a> example.</p>",
+        "<a href=\"CppQTableView.htm\">QTableView</a> <a href=\"CppExample.htm\">example</a>.</p>",
         "<p>&nbsp;</p>",
         "<ul>",
         "  <li><a href=\"CppQTableViewExample10.png\">View a screenshot of 'QTableViewExample10' (png)</a></li>",
@@ -3591,7 +3698,7 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         R"(<p><img src="PicQt.png" alt="Qt"/><img src="PicQtCreator.png" alt="Qt Creator"/><img src="PicLubuntu.png" alt="Lubuntu"/></p>)",
         "<p>&nbsp;</p>",
         "<p><a href=\"CppQTableWidgetExample1.htm\">QTableWidget example 1: display text</a> is a",
-        "<a href=\"CppQTableWidget.htm\">QTableWidget</a> example.</p>",
+        "<a href=\"CppQTableWidget.htm\">QTableWidget</a> <a href=\"CppExample.htm\">example</a>.</p>",
         "<p>&nbsp;</p>",
         "<ul>",
         "  <li><a href=\"CppQTableWidgetExample1.png\">View a screenshot of 'QTableWidgetExample1' (png)</a></li>",
@@ -3606,7 +3713,7 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
         "<p><a href=\"CppQTableWidgetExample2.htm\">QTableWidget example 2: checkboxes and text</a> is a",
-        "<a href=\"CppQTableWidget.htm\">QTableWidget</a> example.</p>",
+        "<a href=\"CppQTableWidget.htm\">QTableWidget</a> <a href=\"CppExample.htm\">example</a>.</p>",
         "<p>&nbsp;</p>",
         "<ul>",
         "  <li><a href=\"CppQTableWidgetExample1.png\">View a screenshot of 'QTableWidgetExample1' (png)</a></li>",
@@ -3621,7 +3728,7 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
         "<p><a href=\"CppQTableWidgetExample3.htm\">QTableWidget example 3: checkboxes and text modifying external data</a> is a",
-        "<a href=\"CppQTableView.htm\">QTableView</a> example.</p>",
+        "<a href=\"CppQTableView.htm\">QTableView</a> <a href=\"CppExample.htm\">example</a>.</p>",
         "<p>&nbsp;</p>",
         "<ul>",
         "  <li><a href=\"CppQTableWidgetExample3.png\">View a screenshot of 'QTableWidgetExample3' (png)</a></li>",
@@ -3676,7 +3783,7 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
         "<p><a href=\"CppQtCreator_5_1.htm\">Qt Creator 5.1 example 1</a> is a",
-        "<a href=\"CppQtSql.htm\">Qt Creator 5.1</a> example.</p>",
+        "<a href=\"CppQtSql.htm\">Qt Creator 5.1</a> <a href=\"CppExample.htm\">example</a>.</p>",
         "<p>&nbsp;</p>",
         "<ul>",
         "  <li><a href=\"CppQtCreator_5_1.png\">View a screenshot of 'CppQtCreator_5_1' (png)</a></li>",
@@ -4624,7 +4731,7 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
         "<p><a href=\"CppQtSqlExample1.htm\">Qt SQL example 1</a> is a",
-        "<a href=\"CppQtSql.htm\">Qt SQL</a> example.</p>",
+        "<a href=\"CppQtSql.htm\">Qt SQL</a> <a href=\"CppExample.htm\">example</a>.</p>",
         "<p>&nbsp;</p>",
         "<ul>",
         "  <li><a href=\"CppQtSqlExample1.png\">View a screenshot of 'CppQtSqlExample1' (png)</a></li>",
@@ -4698,7 +4805,7 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
       {
         "<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
-        "<p><a href=\"CppQWebViewExample1.htm\">QWebView example 1</a> is a <a href=\"CppQWebView.htm\">QWebView</a> example.</p>",
+        "<p><a href=\"CppQWebViewExample1.htm\">QWebView example 1</a> is a <a href=\"CppQWebView.htm\">QWebView</a> <a href=\"CppExample.htm\">example</a>.</p>",
         "<p>&nbsp;</p>",
         "<ul>",
         "  <li><a href=\"CppQWebViewExample1.png\">View a screenshot of CppQWebViewExample1 (png)</a></li>",
@@ -4938,7 +5045,7 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<p>&nbsp;</p>",
         "<p>",
         "  <a href=\"CppStdFunctionExample1.htm\">std::function example 1: global functions</a> is"
-        "  a <a href=\"CppStdFunction.htm\">std::function</a> example.",
+        "  a <a href=\"CppStdFunction.htm\">std::function</a> <a href=\"CppExample.htm\">example</a>.",
         "</p>",
         "<p>&nbsp;</p>",
         "<ul>",
@@ -4954,7 +5061,7 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<p>&nbsp;</p>",
         "<p>",
         "  <a href=\"CppStdFunctionExample2.htm\">std::function example 2: member functions</a> is",
-        "  a <a href=\"CppStdFunction.htm\">std::function</a> example.",
+        "  a <a href=\"CppStdFunction.htm\">std::function</a> <a href=\"CppExample.htm\">example</a>.",
         "</p>",
         "<p>&nbsp;</p>",
         "<ul>",
@@ -4969,7 +5076,7 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
       {
         "<p><img src=\"PicCpp11.png\" alt=\"C++11\"/><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
-        "<p><a href=\"CppStdTupleExample1.htm\">std::tuple example 1</a> is a <a href=\"CppStdTupleExample1.htm\">std::tuple</a> example.",
+        "<p><a href=\"CppStdTupleExample1.htm\">std::tuple example 1</a> is a <a href=\"CppStdTupleExample1.htm\">std::tuple</a> <a href=\"CppExample.htm\">example</a>.",
         "<p>&nbsp;</p>",
         "<ul>",
         "  <li><a href=\"CppStdTupleExample1.zip\">Download the Qt Creator project 'CppStdTupleExample1' (zip)</a></li>",
@@ -5004,7 +5111,7 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicWindows.png\" alt=\"Windows\"/></p>",
         "<p>&nbsp;</p>",
         "<p><a href=\"CppTemplateClassExample1.htm\">Template class example 1: class holding a templated member variable</a>",
-        "is a <a href=\"CppTemplateClass.htm\">template class</a> example.</p>",
+        "is a <a href=\"CppTemplateClass.htm\">template class</a> <a href=\"CppExample.htm\">example</a>.</p>",
         "<p>&nbsp;</p>",
         "<ul>",
         "  <li><a href=\"CppTemplateClassExample1.zip\">Download the Qt Creator project 'CppTemplateClassExample1' (zip)</a></li>",
@@ -5018,7 +5125,7 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicWindows.png\" alt=\"Windows\"/></p>",
         "<p>&nbsp;</p>",
         "<p><a href=\"CppTemplateClassExample2.htm\">Template class example 2: class that must be specialized; compile-time polymorphism</a>",
-        "is a <a href=\"CppTemplateClass.htm\">template class</a> example.</p>",
+        "is a <a href=\"CppTemplateClass.htm\">template class</a> <a href=\"CppExample.htm\">example</a>.</p>",
         "<p>&nbsp;</p>",
         "<ul>",
         "  <li><a href=\"CppTemplateClassExample2.zip\">Download the Qt Creator project 'CppTemplateClassExample2' (zip)</a></li>",
@@ -5085,7 +5192,7 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<p><img src=\"PicBoost.png\" alt=\"Boost\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
         "<p><a href=\"CppUblasMatrixExample1.htm\">boost::numeric::ublas::matrix example 1: matrix creation, read and write to elements</a> is a",
-        "<a href=\"CppUblas.htm\">Boost.uBLAS</a> <a href=\"CppLibrary.htm\">library</a> example.</p>",
+        "<a href=\"CppUblas.htm\">Boost.uBLAS</a> <a href=\"CppLibrary.htm\">library</a> <a href=\"CppExample.htm\">example</a>.</p>",
         "<p>&nbsp;</p>",
         "<ul>",
         "  <li><a href=\"CppUblasMatrixExample1.zip\">Download the Qt Creator project 'CppUblasMatrixExample1' (zip)</a></li>",
@@ -5102,7 +5209,7 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<p>&nbsp;</p>",
         "<p>",
         "  <a href=\"CppUnique_ptrExample1.htm\">std::unique_ptr example 1: basics</a>",
-        "  is a <a href=\"CppUnique_ptr.htm\">std::unique_ptr</a> example.",
+        "  is a <a href=\"CppUnique_ptr.htm\">std::unique_ptr</a> <a href=\"CppExample.htm\">example</a>.",
         "</p>",
         "<p>&nbsp;</p>",
         "<ul>",
@@ -5548,7 +5655,7 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
       {
         "<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicWindows.png\" alt=\"Windows\"/></p>",
         "<p>&nbsp;</p>",
-        "<p><a href=\"CppYodaConditionExample1.htm\">Yoda condition example 1: basics</a> is a <a href=\"CppYodaCondition.htm\">Yoda condition</a> example.",
+        "<p><a href=\"CppYodaConditionExample1.htm\">Yoda condition example 1: basics</a> is a <a href=\"CppYodaCondition.htm\">Yoda condition</a> <a href=\"CppExample.htm\">example</a>.",
         "<p>&nbsp;</p>",
         "<ul>",
         "  <li><a href=\"CppYodaConditionExample1.zip\">Download the Qt Creator project 'CppYodaConditionExample1' (zip)</a></li>",
@@ -12206,16 +12313,24 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
   return n;
 }
 
+const std::string c2h::Info::GetTime() noexcept
+{
+  const std::time_t t = std::time(0);
+  const std::string s = std::ctime( &t);
+  return s;
+}
+
 
 const std::string c2h::Info::GetVersion() noexcept
 {
-  return "1.0";
+  return "1.1";
 }
 
 const std::vector<std::string> c2h::Info::GetVersionHistory() noexcept
 {
   return {
-    "2013-09-20: version 1.0: initial versioning, added tests"
+    "2013-09-20: version 1.0: initial versioning, added tests",
+    "2013-10-04: version 1.1: added display of when the program is executed"
   };
 }
 
@@ -12277,7 +12392,7 @@ void c2h::Info::Test()
 
         if (p.first == std::string("ZZZ_I_MUST_FAIL")) continue;
       }
-      assert(IsCleanHtml(v));
+      assert(IsCleanHtml(v) && p.first != std::string("ZZZ_I_MUST_FAIL")));
     }
     #endif
     assert(!t.ToHtml("").empty());
@@ -12300,6 +12415,8 @@ const std::vector<std::string> c2h::Info::ToHtml(const std::string page_name) co
       = "<!-- This page is generated by CodeToHtml version "
       + GetVersion()
       + "." + boost::lexical_cast<std::string>(m_page_info.size())
+      + " at "
+      + GetTime()
       + " -->";
     v.push_back(s);
   }

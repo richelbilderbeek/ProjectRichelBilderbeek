@@ -37,7 +37,8 @@ SOURCES += qtmain.cpp \
     qthometrainermaindialog.cpp \
     qthometrainermenudialog.cpp \
     ../../Classes/CppExercise/exercise.cpp \
-    ../../Classes/CppQtExercise/qtexercise.cpp
+    ../../Classes/CppQtExercise/qtexercise.cpp \
+    hometrainermaindialog.cpp
 
 HEADERS  += \
     ../../Classes/CppAbout/about.h \
@@ -58,7 +59,8 @@ HEADERS  += \
     qthometrainermenudialog.h \
     ../../Classes/CppTrace/trace.h \
     ../../Classes/CppExercise/exercise.h \
-    ../../Classes/CppQtExercise/qtexercise.h
+    ../../Classes/CppQtExercise/qtexercise.h \
+    hometrainermaindialog.h
 
 FORMS += \
     ../../Classes/CppQtAboutDialog/qtaboutdialog.ui \

@@ -58,6 +58,9 @@ struct Info
   ///Create, for every page name (the key), cthe HTML info (the value)
   static const std::map<std::string,std::vector<std::string> > CreatePageInfo();
 
+  //From http://www.richelbilderbeek.nl/CppGetTime.htm
+  static const std::string GetTime() noexcept;
+
   #ifndef NDEBUG
   static void Test();
   #endif

@@ -87,7 +87,7 @@ ribi::Exercise::Exercise(const std::string& filename)
 
 const std::vector<std::string> ribi::Exercise::FileToVector(const std::string& filename)
 {
-  assert(QFile::exists(filename.c_str()));
+  assert(IsRegularFile(filename.c_str()));
   std::vector<std::string> v;
   std::ifstream in(filename.c_str());
   std::string s;
@@ -122,6 +122,13 @@ const std::vector<std::string> ribi::Exercise::GetVersionHistory() noexcept
     "2011-09-26: Version 1.0: initial version",
     "2011-10-30: Version 1.1: shuffle questions at start"
   };
+}
+
+bool ribi::Exercise::IsRegularFile(const std::string& filename) noexcept
+{
+  std::fstream f;
+  f.open(filename.c_str(),std::ios::in);
+  return f.is_open();
 }
 
 void ribi::Exercise::Next() noexcept

@@ -3,7 +3,9 @@
 #include "qthometrainermenudialog.h"
 
 #include <QDesktopWidget>
+#include <QFileDialog>
 #include "hometrainermenudialog.h"
+#include "hometrainermaindialog.h"
 #include "qtaboutdialog.h"
 #include "qthometrainermaindialog.h"
 #include "ui_qthometrainermenudialog.h"
@@ -11,9 +13,12 @@
 
 ribi::QtHometrainerMenuDialog::QtHometrainerMenuDialog(QWidget *parent) noexcept :
     QtHideAndShowDialog(parent),
-    ui(new Ui::QtHometrainerMenuDialog)
+    ui(new Ui::QtHometrainerMenuDialog),
+    m_main_dialog{}
 {
   ui->setupUi(this);
+
+  ui->button_start_exercise->setEnabled( m_main_dialog.get() );
 }
 
 ribi::QtHometrainerMenuDialog::~QtHometrainerMenuDialog() noexcept
@@ -36,13 +41,27 @@ void ribi::QtHometrainerMenuDialog::on_button_quit_clicked() noexcept
   close();
 }
 
-void ribi::QtHometrainerMenuDialog::on_button_start_clicked() noexcept
+void ribi::QtHometrainerMenuDialog::on_button_start_exercise_clicked() noexcept
 {
-  const std::vector<std::string> v {
-    "-,1+1=,2,1,3",
-    "-,1+1=,2/Two/two"
-  };
-  QtHometrainerMainDialog d(v);
+  QtHometrainerMainDialog d(m_main_dialog);
   ShowChild(&d);
 }
 
+void ribi::QtHometrainerMenuDialog::on_button_load_exercise_clicked() noexcept
+{
+  try
+  {
+    const std::string filename
+      = QFileDialog::getOpenFileName(0,"Please select a Hometrainer file").toStdString();
+    const boost::shared_ptr<const HometrainerMainDialog> dialog {
+      new HometrainerMainDialog(filename)
+    };
+    m_main_dialog = dialog;
+  }
+  catch (std::exception&)
+  {
+    //No problem
+  }
+  ui->button_start_exercise->setEnabled( m_main_dialog.get() );
+  this->show();
+}

@@ -50,52 +50,11 @@ group <a href="CppFunction.htm">functions</a> and <a href="CppClass.htm">classes
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
-<h2>Example</h2>
+<h2><a href="CppExample.htm">Examples</a></h2>
 <p>&nbsp;</p>
-<p>In the example, three versions of the function SayHello reside in different <a
-href="CppNamespace.htm">namespaces</a>: loud, soft and the <a
-href="CppGlobal.htm">global</a> <a href="CppNamespace.htm">namespace</a>.</p>
-<p>&nbsp;</p>
-<!-- start of code -->
-<table border = "1"><tr><td><code>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppIostreamH.htm">iostream</a>&gt;<br/>
-<br/>
-<b><a href="CppNamespace.htm">namespace</a></b> loud<br/>
-{<br/>
-&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> SayHello() { <a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "HELLO WORLD!\n"; }<br/>
-}<br/>
- <br/>
-<a href="CppComment.htm">//</a>SayHello in the <a href="CppGlobal.htm">global</a> <b><a href="CppNamespace.htm">namespace</a></b>, ::SayHello()<br/>
-<b><a href="CppVoid.htm">void</a></b> SayHello() { <a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "Hello world\n"; }<br/>
- <br/>
-<b><a href="CppNamespace.htm">namespace</a></b> soft<br/>
-{<br/>
-&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> SayHello() { <a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "H.e.l.l.o w.o.r.l.d...\n"; }<br/>
-}<br/>
- <br/>
-<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
-{<br/>
-&nbsp;&nbsp;loud::SayHello(); <a href="CppComment.htm">//</a>Call loud::SayHello<br/>
-&nbsp;&nbsp;::SayHello(); <a href="CppComment.htm">//</a>Explicity call SayHello from <a href="CppGlobal.htm">global</a> <b><a href="CppNamespace.htm">namespace</a></b><br/>
-&nbsp;&nbsp;SayHello(); <a href="CppComment.htm">//</a>Call the SayHello used, which is ::SayHello by <b><a href="CppDefault.htm">default</a></b><br/>
-&nbsp;&nbsp;<b><a href="CppUsing.htm">using</a></b> soft::SayHello; <a href="CppComment.htm">//</a>Start <b><a href="CppUsing.htm">using</a></b> soft::SayHello<br/>
-&nbsp;&nbsp;SayHello(); <a href="CppComment.htm">//</a>Call the SayHello used, which is soft::SayHello now<br/>
-&nbsp;&nbsp;soft::SayHello(); <a href="CppComment.htm">//</a>Call soft::SayHello<br/>
-}<br/>
-</code></td></tr></table>
-<!-- end of the code -->
-<p>&nbsp;</p>
-<p>This results in the following screen output:</p>
-<p>&nbsp;</p>
-<!-- start of code -->
-<table border = "1"><tr><td><code>
-HELLO WORLD!<br/>
-Hello world<br/>
-Hello world<br/>
-H.e.l.l.o w.o.r.l.d...<br/>
-H.e.l.l.o w.o.r.l.d...<br/>
-</code></td></tr></table>
-<!-- end of the code -->
+<ul>
+  <li><a href="CppNamespaceExample1.htm">namespace example 1: scope</a></li>
+</ul>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>

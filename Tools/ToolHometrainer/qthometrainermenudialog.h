@@ -1,13 +1,19 @@
 #ifndef QTHOMETRAINERMENUDIALOG_H
 #define QTHOMETRAINERMENUDIALOG_H
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#include <boost/shared_ptr.hpp>
 #include "qthideandshowdialog.h"
+#pragma GCC diagnostic pop
 
 namespace Ui {
   class QtHometrainerMenuDialog;
 }
 
 namespace ribi {
+
+struct HometrainerMainDialog;
 
 class QtHometrainerMenuDialog : public QtHideAndShowDialog
 {
@@ -21,11 +27,13 @@ public:
 
 private:
   Ui::QtHometrainerMenuDialog *ui;
+  boost::shared_ptr<const HometrainerMainDialog> m_main_dialog;
 
 private slots:
   void on_button_about_clicked() noexcept;
   void on_button_quit_clicked() noexcept;
-  void on_button_start_clicked() noexcept;
+  void on_button_start_exercise_clicked() noexcept;
+  void on_button_load_exercise_clicked() noexcept;
 };
 
 } //~namespace ribi
