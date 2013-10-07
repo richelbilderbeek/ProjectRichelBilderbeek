@@ -49,6 +49,8 @@ ribi::pvdb::QtPvdbPrintConceptMapDialog::QtPvdbPrintConceptMapDialog(
     const std::string s = std::asctime(time_and_date);
     ui->label_date->setText( (std::string("Datum: ") + s).c_str());
   }
+
+  //Much work done in ShowEvent
 }
 
 ribi::pvdb::QtPvdbPrintConceptMapDialog::~QtPvdbPrintConceptMapDialog() noexcept

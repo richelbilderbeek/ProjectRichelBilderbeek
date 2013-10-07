@@ -1,3 +1,4 @@
+CppArray_keys.exe
 CppAssertExample1
 CppAssertExample1.exe
 CppAssertExample2
@@ -38,6 +39,12 @@ CppBoostXpressiveExample2
 CppBoostXpressiveExample2.exe
 CppBoostXpressiveExample3
 CppBoostXpressiveExample3.exe
+CppBreakExample1
+CppBreakExample1.exe
+CppBreakExample2
+CppBreakExample2.exe
+CppBreakExample3
+CppBreakExample3.exe
 CppCalculateSqrt
 CppCalculateSqrt.exe
 CppCfileExample1
@@ -187,6 +194,8 @@ CppMultipleInheritanceExample1.exe
 CppMxeExample4
 CppMxeExample4.exe
 CppMxeExample5
+CppNamespaceExample1
+CppNamespaceExample1.exe
 CppNarrow_cast
 CppNarrow_cast.exe
 CppNewExample1
@@ -473,8 +482,6 @@ ToolGrayCoderConsole
 ToolGrayCoderConsole.exe
 ToolGrayCoderDesktop
 ToolGrayCoderDesktop.exe
-ToolHometrainerDesktop
-ToolHometrainerDesktop.exe
 ToolKalmanFiltererDesktop
 ToolKTouchLectureCreator
 ToolKTouchLectureCreator.exe
@@ -509,6 +516,7 @@ ToolSecretMessageDesktop
 ToolSecretMessageDesktop.exe
 ToolSimMysteryMachineDesktop
 ToolSimMysteryMachineDesktop.exe
+ToolSimMysteryMachineWebsite
 ToolSimplifyNewickDesktop
 ToolSimplifyNewickDesktop.exe
 ToolSolvePuzzleX

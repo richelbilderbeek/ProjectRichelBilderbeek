@@ -2,6 +2,7 @@
 #pragma GCC diagnostic ignored "-Weffc++"
 #include "qtpvdbrateexamplesdialog.h"
 
+#include <QDesktopWidget>
 #include <QKeyEvent>
 #include <QListWidgetItem>
 
@@ -47,6 +48,11 @@ ribi::pvdb::QtPvdbRateExamplesDialog::QtPvdbRateExamplesDialog(
   assert(m_concept->GetExamples());
   #endif
 
+  //Ensure that the dialog does not resize beyond the screen's size
+  {
+    this->setMaximumWidth( QApplication::desktop()->width() );
+  }
+
   //Convert the Concept to GUI elements
   {
     ui->label_concept_name->setText(concept->GetName().c_str());
@@ -79,6 +85,13 @@ ribi::pvdb::QtPvdbRateExamplesDialog::QtPvdbRateExamplesDialog(
       };
     for(QPushButton* button: v) button->setStyleSheet("text-align: left;");
   }
+
+  //Put the dialog in the screen its center
+  {
+    const QRect screen = QApplication::desktop()->screenGeometry();
+    this->move( screen.center() - this->rect().center() );
+  }
+
 }
 
 ribi::pvdb::QtPvdbRateExamplesDialog::~QtPvdbRateExamplesDialog() noexcept

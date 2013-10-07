@@ -32,7 +32,7 @@ struct WtApplication : public Wt::WApplication
   {
     this->setTitle("SimMysteryMachine");
     this->useStyleSheet("wt.css");
-    root()->addWidget(new WtSimMysteryMachineMenuDialog);
+    root()->addWidget(new ribi::WtSimMysteryMachineMenuDialog);
   }
 };
 //---------------------------------------------------------------------------
@@ -45,8 +45,8 @@ Wt::WApplication *createApplication(
 int main(int argc, char **argv)
 {
   START_TRACE();
-  WtAutoConfig::SaveDefaultStylesheet();
-  WtAutoConfig a(argc,argv,createApplication);
+  ribi::WtAutoConfig::SaveDefaultStylesheet();
+  ribi::WtAutoConfig a(argc,argv,createApplication);
   return a.Run();
 }
 //---------------------------------------------------------------------------
