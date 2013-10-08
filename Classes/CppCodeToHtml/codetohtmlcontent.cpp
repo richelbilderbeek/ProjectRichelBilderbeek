@@ -153,8 +153,8 @@ const std::vector<std::string> c2h::Content::ToHtml() const
       v.push_back("<!-- start of code -->");
       v.push_back("<table summary=\"" + m_filename + "\" border = \"1\"><tr><td><code>");
       //v.push_back("<table border = \"1\"><tr><td><code>");
-      assert(m_replacements_cpp);
-      const auto r = m_replacements_cpp->Get();
+      assert(GetReplacementsCpp());
+      const auto r = GetReplacementsCpp().Get();
       std::transform(m_contents.begin(),m_contents.end(),
         std::back_inserter(v),
         [this,r](const std::string& s)
@@ -175,8 +175,8 @@ const std::vector<std::string> c2h::Content::ToHtml() const
       v.push_back("<!-- start of code -->");
       v.push_back("<table summary=\"" + m_filename + "\" border = \"1\"><tr><td><code>");
       //v.push_back("<table border = \"1\"><tr><td><code>");
-      assert(m_replacements_pro);
-      const auto r = m_replacements_pro->Get();
+      assert(GetReplacementsPro());
+      const std::vector<std::pair<std::string,std::string> > r = GetReplacementsPro().Get();
       std::transform(m_contents.begin(),m_contents.end(),
         std::back_inserter(v),
         [this,r](const std::string& s)
@@ -194,8 +194,8 @@ const std::vector<std::string> c2h::Content::ToHtml() const
       v.push_back("<p>&nbsp;</p>");
       v.push_back("<!-- start of code -->");
       v.push_back("<table summary=\"" + m_filename + "\" border = \"1\"><tr><td><code>");
-      assert(m_replacements_pro);
-      const auto r = m_replacements_pro->Get();
+      assert(GetReplacementsPro());
+      const auto r = GetReplacementsPro().Get();
       std::transform(m_contents.begin(),m_contents.end(),
         std::back_inserter(v),
         [this,r](const std::string& s)
@@ -215,8 +215,8 @@ const std::vector<std::string> c2h::Content::ToHtml() const
       v.push_back("<!-- start of code -->");
       v.push_back("<table summary=\"" + m_filename + "\" border = \"1\"><tr><td><code>");
       //v.push_back("<table border = \"1\"><tr><td><code>");
-      assert(m_replacements_txt);
-      const auto r = m_replacements_txt->Get();
+      assert(GetReplacementsTxt());
+      const auto r = GetReplacementsTxt().Get();
       std::transform(m_contents.begin(),m_contents.end(),
         std::back_inserter(v),
         [this,r](const std::string& s)
@@ -249,6 +249,7 @@ const std::vector<std::string> c2h::Content::ToHtml() const
 
 const std::string c2h::Content::MultiReplace(const std::string& line, const std::vector<std::pair<std::string,std::string> >& replacements)
 {
+  TRACE(line);
   std::string s(line);
   #ifdef DEBUG_PROGRAM_HANGS
   { const std::string debug_str = "Before: " + s; TRACE(debug_str); }

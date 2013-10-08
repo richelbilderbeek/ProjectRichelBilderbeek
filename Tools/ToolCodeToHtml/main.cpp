@@ -78,11 +78,13 @@ int main(int argc, char* argv[])
   assert(c2h::IsTidyInstalled());
   #endif
   #else
+  std::cout << "Starting " << argv[0] << std::endl;
   assert(1==2 && "I will be deleted");
   #endif
 
   std::vector<std::string> v;
   for (int i=1; i!=argc; ++i) { v.push_back(argv[i]); }
+  std::cout << "Number of arguments supplied: " << (argc-1) << std::endl;
 
   std::string page_type_str { "cpp" };
   std::string content_type_str { "cpp" };
@@ -104,6 +106,22 @@ int main(int argc, char* argv[])
     )
   {
     std::cout << ribi::CodeToHtmlMenuDialog::GetAbout() << "\n";
+
+    std::cout
+      << "\n"
+      << "Source code built on "
+      << __DATE__
+      << " "
+      << __TIME__
+      << " ("
+    #ifdef NDEBUG
+      << "release"
+    #else
+      << "debug"
+    #endif
+      << " version)"
+      << std::endl;
+
     return 0;
   }
 
@@ -156,7 +174,7 @@ int main(int argc, char* argv[])
       return 0;
     }
   }
-  std::cout << "Page type: '" << page_type_str << "' (OK)\n";
+  std::cout << "Page type: '" << page_type_str << "' (OK)" << std::endl;
 
   ///Find content_type
   if (std::count(v.begin(),v.end(),std::string("--content_type")))
@@ -195,7 +213,7 @@ int main(int argc, char* argv[])
       return 0;
     }
   }
-  std::cout << "Content type: '" << content_type_str << "' (OK)\n";
+  std::cout << "Content type: '" << content_type_str << "' (OK)" << std::endl;
 
   ///Find tech_info
   if (std::count(v.begin(),v.end(),std::string("--tech_info")))
@@ -234,7 +252,7 @@ int main(int argc, char* argv[])
       return 0;
     }
   }
-  std::cout << "Tech info: '" << tech_info_str << "' (OK)\n";
+  std::cout << "Tech info: '" << tech_info_str << "' (OK)" << std::endl;
 
   ///Find source
   if (std::count(v.begin(),v.end(),std::string("--source")))
@@ -263,7 +281,7 @@ int main(int argc, char* argv[])
     return 0;
   }
 
-  std::cout << "Source: '" << source << "'\n";
+  std::cout << "Source: '" << source << "'" << std::endl;
 
   if (!c2h::IsFolder(source) && !c2h::IsRegularFile(source))
   {
@@ -273,16 +291,16 @@ int main(int argc, char* argv[])
   }
   assert(c2h::IsFolder(source) || c2h::IsRegularFile(source));
 
-  std::cout << "Source exists: yes\n";
+  std::cout << "Source exists: yes" << std::endl;
 
   if (c2h::IsFolder(source))
   {
-    std::cout << "Source is directory: yes\n";
+    std::cout << "Source is directory: yes" << std::endl;
   }
   else
   {
     assert(c2h::IsRegularFile(source));
-    std::cout << "Source is directory: no\n";
+    std::cout << "Source is directory: no" << std::endl;
   }
 
   assert( (c2h::IsFolder(source) || c2h::IsRegularFile(source))
@@ -306,17 +324,17 @@ int main(int argc, char* argv[])
     };
     const std::vector<std::string> v = c->ToHtml();
     const std::string output_filename = c2h::GetFileBasename(source) + ".htm";
-    std::cout << "Output written to '" << output_filename << "'\n";
+    std::cout << "Output written to '" << output_filename << "'" << std::endl;
     std::ofstream f(output_filename.c_str());
     std::copy(v.begin(),v.end(),std::ostream_iterator<std::string>(f,"\n"));
     std::cout << "CodeToHtml succeeded" << std::endl;
   }
   catch (std::exception& e)
   {
-    std::cout << e.what() << '\n';
+    std::cout << e.what() << std::endl;
   }
   catch (...)
   {
-    std::cout << "Unknown exception thrown" << '\n';
+    std::cout << "Unknown exception thrown" << std::endl;
   }
 }

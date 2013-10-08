@@ -27,15 +27,16 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic pop
 
 ribi::OpenQuestionDialog::OpenQuestionDialog(const std::string& question)
-  : QuestionDialog(boost::shared_ptr<Question>(new OpenQuestion(question)))
+  : QuestionDialog(boost::shared_ptr<const Question>(new OpenQuestion(question)))
 {
   assert(!HasSubmitted());
   assert(GetQuestion());
 }
 
-ribi::OpenQuestionDialog::OpenQuestionDialog(const boost::shared_ptr<Question>& question)
+ribi::OpenQuestionDialog::OpenQuestionDialog(const boost::shared_ptr<const Question>& question)
   : QuestionDialog(question)
 {
+  assert(question);
   assert(!HasSubmitted());
   assert(GetQuestion());
 }

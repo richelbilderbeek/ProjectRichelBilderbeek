@@ -30,14 +30,12 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 namespace ribi {
 
 struct MultipleChoiceQuestion;
+struct Question;
 
 struct MultipleChoiceQuestionDialog : public QuestionDialog
 {
-  explicit MultipleChoiceQuestionDialog(
-    const boost::shared_ptr<const MultipleChoiceQuestion>& question
-    = CreateDefaultQuestion());
-
   explicit MultipleChoiceQuestionDialog(const std::string& question);
+  explicit MultipleChoiceQuestionDialog(const boost::shared_ptr<const Question>& question);
 
   ///Obtain the version
   static const std::string GetVersion() noexcept;

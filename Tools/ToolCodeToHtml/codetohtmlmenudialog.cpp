@@ -106,7 +106,7 @@ const std::vector<std::string> ribi::CodeToHtmlMenuDialog::GetVersionHistory() n
     "2013-08-19: version 2.6: replaced Boost.Filesystem and Boost.Regex by Qt and Boost.Xpressive, added tests, added +5000 lines of CodeToHtml info",
     "2013-09-05: version 2.7: transition to namespace ribi",
     "2013-09-17: version 2.8: compile with -Weffc++, fixed bug due to this, removed recursive replacements, cleaned info, do tests at run-time, added reading .pri files"
-    "2013-09-26: version 2.9: use of boost::checked_delete on all classes"
+    "2013-09-26: version 2.9: use of boost::checked_delete on all classes, removed use of Boost.Program_options"
   };
   return v;
 }

@@ -313,7 +313,6 @@ const std::vector<std::string> c2h::Dialog::ToHtml() const
       //Display no technical information
     }
   }
-
   //Source
   {
     const std::vector<std::string> w
@@ -322,7 +321,6 @@ const std::vector<std::string> c2h::Dialog::ToHtml() const
      : c2h::ConvertFiles(m_source) ;
     std::copy(w.begin(),w.end(),std::back_inserter(v));
   }
-
   //Add footer
   {
     const boost::scoped_ptr<Footer> footer(new Footer(m_page_type));
