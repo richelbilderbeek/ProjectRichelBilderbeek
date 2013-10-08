@@ -55,7 +55,9 @@ struct Info
   ///The name of the page, extracted from the .pro filename or folder name
   //const std::string m_page_name;
 
-  ///Create, for every page name (the key), cthe HTML info (the value)
+  ///Create, for every page name (the key), the HTML info (the value)
+  ///The purpose of this is to be able to check every HTML info
+  ///for validity
   static const std::map<std::string,std::vector<std::string> > CreatePageInfo();
 
   //From http://www.richelbilderbeek.nl/CppGetTime.htm

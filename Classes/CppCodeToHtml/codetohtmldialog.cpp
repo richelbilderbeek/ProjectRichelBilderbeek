@@ -52,11 +52,11 @@ c2h::Dialog::Dialog(
   const ContentType content_type,
   const TechInfoType tech_info)
   :
-    m_content_type(content_type),
+    m_content_type { content_type },
     m_info { new Info },
-    m_page_type(page_type),
-    m_source(source),
-    m_tech_info(tech_info)
+    m_page_type { page_type },
+    m_source { source },
+    m_tech_info { tech_info }
 {
   #ifndef NDEBUG
   Test();
