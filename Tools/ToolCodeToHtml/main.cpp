@@ -21,10 +21,12 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#include <algorithm>
 #include <fstream>
 #include <iostream>
+#include <vector>
 
-#include <boost/program_options.hpp>
+//#include <boost/program_options.hpp>
 
 #include <QDir>
 #include <QFile>
@@ -79,58 +81,59 @@ int main(int argc, char* argv[])
   assert(1==2 && "I will be deleted");
   #endif
 
-  // Declare the supported options.
-  boost::program_options::options_description d("Allowed options for CodeToHtmlConsole");
+  std::vector<std::string> v;
+  for (int i=1; i!=argc; ++i) { v.push_back(argv[i]); }
 
-  std::string page_type_str;
-  std::string content_type_str;
-  std::string tech_info_str;
+  std::string page_type_str { "cpp" };
+  std::string content_type_str { "cpp" };
+  std::string tech_info_str { "yes" };
 
   std::string source;
 
-  d.add_options()
-      ("about","displays the 'About' information")
-      ("page_type",
-         boost::program_options::value<std::string>(&page_type_str)->default_value("cpp"),
-         "page type (used in header and footer)")
-      ("help","produce this help message")
-      ("tech_info",
-         boost::program_options::value<std::string>(&tech_info_str)->default_value("yes"),
-         "Header and footer type: auto, no, yes")
-      ("source",
-         boost::program_options::value<std::string>(&source),
-         "Source of the content: a (.pro) filename or foldername")
-      ("content_type",
-         boost::program_options::value<std::string>(&content_type_str)->default_value("cpp"),
-         "content type")
-      ("version","displays the version")
-       ;
-
-  boost::program_options::variables_map m;
-  boost::program_options::store(
-    boost::program_options::parse_command_line(
-      argc, argv, d), m);
-  boost::program_options::notify(m);
-
-  if (m.count("help"))
+  if ( std::count(v.begin(),v.end(),std::string("help"))
+    || std::count(v.begin(),v.end(),std::string("--help"))
+    )
   {
-    std::cout << d << "\n";
+    const auto v = ribi::CodeToHtmlMenuDialog::GetHelp();
+    std::copy(v.begin(),v.end(),std::ostream_iterator<std::string>(std::cout,"\n"));
     return 0;
   }
 
-  if (m.count("about"))
+  if ( std::count(v.begin(),v.end(),std::string("about"))
+    || std::count(v.begin(),v.end(),std::string("--about"))
+    )
   {
     std::cout << ribi::CodeToHtmlMenuDialog::GetAbout() << "\n";
     return 0;
   }
 
-  if (m.count("version"))
+  if ( std::count(v.begin(),v.end(),std::string("version"))
+    || std::count(v.begin(),v.end(),std::string("--version"))
+    )
   {
     std::cout << ribi::CodeToHtmlMenuDialog::GetVersion() << "\n";
     return 0;
   }
 
-  //Check content_type parameter
+  ///Find page type
+  if (std::count(v.begin(),v.end(),std::string("--page_type")))
+  {
+    const int index
+      = std::distance(v.begin(),std::find(v.begin(),v.end(),std::string("--page_type")));
+    assert(index < static_cast<int>(v.size()));
+    if (index == static_cast<int>(v.size() - 1))
+    {
+      std::cout
+        << "Please supply an argument after --page_type.\n"
+        << "\n"
+        << "For example:"
+        << "  " << argv[0] << " --source main.cpp --page_type cpp\n";
+      return 0;
+    }
+    page_type_str = v[index + 1];
+  }
+
+  //Check page_type parameter
   {
     if (!c2h::CanStrToPageType(page_type_str))
     {
@@ -146,10 +149,32 @@ int main(int argc, char* argv[])
           return c2h::PageTypeToStr(t);
         }
       );
+      std::cout
+        << "\n"
+        << "Example:"
+        << "  " << argv[0] << " --source main.cpp --page_type cpp\n";
       return 0;
     }
   }
   std::cout << "Page type: '" << page_type_str << "' (OK)\n";
+
+  ///Find content_type
+  if (std::count(v.begin(),v.end(),std::string("--content_type")))
+  {
+    const int index
+      = std::distance(v.begin(),std::find(v.begin(),v.end(),std::string("--content_type")));
+    assert(index < static_cast<int>(v.size()));
+    if (index == static_cast<int>(v.size() - 1))
+    {
+      std::cout
+        << "Please supply an argument after --content_type.\n"
+        << "\n"
+        << "For example:"
+        << "  " << argv[0] << " --source main.cpp --content_type cpp\n";
+      return 0;
+    }
+    content_type_str = v[index + 1];
+  }
 
   //Check content_type parameter
   {
@@ -172,6 +197,24 @@ int main(int argc, char* argv[])
   }
   std::cout << "Content type: '" << content_type_str << "' (OK)\n";
 
+  ///Find tech_info
+  if (std::count(v.begin(),v.end(),std::string("--tech_info")))
+  {
+    const int index
+      = std::distance(v.begin(),std::find(v.begin(),v.end(),std::string("--tech_info")));
+    assert(index < static_cast<int>(v.size()));
+    if (index == static_cast<int>(v.size() - 1))
+    {
+      std::cout
+        << "Please supply an argument after --tech_info.\n"
+        << "\n"
+        << "For example:"
+        << "  " << argv[0] << " --source main.cpp --tech_info yes\n";
+      return 0;
+    }
+    tech_info_str = v[index + 1];
+  }
+
   //Check tech_info parameter
   {
     if (!c2h::CanStrToTechInfoType(tech_info_str))
@@ -192,6 +235,34 @@ int main(int argc, char* argv[])
     }
   }
   std::cout << "Tech info: '" << tech_info_str << "' (OK)\n";
+
+  ///Find source
+  if (std::count(v.begin(),v.end(),std::string("--source")))
+  {
+    const int index
+      = std::distance(v.begin(),std::find(v.begin(),v.end(),std::string("--source")));
+    assert(index < static_cast<int>(v.size()));
+    if (index == static_cast<int>(v.size() - 1))
+    {
+      std::cout
+        << "Please supply an argument after --source.\n"
+        << "\n"
+        << "For example:"
+        << "  " << argv[0] << " --source main.cpp\n";
+      return 0;
+    }
+    source = v[index + 1];
+  }
+  else
+  {
+    std::cout
+      << "Please supply a source.\n"
+      << "\n"
+      << "For example:"
+      << "  " << argv[0] << " --source main.cpp\n";
+    return 0;
+  }
+
   std::cout << "Source: '" << source << "'\n";
 
   if (!c2h::IsFolder(source) && !c2h::IsRegularFile(source))
@@ -200,6 +271,8 @@ int main(int argc, char* argv[])
     std::cout << "Specify an existing file or folder\n";
     return 0;
   }
+  assert(c2h::IsFolder(source) || c2h::IsRegularFile(source));
+
   std::cout << "Source exists: yes\n";
 
   if (c2h::IsFolder(source))
@@ -241,5 +314,9 @@ int main(int argc, char* argv[])
   catch (std::exception& e)
   {
     std::cout << e.what() << '\n';
+  }
+  catch (...)
+  {
+    std::cout << "Unknown exception thrown" << '\n';
   }
 }

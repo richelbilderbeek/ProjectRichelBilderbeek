@@ -44,9 +44,29 @@ const ribi::About ribi::CodeToHtmlMenuDialog::GetAbout() noexcept
   return a;
 }
 
+
+const std::vector<std::string> ribi::CodeToHtmlMenuDialog::GetHelp() noexcept
+{
+  return {
+    "Allowed options for CodeToHtmlConsole:",
+    "",
+    "about          displays the 'About' information",
+    "page_type      page type (used in header and footer): cpp (*), text. music, tool",
+    "help           produce this help message",
+    "tech_info      header and footer type: auto, no, yes (*)",
+    "source         source of the content: a (.pro) filename or foldername",
+    "content_type   content type: cpp",
+    "version        displays the version",
+    "",
+    "Examples:",
+    "  CodeToHtmlConsole --source main.cpp",
+    "  CodeToHtmlConsole --source MyDocs --tech_info no --content_type txt"
+   };
+}
+
 const std::string ribi::CodeToHtmlMenuDialog::GetVersion() noexcept
 {
-  return "2.8";
+  return "2.9";
 }
 
 const std::vector<std::string> ribi::CodeToHtmlMenuDialog::GetVersionHistory() noexcept

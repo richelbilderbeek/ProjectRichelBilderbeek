@@ -33,6 +33,9 @@ struct CodeToHtmlMenuDialog
 {
   static const ribi::About GetAbout() noexcept;
   static const std::string GetVersion() noexcept;
+
+  //Obtain the help information
+  static const std::vector<std::string> GetHelp() noexcept;
   static const std::vector<std::string> GetVersionHistory() noexcept;
 };
 
