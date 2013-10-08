@@ -16,6 +16,8 @@ struct HometrainerMainDialog
   ///Load questions from file
   HometrainerMainDialog(const std::string& filename);
 
+  HometrainerMainDialog(const std::vector<boost::shared_ptr<const ribi::Question> >& questions);
+
   ///Get the parsed questions
   const std::vector<boost::shared_ptr<const Question> > GetQuestions() const noexcept
   {

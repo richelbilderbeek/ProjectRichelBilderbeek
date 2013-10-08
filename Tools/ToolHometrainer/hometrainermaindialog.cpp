@@ -10,8 +10,16 @@
 #include "multiplechoicequestion.h"
 #pragma GCC diagnostic pop
 
-ribi::HometrainerMainDialog::HometrainerMainDialog(const std::string& filename)
-  : m_questions(CreateQuestions(filename))
+ribi::HometrainerMainDialog::HometrainerMainDialog(
+  const std::string& filename)
+  : HometrainerMainDialog(CreateQuestions(filename))
+{
+
+}
+
+ribi::HometrainerMainDialog::HometrainerMainDialog(
+  const std::vector<boost::shared_ptr<const ribi::Question> >& questions)
+  : m_questions(questions)
 {
   if (m_questions.empty())
   {
