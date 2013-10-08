@@ -356,7 +356,7 @@ OTHER_FILES += \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "<a href="CppAlgorithm.htm">Algorithm</a> types:\n"<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> Test<a href="CppNewick.htm">Newick</a>::m_flag_binary_<a href="CppNewick.htm">newick</a>_vector <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> ": <a href="CppBinaryNewickVector.htm">BinaryNewickVector</a>\n"<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> Test<a href="CppNewick.htm">Newick</a>::m_flag_m<a href="CppAny.htm">any</a>_digit_<a href="CppNewick.htm">newick</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> ": <a href="CppManyDigitNewick.htm">ManyDigitNewick</a>\n"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> Test<a href="CppNewick.htm">Newick</a>::m_flag_many_digit_<a href="CppNewick.htm">newick</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> ": <a href="CppManyDigitNewick.htm">ManyDigitNewick</a>\n"<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> Test<a href="CppNewick.htm">Newick</a>::m_flag_<a href="CppNewick.htm">newick</a>_vector <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> ": <a href="CppNewickVector.htm">NewickVector</a> (*)\n"<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> Test<a href="CppNewick.htm">Newick</a>::m_flag_ravindran <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> ": Ravindran\n"<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> Test<a href="CppNewick.htm">Newick</a>::m_flag_sorted_binary_<a href="CppNewick.htm">newick</a>_vector <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> ": <a href="CppSortedBinaryNewickVector.htm">SortedBinaryNewickVector</a>\n"<br/>
@@ -661,7 +661,7 @@ OTHER_FILES += \<br/>
 &nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Test<a href="CppNewick.htm">Newick</a>&gt; &gt; CreateTests(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> flags);<br/>
 &nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> m_flag_all;<br/>
 &nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> m_flag_binary_<a href="CppNewick.htm">newick</a>_vector;<br/>
-&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> m_flag_m<a href="CppAny.htm">any</a>_digit_<a href="CppNewick.htm">newick</a>;<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> m_flag_many_digit_<a href="CppNewick.htm">newick</a>;<br/>
 &nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> m_flag_<a href="CppNewick.htm">newick</a>_vector;<br/>
 &nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> m_flag_ravindran;<br/>
 &nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> m_flag_sorted_binary_<a href="CppNewick.htm">newick</a>_vector;<br/>
@@ -773,7 +773,7 @@ OTHER_FILES += \<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> Test<a href="CppNewick.htm">Newick</a>::m_flag_all <a href="CppOperatorAssign.htm">=</a> 63;<br/>
 <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> Test<a href="CppNewick.htm">Newick</a>::m_flag_binary_<a href="CppNewick.htm">newick</a>_vector <a href="CppOperatorAssign.htm">=</a> 1;<br/>
-<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> Test<a href="CppNewick.htm">Newick</a>::m_flag_m<a href="CppAny.htm">any</a>_digit_<a href="CppNewick.htm">newick</a> <a href="CppOperatorAssign.htm">=</a> 2;<br/>
+<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> Test<a href="CppNewick.htm">Newick</a>::m_flag_many_digit_<a href="CppNewick.htm">newick</a> <a href="CppOperatorAssign.htm">=</a> 2;<br/>
 <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> Test<a href="CppNewick.htm">Newick</a>::m_flag_<a href="CppNewick.htm">newick</a>_vector <a href="CppOperatorAssign.htm">=</a> 4;<br/>
 <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> Test<a href="CppNewick.htm">Newick</a>::m_flag_ravindran <a href="CppOperatorAssign.htm">=</a> 8;<br/>
 <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> Test<a href="CppNewick.htm">Newick</a>::m_flag_sorted_binary_<a href="CppNewick.htm">newick</a>_vector <a href="CppOperatorAssign.htm">=</a> 16;<br/>
@@ -792,7 +792,7 @@ Test<a href="CppNewick.htm">Newick</a>::Test<a href="CppNewick.htm">Newick</a>()
 &nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Test<a href="CppNewick.htm">Newick</a>&gt; &gt; v;<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (flags &amp; m_flag_binary_<a href="CppNewick.htm">newick</a>_vector)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;v.push_back(<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Test<a href="CppNewick.htm">Newick</a>&gt;(<b><a href="CppNew.htm">new</a></b> <a href="ToolTestBinaryNewickVector.htm">TestBinaryNewickVector</a>));<br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (flags &amp; m_flag_m<a href="CppAny.htm">any</a>_digit_<a href="CppNewick.htm">newick</a>)<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (flags &amp; m_flag_many_digit_<a href="CppNewick.htm">newick</a>)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;v.push_back(<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Test<a href="CppNewick.htm">Newick</a>&gt;(<b><a href="CppNew.htm">new</a></b> Test<a href="CppManyDigitNewick.htm">ManyDigitNewick</a>));<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (flags &amp; m_flag_<a href="CppNewick.htm">newick</a>_vector)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;v.push_back(<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Test<a href="CppNewick.htm">Newick</a>&gt;(<b><a href="CppNew.htm">new</a></b> <a href="ToolTestNewickVector.htm">TestNewickVector</a>));<br/>

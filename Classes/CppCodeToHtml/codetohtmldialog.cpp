@@ -156,7 +156,6 @@ const std::string c2h::Dialog::ExtractPageName(const std::string& s) noexcept
   assert(t.find('\\') == std::string::npos
     && "A c2h::Info page must not contain a backslash");
 
-  TRACE(t);
   return t;
 }
 

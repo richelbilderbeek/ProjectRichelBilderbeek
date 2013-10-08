@@ -264,8 +264,8 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
     { "CppBimapExample1",
       {
         R"(<p>)",
-        R"(<a href="CppBimapExample1.htm">boost::bimap example 1: find</a> is a)",
-        R"( <a href="CppBimap.htm">boost::bimap</a> <a href=\"CppExample.htm\">example</a>.)"
+        R"(  <a href="CppBimapExample1.htm">boost::bimap example 1: find</a> is a)",
+        R"(  <a href="CppBimap.htm">boost::bimap</a> <a href="CppExample.htm">example</a>.)",
         R"(</p>)",
         R"(<p>&nbsp;</p>)",
         R"(<ul>)",
@@ -277,7 +277,7 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
   m.push_back(
     { "CppBimapExample2",
       {
-       R"(<p><a href="CppBimapExample2.htm">boost::bimap example 2: copy</a> is a <a href="CppBimap.htm">boost::bimap</a> <a href=\"CppExample.htm\">example</a>.</p>)",
+       R"(<p><a href="CppBimapExample2.htm">boost::bimap example 2: copy</a> is a <a href="CppBimap.htm">boost::bimap</a> <a href="CppExample.htm">example</a>.</p>)",
        R"(<p>&nbsp;</p>)",
        R"(<ul>)",
        R"(  <li><a href="CppBimapExample2.zip">Download the Qt Creator project 'CppBimapExample2' (zip)</a></li>)",
@@ -1637,7 +1637,7 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<p>",
         "  <a href=\"CppHelloCpp11QtCreatorLubuntu.htm\">Hello C++11 using Qt Creator under Lubuntu</a>",
         "  is a <a href=\"CppHelloCpp11.htm\">Hello C++11</a> program.",
-        "<p>",
+        "</p>",
         "<p>&nbsp;</p>",
         "<ul>",
         "  <li><a href=\"CppHelloCpp11QtCreatorLubuntu.zip\">Download the Qt Creator project 'CppHelloCpp11QtCreatorLubuntu' (zip)</a></li>",
@@ -12579,7 +12579,7 @@ void c2h::Info::Test()
 
         if (p.first == std::string("ZZZ_I_MUST_FAIL")) continue;
       }
-      assert(IsCleanHtml(v) && p.first != std::string("ZZZ_I_MUST_FAIL")));
+      assert(IsCleanHtml(v) && p.first != std::string("ZZZ_I_MUST_FAIL"));
     }
     #endif
     assert(!t.ToHtml("").empty());

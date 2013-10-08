@@ -133,7 +133,7 @@ win32 {<br/>
 <b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppConst.htm">const</a></b> <a href="CppBoostArray.htm">boost::array</a>&lt;<b><a href="CppInt.htm">int</a></b>,3&gt; v <a href="CppOperatorAssign.htm">=</a> { 0,1 }; <a href="CppComment.htm">//</a>Does <a href="CppCompile.htm">compile</a>: too few elements is not checked in assignment<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppConst.htm">const</a></b> <a href="CppBoostArray.htm">boost::array</a>&lt;<b><a href="CppInt.htm">int</a></b>,3&gt; v <a href="CppOperatorAssign.htm">=</a> { 0,1,2,3 }; <a href="CppComment.htm">//</a>Does not <a href="CppCompile.htm">compile</a>: too m<a href="CppAny.htm">any</a> elements is checked in assignment<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppConst.htm">const</a></b> <a href="CppBoostArray.htm">boost::array</a>&lt;<b><a href="CppInt.htm">int</a></b>,3&gt; v <a href="CppOperatorAssign.htm">=</a> { 0,1,2,3 }; <a href="CppComment.htm">//</a>Does not <a href="CppCompile.htm">compile</a>: too many elements is checked in assignment<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Note: at around 2013-05-01, v needed to be <a href="CppInitialize.htm">initialize</a>d with <b><a href="CppDouble.htm">double</a></b> braces:<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostArray.htm">boost::array</a>&lt;<b><a href="CppInt.htm">int</a></b>,3&gt; v <a href="CppOperatorAssign.htm">=</a> {{ 0,1,2 }};<br/>
