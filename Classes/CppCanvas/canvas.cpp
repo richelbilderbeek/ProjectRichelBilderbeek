@@ -46,7 +46,26 @@ ribi::Canvas::Canvas(
   assert(height > 0);
 }
 
-void ribi::Canvas::DrawDot(const double x, const double y)
+void ribi::Canvas::Clear() noexcept
+{
+  for (auto& row: mCanvas)
+  {
+    for (auto& cell:row)
+    {
+      cell = 0.0;
+    }
+  }
+
+  #ifndef NDEBUG
+  for (auto row: mCanvas)
+  {
+    assert(std::accumulate(row.begin(),row.end(),0.0) == 0.0);
+  }
+  #endif
+
+}
+
+void ribi::Canvas::DrawDot(const double x, const double y) noexcept
 {
   //Assume a dot has dimensions 1.0 x 1.0
   //and x and y are exactly in the middle of this dot
@@ -66,7 +85,7 @@ void ribi::Canvas::DrawDot(const double x, const double y)
     mCanvas[indexTop+1][indexLeft+1] += ((1.0-fracLeft) * (1.0-fracTop));
 }
 
-void ribi::Canvas::DrawLine(const double x1, const double y1, const double x2, const double y2)
+void ribi::Canvas::DrawLine(const double x1, const double y1, const double x2, const double y2) noexcept
 {
 
   const double dX = x2 - x1;
@@ -85,7 +104,7 @@ void ribi::Canvas::DrawLine(const double x1, const double y1, const double x2, c
   }
 }
 
-void ribi::Canvas::DrawCircle(const double xMid, const double yMid, const double ray)
+void ribi::Canvas::DrawCircle(const double xMid, const double yMid, const double ray) noexcept
 {
   const double pi = boost::math::constants::pi<double>();
   const double circumference = ray * pi * 2.0;
@@ -122,18 +141,18 @@ std::ostream& ribi::operator<<(std::ostream& os, const Canvas& canvas)
   return os;
 }
 
-const std::string ribi::Canvas::GetVersion()
+const std::string ribi::Canvas::GetVersion() noexcept
 {
   return "2.1";
 }
 
-const std::vector<std::string> ribi::Canvas::GetVersionHistory()
+const std::vector<std::string> ribi::Canvas::GetVersionHistory() noexcept
 {
-  std::vector<std::string> v;
-  v.push_back("2008-xx-xx: version 1.0: initial C++ Builder version");
-  v.push_back("2013-08-21: version 2.0: port to C++11 under Qt Creator");
-  v.push_back("2013-08-22: version 2.1: allow two color and coordinat systems");
-  return v;
+  return {
+    "2008-xx-xx: version 1.0: initial C++ Builder version",
+    "2013-08-21: version 2.0: port to C++11 under Qt Creator",
+    "2013-08-22: version 2.1: allow two color and coordinat systems"
+  };
 }
 
 //The 2D std::vector must be y-x-ordered
@@ -277,4 +296,14 @@ const typename Container::value_type::value_type ribi::Canvas::MaxElement(const 
     if (localMaxVal > maxValue) maxValue = localMaxVal;
   }
   return maxValue;
+}
+
+void ribi::Canvas::SetColorSystem(const ColorSystem colorSystem) noexcept
+{
+  this->mColorSystem = colorSystem;
+}
+
+void ribi::Canvas::SetCoordinatSystem(const CoordinatSystem coordinatSystem) noexcept
+{
+  this->mCoordinatSystem = coordinatSystem;
 }

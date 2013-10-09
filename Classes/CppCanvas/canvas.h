@@ -98,12 +98,12 @@ struct Canvas
   ///The color system used:
   ///- normal: full/drawn is displayed by M
   ///- invert: empty/non-drawn is displayed by M
-  const ColorSystem mColorSystem;
+  ColorSystem mColorSystem;
 
   ///The coordinat system used in displayal:
   ///- screen: origin is at top-left of the screen
   ///- graph: origin is at bottom-left of the screen
-  const CoordinatSystem mCoordinatSystem;
+  CoordinatSystem mCoordinatSystem;
 
   ///Check if a coordinat is in the range of the Canvas
   bool IsInRange(const int x, const int y) const;

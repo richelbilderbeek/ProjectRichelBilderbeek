@@ -63,7 +63,7 @@ private:
   static boost::shared_ptr<QtQuestionDialog> CreateQtQuestionDialog(const std::string& s);
 
   #ifndef NDEBUG
-  static void Test();
+  static void Test() noexcept;
   #endif
 };
 
