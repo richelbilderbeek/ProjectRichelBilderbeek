@@ -7282,7 +7282,7 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<ul>",
         R"(  <li><img src="PicLubuntu.png" alt="Lubuntu"/> <a href="ProjectBrainweaver_0_33.png">View a screenshot of 'Brainweaver' (version 0.33)(png)</a></li>)",
         R"(  <li><img src="PicWine.png" alt="Wine"/> <a href="ProjectBrainweaver_0_28Wine.png">View a screenshot of 'Brainweaver' (version 0.28)(png)</a></li>)",
-        R"(  <li><img src="PicWindows.png" alt="Windows"/> <a href="ProjectBrainweaverExe_0_38.zip">Download the 'Brainweaver' windows executable (version 0.37)(zip)</a></li>)",
+        R"(  <li><img src="PicWindows.png" alt="Windows"/> <a href="ProjectBrainweaverExe_0_41.zip">Download the 'Brainweaver' windows executable (version 0.41)(zip)</a></li>)",
         R"(  <li><img src="PicLubuntu.png" alt="Lubuntu"/> <a href="ProjectBrainweaver20130725.mp4">View Brainweaver being tested by libcvautomation (mp4)</a></li>)",
         "</ul>",
         "<p>&nbsp;</p>",

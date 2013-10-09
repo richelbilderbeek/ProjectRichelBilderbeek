@@ -27,15 +27,14 @@
 
 ribi::QtHometrainerMainDialog::QtHometrainerMainDialog(
   const boost::shared_ptr<const HometrainerMainDialog>& dialog,
-  //const std::vector<std::string>& questions,
   QWidget *parent) noexcept
   : QtHideAndShowDialog(parent),
     ui(new Ui::QtHometrainerMainDialog),
     m_current_question_index{0},
-    m_qtdialog{},
     m_n_correct{0},
-    m_n_incorrect{0}
-    //m_questions{questions}
+    m_n_incorrect{0},
+    m_qtdialog{},
+    m_questions{dialog->GetQuestions()}
 {
   ui->setupUi(this);
   #ifndef NDEBUG
@@ -43,12 +42,14 @@ ribi::QtHometrainerMainDialog::QtHometrainerMainDialog(
   #endif
 
   assert(dialog);
+
   assert(!m_questions.empty());
   if (m_questions.empty())
   {
     throw std::logic_error("QtHometrainerMainDialog: must have questions");
   }
-  SetQuestion(m_questions[m_current_question_index]);
+
+  SetQuestion(dialog->GetQuestions()[m_current_question_index]);
 }
 
 ribi::QtHometrainerMainDialog::~QtHometrainerMainDialog() noexcept
@@ -56,7 +57,8 @@ ribi::QtHometrainerMainDialog::~QtHometrainerMainDialog() noexcept
   delete ui;
 }
 
-boost::shared_ptr<ribi::QtQuestionDialog> ribi::QtHometrainerMainDialog::CreateQtQuestionDialog(const std::string& s)
+boost::shared_ptr<ribi::QtQuestionDialog> ribi::QtHometrainerMainDialog::CreateQtQuestionDialog(
+  const boost::shared_ptr<const Question> s)
 {
   boost::shared_ptr<QtQuestionDialog> p;
 
@@ -134,7 +136,7 @@ void ribi::QtHometrainerMainDialog::OnSubmitted(const bool is_correct)
 
 }
 
-void ribi::QtHometrainerMainDialog::SetQuestion(const std::string& s)
+void ribi::QtHometrainerMainDialog::SetQuestion(const boost::shared_ptr<const Question> s)
 {
   m_qtdialog = CreateQtQuestionDialog(s);
   assert(m_qtdialog);
@@ -168,11 +170,24 @@ void ribi::QtHometrainerMainDialog::Test() noexcept
     is_tested = true;
   }
   TRACE("Starting ribi::QtHometrainerMainDialog::Test");
-  const std::vector<std::string> v {
-    "-,1+1=,2,1,3",
-    "-,1+1=,2/Two/two"
+  std::vector<boost::shared_ptr<const Question> > v;
+  {
+    const boost::shared_ptr<const Question> q {
+      new MultipleChoiceQuestion("-,1+1=,2,1,3")
+    };
+    v.push_back(q);
+  }
+  {
+    const boost::shared_ptr<const Question> q {
+      new OpenQuestion("-,1+1=,2/Two/two")
+    };
+    v.push_back(q);
+  }
+  const boost::shared_ptr<const HometrainerMainDialog> dialog {
+    new HometrainerMainDialog(v)
   };
-  QtHometrainerMainDialog d(v);
+
+  QtHometrainerMainDialog d(dialog);
   TRACE("Finished ribi::QtHometrainerMainDialog::Test successfully");
 }
 #endif

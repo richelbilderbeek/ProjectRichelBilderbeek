@@ -35,7 +35,7 @@ struct OpenQuestion;
 struct OpenQuestionDialog : public QuestionDialog
 {
   explicit OpenQuestionDialog(const std::string& question);
-  explicit OpenQuestionDialog(const boost::shared_ptr<Question>& question);
+  explicit OpenQuestionDialog(const boost::shared_ptr<const Question>& question);
 
   ///Obtain the version
   static const std::string GetVersion() noexcept;
