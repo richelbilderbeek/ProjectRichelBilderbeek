@@ -438,8 +438,10 @@ void ribi::pvdb::ConceptMap::Test()
     {
       const std::vector<boost::shared_ptr<ribi::pvdb::ConceptMap> > maps
         = ConceptMapFactory::GetHeteromorphousTestConceptMaps();
-      const std::vector<int> n_subs_expected = { 1,2,3,3,3,3,3,4,4,4,4,4,4,4,4,5,5,5 } ;
-      assert(n_subs_expected.size() == 18);
+      const int n_heteromorphous_concept_maps = 19;
+      assert(n_heteromorphous_concept_maps == static_cast<int>(maps.size()));
+      const std::vector<int> n_subs_expected = { 1,2,3,3,3,3,3,4,4,4,4,4,4,4,4,5,5,5,5 } ;
+      assert(n_heteromorphous_concept_maps == static_cast<int>(n_subs_expected.size()));
       assert(n_subs_expected[ 0] == 1);
       assert(n_subs_expected[ 1] == 2);
       assert(n_subs_expected[ 2] == 3);

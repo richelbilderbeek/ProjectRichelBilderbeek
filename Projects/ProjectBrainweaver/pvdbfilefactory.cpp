@@ -112,6 +112,21 @@ const std::vector<boost::shared_ptr<ribi::pvdb::File> > ribi::pvdb::FileFactory:
     f->SetCluster(cluster);
     v.push_back(f);
   }
+  //[5]: file with rated complex concept map and complex cluster, all multiple lines
+  {
+    boost::shared_ptr<pvdb::File> f = Create();
+    assert(f);
+    f->SetStudentName("ribi::pvdb::FileFactory::GetTests()[5] name");
+    const boost::shared_ptr<ribi::pvdb::ConceptMap> concept_map
+      = ConceptMapFactory::GetHeteromorphousTestConceptMaps().at(17);
+    assert(concept_map);
+    f->SetConceptMap(concept_map);
+    const boost::shared_ptr<pvdb::Cluster> cluster
+      = ClusterFactory::GetTests().at(3);
+    assert(cluster);
+    f->SetCluster(cluster);
+    v.push_back(f);
+  }
 
   assert(std::count_if(v.begin(),v.end(),[](const boost::shared_ptr<pvdb::File>& p) { return !p; } ) == 0);
   //assert(std::all_of(v.begin(),v.end(),[](const boost::shared_ptr<pvdb::File>& p) { return p; } ));

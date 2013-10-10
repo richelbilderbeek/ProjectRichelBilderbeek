@@ -132,27 +132,6 @@ const std::string ribi::pvdb::File::ConvertFrom_0_3(const std::string& s)
   return e;
 }
 
-/*
-void ribi::pvdb::File::CreateConceptMapFromCluster()
-{
-  assert(GetCluster());
-  assert(GetConceptMap());
-  assert(GetConceptMap()->Empty());
-
-  GetConceptMap()->ReadFromCluster(
-    file->GetConceptMap()->GetQuestion(),
-    file->GetCluster());
-
-  // = ribi::pvdb::ConceptMapFactory::CreateFromCluster(
-  //    file->GetConceptMap()->GetQuestion(),
-  //    file->GetCluster()
-  //  );
-  assert((file->GetCluster()->Get().size() + 1)
-    == (concept_map->GetNodes().size())
-    && "As much cluster items as nodes + focus question");
-}
-*/
-
 const std::string ribi::pvdb::File::FileToStr(const std::string& filename)
 {
   assert(QFile::exists(filename.c_str()));

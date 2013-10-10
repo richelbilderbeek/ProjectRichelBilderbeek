@@ -268,7 +268,7 @@ const std::vector<boost::shared_ptr<ribi::pvdb::ConceptMap> > ribi::pvdb::Concep
   typedef std::vector<boost::shared_ptr<ribi::pvdb::Edge> > Edges;
   typedef std::vector<boost::shared_ptr<ribi::pvdb::Node> > Nodes;
 
-  std::vector<boost::shared_ptr<ribi::pvdb::ConceptMap> > v(18);
+  std::vector<boost::shared_ptr<ribi::pvdb::ConceptMap> > v(19);
   assert(std::count_if(v.begin(),v.end(),[](const boost::shared_ptr<ribi::pvdb::ConceptMap>& p) { return p; } ) == 0);
   //[0]: as-empty-as-can-get concept map (X = focal question_
   {
@@ -783,6 +783,112 @@ const std::vector<boost::shared_ptr<ribi::pvdb::ConceptMap> > ribi::pvdb::Concep
       ribi::pvdb::ConceptMapFactory::Create(nodes,edges));
     assert(concept_map);
     v.at(17)=concept_map;
+  }
+  //[18]: complex rated concept map with many long concept names and examples
+  {
+    const boost::shared_ptr<ribi::pvdb::Concept> concept_c(pvdb::ConceptFactory::Create(
+      "B: This is a concept that has all types of competencies as its examples, each example name being multiple lines as well",
+      {
+        {"B-P: this is B its first example (out of seven) and it is categorized as a competency in the profession domain",pvdb::Competency::profession},
+        {"B-O: this is B its second example (out of seven) and it is categorized as a competency in the organisation domain",pvdb::Competency::organisations},
+        {"B-S: this is B its third example (out of seven) and it is categorized as a competency in the social surroundings domain",pvdb::Competency::social_surroundings},
+        {"B-TA: this is B its fourth example (out of seven) and it is categorized as a competency in the target audience domain",pvdb::Competency::target_audience},
+        {"B-TK: this is B its fifth example (out of seven) and it is categorized as a competency in the technical instrumental knowledge domain",pvdb::Competency::ti_knowledge},
+        {"B-PG: this is B its sixth example (out of seven) and it is categorized as a competency in the professional growth domain",pvdb::Competency::prof_growth},
+        {"B-M: this is B its seventh example (out of seven) and it is categorized as a competency in the misc domain",pvdb::Competency::misc}
+      },
+      0,1,2));
+    const boost::shared_ptr<ribi::pvdb::Concept> concept_d(pvdb::ConceptFactory::Create(
+      "C: This is a concept that has only two of the seven types of competencies as its examples, each example name being multiple lines as well",
+      {
+        {"C-O: this is C its first example (out of two) and it is categorized as a competency in the organisation domain",pvdb::Competency::organisations},
+        {"C-S: this is C its second example (out of two) and it is categorized as a competency in the social surroundings domain",pvdb::Competency::social_surroundings}
+      },
+      2,1,0));
+    const boost::shared_ptr<ribi::pvdb::Concept> concept_e(pvdb::ConceptFactory::Create(
+      "D: This is a concept that has only four of the seven types of competencies as its examples, each example name being multiple lines as well",
+      {
+        {"D-TA: this is D its first example (out of four) and it is categorized as a competency in the target audience domain",pvdb::Competency::target_audience},
+        {"D-TK: this is D its second example (out of four) and it is categorized as a competency in the technical instrumental knowledge domain",pvdb::Competency::ti_knowledge},
+        {"D-PG: this is D its third example (out of four) and it is categorized as a competency in the professional growth domain",pvdb::Competency::prof_growth},
+        {"D-M: this is D its fourth example (out of four) and it is categorized as a competency in the misc domain",pvdb::Competency::misc}
+      },
+      0,1,2));
+    const boost::shared_ptr<ribi::pvdb::Node> node_c(pvdb::NodeFactory::Create(concept_c));
+    const boost::shared_ptr<ribi::pvdb::Node> node_d(pvdb::NodeFactory::Create(concept_d));
+    const boost::shared_ptr<ribi::pvdb::Node> node_e(pvdb::NodeFactory::Create(concept_e));
+
+    const Nodes nodes
+      =
+      {
+        pvdb::CenterNodeFactory::Create("X: This is the center node concept that can have no examples, oterwise each of its example name would be multiple lines"),
+        pvdb::NodeFactory::Create("A: This is a concept that has none of all types of competencies as its examples, oterwise each of its example name would be multiple lines"),
+        node_c,
+        node_d,
+        node_e
+      };
+
+    const boost::shared_ptr<ribi::pvdb::Concept> concept_f(
+      pvdb::ConceptFactory::Create(
+        "1: the first description of a relation that has one example. This description spans multiple lines as it is longer than eighty characters",
+        {
+          //{"2-I: this misc example ",pvdb::Competency::misc}
+        }
+      )
+    );
+    const boost::shared_ptr<ribi::pvdb::Concept> concept_h(
+      pvdb::ConceptFactory::Create(
+        "2: the second description of a relation that has one example. This description spans multiple lines as it is longer than eighty characters",
+        {
+          {"2-I: an example of a description of a relation. This example spans multiple lines as it is longer than eighty characters",pvdb::Competency::misc}
+        }
+      )
+    );
+    const boost::shared_ptr<ribi::pvdb::Concept> concept_g(
+      pvdb::ConceptFactory::Create(
+        "3: the third description of a relation that has one example. This description spans multiple lines as it is longer than eighty characters",
+        {
+          {"3-I: an example of a description of a relation. This example spans multiple lines as it is longer than eighty characters",pvdb::Competency::misc},
+          {"3-II: an example of a description of a relation. This example spans multiple lines as it is longer than eighty characters",pvdb::Competency::misc}
+        }
+      )
+    );
+    const boost::shared_ptr<ribi::pvdb::Concept> concept_i(
+      pvdb::ConceptFactory::Create(
+        "4: the fourth description of a relation that has one example. This description spans multiple lines as it is longer than eighty characters",
+        {
+          {"4-I: an example of a description of a relation. This example spans multiple lines as it is longer than eighty characters",pvdb::Competency::misc},
+          {"4-II: an example of a description of a relation. This example spans multiple lines as it is longer than eighty characters",pvdb::Competency::misc},
+          {"4-III: an example of a description of a relation. This example spans multiple lines as it is longer than eighty characters",pvdb::Competency::misc}
+        }
+      )
+    );
+    const boost::shared_ptr<ribi::pvdb::Concept> concept_j(
+      pvdb::ConceptFactory::Create(
+        "5: the fifth description of a relation that has one example. This description spans multiple lines as it is longer than eighty characters",
+        {
+          {"5-I: an example of a description of a relation. This example spans multiple lines as it is longer than eighty characters",pvdb::Competency::misc},
+          {"5-II: an example of a description of a relation. This example spans multiple lines as it is longer than eighty characters",pvdb::Competency::misc},
+          {"5-III: an example of a description of a relation. This example spans multiple lines as it is longer than eighty characters",pvdb::Competency::misc},
+          {"5-IV: an example of a description of a relation. This example spans multiple lines as it is longer than eighty characters",pvdb::Competency::misc}
+        }
+      )
+    );
+
+    const Edges edges
+      =
+      {
+        pvdb::EdgeFactory::Create(concept_f,1.2,3.4,nodes.at(2),false,nodes.at(1),true),
+        pvdb::EdgeFactory::Create(concept_g,2.3,4.5,nodes.at(3),false,nodes.at(2),true),
+        pvdb::EdgeFactory::Create(concept_h,3.4,5.6,nodes.at(4),false,nodes.at(3),true),
+        pvdb::EdgeFactory::Create(concept_i,4.5,6.7,nodes.at(1),false,nodes.at(4),true),
+        pvdb::EdgeFactory::Create(concept_j,5.6,7.8,nodes.at(0),false,nodes.at(1),true)
+      };
+
+    const boost::shared_ptr<ribi::pvdb::ConceptMap> concept_map(
+      ribi::pvdb::ConceptMapFactory::Create(nodes,edges));
+    assert(concept_map);
+    v.at(18)=concept_map;
   }
 
   #ifndef NDEBUG

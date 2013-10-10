@@ -161,7 +161,6 @@ struct File
   friend void boost::checked_delete<>(File* x);
 };
 
-
 bool IsEqual(const pvdb::File& lhs, const pvdb::File& rhs);
 
 } //~namespace pvdb

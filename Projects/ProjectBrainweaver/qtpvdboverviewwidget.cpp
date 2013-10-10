@@ -138,14 +138,16 @@ const std::vector<ribi::QtHideAndShowDialog* > ribi::pvdb::QtPvdbOverviewWidget:
     v.push_back(p);
   }
   {
-    const boost::shared_ptr<ribi::pvdb::ConceptMap> concept_map = ribi::pvdb::ConceptMapFactory::GetHeteromorphousTestConceptMaps().at(17);
+    const boost::shared_ptr<ribi::pvdb::ConceptMap> concept_map
+      = ribi::pvdb::ConceptMapFactory::GetHeteromorphousTestConceptMaps().at(18);
     assert(concept_map);
     QtHideAndShowDialog* p(new QtPvdbRateConceptDialog(concept_map));
     assert(p);
     v.push_back(p);
   }
   {
-    const boost::shared_ptr<ribi::pvdb::ConceptMap> concept_map = ribi::pvdb::ConceptMapFactory::GetHeteromorphousTestConceptMaps().at(17);
+    const boost::shared_ptr<ribi::pvdb::ConceptMap> concept_map
+      = ribi::pvdb::ConceptMapFactory::GetHeteromorphousTestConceptMaps().at(18);
     assert(concept_map);
     QtHideAndShowDialog* p(new QtPvdbRateConceptTallyDialog(concept_map));
     assert(p);

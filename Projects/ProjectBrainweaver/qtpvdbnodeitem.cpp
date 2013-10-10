@@ -183,18 +183,6 @@ void ribi::pvdb::QtPvdbNodeItem::keyPressEvent(QKeyEvent *event)
 {
   assert(m_concept_item);
   assert(m_concept_item->GetConcept());
-  /*
-  if (event->key() == Qt::Key_F2)
-  {
-    this->setEnabled(false);
-    this->setVisible(false);
-    assert(this);
-    assert(GetConcept());
-    this->GetConcept()->SetName( this->GetConcept()->GetName() + "*");
-    this->setEnabled(true);
-    this->setVisible(true);
-  }
-  */
   m_concept_item->keyPressEvent(event);
   switch (event->key())
   {

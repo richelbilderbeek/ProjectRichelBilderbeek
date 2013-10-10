@@ -342,19 +342,27 @@ void ribi::pvdb::QtPvdbTestEdgeItemDialog::Test()
   }
   //Test resizing due to shorter text being set
   {
-    d->m_edge->GetConcept()->SetName(std::string(30,'*'));
+    d->m_edge->GetConcept()->SetName("1234567890 1234567890 1234567890 1234567890 1234567890 1234567890 1234567890 1234567890 1234567890 1234567890 1234567890 1234567890 1234567890");
 
+    const double concept_item_height_before = d->m_edge_item->GetConceptItem()->boundingRect().height();
     const double concept_item_width_before = d->m_edge_item->GetConceptItem()->boundingRect().width();
+    const double concept_item_area_before = concept_item_width_before * concept_item_height_before;
+    const double edge_item_height_before = d->m_edge_item->boundingRect().height();
     const double edge_item_width_before = d->m_edge_item->boundingRect().width();
+    const double edge_item_area_before = edge_item_width_before * edge_item_height_before;
 
     d->m_edge->GetConcept()->SetName(std::string(1,'*'));
 
+    const double concept_item_height_after = d->m_edge_item->GetConceptItem()->boundingRect().height();
     const double concept_item_width_after = d->m_edge_item->GetConceptItem()->boundingRect().width();
+    const double concept_item_area_after = concept_item_width_after * concept_item_height_after;
+    const double edge_item_height_after = d->m_edge_item->boundingRect().height();
     const double edge_item_width_after = d->m_edge_item->boundingRect().width();
+    const double edge_item_area_after = edge_item_width_after * edge_item_height_after;
 
-    assert(concept_item_width_before > concept_item_width_after
+    assert(concept_item_area_before > concept_item_area_after
       && "Concept item must shrink with shorter text");
-    assert(edge_item_width_before > edge_item_width_after
+    assert(edge_item_area_before > edge_item_area_after
       && "The edge as a whole does not need to shrink, as the to and from nodes remain in place,"
       && "but with a very long to a very short text will enforce this");
   }

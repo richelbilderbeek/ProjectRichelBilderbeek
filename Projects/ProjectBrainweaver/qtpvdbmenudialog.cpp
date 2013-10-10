@@ -98,7 +98,7 @@ void ribi::pvdb::QtPvdbMenuDialog::on_button_rate_concept_clicked() noexcept
   //Set HeteromorphousTestConceptMap[15]
   {
     const boost::shared_ptr<ribi::pvdb::ConceptMap> concept_map
-      = ribi::pvdb::ConceptMapFactory::GetHeteromorphousTestConceptMaps().at(15);
+      = ribi::pvdb::ConceptMapFactory::GetHeteromorphousTestConceptMaps().at(18);
     assert(concept_map);
     assert(!file->GetConceptMap() && "Can only set a concept map once");
     file->SetConceptMap(concept_map);
@@ -119,7 +119,7 @@ void ribi::pvdb::QtPvdbMenuDialog::on_button_rate_concept_map_clicked() noexcept
   TRACE("***");
   const boost::shared_ptr<pvdb::File> file = pvdb::FileFactory::Create();
   const boost::shared_ptr<ribi::pvdb::ConceptMap> concept_map
-    = ribi::pvdb::ConceptMapFactory::GetHeteromorphousTestConceptMaps().at(15);
+    = ribi::pvdb::ConceptMapFactory::GetHeteromorphousTestConceptMaps().at(18);
   file->SetConceptMap(concept_map);
   QtPvdbRateConceptMapDialog d(file);
   if (m_show_child_dialogs_modal) { this->ShowChild(&d); } else { d.close(); }
@@ -221,7 +221,7 @@ void ribi::pvdb::QtPvdbMenuDialog::on_button_test_conceptmap_clicked() noexcept
 {
   const boost::shared_ptr<pvdb::File> file = pvdb::FileFactory::Create();
   const boost::shared_ptr<ribi::pvdb::ConceptMap> concept_map
-    = ribi::pvdb::ConceptMapFactory::GetHeteromorphousTestConceptMaps().at(15);
+    = ribi::pvdb::ConceptMapFactory::GetHeteromorphousTestConceptMaps().at(18);
   assert(concept_map);
   assert(!file->GetConceptMap() && "Can only set a concept map once");
   file->SetConceptMap(concept_map);
