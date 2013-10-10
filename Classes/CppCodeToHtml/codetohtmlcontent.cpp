@@ -153,7 +153,6 @@ const std::vector<std::string> c2h::Content::ToHtml() const
       v.push_back("<!-- start of code -->");
       v.push_back("<table summary=\"" + m_filename + "\" border = \"1\"><tr><td><code>");
       //v.push_back("<table border = \"1\"><tr><td><code>");
-      assert(GetReplacementsCpp());
       const auto r = GetReplacementsCpp().Get();
       std::transform(m_contents.begin(),m_contents.end(),
         std::back_inserter(v),
@@ -175,7 +174,6 @@ const std::vector<std::string> c2h::Content::ToHtml() const
       v.push_back("<!-- start of code -->");
       v.push_back("<table summary=\"" + m_filename + "\" border = \"1\"><tr><td><code>");
       //v.push_back("<table border = \"1\"><tr><td><code>");
-      assert(GetReplacementsPro());
       const std::vector<std::pair<std::string,std::string> > r = GetReplacementsPro().Get();
       std::transform(m_contents.begin(),m_contents.end(),
         std::back_inserter(v),
@@ -194,7 +192,6 @@ const std::vector<std::string> c2h::Content::ToHtml() const
       v.push_back("<p>&nbsp;</p>");
       v.push_back("<!-- start of code -->");
       v.push_back("<table summary=\"" + m_filename + "\" border = \"1\"><tr><td><code>");
-      assert(GetReplacementsPro());
       const auto r = GetReplacementsPro().Get();
       std::transform(m_contents.begin(),m_contents.end(),
         std::back_inserter(v),
@@ -215,7 +212,6 @@ const std::vector<std::string> c2h::Content::ToHtml() const
       v.push_back("<!-- start of code -->");
       v.push_back("<table summary=\"" + m_filename + "\" border = \"1\"><tr><td><code>");
       //v.push_back("<table border = \"1\"><tr><td><code>");
-      assert(GetReplacementsTxt());
       const auto r = GetReplacementsTxt().Get();
       std::transform(m_contents.begin(),m_contents.end(),
         std::back_inserter(v),

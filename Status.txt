@@ -1,4 +1,8 @@
+CppArray_intersect
+CppArray_intersect.exe
 CppArray_keys.exe
+CppArray_merge
+CppArray_merge.exe
 CppAssertExample1
 CppAssertExample1.exe
 CppAssertExample2
@@ -162,6 +166,8 @@ CppHostClassExample3
 CppHostClassExample3.exe
 CppIfExample1
 CppIfExample1.exe
+CppImplode
+CppImplode.exe
 CppInheritanceExample1.exe
 CppIteratorExample1
 CppIteratorExample1.exe
@@ -460,9 +466,15 @@ ProjectBrainweaverDeveloper
 ProjectBrainweaverDeveloper.exe
 ProjectBrainweaverStudent
 ProjectBrainweaverStudent.exe
+ProjectRichelBilderbeekConsole
+ProjectRichelBilderbeekConsole.exe
+ProjectRichelBilderbeekDesktop
+ProjectRichelBilderbeekDesktop.exe
+ProjectRichelBilderbeekWebsite
 ToolAsciiArterDesktop
 ToolAsciiArterDesktop.exe
 ToolCodeToHtmlConsole
+ToolCodeToHtmlConsole.exe
 ToolCodeToHtmlDesktop
 ToolCodeToHtmlDesktop.exe
 ToolCreateGlossaryConsole
@@ -482,6 +494,8 @@ ToolGrayCoderConsole
 ToolGrayCoderConsole.exe
 ToolGrayCoderDesktop
 ToolGrayCoderDesktop.exe
+ToolHometrainerDesktop
+ToolHometrainerDesktop.exe
 ToolKalmanFiltererDesktop
 ToolKTouchLectureCreator
 ToolKTouchLectureCreator.exe
@@ -537,6 +551,10 @@ ToolTestBoucingRectsWidget
 ToolTestBoucingRectsWidget.exe
 ToolTestBouncingBallsWidget
 ToolTestBouncingBallsWidget.exe
+ToolTestCanvasConsole
+ToolTestCanvasConsole.exe
+ToolTestCanvasDesktop
+ToolTestCanvasDesktop.exe
 ToolTestDialDesktop
 ToolTestDialDesktop.exe
 ToolTestGraphicsProxyWidget.exe
@@ -560,6 +578,7 @@ ToolTestQtRoundedTextRectItem
 ToolTestQtRoundedTextRectItem.exe
 ToolTestQuestionDesktop
 ToolTestQuestionDesktop.exe
+ToolTestSimpleLinearRegressionConsole.exe
 ToolTestSimpleLinearRegressionDesktop
 ToolTestStopwatch.exe
 ToolTestTextPositionWidget

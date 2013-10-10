@@ -37,190 +37,190 @@
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="approximator.h" border = "1"><tr><td><code>
-<a href="CppIfndef.html">#ifndef</a> APPROXIMATOR_H<br/>
-<a href="CppDefine.html">#define</a> APPROXIMATOR_H<br/>
+<a href="CppIfndef.htm">#ifndef</a> APPROXIMATOR_H<br/>
+<a href="CppDefine.htm">#define</a> APPROXIMATOR_H<br/>
 <br/>
-<a href="CppInclude.html">#include</a> &lt;<a href="CppCassertH.html">cassert</a>&gt;<br/>
-<a href="CppInclude.html">#include</a> &lt;<a href="CppStdexceptH.html">stdexcept</a>&gt;<br/>
-<a href="CppInclude.html">#include</a> &lt;<a href="CppMapH.html">map</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppStdexceptH.htm">stdexcept</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppMapH.htm">map</a>&gt;<br/>
 <br/>
-<a href="CppPragma.html">#pragma</a> GCC diagnostic push<br/>
-<a href="CppPragma.html">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.html">-Weffc++</a>"<br/>
-<a href="CppPragma.html">#pragma</a> GCC diagnostic ignored "-Wunused-local-<b><a href="CppTypedef.html">typedef</a></b>s"<br/>
-<a href="CppInclude.html">#include</a> &lt;<a href="CppBoost.html">boost</a>/<a href="CppContainer.html">container</a>/flat_map<a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-<b><a href="CppTypedef.htm">typedef</a></b>s"<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppContainer.htm">container</a>/flat_map.hpp&gt;<br/>
 <br/>
-<a href="CppInclude.html">#include</a> "<a href="CppException.html">exception</a>noextrapolation<a href="CppHeaderFile.htm">.h</a>"<br/>
-<a href="CppInclude.html">#include</a> "<a href="CppTrace.html">trace</a><a href="CppHeaderFile.htm">.h</a>"<br/>
-<a href="CppPragma.html">#pragma</a> GCC diagnostic pop<br/>
+<a href="CppInclude.htm">#include</a> "<a href="CppException.htm">exception</a>noextrapolation.h"<br/>
+<a href="CppInclude.htm">#include</a> "<a href="CppTrace.htm">trace</a>.h"<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
 <br/>
-<b><a href="CppNamespace.html">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
+<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
 <br/>
-<a href="CppComment.htm">///</a>Approximator can estimate a value between unique keys.<br/>
-<a href="CppComment.htm">///</a>For example, supply Approximator&lt;X,Y&gt; with (1.0,10.0) and (2.0,20.0)<br/>
+<a href="CppComment.htm">///</a><a href="CppApproximator.htm">Approximator</a> can estimate a value between unique keys.<br/>
+<a href="CppComment.htm">///</a>For example, supply <a href="CppApproximator.htm">Approximator</a>&lt;X,Y&gt; with (1.0,10.0) and (2.0,20.0)<br/>
 <a href="CppComment.htm">///</a>and it will estimate an X <b><a href="CppIf.htm">if</a></b> 1.5 to have a Y of 15.0.<br/>
 <a href="CppComment.htm">///</a>If the data used has duplicate keys, e.g. (1.0,9.0) and (1.0,11.0), use<br/>
-<a href="CppComment.htm">///</a>MultiApproximator instead.<br/>
+<a href="CppComment.htm">///</a>Multi<a href="CppApproximator.htm">Approximator</a> instead.<br/>
 <a href="CppComment.htm">///</a><br/>
-<a href="CppComment.htm">///</a>Key: a type that has <b><a href="CppOperatorLess.html">operator&lt;</a></b><br/>
-<a href="CppComment.htm">///</a>Value: a type that has <b><a href="CppOperatorDivide.html">operator/</a></b>(<b><a href="CppDouble.html">double</a></b>)<br/>
-<a href="CppComment.htm">///</a><a href="CppContainer.html">Container</a>: how to store the <a href="CppPair.html">std::pair</a>&lt;Key,Value&gt;<br/>
-/<a href="CppComment.htm">//</a>&nbsp;&nbsp;<a href="CppOperatorMinus.htm">-</a> <a href="CppBoost.html">boost</a>::<a href="CppContainer.html">container</a>::flat_imap&lt;Key,Value&gt;<br/>
+<a href="CppComment.htm">///</a>Key: a type that has <b><a href="CppOperatorLess.htm">operator&lt;</a></b><br/>
+<a href="CppComment.htm">///</a>Value: a type that has <b><a href="CppOperatorDivide.htm">operator/</a></b>(<b><a href="CppDouble.htm">double</a></b>)<br/>
+<a href="CppComment.htm">///</a><a href="CppContainer.htm">Container</a>: how to store the <a href="CppPair.htm">std::pair</a>&lt;Key,Value&gt;<br/>
+/<a href="CppComment.htm">//</a>&nbsp;&nbsp;<a href="CppOperatorMinus.htm">-</a> <a href="CppBoost.htm">boost</a>::<a href="CppContainer.htm">container</a>::flat_imap&lt;Key,Value&gt;<br/>
 /<a href="CppComment.htm">//</a>&nbsp;&nbsp;&nbsp;&nbsp;: faster <b><a href="CppFor.htm">for</a></b> lookup, data adding is slower<br/>
-/<a href="CppComment.htm">//</a>&nbsp;&nbsp;<a href="CppOperatorMinus.htm">-</a> <a href="CppMap.html">std::map</a>&lt;Key,Value&gt;<br/>
+/<a href="CppComment.htm">//</a>&nbsp;&nbsp;<a href="CppOperatorMinus.htm">-</a> <a href="CppMap.htm">std::map</a>&lt;Key,Value&gt;<br/>
 /<a href="CppComment.htm">//</a>&nbsp;&nbsp;&nbsp;&nbsp;: faster adding of data, lookup is slower<br/>
-<b><a href="CppTemplate.html">template</a></b> &lt;<b><a href="CppClass.html">class</a></b> Key <a href="CppOperatorAssign.htm">=</a> <b><a href="CppDouble.html">double</a></b>, <b><a href="CppClass.html">class</a></b> Value <a href="CppOperatorAssign.htm">=</a> <b><a href="CppDouble.html">double</a></b>, <b><a href="CppClass.html">class</a></b> <a href="CppContainer.html">Container</a> <a href="CppOperatorAssign.htm">=</a> <a href="CppBoost.html">boost</a>::<a href="CppContainer.html">container</a>::flat_map&lt;Key,Value&gt; &gt;<br/>
-<b><a href="CppStruct.html">struct</a></b> Approximator<br/>
+<b><a href="CppTemplate.htm">template</a></b> &lt;<b><a href="CppClass.htm">class</a></b> Key <a href="CppOperatorAssign.htm">=</a> <b><a href="CppDouble.htm">double</a></b>, <b><a href="CppClass.htm">class</a></b> Value <a href="CppOperatorAssign.htm">=</a> <b><a href="CppDouble.htm">double</a></b>, <b><a href="CppClass.htm">class</a></b> <a href="CppContainer.htm">Container</a> <a href="CppOperatorAssign.htm">=</a> <a href="CppBoost.htm">boost</a>::<a href="CppContainer.htm">container</a>::flat_map&lt;Key,Value&gt; &gt;<br/>
+<b><a href="CppStruct.htm">struct</a></b> <a href="CppApproximator.htm">Approximator</a><br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppTypedef.html">typedef</a></b> Key key_type;<br/>
-&nbsp;&nbsp;<b><a href="CppTypedef.html">typedef</a></b> Value value_type;<br/>
+&nbsp;&nbsp;<b><a href="CppTypedef.htm">typedef</a></b> Key key_type;<br/>
+&nbsp;&nbsp;<b><a href="CppTypedef.htm">typedef</a></b> Value value_type;<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppExplicit.html">explicit</a></b> Approximator(<b><a href="CppConst.html">const</a></b> <a href="CppContainer.html">Container</a>&amp; m <a href="CppOperatorAssign.htm">=</a> <a href="CppContainer.html">Container</a>() );<br/>
+&nbsp;&nbsp;<b><a href="CppExplicit.htm">explicit</a></b> <a href="CppApproximator.htm">Approximator</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppContainer.htm">Container</a>&amp; m <a href="CppOperatorAssign.htm">=</a> <a href="CppContainer.htm">Container</a>() ) <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/<a href="CppAdd.htm">Add</a> a key-value pair, where the key must be unique<br/>
-&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> <a href="CppAdd.htm">Add</a>(<b><a href="CppConst.html">const</a></b> Key&amp; key, <b><a href="CppConst.html">const</a></b> Value&amp; value);<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> <a href="CppAdd.htm">Add</a>(<b><a href="CppConst.htm">const</a></b> Key&amp; key, <b><a href="CppConst.htm">const</a></b> Value&amp; value);<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/Approximate a key its value<br/>
-&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> Value Approximate(<b><a href="CppConst.html">const</a></b> Key&amp; key) <b><a href="CppConst.html">const</a></b>;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Value Approximate(<b><a href="CppConst.htm">const</a></b> Key&amp; key) <b><a href="CppConst.htm">const</a></b>;<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/Can only add a value <b><a href="CppIf.htm">if</a></b> its key is not present<br/>
-&nbsp;&nbsp;<b><a href="CppBool.htm">bool</a></b> Can<a href="CppAdd.htm">Add</a>(<b><a href="CppConst.html">const</a></b> Key&amp; key, <b><a href="CppConst.html">const</a></b> Value&amp; ) <b><a href="CppConst.html">const</a></b>;<br/>
+&nbsp;&nbsp;<b><a href="CppBool.htm">bool</a></b> Can<a href="CppAdd.htm">Add</a>(<b><a href="CppConst.htm">const</a></b> Key&amp; key, <b><a href="CppConst.htm">const</a></b> Value&amp; ) <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Obtain the <a href="CppContainer.html">container</a><br/>
-&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppContainer.html">Container</a>&amp; Get() <b><a href="CppConst.html">const</a></b> { <b><a href="CppReturn.html">return</a></b> m_m; }<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Obtain the <a href="CppContainer.htm">container</a><br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppContainer.htm">Container</a>&amp; Get() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b> { <b><a href="CppReturn.htm">return</a></b> m_m; }<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/Obtain the lowest key value<br/>
-&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> Key GetMax() <b><a href="CppConst.html">const</a></b> { <a href="CppAssert.html">assert</a>(!m_m.empty()); <b><a href="CppReturn.html">return</a></b> (*m_m.rbegin()).first; }<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Key GetMax() <b><a href="CppConst.htm">const</a></b> { <a href="CppAssert.htm">assert</a>(!m_m.empty()); <b><a href="CppReturn.htm">return</a></b> (*m_m.rbegin()).first; }<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/Obtain the heighest key value<br/>
-&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> Key GetMin() <b><a href="CppConst.html">const</a></b> { <a href="CppAssert.html">assert</a>(!m_m.empty()); <b><a href="CppReturn.html">return</a></b> (*m_m.begin()).first; }<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Key GetMin() <b><a href="CppConst.htm">const</a></b> { <a href="CppAssert.htm">assert</a>(!m_m.empty()); <b><a href="CppReturn.htm">return</a></b> (*m_m.begin()).first; }<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Obtain the <a href="CppVersion.html">version</a> of <b><a href="CppThis.htm">this</a></b> <b><a href="CppClass.html">class</a></b><br/>
-&nbsp;&nbsp;<b><a href="CppStatic.html">static</a></b> <b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a> Get<a href="CppVersion.html">Version</a>();<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Obtain the <a href="CppVersion.htm">version</a> of <b><a href="CppThis.htm">this</a></b> <b><a href="CppClass.htm">class</a></b><br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> Get<a href="CppVersion.htm">Version</a>() <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Obtain the <a href="CppVersion.html">version</a> history of <b><a href="CppThis.htm">this</a></b> <b><a href="CppClass.html">class</a></b><br/>
-&nbsp;&nbsp;<b><a href="CppStatic.html">static</a></b> <b><a href="CppConst.html">const</a></b> <a href="CppVector.html">std::vector</a>&lt;<a href="CppString.html">std::string</a>&gt; Get<a href="CppVersion.html">Version</a>History();<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Obtain the <a href="CppVersion.htm">version</a> history of <b><a href="CppThis.htm">this</a></b> <b><a href="CppClass.htm">class</a></b><br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; Get<a href="CppVersion.htm">Version</a>History() <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppPrivate.html">private</a></b>:<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>/The <a href="CppContainer.html">container</a> used<br/>
-&nbsp;&nbsp;<a href="CppContainer.html">Container</a> m_m;<br/>
+&nbsp;&nbsp;<b><a href="CppPrivate.htm">private</a></b>:<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/The <a href="CppContainer.htm">container</a> used<br/>
+&nbsp;&nbsp;<a href="CppContainer.htm">Container</a> m_m;<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppIfndef.html">#ifndef</a> <a href="CppNDEBUG.html">NDEBUG</a><br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Test <b><a href="CppThis.htm">this</a></b> <b><a href="CppClass.html">class</a></b><br/>
-&nbsp;&nbsp;<b><a href="CppStatic.html">static</a></b> <b><a href="CppVoid.htm">void</a></b> Test();<br/>
-&nbsp;&nbsp;<a href="CppEndif.html">#endif</a><br/>
+&nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Test <b><a href="CppThis.htm">this</a></b> <b><a href="CppClass.htm">class</a></b><br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppVoid.htm">void</a></b> Test() <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
+&nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
 };<br/>
 <br/>
 <br/>
-<b><a href="CppTemplate.html">template</a></b> &lt;<b><a href="CppClass.html">class</a></b> Key, <b><a href="CppClass.html">class</a></b> Value, <b><a href="CppClass.html">class</a></b> <a href="CppContainer.html">Container</a>&gt;<br/>
-Approximator&lt;Key,Value,<a href="CppContainer.html">Container</a>&gt;::Approximator(<b><a href="CppConst.html">const</a></b> <a href="CppContainer.html">Container</a>&amp; m)<br/>
+<b><a href="CppTemplate.htm">template</a></b> &lt;<b><a href="CppClass.htm">class</a></b> Key, <b><a href="CppClass.htm">class</a></b> Value, <b><a href="CppClass.htm">class</a></b> <a href="CppContainer.htm">Container</a>&gt;<br/>
+<a href="CppApproximator.htm">Approximator</a>&lt;Key,Value,<a href="CppContainer.htm">Container</a>&gt;::<a href="CppApproximator.htm">Approximator</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppContainer.htm">Container</a>&amp; m) <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 &nbsp;&nbsp;: m_m { m }<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppStatic_assert.html">static_assert</a></b>(!<a href="CppStd.htm">std</a>::is_integral&lt;Key&gt;(),<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;"Approximator will not work on <a href="CppInt.html">integer</a> keys");<br/>
-&nbsp;&nbsp;<a href="CppIfndef.html">#ifndef</a> <a href="CppNDEBUG.html">NDEBUG</a><br/>
+&nbsp;&nbsp;<b><a href="CppStatic_assert.htm">static_assert</a></b>(!<a href="CppStd.htm">std</a>::is_integral&lt;Key&gt;(),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"<a href="CppApproximator.htm">Approximator</a> will not work on <a href="CppInt.htm">integer</a> keys");<br/>
+&nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
 &nbsp;&nbsp;Test();<br/>
-&nbsp;&nbsp;<a href="CppEndif.html">#endif</a><br/>
+&nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
 }<br/>
 <br/>
-<b><a href="CppTemplate.html">template</a></b> &lt;<b><a href="CppClass.html">class</a></b> Key, <b><a href="CppClass.html">class</a></b> Value, <b><a href="CppClass.html">class</a></b> <a href="CppContainer.html">Container</a>&gt;<br/>
-<b><a href="CppVoid.htm">void</a></b> Approximator&lt;Key,Value,<a href="CppContainer.html">Container</a>&gt;::<a href="CppAdd.htm">Add</a>(<b><a href="CppConst.html">const</a></b> Key&amp; key, <b><a href="CppConst.html">const</a></b> Value&amp; value)<br/>
+<b><a href="CppTemplate.htm">template</a></b> &lt;<b><a href="CppClass.htm">class</a></b> Key, <b><a href="CppClass.htm">class</a></b> Value, <b><a href="CppClass.htm">class</a></b> <a href="CppContainer.htm">Container</a>&gt;<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppApproximator.htm">Approximator</a>&lt;Key,Value,<a href="CppContainer.htm">Container</a>&gt;::<a href="CppAdd.htm">Add</a>(<b><a href="CppConst.htm">const</a></b> Key&amp; key, <b><a href="CppConst.htm">const</a></b> Value&amp; value)<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppAssert.html">assert</a>( Can<a href="CppAdd.htm">Add</a>(key,value)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorLogicalAnd.html">&amp;&amp;</a> "Every key must be unique,"<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "use MultiApproximator <b><a href="CppIf.htm">if</a></b> you need non-unique keys");<br/>
-&nbsp;&nbsp;m_m.insert(<a href="CppMake_pair.html">std::make_pair</a>(key,value));<br/>
-&nbsp;&nbsp;<a href="CppAssert.html">assert</a>( !Can<a href="CppAdd.htm">Add</a>(key,value) );<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>( Can<a href="CppAdd.htm">Add</a>(key,value)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "Every key must be unique,"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "use Multi<a href="CppApproximator.htm">Approximator</a> <b><a href="CppIf.htm">if</a></b> you need non-unique keys");<br/>
+&nbsp;&nbsp;m_m.insert(<a href="CppMake_pair.htm">std::make_pair</a>(key,value));<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>( !Can<a href="CppAdd.htm">Add</a>(key,value) );<br/>
 }<br/>
 <br/>
-<b><a href="CppTemplate.html">template</a></b> &lt;<b><a href="CppClass.html">class</a></b> Key, <b><a href="CppClass.html">class</a></b> Value, <b><a href="CppClass.html">class</a></b> <a href="CppContainer.html">Container</a>&gt;<br/>
-<b><a href="CppConst.html">const</a></b> Value Approximator&lt;Key,Value,<a href="CppContainer.html">Container</a>&gt;::Approximate(<b><a href="CppConst.html">const</a></b> Key&amp; key) <b><a href="CppConst.html">const</a></b><br/>
+<b><a href="CppTemplate.htm">template</a></b> &lt;<b><a href="CppClass.htm">class</a></b> Key, <b><a href="CppClass.htm">class</a></b> Value, <b><a href="CppClass.htm">class</a></b> <a href="CppContainer.htm">Container</a>&gt;<br/>
+<b><a href="CppConst.htm">const</a></b> Value <a href="CppApproximator.htm">Approximator</a>&lt;Key,Value,<a href="CppContainer.htm">Container</a>&gt;::Approximate(<b><a href="CppConst.htm">const</a></b> Key&amp; key) <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppTypedef.html">typedef</a></b> <b><a href="CppTypename.html">typename</a></b> <a href="CppContainer.html">Container</a>::const_iterator <a href="CppIterator.html">Iterator</a>;<br/>
+&nbsp;&nbsp;<b><a href="CppTypedef.htm">typedef</a></b> <b><a href="CppTypename.htm">typename</a></b> <a href="CppContainer.htm">Container</a>::const_iterator <a href="CppIterator.htm">Iterator</a>;<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(!m_m.empty() <a href="CppOperatorLogicalAnd.html">&amp;&amp;</a> "Cannot approximate without data");<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!m_m.empty() <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "Cannot approximate without data");<br/>
 <br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppIterator.html">Iterator</a> i { m_m.find(key) };<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (i<a href="CppOperatorNotEqual.htm">!=</a>m_m.end()) <b><a href="CppReturn.html">return</a></b> (*i).second;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppIterator.htm">Iterator</a> i { m_m.find(key) };<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (i<a href="CppOperatorNotEqual.htm">!=</a>m_m.end()) <b><a href="CppReturn.htm">return</a></b> (*i).second;<br/>
 &nbsp;&nbsp;}<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppIterator.html">Iterator</a> high { m_m.lower_bound(key) };<br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (high <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> m_m.begin() <a href="CppOperatorLogicalOr.htm">||</a> high <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> m_m.end())<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppIterator.htm">Iterator</a> high { m_m.lower_bound(key) };<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (high <a href="CppOperatorEqual.htm">==</a> m_m.begin() <a href="CppOperatorLogicalOr.htm">||</a> high <a href="CppOperatorEqual.htm">==</a> m_m.end())<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(!m_m.empty());<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> Key lowest&nbsp;&nbsp;{ (*m_m.begin()).first&nbsp;&nbsp;};<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> Key highest { (*m_m.rbegin()).first };<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThrow.html">throw</a></b> <a href="CppException.html">Exception</a>NoExtrapolation&lt;Key&gt;(key,lowest,highest);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!m_m.empty());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Key lowest&nbsp;&nbsp;{ (*m_m.begin()).first&nbsp;&nbsp;};<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Key highest { (*m_m.rbegin()).first };<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThrow.htm">throw</a></b> <a href="CppException.htm">Exception</a>NoExtrapolation&lt;Key&gt;(key,lowest,highest);<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppIterator.html">Iterator</a> low { <a href="CppOperatorMinus.htm">-</a>-<a href="CppIterator.html">Iterator</a>(high) };<br/>
-&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(low <a href="CppOperatorNotEqual.htm">!=</a> m_m.end());<br/>
-&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(high <a href="CppOperatorNotEqual.htm">!=</a> m_m.end());<br/>
-&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> Key d_low&nbsp;&nbsp;{ (*low).first };<br/>
-&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> Key d_high { (*high).first };<br/>
-&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(d_low &lt; key);<br/>
-&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(d_high &gt; key);<br/>
-&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppDouble.html">double</a></b> fraction { (key <a href="CppOperatorMinus.htm">-</a> d_low) <a href="CppOperatorDivide.htm">/</a> (d_high <a href="CppOperatorMinus.htm">-</a> d_low) };<br/>
-&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(fraction <a href="CppOperatorGreaterEqual.html">&gt;=</a> 0.0);<br/>
-&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(fraction <a href="CppOperatorLessEqual.html">&lt;=</a> 1.0);<br/>
-&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(m_m.find(d_low)&nbsp;&nbsp;<a href="CppOperatorNotEqual.htm">!=</a> m_m.end());<br/>
-&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(m_m.find(d_high) <a href="CppOperatorNotEqual.htm">!=</a> m_m.end());<br/>
-&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> Value h_low&nbsp;&nbsp;{ (*m_m.find(d_low)).second&nbsp;&nbsp;};<br/>
-&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> Value h_high { (*m_m.find(d_high)).second };<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> ((1.0 <a href="CppOperatorMinus.htm">-</a> fraction)) * h_low <a href="CppOperatorPlus.htm">+</a> ((0.0 <a href="CppOperatorPlus.htm">+</a> fraction) * h_high);<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppIterator.htm">Iterator</a> low { <a href="CppOperatorDecrement.htm">--</a><a href="CppIterator.htm">Iterator</a>(high) };<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(low <a href="CppOperatorNotEqual.htm">!=</a> m_m.end());<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(high <a href="CppOperatorNotEqual.htm">!=</a> m_m.end());<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Key d_low&nbsp;&nbsp;{ (*low).first };<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Key d_high { (*high).first };<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(d_low &lt; key);<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(d_high &gt; key);<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> fraction { (key <a href="CppOperatorMinus.htm">-</a> d_low) <a href="CppOperatorDivide.htm">/</a> (d_high <a href="CppOperatorMinus.htm">-</a> d_low) };<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(fraction <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 0.0);<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(fraction <a href="CppOperatorLessEqual.htm">&lt;=</a> 1.0);<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(m_m.find(d_low)&nbsp;&nbsp;<a href="CppOperatorNotEqual.htm">!=</a> m_m.end());<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(m_m.find(d_high) <a href="CppOperatorNotEqual.htm">!=</a> m_m.end());<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Value h_low&nbsp;&nbsp;{ (*m_m.find(d_low)).second&nbsp;&nbsp;};<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Value h_high { (*m_m.find(d_high)).second };<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> ((1.0 <a href="CppOperatorMinus.htm">-</a> fraction)) * h_low <a href="CppOperatorPlus.htm">+</a> ((0.0 <a href="CppOperatorPlus.htm">+</a> fraction) * h_high);<br/>
 }<br/>
 <br/>
-<b><a href="CppTemplate.html">template</a></b> &lt;<b><a href="CppClass.html">class</a></b> Key, <b><a href="CppClass.html">class</a></b> Value, <b><a href="CppClass.html">class</a></b> <a href="CppContainer.html">Container</a>&gt;<br/>
-<b><a href="CppBool.htm">bool</a></b> Approximator&lt;Key,Value,<a href="CppContainer.html">Container</a>&gt;::Can<a href="CppAdd.htm">Add</a>(<b><a href="CppConst.html">const</a></b> Key&amp; key, <b><a href="CppConst.html">const</a></b> Value&amp; ) <b><a href="CppConst.html">const</a></b><br/>
+<b><a href="CppTemplate.htm">template</a></b> &lt;<b><a href="CppClass.htm">class</a></b> Key, <b><a href="CppClass.htm">class</a></b> Value, <b><a href="CppClass.htm">class</a></b> <a href="CppContainer.htm">Container</a>&gt;<br/>
+<b><a href="CppBool.htm">bool</a></b> <a href="CppApproximator.htm">Approximator</a>&lt;Key,Value,<a href="CppContainer.htm">Container</a>&gt;::Can<a href="CppAdd.htm">Add</a>(<b><a href="CppConst.htm">const</a></b> Key&amp; key, <b><a href="CppConst.htm">const</a></b> Value&amp; ) <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> m_m.find(key) <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> m_m.end();<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> m_m.find(key) <a href="CppOperatorEqual.htm">==</a> m_m.end();<br/>
 }<br/>
 <br/>
-<b><a href="CppTemplate.html">template</a></b> &lt;<b><a href="CppClass.html">class</a></b> Key, <b><a href="CppClass.html">class</a></b> Value, <b><a href="CppClass.html">class</a></b> <a href="CppContainer.html">Container</a>&gt;<br/>
-<b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a> Approximator&lt;Key,Value,<a href="CppContainer.html">Container</a>&gt;::Get<a href="CppVersion.html">Version</a>()<br/>
+<b><a href="CppTemplate.htm">template</a></b> &lt;<b><a href="CppClass.htm">class</a></b> Key, <b><a href="CppClass.htm">class</a></b> Value, <b><a href="CppClass.htm">class</a></b> <a href="CppContainer.htm">Container</a>&gt;<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppApproximator.htm">Approximator</a>&lt;Key,Value,<a href="CppContainer.htm">Container</a>&gt;::Get<a href="CppVersion.htm">Version</a>() <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> "1.0";<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> "1.0";<br/>
 }<br/>
 <br/>
-<a href="CppComment.htm">///</a>Obtain the <a href="CppVersion.html">version</a> history of <b><a href="CppThis.htm">this</a></b> <b><a href="CppClass.html">class</a></b><br/>
-<b><a href="CppTemplate.html">template</a></b> &lt;<b><a href="CppClass.html">class</a></b> Key, <b><a href="CppClass.html">class</a></b> Value, <b><a href="CppClass.html">class</a></b> <a href="CppContainer.html">Container</a>&gt;<br/>
-<b><a href="CppConst.html">const</a></b> <a href="CppVector.html">std::vector</a>&lt;<a href="CppString.html">std::string</a>&gt; Approximator&lt;Key,Value,<a href="CppContainer.html">Container</a>&gt;::Get<a href="CppVersion.html">Version</a>History()<br/>
+<a href="CppComment.htm">///</a>Obtain the <a href="CppVersion.htm">version</a> history of <b><a href="CppThis.htm">this</a></b> <b><a href="CppClass.htm">class</a></b><br/>
+<b><a href="CppTemplate.htm">template</a></b> &lt;<b><a href="CppClass.htm">class</a></b> Key, <b><a href="CppClass.htm">class</a></b> Value, <b><a href="CppClass.htm">class</a></b> <a href="CppContainer.htm">Container</a>&gt;<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppApproximator.htm">Approximator</a>&lt;Key,Value,<a href="CppContainer.htm">Container</a>&gt;::Get<a href="CppVersion.htm">Version</a>History() <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppVector.html">std::vector</a>&lt;<a href="CppString.html">std::string</a>&gt; v {<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;"2013-08-22: <a href="CppVersion.html">version</a> 1.0: initial <a href="CppVersion.html">version</a>"<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"2013-08-22: <a href="CppVersion.htm">version</a> 1.0: initial <a href="CppVersion.htm">version</a>"<br/>
 &nbsp;&nbsp;};<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.html">return</a></b> v;<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
 }<br/>
 <br/>
 <br/>
-<a href="CppIfndef.html">#ifndef</a> <a href="CppNDEBUG.html">NDEBUG</a><br/>
-<b><a href="CppTemplate.html">template</a></b> &lt;<b><a href="CppClass.html">class</a></b> Key, <b><a href="CppClass.html">class</a></b> Value, <b><a href="CppClass.html">class</a></b> <a href="CppContainer.html">Container</a>&gt;<br/>
-<b><a href="CppVoid.htm">void</a></b> Approximator&lt;Key,Value,<a href="CppContainer.html">Container</a>&gt;::Test()<br/>
+<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
+<b><a href="CppTemplate.htm">template</a></b> &lt;<b><a href="CppClass.htm">class</a></b> Key, <b><a href="CppClass.htm">class</a></b> Value, <b><a href="CppClass.htm">class</a></b> <a href="CppContainer.htm">Container</a>&gt;<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppApproximator.htm">Approximator</a>&lt;Key,Value,<a href="CppContainer.htm">Container</a>&gt;::Test() <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 {<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppStatic.html">static</a></b> <b><a href="CppBool.htm">bool</a></b> is_tested { <b><a href="CppFalse.html">false</a></b> };<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (is_tested) <b><a href="CppReturn.html">return</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppBool.htm">bool</a></b> is_tested { <b><a href="CppFalse.htm">false</a></b> };<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (is_tested) <b><a href="CppReturn.htm">return</a></b>;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;is_tested <a href="CppOperatorAssign.htm">=</a> <b><a href="CppTrue.htm">true</a></b>;<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppTRACE.html">TRACE</a>("Starting Approximator::Test");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;Approximator&lt;<b><a href="CppDouble.html">double</a></b>,<b><a href="CppInt.htm">int</a></b>&gt; m;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("Starting <a href="CppApproximator.htm">Approximator</a>::Test");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppApproximator.htm">Approximator</a>&lt;<b><a href="CppDouble.htm">double</a></b>,<b><a href="CppInt.htm">int</a></b>&gt; m;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;m.<a href="CppAdd.htm">Add</a>(1.0,10);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;m.<a href="CppAdd.htm">Add</a>(2.0,20);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(m.Approximate(1.5) <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 15);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(m.Approximate(1.5) <a href="CppOperatorEqual.htm">==</a> 15);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;m.<a href="CppAdd.htm">Add</a>(4.0,40);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(m.Approximate(3.0) <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 30);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(m.Approximate(3.0) <a href="CppOperatorEqual.htm">==</a> 30);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;m.<a href="CppAdd.htm">Add</a>(3.0,35);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(m.Approximate(3.0) <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 35);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(m.GetMin() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 1.0);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.html">assert</a>(m.GetMax() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 4.0);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppTRACE.html">TRACE</a>("Completed Approximator::Test successfully");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(m.Approximate(3.0) <a href="CppOperatorEqual.htm">==</a> 35);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(m.GetMin() <a href="CppOperatorEqual.htm">==</a> 1.0);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(m.GetMax() <a href="CppOperatorEqual.htm">==</a> 4.0);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("Completed <a href="CppApproximator.htm">Approximator</a>::Test successfully");<br/>
 &nbsp;&nbsp;}<br/>
 }<br/>
-<a href="CppEndif.html">#endif</a><br/>
+<a href="CppEndif.htm">#endif</a><br/>
 <br/>
-} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.html">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
 <br/>
-<a href="CppEndif.html">#endif</a> <a href="CppComment.htm">//</a> APPROXIMATOR_H<br/>
+<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> APPROXIMATOR_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -232,7 +232,7 @@ Approximator&lt;Key,Value,<a href="CppContainer.html">Container</a>&gt;::Approxi
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="approximator.cpp" border = "1"><tr><td><code>
-<a href="CppInclude.html">#include</a> "approximator<a href="CppHeaderFile.htm">.h</a>"<br/>
+<a href="CppInclude.htm">#include</a> "approximator.h"<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -244,61 +244,61 @@ Approximator&lt;Key,Value,<a href="CppContainer.html">Container</a>&gt;::Approxi
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="exceptionnoextrapolation.h" border = "1"><tr><td><code>
-<a href="CppIfndef.html">#ifndef</a> EXCEPTIONNOEXTRAPOLATION_H<br/>
-<a href="CppDefine.html">#define</a> EXCEPTIONNOEXTRAPOLATION_H<br/>
+<a href="CppIfndef.htm">#ifndef</a> EXCEPTIONNOEXTRAPOLATION_H<br/>
+<a href="CppDefine.htm">#define</a> EXCEPTIONNOEXTRAPOLATION_H<br/>
 <br/>
-<a href="CppInclude.html">#include</a> &lt;<a href="CppStdexceptH.html">stdexcept</a>&gt;<br/>
-<a href="CppInclude.html">#include</a> &lt;<a href="CppBoost.html">boost</a>/<a href="CppLexical_cast.html">lexical_cast</a><a href="CppHeaderFile.htm">.h</a>pp&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppStdexceptH.htm">stdexcept</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppLexical_cast.htm">lexical_cast</a>.hpp&gt;<br/>
 <br/>
-<b><a href="CppNamespace.html">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
+<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
 <br/>
-<b><a href="CppTemplate.html">template</a></b> &lt;<b><a href="CppClass.html">class</a></b> T&gt;<br/>
-<b><a href="CppStruct.html">struct</a></b> <a href="CppException.html">Exception</a>NoExtrapolation : <b><a href="CppPublic.html">public</a></b> <a href="CppStdException.html">std::exception</a><br/>
+<b><a href="CppTemplate.htm">template</a></b> &lt;<b><a href="CppClass.htm">class</a></b> T&gt;<br/>
+<b><a href="CppStruct.htm">struct</a></b> <a href="CppException.htm">Exception</a>NoExtrapolation : <b><a href="CppPublic.htm">public</a></b> <a href="CppStdException.htm">std::exception</a><br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppException.html">Exception</a>NoExtrapolation(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> T&amp; value)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;: m_is_above_max(<b><a href="CppFalse.html">false</a></b>),<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;m_is_below_min(<b><a href="CppFalse.html">false</a></b>),<br/>
+&nbsp;&nbsp;<a href="CppException.htm">Exception</a>NoExtrapolation(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> T&amp; value)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;: m_is_above_max(<b><a href="CppFalse.htm">false</a></b>),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;m_is_below_min(<b><a href="CppFalse.htm">false</a></b>),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;m_what(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppString.html">std::string</a>("Value of ")<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> <a href="CppLexical_cast.html">boost::lexical_cast</a>&lt;<a href="CppString.html">std::string</a>&gt;(value)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppString.htm">std::string</a>("Value of ")<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> <a href="CppLexical_cast.htm">boost::lexical_cast</a>&lt;<a href="CppString.htm">std::string</a>&gt;(value)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> " out of range [unknown]"<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;)<br/>
 &nbsp;&nbsp;{<br/>
 <br/>
 &nbsp;&nbsp;}<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppException.html">Exception</a>NoExtrapolation(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> T&amp; value, <b><a href="CppConst.html">const</a></b> T&amp; lowest, <b><a href="CppConst.html">const</a></b> T&amp; highest)<br/>
+&nbsp;&nbsp;<a href="CppException.htm">Exception</a>NoExtrapolation(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> T&amp; value, <b><a href="CppConst.htm">const</a></b> T&amp; lowest, <b><a href="CppConst.htm">const</a></b> T&amp; highest)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;: m_is_above_max(value &gt; highest),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;m_is_below_min(value &lt; lowest),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;m_what(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppString.html">std::string</a>("Value of ")<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> <a href="CppLexical_cast.html">boost::lexical_cast</a>&lt;<a href="CppString.html">std::string</a>&gt;(value)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppString.htm">std::string</a>("Value of ")<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> <a href="CppLexical_cast.htm">boost::lexical_cast</a>&lt;<a href="CppString.htm">std::string</a>&gt;(value)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> " out of range ["<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> <a href="CppLexical_cast.html">boost::lexical_cast</a>&lt;<a href="CppString.html">std::string</a>&gt;(lowest)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> <a href="CppLexical_cast.htm">boost::lexical_cast</a>&lt;<a href="CppString.htm">std::string</a>&gt;(lowest)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> " , "<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> <a href="CppLexical_cast.html">boost::lexical_cast</a>&lt;<a href="CppString.html">std::string</a>&gt;(highest)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> <a href="CppLexical_cast.htm">boost::lexical_cast</a>&lt;<a href="CppString.htm">std::string</a>&gt;(highest)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> "]"<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;)<br/>
 &nbsp;&nbsp;{<br/>
 <br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<b><a href="CppBool.htm">bool</a></b> IsAboveMax() <b><a href="CppConst.html">const</a></b> { <b><a href="CppReturn.html">return</a></b> m_is_above_max; }<br/>
-&nbsp;&nbsp;<b><a href="CppBool.htm">bool</a></b> IsBelowMin() <b><a href="CppConst.html">const</a></b> { <b><a href="CppReturn.html">return</a></b> m_is_below_min; }<br/>
-&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppChar.htm">char</a></b> * what() <b><a href="CppConst.html">const</a></b> <b><a href="CppThrow.html">throw</a></b>() { <b><a href="CppReturn.html">return</a></b> m_what.c_str(); }<br/>
-&nbsp;&nbsp;<b><a href="CppPrivate.html">private</a></b>:<br/>
+&nbsp;&nbsp;<b><a href="CppBool.htm">bool</a></b> IsAboveMax() <b><a href="CppConst.htm">const</a></b> { <b><a href="CppReturn.htm">return</a></b> m_is_above_max; }<br/>
+&nbsp;&nbsp;<b><a href="CppBool.htm">bool</a></b> IsBelowMin() <b><a href="CppConst.htm">const</a></b> { <b><a href="CppReturn.htm">return</a></b> m_is_below_min; }<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppChar.htm">char</a></b> * what() <b><a href="CppConst.htm">const</a></b> <b><a href="CppThrow.htm">throw</a></b>() { <b><a href="CppReturn.htm">return</a></b> m_what.c_str(); }<br/>
+&nbsp;&nbsp;<b><a href="CppPrivate.htm">private</a></b>:<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppBool.htm">bool</a></b> m_is_above_max;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <b><a href="CppBool.htm">bool</a></b> m_is_below_min;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppBool.htm">bool</a></b> m_is_above_max;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppBool.htm">bool</a></b> m_is_below_min;<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/The error message<br/>
-&nbsp;&nbsp;<b><a href="CppConst.html">const</a></b> <a href="CppString.html">std::string</a> m_what;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> m_what;<br/>
 };<br/>
 <br/>
-} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.html">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
 <br/>
 <br/>
-<a href="CppEndif.html">#endif</a> <a href="CppComment.htm">//</a> EXCEPTIONNOEXTRAPOLATION_H<br/>
+<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> EXCEPTIONNOEXTRAPOLATION_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
