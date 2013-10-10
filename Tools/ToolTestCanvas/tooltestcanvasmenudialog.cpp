@@ -27,6 +27,6 @@ const std::string ribi::ToolTestCanvasMenuDialog::GetVersion()
 const std::vector<std::string> ribi::ToolTestCanvasMenuDialog::GetVersionHistory()
 {
   return {
-  "2013-08-28: version 1.0: initial desktop version"
+    "2013-08-28: version 1.0: initial desktop version"
   };
 }

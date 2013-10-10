@@ -293,7 +293,10 @@ SOURCES += \
     ../../Tools/ToolTestMultipleChoiceQuestion/qttestmultiplechoicequestionmenudialog.cpp \
     ../../Tools/ToolTestMultipleChoiceQuestion/qttestmultiplechoicequestionmaindialog.cpp \
     ../../Tools/ToolTestOpenQuestion/qttestopenquestionmenudialog.cpp \
-    ../../Tools/ToolTestOpenQuestion/qttestopenquestionmaindialog.cpp
+    ../../Tools/ToolTestOpenQuestion/qttestopenquestionmaindialog.cpp \
+    ../../Tools/ToolQuadraticSolver/qtquadraticsolvermenudialog.cpp \
+    ../../Tools/ToolQuadraticSolver/qtquadraticsolvermaindialog.cpp
+
 
 HEADERS += \
     ../../Tools/ToolMultiEncranger/qttoolmultiencrangermenudialog.h \
@@ -675,7 +678,9 @@ HEADERS += \
     ../../Tools/ToolTestMultipleChoiceQuestion/qttestmultiplechoicequestionmenudialog.h \
     ../../Tools/ToolTestMultipleChoiceQuestion/qttestmultiplechoicequestionmaindialog.h \
     ../../Tools/ToolTestOpenQuestion/qttestopenquestionmenudialog.h \
-    ../../Tools/ToolTestOpenQuestion/qttestopenquestionmaindialog.h
+    ../../Tools/ToolTestOpenQuestion/qttestopenquestionmaindialog.h \
+    ../../Tools/ToolQuadraticSolver/qtquadraticsolvermenudialog.h \
+    ../../Tools/ToolQuadraticSolver/qtquadraticsolvermaindialog.h
 
 
 RESOURCES += \

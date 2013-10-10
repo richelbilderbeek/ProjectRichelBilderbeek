@@ -89,6 +89,7 @@ INCLUDEPATH += \
     ../../Tools/ToolPerfectElasticCollision \
     ../../Tools/ToolPicToCode \
     ../../Tools/ToolQmakeWatcher \
+    ../../Tools/ToolQuadraticSolver \
     ../../Tools/ToolRandomCode \
     ../../Tools/ToolRegexTester \
     ../../Tools/ToolRichelBilderbeekGallery \
@@ -347,7 +348,10 @@ SOURCES += \
     ../../Tools/ToolTestToggleButton/testtogglebuttonmenudialog.cpp \
     ../../Tools/ToolMultiEncranger/toolmultiencrangermaindialog.cpp \
     ../../Classes/CppCanvas/canvas.cpp \
-    richelbilderbeekmenudialog.cpp
+    richelbilderbeekmenudialog.cpp \
+    ../../Tools/ToolQuadraticSolver/quadraticsolvermenudialog.cpp \
+    ../../Tools/ToolQuadraticSolver/quadraticsolvermaindialog.cpp
+
 
 HEADERS += \
     ../../Classes/CppAbout/about.h \
@@ -590,7 +594,11 @@ HEADERS += \
     ../../Tools/ToolTestToggleButton/testtogglebuttonmenudialog.h \
     ../../Tools/ToolMultiEncranger/toolmultiencrangermaindialog.h \
     ../../Classes/CppCanvas/canvas.h \
-    richelbilderbeekmenudialog.h
+    richelbilderbeekmenudialog.h \
+    ../../Tools/ToolQuadraticSolver/quadraticsolvermenudialog.h \
+    ../../Tools/ToolQuadraticSolver/quadraticsolvermaindialog.h
+
+
 
 OTHER_FILES += \
     ../../Classes/CppAbout/Licence.txt \
@@ -681,7 +689,8 @@ OTHER_FILES += \
     ../../Tools/ToolTestSimpleLinearRegression/Licence.txt \
     ../../Tools/ToolMultiEncranger/Licence.txt \
     crosscompiletowindows.sh \
-    ../../Classes/CppCanvas/Licence.txt
+    ../../Classes/CppCanvas/Licence.txt \
+    ../../Tools/ToolQuadraticSolver/Licence.txt
 
 #
 #
@@ -758,3 +767,7 @@ SOURCES += \
 OTHER_FILES += \
   ../../Libraries/fparser4.5.1/extrasrc/fp_identifier_parser.inc \
   ../../Libraries/fparser4.5.1/extrasrc/fp_opcode_add.inc
+
+FORMS += \
+    ../../Tools/ToolQuadraticSolver/qtquadraticsolvermenudialog.ui \
+    ../../Tools/ToolQuadraticSolver/qtquadraticsolvermaindialog.ui

@@ -31,6 +31,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <iterator>
 
 #include <boost/math/constants/constants.hpp>
+
+#include "trace.h"
 #pragma GCC diagnostic pop
 
 ribi::Canvas::Canvas(
@@ -38,10 +40,14 @@ ribi::Canvas::Canvas(
   const int height,
   const ColorSystem colorSystem,
   const CoordinatSystem coordinatSystem)
-  : mCanvas(std::vector<std::vector<double> >(height,std::vector<double>(width,0.0))),
+  : m_signal_changed{},
+    mCanvas(std::vector<std::vector<double> >(height,std::vector<double>(width,0.0))),
     mColorSystem(colorSystem),
     mCoordinatSystem(coordinatSystem)
 {
+  #ifndef NDEBUG
+  Test();
+  #endif
   assert(width  > 0);
   assert(height > 0);
 }
@@ -62,7 +68,7 @@ void ribi::Canvas::Clear() noexcept
     assert(std::accumulate(row.begin(),row.end(),0.0) == 0.0);
   }
   #endif
-
+  m_signal_changed(this);
 }
 
 void ribi::Canvas::DrawDot(const double x, const double y) noexcept
@@ -83,6 +89,7 @@ void ribi::Canvas::DrawDot(const double x, const double y) noexcept
     mCanvas[indexTop+1][indexLeft  ] += (fracLeft * (1.0-fracTop));
   if (IsInRange(indexLeft+1,indexTop+1))
     mCanvas[indexTop+1][indexLeft+1] += ((1.0-fracLeft) * (1.0-fracTop));
+  m_signal_changed(this);
 }
 
 void ribi::Canvas::DrawLine(const double x1, const double y1, const double x2, const double y2) noexcept
@@ -102,6 +109,7 @@ void ribi::Canvas::DrawLine(const double x1, const double y1, const double x2, c
     x+=stepX;
     y+=stepY;
   }
+  m_signal_changed(this);
 }
 
 void ribi::Canvas::DrawCircle(const double xMid, const double yMid, const double ray) noexcept
@@ -118,6 +126,7 @@ void ribi::Canvas::DrawCircle(const double xMid, const double yMid, const double
     DrawDot(x,y);
     angle += dAngle;
   }
+  m_signal_changed(this);
 }
 
 bool ribi::Canvas::IsInRange(const int x, const int y) const
@@ -129,16 +138,6 @@ bool ribi::Canvas::IsInRange(const int x, const int y) const
      )
     return false;
   return true;
-}
-
-std::ostream& ribi::operator<<(std::ostream& os, const Canvas& canvas)
-{
-  ribi::Canvas::PlotSurface(
-    os,
-    canvas.mCanvas,
-    canvas.mColorSystem == ribi::Canvas::ColorSystem::normal,
-    canvas.mCoordinatSystem == ribi::Canvas::CoordinatSystem::screen);
-  return os;
 }
 
 const std::string ribi::Canvas::GetVersion() noexcept
@@ -172,8 +171,11 @@ void ribi::Canvas::PlotSurface(
 
   //Minimum and maximum are not given, so these need to be calculated
   const double minVal = MinElement(v);
-  const double maxVal = MaxElement(v);
-  assert(minVal != maxVal);
+  double maxVal = MaxElement(v);
+  if (minVal == maxVal)
+  {
+    maxVal = minVal == 0.0 ? 1.0 : minVal * 2.0;
+  }
 
   //Draw the pixels
 
@@ -191,6 +193,9 @@ void ribi::Canvas::PlotSurface(
         ++col)
       {
         //Scale the found grey value to an ASCII art character
+        assert(maxVal != minVal);
+        assert(maxVal - minVal != 0.0);
+        assert(maxVal > minVal);
         const double greyValueDouble = ( (*col) - minVal) / (maxVal - minVal);
         assert(greyValueDouble >= 0.0 && greyValueDouble <= 1.0);
         const int greyValueInt
@@ -300,10 +305,93 @@ const typename Container::value_type::value_type ribi::Canvas::MaxElement(const 
 
 void ribi::Canvas::SetColorSystem(const ColorSystem colorSystem) noexcept
 {
-  this->mColorSystem = colorSystem;
+  if (this->mColorSystem != colorSystem)
+  {
+    this->mColorSystem = colorSystem;
+    this->m_signal_changed(this);
+  }
 }
 
 void ribi::Canvas::SetCoordinatSystem(const CoordinatSystem coordinatSystem) noexcept
 {
-  this->mCoordinatSystem = coordinatSystem;
+  if (this->mCoordinatSystem != coordinatSystem)
+  {
+    this->mCoordinatSystem = coordinatSystem;
+    this->m_signal_changed(this);
+  }
+}
+
+#ifndef NDEBUG
+void ribi::Canvas::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting ribi::Canvas::Test");
+  for (int i=0; i!=4; ++i)
+  {
+    const int maxx = 79;
+    const int maxy = 23;
+    boost::shared_ptr<ribi::Canvas> canvas(new Canvas(maxx,maxy));
+    canvas->SetColorSystem(
+      i % 2
+      ? Canvas::ColorSystem::normal
+      : Canvas::ColorSystem::invert);
+    canvas->SetCoordinatSystem(
+      i / 2
+      ? Canvas::CoordinatSystem::screen
+      : Canvas::CoordinatSystem::graph);
+
+    //Determine and calculate dimensions and coordinats of smiley
+    const double maxxD = static_cast<double>(maxx);
+    const double maxyD = static_cast<double>(maxy);
+    const double midX        = 0.50 * maxxD;
+    const double midY        = 0.50 * maxyD;
+    const double headRay     = 0.50 * maxyD;
+    const double eyeLeftX    = 0.50 * maxxD - (0.35 * headRay) ;
+    const double eyeLeftY    = 0.50 * maxyD - (0.25 * headRay) ;
+    const double eyeRightX   = 0.50 * maxxD + (0.35 * headRay) ;
+    const double eyeRightY   = 0.50 * maxyD - (0.25 * headRay) ;
+    const double eyeRay      = 0.30 * headRay;
+    const double mouthLeftX  = 0.50 * maxxD - (0.7 * headRay) ;
+    const double mouthMidX   = 0.50 * maxxD;
+    const double mouthRightX = 0.50 * maxxD + (0.7 * headRay) ;
+    const double mouthLeftY  = 0.50 * maxyD + (0.2 * headRay) ;
+    const double mouthMidY   = 0.50 * maxyD + (0.7 * headRay) ;
+    const double mouthRightY = 0.50 * maxyD + (0.2 * headRay) ;
+    //Draw the image on Canvas
+    canvas->DrawCircle(midX, midY, headRay);
+    canvas->DrawCircle(eyeLeftX, eyeLeftY, eyeRay);
+    canvas->DrawDot(eyeLeftX, eyeLeftY);
+    canvas->DrawCircle(eyeRightX, eyeRightY, eyeRay);
+    canvas->DrawDot(eyeRightX, eyeRightY);
+    canvas->DrawLine(mouthLeftX, mouthLeftY, mouthMidX, mouthMidY);
+    canvas->DrawLine(mouthMidX, mouthMidY, mouthRightX, mouthRightY);
+    canvas->DrawLine(mouthRightX, mouthRightY, mouthLeftX, mouthLeftY);
+    {
+      std::stringstream s;
+      s << (*canvas);
+      assert(!s.str().empty());
+    }
+    canvas->Clear();
+    {
+      std::stringstream s;
+      s << (*canvas);
+      assert(!s.str().empty());
+    }
+  }
+  TRACE("Finished ribi::Canvas::Test successfully");
+}
+#endif
+
+std::ostream& ribi::operator<<(std::ostream& os, const Canvas& canvas)
+{
+  ribi::Canvas::PlotSurface(
+    os,
+    canvas.mCanvas,
+    canvas.mColorSystem == ribi::Canvas::ColorSystem::normal,
+    canvas.mCoordinatSystem == ribi::Canvas::CoordinatSystem::screen);
+  return os;
 }

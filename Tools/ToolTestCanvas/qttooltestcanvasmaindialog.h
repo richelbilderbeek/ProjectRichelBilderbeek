@@ -36,12 +36,16 @@ private slots:
 
   void on_button_clear_clicked();
 
+  void on_button_circle_clicked();
+
+  void on_button_line_clicked();
+
 private:
   Ui::QtToolTestCanvasMainDialog *ui;
   boost::shared_ptr<Canvas> m_canvas;
 
   static const boost::shared_ptr<Canvas> CreateCanvas();
-  void ShowCanvas();
+  void ShowCanvas(const ribi::Canvas * const canvas = nullptr);
 };
 
 } //~namespace ribi

@@ -89,6 +89,9 @@ struct Canvas
   ///Set the coordinat system used
   void SetCoordinatSystem(const CoordinatSystem coordinatSystem) noexcept;
 
+  ///This signal is emitted when any member variable changes
+  boost::signals2::signal<void(Canvas*)> m_signal_changed;
+
   private:
   ///The Canvas its internal data: a 2D y-x-ordered std::vector
   ///of doubles, where 0.0 denotes empty/non-drawn
@@ -107,6 +110,9 @@ struct Canvas
 
   ///Check if a coordinat is in the range of the Canvas
   bool IsInRange(const int x, const int y) const;
+
+  //From http://www.richelbilderbeek.nl/CppGetAsciiArtGradient.htm
+  static const std::vector<char> GetAsciiArtGradient();
 
   //From http://www.richelbilderbeek.nl/CppMinElement.htm
   template <class Container>
@@ -127,8 +133,9 @@ struct Canvas
     const bool use_normal_color_system,
     const bool as_screen_coordinat_system);
 
-  //From http://www.richelbilderbeek.nl/CppGetAsciiArtGradient.htm
-  static const std::vector<char> GetAsciiArtGradient();
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
 
   friend std::ostream& operator<<(std::ostream& os, const Canvas& canvas);
 

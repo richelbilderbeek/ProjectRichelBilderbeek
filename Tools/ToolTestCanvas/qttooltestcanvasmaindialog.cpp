@@ -6,6 +6,9 @@
 #include <cassert>
 #include <sstream>
 
+#include <boost/bind.hpp>
+#include <boost/lambda/lambda.hpp>
+
 #include "canvas.h"
 #include "ui_qttooltestcanvasmaindialog.h"
 #pragma GCC diagnostic pop
@@ -16,6 +19,28 @@ ribi::QtToolTestCanvasMainDialog::QtToolTestCanvasMainDialog(QWidget *parent) :
   m_canvas(CreateCanvas())
 {
   ui->setupUi(this);
+
+  m_canvas->m_signal_changed.connect(
+    boost::bind(
+      &ribi::QtToolTestCanvasMainDialog::ShowCanvas,this,
+      boost::lambda::_1)
+    );
+
+  {
+    const double w = m_canvas->GetWidth();
+    const double h = m_canvas->GetHeight();
+    ui->box_circle_x->setValue(0.5 * w);
+    ui->box_circle_y->setValue(0.5 * h);
+    ui->box_circle_r->setValue(0.4 * h);
+    ui->box_dot_x->setValue(0.5 * w);
+    ui->box_dot_y->setValue(0.5 * h);
+    ui->box_line_x1->setValue(0.25 * w);
+    ui->box_line_y1->setValue(0.25 * h);
+    ui->box_line_x2->setValue(0.75 * w);
+    ui->box_line_y2->setValue(0.75 * h);
+  }
+
+  ShowCanvas(0);
 }
 
 ribi::QtToolTestCanvasMainDialog::~QtToolTestCanvasMainDialog() noexcept
@@ -77,7 +102,7 @@ void ribi::QtToolTestCanvasMainDialog::on_box_coordinat_system_currentIndexChang
   //Should redraw automatically
 }
 
-void ribi::QtToolTestCanvasMainDialog::ShowCanvas()
+void ribi::QtToolTestCanvasMainDialog::ShowCanvas(const ribi::Canvas * const)
 {
   //Display the image
   std::stringstream s;
@@ -86,13 +111,35 @@ void ribi::QtToolTestCanvasMainDialog::ShowCanvas()
 
 }
 
-void ribi::QtToolTestCanvasMainDialog::on_button_dot_clicked()
-{
-   //
-}
-
 void ribi::QtToolTestCanvasMainDialog::on_button_clear_clicked()
 {
   m_canvas->Clear();
   //Should redraw automatically
+}
+
+void ribi::QtToolTestCanvasMainDialog::on_button_circle_clicked()
+{
+  m_canvas->DrawCircle(
+    ui->box_circle_x->value(),
+    ui->box_circle_y->value(),
+    ui->box_circle_r->value()
+  );
+}
+
+void ribi::QtToolTestCanvasMainDialog::on_button_dot_clicked()
+{
+   m_canvas->DrawDot(
+     ui->box_dot_x->value(),
+     ui->box_dot_y->value()
+   );
+}
+
+void ribi::QtToolTestCanvasMainDialog::on_button_line_clicked()
+{
+  m_canvas->DrawLine(
+    ui->box_line_x1->value(),
+    ui->box_line_y1->value(),
+    ui->box_line_x2->value(),
+    ui->box_line_y2->value()
+  );
 }

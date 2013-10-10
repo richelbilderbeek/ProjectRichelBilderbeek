@@ -50,11 +50,11 @@ void ribi::QtToolTestCanvasMenuDialog::on_button_quit_clicked()
   close();
 }
 
-void ribi::QtToolTestCanvasMenuDialog::on_button_start_clicked()
+void ribi::QtToolTestCanvasMenuDialog::on_button_start_canvas_clicked()
 {
   QtToolTestCanvasMainDialog d;
   d.setWindowIcon(this->windowIcon());
-  d.setStyleSheet(this->styleSheet());
+  //d.setStyleSheet(this->styleSheet());
   ShowChild(&d);
 }
 
