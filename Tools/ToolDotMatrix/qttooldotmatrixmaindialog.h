@@ -23,6 +23,12 @@ public:
   QtToolDotMatrixMainDialog& operator=(const QtToolDotMatrixMainDialog&) = delete;
   ~QtToolDotMatrixMainDialog() noexcept;
 
+protected:
+  void paintEvent(QPaintEvent *);
+
+private slots:
+  void on_text_textChanged(const QString &arg1);
+
 private:
   Ui::QtToolDotMatrixMainDialog *ui;
 };

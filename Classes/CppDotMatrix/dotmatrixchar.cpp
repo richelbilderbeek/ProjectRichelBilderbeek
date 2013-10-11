@@ -1,10 +1,17 @@
-#include "dotmatrix.h"
+#include "dotmatrixchar.h"
 
 #include <cassert>
 
+ribi::DotMatrixChar::DotMatrixChar(const char c)
+  : m_c(c),
+    m_matrix(GetChar(c))
+{
+  assert(!m_matrix.empty());
+  assert(GetMatrixHeight() == static_cast<int>(m_matrix.size()));
+  assert(GetMatrixWidth()  == static_cast<int>(m_matrix[0].size()));
+}
 
-
-const boost::array<boost::array<int,5> ,7> ribi::DotMatrix::Get(const char c) noexcept
+const boost::array<boost::array<int,5> ,7> ribi::DotMatrixChar::GetChar(const char c) noexcept
 {
   //Create a 5 (width) x 7 (height) 2D array
   boost::array<boost::array<int,5> ,7> v;
@@ -880,4 +887,31 @@ const boost::array<boost::array<int,5> ,7> ribi::DotMatrix::Get(const char c) no
       break;
   }
   return v;
+}
+
+bool ribi::DotMatrixChar::GetMatrix(const int x, const int y) const
+{
+  assert(!m_matrix.empty());
+  assert(GetMatrixHeight() == static_cast<int>(m_matrix.size()));
+  assert(GetMatrixWidth()  == static_cast<int>(m_matrix[0].size()));
+  assert(x >= 0);
+  assert(x < GetMatrixWidth());
+  assert(y >= 0);
+  assert(y < GetMatrixHeight());
+  return m_matrix[y][x];
+}
+
+std::ostream& ribi::operator<<(std::ostream& os, const DotMatrixChar& m)
+{
+  const int height = m.GetMatrixHeight();
+  const int width   = m.GetMatrixWidth();
+  for (int y=0; y!=height; ++y)
+  {
+    for (int x=0; x!=width; ++x)
+    {
+      os << m.GetMatrix(x,y);
+    }
+    if (y + 1 != height) os << '\n';
+  }
+  return os;
 }

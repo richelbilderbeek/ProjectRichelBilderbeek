@@ -139,7 +139,6 @@ const boost::bimap<ribi::RichelBilderbeek::ProgramType,std::string> ribi::Richel
   m.insert(Pair(ProgramType::testNewick,std::string("testNewick")));
   m.insert(Pair(ProgramType::testNewickVector,std::string("testNewickVector")));
   m.insert(Pair(ProgramType::testOpenQuestion,std::string("testOpenQuestion")));
-  m.insert(Pair(ProgramType::testPrimeExpert,std::string("testPrimeExpert")));
   m.insert(Pair(ProgramType::testPylos,std::string("testPylos")));
   m.insert(Pair(ProgramType::testQrcFile,std::string("testQrcFile")));
   m.insert(Pair(ProgramType::testQtArrowItems,std::string("testQtArrowItems")));
@@ -317,7 +316,6 @@ const boost::bimap<ribi::RichelBilderbeek::ProgramType,std::string> ribi::Richel
   m.insert(Pair(ProgramType::testNewick,std::string("Test Newick")));
   m.insert(Pair(ProgramType::testNewickVector,std::string("Test NewickVector")));
   m.insert(Pair(ProgramType::testOpenQuestion,std::string("Test OpenQuestion")));
-  m.insert(Pair(ProgramType::testPrimeExpert,std::string("Test PrimeExpert")));
   m.insert(Pair(ProgramType::testPylos,std::string("Test Pylos")));
   m.insert(Pair(ProgramType::testQrcFile,std::string("Test QrcFile")));
   m.insert(Pair(ProgramType::testQtArrowItems,std::string("Test QtArrowItems")));

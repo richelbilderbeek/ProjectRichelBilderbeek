@@ -29,7 +29,6 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <QLabel>
 #include <QVBoxLayout>
 
-
 #include "qtasciiartermenudialog.h"
 #include "qtbeerwantermenudialog.h"
 #include "qtboenkenmenudialog.h"
@@ -48,11 +47,11 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "qtpictocodemenudialog.h"
 #include "qtpylosmenudialog.h"
 #include "qtqmakewatchermenudialog.h"
+#include "qtquadraticsolvermenudialog.h"
 #include "qtrandomcodemenudialog.h"
 #include "qtregextestermenudialog.h"
 #include "qtrichelbilderbeekgallerymenudialog.h"
 #include "qtrubiksclockmenudialog.h"
-#include "qtquadraticsolvermenudialog.h"
 #include "qtsimmysterymachinemenudialog.h"
 #include "qtsitemapgeneratormenudialog.h"
 #include "qtsitemapgeneratormenudialog.h"
@@ -83,6 +82,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "qttoolgraycodermenudialog.h"
 #include "qttoolmultiencrangermaindialog.h"
 #include "qttoolmultiencrangermenudialog.h"
+#include "qttoolprimeexpertmenudialog.h"
 #include "qttoolsimplifynewickmenudialog.h"
 #include "qttooltestapproximatormenudialog.h"
 #include "qttooltestcanvasmenudialog.h"
@@ -162,7 +162,7 @@ ribi::QtHideAndShowDialog * ribi::QtRichelBilderbeekProgram::CreateQtMenuDialog(
     case ProgramType::pixelator: break;
     case ProgramType::pokeVolley: break;
     case ProgramType::pong: break;
-    case ProgramType::primeExpert: break;
+    case ProgramType::primeExpert: p = new QtToolPrimeExpertMenuDialog;  break;
     case ProgramType::pylos: p = new QtPylosMenuDialog; break;
     case ProgramType::qmakeWatcher: new QtQmakeWatcherMenuDialog; break;
     case ProgramType::quadraticSolver: new QtQuadraticSolverMenuDialog; break;
@@ -220,7 +220,6 @@ ribi::QtHideAndShowDialog * ribi::QtRichelBilderbeekProgram::CreateQtMenuDialog(
     case ProgramType::testNewick: break;
     case ProgramType::testNewickVector: break;
     case ProgramType::testOpenQuestion: p = new QtTestOpenQuestionMenuDialog;  break;
-    case ProgramType::testPrimeExpert: /* p = new QtTestPrimeExpertMenuDialog; */ break;
     case ProgramType::testPylos: p = new QtTestPylosMenuDialog; break;
     case ProgramType::testQrcFile: p = new QtTestQrcFileMenuDialog; break;
     case ProgramType::testQtCreatorProFile: p = new QtTestQtCreatorProFileMenuDialog; break;

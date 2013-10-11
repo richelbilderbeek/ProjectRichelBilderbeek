@@ -986,8 +986,8 @@ struct ProgramPong : public RichelBilderbeek::ProgramGame
 struct ProgramPrimeExpert : public RichelBilderbeek::ProgramTool
 {
   const std::string GetFilenameConsole() const noexcept { return ""; }
-  const std::string GetFilenameDesktop() const noexcept { return ""; }
-  const std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
+  const std::string GetFilenameDesktop() const noexcept { return "ToolPrimeExpert_2_1.png"; }
+  const std::string GetFilenameDesktopWindowsOnly() const noexcept { return "ToolTestPrimeExpert_1_0.png"; }
   const std::string GetFilenameWeb() const noexcept { return ""; }
   const std::string GetScreenName() const noexcept { return "PrimeExpert"; }
   ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::wip; }
@@ -1867,21 +1867,6 @@ struct ProgramTestOpenQuestion : public RichelBilderbeek::ProgramClass
   ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::no; }
   ProgramType GetType() const noexcept { return ProgramType::testOpenQuestion; }
   const std::string GetUrl() const noexcept { return "ToolTestOpenQuestion.htm"; }
-};
-
-struct ProgramTestPrimeExpert : public RichelBilderbeek::ProgramClass
-{
-  const std::string GetFilenameConsole() const noexcept { return ""; }
-  const std::string GetFilenameDesktop() const noexcept { return "ToolTestPrimeExpert_1_0.png"; }
-  const std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
-  const std::string GetFilenameWeb() const noexcept { return ""; }
-  const std::string GetScreenName() const noexcept { return "TestPrimeExpert"; }
-  ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::no; }
-  ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::no; }
-  ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::yes; }
-  ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::no; }
-  ProgramType GetType() const noexcept { return ProgramType::testPrimeExpert; }
-  const std::string GetUrl() const noexcept { return "ToolTestPrimeExpert.htm"; }
 };
 
 struct ProgramTestPylos : public RichelBilderbeek::ProgramClass

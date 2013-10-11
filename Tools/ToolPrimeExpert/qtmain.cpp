@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
-TestPrimeExpert, tool to test the PrimeExpert class
-Copyright (C) 2008-2011 Richel Bilderbeek
+PrimeExpert, tool to test if a number is prime
+Copyright (C) 2008-2013 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -16,16 +16,20 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 //---------------------------------------------------------------------------
-//From http://www.richelbilderbeek.nl/ToolTestPrimeExpert.htm
+//From http://www.richelbilderbeek.nl/ToolPrimeExpert.htm
 //---------------------------------------------------------------------------
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <QApplication>
-#include "testprimeexpertdialog.h"
-//---------------------------------------------------------------------------
+#include "qttoolprimeexpertmenudialog.h"
+#pragma GCC diagnostic pop
+
 int main(int argc, char *argv[])
 {
   QApplication a(argc, argv);
-  TestPrimeExpertDialog w;
+  ribi::QtToolPrimeExpertMenuDialog w;
   w.show();
   return a.exec();
 }
-//---------------------------------------------------------------------------
+

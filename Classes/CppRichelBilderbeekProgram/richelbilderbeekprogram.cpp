@@ -151,7 +151,6 @@ const boost::shared_ptr<ribi::RichelBilderbeek::Program> ribi::RichelBilderbeek:
     case ProgramType::testNewick: p.reset(new ProgramTestNewick); break;
     case ProgramType::testNewickVector: p.reset(new ProgramTestNewickVector); break;
     case ProgramType::testOpenQuestion: p.reset(new ProgramTestOpenQuestion); break;
-    case ProgramType::testPrimeExpert: p.reset(new ProgramTestPrimeExpert); break;
     case ProgramType::testPylos: p.reset(new ProgramTestPylos); break;
     case ProgramType::testQrcFile: p.reset(new ProgramTestQrcFile); break;
     case ProgramType::testQtArrowItems: p.reset(new ProgramTestQtArrowItems); break;

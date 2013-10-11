@@ -16,22 +16,24 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 //---------------------------------------------------------------------------
-// From http://www.richelbilderbeek.nl/CppPrimeExpert.htm
+// From http://www.richelbilderbeek.nl/ToolPrimeExpert.htm
 //---------------------------------------------------------------------------
 #ifndef PRIMEEXPERT_H
 #define PRIMEEXPERT_H
-//---------------------------------------------------------------------------
+
 #include <string>
 #include <vector>
-//---------------------------------------------------------------------------
+
+namespace ribi {
+
 struct PrimeExpert
 {
   PrimeExpert();
 
   bool IsPrime(const int x);
 
-  static const std::string GetVersion();
-  static const std::vector<std::string> GetVersionHistory();
+  static const std::string GetVersion() noexcept;
+  static const std::vector<std::string> GetVersionHistory() noexcept;
 
   private:
   std::vector<int> mPrimes;
@@ -40,7 +42,9 @@ struct PrimeExpert
   int CalculateMax(const int x);
   friend std::ostream& operator<<(std::ostream&, const PrimeExpert&);
 };
-//---------------------------------------------------------------------------
+
 std::ostream& operator<<(std::ostream& os, const PrimeExpert& primeExpert);
-//---------------------------------------------------------------------------
+
+} //~namespace ribi
+
 #endif // PRIMEEXPERT_H

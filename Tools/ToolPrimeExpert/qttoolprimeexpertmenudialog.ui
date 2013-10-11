@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>QtDotMatrixMenuDialog</class>
- <widget class="QDialog" name="QtDotMatrixMenuDialog">
+ <class>QtToolPrimeExpertMenuDialog</class>
+ <widget class="QDialog" name="QtToolPrimeExpertMenuDialog">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>187</width>
-    <height>257</height>
+    <width>334</width>
+    <height>219</height>
    </rect>
   </property>
   <property name="font">
@@ -16,7 +16,7 @@
    </font>
   </property>
   <property name="windowTitle">
-   <string>DotMatrix</string>
+   <string>PrimeExpert</string>
   </property>
   <property name="styleSheet">
    <string notr="true">QDialog { 
@@ -24,20 +24,10 @@ background-color: qlineargradient(x1: 0, y1: 0, x2: 1, y2: 1, stop: 0  #808080, 
 }
 QPushButton { background-color: rgb(255, 255, 255);  }
 QPushButton { color: rgb(0,0,0); }
-QPushButton { font: 48px  }</string>
+QPushButton { font: 48px, &quot;monospace&quot; }</string>
   </property>
-  <layout class="QVBoxLayout" name="verticalLayout">
-   <item>
-    <widget class="QPushButton" name="button_start">
-     <property name="text">
-      <string>Start</string>
-     </property>
-     <property name="flat">
-      <bool>true</bool>
-     </property>
-    </widget>
-   </item>
-   <item>
+  <layout class="QGridLayout" name="gridLayout">
+   <item row="3" column="0">
     <widget class="QPushButton" name="button_about">
      <property name="text">
       <string>About</string>
@@ -47,7 +37,7 @@ QPushButton { font: 48px  }</string>
      </property>
     </widget>
    </item>
-   <item>
+   <item row="4" column="0">
     <widget class="QPushButton" name="button_quit">
      <property name="text">
       <string>Quit</string>
@@ -57,8 +47,23 @@ QPushButton { font: 48px  }</string>
      </property>
     </widget>
    </item>
+   <item row="0" column="0">
+    <widget class="QPushButton" name="button_start">
+     <property name="text">
+      <string>Start</string>
+     </property>
+     <property name="flat">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
   </layout>
  </widget>
+ <tabstops>
+  <tabstop>button_start</tabstop>
+  <tabstop>button_about</tabstop>
+  <tabstop>button_quit</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>

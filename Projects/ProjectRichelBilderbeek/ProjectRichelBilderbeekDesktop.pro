@@ -295,7 +295,9 @@ SOURCES += \
     ../../Tools/ToolTestOpenQuestion/qttestopenquestionmenudialog.cpp \
     ../../Tools/ToolTestOpenQuestion/qttestopenquestionmaindialog.cpp \
     ../../Tools/ToolQuadraticSolver/qtquadraticsolvermenudialog.cpp \
-    ../../Tools/ToolQuadraticSolver/qtquadraticsolvermaindialog.cpp
+    ../../Tools/ToolQuadraticSolver/qtquadraticsolvermaindialog.cpp \
+    ../../Tools/ToolPrimeExpert/qttoolprimeexpertmenudialog.cpp \
+    ../../Tools/ToolPrimeExpert/qttoolprimeexpertmaindialog.cpp
 
 
 HEADERS += \
@@ -680,7 +682,9 @@ HEADERS += \
     ../../Tools/ToolTestOpenQuestion/qttestopenquestionmenudialog.h \
     ../../Tools/ToolTestOpenQuestion/qttestopenquestionmaindialog.h \
     ../../Tools/ToolQuadraticSolver/qtquadraticsolvermenudialog.h \
-    ../../Tools/ToolQuadraticSolver/qtquadraticsolvermaindialog.h
+    ../../Tools/ToolQuadraticSolver/qtquadraticsolvermaindialog.h \
+    ../../Tools/ToolPrimeExpert/qttoolprimeexpertmenudialog.h \
+    ../../Tools/ToolPrimeExpert/qttoolprimeexpertmaindialog.h
 
 
 RESOURCES += \
@@ -883,7 +887,9 @@ FORMS += \
     ../../Tools/ToolTestMultipleChoiceQuestion/qttestmultiplechoicequestionmenudialog.ui \
     ../../Tools/ToolTestMultipleChoiceQuestion/qttestmultiplechoicequestionmaindialog.ui \
     ../../Tools/ToolTestOpenQuestion/qttestopenquestionmenudialog.ui \
-    ../../Tools/ToolTestOpenQuestion/qttestopenquestionmaindialog.ui
+    ../../Tools/ToolTestOpenQuestion/qttestopenquestionmaindialog.ui \
+    ../../Tools/ToolPrimeExpert/qttoolprimeexpertmenudialog.ui \
+    ../../Tools/ToolPrimeExpert/qttoolprimeexpertmaindialog.ui
 
 OTHER_FILES += \
     ../../Tools/ToolCreateQtProjectZipFile/R.png \

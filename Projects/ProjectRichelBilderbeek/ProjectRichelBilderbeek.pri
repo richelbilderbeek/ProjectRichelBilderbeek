@@ -88,6 +88,7 @@ INCLUDEPATH += \
     ../../Tools/ToolMusicTheory \
     ../../Tools/ToolPerfectElasticCollision \
     ../../Tools/ToolPicToCode \
+    ../../Tools/ToolPrimeExpert \
     ../../Tools/ToolQmakeWatcher \
     ../../Tools/ToolQuadraticSolver \
     ../../Tools/ToolRandomCode \
@@ -350,7 +351,9 @@ SOURCES += \
     ../../Classes/CppCanvas/canvas.cpp \
     richelbilderbeekmenudialog.cpp \
     ../../Tools/ToolQuadraticSolver/quadraticsolvermenudialog.cpp \
-    ../../Tools/ToolQuadraticSolver/quadraticsolvermaindialog.cpp
+    ../../Tools/ToolQuadraticSolver/quadraticsolvermaindialog.cpp \
+    ../../Tools/ToolPrimeExpert/toolprimeexpertmenudialog.cpp \
+    ../../Tools/ToolPrimeExpert/primeexpert.cpp
 
 
 HEADERS += \
@@ -596,7 +599,9 @@ HEADERS += \
     ../../Classes/CppCanvas/canvas.h \
     richelbilderbeekmenudialog.h \
     ../../Tools/ToolQuadraticSolver/quadraticsolvermenudialog.h \
-    ../../Tools/ToolQuadraticSolver/quadraticsolvermaindialog.h
+    ../../Tools/ToolQuadraticSolver/quadraticsolvermaindialog.h \
+    ../../Tools/ToolPrimeExpert/toolprimeexpertmenudialog.h \
+    ../../Tools/ToolPrimeExpert/primeexpert.h
 
 
 
@@ -690,7 +695,8 @@ OTHER_FILES += \
     ../../Tools/ToolMultiEncranger/Licence.txt \
     crosscompiletowindows.sh \
     ../../Classes/CppCanvas/Licence.txt \
-    ../../Tools/ToolQuadraticSolver/Licence.txt
+    ../../Tools/ToolQuadraticSolver/Licence.txt \
+    ../../Tools/ToolPrimeExpert/Licence.txt
 
 #
 #

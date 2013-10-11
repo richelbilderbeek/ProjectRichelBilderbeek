@@ -16,21 +16,22 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 //---------------------------------------------------------------------------
-// From http://www.richelbilderbeek.nl/CppPrimeExpert.htm
+// From http://www.richelbilderbeek.nl/ToolPrimeExpert.htm
 //---------------------------------------------------------------------------
-#include <cmath>
 #include <algorithm>
+#include <cassert>
+#include <cmath>
 #include <iostream>
 #include <iterator>
-#include <cassert>
 #include "primeexpert.h"
-//---------------------------------------------------------------------------
-PrimeExpert::PrimeExpert()
+
+ribi::PrimeExpert::PrimeExpert()
+  : mPrimes{}
 {
   mPrimes.push_back(2);
 }
-//---------------------------------------------------------------------------
-void PrimeExpert::CalculateNextPrime()
+
+void ribi::PrimeExpert::CalculateNextPrime()
 {
   const int heighestKnownPrime = mPrimes.back();
 
@@ -39,28 +40,28 @@ void PrimeExpert::CalculateNextPrime()
     if (this->IsPrime(i)) { mPrimes.push_back(i); return; }
   }
 }
-//------------------------------------------------------------
-int PrimeExpert::CalculateMax(const int x)
+
+int ribi::PrimeExpert::CalculateMax(const int x)
 {
   return 1 + static_cast<int>(
     std::sqrt(static_cast<double>(x) ) );
 
 }
-//---------------------------------------------------------------------------
-const std::string PrimeExpert::GetVersion()
+
+const std::string ribi::PrimeExpert::GetVersion() noexcept
 {
   return "2.0";
 }
-//---------------------------------------------------------------------------
-const std::vector<std::string> PrimeExpert::GetVersionHistory()
+
+const std::vector<std::string> ribi::PrimeExpert::GetVersionHistory() noexcept
 {
-  std::vector<std::string> v;
-  v.push_back("2008-07-12: Version 1.0: initial version in C++ Builder");
-  v.push_back("2011-02-26: Version 2.0: port to Qt Creator");
-  return v;
+  return {
+    "2008-07-12: Version 1.0: initial version in C++ Builder",
+    "2011-02-26: Version 2.0: port to Qt Creator"
+  };
 }
-//---------------------------------------------------------------------------
-bool PrimeExpert::IsPrime(const int x)
+
+bool ribi::PrimeExpert::IsPrime(const int x)
 {
   assert(x > 2);
   //Calculate the maximum value for devision
@@ -95,8 +96,8 @@ bool PrimeExpert::IsPrime(const int x)
   }
 
 }
-//---------------------------------------------------------------------------
-std::ostream& operator<<(std::ostream& os, const PrimeExpert& primeExpert)
+
+std::ostream& ribi::operator<<(std::ostream& os, const PrimeExpert& primeExpert)
 {
   std::copy(
     primeExpert.mPrimes.begin(),
@@ -104,4 +105,3 @@ std::ostream& operator<<(std::ostream& os, const PrimeExpert& primeExpert)
     std::ostream_iterator<int>(os," ") );
   return os;
 }
-//------------------------------------------------------------

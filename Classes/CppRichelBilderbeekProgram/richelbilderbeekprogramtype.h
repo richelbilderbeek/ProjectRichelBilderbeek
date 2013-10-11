@@ -145,7 +145,6 @@ enum class ProgramType
   testNewick,
   testNewickVector,
   testOpenQuestion,
-  testPrimeExpert,
   testPylos,
   testQrcFile,
   testQtArrowItems,

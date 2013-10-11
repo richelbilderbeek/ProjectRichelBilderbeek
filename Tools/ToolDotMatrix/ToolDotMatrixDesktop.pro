@@ -8,6 +8,7 @@ INCLUDEPATH += \
     ../../Classes/CppAbout \
     ../../Classes/CppDotMatrix \
     ../../Classes/CppQtAboutDialog \
+    ../../Classes/CppQtDotMatrix \
     ../../Classes/CppQtHideAndShowDialog \
     ../../Classes/CppTrace
 
@@ -19,7 +20,10 @@ SOURCES += \
     ../../Classes/CppQtHideAndShowDialog/qthideandshowdialog.cpp \
     ../../Classes/CppAbout/about.cpp \
     ../../Classes/CppQtAboutDialog/qtaboutdialog.cpp \
-    ../../Classes/CppDotMatrix/dotmatrix.cpp
+    ../../Classes/CppQtDotMatrix/qtdotmatrixchar.cpp \
+    ../../Classes/CppDotMatrix/dotmatrixchar.cpp \
+    ../../Classes/CppDotMatrix/dotmatrixstring.cpp \
+    ../../Classes/CppQtDotMatrix/qtdotmatrixstring.cpp
 
 HEADERS  += \
     tooldotmatrixmenudialog.h \
@@ -29,7 +33,10 @@ HEADERS  += \
     ../../Classes/CppAbout/about.h \
     ../../Classes/CppTrace/trace.h \
     ../../Classes/CppQtAboutDialog/qtaboutdialog.h \
-    ../../Classes/CppDotMatrix/dotmatrix.h
+    ../../Classes/CppQtDotMatrix/qtdotmatrixchar.h \
+    ../../Classes/CppDotMatrix/dotmatrixchar.h \
+    ../../Classes/CppDotMatrix/dotmatrixstring.h \
+    ../../Classes/CppQtDotMatrix/qtdotmatrixstring.h
 
 FORMS    += \
     qttooldotmatrixmaindialog.ui \
@@ -41,6 +48,7 @@ OTHER_FILES += \
     ../../Classes/CppAbout/Licence.txt \
     ../../Classes/CppTrace/Licence.txt \
     ../../Classes/CppQtAboutDialog/Licence.txt \
+    ../../Classes/CppQtDotMatrix/Licence.txt
 
 #
 #
