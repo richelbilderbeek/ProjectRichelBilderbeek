@@ -13,6 +13,7 @@ INCLUDEPATH += \
     ../../Classes/CppCounter \
     ../../Classes/CppDial \
     ../../Classes/CppDialWidget \
+    ../../Classes/CppDotMatrix \
     ../../Classes/CppEncranger \
     ../../Classes/CppExercise \
     ../../Classes/CppFuzzy_equal_to \
@@ -78,6 +79,7 @@ INCLUDEPATH += \
     ../../Tools/ToolCodeToHtml \
     ../../Tools/ToolCreateGlossary \
     ../../Tools/ToolCreateQtProjectZipFile \
+    ../../Tools/ToolDotMatrix \
     ../../Tools/ToolEncranger \
     ../../Tools/ToolGaborFilter \
     ../../Tools/ToolGrayCoder \
@@ -353,7 +355,10 @@ SOURCES += \
     ../../Tools/ToolQuadraticSolver/quadraticsolvermenudialog.cpp \
     ../../Tools/ToolQuadraticSolver/quadraticsolvermaindialog.cpp \
     ../../Tools/ToolPrimeExpert/toolprimeexpertmenudialog.cpp \
-    ../../Tools/ToolPrimeExpert/primeexpert.cpp
+    ../../Tools/ToolPrimeExpert/primeexpert.cpp \
+    ../../Tools/ToolDotMatrix/tooldotmatrixmenudialog.cpp \
+    ../../Classes/CppDotMatrix/dotmatrixstring.cpp \
+    ../../Classes/CppDotMatrix/dotmatrixchar.cpp
 
 
 HEADERS += \
@@ -601,7 +606,10 @@ HEADERS += \
     ../../Tools/ToolQuadraticSolver/quadraticsolvermenudialog.h \
     ../../Tools/ToolQuadraticSolver/quadraticsolvermaindialog.h \
     ../../Tools/ToolPrimeExpert/toolprimeexpertmenudialog.h \
-    ../../Tools/ToolPrimeExpert/primeexpert.h
+    ../../Tools/ToolPrimeExpert/primeexpert.h \
+    ../../Tools/ToolDotMatrix/tooldotmatrixmenudialog.h \
+    ../../Classes/CppDotMatrix/dotmatrixstring.h \
+    ../../Classes/CppDotMatrix/dotmatrixchar.h
 
 
 
@@ -696,7 +704,8 @@ OTHER_FILES += \
     crosscompiletowindows.sh \
     ../../Classes/CppCanvas/Licence.txt \
     ../../Tools/ToolQuadraticSolver/Licence.txt \
-    ../../Tools/ToolPrimeExpert/Licence.txt
+    ../../Tools/ToolPrimeExpert/Licence.txt \
+    ../../Classes/CppDotMatrix/Licence.txt
 
 #
 #

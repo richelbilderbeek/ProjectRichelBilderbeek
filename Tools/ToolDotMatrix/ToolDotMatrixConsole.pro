@@ -11,12 +11,14 @@ SOURCES += \
     ../../Classes/CppAbout/about.cpp \
     tooldotmatrixmenudialog.cpp \
     main.cpp \
-    ../../Classes/CppDotMatrix/dotmatrix.cpp
+    ../../Classes/CppDotMatrix/dotmatrixchar.cpp \
+    ../../Classes/CppDotMatrix/dotmatrixstring.cpp
 
 HEADERS += \
     ../../Classes/CppAbout/about.h \
     tooldotmatrixmenudialog.h \
-    ../../Classes/CppDotMatrix/dotmatrix.h
+    ../../Classes/CppDotMatrix/dotmatrixchar.h \
+    ../../Classes/CppDotMatrix/dotmatrixstring.h
 
 OTHER_FILES += \
     ../../Classes/CppAbout/Licence.txt \

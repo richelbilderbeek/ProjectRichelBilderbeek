@@ -22,9 +22,12 @@ public:
 private slots:
 
     void on_button_load_original_clicked();
+    void paintEvent(QPaintEvent *);
 
 private:
     Ui::QtSecretMessageCreateDialog *ui;
+    QPixmap m_original;
+    bool m_needs_repaint;
 };
 
 } //~namespace ribi

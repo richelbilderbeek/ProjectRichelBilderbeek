@@ -19,5 +19,21 @@ ribi::QtSecretMessageCreateDialog::~QtSecretMessageCreateDialog() noexcept
 
 void ribi::QtSecretMessageCreateDialog::on_button_load_original_clicked()
 {
-  QFileDialog::getOpenFileName(0,"Please select an image to hide a message in",QString(),"*.png,*.bmp,*.jpg,*.jpeg");
+  const std::string filename
+    = QFileDialog::getOpenFileName(
+      0,"Please select an image to hide a message in",QString(),"*.png,*.bmp,*.jpg,*.jpeg").toStdString();
+  if (filename.empty()) return;
+
+  QPixmap pixmap(filename.c_str());
+  ui->label_original->setPixmap(pixmap);
+
+}
+
+void ribi::QtSecretMessageCreateDialog::paintEvent(QPaintEvent *)
+{
+  if (m_needs_repaint)
+  {
+    m_needs_repaint = false;
+    //Do it
+  }
 }

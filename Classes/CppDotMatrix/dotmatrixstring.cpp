@@ -75,3 +75,18 @@ int ribi::DotMatrixString::GetMatrixWidth() const noexcept
   const int char_width = m_v[0]->GetMatrixWidth() + m_spacing;
   return n_chars * char_width;
 }
+
+std::ostream& ribi::operator<<(std::ostream& os, const DotMatrixString& m)
+{
+  const int height  = m.GetMatrixHeight();
+  const int width   = m.GetMatrixWidth();
+  for (int y=0; y!=height; ++y)
+  {
+    for (int x=0; x!=width; ++x)
+    {
+      os << m.GetMatrix(x,y);
+    }
+    if (y + 1 != height) os << '\n';
+  }
+  return os;
+}

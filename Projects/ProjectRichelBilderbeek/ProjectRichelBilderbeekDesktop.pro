@@ -15,6 +15,7 @@ INCLUDEPATH += \
     ../../Classes/CppQtCreatorProFile \
     ../../Classes/CppQtDialWidget \
     ../../Classes/CppQtDisplayPosItem \
+    ../../Classes/CppQtDotMatrix \
     ../../Classes/CppQtExercise \
     ../../Classes/CppQtGaborFilterWidget \
     ../../Classes/CppQtHideAndShowDialog \
@@ -297,7 +298,11 @@ SOURCES += \
     ../../Tools/ToolQuadraticSolver/qtquadraticsolvermenudialog.cpp \
     ../../Tools/ToolQuadraticSolver/qtquadraticsolvermaindialog.cpp \
     ../../Tools/ToolPrimeExpert/qttoolprimeexpertmenudialog.cpp \
-    ../../Tools/ToolPrimeExpert/qttoolprimeexpertmaindialog.cpp
+    ../../Tools/ToolPrimeExpert/qttoolprimeexpertmaindialog.cpp \
+    ../../Tools/ToolDotMatrix/qttooldotmatrixmenudialog.cpp \
+    ../../Tools/ToolDotMatrix/qttooldotmatrixmaindialog.cpp \
+    ../../Classes/CppQtDotMatrix/qtdotmatrixstring.cpp \
+    ../../Classes/CppQtDotMatrix/qtdotmatrixchar.cpp
 
 
 HEADERS += \
@@ -684,7 +689,11 @@ HEADERS += \
     ../../Tools/ToolQuadraticSolver/qtquadraticsolvermenudialog.h \
     ../../Tools/ToolQuadraticSolver/qtquadraticsolvermaindialog.h \
     ../../Tools/ToolPrimeExpert/qttoolprimeexpertmenudialog.h \
-    ../../Tools/ToolPrimeExpert/qttoolprimeexpertmaindialog.h
+    ../../Tools/ToolPrimeExpert/qttoolprimeexpertmaindialog.h \
+    ../../Tools/ToolDotMatrix/qttooldotmatrixmenudialog.h \
+    ../../Tools/ToolDotMatrix/qttooldotmatrixmaindialog.h \
+    ../../Classes/CppQtDotMatrix/qtdotmatrixstring.h \
+    ../../Classes/CppQtDotMatrix/qtdotmatrixchar.h
 
 
 RESOURCES += \
@@ -889,7 +898,9 @@ FORMS += \
     ../../Tools/ToolTestOpenQuestion/qttestopenquestionmenudialog.ui \
     ../../Tools/ToolTestOpenQuestion/qttestopenquestionmaindialog.ui \
     ../../Tools/ToolPrimeExpert/qttoolprimeexpertmenudialog.ui \
-    ../../Tools/ToolPrimeExpert/qttoolprimeexpertmaindialog.ui
+    ../../Tools/ToolPrimeExpert/qttoolprimeexpertmaindialog.ui \
+    ../../Tools/ToolDotMatrix/qttooldotmatrixmenudialog.ui \
+    ../../Tools/ToolDotMatrix/qttooldotmatrixmaindialog.ui
 
 OTHER_FILES += \
     ../../Tools/ToolCreateQtProjectZipFile/R.png \
@@ -1425,7 +1436,8 @@ OTHER_FILES += \
     ../../Tools/ToolTestOpenQuestion/ToolTestOpenQuestionIcon14x14.png \
     ../../Tools/ToolTestOpenQuestion/RichelbilderbeekNlBackground.png \
     ../../Tools/ToolTestOpenQuestion/Questionmark.png \
-    ../../Tools/ToolTestOpenQuestion/Question.png
+    ../../Tools/ToolTestOpenQuestion/Question.png \
+    ../../Classes/CppQtDotMatrix/Licence.txt
 
 #
 #

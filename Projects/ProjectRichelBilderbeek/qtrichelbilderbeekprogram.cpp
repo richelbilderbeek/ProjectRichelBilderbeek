@@ -76,6 +76,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "qttesttogglebuttonmaindialog.h"
 #include "qttesttogglebuttonmenudialog.h"
 #include "qttictactoemenudialog.h"
+#include "qttooldotmatrixmenudialog.h"
 #include "qttoolencrangermaindialog.h"
 #include "qttoolencrangermenudialog.h"
 #include "qttoolgaborfiltermenudialog.h"
@@ -116,7 +117,7 @@ ribi::QtHideAndShowDialog * ribi::QtRichelBilderbeekProgram::CreateQtMenuDialog(
     case ProgramType::createQtProjectZipFile: p = new QtCreateQtProjectZipFileMenuDialog; break;
     case ProgramType::crossPoll: break;
     case ProgramType::dasWahreSchlagerfest: p = new QtDasWahreSchlagerfestMenuDialog; break;
-    case ProgramType::dotMatrix: break;
+    case ProgramType::dotMatrix: p = new QtDotMatrixMenuDialog;  break;
     case ProgramType::encranger: p = new QtToolEncrangerMenuDialog; break;
     case ProgramType::everythingToPiecesShooter: break;
     case ProgramType::fakeEvy: break;

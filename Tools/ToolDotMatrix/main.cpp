@@ -8,8 +8,9 @@
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#include <boost/shared_ptr.hpp>
 #include <boost/lexical_cast.hpp>
-#include "dotmatrix.h"
+#include "dotmatrixstring.h"
 #include "tooldotmatrixmenudialog.h"
 
 #pragma GCC diagnostic pop
@@ -39,50 +40,23 @@ int main(int argc, char* argv[])
   }
 
   const std::string s = argv[1];
+  const int spacing = 1;
 
-  for (const char c: s)
-  {
-    ribi::DotMatrix m(c);
-    std::cout << m << '\n';
-  }
+  boost::shared_ptr<ribi::DotMatrixString> m {
+    new ribi::DotMatrixString(s,spacing)
+  };
+  std::cout << *m << '\n';
 }
 
 /* Example screen output:
 
-10001
-10001
-10001
-11111
-10001
-10001
-10001
-00000
-00000
-01110
-10001
-11111
-10000
-01110
-01100
-00100
-00100
-00100
-00100
-00100
-01110
-01100
-00100
-00100
-00100
-00100
-00100
-01110
-00000
-00000
-01110
-10001
-10001
-10001
-01110
+100010000000011000011000000000
+100010000000001000001000000000
+100010011100001000001000011100
+111110100010001000001000100010
+100010111110001000001000100010
+100010100000001000001000100010
+100010011100011100011100011100
+000000000000000000000000000000
 
 */
