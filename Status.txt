@@ -357,6 +357,10 @@ CppRatioExample1
 CppRatioExample1.exe
 CppRawCharacterStringExample1
 CppRawCharacterStringExample1.exe
+CppRemoveExample1
+CppRemoveExample1.exe
+CppRenameExample1
+CppRenameExample1.exe
 CppRpiExample1
 CppRpiExample1.exe
 CppRpiExample2
@@ -484,6 +488,8 @@ ToolCreateGlossaryDesktop.exe
 ToolCreateQtProjectZipFileConsole
 ToolCreateQtProjectZipFileDesktop
 ToolCreateQtProjectZipFileDesktop.exe
+ToolDotMatrixConsole
+ToolDotMatrixConsole.exe
 ToolEncrangerDesktop
 ToolEncrangerDesktop.exe
 ToolFakeEvy
@@ -526,8 +532,6 @@ ToolRegexTesterDesktop.exe
 ToolRichelBilderbeekGalleryDesktop
 ToolRichelBilderbeekGalleryDesktop.exe
 ToolRichelbilderbeekNlSitemapGenerator
-ToolSecretMessageDesktop
-ToolSecretMessageDesktop.exe
 ToolSimMysteryMachineDesktop
 ToolSimMysteryMachineDesktop.exe
 ToolSimMysteryMachineWebsite
@@ -571,6 +575,8 @@ ToolTestMultiVector
 ToolTestMultiVector.exe
 ToolTestOpenQuestionDesktop
 ToolTestOpenQuestionDesktop.exe
+ToolTestPrimeExpert
+ToolTestPrimeExpert.exe
 ToolTestQtOcrWidget
 ToolTestQtRoundedEditRectItem
 ToolTestQtRoundedEditRectItem.exe
