@@ -18,7 +18,8 @@ SOURCES += \
     qtsecretmessagemenudialog.cpp \
     qtsecretmessagecreatedialog.cpp \
     qtsecretmessageextractdialog.cpp \
-    ../../Classes/CppQtHideAndShowDialog/qthideandshowdialog.cpp
+    ../../Classes/CppQtHideAndShowDialog/qthideandshowdialog.cpp \
+    secretmessagemaindialog.cpp
 
 HEADERS  += \
     ../../Classes/CppAbout/about.h \
@@ -28,7 +29,8 @@ HEADERS  += \
     ../../Classes/CppTrace/trace.h \
     qtsecretmessagecreatedialog.h \
     qtsecretmessageextractdialog.h \
-    ../../Classes/CppQtHideAndShowDialog/qthideandshowdialog.h
+    ../../Classes/CppQtHideAndShowDialog/qthideandshowdialog.h \
+    secretmessagemaindialog.h
 
 FORMS    += \
     ../../Classes/CppQtAboutDialog/qtaboutdialog.ui \

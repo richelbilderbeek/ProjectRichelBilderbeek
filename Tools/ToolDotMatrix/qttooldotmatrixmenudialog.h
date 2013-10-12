@@ -17,7 +17,7 @@ public:
   explicit QtDotMatrixMenuDialog(QWidget *parent = 0);
   QtDotMatrixMenuDialog(const QtDotMatrixMenuDialog&) = delete;
   QtDotMatrixMenuDialog& operator=(const QtDotMatrixMenuDialog&) = delete;
-  ~QtDotMatrixMenuDialog();
+  ~QtDotMatrixMenuDialog() noexcept;
 
 protected:
   void keyPressEvent(QKeyEvent * event);
