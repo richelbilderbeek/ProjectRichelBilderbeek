@@ -139,7 +139,7 @@ const ribi::About ribi::RichelBilderbeek::MenuDialog::GetAbout() noexcept
     "Richel Bilderbeek",
     "Project Richel Bilderbeek",
     "Richel Bilderbeek's work",
-    "the 19th of September 2013",
+    "the 12th of October 2013",
     "2010-2013",
     "http://www.richelbilderbeek.nl/ProjectRichelBilderbeek.htm",
     GetVersion(),
@@ -308,6 +308,6 @@ const std::vector<std::string> ribi::RichelBilderbeek::MenuDialog::GetVersionHis
     "2013-05-29: Version 1.08: added KalmanFilterer, added About button in desktop version",
     "2013-07-11: Version 1.09: transition phase to Qt5, still supports Qt4",
     "2013-09-19: Version 1.10: added K3OpEenRij, SimplifyNewick, TestApproximator, TestMultiApproximator, TestSimpleLinearRegression, compiles with -Weffc++, added noexcept specifications, use of .pri file",
-    "2013-xx-xx: Version 1.11: added DotMatrix, Encranger, GrayCoder, MultiEncranger, PrimeExpert, QuadraticSolver, TestCanvas, TestMultipleChoiceQuestion, TestOpenQuestion"
+    "2013-10-12: Version 1.11: added DotMatrix, Encranger, GrayCoder, MultiEncranger, PrimeExpert, QuadraticSolver, TestCanvas, TestMultipleChoiceQuestion, TestOpenQuestion"
   };
 }
