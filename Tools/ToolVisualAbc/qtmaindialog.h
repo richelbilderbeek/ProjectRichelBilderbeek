@@ -1,12 +1,12 @@
 #ifndef QTVISUALABCMAINDIALOG_H
 #define QTVISUALABCMAINDIALOG_H
-//---------------------------------------------------------------------------
+
 #include <QDialog>
-//---------------------------------------------------------------------------
+
 namespace Ui {
   class QtMainDialog;
 }
-//---------------------------------------------------------------------------
+
 class QtMainDialog : public QDialog
 {
   Q_OBJECT
@@ -14,9 +14,6 @@ class QtMainDialog : public QDialog
 public:
   explicit QtMainDialog(QWidget *parent = 0);
   ~QtMainDialog();
-
-protected:
-  void changeEvent(QEvent *e);
 
 private:
   Ui::QtMainDialog *ui;
@@ -27,5 +24,5 @@ private slots:
     void on_button_play_clicked();
     void on_button_convert_clicked();
 };
-//---------------------------------------------------------------------------
+
 #endif // QTVISUALABCMAINDIALOG_H

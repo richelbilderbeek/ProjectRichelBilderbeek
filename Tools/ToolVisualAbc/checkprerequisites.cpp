@@ -1,12 +1,12 @@
-//---------------------------------------------------------------------------
+
 #include <cassert>
 #include <cstdlib>
 #include <cstdio>
 #include <stdexcept>
 #include <fstream>
-//---------------------------------------------------------------------------
+
 #include "checkprerequisites.h"
-//---------------------------------------------------------------------------
+
 CheckPrerequisites::CheckPrerequisites()
 {
   CheckAbc2midi();
@@ -14,7 +14,7 @@ CheckPrerequisites::CheckPrerequisites()
   CheckConvert();
   CheckPlaysound();
 }
-//---------------------------------------------------------------------------
+
 void CheckPrerequisites::CheckAbc2midi()
 {
   std::remove("tmp.txt");
@@ -31,7 +31,7 @@ void CheckPrerequisites::CheckAbc2midi()
   std::remove("tmp.txt");
   assert(!FileExists("tmp.txt"));
 }
-//---------------------------------------------------------------------------
+
 void CheckPrerequisites::CheckAbcm2ps()
 {
   const int result
@@ -46,7 +46,7 @@ void CheckPrerequisites::CheckAbcm2ps()
   std::remove("tmp.txt");
   assert(!FileExists("tmp.txt"));
 }
-//---------------------------------------------------------------------------
+
 void CheckPrerequisites::CheckConvert()
 {
   const int result
@@ -61,7 +61,7 @@ void CheckPrerequisites::CheckConvert()
   std::remove("tmp.txt");
   assert(!FileExists("tmp.txt"));
 }
-//---------------------------------------------------------------------------
+
 void CheckPrerequisites::CheckPlaysound()
 {
   const int error
@@ -76,7 +76,7 @@ void CheckPrerequisites::CheckPlaysound()
   std::remove("tmp.txt");
   assert(!FileExists("tmp.txt"));
 }
-//---------------------------------------------------------------------------
+
 ///FileExists checks if a certain file exists
 ///From http://www.richelbilderbeek.nl/CppFileExists.htm
 bool CheckPrerequisites::FileExists(const std::string& filename)
@@ -85,4 +85,4 @@ bool CheckPrerequisites::FileExists(const std::string& filename)
   f.open(filename.c_str(),std::ios::in);
   return f.is_open();
 }
-//---------------------------------------------------------------------------
+

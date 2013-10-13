@@ -1,0 +1,783 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>PrimeExpert</title>
+  <meta name="description" content="C++ PrimeExpert"/>
+  <meta name="keywords" content="C++ PrimeExpert code snippet"/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a>) <a href="ToolPrimeExpert.htm">PrimeExpert</a></h1>
+<p>&nbsp;</p>
+<!-- No CodeToHtmlInfo about this class with page name ToolPrimeExpert-->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Technical facts</h2>
+<p>&nbsp;</p>
+<p><a href="CppApplication.htm">Application type(s)</a></p>
+<ul>
+  <li><img src="PicDesktop.png" alt="Desktop"/> <a href="CppDesktopApplication.htm">Desktop application</a></li>
+</ul>
+<p><a href="CppOs.htm">Operating system(s) or programming environment(s)</a></p>
+<ul>
+  <li><img src="PicLubuntu.png" alt="Lubuntu"/> <a href="CppLubuntu.htm">Lubuntu</a> 13.04 (raring)</li>
+</ul>
+<p><a href="CppIde.htm">IDE(s)</a>:</p>
+<ul>
+  <li><img src="PicQtCreator.png" alt="Qt Creator"/> <a href="CppQtCreator.htm">Qt Creator</a> unknown</li>
+</ul>
+<p><a href="CppQtProjectType.htm">Project type</a>:</p>
+<ul>
+  <li><img src="PicGui.png" alt="GUI"/> <a href="CppGuiApplication.htm">GUI application</a></li>
+</ul>
+<p><a href="CppStandard.htm">C++ standard</a>:</p>
+<ul>
+  <li><img src="PicCpp11.png" alt="C++11"/> <a href="Cpp11.htm">C++11</a></li>
+</ul>
+<p><a href="CppCompiler.htm">Compiler(s)</a>:</p>
+<ul>
+  <li><a href="CppGpp.htm">G++</a> 4.7.3</li>
+</ul>
+<p><a href="CppLibrary.htm">Libraries</a> used:</p>
+<ul>
+  <li><img src="PicQt.png" alt="Qt"/> <a href="CppQt.htm">Qt</a>: version 5.1.1 (32 bit)</li>
+  <li><img src="PicStl.png" alt="STL"/> <a href="CppStl.htm">STL</a>: GNU ISO C++ Library, version 4.7.3</li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><a href="CppQtProjectFile.htm">Qt project file</a>: ToolTestPrimeExpert.pro</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="ToolTestPrimeExpert.pro" border = "1"><tr><td><code>
+QT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; += core gui<br/>
+greaterThan(QT_MAJOR_VERSION, 4): QT += <a href="CppWidget.htm">widget</a>s<br/>
+<br/>
+<a href="CppQmakeTemplate.htm">TEMPLATE</a> = app<br/>
+<a href="CppQmakeIncludepath.htm">INCLUDEPATH</a> += \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppAbout.htm">CppAbout</a> \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppQtAboutDialog.htm">CppQtAboutDialog</a> \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppQtHideAndShowDialog.htm">CppQtHideAndShowDialog</a> \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppTrace.htm">CppTrace</a><br/>
+<br/>
+<a href="CppQmakeSources.htm">SOURCES</a> += \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppAbout.htm">CppAbout</a>/<a href="CppAbout.htm">about</a>.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppQtAboutDialog.htm">CppQtAboutDialog</a>/<a href="CppQtAboutDialog.htm">qtaboutdialog</a>.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppQtHideAndShowDialog.htm">CppQtHideAndShowDialog</a>/<a href="CppQtHideAndShowDialog.htm">qthideandshowdialog</a>.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;primeexpert.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;qt<a href="CppMain.htm">main</a>.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;qttoolprimeexpert<a href="CppMain.htm">main</a>dialog.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;qttoolprimeexpertmenudialog.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;toolprimeexpertmenudialog.cpp<br/>
+<br/>
+<a href="CppQmakeHeaders.htm">HEADERS</a>&nbsp;&nbsp;+= \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppAbout.htm">CppAbout</a>/<a href="CppAbout.htm">about</a>.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppQtAboutDialog.htm">CppQtAboutDialog</a>/<a href="CppQtAboutDialog.htm">qtaboutdialog</a>.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppQtHideAndShowDialog.htm">CppQtHideAndShowDialog</a>/<a href="CppQtHideAndShowDialog.htm">qthideandshowdialog</a>.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;primeexpert.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;qttoolprimeexpert<a href="CppMain.htm">main</a>dialog.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;qttoolprimeexpertmenudialog.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;toolprimeexpertmenudialog.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppTrace.htm">CppTrace</a>/<a href="CppTrace.htm">trace</a>.h<br/>
+<br/>
+<a href="CppFORMS.htm">FORMS</a> += \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppQtAboutDialog.htm">CppQtAboutDialog</a>/<a href="CppQtAboutDialog.htm">qtaboutdialog</a>.ui \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;qttoolprimeexpert<a href="CppMain.htm">main</a>dialog.ui \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;qttoolprimeexpertmenudialog.ui<br/>
+<br/>
+OTHER_FILES += \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppQtHideAndShowDialog.htm">CppQtHideAndShowDialog</a>/Licence.txt \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppTrace.htm">CppTrace</a>/Licence.txt<br/>
+<br/>
+#<br/>
+#<br/>
+# Type of compile<br/>
+#<br/>
+#<br/>
+<br/>
+<a href="CppQmakeConfig.htm">CONFIG</a>(release, debug|release) {<br/>
+&nbsp;&nbsp;<a href="CppQmakeDefines.htm">DEFINES</a> += NDEBUG N<a href="CppTRACE.htm">TRACE</a>_BILDERBIKKEL<br/>
+}<br/>
+<br/>
+<a href="CppQmakeQmake_cxxflags.htm">QMAKE_CXXFLAGS</a> += -std=<a href="Cpp11.htm">c++11</a> <a href="CppWall.htm">-Wall</a> <a href="CppWextra.htm">-Wextra</a> <a href="CppWeffcpp.htm">-Weffc++</a><br/>
+<br/>
+unix {<br/>
+&nbsp;&nbsp;<a href="CppQmakeQmake_cxxflags.htm">QMAKE_CXXFLAGS</a> += <a href="CppWerror.htm">-Werror</a><br/>
+}<br/>
+<br/>
+#<br/>
+#<br/>
+# Boost<br/>
+#<br/>
+#<br/>
+<br/>
+win32 {<br/>
+&nbsp;&nbsp;<a href="CppQmakeIncludepath.htm">INCLUDEPATH</a> += \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/boost_1_54_0<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>primeexpert.h</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="primeexpert.h" border = "1"><tr><td><code>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppComment.htm">/*</a><br/>
+<a href="CppPrimeExpert.htm">PrimeExpert</a>, <b><a href="CppClass.htm">class</a></b> to calculate whether a number is prime<br/>
+Copyright (C) 2008&nbsp;&nbsp;Richel Bilderbeek<br/>
+<br/>
+This program is free software: you can redistribute it and/or modify<br/>
+it under the terms of the GNU General Public License as published by<br/>
+the Free Software Foundation, either version 3 of the License, or<br/>
+(at your option) any later version.<br/>
+<br/>
+This program is distributed in the hope that it will be useful,<br/>
+but WITHOUT ANY WARRANTY; without even the implied warranty of<br/>
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.&nbsp;&nbsp;See the<br/>
+GNU General Public License for more details.<br/>
+You should have received a copy of the GNU General Public License<br/>
+along with this program.&nbsp;&nbsp;If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
+<a href="CppComment.htm">*/</a><br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppComment.htm">//</a> From http://www.richelbilderbeek.nl/<a href="Tools.htm">Tool</a><a href="CppPrimeExpert.htm">PrimeExpert</a>.htm<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppIfndef.htm">#ifndef</a> PRIMEEXPERT_H<br/>
+<a href="CppDefine.htm">#define</a> PRIMEEXPERT_H<br/>
+<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppStringH.htm">string</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
+<br/>
+<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
+<br/>
+<b><a href="CppStruct.htm">struct</a></b> <a href="CppPrimeExpert.htm">PrimeExpert</a><br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppPrimeExpert.htm">PrimeExpert</a>();<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppBool.htm">bool</a></b> <a href="CppIsPrime.htm">IsPrime</a>(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x);<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> Get<a href="CppVersion.htm">Version</a>() <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; Get<a href="CppVersion.htm">Version</a>History() <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppPrivate.htm">private</a></b>:<br/>
+&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt; mPrimes;<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> CalculateNextPrime();<br/>
+&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> CalculateMax(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x);<br/>
+&nbsp;&nbsp;<b><a href="CppFriend.htm">friend</a></b> <a href="CppOstream.htm">std::ostream</a>&amp; <b><a href="CppOperatorStreamOut.htm">operator&lt;&lt;</a></b>(<a href="CppOstream.htm">std::ostream</a>&amp;, <b><a href="CppConst.htm">const</a></b> <a href="CppPrimeExpert.htm">PrimeExpert</a>&amp;);<br/>
+};<br/>
+<br/>
+<a href="CppOstream.htm">std::ostream</a>&amp; <b><a href="CppOperatorStreamOut.htm">operator&lt;&lt;</a></b>(<a href="CppOstream.htm">std::ostream</a>&amp; os, <b><a href="CppConst.htm">const</a></b> <a href="CppPrimeExpert.htm">PrimeExpert</a>&amp; primeExpert);<br/>
+<br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
+<br/>
+<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> PRIMEEXPERT_H<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>primeexpert.cpp</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="primeexpert.cpp" border = "1"><tr><td><code>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppComment.htm">/*</a><br/>
+<a href="CppPrimeExpert.htm">PrimeExpert</a>, <b><a href="CppClass.htm">class</a></b> to calculate whether a number is prime<br/>
+Copyright (C) 2008&nbsp;&nbsp;Richel Bilderbeek<br/>
+<br/>
+This program is free software: you can redistribute it and/or modify<br/>
+it under the terms of the GNU General Public License as published by<br/>
+the Free Software Foundation, either version 3 of the License, or<br/>
+(at your option) any later version.<br/>
+<br/>
+This program is distributed in the hope that it will be useful,<br/>
+but WITHOUT ANY WARRANTY; without even the implied warranty of<br/>
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.&nbsp;&nbsp;See the<br/>
+GNU General Public License for more details.<br/>
+You should have received a copy of the GNU General Public License<br/>
+along with this program.&nbsp;&nbsp;If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
+<a href="CppComment.htm">*/</a><br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppComment.htm">//</a> From http://www.richelbilderbeek.nl/<a href="Tools.htm">Tool</a><a href="CppPrimeExpert.htm">PrimeExpert</a>.htm<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppAlgorithmH.htm">algorithm</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppCmathH.htm">cmath</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppIostreamH.htm">iostream</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppIteratorH.htm">iterator</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> "primeexpert.h"<br/>
+<br/>
+<a href="CppRibi.htm">ribi</a>::<a href="CppPrimeExpert.htm">PrimeExpert</a>::<a href="CppPrimeExpert.htm">PrimeExpert</a>()<br/>
+&nbsp;&nbsp;: mPrimes{}<br/>
+{<br/>
+&nbsp;&nbsp;mPrimes.push_back(2);<br/>
+}<br/>
+<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppPrimeExpert.htm">PrimeExpert</a>::CalculateNextPrime()<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> heighestKnownPrime <a href="CppOperatorAssign.htm">=</a> mPrimes.back();<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> i <a href="CppOperatorAssign.htm">=</a> heighestKnownPrime <a href="CppOperatorPlus.htm">+</a> 1; ;<a href="CppOperatorIncrement.htm">++</a>i)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (<b><a href="CppThis.htm">this</a></b>-&gt;<a href="CppIsPrime.htm">IsPrime</a>(i)) { mPrimes.push_back(i); <b><a href="CppReturn.htm">return</a></b>; }<br/>
+&nbsp;&nbsp;}<br/>
+}<br/>
+<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppPrimeExpert.htm">PrimeExpert</a>::CalculateMax(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x)<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> 1 <a href="CppOperatorPlus.htm">+</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppSqrt.htm">std::sqrt</a>(<b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(x) ) );<br/>
+<br/>
+}<br/>
+<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppRibi.htm">ribi</a>::<a href="CppPrimeExpert.htm">PrimeExpert</a>::Get<a href="CppVersion.htm">Version</a>() <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> "2.0";<br/>
+}<br/>
+<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm">ribi</a>::<a href="CppPrimeExpert.htm">PrimeExpert</a>::Get<a href="CppVersion.htm">Version</a>History() <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"2008-07-12: <a href="CppVersion.htm">Version</a> 1.0: initial <a href="CppVersion.htm">version</a> in <a href="CppBuilder.htm">C++ Builder</a>",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"2011-02-26: <a href="CppVersion.htm">Version</a> 2.0: port to <a href="CppQtCreator.htm">Qt Creator</a>"<br/>
+&nbsp;&nbsp;};<br/>
+}<br/>
+<br/>
+<b><a href="CppBool.htm">bool</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppPrimeExpert.htm">PrimeExpert</a>::<a href="CppIsPrime.htm">IsPrime</a>(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x)<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(x &gt; 2);<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Calculate the maximum value <b><a href="CppFor.htm">for</a></b> devision<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> max <a href="CppOperatorAssign.htm">=</a> CalculateMax(x);<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(CalculateMax( 4) <a href="CppOperatorEqual.htm">==</a> 3); <a href="CppComment.htm">//</a>When examining 4, divide (from 2) to 3<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(CalculateMax( 5) <a href="CppOperatorEqual.htm">==</a> 3);<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(CalculateMax( 6) <a href="CppOperatorEqual.htm">==</a> 3);<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(CalculateMax( 7) <a href="CppOperatorEqual.htm">==</a> 3);<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(CalculateMax( 8) <a href="CppOperatorEqual.htm">==</a> 3);<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(CalculateMax( 9) <a href="CppOperatorEqual.htm">==</a> 4); <a href="CppComment.htm">//</a>When examining 9, divide (from 2) to 4<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(CalculateMax(10) <a href="CppOperatorEqual.htm">==</a> 4);<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(CalculateMax(11) <a href="CppOperatorEqual.htm">==</a> 4);<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(CalculateMax(12) <a href="CppOperatorEqual.htm">==</a> 4);<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(CalculateMax(13) <a href="CppOperatorEqual.htm">==</a> 4);<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(CalculateMax(14) <a href="CppOperatorEqual.htm">==</a> 4);<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(CalculateMax(15) <a href="CppOperatorEqual.htm">==</a> 4);<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(CalculateMax(16) <a href="CppOperatorEqual.htm">==</a> 5); <a href="CppComment.htm">//</a>When examining 16, divide (from 2) to 5<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(CalculateMax(17) <a href="CppOperatorEqual.htm">==</a> 5);<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Collect enough prime numbers to find <b><a href="CppIf.htm">if</a></b> x is prime,<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> these are not yet present<br/>
+&nbsp;&nbsp;<b><a href="CppWhile.htm">while</a></b> ( mPrimes.back() &lt; CalculateMax(x) )<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;CalculateNextPrime();<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> i=0; ;<a href="CppOperatorIncrement.htm">++</a>i)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>( i &lt; <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(mPrimes.size() ) );<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> knownPrime <a href="CppOperatorAssign.htm">=</a> mPrimes[i];<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (knownPrime <a href="CppOperatorGreaterEqual.htm">&gt;=</a> max) <b><a href="CppReturn.htm">return</a></b> <b><a href="CppTrue.htm">true</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> ( x <a href="CppOperatorModulus.htm">%</a> knownPrime <a href="CppOperatorEqual.htm">==</a> 0) <b><a href="CppReturn.htm">return</a></b> <b><a href="CppFalse.htm">false</a></b>;<br/>
+&nbsp;&nbsp;}<br/>
+<br/>
+}<br/>
+<br/>
+<a href="CppOstream.htm">std::ostream</a>&amp; <a href="CppRibi.htm">ribi</a>::<b><a href="CppOperatorStreamOut.htm">operator&lt;&lt;</a></b>(<a href="CppOstream.htm">std::ostream</a>&amp; os, <b><a href="CppConst.htm">const</a></b> <a href="CppPrimeExpert.htm">PrimeExpert</a>&amp; primeExpert)<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppCopy.htm">std::copy</a>(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;primeExpert.mPrimes.begin(),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;primeExpert.mPrimes.end(),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOstream_iterator.htm">std::ostream_iterator</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(os," ") );<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> os;<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>qtmain.cpp</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="qtmain.cpp" border = "1"><tr><td><code>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppComment.htm">/*</a><br/>
+<a href="CppPrimeExpert.htm">PrimeExpert</a>, <a href="Tools.htm">tool</a> to test <b><a href="CppIf.htm">if</a></b> a number is prime<br/>
+Copyright (C) 2008-2013 Richel Bilderbeek<br/>
+<br/>
+This program is free software: you can redistribute it and/or modify<br/>
+it under the terms of the GNU General Public License as published by<br/>
+the Free Software Foundation, either version 3 of the License, or<br/>
+(at your option) any later version.<br/>
+<br/>
+This program is distributed in the hope that it will be useful,<br/>
+but WITHOUT ANY WARRANTY; without even the implied warranty of<br/>
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.&nbsp;&nbsp;See the<br/>
+GNU General Public License for more details.<br/>
+You should have received a copy of the GNU General Public License<br/>
+along with this program.&nbsp;&nbsp;If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
+<a href="CppComment.htm">*/</a><br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="Tools.htm">Tool</a><a href="CppPrimeExpert.htm">PrimeExpert</a>.htm<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-<b><a href="CppTypedef.htm">typedef</a></b>s"<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppQApplication.htm">QApplication</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> "qt<a href="Tools.htm">tool</a>primeexpertmenudialog.h"<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
+<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>(<b><a href="CppInt.htm">int</a></b> <a href="CppArgc.htm">argc</a>, <b><a href="CppChar.htm">char</a></b> *<a href="CppArgc.htm">argv</a>[])<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppQApplication.htm">QApplication</a> a(<a href="CppArgc.htm">argc</a>, <a href="CppArgc.htm">argv</a>);<br/>
+&nbsp;&nbsp;<a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="Tools.htm">Tool</a><a href="CppPrimeExpert.htm">PrimeExpert</a>MenuDialog w;<br/>
+&nbsp;&nbsp;w.show();<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> a.exec();<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>qttoolprimeexpertmaindialog.h</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="qttoolprimeexpertmaindialog.h" border = "1"><tr><td><code>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppComment.htm">/*</a><br/>
+<a href="CppPrimeExpert.htm">PrimeExpert</a>, <a href="Tools.htm">tool</a> to test <b><a href="CppIf.htm">if</a></b> a number is prime<br/>
+Copyright (C) 2008-2013 Richel Bilderbeek<br/>
+<br/>
+This program is free software: you can redistribute it and/or modify<br/>
+it under the terms of the GNU General Public License as published by<br/>
+the Free Software Foundation, either version 3 of the License, or<br/>
+(at your option) any later version.<br/>
+<br/>
+This program is distributed in the hope that it will be useful,<br/>
+but WITHOUT ANY WARRANTY; without even the implied warranty of<br/>
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.&nbsp;&nbsp;See the<br/>
+GNU General Public License for more details.<br/>
+You should have received a copy of the GNU General Public License<br/>
+along with this program.&nbsp;&nbsp;If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
+<a href="CppComment.htm">*/</a><br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="Tools.htm">Tool</a><a href="CppPrimeExpert.htm">PrimeExpert</a>.htm<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppIfndef.htm">#ifndef</a> QTTOOLPRIMEEXPERTMAINDIALOG_H<br/>
+<a href="CppDefine.htm">#define</a> QTTOOLPRIMEEXPERTMAINDIALOG_H<br/>
+<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-<b><a href="CppTypedef.htm">typedef</a></b>s"<br/>
+<a href="CppInclude.htm">#include</a> "<a href="CppQtHideAndShowDialog.htm">qthideandshowdialog</a>.h"<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppScoped_ptr.htm">scoped_ptr</a>.hpp&gt;<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
+<br/>
+<b><a href="CppNamespace.htm">namespace</a></b> Ui {<br/>
+&nbsp;&nbsp;<b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a><a href="Tools.htm">Tool</a><a href="CppPrimeExpert.htm">PrimeExpert</a>MainDialog;<br/>
+}<br/>
+<br/>
+<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
+<br/>
+<b><a href="CppStruct.htm">struct</a></b> <a href="CppPrimeExpert.htm">PrimeExpert</a>;<br/>
+<br/>
+<b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a><a href="Tools.htm">Tool</a><a href="CppPrimeExpert.htm">PrimeExpert</a>MainDialog : <b><a href="CppPublic.htm">public</a></b> <a href="CppQt.htm">Qt</a>HideAndShowDialog<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppQ_OBJECT.htm">Q_OBJECT</a><br/>
+<br/>
+<b><a href="CppPublic.htm">public</a></b>:<br/>
+&nbsp;&nbsp;<b><a href="CppExplicit.htm">explicit</a></b> <a href="CppQt.htm">Qt</a><a href="Tools.htm">Tool</a><a href="CppPrimeExpert.htm">PrimeExpert</a>MainDialog(<a href="CppQWidget.htm">QWidget</a> *parent <a href="CppOperatorAssign.htm">=</a> 0);<br/>
+&nbsp;&nbsp;<a href="CppQt.htm">Qt</a><a href="Tools.htm">Tool</a><a href="CppPrimeExpert.htm">PrimeExpert</a>MainDialog(<b><a href="CppConst.htm">const</a></b> <a href="CppQt.htm">Qt</a><a href="Tools.htm">Tool</a><a href="CppPrimeExpert.htm">PrimeExpert</a>MainDialog&amp;) <a href="CppOperatorAssign.htm">=</a> <b><a href="CppDelete.htm">delete</a></b>;<br/>
+&nbsp;&nbsp;<a href="CppQt.htm">Qt</a><a href="Tools.htm">Tool</a><a href="CppPrimeExpert.htm">PrimeExpert</a>MainDialog&amp; <b><a href="CppOperator.htm">operator</a></b>=(<b><a href="CppConst.htm">const</a></b> <a href="CppQt.htm">Qt</a><a href="Tools.htm">Tool</a><a href="CppPrimeExpert.htm">PrimeExpert</a>MainDialog&amp;) <a href="CppOperatorAssign.htm">=</a> <b><a href="CppDelete.htm">delete</a></b>;<br/>
+&nbsp;&nbsp;~<a href="CppQt.htm">Qt</a><a href="Tools.htm">Tool</a><a href="CppPrimeExpert.htm">PrimeExpert</a>MainDialog() <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
+<br/>
+<b><a href="CppPrivate.htm">private</a></b>:<br/>
+&nbsp;&nbsp;<a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a><a href="Tools.htm">Tool</a><a href="CppPrimeExpert.htm">PrimeExpert</a>MainDialog *ui;<br/>
+&nbsp;&nbsp;<a href="CppScoped_ptr.htm">boost::scoped_ptr</a>&lt;<a href="CppPrimeExpert.htm">PrimeExpert</a>&gt; m_expert;<br/>
+<br/>
+<b><a href="CppPrivate.htm">private</a></b> <b><a href="CppSlots.htm">slots</a></b>:<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> on_edit_value_textChanged(<a href="CppQString.htm">QString</a> );<br/>
+};<br/>
+<br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
+<br/>
+<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> QTTOOLPRIMEEXPERTMAINDIALOG_H<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>qttoolprimeexpertmaindialog.cpp</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="qttoolprimeexpertmaindialog.cpp" border = "1"><tr><td><code>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppComment.htm">/*</a><br/>
+<a href="CppPrimeExpert.htm">PrimeExpert</a>, <a href="Tools.htm">tool</a> to test <b><a href="CppIf.htm">if</a></b> a number is prime<br/>
+Copyright (C) 2008-2013 Richel Bilderbeek<br/>
+<br/>
+This program is free software: you can redistribute it and/or modify<br/>
+it under the terms of the GNU General Public License as published by<br/>
+the Free Software Foundation, either version 3 of the License, or<br/>
+(at your option) any later version.<br/>
+<br/>
+This program is distributed in the hope that it will be useful,<br/>
+but WITHOUT ANY WARRANTY; without even the implied warranty of<br/>
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.&nbsp;&nbsp;See the<br/>
+GNU General Public License for more details.<br/>
+You should have received a copy of the GNU General Public License<br/>
+along with this program.&nbsp;&nbsp;If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
+<a href="CppComment.htm">*/</a><br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="Tools.htm">Tool</a><a href="CppPrimeExpert.htm">PrimeExpert</a>.htm<br/>
+<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-<b><a href="CppTypedef.htm">typedef</a></b>s"<br/>
+<a href="CppInclude.htm">#include</a> "qt<a href="Tools.htm">tool</a>primeexpertmaindialog.h"<br/>
+<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppLexical_cast.htm">lexical_cast</a>.hpp&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppTime.htm">time</a>r.hpp&gt;<br/>
+<br/>
+<a href="CppInclude.htm">#include</a> "<a href="CppAbout.htm">about</a>.h"<br/>
+<a href="CppInclude.htm">#include</a> "<a href="CppQtAboutDialog.htm">qtaboutdialog</a>.h"<br/>
+<a href="CppInclude.htm">#include</a> "primeexpert.h"<br/>
+<a href="CppInclude.htm">#include</a> "ui_qt<a href="Tools.htm">tool</a>primeexpertmaindialog.h"<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
+<br/>
+<a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="Tools.htm">Tool</a><a href="CppPrimeExpert.htm">PrimeExpert</a>MainDialog::<a href="CppQt.htm">Qt</a><a href="Tools.htm">Tool</a><a href="CppPrimeExpert.htm">PrimeExpert</a>MainDialog(<a href="CppQWidget.htm">QWidget</a> *parent)<br/>
+&nbsp;&nbsp;: <a href="CppQt.htm">Qt</a>HideAndShowDialog(parent),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;ui(<b><a href="CppNew.htm">new</a></b> <a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a><a href="Tools.htm">Tool</a><a href="CppPrimeExpert.htm">PrimeExpert</a>MainDialog),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_expert(<b><a href="CppNew.htm">new</a></b> <a href="CppPrimeExpert.htm">PrimeExpert</a>)<br/>
+{<br/>
+&nbsp;&nbsp;ui-&gt;setupUi(<b><a href="CppThis.htm">this</a></b>);<br/>
+&nbsp;&nbsp;ui-&gt;edit_value-&gt;setText("2");<br/>
+}<br/>
+<br/>
+<a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="Tools.htm">Tool</a><a href="CppPrimeExpert.htm">PrimeExpert</a>MainDialog::~<a href="CppQt.htm">Qt</a><a href="Tools.htm">Tool</a><a href="CppPrimeExpert.htm">PrimeExpert</a>MainDialog() <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppDelete.htm">delete</a></b> ui;<br/>
+}<br/>
+<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="Tools.htm">Tool</a><a href="CppPrimeExpert.htm">PrimeExpert</a>MainDialog::on_edit_value_textChanged(<a href="CppQString.htm">QString</a> s)<br/>
+{<br/>
+&nbsp;&nbsp;ui-&gt;text-&gt;clear();<br/>
+&nbsp;&nbsp;<b><a href="CppTry.htm">try</a></b><br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppLexical_cast.htm">boost::lexical_cast</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(s.toStdString());<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<b><a href="CppCatch.htm">catch</a></b> (<a href="CppBad_lexical_cast.htm">boost::bad_lexical_cast</a>&amp;)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;ui-&gt;text-&gt;appendPlainText("NaN");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b>;<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> value <a href="CppOperatorAssign.htm">=</a> <a href="CppLexical_cast.htm">boost::lexical_cast</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(s.toStdString());<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (value &lt; 2)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;ui-&gt;text-&gt;appendPlainText("Not prime");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b>;<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (value <a href="CppOperatorEqual.htm">==</a> 2)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;ui-&gt;text-&gt;appendPlainText("Prime");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b>;<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostTimer.htm">boost::timer</a> t;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppBool.htm">bool</a></b> isPrime <a href="CppOperatorAssign.htm">=</a> m_expert-&gt;<a href="CppIsPrime.htm">IsPrime</a>(value);<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> <a href="CppTime.htm">time</a> <a href="CppOperatorAssign.htm">=</a> t.elapsed();<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> text<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <a href="CppString.htm">std::string</a>(isPrime ? "Prime" : "Not prime")<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> " ("<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> <a href="CppLexical_cast.htm">boost::lexical_cast</a>&lt;<a href="CppString.htm">std::string</a>&gt;(<a href="CppTime.htm">time</a>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> " sec)";<br/>
+&nbsp;&nbsp;ui-&gt;text-&gt;appendPlainText(text.c_str());<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>qttoolprimeexpertmenudialog.h</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="qttoolprimeexpertmenudialog.h" border = "1"><tr><td><code>
+<a href="CppIfndef.htm">#ifndef</a> QTTOOLPRIMEEXPERTMENUDIALOG_H<br/>
+<a href="CppDefine.htm">#define</a> QTTOOLPRIMEEXPERTMENUDIALOG_H<br/>
+<br/>
+<a href="CppInclude.htm">#include</a> "<a href="CppQtHideAndShowDialog.htm">qthideandshowdialog</a>.h"<br/>
+<br/>
+<b><a href="CppNamespace.htm">namespace</a></b> Ui {<br/>
+&nbsp;&nbsp;<b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a><a href="Tools.htm">Tool</a><a href="CppPrimeExpert.htm">PrimeExpert</a>MenuDialog;<br/>
+}<br/>
+<br/>
+<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
+<br/>
+<b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a><a href="Tools.htm">Tool</a><a href="CppPrimeExpert.htm">PrimeExpert</a>MenuDialog : <b><a href="CppPublic.htm">public</a></b> <a href="CppQt.htm">Qt</a>HideAndShowDialog<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppQ_OBJECT.htm">Q_OBJECT</a><br/>
+<br/>
+<b><a href="CppPublic.htm">public</a></b>:<br/>
+&nbsp;&nbsp;<b><a href="CppExplicit.htm">explicit</a></b> <a href="CppQt.htm">Qt</a><a href="Tools.htm">Tool</a><a href="CppPrimeExpert.htm">PrimeExpert</a>MenuDialog(<a href="CppQWidget.htm">QWidget</a> *parent <a href="CppOperatorAssign.htm">=</a> 0);<br/>
+&nbsp;&nbsp;<a href="CppQt.htm">Qt</a><a href="Tools.htm">Tool</a><a href="CppPrimeExpert.htm">PrimeExpert</a>MenuDialog(<b><a href="CppConst.htm">const</a></b> <a href="CppQt.htm">Qt</a><a href="Tools.htm">Tool</a><a href="CppPrimeExpert.htm">PrimeExpert</a>MenuDialog&amp;) <a href="CppOperatorAssign.htm">=</a> <b><a href="CppDelete.htm">delete</a></b>;<br/>
+&nbsp;&nbsp;<a href="CppQt.htm">Qt</a><a href="Tools.htm">Tool</a><a href="CppPrimeExpert.htm">PrimeExpert</a>MenuDialog&amp; <b><a href="CppOperator.htm">operator</a></b>=(<b><a href="CppConst.htm">const</a></b> <a href="CppQt.htm">Qt</a><a href="Tools.htm">Tool</a><a href="CppPrimeExpert.htm">PrimeExpert</a>MenuDialog&amp;) <a href="CppOperatorAssign.htm">=</a> <b><a href="CppDelete.htm">delete</a></b>;<br/>
+&nbsp;&nbsp;~<a href="CppQt.htm">Qt</a><a href="Tools.htm">Tool</a><a href="CppPrimeExpert.htm">PrimeExpert</a>MenuDialog() <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
+<br/>
+<b><a href="CppProtected.htm">protected</a></b>:<br/>
+&nbsp;&nbsp;<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> keyPressEvent(<a href="CppQKeyEvent.htm">QKeyEvent</a> *);<br/>
+<br/>
+<b><a href="CppPrivate.htm">private</a></b>:<br/>
+&nbsp;&nbsp;<a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a><a href="Tools.htm">Tool</a><a href="CppPrimeExpert.htm">PrimeExpert</a>MenuDialog *ui;<br/>
+<br/>
+<b><a href="CppPrivate.htm">private</a></b> <b><a href="CppSlots.htm">slots</a></b>:<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> on_button_about_clicked();<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> on_button_quit_clicked();<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> on_button_start_clicked();<br/>
+};<br/>
+<br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
+<br/>
+<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> QTTOOLPRIMEEXPERTMENUDIALOG_H<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>qttoolprimeexpertmenudialog.cpp</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="qttoolprimeexpertmenudialog.cpp" border = "1"><tr><td><code>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-<b><a href="CppTypedef.htm">typedef</a></b>s"<br/>
+<a href="CppInclude.htm">#include</a> "qt<a href="Tools.htm">tool</a>primeexpertmenudialog.h"<br/>
+<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppQDesktopWidget.htm">QDesktopWidget</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppQKeyEvent.htm">QKeyEvent</a>&gt;<br/>
+<br/>
+<a href="CppInclude.htm">#include</a> "<a href="Tools.htm">tool</a>primeexpertmenudialog.h"<br/>
+<a href="CppInclude.htm">#include</a> "<a href="CppQtAboutDialog.htm">qtaboutdialog</a>.h"<br/>
+<a href="CppInclude.htm">#include</a> "qt<a href="Tools.htm">tool</a>primeexpertmaindialog.h"<br/>
+<a href="CppInclude.htm">#include</a> "<a href="CppQtHideAndShowDialog.htm">qthideandshowdialog</a>.h"<br/>
+<a href="CppInclude.htm">#include</a> "ui_qt<a href="Tools.htm">tool</a>primeexpertmenudialog.h"<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
+<br/>
+<a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="Tools.htm">Tool</a><a href="CppPrimeExpert.htm">PrimeExpert</a>MenuDialog::<a href="CppQt.htm">Qt</a><a href="Tools.htm">Tool</a><a href="CppPrimeExpert.htm">PrimeExpert</a>MenuDialog(<a href="CppQWidget.htm">QWidget</a> *parent) :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQt.htm">Qt</a>HideAndShowDialog(parent),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;ui(<b><a href="CppNew.htm">new</a></b> <a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a><a href="Tools.htm">Tool</a><a href="CppPrimeExpert.htm">PrimeExpert</a>MenuDialog)<br/>
+{<br/>
+&nbsp;&nbsp;ui-&gt;setupUi(<b><a href="CppThis.htm">this</a></b>);<br/>
+}<br/>
+<br/>
+<a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="Tools.htm">Tool</a><a href="CppPrimeExpert.htm">PrimeExpert</a>MenuDialog::~<a href="CppQt.htm">Qt</a><a href="Tools.htm">Tool</a><a href="CppPrimeExpert.htm">PrimeExpert</a>MenuDialog() <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppDelete.htm">delete</a></b> ui;<br/>
+}<br/>
+<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="Tools.htm">Tool</a><a href="CppPrimeExpert.htm">PrimeExpert</a>MenuDialog::keyPressEvent(<a href="CppQKeyEvent.htm">QKeyEvent</a> * event)<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (event-&gt;key() <a href="CppOperatorEqual.htm">==</a> <a href="CppQt.htm">Qt</a>::Key_Escape) { close(); <b><a href="CppReturn.htm">return</a></b>; }<br/>
+}<br/>
+<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="Tools.htm">Tool</a><a href="CppPrimeExpert.htm">PrimeExpert</a>MenuDialog::on_button_about_clicked()<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppAbout.htm">About</a> a <a href="CppOperatorAssign.htm">=</a> <a href="CppPrimeExpert.htm">PrimeExpert</a>MenuDialog::GetAbout();<br/>
+&nbsp;&nbsp;a.<a href="CppAdd.htm">Add</a><a href="CppLibrary.htm">Library</a>("<a href="CppQt.htm">Qt</a>HideAndShowDialog <a href="CppVersion.htm">version</a>: " <a href="CppOperatorPlus.htm">+</a> <a href="CppQt.htm">Qt</a>HideAndShowDialog::Get<a href="CppVersion.htm">Version</a>());<br/>
+&nbsp;&nbsp;<a href="CppQtAboutDialog.htm">QtAboutDialog</a> d(a);<br/>
+&nbsp;&nbsp;d.setWindowIcon(<b><a href="CppThis.htm">this</a></b>-&gt;windowIcon());<br/>
+&nbsp;&nbsp;d.setStyleSheet(<b><a href="CppThis.htm">this</a></b>-&gt;styleSheet());<br/>
+&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;ShowChild(&amp;d);<br/>
+}<br/>
+<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="Tools.htm">Tool</a><a href="CppPrimeExpert.htm">PrimeExpert</a>MenuDialog::on_button_quit_clicked()<br/>
+{<br/>
+&nbsp;&nbsp;close();<br/>
+}<br/>
+<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="Tools.htm">Tool</a><a href="CppPrimeExpert.htm">PrimeExpert</a>MenuDialog::on_button_start_clicked()<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppQt.htm">Qt</a><a href="Tools.htm">Tool</a><a href="CppPrimeExpert.htm">PrimeExpert</a>MainDialog d;<br/>
+&nbsp;&nbsp;d.setStyleSheet(<b><a href="CppThis.htm">this</a></b>-&gt;styleSheet());<br/>
+&nbsp;&nbsp;ShowChild(&amp;d);<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>toolprimeexpertmenudialog.h</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="toolprimeexpertmenudialog.h" border = "1"><tr><td><code>
+<a href="CppIfndef.htm">#ifndef</a> TOOLPRIMEEXPERTMENUDIALOG_H<br/>
+<a href="CppDefine.htm">#define</a> TOOLPRIMEEXPERTMENUDIALOG_H<br/>
+<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppStringH.htm">string</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
+<br/>
+<a href="CppInclude.htm">#include</a> "<a href="CppAbout.htm">about</a>.h"<br/>
+<br/>
+<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
+<br/>
+<a href="CppComment.htm">///</a>GUI independent <a href="CppPrimeExpert.htm">PrimeExpert</a> menu dialog<br/>
+<b><a href="CppStruct.htm">struct</a></b> <a href="CppPrimeExpert.htm">PrimeExpert</a>MenuDialog<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppAbout.htm">About</a> GetAbout();<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> Get<a href="CppVersion.htm">Version</a>();<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; Get<a href="CppVersion.htm">Version</a>History();<br/>
+};<br/>
+<br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
+<br/>
+<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> TOOLPRIMEEXPERTMENUDIALOG_H<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>toolprimeexpertmenudialog.cpp</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="toolprimeexpertmenudialog.cpp" border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> "<a href="Tools.htm">tool</a>primeexpertmenudialog.h"<br/>
+<a href="CppInclude.htm">#include</a> "<a href="CppTrace.htm">trace</a>.h"<br/>
+<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppAbout.htm">About</a> <a href="CppRibi.htm">ribi</a>::<a href="CppPrimeExpert.htm">PrimeExpert</a>MenuDialog::GetAbout()<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppAbout.htm">About</a> a(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"Richel Bilderbeek",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"<a href="CppPrimeExpert.htm">PrimeExpert</a>",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"solver of quadratic equations",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"the 11th of Oktober 2013",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"2008-2013",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"http://www.richelbilderbeek.nl/<a href="Tools.htm">Tool</a><a href="CppPrimeExpert.htm">PrimeExpert</a>.htm",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Get<a href="CppVersion.htm">Version</a>(),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Get<a href="CppVersion.htm">Version</a>History());<br/>
+&nbsp;&nbsp;a.<a href="CppAdd.htm">Add</a><a href="CppLibrary.htm">Library</a>("<a href="CppTrace.htm">Trace</a> <a href="CppVersion.htm">version</a>: " <a href="CppOperatorPlus.htm">+</a> <a href="CppTrace.htm">Trace</a>::Get<a href="CppVersion.htm">Version</a>());<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> a;<br/>
+}<br/>
+<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppRibi.htm">ribi</a>::<a href="CppPrimeExpert.htm">PrimeExpert</a>MenuDialog::Get<a href="CppVersion.htm">Version</a>()<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> "2.1";<br/>
+}<br/>
+<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm">ribi</a>::<a href="CppPrimeExpert.htm">PrimeExpert</a>MenuDialog::Get<a href="CppVersion.htm">Version</a>History()<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"2008-07-12: <a href="CppVersion.htm">Version</a> 1.0: initial <a href="CppVersion.htm">version</a> in <a href="CppBuilder.htm">C++ Builder</a>",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"2011-02-26: <a href="CppVersion.htm">Version</a> 2.0: port to <a href="CppQtCreator.htm">Qt Creator</a>",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"2013-10-11: <a href="CppVersion.htm">Version</a> 2.1: conformized <b><a href="CppFor.htm">for</a></b> <a href="ProjectRichelBilderbeek.htm">ProjectRichelBilderbeek</a>"<br/>
+&nbsp;&nbsp;};<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>zip.sh</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="zip.sh" border = "1"><tr><td><code>
+#!/bin/sh<br/>
+#zip packs all the files to port into a single .zip file,<br/>
+#minicking the same folder structure<br/>
+#Folder structure<br/>
+# *<br/>
+#&nbsp;&nbsp; * Classes<br/>
+#&nbsp;&nbsp;&nbsp;&nbsp; * CppAbout<br/>
+#&nbsp;&nbsp;&nbsp;&nbsp; * CppPrimeExpert<br/>
+#&nbsp;&nbsp;&nbsp;&nbsp; * CppQtAboutDialog<br/>
+#&nbsp;&nbsp; * Tools<br/>
+#&nbsp;&nbsp;&nbsp;&nbsp;* ToolTestPrimeExpert<br/>
+echo "Mimicking file structure"<br/>
+mkdir temp_zip<br/>
+mkdir temp_zip/Classes<br/>
+mkdir temp_zip/Classes/CppAbout<br/>
+mkdir temp_zip/Classes/CppPrimeExpert<br/>
+mkdir temp_zip/Classes/CppQtAboutDialog<br/>
+mkdir temp_zip/Tools<br/>
+mkdir temp_zip/Tools/ToolTestPrimeExpert<br/>
+<br/>
+echo "Copying files"<br/>
+cp ../../Classes/CppAbout/*.* temp_zip/Classes/CppAbout<br/>
+cp ../../Classes/CppPrimeExpert/*.* temp_zip/Classes/CppPrimeExpert<br/>
+cp ../../Classes/CppQtAboutDialog/*.* temp_zip/Classes/CppQtAboutDialog<br/>
+cp ../../Tools/ToolTestPrimeExpert/*.* temp_zip/Tools/ToolTestPrimeExpert<br/>
+<br/>
+echo "Compressing files"<br/>
+cd temp_zip<br/>
+<br/>
+zip -r ToolTestPrimeExpertSource_2_0 Classes<br/>
+zip -r ToolTestPrimeExpertSource_2_0 Tools<br/>
+<br/>
+echo "Copying zipped file from temp folder to this folder"<br/>
+<br/>
+cd ..<br/>
+cp temp_zip/ToolTestPrimeExpertSource_2_0.zip ToolTestPrimeExpertSource_2_0.zip<br/>
+<br/>
+echo "Cleaning up"<br/>
+#Classes<br/>
+rm temp_zip/Classes/CppAbout/*.*<br/>
+rm temp_zip/Classes/CppPrimeExpert/*.*<br/>
+rm temp_zip/Classes/CppQtAboutDialog/*.*<br/>
+rmdir temp_zip/Classes/CppAbout<br/>
+rmdir temp_zip/Classes/CppPrimeExpert<br/>
+rmdir temp_zip/Classes/CppQtAboutDialog<br/>
+rmdir temp_zip/Classes<br/>
+#Tools<br/>
+rm temp_zip/Tools/ToolTestPrimeExpert/*.*<br/>
+rmdir temp_zip/Tools/ToolTestPrimeExpert<br/>
+rmdir temp_zip/Tools<br/>
+rm temp_zip/*.*<br/>
+rmdir temp_zip<br/>
+echo "Done"<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+<p>This page has been created by the <a href="Tools.htm">tool</a> <a href="ToolCodeToHtml.htm">CodeToHtml</a></p>
+</body>
+</html>

@@ -1,5 +1,5 @@
 #include "chords.h"
-//---------------------------------------------------------------------------
+
 const std::vector<std::string> Chords::GetChords()
 {
   std::vector<std::string> v;
@@ -11,4 +11,4 @@ const std::vector<std::string> Chords::GetChords()
   v.push_back("G : G  B  D: [GBD]");
   return v;
 }
-//---------------------------------------------------------------------------
+

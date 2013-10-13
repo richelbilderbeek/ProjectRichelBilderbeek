@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>497</width>
-    <height>572</height>
+    <height>739</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -23,6 +23,9 @@
      <property name="text">
       <string>Concept: orde houden</string>
      </property>
+     <property name="wordWrap">
+      <bool>true</bool>
+     </property>
     </widget>
    </item>
    <item>
@@ -34,8 +37,14 @@
    </item>
    <item>
     <widget class="QListWidget" name="list">
+     <property name="verticalScrollBarPolicy">
+      <enum>Qt::ScrollBarAsNeeded</enum>
+     </property>
      <property name="alternatingRowColors">
       <bool>true</bool>
+     </property>
+     <property name="resizeMode">
+      <enum>QListView::Adjust</enum>
      </property>
      <property name="wordWrap">
       <bool>true</bool>

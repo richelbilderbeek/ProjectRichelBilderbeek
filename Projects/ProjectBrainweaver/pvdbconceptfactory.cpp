@@ -114,7 +114,7 @@ const boost::shared_ptr<ribi::pvdb::Concept> ribi::pvdb::ConceptFactory::Create(
 
 const std::vector<boost::shared_ptr<ribi::pvdb::Concept> > ribi::pvdb::ConceptFactory::GetTests()
 {
-  std::vector<boost::shared_ptr<ribi::pvdb::Concept> > v(5);
+  std::vector<boost::shared_ptr<ribi::pvdb::Concept> > v(6);
   {
     const boost::shared_ptr<ribi::pvdb::Examples> examples = ExamplesFactory::Create();
     assert(examples);
@@ -151,6 +151,21 @@ const std::vector<boost::shared_ptr<ribi::pvdb::Concept> > ribi::pvdb::ConceptFa
     assert(p->GetRatingComplexity() >= -1);
     assert(p->GetRatingComplexity() <=  2);
     v[4] = p;
+  }
+  {
+    const boost::shared_ptr<ribi::pvdb::Concept> p = Create(
+      "Very long multi-line concept with four Roman examples that also each span multiple lines, that is, eighty characters",
+      {
+        { "Example I/IV, spanning multiple lines (that is, having at least eight characters) and is rated as pvdb::Competency::misc", pvdb::Competency::misc },
+        { "Example II/IV, spanning multiple lines (that is, having at least eight characters) and is rated as pvdb::Competency::uninitialized", pvdb::Competency::uninitialized },
+        { "Example III/IV, spanning multiple lines (that is, having at least eight characters) and is rated as pvdb::Competency::profession", pvdb::Competency::profession },
+        { "Example III/IV, spanning multiple lines (that is, having at least eight characters) and is rated as pvdb::Competency::social_surroundings", pvdb::Competency::social_surroundings }
+      }, 1, 2, 0
+    );
+    assert(p);
+    assert(p->GetRatingComplexity() >= -1);
+    assert(p->GetRatingComplexity() <=  2);
+    v[5] = p;
   }
   assert(std::count_if(v.begin(),v.end(),[](const boost::shared_ptr<ribi::pvdb::Concept>& p) { return !p; } ) == 0); //FIX 2012-01-02
   //assert(std::all_of(v.begin(),v.end(),[](const boost::shared_ptr<ribi::pvdb::Concept>& p) { return p; } ));

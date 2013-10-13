@@ -52,6 +52,7 @@ IrcBot::IrcBot(
 
   for (int count = 0; ; ++count)
   {
+    std::cout << count << std::endl;
     switch (count)
     {
       case 2: //Note: must be 2 on e.g. irc.freenode.net
@@ -89,9 +90,9 @@ IrcBot::IrcBot(
       continue;
     }
 
-    if (1 == 2 && line.find("Found your hostname") != std::string::npos)
+    if (1 == 1 && line.find("Found your hostname") != std::string::npos)
     {
-      const std::string connect_str = "/connect " + server_name;
+      const std::string connect_str = "/connect " + server_name + "/6697 -ssl";
       Send(connect_str);
       continue;
     }
@@ -112,7 +113,7 @@ IrcBot::IrcBot(
       Send(msg.c_str());
     }
 
-    if (line.empty() == 0)
+    if (line.empty() == true)
     {
       m_log_file << "CONNECTION CLOSED" << std::endl;
       std::clog << "CONNECTION CLOSED" << std::endl;
@@ -126,6 +127,7 @@ const std::string IrcBot::ReadLine() const
 {
   const int max_data_size = 1024;
   char buf[max_data_size];
+  std::cout << "Start reading line" << std::endl;
   const int numbytes = recv(m_socket_index, buf, max_data_size-1, 0);
   buf[numbytes] = '\0';
   const std::string line{buf};

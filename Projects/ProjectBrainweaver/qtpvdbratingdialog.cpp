@@ -125,15 +125,6 @@ void ribi::pvdb::QtPvdbRatingDialog::on_button_print_clicked()
 {
   QtPvdbPrintRatingDialog d(this->m_file);
 
-  //Put this in QtPvdbPrintRatingDialog itself..
-  //pvdb::QtDisplay::DisplayRatedConcepts(m_file,d.GetTableConcepts());
-  //{
-  //  const int sz = static_cast<int>(m_file->GetConceptMap()->GetNodes().size());
-  //  d.GetTableConcepts()->setMinimumHeight( ((sz-1) * 30) + 26 ); //Standard row is 30 pixels high, header 25 pixels
-  //}
-  //pvdb::QtDisplay::DisplayExamples(m_file,d.GetTableExamples());
-  //pvdb::QtDisplay::DisplayValues(m_file,d.GetTableValues());
-
   //Center the dialog
   {
     const QRect screen = QApplication::desktop()->screenGeometry();

@@ -1,5 +1,8 @@
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include "qtchordsdialog.h"
 #include "ui_qtchordsdialog.h"
+#pragma GCC diagnostic pop
 
 QtChordsDialog::QtChordsDialog(QWidget *parent) :
     QDialog(parent),

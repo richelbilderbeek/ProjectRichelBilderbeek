@@ -33,32 +33,65 @@
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
-<h2>dotmatrix.h</h2>
+<h2>dotmatrixchar.h</h2>
 <p>&nbsp;</p>
 <!-- start of code -->
-<table summary="dotmatrix.h" border = "1"><tr><td><code>
-<a href="CppIfndef.htm">#ifndef</a> DOTMATRIX_H<br/>
-<a href="CppDefine.htm">#define</a> DOTMATRIX_H<br/>
+<table summary="dotmatrixchar.h" border = "1"><tr><td><code>
+<a href="CppIfndef.htm">#ifndef</a> DOTMATRIXCHAR_H<br/>
+<a href="CppDefine.htm">#define</a> DOTMATRIXCHAR_H<br/>
 <br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppIosfwdH.htm">iosfwd</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppStringH.htm">string</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
+<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-<b><a href="CppTypedef.htm">typedef</a></b>s"<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppArray.htm">array</a>.hpp&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/checked_delete.hpp&gt;<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
 <br/>
 <b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
 <br/>
-<b><a href="CppStruct.htm">struct</a></b> Dot<a href="CppMatrix.htm">Matrix</a><br/>
+<a href="CppComment.htm">///</a>Dot<a href="CppMatrix.htm">Matrix</a>Char creates a dot <a href="CppMatrix.htm">matrix</a> 2D <a href="CppArray.htm">array</a> of a <a href="CppChar.htm">character</a><br/>
+<b><a href="CppStruct.htm">struct</a></b> Dot<a href="CppMatrix.htm">Matrix</a>Char<br/>
 {<br/>
+&nbsp;&nbsp;Dot<a href="CppMatrix.htm">Matrix</a>Char(<b><a href="CppConst.htm">const</a></b> <b><a href="CppChar.htm">char</a></b> c);<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Read back the <a href="CppChar.htm">character</a><br/>
+&nbsp;&nbsp;<b><a href="CppChar.htm">char</a></b> GetChar() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b> { <b><a href="CppReturn.htm">return</a></b> m_c; }<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Read <b><a href="CppIf.htm">if</a></b> the coordinat is black/high or white/low<br/>
+&nbsp;&nbsp;<b><a href="CppBool.htm">bool</a></b> Get<a href="CppMatrix.htm">Matrix</a>(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x, <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> y) <b><a href="CppConst.htm">const</a></b>;<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Get the <a href="CppMatrix.htm">matrix</a> height<br/>
+&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> Get<a href="CppMatrix.htm">Matrix</a>Height() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b> { <b><a href="CppReturn.htm">return</a></b> 7; }<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Get the <a href="CppMatrix.htm">matrix</a> width<br/>
+&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> Get<a href="CppMatrix.htm">Matrix</a>Width() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b> { <b><a href="CppReturn.htm">return</a></b> 5; }<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppPrivate.htm">private</a></b>:<br/>
+&nbsp;&nbsp;~Dot<a href="CppMatrix.htm">Matrix</a>Char() <b><a href="CppNoexcept.htm">noexcept</a></b> {}<br/>
+&nbsp;&nbsp;<b><a href="CppFriend.htm">friend</a></b> <b><a href="CppVoid.htm">void</a></b> <a href="CppChecked_delete.htm">boost::checked_delete</a>&lt;&gt;(Dot<a href="CppMatrix.htm">Matrix</a>Char* x);<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/The <a href="CppChar.htm">character</a><br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppChar.htm">char</a></b> m_c;<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/The <a href="CppChar.htm">character</a> <a href="CppMatrix.htm">matrix</a><br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostArray.htm">boost::array</a>&lt;<a href="CppBoostArray.htm">boost::array</a>&lt;<b><a href="CppInt.htm">int</a></b>,5&gt; ,7&gt; m_<a href="CppMatrix.htm">matrix</a>;<br/>
+<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/Obtain a y-x ordered <a href="CppMatrix.htm">matrix</a> of a <a href="CppChar.htm">character</a><br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/Returns a <a href="CppMatrix.htm">matrix</a> with zeroes of the <a href="CppChar.htm">character</a> is not found<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/Dot-<a href="CppMatrix.htm">matrix</a> <a href="CppChar.htm">character</a>s are<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/size 5 (width) x 7 (height) pixels, excluding empty spacer pixels<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/size 6 (width) x 8 (height) pixels, including empty spacer pixels<br/>
-&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppBoostArray.htm">boost::array</a>&lt;<a href="CppBoostArray.htm">boost::array</a>&lt;<b><a href="CppInt.htm">int</a></b>,5&gt; ,7&gt; Get(<b><a href="CppConst.htm">const</a></b> <b><a href="CppChar.htm">char</a></b> c) <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppBoostArray.htm">boost::array</a>&lt;<a href="CppBoostArray.htm">boost::array</a>&lt;<b><a href="CppInt.htm">int</a></b>,5&gt; ,7&gt; GetChar(<b><a href="CppConst.htm">const</a></b> <b><a href="CppChar.htm">char</a></b> c) <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
 };<br/>
+<br/>
+<a href="CppOstream.htm">std::ostream</a>&amp; <b><a href="CppOperatorStreamOut.htm">operator&lt;&lt;</a></b>(<a href="CppOstream.htm">std::ostream</a>&amp; os, <b><a href="CppConst.htm">const</a></b> Dot<a href="CppMatrix.htm">Matrix</a>Char&amp; m);<br/>
 <br/>
 } <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
 <br/>
-<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> DOTMATRIX_H<br/>
+<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> DOTMATRIXCHAR_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -66,17 +99,24 @@
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
-<h2>dotmatrix.cpp</h2>
+<h2>dotmatrixchar.cpp</h2>
 <p>&nbsp;</p>
 <!-- start of code -->
-<table summary="dotmatrix.cpp" border = "1"><tr><td><code>
-<a href="CppInclude.htm">#include</a> "dot<a href="CppMatrix.htm">matrix</a>.h"<br/>
+<table summary="dotmatrixchar.cpp" border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> "dot<a href="CppMatrix.htm">matrix</a><b><a href="CppChar.htm">char</a></b>.h"<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
 <br/>
+<a href="CppRibi.htm">ribi</a>::Dot<a href="CppMatrix.htm">Matrix</a>Char::Dot<a href="CppMatrix.htm">Matrix</a>Char(<b><a href="CppConst.htm">const</a></b> <b><a href="CppChar.htm">char</a></b> c)<br/>
+&nbsp;&nbsp;: m_c(c),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_<a href="CppMatrix.htm">matrix</a>(GetChar(c))<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!m_<a href="CppMatrix.htm">matrix</a>.empty());<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(Get<a href="CppMatrix.htm">Matrix</a>Height() <a href="CppOperatorEqual.htm">==</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(m_<a href="CppMatrix.htm">matrix</a>.size()));<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(Get<a href="CppMatrix.htm">Matrix</a>Width()&nbsp;&nbsp;<a href="CppOperatorEqual.htm">==</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(m_<a href="CppMatrix.htm">matrix</a>[0].size()));<br/>
+}<br/>
 <br/>
-<br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppBoostArray.htm">boost::array</a>&lt;<a href="CppBoostArray.htm">boost::array</a>&lt;<b><a href="CppInt.htm">int</a></b>,5&gt; ,7&gt; <a href="CppRibi.htm">ribi</a>::Dot<a href="CppMatrix.htm">Matrix</a>::Get(<b><a href="CppConst.htm">const</a></b> <b><a href="CppChar.htm">char</a></b> c) <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppBoostArray.htm">boost::array</a>&lt;<a href="CppBoostArray.htm">boost::array</a>&lt;<b><a href="CppInt.htm">int</a></b>,5&gt; ,7&gt; <a href="CppRibi.htm">ribi</a>::Dot<a href="CppMatrix.htm">Matrix</a>Char::GetChar(<b><a href="CppConst.htm">const</a></b> <b><a href="CppChar.htm">char</a></b> c) <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Create a 5 (width) x 7 (height) 2D <a href="CppArray.htm">array</a><br/>
 &nbsp;&nbsp;<a href="CppBoostArray.htm">boost::array</a>&lt;<a href="CppBoostArray.htm">boost::array</a>&lt;<b><a href="CppInt.htm">int</a></b>,5&gt; ,7&gt; v;<br/>
@@ -952,6 +992,192 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppBreak.htm">break</a></b>;<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
+}<br/>
+<br/>
+<b><a href="CppBool.htm">bool</a></b> <a href="CppRibi.htm">ribi</a>::Dot<a href="CppMatrix.htm">Matrix</a>Char::Get<a href="CppMatrix.htm">Matrix</a>(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x, <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> y) <b><a href="CppConst.htm">const</a></b><br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!m_<a href="CppMatrix.htm">matrix</a>.empty());<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(Get<a href="CppMatrix.htm">Matrix</a>Height() <a href="CppOperatorEqual.htm">==</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(m_<a href="CppMatrix.htm">matrix</a>.size()));<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(Get<a href="CppMatrix.htm">Matrix</a>Width()&nbsp;&nbsp;<a href="CppOperatorEqual.htm">==</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(m_<a href="CppMatrix.htm">matrix</a>[0].size()));<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(x <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 0);<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(x &lt; Get<a href="CppMatrix.htm">Matrix</a>Width());<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(y <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 0);<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(y &lt; Get<a href="CppMatrix.htm">Matrix</a>Height());<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> m_<a href="CppMatrix.htm">matrix</a>[y][x];<br/>
+}<br/>
+<br/>
+<a href="CppOstream.htm">std::ostream</a>&amp; <a href="CppRibi.htm">ribi</a>::<b><a href="CppOperatorStreamOut.htm">operator&lt;&lt;</a></b>(<a href="CppOstream.htm">std::ostream</a>&amp; os, <b><a href="CppConst.htm">const</a></b> Dot<a href="CppMatrix.htm">Matrix</a>Char&amp; m)<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> height <a href="CppOperatorAssign.htm">=</a> m.Get<a href="CppMatrix.htm">Matrix</a>Height();<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> width&nbsp;&nbsp; <a href="CppOperatorAssign.htm">=</a> m.Get<a href="CppMatrix.htm">Matrix</a>Width();<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> y=0; y<a href="CppOperatorNotEqual.htm">!=</a>height; <a href="CppOperatorIncrement.htm">++</a>y)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> x=0; x<a href="CppOperatorNotEqual.htm">!=</a>width; <a href="CppOperatorIncrement.htm">++</a>x)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;os <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> m.Get<a href="CppMatrix.htm">Matrix</a>(x,y);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (y <a href="CppOperatorPlus.htm">+</a> 1 <a href="CppOperatorNotEqual.htm">!=</a> height) os <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n';<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> os;<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>dotmatrixstring.h</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="dotmatrixstring.h" border = "1"><tr><td><code>
+<a href="CppIfndef.htm">#ifndef</a> DOTMATRIXSTRING_H<br/>
+<a href="CppDefine.htm">#define</a> DOTMATRIXSTRING_H<br/>
+<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-<b><a href="CppTypedef.htm">typedef</a></b>s"<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppShared_ptr.htm">shared_ptr</a>.hpp&gt;<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
+<br/>
+<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
+<br/>
+<b><a href="CppStruct.htm">struct</a></b> Dot<a href="CppMatrix.htm">Matrix</a>Char;<br/>
+<br/>
+<a href="CppComment.htm">///</a>Dot<a href="CppMatrix.htm">Matrix</a>String creates a dot <a href="CppMatrix.htm">matrix</a> 2D <a href="CppArray.htm">array</a> of a string<br/>
+<b><a href="CppStruct.htm">struct</a></b> Dot<a href="CppMatrix.htm">Matrix</a>String<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Give it a <a href="CppString.htm">std::string</a> and a spacing (number of pixels) between the <a href="CppChar.htm">character</a>s<br/>
+&nbsp;&nbsp;Dot<a href="CppMatrix.htm">Matrix</a>String(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; s, <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> spacing);<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Read back the string<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> GetString() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Read <b><a href="CppIf.htm">if</a></b> the coordinat is black/high or white/low<br/>
+&nbsp;&nbsp;<b><a href="CppBool.htm">bool</a></b> Get<a href="CppMatrix.htm">Matrix</a>(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x, <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> y) <b><a href="CppConst.htm">const</a></b>;<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Get the <a href="CppMatrix.htm">matrix</a> height<br/>
+&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> Get<a href="CppMatrix.htm">Matrix</a>Height() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Get the <a href="CppMatrix.htm">matrix</a> width<br/>
+&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> Get<a href="CppMatrix.htm">Matrix</a>Width() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppPrivate.htm">private</a></b>:<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> m_spacing;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> Dot<a href="CppMatrix.htm">Matrix</a>Char&gt; &gt; m_v;<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> Dot<a href="CppMatrix.htm">Matrix</a>Char&gt; &gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;CreateDot<a href="CppMatrix.htm">Matrix</a>Chars(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; s);<br/>
+};<br/>
+<br/>
+<a href="CppOstream.htm">std::ostream</a>&amp; <b><a href="CppOperatorStreamOut.htm">operator&lt;&lt;</a></b>(<a href="CppOstream.htm">std::ostream</a>&amp; os, <b><a href="CppConst.htm">const</a></b> Dot<a href="CppMatrix.htm">Matrix</a>String&amp; m);<br/>
+<br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
+<br/>
+<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> DOTMATRIXSTRING_H<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>dotmatrixstring.cpp</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="dotmatrixstring.cpp" border = "1"><tr><td><code>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-<b><a href="CppTypedef.htm">typedef</a></b>s"<br/>
+<a href="CppInclude.htm">#include</a> "dot<a href="CppMatrix.htm">matrix</a>string.h"<br/>
+<br/>
+<a href="CppInclude.htm">#include</a> "dot<a href="CppMatrix.htm">matrix</a><b><a href="CppChar.htm">char</a></b>.h"<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
+<br/>
+<a href="CppRibi.htm">ribi</a>::Dot<a href="CppMatrix.htm">Matrix</a>String::Dot<a href="CppMatrix.htm">Matrix</a>String(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; s,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> spacing)<br/>
+&nbsp;&nbsp;: m_spacing(spacing),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_v{CreateDot<a href="CppMatrix.htm">Matrix</a>Chars(s)}<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(m_spacing <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 0);<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(GetString() <a href="CppOperatorEqual.htm">==</a> s);<br/>
+}<br/>
+<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> <a href="CppRibi.htm">ribi</a>::Dot<a href="CppMatrix.htm">Matrix</a>Char&gt; &gt;<br/>
+&nbsp;&nbsp;<a href="CppRibi.htm">ribi</a>::Dot<a href="CppMatrix.htm">Matrix</a>String::CreateDot<a href="CppMatrix.htm">Matrix</a>Chars(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; s)<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> Dot<a href="CppMatrix.htm">Matrix</a>Char&gt; &gt; v;<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppConst.htm">const</a></b> <b><a href="CppChar.htm">char</a></b> c: s)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> Dot<a href="CppMatrix.htm">Matrix</a>Char&gt; p {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppNew.htm">new</a></b> Dot<a href="CppMatrix.htm">Matrix</a>Char(c)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;};<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(p);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;v.push_back(p);<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
+}<br/>
+<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppRibi.htm">ribi</a>::Dot<a href="CppMatrix.htm">Matrix</a>String::GetString() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppString.htm">std::string</a> s;<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppConst.htm">const</a></b> <b><a href="CppAuto.htm">auto</a></b> c: m_v) { s <a href="CppOperatorPlusAssign.htm">+=</a> c-&gt;GetChar(); }<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> s;<br/>
+}<br/>
+<br/>
+<b><a href="CppBool.htm">bool</a></b> <a href="CppRibi.htm">ribi</a>::Dot<a href="CppMatrix.htm">Matrix</a>String::Get<a href="CppMatrix.htm">Matrix</a>(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x, <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> y) <b><a href="CppConst.htm">const</a></b><br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(x <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 0);<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(x &lt; Get<a href="CppMatrix.htm">Matrix</a>Width());<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(y <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 0);<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(y &lt; Get<a href="CppMatrix.htm">Matrix</a>Height());<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!m_v.empty());<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(m_v[0]);<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> char_width <a href="CppOperatorAssign.htm">=</a> m_v[0]-&gt;Get<a href="CppMatrix.htm">Matrix</a>Width() <a href="CppOperatorPlus.htm">+</a> m_spacing;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> char_index <a href="CppOperatorAssign.htm">=</a> x <a href="CppOperatorDivide.htm">/</a> char_width;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> char_x&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppOperatorAssign.htm">=</a> x <a href="CppOperatorModulus.htm">%</a> char_width;<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(char_index &lt; <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(m_v.size()));<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(m_v[char_index]);<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> Dot<a href="CppMatrix.htm">Matrix</a>Char&gt; m <a href="CppOperatorAssign.htm">=</a> m_v[char_index];<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> ( char_x <a href="CppOperatorGreaterEqual.htm">&gt;=</a> m-&gt;Get<a href="CppMatrix.htm">Matrix</a>Width()<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorLogicalOr.htm">||</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;y <a href="CppOperatorGreaterEqual.htm">&gt;=</a> m-&gt;Get<a href="CppMatrix.htm">Matrix</a>Height())<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>In spacing<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <b><a href="CppFalse.htm">false</a></b>;<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> m-&gt;Get<a href="CppMatrix.htm">Matrix</a>(char_x,y);<br/>
+<br/>
+}<br/>
+<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppRibi.htm">ribi</a>::Dot<a href="CppMatrix.htm">Matrix</a>String::Get<a href="CppMatrix.htm">Matrix</a>Height() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (m_v.empty()) <b><a href="CppReturn.htm">return</a></b> 0;<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> m_v[0]-&gt;Get<a href="CppMatrix.htm">Matrix</a>Height() <a href="CppOperatorPlus.htm">+</a> m_spacing;<br/>
+}<br/>
+<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppRibi.htm">ribi</a>::Dot<a href="CppMatrix.htm">Matrix</a>String::Get<a href="CppMatrix.htm">Matrix</a>Width() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (m_v.empty()) <b><a href="CppReturn.htm">return</a></b> 0;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> n_<b><a href="CppChar.htm">char</a></b>s <a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(m_v.size());<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(m_v[0]);<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> char_width <a href="CppOperatorAssign.htm">=</a> m_v[0]-&gt;Get<a href="CppMatrix.htm">Matrix</a>Width() <a href="CppOperatorPlus.htm">+</a> m_spacing;<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> n_<b><a href="CppChar.htm">char</a></b>s * char_width;<br/>
+}<br/>
+<br/>
+<a href="CppOstream.htm">std::ostream</a>&amp; <a href="CppRibi.htm">ribi</a>::<b><a href="CppOperatorStreamOut.htm">operator&lt;&lt;</a></b>(<a href="CppOstream.htm">std::ostream</a>&amp; os, <b><a href="CppConst.htm">const</a></b> Dot<a href="CppMatrix.htm">Matrix</a>String&amp; m)<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> height&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> m.Get<a href="CppMatrix.htm">Matrix</a>Height();<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> width&nbsp;&nbsp; <a href="CppOperatorAssign.htm">=</a> m.Get<a href="CppMatrix.htm">Matrix</a>Width();<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> y=0; y<a href="CppOperatorNotEqual.htm">!=</a>height; <a href="CppOperatorIncrement.htm">++</a>y)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> x=0; x<a href="CppOperatorNotEqual.htm">!=</a>width; <a href="CppOperatorIncrement.htm">++</a>x)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;os <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> m.Get<a href="CppMatrix.htm">Matrix</a>(x,y);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (y <a href="CppOperatorPlus.htm">+</a> 1 <a href="CppOperatorNotEqual.htm">!=</a> height) os <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n';<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> os;<br/>
 }<br/>
 </code></td></tr></table>
 <!-- end of the code -->

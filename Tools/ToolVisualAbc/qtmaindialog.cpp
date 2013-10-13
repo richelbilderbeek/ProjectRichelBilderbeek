@@ -1,18 +1,21 @@
 #include <fstream>
 #include <iostream>
-//---------------------------------------------------------------------------
+
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include <boost/filesystem.hpp>
 #include <boost/foreach.hpp>
 #include <boost/lexical_cast.hpp>
-//---------------------------------------------------------------------------
+
 #include <QDesktopWidget>
 #include <QFile>
 #include <QFileDialog>
-//---------------------------------------------------------------------------
+
 #include "qtmaindialog.h"
 #include "ui_qtmaindialog.h"
 #include "maindialog.h"
-//---------------------------------------------------------------------------
+#pragma GCC diagnostic pop
+
 QtMainDialog::QtMainDialog(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::QtMainDialog)
@@ -37,7 +40,7 @@ QtMainDialog::QtMainDialog(QWidget *parent) :
 
   this->on_button_convert_clicked();
 }
-//---------------------------------------------------------------------------
+
 QtMainDialog::~QtMainDialog()
 {
   {
@@ -47,19 +50,7 @@ QtMainDialog::~QtMainDialog()
 
   delete ui;
 }
-//---------------------------------------------------------------------------
-void QtMainDialog::changeEvent(QEvent *e)
-{
-  QDialog::changeEvent(e);
-  switch (e->type()) {
-  case QEvent::LanguageChange:
-    ui->retranslateUi(this);
-    break;
-  default:
-    break;
-  }
-}
-//---------------------------------------------------------------------------
+
 void QtMainDialog::on_button_convert_clicked()
 {
   VisualAbcMainDialog::ConvertToPng(ui->edit_text->toPlainText().toStdString());
@@ -73,13 +64,13 @@ void QtMainDialog::on_button_convert_clicked()
     ui->label_sheet->setPixmap(QPixmap(VisualAbcMainDialog::m_pngs_filename.c_str()));
   }
 }
-//---------------------------------------------------------------------------
+
 void QtMainDialog::on_button_play_clicked()
 {
   VisualAbcMainDialog::ConvertToMid(ui->edit_text->toPlainText().toStdString());
   VisualAbcMainDialog::PlayMid();
 }
-//---------------------------------------------------------------------------
+
 void QtMainDialog::resizeEvent(QResizeEvent *)
 {
 
@@ -93,7 +84,7 @@ void QtMainDialog::resizeEvent(QResizeEvent *)
   const QRect screen = QApplication::desktop()->screenGeometry();
   this->move( screen.center() - this->rect().center() );
 }
-//---------------------------------------------------------------------------
+
 void QtMainDialog::on_label_save_clicked()
 {
   const std::string filename
@@ -102,4 +93,4 @@ void QtMainDialog::on_label_save_clicked()
   std::ofstream file(filename.c_str());
   file << ui->edit_text->toPlainText().toStdString();
 }
-//---------------------------------------------------------------------------
+

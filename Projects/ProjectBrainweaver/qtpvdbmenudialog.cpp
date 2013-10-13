@@ -127,14 +127,14 @@ void ribi::pvdb::QtPvdbMenuDialog::on_button_rate_concept_map_clicked() noexcept
 
 void ribi::pvdb::QtPvdbMenuDialog::on_button_rate_examples_clicked() noexcept
 {
-  const boost::shared_ptr<ribi::pvdb::Concept> concept = ribi::pvdb::ConceptFactory::GetTests().at(4);
+  const boost::shared_ptr<ribi::pvdb::Concept> concept = ribi::pvdb::ConceptFactory::GetTests().at(5);
   boost::shared_ptr<QtPvdbRateExamplesDialog> d(new QtPvdbRateExamplesDialog(concept));
   if (m_show_child_dialogs_modal) { this->ShowChild(d.get()); } else { d->close(); } //For testing
 }
 
 void ribi::pvdb::QtPvdbMenuDialog::on_button_rating_clicked() noexcept
 {
-  const boost::shared_ptr<pvdb::File> file = pvdb::FileFactory::GetTests().at(4);
+  const boost::shared_ptr<pvdb::File> file = pvdb::FileFactory::GetTests().at(5);
   assert(file);
   QtPvdbRatingDialog d(file);
   if (m_show_child_dialogs_modal) { this->ShowChild(&d); } else { d.close(); }

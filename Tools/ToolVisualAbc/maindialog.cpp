@@ -1,19 +1,22 @@
-//---------------------------------------------------------------------------
+
 #include <cassert>
 #include <cstdlib>
 #include <cstdio>
 #include <fstream>
-//---------------------------------------------------------------------------
+
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include <boost/filesystem.hpp>
-//---------------------------------------------------------------------------
+
 #include "maindialog.h"
-//---------------------------------------------------------------------------
+#pragma GCC diagnostic pop
+
 const std::string VisualAbcMainDialog::m_abc_filename = "temp.abc";
 const std::string VisualAbcMainDialog::m_log_filename = "temp.log";
 const std::string VisualAbcMainDialog::m_mid_filename = "temp.mid";
 const std::string VisualAbcMainDialog::m_png_filename = "temp.png";
 const std::string VisualAbcMainDialog::m_pngs_filename = "temp-0.png";
-//---------------------------------------------------------------------------
+
 const std::vector<std::string> VisualAbcMainDialog::GetAbcFriday()
 {
   std::vector<std::string> v;
@@ -49,7 +52,7 @@ const std::vector<std::string> VisualAbcMainDialog::GetAbcFriday()
   v.push_back("%      E             |              | F#          |               |");
   return v;
 }
-//---------------------------------------------------------------------------
+
 void VisualAbcMainDialog::ConvertToPng(const std::string& s)
 {
   //Save to file
@@ -73,7 +76,7 @@ void VisualAbcMainDialog::ConvertToPng(const std::string& s)
     assert(!error);
   }
 }
-//---------------------------------------------------------------------------
+
 void VisualAbcMainDialog::ConvertToMid(const std::string& s)
 {
   //Save to file
@@ -90,7 +93,7 @@ void VisualAbcMainDialog::ConvertToMid(const std::string& s)
     assert(!error);
   }
 }
-//---------------------------------------------------------------------------
+
 void VisualAbcMainDialog::PlayMid()
 {
   //Convert ABC file to midi
@@ -101,4 +104,4 @@ void VisualAbcMainDialog::PlayMid()
     assert(!error && "playsound not found, type 'sudo apt-get install playmidi'");
   }
 }
-//---------------------------------------------------------------------------
+

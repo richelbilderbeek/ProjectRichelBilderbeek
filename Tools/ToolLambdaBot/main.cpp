@@ -10,7 +10,7 @@ int main()
   const std::string bot_name = "speaker";
   const std::string server_name = "irc.zeronode.net";
   const std::string channel_name = "#Hive5";
-  const int port = 6667;
+  const int port = 6697;
 
   IrcBot(
     bot_name,

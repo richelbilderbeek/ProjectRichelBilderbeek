@@ -720,22 +720,23 @@ void ribi::pvdb::QtPvdbEdgeItem::Test()
         const QRectF qtedge_rect_after = qtedge->boundingRect();
         const QRectF qtconcept_rect_after = qtconcept_item->boundingRect();
 
-        assert(qtedge_rect_after.width() >= qtconcept_rect_after.width()
-          && "The complete edge (including nodes will be at least as wide as the concept only");
-        assert(qtedge_rect_after.height() >= qtconcept_rect_after.height()
-          && "The complete edge (including nodes will be at least as high as the concept only");
-        assert(qtedge_rect_after.width() > qtedge_rect_before.width()
-         && "bounding rects must be bigger");
-        assert(qtconcept_rect_after.width() > qtconcept_rect_before.width()
-         && "bounding rects must be bigger");
+        assert(qtedge_rect_after.width() * qtedge_rect_after.height()
+          >=
+            qtconcept_rect_after.width() * qtconcept_rect_after.height()
+          && "The complete edge (including nodes will have an area at least the size of the concept its area");
+        assert(
+          (qtedge_rect_after.width() * qtedge_rect_after.height()) + 1.0
+          >=
+          qtedge_rect_before.width() * qtedge_rect_before.height()
+         && "bounding rect area must be bigger");
       }
       {
         const QRectF qtedge_rect_before = qtedge->boundingRect();
         const QRectF qtconcept_rect_before = qtconcept_item->boundingRect();
         assert(qtedge_rect_before.width() >= qtconcept_rect_before.width()
-          && "The complete edge (including nodes will be at least as wide as the concept only");
+          && "The complete edge (including nodes) will be at least as wide as the concept only");
         assert(qtedge_rect_before.height() >= qtconcept_rect_before.height()
-          && "The complete edge (including nodes will be at least as high as the concept only");
+          && "The complete edge (including nodes) will be at least as high as the concept only");
 
         //Change via Qt edge
         qtedge->SetName(qtedge->GetName() + " and made longer again");
@@ -744,10 +745,11 @@ void ribi::pvdb::QtPvdbEdgeItem::Test()
         const QRectF qtconcept_rect_after = qtconcept_item->boundingRect();
 
 
-        assert(qtedge_rect_after.width() >= qtconcept_rect_after.width()
-          && "The complete edge (including nodes will be at least as wide as the concept only");
-        assert(qtedge_rect_after.height() >= qtconcept_rect_after.height()
-          && "The complete edge (including nodes will be at least as high as the concept only");
+        assert(
+          qtedge_rect_after.width() * qtedge_rect_after.height()
+          >=
+          qtconcept_rect_after.width() * qtconcept_rect_after.height()
+          && "The complete edge its area (including nodes) will be at least the concept its area");
         const double edge_area_after  = qtedge_rect_after.width()  * qtedge_rect_after.height();
         const double edge_area_before = qtedge_rect_before.width() * qtedge_rect_before.height();
         assert(edge_area_after + 1.0 >= edge_area_before //Add 1 pixel to be sure

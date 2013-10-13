@@ -8,6 +8,9 @@
 
 #include <boost/lexical_cast.hpp>
 
+#include <QScrollBar>
+#include <QTimer>
+
 #include "pvdbconcept.h"
 #include "pvdbconceptmap.h"
 #include "pvdbedge.h"
@@ -22,12 +25,13 @@ ribi::pvdb::QtPvdbRatedConceptWidget::QtPvdbRatedConceptWidget(
   const boost::shared_ptr<const pvdb::Node> node,
   QWidget *parent)
   : QDialog(parent),
-    ui(new Ui::QtPvdbRatedConceptWidget)
+    ui(new Ui::QtPvdbRatedConceptWidget),
+    m_timer(new QTimer)
 {
   ui->setupUi(this);
   assert(node);
 
-  const int font_in_list_height = 16;
+  //const int font_in_list_height = 16;
   {
     QFont font = ui->list_cluster_relations->font();
     font.setPointSize(8);
@@ -48,7 +52,7 @@ ribi::pvdb::QtPvdbRatedConceptWidget::QtPvdbRatedConceptWidget(
     (std::string("Specificiteit: ") + boost::lexical_cast<std::string>(node->GetConcept()->GetRatingSpecificity())).c_str()
   );
 
-  //Examples
+  //Put examples in list
   for (const boost::shared_ptr<const pvdb::Example> example: node->GetConcept()->GetExamples()->Get())
   {
     ui->list_concept_examples->addItem(
@@ -57,8 +61,7 @@ ribi::pvdb::QtPvdbRatedConceptWidget::QtPvdbRatedConceptWidget(
       )
     );
   }
-  ui->list_concept_examples->setMinimumHeight(ui->list_concept_examples->count() * font_in_list_height);
-  ui->list_concept_examples->setMaximumHeight(ui->list_concept_examples->count() * font_in_list_height);
+
 
   for (const boost::shared_ptr<const pvdb::Edge> edge: concept_map->GetEdges())
   {
@@ -99,10 +102,14 @@ ribi::pvdb::QtPvdbRatedConceptWidget::QtPvdbRatedConceptWidget(
           )
         );
       }
-      ui->list_cluster_relations->setMinimumHeight(ui->list_cluster_relations->count() * font_in_list_height);
-      ui->list_cluster_relations->setMaximumHeight(ui->list_cluster_relations->count() * font_in_list_height);
     }
   }
+
+  QObject::connect(
+    m_timer,&QTimer::timeout,
+    this,&ribi::pvdb::QtPvdbRatedConceptWidget::DoResizeLists);
+  m_timer->setInterval(1);
+  m_timer->start();
 }
 
 ribi::pvdb::QtPvdbRatedConceptWidget::~QtPvdbRatedConceptWidget()
@@ -115,4 +122,41 @@ void ribi::pvdb::QtPvdbRatedConceptWidget::HideRating()
   ui->label_complexity->hide();
   ui->label_concreteness->hide();
   ui->label_specificity->hide();
+}
+
+void ribi::pvdb::QtPvdbRatedConceptWidget::DoResizeLists()
+{
+  //Set the list displaying the concept its height and widt
+  bool done = true;
+  for (QListWidget * const w:
+    { ui->list_cluster_relations, ui->list_concept_examples } )
+  {
+    if (w->verticalScrollBar()->isVisible())
+    {
+      done = false;
+      const int h = w->height();
+      w->setMaximumHeight(h+1);
+      w->setMinimumHeight(h+1);
+      assert(w->height() == h + 1);
+    }
+    //Calculate the height of list_cluster_relations from its sizehint its heights
+    //Approach 2
+    #ifdef USE_APPROACH_2_20131013
+    const int n_items = w->count();
+    int height = 0;
+    for (int i=0; i!=n_items; ++i)
+    {
+      height += std::max(w->item(i)->sizeHint().height(),16);
+    }
+    assert(height >= 0);
+    w->setMinimumHeight(height);
+    w->setMaximumHeight(height);
+    #endif
+  }
+  if (done) m_timer->stop();
+  //Approach 1: set the height manually
+  //ui->list_concept_examples->setMinimumHeight(
+  //  ui->list_concept_examples->count() * font_in_list_height);
+  //ui->list_concept_examples->setMaximumHeight(
+  //  ui->list_concept_examples->count() * font_in_list_height);
 }

@@ -1,7 +1,7 @@
-//---------------------------------------------------------------------------
+
 #include "menudialog.h"
-//---------------------------------------------------------------------------
-const About VisualAbcMenuDialog::GetAbout()
+
+const ribi::About ribi::VisualAbcMenuDialog::GetAbout()
 {
   About a(
     "Richel Bilderbeek",
@@ -16,17 +16,17 @@ const About VisualAbcMenuDialog::GetAbout()
   //a.AddLibrary("LoopReader version: " + LoopReader<int>::GetVersion());
   return a;
 }
-//---------------------------------------------------------------------------
-const std::string VisualAbcMenuDialog::GetVersion()
+
+const std::string ribi::VisualAbcMenuDialog::GetVersion()
 {
   return "1.1";
 }
-//---------------------------------------------------------------------------
-const std::vector<std::string> VisualAbcMenuDialog::GetVersionHistory()
+
+const std::vector<std::string> ribi::VisualAbcMenuDialog::GetVersionHistory()
 {
   std::vector<std::string> v;
   v.push_back("2011-05-01: Version 1.0: initial version");
   v.push_back("2011-05-01: Version 1.1: added button to save ABC text");
   return v;
 }
-//---------------------------------------------------------------------------
+

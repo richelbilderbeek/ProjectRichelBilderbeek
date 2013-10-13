@@ -1,9 +1,9 @@
 #ifndef VISUALABCMAINDIALOG_H
 #define VISUALABCMAINDIALOG_H
-//---------------------------------------------------------------------------
+
 #include <string>
 #include <vector>
-//---------------------------------------------------------------------------
+
 struct VisualAbcMainDialog
 {
   static void ConvertToPng(const std::string& s);
@@ -16,5 +16,5 @@ struct VisualAbcMainDialog
   static const std::string m_png_filename;
   static const std::string m_pngs_filename;
 };
-//---------------------------------------------------------------------------
+
 #endif // VISUALABCMAINDIALOG_H

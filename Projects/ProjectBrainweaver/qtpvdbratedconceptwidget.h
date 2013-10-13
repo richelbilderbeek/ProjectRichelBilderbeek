@@ -38,9 +38,14 @@ public:
   ///Hides the rating. This is used when a student views his/her
   ///work before an assessor has rated his/her work
   void HideRating();
-  
+
+private slots:
+  void DoResizeLists();
+
 private:
   Ui::QtPvdbRatedConceptWidget *ui;
+  QTimer * const m_timer;
+
 };
 
 } //~namespace pvdb

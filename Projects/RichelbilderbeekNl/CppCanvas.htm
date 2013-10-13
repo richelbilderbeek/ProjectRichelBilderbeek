@@ -128,6 +128,9 @@ along with this program.&nbsp;&nbsp;If not, see &lt;http://www.gnu.org/licenses/
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/Set the coordinat system used<br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> SetCoordinatSystem(<b><a href="CppConst.htm">const</a></b> CoordinatSystem coordinatSystem) <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
 <br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/This <a href="CppSignal.htm">signal</a> is <a href="CppEmit.htm">emitted</a> when <a href="CppAny.htm">any</a> member variable changes<br/>
+&nbsp;&nbsp;<a href="CppBoostSignal.htm">boost::signals2::signal</a>&lt;<b><a href="CppVoid.htm">void</a></b>(<a href="CppCanvas.htm">Canvas</a>*)&gt; m_signal_changed;<br/>
+<br/>
 &nbsp;&nbsp;<b><a href="CppPrivate.htm">private</a></b>:<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/The <a href="CppCanvas.htm">Canvas</a> its internal data: a 2D y-x-ordered <a href="CppVector.htm">std::vector</a><br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/of <b><a href="CppDouble.htm">double</a></b>s, where 0.0 denotes empty/non-drawn<br/>
@@ -146,6 +149,9 @@ along with this program.&nbsp;&nbsp;If not, see &lt;http://www.gnu.org/licenses/
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/Check <b><a href="CppIf.htm">if</a></b> a coordinat is in the range of the <a href="CppCanvas.htm">Canvas</a><br/>
 &nbsp;&nbsp;<b><a href="CppBool.htm">bool</a></b> IsInRange(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x, <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> y) <b><a href="CppConst.htm">const</a></b>;<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/CppGetAsciiArtGradient.htm<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppChar.htm">char</a></b>&gt; GetAsciiArtGradient();<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/Cpp<a href="CppMinElement.htm">MinElement</a>.htm<br/>
 &nbsp;&nbsp;<b><a href="CppTemplate.htm">template</a></b> &lt;<b><a href="CppClass.htm">class</a></b> <a href="CppContainer.htm">Container</a>&gt;<br/>
@@ -166,8 +172,9 @@ along with this program.&nbsp;&nbsp;If not, see &lt;http://www.gnu.org/licenses/
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppBool.htm">bool</a></b> use_normal_color_system,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppBool.htm">bool</a></b> as_screen_coordinat_system);<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/CppGetAsciiArtGradient.htm<br/>
-&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppChar.htm">char</a></b>&gt; GetAsciiArtGradient();<br/>
+&nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppVoid.htm">void</a></b> Test() <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
+&nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
 <br/>
 &nbsp;&nbsp;<b><a href="CppFriend.htm">friend</a></b> <a href="CppOstream.htm">std::ostream</a>&amp; <b><a href="CppOperatorStreamOut.htm">operator&lt;&lt;</a></b>(<a href="CppOstream.htm">std::ostream</a>&amp; os, <b><a href="CppConst.htm">const</a></b> <a href="CppCanvas.htm">Canvas</a>&amp; canvas);<br/>
 <br/>
@@ -222,6 +229,8 @@ along with this program.&nbsp;&nbsp;If not, see &lt;http://www.gnu.org/licenses/
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppIteratorH.htm">iterator</a>&gt;<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/math/constants/constants.hpp&gt;<br/>
+<br/>
+<a href="CppInclude.htm">#include</a> "<a href="CppTrace.htm">trace</a>.h"<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
 <br/>
 <a href="CppRibi.htm">ribi</a>::<a href="CppCanvas.htm">Canvas</a>::<a href="CppCanvas.htm">Canvas</a>(<br/>
@@ -229,10 +238,14 @@ along with this program.&nbsp;&nbsp;If not, see &lt;http://www.gnu.org/licenses/
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> height,<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> ColorSystem colorSystem,<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> CoordinatSystem coordinatSystem)<br/>
-&nbsp;&nbsp;: m<a href="CppCanvas.htm">Canvas</a>(<a href="CppVector.htm">std::vector</a>&lt;<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; &gt;(height,<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(width,0.0))),<br/>
+&nbsp;&nbsp;: m_signal_changed{},<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m<a href="CppCanvas.htm">Canvas</a>(<a href="CppVector.htm">std::vector</a>&lt;<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; &gt;(height,<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(width,0.0))),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;mColorSystem(colorSystem),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;mCoordinatSystem(coordinatSystem)<br/>
 {<br/>
+&nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
+&nbsp;&nbsp;Test();<br/>
+&nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(width&nbsp;&nbsp;&gt; 0);<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(height &gt; 0);<br/>
 }<br/>
@@ -253,7 +266,7 @@ along with this program.&nbsp;&nbsp;If not, see &lt;http://www.gnu.org/licenses/
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppAccumulate.htm">std::accumulate</a>(row.begin(),row.end(),0.0) <a href="CppOperatorEqual.htm">==</a> 0.0);<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
-<br/>
+&nbsp;&nbsp;m_signal_changed(<b><a href="CppThis.htm">this</a></b>);<br/>
 }<br/>
 <br/>
 <b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppCanvas.htm">Canvas</a>::DrawDot(<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> x, <b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> y) <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
@@ -274,6 +287,7 @@ along with this program.&nbsp;&nbsp;If not, see &lt;http://www.gnu.org/licenses/
 &nbsp;&nbsp;&nbsp;&nbsp;m<a href="CppCanvas.htm">Canvas</a>[indexTop+1][indexLeft&nbsp;&nbsp;] <a href="CppOperatorPlusAssign.htm">+=</a> (fracLeft * (1.0-fracTop));<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (IsInRange(indexLeft+1,indexTop+1))<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;m<a href="CppCanvas.htm">Canvas</a>[indexTop+1][indexLeft+1] <a href="CppOperatorPlusAssign.htm">+=</a> ((1.0-fracLeft) * (1.0-fracTop));<br/>
+&nbsp;&nbsp;m_signal_changed(<b><a href="CppThis.htm">this</a></b>);<br/>
 }<br/>
 <br/>
 <b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppCanvas.htm">Canvas</a>::DrawLine(<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> x1, <b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> y1, <b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> x2, <b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> y2) <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
@@ -293,6 +307,7 @@ along with this program.&nbsp;&nbsp;If not, see &lt;http://www.gnu.org/licenses/
 &nbsp;&nbsp;&nbsp;&nbsp;x<a href="CppOperatorPlusAssign.htm">+=</a>stepX;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;y<a href="CppOperatorPlusAssign.htm">+=</a>stepY;<br/>
 &nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;m_signal_changed(<b><a href="CppThis.htm">this</a></b>);<br/>
 }<br/>
 <br/>
 <b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppCanvas.htm">Canvas</a>::DrawCircle(<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> xMid, <b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> yMid, <b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> ray) <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
@@ -309,6 +324,7 @@ along with this program.&nbsp;&nbsp;If not, see &lt;http://www.gnu.org/licenses/
 &nbsp;&nbsp;&nbsp;&nbsp;DrawDot(x,y);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;angle <a href="CppOperatorPlusAssign.htm">+=</a> dAngle;<br/>
 &nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;m_signal_changed(<b><a href="CppThis.htm">this</a></b>);<br/>
 }<br/>
 <br/>
 <b><a href="CppBool.htm">bool</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppCanvas.htm">Canvas</a>::IsInRange(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x, <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> y) <b><a href="CppConst.htm">const</a></b><br/>
@@ -320,16 +336,6 @@ along with this program.&nbsp;&nbsp;If not, see &lt;http://www.gnu.org/licenses/
 &nbsp;&nbsp;&nbsp;&nbsp; )<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <b><a href="CppFalse.htm">false</a></b>;<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <b><a href="CppTrue.htm">true</a></b>;<br/>
-}<br/>
-<br/>
-<a href="CppOstream.htm">std::ostream</a>&amp; <a href="CppRibi.htm">ribi</a>::<b><a href="CppOperatorStreamOut.htm">operator&lt;&lt;</a></b>(<a href="CppOstream.htm">std::ostream</a>&amp; os, <b><a href="CppConst.htm">const</a></b> <a href="CppCanvas.htm">Canvas</a>&amp; canvas)<br/>
-{<br/>
-&nbsp;&nbsp;<a href="CppRibi.htm">ribi</a>::<a href="CppCanvas.htm">Canvas</a>::PlotSurface(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;os,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;canvas.m<a href="CppCanvas.htm">Canvas</a>,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;canvas.mColorSystem <a href="CppOperatorEqual.htm">==</a> <a href="CppRibi.htm">ribi</a>::<a href="CppCanvas.htm">Canvas</a>::ColorSystem::normal,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;canvas.mCoordinatSystem <a href="CppOperatorEqual.htm">==</a> <a href="CppRibi.htm">ribi</a>::<a href="CppCanvas.htm">Canvas</a>::CoordinatSystem::screen);<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> os;<br/>
 }<br/>
 <br/>
 <b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppRibi.htm">ribi</a>::<a href="CppCanvas.htm">Canvas</a>::Get<a href="CppVersion.htm">Version</a>() <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
@@ -363,8 +369,11 @@ along with this program.&nbsp;&nbsp;If not, see &lt;http://www.gnu.org/licenses/
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Minimum and maximum are not given, so these need to be calculated<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> minVal <a href="CppOperatorAssign.htm">=</a> <a href="CppMinElement.htm">MinElement</a>(v);<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> maxVal <a href="CppOperatorAssign.htm">=</a> <a href="CppMaxElement.htm">MaxElement</a>(v);<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(minVal <a href="CppOperatorNotEqual.htm">!=</a> maxVal);<br/>
+&nbsp;&nbsp;<b><a href="CppDouble.htm">double</a></b> maxVal <a href="CppOperatorAssign.htm">=</a> <a href="CppMaxElement.htm">MaxElement</a>(v);<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (minVal <a href="CppOperatorEqual.htm">==</a> maxVal)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;maxVal <a href="CppOperatorAssign.htm">=</a> minVal <a href="CppOperatorEqual.htm">==</a> 0.0 ? 1.0 : minVal * 2.0;<br/>
+&nbsp;&nbsp;}<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Draw the pixels<br/>
 <br/>
@@ -382,6 +391,9 @@ along with this program.&nbsp;&nbsp;If not, see &lt;http://www.gnu.org/licenses/
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorIncrement.htm">++</a>col)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Scale the found grey value to an ASCII art <a href="CppChar.htm">character</a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(maxVal <a href="CppOperatorNotEqual.htm">!=</a> minVal);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(maxVal <a href="CppOperatorMinus.htm">-</a> minVal <a href="CppOperatorNotEqual.htm">!=</a> 0.0);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(maxVal &gt; minVal);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> greyValue<a href="CppDouble.htm">Double</a> <a href="CppOperatorAssign.htm">=</a> ( (*col) <a href="CppOperatorMinus.htm">-</a> minVal) <a href="CppOperatorDivide.htm">/</a> (maxVal <a href="CppOperatorMinus.htm">-</a> minVal);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(greyValue<a href="CppDouble.htm">Double</a> <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 0.0 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> greyValue<a href="CppDouble.htm">Double</a> <a href="CppOperatorLessEqual.htm">&lt;=</a> 1.0);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> greyValueInt<br/>
@@ -491,12 +503,95 @@ along with this program.&nbsp;&nbsp;If not, see &lt;http://www.gnu.org/licenses/
 <br/>
 <b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppCanvas.htm">Canvas</a>::SetColorSystem(<b><a href="CppConst.htm">const</a></b> ColorSystem colorSystem) <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;mColorSystem <a href="CppOperatorAssign.htm">=</a> colorSystem;<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (<b><a href="CppThis.htm">this</a></b>-&gt;mColorSystem <a href="CppOperatorNotEqual.htm">!=</a> colorSystem)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;mColorSystem <a href="CppOperatorAssign.htm">=</a> colorSystem;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;m_signal_changed(<b><a href="CppThis.htm">this</a></b>);<br/>
+&nbsp;&nbsp;}<br/>
 }<br/>
 <br/>
 <b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppCanvas.htm">Canvas</a>::SetCoordinatSystem(<b><a href="CppConst.htm">const</a></b> CoordinatSystem coordinatSystem) <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;mCoordinatSystem <a href="CppOperatorAssign.htm">=</a> coordinatSystem;<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (<b><a href="CppThis.htm">this</a></b>-&gt;mCoordinatSystem <a href="CppOperatorNotEqual.htm">!=</a> coordinatSystem)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;mCoordinatSystem <a href="CppOperatorAssign.htm">=</a> coordinatSystem;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;m_signal_changed(<b><a href="CppThis.htm">this</a></b>);<br/>
+&nbsp;&nbsp;}<br/>
+}<br/>
+<br/>
+<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppCanvas.htm">Canvas</a>::Test() <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
+{<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppBool.htm">bool</a></b> is_tested <a href="CppOperatorAssign.htm">=</a> <b><a href="CppFalse.htm">false</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (is_tested) <b><a href="CppReturn.htm">return</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;is_tested <a href="CppOperatorAssign.htm">=</a> <b><a href="CppTrue.htm">true</a></b>;<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("Starting <a href="CppRibi.htm">ribi</a>::<a href="CppCanvas.htm">Canvas</a>::Test");<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> i=0; i<a href="CppOperatorNotEqual.htm">!=</a>4; <a href="CppOperatorIncrement.htm">++</a>i)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> maxx <a href="CppOperatorAssign.htm">=</a> 79;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> maxy <a href="CppOperatorAssign.htm">=</a> 23;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRibi.htm">ribi</a>::<a href="CppCanvas.htm">Canvas</a>&gt; canvas(<b><a href="CppNew.htm">new</a></b> <a href="CppCanvas.htm">Canvas</a>(maxx,maxy));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;canvas-&gt;SetColorSystem(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;i <a href="CppOperatorModulus.htm">%</a> 2<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;? <a href="CppCanvas.htm">Canvas</a>::ColorSystem::normal<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: <a href="CppCanvas.htm">Canvas</a>::ColorSystem::invert);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;canvas-&gt;SetCoordinatSystem(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;i <a href="CppOperatorDivide.htm">/</a> 2<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;? <a href="CppCanvas.htm">Canvas</a>::CoordinatSystem::screen<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: <a href="CppCanvas.htm">Canvas</a>::CoordinatSystem::graph);<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Determine and calculate dimensions and coordinats of smiley<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> maxxD <a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(maxx);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> maxyD <a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(maxy);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> midX&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> 0.50 * maxxD;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> midY&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> 0.50 * maxyD;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> headRay&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppOperatorAssign.htm">=</a> 0.50 * maxyD;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> eyeLeftX&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> 0.50 * maxxD <a href="CppOperatorMinus.htm">-</a> (0.35 * headRay) ;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> eyeLeftY&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> 0.50 * maxyD <a href="CppOperatorMinus.htm">-</a> (0.25 * headRay) ;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> eyeRightX&nbsp;&nbsp; <a href="CppOperatorAssign.htm">=</a> 0.50 * maxxD <a href="CppOperatorPlus.htm">+</a> (0.35 * headRay) ;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> eyeRightY&nbsp;&nbsp; <a href="CppOperatorAssign.htm">=</a> 0.50 * maxyD <a href="CppOperatorMinus.htm">-</a> (0.25 * headRay) ;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> eyeRay&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> 0.30 * headRay;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> mouthLeftX&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> 0.50 * maxxD <a href="CppOperatorMinus.htm">-</a> (0.7 * headRay) ;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> mouthMidX&nbsp;&nbsp; <a href="CppOperatorAssign.htm">=</a> 0.50 * maxxD;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> mouthRightX <a href="CppOperatorAssign.htm">=</a> 0.50 * maxxD <a href="CppOperatorPlus.htm">+</a> (0.7 * headRay) ;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> mouthLeftY&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> 0.50 * maxyD <a href="CppOperatorPlus.htm">+</a> (0.2 * headRay) ;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> mouthMidY&nbsp;&nbsp; <a href="CppOperatorAssign.htm">=</a> 0.50 * maxyD <a href="CppOperatorPlus.htm">+</a> (0.7 * headRay) ;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> mouthRightY <a href="CppOperatorAssign.htm">=</a> 0.50 * maxyD <a href="CppOperatorPlus.htm">+</a> (0.2 * headRay) ;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Draw the image on <a href="CppCanvas.htm">Canvas</a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;canvas-&gt;DrawCircle(midX, midY, headRay);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;canvas-&gt;DrawCircle(eyeLeftX, eyeLeftY, eyeRay);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;canvas-&gt;DrawDot(eyeLeftX, eyeLeftY);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;canvas-&gt;DrawCircle(eyeRightX, eyeRightY, eyeRay);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;canvas-&gt;DrawDot(eyeRightX, eyeRightY);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;canvas-&gt;DrawLine(mouthLeftX, mouthLeftY, mouthMidX, mouthMidY);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;canvas-&gt;DrawLine(mouthMidX, mouthMidY, mouthRightX, mouthRightY);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;canvas-&gt;DrawLine(mouthRightX, mouthRightY, mouthLeftX, mouthLeftY);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStringstream.htm">std::stringstream</a> s;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;s <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> (*canvas);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!s.str().empty());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;canvas-&gt;Clear();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStringstream.htm">std::stringstream</a> s;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;s <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> (*canvas);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!s.str().empty());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("Finished <a href="CppRibi.htm">ribi</a>::<a href="CppCanvas.htm">Canvas</a>::Test successfully");<br/>
+}<br/>
+<a href="CppEndif.htm">#endif</a><br/>
+<br/>
+<a href="CppOstream.htm">std::ostream</a>&amp; <a href="CppRibi.htm">ribi</a>::<b><a href="CppOperatorStreamOut.htm">operator&lt;&lt;</a></b>(<a href="CppOstream.htm">std::ostream</a>&amp; os, <b><a href="CppConst.htm">const</a></b> <a href="CppCanvas.htm">Canvas</a>&amp; canvas)<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppRibi.htm">ribi</a>::<a href="CppCanvas.htm">Canvas</a>::PlotSurface(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;os,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;canvas.m<a href="CppCanvas.htm">Canvas</a>,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;canvas.mColorSystem <a href="CppOperatorEqual.htm">==</a> <a href="CppRibi.htm">ribi</a>::<a href="CppCanvas.htm">Canvas</a>::ColorSystem::normal,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;canvas.mCoordinatSystem <a href="CppOperatorEqual.htm">==</a> <a href="CppRibi.htm">ribi</a>::<a href="CppCanvas.htm">Canvas</a>::CoordinatSystem::screen);<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> os;<br/>
 }<br/>
 </code></td></tr></table>
 <!-- end of the code -->

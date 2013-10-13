@@ -1,7 +1,11 @@
 QT       += core gui
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
-QMAKE_CXXFLAGS += -std=c++11 -Wall -Wextra
+QMAKE_CXXFLAGS += -std=c++11 -Wall -Wextra -Weffc++
+
+unix {
+  QMAKE_CXXFLAGS += -Werror
+}
 
 LIBS += -lboost_system -lboost_filesystem
 TEMPLATE = app
@@ -10,6 +14,7 @@ INCLUDEPATH += \
     ../../Classes/CppAbout \
     ../../Classes/CppMusic \
     ../../Classes/CppQtAboutDialog \
+    ../../Classes/CppQtHideAndShowDialog \
     ../../Classes/CppTrace
 
 SOURCES += \
