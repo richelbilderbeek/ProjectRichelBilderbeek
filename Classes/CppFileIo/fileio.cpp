@@ -38,7 +38,7 @@ void ribi::fileio::DeleteFile(const std::string& filename)
   assert(!IsRegularFile(filename));
 }
 
-bool FilesAreIdentical(
+bool ribi::fileio::FilesAreIdentical(
   const std::string& filename_a,
   const std::string& filename_b)
 {
