@@ -27,6 +27,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <QDir>
 #include <QFile>
 
+#include "fileio.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
 
@@ -102,12 +103,7 @@ bool ribi::CreateQtProjectZipFile::Path::IsPresent() const
 {
   const std::string path = std::string("../../") + ToStr();
   //TRACE(path);
-  return IsRegularFile(path);
-}
-
-bool ribi::CreateQtProjectZipFile::Path::IsRegularFile(const std::string& filename)
-{
-  return !QDir(filename.c_str()).exists() && QFile::exists(filename.c_str());
+  return ribi::fileio::IsRegularFile(path);
 }
 
 void ribi::CreateQtProjectZipFile::Path::SetMainFolder(const std::string& s)

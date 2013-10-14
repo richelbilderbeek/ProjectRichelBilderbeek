@@ -40,14 +40,6 @@ const std::string ribi::ToolSimplifyNewickMainDialog::StrToLower(std::string s)
   return s;
 }
 
-//From http://www.richelbilderbeek.nl/CppFileExists.htm
-bool ribi::ToolSimplifyNewickMainDialog::FileExists(const std::string& fileName)
-{
-  std::fstream fin;
-  fin.open(fileName.c_str(),std::ios::in);
-  return fin.is_open();
-}
-
 //From http://www.richelbilderbeek.nl/CppFileToVector.htm
 const std::vector<std::string> ribi::ToolSimplifyNewickMainDialog::FileToVector(const std::string& fileName)
 {

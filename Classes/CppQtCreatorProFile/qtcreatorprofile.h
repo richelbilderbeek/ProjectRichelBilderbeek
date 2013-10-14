@@ -183,16 +183,6 @@ struct QtCreatorProFile
   ///The items at SOURCES
   std::set<std::string> m_sources;
 
-  ///FileToVector reads a file and converts it to a std::vector<std::string>
-  ///From http://www.richelbilderbeek.nl/CppFileToVector.htm
-  static const std::vector<std::string> FileToVector(const std::string& filename);
-
-  #ifndef NDEBUG
-  ///Determines if a filename is a regular file
-  ///From http://www.richelbilderbeek.nl/CppIsRegularFile.htm
-  static bool IsRegularFile(const std::string& filename);
-  #endif
-
   ///Parse the .pro file its content, split into lines
   void Parse(const std::vector<std::string>& v);
 

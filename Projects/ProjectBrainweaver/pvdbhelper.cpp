@@ -12,9 +12,11 @@
 #include <QFile>
 #include <QRegExp>
 
+#include "fileio.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
 
+/*
 const std::vector<std::string> ribi::pvdb::FileToVector(const std::string& filename)
 {
   #ifndef NDEBUG
@@ -32,6 +34,7 @@ const std::vector<std::string> ribi::pvdb::FileToVector(const std::string& filen
   }
   return v;
 }
+*/
 
 double ribi::pvdb::GetDistance(const double delta_x, const double delta_y)
 {
@@ -73,7 +76,7 @@ const std::vector<std::string> ribi::pvdb::GetRegexMatches(
 
 const std::vector<std::string> ribi::pvdb::SafeFileToVector(const std::string& filename)
 {
-  std::vector<std::string> v = pvdb::FileToVector(filename);
+  std::vector<std::string> v = ribi::fileio::FileToVector(filename);
   if (!v.empty() && v.back().empty()) v.pop_back();
   return v;
 }

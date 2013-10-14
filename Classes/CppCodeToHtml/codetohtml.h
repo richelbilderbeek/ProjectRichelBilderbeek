@@ -60,48 +60,17 @@ namespace c2h {
   ///Convert a .pro file
   const std::vector<std::string> ConvertProject(const std::string& filename);
 
-  ///FileToVector reads a file and converts it to a std::vector<std::string>
-  //From http://www.richelbilderbeek.nl/CppFileToVector.htm
-  const std::vector<std::string> FileToVector(const std::string& filename);
-
   ///Filter files: only let .pro, .h, .hpp, . cpp, .c and .sh files pass
   const std::vector<std::string> FilterFiles(const std::vector<std::string>& files);
-
-  //Returns the extension of a filename
-  //From http://www.richelbilderbeek.nl/CppGetExtension.htm
-  const std::string GetExtension(const std::string& filename);
-
-  ///Obtain the basename of a file, e.g. '/Folder/temp.txt' -> 'temp'
-  ///Replacement of boost::filesystem::basename
-  ///From http://www.richelbilderbeek.nl/CppGetFileBasename.htm
-  const std::string GetFileBasename(const std::string& filename);
-
-  //From http://www.richelbilderbeek.nl/CppGetFilesInFolder.htm
-  const std::vector<std::string> GetFilesInFolder(const std::string& folder);
 
   const std::vector<std::string> GetProFilesInFolder(
     const std::string& folder);
 
-  const std::vector<std::string> GetFilesInFolderByRegex(
-    const std::string& folder,
-    const std::string& regex_str);
-
-  ///Returns the path of a filename
-  ///From http://www.richelbilderbeek.nl/CppGetPath.htm
-  const std::string GetPath(const std::string& filename);
 
   #ifndef _WIN32
   ///Tests if the HTML is clean, this will be checked by the tool 'tidy'
   bool IsCleanHtml(const std::vector<std::string>& html);
   #endif
-
-  ///Returns if the name is a folder name
-  ///From http://www.richelbilderbeek.nl/CppIsFolder.htm
-  bool IsFolder(const std::string& filename) noexcept;
-
-  ///Determines if a filename is a regular file
-  ///From http://www.richelbilderbeek.nl/CppIsRegularFile.htm
-  bool IsRegularFile(const std::string& filename) noexcept;
 
   #ifndef _WIN32
   ///Check if the tool 'tidy' is installed

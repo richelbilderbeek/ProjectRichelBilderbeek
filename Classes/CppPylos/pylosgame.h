@@ -188,9 +188,6 @@ std::ostream& operator<<(std::ostream& os,const Game& p);
 ///will be successfull
 bool CanLoadPylos(const std::string& filename);
 
-//From http://www.richelbilderbeek.nl/CppFileToVector.htm
-const std::vector<std::string> FileToVector(const std::string& fileName);
-
 ///LoadPylos loads a Pylos game from file
 boost::shared_ptr<Game> LoadPylos(const std::string& filename);
 

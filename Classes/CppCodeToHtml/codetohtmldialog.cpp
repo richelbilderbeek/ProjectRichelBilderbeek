@@ -43,6 +43,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "codetohtmlinfo.h"
 #include "codetohtmltechinfo.h"
 #include "codetohtmlversion.h"
+#include "fileio.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
 
@@ -64,7 +65,7 @@ c2h::Dialog::Dialog(
   assert(m_info);
 
   //Check source
-  if(!( (IsFolder(source) || IsRegularFile(source))))
+  if(!( (ribi::fileio::IsFolder(source) || ribi::fileio::IsRegularFile(source))))
   {
     TRACE("ERROR");
     TRACE(source);
@@ -73,7 +74,7 @@ c2h::Dialog::Dialog(
     throw std::runtime_error(error.c_str());
   }
 
-  assert( (IsFolder(source) || IsRegularFile(source))
+  assert( (ribi::fileio::IsFolder(source) || ribi::fileio::IsRegularFile(source))
     && "Source can be a file or a path");
 }
 
@@ -297,11 +298,13 @@ const std::vector<std::string> c2h::Dialog::ToHtml() const
       v.push_back("<p>&nbsp;</p>");
       v.push_back("<p>&nbsp;</p>");
       v.push_back("<p>&nbsp;</p>");
-      std::vector<std::string> pro_files = GetProFilesInFolder(m_source);
+      std::vector<std::string> pro_files {
+        GetProFilesInFolder(m_source)
+      };
       for (std::string& pro_file: pro_files)
       {
         pro_file = m_source + "/" + pro_file;
-        assert(IsRegularFile(pro_file));
+        assert(ribi::fileio::IsRegularFile(pro_file));
       }
 
       const boost::scoped_ptr<const TechInfo> info(new TechInfo(pro_files));
@@ -316,7 +319,7 @@ const std::vector<std::string> c2h::Dialog::ToHtml() const
   //Source
   {
     const std::vector<std::string> w
-      = !IsFolder(m_source)
+      = !ribi::fileio::IsFolder(m_source)
      ? c2h::ConvertFile(m_source,m_content_type)
      : c2h::ConvertFiles(m_source) ;
     std::copy(w.begin(),w.end(),std::back_inserter(v));

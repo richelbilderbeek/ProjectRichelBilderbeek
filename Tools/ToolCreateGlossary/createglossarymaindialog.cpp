@@ -30,10 +30,12 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <vector>
 
 #include <boost/function.hpp>
-#include <boost/xpressive/xpressive.hpp>
+#include <boost/shared_ptr.hpp>
+//#include <boost/xpressive/xpressive.hpp>
 
-#include <QDir>
+//#include <QDir>
 
+#include "fileio.h"
 #include "htmlpage.h"
 #include "trace.h"
 
@@ -57,64 +59,16 @@ ribi::CreateGlossaryMainDialog::CreateGlossaryMainDialog()
   TRACE("Finished CreateGlossaryMainDialog successfully");
 }
 
-const std::vector<std::string> ribi::CreateGlossaryMainDialog::GetFilesInFolder(const std::string& folder)
-{
-  QDir dir(folder.c_str());
-  dir.setFilter(QDir::Files);
-  const QFileInfoList list = dir.entryInfoList();
-
-  //Convert QFileInfoList to std::vector<std::string> of filenames
-  std::vector<std::string> v;
-  const int size = list.size();
-  for (int i = 0; i != size; ++i)
-  {
-    const std::string file_name = list.at(i).fileName().toStdString();
-    v.push_back(file_name);
-  }
-  return v;
-}
-
-const std::vector<std::string> ribi::CreateGlossaryMainDialog::GetFilesInFolder(
-  const std::string& folder,
-  const std::string& regex_str)
-{
-  //Get all filenames
-  const std::vector<std::string> v = GetFilesInFolder(folder);
-
-  //Create the regex for a correct C++ filename
-  const boost::xpressive::sregex regex
-    = boost::xpressive::sregex::compile(regex_str);
-
-  //Create the resulting std::vector
-  std::vector<std::string> w;
-
-  //Copy all filenames matching the regex in the resulting std::vector
-  std::for_each(v.begin(), v.end(),
-    [&w,regex](const std::string& s)
-    {
-      if (boost::xpressive::regex_match(s,regex)) w.push_back(s);
-    }
-  );
-
-  return w;
-}
-
-const std::string ribi::CreateGlossaryMainDialog::GetPath(const std::string& filename)
-{
-  const int a = filename.rfind("\\",filename.size());
-  const int b = filename.rfind("/",filename.size());
-  const int i = std::max(a,b);
-  assert(i < static_cast<int>(filename.size()));
-  return filename.substr(0,i);
-}
-
 void ribi::CreateGlossaryMainDialog::CreatePage(
   const std::string& page_name,
   const std::string& page_url,
   const std::string& regex)
 {
-  const std::vector<std::string> pagenames
-    = GetFilesInFolder("/home/richel/ProjectRichelBilderbeek/Projects/RichelbilderbeekNl",regex);
+  const std::vector<std::string> pagenames {
+    ribi::fileio::GetFilesInFolderByRegex(
+      "/home/richel/ProjectRichelBilderbeek/Projects/RichelbilderbeekNl",
+      regex)
+  };
 
   std::vector<boost::shared_ptr<const HtmlPage> > pages;
   for (const std::string& s: pagenames)
@@ -123,7 +77,7 @@ void ribi::CreateGlossaryMainDialog::CreatePage(
       = std::string("/home/richel/ProjectRichelBilderbeek/")
       + std::string("Projects/RichelbilderbeekNl/")
       + s;
-    assert(HtmlPage::IsRegularFile(full_path));
+    assert(ribi::fileio::IsRegularFile(full_path));
     boost::shared_ptr<const HtmlPage> page {
       new HtmlPage(full_path)
     };
@@ -179,7 +133,7 @@ void ribi::CreateGlossaryMainDialog::CreatePage(
     {
       std::string s
         = "  <li><a href=\""
-        + RemovePath(page->GetFilename())
+        + ribi::fileio::RemovePath(page->GetFilename())
         + "\">"
         + page->GetTitle()
         + "</a></li>";
@@ -209,23 +163,6 @@ void ribi::CreateGlossaryMainDialog::CreatePage(
     << "</html>\n";
 }
 
-const std::string ribi::CreateGlossaryMainDialog::RemovePath(const std::string& filename)
-{
-  std::vector<std::size_t> v;
-  const std::size_t a = filename.rfind("\\",filename.size());
-  if (a != std::string::npos) v.push_back(a);
-  const std::size_t b = filename.rfind("/",filename.size());
-  if (b != std::string::npos) v.push_back(b);
-  if (v.empty()) return filename;
-  const std::size_t i = *std::max_element(v.begin(),v.end());
-  assert(i < filename.size());
-  const std::size_t j = i + 1;
-  assert(j < filename.size());
-  const std::string s = filename.substr(j,filename.size() - j);
-  TRACE(s);
-  return s;
-}
-
 #ifndef NDEBUG
 void ribi::CreateGlossaryMainDialog::Test() noexcept
 {
@@ -234,16 +171,5 @@ void ribi::CreateGlossaryMainDialog::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  assert(RemovePath("x.txt") == std::string("x.txt"));
-  assert(RemovePath("MyFolder/x.txt") == std::string("x.txt"));
-  assert(RemovePath("Another/MyFolder/x.txt") == std::string("x.txt"));
-  assert(RemovePath("Yet/Another/MyFolder/x.txt") == std::string("x.txt"));
-  assert(RemovePath("MyFolder\\x.txt") == std::string("x.txt"));
-  assert(RemovePath("Another\\MyFolder\\x.txt") == std::string("x.txt"));
-  assert(RemovePath("Yet\\Another\\MyFolder\\x.txt") == std::string("x.txt"));
-  assert(RemovePath("Another/MyFolder\\x.txt") == std::string("x.txt"));
-  assert(RemovePath("Another\\MyFolder/x.txt") == std::string("x.txt"));
-  assert(RemovePath("Yet\\Another/MyFolder\\x.txt") == std::string("x.txt"));
-  assert(RemovePath("Yet\\Another\\MyFolder/x.txt") == std::string("x.txt"));
 }
 #endif

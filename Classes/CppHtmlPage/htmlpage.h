@@ -49,10 +49,6 @@ struct HtmlPage
   ///Obtain the version history of this class
   static const std::vector<std::string> GetVersionHistory() noexcept;
 
-  ///Determines if a filename is a regular file
-  ///From http://www.richelbilderbeek.nl/CppIsRegularFile.htm
-  static bool IsRegularFile(const std::string& filename) noexcept;
-
   ///Replace all occurrences of a string within a string
   ///From http://www.richelbilderbeek.nl/CppReplaceAll.htm
   static const std::string ReplaceAll(
@@ -72,16 +68,8 @@ struct HtmlPage
   ///The title of the HTML page
   const std::string m_title;
 
-  ///FileToVector reads a file and converts it to a std::vector<std::string>
-  ///From http://www.richelbilderbeek.nl/CppFileToVector.htm
-  static const std::vector<std::string> FileToVector(const std::string& filename);
-
   ///Find the <title> in an HTML document
   static const std::string FindTitle(const std::string& filename);
-
-  ///Returns if the name is a folder name
-  ///From http://www.richelbilderbeek.nl/CppIsFolder.htm
-  static bool IsFolder(const std::string& filename) noexcept;
 
   #ifndef NDEBUG
   static void Test() noexcept;

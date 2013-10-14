@@ -68,10 +68,35 @@ struct TicTacToe
 
   ///GetSummarizedState returns an integer summarizing the
   ///state, which is both tic-tac-toe board and whose turn it is.
+  ///In trinary, for lowest order digit:\n
+  ///# : content\n
+  ///0 : content of (0,0)\n
+  ///1 : content of (1,0)\n
+  ///2 : content of (2,0)\n
+  ///3 : content of (0,1)\n
+  ///4 : content of (1,1)\n
+  ///5 : content of (2,1)\n
+  ///6 : content of (0,2)\n
+  ///7 : content of (1,2)\n
+  ///8 : content of (2,2)\n
+  ///9 : current turn\n
+  ///For indices [0,8] content is stored as:
+  ///[#] : description\n
+  /// 0  : empty\n
+  /// 1  : player1\n
+  /// 2  : player2\n
+  ///For index 9 content is stored as:
+  ///[#] : description\n
+  /// 0  : ERROR\n
+  /// 1  : player1\n
+  /// 2  : player2\n
   int GetSummarizedState() const;
 
-  ///GetVersion returns the TicTacToe version
-  static const std::string GetVersion() { return "1.3.1"; }
+  ///Obtain the version of this class
+  static const std::string GetVersion() noexcept;
+
+  ///Obtain the version history of this class
+  static const std::vector<std::string> GetVersionHistory() noexcept;
 
   ///GetWinner returns the winner.
   ///* TicTacToe::player1   : player1 has won.
@@ -112,9 +137,6 @@ bool operator==(const TicTacToe& lhs, const TicTacToe& rhs);
 
 ///From http://www.richelbilderbeek.nl/CppIntPower.htm
 int IntPower(const int base, const int exponent);
-
-//YYYY-MM-DD: version X.Y: [description]
-//2010-09-19: version 1.3: made CanDoMove method a const method
 
 } //~namespace ribi
 

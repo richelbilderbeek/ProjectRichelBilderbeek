@@ -37,6 +37,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <boost/function.hpp>
 #include <boost/xpressive/xpressive.hpp>
 
+#include "fileio.h"
 #include "trace.h"
 
 #pragma GCC diagnostic pop
@@ -47,8 +48,8 @@ ribi::QrcFile::QrcFile(const std::string& filename)
 {
   #ifndef NDEBUG
   Test();
-  if(!FileExists(filename)) TRACE(filename);
-  assert(FileExists(filename)
+  if(!ribi::fileio::IsRegularFile(filename)) TRACE(filename);
+  assert(ribi::fileio::IsRegularFile(filename)
     && "QrcFile::QrcFile error: .qrc file must exist");
   #endif
 
@@ -71,27 +72,6 @@ ribi::QrcFile::QrcFile(const std::string& filename)
       m_files.insert(s);
     }
   }
-}
-
-bool ribi::QrcFile::FileExists(const std::string& filename) noexcept
-{
-  std::fstream f;
-  f.open(filename.c_str(),std::ios::in);
-  return f.is_open();
-}
-
-const std::vector<std::string> ribi::QrcFile::FileToVector(const std::string& filename)
-{
-  assert(FileExists(filename));
-  std::vector<std::string> v;
-  std::ifstream in(filename.c_str());
-  std::string s;
-  for (int i=0; !in.eof(); ++i)
-  {
-    std::getline(in,s);
-    v.push_back(s);
-  }
-  return v;
 }
 
 const ribi::About ribi::QrcFile::GetAbout() noexcept

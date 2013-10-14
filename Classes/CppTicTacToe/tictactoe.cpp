@@ -73,7 +73,6 @@ void ribi::TicTacToe::DoMove(const int x, const int y)
   m_current_player = (m_current_player == 1 ? 2 : 1);
 }
 
-///GetCurrentTurn returns the turn number.
 int ribi::TicTacToe::GetCurrentTurn() const
 {
   int turn = 0;
@@ -84,36 +83,11 @@ int ribi::TicTacToe::GetCurrentTurn() const
   return turn;
 }
 
-///GetSquare returns the content at square (x,y)
 int ribi::TicTacToe::GetSquare(const int x,const int y) const
 {
   return m_board[x][y];
 }
 
-///GetSummarizedState returns an integer summarizing the
-///state, which is both tic-tac-toe board and whose turn it is.
-///In trinary, for lowest order digit:\n
-///# : content\n
-///0 : content of (0,0)\n
-///1 : content of (1,0)\n
-///2 : content of (2,0)\n
-///3 : content of (0,1)\n
-///4 : content of (1,1)\n
-///5 : content of (2,1)\n
-///6 : content of (0,2)\n
-///7 : content of (1,2)\n
-///8 : content of (2,2)\n
-///9 : current turn\n
-///For indices [0,8] content is stored as:
-///[#] : description\n
-/// 0  : empty\n
-/// 1  : player1\n
-/// 2  : player2\n
-///For index 9 content is stored as:
-///[#] : description\n
-/// 0  : ERROR\n
-/// 1  : player1\n
-/// 2  : player2\n
 int ribi::TicTacToe::GetSummarizedState() const
 {
   int z = m_board[0][0];
@@ -125,11 +99,19 @@ int ribi::TicTacToe::GetSummarizedState() const
   return z;
 }
 
-///GetWinner returns the winner.
-///ribi::TicTacToe::no_winner : no winner yet\n
-///ribi::TicTacToe::player1   : player1 has won\n
-///ribi::TicTacToe::player2   : player2 has won\n
-///ribi::TicTacToe::draw      : draw\n
+const std::string ribi::TicTacToe::GetVersion() noexcept
+{
+  return "1.3";
+}
+
+const std::vector<std::string> ribi::TicTacToe::GetVersionHistory() noexcept
+{
+  std::vector<std::string> v {
+    "2010-09-19: version 1.3: made CanDoMove method a const method"
+  };
+  return v;
+}
+
 int ribi::TicTacToe::GetWinner() const
 {
   //Check rows
@@ -173,7 +155,6 @@ bool ribi::TicTacToe::NoEmptySquares() const
   return true;
 }
 
-///SetBoard sets a tic-tac-toe board.
 void ribi::TicTacToe::SetBoard(const boost::multi_array<int,2>& board)
 {
   m_board = board;
@@ -205,8 +186,6 @@ void ribi::TicTacToe::SetSquare(
   assert(GetSquare(x,y)==square_state);
 }
 
-///SetSummarizedState sets the TicTacToe state,
-///which is both tic-tac-toe board and whose turn it is.
 void ribi::TicTacToe::SetSummarizedState(const int original_state)
 {
   int s = original_state;
@@ -264,4 +243,3 @@ int ribi::IntPower(const int base, const int exponent)
   }
   return result;
 }
-

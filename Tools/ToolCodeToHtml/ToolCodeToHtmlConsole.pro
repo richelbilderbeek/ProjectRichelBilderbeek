@@ -5,6 +5,7 @@ TEMPLATE = app
 INCLUDEPATH += \
     ../../Classes/CppAbout \
     ../../Classes/CppCodeToHtml \
+    ../../Classes/CppFileIo \
     ../../Classes/CppQrcFile \
     ../../Classes/CppQtAboutDialog \
     ../../Classes/CppQtCreatorProFile \
@@ -30,7 +31,8 @@ SOURCES += \
     codetohtmlmenudialog.cpp \
     main.cpp \
     ../../Classes/CppQtCreatorProFile/qtcreatorprofilezipscript.cpp \
-    ../../Classes/CppQrcFile/qrcfile.cpp
+    ../../Classes/CppQrcFile/qrcfile.cpp \
+    ../../Classes/CppFileIo/fileio.cpp
 
 HEADERS += \
     ../../Classes/CppAbout/about.h \
@@ -49,11 +51,14 @@ HEADERS += \
     ../../Classes/CppQtCreatorProFile/qtcreatorprofile.h \
     codetohtmlmenudialog.h \
     ../../Classes/CppQtCreatorProFile/qtcreatorprofilezipscript.h \
-    ../../Classes/CppQrcFile/qrcfile.h
+    ../../Classes/CppQrcFile/qrcfile.h \
+    ../../Classes/CppTrace/trace.h \
+    ../../Classes/CppFileIo/fileio.h
 
 OTHER_FILES += \
     ../../Classes/CppQtCreatorProFile/Licence.txt \
-    ../../Classes/CppQrcFile/Licence.txt
+    ../../Classes/CppQrcFile/Licence.txt \
+    ../../Classes/CppTrace/Licence.txt
 
 
 #

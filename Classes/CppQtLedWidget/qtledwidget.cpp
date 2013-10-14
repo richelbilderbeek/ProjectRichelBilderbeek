@@ -27,6 +27,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include <boost/numeric/conversion/cast.hpp>
 
+#include <QResizeEvent>
 #include <QPainter>
 
 #include "led.h"
@@ -161,7 +162,6 @@ void ribi::QtLedWidget::DrawLed(
   }
 }
 
-///Draw a Led from a LedWidget
 void ribi::QtLedWidget::DrawLed(
   QPainter& painter,
   const LedWidget * const widget)
@@ -207,8 +207,15 @@ void ribi::QtLedWidget::paintEvent(QPaintEvent *)
   DrawLed(p,m_widget.get());
 }
 
-void ribi::QtLedWidget::resizeEvent(QResizeEvent *)
+void ribi::QtLedWidget::resizeEvent(QResizeEvent * e)
 {
-  m_widget->SetGeometry(Rect(0,0,width(),height()));
+  m_widget->SetGeometry(
+    Rect(
+      0, //this->geometry().left(),
+      0, //this->geometry().top(),
+      this->geometry().width(),
+      this->geometry().height()
+    )
+  );
 }
 

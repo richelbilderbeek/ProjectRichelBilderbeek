@@ -31,6 +31,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include <QDir>
 #include <QFile>
+
+#include "fileio.h"
 #pragma GCC diagnostic pop
 
 ribi::HtmlPage::HtmlPage(const std::string& filename)
@@ -40,26 +42,8 @@ ribi::HtmlPage::HtmlPage(const std::string& filename)
   #ifndef NDEBUG
   Test();
   #endif
-  assert(IsRegularFile(filename));
+  assert(ribi::fileio::IsRegularFile(filename));
 
-}
-
-const std::vector<std::string> ribi::HtmlPage::FileToVector(const std::string& filename)
-{
-  if(!IsRegularFile(filename))
-  {
-    throw std::runtime_error("HtmlPage needs an existing regular file to work on");
-  }
-  assert(IsRegularFile(filename));
-  std::vector<std::string> v;
-  std::ifstream in(filename.c_str());
-  std::string s;
-  for (int i=0; !in.eof(); ++i)
-  {
-    std::getline(in,s);
-    v.push_back(s);
-  }
-  return v;
 }
 
 const std::string ribi::HtmlPage::FindTitle(const std::string& filename)
@@ -68,7 +52,7 @@ const std::string ribi::HtmlPage::FindTitle(const std::string& filename)
     = boost::xpressive::sregex::compile("<title>.*</title>");
 
   //Copy all filenames matching the regex in the resulting std::vector
-  const std::vector<std::string> v = FileToVector(filename);
+  const std::vector<std::string> v = ribi::fileio::FileToVector(filename);
   for (const std::string s: v)
   {
     if (boost::xpressive::regex_search(s,title_regex))
@@ -101,16 +85,6 @@ const std::vector<std::string> ribi::HtmlPage::GetVersionHistory() noexcept
     "2012-08-12: version 1.1: started versioning this class",
     "2013-09-02: version 1.2: replaced Boost.Regex by Boost.Xpressive"
   };
-}
-
-bool ribi::HtmlPage::IsFolder(const std::string& filename) noexcept
-{
-  return QDir(filename.c_str()).exists();
-}
-
-bool ribi::HtmlPage::IsRegularFile(const std::string& filename) noexcept
-{
-  return !QDir(filename.c_str()).exists() && QFile::exists(filename.c_str());
 }
 
 const std::string ribi::HtmlPage::ReplaceAll(

@@ -18,14 +18,13 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolCodeToHtml.htm
 //---------------------------------------------------------------------------
-
-
 #include "codetohtmlheader.h"
 
 #include <cassert>
 #include <stdexcept>
 
 #include "codetohtml.h"
+#include "fileio.h"
 
 c2h::Header::Header(
   const PageType page_type,
@@ -56,7 +55,7 @@ const std::string c2h::Header::CreateFilename(
   else
   {
     assert(!filename_original.empty());
-    return GetFileBasename(filename_original) + ".htm";
+    return ribi::fileio::GetFileBasename(filename_original) + ".htm";
   }
 }
 
@@ -80,7 +79,7 @@ const std::string c2h::Header::CreateTitle(
   else
   {
     assert(!filename.empty());
-    std::string s = GetFileBasename(filename);
+    std::string s = ribi::fileio::GetFileBasename(filename);
     int chars_to_strip = 0;
     if (s.size() > 3 && s.substr(0,3) == "Cpp") chars_to_strip = 3;
     else if (s.size() > 4 && s.substr(0,4) == "Song") chars_to_strip = 4;

@@ -37,13 +37,14 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "codetohtmlinfo.h"
 #include "codetohtmlmenudialog.h"
 #include "codetohtmltechinfotype.h"
+#include "fileio.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
 
 //From http://www.richelbilderbeek.nl/CppGetCurrentFolder.htm
 const std::string GetCurrentFolder(const std::string& s)
 {
-  return c2h::GetPath(s);
+  return ribi::fileio::GetPath(s);
 }
 
 //From http://www.richelbilderbeek.nl/CppGetFoldersInFolder.htm
@@ -72,8 +73,8 @@ int main(int argc, char* argv[])
 
   #ifndef NDEBUG
   assert(argc > 0);
-  assert(c2h::IsRegularFile(argv[0]));
-  assert(c2h::IsFolder(c2h::GetPath(argv[0])));
+  assert(ribi::fileio::IsRegularFile(argv[0]));
+  assert(ribi::fileio::IsFolder(ribi::fileio::GetPath(argv[0])));
   #ifndef _WIN32
   assert(c2h::IsTidyInstalled());
   #endif
@@ -98,7 +99,7 @@ int main(int argc, char* argv[])
   {
     const auto v = ribi::CodeToHtmlMenuDialog::GetHelp();
     std::copy(v.begin(),v.end(),std::ostream_iterator<std::string>(std::cout,"\n"));
-    return 0;
+    return 1;
   }
 
   if ( std::count(v.begin(),v.end(),std::string("about"))
@@ -122,7 +123,7 @@ int main(int argc, char* argv[])
       << " version)"
       << std::endl;
 
-    return 0;
+    return 1;
   }
 
   if ( std::count(v.begin(),v.end(),std::string("version"))
@@ -130,7 +131,7 @@ int main(int argc, char* argv[])
     )
   {
     std::cout << ribi::CodeToHtmlMenuDialog::GetVersion() << "\n";
-    return 0;
+    return 1;
   }
 
   ///Find page type
@@ -146,7 +147,7 @@ int main(int argc, char* argv[])
         << "\n"
         << "For example:"
         << "  " << argv[0] << " --source main.cpp --page_type cpp\n";
-      return 0;
+      return 1;
     }
     page_type_str = v[index + 1];
   }
@@ -171,7 +172,7 @@ int main(int argc, char* argv[])
         << "\n"
         << "Example:"
         << "  " << argv[0] << " --source main.cpp --page_type cpp\n";
-      return 0;
+      return 1;
     }
   }
   std::cout << "Page type: '" << page_type_str << "' (OK)" << std::endl;
@@ -189,7 +190,7 @@ int main(int argc, char* argv[])
         << "\n"
         << "For example:"
         << "  " << argv[0] << " --source main.cpp --content_type cpp\n";
-      return 0;
+      return 1;
     }
     content_type_str = v[index + 1];
   }
@@ -210,7 +211,7 @@ int main(int argc, char* argv[])
           return c2h::ContentTypeToStr(t);
         }
       );
-      return 0;
+      return 1;
     }
   }
   std::cout << "Content type: '" << content_type_str << "' (OK)" << std::endl;
@@ -228,7 +229,7 @@ int main(int argc, char* argv[])
         << "\n"
         << "For example:"
         << "  " << argv[0] << " --source main.cpp --tech_info yes\n";
-      return 0;
+      return 1;
     }
     tech_info_str = v[index + 1];
   }
@@ -249,7 +250,7 @@ int main(int argc, char* argv[])
           return c2h::TechInfoTypeToStr(t);
         }
       );
-      return 0;
+      return 1;
     }
   }
   std::cout << "Tech info: '" << tech_info_str << "' (OK)" << std::endl;
@@ -267,7 +268,7 @@ int main(int argc, char* argv[])
         << "\n"
         << "For example:"
         << "  " << argv[0] << " --source main.cpp\n";
-      return 0;
+      return 1;
     }
     source = v[index + 1];
   }
@@ -278,32 +279,41 @@ int main(int argc, char* argv[])
       << "\n"
       << "For example:"
       << "  " << argv[0] << " --source main.cpp\n";
-    return 0;
+    return 1;
   }
 
   std::cout << "Source: '" << source << "'" << std::endl;
 
-  if (!c2h::IsFolder(source) && !c2h::IsRegularFile(source))
+  if (!ribi::fileio::IsFolder(source) && !ribi::fileio::IsRegularFile(source))
   {
     std::cout << "Source exists: no\n";
     std::cout << "Specify an existing file or folder\n";
-    return 0;
+    return 1;
   }
-  assert(c2h::IsFolder(source) || c2h::IsRegularFile(source));
+  assert(ribi::fileio::IsFolder(source) || ribi::fileio::IsRegularFile(source));
 
   std::cout << "Source exists: yes" << std::endl;
 
-  if (c2h::IsFolder(source))
+  if (ribi::fileio::GetFileBasename(source).empty())
+  {
+    std::cout
+      << "Source its basename has length zero (which can be due to chosing '.' or '..')\n"
+      << "Please choose a regular name as a source";
+    return 1;
+  }
+
+
+  if (ribi::fileio::IsFolder(source))
   {
     std::cout << "Source is directory: yes" << std::endl;
   }
   else
   {
-    assert(c2h::IsRegularFile(source));
+    assert(ribi::fileio::IsRegularFile(source));
     std::cout << "Source is directory: no" << std::endl;
   }
 
-  assert( (c2h::IsFolder(source) || c2h::IsRegularFile(source))
+  assert( (ribi::fileio::IsFolder(source) || ribi::fileio::IsRegularFile(source))
     && "Source can be a file or a path");
 
   const c2h::PageType page_type = c2h::StrToPageType(page_type_str);
@@ -312,7 +322,7 @@ int main(int argc, char* argv[])
 
   try
   {
-    assert( (c2h::IsFolder(source) || c2h::IsRegularFile(source))
+    assert( (ribi::fileio::IsFolder(source) || ribi::fileio::IsRegularFile(source))
       && "Source can be a file or a path");
 
     const boost::scoped_ptr<const c2h::Dialog> c {
@@ -323,7 +333,8 @@ int main(int argc, char* argv[])
         tech_info)
     };
     const std::vector<std::string> v = c->ToHtml();
-    const std::string output_filename = c2h::GetFileBasename(source) + ".htm";
+    const std::string output_filename = ribi::fileio::GetFileBasename(source) + ".htm";
+    assert(output_filename != std::string(".htm"));
     std::cout << "Output written to '" << output_filename << "'" << std::endl;
     std::ofstream f(output_filename.c_str());
     std::copy(v.begin(),v.end(),std::ostream_iterator<std::string>(f,"\n"));
@@ -332,9 +343,11 @@ int main(int argc, char* argv[])
   catch (std::exception& e)
   {
     std::cout << e.what() << std::endl;
+    return 2;
   }
   catch (...)
   {
     std::cout << "Unknown exception thrown" << std::endl;
+    return 3;
   }
 }

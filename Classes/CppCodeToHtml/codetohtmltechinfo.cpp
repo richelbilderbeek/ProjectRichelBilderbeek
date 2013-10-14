@@ -25,6 +25,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <cassert>
 
 #include "codetohtmlversion.h"
+#include "fileio.h"
 #include "qtcreatorprofile.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
@@ -45,7 +46,7 @@ c2h::TechInfo::TechInfo(const std::vector<std::string>& profile_filenames)
     std::back_inserter(profiles),
     [](const std::string& s)
     {
-      assert(IsRegularFile(s));
+      assert(ribi::fileio::IsRegularFile(s));
       boost::shared_ptr<const ribi::QtCreatorProFile> p(new ribi::QtCreatorProFile(s));
       return p;
     }

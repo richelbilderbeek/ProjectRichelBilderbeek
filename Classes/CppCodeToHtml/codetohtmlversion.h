@@ -27,10 +27,6 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 namespace Version
 {
 
-///FileToVector reads a file and converts it to a std::vector<std::string>
-///From http://www.richelbilderbeek.nl/CppFileToVector.htm
-const std::vector<std::string> FileToVector(const std::string& filename);
-
 ///GetBoostVersion returns the version of the current Boost library.
 ///From http://www.richelbilderbeek.nl/CppGetBoostVersion.htm
 const std::string GetBoostVersion();

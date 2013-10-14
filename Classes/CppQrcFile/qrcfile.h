@@ -58,14 +58,6 @@ struct QrcFile
   ///The .qrc file to parse
   std::string m_qrc_filename;
 
-  ///FileExists checks if a certain file exists
-  ///From http://www.richelbilderbeek.nl/CppFileExists.htm
-  static bool FileExists(const std::string& filename) noexcept;
-
-  ///FileToVector reads a file and converts it to a std::vector<std::string>
-  ///From http://www.richelbilderbeek.nl/CppFileToVector.htm
-  static const std::vector<std::string> FileToVector(const std::string& filename);
-
   #ifndef NDEBUG
   ///Test QrcFile
   static void Test() noexcept;

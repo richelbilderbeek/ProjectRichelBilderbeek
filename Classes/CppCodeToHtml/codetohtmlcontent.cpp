@@ -25,6 +25,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #include <algorithm>
 #include <cassert>
+#include <fileio.h>
 #include <iostream>
 
 #include <boost/xpressive/xpressive.hpp>
@@ -47,7 +48,7 @@ c2h::Content::Content(
   const std::vector<std::string>& content)
     : m_content_type(DeduceContentType(filename)),
       m_contents(content),
-      m_filename(GetFileBasename(filename) + GetExtension(filename))
+      m_filename(ribi::fileio::GetFileBasename(filename) + ribi::fileio::GetExtension(filename))
 {
   #ifndef NDEBUG
   Test();
@@ -60,7 +61,7 @@ c2h::Content::Content(
   const ContentType content_type)
     : m_content_type(content_type),
       m_contents(content),
-      m_filename(GetFileBasename(filename) + GetExtension(filename))
+      m_filename(ribi::fileio::GetFileBasename(filename) + ribi::fileio::GetExtension(filename))
 {
   #ifndef NDEBUG
   Test();

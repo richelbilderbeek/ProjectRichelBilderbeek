@@ -11,6 +11,7 @@ TEMPLATE = app
 
 INCLUDEPATH += \
   ../../Classes/CppAbout \
+  ../../Classes/CppFileIo \
   ../../Classes/CppFuzzy_equal_to \
   ../../Classes/CppQtAboutDialog \
   ../../Classes/CppQtArrowItem \
@@ -133,7 +134,8 @@ SOURCES += \
     qtpvdbrateconcepttallydialog.cpp \
     pvdbcenternode.cpp \
     pvdbcenternodefactory.cpp \
-    qtpvdbfiledialog.cpp
+    qtpvdbfiledialog.cpp \
+    ../../Classes/CppFileIo/fileio.cpp
 
 HEADERS  += \
     ../../Classes/CppAbout/about.h \
@@ -235,7 +237,8 @@ HEADERS  += \
     qtpvdbrateconcepttallydialog.h \
     pvdbcenternode.h \
     pvdbcenternodefactory.h \
-    qtpvdbfiledialog.h
+    qtpvdbfiledialog.h \
+    ../../Classes/CppFileIo/fileio.h
 
 FORMS    += \
     ../../Classes/CppQtAboutDialog/qtaboutdialog.ui \

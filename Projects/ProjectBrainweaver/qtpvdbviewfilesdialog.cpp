@@ -8,6 +8,7 @@
 #include <iterator>
 #include <QFileDialog>
 #include <QKeyEvent>
+#include "fileio.h"
 #include "pvdbhelper.h"
 #include "qtpvdbfiledialog.h"
 #include "ui_qtpvdbviewfilesdialog.h"
@@ -77,8 +78,8 @@ void ribi::pvdb::QtPvdbViewFilesDialog::on_button_right_clicked()
   assert(filenames.size() == 1);
   const std::string filename = filenames[0].toStdString();
   assert(QFile::exists(filename.c_str()));
-  assert(!pvdb::FileToVector(filename).empty());
-  const std::vector<std::string> v = pvdb::XmlToPretty(pvdb::FileToVector(filename)[0]);
+  assert(!ribi::fileio::FileToVector(filename).empty());
+  const std::vector<std::string> v = pvdb::XmlToPretty(ribi::fileio::FileToVector(filename)[0]);
   std::string text;
   std::for_each(v.begin(),v.end(),
     [&text](std::string s)

@@ -92,20 +92,9 @@ struct QtCreatorProFileZipScript
   const std::set<std::string> ExtractFilenames(
     const boost::shared_ptr<const QtCreatorProFile> & pro_file) const;
 
-  ///Get all the files in a folder
-  static const std::vector<std::string> GetFilesInFolder(const std::string& folder);
-
-  ///Returns the path of a filename
-  ///From http://www.richelbilderbeek.nl/CppGetPath.htm
-  static const std::string GetPath(const std::string& filename);
-
   ///Get all the .pro files in a folder
   //From http://www.richelbilderbeek.nl/CppGetProFilesInFolder.htm
   static const std::vector<std::string> GetProFilesInFolder(const std::string& folder);
-
-  ///Determines if a filename is a regular file
-  ///From http://www.richelbilderbeek.nl/CppIsRegularFile.htm
-  static bool IsRegularFile(const std::string& filename);
 
   #ifndef NDEBUG
   ///Test this class

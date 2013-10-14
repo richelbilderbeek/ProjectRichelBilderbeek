@@ -16,6 +16,7 @@ INCLUDEPATH += \
     ../../Classes/CppDotMatrix \
     ../../Classes/CppEncranger \
     ../../Classes/CppExercise \
+    ../../Classes/CppFileIo \
     ../../Classes/CppFuzzy_equal_to \
     ../../Classes/CppGaborFilter \
     ../../Classes/CppGaborFilterWidget \
@@ -358,7 +359,8 @@ SOURCES += \
     ../../Tools/ToolPrimeExpert/primeexpert.cpp \
     ../../Tools/ToolDotMatrix/tooldotmatrixmenudialog.cpp \
     ../../Classes/CppDotMatrix/dotmatrixstring.cpp \
-    ../../Classes/CppDotMatrix/dotmatrixchar.cpp
+    ../../Classes/CppDotMatrix/dotmatrixchar.cpp \
+    ../../Classes/CppFileIo/fileio.cpp
 
 
 HEADERS += \
@@ -609,7 +611,8 @@ HEADERS += \
     ../../Tools/ToolPrimeExpert/primeexpert.h \
     ../../Tools/ToolDotMatrix/tooldotmatrixmenudialog.h \
     ../../Classes/CppDotMatrix/dotmatrixstring.h \
-    ../../Classes/CppDotMatrix/dotmatrixchar.h
+    ../../Classes/CppDotMatrix/dotmatrixchar.h \
+    ../../Classes/CppFileIo/fileio.h
 
 
 

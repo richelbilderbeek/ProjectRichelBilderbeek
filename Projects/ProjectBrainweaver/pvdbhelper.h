@@ -50,7 +50,7 @@ const std::vector<const T *> AddConst(
 namespace pvdb {
 
 ///From http://www.richelbilderbeek.nl/CppFileToVector.htm
-const std::vector<std::string> FileToVector(const std::string& filename);
+//const std::vector<std::string> FileToVector(const std::string& filename);
 
 
 ///Obtain all possible selections of a std::vector, preserving the ordering of its elements

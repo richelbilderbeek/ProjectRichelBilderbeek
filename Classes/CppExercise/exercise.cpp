@@ -28,6 +28,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <boost/foreach.hpp>
 #include <boost/numeric/conversion/cast.hpp>
 
+#include "fileio.h"
 #include "multiplechoicequestion.h"
 #include "multiplechoicequestiondialog.h"
 #include "openquestion.h"
@@ -47,7 +48,9 @@ ribi::Exercise::Exercise(const std::string& filename)
   {
     throw std::logic_error("File does not exist");
   }
-  const std::vector<std::string> v = FileToVector(filename);
+  const std::vector<std::string> v {
+    ribi::fileio::FileToVector(filename)
+  };
   m_questions.reserve(v.size());
   BOOST_FOREACH(const std::string& s,v)
   {
@@ -85,20 +88,6 @@ ribi::Exercise::Exercise(const std::string& filename)
   assert(m_current != m_questions.end());
 }
 
-const std::vector<std::string> ribi::Exercise::FileToVector(const std::string& filename)
-{
-  assert(IsRegularFile(filename.c_str()));
-  std::vector<std::string> v;
-  std::ifstream in(filename.c_str());
-  std::string s;
-  for (int i=0; !in.eof(); ++i)
-  {
-    std::getline(in,s);
-    v.push_back(s);
-  }
-  return v;
-}
-
 const std::string ribi::Exercise::GetCurrentQuestion() const noexcept
 {
   assert(m_current != m_questions.end());
@@ -122,13 +111,6 @@ const std::vector<std::string> ribi::Exercise::GetVersionHistory() noexcept
     "2011-09-26: Version 1.0: initial version",
     "2011-10-30: Version 1.1: shuffle questions at start"
   };
-}
-
-bool ribi::Exercise::IsRegularFile(const std::string& filename) noexcept
-{
-  std::fstream f;
-  f.open(filename.c_str(),std::ios::in);
-  return f.is_open();
 }
 
 void ribi::Exercise::Next() noexcept

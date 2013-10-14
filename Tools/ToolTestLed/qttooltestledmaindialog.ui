@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>QtTestLedMainDialog</class>
+ <widget class="QDialog" name="QtTestLedMainDialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>448</width>
+    <height>373</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>TestLed</string>
+  </property>
+  <layout class="QGridLayout" name="gridLayout">
+   <item row="0" column="0">
+    <widget class="ribi::QtLedWidget" name="led_red" native="true"/>
+   </item>
+   <item row="0" column="1">
+    <widget class="ribi::QtLedWidget" name="led_green" native="true"/>
+   </item>
+   <item row="0" column="2">
+    <widget class="ribi::QtLedWidget" name="led_blue" native="true"/>
+   </item>
+   <item row="1" column="0">
+    <widget class="ribi::QtLedWidget" name="led_cyan" native="true"/>
+   </item>
+   <item row="1" column="1">
+    <widget class="ribi::QtLedWidget" name="led_magenta" native="true"/>
+   </item>
+   <item row="1" column="2">
+    <widget class="ribi::QtLedWidget" name="led_yellow" native="true"/>
+   </item>
+   <item row="2" column="1">
+    <widget class="ribi::QtLedWidget" name="led_gray" native="true"/>
+   </item>
+   <item row="2" column="2">
+    <widget class="ribi::QtLedWidget" name="led_white" native="true"/>
+   </item>
+   <item row="2" column="0">
+    <widget class="ribi::QtLedWidget" name="led_black" native="true"/>
+   </item>
+   <item row="3" column="0" colspan="3">
+    <widget class="QSlider" name="slider">
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <customwidgets>
+  <customwidget>
+   <class>ribi::QtLedWidget</class>
+   <extends>QWidget</extends>
+   <header>qtledwidget.h</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
+ <resources/>
+ <connections/>
+</ui>

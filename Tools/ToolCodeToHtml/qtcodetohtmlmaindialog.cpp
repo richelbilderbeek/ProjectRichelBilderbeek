@@ -47,13 +47,14 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "codetohtml.h"
 #include "codetohtmlinfo.h"
 #include "codetohtmldialog.h"
+#include "fileio.h"
 #include "qtaboutdialog.h"
 #include "trace.h"
 #include "ui_qtcodetohtmlmaindialog.h"
 #pragma GCC diagnostic pop
 
-ribi::QtCodeToHtmlMainDialog::QtCodeToHtmlMainDialog(QWidget *parent) noexcept :
-    QtHideAndShowDialog(parent),
+ribi::QtCodeToHtmlMainDialog::QtCodeToHtmlMainDialog(QWidget *parent) noexcept
+  : QtHideAndShowDialog(parent),
     ui(new Ui::QtCodeToHtmlMainDialog)
 {
   #ifndef NDEBUG
@@ -65,11 +66,10 @@ ribi::QtCodeToHtmlMainDialog::QtCodeToHtmlMainDialog(QWidget *parent) noexcept :
   const QRect scr = QApplication::desktop()->screenGeometry();
   move( scr.center() - rect().center() );
 
-
   {
     assert(!QApplication::instance()->arguments().empty());
     const std::string argv0 { QApplication::instance()->arguments()[0].toStdString() };
-    const std::string path = c2h::GetPath(argv0);
+    const std::string path = ribi::fileio::GetPath(argv0);
     assert(c2h::IsFolder(path));
     this->ui->edit_source->setText(path.c_str());
   }
@@ -243,13 +243,13 @@ void ribi::QtCodeToHtmlMainDialog::on_edit_source_textChanged(QString ) noexcept
     return;
   }
 
-  if (!c2h::IsRegularFile(source))
+  if (!ribi::fileio::IsRegularFile(source))
   {
     //source is a folder
     const std::vector<std::string> v
       = c2h::SortFiles(
           c2h::FilterFiles(
-            c2h::GetFilesInFolder(source)));
+            ribi::fileio::GetFilesInFolder(source)));
     const std::string s
       = std::string("Convert (source type: folder, ")
       + boost::lexical_cast<std::string>(v.size())

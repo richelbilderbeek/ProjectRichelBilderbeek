@@ -38,9 +38,9 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <boost/algorithm/string/trim.hpp>
 #include <boost/function.hpp>
 
-#include <QDir>
-#include <QFile>
-
+//#include <QDir>
+//#include <QFile>
+#include "fileio.h"
 #include "trace.h"
 
 #pragma GCC diagnostic pop
@@ -67,30 +67,16 @@ ribi::QtCreatorProFile::QtCreatorProFile(const std::string& filename)
   #endif
 
   #ifndef NDEBUG
-  if (!IsRegularFile(filename))
+  if (!ribi::fileio::IsRegularFile(filename))
   {
     TRACE(filename);
     TRACE("BREAK");
   }
   #endif
-  assert(IsRegularFile(filename));
+  assert(ribi::fileio::IsRegularFile(filename));
 
-  const std::vector<std::string> v = FileToVector(filename);
+  const std::vector<std::string> v = ribi::fileio::FileToVector(filename);
   Parse(v);
-}
-
-const std::vector<std::string> ribi::QtCreatorProFile::FileToVector(const std::string& filename)
-{
-  assert(IsRegularFile(filename.c_str()));
-  std::vector<std::string> v;
-  std::ifstream in(filename.c_str());
-  std::string s;
-  for (int i=0; !in.eof(); ++i)
-  {
-    std::getline(in,s);
-    v.push_back(s);
-  }
-  return v;
 }
 
 const ribi::About ribi::QtCreatorProFile::GetAbout() noexcept
@@ -128,13 +114,6 @@ const std::vector<std::string> ribi::QtCreatorProFile::GetVersionHistory() noexc
     "2013-08-19: version 2.1: replaced Boost.Regex by Boost.Xpressive, removed Boost.Filesystem",
   };
 }
-
-#ifndef NDEBUG
-bool ribi::QtCreatorProFile::IsRegularFile(const std::string& filename)
-{
-  return !QDir(filename.c_str()).exists() && QFile::exists(filename.c_str());
-}
-#endif
 
 void ribi::QtCreatorProFile::Parse(const std::vector<std::string> &v)
 {
@@ -410,34 +389,6 @@ void ribi::QtCreatorProFile::Test()
       assert(p == q);
     }
     std::remove(mypath.c_str());
-  }
-  //IsRegularFile
-  {
-    {
-      std::remove("tmp.txt");
-
-      //Create a regular file
-      assert(!IsRegularFile("tmp.txt"));
-      {
-        std::fstream f;
-        f.open("tmp.txt",std::ios::out);
-        f << "TEMP TEXT";
-        f.close();
-      }
-      assert(IsRegularFile("tmp.txt"));
-
-      std::remove("tmp.txt");
-
-      assert(!IsRegularFile("tmp.txt"));
-    }
-    {
-      //Create a folder
-      const int mkdir_error = std::system("mkdir tmp");
-      assert(!mkdir_error);
-      assert(!IsRegularFile("tmp"));
-      const int rmdir_error = std::system("rmdir tmp");
-      assert(!rmdir_error);
-    }
   }
   TRACE("Finished QtCreatorProFile::Test successfully");
 }

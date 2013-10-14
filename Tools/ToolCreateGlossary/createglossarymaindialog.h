@@ -43,19 +43,6 @@ struct CreateGlossaryMainDialog
     const std::string& page_url,
     const std::string& regex);
 
-  ///Obtain all files in a folder
-  //From http://www.richelbilderbeek.nl/CppGetFilesInFolder.htm
-  static const std::vector<std::string> GetFilesInFolder(const std::string& folder);
-
-  ///Obtain the files in a folder with a regex
-  static const std::vector<std::string> GetFilesInFolder(
-    const std::string& folder,
-    const std::string& regex_str);
-
-  ///Removes the path of a filename
-  ///Needed by main.cpp of ToolCreateGlossaryConsole
-  ///From http://www.richelbilderbeek.nl/CppRemovePath.htm
-  static const std::string RemovePath(const std::string& filename);
 
   #ifndef NDEBUG
   static void Test() noexcept;

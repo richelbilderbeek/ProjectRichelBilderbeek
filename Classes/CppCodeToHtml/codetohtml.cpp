@@ -40,6 +40,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "codetohtmlheader.h"
 #include "codetohtmlpagetype.h"
 #include "codetohtmltechinfo.h"
+#include "fileio.h"
 #include "qtcreatorprofile.h"
 #include "qtcreatorprofilezipscript.h"
 #include "trace.h"
@@ -131,6 +132,12 @@ bool c2h::IsTidyInstalled()
 }
 #endif
 
+const std::vector<std::string> c2h::GetProFilesInFolder(
+  const std::string& folder)
+{
+  return ribi::fileio::GetFilesInFolderByRegex(folder,".*\\.(pro)\\>");
+}
+
 #ifndef NDEBUG
 void c2h::Test()
 {
@@ -204,23 +211,7 @@ void c2h::Test()
     v = SortFiles(FilterFiles(v));
     assert(v == result);
   }
-  //GetFileBasename
-  {
-    assert(GetFileBasename("") == std::string(""));
-    assert(GetFileBasename("tmp.txt") == std::string("tmp"));
-    assert(GetFileBasename("tmp") == std::string("tmp"));
-    assert(GetFileBasename("MyFolder/tmp") == std::string("tmp"));
-    assert(GetFileBasename("MyFolder/tmp.txt") == std::string("tmp"));
-    assert(GetFileBasename("MyFolder\\tmp.txt") == std::string("tmp"));
-    assert(GetFileBasename("MyFolder/MyFolder/tmp") == std::string("tmp"));
-    assert(GetFileBasename("MyFolder/MyFolder/tmp.txt") == std::string("tmp"));
-    assert(GetFileBasename("MyFolder/MyFolder\\tmp.txt") == std::string("tmp"));
-  }
-  //GetPath
-  {
-    assert(GetPath("C:\\any_path\\any_file.cpp")=="C:\\any_path");
-    assert(GetPath("/any_path/any_file.cpp")=="/any_path");
-  }
+
   //GetProFiles
   {
     //Always first remove the temp file
@@ -244,11 +235,6 @@ void c2h::Test()
     const std::size_t q = GetProFilesInFolder("").size();
     assert(n == q);
   }
-  //IsRegularFile
-  {
-
-  }
-  //IsFolder
 }
 #endif
 
@@ -265,7 +251,9 @@ const std::vector<std::string> c2h::ConvertFile(
   const std::string& filename,
   const ContentType content_type)
 {
-  const std::vector<std::string> v = FileToVector(filename);
+  const std::vector<std::string> v {
+    ribi::fileio::FileToVector(filename)
+  };
   const boost::shared_ptr<Content> content(new Content(filename,v,content_type));
   return content->ToHtml();
 }
@@ -279,8 +267,13 @@ const std::vector<std::string> c2h::ConvertFiles(const std::string& foldername)
     for(const std::string& filename: files)
     {
       const std::string filename_full = foldername + "/" + filename;
-      assert(IsRegularFile(filename_full));
-      const boost::shared_ptr<Content> content(new Content(filename,FileToVector(filename_full)));
+      assert(ribi::fileio::IsRegularFile(filename_full));
+      const boost::shared_ptr<Content> content {
+        new Content(
+          filename,
+          ribi::fileio::FileToVector(filename_full)
+        )
+      };
       const std::vector<std::string> w = content->ToHtml();
       std::copy(w.begin(),w.end(),std::back_inserter(v));
     }
@@ -294,14 +287,20 @@ const std::vector<std::string> c2h::ConvertFolder(
 {
   std::vector<std::string> v;
   {
-    const boost::shared_ptr<Header> h(new Header(page_type,GetFileBasename(foldername)));
+    const boost::shared_ptr<Header> h {
+      new Header(
+        page_type,
+        ribi::fileio::GetFileBasename(foldername))
+    };
     const std::vector<std::string> w = h->ToHtml();
     std::copy(w.begin(),w.end(),std::back_inserter(v));
   }
   {
-    const std::vector<std::string> pro_files = GetProFilesInFolder(foldername);
+    const std::vector<std::string> pro_files {
+      GetProFilesInFolder(foldername)
+    };
     #ifndef NDEBUG
-    for (const std::string& pro_file: pro_files) { assert(IsRegularFile(pro_file)); }
+    for (const std::string& pro_file: pro_files) { assert(ribi::fileio::IsRegularFile(pro_file)); }
     #endif
 
     const boost::shared_ptr<TechInfo> techInfo(new TechInfo(pro_files));
@@ -314,7 +313,11 @@ const std::vector<std::string> c2h::ConvertFolder(
     std::for_each(files.begin(),files.end(),
       [&v](const std::string& filename)
       {
-        const boost::shared_ptr<Content> content(new Content(filename,FileToVector(filename)));
+        const boost::shared_ptr<Content> content {
+          new Content(
+            filename,
+            ribi::fileio::FileToVector(filename))
+        };
         const std::vector<std::string> w = content->ToHtml();
         std::copy(w.begin(),w.end(),std::back_inserter(v));
       }
@@ -330,17 +333,22 @@ const std::vector<std::string> c2h::ConvertFolder(
 
 const std::vector<std::string> c2h::ConvertProject(const std::string& filename)
 {
-  assert(GetExtension(filename) == ".pro");
+  assert(ribi::fileio::GetExtension(filename) == ".pro");
   boost::shared_ptr<ribi::QtCreatorProFile> pro_file(new ribi::QtCreatorProFile(filename));
 
   std::vector<std::string> v;
   {
-    const boost::shared_ptr<Header> h(new Header(PageType::cpp,GetFileBasename(filename)));
+    const boost::shared_ptr<Header> h {
+      new Header(
+        PageType::cpp,
+        ribi::fileio::GetFileBasename(filename)
+      )
+    };
     const std::vector<std::string> w = h->ToHtml();
     std::copy(w.begin(),w.end(),std::back_inserter(v));
   }
   {
-    assert(IsRegularFile(filename));
+    assert(ribi::fileio::IsRegularFile(filename));
     boost::shared_ptr<TechInfo> i(new TechInfo( { filename } ));
     const std::vector<std::string> w = i->ToHtml();
     std::copy(w.begin(),w.end(),std::back_inserter(v));
@@ -354,7 +362,12 @@ const std::vector<std::string> c2h::ConvertProject(const std::string& filename)
     std::for_each(files.begin(),files.end(),
       [&v](const std::string& filename)
       {
-        const boost::scoped_ptr<const Content> content(new Content(filename,FileToVector(filename)));
+        const boost::scoped_ptr<const Content> content {
+          new Content(
+            filename,
+            ribi::fileio::FileToVector(filename)
+          )
+        };
         const std::vector<std::string> w = content->ToHtml();
         std::copy(w.begin(),w.end(),std::back_inserter(v));
       }
@@ -368,118 +381,17 @@ const std::vector<std::string> c2h::ConvertProject(const std::string& filename)
   return v;
 }
 
-const std::vector<std::string> c2h::FileToVector(const std::string& filename)
-{
-  #ifndef NDEBUG
-  if (!IsRegularFile(filename))
-  {
-    TRACE("ERROR");
-    TRACE(filename);
-  }
-  #endif
-  assert(IsRegularFile(filename));
-  assert(!IsFolder(filename));
-  std::vector<std::string> v;
-  std::ifstream in(filename.c_str());
-  std::string s;
-  for (int i=0; !in.eof(); ++i)
-  {
-    std::getline(in,s);
-    v.push_back(s);
-  }
-  return v;
-}
 
-const std::string c2h::GetExtension(const std::string& filename)
-{
-  const boost::xpressive::sregex rex
-    = boost::xpressive::sregex::compile(
-      "(.*)?(\\.[A-Za-z]*)" );
-  boost::xpressive::smatch what;
 
-  if( boost::xpressive::regex_match( filename, what, rex ) )
-  {
-    return what[2];
-  }
 
-  return "";
-}
-
-const std::string c2h::GetFileBasename(const std::string& filename)
-{
-  const boost::xpressive::sregex rex
-    = boost::xpressive::sregex::compile(
-      "((.*)(/|\\\\))?([A-Za-z0-9]*)((\\.)([A-Za-z0-9]*))?" );
-  boost::xpressive::smatch what;
-
-  if( boost::xpressive::regex_match( filename, what, rex ) )
-  {
-    return what[4];
-  }
-
-  return "";
-}
-
-const std::vector<std::string> c2h::GetFilesInFolder(const std::string& folder)
-{
-  QDir dir(folder.c_str());
-  dir.setFilter(QDir::Files);
-  const QFileInfoList list = dir.entryInfoList();
-
-  //Convert QFileInfoList to std::vector<std::string> of filenames
-  std::vector<std::string> v;
-  const int size = list.size();
-  for (int i = 0; i != size; ++i)
-  {
-    const std::string file_name = list.at(i).fileName().toStdString();
-    v.push_back(file_name);
-  }
-  return v;
-}
-
-const std::vector<std::string> c2h::GetFilesInFolderByRegex(
-  const std::string& folder,
-  const std::string& regex_str)
-{
-  //Get all filenames
-  const std::vector<std::string> v = GetFilesInFolder(folder);
-
-  //Create the regex
-  const boost::xpressive::sregex rex = boost::xpressive::sregex::compile(regex_str);
-
-  //Create the resulting std::vector
-  std::vector<std::string> w;
-
-  //Copy all filenames matching the regex in the resulting std::vector
-  std::copy_if(v.begin(),v.end(),std::back_inserter(w),
-    [rex](const std::string& s)
-    {
-      boost::xpressive::smatch what;
-      return boost::xpressive::regex_match(s, what, rex);
-    }
-  );
-
-  return w;
-}
-
-const std::string c2h::GetPath(const std::string& filename)
-{
-  const int a = filename.rfind("\\",filename.size());
-  const int b = filename.rfind("/",filename.size());
-  const int i = std::max(a,b);
-  assert(i < static_cast<int>(filename.size()));
-  return filename.substr(0,i);
-}
-
-const std::vector<std::string> c2h::GetProFilesInFolder(
-  const std::string& folder)
-{
-  return GetFilesInFolderByRegex(folder,".*\\.(pro)\\>");
-}
 
 const std::vector<std::string> c2h::GetSortedFilesInFolder(const std::string& folder)
 {
-  std::vector<std::string> files = FilterFiles(GetFilesInFolder(folder));
+  std::vector<std::string> files {
+    FilterFiles(
+      ribi::fileio::GetFilesInFolder(folder)
+    )
+  };
   files = SortFiles(files);
   return files;
 }
@@ -490,7 +402,7 @@ const std::vector<std::string> c2h::FilterFiles(const std::vector<std::string>& 
   std::copy_if(files.begin(), files.end(),std::back_inserter(v),
     [](const std::string& file)
     {
-      const std::string ext = GetExtension(file);
+      const std::string ext = ribi::fileio::GetExtension(file);
       return
            ext == ".c"
         || ext == ".cpp"
@@ -505,26 +417,16 @@ const std::vector<std::string> c2h::FilterFiles(const std::vector<std::string>& 
   return v;
 }
 
-bool c2h::IsFolder(const std::string& filename) noexcept
-{
-  return QDir(filename.c_str()).exists();
-}
-
-bool c2h::IsRegularFile(const std::string& filename) noexcept
-{
-  return !QDir(filename.c_str()).exists() && QFile::exists(filename.c_str());
-}
-
 
 const std::vector<std::string> c2h::SortFiles(std::vector<std::string> files)
 {
   std::sort(files.begin(), files.end(),
     [](const std::string& lhs,const std::string& rhs)
     {
-      const std::string lhs_base = GetFileBasename(lhs);
-      const std::string rhs_base = GetFileBasename(rhs);
-      const std::string lhs_ext = GetExtension(lhs);
-      const std::string rhs_ext = GetExtension(rhs);
+      const std::string lhs_base = ribi::fileio::GetFileBasename(lhs);
+      const std::string rhs_base = ribi::fileio::GetFileBasename(rhs);
+      const std::string lhs_ext = ribi::fileio::GetExtension(lhs);
+      const std::string rhs_ext = ribi::fileio::GetExtension(rhs);
       static const std::string pro(".pro");
       static const std::string pri(".pri");
       static const std::string sh(".sh");
@@ -560,7 +462,6 @@ const std::vector<std::string> c2h::SortFiles(std::vector<std::string> files)
           return true;
         }
       }
-
 
       //Headers then
       if (lhs_ext == h && rhs_ext == cpp && lhs_base == rhs_base)

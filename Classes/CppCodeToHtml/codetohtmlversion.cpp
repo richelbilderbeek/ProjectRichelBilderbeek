@@ -44,20 +44,6 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "codetohtml.h"
 #pragma GCC diagnostic pop
 
-const std::vector<std::string> Version::FileToVector(const std::string& filename)
-{
-  assert(c2h::IsRegularFile(filename));
-  std::vector<std::string> v;
-  std::ifstream in(filename.c_str());
-  std::string s;
-  for (int i=0; !in.eof(); ++i)
-  {
-    std::getline(in,s);
-    v.push_back(s);
-  }
-  return v;
-}
-
 const std::string Version::GetBoostVersion()
 {
   std::string s = BOOST_LIB_VERSION;

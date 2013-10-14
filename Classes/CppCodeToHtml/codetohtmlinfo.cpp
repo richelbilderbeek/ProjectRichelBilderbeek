@@ -566,6 +566,18 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
       }
     }
   );
+
+  m.push_back(
+    { "CppCopyFile",
+      {
+        "<p><a href=\"CppCopyFile.htm\">CopyFile</a> is a <a href=\"CppFileIo.htm\">file I/O</a> <a href=\"CppCodeSnippets.htm\">code snippet</a> to copy a file.</p>",
+        "<p>&nbsp;</p>",
+        "<ul>",
+        "  <li><a href=\"CppCopyFile.zip\">Download the Qt Creator project 'CppCopyFile' (zip)</a></li>",
+        "</ul>"
+      }
+    }
+  );
   m.push_back(
     { "CppCounter",
       {
@@ -711,6 +723,168 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
       }
     }
   );
+
+  m.push_back(
+    { "CppFileIo",
+      {
+        "<p><a href=\"CppFileIo.htm\">File I/O</a> is working with files, like saving, reading, copying and searching.</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<h2><a href=\"CppFileIo.htm\">File I/O</a> <a href=\"CppStl.htm\">STL</a> <a href=\"CppFunction.htm\">functions</a> and <a href=\"CppDataType.htm\">data types</a></h2>",
+        "<p>&nbsp;</p>",
+        "<ul>",
+        "  <li><a href=\"CppFstream.htm\">std::fstream</a>: file <a href=\"CppStream.htm\">stream</a></li>",
+        "  <li><a href=\"CppRemove.htm\">std::remove</a>: remove a file</li>",
+        "</ul>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<h2><a href=\"CppFileIo.htm\">File I/O</a> <a href=\"CppCodeSnippets.htm\">code snippets</a></h2>",
+        "<p>&nbsp;</p>",
+        "<ol>",
+        "  <li>",
+        "    <img src=\"PicBoost.png\" alt=\"Boost\"/><img src=\"PicSpacer.png\" alt=\" \"/><img src=\"PicSpacer.png\" alt=\" \"/><img src=\"PicSpacer.png\" alt=\" \"/>",
+        "    <a href=\"CppCopy_file.htm\">boost::filesystem::copy_file, copy a file</a>",
+        "  </li>",
+        "  <li>",
+        "    <img src=\"PicBoost.png\" alt=\"Boost\"/><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicSpacer.png\" alt=\" \"/>",
+        "    <a href=\"CppIsRegularFile.htm\">Check if a file exists, IsRegularFile</a>",
+        "  </li>",
+        "  <li>",
+        "    <img src=\"PicBoost.png\" alt=\"Boost\"/><img src=\"PicSpacer.png\" alt=\" \"/><img src=\"PicSpacer.png\" alt=\" \"/><img src=\"PicSpacer.png\" alt=\" \"/> ",
+        "    <a href=\"CppCopy_file.htm\">Copy a file, boost::filesystem::copy_file</a>",
+        "  </li>",
+        "  <li>",
+        "    <img src=\"PicBoost.png\" alt=\"Boost\"/><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicVcl.png\" alt=\"VCL\"/><img src=\"PicSpacer.png\" alt=\" \"/>",
+        "    <a href=\"CppCopyFile.htm\">Copy a file, CopyFile</a>",
+        "  </li>",
+        "  <li>",
+        "    <img src=\"PicBoost.png\" alt=\"Boost\"/><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicVcl.png\" alt=\"VCL\"/><img src=\"PicSpacer.png\" alt=\" \"/>",
+        "    <a href=\"CppCopyFile.htm\">CopyFile, copy a file</a>",
+        "  </li>",
+        "  <li>",
+        "    <img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicSpacer.png\" alt=\" \"/><img src=\"PicSpacer.png\" alt=\" \"/><img src=\"PicSpacer.png\" alt=\" \"/>",
+        "    <a href=\"CppDeleteFile.htm\">DeleteFile, delete a file</a>",
+        "  </li>",
+        "  <li>",
+        "    <img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicSpacer.png\" alt=\" \"/><img src=\"PicSpacer.png\" alt=\" \"/><img src=\"PicSpacer.png\" alt=\" \"/>",
+        "    <a href=\"CppDeleteFile.htm\">Delete a file, DeleteFile</a>",
+        "  </li>",
+        "  <li>",
+        "    <img src=\"PicVcl.png\" alt=\"VCL\"/><img src=\"PicSpacer.png\" alt=\" \"/><img src=\"PicSpacer.png\" alt=\" \"/><img src=\"PicSpacer.png\" alt=\" \"/>",
+        "    <a href=\"CppFileToStringList.htm\">FileToStringList, read a file in a TStringList</a>",
+        "  </li>",
+        "  <li>",
+        "    <img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicSpacer.png\" alt=\" \"/><img src=\"PicSpacer.png\" alt=\" \"/><img src=\"PicSpacer.png\" alt=\" \"/>",
+        "    <a href=\"CppFileToVector.htm\">FileToVector, read a file in a std::vector</a>",
+        "  </li>",
+        "  <li>",
+        "    <img src=\"PicBoost.png\" alt=\"Boost\"/><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicSpacer.png\" alt=\" \"/><img src=\"PicSpacer.png\" alt=\" \"/>",
+        "    <a href=\"CppGetPath.htm\">Get a file's path, GetPath</a>",
+        "  </li>",
+        "  <li>",
+        "    <img src=\"PicBoost.png\" alt=\"Boost\"/><img src=\"PicSpacer.png\" alt=\" \"/><img src=\"PicSpacer.png\" alt=\" \"/><img src=\"PicSpacer.png\" alt=\" \"/>",
+        "    <a href=\"CppGetCppFilesInFolder.htm\">Get all C++ filenames in a folder, GetCppFilesInFolder</a>",
+        "  </li>",
+        "  <li>",
+        "    <img src=\"PicBoost.png\" alt=\"Boost\"/><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicSpacer.png\" alt=\" \"/><img src=\"PicSpacer.png\" alt=\" \"/>",
+        "    <a href=\"CppGetFilesInFolder.htm\">Get all filenames in a folder, GetFilesInFolder</a>",
+        "  </li>",
+        "  <li>",
+        "    <img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicSpacer.png\" alt=\" \"/><img src=\"PicSpacer.png\" alt=\" \"/><img src=\"PicSpacer.png\" alt=\" \"/>",
+        "    <a href=\"CppGetExtension.htm\">Get the extension of a filename, GetExtension</a>",
+        "  </li>",
+        "  <li>",
+        "    <img src=\"PicBoost.png\" alt=\"Boost\"/><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicSpacer.png\" alt=\" \"/><img src=\"PicSpacer.png\" alt=\" \"/>",
+        "    <a href=\"CppGetCurrentFolder.htm\">Get the name of the folder your application runs in, GetCurrentFolder</a>",
+        "  </li>",
+        "  <li>",
+        "    <img src=\"PicBoost.png\" alt=\"Boost\"/><img src=\"PicSpacer.png\" alt=\" \"/><img src=\"PicSpacer.png\" alt=\" \"/><img src=\"PicSpacer.png\" alt=\" \"/>",
+        "    <a href=\"CppGetCppFilesInFolder.htm\">GetCppFilesInFolder, get all C++ filenames in a folder</a>",
+        "  </li>",
+        "  <li>",
+        "    <img src=\"PicBoost.png\" alt=\"Boost\"/><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicSpacer.png\" alt=\" \"/><img src=\"PicSpacer.png\" alt=\" \"/>",
+        "    <a href=\"CppGetCurrentFolder.htm\">GetCurrentFolder, get the name of the folder your application runs in</a>",
+        "  </li>",
+        "  <li>",
+        "    <img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicSpacer.png\" alt=\" \"/><img src=\"PicSpacer.png\" alt=\" \"/><img src=\"PicSpacer.png\" alt=\" \"/>",
+        "    <a href=\"CppGetFoldersInFolder.htm\">Get the names of the folders in a folder, GetFoldersInFolder</a>",
+        "  </li>",
+        "  <li>",
+        "    <img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicSpacer.png\" alt=\" \"/><img src=\"PicSpacer.png\" alt=\" \"/><img src=\"PicSpacer.png\" alt=\" \"/>",
+        "    <a href=\"CppGetExtension.htm\">GetExtension, get the extension of a filename</a>",
+        "  </li>",
+        "  <li>",
+        "    <img src=\"PicBoost.png\" alt=\"Boost\"/><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicSpacer.png\" alt=\" \"/><img src=\"PicSpacer.png\" alt=\" \"/>",
+        "    <a href=\"CppGetFilesInFolder.htm\">GetFilesInFolder, get all filenames in a folder</a>",
+        "  </li>",
+        "  <li>",
+        "    <img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicSpacer.png\" alt=\" \"/><img src=\"PicSpacer.png\" alt=\" \"/><img src=\"PicSpacer.png\" alt=\" \"/>",
+        "    <a href=\"CppGetFoldersInFolder.htm\">GetFoldersInFolder, get all the names of the folders in a folder</a>",
+        "  </li>",
+        "  <li>",
+        "    <img src=\"PicBoost.png\" alt=\"Boost\"/><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicSpacer.png\" alt=\" \"/><img src=\"PicSpacer.png\" alt=\" \"/>",
+        "    <a href=\"CppGetPath.htm\">GetPath, get a file's path</a>",
+        "  </li>",
+        "  <li>",
+        "    <img src=\"PicBoost.png\" alt=\"Boost\"/><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicSpacer.png\" alt=\" \"/><img src=\"PicSpacer.png\" alt=\" \"/>",
+        "    <a href=\"CppIsFolder.htm\">IsFolder, check if a path is a folder</a>",
+        "  </li>",
+        "  <li>",
+        "    <img src=\"PicBoost.png\" alt=\"Boost\"/><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicSpacer.png\" alt=\" \"/>",
+        "    <a href=\"CppIsRegularFile.htm\">IsRegularFile, check if a file is a regular file</a>",
+        "  </li>",
+        "",
+        "  <li>",
+        "    <img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicSpacer.png\" alt=\" \"/><img src=\"PicSpacer.png\" alt=\" \"/><img src=\"PicSpacer.png\" alt=\" \"/>",
+        "    <a href=\"CppReadDoubleFromFile.htm\">ReadDoubleFromFile, read a double from file</a>",
+        "  </li>",
+        "  <li>",
+        "    <img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicSpacer.png\" alt=\" \"/><img src=\"PicSpacer.png\" alt=\" \"/><img src=\"PicSpacer.png\" alt=\" \"/>",
+        "    <a href=\"CppReadDoubleFromFile.htm\">Read a double from file, ReadDoubleFromFile</a>",
+        "  </li>",
+        "  <li>",
+        "    <img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicSpacer.png\" alt=\" \"/><img src=\"PicSpacer.png\" alt=\" \"/><img src=\"PicSpacer.png\" alt=\" \"/>",
+        "    <a href=\"CppFileToVector.htm\">Read a file in a std::vector, FileToVector</a>",
+        "  </li>",
+        "  <li>",
+        "    <img src=\"PicVcl.png\" alt=\"VCL\"/><img src=\"PicSpacer.png\" alt=\" \"/><img src=\"PicSpacer.png\" alt=\" \"/><img src=\"PicSpacer.png\" alt=\" \"/>",
+        "    <a href=\"CppFileToStringList.htm\">Read a file in a TStringList, FileToStringList</a>",
+        "  </li>",
+        "  <li>",
+        "    <img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicSpacer.png\" alt=\" \"/><img src=\"PicSpacer.png\" alt=\" \"/><img src=\"PicSpacer.png\" alt=\" \"/>",
+        "    <a href=\"CppRemoveExtension.htm\">Remove the extension of a filename, RemoveExtension</a>",
+        "  </li>",
+        "  <li>",
+        "    <img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicSpacer.png\" alt=\" \"/><img src=\"PicSpacer.png\" alt=\" \"/><img src=\"PicSpacer.png\" alt=\" \"/>",
+        "    <a href=\"CppRemoveExtension.htm\">RemoveExtension, remove the extension of a filename</a>",
+        "  </li>",
+        "  <li>",
+        "    <img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicSpacer.png\" alt=\" \"/><img src=\"PicSpacer.png\" alt=\" \"/><img src=\"PicSpacer.png\" alt=\" \"/>",
+        "    <a href=\"CppRunOtherProgram.htm\">Run another program and use its output</a>",
+        "  </li>",
+        "  <li>",
+        "    <img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicSpacer.png\" alt=\" \"/><img src=\"PicSpacer.png\" alt=\" \"/><img src=\"PicSpacer.png\" alt=\" \"/>",
+        "    <a href=\"CppSaveContainer.htm\">Save a container to file, SaveContainer</a>",
+        "  </li>",
+        "  <li>",
+        "    <img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicSpacer.png\" alt=\" \"/><img src=\"PicSpacer.png\" alt=\" \"/><img src=\"PicSpacer.png\" alt=\" \"/>",
+        "    <a href=\"CppSaveContainer.htm\">SaveContainer, save a container to file</a>",
+        "  </li>",
+        "  <li>",
+        "    <img src=\"PicBoost.png\" alt=\"Boost\"/><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicSpacer.png\" alt=\" \"/><img src=\"PicSpacer.png\" alt=\" \"/>",
+        "    <a href=\"CppSimplifyPath.htm\">SimplifyPath, simplify a path</a>",
+        "  </li>",
+        "</ol>"
+      }
+    }
+  );
+
   m.push_back(
     { "CppFuzzy_equal_to",
       {
@@ -12530,16 +12704,6 @@ void c2h::Info::Test()
     is_tested = true;
   }
   TRACE("Starting c2h::Info::Test");
-  assert(GetFileBasename("/home/richel/ProjectRichelBilderbeek/Games/GameConnectThree")
-    == std::string("GameConnectThree"));
-
-  assert(GetFileBasename("/home/richel/ProjectRichelBilderbeek/Games/GameAminoAcidFighter")
-    == std::string("GameAminoAcidFighter"));
-  assert(GetFileBasename("/home/richel/ProjectRichelBilderbeek/Games/GameK3OpEenRij")
-    == std::string("GameK3OpEenRij"));
-  assert(GetFileBasename("/home/richel/ProjectRichelBilderbeek/Projects/ProjectRichelBilderbeek")
-    == std::string("ProjectRichelBilderbeek"));
-
   {
     const c2h::Info t;
     #ifndef _WIN32

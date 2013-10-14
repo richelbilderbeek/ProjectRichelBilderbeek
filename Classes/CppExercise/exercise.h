@@ -65,14 +65,6 @@ struct Exercise
 
   ///The questions
   std::vector<std::string> m_questions;
-
-  ///FileToVector reads a file and converts it to a std::vector<std::string>
-  ///From http://www.richelbilderbeek.nl/CppFileToVector.htm
-  static const std::vector<std::string> FileToVector(const std::string& filename);
-
-  ///Determines if a filename is a regular file
-  ///From http://www.richelbilderbeek.nl/CppIsRegularFile.htm
-  static bool IsRegularFile(const std::string& filename) noexcept;
 };
 
 } //~namespace ribi
