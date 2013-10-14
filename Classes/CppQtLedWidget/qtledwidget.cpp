@@ -207,7 +207,7 @@ void ribi::QtLedWidget::paintEvent(QPaintEvent *)
   DrawLed(p,m_widget.get());
 }
 
-void ribi::QtLedWidget::resizeEvent(QResizeEvent * e)
+void ribi::QtLedWidget::resizeEvent(QResizeEvent * )
 {
   m_widget->SetGeometry(
     Rect(

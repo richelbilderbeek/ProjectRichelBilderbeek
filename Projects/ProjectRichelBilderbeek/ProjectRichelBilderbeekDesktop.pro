@@ -239,7 +239,7 @@ SOURCES += \
     ../../Tools/ToolTestDial/qttestdialmenudialog.cpp \
     ../../Tools/ToolTestFunctionParser/qttestfunctionparsermaindialog.cpp \
     ../../Tools/ToolTestFunctionParser/qttestfunctionparsermenudialog.cpp \
-    ../../Tools/ToolTestLed/qttestleddialog.cpp \
+    ../../Tools/ToolTestLed/qttooltestledmaindialog.cpp \
     ../../Tools/ToolTestMultiApproximator/qttooltestmultiapproximatormaindialog.cpp \
     ../../Tools/ToolTestMultiApproximator/qttooltestmultiapproximatormenudialog.cpp \
     ../../Tools/ToolTestNewickVector/qttestnewickvectordialog.cpp \
@@ -295,14 +295,15 @@ SOURCES += \
     ../../Tools/ToolTestMultipleChoiceQuestion/qttestmultiplechoicequestionmaindialog.cpp \
     ../../Tools/ToolTestOpenQuestion/qttestopenquestionmenudialog.cpp \
     ../../Tools/ToolTestOpenQuestion/qttestopenquestionmaindialog.cpp \
-    ../../Tools/ToolQuadraticSolver/qtquadraticsolvermenudialog.cpp \
+    ../../Tools/ToolQuadraticSolver/qttoolquadraticsolvermenudialog.cpp \
     ../../Tools/ToolQuadraticSolver/qtquadraticsolvermaindialog.cpp \
     ../../Tools/ToolPrimeExpert/qttoolprimeexpertmenudialog.cpp \
     ../../Tools/ToolPrimeExpert/qttoolprimeexpertmaindialog.cpp \
     ../../Tools/ToolDotMatrix/qttooldotmatrixmenudialog.cpp \
     ../../Tools/ToolDotMatrix/qttooldotmatrixmaindialog.cpp \
     ../../Classes/CppQtDotMatrix/qtdotmatrixstring.cpp \
-    ../../Classes/CppQtDotMatrix/qtdotmatrixchar.cpp
+    ../../Classes/CppQtDotMatrix/qtdotmatrixchar.cpp \
+    ../../Tools/ToolTestLed/qttooltestledmaindialog.cpp
 
 
 HEADERS += \
@@ -627,8 +628,7 @@ HEADERS += \
     ../../Tools/ToolTestFunctionParser/qttestfunctionparsermenudialog.h \
     ../../Tools/ToolTestFunctionParser/testfunctionparsermenudialog.h \
     ../../Tools/ToolTestGroupWidget/testgroupwidgetmenudialog.h \
-    ../../Tools/ToolTestLed/qttestleddialog.h \
-    ../../Tools/ToolTestLed/testledmenudialog.h \
+    ../../Tools/ToolTestLed/qttooltestledmaindialog.h \
     ../../Tools/ToolTestMultiApproximator/qttooltestmultiapproximatormaindialog.h \
     ../../Tools/ToolTestMultiApproximator/qttooltestmultiapproximatormenudialog.h \
     ../../Tools/ToolTestMultiApproximator/tooltestmultiapproximatormenudialog.h \
@@ -686,14 +686,15 @@ HEADERS += \
     ../../Tools/ToolTestMultipleChoiceQuestion/qttestmultiplechoicequestionmaindialog.h \
     ../../Tools/ToolTestOpenQuestion/qttestopenquestionmenudialog.h \
     ../../Tools/ToolTestOpenQuestion/qttestopenquestionmaindialog.h \
-    ../../Tools/ToolQuadraticSolver/qtquadraticsolvermenudialog.h \
+    ../../Tools/ToolQuadraticSolver/qttoolquadraticsolvermenudialog.h \
     ../../Tools/ToolQuadraticSolver/qtquadraticsolvermaindialog.h \
     ../../Tools/ToolPrimeExpert/qttoolprimeexpertmenudialog.h \
     ../../Tools/ToolPrimeExpert/qttoolprimeexpertmaindialog.h \
     ../../Tools/ToolDotMatrix/qttooldotmatrixmenudialog.h \
     ../../Tools/ToolDotMatrix/qttooldotmatrixmaindialog.h \
     ../../Classes/CppQtDotMatrix/qtdotmatrixstring.h \
-    ../../Classes/CppQtDotMatrix/qtdotmatrixchar.h
+    ../../Classes/CppQtDotMatrix/qtdotmatrixchar.h \
+    ../../Tools/ToolTestLed/qttooltestledmaindialog.h
 
 
 RESOURCES += \
@@ -828,7 +829,7 @@ FORMS += \
     ../../Tools/ToolTestDial/qttestdialmenudialog.ui \
     ../../Tools/ToolTestFunctionParser/qttestfunctionparsermaindialog.ui \
     ../../Tools/ToolTestFunctionParser/qttestfunctionparsermenudialog.ui \
-    ../../Tools/ToolTestLed/qttestleddialog.ui \
+    ../../Tools/ToolTestLed/qttooltestledmaindialog.ui \
     ../../Tools/ToolTestNewickVector/qttestnewickvectordialog.ui \
     ../../Tools/ToolTestPylos/qttestpylosgametestsdialog.ui \
     ../../Tools/ToolTestPylos/qttestpylosmenudialog.ui \
@@ -874,6 +875,8 @@ FORMS += \
     ../../Tools/ToolKalmanFilterer/qtkalmanfiltercalculationdialog.ui \
     ../../Tools/ToolKalmanFilterer/qtfixedlagsmootherkalmanfiltercalculationdialog.ui \
     ../../Games/GameK3OpEenRij/qtk3opeenrijmenudialog.ui \
+    ../../Tools/ToolQuadraticSolver/qttoolquadraticsolvermenudialog.ui \
+    ../../Tools/ToolQuadraticSolver/qtquadraticsolvermaindialog.ui \
     ../../Games/GameK3OpEenRij/qtk3opeenrijinstructionsdialog.ui \
     ../../Tools/ToolTestApproximator/qttooltestapproximatorxyzmaindialog.ui \
     ../../Tools/ToolTestApproximator/qttooltestapproximatorxymaindialog.ui \
@@ -900,7 +903,8 @@ FORMS += \
     ../../Tools/ToolPrimeExpert/qttoolprimeexpertmenudialog.ui \
     ../../Tools/ToolPrimeExpert/qttoolprimeexpertmaindialog.ui \
     ../../Tools/ToolDotMatrix/qttooldotmatrixmenudialog.ui \
-    ../../Tools/ToolDotMatrix/qttooldotmatrixmaindialog.ui
+    ../../Tools/ToolDotMatrix/qttooldotmatrixmaindialog.ui \
+    ../../Tools/ToolTestLed/qttooltestledmaindialog.ui
 
 OTHER_FILES += \
     ../../Tools/ToolCreateQtProjectZipFile/R.png \

@@ -21,13 +21,13 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #include <QApplication>
-#include "qttestleddialog.h"
+#include "qttooltestledmaindialog.h"
 #pragma GCC diagnostic pop
 
 int main(int argc, char *argv[])
 {
   QApplication a(argc, argv);
-  ribi::QtTestLedDialog w;
+  ribi::QtTestLedMainDialog w;
   w.show();
   return a.exec();
 }

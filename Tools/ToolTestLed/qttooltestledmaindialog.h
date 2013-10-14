@@ -27,30 +27,29 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic pop
 
 namespace Ui {
-  class QtTestLedDialog;
+  class QtTestLedMainDialog;
 }
 
 
 namespace ribi {
 
-class QtTestLedDialog : public QtHideAndShowDialog
+class QtTestLedMainDialog : public QtHideAndShowDialog
 {
   Q_OBJECT
 
 public:
-  explicit QtTestLedDialog(QWidget *parent = 0) noexcept;
-  QtTestLedDialog(const QtTestLedDialog&) = delete;
-  QtTestLedDialog& operator=(const QtTestLedDialog&) = delete;
-  ~QtTestLedDialog() noexcept;
+  explicit QtTestLedMainDialog(QWidget *parent = 0) noexcept;
+  QtTestLedMainDialog(const QtTestLedMainDialog&) = delete;
+  QtTestLedMainDialog& operator=(const QtTestLedMainDialog&) = delete;
+  ~QtTestLedMainDialog() noexcept;
 
 protected:
   
 
 private:
-  Ui::QtTestLedDialog *ui;
+  Ui::QtTestLedMainDialog *ui;
 
 private slots:
-    void on_button_about_clicked() noexcept;
     void on_slider_valueChanged(int value) noexcept;
 };
 

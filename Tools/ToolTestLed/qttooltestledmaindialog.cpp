@@ -27,13 +27,13 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include "qtaboutdialog.h"
 #include "qtledwidget.h"
-#include "testledmenudialog.h"
+#include "tooltestledmenudialog.h"
 #include "ui_qttooltestledmaindialog.h"
 #pragma GCC diagnostic pop
 
-ribi::QtTestLedDialog::QtTestLedDialog(QWidget *parent) noexcept
+ribi::QtTestLedMainDialog::QtTestLedMainDialog(QWidget *parent) noexcept
   : QtHideAndShowDialog(parent),
-    ui(new Ui::QtTestLedDialog)
+    ui(new Ui::QtTestLedMainDialog)
 {
   ui->setupUi(this);
   ui->led_red->GetWidget()->GetLed()->SetColor(  255,  0,  0);
@@ -49,13 +49,13 @@ ribi::QtTestLedDialog::QtTestLedDialog(QWidget *parent) noexcept
   ui->led_white->GetWidget()->GetLed()->SetColor(255,255,255);
 }
 
-ribi::QtTestLedDialog::~QtTestLedDialog() noexcept
+ribi::QtTestLedMainDialog::~QtTestLedMainDialog() noexcept
 {
   delete ui;
 }
 
 
-void ribi::QtTestLedDialog::on_slider_valueChanged(int value) noexcept
+void ribi::QtTestLedMainDialog::on_slider_valueChanged(int value) noexcept
 {
   const double intensity = boost::numeric_cast<double>(value)
     / boost::numeric_cast<double>(ui->slider->maximum());
@@ -72,7 +72,7 @@ void ribi::QtTestLedDialog::on_slider_valueChanged(int value) noexcept
   ui->led_white->GetWidget()->GetLed()->SetIntensity(intensity);
 }
 
-void ribi::QtTestLedDialog::on_button_about_clicked() noexcept
+void ribi::QtTestLedMainDialog::on_button_about_clicked() noexcept
 {
   this->hide();
   About a = TestLedMenuDialog::GetAbout();

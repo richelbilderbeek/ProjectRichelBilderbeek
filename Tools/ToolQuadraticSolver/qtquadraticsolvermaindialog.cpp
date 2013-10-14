@@ -16,7 +16,6 @@
 #include "qtaboutdialog.h"
 #include "quadraticsolvermaindialog.h"
 #include "quadraticsolvermenudialog.h"
-#include "quadraticsolvermenudialog.h"
 #include "ui_qtquadraticsolvermaindialog.h"
 #pragma GCC diagnostic pop
 

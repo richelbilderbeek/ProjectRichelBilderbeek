@@ -327,7 +327,7 @@ SOURCES += \
     ../../Tools/ToolTestExercise/testexercisemenudialog.cpp \
     ../../Tools/ToolTestFunctionParser/testfunctionparsermenudialog.cpp \
     ../../Tools/ToolTestGroupWidget/testgroupwidgetmenudialog.cpp \
-    ../../Tools/ToolTestLed/testledmenudialog.cpp \
+    ../../Tools/ToolTestLed/tooltestledmenudialog.cpp \
     ../../Tools/ToolTestMultiApproximator/tooltestmultiapproximatormenudialog.cpp \
     ../../Tools/ToolTestMultipleChoiceQuestion/testmultiplechoicequestionmaindialog.cpp \
     ../../Tools/ToolTestMultipleChoiceQuestion/testmultiplechoicequestionmenudialog.cpp \
@@ -569,7 +569,7 @@ HEADERS += \
     ../../Tools/ToolTestFunctionParser/testfunctionparsermenudialog.h \
     ../../Tools/ToolTestGroupWidget/testgroupwidgetmenudialog.h \
     ../../Tools/ToolTestGroupWidget/testgroupwidgetmenudialog.h \
-    ../../Tools/ToolTestLed/testledmenudialog.h \
+    ../../Tools/ToolTestLed/tooltestledmenudialog.h \
     ../../Tools/ToolTestMultiApproximator/tooltestmultiapproximatormenudialog.h \
     ../../Tools/ToolTestMultipleChoiceQuestion/testmultiplechoicequestionmaindialog.h \
     ../../Tools/ToolTestMultipleChoiceQuestion/testmultiplechoicequestionmenudialog.h \
@@ -786,6 +786,3 @@ OTHER_FILES += \
   ../../Libraries/fparser4.5.1/extrasrc/fp_identifier_parser.inc \
   ../../Libraries/fparser4.5.1/extrasrc/fp_opcode_add.inc
 
-FORMS += \
-    ../../Tools/ToolQuadraticSolver/qtquadraticsolvermenudialog.ui \
-    ../../Tools/ToolQuadraticSolver/qtquadraticsolvermaindialog.ui

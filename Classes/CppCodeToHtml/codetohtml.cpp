@@ -58,7 +58,7 @@ bool c2h::IsCleanHtml(const std::vector<std::string>& html)
   //Remove previous HTML file
   {
     std::remove(temp_filename.c_str());
-    assert(!IsRegularFile(temp_filename));
+    assert(!ribi::fileio::IsRegularFile(temp_filename));
   }
   //Write HTML to file
   {
@@ -67,7 +67,7 @@ bool c2h::IsCleanHtml(const std::vector<std::string>& html)
   }
   //Start tidy, creates output file
   {
-    assert(IsRegularFile(temp_filename));
+    assert(ribi::fileio::IsRegularFile(temp_filename));
     const std::string command = "tidy -q -e -f " + temp_filename_tidy + " " + temp_filename;
     const int error = std::system(command.c_str());
     /*
@@ -90,7 +90,7 @@ bool c2h::IsCleanHtml(const std::vector<std::string>& html)
     */
     if (error) return false;
   }
-  const auto v = FileToVector(temp_filename_tidy);
+  const auto v = ribi::fileio::FileToVector(temp_filename_tidy);
 
   std::remove(temp_filename.c_str());
   std::remove(temp_filename_tidy.c_str());
@@ -116,17 +116,17 @@ bool c2h::IsTidyInstalled()
   const std::string temp_filename_tidy = "tmp_tidy_output.txt";
 
   std::remove(temp_filename_tidy.c_str());
-  assert(!IsRegularFile(temp_filename_tidy));
+  assert(!ribi::fileio::IsRegularFile(temp_filename_tidy));
 
   //'2>' denotes -AFAIK- 'Write to file only, no screen output'
   const std::string command = "tidy -v 2> ./" + temp_filename_tidy;
   const int error = std::system(command.c_str());
   //assert(ok == 0 && "While I know I have tidy installed");
   //assert(IsRegularFile(temp_filename_tidy) && "While I know I have tidy installed");
-  if (!IsRegularFile(temp_filename_tidy)) return false;
+  if (!ribi::fileio::IsRegularFile(temp_filename_tidy)) return false;
 
   std::remove(temp_filename_tidy.c_str());
-  assert(!IsRegularFile(temp_filename_tidy));
+  assert(!ribi::fileio::IsRegularFile(temp_filename_tidy));
 
   return !error;
 }

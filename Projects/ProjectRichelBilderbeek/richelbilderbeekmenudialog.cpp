@@ -100,7 +100,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "toolencrangermenudialog.h"
 #include "testexercisemenudialog.h"
 #include "testfunctionparsermenudialog.h"
-#include "testledmenudialog.h"
+#include "tooltestledmenudialog.h"
 #include "tooltestsimplelinearregressionmenudialog.h"
 #include "testnewickvectordialog.h"
 #include "testqrcfilemenudialog.h"

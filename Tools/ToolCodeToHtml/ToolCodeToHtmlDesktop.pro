@@ -9,6 +9,7 @@ TEMPLATE = app
 INCLUDEPATH += \
     ../../Classes/CppAbout \
     ../../Classes/CppCodeToHtml \
+    ../../Classes/CppFileIo \
     ../../Classes/CppQrcFile \
     ../../Classes/CppQtAboutDialog \
     ../../Classes/CppQtHideAndShowDialog \
