@@ -45,17 +45,11 @@ public:
   QtQmakeWatcherMainDialog& operator=(const QtQmakeWatcherMainDialog&) = delete;
   ~QtQmakeWatcherMainDialog() noexcept;
 
-protected:
-
 private:
   Ui::QtQmakeWatcherMainDialog *ui;
 
 private slots:
   void OnQmake() noexcept;
-
-  //From http://www.richelbilderbeek.nl/CppFileToVector.htm
-  static const std::vector<std::string> FileToVector(const std::string& fileName);
-
 };
 
 } //~namespace ribi

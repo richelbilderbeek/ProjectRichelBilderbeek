@@ -14,6 +14,7 @@
 #include "pvdbexamplefactory.h"
 #include "pvdbhelper.h"
 #include "trace.h"
+#include "xml.h"
 #pragma GCC diagnostic pop
 
 ribi::pvdb::Example::Example(
@@ -69,31 +70,31 @@ const boost::shared_ptr<ribi::pvdb::Example> ribi::pvdb::Example::FromXml(const 
   {
     const std::vector<std::string> v = pvdb::GetRegexMatches(s,QRegExp("(<competency>.*</competency>)"));
     assert(v.size() == 1);
-    competency = StrToCompetency(StripXmlTag(v[0]));
+    competency = StrToCompetency(ribi::xml::StripXmlTag(v[0]));
   }
   //is_complex
   {
     const std::vector<std::string> v = pvdb::GetRegexMatches(s,QRegExp("(<is_complex>.*</is_complex>)"));
     assert(v.size() == 1);
-    is_complex = boost::lexical_cast<bool>(StripXmlTag(v[0]));
+    is_complex = boost::lexical_cast<bool>(ribi::xml::StripXmlTag(v[0]));
   }
   //is_concrete
   {
     const std::vector<std::string> v = pvdb::GetRegexMatches(s,QRegExp("(<is_concrete>.*</is_concrete>)"));
     assert(v.size() == 1);
-    is_concrete = boost::lexical_cast<bool>(StripXmlTag(v[0]));
+    is_concrete = boost::lexical_cast<bool>(ribi::xml::StripXmlTag(v[0]));
   }
   //is_specific
   {
     const std::vector<std::string> v = pvdb::GetRegexMatches(s,QRegExp("(<is_specific>.*</is_specific>)"));
     assert(v.size() == 1);
-    is_specific = boost::lexical_cast<bool>(StripXmlTag(v[0]));
+    is_specific = boost::lexical_cast<bool>(ribi::xml::StripXmlTag(v[0]));
   }
   //text
   {
     const std::vector<std::string> v = pvdb::GetRegexMatches(s,QRegExp("(<text>.*</text>)"));
     assert(v.size() == 1 && "<text>.*</text> must be present once in an Example");
-    text = pvdb::StripXmlTag(v[0]);
+    text = ribi::xml::StripXmlTag(v[0]);
   }
 
   return pvdb::ExampleFactory::Create(text,competency,is_complex,is_concrete,is_specific);

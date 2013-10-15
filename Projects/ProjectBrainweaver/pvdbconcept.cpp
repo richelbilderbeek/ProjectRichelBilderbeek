@@ -12,6 +12,7 @@
 #include "pvdbexamples.h"
 #include "pvdbexamplesfactory.h"
 #include "trace.h"
+#include "xml.h"
 #pragma GCC diagnostic pop
 
 ribi::pvdb::Concept::Concept(
@@ -62,7 +63,7 @@ const boost::shared_ptr<ribi::pvdb::Concept> ribi::pvdb::Concept::FromXml(const 
   {
     const std::vector<std::string> v = pvdb::GetRegexMatches(s,QRegExp("(<name>.*</name>)"));
     assert(v.size() == 1);
-    name = pvdb::StripXmlTag(v[0]);
+    name = ribi::xml::StripXmlTag(v[0]);
   }
   //m_examples
   {
@@ -75,14 +76,14 @@ const boost::shared_ptr<ribi::pvdb::Concept> ribi::pvdb::Concept::FromXml(const 
   {
     const std::vector<std::string> v = pvdb::GetRegexMatches(s,QRegExp("(<concept_is_complex>.*</concept_is_complex>)"));
     assert(v.size() == 1 && "(<is_complex>.*</is_complex>) must be present once per Concept");
-    is_complex = boost::lexical_cast<bool>(StripXmlTag(v[0]));
+    is_complex = boost::lexical_cast<bool>(ribi::xml::StripXmlTag(v[0]));
   }
 
   //m_rating_complexity
   {
     const std::vector<std::string> v = pvdb::GetRegexMatches(s,QRegExp("(<complexity>.*</complexity>)"));
     assert(v.size() == 1 && "(<complexity>.*</complexity>) must be present once per Concept");
-    rating_complexity = boost::lexical_cast<int>(StripXmlTag(v[0]));
+    rating_complexity = boost::lexical_cast<int>(ribi::xml::StripXmlTag(v[0]));
     assert(rating_complexity >= -1);
     assert(rating_complexity <=  2);
   }
@@ -90,13 +91,13 @@ const boost::shared_ptr<ribi::pvdb::Concept> ribi::pvdb::Concept::FromXml(const 
   {
     const std::vector<std::string> v = pvdb::GetRegexMatches(s,QRegExp("(<concreteness>.*</concreteness>)"));
     assert(v.size() == 1);
-    rating_concreteness = boost::lexical_cast<int>(StripXmlTag(v[0]));
+    rating_concreteness = boost::lexical_cast<int>(ribi::xml::StripXmlTag(v[0]));
   }
   //m_rating_specificity
   {
     const std::vector<std::string> v = pvdb::GetRegexMatches(s,QRegExp("(<specificity>.*</specificity>)"));
     assert(v.size() == 1);
-    rating_specificity = boost::lexical_cast<int>(StripXmlTag(v[0]));
+    rating_specificity = boost::lexical_cast<int>(ribi::xml::StripXmlTag(v[0]));
   }
   return ConceptFactory::Create(name,examples,is_complex,rating_complexity,rating_concreteness,rating_specificity);
 }

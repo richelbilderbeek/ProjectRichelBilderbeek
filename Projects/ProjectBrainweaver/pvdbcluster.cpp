@@ -14,6 +14,7 @@
 #include "pvdbconcept.h"
 #include "pvdbconceptfactory.h"
 #include "trace.h"
+#include "xml.h"
 #pragma GCC diagnostic pop
 
 ribi::pvdb::Cluster::Cluster(const std::vector<boost::shared_ptr<ribi::pvdb::Concept> >& v)
@@ -52,7 +53,7 @@ const boost::shared_ptr<ribi::pvdb::Cluster> ribi::pvdb::Cluster::FromXml(const 
     = ribi::pvdb::GetRegexMatches(s,QRegExp("(<cluster>.*</cluster>)"));
   assert(v.size() == 1);
   //Strip the <cluster> tags
-  const std::string cluster_str = pvdb::StripXmlTag(v[0]);
+  const std::string cluster_str = ribi::xml::StripXmlTag(v[0]);
   //Obtain the <concept> ... </concept> strings
   const std::vector<std::string> w
     = pvdb::GetRegexMatches(s,QRegExp("(<concept>.*</concept>)"));

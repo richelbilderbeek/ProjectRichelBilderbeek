@@ -35,6 +35,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <QDesktopWidget>
 #include <QFile>
 
+#include "fileio.h"
 #include "ui_qtqmakewatchermaindialog.h"
 
 #pragma GCC diagnostic pop
@@ -64,22 +65,6 @@ ribi::QtQmakeWatcherMainDialog::~QtQmakeWatcherMainDialog() noexcept
   delete ui;
 }
 
-const std::vector<std::string> ribi::QtQmakeWatcherMainDialog::FileToVector(const std::string& fileName)
-{
-
-  assert(QFile::exists(fileName.c_str()));
-  std::vector<std::string> myVector;
-  std::ifstream in(fileName.c_str());
-  std::string myString;
-  for (int i=0; !in.eof(); ++i)
-  {
-    std::getline(in,myString);
-    myVector.push_back(myString);
-  }
-  return myVector;
-}
-
-
 void ribi::QtQmakeWatcherMainDialog::OnQmake() noexcept
 {
   //Save text to file
@@ -107,7 +92,7 @@ void ribi::QtQmakeWatcherMainDialog::OnQmake() noexcept
   //Display Makefile
   {
     ui->edit_makefile->clear();
-    const std::vector<std::string> v(FileToVector("Makefile"));
+    const std::vector<std::string> v(ribi::fileio::FileToVector("Makefile"));
     BOOST_FOREACH(const std::string& s, v)
     {
       ui->edit_makefile->appendPlainText(QString(s.c_str()));
@@ -116,7 +101,7 @@ void ribi::QtQmakeWatcherMainDialog::OnQmake() noexcept
   //Display diff
   {
     ui->edit_diff->clear();
-    const std::vector<std::string> v(FileToVector("tmp.txt"));
+    const std::vector<std::string> v(ribi::fileio::FileToVector("tmp.txt"));
     BOOST_FOREACH(const std::string& s, v)
     {
       std::string t = s;

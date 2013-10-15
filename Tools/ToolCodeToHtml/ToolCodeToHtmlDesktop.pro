@@ -37,7 +37,8 @@ SOURCES += \
     qtcodetohtmlmaindialog.cpp \
     qtcodetohtmlmenudialog.cpp \
     qtmain.cpp \
-    ../../Classes/CppQrcFile/qrcfile.cpp
+    ../../Classes/CppQrcFile/qrcfile.cpp \
+    ../../Classes/CppFileIo/fileio.cpp
 
 HEADERS += \
     ../../Classes/CppAbout/about.h \
@@ -59,7 +60,8 @@ HEADERS += \
     codetohtmlmenudialog.h \
     qtcodetohtmlmaindialog.h \
     qtcodetohtmlmenudialog.h \
-    ../../Classes/CppQrcFile/qrcfile.h
+    ../../Classes/CppQrcFile/qrcfile.h \
+    ../../Classes/CppFileIo/fileio.h
 
 FORMS += \
     ../../Classes/CppQtAboutDialog/qtaboutdialog.ui \
@@ -74,7 +76,8 @@ OTHER_FILES += \
     ../../Classes/CppQtCreatorProFile/Licence.txt \
     ../../Classes/CppQtHideAndShowDialog/Licence.txt \
     crosscompiletowindows.sh \
-    zip.sh
+    zip.sh \
+    ../../Classes/CppFileIo/Licence.txt
 
 #
 #

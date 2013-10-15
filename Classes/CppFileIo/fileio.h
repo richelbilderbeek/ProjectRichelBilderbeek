@@ -47,9 +47,6 @@ const std::string GetFileBasename(const std::string& filename);
 //From http://www.richelbilderbeek.nl/CppGetFilesInFolder.htm
 const std::vector<std::string> GetFilesInFolder(const std::string& folder);
 
-const std::vector<std::string> GetProFilesInFolder(
-  const std::string& folder);
-
 const std::vector<std::string> GetFilesInFolderByRegex(
   const std::string& folder,
   const std::string& regex_str);

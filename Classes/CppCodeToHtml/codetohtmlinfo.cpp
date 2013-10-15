@@ -6009,6 +6009,50 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
       }
     }
   );
+
+  m.push_back(
+    { "CppXml",
+      {
+        "<p>'Extensible Markup Language (<a href=\"CppXml.htm\">XML</a>) is a set of rules for encoding documents in machine-readable form' [1].</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<h2><a href=\"CppXml.htm\">XML</a> <a href=\"CppCodeSnippets.htm\">code snippets</a></h2>",
+        "<p>&nbsp;</p>",
+        "<ul>",
+        "  <li><a href=\"CppSplitXml.htm\">SplitXml</a></li>",
+        "  <li><a href=\"CppXmlToPretty.htm\">XmlToPretty</a></li>",
+        "</ul>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<h2><a href=\"Cpp.htm\">C++</a> <a href=\"CppXml.htm\">XML</a> <a href=\"CppParser.htm\">parsers</a></h2>",
+        "<p>&nbsp;</p>",
+        "<p>Incomplete list.</p>",
+        "<p>&nbsp;</p>",
+        "<ul>",
+        "  <li><a href=\"CppProperty_tree.htm\">boost::property_tree</a></li>",
+        "  <li>RapidXML</li>",
+        "</ul>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<h2><a href=\"CppReferences.htm\">References</a></h2>",
+        "<p>&nbsp;</p>",
+        "<ol>",
+        "  <li><a href=\"http://en.wikipedia.org/wiki/XML\">Wikipedia page about XML</a></li>",
+        "</ol>"
+      }
+    }
+  );
+
+
   m.push_back(
     { "CppYodaConditionExample1",
       {

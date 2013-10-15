@@ -11,6 +11,7 @@
 #include "pvdbexamplefactory.h"
 #include "pvdbhelper.h"
 #include "trace.h"
+#include "xml.h"
 #pragma GCC diagnostic pop
 
 ribi::pvdb::Node::Node(
@@ -46,14 +47,14 @@ const boost::shared_ptr<ribi::pvdb::Node> ribi::pvdb::Node::FromXml(const std::s
   {
     const std::vector<std::string> v = pvdb::GetRegexMatches(s,QRegExp("(<x>.*</x>)"));
     assert(v.size() == 1);
-    x = boost::lexical_cast<double>(StripXmlTag(v[0]));
+    x = boost::lexical_cast<double>(ribi::xml::StripXmlTag(v[0]));
   }
   //m_x
   double y = 0.0;
   {
     const std::vector<std::string> v = pvdb::GetRegexMatches(s,QRegExp("(<y>.*</y>)"));
     assert(v.size() == 1);
-    y = boost::lexical_cast<double>(StripXmlTag(v[0]));
+    y = boost::lexical_cast<double>(ribi::xml::StripXmlTag(v[0]));
   }
   assert(concept);
   const boost::shared_ptr<ribi::pvdb::Node> node(new Node(concept,x,y));

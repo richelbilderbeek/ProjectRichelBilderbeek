@@ -40,21 +40,6 @@ const std::string ribi::ToolSimplifyNewickMainDialog::StrToLower(std::string s)
   return s;
 }
 
-//From http://www.richelbilderbeek.nl/CppFileToVector.htm
-const std::vector<std::string> ribi::ToolSimplifyNewickMainDialog::FileToVector(const std::string& fileName)
-{
-  assert(FileExists(fileName)==true);
-  std::vector<std::string> myVector;
-  std::ifstream in(fileName.c_str());
-  std::string myString;
-  for (int i=0; !in.eof(); ++i)
-  {
-    std::getline(in,myString);
-    myVector.push_back(myString);
-  }
-  return myVector;
-}
-
 const std::vector<std::string> ribi::ToolSimplifyNewickMainDialog::GetBadlyFormedNewicks()
 {
   std::vector<std::string> v;

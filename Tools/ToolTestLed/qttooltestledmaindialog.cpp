@@ -71,13 +71,3 @@ void ribi::QtTestLedMainDialog::on_slider_valueChanged(int value) noexcept
   ui->led_gray->GetWidget()->GetLed()->SetIntensity(intensity);
   ui->led_white->GetWidget()->GetLed()->SetIntensity(intensity);
 }
-
-void ribi::QtTestLedMainDialog::on_button_about_clicked() noexcept
-{
-  this->hide();
-  About a = TestLedMenuDialog::GetAbout();
-  a.AddLibrary("QtLedWidget version: " + QtLedWidget::GetVersion());
-  QtAboutDialog d(a);
-  this->ShowChild(&d);
-}
-

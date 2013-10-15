@@ -4,6 +4,7 @@ TEMPLATE = app
 
 INCLUDEPATH += \
   ../../Classes/CppAbout \
+  ../../Classes/CppFileIo \
   ../../Classes/CppFuzzy_equal_to \
   ../../Classes/CppQtAboutDialog \
   ../../Classes/CppQtArrowItem \
@@ -16,7 +17,8 @@ INCLUDEPATH += \
   ../../Classes/CppQtRoundedRectItem \
   ../../Classes/CppQtRoundedTextRectItem \
   ../../Classes/CppQtScopedDisable \
-  ../../Classes/CppTrace
+  ../../Classes/CppTrace \
+  ../../Classes/CppXml \
 
 SOURCES += \
     ../../Classes/CppAbout/about.cpp \
@@ -84,7 +86,9 @@ SOURCES += \
     test_qtpvdbconceptmapdialog.cpp \
     test_pvdbconceptmap.cpp \
     test_pvdbconcept.cpp \
-    test_pvdbcluster.cpp
+    test_pvdbcluster.cpp \
+    ../../Classes/CppFileIo/fileio.cpp \
+    ../../Classes/CppXml/xml.cpp
 
 HEADERS  += \
     ../../Classes/CppAbout/about.h \
@@ -150,7 +154,9 @@ HEADERS  += \
     qtpvdbratedconceptwidget.h \
     pvdbcenternodefactory.h \
     pvdbcenternode.h \
-    qtpvdbfiledialog.h
+    qtpvdbfiledialog.h \
+    ../../Classes/CppFileIo/fileio.h \
+    ../../Classes/CppXml/xml.h
 
 FORMS    += \
     ../../Classes/CppQtAboutDialog/qtaboutdialog.ui \
@@ -179,7 +185,9 @@ OTHER_FILES += \
     ../../Classes/CppQtScopedDisable/Licence.txt \
     ../../Classes/CppTrace/Licence.txt \
     crosscompiletowindows.sh \
-    doxygen_config.txt
+    doxygen_config.txt \
+    ../../Classes/CppFileIo/Licence.txt \
+    ../../Classes/CppXml/Licence.txt
 
 RESOURCES += \
     Brainweaver.qrc

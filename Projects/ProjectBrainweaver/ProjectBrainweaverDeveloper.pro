@@ -25,6 +25,7 @@ INCLUDEPATH += \
   ../../Classes/CppQtRoundedTextRectItem \
   ../../Classes/CppQtScopedDisable \
   ../../Classes/CppTrace \
+  ../../Classes/CppXml \
   ../../Tools/ToolStyleSheetSetter \
   ../../Tools/ToolTestQtArrowItems \
   ../../Tools/ToolTestQtRoundedEditRectItem \
@@ -135,7 +136,8 @@ SOURCES += \
     pvdbcenternode.cpp \
     pvdbcenternodefactory.cpp \
     qtpvdbfiledialog.cpp \
-    ../../Classes/CppFileIo/fileio.cpp
+    ../../Classes/CppFileIo/fileio.cpp \
+    ../../Classes/CppXml/xml.cpp
 
 HEADERS  += \
     ../../Classes/CppAbout/about.h \
@@ -238,7 +240,8 @@ HEADERS  += \
     pvdbcenternode.h \
     pvdbcenternodefactory.h \
     qtpvdbfiledialog.h \
-    ../../Classes/CppFileIo/fileio.h
+    ../../Classes/CppFileIo/fileio.h \
+    ../../Classes/CppXml/xml.h
 
 FORMS    += \
     ../../Classes/CppQtAboutDialog/qtaboutdialog.ui \
@@ -302,7 +305,8 @@ OTHER_FILES += \
     ../../Tools/ToolTestQtRoundedEditRectItem/Licence.txt \
     ../../Tools/ToolTestQtRoundedTextRectItem/Licence.txt \
     zipexes.sh \
-    BrainweaverTest.py
+    BrainweaverTest.py \
+    ../../Classes/CppXml/Licence.txt
 
 RESOURCES += \
     ../../Tools/ToolStyleSheetSetter/ToolStyleSheetSetter.qrc \
