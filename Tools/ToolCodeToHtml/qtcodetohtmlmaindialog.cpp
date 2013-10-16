@@ -70,7 +70,7 @@ ribi::QtCodeToHtmlMainDialog::QtCodeToHtmlMainDialog(QWidget *parent) noexcept
     assert(!QApplication::instance()->arguments().empty());
     const std::string argv0 { QApplication::instance()->arguments()[0].toStdString() };
     const std::string path = ribi::fileio::GetPath(argv0);
-    assert(c2h::IsFolder(path));
+    assert(ribi::fileio::IsFolder(path));
     this->ui->edit_source->setText(path.c_str());
   }
   on_tab_source_currentChanged(0);
@@ -260,7 +260,7 @@ void ribi::QtCodeToHtmlMainDialog::on_edit_source_textChanged(QString ) noexcept
   }
   else
   {
-    assert(c2h::IsRegularFile(source.c_str()));
+    assert(ribi::fileio::IsRegularFile(source.c_str()));
     ui->button_convert->setText("Convert (source type: file)");
     ui->button_convert->setEnabled(true);
   }
@@ -277,7 +277,7 @@ void ribi::QtCodeToHtmlMainDialog::Test() noexcept
   TRACE("Starting QtCodeToHtmlMainDialog::Test");
   //IsRegularFile
   {
-    assert(!c2h::IsRegularFile("../ToolCodeToHtml"));
+    assert(!ribi::fileio::IsRegularFile("../ToolCodeToHtml"));
   }
   {
     QtCodeToHtmlMainDialog d;

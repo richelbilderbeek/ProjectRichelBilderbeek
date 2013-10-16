@@ -107,37 +107,6 @@ const std::vector<std::string> ribi::pvdb::SplitXml(const std::string& s)
   return v;
 }
 
-const std::string ribi::pvdb::StripXmlTag(const std::string& s)
-{
-  #ifndef NDEBUG
-  pvdb::TestHelperFunctions();
-  #endif
-  if (s.empty()) return "";
-  if (s[0]!='<') return "";
-  if (s[s.size() - 1]!='>') return "";
-  const int begin = s.find_first_of('>');
-  if (begin == static_cast<int>(std::string::npos)) return "";
-  const int end = s.find_last_of('<');
-  if (end == static_cast<int>(std::string::npos)) return "";
-  if (begin > end) return "";
-  assert(begin < end);
-  const std::string tag_left = s.substr(0,begin+1);
-  assert(!tag_left.empty());
-  assert(tag_left[0] == '<');
-  assert(tag_left[tag_left.size() - 1] == '>');
-  const std::string tag_left_text = tag_left.substr(1,tag_left.size() - 2);
-  if (tag_left_text.empty()) return "";
-  const std::string tag_right = s.substr(end,s.size() - end);
-  if (tag_right.size() < 2) return "";
-  assert(!tag_right.empty());
-  assert(tag_right[0] == '<');
-  assert(tag_right[tag_right.size() - 1] == '>');
-  const std::string tag_right_text = tag_right.substr(2,tag_right.size() - 3);
-  if (tag_right_text.empty()) return "";
-  if (tag_left_text != tag_right_text) return "";
-  const std::string text = s.substr(begin + 1,end - begin - 1);
-  return text;
-}
 
 #ifndef NDEBUG
 void ribi::pvdb::TestHelperFunctions()
@@ -148,25 +117,6 @@ void ribi::pvdb::TestHelperFunctions()
     is_tested = true;
   }
   TRACE("Started TestHelperFunctions");
-  //StripXmlTag
-  {
-    assert(StripXmlTag("<my_tag>text</my_tag>") == "text");
-    assert(StripXmlTag("<mytag>text</mytag>") == "text");
-    assert(StripXmlTag("<tags>text</tags>") == "text");
-    assert(StripXmlTag("<tag>text</tag>") == "text");
-    assert(StripXmlTag("<tg>text</tg>") == "text");
-    assert(StripXmlTag("<t>text</t>") == "text");
-    assert(StripXmlTag("<x>y</x>") == "y");
-    assert(StripXmlTag("<x>y</x></x>") == "y</x>");
-    assert(StripXmlTag("<x><x>y</x>") == "<x>y");
-    assert(StripXmlTag("<x><x>y</x></x>") == "<x>y</x>");
-    assert(StripXmlTag("<x>y</z>") == "");
-    assert(StripXmlTag("<x>y<x>") == "");
-    assert(StripXmlTag("<>y<>") == "");
-    assert(StripXmlTag("<>y</>") == "");
-    assert(StripXmlTag("<x>y") == "");
-    assert(StripXmlTag("<x></x>") == "");
-  }
   //GetRegexMatches
   {
     const std::string s = "In the Netherlands, 1234 AB and 2345 BC are valid zip codes";
@@ -270,90 +220,6 @@ void ribi::pvdb::TestHelperFunctions()
     assert(std::count(v.begin(),v.end(),expected_13));
     assert(std::count(v.begin(),v.end(),expected_14));
     assert(std::count(v.begin(),v.end(),expected_15));
-  }
-  //Test SplitXml
-  {
-    const std::string s = "<a>A</a>";
-    const std::vector<std::string> split = pvdb::SplitXml(s);
-    const std::vector<std::string> split_expected
-      =
-      {
-        "<a>",
-        "A",
-        "</a>"
-      };
-    assert(split == split_expected);
-    const std::vector<std::string> pretty = pvdb::XmlToPretty(s);
-    const std::vector<std::string> pretty_expected
-      =
-      {
-        "<a>",
-        "A",
-        "</a>"
-      };
-    assert(pretty == pretty_expected);
-  }
-  {
-    const std::string s = "<a>A<b>B</b></a>";
-    const std::vector<std::string> split = pvdb::SplitXml(s);
-    const std::vector<std::string> split_expected
-      =
-      {
-        "<a>",
-        "A",
-        "<b>",
-        "B",
-        "</b>",
-        "</a>"
-      };
-    assert(split == split_expected);
-    const std::vector<std::string> pretty = pvdb::XmlToPretty(s);
-    const std::vector<std::string> pretty_expected
-      =
-      {
-        "<a>",
-        "A",
-        "  <b>",
-        "  B",
-        "  </b>",
-        "</a>"
-      };
-    assert(pretty == pretty_expected);
-  }
-
-
-  {
-    const std::string s = "<a>A<b>B1</b><b>B2</b></a>";
-    const std::vector<std::string> split = pvdb::SplitXml(s);
-    const std::vector<std::string> split_expected
-      =
-      {
-        "<a>",
-        "A",
-        "<b>",
-        "B1",
-        "</b>",
-        "<b>",
-        "B2",
-        "</b>",
-        "</a>"
-      };
-    assert(split == split_expected);
-    const std::vector<std::string> pretty = pvdb::XmlToPretty(s);
-    const std::vector<std::string> pretty_expected
-      =
-      {
-        "<a>",
-        "A",
-        "  <b>",
-        "  B1",
-        "  </b>",
-        "  <b>",
-        "  B2",
-        "  </b>",
-        "</a>"
-      };
-    assert(pretty == pretty_expected);
   }
   //Wordwrap
   {

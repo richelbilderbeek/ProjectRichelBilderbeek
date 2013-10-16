@@ -12,6 +12,7 @@
 #include "pvdbedgefactory.h"
 #include "pvdbhelper.h"
 #include "trace.h"
+#include "xml.h"
 #pragma GCC diagnostic pop
 
 const boost::shared_ptr<ribi::pvdb::Edge> ribi::pvdb::EdgeFactory::Create(
@@ -81,42 +82,42 @@ const boost::shared_ptr<ribi::pvdb::Edge> ribi::pvdb::EdgeFactory::FromXml(
   {
     const std::vector<std::string> v = pvdb::GetRegexMatches(s,QRegExp("(<from>.*</from>)"));
     assert(v.size() == 1);
-    from = boost::lexical_cast<int>(StripXmlTag(v[0]));
+    from = boost::lexical_cast<int>(ribi::xml::StripXmlTag(v[0]));
   }
   //m_head_arrow
   bool head_arrow = false;
   {
     const std::vector<std::string> v = pvdb::GetRegexMatches(s,QRegExp("(<head_arrow>.*</head_arrow>)"));
     assert(v.size() == 1);
-    head_arrow = boost::lexical_cast<bool>(StripXmlTag(v[0]));
+    head_arrow = boost::lexical_cast<bool>(ribi::xml::StripXmlTag(v[0]));
   }
   //m_tail_arrow
   bool tail_arrow = false;
   {
     const std::vector<std::string> v = pvdb::GetRegexMatches(s,QRegExp("(<tail_arrow>.*</tail_arrow>)"));
     assert(v.size() == 1);
-    tail_arrow = boost::lexical_cast<bool>(StripXmlTag(v[0]));
+    tail_arrow = boost::lexical_cast<bool>(ribi::xml::StripXmlTag(v[0]));
   }
   //m_to
   int to = -1;
   {
     const std::vector<std::string> v = pvdb::GetRegexMatches(s,QRegExp("(<to>.*</to>)"));
     assert(v.size() == 1);
-    to = boost::lexical_cast<int>(StripXmlTag(v[0]));
+    to = boost::lexical_cast<int>(ribi::xml::StripXmlTag(v[0]));
   }
   //m_x
   double x = 0.0;
   {
     const std::vector<std::string> v = pvdb::GetRegexMatches(s,QRegExp("(<x>.*</x>)"));
     assert(v.size() == 1);
-    x = boost::lexical_cast<double>(StripXmlTag(v[0]));
+    x = boost::lexical_cast<double>(ribi::xml::StripXmlTag(v[0]));
   }
   //m_y
   double y = 0.0;
   {
     const std::vector<std::string> v = pvdb::GetRegexMatches(s,QRegExp("(<y>.*</y>)"));
     assert(v.size() == 1);
-    y = boost::lexical_cast<double>(StripXmlTag(v[0]));
+    y = boost::lexical_cast<double>(ribi::xml::StripXmlTag(v[0]));
   }
   assert(from != to);
   assert(from < boost::numeric_cast<int>(nodes.size()));

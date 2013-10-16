@@ -38,6 +38,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <QFile>
 #include <QKeyEvent>
 
+#include "fileio.h"
 #include "ui_qtsitemapgeneratormaindialog.h"
 #pragma GCC diagnostic pop
 
@@ -59,27 +60,10 @@ void ribi::QtSitemapGeneratorMainDialog::keyPressEvent(QKeyEvent * e)
   QtHideAndShowDialog::keyPressEvent(e);
 }
 
-const std::vector<std::string> ribi::QtSitemapGeneratorMainDialog::GetFilesInFolder(const std::string& folder)
-{
-  QDir dir(folder.c_str());
-  dir.setFilter(QDir::Files);
-  const QFileInfoList list = dir.entryInfoList();
-
-  //Convert QFileInfoList to std::vector<std::string> of filenames
-  std::vector<std::string> v;
-  const int size = list.size();
-  for (int i = 0; i != size; ++i)
-  {
-    const std::string file_name = list.at(i).fileName().toStdString();
-    v.push_back(file_name);
-  }
-  return v;
-}
-
 const std::vector<std::string> ribi::QtSitemapGeneratorMainDialog::GetHtmlFilesInFolder(const std::string& folder)
 {
   //Get all filenames
-  const std::vector<std::string> v = GetFilesInFolder(folder);
+  const std::vector<std::string> v = ribi::fileio::GetFilesInFolder(folder);
 
   //Create the regex for a correct HTML filename
   const boost::xpressive::sregex cpp_file_regex
@@ -118,18 +102,9 @@ const std::vector<std::string> ribi::QtSitemapGeneratorMainDialog::AddHeader(con
   return v;
 }
 
-const std::string ribi::QtSitemapGeneratorMainDialog::GetPath(const std::string& filename)
-{
-  const int a = filename.rfind("\\",filename.size());
-  const int b = filename.rfind("/",filename.size());
-  const int i = std::max(a,b);
-  assert(i < static_cast<int>(filename.size()));
-  return filename.substr(0,i);
-}
-
 const std::string ribi::QtSitemapGeneratorMainDialog::GetCurrentFolder(const std::string& s)
 {
-  return GetPath(s);
+  return ribi::fileio::GetPath(s);
 }
 
 const std::string ribi::QtSitemapGeneratorMainDialog::GetCurrentFolder()
@@ -335,29 +310,6 @@ const std::string ribi::QtSitemapGeneratorMainDialog::GetDateIso8601()
   return year + "-" + month + "-" + day;
 }
 
-//From http://www.richelbilderbeek.nl/CppFileExists.htm
-//bool FileExists(const std::string& filename)
-//{
-//  std::fstream f;
-//  f.open(filename.c_str(),std::ios::in);
-//  return f.is_open();
-//}
-
-//From http://www.richelbilderbeek.nl/CppFileToVector.htm
-const std::vector<std::string> ribi::QtSitemapGeneratorMainDialog::FileToVector(const std::string& fileName)
-{
-  assert(QFile::exists(fileName.c_str()));
-  std::vector<std::string> myVector;
-  std::ifstream in(fileName.c_str());
-  std::string myString;
-  for (int i=0; !in.eof(); ++i)
-  {
-    std::getline(in,myString);
-    myVector.push_back(myString);
-  }
-  return myVector;
-}
-
 void ribi::QtSitemapGeneratorMainDialog::on_button_start_clicked()
 {
   const std::string page_location = ui->edit_website->text().toStdString();
@@ -485,7 +437,7 @@ void ribi::QtSitemapGeneratorMainDialog::on_button_start_clicked()
   ui->text_output->appendPlainText("* Program finished");
 
   {
-    const std::vector<std::string> output(FileToVector("output.txt"));
+    const std::vector<std::string> output(ribi::fileio::FileToVector("output.txt"));
     BOOST_FOREACH(const std::string& s,output)
     {
       ui->text_output->appendPlainText(

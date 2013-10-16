@@ -54,29 +54,17 @@ private slots:
     const std::string& local_website_path,
     const std::string& urllist_path);
 
-  //From http://www.richelbilderbeek.nl/CppFileExists.htm
-  //bool FileExists(const std::string& filename);
-
-  //From http://www.richelbilderbeek.nl/CppFileToVector.htm
-  static const std::vector<std::string> FileToVector(const std::string& fileName);
-
   //From http://www.richelbilderbeek.nl/CppGetCurrentFolder.htm
   static const std::string GetCurrentFolder();
 
   //From http://www.richelbilderbeek.nl/CppGetCurrentFolder.htm
   static const std::string GetCurrentFolder(const std::string& s);
 
-  //From http://www.richelbilderbeek.nl/CppGetFilesInFolder.htm
-  static const std::vector<std::string> GetFilesInFolder(const std::string& folder);
-
   //From http://www.richelbilderbeek.nl/CppGetHtmlFilesInFolder.htm
   static const std::vector<std::string> GetHtmlFilesInFolder(const std::string& folder);
 
   //From http://www.richelbilderbeek.nl/CppGetDateIso8601.htm
   static const std::string GetDateIso8601();
-
-  //From http://www.richelbilderbeek.nl/CppGetPath.htm
-  static const std::string GetPath(const std::string& filename);
 
 };
 

@@ -26,6 +26,7 @@
 #include "pvdbhelper.h"
 #include "pvdbnode.h"
 #include "trace.h"
+#include "xml.h"
 #pragma GCC diagnostic pop
 
 const std::string ribi::pvdb::File::m_filename_extension = "cmp";
@@ -158,13 +159,13 @@ const boost::shared_ptr<ribi::pvdb::File> ribi::pvdb::File::FromXml(const std::s
     const std::vector<std::string> v
       = pvdb::GetRegexMatches(s,QRegExp("(<about>.*</about>)"));
     assert(v.size() == 1);
-    f->m_about = pvdb::StripXmlTag(v[0]);
+    f->m_about = ribi::xml::StripXmlTag(v[0]);
   }
   //m_assessor_name
   {
     const std::vector<std::string> v = pvdb::GetRegexMatches(s,QRegExp("(<assessor_name>.*</assessor_name>)"));
     assert(v.size() == 1);
-    f->m_assessor_name = pvdb::StripXmlTag(v[0]);
+    f->m_assessor_name = ribi::xml::StripXmlTag(v[0]);
   }
   //m_cluster
   {
@@ -202,19 +203,19 @@ const boost::shared_ptr<ribi::pvdb::File> ribi::pvdb::File::FromXml(const std::s
     }
     assert(!v.empty());
     assert(v.size() == 1);
-    f->m_question = pvdb::StripXmlTag(v[0]);
+    f->m_question = ribi::xml::StripXmlTag(v[0]);
   }
   //m_student_name
   {
     const std::vector<std::string> v = pvdb::GetRegexMatches(s,QRegExp("(<student_name>.*</student_name>)"));
     assert(v.size() == 1);
-    f->m_student_name = pvdb::StripXmlTag(v[0]);
+    f->m_student_name = ribi::xml::StripXmlTag(v[0]);
   }
   //m_version
   {
     const std::vector<std::string> v = pvdb::GetRegexMatches(s,QRegExp("(<version>.*</version>)"));
     assert(v.size() == 1);
-    f->m_version = pvdb::StripXmlTag(v[0]);
+    f->m_version = ribi::xml::StripXmlTag(v[0]);
   }
 
   assert( (!f->GetConceptMap() || !f->GetConceptMap()->GetNodes().empty() )
@@ -290,7 +291,7 @@ const boost::shared_ptr<ribi::pvdb::File> ribi::pvdb::File::Load(const std::stri
   {
     const std::vector<std::string> v = pvdb::GetRegexMatches(xml,QRegExp("(<version>.*</version>)"));
     assert(v.size() == 1);
-    const std::string version = pvdb::StripXmlTag(v[0]);
+    const std::string version = ribi::xml::StripXmlTag(v[0]);
     if (version == std::string("0.1"))
     {
       xml = ConvertFrom_0_1(xml);
@@ -300,7 +301,7 @@ const boost::shared_ptr<ribi::pvdb::File> ribi::pvdb::File::Load(const std::stri
   {
     const std::vector<std::string> v = pvdb::GetRegexMatches(xml,QRegExp("(<version>.*</version>)"));
     assert(v.size() == 1);
-    const std::string version = pvdb::StripXmlTag(v[0]);
+    const std::string version = ribi::xml::StripXmlTag(v[0]);
     if (version == std::string("0.2"))
     {
       xml = ConvertFrom_0_2(xml);
@@ -310,7 +311,7 @@ const boost::shared_ptr<ribi::pvdb::File> ribi::pvdb::File::Load(const std::stri
   {
     const std::vector<std::string> v = pvdb::GetRegexMatches(xml,QRegExp("(<version>.*</version>)"));
     assert(v.size() == 1);
-    const std::string version = pvdb::StripXmlTag(v[0]);
+    const std::string version = ribi::xml::StripXmlTag(v[0]);
     if (version == std::string("0.3"))
     {
       xml = ConvertFrom_0_3(xml);

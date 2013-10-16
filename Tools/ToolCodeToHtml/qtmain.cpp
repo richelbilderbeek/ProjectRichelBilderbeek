@@ -29,6 +29,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "qtcreatorprofile.h"
 #include "qtcodetohtmlmenudialog.h"
 #include "codetohtmldialog.h"
+#include "fileio.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
 
@@ -53,8 +54,8 @@ int main(int argc, char *argv[])
     #endif
 
     #ifndef NDEBUG
-    assert( c2h::IsRegularFile(argv[0]));
-    assert(!c2h::IsFolder(argv[0]));
+    assert( ribi::fileio::IsRegularFile(argv[0]));
+    assert(!ribi::fileio::IsFolder(argv[0]));
     c2h::Test();
     #endif
 

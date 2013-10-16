@@ -18,29 +18,35 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 // From http://www.richelbilderbeek.nl/ToolQuadraticSolver.htm
 //---------------------------------------------------------------------------
-#include "quadraticsolvermaindialog.h"
+#include "quadraticsolvermenudialog.h"
 
-#include <cmath>
+#include "trace.h"
 
-const std::vector<double> ribi::QuadraticSolverMainDialog::SolveQuadratic(
-  const double a, const double b, const double c)
+const ribi::About ribi::QuadraticSolverMenuDialog::GetAbout()
 {
-  if (a == 0.0)
-  {
-    if (b == 0.0)
-      return std::vector<double>(1,0.0);
-    else
-      return std::vector<double>(1,c/b);
-  }
-  const double d = (b * b) - (4.0 * a * c);
-  if (d < 0.0)
-    return std::vector<double>();
-  if (d == 0.0)
-    return std::vector<double>(1,-b/(2.0*a));
-  const double rD = std::sqrt(d);
-  std::vector<double> solutions;
-  solutions.reserve(2);
-  solutions.push_back((-b + rD)/(2.0 * a));
-  solutions.push_back((-b - rD)/(2.0 * a));
-  return solutions;
+  About a(
+    "Richel Bilderbeek",
+    "QuadraticSolver",
+    "solver of quadratic equations",
+    "the 1st of Oktober 2013",
+    "2008-2013",
+    "http://www.richelbilderbeek.nl/ToolQuadraticSolver.htm",
+    GetVersion(),
+    GetVersionHistory());
+  a.AddLibrary("Trace version: " + Trace::GetVersion());
+  return a;
+}
+
+const std::string ribi::QuadraticSolverMenuDialog::GetVersion()
+{
+  return "2.1";
+}
+
+const std::vector<std::string> ribi::QuadraticSolverMenuDialog::GetVersionHistory()
+{
+  return {
+    "2008-xx-xx: version 1.0: initial version in C++ Builder",
+    "2013-08-26: version 2.0: port to Qt Creator, console version",
+    "2013-10-01: version 2.1: added desktop version"
+  };
 }

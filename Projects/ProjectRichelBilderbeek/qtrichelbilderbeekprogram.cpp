@@ -47,7 +47,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "qtpictocodemenudialog.h"
 #include "qtpylosmenudialog.h"
 #include "qtqmakewatchermenudialog.h"
-#include "qttoolquadraticsolvermenudialog.h"
+#include "qtquadraticsolvermenudialog.h"
 #include "qtrandomcodemenudialog.h"
 #include "qtregextestermenudialog.h"
 #include "qtrichelbilderbeekgallerymenudialog.h"
@@ -58,7 +58,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "qtstateobservermenudialog.h"
 #include "qttestdialmenudialog.h"
 #include "qttestfunctionparsermenudialog.h"
-#include "qttestledmaindialog.h"
+#include "qttooltestledmaindialog.h"
 #include "qttestmultiplechoicequestionmenudialog.h"
 #include "qttestopenquestionmenudialog.h"
 #include "qttestpylosmenudialog.h"
@@ -211,7 +211,7 @@ ribi::QtHideAndShowDialog * ribi::QtRichelBilderbeekProgram::CreateQtMenuDialog(
     case ProgramType::testGroupWidget: break;
     case ProgramType::testHugeVector: break;
     case ProgramType::testLazy_init: break;
-    case ProgramType::testLed: p = new QtTestLedDialog; break;
+    case ProgramType::testLed: p = new QtTestLedMainDialog; break;
     case ProgramType::testManyDigitNewick: break;
     case ProgramType::testMultiApproximator: p = new QtToolTestMultiApproximatorMenuDialog; break;
     case ProgramType::testMultipleChoiceQuestion: p = new QtTestMultipleChoiceQuestionMenuDialog; break;

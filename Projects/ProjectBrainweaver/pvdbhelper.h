@@ -49,10 +49,6 @@ const std::vector<const T *> AddConst(
 
 namespace pvdb {
 
-///From http://www.richelbilderbeek.nl/CppFileToVector.htm
-//const std::vector<std::string> FileToVector(const std::string& filename);
-
-
 ///Obtain all possible selections of a std::vector, preserving the ordering of its elements
 ///Examples:
 /// {     } -> { {}                                              }
@@ -103,12 +99,6 @@ const std::vector<std::string> SafeFileToVector(const std::string& filename);
 ///Split an XML std::string into its parts
 //From http://www.richelbilderbeek.nl/CppSplitXml.htm
 const std::vector<std::string> SplitXml(const std::string& s);
-
-///Strip the XML tags of an XML item
-///For example '<tag>text</tag>' becomes 'text'
-///Note that also '<any_tag>text</other_tag>' fails
-///From http://www.richelbilderbeek.nl/CppStripXmlTag.htm
-const std::string StripXmlTag(const std::string& s);
 
 #ifndef NDEBUG
 ///Test the helper functions

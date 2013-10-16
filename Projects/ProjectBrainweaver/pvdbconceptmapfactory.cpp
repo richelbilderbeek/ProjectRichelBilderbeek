@@ -6,6 +6,7 @@
 #include <cassert>
 #include <boost/lexical_cast.hpp>
 
+//#include "fileio.h"
 #include "pvdbcenternodefactory.h"
 #include "pvdbcenternode.h"
 #include "pvdbconcept.h"
@@ -18,6 +19,7 @@
 #include "pvdbnode.h"
 #include "pvdbnodefactory.h"
 #include "trace.h"
+#include "xml.h"
 #pragma GCC diagnostic pop
 
 const boost::shared_ptr<ribi::pvdb::ConceptMap> ribi::pvdb::ConceptMapFactory::Create(
@@ -148,7 +150,7 @@ const boost::shared_ptr<ribi::pvdb::ConceptMap> ribi::pvdb::ConceptMapFactory::F
     = pvdb::GetRegexMatches(s,QRegExp("(<concept_map>.*</concept_map>)"));
   assert(v.size() == 1);
   //Strip the <concept_map> tags
-  const std::string concept_map_str = pvdb::StripXmlTag(v[0]);
+  const std::string concept_map_str = ribi::xml::StripXmlTag(v[0]);
 
   std::vector<boost::shared_ptr<ribi::pvdb::Node> > nodes;
   {
@@ -157,7 +159,7 @@ const boost::shared_ptr<ribi::pvdb::ConceptMap> ribi::pvdb::ConceptMapFactory::F
       = pvdb::GetRegexMatches(concept_map_str,QRegExp("(<nodes>.*</nodes>)"));
     assert(w.size() == 1);
     //Strip the <nodes> tags
-    const std::string nodes_str = pvdb::StripXmlTag(w[0]);
+    const std::string nodes_str = ribi::xml::StripXmlTag(w[0]);
     //Obtain the <concept> ... </concept> strings
     const std::vector<std::string> x
       = pvdb::GetRegexMatches(nodes_str,QRegExp("(<node>.*</node>)"));
@@ -187,7 +189,7 @@ const boost::shared_ptr<ribi::pvdb::ConceptMap> ribi::pvdb::ConceptMapFactory::F
       = pvdb::GetRegexMatches(concept_map_str,QRegExp("(<edges>.*</edges>)"));
     assert(w.size() == 1);
     //Strip the <edges> tags
-    const std::string nodes_str = pvdb::StripXmlTag(w[0]);
+    const std::string nodes_str = ribi::xml::StripXmlTag(w[0]);
     //Obtain the <edge> ... </edge> strings
     const std::vector<std::string> x
       = pvdb::GetRegexMatches(nodes_str,QRegExp("(<edge>.*</edge>)"));

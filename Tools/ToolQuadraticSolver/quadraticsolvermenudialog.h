@@ -18,29 +18,24 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 // From http://www.richelbilderbeek.nl/ToolQuadraticSolver.htm
 //---------------------------------------------------------------------------
-#include "quadraticsolvermaindialog.h"
+#ifndef QUADRATICSOLVERMENUDIALOG_H
+#define QUADRATICSOLVERMENUDIALOG_H
 
-#include <cmath>
+#include <string>
+#include <vector>
 
-const std::vector<double> ribi::QuadraticSolverMainDialog::SolveQuadratic(
-  const double a, const double b, const double c)
+#include "about.h"
+
+namespace ribi {
+
+///GUI independent QuadraticSolver menu dialog
+struct QuadraticSolverMenuDialog
 {
-  if (a == 0.0)
-  {
-    if (b == 0.0)
-      return std::vector<double>(1,0.0);
-    else
-      return std::vector<double>(1,c/b);
-  }
-  const double d = (b * b) - (4.0 * a * c);
-  if (d < 0.0)
-    return std::vector<double>();
-  if (d == 0.0)
-    return std::vector<double>(1,-b/(2.0*a));
-  const double rD = std::sqrt(d);
-  std::vector<double> solutions;
-  solutions.reserve(2);
-  solutions.push_back((-b + rD)/(2.0 * a));
-  solutions.push_back((-b - rD)/(2.0 * a));
-  return solutions;
-}
+  static const About GetAbout();
+  static const std::string GetVersion();
+  static const std::vector<std::string> GetVersionHistory();
+};
+
+} //~namespace ribi
+
+#endif // QUADRATICSOLVERMENUDIALOG_H

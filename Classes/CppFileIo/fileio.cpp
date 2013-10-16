@@ -42,6 +42,8 @@ bool ribi::fileio::FilesAreIdentical(
   const std::string& filename_a,
   const std::string& filename_b)
 {
+  assert(IsRegularFile(filename_a));
+  assert(IsRegularFile(filename_b));
   const std::vector<std::string> v { FileToVector(filename_a) };
   const std::vector<std::string> w { FileToVector(filename_b) };
   return v == w;
@@ -52,8 +54,8 @@ const std::vector<std::string> ribi::fileio::FileToVector(const std::string& fil
   #ifndef NDEBUG
   if (!IsRegularFile(filename))
   {
-    TRACE("ERROR");
     TRACE(filename);
+    TRACE("ERROR");
   }
   #endif
   assert(IsRegularFile(filename));
@@ -173,7 +175,6 @@ const std::string ribi::fileio::RemovePath(const std::string& filename)
   const std::size_t j = i + 1;
   assert(j < filename.size());
   const std::string s = filename.substr(j,filename.size() - j);
-  TRACE(s);
   return s;
 }
 
