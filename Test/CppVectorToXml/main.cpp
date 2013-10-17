@@ -1,29 +1,13 @@
+#include <cassert>
 #include <string>
+#include <sstream>
 #include <vector>
 
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/lexical_cast.hpp>
-#include <boost/xpressive/xpressive.hpp>
 #pragma GCC diagnostic pop
-
-//From http://www.richelbilderbeek.nl/CppGetRegexMatches.htm
-const std::vector<std::string>
-  GetRegexMatchesBoostXpressive(
-  const std::string& s,
-  const boost::xpressive::sregex& r)
-{
-  std::vector<std::string> v;
-  boost::xpressive::sregex_iterator cur(s.begin(),s.end(),r);
-  boost::xpressive::sregex_iterator end;
-  for( ; cur != end; ++cur )
-  {
-    const boost::xpressive::smatch& what = *cur;
-    v.push_back(what[0]);
-  }
-  return v;
-}
 
 ///Convert a std::vector to single-line XML
 ///For example, a std::vector with elements {"cat","dog"} and name "animals" becomes

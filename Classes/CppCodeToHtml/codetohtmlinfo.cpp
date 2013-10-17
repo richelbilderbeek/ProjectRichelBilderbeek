@@ -6191,14 +6191,14 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
     }
   );
   m.push_back(
-    { "GameBillysGarden",
+    { "GameAthleticLand",
       {
         "<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
-        "<p><a href=\"GameBillysGarden.htm\">BillysGarden</a> is an unfinished <a href=\"Games.htm\">game</a> that is a PC clone of the MSX <a href=\"Games.htm\">game</a> 'Athletic Land'.</p>",
+        "<p><a href=\"GameAthleticLand.htm\">AthleticLand</a> is an unfinished <a href=\"Games.htm\">game</a> that is a PC clone of the MSX <a href=\"Games.htm\">game</a> 'Athletic Land'.</p>",
         "<p>&nbsp;</p>",
-        R"(<p><a href="GameBillysGarden.htm">BillysGarden</a>, the successor of <a href="GameBillysGardenVcl.htm">BillysGardenVcl</a>, uses the cross-platform <a href="CppQt.htm">Qt</a> <a href="CppLibrary.htm">library</a>.)",
-        R"(<p><a href="GameBillysGardenVcl.htm">BillysGardenVcl</a>, the predecessor of <a href="GameBillysGarden.htm">BillysGarden</a>, uses the Windows-only <a href="CppVcl.htm">VCL</a> <a href="CppLibrary.htm">library</a>.)",
+        R"(<p><a href="GameAthleticLand.htm">AthleticLand</a>, the successor of <a href="GameAthleticLandVcl.htm">AthleticLandVcl</a>, uses the cross-platform <a href="CppQt.htm">Qt</a> <a href="CppLibrary.htm">library</a>.)",
+        R"(<p><a href="GameAthleticLandVcl.htm">AthleticLandVcl</a>, the predecessor of <a href="GameAthleticLand.htm">AthleticLand</a>, uses the Windows-only <a href="CppVcl.htm">VCL</a> <a href="CppLibrary.htm">library</a>.)",
         "<p>&nbsp;</p>",
         "<p>&nbsp;</p>",
         "<p>&nbsp;</p>",
@@ -6207,7 +6207,7 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<h2>Downloads</h2>",
         "<p>&nbsp;</p>",
         "<ul>",
-        "  <li><a href=\"GameBillysGarden_0_9.png\">View a screenshot of 'Billy's Garden' (version 0.9)(png)</a></li>",
+        "  <li><a href=\"GameAthleticLand_0_9.png\">View a screenshot of 'AthleticLand' (version 0.9)(png)</a></li>",
         "</ul>",
         "<p>&nbsp;</p>",
         "<p>&nbsp;</p>",
@@ -6223,14 +6223,14 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
     }
   );
   m.push_back(
-    { "GameBillysGardenVcl",
+    { "GameAthleticLandVcl",
       {
         "<p><img src=\"PicCppBuilder.png\" alt=\"C++ Builder\"/><img src=\"PicWindows.png\" alt=\"Windows\"/></p>",
         "<p>&nbsp;</p>",
-        "<p><a href=\"GameBillysGardenVcl.htm\">BillysGardenVcl</a> is an unfinished <a href=\"Games.htm\">game</a> that is a PC clone of the MSX <a href=\"Games.htm\">game</a> 'Athletic Land'.</p>",
+        "<p><a href=\"GameAthleticLandVcl.htm\">AthleticLandVcl</a> is an unfinished <a href=\"Games.htm\">game</a> that is a PC clone of the MSX <a href=\"Games.htm\">game</a> 'Athletic Land'.</p>",
         "<p>&nbsp;</p>",
-        R"(<p><a href="GameBillysGarden.htm">BillysGarden</a>, the successor of <a href="GameBillysGardenVcl.htm">BillysGardenVcl</a>, uses the cross-platform <a href="CppQt.htm">Qt</a> <a href="CppLibrary.htm">library</a>.)",
-        R"(<p><a href="GameBillysGardenVcl.htm">BillysGardenVcl</a>, the predecessor of <a href="GameBillysGarden.htm">BillysGarden</a>, uses the Windows-only <a href="CppVcl.htm">VCL</a> <a href="CppLibrary.htm">library</a>.)",
+        R"(<p><a href="GameAthleticLand.htm">AthleticLand</a>, the successor of <a href="GameAthleticLandVcl.htm">AthleticLandVcl</a>, uses the cross-platform <a href="CppQt.htm">Qt</a> <a href="CppLibrary.htm">library</a>.)",
+        R"(<p><a href="GameAthleticLandVcl.htm">AthleticLandVcl</a>, the predecessor of <a href="GameAthleticLand.htm">AthleticLand</a>, uses the Windows-only <a href="CppVcl.htm">VCL</a> <a href="CppLibrary.htm">library</a>.)",
         "<p>&nbsp;</p>",
         "<p>&nbsp;</p>",
         "<p>&nbsp;</p>",
@@ -6239,10 +6239,10 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
         "<h2>Downloads</h2>",
         "<p>&nbsp;</p>",
         "<ul>",
-        "  <li><a href=\"GameBillysGarden_0_9.png\">View a screenshot of 'Billy's Garden' (version 0.9)(png)</a></li>",
-        "  <li><a href=\"GameBillysGardenExe_0_9.zip\">Download a Windows executable of 'Billy's Garden' (version 0.9)(zip)</a></li>",
-        "  <li><a href=\"GameBillysGardenSource_0_9.zip\">Download the source code of 'Billy's Garden' (version 0.9)(zip)</a></li>",
-        "  <li><a href=\"GameBillysGardenSprites_0_9.zip\">Download the (.bmp) sprites of 'Billy's Garden' (version 0.9)(zip)</a></li>",
+        "  <li><a href=\"GameAthleticLand_0_9.png\">View a screenshot of 'AthleticLand' (version 0.9)(png)</a></li>",
+        "  <li><a href=\"GameAthleticLandExe_0_9.zip\">Download a Windows executable of 'AthleticLand' (version 0.9)(zip)</a></li>",
+        "  <li><a href=\"GameAthleticLandSource_0_9.zip\">Download the source code of 'AthleticLand' (version 0.9)(zip)</a></li>",
+        "  <li><a href=\"GameAthleticLandSprites_0_9.zip\">Download the (.bmp) sprites of 'AthleticLand' (version 0.9)(zip)</a></li>",
         "</ul>",
         "<p>&nbsp;</p>",
         "<p>&nbsp;</p>",

@@ -7,6 +7,7 @@
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/lexical_cast.hpp>
+#include <boost/shared_ptr.hpp>
 #include "trace.h"
 #pragma GCC diagnostic pop
 
@@ -62,16 +63,6 @@ const std::string ribi::xml::StripXmlTag(const std::string& s)
   return text;
 }
 
-const std::string ribi::xml::StrToXml(
-  const std::string& tag_name,
-  const std::string& content)
-{
-  std::stringstream s;
-  s << "<"  << tag_name << ">" << content << "</" << tag_name << ">";
-  //No test here, as StrToXml is used in testing XmlToStr
-  return s.str();
-}
-
 #ifndef NDEBUG
 void ribi::xml::Test() noexcept
 {
@@ -101,13 +92,175 @@ void ribi::xml::Test() noexcept
   }
   //StrToXml and XmlToStr
   {
-    const std::string tag_name { "cat_name" };
-    const std::string content  { "Kitty" };
-    const std::string xml = StrToXml(tag_name,content);
-    const std::pair<std::string,std::string> p = XmlToStr(xml);
-    assert(p.first == tag_name);
-    assert(p.second == content);
+    const std::vector<std::string> v { "a", "ab", "abc", " ", "" };
+    const std::size_t sz = v.size();
+    for (std::size_t i=0; i!=sz; ++i)
+    {
+      const std::string tag_name = v[i];
+      for (std::size_t j=0; j!=sz; ++j)
+      {
+        const std::string content = v[j];
+        const std::string xml = ToXml(tag_name,content);
+        assert(FromXml(xml).first  == tag_name);
+        assert(FromXml(xml).second == content);
+      }
+    }
   }
+  //MapToXml
+  {
+    //Use int to std::string map
+    {
+      //Create a map
+      typedef int KeyType;
+      typedef std::string ValueType;
+      std::map<KeyType,ValueType> m;
+      m.insert( std::make_pair(1,"one") );
+      m.insert( std::make_pair(2,"two") );
+      m.insert( std::make_pair(4,"four") );
+
+      const std::string tag_name = "integers";
+
+      //Convert map to XML
+      const std::string xml = MapToXml(tag_name,m);
+
+      //Convert XML back to map
+      const std::function<KeyType(const std::string&)>& str_to_key_function {
+        [](const std::string& s)
+        {
+          return boost::lexical_cast<KeyType>(s);
+        }
+      };
+      const std::function<ValueType(const std::string&)>& str_to_value_function {
+        [](const std::string& s)
+        {
+          return boost::lexical_cast<ValueType>(s);
+        }
+      };
+      const std::pair<std::string,std::map<KeyType,ValueType>> p {
+        XmlToMap<KeyType,ValueType>(xml,str_to_key_function,str_to_value_function)
+      };
+      assert(p.first == tag_name);
+      assert(p.second.size() == m.size());
+      assert(std::equal(m.begin(),m.end(),p.second.begin()));
+      //Again convert pointers to XML
+      std::cout << MapToXml(p.first,p.second) << '\n';
+    }
+    //Use std::string to int map
+    {
+      //Create a map
+      typedef std::string KeyType;
+      typedef int ValueType;
+      std::map<KeyType,ValueType> m;
+      m.insert( std::make_pair("one",1) );
+      m.insert( std::make_pair("two",2) );
+      m.insert( std::make_pair("four",4) );
+
+      const std::string tag_name = "integers";
+
+      //Convert map to XML
+      const std::string xml = MapToXml(tag_name,m);
+
+      //Convert XML back to map
+      const std::function<KeyType(const std::string&)>& str_to_key_function {
+        [](const std::string& s)
+        {
+          return boost::lexical_cast<KeyType>(s);
+        }
+      };
+      const std::function<ValueType(const std::string&)>& str_to_value_function {
+        [](const std::string& s)
+        {
+          return boost::lexical_cast<ValueType>(s);
+        }
+      };
+      const std::pair<std::string,std::map<KeyType,ValueType>> p {
+        XmlToMap<KeyType,ValueType>(xml,str_to_key_function,str_to_value_function)
+      };
+      assert(p.first == tag_name);
+      assert(p.second.size() == m.size());
+      assert(std::equal(m.begin(),m.end(),p.second.begin()));
+      //Again convert pointers to XML
+      std::cout << MapToXml(p.first,p.second) << '\n';
+    }
+
+    //Use int to boost::shared_ptr<const std::string> map
+    {
+      //Create a map
+      typedef std::string TagType;
+      typedef int KeyType;
+      typedef boost::shared_ptr<const std::string> ValueType;
+      const TagType tag_name { "integers again" };
+      std::map<KeyType,ValueType> m;
+      m.insert( std::make_pair(1,boost::shared_ptr<const std::string>(new std::string("one" )) ));
+      m.insert( std::make_pair(4,boost::shared_ptr<const std::string>(new std::string("four")) ));
+      m.insert( std::make_pair(9,boost::shared_ptr<const std::string>(new std::string("nine")) ));
+
+      //Convert map to XML
+      const std::function<std::string(const TagType&)> tag_to_str_function {
+        [](const TagType& tag)
+        {
+          return tag;
+        }
+      };
+      const std::function<std::string(const KeyType&  )> key_to_str_function {
+        [](const KeyType& key)
+        {
+          return boost::lexical_cast<std::string>(key);
+        }
+      };
+      const std::function<std::string(const ValueType&)> value_to_str_function {
+        [](const ValueType& value)
+        {
+          return *value;
+        }
+      };
+
+      const std::string xml {
+        MapToXml(tag_name,m,tag_to_str_function,key_to_str_function,value_to_str_function)
+      };
+
+      //Convert XML back to map
+      //const std::function<TagType(const std::string&)>& str_to_tag_function {
+      //  [](const std::string& s)
+      //  {
+      //    return s;
+      //  }
+      //};
+      const std::function<KeyType(const std::string&)>& str_to_key_function {
+        [](const std::string& s)
+        {
+          return boost::lexical_cast<KeyType>(s);
+        }
+      };
+      const std::function<ValueType(const std::string&)>& str_to_value_function {
+        [](const std::string& s)
+        {
+          return boost::shared_ptr<const std::string>(new std::string(s));
+        }
+      };
+      const std::pair<std::string,std::map<KeyType,ValueType>> p {
+        XmlToMap<KeyType,ValueType>(xml,str_to_key_function,str_to_value_function)
+      };
+      assert(p.first == tag_name);
+      assert(p.second.size() == m.size());
+      assert(
+        std::equal(m.begin(),m.end(),p.second.begin(),
+          [key_to_str_function,value_to_str_function](
+            const std::pair<KeyType,ValueType>& lhs, const std::pair<KeyType,ValueType>& rhs)
+          {
+            return key_to_str_function(lhs.first) == key_to_str_function(rhs.first)
+              && value_to_str_function(lhs.second) == value_to_str_function(rhs.second);
+          }
+        )
+      );
+      //Again convert pointers to XML
+      std::cout
+        << MapToXml(tag_name,m,tag_to_str_function,key_to_str_function,value_to_str_function)
+        << '\n';
+    }
+
+  }
+
   //SetToXml and XmlToSet
   {
     const std::set<std::string> content { "cats", "dog", "zebrafinch" };
@@ -117,7 +270,148 @@ void ribi::xml::Test() noexcept
     //assert(p.first == tag_name);
     //assert(p.second == content);
   }
+  //ToXml and FromXml
+  {
+    //tag: std::string, content: std::string
+    {
+      typedef std::string TagType;
+      typedef std::string ContentType;
+      const TagType     tag_name { "name"  };
+      const ContentType content  { "Kitty" };
+      const std::string xml { ToXml(tag_name,content) };
+      const std::pair<TagType,ContentType> p { FromXml<TagType,ContentType>(xml) };
+      assert(p.first  == tag_name);
+      assert(p.second == content);
+    }
+    //tag: int, content: std::string
+    {
+      typedef int TagType;
+      typedef std::string ContentType;
+      const TagType     tag_name { 42  };
+      const ContentType content  { "The answer" };
+      const std::string xml { ToXml(tag_name,content) };
+      const std::pair<TagType,ContentType> p { FromXml<TagType,ContentType>(xml) };
+      assert(p.first  == tag_name);
+      assert(p.second == content);
+    }
+    //tag: int, content: std::string
+    {
+      typedef int ContentType;
+      typedef std::string TagType;
+      const TagType     tag_name { "The answer" };
+      const ContentType content  { 42 };
+      const std::string xml { ToXml(tag_name,content) };
+      const std::pair<TagType,ContentType> p { FromXml<TagType,ContentType>(xml) };
+      assert(p.first  == tag_name);
+      assert(p.second == content);
+    }
+    //tag: int, content: int
+    {
+      typedef std::string TagType;
+      typedef int ContentType;
+      const TagType     tag_name { 123 };
+      const ContentType content  { 456 };
+      const std::string xml { ToXml(tag_name,content) };
+      const std::pair<TagType,ContentType> p { FromXml<TagType,ContentType>(xml) };
+      assert(p.first  == tag_name);
+      assert(p.second == content);
+    }
+    //tag: std::string, content: boost::shared_ptr<const std::string>
+    {
+      typedef std::string TagType;
+      typedef boost::shared_ptr<const std::string> ContentType;
+      const TagType     tag_name { "name" };
+      const ContentType content  { boost::shared_ptr<const std::string>(new std::string("Kitty")) };
 
+      //Convert tag and content to XML
+      const std::function<std::string(const TagType&)> tag_to_str_function {
+        [](const TagType& t) { return t; }
+      };
+      const std::function<std::string(const ContentType&)> content_to_str_function {
+        [](const ContentType& c) { return *c; }
+      };
+
+      const std::string xml {
+        ToXml(tag_name,content,tag_to_str_function,content_to_str_function)
+      };
+
+      //Convert XML back to its tag and content
+      //with custom functions
+      const std::function<TagType(const std::string&)> str_to_tag_function {
+        [](const std::string& s) { return s; }
+      };
+      const std::function<ContentType(const std::string&)> str_to_content_function {
+        [](const std::string& s) { return boost::shared_ptr<const std::string>(new std::string(s)); }
+      };
+
+      //Check both conversion functions
+      //Cannot simply compare to tag_name and content, as these may be of any type
+      assert(tag_to_str_function(str_to_tag_function(tag_to_str_function(tag_name)))
+        ==   tag_to_str_function(                                        tag_name));
+      assert(content_to_str_function(str_to_content_function(content_to_str_function(content)))
+        ==   content_to_str_function(                                                content));
+
+      const std::pair<TagType,ContentType> p {
+        FromXml<TagType,ContentType>(
+          xml,
+          str_to_tag_function,
+          str_to_content_function
+        )
+      };
+
+      //Cannot simply compare to tag_name and content, as these may be of any type
+      assert(tag_to_str_function(    p.first ) == tag_to_str_function(    tag_name));
+      assert(content_to_str_function(p.second) == content_to_str_function(content ));
+    }
+
+    //tag: int, content: boost::shared_ptr<const std::string>
+    {
+      typedef int TagType;
+      typedef boost::shared_ptr<const std::string> ContentType;
+      const TagType     tag_name { 123 };
+      const ContentType content  { boost::shared_ptr<const std::string>(new std::string("one-two-three")) };
+
+      //Convert tag and content to XML
+      const std::function<std::string(const TagType&)> tag_to_str_function {
+        [](const TagType& t) { return boost::lexical_cast<std::string>(t); }
+      };
+      const std::function<std::string(const ContentType&)> content_to_str_function {
+        [](const ContentType& c) { return *c; }
+      };
+
+      const std::string xml {
+        ToXml(tag_name,content,tag_to_str_function,content_to_str_function)
+      };
+
+      //Convert XML back to its tag and content
+      //with custom functions
+      const std::function<TagType(const std::string&)> str_to_tag_function {
+        [](const std::string& s) { return boost::lexical_cast<TagType>(s); }
+      };
+      const std::function<ContentType(const std::string&)> str_to_content_function {
+        [](const std::string& s) { return boost::shared_ptr<const std::string>(new std::string(s)); }
+      };
+
+      //Check both conversion functions
+      //Cannot simply compare to tag_name and content, as these may be of any type
+      assert(tag_to_str_function(str_to_tag_function(tag_to_str_function(tag_name)))
+        ==   tag_to_str_function(                                        tag_name));
+      assert(content_to_str_function(str_to_content_function(content_to_str_function(content)))
+        ==   content_to_str_function(                                                content));
+
+      const std::pair<TagType,ContentType> p {
+        FromXml<TagType,ContentType>(
+          xml,
+          str_to_tag_function,
+          str_to_content_function
+        )
+      };
+
+      //Cannot simply compare to tag_name and content, as these may be of any type
+      assert(tag_to_str_function(    p.first ) == tag_to_str_function(    tag_name));
+      assert(content_to_str_function(p.second) == content_to_str_function(content ));
+    }
+  }
   //VectorToXml and XmlToVector
   {
     const std::vector<std::string> content { "cats", "dog", "zebrafinch" };
@@ -255,7 +549,6 @@ void ribi::xml::Test() noexcept
     assert(pretty == pretty_expected);
   }
   }
-  //assert(1==2);
 }
 #endif
 
@@ -281,6 +574,7 @@ const std::vector<std::string> ribi::xml::XmlToPretty(const std::string& s)
   return v;
 }
 
+/*
 const std::pair<std::string,std::string> ribi::xml::XmlToStr(const std::string& s)
 {
   assert(!s.empty());
@@ -294,10 +588,10 @@ const std::pair<std::string,std::string> ribi::xml::XmlToStr(const std::string& 
   const int content_sz = static_cast<int>(s.find_last_of('/')) - tag_name_sz - 3;
   const std::string content = s.substr(tag_name.size() + 2,content_sz);
   const std::pair<std::string,std::string> p { tag_name, content };
-  assert(StrToXml(p.first,p.second) == s);
+  assert(ToXml(p.first,p.second) == s);
   return p;
 }
-
+*/
 
 const std::pair<std::string,std::vector<std::string>> ribi::xml::XmlToVector(
   const std::string& s)
@@ -309,7 +603,7 @@ const std::pair<std::string,std::vector<std::string>> ribi::xml::XmlToVector(
 
   //Read the name tag
   //<tag_name>...</tag_name>
-  const std::pair<std::string,std::string> p = XmlToStr(s);
+  const std::pair<std::string,std::string> p = FromXml(s);
   const std::string tag_name = p.first;
 
   std::vector<std::string> content;
