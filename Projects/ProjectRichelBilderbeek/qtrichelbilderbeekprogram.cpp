@@ -102,9 +102,10 @@ ribi::QtHideAndShowDialog * ribi::QtRichelBilderbeekProgram::CreateQtMenuDialog(
   {
     case ProgramType::aminoAcidFighter: break;
     case ProgramType::asciiArter: p = new QtAsciiArterMenuDialog; break;
+    case ProgramType::athleticLand: break;
+    case ProgramType::athleticLandVcl: break;
     case ProgramType::barbaImage: break;
     case ProgramType::beerWanter: p = new QtBeerWanterMenuDialog; break;
-    case ProgramType::billysGarden: break;
     case ProgramType::bochum: break;
     case ProgramType::boenken: p = new QtBoenkenMenuDialog; break;
     case ProgramType::brainweaver: break;

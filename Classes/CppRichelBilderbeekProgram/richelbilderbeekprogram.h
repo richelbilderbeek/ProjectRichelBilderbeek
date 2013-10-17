@@ -158,6 +158,36 @@ struct ProgramAsciiArter : public RichelBilderbeek::ProgramTool
   const std::string GetUrl() const noexcept { return "ToolAsciiArter.htm"; }
 };
 
+struct ProgramAthleticLand : public RichelBilderbeek::ProgramGame
+{
+  const std::string GetFilenameConsole() const noexcept { return ""; }
+  const std::string GetFilenameDesktop() const noexcept { return "GameAthleticLand_0_9.png"; }
+  const std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
+  const std::string GetFilenameWeb() const noexcept { return ""; }
+  const std::string GetScreenName() const noexcept { return "Athletic Land"; }
+  ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::no; }
+  ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::nvr; }
+  ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::wip; }
+  ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::no; }
+  ProgramType GetType() const noexcept { return ProgramType::athleticLand; }
+  const std::string GetUrl() const noexcept { return "GameAthleticLand.htm"; }
+};
+
+struct ProgramAthleticLandVcl : public RichelBilderbeek::ProgramGame
+{
+  const std::string GetFilenameConsole() const noexcept { return ""; }
+  const std::string GetFilenameDesktop() const noexcept { return ""; }
+  const std::string GetFilenameDesktopWindowsOnly() const noexcept { return "GameAthleticLand_0_9.png"; }
+  const std::string GetFilenameWeb() const noexcept { return ""; }
+  const std::string GetScreenName() const noexcept { return "Athletic Land (VCL)"; }
+  ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::nvr; }
+  ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::no; }
+  ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::wip; }
+  ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::no; }
+  ProgramType GetType() const noexcept { return ProgramType::athleticLandVcl; }
+  const std::string GetUrl() const noexcept { return "GameAthleticLandVcl.htm"; }
+};
+
 struct ProgramBarbaImage : public RichelBilderbeek::ProgramTool
 {
   const std::string GetFilenameConsole() const noexcept { return ""; }
@@ -186,21 +216,6 @@ struct ProgramBeerWanter : public RichelBilderbeek::ProgramGame
   ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::no; }
   ProgramType GetType() const noexcept { return ProgramType::beerWanter; }
   const std::string GetUrl() const noexcept { return "GameBeerWanter.htm"; }
-};
-
-struct ProgramBillysGarden : public RichelBilderbeek::ProgramGame
-{
-  const std::string GetFilenameConsole() const noexcept { return ""; }
-  const std::string GetFilenameDesktop() const noexcept { return "GameBillysGarden_0_9.png"; }
-  const std::string GetFilenameDesktopWindowsOnly() const noexcept { return "GameBillysGarden_0_9.png"; }
-  const std::string GetFilenameWeb() const noexcept { return ""; }
-  const std::string GetScreenName() const noexcept { return "BillysGarden"; }
-  ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::no; }
-  ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::no; }
-  ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::wip; }
-  ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::no; }
-  ProgramType GetType() const noexcept { return ProgramType::billysGarden; }
-  const std::string GetUrl() const noexcept { return "GameBillysGarden.htm"; }
 };
 
 struct ProgramBochum : public RichelBilderbeek::ProgramProject

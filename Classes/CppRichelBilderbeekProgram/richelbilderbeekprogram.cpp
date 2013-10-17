@@ -39,7 +39,8 @@ const boost::shared_ptr<ribi::RichelBilderbeek::Program> ribi::RichelBilderbeek:
     case ProgramType::asciiArter: p.reset(new ProgramAsciiArter); break;
     case ProgramType::barbaImage: p.reset(new ProgramBarbaImage); break;
     case ProgramType::beerWanter: p.reset(new ProgramBeerWanter); break;
-    case ProgramType::billysGarden: p.reset(new ProgramBillysGarden); break;
+    case ProgramType::athleticLand: p.reset(new ProgramAthleticLand); break;
+    case ProgramType::athleticLandVcl: p.reset(new ProgramAthleticLandVcl); break;
     case ProgramType::bochum: p.reset(new ProgramBochum); break;
     case ProgramType::boenken: p.reset(new ProgramBoenken); break;
     case ProgramType::brainweaver: p.reset(new ProgramBrainweaver); break;

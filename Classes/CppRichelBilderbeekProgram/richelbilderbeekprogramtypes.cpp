@@ -25,9 +25,10 @@ const boost::bimap<ribi::RichelBilderbeek::ProgramType,std::string> ribi::Richel
   ///where A1 to Ax contain the programType enum values
   m.insert(Pair(ProgramType::aminoAcidFighter,std::string("aminoAcidFighter")));
   m.insert(Pair(ProgramType::asciiArter,std::string("asciiArter")));
+  m.insert(Pair(ProgramType::athleticLand,std::string("athleticLand")));
+  m.insert(Pair(ProgramType::athleticLandVcl,std::string("athleticLandVcl")));
   m.insert(Pair(ProgramType::barbaImage,std::string("barbaImage")));
   m.insert(Pair(ProgramType::beerWanter,std::string("beerWanter")));
-  m.insert(Pair(ProgramType::billysGarden,std::string("billysGarden")));
   m.insert(Pair(ProgramType::bochum,std::string("bochum")));
   m.insert(Pair(ProgramType::boenken,std::string("boenken")));
   m.insert(Pair(ProgramType::brainweaver,std::string("brainweaver")));
@@ -202,9 +203,10 @@ const boost::bimap<ribi::RichelBilderbeek::ProgramType,std::string> ribi::Richel
   ///where A1 to Ax contain the programType enum values
   m.insert(Pair(ProgramType::aminoAcidFighter,std::string("Amino Acid Fighter")));
   m.insert(Pair(ProgramType::asciiArter,std::string("AsciiArter")));
+  m.insert(Pair(ProgramType::athleticLand,std::string("Athletic Land")));
+  m.insert(Pair(ProgramType::athleticLandVcl,std::string("Athletic Land (VCL)")));
   m.insert(Pair(ProgramType::barbaImage,std::string("BarbaImage")));
   m.insert(Pair(ProgramType::beerWanter,std::string("BeerWanter")));
-  m.insert(Pair(ProgramType::billysGarden,std::string("Billy's Garden")));
   m.insert(Pair(ProgramType::bochum,std::string("Bochum")));
   m.insert(Pair(ProgramType::boenken,std::string("Boenken")));
   m.insert(Pair(ProgramType::brainweaver,std::string("Brainweaver")));

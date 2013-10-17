@@ -30,10 +30,11 @@ namespace RichelBilderbeek {
 enum class ProgramType
 {
   aminoAcidFighter,
+  athleticLand,
+  athleticLandVcl,
   asciiArter,
   barbaImage,
   beerWanter,
-  billysGarden,
   bochum,
   boenken,
   brainweaver,
