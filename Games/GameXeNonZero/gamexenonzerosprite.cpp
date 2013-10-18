@@ -5,15 +5,12 @@
 #include <cassert>
 #pragma GCC diagnostic pop
 
-namespace xnz {
+int ribi::xnz::Sprite::mMinx = 1;
+int ribi::xnz::Sprite::mMiny = 1;
+int ribi::xnz::Sprite::mMaxx = 0;
+int ribi::xnz::Sprite::mMaxy = 0;
 
-
-int Sprite::mMinx = 1;
-int Sprite::mMiny = 1;
-int Sprite::mMaxx = 0;
-int Sprite::mMaxy = 0;
-
-Sprite::Sprite(
+ribi::xnz::Sprite::Sprite(
   const int x,
   const int y,
   const Graphic& graphic,
@@ -32,21 +29,21 @@ Sprite::Sprite(
 
 }
 
-void Sprite::ChangeX(const int dx)
+void ribi::xnz::Sprite::ChangeX(const int dx)
 {
   //assert( x >= mMinx);
   //assert( x <  mMaxx);
   mX += dx;
 }
 
-void Sprite::ChangeY(const int dy)
+void ribi::xnz::Sprite::ChangeY(const int dy)
 {
   //assert( y >= mMiny);
   //assert( y <  mMaxy);
   mY += dy;
 }
 
-void SpritePlayer::Move(const int dx, const int dy)
+void ribi::xnz::SpritePlayer::Move(const int dx, const int dy)
 {
   assert(mMaxx != 0);
   assert(mMaxy != 0);
@@ -81,23 +78,23 @@ void SpritePlayer::Move(const int dx, const int dy)
   }
 }
 
-int Sprite::GetWidth() const
+int ribi::xnz::Sprite::GetWidth() const
 {
   assert(mGraphic.size() > 0);
   return mGraphic[0].size();
 }
 
-int Sprite::GetHeight() const
+int ribi::xnz::Sprite::GetHeight() const
 {
   return mGraphic.size();
 }
 
-bool Sprite::IsSpriteBodyAbs(const int x, const int y) const
+bool ribi::xnz::Sprite::IsSpriteBodyAbs(const int x, const int y) const
 {
   return this->IsSpriteBodyRel(x - GetX(), y - GetY() );
 }
 
-bool Sprite::IsSpriteBodyRel(const int x, const int y) const
+bool ribi::xnz::Sprite::IsSpriteBodyRel(const int x, const int y) const
 {
   if ( x < 0
     || y < 0
@@ -109,7 +106,7 @@ bool Sprite::IsSpriteBodyRel(const int x, const int y) const
   return true;
 }
 
-const std::vector<std::pair<int,int> > Sprite::GetSpriteBodyAbs() const
+const std::vector<std::pair<int,int> > ribi::xnz::Sprite::GetSpriteBodyAbs() const
 {
   std::vector<std::pair<int,int> > v;
   const int maxx = GetX() + GetWidth();
@@ -125,7 +122,7 @@ const std::vector<std::pair<int,int> > Sprite::GetSpriteBodyAbs() const
   return v;
 }
 
-SpritePlayer::SpritePlayer(const int x, const int y)
+ribi::xnz::SpritePlayer::SpritePlayer(const int x, const int y)
   : Sprite(
       x,
       y,
@@ -135,9 +132,9 @@ SpritePlayer::SpritePlayer(const int x, const int y)
 
 }
 
-const Sprite::Graphic SpritePlayer::GetPlayerGraphic() const
+const ribi::xnz::Sprite::Graphic ribi::xnz::SpritePlayer::GetPlayerGraphic() const
 {
-  Sprite::Graphic g(4);
+  ribi::xnz::Sprite::Graphic g(4);
   g[0] = " |  | ";
   g[1] = " |/\\| ";
   g[2] = " //\\\\ ";
@@ -145,7 +142,7 @@ const Sprite::Graphic SpritePlayer::GetPlayerGraphic() const
   return g;
 }
 
-void SpritePlayer::Shoot(std::vector<boost::shared_ptr<Sprite> >& newSprites)
+void ribi::xnz::SpritePlayer::Shoot(std::vector<boost::shared_ptr<Sprite> >& newSprites)
 {
   const int missileY  = GetY();
   const int missileX1 = GetX() + 1;
@@ -158,7 +155,7 @@ void SpritePlayer::Shoot(std::vector<boost::shared_ptr<Sprite> >& newSprites)
   newSprites.push_back(missile2);
 }
 
-SpriteMissile::SpriteMissile(
+ribi::xnz::SpriteMissile::SpriteMissile(
   const int x,
   const int y,
   const int dx,
@@ -171,13 +168,13 @@ SpriteMissile::SpriteMissile(
 
 }
 
-const Sprite::Graphic SpriteMissile::GetMissileGraphic(const int size) const
+const ribi::xnz::Sprite::Graphic ribi::xnz::SpriteMissile::GetMissileGraphic(const int size) const
 {
-  Sprite::Graphic g(size,std::string(size,'*'));
+  ribi::xnz::Sprite::Graphic g(size,std::string(size,'*'));
   return g;
 }
 
-void SpriteMissile::Move()
+void ribi::xnz::SpriteMissile::Move()
 {
   ChangeX(mDx);
   ChangeY(mDy);
@@ -189,7 +186,7 @@ void SpriteMissile::Move()
   }
 }
 
-SpriteEnemySmall::SpriteEnemySmall(const int x, const int y)
+ribi::xnz::SpriteEnemySmall::SpriteEnemySmall(const int x, const int y)
   : Sprite(x,y,GetSpriteEnemySmallGraphic(),1),
     mDx(1),
     mTimer(0),
@@ -198,9 +195,9 @@ SpriteEnemySmall::SpriteEnemySmall(const int x, const int y)
 
 }
 
-const Sprite::Graphic SpriteEnemySmall::GetSpriteEnemySmallGraphic() const
+const ribi::xnz::Sprite::Graphic ribi::xnz::SpriteEnemySmall::GetSpriteEnemySmallGraphic() const
 {
-  Sprite::Graphic g(2);
+  ribi::xnz::Sprite::Graphic g(2);
   g[0] = "/*\\/*\\";
   g[1] = "[]  []";
 
@@ -208,7 +205,7 @@ const Sprite::Graphic SpriteEnemySmall::GetSpriteEnemySmallGraphic() const
 
 }
 
-void SpriteEnemySmall::Move()
+void ribi::xnz::SpriteEnemySmall::Move()
 {
   this->ChangeX(mDx);
   if (this->GetX() + this->GetWidth() >= this->mMaxx)
@@ -225,7 +222,7 @@ void SpriteEnemySmall::Move()
   }
 }
 
-void SpriteEnemySmall::Shoot(std::vector<boost::shared_ptr<Sprite> >& newSprites)
+void ribi::xnz::SpriteEnemySmall::Shoot(std::vector<boost::shared_ptr<Sprite> >& newSprites)
 {
   ++mTimer;
   if (mTimer % mTimeShoot == 0)
@@ -242,7 +239,7 @@ void SpriteEnemySmall::Shoot(std::vector<boost::shared_ptr<Sprite> >& newSprites
   }
 }
 
-SpriteEnemyMedium::SpriteEnemyMedium(const int x, const int y)
+ribi::xnz::SpriteEnemyMedium::SpriteEnemyMedium(const int x, const int y)
   : Sprite(x,y,GetSpriteShootDown(),10),
     mDx{0},
     mTimer{},
@@ -252,9 +249,9 @@ SpriteEnemyMedium::SpriteEnemyMedium(const int x, const int y)
 
 }
 
-const Sprite::Graphic SpriteEnemyMedium::GetSpriteShootDownLeft() const
+const ribi::xnz::Sprite::Graphic ribi::xnz::SpriteEnemyMedium::GetSpriteShootDownLeft() const
 {
-  Sprite::Graphic g(7);
+  ribi::xnz::Sprite::Graphic g(7);
   g[0] = "  /----\\  ";
   g[1] = " //xxxx\\\\ ";
   g[2] = "//xx/\\xx\\\\";
@@ -266,9 +263,9 @@ const Sprite::Graphic SpriteEnemyMedium::GetSpriteShootDownLeft() const
 
 }
 
-const Sprite::Graphic SpriteEnemyMedium::GetSpriteShootDown() const
+const ribi::xnz::Sprite::Graphic ribi::xnz::SpriteEnemyMedium::GetSpriteShootDown() const
 {
-  Sprite::Graphic g(7);
+  ribi::xnz::Sprite::Graphic g(7);
   g[0] = "  /----\\  ";
   g[1] = " //xxxx\\\\ ";
   g[2] = "//xx/\\xx\\\\";
@@ -281,9 +278,9 @@ const Sprite::Graphic SpriteEnemyMedium::GetSpriteShootDown() const
 
 }
 
-const Sprite::Graphic SpriteEnemyMedium::GetSpriteShootDownRight() const
+const ribi::xnz::Sprite::Graphic ribi::xnz::SpriteEnemyMedium::GetSpriteShootDownRight() const
 {
-  Sprite::Graphic g(7);
+  ribi::xnz::Sprite::Graphic g(7);
   g[0] = "  /----\\  ";
   g[1] = " //xxxx\\\\ ";
   g[2] = "//xx/\\xx\\\\";
@@ -295,12 +292,12 @@ const Sprite::Graphic SpriteEnemyMedium::GetSpriteShootDownRight() const
 
 }
 
-void SpriteEnemyMedium::Move()
+void ribi::xnz::SpriteEnemyMedium::Move()
 {
 
 }
 
-void SpriteEnemyMedium::Shoot(std::vector<boost::shared_ptr<Sprite> >& newSprites)
+void ribi::xnz::SpriteEnemyMedium::Shoot(std::vector<boost::shared_ptr<Sprite> >& newSprites)
 {
   ++mTimer;
   if (mTimer % mTimeShoot == 0)
@@ -331,9 +328,9 @@ void SpriteEnemyMedium::Shoot(std::vector<boost::shared_ptr<Sprite> >& newSprite
   }
 }
 
-bool IsCollision(
-  const boost::shared_ptr<Sprite>& s1,
-  const boost::shared_ptr<Sprite>& s2)
+bool ribi::xnz::IsCollision(
+  const boost::shared_ptr<ribi::xnz::Sprite>& s1,
+  const boost::shared_ptr<ribi::xnz::Sprite>& s2)
 {
   const std::vector<std::pair<int,int> > body1 = s1->GetSpriteBodyAbs();
   const std::vector<std::pair<int,int> > body2 = s2->GetSpriteBodyAbs();
@@ -344,5 +341,3 @@ bool IsCollision(
   }
   return false;
 }
-
-} //~namespace xnz

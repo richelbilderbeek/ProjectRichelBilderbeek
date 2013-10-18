@@ -6,15 +6,10 @@
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #include <boost/shared_ptr.hpp>
+#include "gamexenonzerospritetype.h"
 #pragma GCC diagnostic pop
 
-enum class EnumSprite
-{
-  spritePlayer,
-  spriteMissile,
-  spriteEnemySmall,
-  spriteEnemyMedium
-};
+namespace ribi {
 
 namespace xnz {
 
@@ -135,5 +130,7 @@ bool IsCollision(
   const boost::shared_ptr<Sprite>& s2);
 
 } //~namespace xnz
+
+} //~namespace ribi
 
 #endif

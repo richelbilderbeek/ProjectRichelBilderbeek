@@ -5,6 +5,8 @@
 #include <vector>
 #include <boost/checked_delete.hpp>
 
+namespace ribi {
+
 namespace xnz {
 
 struct Area
@@ -42,7 +44,8 @@ struct Area
 
 std::ostream& operator<<(std::ostream& os, const Area& a);
 
-
 } //~namespace xnz
+
+} //~namespace ribi
 
 #endif

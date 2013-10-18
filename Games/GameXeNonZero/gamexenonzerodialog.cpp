@@ -14,9 +14,7 @@
 #include "gamexenonzerosprite.h"
 #pragma GCC diagnostic pop
 
-namespace xnz {
-
-Dialog::Dialog()
+ribi::xnz::Dialog::Dialog()
   : mArea(new Area(78,23)),
     mSpritePlayer(new SpritePlayer(78/2-2,23-1-4)),
     mSprites{}
@@ -32,13 +30,13 @@ Dialog::Dialog()
   DrawSprites();
 }
 
-bool Dialog::IsGameOver() const
+bool ribi::xnz::Dialog::IsGameOver() const
 {
   return (mSpritePlayer->GetHealth() <= 0);
 }
 
 /*
-void xnzDialog::AskUserInputAndProcess()
+void xnzribi::xnz::Dialog::AskUserInputAndProcess()
 {
   const std::string userInput = AskUserInput();
 
@@ -67,7 +65,8 @@ void xnzDialog::AskUserInputAndProcess()
 }
 */
 
-const boost::shared_ptr<const Area> Dialog::ProcessInput(const Dialog::Input input)
+const boost::shared_ptr<const ribi::xnz::Area>
+  ribi::xnz::Dialog::ProcessInput(const ribi::xnz::Dialog::Input input)
 {
   switch (input)
   {
@@ -98,12 +97,12 @@ const boost::shared_ptr<const Area> Dialog::ProcessInput(const Dialog::Input inp
   return GetArea();
 }
 
-void Dialog::MoveSprites()
+void ribi::xnz::Dialog::MoveSprites()
 {
   std::for_each(mSprites.begin(),mSprites.end(),SpriteMover());
 }
 
-void Dialog::LetSpritesInteract()
+void ribi::xnz::Dialog::LetSpritesInteract()
 {
   //Let player interact with all non-player sprites
   {
@@ -152,7 +151,7 @@ void Dialog::LetSpritesInteract()
 
 }
 
-void Dialog::DrawSprites()
+void ribi::xnz::Dialog::DrawSprites()
 {
   mArea->DrawEdge();
 
@@ -187,25 +186,23 @@ const std::string AskUserInput()
 }
 */
 
-std::ostream& operator<<(std::ostream& os, const Dialog& s)
+std::ostream& ribi::xnz::operator<<(std::ostream& os, const Dialog& s)
 {
   os << s.GetArea();
   return os;
 }
 
-void SpriteMover::operator()(boost::shared_ptr<Sprite>& s) const
+void ribi::xnz::SpriteMover::operator()(boost::shared_ptr<Sprite>& s) const
 {
   s->Move();
 }
 
-bool SpriteIsDead::operator()(boost::shared_ptr<Sprite>& s) const
+bool ribi::xnz::SpriteIsDead::operator()(boost::shared_ptr<Sprite>& s) const
 {
   return s->IsDead();
 }
 
-void SpriteShoot::operator()(boost::shared_ptr<Sprite>& s) const
+void ribi::xnz::SpriteShoot::operator()(boost::shared_ptr<Sprite>& s) const
 {
   s->Shoot(mTempSprites);
 }
-
-} //~namespace xnz

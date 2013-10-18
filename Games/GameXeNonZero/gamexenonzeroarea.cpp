@@ -9,9 +9,7 @@
 #include "gamexenonzerosprite.h"
 #pragma GCC diagnostic pop
 
-namespace xnz {
-
-Area::Area(const int width,const int height)
+ribi::xnz::Area::Area(const int width,const int height)
   : mArea(height,std::string(width,' '))
 {
   assert(width > 0);
@@ -22,7 +20,7 @@ Area::Area(const int width,const int height)
 
 }
 
-void Area::DrawEdge()
+void ribi::xnz::Area::DrawEdge()
 {
   //Create an initial edged screen
   Sprite::mMaxx = GetWidth() - 1;
@@ -35,7 +33,7 @@ void Area::DrawEdge()
   mArea[GetHeight() - 1] = edge;
 }
 
-void Area::DrawLife(const double fraction)
+void ribi::xnz::Area::DrawLife(const double fraction)
 {
   const int x = GetWidth() - 2 - 3;
   const int y = 2;
@@ -58,7 +56,7 @@ void Area::DrawLife(const double fraction)
   }
 }
 
-void Area::Draw(const int x, const int y, const Container& g)
+void ribi::xnz::Area::Draw(const int x, const int y, const Container& g)
 {
   const int graphicHeight = g.size();
   if (graphicHeight == 0) return;
@@ -92,9 +90,9 @@ void Area::Draw(const int x, const int y, const Container& g)
   */
 }
 
-std::ostream& operator<<(std::ostream& os, const Area& a)
+std::ostream& ribi::xnz::operator<<(std::ostream& os, const Area& a)
 {
-  const Area::Container& v = a.GetArea();
+  const ribi::xnz::Area::Container& v = a.GetArea();
   std::copy(
     v.begin(),
     v.end(),
@@ -102,11 +100,9 @@ std::ostream& operator<<(std::ostream& os, const Area& a)
   return os;
 }
 
-int Area::GetInRange(const int x, const int min, const int max)
+int ribi::xnz::Area::GetInRange(const int x, const int min, const int max)
 {
   if (x < min) return min;
   if (x > max) return max;
   return x;
 }
-
-} //~namespace xnz

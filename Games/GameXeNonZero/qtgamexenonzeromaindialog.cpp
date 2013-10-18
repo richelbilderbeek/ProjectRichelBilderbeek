@@ -1,11 +1,11 @@
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
-#include "qtxenonzeromaindialog.h"
+#include "qtgamexenonzeromaindialog.h"
 
 #include <cassert>
 
 #include "gamexenonzerodialog.h"
-#include "ui_qtxenonzeromaindialog.h"
+#include "ui_qtgamexenonzeromaindialog.h"
 #pragma GCC diagnostic pop
 
 ribi::QtXeNonZeroMainDialog::QtXeNonZeroMainDialog(QWidget *parent)
@@ -48,7 +48,6 @@ void ribi::QtXeNonZeroMainDialog::on_button_e_clicked()
 {
   assert(m_dialog);
   Display(m_dialog->ProcessInput(xnz::Dialog::Input::shoot));
-
 }
 
 void ribi::QtXeNonZeroMainDialog::on_button_s_clicked()

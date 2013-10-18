@@ -50,3 +50,6 @@ const std::string ribi::php::implode(
   }
   return s;
 }
+
+template <> const std::string
+  ribi::php::php_private::TypeToStr<int>() { return "int"; }

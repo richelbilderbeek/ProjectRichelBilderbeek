@@ -16,7 +16,8 @@ SOURCES += \
     gamexenonzerodialog.cpp \
     gamexenonzerosprite.cpp \
     qtmain.cpp \
-    qtxenonzeromaindialog.cpp
+    gamexenonzerospritetype.cpp \
+    qtgamexenonzeromaindialog.cpp
 
 HEADERS += \
     ../../Classes/CppAbout/about.h \
@@ -26,8 +27,9 @@ HEADERS += \
     gamexenonzeroarea.h \
     gamexenonzerodialog.h \
     gamexenonzerosprite.h \
-    qtxenonzeromaindialog.h \
-    gamexenonzerofwd.h
+    gamexenonzerofwd.h \
+    gamexenonzerospritetype.h \
+    qtgamexenonzeromaindialog.h
 
 OTHER_FILES += \
     ../../Classes/CppQtAboutDialog/Licence.txt \
@@ -37,7 +39,7 @@ OTHER_FILES += \
 
 FORMS += \
     ../../Classes/CppQtAboutDialog/qtaboutdialog.ui \
-    qtxenonzeromaindialog.ui
+    qtgamexenonzeromaindialog.ui
 
 RESOURCES += \
 

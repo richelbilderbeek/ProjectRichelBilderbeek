@@ -2,15 +2,45 @@
 #define PHP_H
 
 #include <algorithm>
+#include <iostream>
 #include <map>
 #include <set>
 #include <vector>
+#include <typeinfo>
+
 
 namespace ribi {
 
 namespace php {
 
 //Drop-in replacements for PHP function
+
+//You are free to use functions from this namespace,
+//but I did not intend you using these :)
+namespace php_private {
+
+///Convert a type to the PHP description
+template <class T> const std::string TypeToStr();
+template <> const std::string TypeToStr<int>();
+
+template <class Iter>
+void var_dump(Iter begin, const Iter end)
+{
+  const std::size_t sz = std::distance(begin,end);
+  std::cout << "array(" << sz << ") {\n";
+  std::size_t i=0;
+  for (; begin!=end; ++begin)
+  {
+    std::cout
+      << "  [" << i << "]=>\n"
+      << "  " << TypeToStr<typename Iter::value_type>() << "(" << (*begin) << ")\n";
+    ++i;
+  }
+  std::cout << "}\n";
+}
+
+} //~php_private
+
 
 template <class T>
 const std::vector<T> array_intersect(
@@ -126,6 +156,12 @@ const std::string implode(
 const std::string implode(
   const std::string& seperator,
   const std::array<double,3>& v);
+
+template <class T>
+void var_dump(const std::set<T>& s)
+{
+  php_private::var_dump(s.begin(),s.end());
+}
 
 } //~namespace php
 

@@ -9,8 +9,9 @@
 #include "gamexenonzerofwd.h"
 #include "gamexenonzeroarea.h"
 
-namespace xnz {
+namespace ribi {
 
+namespace xnz {
 
 struct Dialog
 {
@@ -75,5 +76,7 @@ struct SpriteShoot : public std::unary_function<void,Sprite>
 };
 
 } //~namespace xnz
+
+} //~namespace ribi
 
 #endif
