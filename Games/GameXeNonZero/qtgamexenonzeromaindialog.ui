@@ -16,6 +16,7 @@
      <property name="font">
       <font>
        <family>Courier</family>
+       <pointsize>8</pointsize>
       </font>
      </property>
      <property name="cursor" stdset="0">

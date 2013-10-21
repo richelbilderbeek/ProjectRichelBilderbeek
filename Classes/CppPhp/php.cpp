@@ -1,8 +1,8 @@
-#include "php.h"
-#include <cassert>
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#include "php.h"
+#include <cassert>
 #include <boost/lexical_cast.hpp>
 #pragma GCC diagnostic pop
 
@@ -53,3 +53,5 @@ const std::string ribi::php::implode(
 
 template <> const std::string
   ribi::php::php_private::TypeToStr<int>() { return "int"; }
+template <> const std::string
+  ribi::php::php_private::TypeToStr<double>() { return "float"; }

@@ -1,7 +1,12 @@
 #include <iostream>
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/checked_delete.hpp>
 #include <boost/scoped_ptr.hpp>
-
+#include <boost/shared_ptr.hpp>
+#include <boost/make_shared.hpp>
+#pragma GCC diagnostic pop
 
 struct MyClass
 {
@@ -46,6 +51,19 @@ int main()
 
     //No need to delete p, this is done by std::unique_ptr its deleter
   }
+  {
+    const boost::shared_ptr<const MyClass> p {
+      new MyClass("boost::shared_ptr")
+    };
+
+    //No need to delete p, this is done by boost::shared_ptr
+  }
+  {
+    //Won't compile :(
+    //const boost::shared_ptr<const MyClass> p {
+    //  boost::make_shared<const MyClass>("boost::shared_ptr")
+    //};
+  }
 }
 
 /* Screen output
@@ -54,6 +72,7 @@ raw pointer
 boost::scoped_ptr
 custom deleter
 std::unique_ptr with custom deleter
+boost::shared_ptr
 Press <RETURN> to close this window...
 
 */

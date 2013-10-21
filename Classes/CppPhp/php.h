@@ -8,6 +8,11 @@
 #include <vector>
 #include <typeinfo>
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#include <boost/shared_ptr.hpp>
+#pragma GCC diagnostic pop
 
 namespace ribi {
 
@@ -20,23 +25,43 @@ namespace php {
 namespace php_private {
 
 ///Convert a type to the PHP description
-template <class T> const std::string TypeToStr();
+template <class T> const std::string TypeToStr()
+  { return "T"; }
 template <> const std::string TypeToStr<int>();
+template <> const std::string TypeToStr<double>();
 
 template <class Iter>
-void var_dump(Iter begin, const Iter end)
+void var_dump(Iter begin, const Iter end,
+  std::ostream& os = std::cout)
 {
   const std::size_t sz = std::distance(begin,end);
-  std::cout << "array(" << sz << ") {\n";
+  os << "array(" << sz << ") {\n";
   std::size_t i=0;
   for (; begin!=end; ++begin)
   {
-    std::cout
+    os
       << "  [" << i << "]=>\n"
       << "  " << TypeToStr<typename Iter::value_type>() << "(" << (*begin) << ")\n";
     ++i;
   }
   std::cout << "}\n";
+}
+
+template <class Iter>
+void var_dump_ptrs(Iter begin, const Iter end,
+  std::ostream& os = std::cout)
+{
+  const std::size_t sz = std::distance(begin,end);
+  os << "array(" << sz << ") {\n";
+  std::size_t i=0;
+  for (; begin!=end; ++begin)
+  {
+    os
+      << "  [" << i << "]=>\n"
+      << "  " << TypeToStr<typename Iter::value_type::element_type>() << "(" << (*(*begin)) << ")\n";
+    ++i;
+  }
+  os << "}\n";
 }
 
 } //~php_private
@@ -158,9 +183,26 @@ const std::string implode(
   const std::array<double,3>& v);
 
 template <class T>
-void var_dump(const std::set<T>& s)
+void var_dump(const T& t,
+  std::ostream& os = std::cout)
 {
-  php_private::var_dump(s.begin(),s.end());
+  os
+    << php_private::TypeToStr<T>()
+    << "(" << t << ")\n";
+}
+
+template <class T>
+void var_dump(const std::set<T>& s,
+  std::ostream& os = std::cout)
+{
+  php_private::var_dump(s.begin(),s.end(),os);
+}
+
+template <class T>
+void var_dump(const std::vector<boost::shared_ptr<T> >& s,
+  std::ostream& os = std::cout)
+{
+  php_private::var_dump_ptrs(s.begin(),s.end(),os);
 }
 
 } //~namespace php
