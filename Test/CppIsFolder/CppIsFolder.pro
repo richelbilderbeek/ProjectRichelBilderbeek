@@ -3,9 +3,18 @@ QT       -= gui
 CONFIG   += console
 CONFIG   -= app_bundle
 TEMPLATE = app
-QMAKE_CXXFLAGS += -std=c++11 -Wall -Wextra -Werror
 
 SOURCES += main.cpp
+
+CONFIG(release, debug|release) {
+  DEFINES += NDEBUG NTRACE_BILDERBIKKEL
+}
+
+QMAKE_CXXFLAGS += -std=c++11 -Wall -Wextra
+unix {
+  QMAKE_CXXFLAGS += -Werror
+}
+
 
 unix {
   LIBS += -lboost_regex -lboost_filesystem

@@ -3,9 +3,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
   <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
-  <title>Test/test</title>
-  <meta name="description" content="C++ Test/test library"/>
-  <meta name="keywords" content="C++ Boost.Test library boost test testing"/>
+  <title>Test</title>
+  <meta name="description" content="C++ Test"/>
+  <meta name="keywords" content="C++ Test test testing"/>
   <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
 </head>
 <!-- End of head, start of body -->
@@ -20,49 +20,59 @@
 <!-- Page header -->
 <h1>(<a href="Cpp.htm">C++</a>) <a href="CppTest.htm">Test/test</a></h1>
 <p>&nbsp;</p>
-<p><a href="CppTest.htm">Test/test</a> has multiple meanings:</p>
-<ul>
-  <li><a href="CppTest.htm">Testing</a>: the process of validating your code</li>
-  <li><img src="PicBoost.png" alt="Boost"/> <a href="CppTest.htm">Boost.Test</a>: a <a href="CppBoost.htm">Boost</a> <a href="CppLibrary.htm">library</a></li>
-</ul>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<h2><a href="CppTest.htm">Testing</a></h2>
-<p>&nbsp;</p>
 <p><a href="CppTest.htm">Testing</a> is the process of validating your code.</p>
-<p>&nbsp;</p>
-<p>Distributing testing throughout the design hierarchy can be much more effective per testing dollar than testing at only the highest-level interface' [1].
-Testing a component in isolation is an effective way to ensure reliability' [2].</p>
 <p>&nbsp;</p>
 <p>There are multiple types of <a href="CppTest.htm">tests</a>, which overlap:</p>
 <ul>
   <li>
     <a href="CppRegressionTest.htm">regression testing</a>: check that new changes does not break other code.
-    Thorough <a href="CppRegressionTest.htm">regression testing</a> is expensive but essential; the appropriate time to create thorough <a href="CppRegressionTest.htm">regression tests</a> is tied to the stability of the subsystem to be tested' [3]
   </li>
   <li>
     <a href="CppGuiTest.htm">Graphical User Interface testing</a>: check that the <a href="CppGui.htm">GUI</a> behaves as expected
   </li>
 </ul>
 <p>&nbsp;</p>
+<p>
+  <a href="CppTest.htm">Boost.Test</a> is a <a href="CppBoost.htm">Boost</a> <a href="CppLibrary.htm">library</a>
+  for <a href="CppTest.htm">testing</a>.
+</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
-<h2>
-  <img src="PicBoost.png" alt="Boost"/> 
-  <a href="CppTest.htm">Boost.Test</a>
-</h2>
-<p>&nbsp;</p>
-<p><a href="CppTest.htm">Boost.Test</a> is a <a href="CppBoost.htm">Boost</a> <a href="CppLibrary.htm">library</a>.</p>
+<h2><a href="CppAdvice.htm">Advice</a></h2>
 <p>&nbsp;</p>
 <ul>
-  <li><a href="CppTestExample1.htm">Boost.Test example 1</a></li>
+  <li>
+    Distributing testing throughout the design hierarchy can be much more effective per testing dollar than 
+    testing at only the highest-level interface [1]
+  <li>
+    Testing a component in isolation is an effective way to ensure reliability [2]
+  </li>
+  <li>
+    Thorough <a href="CppRegressionTest.htm">regression testing</a> is expensive but essential; 
+    the appropriate time to create thorough <a href="CppRegressionTest.htm">regression tests</a> is 
+    tied to the stability of the subsystem to be tested [3]
+  </li>
+  <li>
+    Write the <a href="CppTest.htm">test</a> code first [4,5]
+  </li>
+  <li>
+    Keep the <a href="CppTest.htm">test</a> code with the <a href="CppClass.htm">class</a> to be tested [4]
+  </li>
+  <li>
+    Write the <a href="CppTest.htm">test</a> code to verify that your <a href="CppClassDesign.htm">class design</a> is complete [5]
+  </li>
+  <li>
+    Automate the running of your <a href="CppTest.htm">tests</a> [4]
+  </li>
+  <li>
+    If you can’t write <a href="CppTest.htm">test</a> code, you don’t know what your <a href="CppClass.htm">class</a> looks like [5]
+  </li>
+  <li>
+    The act of writing <a href="CppTest.htm">test</a> code will often show features or constraints you were previously unaware of [5]
+  </li>
 </ul>
-<p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
@@ -70,9 +80,11 @@ Testing a component in isolation is an effective way to ensure reliability' [2].
 <h2><a href="CppReferences.htm">References</a></h2>
 <p>&nbsp;</p>
 <ol>
-  <li><a href="CppJohnLakos.htm">John Lakos</a>. Large-Scale C++ Software Design. 1996. ISBN: 0-201-63362-0. Section D.5. Principles, chapter 4, page 825: 'Distributing testing throughout the design hierarchy can be much more effective per testing dollar than testing at only the highest-level interface'</li>
-  <li><a href="CppJohnLakos.htm">John Lakos</a>. Large-Scale C++ Software Design. 1996. ISBN: 0-201-63362-0. Section D.5. Principles, chapter 4, page 825: 'Testing a component in isolation is an effective way to ensure reliability'</li>
-  <li><a href="CppJohnLakos.htm">John Lakos</a>. Large-Scale C++ Software Design. 1996. ISBN: 0-201-63362-0. Section D.5. Principles, chapter 4, page 826: 'Thorough regression testing is expensive but essential; the appropriate time to create thorough regression tests is tied to the stability of the subsystem to be tested'</li>
+  <li><!--  1 --><a href="CppJohnLakos.htm">John Lakos</a>. Large-Scale C++ Software Design. 1996. ISBN: 0-201-63362-0. Section D.5. Principles, chapter 4, page 825: 'Distributing testing throughout the design hierarchy can be much more effective per testing dollar than testing at only the highest-level interface'</li>
+  <li><!--  2 --><a href="CppJohnLakos.htm">John Lakos</a>. Large-Scale C++ Software Design. 1996. ISBN: 0-201-63362-0. Section D.5. Principles, chapter 4, page 825: 'Testing a component in isolation is an effective way to ensure reliability'</li>
+  <li><!--  3 --><a href="CppJohnLakos.htm">John Lakos</a>. Large-Scale C++ Software Design. 1996. ISBN: 0-201-63362-0. Section D.5. Principles, chapter 4, page 826: 'Thorough regression testing is expensive but essential; the appropriate time to create thorough regression tests is tied to the stability of the subsystem to be tested'</li>
+  <li><!--  4 --><a href="CppBruceEckel.htm">Bruce Eckel</a>. Thinking in C++, second edition, volume 1. 2000. ISBN: 0-13-979809-9. Chapter B: Programming Guidelines. Item 11: 'Write the test code first (before you write the class), and keep it with the class. Automate the running of your tests through a makefile or similar tool. This way, any changes can be automatically verified by running the test code, and you’ll immediately discover errors. Because you know that you have the safety net of your test framework, you will be bolder about making sweeping changes when you discover the need. Remember that the greatest improvements in languages come from the built-in testing that type checking, exception handling, etc., provide, but those features take you only so far. You must go the rest of the way in creating a robust system by filling in the tests that verify features that are specific to your class or program.'</li>
+  <li><!--  5 --><a href="CppBruceEckel.htm">Bruce Eckel</a>. Thinking in C++, second edition, volume 1. 2000. ISBN: 0-13-979809-9. Chapter B: Programming Guidelines. Item 12: 'Write the test code first (before you write the class) in order to verify that your class design is complete. If you can’t write test code, you don’t know what your class looks like. In addition, the act of writing the test code will often flush out additional features or constraints that you need in the class – these features or constraints don’t always appear during analysis and design.'</li>
 </ol>
 <p>&nbsp;</p>
 <p>&nbsp;</p>

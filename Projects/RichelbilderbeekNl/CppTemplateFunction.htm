@@ -27,50 +27,14 @@ with <a href="CppTemplate.htm">template</a> arguments.</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
-<h2>Example: abs</h2>
+<h2><a href="CppExample.htm">Examples</a></h2>
 <p>&nbsp;</p>
-<p>Suppose you want to write a <a href="CppFunction.htm">function</a> that <a
-href="CppReturn.htm">returns</a> the absolute value of a number, for both <b><a
-href="CppInt.htm">int</a></b> and <b><a href="CppDouble.htm">double</a></b>. The
-absolute value of a number is its value without regard to its sign: The
-absolute value of 3 is 3 and the absolute value of -3 is also 3.</p>
-<p>&nbsp;</p>
-<p>These functions could be written like below:</p>
-<p>&nbsp;</p>
-<!-- start of code -->
-<table border = "1"><tr><td><code>
-<b><a href="CppInt.htm">int</a></b> Abs(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> n)<br/>
-{<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> (n &lt; 0 ? <a href="CppOperatorMinus.htm">-</a>n : n);<br/>
-}<br/>
-</code></td></tr></table>
-<!-- end of the code -->
-<p>&nbsp;</p>
-<!-- start of code -->
-<table border = "1"><tr><td><code>
-<b><a href="CppDouble.htm">double</a></b> Abs(<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> n)<br/>
-{<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> (n &lt; 0 ? <a href="CppOperatorMinus.htm">-</a>n : n);<br/>
-}<br/>
-</code></td></tr></table>
-<!-- end of the code -->
-<p>&nbsp;</p>
-<p>The body of these are identical, yet for every <a href="CppDataType.htm">data type</a>
-you will need to write a different <a href="CppFunction.htm">function</a>.</p>
-<p>&nbsp;</p>
-<p>Instead, a <a href="CppTemplateFunction.htm">template function</a> can be used:</p>
-<p>&nbsp;</p>
-<!-- start of code -->
-<table border = "1"><tr><td><code>
-<b><a href="CppTemplate.htm">template</a></b> &lt;<b><a href="CppClass.htm">class</a></b> T&gt;<br/>
-T Abs(<b><a href="CppConst.htm">const</a></b> T n)<br/>
-{<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> (n &lt; 0 ? <a href="CppOperatorMinus.htm">-</a>n : n);<br/>
-}<br/>
-</code></td></tr></table>
-<!-- end of the code -->
-<p>&nbsp;</p>
-<p>Note that this example is similar to <a href="CppAbs.htm">std::abs</a>.</p>
+<ul>
+  <li><a href="CppTemplateFunctionExample1.htm">template function example 1: Abs</a>
+  <li><a href="CppTemplateFunctionExample2.htm">template function example 2: Get, a templated getter from a template class, one file</a>
+  <li><a href="CppTemplateFunctionExample3.htm">template function example 3: Get, a templated getter from a template class, multiple files</a>
+  <li><a href="CppTemplateFunctionExample4.htm">template function example 4: Cout, works on T and T*</a>
+</ul>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>

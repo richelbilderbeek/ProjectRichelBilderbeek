@@ -392,6 +392,25 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
       }
     }
   );
+
+  m.push_back(
+    { "CppBoostTestExample1",
+      {
+        "<p><img src=\"PicBoost.png\" alt=\"Boost\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <a href=\"CppBoostTestExample1.htm\">Boost.Test example 1</a>",
+        "  is a <a href=\"CppBoostTest.htm\">Boost.Test</a> <a href=\"CppExample.htm\">example</a>.",
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<ul>",
+        "  <li><a href=\"CppBoostTestExample1.zip\">Download the Qt Creator project 'CppBoostTestExample1' (zip)</a></li>",
+        "</ul>"
+      }
+    }
+  );
+
+
   m.push_back(
     { "CppBoostTupleExample1",
       {

@@ -46,6 +46,9 @@
   <li>
     Treat <a href="CppClassDesign.htm">class design</a> as type design [2]
   </li>
+  <li>
+    Make classes as atomic as possible; that is, give each class a single, clear purpose [36]
+  </li>
 </ul>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
@@ -84,6 +87,15 @@
     Make <a href="CppInterface.htm">interfaces</a> easy to use correctly and hard to use incorrectly [1]
   </li>
   <li>
+    Start with a minimal interface to a class, as small and simple as you need to solve the problem at hand [37]
+  </li>
+  <li>
+    Don't try to anticipate all the ways that your class might be used [37]
+  </li>
+  <li>
+    Be aware that once a class is in use you cannot shrink the <a href="CppInterface.htm">interface</a> without disturbing client code [37]
+  </li>
+  <li>
     <a href="CppDeclaration.htm">Declare</a> <a href="CppMemberVariable.htm">member variables</a> <a href="CppPrivate.htm">private</a> [5,9,19,27], except in <a href="CppPod.htm">POD</a>s [19]
   </li>
   <li>
@@ -98,7 +110,6 @@
   <li>
     Use <a href="CppAbstractClass.htm">abstract classes</a> to keep implementation details out of <a href="CppInterface.htm">interfaces</a> [32]
   </li>
-
   <li>
     Prefer providing abstract <a href="CppInterface.htm">interfaces</a> [14]
   </li>
@@ -115,7 +126,7 @@
     Public inheritance is substitutability. Inherit, not te reuse, but to be reused [15]
   </li>
   <li>
-    Practive safe overriding [16]
+    Practice safe overriding [16]
   </li>
   <li>
     Consider making virtual functions nonpublic, and public functions nonvirtual [17]
@@ -123,8 +134,18 @@
   <li>
     Don't give away your internals [20]
   </li>
+<!-- Testing -->
+  <li>
+    Write the <a href="CppTest.htm">test</a> code first [34,35]
+  </li>
+  <li>
+    Keep the <a href="CppTest.htm">test</a> code with the <a href="CppClass.htm">class</a> to be tested [34]
+  </li>
+  <li>
+    Write the <a href="CppTest.htm">test</a> code to verify that your <a href="CppClassDesign.htm">class design</a> is complete [35]
+  </li>
 
-<!-- Mic -->
+<!-- Misc -->
   <li>
     <a href="CppPimpl.htm">Pimpl</a> judiciously [21]
   </li>
@@ -180,6 +201,10 @@
   <li><!-- 31 --><a href="CppBjarneStroustrup.htm">Bjarne Stroustrup</a>. The C++ Programming Language (4th edition). 2013. ISBN: 978-0-321-56384-2. Chapter 16.4. Advice. page 479: '[7] A concrete type is the simplest kind of class. Where applicable, prefer a concrete type over more complicated classes and over plain data structures'</li>
   <li><!-- 32 --><a href="CppBjarneStroustrup.htm">Bjarne Stroustrup</a>. The C++ Programming Language (4th edition). 2013. ISBN: 978-0-321-56384-2. Chapter 20.7. Advice. page 611: '[6] Use abstract classes to focus design on the provision of clean interfaces'</li>
   <li><!-- 33 --><a href="CppBjarneStroustrup.htm">Bjarne Stroustrup</a>. The C++ Programming Language (4th edition). 2013. ISBN: 978-0-321-56384-2. Chapter 20.7. Advice. page 611: '[7] Use abstract classes to keep implementation details out of interfaces'</li>
+  <li><!-- 34 --><a href="CppBruceEckel.htm">Bruce Eckel</a>. Thinking in C++, second edition, volume 1. 2000. ISBN: 0-13-979809-9. Chapter B: Programming Guidelines. Item 11: 'Write the test code first (before you write the class), and keep it with the class. Automate the running of your tests through a makefile or similar tool. This way, any changes can be automatically verified by running the test code, and you’ll immediately discover errors. Because you know that you have the safety net of your test framework, you will be bolder about making sweeping changes when you discover the need. Remember that the greatest improvements in languages come from the built-in testing that type checking, exception handling, etc., provide, but those features take you only so far. You must go the rest of the way in creating a robust system by filling in the tests that verify features that are specific to your class or program.'</li>
+  <li><!-- 35 --><a href="CppBruceEckel.htm">Bruce Eckel</a>. Thinking in C++, second edition, volume 1. 2000. ISBN: 0-13-979809-9. Chapter B: Programming Guidelines. Item 12: 'Write the test code first (before you write the class) in order to verify that your class design is complete. If you can’t write test code, you don’t know what your class looks like. In addition, the act of writing the test code will often flush out additional features or constraints that you need in the class – these features or constraints don’t always appear during analysis and design.'</li>
+  <li><!-- 36 --><a href="CppBruceEckel.htm">Bruce Eckel</a>. Thinking in C++, second edition, volume 1. 2000. ISBN: 0-13-979809-9. Chapter B: Programming Guidelines. Item 14: 'Make classes as atomic as possible; that is, give each class a single, clear purpose. If your classes or your system design grows too complicated, break complex classes into simpler ones. The most obvious indicator of this is sheer size: if a class is big, chances are it’s doing too much and should be broken up.'</li>
+  <li><!-- 37 --><a href="CppBruceEckel.htm">Bruce Eckel</a>. Thinking in C++, second edition, volume 1. 2000. ISBN: 0-13-979809-9. Chapter B: Programming Guidelines. Item 23: 'Less is more. Start with a minimal interface to a class, as small and simple as you need to solve the problem at hand, but don’t try to anticipate all the ways that your class might be used. As the class is used, you’ll discover ways you must expand the interface. However, once a class is in use you cannot shrink the interface without disturbing client code. If you need to add more functions, that’s fine; it won’t disturb code, other than forcing recompiles. But even if new member functions replace the functionality of old ones, leave the existing interface alone (you can combine the functionality in the underlying implementation if you want). If you need to expand the interface of an existing function by adding more arguments, leave the existing arguments in their current order, and put default values on all of the new arguments; this way you won’t disturb any existing calls to that function.'</li>
 </ol>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
