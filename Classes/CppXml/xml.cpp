@@ -1,6 +1,7 @@
 #include "xml.h"
 
 #include <string>
+#include <sstream>
 #include <vector>
 
 #pragma GCC diagnostic push
@@ -143,7 +144,8 @@ void ribi::xml::Test() noexcept
       assert(p.second.size() == m.size());
       assert(std::equal(m.begin(),m.end(),p.second.begin()));
       //Again convert pointers to XML
-      std::cout << MapToXml(p.first,p.second) << '\n';
+      std::stringstream s;
+      s << MapToXml(p.first,p.second);
     }
     //Use std::string to int map
     {
@@ -180,7 +182,8 @@ void ribi::xml::Test() noexcept
       assert(p.second.size() == m.size());
       assert(std::equal(m.begin(),m.end(),p.second.begin()));
       //Again convert pointers to XML
-      std::cout << MapToXml(p.first,p.second) << '\n';
+      std::stringstream s;
+      s << MapToXml(p.first,p.second) << '\n';
     }
 
     //Use int to boost::shared_ptr<const std::string> map
@@ -254,9 +257,8 @@ void ribi::xml::Test() noexcept
         )
       );
       //Again convert pointers to XML
-      std::cout
-        << MapToXml(tag_name,m,tag_to_str_function,key_to_str_function,value_to_str_function)
-        << '\n';
+      std::stringstream s;
+      s << MapToXml(tag_name,m,tag_to_str_function,key_to_str_function,value_to_str_function);
     }
 
   }
