@@ -30,11 +30,12 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <QDesktopWidget>
 #include <QFileDialog>
 #include <QKeyEvent>
-#include <QImage>
+//#include <QImage>
 #include <QPixmap>
 
 #include "asciiarter.h"
 #include "asciiartermaindialog.h"
+#include "fileio.h"
 #include "qtaboutdialog.h"
 #include "ui_qtasciiartermaindialog.h"
 #pragma GCC diagnostic pop
@@ -42,7 +43,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 ribi::QtAsciiArterMainDialog::QtAsciiArterMainDialog(QWidget *parent)
   : QtHideAndShowDialog(parent),
     ui(new Ui::QtAsciiArterMainDialog),
-    m_dialog(new AsciiArterMainDialog)
+    m_dialog(new AsciiArterMainDialog("",80))
 {
   ui->setupUi(this);
   ui->edit_width->setText("80");
@@ -76,52 +77,14 @@ void ribi::QtAsciiArterMainDialog::DrawAsciiArt()
 
 void ribi::QtAsciiArterMainDialog::on_button_load_clicked()
 {
-  QFileDialog d;
-  const QString filename = d.getOpenFileName();
+  const std::string filename = QFileDialog::getOpenFileName().toStdString();
 
-  if (!QFile::exists(filename))
+  if (!fileio::IsRegularFile(filename))
   {
     return;
   }
-
-  QImage p(filename);
-  const std::vector<std::vector<double> > v
-    = ConvertToGreyYx(&p);
-
-  m_dialog->SetImage(v);
+  m_dialog->SetImage(filename);
   DrawAsciiArt();
-}
-
-//Returns a Y-X-ordered std::vector of greynesses.
-const std::vector<std::vector<double> >
-  ribi::QtAsciiArterMainDialog::ConvertToGreyYx(const QImage * const i)
-{
-  const int maxy = i->height();
-  const int maxx = i->width();
-  const int n_bytes = i->bytesPerLine() / maxx;
-
-  std::vector<std::vector<double> > v;
-  for (int y=0; y!=maxy; ++y)
-  {
-    v.push_back(std::vector<double>());
-    const unsigned char * const line = i->scanLine(y);
-    for (int x=0; x!=maxx; ++x)
-    {
-      int sum = 0;
-      for (int byte=0; byte!=n_bytes; ++byte)
-      {
-        sum += line[(x * n_bytes) + byte];
-      }
-      const double greyness
-        = (boost::numeric_cast<double>(sum)
-        / boost::numeric_cast<double>(n_bytes))
-        / 256.0;
-      assert(greyness >= 0.0);
-      assert(greyness <= 1.0);
-      v.back().push_back(greyness);
-    }
-  }
-  return v;
 }
 
 void ribi::QtAsciiArterMainDialog::keyPressEvent(QKeyEvent * event)

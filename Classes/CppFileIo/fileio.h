@@ -55,6 +55,12 @@ const std::vector<std::string> GetFilesInFolderByRegex(
 ///From http://www.richelbilderbeek.nl/CppGetPath.htm
 const std::string GetPath(const std::string& filename);
 
+///Obtain the version
+const std::string GetVersion() noexcept;
+
+///Obtain the version history
+const std::vector<std::string> GetVersionHistory() noexcept;
+
 ///Returns if the name is a folder name
 ///From http://www.richelbilderbeek.nl/CppIsFolder.htm
 bool IsFolder(const std::string& filename) noexcept;

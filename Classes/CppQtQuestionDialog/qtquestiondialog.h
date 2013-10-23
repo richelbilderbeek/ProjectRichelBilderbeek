@@ -54,13 +54,9 @@ struct QtQuestionDialog : public QtHideAndShowDialog
   ///Obtain the version history of this class
   static const std::vector<std::string> GetVersionHistory() noexcept;
 
-  ///This signal is emitted when the client submits an answer, where
-  ///the boolean indicates if a correct answer was given
-  mutable boost::signals2::signal<void (bool)> m_signal_submitted;
-
   protected:
 
-  boost::shared_ptr<QuestionDialog> m_dialog;
+  const boost::shared_ptr<QuestionDialog> m_dialog;
 };
 
 } //~namespace ribi

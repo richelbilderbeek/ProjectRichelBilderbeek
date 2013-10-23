@@ -65,3 +65,9 @@ void ribi::QtHometrainerMenuDialog::on_button_load_exercise_clicked() noexcept
   ui->button_start_exercise->setEnabled( m_main_dialog.get() );
   this->show();
 }
+
+void ribi::QtHometrainerMenuDialog::on_button_create_examples_clicked()
+{
+  HometrainerMenuDialog::CreateExamples();
+  ui->button_create_examples->setVisible(false);
+}

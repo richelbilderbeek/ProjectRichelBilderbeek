@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>482</width>
-    <height>659</height>
+    <width>582</width>
+    <height>797</height>
    </rect>
   </property>
   <property name="font">
@@ -62,6 +62,16 @@ QPushButton { font: 48px, &quot;monospace&quot; }</string>
      </property>
      <property name="text">
       <string>Start exercise</string>
+     </property>
+     <property name="flat">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QPushButton" name="button_create_examples">
+     <property name="text">
+      <string>Create example exercises</string>
      </property>
      <property name="flat">
       <bool>true</bool>

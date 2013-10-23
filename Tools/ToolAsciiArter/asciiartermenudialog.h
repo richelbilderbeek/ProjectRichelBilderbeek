@@ -37,9 +37,12 @@ struct AsciiArter;
 
 struct AsciiArterMenuDialog
 {
+  static int Execute(const int argc, const char* const argv[]);
+
   static const About GetAbout() noexcept;
   static const std::string GetVersion() noexcept;
   static const std::vector<std::string> GetVersionHistory() noexcept;
+  static void ShowHelp() noexcept;
 };
 
 } //~namespace ribi

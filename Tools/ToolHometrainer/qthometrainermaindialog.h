@@ -18,6 +18,7 @@ namespace ribi {
 
 struct TestQuestionMainDialog;
 struct QtQuestionDialog;
+struct QuestionDialog;
 struct Question;
 struct HometrainerMainDialog;
 
@@ -27,7 +28,7 @@ class QtHometrainerMainDialog : public QtHideAndShowDialog
   
 public:
   explicit QtHometrainerMainDialog(
-    const boost::shared_ptr<const HometrainerMainDialog>& dialog,
+    const boost::shared_ptr<const HometrainerMainDialog> dialog,
     QWidget *parent = 0) noexcept;
   QtHometrainerMainDialog(const QtHometrainerMainDialog&) = delete;
   QtHometrainerMainDialog& operator=(const QtHometrainerMainDialog&) = delete;
@@ -41,16 +42,15 @@ protected:
 
 private:
   Ui::QtHometrainerMainDialog *ui;
-  std::size_t m_current_question_index;
-
-
-  int m_n_correct;
-  int m_n_incorrect;
+  const boost::shared_ptr<const HometrainerMainDialog> m_dialog;
   boost::shared_ptr<QtQuestionDialog> m_qtdialog;
-  std::vector<boost::shared_ptr<const Question> > m_questions;
+  //const boost::shared_ptr<QuestionDialog> m_dialog;
+  //std::vector<boost::shared_ptr<const Question> > m_questions;
 
   static boost::shared_ptr<QtQuestionDialog> CreateQtQuestionDialog(
     const boost::shared_ptr<const Question> s);
+  //static const boost::shared_ptr<HometrainerMainDialog> CreateMainDialog();
+
   void DisplayScore();
   void OnSubmitted(const bool is_correct);
 

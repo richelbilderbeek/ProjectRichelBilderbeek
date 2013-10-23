@@ -60,6 +60,9 @@ struct Question
   ///Would a submitted std::string be the correct answer?
   bool IsCorrect(const std::string& s) const noexcept;
 
+  ///How to display the question as multiple lines
+  virtual const std::vector<std::string> ToLines() const = 0;
+
   protected:
   virtual ~Question() noexcept {}
 
@@ -76,6 +79,8 @@ struct Question
   ///The list of possible answers
   const std::vector<std::string> m_correct_answers;
 };
+
+std::ostream& operator<<(std::ostream& os,const Question& question);
 
 } //~namespace ribi
 

@@ -30,23 +30,36 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "about.h"
 #pragma GCC diagnostic pop
 
+struct QImage;
+
 namespace ribi {
 
 struct AsciiArter;
 
 struct AsciiArterMainDialog
 {
-  AsciiArterMainDialog();
+  AsciiArterMainDialog(
+    const std::string& filename,
+    const int n_cols
+  );
+
   const std::vector<std::string>& GetAsciiArt() const { return m_asciiart; }
   bool CanConvert() const;
   void Convert();
 
-  int GetWidth() const { return m_width; }
+  int GetWidth() const noexcept { return m_width; }
 
-  void SetImage(const std::vector<std::vector<double> >& image);
+  void SetImage(const std::string& filename);
   void SetWidth(const int width);
 
   private:
+
+  ///Returns a Y-X-ordered std::vector of greynesses.
+  static const std::vector<std::vector<double> >
+    ConvertToGreyYx(const QImage * const i);
+
+  void SetImage(const std::vector<std::vector<double> >& image);
+
   std::vector<std::string> m_asciiart;
   const boost::scoped_ptr<AsciiArter> m_asciiarter;
   std::vector<std::vector<double> > m_image;

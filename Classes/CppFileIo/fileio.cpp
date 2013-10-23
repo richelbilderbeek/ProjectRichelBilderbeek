@@ -152,6 +152,18 @@ const std::string ribi::fileio::GetPath(const std::string& filename)
   return filename.substr(0,i);
 }
 
+const std::string ribi::fileio::GetVersion() noexcept
+{
+  return "1.0";
+}
+
+const std::vector<std::string> ribi::fileio::GetVersionHistory() noexcept
+{
+  return {
+    "2013-10-14: Version 1.0: initial version"
+  };
+}
+
 bool ribi::fileio::IsFolder(const std::string& filename) noexcept
 {
   return QDir(filename.c_str()).exists();

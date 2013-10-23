@@ -20,10 +20,81 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include "asciiartermenudialog.h"
 
+#include <fstream>
+
+#include <boost/lexical_cast.hpp>
+
 #include "asciiarter.h"
+#include "asciiartermaindialog.h"
+#include "fileio.h"
 #pragma GCC diagnostic pop
+
+int ribi::AsciiArterMenuDialog::Execute(const int argc, const char* const argv[])
+{
+  if (argc == 1 || argc > 4) { ShowHelp(); return 1; }
+  {
+    const std::string s { argv[1] };
+    if (s == std::string("-a") || s == std::string("--about"))
+    {
+      std::cout << GetAbout() << '\n';
+      return 0;
+    }
+    if (s == std::string("-h") || s == std::string("--help"))
+    {
+      ShowHelp();
+      return 0;
+    }
+    if (s == std::string("-v") || s == std::string("--version"))
+    {
+      std::cout << GetVersion() << '\n';
+      return 0;
+    }
+    if (!fileio::IsRegularFile(s))
+    {
+      std::cout
+        << "Error: '" << s << "' is not found.\n"
+        << "Please supply an existing file as AsciiArter its first argument\n";
+      return 1;
+    }
+  }
+  if (argc == 4)
+  {
+    const std::string s { argv[3] };
+    try
+    {
+      const int n_cols = boost::lexical_cast<int>(s);
+      if (n_cols < 5)
+      {
+        std::cout
+          << "Error: the number of columns must be at least 5.\n"
+          << "Please supply a number above 5 as AsciiArter its third argument\n";
+        return 1;
+      }
+    }
+    catch (boost::bad_lexical_cast&)
+    {
+      std::cout
+        << "Error: '" << s << "' is not an integer number.\n"
+        << "Please supply a number as AsciiArter its third argument\n";
+      return 1;
+
+    }
+  }
+
+  assert(argc >= 3);
+  const std::string from_name { argv[1] };
+  const std::string to_name { argv[2] };
+  const int n_cols = (argc == 4 ? boost::lexical_cast<int>(argv[3]) : 78);
+
+  AsciiArterMainDialog d(from_name,n_cols);
+  const std::vector<std::string> v { d.GetAsciiArt() };
+  std::ofstream f(to_name.c_str());
+  std::copy(v.begin(),v.end(),std::ostream_iterator<std::string>(f,"\n"));
+  return 0;
+}
 
 const ribi::About ribi::AsciiArterMenuDialog::GetAbout() noexcept
 {
@@ -62,3 +133,24 @@ const std::vector<std::string> ribi::AsciiArterMenuDialog::GetVersionHistory() n
   };
 }
 
+void ribi::AsciiArterMenuDialog::ShowHelp() noexcept
+{
+  std::cout
+    << "AsciiArter\n"
+    << "\n"
+    << "Uses:\n"
+    << "  AsciiArter [option]\n"
+    << "  AsciiArter [picture input filename] [text output filename] [columns = 78]\n"
+    << "\n"
+    << "Options:\n"
+    << "-a --about: shows about information\n"
+    << "-h --help: shows this\n"
+    << "-v --version: shows version\n"
+    << "\n"
+    << "Examples:\n"
+    << "\n"
+    << "  AsciiArter --about\n"
+    << "  AsciiArter source.png target.txt\n"
+    << "  AsciiArter source.png target.txt 254\n"
+  ;
+}

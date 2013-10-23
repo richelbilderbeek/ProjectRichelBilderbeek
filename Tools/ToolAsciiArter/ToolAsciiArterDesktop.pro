@@ -1,30 +1,22 @@
 QT       += core gui
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
+include( ToolAsciiArter.pri )
+
 INCLUDEPATH += \
-    ../../Classes/CppAbout \
-    ../../Classes/CppAsciiArter \
     ../../Classes/CppQtAboutDialog \
     ../../Classes/CppQtHideAndShowDialog
 
 SOURCES += \
-    ../../Classes/CppAbout/about.cpp \
-    ../../Classes/CppAsciiArter/asciiarter.cpp \
     ../../Classes/CppQtAboutDialog/qtaboutdialog.cpp \
     ../../Classes/CppQtHideAndShowDialog/qthideandshowdialog.cpp \
-    asciiartermaindialog.cpp \
-    asciiartermenudialog.cpp \
     qtasciiartermaindialog.cpp \
     qtasciiartermenudialog.cpp \
     qtmain.cpp
 
 HEADERS  += \
-    ../../Classes/CppAbout/about.h \
-    ../../Classes/CppAsciiArter/asciiarter.h \
     ../../Classes/CppQtAboutDialog/qtaboutdialog.h \
     ../../Classes/CppQtHideAndShowDialog/qthideandshowdialog.h \
-    asciiartermaindialog.h \
-    asciiartermenudialog.h \
     qtasciiartermaindialog.h \
     qtasciiartermenudialog.h
 
@@ -34,8 +26,6 @@ FORMS  += \
     qtasciiartermenudialog.ui
 
 OTHER_FILES += \
-    ../../Classes/CppAbout/Licence.txt \
-    ../../Classes/CppAsciiArter/Licence.txt \
     ../../Classes/CppQtAboutDialog/Licence.txt \
     ../../Classes/CppQtHideAndShowDialog/Licence.txt \
     Licence.txt

@@ -57,8 +57,6 @@ private:
   const boost::scoped_ptr<AsciiArterMainDialog> m_dialog;
   void DrawAsciiArt();
 
-  static const std::vector<std::vector<double> >
-    ConvertToGreyYx(const QImage * const i);
 
 private slots:
   void on_edit_width_textChanged(QString );

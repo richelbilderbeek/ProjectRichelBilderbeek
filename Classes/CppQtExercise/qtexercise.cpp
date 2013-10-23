@@ -99,7 +99,7 @@ void ribi::QtExercise::DisplayCurrentQuestion()
   m_ui.m_box->setLayout(layout);
   layout->addWidget(question);
 
-  question->m_signal_submitted.connect(
+  question->GetDialog()->m_signal_submitted.connect(
     boost::bind(&ribi::QtExercise::OnSubmittedAnswer,this,boost::lambda::_1));
 
 }

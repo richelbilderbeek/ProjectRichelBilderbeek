@@ -28,19 +28,24 @@ namespace ribi {
 ///The logic behind the menu dialog
 struct HometrainerMenuDialog
 {
+  ///Create the example exercises
+  static void CreateExamples() noexcept;
+
+  ///Execute Hometrainer from the command line
+  ///The return code is the error code given back to main
+  static int Execute(const int argc, const char* const argv[]) noexcept;
+
   ///Obtain the about information
-  ///
-  ///\note
-  ///This is a non-static method, to ensure users of this class
-  ///call HometrainerMenuDialog its constructor: this is where
-  ///the resources needed are created
-  const About GetAbout() const noexcept;
+  static const About GetAbout() noexcept;
 
   ///Obtain the version
   static const std::string GetVersion() noexcept;
 
   ///Obtain the version history
   static const std::vector<std::string> GetVersionHistory() noexcept;
+
+  ///Show the command-line options
+  static void ShowHelp() noexcept;
 };
 
 } //~namespace ribi

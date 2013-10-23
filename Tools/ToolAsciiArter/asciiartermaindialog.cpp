@@ -21,16 +21,23 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #include "asciiartermaindialog.h"
+
+#include <boost/numeric/conversion/cast.hpp>
+
+#include <QImage>
 #include "asciiarter.h"
+#include "fileio.h"
 #pragma GCC diagnostic pop
 
-ribi::AsciiArterMainDialog::AsciiArterMainDialog()
+ribi::AsciiArterMainDialog::AsciiArterMainDialog(
+  const std::string& filename,
+  const int n_cols)
   : m_asciiart{},
     m_asciiarter(new AsciiArter),
     m_image{},
-    m_width{0}
+    m_width{n_cols}
 {
-
+  SetImage(filename);
 }
 
 bool ribi::AsciiArterMainDialog::CanConvert() const
@@ -43,13 +50,73 @@ void ribi::AsciiArterMainDialog::Convert()
   m_asciiart = m_asciiarter->ImageToAscii(m_image,m_width);
 }
 
+const std::vector<std::vector<double> >
+  ribi::AsciiArterMainDialog::ConvertToGreyYx(const QImage * const i)
+{
+  const int maxy = i->height();
+  const int maxx = i->width();
+  const int n_bytes = i->bytesPerLine() / maxx;
+
+  std::vector<std::vector<double> > v;
+  for (int y=0; y!=maxy; ++y)
+  {
+    v.push_back(std::vector<double>());
+    const unsigned char * const line = i->scanLine(y);
+    for (int x=0; x!=maxx; ++x)
+    {
+      int sum = 0;
+      for (int byte=0; byte!=n_bytes; ++byte)
+      {
+        sum += line[(x * n_bytes) + byte];
+      }
+      const double greyness
+        = (boost::numeric_cast<double>(sum)
+        / boost::numeric_cast<double>(n_bytes))
+        / 256.0;
+      assert(greyness >= 0.0);
+      assert(greyness <= 1.0);
+      v.back().push_back(greyness);
+    }
+  }
+  return v;
+}
+
+void ribi::AsciiArterMainDialog::SetImage(const std::string& filename)
+{
+  if (!fileio::IsRegularFile(filename))
+  {
+    const std::vector<std::vector<double> > v;
+    SetImage(v);
+    return;
+  }
+
+  const boost::scoped_ptr<QImage> image{
+    new QImage(filename.c_str())
+  };
+  const std::vector<std::vector<double> > v { ConvertToGreyYx(image.get()) };
+  SetImage(v);
+}
+
+
 void ribi::AsciiArterMainDialog::SetImage(const std::vector<std::vector<double> >& image)
 {
   m_image = image;
+
+  //Update ascii art
+  if (CanConvert())
+  {
+    m_asciiart = m_asciiarter->ImageToAscii(m_image,m_width);
+  }
 }
 
 void ribi::AsciiArterMainDialog::SetWidth(const int width)
 {
   assert(width > 5);
   m_width = width;
+
+  //Update ascii art
+  if (CanConvert())
+  {
+    m_asciiart = m_asciiarter->ImageToAscii(m_image,m_width);
+  }
 }

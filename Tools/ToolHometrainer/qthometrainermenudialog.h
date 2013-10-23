@@ -34,6 +34,7 @@ private slots:
   void on_button_quit_clicked() noexcept;
   void on_button_start_exercise_clicked() noexcept;
   void on_button_load_exercise_clicked() noexcept;
+  void on_button_create_examples_clicked();
 };
 
 } //~namespace ribi

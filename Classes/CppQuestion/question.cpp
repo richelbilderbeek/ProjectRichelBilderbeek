@@ -24,6 +24,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <algorithm>
 #include <cassert>
 #include <fstream>
+#include <iterator>
 #include <string>
 #include <stdexcept>
 
@@ -61,4 +62,11 @@ const std::vector<std::string> ribi::Question::GetVersionHistory() noexcept
 bool ribi::Question::IsCorrect(const std::string& s) const noexcept
 {
   return std::find(m_correct_answers.begin(),m_correct_answers.end(),s) != m_correct_answers.end();
+}
+
+std::ostream& ribi::operator<<(std::ostream& os,const Question& question)
+{
+  const std::vector<std::string> v = question.ToLines();
+  std::copy(v.begin(),v.end(),std::ostream_iterator<std::string>(os,"\n"));
+  return os;
 }

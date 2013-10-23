@@ -68,6 +68,9 @@ struct MultipleChoiceQuestion : public Question
   ///Obtain the wrong answers
   const std::vector<std::string>& GetWrongAnswers() const noexcept { return m_wrong_answers; }
 
+  ///How to display the question as multiple lines
+  const std::vector<std::string> ToLines() const;
+
   ///Convert to std::string line
   const std::string ToStr() const noexcept;
 

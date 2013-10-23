@@ -28,7 +28,6 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 ribi::QtQuestionDialog::QtQuestionDialog(QWidget *parent)
   : QtHideAndShowDialog(parent),
-    m_signal_submitted{},
     m_dialog{}
 {
 
@@ -38,7 +37,6 @@ ribi::QtQuestionDialog::QtQuestionDialog(
   const boost::shared_ptr<QuestionDialog>& dialog,
   QWidget *parent)
   : QtHideAndShowDialog(parent),
-    m_signal_submitted{},
     m_dialog(dialog)
 {
   assert(m_dialog);
@@ -46,14 +44,15 @@ ribi::QtQuestionDialog::QtQuestionDialog(
 
 const std::string ribi::QtQuestionDialog::GetVersion() noexcept
 {
-  return "1.0";
+  return "1.1";
 }
 
 const std::vector<std::string> ribi::QtQuestionDialog::GetVersionHistory() noexcept
 {
-  std::vector<std::string> v;
-  v.push_back("2011-06-30: version 1.0: initial version");
-  return v;
+  return {
+    "2011-06-30: version 1.0: initial version",
+    "2013-10-23: version 1.1: moved m_signal_submitted to QuestionDialog"
+  };
 }
 
 

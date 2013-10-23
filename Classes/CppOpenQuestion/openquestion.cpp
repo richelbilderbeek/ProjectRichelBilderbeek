@@ -106,3 +106,9 @@ const std::vector<std::string> ribi::OpenQuestion::SeperateString(
   return v;
 }
 
+const std::vector<std::string> ribi::OpenQuestion::ToLines() const
+{
+  std::vector<std::string> v;
+  v.push_back(this->GetQuestion());
+  return v;
+}

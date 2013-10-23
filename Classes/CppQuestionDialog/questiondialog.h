@@ -23,8 +23,10 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/checked_delete.hpp>
 #include <boost/shared_ptr.hpp>
+#include <boost/signals2.hpp>
 #pragma GCC diagnostic pop
 
 namespace ribi {
@@ -64,6 +66,10 @@ struct QuestionDialog
 
   ///Submit an answer
   void Submit(const std::string& s);
+
+  ///This signal is emitted when the client submits an answer, where
+  ///the boolean indicates if a correct answer was given
+  mutable boost::signals2::signal<void (bool)> m_signal_submitted;
 
   protected:
   virtual ~QuestionDialog() noexcept {}

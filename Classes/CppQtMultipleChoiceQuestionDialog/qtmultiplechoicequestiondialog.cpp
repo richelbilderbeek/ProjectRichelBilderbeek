@@ -23,6 +23,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include "qtmultiplechoicequestiondialog.h"
 
+#include <array>
 #include <boost/bind.hpp>
 #include <boost/lambda/bind.hpp>
 #include <boost/lambda/lambda.hpp>
@@ -99,11 +100,11 @@ void ribi::QtMultipleChoiceQuestionDialog::SetQuestion(
   ui->label_answer->setText(q->GetAnswer().c_str());
 
 
-  const std::vector<QRadioButton* > buttons
-    = { ui->radio_1, ui->radio_2, ui->radio_3, ui->radio_4, ui->radio_5, ui->radio_6 };
+  const int sz = 7;
+  const std::array<QRadioButton*,sz> buttons
+    = { ui->radio_1, ui->radio_2, ui->radio_3, ui->radio_4, ui->radio_5, ui->radio_6, ui->radio_7 };
   const std::vector<std::string> options = q->GetOptions();
-  const int sz = 6;
-  assert(sz == boost::numeric_cast<int>(buttons.size()));
+  static_assert(sz == buttons.size(),"std::array<T,sz> will have size sz");
   assert(sz >= boost::numeric_cast<int>(options.size()));
   for (int i = 0; i!=sz; ++i)
   {
@@ -144,8 +145,5 @@ void ribi::QtMultipleChoiceQuestionDialog::on_button_submit_clicked() noexcept
   this->ui->stackedWidget->setCurrentWidget(is_correct
     ? ui->page_correct
     : ui->page_incorrect);
-
-
-  m_signal_submitted(is_correct);
 }
 

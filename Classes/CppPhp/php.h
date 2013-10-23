@@ -199,6 +199,13 @@ void var_dump(const std::set<T>& s,
 }
 
 template <class T>
+void var_dump(const std::vector<T>& s,
+  std::ostream& os = std::cout)
+{
+  php_private::var_dump(s.begin(),s.end(),os);
+}
+
+template <class T>
 void var_dump(const std::vector<boost::shared_ptr<T> >& s,
   std::ostream& os = std::cout)
 {

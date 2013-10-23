@@ -12,6 +12,7 @@
 #include <QKeyEvent>
 #include <QTimer>
 
+
 #include "multiplechoicequestion.h"
 #include "multiplechoicequestiondialog.h"
 #include "openquestion.h"
@@ -26,37 +27,33 @@
 #pragma GCC diagnostic pop
 
 ribi::QtHometrainerMainDialog::QtHometrainerMainDialog(
-  const boost::shared_ptr<const HometrainerMainDialog>& dialog,
+  const boost::shared_ptr<const HometrainerMainDialog> dialog,
   QWidget *parent) noexcept
   : QtHideAndShowDialog(parent),
     ui(new Ui::QtHometrainerMainDialog),
-    m_current_question_index{0},
-    m_n_correct{0},
-    m_n_incorrect{0},
-    m_qtdialog{},
-    m_questions{dialog->GetQuestions()}
+    m_dialog{dialog},
+    m_qtdialog{}
+    //m_questions{dialog->GetQuestions()}
 {
   ui->setupUi(this);
   #ifndef NDEBUG
   Test();
   #endif
 
-  assert(dialog);
-
-  assert(!m_questions.empty());
-  if (m_questions.empty())
-  {
-    throw std::logic_error("QtHometrainerMainDialog: must have questions");
-  }
-
-  SetQuestion(dialog->GetQuestions()[m_current_question_index]);
+  assert(m_dialog);
+  SetQuestion(m_dialog->GetCurrentQuestion());
 }
 
 ribi::QtHometrainerMainDialog::~QtHometrainerMainDialog() noexcept
 {
   delete ui;
 }
-
+/*
+const boost::shared_ptr<ribi::HometrainerMainDialog> ribi::QtHometrainerMainDialog::CreateMainDialog()
+{
+  boost::shared_ptr<ribi::HometrainerMainDialog> d(new ribi::HometrainerMainDialog(
+}
+*/
 boost::shared_ptr<ribi::QtQuestionDialog> ribi::QtHometrainerMainDialog::CreateQtQuestionDialog(
   const boost::shared_ptr<const Question> s)
 {
@@ -96,14 +93,10 @@ boost::shared_ptr<ribi::QtQuestionDialog> ribi::QtHometrainerMainDialog::CreateQ
 void ribi::QtHometrainerMainDialog::DisplayScore()
 {
   std::stringstream s;
-  s << "Questions: "
-    << (1 + m_current_question_index) //Human 1 based
-    << " / "
-    << m_questions.size()
-    << ", correct: "
-    << m_n_correct
+  s << "Correct: "
+    << m_dialog->GetNumberCorrect()
     << ", incorrect: "
-    << m_n_incorrect;
+    << m_dialog->GetNumberIncorrect();
   ui->label_score->setText(s.str().c_str());
 }
 
@@ -115,19 +108,11 @@ void ribi::QtHometrainerMainDialog::keyPressEvent(QKeyEvent* event)
 
 void ribi::QtHometrainerMainDialog::NewQuestion()
 {
-  ++m_current_question_index;
-  if (m_current_question_index == m_questions.size())
-  {
-    std::random_shuffle(m_questions.begin(),m_questions.end());
-    m_current_question_index = 0;
-  }
-  assert(m_current_question_index < m_questions.size());
-  SetQuestion(m_questions[m_current_question_index]);
+  SetQuestion(m_dialog->GetCurrentQuestion());
 }
 
 void ribi::QtHometrainerMainDialog::OnSubmitted(const bool is_correct)
 {
-  if (is_correct) ++m_n_correct; else ++m_n_incorrect;
   DisplayScore();
 
   QTimer::singleShot(
@@ -138,9 +123,10 @@ void ribi::QtHometrainerMainDialog::OnSubmitted(const bool is_correct)
 
 void ribi::QtHometrainerMainDialog::SetQuestion(const boost::shared_ptr<const Question> s)
 {
+  assert(s);
   m_qtdialog = CreateQtQuestionDialog(s);
   assert(m_qtdialog);
-  m_qtdialog->m_signal_submitted.connect(
+  m_qtdialog->GetDialog()->m_signal_submitted.connect(
     boost::bind(&ribi::QtHometrainerMainDialog::OnSubmitted,this,boost::lambda::_1)
   );
 

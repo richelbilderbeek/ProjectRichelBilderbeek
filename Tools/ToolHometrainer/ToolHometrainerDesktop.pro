@@ -3,64 +3,37 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 TEMPLATE = app
 
+include ( ToolHometrainer.pri )
+
 INCLUDEPATH += \
-    ../../Classes/CppAbout \
-    ../../Classes/CppExercise \
-    ../../Classes/CppMultipleChoiceQuestion \
-    ../../Classes/CppMultipleChoiceQuestionDialog \
-    ../../Classes/CppOpenQuestion \
-    ../../Classes/CppOpenQuestionDialog \
     ../../Classes/CppQtAboutDialog \
     ../../Classes/CppQtHideAndShowDialog \
     ../../Classes/CppQtMultipleChoiceQuestionDialog \
     ../../Classes/CppQtOpenQuestionDialog \
-    ../../Classes/CppQtQuestionDialog \
-    ../../Classes/CppQuestion \
-    ../../Classes/CppQuestionDialog \
-    ../../Classes/CppTrace
+    ../../Classes/CppQtQuestionDialog
 
-SOURCES += qtmain.cpp \
-    ../../Classes/CppAbout/about.cpp \
-    ../../Classes/CppMultipleChoiceQuestion/multiplechoicequestion.cpp \
-    ../../Classes/CppMultipleChoiceQuestionDialog/multiplechoicequestiondialog.cpp \
-    ../../Classes/CppOpenQuestion/openquestion.cpp \
-    ../../Classes/CppOpenQuestionDialog/openquestiondialog.cpp \
+SOURCES += \
     ../../Classes/CppQtAboutDialog/qtaboutdialog.cpp \
+    ../../Classes/CppQtExercise/qtexercise.cpp \
+    ../../Classes/CppQtHideAndShowDialog/qthideandshowdialog.cpp \
     ../../Classes/CppQtMultipleChoiceQuestionDialog/qtmultiplechoicequestiondialog.cpp \
     ../../Classes/CppQtOpenQuestionDialog/qtopenquestiondialog.cpp \
     ../../Classes/CppQtQuestionDialog/qtquestiondialog.cpp \
-    ../../Classes/CppQuestion/question.cpp \
-    ../../Classes/CppQuestionDialog/questiondialog.cpp \
-    ../../Classes/CppQtHideAndShowDialog/qthideandshowdialog.cpp \
-    hometrainerresources.cpp \
-    hometrainermenudialog.cpp \
     qthometrainermaindialog.cpp \
     qthometrainermenudialog.cpp \
-    ../../Classes/CppExercise/exercise.cpp \
-    ../../Classes/CppQtExercise/qtexercise.cpp \
-    hometrainermaindialog.cpp
+    qtmain.cpp
 
 HEADERS  += \
-    ../../Classes/CppAbout/about.h \
-    ../../Classes/CppMultipleChoiceQuestion/multiplechoicequestion.h \
-    ../../Classes/CppMultipleChoiceQuestionDialog/multiplechoicequestiondialog.h \
-    ../../Classes/CppOpenQuestion/openquestion.h \
-    ../../Classes/CppOpenQuestionDialog/openquestiondialog.h \
     ../../Classes/CppQtAboutDialog/qtaboutdialog.h \
+    ../../Classes/CppQtExercise/qtexercise.h \
+    ../../Classes/CppQtHideAndShowDialog/qthideandshowdialog.h \
     ../../Classes/CppQtMultipleChoiceQuestionDialog/qtmultiplechoicequestiondialog.h \
     ../../Classes/CppQtOpenQuestionDialog/qtopenquestiondialog.h \
     ../../Classes/CppQtQuestionDialog/qtquestiondialog.h \
     ../../Classes/CppQuestion/question.h \
     ../../Classes/CppQuestionDialog/questiondialog.h \
-    ../../Classes/CppQtHideAndShowDialog/qthideandshowdialog.h \
-    hometrainerresources.h \
-    hometrainermenudialog.h \
     qthometrainermaindialog.h \
-    qthometrainermenudialog.h \
-    ../../Classes/CppTrace/trace.h \
-    ../../Classes/CppExercise/exercise.h \
-    ../../Classes/CppQtExercise/qtexercise.h \
-    hometrainermaindialog.h
+    qthometrainermenudialog.h
 
 FORMS += \
     ../../Classes/CppQtAboutDialog/qtaboutdialog.ui \
@@ -71,36 +44,7 @@ FORMS += \
 
 OTHER_FILES += \
     ../../Classes/CppQtHideAndShowDialog/Licence.txt \
-    ../../Classes/CppTrace/Licence.txt \
-    ../../Classes/CppExercise/Licence.txt \
-    ../../Classes/CppQtExercise/Licence.txt
+    ../../Classes/CppQtExercise/Licence.txt \
+    ToolHometrainer.pri
 
-RESOURCES += \
-    ToolHometrainer.qrc
 
-#
-#
-# Type of compile
-#
-#
-
-CONFIG(release, debug|release) {
-  DEFINES += NDEBUG NTRACE_BILDERBIKKEL
-}
-
-QMAKE_CXXFLAGS += -std=c++11 -Wall -Wextra -Weffc++
-
-unix {
-  QMAKE_CXXFLAGS += -Werror
-}
-
-#
-#
-# Boost
-#
-#
-
-win32 {
-  INCLUDEPATH += \
-    ../../Libraries/boost_1_54_0
-}

@@ -28,9 +28,11 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic pop
 
 ribi::QuestionDialog::QuestionDialog(const boost::shared_ptr<const Question> question)
-  : m_has_submitted(false),
+  : m_signal_submitted{},
+    m_has_submitted(false),
     m_is_correct(false),
     m_question{question}
+
 {
   assert(m_question);
   assert(!HasSubmitted());
@@ -92,5 +94,7 @@ void ribi::QuestionDialog::Submit(const std::string& s)
 
   m_has_submitted = true;
   assert(HasSubmitted());
+
+  m_signal_submitted(m_is_correct); //Emit signal
 }
 

@@ -24,7 +24,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #include "openquestion.h"
 #include "openquestiondialog.h"
-//#include "trace.h"
+#include "trace.h"
 #include "ui_qtopenquestiondialog.h"
 
 #include <QFile>
@@ -71,9 +71,8 @@ const std::vector<std::string> ribi::QtOpenQuestionDialog::GetVersionHistory() n
   };
 }
 
-///Set the Question
 void ribi::QtOpenQuestionDialog::SetQuestion(
-  const boost::shared_ptr<const Question> question) noexcept
+  const boost::shared_ptr<const Question> question)
 {
   m_dialog->SetQuestion(question);
 
@@ -84,7 +83,12 @@ void ribi::QtOpenQuestionDialog::SetQuestion(
 
   const OpenQuestion * const q
     = dynamic_cast<const OpenQuestion *>(question.get());
-  assert(q);
+  if (!q)
+  {
+    throw std::logic_error(
+      "Only OpenQuestions may be passed to QtOpenQuestionDialog");
+  }
+  assert(q && "Only OpenQuestions may be passed to QtOpenQuestionDialog");
 
   ui->stackedWidget->setCurrentWidget(ui->page_question);
   ui->label_question->setText(question->GetQuestion().c_str());
@@ -101,7 +105,5 @@ void ribi::QtOpenQuestionDialog::on_button_submit_clicked() noexcept
   this->ui->stackedWidget->setCurrentWidget(is_correct
     ? ui->page_correct
     : ui->page_incorrect);
-
-  m_signal_submitted(is_correct);
 }
 

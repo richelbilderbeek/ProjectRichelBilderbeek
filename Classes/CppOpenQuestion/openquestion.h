@@ -51,6 +51,9 @@ struct OpenQuestion : public Question
   static const std::string GetVersion() noexcept;
   static const std::vector<std::string> GetVersionHistory() noexcept;
 
+  ///How to display the question as multiple lines
+  const std::vector<std::string> ToLines() const;
+
   private:
   friend void boost::checked_delete<>(OpenQuestion *);
   ~OpenQuestion() noexcept {}

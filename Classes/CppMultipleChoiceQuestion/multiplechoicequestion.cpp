@@ -296,6 +296,24 @@ void ribi::MultipleChoiceQuestion::Test()
 }
 #endif
 
+const std::vector<std::string> ribi::MultipleChoiceQuestion::ToLines() const
+{
+  std::vector<std::string> v;
+  v.push_back(this->GetQuestion());
+  v.push_back("");
+  const std::vector<std::string> w { this->GetOptions() };
+
+  int i=0;
+  for (const std::string& s: w)
+  {
+    std::stringstream t;
+    t << '[' << i << "] " << s;
+    v.push_back(t.str());
+    ++i;
+  }
+  return v;
+}
+
 const std::string ribi::MultipleChoiceQuestion::ToStr() const noexcept
 {
   //Concatenate the correct answer
