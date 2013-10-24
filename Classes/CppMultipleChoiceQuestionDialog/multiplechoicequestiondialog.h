@@ -36,7 +36,13 @@ struct Question;
 struct MultipleChoiceQuestionDialog : public QuestionDialog
 {
   explicit MultipleChoiceQuestionDialog(const std::string& question);
-  explicit MultipleChoiceQuestionDialog(const boost::shared_ptr<const Question>& question);
+
+  ///Will work if question is not nullptr
+  explicit MultipleChoiceQuestionDialog(const boost::shared_ptr<const MultipleChoiceQuestion> question);
+
+  const boost::shared_ptr<const MultipleChoiceQuestion> GetMultipleChoiceQuestion() const { return m_question; }
+
+  const boost::shared_ptr<const Question> GetQuestion() const;
 
   ///Obtain the version
   static const std::string GetVersion() noexcept;
@@ -44,9 +50,15 @@ struct MultipleChoiceQuestionDialog : public QuestionDialog
   ///Obtain the version history
   static const std::vector<std::string> GetVersionHistory() noexcept;
 
+  ///Submit an answer
+  ///For a multiple choice question, s will be the index of the answer
+  void Submit(const std::string& s);
+
   private:
   friend void boost::checked_delete<>(MultipleChoiceQuestionDialog *);
   ~MultipleChoiceQuestionDialog() noexcept {}
+
+  const boost::shared_ptr<const MultipleChoiceQuestion> m_question;
 
   ///Create a default Question
   //static MultipleChoiceQuestion * CreateDefaultQuestion();

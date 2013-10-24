@@ -44,12 +44,9 @@ private:
   Ui::QtHometrainerMainDialog *ui;
   const boost::shared_ptr<const HometrainerMainDialog> m_dialog;
   boost::shared_ptr<QtQuestionDialog> m_qtdialog;
-  //const boost::shared_ptr<QuestionDialog> m_dialog;
-  //std::vector<boost::shared_ptr<const Question> > m_questions;
 
   static boost::shared_ptr<QtQuestionDialog> CreateQtQuestionDialog(
     const boost::shared_ptr<const Question> s);
-  //static const boost::shared_ptr<HometrainerMainDialog> CreateMainDialog();
 
   void DisplayScore();
   void OnSubmitted(const bool is_correct);

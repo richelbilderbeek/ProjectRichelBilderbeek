@@ -105,7 +105,7 @@ struct MultipleChoiceQuestion : public Question
     const char seperator) noexcept;
 
   #ifndef NDEBUG
-  static void Test();
+  static void Test() noexcept;
   #endif
 
 };

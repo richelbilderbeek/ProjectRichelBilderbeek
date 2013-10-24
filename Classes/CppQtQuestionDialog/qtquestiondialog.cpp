@@ -27,31 +27,22 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 
 ribi::QtQuestionDialog::QtQuestionDialog(QWidget *parent)
-  : QtHideAndShowDialog(parent),
-    m_dialog{}
+  : QtHideAndShowDialog(parent)
 {
 
-}
-
-ribi::QtQuestionDialog::QtQuestionDialog(
-  const boost::shared_ptr<QuestionDialog>& dialog,
-  QWidget *parent)
-  : QtHideAndShowDialog(parent),
-    m_dialog(dialog)
-{
-  assert(m_dialog);
 }
 
 const std::string ribi::QtQuestionDialog::GetVersion() noexcept
 {
-  return "1.1";
+  return "1.2";
 }
 
 const std::vector<std::string> ribi::QtQuestionDialog::GetVersionHistory() noexcept
 {
   return {
     "2011-06-30: version 1.0: initial version",
-    "2013-10-23: version 1.1: moved m_signal_submitted to QuestionDialog"
+    "2013-10-23: version 1.1: moved m_signal_submitted to QuestionDialog",
+    "2013-10-24: version 1.2: moved general m_dialog to derived classes"
   };
 }
 

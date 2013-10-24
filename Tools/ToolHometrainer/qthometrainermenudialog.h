@@ -29,6 +29,10 @@ private:
   Ui::QtHometrainerMenuDialog *ui;
   boost::shared_ptr<const HometrainerMainDialog> m_main_dialog;
 
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
+
 private slots:
   void on_button_about_clicked() noexcept;
   void on_button_quit_clicked() noexcept;

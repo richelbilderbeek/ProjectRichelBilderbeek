@@ -6,8 +6,11 @@
 #include <QFileDialog>
 #include "hometrainermenudialog.h"
 #include "hometrainermaindialog.h"
+#include "multiplechoicequestion.h"
+#include "openquestion.h"
 #include "qtaboutdialog.h"
 #include "qthometrainermaindialog.h"
+#include "trace.h"
 #include "ui_qthometrainermenudialog.h"
 #pragma GCC diagnostic pop
 
@@ -16,6 +19,9 @@ ribi::QtHometrainerMenuDialog::QtHometrainerMenuDialog(QWidget *parent) noexcept
     ui(new Ui::QtHometrainerMenuDialog),
     m_main_dialog{}
 {
+  #ifndef NDEBUG
+  Test();
+  #endif
   ui->setupUi(this);
 
   ui->button_start_exercise->setEnabled( m_main_dialog.get() );
@@ -71,3 +77,34 @@ void ribi::QtHometrainerMenuDialog::on_button_create_examples_clicked()
   HometrainerMenuDialog::CreateExamples();
   ui->button_create_examples->setVisible(false);
 }
+
+#ifndef NDEBUG
+void ribi::QtHometrainerMenuDialog::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting ribi::QtHometrainerMenuDialog::Test");
+  std::vector<boost::shared_ptr<const Question> > v;
+  {
+    const boost::shared_ptr<const MultipleChoiceQuestion> q {
+      new MultipleChoiceQuestion("-,1+1=,2,1,3")
+    };
+    v.push_back(q);
+  }
+  {
+    const boost::shared_ptr<const OpenQuestion> q {
+      new OpenQuestion("-,1+1=,2/Two/two")
+    };
+    v.push_back(q);
+  }
+  const boost::shared_ptr<const HometrainerMainDialog> dialog {
+    new HometrainerMainDialog(v)
+  };
+
+  QtHometrainerMainDialog d(dialog);
+  TRACE("Finished ribi::QtHometrainerMenuDialog::Test successfully");
+}
+#endif

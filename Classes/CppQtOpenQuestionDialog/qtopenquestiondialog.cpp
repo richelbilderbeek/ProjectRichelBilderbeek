@@ -22,6 +22,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic ignored "-Weffc++"
 #include "qtopenquestiondialog.h"
 
+#include "fileio.h"
 #include "openquestion.h"
 #include "openquestiondialog.h"
 #include "trace.h"
@@ -30,6 +31,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <QFile>
 #pragma GCC diagnostic pop
 
+/*
 ribi::QtOpenQuestionDialog::QtOpenQuestionDialog(QWidget *parent)
   : QtQuestionDialog(
       boost::shared_ptr<QuestionDialog>(
@@ -39,24 +41,50 @@ ribi::QtOpenQuestionDialog::QtOpenQuestionDialog(QWidget *parent)
     parent),
     ui(new Ui::QtOpenQuestionDialog)
 {
+  assert(m_dialog);
+  assert(GetDialog());
+
   ui->setupUi(this);
 }
+*/
 
 ribi::QtOpenQuestionDialog::QtOpenQuestionDialog(
-  const boost::shared_ptr<QuestionDialog> dialog,
+  const boost::shared_ptr<OpenQuestionDialog> dialog,
   QWidget *parent)
-  : QtQuestionDialog(dialog,parent),
-    ui(new Ui::QtOpenQuestionDialog)
-    //m_dialog(new OpenQuestionDialog(question))
+  : QtQuestionDialog(parent),
+    ui(new Ui::QtOpenQuestionDialog),
+    m_dialog(dialog)
 {
+  assert(m_dialog);
+  assert(GetDialog());
+
   ui->setupUi(this);
-  assert(dialog);
-  SetQuestion(dialog->GetQuestion());
+  //SetQuestion(dialog->GetQuestion());
+
+  const boost::shared_ptr<const OpenQuestion> question {
+    m_dialog->GetOpenQuestion()
+  };
+  assert(question);
+
+  if (fileio::IsRegularFile(question->GetFilename().c_str()))
+  {
+    ui->image->setPixmap(QPixmap(question->GetFilename().c_str()));
+  }
+
+  ui->stackedWidget->setCurrentWidget(ui->page_question);
+  ui->label_question->setText(question->GetQuestion().c_str());
+  ui->label_question_again->setText(question->GetQuestion().c_str());
+  ui->label_answer->setText(question->GetCorrectAnswers()[0].c_str());
 }
 
 ribi::QtOpenQuestionDialog::~QtOpenQuestionDialog() noexcept
 {
   delete ui;
+}
+
+const boost::shared_ptr<const ribi::QuestionDialog> ribi::QtOpenQuestionDialog::GetDialog() const
+{
+  return m_dialog;
 }
 
 const std::string ribi::QtOpenQuestionDialog::GetVersion() noexcept
@@ -71,6 +99,7 @@ const std::vector<std::string> ribi::QtOpenQuestionDialog::GetVersionHistory() n
   };
 }
 
+/*
 void ribi::QtOpenQuestionDialog::SetQuestion(
   const boost::shared_ptr<const Question> question)
 {
@@ -95,6 +124,7 @@ void ribi::QtOpenQuestionDialog::SetQuestion(
   ui->label_question_again->setText(question->GetQuestion().c_str());
   ui->label_answer->setText(q->GetCorrectAnswers()[0].c_str());
 }
+*/
 
 void ribi::QtOpenQuestionDialog::on_button_submit_clicked() noexcept
 {

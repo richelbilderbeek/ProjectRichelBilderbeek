@@ -40,6 +40,9 @@ ribi::MultipleChoiceQuestion::MultipleChoiceQuestion(const std::string& question
     m_wrong_answers(ExtractWrongAnswers(question)),
     m_options(ExtractOptions(question))
 {
+  #ifndef NDEBUG
+  Test();
+  #endif
   if (question.empty())
   {
     throw std::logic_error("A multiple choice question must contain text");
@@ -56,9 +59,6 @@ ribi::MultipleChoiceQuestion::MultipleChoiceQuestion(const std::string& question
   {
     throw std::logic_error("A multiple choice question cannot contain two consecutive commas");
   }
-  #ifndef NDEBUG
-  Test();
-  #endif
 }
 
 ribi::MultipleChoiceQuestion::MultipleChoiceQuestion(
@@ -208,7 +208,7 @@ const std::vector<std::string> ribi::MultipleChoiceQuestion::SeperateString(
 }
 
 #ifndef NDEBUG
-void ribi::MultipleChoiceQuestion::Test()
+void ribi::MultipleChoiceQuestion::Test() noexcept
 {
   {
     static bool is_tested = false;
@@ -218,7 +218,7 @@ void ribi::MultipleChoiceQuestion::Test()
   TRACE("Starting ribi::MultipleChoiceQuestion::Test");
   try
   {
-    boost::scoped_ptr<MultipleChoiceQuestion> q {
+    const boost::scoped_ptr<MultipleChoiceQuestion> q {
       new MultipleChoiceQuestion(
         MultipleChoiceQuestion::GetExampleMultipleChoiceQuestion()
       )
@@ -256,7 +256,7 @@ void ribi::MultipleChoiceQuestion::Test()
     {
       try
       {
-        boost::scoped_ptr<MultipleChoiceQuestion> q { new MultipleChoiceQuestion(s) };
+        const boost::scoped_ptr<MultipleChoiceQuestion> q { new MultipleChoiceQuestion(s) };
         TRACE("ERROR");
         TRACE(s);
         assert(!"Invalid questions must be rejected");
@@ -273,7 +273,7 @@ void ribi::MultipleChoiceQuestion::Test()
     const std::string question = "1+1=";
     const std::string answer = "2";
     const std::vector<std::string> wrong_answers { "chicken", "cow" };
-    boost::scoped_ptr<MultipleChoiceQuestion> q { new MultipleChoiceQuestion(filename,question,answer,wrong_answers) };
+    const boost::scoped_ptr<MultipleChoiceQuestion> q { new MultipleChoiceQuestion(filename,question,answer,wrong_answers) };
     assert(q->GetFilename() == filename);
     assert(q->GetQuestion() == question);
     assert(q->GetAnswer() == answer);
@@ -288,8 +288,19 @@ void ribi::MultipleChoiceQuestion::Test()
     const std::vector<std::string> valid { GetValidMultipleChoiceQuestions() };
     for (const std::string& s: valid)
     {
-      boost::scoped_ptr<MultipleChoiceQuestion> q { new MultipleChoiceQuestion(s) };
+      const boost::scoped_ptr<MultipleChoiceQuestion> q { new MultipleChoiceQuestion(s) };
       assert(s == q->ToStr());
+    }
+  }
+  //Test that ToLines always yields the same result
+  {
+    const std::vector<std::string> valid { GetValidMultipleChoiceQuestions() };
+    for (const std::string& s: valid)
+    {
+      const boost::scoped_ptr<MultipleChoiceQuestion> q { new MultipleChoiceQuestion(s) };
+      const std::vector<std::string> v { q->ToLines() };
+      const std::vector<std::string> w { q->ToLines() };
+      assert(v == w);
     }
   }
   TRACE("Finished ribi::MultipleChoiceQuestion::Test successfully");

@@ -31,17 +31,18 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic pop
 
 ribi::MultipleChoiceQuestionDialog::MultipleChoiceQuestionDialog(
-  const boost::shared_ptr<const Question>& question)
-  : QuestionDialog(question)
+  const boost::shared_ptr<const MultipleChoiceQuestion> question)
+  : m_question(question)
 {
-  assert(!HasSubmitted());
+  #ifndef NDEBUG
+  Test();
+  #endif
   assert(GetQuestion());
+  assert(!HasSubmitted());
 }
 
 ribi::MultipleChoiceQuestionDialog::MultipleChoiceQuestionDialog(const std::string& question)
-  : QuestionDialog(
-    boost::shared_ptr<const Question>(new
-      MultipleChoiceQuestion(question)))
+  : m_question(new MultipleChoiceQuestion(question))
 {
   #ifndef NDEBUG
   Test();
@@ -63,16 +64,44 @@ boost::shared_ptr<ribi::MultipleChoiceQuestion>
   );
 }
 
+const boost::shared_ptr<const ribi::Question> ribi::MultipleChoiceQuestionDialog::GetQuestion() const
+{
+  return m_question;
+}
+
 const std::string ribi::MultipleChoiceQuestionDialog::GetVersion() noexcept
 {
-  return "1.0";
+  return "1.1";
 }
 
 const std::vector<std::string> ribi::MultipleChoiceQuestionDialog::GetVersionHistory() noexcept
 {
   return {
-    "2011-06-29: version 1.0: initial version"
+    "2011-06-29: version 1.0: initial version",
+    "2013-10-24: version 1.1: added testing"
   };
+}
+
+void ribi::MultipleChoiceQuestionDialog::Submit(const std::string& s)
+{
+  if (HasSubmitted())
+  {
+    throw std::logic_error("Cannot submit a second answer");
+  }
+  assert(!HasSubmitted());
+  /*
+  try
+  {
+    const int index = boost::lexical_cast<int>(s);
+    //if (index < 0 || index >= boost::dynamic_pointer_cast< GetQuestion()->Get
+  }
+  catch (boost::bad_lexical_cast&)
+  {
+    throw std::logic_error("Must submit an index to a multiple choice question dialog");
+  }
+  */
+  this->SetIsCorrect(GetQuestion()->IsCorrect(s));
+
 }
 
 #ifndef NDEBUG
@@ -84,7 +113,19 @@ void ribi::MultipleChoiceQuestionDialog::Test() noexcept
     is_tested = true;
   }
   TRACE("Starting ribi::MultipleChoiceQuestionDialog::Test");
-
+  //Test setting the multiple choice questions
+  for(const std::string& s: MultipleChoiceQuestion::GetValidMultipleChoiceQuestions())
+  {
+    const boost::shared_ptr<MultipleChoiceQuestion> q {
+      new MultipleChoiceQuestion(s)
+    };
+    assert(q);
+    const boost::scoped_ptr<MultipleChoiceQuestionDialog> d {
+      new MultipleChoiceQuestionDialog(q)
+    };
+    assert(d);
+    assert(!d->HasSubmitted() );
+  }
   //Test submitting correct and incorrect answers to this dialog
   {
     const std::vector<std::string> valid {
@@ -131,8 +172,6 @@ void ribi::MultipleChoiceQuestionDialog::Test() noexcept
       }
     }
   }
-
-
   TRACE("Finished ribi::MultipleChoiceQuestionDialog::Test successfully");
 }
 #endif

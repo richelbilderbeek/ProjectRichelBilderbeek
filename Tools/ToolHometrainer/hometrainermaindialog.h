@@ -4,13 +4,18 @@
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #include <vector>
+#include <boost/scoped_ptr.hpp>
 #include <boost/shared_ptr.hpp>
 #pragma GCC diagnostic pop
 
 namespace ribi {
 
 struct Question;
+struct QuestionDialog;
 
+///HometrainerMainDialog loads a collection of questions from file.
+///From then on, it selects questions and keeps track of the score.
+///The user comminication is done via a QuestionDialog
 struct HometrainerMainDialog
 {
   ///Load questions from file
@@ -32,7 +37,6 @@ struct HometrainerMainDialog
     return m_questions;
   }
 
-
   void Submit(const std::string& answer_from_user);
 
   private:
@@ -45,24 +49,42 @@ struct HometrainerMainDialog
   ///Number of incorrect answers
   int m_n_incorrect;
 
+  ///Interfacing with the user about a certain Question
+  boost::shared_ptr<QuestionDialog> m_question_dialog;
+
   ///The questions loaded
   std::vector<boost::shared_ptr<const Question> > m_questions;
 
-  const std::string AskUserForInput() const noexcept;
+  ///Does the user want to quit?
+  bool m_quit;
+
+  ///Create a Question from a std::string
+  ///Returns nullptr if the string cannot be converted to a question
+  static const boost::shared_ptr<const Question > CreateQuestion(
+    const std::string& s) noexcept;
+
+  ///Build the correct dialog for a (derived class of) question
+  static const boost::shared_ptr<QuestionDialog> CreateQuestionDialog(
+    boost::shared_ptr<const Question> question) noexcept;
+
 
   static const std::vector<boost::shared_ptr<const Question> > CreateQuestions(
     const std::string& filename);
-
 
   void DisplayScore() const noexcept;
 
   ///Create a new question
   void NewQuestion();
 
-  void OnSubmitted(const bool is_correct);
+  ///Respond to the user requesting to quit
+  void OnRequestQuit() noexcept;
 
-  ///Display the question
-  void SetQuestion(const boost::shared_ptr<const Question> s);
+  ///Respond to the user submitting an answer
+  void OnSubmitted(const bool is_correct) noexcept;
+
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
 };
 
 } //namespace ribi

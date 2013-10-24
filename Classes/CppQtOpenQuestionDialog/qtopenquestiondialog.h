@@ -51,25 +51,27 @@ public:
 
   ///Will trrow if the QuestionDialog is not an OpenQuestionDialog
   explicit QtOpenQuestionDialog(
-    const boost::shared_ptr<QuestionDialog> dialog,
+    const boost::shared_ptr<OpenQuestionDialog> dialog,
     QWidget *parent = 0);
   QtOpenQuestionDialog(const QtOpenQuestionDialog&) = delete;
   QtOpenQuestionDialog& operator=(const QtOpenQuestionDialog&) = delete;
   ~QtOpenQuestionDialog() noexcept;
+
+  const boost::shared_ptr<const QuestionDialog> GetDialog() const;
 
   static const std::string GetVersion() noexcept;
   static const std::vector<std::string> GetVersionHistory() noexcept;
 
   ///Set the Question
   ///Will throw if the question type does not match the dialog its type
-  void SetQuestion(const boost::shared_ptr<const Question> question);
+  //void SetQuestion(const boost::shared_ptr<const Question> question);
 
 private slots:
   void on_button_submit_clicked() noexcept;
 
 private:
   Ui::QtOpenQuestionDialog *ui;
-  //boost::scoped_ptr<OpenQuestionDialog> m_dialog;
+  const boost::shared_ptr<OpenQuestionDialog> m_dialog;
 };
 
 } //~namespace ribi

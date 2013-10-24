@@ -53,12 +53,14 @@ public:
     QWidget *parent = 0);
 
   QtMultipleChoiceQuestionDialog(
-    const boost::shared_ptr<QuestionDialog>& dialog,
+    const boost::shared_ptr<MultipleChoiceQuestionDialog>& dialog,
     QWidget *parent = 0);
   QtMultipleChoiceQuestionDialog(const QtMultipleChoiceQuestionDialog&) = delete;
   QtMultipleChoiceQuestionDialog& operator=(const QtMultipleChoiceQuestionDialog&) = delete;
 
   ~QtMultipleChoiceQuestionDialog() noexcept;
+
+  const boost::shared_ptr<const QuestionDialog> GetDialog() const;
 
   ///Obtain the version of this class
   static const std::string GetVersion() noexcept;
@@ -71,12 +73,10 @@ private slots:
 
 private:
   Ui::QtMultipleChoiceQuestionDialog *ui;
-  //boost::scoped_ptr<MultipleChoiceQuestionDialog> m_dialog;
+  const boost::shared_ptr<MultipleChoiceQuestionDialog> m_dialog;
 
   ///Set the Question
-  void SetQuestion(
-    const boost::shared_ptr<const Question>& question
-    ) noexcept;
+  //void SetQuestion(const boost::shared_ptr<const MultipleChoiceQuestion>& question) noexcept;
 
 };
 

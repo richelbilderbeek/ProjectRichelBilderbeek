@@ -61,7 +61,10 @@ boost::shared_ptr<ribi::QtQuestionDialog> ribi::QtHometrainerMainDialog::CreateQ
 
   try
   {
-    boost::shared_ptr<QuestionDialog> d(new OpenQuestionDialog(s));
+    const boost::shared_ptr<const OpenQuestion> q {
+      boost::dynamic_pointer_cast<const OpenQuestion>(s)
+    };
+    const boost::shared_ptr<OpenQuestionDialog> d(new OpenQuestionDialog(q));
     if (d) p.reset(new QtOpenQuestionDialog(d));
     assert(p);
     return p;
@@ -72,7 +75,10 @@ boost::shared_ptr<ribi::QtQuestionDialog> ribi::QtHometrainerMainDialog::CreateQ
   }
   try
   {
-    boost::shared_ptr<QuestionDialog> d(new MultipleChoiceQuestionDialog(s));
+    const boost::shared_ptr<const MultipleChoiceQuestion> q {
+      boost::dynamic_pointer_cast<const MultipleChoiceQuestion>(s)
+    };
+    const boost::shared_ptr<MultipleChoiceQuestionDialog> d(new MultipleChoiceQuestionDialog(q));
     if (d) p.reset(new QtMultipleChoiceQuestionDialog(d));
     assert(p);
     return p;

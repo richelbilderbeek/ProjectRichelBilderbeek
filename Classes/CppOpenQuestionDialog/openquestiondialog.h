@@ -29,13 +29,18 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 namespace ribi {
 
+struct Question;
 struct OpenQuestion;
 
 ///Dialog for an OpenQuestion
 struct OpenQuestionDialog : public QuestionDialog
 {
   explicit OpenQuestionDialog(const std::string& question);
-  explicit OpenQuestionDialog(const boost::shared_ptr<const Question>& question);
+  explicit OpenQuestionDialog(const boost::shared_ptr<const OpenQuestion>& question);
+
+  const boost::shared_ptr<const OpenQuestion> GetOpenQuestion() const { return m_question; }
+
+  const boost::shared_ptr<const Question> GetQuestion() const;
 
   ///Obtain the version
   static const std::string GetVersion() noexcept;
@@ -43,9 +48,19 @@ struct OpenQuestionDialog : public QuestionDialog
   ///Obtain the version history
   static const std::vector<std::string> GetVersionHistory() noexcept;
 
+  ///Submit an answer
+  ///For an open question, s will be the anwer
+  void Submit(const std::string& s);
+
   private:
   friend void boost::checked_delete<>(OpenQuestionDialog*);
   ~OpenQuestionDialog() noexcept {}
+
+  const boost::shared_ptr<const OpenQuestion> m_question;
+
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
 };
 
 } //~namespace ribi
