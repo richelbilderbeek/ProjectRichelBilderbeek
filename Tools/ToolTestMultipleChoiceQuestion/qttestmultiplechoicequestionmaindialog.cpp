@@ -65,7 +65,7 @@ boost::shared_ptr<ribi::QtMultipleChoiceQuestionDialog> ribi::QtTestMultipleChoi
 
   try
   {
-    boost::shared_ptr<QuestionDialog> d(new MultipleChoiceQuestionDialog(s));
+    const boost::shared_ptr<MultipleChoiceQuestionDialog> d(new MultipleChoiceQuestionDialog(s));
     if (d) p.reset(new QtMultipleChoiceQuestionDialog(d));
     assert(p);
     return p;

@@ -198,11 +198,38 @@ void var_dump(const std::set<T>& s,
   php_private::var_dump(s.begin(),s.end(),os);
 }
 
+template <class T, class U>
+void var_dump(const std::pair<T,U>& p,
+  std::ostream& os = std::cout)
+{
+  os
+    << php_private::TypeToStr<T>() << "(" << p.first << ")"
+    << " = > "
+    << php_private::TypeToStr<U>() << "(" << p.second << ")"
+    << '\n';
+}
+
 template <class T>
 void var_dump(const std::vector<T>& s,
   std::ostream& os = std::cout)
 {
   php_private::var_dump(s.begin(),s.end(),os);
+}
+
+template <class T, class U>
+void var_dump(const std::map<T,U>& m,
+  std::ostream& os = std::cout)
+{
+  typedef std::pair<T,U> Pair;
+  const std::size_t sz = m.size();
+  os << "array(" << sz << ") {\n";
+  for (const Pair& p: m)
+  {
+    os
+      << "  [" << p.first << "]=>\n"
+      << "  " << php_private::TypeToStr<typename Pair::second_type>() << "(" << p.second << ")\n";
+  }
+  std::cout << "}\n";
 }
 
 template <class T>

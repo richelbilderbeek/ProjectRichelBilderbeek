@@ -22,30 +22,32 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #define HOMETRAINERMENUDIALOG_H
 
 #include "about.h"
+#include "menudialog.h"
 
 namespace ribi {
 
 ///The logic behind the menu dialog
-struct HometrainerMenuDialog
+struct HometrainerMenuDialog : public MenuDialog
 {
   ///Create the example exercises
   static void CreateExamples() noexcept;
 
   ///Execute Hometrainer from the command line
   ///The return code is the error code given back to main
-  static int Execute(const int argc, const char* const argv[]) noexcept;
+  int ExecuteSpecific(const std::vector<std::string>& argv) noexcept;
 
   ///Obtain the about information
-  static const About GetAbout() noexcept;
+  const About GetAbout() const noexcept;
+
+  ///Get the command-line options
+  const std::vector<std::string> GetHelp() const noexcept;
 
   ///Obtain the version
-  static const std::string GetVersion() noexcept;
+  const std::string GetVersion() const noexcept;
 
   ///Obtain the version history
-  static const std::vector<std::string> GetVersionHistory() noexcept;
+  const std::vector<std::string> GetVersionHistory() const noexcept;
 
-  ///Show the command-line options
-  static void ShowHelp() noexcept;
 };
 
 } //~namespace ribi

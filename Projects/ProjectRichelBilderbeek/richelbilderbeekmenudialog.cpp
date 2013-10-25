@@ -98,6 +98,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "stopwatch.h"
 #include "testdialmenudialog.h"
 #include "toolencrangermenudialog.h"
+#include "hometrainermenudialog.h"
 #include "testexercisemenudialog.h"
 #include "testfunctionparsermenudialog.h"
 #include "tooltestledmenudialog.h"
@@ -120,7 +121,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #pragma GCC diagnostic pop
 
-ribi::RichelBilderbeek::MenuDialog::MenuDialog()
+ribi::RichelBilderbeek::ProjectRichelBilderbeekMenuDialog::ProjectRichelBilderbeekMenuDialog()
   : m_programs(ribi::RichelBilderbeek::Program::GetAllPrograms())
 {
   #ifndef NDEBUG
@@ -133,7 +134,72 @@ ribi::RichelBilderbeek::MenuDialog::MenuDialog()
   #endif
 }
 
-const ribi::About ribi::RichelBilderbeek::MenuDialog::GetAbout() noexcept
+const std::vector<boost::shared_ptr<ribi::MenuDialog> > ribi::RichelBilderbeek::ProjectRichelBilderbeekMenuDialog::CreateMenus() const
+{
+  typedef boost::shared_ptr<ribi::MenuDialog> MenuPtr;
+  std::vector<MenuPtr> v;
+  { const MenuPtr p { new AsciiArterMenuDialog  }; v.push_back(p); }
+  { const MenuPtr p { new CodeToHtmlMenuDialog  }; v.push_back(p); }
+  { const MenuPtr p { new HometrainerMenuDialog }; v.push_back(p); }
+  return v;
+}
+
+const std::vector<std::string> ribi::RichelBilderbeek::ProjectRichelBilderbeekMenuDialog::GetHelp() const noexcept
+{
+  return {
+    "ProjectRichelBilderbeekConsole help menu",
+    "",
+    "ProjectRichelBilderbeekConsole is a console front-end for multiple",
+    "console applications. ",
+    "",
+    "Uses: ",
+    "  ProjectRichelBilderbeekConsole [option]",
+    "  ProjectRichelBilderbeekConsole [program] [option]",
+    "",
+    "Allowed options for ProjectRichelBilderbeekConsole:",
+    "-a, --about               display about message",
+    "-h, --help                produce this help message",
+    "-i, --history             display version history",
+    "-l, --licence             display licence",
+    "-p, --program             list all possible programs",
+    "-s, --status              display class statuses",
+    "-v, --version             display class versions",
+    "",
+    "Example uses:",
+    "  ProjectRichelBilderbeekConsole --help",
+    "  ProjectRichelBilderbeekConsole Hometrainer --help"
+    };
+}
+int ribi::RichelBilderbeek::ProjectRichelBilderbeekMenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) noexcept
+{
+  const int argc = static_cast<int>(argv.size());
+
+  if (argc == 1)
+  {
+    const std::vector<std::string> v { GetHelp() };
+    std::copy(v.begin(),v.end(),std::ostream_iterator<std::string>(std::cout,"\n"));
+    return 1;
+  }
+  const std::string s { argv[1] };
+  if (s == std::string("--status") || s == std::string("-s"))
+  {
+    const std::vector<boost::shared_ptr<ribi::RichelBilderbeek::Program> > v = GetPrograms();
+    std::for_each(
+      v.begin(),v.end(),
+      [](const boost::shared_ptr<ribi::RichelBilderbeek::Program>& p)
+      {
+        std::cout << p.get() << '\n';
+      }
+    );
+    return 0;
+  }
+
+  //Find menu dialog and execute it with one argument less
+  assert(!"TODO");
+  return 1;
+}
+
+const ribi::About ribi::RichelBilderbeek::ProjectRichelBilderbeekMenuDialog::GetAbout() const noexcept
 {
   About a(
     "Richel Bilderbeek",
@@ -149,11 +215,11 @@ const ribi::About ribi::RichelBilderbeek::MenuDialog::GetAbout() noexcept
   a.AddLibrary("AlphaBetaGammaFilter version: " + AlphaBetaGammaFilter::GetVersion());
   a.AddLibrary("AlphaFilter version: " + AlphaFilter::GetVersion());
   a.AddLibrary("Approximator version: " + Approximator<double,double>::GetVersion());
-  a.AddLibrary("AsciiArter version: " + AsciiArterMenuDialog::GetVersion());
+  a.AddLibrary("AsciiArter version: " + AsciiArterMenuDialog().GetVersion());
   a.AddLibrary("BeerWanter version: " + BeerWanterMenuDialog::GetVersion());
   a.AddLibrary("Big Integer Library (by Matt McCutchen) version: 2010.04.30");
   a.AddLibrary("BinaryNewickVector version: " + BinaryNewickVector::GetVersion());
-  a.AddLibrary("CodeToHtml version: " + CodeToHtmlMenuDialog::GetVersion());
+  a.AddLibrary("CodeToHtml version: " + CodeToHtmlMenuDialog().GetVersion());
   a.AddLibrary("ConnectThree version: " + ConnectThree::GetVersion());
   a.AddLibrary("ConnectThreeWidget version: " + ConnectThreeWidget::GetVersion());
   a.AddLibrary("Copy_if version: " + Copy_if_version::GetVersion());
@@ -166,7 +232,7 @@ const ribi::About ribi::RichelBilderbeek::MenuDialog::GetAbout() noexcept
   a.AddLibrary("Fuzzy_equal_to version: " + fuzzy_equal_to::GetVersion());
   a.AddLibrary("GaborFilter version: " + GaborFilter::GetVersion());
   a.AddLibrary("GaborFilterWidget version: " + GaborFilterWidget::GetVersion());
-  a.AddLibrary("Hometrainer version: " + HometrainerMenuDialog::GetVersion());
+  a.AddLibrary("Hometrainer version: " + HometrainerMenuDialog().GetVersion());
   a.AddLibrary("HtmlPage version: " + HtmlPage::GetVersion());
   a.AddLibrary("IpAddress version: " + IpAddress::GetVersion());
   a.AddLibrary("kalman::FixedLagSmootherKalmanFilter version: " + kalman::FixedLagSmootherKalmanFilter::GetVersion());
@@ -251,12 +317,12 @@ const ribi::About ribi::RichelBilderbeek::MenuDialog::GetAbout() noexcept
   return a;
 }
 
-const std::string ribi::RichelBilderbeek::MenuDialog::GetVersion() noexcept
+const std::string ribi::RichelBilderbeek::ProjectRichelBilderbeekMenuDialog::GetVersion() const noexcept
 {
   return "1.11";
 }
 
-const std::vector<std::string> ribi::RichelBilderbeek::MenuDialog::GetVersionHistory() noexcept
+const std::vector<std::string> ribi::RichelBilderbeek::ProjectRichelBilderbeekMenuDialog::GetVersionHistory() const noexcept
 {
   return {
     "2010-12-20: Version 0.1: web-application-only project called 'ProjectWtWebsite', initial setup with BeerWanter and Loose",

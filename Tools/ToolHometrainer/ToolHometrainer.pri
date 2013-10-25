@@ -2,6 +2,7 @@ INCLUDEPATH += \
     ../../Classes/CppAbout \
     ../../Classes/CppExercise \
     ../../Classes/CppFileIo \
+    ../../Classes/CppMenuDialog \
     ../../Classes/CppMultipleChoiceQuestion \
     ../../Classes/CppMultipleChoiceQuestionDialog \
     ../../Classes/CppOpenQuestion \
@@ -22,7 +23,8 @@ SOURCES += \
     hometrainermaindialog.cpp \
     hometrainermenudialog.cpp \
     hometrainerresources.cpp \
-    ../../Classes/CppFileIo/fileio.cpp
+    ../../Classes/CppFileIo/fileio.cpp \
+    ../../Classes/CppMenuDialog/menudialog.cpp
 
 HEADERS  += \
     ../../Classes/CppAbout/about.h \
@@ -37,14 +39,16 @@ HEADERS  += \
     hometrainermaindialog.h \
     hometrainermenudialog.h \
     hometrainerresources.h \
-    ../../Classes/CppFileIo/fileio.h
+    ../../Classes/CppFileIo/fileio.h \
+    ../../Classes/CppMenuDialog/menudialog.h
 
 OTHER_FILES += \
     ../../Classes/CppQtHideAndShowDialog/Licence.txt \
     ../../Classes/CppTrace/Licence.txt \
     ../../Classes/CppExercise/Licence.txt \
     ../../Classes/CppQtExercise/Licence.txt \
-    ../../Classes/CppFileIo/Licence.txt
+    ../../Classes/CppFileIo/Licence.txt \
+    ../../Classes/CppMenuDialog/Licence.txt
 
 RESOURCES += \
     ToolHometrainer.qrc

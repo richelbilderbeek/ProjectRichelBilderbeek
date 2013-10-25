@@ -45,29 +45,20 @@ void ribi::HometrainerMenuDialog::CreateExamples() noexcept
   HometrainerResources();
 }
 
-int ribi::HometrainerMenuDialog::Execute(const int argc, const char* const argv[]) noexcept
+int ribi::HometrainerMenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) noexcept
 {
-  if (argc == 1 || argc == 3) { ShowHelp(); return 1; }
+  const int argc = static_cast<int>(argv.size());
+  if (argc == 1 || argc == 3)
+  {
+    const std::vector<std::string> v { GetHelp() };
+    std::copy(v.begin(),v.end(),std::ostream_iterator<std::string>(std::cout,"\n"));
+    return 1;
+  }
   assert(argc == 2);
   const std::string arg = argv[1];
-  if (arg == std::string("-a") || arg == std::string("--about"))
-  {
-    std::cout << GetAbout() << '\n';
-    return 0;
-  }
   if (arg == std::string("-e") || arg == std::string("--example"))
   {
     CreateExamples();
-    return 0;
-  }
-  if (arg == std::string("-h") || arg == std::string("--help"))
-  {
-    ShowHelp();
-    return 0;
-  }
-  if (arg == std::string("-v") || arg == std::string("--version"))
-  {
-    std::cout << GetVersion() << '\n';
     return 0;
   }
   if (!fileio::IsRegularFile(arg))
@@ -81,7 +72,7 @@ int ribi::HometrainerMenuDialog::Execute(const int argc, const char* const argv[
   return 0;
 }
 
-const ribi::About ribi::HometrainerMenuDialog::GetAbout() noexcept
+const ribi::About ribi::HometrainerMenuDialog::GetAbout() const noexcept
 {
   About a(
     "Richel Bilderbeek",
@@ -105,12 +96,30 @@ const ribi::About ribi::HometrainerMenuDialog::GetAbout() noexcept
   return a;
 }
 
-const std::string ribi::HometrainerMenuDialog::GetVersion() noexcept
+const std::vector<std::string> ribi::HometrainerMenuDialog::GetHelp() const noexcept
+{
+  return {
+    "Hometrainer\n",
+    "\n",
+    "Use: Hometrainer [option or filename]\n",
+    "\n",
+    "To use Hometrainer for practicing, supply it",
+    "  with a filename. For example: 'Hometrainer my_exercise.txt'\n",
+    "\n",
+    "Other options:\n",
+    "-a --about: show the about information\n",
+    "-e --example: create the example exercises\n",
+    "-h --help: show this\n",
+    "-v --version: show the version\n"
+  };
+}
+
+const std::string ribi::HometrainerMenuDialog::GetVersion() const noexcept
 {
   return "3.0";
 }
 
-const std::vector<std::string> ribi::HometrainerMenuDialog::GetVersionHistory() noexcept
+const std::vector<std::string> ribi::HometrainerMenuDialog::GetVersionHistory() const noexcept
 {
   return {
     "2009-xx-xx: Version 0.9: initial version (called HomeTrainer)",
@@ -128,19 +137,3 @@ const std::vector<std::string> ribi::HometrainerMenuDialog::GetVersionHistory() 
   };
 }
 
-void ribi::HometrainerMenuDialog::ShowHelp() noexcept
-{
-  std::cout
-    << "Hometrainer\n"
-    << "\n"
-    << "Use: Hometrainer [option or filename]\n"
-    << "\n"
-    << "To use Hometrainer for practicing, supply it"
-    << "  with a filename. For example: 'Hometrainer my_exercise.txt'\n"
-    << "\n"
-    << "Other options:\n"
-    << "-a --about: show the about information\n"
-    << "-e --example: create the example exercises\n"
-    << "-h --help: show this\n"
-    << "-v --version: show the version\n";
-}

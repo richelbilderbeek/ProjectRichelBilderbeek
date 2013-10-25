@@ -66,7 +66,7 @@ boost::shared_ptr<ribi::QtQuestionDialog> ribi::QtTestQuestionMainDialog::Create
 
   try
   {
-    boost::shared_ptr<QuestionDialog> d(new OpenQuestionDialog(s));
+    boost::shared_ptr<OpenQuestionDialog> d(new OpenQuestionDialog(s));
     if (d) p.reset(new QtOpenQuestionDialog(d));
     assert(p);
     return p;
@@ -77,7 +77,7 @@ boost::shared_ptr<ribi::QtQuestionDialog> ribi::QtTestQuestionMainDialog::Create
   }
   try
   {
-    boost::shared_ptr<QuestionDialog> d(new MultipleChoiceQuestionDialog(s));
+    boost::shared_ptr<MultipleChoiceQuestionDialog> d(new MultipleChoiceQuestionDialog(s));
     if (d) p.reset(new QtMultipleChoiceQuestionDialog(d));
     assert(p);
     return p;

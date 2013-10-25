@@ -56,7 +56,7 @@ void ribi::QtAsciiArterMenuDialog::on_button_start_clicked()
 
 void ribi::QtAsciiArterMenuDialog::on_button_about_clicked()
 {
-  About a = AsciiArterMenuDialog::GetAbout();
+  About a = AsciiArterMenuDialog().GetAbout();
   a.AddLibrary("QtHideAndShowDialog version: " + QtHideAndShowDialog::GetVersion());
   QtAboutDialog d(a);
   d.setStyleSheet(this->styleSheet());

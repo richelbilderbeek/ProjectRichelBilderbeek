@@ -20,13 +20,271 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+
 #include "codetohtmlmenudialog.h"
+
+#include <algorithm>
+#include <cassert>
+#include <iostream>
+#include <iterator>
+
+#include <boost/scoped_ptr.hpp>
+
+#include "codetohtml.h"
+#include "fileio.h"
 #include "qrcfile.h"
 #include "qtcreatorprofile.h"
+#include "codetohtmldialog.h"
+#include "codetohtmltechinfotype.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
 
-const ribi::About ribi::CodeToHtmlMenuDialog::GetAbout() noexcept
+int ribi::CodeToHtmlMenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) noexcept
+{
+  const int argc = static_cast<int>(argv.size());
+  #ifndef NDEBUG
+  assert(argc > 0);
+  assert(ribi::fileio::IsRegularFile(argv[0]));
+  assert(ribi::fileio::IsFolder(ribi::fileio::GetPath(argv[0])));
+  #ifndef _WIN32
+  assert(c2h::IsTidyInstalled());
+  #endif
+  #else
+  std::cout << "Starting " << argv[0] << std::endl;
+  assert(1==2 && "I will be deleted");
+  #endif
+
+  std::vector<std::string> v;
+  for (int i=1; i!=argc; ++i) { v.push_back(argv[i]); }
+  std::cout << "Number of arguments supplied: " << (argc-1) << std::endl;
+
+  std::string page_type_str { "cpp" };
+  std::string content_type_str { "cpp" };
+  std::string tech_info_str { "yes" };
+
+  std::string source;
+
+  ///Find page type
+  if (std::count(v.begin(),v.end(),std::string("--page_type")))
+  {
+    const int index
+      = std::distance(v.begin(),std::find(v.begin(),v.end(),std::string("--page_type")));
+    assert(index < static_cast<int>(v.size()));
+    if (index == static_cast<int>(v.size() - 1))
+    {
+      std::cout
+        << "Please supply an argument after --page_type.\n"
+        << "\n"
+        << "For example:"
+        << "  " << argv[0] << " --source main.cpp --page_type cpp\n";
+      return 1;
+    }
+    page_type_str = v[index + 1];
+  }
+
+  //Check page_type parameter
+  {
+    if (!c2h::CanStrToPageType(page_type_str))
+    {
+      std::cout << "Parameter 'page_type' set to incorrect value of '" << page_type_str << "'\n";
+      std::cout << "Possible values:\n";
+      const std::vector<c2h::PageType> v = c2h::GetAllPageTypes();
+      std::transform(
+        v.begin(),
+        v.end(),
+        std::ostream_iterator<std::string>(std::cout,"\n"),
+        [](const c2h::PageType t)
+        {
+          return c2h::PageTypeToStr(t);
+        }
+      );
+      std::cout
+        << "\n"
+        << "Example:"
+        << "  " << argv[0] << " --source main.cpp --page_type cpp\n";
+      return 1;
+    }
+  }
+  std::cout << "Page type: '" << page_type_str << "' (OK)" << std::endl;
+
+  ///Find content_type
+  if (std::count(v.begin(),v.end(),std::string("--content_type")))
+  {
+    const int index
+      = std::distance(v.begin(),std::find(v.begin(),v.end(),std::string("--content_type")));
+    assert(index < static_cast<int>(v.size()));
+    if (index == static_cast<int>(v.size() - 1))
+    {
+      std::cout
+        << "Please supply an argument after --content_type.\n"
+        << "\n"
+        << "For example:"
+        << "  " << argv[0] << " --source main.cpp --content_type cpp\n";
+      return 1;
+    }
+    content_type_str = v[index + 1];
+  }
+
+  //Check content_type parameter
+  {
+    if (!c2h::CanStrToContentType(content_type_str))
+    {
+      std::cout << "Parameter 'content_type' set to incorrect value of '" << content_type_str << "'\n";
+      std::cout << "Possible values:\n";
+      const std::vector<c2h::ContentType> v = c2h::GetAllContentTypes();
+      std::transform(
+        v.begin(),
+        v.end(),
+        std::ostream_iterator<std::string>(std::cout,"\n"),
+        [](const c2h::ContentType t)
+        {
+          return c2h::ContentTypeToStr(t);
+        }
+      );
+      return 1;
+    }
+  }
+  std::cout << "Content type: '" << content_type_str << "' (OK)" << std::endl;
+
+  ///Find tech_info
+  if (std::count(v.begin(),v.end(),std::string("--tech_info")))
+  {
+    const int index
+      = std::distance(v.begin(),std::find(v.begin(),v.end(),std::string("--tech_info")));
+    assert(index < static_cast<int>(v.size()));
+    if (index == static_cast<int>(v.size() - 1))
+    {
+      std::cout
+        << "Please supply an argument after --tech_info.\n"
+        << "\n"
+        << "For example:"
+        << "  " << argv[0] << " --source main.cpp --tech_info yes\n";
+      return 1;
+    }
+    tech_info_str = v[index + 1];
+  }
+
+  //Check tech_info parameter
+  {
+    if (!c2h::CanStrToTechInfoType(tech_info_str))
+    {
+      std::cout << "Parameter 'tech_info' set to incorrect value of '" << tech_info_str << "'\n";
+      std::cout << "Possible values:\n";
+      const std::vector<c2h::TechInfoType> v = c2h::GetAllTechInfoTypes();
+      std::transform(
+        v.begin(),
+        v.end(),
+        std::ostream_iterator<std::string>(std::cout,"\n"),
+        [](const c2h::TechInfoType t)
+        {
+          return c2h::TechInfoTypeToStr(t);
+        }
+      );
+      return 1;
+    }
+  }
+  std::cout << "Tech info: '" << tech_info_str << "' (OK)" << std::endl;
+
+  ///Find source
+  if (std::count(v.begin(),v.end(),std::string("--source")))
+  {
+    const int index
+      = std::distance(v.begin(),std::find(v.begin(),v.end(),std::string("--source")));
+    assert(index < static_cast<int>(v.size()));
+    if (index == static_cast<int>(v.size() - 1))
+    {
+      std::cout
+        << "Please supply an argument after --source.\n"
+        << "\n"
+        << "For example:"
+        << "  " << argv[0] << " --source main.cpp\n";
+      return 1;
+    }
+    source = v[index + 1];
+  }
+  else
+  {
+    std::cout
+      << "Please supply a source.\n"
+      << "\n"
+      << "For example:"
+      << "  " << argv[0] << " --source main.cpp\n";
+    return 1;
+  }
+
+  std::cout << "Source: '" << source << "'" << std::endl;
+
+  if (!ribi::fileio::IsFolder(source) && !ribi::fileio::IsRegularFile(source))
+  {
+    std::cout << "Source exists: no\n";
+    std::cout << "Specify an existing file or folder\n";
+    return 1;
+  }
+  assert(ribi::fileio::IsFolder(source) || ribi::fileio::IsRegularFile(source));
+
+  std::cout << "Source exists: yes" << std::endl;
+
+  if (ribi::fileio::GetFileBasename(source).empty())
+  {
+    std::cout
+      << "Source its basename has length zero (which can be due to chosing '.' or '..')\n"
+      << "Please choose a regular name as a source";
+    return 1;
+  }
+
+
+  if (ribi::fileio::IsFolder(source))
+  {
+    std::cout << "Source is directory: yes" << std::endl;
+  }
+  else
+  {
+    assert(ribi::fileio::IsRegularFile(source));
+    std::cout << "Source is directory: no" << std::endl;
+  }
+
+  assert( (ribi::fileio::IsFolder(source) || ribi::fileio::IsRegularFile(source))
+    && "Source can be a file or a path");
+
+  const c2h::PageType page_type = c2h::StrToPageType(page_type_str);
+  const c2h::ContentType content_type = c2h::StrToContentType(content_type_str);
+  const c2h::TechInfoType tech_info = c2h::StrToTechInfoType(tech_info_str);
+
+  try
+  {
+    assert( (ribi::fileio::IsFolder(source) || ribi::fileio::IsRegularFile(source))
+      && "Source can be a file or a path");
+
+    const boost::scoped_ptr<const c2h::Dialog> c {
+      new const c2h::Dialog(
+        page_type,
+        source,
+        content_type,
+        tech_info)
+    };
+    const std::vector<std::string> v = c->ToHtml();
+    const std::string output_filename = ribi::fileio::GetFileBasename(source) + ".htm";
+    assert(output_filename != std::string(".htm"));
+    std::cout << "Output written to '" << output_filename << "'" << std::endl;
+    std::ofstream f(output_filename.c_str());
+    std::copy(v.begin(),v.end(),std::ostream_iterator<std::string>(f,"\n"));
+    std::cout << "CodeToHtml succeeded" << std::endl;
+  }
+  catch (std::exception& e)
+  {
+    std::cout << e.what() << std::endl;
+    return 2;
+  }
+  catch (...)
+  {
+    std::cout << "Unknown exception thrown" << std::endl;
+    return 3;
+  }
+  return 0;
+}
+
+const ribi::About ribi::CodeToHtmlMenuDialog::GetAbout() const noexcept
 {
   ribi::About a {
     "Richel Bilderbeek",
@@ -45,7 +303,7 @@ const ribi::About ribi::CodeToHtmlMenuDialog::GetAbout() noexcept
 }
 
 
-const std::vector<std::string> ribi::CodeToHtmlMenuDialog::GetHelp() noexcept
+const std::vector<std::string> ribi::CodeToHtmlMenuDialog::GetHelp() const noexcept
 {
   return {
     "Allowed options for CodeToHtmlConsole:",
@@ -64,12 +322,12 @@ const std::vector<std::string> ribi::CodeToHtmlMenuDialog::GetHelp() noexcept
    };
 }
 
-const std::string ribi::CodeToHtmlMenuDialog::GetVersion() noexcept
+const std::string ribi::CodeToHtmlMenuDialog::GetVersion() const noexcept
 {
-  return "2.9";
+  return "2.10";
 }
 
-const std::vector<std::string> ribi::CodeToHtmlMenuDialog::GetVersionHistory() noexcept
+const std::vector<std::string> ribi::CodeToHtmlMenuDialog::GetVersionHistory() const noexcept
 {
   const std::vector<std::string> v {
     "2010-03-14: version 1.0: programmed initial console version of CodeToHtml. Due to my switch from Windows to Ubuntu, I had to abandon MS Word as my favorite HTML editor. Then I had to write my webpages in plain HTML, but adding links to all my code snippets was tiresome. CodeToHtml automated this for me",
@@ -107,6 +365,7 @@ const std::vector<std::string> ribi::CodeToHtmlMenuDialog::GetVersionHistory() n
     "2013-09-05: version 2.7: transition to namespace ribi",
     "2013-09-17: version 2.8: compile with -Weffc++, fixed bug due to this, removed recursive replacements, cleaned info, do tests at run-time, added reading .pri files"
     "2013-09-26: version 2.9: use of boost::checked_delete on all classes, removed use of Boost.Program_options"
+    "2013-10-25: version 2.10: console application callable from ProjectRichelBilderbeek"
   };
   return v;
 }

@@ -28,6 +28,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic ignored "-Weffc++"
 #include <boost/shared_ptr.hpp>
 #include "about.h"
+#include "menudialog.h"
 #pragma GCC diagnostic pop
 
 namespace ribi {
@@ -36,29 +37,36 @@ namespace RichelBilderbeek {
 struct Program;
 
 ///The GUI independent version of Project Richel Bilderbeek its menu dialog
-struct MenuDialog
+struct ProjectRichelBilderbeekMenuDialog : public MenuDialog
 {
-  MenuDialog();
+  ProjectRichelBilderbeekMenuDialog();
+  ~ProjectRichelBilderbeekMenuDialog() noexcept {}
+
+  ///Start the command line version
+  ///Returns the error code to give back to the operatings system
+  int ExecuteSpecific(const std::vector<std::string>& argv) noexcept;
+
+  const std::vector<std::string> GetHelp() const noexcept;
 
   ///Get every Program by Richel Bilderbeek
-  const std::vector<boost::shared_ptr<Program> >& GetPrograms() const { return m_programs; }
+  const std::vector<boost::shared_ptr<Program> >& GetPrograms() const noexcept { return m_programs; }
 
   ///Obtain the version of this class
-  static const std::string GetVersion() noexcept;
+  const std::string GetVersion() const noexcept;
 
   ///Obtain the version history of this class
-  static const std::vector<std::string> GetVersionHistory() noexcept;
+  const std::vector<std::string> GetVersionHistory() const noexcept;
 
   ///Obtain the About information of this class
-  static const About GetAbout() noexcept;
+  const About GetAbout() const noexcept;
 
   ///Every Program by Richel Bilderbeek
   const std::vector<boost::shared_ptr<Program> > m_programs;
 
-
   private:
-  ///Create all programs in a sorted order
-  const std::vector<boost::shared_ptr<Program> > CreatePrograms() const;
+  ///Create all menus
+  const std::vector<boost::shared_ptr<MenuDialog> > CreateMenus() const;
+
 };
 
 } //~namespace RichelBilderbeek

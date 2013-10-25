@@ -2,6 +2,7 @@ INCLUDEPATH += \
     ../../Classes/CppAbout \
     ../../Classes/CppAsciiArter \
     ../../Classes/CppFileIo \
+    ../../Classes/CppMenuDialog \
     ../../Classes/CppTrace
 
 SOURCES += \
@@ -9,7 +10,8 @@ SOURCES += \
     ../../Classes/CppAsciiArter/asciiarter.cpp \
     asciiartermaindialog.cpp \
     asciiartermenudialog.cpp \
-    ../../Classes/CppFileIo/fileio.cpp
+    ../../Classes/CppFileIo/fileio.cpp \
+    ../../Classes/CppMenuDialog/menudialog.cpp
 
 HEADERS  += \
     ../../Classes/CppAbout/about.h \
@@ -17,7 +19,8 @@ HEADERS  += \
     asciiartermaindialog.h \
     asciiartermenudialog.h \
     ../../Classes/CppFileIo/fileio.h \
-    ../../Classes/CppTrace/trace.h
+    ../../Classes/CppTrace/trace.h \
+    ../../Classes/CppMenuDialog/menudialog.h
 
 OTHER_FILES += \
     ../../Classes/CppAbout/Licence.txt \

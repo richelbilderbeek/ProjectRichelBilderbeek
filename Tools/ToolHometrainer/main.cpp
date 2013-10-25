@@ -3,5 +3,6 @@
 
 int main(int argc, char * argv[])
 {
-  return ribi::HometrainerMenuDialog::Execute(argc,argv);
+  const std::vector<std::string> args { ribi::MenuDialog::ConvertArguments(argc,argv) };
+  return ribi::HometrainerMenuDialog().Execute(args);
 }

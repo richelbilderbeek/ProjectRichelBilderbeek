@@ -29,20 +29,22 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <boost/scoped_ptr.hpp>
 
 #include "about.h"
+#include "menudialog.h"
 #pragma GCC diagnostic pop
 
 namespace ribi {
 
 struct AsciiArter;
 
-struct AsciiArterMenuDialog
+struct AsciiArterMenuDialog : public MenuDialog
 {
-  static int Execute(const int argc, const char* const argv[]);
+  ~AsciiArterMenuDialog() noexcept {}
+  int ExecuteSpecific(const std::vector<std::string>& argv) noexcept;
 
-  static const About GetAbout() noexcept;
-  static const std::string GetVersion() noexcept;
-  static const std::vector<std::string> GetVersionHistory() noexcept;
-  static void ShowHelp() noexcept;
+  const About GetAbout() const noexcept;
+  const std::vector<std::string> GetHelp() const noexcept;
+  const std::string GetVersion() const noexcept;
+  const std::vector<std::string> GetVersionHistory() const noexcept;
 };
 
 } //~namespace ribi

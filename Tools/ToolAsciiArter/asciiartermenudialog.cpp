@@ -32,26 +32,17 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "fileio.h"
 #pragma GCC diagnostic pop
 
-int ribi::AsciiArterMenuDialog::Execute(const int argc, const char* const argv[])
+int ribi::AsciiArterMenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) noexcept
 {
-  if (argc == 1 || argc > 4) { ShowHelp(); return 1; }
+  const int argc = static_cast<int>(argv.size());
+  if (argc == 1 || argc > 4)
+  {
+    const std::vector<std::string> v { GetHelp() };
+    std::copy(v.begin(),v.end(),std::ostream_iterator<std::string>(std::cout,"\n"));
+    return 1;
+  }
   {
     const std::string s { argv[1] };
-    if (s == std::string("-a") || s == std::string("--about"))
-    {
-      std::cout << GetAbout() << '\n';
-      return 0;
-    }
-    if (s == std::string("-h") || s == std::string("--help"))
-    {
-      ShowHelp();
-      return 0;
-    }
-    if (s == std::string("-v") || s == std::string("--version"))
-    {
-      std::cout << GetVersion() << '\n';
-      return 0;
-    }
     if (!fileio::IsRegularFile(s))
     {
       std::cout
@@ -96,7 +87,7 @@ int ribi::AsciiArterMenuDialog::Execute(const int argc, const char* const argv[]
   return 0;
 }
 
-const ribi::About ribi::AsciiArterMenuDialog::GetAbout() noexcept
+const ribi::About ribi::AsciiArterMenuDialog::GetAbout() const noexcept
 {
   About a(
     "Richel Bilderbeek",
@@ -111,12 +102,12 @@ const ribi::About ribi::AsciiArterMenuDialog::GetAbout() noexcept
   return a;
 }
 
-const std::string ribi::AsciiArterMenuDialog::GetVersion() noexcept
+const std::string ribi::AsciiArterMenuDialog::GetVersion() const noexcept
 {
   return "5.2";
 }
 
-const std::vector<std::string> ribi::AsciiArterMenuDialog::GetVersionHistory() noexcept
+const std::vector<std::string> ribi::AsciiArterMenuDialog::GetVersionHistory() const noexcept
 {
   return {
     "2006-12-13: Version 1.0: initial C++ Builder version, called 'AsciiArter'",
@@ -133,24 +124,24 @@ const std::vector<std::string> ribi::AsciiArterMenuDialog::GetVersionHistory() n
   };
 }
 
-void ribi::AsciiArterMenuDialog::ShowHelp() noexcept
+const std::vector<std::string> ribi::AsciiArterMenuDialog::GetHelp() const noexcept
 {
-  std::cout
-    << "AsciiArter\n"
-    << "\n"
-    << "Uses:\n"
-    << "  AsciiArter [option]\n"
-    << "  AsciiArter [picture input filename] [text output filename] [columns = 78]\n"
-    << "\n"
-    << "Options:\n"
-    << "-a --about: shows about information\n"
-    << "-h --help: shows this\n"
-    << "-v --version: shows version\n"
-    << "\n"
-    << "Examples:\n"
-    << "\n"
-    << "  AsciiArter --about\n"
-    << "  AsciiArter source.png target.txt\n"
-    << "  AsciiArter source.png target.txt 254\n"
-  ;
+  return {
+    "AsciiArter\n",
+    "\n",
+    "Uses:\n",
+    "  AsciiArter [option]\n",
+    "  AsciiArter [picture input filename] [text output filename] [columns = 78]\n",
+    "\n",
+    "Options:\n",
+    "-a --about: shows about information\n",
+    "-h --help: shows this\n",
+    "-v --version: shows version\n",
+    "\n",
+    "Examples:\n",
+    "\n",
+    "  AsciiArter --about\n",
+    "  AsciiArter source.png target.txt\n",
+    "  AsciiArter source.png target.txt 254\n"
+  };
 }

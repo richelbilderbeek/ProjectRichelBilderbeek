@@ -29,6 +29,7 @@ INCLUDEPATH += \
     ../../Classes/CppLoopReader \
     ../../Classes/CppManyDigitNewick \
     ../../Classes/CppMatrix \
+    ../../Classes/CppMenuDialog \
     ../../Classes/CppMultiApproximator \
     ../../Classes/CppMultipleChoiceQuestion \
     ../../Classes/CppMultipleChoiceQuestionDialog \
@@ -360,7 +361,10 @@ SOURCES += \
     ../../Tools/ToolDotMatrix/tooldotmatrixmenudialog.cpp \
     ../../Classes/CppDotMatrix/dotmatrixstring.cpp \
     ../../Classes/CppDotMatrix/dotmatrixchar.cpp \
-    ../../Classes/CppFileIo/fileio.cpp
+    ../../Classes/CppFileIo/fileio.cpp \
+    ../../Tools/ToolHometrainer/hometrainermaindialog.cpp \
+    ../../Classes/CppMenuDialog/menudialog.cpp \
+    ../../Classes/CppHelp/help.cpp
 
 
 HEADERS += \
@@ -612,7 +616,10 @@ HEADERS += \
     ../../Tools/ToolDotMatrix/tooldotmatrixmenudialog.h \
     ../../Classes/CppDotMatrix/dotmatrixstring.h \
     ../../Classes/CppDotMatrix/dotmatrixchar.h \
-    ../../Classes/CppFileIo/fileio.h
+    ../../Classes/CppFileIo/fileio.h \
+    ../../Tools/ToolHometrainer/hometrainermaindialog.h \
+    ../../Classes/CppMenuDialog/menudialog.h \
+    ../../Classes/CppHelp/help.h
 
 
 

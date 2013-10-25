@@ -28,69 +28,10 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "trace.h"
 #pragma GCC diagnostic pop
 
-void DisplayHelp()
-{
-  std::cout
-    << "Allowed options for ProjectRichelBilderbeekConsole:" << '\n'
-    << "--about               display about message" << '\n'
-    << "--help                produce this help message" << '\n'
-    << "--history             display version history" << '\n'
-    << "--licence             display licence" << '\n'
-    << "--status              display class statuses" << '\n'
-    << "--version             display class versions" << '\n'
-    ;
-
-}
-
-int main(int argc, char **argv)
+int main(int argc, char * argv[])
 {
   START_TRACE();
-
-  if (argc == 1)
-  {
-    DisplayHelp();
-    return 0;
-  }
-  const std::string s = argv[1];
-  if (s == "about")
-  {
-    const std::vector<std::string> v = ribi::RichelBilderbeek::MenuDialog::GetAbout().CreateAboutText();
-    std::copy(v.begin(),v.end(),std::ostream_iterator<std::string>(std::cout,"\n"));
-  }
-  else if (s == "help")
-  {
-    DisplayHelp();
-  }
-  else if (s == "history")
-  {
-    const std::vector<std::string> v = ribi::RichelBilderbeek::MenuDialog::GetVersionHistory();
-    std::copy(v.begin(),v.end(),std::ostream_iterator<std::string>(std::cout,"\n"));
-  }
-  else if (s == "licence")
-  {
-    const std::vector<std::string> v = ribi::RichelBilderbeek::MenuDialog::GetAbout().CreateLicenceText();
-    std::copy(v.begin(),v.end(),std::ostream_iterator<std::string>(std::cout,"\n"));
-  }
-  else if (s == "status")
-  {
-    ribi::RichelBilderbeek::MenuDialog d;
-    const std::vector<boost::shared_ptr<ribi::RichelBilderbeek::Program> >& v = d.GetPrograms();
-    std::for_each(
-      v.begin(),v.end(),
-      [](const boost::shared_ptr<ribi::RichelBilderbeek::Program>& p)
-      {
-        std::cout << p.get() << '\n';
-      }
-    );
-  }
-  else if (s == "version")
-  {
-    const std::vector<std::string> v = ribi::RichelBilderbeek::MenuDialog::GetAbout().CreateLibrariesUsedText();
-    std::copy(v.begin(),v.end(),std::ostream_iterator<std::string>(std::cout,"\n"));
-  }
-  else
-  {
-    DisplayHelp();
-  }
+  const std::vector<std::string> args { ribi::MenuDialog::ConvertArguments(argc,argv) };
+  return ribi::RichelBilderbeek::ProjectRichelBilderbeekMenuDialog().Execute(args);
 }
 

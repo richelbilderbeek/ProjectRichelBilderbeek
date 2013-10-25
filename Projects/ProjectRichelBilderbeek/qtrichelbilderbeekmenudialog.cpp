@@ -123,7 +123,7 @@ ribi::QtRichelBilderbeekMenuDialog::~QtRichelBilderbeekMenuDialog() noexcept
 
 const ribi::About ribi::QtRichelBilderbeekMenuDialog::GetAbout() noexcept
 {
-  About a = RichelBilderbeek::MenuDialog::GetAbout();
+  About a = RichelBilderbeek::ProjectRichelBilderbeekMenuDialog().GetAbout();
   a.AddLibrary("QtArrowItem version: " + QtArrowItem::GetVersion());
   a.AddLibrary("QtConnectThreeWidget version: " + QtConnectThreeWidget::GetVersion());
   a.AddLibrary("QtDialWidget version: " + QtDialWidget::GetVersion());

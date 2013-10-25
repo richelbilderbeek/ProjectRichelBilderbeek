@@ -65,7 +65,7 @@ boost::shared_ptr<ribi::QtOpenQuestionDialog> ribi::QtTestOpenQuestionMainDialog
 
   try
   {
-    boost::shared_ptr<QuestionDialog> d(new OpenQuestionDialog(s));
+    const boost::shared_ptr<OpenQuestionDialog> d(new OpenQuestionDialog(s));
     if (d) p.reset(new QtOpenQuestionDialog(d));
     assert(p);
     return p;

@@ -25,18 +25,23 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <vector>
 
 #include "about.h"
+#include "menudialog.h"
 
 namespace ribi {
 
 ///GUI independent CodeToHtml menu dialog
-struct CodeToHtmlMenuDialog
+struct CodeToHtmlMenuDialog : public MenuDialog
 {
-  static const ribi::About GetAbout() noexcept;
-  static const std::string GetVersion() noexcept;
+  ~CodeToHtmlMenuDialog() noexcept {}
+  const ribi::About GetAbout() const noexcept;
+  const std::string GetVersion() const noexcept;
 
   //Obtain the help information
-  static const std::vector<std::string> GetHelp() noexcept;
-  static const std::vector<std::string> GetVersionHistory() noexcept;
+  const std::vector<std::string> GetHelp() const noexcept;
+  const std::vector<std::string> GetVersionHistory() const noexcept;
+
+  private:
+  int ExecuteSpecific(const std::vector<std::string>& argv) noexcept;
 };
 
 } //~namespace ribi
