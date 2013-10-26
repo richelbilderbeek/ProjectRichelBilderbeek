@@ -27,6 +27,7 @@ ribi::WtMultipleChoiceQuestionDialog::Ui::Ui()
 
 }
 
+/*
 ribi::WtMultipleChoiceQuestionDialog::WtMultipleChoiceQuestionDialog(
   const std::string& s)
   : WtQuestionDialog(
@@ -36,13 +37,24 @@ ribi::WtMultipleChoiceQuestionDialog::WtMultipleChoiceQuestionDialog(
 {
   Show();
 }
+*/
 
 ribi::WtMultipleChoiceQuestionDialog::WtMultipleChoiceQuestionDialog(
-  const boost::shared_ptr<QuestionDialog>& dialog)
-  : WtQuestionDialog(dialog),
-  m_ui{}
+  const boost::shared_ptr<MultipleChoiceQuestionDialog>& dialog)
+  : m_ui{},
+    m_dialog(dialog)
 {
   Show();
+}
+
+const boost::shared_ptr<const ribi::QuestionDialog> ribi::WtMultipleChoiceQuestionDialog::GetDialog() const noexcept
+{
+  return m_dialog;
+}
+
+const boost::shared_ptr<const ribi::MultipleChoiceQuestionDialog> ribi::WtMultipleChoiceQuestionDialog::GetMultipleChoiceQuestionDialog() const noexcept
+{
+  return m_dialog;
 }
 
 const std::string ribi::WtMultipleChoiceQuestionDialog::GetVersion()
@@ -52,10 +64,10 @@ const std::string ribi::WtMultipleChoiceQuestionDialog::GetVersion()
 
 const std::vector<std::string> ribi::WtMultipleChoiceQuestionDialog::GetVersionHistory()
 {
-  std::vector<std::string> v;
-  v.push_back("2011-06-29: version 1.0: initial version");
-  v.push_back("2011-09-15: version 1.1: added internal Ui struct");
-  return v;
+  return {
+    "2011-06-29: version 1.0: initial version",
+    "2011-09-15: version 1.1: added internal Ui struct"
+  };
 }
 
 void ribi::WtMultipleChoiceQuestionDialog::OnButtonSubmitClicked()
@@ -84,8 +96,8 @@ void ribi::WtMultipleChoiceQuestionDialog::OnButtonSubmitClicked()
 
 void ribi::WtMultipleChoiceQuestionDialog::Show()
 {
-  const auto question = m_dialog->GetQuestion();
-  m_dialog->SetQuestion(question);
+  //const auto question = m_dialog->GetMultipleChoiceQuestion();
+  //m_dialog->SetQuestion(question);
 
   this->setContentAlignment(Wt::AlignCenter);
 

@@ -37,7 +37,7 @@ struct CodeToHtmlMenuDialog : public MenuDialog
   const std::string GetVersion() const noexcept;
 
   //Obtain the help information
-  const std::vector<std::string> GetHelp() const noexcept;
+  const Help GetHelp() const noexcept;
   const std::vector<std::string> GetVersionHistory() const noexcept;
 
   private:

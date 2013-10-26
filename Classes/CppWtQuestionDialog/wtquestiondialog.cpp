@@ -20,12 +20,10 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #include "wtquestiondialog.h"
 
-ribi::WtQuestionDialog::WtQuestionDialog(
-  const boost::shared_ptr<QuestionDialog>& dialog)
+ribi::WtQuestionDialog::WtQuestionDialog()
   : m_signal_submitted{},
-    m_dialog(dialog)
 {
-  assert(m_dialog);
+
 }
 
 const std::string ribi::WtQuestionDialog::GetVersion()

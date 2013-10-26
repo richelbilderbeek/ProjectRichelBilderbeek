@@ -37,8 +37,7 @@ int ribi::AsciiArterMenuDialog::ExecuteSpecific(const std::vector<std::string>& 
   const int argc = static_cast<int>(argv.size());
   if (argc == 1 || argc > 4)
   {
-    const std::vector<std::string> v { GetHelp() };
-    std::copy(v.begin(),v.end(),std::ostream_iterator<std::string>(std::cout,"\n"));
+    std::cout << GetHelp() << '\n';
     return 1;
   }
   {
@@ -124,24 +123,21 @@ const std::vector<std::string> ribi::AsciiArterMenuDialog::GetVersionHistory() c
   };
 }
 
-const std::vector<std::string> ribi::AsciiArterMenuDialog::GetHelp() const noexcept
+const ribi::Help ribi::AsciiArterMenuDialog::GetHelp() const noexcept
 {
-  return {
-    "AsciiArter\n",
-    "\n",
-    "Uses:\n",
-    "  AsciiArter [option]\n",
-    "  AsciiArter [picture input filename] [text output filename] [columns = 78]\n",
-    "\n",
-    "Options:\n",
-    "-a --about: shows about information\n",
-    "-h --help: shows this\n",
-    "-v --version: shows version\n",
-    "\n",
-    "Examples:\n",
-    "\n",
-    "  AsciiArter --about\n",
-    "  AsciiArter source.png target.txt\n",
-    "  AsciiArter source.png target.txt 254\n"
-  };
+  return ribi::Help(
+    "AsciiArter",
+    "Tool to create ASCII art images from images",
+    {
+      //No additional options
+    },
+    {
+      "AsciiArter [option]\n",
+      "AsciiArter --about",
+      "",
+      "AsciiArter [picture input filename] [text output filename] [columns = 78]\n",
+      "AsciiArter source.png target.txt",
+      "AsciiArter source.png target.txt 254"
+    }
+  );
 }

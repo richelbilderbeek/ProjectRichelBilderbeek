@@ -40,7 +40,7 @@ struct HometrainerMenuDialog : public MenuDialog
   const About GetAbout() const noexcept;
 
   ///Get the command-line options
-  const std::vector<std::string> GetHelp() const noexcept;
+  const Help GetHelp() const noexcept;
 
   ///Obtain the version
   const std::string GetVersion() const noexcept;

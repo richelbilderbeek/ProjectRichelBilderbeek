@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
-TestAsciiArter, tool to test the AsciiArter class
-Copyright (C) 2006-2011 Richel Bilderbeek
+AsciiArter, tool to create ASCII art
+Copyright (C) 2006-2013 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -16,15 +16,15 @@ You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>.
 */
 //---------------------------------------------------------------------------
-//From http://www.richelbilderbeek.nl/ToolTestAsciiArter.htm
+//From http://www.richelbilderbeek.nl/ToolAsciiArter.htm
 //---------------------------------------------------------------------------
 #ifndef WTASCIIARTERMAINDIALOG_H
 #define WTASCIIARTERMAINDIALOG_H
-//---------------------------------------------------------------------------
+
 #include <boost/scoped_ptr.hpp>
-//---------------------------------------------------------------------------
+
 #include <Wt/WContainerWidget>
-//---------------------------------------------------------------------------
+
 namespace Wt
 {
   struct WFileUpload;
@@ -37,12 +37,23 @@ namespace ribi {
 
 struct AsciiArterMainDialog;
 
+///WtAsciiArterMainDialog displays a AsciiArterMainDialog
 struct WtAsciiArterMainDialog : public Wt::WContainerWidget
 {
   WtAsciiArterMainDialog();
 
+
   private:
+  ///The dialog
+  ///This dialog may be nullptr, if the user has not supplied
+  ///all the arguments needed for its creation
   boost::scoped_ptr<AsciiArterMainDialog> m_dialog;
+
+  //The image its filename
+  std::string m_filename;
+
+  ///The ASCII art number of characters per line
+  int m_n_cols;
 
   struct Ui
   {

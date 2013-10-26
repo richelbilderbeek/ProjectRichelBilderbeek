@@ -42,7 +42,7 @@ struct AsciiArterMenuDialog : public MenuDialog
   int ExecuteSpecific(const std::vector<std::string>& argv) noexcept;
 
   const About GetAbout() const noexcept;
-  const std::vector<std::string> GetHelp() const noexcept;
+  const Help GetHelp() const noexcept;
   const std::string GetVersion() const noexcept;
   const std::vector<std::string> GetVersionHistory() const noexcept;
 };

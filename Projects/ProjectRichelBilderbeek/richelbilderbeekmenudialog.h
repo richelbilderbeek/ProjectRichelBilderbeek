@@ -28,6 +28,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic ignored "-Weffc++"
 #include <boost/shared_ptr.hpp>
 #include "about.h"
+#include "help.h"
 #include "menudialog.h"
 #pragma GCC diagnostic pop
 
@@ -46,7 +47,7 @@ struct ProjectRichelBilderbeekMenuDialog : public MenuDialog
   ///Returns the error code to give back to the operatings system
   int ExecuteSpecific(const std::vector<std::string>& argv) noexcept;
 
-  const std::vector<std::string> GetHelp() const noexcept;
+  const Help GetHelp() const noexcept;
 
   ///Get every Program by Richel Bilderbeek
   const std::vector<boost::shared_ptr<Program> >& GetPrograms() const noexcept { return m_programs; }
@@ -67,6 +68,8 @@ struct ProjectRichelBilderbeekMenuDialog : public MenuDialog
   ///Create all menus
   const std::vector<boost::shared_ptr<MenuDialog> > CreateMenus() const;
 
+  ///Shows all programs' statuses
+  void ShowStatus() const noexcept;
 };
 
 } //~namespace RichelBilderbeek

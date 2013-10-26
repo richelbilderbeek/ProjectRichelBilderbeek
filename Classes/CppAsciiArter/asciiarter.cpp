@@ -187,7 +187,7 @@ const std::vector<std::string> ribi::AsciiArter::GetVersionHistory() noexcept
 //From http://www.richelbilderbeek.nl/CppImageToAscii.htm
 const std::vector<std::string> ribi::AsciiArter::ImageToAscii(
   const std::vector<std::vector<double> >& image,
-  const int width) const //How many chars the ASCII image will be wide
+  const int width) //How many chars the ASCII image will be wide
 {
   //If the number of chars is below 5,
   //the calculation would be more complicated due to a too trivial value of charWidth

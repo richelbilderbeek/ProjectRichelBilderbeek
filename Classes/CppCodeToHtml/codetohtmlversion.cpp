@@ -41,6 +41,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <Wt/WConfig.h>
 #endif
 
+#include "fileio.h"
 #include "codetohtml.h"
 #pragma GCC diagnostic pop
 
@@ -152,7 +153,7 @@ const std::string Version::GetQtCreatorVersion()
     return "unknown";
   }
   assert(error == 0);
-  const std::vector<std::string> v = FileToVector("tmp.txt");
+  const std::vector<std::string> v { ribi::fileio::FileToVector("tmp.txt") };
 
   //Delete file
   std::remove("tmp.txt");

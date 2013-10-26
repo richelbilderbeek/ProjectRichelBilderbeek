@@ -45,6 +45,9 @@ struct WtOpenQuestionDialog : public WtQuestionDialog
 
   explicit WtOpenQuestionDialog(const boost::shared_ptr<QuestionDialog>& dialog);
 
+  const boost::shared_ptr<const QuestionDialog> GetDialog() const noexcept;
+  const boost::shared_ptr<const OpenQuestionDialog> GetOpenQuestionDialog() const noexcept;
+
   static const std::string GetVersion();
   static const std::vector<std::string> GetVersionHistory();
 
@@ -57,6 +60,8 @@ private:
     Wt::WLineEdit * const m_edit_answer;
     Wt::WStackedWidget * const m_stacked_widget;
   } m_ui;
+
+  boost::shared_ptr<OpenQuestionDialog> m_dialog;
 
   ///Set the Question
   void SetQuestion(const boost::shared_ptr<const Question> question);

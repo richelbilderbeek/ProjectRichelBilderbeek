@@ -68,6 +68,9 @@ struct About
   ///From http://www.richelbilderbeek.nl/CppGetBoostVersion.htm
   static const std::string GetBoostVersion() noexcept;
 
+  ///Get the file/class/program its description
+  const std::string& GetFileDescription() const noexcept { return m_file_description; }
+
   ///Get the file/class/program its title
   const std::string& GetFileTitle() const noexcept { return m_file_title; }
 

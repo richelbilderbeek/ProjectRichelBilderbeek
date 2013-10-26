@@ -5,6 +5,7 @@
 #include <string>
 
 #include "about.h"
+#include "help.h"
 
 namespace ribi {
 
@@ -29,7 +30,7 @@ struct MenuDialog
   virtual const About GetAbout() const noexcept = 0;
 
   ///Obtain the help information of this class
-  virtual const std::vector<std::string> GetHelp() const noexcept = 0;
+  virtual const Help GetHelp() const noexcept = 0;
 
   ///Obtain the version of this class
   virtual const std::string GetVersion() const noexcept = 0;

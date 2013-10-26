@@ -60,6 +60,16 @@ ribi::WtOpenQuestionDialog::WtOpenQuestionDialog(
   SetQuestion(dialog->GetQuestion());
 }
 
+const boost::shared_ptr<const ribi::QuestionDialog> ribi::WtOpenQuestionDialog::GetDialog() const noexcept
+{
+  return m_dialog;
+}
+
+const boost::shared_ptr<const ribi::OpenQuestionDialog> ribi::WtOpenQuestionDialog::GetOpenQuestionDialog() const noexcept
+{
+  return m_dialog;
+}
+
 const std::string ribi::WtOpenQuestionDialog::GetVersion()
 {
   return "1.1";

@@ -35,9 +35,9 @@ namespace ribi {
 struct AsciiArter
 {
   typedef std::vector<int> Pixel;
-  const std::vector<std::string> ImageToAscii(
+  static const std::vector<std::string> ImageToAscii(
     const std::vector<std::vector<double> >& image,
-    const int width) const;
+    const int width);
 
   static const std::string GetVersion() noexcept;
   static const std::vector<std::string> GetVersionHistory() noexcept;

@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
-TestAsciiArter, tool to test the AsciiArter class
-Copyright (C) 2006-2011 Richel Bilderbeek
+AsciiArter, tool to create ASCII art
+Copyright (C) 2006-2013 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -16,15 +16,15 @@ You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>.
 */
 //---------------------------------------------------------------------------
-//From http://www.richelbilderbeek.nl/ToolTestAsciiArter.htm
+//From http://www.richelbilderbeek.nl/ToolAsciiArter.htm
 //---------------------------------------------------------------------------
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #include <boost/filesystem.hpp>
-#include <boost/foreach.hpp>
+//#include <boost/foreach.hpp>
 #include <boost/lexical_cast.hpp>
 #include <boost/numeric/conversion/cast.hpp>
-//---------------------------------------------------------------------------
+
 #include <Wt/WBreak>
 #include <Wt/WFileUpload>
 #include <Wt/WGroupBox>
@@ -35,14 +35,15 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <Wt/WPushButton>
 #include <Wt/WStackedWidget>
 #include <Wt/WTextArea>
-//---------------------------------------------------------------------------
+
 #include <QFile>
 #include <QtGui/QImage>
-//---------------------------------------------------------------------------
+
 #include "about.h"
 #include "asciiarter.h"
 #include "asciiartermaindialog.h"
 #include "asciiartermenudialog.h"
+#include "fileio.h"
 #include "wtaboutdialog.h"
 #include "wtautoconfig.h"
 #include "wtasciiartermaindialog.h"
@@ -55,9 +56,11 @@ ribi::WtAsciiArterMainDialog::Ui::Ui()
 {
 
 }
-//---------------------------------------------------------------------------
+
 ribi::WtAsciiArterMainDialog::WtAsciiArterMainDialog()
-  : m_dialog(new AsciiArterMainDialog),
+  : m_dialog{},
+    m_filename{},
+    m_n_cols{0},
     ui{}
 {
   //Create resources
@@ -65,23 +68,26 @@ ribi::WtAsciiArterMainDialog::WtAsciiArterMainDialog()
     std::vector<std::string> image_names;
     image_names.push_back("ToolAsciiArterWelcome.png");
 
-    BOOST_FOREACH(const std::string& filename,image_names)
+    for(const std::string& filename: image_names)
     {
-      if (!(QFile::exists(filename.c_str())))
+      if (!fileio::IsRegularFile(filename))
       {
         QFile f( (std::string(":/images/") + filename).c_str() );
         f.copy(filename.c_str());
       }
-      if (!QFile::exists(filename.c_str()))
+      if (!fileio::IsRegularFile(filename))
       {
         std::cerr << "File not found: " + filename + '\n';
       }
-      assert(QFile::exists(filename.c_str()));
+      assert(fileio::IsRegularFile(filename));
     }
   }
 
   this->setContentAlignment(Wt::AlignCenter);
-  m_dialog->SetWidth(79);
+  //if (m_dialog)
+  //{
+  //  m_dialog->SetWidth(79);
+  //}
 
   this->clear();
   //Title
@@ -126,15 +132,15 @@ ribi::WtAsciiArterMainDialog::WtAsciiArterMainDialog()
   assert(ui.m_edit_width);
   assert(ui.m_text);
 }
-//---------------------------------------------------------------------------
+
 Wt::WWidget * ribi::WtAsciiArterMainDialog::CreateNewAboutDialog() const
 {
-  About a = AsciiArterMenuDialog::GetAbout();
+  About a = AsciiArterMenuDialog().GetAbout();
   a.AddLibrary("WtAutoConfig version: " + WtAutoConfig::GetVersion());
   WtAboutDialog * const d = new WtAboutDialog(a,false);
   return d;
 }
-//---------------------------------------------------------------------------
+
 Wt::WWidget * ribi::WtAsciiArterMainDialog::CreateNewMainDialog()
 {
   Wt::WContainerWidget * dialog = new Wt::WContainerWidget;
@@ -158,8 +164,11 @@ Wt::WWidget * ribi::WtAsciiArterMainDialog::CreateNewMainDialog()
   //Width edit
   {
     assert(ui.m_edit_width);
-    ui.m_edit_width->setText(
-      boost::lexical_cast<std::string>(m_dialog->GetWidth()));
+    //if (m_dialog)
+    //{
+    //  ui.m_edit_width->setText(
+    //    boost::lexical_cast<std::string>(m_dialog->GetWidth()));
+    //}
     //Respond to if user presses enter
     ui.m_edit_width->enterPressed().connect(
       this, &ribi::WtAsciiArterMainDialog::OnEditWidthChange);
@@ -182,7 +191,7 @@ Wt::WWidget * ribi::WtAsciiArterMainDialog::CreateNewMainDialog()
   }
   return dialog;
 }
-//---------------------------------------------------------------------------
+
 Wt::WWidget * ribi::WtAsciiArterMainDialog::CreateNewWelcomeDialog() const
 {
   Wt::WContainerWidget * dialog = new Wt::WContainerWidget;
@@ -198,15 +207,18 @@ Wt::WWidget * ribi::WtAsciiArterMainDialog::CreateNewWelcomeDialog() const
   box->addWidget(new Wt::WImage("ToolAsciiArterWelcome.png"));
   return dialog;
 }
-//---------------------------------------------------------------------------
+
 void ribi::WtAsciiArterMainDialog::OnAnyChange()
 {
-  if (m_dialog->CanConvert())
+  if (!m_filename.empty()
+    && fileio::IsRegularFile(m_filename)
+    && m_n_cols > 5)
   {
-    m_dialog->Convert();
-    std::vector<std::string> v = m_dialog->GetAsciiArt();
+    m_dialog.reset(new AsciiArterMainDialog(m_filename,m_n_cols));
+    //m_dialog->Convert();
+    const std::vector<std::string> v { m_dialog->GetAsciiArt() };
     Wt::WString ws;
-    BOOST_FOREACH(const std::string& s,v)
+    for(const std::string& s: v)
     {
       ws += s.c_str();
       ws += "\n";
@@ -214,19 +226,18 @@ void ribi::WtAsciiArterMainDialog::OnAnyChange()
     ui.m_text->setText(ws);
   }
 }
-//---------------------------------------------------------------------------
+
 void ribi::WtAsciiArterMainDialog::OnConvertClick()
 {
   OnEditWidthChange();
 }
-//---------------------------------------------------------------------------
+
 void ribi::WtAsciiArterMainDialog::OnEditWidthChange()
 {
   try
   {
     const std::string s = ui.m_edit_width->text().toUTF8();
-    const int i = boost::lexical_cast<int>(s);
-    m_dialog->SetWidth(i);
+    m_n_cols = boost::lexical_cast<int>(s);
   }
   catch(boost::bad_lexical_cast&)
   {
@@ -235,18 +246,14 @@ void ribi::WtAsciiArterMainDialog::OnEditWidthChange()
 
   OnAnyChange();
 }
-//---------------------------------------------------------------------------
+
 void ribi::WtAsciiArterMainDialog::OnUploadDone()
 {
   const std::string filename = ui.m_fileupload->spoolFileName();
-  assert(boost::filesystem::exists(filename));
-  const std::vector<std::vector<double> > v
-    = ConvertToGreyYx(filename);
-  assert(!v.empty());
-  m_dialog->SetImage(v);
+  m_filename = filename;
   OnAnyChange();
 }
-//---------------------------------------------------------------------------
+
 //Returns a Y-X-ordered std::vector of greynesses.
 const std::vector<std::vector<double> >
   ribi::WtAsciiArterMainDialog::ConvertToGreyYx(const std::string& filename)
@@ -280,4 +287,4 @@ const std::vector<std::vector<double> >
   }
   return v;
 }
-//---------------------------------------------------------------------------
+

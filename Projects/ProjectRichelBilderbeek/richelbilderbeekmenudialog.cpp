@@ -144,31 +144,20 @@ const std::vector<boost::shared_ptr<ribi::MenuDialog> > ribi::RichelBilderbeek::
   return v;
 }
 
-const std::vector<std::string> ribi::RichelBilderbeek::ProjectRichelBilderbeekMenuDialog::GetHelp() const noexcept
+const ribi::Help ribi::RichelBilderbeek::ProjectRichelBilderbeekMenuDialog::GetHelp() const noexcept
 {
-  return {
-    "ProjectRichelBilderbeekConsole help menu",
-    "",
-    "ProjectRichelBilderbeekConsole is a console front-end for multiple",
-    "console applications. ",
-    "",
-    "Uses: ",
-    "  ProjectRichelBilderbeekConsole [option]",
-    "  ProjectRichelBilderbeekConsole [program] [option]",
-    "",
-    "Allowed options for ProjectRichelBilderbeekConsole:",
-    "-a, --about               display about message",
-    "-h, --help                produce this help message",
-    "-i, --history             display version history",
-    "-l, --licence             display licence",
-    "-p, --program             list all possible programs",
-    "-s, --status              display class statuses",
-    "-v, --version             display class versions",
-    "",
-    "Example uses:",
-    "  ProjectRichelBilderbeekConsole --help",
-    "  ProjectRichelBilderbeekConsole Hometrainer --help"
-    };
+  return ribi::Help(
+    GetAbout().GetFileTitle() + std::string("Console"),
+    GetAbout().GetFileDescription(),
+    {
+      Help::Option('p',"program","lists all possible programs"),
+      Help::Option('s',"status", "lists all programs' statuses")
+    },
+    {
+      std::string("ProjectRichelBilderbeekConsole --help"),
+      std::string("ProjectRichelBilderbeekConsole Hometrainer --help")
+    }
+  );
 }
 int ribi::RichelBilderbeek::ProjectRichelBilderbeekMenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) noexcept
 {
@@ -176,21 +165,13 @@ int ribi::RichelBilderbeek::ProjectRichelBilderbeekMenuDialog::ExecuteSpecific(c
 
   if (argc == 1)
   {
-    const std::vector<std::string> v { GetHelp() };
-    std::copy(v.begin(),v.end(),std::ostream_iterator<std::string>(std::cout,"\n"));
+    std::cout << GetHelp() << '\n';
     return 1;
   }
   const std::string s { argv[1] };
   if (s == std::string("--status") || s == std::string("-s"))
   {
-    const std::vector<boost::shared_ptr<ribi::RichelBilderbeek::Program> > v = GetPrograms();
-    std::for_each(
-      v.begin(),v.end(),
-      [](const boost::shared_ptr<ribi::RichelBilderbeek::Program>& p)
-      {
-        std::cout << p.get() << '\n';
-      }
-    );
+    ShowStatus();
     return 0;
   }
 
@@ -205,7 +186,7 @@ const ribi::About ribi::RichelBilderbeek::ProjectRichelBilderbeekMenuDialog::Get
     "Richel Bilderbeek",
     "Project Richel Bilderbeek",
     "Richel Bilderbeek's work",
-    "the 12th of October 2013",
+    "the 26th of October 2013",
     "2010-2013",
     "http://www.richelbilderbeek.nl/ProjectRichelBilderbeek.htm",
     GetVersion(),
@@ -319,7 +300,7 @@ const ribi::About ribi::RichelBilderbeek::ProjectRichelBilderbeekMenuDialog::Get
 
 const std::string ribi::RichelBilderbeek::ProjectRichelBilderbeekMenuDialog::GetVersion() const noexcept
 {
-  return "1.11";
+  return "1.12";
 }
 
 const std::vector<std::string> ribi::RichelBilderbeek::ProjectRichelBilderbeekMenuDialog::GetVersionHistory() const noexcept
@@ -374,6 +355,46 @@ const std::vector<std::string> ribi::RichelBilderbeek::ProjectRichelBilderbeekMe
     "2013-05-29: Version 1.08: added KalmanFilterer, added About button in desktop version",
     "2013-07-11: Version 1.09: transition phase to Qt5, still supports Qt4",
     "2013-09-19: Version 1.10: added K3OpEenRij, SimplifyNewick, TestApproximator, TestMultiApproximator, TestSimpleLinearRegression, compiles with -Weffc++, added noexcept specifications, use of .pri file",
-    "2013-10-12: Version 1.11: added DotMatrix, Encranger, GrayCoder, MultiEncranger, PrimeExpert, QuadraticSolver, TestCanvas, TestMultipleChoiceQuestion, TestOpenQuestion"
+    "2013-10-12: Version 1.11: added DotMatrix, Encranger, GrayCoder, MultiEncranger, PrimeExpert, QuadraticSolver, TestCanvas, TestMultipleChoiceQuestion, TestOpenQuestion",
+    "2013-11-26: Version 1.12: improved console application interface"
   };
+}
+
+void ribi::RichelBilderbeek::ProjectRichelBilderbeekMenuDialog::ShowStatus() const noexcept
+{
+  typedef boost::shared_ptr<ribi::RichelBilderbeek::Program> ProgramType;
+  const std::vector<ProgramType> v = GetPrograms();
+  //Find out the padding
+  const int max_length {
+    static_cast<int>(
+      (*std::max_element(v.begin(),v.end(),
+        [](const ProgramType& lhs,const ProgramType& rhs)
+        {
+          return lhs->GetName().size() < rhs->GetName().size();
+        }
+      ))->GetName().size()
+    )
+  };
+
+
+  for (const boost::shared_ptr<ribi::RichelBilderbeek::Program>& p: v)
+  {
+    const std::string name_no_padding = p->GetName();
+    const int cur_length = static_cast<int>(name_no_padding.size());
+    const int n_spaces { max_length - cur_length };
+    assert(n_spaces >= 0);
+    const std::string name {
+      cur_length == max_length
+      ? name_no_padding
+      : name_no_padding + std::string(n_spaces,' ')
+    };
+    std::cout
+       << name
+       << '\t' << p->GetTypeName()
+       << '\t' << ProgramStatusToStr(p->GetStatusConsole())
+       << '\t' << ProgramStatusToStr(p->GetStatusDesktopWindowsOnly())
+       << '\t' << ProgramStatusToStr(p->GetStatusDesktop())
+       << '\t' << ProgramStatusToStr(p->GetStatusWebApplication())
+       << '\n';
+  }
 }

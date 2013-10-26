@@ -32,14 +32,13 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 ribi::AsciiArterMainDialog::AsciiArterMainDialog(
   const std::string& filename,
   const int n_cols)
-  : m_asciiart{},
-    m_asciiarter(new AsciiArter),
-    m_image{},
-    m_width{n_cols}
+  : m_asciiart{ CreateAsciiArt(filename,n_cols) }
+    //m_width{n_cols}
 {
-  SetImage(filename);
+  //SetImage(filename);
 }
 
+/*
 bool ribi::AsciiArterMainDialog::CanConvert() const
 {
   return !m_image.empty() && m_width > 5;
@@ -49,6 +48,7 @@ void ribi::AsciiArterMainDialog::Convert()
 {
   m_asciiart = m_asciiarter->ImageToAscii(m_image,m_width);
 }
+*/
 
 const std::vector<std::vector<double> >
   ribi::AsciiArterMainDialog::ConvertToGreyYx(const QImage * const i)
@@ -81,34 +81,29 @@ const std::vector<std::vector<double> >
   return v;
 }
 
-void ribi::AsciiArterMainDialog::SetImage(const std::string& filename)
+const std::vector<std::string> ribi::AsciiArterMainDialog::CreateAsciiArt(
+  const std::string& filename,
+  const int n_cols)
 {
   if (!fileio::IsRegularFile(filename))
   {
-    const std::vector<std::vector<double> > v;
-    SetImage(v);
-    return;
+    const std::string s = "AsciiArterMainDialog: file '"+ filename + "' not found";
+    throw std::logic_error(s.c_str());
+  }
+  if (n_cols < 5)
+  {
+    throw std::logic_error("AsciiArterMainDialog: n_cols < 5");
   }
 
-  const boost::scoped_ptr<QImage> image{
+  const boost::scoped_ptr<QImage> qimage{
     new QImage(filename.c_str())
   };
-  const std::vector<std::vector<double> > v { ConvertToGreyYx(image.get()) };
-  SetImage(v);
+  const std::vector<std::vector<double> > image { ConvertToGreyYx(qimage.get()) };
+
+  return AsciiArter::ImageToAscii(image,n_cols);
 }
 
-
-void ribi::AsciiArterMainDialog::SetImage(const std::vector<std::vector<double> >& image)
-{
-  m_image = image;
-
-  //Update ascii art
-  if (CanConvert())
-  {
-    m_asciiart = m_asciiarter->ImageToAscii(m_image,m_width);
-  }
-}
-
+/*
 void ribi::AsciiArterMainDialog::SetWidth(const int width)
 {
   assert(width > 5);
@@ -120,3 +115,4 @@ void ribi::AsciiArterMainDialog::SetWidth(const int width)
     m_asciiart = m_asciiarter->ImageToAscii(m_image,m_width);
   }
 }
+*/

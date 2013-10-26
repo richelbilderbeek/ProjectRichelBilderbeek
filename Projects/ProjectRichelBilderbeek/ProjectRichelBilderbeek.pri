@@ -20,6 +20,7 @@ INCLUDEPATH += \
     ../../Classes/CppFuzzy_equal_to \
     ../../Classes/CppGaborFilter \
     ../../Classes/CppGaborFilterWidget \
+    ../../Classes/CppHelp \
     ../../Classes/CppHtmlPage \
     ../../Classes/CppIpAddress \
     ../../Classes/CppKalmanFilter \

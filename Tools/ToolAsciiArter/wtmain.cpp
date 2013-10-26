@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
-TestAsciiArter, tool to test the AsciiArter class
-Copyright (C) 2006-2011 Richel Bilderbeek
+AsciiArter, tool to create ASCII art
+Copyright (C) 2006-2013 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -16,8 +16,11 @@ You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>.
 */
 //---------------------------------------------------------------------------
-//From http://www.richelbilderbeek.nl/ToolTestAsciiArter.htm
+//From http://www.richelbilderbeek.nl/ToolAsciiArter.htm
 //---------------------------------------------------------------------------
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/program_options.hpp>
 #include <boost/signals2.hpp>
 #include <Wt/WApplication>
@@ -27,42 +30,47 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <Wt/WPaintedWidget>
 #include <Wt/WPainter>
 #include <Wt/WPushButton>
-//---------------------------------------------------------------------------
+
 #include "wtautoconfig.h"
-#include "wttestasciiarterdialog.h"
-//---------------------------------------------------------------------------
+#include "wtasciiartermaindialog.h"
+
 #include <QFile>
-//---------------------------------------------------------------------------
+
+#include "fileio.h"
+#pragma GCC diagnostic pop
+
 struct WtApplication : public Wt::WApplication
 {
   WtApplication(const Wt::WEnvironment& env)
     : Wt::WApplication(env),
-    m_dialog(new WtTestAsciiArterDialog)
+    m_dialog(new ribi::WtAsciiArterMainDialog)
   {
     this->setTitle("TestAsciiArter");
     this->useStyleSheet("wt.css");
     root()->addWidget(m_dialog);
   }
+  WtApplication(const WtApplication&) = delete;
+  WtApplication& operator=(const WtApplication&) = delete;
   private:
-  WtTestAsciiArterDialog * const m_dialog;
+  ribi::WtAsciiArterMainDialog * const m_dialog;
 };
-//---------------------------------------------------------------------------
+
 Wt::WApplication *createApplication(
   const Wt::WEnvironment& env)
 {
   return new WtApplication(env);
 }
-//---------------------------------------------------------------------------
+
 int main(int argc, char **argv)
 {
-  if (!QFile::exists("RichelbilderbeekNlBackground.png"))
+  if (!ribi::fileio::IsRegularFile("RichelbilderbeekNlBackground.png"))
   {
     QFile file(":/images/RichelbilderbeekNlBackground.png");
     file.copy("RichelbilderbeekNlBackground.png");
   }
 
-  WtAutoConfig a(argc,argv,createApplication);
-  WtAutoConfig::SaveDefaultStylesheet();
+  ribi::WtAutoConfig a(argc,argv,createApplication);
+  ribi::WtAutoConfig::SaveDefaultStylesheet();
   return a.Run();
 }
-//---------------------------------------------------------------------------
+

@@ -50,8 +50,7 @@ int ribi::HometrainerMenuDialog::ExecuteSpecific(const std::vector<std::string>&
   const int argc = static_cast<int>(argv.size());
   if (argc == 1 || argc == 3)
   {
-    const std::vector<std::string> v { GetHelp() };
-    std::copy(v.begin(),v.end(),std::ostream_iterator<std::string>(std::cout,"\n"));
+    std::cout <<  GetHelp() << '\n';
     return 1;
   }
   assert(argc == 2);
@@ -96,22 +95,21 @@ const ribi::About ribi::HometrainerMenuDialog::GetAbout() const noexcept
   return a;
 }
 
-const std::vector<std::string> ribi::HometrainerMenuDialog::GetHelp() const noexcept
+const ribi::Help ribi::HometrainerMenuDialog::GetHelp() const noexcept
 {
-  return {
-    "Hometrainer\n",
-    "\n",
-    "Use: Hometrainer [option or filename]\n",
-    "\n",
-    "To use Hometrainer for practicing, supply it",
-    "  with a filename. For example: 'Hometrainer my_exercise.txt'\n",
-    "\n",
-    "Other options:\n",
-    "-a --about: show the about information\n",
-    "-e --example: create the example exercises\n",
-    "-h --help: show this\n",
-    "-v --version: show the version\n"
-  };
+  return ribi::Help(
+    GetAbout().GetFileTitle(),
+    GetAbout().GetFileDescription(),
+    {
+      //No options
+      Help::Option('f',"file","filename of Hometrainer exercise")
+    },
+    {
+      "Hometrainer --about",
+      "Hometrainer -f my_exercise.txt",
+      "Hometrainer -my_exercise.txt"
+    }
+  );
 }
 
 const std::string ribi::HometrainerMenuDialog::GetVersion() const noexcept

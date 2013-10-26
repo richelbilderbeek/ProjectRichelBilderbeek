@@ -303,23 +303,22 @@ const ribi::About ribi::CodeToHtmlMenuDialog::GetAbout() const noexcept
 }
 
 
-const std::vector<std::string> ribi::CodeToHtmlMenuDialog::GetHelp() const noexcept
+const ribi::Help ribi::CodeToHtmlMenuDialog::GetHelp() const noexcept
 {
-  return {
-    "Allowed options for CodeToHtmlConsole:",
-    "",
-    "about          displays the 'About' information",
-    "page_type      page type (used in header and footer): cpp (*), text. music, tool",
-    "help           produce this help message",
-    "tech_info      header and footer type: auto, no, yes (*)",
-    "source         source of the content: a (.pro) filename or foldername",
-    "content_type   content type: cpp",
-    "version        displays the version",
-    "",
-    "Examples:",
-    "  CodeToHtmlConsole --source main.cpp",
-    "  CodeToHtmlConsole --source MyDocs --tech_info no --content_type txt"
-   };
+  return ribi::Help(
+    "CodeToHtmlConsole",
+    "Program to train exercises",
+    {
+      Help::Option('p',"--page_type","page type (used in header and footer): cpp (*), text. music, tool"),
+      Help::Option('t',"--tech_info","header and footer type: auto, no, yes (*)"),
+      Help::Option('s',"--source","source of the content: a (.pro) filename or foldername"),
+      Help::Option('c',"--content_type","content type: cpp")
+    },
+    {
+      "CodeToHtmlConsole --source main.cpp",
+      "CodeToHtmlConsole --source MyDocs --tech_info no --content_type txt"
+    }
+  );
 }
 
 const std::string ribi::CodeToHtmlMenuDialog::GetVersion() const noexcept

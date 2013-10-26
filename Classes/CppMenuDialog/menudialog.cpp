@@ -47,8 +47,7 @@ int ribi::MenuDialog::Execute(const std::vector<std::string>& argv) noexcept
   }
   else if (s == std::string("--help") || s == std::string("-h"))
   {
-    const std::vector<std::string> v { GetHelp() };
-    std::copy(v.begin(),v.end(),std::ostream_iterator<std::string>(std::cout,"\n"));
+    std::cout << GetHelp() << '\n';
     return 0;
   }
   else if (s == std::string("--history") || s == std::string("-i"))

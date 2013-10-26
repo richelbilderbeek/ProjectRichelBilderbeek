@@ -38,19 +38,22 @@ struct AsciiArter;
 
 struct AsciiArterMainDialog
 {
+  ///Will throw an exception if
+  ///- the file does not exists
+  ///- the number of columns is less than five
   AsciiArterMainDialog(
     const std::string& filename,
     const int n_cols
   );
 
   const std::vector<std::string>& GetAsciiArt() const { return m_asciiart; }
-  bool CanConvert() const;
-  void Convert();
+  //bool CanConvert() const;
+  //void Convert();
 
-  int GetWidth() const noexcept { return m_width; }
+  //int GetWidth() const noexcept { return m_width; }
 
-  void SetImage(const std::string& filename);
-  void SetWidth(const int width);
+  //void SetImage(const std::string& filename);
+  //void SetWidth(const int width);
 
   private:
 
@@ -58,12 +61,17 @@ struct AsciiArterMainDialog
   static const std::vector<std::vector<double> >
     ConvertToGreyYx(const QImage * const i);
 
-  void SetImage(const std::vector<std::vector<double> >& image);
+  ///Will throw an exception if
+  ///- file does not exist
+  ///- n_cols < 5
+  static const std::vector<std::string> CreateAsciiArt(
+    const std::string& filename, const int n_cols);
 
-  std::vector<std::string> m_asciiart;
-  const boost::scoped_ptr<AsciiArter> m_asciiarter;
-  std::vector<std::vector<double> > m_image;
-  int m_width;
+  //void SetImage(const std::vector<std::vector<double> >& image);
+
+  const std::vector<std::string> m_asciiart;
+  //const std::vector<std::vector<double> > m_image;
+  //const int m_width;
 };
 
 } //~namespace ribi
