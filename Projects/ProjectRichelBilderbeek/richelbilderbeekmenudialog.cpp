@@ -174,8 +174,11 @@ int ribi::RichelBilderbeek::ProjectRichelBilderbeekMenuDialog::ExecuteSpecific(c
     ShowStatus();
     return 0;
   }
-
   //Find menu dialog and execute it with one argument less
+  for (const boost::shared_ptr<ribi::MenuDialog>& m: CreateMenus())
+  {
+    m->GetProgram();
+  }
   assert(!"TODO");
   return 1;
 }

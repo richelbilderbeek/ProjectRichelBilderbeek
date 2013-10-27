@@ -6,6 +6,7 @@
 
 #include "about.h"
 #include "help.h"
+#include "richelbilderbeekprogram.h"
 
 namespace ribi {
 
@@ -31,6 +32,9 @@ struct MenuDialog
 
   ///Obtain the help information of this class
   virtual const Help GetHelp() const noexcept = 0;
+
+  ///Obtain information about the program
+  virtual const Program GetProgram() const noexcept = 0;
 
   ///Obtain the version of this class
   virtual const std::string GetVersion() const noexcept = 0;

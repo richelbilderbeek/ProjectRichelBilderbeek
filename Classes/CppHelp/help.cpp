@@ -138,15 +138,7 @@ std::ostream& ribi::operator<<(std::ostream& os, const Help& help)
     << "\n"
     << help.GetProgramDescription() << "\n"
     << "\n"
-    << "Uses:\n";
-  for (const Help::Option& s: help.GetOptions())
-  {
-    os << "-" << s.m_short << ", --" << s.m_long << std::string(2,' ') << "\n";
-  }
-
-  os
-    << "\n"
-    << "Allowed options for " << help.GetProgramName() << ":";
+    << "Allowed options for " << help.GetProgramName() << ":\n";
   for (const Help::Option& p: help.GetOptions())
   {
     os << "-" << p.m_short << ", --" << p.m_long << "  " << p.m_description << '\n';
