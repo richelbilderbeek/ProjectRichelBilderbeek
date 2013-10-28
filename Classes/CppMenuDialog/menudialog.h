@@ -4,9 +4,15 @@
 #include <vector>
 #include <string>
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#include <boost/shared_ptr.hpp>
+
 #include "about.h"
 #include "help.h"
 #include "richelbilderbeekprogram.h"
+#pragma GCC diagnostic pop
 
 namespace ribi {
 
@@ -34,7 +40,7 @@ struct MenuDialog
   virtual const Help GetHelp() const noexcept = 0;
 
   ///Obtain information about the program
-  virtual const Program GetProgram() const noexcept = 0;
+  virtual const boost::shared_ptr<const Program> GetProgram() const noexcept = 0;
 
   ///Obtain the version of this class
   virtual const std::string GetVersion() const noexcept = 0;

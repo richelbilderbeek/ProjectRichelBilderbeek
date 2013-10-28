@@ -486,7 +486,7 @@ void ribi::Matrix::Test() noexcept
     is_tested = true;
   }
   //
-  TRACE("Starting ribi::Matrix::Test()")
+  TRACE("Starting ribi::Matrix::Test()");
   using boost::numeric::ublas::detail::equals;
   using boost::numeric::ublas::matrix;
   using boost::numeric::ublas::vector;
@@ -877,7 +877,7 @@ void ribi::Matrix::Test() noexcept
       assert(VectorsAreAboutEqual(a,b));
     }
   }
-  TRACE("Finished ribi::Matrix::Test()")
+  TRACE("Finished ribi::Matrix::Test()");
 }
 #endif
 

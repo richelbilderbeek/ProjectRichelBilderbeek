@@ -23,7 +23,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include "qtasciiartermaindialog.h"
 
-#include <boost/foreach.hpp>
+//#include <boost/foreach.hpp>
 #include <boost/lexical_cast.hpp>
 #include <boost/numeric/conversion/cast.hpp>
 
@@ -62,14 +62,14 @@ ribi::QtAsciiArterMainDialog::~QtAsciiArterMainDialog() noexcept
 
 void ribi::QtAsciiArterMainDialog::DrawAsciiArt()
 {
-  if (!m_dialog->CanConvert()) return;
+  //if (!m_dialog->CanConvert()) return;
 
-  m_dialog->Convert();
+  //m_dialog->Convert();
 
   const std::vector<std::string>& v = m_dialog->GetAsciiArt();
   ui->text->clear();
 
-  BOOST_FOREACH(const std::string& s,v)
+  for(const std::string& s: v)
   {
     ui->text->appendPlainText(s.c_str());
   }

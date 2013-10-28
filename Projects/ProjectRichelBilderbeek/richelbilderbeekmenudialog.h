@@ -33,7 +33,6 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic pop
 
 namespace ribi {
-namespace RichelBilderbeek {
 
 struct Program;
 
@@ -47,32 +46,32 @@ struct ProjectRichelBilderbeekMenuDialog : public MenuDialog
   ///Returns the error code to give back to the operatings system
   int ExecuteSpecific(const std::vector<std::string>& argv) noexcept;
 
+  const About GetAbout() const noexcept;
   const Help GetHelp() const noexcept;
+  const boost::shared_ptr<const Program> GetProgram() const noexcept;
 
   ///Get every Program by Richel Bilderbeek
   const std::vector<boost::shared_ptr<Program> >& GetPrograms() const noexcept { return m_programs; }
 
-  ///Obtain the version of this class
   const std::string GetVersion() const noexcept;
-
-  ///Obtain the version history of this class
   const std::vector<std::string> GetVersionHistory() const noexcept;
 
-  ///Obtain the About information of this class
-  const About GetAbout() const noexcept;
+
+  private:
+  ///Create all menus
+  static const std::vector<boost::shared_ptr<MenuDialog> > CreateMenus() noexcept;
 
   ///Every Program by Richel Bilderbeek
   const std::vector<boost::shared_ptr<Program> > m_programs;
 
-  private:
-  ///Create all menus
-  const std::vector<boost::shared_ptr<MenuDialog> > CreateMenus() const;
-
   ///Shows all programs' statuses
   void ShowStatus() const noexcept;
+
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
 };
 
-} //~namespace RichelBilderbeek
 } //~namespace ribi
 
 #endif // RICHELBILDERBEEKMENUDIALOG_H

@@ -25,15 +25,27 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <vector>
 
 #include "about.h"
+#include "menudialog.h"
 
 namespace ribi {
 
 ///GUI independent CreateGlossary menu dialog
-struct CreateGlossaryMenuDialog
+struct CreateGlossaryMenuDialog : public MenuDialog
 {
-  static const About GetAbout() noexcept;
-  static const std::string GetVersion() noexcept;
-  static const std::vector<std::string> GetVersionHistory() noexcept;
+  CreateGlossaryMenuDialog();
+
+  int ExecuteSpecific(const std::vector<std::string>& argv) noexcept;
+
+  const About GetAbout() const noexcept;
+  const Help GetHelp() const noexcept;
+  const boost::shared_ptr<const Program> GetProgram() const noexcept;
+  const std::string GetVersion() const noexcept;
+  const std::vector<std::string> GetVersionHistory() const noexcept;
+
+  private:
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
 };
 
 } //~namespace ribi

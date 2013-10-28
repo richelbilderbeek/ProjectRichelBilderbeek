@@ -6,13 +6,11 @@
 #include "trace.h"
 
 //Lazy initializion
-boost::bimap<ribi::RichelBilderbeek::ProgramType,std::string>
-  ribi::RichelBilderbeek::ProgramTypes::m_map_to_enumname {};
+boost::bimap<ribi::ProgramType,std::string> ribi::ProgramTypes::m_map_to_enumname {};
 //Lazy initializion
-boost::bimap<ribi::RichelBilderbeek::ProgramType,std::string>
-  ribi::RichelBilderbeek::ProgramTypes::m_map_to_screenname {};
+boost::bimap<ribi::ProgramType,std::string> ribi::ProgramTypes::m_map_to_screenname {};
 
-const boost::bimap<ribi::RichelBilderbeek::ProgramType,std::string> ribi::RichelBilderbeek::ProgramTypes::CreateEnumNameMap()
+const boost::bimap<ribi::ProgramType,std::string> ribi::ProgramTypes::CreateEnumNameMap()
 {
   #ifndef NDEBUG
   Test();
@@ -82,6 +80,7 @@ const boost::bimap<ribi::RichelBilderbeek::ProgramType,std::string> ribi::Richel
   m.insert(Pair(ProgramType::pokeVolley,std::string("pokeVolley")));
   m.insert(Pair(ProgramType::pong,std::string("pong")));
   m.insert(Pair(ProgramType::primeExpert,std::string("primeExpert")));
+  m.insert(Pair(ProgramType::projectRichelBilderbeek,std::string("projectRichelBilderbeek")));
   m.insert(Pair(ProgramType::pylos,std::string("pylos")));
   m.insert(Pair(ProgramType::qmakeWatcher,std::string("qmakeWatcher")));
   m.insert(Pair(ProgramType::quadraticSolver,std::string("quadraticSolver")));
@@ -190,7 +189,7 @@ const boost::bimap<ribi::RichelBilderbeek::ProgramType,std::string> ribi::Richel
   return m;
 }
 
-const boost::bimap<ribi::RichelBilderbeek::ProgramType,std::string> ribi::RichelBilderbeek::ProgramTypes::CreateScreenNameMap()
+const boost::bimap<ribi::ProgramType,std::string> ribi::ProgramTypes::CreateScreenNameMap()
 {
   #ifndef NDEBUG
   Test();
@@ -260,6 +259,7 @@ const boost::bimap<ribi::RichelBilderbeek::ProgramType,std::string> ribi::Richel
   m.insert(Pair(ProgramType::pokeVolley,std::string("PokeVolley")));
   m.insert(Pair(ProgramType::pong,std::string("Pong")));
   m.insert(Pair(ProgramType::primeExpert,std::string("PrimeExpert")));
+  m.insert(Pair(ProgramType::projectRichelBilderbeek,std::string("ProjectRichelBilderbeek")));
   m.insert(Pair(ProgramType::pylos,std::string("Pylos")));
   m.insert(Pair(ProgramType::qmakeWatcher,std::string("qmake Watcher")));
   m.insert(Pair(ProgramType::quadraticSolver,std::string("QuadraticSolver")));
@@ -369,7 +369,7 @@ const boost::bimap<ribi::RichelBilderbeek::ProgramType,std::string> ribi::Richel
 }
 
 const std::vector<std::string>
-  ribi::RichelBilderbeek::ProgramTypes::GetAllEnumNames() noexcept
+  ribi::ProgramTypes::GetAllEnumNames() noexcept
 {
   if (m_map_to_enumname.right.empty()) { m_map_to_enumname = CreateEnumNameMap(); }
   assert(!m_map_to_enumname.right.empty());
@@ -383,7 +383,7 @@ const std::vector<std::string>
 }
 
 const std::vector<std::string>
-  ribi::RichelBilderbeek::ProgramTypes::GetAllScreenNames() noexcept
+  ribi::ProgramTypes::GetAllScreenNames() noexcept
 {
   if (m_map_to_screenname.right.empty()) { m_map_to_screenname = CreateScreenNameMap(); }
   assert(!m_map_to_screenname.right.empty());
@@ -396,8 +396,8 @@ const std::vector<std::string>
   return v;
 }
 
-const std::vector<ribi::RichelBilderbeek::ProgramType>
-  ribi::RichelBilderbeek::ProgramTypes::GetAll() noexcept
+const std::vector<ribi::ProgramType>
+  ribi::ProgramTypes::GetAll() noexcept
 {
   if (m_map_to_enumname.left.empty()) { m_map_to_enumname = CreateEnumNameMap(); }
   assert(!m_map_to_enumname.left.empty());
@@ -410,14 +410,14 @@ const std::vector<ribi::RichelBilderbeek::ProgramType>
   return v;
 }
 
-const std::string ribi::RichelBilderbeek::ProgramTypes::ProgramTypeToEnumName(const ProgramType t) noexcept
+const std::string ribi::ProgramTypes::ProgramTypeToEnumName(const ProgramType t) noexcept
 {
   if (m_map_to_enumname.left.empty()) { m_map_to_enumname = CreateEnumNameMap(); }
   assert(m_map_to_enumname.left.find(t) != m_map_to_enumname.left.end());
   return m_map_to_enumname.left.find(t)->second;
 }
 
-const std::string ribi::RichelBilderbeek::ProgramTypes::ProgramTypeToScreenName(const ProgramType t) noexcept
+const std::string ribi::ProgramTypes::ProgramTypeToScreenName(const ProgramType t) noexcept
 {
   if (m_map_to_screenname.left.empty()) { m_map_to_screenname = CreateEnumNameMap(); }
   assert(m_map_to_screenname.left.find(t) != m_map_to_screenname.left.end());
@@ -425,16 +425,16 @@ const std::string ribi::RichelBilderbeek::ProgramTypes::ProgramTypeToScreenName(
 }
 
 #ifndef NDEBUG
-void ribi::RichelBilderbeek::ProgramTypes::Test()
+void ribi::ProgramTypes::Test()
 {
   {
     static bool is_tested = false;
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Started ribi::RichelBilderbeek::ProgramTypes::Test");
+  TRACE("Started ribi::ProgramTypes::Test");
   assert(GetAll().size() == GetAllEnumNames().size());
   assert(GetAll().size() == GetAllScreenNames().size());
-  TRACE("Finished ribi::RichelBilderbeek::ProgramTypes::Test successfully");
+  TRACE("Finished ribi::ProgramTypes::Test successfully");
 }
 #endif

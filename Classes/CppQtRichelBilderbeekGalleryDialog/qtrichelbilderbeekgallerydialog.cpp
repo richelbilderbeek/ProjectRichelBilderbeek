@@ -61,11 +61,11 @@ struct QtGalleryItem : public QTableWidgetItem
 ribi::QtRichelBilderbeekGalleryDialog::QtRichelBilderbeekGalleryDialog(QWidget *parent) :
   QtHideAndShowDialog(parent),
   ui(new Ui::QtRichelBilderbeekGalleryDialog),
-  m_programs(RichelBilderbeek::Program::GetAllPrograms())
+  m_programs(Program::GetAllPrograms())
 {
   ui->setupUi(this);
 
-  RichelBilderbeek::QtResources r;
+  QtResources r;
   const int n = static_cast<int>(m_programs.size());
   ui->table->setColumnCount(5);
   ui->table->setRowCount(n + 1);
@@ -98,7 +98,7 @@ ribi::QtRichelBilderbeekGalleryDialog::QtRichelBilderbeekGalleryDialog(QWidget *
     }
     for (int col=0; col!=4; ++col)
     {
-      RichelBilderbeek::ProgramStatus p =  RichelBilderbeek::ProgramStatus::unk;
+      ProgramStatus p =  ProgramStatus::unk;
       switch (col)
       {
         case 0: p = m_programs[row]->GetStatusConsole(); break;
@@ -109,17 +109,17 @@ ribi::QtRichelBilderbeekGalleryDialog::QtRichelBilderbeekGalleryDialog(QWidget *
       std::string s;
       switch (p)
       {
-        case RichelBilderbeek::ProgramStatus::yes: s = r.GetGreen(); break;
-        case RichelBilderbeek::ProgramStatus::no: s = r.GetRed(); break;
-        case RichelBilderbeek::ProgramStatus::nvr: s = r.GetBlack(); break;
-        case RichelBilderbeek::ProgramStatus::n_a: s = r.GetBlack(); break;
-        case RichelBilderbeek::ProgramStatus::wip: s = r.GetYellow(); break;
-        case RichelBilderbeek::ProgramStatus::tbd: s = r.GetOrange(); break;
-        case RichelBilderbeek::ProgramStatus::unk: s = r.GetBlack(); break;
+        case ProgramStatus::yes: s = r.GetGreen(); break;
+        case ProgramStatus::no: s = r.GetRed(); break;
+        case ProgramStatus::nvr: s = r.GetBlack(); break;
+        case ProgramStatus::n_a: s = r.GetBlack(); break;
+        case ProgramStatus::wip: s = r.GetYellow(); break;
+        case ProgramStatus::tbd: s = r.GetOrange(); break;
+        case ProgramStatus::unk: s = r.GetBlack(); break;
       }
       {
         QtGalleryItem * const item = new QtGalleryItem(QIcon(s.c_str()),QString());
-        item->setToolTip(RichelBilderbeek::ProgramStatusToStr(p).c_str());
+        item->setToolTip(ProgramStatusToStr(p).c_str());
         ui->table->setItem(row+1,col+1,item);
       }
     }
@@ -200,7 +200,7 @@ void ribi::QtRichelBilderbeekGalleryDialog::on_table_cellEntered(int row, int co
 
 void ribi::QtRichelBilderbeekGalleryDialog::ShowScreenshot(const int col, const int row) noexcept
 {
-  const boost::shared_ptr<RichelBilderbeek::Program>& p = m_programs[row - 1];
+  const boost::shared_ptr<Program>& p = m_programs[row - 1];
   std::string filename;
   switch (col)
   {

@@ -26,8 +26,6 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 namespace ribi {
 
-namespace RichelBilderbeek {
-
 struct QtResources
 {
   ///Creates all resources needed
@@ -64,9 +62,6 @@ struct QtResources
   static bool IsRegularFile(const std::string& filename) noexcept;
 
 };
-
-
-} //~namespace RichelBilderbeek
 
 } //~namespace ribi
 

@@ -5,7 +5,8 @@ TEMPLATE = app
 
 INCLUDEPATH += \
     ../../Classes/CppAbout \
-    ../../Classes/CppQtAboutDialog
+    ../../Classes/CppQtAboutDialog \
+    ../../Classes/CppQtHideAndShowDialog
 
 SOURCES += \
     ../../Classes/CppAbout/about.cpp \
@@ -15,7 +16,8 @@ SOURCES += \
     qtdaswahreschlagerfestmaindialog.cpp \
     qtdaswahreschlagerfestmenudialog.cpp \
     qtdaswahreschlagerfestwidget.cpp \
-    qtmain.cpp
+    qtmain.cpp \
+    ../../Classes/CppQtHideAndShowDialog/qthideandshowdialog.cpp
 
 HEADERS  += \
     ../../Classes/CppAbout/about.h \
@@ -24,7 +26,8 @@ HEADERS  += \
     qtdaswahreschlagerfestmaindialog.h \
     qtdaswahreschlagerfestmenudialog.h \
     qtdaswahreschlagerfestwidget.h \
-    daswahreschlagerfestmenudialog.h
+    daswahreschlagerfestmenudialog.h \
+    ../../Classes/CppQtHideAndShowDialog/qthideandshowdialog.h
 
 FORMS    += \
     ../../Classes/CppQtAboutDialog/qtaboutdialog.ui \
@@ -33,7 +36,8 @@ FORMS    += \
 
 OTHER_FILES += \
     ../../Classes/CppAbout/Licence.txt \
-    ../../Classes/CppQtAboutDialog/Licence.txt
+    ../../Classes/CppQtAboutDialog/Licence.txt \
+    ../../Classes/CppQtHideAndShowDialog/Licence.txt
 
 RESOURCES += \
     GameDasWahreSchlagerfest.qrc

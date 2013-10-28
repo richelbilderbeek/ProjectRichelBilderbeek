@@ -40,6 +40,13 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #pragma GCC diagnostic pop
 
+ribi::HometrainerMenuDialog::HometrainerMenuDialog()
+{
+  #ifndef NDEBUG
+  Test();
+  #endif
+}
+
 void ribi::HometrainerMenuDialog::CreateExamples() noexcept
 {
   HometrainerResources();
@@ -48,27 +55,33 @@ void ribi::HometrainerMenuDialog::CreateExamples() noexcept
 int ribi::HometrainerMenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) noexcept
 {
   const int argc = static_cast<int>(argv.size());
-  if (argc == 1 || argc == 3)
+  if (argc == 1)
   {
     std::cout <<  GetHelp() << '\n';
     return 1;
   }
-  assert(argc == 2);
+  assert(argc >= 2);
   const std::string arg = argv[1];
   if (arg == std::string("-e") || arg == std::string("--example"))
   {
     CreateExamples();
     return 0;
   }
-  if (!fileio::IsRegularFile(arg))
+  if (fileio::IsRegularFile(arg))
   {
-    std::cout
-      << "File '" << arg << "' is not a filename. Please supply an existing file's name\n";
-    return 1;
+    HometrainerMainDialog d(arg);
+    d.Execute();
+    return 0;
   }
-  HometrainerMainDialog d(arg);
-  d.Execute();
-  return 0;
+  if ( (arg == std::string("-f") || arg == std::string("--filename"))
+    && argc >= 3 && fileio::IsRegularFile(argv[2]))
+  {
+    HometrainerMainDialog d(argv[2]);
+    d.Execute();
+    return 0;
+  }
+  std::cout <<  GetHelp() << '\n';
+  return 1;
 }
 
 const ribi::About ribi::HometrainerMenuDialog::GetAbout() const noexcept
@@ -101,7 +114,7 @@ const ribi::Help ribi::HometrainerMenuDialog::GetHelp() const noexcept
     GetAbout().GetFileTitle(),
     GetAbout().GetFileDescription(),
     {
-      //No options
+      Help::Option('e',"example","create example exercises"),
       Help::Option('f',"file","filename of Hometrainer exercise")
     },
     {
@@ -110,6 +123,13 @@ const ribi::Help ribi::HometrainerMenuDialog::GetHelp() const noexcept
       "Hometrainer -my_exercise.txt"
     }
   );
+}
+
+const boost::shared_ptr<const ribi::Program> ribi::HometrainerMenuDialog::GetProgram() const noexcept
+{
+  const boost::shared_ptr<const ribi::Program> p(new ProgramHometrainer);
+  assert(p);
+  return p;
 }
 
 const std::string ribi::HometrainerMenuDialog::GetVersion() const noexcept
@@ -135,3 +155,18 @@ const std::vector<std::string> ribi::HometrainerMenuDialog::GetVersionHistory() 
   };
 }
 
+#ifndef NDEBUG
+void ribi::HometrainerMenuDialog::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting ribi::HometrainerMenuDialog::Test()");
+  HometrainerMenuDialog().Execute( { "Hometrainer", "-e" } );
+  const HometrainerMainDialog d(HometrainerResources().GetExerciseClouds());
+  assert(d.GetNumberCorrect() == 0);
+  TRACE("Finished ribi::HometrainerMenuDialog::Test()");
+}
+#endif

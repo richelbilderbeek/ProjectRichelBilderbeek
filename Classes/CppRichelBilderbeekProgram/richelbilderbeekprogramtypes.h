@@ -9,7 +9,6 @@
 #pragma GCC diagnostic pop
 
 namespace ribi {
-namespace RichelBilderbeek {
 
 struct ProgramTypes
 {
@@ -42,7 +41,6 @@ struct ProgramTypes
   #endif
 };
 
-} //~namespace RichelBilderbeek {
 } //~namespace ribi
 
 #endif // RICHELBILDERBEEKPROGRAMTYPES_H

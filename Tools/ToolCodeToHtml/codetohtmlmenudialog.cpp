@@ -40,6 +40,13 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "trace.h"
 #pragma GCC diagnostic pop
 
+ribi::CodeToHtmlMenuDialog::CodeToHtmlMenuDialog()
+{
+  #ifndef NDEBUG
+  Test();
+  #endif
+}
+
 int ribi::CodeToHtmlMenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) noexcept
 {
   const int argc = static_cast<int>(argv.size());
@@ -321,6 +328,13 @@ const ribi::Help ribi::CodeToHtmlMenuDialog::GetHelp() const noexcept
   );
 }
 
+const boost::shared_ptr<const ribi::Program> ribi::CodeToHtmlMenuDialog::GetProgram() const noexcept
+{
+  const boost::shared_ptr<const ribi::Program> p(new ProgramCodeToHtml);
+  assert(p);
+  return p;
+}
+
 const std::string ribi::CodeToHtmlMenuDialog::GetVersion() const noexcept
 {
   return "2.10";
@@ -368,3 +382,16 @@ const std::vector<std::string> ribi::CodeToHtmlMenuDialog::GetVersionHistory() c
   };
   return v;
 }
+
+#ifndef NDEBUG
+void ribi::CodeToHtmlMenuDialog::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting ribi::CodeToHtmlMenuDialog::Test()");
+  TRACE("Finished ribi::CodeToHtmlMenuDialog::Test()");
+}
+#endif

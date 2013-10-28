@@ -18,11 +18,12 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolCreateGlossary.htm
 //---------------------------------------------------------------------------
-
-
 #include "createglossarymenudialog.h"
 
+#include <cassert>
+
 #include "htmlpage.h"
+#include "trace.h"
 
 const ribi::About ribi::CreateGlossaryMenuDialog::GetAbout() noexcept
 {
@@ -46,10 +47,25 @@ const std::string ribi::CreateGlossaryMenuDialog::GetVersion() noexcept
 
 const std::vector<std::string> ribi::CreateGlossaryMenuDialog::GetVersionHistory() noexcept
 {
-  std::vector<std::string> v;
-  v.push_back("2011-xx-xx: version 1.0: initial version");
-  v.push_back("2012-08-06: version 1.1: added the creation of more type of glossaries");
-  v.push_back("2012-08-11: version 1.2: add desktop version");
-  return v;
+  return {
+    "2011-xx-xx: version 1.0: initial version",
+    "2012-08-06: version 1.1: added the creation of more type of glossaries",
+    "2012-08-11: version 1.2: add desktop version"
+  };
 }
 
+#ifndef NDEBUG
+void ribi::CreateGlossaryMenuDialog::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting ribi::CreateGlossaryMenuDialog::Test()");
+  CreateGlossaryMenuDialog().Execute( { "Hometrainer", "-e" } );
+  const CreateGlossaryMainDialog d(HometrainerResources().GetExerciseClouds());
+  assert(d.GetNumberCorrect() == 0);
+  TRACE("Finished ribi::CreateGlossaryMenuDialog::Test()");
+}
+#endif

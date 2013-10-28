@@ -32,7 +32,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "trace.h"
 #pragma GCC diagnostic pop
 
-ribi::RichelBilderbeek::QtResources::QtResources()
+ribi::QtResources::QtResources()
 {
   //Create the obligatory resources
   {
@@ -82,11 +82,11 @@ ribi::RichelBilderbeek::QtResources::QtResources()
   }
   //Try to create the screenshots
   {
-    const std::vector<boost::shared_ptr<RichelBilderbeek::Program> > ps = RichelBilderbeek::Program::GetAllPrograms();
+    const std::vector<boost::shared_ptr<Program> > ps = Program::GetAllPrograms();
 
     std::vector<std::string> files;
     std::for_each(ps.begin(),ps.end(),
-      [&files](const boost::shared_ptr<RichelBilderbeek::Program>& p)
+      [&files](const boost::shared_ptr<Program>& p)
       {
         if (!p->GetFilenameConsole().empty()) files.push_back(p->GetFilenameConsole());
         if (!p->GetFilenameDesktop().empty()) files.push_back(p->GetFilenameDesktop());
@@ -114,12 +114,12 @@ ribi::RichelBilderbeek::QtResources::QtResources()
   }
 }
 
-const std::string ribi::RichelBilderbeek::QtResources::GetVersion() noexcept
+const std::string ribi::QtResources::GetVersion() noexcept
 {
-  return "1.0";
+  return "1.1";
 }
 
-const std::vector<std::string> ribi::RichelBilderbeek::QtResources::GetVersionHistory() noexcept
+const std::vector<std::string> ribi::QtResources::GetVersionHistory() noexcept
 {
   return {
     "2012-02-19: Version 1.0: initial version",
@@ -127,7 +127,7 @@ const std::vector<std::string> ribi::RichelBilderbeek::QtResources::GetVersionHi
   };
 }
 
-bool ribi::RichelBilderbeek::QtResources::IsRegularFile(const std::string& filename) noexcept
+bool ribi::QtResources::IsRegularFile(const std::string& filename) noexcept
 {
   std::fstream f;
   f.open(filename.c_str(),std::ios::in);

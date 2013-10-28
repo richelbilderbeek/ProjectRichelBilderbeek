@@ -24,7 +24,6 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <vector>
 
 namespace ribi {
-namespace RichelBilderbeek {
 
 ///ProgramTypes works with ProgramType
 enum class ProgramType
@@ -89,6 +88,7 @@ enum class ProgramType
   pokeVolley,
   pong,
   primeExpert,
+  projectRichelBilderbeek,
   pylos,
   qmakeWatcher,
   quadraticSolver,
@@ -187,7 +187,6 @@ enum class ProgramType
   n_types //Used for debugging
 };
 
-} //~namespace RichelBilderbeek {
 } //~namespace ribi
 
 #endif // RICHELBILDERBEEKPROGRAMTYPE_H

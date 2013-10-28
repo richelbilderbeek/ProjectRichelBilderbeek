@@ -30,7 +30,15 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "asciiarter.h"
 #include "asciiartermaindialog.h"
 #include "fileio.h"
+#include "trace.h"
 #pragma GCC diagnostic pop
+
+ribi::AsciiArterMenuDialog::AsciiArterMenuDialog()
+{
+  #ifndef NDEBUG
+  Test();
+  #endif
+}
 
 int ribi::AsciiArterMenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) noexcept
 {
@@ -101,6 +109,13 @@ const ribi::About ribi::AsciiArterMenuDialog::GetAbout() const noexcept
   return a;
 }
 
+const boost::shared_ptr<const ribi::Program> ribi::AsciiArterMenuDialog::GetProgram() const noexcept
+{
+  const boost::shared_ptr<const ribi::Program> p(new ProgramAsciiArter);
+  assert(p);
+  return p;
+}
+
 const std::string ribi::AsciiArterMenuDialog::GetVersion() const noexcept
 {
   return "5.2";
@@ -141,3 +156,16 @@ const ribi::Help ribi::AsciiArterMenuDialog::GetHelp() const noexcept
     }
   );
 }
+
+#ifndef NDEBUG
+void ribi::AsciiArterMenuDialog::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting ribi::AsciiArterMenuDialog::Test()");
+  TRACE("Finished ribi::AsciiArterMenuDialog::Test()");
+}
+#endif

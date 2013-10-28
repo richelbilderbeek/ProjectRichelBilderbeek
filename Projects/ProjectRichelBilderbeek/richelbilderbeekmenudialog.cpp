@@ -25,6 +25,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "approximator.h"
 #include "alphabetafilter.h"
 #include "alphabetagammafilter.h"
+#include "about.h"
 #include "alphafilter.h"
 #include "asciiartermenudialog.h"
 #include "beerwantermenudialog.h"
@@ -35,6 +36,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "copy_if.h"
 #include "counter.h"
 #include "createqtprojectzipfilemenudialog.h"
+#include "createglossarymenudialog.h"
 #include "dial.h"
 #include "dialwidget.h"
 #include "encranger.h"
@@ -121,10 +123,11 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #pragma GCC diagnostic pop
 
-ribi::RichelBilderbeek::ProjectRichelBilderbeekMenuDialog::ProjectRichelBilderbeekMenuDialog()
-  : m_programs(ribi::RichelBilderbeek::Program::GetAllPrograms())
+ribi::ProjectRichelBilderbeekMenuDialog::ProjectRichelBilderbeekMenuDialog()
+  : m_programs(ribi::Program::GetAllPrograms())
 {
   #ifndef NDEBUG
+  Test();
   std::for_each(m_programs.begin(), m_programs.end(),
     [](const boost::shared_ptr<Program>& p)
     {
@@ -134,17 +137,18 @@ ribi::RichelBilderbeek::ProjectRichelBilderbeekMenuDialog::ProjectRichelBilderbe
   #endif
 }
 
-const std::vector<boost::shared_ptr<ribi::MenuDialog> > ribi::RichelBilderbeek::ProjectRichelBilderbeekMenuDialog::CreateMenus() const
+const std::vector<boost::shared_ptr<ribi::MenuDialog> > ribi::ProjectRichelBilderbeekMenuDialog::CreateMenus() noexcept
 {
   typedef boost::shared_ptr<ribi::MenuDialog> MenuPtr;
   std::vector<MenuPtr> v;
   { const MenuPtr p { new AsciiArterMenuDialog  }; v.push_back(p); }
   { const MenuPtr p { new CodeToHtmlMenuDialog  }; v.push_back(p); }
+  { const MenuPtr p { new CreateGlossaryMenuDialog }; v.push_back(p); }
   { const MenuPtr p { new HometrainerMenuDialog }; v.push_back(p); }
   return v;
 }
 
-const ribi::Help ribi::RichelBilderbeek::ProjectRichelBilderbeekMenuDialog::GetHelp() const noexcept
+const ribi::Help ribi::ProjectRichelBilderbeekMenuDialog::GetHelp() const noexcept
 {
   return ribi::Help(
     GetAbout().GetFileTitle() + std::string("Console"),
@@ -159,7 +163,7 @@ const ribi::Help ribi::RichelBilderbeek::ProjectRichelBilderbeekMenuDialog::GetH
     }
   );
 }
-int ribi::RichelBilderbeek::ProjectRichelBilderbeekMenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) noexcept
+int ribi::ProjectRichelBilderbeekMenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) noexcept
 {
   const int argc = static_cast<int>(argv.size());
 
@@ -174,16 +178,29 @@ int ribi::RichelBilderbeek::ProjectRichelBilderbeekMenuDialog::ExecuteSpecific(c
     ShowStatus();
     return 0;
   }
+  if (s == std::string("--program") || s == std::string("-p"))
+  {
+    for (const boost::shared_ptr<ribi::MenuDialog>& m: CreateMenus())
+    {
+      std::cout << m->GetProgram()->GetName() << '\n';
+    }
+    return 0;
+  }
   //Find menu dialog and execute it with one argument less
   for (const boost::shared_ptr<ribi::MenuDialog>& m: CreateMenus())
   {
-    m->GetProgram();
+    if (s == m->GetProgram()->GetName() || s == m->GetAbout().GetFileTitle())
+    {
+      std::vector<std::string> sub_argv;
+      std::copy(argv.begin() + 1,argv.end(),std::back_inserter(sub_argv));
+      return m->Execute(sub_argv);
+    }
   }
-  assert(!"TODO");
+  std::cout << GetHelp() << '\n';
   return 1;
 }
 
-const ribi::About ribi::RichelBilderbeek::ProjectRichelBilderbeekMenuDialog::GetAbout() const noexcept
+const ribi::About ribi::ProjectRichelBilderbeekMenuDialog::GetAbout() const noexcept
 {
   About a(
     "Richel Bilderbeek",
@@ -260,7 +277,7 @@ const ribi::About ribi::RichelBilderbeek::ProjectRichelBilderbeekMenuDialog::Get
   a.AddLibrary("RandomCode version: " + RandomCode::GetVersion());
   a.AddLibrary("Rectangle version: " + Rect::GetVersion());
   a.AddLibrary("RegexTester version: " + RegexTesterMenuDialog::GetVersion());
-  a.AddLibrary("RichelBilderbeekProgram version: " + RichelBilderbeek::Program::GetVersion());
+  a.AddLibrary("RichelBilderbeekProgram version: " + Program::GetVersion());
   a.AddLibrary("RubiksClock (class) version: " + RubiksClock::GetVersion());
   a.AddLibrary("RubiksClock (game) version: " + RubiksClockMenuDialog::GetVersion());
   a.AddLibrary("RubiksClockDialversion: " + RubiksClockDial::GetVersion());
@@ -301,12 +318,19 @@ const ribi::About ribi::RichelBilderbeek::ProjectRichelBilderbeekMenuDialog::Get
   return a;
 }
 
-const std::string ribi::RichelBilderbeek::ProjectRichelBilderbeekMenuDialog::GetVersion() const noexcept
+const boost::shared_ptr<const ribi::Program> ribi::ProjectRichelBilderbeekMenuDialog::GetProgram() const noexcept
+{
+  const boost::shared_ptr<const ribi::Program> p(new ProgramProjectRichelBilderbeek);
+  assert(p);
+  return p;
+}
+
+const std::string ribi::ProjectRichelBilderbeekMenuDialog::GetVersion() const noexcept
 {
   return "1.12";
 }
 
-const std::vector<std::string> ribi::RichelBilderbeek::ProjectRichelBilderbeekMenuDialog::GetVersionHistory() const noexcept
+const std::vector<std::string> ribi::ProjectRichelBilderbeekMenuDialog::GetVersionHistory() const noexcept
 {
   return {
     "2010-12-20: Version 0.1: web-application-only project called 'ProjectWtWebsite', initial setup with BeerWanter and Loose",
@@ -363,9 +387,9 @@ const std::vector<std::string> ribi::RichelBilderbeek::ProjectRichelBilderbeekMe
   };
 }
 
-void ribi::RichelBilderbeek::ProjectRichelBilderbeekMenuDialog::ShowStatus() const noexcept
+void ribi::ProjectRichelBilderbeekMenuDialog::ShowStatus() const noexcept
 {
-  typedef boost::shared_ptr<ribi::RichelBilderbeek::Program> ProgramType;
+  typedef boost::shared_ptr<ribi::Program> ProgramType;
   const std::vector<ProgramType> v = GetPrograms();
   //Find out the padding
   const int max_length {
@@ -380,7 +404,7 @@ void ribi::RichelBilderbeek::ProjectRichelBilderbeekMenuDialog::ShowStatus() con
   };
 
 
-  for (const boost::shared_ptr<ribi::RichelBilderbeek::Program>& p: v)
+  for (const boost::shared_ptr<ribi::Program>& p: v)
   {
     const std::string name_no_padding = p->GetName();
     const int cur_length = static_cast<int>(name_no_padding.size());
@@ -401,3 +425,26 @@ void ribi::RichelBilderbeek::ProjectRichelBilderbeekMenuDialog::ShowStatus() con
        << '\n';
   }
 }
+
+#ifndef NDEBUG
+void ribi::ProjectRichelBilderbeekMenuDialog::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting ribi::ProjectRichelBilderbeekMenuDialog::Test()");
+  //Create all menus
+  for (const boost::shared_ptr<MenuDialog> m: CreateMenus())
+  {
+    //assert(m->GetAbout());
+    //assert(m->GetHelp());
+    assert(!m->GetVersion().empty());
+    assert(!m->GetVersionHistory().empty());
+    assert(m->GetProgram());
+  }
+
+  TRACE("Finished ribi::ProjectRichelBilderbeekMenuDialog::Test()");
+}
+#endif

@@ -2,6 +2,7 @@ INCLUDEPATH += \
     ../../Classes/CppAbout \
     ../../Classes/CppExercise \
     ../../Classes/CppFileIo \
+    ../../Classes/CppHelp \
     ../../Classes/CppMenuDialog \
     ../../Classes/CppMultipleChoiceQuestion \
     ../../Classes/CppMultipleChoiceQuestionDialog \
@@ -9,6 +10,7 @@ INCLUDEPATH += \
     ../../Classes/CppOpenQuestionDialog \
     ../../Classes/CppQuestion \
     ../../Classes/CppQuestionDialog \
+    ../../Classes/CppRichelBilderbeekProgram \
     ../../Classes/CppTrace
 
 SOURCES += \
@@ -24,7 +26,12 @@ SOURCES += \
     hometrainermenudialog.cpp \
     hometrainerresources.cpp \
     ../../Classes/CppFileIo/fileio.cpp \
-    ../../Classes/CppMenuDialog/menudialog.cpp
+    ../../Classes/CppMenuDialog/menudialog.cpp \
+    ../../Classes/CppHelp/help.cpp \
+    ../../Classes/CppRichelBilderbeekProgram/richelbilderbeekprogramtypes.cpp \
+    ../../Classes/CppRichelBilderbeekProgram/richelbilderbeekprogramtype.cpp \
+    ../../Classes/CppRichelBilderbeekProgram/richelbilderbeekprogramstatus.cpp \
+    ../../Classes/CppRichelBilderbeekProgram/richelbilderbeekprogram.cpp
 
 HEADERS  += \
     ../../Classes/CppAbout/about.h \
@@ -40,7 +47,12 @@ HEADERS  += \
     hometrainermenudialog.h \
     hometrainerresources.h \
     ../../Classes/CppFileIo/fileio.h \
-    ../../Classes/CppMenuDialog/menudialog.h
+    ../../Classes/CppMenuDialog/menudialog.h \
+    ../../Classes/CppHelp/help.h \
+    ../../Classes/CppRichelBilderbeekProgram/richelbilderbeekprogramtypes.h \
+    ../../Classes/CppRichelBilderbeekProgram/richelbilderbeekprogramtype.h \
+    ../../Classes/CppRichelBilderbeekProgram/richelbilderbeekprogramstatus.h \
+    ../../Classes/CppRichelBilderbeekProgram/richelbilderbeekprogram.h
 
 OTHER_FILES += \
     ../../Classes/CppQtHideAndShowDialog/Licence.txt \
@@ -48,7 +60,9 @@ OTHER_FILES += \
     ../../Classes/CppExercise/Licence.txt \
     ../../Classes/CppQtExercise/Licence.txt \
     ../../Classes/CppFileIo/Licence.txt \
-    ../../Classes/CppMenuDialog/Licence.txt
+    ../../Classes/CppMenuDialog/Licence.txt \
+    ../../Classes/CppHelp/Licence.txt \
+    ../../Classes/CppRichelBilderbeekProgram/Licence.txt
 
 RESOURCES += \
     ToolHometrainer.qrc

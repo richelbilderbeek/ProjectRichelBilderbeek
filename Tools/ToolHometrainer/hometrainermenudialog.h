@@ -29,6 +29,8 @@ namespace ribi {
 ///The logic behind the menu dialog
 struct HometrainerMenuDialog : public MenuDialog
 {
+  HometrainerMenuDialog();
+
   ///Create the example exercises
   static void CreateExamples() noexcept;
 
@@ -36,18 +38,16 @@ struct HometrainerMenuDialog : public MenuDialog
   ///The return code is the error code given back to main
   int ExecuteSpecific(const std::vector<std::string>& argv) noexcept;
 
-  ///Obtain the about information
   const About GetAbout() const noexcept;
-
-  ///Get the command-line options
   const Help GetHelp() const noexcept;
-
-  ///Obtain the version
+  const boost::shared_ptr<const Program> GetProgram() const noexcept;
   const std::string GetVersion() const noexcept;
-
-  ///Obtain the version history
   const std::vector<std::string> GetVersionHistory() const noexcept;
 
+  private:
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
 };
 
 } //~namespace ribi

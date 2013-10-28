@@ -30,7 +30,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "richelbilderbeekprogramstatus.h"
 #pragma GCC diagnostic pop
 
-const boost::shared_ptr<ribi::RichelBilderbeek::Program> ribi::RichelBilderbeek::Program::CreateProgram(const ProgramType type) noexcept
+const boost::shared_ptr<ribi::Program> ribi::Program::CreateProgram(const ProgramType type) noexcept
 {
   boost::shared_ptr<Program> p;
   switch (type)
@@ -95,6 +95,7 @@ const boost::shared_ptr<ribi::RichelBilderbeek::Program> ribi::RichelBilderbeek:
     case ProgramType::pokeVolley: p.reset(new ProgramPokeVolley); break;
     case ProgramType::pong: p.reset(new ProgramPong); break;
     case ProgramType::primeExpert: p.reset(new ProgramPrimeExpert); break;
+    case ProgramType::projectRichelBilderbeek: p.reset(new ProgramProjectRichelBilderbeek); break;
     case ProgramType::pylos: p.reset(new ProgramPylos); break;
     case ProgramType::qmakeWatcher: p.reset(new ProgramQmakeWatcher); break;
     case ProgramType::quadraticSolver: p.reset(new ProgramQuadraticSolver); break;
@@ -197,17 +198,17 @@ const boost::shared_ptr<ribi::RichelBilderbeek::Program> ribi::RichelBilderbeek:
   return p;
 }
 
-const std::string ribi::RichelBilderbeek::Program::GetName() const noexcept
+const std::string ribi::Program::GetName() const noexcept
 {
-  return ribi::RichelBilderbeek::ProgramTypes::ProgramTypeToEnumName(this->GetType());
+  return ribi::ProgramTypes::ProgramTypeToEnumName(this->GetType());
 }
 
-const std::string ribi::RichelBilderbeek::Program::GetScreenName() const noexcept
+const std::string ribi::Program::GetScreenName() const noexcept
 {
-  return ribi::RichelBilderbeek::ProgramTypes::ProgramTypeToScreenName(this->GetType());
+  return ribi::ProgramTypes::ProgramTypeToScreenName(this->GetType());
 }
 
-const std::vector<boost::shared_ptr<ribi::RichelBilderbeek::Program> > ribi::RichelBilderbeek::Program::GetAllPrograms() noexcept
+const std::vector<boost::shared_ptr<ribi::Program> > ribi::Program::GetAllPrograms() noexcept
 {
   const std::vector<ProgramType> types = ProgramTypes::GetAll();
   std::vector<boost::shared_ptr<Program> > v;
@@ -225,46 +226,139 @@ const std::vector<boost::shared_ptr<ribi::RichelBilderbeek::Program> > ribi::Ric
   return v;
 }
 
-const std::string ribi::RichelBilderbeek::Program::GetFilenameBase() const noexcept
+const std::string ribi::Program::GetFilenameBase() const noexcept
 {
   std::string s = this->GetTypeName();
   s[0] = std::toupper(s[0]);
   return s + GetScreenName();
 }
 
-const std::string ribi::RichelBilderbeek::Program::GetFilenameConsole() const noexcept
+/*
+const std::string ribi::Program::GetFilenameConsole() const noexcept
 {
   return GetFilenameBase() + "Console.png";
 }
 
-const std::string ribi::RichelBilderbeek::Program::GetFilenameDesktop() const noexcept
+const std::string ribi::Program::GetFilenameDesktop() const noexcept
 {
   return GetFilenameBase() + "Desktop.png";
 }
 
-const std::string ribi::RichelBilderbeek::Program::GetFilenameDesktopWindowsOnly() const noexcept
+const std::string ribi::Program::GetFilenameDesktopWindowsOnly() const noexcept
 {
   return GetFilenameBase() + "DesktopWindowsOnly.png";
 }
 
-const std::string ribi::RichelBilderbeek::Program::GetFilenameWeb() const noexcept
+const std::string ribi::Program::GetFilenameWeb() const noexcept
 {
   return GetFilenameBase() + "Web.png";
 }
+*/
 
-const std::string ribi::RichelBilderbeek::Program::GetVersion() noexcept
+const std::string ribi::Program::GetTypeName() const noexcept
+{
+  return ProgramTypes::ProgramTypeToEnumName(this->GetType());
+}
+
+const std::string ribi::Program::GetVersion() noexcept
 {
   return "1.0";
 }
 
-const std::vector<std::string> ribi::RichelBilderbeek::Program::GetVersionHistory() noexcept
+const std::vector<std::string> ribi::Program::GetVersionHistory() noexcept
 {
   return {
     "2012-02-19: Version 1.0: initial version"
   };
 }
 
-std::ostream& ribi::RichelBilderbeek::operator<<(std::ostream& os, const Program& p) noexcept
+/*
+///There is a transition between Program being inherited from
+///and ProgramStatus being an ordinary data structure
+struct ProgramInfo : public Program
+{
+  ProgramInfo(
+    const std::string& filename_console,
+    const std::string& filename_desktop,
+    const std::string& filename_desktop_windows_only,
+    const std::string& filename_web,
+    const std::string& screen_name,
+    const ProgramStatus status_console,
+    const ProgramStatus status_desktop_windows_only,
+    const ProgramStatus status_desktop,
+    const ProgramStatus status_web,
+    const ProgramType type,
+    const std::string& url)
+  : m_filename_console(filename_console),
+    m_filename_desktop(filename_desktop),
+    m_filename_desktop_windows_only(filename_desktop_windows_only),
+    m_filename_web(filename_web),
+    m_screen_name(screen_name),
+    m_status_console(status_console),
+    m_status_desktop_windows_only(status_desktop_windows_only),
+    m_status_desktop(status_desktop),
+    m_status_web(status_web),
+    m_type(type),
+    m_url(url)
+  {
+
+  }
+
+  ///Get the filename of a console version screenshot
+  const std::string GetFilenameConsole() const noexcept { return m_filename_console; }
+
+  ///Get the filename of a desktop platform-independent version screenshot
+  const std::string GetFilenameDesktop() const noexcept { return m_filename_desktop; }
+
+  ///Get the filename of a desktop windows-only version screenshot
+  const std::string GetFilenameDesktopWindowsOnly() const noexcept { return m_filename_desktop_windows_only; }
+
+  ///Get the filename of a web application version screenshot
+  const std::string GetFilenameWeb() const noexcept { return m_filename_web; }
+
+  ///Status of the console-only version
+  ProgramStatus GetStatusConsole() const noexcept { return m_status_console; }
+
+  ///Status of the Windows-only desktop version
+  ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return m_status_desktop_windows_only; }
+
+  ///Status of the platform-independent desktop version
+  ProgramStatus GetStatusDesktop() const noexcept { return m_status_desktop; }
+
+  ///Status of the web application version
+  ProgramStatus GetStatusWebApplication() const noexcept { return m_status_web; }
+
+  ///The item its enum name, e.g. 'k3OpEenRij'
+  const std::string GetName() const noexcept;
+
+  ///The item its on-screen name, e.g. 'K3-Op-Een-Rij'
+  const std::string GetScreenName() const noexcept;
+
+  ///The program, e.g. 'RichelBilderbeekProgramType::boenken'
+  ProgramType GetType() const noexcept { return m_type; }
+
+  ///The type of program its name, e.g. 'Game'
+  const std::string GetTypeName() const noexcept { return ""; }
+
+  ///The item its URL (at http://ww.richelbilderbeek.nl), e.g. 'ToolSimMysteryMachine.htm'
+  const std::string GetUrl() const noexcept { return m_url; }
+
+  private:
+  const std::string m_filename_console;
+  const std::string m_filename_desktop;
+  const std::string m_filename_desktop_windows_only;
+  const std::string m_filename_web;
+  const std::string m_screen_name;
+  const ProgramStatus m_status_console;
+  const ProgramStatus m_status_desktop_windows_only;
+  const ProgramStatus m_status_desktop;
+  const ProgramStatus m_status_web;
+  const ProgramType m_type;
+  const std::string m_url;
+};
+*/
+
+std::ostream& ribi::operator<<(std::ostream& os, const Program& p) noexcept
 {
   const std::string name = p.GetName();
 
@@ -281,7 +375,7 @@ std::ostream& ribi::RichelBilderbeek::operator<<(std::ostream& os, const Program
    return os;
 }
 
-bool ribi::RichelBilderbeek::operator<(const Program& lhs, const Program& rhs) noexcept
+bool ribi::operator<(const Program& lhs, const Program& rhs) noexcept
 {
   if (lhs.GetTypeName() < rhs.GetTypeName()) return true;
   if (lhs.GetTypeName() > rhs.GetTypeName()) return false;

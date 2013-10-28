@@ -32,16 +32,21 @@ namespace ribi {
 ///GUI independent CodeToHtml menu dialog
 struct CodeToHtmlMenuDialog : public MenuDialog
 {
+  CodeToHtmlMenuDialog();
   ~CodeToHtmlMenuDialog() noexcept {}
   const ribi::About GetAbout() const noexcept;
+  const Help GetHelp() const noexcept;
+  const boost::shared_ptr<const Program> GetProgram() const noexcept;
   const std::string GetVersion() const noexcept;
 
-  //Obtain the help information
-  const Help GetHelp() const noexcept;
   const std::vector<std::string> GetVersionHistory() const noexcept;
 
   private:
   int ExecuteSpecific(const std::vector<std::string>& argv) noexcept;
+
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
 };
 
 } //~namespace ribi

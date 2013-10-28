@@ -24,7 +24,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <iostream>
 #include <stdexcept>
 
-const std::string ribi::RichelBilderbeek::ProgramStatusToStr(const ProgramStatus c)
+const std::string ribi::ProgramStatusToStr(const ProgramStatus c)
 {
   switch (c)
   {
@@ -40,19 +40,19 @@ const std::string ribi::RichelBilderbeek::ProgramStatusToStr(const ProgramStatus
   throw std::logic_error("RichelBilderbeek::ProgramStatusToStr");
 }
 
-const std::string ribi::RichelBilderbeek::ProgramStatusVersion::GetVersion() noexcept
+const std::string ribi::ProgramStatusVersion::GetVersion() noexcept
 {
   return "1.0";
 }
 
-const std::vector<std::string> ribi::RichelBilderbeek::ProgramStatusVersion::GetVersionHistory() noexcept
+const std::vector<std::string> ribi::ProgramStatusVersion::GetVersionHistory() noexcept
 {
   return {
     "2012-02-19: Version 1.0: initial version"
   };
 }
 
-std::ostream& ribi::RichelBilderbeek::operator<<(std::ostream& os, const ProgramStatus c)
+std::ostream& ribi::operator<<(std::ostream& os, const ProgramStatus c)
 {
   os << ProgramStatusToStr(c);
   return os;

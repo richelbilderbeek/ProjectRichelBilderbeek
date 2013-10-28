@@ -26,8 +26,6 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 namespace ribi {
 
-namespace RichelBilderbeek {
-
 ///Status: yes, no, never, not applicable, work in progress, to be done and unknown
 enum class ProgramStatus { yes, no, nvr, n_a, wip, tbd, unk };
 
@@ -42,8 +40,6 @@ struct ProgramStatusVersion
 
 const std::string ProgramStatusToStr(const ProgramStatus c);
 std::ostream& operator<<(std::ostream& os, const ProgramStatus c);
-
-} //namespace RichelBilderbeek
 
 } //~namespace ribi
 

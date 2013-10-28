@@ -34,8 +34,7 @@ struct QModelIndex;
 
 namespace ribi {
 
-namespace RichelBilderbeek { struct Program; }
-
+struct Program;
 
 class QtRichelBilderbeekGalleryDialog : public QtHideAndShowDialog
 {
@@ -66,7 +65,7 @@ private slots:
 
 private:
   Ui::QtRichelBilderbeekGalleryDialog *ui;
-  const std::vector<boost::shared_ptr<RichelBilderbeek::Program> > m_programs;
+  const std::vector<boost::shared_ptr<Program> > m_programs;
 
   ///Show the screenshot requested by the item in [col,row]
   void ShowScreenshot(const int col, const int row) noexcept;

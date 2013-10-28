@@ -1,6 +1,6 @@
 //---------------------------------------------------------------------------
 /*
-RichelBilderbeek::Program, class for a program by Richel Bilderbeek
+Program, class for a program by Richel Bilderbeek
 Copyright (C) 2012 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
@@ -31,8 +31,6 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic pop
 
 namespace ribi {
-
-namespace RichelBilderbeek {
 
 ///RichelBilderbeek::Program is the base class for program information
 struct Program
@@ -95,8 +93,8 @@ struct Program
   const std::string GetFilenameBase() const noexcept;
 };
 
-///RichelBilderbeek::ProgramClass is the base class for all class demonstration programs
-struct ProgramClass : public RichelBilderbeek::Program
+///ProgramClass is the base class for all class demonstration programs
+struct ProgramClass : public Program
 {
   virtual ~ProgramClass() noexcept {}
 
@@ -104,7 +102,7 @@ struct ProgramClass : public RichelBilderbeek::Program
   const std::string GetTypeName() const noexcept { return "class"; }
 };
 
-struct ProgramGame : public RichelBilderbeek::Program
+struct ProgramGame : public Program
 {
   virtual ~ProgramGame() noexcept {}
 
@@ -112,7 +110,7 @@ struct ProgramGame : public RichelBilderbeek::Program
   const std::string GetTypeName() const noexcept { return "game"; }
 };
 
-struct ProgramProject : public RichelBilderbeek::Program
+struct ProgramProject : public Program
 {
   virtual ~ProgramProject() noexcept {}
 
@@ -120,7 +118,7 @@ struct ProgramProject : public RichelBilderbeek::Program
   const std::string GetTypeName() const noexcept { return "project"; }
 };
 
-struct ProgramTool : public RichelBilderbeek::Program
+struct ProgramTool : public Program
 {
   virtual ~ProgramTool() noexcept {}
 
@@ -128,7 +126,7 @@ struct ProgramTool : public RichelBilderbeek::Program
   const std::string GetTypeName() const noexcept { return "tool"; }
 };
 
-struct ProgramAminoAcidFighter : public RichelBilderbeek::ProgramGame
+struct ProgramAminoAcidFighter : public ProgramGame
 {
   const std::string GetFilenameConsole() const noexcept { return ""; }
   const std::string GetFilenameDesktop() const noexcept { return "GameAminoAcidFighter_0_9.png"; }
@@ -143,22 +141,7 @@ struct ProgramAminoAcidFighter : public RichelBilderbeek::ProgramGame
   const std::string GetUrl() const noexcept { return "GameBeerAminoAcidFighter.htm"; }
 };
 
-struct ProgramAsciiArter : public RichelBilderbeek::ProgramTool
-{
-  const std::string GetFilenameConsole() const noexcept { return ""; }
-  const std::string GetFilenameDesktop() const noexcept { return "ToolAsciiArter_5_1.png"; }
-  const std::string GetFilenameDesktopWindowsOnly() const noexcept { return "ToolAsciiArter_1_0.png"; }
-  const std::string GetFilenameWeb() const noexcept { return "ToolTestAsciiArter_4_1.png"; }
-  const std::string GetScreenName() const noexcept { return "AsciiArter"; }
-  ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::no; }
-  ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::yes; }
-  ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::yes; }
-  ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::yes; }
-  ProgramType GetType() const noexcept { return ProgramType::asciiArter; }
-  const std::string GetUrl() const noexcept { return "ToolAsciiArter.htm"; }
-};
-
-struct ProgramAthleticLand : public RichelBilderbeek::ProgramGame
+struct ProgramAthleticLand : public ProgramGame
 {
   const std::string GetFilenameConsole() const noexcept { return ""; }
   const std::string GetFilenameDesktop() const noexcept { return "GameAthleticLand_0_9.png"; }
@@ -173,7 +156,7 @@ struct ProgramAthleticLand : public RichelBilderbeek::ProgramGame
   const std::string GetUrl() const noexcept { return "GameAthleticLand.htm"; }
 };
 
-struct ProgramAthleticLandVcl : public RichelBilderbeek::ProgramGame
+struct ProgramAthleticLandVcl : public ProgramGame
 {
   const std::string GetFilenameConsole() const noexcept { return ""; }
   const std::string GetFilenameDesktop() const noexcept { return ""; }
@@ -188,7 +171,22 @@ struct ProgramAthleticLandVcl : public RichelBilderbeek::ProgramGame
   const std::string GetUrl() const noexcept { return "GameAthleticLandVcl.htm"; }
 };
 
-struct ProgramBarbaImage : public RichelBilderbeek::ProgramTool
+struct ProgramAsciiArter : public ProgramTool
+{
+  const std::string GetFilenameConsole() const noexcept { return ""; }
+  const std::string GetFilenameDesktop() const noexcept { return "ToolAsciiArter_5_1.png"; }
+  const std::string GetFilenameDesktopWindowsOnly() const noexcept { return "ToolAsciiArter_1_0.png"; }
+  const std::string GetFilenameWeb() const noexcept { return "ToolTestAsciiArter_4_1.png"; }
+  const std::string GetScreenName() const noexcept { return "AsciiArter"; }
+  ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::no; }
+  ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::yes; }
+  ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::yes; }
+  ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::yes; }
+  ProgramType GetType() const noexcept { return ProgramType::asciiArter; }
+  const std::string GetUrl() const noexcept { return "ToolAsciiArter.htm"; }
+};
+
+struct ProgramBarbaImage : public ProgramTool
 {
   const std::string GetFilenameConsole() const noexcept { return ""; }
   const std::string GetFilenameDesktop() const noexcept { return ""; }
@@ -203,7 +201,7 @@ struct ProgramBarbaImage : public RichelBilderbeek::ProgramTool
   const std::string GetUrl() const noexcept { return "ToolBarbaImage.htm"; }
 };
 
-struct ProgramBeerWanter : public RichelBilderbeek::ProgramGame
+struct ProgramBeerWanter : public ProgramGame
 {
   const std::string GetFilenameConsole() const noexcept { return ""; }
   const std::string GetFilenameDesktop() const noexcept { return "GameBeerWanter5.png"; }
@@ -218,7 +216,7 @@ struct ProgramBeerWanter : public RichelBilderbeek::ProgramGame
   const std::string GetUrl() const noexcept { return "GameBeerWanter.htm"; }
 };
 
-struct ProgramBochum : public RichelBilderbeek::ProgramProject
+struct ProgramBochum : public ProgramProject
 {
   const std::string GetFilenameConsole() const noexcept { return ""; }
   const std::string GetFilenameDesktop() const noexcept { return "ProjectBochumGaborFiltersResults.png"; }
@@ -233,7 +231,7 @@ struct ProgramBochum : public RichelBilderbeek::ProgramProject
   const std::string GetUrl() const noexcept { return "ProjectBochum.htm"; }
 };
 
-struct ProgramBoenken : public RichelBilderbeek::ProgramGame
+struct ProgramBoenken : public ProgramGame
 {
   const std::string GetFilenameConsole() const noexcept { return ""; }
   const std::string GetFilenameDesktop() const noexcept { return "GameBoenken_4_1.png"; }
@@ -248,7 +246,7 @@ struct ProgramBoenken : public RichelBilderbeek::ProgramGame
   const std::string GetUrl() const noexcept { return "GameBoenken.htm"; }
 };
 
-struct ProgramBrainweaver : public RichelBilderbeek::ProgramProject
+struct ProgramBrainweaver : public ProgramProject
 {
   const std::string GetFilenameConsole() const noexcept { return ""; }
   const std::string GetFilenameDesktop() const noexcept { return ""; }
@@ -263,7 +261,7 @@ struct ProgramBrainweaver : public RichelBilderbeek::ProgramProject
   const std::string GetUrl() const noexcept { return "ProjectBrainweaver.htm"; }
 };
 
-struct ProgramBristol : public RichelBilderbeek::ProgramProject
+struct ProgramBristol : public ProgramProject
 {
   const std::string GetFilenameConsole() const noexcept { return ""; }
   const std::string GetFilenameDesktop() const noexcept { return "ProjectBristol_1_0.png"; }
@@ -278,7 +276,7 @@ struct ProgramBristol : public RichelBilderbeek::ProgramProject
   const std::string GetUrl() const noexcept { return "ProjectBristol.htm"; }
 };
 
-struct ProgramChrisWiley : public RichelBilderbeek::ProgramProject
+struct ProgramChrisWiley : public ProgramProject
 {
   const std::string GetFilenameConsole() const noexcept { return ""; }
   const std::string GetFilenameDesktop() const noexcept { return ""; }
@@ -293,7 +291,7 @@ struct ProgramChrisWiley : public RichelBilderbeek::ProgramProject
   const std::string GetUrl() const noexcept { return "ProjectChrisWiley.htm"; }
 };
 
-struct ProgramCodeToHtml : public RichelBilderbeek::ProgramTool
+struct ProgramCodeToHtml : public ProgramTool
 {
   const std::string GetFilenameConsole() const noexcept { return ""; }
   const std::string GetFilenameDesktop() const noexcept { return "ToolCodeToHtml_2_3.png"; }
@@ -308,7 +306,7 @@ struct ProgramCodeToHtml : public RichelBilderbeek::ProgramTool
   const std::string GetUrl() const noexcept { return "ToolCodeToHtml.htm"; }
 };
 
-struct ProgramConnectThree : public RichelBilderbeek::ProgramGame
+struct ProgramConnectThree : public ProgramGame
 {
   const std::string GetFilenameConsole() const noexcept { return ""; }
   const std::string GetFilenameDesktop() const noexcept { return "GameConnectThree_5_2.png"; }
@@ -323,7 +321,7 @@ struct ProgramConnectThree : public RichelBilderbeek::ProgramGame
   const std::string GetUrl() const noexcept { return "GameConnectThree.htm"; }
 };
 
-struct ProgramCorridor : public RichelBilderbeek::ProgramGame
+struct ProgramCorridor : public ProgramGame
 {
   const std::string GetFilenameConsole() const noexcept { return ""; }
   const std::string GetFilenameDesktop() const noexcept { return "GameCorridor.png"; }
@@ -338,7 +336,7 @@ struct ProgramCorridor : public RichelBilderbeek::ProgramGame
   const std::string GetUrl() const noexcept { return "GameCorridor.htm"; }
 };
 
-struct ProgramCreateGlossary : public RichelBilderbeek::ProgramTool
+struct ProgramCreateGlossary : public ProgramTool
 {
   const std::string GetFilenameConsole() const noexcept { return ""; }
   const std::string GetFilenameDesktop() const noexcept { return ""; }
@@ -353,7 +351,7 @@ struct ProgramCreateGlossary : public RichelBilderbeek::ProgramTool
   const std::string GetUrl() const noexcept { return "ToolCreateGlossary.htm"; }
 };
 
-struct ProgramCreateQtProjectZipFile : public RichelBilderbeek::ProgramTool
+struct ProgramCreateQtProjectZipFile : public ProgramTool
 {
   const std::string GetFilenameConsole() const noexcept { return ""; }
   const std::string GetFilenameDesktop() const noexcept { return "ToolCreateQtProjectZipFile_2_0.png"; }
@@ -368,7 +366,7 @@ struct ProgramCreateQtProjectZipFile : public RichelBilderbeek::ProgramTool
   const std::string GetUrl() const noexcept { return "ToolCreateQtProjectZipFile.htm"; }
 };
 
-struct ProgramCrossPoll : public RichelBilderbeek::ProgramProject
+struct ProgramCrossPoll : public ProgramProject
 {
   const std::string GetFilenameConsole() const noexcept { return ""; }
   const std::string GetFilenameDesktop() const noexcept { return ""; }
@@ -383,7 +381,7 @@ struct ProgramCrossPoll : public RichelBilderbeek::ProgramProject
   const std::string GetUrl() const noexcept { return "ProjectCrossPoll.htm"; }
 };
 
-struct ProgramDasWahreSchlagerfest : public RichelBilderbeek::ProgramGame
+struct ProgramDasWahreSchlagerfest : public ProgramGame
 {
   const std::string GetFilenameConsole() const noexcept { return ""; }
   const std::string GetFilenameDesktop() const noexcept { return "GameDasWahreSchlagerfest_2_2.png"; }
@@ -398,7 +396,7 @@ struct ProgramDasWahreSchlagerfest : public RichelBilderbeek::ProgramGame
   const std::string GetUrl() const noexcept { return "GameDasWahreSchlagerfest.htm"; }
 };
 
-struct ProgramDotMatrix : public RichelBilderbeek::ProgramTool
+struct ProgramDotMatrix : public ProgramTool
 {
   const std::string GetFilenameConsole() const noexcept { return ""; }
   const std::string GetFilenameDesktop() const noexcept { return ""; }
@@ -413,7 +411,7 @@ struct ProgramDotMatrix : public RichelBilderbeek::ProgramTool
   const std::string GetUrl() const noexcept { return "ToolDotMatrix.htm"; }
 };
 
-struct ProgramEverythingToPiecesShooter : public RichelBilderbeek::ProgramGame
+struct ProgramEverythingToPiecesShooter : public ProgramGame
 {
   const std::string GetFilenameConsole() const noexcept { return ""; }
   const std::string GetFilenameDesktop() const noexcept { return ""; }
@@ -428,7 +426,7 @@ struct ProgramEverythingToPiecesShooter : public RichelBilderbeek::ProgramGame
   const std::string GetUrl() const noexcept { return "GameEverythingToPiecesShooter.htm"; }
 };
 
-struct ProgramFakeEvy : public RichelBilderbeek::ProgramTool
+struct ProgramFakeEvy : public ProgramTool
 {
   const std::string GetFilenameConsole() const noexcept { return ""; }
   const std::string GetFilenameDesktop() const noexcept { return ""; }
@@ -443,7 +441,7 @@ struct ProgramFakeEvy : public RichelBilderbeek::ProgramTool
   const std::string GetUrl() const noexcept { return "ToolFakeEvy.htm"; }
 };
 
-struct ProgramFilterOperationer : public RichelBilderbeek::ProgramTool
+struct ProgramFilterOperationer : public ProgramTool
 {
   const std::string GetFilenameConsole() const noexcept { return ""; }
   const std::string GetFilenameDesktop() const noexcept { return ""; }
@@ -458,7 +456,7 @@ struct ProgramFilterOperationer : public RichelBilderbeek::ProgramTool
   const std::string GetUrl() const noexcept { return "ToolFilterOperationer.htm"; }
 };
 
-struct ProgramFryskLeareLieder : public RichelBilderbeek::ProgramTool
+struct ProgramFryskLeareLieder : public ProgramTool
 {
   const std::string GetFilenameConsole() const noexcept { return ""; }
   const std::string GetFilenameDesktop() const noexcept { return ""; }
@@ -473,7 +471,7 @@ struct ProgramFryskLeareLieder : public RichelBilderbeek::ProgramTool
   const std::string GetUrl() const noexcept { return "ToolFryskLeareLieder.htm"; }
 };
 
-struct ProgramFunctionPlotter : public RichelBilderbeek::ProgramTool
+struct ProgramFunctionPlotter : public ProgramTool
 {
   const std::string GetFilenameConsole() const noexcept { return ""; }
   const std::string GetFilenameDesktop() const noexcept { return ""; }
@@ -488,7 +486,7 @@ struct ProgramFunctionPlotter : public RichelBilderbeek::ProgramTool
   const std::string GetUrl() const noexcept { return "ToolFunctionPlotter.htm"; }
 };
 
-struct ProgramGaborFilter : public RichelBilderbeek::ProgramTool
+struct ProgramGaborFilter : public ProgramTool
 {
   const std::string GetFilenameConsole() const noexcept { return ""; }
   const std::string GetFilenameDesktop() const noexcept { return "ToolGaborFilter_2_0.png"; }
@@ -503,7 +501,7 @@ struct ProgramGaborFilter : public RichelBilderbeek::ProgramTool
   const std::string GetUrl() const noexcept { return "ToolGaborFilter.htm"; }
 };
 
-struct ProgramGrayCoder : public RichelBilderbeek::ProgramTool
+struct ProgramGrayCoder : public ProgramTool
 {
   const std::string GetFilenameConsole() const noexcept { return ""; }
   const std::string GetFilenameDesktop() const noexcept { return "ToolGrayCoder_2_1.png"; }
@@ -518,7 +516,7 @@ struct ProgramGrayCoder : public RichelBilderbeek::ProgramTool
   const std::string GetUrl() const noexcept { return "GrayCoder.htm"; }
 };
 
-struct ProgramGtst : public RichelBilderbeek::ProgramProject
+struct ProgramGtst : public ProgramProject
 {
   const std::string GetFilenameConsole() const noexcept { return ""; }
   const std::string GetFilenameDesktop() const noexcept { return ""; }
@@ -533,7 +531,7 @@ struct ProgramGtst : public RichelBilderbeek::ProgramProject
   const std::string GetUrl() const noexcept { return "ProjectGtst.htm"; }
 };
 
-struct ProgramHistogramEqualizationer : public RichelBilderbeek::ProgramTool
+struct ProgramHistogramEqualizationer : public ProgramTool
 {
   const std::string GetFilenameConsole() const noexcept { return ""; }
   const std::string GetFilenameDesktop() const noexcept { return ""; }
@@ -548,7 +546,7 @@ struct ProgramHistogramEqualizationer : public RichelBilderbeek::ProgramTool
   const std::string GetUrl() const noexcept { return "ToolHistogramEqualizationer.htm"; }
 };
 
-struct ProgramHometrainer : public RichelBilderbeek::ProgramTool
+struct ProgramHometrainer : public ProgramTool
 {
   const std::string GetFilenameConsole() const noexcept { return ""; }
   const std::string GetFilenameDesktop() const noexcept { return ""; }
@@ -563,7 +561,7 @@ struct ProgramHometrainer : public RichelBilderbeek::ProgramTool
   const std::string GetUrl() const noexcept { return "ToolHometrainer.htm"; }
 };
 
-struct ProgramImageRotaterClx : public RichelBilderbeek::ProgramTool
+struct ProgramImageRotaterClx : public ProgramTool
 {
   const std::string GetFilenameConsole() const noexcept { return ""; }
   const std::string GetFilenameDesktop() const noexcept { return ""; }
@@ -578,7 +576,7 @@ struct ProgramImageRotaterClx : public RichelBilderbeek::ProgramTool
   const std::string GetUrl() const noexcept { return "ToolImageRotater.htm"; }
 };
 
-struct ProgramImageRotaterVcl : public RichelBilderbeek::ProgramTool
+struct ProgramImageRotaterVcl : public ProgramTool
 {
   const std::string GetFilenameConsole() const noexcept { return ""; }
   const std::string GetFilenameDesktop() const noexcept { return ""; }
@@ -593,7 +591,7 @@ struct ProgramImageRotaterVcl : public RichelBilderbeek::ProgramTool
   const std::string GetUrl() const noexcept { return "ToolImageRotater.htm"; }
 };
 
-struct ProgramK3OpEenRij : public RichelBilderbeek::ProgramGame
+struct ProgramK3OpEenRij : public ProgramGame
 {
   const std::string GetFilenameConsole() const noexcept { return ""; }
   const std::string GetFilenameDesktop() const noexcept { return "GameK3OpEenRij_6_0.png"; }
@@ -608,7 +606,7 @@ struct ProgramK3OpEenRij : public RichelBilderbeek::ProgramGame
   const std::string GetUrl() const noexcept { return "GameK3OpEenRij.htm"; }
 };
 
-struct ProgramKalmanFilterer : public RichelBilderbeek::ProgramTool
+struct ProgramKalmanFilterer : public ProgramTool
 {
   const std::string GetFilenameConsole() const noexcept { return ""; }
   const std::string GetFilenameDesktop() const noexcept { return "ToolKalmanFilterer_1_11.png"; }
@@ -623,7 +621,7 @@ struct ProgramKalmanFilterer : public RichelBilderbeek::ProgramTool
   const std::string GetUrl() const noexcept { return "ToolKalmanFilterer.htm"; }
 };
 
-struct ProgramKeySender : public RichelBilderbeek::ProgramTool
+struct ProgramKeySender : public ProgramTool
 {
   const std::string GetFilenameConsole() const noexcept { return ""; }
   const std::string GetFilenameDesktop() const noexcept { return "ToolKeySender_1_0.png"; }
@@ -638,7 +636,7 @@ struct ProgramKeySender : public RichelBilderbeek::ProgramTool
   const std::string GetUrl() const noexcept { return "ToolKeySender.htm"; }
 };
 
-struct ProgramKnokfighter : public RichelBilderbeek::ProgramGame
+struct ProgramKnokfighter : public ProgramGame
 {
   const std::string GetFilenameConsole() const noexcept { return ""; }
   const std::string GetFilenameDesktop() const noexcept { return ""; }
@@ -653,7 +651,7 @@ struct ProgramKnokfighter : public RichelBilderbeek::ProgramGame
   const std::string GetUrl() const noexcept { return "GameKnokfighter.htm"; }
 };
 
-struct ProgramKTouchLectureCreator : public RichelBilderbeek::ProgramTool
+struct ProgramKTouchLectureCreator : public ProgramTool
 {
   const std::string GetFilenameConsole() const noexcept { return ""; }
   const std::string GetFilenameDesktop() const noexcept { return ""; }
@@ -668,7 +666,7 @@ struct ProgramKTouchLectureCreator : public RichelBilderbeek::ProgramTool
   const std::string GetUrl() const noexcept { return "ToolKTouchLectureCreator.htm"; }
 };
 
-struct ProgramLambdaBot : public RichelBilderbeek::ProgramTool
+struct ProgramLambdaBot : public ProgramTool
 {
   const std::string GetFilenameConsole() const noexcept { return ""; }
   const std::string GetFilenameDesktop() const noexcept { return ""; }
@@ -683,7 +681,7 @@ struct ProgramLambdaBot : public RichelBilderbeek::ProgramTool
   const std::string GetUrl() const noexcept { return "ToolLambdaBot.htm"; }
 };
 
-struct ProgramLearyCircumplex : public RichelBilderbeek::ProgramTool
+struct ProgramLearyCircumplex : public ProgramTool
 {
   const std::string GetFilenameConsole() const noexcept { return ""; }
   const std::string GetFilenameDesktop() const noexcept { return ""; }
@@ -698,7 +696,7 @@ struct ProgramLearyCircumplex : public RichelBilderbeek::ProgramTool
   const std::string GetUrl() const noexcept { return "ToolLearyCircumplex.htm"; }
 };
 
-struct ProgramLogisticGrowthSimulator : public RichelBilderbeek::ProgramTool
+struct ProgramLogisticGrowthSimulator : public ProgramTool
 {
   const std::string GetFilenameConsole() const noexcept { return ""; }
   const std::string GetFilenameDesktop() const noexcept { return ""; }
@@ -713,7 +711,7 @@ struct ProgramLogisticGrowthSimulator : public RichelBilderbeek::ProgramTool
   const std::string GetUrl() const noexcept { return "ToolLogisticGrowthSimulator.htm"; }
 };
 
-struct ProgramLoose : public RichelBilderbeek::ProgramTool
+struct ProgramLoose : public ProgramTool
 {
   const std::string GetFilenameConsole() const noexcept { return ""; }
   const std::string GetFilenameDesktop() const noexcept { return ""; }
@@ -728,7 +726,7 @@ struct ProgramLoose : public RichelBilderbeek::ProgramTool
   const std::string GetUrl() const noexcept { return "ToolLoose.htm"; }
 };
 
-struct ProgramMartianCafeTuinemaTycoon : public RichelBilderbeek::ProgramGame
+struct ProgramMartianCafeTuinemaTycoon : public ProgramGame
 {
   const std::string GetFilenameConsole() const noexcept { return ""; }
   const std::string GetFilenameDesktop() const noexcept { return ""; }
@@ -743,7 +741,7 @@ struct ProgramMartianCafeTuinemaTycoon : public RichelBilderbeek::ProgramGame
   const std::string GetUrl() const noexcept { return "GameMartianCafeTuinemaTycoon.htm"; }
 };
 
-struct ProgramMazeCreator : public RichelBilderbeek::ProgramTool
+struct ProgramMazeCreator : public ProgramTool
 {
   const std::string GetFilenameConsole() const noexcept { return ""; }
   const std::string GetFilenameDesktop() const noexcept { return "ToolMazeCreator_2_0.png"; }
@@ -758,7 +756,7 @@ struct ProgramMazeCreator : public RichelBilderbeek::ProgramTool
   const std::string GetUrl() const noexcept { return "ToolMazeCreator.htm"; }
 };
 
-struct ProgramMaziak : public RichelBilderbeek::ProgramGame
+struct ProgramMaziak : public ProgramGame
 {
   const std::string GetFilenameConsole() const noexcept { return ""; }
   const std::string GetFilenameDesktop() const noexcept { return "GameMaziak_1_3.png"; }
@@ -773,7 +771,7 @@ struct ProgramMaziak : public RichelBilderbeek::ProgramGame
   const std::string GetUrl() const noexcept { return "GameMaziak.htm"; }
 };
 
-struct ProgramMetZnDrieen : public RichelBilderbeek::ProgramGame
+struct ProgramMetZnDrieen : public ProgramGame
 {
   const std::string GetFilenameConsole() const noexcept { return ""; }
   const std::string GetFilenameDesktop() const noexcept { return ""; }
@@ -788,7 +786,7 @@ struct ProgramMetZnDrieen : public RichelBilderbeek::ProgramGame
   const std::string GetUrl() const noexcept { return "GameMetZnDrieen.htm"; }
 };
 
-struct ProgramMidiLessonCreator : public RichelBilderbeek::ProgramTool
+struct ProgramMidiLessonCreator : public ProgramTool
 {
   const std::string GetFilenameConsole() const noexcept { return ""; }
   const std::string GetFilenameDesktop() const noexcept { return ""; }
@@ -803,7 +801,7 @@ struct ProgramMidiLessonCreator : public RichelBilderbeek::ProgramTool
   const std::string GetUrl() const noexcept { return "ToolMidiLessonCreator.htm"; }
 };
 
-struct ProgramMorpher : public RichelBilderbeek::ProgramTool
+struct ProgramMorpher : public ProgramTool
 {
   const std::string GetFilenameConsole() const noexcept { return ""; }
   const std::string GetFilenameDesktop() const noexcept { return ""; }
@@ -818,7 +816,7 @@ struct ProgramMorpher : public RichelBilderbeek::ProgramTool
   const std::string GetUrl() const noexcept { return "ToolMorpher.htm"; }
 };
 
-struct ProgramMultiEncranger : public RichelBilderbeek::ProgramTool
+struct ProgramMultiEncranger : public ProgramTool
 {
   const std::string GetFilenameConsole() const noexcept { return ""; }
   const std::string GetFilenameDesktop() const noexcept { return ""; }
@@ -833,7 +831,7 @@ struct ProgramMultiEncranger : public RichelBilderbeek::ProgramTool
   const std::string GetUrl() const noexcept { return "ToolMultiEncranger.htm"; }
 };
 
-struct ProgramMuscaDomestica : public RichelBilderbeek::ProgramProject
+struct ProgramMuscaDomestica : public ProgramProject
 {
   const std::string GetFilenameConsole() const noexcept { return ""; }
   const std::string GetFilenameDesktop() const noexcept { return ""; }
@@ -848,7 +846,7 @@ struct ProgramMuscaDomestica : public RichelBilderbeek::ProgramProject
   const std::string GetUrl() const noexcept { return "ProjectMuscaDomestica.htm"; }
 };
 
-struct ProgramMusicTheory : public RichelBilderbeek::ProgramTool
+struct ProgramMusicTheory : public ProgramTool
 {
   const std::string GetFilenameConsole() const noexcept { return ""; }
   const std::string GetFilenameDesktop() const noexcept { return "ToolMusicTheory_1_0.png"; }
@@ -863,7 +861,7 @@ struct ProgramMusicTheory : public RichelBilderbeek::ProgramTool
   const std::string GetUrl() const noexcept { return "ToolMusicTheory.htm"; }
 };
 
-struct ProgramNdsmake : public RichelBilderbeek::ProgramClass
+struct ProgramNdsmake : public ProgramClass
 {
   const std::string GetFilenameConsole() const noexcept { return ""; }
   const std::string GetFilenameDesktop() const noexcept { return ""; }
@@ -878,7 +876,7 @@ struct ProgramNdsmake : public RichelBilderbeek::ProgramClass
   const std::string GetUrl() const noexcept { return "CppNdsmake.htm"; }
 };
 
-struct ProgramNdsPaint : public RichelBilderbeek::ProgramTool
+struct ProgramNdsPaint : public ProgramTool
 {
   const std::string GetFilenameConsole() const noexcept { return ""; }
   const std::string GetFilenameDesktop() const noexcept { return ""; }
@@ -893,7 +891,7 @@ struct ProgramNdsPaint : public RichelBilderbeek::ProgramTool
   const std::string GetUrl() const noexcept { return "CppNdsPaint.htm"; }
 };
 
-struct ProgramPaperRockScissors : public RichelBilderbeek::ProgramTool
+struct ProgramPaperRockScissors : public ProgramTool
 {
   const std::string GetFilenameConsole() const noexcept { return ""; }
   const std::string GetFilenameDesktop() const noexcept { return ""; }
@@ -908,7 +906,7 @@ struct ProgramPaperRockScissors : public RichelBilderbeek::ProgramTool
   const std::string GetUrl() const noexcept { return "ToolPaperRockScissors.htm"; }
 };
 
-struct ProgramPause : public RichelBilderbeek::ProgramTool
+struct ProgramPause : public ProgramTool
 {
   const std::string GetFilenameConsole() const noexcept { return ""; }
   const std::string GetFilenameDesktop() const noexcept { return ""; }
@@ -923,7 +921,7 @@ struct ProgramPause : public RichelBilderbeek::ProgramTool
   const std::string GetUrl() const noexcept { return "ToolPause.htm"; }
 };
 
-struct ProgramPerfectElasticCollision : public RichelBilderbeek::ProgramTool
+struct ProgramPerfectElasticCollision : public ProgramTool
 {
   const std::string GetFilenameConsole() const noexcept { return ""; }
   const std::string GetFilenameDesktop() const noexcept { return "ToolPerfectElasticCollision_1_0.png"; }
@@ -938,7 +936,7 @@ struct ProgramPerfectElasticCollision : public RichelBilderbeek::ProgramTool
   const std::string GetUrl() const noexcept { return "ToolPerfectElasticCollision.htm"; }
 };
 
-struct ProgramPicToCode : public RichelBilderbeek::ProgramTool
+struct ProgramPicToCode : public ProgramTool
 {
   const std::string GetFilenameConsole() const noexcept { return ""; }
   const std::string GetFilenameDesktop() const noexcept { return "ToolPicToCode_1_2.png"; }
@@ -953,7 +951,7 @@ struct ProgramPicToCode : public RichelBilderbeek::ProgramTool
   const std::string GetUrl() const noexcept { return "ToolPicToCode.htm"; }
 };
 
-struct ProgramPixelator : public RichelBilderbeek::ProgramTool
+struct ProgramPixelator : public ProgramTool
 {
   const std::string GetFilenameConsole() const noexcept { return ""; }
   const std::string GetFilenameDesktop() const noexcept { return ""; }
@@ -968,7 +966,7 @@ struct ProgramPixelator : public RichelBilderbeek::ProgramTool
   const std::string GetUrl() const noexcept { return "ToolPixelator.htm"; }
 };
 
-struct ProgramPokeVolley : public RichelBilderbeek::ProgramGame
+struct ProgramPokeVolley : public ProgramGame
 {
   const std::string GetFilenameConsole() const noexcept { return ""; }
   const std::string GetFilenameDesktop() const noexcept { return ""; }
@@ -983,7 +981,7 @@ struct ProgramPokeVolley : public RichelBilderbeek::ProgramGame
   const std::string GetUrl() const noexcept { return "GamePokeVolley.htm"; }
 };
 
-struct ProgramPong : public RichelBilderbeek::ProgramGame
+struct ProgramPong : public ProgramGame
 {
   const std::string GetFilenameConsole() const noexcept { return ""; }
   const std::string GetFilenameDesktop() const noexcept { return ""; }
@@ -998,7 +996,7 @@ struct ProgramPong : public RichelBilderbeek::ProgramGame
   const std::string GetUrl() const noexcept { return "GamePong.htm"; }
 };
 
-struct ProgramPrimeExpert : public RichelBilderbeek::ProgramTool
+struct ProgramPrimeExpert : public ProgramTool
 {
   const std::string GetFilenameConsole() const noexcept { return ""; }
   const std::string GetFilenameDesktop() const noexcept { return "ToolPrimeExpert_2_1.png"; }
@@ -1013,7 +1011,23 @@ struct ProgramPrimeExpert : public RichelBilderbeek::ProgramTool
   const std::string GetUrl() const noexcept { return "ToolPrimeExpert.htm"; }
 };
 
-struct ProgramPylos : public RichelBilderbeek::ProgramGame
+struct ProgramProjectRichelBilderbeek : public ProgramProject
+{
+  const std::string GetFilenameConsole() const noexcept { return ""; }
+  const std::string GetFilenameDesktop() const noexcept { return ""; }
+  const std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
+  const std::string GetFilenameWeb() const noexcept { return ""; }
+  const std::string GetScreenName() const noexcept { return "ProjectRichelBilderbeek"; }
+  ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::yes; }
+  ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::nvr; }
+  ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::yes; }
+  ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::yes; }
+  ProgramType GetType() const noexcept { return ProgramType::projectRichelBilderbeek; }
+  const std::string GetUrl() const noexcept { return "ProjectRichelBilderbeek.htm"; }
+};
+
+
+struct ProgramPylos : public ProgramGame
 {
   const std::string GetFilenameConsole() const noexcept { return ""; }
   const std::string GetFilenameDesktop() const noexcept { return "GamePylos_1_0.png"; }
@@ -1028,7 +1042,7 @@ struct ProgramPylos : public RichelBilderbeek::ProgramGame
   const std::string GetUrl() const noexcept { return "GamePylos.htm"; }
 };
 
-struct ProgramQmakeWatcher : public RichelBilderbeek::ProgramTool
+struct ProgramQmakeWatcher : public ProgramTool
 {
   const std::string GetFilenameConsole() const noexcept { return ""; }
   const std::string GetFilenameDesktop() const noexcept { return ""; }
@@ -1043,7 +1057,7 @@ struct ProgramQmakeWatcher : public RichelBilderbeek::ProgramTool
   const std::string GetUrl() const noexcept { return "ToolQmakeWatcher.htm"; }
 };
 
-struct ProgramQuadraticSolver : public RichelBilderbeek::ProgramTool
+struct ProgramQuadraticSolver : public ProgramTool
 {
   const std::string GetFilenameConsole() const noexcept { return "ToolQuadraticSolver_1_0.png"; }
   const std::string GetFilenameDesktop() const noexcept { return ""; }
@@ -1058,7 +1072,7 @@ struct ProgramQuadraticSolver : public RichelBilderbeek::ProgramTool
   const std::string GetUrl() const noexcept { return "ToolQuadraticSolver.htm"; }
 };
 
-struct ProgramRampal : public RichelBilderbeek::ProgramProject
+struct ProgramRampal : public ProgramProject
 {
   const std::string GetFilenameConsole() const noexcept { return ""; }
   const std::string GetFilenameDesktop() const noexcept { return ""; }
@@ -1073,7 +1087,7 @@ struct ProgramRampal : public RichelBilderbeek::ProgramProject
   const std::string GetUrl() const noexcept { return "ProjectRampal.htm"; }
 };
 
-struct ProgramRandomCode : public RichelBilderbeek::ProgramTool
+struct ProgramRandomCode : public ProgramTool
 {
   const std::string GetFilenameConsole() const noexcept { return ""; }
   const std::string GetFilenameDesktop() const noexcept { return "ToolRandomCode_4_2.png"; }
@@ -1088,7 +1102,7 @@ struct ProgramRandomCode : public RichelBilderbeek::ProgramTool
   const std::string GetUrl() const noexcept { return "ToolRandomCode.htm"; }
 };
 
-struct ProgramRasper : public RichelBilderbeek::ProgramTool
+struct ProgramRasper : public ProgramTool
 {
   const std::string GetFilenameConsole() const noexcept { return ""; }
   const std::string GetFilenameDesktop() const noexcept { return ""; }
@@ -1103,7 +1117,7 @@ struct ProgramRasper : public RichelBilderbeek::ProgramTool
   const std::string GetUrl() const noexcept { return "ToolRasper.htm"; }
 };
 
-struct ProgramRefrigeratorPuzzleSolver : public RichelBilderbeek::ProgramTool
+struct ProgramRefrigeratorPuzzleSolver : public ProgramTool
 {
   const std::string GetFilenameConsole() const noexcept { return ""; }
   const std::string GetFilenameDesktop() const noexcept { return ""; }
@@ -1118,7 +1132,7 @@ struct ProgramRefrigeratorPuzzleSolver : public RichelBilderbeek::ProgramTool
   const std::string GetUrl() const noexcept { return "ToolRefrigeratorPuzzleSolver.htm"; }
 };
 
-struct ProgramRegexTester : public RichelBilderbeek::ProgramTool
+struct ProgramRegexTester : public ProgramTool
 {
   const std::string GetFilenameConsole() const noexcept { return ""; }
   const std::string GetFilenameDesktop() const noexcept { return "ToolRegexTester_1_1.png"; }
@@ -1133,7 +1147,7 @@ struct ProgramRegexTester : public RichelBilderbeek::ProgramTool
   const std::string GetUrl() const noexcept { return "ToolRegexTester.htm"; }
 };
 
-struct ProgramReversi : public RichelBilderbeek::ProgramGame
+struct ProgramReversi : public ProgramGame
 {
   const std::string GetFilenameConsole() const noexcept { return ""; }
   const std::string GetFilenameDesktop() const noexcept { return ""; }
@@ -1148,7 +1162,8 @@ struct ProgramReversi : public RichelBilderbeek::ProgramGame
   const std::string GetUrl() const noexcept { return "GameReversi.htm"; }
 };
 
-struct ProgramRichelBilderbeekGallery : public RichelBilderbeek::ProgramTool
+
+struct ProgramRichelBilderbeekGallery : public ProgramTool
 {
   const std::string GetFilenameConsole() const noexcept { return ""; }
   const std::string GetFilenameDesktop() const noexcept { return "ToolRichelBilderbeekGallery_1_0.png"; }
@@ -1163,7 +1178,7 @@ struct ProgramRichelBilderbeekGallery : public RichelBilderbeek::ProgramTool
   const std::string GetUrl() const noexcept { return "ToolRichelBilderbeekGallery.htm"; }
 };
 
-struct ProgramRichelBilderbeekNlSitemapGenerator : public RichelBilderbeek::ProgramTool
+struct ProgramRichelBilderbeekNlSitemapGenerator : public ProgramTool
 {
   const std::string GetFilenameConsole() const noexcept { return ""; }
   const std::string GetFilenameDesktop() const noexcept { return ""; }
@@ -1178,7 +1193,7 @@ struct ProgramRichelBilderbeekNlSitemapGenerator : public RichelBilderbeek::Prog
   const std::string GetUrl() const noexcept { return "ToolRichelBilderbeekNlSitemapGenerator.htm"; }
 };
 
-struct ProgramRubiksClock : public RichelBilderbeek::ProgramGame
+struct ProgramRubiksClock : public ProgramGame
 {
   const std::string GetFilenameConsole() const noexcept { return ""; }
   const std::string GetFilenameDesktop() const noexcept { return "GameRubiksClockDesktop_2_2.png"; }
@@ -1193,7 +1208,7 @@ struct ProgramRubiksClock : public RichelBilderbeek::ProgramGame
   const std::string GetUrl() const noexcept { return "GameRubiksClock.htm"; }
 };
 
-struct ProgramSearchAndDestroyChess : public RichelBilderbeek::ProgramGame
+struct ProgramSearchAndDestroyChess : public ProgramGame
 {
   const std::string GetFilenameConsole() const noexcept { return "GameSearchAndDestroyChessConsole_1_0.png"; }
   const std::string GetFilenameDesktop() const noexcept { return ""; }
@@ -1208,7 +1223,7 @@ struct ProgramSearchAndDestroyChess : public RichelBilderbeek::ProgramGame
   const std::string GetUrl() const noexcept { return "GameSearchAndDestroyChess.htm"; }
 };
 
-struct ProgramSecretMessage : public RichelBilderbeek::ProgramTool
+struct ProgramSecretMessage : public ProgramTool
 {
   const std::string GetFilenameConsole() const noexcept { return ""; }
   const std::string GetFilenameDesktop() const noexcept { return ""; }
@@ -1223,7 +1238,7 @@ struct ProgramSecretMessage : public RichelBilderbeek::ProgramTool
   const std::string GetUrl() const noexcept { return "ToolSecretMessage.htm"; }
 };
 
-struct ProgramSimBrainiac : public RichelBilderbeek::ProgramTool
+struct ProgramSimBrainiac : public ProgramTool
 {
   const std::string GetFilenameConsole() const noexcept { return ""; }
   const std::string GetFilenameDesktop() const noexcept { return ""; }
@@ -1238,7 +1253,7 @@ struct ProgramSimBrainiac : public RichelBilderbeek::ProgramTool
   const std::string GetUrl() const noexcept { return "ToolSimBrainiac.htm"; }
 };
 
-struct ProgramSimImmuneResponse : public RichelBilderbeek::ProgramTool
+struct ProgramSimImmuneResponse : public ProgramTool
 {
   const std::string GetFilenameConsole() const noexcept { return ""; }
   const std::string GetFilenameDesktop() const noexcept { return ""; }
@@ -1253,7 +1268,7 @@ struct ProgramSimImmuneResponse : public RichelBilderbeek::ProgramTool
   const std::string GetUrl() const noexcept { return "ToolSimImmuneResponse.htm"; }
 };
 
-struct ProgramSimMysteryMachine : public RichelBilderbeek::ProgramTool
+struct ProgramSimMysteryMachine : public ProgramTool
 {
   const std::string GetFilenameConsole() const noexcept { return ""; }
   const std::string GetFilenameDesktop() const noexcept { return "ToolSimMysteryMachine_1_2.png"; }
@@ -1268,7 +1283,7 @@ struct ProgramSimMysteryMachine : public RichelBilderbeek::ProgramTool
   const std::string GetUrl() const noexcept { return "ToolSimMysteryMachine.htm"; }
 };
 
-struct ProgramSimplifyNewick : public RichelBilderbeek::ProgramTool
+struct ProgramSimplifyNewick : public ProgramTool
 {
   const std::string GetFilenameConsole() const noexcept { return ""; }
   const std::string GetFilenameDesktop() const noexcept { return "ToolSimplifyNewick_1_2.png"; }
@@ -1283,7 +1298,7 @@ struct ProgramSimplifyNewick : public RichelBilderbeek::ProgramTool
   const std::string GetUrl() const noexcept { return "ToolSimplifyNewick.htm"; }
 };
 
-struct ProgramSimPredator : public RichelBilderbeek::ProgramGame
+struct ProgramSimPredator : public ProgramGame
 {
   const std::string GetFilenameConsole() const noexcept { return ""; }
   const std::string GetFilenameDesktop() const noexcept { return ""; }
@@ -1299,7 +1314,7 @@ struct ProgramSimPredator : public RichelBilderbeek::ProgramGame
   const std::string GetUrl() const noexcept { return "ToolSimPredator.htm"; }
 };
 
-struct ProgramSimStagecraft : public RichelBilderbeek::ProgramTool
+struct ProgramSimStagecraft : public ProgramTool
 {
   const std::string GetFilenameConsole() const noexcept { return ""; }
   const std::string GetFilenameDesktop() const noexcept { return ""; }
@@ -1314,7 +1329,7 @@ struct ProgramSimStagecraft : public RichelBilderbeek::ProgramTool
   const std::string GetUrl() const noexcept { return "ToolSimStagecraft.htm"; }
 };
 
-struct ProgramSoaSim : public RichelBilderbeek::ProgramTool
+struct ProgramSoaSim : public ProgramTool
 {
   const std::string GetFilenameConsole() const noexcept { return ""; }
   const std::string GetFilenameDesktop() const noexcept { return ""; }
@@ -1329,7 +1344,7 @@ struct ProgramSoaSim : public RichelBilderbeek::ProgramTool
   const std::string GetUrl() const noexcept { return "ToolSoaSim.htm"; }
 };
 
-struct ProgramSolvePuzzleX : public RichelBilderbeek::ProgramTool
+struct ProgramSolvePuzzleX : public ProgramTool
 {
   const std::string GetFilenameConsole() const noexcept { return ""; }
   const std::string GetFilenameDesktop() const noexcept { return ""; }
@@ -1344,7 +1359,7 @@ struct ProgramSolvePuzzleX : public RichelBilderbeek::ProgramTool
   const std::string GetUrl() const noexcept { return "ToolSolvePuzzleX.htm"; }
 };
 
-struct ProgramSpaceHarry : public RichelBilderbeek::ProgramGame
+struct ProgramSpaceHarry : public ProgramGame
 {
   const std::string GetFilenameConsole() const noexcept { return ""; }
   const std::string GetFilenameDesktop() const noexcept { return ""; }
@@ -1359,7 +1374,7 @@ struct ProgramSpaceHarry : public RichelBilderbeek::ProgramGame
   const std::string GetUrl() const noexcept { return "GameSpaceHarry.htm"; }
 };
 
-struct ProgramStaircaseCardCreator : public RichelBilderbeek::ProgramTool
+struct ProgramStaircaseCardCreator : public ProgramTool
 {
   const std::string GetFilenameConsole() const noexcept { return ""; }
   const std::string GetFilenameDesktop() const noexcept { return ""; }
@@ -1374,7 +1389,7 @@ struct ProgramStaircaseCardCreator : public RichelBilderbeek::ProgramTool
   const std::string GetUrl() const noexcept { return "ToolStaircaseCardCreator.htm"; }
 };
 
-struct ProgramStateObserver : public RichelBilderbeek::ProgramTool
+struct ProgramStateObserver : public ProgramTool
 {
   const std::string GetFilenameConsole() const noexcept { return ""; }
   const std::string GetFilenameDesktop() const noexcept { return "ToolStateObserver_1_0.png"; }
@@ -1389,7 +1404,7 @@ struct ProgramStateObserver : public RichelBilderbeek::ProgramTool
   const std::string GetUrl() const noexcept { return "ToolStateObserver.htm"; }
 };
 
-struct ProgramStyleSheetSetter : public RichelBilderbeek::ProgramTool
+struct ProgramStyleSheetSetter : public ProgramTool
 {
   const std::string GetFilenameConsole() const noexcept { return ""; }
   const std::string GetFilenameDesktop() const noexcept { return ""; }
@@ -1404,7 +1419,7 @@ struct ProgramStyleSheetSetter : public RichelBilderbeek::ProgramTool
   const std::string GetUrl() const noexcept { return "ToolStyleSheetSetter.htm"; }
 };
 
-struct ProgramSuperNsanaBros : public RichelBilderbeek::ProgramGame
+struct ProgramSuperNsanaBros : public ProgramGame
 {
   const std::string GetFilenameConsole() const noexcept { return ""; }
   const std::string GetFilenameDesktop() const noexcept { return ""; }
@@ -1419,7 +1434,7 @@ struct ProgramSuperNsanaBros : public RichelBilderbeek::ProgramGame
   const std::string GetUrl() const noexcept { return "GameSuperNsanaBros.htm"; }
 };
 
-struct ProgramSurfacePlotter : public RichelBilderbeek::ProgramTool
+struct ProgramSurfacePlotter : public ProgramTool
 {
   const std::string GetFilenameConsole() const noexcept { return ""; }
   const std::string GetFilenameDesktop() const noexcept { return ""; }
@@ -1434,7 +1449,7 @@ struct ProgramSurfacePlotter : public RichelBilderbeek::ProgramTool
   const std::string GetUrl() const noexcept { return "ToolSurfacePlotter.htm"; }
 };
 
-struct ProgramTankBattalion : public RichelBilderbeek::ProgramGame
+struct ProgramTankBattalion : public ProgramGame
 {
   const std::string GetFilenameConsole() const noexcept { return ""; }
   const std::string GetFilenameDesktop() const noexcept { return ""; }
@@ -1449,7 +1464,7 @@ struct ProgramTankBattalion : public RichelBilderbeek::ProgramGame
   const std::string GetUrl() const noexcept { return "GameTankBattalion.htm"; }
 };
 
-struct ProgramTestAbout : public RichelBilderbeek::ProgramClass
+struct ProgramTestAbout : public ProgramClass
 {
   const std::string GetFilenameConsole() const noexcept { return ""; }
   const std::string GetFilenameDesktop() const noexcept { return "ToolTestAbout_1_1.png"; }
@@ -1464,7 +1479,7 @@ struct ProgramTestAbout : public RichelBilderbeek::ProgramClass
   const std::string GetUrl() const noexcept { return "ToolTestAbout.htm"; }
 };
 
-struct ProgramTestApproximator : public RichelBilderbeek::ProgramClass
+struct ProgramTestApproximator : public ProgramClass
 {
   const std::string GetFilenameConsole() const noexcept { return ""; }
   const std::string GetFilenameDesktop() const noexcept { return "ToolTestApproximator_1_0.png"; }
@@ -1479,7 +1494,7 @@ struct ProgramTestApproximator : public RichelBilderbeek::ProgramClass
   const std::string GetUrl() const noexcept { return "ToolTestApproximator.htm"; }
 };
 
-struct ProgramTestBinaryNewickVector : public RichelBilderbeek::ProgramTool
+struct ProgramTestBinaryNewickVector : public ProgramTool
 {
   const std::string GetFilenameConsole() const noexcept { return ""; }
   const std::string GetFilenameDesktop() const noexcept { return "ToolTestBinaryNewickVector_1_5.png"; }
@@ -1494,7 +1509,7 @@ struct ProgramTestBinaryNewickVector : public RichelBilderbeek::ProgramTool
   const std::string GetUrl() const noexcept { return "ToolTestBinaryNewickVector.htm"; }
 };
 
-struct ProgramTestBouncingBallsWidget : public RichelBilderbeek::ProgramClass
+struct ProgramTestBouncingBallsWidget : public ProgramClass
 {
   const std::string GetFilenameConsole() const noexcept { return ""; }
   const std::string GetFilenameDesktop() const noexcept { return "ToolTestBouncingBallsWidget_1_0.png"; }
@@ -1509,7 +1524,7 @@ struct ProgramTestBouncingBallsWidget : public RichelBilderbeek::ProgramClass
   const std::string GetUrl() const noexcept { return "ToolTestBouncingBallsWidget.htm"; }
 };
 
-struct ProgramTestBouncingRectsWidget : public RichelBilderbeek::ProgramClass
+struct ProgramTestBouncingRectsWidget : public ProgramClass
 {
   const std::string GetFilenameConsole() const noexcept { return ""; }
   const std::string GetFilenameDesktop() const noexcept { return "ToolTestBouncingRectsWidget_1_0.png"; }
@@ -1524,7 +1539,7 @@ struct ProgramTestBouncingRectsWidget : public RichelBilderbeek::ProgramClass
   const std::string GetUrl() const noexcept { return "ToolTestBouncingRectsWidget.htm"; }
 };
 
-struct ProgramTestBroadcastServer : public RichelBilderbeek::ProgramClass
+struct ProgramTestBroadcastServer : public ProgramClass
 {
   const std::string GetFilenameConsole() const noexcept { return ""; }
   const std::string GetFilenameDesktop() const noexcept { return ""; }
@@ -1539,7 +1554,7 @@ struct ProgramTestBroadcastServer : public RichelBilderbeek::ProgramClass
   const std::string GetUrl() const noexcept { return "ToolTestBroadcastServer.htm"; }
 };
 
-struct ProgramTestCanvas : public RichelBilderbeek::ProgramClass
+struct ProgramTestCanvas : public ProgramClass
 {
   const std::string GetFilenameConsole() const noexcept { return ""; }
   const std::string GetFilenameDesktop() const noexcept { return ""; }
@@ -1554,7 +1569,7 @@ struct ProgramTestCanvas : public RichelBilderbeek::ProgramClass
   const std::string GetUrl() const noexcept { return "ToolTestCanvas.htm"; }
 };
 
-struct ProgramTestChess : public RichelBilderbeek::ProgramClass
+struct ProgramTestChess : public ProgramClass
 {
   const std::string GetFilenameConsole() const noexcept { return ""; }
   const std::string GetFilenameDesktop() const noexcept { return "ToolTestChess20120209.png"; }
@@ -1569,7 +1584,7 @@ struct ProgramTestChess : public RichelBilderbeek::ProgramClass
   const std::string GetUrl() const noexcept { return "ToolTestChess.htm"; }
 };
 
-struct ProgramTestDial : public RichelBilderbeek::ProgramClass
+struct ProgramTestDial : public ProgramClass
 {
   const std::string GetFilenameConsole() const noexcept { return ""; }
   const std::string GetFilenameDesktop() const noexcept { return "ToolTestDial_1_0.png"; }
@@ -1584,7 +1599,7 @@ struct ProgramTestDial : public RichelBilderbeek::ProgramClass
   const std::string GetUrl() const noexcept { return "ToolTestDial.htm"; }
 };
 
-struct ProgramEncranger : public RichelBilderbeek::ProgramClass
+struct ProgramEncranger : public ProgramClass
 {
   const std::string GetFilenameConsole() const noexcept { return ""; }
   const std::string GetFilenameDesktop() const noexcept { return "ToolEncranger_2_5.png"; }
@@ -1599,7 +1614,7 @@ struct ProgramEncranger : public RichelBilderbeek::ProgramClass
   const std::string GetUrl() const noexcept { return "ToolEncranger.htm"; }
 };
 
-struct ProgramTestEntrance : public RichelBilderbeek::ProgramClass
+struct ProgramTestEntrance : public ProgramClass
 {
   const std::string GetFilenameConsole() const noexcept { return ""; }
   const std::string GetFilenameDesktop() const noexcept { return ""; }
@@ -1614,7 +1629,7 @@ struct ProgramTestEntrance : public RichelBilderbeek::ProgramClass
   const std::string GetUrl() const noexcept { return "ToolTestEntrance.htm"; }
 };
 
-struct ProgramTestExercise : public RichelBilderbeek::ProgramClass
+struct ProgramTestExercise : public ProgramClass
 {
   const std::string GetFilenameConsole() const noexcept { return ""; }
   const std::string GetFilenameDesktop() const noexcept { return ""; }
@@ -1629,7 +1644,7 @@ struct ProgramTestExercise : public RichelBilderbeek::ProgramClass
   const std::string GetUrl() const noexcept { return "ToolTestExercise.htm"; }
 };
 
-struct ProgramTestFunctionParser : public RichelBilderbeek::ProgramClass
+struct ProgramTestFunctionParser : public ProgramClass
 {
   const std::string GetFilenameConsole() const noexcept { return ""; }
   const std::string GetFilenameDesktop() const noexcept { return "ToolTestFunctionParser_2_0.png"; }
@@ -1644,7 +1659,7 @@ struct ProgramTestFunctionParser : public RichelBilderbeek::ProgramClass
   const std::string GetUrl() const noexcept { return "ToolTestFunctionParser.htm"; }
 };
 
-struct ProgramTestGnuplotInterface : public RichelBilderbeek::ProgramClass
+struct ProgramTestGnuplotInterface : public ProgramClass
 {
   const std::string GetFilenameConsole() const noexcept { return ""; }
   const std::string GetFilenameDesktop() const noexcept { return ""; }
@@ -1659,7 +1674,7 @@ struct ProgramTestGnuplotInterface : public RichelBilderbeek::ProgramClass
   const std::string GetUrl() const noexcept { return "ToolTestGnuplotInterface.htm"; }
 };
 
-struct ProgramTestGraphicsProxyWidget : public RichelBilderbeek::ProgramClass
+struct ProgramTestGraphicsProxyWidget : public ProgramClass
 {
   const std::string GetFilenameConsole() const noexcept { return ""; }
   const std::string GetFilenameDesktop() const noexcept { return ""; }
@@ -1674,7 +1689,7 @@ struct ProgramTestGraphicsProxyWidget : public RichelBilderbeek::ProgramClass
   const std::string GetUrl() const noexcept { return "ToolTestGraphicsProxyWidget.htm"; }
 };
 
-struct ProgramTestGravityWidget : public RichelBilderbeek::ProgramClass
+struct ProgramTestGravityWidget : public ProgramClass
 {
   const std::string GetFilenameConsole() const noexcept { return ""; }
   const std::string GetFilenameDesktop() const noexcept { return ""; }
@@ -1689,7 +1704,7 @@ struct ProgramTestGravityWidget : public RichelBilderbeek::ProgramClass
   const std::string GetUrl() const noexcept { return "ToolTestGravityWidget.htm"; }
 };
 
-struct ProgramTestGroupWidget : public RichelBilderbeek::ProgramClass
+struct ProgramTestGroupWidget : public ProgramClass
 {
   const std::string GetFilenameConsole() const noexcept { return ""; }
   const std::string GetFilenameDesktop() const noexcept { return ""; }
@@ -1704,7 +1719,7 @@ struct ProgramTestGroupWidget : public RichelBilderbeek::ProgramClass
   const std::string GetUrl() const noexcept { return "ToolTestGroupWidget.htm"; }
 };
 
-struct ProgramTestHugeVector : public RichelBilderbeek::ProgramClass
+struct ProgramTestHugeVector : public ProgramClass
 {
   const std::string GetFilenameConsole() const noexcept { return ""; }
   const std::string GetFilenameDesktop() const noexcept { return ""; }
@@ -1719,7 +1734,7 @@ struct ProgramTestHugeVector : public RichelBilderbeek::ProgramClass
   const std::string GetUrl() const noexcept { return "ToolTestHugeVector.htm"; }
 };
 
-struct ProgramTestTestLazy_init : public RichelBilderbeek::ProgramClass
+struct ProgramTestTestLazy_init : public ProgramClass
 {
   const std::string GetFilenameConsole() const noexcept { return ""; }
   const std::string GetFilenameDesktop() const noexcept { return ""; }
@@ -1734,7 +1749,7 @@ struct ProgramTestTestLazy_init : public RichelBilderbeek::ProgramClass
   const std::string GetUrl() const noexcept { return "ToolTestLazy_init.htm"; }
 };
 
-struct ProgramTestLed : public RichelBilderbeek::ProgramClass
+struct ProgramTestLed : public ProgramClass
 {
   const std::string GetFilenameConsole() const noexcept { return ""; }
   const std::string GetFilenameDesktop() const noexcept { return "ToolTestLed_1_0.png"; }
@@ -1749,7 +1764,7 @@ struct ProgramTestLed : public RichelBilderbeek::ProgramClass
   const std::string GetUrl() const noexcept { return "ToolTestLed.htm"; }
 };
 
-struct ProgramTestManyDigitNewick : public RichelBilderbeek::ProgramClass
+struct ProgramTestManyDigitNewick : public ProgramClass
 {
   const std::string GetFilenameConsole() const noexcept { return ""; }
   const std::string GetFilenameDesktop() const noexcept { return ""; }
@@ -1764,7 +1779,7 @@ struct ProgramTestManyDigitNewick : public RichelBilderbeek::ProgramClass
   const std::string GetUrl() const noexcept { return "ToolTestManyDigitNewick.htm"; }
 };
 
-struct ProgramTestMultiApproximator : public RichelBilderbeek::ProgramClass
+struct ProgramTestMultiApproximator : public ProgramClass
 {
   const std::string GetFilenameConsole() const noexcept { return ""; }
   const std::string GetFilenameDesktop() const noexcept { return "ToolTestMultiApproximator_1_0.png"; }
@@ -1779,7 +1794,7 @@ struct ProgramTestMultiApproximator : public RichelBilderbeek::ProgramClass
   const std::string GetUrl() const noexcept { return "ToolTestMultiApproximator.htm"; }
 };
 
-struct ProgramTestMultipleChoiceQuestion : public RichelBilderbeek::ProgramClass
+struct ProgramTestMultipleChoiceQuestion : public ProgramClass
 {
   const std::string GetFilenameConsole() const noexcept { return ""; }
   const std::string GetFilenameDesktop() const noexcept { return ""; }
@@ -1794,7 +1809,7 @@ struct ProgramTestMultipleChoiceQuestion : public RichelBilderbeek::ProgramClass
   const std::string GetUrl() const noexcept { return "ToolTestMultipleChoiceQuestion.htm"; }
 };
 
-struct ProgramTestMultiVector : public RichelBilderbeek::ProgramClass
+struct ProgramTestMultiVector : public ProgramClass
 {
   const std::string GetFilenameConsole() const noexcept { return ""; }
   const std::string GetFilenameDesktop() const noexcept { return ""; }
@@ -1809,7 +1824,7 @@ struct ProgramTestMultiVector : public RichelBilderbeek::ProgramClass
   const std::string GetUrl() const noexcept { return "ToolTestMultiVector.htm"; }
 };
 
-struct ProgramTestNdsmake : public RichelBilderbeek::ProgramClass
+struct ProgramTestNdsmake : public ProgramClass
 {
   const std::string GetFilenameConsole() const noexcept { return ""; }
   const std::string GetFilenameDesktop() const noexcept { return "ToolTestNdsmake_1_0.png"; }
@@ -1824,7 +1839,7 @@ struct ProgramTestNdsmake : public RichelBilderbeek::ProgramClass
   const std::string GetUrl() const noexcept { return "ToolTestNdsmake.htm"; }
 };
 
-struct ProgramTestNeuralNet : public RichelBilderbeek::ProgramClass
+struct ProgramTestNeuralNet : public ProgramClass
 {
   const std::string GetFilenameConsole() const noexcept { return ""; }
   const std::string GetFilenameDesktop() const noexcept { return "ToolTestNeuralNet_0_1.png"; }
@@ -1839,7 +1854,7 @@ struct ProgramTestNeuralNet : public RichelBilderbeek::ProgramClass
   const std::string GetUrl() const noexcept { return "ToolTestNeuralNet.htm"; }
 };
 
-struct ProgramTestNewick : public RichelBilderbeek::ProgramClass
+struct ProgramTestNewick : public ProgramClass
 {
   const std::string GetFilenameConsole() const noexcept { return ""; }
   const std::string GetFilenameDesktop() const noexcept { return ""; }
@@ -1854,7 +1869,7 @@ struct ProgramTestNewick : public RichelBilderbeek::ProgramClass
   const std::string GetUrl() const noexcept { return "ToolTestNewick.htm"; }
 };
 
-struct ProgramTestNewickVector : public RichelBilderbeek::ProgramClass
+struct ProgramTestNewickVector : public ProgramClass
 {
   const std::string GetFilenameConsole() const noexcept { return ""; }
   const std::string GetFilenameDesktop() const noexcept { return ""; }
@@ -1869,7 +1884,7 @@ struct ProgramTestNewickVector : public RichelBilderbeek::ProgramClass
   const std::string GetUrl() const noexcept { return "ToolTestNewickVector.htm"; }
 };
 
-struct ProgramTestOpenQuestion : public RichelBilderbeek::ProgramClass
+struct ProgramTestOpenQuestion : public ProgramClass
 {
   const std::string GetFilenameConsole() const noexcept { return ""; }
   const std::string GetFilenameDesktop() const noexcept { return ""; }
@@ -1884,7 +1899,7 @@ struct ProgramTestOpenQuestion : public RichelBilderbeek::ProgramClass
   const std::string GetUrl() const noexcept { return "ToolTestOpenQuestion.htm"; }
 };
 
-struct ProgramTestPylos : public RichelBilderbeek::ProgramClass
+struct ProgramTestPylos : public ProgramClass
 {
   const std::string GetFilenameConsole() const noexcept { return ""; }
   const std::string GetFilenameDesktop() const noexcept { return "ToolTestPylos_1_0.png"; }
@@ -1899,7 +1914,7 @@ struct ProgramTestPylos : public RichelBilderbeek::ProgramClass
   const std::string GetUrl() const noexcept { return "ToolTestPylos.htm"; }
 };
 
-struct ProgramTestQrcFile : public RichelBilderbeek::ProgramClass
+struct ProgramTestQrcFile : public ProgramClass
 {
   const std::string GetFilenameConsole() const noexcept { return ""; }
   const std::string GetFilenameDesktop() const noexcept { return ""; }
@@ -1914,7 +1929,7 @@ struct ProgramTestQrcFile : public RichelBilderbeek::ProgramClass
   const std::string GetUrl() const noexcept { return "ToolTestQrcFile.htm"; }
 };
 
-struct ProgramTestQtArrowItems : public RichelBilderbeek::ProgramClass
+struct ProgramTestQtArrowItems : public ProgramClass
 {
   const std::string GetFilenameConsole() const noexcept { return ""; }
   const std::string GetFilenameDesktop() const noexcept { return "ToolTestQtArrowItems_1_0.png"; }
@@ -1929,7 +1944,7 @@ struct ProgramTestQtArrowItems : public RichelBilderbeek::ProgramClass
   const std::string GetUrl() const noexcept { return "ToolTestQtArrowItems.htm"; }
 };
 
-struct ProgramTestQtCreatorProFile : public RichelBilderbeek::ProgramClass
+struct ProgramTestQtCreatorProFile : public ProgramClass
 {
   const std::string GetFilenameConsole() const noexcept { return ""; }
   const std::string GetFilenameDesktop() const noexcept { return ""; }
@@ -1944,7 +1959,7 @@ struct ProgramTestQtCreatorProFile : public RichelBilderbeek::ProgramClass
   const std::string GetUrl() const noexcept { return "ToolTestQtCreatorProFile.htm"; }
 };
 
-struct ProgramTestQtHideAndShowDialog : public RichelBilderbeek::ProgramClass
+struct ProgramTestQtHideAndShowDialog : public ProgramClass
 {
   const std::string GetFilenameConsole() const noexcept { return ""; }
   const std::string GetFilenameDesktop() const noexcept { return ""; }
@@ -1959,7 +1974,7 @@ struct ProgramTestQtHideAndShowDialog : public RichelBilderbeek::ProgramClass
   const std::string GetUrl() const noexcept { return "ToolTestQtHideAndShowDialog.htm"; }
 };
 
-struct ProgramTestQtKeyboardFriendlyGraphicsView : public RichelBilderbeek::ProgramClass
+struct ProgramTestQtKeyboardFriendlyGraphicsView : public ProgramClass
 {
   const std::string GetFilenameConsole() const noexcept { return ""; }
   const std::string GetFilenameDesktop() const noexcept { return ""; }
@@ -1974,7 +1989,7 @@ struct ProgramTestQtKeyboardFriendlyGraphicsView : public RichelBilderbeek::Prog
   const std::string GetUrl() const noexcept { return "ToolTestQtKeyboardFriendlyGraphicsView.htm"; }
 };
 
-struct ProgramTestQtModels : public RichelBilderbeek::ProgramClass
+struct ProgramTestQtModels : public ProgramClass
 {
   const std::string GetFilenameConsole() const noexcept { return ""; }
   const std::string GetFilenameDesktop() const noexcept { return ""; }
@@ -1989,7 +2004,7 @@ struct ProgramTestQtModels : public RichelBilderbeek::ProgramClass
   const std::string GetUrl() const noexcept { return "ToolTestQtModels.htm"; }
 };
 
-struct ProgramTestQtOcrWidget : public RichelBilderbeek::ProgramClass
+struct ProgramTestQtOcrWidget : public ProgramClass
 {
   const std::string GetFilenameConsole() const noexcept { return ""; }
   const std::string GetFilenameDesktop() const noexcept { return ""; }
@@ -2004,7 +2019,7 @@ struct ProgramTestQtOcrWidget : public RichelBilderbeek::ProgramClass
   const std::string GetUrl() const noexcept { return "ToolTestQtOcrWidget.htm"; }
 };
 
-struct ProgramTestQtRoundedEditRectItem : public RichelBilderbeek::ProgramClass
+struct ProgramTestQtRoundedEditRectItem : public ProgramClass
 {
   const std::string GetFilenameConsole() const noexcept { return ""; }
   const std::string GetFilenameDesktop() const noexcept { return "ToolTestQtRoundedEditRectItem_1_0.png"; }
@@ -2019,7 +2034,7 @@ struct ProgramTestQtRoundedEditRectItem : public RichelBilderbeek::ProgramClass
   const std::string GetUrl() const noexcept { return "ToolTestQtRoundedEditRectItem.htm"; }
 };
 
-struct ProgramTestQtRoundedRectItem : public RichelBilderbeek::ProgramClass
+struct ProgramTestQtRoundedRectItem : public ProgramClass
 {
   const std::string GetFilenameConsole() const noexcept { return ""; }
   const std::string GetFilenameDesktop() const noexcept { return "ToolTestQtRoundedRectItem_1_1.png"; }
@@ -2034,7 +2049,7 @@ struct ProgramTestQtRoundedRectItem : public RichelBilderbeek::ProgramClass
   const std::string GetUrl() const noexcept { return "ToolTestQtRoundedRectItem.htm"; }
 };
 
-struct ProgramTestQtRoundedTextRectItem : public RichelBilderbeek::ProgramClass
+struct ProgramTestQtRoundedTextRectItem : public ProgramClass
 {
   const std::string GetFilenameConsole() const noexcept { return ""; }
   const std::string GetFilenameDesktop() const noexcept { return "ToolTestQtRoundedTextRectItem_1_1.png"; }
@@ -2049,7 +2064,7 @@ struct ProgramTestQtRoundedTextRectItem : public RichelBilderbeek::ProgramClass
   const std::string GetUrl() const noexcept { return "ToolTestQtRoundedTextRectItem.htm"; }
 };
 
-struct ProgramTestQuestion : public RichelBilderbeek::ProgramClass
+struct ProgramTestQuestion : public ProgramClass
 {
   const std::string GetFilenameConsole() const noexcept { return ""; }
   const std::string GetFilenameDesktop() const noexcept { return "ToolTestQuestion_2_1.png"; }
@@ -2064,7 +2079,7 @@ struct ProgramTestQuestion : public RichelBilderbeek::ProgramClass
   const std::string GetUrl() const noexcept { return "ToolTestQuestion.htm"; }
 };
 
-struct ProgramTestReversi : public RichelBilderbeek::ProgramClass
+struct ProgramTestReversi : public ProgramClass
 {
   const std::string GetFilenameConsole() const noexcept { return ""; }
   const std::string GetFilenameDesktop() const noexcept { return ""; }
@@ -2079,7 +2094,7 @@ struct ProgramTestReversi : public RichelBilderbeek::ProgramClass
   const std::string GetUrl() const noexcept { return "ToolTestReversi.htm"; }
 };
 
-struct ProgramTestSelectFileDialog : public RichelBilderbeek::ProgramClass
+struct ProgramTestSelectFileDialog : public ProgramClass
 {
   const std::string GetFilenameConsole() const noexcept { return ""; }
   const std::string GetFilenameDesktop() const noexcept { return ""; }
@@ -2094,7 +2109,7 @@ struct ProgramTestSelectFileDialog : public RichelBilderbeek::ProgramClass
   const std::string GetUrl() const noexcept { return "ToolTestSelectFileDialog.htm"; }
 };
 
-struct ProgramTestServerPusher : public RichelBilderbeek::ProgramClass
+struct ProgramTestServerPusher : public ProgramClass
 {
   const std::string GetFilenameConsole() const noexcept { return ""; }
   const std::string GetFilenameDesktop() const noexcept { return ""; }
@@ -2109,7 +2124,7 @@ struct ProgramTestServerPusher : public RichelBilderbeek::ProgramClass
   const std::string GetUrl() const noexcept { return "ToolTestServerPusher.htm"; }
 };
 
-struct ProgramTestShape : public RichelBilderbeek::ProgramClass
+struct ProgramTestShape : public ProgramClass
 {
   const std::string GetFilenameConsole() const noexcept { return ""; }
   const std::string GetFilenameDesktop() const noexcept { return "ToolTestShape_1_0_desktop.png"; }
@@ -2124,7 +2139,7 @@ struct ProgramTestShape : public RichelBilderbeek::ProgramClass
   const std::string GetUrl() const noexcept { return "ToolTestShape.htm"; }
 };
 
-struct ProgramTestShinyButton : public RichelBilderbeek::ProgramClass
+struct ProgramTestShinyButton : public ProgramClass
 {
   const std::string GetFilenameConsole() const noexcept { return ""; }
   const std::string GetFilenameDesktop() const noexcept { return "ToolTestShinyButton_2_0_desktop.png"; }
@@ -2139,7 +2154,7 @@ struct ProgramTestShinyButton : public RichelBilderbeek::ProgramClass
   const std::string GetUrl() const noexcept { return "ToolTestShinyButton.htm"; }
 };
 
-struct ProgramTestSimpleLinearRegression : public RichelBilderbeek::ProgramClass
+struct ProgramTestSimpleLinearRegression : public ProgramClass
 {
   const std::string GetFilenameConsole() const noexcept { return ""; }
   const std::string GetFilenameDesktop() const noexcept { return "ToolTestSimpleLinearRegression_1_0.png"; }
@@ -2154,7 +2169,7 @@ struct ProgramTestSimpleLinearRegression : public RichelBilderbeek::ProgramClass
   const std::string GetUrl() const noexcept { return "ToolTestSimpleLinearRegression.htm"; }
 };
 
-struct ProgramTestStopwatch : public RichelBilderbeek::ProgramClass
+struct ProgramTestStopwatch : public ProgramClass
 {
   const std::string GetFilenameConsole() const noexcept { return ""; }
   const std::string GetFilenameDesktop() const noexcept { return ""; }
@@ -2169,7 +2184,7 @@ struct ProgramTestStopwatch : public RichelBilderbeek::ProgramClass
   const std::string GetUrl() const noexcept { return "ToolTestStopwatch.htm"; }
 };
 
-struct ProgramTestTextPositionWidget : public RichelBilderbeek::ProgramClass
+struct ProgramTestTextPositionWidget : public ProgramClass
 {
   const std::string GetFilenameConsole() const noexcept { return ""; }
   const std::string GetFilenameDesktop() const noexcept { return ""; }
@@ -2184,7 +2199,7 @@ struct ProgramTestTextPositionWidget : public RichelBilderbeek::ProgramClass
   const std::string GetUrl() const noexcept { return "ToolTextPositionWidget.htm"; }
 };
 
-struct ProgramTestTicTacToe : public RichelBilderbeek::ProgramClass
+struct ProgramTestTicTacToe : public ProgramClass
 {
   const std::string GetFilenameConsole() const noexcept { return ""; }
   const std::string GetFilenameDesktop() const noexcept { return "ToolTestTicTacToe_1_1.png"; }
@@ -2199,7 +2214,7 @@ struct ProgramTestTicTacToe : public RichelBilderbeek::ProgramClass
   const std::string GetUrl() const noexcept { return "ToolTestTicTacToe.htm"; }
 };
 
-struct ProgramTestTimedServerPusher : public RichelBilderbeek::ProgramClass
+struct ProgramTestTimedServerPusher : public ProgramClass
 {
   const std::string GetFilenameConsole() const noexcept { return ""; }
   const std::string GetFilenameDesktop() const noexcept { return ""; }
@@ -2214,7 +2229,7 @@ struct ProgramTestTimedServerPusher : public RichelBilderbeek::ProgramClass
   const std::string GetUrl() const noexcept { return "ToolTestTimedServerPusher.htm"; }
 };
 
-struct ProgramTestToggleButton : public RichelBilderbeek::ProgramClass
+struct ProgramTestToggleButton : public ProgramClass
 {
   const std::string GetFilenameConsole() const noexcept { return ""; }
   const std::string GetFilenameDesktop() const noexcept { return ""; }
@@ -2229,7 +2244,7 @@ struct ProgramTestToggleButton : public RichelBilderbeek::ProgramClass
   const std::string GetUrl() const noexcept { return "ToolTestToggleButton.htm"; }
 };
 
-struct ProgramTestTwoDigitNewick : public RichelBilderbeek::ProgramClass
+struct ProgramTestTwoDigitNewick : public ProgramClass
 {
   const std::string GetFilenameConsole() const noexcept { return ""; }
   const std::string GetFilenameDesktop() const noexcept { return "ToolTestTwoDigitNewick_0_6.png"; }
@@ -2244,7 +2259,7 @@ struct ProgramTestTwoDigitNewick : public RichelBilderbeek::ProgramClass
   const std::string GetUrl() const noexcept { return "ToolTestTwoDigitNewick.htm"; }
 };
 
-struct ProgramThorVeen : public RichelBilderbeek::ProgramProject
+struct ProgramThorVeen : public ProgramProject
 {
   const std::string GetFilenameConsole() const noexcept { return ""; }
   const std::string GetFilenameDesktop() const noexcept { return ""; }
@@ -2259,7 +2274,7 @@ struct ProgramThorVeen : public RichelBilderbeek::ProgramProject
   const std::string GetUrl() const noexcept { return "ProjectThorVeen.htm"; }
 };
 
-struct ProgramThresholdFilterer : public RichelBilderbeek::ProgramTool
+struct ProgramThresholdFilterer : public ProgramTool
 {
   const std::string GetFilenameConsole() const noexcept { return ""; }
   const std::string GetFilenameDesktop() const noexcept { return ""; }
@@ -2274,7 +2289,7 @@ struct ProgramThresholdFilterer : public RichelBilderbeek::ProgramTool
   const std::string GetUrl() const noexcept { return "ToolThresholdFilterer.htm"; }
 };
 
-struct ProgramTicTacToe : public RichelBilderbeek::ProgramGame
+struct ProgramTicTacToe : public ProgramGame
 {
   const std::string GetFilenameConsole() const noexcept { return ""; }
   const std::string GetFilenameDesktop() const noexcept { return "GameTicTacToe_1_1.png"; }
@@ -2289,7 +2304,7 @@ struct ProgramTicTacToe : public RichelBilderbeek::ProgramGame
   const std::string GetUrl() const noexcept { return "GameTicTacToe.htm"; }
 };
 
-struct ProgramTicTacToeLearner : public RichelBilderbeek::ProgramTool
+struct ProgramTicTacToeLearner : public ProgramTool
 {
   const std::string GetFilenameConsole() const noexcept { return ""; }
   const std::string GetFilenameDesktop() const noexcept { return "ToolTicTacToeLearner_0_3.png"; }
@@ -2304,7 +2319,7 @@ struct ProgramTicTacToeLearner : public RichelBilderbeek::ProgramTool
   const std::string GetUrl() const noexcept { return "ToolTicTacToeLearner.htm"; }
 };
 
-struct ProgramTicTacToeValuer : public RichelBilderbeek::ProgramTool
+struct ProgramTicTacToeValuer : public ProgramTool
 {
   const std::string GetFilenameConsole() const noexcept { return ""; }
   const std::string GetFilenameDesktop() const noexcept { return "ToolTicTacToeValuer_0_7.png"; }
@@ -2319,7 +2334,7 @@ struct ProgramTicTacToeValuer : public RichelBilderbeek::ProgramTool
   const std::string GetUrl() const noexcept { return "ToolTicTacToeValuer.htm"; }
 };
 
-struct ProgramTimePoll : public RichelBilderbeek::ProgramTool
+struct ProgramTimePoll : public ProgramTool
 {
   const std::string GetFilenameConsole() const noexcept { return ""; }
   const std::string GetFilenameDesktop() const noexcept { return ""; }
@@ -2334,7 +2349,7 @@ struct ProgramTimePoll : public RichelBilderbeek::ProgramTool
   const std::string GetUrl() const noexcept { return "ToolTimePoll.htm"; }
 };
 
-struct ProgramTronCollection : public RichelBilderbeek::ProgramGame
+struct ProgramTronCollection : public ProgramGame
 {
   const std::string GetFilenameConsole() const noexcept { return ""; }
   const std::string GetFilenameDesktop() const noexcept { return ""; }
@@ -2349,7 +2364,7 @@ struct ProgramTronCollection : public RichelBilderbeek::ProgramGame
   const std::string GetUrl() const noexcept { return "GameTronCollection.htm"; }
 };
 
-struct ProgramUbuntuOneWatcher : public RichelBilderbeek::ProgramTool
+struct ProgramUbuntuOneWatcher : public ProgramTool
 {
   const std::string GetFilenameConsole() const noexcept { return ""; }
   const std::string GetFilenameDesktop() const noexcept { return ""; }
@@ -2364,7 +2379,7 @@ struct ProgramUbuntuOneWatcher : public RichelBilderbeek::ProgramTool
   const std::string GetUrl() const noexcept { return "ToolUbuntuOneWatcher.htm"; }
 };
 
-struct ProgramVanDenBogaart : public RichelBilderbeek::ProgramProject
+struct ProgramVanDenBogaart : public ProgramProject
 {
   const std::string GetFilenameConsole() const noexcept { return ""; }
   const std::string GetFilenameDesktop() const noexcept { return ""; }
@@ -2379,7 +2394,7 @@ struct ProgramVanDenBogaart : public RichelBilderbeek::ProgramProject
   const std::string GetUrl() const noexcept { return "ProjectVanDenBogaart.htm"; }
 };
 
-struct ProgramVirtualBastard : public RichelBilderbeek::ProgramTool
+struct ProgramVirtualBastard : public ProgramTool
 {
   const std::string GetFilenameConsole() const noexcept { return ""; }
   const std::string GetFilenameDesktop() const noexcept { return ""; }
@@ -2394,7 +2409,7 @@ struct ProgramVirtualBastard : public RichelBilderbeek::ProgramTool
   const std::string GetUrl() const noexcept { return "ToolVirtualBastard.htm"; }
 };
 
-struct ProgramVisualAbc : public RichelBilderbeek::ProgramTool
+struct ProgramVisualAbc : public ProgramTool
 {
   const std::string GetFilenameConsole() const noexcept { return ""; }
   const std::string GetFilenameDesktop() const noexcept { return "ToolVisualAbc_1_0.png"; }
@@ -2409,7 +2424,7 @@ struct ProgramVisualAbc : public RichelBilderbeek::ProgramTool
   const std::string GetUrl() const noexcept { return "ToolVisualAbc.htm"; }
 };
 
-struct ProgramXeNonZero : public RichelBilderbeek::ProgramGame
+struct ProgramXeNonZero : public ProgramGame
 {
   const std::string GetFilenameConsole() const noexcept { return ""; }
   const std::string GetFilenameDesktop() const noexcept { return "GameXeNonZero_0_1.png"; }
@@ -2424,7 +2439,7 @@ struct ProgramXeNonZero : public RichelBilderbeek::ProgramGame
   const std::string GetUrl() const noexcept { return "GameXeNonZero.htm"; }
 };
 
-struct ProgramZork : public RichelBilderbeek::ProgramGame
+struct ProgramZork : public ProgramGame
 {
   const std::string GetFilenameConsole() const noexcept { return "GameZork.png"; }
   const std::string GetFilenameDesktop() const noexcept { return ""; }
@@ -2440,11 +2455,7 @@ struct ProgramZork : public RichelBilderbeek::ProgramGame
 };
 
 /*
-
-
-
-
-struct ProgramNewickVector : public RichelBilderbeek::ProgramProject
+struct ProgramNewickVector : public ProgramProject
 {
   const std::string GetFilenameConsole() const noexcept { return ""; }
   const std::string GetFilenameDesktop() const noexcept { return ""; }
@@ -2460,7 +2471,7 @@ struct ProgramNewickVector : public RichelBilderbeek::ProgramProject
 };
 
 
-struct ProgramTwoDigitNewick : public RichelBilderbeek::ProgramProject
+struct ProgramTwoDigitNewick : public ProgramProject
 {
   const std::string GetFilenameConsole() const noexcept { return ""; }
   const std::string GetFilenameDesktop() const noexcept { return ""; }
@@ -2480,7 +2491,7 @@ struct ProgramTwoDigitNewick : public RichelBilderbeek::ProgramProject
 
 
 
-struct ProgramCreateSitemap : public RichelBilderbeek::ProgramTool
+struct ProgramCreateSitemap : public ProgramTool
 {
   const std::string GetFilenameConsole() const noexcept { return ""; }
   const std::string GetFilenameDesktop() const noexcept { return ""; }
@@ -2496,7 +2507,7 @@ struct ProgramCreateSitemap : public RichelBilderbeek::ProgramTool
 };
 
 
-struct ProgramEncranger : public RichelBilderbeek::ProgramTool
+struct ProgramEncranger : public ProgramTool
 {
   const std::string GetFilenameConsole() const noexcept { return ""; }
   const std::string GetFilenameDesktop() const noexcept { return ""; }
@@ -2511,7 +2522,7 @@ struct ProgramEncranger : public RichelBilderbeek::ProgramTool
   const std::string GetUrl() const noexcept { return "ToolEncranger.htm"; }
 };
 
-struct ProgramRichelBilderbeekNlSitemapGenerator : public RichelBilderbeek::ProgramTool
+struct ProgramRichelBilderbeekNlSitemapGenerator : public ProgramTool
 {
   const std::string GetFilenameConsole() const noexcept { return ""; }
   const std::string GetFilenameDesktop() const noexcept { return "ToolRichelbilderbeekNlSitemapGenerator_2_0.png"; }
@@ -2525,13 +2536,10 @@ struct ProgramRichelBilderbeekNlSitemapGenerator : public RichelBilderbeek::Prog
   ProgramType GetType() const noexcept { return ProgramType::richelBilderbeekNlSitemapGenerator; }
   const std::string GetUrl() const noexcept { return "ToolRichelBilderbeekNlSitemapGenerator.htm"; }
 };
-
 */
 
 std::ostream& operator<<(std::ostream& os, const Program& p) noexcept;
 bool operator<(const Program& lhs, const Program& rhs) noexcept;
-
-} //~namespace RichelBilderbeek
 
 } //~namespace ribi
 
