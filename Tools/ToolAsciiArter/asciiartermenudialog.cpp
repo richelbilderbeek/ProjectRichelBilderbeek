@@ -23,7 +23,9 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include "asciiartermenudialog.h"
 
+#include <algorithm>
 #include <fstream>
+#include <iterator>
 
 #include <boost/lexical_cast.hpp>
 

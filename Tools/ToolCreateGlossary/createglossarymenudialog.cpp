@@ -22,10 +22,12 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include <cassert>
 
+#include "createglossarymaindialog.h"
 #include "htmlpage.h"
+#include "hometrainerresources.h"
 #include "trace.h"
 
-const ribi::About ribi::CreateGlossaryMenuDialog::GetAbout() noexcept
+const ribi::About ribi::CreateGlossaryMenuDialog::GetAbout() const noexcept
 {
   About a(
     "Richel Bilderbeek",
@@ -40,12 +42,12 @@ const ribi::About ribi::CreateGlossaryMenuDialog::GetAbout() noexcept
   return a;
 }
 
-const std::string ribi::CreateGlossaryMenuDialog::GetVersion() noexcept
+const std::string ribi::CreateGlossaryMenuDialog::GetVersion() const noexcept
 {
   return "1.2";
 }
 
-const std::vector<std::string> ribi::CreateGlossaryMenuDialog::GetVersionHistory() noexcept
+const std::vector<std::string> ribi::CreateGlossaryMenuDialog::GetVersionHistory() const noexcept
 {
   return {
     "2011-xx-xx: version 1.0: initial version",
@@ -64,8 +66,7 @@ void ribi::CreateGlossaryMenuDialog::Test() noexcept
   }
   TRACE("Starting ribi::CreateGlossaryMenuDialog::Test()");
   CreateGlossaryMenuDialog().Execute( { "Hometrainer", "-e" } );
-  const CreateGlossaryMainDialog d(HometrainerResources().GetExerciseClouds());
-  assert(d.GetNumberCorrect() == 0);
+  CreateGlossaryMainDialog();
   TRACE("Finished ribi::CreateGlossaryMenuDialog::Test()");
 }
 #endif

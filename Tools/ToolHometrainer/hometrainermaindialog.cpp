@@ -33,7 +33,7 @@ ribi::HometrainerMainDialog::HometrainerMainDialog(
   : m_current_question_index(0),
     m_n_correct(0),
     m_n_incorrect(0),
-    m_question_dialog{nullptr},
+    m_question_dialog{},
     m_questions(questions),
     m_quit(false)
 

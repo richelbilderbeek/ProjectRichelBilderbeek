@@ -58,22 +58,36 @@ const std::string ribi::QuestionDialog::AskUserForInput() const noexcept
 
 void ribi::QuestionDialog::Execute()
 {
-  assert(this->GetQuestion());
-  std::cout
-    << (*this->GetQuestion()) << '\n';
-
-  std::cout << "Please enter your answer: " << std::endl;
-
-  const std::string s = AskUserForInput();
-  if (s.empty())
-  {
-    m_signal_request_quit();
-    return;
-  }
-
   assert(!this->HasSubmitted());
-  this->Submit(s);
-  assert(this->HasSubmitted());
+
+  while (!this->HasSubmitted())
+  {
+    assert(this->GetQuestion());
+    std::cout
+      << (*this->GetQuestion()) << '\n';
+
+    std::cout << "Please enter your answer: " << std::endl;
+
+    try
+    {
+      const std::string s = AskUserForInput();
+      if (s.empty())
+      {
+        m_signal_request_quit();
+        return;
+      }
+
+      this->Submit(s);
+      assert(this->HasSubmitted());
+    }
+    catch (std::logic_error& e)
+    {
+      std::cout
+        << "Invalid input: " << e.what() << '\n'
+        << "Please try again or press enter to quit\n"
+        << '\n';
+    }
+  }
 
   std::cout << std::endl;
 
