@@ -31,16 +31,16 @@ struct QtRichelBilderbeekProgram
 {
   ///Create the menu dialog corresponding to the program type
   ///Might return a nullprt, if the program type has no menu
-  static QtHideAndShowDialog * CreateQtMenuDialog(const RichelBilderbeek::ProgramType type);
+  static QtHideAndShowDialog * CreateQtMenuDialog(const ProgramType type);
 
   ///Create a placeholder dialog for the program type
-  static QtHideAndShowDialog * CreateQtPlaceholderDialog(const RichelBilderbeek::ProgramType type);
+  static QtHideAndShowDialog * CreateQtPlaceholderDialog(const ProgramType type);
 
   ///Determines if a filename is a regular file
   ///From http://www.richelbilderbeek.nl/CppIsRegularFile.htm
   static bool IsRegularFile(const std::string& filename);
 };
 
-} //~namespace rib
+} //~namespace ribi
 
 #endif // QTRICHELBILDERBEEKPROGRAM_H

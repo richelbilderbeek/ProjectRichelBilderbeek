@@ -57,6 +57,7 @@ ribi::QtOpenQuestionDialog::QtOpenQuestionDialog(
 {
   assert(m_dialog);
   assert(GetDialog());
+  assert(!m_dialog->m_signal_submitted.empty());
 
   ui->setupUi(this);
   //SetQuestion(dialog->GetQuestion());

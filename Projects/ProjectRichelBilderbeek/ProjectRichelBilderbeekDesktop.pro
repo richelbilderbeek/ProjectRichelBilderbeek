@@ -1,12 +1,637 @@
+include(../../Classes/CppAbout/CppAbout.pri)
+include(../../Classes/CppExercise/CppExercise.pri)
+include(../../Classes/CppFileIo/CppFileIo.pro)
+include(ProjectRichelBilderbeekDesktop.pri)
+
 QT += core gui svg
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets printsupport
 
-include( ProjectRichelBilderbeek.pri )
 
 CONFIG   += console
 CONFIG   -= app_bundle
 TEMPLATE = app
 
+# Console
+
+# Console
+
+INCLUDEPATH += \
+    ../../Classes/CppApproximator \
+    ../../Classes/CppAsciiArter \
+    ../../Classes/CppBinaryNewickVector \
+    ../../Classes/CppCanvas \
+    ../../Classes/CppChess \
+    ../../Classes/CppChessResources \
+    ../../Classes/CppCodeToHtml \
+    ../../Classes/CppConnectThree \
+    ../../Classes/CppConnectThreeWidget \
+    ../../Classes/CppCopy_if \
+    ../../Classes/CppCounter \
+    ../../Classes/CppDial \
+    ../../Classes/CppDialWidget \
+    ../../Classes/CppDotMatrix \
+    ../../Classes/CppEncranger \
+#    ../../Classes/CppExercise \
+    ../../Classes/CppFileIo \
+    ../../Classes/CppFuzzy_equal_to \
+    ../../Classes/CppGaborFilter \
+    ../../Classes/CppGaborFilterWidget \
+    ../../Classes/CppHelp \
+    ../../Classes/CppHtmlPage \
+    ../../Classes/CppIpAddress \
+    ../../Classes/CppKalmanFilter \
+    ../../Classes/CppLazy_init \
+    ../../Classes/CppLed \
+    ../../Classes/CppLedWidget \
+    ../../Classes/CppLoopReader \
+    ../../Classes/CppManyDigitNewick \
+    ../../Classes/CppMatrix \
+    ../../Classes/CppMenuDialog \
+    ../../Classes/CppMultiApproximator \
+    ../../Classes/CppMultipleChoiceQuestion \
+    ../../Classes/CppMultipleChoiceQuestionDialog \
+    ../../Classes/CppMultiVector \
+    ../../Classes/CppMusic \
+    ../../Classes/CppMysteryMachine \
+    ../../Classes/CppMysteryMachineWidget \
+    ../../Classes/CppNewick \
+    ../../Classes/CppNewickVector \
+    ../../Classes/CppOpenQuestion \
+    ../../Classes/CppOpenQuestionDialog \
+    ../../Classes/CppPylos \
+    ../../Classes/CppQrcFile \
+    ../../Classes/CppQtCreatorProFile \
+    ../../Classes/CppQtModel \
+    ../../Classes/CppQuestion \
+    ../../Classes/CppQuestionDialog \
+    ../../Classes/CppRainbow \
+    ../../Classes/CppRandomCode \
+    ../../Classes/CppRectangle \
+    ../../Classes/CppRichelBilderbeekProgram \
+    ../../Classes/CppRubiksClock \
+    ../../Classes/CppRubiksClockWidget \
+    ../../Classes/CppShape \
+    ../../Classes/CppShapeWidget \
+    ../../Classes/CppShinyButton \
+    ../../Classes/CppShinyButtonWidget \
+    ../../Classes/CppSimpleLinearRegression \
+    ../../Classes/CppSortedBinaryNewickVector \
+    ../../Classes/CppStateObserver \
+    ../../Classes/CppStopwatch \
+    ../../Classes/CppTicTacToe \
+    ../../Classes/CppToggleButton \
+    ../../Classes/CppToggleButtonWidget \
+    ../../Classes/CppTrace \
+    ../../Classes/CppTwoDigitNewick \
+    ../../Classes/CppWidget \
+    ../../Games/GameBeerWanter \
+    ../../Games/GameBoenken \
+    ../../Games/GameConnectThree \
+    ../../Games/GameDasWahreSchlagerfest \
+    ../../Games/GameK3OpEenRij \
+    ../../Games/GameMaziak \
+    ../../Games/GamePylos \
+    ../../Games/GameRubiksClock \
+    ../../Games/GameTicTacToe \
+    ../../Projects/RichelbilderbeekNl \
+    ../../Tools/ToolAsciiArter \
+    ../../Tools/ToolCodeToHtml \
+    ../../Tools/ToolCreateGlossary \
+    ../../Tools/ToolDotMatrix \
+    ../../Tools/ToolEncranger \
+    ../../Tools/ToolGaborFilter \
+    ../../Tools/ToolGrayCoder \
+    ../../Tools/ToolHometrainer \
+    ../../Tools/ToolKalmanFilterer \
+    ../../Tools/ToolMazeCreator \
+    ../../Tools/ToolMultiEncranger \
+    ../../Tools/ToolMusicTheory \
+    ../../Tools/ToolPerfectElasticCollision \
+    ../../Tools/ToolPicToCode \
+    ../../Tools/ToolPrimeExpert \
+    ../../Tools/ToolQmakeWatcher \
+    ../../Tools/ToolQuadraticSolver \
+    ../../Tools/ToolRandomCode \
+    ../../Tools/ToolRegexTester \
+    ../../Tools/ToolRichelBilderbeekGallery \
+    ../../Tools/ToolRichelbilderbeekNlSitemapGenerator \
+    ../../Tools/ToolSimMysteryMachine \
+    ../../Tools/ToolSimplifyNewick \
+    ../../Tools/ToolStateObserver \
+    ../../Tools/ToolTestAbout \
+    ../../Tools/ToolTestApproximator \
+    ../../Tools/ToolTestCanvas \
+    ../../Tools/ToolTestDial \
+    ../../Tools/ToolTestExercise \
+    ../../Tools/ToolTestFunctionParser \
+    ../../Tools/ToolTestGroupWidget \
+    ../../Tools/ToolTestLed \
+    ../../Tools/ToolTestMultiApproximator \
+    ../../Tools/ToolTestMultipleChoiceQuestion \
+    ../../Tools/ToolTestNewickVector \
+    ../../Tools/ToolTestOpenQuestion \
+    ../../Tools/ToolTestPylos \
+    ../../Tools/ToolTestQrcFile \
+    ../../Tools/ToolTestQtArrowItems \
+    ../../Tools/ToolTestQtCreatorProFile \
+    ../../Tools/ToolTestQtKeyboardFriendlyGraphicsView \
+    ../../Tools/ToolTestQtModels \
+    ../../Tools/ToolTestQtRoundedEditRectItem \
+    ../../Tools/ToolTestQtRoundedRectItem \
+    ../../Tools/ToolTestQtRoundedTextRectItem \
+    ../../Tools/ToolTestQuestion \
+    ../../Tools/ToolTestSelectFileDialog \
+    ../../Tools/ToolTestShape \
+    ../../Tools/ToolTestShinyButton \
+    ../../Tools/ToolTestSimpleLinearRegression \
+    ../../Tools/ToolTestToggleButton \
+    ../../Tools/ToolTestTwoDigitNewick
+
+SOURCES += \
+    main.cpp \
+#    ../../Classes/CppAbout/about.cpp \
+    ../../Classes/CppAsciiArter/asciiarter.cpp \
+    ../../Classes/CppBinaryNewickVector/binarynewickvector.cpp \
+    ../../Classes/CppCodeToHtml/codetohtml.cpp \
+    ../../Classes/CppCodeToHtml/codetohtmlcontent.cpp \
+    ../../Classes/CppCodeToHtml/codetohtmlcontenttype.cpp \
+    ../../Classes/CppCodeToHtml/codetohtmldialog.cpp \
+    ../../Classes/CppCodeToHtml/codetohtmlfooter.cpp \
+    ../../Classes/CppCodeToHtml/codetohtmlheader.cpp \
+    ../../Classes/CppCodeToHtml/codetohtmlinfo.cpp \
+    ../../Classes/CppCodeToHtml/codetohtmlpagetype.cpp \
+    ../../Classes/CppCodeToHtml/codetohtmlreplacements.cpp \
+    ../../Classes/CppCodeToHtml/codetohtmlreplacementscpp.cpp \
+    ../../Classes/CppCodeToHtml/codetohtmlreplacementspro.cpp \
+    ../../Classes/CppCodeToHtml/codetohtmltechinfo.cpp \
+    ../../Classes/CppCodeToHtml/codetohtmltechinfotype.cpp \
+    ../../Classes/CppCodeToHtml/codetohtmlversion.cpp \
+    ../../Classes/CppConnectThree/connectthree.cpp \
+    ../../Classes/CppConnectThreeWidget/connectthreewidget.cpp \
+    ../../Classes/CppCounter/counter.cpp \
+    ../../Classes/CppDial/dial.cpp \
+    ../../Classes/CppDialWidget/dialwidget.cpp \
+    ../../Classes/CppEncranger/encranger.cpp \
+    ../../Classes/CppGaborFilter/gaborfilter.cpp \
+    ../../Classes/CppGaborFilterWidget/gaborfilterwidget.cpp \
+    ../../Classes/CppHtmlPage/htmlpage.cpp \
+    ../../Classes/CppIpAddress/ipaddress.cpp \
+    ../../Classes/CppKalmanFilter/fixedlagsmootherkalmanfilter.cpp \
+    ../../Classes/CppKalmanFilter/fixedlagsmootherkalmanfiltercalculationelements.cpp \
+    ../../Classes/CppKalmanFilter/fixedlagsmootherkalmanfilterfactory.cpp \
+    ../../Classes/CppKalmanFilter/fixedlagsmootherkalmanfilterparameters.cpp \
+    ../../Classes/CppKalmanFilter/gapsfilledwhitenoisesystem.cpp \
+    ../../Classes/CppKalmanFilter/gapsfilledwhitenoisesystemfactory.cpp \
+    ../../Classes/CppKalmanFilter/gapsfilledwhitenoisesystemparameters.cpp \
+    ../../Classes/CppKalmanFilter/kalmanfilter.cpp \
+    ../../Classes/CppKalmanFilter/kalmanfiltercalculationelements.cpp \
+    ../../Classes/CppKalmanFilter/kalmanfiltercalculationelementsfactory.cpp \
+    ../../Classes/CppKalmanFilter/kalmanfilterexample.cpp \
+    ../../Classes/CppKalmanFilter/kalmanfilterexperiment.cpp \
+    ../../Classes/CppKalmanFilter/kalmanfilterexperimentparameter.cpp \
+    ../../Classes/CppKalmanFilter/kalmanfilterexperimentparametertype.cpp \
+    ../../Classes/CppKalmanFilter/kalmanfilterfactory.cpp \
+    ../../Classes/CppKalmanFilter/kalmanfilterparameter.cpp \
+    ../../Classes/CppKalmanFilter/kalmanfilterparameters.cpp \
+    ../../Classes/CppKalmanFilter/kalmanfilterparametertype.cpp \
+    ../../Classes/CppKalmanFilter/kalmanfiltertype.cpp \
+    ../../Classes/CppKalmanFilter/kalmanfiltertypes.cpp \
+    ../../Classes/CppKalmanFilter/laggedwhitenoisesystem.cpp \
+    ../../Classes/CppKalmanFilter/laggedwhitenoisesystemfactory.cpp \
+    ../../Classes/CppKalmanFilter/laggedwhitenoisesystemparameters.cpp \
+    ../../Classes/CppKalmanFilter/standardkalmanfilter.cpp \
+    ../../Classes/CppKalmanFilter/standardkalmanfiltercalculationelements.cpp \
+    ../../Classes/CppKalmanFilter/standardkalmanfilterfactory.cpp \
+    ../../Classes/CppKalmanFilter/standardkalmanfilterparameters.cpp \
+    ../../Classes/CppKalmanFilter/standardwhitenoisesystem.cpp \
+    ../../Classes/CppKalmanFilter/standardwhitenoisesystemfactory.cpp \
+    ../../Classes/CppKalmanFilter/standardwhitenoisesystemparameters.cpp \
+    ../../Classes/CppKalmanFilter/steadystatekalmanfilter.cpp \
+    ../../Classes/CppKalmanFilter/steadystatekalmanfiltercalculationelements.cpp \
+    ../../Classes/CppKalmanFilter/steadystatekalmanfilterfactory.cpp \
+    ../../Classes/CppKalmanFilter/steadystatekalmanfilterparameters.cpp \
+    ../../Classes/CppKalmanFilter/whitenoisesystem.cpp \
+    ../../Classes/CppKalmanFilter/whitenoisesystemfactory.cpp \
+    ../../Classes/CppKalmanFilter/whitenoisesystemparameter.cpp \
+    ../../Classes/CppKalmanFilter/whitenoisesystemparameters.cpp \
+    ../../Classes/CppKalmanFilter/whitenoisesystemparametertype.cpp \
+    ../../Classes/CppKalmanFilter/whitenoisesystemtype.cpp \
+    ../../Classes/CppKalmanFilter/whitenoisesystemtypes.cpp \
+    ../../Classes/CppLazy_init/lazy_init.cpp \
+    ../../Classes/CppLed/led.cpp \
+    ../../Classes/CppLedWidget/ledwidget.cpp \
+    ../../Classes/CppManyDigitNewick/manydigitnewick.cpp \
+    ../../Classes/CppManyDigitNewick/manydigitnewickcoordinat.cpp \
+    ../../Classes/CppManyDigitNewick/manydigitnewickderivative.cpp \
+    ../../Classes/CppManyDigitNewick/manydigitnewickindexer.cpp \
+    ../../Classes/CppManyDigitNewick/manydigitnewickindextable.cpp \
+    ../../Classes/CppManyDigitNewick/manydigitnewicks.cpp \
+    ../../Classes/CppMatrix/matrix.cpp \
+    ../../Classes/CppMultipleChoiceQuestion/multiplechoicequestion.cpp \
+    ../../Classes/CppMultipleChoiceQuestionDialog/multiplechoicequestiondialog.cpp \
+    ../../Classes/CppMusic/musicchord.cpp \
+    ../../Classes/CppMusic/musicnote.cpp \
+    ../../Classes/CppMusic/musicscale.cpp \
+    ../../Classes/CppMysteryMachine/mysterymachine.cpp \
+    ../../Classes/CppMysteryMachineWidget/mysterymachinewidget.cpp \
+    ../../Classes/CppNewick/newick.cpp \
+    ../../Classes/CppNewick/newickcpp98.cpp \
+    ../../Classes/CppNewickVector/newickvector.cpp \
+    ../../Classes/CppOpenQuestion/openquestion.cpp \
+    ../../Classes/CppOpenQuestionDialog/openquestiondialog.cpp \
+    ../../Classes/CppPylos/pylosboard.cpp \
+    ../../Classes/CppPylos/pyloscoordinat.cpp \
+    ../../Classes/CppPylos/pyloscurrentmovestate.cpp \
+    ../../Classes/CppPylos/pylosgame.cpp \
+    ../../Classes/CppPylos/pylosmove.cpp \
+    ../../Classes/CppPylos/pylosmustremovestate.cpp \
+    ../../Classes/CppPylos/pylosplayer.cpp \
+    ../../Classes/CppPylos/pylospositionstate.cpp \
+    ../../Classes/CppPylos/pyloswinner.cpp \
+    ../../Classes/CppQrcFile/qrcfile.cpp \
+    ../../Classes/CppQtCreatorProFile/qtcreatorprofile.cpp \
+    ../../Classes/CppQtCreatorProFile/qtcreatorprofilezipscript.cpp \
+    ../../Classes/CppQtModel/modelfunctionparser.cpp \
+    ../../Classes/CppQuestion/question.cpp \
+    ../../Classes/CppQuestionDialog/questiondialog.cpp \
+    ../../Classes/CppRainbow/rainbow.cpp \
+    ../../Classes/CppRandomCode/randomcode.cpp \
+    ../../Classes/CppRectangle/rectangle.cpp \
+    ../../Classes/CppRichelBilderbeekProgram/richelbilderbeekprogram.cpp \
+    ../../Classes/CppRichelBilderbeekProgram/richelbilderbeekprogramstatus.cpp \
+    ../../Classes/CppRichelBilderbeekProgram/richelbilderbeekprogramtype.cpp \
+    ../../Classes/CppRichelBilderbeekProgram/richelbilderbeekprogramtypes.cpp \
+    ../../Classes/CppRubiksClock/rubiksclock.cpp \
+    ../../Classes/CppRubiksClockWidget/rubiksclockdial.cpp \
+    ../../Classes/CppRubiksClockWidget/rubiksclockdialwidget.cpp \
+    ../../Classes/CppRubiksClockWidget/rubiksclockwidget.cpp \
+    ../../Classes/CppShape/shape.cpp \
+    ../../Classes/CppShapeWidget/shapewidget.cpp \
+    ../../Classes/CppShinyButton/shinybutton.cpp \
+    ../../Classes/CppShinyButtonWidget/shinybuttonwidget.cpp \
+    ../../Classes/CppSimpleLinearRegression/simplelinearregression.cpp \
+    ../../Classes/CppSortedBinaryNewickVector/sortedbinarynewickvector.cpp \
+    ../../Classes/CppStateObserver/alphabetafilter.cpp \
+    ../../Classes/CppStateObserver/alphabetagammafilter.cpp \
+    ../../Classes/CppStateObserver/alphafilter.cpp \
+    ../../Classes/CppStateObserver/floatingpointstateobserver.cpp \
+    ../../Classes/CppStateObserver/integeralphafilter.cpp \
+    ../../Classes/CppStateObserver/integerstateobserver.cpp \
+    ../../Classes/CppStateObserver/integersymmetricalphafilter.cpp \
+    ../../Classes/CppStateObserver/multialphafilter.cpp \
+    ../../Classes/CppStateObserver/multiintegerstateobserver.cpp \
+    ../../Classes/CppTicTacToe/tictactoe.cpp \
+    ../../Classes/CppToggleButton/togglebutton.cpp \
+    ../../Classes/CppToggleButtonWidget/togglebuttonwidget.cpp \
+    ../../Classes/CppTwoDigitNewick/twodigitnewick.cpp \
+    ../../Classes/CppTwoDigitNewick/twodigitnewickderivative.cpp \
+    ../../Classes/CppTwoDigitNewick/twodigitnewickindexer.cpp \
+    ../../Classes/CppTwoDigitNewick/twodigitnewickindextable.cpp \
+    ../../Classes/CppTwoDigitNewick/twodigitnewicks.cpp \
+    ../../Classes/CppWidget/widget.cpp \
+    ../../Games/GameBeerWanter/beerwantermaindialog.cpp \
+    ../../Games/GameBeerWanter/beerwantermenudialog.cpp \
+    ../../Games/GameBoenken/boenkenmenudialog.cpp \
+    ../../Games/GameConnectThree/connectthreemenudialog.cpp \
+    ../../Games/GameConnectThree/connectthreeresources.cpp \
+    ../../Games/GameDasWahreSchlagerfest/daswahreschlagerfestmenudialog.cpp \
+    ../../Games/GameDasWahreSchlagerfest/daswahreschlagerfestwidget.cpp \
+    ../../Games/GameK3OpEenRij/k3opeenrijmenudialog.cpp \
+    ../../Games/GameMaziak/maziakmenudialog.cpp \
+    ../../Games/GamePylos/pylosmenudialog.cpp \
+    ../../Games/GameRubiksClock/rubiksclockmenudialog.cpp \
+    ../../Games/GameTicTacToe/tictactoemenudialog.cpp \
+    ../../Tools/ToolAsciiArter/asciiartermaindialog.cpp \
+    ../../Tools/ToolAsciiArter/asciiartermenudialog.cpp \
+    ../../Tools/ToolCodeToHtml/codetohtmlmenudialog.cpp \
+    ../../Tools/ToolCreateGlossary/createglossarymaindialog.cpp \
+    ../../Tools/ToolCreateGlossary/createglossarymenudialog.cpp \
+    ../../Tools/ToolEncranger/toolencrangermaindialog.cpp \
+    ../../Tools/ToolEncranger/toolencrangermenudialog.cpp \
+    ../../Tools/ToolGaborFilter/toolgaborfiltermenudialog.cpp \
+    ../../Tools/ToolGrayCoder/toolgraycodermaindialog.cpp \
+    ../../Tools/ToolGrayCoder/toolgraycodermenudialog.cpp \
+    ../../Tools/ToolHometrainer/hometrainermenudialog.cpp \
+    ../../Tools/ToolHometrainer/hometrainerresources.cpp \
+    ../../Tools/ToolKalmanFilterer/kalmanfilterermenudialog.cpp \
+    ../../Tools/ToolMazeCreator/mazecreatormenudialog.cpp \
+    ../../Tools/ToolMultiEncranger/toolmultiencrangermenudialog.cpp \
+    ../../Tools/ToolMusicTheory/musictheorymenudialog.cpp \
+    ../../Tools/ToolPerfectElasticCollision/perfectelasticcollisionmenudialog.cpp \
+    ../../Tools/ToolPicToCode/pictocodemaindialog.cpp \
+    ../../Tools/ToolPicToCode/pictocodemenudialog.cpp \
+    ../../Tools/ToolQmakeWatcher/qmakewatchermenudialog.cpp \
+    ../../Tools/ToolRandomCode/randomcodemenudialog.cpp \
+    ../../Tools/ToolRegexTester/regextesterboostregexmaindialog.cpp \
+    ../../Tools/ToolRegexTester/regextesterboostxpressivemaindialog.cpp \
+    ../../Tools/ToolRegexTester/regextestercpp11maindialog.cpp \
+    ../../Tools/ToolRegexTester/regextestermaindialog.cpp \
+    ../../Tools/ToolRegexTester/regextestermenudialog.cpp \
+    ../../Tools/ToolRegexTester/regextesterqtmaindialog.cpp \
+    ../../Tools/ToolRegexTester/regextestertr1maindialog.cpp \
+    ../../Tools/ToolRichelbilderbeekNlSitemapGenerator/sitemapgeneratormenudialog.cpp \
+    ../../Tools/ToolSimMysteryMachine/simmysterymachinemenudialog.cpp \
+    ../../Tools/ToolSimplifyNewick/toolsimplifynewickmaindialog.cpp \
+    ../../Tools/ToolSimplifyNewick/toolsimplifynewickmenudialog.cpp \
+    ../../Tools/ToolStateObserver/noisefunctionparser.cpp \
+    ../../Tools/ToolStateObserver/stateobservermenudialog.cpp \
+    ../../Tools/ToolTestApproximator/tooltestapproximatormenudialog.cpp \
+    ../../Tools/ToolTestCanvas/tooltestcanvasmenudialog.cpp \
+    ../../Tools/ToolTestDial/testdialmenudialog.cpp \
+    ../../Tools/ToolTestEntrance/testentrancemenudialog.cpp \
+    ../../Tools/ToolTestExercise/testexercisemenudialog.cpp \
+    ../../Tools/ToolTestFunctionParser/testfunctionparsermenudialog.cpp \
+    ../../Tools/ToolTestGroupWidget/testgroupwidgetmenudialog.cpp \
+    ../../Tools/ToolTestLed/tooltestledmenudialog.cpp \
+    ../../Tools/ToolTestMultiApproximator/tooltestmultiapproximatormenudialog.cpp \
+    ../../Tools/ToolTestMultipleChoiceQuestion/testmultiplechoicequestionmaindialog.cpp \
+    ../../Tools/ToolTestMultipleChoiceQuestion/testmultiplechoicequestionmenudialog.cpp \
+    ../../Tools/ToolTestNewickVector/testnewickvectordialog.cpp \
+    ../../Tools/ToolTestPylos/testpylosmenudialog.cpp \
+    ../../Tools/ToolTestQrcFile/testqrcfilemenudialog.cpp \
+    ../../Tools/ToolTestQtArrowItems/testqtarrowitemsmenudialog.cpp \
+    ../../Tools/ToolTestQtCreatorProFile/testqtcreatorprofilemenudialog.cpp \
+    ../../Tools/ToolTestQtKeyboardFriendlyGraphicsView/testqtkeyboardfriendlygraphicsviewmenudialog.cpp \
+    ../../Tools/ToolTestQtModels/tooltestqtmodelsmenudialog.cpp \
+    ../../Tools/ToolTestQtRoundedEditRectItem/testqtroundededitrectitemmenudialog.cpp \
+    ../../Tools/ToolTestQtRoundedRectItem/testqtroundedrectitemmenudialog.cpp \
+    ../../Tools/ToolTestQtRoundedTextRectItem/testqtroundedtextrectitemmenudialog.cpp \
+    ../../Tools/ToolTestQuestion/testquestionmaindialog.cpp \
+    ../../Tools/ToolTestQuestion/testquestionmenudialog.cpp \
+    ../../Tools/ToolTestShape/testshapemaindialog.cpp \
+    ../../Tools/ToolTestShape/testshapemenudialog.cpp \
+    ../../Tools/ToolTestShinyButton/testshinybuttonmenudialog.cpp \
+    ../../Tools/ToolTestOpenQuestion/testopenquestionmenudialog.cpp \
+    ../../Tools/ToolTestOpenQuestion/testopenquestionmaindialog.cpp \
+    ../../Tools/ToolTestSimpleLinearRegression/tooltestsimplelinearregressionmenudialog.cpp \
+    ../../Tools/ToolTestToggleButton/testtogglebuttonmenudialog.cpp \
+    ../../Tools/ToolMultiEncranger/toolmultiencrangermaindialog.cpp \
+    ../../Classes/CppCanvas/canvas.cpp \
+    ../../Tools/ToolQuadraticSolver/quadraticsolvermenudialog.cpp \
+    ../../Tools/ToolQuadraticSolver/quadraticsolvermaindialog.cpp \
+    ../../Tools/ToolPrimeExpert/toolprimeexpertmenudialog.cpp \
+    ../../Tools/ToolPrimeExpert/primeexpert.cpp \
+    ../../Tools/ToolDotMatrix/tooldotmatrixmenudialog.cpp \
+    ../../Classes/CppDotMatrix/dotmatrixstring.cpp \
+    ../../Classes/CppDotMatrix/dotmatrixchar.cpp \
+    ../../Classes/CppFileIo/fileio.cpp \
+    ../../Tools/ToolHometrainer/hometrainermaindialog.cpp \
+    ../../Classes/CppMenuDialog/menudialog.cpp \
+    ../../Classes/CppHelp/help.cpp
+
+HEADERS += \
+    ../../Classes/CppAbout/about.h \
+    ../../Classes/CppApproximator/approximator.h \
+    ../../Classes/CppApproximator/exceptionnoextrapolation.h \
+    ../../Classes/CppAsciiArter/asciiarter.h \
+    ../../Classes/CppBinaryNewickVector/binarynewickvector.h \
+    ../../Classes/CppCodeToHtml/codetohtml.h \
+    ../../Tools/ToolTestOpenQuestion/testopenquestionmenudialog.h \
+    ../../Tools/ToolTestOpenQuestion/testopenquestionmaindialog.h \
+    ../../Classes/CppCodeToHtml/codetohtmlcontent.h \
+    ../../Classes/CppCodeToHtml/codetohtmlcontenttype.h \
+    ../../Classes/CppCodeToHtml/codetohtmlcreateemptypagedialog.h \
+    ../../Classes/CppCodeToHtml/codetohtmldialog.h \
+    ../../Classes/CppCodeToHtml/codetohtmlfooter.h \
+    ../../Classes/CppCodeToHtml/codetohtmlheader.h \
+    ../../Classes/CppCodeToHtml/codetohtmlinfo.h \
+    ../../Classes/CppCodeToHtml/codetohtmlpagetype.h \
+    ../../Classes/CppCodeToHtml/codetohtmlreplacements.h \
+    ../../Classes/CppCodeToHtml/codetohtmltechinfo.h \
+    ../../Classes/CppCodeToHtml/codetohtmltechinfotype.h \
+    ../../Classes/CppCodeToHtml/codetohtmlversion.h \
+    ../../Classes/CppConnectThree/connectthree.h \
+    ../../Classes/CppConnectThreeWidget/connectthreewidget.h \
+    ../../Classes/CppCounter/counter.h \
+    ../../Classes/CppDial/dial.h \
+    ../../Classes/CppDialWidget/dialwidget.h \
+    ../../Classes/CppEncranger/encranger.h \
+    ../../Classes/CppExercise/exercise.h \
+    ../../Classes/CppFuzzy_equal_to/fuzzy_equal_to.h \
+    ../../Classes/CppGaborFilter/gaborfilter.h \
+    ../../Classes/CppGaborFilterWidget/gaborfilterwidget.h \
+    ../../Classes/CppHtmlPage/htmlpage.h \
+    ../../Classes/CppIpAddress/ipaddress.h \
+    ../../Classes/CppKalmanFilter/fixedlagsmootherkalmanfilter.h \
+    ../../Classes/CppKalmanFilter/fixedlagsmootherkalmanfiltercalculationelements.h \
+    ../../Classes/CppKalmanFilter/fixedlagsmootherkalmanfilterfactory.h \
+    ../../Classes/CppKalmanFilter/fixedlagsmootherkalmanfilterparameters.h \
+    ../../Classes/CppKalmanFilter/gapsfilledwhitenoisesystem.h \
+    ../../Classes/CppKalmanFilter/gapsfilledwhitenoisesystemfactory.h \
+    ../../Classes/CppKalmanFilter/gapsfilledwhitenoisesystemparameters.h \
+    ../../Classes/CppKalmanFilter/kalmanfilter.h \
+    ../../Classes/CppKalmanFilter/kalmanfiltercalculationelements.h \
+    ../../Classes/CppKalmanFilter/kalmanfiltercalculationelementsfactory.h \
+    ../../Classes/CppKalmanFilter/kalmanfilterexample.h \
+    ../../Classes/CppKalmanFilter/kalmanfilterexperiment.h \
+    ../../Classes/CppKalmanFilter/kalmanfilterexperimentparameter.h \
+    ../../Classes/CppKalmanFilter/kalmanfilterexperimentparametertype.h \
+    ../../Classes/CppKalmanFilter/kalmanfilterfactory.h \
+    ../../Classes/CppKalmanFilter/kalmanfilterparameter.h \
+    ../../Classes/CppKalmanFilter/kalmanfilterparameters.h \
+    ../../Classes/CppKalmanFilter/kalmanfilterparametertype.h \
+    ../../Classes/CppKalmanFilter/kalmanfiltertype.h \
+    ../../Classes/CppKalmanFilter/kalmanfiltertypes.h \
+    ../../Classes/CppKalmanFilter/laggedwhitenoisesystem.h \
+    ../../Classes/CppKalmanFilter/laggedwhitenoisesystemfactory.h \
+    ../../Classes/CppKalmanFilter/laggedwhitenoisesystemparameters.h \
+    ../../Classes/CppKalmanFilter/standardkalmanfilter.h \
+    ../../Classes/CppKalmanFilter/standardkalmanfiltercalculationelements.h \
+    ../../Classes/CppKalmanFilter/standardkalmanfilterfactory.h \
+    ../../Classes/CppKalmanFilter/standardkalmanfilterparameters.h \
+    ../../Classes/CppKalmanFilter/standardwhitenoisesystem.h \
+    ../../Classes/CppKalmanFilter/standardwhitenoisesystemfactory.h \
+    ../../Classes/CppKalmanFilter/standardwhitenoisesystemparameters.h \
+    ../../Classes/CppKalmanFilter/steadystatekalmanfilter.h \
+    ../../Classes/CppKalmanFilter/steadystatekalmanfiltercalculationelements.h \
+    ../../Classes/CppKalmanFilter/steadystatekalmanfilterfactory.h \
+    ../../Classes/CppKalmanFilter/steadystatekalmanfilterparameters.h \
+    ../../Classes/CppKalmanFilter/whitenoisesystem.h \
+    ../../Classes/CppKalmanFilter/whitenoisesystemfactory.h \
+    ../../Classes/CppKalmanFilter/whitenoisesystemparameter.h \
+    ../../Classes/CppKalmanFilter/whitenoisesystemparameters.h \
+    ../../Classes/CppKalmanFilter/whitenoisesystemparametertype.h \
+    ../../Classes/CppKalmanFilter/whitenoisesystemtype.h \
+    ../../Classes/CppKalmanFilter/whitenoisesystemtypes.h \
+    ../../Classes/CppLazy_init/lazy_init.h \
+    ../../Classes/CppLed/led.h \
+    ../../Classes/CppLedWidget/ledwidget.h \
+    ../../Classes/CppLoopReader/loopreader.h \
+    ../../Classes/CppManyDigitNewick/manydigitnewick.h \
+    ../../Classes/CppManyDigitNewick/manydigitnewickcoordinat.h \
+    ../../Classes/CppManyDigitNewick/manydigitnewickderivative.h \
+    ../../Classes/CppManyDigitNewick/manydigitnewickindexer.h \
+    ../../Classes/CppManyDigitNewick/manydigitnewickindextable.h \
+    ../../Classes/CppManyDigitNewick/manydigitnewicks.h \
+    ../../Classes/CppMatrix/matrix.h \
+    ../../Classes/CppMultipleChoiceQuestion/multiplechoicequestion.h \
+    ../../Classes/CppMultipleChoiceQuestionDialog/multiplechoicequestiondialog.h \
+    ../../Classes/CppMultiVector/multivector.h \
+    ../../Classes/CppMusic/musicchord.h \
+    ../../Classes/CppMusic/musicnote.h \
+    ../../Classes/CppMusic/musicscale.h \
+    ../../Classes/CppMysteryMachine/mysterymachine.h \
+    ../../Classes/CppMysteryMachineWidget/mysterymachinewidget.h \
+    ../../Classes/CppNewick/newick.h \
+    ../../Classes/CppNewick/newickcpp98.h \
+    ../../Classes/CppNewick/newickstorage.h \
+    ../../Classes/CppNewickVector/newickvector.h \
+    ../../Classes/CppOpenQuestion/openquestion.h \
+    ../../Classes/CppOpenQuestionDialog/openquestiondialog.h \
+    ../../Classes/CppPylos/pylosboard.h \
+    ../../Classes/CppPylos/pyloscoordinat.h \
+    ../../Classes/CppPylos/pyloscurrentmovestate.h \
+    ../../Classes/CppPylos/pylosfwd.h \
+    ../../Classes/CppPylos/pylosgame.h \
+    ../../Classes/CppPylos/pylosmove.h \
+    ../../Classes/CppPylos/pylosmustremovestate.h \
+    ../../Classes/CppPylos/pylosplayer.h \
+    ../../Classes/CppPylos/pylospositionstate.h \
+    ../../Classes/CppPylos/pyloswinner.h \
+    ../../Classes/CppQrcFile/qrcfile.h \
+    ../../Classes/CppQtCreatorProFile/qtcreatorprofile.h \
+    ../../Classes/CppQtCreatorProFile/qtcreatorprofilezipscript.h \
+    ../../Classes/CppQtModel/modelfunctionparser.h \
+    ../../Classes/CppQuestion/question.h \
+    ../../Classes/CppQuestionDialog/questiondialog.h \
+    ../../Classes/CppRainbow/rainbow.h \
+    ../../Classes/CppRandomCode/randomcode.h \
+    ../../Classes/CppRectangle/rectangle.h \
+    ../../Classes/CppRichelBilderbeekProgram/richelbilderbeekprogramtype.h \
+    ../../Classes/CppRichelBilderbeekProgram/richelbilderbeekprogramtypes.h \
+    ../../Classes/CppRubiksClock/rubiksclock.h \
+    ../../Classes/CppRubiksClockWidget/rubiksclockdial.h \
+    ../../Classes/CppRubiksClockWidget/rubiksclockdialwidget.h \
+    ../../Classes/CppRubiksClockWidget/rubiksclockwidget.h \
+    ../../Classes/CppShape/shape.h \
+    ../../Classes/CppShapeWidget/shapewidget.h \
+    ../../Classes/CppShinyButton/shinybutton.h \
+    ../../Classes/CppShinyButtonWidget/shinybuttonwidget.h \
+    ../../Classes/CppSimpleLinearRegression/simplelinearregression.h \
+    ../../Classes/CppSortedBinaryNewickVector/sortedbinarynewickvector.h \
+    ../../Classes/CppStateObserver/alphabetafilter.h \
+    ../../Classes/CppStateObserver/alphabetagammafilter.h \
+    ../../Classes/CppStateObserver/alphafilter.h \
+    ../../Classes/CppStateObserver/floatingpointstateobserver.h \
+    ../../Classes/CppStateObserver/integeralphafilter.h \
+    ../../Classes/CppStateObserver/integerstateobserver.h \
+    ../../Classes/CppStateObserver/integersymmetricalphafilter.h \
+    ../../Classes/CppStateObserver/multialphafilter.h \
+    ../../Classes/CppStateObserver/multiintegerstateobserver.h \
+    ../../Classes/CppStateObserver/stateobserverfwd.h \
+    ../../Classes/CppStopwatch/stopwatch.h \
+    ../../Classes/CppTicTacToe/tictactoe.h \
+    ../../Classes/CppToggleButton/togglebutton.h \
+    ../../Classes/CppToggleButtonWidget/togglebuttonwidget.h \
+    ../../Classes/CppTrace/trace.h \
+    ../../Classes/CppTwoDigitNewick/twodigitnewick.h \
+    ../../Classes/CppTwoDigitNewick/twodigitnewickderivative.h \
+    ../../Classes/CppTwoDigitNewick/twodigitnewickindexer.h \
+    ../../Classes/CppTwoDigitNewick/twodigitnewickindextable.h \
+    ../../Classes/CppTwoDigitNewick/twodigitnewicks.h \
+    ../../Classes/CppWidget/widget.h \
+    ../../Games/GameBeerWanter/beerwantermenudialog.h \
+    ../../Games/GameBoenken/boenkenarenasettings.h \
+    ../../Games/GameBoenken/boenkencontrols.h \
+    ../../Games/GameBoenken/boenkenmenudialog.h \
+    ../../Games/GameDasWahreSchlagerfest/daswahreschlagerfestmenudialog.h \
+    ../../Games/GameDasWahreSchlagerfest/daswahreschlagerfestwidget.h \
+    ../../Games/GameK3OpEenRij/k3opeenrijmenudialog.h \
+    ../../Games/GameMaziak/maziakmenudialog.h \
+    ../../Games/GamePylos/pylosmenudialog.h \
+    ../../Games/GameRubiksClock/rubiksclockmenudialog.h \
+    ../../Games/GameTicTacToe/tictactoemenudialog.h \
+    ../../Tools/ToolAsciiArter/asciiartermaindialog.h \
+    ../../Tools/ToolAsciiArter/asciiartermenudialog.h \
+    ../../Tools/ToolCodeToHtml/codetohtmlmenudialog.h \
+    ../../Tools/ToolCreateGlossary/createglossarymaindialog.h \
+    ../../Tools/ToolCreateGlossary/createglossarymenudialog.h \
+    ../../Tools/ToolEncranger/toolencrangermaindialog.h \
+    ../../Tools/ToolEncranger/toolencrangermenudialog.h \
+    ../../Tools/ToolGaborFilter/toolgaborfiltermenudialog.h \
+    ../../Tools/ToolGrayCoder/toolgraycodermaindialog.h \
+    ../../Tools/ToolGrayCoder/toolgraycodermenudialog.h \
+    ../../Tools/ToolHometrainer/hometrainermenudialog.h \
+    ../../Tools/ToolHometrainer/hometrainerresources.h \
+    ../../Tools/ToolKalmanFilterer/kalmanfilterermenudialog.h \
+    ../../Tools/ToolMazeCreator/mazecreatormenudialog.h \
+    ../../Tools/ToolMultiEncranger/toolmultiencrangermenudialog.h \
+    ../../Tools/ToolMusicTheory/musictheorymenudialog.h \
+    ../../Tools/ToolPerfectElasticCollision/perfectelasticcollisionmenudialog.h \
+    ../../Tools/ToolPicToCode/pictocodemaindialog.h \
+    ../../Tools/ToolPicToCode/pictocodemenudialog.h \
+    ../../Tools/ToolQmakeWatcher/qmakewatchermenudialog.h \
+    ../../Tools/ToolRandomCode/randomcodemenudialog.h \
+    ../../Tools/ToolRegexTester/regextesterboostregexmaindialog.h \
+    ../../Tools/ToolRegexTester/regextesterboostxpressivemaindialog.h \
+    ../../Tools/ToolRegexTester/regextestercpp11maindialog.h \
+    ../../Tools/ToolRegexTester/regextestermaindialog.h \
+    ../../Tools/ToolRegexTester/regextestermenudialog.h \
+    ../../Tools/ToolRegexTester/regextesterqtmaindialog.h \
+    ../../Tools/ToolRegexTester/regextestertr1maindialog.h \
+    ../../Tools/ToolRichelbilderbeekNlSitemapGenerator/sitemapgeneratormenudialog.h \
+    ../../Tools/ToolSimMysteryMachine/simmysterymachinemenudialog.h \
+    ../../Tools/ToolSimplifyNewick/toolsimplifynewickmaindialog.h \
+    ../../Tools/ToolSimplifyNewick/toolsimplifynewickmenudialog.h \
+    ../../Tools/ToolStateObserver/noisefunctionparser.h \
+    ../../Tools/ToolStateObserver/stateobservermenudialog.h \
+    ../../Tools/ToolTestApproximator/tooltestapproximatormenudialog.h \
+    ../../Tools/ToolTestCanvas/tooltestcanvasmenudialog.h \
+    ../../Tools/ToolTestDial/testdialmenudialog.h \
+    ../../Tools/ToolTestEntrance/testentrancemenudialog.h \
+    ../../Tools/ToolTestExercise/testexercisemenudialog.h \
+    ../../Tools/ToolTestFunctionParser/testfunctionparsermenudialog.h \
+    ../../Tools/ToolTestGroupWidget/testgroupwidgetmenudialog.h \
+    ../../Tools/ToolTestGroupWidget/testgroupwidgetmenudialog.h \
+    ../../Tools/ToolTestLed/tooltestledmenudialog.h \
+    ../../Tools/ToolTestMultiApproximator/tooltestmultiapproximatormenudialog.h \
+    ../../Tools/ToolTestMultipleChoiceQuestion/testmultiplechoicequestionmaindialog.h \
+    ../../Tools/ToolTestMultipleChoiceQuestion/testmultiplechoicequestionmenudialog.h \
+    ../../Tools/ToolTestNewickVector/testnewickvectordialog.h \
+    ../../Tools/ToolTestNewickVector/testnewickvectordialog.h \
+    ../../Tools/ToolTestPylos/testpylosmenudialog.h \
+    ../../Tools/ToolTestQrcFile/testqrcfilemenudialog.h \
+    ../../Tools/ToolTestQrcFile/testqrcfilemenudialog.h \
+    ../../Tools/ToolTestQtArrowItems/testqtarrowitemsmenudialog.h \
+    ../../Tools/ToolTestQtArrowItems/testqtarrowitemsmenudialog.h \
+    ../../Tools/ToolTestQtCreatorProFile/testqtcreatorprofilemenudialog.h \
+    ../../Tools/ToolTestQtCreatorProFile/testqtcreatorprofilemenudialog.h \
+    ../../Tools/ToolTestQtKeyboardFriendlyGraphicsView/testqtkeyboardfriendlygraphicsviewmenudialog.h \
+    ../../Tools/ToolTestQtKeyboardFriendlyGraphicsView/testqtkeyboardfriendlygraphicsviewmenudialog.h \
+    ../../Tools/ToolTestQtModels/tooltestqtmodelsmenudialog.h \
+    ../../Tools/ToolTestQtRoundedEditRectItem/testqtroundededitrectitemmenudialog.h \
+    ../../Tools/ToolTestQtRoundedRectItem/testqtroundedrectitemmenudialog.h \
+    ../../Tools/ToolTestQtRoundedRectItem/testqtroundedrectitemmenudialog.h \
+    ../../Tools/ToolTestQtRoundedTextRectItem/testqtroundedtextrectitemmenudialog.h \
+    ../../Tools/ToolTestQuestion/testquestionmaindialog.h \
+    ../../Tools/ToolTestQuestion/testquestionmaindialog.h \
+    ../../Tools/ToolTestQuestion/testquestionmenudialog.h \
+    ../../Tools/ToolTestQuestion/testquestionmenudialog.h \
+    ../../Tools/ToolTestShape/testshapemaindialog.h \
+    ../../Tools/ToolTestShape/testshapemaindialog.h \
+    ../../Tools/ToolTestShape/testshapemenudialog.h \
+    ../../Tools/ToolTestShape/testshapemenudialog.h \
+    ../../Tools/ToolTestShinyButton/testshinybuttonmenudialog.h \
+    ../../Tools/ToolTestShinyButton/testshinybuttonmenudialog.h \
+    ../../Tools/ToolTestSimpleLinearRegression/tooltestsimplelinearregressionmenudialog.h \
+    ../../Tools/ToolTestToggleButton/testtogglebuttonmenudialog.h \
+    ../../Tools/ToolTestToggleButton/testtogglebuttonmenudialog.h \
+    ../../Tools/ToolMultiEncranger/toolmultiencrangermaindialog.h \
+    ../../Classes/CppCanvas/canvas.h \
+    ../../Tools/ToolQuadraticSolver/quadraticsolvermenudialog.h \
+    ../../Tools/ToolQuadraticSolver/quadraticsolvermaindialog.h \
+    ../../Tools/ToolPrimeExpert/toolprimeexpertmenudialog.h \
+    ../../Tools/ToolPrimeExpert/primeexpert.h \
+    ../../Tools/ToolDotMatrix/tooldotmatrixmenudialog.h \
+    ../../Classes/CppDotMatrix/dotmatrixstring.h \
+    ../../Classes/CppDotMatrix/dotmatrixchar.h \
+    ../../Classes/CppFileIo/fileio.h \
+    ../../Tools/ToolHometrainer/hometrainermaindialog.h \
+    ../../Classes/CppMenuDialog/menudialog.h \
+    ../../Classes/CppHelp/help.h
+
+
+# Desktop
 INCLUDEPATH += \
     ../../Classes/CppQtAboutDialog \
     ../../Classes/CppQtArrowItem \
@@ -96,6 +721,7 @@ INCLUDEPATH += \
     ../../Tools/ToolTestTwoDigitNewick
 
 SOURCES += \
+    qtmain.cpp \
     ../../Classes/CppQtAboutDialog/qtaboutdialog.cpp \
     ../../Classes/CppQtArrowItem/qtarrowitem.cpp \
     ../../Classes/CppQtConnectThreeWidget/qtconnectthreewidget.cpp \
@@ -278,10 +904,6 @@ SOURCES += \
     ../../Tools/ToolTestToggleButton/qttesttogglebuttonmaindialog.cpp \
     ../../Tools/ToolTestToggleButton/qttesttogglebuttonmenudialog.cpp \
     ../../Tools/ToolTestTwoDigitNewick/qttesttwodigitnewickdialog.cpp \
-    qtmain.cpp \
-    qtrichelbilderbeekmenudialog.cpp \
-    qtrichelbilderbeekmenuitemwidget.cpp \
-    qtrichelbilderbeekprogram.cpp \
     ../../Tools/ToolSimplifyNewick/qttoolsimplifynewickmenudialog.cpp \
     ../../Tools/ToolSimplifyNewick/qttoolsimplifynewickmaindialog.cpp \
     ../../Tools/ToolQmakeWatcher/qtqmakewatchermenudialog.cpp \
@@ -669,10 +1291,6 @@ HEADERS += \
     ../../Tools/ToolTestToggleButton/qttesttogglebuttonmaindialog.h \
     ../../Tools/ToolTestToggleButton/qttesttogglebuttonmenudialog.h \
     ../../Tools/ToolTestTwoDigitNewick/qttesttwodigitnewickdialog.h \
-    qtrichelbilderbeekmenudialog.h \
-    qtrichelbilderbeekmenuitemwidget.h \
-    qtrichelbilderbeekprogram.h \
-    richelbilderbeekmenudialog.h \
     ../../Tools/ToolSimplifyNewick/qttoolsimplifynewickmenudialog.h \
     ../../Tools/ToolSimplifyNewick/qttoolsimplifynewickmaindialog.h \
     ../../Tools/ToolQmakeWatcher/qtqmakewatchermenudialog.h \
@@ -709,7 +1327,6 @@ RESOURCES += \
     ../../Tools/ToolTestGroupWidget/ToolTestGroupWidget.qrc \
     ../../Tools/ToolTestShape/ToolTestShape.qrc \
     ../../Tools/ToolTestShinyButton/ToolTestShinyButton.qrc \
-    ProjectRichelBilderbeek.qrc \
     ../../Tools/ToolTestNewickVector/ToolTestNewickVector.qrc \
     ../../Tools/ToolTestTwoDigitNewick/ToolTestTwoDigitNewick.qrc \
     ../../Projects/RichelbilderbeekNl/qtrichelbilderbeekgalleryresources.qrc \
@@ -787,7 +1404,6 @@ FORMS += \
     ../../Games/GameTicTacToe/qttictactoegamedialog.ui \
     ../../Games/GameTicTacToe/qttictactoemenudialog.ui \
     ../../Games/GameTicTacToe/qttictactoewinnerdialog.ui \
-    qtrichelbilderbeekmenudialog.ui \
     ../../Tools/ToolAsciiArter/qtasciiartermaindialog.ui \
     ../../Tools/ToolAsciiArter/qtasciiartermenudialog.ui \
     ../../Tools/ToolCodeToHtml/qtcodetohtmlmaindialog.ui \
@@ -903,576 +1519,79 @@ FORMS += \
     ../../Tools/ToolDotMatrix/qttooldotmatrixmenudialog.ui \
     ../../Tools/ToolDotMatrix/qttooldotmatrixmaindialog.ui
 
-OTHER_FILES += \
-    ../../Tools/ToolCreateQtProjectZipFile/R.png \
-    ../../Tools/ToolMultiEncranger/ToolMultiEncrangerWelcome.png \
-    ../../Tools/ToolMultiEncranger/ToolMultiEncrangerArrowUp34x34.png \
-    ../../Tools/ToolMultiEncranger/ToolMultiEncrangerArrowUp16x16.png \
-    ../../Tools/ToolMultiEncranger/ToolMultiEncrangerArrowDown34x34.png \
-    ../../Tools/ToolMultiEncranger/ToolMultiEncrangerArrowDown16x16.png \
-    ../../Tools/ToolMultiEncranger/RichelbilderbeekNlBackground.png \
-    ../../Tools/ToolMultiEncranger/R.png \
-    ../../Tools/ToolTestQtRoundedRectItem/ToolTestQtRoundedRectItemWelcome.png \
-    ../../Tools/ToolTestQtRoundedRectItem/R.png \
-    ../../Games/GameConnectThree/ConnectThree.css \
-    ../../Games/GameBeerWanter/Beer.png \
-    ../../Games/GameBeerWanter/PicR.png \
-    ../../Games/GameBoenken/Computer.png \
-    ../../Games/GameBoenken/Green.png \
-    ../../Games/GameBoenken/Grey.png \
-    ../../Games/GameBoenken/Human.png \
-    ../../Games/GameBoenken/PlayerBlue.png \
-    ../../Games/GameBoenken/PlayerRed.png \
-    ../../Games/GameBoenken/R.png \
-    ../../Games/GameConnectThree/ConnectThreeComputer1.png \
-    ../../Games/GameConnectThree/ConnectThreeComputer2.png \
-    ../../Games/GameConnectThree/ConnectThreeComputer3.png \
-    ../../Games/GameConnectThree/ConnectThreeComputerGrey.png \
-    ../../Games/GameConnectThree/ConnectThreeEmpty.png \
-    ../../Games/GameConnectThree/ConnectThreeGood1.png \
-    ../../Games/GameConnectThree/ConnectThreeGood2.png \
-    ../../Games/GameConnectThree/ConnectThreePlayer1Grey.png \
-    ../../Games/GameConnectThree/ConnectThreePlayer1.png \
-    ../../Games/GameConnectThree/ConnectThreePlayer2Grey.png \
-    ../../Games/GameConnectThree/ConnectThreePlayer2.png \
-    ../../Games/GameConnectThree/ConnectThreePlayer3Grey.png \
-    ../../Games/GameConnectThree/ConnectThreePlayer3.png \
-    ../../Games/GameConnectThree/ConnectThreeWrong.png \
-    ../../Games/GameConnectThree/GameConnectThreeArchitecture_6_2.png \
-    ../../Games/GameConnectThree/GameConnectThreeWelcomeNoLegend.png \
-    ../../Games/GameConnectThree/GameConnectThreeWelcome.png \
-    ../../Games/GameMaziak/AboutPicture.png \
-    ../../Games/GameMaziak/About.png \
-    ../../Games/GameMaziak/Congratulations.png \
-    ../../Games/GameMaziak/Easy_not_selected.png \
-    ../../Games/GameMaziak/Easy_selected.png \
-    ../../Games/GameMaziak/Empty.png \
-    ../../Games/GameMaziak/Enemy1.png \
-    ../../Games/GameMaziak/Enemy2.png \
-    ../../Games/GameMaziak/Entrance.png \
-    ../../Games/GameMaziak/Exit.png \
-    ../../Games/GameMaziak/Fight2.png \
-    ../../Games/GameMaziak/Fight3.png \
-    ../../Games/GameMaziak/Fight4.png \
-    ../../Games/GameMaziak/FightLost1.png \
-    ../../Games/GameMaziak/FightLost2.png \
-    ../../Games/GameMaziak/FightNoSword1.png \
-    ../../Games/GameMaziak/FightSword1.png \
-    ../../Games/GameMaziak/FightWon1.png \
-    ../../Games/GameMaziak/FightWon2.png \
-    ../../Games/GameMaziak/GameOver.png \
-    ../../Games/GameMaziak/Gold.png \
-    ../../Games/GameMaziak/Hard_not_selected.png \
-    ../../Games/GameMaziak/Hard_selected.png \
-    ../../Games/GameMaziak/Instructions.png \
-    ../../Games/GameMaziak/Medium_not_selected.png \
-    ../../Games/GameMaziak/Medium_selected.png \
-    ../../Games/GameMaziak/Path.png \
-    ../../Games/GameMaziak/PlayerLookDown.png \
-    ../../Games/GameMaziak/PlayerLookDownSword.png \
-    ../../Games/GameMaziak/PlayerLookLeft.png \
-    ../../Games/GameMaziak/PlayerLookLeftSword.png \
-    ../../Games/GameMaziak/PlayerLookRight.png \
-    ../../Games/GameMaziak/PlayerLookRightSword.png \
-    ../../Games/GameMaziak/PlayerLookUp.png \
-    ../../Games/GameMaziak/PlayerLookUpSword.png \
-    ../../Games/GameMaziak/PlayerScared.png \
-    ../../Games/GameMaziak/PlayerWalkDown1.png \
-    ../../Games/GameMaziak/PlayerWalkDown2.png \
-    ../../Games/GameMaziak/PlayerWalkDownSword1.png \
-    ../../Games/GameMaziak/PlayerWalkDownSword2.png \
-    ../../Games/GameMaziak/PlayerWalkLeft1.png \
-    ../../Games/GameMaziak/PlayerWalkLeft2.png \
-    ../../Games/GameMaziak/PlayerWalkLeftSword1.png \
-    ../../Games/GameMaziak/PlayerWalkLeftSword2.png \
-    ../../Games/GameMaziak/PlayerWalkRight1.png \
-    ../../Games/GameMaziak/PlayerWalkRight2.png \
-    ../../Games/GameMaziak/PlayerWalkRightSword1.png \
-    ../../Games/GameMaziak/PlayerWalkRightSword2.png \
-    ../../Games/GameMaziak/PlayerWalkUp1.png \
-    ../../Games/GameMaziak/PlayerWalkUp2.png \
-    ../../Games/GameMaziak/PlayerWalkUpSword1.png \
-    ../../Games/GameMaziak/PlayerWalkUpSword2.png \
-    ../../Games/GameMaziak/PlayerWon1.png \
-    ../../Games/GameMaziak/PlayerWon2.png \
-    ../../Games/GameMaziak/Prisoner1.png \
-    ../../Games/GameMaziak/Prisoner2.png \
-    ../../Games/GameMaziak/Quit.png \
-    ../../Games/GameMaziak/Rip.png \
-    ../../Games/GameMaziak/R.png \
-    ../../Games/GameMaziak/Start.png \
-    ../../Games/GameMaziak/Sword.png \
-    ../../Games/GameMaziak/Transparent.png \
-    ../../Games/GameMaziak/Treasure.png \
-    ../../Games/GameMaziak/Wall.png \
-    ../../Games/GameRubiksClock/GameRubiksClock.png \
-    ../../Games/GameRubiksClock/GameRubiksClockWelcome_2_1.png \
-    ../../Games/GameRubiksClock/GameRubiksClockWelcomeNoLegend.png \
-    ../../Games/GameTicTacToe/O_big.png \
-    ../../Games/GameTicTacToe/O.png \
-    ../../Games/GameTicTacToe/RichelbilderbeekNlBackground.png \
-    ../../Games/GameTicTacToe/R.png \
-    ../../Games/GameTicTacToe/wt.css \
-    ../../Games/GameTicTacToe/X_big.png \
-    ../../Games/GameTicTacToe/X.png \
-    ../../Tools/ToolAsciiArter/RichelbilderbeekNlBackground.png \
-    ../../Tools/ToolAsciiArter/ToolAsciiArterWelcome.png \
-    ../../Tools/ToolAsciiArter/wt.css \
-    ../../Tools/ToolCodeToHtml/R.png \
-    ../../Tools/ToolCodeToHtml/ToolCodeToHtmlOverview.png \
-    ../../Tools/ToolCodeToHtml/ToolCodeToHtmlWelcomeNoText.png \
-    ../../Tools/ToolCodeToHtml/ToolCodeToHtmlWelcome.png \
-    ../../Tools/ToolCreateGlossary/R.png \
-    ../../Tools/ToolHometrainer/RichelbilderbeekNlBackground.png \
-    ../../Tools/ToolHometrainer/ToolHometrainerExerciseAdapter.jpg \
-    ../../Tools/ToolHometrainer/ToolHometrainerExerciseAuks.jpg \
-    ../../Tools/ToolHometrainer/ToolHometrainerExerciseBakMetFilters.jpg \
-    ../../Tools/ToolHometrainer/ToolHometrainerExerciseCdSpelerNumarck.jpg \
-    ../../Tools/ToolHometrainer/ToolHometrainerExerciseDcc.jpg \
-    ../../Tools/ToolHometrainer/ToolHometrainerExerciseDi.jpg \
-    ../../Tools/ToolHometrainer/ToolHometrainerExerciseDimmerpack.jpg \
-    ../../Tools/ToolHometrainer/ToolHometrainerExerciseDmxMannetjeConnector.jpg \
-    ../../Tools/ToolHometrainer/ToolHometrainerExerciseDmxMannetje.jpg \
-    ../../Tools/ToolHometrainer/ToolHometrainerExerciseDmxVrouwtjeConnector.jpg \
-    ../../Tools/ToolHometrainer/ToolHometrainerExerciseDmxVrouwtje.jpg \
-    ../../Tools/ToolHometrainer/ToolHometrainerExerciseEffect.jpg \
-    ../../Tools/ToolHometrainer/ToolHometrainerExerciseEuroMannetjeConnector.jpg \
-    ../../Tools/ToolHometrainer/ToolHometrainerExerciseEuroVrouwtje.jpg \
-    ../../Tools/ToolHometrainer/ToolHometrainerExerciseFilterboekje.jpg \
-    ../../Tools/ToolHometrainer/ToolHometrainerExerciseFilterhouder.jpg \
-    ../../Tools/ToolHometrainer/ToolHometrainerExerciseFilter.jpg \
-    ../../Tools/ToolHometrainer/ToolHometrainerExerciseFiltervellen.jpg \
-    ../../Tools/ToolHometrainer/ToolHometrainerExerciseFlightcase.jpg \
-    ../../Tools/ToolHometrainer/ToolHometrainerExerciseFresnel.jpg \
-    ../../Tools/ToolHometrainer/ToolHometrainerExerciseGeluidstafelAchterkantLinks.jpg \
-    ../../Tools/ToolHometrainer/ToolHometrainerExerciseGeluidstafelAchterkantRechts.jpg \
-    ../../Tools/ToolHometrainer/ToolHometrainerExerciseGeluidstafelAlesis.jpg \
-    ../../Tools/ToolHometrainer/ToolHometrainerExerciseGeluidstafelBovenkantMiddenboven.jpg \
-    ../../Tools/ToolHometrainer/ToolHometrainerExerciseGeluidstafelBovenkantMidden.jpg \
-    ../../Tools/ToolHometrainer/ToolHometrainerExerciseGeluidstafelBovenkantRechtsboven.jpg \
-    ../../Tools/ToolHometrainer/ToolHometrainerExerciseGeluidstafelBovenkantRechtsonder.jpg \
-    ../../Tools/ToolHometrainer/ToolHometrainerExerciseGeluidstafelYamaha.jpg \
-    ../../Tools/ToolHometrainer/ToolHometrainerExerciseGordijnhaak.jpg \
-    ../../Tools/ToolHometrainer/ToolHometrainerExerciseHaspel.jpg \
-    ../../Tools/ToolHometrainer/ToolHometrainerExerciseJackMannetjeMono.jpg \
-    ../../Tools/ToolHometrainer/ToolHometrainerExerciseJackVrouwtjeConnector.jpg \
-    ../../Tools/ToolHometrainer/ToolHometrainerExerciseJackVrouwtjeEnXlrVrouwtjeConnector.jpg \
-    ../../Tools/ToolHometrainer/ToolHometrainerExerciseKabeltester.jpg \
-    ../../Tools/ToolHometrainer/ToolHometrainerExerciseKrachtstroomMannetjeConnector.jpg \
-    ../../Tools/ToolHometrainer/ToolHometrainerExerciseKrachtstroomMannetje.jpg \
-    ../../Tools/ToolHometrainer/ToolHometrainerExerciseKrachtstroomVrouwtjeConnector.jpg \
-    ../../Tools/ToolHometrainer/ToolHometrainerExerciseLamp500W.jpg \
-    ../../Tools/ToolHometrainer/ToolHometrainerExerciseLichtplanDeBruiloften.jpg \
-    ../../Tools/ToolHometrainer/ToolHometrainerExerciseLichtplan.jpg \
-    ../../Tools/ToolHometrainer/ToolHometrainerExerciseLichttafel.jpg \
-    ../../Tools/ToolHometrainer/ToolHometrainerExerciseMdGrijs.jpg \
-    ../../Tools/ToolHometrainer/ToolHometrainerExerciseMdSpeler.jpg \
-    ../../Tools/ToolHometrainer/ToolHometrainerExerciseMdTransparent.jpg \
-    ../../Tools/ToolHometrainer/ToolHometrainerExerciseMicrofoonShureSm58.jpg \
-    ../../Tools/ToolHometrainer/ToolHometrainerExerciseMiniJackStereoVrouwJackStereoMan.jpg \
-    ../../Tools/ToolHometrainer/ToolHometrainerExerciseMonitorTorqueConnectors.jpg \
-    ../../Tools/ToolHometrainer/ToolHometrainerExerciseMultikabelMannetjeConnector.jpg \
-    ../../Tools/ToolHometrainer/ToolHometrainerExerciseMultikabelVrouwtjeConnector.jpg \
-    ../../Tools/ToolHometrainer/ToolHometrainerExerciseMultimeterMetex.jpg \
-    ../../Tools/ToolHometrainer/ToolHometrainerExerciseMultistekkerdoos.jpg \
-    ../../Tools/ToolHometrainer/ToolHometrainerExerciseOn.jpg \
-    ../../Tools/ToolHometrainer/ToolHometrainerExerciseOpwindstatief.jpg \
-    ../../Tools/ToolHometrainer/ToolHometrainerExercisePar.jpg \
-    ../../Tools/ToolHometrainer/ToolHometrainerExercisePc.jpg \
-    ../../Tools/ToolHometrainer/ToolHometrainerExercisePriklijst.jpg \
-    ../../Tools/ToolHometrainer/ToolHometrainerExerciseProfielspot.jpg \
-    ../../Tools/ToolHometrainer/ToolHometrainerExerciseRcf322aAchterkant.jpg \
-    ../../Tools/ToolHometrainer/ToolHometrainerExerciseRgbLamp.jpg \
-    ../../Tools/ToolHometrainer/ToolHometrainerExerciseSafety.jpg \
-    ../../Tools/ToolHometrainer/ToolHometrainerExerciseScartMannetje.jpg \
-    ../../Tools/ToolHometrainer/ToolHometrainerExerciseSchukoVrouwtjeConnector.jpg \
-    ../../Tools/ToolHometrainer/ToolHometrainerExerciseShureSm58.jpg \
-    ../../Tools/ToolHometrainer/ToolHometrainerExerciseSpanningsmeterFluke.jpg \
-    ../../Tools/ToolHometrainer/ToolHometrainerExerciseSpeakerEvent3000.jpg \
-    ../../Tools/ToolHometrainer/ToolHometrainerExerciseSpeakonVrouwSpeakonVrouw.jpg \
-    ../../Tools/ToolHometrainer/ToolHometrainerExerciseSpeakonVrouwtjeConnector.jpg \
-    ../../Tools/ToolHometrainer/ToolHometrainerExerciseSpringV2.jpg \
-    ../../Tools/ToolHometrainer/ToolHometrainerExerciseStandenplot.jpg \
-    ../../Tools/ToolHometrainer/ToolHometrainerExerciseStekkerdoos.jpg \
-    ../../Tools/ToolHometrainer/ToolHometrainerExerciseTbar.jpg \
-    ../../Tools/ToolHometrainer/ToolHometrainerExerciseTrussHaarspeld.jpg \
-    ../../Tools/ToolHometrainer/ToolHometrainerExerciseTruss.jpg \
-    ../../Tools/ToolHometrainer/ToolHometrainerExerciseTrussklem.jpg \
-    ../../Tools/ToolHometrainer/ToolHometrainerExerciseTrussPin.jpg \
-    ../../Tools/ToolHometrainer/ToolHometrainerExerciseTrussVerbindingsstuk.jpg \
-    ../../Tools/ToolHometrainer/ToolHometrainerExerciseTulpMannetje.jpg \
-    ../../Tools/ToolHometrainer/ToolHometrainerExerciseVerloopstukje.jpg \
-    ../../Tools/ToolHometrainer/ToolHometrainerExerciseVersterkerSamsonAchterkant.jpg \
-    ../../Tools/ToolHometrainer/ToolHometrainerExerciseVersterkerSamson.jpg \
-    ../../Tools/ToolHometrainer/ToolHometrainerExerciseVgaVrouwVgaVrouw.jpg \
-    ../../Tools/ToolHometrainer/ToolHometrainerExerciseVoetstatief.jpg \
-    ../../Tools/ToolHometrainer/ToolHometrainerExerciseWijkenArnhemGenummerd.bmp \
-    ../../Tools/ToolHometrainer/ToolHometrainerExerciseXlrMannetjeConnector.jpg \
-    ../../Tools/ToolHometrainer/ToolHometrainerExerciseXlrVrouwtje.jpg \
-    ../../Tools/ToolHometrainer/ToolHometrainerExerciseZekering.jpg \
-    ../../Tools/ToolHometrainer/ToolHometrainerManual.odt \
-    ../../Tools/ToolHometrainer/ToolHometrainerQuestionmark.png \
-    ../../Tools/ToolHometrainer/ToolHometrainerQuestion.png \
-    ../../Tools/ToolHometrainer/ToolHometrainerTitle.png \
-    ../../Tools/ToolHometrainer/ToolHometrainerWelcome.png \
-    ../../Tools/ToolMusicTheory/crosscompiletowindows.sh \
-    ../../Tools/ToolMusicTheory/R.png \
-    ../../Tools/ToolMusicTheory/ToolMusicTheory.png \
-    ../../Tools/ToolRegexTester/PicBoost.png \
-    ../../Tools/ToolRegexTester/PicCpp11.png \
-    ../../Tools/ToolRegexTester/PicCppTr1.png \
-    ../../Tools/ToolRegexTester/PicQt.png \
-    ../../Tools/ToolRegexTester/PicR.png \
-    ../../Tools/ToolRichelbilderbeekNlSitemapGenerator/sitemap_gen.py \
-    ../../Tools/ToolSimMysteryMachine/RichelbilderbeekNlBackground.png \
-    ../../Tools/ToolSimMysteryMachine/ToolSimMysteryMachineArchitecture_1_0.dia \
-    ../../Tools/ToolSimMysteryMachine/ToolSimMysteryMachineArchitecture_1_0.png \
-    ../../Tools/ToolSimMysteryMachine/ToolSimMysteryMachine.png \
-    ../../Tools/ToolSimMysteryMachine/ToolSimMysteryMachineWelcome.png \
-    ../../Tools/ToolSimMysteryMachine/wt.css \
-    ../../Tools/ToolTestChess/ToolTestChess.odp \
-    ../../Tools/ToolTestChess/ToolTestChessWelcome.png \
-    ../../Tools/ToolTestDial/RichelbilderbeekNlBackground.png \
-    ../../Tools/ToolTestDial/ToolTestDialArchitecture.dia \
-    ../../Tools/ToolTestDial/ToolTestDialArchitecture.png \
-    ../../Tools/ToolTestDial/ToolTestDialWelcome_2_1.png \
-    ../../Tools/ToolTestDial/wt.css \
-    ../../Tools/ToolTestExercise/ToolTestExerciseQuestionmark.png \
-    ../../Tools/ToolTestExercise/ToolTestExerciseQuestion.png \
-    ../../Tools/ToolTestExercise/ToolTestExerciseWelcomeNoLegend.png \
-    ../../Tools/ToolTestExercise/ToolTestExerciseWelcome.png \
-    ../../Tools/ToolTestExercise/wt.css \
-    ../../Tools/ToolEncranger/Licence.txt \
-    ../../Tools/ToolTestFunctionParser/Licence.txt \
-    ../../Tools/ToolTestFunctionParser/ToolTestFunctionParserWelcome.png \
-    ../../Tools/ToolTestLed/Licence.txt \
-    ../../Tools/ToolTestNewickVector/Licence.txt \
-    ../../Tools/ToolTestNewickVector/RichelbilderbeekNlBackground.png \
-    ../../Tools/ToolTestNewickVector/R.png \
-    ../../Tools/ToolTestPylos/Licence.txt \
-    ../../Tools/ToolTestPylos/R.png \
-    ../../Tools/ToolTestPylos/ToolTestPylosCanMove.png \
-    ../../Tools/ToolTestPylos/ToolTestPylosDoubleRemoveTest.png \
-    ../../Tools/ToolTestPylos/ToolTestPylosMoveMustRemove.png \
-    ../../Tools/ToolTestPylos/ToolTestPylosMustRemove.png \
-    ../../Tools/ToolTestQrcFile/Licence.txt \
-    ../../Tools/ToolTestQrcFile/R.png \
-    ../../Tools/ToolTestQrcFile/ToolTestQrcFileWelcome.png \
-    ../../Tools/ToolTestQtArrowItems/Licence.txt \
-    ../../Tools/ToolTestQtArrowItems/R.png \
-    ../../Tools/ToolTestQtArrowItems/ToolTestQtArrowItems.png \
-    ../../Tools/ToolTestQtCreatorProFile/Licence.txt \
-    ../../Tools/ToolTestQtCreatorProFile/PicR.png \
-    ../../Tools/ToolTestQtCreatorProFile/ToolTestQtCreatorProFile.png \
-    ../../Tools/ToolTestQtKeyboardFriendlyGraphicsView/Licence.txt \
-    ../../Tools/ToolTestQtKeyboardFriendlyGraphicsView/PicR14x14_opaque.png \
-    ../../Tools/ToolTestQuestion/Questionmark.png \
-    ../../Tools/ToolTestQuestion/question.png \
-    ../../Tools/ToolTestQuestion/RichelbilderbeekNlBackground.png \
-    ../../Tools/ToolTestQuestion/ToolTestQuestionIcon14x14.png \
-    ../../Tools/ToolTestQuestion/ToolTestQuestionWelcome1.png \
-    ../../Tools/ToolTestQuestion/ToolTestQuestionWelcome2.png \
-    ../../Tools/ToolTestQuestion/ToolTestQuestionWelcome.png \
-    ../../Tools/ToolTestShape/ToolTestShapeArchitecture.dia \
-    ../../Tools/ToolTestShape/ToolTestShapeArchitecture.png \
-    ../../Tools/ToolTestShape/ToolTestShapeWelcome.png \
-    ../../Tools/ToolTestShinyButton/ToolTestShinyButton_1_0.png \
-    ../../Tools/ToolTestShinyButton/ToolTestShinyButtonWelcomeNoLegend.png \
-    ../../Tools/ToolTestShinyButton/ToolTestShinyButtonWelcome.png \
-    ../../Tools/ToolTestToggleButton/RichelbilderbeekNlBackground.png \
-    ../../Tools/ToolTestToggleButton/ToolTestToggleButtonArchitecture_1_0.dia \
-    ../../Tools/ToolTestToggleButton/ToolTestToggleButtonWelcome.png \
-    ../../Tools/ToolTestToggleButton/wt.css \
-    ../../Tools/ToolTestTwoDigitNewick/doxygen.txt \
-    ../../Tools/ToolTestTwoDigitNewick/Licence.txt \
-    ../../Tools/ToolTestTwoDigitNewick/R.png \
-    ../../Tools/ToolTestTwoDigitNewick/testtwodigitnewicks.sh \
-    ../../Tools/ToolTestQtModels/Licence.txt \
-    ../../Classes/CppQtDisplayPosItem/Licence.txt \
-    ../../Classes/CppQtLeftRightRectItem/Licence.txt \
-    ../../Classes/CppQtModel/Licence.txt \
-    ../../Classes/CppMatrix/Licence.txt \
-    ../../Classes/CppQtRoundedEditRectItem/Licence.txt \
-    ../../Tools/ToolHometrainer/ToolHometrainerExerciseFiltervellen.jpg \
-    ../../Tools/ToolHometrainer/ToolHometrainerExerciseFlightcase.jpg \
-    ../../Tools/ToolHometrainer/ToolHometrainerExerciseFresnel.jpg \
-    ../../Tools/ToolHometrainer/ToolHometrainerExerciseGeluidstafelAchterkantLinks.jpg \
-    ../../Tools/ToolHometrainer/ToolHometrainerExerciseGeluidstafelAchterkantRechts.jpg \
-    ../../Tools/ToolHometrainer/ToolHometrainerExerciseGeluidstafelAlesis.jpg \
-    ../../Tools/ToolHometrainer/ToolHometrainerExerciseGeluidstafelBovenkantMiddenboven.jpg \
-    ../../Tools/ToolHometrainer/ToolHometrainerExerciseGeluidstafelBovenkantMidden.jpg \
-    ../../Tools/ToolHometrainer/ToolHometrainerExerciseGeluidstafelBovenkantRechtsboven.jpg \
-    ../../Tools/ToolHometrainer/ToolHometrainerExerciseGeluidstafelBovenkantRechtsonder.jpg \
-    ../../Tools/ToolHometrainer/ToolHometrainerExerciseGeluidstafelYamaha.jpg \
-    ../../Tools/ToolHometrainer/ToolHometrainerExerciseGordijnhaak.jpg \
-    ../../Tools/ToolHometrainer/ToolHometrainerExerciseHaspel.jpg \
-    ../../Tools/ToolHometrainer/ToolHometrainerExerciseJackMannetjeMono.jpg \
-    ../../Tools/ToolHometrainer/ToolHometrainerExerciseJackVrouwtjeConnector.jpg \
-    ../../Tools/ToolHometrainer/ToolHometrainerExerciseJackVrouwtjeEnXlrVrouwtjeConnector.jpg \
-    ../../Tools/ToolHometrainer/ToolHometrainerExerciseKabeltester.jpg \
-    ../../Tools/ToolHometrainer/ToolHometrainerExerciseKrachtstroomMannetjeConnector.jpg \
-    ../../Tools/ToolHometrainer/ToolHometrainerExerciseKrachtstroomMannetje.jpg \
-    ../../Tools/ToolHometrainer/ToolHometrainerExerciseKrachtstroomVrouwtjeConnector.jpg \
-    ../../Tools/ToolHometrainer/ToolHometrainerExerciseLamp500W.jpg \
-    ../../Tools/ToolHometrainer/ToolHometrainerExerciseLichtplanDeBruiloften.jpg \
-    ../../Tools/ToolHometrainer/ToolHometrainerExerciseLichtplan.jpg \
-    ../../Tools/ToolHometrainer/ToolHometrainerExerciseLichttafel.jpg \
-    ../../Tools/ToolHometrainer/ToolHometrainerExerciseMdGrijs.jpg \
-    ../../Tools/ToolHometrainer/ToolHometrainerExerciseMdSpeler.jpg \
-    ../../Tools/ToolHometrainer/ToolHometrainerExerciseMdTransparent.jpg \
-    ../../Tools/ToolHometrainer/ToolHometrainerExerciseMicrofoonShureSm58.jpg \
-    ../../Tools/ToolHometrainer/ToolHometrainerExerciseMiniJackStereoVrouwJackStereoMan.jpg \
-    ../../Tools/ToolHometrainer/ToolHometrainerExerciseMonitorTorqueConnectors.jpg \
-    ../../Tools/ToolHometrainer/ToolHometrainerExerciseMultikabelMannetjeConnector.jpg \
-    ../../Tools/ToolHometrainer/ToolHometrainerExerciseMultikabelVrouwtjeConnector.jpg \
-    ../../Tools/ToolHometrainer/ToolHometrainerExerciseMultimeterMetex.jpg \
-    ../../Tools/ToolHometrainer/ToolHometrainerExerciseMultistekkerdoos.jpg \
-    ../../Tools/ToolHometrainer/ToolHometrainerExerciseOn.jpg \
-    ../../Tools/ToolHometrainer/ToolHometrainerExerciseOpwindstatief.jpg \
-    ../../Tools/ToolHometrainer/ToolHometrainerExercisePar.jpg \
-    ../../Tools/ToolHometrainer/ToolHometrainerExercisePc.jpg \
-    ../../Tools/ToolHometrainer/ToolHometrainerExercisePriklijst.jpg \
-    ../../Tools/ToolHometrainer/ToolHometrainerExerciseProfielspot.jpg \
-    ../../Tools/ToolHometrainer/ToolHometrainerExerciseRcf322aAchterkant.jpg \
-    ../../Tools/ToolHometrainer/ToolHometrainerExerciseRgbLamp.jpg \
-    ../../Tools/ToolHometrainer/ToolHometrainerExerciseSafety.jpg \
-    ../../Tools/ToolHometrainer/ToolHometrainerExerciseScartMannetje.jpg \
-    ../../Tools/ToolHometrainer/ToolHometrainerExerciseSchukoVrouwtjeConnector.jpg \
-    ../../Tools/ToolHometrainer/ToolHometrainerExerciseShureSm58.jpg \
-    ../../Tools/ToolHometrainer/ToolHometrainerExerciseSpanningsmeterFluke.jpg \
-    ../../Tools/ToolHometrainer/ToolHometrainerExerciseSpeakerEvent3000.jpg \
-    ../../Tools/ToolHometrainer/ToolHometrainerExerciseSpeakonVrouwSpeakonVrouw.jpg \
-    ../../Tools/ToolHometrainer/ToolHometrainerExerciseSpeakonVrouwtjeConnector.jpg \
-    ../../Tools/ToolHometrainer/ToolHometrainerExerciseSpringV2.jpg \
-    ../../Tools/ToolHometrainer/ToolHometrainerExerciseStandenplot.jpg \
-    ../../Tools/ToolHometrainer/ToolHometrainerExerciseStekkerdoos.jpg \
-    ../../Tools/ToolHometrainer/ToolHometrainerExerciseTbar.jpg \
-    ../../Tools/ToolHometrainer/ToolHometrainerExerciseTest.txt \
-    ../../Tools/ToolHometrainer/ToolHometrainerExerciseTrussHaarspeld.jpg \
-    ../../Tools/ToolHometrainer/ToolHometrainerExerciseTruss.jpg \
-    ../../Tools/ToolHometrainer/ToolHometrainerExerciseTrussklem.jpg \
-    ../../Tools/ToolHometrainer/ToolHometrainerExerciseTrussPin.jpg \
-    ../../Tools/ToolHometrainer/ToolHometrainerExerciseTrussVerbindingsstuk.jpg \
-    ../../Tools/ToolHometrainer/ToolHometrainerExerciseTtBasis.txt \
-    ../../Tools/ToolHometrainer/ToolHometrainerExerciseTtGeluid.txt \
-    ../../Tools/ToolHometrainer/ToolHometrainerExerciseTtLicht.txt \
-    ../../Tools/ToolHometrainer/ToolHometrainerExerciseTulpMannetje.jpg \
-    ../../Tools/ToolHometrainer/ToolHometrainerExerciseVerloopstukje.jpg \
-    ../../Tools/ToolHometrainer/ToolHometrainerExerciseVersterkerSamsonAchterkant.jpg \
-    ../../Tools/ToolHometrainer/ToolHometrainerExerciseVersterkerSamson.jpg \
-    ../../Tools/ToolHometrainer/ToolHometrainerExerciseVgaVrouwVgaVrouw.jpg \
-    ../../Tools/ToolHometrainer/ToolHometrainerExerciseVoetstatief.jpg \
-    ../../Tools/ToolHometrainer/ToolHometrainerExerciseWijkenArnhemGenummerd.bmp \
-    ../../Tools/ToolHometrainer/ToolHometrainerExerciseWijkenArnhem.txt \
-    ../../Tools/ToolHometrainer/ToolHometrainerExerciseXlrMannetjeConnector.jpg \
-    ../../Tools/ToolHometrainer/ToolHometrainerExerciseXlrVrouwtje.jpg \
-    ../../Tools/ToolHometrainer/ToolHometrainerExerciseZekering.jpg \
-    ../../Tools/ToolHometrainer/ToolHometrainerManual.odt \
-    ../../Tools/ToolHometrainer/ToolHometrainerQuestionmark.png \
-    ../../Tools/ToolHometrainer/ToolHometrainerQuestion.png \
-    ../../Tools/ToolHometrainer/ToolHometrainerTitle.png \
-    ../../Tools/ToolHometrainer/ToolHometrainerWelcome.png \
-    ../../Tools/ToolMusicTheory/crosscompiletowindows.sh \
-    ../../Tools/ToolMusicTheory/R.png \
-    ../../Tools/ToolMusicTheory/ToolMusicTheory.png \
-    ../../Tools/ToolPerfectElasticCollision/Licence.txt \
-    ../../Tools/ToolRandomCode/Licence.txt \
-    ../../Tools/ToolRegexTester/Licence.txt \
-    ../../Tools/ToolRegexTester/PicBoost.png \
-    ../../Tools/ToolRegexTester/PicCpp11.png \
-    ../../Tools/ToolRegexTester/PicCppTr1.png \
-    ../../Tools/ToolRegexTester/PicQt.png \
-    ../../Tools/ToolRegexTester/PicR.png \
-    ../../Tools/ToolRichelbilderbeekNlSitemapGenerator/Licence.txt \
-    ../../Tools/ToolRichelbilderbeekNlSitemapGenerator/sitemap_gen.py \
-    ../../Tools/ToolSimMysteryMachine/RichelbilderbeekNlBackground.png \
-    ../../Tools/ToolSimMysteryMachine/ToolSimMysteryMachineArchitecture_1_0.dia \
-    ../../Tools/ToolSimMysteryMachine/ToolSimMysteryMachineArchitecture_1_0.png \
-    ../../Tools/ToolSimMysteryMachine/ToolSimMysteryMachine.png \
-    ../../Tools/ToolSimMysteryMachine/ToolSimMysteryMachineWelcome.png \
-    ../../Tools/ToolSimMysteryMachine/wt.css \
-    ../../Tools/ToolTestChess/ToolTestChess.odp \
-    ../../Tools/ToolTestChess/ToolTestChessWelcome.png \
-    ../../Tools/ToolTestDial/RichelbilderbeekNlBackground.png \
-    ../../Tools/ToolTestDial/ToolTestDialArchitecture.dia \
-    ../../Tools/ToolTestDial/ToolTestDialArchitecture.png \
-    ../../Tools/ToolTestDial/ToolTestDialWelcome_2_1.png \
-    ../../Tools/ToolTestDial/wt.css \
-    ../../Tools/ToolEncranger/Licence.txt \
-    ../../Tools/ToolTestExercise/ToolTestExerciseQuestionmark.png \
-    ../../Tools/ToolTestExercise/ToolTestExerciseQuestion.png \
-    ../../Tools/ToolTestExercise/ToolTestExerciseWelcomeNoLegend.png \
-    ../../Tools/ToolTestExercise/ToolTestExerciseWelcome.png \
-    ../../Tools/ToolTestExercise/wt.css \
-    ../../Tools/ToolTestFunctionParser/Licence.txt \
-    ../../Tools/ToolTestFunctionParser/ToolTestFunctionParserWelcome.png \
-    ../../Tools/ToolTestLed/Licence.txt \
-    ../../Tools/ToolTestNewickVector/Licence.txt \
-    ../../Tools/ToolTestNewickVector/RichelbilderbeekNlBackground.png \
-    ../../Tools/ToolTestNewickVector/R.png \
-    ../../Tools/ToolTestPylos/Licence.txt \
-    ../../Tools/ToolTestPylos/R.png \
-    ../../Tools/ToolTestPylos/ToolTestPylosCanMove.png \
-    ../../Tools/ToolTestPylos/ToolTestPylosDoubleRemoveTest.png \
-    ../../Tools/ToolTestPylos/ToolTestPylosMoveMustRemove.png \
-    ../../Tools/ToolTestPylos/ToolTestPylosMustRemove.png \
-    ../../Tools/ToolTestQrcFile/Licence.txt \
-    ../../Tools/ToolTestQrcFile/R.png \
-    ../../Tools/ToolTestQrcFile/ToolTestQrcFileWelcome.png \
-    ../../Tools/ToolTestQtArrowItems/Licence.txt \
-    ../../Tools/ToolTestQtArrowItems/R.png \
-    ../../Tools/ToolTestQtArrowItems/ToolTestQtArrowItems.png \
-    ../../Tools/ToolTestQtCreatorProFile/Licence.txt \
-    ../../Tools/ToolTestQtCreatorProFile/PicR.png \
-    ../../Tools/ToolTestQtCreatorProFile/ToolTestQtCreatorProFile.png \
-    ../../Tools/ToolTestQtKeyboardFriendlyGraphicsView/Licence.txt \
-    ../../Tools/ToolTestQtKeyboardFriendlyGraphicsView/PicR14x14_opaque.png \
-    ../../Tools/ToolTestQuestion/Questionmark.png \
-    ../../Tools/ToolTestQuestion/question.png \
-    ../../Tools/ToolTestQuestion/RichelbilderbeekNlBackground.png \
-    ../../Tools/ToolTestQuestion/ToolTestQuestionIcon14x14.png \
-    ../../Tools/ToolTestQuestion/ToolTestQuestionWelcome1.png \
-    ../../Tools/ToolTestQuestion/ToolTestQuestionWelcome2.png \
-    ../../Tools/ToolTestQuestion/ToolTestQuestionWelcome.png \
-    ../../Tools/ToolTestShape/ToolTestShapeArchitecture.dia \
-    ../../Tools/ToolTestShape/ToolTestShapeArchitecture.png \
-    ../../Tools/ToolTestShape/ToolTestShapeWelcome.png \
-    ../../Tools/ToolTestShinyButton/ToolTestShinyButton_1_0.png \
-    ../../Tools/ToolTestShinyButton/ToolTestShinyButtonWelcomeNoLegend.png \
-    ../../Tools/ToolTestShinyButton/ToolTestShinyButtonWelcome.png \
-    ../../Tools/ToolPause/Licence.txt \
-    ../../Tools/ToolStateObserver/ToolStateObserverWelcome.png \
-    ../../Tools/ToolStateObserver/Licence.txt \
-    ../../Tools/ToolStateObserver/crosscompiletowindows.sh \
-    ../../Classes/CppStateObserver/Licence.txt \
-    ../../Tools/ToolTestToggleButton/RichelbilderbeekNlBackground.png \
-    ../../Tools/ToolTestToggleButton/ToolTestToggleButtonArchitecture_1_0.dia \
-    ../../Tools/ToolTestToggleButton/ToolTestToggleButtonWelcome.png \
-    ../../Tools/ToolTestToggleButton/wt.css \
-    ../../Tools/ToolTestTwoDigitNewick/doxygen.txt \
-    ../../Tools/ToolTestTwoDigitNewick/Licence.txt \
-    ../../Tools/ToolTestTwoDigitNewick/R.png \
-    ../../Tools/ToolTestTwoDigitNewick/testtwodigitnewicks.sh \
-    ../../Tools/ToolTestQtModels/Licence.txt \
-    ../../Classes/CppQtDisplayPosItem/Licence.txt \
-    ../../Classes/CppQtLeftRightRectItem/Licence.txt \
-    ../../Classes/CppQtModel/Licence.txt \
-    ../../Classes/CppMatrix/Licence.txt \
-    ../../Classes/CppQtRoundedEditRectItem/Licence.txt \
-    ../../Tools/ToolTestQtRoundedEditRectItem/zip.sh \
-    ../../Tools/ToolTestQtRoundedEditRectItem/R.png \
-    ../../Tools/ToolTestQtRoundedEditRectItem/Licence.txt \
-    ../../Tools/ToolTestQtRoundedEditRectItem/crosscompiletowindows.sh \
-    ../../Tools/ToolTestQtRoundedTextRectItem/ToolTestQtRoundedTextRectItem.png \
-    ../../Tools/ToolTestQtRoundedTextRectItem/R.png \
-    ../../Tools/ToolTestQtRoundedTextRectItem/Licence.txt \
-    ../../Tools/ToolKalmanFilterer/zip.sh \
-    ../../Tools/ToolKalmanFilterer/ToolKalmanFiltererWelcome.png \
-    ../../Tools/ToolKalmanFilterer/ToolKalmanFiltererDesktop.pro \
-    ../../Tools/ToolKalmanFilterer/R.png \
-    ../../Tools/ToolKalmanFilterer/PicYellow.png \
-    ../../Tools/ToolKalmanFilterer/PicTransparent.png \
-    ../../Tools/ToolKalmanFilterer/PicRed.png \
-    ../../Tools/ToolKalmanFilterer/PicOrange.png \
-    ../../Tools/ToolKalmanFilterer/PicGreen.png \
-    ../../Tools/ToolKalmanFilterer/PicBlack.png \
-    ../../Tools/ToolKalmanFilterer/Licence.txt \
-    ../../Tools/ToolKalmanFilterer/crosscompile.sh \
-    ../../Classes/CppKalmanFilter/Licence.txt \
-    ../../Classes/CppQtMatrix/Licence.txt \
-    ../../Classes/CppQtExercise/Licence.txt \
-    ../../Classes/CppRectangle/Licence.txt \
-    ../../Games/GameK3OpEenRij/R.png \
-    ../../Games/GameK3OpEenRij/Licence.txt \
-    ../../Games/GameK3OpEenRij/K3OpEenRijKristelGrey.png \
-    ../../Games/GameK3OpEenRij/K3OpEenRijKristel.png \
-    ../../Games/GameK3OpEenRij/K3OpEenRijKathleenGrey.png \
-    ../../Games/GameK3OpEenRij/K3OpEenRijKathleen.png \
-    ../../Games/GameK3OpEenRij/K3OpEenRijKarenGrey.png \
-    ../../Games/GameK3OpEenRij/K3OpEenRijKaren.png \
-    ../../Games/GameK3OpEenRij/K3OpEenRijJosjeGrey.png \
-    ../../Games/GameK3OpEenRij/K3OpEenRijJosje.png \
-    ../../Games/GameK3OpEenRij/K3OpEenRijInstructions3.png \
-    ../../Games/GameK3OpEenRij/K3OpEenRijInstructions2.png \
-    ../../Games/GameK3OpEenRij/K3OpEenRijInstructions1.png \
-    ../../Games/GameK3OpEenRij/K3OpEenRijIcon.png \
-    ../../Games/GameK3OpEenRij/K3OpEenRijEmpty.png \
-    ../../Games/GameK3OpEenRij/K3OpEenRijComputerGrey.png \
-    ../../Games/GameK3OpEenRij/K3OpEenRijComputer3.png \
-    ../../Games/GameK3OpEenRij/K3OpEenRijComputer2.png \
-    ../../Games/GameK3OpEenRij/K3OpEenRijComputer1.png \
-    ../../Games/GameK3OpEenRij/K3OpEenRijBackgroundGrey.png \
-    ../../Games/GameK3OpEenRij/K3OpEenRijBackgroundColored.png \
-    ../../Games/GameK3OpEenRij/K3OpEenRijBackground.png \
-    ../../Games/GameK3OpEenRij/K3OpEenRij.css \
-    ../../Tools/ToolTestApproximator/ToolTestApproximatorWelcome.png \
-    ../../Tools/ToolTestApproximator/Licence.txt \
-    ../../Tools/ToolTestMultiApproximator/ToolTestMultiApproximatorWelcome.png \
-    ../../Tools/ToolTestMultiApproximator/Licence.txt \
-    ../../Tools/ToolTestSimpleLinearRegression/ToolTestSimpleLinearRegressionWelcome.png \
-    ../../Tools/ToolTestSimpleLinearRegression/Licence.txt \
-    ProjectRichelBilderbeek.pri \
-    ../../Classes/CppApproximator/Licence.txt \
-    ../../Tools/ToolSimplifyNewick/Licence.txt \
-    ../../Tools/ToolEncranger/ToolEncrangerWelcome.png \
-    ../../Tools/ToolEncranger/ToolEncrangerArrowUp34x34.png \
-    ../../Tools/ToolEncranger/ToolEncrangerArrowUp16x16.png \
-    ../../Tools/ToolEncranger/ToolEncrangerArrowDown34x34.png \
-    ../../Tools/ToolEncranger/ToolEncrangerArrowDown16x16.png \
-    ../../Tools/ToolEncranger/R.png \
-    ../../Tools/ToolGrayCoder/Licence.txt \
-    ../../Tools/ToolTestCanvas/ToolTestCanvasWelcome.png \
-    ../../Tools/ToolTestCanvas/Licence.txt \
-    ../../Tools/ToolTestMultipleChoiceQuestion/ToolTestMultipleChoiceQuestionWelcome2.png \
-    ../../Tools/ToolTestMultipleChoiceQuestion/ToolTestMultipleChoiceQuestionWelcome1.png \
-    ../../Tools/ToolTestMultipleChoiceQuestion/ToolTestMultipleChoiceQuestionWelcome.png \
-    ../../Tools/ToolTestMultipleChoiceQuestion/ToolTestMultipleChoiceQuestionIcon14x14.png \
-    ../../Tools/ToolTestMultipleChoiceQuestion/ToolTestMultipleChoiceQuestion.pri \
-    ../../Tools/ToolTestMultipleChoiceQuestion/RichelbilderbeekNlBackground.png \
-    ../../Tools/ToolTestMultipleChoiceQuestion/Questionmark.png \
-    ../../Tools/ToolTestMultipleChoiceQuestion/Question.png \
-    ../../Tools/ToolTestOpenQuestion/ToolTestOpenQuestionWelcome2.png \
-    ../../Tools/ToolTestOpenQuestion/ToolTestOpenQuestionWelcome1.png \
-    ../../Tools/ToolTestOpenQuestion/ToolTestOpenQuestionWelcome.png \
-    ../../Tools/ToolTestOpenQuestion/ToolTestOpenQuestionIcon14x14.png \
-    ../../Tools/ToolTestOpenQuestion/RichelbilderbeekNlBackground.png \
-    ../../Tools/ToolTestOpenQuestion/Questionmark.png \
-    ../../Tools/ToolTestOpenQuestion/Question.png \
-    ../../Classes/CppQtDotMatrix/Licence.txt
+#
+#
+# Type of compile
+#
+#
 
-#
-#
-# Qwt
-#
-#
+CONFIG(release, debug|release) {
+  DEFINES += NDEBUG NTRACE_BILDERBIKKEL
+}
+
+QMAKE_CXXFLAGS += -std=c++11 -Wall -Wextra -Weffc++
 
 unix {
-
-  exists(/usr/include/qwt) {
-    message(qwt)
-    INCLUDEPATH += /usr/include/qwt
-    LIBS += -lqwt
-  }
-
-  exists(/usr/include/qwt-qt4) {
-    message(qwt-qt4)
-    INCLUDEPATH += /usr/include/qwt-qt4
-    LIBS += -lqwt-qt4
-  }
+  QMAKE_CXXFLAGS += -Werror
 }
+
+#
+#
+# Big integer
+#
+#
+INCLUDEPATH += \
+    ../../Libraries/bigint-2010.04.30
+
+HEADERS += \
+    ../../Libraries/bigint-2010.04.30/BigIntegerAlgorithms.hh \
+    ../../Libraries/bigint-2010.04.30/BigInteger.hh \
+    ../../Libraries/bigint-2010.04.30/BigIntegerLibrary.hh \
+    ../../Libraries/bigint-2010.04.30/BigIntegerUtils.hh \
+    ../../Libraries/bigint-2010.04.30/BigUnsigned.hh \
+    ../../Libraries/bigint-2010.04.30/BigUnsignedInABase.hh \
+    ../../Libraries/bigint-2010.04.30/NumberlikeArray.hh
+
+SOURCES += \
+    ../../Libraries/bigint-2010.04.30/BigIntegerAlgorithms.cc \
+    ../../Libraries/bigint-2010.04.30/BigInteger.cc \
+    ../../Libraries/bigint-2010.04.30/BigIntegerUtils.cc \
+    ../../Libraries/bigint-2010.04.30/BigUnsigned.cc \
+    ../../Libraries/bigint-2010.04.30/BigUnsignedInABase.cc
+
+#
+#
+# Boost
+#
+#
 
 win32 {
-  message(Windows: Qwt: link dynamically)
-  INCLUDEPATH+= ../../Libraries/qwt-6.1.0/src
-  LIBS+= -L../../Libraries/qwt-6.1.0/lib
-
-  CONFIG(release, debug|release) {
-    message(Windows: Qwt: Linking to qwt)
-    LIBS += -lqwt
-  }
-
-  CONFIG(debug, debug|release) {
-    message(Windows: Qwt: Linking to qwtd)
-    LIBS += -lqwtd
-  }
+  INCLUDEPATH += \
+    ../../Libraries/boost_1_54_0
 }
+
+
+#
+#
+# Warp's function parser
+#
+#
+INCLUDEPATH += \
+  ../../Libraries/fparser4.5.1
+
+HEADERS += \
+  ../../Libraries/fparser4.5.1/extrasrc/fpaux.hh \
+  ../../Libraries/fparser4.5.1/extrasrc/fptypes.hh \
+  ../../Libraries/fparser4.5.1/fparser_gmpint.hh \
+  ../../Libraries/fparser4.5.1/fparser.hh \
+  ../../Libraries/fparser4.5.1/fparser_mpfr.hh \
+  ../../Libraries/fparser4.5.1/fpconfig.hh
+
+SOURCES += \
+  ../../Libraries/fparser4.5.1/fparser.cc \
+  ../../Libraries/fparser4.5.1/fpoptimizer.cc
+
+
+OTHER_FILES += \
+  ../../Libraries/fparser4.5.1/extrasrc/fp_identifier_parser.inc \
+  ../../Libraries/fparser4.5.1/extrasrc/fp_opcode_add.inc

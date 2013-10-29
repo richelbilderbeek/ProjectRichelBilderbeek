@@ -25,8 +25,6 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 namespace ribi {
 
-namespace RichelBilderbeek {
-
 struct Program;
 
 struct GalleryMenuDialog
@@ -66,10 +64,8 @@ struct GalleryMenuDialog
   ///<p>&nbsp;</p>
   ///<p>&nbsp;</p>
   ///<p>&nbsp;</p>
-  static const std::vector<std::string> ToHtml(const RichelBilderbeek::Program& p);
+  static const std::vector<std::string> ToHtml(const Program& p);
 };
-
-} //~namespace RichelBilderbeek
 
 } //~namespace ribi
 

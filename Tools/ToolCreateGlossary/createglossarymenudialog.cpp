@@ -25,7 +25,22 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "createglossarymaindialog.h"
 #include "htmlpage.h"
 #include "hometrainerresources.h"
+#include "richelbilderbeekprogram.h"
 #include "trace.h"
+
+ribi::CreateGlossaryMenuDialog::CreateGlossaryMenuDialog()
+{
+  #ifndef NDEBUG
+  Test();
+  #endif
+}
+
+int ribi::CreateGlossaryMenuDialog::ExecuteSpecific(const std::vector<std::string>&) noexcept
+{
+  //Just create the glossaries, whatever the input was
+  CreateGlossaryMainDialog();
+  return 0;
+}
 
 const ribi::About ribi::CreateGlossaryMenuDialog::GetAbout() const noexcept
 {
@@ -40,6 +55,29 @@ const ribi::About ribi::CreateGlossaryMenuDialog::GetAbout() const noexcept
     GetVersionHistory());
   a.AddLibrary("HtmlPage version: " + HtmlPage::GetVersion());
   return a;
+}
+
+const ribi::Help ribi::CreateGlossaryMenuDialog::GetHelp() const noexcept
+{
+  return ribi::Help(
+    GetAbout().GetFileTitle(),
+    GetAbout().GetFileDescription(),
+    {
+      //Options
+    },
+    {
+      //Example uses
+    }
+  );
+}
+
+const boost::shared_ptr<const ribi::Program> ribi::CreateGlossaryMenuDialog::GetProgram() const noexcept
+{
+  const boost::shared_ptr<const ribi::Program> p {
+    new ProgramCreateGlossary
+  };
+  assert(p);
+  return p;
 }
 
 const std::string ribi::CreateGlossaryMenuDialog::GetVersion() const noexcept
@@ -65,7 +103,6 @@ void ribi::CreateGlossaryMenuDialog::Test() noexcept
     is_tested = true;
   }
   TRACE("Starting ribi::CreateGlossaryMenuDialog::Test()");
-  CreateGlossaryMenuDialog().Execute( { "Hometrainer", "-e" } );
   CreateGlossaryMainDialog();
   TRACE("Finished ribi::CreateGlossaryMenuDialog::Test()");
 }

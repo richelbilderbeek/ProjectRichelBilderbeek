@@ -49,13 +49,17 @@ public:
   QtAsciiArterMainDialog& operator=(const QtAsciiArterMainDialog&) = delete;
   ~QtAsciiArterMainDialog() noexcept;
 
+  const std::string& GetFilename() const noexcept { return m_filename; }
+  int GetWidth() const noexcept;
+
 protected:
   void keyPressEvent(QKeyEvent *);
 
 private:
   Ui::QtAsciiArterMainDialog *ui;
-  const boost::scoped_ptr<AsciiArterMainDialog> m_dialog;
-  void DrawAsciiArt();
+  boost::scoped_ptr<AsciiArterMainDialog> m_dialog;
+  std::string m_filename;
+  void OnAnyChange();
 
 
 private slots:

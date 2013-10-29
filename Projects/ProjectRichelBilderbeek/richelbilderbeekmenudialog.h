@@ -26,7 +26,9 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/shared_ptr.hpp>
+#include <boost/bimap.hpp>
 #include "about.h"
 #include "help.h"
 #include "menudialog.h"
@@ -51,18 +53,22 @@ struct ProjectRichelBilderbeekMenuDialog : public MenuDialog
   const boost::shared_ptr<const Program> GetProgram() const noexcept;
 
   ///Get every Program by Richel Bilderbeek
-  const std::vector<boost::shared_ptr<Program> >& GetPrograms() const noexcept { return m_programs; }
+  //const std::vector<boost::shared_ptr<Program> >& GetPrograms() const noexcept { return m_programs; }
 
   const std::string GetVersion() const noexcept;
   const std::vector<std::string> GetVersionHistory() const noexcept;
 
 
   private:
-  ///Create all menus
-  static const std::vector<boost::shared_ptr<MenuDialog> > CreateMenus() noexcept;
+
+  ///Created by lazy initialization
+  static boost::bimap<ProgramType,boost::shared_ptr<MenuDialog>> sm_map_to_menu;
 
   ///Every Program by Richel Bilderbeek
-  const std::vector<boost::shared_ptr<Program> > m_programs;
+  //const std::vector<boost::shared_ptr<Program> > m_programs;
+
+  ///Create all menus
+  static const boost::bimap<ProgramType,boost::shared_ptr<MenuDialog> > GetEnumMenuMap() noexcept;
 
   ///Shows all programs' statuses
   void ShowStatus() const noexcept;

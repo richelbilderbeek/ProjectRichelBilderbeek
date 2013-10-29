@@ -27,6 +27,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <boost/bind.hpp>
 #include <boost/lambda/bind.hpp>
 #include <boost/lambda/lambda.hpp>
+#include <boost/lexical_cast.hpp>
 #include <boost/numeric/conversion/cast.hpp>
 
 #include <QFile>
@@ -180,13 +181,20 @@ void ribi::QtMultipleChoiceQuestionDialog::on_button_submit_clicked() noexcept
     boost::bind(&QRadioButton::isChecked,boost::lambda::_1)
       == true) == buttons.end()) return;
 
-  const std::string s =
-    (*std::find_if(
-      buttons.begin(), buttons.end(),
-      boost::bind(&QRadioButton::isChecked,boost::lambda::_1)
-        == true))->text().toStdString();
+  const std::string index {
+    boost::lexical_cast<std::string>(
+      std::distance(
+        buttons.begin(),
+        std::find_if(
+          buttons.begin(), buttons.end(),
+          boost::bind(&QRadioButton::isChecked,boost::lambda::_1) == true
+        )
+      )
+    )
+  };
 
-  this->m_dialog->Submit(s);
+
+  this->m_dialog->Submit(index);
 
   const bool is_correct = m_dialog->IsAnswerCorrect();
 

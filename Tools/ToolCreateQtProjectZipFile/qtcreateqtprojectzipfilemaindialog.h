@@ -49,10 +49,6 @@ private:
   ///Create a script from a valid folder
   void CreateScript(const std::string source_folder) noexcept;
 
-  ///Determines if a filename is a regular file
-  ///From http://www.richelbilderbeek.nl/CppIsRegularFile.htm
-  static bool IsRegularFile(const std::string& filename) noexcept;
-
   void keyPressEvent(QKeyEvent *) noexcept;
 
 

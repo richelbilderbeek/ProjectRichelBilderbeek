@@ -37,9 +37,10 @@ struct QuestionDialog;
 ///Qt dialog for QuestionDialog
 struct QtQuestionDialog : public QtHideAndShowDialog
 {
-  explicit QtQuestionDialog(QWidget *parent = 0);
+  explicit QtQuestionDialog(
+    QWidget *parent = 0);
 
-  virtual ~QtQuestionDialog() noexcept {}
+  virtual ~QtQuestionDialog() noexcept {};
 
   ///Obtain a read-only pointer to the dialog
   virtual const boost::shared_ptr<const QuestionDialog> GetDialog() const = 0;

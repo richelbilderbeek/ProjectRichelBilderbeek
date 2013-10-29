@@ -94,9 +94,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #pragma GCC diagnostic pop
 
-ribi::QtHideAndShowDialog * ribi::QtRichelBilderbeekProgram::CreateQtMenuDialog(const RichelBilderbeek::ProgramType type)
+ribi::QtHideAndShowDialog * ribi::QtRichelBilderbeekProgram::CreateQtMenuDialog(const ProgramType type)
 {
-  using namespace RichelBilderbeek;
   QtHideAndShowDialog *  p = nullptr;
   switch (type)
   {
@@ -260,22 +259,22 @@ ribi::QtHideAndShowDialog * ribi::QtRichelBilderbeekProgram::CreateQtMenuDialog(
     case ProgramType::xeNonZero: break;
     case ProgramType::zork: break;
     case ProgramType::n_types:
-      assert(!"Unimplemented RichelBilderbeek::ProgramType");
-      throw std::logic_error("Unimplemented RichelBilderbeek::ProgramType");
+      assert(!"Unimplemented ProgramType");
+      throw std::logic_error("Unimplemented ProgramType");
   }
   //p might be nullptr
   return p;
 }
 
 
-ribi::QtHideAndShowDialog * ribi::QtRichelBilderbeekProgram::CreateQtPlaceholderDialog(const RichelBilderbeek::ProgramType type)
+ribi::QtHideAndShowDialog * ribi::QtRichelBilderbeekProgram::CreateQtPlaceholderDialog(const ProgramType type)
 {
   QtHideAndShowDialog * const d = new QtHideAndShowDialog;
   assert(!d->layout());
   QVBoxLayout * const layout = new QVBoxLayout;
   d->setLayout(layout);
   assert(d->layout());
-  const boost::shared_ptr<RichelBilderbeek::Program> p = RichelBilderbeek::Program::CreateProgram(type);
+  const boost::shared_ptr<Program> p = Program::CreateProgram(type);
   assert(p);
   {
     const std::string title = p->GetScreenName() + "(placeholder)";

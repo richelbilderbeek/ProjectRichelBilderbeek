@@ -34,6 +34,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <QMessageBox>
 
 #include "createqtprojectzipfilemenudialog.h"
+#include "createqtprojectzipfilemaindialog.h"
+#include "fileio.h"
 #include "qtcreatorprofilezipscript.h"
 #include "trace.h"
 #include "ui_qtcreateqtprojectzipfilemaindialog.h"
@@ -93,15 +95,8 @@ void ribi::QtCreateQtProjectZipFileMainDialog::CreateScript(const std::string so
     ui->text->setPlainText( s.str().c_str() );
   }
   */
-
-  ui->text->setPlainText(QtCreatorProFileZipScript::CreateScript(source_folder).c_str());
-}
-
-bool ribi::QtCreateQtProjectZipFileMainDialog::IsRegularFile(const std::string& filename) noexcept
-{
-  std::fstream f;
-  f.open(filename.c_str(),std::ios::in);
-  return f.is_open();
+  CreateQtProjectZipFileMainDialog d(source_folder);
+  ui->text->setPlainText(d.GetScript().c_str());
 }
 
 void ribi::QtCreateQtProjectZipFileMainDialog::keyPressEvent(QKeyEvent * event) noexcept
@@ -143,7 +138,7 @@ void ribi::QtCreateQtProjectZipFileMainDialog::Test() noexcept
   const int n_tests = std::count_if(
     pro_filenames.begin(), pro_filenames.end(),
       [](const std::string& filename)
-      { return IsRegularFile(filename); }
+      { return fileio::IsRegularFile(filename); }
     );
   const std::string s = "Testing "
     + boost::lexical_cast<std::string>(n_tests)
@@ -153,12 +148,18 @@ void ribi::QtCreateQtProjectZipFileMainDialog::Test() noexcept
 
   for (const std::string& pro_filename: pro_filenames)
   {
-    if (!IsRegularFile(pro_filename)) continue;
-    //TRACE(pro_filename);
+    if (!fileio::IsRegularFile(pro_filename)) continue;
+    const CreateQtProjectZipFileMainDialog d(pro_filename);
+    assert(!d.GetScript().empty());
+  }
+
+  for (const std::string& pro_filename: pro_filenames)
+  {
+    if (!fileio::IsRegularFile(pro_filename)) continue;
     const boost::shared_ptr<const QtCreatorProFile> pro_file(
       new QtCreatorProFile(pro_filename));
     assert(pro_file);
-    assert(IsRegularFile(pro_filename));
+    assert(fileio::IsRegularFile(pro_filename));
     const boost::shared_ptr<const QtCreatorProFileZipScript> script(
       new QtCreatorProFileZipScript(pro_file));
     assert(script);

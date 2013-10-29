@@ -34,7 +34,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "richelbilderbeekprogramstatus.h"
 #pragma GCC diagnostic pop
 
-const std::vector<std::string> ribi::RichelBilderbeek::GalleryMenuDialog::CreateHtmlClassGallery()
+const std::vector<std::string> ribi::GalleryMenuDialog::CreateHtmlClassGallery()
 {
   std::vector<std::string> v;
 
@@ -58,12 +58,12 @@ const std::vector<std::string> ribi::RichelBilderbeek::GalleryMenuDialog::Create
   v.push_back("<p>&nbsp;</p>");
   v.push_back("<p>&nbsp;</p>");
 
-  const std::vector<boost::shared_ptr<RichelBilderbeek::Program> > ps = RichelBilderbeek::Program::GetAllPrograms();
+  const std::vector<boost::shared_ptr<Program> > ps = Program::GetAllPrograms();
 
   std::for_each(ps.begin(),ps.end(),
-    [&v](const boost::shared_ptr<RichelBilderbeek::Program>& p)
+    [&v](const boost::shared_ptr<Program>& p)
     {
-      if (dynamic_cast<RichelBilderbeek::ProgramClass*>(p.get()))
+      if (dynamic_cast<ProgramClass*>(p.get()))
       {
         //Add HTML
         std::vector<std::string> w = ToHtml(*p.get());
@@ -85,7 +85,7 @@ const std::vector<std::string> ribi::RichelBilderbeek::GalleryMenuDialog::Create
   return v;
 }
 
-const std::vector<std::string> ribi::RichelBilderbeek::GalleryMenuDialog::CreateHtmlGameGallery()
+const std::vector<std::string> ribi::GalleryMenuDialog::CreateHtmlGameGallery()
 {
   std::vector<std::string> v;
 
@@ -108,12 +108,12 @@ const std::vector<std::string> ribi::RichelBilderbeek::GalleryMenuDialog::Create
   v.push_back("<p>&nbsp;</p>");
   v.push_back("<p>&nbsp;</p>");
 
-  const std::vector<boost::shared_ptr<RichelBilderbeek::Program> > ps = RichelBilderbeek::Program::GetAllPrograms();
+  const std::vector<boost::shared_ptr<Program> > ps = Program::GetAllPrograms();
 
   std::for_each(ps.begin(),ps.end(),
-    [&v](const boost::shared_ptr<RichelBilderbeek::Program>& p)
+    [&v](const boost::shared_ptr<Program>& p)
     {
-      if (dynamic_cast<RichelBilderbeek::ProgramGame*>(p.get()))
+      if (dynamic_cast<ProgramGame*>(p.get()))
       {
         //Add HTML
         std::vector<std::string> w = ToHtml(*p.get());
@@ -135,7 +135,7 @@ const std::vector<std::string> ribi::RichelBilderbeek::GalleryMenuDialog::Create
   return v;
 }
 
-const std::vector<std::string> ribi::RichelBilderbeek::GalleryMenuDialog::CreateHtmlProjectGallery()
+const std::vector<std::string> ribi::GalleryMenuDialog::CreateHtmlProjectGallery()
 {
   std::vector<std::string> v;
 
@@ -160,12 +160,12 @@ const std::vector<std::string> ribi::RichelBilderbeek::GalleryMenuDialog::Create
   v.push_back("<p>&nbsp;</p>");
   v.push_back("<p>&nbsp;</p>");
 
-  const std::vector<boost::shared_ptr<RichelBilderbeek::Program> > ps = RichelBilderbeek::Program::GetAllPrograms();
+  const std::vector<boost::shared_ptr<Program> > ps = Program::GetAllPrograms();
 
   std::for_each(ps.begin(),ps.end(),
-    [&v](const boost::shared_ptr<RichelBilderbeek::Program>& p)
+    [&v](const boost::shared_ptr<Program>& p)
     {
-      if (dynamic_cast<RichelBilderbeek::ProgramProject*>(p.get()))
+      if (dynamic_cast<ProgramProject*>(p.get()))
       {
         //Add HTML
         std::vector<std::string> w = ToHtml(*p.get());
@@ -188,7 +188,7 @@ const std::vector<std::string> ribi::RichelBilderbeek::GalleryMenuDialog::Create
   return v;
 }
 
-const std::vector<std::string> ribi::RichelBilderbeek::GalleryMenuDialog::CreateHtmlStatus()
+const std::vector<std::string> ribi::GalleryMenuDialog::CreateHtmlStatus()
 {
   std::vector<std::string> v;
 
@@ -203,7 +203,7 @@ const std::vector<std::string> ribi::RichelBilderbeek::GalleryMenuDialog::Create
     v = h->ToHtml();
   }
 
-  RichelBilderbeek::QtResources r;
+  QtResources r;
 
   v.push_back("<table border=\"1\">");
   v.push_back(
@@ -215,10 +215,10 @@ const std::vector<std::string> ribi::RichelBilderbeek::GalleryMenuDialog::Create
       "<th><img src=\"" +  r.GetWeb() +"\" alt=\"Web application\"/></th>"
     "</tr>");
 
-  const std::vector<boost::shared_ptr<RichelBilderbeek::Program> > ps = RichelBilderbeek::Program::GetAllPrograms();
+  const std::vector<boost::shared_ptr<Program> > ps = Program::GetAllPrograms();
 
   std::for_each(ps.begin(),ps.end(),
-    [&v,r](const boost::shared_ptr<RichelBilderbeek::Program>& p)
+    [&v,r](const boost::shared_ptr<Program>& p)
     {
       std::string s
         = "<tr>"
@@ -265,7 +265,7 @@ const std::vector<std::string> ribi::RichelBilderbeek::GalleryMenuDialog::Create
   return v;
 }
 
-const std::vector<std::string> ribi::RichelBilderbeek::GalleryMenuDialog::CreateHtmlToolGallery()
+const std::vector<std::string> ribi::GalleryMenuDialog::CreateHtmlToolGallery()
 {
   std::vector<std::string> v;
 
@@ -290,12 +290,12 @@ const std::vector<std::string> ribi::RichelBilderbeek::GalleryMenuDialog::Create
   v.push_back("<p>&nbsp;</p>");
   v.push_back("<p>&nbsp;</p>");
 
-  const std::vector<boost::shared_ptr<RichelBilderbeek::Program> > ps = RichelBilderbeek::Program::GetAllPrograms();
+  const std::vector<boost::shared_ptr<Program> > ps = Program::GetAllPrograms();
 
   std::for_each(ps.begin(),ps.end(),
-    [&v](const boost::shared_ptr<RichelBilderbeek::Program>& p)
+    [&v](const boost::shared_ptr<Program>& p)
     {
-      if (dynamic_cast<RichelBilderbeek::ProgramTool*>(p.get()))
+      if (dynamic_cast<ProgramTool*>(p.get()))
       {
         //Add HTML
         std::vector<std::string> w = ToHtml(*p.get());
@@ -318,7 +318,7 @@ const std::vector<std::string> ribi::RichelBilderbeek::GalleryMenuDialog::Create
   return v;
 }
 
-const ribi::About ribi::RichelBilderbeek::GalleryMenuDialog::GetAbout() noexcept
+const ribi::About ribi::GalleryMenuDialog::GetAbout() noexcept
 {
   About a(
     "Richel Bilderbeek",
@@ -329,24 +329,24 @@ const ribi::About ribi::RichelBilderbeek::GalleryMenuDialog::GetAbout() noexcept
     "http://www.richelbilderbeek.nl/ToolRichelBilderbeekGallery.htm",
     GetVersion(),
     GetVersionHistory());
-  a.AddLibrary("RichelBilderbeek::Program version: " + RichelBilderbeek::Program::GetVersion());
-  a.AddLibrary("RichelBilderbeek::ProgramStatus version: " + RichelBilderbeek::ProgramStatusVersion::GetVersion());
+  a.AddLibrary("Program version: " + Program::GetVersion());
+  a.AddLibrary("ProgramStatus version: " + ProgramStatusVersion::GetVersion());
   return a;
 }
 
-const std::string ribi::RichelBilderbeek::GalleryMenuDialog::GetVersion() noexcept
+const std::string ribi::GalleryMenuDialog::GetVersion() noexcept
 {
   return "1.0";
 }
 
-const std::vector<std::string> ribi::RichelBilderbeek::GalleryMenuDialog::GetVersionHistory() noexcept
+const std::vector<std::string> ribi::GalleryMenuDialog::GetVersionHistory() noexcept
 {
   return {
     "2012-02-20: Version 1.0: initial version"
   };
 }
 
-void ribi::RichelBilderbeek::GalleryMenuDialog::Test()
+void ribi::GalleryMenuDialog::Test()
 {
   {
     static bool is_tested = false;
@@ -363,7 +363,7 @@ void ribi::RichelBilderbeek::GalleryMenuDialog::Test()
   }
 }
 
-const std::vector<std::string> ribi::RichelBilderbeek::GalleryMenuDialog::ToHtml(const RichelBilderbeek::Program& p)
+const std::vector<std::string> ribi::GalleryMenuDialog::ToHtml(const Program& p)
 {
   std::vector<std::string> v;
   {

@@ -21,13 +21,44 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #include "createqtprojectzipfilemenudialog.h"
+
+#include "fileio.h"
 #include "qrcfile.h"
 #include "qtcreatorprofile.h"
+#include "createqtprojectzipfilemaindialog.h"
 #include "qtcreatorprofilezipscript.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
 
-const ribi::About ribi::CreateQtProjectZipFile::MenuDialog::GetAbout() noexcept
+ribi::CreateQtProjectZipFile::MenuDialog::MenuDialog()
+{
+  #ifndef NDEBUG
+  Test();
+  #endif
+}
+
+int ribi::CreateQtProjectZipFile::MenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) noexcept
+{
+  const int argc = static_cast<int>(argv.size());
+  assert(argc > 0);
+  if (argc != 3 || (argv[1] != "-f" && argv[1] != "--folder"))
+  {
+    std::cout << this->GetHelp() << '\n';
+    return 1;
+  }
+  const std::string folder { argv[2] };
+  if (!fileio::IsFolder(folder))
+  {
+    std::cout
+      << "Invalid folder '" << folder << "'\n"
+      << "Please supply a valid folder name\n";
+    return 1;
+  }
+  std::cout << CreateQtProjectZipFileMainDialog(folder).GetScript() << '\n';
+  return 0;
+}
+
+const ribi::About ribi::CreateQtProjectZipFile::MenuDialog::GetAbout() const noexcept
 {
   About a(
     "Richel Bilderbeek",
@@ -45,12 +76,38 @@ const ribi::About ribi::CreateQtProjectZipFile::MenuDialog::GetAbout() noexcept
   return a;
 }
 
-const std::string ribi::CreateQtProjectZipFile::MenuDialog::GetVersion() noexcept
+const ribi::Help ribi::CreateQtProjectZipFile::MenuDialog::GetHelp() const noexcept
+{
+  return Help(
+    this->GetAbout().GetFileTitle(),
+    this->GetAbout().GetFileDescription(),
+    {
+      //Options
+      Help::Option('f',"folder","the source folder to have a zip script generated of")
+    },
+    {
+      //Example uses
+      "CreateQtProjectZipFile -f MyFolder",
+      "CreateQtProjectZipFile --folder MyFolder",
+    }
+  );
+}
+
+const boost::shared_ptr<const ribi::Program> ribi::CreateQtProjectZipFile::MenuDialog::GetProgram() const noexcept
+{
+  const boost::shared_ptr<const ribi::Program> p {
+    new ProgramCreateQtProjectZipFile
+  };
+  assert(p);
+  return p;
+}
+
+const std::string ribi::CreateQtProjectZipFile::MenuDialog::GetVersion() const noexcept
 {
   return "2.0";
 }
 
-const std::vector<std::string> ribi::CreateQtProjectZipFile::MenuDialog::GetVersionHistory() noexcept
+const std::vector<std::string> ribi::CreateQtProjectZipFile::MenuDialog::GetVersionHistory() const noexcept
 {
   return {
     "2012-02-25: version 1.0: initial version",
@@ -60,3 +117,16 @@ const std::vector<std::string> ribi::CreateQtProjectZipFile::MenuDialog::GetVers
     "2013-05-19: version 2.0: support for any depth of folder tree"
   };
 }
+
+#ifndef NDEBUG
+void ribi::CreateQtProjectZipFile::MenuDialog::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting ribi::CreateQtProjectZipFile::MenuDialog::Test()");
+  TRACE("Finished ribi::CreateQtProjectZipFile::MenuDialog::Test()");
+}
+#endif

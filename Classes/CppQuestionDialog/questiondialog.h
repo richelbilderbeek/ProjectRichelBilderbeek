@@ -88,8 +88,6 @@ struct QuestionDialog
   void SetIsCorrect(const bool is_correct);
 
   private:
-  ///Has the user already submitted an answer?
-  //bool m_has_submitted;
 
   ///Was the submitted answer correct?
   ///Emulates a bool*:

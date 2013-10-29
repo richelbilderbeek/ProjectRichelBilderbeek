@@ -59,13 +59,12 @@ void ribi::QtCreateQtProjectZipFileMenuDialog::on_button_start_clicked() noexcep
 void ribi::QtCreateQtProjectZipFileMenuDialog::on_button_about_clicked() noexcept
 {
   this->hide();
-  About a = CreateQtProjectZipFile::MenuDialog::GetAbout();
+  About a = CreateQtProjectZipFile::MenuDialog().GetAbout();
   a.AddLibrary("QtHideAndShowDialog version: " + QtHideAndShowDialog::GetVersion());
   QtAboutDialog d(a);
   d.setWindowIcon(this->windowIcon());
   d.setStyleSheet(this->styleSheet());
-  d.exec();
-  this->show();
+  this->ShowChild(&d);
 }
 
 void ribi::QtCreateQtProjectZipFileMenuDialog::on_button_quit_clicked() noexcept

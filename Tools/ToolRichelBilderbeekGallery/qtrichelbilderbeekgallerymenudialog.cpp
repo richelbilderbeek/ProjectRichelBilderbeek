@@ -45,7 +45,7 @@ ribi::QtRichelBilderbeekGalleryMenuDialog::QtRichelBilderbeekGalleryMenuDialog(Q
   ui(new Ui::QtRichelBilderbeekGalleryMenuDialog)
 {
   #ifndef NDEBUG
-  RichelBilderbeek::GalleryMenuDialog::Test();
+  GalleryMenuDialog::Test();
   #endif
   ui->setupUi(this);
 }
@@ -73,9 +73,9 @@ void ribi::QtRichelBilderbeekGalleryMenuDialog::keyPressEvent(QKeyEvent* e)
 void ribi::QtRichelBilderbeekGalleryMenuDialog::on_button_about_clicked()
 {
   this->hide();
-  About a = RichelBilderbeek::GalleryMenuDialog::GetAbout();
+  About a = GalleryMenuDialog::GetAbout();
   a.AddLibrary("QtRichelBilderbeekGalleryDialog version: " + QtRichelBilderbeekGalleryDialog::GetVersion());
-  //a.AddLibrary("QtRichelBilderbeekResources version: " + RichelBilderbeek::QtResources::GetVersion());
+  //a.AddLibrary("QtRichelBilderbeekResources version: " + QtResources::GetVersion());
   QtAboutDialog d(a);
   d.setWindowIcon(this->windowIcon());
   d.setStyleSheet(this->styleSheet());
@@ -99,27 +99,27 @@ void ribi::QtRichelBilderbeekGalleryMenuDialog::on_button_start_clicked()
 void ribi::QtRichelBilderbeekGalleryMenuDialog::on_button_create_html_clicked()
 {
   {
-    const std::vector<std::string> v = RichelBilderbeek::GalleryMenuDialog::CreateHtmlClassGallery();
+    const std::vector<std::string> v = GalleryMenuDialog::CreateHtmlClassGallery();
     std::ofstream f("CppClassGallery.htm");
     std::copy(v.begin(),v.end(),std::ostream_iterator<std::string>(f,"\n"));
   }
   {
-    const std::vector<std::string> v = RichelBilderbeek::GalleryMenuDialog::CreateHtmlGameGallery();
+    const std::vector<std::string> v = GalleryMenuDialog::CreateHtmlGameGallery();
     std::ofstream f("GameGallery.htm");
     std::copy(v.begin(),v.end(),std::ostream_iterator<std::string>(f,"\n"));
   }
   {
-    const std::vector<std::string> v = RichelBilderbeek::GalleryMenuDialog::CreateHtmlProjectGallery();
+    const std::vector<std::string> v = GalleryMenuDialog::CreateHtmlProjectGallery();
     std::ofstream f("ProjectGallery.htm");
     std::copy(v.begin(),v.end(),std::ostream_iterator<std::string>(f,"\n"));
   }
   {
-    const std::vector<std::string> v = RichelBilderbeek::GalleryMenuDialog::CreateHtmlToolGallery();
+    const std::vector<std::string> v = GalleryMenuDialog::CreateHtmlToolGallery();
     std::ofstream f("ToolGallery.htm");
     std::copy(v.begin(),v.end(),std::ostream_iterator<std::string>(f,"\n"));
   }
   {
-    const std::vector<std::string> v = RichelBilderbeek::GalleryMenuDialog::CreateHtmlStatus();
+    const std::vector<std::string> v = GalleryMenuDialog::CreateHtmlStatus();
     std::ofstream f("CppRichelBilderbeekStatus.htm");
     std::copy(v.begin(),v.end(),std::ostream_iterator<std::string>(f,"\n"));
   }

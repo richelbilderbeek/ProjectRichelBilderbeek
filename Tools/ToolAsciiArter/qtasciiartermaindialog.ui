@@ -14,7 +14,7 @@
    <string>AsciiArter</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="ToolAsciiArter.qrc">
+   <iconset resource="../../Games/GameBoenken/GameBoenken.qrc">
     <normaloff>:/images/R.png</normaloff>:/images/R.png</iconset>
   </property>
   <property name="styleSheet">
@@ -26,17 +26,10 @@ QPushButton { color: rgb(0,0,0); }
 QPushButton { font: 16px, &quot;monospace&quot; }</string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
-   <item row="0" column="0">
-    <widget class="QPushButton" name="button_load">
+   <item row="0" column="1">
+    <widget class="QLabel" name="label_width">
      <property name="text">
-      <string>Load image</string>
-     </property>
-    </widget>
-   </item>
-   <item row="0" column="2">
-    <widget class="QLineEdit" name="edit_width">
-     <property name="text">
-      <string>80</string>
+      <string>Desired width (chars)</string>
      </property>
     </widget>
    </item>
@@ -59,10 +52,20 @@ QPushButton { font: 16px, &quot;monospace&quot; }</string>
      </property>
     </widget>
    </item>
-   <item row="0" column="1">
-    <widget class="QLabel" name="label_width">
+   <item row="0" column="0">
+    <widget class="QPushButton" name="button_load">
      <property name="text">
-      <string>Desired width (chars)</string>
+      <string>Load image</string>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="2" colspan="2">
+    <widget class="QSpinBox" name="box_width">
+     <property name="minimum">
+      <number>5</number>
+     </property>
+     <property name="maximum">
+      <number>65536</number>
      </property>
     </widget>
    </item>
@@ -70,7 +73,7 @@ QPushButton { font: 16px, &quot;monospace&quot; }</string>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <resources>
-  <include location="ToolAsciiArter.qrc"/>
+  <include location="../../Games/GameBoenken/GameBoenken.qrc"/>
  </resources>
  <connections/>
 </ui>

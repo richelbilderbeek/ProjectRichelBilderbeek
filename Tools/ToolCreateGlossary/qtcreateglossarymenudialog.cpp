@@ -43,12 +43,10 @@ ribi::QtCreateGlossaryMenuDialog::~QtCreateGlossaryMenuDialog() noexcept
 
 void ribi::QtCreateGlossaryMenuDialog::on_button_about_clicked()
 {
-  QtAboutDialog d(CreateGlossaryMenuDialog::GetAbout());
+  QtAboutDialog d(CreateGlossaryMenuDialog().GetAbout());
   d.setWindowIcon(this->windowIcon());
   d.setStyleSheet(this->styleSheet());
-  this->hide();
-  d.exec();
-  this->show();
+  this->ShowChild(&d);
 }
 
 void ribi::QtCreateGlossaryMenuDialog::on_button_quit_clicked()
@@ -60,8 +58,6 @@ void ribi::QtCreateGlossaryMenuDialog::on_button_start_clicked()
 {
   QtCreateGlossaryMainDialog d;
   //d.setStyleSheet(this->styleSheet());
-  this->hide();
-  d.exec();
-  this->show();
+  this->ShowChild(&d);
 }
 

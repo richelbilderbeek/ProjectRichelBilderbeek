@@ -42,6 +42,10 @@ bool ribi::fileio::FilesAreIdentical(
   const std::string& filename_a,
   const std::string& filename_b)
 {
+  #ifndef NDEBUG
+  if (!IsRegularFile(filename_a)) TRACE(filename_a);
+  if (!IsRegularFile(filename_b)) TRACE(filename_b);
+  #endif
   assert(IsRegularFile(filename_a));
   assert(IsRegularFile(filename_b));
   const std::vector<std::string> v { FileToVector(filename_a) };
@@ -52,21 +56,25 @@ bool ribi::fileio::FilesAreIdentical(
 const std::vector<std::string> ribi::fileio::FileToVector(const std::string& filename)
 {
   #ifndef NDEBUG
-  if (!IsRegularFile(filename))
-  {
-    TRACE(filename);
-    TRACE("ERROR");
-  }
+  if (!IsRegularFile(filename)) TRACE(filename);
   #endif
   assert(IsRegularFile(filename));
   assert(!IsFolder(filename));
   std::vector<std::string> v;
   std::ifstream in(filename.c_str());
-  std::string s;
+  assert(in.is_open());
+  //Without this test in release mode,
+  //the program might run indefinitely when the file does not exists
+  if (!in.is_open())
+  {
+    const std::string s = "ERROR: file does not exist: " + filename;
+    throw std::logic_error(s.c_str());
+  }
   for (int i=0; !in.eof(); ++i)
   {
+    std::string s;
     std::getline(in,s);
-    v.push_back(s);
+    v.push_back(s); //Might throw std::bad_alloc
   }
   return v;
 }

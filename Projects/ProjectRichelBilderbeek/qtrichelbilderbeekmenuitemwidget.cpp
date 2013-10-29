@@ -57,8 +57,8 @@ ribi::QtRichelBilderbeekMenuItemWidget::QtRichelBilderbeekMenuItemWidget(QWidget
   assert(scene());
   scene()->clear();
 
-  const std::vector<RichelBilderbeek::ProgramType> program_types {
-    RichelBilderbeek::ProgramTypes::GetAll()
+  const std::vector<ProgramType> program_types {
+    ProgramTypes::GetAll()
   };
   const int n_program_types = boost::numeric_cast<int>(program_types.size());
   const int n_cols = 5;
@@ -75,8 +75,8 @@ ribi::QtRichelBilderbeekMenuItemWidget::QtRichelBilderbeekMenuItemWidget(QWidget
     const double y = static_cast<double>(row-(n_rows/2)) * 22.0;
 
     assert(i < boost::numeric_cast<int>(program_types.size()));
-    const boost::shared_ptr<RichelBilderbeek::Program> p
-      = RichelBilderbeek::Program::CreateProgram(
+    const boost::shared_ptr<Program> p
+      = Program::CreateProgram(
         program_types[i]);
     const std::string s = p->GetScreenName();
 

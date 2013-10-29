@@ -20,6 +20,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include "richelbilderbeekmenudialog.h"
 
 #include "approximator.h"
@@ -34,6 +35,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "connectthree.h"
 #include "connectthreewidget.h"
 #include "copy_if.h"
+#include "createqtprojectzipfilemenudialog.h"
 #include "counter.h"
 #include "createqtprojectzipfilemenudialog.h"
 #include "createglossarymenudialog.h"
@@ -123,30 +125,38 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #pragma GCC diagnostic pop
 
+boost::bimap<ribi::ProgramType,boost::shared_ptr<ribi::MenuDialog>>
+  ribi::ProjectRichelBilderbeekMenuDialog::sm_map_to_menu {};
+
 ribi::ProjectRichelBilderbeekMenuDialog::ProjectRichelBilderbeekMenuDialog()
-  : m_programs(ribi::Program::GetAllPrograms())
 {
   #ifndef NDEBUG
   Test();
-  std::for_each(m_programs.begin(), m_programs.end(),
-    [](const boost::shared_ptr<Program>& p)
-    {
-      assert(p);
-    }
-  );
+  for (auto p: GetEnumMenuMap().left)
+  {
+    assert(p.second);
+  }
   #endif
 }
 
-const std::vector<boost::shared_ptr<ribi::MenuDialog> > ribi::ProjectRichelBilderbeekMenuDialog::CreateMenus() noexcept
+const boost::bimap<ribi::ProgramType,boost::shared_ptr<ribi::MenuDialog>> ribi::ProjectRichelBilderbeekMenuDialog::GetEnumMenuMap() noexcept
 {
-  typedef boost::shared_ptr<ribi::MenuDialog> MenuPtr;
-  std::vector<MenuPtr> v;
-  { const MenuPtr p { new AsciiArterMenuDialog  }; v.push_back(p); }
-  { const MenuPtr p { new CodeToHtmlMenuDialog  }; v.push_back(p); }
-  { const MenuPtr p { new CreateGlossaryMenuDialog }; v.push_back(p); }
-  { const MenuPtr p { new HometrainerMenuDialog }; v.push_back(p); }
-  return v;
+  if (sm_map_to_menu.empty())
+  {
+    boost::bimap<ribi::ProgramType,boost::shared_ptr<ribi::MenuDialog>> m;
+    typedef boost::shared_ptr<ribi::MenuDialog> MenuType;
+    typedef boost::bimap<ribi::ProgramType,MenuType>::value_type ValueType;
+    { const MenuType p { new AsciiArterMenuDialog }; m.insert(ValueType(ProgramType::asciiArter,p)); }
+    { const MenuType p { new CodeToHtmlMenuDialog }; m.insert(ValueType(ProgramType::codeToHtml,p)); }
+    { const MenuType p { new CreateGlossaryMenuDialog }; m.insert(ValueType(ProgramType::createGlossary,p)); }
+    { const MenuType p { new CreateQtProjectZipFile::MenuDialog }; m.insert(ValueType(ProgramType::createQtProjectZipFile,p)); }
+    { const MenuType p { new HometrainerMenuDialog }; m.insert(ValueType(ProgramType::hometrainer,p)); }
+    sm_map_to_menu = m;
+  }
+  assert(!sm_map_to_menu.empty());
+  return sm_map_to_menu;
 }
+
 
 const ribi::Help ribi::ProjectRichelBilderbeekMenuDialog::GetHelp() const noexcept
 {
@@ -180,15 +190,19 @@ int ribi::ProjectRichelBilderbeekMenuDialog::ExecuteSpecific(const std::vector<s
   }
   if (s == std::string("--program") || s == std::string("-p"))
   {
-    for (const boost::shared_ptr<ribi::MenuDialog>& m: CreateMenus())
+    for (const auto p: GetEnumMenuMap().left)
     {
+      const boost::shared_ptr<ribi::MenuDialog> m = p.second;
+      assert(m);
       std::cout << m->GetProgram()->GetName() << '\n';
     }
     return 0;
   }
   //Find menu dialog and execute it with one argument less
-  for (const boost::shared_ptr<ribi::MenuDialog>& m: CreateMenus())
+  for (const auto p: GetEnumMenuMap().left)
   {
+    const boost::shared_ptr<ribi::MenuDialog> m = p.second;
+    assert(m);
     if (s == m->GetProgram()->GetName() || s == m->GetAbout().GetFileTitle())
     {
       std::vector<std::string> sub_argv;
@@ -225,7 +239,7 @@ const ribi::About ribi::ProjectRichelBilderbeekMenuDialog::GetAbout() const noex
   a.AddLibrary("ConnectThreeWidget version: " + ConnectThreeWidget::GetVersion());
   a.AddLibrary("Copy_if version: " + Copy_if_version::GetVersion());
   a.AddLibrary("Counter version: " + Counter::GetVersion());
-  a.AddLibrary("CreateQtProjectZipFile version: " + CreateQtProjectZipFile::MenuDialog::GetVersion());
+  a.AddLibrary("CreateQtProjectZipFile version: " + CreateQtProjectZipFile::MenuDialog().GetVersion());
   a.AddLibrary("Dial version: " + Dial::GetVersion());
   a.AddLibrary("DialWidget version: " + DialWidget::GetVersion());
   a.AddLibrary("Encranger version: " + Encranger::GetVersion());
@@ -389,8 +403,17 @@ const std::vector<std::string> ribi::ProjectRichelBilderbeekMenuDialog::GetVersi
 
 void ribi::ProjectRichelBilderbeekMenuDialog::ShowStatus() const noexcept
 {
-  typedef boost::shared_ptr<ribi::Program> ProgramType;
-  const std::vector<ProgramType> v = GetPrograms();
+  typedef boost::shared_ptr<const ribi::Program> ProgramType;
+
+  std::vector<ProgramType> v;
+  for (auto p: GetEnumMenuMap().left)
+  {
+    assert(p.second);
+    assert(p.second->GetProgram());
+    v.push_back(p.second->GetProgram());
+  }
+  assert(v.size() == GetEnumMenuMap().left.size());
+
   //Find out the padding
   const int max_length {
     static_cast<int>(
@@ -404,7 +427,7 @@ void ribi::ProjectRichelBilderbeekMenuDialog::ShowStatus() const noexcept
   };
 
 
-  for (const boost::shared_ptr<ribi::Program>& p: v)
+  for (const ProgramType& p: v)
   {
     const std::string name_no_padding = p->GetName();
     const int cur_length = static_cast<int>(name_no_padding.size());
@@ -436,8 +459,9 @@ void ribi::ProjectRichelBilderbeekMenuDialog::Test() noexcept
   }
   TRACE("Starting ribi::ProjectRichelBilderbeekMenuDialog::Test()");
   //Create all menus
-  for (const boost::shared_ptr<MenuDialog> m: CreateMenus())
+  for (const auto p: GetEnumMenuMap().left)
   {
+    const boost::shared_ptr<MenuDialog> m = p.second;
     //assert(m->GetAbout());
     //assert(m->GetHelp());
     assert(!m->GetVersion().empty());

@@ -382,7 +382,6 @@ std::ostream& ribi::operator<<(std::ostream& os,const QtCreatorProFileZipScript&
   for (const std::string filename: file_names)
   {
     std::string s = ribi::fileio::GetPath(filename);
-    //std::string s = boost::filesystem::path(filename).parent_path().string();
     while (!s.empty())
     {
       #ifndef NDEBUG
@@ -390,16 +389,8 @@ std::ostream& ribi::operator<<(std::ostream& os,const QtCreatorProFileZipScript&
       #endif
       folder_names.insert(s);
       s = ribi::fileio::GetPath(s);
-      #ifndef NDEBUG
       const std::size_t new_len = s.size();
-      if (new_len >= old_len)
-      {
-        TRACE("ERROR");
-        TRACE(s);
-      }
-      assert(new_len < old_len && "GetPath must shorten a path");
-      #endif
-      //s = boost::filesystem::path(s).parent_path().string();
+      if (new_len == old_len) { s = ""; }
     }
   }
 

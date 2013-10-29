@@ -43,12 +43,10 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 ribi::QtAsciiArterMainDialog::QtAsciiArterMainDialog(QWidget *parent)
   : QtHideAndShowDialog(parent),
     ui(new Ui::QtAsciiArterMainDialog),
-    m_dialog(new AsciiArterMainDialog("",80))
+    m_dialog(new AsciiArterMainDialog("",80)),
+    m_filename{}
 {
   ui->setupUi(this);
-  ui->edit_width->setText("80");
-  on_edit_width_textChanged("80");
-
 
   //Put the dialog in the screen center
   const QRect screen = QApplication::desktop()->screenGeometry();
@@ -60,12 +58,20 @@ ribi::QtAsciiArterMainDialog::~QtAsciiArterMainDialog() noexcept
   delete ui;
 }
 
-void ribi::QtAsciiArterMainDialog::DrawAsciiArt()
+int ribi::QtAsciiArterMainDialog::GetWidth() const noexcept
 {
-  //if (!m_dialog->CanConvert()) return;
+  return ui->box_width->value();
+}
 
-  //m_dialog->Convert();
+void ribi::QtAsciiArterMainDialog::OnAnyChange()
+{
+  if (!fileio::IsRegularFile(GetFilename()))
+  {
+    m_dialog.reset(nullptr);
+    return;
+  }
 
+  m_dialog.reset(new AsciiArterMainDialog(GetFilename(),GetWidth()));
   const std::vector<std::string>& v = m_dialog->GetAsciiArt();
   ui->text->clear();
 
@@ -81,10 +87,11 @@ void ribi::QtAsciiArterMainDialog::on_button_load_clicked()
 
   if (!fileio::IsRegularFile(filename))
   {
+    m_filename = "";
     return;
   }
-  m_dialog->SetImage(filename);
-  DrawAsciiArt();
+  m_filename = filename;
+  OnAnyChange();
 }
 
 void ribi::QtAsciiArterMainDialog::keyPressEvent(QKeyEvent * event)
@@ -92,21 +99,9 @@ void ribi::QtAsciiArterMainDialog::keyPressEvent(QKeyEvent * event)
   if (event->key() == Qt::Key_Escape) close();
 }
 
-void ribi::QtAsciiArterMainDialog::on_edit_width_textChanged(QString q)
+void ribi::QtAsciiArterMainDialog::on_edit_width_textChanged(QString)
 {
-  const std::string s = q.toStdString();
-  try
-  {
-    boost::lexical_cast<int>(s);
-  }
-  catch (boost::bad_lexical_cast&)
-  {
-    return;
-  }
-  const int width = boost::lexical_cast<int>(s);
-  if (width <= 5) return;
-  this->m_dialog->SetWidth(width);
-  DrawAsciiArt();
+  OnAnyChange();
 
 }
 

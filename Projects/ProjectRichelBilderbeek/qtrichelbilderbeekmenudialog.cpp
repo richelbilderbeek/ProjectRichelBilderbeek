@@ -123,7 +123,7 @@ ribi::QtRichelBilderbeekMenuDialog::~QtRichelBilderbeekMenuDialog() noexcept
 
 const ribi::About ribi::QtRichelBilderbeekMenuDialog::GetAbout() noexcept
 {
-  About a = RichelBilderbeek::ProjectRichelBilderbeekMenuDialog().GetAbout();
+  About a = ProjectRichelBilderbeekMenuDialog().GetAbout();
   a.AddLibrary("QtArrowItem version: " + QtArrowItem::GetVersion());
   a.AddLibrary("QtConnectThreeWidget version: " + QtConnectThreeWidget::GetVersion());
   a.AddLibrary("QtDialWidget version: " + QtDialWidget::GetVersion());
@@ -180,10 +180,10 @@ void ribi::QtRichelBilderbeekMenuDialog::OnAbout()
 void ribi::QtRichelBilderbeekMenuDialog::OnShow(const std::string text)
 {
   //Display the dialog
-  const std::vector<RichelBilderbeek::ProgramType> v = RichelBilderbeek::ProgramTypes::GetAll();
-  for (const RichelBilderbeek::ProgramType type: v)
+  const std::vector<ProgramType> v = ProgramTypes::GetAll();
+  for (const ProgramType type: v)
   {
-    const boost::shared_ptr<RichelBilderbeek::Program> p = RichelBilderbeek::Program::CreateProgram(type);
+    const boost::shared_ptr<Program> p = Program::CreateProgram(type);
     if (p->GetScreenName() == text)
     {
 
@@ -232,8 +232,8 @@ void ribi::QtRichelBilderbeekMenuDialog::Test()
     is_tested = true;
   }
   {
-    const std::vector<RichelBilderbeek::ProgramType> v = RichelBilderbeek::ProgramTypes::GetAll();
-    for (const RichelBilderbeek::ProgramType type: v)
+    const std::vector<ProgramType> v = ProgramTypes::GetAll();
+    for (const ProgramType type: v)
     {
       #ifndef NDEBUG
       const std::string progress

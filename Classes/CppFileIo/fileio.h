@@ -26,12 +26,16 @@ void CopyFile(
 void DeleteFile(const std::string& filename);
 
 ///Checks if two files are identical
+///Will throw std::bad_alloc if at least one of the files is
+///too big for a std::vector.
 //From http://www.richelbilderbeek.nl/CppFilesAreIdentical.htm
 bool FilesAreIdentical(
   const std::string& filename_a,
   const std::string& filename_b);
 
 ///FileToVector reads a file and converts it to a std::vector<std::string>
+///Throws std::bad_alloc if the file is too big to fit in std::vector
+///Throws std::logic_error if the file does not exist
 //From http://www.richelbilderbeek.nl/CppFileToVector.htm
 const std::vector<std::string> FileToVector(const std::string& filename);
 

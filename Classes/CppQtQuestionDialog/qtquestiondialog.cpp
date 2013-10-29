@@ -22,11 +22,18 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include "qtquestiondialog.h"
+
+#include <cassert>
+
+#include <boost/bind.hpp>
+#include <boost/lambda/lambda.hpp>
+
 #include "questiondialog.h"
 #pragma GCC diagnostic pop
 
 
-ribi::QtQuestionDialog::QtQuestionDialog(QWidget *parent)
+ribi::QtQuestionDialog::QtQuestionDialog(
+  QWidget *parent)
   : QtHideAndShowDialog(parent)
 {
 
@@ -45,5 +52,3 @@ const std::vector<std::string> ribi::QtQuestionDialog::GetVersionHistory() noexc
     "2013-10-24: version 1.2: moved general m_dialog to derived classes"
   };
 }
-
-

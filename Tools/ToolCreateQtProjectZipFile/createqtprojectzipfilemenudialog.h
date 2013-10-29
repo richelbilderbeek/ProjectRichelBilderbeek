@@ -25,22 +25,35 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <string>
 #include <vector>
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#include <boost/shared_ptr.hpp>
 #include "about.h"
+#include "menudialog.h"
+#pragma GCC diagnostic pop
 
 namespace ribi {
 
 namespace CreateQtProjectZipFile {
 
-struct MenuDialog
+struct MenuDialog : public ::ribi::MenuDialog
 {
-  ///Obtain this class its About information
-  static const About GetAbout() noexcept;
+  MenuDialog();
+  ~MenuDialog() noexcept {}
 
-  ///Obtain this class its version
-  static const std::string GetVersion() noexcept;
+  const About GetAbout() const noexcept;
+  const Help GetHelp() const noexcept;
+  const boost::shared_ptr<const Program> GetProgram() const noexcept;
+  const std::string GetVersion() const noexcept;
+  const std::vector<std::string> GetVersionHistory() const noexcept;
 
-  ///Obtain this class its version history
-  static const std::vector<std::string> GetVersionHistory() noexcept;
+  private:
+  int ExecuteSpecific(const std::vector<std::string>& argv) noexcept;
+
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
 };
 
 } //~namespace CreateQtProjectZipFile
