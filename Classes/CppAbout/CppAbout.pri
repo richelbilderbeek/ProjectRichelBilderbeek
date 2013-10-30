@@ -6,3 +6,7 @@ SOURCES += \
 
 HEADERS  += \
     ../../Classes/CppAbout/about.h
+
+OTHER_FILES += \
+    ../../Classes/CppAbout/Licence.txt
+

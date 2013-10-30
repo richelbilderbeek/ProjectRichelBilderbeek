@@ -1,6 +1,10 @@
 include(../../Classes/CppAbout/CppAbout.pri)
+include(../../Classes/CppApproximator/CppApproximator.pri)
+include(../../Classes/CppAsciiArter/CppAsciiArter.pri)
 include(../../Classes/CppExercise/CppExercise.pri)
-include(../../Classes/CppFileIo/CppFileIo.pro)
+include(../../Classes/CppFileIo/CppFileIo.pri)
+
+include(../../Tools/ToolCreateQtProjectZipFile/ToolCreateQtProjectZipFileConsole.pri)
 include(ProjectRichelBilderbeekConsole.pri)
 
 # Go ahead and use Qt.Core: it is about as platform-independent as
@@ -23,9 +27,6 @@ TEMPLATE = app
 # Console
 
 INCLUDEPATH += \
-#    ../../Classes/CppAbout \
-    ../../Classes/CppApproximator \
-    ../../Classes/CppAsciiArter \
     ../../Classes/CppBinaryNewickVector \
     ../../Classes/CppCanvas \
     ../../Classes/CppChess \
@@ -39,7 +40,6 @@ INCLUDEPATH += \
     ../../Classes/CppDialWidget \
     ../../Classes/CppDotMatrix \
     ../../Classes/CppEncranger \
-#    ../../Classes/CppExercise \
     ../../Classes/CppFileIo \
     ../../Classes/CppFuzzy_equal_to \
     ../../Classes/CppGaborFilter \
@@ -157,8 +157,6 @@ INCLUDEPATH += \
 
 SOURCES += \
     main.cpp \
-#    ../../Classes/CppAbout/about.cpp \
-    ../../Classes/CppAsciiArter/asciiarter.cpp \
     ../../Classes/CppBinaryNewickVector/binarynewickvector.cpp \
     ../../Classes/CppCodeToHtml/codetohtml.cpp \
     ../../Classes/CppCodeToHtml/codetohtmlcontent.cpp \
@@ -383,16 +381,11 @@ SOURCES += \
     ../../Tools/ToolDotMatrix/tooldotmatrixmenudialog.cpp \
     ../../Classes/CppDotMatrix/dotmatrixstring.cpp \
     ../../Classes/CppDotMatrix/dotmatrixchar.cpp \
-    ../../Classes/CppFileIo/fileio.cpp \
     ../../Tools/ToolHometrainer/hometrainermaindialog.cpp \
     ../../Classes/CppMenuDialog/menudialog.cpp \
     ../../Classes/CppHelp/help.cpp
 
 HEADERS += \
-#    ../../Classes/CppAbout/about.h \
-    ../../Classes/CppApproximator/approximator.h \
-    ../../Classes/CppApproximator/exceptionnoextrapolation.h \
-    ../../Classes/CppAsciiArter/asciiarter.h \
     ../../Classes/CppBinaryNewickVector/binarynewickvector.h \
     ../../Classes/CppCodeToHtml/codetohtml.h \
     ../../Tools/ToolTestOpenQuestion/testopenquestionmenudialog.h \

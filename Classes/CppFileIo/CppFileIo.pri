@@ -7,5 +7,7 @@ SOURCES += \
 HEADERS += \
     ../../Classes/CppFileIo/fileio.h
 
+OTHER_FILES += \
+    ../../Classes/CppFileIo/Licence.txt
 
 

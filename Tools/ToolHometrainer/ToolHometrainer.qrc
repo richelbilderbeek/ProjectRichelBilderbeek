@@ -89,6 +89,7 @@
         <file>ToolHometrainerExerciseXlrMannetjeConnector.jpg</file>
         <file>ToolHometrainerExerciseXlrVrouwtje.jpg</file>
         <file>ToolHometrainerExerciseZekering.jpg</file>
+        <file>ToolHometrainerExerciseMultiplication.txt</file>
     </qresource>
     <qresource prefix="/textfiles">
         <file>ToolHometrainerExerciseClouds.txt</file>

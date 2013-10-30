@@ -89,6 +89,7 @@ ribi::HometrainerResources::HometrainerResources()
       "ToolHometrainerExerciseMultikabelMannetjeConnector.jpg",
       "ToolHometrainerExerciseMultikabelVrouwtjeConnector.jpg",
       "ToolHometrainerExerciseMultimeterMetex.jpg",
+      "ToolHometrainerExerciseMultiplication.txt",
       "ToolHometrainerExerciseMultistekkerdoos.jpg",
       "ToolHometrainerExerciseOn.jpg",
       "ToolHometrainerExerciseOpwindstatief.jpg",

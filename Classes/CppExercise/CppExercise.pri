@@ -7,3 +7,5 @@ SOURCES += \
 HEADERS  += \
     ../../Classes/CppExercise/exercise.h
 
+OTHER_FILES += \
+    ../../Classes/CppExercise/Licence.txt

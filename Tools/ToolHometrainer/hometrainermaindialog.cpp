@@ -48,6 +48,7 @@ ribi::HometrainerMainDialog::HometrainerMainDialog(
 
   #ifndef NDEBUG
   for(const boost::shared_ptr<const Question> question: m_questions) assert(question);
+  std::random_shuffle(m_questions.begin(),m_questions.end());
   #endif
 }
 
