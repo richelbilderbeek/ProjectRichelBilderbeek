@@ -1,17 +1,18 @@
-include(ProjectRichelBilderbeekConsole.pri)
+include(../../Projects/ProjectRichelBilderbeek/ProjectRichelBilderbeekConsole.pri)
 
 SOURCES += \
-    qtrichelbilderbeekmenudialog.cpp \
-    qtrichelbilderbeekmenuitemwidget.cpp \
-    qtrichelbilderbeekprogram.cpp
+    ../../Projects/ProjectRichelBilderbeek/qtrichelbilderbeekmenudialog.cpp \
+    ../../Projects/ProjectRichelBilderbeek/qtrichelbilderbeekmenuitemwidget.cpp \
+    ../../Projects/ProjectRichelBilderbeek/qtrichelbilderbeekprogram.cpp
 
 HEADERS += \
-    qtrichelbilderbeekmenudialog.h \
-    qtrichelbilderbeekmenuitemwidget.h \
-    qtrichelbilderbeekprogram.h
-
-RESOURCES += \
-    ProjectRichelBilderbeek.qrc
+    ../../Projects/ProjectRichelBilderbeek/qtrichelbilderbeekmenudialog.h \
+    ../../Projects/ProjectRichelBilderbeek/qtrichelbilderbeekmenuitemwidget.h \
+    ../../Projects/ProjectRichelBilderbeek/qtrichelbilderbeekprogram.h
 
 FORMS += \
-    qtrichelbilderbeekmenudialog.ui
+    ../../Projects/ProjectRichelBilderbeek/qtrichelbilderbeekmenudialog.ui
+
+RESOURCES += \
+    ../../Projects/ProjectRichelBilderbeek/ProjectRichelBilderbeek.qrc
+

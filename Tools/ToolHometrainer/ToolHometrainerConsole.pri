@@ -13,3 +13,6 @@ HEADERS  += \
 
 RESOURCES += \
     ../../Tools/ToolHometrainer/ToolHometrainer.qrc
+
+OTHER_FILES += \
+    ../../Tools/ToolHometrainer/Licence.txt

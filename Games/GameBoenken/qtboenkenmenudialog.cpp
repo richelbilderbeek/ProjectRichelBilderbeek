@@ -58,13 +58,13 @@ ribi::QtBoenkenMenuDialog::QtBoenkenMenuDialog(QWidget *parent)
   #ifndef NDEBUG
   Test();
   #endif
-  QObject::connect(ui->button_set_controls,SIGNAL(clicked()),this,SLOT(onControlsClick()));
-  QObject::connect(ui->button_set_players,SIGNAL(clicked()),this,SLOT(onPlayersClick()));
-  QObject::connect(ui->button_set_arena,SIGNAL(clicked()),this,SLOT(onArenaClick()));
-  QObject::connect(ui->button_start,SIGNAL(clicked()),this,SLOT(onStartClick()));
-  QObject::connect(ui->button_train,SIGNAL(clicked()),this,SLOT(onTrainClick()));
-  QObject::connect(ui->button_about,SIGNAL(clicked()),this,SLOT(onAboutClick()));
-  QObject::connect(ui->button_quit,SIGNAL(clicked()),this,SLOT(close()));
+  QObject::connect(ui->button_set_controls,&QAbstractButton::clicked,this,&ribi::QtBoenkenMenuDialog::onControlsClick);
+  QObject::connect(ui->button_set_players ,&QAbstractButton::clicked,this,&ribi::QtBoenkenMenuDialog::onPlayersClick );
+  QObject::connect(ui->button_set_arena   ,&QAbstractButton::clicked,this,&ribi::QtBoenkenMenuDialog::onArenaClick   );
+  QObject::connect(ui->button_start       ,&QAbstractButton::clicked,this,&ribi::QtBoenkenMenuDialog::onStartClick   );
+  QObject::connect(ui->button_train       ,&QAbstractButton::clicked,this,&ribi::QtBoenkenMenuDialog::onTrainClick   );
+  QObject::connect(ui->button_about       ,&QAbstractButton::clicked,this,&ribi::QtBoenkenMenuDialog::onAboutClick   );
+  QObject::connect(ui->button_quit        ,&QAbstractButton::clicked,this,&ribi::QtBoenkenMenuDialog::close          );
 }
 
 ribi::QtBoenkenMenuDialog::~QtBoenkenMenuDialog() noexcept
