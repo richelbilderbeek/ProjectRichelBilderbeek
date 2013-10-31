@@ -9,6 +9,7 @@ include(../../Classes/CppOpenQuestion/CppOpenQuestion.pri)
 include(../../Classes/CppOpenQuestionDialog/CppOpenQuestionDialog.pri)
 include(../../Classes/CppQuestion/CppQuestion.pri)
 include(../../Classes/CppQuestionDialog/CppQuestionDialog.pri)
+include(../../Classes/CppRichelBilderbeekProgram/CppRichelBilderbeekProgram.pri)
 include(../../Classes/CppTrace/CppTrace.pri)
 include(ToolHometrainerConsole.pri)
 

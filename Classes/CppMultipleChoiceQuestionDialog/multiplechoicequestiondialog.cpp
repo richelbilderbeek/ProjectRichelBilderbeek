@@ -23,6 +23,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "multiplechoicequestiondialog.h"
 
 #include <cassert>
+#include <boost/lexical_cast.hpp>
 #include <boost/scoped_ptr.hpp>
 
 #include "multiplechoicequestion.h"

@@ -384,9 +384,7 @@ std::ostream& ribi::operator<<(std::ostream& os,const QtCreatorProFileZipScript&
     std::string s = ribi::fileio::GetPath(filename);
     while (!s.empty())
     {
-      #ifndef NDEBUG
       const std::size_t old_len = s.size();
-      #endif
       folder_names.insert(s);
       s = ribi::fileio::GetPath(s);
       const std::size_t new_len = s.size();

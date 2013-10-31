@@ -14,12 +14,14 @@ ribi::Help::Option::Option(
     m_long(option_long),
     m_description(option_description)
 {
+  #ifndef NDEBUG
   const int max_chars_per_line = 80;
   const int chars_for_padding = 7;
   const int max_chars = max_chars_per_line - chars_for_padding;
   const int chars_used = static_cast<int>(1 + m_long.size() + m_description.size());
   assert(chars_used <= max_chars && "Options must be kept short to fit on a line");
   //os << "-" << p.m_short << ", --" << p.m_long << "  " << p.m_description << '\n';
+  #endif
 }
 
 

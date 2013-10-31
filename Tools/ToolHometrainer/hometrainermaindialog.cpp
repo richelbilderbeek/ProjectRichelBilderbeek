@@ -4,7 +4,9 @@
 #include "hometrainermaindialog.h"
 
 #include <cassert>
+#include <ctime>
 #include <fstream>
+#include <iostream>
 #include <stdexcept>
 
 #include <boost/bind.hpp>
@@ -48,8 +50,14 @@ ribi::HometrainerMainDialog::HometrainerMainDialog(
 
   #ifndef NDEBUG
   for(const boost::shared_ptr<const Question> question: m_questions) assert(question);
-  std::random_shuffle(m_questions.begin(),m_questions.end());
   #endif
+
+  #ifdef NDEBUG
+  //Only randomize in release mode
+  std::srand(std::time(0));
+  #endif
+
+  std::random_shuffle(m_questions.begin(),m_questions.end());
 }
 
 const boost::shared_ptr<const ribi::Question> ribi::HometrainerMainDialog::CreateQuestion(

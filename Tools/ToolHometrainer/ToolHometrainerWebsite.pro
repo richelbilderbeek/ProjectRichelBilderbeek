@@ -4,43 +4,31 @@ CONFIG   += console
 CONFIG   -= app_bundle
 TEMPLATE = app
 
-include( ToolHometrainer.pri )
+include(../../Tools/ToolHometrainer/ToolHometrainerWebsite.pri)
 
-INCLUDEPATH += \
-    ../../Classes/CppWtAboutDialog \
-    ../../Classes/CppWtAutoConfig \
-    ../../Classes/CppWtExercise \
-    ../../Classes/CppWtMultipleChoiceQuestionDialog \
-    ../../Classes/CppWtOpenQuestionDialog \
-    ../../Classes/CppWtQuestionDialog \
-    ../../Classes/CppWtSelectFileDialog
+include(../../Classes/CppAbout/CppAbout.pri)
+include(../../Classes/CppExercise/CppExercise.pri)
+include(../../Classes/CppFileIo/CppFileIo.pri)
+include(../../Classes/CppHelp/CppHelp.pri)
+include(../../Classes/CppMenuDialog/CppMenuDialog.pri)
+include(../../Classes/CppMultipleChoiceQuestion/CppMultipleChoiceQuestion.pri)
+include(../../Classes/CppMultipleChoiceQuestionDialog/CppMultipleChoiceQuestionDialog.pri)
+include(../../Classes/CppOpenQuestion/CppOpenQuestion.pri)
+include(../../Classes/CppOpenQuestionDialog/CppOpenQuestionDialog.pri)
+include(../../Classes/CppQuestion/CppQuestion.pri)
+include(../../Classes/CppQuestionDialog/CppQuestionDialog.pri)
+include(../../Classes/CppRichelBilderbeekProgram/CppRichelBilderbeekProgram.pri)
+include(../../Classes/CppTrace/CppTrace.pri)
 
-SOURCES += \
-    ../../Classes/CppWtAboutDialog/wtaboutdialog.cpp \
-    ../../Classes/CppWtAutoConfig/wtautoconfig.cpp \
-    ../../Classes/CppWtExercise/wtexercise.cpp \
-    ../../Classes/CppWtMultipleChoiceQuestionDialog/wtmultiplechoicequestiondialog.cpp \
-    ../../Classes/CppWtOpenQuestionDialog/wtopenquestiondialog.cpp \
-    ../../Classes/CppWtQuestionDialog/wtquestiondialog.cpp \
-    ../../Classes/CppWtSelectFileDialog/wtselectfiledialog.cpp \
-    wthometrainerloadexercisedialog.cpp \
-    wthometrainermenudialog.cpp \
-    wthometrainerstartexercisedialog.cpp \
-    wtmain.cpp \
-    wtselecthometrainerfiledialog.cpp
+include(../../Classes/CppWtAboutDialog/CppWtAboutDialog.pri)
+include(../../Classes/CppWtAutoConfig/CppWtAutoConfig.pri)
+include(../../Classes/CppWtExercise/CppWtExercise.pri)
+include(../../Classes/CppWtMultipleChoiceQuestionDialog/CppWtMultipleChoiceQuestionDialog.pri)
+include(../../Classes/CppWtOpenQuestionDialog/CppWtOpenQuestionDialog.pri)
+include(../../Classes/CppWtQuestionDialog/CppWtQuestionDialog.pri)
+include(../../Classes/CppWtSelectFileDialog/CppWtSelectFileDialog.pri)
 
-HEADERS  += \
-    ../../Classes/CppWtAboutDialog/wtaboutdialog.h \
-    ../../Classes/CppWtAutoConfig/wtautoconfig.h \
-    ../../Classes/CppWtExercise/wtexercise.h \
-    ../../Classes/CppWtMultipleChoiceQuestionDialog/wtmultiplechoicequestiondialog.h \
-    ../../Classes/CppWtOpenQuestionDialog/wtopenquestiondialog.h \
-    ../../Classes/CppWtQuestionDialog/wtquestiondialog.h \
-    ../../Classes/CppWtSelectFileDialog/wtselectfiledialog.h \
-    wthometrainerloadexercisedialog.h \
-    wthometrainermenudialog.h \
-    wthometrainerstartexercisedialog.h \
-    wtselecthometrainerfiledialog.h
+SOURCES += wtmain.cpp
 
 
 #
@@ -49,11 +37,26 @@ HEADERS  += \
 #
 #
 
+CONFIG(release, debug|release) {
+  DEFINES += NDEBUG NTRACE_BILDERBIKKEL
+}
+
+QMAKE_CXXFLAGS += -std=c++11 -Wall -Wextra -Weffc++
+
+unix {
+  QMAKE_CXXFLAGS += -Werror
+}
+
 #
 #
 # Boost
 #
 #
+
+win32 {
+  INCLUDEPATH += \
+    ../../Libraries/boost_1_54_0
+}
 
 LIBS += \
   -lboost_date_time \

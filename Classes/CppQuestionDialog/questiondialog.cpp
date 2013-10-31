@@ -24,6 +24,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "questiondialog.h"
 
 #include <cassert>
+#include <iostream>
 #include <stdexcept>
 
 #include "openquestion.h"
