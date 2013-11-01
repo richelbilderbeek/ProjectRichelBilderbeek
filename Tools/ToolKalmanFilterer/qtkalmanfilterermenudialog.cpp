@@ -44,7 +44,7 @@ void ribi::kalman::QtKalmanFiltererMenuDialog::keyPressEvent(QKeyEvent * event)
 
 void ribi::kalman::QtKalmanFiltererMenuDialog::on_button_about_clicked()
 {
-  About a = KalmanFiltererMenuDialog::GetAbout();
+  About a = KalmanFiltererMenuDialog().GetAbout();
   a.AddLibrary("QtHideAndShowDialog version: " + QtHideAndShowDialog::GetVersion());
   a.AddLibrary("QtMatrix version: " + QtMatrix::GetVersion());
   a.AddLibrary("QtStdVectorFunctionModel version: " + QtStdVectorFunctionModel::GetVersion());
@@ -54,9 +54,7 @@ void ribi::kalman::QtKalmanFiltererMenuDialog::on_button_about_clicked()
   QtAboutDialog d(a);
   d.setWindowIcon(this->windowIcon());
   d.setStyleSheet(this->styleSheet());
-  this->hide();
-  d.exec();
-  this->show();
+  this->ShowChild(&d);
 }
 
 void ribi::kalman::QtKalmanFiltererMenuDialog::on_button_quit_clicked()

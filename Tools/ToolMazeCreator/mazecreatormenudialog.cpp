@@ -19,8 +19,6 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From hhtp://www.richelbilderbeek.nl/ToolMazeCreator.htm
 //---------------------------------------------------------------------------
-
-
 #include "mazecreatormenudialog.h"
 
 #include <cstdlib>
@@ -28,8 +26,19 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <sstream>
 #include <stdexcept>
 
+int ribi::MazeCreatorMenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) noexcept
+{
+  const int argc = static_cast<int>(argv.size());
+  if (argc == 1)
+  {
+    std::cout << GetHelp() << '\n';
+    return 1;
+  }
+  assert(!"TODO");
+  return 1;
+}
 
-const ribi::About ribi::MazeCreatorMenuDialog::GetAbout() noexcept
+const ribi::About ribi::MazeCreatorMenuDialog::GetAbout() const noexcept
 {
   About a(
     "Richel Bilderbeek",
@@ -44,16 +53,39 @@ const ribi::About ribi::MazeCreatorMenuDialog::GetAbout() noexcept
   return a;
 }
 
-const std::string ribi::MazeCreatorMenuDialog::GetVersion() noexcept
+const ribi::Help ribi::MazeCreatorMenuDialog::GetHelp() const noexcept
+{
+  return ribi::Help(
+    this->GetAbout().GetFileTitle(),
+    this->GetAbout().GetFileDescription(),
+    {
+
+    },
+    {
+
+    }
+  );
+}
+
+const boost::shared_ptr<const ribi::Program> ribi::MazeCreatorMenuDialog::GetProgram() const noexcept
+{
+  const boost::shared_ptr<const Program> p {
+    new ProgramMazeCreator
+  };
+  assert(p);
+  return p;
+}
+
+const std::string ribi::MazeCreatorMenuDialog::GetVersion() const noexcept
 {
   return "1.1";
 }
 
-const std::vector<std::string> ribi::MazeCreatorMenuDialog::GetVersionHistory() noexcept
+const std::vector<std::string> ribi::MazeCreatorMenuDialog::GetVersionHistory() const noexcept
 {
-  std::vector<std::string> v;
-  v.push_back("2007-xx-xx: version 1.0: initial version.");
-  v.push_back("2012-03-06: version 1.1: added versioning. Added menu screen.");
-  return v;
+  return {
+    "2007-xx-xx: version 1.0: initial version.",
+    "2012-03-06: version 1.1: added versioning. Added menu screen."
+  };
 }
 

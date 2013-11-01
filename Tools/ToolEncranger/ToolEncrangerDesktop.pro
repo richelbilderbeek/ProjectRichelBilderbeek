@@ -1,50 +1,19 @@
 QT       += core gui
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
+include(../../Classes/CppAbout/CppAbout.pri)
+include(../../Classes/CppEncranger/CppEncranger.pri)
+include(../../Classes/CppHelp/CppHelp.pri)
+include(../../Classes/CppLoopReader/CppLoopReader.pri)
+include(../../Classes/CppMenuDialog/CppMenuDialog.pri)
+include(../../Classes/CppQtAboutDialog/CppQtAboutDialog.pri)
+include(../../Classes/CppQtHideAndShowDialog/CppQtHideAndShowDialog.pri)
+include(../../Classes/CppRichelBilderbeekProgram/CppRichelBilderbeekProgram.pri)
+include(../../Classes/CppTrace/CppTrace.pri)
+include(../../Tools/ToolEncranger/ToolEncrangerDesktop.pri)
 
 TEMPLATE = app
-INCLUDEPATH += \
-    ../../Classes/CppAbout \
-    ../../Classes/CppEncranger \
-    ../../Classes/CppLoopReader \
-    ../../Classes/CppQtAboutDialog \
-    ../../Classes/CppQtHideAndShowDialog \
-    ../../Classes/CppTrace
-
-SOURCES += \
-    ../../Classes/CppAbout/about.cpp \
-    ../../Classes/CppEncranger/encranger.cpp \
-    ../../Classes/CppQtAboutDialog/qtaboutdialog.cpp \
-    ../../Classes/CppQtHideAndShowDialog/qthideandshowdialog.cpp \
-    qtmain.cpp \
-    toolencrangermaindialog.cpp \
-    qttoolencrangermaindialog.cpp \
-    qttoolencrangermenudialog.cpp \
-    toolencrangermenudialog.cpp
-
-HEADERS  += \
-    ../../Classes/CppAbout/about.h \
-    ../../Classes/CppEncranger/encranger.h \
-    ../../Classes/CppLoopReader/loopreader.h \
-    ../../Classes/CppQtAboutDialog/qtaboutdialog.h \
-    ../../Classes/CppQtHideAndShowDialog/qthideandshowdialog.h \
-    ../../Classes/CppTrace/trace.h \
-    toolencrangermaindialog.h \
-    qttoolencrangermaindialog.h \
-    qttoolencrangermenudialog.h \
-    toolencrangermenudialog.h
-
-FORMS    += \
-    ../../Classes/CppQtAboutDialog/qtaboutdialog.ui \
-    qttoolencrangermaindialog.ui \
-    qttoolencrangermenudialog.ui
-
-RESOURCES += \
-    ToolEncranger.qrc
-
-OTHER_FILES += \
-    ../../Classes/CppQtHideAndShowDialog/Licence.txt \
-    ../../Classes/CppTrace/Licence.txt
+SOURCES += qtmain.cpp
 
 #
 #

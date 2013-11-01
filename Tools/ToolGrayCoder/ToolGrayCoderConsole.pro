@@ -2,25 +2,15 @@ QT += core
 QT -= gui
 TEMPLATE = app
 
-INCLUDEPATH += \
-    ../../Classes/CppAbout \
-    ../../Classes/CppTrace
+include(../../Classes/CppAbout/CppAbout.pri)
+include(../../Classes/CppHelp/CppHelp.pri)
+include(../../Classes/CppMenuDialog/CppMenuDialog.pri)
+include(../../Classes/CppRichelBilderbeekProgram/CppRichelBilderbeekProgram.pri)
+include(../../Classes/CppTrace/CppTrace.pri)
 
-SOURCES += \
-    ../../Classes/CppAbout/about.cpp \
-    toolgraycodermenudialog.cpp \
-    toolgraycodermaindialog.cpp \
-    main.cpp
+include(../../Tools/ToolGrayCoder/ToolGrayCoderConsole.pri)
 
-HEADERS += \
-    ../../Classes/CppAbout/about.h \
-    toolgraycodermenudialog.h \
-    toolgraycodermaindialog.h
-
-OTHER_FILES += \
-    ../../Classes/CppAbout/Licence.txt \
-    ../../Classes/CppTrace/Licence.txt \
-    Licence.txt
+SOURCES += main.cpp
 
 #
 #

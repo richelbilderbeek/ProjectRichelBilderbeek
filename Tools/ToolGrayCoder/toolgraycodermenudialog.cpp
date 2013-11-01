@@ -19,11 +19,79 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 // From http://www.richelbilderbeek.nl/ToolGrayCoder.htm
 //---------------------------------------------------------------------------
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include "toolgraycodermenudialog.h"
 
-#include "trace.h"
+#include <cassert>
+#include <iostream>
 
-const ribi::About ribi::GrayCoderMenuDialog::GetAbout()
+#include <boost/lexical_cast.hpp>
+
+#include "toolgraycodermaindialog.h"
+#include "trace.h"
+#pragma GCC diagnostic pop
+
+ribi::GrayCoderMenuDialog::GrayCoderMenuDialog()
+{
+  #ifndef NDEBUG
+  Test();
+  #endif
+}
+
+int ribi::GrayCoderMenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) noexcept
+{
+  const int argc = static_cast<int>(argv.size());
+  if (argc == 1)
+  {
+    std::cout << GetHelp() << '\n';
+    return 1;
+  }
+  //User supplied binary or decimal value?
+  for (int i=0; i!=argc-1; ++i) //-1 as the next argument is used
+  {
+    const std::string s = argv[i];
+    if (s == std::string("-d") || s == std::string("--dec"))
+    {
+      try
+      {
+        const int x = boost::lexical_cast<int>( argv[i + 1] );
+        GrayCoderMainDialog d;
+        d.SetNormalInt(x);
+        std::cout << d << '\n';
+        return 0;
+      }
+      catch(boost::bad_lexical_cast&)
+      {
+        std::cout << "Please supply a number as decimal value\n";
+        return 1;
+      }
+    }
+    if (s == std::string("-b") || s == std::string("--bin"))
+    {
+      try
+      {
+
+        const int x = GrayCoderMainDialog::BitStringToInt( argv[i + 1] );
+        GrayCoderMainDialog d;
+        d.SetNormalInt(x);
+        std::cout << d << '\n';
+        return 0;
+      }
+      catch(std::logic_error&)
+      {
+        std::cout << "Please supply a binary number\n";
+        return 1;
+      }
+    }
+  }
+
+  std::cout << GetHelp() << '\n';
+  return 1;
+}
+
+const ribi::About ribi::GrayCoderMenuDialog::GetAbout() const noexcept
 {
   About a(
     "Richel Bilderbeek",
@@ -38,16 +106,57 @@ const ribi::About ribi::GrayCoderMenuDialog::GetAbout()
   return a;
 }
 
-const std::string ribi::GrayCoderMenuDialog::GetVersion()
+const ribi::Help ribi::GrayCoderMenuDialog::GetHelp() const noexcept
 {
-  return "2.1";
+  return ribi::Help(
+    this->GetAbout().GetFileTitle(),
+    this->GetAbout().GetFileDescription(),
+    {
+      Help::Option('b',"bin","decimal number to be converted to/from Gray code"),
+      Help::Option('d',"dec","decimal number to be converted to/from Gray code")
+    },
+    {
+      "GrayCoder -d 123456",
+      "GrayCoder -b 010101"
+    }
+  );
 }
 
-const std::vector<std::string> ribi::GrayCoderMenuDialog::GetVersionHistory()
+const boost::shared_ptr<const ribi::Program> ribi::GrayCoderMenuDialog::GetProgram() const noexcept
+{
+  boost::shared_ptr<const ribi::Program> p {
+    new ribi::ProgramGrayCoder
+  };
+  assert(p);
+  return p;
+}
+
+
+const std::string ribi::GrayCoderMenuDialog::GetVersion() const noexcept
+{
+  return "2.2";
+}
+
+const std::vector<std::string> ribi::GrayCoderMenuDialog::GetVersionHistory() const noexcept
 {
   return {
     "2009-05-02: version 1.0: initial version in C++ Builder",
     "2013-08-26: version 2.0: port to Qt Creator console application",
-    "2013-09-30: version 2.1: added desktop application"
+    "2013-09-30: version 2.1: added desktop application",
+    "2013-11-01: version 2.2: added console application",
   };
 }
+
+#ifndef NDEBUG
+void ribi::GrayCoderMenuDialog::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting ribi::GrayCoderMenuDialog::Test");
+  GrayCoderMainDialog(0);
+  TRACE("Finished ribi::GrayCoderMenuDialog::Test successfully");
+}
+#endif

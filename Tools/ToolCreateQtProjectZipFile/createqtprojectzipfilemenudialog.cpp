@@ -22,6 +22,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic ignored "-Weffc++"
 #include "createqtprojectzipfilemenudialog.h"
 
+#include <iostream>
+
 #include "fileio.h"
 #include "qrcfile.h"
 #include "qtcreatorprofile.h"

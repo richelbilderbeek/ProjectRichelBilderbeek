@@ -2,38 +2,17 @@ QT += core gui
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 TEMPLATE = app
 
-INCLUDEPATH += \
-    ../../Classes/CppAbout \
-    ../../Classes/CppQtAboutDialog \
-    ../../Classes/CppQtHideAndShowDialog \
-    ../../Classes/CppTrace
+include(../../Classes/CppAbout/CppAbout.pri)
+include(../../Classes/CppHelp/CppHelp.pri)
+include(../../Classes/CppMenuDialog/CppMenuDialog.pri)
+include(../../Classes/CppQtAboutDialog/CppQtAboutDialog.pri)
+include(../../Classes/CppQtHideAndShowDialog/CppQtHideAndShowDialog.pri)
+include(../../Classes/CppRichelBilderbeekProgram/CppRichelBilderbeekProgram.pri)
+include(../../Classes/CppTrace/CppTrace.pri)
 
-SOURCES += \
-    ../../Classes/CppAbout/about.cpp \
-    ../../Classes/CppQtAboutDialog/qtaboutdialog.cpp \
-    ../../Classes/CppQtHideAndShowDialog/qthideandshowdialog.cpp \
-    qttoolgraycodermaindialog.cpp \
-    qttoolgraycodermenudialog.cpp \
-    toolgraycodermaindialog.cpp \
-    toolgraycodermenudialog.cpp \
-    qtmain.cpp
+include(../../Tools/ToolGrayCoder/ToolGrayCoderDesktop.pri)
 
-HEADERS += \
-    ../../Classes/CppAbout/about.h \
-    ../../Classes/CppQtAboutDialog/qtaboutdialog.h \
-    ../../Classes/CppQtHideAndShowDialog/qthideandshowdialog.h \
-    ../../Classes/CppTrace/trace.h \
-    toolgraycodermenudialog.h \
-    qttoolgraycodermenudialog.h \
-    qttoolgraycodermaindialog.h
-
-FORMS += \
-    ../../Classes/CppQtAboutDialog/qtaboutdialog.ui \
-    qttoolgraycodermaindialog.ui \
-    qttoolgraycodermenudialog.ui
-
-OTHER_FILES += \
-    ../../Classes/CppQtHideAndShowDialog/Licence.txt
+SOURCES += qtmain.cpp
 
 #
 #

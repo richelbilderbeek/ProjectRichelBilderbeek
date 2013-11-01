@@ -1,14 +1,14 @@
-include ( ToolHometrainerConsole.pri )
+include (../../Tools/ToolHometrainer/ToolHometrainerConsole.pri)
 
 SOURCES += \
-    qthometrainermaindialog.cpp \
-    qthometrainermenudialog.cpp
+    ../../Tools/ToolHometrainer/qthometrainermaindialog.cpp \
+    ../../Tools/ToolHometrainer/qthometrainermenudialog.cpp
 
 HEADERS  += \
-    qthometrainermaindialog.h \
-    qthometrainermenudialog.h
+    ../../Tools/ToolHometrainer/qthometrainermaindialog.h \
+    ../../Tools/ToolHometrainer/qthometrainermenudialog.h
 
 FORMS += \
-    qthometrainermaindialog.ui \
-    qthometrainermenudialog.ui
+    ../../Tools/ToolHometrainer/qthometrainermaindialog.ui \
+    ../../Tools/ToolHometrainer/qthometrainermenudialog.ui
 

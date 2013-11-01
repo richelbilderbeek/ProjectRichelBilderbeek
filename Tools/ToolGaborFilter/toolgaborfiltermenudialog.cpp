@@ -20,7 +20,26 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #include "toolgaborfiltermenudialog.h"
 
-const ribi::About ribi::ToolGaborFilterMenuDialog::GetAbout() noexcept
+#include <cassert>
+#include <iostream>
+
+#include "gaborfilter.h"
+#include "gaborfilterwidget.h"
+
+int ribi::ToolGaborFilterMenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) noexcept
+{
+  const int argc = static_cast<int>(argv.size());
+  if (argc == 1)
+  {
+    std::cout << GetHelp() << '\n';
+    return 1;
+  }
+  GaborFilterWidget w;
+  std::cout << w << '\n';
+  return 0;
+}
+
+const ribi::About ribi::ToolGaborFilterMenuDialog::GetAbout() const noexcept
 {
   About a(
     "Richel Bilderbeek",
@@ -35,12 +54,35 @@ const ribi::About ribi::ToolGaborFilterMenuDialog::GetAbout() noexcept
   return a;
 }
 
-const std::string ribi::ToolGaborFilterMenuDialog::GetVersion() noexcept
+const ribi::Help ribi::ToolGaborFilterMenuDialog::GetHelp() const noexcept
+{
+  return ribi::Help(
+    this->GetAbout().GetFileTitle(),
+    this->GetAbout().GetFileDescription(),
+    {
+
+    },
+    {
+
+    }
+  );
+}
+
+const boost::shared_ptr<const ribi::Program> ribi::ToolGaborFilterMenuDialog::GetProgram() const noexcept
+{
+  boost::shared_ptr<const ribi::Program> p {
+    new ribi::ProgramGaborFilter
+  };
+  assert(p);
+  return p;
+}
+
+const std::string ribi::ToolGaborFilterMenuDialog::GetVersion() const noexcept
 {
   return "2.0";
 }
 
-const std::vector<std::string> ribi::ToolGaborFilterMenuDialog::GetVersionHistory() noexcept
+const std::vector<std::string> ribi::ToolGaborFilterMenuDialog::GetVersionHistory() const noexcept
 {
   return {
     "2010-xx-xx: version 1.0: initial Windows-only version",

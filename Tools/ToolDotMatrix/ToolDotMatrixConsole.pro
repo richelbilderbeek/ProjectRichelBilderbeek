@@ -1,29 +1,18 @@
 QT += core
 QT -= gui
 TEMPLATE = app
+CONFIG   += console
+CONFIG   -= app_bundle
 
-INCLUDEPATH += \
-    ../../Classes/CppAbout \
-    ../../Classes/CppDotMatrix \
-    ../../Classes/CppTrace
+include(../../Tools/ToolDotMatrix/ToolDotMatrixConsole.pri)
+include(../../Classes/CppAbout/CppAbout.pri)
+include(../../Classes/CppDotMatrix/CppDotMatrix.pri)
+include(../../Classes/CppHelp/CppHelp.pri)
+include(../../Classes/CppMenuDialog/CppMenuDialog.pri)
+include(../../Classes/CppRichelBilderbeekProgram/CppRichelBilderbeekProgram.pri)
+include(../../Classes/CppTrace/CppTrace.pri)
 
-SOURCES += \
-    ../../Classes/CppAbout/about.cpp \
-    tooldotmatrixmenudialog.cpp \
-    main.cpp \
-    ../../Classes/CppDotMatrix/dotmatrixchar.cpp \
-    ../../Classes/CppDotMatrix/dotmatrixstring.cpp
-
-HEADERS += \
-    ../../Classes/CppAbout/about.h \
-    tooldotmatrixmenudialog.h \
-    ../../Classes/CppDotMatrix/dotmatrixchar.h \
-    ../../Classes/CppDotMatrix/dotmatrixstring.h
-
-OTHER_FILES += \
-    ../../Classes/CppAbout/Licence.txt \
-    ../../Classes/CppTrace/Licence.txt \
-    Licence.txt
+SOURCES += main.cpp
 
 #
 #

@@ -26,19 +26,23 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <vector>
 
 #include "about.h"
+#include "menudialog.h"
 
 namespace ribi {
 
 ///MazeCreatorMenuDialog contains the MazeCreator menu dialog
-struct MazeCreatorMenuDialog
+struct MazeCreatorMenuDialog : public MenuDialog
 {
-  static const About GetAbout() noexcept;
-  static const std::string GetVersion() noexcept;
-  static const std::vector<std::string> GetVersionHistory() noexcept;
-};
+  const About GetAbout() const noexcept;
+  const Help GetHelp() const noexcept;
+  const boost::shared_ptr<const Program> GetProgram() const noexcept;
 
-///From http://www.richelbilderbeek.nl/CppIntToStr.htm
-const std::string IntToStr(const int x);
+  const std::string GetVersion() const noexcept;
+  const std::vector<std::string> GetVersionHistory() const noexcept;
+
+  private:
+  int ExecuteSpecific(const std::vector<std::string>& argv) noexcept;
+};
 
 } //~namespace ribi
 

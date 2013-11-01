@@ -31,6 +31,9 @@ struct GrayCoderMainDialog
 {
   GrayCoderMainDialog(const int normal_int = 0);
 
+  ///From http://www.richelbilderbeek.nl/CppBitStringToInt.htm
+  static int BitStringToInt(const std::string& s);
+
   ///Get the Gray code integer
   int GetGrayInt() const noexcept { return IntToGray(m_i); }
 
@@ -71,6 +74,8 @@ struct GrayCoderMainDialog
   static void Test() noexcept;
   #endif
 };
+
+std::ostream& operator<<(std::ostream& os, const GrayCoderMainDialog& dialog);
 
 } //~namespace ribi
 

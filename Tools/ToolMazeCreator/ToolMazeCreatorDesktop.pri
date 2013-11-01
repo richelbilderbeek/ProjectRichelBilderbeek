@@ -1,11 +1,16 @@
-INCLUDEPATH += \
-    ../../Tools/ToolMazeCreator
+include(../../Tools/ToolMazeCreator/ToolMazeCreatorConsole.pri)
 
 SOURCES += \
-    ../../Tools/ToolMazeCreator/mazecreatormenudialog.cpp
+    ../../Tools/ToolMazeCreator/qtmazecreatormenudialog.cpp \
+    ../../Tools/ToolMazeCreator/qtmazecreatormaindialog.cpp
 
 HEADERS += \
-    ../../Tools/ToolMazeCreator/mazecreatormenudialog.h
+    ../../Tools/ToolMazeCreator/qtmazecreatormenudialog.h \
+    ../../Tools/ToolMazeCreator/qtmazecreatormaindialog.h \
 
-OTHER_FILES += \
-    ../../Tools/ToolMazeCreator/Licence.txt
+FORMS    += \
+    qtmazecreatormaindialog.ui \
+    qtmazecreatormenudialog.ui
+
+RESOURCES += \
+    mazecreator.qrc

@@ -43,24 +43,17 @@ struct ProjectRichelBilderbeekMenuDialog : public MenuDialog
 {
   ProjectRichelBilderbeekMenuDialog();
   ~ProjectRichelBilderbeekMenuDialog() noexcept {}
-
-  ///Start the command line version
-  ///Returns the error code to give back to the operatings system
   int ExecuteSpecific(const std::vector<std::string>& argv) noexcept;
-
   const About GetAbout() const noexcept;
   const Help GetHelp() const noexcept;
   const boost::shared_ptr<const Program> GetProgram() const noexcept;
 
   ///Get every Program by Richel Bilderbeek
   //const std::vector<boost::shared_ptr<Program> >& GetPrograms() const noexcept { return m_programs; }
-
   const std::string GetVersion() const noexcept;
   const std::vector<std::string> GetVersionHistory() const noexcept;
 
-
   private:
-
   ///Created by lazy initialization
   static boost::bimap<ProgramType,boost::shared_ptr<MenuDialog>> sm_map_to_menu;
 

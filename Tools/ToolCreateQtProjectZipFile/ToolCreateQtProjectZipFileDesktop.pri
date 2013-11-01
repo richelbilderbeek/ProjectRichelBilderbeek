@@ -1,22 +1,22 @@
-include(ToolCreateQtProjectZipFileConsole.pri)
+include(../../Tools/ToolCreateQtProjectZipFile/ToolCreateQtProjectZipFileConsole.pri)
 
 SOURCES += \
-    qtcreateqtprojectzipfilemaindialog.cpp \
-    qtcreateqtprojectzipfilemenudialog.cpp
+    ../../Tools/ToolCreateQtProjectZipFile/qtcreateqtprojectzipfilemaindialog.cpp \
+    ../../Tools/ToolCreateQtProjectZipFile/qtcreateqtprojectzipfilemenudialog.cpp
 
 
 HEADERS  += \
-    qtcreateqtprojectzipfilemaindialog.h \
-    qtcreateqtprojectzipfilemenudialog.h
+    ../../Tools/ToolCreateQtProjectZipFile/qtcreateqtprojectzipfilemaindialog.h \
+    ../../Tools/ToolCreateQtProjectZipFile/qtcreateqtprojectzipfilemenudialog.h
 
 FORMS += \
-    qtcreateqtprojectzipfilemaindialog.ui \
-    qtcreateqtprojectzipfilemenudialog.ui
+    ../../Tools/ToolCreateQtProjectZipFile/qtcreateqtprojectzipfilemaindialog.ui \
+    ../../Tools/ToolCreateQtProjectZipFile/qtcreateqtprojectzipfilemenudialog.ui
 
 OTHER_FILES += \
-    ToolCreateQtProjectZipFileDesktop.pri
+    ../../Tools/ToolCreateQtProjectZipFile/ToolCreateQtProjectZipFileDesktop.pri
 
 RESOURCES += \
-    ToolCreateQtProjectZipFile.qrc
+    ../../Tools/ToolCreateQtProjectZipFile/ToolCreateQtProjectZipFile.qrc
 
 

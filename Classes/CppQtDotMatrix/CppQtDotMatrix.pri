@@ -1,12 +1,14 @@
 INCLUDEPATH += \
-    ../../Classes/CppDial
+    ../../Classes/CppQtDotMatrix
 
 SOURCES += \
-    ../../Classes/CppDial/dial.cpp
+    ../../Classes/CppQtDotMatrix/qtdotmatrixstring.cpp \
+    ../../Classes/CppQtDotMatrix/qtdotmatrixchar.cpp
 
 HEADERS  += \
-    ../../Classes/CppDial/dial.h
+    ../../Classes/CppQtDotMatrix/qtdotmatrixstring.h \
+    ../../Classes/CppQtDotMatrix/qtdotmatrixchar.h
 
 OTHER_FILES += \
-    ../../Classes/CppDial/Licence.txt
+    ../../Classes/CppQtDotMatrix/Licence.txt
 

@@ -19,12 +19,18 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 // From http://www.richelbilderbeek.nl/ToolGrayCoder.htm
 //---------------------------------------------------------------------------
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include "toolgraycodermaindialog.h"
 
 #include <cassert>
 #include <cmath>
+#include <iostream>
+#include <stdexcept>
 
 #include "trace.h"
+#pragma GCC diagnostic pop
 
 ribi::GrayCoderMainDialog::GrayCoderMainDialog(const int normal_int)
   : m_i(normal_int)
@@ -32,6 +38,31 @@ ribi::GrayCoderMainDialog::GrayCoderMainDialog(const int normal_int)
   #ifndef NDEBUG
   Test();
   #endif
+}
+
+int ribi::GrayCoderMainDialog::BitStringToInt(const std::string& s)
+{
+  int power = 1;
+  int result = 0;
+  const auto j = s.rend();
+  for (auto i = s.rbegin(); i!=j; ++i)
+  {
+    const char c = *i;
+    if (c == '0')
+    {
+      //OK
+    }
+    else if (c == '1')
+    {
+      result += power;
+    }
+    else
+    {
+      throw std::logic_error("A bitstring must consist of zeroes and ones only");
+    }
+    power *= 2;
+  }
+  return result;
 }
 
 int ribi::GrayCoderMainDialog::GrayToInt(int i)
@@ -74,6 +105,44 @@ void ribi::GrayCoderMainDialog::Test() noexcept
     is_tested = true;
   }
   TRACE("Starting ribi::GrayCoderMainDialog::Test");
+  ///BitStringToInt
+  {
+    assert(BitStringToInt(   "0") == 0);
+    assert(BitStringToInt(   "1") == 1);
+    assert(BitStringToInt(  "10") == 2);
+    assert(BitStringToInt(  "11") == 3);
+    assert(BitStringToInt( "100") == 4);
+    assert(BitStringToInt( "101") == 5);
+    assert(BitStringToInt( "110") == 6);
+    assert(BitStringToInt( "111") == 7);
+    assert(BitStringToInt("1000") == 8);
+    assert(BitStringToInt("1001") == 9);
+    assert(BitStringToInt("10000") ==  16);
+    assert(BitStringToInt("100000") ==  32);
+    assert(BitStringToInt("1000000") ==  64);
+    assert(BitStringToInt("10000000") == 128);
+    assert(BitStringToInt("100000000") == 256);
+    assert(BitStringToInt("1000000000") == 512);
+  }
+  ///IntToBitString
+  {
+    assert(IntToBitString(  0) == std::string(   "0"));
+    assert(IntToBitString(  1) == std::string(   "1"));
+    assert(IntToBitString(  2) == std::string(  "10"));
+    assert(IntToBitString(  3) == std::string(  "11"));
+    assert(IntToBitString(  4) == std::string( "100"));
+    assert(IntToBitString(  5) == std::string( "101"));
+    assert(IntToBitString(  6) == std::string( "110"));
+    assert(IntToBitString(  7) == std::string( "111"));
+    assert(IntToBitString(  8) == std::string("1000"));
+    assert(IntToBitString(  9) == std::string("1001"));
+    assert(IntToBitString( 16) == std::string("10000"));
+    assert(IntToBitString( 32) == std::string("100000"));
+    assert(IntToBitString( 64) == std::string("1000000"));
+    assert(IntToBitString(128) == std::string("10000000"));
+    assert(IntToBitString(256) == std::string("100000000"));
+    assert(IntToBitString(512) == std::string("1000000000"));
+  }
   //IntToGray
   {
     assert(IntToGray( 0)== 0);
@@ -115,3 +184,12 @@ void ribi::GrayCoderMainDialog::Test() noexcept
   TRACE("Finished ribi::GrayCoderMainDialog::Test successfully");
 }
 #endif
+
+std::ostream& ribi::operator<<(std::ostream& os, const GrayCoderMainDialog& dialog)
+{
+  os
+    << "Normal value   : " << dialog.GetNormalInt() << " (" << dialog.GetNormalIntAsBitStr() << ")\n"
+    << "Gray code value: " << dialog.GetGrayInt() << " (" << dialog.GetGrayIntAsBitStr() << ")\n";
+
+  return os;
+}

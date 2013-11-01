@@ -1,198 +1,24 @@
 QT += core gui
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
-# undefined reference to `_imp___ZNK8QWebView8settingsEv'
-#greaterThan(QT_MAJOR_VERSION, 4): QT += webkitwidgets
 
 TEMPLATE = app
 
-#
-#
-# Common
-#
-#
+include(../../Classes/CppAbout/CppAbout.pri)
+include(../../Classes/CppHelp/CppHelp.pri)
+include(../../Classes/CppKalmanFilter/CppKalmanFilter.pri)
+include(../../Classes/CppMenuDialog/CppMenuDialog.pri)
+include(../../Classes/CppMatrix/CppMatrix.pri)
+include(../../Classes/CppQtAboutDialog/CppQtAboutDialog.pri)
+include(../../Classes/CppQtHideAndShowDialog/CppQtHideAndShowDialog.pri)
+include(../../Classes/CppQtMatrix/CppQtMatrix.pri)
+include(../../Classes/CppQtModel/CppQtModel.pri)
+include(../../Classes/CppRichelBilderbeekProgram/CppRichelBilderbeekProgram.pri)
+include(../../Classes/CppTrace/CppTrace.pri)
+include(ToolKalmanFiltererDesktop.pri)
 
-INCLUDEPATH += \
-    ../../Classes/CppAbout \
-    ../../Classes/CppKalmanFilter \
-    ../../Classes/CppMatrix \
-    ../../Classes/CppQtAboutDialog \
-    ../../Classes/CppQtHideAndShowDialog \
-    ../../Classes/CppQtMatrix \
-    ../../Classes/CppQtModel \
-    ../../Classes/CppTrace
+SOURCES += qtmain.cpp
 
-SOURCES += \
-    ../../Classes/CppAbout/about.cpp \
-    ../../Classes/CppKalmanFilter/fixedlagsmootherkalmanfilter.cpp \
-    ../../Classes/CppKalmanFilter/fixedlagsmootherkalmanfiltercalculationelements.cpp \
-    ../../Classes/CppKalmanFilter/fixedlagsmootherkalmanfilterfactory.cpp \
-    ../../Classes/CppKalmanFilter/fixedlagsmootherkalmanfilterparameters.cpp \
-    ../../Classes/CppKalmanFilter/gapsfilledwhitenoisesystem.cpp \
-    ../../Classes/CppKalmanFilter/gapsfilledwhitenoisesystemfactory.cpp \
-    ../../Classes/CppKalmanFilter/gapsfilledwhitenoisesystemparameters.cpp \
-    ../../Classes/CppKalmanFilter/kalmanfilter.cpp \
-    ../../Classes/CppKalmanFilter/kalmanfiltercalculationelements.cpp \
-    ../../Classes/CppKalmanFilter/kalmanfiltercalculationelementsfactory.cpp \
-    ../../Classes/CppKalmanFilter/kalmanfilterexample.cpp \
-    ../../Classes/CppKalmanFilter/kalmanfilterexperiment.cpp \
-    ../../Classes/CppKalmanFilter/kalmanfilterexperimentparameter.cpp \
-    ../../Classes/CppKalmanFilter/kalmanfilterexperimentparametertype.cpp \
-    ../../Classes/CppKalmanFilter/kalmanfilterfactory.cpp \
-    ../../Classes/CppKalmanFilter/kalmanfilterparameter.cpp \
-    ../../Classes/CppKalmanFilter/kalmanfilterparameters.cpp \
-    ../../Classes/CppKalmanFilter/kalmanfilterparametertype.cpp \
-    ../../Classes/CppKalmanFilter/kalmanfiltertype.cpp \
-    ../../Classes/CppKalmanFilter/kalmanfiltertypes.cpp \
-    ../../Classes/CppKalmanFilter/laggedwhitenoisesystem.cpp \
-    ../../Classes/CppKalmanFilter/laggedwhitenoisesystemfactory.cpp \
-    ../../Classes/CppKalmanFilter/laggedwhitenoisesystemparameters.cpp \
-    ../../Classes/CppKalmanFilter/standardkalmanfilter.cpp \
-    ../../Classes/CppKalmanFilter/standardkalmanfiltercalculationelements.cpp \
-    ../../Classes/CppKalmanFilter/standardkalmanfilterfactory.cpp \
-    ../../Classes/CppKalmanFilter/standardkalmanfilterparameters.cpp \
-    ../../Classes/CppKalmanFilter/standardwhitenoisesystem.cpp \
-    ../../Classes/CppKalmanFilter/standardwhitenoisesystemfactory.cpp \
-    ../../Classes/CppKalmanFilter/standardwhitenoisesystemparameters.cpp \
-    ../../Classes/CppKalmanFilter/steadystatekalmanfilter.cpp \
-    ../../Classes/CppKalmanFilter/steadystatekalmanfiltercalculationelements.cpp \
-    ../../Classes/CppKalmanFilter/steadystatekalmanfilterfactory.cpp \
-    ../../Classes/CppKalmanFilter/steadystatekalmanfilterparameters.cpp \
-    ../../Classes/CppKalmanFilter/whitenoisesystem.cpp \
-    ../../Classes/CppKalmanFilter/whitenoisesystemfactory.cpp \
-    ../../Classes/CppKalmanFilter/whitenoisesystemparameter.cpp \
-    ../../Classes/CppKalmanFilter/whitenoisesystemparameters.cpp \
-    ../../Classes/CppKalmanFilter/whitenoisesystemparametertype.cpp \
-    ../../Classes/CppKalmanFilter/whitenoisesystemtype.cpp \
-    ../../Classes/CppKalmanFilter/whitenoisesystemtypes.cpp \
-    ../../Classes/CppMatrix/matrix.cpp \
-    ../../Classes/CppQtAboutDialog/qtaboutdialog.cpp \
-    ../../Classes/CppQtHideAndShowDialog/qthideandshowdialog.cpp \
-    ../../Classes/CppQtMatrix/qtmatrix.cpp \
-    ../../Classes/CppQtModel/modelfunctionparser.cpp \
-    ../../Classes/CppQtModel/qtstdvectorfunctionmodel.cpp \
-    ../../Classes/CppQtModel/qtstdvectorstringmodel.cpp \
-    ../../Classes/CppQtModel/qtublasmatrixdoublemodel.cpp \
-    ../../Classes/CppQtModel/qtublasvectordoublemodel.cpp \
-    ../../Classes/CppQtModel/qtublasvectorintmodel.cpp \
-    kalmanfilterermenudialog.cpp \
-    qtcopyalltablewidget.cpp \
-    qtfixedlagsmootherkalmanfiltercalculationdialog.cpp \
-    qtkalmanfiltercalculationdialog.cpp \
-    qtkalmanfilterdialog.cpp \
-    qtkalmanfilterermaindialog.cpp \
-    qtkalmanfilterermenudialog.cpp \
-    qtkalmanfilterermodel.cpp \
-    qtkalmanfiltererparameterdialog.cpp \
-    qtkalmanfilterexamplesdialog.cpp \
-    qtkalmanfilterexperimentdialog.cpp \
-    qtkalmanfilterexperimentmodel.cpp \
-    qtmain.cpp \
-    qtstandardkalmanfiltercalculationdialog.cpp \
-    qtsteadystatekalmanfiltercalculationdialog.cpp \
-    qtwhitenoisesystemparametersdialog.cpp \
-    qtcopyalltableview.cpp
-
-
-HEADERS += \
-    ../../Classes/CppAbout/about.h \
-    ../../Classes/CppKalmanFilter/fixedlagsmootherkalmanfilter.h \
-    ../../Classes/CppKalmanFilter/fixedlagsmootherkalmanfiltercalculationelements.h \
-    ../../Classes/CppKalmanFilter/fixedlagsmootherkalmanfilterfactory.h \
-    ../../Classes/CppKalmanFilter/fixedlagsmootherkalmanfilterparameters.h \
-    ../../Classes/CppKalmanFilter/gapsfilledwhitenoisesystem.h \
-    ../../Classes/CppKalmanFilter/gapsfilledwhitenoisesystemfactory.h \
-    ../../Classes/CppKalmanFilter/gapsfilledwhitenoisesystemparameters.h \
-    ../../Classes/CppKalmanFilter/kalmanfilter.h \
-    ../../Classes/CppKalmanFilter/kalmanfiltercalculationelements.h \
-    ../../Classes/CppKalmanFilter/kalmanfiltercalculationelementsfactory.h \
-    ../../Classes/CppKalmanFilter/kalmanfilterexample.h \
-    ../../Classes/CppKalmanFilter/kalmanfilterexperiment.h \
-    ../../Classes/CppKalmanFilter/kalmanfilterexperimentparameter.h \
-    ../../Classes/CppKalmanFilter/kalmanfilterexperimentparametertype.h \
-    ../../Classes/CppKalmanFilter/kalmanfilterfactory.h \
-    ../../Classes/CppKalmanFilter/kalmanfilterparameter.h \
-    ../../Classes/CppKalmanFilter/kalmanfilterparameters.h \
-    ../../Classes/CppKalmanFilter/kalmanfilterparametertype.h \
-    ../../Classes/CppKalmanFilter/kalmanfiltertype.h \
-    ../../Classes/CppKalmanFilter/kalmanfiltertypes.h \
-    ../../Classes/CppKalmanFilter/laggedwhitenoisesystem.h \
-    ../../Classes/CppKalmanFilter/laggedwhitenoisesystemfactory.h \
-    ../../Classes/CppKalmanFilter/laggedwhitenoisesystemparameters.h \
-    ../../Classes/CppKalmanFilter/standardkalmanfilter.h \
-    ../../Classes/CppKalmanFilter/standardkalmanfiltercalculationelements.h \
-    ../../Classes/CppKalmanFilter/standardkalmanfilterfactory.h \
-    ../../Classes/CppKalmanFilter/standardkalmanfilterparameters.h \
-    ../../Classes/CppKalmanFilter/standardwhitenoisesystem.h \
-    ../../Classes/CppKalmanFilter/standardwhitenoisesystemfactory.h \
-    ../../Classes/CppKalmanFilter/standardwhitenoisesystemparameters.h \
-    ../../Classes/CppKalmanFilter/steadystatekalmanfilter.h \
-    ../../Classes/CppKalmanFilter/steadystatekalmanfiltercalculationelements.h \
-    ../../Classes/CppKalmanFilter/steadystatekalmanfilterfactory.h \
-    ../../Classes/CppKalmanFilter/steadystatekalmanfilterparameters.h \
-    ../../Classes/CppKalmanFilter/whitenoisesystem.h \
-    ../../Classes/CppKalmanFilter/whitenoisesystemfactory.h \
-    ../../Classes/CppKalmanFilter/whitenoisesystemparameter.h \
-    ../../Classes/CppKalmanFilter/whitenoisesystemparameters.h \
-    ../../Classes/CppKalmanFilter/whitenoisesystemparametertype.h \
-    ../../Classes/CppKalmanFilter/whitenoisesystemtype.h \
-    ../../Classes/CppKalmanFilter/whitenoisesystemtypes.h \
-    ../../Classes/CppMatrix/matrix.h \
-    ../../Classes/CppQtAboutDialog/qtaboutdialog.h \
-    ../../Classes/CppQtHideAndShowDialog/qthideandshowdialog.h \
-    ../../Classes/CppQtMatrix/qtmatrix.h \
-    ../../Classes/CppQtModel/modelfunctionparser.h \
-    ../../Classes/CppQtModel/qtstdvectorfunctionmodel.h \
-    ../../Classes/CppQtModel/qtstdvectorstringmodel.h \
-    ../../Classes/CppQtModel/qtublasmatrixdoublemodel.h \
-    ../../Classes/CppQtModel/qtublasvectordoublemodel.h \
-    ../../Classes/CppQtModel/qtublasvectorintmodel.h \
-    ../../Classes/CppTrace/trace.h \
-    kalmanfilterermenudialog.h \
-    qtcopyalltablewidget.h \
-    qtfixedlagsmootherkalmanfiltercalculationdialog.h \
-    qtkalmanfiltercalculationdialog.h \
-    qtkalmanfilterdialog.h \
-    qtkalmanfilterermaindialog.h \
-    qtkalmanfilterermenudialog.h \
-    qtkalmanfilterermodel.h \
-    qtkalmanfiltererparameterdialog.h \
-    qtkalmanfilterexamplesdialog.h \
-    qtkalmanfilterexperimentdialog.h \
-    qtkalmanfilterexperimentmodel.h \
-    qtstandardkalmanfiltercalculationdialog.h \
-    qtsteadystatekalmanfiltercalculationdialog.h \
-    qtwhitenoisesystemparametersdialog.h \
-    qtcopyalltableview.h
-
-FORMS += \
-    ../../Classes/CppQtAboutDialog/qtaboutdialog.ui \
-    qtfixedlagsmootherkalmanfiltercalculationdialog.ui \
-    qtkalmanfiltercalculationdialog.ui \
-    qtkalmanfilterdialog.ui \
-    qtkalmanfilterermaindialog.ui \
-    qtkalmanfilterermenudialog.ui \
-    qtkalmanfiltererparameterdialog.ui \
-    qtkalmanfilterexamplesdialog.ui \
-    qtkalmanfilterexperimentdialog.ui \
-    qtstandardkalmanfiltercalculationdialog.ui \
-    qtsteadystatekalmanfiltercalculationdialog.ui \
-    qtwhitenoisesystemparametersdialog.ui
-
-OTHER_FILES += \
-    ../../Classes/CppAbout/Licence.txt \
-    ../../Classes/CppKalmanFilter/Licence.txt \
-    ../../Classes/CppMatrix/Licence.txt \
-    ../../Classes/CppQtAboutDialog/Licence.txt \
-    ../../Classes/CppQtHideAndShowDialog/Licence.txt \
-    ../../Classes/CppQtMatrix/Licence.txt \
-    ../../Classes/CppTrace/Licence.txt \
-    crosscompile.sh \
-    Licence.txt \
-    zip.sh
-
-RESOURCES += \
-    ToolKalmanFilterer.qrc
 
 #
 #

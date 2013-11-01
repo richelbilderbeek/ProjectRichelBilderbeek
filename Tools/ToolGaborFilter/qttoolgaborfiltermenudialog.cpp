@@ -43,17 +43,13 @@ ribi::QtToolGaborFilterMenuDialog::~QtToolGaborFilterMenuDialog() noexcept
 void ribi::QtToolGaborFilterMenuDialog::on_button_start_clicked()
 {
   QtToolGaborFilterMainDialog d;
-  this->hide();
-  d.exec();
-  this->show();
+  this->ShowChild(&d);
 }
 
 void ribi::QtToolGaborFilterMenuDialog::on_button_about_clicked()
 {
-  QtAboutDialog d(ToolGaborFilterMenuDialog::GetAbout());
-  this->hide();
-  d.exec();
-  this->show();
+  QtAboutDialog d(ToolGaborFilterMenuDialog().GetAbout());
+  this->ShowChild(&d);
 }
 
 void ribi::QtToolGaborFilterMenuDialog::on_button_quit_clicked()

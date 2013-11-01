@@ -35,32 +35,28 @@ ribi::QtMazeCreatorMenuDialog::QtMazeCreatorMenuDialog(QWidget *parent) :
 {
   ui->setupUi(this);
 }
-//---------------------------------------------------------------------------
+
 ribi::QtMazeCreatorMenuDialog::~QtMazeCreatorMenuDialog() noexcept
 {
   delete ui;
 }
-//---------------------------------------------------------------------------
+
 void ribi::QtMazeCreatorMenuDialog::on_button_start_clicked()
 {
-  this->hide();
   QtMazeCreatorMainDialog d;
-  d.exec();
-  this->show();
+  this->ShowChild(&d);
 }
-//---------------------------------------------------------------------------
+
 void ribi::QtMazeCreatorMenuDialog::on_button_about_clicked()
 {
   this->hide();
-  About a = MazeCreatorMenuDialog::GetAbout();
+  About a = MazeCreatorMenuDialog().GetAbout();
   //a.AddLibrary("QtDialWidget version: " + QtDialWidget::GetVersion());
   QtAboutDialog d(a);
-  d.exec();
-  this->show();
+  this->ShowChild(&d);
 }
-//---------------------------------------------------------------------------
+
 void ribi::QtMazeCreatorMenuDialog::on_button_quit_clicked()
 {
   close();
 }
-//---------------------------------------------------------------------------

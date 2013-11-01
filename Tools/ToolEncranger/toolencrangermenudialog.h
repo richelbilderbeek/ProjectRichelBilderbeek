@@ -18,22 +18,31 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolEncranger.htm
 //---------------------------------------------------------------------------
-#ifndef TOOLENCRANGERMAINDIALOG_H
-#define TOOLENCRANGERMAINDIALOG_H
+#ifndef TOOLENCRANGERMENUDIALOG_H
+#define TOOLENCRANGERMENUDIALOG_H
 
 #include <string>
 #include <vector>
 #include "about.h"
+#include "help.h"
+#include "menudialog.h"
+#include "richelbilderbeekprogram.h"
 
 namespace ribi {
 
-struct ToolEncrangerMenuDialog
+struct ToolEncrangerMenuDialog : public MenuDialog
 {
-  static const About GetAbout() noexcept;
-  static const std::string GetVersion() noexcept;
-  static const std::vector<std::string> GetVersionHistory() noexcept;
+  const About GetAbout() const noexcept;
+  const Help GetHelp() const noexcept;
+  const boost::shared_ptr<const Program> GetProgram() const noexcept;
+  const std::string GetVersion() const noexcept;
+  const std::vector<std::string> GetVersionHistory() const noexcept;
+
+  private:
+  int ExecuteSpecific(const std::vector<std::string>& argv) noexcept;
+
 };
 
 } //~namespace ribi
 
-#endif // TOOLENCRANGERMAINDIALOG_H
+#endif // TOOLENCRANGERMENUDIALOG_H

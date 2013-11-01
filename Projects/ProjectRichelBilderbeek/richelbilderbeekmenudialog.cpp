@@ -23,11 +23,11 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include "richelbilderbeekmenudialog.h"
 
-#include "approximator.h"
+#include "about.h"
 #include "alphabetafilter.h"
 #include "alphabetagammafilter.h"
-#include "about.h"
 #include "alphafilter.h"
+#include "approximator.h"
 #include "asciiartermenudialog.h"
 #include "beerwantermenudialog.h"
 #include "binarynewickvector.h"
@@ -35,10 +35,10 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "connectthree.h"
 #include "connectthreewidget.h"
 #include "copy_if.h"
-#include "createqtprojectzipfilemenudialog.h"
 #include "counter.h"
-#include "createqtprojectzipfilemenudialog.h"
 #include "createglossarymenudialog.h"
+#include "createqtprojectzipfilemenudialog.h"
+#include "createqtprojectzipfilemenudialog.h"
 #include "dial.h"
 #include "dialwidget.h"
 #include "encranger.h"
@@ -49,9 +49,11 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "gaborfilter.h"
 #include "gaborfilterwidget.h"
 #include "hometrainermenudialog.h"
+#include "hometrainermenudialog.h"
 #include "htmlpage.h"
 #include "ipaddress.h"
 #include "kalmanfilter.h"
+#include "kalmanfilterermenudialog.h"
 #include "laggedwhitenoisesystem.h"
 #include "lazy_init.h"
 #include "led.h"
@@ -60,15 +62,13 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "manydigitnewick.h"
 #include "matrix.h"
 #include "multialphafilter.h"
+#include "multiapproximator.h"
 #include "multiplechoicequestion.h"
 #include "multiplechoicequestiondialog.h"
 #include "multivector.h"
 #include "musicchord.h"
 #include "musicnote.h"
-#include "tooltestapproximatormenudialog.h"
-#include "tooltestmultiapproximatormenudialog.h"
 #include "musicscale.h"
-#include "multiapproximator.h"
 #include "mysterymachine.h"
 #include "mysterymachinewidget.h"
 #include "newick.h"
@@ -76,6 +76,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "openquestion.h"
 #include "openquestiondialog.h"
 #include "pylosmenudialog.h"
+#include "qmakewatchermenudialog.h"
 #include "qrcfile.h"
 #include "qtcreatorprofile.h"
 #include "question.h"
@@ -101,12 +102,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "steadystatekalmanfilterparameters.h"
 #include "stopwatch.h"
 #include "testdialmenudialog.h"
-#include "toolencrangermenudialog.h"
-#include "hometrainermenudialog.h"
 #include "testexercisemenudialog.h"
 #include "testfunctionparsermenudialog.h"
-#include "tooltestledmenudialog.h"
-#include "tooltestsimplelinearregressionmenudialog.h"
 #include "testnewickvectordialog.h"
 #include "testqrcfilemenudialog.h"
 #include "testqtarrowitemsmenudialog.h"
@@ -116,10 +113,18 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "testshinybuttonmenudialog.h"
 #include "testtogglebuttonmenudialog.h"
 #include "tictactoe.h"
-#include "qmakewatchermenudialog.h"
 #include "tictactoemenudialog.h"
+#include "toolgaborfiltermenudialog.h"
 #include "togglebutton.h"
 #include "togglebuttonwidget.h"
+#include "tooldotmatrixmenudialog.h"
+#include "toolencrangermenudialog.h"
+#include "toolgraycodermenudialog.h"
+#include "mazecreatormenudialog.h"
+#include "tooltestapproximatormenudialog.h"
+#include "tooltestledmenudialog.h"
+#include "tooltestmultiapproximatormenudialog.h"
+#include "tooltestsimplelinearregressionmenudialog.h"
 #include "trace.h"
 #include "twodigitnewick.h"
 
@@ -150,7 +155,13 @@ const boost::bimap<ribi::ProgramType,boost::shared_ptr<ribi::MenuDialog>> ribi::
     { const MenuType p { new CodeToHtmlMenuDialog }; m.insert(ValueType(ProgramType::codeToHtml,p)); }
     { const MenuType p { new CreateGlossaryMenuDialog }; m.insert(ValueType(ProgramType::createGlossary,p)); }
     { const MenuType p { new CreateQtProjectZipFile::MenuDialog }; m.insert(ValueType(ProgramType::createQtProjectZipFile,p)); }
+    { const MenuType p { new ToolDotMatrixMenuDialog }; m.insert(ValueType(ProgramType::dotMatrix,p)); }
+    { const MenuType p { new ToolEncrangerMenuDialog }; m.insert(ValueType(ProgramType::encranger,p)); }
+    { const MenuType p { new ToolGaborFilterMenuDialog }; m.insert(ValueType(ProgramType::gaborFilter,p)); }
+    { const MenuType p { new GrayCoderMenuDialog }; m.insert(ValueType(ProgramType::grayCoder,p)); }
     { const MenuType p { new HometrainerMenuDialog }; m.insert(ValueType(ProgramType::hometrainer,p)); }
+    { const MenuType p { new kalman::KalmanFiltererMenuDialog }; m.insert(ValueType(ProgramType::kalmanFilterer,p)); }
+    { const MenuType p { new MazeCreatorMenuDialog }; m.insert(ValueType(ProgramType::mazeCreator,p)); }
     sm_map_to_menu = m;
   }
   assert(!sm_map_to_menu.empty());
@@ -306,8 +317,8 @@ const ribi::About ribi::ProjectRichelBilderbeekMenuDialog::GetAbout() const noex
   a.AddLibrary("StateObserver version: " + StateObserverMenuDialog::GetVersion());
   a.AddLibrary("Stopwatch version: " + Stopwatch::GetVersion());
   a.AddLibrary("TestApproximator version: " + ToolTestApproximatorMenuDialog::GetVersion());
-  a.AddLibrary("TestDial version: " + TestDialMenuDialog::GetVersion());
-  a.AddLibrary("Encranger version: " + ToolEncrangerMenuDialog::GetVersion());
+  a.AddLibrary("TestDial version: " + TestDialMenuDialog().GetVersion());
+  a.AddLibrary("Encranger version: " + ToolEncrangerMenuDialog().GetVersion());
   a.AddLibrary("TestExercise version: " + TestExerciseMenuDialog::GetVersion());
   a.AddLibrary("TestFunctionParser version: " + TestFunctionParserMenuDialog::GetVersion());
   a.AddLibrary("TestLed version: " + TestLedMenuDialog::GetVersion());

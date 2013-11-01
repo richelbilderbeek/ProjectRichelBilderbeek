@@ -1,12 +1,16 @@
-INCLUDEPATH += \
-    ../../Tools/ToolGaborFilter
+include(../../Tools/ToolGaborFilter/ToolGaborFilterConsole.pri)
 
 SOURCES += \
-    ../../Tools/ToolGaborFilter/toolgaborfiltermenudialog.cpp
+    ../../Tools/ToolGaborFilter/qttoolgaborfiltermaindialog.cpp \
+    ../../Tools/ToolGaborFilter/qttoolgaborfiltermenudialog.cpp
 
 HEADERS += \
-    ../../Tools/ToolGaborFilter/toolgaborfiltermenudialog.h
+    ../../Tools/ToolGaborFilter/qttoolgaborfiltermaindialog.h \
+    ../../Tools/ToolGaborFilter/qttoolgaborfiltermenudialog.h
 
+FORMS += \
+    ../../Tools/ToolGaborFilter/qttoolgaborfiltermenudialog.ui \
+    ../../Tools/ToolGaborFilter/qttoolgaborfiltermaindialog.ui
 
-OTHER_FILES += \
-    ../../Tools/ToolGaborFilter/Licence.txt
+RESOURCES += \
+    ../../Tools/ToolGaborFilter/ToolGaborFilter.qrc
