@@ -18,6 +18,11 @@ fi
 #Check libraries
 cd ProjectRichelBilderbeek/Libraries
 
+if [ ! -d "avr-libc-1.8.0" ]
+then
+  ./avr-libc.sh
+fi 
+
 if [ ! -d "bigint-2010.04.30" ]
 then
   ./bigint.sh
